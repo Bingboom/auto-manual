@@ -94,20 +94,25 @@ python tools/cloud_doc_backport.py apply-source-table --report <…> \
 
 It writes `cloud_doc_backport_source_table_apply.{json,md}` next to the report.
 
-## Known limitation (follow-up)
+## Copy write-back (source-language only) and remaining gaps
 
 The change-request `table`/`field` are in the normalized (CSV) namespace
 (`Spec_Master` / `Value_<lang>`, `Localized_Copy` / `text_<lang>`). A live binding's
 Feishu columns must match that namespace — true for a Spec_Master-shaped sandbox.
-Two gaps remain operator-deliberate:
 
+- **Copy write-back is supported for source-language edits.** When the reviewed
+  language equals the copy's `Source_lang`, a `Localized_Copy`-origin change request
+  is mapped to write the authoring **`Manual_Copy_Source.source_text`** (the record
+  id resolves to the authoring row via the F6 sidecar redirect). Bind it with
+  `Manual_Copy_Source=<base_token>:<table_id>`.
+- **Translation copy edits abstain.** When the reviewed language is not the copy's
+  source language, the correction's home is the `Translation_Memory`, which is out
+  of F6 scope — the request abstains at the write boundary
+  (`resolution_status: translation_abstain`) and is never written. Routing
+  translation edits to the TM is a future follow-up.
 - **Spec_Master** is synced from two sub-tables (spec rows + placeholders); a record
   id does not by itself say which sub-table to write. Bind it only to a table whose
   rows the record ids actually belong to.
-- **Copy write-back** (`Localized_Copy`-origin) resolves a `Manual_Copy_Source`
-  record id, but the write target field (`text_<lang>` → authoring `source_text`)
-  and the translation-vs-source-language routing are not yet mapped, so copy-origin
-  requests abstain at the write boundary. Resolving this is a follow-up.
 
 ## References
 

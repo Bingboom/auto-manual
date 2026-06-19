@@ -51,6 +51,29 @@ def _resolve_record_id(source_ref: dict[str, Any], sidecar_index: dict[str, Any]
     return _resolve_by_table(sidecar_index, source_ref)
 
 
+# A Localized_Copy value's authoring home is Manual_Copy_Source.source_text — but
+# ONLY for a source-language edit (the reviewed lang == the copy's Source_lang). A
+# translation edit belongs in the Translation_Memory (out of F6 scope), so it
+# abstains here rather than corrupting the source text.
+COPY_ORIGIN_TABLE = "Localized_Copy"
+COPY_AUTHORING_TABLE = "Manual_Copy_Source"
+COPY_AUTHORING_FIELD = "source_text"
+
+
+def _norm_lang(value: Any) -> str:
+    return str(value or "").strip().lower()
+
+
+def _copy_write_target(source_ref: dict[str, Any]) -> tuple[str, str] | None:
+    """Return the writable ``(table, field)`` for a Localized_Copy-origin source_ref
+    when it is a source-language edit, else ``None`` (translation -> abstain)."""
+    lang = _norm_lang(source_ref.get("lang"))
+    source_lang = _norm_lang(source_ref.get("source_lang"))
+    if lang and source_lang and lang == source_lang:
+        return COPY_AUTHORING_TABLE, COPY_AUTHORING_FIELD
+    return None
+
+
 def build_change_requests(
     diff_report: dict[str, Any], *, sidecar_index: dict[str, Any] | None = None
 ) -> list[dict[str, Any]]:
@@ -61,12 +84,25 @@ def build_change_requests(
             continue
         source_ref = delta.get("source_ref") or {}
         record_id, status = _resolve_record_id(source_ref, sidecar_index)
+        table = source_ref.get("table")
+        field = source_ref.get("field")
+        # Copy-origin write-target mapping (source-language only). The record_id
+        # already resolves to the Manual_Copy_Source authoring row (F6 sidecar
+        # redirect); rewrite table/field to that authoring source field. A
+        # translation edit (or unknown source lang) is not writable via F6 and
+        # abstains so plan_apply skips it instead of mis-writing text_<lang>.
+        if table == COPY_ORIGIN_TABLE:
+            target = _copy_write_target(source_ref)
+            if target is not None and record_id:
+                table, field = target
+            else:
+                record_id, status = None, "translation_abstain"
         requests.append(
             {
                 "schema_version": CHANGE_REQUEST_SCHEMA_VERSION,
                 "delta_hash": delta.get("delta_hash"),
-                "table": source_ref.get("table"),
-                "field": source_ref.get("field"),
+                "table": table,
+                "field": field,
                 "record_id": record_id,
                 "resolution_status": status,
                 "old_text": delta.get("old_text"),

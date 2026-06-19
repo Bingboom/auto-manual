@@ -93,9 +93,10 @@ python tools/cloud_doc_backport.py apply-source-table --report <…> \
    unmapped table (e.g. the derived `Localized_Copy`) is isolated per-request as
    `error` and skipped — never mis-written. ⚠️ The change-request `table`/`field`
    are in the normalized (CSV) namespace; a binding's Feishu columns must match
-   (true for a Spec_Master-shaped sandbox). Copy write-back field mapping
-   (`text_<lang>` → authoring `source_text`, source-lang vs TM routing) is a
-   **follow-up** — copy-origin requests currently abstain at the write boundary.
+   (true for a Spec_Master-shaped sandbox). Copy write-back is mapped for
+   **source-language** edits (reviewed lang == the copy's `Source_lang` → writes
+   `Manual_Copy_Source.source_text`); **translation** copy edits abstain
+   (`translation_abstain`, their home is the Translation_Memory — a future follow-up).
 3. The executor applies **only** approved **and** resolved requests, GET-verifies
    each write, isolates per-request failures, and is idempotent by `delta_hash`.
 

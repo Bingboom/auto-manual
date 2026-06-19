@@ -12,6 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from tools.source_record_index import build_index  # noqa: E402
 from tools.source_table_sync import (  # noqa: E402
     apply_change_requests,
     build_change_request_report,
@@ -89,6 +90,52 @@ class BuildChangeRequestsTests(unittest.TestCase):
         self.assertEqual(requests[0]["table"], "Spec_Master")
         self.assertIsNone(requests[0]["record_id"])  # no sidecar -> snapshot_only
         self.assertFalse(requests[0]["external_write"])
+
+
+class CopyWriteTargetTests(unittest.TestCase):
+    def _copy_diff(self, *, lang, source_lang, copy_key="k1"):
+        return {
+            "deltas": [
+                {
+                    "route_class": "source_table_suggestion",
+                    "delta_hash": "c1",
+                    "source_ref": {
+                        "table": "Localized_Copy",
+                        "field": f"text_{lang}",
+                        "copy_key": copy_key,
+                        "lang": lang,
+                        "source_lang": source_lang,
+                    },
+                    "old_text": "Old",
+                    "new_text": "New",
+                }
+            ]
+        }
+
+    def _sidecar(self, copy_key="k1", record_id="recMCS"):
+        # Manual_Copy_Source index so the copy_key resolves to its authoring row.
+        return build_index({"Manual_Copy_Source": [({"copy_key": copy_key}, record_id)]})
+
+    def test_source_language_copy_writes_authoring_source_text(self) -> None:
+        reqs = build_change_requests(self._copy_diff(lang="en", source_lang="en"), sidecar_index=self._sidecar())
+        self.assertEqual(reqs[0]["table"], "Manual_Copy_Source")
+        self.assertEqual(reqs[0]["field"], "source_text")
+        self.assertEqual(reqs[0]["record_id"], "recMCS")
+        self.assertEqual(reqs[0]["resolution_status"], "resolved")
+        plan = plan_apply(reqs, approved_hashes={"c1"})
+        self.assertEqual(plan[0]["action"], "apply")
+
+    def test_translation_copy_abstains_at_write_boundary(self) -> None:
+        reqs = build_change_requests(self._copy_diff(lang="it", source_lang="en"), sidecar_index=self._sidecar())
+        self.assertIsNone(reqs[0]["record_id"])
+        self.assertEqual(reqs[0]["resolution_status"], "translation_abstain")
+        plan = plan_apply(reqs, approved_hashes={"c1"})
+        self.assertEqual(plan[0]["action"], "skip")
+
+    def test_unknown_source_lang_abstains(self) -> None:
+        # A snapshot without Source_lang -> empty source_lang -> safe abstain.
+        reqs = build_change_requests(self._copy_diff(lang="en", source_lang=""), sidecar_index=self._sidecar())
+        self.assertEqual(reqs[0]["resolution_status"], "translation_abstain")
 
 
 class PlanApplyTests(unittest.TestCase):
