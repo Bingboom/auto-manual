@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from tools.cloud_doc_backport import (
+    _diff_delta_count,
     _parse_table_bindings,
     build_report,
     fetch_doc_text,
@@ -987,6 +988,31 @@ class ApplySourceTableCliTest(unittest.TestCase):
             report_path = self._write_report_with_translation(root)
             exit_code = main(["apply-source-table", "--report", str(report_path), "--approve", "t1", "--tm-write"])
             self.assertEqual(exit_code, 2)  # no --tm-binding -> refuse
+
+
+class DiffDeltaCountTests(unittest.TestCase):
+    def _write_report(self, root, *, applied, total_deltas):
+        (root / "cloud_doc_backport_report.json").write_text(
+            json.dumps({"summary": {"total_deltas": total_deltas}, "section_selection": {"applied": applied}}),
+            encoding="utf-8",
+        )
+
+    def test_counts_deltas_when_section_matched(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_report(root, applied=True, total_deltas=31)
+            self.assertEqual(_diff_delta_count(root), 31)
+
+    def test_zero_when_section_not_matched(self) -> None:
+        # An unmatched page falls back to a whole-doc diff (293 garbage) -> ignored.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_report(root, applied=False, total_deltas=293)
+            self.assertEqual(_diff_delta_count(root), 0)
+
+    def test_zero_when_report_absent(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(_diff_delta_count(Path(tmp)), 0)
 
 
 if __name__ == "__main__":

@@ -2584,7 +2584,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     run_review_branch_parser.add_argument("--cloud-doc", required=True, help="the edited Feishu cloud-doc URL (used to FETCH the doc content)")
     run_review_branch_parser.add_argument("--doc-name", help="doc name (e.g. manual_je1000f_eu_en_0.8) to resolve the review branch by model+region when the URL is not registered (a 副本/copy)")
-    run_review_branch_parser.add_argument("--page", required=True, help="review page, e.g. 00_preface.rst or page/00_preface.rst")
+    run_review_branch_parser.add_argument("--page", help="a single review page (e.g. 00_preface.rst); omit to diff the WHOLE doc against every docs/_review/<model>/<region>/page/*.rst")
     run_review_branch_parser.add_argument("--write", action="store_true", help="apply edits to the worktree's _review file (else dry-run)")
     run_review_branch_parser.add_argument("--push", action="store_true", help="commit + push the review branch (updates its PR); needs --write")
     run_review_branch_parser.add_argument("--worktrees-root", help="where to create review worktrees (default: ../review-worktrees)")
@@ -3017,6 +3017,23 @@ def _run_sync_review_worktrees(args: argparse.Namespace) -> int:
     return 0 if branches and all("worktree" in r for r in results) else (0 if not branches else 1)
 
 
+def _diff_delta_count(page_out: Path) -> int:
+    """Real section-matched delta count from a run-review diff report.
+
+    Counts deltas ONLY when the page's section was actually located in the cloud
+    doc (``section_selection.applied``). A page whose section is absent falls back
+    to a whole-document diff (every block differs) — a false positive in a
+    whole-doc backport — so it is reported as 0.
+    """
+    try:
+        payload = json.loads((page_out / "cloud_doc_backport_report.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return 0
+    if not (payload.get("section_selection") or {}).get("applied"):
+        return 0
+    return int((payload.get("summary") or {}).get("total_deltas") or 0)
+
+
 def _run_review_branch(args: argparse.Namespace) -> int:
     worktrees_root = Path(args.worktrees_root) if args.worktrees_root else _default_worktrees_root()
     try:
@@ -3028,41 +3045,68 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         if resolved is None:
             raise RuntimeError(f"no review branch found for cloud-doc {doc_name or args.cloud_doc}")
         git_ref = resolved["git_ref"]
-        # Template guard: the source path is DERIVED from the resolved review dir,
-        # never an arbitrary caller path -> a backport can only write docs/_review.
-        source_rel = derive_review_source_rel(resolved["review_dir"], args.page)
+        review_dir = resolved["review_dir"]
         worktree = ensure_review_worktree(
             git_ref,
             worktrees_root=worktrees_root,
             repo_root=get_paths().root,
             remote=args.remote,
             git_bin=args.git_bin,
-            sparse_paths=None if args.full_checkout else [resolved["review_dir"]],
+            sparse_paths=None if args.full_checkout else [review_dir],
         )
-        source_abs = Path(worktree) / source_rel
-        if not source_abs.is_file():
-            raise RuntimeError(f"review source not found on branch {git_ref}: {source_rel}")
+        # Pages to backport. With --page: that one. Without: every
+        # docs/_review/<model>/<region>/page/*.rst (whole-doc diff — find which pages
+        # the cloud-doc changed). The source path is always DERIVED from the resolved
+        # review dir (template guard), so a backport can only ever write docs/_review.
+        if args.page:
+            source_rels = [derive_review_source_rel(review_dir, args.page)]
+        else:
+            page_dir = Path(worktree) / review_dir / "page"
+            if not page_dir.is_dir():
+                raise RuntimeError(f"no page directory on branch {git_ref}: {review_dir}/page")
+            source_rels = [f"{review_dir}/page/{path.name}" for path in sorted(page_dir.glob("*.rst"))]
+            if not source_rels:
+                raise RuntimeError(f"no .rst pages under {review_dir}/page on branch {git_ref}")
+        run_id = str(args.run_id or "").strip() or "cloud-doc-backport-branch"
+        out_dir = Path(args.out) if args.out else _default_out_dir(run_id)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        # Fetch the cloud-doc ONCE; diff every page against this local fixture so a
+        # whole-doc backport does not re-fetch per page.
+        fixture = out_dir / "cloud_doc_fetched.md"
+        fixture.write_text(fetch_doc_text(args.cloud_doc, lark_cli=args.lark_cli), encoding="utf-8")
     except (OSError, RuntimeError) as exc:
         print(f"cloud-doc-backport: {exc}", file=sys.stderr)
         return 2
-    run_id = str(args.run_id or "").strip() or "cloud-doc-backport-branch"
-    out_dir = Path(args.out) if args.out else _default_out_dir(run_id)
-    print(f"BRANCH {git_ref}  SOURCE {source_rel}  WORKTREE {worktree}")
-    review_cmd = [
-        sys.executable, str(Path(__file__).resolve()), "run-review",
-        "--doc-url", args.cloud_doc, "--source-path", str(source_abs),
-        "--run-id", run_id, "--out", str(out_dir), "--lark-cli", args.lark_cli,
-    ]
-    if args.write:
-        review_cmd.append("--write")
-    review_proc = subprocess.run(review_cmd, cwd=str(get_paths().root))
-    if review_proc.returncode not in (0, 1):  # run-review returns 1 only on a FAIL residual result
-        return review_proc.returncode
+    print(f"BRANCH {git_ref}  WORKTREE {worktree}  PAGES {len(source_rels)}")
+    changed_rels: list[str] = []
+    failed = False
+    for source_rel in source_rels:
+        source_abs = Path(worktree) / source_rel
+        if not source_abs.is_file():
+            continue
+        page_out = out_dir / Path(source_rel).stem
+        review_cmd = [
+            sys.executable, str(Path(__file__).resolve()), "run-review",
+            "--doc-url", str(fixture), "--source-path", str(source_abs),
+            "--run-id", f"{run_id}-{Path(source_rel).stem}", "--out", str(page_out), "--lark-cli", args.lark_cli,
+        ]
+        if args.write:
+            review_cmd.append("--write")
+        proc = subprocess.run(review_cmd, cwd=str(get_paths().root), capture_output=True, text=True)
+        if proc.returncode not in (0, 1):  # run-review returns 1 only on a FAIL residual result
+            failed = True
+            print(f"  ERROR {source_rel} (rc {proc.returncode})", file=sys.stderr)
+            continue
+        deltas = _diff_delta_count(page_out)
+        if deltas > 0:
+            changed_rels.append(source_rel)
+            print(f"  CHANGED {source_rel}  deltas={deltas}")
     pushed = False
-    if args.write and args.push:
+    if args.write and args.push and changed_rels:
         try:
-            _run_pr_command([args.git_bin, "add", source_rel], root=Path(worktree))
-            if _run_pr_command([args.git_bin, "status", "--porcelain", source_rel], root=Path(worktree)).strip():
+            for rel in changed_rels:
+                _run_pr_command([args.git_bin, "add", rel], root=Path(worktree))
+            if _run_pr_command([args.git_bin, "status", "--porcelain"], root=Path(worktree)).strip():
                 _run_pr_command(
                     [args.git_bin, "commit", "-m", f"backport: {git_ref} review edits ({run_id})"],
                     root=Path(worktree),
@@ -3073,11 +3117,12 @@ def _run_review_branch(args: argparse.Namespace) -> int:
             print(f"cloud-doc-backport: push to {git_ref} failed: {exc}", file=sys.stderr)
             return 2
     print(json.dumps(
-        {"git_ref": git_ref, "source": source_rel, "worktree": worktree,
-         "wrote": bool(args.write), "pushed": pushed, "pr_url": resolved.get("pr_url")},
+        {"git_ref": git_ref, "worktree": worktree, "pages": len(source_rels),
+         "changed": changed_rels, "wrote": bool(args.write), "pushed": pushed,
+         "pr_url": resolved.get("pr_url")},
         ensure_ascii=False, sort_keys=True,
     ))
-    return 0
+    return 1 if failed else 0
 
 
 def _value_index_from_args(args: argparse.Namespace) -> dict[str, Any] | None:
