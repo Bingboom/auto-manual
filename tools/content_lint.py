@@ -658,12 +658,14 @@ def _markdown_report(report: dict[str, Any]) -> str:
     else:
         lines.extend(
             [
-                "| Severity | Rule | Source | Lang | Field | Message | Evidence |",
-                "| --- | --- | --- | --- | --- | --- | --- |",
+                "| Severity | Rule | Source | Record(s) | Lang | Field | Message | Evidence |",
+                "| --- | --- | --- | --- | --- | --- | --- | --- |",
             ]
         )
         for finding in findings:
             source = finding.get("source_ref") or f"{finding.get('file')}#{finding.get('table')}"
+            record_ids = finding.get("record_ids") or ([finding["record_id"]] if finding.get("record_id") else [])
+            records_cell = ", ".join(record_ids) if record_ids else (finding.get("resolution_status") or "-")
             lines.append(
                 "| "
                 + " | ".join(
@@ -671,6 +673,7 @@ def _markdown_report(report: dict[str, Any]) -> str:
                         _markdown_cell(finding.get("severity")),
                         f"`{_markdown_cell(finding.get('rule'))}`",
                         _markdown_cell(source),
+                        _markdown_cell(records_cell),
                         _markdown_cell(finding.get("lang") or "-"),
                         _markdown_cell(finding.get("field") or "-"),
                         _markdown_cell(finding.get("message")),
