@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Any, Callable
 
 from tools.document_link_queue import looks_like_explicit_document_key
+from tools.review_branch_resolver import parse_document_id
 from tools.language_aliases import normalize_language
 
 DOCUMENT_ID_FIELD = "Document_ID"
@@ -173,11 +174,19 @@ def slug_branch_token(value: str) -> str:
 
 
 def generate_review_branch_name(record: ReviewStartRecord) -> str:
+    # An existing review keeps its recorded branch (re-reviews reuse + force-reseed it).
     if record.git_ref.strip():
         return record.git_ref.strip()
+    # New review: name it review/<MODEL>-<REGION> (one branch per target — the _review
+    # tree is per model+region). Matches git_branching_guide §2 and the resolver, which
+    # derives model+region from Document_ID.
+    parsed = parse_document_id(record.document_id)
+    if parsed is not None:
+        model, region, _version = parsed
+        return f"review/{model}-{region}"
+    # Fallback when Document_ID can't be parsed (no model_region): a sanitized slug.
     source = record.document_key or record.document_id or f"{record.lang}_{record.version}"
-    slug = slug_branch_token(source)[:72]
-    return f"codex/review-{slug}"
+    return f"review/{slug_branch_token(source)[:72]}"
 
 
 def document_key_from_document_id(*, document_id: str, lang: str, version: str) -> str:
