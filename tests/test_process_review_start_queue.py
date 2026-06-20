@@ -238,6 +238,28 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             "review/JE-1000F-US",
         )
 
+    def test_generate_review_branch_name_versionless_document_id(self) -> None:
+        # The review phase is versionless (Document_ID = MODEL_REGION, no version).
+        # A fresh review (empty git_ref) must still get review/<MODEL>-<REGION> — not the
+        # lowercase slug fallback — so re-seeding the same target maps to one canonical
+        # branch instead of conflicting opaque names.
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="recvfw0zg4pzxs",
+            document_id="JE-1000F_US",
+            document_key="JE-1000F_US",
+            build_family="us",
+            version="",
+            lang="en",
+            review_status="NotStarted",
+            review_trigger_value=True,
+            git_ref="",
+            pr_url="",
+        )
+        self.assertEqual(
+            process_review_start_queue.generate_review_branch_name(record),
+            "review/JE-1000F-US",
+        )
+
     def test_prepare_branch_worktree_should_always_seed_from_latest_base_ref(self) -> None:
         with tempfile.TemporaryDirectory() as td, mock.patch.object(
             process_review_start_queue_git,
