@@ -41,6 +41,9 @@ jobs:
       # directly instead of making a 副本; used when a build row has no operator_union_id.
       # Per-repo secret (not hardcoded) so the Hello-Docs mirror sets its own / none.
       FEISHU_CLOUD_DOC_DEFAULT_EDITOR: ${{ secrets.FEISHU_CLOUD_DOC_DEFAULT_EDITOR }}
+      # Dedicated knowledge-base node for review cloud docs + their baseline copy
+      # (a .../wiki/<token> URL). Unset -> docs stay in the bot's drive (no move).
+      FEISHU_REVIEW_DOC_WIKI_NODE: ${{ secrets.FEISHU_REVIEW_DOC_WIKI_NODE }}
       FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
       FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID }}
       FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID }}
