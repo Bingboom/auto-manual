@@ -11,7 +11,7 @@ English / French / Spanish
 | Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com.
 | \* The images are for reference purposes only. Please refer to the actual product.
 |
-**FR IMPORTANT**
+**FR IMPORTANT test**
 
 | Félicitations pour votre nouveau Jackery Explorer 1000. Veuillez lire attentivement ce manuel avant d'utiliser le produit, en particulier les précautions à prendre pour garantir une utilisation correcte du produit. Conservez ce manuel dans un endroit accessible pour pouvoir vous y référer ultérieurement.
 | Conformément aux lois et réglementations en vigueur, le droit d'interprétation final de ce document et de tous les documents associés à ce produit appartient à l'entreprise. Bien que tous les efforts aient été déployés pour garantir l'exactitude de ce manuel, Jackery Inc. n'assume aucune responsabilité pour les erreurs qui pourraient y figurer.
