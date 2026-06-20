@@ -1256,6 +1256,48 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                     payload["summary_next_step"],
                 )
 
+    def test_failure_summary_names_missing_spec_master_rows(self) -> None:
+        # A draft page missing a required Spec_Master row -> classified missing_spec_rows and
+        # NAMES the page + exact binding(s) so BlockClaw's reply points at it (no log digging).
+        exc = (
+            "Draft page '03_product_overview' is missing 1 required Spec_Master row(s) "
+            "[model=JE-1000F, region=CN, lang=zh]:\n"
+            "- field_map.FRONT_DC12_PORT_LABEL -> dc12_port[pages=Product overview, "
+            "usage_type=page_value, placement_key=front, value_role=label]\n"
+            "Fix: add the listed row(s) to the Spec_Master source, or set a recipe `default:`. (exit=1, cmd=...)"
+        )
+        summary = process_review_start_queue.build_review_start_failure_summary(
+            record=None,
+            exc=exc,
+            review_action_label="Start Review",
+            model="JE-1000F",
+            region="CN",
+            lang="zh",
+        )
+        self.assertEqual("missing_spec_rows", summary["code"])
+        self.assertIn("03_product_overview", summary["message"])
+        self.assertIn("FRONT_DC12_PORT_LABEL", summary["message"])
+        self.assertIn("dc12_port", summary["message"])
+        self.assertTrue(summary["retryable"])
+
+    def test_run_command_preserves_missing_spec_master_row_detail(self) -> None:
+        # On a build failure, run_command must keep the missing-row block (page + binding),
+        # not collapse to the trailing "Fix:" line, so the summary can name the binding.
+        stderr = (
+            "Traceback (most recent call last):\n"
+            "RuntimeError: Draft page '03_product_overview' is missing 1 required Spec_Master row(s) "
+            "[model=JE-1000F, region=CN, lang=zh]:\n"
+            "  - field_map.FRONT_DC12_PORT_LABEL -> dc12_port[pages=Product overview]\n"
+            "  Fix: add the listed row(s) to the Spec_Master source, or set a recipe `default:`.\n"
+        )
+        fake_proc = mock.Mock(returncode=1, stdout="", stderr=stderr)
+        with mock.patch.object(process_review_start_queue_git.subprocess, "run", return_value=fake_proc):
+            with self.assertRaises(RuntimeError) as ctx:
+                process_review_start_queue_git.run_command(["build.py", "rst"], root=Path("/tmp"))
+        msg = str(ctx.exception)
+        self.assertIn("required Spec_Master row", msg)
+        self.assertIn("FRONT_DC12_PORT_LABEL", msg)  # the binding survived, not just "Fix:"
+
     def test_process_review_start_queue_should_write_structured_failure_summary_for_targeted_no_pending_record(self) -> None:
         cfg = {
             "sync": {

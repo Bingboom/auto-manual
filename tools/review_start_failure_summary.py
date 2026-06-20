@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from typing import Any
 
 
@@ -90,6 +91,26 @@ def build_review_start_failure_summary(
         code = "missing_spec_data"
         message = f"缺少 {target} 的规格数据，无法进入 review。"
         next_step = f"请先补齐 {target} 在 Spec_Master 中的规格数据，再重试。"
+    elif any("required Spec_Master row" in line for line in detail_lines):
+        # A draft page hard-requires a specific Spec_Master page-value/spec row that is
+        # absent for this model+region+lang. Name the page and the exact missing binding(s)
+        # so the operator does not have to dig through the Actions log.
+        code = "missing_spec_rows"
+        page = ""
+        bindings: list[str] = []
+        for line in detail_lines:
+            if not page:
+                page_match = re.search(r"Draft page '([^']+)'", line)
+                if page_match:
+                    page = page_match.group(1)
+            binding_match = re.match(r"-\s*(?:field_map\.)?([A-Za-z0-9_]+)\s*->\s*([A-Za-z0-9_]+)", line)
+            if binding_match:
+                bindings.append(f"{binding_match.group(1)}（{binding_match.group(2)}）")
+        named = "、".join(bindings) if bindings else "（详见日志）"
+        where = f"的「{page}」页" if page else ""
+        message = f"{target}{where}缺少必填规格行：{named}。"
+        next_step = "请在 Spec_Master 源表（Feishu phase2 page-value / 规格表）为该 model+region+lang 补齐这些行，或在 recipe 里给对应绑定设 `default:`。"
+        retryable = True
     elif any(line.startswith("Unable to resolve review-start target.") for line in detail_lines):
         code = "unresolved_review_target"
         message = f"无法识别 {target} 对应的目标，无法进入 review。"
