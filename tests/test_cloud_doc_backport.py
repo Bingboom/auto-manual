@@ -1223,6 +1223,30 @@ class BaselineDiffTests(unittest.TestCase):
             backport_dir = Path(tmp) / "docs/_review/JE-1000F/EU/.backport"
             self.assertFalse((backport_dir / "doc-1.baseline.md").exists())
 
+    def test_baseline_diff_routes_source_value_vs_review_prose(self) -> None:
+        # phase 3: the baseline diff classifies deltas — a table/spec value goes to the
+        # source table (Class D, source_table_suggestion → apply-source-table/F6, NOT
+        # the RST); a plain prose edit stays review text (Class R, repo_review_text).
+        baseline = "# Output Ports\n\nKeep this section handy.\n\n| **USB-C 100 W Output** | 100 W |\n"
+        edited = "# Output Ports\n\nKeep this section nearby.\n\n| **USB-C 100 W Output test** | 100 W |\n"
+        with tempfile.TemporaryDirectory() as tmp:
+            out_dir = Path(tmp) / "out"
+            args = SimpleNamespace(
+                cloud_doc="https://example.feishu.cn/wiki/doc-2", run_id="p3",
+                out=str(out_dir), lark_cli="lark-cli", write=False, push=False,
+                doc_name="manual_je1000f_us_en_1.0", lang=None, data_root="data/phase2",
+            )
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=edited):
+                rc = _run_review_branch_baseline(
+                    args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                    worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-2",
+                    baseline_text=baseline,
+                )
+            self.assertEqual(rc, 0)
+            routes = json.loads((out_dir / "cloud_doc_backport_report.json").read_text(encoding="utf-8"))["summary"]["route_classes"]
+            self.assertIn("source_table_suggestion", routes)  # the table value -> source (not RST)
+            self.assertIn("repo_review_text", routes)  # the prose edit -> _review
+
 
 if __name__ == "__main__":
     unittest.main()

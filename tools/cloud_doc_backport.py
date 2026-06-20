@@ -2624,6 +2624,14 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     run_review_branch_parser.add_argument("--out", help="output directory for run-review reports")
     run_review_branch_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary")
     run_review_branch_parser.add_argument("--identity", default="bot", help="lark-cli identity (user|bot)")
+    run_review_branch_parser.add_argument(
+        "--data-root", default="data/phase2",
+        help="structured-content snapshot root for the F2 value-index (classifies a delta as Class D / source-bound when its old text matches a source value); default data/phase2",
+    )
+    run_review_branch_parser.add_argument(
+        "--lang",
+        help="value-column lang suffix for the F2 value-index (en/fr/es/de/it/uk/ja/zh/pt-BR); auto-derived from --doc-name when omitted",
+    )
 
     sync_worktrees_parser = subparsers.add_parser(
         "sync-review-worktrees",
@@ -3069,6 +3077,17 @@ def _backport_pr_branch(git_ref: str, run_id: str) -> str:
     return f"backport/{safe}"
 
 
+_KNOWN_VALUE_LANGS = ("pt-BR", "en", "fr", "es", "de", "it", "uk", "ja", "zh", "ko", "nl", "pl", "sv")
+
+
+def _lang_from_doc_name(doc_name: str | None) -> str:
+    """Best-effort value-column lang from a doc name, e.g. ``manual_je1000f_eu_en_0.8`` -> ``en``."""
+    for part in re.split(r"[_\s]+", str(doc_name or "").strip()):
+        if part in _KNOWN_VALUE_LANGS:
+            return part
+    return ""
+
+
 def _run_review_branch(args: argparse.Namespace) -> int:
     worktrees_root = Path(args.worktrees_root) if args.worktrees_root else _default_worktrees_root()
     try:
@@ -3253,13 +3272,19 @@ def _run_review_branch_baseline(
     pushed / last backported), so the diff is render-vs-render and surfaces only the
     reviewer's real edits — not the RST-source-vs-rendered noise of the per-page path.
 
-    Report-only: routing the clean deltas to the source tables / TM (F2/F3/F6) and
-    advancing the baseline cursor on a full apply are phase 3. We never advance the
-    baseline here — that would bury un-applied edits below the cursor (design §6).
+    The clean deltas are classified (phase 3): the F2 value-index marks a delta whose
+    old text matches a source value as ``source_table_suggestion`` (Class D → write
+    back to the source table / TM via the approval-gated ``apply-source-table``, NOT
+    the RST), the F3 family-index flags shared-template spans, and the rest are
+    ``repo_review_text`` (Class R → the ``_review`` RST). We never advance the
+    baseline cursor here — that would bury un-applied edits below it (design §6).
     """
     git_ref = resolved["git_ref"]
     run_id = str(args.run_id or "").strip() or "cloud-doc-backport-branch"
     out_dir = Path(args.out) if args.out else _default_out_dir(run_id)
+    # F2 value-index: derive the value-column lang from --lang, else the doc name.
+    if not getattr(args, "lang", None):
+        args.lang = _lang_from_doc_name(getattr(args, "doc_name", "") or "")
     try:
         out_dir.mkdir(parents=True, exist_ok=True)
         c_now = fetch_doc_text(args.cloud_doc, lark_cli=args.lark_cli)
@@ -3276,25 +3301,34 @@ def _run_review_branch_baseline(
             section_title=None,
             section_inferred_from=None,
             require_section_match=False,
-            value_index=None,
-            family_index=None,
+            value_index=_value_index_from_args(args),
+            family_index=_family_index_from_args(args),
         )
     except (OSError, RuntimeError) as exc:
         print(f"cloud-doc-backport: {exc}", file=sys.stderr)
         return 2
     written = write_reports(report, out_dir)
     deltas = report["summary"]["total_deltas"]
-    print(f"BRANCH {git_ref}  WORKTREE {worktree}  BASELINE-DIFF deltas={deltas}")
+    route_classes = report["summary"].get("route_classes") or {}
+    source_bound = route_classes.get("source_table_suggestion", 0)
+    review_bound = route_classes.get("repo_review_text", 0)
+    print(f"BRANCH {git_ref}  WORKTREE {worktree}  BASELINE-DIFF deltas={deltas}  routes={json.dumps(route_classes, ensure_ascii=False)}")
     print(f"WROTE {written['json']}")
     print(f"WROTE {written['markdown']}")
-    if args.write or args.push:
-        # Honest no-op: applying the clean deltas + advancing the baseline cursor is
-        # phase 3 (route via F2/F3/F6). Don't silently imply a write happened.
-        print("NOTE: baseline-diff is report-only until phase 3 (F2/F3/F6 routing); --write/--push ignored")
+    # Route, don't blindly write: Class D goes to the source table / TM (F6), not the
+    # RST. The diff report IS the apply-source-table input.
+    if source_bound:
+        print(
+            f"ROUTE: {source_bound} source-bound (Class D) delta(s) -> run "
+            f"`apply-source-table --report {written['json']}` (approval-gated F6/TM), NOT the _review RST."
+        )
+    if review_bound and (args.write or args.push):
+        print(f"NOTE: {review_bound} review-prose (Class R) delta(s) -> the _review RST (re-run with --page per page to apply).")
     print(json.dumps(
         {"git_ref": git_ref, "worktree": worktree, "mode": "baseline-diff",
          "baseline": baseline_rel, "deltas": deltas, "result": report["result"],
-         "report": str(written["json"]), "pr_url": resolved.get("pr_url")},
+         "route_classes": route_classes, "report": str(written["json"]),
+         "source_table_report": str(written["json"]), "pr_url": resolved.get("pr_url")},
         ensure_ascii=False, sort_keys=True,
     ))
     return 0
