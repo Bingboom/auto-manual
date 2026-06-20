@@ -198,7 +198,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         self.assertEqual(["rec_start_review"], [record.record_id for record in records])
 
-    def test_generate_review_branch_name_should_default_to_codex_prefix(self) -> None:
+    def test_generate_review_branch_name_uses_model_region(self) -> None:
         record = process_review_start_queue.ReviewStartRecord(
             record_id="rec_1",
             document_id="JE-1000F_JP_ja_0.1",
@@ -212,10 +212,31 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             pr_url="",
         )
 
-        branch_name = process_review_start_queue.generate_review_branch_name(record)
+        # new reviews get review/<MODEL>-<REGION> (region = the 2nd Document_ID segment)
+        self.assertEqual(
+            process_review_start_queue.generate_review_branch_name(record),
+            "review/JE-1000F-JP",
+        )
 
-        self.assertTrue(branch_name.startswith("codex/review-"))
-        self.assertIn("je-1000f-jp", branch_name)
+    def test_generate_review_branch_name_reuses_existing_git_ref(self) -> None:
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="rec_1",
+            document_id="JE-1000F_US_1.4",
+            document_key="JE-1000F_US",
+            build_family="us",
+            version="1.4",
+            lang="en",
+            review_status="InReview",
+            review_trigger_value=True,
+            git_ref="review/JE-1000F-US",
+            pr_url="",
+        )
+
+        # an existing review keeps its recorded branch (re-review reuses + reseeds it)
+        self.assertEqual(
+            process_review_start_queue.generate_review_branch_name(record),
+            "review/JE-1000F-US",
+        )
 
     def test_prepare_branch_worktree_should_always_seed_from_latest_base_ref(self) -> None:
         with tempfile.TemporaryDirectory() as td, mock.patch.object(
