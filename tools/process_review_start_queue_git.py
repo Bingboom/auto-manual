@@ -38,6 +38,12 @@ def run_command(cmd: list[str], *, root: Path, cwd: Path | None = None) -> str:
     if proc.returncode:
         lines = [line.strip() for line in (proc.stderr or proc.stdout or "").splitlines() if line.strip()]
         message = lines[-1] if lines else "command failed"
+        # Preserve the missing-Spec_Master-row detail (the "missing N required …" line plus
+        # the listed bindings) so the failure summary can name exactly which rows are missing
+        # — not just the trailing "Fix:" line.
+        start = next((i for i, line in enumerate(lines) if "required Spec_Master row" in line), None)
+        if start is not None:
+            message = "\n".join(lines[start:])
         raise RuntimeError(f"{message} (exit={proc.returncode}, cmd={format_command(cmd)})")
     return proc.stdout or ""
 
