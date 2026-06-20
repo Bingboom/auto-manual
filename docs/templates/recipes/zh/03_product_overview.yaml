@@ -12,6 +12,7 @@ field_map:
     usage_type: page_value
     placement_key: front
     value_role: label
+    default: default
   FRONT_DC12_PORT_SPEC:
     row_key: dc12_port
     pages: [Product overview]
