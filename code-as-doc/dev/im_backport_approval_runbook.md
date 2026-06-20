@@ -178,7 +178,12 @@ python tools/cloud_doc_backport.py run-review-branch \
    actually located in the cloud doc (`section_selection.applied`) are reported as
    changed — pages whose section is absent fall back to a whole-document diff and are
    filtered out as false positives;
-4. with `--push`, commits + pushes the changed page(s) on the review branch (updates its PR).
+4. with `--push`, does **not** commit straight onto the review branch — it puts the
+   changed page(s) on a `backport/<review-ref>-<run-id>` sub-branch and opens a
+   **draft PR whose base is the review branch**, so the operator verifies before
+   anything lands on the review branch (and thus before it flows into the review
+   branch's own PR into `main`). The reply prints `backport_pr_url`. Merge that PR
+   into the review branch after verifying.
 
 > **Diff baseline (approach C, phased).** Diffing the fetched cloud-doc against the
 > RST `page/*.rst` over-reports (RST source vs rendered cloud-doc — see
