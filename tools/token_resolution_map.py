@@ -60,21 +60,24 @@ def build_value_index(snapshot_root: Path, lang: str) -> dict[str, dict[str, Any
     """
 
     root = Path(snapshot_root)
+    want_lang = str(lang or "").strip().lower()
     index: dict[str, dict[str, Any]] = {}
     for row in _read_csv(root / SPEC_MASTER_FILE):
+        base_ref = {
+            "table": "Spec_Master",
+            "document_key": (row.get("document_key") or "").strip(),
+            "row_key": (row.get("Row_key") or "").strip(),
+            "slot_key": (row.get("Slot_key") or "").strip(),
+        }
+        # A source-language review (e.g. US-en) has its values in <base>_source — the real
+        # Spec_Master carries Value_source plus localized columns but no Value_en. Index
+        # the source column too when this row's Source_lang IS the requested language, so
+        # a source-language spec edit is still recognized as Class D (not just localized).
+        is_source_lang = bool(want_lang) and _normalize(row.get("Source_lang")).lower() == want_lang
         for base in _SPEC_MASTER_VALUE_BASES:
-            column = f"{base}_{lang}"
-            _add(
-                index,
-                row.get(column),
-                {
-                    "table": "Spec_Master",
-                    "field": column,
-                    "document_key": (row.get("document_key") or "").strip(),
-                    "row_key": (row.get("Row_key") or "").strip(),
-                    "slot_key": (row.get("Slot_key") or "").strip(),
-                },
-            )
+            _add(index, row.get(f"{base}_{lang}"), {**base_ref, "field": f"{base}_{lang}"})
+            if is_source_lang:
+                _add(index, row.get(f"{base}_source"), {**base_ref, "field": f"{base}_source"})
     for row in _read_csv(root / LOCALIZED_COPY_FILE):
         column = f"text_{lang}"
         _add(

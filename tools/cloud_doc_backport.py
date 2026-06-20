@@ -47,7 +47,12 @@ from tools.review_branch_resolver import (  # noqa: E402
     match_review_branch_by_name,
 )
 from tools.review_worktree import derive_review_source_rel, ensure_review_worktree  # noqa: E402
-from tools.token_resolution_map import build_value_index, classify_data_origin  # noqa: E402
+from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR  # noqa: E402
+from tools.token_resolution_map import (  # noqa: E402
+    SPEC_MASTER_FILE,
+    build_value_index,
+    classify_data_origin,
+)
 from tools.translation_memory_sync import apply_translation_suggestions  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
 
@@ -2678,8 +2683,8 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     run_review_branch_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary")
     run_review_branch_parser.add_argument("--identity", default="bot", help="lark-cli identity (user|bot)")
     run_review_branch_parser.add_argument(
-        "--data-root", default="data/phase2",
-        help="structured-content snapshot root for the F2 value-index (classifies a delta as Class D / source-bound when its old text matches a source value); default data/phase2",
+        "--data-root", default=None,
+        help="structured-content snapshot root for the F2 value-index (classifies a delta as Class D / source-bound when its old text matches a source value); defaults to the repo data/phase2 when it holds a synced Spec_Master.csv, else Class D falls back to the heuristic",
     )
     run_review_branch_parser.add_argument(
         "--lang",
@@ -3240,6 +3245,11 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         #   1. the 基线文档 doc recorded on the build-table row (a frozen copy made at
         #      build time) — fetched and diffed (the copy-doc baseline model);
         #   2. the on-branch .backport/<doc-token>.baseline.md file (the --seed model).
+        # F2 (Class D): resolve the snapshot root once — explicit --data-root, else the
+        # repo data/phase2 when it holds a synced Spec_Master.csv (the snapshot CSVs are
+        # gitignored sync artifacts, so without them Class D degrades to the heuristic).
+        # Both the baseline path and the per-page worker read it off args.
+        args.data_root = _resolve_backport_data_root(getattr(args, "data_root", None))
         baseline_text = None
         # baseline_from_seed marks the on-branch .backport/ seed — a locally advanceable
         # cursor. The copy-doc 基线文档 is a frozen R0 that only advances via a Feishu
@@ -3309,6 +3319,10 @@ def _run_review_branch(args: argparse.Namespace) -> int:
             # (#417), so the RST-baseline guard would be redundant here — bypass it.
             "--allow-rst-baseline",
         ]
+        # F2 (Class D) for the per-page worker too: forward the resolved data-root + lang.
+        page_lang = (getattr(args, "lang", None) or _lang_from_doc_name(getattr(args, "doc_name", "") or "")).strip()
+        if args.data_root and page_lang:
+            review_cmd += ["--data-root", args.data_root, "--lang", page_lang]
         if args.write:
             review_cmd.append("--write")
         proc = subprocess.run(review_cmd, cwd=str(get_paths().root), capture_output=True, text=True)
@@ -3384,6 +3398,14 @@ def _run_review_branch_baseline(
         out_dir.mkdir(parents=True, exist_ok=True)
         c_now = fetch_doc_text(args.cloud_doc, lark_cli=args.lark_cli)
         baseline_rel = baseline_rel_path(review_dir, doc_tok)
+        # F2 value-index (Class D / data-origin). Build it once so we can report whether
+        # the classifier is deterministic (data synced) or falling back to the heuristic.
+        value_index = _value_index_from_args(args)
+        f2_data_root = getattr(args, "data_root", None)
+        if value_index:
+            print(f"F2 value-index: {len(value_index)} value(s) from {f2_data_root} (lang={args.lang}) — Class D is deterministic")
+        else:
+            print(f"F2 value-index: empty (data-root={f2_data_root or 'none'}, lang={args.lang or 'none'}) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection")
         report = build_report(
             run_id=run_id,
             doc_type="review",
@@ -3396,7 +3418,7 @@ def _run_review_branch_baseline(
             section_title=None,
             section_inferred_from=None,
             require_section_match=False,
-            value_index=_value_index_from_args(args),
+            value_index=value_index,
             family_index=_family_index_from_args(args),
         )
     except (OSError, RuntimeError) as exc:
@@ -3493,6 +3515,22 @@ def _family_index_from_args(args: argparse.Namespace) -> dict[str, Any] | None:
     if not siblings:
         return None
     return build_family_index([Path(path) for path in siblings])
+
+
+def _resolve_backport_data_root(explicit: str | None) -> str | None:
+    """Effective F2 snapshot dir for run-review-branch (Class D / data-origin detection).
+
+    Use the explicit ``--data-root`` when given, else default to the repo's
+    ``data/phase2`` **only when it actually holds a synced ``Spec_Master.csv``**. The
+    snapshot CSVs are gitignored ``sync-data`` artifacts, so a fresh clone / CI has none
+    — there we return ``None`` and Class D falls back to the ``_looks_data_like``
+    heuristic (the prior behavior). When the operator has synced the data, Class D
+    becomes deterministic with no extra flag.
+    """
+    if explicit:
+        return explicit
+    default = get_paths().root / STRUCTURED_DATA_DEFAULT_DIR
+    return str(default) if (default / SPEC_MASTER_FILE).exists() else None
 
 
 def main(argv: list[str] | None = None) -> int:

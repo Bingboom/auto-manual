@@ -123,7 +123,12 @@ reviewer's edit is rendered text; its real home is usually the **source**, not t
   rendered value → source row). A hit → **Class D** → write the corrected value to
   the source table (F6) or `Translation_Memory` (the approval-gated writers already
   built). A row regenerates the RST on the next `sync-review`, so we never hand-edit
-  rendered text into RST.
+  rendered text into RST. The index covers **localized** value columns (`Value_<lang>`,
+  `text_<lang>`) **and the source column** (`Value_source`, …) for a source-language
+  review (e.g. US-en, whose spec values live in `Value_source`, not `Value_en`). It is
+  built from the `data/phase2` snapshot, which is a **gitignored `sync-data` artifact** —
+  with no synced snapshot the index is empty and Class D cleanly falls back to the
+  `_looks_data_like` heuristic (`run-review-branch` logs which path is active).
 - Family-identical across the model family (F3) → **Class T** → template-sync
   proposal.
 - No source/template match (genuinely manual review prose) → **Class R** → write the
@@ -186,6 +191,16 @@ source-vs-rendered noise, phases 3–4 add incremental + source routing.
   The frozen copy-doc `基线文档` is **not** advanced locally: re-snapshotting it is a
   Feishu write (operator follow-up, ties to the live build-path work); until then a
   copy-doc re-run re-reports prior edits (idempotent no-ops on apply).
+- **Phase 3 F2 refinements (shipped):** `run-review-branch` already passes a
+  `--data-root`/`--lang` value-index into the classifier; the default now resolves to the
+  repo `data/phase2` **only when a synced `Spec_Master.csv` is present** (else `None` →
+  heuristic, the prior behavior), and the run logs whether Class D is deterministic or
+  heuristic. `build_value_index` now also indexes the **source column** (`Value_source`)
+  for a source-language review, so US-en spec edits are recognized as Class D once data is
+  synced. **Investigation note:** the "value-index returns 0 locally" symptom was the
+  `data/phase2` snapshot being absent (gitignored `sync-data` artifact), not a code/naming
+  bug — the column naming matches the schema. **Still unfed:** F3 Class T (no sibling
+  source is supplied to `run-review-branch`; auto family discovery is a follow-up).
 - **Phase 4 (next):** store R0 at review-start (§9.1) so new reviews are clean from
   edit #1. (Superseded in practice by the build-time copy-doc `基线文档` baseline,
   #420, which fills the same role for built docs.)

@@ -64,6 +64,31 @@ class BuildValueIndexTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             self.assertEqual(build_value_index(Path(tmp), "uk"), {})
 
+    def test_source_language_indexes_value_source_column(self) -> None:
+        # Real Spec_Master carries Value_source + Source_lang (no Value_en); a
+        # source-language review (US-en) must still index the source value as Class D.
+        spec = (
+            "document_key,Row_key,Slot_key,Source_lang,Value_source,Value_fr\n"
+            "JE-1000F_US,ac_out,main,en,1500 W,1500 W FR\n"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "Spec_Master.csv").write_text(spec, encoding="utf-8")
+            index = build_value_index(Path(tmp), "en")
+            self.assertIn("1500 W", index)  # Value_source indexed for the en-source row
+            self.assertEqual(index["1500 W"]["field"], "Value_source")
+            self.assertEqual(index["1500 W"]["row_key"], "ac_out")
+
+    def test_non_source_language_ignores_source_column(self) -> None:
+        spec = (
+            "document_key,Row_key,Slot_key,Source_lang,Value_source,Value_fr\n"
+            "JE-1000F_US,ac_out,main,en,1500 W,1500 W FR\n"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "Spec_Master.csv").write_text(spec, encoding="utf-8")
+            index = build_value_index(Path(tmp), "fr")
+            self.assertIn("1500 W FR", index)  # the fr reviewer edits the localized value
+            self.assertNotIn("1500 W", index)  # the en source value is NOT indexed under fr
+
 
 class ClassifyDataOriginTests(unittest.TestCase):
     def test_exact_match_and_whitespace_normalized(self) -> None:
