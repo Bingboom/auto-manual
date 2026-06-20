@@ -1154,6 +1154,38 @@ class BaselineDiffTests(unittest.TestCase):
         self.assertEqual(report["result"], "NO_DIFF")
         self.assertEqual(report["summary"]["total_deltas"], 0)
 
+    def test_image_reference_noise_is_normalized_away(self) -> None:
+        # Feishu re-hosts + re-describes every image per doc, so the editable doc and
+        # its baseline copy have different `![alt](token)` for the SAME image. Those
+        # must NOT register as deltas — only the real text edits should. (夏冰's case:
+        # 52 deltas where 50 were image noise + 2 real text edits.)
+        baseline = (
+            "Ports\n\n"
+            "| ![an AI description of the port image](https://x.feishu.cn/img/TOKEN_A) |\n\n"
+            "USB-C 100 W Output\n\n"
+            "FR IMPORTANT\n"
+        )
+        edited = (
+            "Ports\n\n"
+            "| ![a totally different re-generated description](https://x.feishu.cn/img/TOKEN_B) |\n\n"
+            "USB-C 100 W Output test\n\n"
+            "FR IMPORTANT test\n"
+        )
+        report = build_report(
+            run_id="img-norm", doc_type="review", doc_url="https://x.feishu.cn/wiki/d",
+            baseline_path=Path("b.md"), fetched_text=edited, baseline_text=baseline,
+            command=["t"], source_path=None, section_title=None,
+        )
+        # only the two text edits — the image line (different token + alt) is dropped
+        self.assertEqual(report["summary"]["total_deltas"], 2)
+        changed = {(d.get("old_text"), d.get("new_text")) for d in report["deltas"]}
+        self.assertIn(("USB-C 100 W Output", "USB-C 100 W Output test"), changed)
+        self.assertIn(("FR IMPORTANT", "FR IMPORTANT test"), changed)
+        # no delta is an image line: the token/alt never appears in any old/new text
+        for delta in report["deltas"]:
+            self.assertNotIn("TOKEN_", (delta.get("old_text") or "") + (delta.get("new_text") or ""))
+            self.assertNotIn("![", (delta.get("old_text") or "") + (delta.get("new_text") or ""))
+
     def test_run_review_branch_baseline_writes_report_and_is_report_only(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             out_dir = Path(tmp) / "out"
