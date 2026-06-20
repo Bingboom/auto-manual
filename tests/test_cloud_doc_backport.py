@@ -15,6 +15,7 @@ from tools.cloud_doc_backport import (
     _backport_pr_branch,
     _diff_delta_count,
     _parse_table_bindings,
+    _resolve_backport_data_root,
     _run_review_branch,
     _run_review_branch_baseline,
     build_report,
@@ -1440,6 +1441,59 @@ class BaselineDiffTests(unittest.TestCase):
             # partial apply -> the seed cursor stays put (nothing buried)
             seed = Path(tmp) / "docs/_review/JE-1000F/US/.backport/doc-seed2.baseline.md"
             self.assertFalse(seed.exists())
+
+    def test_baseline_diff_uses_value_index_for_deterministic_class_d(self) -> None:
+        # F2 wiring: with a synced data-root, a PROSE copy value the heuristic would NOT
+        # flag (no digits/units) is still routed Class D because it matches the value-index.
+        with tempfile.TemporaryDirectory() as tmp:
+            data_root = Path(tmp) / "phase2"
+            data_root.mkdir()
+            (data_root / "Localized_Copy.csv").write_text(
+                "copy_key,Source_lang,text_en\nguide.title,en,Operation Guide\n", encoding="utf-8"
+            )
+            page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            (page_dir / "00_preface.rst").write_text("Operation Guide\n", encoding="utf-8")
+            out_dir = Path(tmp) / "out"
+            args = SimpleNamespace(
+                cloud_doc="https://example.feishu.cn/wiki/doc-f2", run_id="f2",
+                out=str(out_dir), lark_cli="lark-cli", write=False, push=False,
+                doc_name="manual_je1000f_us_en_1.0", lang=None, data_root=str(data_root),
+                git_bin="git", remote="origin",
+            )
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="Operation Manual\n"):
+                rc = _run_review_branch_baseline(
+                    args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                    worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-f2",
+                    baseline_text="Operation Guide\n",
+                )
+            self.assertEqual(rc, 0)
+            routes = json.loads((out_dir / "cloud_doc_backport_report.json").read_text(encoding="utf-8"))["summary"]["route_classes"]
+            # Class D via the value-index — a heuristic alone would leave this prose as repo_review_text
+            self.assertIn("source_table_suggestion", routes)
+
+
+class ResolveBackportDataRootTests(unittest.TestCase):
+    """F2 snapshot-root resolution for run-review-branch (explicit, smart default, absent)."""
+
+    def test_explicit_passthrough(self) -> None:
+        self.assertEqual(_resolve_backport_data_root("/some/snapshot"), "/some/snapshot")
+
+    def test_defaults_to_repo_phase2_when_spec_master_synced(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "data" / "phase2").mkdir(parents=True)
+            (root / "data" / "phase2" / "Spec_Master.csv").write_text("document_key\n", encoding="utf-8")
+            with patch("tools.cloud_doc_backport.get_paths", return_value=SimpleNamespace(root=root)):
+                self.assertEqual(_resolve_backport_data_root(None), str(root / "data" / "phase2"))
+
+    def test_none_when_phase2_unsynced(self) -> None:
+        # data/phase2 without Spec_Master.csv (the gitignored sync artifact is absent)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "data" / "phase2").mkdir(parents=True)
+            with patch("tools.cloud_doc_backport.get_paths", return_value=SimpleNamespace(root=root)):
+                self.assertIsNone(_resolve_backport_data_root(None))
 
 
 if __name__ == "__main__":
