@@ -3063,6 +3063,12 @@ def _diff_delta_count(page_out: Path) -> int:
     return int((payload.get("summary") or {}).get("total_deltas") or 0)
 
 
+def _backport_pr_branch(git_ref: str, run_id: str) -> str:
+    """Name of the sub-branch that carries backport edits as a PR into the review branch."""
+    safe = re.sub(r"[^A-Za-z0-9._-]+", "-", f"{git_ref}-{run_id}").strip("-")[:80] or "edits"
+    return f"backport/{safe}"
+
+
 def _run_review_branch(args: argparse.Namespace) -> int:
     worktrees_root = Path(args.worktrees_root) if args.worktrees_root else _default_worktrees_root()
     try:
@@ -3183,24 +3189,50 @@ def _run_review_branch(args: argparse.Namespace) -> int:
             changed_rels.append(source_rel)
             print(f"  CHANGED {source_rel}  deltas={deltas}")
     pushed = False
+    backport_pr_url = ""
     if args.write and args.push and changed_rels:
+        # Don't commit straight onto the review branch. Put the edits on a backport/
+        # sub-branch and open a DRAFT PR whose base IS the review branch, so the
+        # operator verifies before anything lands on the review branch (and thus
+        # before it flows into the review branch's own PR). The worktree is on the
+        # review branch; branch off it, push, open the PR, then switch back.
         try:
+            pr_branch = _backport_pr_branch(git_ref, run_id)
+            _run_pr_command([args.git_bin, "switch", "-C", pr_branch], root=Path(worktree))
             for rel in changed_rels:
                 _run_pr_command([args.git_bin, "add", rel], root=Path(worktree))
             if _run_pr_command([args.git_bin, "status", "--porcelain"], root=Path(worktree)).strip():
                 _run_pr_command(
-                    [args.git_bin, "commit", "-m", f"backport: {git_ref} review edits ({run_id})"],
+                    [args.git_bin, "commit", "-m", f"backport: review edits for {git_ref} ({run_id})"],
                     root=Path(worktree),
                 )
-                _run_pr_command([args.git_bin, "push"], root=Path(worktree))
+                _run_pr_command(
+                    [args.git_bin, "push", "--force-with-lease", "-u", args.remote, pr_branch],
+                    root=Path(worktree),
+                )
+                body = (
+                    f"Backport of reviewer cloud-doc edits, targeting the review branch "
+                    f"`{git_ref}`.\n\nChanged pages:\n"
+                    + "\n".join(f"- `{rel}`" for rel in changed_rels)
+                    + "\n\nVerify, then merge into the review branch."
+                )
+                backport_pr_url = _run_pr_command(
+                    [
+                        "gh", "pr", "create", "--base", git_ref, "--head", pr_branch,
+                        "--draft", "--title", f"backport: review edits for {git_ref} ({run_id})",
+                        "--body", body,
+                    ],
+                    root=Path(worktree),
+                ).splitlines()[-1].strip()
                 pushed = True
+            _run_pr_command([args.git_bin, "switch", git_ref], root=Path(worktree))
         except (OSError, RuntimeError) as exc:
-            print(f"cloud-doc-backport: push to {git_ref} failed: {exc}", file=sys.stderr)
+            print(f"cloud-doc-backport: backport PR into {git_ref} failed: {exc}", file=sys.stderr)
             return 2
     print(json.dumps(
         {"git_ref": git_ref, "worktree": worktree, "pages": len(source_rels),
          "changed": changed_rels, "wrote": bool(args.write), "pushed": pushed,
-         "pr_url": resolved.get("pr_url")},
+         "backport_pr_url": backport_pr_url, "review_branch_pr_url": resolved.get("pr_url")},
         ensure_ascii=False, sort_keys=True,
     ))
     return 1 if failed else 0

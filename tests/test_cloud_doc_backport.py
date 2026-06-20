@@ -12,6 +12,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 from tools.cloud_doc_backport import (
+    _backport_pr_branch,
     _diff_delta_count,
     _parse_table_bindings,
     _run_review_branch,
@@ -1016,6 +1017,15 @@ class DiffDeltaCountTests(unittest.TestCase):
     def test_zero_when_report_absent(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             self.assertEqual(_diff_delta_count(Path(tmp)), 0)
+
+
+class BackportPrBranchTests(unittest.TestCase):
+    def test_sanitizes_review_ref_into_a_backport_subbranch(self) -> None:
+        # the write-back goes on a backport/ sub-branch, PR'd INTO the review branch
+        name = _backport_pr_branch("codex/review-id-recvfw0zg4pzxs", "run-1")
+        self.assertTrue(name.startswith("backport/"))
+        self.assertNotIn("/", name[len("backport/"):])  # the ref's slash is flattened
+        self.assertIn("recvfw0zg4pzxs", name)
 
 
 class RunReviewBranchGuardTests(unittest.TestCase):
