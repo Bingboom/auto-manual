@@ -179,8 +179,13 @@ source-vs-rendered noise, phases 3–4 add incremental + source routing.
   refused and steered to `run-review-branch` unless `--allow-rst-baseline` is passed
   (the per-page worker and a deliberate single-page override use that flag). This is
   the §1-corruption foot-gun closed at the CLI boundary — the same shape as the #417
-  whole-doc guard. **Still pending:** advancing the cursor on a full apply (§5 step 6,
-  §6) — a re-run currently re-reports the same deltas (idempotent, but noisy).
+  whole-doc guard. **Cursor advance (shipped for the seed model):** on a full apply —
+  every reported delta resolved (pure Class R, all applied; a pending Class D/ambiguous
+  delta blocks it, §6) — the on-branch `.backport/` **seed** baseline is rewritten to
+  `C_now` and committed with the `_review` change, so the next run diffs only new edits.
+  The frozen copy-doc `基线文档` is **not** advanced locally: re-snapshotting it is a
+  Feishu write (operator follow-up, ties to the live build-path work); until then a
+  copy-doc re-run re-reports prior edits (idempotent no-ops on apply).
 - **Phase 4 (next):** store R0 at review-start (§9.1) so new reviews are clean from
   edit #1. (Superseded in practice by the build-time copy-doc `基线文档` baseline,
   #420, which fills the same role for built docs.)

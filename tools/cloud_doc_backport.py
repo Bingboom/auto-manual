@@ -3241,15 +3241,21 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         #      build time) — fetched and diffed (the copy-doc baseline model);
         #   2. the on-branch .backport/<doc-token>.baseline.md file (the --seed model).
         baseline_text = None
+        # baseline_from_seed marks the on-branch .backport/ seed — a locally advanceable
+        # cursor. The copy-doc 基线文档 is a frozen R0 that only advances via a Feishu
+        # re-snapshot (operator follow-up), so it is never advanced locally.
+        baseline_from_seed = False
         baseline_doc_url = (resolved.get("baseline_doc_url") or "").strip()
         if baseline_doc_url and not args.page:
             baseline_text = fetch_doc_text(baseline_doc_url, lark_cli=args.lark_cli)
         elif doc_tok and not args.page:
             baseline_text = load_baseline(worktree, review_dir, doc_tok)
+            baseline_from_seed = baseline_text is not None
         if baseline_text is not None:
             return _run_review_branch_baseline(
                 args, resolved=resolved, worktree=worktree,
                 review_dir=review_dir, doc_tok=doc_tok, baseline_text=baseline_text,
+                baseline_from_seed=baseline_from_seed,
             )
         # Safety guard: a whole-doc run with NO render baseline falls back to the
         # per-page RST-source-vs-rendered diff, which over-reports and whose --write
@@ -3342,6 +3348,7 @@ def _run_review_branch_baseline(
     review_dir: str,
     doc_tok: str,
     baseline_text: str,
+    baseline_from_seed: bool = False,
 ) -> int:
     """Approach C phase 2: diff the cloud-doc against the stored render baseline.
 
@@ -3356,8 +3363,16 @@ def _run_review_branch_baseline(
     ``repo_review_text`` (Class R → the ``_review`` RST). With ``--write`` the Class R
     deltas are applied to the matching ``_review`` page via the guarded apply (only
     unique, safe matches) and ``--push`` opens a PR INTO the review branch; Class D is
-    never written to the RST. We never advance the baseline cursor here — that would
-    bury un-applied edits below it (design §6).
+    never written to the RST.
+
+    Cursor advance (design §5 step 6 / §6): on a **full apply** — every reported delta
+    resolved (pure Class R, all uniquely applied; any pending Class D or ambiguous delta
+    blocks it so nothing is buried below the cursor) — we advance the **seed** baseline
+    (``baseline_from_seed``): rewrite ``.backport/<doc>.baseline.md`` to ``C_now`` and
+    commit it with the ``_review`` change, so the next run diffs only NEW edits. The
+    frozen copy-doc ``基线文档`` is NOT advanced here — re-snapshotting it is a Feishu
+    write (operator follow-up); until then a copy-doc re-run re-reports prior edits
+    (idempotent no-ops on apply).
     """
     git_ref = resolved["git_ref"]
     run_id = str(args.run_id or "").strip() or "cloud-doc-backport-branch"
@@ -3407,6 +3422,8 @@ def _run_review_branch_baseline(
     # open a PR INTO the review branch. This is the clean write path — it never touches
     # Class D deltas and never writes the per-page RST-vs-rendered garbage.
     changed_rels: list[str] = []
+    applied_hashes: set[str] = set()
+    baseline_advanced = False
     if args.write and review_bound:
         page_dir = Path(worktree) / review_dir / "page"
         for page in sorted(page_dir.glob("*.rst")):
@@ -3414,11 +3431,30 @@ def _run_review_branch_baseline(
                 report, source_path=page, write=True,
                 command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-apply"],
             )
+            for op in apply_rep.get("operations") or []:
+                if op.get("status") == "applied" and op.get("delta_hash"):
+                    applied_hashes.add(str(op["delta_hash"]))
             if apply_rep["summary"].get("changed"):
                 changed_rels.append(f"{review_dir}/page/{page.name}")
                 print(f"  APPLIED (Class R) {page.name}")
         if not changed_rels:
             print("NOTE: no review-prose delta matched a _review page uniquely (nothing written; handle manually if needed).")
+        # Cursor advance (§6): only on a FULL apply — every reported delta resolved
+        # (len(applied) == deltas). A pending Class D / ambiguous delta leaves applied <
+        # deltas, so we keep the baseline put and the next run re-diffs the same window
+        # (already-applied edits are idempotent no-ops), never burying anything.
+        if deltas > 0 and len(applied_hashes) == deltas:
+            if baseline_from_seed:
+                store_baseline(worktree, review_dir, doc_tok, c_now)
+                changed_rels.append(baseline_rel)
+                baseline_advanced = True
+                print(f"  ADVANCED seed baseline cursor -> {baseline_rel} (full apply: {deltas} edit(s) resolved)")
+            else:
+                print(
+                    f"NOTE: full apply ({deltas} edit(s)), but the copy-doc 基线文档 baseline is "
+                    "frozen — re-snapshot it to advance the cursor (operator follow-up). "
+                    "Re-runs re-report (idempotent)."
+                )
     pushed = False
     backport_pr_url = ""
     if args.write and args.push and changed_rels:
@@ -3436,7 +3472,7 @@ def _run_review_branch_baseline(
          "route_classes": route_classes, "report": str(written["json"]),
          "source_table_report": str(written["json"]), "changed": changed_rels,
          "wrote": bool(args.write), "pushed": pushed, "backport_pr_url": backport_pr_url,
-         "review_branch_pr_url": resolved.get("pr_url")},
+         "baseline_advanced": baseline_advanced, "review_branch_pr_url": resolved.get("pr_url")},
         ensure_ascii=False, sort_keys=True,
     ))
     return 0

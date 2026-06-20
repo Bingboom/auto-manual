@@ -1172,8 +1172,9 @@ class RunReviewBranchGuardTests(unittest.TestCase):
         }
         captured: dict[str, object] = {}
 
-        def fake_baseline(_args, *, resolved, worktree, review_dir, doc_tok, baseline_text):
+        def fake_baseline(_args, *, resolved, worktree, review_dir, doc_tok, baseline_text, baseline_from_seed):
             captured["baseline_text"] = baseline_text
+            captured["baseline_from_seed"] = baseline_from_seed
             return 0
 
         with patch("tools.cloud_doc_backport._fetch_build_table_records", return_value=[]), \
@@ -1188,6 +1189,7 @@ class RunReviewBranchGuardTests(unittest.TestCase):
         self.assertEqual(captured["baseline_text"], "R0 RENDER TEXT")  # the fetched doc baseline
         fetch.assert_called_once_with("https://x.feishu.cn/docx/BASELINE_R0", lark_cli="lark-cli")
         load_file.assert_not_called()  # the .backport file is NOT consulted when the row has a baseline doc
+        self.assertFalse(captured["baseline_from_seed"])  # copy-doc baseline is frozen, never advanced locally
 
     def test_dry_run_whole_doc_not_blocked_by_guard(self) -> None:
         # without --write the guard must NOT fire — a no-baseline whole-doc REPORT is fine.
@@ -1376,6 +1378,68 @@ class BaselineDiffTests(unittest.TestCase):
             self.assertEqual(rc, 0)
             # the Class R edit landed in the page RST (guarded apply matched the prose)
             self.assertIn("FR IMPORTANT test", preface.read_text(encoding="utf-8"))
+
+    def test_seed_baseline_cursor_advances_on_full_apply(self) -> None:
+        # design §6: on a FULL apply (all deltas pure Class R, all applied) against a
+        # .backport/ SEED baseline, advance the cursor -> rewrite the seed to C_now so the
+        # next run diffs only NEW edits. (The copy-doc model never advances locally.)
+        with tempfile.TemporaryDirectory() as tmp:
+            page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            preface = page_dir / "00_preface.rst"
+            preface.write_text("**FR IMPORTANT**\n\nKeep this manual handy.\n", encoding="utf-8")
+            out_dir = Path(tmp) / "out"
+            args = SimpleNamespace(
+                cloud_doc="https://example.feishu.cn/wiki/doc-seed", run_id="seed-adv",
+                out=str(out_dir), lark_cli="lark-cli", write=True, push=False,
+                doc_name="manual_je1000f_us_en_1.0", lang=None, data_root=None,
+                git_bin="git", remote="origin",
+            )
+            edited = "**FR IMPORTANT test**\n\nKeep this manual handy.\n"
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=edited):
+                rc = _run_review_branch_baseline(
+                    args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                    worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-seed",
+                    baseline_text="**FR IMPORTANT**\n\nKeep this manual handy.\n",
+                    baseline_from_seed=True,
+                )
+            self.assertEqual(rc, 0)
+            self.assertIn("FR IMPORTANT test", preface.read_text(encoding="utf-8"))
+            # the seed baseline advanced to C_now (the edited render)
+            seed = Path(tmp) / "docs/_review/JE-1000F/US/.backport/doc-seed.baseline.md"
+            self.assertTrue(seed.is_file())
+            self.assertIn("FR IMPORTANT test", seed.read_text(encoding="utf-8"))
+
+    def test_seed_baseline_cursor_not_advanced_on_partial_apply(self) -> None:
+        # a pending Class D (source-value) delta means NOT every edit was resolved, so the
+        # seed cursor must NOT advance (else the un-applied Class D edit is buried, §6).
+        with tempfile.TemporaryDirectory() as tmp:
+            page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            preface = page_dir / "00_preface.rst"
+            preface.write_text("**FR IMPORTANT**\n\nKeep this manual handy.\n", encoding="utf-8")
+            out_dir = Path(tmp) / "out"
+            args = SimpleNamespace(
+                cloud_doc="https://example.feishu.cn/wiki/doc-seed2", run_id="seed-part",
+                out=str(out_dir), lark_cli="lark-cli", write=True, push=False,
+                doc_name="manual_je1000f_us_en_1.0", lang=None, data_root="data/phase2",
+                git_bin="git", remote="origin",
+            )
+            baseline = "**FR IMPORTANT**\n\nKeep this manual handy.\n\n| **USB-C 100 W Output** | 100 W |\n"
+            edited = "**FR IMPORTANT test**\n\nKeep this manual handy.\n\n| **USB-C 100 W Output test** | 100 W |\n"
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=edited):
+                rc = _run_review_branch_baseline(
+                    args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                    worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-seed2",
+                    baseline_text=baseline,
+                    baseline_from_seed=True,
+                )
+            self.assertEqual(rc, 0)
+            routes = json.loads((out_dir / "cloud_doc_backport_report.json").read_text(encoding="utf-8"))["summary"]["route_classes"]
+            self.assertIn("source_table_suggestion", routes)  # a pending Class D delta exists
+            # partial apply -> the seed cursor stays put (nothing buried)
+            seed = Path(tmp) / "docs/_review/JE-1000F/US/.backport/doc-seed2.baseline.md"
+            self.assertFalse(seed.exists())
 
 
 if __name__ == "__main__":
