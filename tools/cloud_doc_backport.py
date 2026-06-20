@@ -7,6 +7,11 @@ it with a baseline, and writes structured JSON + Markdown diff reports.
 
 The apply-template/apply-review commands can turn a diff report into guarded
 local source edits. They never edit generated output or Feishu bitable rows.
+
+Review writes funnel through ``run-review-branch`` (render-vs-render diff against a
+stored baseline). A direct ``apply-review`` / ``run-review --write`` against the
+``_review`` RST *source* is refused (it corrupts RST markup; see
+``Backport_Rendered_Baseline_Design.md`` §1) unless ``--allow-rst-baseline`` is set.
 """
 from __future__ import annotations
 
@@ -1056,6 +1061,44 @@ def _apply_operation(
         "reason": f"unique {route_class} {'deletion' if change_type == 'delete' else 'replacement'}",
         "matches": matches,
     }, current_text
+
+
+def _refuse_unsafe_review_apply(
+    diff_report: dict[str, Any],
+    *,
+    write: bool,
+    allow_rst_baseline: bool,
+) -> None:
+    """Funnel review ``--write`` through ``run-review-branch`` (render-vs-render).
+
+    A REVIEW diff whose baseline is the ``_review`` RST *source* is the broken
+    source-vs-rendered path: the rendered cloud-doc mis-aligns against RST markup
+    (``.. raw:: latex``, ``|TOKEN|``, ``| line-blocks``), so it over-reports and a
+    ``--write`` corrupts the RST — the root cause the rendered-baseline design fixed
+    (``Backport_Rendered_Baseline_Design.md`` §1). Applying it directly with a stray
+    ``apply-review`` / ``run-review --write`` is the foot-gun that let an improvising
+    agent splatter rendered text across many pages. Refuse it and steer to
+    ``run-review-branch``, which diffs the cloud-doc against a stored render baseline
+    and applies only clean Class R prose.
+
+    Inert for: dry runs, template reports, render-baseline reports (``.baseline.md``),
+    and any caller that passes ``--allow-rst-baseline`` — the ``run-review-branch``
+    per-page worker and a deliberate single-page override.
+    """
+    if not write or allow_rst_baseline:
+        return
+    if diff_report.get("doc_type") != "review":
+        return
+    if str(diff_report.get("baseline") or "").endswith(".rst"):
+        raise RuntimeError(
+            "refusing a review --write against the RST source: the rendered-vs-RST "
+            "diff over-reports and writing it corrupts the RST (.. raw:: latex / "
+            "|TOKEN| / | line-blocks). Use `run-review-branch --cloud-doc <url> "
+            "--doc-name <name> --write`, which diffs the cloud-doc against a render "
+            "baseline and applies only clean Class R prose. To force the legacy "
+            "single-page path, pass --allow-rst-baseline "
+            "(Backport_Rendered_Baseline_Design.md §1)."
+        )
 
 
 def build_guarded_apply_report(
@@ -2480,6 +2523,11 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     apply_review_parser.add_argument("--source-path", help="optional review source override")
     apply_review_parser.add_argument("--out", help="output directory for JSON and Markdown apply reports")
     apply_review_parser.add_argument("--write", action="store_true", help="write safe replacements to the review source")
+    apply_review_parser.add_argument(
+        "--allow-rst-baseline",
+        action="store_true",
+        help="legacy escape hatch: permit --write from a report diffed against the RST source (corrupts markup; prefer run-review-branch)",
+    )
 
     verify_review_parser = subparsers.add_parser(
         "verify-review",
@@ -2515,6 +2563,11 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--write",
         action="store_true",
         help="write safe review replacements, then verify residuals",
+    )
+    run_review_parser.add_argument(
+        "--allow-rst-baseline",
+        action="store_true",
+        help="legacy escape hatch: permit --write against the RST source (corrupts markup; prefer run-review-branch)",
     )
 
     open_pr_parser = subparsers.add_parser(
@@ -2704,6 +2757,11 @@ def _run_apply(
         report_path = _resolve_source_path(args.report, label="diff report")
         source_override = _resolve_source_path(args.source_path, label="source target") if args.source_path else None
         diff_report = _load_json_file(report_path)
+        _refuse_unsafe_review_apply(
+            diff_report,
+            write=bool(args.write),
+            allow_rst_baseline=getattr(args, "allow_rst_baseline", False),
+        )
         apply_report = build_apply_report(
             diff_report,
             source_path=source_override,
@@ -2792,6 +2850,11 @@ def _run_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
             require_section_match=bool(args.section_heading),
             value_index=_value_index_from_args(args),
             family_index=_family_index_from_args(args),
+        )
+        _refuse_unsafe_review_apply(
+            diff_report,
+            write=bool(args.write),
+            allow_rst_baseline=getattr(args, "allow_rst_baseline", False),
         )
         output_paths = {f"diff_{key}": value for key, value in write_reports(diff_report, out_dir).items()}
         apply_report: dict[str, Any] | None = None
@@ -3235,6 +3298,10 @@ def _run_review_branch(args: argparse.Namespace) -> int:
             sys.executable, str(Path(__file__).resolve()), "run-review",
             "--doc-url", str(fixture), "--source-path", str(source_abs),
             "--run-id", f"{run_id}-{Path(source_rel).stem}", "--out", str(page_out), "--lark-cli", args.lark_cli,
+            # Internal per-page worker: the source path is DERIVED from the resolved
+            # review dir and the whole-doc no-baseline --write is already refused above
+            # (#417), so the RST-baseline guard would be redundant here — bypass it.
+            "--allow-rst-baseline",
         ]
         if args.write:
             review_cmd.append("--write")

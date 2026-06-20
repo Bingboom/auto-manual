@@ -404,7 +404,7 @@ class CloudDocBackportTest(unittest.TestCase):
             out_dir.mkdir()
             report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
 
-            exit_code = main(["apply-review", "--report", str(report_path), "--write"])
+            exit_code = main(["apply-review", "--report", str(report_path), "--write", "--allow-rst-baseline"])
 
             self.assertEqual(exit_code, 0)
             self.assertIn("修改内容。", review_path.read_text(encoding="utf-8"))
@@ -442,6 +442,74 @@ class CloudDocBackportTest(unittest.TestCase):
             payload = json.loads((out_dir / "cloud_doc_backport_apply.json").read_text(encoding="utf-8"))
             self.assertEqual(payload["source_target"]["kind"], "review")
             self.assertEqual(payload["summary"]["statuses"]["planned"], 1)
+
+    def test_apply_review_write_refuses_rst_source_baseline(self) -> None:
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            original = "用户指南\n========\n\n原始内容。\n"
+            review_path.write_text(original, encoding="utf-8")
+            report = build_report(
+                run_id="apply-review-guard",
+                doc_type="review",
+                doc_url="fixture.md",
+                baseline_path=review_path,  # .rst source baseline -> the broken rendered-vs-RST path
+                fetched_text="# manual\n\n## 用户指南\n\n修改内容。\n",
+                baseline_text=original,
+                command=["tools/cloud_doc_backport.py", "diff"],
+                source_path=review_path,
+                section_title="用户指南",
+            )
+            out_dir = root / "out"
+            report_path = out_dir / "cloud_doc_backport_report.json"
+            out_dir.mkdir()
+            report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
+
+            err = io.StringIO()
+            with contextlib.redirect_stderr(err):
+                exit_code = main(["apply-review", "--report", str(report_path), "--write"])
+
+            self.assertEqual(exit_code, 2)
+            self.assertIn("run-review-branch", err.getvalue())
+            self.assertEqual(review_path.read_text(encoding="utf-8"), original)
+            self.assertFalse((out_dir / "cloud_doc_backport_apply.json").exists())
+
+    def test_apply_review_write_allows_render_baseline_report(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text("用户指南\n========\n\n原始内容。\n", encoding="utf-8")
+            # A render-baseline report (.baseline.md baseline, no source_target) is the clean
+            # run-review-branch output; apply-review must accept it WITHOUT --allow-rst-baseline.
+            report = build_report(
+                run_id="apply-review-render-baseline",
+                doc_type="review",
+                doc_url="https://example.feishu.cn/docx/doc123",
+                baseline_path=Path("docs/_review/JE-1000F/US/.backport/doc123.baseline.md"),
+                fetched_text="# manual\n\n## 用户指南\n\n修改内容。\n",
+                baseline_text="# manual\n\n## 用户指南\n\n原始内容。\n",
+                command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-diff"],
+                source_path=None,
+                section_title=None,
+            )
+            out_dir = root / "out"
+            report_path = out_dir / "cloud_doc_backport_report.json"
+            out_dir.mkdir()
+            report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
+
+            exit_code = main(
+                ["apply-review", "--report", str(report_path), "--source-path", str(review_path), "--write"]
+            )
+
+            self.assertEqual(exit_code, 0)
+            self.assertIn("修改内容。", review_path.read_text(encoding="utf-8"))
+            payload = json.loads((out_dir / "cloud_doc_backport_apply.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["summary"]["statuses"]["applied"], 1)
 
     def test_verify_review_fails_when_safe_review_text_is_still_pending(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -515,7 +583,7 @@ class CloudDocBackportTest(unittest.TestCase):
             out_dir.mkdir()
             report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
 
-            apply_exit = main(["apply-review", "--report", str(report_path), "--write", "--out", str(root / "apply")])
+            apply_exit = main(["apply-review", "--report", str(report_path), "--write", "--allow-rst-baseline", "--out", str(root / "apply")])
             verify_exit = main(["verify-review", "--report", str(report_path), "--out", str(root / "verify")])
 
             self.assertEqual(apply_exit, 0)
@@ -674,7 +742,7 @@ class CloudDocBackportTest(unittest.TestCase):
             out_dir.mkdir()
             report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
 
-            apply_exit = main(["apply-review", "--report", str(report_path), "--write", "--out", str(root / "apply")])
+            apply_exit = main(["apply-review", "--report", str(report_path), "--write", "--allow-rst-baseline", "--out", str(root / "apply")])
             verify_exit = main(["verify-review", "--report", str(report_path), "--out", str(root / "verify")])
 
             self.assertEqual(apply_exit, 0)
@@ -713,6 +781,7 @@ class CloudDocBackportTest(unittest.TestCase):
                     "--out",
                     str(out_dir),
                     "--write",
+                    "--allow-rst-baseline",
                 ]
             )
 
@@ -751,6 +820,7 @@ class CloudDocBackportTest(unittest.TestCase):
                     "--out",
                     str(out_dir),
                     "--write",
+                    "--allow-rst-baseline",
                 ]
             )
 
@@ -761,6 +831,40 @@ class CloudDocBackportTest(unittest.TestCase):
             self.assertEqual(payload["summary"]["apply_statuses"]["skipped"], 1)
             self.assertEqual(payload["summary"]["verify_failing_categories"]["unsafe_or_ambiguous"], 1)
             self.assertFalse(payload["summary"]["pr_ready"])
+
+    def test_run_review_write_refuses_rst_source_baseline(self) -> None:
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst"
+            review_path.parent.mkdir(parents=True)
+            original = "用户指南\n========\n\n原始内容。\n"
+            review_path.write_text(original, encoding="utf-8")
+            fetched_path = root / "fetched.md"
+            fetched_path.write_text("# manual\n\n## 用户指南\n\n修改内容。\n", encoding="utf-8")
+            out_dir = root / "out"
+
+            err = io.StringIO()
+            with contextlib.redirect_stderr(err):
+                exit_code = main(
+                    [
+                        "run-review",
+                        "--doc-url",
+                        str(fetched_path),
+                        "--source-path",
+                        str(review_path),
+                        "--out",
+                        str(out_dir),
+                        "--write",
+                    ]
+                )
+
+            self.assertEqual(exit_code, 2)
+            self.assertIn("run-review-branch", err.getvalue())
+            self.assertEqual(review_path.read_text(encoding="utf-8"), original)
+            self.assertFalse((out_dir / "cloud_doc_backport_report.json").exists())
 
     def test_open_pr_from_manifest_creates_draft_pr_for_pr_ready_review_source(self) -> None:
         with tempfile.TemporaryDirectory() as td:
