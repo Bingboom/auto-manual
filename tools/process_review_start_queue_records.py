@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from dataclasses import dataclass
 from typing import Any, Callable
 
@@ -174,17 +175,30 @@ def slug_branch_token(value: str) -> str:
 
 
 def generate_review_branch_name(record: ReviewStartRecord) -> str:
-    # An existing review keeps its recorded branch (re-reviews reuse + force-reseed it).
-    if record.git_ref.strip():
-        return record.git_ref.strip()
-    # New review: name it review/<MODEL>-<REGION> (one branch per target — the _review
-    # tree is per model+region). Matches git_branching_guide §2 and the resolver, which
-    # derives model+region from Document_ID.
+    # Review is versionless: one branch per (model, region) — the template target — named
+    # review/<MODEL>-<REGION> (the _review tree is per model+region; git_branching_guide
+    # §2). Derive the canonical name from the Document_ID's model+region.
     parsed = parse_document_id(record.document_id)
+    existing = record.git_ref.strip()
     if parsed is not None:
         model, region, _version = parsed
-        return f"review/{model}-{region}"
-    # Fallback when Document_ID can't be parsed (no model_region): a sanitized slug.
+        canonical = f"review/{model}-{region}"
+        # Keep an existing CANONICAL ref (review/<MODEL>-<REGION>[-<topic>]) so an
+        # in-flight review reuses its branch. A legacy/opaque ref (e.g.
+        # review/id-<record_id>, codex/review-…) is RE-DERIVED to the canonical name, so
+        # a re-seed self-heals the branch name instead of preserving the stale value.
+        if existing and (existing == canonical or existing.startswith(f"{canonical}-")):
+            return existing
+        if existing:  # non-empty AND non-canonical -> self-heal
+            print(
+                f"[review-start] WARNING healing non-canonical branch name {existing!r} -> "
+                f"{canonical!r}; the old branch's PR (if any) is NOT reused.",
+                file=sys.stderr,
+            )
+        return canonical
+    # Document_ID yields no model+region: keep an existing ref, else a sanitized slug.
+    if existing:
+        return existing
     source = record.document_key or record.document_id or f"{record.lang}_{record.version}"
     return f"review/{slug_branch_token(source)[:72]}"
 
