@@ -39,8 +39,8 @@ C:\Users\<you>\Documents\cms2docs\worktrees
 Examples:
 
 ```powershell
-C:\Users\Administrator\Documents\cms2docs\worktrees\review-jp
-C:\Users\Administrator\Documents\cms2docs\worktrees\review-us-en-fr-es
+C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-JP
+C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-US
 ```
 
 Why this layout is recommended:
@@ -72,8 +72,8 @@ New-Item -ItemType Directory -Force `
   C:\Users\Administrator\Documents\cms2docs\worktrees
 
 git worktree add `
-  C:\Users\Administrator\Documents\cms2docs\worktrees\review-us-en-fr-es `
-  codex/review-id-recvfw0zg4pzxs
+  C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-US `
+  review/JE-1000F-US
 ```
 
 That command:
@@ -90,12 +90,12 @@ If the branch exists on `origin` but not as a local branch yet, create a local t
 git fetch origin
 
 git branch --track `
-  codex/review-id-recvfw0zg4fasl `
-  origin/codex/review-id-recvfw0zg4fasl
+  review/JE-1000F-JP `
+  origin/review/JE-1000F-JP
 
 git worktree add `
-  C:\Users\Administrator\Documents\cms2docs\worktrees\review-jp `
-  codex/review-id-recvfw0zg4fasl
+  C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-JP `
+  review/JE-1000F-JP
 ```
 
 Use this flow when `git show-ref --verify refs/heads/<branch>` fails locally but `origin/<branch>` exists.
@@ -109,16 +109,16 @@ New-Item -ItemType Directory -Force `
   C:\Users\Administrator\Documents\cms2docs\worktrees
 
 git branch --track `
-  codex/review-id-recvfw0zg4fasl `
-  origin/codex/review-id-recvfw0zg4fasl
+  review/JE-1000F-JP `
+  origin/review/JE-1000F-JP
 
 git worktree add `
-  C:\Users\Administrator\Documents\cms2docs\worktrees\review-jp `
-  codex/review-id-recvfw0zg4fasl
+  C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-JP `
+  review/JE-1000F-JP
 
 git worktree add `
-  C:\Users\Administrator\Documents\cms2docs\worktrees\review-us-en-fr-es `
-  codex/review-id-recvfw0zg4pzxs
+  C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-US `
+  review/JE-1000F-US
 ```
 
 After creation, confirm with:
@@ -133,14 +133,14 @@ Useful commands:
 
 ```powershell
 git worktree list
-git -C C:\Users\Administrator\Documents\cms2docs\worktrees\review-jp status
-git -C C:\Users\Administrator\Documents\cms2docs\worktrees\review-us-en-fr-es status
+git -C C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-JP status
+git -C C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-US status
 ```
 
 Open one worktree directly in VS Code:
 
 ```powershell
-code C:\Users\Administrator\Documents\cms2docs\worktrees\review-jp
+code C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-JP
 ```
 
 Open several folders into one VS Code multi-root workspace if you want to compare branches side by side.
@@ -153,7 +153,7 @@ To rename a worktree, move it to a new path:
 
 ```powershell
 git worktree move `
-  C:\Users\Administrator\Documents\cms2docs\worktrees\review-jp `
+  C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-JP `
   C:\Users\Administrator\Documents\cms2docs\worktrees\jp-review
 ```
 
@@ -175,14 +175,14 @@ If the worktree is clean:
 
 ```powershell
 git worktree remove `
-  C:\Users\Administrator\Documents\cms2docs\worktrees\review-jp
+  C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-JP
 ```
 
 If the worktree has local changes and you intentionally want to discard them:
 
 ```powershell
 git worktree remove --force `
-  C:\Users\Administrator\Documents\cms2docs\worktrees\review-jp
+  C:\Users\Administrator\Documents\cms2docs\worktrees\review-JE-1000F-JP
 ```
 
 After removing stale directories or broken metadata, clean up registrations with:
@@ -198,7 +198,7 @@ git worktree prune -v
 Example:
 
 ```text
-fatal: 'codex/review-id-recvfw0zg4pzxs' is already used by worktree at '...'
+fatal: 'review/JE-1000F-US' is already used by worktree at '...'
 ```
 
 Meaning:
@@ -233,8 +233,8 @@ That label is a VS Code multi-root workspace name, not a Git worktree name.
 If you opened multiple folders such as:
 
 - `auto-manual`
-- `review-jp`
-- `review-us-en-fr-es`
+- `review-JE-1000F-JP`
+- `review-JE-1000F-US`
 
 then VS Code creates a temporary unnamed workspace.
 To name it:
@@ -252,7 +252,7 @@ C:\Users\Administrator\Documents\cms2docs\cms-review.code-workspace
 ## 11. Recommended Habits For This Repo
 
 - keep the main repo root on `main`
-- give worktree directories task-oriented names such as `review-jp` or `review-us-en-fr-es`
+- name worktree directories after the review branch, e.g. `review-JE-1000F-JP` or `review-JE-1000F-US` (the review branch is `review/<MODEL>-<REGION>`)
 - remove finished worktrees promptly after merge or close
 - use `git worktree list -v` before creating a new one
 - avoid forcing removal until you have checked whether the worktree contains local review edits or generated artifacts you still need
