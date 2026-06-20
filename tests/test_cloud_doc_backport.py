@@ -1162,12 +1162,14 @@ class BaselineDiffTests(unittest.TestCase):
         baseline = (
             "Ports\n\n"
             "| ![an AI description of the port image](https://x.feishu.cn/img/TOKEN_A) |\n\n"
+            "<table><tbody><tr><td><img name=\"a.png\" alt=\"desc A\" src=\"https://x/img/TOKEN_C\"/></td><td>LCD SCREEN</td></tr></tbody></table>\n\n"
             "USB-C 100 W Output\n\n"
             "FR IMPORTANT\n"
         )
         edited = (
             "Ports\n\n"
             "| ![a totally different re-generated description](https://x.feishu.cn/img/TOKEN_B) |\n\n"
+            "<table><tbody><tr><td><img name=\"b.png\" alt=\"freshly re-generated desc\" src=\"https://x/img/TOKEN_D\"/></td><td>LCD SCREEN</td></tr></tbody></table>\n\n"
             "USB-C 100 W Output test\n\n"
             "FR IMPORTANT test\n"
         )

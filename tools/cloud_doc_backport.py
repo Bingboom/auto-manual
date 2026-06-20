@@ -53,7 +53,7 @@ VERIFY_SCHEMA_VERSION = "cloud-doc-backport-verify/v1"
 RUN_SCHEMA_VERSION = "cloud-doc-backport-run/v1"
 SOURCE_TABLE_SUGGESTIONS_SCHEMA_VERSION = "cloud-doc-backport-source-table-suggestions/v1"
 TEMPLATE_SYNC_PROPOSAL_SCHEMA_VERSION = "cloud-doc-backport-template-sync-proposal/v1"
-NORMALIZER_VERSION = "cloud-doc-normalizer/v2"
+NORMALIZER_VERSION = "cloud-doc-normalizer/v3"
 
 _SAFE_PATH_CHARS = re.compile(r"[^A-Za-z0-9._-]+")
 _LARK_TAG_RE = re.compile(r"</?lark-[^>]*>", re.IGNORECASE)
@@ -238,10 +238,13 @@ def _normalize_inline(text: str) -> str:
     # Collapse image references to a stable placeholder. Feishu hosts each doc's
     # images under its own token and re-generates the alt description per import, so
     # two fetches of the "same" doc (e.g. an editable doc vs its baseline copy) have
-    # different `![alt](token)` for every image — pure noise that swamps the real
-    # text edits. Treating every image as `![image]` drops that noise (the trade-off:
-    # a genuine image *swap* in the same position is no longer flagged).
+    # different image markup for every image — pure noise that swamps the real text
+    # edits. Treating every image as a placeholder drops that noise (the trade-off: a
+    # genuine image *swap* in the same position is no longer flagged). Cover BOTH the
+    # markdown form `![alt](token)` and the HTML `<img name alt src=token>` form that
+    # Feishu emits for images inside tables.
     text = re.sub(r"!\[[^\]]*\](?:\([^)]*\))?", "![image]", text)
+    text = re.sub(r"<img\b[^>]*/?>", "<img>", text)
     text = text.replace("**", "").replace("__", "")
     text = text.replace("\\n", "\n")
     text = text.replace("“", '"').replace("”", '"').replace("‘", "'").replace("’", "'")
