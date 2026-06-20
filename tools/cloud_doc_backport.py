@@ -163,6 +163,12 @@ def _extract_doc_markdown(raw_text: str) -> str:
     return raw_text
 
 
+def _unwrap_markdown_link(value: str) -> str:
+    text = str(value or "").strip()
+    match = re.fullmatch(r"\[[^\]]*\]\((https?://[^)]+)\)", text)
+    return match.group(1) if match else text
+
+
 def _local_doc_path(doc_url: str) -> Path | None:
     if doc_url == "-":
         return None
@@ -176,6 +182,7 @@ def _local_doc_path(doc_url: str) -> Path | None:
 
 def fetch_doc_text(doc_url: str, *, lark_cli: str = "lark-cli") -> str:
     """Fetch a cloud doc, or read a local fixture when doc_url is a file path."""
+    doc_url = _unwrap_markdown_link(doc_url)
     local_path = _local_doc_path(doc_url)
     if local_path is not None:
         return _extract_doc_markdown(_read_text(local_path))
