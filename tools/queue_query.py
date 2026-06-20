@@ -492,6 +492,23 @@ def _infer_document_key_tokens(text: str) -> tuple[str, ...]:
     return tuple(keys)
 
 
+def _infer_document_id_tokens(text: str) -> tuple[str, ...]:
+    """Collect EVERY fully-qualified, version-shaped Document_ID token, de-duplicated.
+
+    Mirrors :func:`_infer_document_key_tokens` but for full Document_IDs
+    (``model_region[_lang]_version``, the same predicate ``_infer_document_filters``
+    keys on). Used to keep an explicit N-target ask (e.g. ``构建 JE-1000F_US_en_0.1
+    JE-1000F_JP_ja_0.1 …``) as N targets, instead of letting ``_infer_document_filters``
+    pin only the first token.
+    """
+    ids: list[str] = []
+    for token in _UNDERSCORE_TOKEN_RE.findall(text):
+        parts = token.split("_")
+        if len(parts) >= 3 and _VERSION_TOKEN_RE.match(parts[-1]) and token not in ids:
+            ids.append(token)
+    return tuple(ids)
+
+
 def _infer_model_token(text: str) -> str:
     for token in _query_tokens(text):
         if "_" in token:
@@ -701,18 +718,23 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     market_group = _infer_market_group(text)
     task_id_prefix = ""
     allow_multiple = _infer_allow_multiple(text)
+    # Explicit N-target asks resolve to N via the document_keys batch path — never collapse
+    # to the first token (the _infer_document_filters early-return). start-review keys on
+    # model_region Document_Keys; build-draft / publish key on fully-qualified Document_IDs
+    # (the row filter matches document_keys against both row.document_key and row.document_id).
+    # >1 forces allow_multiple, so resolve_queue_action returns N candidates that the
+    # deterministic batch dispatch fans out per record.
     document_keys: tuple[str, ...] = ()
     if workflow_action == "start-review":
-        inferred_document_keys = _infer_document_key_tokens(text)
-        if len(inferred_document_keys) > 1:
-            document_keys = inferred_document_keys
-            document_id = ""
-            document_key = ""
-            lang = ""
-            document_version = ""
-            task_id = ""
-            task_document_id = ""
-            allow_multiple = True
+        batch_tokens = _infer_document_key_tokens(text)
+    elif workflow_action in ("build-draft-package", "publish"):
+        batch_tokens = _infer_document_id_tokens(text)
+    else:
+        batch_tokens = ()
+    if len(batch_tokens) > 1:
+        document_keys = batch_tokens
+        document_id = document_key = lang = document_version = task_id = task_document_id = ""
+        allow_multiple = True
     if workflow_action == "build-draft-package" and allow_multiple:
         if document_id:
             model_token, region, version = _split_region_version_document_id(document_id)
@@ -725,7 +747,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
             if len(key_parts) == 2:
                 task_id_prefix = f"{document_key}_"
                 document_key = ""
-    if not document_id and not document_key and not task_id_prefix:
+    if not document_id and not document_key and not task_id_prefix and not document_keys:
         model_token = _infer_model_token(text)
         if model_token and market_group and allow_multiple:
             task_id_prefix = f"{model_token}_{market_group}_"
@@ -736,7 +758,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     if not document_id and task_document_id:
         document_id = task_document_id
     build_family = ""
-    if not document_id and not document_key:
+    if not document_id and not document_key and not document_keys:
         build_family = _infer_build_family(text)
     if not task_id and workflow_action:
         action_label = _canonical_query_action_label(workflow_action)
