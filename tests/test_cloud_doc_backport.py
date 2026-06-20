@@ -1247,6 +1247,32 @@ class BaselineDiffTests(unittest.TestCase):
             self.assertIn("source_table_suggestion", routes)  # the table value -> source (not RST)
             self.assertIn("repo_review_text", routes)  # the prose edit -> _review
 
+    def test_baseline_diff_write_applies_class_r_prose_to_page(self) -> None:
+        # --write: a Class R (review-prose) delta is applied to the matching _review
+        # page via the guarded apply; Class D is NOT written to the RST.
+        with tempfile.TemporaryDirectory() as tmp:
+            page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            preface = page_dir / "00_preface.rst"
+            preface.write_text("**FR IMPORTANT**\n\nKeep this manual handy.\n", encoding="utf-8")
+            out_dir = Path(tmp) / "out"
+            args = SimpleNamespace(
+                cloud_doc="https://example.feishu.cn/wiki/doc-3", run_id="p3w",
+                out=str(out_dir), lark_cli="lark-cli", write=True, push=False,
+                doc_name="manual_je1000f_us_en_1.0", lang=None, data_root="data/phase2",
+                git_bin="git", remote="origin",
+            )
+            edited = "**FR IMPORTANT test**\n\nKeep this manual handy.\n"
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=edited):
+                rc = _run_review_branch_baseline(
+                    args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                    worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-3",
+                    baseline_text="**FR IMPORTANT**\n\nKeep this manual handy.\n",
+                )
+            self.assertEqual(rc, 0)
+            # the Class R edit landed in the page RST (guarded apply matched the prose)
+            self.assertIn("FR IMPORTANT test", preface.read_text(encoding="utf-8"))
+
 
 if __name__ == "__main__":
     unittest.main()

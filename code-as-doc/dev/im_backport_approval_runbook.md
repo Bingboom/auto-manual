@@ -197,10 +197,13 @@ python tools/cloud_doc_backport.py run-review-branch \
 > - **Phase 2 (shipped):** once a baseline exists, a whole-doc `run-review-branch`
 >   (no `--page`) **automatically** diffs the cloud-doc against that baseline
 >   (render-vs-render → only the reviewer's real edits; live: 2 vs 293 on the RST
->   path). It is **report-only** — `--write`/`--push` are a no-op and the baseline
->   cursor never advances (routing + apply + advance is phase 3), so an un-applied
->   edit is never lost. With `--page`, or with no baseline, it falls back to the
->   per-page RST diff.
+>   path) and **classifies** them (phase 3): Class D (source value) → `apply-source-table`
+>   (F6/TM), Class R (review prose) → the `_review` RST. With `--write` it applies only
+>   the **Class R** deltas to the matching `_review` page via the guarded apply (unique,
+>   safe matches; ambiguous skipped) — never Class D, never the per-page RST garbage —
+>   and `--push` opens a draft PR INTO the review branch. The baseline cursor never
+>   advances here (so an un-applied edit is never lost). With `--page`, or no baseline,
+>   it falls back to the per-page RST diff.
 > - **Copy-doc baseline (shipped, preferred):** the build creates a frozen baseline
 >   doc (a second import of the markdown) and records its link in the build table's
 >   **`基线文档`** field (editable doc → `飞书云文档`). `run-review-branch` prefers
