@@ -53,7 +53,7 @@ VERIFY_SCHEMA_VERSION = "cloud-doc-backport-verify/v1"
 RUN_SCHEMA_VERSION = "cloud-doc-backport-run/v1"
 SOURCE_TABLE_SUGGESTIONS_SCHEMA_VERSION = "cloud-doc-backport-source-table-suggestions/v1"
 TEMPLATE_SYNC_PROPOSAL_SCHEMA_VERSION = "cloud-doc-backport-template-sync-proposal/v1"
-NORMALIZER_VERSION = "cloud-doc-normalizer/v2"
+NORMALIZER_VERSION = "cloud-doc-normalizer/v3"
 
 _SAFE_PATH_CHARS = re.compile(r"[^A-Za-z0-9._-]+")
 _LARK_TAG_RE = re.compile(r"</?lark-[^>]*>", re.IGNORECASE)
@@ -163,6 +163,12 @@ def _extract_doc_markdown(raw_text: str) -> str:
     return raw_text
 
 
+def _unwrap_markdown_link(value: str) -> str:
+    text = str(value or "").strip()
+    match = re.fullmatch(r"\[[^\]]*\]\((https?://[^)]+)\)", text)
+    return match.group(1) if match else text
+
+
 def _local_doc_path(doc_url: str) -> Path | None:
     if doc_url == "-":
         return None
@@ -176,6 +182,7 @@ def _local_doc_path(doc_url: str) -> Path | None:
 
 def fetch_doc_text(doc_url: str, *, lark_cli: str = "lark-cli") -> str:
     """Fetch a cloud doc, or read a local fixture when doc_url is a file path."""
+    doc_url = _unwrap_markdown_link(doc_url)
     local_path = _local_doc_path(doc_url)
     if local_path is not None:
         return _extract_doc_markdown(_read_text(local_path))
@@ -231,10 +238,13 @@ def _normalize_inline(text: str) -> str:
     # Collapse image references to a stable placeholder. Feishu hosts each doc's
     # images under its own token and re-generates the alt description per import, so
     # two fetches of the "same" doc (e.g. an editable doc vs its baseline copy) have
-    # different `![alt](token)` for every image — pure noise that swamps the real
-    # text edits. Treating every image as `![image]` drops that noise (the trade-off:
-    # a genuine image *swap* in the same position is no longer flagged).
+    # different image markup for every image — pure noise that swamps the real text
+    # edits. Treating every image as a placeholder drops that noise (the trade-off: a
+    # genuine image *swap* in the same position is no longer flagged). Cover BOTH the
+    # markdown form `![alt](token)` and the HTML `<img name alt src=token>` form that
+    # Feishu emits for images inside tables.
     text = re.sub(r"!\[[^\]]*\](?:\([^)]*\))?", "![image]", text)
+    text = re.sub(r"<img\b[^>]*/?>", "<img>", text)
     text = text.replace("**", "").replace("__", "")
     text = text.replace("\\n", "\n")
     text = text.replace("“", '"').replace("”", '"').replace("‘", "'").replace("’", "'")

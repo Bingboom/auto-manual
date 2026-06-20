@@ -35,9 +35,15 @@ PR_URL_FIELDS = ("PR_url",)
 IN_REVIEW_STATUS = "InReview"
 
 
+def _unwrap_markdown_link(value: str | None) -> str:
+    text = str(value or "").strip()
+    match = re.fullmatch(r"\[[^\]]*\]\((https?://[^)]+)\)", text)
+    return match.group(1) if match else text
+
+
 def doc_token(url: str | None) -> str:
     """Extract the Feishu doc token (the id after ``/wiki/`` etc.) from a URL."""
-    match = _DOC_TOKEN_RE.search(str(url or ""))
+    match = _DOC_TOKEN_RE.search(_unwrap_markdown_link(url))
     return match.group(1) if match else ""
 
 
