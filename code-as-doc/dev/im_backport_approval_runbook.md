@@ -201,9 +201,15 @@ python tools/cloud_doc_backport.py run-review-branch \
 >   (F6/TM), Class R (review prose) → the `_review` RST. With `--write` it applies only
 >   the **Class R** deltas to the matching `_review` page via the guarded apply (unique,
 >   safe matches; ambiguous skipped) — never Class D, never the per-page RST garbage —
->   and `--push` opens a draft PR INTO the review branch. The baseline cursor never
->   advances here (so an un-applied edit is never lost). With `--page`, or no baseline,
+>   and `--push` opens a draft PR INTO the review branch. With `--page`, or no baseline,
 >   it falls back to the per-page RST diff.
+> - **Cursor advance (shipped for the seed model):** on a **full apply** — every reported
+>   delta resolved (pure Class R, all applied; a pending Class D/ambiguous delta blocks it
+>   so nothing is buried, §6) — the on-branch `.backport/` **seed** baseline is rewritten
+>   to `C_now` and committed with the `_review` change, so the next run diffs only the new
+>   edits. The frozen copy-doc `基线文档` is **not** advanced locally — re-snapshotting it
+>   is a Feishu write (operator follow-up); until then a copy-doc re-run re-reports prior
+>   edits (idempotent no-ops on apply).
 > - **Copy-doc baseline (shipped, preferred):** the build creates a frozen baseline
 >   doc (a second import of the markdown) and records its link in the build table's
 >   **`基线文档`** field (editable doc → `飞书云文档`). `run-review-branch` prefers
