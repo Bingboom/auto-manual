@@ -3088,6 +3088,46 @@ def _lang_from_doc_name(doc_name: str | None) -> str:
     return ""
 
 
+def _open_backport_pr(
+    *, worktree: str, git_ref: str, run_id: str, changed_rels: list[str], git_bin: str, remote: str
+) -> tuple[bool, str]:
+    """Put the changed ``_review`` pages on a ``backport/`` sub-branch and open a DRAFT
+    PR whose base IS the review branch, so the operator verifies before anything lands
+    on the review branch. Returns ``(pushed, pr_url)``. The worktree is on the review
+    branch on entry and is restored to it on exit."""
+    pr_branch = _backport_pr_branch(git_ref, run_id)
+    _run_pr_command([git_bin, "switch", "-C", pr_branch], root=Path(worktree))
+    try:
+        for rel in changed_rels:
+            _run_pr_command([git_bin, "add", rel], root=Path(worktree))
+        if not _run_pr_command([git_bin, "status", "--porcelain"], root=Path(worktree)).strip():
+            return False, ""
+        _run_pr_command(
+            [git_bin, "commit", "-m", f"backport: review edits for {git_ref} ({run_id})"],
+            root=Path(worktree),
+        )
+        _run_pr_command(
+            [git_bin, "push", "--force-with-lease", "-u", remote, pr_branch], root=Path(worktree)
+        )
+        body = (
+            f"Backport of reviewer cloud-doc edits (review-prose / Class R), targeting "
+            f"the review branch `{git_ref}`.\n\nChanged pages:\n"
+            + "\n".join(f"- `{rel}`" for rel in changed_rels)
+            + "\n\nVerify, then merge into the review branch."
+        )
+        pr_url = _run_pr_command(
+            [
+                "gh", "pr", "create", "--base", git_ref, "--head", pr_branch,
+                "--draft", "--title", f"backport: review edits for {git_ref} ({run_id})",
+                "--body", body,
+            ],
+            root=Path(worktree),
+        ).splitlines()[-1].strip()
+        return True, pr_url
+    finally:
+        _run_pr_command([git_bin, "switch", git_ref], root=Path(worktree))
+
+
 def _run_review_branch(args: argparse.Namespace) -> int:
     worktrees_root = Path(args.worktrees_root) if args.worktrees_root else _default_worktrees_root()
     try:
@@ -3210,41 +3250,11 @@ def _run_review_branch(args: argparse.Namespace) -> int:
     pushed = False
     backport_pr_url = ""
     if args.write and args.push and changed_rels:
-        # Don't commit straight onto the review branch. Put the edits on a backport/
-        # sub-branch and open a DRAFT PR whose base IS the review branch, so the
-        # operator verifies before anything lands on the review branch (and thus
-        # before it flows into the review branch's own PR). The worktree is on the
-        # review branch; branch off it, push, open the PR, then switch back.
         try:
-            pr_branch = _backport_pr_branch(git_ref, run_id)
-            _run_pr_command([args.git_bin, "switch", "-C", pr_branch], root=Path(worktree))
-            for rel in changed_rels:
-                _run_pr_command([args.git_bin, "add", rel], root=Path(worktree))
-            if _run_pr_command([args.git_bin, "status", "--porcelain"], root=Path(worktree)).strip():
-                _run_pr_command(
-                    [args.git_bin, "commit", "-m", f"backport: review edits for {git_ref} ({run_id})"],
-                    root=Path(worktree),
-                )
-                _run_pr_command(
-                    [args.git_bin, "push", "--force-with-lease", "-u", args.remote, pr_branch],
-                    root=Path(worktree),
-                )
-                body = (
-                    f"Backport of reviewer cloud-doc edits, targeting the review branch "
-                    f"`{git_ref}`.\n\nChanged pages:\n"
-                    + "\n".join(f"- `{rel}`" for rel in changed_rels)
-                    + "\n\nVerify, then merge into the review branch."
-                )
-                backport_pr_url = _run_pr_command(
-                    [
-                        "gh", "pr", "create", "--base", git_ref, "--head", pr_branch,
-                        "--draft", "--title", f"backport: review edits for {git_ref} ({run_id})",
-                        "--body", body,
-                    ],
-                    root=Path(worktree),
-                ).splitlines()[-1].strip()
-                pushed = True
-            _run_pr_command([args.git_bin, "switch", git_ref], root=Path(worktree))
+            pushed, backport_pr_url = _open_backport_pr(
+                worktree=worktree, git_ref=git_ref, run_id=run_id,
+                changed_rels=changed_rels, git_bin=args.git_bin, remote=args.remote,
+            )
         except (OSError, RuntimeError) as exc:
             print(f"cloud-doc-backport: backport PR into {git_ref} failed: {exc}", file=sys.stderr)
             return 2
@@ -3276,8 +3286,11 @@ def _run_review_branch_baseline(
     old text matches a source value as ``source_table_suggestion`` (Class D → write
     back to the source table / TM via the approval-gated ``apply-source-table``, NOT
     the RST), the F3 family-index flags shared-template spans, and the rest are
-    ``repo_review_text`` (Class R → the ``_review`` RST). We never advance the
-    baseline cursor here — that would bury un-applied edits below it (design §6).
+    ``repo_review_text`` (Class R → the ``_review`` RST). With ``--write`` the Class R
+    deltas are applied to the matching ``_review`` page via the guarded apply (only
+    unique, safe matches) and ``--push`` opens a PR INTO the review branch; Class D is
+    never written to the RST. We never advance the baseline cursor here — that would
+    bury un-applied edits below it (design §6).
     """
     git_ref = resolved["git_ref"]
     run_id = str(args.run_id or "").strip() or "cloud-doc-backport-branch"
@@ -3315,20 +3328,48 @@ def _run_review_branch_baseline(
     print(f"BRANCH {git_ref}  WORKTREE {worktree}  BASELINE-DIFF deltas={deltas}  routes={json.dumps(route_classes, ensure_ascii=False)}")
     print(f"WROTE {written['json']}")
     print(f"WROTE {written['markdown']}")
-    # Route, don't blindly write: Class D goes to the source table / TM (F6), not the
-    # RST. The diff report IS the apply-source-table input.
+    # Class D (source-bound) goes to the source table / TM (F6), NOT the RST — the diff
+    # report IS the apply-source-table input.
     if source_bound:
         print(
             f"ROUTE: {source_bound} source-bound (Class D) delta(s) -> run "
             f"`apply-source-table --report {written['json']}` (approval-gated F6/TM), NOT the _review RST."
         )
-    if review_bound and (args.write or args.push):
-        print(f"NOTE: {review_bound} review-prose (Class R) delta(s) -> the _review RST (re-run with --page per page to apply).")
+    # Class R (review prose): apply the CLEAN deltas to the matching _review page via
+    # the guarded apply (only unique, safe matches; ambiguous ones are skipped), then
+    # open a PR INTO the review branch. This is the clean write path — it never touches
+    # Class D deltas and never writes the per-page RST-vs-rendered garbage.
+    changed_rels: list[str] = []
+    if args.write and review_bound:
+        page_dir = Path(worktree) / review_dir / "page"
+        for page in sorted(page_dir.glob("*.rst")):
+            apply_rep = build_review_apply_report(
+                report, source_path=page, write=True,
+                command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-apply"],
+            )
+            if apply_rep["summary"].get("changed"):
+                changed_rels.append(f"{review_dir}/page/{page.name}")
+                print(f"  APPLIED (Class R) {page.name}")
+        if not changed_rels:
+            print("NOTE: no review-prose delta matched a _review page uniquely (nothing written; handle manually if needed).")
+    pushed = False
+    backport_pr_url = ""
+    if args.write and args.push and changed_rels:
+        try:
+            pushed, backport_pr_url = _open_backport_pr(
+                worktree=worktree, git_ref=git_ref, run_id=run_id,
+                changed_rels=changed_rels, git_bin=args.git_bin, remote=args.remote,
+            )
+        except (OSError, RuntimeError) as exc:
+            print(f"cloud-doc-backport: backport PR into {git_ref} failed: {exc}", file=sys.stderr)
+            return 2
     print(json.dumps(
         {"git_ref": git_ref, "worktree": worktree, "mode": "baseline-diff",
          "baseline": baseline_rel, "deltas": deltas, "result": report["result"],
          "route_classes": route_classes, "report": str(written["json"]),
-         "source_table_report": str(written["json"]), "pr_url": resolved.get("pr_url")},
+         "source_table_report": str(written["json"]), "changed": changed_rels,
+         "wrote": bool(args.write), "pushed": pushed, "backport_pr_url": backport_pr_url,
+         "review_branch_pr_url": resolved.get("pr_url")},
         ensure_ascii=False, sort_keys=True,
     ))
     return 0
