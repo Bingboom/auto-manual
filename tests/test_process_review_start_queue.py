@@ -238,6 +238,72 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             "review/JE-1000F-US",
         )
 
+    def test_generate_review_branch_name_versionless_document_id(self) -> None:
+        # The review phase is versionless (Document_ID = MODEL_REGION, no version).
+        # A fresh review (empty git_ref) must still get review/<MODEL>-<REGION> — not the
+        # lowercase slug fallback — so re-seeding the same target maps to one canonical
+        # branch instead of conflicting opaque names.
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="recvfw0zg4pzxs",
+            document_id="JE-1000F_US",
+            document_key="JE-1000F_US",
+            build_family="us",
+            version="",
+            lang="en",
+            review_status="NotStarted",
+            review_trigger_value=True,
+            git_ref="",
+            pr_url="",
+        )
+        self.assertEqual(
+            process_review_start_queue.generate_review_branch_name(record),
+            "review/JE-1000F-US",
+        )
+
+    def test_generate_review_branch_name_heals_noncanonical_git_ref(self) -> None:
+        # A legacy/opaque Git_ref (review/id-<record_id>) is RE-DERIVED to the canonical
+        # review/<MODEL>-<REGION> on re-seed (self-heal), with a loud stderr warning.
+        import contextlib
+        import io
+
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="recvfw0zg4pzxs",
+            document_id="JE-1000F_US",
+            document_key="JE-1000F_US",
+            build_family="us",
+            version="",
+            lang="en",
+            review_status="InReview",
+            review_trigger_value=True,
+            git_ref="review/id-recvfw0zg4pzxs",
+            pr_url="",
+        )
+        err = io.StringIO()
+        with contextlib.redirect_stderr(err):
+            name = process_review_start_queue.generate_review_branch_name(record)
+        self.assertEqual(name, "review/JE-1000F-US")
+        self.assertIn("healing non-canonical branch name", err.getvalue())
+
+    def test_generate_review_branch_name_keeps_canonical_topic_branch(self) -> None:
+        # An existing CANONICAL ref with a -<topic> suffix is kept (not healed), so an
+        # in-flight topic review reuses its branch.
+        record = process_review_start_queue.ReviewStartRecord(
+            record_id="rec_1",
+            document_id="JE-1000F_US_1.4",
+            document_key="JE-1000F_US",
+            build_family="us",
+            version="1.4",
+            lang="en",
+            review_status="InReview",
+            review_trigger_value=True,
+            git_ref="review/JE-1000F-US-fix",
+            pr_url="",
+        )
+        self.assertEqual(
+            process_review_start_queue.generate_review_branch_name(record),
+            "review/JE-1000F-US-fix",
+        )
+
     def test_prepare_branch_worktree_should_always_seed_from_latest_base_ref(self) -> None:
         with tempfile.TemporaryDirectory() as td, mock.patch.object(
             process_review_start_queue_git,

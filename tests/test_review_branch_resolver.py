@@ -57,8 +57,14 @@ class ParseDocumentIdTests(unittest.TestCase):
         # the language segment (en) must NOT leak into the region (was "EU_en" bug).
         self.assertEqual(parse_document_id("JE-1000F_EU_en_0.8"), ("JE-1000F", "EU", "0.8"))
 
+    def test_versionless_review_document_id_parses_with_empty_version(self) -> None:
+        # The review phase is versionless (JE-1000F_US); the version is only added at
+        # build-draft. model+region must still resolve, version is "".
+        self.assertEqual(parse_document_id("JE-1000F_US"), ("JE-1000F", "US", ""))
+        self.assertEqual(parse_document_id("JE-1000F_pt-BR"), ("JE-1000F", "pt-BR", ""))
+
     def test_too_short_is_none(self) -> None:
-        self.assertIsNone(parse_document_id("JE-1000F"))
+        self.assertIsNone(parse_document_id("JE-1000F"))  # no region segment
         self.assertIsNone(parse_document_id(""))
 
 
@@ -75,6 +81,19 @@ class MatchReviewBranchTests(unittest.TestCase):
         self.assertEqual(result["region"], "US")
         self.assertEqual(result["review_dir"], "docs/_review/JE-1000F/US")
         self.assertEqual(result["pr_url"], "pr106")
+
+    def test_matches_versionless_review_record(self) -> None:
+        # A review-phase record is versionless (Document_ID = MODEL_REGION). It used to
+        # be skipped (parse required 3 segments) so the backport could not resolve it;
+        # now it resolves by model+region.
+        records = [_rec(US_DOC, "review/JE-1000F-US", "JE-1000F_US", status="InReview")]
+        result = match_review_branch(US_URL, records)
+        assert result is not None
+        self.assertEqual(result["git_ref"], "review/JE-1000F-US")
+        self.assertEqual(result["model"], "JE-1000F")
+        self.assertEqual(result["region"], "US")
+        self.assertEqual(result["version"], "")
+        self.assertEqual(result["review_dir"], "docs/_review/JE-1000F/US")
 
     def test_match_returns_baseline_doc_url(self) -> None:
         # backport reads the 基线文档 link off the row to diff the editable doc against

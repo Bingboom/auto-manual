@@ -48,19 +48,26 @@ def doc_token(url: str | None) -> str:
 
 
 def parse_document_id(document_id: str | None) -> tuple[str, str, str] | None:
-    """``JE-1000F_US_1.4`` / ``JE-1000F_EU_en_0.8`` -> ``(model, region, version)``.
+    """``JE-1000F_US`` / ``JE-1000F_US_1.4`` / ``JE-1000F_EU_en_0.8`` ->
+    ``(model, region, version)``.
 
     The first ``_``-segment is the model and the **second is the region** (US / EU
     / JP / CN / pt-BR — always a single segment; the `docs/_review/<model>/<region>`
     tree stops at the region). Any middle segment (e.g. a language ``en``) and the
-    trailing version are not part of the review dir. Returns ``None`` when the id
-    has fewer than three segments.
+    trailing version are not part of the review dir.
+
+    **The version is optional.** A review-phase Document_ID is *versionless*
+    (``JE-1000F_US``) — the version is only added later at build-draft
+    (``JE-1000F_US_1.4``). So model+region are required; the version is the third+
+    segment when present, else ``""``. Returns ``None`` only when fewer than two
+    segments (no resolvable region).
     """
     parts = [part for part in str(document_id or "").split("_") if part != ""]
-    if len(parts) < 3:
+    if len(parts) < 2:
         return None
-    model, region, version = parts[0], parts[1], parts[-1]
-    if not (model and region and version):
+    model, region = parts[0], parts[1]
+    version = parts[-1] if len(parts) >= 3 else ""
+    if not (model and region):
         return None
     return model, region, version
 
