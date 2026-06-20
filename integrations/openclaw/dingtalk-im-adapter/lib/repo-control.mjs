@@ -281,6 +281,11 @@ async function runCloudDocBackportJson(config, { docUrl, sourcePath, runId = "",
   ];
   if (write) {
     args.push("--write");
+    // The adapter resolves a single _review source (one-page blast radius) and is the
+    // gated, deterministic caller, so opt past the run-review-branch RST-baseline guard
+    // (tools/cloud_doc_backport.py). An improvising agent does not pass this flag and is
+    // steered to run-review-branch instead. See Backport_Rendered_Baseline_Design.md §1.
+    args.push("--allow-rst-baseline");
   }
   const result = await execFileResult(config.pythonBin, args, {
     cwd: config.repoRoot,

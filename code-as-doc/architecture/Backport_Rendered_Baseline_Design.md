@@ -172,7 +172,15 @@ source-vs-rendered noise, phases 3–4 add incremental + source routing.
   explicit no-op (routing + apply is phase 3), so an un-applied edit can never be
   buried (§6). Verified live on JE-1000F EU: the render baseline reports the
   reviewer's **2** real edits where the RST-source path reported **293**.
-- **Phase 3 (next):** route the clean deltas through F2/F3/F6 (§8) and advance the
-  cursor on a full apply (§5 step 6, §6).
+- **Phase 3 (mostly shipped):** the clean deltas now route through F2/F3/F6 (§8) and
+  Class R prose applies to the matching `_review` page with `--write`/`--push` (#425,
+  #427). The legacy source-vs-rendered path is now **guarded**: a direct
+  `apply-review` / `run-review --write` against the `_review` RST *source* (§1) is
+  refused and steered to `run-review-branch` unless `--allow-rst-baseline` is passed
+  (the per-page worker and a deliberate single-page override use that flag). This is
+  the §1-corruption foot-gun closed at the CLI boundary — the same shape as the #417
+  whole-doc guard. **Still pending:** advancing the cursor on a full apply (§5 step 6,
+  §6) — a re-run currently re-reports the same deltas (idempotent, but noisy).
 - **Phase 4 (next):** store R0 at review-start (§9.1) so new reviews are clean from
-  edit #1.
+  edit #1. (Superseded in practice by the build-time copy-doc `基线文档` baseline,
+  #420, which fills the same role for built docs.)

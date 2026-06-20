@@ -216,6 +216,14 @@ python tools/cloud_doc_backport.py run-review-branch \
 >   (corrupting `.. raw:: latex` / line-blocks). Seed a baseline first (`--seed`)
 >   for a clean diff, or pass `--page <file>` to write one targeted page. A dry-run
 >   (no `--write`) report is still allowed.
+> - **Direct-CLI RST-source apply guard (shipped):** the legacy `apply-review` /
+>   `run-review --write` (which diff/apply the rendered cloud-doc against the
+>   `_review` RST *source*) are now **refused** for a review `--write` against an
+>   `.rst` baseline and steered to `run-review-branch` — this closes the foot-gun
+>   where an improvising agent (no backport plugin) reached for the old command and
+>   produced a many-file garbage PR. The dry-run still works for inspection. The IM
+>   adapter and a deliberate single-page override pass `--allow-rst-baseline` to opt
+>   past it; the blessed path remains `run-review-branch` (render-vs-render).
 
 ### Capturing R0 so a new review backports cleanly
 

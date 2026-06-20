@@ -554,6 +554,16 @@ python tools/cloud_doc_backport.py verify-review \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
 ```
 
+> ⚠️ **`run-review` / `apply-review --write` are the legacy source-vs-rendered path
+> and are now guarded.** Diffing/applying the rendered cloud-doc against the `_review`
+> RST *source* over-reports and corrupts the RST (see
+> [`Backport_Rendered_Baseline_Design.md`](Backport_Rendered_Baseline_Design.md) §1),
+> so a review `--write` against an `.rst` baseline is **refused** and steered to
+> `run-review-branch` (which diffs against a render baseline). The dry-run (no
+> `--write`) still works for inspection. Force the legacy single-page path with
+> `--allow-rst-baseline` only when you have deliberately scoped it. The blessed path
+> for any real backport is `run-review-branch` (§5.1, `AGENTS.md` §3).
+
 `run-review` is the P4 handoff surface: it writes a durable
 `cloud_doc_backport_run.json/.md` manifest with the diff/apply/verify report
 paths, `PR_READY` gating, and report-only source-table suggestions. It does not

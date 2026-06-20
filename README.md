@@ -57,22 +57,33 @@ python tools/cloud_doc_backport.py apply-template --report reports/cloud_doc_bac
 apply report. It only patches guarded template prose deltas and skips
 placeholder/spec/table-like changes.
 
-For an in-review cloud doc, bind the diff to the current review source and use
-`run-review`:
+For an in-review cloud doc, the blessed path is `run-review-branch`: it resolves
+the cloud-doc's review branch, diffs the cloud-doc against a **render baseline**
+(so the deltas are the reviewer's real edits, not RST-source noise), applies only
+Class R prose with `--write`, and opens a draft PR into the review branch with
+`--push`:
+
+```bash
+python tools/cloud_doc_backport.py run-review-branch --doc-name <doc name> --cloud-doc <url>
+python tools/cloud_doc_backport.py run-review-branch --doc-name <doc name> --cloud-doc <url> --write --push
+```
+
+The legacy `run-review` / `apply-review` diff against the `_review` RST *source*
+and are now **guarded**: a `--write` against an `.rst` baseline is refused and
+steered to `run-review-branch` (the RST-vs-rendered diff over-reports and corrupts
+RST markup) unless `--allow-rst-baseline` is passed. The dry-run still works for
+inspection, and `open-pr` promotes a `PR_READY` run manifest:
 
 ```bash
 python tools/cloud_doc_backport.py run-review --doc-url <doc-or-fixture.md> --source-path docs/_review/<model>/<region>/page/<page>.rst --out reports/cloud_doc_backport/<run-id>
-python tools/cloud_doc_backport.py run-review --doc-url <doc-or-fixture.md> --source-path docs/_review/<model>/<region>/page/<page>.rst --out reports/cloud_doc_backport/<run-id> --write
 python tools/cloud_doc_backport.py open-pr --manifest reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json
 ```
 
-`run-review` is dry-run by default and writes diff/apply/run reports without
-editing `_review`. Add `--write` only after reviewing the apply report; the
-write run patches guarded review prose, verifies residuals, and marks the run
-`PR_READY` only when the review source changed and verification passed.
-Data-like edits remain report-only source-table suggestions, and the runner
-writes `cloud_doc_backport_source_table_suggestions.md` with candidate source
-tables and operator steps.
+The `run-review` dry-run writes diff/apply/run reports without editing `_review`;
+its `PR_READY` manifest gates `open-pr`. Data-like edits remain report-only
+source-table suggestions, and the runner writes
+`cloud_doc_backport_source_table_suggestions.md` with candidate source tables and
+operator steps.
 `open-pr` is the separate operator-gated PR step: it only accepts a `PR_READY`
 run manifest, refuses unrelated working-tree changes, commits the changed
 `docs/_review/...rst` source, and opens a draft PR with the manifest summary.
