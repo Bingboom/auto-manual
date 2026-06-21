@@ -11,7 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.cloud_doc_backport import _classify_route, diff_blocks, parse_blocks  # noqa: E402
+from tools.cloud_doc_backport import _classify_route, _looks_data_like, diff_blocks, parse_blocks  # noqa: E402
 from tools.token_resolution_map import (  # noqa: E402
     build_value_index,
     classify_data_origin,
@@ -101,6 +101,24 @@ class ClassifyDataOriginTests(unittest.TestCase):
         self.assertIsNone(classify_data_origin("anything", None))
         self.assertIsNone(classify_data_origin("anything", {}))
 
+    def test_table_row_resolves_via_contained_cell_value(self) -> None:
+        # A real cloud-doc delta arrives as a whole table ROW, not a bare cell — it must
+        # still resolve to its source value via a cell / <br/>-joined sub-value match.
+        index = {"12V⎓最大10A": {"table": "Spec_Master", "row_key": "dc12_port"}}
+        hit = classify_data_origin("| 12V⎓最大10A <br/>12V⎓最大10A | LED 灯按键 |", index)
+        self.assertIsNotNone(hit)
+        self.assertEqual(hit["row_key"], "dc12_port")
+
+    def test_paragraph_without_contained_value_is_none(self) -> None:
+        # A prose paragraph that contains no source value does NOT resolve (so it routes
+        # to review text, not a false Class D).
+        index = {"12V⎓最大10A": {"table": "Spec_Master"}}
+        self.assertIsNone(classify_data_origin("产品默认开启节能模式，屏幕将显示提示信息。", index))
+
+    def test_whole_bare_value_still_matches(self) -> None:
+        index = {"12V⎓最大10A": {"table": "Spec_Master"}}
+        self.assertIsNotNone(classify_data_origin("12V⎓最大10A", index))
+
 
 class ClassifyRouteTests(unittest.TestCase):
     def test_data_origin_routes_review_to_source_table_suggestion(self) -> None:
@@ -118,6 +136,34 @@ class ClassifyRouteTests(unittest.TestCase):
         # Plain prose with no data origin -> repo_review_text (unchanged).
         route, _, _ = _classify_route("review", None, None, None)
         self.assertEqual(route, "repo_review_text")
+
+    def _block(self, text: str, kind: str):
+        for block in parse_blocks(text):
+            if block.kind == kind:
+                return block
+        raise AssertionError(f"no {kind} block in {text!r}")
+
+    def test_value_index_authoritative_suppresses_prose_heuristic(self) -> None:
+        # A unit-bearing prose paragraph that matched no source value: with the value
+        # index present it is authoritative -> review text (Class R), NOT the heuristic
+        # Class D guess. This is the fix for the false-positive (e.g. the 节能模式 append).
+        para = self._block("输出功率为 100W 的连续输出说明。", "paragraph")
+        self.assertTrue(_looks_data_like(para))  # the heuristic WOULD have flagged it
+        route, _, _ = _classify_route("review", para, para, None, None, value_index_present=True)
+        self.assertEqual(route, "repo_review_text")
+
+    def test_without_index_prose_unit_like_stays_heuristic_class_d(self) -> None:
+        # Same paragraph, no index: the _looks_data_like heuristic still applies (prior behavior).
+        para = self._block("输出功率为 100W 的连续输出说明。", "paragraph")
+        route, _, _ = _classify_route("review", para, para, None, None, value_index_present=False)
+        self.assertEqual(route, "source_table_suggestion")
+
+    def test_table_row_without_match_stays_class_d(self) -> None:
+        # A table row is structurally source-table content -> Class D even with no value
+        # match and an index present (never write table markup to _review).
+        row = self._block("| Port | Note |\n| --- | --- |\n| DC | LED |\n", "table_row")
+        route, _, _ = _classify_route("review", row, row, None, None, value_index_present=True)
+        self.assertEqual(route, "source_table_suggestion")
 
 
 class DiffBlocksValueIndexTests(unittest.TestCase):
