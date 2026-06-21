@@ -314,7 +314,10 @@ heavier follow-up.
 - a build-time **token/copy resolution map** per target, to recognize Class `D`
   spans without guessing;
 - a **family-identical check** (reuse the residual scanner) to recognize Class `T`
-  and its sibling scope.
+  and its sibling scope. **Shipped:** `run-review-branch` auto-resolves the
+  `page_shared/<lang>` shared templates as the family-scope siblings, so a reviewer
+  span matching shared-template prose is routed Class `T` (template-sync proposal)
+  with that shared template as the blast radius — no manual `--sibling` flag.
 
 Without these, the classification and the proposal are guesswork. They are the
 lightweight form of build-time provenance.

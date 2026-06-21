@@ -509,7 +509,7 @@ Scope:
 - wire a family-identical check (reuse `scan_residuals`) into delta classification so `R` vs `T` and sibling scope are derived, not guessed
 - add a `rebuild + rediff` idempotency gate extending `verify-review`: a rebuild from edited sources must reproduce the accepted doc and change nothing else
 - write the template-sync role as a documented operator runbook first; defer the dedicated template-sync agent until the runbook and the rules prove stable
-- add an approval-gated source-table-sync role: backport emits a `source_table_change_request` for Class `D` deltas (with blast radius); a human approves via Feishu IM (an agent may propose/execute but never approve); the executor applies via `lark-cli --as bot` with GET-verify and delta-hash idempotency; content fields only, with table schema staying operator-gated. Depends on the `record_id` sidecar (Workstream I) for exact-or-abstain resolution
+- add an approval-gated source-table-sync role: backport emits a `source_table_change_request` for Class `D` deltas (with blast radius); a human approves by deliberately running the `apply-source-table` CLI (an agent may propose/execute but never approve — backport is CLI-only as of #453, not an IM command); the executor applies via `lark-cli --as bot` with GET-verify and delta-hash idempotency; content fields only, with table schema staying operator-gated. Depends on the `record_id` sidecar (Workstream I) for exact-or-abstain resolution
 
 Exit criteria:
 

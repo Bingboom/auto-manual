@@ -12,11 +12,14 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 from tools.cloud_doc_backport import (
+    _auto_sibling_rels,
     _backport_pr_branch,
     _diff_delta_count,
+    _family_index_from_args,
     _parse_table_bindings,
     _rebuild_rediff_for_report,
     _resolve_backport_data_root,
+    _resolve_review_branch_siblings,
     _run_review_branch,
     _run_review_branch_baseline,
     build_report,
@@ -1210,6 +1213,91 @@ class RunReviewBranchGuardTests(unittest.TestCase):
                 _run_review_branch(self._args(write=False, page=None))
         # it fails later (no page dir on the fake worktree), but NOT via the write guard
         self.assertNotIn("refusing whole-doc --write", err.getvalue())
+
+
+class RunReviewBranchFamilyScopeTests(unittest.TestCase):
+    """F3 / Class T: run-review-branch auto-resolves the page_shared/<lang> shared
+    templates as family-scope siblings, so a reviewer's shared-template prose delta is
+    flagged Class T (template-sync proposal) instead of written as target-local Class R."""
+
+    def _args(self, **over):
+        base = dict(
+            worktrees_root=None, lark_cli="lark-cli", identity="user",
+            doc_name="manual_je1000f_us_en_1.0",
+            cloud_doc="https://test-degwga5x6ex8.feishu.cn/wiki/tok",
+            remote="origin", git_bin="git", full_checkout=False,
+            seed=False, reseed=False, push=False, write=False, page=None,
+            run_id="t", out=None, lang=None, data_root=None,
+            sibling=[], no_auto_sibling=False,
+        )
+        base.update(over)
+        return SimpleNamespace(**base)
+
+    def test_auto_sibling_rels_resolves_shared_templates_per_language(self) -> None:
+        en = _auto_sibling_rels("en")
+        self.assertTrue(en, "page_shared/en should hold shared templates")
+        self.assertTrue(all(p.startswith("docs/templates/page_shared/en/") for p in en))
+        self.assertTrue(all(not Path(p).is_absolute() for p in en))  # clean repo-relative labels
+        # single-region languages have no page_shared surface -> Class T never fires
+        self.assertEqual(_auto_sibling_rels("ja"), [])
+        self.assertEqual(_auto_sibling_rels("zh"), [])
+        self.assertEqual(_auto_sibling_rels(""), [])
+
+    def test_resolve_siblings_explicit_wins(self) -> None:
+        explicit = ["docs/templates/page_us-en/safety_en.rst"]
+        args = self._args(sibling=list(explicit), lang="en")
+        self.assertEqual(_resolve_review_branch_siblings(args), explicit)
+
+    def test_resolve_siblings_no_auto_disables(self) -> None:
+        args = self._args(sibling=[], no_auto_sibling=True, lang="en")
+        self.assertEqual(_resolve_review_branch_siblings(args), [])
+
+    def test_resolve_siblings_auto_when_empty(self) -> None:
+        out = _resolve_review_branch_siblings(self._args(sibling=[], lang="en"))
+        self.assertTrue(out)
+        self.assertTrue(all(p.startswith("docs/templates/page_shared/en/") for p in out))
+
+    def test_family_index_resolves_relative_sibling_with_clean_label(self) -> None:
+        rel = "docs/templates/page_shared/en/00_preface.rst"
+        index = _family_index_from_args(SimpleNamespace(sibling=[rel]))
+        self.assertTrue(index, "the relative shared-template path was read & indexed against the repo root")
+        labels = {label for labels in index.values() for label in labels}
+        self.assertEqual(labels, {rel})  # the relative string stays the blast-radius label
+
+    def test_family_index_none_without_siblings(self) -> None:
+        self.assertIsNone(_family_index_from_args(SimpleNamespace(sibling=[])))
+        self.assertIsNone(_family_index_from_args(SimpleNamespace()))
+
+    def test_run_review_branch_forwards_auto_siblings_to_per_page_worker(self) -> None:
+        captured: list[list[str]] = []
+
+        def fake_run(cmd, **_kw):
+            captured.append(cmd)
+            return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+        with tempfile.TemporaryDirectory() as wt:
+            page_dir = Path(wt) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            (page_dir / "00_preface.rst").write_text("Hello\n", encoding="utf-8")
+            resolved = {"git_ref": "review/JE-1000F-US", "review_dir": "docs/_review/JE-1000F/US", "pr_url": None}
+            args = self._args(write=False, page=None, out=str(Path(wt) / "out"))
+            with patch("tools.cloud_doc_backport._fetch_build_table_records", return_value=[]), \
+                 patch("tools.cloud_doc_backport.match_review_branch_by_name", return_value=resolved), \
+                 patch("tools.cloud_doc_backport.ensure_review_worktree", return_value=wt), \
+                 patch("tools.cloud_doc_backport.doc_token", return_value="tok"), \
+                 patch("tools.cloud_doc_backport.load_baseline", return_value=None), \
+                 patch("tools.cloud_doc_backport.fetch_doc_text", return_value="EDITED"), \
+                 patch("tools.cloud_doc_backport.subprocess.run", side_effect=fake_run):
+                rc = _run_review_branch(args)
+        self.assertIn(rc, (0, 1))
+        self.assertTrue(captured, "the per-page run-review worker should have been invoked")
+        cmd = captured[0]
+        self.assertIn("--sibling", cmd)
+        sib_values = [cmd[i + 1] for i, tok in enumerate(cmd) if tok == "--sibling"]
+        self.assertTrue(
+            any(s.startswith("docs/templates/page_shared/en/") for s in sib_values),
+            f"expected auto-resolved page_shared/en siblings, got {sib_values}",
+        )
 
 
 class BaselineDiffTests(unittest.TestCase):

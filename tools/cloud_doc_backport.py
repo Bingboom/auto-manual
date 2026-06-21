@@ -2704,6 +2704,14 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--lang",
         help="value-column lang suffix for the F2 value-index (en/fr/es/de/it/uk/ja/zh/pt-BR); auto-derived from --doc-name when omitted",
     )
+    run_review_branch_parser.add_argument(
+        "--sibling", action="append", default=[],
+        help="explicit family-scope sibling source path (F3 / Class T); repeatable. Overrides the automatic page_shared/<lang> resolution",
+    )
+    run_review_branch_parser.add_argument(
+        "--no-auto-sibling", action="store_true",
+        help="disable the automatic page_shared/<lang> family-scope resolution (treat every prose delta as target-local Class R)",
+    )
 
     sync_worktrees_parser = subparsers.add_parser(
         "sync-review-worktrees",
@@ -3268,6 +3276,23 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         # gitignored sync artifacts, so without them Class D degrades to the heuristic).
         # Both the baseline path and the per-page worker read it off args.
         args.data_root = _resolve_backport_data_root(getattr(args, "data_root", None))
+        # F3 (Class T): resolve the target language once, then auto-resolve the
+        # family-scope siblings (the page_shared/<lang> shared templates) unless the
+        # operator passed explicit --sibling or --no-auto-sibling. A reviewer delta that
+        # matches a shared-template line is routed Class T (a report-only template-sync
+        # proposal) instead of being written as target-local Class R. Both the baseline
+        # path and the per-page worker read args.lang / args.sibling.
+        if not getattr(args, "lang", None):
+            args.lang = _lang_from_doc_name(doc_name)
+        explicit_siblings = bool(getattr(args, "sibling", None))
+        args.sibling = _resolve_review_branch_siblings(args)
+        if args.sibling and not explicit_siblings:
+            print(
+                f"[backport] F3 family-scope: {len(args.sibling)} shared template(s) "
+                f"(page_shared/{args.lang}) — a shared-prose delta routes to Class T "
+                f"(template-sync proposal), not the _review write",
+                file=sys.stderr,
+            )
         baseline_text = None
         # baseline_from_seed marks the on-branch .backport/ seed — a locally advanceable
         # cursor. The copy-doc 基线文档 is a frozen R0 that only advances via a Feishu
@@ -3341,6 +3366,11 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         page_lang = (getattr(args, "lang", None) or _lang_from_doc_name(getattr(args, "doc_name", "") or "")).strip()
         if args.data_root and page_lang:
             review_cmd += ["--data-root", args.data_root, "--lang", page_lang]
+        # F3 (Class T): forward the auto-resolved (or explicit) family-scope siblings so
+        # the per-page worker flags shared-template prose as Class T. Resolved against
+        # the worker's cwd (repo root); repeatable.
+        for sibling_rel in (getattr(args, "sibling", None) or []):
+            review_cmd += ["--sibling", sibling_rel]
         if args.write:
             review_cmd.append("--write")
         proc = subprocess.run(review_cmd, cwd=str(get_paths().root), capture_output=True, text=True)
@@ -3590,11 +3620,65 @@ def _value_index_from_args(args: argparse.Namespace) -> dict[str, Any] | None:
 
 
 def _family_index_from_args(args: argparse.Namespace) -> dict[str, Any] | None:
-    """Build the family-scope index from --sibling source paths (F3)."""
+    """Build the family-scope index from --sibling source paths (F3).
+
+    A relative sibling path is resolved against the repo root so the index works
+    regardless of the invoking CWD (``run-review-branch`` auto-resolves repo-relative
+    shared-template paths; the per-page worker runs with cwd=repo root). The original
+    (relative) string stays the blast-radius label.
+    """
     siblings = getattr(args, "sibling", None) or []
     if not siblings:
         return None
-    return build_family_index([Path(path) for path in siblings])
+    root = get_paths().root
+    resolved = {
+        str(path): (Path(path) if Path(path).is_absolute() else root / path)
+        for path in siblings
+    }
+    return build_family_index(resolved)
+
+
+def _auto_sibling_rels(lang: str) -> list[str]:
+    """Auto-resolve family-scope siblings (F3 / Class T) for ``run-review-branch``.
+
+    The cross-region shared-prose surface is ``docs/templates/page_shared/<lang>/``:
+    the manifests assemble each page from it plus the per-region ``page_<region>-<lang>``
+    templates. A reviewer's old span that matches a line in a shared template is
+    family-shared content (routed Class ``T`` → template-sync proposal, with that
+    shared template as the blast radius), so it is withheld from the target-local
+    ``_review`` write; a span that only exists in the region template stays Class ``R``.
+    Region-specific templates and other languages are deliberately NOT indexed — they
+    would over-flag or never text-match. Single-region languages (``ja``/``zh``) have no
+    ``page_shared`` directory, so they correctly resolve to no siblings (no Class ``T``).
+
+    Read from the repo root: ``docs/templates`` is absent from the sparse review
+    worktree and is branch-stable. Returns repo-relative paths (clean blast-radius
+    labels); ``_family_index_from_args`` resolves them against the root.
+    """
+    lang = (lang or "").strip()
+    if not lang:
+        return []
+    root = get_paths().root
+    shared_dir = get_paths().templates_dir / "page_shared" / lang
+    if not shared_dir.is_dir():
+        return []
+    return [str(path.relative_to(root)) for path in sorted(shared_dir.glob("*.rst"))]
+
+
+def _resolve_review_branch_siblings(args: argparse.Namespace) -> list[str]:
+    """Effective F3 family-scope siblings for ``run-review-branch``.
+
+    Explicit ``--sibling`` wins; ``--no-auto-sibling`` disables detection (every prose
+    delta stays target-local Class ``R``); otherwise auto-resolve the
+    ``page_shared/<lang>`` shared templates (empty when the language is unknown or
+    single-region).
+    """
+    explicit = getattr(args, "sibling", None) or []
+    if explicit:
+        return list(explicit)
+    if getattr(args, "no_auto_sibling", False):
+        return []
+    return _auto_sibling_rels((getattr(args, "lang", None) or "").strip())
 
 
 def _resolve_backport_data_root(explicit: str | None) -> str | None:
