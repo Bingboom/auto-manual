@@ -2690,6 +2690,11 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--lang",
         help="value-column lang suffix for the F2 value-index (en/fr/es/de/it/uk/ja/zh/pt-BR); auto-derived from --doc-name when omitted",
     )
+    run_review_branch_parser.add_argument(
+        "--allow-divergent-baseline",
+        action="store_true",
+        help="override the wrong-target guard that refuses a baseline diff where almost none of the baseline survives (use only for a genuine full rewrite, not a wrong/cross-language target)",
+    )
 
     sync_worktrees_parser = subparsers.add_parser(
         "sync-review-worktrees",
@@ -3423,6 +3428,28 @@ def _run_review_branch_baseline(
         )
     except (OSError, RuntimeError) as exc:
         print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        return 2
+    # Wrong-target guard: a backport diffs a cloud-doc against ITS OWN render baseline, so a
+    # real reviewer edit leaves most blocks intact. If almost none of the baseline survives,
+    # the cloud-doc almost certainly is NOT this review target — e.g. a CN doc resolved (or
+    # forced) onto an EU baseline diffs ~100% (cross-language). Refuse rather than emit a
+    # confident garbage diff; --allow-divergent-baseline overrides a genuine full rewrite.
+    _summary = report["summary"]
+    _baseline_blocks = _summary.get("baseline_blocks", 0)
+    _change_types = _summary.get("change_types") or {}
+    _surviving = _baseline_blocks - _change_types.get("delete", 0) - _change_types.get("replace", 0)
+    if (
+        not getattr(args, "allow_divergent_baseline", False)
+        and _baseline_blocks >= 20
+        and _surviving < 0.25 * _baseline_blocks
+    ):
+        print(
+            f"cloud-doc-backport: refusing — only {_surviving}/{_baseline_blocks} baseline blocks "
+            f"survive the diff ({_summary.get('total_deltas', 0)} deltas). This cloud-doc does not "
+            f"look like review target {git_ref} (wrong target / cross-language?). Re-check the "
+            "doc↔branch mapping; pass --allow-divergent-baseline to override a genuine full rewrite.",
+            file=sys.stderr,
+        )
         return 2
     written = write_reports(report, out_dir)
     deltas = report["summary"]["total_deltas"]

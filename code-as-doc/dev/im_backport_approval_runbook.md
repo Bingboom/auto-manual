@@ -230,6 +230,14 @@ python tools/cloud_doc_backport.py run-review-branch \
 >   produced a many-file garbage PR. The dry-run still works for inspection. The IM
 >   adapter and a deliberate single-page override pass `--allow-rst-baseline` to opt
 >   past it; the blessed path remains `run-review-branch` (render-vs-render).
+> - **Wrong-target / cross-language guard (shipped):** the baseline diff is refused when
+>   almost none of the baseline survives (<25% of ≥20 baseline blocks). A backport diffs a
+>   cloud-doc against ITS OWN render baseline, so a real edit leaves most blocks intact; an
+>   ~100% diff means the cloud-doc is **not** this review target (e.g. a CN doc resolved or
+>   forced onto an EU baseline → every block differs). This stops a confident garbage report
+>   from a mis-resolved/substituted target. `--allow-divergent-baseline` overrides a genuine
+>   full rewrite. NB: a doc whose review branch does not exist yet (its review-start failed)
+>   has **no** valid target — do not substitute another region; fix review-start first.
 
 ### Capturing R0 so a new review backports cleanly
 

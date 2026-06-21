@@ -1472,6 +1472,53 @@ class BaselineDiffTests(unittest.TestCase):
             # Class D via the value-index — a heuristic alone would leave this prose as repo_review_text
             self.assertIn("source_table_suggestion", routes)
 
+    # A doc that shares almost nothing with the baseline = wrong target (e.g. a CN doc
+    # diffed against an EU baseline). 25 fully-distinct blocks on each side -> ~0 survive.
+    _WRONG_BASELINE = "\n\n".join(f"English overview block number {i}" for i in range(25))
+    _WRONG_FETCHED = "\n\n".join(f"完全不同的中文段落 {i}" for i in range(25))
+
+    def _wrong_target_args(self, tmp: str, **over):
+        base = dict(
+            cloud_doc="https://example.feishu.cn/wiki/CNTOKEN", run_id="wrong-target",
+            out=str(Path(tmp) / "out"), lark_cli="lark-cli", write=False, push=False,
+            doc_name="manual_je1000f_cn_0.1", lang=None, data_root=None,
+            git_bin="git", remote="origin", allow_divergent_baseline=False,
+        )
+        base.update(over)
+        return SimpleNamespace(**base)
+
+    def test_baseline_diff_refuses_when_cloud_doc_diverges_from_baseline(self) -> None:
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as tmp:
+            err = io.StringIO()
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=self._WRONG_FETCHED), \
+                 contextlib.redirect_stderr(err):
+                rc = _run_review_branch_baseline(
+                    self._wrong_target_args(tmp),
+                    resolved={"git_ref": "review/JE-1000F-EU", "pr_url": None},
+                    worktree=tmp, review_dir="docs/_review/JE-1000F/EU", doc_tok="doc-wrong",
+                    baseline_text=self._WRONG_BASELINE,
+                )
+            self.assertEqual(rc, 2)
+            self.assertIn("refusing", err.getvalue())
+            self.assertIn("review/JE-1000F-EU", err.getvalue())
+            # no diff report is written for a refused wrong-target run
+            self.assertFalse((Path(tmp) / "out" / "cloud_doc_backport_report.json").exists())
+
+    def test_baseline_diff_allows_divergent_baseline_with_override(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=self._WRONG_FETCHED):
+                rc = _run_review_branch_baseline(
+                    self._wrong_target_args(tmp, allow_divergent_baseline=True),
+                    resolved={"git_ref": "review/JE-1000F-EU", "pr_url": None},
+                    worktree=tmp, review_dir="docs/_review/JE-1000F/EU", doc_tok="doc-wrong",
+                    baseline_text=self._WRONG_BASELINE,
+                )
+            self.assertEqual(rc, 0)
+            self.assertTrue((Path(tmp) / "out" / "cloud_doc_backport_report.json").exists())
+
 
 class ResolveBackportDataRootTests(unittest.TestCase):
     """F2 snapshot-root resolution for run-review-branch (explicit, smart default, absent)."""
