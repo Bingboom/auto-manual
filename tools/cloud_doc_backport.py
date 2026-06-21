@@ -531,10 +531,12 @@ def _classify_route(
     new: Block | None,
     data_origin: dict[str, Any] | None = None,
     family_scope: dict[str, Any] | None = None,
+    *,
+    value_index_present: bool = False,
 ) -> tuple[str, str, str]:
     if data_origin is not None:
-        # F2: the old text exactly matches a resolved data value, so this is a
-        # data-origin (Class D) delta — deterministic, not the heuristic guess.
+        # F2: the old text resolved to a data value (whole-text or table-cell match),
+        # so this is a data-origin (Class D) delta — deterministic, not the heuristic guess.
         if doc_type == "review":
             return (
                 "source_table_suggestion",
@@ -546,7 +548,20 @@ def _classify_route(
             "low",
             "resolved data value in a template-maintenance document",
         )
-    if _looks_data_like(old, new):
+    # Data-like detection. A table row is structurally source-table content, so it stays
+    # Class D even when no specific cell value is in the snapshot (safe — never write table
+    # markup to _review). For non-table prose, the value index is **authoritative** when
+    # present: a delta that resolved to no source value is genuinely review text, so route
+    # it as such instead of the `_looks_data_like` guess (which over-flags any unit/number-
+    # bearing prose). Without an index, keep the heuristic (prior behavior).
+    table_like = any(block is not None and block.kind == "table_row" for block in (old, new))
+    if table_like:
+        data_like = True
+    elif value_index_present:
+        data_like = False
+    else:
+        data_like = _looks_data_like(old, new)
+    if data_like:
         if doc_type == "review":
             return (
                 "source_table_suggestion",
@@ -593,14 +608,18 @@ def _make_delta(
     family_index: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     data_origin = (
-        classify_data_origin(old.text, value_index) if (value_index and old is not None) else None
+        # Match the normalized (markdown-stripped) text so a table-cell value compares
+        # cleanly against the snapshot CSV values (cell-level resolution).
+        classify_data_origin(old.normalized, value_index) if (value_index and old is not None) else None
     )
     family_scope = (
         classify_family_scope(old.text, family_index)
         if (family_index and old is not None and data_origin is None)
         else None
     )
-    route_class, confidence, reason = _classify_route(doc_type, old, new, data_origin, family_scope)
+    route_class, confidence, reason = _classify_route(
+        doc_type, old, new, data_origin, family_scope, value_index_present=bool(value_index)
+    )
     hash_payload = {
         "doc_type": doc_type,
         "change_type": change_type,

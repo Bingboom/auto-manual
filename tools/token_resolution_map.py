@@ -97,9 +97,46 @@ def build_value_index(snapshot_root: Path, lang: str) -> dict[str, dict[str, Any
     return index
 
 
+_CELL_SPLIT_RE = re.compile(r"<br\s*/?>|\|", re.IGNORECASE)
+
+
+def _value_candidates(text: str | None) -> list[str]:
+    """Atomic value candidates from a delta's normalized text.
+
+    The whole text first (a bare value or a body-copy paragraph), then — when the
+    delta carries table structure — each cell and ``<br/>``-joined sub-value. A real
+    cloud-doc delta arrives at row/paragraph granularity (``| value <br/> value |
+    label |``), not as a bare cell, so a contained-value match is what lets the value
+    index resolve it deterministically. Feed this the **normalized** (markdown-stripped)
+    text so cells compare cleanly against the snapshot CSV values.
+    """
+
+    norm = _normalize(text)
+    if not norm:
+        return []
+    candidates = [norm]
+    if "|" in norm or "<br" in norm.lower():
+        seen = {norm}
+        for part in _CELL_SPLIT_RE.split(norm):
+            cand = _normalize(part)
+            if cand and cand not in seen:
+                seen.add(cand)
+                candidates.append(cand)
+    return candidates
+
+
 def classify_data_origin(text: str | None, value_index: dict[str, dict[str, Any]] | None) -> dict[str, Any] | None:
-    """Return the source reference if ``text`` exactly matches a data value, else None."""
+    """Return the source reference if ``text`` resolves to a data value, else None.
+
+    Matches the whole normalized text first, then — for a table-row delta — each cell
+    / ``<br/>``-joined sub-value, so a ``| value <br/> value | label |`` row resolves
+    to its source value (the cloud-doc delta granularity is a whole row, not a bare cell).
+    """
 
     if not value_index:
         return None
-    return value_index.get(_normalize(text))
+    for candidate in _value_candidates(text):
+        hit = value_index.get(candidate)
+        if hit is not None:
+            return hit
+    return None

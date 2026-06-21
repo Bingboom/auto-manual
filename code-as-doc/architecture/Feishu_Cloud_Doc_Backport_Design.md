@@ -312,7 +312,12 @@ heavier follow-up.
 ### R8 — Prerequisites that make R2/R5 reliable
 
 - a build-time **token/copy resolution map** per target, to recognize Class `D`
-  spans without guessing;
+  spans without guessing. **Shipped:** `build_value_index` indexes the snapshot's
+  `Spec_Master`/`Localized_Copy` values; `classify_data_origin` resolves a delta by its
+  whole text **and** its table cells / `<br/>`-joined sub-values (so a whole-row delta
+  resolves to its source value, not just a bare cell). When the index is present it is
+  **authoritative** — a prose delta that resolved to no value is review text (Class `R`),
+  not a `_looks_data_like` guess; table rows stay Class `D` structurally;
 - a **family-identical check** (reuse the residual scanner) to recognize Class `T`
   and its sibling scope. **Shipped:** `run-review-branch` auto-resolves the
   `page_shared/<lang>` shared templates as the family-scope siblings, so a reviewer
