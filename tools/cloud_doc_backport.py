@@ -1472,14 +1472,27 @@ def _rebuild_rediff_gate(
     }
 
 
-def _rebuild_rediff_for_report(diff_report: dict[str, Any], edited_text: str) -> dict[str, Any]:
+def _rebuild_rediff_for_report(
+    diff_report: dict[str, Any], edited_text: str, *, baseline_text_override: str | None = None
+) -> dict[str, Any]:
+    if baseline_text_override is not None:
+        # An in-memory pre-edit baseline: run-review reads the source before applying in
+        # place, so the gate can run even when the report's baseline IS that same source
+        # (the prior skip case). The pre-edit text cannot be recovered from disk after the
+        # apply, so it must be passed in.
+        return _rebuild_rediff_gate(
+            baseline_text=baseline_text_override,
+            edited_text=edited_text,
+            deltas=diff_report.get("deltas") or [],
+            run_id=str(diff_report.get("run_id") or "verify"),
+        )
     baseline = diff_report.get("baseline")
     source_path = (diff_report.get("source_target") or {}).get("path")
     if not baseline or (source_path and baseline == source_path):
-        # The baseline is the in-place source (e.g. run-review uses the review
-        # source as its own baseline); after apply we can no longer reconstruct the
-        # pre-edit text, so the gate is unreliable. It runs only against a distinct
-        # baseline snapshot (design §6 Baseline Storage). Skipping is gate-pass.
+        # The baseline is the in-place source and no pre-edit snapshot was supplied;
+        # after apply the pre-edit text cannot be reconstructed, so the gate is
+        # unreliable. It runs only against a distinct baseline snapshot (design §6
+        # Baseline Storage) or an explicit in-memory baseline. Skipping is gate-pass.
         return {"skipped": True, "reason": "no distinct baseline snapshot", "passed": True}
     baseline_text = _resolve_baseline_text(diff_report)
     if baseline_text is None:
@@ -1497,6 +1510,7 @@ def build_review_verify_report(
     *,
     source_path: Path | None = None,
     command: list[str] | None = None,
+    baseline_text: str | None = None,
 ) -> dict[str, Any]:
     resolved_source = _resolve_report_source(
         diff_report,
@@ -1524,7 +1538,7 @@ def build_review_verify_report(
     categories = _counter_dict([str(result["category"]) for result in results])
     failing_categories = {category: categories.get(category, 0) for category in ("still_pending", "unsafe_or_ambiguous")}
     has_failure = any(count for count in failing_categories.values())
-    rebuild_rediff = _rebuild_rediff_for_report(diff_report, current_text)
+    rebuild_rediff = _rebuild_rediff_for_report(diff_report, current_text, baseline_text_override=baseline_text)
     source_table_suggestions = [
         result for result in results if result.get("category") == "source_table_suggestion"
     ]
@@ -2879,6 +2893,10 @@ def _run_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
                     diff_report,
                     source_path=source_path,
                     command=command,
+                    # The pre-edit source, captured before the in-place apply above — lets
+                    # the rebuild+rediff gate (R7) run instead of skipping when the report's
+                    # baseline is the in-place review source (the common run-review case).
+                    baseline_text=baseline_text,
                 )
                 output_paths.update(
                     {f"verify_{key}": value for key, value in write_verify_report(verify_report, out_dir).items()}
@@ -3446,26 +3464,56 @@ def _run_review_branch_baseline(
     changed_rels: list[str] = []
     applied_hashes: set[str] = set()
     baseline_advanced = False
+    # R7 rebuild+rediff gate (§5.1 R7): per changed page, the source pre->post change must
+    # be EXACTLY the Class R deltas the apply claims it made — no collateral (unexpected),
+    # none missing. For an applied delta the guarded apply literally replaces old->new in
+    # the source, so the source re-diff equals the expected pairs; anything else is a
+    # corrupted apply. A failure blocks the cursor advance and the PR push (the worktree is
+    # left for inspection) — so a backport PR is only ever opened from a verified-clean apply.
+    all_deltas = report.get("deltas") or []
+    gate_pages: list[dict[str, Any]] = []
+    gate_passed = True
     if args.write and review_bound:
         page_dir = Path(worktree) / review_dir / "page"
         for page in sorted(page_dir.glob("*.rst")):
+            pre_text = page.read_text(encoding="utf-8") if page.is_file() else ""
             apply_rep = build_review_apply_report(
                 report, source_path=page, write=True,
                 command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-apply"],
             )
-            for op in apply_rep.get("operations") or []:
-                if op.get("status") == "applied" and op.get("delta_hash"):
-                    applied_hashes.add(str(op["delta_hash"]))
+            page_applied = {
+                str(op["delta_hash"])
+                for op in (apply_rep.get("operations") or [])
+                if op.get("status") == "applied" and op.get("delta_hash")
+            }
+            applied_hashes |= page_applied
             if apply_rep["summary"].get("changed"):
                 changed_rels.append(f"{review_dir}/page/{page.name}")
-                print(f"  APPLIED (Class R) {page.name}")
+                gate = _rebuild_rediff_gate(
+                    baseline_text=pre_text,
+                    edited_text=page.read_text(encoding="utf-8"),
+                    deltas=[d for d in all_deltas if str(d.get("delta_hash")) in page_applied],
+                    run_id=f"{run_id}-{page.stem}",
+                )
+                gate["page"] = page.name
+                gate_pages.append(gate)
+                if gate["passed"]:
+                    print(f"  APPLIED (Class R) {page.name}  [rebuild+rediff gate OK]")
+                else:
+                    gate_passed = False
+                    print(
+                        f"  GATE FAIL {page.name}: the apply changed more than the intended "
+                        f"deltas (unexpected={gate['unexpected']} missing={gate['missing']})",
+                        file=sys.stderr,
+                    )
         if not changed_rels:
             print("NOTE: no review-prose delta matched a _review page uniquely (nothing written; handle manually if needed).")
-        # Cursor advance (§6): only on a FULL apply — every reported delta resolved
-        # (len(applied) == deltas). A pending Class D / ambiguous delta leaves applied <
-        # deltas, so we keep the baseline put and the next run re-diffs the same window
-        # (already-applied edits are idempotent no-ops), never burying anything.
-        if deltas > 0 and len(applied_hashes) == deltas:
+        # Cursor advance (§6): only on a clean gate AND a FULL apply — every reported delta
+        # resolved (len(applied) == deltas). A pending Class D / ambiguous delta leaves
+        # applied < deltas, so we keep the baseline put and the next run re-diffs the same
+        # window (already-applied edits are idempotent no-ops), never burying anything. A
+        # gate failure also holds the cursor (the apply is suspect).
+        if gate_passed and deltas > 0 and len(applied_hashes) == deltas:
             if baseline_from_seed:
                 store_baseline(worktree, review_dir, doc_tok, c_now)
                 changed_rels.append(baseline_rel)
@@ -3479,7 +3527,13 @@ def _run_review_branch_baseline(
                 )
     pushed = False
     backport_pr_url = ""
-    if args.write and args.push and changed_rels:
+    if args.write and args.push and changed_rels and not gate_passed:
+        print(
+            "cloud-doc-backport: rebuild+rediff gate FAILED — refusing to push the backport "
+            "PR (the apply changed more than the intended Class R deltas). Inspect the worktree.",
+            file=sys.stderr,
+        )
+    elif args.write and args.push and changed_rels:
         try:
             pushed, backport_pr_url = _open_backport_pr(
                 worktree=worktree, git_ref=git_ref, run_id=run_id,
@@ -3494,10 +3548,12 @@ def _run_review_branch_baseline(
          "route_classes": route_classes, "report": str(written["json"]),
          "source_table_report": str(written["json"]), "changed": changed_rels,
          "wrote": bool(args.write), "pushed": pushed, "backport_pr_url": backport_pr_url,
-         "baseline_advanced": baseline_advanced, "review_branch_pr_url": resolved.get("pr_url")},
+         "baseline_advanced": baseline_advanced,
+         "rebuild_rediff": {"passed": gate_passed, "pages": gate_pages},
+         "review_branch_pr_url": resolved.get("pr_url")},
         ensure_ascii=False, sort_keys=True,
     ))
-    return 0
+    return 0 if gate_passed else 1
 
 
 def _value_index_from_args(args: argparse.Namespace) -> dict[str, Any] | None:
