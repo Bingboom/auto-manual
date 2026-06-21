@@ -384,6 +384,78 @@ class TestQueueQuery(unittest.TestCase):
 
         self.assertEqual(["rec_cn", "rec_us", "rec_jp", "rec_eu", "rec_pt-br"], [row.record_id for row in filtered])
 
+    def test_infer_queue_query_from_text_should_parse_multi_document_id_build_draft_batch(self) -> None:
+        # An explicit list of N fully-qualified Document_IDs must resolve to N targets (not
+        # collapse to the first token) so "构建这 5 个文案" deterministically builds all 5.
+        inferred = queue_query.infer_queue_query_from_text(
+            "构建 JE-1000F_US_en_0.1 JE-1000F_JP_ja_0.1 JE-1000F_CN_zh_0.1 JE-1000F_EU_en_0.1 JE-1000F_pt-BR_0.1 文案"
+        )
+        self.assertEqual("build-draft-package", inferred.query_workflow_action)
+        self.assertEqual("", inferred.document_id)
+        self.assertEqual("", inferred.document_key)
+        self.assertEqual("", inferred.task_id_prefix)
+        self.assertEqual(
+            (
+                "JE-1000F_US_en_0.1",
+                "JE-1000F_JP_ja_0.1",
+                "JE-1000F_CN_zh_0.1",
+                "JE-1000F_EU_en_0.1",
+                "JE-1000F_pt-BR_0.1",
+            ),
+            inferred.document_keys,
+        )
+        self.assertTrue(inferred.allow_multiple)
+
+    def test_infer_queue_query_from_text_single_document_id_build_draft_stays_single(self) -> None:
+        # Boundary: a single fully-qualified Document_ID must NOT enter the batch path.
+        inferred = queue_query.infer_queue_query_from_text("构建 JE-1000F_US_en_0.1 文案")
+        self.assertEqual("build-draft-package", inferred.query_workflow_action)
+        self.assertEqual("JE-1000F_US_en_0.1", inferred.document_id)
+        self.assertEqual((), inferred.document_keys)
+        self.assertFalse(inferred.allow_multiple)
+
+    def test_filter_queue_query_rows_should_match_multi_build_draft_document_ids(self) -> None:
+        ids = (
+            "JE-1000F_US_en_0.1",
+            "JE-1000F_JP_ja_0.1",
+            "JE-1000F_CN_zh_0.1",
+            "JE-1000F_EU_en_0.1",
+            "JE-1000F_pt-BR_0.1",
+        )
+        rows = [
+            self._row(
+                f"rec_{doc_id.split('_')[1].lower()}",
+                document_id=doc_id,
+                document_key='{"id":"recLinkedDocument"}',
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                build_trigger_requested=True,
+            )
+            for doc_id in ids
+        ]
+        rows.append(
+            self._row(
+                "rec_other",
+                document_id="JE-2000E_EU_en_0.1",
+                document_key='{"id":"recLinkedDocument"}',
+                workflow_action="Build Draft Package",
+                normalized_workflow_action="draft",
+                build_trigger_requested=True,
+            )
+        )
+
+        resolved_args = queue_query.apply_inferred_queue_query(
+            self._args(
+                query_text="构建 JE-1000F_US_en_0.1 JE-1000F_JP_ja_0.1 JE-1000F_CN_zh_0.1 JE-1000F_EU_en_0.1 JE-1000F_pt-BR_0.1 文案"
+            )
+        )
+        filtered = queue_query.filter_queue_query_rows(resolved_args, rows)
+
+        self.assertEqual(
+            ["rec_us", "rec_jp", "rec_cn", "rec_eu", "rec_pt-br"],
+            [row.record_id for row in filtered],
+        )
+
     def test_filter_queue_query_rows_should_match_pt_br_start_review_document_key(self) -> None:
         rows = [
             self._row(
