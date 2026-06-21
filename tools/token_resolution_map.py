@@ -138,5 +138,8 @@ def classify_data_origin(text: str | None, value_index: dict[str, dict[str, Any]
     for candidate in _value_candidates(text):
         hit = value_index.get(candidate)
         if hit is not None:
-            return hit
+            # Carry the exact matched value (a bare cell value for a table-row delta,
+            # or the whole text for a body-copy/bare match) so the F6 write path can
+            # extract the corresponding NEW cell value instead of writing the whole row.
+            return {**hit, "matched_value": candidate}
     return None

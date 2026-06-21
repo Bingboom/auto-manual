@@ -33,7 +33,10 @@ def _resolved_request(delta_hash: str = "h1") -> dict:
         "field": "Value_uk",
         "record_id": "recAAA",
         "resolution_status": "resolved",
+        "old_text": "DC 12 V",
         "new_text": "DC 12 В",
+        "old_value": "DC 12 V",
+        "new_value": "DC 12 В",
     }
 
 
@@ -106,9 +109,12 @@ class CopyWriteTargetTests(unittest.TestCase):
                         "copy_key": copy_key,
                         "lang": lang,
                         "source_lang": source_lang,
+                        "matched_value": "Old",
                     },
                     "old_text": "Old",
                     "new_text": "New",
+                    "old_normalized": "Old",
+                    "new_normalized": "New",
                 }
             ]
         }
@@ -300,6 +306,56 @@ class ReportIoTests(unittest.TestCase):
             self.assertTrue(written["markdown"].exists())
             payload = json.loads(written["json"].read_text(encoding="utf-8"))
             self.assertEqual(payload["run_id"], "rr")
+
+
+class CellWriteValueTests(unittest.TestCase):
+    """F6 precise write-back: a table-ROW Class D delta must write the changed CELL value
+    into the cell field, not the whole row markup (and abstain when it can't be aligned)."""
+
+    def test_table_row_delta_carries_cell_value_not_row(self) -> None:
+        diff = {
+            "deltas": [
+                {
+                    "route_class": "source_table_suggestion",
+                    "delta_hash": "t1",
+                    "source_ref": {"table": "Spec_Master", "field": "Value_source", "matched_value": "12V⎓最大10A"},
+                    "old_text": "| **12V⎓最大10A**  <br/>12V⎓最大10A | **LED 灯按键** |",
+                    "new_text": "| **IN1 (DC 12V点烟口)**  <br/>12V⎓最大10A | **LED 灯按键** |",
+                    "old_normalized": "| 12V⎓最大10A <br/>12V⎓最大10A | LED 灯按键 |",
+                    "new_normalized": "| IN1 (DC 12V点烟口) <br/>12V⎓最大10A | LED 灯按键 |",
+                }
+            ]
+        }
+        req = build_change_requests(diff)[0]
+        self.assertEqual(req["new_value"], "IN1 (DC 12V点烟口)")  # the changed cell value...
+        self.assertNotIn("|", req["new_value"])  # ...not the whole row markup
+        self.assertEqual(req["old_value"], "12V⎓最大10A")
+
+    def test_unalignable_cell_change_abstains(self) -> None:
+        diff = {
+            "deltas": [
+                {
+                    "route_class": "source_table_suggestion",
+                    "delta_hash": "t2",
+                    "source_ref": {"table": "Spec_Master", "field": "Value_source", "matched_value": "12V⎓最大10A"},
+                    "old_normalized": "| 12V⎓最大10A | LED |",          # 2 cells
+                    "new_normalized": "| IN1 | LED | extra cell |",      # 3 cells -> can't align
+                    "old_text": "x",
+                    "new_text": "y",
+                }
+            ]
+        }
+        self.assertIsNone(build_change_requests(diff)[0]["new_value"])  # abstain, no guess
+
+    def test_plan_apply_skips_when_value_not_resolved(self) -> None:
+        plan = plan_apply([{**_resolved_request(), "new_value": None}], approved_hashes={"h1"})
+        self.assertEqual(plan[0]["action"], "skip")
+        self.assertIn("not resolved", plan[0]["reason"])
+
+    def test_plan_apply_writes_the_cell_value(self) -> None:
+        plan = plan_apply([{**_resolved_request(), "new_value": "IN1 (DC 12V点烟口)"}], approved_hashes={"h1"})
+        self.assertEqual(plan[0]["action"], "apply")
+        self.assertEqual(plan[0]["value"], "IN1 (DC 12V点烟口)")
 
 
 if __name__ == "__main__":

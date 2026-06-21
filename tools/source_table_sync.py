@@ -22,6 +22,7 @@ default is dry-run (plan only) with no network access.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any, Protocol
 
@@ -49,6 +50,52 @@ def _resolve_record_id(source_ref: dict[str, Any], sidecar_index: dict[str, Any]
             return record_id, status
     # F2/F6 source_refs usually carry a table + keys but no kind.
     return _resolve_by_table(sidecar_index, source_ref)
+
+
+_WS_RE = re.compile(r"\s+")
+_CELL_SPLIT_RE = re.compile(r"<br\s*/?>|\|", re.IGNORECASE)
+
+
+def _norm(text: Any) -> str:
+    return _WS_RE.sub(" ", str(text or "").strip())
+
+
+def _atomic_values(text: Any) -> list[str]:
+    """Normalized cell / ``<br/>``-joined sub-values of a (possibly table-row) text, in order."""
+    norm = _norm(text)
+    if not norm:
+        return []
+    if "|" in norm or "<br" in norm.lower():
+        return [value for value in (_norm(part) for part in _CELL_SPLIT_RE.split(norm)) if value]
+    return [norm]
+
+
+def _resolve_written_value(old_normalized: Any, new_normalized: Any, matched_value: Any) -> str | None:
+    """The precise NEW source value to write for a resolved Class D delta.
+
+    For a whole-text / bare-value match (a body-copy paragraph or a bare cell), the new
+    value is the whole new text. For a table-ROW delta, align the old and new cells /
+    ``<br/>``-joined sub-values positionally and return the new sub-value at the position
+    whose OLD sub equals the matched value **and** actually changed — so the write puts
+    the new *cell* value (e.g. ``IN1 (DC 12V点烟口)``) into the cell field, not the whole
+    row markup. Returns ``None`` (abstain) when the matched value is absent, the cell
+    structure differs, or the changed position is ambiguous, so the write never guesses
+    or corrupts the cell.
+    """
+
+    matched = _norm(matched_value)
+    if not matched:
+        return None
+    if _norm(old_normalized) == matched:
+        return _norm(new_normalized)
+    old_subs = _atomic_values(old_normalized)
+    new_subs = _atomic_values(new_normalized)
+    if not old_subs or len(old_subs) != len(new_subs):
+        return None
+    changed = [new for old, new in zip(old_subs, new_subs) if old != new and old == matched]
+    if len(changed) == 1:
+        return changed[0]
+    return None
 
 
 # A Localized_Copy value's authoring home is Manual_Copy_Source.source_text — but
@@ -107,6 +154,12 @@ def build_change_requests(
                 table, field = target
             # else: source-language edit whose record_id did not resolve -> leave
             # it as a normal unresolved request (NOT a translation suggestion).
+        # Precise cell value to write: the matched OLD value resolved the record_id;
+        # extract the corresponding NEW cell value so a table-row delta writes the cell
+        # (e.g. `IN1 (DC 12V点烟口)`), not the whole row. None -> abstain (plan_apply skips).
+        new_value = _resolve_written_value(
+            delta.get("old_normalized"), delta.get("new_normalized"), source_ref.get("matched_value")
+        )
         requests.append(
             {
                 "schema_version": CHANGE_REQUEST_SCHEMA_VERSION,
@@ -117,6 +170,8 @@ def build_change_requests(
                 "resolution_status": status,
                 "old_text": delta.get("old_text"),
                 "new_text": delta.get("new_text"),
+                "old_value": source_ref.get("matched_value"),
+                "new_value": new_value,
                 "source_ref": source_ref,
                 "blast_radius": list(source_ref.get("targets") or []),
                 "external_write": False,
@@ -188,13 +243,14 @@ def plan_apply(change_requests: list[dict[str, Any]], *, approved_hashes: set[st
         if not request.get("table") or not request.get("field"):
             plan.append({**entry, "action": "skip", "reason": "missing table/field"})
             continue
-        plan.append(
-            {
-                **entry,
-                "action": "apply",
-                "value": request.get("new_text"),
-            }
-        )
+        # Write the precise cell value, never the whole-row text. A row-granularity delta
+        # whose changed cell could not be aligned has new_value=None and abstains here
+        # (exact-or-abstain on the value), so the write never corrupts the cell.
+        value = request.get("new_value")
+        if value is None or value == "":
+            plan.append({**entry, "action": "skip", "reason": "precise cell value not resolved (abstain)"})
+            continue
+        plan.append({**entry, "action": "apply", "value": value})
     return plan
 
 
