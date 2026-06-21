@@ -3443,6 +3443,21 @@ def _run_review_branch_baseline(
         print(f"cloud-doc-backport: {exc}", file=sys.stderr)
         return 2
     written = write_reports(report, out_dir)
+    # Emit the actionable Class D / Class T artifacts (parity with the per-page run-review
+    # worker). The blessed baseline path classifies these deltas but previously wrote only
+    # the diff report, so the operator had nothing to feed `apply-source-table` (which reads
+    # the change-request report, not the diff report) or the template-sync role.
+    artifact_cmd = ["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-diff"]
+    write_source_table_suggestions_report(
+        build_source_table_suggestions_report(diff_report=report, command=artifact_cmd), out_dir
+    )
+    proposal_report = build_template_sync_proposal_report(diff_report=report, command=artifact_cmd)
+    proposal_written = write_template_sync_proposal_report(proposal_report, out_dir)
+    proposal_count = proposal_report["summary"]["proposals"]
+    sidecar_index = load_sidecar_index(Path(args.data_root)) if getattr(args, "data_root", None) else None
+    change_request_path = write_change_request_report(
+        build_change_request_report(report, sidecar_index=sidecar_index), out_dir
+    )
     deltas = report["summary"]["total_deltas"]
     route_classes = report["summary"].get("route_classes") or {}
     source_bound = route_classes.get("source_table_suggestion", 0)
@@ -3450,12 +3465,18 @@ def _run_review_branch_baseline(
     print(f"BRANCH {git_ref}  WORKTREE {worktree}  BASELINE-DIFF deltas={deltas}  routes={json.dumps(route_classes, ensure_ascii=False)}")
     print(f"WROTE {written['json']}")
     print(f"WROTE {written['markdown']}")
-    # Class D (source-bound) goes to the source table / TM (F6), NOT the RST — the diff
-    # report IS the apply-source-table input.
+    # Class D (source-bound) goes to the source table / TM (F6), NOT the RST. The
+    # change-request report (not the diff report) is the apply-source-table input.
     if source_bound:
         print(
             f"ROUTE: {source_bound} source-bound (Class D) delta(s) -> run "
-            f"`apply-source-table --report {written['json']}` (approval-gated F6/TM), NOT the _review RST."
+            f"`apply-source-table --report {change_request_path}` (approval-gated F6/TM), NOT the _review RST."
+        )
+    # Class T (shared across the family) goes to the template-sync role, NOT _review.
+    if proposal_count:
+        print(
+            f"ROUTE: {proposal_count} shared-template (Class T) delta(s) -> review "
+            f"{proposal_written['markdown']} and apply via the template-sync role, NOT the _review RST."
         )
     # Class R (review prose): apply the CLEAN deltas to the matching _review page via
     # the guarded apply (only unique, safe matches; ambiguous ones are skipped), then
@@ -3546,7 +3567,10 @@ def _run_review_branch_baseline(
         {"git_ref": git_ref, "worktree": worktree, "mode": "baseline-diff",
          "baseline": baseline_rel, "deltas": deltas, "result": report["result"],
          "route_classes": route_classes, "report": str(written["json"]),
-         "source_table_report": str(written["json"]), "changed": changed_rels,
+         "source_table_change_request": str(change_request_path),
+         "template_sync_proposal": str(proposal_written["json"]),
+         "template_sync_proposals": proposal_count,
+         "changed": changed_rels,
          "wrote": bool(args.write), "pushed": pushed, "backport_pr_url": backport_pr_url,
          "baseline_advanced": baseline_advanced,
          "rebuild_rediff": {"passed": gate_passed, "pages": gate_pages},

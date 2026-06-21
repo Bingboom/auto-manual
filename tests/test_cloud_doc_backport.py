@@ -1609,5 +1609,80 @@ class RebuildRediffBlessedGateTests(unittest.TestCase):
             self.assertIn("gate FAILED", err.getvalue())
 
 
+class BaselineArtifactEmissionTests(unittest.TestCase):
+    """The blessed baseline path emits the actionable Class D / Class T artifacts
+    (change-request, template-sync proposal, suggestions) — not just the diff report —
+    so apply-source-table and the template-sync role have something to consume."""
+
+    @staticmethod
+    def _final_json(captured: str) -> dict:
+        for line in reversed(captured.splitlines()):
+            line = line.strip()
+            if line.startswith("{"):
+                return json.loads(line)
+        raise AssertionError("no JSON object in output")
+
+    def _args(self, tmp, **over):
+        base = dict(
+            cloud_doc="https://example.feishu.cn/wiki/doc-art", run_id="art",
+            out=str(Path(tmp) / "out"), lark_cli="lark-cli", write=False, push=False,
+            doc_name="manual_je1000f_us_en_1.0", lang=None, data_root=None,
+            git_bin="git", remote="origin",
+        )
+        base.update(over)
+        return SimpleNamespace(**base)
+
+    def test_baseline_path_emits_actionable_artifacts(self) -> None:
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "docs/_review/JE-1000F/US/page").mkdir(parents=True)
+            out = io.StringIO()
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="Keep this manual handy edited.\n"):
+                with contextlib.redirect_stdout(out):
+                    rc = _run_review_branch_baseline(
+                        self._args(tmp),
+                        resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                        worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-art",
+                        baseline_text="Keep this manual handy.\n",
+                    )
+            self.assertEqual(rc, 0)
+            out_dir = Path(tmp) / "out"
+            # the change-request report (apply-source-table input) and the template-sync
+            # proposal are written — not just the diff report
+            self.assertTrue((out_dir / "cloud_doc_backport_source_table_change_request.json").is_file())
+            self.assertTrue((out_dir / "cloud_doc_backport_template_sync_proposal.json").is_file())
+            self.assertTrue((out_dir / "cloud_doc_backport_source_table_suggestions.json").is_file())
+            payload = self._final_json(out.getvalue())
+            # the JSON points apply-source-table at the change-request report, not the diff report
+            self.assertTrue(payload["source_table_change_request"].endswith("cloud_doc_backport_source_table_change_request.json"))
+            self.assertIn("template_sync_proposal", payload)
+            self.assertNotIn("source_table_report", payload)  # the misleading diff-report alias is gone
+
+    def test_baseline_path_class_t_delta_becomes_proposal(self) -> None:
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "docs/_review/JE-1000F/US/page").mkdir(parents=True)
+            sibling = Path(tmp) / "sibling.rst"
+            sibling.write_text("Shared safety note\n", encoding="utf-8")  # same line as the baseline
+            out = io.StringIO()
+            args = self._args(tmp, sibling=[str(sibling)])
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="Shared safety note revised\n"):
+                with contextlib.redirect_stdout(out):
+                    _run_review_branch_baseline(
+                        args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                        worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-art2",
+                        baseline_text="Shared safety note\n",
+                    )
+            payload = self._final_json(out.getvalue())
+            # the delta's old text is shared with the sibling -> Class T -> a template-sync proposal
+            self.assertGreaterEqual(payload["template_sync_proposals"], 1)
+            proposal = json.loads((Path(tmp) / "out" / "cloud_doc_backport_template_sync_proposal.json").read_text(encoding="utf-8"))
+            self.assertGreaterEqual(proposal["summary"]["proposals"], 1)
+
+
 if __name__ == "__main__":
     unittest.main()
