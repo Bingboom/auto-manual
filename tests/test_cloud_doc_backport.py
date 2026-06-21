@@ -17,11 +17,13 @@ from tools.cloud_doc_backport import (
     _diff_delta_count,
     _family_index_from_args,
     _parse_table_bindings,
+    _rebuild_rediff_for_report,
     _resolve_backport_data_root,
     _resolve_review_branch_siblings,
     _run_review_branch,
     _run_review_branch_baseline,
     build_report,
+    build_review_verify_report,
     fetch_doc_text,
     main,
     open_backport_pr_from_manifest,
@@ -1582,6 +1584,192 @@ class ResolveBackportDataRootTests(unittest.TestCase):
             (root / "data" / "phase2").mkdir(parents=True)
             with patch("tools.cloud_doc_backport.get_paths", return_value=SimpleNamespace(root=root)):
                 self.assertIsNone(_resolve_backport_data_root(None))
+
+
+class RebuildRediffBlessedGateTests(unittest.TestCase):
+    """R7: the rebuild+rediff idempotency gate fires in the blessed run-review-branch
+    write path (was inert before), and on run-review's in-place baseline."""
+
+    @staticmethod
+    def _final_json(captured: str) -> dict:
+        for line in reversed(captured.splitlines()):
+            line = line.strip()
+            if line.startswith("{"):
+                return json.loads(line)
+        raise AssertionError("no JSON object in output")
+
+    def test_inplace_baseline_override_runs_gate_instead_of_skipping(self) -> None:
+        report = {
+            "run_id": "t",
+            "baseline": "docs/_review/JE-1000F/US/page/00_preface.rst",
+            "source_target": {"path": "docs/_review/JE-1000F/US/page/00_preface.rst"},
+            "deltas": [{
+                "route_class": "repo_review_text",
+                "old_normalized": "Old line", "new_normalized": "New line", "delta_hash": "h1",
+            }],
+        }
+        # no override: baseline == source -> skip (gate-pass), the prior behavior
+        skipped = _rebuild_rediff_for_report(report, "New line\n")
+        self.assertTrue(skipped["skipped"])
+        # in-memory pre-edit baseline supplied -> the gate runs; a clean apply passes
+        ran = _rebuild_rediff_for_report(report, "New line\n", baseline_text_override="Old line\n")
+        self.assertFalse(ran.get("skipped", False))
+        self.assertTrue(ran["passed"])
+        # a collateral change (not among the intended deltas) is caught
+        collateral = _rebuild_rediff_for_report(report, "New line\n\nStray addition\n", baseline_text_override="Old line\n")
+        self.assertFalse(collateral["passed"])
+        self.assertTrue(collateral["unexpected"])
+
+    def test_verify_report_threads_inmemory_baseline(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            src = page_dir / "00_preface.rst"
+            src.write_text("New line\n", encoding="utf-8")  # the post-apply source
+            report = build_report(
+                run_id="t", doc_type="review", doc_url="fixture",
+                baseline_path=src, fetched_text="New line\n", baseline_text="Old line\n",
+                command=["x"], source_path=src, section_title=None,
+                section_inferred_from=None, require_section_match=False,
+            )
+            verify = build_review_verify_report(report, source_path=src, baseline_text="Old line\n")
+            self.assertFalse(verify["rebuild_rediff"].get("skipped", False))  # ran, did not skip
+            self.assertTrue(verify["rebuild_rediff"]["passed"])
+
+    def _baseline_args(self, tmp, **over):
+        base = dict(
+            cloud_doc="https://example.feishu.cn/wiki/doc-r7", run_id="r7",
+            out=str(Path(tmp) / "out"), lark_cli="lark-cli", write=True, push=False,
+            doc_name="manual_je1000f_us_en_1.0", lang=None, data_root=None,
+            git_bin="git", remote="origin",
+        )
+        base.update(over)
+        return SimpleNamespace(**base)
+
+    def test_blessed_baseline_path_runs_gate_and_passes_on_clean_apply(self) -> None:
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as tmp:
+            page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            (page_dir / "00_preface.rst").write_text("**FR IMPORTANT**\n\nKeep this manual handy.\n", encoding="utf-8")
+            out = io.StringIO()
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="**FR IMPORTANT test**\n\nKeep this manual handy.\n"):
+                with contextlib.redirect_stdout(out):
+                    rc = _run_review_branch_baseline(
+                        self._baseline_args(tmp),
+                        resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                        worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-r7",
+                        baseline_text="**FR IMPORTANT**\n\nKeep this manual handy.\n",
+                    )
+            self.assertEqual(rc, 0)
+            payload = self._final_json(out.getvalue())
+            self.assertTrue(payload["rebuild_rediff"]["passed"])  # the gate ran and passed
+
+    def test_blessed_baseline_path_gate_failure_blocks_push(self) -> None:
+        import contextlib
+        import io
+
+        opened: list[bool] = []
+
+        def fake_open_pr(**_kw):
+            opened.append(True)
+            return True, "https://example/pr"
+
+        with tempfile.TemporaryDirectory() as tmp:
+            page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            (page_dir / "00_preface.rst").write_text("**FR IMPORTANT**\n\nKeep this manual handy.\n", encoding="utf-8")
+            args = self._baseline_args(tmp, push=True)
+            err = io.StringIO()
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="**FR IMPORTANT test**\n\nKeep this manual handy.\n"), \
+                 patch("tools.cloud_doc_backport._rebuild_rediff_gate", return_value={"passed": False, "unexpected": ["x->y"], "missing": []}), \
+                 patch("tools.cloud_doc_backport._open_backport_pr", side_effect=fake_open_pr):
+                with contextlib.redirect_stderr(err):
+                    rc = _run_review_branch_baseline(
+                        args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                        worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-r7b",
+                        baseline_text="**FR IMPORTANT**\n\nKeep this manual handy.\n",
+                    )
+            self.assertEqual(rc, 1)  # gate failed -> non-zero
+            self.assertEqual(opened, [])  # push was refused
+            self.assertIn("gate FAILED", err.getvalue())
+
+
+class BaselineArtifactEmissionTests(unittest.TestCase):
+    """The blessed baseline path emits the actionable Class D / Class T artifacts
+    (change-request, template-sync proposal, suggestions) — not just the diff report —
+    so apply-source-table and the template-sync role have something to consume."""
+
+    @staticmethod
+    def _final_json(captured: str) -> dict:
+        for line in reversed(captured.splitlines()):
+            line = line.strip()
+            if line.startswith("{"):
+                return json.loads(line)
+        raise AssertionError("no JSON object in output")
+
+    def _args(self, tmp, **over):
+        base = dict(
+            cloud_doc="https://example.feishu.cn/wiki/doc-art", run_id="art",
+            out=str(Path(tmp) / "out"), lark_cli="lark-cli", write=False, push=False,
+            doc_name="manual_je1000f_us_en_1.0", lang=None, data_root=None,
+            git_bin="git", remote="origin",
+        )
+        base.update(over)
+        return SimpleNamespace(**base)
+
+    def test_baseline_path_emits_actionable_artifacts(self) -> None:
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "docs/_review/JE-1000F/US/page").mkdir(parents=True)
+            out = io.StringIO()
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="Keep this manual handy edited.\n"):
+                with contextlib.redirect_stdout(out):
+                    rc = _run_review_branch_baseline(
+                        self._args(tmp),
+                        resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                        worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-art",
+                        baseline_text="Keep this manual handy.\n",
+                    )
+            self.assertEqual(rc, 0)
+            out_dir = Path(tmp) / "out"
+            # the change-request report (apply-source-table input) and the template-sync
+            # proposal are written — not just the diff report
+            self.assertTrue((out_dir / "cloud_doc_backport_source_table_change_request.json").is_file())
+            self.assertTrue((out_dir / "cloud_doc_backport_template_sync_proposal.json").is_file())
+            self.assertTrue((out_dir / "cloud_doc_backport_source_table_suggestions.json").is_file())
+            payload = self._final_json(out.getvalue())
+            # the JSON points apply-source-table at the change-request report, not the diff report
+            self.assertTrue(payload["source_table_change_request"].endswith("cloud_doc_backport_source_table_change_request.json"))
+            self.assertIn("template_sync_proposal", payload)
+            self.assertNotIn("source_table_report", payload)  # the misleading diff-report alias is gone
+
+    def test_baseline_path_class_t_delta_becomes_proposal(self) -> None:
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "docs/_review/JE-1000F/US/page").mkdir(parents=True)
+            sibling = Path(tmp) / "sibling.rst"
+            sibling.write_text("Shared safety note\n", encoding="utf-8")  # same line as the baseline
+            out = io.StringIO()
+            args = self._args(tmp, sibling=[str(sibling)])
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="Shared safety note revised\n"):
+                with contextlib.redirect_stdout(out):
+                    _run_review_branch_baseline(
+                        args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                        worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-art2",
+                        baseline_text="Shared safety note\n",
+                    )
+            payload = self._final_json(out.getvalue())
+            # the delta's old text is shared with the sibling -> Class T -> a template-sync proposal
+            self.assertGreaterEqual(payload["template_sync_proposals"], 1)
+            proposal = json.loads((Path(tmp) / "out" / "cloud_doc_backport_template_sync_proposal.json").read_text(encoding="utf-8"))
+            self.assertGreaterEqual(proposal["summary"]["proposals"], 1)
 
 
 if __name__ == "__main__":

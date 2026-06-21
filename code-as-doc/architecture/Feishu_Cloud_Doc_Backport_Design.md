@@ -300,6 +300,15 @@ rebuild from sources must:
 Implement as a `rebuild + rediff` extension of `verify-review`: residuals must be
 zero **and** no extra diff may appear.
 
+**Shipped.** `_rebuild_rediff_gate` re-diffs the pre-edit source against the applied
+source and asserts the only changes are the intended Class `R` deltas (no collateral,
+none missing). It gates `PR_READY` in `verify-review`/`run-review` (with an in-memory
+pre-edit baseline so an in-place baseline no longer skips), and it runs in the blessed
+`run-review-branch` baseline path: a per-page collateral change blocks the seed-cursor
+advance and the PR push and exits non-zero. The full "rebuild the rendered doc and
+compare to the accepted cloud-doc" form (vs. the source-level re-diff) remains a
+heavier follow-up.
+
 ### R8 — Prerequisites that make R2/R5 reliable
 
 - a build-time **token/copy resolution map** per target, to recognize Class `D`

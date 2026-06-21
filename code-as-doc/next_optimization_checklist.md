@@ -526,7 +526,7 @@ dry-run boundary; live activation is the operator's, per
 
 - [x] PR F4: Emit `template_sync_proposal` for Class `T` (Workstream Q)
   - Status: `done`
-  - Note: `cloud_doc_backport` now emits `cloud_doc_backport_template_sync_proposal.json/.md` (report-only, `external_write=false`) from `verify-review` and `run-review`, one entry per Class `T` (shared-across-family) delta with the §5.1 R4 contract: target templates (family scope), old→new, evidence, delta hash, and the post-apply rebuild+sync-review step. Backport still writes only Class `R` to `docs/_review/...`; Class `T` is never written there. Tests in `tests/test_template_sync_proposal.py`.
+  - Note: `cloud_doc_backport` now emits `cloud_doc_backport_template_sync_proposal.json/.md` (report-only, `external_write=false`) from `verify-review`, `run-review`, and the blessed `run-review-branch` baseline path, one entry per Class `T` (shared-across-family) delta with the §5.1 R4 contract: target templates (family scope), old→new, evidence, delta hash, and the post-apply rebuild+sync-review step. Backport still writes only Class `R` to `docs/_review/...`; Class `T` is never written there. Tests in `tests/test_template_sync_proposal.py`.
   - Target files:
     - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
     - [`architecture/Feishu_Cloud_Doc_Backport_Design.md`](architecture/Feishu_Cloud_Doc_Backport_Design.md)
@@ -537,7 +537,7 @@ dry-run boundary; live activation is the operator's, per
 
 - [x] PR F5: `rebuild + rediff` idempotency gate (Workstream Q — §5.1 R7)
   - Status: `done`
-  - Note: `_rebuild_rediff_gate` re-diffs the baseline against the edited source and asserts the only changes are the intended `repo_review_text` deltas (no collateral `unexpected`, none `missing`); `build_review_verify_report` attaches the result and `build_review_run_report` requires it for `PR_READY` (verify PASS **and** gate pass). It runs against a distinct baseline snapshot; for run-review's in-place baseline it skips (gate-pass) since the pre-edit text cannot be reconstructed after apply — wiring run-review's in-memory baseline is a follow-up. Tests in `tests/test_rebuild_rediff_gate.py`.
+  - Note: `_rebuild_rediff_gate` re-diffs the baseline against the edited source and asserts the only changes are the intended `repo_review_text` deltas (no collateral `unexpected`, none `missing`); `build_review_verify_report` attaches the result and `build_review_run_report` requires it for `PR_READY` (verify PASS **and** gate pass). It runs against a distinct baseline snapshot, and now also against an **in-memory pre-edit baseline** — `run-review` passes the source it read before applying in place, so the prior in-place skip is closed. It is also wired into the blessed **`run-review-branch` baseline path**: each changed page's source pre→post diff must equal exactly the Class R deltas applied to it, else the seed-cursor advance **and** the PR push are blocked and the run exits non-zero. Tests in `tests/test_rebuild_rediff_gate.py`, `tests/test_cloud_doc_backport.py::RebuildRediffBlessedGateTests`.
   - Target files:
     - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
   - Done when:
