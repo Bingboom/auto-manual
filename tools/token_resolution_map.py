@@ -131,6 +131,11 @@ def classify_data_origin(text: str | None, value_index: dict[str, dict[str, Any]
     Matches the whole normalized text first, then — for a table-row delta — each cell
     / ``<br/>``-joined sub-value, so a ``| value <br/> value | label |`` row resolves
     to its source value (the cloud-doc delta granularity is a whole row, not a bare cell).
+
+    A value that maps to **more than one source row** is marked ``ambiguous`` by
+    ``build_value_index``; it can't pick a unique slot, so it **abstains** (returns None)
+    rather than guess one (e.g. ``12V⎓最大10A`` living in both a port's ``front.label``
+    and ``front.spec`` — auto-resolving to the first would write the wrong slot).
     """
 
     if not value_index:
@@ -138,6 +143,10 @@ def classify_data_origin(text: str | None, value_index: dict[str, dict[str, Any]
     for candidate in _value_candidates(text):
         hit = value_index.get(candidate)
         if hit is not None:
+            if hit.get("ambiguous"):
+                # The matched value is in >1 source row — no unique slot to write. Abstain
+                # (a Class D delta with no source_ref -> apply-source-table skips -> human picks).
+                return None
             # Carry the exact matched value (a bare cell value for a table-row delta,
             # or the whole text for a body-copy/bare match) so the F6 write path can
             # extract the corresponding NEW cell value instead of writing the whole row.

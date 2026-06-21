@@ -119,6 +119,31 @@ class ClassifyDataOriginTests(unittest.TestCase):
         index = {"12V⎓最大10A": {"table": "Spec_Master"}}
         self.assertIsNotNone(classify_data_origin("12V⎓最大10A", index))
 
+    def test_ambiguous_value_abstains(self) -> None:
+        # A value in >1 source row (e.g. a port's front.label AND front.spec both "12V⎓最大10A")
+        # is marked ambiguous by build_value_index — it can't pick a unique slot, so classify
+        # abstains rather than resolving the arbitrary first one (which wrote the wrong slot).
+        ambiguous = {"12V⎓最大10A": {"table": "Spec_Master", "slot_key": "front.spec", "ambiguous": True}}
+        self.assertIsNone(classify_data_origin("12V⎓最大10A", ambiguous))
+        self.assertIsNone(classify_data_origin("| 12V⎓最大10A <br/>12V⎓最大10A | LED 灯按键 |", ambiguous))
+        # a unique (non-ambiguous) value still resolves
+        unique = {"12V⎓最大10A": {"table": "Spec_Master", "slot_key": "front.spec"}}
+        self.assertIsNotNone(classify_data_origin("12V⎓最大10A", unique))
+
+    def test_build_value_index_marks_a_repeated_value_ambiguous(self) -> None:
+        # two source rows (front.label + front.spec) sharing the same value -> ambiguous,
+        # so the end-to-end classify abstains on it.
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "Spec_Master.csv").write_text(
+                "document_key,Row_key,Slot_key,Source_lang,Value_source\n"
+                "JE-1000F_CN,dc12_port,front.label,zh,12V⎓最大10A\n"
+                "JE-1000F_CN,dc12_port,front.spec,zh,12V⎓最大10A\n",
+                encoding="utf-8",
+            )
+            index = build_value_index(Path(tmp), "zh")
+            self.assertTrue(index["12V⎓最大10A"].get("ambiguous"))
+            self.assertIsNone(classify_data_origin("12V⎓最大10A", index))
+
 
 class ClassifyRouteTests(unittest.TestCase):
     def test_data_origin_routes_review_to_source_table_suggestion(self) -> None:
