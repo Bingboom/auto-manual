@@ -1017,6 +1017,7 @@ class ApplySourceTableCliTest(unittest.TestCase):
                     "record_id": "recAAA",
                     "resolution_status": "resolved",
                     "new_text": "DC 12 В",
+                    "new_value": "DC 12 В",
                 },
                 {
                     "delta_hash": "h2",
@@ -1025,6 +1026,7 @@ class ApplySourceTableCliTest(unittest.TestCase):
                     "record_id": "recMCS",
                     "resolution_status": "resolved",
                     "new_text": "n",
+                    "new_value": "n",
                 },
             ],
         }
