@@ -515,7 +515,7 @@ dry-run boundary; live activation is the operator's, per
 
 - [x] PR F3: Family-identical classification (Workstream Q — `R` vs `T` plus scope)
   - Status: `done`
-  - Note: `tools/family_scope.py` (`build_family_index` over sibling sources + `classify_family_scope`) wired into `cloud_doc_backport` alongside the F2 value index. A review-doc prose span identical across the family is routed `needs_human_mapping` with its blast radius (`family_scope.targets`) — the §5.1 R5 intentional-divergence gate — instead of auto-routing; target-local spans stay `repo_review_text`. Siblings are supplied via repeatable `--sibling` (auto family resolution from config is a follow-up). Tests in `tests/test_family_scope.py`.
+  - Note: `tools/family_scope.py` (`build_family_index` over sibling sources + `classify_family_scope`) wired into `cloud_doc_backport` alongside the F2 value index. A review-doc prose span identical across the family is routed `needs_human_mapping` with its blast radius (`family_scope.targets`) — the §5.1 R5 intentional-divergence gate — instead of auto-routing; target-local spans stay `repo_review_text`. Explicit siblings via repeatable `--sibling`; **`run-review-branch` now auto-resolves the `page_shared/<lang>` shared templates as siblings** so the blessed path fires Class T with no manual flags (`--no-auto-sibling` disables; single-region `ja`/`zh` have no shared surface). Tests in `tests/test_family_scope.py`, `tests/test_cloud_doc_backport.py::RunReviewBranchFamilyScopeTests`.
   - Target files:
     - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
     - [`../.agents/skills/manual-revision-backport/scripts/scan_residuals.py`](../.agents/skills/manual-revision-backport/scripts/scan_residuals.py)
