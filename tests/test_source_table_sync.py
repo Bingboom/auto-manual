@@ -41,8 +41,8 @@ def _resolved_request(delta_hash: str = "h1") -> dict:
 
 
 class _FakeTransport:
-    def __init__(self) -> None:
-        self.store: dict = {}
+    def __init__(self, initial: dict | None = None) -> None:
+        self.store: dict = dict(initial or {})
 
     def upsert(self, *, table, record_id, field, value) -> None:
         self.store[(table, record_id, field)] = value
@@ -52,19 +52,29 @@ class _FakeTransport:
 
 
 class _NoOpTransport:
+    """A write that never lands: upsert is a no-op, get returns a fixed value (so the
+    cell reads as the expected old value before the write and unchanged after -> verify_failed)."""
+
+    def __init__(self, value: str = "DC 12 V") -> None:
+        self.value = value
+
     def upsert(self, **_kwargs) -> None:
         pass
 
     def get(self, **_kwargs):
-        return "STALE"
+        return self.value
+
+
+# A cell holding the expected old value, ready to be written.
+_SEED_OLD = {("Spec_Master", "recAAA", "Value_uk"): "DC 12 V"}
 
 
 class _RaisingTransport:
     """upsert raises for one table (e.g. no writable binding), writes others."""
 
-    def __init__(self, *, fail_table: str) -> None:
+    def __init__(self, *, fail_table: str, initial: dict | None = None) -> None:
         self.fail_table = fail_table
-        self.store: dict = {}
+        self.store: dict = dict(initial or {})
 
     def upsert(self, *, table, record_id, field, value) -> None:
         if table == self.fail_table:
@@ -227,7 +237,7 @@ class ApplyTests(unittest.TestCase):
         self.assertEqual(report["applied"][0]["status"], "planned")
 
     def test_write_with_transport_writes_and_verifies(self) -> None:
-        transport = _FakeTransport()
+        transport = _FakeTransport(_SEED_OLD)  # cell currently holds the expected old value
         report = apply_change_requests(
             [_resolved_request()], approved_hashes={"h1"}, transport=transport, write=True
         )
@@ -235,6 +245,26 @@ class ApplyTests(unittest.TestCase):
         self.assertEqual(report["summary"]["written"], 1)
         self.assertTrue(report["applied"][0]["verified"])
         self.assertEqual(transport.store[("Spec_Master", "recAAA", "Value_uk")], "DC 12 В")
+
+    def test_drift_abstains_when_cell_differs_from_old(self) -> None:
+        # the live cell holds neither the expected old nor the new value -> abstain, no clobber
+        transport = _FakeTransport({("Spec_Master", "recAAA", "Value_uk"): "someone else's edit"})
+        report = apply_change_requests(
+            [_resolved_request()], approved_hashes={"h1"}, transport=transport, write=True
+        )
+        self.assertEqual(report["applied"][0]["status"], "drift_abstained")
+        self.assertEqual(report["summary"]["written"], 0)
+        self.assertEqual(report["summary"]["drift_abstained"], 1)
+        self.assertEqual(transport.store[("Spec_Master", "recAAA", "Value_uk")], "someone else's edit")
+
+    def test_idempotent_when_cell_already_holds_new_value(self) -> None:
+        transport = _FakeTransport({("Spec_Master", "recAAA", "Value_uk"): "DC 12 В"})
+        report = apply_change_requests(
+            [_resolved_request()], approved_hashes={"h1"}, transport=transport, write=True
+        )
+        self.assertEqual(report["applied"][0]["status"], "already_applied")
+        self.assertEqual(report["summary"]["written"], 0)
+        self.assertEqual(report["summary"]["already_applied"], 1)
 
     def test_get_verify_failure_is_flagged(self) -> None:
         report = apply_change_requests(
@@ -253,7 +283,13 @@ class ApplyTests(unittest.TestCase):
         # isolated as `error`; the other approved request still writes.
         good = _resolved_request("good")
         bad = {**_resolved_request("bad"), "table": "Localized_Copy"}
-        transport = _RaisingTransport(fail_table="Localized_Copy")
+        transport = _RaisingTransport(
+            fail_table="Localized_Copy",
+            initial={
+                ("Spec_Master", "recAAA", "Value_uk"): "DC 12 V",
+                ("Localized_Copy", "recAAA", "Value_uk"): "DC 12 V",
+            },
+        )
         report = apply_change_requests(
             [good, bad], approved_hashes={"good", "bad"}, transport=transport, write=True
         )

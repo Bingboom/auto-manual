@@ -250,7 +250,7 @@ def plan_apply(change_requests: list[dict[str, Any]], *, approved_hashes: set[st
         if value is None or value == "":
             plan.append({**entry, "action": "skip", "reason": "precise cell value not resolved (abstain)"})
             continue
-        plan.append({**entry, "action": "apply", "value": value})
+        plan.append({**entry, "action": "apply", "value": value, "old_value": request.get("old_value")})
     return plan
 
 
@@ -261,8 +261,14 @@ def apply_change_requests(
     transport: _Transport | None = None,
     write: bool = False,
 ) -> dict[str, Any]:
-    """Apply approved+resolved requests. Dry-run unless write and a transport are
-    given. Each live write is GET-verified after the upsert."""
+    """Apply approved+resolved requests. Dry-run unless write and a transport are given.
+
+    Each live write GET-checks the cell FIRST (drift guard): if it already holds the
+    target value the write is skipped (``already_applied``, idempotent); if it holds
+    anything other than the expected ``old_value`` the request **abstains**
+    (``drift_abstained``) rather than clobber an externally-changed cell; otherwise it
+    upserts and GET-verifies the result.
+    """
     plan = plan_apply(change_requests, approved_hashes=approved_hashes)
     applied: list[dict[str, Any]] = []
     for entry in plan:
@@ -276,15 +282,31 @@ def apply_change_requests(
         # batch nor leave the run half-reported. The bad request is recorded as
         # `error` and the loop continues. (E.g. a Localized_Copy-origin request
         # whose table has no writable binding lands here and is skipped safely.)
+        target = entry["value"]
+        expected_old = entry.get("old_value")
+        try:
+            current_before = transport.get(table=entry["table"], record_id=entry["record_id"], field=entry["field"])
+        except Exception as exc:  # isolate one request's failure from the batch
+            applied.append({**entry, "status": "error", "error": str(exc)})
+            continue
+        if _norm(current_before) == _norm(target):
+            # The cell already holds the target value — idempotent, nothing to write.
+            applied.append({**entry, "status": "already_applied", "verified": True})
+            continue
+        if expected_old is not None and _norm(current_before) != _norm(expected_old):
+            # The live cell drifted from the expected old value (someone else changed it,
+            # or the snapshot is stale) — abstain rather than overwrite. Exact-or-abstain.
+            applied.append({**entry, "status": "drift_abstained", "verified": False, "current": current_before})
+            continue
         try:
             transport.upsert(
-                table=entry["table"], record_id=entry["record_id"], field=entry["field"], value=entry["value"]
+                table=entry["table"], record_id=entry["record_id"], field=entry["field"], value=target
             )
             current = transport.get(table=entry["table"], record_id=entry["record_id"], field=entry["field"])
         except Exception as exc:  # isolate one request's failure from the batch
             applied.append({**entry, "status": "error", "error": str(exc)})
             continue
-        verified = current == entry["value"]
+        verified = _norm(current) == _norm(target)
         applied.append({**entry, "status": "written" if verified else "verify_failed", "verified": verified})
     translation_suggestions = collect_translation_suggestions(change_requests)
     return {
@@ -295,6 +317,8 @@ def apply_change_requests(
             "apply": sum(1 for entry in plan if entry["action"] == "apply"),
             "skip": sum(1 for entry in plan if entry["action"] == "skip"),
             "written": sum(1 for entry in applied if entry.get("status") == "written"),
+            "already_applied": sum(1 for entry in applied if entry.get("status") == "already_applied"),
+            "drift_abstained": sum(1 for entry in applied if entry.get("status") == "drift_abstained"),
             "verify_failed": sum(1 for entry in applied if entry.get("status") == "verify_failed"),
             "error": sum(1 for entry in applied if entry.get("status") == "error"),
             "translation_suggestions": len(translation_suggestions),
