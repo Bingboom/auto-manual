@@ -27,6 +27,12 @@ from typing import Any
 SIDECAR_FILENAME = "source_record_index.json"
 SCHEMA_VERSION = "source-record-index/v1"
 
+# Reserved key under which `normalize_records` stows a row's live Feishu record_id so it
+# **travels with the row through the normalize-time sort** (the row's business key and its
+# record_id must stay together). Not a CSV column — the CSV writers filter to the schema's
+# columns, so it never leaks into the snapshot.
+SOURCE_RECORD_ID_KEY = "__source_record_id__"
+
 # Unit Separator. Unlikely to appear inside a business-key value, so it makes a
 # stable composite-key string for JSON object keys.
 _KEY_SEP = "\x1f"
@@ -152,24 +158,30 @@ def collect_index_rows(
 ) -> dict[str, list[tuple[dict[str, Any], str]]]:
     """Pair normalized rows with their live ``record_id``, keyed by index table.
 
-    Both inputs are keyed by the sync *logical* table name and are positionally
-    aligned (row ``i`` corresponds to raw record ``i``). Raw records without a
-    ``record_id`` contribute an empty id, which ``build_index`` then abstains on.
+    The record_id is read from the row's ``SOURCE_RECORD_ID_KEY`` — which
+    ``normalize_records`` threads onto each row so it **survives the normalize-time
+    sort** (a row's business key and its record_id must stay together; pairing the
+    *sorted* normalized list positionally with the *unsorted* raw records mapped each
+    key to the wrong record). It falls back to positional pairing with ``raw_records``
+    only for rows that do not carry the key (legacy callers / a fetch without ids).
+    Raw records without a ``record_id`` contribute an empty id, which ``build_index``
+    then abstains on.
     """
 
     out: dict[str, list[tuple[dict[str, Any], str]]] = {}
     for logical_name, index_table in INDEXED_LOGICAL_TABLES.items():
         normalized = normalized_rows_by_table.get(logical_name)
-        raws = raw_records_by_table.get(logical_name)
-        if not normalized or not raws:
+        if not normalized:
             continue
+        raws = raw_records_by_table.get(logical_name) or []
         row_filter = TABLE_ROW_FILTERS.get(index_table)
         pairs: list[tuple[dict[str, Any], str]] = []
-        for index in range(min(len(normalized), len(raws))):
-            row = normalized[index]
+        for index, row in enumerate(normalized):
             if row_filter is not None and not row_filter(row):
                 continue
-            record_id = _clean((raws[index] or {}).get("record_id"))
+            record_id = _clean(row.get(SOURCE_RECORD_ID_KEY))
+            if not record_id and index < len(raws):
+                record_id = _clean((raws[index] or {}).get("record_id"))
             pairs.append((row, record_id))
         out[index_table] = pairs
     return out
