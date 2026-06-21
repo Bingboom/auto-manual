@@ -3,7 +3,6 @@ import assert from "node:assert/strict";
 
 import {
   formatAcceptedReply,
-  formatCloudDocBackportResultReply,
   formatFailedReply,
   formatProcessingReply,
 } from "../lib/reply-format.mjs";
@@ -42,38 +41,4 @@ test("formatFailedReply reports failure with the run's reason and next step", ()
   assert.match(text, /缺少 JE-1000F_CN 的规格数据/);
   assert.match(text, /先补齐规格数据再重试/);
   assert.match(text, /record_id: rec_eu_08/);
-});
-
-test("formatCloudDocBackportResultReply reports only manifest evidence", () => {
-  const text = formatCloudDocBackportResultReply({
-    result: "DRY_RUN",
-    mode: "dry-run",
-    source_target: { path: "docs/_review/JE-2000F/EU/page/00_preface.rst" },
-    section_selection: { resolved_title: "document preamble", applied: true },
-    summary: { pr_ready: false, changed: false, review_source_changes: 1, source_table_suggestions: 1 },
-    review_source_changes: [
-      {
-        route_class: "repo_review_text",
-        change_type: "delete",
-        location: { kind: "paragraph", line_no: 7, heading_path: [] },
-        old_text: "**UK ВАЖЛИВО**",
-      },
-    ],
-    source_table_suggestions: [
-      {
-        route_class: "source_table_suggestion",
-        change_type: "insert",
-        location: { kind: "table_row", line_no: 88, heading_path: ["SPECIFICATIONS", "OUTPUT PORTS"] },
-        new_text: "| 1 × USB-C 30W | 30 W max. |",
-      },
-    ],
-  });
-
-  assert.match(text, /scope: docs\/_review\/JE-2000F\/EU\/page\/00_preface\.rst/);
-  assert.match(text, /section: document preamble \(applied=true\)/);
-  assert.match(text, /review_source_changes: 1/);
-  assert.match(text, /UK ВАЖЛИВО/);
-  assert.match(text, /USB-C 30W/);
-  assert.doesNotMatch(text, /AC Output/);
-  assert.doesNotMatch(text, /App Setup/);
 });

@@ -263,29 +263,6 @@ test("answers batch status follow-ups from stored rows", async () => {
   assert.equal(replies[2].text, "https://example.com/fr.docx");
 });
 
-test("requires the cloud-doc backport allowlist (DingTalk env name)", async () => {
-  const replies = [];
-  let backportCalled = false;
-  const handler = createMessageHandler({
-    config: baseConfig({ cloudDocBackportAllowedSenderIds: ["staff_other"] }),
-    stateStore: createMemoryStateStore(),
-    repoControl: {
-      async runCloudDocBackportReview() {
-        backportCalled = true;
-      },
-    },
-    imClient: captureClient(replies),
-    logger: silentLogger,
-  });
-
-  await handler.handleMessageEvent(
-    baseEvent("cloud-doc backport https://test.feishu.cn/wiki/MbI4w8xLyi8NYnkoe4acAs9Hnvc docs/_review/JE-2000F/EU/page/00_preface.rst")
-  );
-  assert.equal(backportCalled, false);
-  assert.equal(replies.length, 1);
-  assert.match(replies[0].text, /DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS/);
-});
-
 test("stores then executes a confirmed publish", async () => {
   const replies = [];
   let remembered = null;

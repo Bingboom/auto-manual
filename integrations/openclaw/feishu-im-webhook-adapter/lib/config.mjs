@@ -66,24 +66,6 @@ export function loadAdapterConfig() {
     batchStatusTimeoutSeconds: integerEnv("FEISHU_IM_BATCH_STATUS_TIMEOUT_SECONDS", 60),
     batchStatusPollSeconds: integerEnv("FEISHU_IM_BATCH_STATUS_POLL_SECONDS", 5),
     manualIndexLimit: integerEnv("FEISHU_IM_MANUAL_INDEX_LIMIT", 10),
-    cloudDocBackportAllowedSenderIds: listEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS"),
-    cloudDocBackportAllowWrite: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE", false),
-    cloudDocBackportAllowPrCreate: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE", false),
-    // F6 Bitable source-table writes are gated SEPARATELY from _review writes
-    // (wider blast radius, no git revert). Defaults OFF: an approve command runs
-    // dry-run until the operator deliberately enables this.
-    cloudDocBackportAllowSourceWrite: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE", false),
-    // Writable Feishu bindings per change-request table, comma-separated
-    // `TABLE=BASE_TOKEN:TABLE_ID` (e.g. `Manual_Copy_Source=bascn…:tbl…`).
-    cloudDocBackportSourceTableBindings: listEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_SOURCE_TABLE_BINDINGS"),
-    // Translation_Memory writes are gated SEPARATELY again — TM is shared across
-    // every model, the widest blast radius. Default OFF.
-    cloudDocBackportAllowTmWrite: booleanEnv("FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_TM_WRITE", false),
-    // The single TM binding `BASE_TOKEN:TABLE_ID`.
-    cloudDocBackportTmBinding: String(process.env.FEISHU_IM_CLOUD_DOC_BACKPORT_TM_BINDING || "").trim(),
-    cloudDocBackportApprovalLog:
-      String(process.env.FEISHU_IM_CLOUD_DOC_BACKPORT_APPROVAL_LOG || "").trim() ||
-      path.join(repoRoot, "reports", "cloud_doc_backport", "approval_audit.jsonl"),
     stateFile:
       String(process.env.FEISHU_IM_STATE_FILE || "").trim() ||
       path.resolve(adapterRoot, "runtime", "feishu-im-webhook-adapter-state.json"),

@@ -33,7 +33,6 @@ Read alongside:
 
 - `lark-cli` configured with the bot identity (`--as bot`) and Feishu app
   permissions for the target base/tables.
-- An operator allowlist for IM approvals (the senders allowed to approve writes).
 - A review-doc backport run has produced its reports (from
   `python tools/cloud_doc_backport.py run-review ... --data-root data/phase2 --lang <lang> --sibling <...>`),
   including `cloud_doc_backport_source_table_change_request.json` (F6) and a
@@ -71,8 +70,7 @@ human-approved, exact-or-abstain.
 **Do:** the transport (`SourceTableLarkTransport` in
 [`../../tools/feishu_record_transport.py`](../../tools/feishu_record_transport.py))
 and the executor are built; the CLI entrypoint is **`cloud_doc_backport.py
-apply-source-table`** (and the Feishu IM `approve`/`reject` commands route to it —
-see [`im_backport_approval_runbook.md`](im_backport_approval_runbook.md)):
+apply-source-table`**:
 
 ```
 # dry-run plan (default; no writes, no bindings needed):
