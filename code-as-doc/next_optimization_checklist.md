@@ -547,14 +547,13 @@ dry-run boundary; live activation is the operator's, per
 
 - [x] PR F6: Approval-gated source-table-sync (Workstream Q — §5.1 R9; depends on F1)
   - Status: `done` (to the dry-run/fixture boundary; live activation operator-gated)
-  - Note: `tools/source_table_sync.py` — `build_change_requests` turns Class D deltas into change requests (record_id resolved via the F1 sidecar, exact-or-abstain); `plan_apply`/`apply_change_requests` enforce the R9 gates (human approval required, exact-or-abstain skip, content-field only, delta-hash idempotency, GET-verify-after-write) with an injected transport — dry-run by default. `run-review` now emits `cloud_doc_backport_source_table_change_request.json`. **Operator follow-up (live):** wire `lark-cli --as bot` as the transport, the Feishu IM approve/reject gate (allowlist), and a populated `record_id` sidecar; an agent may propose/execute but never approve. Tests in `tests/test_source_table_sync.py`.
+  - Note: `tools/source_table_sync.py` — `build_change_requests` turns Class D deltas into change requests (record_id resolved via the F1 sidecar, exact-or-abstain); `plan_apply`/`apply_change_requests` enforce the R9 gates (human approval required, exact-or-abstain skip, content-field only, delta-hash idempotency, GET-verify-after-write) with an injected transport — dry-run by default. `run-review` now emits `cloud_doc_backport_source_table_change_request.json`. **Operator follow-up (live):** wire `lark-cli --as bot` as the transport and a populated `record_id` sidecar; the operator approves by deliberately running `apply-source-table --write` (the cloud-doc-backport IM trigger was removed 2026-06-21, #453 — backport is CLI-only). An agent may propose/execute but never approve. Tests in `tests/test_source_table_sync.py`.
   - Target files:
     - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
     - `tools/source_table_sync.py` (new executor)
-    - [`../integrations/openclaw/feishu-im-webhook-adapter`](../integrations/openclaw/feishu-im-webhook-adapter)
   - Done when:
     - backport emits a `source_table_change_request` for Class `D` deltas (table, exact `record_id` from F1, field, old→new, scope, blast radius, evidence, delta hash)
-    - a human approves/rejects via a Feishu IM message from an allowlisted sender; an agent may propose/execute but never approve
+    - a human approves by deliberately running `apply-source-table --write` with explicit `--table-binding`s; an agent may propose/execute but never approve
     - the executor applies only approved requests via `lark-cli --as bot`, with GET-verify-after-write and delta-hash idempotency; ambiguous/duplicate matches abstain
     - content fields only; table schema stays a separate operator-gated action; the change-request plus approval log is retained as the audit trail
 

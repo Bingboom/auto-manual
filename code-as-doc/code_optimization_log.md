@@ -678,3 +678,17 @@ Why it mattered:
 
 - visible signal copy now follows the same source-language table plus Translation Memory flow as LCD / Symbols page chrome and Product overview labels
 - the warning/caution/note/tip table can render localized dark lockups without hardcoded banner images or per-language labels in code
+
+## 42. 2026-06-21: Backport Surface Becomes CLI-Only (Drop OpenClaw/IM Backport)
+
+Main outcomes:
+
+- removed the entire cloud-doc backport surface from the Feishu and DingTalk IM adapters — the action module, `repo-control` methods, `message-handler` branches, `reply-format` formatters, config env, and tests; the adapters keep only queue / status / manual-index actions (#453)
+- deleted `code-as-doc/dev/im_backport_approval_runbook.md` and trimmed the IM-ingress (§3), IM-approval-entry (§5.1 R9), and P4 OpenClaw-trigger sections of [`architecture/Feishu_Cloud_Doc_Backport_Design.md`](architecture/Feishu_Cloud_Doc_Backport_Design.md); de-IM'd `README.md`, `user-guide/hello_auto-doc.md`, `user-guide/quick_start_guide.md`, `build_doc_guide.md`, the activation checklist, the edit-permission setup, and the QC requirements
+- dropped the three dead `FEISHU_IM_CLOUD_DOC_BACKPORT_*` variables from the hello-docs binding scripts and reframed [`AGENTS.md`](../AGENTS.md) §3 as Claude Code / Codex / CLI only, not BlockClaw / IM
+- realigned the Workstream Q and Milestone F wording: source-table-sync approval is now the operator deliberately running `apply-source-table --write` with explicit `--table-binding`s, not a Feishu IM `approve`/`reject` message
+
+Why it mattered:
+
+- in live use the chat LLM's target-resolution was too uncertain — a CN-doc backport ask resolved to the wrong (EU) review branch and reported 379 phantom cross-language diffs against a doc nobody had edited
+- the deterministic [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py) CLI (unchanged) resolves the review branch from the build table, so backport stays a confident, reviewable operation; the decision keeps high-risk, strong-determinism writes on the CLI execution plane instead of the LLM chat control plane
