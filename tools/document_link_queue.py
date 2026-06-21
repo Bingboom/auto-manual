@@ -285,7 +285,13 @@ def document_key_from_document_id(*, document_id: str, lang: str, version: str) 
         lang_suffixes.add("br")
     for lang_suffix in sorted(lang_suffixes, key=len, reverse=True):
         if lang_suffix and candidate.casefold().endswith("_" + lang_suffix):
-            candidate = candidate[: -(len(lang_suffix) + 1)]
+            stripped = candidate[: -(len(lang_suffix) + 1)]
+            # Only strip the language segment when a <MODEL>_<REGION> key remains
+            # (e.g. JE-1000F_US_en -> JE-1000F_US). For a region whose token IS the
+            # language (pt-BR: JE-1000F_pt-BR), stripping it would destroy the region
+            # and yield a region-less "JE-1000F", so keep the key intact.
+            if looks_like_explicit_document_key(stripped):
+                candidate = stripped
             break
     return candidate.strip()
 
