@@ -87,21 +87,8 @@ operator steps.
 `open-pr` is the separate operator-gated PR step: it only accepts a `PR_READY`
 run manifest, refuses unrelated working-tree changes, commits the changed
 `docs/_review/...rst` source, and opens a draft PR with the manifest summary.
-
-The Feishu IM adapter can also trigger the same review backport runner from a
-typed message, gated by `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`:
-
-```text
-cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst
-cloud-doc backport <Feishu cloud-doc URL>
-cloud-doc backport-pr reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json
-```
-
-The Feishu IM adapter may omit `docs/_review/...rst` only when it can infer a
-single review source from a message/cloud-doc title target such as
-`manual_je2000f_eu_en_0.7` and the current checkout has exactly one safe
-candidate or one unique message-hint match. Ambiguous review bundles reply with
-candidate paths instead of guessing.
+Cloud-doc backport runs from Claude Code / Codex / a terminal only; it is not a
+Feishu IM / BlockClaw command.
 
 For the full review-first flow, queue-driven Draft/Publish workers, matrix runners, and every command flag, see [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For the editing-surface and source-of-truth rules, see [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) and [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md). For BlockClaw / Feishu IM behavior, including batch document-link replies and read-only `发布文档管理` manual-index lookups, see [`integrations/openclaw/feishu-im-webhook-adapter/README.md`](integrations/openclaw/feishu-im-webhook-adapter/README.md).
 

@@ -5,22 +5,10 @@ import {
   shouldIgnoreMessageEvent,
 } from "./dingtalk-events.mjs";
 import {
-  cloudDocBackportSenderAllowed,
-  parseCloudDocBackportPrRequest,
-  parseCloudDocBackportRequest,
-} from "./cloud-doc-backport-action.mjs";
-import {
   formatAcceptedReply,
   formatBatchAcceptedReply,
   formatBatchCompletionReply,
   formatBatchStatusReply,
-  formatCloudDocBackportAcceptedReply,
-  formatCloudDocBackportDeniedReply,
-  formatCloudDocBackportNeedInputReply,
-  formatCloudDocBackportPrAcceptedReply,
-  formatCloudDocBackportPrNeedInputReply,
-  formatCloudDocBackportPrResultReply,
-  formatCloudDocBackportResultReply,
   formatCompletionReply,
   formatExecutionErrorReply,
   formatFailedReply,
@@ -318,137 +306,6 @@ export function createMessageHandler({ config, stateStore, repoControl, imClient
       }
       await react(messageEvent, latest.failures.length ? "error" : "completed");
       await replyBatchStatus(messageEvent, latest);
-      return;
-    }
-
-    const cloudDocBackportPrRequest = parseCloudDocBackportPrRequest(normalizedMessage.normalizedText);
-    if (cloudDocBackportPrRequest.matched) {
-      if (!cloudDocBackportSenderAllowed(messageEvent.senderId, config)) {
-        await react(messageEvent, "needs_input");
-        await imClient.replyTextMessage(
-          messageEvent,
-          formatCloudDocBackportDeniedReply(
-            "sender is not in DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS",
-            localProfile
-          )
-        );
-        return;
-      }
-      if (cloudDocBackportPrRequest.missing.length) {
-        await react(messageEvent, "needs_input");
-        await imClient.replyTextMessage(
-          messageEvent,
-          formatCloudDocBackportPrNeedInputReply(cloudDocBackportPrRequest, localProfile)
-        );
-        return;
-      }
-      if (!config.cloudDocBackportAllowPrCreate) {
-        await react(messageEvent, "needs_input");
-        await imClient.replyTextMessage(
-          messageEvent,
-          formatCloudDocBackportDeniedReply(
-            "draft PR creation is disabled; set DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE=true to allow explicit backport-pr requests",
-            localProfile
-          )
-        );
-        return;
-      }
-      await react(messageEvent, "accepted");
-      await imClient.replyTextMessage(
-        messageEvent,
-        formatCloudDocBackportPrAcceptedReply(cloudDocBackportPrRequest, localProfile)
-      );
-      try {
-        const prResult = await repoControl.openCloudDocBackportPr(cloudDocBackportPrRequest);
-        await react(messageEvent, "completed");
-        await imClient.replyTextMessage(
-          messageEvent,
-          formatCloudDocBackportPrResultReply(prResult, localProfile)
-        );
-      } catch (error) {
-        logger.error?.("cloud-doc backport PR creation failed", error);
-        await react(messageEvent, "error");
-        await imClient.replyTextMessage(messageEvent, formatExecutionErrorReply(error, localProfile));
-      }
-      return;
-    }
-
-    let cloudDocBackportRequest = parseCloudDocBackportRequest(normalizedMessage.normalizedText);
-    if (cloudDocBackportRequest.matched) {
-      if (!cloudDocBackportSenderAllowed(messageEvent.senderId, config)) {
-        await react(messageEvent, "needs_input");
-        await imClient.replyTextMessage(
-          messageEvent,
-          formatCloudDocBackportDeniedReply(
-            "sender is not in DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS",
-            localProfile
-          )
-        );
-        return;
-      }
-      if (
-        cloudDocBackportRequest.missing.includes("docs/_review/... .rst source path") &&
-        !cloudDocBackportRequest.missing.includes("Feishu cloud-doc URL") &&
-        typeof repoControl.inferCloudDocBackportSource === "function"
-      ) {
-        let sourceInference;
-        try {
-          sourceInference = await repoControl.inferCloudDocBackportSource(cloudDocBackportRequest);
-        } catch (error) {
-          logger.error?.("cloud-doc backport source inference failed", error);
-          sourceInference = {
-            status: "needs_input",
-            reason: "source_inference_failed",
-            message: error?.message || String(error),
-          };
-        }
-        if (sourceInference?.status === "resolved" && sourceInference.sourcePath) {
-          cloudDocBackportRequest = {
-            ...cloudDocBackportRequest,
-            sourcePath: sourceInference.sourcePath,
-            sourceInference,
-            missing: cloudDocBackportRequest.missing.filter((item) => item !== "docs/_review/... .rst source path"),
-          };
-        } else {
-          cloudDocBackportRequest = {
-            ...cloudDocBackportRequest,
-            sourceInference,
-          };
-        }
-      }
-      if (cloudDocBackportRequest.missing.length) {
-        await react(messageEvent, "needs_input");
-        await imClient.replyTextMessage(
-          messageEvent,
-          formatCloudDocBackportNeedInputReply(cloudDocBackportRequest, localProfile)
-        );
-        return;
-      }
-      if (cloudDocBackportRequest.write && !config.cloudDocBackportAllowWrite) {
-        await react(messageEvent, "needs_input");
-        await imClient.replyTextMessage(
-          messageEvent,
-          formatCloudDocBackportDeniedReply(
-            "write mode is disabled; set DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true to allow explicit --write requests",
-            localProfile
-          )
-        );
-        return;
-      }
-      await react(messageEvent, "accepted");
-      await imClient.replyTextMessage(
-        messageEvent,
-        formatCloudDocBackportAcceptedReply(cloudDocBackportRequest, localProfile)
-      );
-      try {
-        const runResult = await repoControl.runCloudDocBackportReview(cloudDocBackportRequest);
-        await react(messageEvent, runResult?.result === "FAIL" ? "error" : "completed");
-        await imClient.replyTextMessage(messageEvent, formatCloudDocBackportResultReply(runResult, localProfile));
-      } catch (error) {
-        logger.error?.("cloud-doc backport failed", error);
-        await react(messageEvent, "error");
-        await imClient.replyTextMessage(messageEvent, formatExecutionErrorReply(error, localProfile));
-      }
       return;
     }
 

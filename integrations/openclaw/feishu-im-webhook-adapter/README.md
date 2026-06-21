@@ -27,29 +27,11 @@ Current scope:
 - batch `build_draft_package` when the message names a model, market, and manual copy or config scope, such as `输出JE-1000F的所有欧规说明书文案`, `构建JE-1000F的所有欧规说明书文案`, `基于配置构建JE-1000F的欧规`, or the implicit-all form `构建JE-1000F的欧规说明书文案`; if no market is named, phrases such as `构建JE-1000F说明书文案` use a model-wide `Task_id` prefix and match every triggered Build Draft Package row for that model
 - read-only manual-index lookups from the Feishu Base table `发布文档管理`; messages such as `查 JE-2000F 的说明书链接`, `查询各产品的说明书`, or `获取说明书总览信息` call `build.py manual-index-query` before queue resolution and never dispatch builds
 - `publish` with explicit confirmation
-- `cloud-doc backport` for accepted Feishu cloud-doc review revisions, gated by
-  `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`; the message must include one
-  Feishu cloud-doc link plus an explicit `docs/_review/...rst` source path
-- `cloud-doc approve <run-id> <delta_hash> …` / `cloud-doc reject <run-id> <delta_hash> …`
-  to approve/reject **F6 source-table (Bitable) writes** of reviewer-confirmed
-  Class D values, gated by `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS` and the
-  separate `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE` flag (see the runbook
-  `code-as-doc/dev/im_backport_approval_runbook.md`)
 
 Current limitations:
 
 - expects the callback security mode and runtime env to stay explicit
 - uses the repo-local `build.py` CLI and the existing OpenClaw/GitHub dispatch path
-- cloud-doc backport messages run `tools/cloud_doc_backport.py run-review`
-  locally and reply with report paths / `PR_READY`
-- cloud-doc backport PR messages call `tools/cloud_doc_backport.py open-pr`
-  only after an explicit `backport-pr` message and the PR-create env gate; they
-  still do not write Feishu source tables
-- cloud-doc `approve`/`reject` messages call `tools/cloud_doc_backport.py
-  apply-source-table`; **source-table writes default to dry-run** and only write
-  Bitable when `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE=true` and the
-  approved request resolves to an exact `record_id` with a configured table
-  binding — human approval is always mandatory and the agent never approves
 
 ## Environment
 
@@ -78,24 +60,6 @@ Optional:
 - `FEISHU_MANUAL_INDEX_TABLE_ID`; optional override for the manual-index table; defaults to `tbl1ypQJJPbKostu`
 - `FEISHU_MANUAL_INDEX_VIEW_ID`; optional override for the manual-index view; defaults to `vewytqcvDc`, preserving the table's visible-record scope
 - `FEISHU_MANUAL_INDEX_IDENTITY`; optional `user` / `bot` override; defaults to `FEISHU_PHASE2_IDENTITY` or `user`
-- `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`; comma-separated Feishu
-  `open_id` allowlist for cloud-doc backport messages, or `*` for local smoke
-- `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE`; defaults to `false`; when true,
-  an allowed sender can include `--write` to patch guarded `_review` prose and
-  run residual verification
-- `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE`; defaults to `false`; when
-  true, an allowed sender can send a separate `cloud-doc backport-pr ...`
-  message to create a draft PR from a `PR_READY` run manifest
-- `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE`; defaults to `false`; gates
-  **F6 Bitable source-table writes** SEPARATELY from `_review` writes (wider blast
-  radius, no git revert). When false, `cloud-doc approve` runs a dry-run plan;
-  when true, approved+resolved requests are written via the explicit bindings
-- `FEISHU_IM_CLOUD_DOC_BACKPORT_SOURCE_TABLE_BINDINGS`; comma-separated
-  `TABLE=BASE_TOKEN:TABLE_ID` writable bindings per change-request table (e.g.
-  `Manual_Copy_Source=bascn…:tbl…`); required (per table) for live source writes
-- `FEISHU_IM_CLOUD_DOC_BACKPORT_APPROVAL_LOG`; append-only JSONL audit of every
-  approve/reject (approver, timestamp, decision, run-id, hashes, result);
-  defaults to `reports/cloud_doc_backport/approval_audit.jsonl`
 - `FEISHU_IM_STATE_FILE`
 - `FEISHU_IM_LOCAL_PROFILE_DIR` or `OPENCLAW_LOCAL_PROFILE_DIR`
 - `FEISHU_IM_DISABLE_LOCAL_PROFILE` or `OPENCLAW_DISABLE_LOCAL_PROFILE`
@@ -225,46 +189,6 @@ cancel each other while they are pending.
 `最新` does not collapse batch Draft requests by `Document_Key`; the trigger
 checkbox remains the eligibility gate for each language row.
 `是否强制刷新数据` remains a build-time row input read by `process-build-queue`.
-
-Cloud-doc review backport messages bypass the queue resolver only after a typed
-request is detected. Use this shape:
-
-```text
-cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst
-cloud-doc backport <Feishu cloud-doc URL>
-cloud-doc backport-pr reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json
-```
-
-The source path is optional only for the IM adapter. When omitted, the adapter
-extracts a target hint from the message text or cloud-doc title, for example
-`manual_je2000f_eu_en_0.7`, then looks under the current checkout's
-`docs/_review/<model>/<region>/`. It runs only when there is one safe source
-candidate or one unique message-hint match; otherwise it replies with candidate
-paths and asks for the explicit `docs/_review/...rst` source.
-
-The default mode is dry-run: the adapter calls
-`python tools/cloud_doc_backport.py run-review ...`, writes
-`cloud_doc_backport_report.*`, `cloud_doc_backport_apply.*`, and
-`cloud_doc_backport_run.*` under `reports/cloud_doc_backport/<run-id>/`, writes
-`cloud_doc_backport_source_table_suggestions.*` for report-only data-like
-deltas, and replies with the manifest/report paths plus
-`source_table_suggestions`. The run is source-scoped: it reports only evidence
-from the chosen `docs/_review/...rst` file and the matched cloud-doc section. For
-headingless `00_preface.rst` pages, the runner automatically compares only the
-cloud document preamble before the first heading, so later sections such as
-Safety, Symbols, or App Setup cannot be misreported as preface residuals. The
-chat reply includes the source scope, matched section, and a short
-manifest-backed evidence list; it must not invent a broader reviewed/backfill
-checklist. If the message includes `--write`, the adapter refuses it unless
-`FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE=true`; write mode still only patches
-guarded review prose and reports source-table suggestions without writing Feishu
-source tables.
-After a write run replies `PR_READY`, the operator can send the separate
-`cloud-doc backport-pr .../cloud_doc_backport_run.json` message. The adapter
-refuses that request unless `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE=true`;
-the helper checks the manifest, refuses unrelated working-tree changes, commits
-only the changed `docs/_review/...rst` source, and opens a draft PR. Local
-`reports/cloud_doc_backport/...` files stay evidence and are not committed.
 
 Freshness fields come from `build.py queue-query --fresh-since ...` and are
 included in Document_link JSON rows as `freshness_status`, `result_built_at`,

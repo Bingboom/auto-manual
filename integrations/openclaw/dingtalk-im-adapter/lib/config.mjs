@@ -78,9 +78,6 @@ export function loadAdapterConfig() {
     batchStatusTimeoutSeconds: integerEnv("DINGTALK_IM_BATCH_STATUS_TIMEOUT_SECONDS", 60),
     batchStatusPollSeconds: integerEnv("DINGTALK_IM_BATCH_STATUS_POLL_SECONDS", 5),
     manualIndexLimit: integerEnv("DINGTALK_IM_MANUAL_INDEX_LIMIT", 10),
-    cloudDocBackportAllowedSenderIds: listEnv("DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS"),
-    cloudDocBackportAllowWrite: booleanEnv("DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE", false),
-    cloudDocBackportAllowPrCreate: booleanEnv("DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE", false),
     stateFile:
       String(process.env.DINGTALK_IM_STATE_FILE || "").trim() ||
       path.resolve(adapterRoot, "runtime", "dingtalk-im-adapter-state.json"),

@@ -102,8 +102,8 @@ lark-cli api GET "/open-apis/drive/v1/permissions/<doc_token>/members" \
 ```
 
 Then open the registered doc as the operator — it should be **editable**, and no 副本
-is needed. New builds will auto-share going forward, and `cloud-doc backport`
-resolves the doc by URL (no `--doc-name` workaround).
+is needed. New builds will auto-share going forward, and `tools/cloud_doc_backport.py`
+resolves the doc by URL.
 
 ## 7. Why nothing is hardcoded
 
@@ -116,4 +116,4 @@ operator identity. The mirror configures its own.
 
 - Executor: [`../../tools/queue_cloud_doc_finalize.py`](../../tools/queue_cloud_doc_finalize.py)
 - Build flow context: [`../build_doc_guide.md`](../build_doc_guide.md)
-- Backport interaction (why URL resolution depends on this): [`im_backport_approval_runbook.md`](im_backport_approval_runbook.md)
+- Backport interaction (why URL resolution depends on this): [`../architecture/Feishu_Cloud_Doc_Backport_Design.md`](../architecture/Feishu_Cloud_Doc_Backport_Design.md)

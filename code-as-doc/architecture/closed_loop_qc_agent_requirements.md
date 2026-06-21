@@ -176,7 +176,7 @@ The build that produces the Word is **independent** of QC. QC is a **non-blockin
 | `tools/content_lint.py` (PR #335) | QC base A engine |
 | `tools/cloud_doc_backport.py` (shipped) | QC base B engine — **deterministic** diff → guarded source mapping → PR. (The `manual-revision-backport` skill was the original-design backport; the shipped tool is deterministic.) |
 | [`phase2_source_tables_reference.md`](phase2_source_tables_reference.md) | the map for "where does this revision map to" |
-| `integrations/openclaw/feishu-im-webhook-adapter` | **trigger + dispatch** — parses the `cloud-doc backport` IM message and runs the CLI (#353); opens the draft PR (#354) |
+| Claude Code / Codex / terminal | **trigger** — an operator runs `cloud_doc_backport.py run-review-branch` directly. (The Feishu IM trigger #353/#354 was removed 2026-06-21: chat LLM target-resolution was too uncertain.) |
 | **deterministic CLIs** (`cloud_doc_backport.py` + `content_lint.py`) | the **shipped** executors. A standing LLM agent was **not built** — see the reconciliation note. |
 | [`spec_overview_value_dedup_proposal.md`](spec_overview_value_dedup_proposal.md) | removes the drift class structurally (fewer findings) |
 | `docx-highlight-changes` skill | optional output-marking |

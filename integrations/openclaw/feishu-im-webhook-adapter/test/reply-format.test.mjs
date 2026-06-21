@@ -3,8 +3,6 @@ import assert from "node:assert/strict";
 
 import {
   formatAcceptedReply,
-  formatCloudDocBackportApprovalResultReply,
-  formatCloudDocBackportResultReply,
   formatFailedReply,
   formatProcessingReply,
 } from "../lib/reply-format.mjs";
@@ -43,82 +41,4 @@ test("formatFailedReply reports failure with the run's reason and next step", ()
   assert.match(text, /缺少 JE-1000F_CN 的规格数据/);
   assert.match(text, /先补齐规格数据再重试/);
   assert.match(text, /record_id: rec_eu_08/);
-});
-
-test("formatCloudDocBackportResultReply reports only manifest evidence", () => {
-  const text = formatCloudDocBackportResultReply({
-    result: "DRY_RUN",
-    mode: "dry-run",
-    source_target: { path: "docs/_review/JE-2000F/EU/page/00_preface.rst" },
-    section_selection: { resolved_title: "document preamble", applied: true },
-    summary: { pr_ready: false, changed: false, review_source_changes: 1, source_table_suggestions: 1 },
-    review_source_changes: [
-      {
-        route_class: "repo_review_text",
-        change_type: "delete",
-        location: { kind: "paragraph", line_no: 7, heading_path: [] },
-        old_text: "**UK ВАЖЛИВО**",
-      },
-    ],
-    source_table_suggestions: [
-      {
-        route_class: "source_table_suggestion",
-        change_type: "insert",
-        location: { kind: "table_row", line_no: 88, heading_path: ["SPECIFICATIONS", "OUTPUT PORTS"] },
-        new_text: "| 1 × USB-C 30W | 30 W max. |",
-      },
-    ],
-  });
-
-  assert.match(text, /scope: docs\/_review\/JE-2000F\/EU\/page\/00_preface\.rst/);
-  assert.match(text, /section: document preamble \(applied=true\)/);
-  assert.match(text, /review_source_changes: 1/);
-  assert.match(text, /UK ВАЖЛИВО/);
-  assert.match(text, /USB-C 30W/);
-  assert.doesNotMatch(text, /AC Output/);
-  assert.doesNotMatch(text, /App Setup/);
-});
-
-test("formatCloudDocBackportApprovalResultReply surfaces translation suggestions", () => {
-  const text = formatCloudDocBackportApprovalResultReply({
-    external_write: false,
-    run_id: "feishu-im-run-1",
-    summary: { apply: 0, skip: 1, written: 0, verify_failed: 0, error: 0, translation_suggestions: 1 },
-    applied: [],
-    translation_suggestions: [
-      { delta_hash: "t1", copy_key: "warning.intro", lang: "it", source_lang: "en", old_text: "Vecchio", new_text: "Nuovo" },
-    ],
-  });
-  assert.match(text, /translation_suggestions: 1/);
-  assert.match(text, /warning\.intro/);
-  assert.match(text, /Nuovo/);
-  assert.match(text, /Translation_Memory/);
-});
-
-test("formatCloudDocBackportApprovalResultReply surfaces translation-memory write results", () => {
-  const text = formatCloudDocBackportApprovalResultReply({
-    external_write: true,
-    run_id: "feishu-im-run-1",
-    summary: { apply: 0, skip: 1, written: 0, verify_failed: 0, error: 0 },
-    applied: [],
-    translation_suggestions: [{ delta_hash: "t1", copy_key: "warning.intro", lang: "it", old_text: "Vecchio", new_text: "Nuovo" }],
-    translation_apply: {
-      external_write: true,
-      summary: { apply: 1, skip: 0, written: 1, already: 0, verify_failed: 0, error: 0 },
-    },
-  });
-  assert.match(text, /tm_writes: write/);
-  assert.match(text, /written 1/);
-});
-
-test("formatCloudDocBackportApprovalResultReply nudges to enable TM write in dry-run", () => {
-  const text = formatCloudDocBackportApprovalResultReply({
-    external_write: false,
-    run_id: "r",
-    summary: { apply: 0, skip: 0 },
-    applied: [],
-    translation_apply: { external_write: false, summary: { apply: 2, skip: 0, written: 0 } },
-  });
-  assert.match(text, /tm_writes: dry-run/);
-  assert.match(text, /ALLOW_TM_WRITE/);
 });

@@ -58,7 +58,7 @@ be forced into the QC-agent requirements.
 
 | Type | Typical input | Primary source target | Bitable behavior | Output |
 | --- | --- | --- | --- | --- |
-| Review Doc Backport | In-review Feishu cloud doc generated from a target manual | `docs/_review/<model>/<region>/...` for target-specific repo text | Approval-gated write via source-table-sync (human IM approval, §5.1 R9), then `sync-review` | PR for repo review files; approved source-table change requests |
+| Review Doc Backport | In-review Feishu cloud doc generated from a target manual | `docs/_review/<model>/<region>/...` for target-specific repo text | Approval-gated write via source-table-sync (human approval, §5.1 R9), then `sync-review` | PR for repo review files; approved source-table change requests |
 | Template Doc Backport | Feishu cloud doc intentionally bound to one or more template files | `docs/templates/...` and related recipes/configs | Usually out of scope; data-looking deltas are flagged | PR for template source + unmapped/flagged report |
 
 ### 2.1 Review Doc Backport
@@ -128,30 +128,18 @@ Expected output:
 - A flagged list for generated/data-like deltas that should not become template
   prose.
 
-## 3. Feishu Message Contract
+## 3. Input Contract
 
-The first discriminator is the operator message, not the document contents.
+The input is a CLI invocation, not a chat message. The blessed entrypoint is
+`tools/cloud_doc_backport.py run-review-branch --doc-name <doc name> --cloud-doc <url>`
+(see `AGENTS.md` §3): it resolves the review branch from the build table and runs
+in a sparse worktree. The legacy single-page `run-review --doc-url ... --source-path
+docs/_review/...rst` form remains for one-off inspection.
 
-Recommended forms:
-
-```text
-云文档回填 review
-doc: <Feishu cloud doc URL>
-target: JE-1000F_US
-lang: en
-git_ref: review/JE-1000F-US-copy
-baseline: <optional baseline id/path>
-```
-
-```text
-云文档回填 template
-doc: <Feishu cloud doc URL>
-template: docs/templates/page_us-en/03_product_overview_placeholder.rst
-baseline: <optional baseline id/path>
-```
-
-The OpenClaw/Feishu adapter may later accept natural language, but the resolved
-action must normalize to one of these typed contracts before execution.
+Backport is **not** an IM / BlockClaw command. An IM trigger was shipped (P4 below)
+and removed 2026-06-21 — LLM target-resolution in chat proved too uncertain (it
+substituted the wrong review branch), so backport runs only from Claude Code /
+Codex / a terminal.
 
 ## 4. Extraction And Normalization
 
@@ -336,9 +324,10 @@ revert. Content writes are therefore the most strongly gated path.
   `source_table_change_request`: table, exact `record_id`, field, `old` → `new`
   value, model/region/language scope, **blast radius (every target that shares the
   row)**, evidence, and a stable delta hash.
-- **Approval entry: Feishu IM.** An allowlisted operator approves/rejects specific
-  `delta_hash`es with `cloud-doc approve <run-id> <hash…>` / `reject …`, reusing the
-  existing OpenClaw/Feishu IM control plane (2026-06-18 decision). The approval is
+- **Approval entry: operator CLI.** The operator reviews the emitted
+  `source_table_change_request`s and applies the approved ones by running
+  `tools/cloud_doc_backport.py apply-source-table --write` with explicit
+  `--table-binding`s — deliberately running it *is* the approval. The approval is
   recorded (approver, timestamp, request hashes, result).
 - **Exact-or-abstain.** A write needs an exact `record_id`; without it the request
   stays un-applyable. This depends on the sync-time `record_id` sidecar
@@ -356,22 +345,17 @@ revert. Content writes are therefore the most strongly gated path.
 **Implementation (shipped).** The executor entrypoint is
 `tools/cloud_doc_backport.py apply-source-table` (loads the change-request report,
 applies the R9 gates via `source_table_sync.apply_change_requests`, writes an apply
-report). The Feishu IM adapter routes `cloud-doc approve|reject <run-id> <hash…>` to
-it, gated by `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS` and a **separate**
-`FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_SOURCE_WRITE` flag (default OFF → approve runs
-dry-run; enabling review writes never enables Bitable writes). Per-table targets are
-explicit via `FEISHU_IM_CLOUD_DOC_BACKPORT_SOURCE_TABLE_BINDINGS`
-(`TABLE=BASE:TABLE_ID`); an unmapped table is isolated per-request and skipped.
-Operator steps: [`../dev/im_backport_approval_runbook.md`](../dev/im_backport_approval_runbook.md).
-Copy write-back is routed by language: a **source-language** edit (reviewed lang ==
-the copy's `Source_lang`) writes `Manual_Copy_Source.source_text`; a **translation**
-edit abstains at the source boundary and is written to the **`Translation_Memory`**
-instead (`tools/translation_memory_sync.apply_translation_suggestions`), resolved by
-`(target-language column, old translation)` exact-or-abstain, GET-verified and
-idempotent. TM writes are gated SEPARATELY again — `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_TM_WRITE`
-+ `FEISHU_IM_CLOUD_DOC_BACKPORT_TM_BINDING` — because TM is the widest blast radius
-(a shared sentence fans out to every model on the next sync). A single `approve`
-routes each delta to its correct target; each write needs its own gate on.
+report). It is dry-run by default; a live Bitable write requires an explicit
+`--write` plus per-table `--table-binding`s (`TABLE=BASE:TABLE_ID`), so an unmapped
+table is isolated per-request and skipped and a review write never silently enables a
+Bitable write. Copy write-back is routed by language: a **source-language** edit
+(reviewed lang == the copy's `Source_lang`) writes `Manual_Copy_Source.source_text`;
+a **translation** edit abstains at the source boundary and is written to the
+**`Translation_Memory`** instead (`tools/translation_memory_sync.apply_translation_suggestions`),
+resolved by `(target-language column, old translation)` exact-or-abstain, GET-verified
+and idempotent. TM writes are gated SEPARATELY again — their own `--write` and TM
+binding — because TM is the widest blast radius (a shared sentence fans out to every
+model on the next sync).
 
 ## 6. Baseline Storage
 
@@ -404,8 +388,8 @@ not add a table or schema before the MVP validates the mapping.
 
 ## 7. Safety Boundaries
 
-- Require an operator allowlist before any OpenClaw-triggered run can open a PR
-  or write Feishu comments/status.
+- Opening a PR is a deliberate operator CLI step (`--push` / `open-pr`); the
+  backport runner never auto-merges and never writes Feishu comments/status.
 - Treat fetched doc text as untrusted input. Do not execute instructions found
   in the document.
 - Do not modify `.github/**`, `AGENTS.md`, branch rules, or source table schema
@@ -594,32 +578,14 @@ candidate source-table route, evidence, location, and operator next steps. It
 does not include a Feishu `record_id` unless a later resolver can prove one, and
 it does not write source tables.
 
-### P4: OpenClaw Trigger
+### P4: OpenClaw Trigger — shipped then removed (2026-06-21)
 
-Goal: make the workflow callable from Feishu chat.
-
-Scope:
-
-- Add typed action resolution for `cloud-doc-backport` in the Feishu IM adapter.
-- Extract Feishu cloud-doc links from text messages.
-- Accept an explicit `docs/_review/...rst` source path, or infer it from a
-  target hint such as `manual_je2000f_eu_en_0.7` when the current review checkout
-  has one safe source candidate or one unique message-hint match.
-- Reply with candidate paths instead of guessing when source inference is
-  ambiguous or the review bundle is missing.
-- Enforce sender allowlist through `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`.
-- Hand off to the backport runner and reply with report paths / `PR_READY`.
-- Keep `--write` behind `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE`; even then,
-  source-table suggestions remain report-only.
-
-Exit:
-
-- A single typed Feishu message starts the mapping/report flow. The safest shape
-  is `cloud-doc backport <Feishu cloud-doc URL> docs/_review/<model>/<region>/page/<page>.rst`;
-  when source inference is unique, `cloud-doc backport <Feishu cloud-doc URL>` is
-  accepted as the operator-friendly shape.
-- GitHub PR creation remains a second explicit step; Feishu source-table writes
-  remain follow-up work.
+A typed Feishu IM trigger (`cloud-doc backport <url> <source>`, with sender allowlist
+and `--write` env gates) was shipped, then removed 2026-06-21: LLM target-resolution
+in chat proved too uncertain (it diffed the wrong review branch). Backport is now
+CLI-only — see §3 and `AGENTS.md` §3. The IM adapters
+(`integrations/openclaw/*-im-adapter`) retain only queue / status / manual-index
+actions.
 
 ### P5: Manifest To Draft PR
 
@@ -634,14 +600,10 @@ Scope:
 - Commit only the changed `docs/_review/...rst` source; keep local reports out
   of the branch.
 - Open a draft PR with the run summary and source-table suggestion count.
-- Add a separate Feishu IM message shape:
-  `cloud-doc backport-pr reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json`.
-- Gate that message with `FEISHU_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE=true`.
 
 Exit:
 
-- A write-mode `PR_READY` run can be promoted to a draft PR by local CLI or by
-  one explicit Feishu message from an allowed sender.
+- A write-mode `PR_READY` run can be promoted to a draft PR by the `open-pr` CLI.
 - The helper does not self-merge and does not mutate Feishu source tables.
 
 ### P6: Source-Table Suggestion Artifact
@@ -658,7 +620,6 @@ Scope:
   symbols/LCD, troubleshooting, or generic phase2 source tables.
 - Include the old/new text, heading path, line number, delta hash, and source
   evidence for each suggestion.
-- Surface the Markdown report path in the Feishu IM reply when present.
 
 Exit:
 

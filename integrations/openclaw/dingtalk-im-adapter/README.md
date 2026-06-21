@@ -48,8 +48,6 @@ Point this adapter's `DINGTALK_IM_CLIENT_ID` / `DINGTALK_IM_CLIENT_SECRET` at th
   (e.g. `查 JE-2000F 的说明书链接`); these call `build.py manual-index-query`
   before queue resolution and never dispatch builds
 - `publish` with explicit confirmation (`确认发布` / `confirm`)
-- `cloud-doc backport` for accepted Feishu cloud-doc review revisions, gated by
-  `DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`
 
 ## Differences from the Feishu adapter
 
@@ -95,10 +93,6 @@ Optional:
 - `DINGTALK_IM_BATCH_STATUS_TIMEOUT_SECONDS`; defaults to `60`
 - `DINGTALK_IM_BATCH_STATUS_POLL_SECONDS`; defaults to `5`
 - `DINGTALK_IM_MANUAL_INDEX_LIMIT`; defaults to `10`
-- `DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOWED_SENDERS`; comma-separated `staffId`
-  allowlist for cloud-doc backport messages, or `*` for local smoke
-- `DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOW_WRITE`; defaults to `false`
-- `DINGTALK_IM_CLOUD_DOC_BACKPORT_ALLOW_PR_CREATE`; defaults to `false`
 - `DINGTALK_IM_STATE_FILE`
 - `DINGTALK_IM_LOCAL_PROFILE_DIR` or `OPENCLAW_LOCAL_PROFILE_DIR`
 - `DINGTALK_IM_DISABLE_LOCAL_PROFILE` or `OPENCLAW_DISABLE_LOCAL_PROFILE`
