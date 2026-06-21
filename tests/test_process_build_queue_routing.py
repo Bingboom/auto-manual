@@ -32,6 +32,18 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
 
         self.assertEqual("JE-1500D_pt-BR", document_key)
 
+    def test_document_key_from_document_id_should_keep_pt_br_region_without_lang_segment(self) -> None:
+        # pt-BR's region token IS its language and the Document_ID has no separate lang
+        # segment, so stripping "pt-BR" as the lang must NOT destroy the region (regression:
+        # JE-1000F_pt-BR_0.1 used to collapse to a region-less "JE-1000F").
+        document_key = document_link_queue.document_key_from_document_id(
+            document_id="JE-1000F_pt-BR_0.1",
+            lang="pt-BR",
+            version="0.1",
+        )
+
+        self.assertEqual("JE-1000F_pt-BR", document_key)
+
     def test_resolve_target_for_record_should_fallback_to_document_id(self) -> None:
         record = process_build_queue.QueueRecord(
             record_id="rec_1",
@@ -49,6 +61,27 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
 
         self.assertEqual("JE-1000F", model)
         self.assertEqual("US", region)
+
+    def test_resolve_target_for_record_should_resolve_pt_br_from_link_style_document_key(self) -> None:
+        # Reproduces the failed draft build: a link-style Document_Key forces the
+        # Document_ID fallback, and pt-BR (region == lang) must still resolve to a target
+        # instead of "Unable to resolve build target".
+        record = process_build_queue.QueueRecord(
+            record_id="rec_ptbr",
+            document_id="JE-1000F_pt-BR_0.1",
+            document_key='{"id":"recvkenuskc8eF"}',
+            version="0.1",
+            lang="pt-BR",
+            doc_phase="",
+            git_ref="",
+            trigger_value="Y",
+            immediate_trigger_value=False,
+        )
+
+        model, region = process_build_queue.resolve_target_for_record(record)
+
+        self.assertEqual("JE-1000F", model)
+        self.assertEqual("pt-BR", region)
 
     def test_queue_record_key_should_ignore_link_style_document_key_for_display(self) -> None:
         record = process_build_queue.QueueRecord(
