@@ -14,6 +14,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.source_record_index import (  # noqa: E402
     SIDECAR_FILENAME,
+    SOURCE_RECORD_ID_KEY,
+    _KEY_SEP,
     build_index,
     collect_index_rows,
     index_json_text,
@@ -111,6 +113,30 @@ class CollectIndexRowsTests(unittest.TestCase):
         self.assertEqual(rows["lcd_icons_blocks"][0][1], "recAAA")
         index = build_index(rows)
         self.assertEqual(record_count(index), 1)
+
+    def test_row_carried_record_id_wins_over_position(self) -> None:
+        # The real bug: normalize_records SORTS, so the normalized list is in a different
+        # order than the raw fetch — pairing positionally mapped each key to the WRONG
+        # record. With the record_id carried on the row it stays correct regardless of order.
+        normalized = {
+            "spec_master": [
+                {"document_key": "JE-1000F_CN", "Row_key": "dc12_port", "Slot_key": "front.spec",
+                 SOURCE_RECORD_ID_KEY: "recCN"},
+                {"document_key": "JE-1000F_US", "Row_key": "dc8020_ports", "Slot_key": "spec",
+                 SOURCE_RECORD_ID_KEY: "recUS"},
+            ],
+        }
+        # raws in the OPPOSITE order (the unsorted fetch) — must be ignored when the row carries its id
+        raws = {"spec_master": [{"record_id": "recUS"}, {"record_id": "recCN"}]}
+        records = build_index(collect_index_rows(normalized, raws))["tables"]["Spec_Master"]["records"]
+        self.assertEqual(records[_KEY_SEP.join(["JE-1000F_CN", "dc12_port", "front.spec"])], "recCN")
+        self.assertEqual(records[_KEY_SEP.join(["JE-1000F_US", "dc8020_ports", "spec"])], "recUS")
+
+    def test_positional_fallback_when_row_lacks_carried_id(self) -> None:
+        # A row without the carried key still pairs positionally with raw_records (legacy).
+        normalized = {"lcd_icons": [_lcd_row("battery", "JE-1000F", "0.7")]}
+        raws = {"lcd_icons": [{"record_id": "recAAA"}]}
+        self.assertEqual(collect_index_rows(normalized, raws)["lcd_icons_blocks"][0][1], "recAAA")
 
     def test_missing_table_is_omitted(self) -> None:
         self.assertEqual(collect_index_rows({}, {}), {})

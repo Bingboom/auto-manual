@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools import sync_data
+from tools.source_record_index import SOURCE_RECORD_ID_KEY
 
 
 class _FakeSource:
@@ -353,6 +354,21 @@ class TestSyncData(unittest.TestCase):
             [("EU", "ALL", "1", "TRUE"), ("EU", "JE-1000F", "2", "TRUE"), ("US", "JE-1000F", "10", "FALSE")],
             [(row["Region"], row["Model"], row["No."], row["Is_latest"]) for row in rows],
         )
+
+    def test_normalize_records_threads_record_id_through_sort(self) -> None:
+        # F1-sidecar fix: each row keeps its source record_id across the normalize sort, so
+        # the downstream sidecar never pairs a business key with the wrong record. The input
+        # order below is fully reordered by the Region/Model/No. sort.
+        rows = sync_data.normalize_records(
+            sync_data.TABLE_SCHEMAS["troubleshooting"],
+            [
+                {"record_id": "recC", "fields": {"No.": "10", "Model": "JE-1000F", "Region": "US", "error_code": "FE"}},
+                {"record_id": "recB", "fields": {"No.": "2", "Model": "JE-1000F", "Region": "EU", "error_code": "F2"}},
+                {"record_id": "recA", "fields": {"No.": "1", "Model": "ALL", "Region": "EU", "error_code": "F1"}},
+            ],
+        )
+        # sorted to [EU/ALL/1, EU/JE-1000F/2, US/JE-1000F/10] -> each row still carries its OWN id
+        self.assertEqual([row[SOURCE_RECORD_ID_KEY] for row in rows], ["recA", "recB", "recC"])
 
     def test_spec_footnotes_should_alias_pt_br_field_name(self) -> None:
         rows = sync_data.normalize_records(

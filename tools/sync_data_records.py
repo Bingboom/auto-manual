@@ -12,6 +12,8 @@ import tempfile
 from pathlib import Path
 from typing import Any, Protocol
 
+from tools.source_record_index import SOURCE_RECORD_ID_KEY
+
 
 _MARKDOWN_LINK_RE = re.compile(r"^\[(?P<label>[^\]]+)\]\((?P<target>[^)]+)\)$")
 
@@ -151,12 +153,17 @@ def normalize_records(schema: _SchemaLike, raw_records: list[dict[str, Any]]) ->
     normalized: list[dict[str, str]] = []
     for record in raw_records:
         values = _apply_field_aliases(schema, _record_values(record))
-        normalized.append(
-            {
-                column: _normalized_cell(schema, column, values.get(column))
-                for column in schema.columns
-            }
-        )
+        row = {
+            column: _normalized_cell(schema, column, values.get(column))
+            for column in schema.columns
+        }
+        # Carry the source record_id WITH its row so the F1 sidecar keys to the right
+        # record after the sort below (and across a two-table merge). Reserved key, not a
+        # schema column -> the CSV writers (which filter to schema.columns) drop it.
+        record_id = str(record.get("record_id") or "").strip()
+        if record_id:
+            row[SOURCE_RECORD_ID_KEY] = record_id
+        normalized.append(row)
     normalized.sort(key=lambda row: _row_sort_key(schema, row))
     return normalized
 

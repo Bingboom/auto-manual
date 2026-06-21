@@ -489,7 +489,7 @@ dry-run boundary; live activation is the operator's, per
 
 - [x] PR F1: Sync-time `record_id` sidecar (Workstream I — shared prerequisite)
   - Status: `done`
-  - Note: touches `sync-data` + the phase2 contract → operator-gated; this is the detailed form of Milestone E PR E2. Delivered by `tools/source_record_index.py` (builder/resolver, exact-or-abstain), the `sync_data_runtime` sidecar emission, and `content_lint` resolution (lcd_icons indexed; coverage expands in follow-ups). Live population needs an operator `sync-data`; logic is covered by `tests/test_source_record_index.py`.
+  - Note: touches `sync-data` + the phase2 contract → operator-gated; this is the detailed form of Milestone E PR E2. Delivered by `tools/source_record_index.py` (builder/resolver, exact-or-abstain), the `sync_data_runtime` sidecar emission, and `content_lint` resolution (lcd_icons indexed; coverage expands in follow-ups). Live population needs an operator `sync-data`; logic is covered by `tests/test_source_record_index.py`. **Correctness fix:** `normalize_records` sorts rows, so pairing the *sorted* normalized list with the *unsorted* raw records mapped each business key to the WRONG `record_id` (live-verified: a `JE-1000F_CN/dc12_port` key resolved to a `JE-1000F_US/dc8020` row, across the two-table `Spec_Master` merge). Now each row's source `record_id` is threaded onto it (`SOURCE_RECORD_ID_KEY`) so it survives the sort; `collect_index_rows` reads it (positional fallback only for legacy/no-id rows).
   - Target files:
     - [`../tools/sync_data.py`](../tools/sync_data.py)
     - [`../tools/content_lint.py`](../tools/content_lint.py)
