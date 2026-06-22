@@ -250,6 +250,29 @@ re-resolution. Keeping `_review` Class-`R`-only is what makes sync-review
 idempotent. **Class `T` is never written to `_review`** — it is proposal-only
 (2026-06-18 decision: strict).
 
+**Class `R` write-back is deterministic (2026-06-22).** The guarded apply matches each
+delta to a UNIQUE source block (the same `parse_blocks` + `_normalize_inline` used for
+the diff) and rewrites only when the rewrite is loss-free — two paths:
+
+- **Literal-first** — when the delta's rendered `old_text` occurs verbatim and exactly
+  once in the reST source (same-form prose, `**bold**`), replace it with `new_text`, so
+  inline markup is preserved.
+- **Block fallback** — when the literal match fails (a reST heading, whose rendered
+  `## X` never byte-matches the source `X` + underline; or soft-wrapped / role-bearing
+  prose), match the block by `old_normalized` (headings by TITLE, level-agnostic) and
+  rewrite anchored on the block's `line_no`: a heading's title line + a recomputed
+  underline (the new title's **display width**, CJK-aware, source underline char
+  preserved); a paragraph by a **minimal-diff** rewrite — only the segment the reviewer
+  actually changed (the `old_normalized`→`new_normalized` delta between their common
+  prefix/suffix) is applied to the source, so chars the normalize would rewrite (CJK
+  curly quotes `""`, `**`, images) OUTSIDE that segment survive. The changed segment must
+  be plain and occur exactly once in the source, or be a pure head/tail insertion.
+
+An ambiguous match (>1), a 0-match, a changed segment that is not uniquely placeable, and
+`list_item` (v1) all **abstain** with an operator-visible reason — never a guessed write.
+Three determinism guards in series: unique block hit, loss-free (minimal-diff / plain
+heading) rewrite, and the R7 gate below.
+
 ### R4 — Template-sync proposal contract
 
 For each Class `T` delta, a review-backport run emits
@@ -302,7 +325,9 @@ zero **and** no extra diff may appear.
 
 **Shipped.** `_rebuild_rediff_gate` re-diffs the pre-edit source against the applied
 source and asserts the only changes are the intended Class `R` deltas (no collateral,
-none missing). It gates `PR_READY` in `verify-review`/`run-review` (with an in-memory
+none missing; **headings are compared on title only**, so the source re-diff's level-1
+`#` vs the original delta's cloud-doc `## ` is not mistaken for drift). It gates
+`PR_READY` in `verify-review`/`run-review` (with an in-memory
 pre-edit baseline so an in-place baseline no longer skips), and it runs in the blessed
 `run-review-branch` baseline path: a per-page collateral change blocks the seed-cursor
 advance and the PR push and exits non-zero. The full "rebuild the rendered doc and
