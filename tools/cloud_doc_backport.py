@@ -22,6 +22,7 @@ import re
 import shlex
 import subprocess
 import sys
+import unicodedata
 from collections import Counter
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -1012,6 +1013,178 @@ def _validate_apply_source(path: Path, *, kind: str) -> None:
     raise RuntimeError(f"unsupported apply source kind: {kind}")
 
 
+# --- Class R (review prose) deterministic block-level apply --------------------
+# The guarded apply's literal old_text count/replace can't land cloud-doc edits whose
+# rendered markdown is not byte-identical to the reST source — reST headings (rendered
+# `## X` vs source `X\n===`) and inline-markup paragraphs (`按 **OK** 键` vs the normalized
+# `按 OK 键`). For route_class == repo_review_text we instead match the reviewer's delta to a
+# UNIQUE source block (same parse_blocks + _normalize_inline) and rewrite only when the source
+# block is plain (loss-free). Three determinism guards: uniqueness, plain-block, and the
+# downstream R7 rebuild+rediff gate. See Feishu_Cloud_Doc_Backport_Design.md §5.1 (R3/R7).
+
+_REVIEW_MARKUP_ROLE_RE = re.compile(r":[\w][\w+.-]*:")
+
+
+def _rst_display_width(text: str) -> int:
+    """reST/docutils measures heading underlines in display COLUMNS, not characters
+    (`添加设备` is 4 chars but 8 columns). Wide/Fullwidth code points count as 2."""
+    return sum(2 if unicodedata.east_asian_width(ch) in ("W", "F") else 1 for ch in text)
+
+
+def _heading_text_key(text: str) -> str:
+    """Normalized heading TITLE (markdown ``#`` prefix stripped), level-agnostic.
+
+    A reST source heading parses (via ``_preprocessed_lines``) to ``# title`` while the
+    cloud-doc delta carries ``## title`` — matching on the title alone makes the level
+    difference irrelevant (the reST source level stays authoritative)."""
+    match = _HEADING_RE.match((text or "").strip())
+    return _normalize_inline(match.group(2)) if match else _normalize_inline(text or "")
+
+
+def _match_review_block(
+    source_text: str, delta: dict[str, Any]
+) -> tuple[Block | None, int | None, str | None]:
+    """Find the UNIQUE source block a review delta refers to.
+
+    Returns ``(block, next_block_line_no, None)`` on a unique hit (the next block's 1-based
+    line_no bounds the span, or None at EOF), else ``(None, None, abstain_reason)``."""
+    kind = str(((delta.get("location") or {}).get("kind")) or "")
+    blocks = parse_blocks(source_text)
+    if kind == "heading":
+        want = _heading_text_key(str(delta.get("old_normalized") or ""))
+        candidates = [b for b in blocks if b.kind == "heading" and _heading_text_key(b.text) == want]
+        label = "review heading title"
+    else:
+        want = _normalize_inline(str(delta.get("old_normalized") or ""))
+        candidates = [b for b in blocks if b.kind == kind and b.normalized == want]
+        label = "old_normalized"
+    if not want:
+        return None, None, "delta old_normalized is empty"
+    if len(candidates) == 1:
+        block = candidates[0]
+        idx = blocks.index(block)
+        next_line_no = blocks[idx + 1].line_no if idx + 1 < len(blocks) else None
+        return block, next_line_no, None
+    if not candidates:
+        return None, None, f"no review block matched {label}"
+    return None, None, f"{label} matched {len(candidates)} review blocks ambiguously"
+
+
+def _review_block_span(
+    source_lines: list[str], block: Block, next_line_no: int | None
+) -> tuple[int, int]:
+    """Half-open [start, end) 0-based source-line range the block occupies.
+
+    A reST heading spans the title line + its underline; a paragraph runs to the next
+    block's start (or EOF), trailing blank lines trimmed. ``block.line_no`` is 1-based."""
+    start = max(0, block.line_no - 1)
+    if block.kind == "heading":
+        nxt = start + 1
+        if nxt < len(source_lines) and _RST_HEADING_UNDERLINE_RE.match(source_lines[nxt].strip()):
+            return start, nxt + 1
+        return start, start + 1
+    end = (next_line_no - 1) if next_line_no else len(source_lines)
+    end = min(max(end, start + 1), len(source_lines))
+    while end > start + 1 and not source_lines[end - 1].strip():
+        end -= 1
+    return start, end
+
+
+def _review_block_is_plain(span_text: str, block: Block) -> bool:
+    """A block is loss-free rewritable iff its RAW source carries no reST markup that
+    ``_normalize_inline`` discarded (so a normalized-level old->new is a faithful source
+    rewrite). ``_normalize_inline`` does NOT strip backticks / ``:roles:`` / ``|subs|``, so
+    those are guarded explicitly. For a heading only the title text must be plain (the
+    underline is structural)."""
+    if block.kind == "heading":
+        first = span_text.splitlines()[0].strip() if span_text.strip() else ""
+        return "**" not in first and "`" not in first and not _REVIEW_MARKUP_ROLE_RE.search(first)
+    collapsed = re.sub(r"\s+", " ", span_text).strip()
+    return (
+        collapsed == block.normalized
+        and "**" not in span_text
+        and "__" not in span_text
+        and "`" not in span_text
+        and "|" not in span_text
+        and not _REVIEW_MARKUP_ROLE_RE.search(span_text)
+        and not span_text.lstrip().startswith(".. ")
+        and "<" not in span_text
+        and span_text[:1] not in (" ", "\t")
+    )
+
+
+def _rewrite_review_block(
+    source_text: str, block: Block, delta: dict[str, Any], start: int, end: int
+) -> str | None:
+    """Return the full source text with the block rewritten per the delta, or None to
+    abstain (list_item out of scope in v1; non-plain blocks are filtered before here)."""
+    if block.kind == "list_item":
+        return None
+    lines = source_text.splitlines(keepends=True)
+    if start >= len(lines):
+        return None
+    newline = "\r\n" if lines[start].endswith("\r\n") else "\n"
+    change_type = str(delta.get("change_type") or "")
+    if block.kind == "heading":
+        if change_type == "delete":
+            return None  # never delete a heading via a prose backport
+        new_title = _heading_text_key(str(delta.get("new_normalized") or ""))
+        old_title = _heading_text_key(str(delta.get("old_normalized") or ""))
+        if not new_title:
+            return None
+        underline = lines[start + 1].strip() if (end - start) >= 2 and start + 1 < len(lines) else ""
+        match = _RST_HEADING_UNDERLINE_RE.match(underline)
+        char = match.group(1) if match else "="
+        width = max(_rst_display_width(new_title), _rst_display_width(old_title))
+        return "".join(lines[:start] + [f"{new_title}{newline}", f"{char * width}{newline}"] + lines[end:])
+    if change_type == "delete":
+        tail = end
+        if tail < len(lines) and not lines[tail].strip():
+            tail += 1  # consume one trailing blank line
+        return "".join(lines[:start] + lines[tail:])
+    new_norm = str(delta.get("new_normalized") or "")
+    if not new_norm:
+        return None
+    return "".join(lines[:start] + [f"{new_norm}{newline}"] + lines[end:])
+
+
+def _apply_review_block_operation(
+    *, delta: dict[str, Any], current_text: str, write: bool, base_operation: dict[str, Any]
+) -> tuple[dict[str, Any], str]:
+    """Deterministic Class R apply for one delta: block match + plain guard + rewrite."""
+    block, next_line_no, reason = _match_review_block(current_text, delta)
+    if block is None:
+        return {**base_operation, "status": "skipped", "reason": reason, "matches": 0}, current_text
+    lines = current_text.splitlines(keepends=True)
+    start, end = _review_block_span(lines, block, next_line_no)
+    span_text = "".join(lines[start:end])
+    if not _review_block_is_plain(span_text, block):
+        return (
+            {
+                **base_operation,
+                "status": "skipped",
+                "reason": "review block carries reST markup (not loss-free rewritable)",
+                "matches": 1,
+            },
+            current_text,
+        )
+    rewritten = _rewrite_review_block(current_text, block, delta, start, end)
+    if rewritten is None or rewritten == current_text:
+        return (
+            {
+                **base_operation,
+                "status": "skipped",
+                "reason": "review block rewrite unsupported (list_item / heading delete / empty)",
+                "matches": 1,
+            },
+            current_text,
+        )
+    verb = "deletion" if str(delta.get("change_type")) == "delete" else "replacement"
+    if write:
+        return {**base_operation, "status": "applied", "reason": f"unique repo_review_text {verb}", "matches": 1}, rewritten
+    return {**base_operation, "status": "planned", "reason": f"unique repo_review_text {verb}", "matches": 1}, current_text
+
+
 def _apply_skip_reason(delta: dict[str, Any], *, route_class: str) -> str | None:
     if delta.get("route_class") != route_class:
         return f"route_class is {delta.get('route_class') or 'missing'}"
@@ -1058,6 +1231,15 @@ def _apply_operation(
     new_text = "" if change_type == "delete" else str(delta["new_text"])
     matches = current_text.count(old_text)
     if matches == 0:
+        # Class R: the literal (markup-preserving) match failed — the reviewer's edit is a
+        # reST heading (rendered `## X` vs source `X\n===`) or a soft-wrapped / role-bearing
+        # paragraph that never byte-matches. Fall back to a deterministic block-level match +
+        # line_no-anchored rewrite (unique hit + plain-block guard). Other route_classes keep
+        # the literal-only behavior.
+        if route_class == "repo_review_text":
+            return _apply_review_block_operation(
+                delta=delta, current_text=current_text, write=write, base_operation=base_operation
+            )
         return {
             **base_operation,
             "status": "skipped",
@@ -1468,6 +1650,14 @@ def _rebuild_rediff_gate(
     intended repo_review_text deltas (no collateral, none missing)."""
 
     def pair(delta: dict[str, Any]) -> tuple[Any, Any]:
+        # Headings: compare on TITLE only. The reST source re-diff yields `# title` (level 1)
+        # while the original delta carries the cloud-doc's `## title` — a raw-normalized
+        # compare would never match and would wrongly fail the gate on every heading edit.
+        if ((delta.get("location") or {}).get("kind")) == "heading":
+            return (
+                _heading_text_key(str(delta.get("old_normalized") or "")),
+                _heading_text_key(str(delta.get("new_normalized") or "")),
+            )
         return (delta.get("old_normalized"), delta.get("new_normalized"))
 
     expected = {

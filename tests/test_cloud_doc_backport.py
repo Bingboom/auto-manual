@@ -17,12 +17,17 @@ from tools.cloud_doc_backport import (
     _diff_delta_count,
     _family_index_from_args,
     _parse_table_bindings,
+    _heading_text_key,
     _rebuild_rediff_for_report,
+    _rebuild_rediff_gate,
+    _review_block_is_plain,
+    _rst_display_width,
     _resolve_backport_data_root,
     _resolve_review_branch_siblings,
     _run_review_branch,
     _run_review_branch_baseline,
     build_report,
+    build_review_apply_report,
     build_review_verify_report,
     fetch_doc_text,
     main,
@@ -1772,6 +1777,153 @@ class BaselineArtifactEmissionTests(unittest.TestCase):
             self.assertGreaterEqual(payload["template_sync_proposals"], 1)
             proposal = json.loads((Path(tmp) / "out" / "cloud_doc_backport_template_sync_proposal.json").read_text(encoding="utf-8"))
             self.assertGreaterEqual(proposal["summary"]["proposals"], 1)
+
+
+class ClassRBlockApplyTests(unittest.TestCase):
+    """Class R deterministic apply: literal-first (markup-preserving) with a block fallback
+    for reST headings / role-bearing / soft-wrapped prose the literal match can't reach.
+    Three guards: unique block hit, plain-block isomorphism, R7 rebuild+rediff gate."""
+
+    def test_rst_display_width_cjk_vs_ascii(self) -> None:
+        self.assertEqual(_rst_display_width("添加设备"), 8)   # 4 CJK chars = 8 columns
+        self.assertEqual(_rst_display_width("Setup"), 5)      # ASCII = char count
+        self.assertEqual(_rst_display_width("添加设备 X"), 10)  # mixed (8 + space + X)
+
+    def test_heading_text_key_strips_markdown_hashes(self) -> None:
+        self.assertEqual(_heading_text_key("## 添加设备"), "添加设备")
+        self.assertEqual(_heading_text_key("# 添加设备"), "添加设备")  # level-agnostic
+        self.assertEqual(_heading_text_key("Plain title"), "Plain title")
+
+    def test_review_block_is_plain_accepts_plain_rejects_markup(self) -> None:
+        from tools.cloud_doc_backport import Block
+
+        def para(text: str, norm: str) -> Block:
+            return Block(kind="paragraph", text=text, normalized=norm, heading_path=(), line_no=1)
+
+        self.assertTrue(_review_block_is_plain("纯文本说明。\n", para("纯文本说明。", "纯文本说明。")))
+        self.assertFalse(_review_block_is_plain("按 **OK** 键。\n", para("按 **OK** 键。", "按 OK 键。")))
+        self.assertFalse(_review_block_is_plain("按 :guilabel:`OK` 键。\n", para("按 :guilabel:`OK` 键。", "按 :guilabel:`OK` 键。")))
+        self.assertFalse(_review_block_is_plain("电压 |VOLT| 值。\n", para("电压 |VOLT| 值。", "电压 |VOLT| 值。")))
+
+    def _report(self, tmp, src, baseline_md, fetched_md):
+        page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+        page_dir.mkdir(parents=True, exist_ok=True)
+        preface = page_dir / "00_preface.rst"
+        preface.write_text(src, encoding="utf-8")
+        report = build_report(
+            run_id="t", doc_type="review", doc_url="fixture",
+            baseline_path=preface, fetched_text=fetched_md, baseline_text=baseline_md,
+            command=["x"], source_path=preface, section_title=None,
+            section_inferred_from=None, require_section_match=False,
+        )
+        return report, preface
+
+    def test_heading_edit_applies_via_block_fallback_and_recomputes_underline(self) -> None:
+        # reST heading (rendered `## X` vs source `X\n===`) never byte-matches literally; the
+        # block fallback rewrites the title AND the underline (to the new title's DISPLAY width).
+        with tempfile.TemporaryDirectory() as tmp:
+            report, preface = self._report(
+                tmp,
+                src="添加设备\n========\n\n正文保持不变。\n",
+                baseline_md="## 添加设备\n\n正文保持不变。\n",
+                fetched_md="## 添加新设备\n\n正文保持不变。\n",
+            )
+            ap = build_review_apply_report(report, source_path=preface, write=True, command=["x"])
+            self.assertEqual(ap["summary"]["statuses"].get("applied"), 1)
+            out = preface.read_text(encoding="utf-8")
+            self.assertIn("添加新设备\n" + "=" * 10 + "\n", out)  # 5 CJK chars = 10 cols, char preserved
+            self.assertIn("正文保持不变。", out)  # body untouched
+
+    def test_heading_edit_not_found_abstains(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            report, preface = self._report(
+                tmp,
+                src="其他标题\n========\n\n正文。\n",
+                baseline_md="## 添加设备\n\n正文。\n",
+                fetched_md="## 增加设备\n\n正文。\n",
+            )
+            ap = build_review_apply_report(report, source_path=preface, write=True, command=["x"])
+            self.assertFalse(ap["summary"]["changed"])
+            self.assertEqual(preface.read_text(encoding="utf-8"), "其他标题\n========\n\n正文。\n")
+
+    def test_heading_edit_ambiguous_abstains(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            report, preface = self._report(
+                tmp,
+                src="添加设备\n========\n\n中段。\n\n添加设备\n========\n\n尾段。\n",
+                baseline_md="## 添加设备\n\n中段。\n\n## 添加设备\n\n尾段。\n",
+                fetched_md="## 增加设备\n\n中段。\n\n## 添加设备\n\n尾段。\n",
+            )
+            ap = build_review_apply_report(report, source_path=preface, write=True, command=["x"])
+            self.assertFalse(ap["summary"]["changed"])  # title appears twice -> abstain
+
+    def test_literal_path_preserves_inline_markup(self) -> None:
+        # Same-form markup (**bold** is identical in markdown and reST) stays on the literal
+        # path so the markup is preserved (new_text, not new_normalized).
+        with tempfile.TemporaryDirectory() as tmp:
+            report, preface = self._report(
+                tmp,
+                src="**重要** 提示。\n",
+                baseline_md="**重要** 提示。\n",
+                fetched_md="**重要** 安全提示。\n",
+            )
+            ap = build_review_apply_report(report, source_path=preface, write=True, command=["x"])
+            self.assertEqual(ap["summary"]["statuses"].get("applied"), 1)
+            self.assertIn("**重要** 安全提示。", preface.read_text(encoding="utf-8"))  # ** kept
+
+    def test_rebuild_rediff_gate_matches_heading_on_title(self) -> None:
+        # The expected delta carries markdown `## X` while the reST source re-diff yields `# X`;
+        # the gate must compare headings on TITLE only, else every heading write fails the gate.
+        deltas = [{
+            "route_class": "repo_review_text", "change_type": "replace",
+            "old_normalized": "## 添加设备", "new_normalized": "## 增加设备",
+            "location": {"kind": "heading"},
+        }]
+        gate = _rebuild_rediff_gate(
+            baseline_text="添加设备\n========\n", edited_text="增加设备\n========\n",
+            deltas=deltas, run_id="t",
+        )
+        self.assertTrue(gate["passed"])
+        self.assertEqual(gate["unexpected"], [])
+        self.assertEqual(gate["missing"], [])
+
+    def test_run_review_branch_heading_edit_opens_backport_pr(self) -> None:
+        # End-to-end: a heading edit now lands (changed != []) so the existing PR path fires.
+        import contextlib
+        import io
+
+        opened: dict = {}
+
+        def fake_open_pr(**kw):
+            opened.update(kw)
+            return True, "https://github.com/x/y/pull/99"
+
+        with tempfile.TemporaryDirectory() as tmp:
+            page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            (page_dir / "00_preface.rst").write_text("添加设备\n========\n\n正文。\n", encoding="utf-8")
+            args = SimpleNamespace(
+                cloud_doc="https://example.feishu.cn/wiki/doc-h", run_id="he2e",
+                out=str(Path(tmp) / "out"), lark_cli="lark-cli", write=True, push=True,
+                doc_name="manual_je1000f_us_en_1.0", lang=None, data_root=None,
+                git_bin="git", remote="origin",
+            )
+            out = io.StringIO()
+            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="## 增加设备\n\n正文。\n"), \
+                 patch("tools.cloud_doc_backport._open_backport_pr", side_effect=fake_open_pr):
+                with contextlib.redirect_stdout(out):
+                    rc = _run_review_branch_baseline(
+                        args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                        worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-h",
+                        baseline_text="## 添加设备\n\n正文。\n",
+                    )
+            self.assertEqual(rc, 0)
+            payload = [json.loads(ln) for ln in out.getvalue().splitlines() if ln.strip().startswith("{")][-1]
+            self.assertEqual(payload["changed"], ["docs/_review/JE-1000F/US/page/00_preface.rst"])
+            self.assertTrue(payload["rebuild_rediff"]["passed"])
+            self.assertEqual(payload["backport_pr_url"], "https://github.com/x/y/pull/99")
+            self.assertEqual(opened.get("git_ref"), "review/JE-1000F-US")
+            self.assertIn("增加设备", (page_dir / "00_preface.rst").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":
