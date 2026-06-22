@@ -1113,11 +1113,48 @@ def _review_block_is_plain(span_text: str, block: Block) -> bool:
     )
 
 
+def _minimal_diff_rewrite(body: str, old_norm: str, new_norm: str) -> str | None:
+    """Apply only the segment the reviewer changed (``old_norm`` → ``new_norm``) to the
+    SOURCE ``body``, so chars the normalize would rewrite (CJK quotes, ``**``, images)
+    OUTSIDE the changed segment are preserved. Deterministic: a concrete changed segment
+    must be plain (appears verbatim) and occur exactly once in the source, or be a pure
+    head/tail insertion; otherwise None (abstain). This is what lets a reviewer's "append
+    a few words" edit land on a paragraph that happens to contain CJK quotes."""
+    # common prefix / suffix on the NORMALIZED strings -> the minimal changed segment
+    p = 0
+    while p < len(old_norm) and p < len(new_norm) and old_norm[p] == new_norm[p]:
+        p += 1
+    s = 0
+    while s < (len(old_norm) - p) and s < (len(new_norm) - p) and old_norm[-1 - s] == new_norm[-1 - s]:
+        s += 1
+    mid_old = old_norm[p : len(old_norm) - s]
+    mid_new = new_norm[p : len(new_norm) - s]
+    # never write a normalize placeholder back into the source
+    if "![image]" in mid_new or "<img>" in mid_new:
+        return None
+    if mid_old:
+        # a concrete changed/deleted segment: it must be plain (no normalize-rewritten char,
+        # so it appears verbatim in the source) AND occur exactly once -> loss-free + unique.
+        if body.count(mid_old) != 1:
+            return None
+        return body.replace(mid_old, mid_new, 1)
+    # pure insertion (old is a prefix or a suffix of new)
+    if not mid_new:
+        return None
+    if s == 0:
+        return body + mid_new  # appended at the tail
+    if p == 0:
+        return mid_new + body  # inserted at the head
+    return None  # wedged between two kept segments -> abstain (can't place it deterministically)
+
+
 def _rewrite_review_block(
     source_text: str, block: Block, delta: dict[str, Any], start: int, end: int
 ) -> str | None:
     """Return the full source text with the block rewritten per the delta, or None to
-    abstain (list_item out of scope in v1; non-plain blocks are filtered before here)."""
+    abstain. Headings rewrite the title + a display-width underline (the title must be
+    plain); paragraphs apply a minimal-diff rewrite that preserves untouched source chars;
+    ``list_item`` is out of scope in v1."""
     if block.kind == "list_item":
         return None
     lines = source_text.splitlines(keepends=True)
@@ -1125,9 +1162,12 @@ def _rewrite_review_block(
         return None
     newline = "\r\n" if lines[start].endswith("\r\n") else "\n"
     change_type = str(delta.get("change_type") or "")
+    span_text = "".join(lines[start:end])
+
     if block.kind == "heading":
-        if change_type == "delete":
-            return None  # never delete a heading via a prose backport
+        # never delete a heading via prose; a marked-up title is not loss-free rewritable
+        if change_type == "delete" or not _review_block_is_plain(span_text, block):
+            return None
         new_title = _heading_text_key(str(delta.get("new_normalized") or ""))
         old_title = _heading_text_key(str(delta.get("old_normalized") or ""))
         if not new_title:
@@ -1137,15 +1177,21 @@ def _rewrite_review_block(
         char = match.group(1) if match else "="
         width = max(_rst_display_width(new_title), _rst_display_width(old_title))
         return "".join(lines[:start] + [f"{new_title}{newline}", f"{char * width}{newline}"] + lines[end:])
+
+    # paragraph: delete removes the span; otherwise minimal-diff so untouched chars survive
     if change_type == "delete":
         tail = end
         if tail < len(lines) and not lines[tail].strip():
             tail += 1  # consume one trailing blank line
         return "".join(lines[:start] + lines[tail:])
-    new_norm = str(delta.get("new_normalized") or "")
-    if not new_norm:
+    body = span_text.rstrip("\r\n")
+    trail = span_text[len(body):] or newline
+    new_body = _minimal_diff_rewrite(
+        body, str(delta.get("old_normalized") or ""), str(delta.get("new_normalized") or "")
+    )
+    if new_body is None or new_body == body:
         return None
-    return "".join(lines[:start] + [f"{new_norm}{newline}"] + lines[end:])
+    return "".join(lines[:start] + [new_body + trail] + lines[end:])
 
 
 def _apply_review_block_operation(
@@ -1157,24 +1203,13 @@ def _apply_review_block_operation(
         return {**base_operation, "status": "skipped", "reason": reason, "matches": 0}, current_text
     lines = current_text.splitlines(keepends=True)
     start, end = _review_block_span(lines, block, next_line_no)
-    span_text = "".join(lines[start:end])
-    if not _review_block_is_plain(span_text, block):
-        return (
-            {
-                **base_operation,
-                "status": "skipped",
-                "reason": "review block carries reST markup (not loss-free rewritable)",
-                "matches": 1,
-            },
-            current_text,
-        )
     rewritten = _rewrite_review_block(current_text, block, delta, start, end)
     if rewritten is None or rewritten == current_text:
         return (
             {
                 **base_operation,
                 "status": "skipped",
-                "reason": "review block rewrite unsupported (list_item / heading delete / empty)",
+                "reason": "review block edit not loss-free rewritable (markup / ambiguous / list_item)",
                 "matches": 1,
             },
             current_text,

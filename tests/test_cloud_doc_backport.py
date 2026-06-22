@@ -18,6 +18,7 @@ from tools.cloud_doc_backport import (
     _family_index_from_args,
     _parse_table_bindings,
     _heading_text_key,
+    _minimal_diff_rewrite,
     _rebuild_rediff_for_report,
     _rebuild_rediff_gate,
     _review_block_is_plain,
@@ -1924,6 +1925,44 @@ class ClassRBlockApplyTests(unittest.TestCase):
             self.assertEqual(payload["backport_pr_url"], "https://github.com/x/y/pull/99")
             self.assertEqual(opened.get("git_ref"), "review/JE-1000F-US")
             self.assertIn("增加设备", (page_dir / "00_preface.rst").read_text(encoding="utf-8"))
+
+    # --- minimal-diff paragraph rewrite (preserve untouched source chars) ---
+    def test_minimal_diff_appends_suffix_preserving_source(self) -> None:
+        # body uses CJK curly quotes (U+201C/U+201D); reviewer appended " - test".
+        body = "结果为“12H”。"
+        out = _minimal_diff_rewrite(body, '结果为"12H"。', '结果为"12H"。 - test')
+        self.assertEqual(out, "结果为“12H”。 - test")  # curly quotes preserved + appended
+
+    def test_minimal_diff_mid_replace_preserves_surrounding(self) -> None:
+        body = "电压“高”档"
+        out = _minimal_diff_rewrite(body, '电压"高"档', '电压"低"档')
+        self.assertEqual(out, "电压“低”档")  # only 高->低; curly quotes kept
+
+    def test_minimal_diff_abstains_when_segment_is_normalized_char(self) -> None:
+        # the changed segment IS the quote (source “ vs normalized ") -> can't place -> abstain
+        self.assertIsNone(_minimal_diff_rewrite("说完”", '说完"', "说完。"))
+
+    def test_minimal_diff_abstains_on_ambiguous_segment(self) -> None:
+        self.assertIsNone(_minimal_diff_rewrite("好的好", "好", "坏"))  # '好' twice in body
+
+    def test_minimal_diff_rejects_image_placeholder(self) -> None:
+        self.assertIsNone(_minimal_diff_rewrite("看图", "看图", "看图 ![image]"))
+
+    def test_paragraph_cjk_quote_append_lands_via_apply(self) -> None:
+        # The JE-1000F-CN scenario: a paragraph with CJK quotes, reviewer appended " - test".
+        # v1 abstained (whole-block plain guard tripped on the quotes); now it lands.
+        with tempfile.TemporaryDirectory() as tmp:
+            report, preface = self._report(
+                tmp,
+                src="默认开启节能模式，屏幕显示“12H”。若设置为“Never Off”则关闭。\n",
+                baseline_md='默认开启节能模式，屏幕显示"12H"。若设置为"Never Off"则关闭。\n',
+                fetched_md='默认开启节能模式，屏幕显示"12H"。若设置为"Never Off"则关闭。 - test\n',
+            )
+            ap = build_review_apply_report(report, source_path=preface, write=True, command=["x"])
+            self.assertEqual(ap["summary"]["statuses"].get("applied"), 1)
+            out = preface.read_text(encoding="utf-8")
+            self.assertIn(" - test", out)
+            self.assertIn("“12H”", out)  # curly quotes preserved (not flattened to ")
 
 
 if __name__ == "__main__":

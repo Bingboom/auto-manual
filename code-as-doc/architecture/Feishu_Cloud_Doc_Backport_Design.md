@@ -262,13 +262,16 @@ the diff) and rewrites only when the rewrite is loss-free — two paths:
   prose), match the block by `old_normalized` (headings by TITLE, level-agnostic) and
   rewrite anchored on the block's `line_no`: a heading's title line + a recomputed
   underline (the new title's **display width**, CJK-aware, source underline char
-  preserved); a paragraph by `new_normalized` — **only if the source block is "plain"**
-  (no `**`/`` ` ``/`:role:`/`|sub|`/directive/indent that a normalized rewrite would
-  drop).
+  preserved); a paragraph by a **minimal-diff** rewrite — only the segment the reviewer
+  actually changed (the `old_normalized`→`new_normalized` delta between their common
+  prefix/suffix) is applied to the source, so chars the normalize would rewrite (CJK
+  curly quotes `""`, `**`, images) OUTSIDE that segment survive. The changed segment must
+  be plain and occur exactly once in the source, or be a pure head/tail insertion.
 
-A non-plain block, an ambiguous match (>1), a 0-match, and `list_item` (v1) all
-**abstain** with an operator-visible reason — never a guessed write. Three determinism
-guards in series: unique block hit, plain-block isomorphism, and the R7 gate below.
+An ambiguous match (>1), a 0-match, a changed segment that is not uniquely placeable, and
+`list_item` (v1) all **abstain** with an operator-visible reason — never a guessed write.
+Three determinism guards in series: unique block hit, loss-free (minimal-diff / plain
+heading) rewrite, and the R7 gate below.
 
 ### R4 — Template-sync proposal contract
 
