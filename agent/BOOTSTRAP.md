@@ -35,22 +35,24 @@ Read these docs for the current implementation:
 
 ## 3. Minimal Commands
 
+**Always invoke Python as `python3`, never bare `python`.** This runtime has no `python` on `PATH`, so a `python …` command silently fails to start and the triggered action never actually runs (this is the cause of a "命令触发了但没执行" symptom). Use `python3` for every `build.py` and `tools/…` command below. If any linked doc or example above still shows `python …`, read it as `python3 …`.
+
 Query one target row from natural language:
 
 ```powershell
-python build.py queue-query --config configs/config.us.yaml --query-text "<user request>" --json
+python3 build.py queue-query --config configs/config.us.yaml --query-text "<user request>" --json
 ```
 
 Resolve one natural-language ask into a bounded action contract:
 
 ```powershell
-python build.py queue-resolve-action --config configs/config.us.yaml --query-text "<user request>" --json
+python3 build.py queue-resolve-action --config configs/config.us.yaml --query-text "<user request>" --json
 ```
 
 Dispatch one natural-language execution ask:
 
 ```powershell
-python build.py queue-execute --config configs/config.us.yaml --query-text "<user request>"
+python3 build.py queue-execute --config configs/config.us.yaml --query-text "<user request>"
 ```
 
 Run the standalone Feishu IM ingress adapter:
