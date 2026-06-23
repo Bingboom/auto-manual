@@ -21,6 +21,7 @@ M2 and ``code-as-doc/architecture/Feishu_Cloud_Doc_Backport_Design.md`` R9):
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -45,6 +46,10 @@ TABLE_KEY_FIELDS: dict[str, tuple[str, ...]] = {
     # document_key + Row_key + Slot_key uniquely identifies a Spec_Master row
     # (Slot_key disambiguates the usb_c 30w/100w collision class).
     "Spec_Master": ("document_key", "Row_key", "Slot_key"),
+    # Page value placeholders share the same business key tuple but live in a
+    # separate Feishu source table. Keep them separately resolvable so a backport
+    # write does not aim a placeholder record_id at the Spec_Master table binding.
+    "Page_Placeholders_Source": ("document_key", "Row_key", "Slot_key"),
     # copy_key identifies the authoring row in Manual_Copy_Source. A
     # Localized_Copy value (the rendered derivative) is written back here by
     # copy_key (operator decision: source-of-truth is the authoring table, not
@@ -84,6 +89,10 @@ TABLE_RESOLUTION: dict[str, tuple[str, tuple[tuple[str, str], ...]]] = {
         "Spec_Master",
         (("document_key", "document_key"), ("row_key", "Row_key"), ("slot_key", "Slot_key")),
     ),
+    "Page_Placeholders_Source": (
+        "Page_Placeholders_Source",
+        (("document_key", "document_key"), ("row_key", "Row_key"), ("slot_key", "Slot_key")),
+    ),
     "Localized_Copy": ("Manual_Copy_Source", (("copy_key", "copy_key"),)),
 }
 
@@ -115,6 +124,21 @@ def _join_key(values: list[str]) -> str:
 
 def _clean(value: Any) -> str:
     return str(value if value is not None else "").strip()
+
+
+def _page_tokens(value: Any) -> set[str]:
+    return {
+        token.strip().lower()
+        for token in re.split(r"[,;/]+", str(value or "").replace("；", ";").replace("，", ","))
+        if token.strip()
+    }
+
+
+def _spec_master_index_table(row: dict[str, Any]) -> str:
+    tokens = _page_tokens(row.get("Page"))
+    if tokens and "specifications" not in tokens:
+        return "Page_Placeholders_Source"
+    return "Spec_Master"
 
 
 def build_index(rows_by_table: dict[str, list[tuple[dict[str, Any], str]]]) -> dict[str, Any]:
@@ -174,16 +198,15 @@ def collect_index_rows(
         if not normalized:
             continue
         raws = raw_records_by_table.get(logical_name) or []
-        row_filter = TABLE_ROW_FILTERS.get(index_table)
-        pairs: list[tuple[dict[str, Any], str]] = []
         for index, row in enumerate(normalized):
+            effective_index_table = _spec_master_index_table(row) if index_table == "Spec_Master" else index_table
+            row_filter = TABLE_ROW_FILTERS.get(effective_index_table)
             if row_filter is not None and not row_filter(row):
                 continue
             record_id = _clean(row.get(SOURCE_RECORD_ID_KEY))
             if not record_id and index < len(raws):
                 record_id = _clean((raws[index] or {}).get("record_id"))
-            pairs.append((row, record_id))
-        out[index_table] = pairs
+            out.setdefault(effective_index_table, []).append((row, record_id))
     return out
 
 

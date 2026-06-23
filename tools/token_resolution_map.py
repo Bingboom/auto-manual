@@ -21,6 +21,8 @@ from typing import Any
 
 SPEC_MASTER_FILE = "Spec_Master.csv"
 LOCALIZED_COPY_FILE = "Localized_Copy.csv"
+SPEC_MASTER_TABLE = "Spec_Master"
+PAGE_PLACEHOLDERS_SOURCE_TABLE = "Page_Placeholders_Source"
 
 # Per-row localized value columns in Spec_Master are ``<base>_<lang>``.
 _SPEC_MASTER_VALUE_BASES = ("Value", "Param", "Row_label")
@@ -37,6 +39,24 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
         return []
     with path.open(newline="", encoding="utf-8-sig") as handle:
         return list(csv.DictReader(handle))
+
+
+def _page_tokens(value: str | None) -> set[str]:
+    return {
+        token.strip().lower()
+        for token in re.split(r"[,;/]+", value or "")
+        if token.strip()
+    }
+
+
+def _spec_origin_table(row: dict[str, str]) -> str:
+    # Spec_Master.csv is the merged render snapshot. Source-side sync splits real
+    # specification rows from page placeholder rows; preserve that split in source_ref
+    # so F6 can write a page value back to Page_Placeholders_Source, not Spec_Master.
+    tokens = _page_tokens(row.get("Page"))
+    if tokens and "specifications" not in tokens:
+        return PAGE_PLACEHOLDERS_SOURCE_TABLE
+    return SPEC_MASTER_TABLE
 
 
 def _add(index: dict[str, dict[str, Any]], value: str | None, source_ref: dict[str, Any]) -> None:
@@ -63,8 +83,9 @@ def build_value_index(snapshot_root: Path, lang: str) -> dict[str, dict[str, Any
     want_lang = str(lang or "").strip().lower()
     index: dict[str, dict[str, Any]] = {}
     for row in _read_csv(root / SPEC_MASTER_FILE):
+        table = _spec_origin_table(row)
         base_ref = {
-            "table": "Spec_Master",
+            "table": table,
             "document_key": (row.get("document_key") or "").strip(),
             "row_key": (row.get("Row_key") or "").strip(),
             "slot_key": (row.get("Slot_key") or "").strip(),

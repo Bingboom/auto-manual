@@ -83,10 +83,18 @@ The `run-review` dry-run writes diff/apply/run reports without editing `_review`
 its `PR_READY` manifest gates `open-pr`. Data-like edits remain report-only
 source-table suggestions, and the runner writes
 `cloud_doc_backport_source_table_suggestions.md` with candidate source tables and
-operator steps.
+operator steps. Feishu review highlight tags are stripped as metadata, image-only
+token changes are reported as `image_asset_delta` instead of source-table edits,
+and page-value rows resolve to `Page_Placeholders_Source` change requests when
+the phase2 value index and `source_record_index.json` sidecar are available.
+Terminology swaps between output wording and button wording are flagged as
+semantic-review-required instead of being auto-written.
 `open-pr` is the separate operator-gated PR step: it only accepts a `PR_READY`
 run manifest, refuses unrelated working-tree changes, commits the changed
 `docs/_review/...rst` source, and opens a draft PR with the manifest summary.
+If GitHub rejects PR creation after the branch is pushed, the helper prints a
+compare link plus the PR title/body so the operator can create the draft PR
+manually.
 Cloud-doc backport runs from Claude Code / Codex / a terminal only; it is not a
 Feishu IM / BlockClaw command.
 

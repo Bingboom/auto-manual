@@ -158,6 +158,41 @@ class CollectIndexRowsTests(unittest.TestCase):
         ref = {"table": "Spec_Master", "document_key": "JE-1000F_EU", "row_key": "dc12_port", "slot_key": "main"}
         self.assertEqual(resolve_by_table(index, ref), ("recDC", "resolved"))
 
+    def test_page_placeholder_rows_are_indexed_separately_from_spec_master(self) -> None:
+        normalized = {
+            "spec_master": [
+                {
+                    "document_key": "JE-2000F_EU",
+                    "Page": "Product overview",
+                    "Row_key": "usb_a",
+                    "Slot_key": "front.label",
+                    SOURCE_RECORD_ID_KEY: "recPlaceholder",
+                },
+                {
+                    "document_key": "JE-2000F_EU",
+                    "Page": "specifications",
+                    "Row_key": "capacity",
+                    "Slot_key": "value",
+                    SOURCE_RECORD_ID_KEY: "recSpec",
+                },
+            ]
+        }
+        index = build_index(collect_index_rows(normalized, {"spec_master": []}))
+        placeholder_ref = {
+            "table": "Page_Placeholders_Source",
+            "document_key": "JE-2000F_EU",
+            "row_key": "usb_a",
+            "slot_key": "front.label",
+        }
+        spec_ref = {
+            "table": "Spec_Master",
+            "document_key": "JE-2000F_EU",
+            "row_key": "capacity",
+            "slot_key": "value",
+        }
+        self.assertEqual(resolve_by_table(index, placeholder_ref), ("recPlaceholder", "resolved"))
+        self.assertEqual(resolve_by_table(index, spec_ref), ("recSpec", "resolved"))
+
 
 def _mcs_row(copy_key: str, is_latest: str = "true") -> dict[str, str]:
     return {"copy_key": copy_key, "Is_Latest": is_latest}
