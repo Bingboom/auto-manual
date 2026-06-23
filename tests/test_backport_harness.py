@@ -15,7 +15,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.backport_harness import get_fixtures, main, run_fixture  # noqa: E402
+from tools.backport_harness import coverage_matrix, get_fixtures, main, run_fixture  # noqa: E402
 
 
 class BackportHarnessTests(unittest.TestCase):
@@ -32,6 +32,34 @@ class BackportHarnessTests(unittest.TestCase):
         self.assertEqual(main(["check"]), 0)
         self.assertEqual(main(["check", "--json"]), 0)
         self.assertEqual(main(["list"]), 0)
+        self.assertEqual(main(["matrix"]), 0)
+        self.assertEqual(main(["matrix", "--json"]), 0)
+
+    def test_apply_closure_round_trips_and_is_idempotent(self) -> None:
+        # Every fixture that resolves a source record must land the cloud-doc edit
+        # in the source and converge (a second apply is a no-op).
+        for fixture in get_fixtures():
+            result = run_fixture(fixture)
+            closure = result["observed"]["closure"]
+            if closure is None:
+                continue
+            with self.subTest(fixture=fixture.name):
+                self.assertTrue(closure["round_trip_landed"], f"{fixture.name}: edit did not land in source")
+                self.assertTrue(closure["idempotent"], f"{fixture.name}: re-apply was not a no-op")
+
+    def test_diff_quality_is_perfect_for_passing_fixtures(self) -> None:
+        for fixture in get_fixtures():
+            with self.subTest(fixture=fixture.name):
+                metrics = run_fixture(fixture)["observed"]["metrics"]
+                self.assertEqual(metrics["precision"], 1.0, f"{fixture.name}: false deltas present")
+                self.assertEqual(metrics["recall"], 1.0, f"{fixture.name}: deltas missed")
+
+    def test_coverage_matrix_spans_languages_and_routes(self) -> None:
+        matrix = coverage_matrix()
+        self.assertGreaterEqual(len(matrix), 3)
+        all_routes = {route for row in matrix.values() for route in row}
+        self.assertIn("source_table_suggestion", all_routes)
+        self.assertIn("needs_human_mapping", all_routes)
 
     def test_fixtures_span_languages_and_route_classes(self) -> None:
         fixtures = get_fixtures()

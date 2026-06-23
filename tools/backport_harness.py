@@ -15,12 +15,20 @@ corpus (``tests/test_backport_golden_corpus.py``): it catches aggregation and
 interaction bugs, and exercises the F6 change-request build + plan chain — the
 write side — that the corpus does not touch.
 
+For each fixture the harness also runs an **apply-closure round-trip** (apply the
+resolved change-requests to an in-memory transport seeded with the OLD values, then
+confirm the cloud-doc edit landed in the source and a second apply is a no-op — the
+loop converges) and reports **diff-quality metrics** (histogram precision/recall of
+the routing). A passing fixture must have precision == recall == 1.0 and a clean
+round-trip.
+
 The ``check`` command is **offline** (no Feishu) and CI-safe; it is also runnable
 by an operator as a quick green/red gate:
 
     python3 tools/backport_harness.py check            # run all fixtures, assert
     python3 tools/backport_harness.py check --json     # machine-readable report
     python3 tools/backport_harness.py list             # list fixtures
+    python3 tools/backport_harness.py matrix           # language x route coverage map
 
 For a true LIVE round-trip, run ``tools/cloud_doc_backport.py`` against a seeded
 test-tenant doc in dry-run. Live source-table writes must target an
@@ -44,7 +52,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.cloud_doc_backport import build_report  # noqa: E402
 from tools.source_record_index import build_index  # noqa: E402
-from tools.source_table_sync import build_change_request_report, plan_apply  # noqa: E402
+from tools.source_table_sync import (  # noqa: E402
+    apply_change_requests,
+    build_change_request_report,
+    plan_apply,
+)
 from tools.token_resolution_map import build_value_index  # noqa: E402
 
 
@@ -78,6 +90,7 @@ class Fixture:
     expect_semantic: int = 0
     expect_resolved_requests: int | None = None
     expect_plan_applies: list[str] = field(default_factory=list)  # expected new cell values
+    expect_round_trip: bool | None = None  # None -> auto (True iff there are resolved requests)
 
 
 def _apply_edits(baseline: str, edits: list[tuple[str, str]]) -> str:
@@ -112,6 +125,64 @@ def _sidecar(spec_rows: list[SpecRow]) -> dict[str, Any] | None:
     return build_index(rows_by_table) if rows_by_table else None
 
 
+class _MemoryTransport:
+    """In-memory Feishu cell store seeded with the OLD source values, for the
+    apply-closure round-trip (L2) — no network."""
+
+    def __init__(self, seed: dict[tuple, Any]) -> None:
+        self.store = dict(seed)
+
+    def get(self, *, table, record_id, field):
+        return self.store.get((table, record_id, field))
+
+    def upsert(self, *, table, record_id, field, value) -> None:
+        self.store[(table, record_id, field)] = value
+
+
+def _apply_closure(requests: list[dict[str, Any]]) -> dict[str, bool] | None:
+    """Round-trip + idempotency closure for the resolved change-requests.
+
+    Seeds a memory transport with each resolved request's OLD value, applies the
+    requests, and checks (a) every applied cell now holds the request's NEW value —
+    so the cloud-doc edit reached the source faithfully — and (b) a second apply is
+    a no-op (``already_applied``), proving the loop converges. Returns ``None`` when
+    there is nothing resolved to apply.
+    """
+    resolved = [r for r in requests if r.get("resolution_status") == "resolved" and r.get("record_id")]
+    if not resolved:
+        return None
+    seed = {(r["table"], r["record_id"], r["field"]): r["old_value"] for r in resolved}
+    transport = _MemoryTransport(seed)
+    approved = {r["delta_hash"] for r in requests}
+    first = apply_change_requests(requests, approved_hashes=approved, transport=transport, write=True)
+    landed = all(
+        transport.get(table=r["table"], record_id=r["record_id"], field=r["field"]) == r["new_value"]
+        for r in resolved
+    )
+    second = apply_change_requests(requests, approved_hashes=approved, transport=transport, write=True)
+    idempotent = (
+        second["summary"]["written"] == 0
+        and second["summary"]["already_applied"] == first["summary"]["written"]
+        and first["summary"]["written"] == len(resolved)
+    )
+    return {"round_trip_landed": bool(landed), "idempotent": bool(idempotent)}
+
+
+def _diff_quality(observed_routes: dict[str, int], expected_routes: dict[str, int]) -> dict[str, float]:
+    """Histogram precision/recall of the route classification against expectation.
+
+    precision = correctly-routed deltas / all observed deltas (1.0 = no false
+    deltas); recall = correctly-routed deltas / all expected deltas (1.0 = nothing
+    missed). Makes "diff quality" an explicit, asserted quantity (L6).
+    """
+    matched = sum(min(observed_routes.get(route, 0), count) for route, count in expected_routes.items())
+    observed_total = sum(observed_routes.values())
+    expected_total = sum(expected_routes.values())
+    precision = matched / observed_total if observed_total else 1.0
+    recall = matched / expected_total if expected_total else 1.0
+    return {"precision": round(precision, 4), "recall": round(recall, 4)}
+
+
 def run_fixture(fixture: Fixture) -> dict[str, Any]:
     """Run the full chain for one fixture and compare against its expectations."""
     fetched = _apply_edits(fixture.baseline, fixture.edits)
@@ -140,6 +211,7 @@ def run_fixture(fixture: Fixture) -> dict[str, Any]:
     requests = change_requests["requests"]
     plan = plan_apply(requests, approved_hashes={r["delta_hash"] for r in requests})
 
+    closure = _apply_closure(requests)
     summary = report["summary"]
     observed = {
         "total": summary["total_deltas"],
@@ -147,6 +219,8 @@ def run_fixture(fixture: Fixture) -> dict[str, Any]:
         "semantic": summary["semantic_review_required"],
         "resolved_requests": change_requests["summary"]["resolved_record_ids"],
         "plan_applies": [entry["value"] for entry in plan if entry["action"] == "apply"],
+        "closure": closure,
+        "metrics": _diff_quality(summary["route_classes"], fixture.expect_routes),
     }
 
     mismatches: list[str] = []
@@ -160,6 +234,16 @@ def run_fixture(fixture: Fixture) -> dict[str, Any]:
         mismatches.append(f"resolved_requests {observed['resolved_requests']} != {fixture.expect_resolved_requests}")
     if sorted(observed["plan_applies"]) != sorted(fixture.expect_plan_applies):
         mismatches.append(f"plan_applies {observed['plan_applies']} != {fixture.expect_plan_applies}")
+    want_round_trip = bool(closure) if fixture.expect_round_trip is None else fixture.expect_round_trip
+    if want_round_trip:
+        if closure is None:
+            mismatches.append("expected an apply-closure but no resolved requests were produced")
+        elif not (closure["round_trip_landed"] and closure["idempotent"]):
+            mismatches.append(f"apply-closure failed: {closure}")
+    # Diff quality must be perfect for a passing fixture: no false deltas, nothing missed.
+    metrics = observed["metrics"]
+    if metrics["precision"] != 1.0 or metrics["recall"] != 1.0:
+        mismatches.append(f"diff quality {metrics} (expected precision=recall=1.0)")
 
     return {"name": fixture.name, "lang": fixture.lang, "passed": not mismatches, "observed": observed, "mismatches": mismatches}
 
@@ -256,7 +340,13 @@ def _cmd_check(args: argparse.Namespace) -> int:
     else:
         for r in results:
             mark = "PASS" if r["passed"] else "FAIL"
-            print(f"[{mark}] {r['name']} ({r['lang']}) routes={r['observed']['routes']}")
+            obs = r["observed"]
+            closure = obs["closure"]
+            rt = "n/a" if closure is None else ("ok" if closure["round_trip_landed"] and closure["idempotent"] else "BROKEN")
+            print(
+                f"[{mark}] {r['name']} ({r['lang']}) routes={obs['routes']} "
+                f"metrics={obs['metrics']} round-trip={rt}"
+            )
             for mismatch in r["mismatches"]:
                 print(f"        - {mismatch}")
         print(f"\n{len(results) - len(failed)}/{len(results)} fixtures passed")
@@ -269,6 +359,28 @@ def _cmd_list(_args: argparse.Namespace) -> int:
     return 0
 
 
+def coverage_matrix() -> dict[str, dict[str, int]]:
+    """Language -> route-class -> count covered by the fixtures (the L6 coverage map)."""
+    matrix: dict[str, dict[str, int]] = {}
+    for fx in _FIXTURES:
+        row = matrix.setdefault(fx.lang, {})
+        for route, count in fx.expect_routes.items():
+            row[route] = row.get(route, 0) + count
+    return matrix
+
+
+def _cmd_matrix(args: argparse.Namespace) -> int:
+    matrix = coverage_matrix()
+    if args.json:
+        print(json.dumps(matrix, ensure_ascii=False, indent=2))
+        return 0
+    routes = sorted({route for row in matrix.values() for route in row})
+    print("lang".ljust(8) + "".join(route[:18].ljust(20) for route in routes))
+    for lang in sorted(matrix):
+        print(lang.ljust(8) + "".join(str(matrix[lang].get(route, 0)).ljust(20) for route in routes))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Backport closed-loop integration harness")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -277,6 +389,9 @@ def main(argv: list[str] | None = None) -> int:
     check.set_defaults(func=_cmd_check)
     listing = sub.add_parser("list", help="list the harness fixtures")
     listing.set_defaults(func=_cmd_list)
+    matrix = sub.add_parser("matrix", help="print the language x route-class coverage matrix")
+    matrix.add_argument("--json", action="store_true", help="emit a machine-readable matrix")
+    matrix.set_defaults(func=_cmd_matrix)
     args = parser.parse_args(argv)
     return int(args.func(args))
 
