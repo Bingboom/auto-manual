@@ -21,7 +21,7 @@ ENCENDIDO/APAGADO
 | **Tiempo de espera predeterminado:** 2 horas.
 | El producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga.
 | \*El tiempo de espera puede configurarse en la aplicación Jackery.
-| <text bgcolor="light-yellow">Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si el botón de energía CA o CC/USB está encendido, pero el producto no está cargando ni descargando.</text>
+| Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si el botón de energía CA o CC/USB está encendido, pero el producto no está cargando ni descargando.
 
 ENCENDER/APAGAR SALIDA CA
 --------------------------
