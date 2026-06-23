@@ -57,7 +57,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{ENVIRONMENTAL OPERATING TEMPERATURE}
+   \specsectiontitle{<text bgcolor="light-yellow">UMGEBUNGSTEMPERATUR IM BETRIEB</text>}
    \begin{spectable}
    \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
    \HBTypeSpecLabel{Ladtemperatur} & \HBTypeSpecValue{von 0 °C bis 45 °C} \\
@@ -171,7 +171,7 @@
    
    .. raw:: html
    
-      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">ENVIRONMENTAL OPERATING TEMPERATURE</span></h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text"><text bgcolor="light-yellow">UMGEBUNGSTEMPERATUR IM BETRIEB</text></span></h2>
       <table class="hb-spec-table">
         <tbody>
           <tr>
