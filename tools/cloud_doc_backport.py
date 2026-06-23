@@ -64,10 +64,11 @@ VERIFY_SCHEMA_VERSION = "cloud-doc-backport-verify/v1"
 RUN_SCHEMA_VERSION = "cloud-doc-backport-run/v1"
 SOURCE_TABLE_SUGGESTIONS_SCHEMA_VERSION = "cloud-doc-backport-source-table-suggestions/v1"
 TEMPLATE_SYNC_PROPOSAL_SCHEMA_VERSION = "cloud-doc-backport-template-sync-proposal/v1"
-NORMALIZER_VERSION = "cloud-doc-normalizer/v3"
+NORMALIZER_VERSION = "cloud-doc-normalizer/v4"
 
 _SAFE_PATH_CHARS = re.compile(r"[^A-Za-z0-9._-]+")
 _LARK_TAG_RE = re.compile(r"</?lark-[^>]*>", re.IGNORECASE)
+_FEISHU_TEXT_TAG_RE = re.compile(r"</?text\b[^>]*>", re.IGNORECASE)
 _TITLE_TAG_RE = re.compile(r"^\s*<title>.*?</title>\s*", re.IGNORECASE | re.DOTALL)
 _HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 _TABLE_SEPARATOR_RE = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$")
@@ -82,6 +83,29 @@ _RST_HEADING_CHARS = {"=": 1, "-": 2, "~": 3, "^": 4, '"': 5, "'": 6}
 _RST_HEADING_UNDERLINE_RE = re.compile(r"^\s*([=\-~^\"'])\1{2,}\s*$")
 _DOCUMENT_PREAMBLE_SECTION = "__document_preamble__"
 _DOCUMENT_PREAMBLE_LABEL = "document preamble"
+_IMAGE_SENTINELS = ("![image]", "<img>")
+_OUTPUT_TERMS = (
+    "output",
+    "salida",
+    "uscita",
+    "ausgang",
+    "sortie",
+    "saída",
+    "saida",
+    "вихід",
+    "выход",
+)
+_BUTTON_TERMS = (
+    "button",
+    "botón",
+    "boton",
+    "pulsante",
+    "taste",
+    "knopf",
+    "bouton",
+    "кнопка",
+    "кнопку",
+)
 
 
 @dataclass(frozen=True)
@@ -224,6 +248,8 @@ def fetch_doc_text(doc_url: str, *, lark_cli: str = "lark-cli") -> str:
                 check=False,
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
             )
         except OSError as exc:
             errors.append(f"{shlex.join(command)} -> {exc}")
@@ -240,6 +266,9 @@ def fetch_doc_text(doc_url: str, *, lark_cli: str = "lark-cli") -> str:
 def _strip_lark_noise(text: str) -> str:
     text = _HTML_COMMENT_RE.sub("", text)
     text = _LARK_TAG_RE.sub("", text)
+    # Feishu review highlights arrive as inline <text bgcolor="..."> metadata.
+    # They mark what a reviewer selected; they are not source content.
+    text = _FEISHU_TEXT_TAG_RE.sub("", text)
     text = text.replace("\u200b", "").replace("\ufeff", "")
     return text
 
@@ -305,13 +334,14 @@ def parse_blocks(text: str) -> list[Block]:
         return tuple(part for part in heading_stack if part)
 
     def add_block(kind: str, value: str, line_no: int, *, heading_level: int | None = None) -> None:
-        normalized = _normalize_inline(value)
+        cleaned = _strip_lark_noise(value).strip()
+        normalized = _normalize_inline(cleaned)
         if not normalized:
             return
         blocks.append(
             Block(
                 kind=kind,
-                text=value.strip(),
+                text=cleaned,
                 normalized=normalized,
                 heading_path=current_path(),
                 line_no=line_no,
@@ -513,9 +543,9 @@ def _auto_section_for_source(source_path: Path | None, source_text: str) -> tupl
     blocks = parse_blocks(source_text)
     source_title = first_heading_title(blocks)
     if source_title:
-        return source_title, _display_path(source_path).as_posix()
+        return source_title, _report_path_text(source_path)
     if _source_path_prefers_document_preamble(source_path, blocks):
-        return _DOCUMENT_PREAMBLE_SECTION, _display_path(source_path).as_posix()
+        return _DOCUMENT_PREAMBLE_SECTION, _report_path_text(source_path)
     return None, None
 
 
@@ -526,6 +556,59 @@ def _looks_data_like(*blocks: Block | None) -> bool:
     return bool(_PLACEHOLDER_RE.search(text) or _UNIT_VALUE_RE.search(text))
 
 
+def _without_image_placeholders(text: str) -> str:
+    value = text
+    for sentinel in _IMAGE_SENTINELS:
+        value = value.replace(sentinel, "")
+    value = value.replace("|", " ")
+    return re.sub(r"\s+", " ", value).strip()
+
+
+def _is_image_asset_delta(old: Block | None, new: Block | None) -> bool:
+    old_norm = old.normalized if old is not None else ""
+    new_norm = new.normalized if new is not None else ""
+    combined = f"{old_norm} {new_norm}"
+    if not any(sentinel in combined for sentinel in _IMAGE_SENTINELS):
+        return False
+    old_text = _without_image_placeholders(old_norm)
+    new_text = _without_image_placeholders(new_norm)
+    return (not old_text and not new_text) or old_text == new_text
+
+
+def _contains_any_term(text: str, terms: tuple[str, ...]) -> bool:
+    lowered = text.casefold()
+    return any(term.casefold() in lowered for term in terms)
+
+
+def _semantic_review_flags(old: Block | None, new: Block | None) -> list[dict[str, str]]:
+    old_text = old.normalized if old is not None else ""
+    new_text = new.normalized if new is not None else ""
+    if not old_text or not new_text:
+        return []
+    old_output = _contains_any_term(old_text, _OUTPUT_TERMS)
+    new_output = _contains_any_term(new_text, _OUTPUT_TERMS)
+    old_button = _contains_any_term(old_text, _BUTTON_TERMS)
+    new_button = _contains_any_term(new_text, _BUTTON_TERMS)
+    flags: list[dict[str, str]] = []
+    if old_output and new_button and not old_button:
+        flags.append(
+            {
+                "type": "output_to_button",
+                "severity": "review_required",
+                "reason": "changed output terminology to button terminology; confirm whether the sentence refers to controls",
+            }
+        )
+    if old_button and new_output and not old_output:
+        flags.append(
+            {
+                "type": "button_to_output",
+                "severity": "review_required",
+                "reason": "changed button terminology to output terminology; confirm whether the sentence refers to outputs",
+            }
+        )
+    return flags
+
+
 def _classify_route(
     doc_type: str,
     old: Block | None,
@@ -534,7 +617,14 @@ def _classify_route(
     family_scope: dict[str, Any] | None = None,
     *,
     value_index_present: bool = False,
+    semantic_review_flags: list[dict[str, str]] | None = None,
 ) -> tuple[str, str, str]:
+    if _is_image_asset_delta(old, new):
+        return (
+            "image_asset_delta",
+            "medium",
+            "image-only/token-only delta; route to image asset handling, not source tables",
+        )
     if data_origin is not None:
         # F2: the old text resolved to a data value (whole-text or table-cell match),
         # so this is a data-origin (Class D) delta — deterministic, not the heuristic guess.
@@ -575,6 +665,12 @@ def _classify_route(
             "data-like delta in a template-maintenance document",
         )
     if doc_type == "review":
+        if semantic_review_flags:
+            return (
+                "needs_human_mapping",
+                "low",
+                "semantic terminology risk requires operator confirmation before writing review RST",
+            )
         if family_scope is not None and family_scope.get("shared"):
             # F3: the span is identical across the family — template-origin shared
             # content. Flag for a human decision (shared-template change vs
@@ -618,8 +714,15 @@ def _make_delta(
         if (family_index and old is not None and data_origin is None)
         else None
     )
+    semantic_flags = _semantic_review_flags(old, new)
     route_class, confidence, reason = _classify_route(
-        doc_type, old, new, data_origin, family_scope, value_index_present=bool(value_index)
+        doc_type,
+        old,
+        new,
+        data_origin,
+        family_scope,
+        value_index_present=bool(value_index),
+        semantic_review_flags=semantic_flags,
     )
     hash_payload = {
         "doc_type": doc_type,
@@ -644,6 +747,7 @@ def _make_delta(
         "classification_reason": reason,
         "source_ref": data_origin,
         "family_scope": family_scope,
+        "semantic_review": {"required": bool(semantic_flags), "flags": semantic_flags},
         "location": _location(new or old),
         "old_text": old.text if old else None,
         "new_text": new.text if new else None,
@@ -791,7 +895,7 @@ def _source_target_payload(source_path: Path | None, doc_type: str) -> dict[str,
     if source_path is None:
         return None
     return {
-        "path": source_path.as_posix(),
+        "path": _report_path_text(source_path),
         "kind": _source_kind_for_path(source_path, doc_type) or doc_type,
     }
 
@@ -869,7 +973,7 @@ def build_report(
         "run_id": run_id,
         "doc_type": doc_type,
         "doc_url": doc_url,
-        "baseline": baseline_path.as_posix(),
+        "baseline": _report_path_text(baseline_path),
         "source_target": source_target,
         "section_selection": _selection_payload(selection),
         "normalizer_version": NORMALIZER_VERSION,
@@ -886,6 +990,9 @@ def build_report(
             "change_types": _counter_dict([delta["change_type"] for delta in deltas]),
             "route_classes": _counter_dict([delta["route_class"] for delta in deltas]),
             "confidence": _counter_dict([delta["confidence"] for delta in deltas]),
+            "semantic_review_required": sum(
+                1 for delta in deltas if (delta.get("semantic_review") or {}).get("required")
+            ),
         },
         "deltas": deltas,
     }
@@ -1561,6 +1668,15 @@ def _verify_delta(index: int, delta: dict[str, Any], current_text: str) -> dict[
         "source_evidence": delta.get("source_evidence") or {},
     }
     route_class = delta.get("route_class")
+    if route_class == "image_asset_delta":
+        return {
+            **base_result,
+            "category": "image_asset_delta",
+            "status": "reported",
+            "reason": "image asset delta is report-only",
+            "old_matches": old_matches,
+            "new_matches": new_matches,
+        }
     if route_class == "source_table_suggestion":
         return {
             **base_result,
@@ -1916,6 +2032,15 @@ def _suggestion_heading_text(suggestion: dict[str, Any]) -> str:
 
 
 def _source_table_routing_hint(suggestion: dict[str, Any]) -> dict[str, Any]:
+    source_ref = suggestion.get("source_ref") if isinstance(suggestion.get("source_ref"), dict) else {}
+    source_table = str(source_ref.get("table") or "").strip()
+    if source_table:
+        return {
+            "route_key": "resolved_source_ref",
+            "candidate_source_tables": [source_table],
+            "confidence": "high",
+            "reason": "delta resolved to an exact source_ref table",
+        }
     text = " ".join(
         str(suggestion.get(key) or "") for key in ("old_text", "new_text", "old_normalized", "new_normalized")
     )
@@ -2015,7 +2140,11 @@ def build_source_table_suggestions_report(
                 "operator_locator": _operator_locator(suggestion),
                 "old_text": suggestion.get("old_text"),
                 "new_text": suggestion.get("new_text"),
+                "old_normalized": suggestion.get("old_normalized"),
+                "new_normalized": suggestion.get("new_normalized"),
+                "source_ref": suggestion.get("source_ref") or {},
                 "source_evidence": suggestion.get("source_evidence") or {},
+                "semantic_review": suggestion.get("semantic_review") or {},
                 "reason": suggestion.get("reason") or "data-like review delta is report-only",
             }
         )
@@ -2150,8 +2279,12 @@ def _source_table_suggestions_from_diff(diff_report: dict[str, Any]) -> list[dic
                 "route_class": delta.get("route_class"),
                 "old_text": delta.get("old_text"),
                 "new_text": delta.get("new_text"),
+                "old_normalized": delta.get("old_normalized"),
+                "new_normalized": delta.get("new_normalized"),
                 "location": delta.get("location") or {},
+                "source_ref": delta.get("source_ref") or {},
                 "source_evidence": delta.get("source_evidence") or {},
+                "semantic_review": delta.get("semantic_review") or {},
                 "status": "reported",
                 "reason": "data-like review delta is report-only",
             }
@@ -2490,6 +2623,11 @@ def _display_path(path: Path) -> Path:
         return path
 
 
+def _report_path_text(path: Path) -> str:
+    display = _display_path(path)
+    return str(display) if display.is_absolute() else display.as_posix()
+
+
 def _resolve_repo_file(root: Path, value: str | None, *, label: str) -> Path:
     if not value:
         raise RuntimeError(f"missing {label}")
@@ -2540,6 +2678,36 @@ def _run_pr_command(command: list[str], *, root: Path, stdin: str | None = None)
         detail = (completed.stderr or completed.stdout or "").strip()
         raise RuntimeError(f"{detail or 'command failed'} (exit={completed.returncode}, cmd={shlex.join(command)})")
     return completed.stdout.strip()
+
+
+def _github_web_url(remote_url: str) -> str | None:
+    value = remote_url.strip()
+    if not value:
+        return None
+    if value.startswith("git@github.com:"):
+        path = value.removeprefix("git@github.com:")
+        return "https://github.com/" + path.removesuffix(".git")
+    if value.startswith("https://github.com/") or value.startswith("http://github.com/"):
+        return value.removesuffix(".git")
+    return None
+
+
+def _compare_url(
+    *,
+    root: Path,
+    base_ref: str,
+    head_ref: str,
+    git_bin: str = "git",
+    remote: str = "origin",
+) -> str:
+    try:
+        remote_url = _run_pr_command([git_bin, "remote", "get-url", remote], root=root)
+    except RuntimeError:
+        remote_url = ""
+    web_url = _github_web_url(remote_url)
+    if web_url:
+        return f"{web_url}/compare/{base_ref}...{head_ref}"
+    return f"{base_ref}...{head_ref}"
 
 
 def _safe_branch_segment(value: str) -> str:
@@ -2705,23 +2873,26 @@ def open_backport_pr_from_manifest(
     )
     commit_sha = _run_pr_command([git_bin, "rev-parse", "HEAD"], root=root)
     _run_pr_command([git_bin, "push", "-u", "origin", resolved_branch], root=root)
-    pr_url = _run_pr_command(
-        [
-            gh_bin,
-            "pr",
-            "create",
-            "--base",
-            base_ref,
-            "--head",
-            resolved_branch,
-            "--draft",
-            "--title",
-            commit_title,
-            "--body",
-            pr_body,
-        ],
-        root=root,
-    ).splitlines()[-1].strip()
+    pr_url = ""
+    pr_create_error = ""
+    pr_create_command = [
+        gh_bin,
+        "pr",
+        "create",
+        "--base",
+        base_ref,
+        "--head",
+        resolved_branch,
+        "--draft",
+        "--title",
+        commit_title,
+        "--body",
+        pr_body,
+    ]
+    try:
+        pr_url = _run_pr_command(pr_create_command, root=root).splitlines()[-1].strip()
+    except RuntimeError as exc:
+        pr_create_error = str(exc)
     switch_back_warning = ""
     try:
         _run_pr_command([git_bin, "switch", base_ref], root=root)
@@ -2729,7 +2900,7 @@ def open_backport_pr_from_manifest(
         switch_back_warning = str(exc)
     result = {
         "schema_version": "cloud-doc-backport-pr/v1",
-        "result": "PR_OPENED",
+        "result": "PR_OPENED" if pr_url else "PR_CREATE_FAILED",
         "branch": resolved_branch,
         "base_ref": base_ref,
         "commit": commit_sha,
@@ -2738,8 +2909,24 @@ def open_backport_pr_from_manifest(
         "source_path": source_rel,
         "source_table_suggestions": int((manifest.get("summary") or {}).get("source_table_suggestions") or 0),
     }
+    if not pr_url:
+        result.update(
+            {
+                "compare_url": _compare_url(
+                    root=root,
+                    base_ref=base_ref,
+                    head_ref=resolved_branch,
+                    git_bin=git_bin,
+                    remote="origin",
+                ),
+                "pr_title": commit_title,
+                "pr_body": pr_body,
+                "pr_create_error": pr_create_error,
+                "pr_create_command": shlex.join(pr_create_command),
+            }
+        )
     if switch_back_warning:
-        result["warning"] = f"draft PR opened, but switching back to {base_ref} failed: {switch_back_warning}"
+        result["warning"] = f"branch pushed, but switching back to {base_ref} failed: {switch_back_warning}"
     return result
 
 
@@ -3213,11 +3400,20 @@ def _run_open_pr(args: argparse.Namespace) -> int:
         return 2
     if args.json:
         print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
+    elif result.get("result") == "PR_CREATE_FAILED":
+        print(f"PR_CREATE_FAILED {result.get('pr_create_error') or '-'}")
+        print(f"COMPARE {result.get('compare_url') or '-'}")
+        print(f"BRANCH {result['branch']}")
+        print(f"COMMIT {result['commit']}")
+        print("PR_TITLE")
+        print(result.get("pr_title") or "")
+        print("PR_BODY")
+        print(result.get("pr_body") or "")
     else:
         print(f"PR {result['pr_url']}")
         print(f"BRANCH {result['branch']}")
         print(f"COMMIT {result['commit']}")
-    return 0
+    return 0 if result.get("result") == "PR_OPENED" else 1
 
 
 def _parse_table_bindings(specs: list[str]) -> dict[str, tuple[str, str]]:
@@ -3453,14 +3649,30 @@ def _open_backport_pr(
             + "\n".join(f"- `{rel}`" for rel in changed_rels)
             + "\n\nVerify, then merge into the review branch."
         )
-        pr_url = _run_pr_command(
-            [
-                "gh", "pr", "create", "--base", git_ref, "--head", pr_branch,
-                "--draft", "--title", f"backport: review edits for {git_ref} ({run_id})",
-                "--body", body,
-            ],
-            root=Path(worktree),
-        ).splitlines()[-1].strip()
+        pr_title = f"backport: review edits for {git_ref} ({run_id})"
+        try:
+            pr_url = _run_pr_command(
+                [
+                    "gh", "pr", "create", "--base", git_ref, "--head", pr_branch,
+                    "--draft", "--title", pr_title,
+                    "--body", body,
+                ],
+                root=Path(worktree),
+            ).splitlines()[-1].strip()
+        except RuntimeError as exc:
+            compare = _compare_url(
+                root=Path(worktree),
+                base_ref=git_ref,
+                head_ref=pr_branch,
+                git_bin=git_bin,
+                remote=remote,
+            )
+            print(f"PR_CREATE_FAILED {exc}", file=sys.stderr)
+            print(f"COMPARE {compare}", file=sys.stderr)
+            print(f"PR_TITLE {pr_title}", file=sys.stderr)
+            print("PR_BODY", file=sys.stderr)
+            print(body, file=sys.stderr)
+            return True, compare
         return True, pr_url
     finally:
         _run_pr_command([git_bin, "switch", git_ref], root=Path(worktree))
@@ -3906,7 +4118,7 @@ def _auto_sibling_rels(lang: str) -> list[str]:
     shared_dir = get_paths().templates_dir / "page_shared" / lang
     if not shared_dir.is_dir():
         return []
-    return [str(path.relative_to(root)) for path in sorted(shared_dir.glob("*.rst"))]
+    return [path.relative_to(root).as_posix() for path in sorted(shared_dir.glob("*.rst"))]
 
 
 def _resolve_review_branch_siblings(args: argparse.Namespace) -> list[str]:

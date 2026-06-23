@@ -89,6 +89,19 @@ class BuildValueIndexTests(unittest.TestCase):
             self.assertIn("1500 W FR", index)  # the fr reviewer edits the localized value
             self.assertNotIn("1500 W", index)  # the en source value is NOT indexed under fr
 
+    def test_non_spec_page_values_resolve_to_page_placeholders_source(self) -> None:
+        spec = (
+            "document_key,Page,Row_key,Slot_key,Value_fr\n"
+            "JE-2000F_EU,Product overview,usb_a,front.label,USB-A 18 W Sortie\n"
+            "JE-2000F_EU,specifications,capacity,value,2042 Wh\n"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "Spec_Master.csv").write_text(spec, encoding="utf-8")
+            index = build_value_index(Path(tmp), "fr")
+            self.assertEqual(index["USB-A 18 W Sortie"]["table"], "Page_Placeholders_Source")
+            self.assertEqual(index["USB-A 18 W Sortie"]["field"], "Value_fr")
+            self.assertEqual(index["2042 Wh"]["table"], "Spec_Master")
+
 
 class ClassifyDataOriginTests(unittest.TestCase):
     def test_exact_match_and_whitespace_normalized(self) -> None:

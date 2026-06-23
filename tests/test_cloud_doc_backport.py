@@ -37,6 +37,9 @@ from tools.cloud_doc_backport import (
     select_document_preamble_blocks,
     select_section_blocks,
 )
+from tools.source_record_index import build_index  # noqa: E402
+from tools.source_table_sync import build_change_request_report  # noqa: E402
+from tools.token_resolution_map import build_value_index  # noqa: E402
 
 
 FIXTURES = Path(__file__).parent / "fixtures" / "cloud_doc_backport"
@@ -954,6 +957,66 @@ class CloudDocBackportTest(unittest.TestCase):
             self.assertIn("--draft", pr_create_call)
             self.assertIn("reports/cloud_doc_backport/run-1/cloud_doc_backport_run.json", "\n".join(pr_create_call))
 
+    def test_open_pr_from_manifest_returns_compare_fallback_when_gh_create_is_forbidden(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review_path = root / "docs" / "_review" / "JE-2000F" / "EU" / "page" / "05_operation_guide_placeholder.rst"
+            review_path.parent.mkdir(parents=True)
+            review_path.write_text("updated\n", encoding="utf-8")
+            manifest_path = root / "reports" / "cloud_doc_backport" / "run-1" / "cloud_doc_backport_run.json"
+            manifest_path.parent.mkdir(parents=True)
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "cloud-doc-backport-run/v1",
+                        "result": "PR_READY",
+                        "mode": "write",
+                        "source_target": {
+                            "path": "docs/_review/JE-2000F/EU/page/05_operation_guide_placeholder.rst",
+                            "kind": "review",
+                        },
+                        "summary": {
+                            "total_deltas": 3,
+                            "changed": True,
+                            "pr_ready": True,
+                            "source_table_suggestions": 0,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            def fake_run(command: list[str], *, root: Path, stdin: str | None = None) -> str:
+                del root, stdin
+                if command[:3] == ["git", "status", "--porcelain"]:
+                    return " M docs/_review/JE-2000F/EU/page/05_operation_guide_placeholder.rst"
+                if command[:3] == ["git", "branch", "--show-current"]:
+                    return "main"
+                if command[:3] == ["git", "rev-parse", "HEAD"]:
+                    return "abc123"
+                if command[:3] == ["git", "remote", "get-url"]:
+                    return "https://github.com/Bingboom/auto-manual.git"
+                if command[:3] == ["gh", "pr", "create"]:
+                    raise RuntimeError("HTTP 403: Resource not accessible by integration")
+                return ""
+
+            with patch("tools.cloud_doc_backport._run_pr_command", side_effect=fake_run):
+                result = open_backport_pr_from_manifest(
+                    manifest_path=manifest_path,
+                    repo_root=root,
+                    git_bin="git",
+                    gh_bin="gh",
+                )
+
+            self.assertEqual(result["result"], "PR_CREATE_FAILED")
+            self.assertEqual(
+                result["compare_url"],
+                "https://github.com/Bingboom/auto-manual/compare/main...review/JE-2000F-EU-cloud-doc-backport-run-1",
+            )
+            self.assertIn("fix(backport): apply cloud doc review revisions", result["pr_title"])
+            self.assertIn("Cloud-Doc Backport Manifest", result["pr_body"])
+            self.assertIn("HTTP 403", result["pr_create_error"])
+
     def test_open_pr_from_manifest_refuses_unrelated_worktree_changes(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -1402,6 +1465,105 @@ class BaselineDiffTests(unittest.TestCase):
         for delta in report["deltas"]:
             self.assertNotIn("TOKEN_", (delta.get("old_text") or "") + (delta.get("new_text") or ""))
             self.assertNotIn("![", (delta.get("old_text") or "") + (delta.get("new_text") or ""))
+
+    def test_feishu_highlight_markup_is_metadata_not_body_text(self) -> None:
+        report = build_report(
+            run_id="highlight",
+            doc_type="review",
+            doc_url="https://x.feishu.cn/wiki/d",
+            baseline_path=Path("b.md"),
+            fetched_text='<text bgcolor="light-yellow">Sortie USB-A 18 W</text>\n',
+            baseline_text="Sortie USB-A\n",
+            command=["t"],
+            source_path=None,
+            section_title=None,
+        )
+        self.assertEqual(report["summary"]["total_deltas"], 1)
+        delta = report["deltas"][0]
+        self.assertEqual(delta["new_text"], "Sortie USB-A 18 W")
+        self.assertNotIn("<text", json.dumps(report, ensure_ascii=False))
+        self.assertNotIn("bgcolor", json.dumps(report, ensure_ascii=False))
+
+    def test_image_asset_delta_is_not_source_table_suggestion(self) -> None:
+        report = build_report(
+            run_id="image-asset",
+            doc_type="review",
+            doc_url="https://x.feishu.cn/wiki/d",
+            baseline_path=Path("b.md"),
+            fetched_text="| ![new image](https://x/img/TOKEN_B) |\n",
+            baseline_text="",
+            command=["t"],
+            source_path=None,
+            section_title=None,
+        )
+        self.assertEqual(report["summary"]["route_classes"], {"image_asset_delta": 1})
+        suggestions = [delta for delta in report["deltas"] if delta["route_class"] == "source_table_suggestion"]
+        self.assertEqual(suggestions, [])
+
+    def test_placeholder_value_change_resolves_to_page_placeholder_record(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Spec_Master.csv").write_text(
+                "document_key,Page,Row_key,Slot_key,Value_fr\n"
+                "JE-2000F_EU,Product overview,usb_a,front.label,USB-A 18 W Sortie\n",
+                encoding="utf-8",
+            )
+            value_index = build_value_index(root, "fr")
+            report = build_report(
+                run_id="placeholder",
+                doc_type="review",
+                doc_url="https://x.feishu.cn/wiki/d",
+                baseline_path=Path("b.md"),
+                fetched_text="| **Sortie USB-A 18 W** |\n",
+                baseline_text="| **USB-A 18 W Sortie** |\n",
+                command=["t"],
+                source_path=None,
+                section_title=None,
+                value_index=value_index,
+            )
+            delta = report["deltas"][0]
+            self.assertEqual(delta["route_class"], "source_table_suggestion")
+            self.assertEqual(delta["source_ref"]["table"], "Page_Placeholders_Source")
+            self.assertEqual(delta["source_ref"]["field"], "Value_fr")
+            sidecar = build_index(
+                {
+                    "Page_Placeholders_Source": [
+                        (
+                            {
+                                "document_key": "JE-2000F_EU",
+                                "Row_key": "usb_a",
+                                "Slot_key": "front.label",
+                            },
+                            "recvlg1VS5Lhm3",
+                        )
+                    ]
+                }
+            )
+            change_request = build_change_request_report(report, sidecar_index=sidecar)
+            request = change_request["requests"][0]
+            self.assertEqual(request["table"], "Page_Placeholders_Source")
+            self.assertEqual(request["record_id"], "recvlg1VS5Lhm3")
+            self.assertEqual(request["resolution_status"], "resolved")
+            self.assertEqual(request["old_value"], "USB-A 18 W Sortie")
+            self.assertEqual(request["new_value"], "Sortie USB-A 18 W")
+
+    def test_output_button_term_swap_requires_semantic_review(self) -> None:
+        report = build_report(
+            run_id="semantic-risk",
+            doc_type="review",
+            doc_url="https://x.feishu.cn/wiki/d",
+            baseline_path=Path("b.md"),
+            fetched_text="Cuando el botón de CA o el botón CC/USB está encendido.\n",
+            baseline_text="Cuando la salida de CA o la salida CC/USB está activada.\n",
+            command=["t"],
+            source_path=None,
+            section_title=None,
+        )
+        delta = report["deltas"][0]
+        self.assertEqual(delta["route_class"], "needs_human_mapping")
+        self.assertTrue(delta["semantic_review"]["required"])
+        self.assertEqual(delta["semantic_review"]["flags"][0]["type"], "output_to_button")
+        self.assertEqual(report["summary"]["semantic_review_required"], 1)
 
     def test_run_review_branch_baseline_writes_report_and_is_report_only(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
