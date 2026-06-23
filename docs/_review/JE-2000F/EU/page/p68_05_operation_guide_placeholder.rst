@@ -18,7 +18,7 @@ ACCENSIONE/SPEGNIMENTO
 | **Tempo di standby predefinito:** 2 ore.
 | Il prodotto si spegnerà automaticamente dopo 2 ore di inattività, senza ricarica o scarica.
 | \*Il tempo di standby può essere impostato nell'App Jackery.
-| Quando la Modalità risparmio energetico è attiva, il prodotto si spegnerà automaticamente dopo 12 ore se l'uscita CA o DC/USB è attiva ma il prodotto non sta caricando o scaricando.
+| Quando la Modalità risparmio energetico è attiva, il prodotto si spegnerà automaticamente dopo 12 ore se il pulsante CA o il pulsante DC/USB è attivo ma il prodotto non sta né caricando né scaricando.
 
 USCITA CA ATTIVA/DISATTIVA
 --------------------------

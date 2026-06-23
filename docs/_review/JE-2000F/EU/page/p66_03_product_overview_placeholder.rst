@@ -16,7 +16,7 @@
       \HBOverviewPair{Uscita USB-A 18 W}{18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A}{Uscita CA}{230 V~ 50 Hz, 10 A max., 2200 W nominali totali, 4400 W di picco}
       \HBOverviewFull{Uscita totale}{2200 W nominali, 4400 W di picco}
       }
-      \HBOverviewPanel{VISTA LATO DESTRO}{right_side_ports.png}{%
+      \HBOverviewPanel{VISTA LATERALE DESTRA}{right_side_ports.png}{%
       \HBOverviewPair{Maniglia}{}{Ingresso CA}{220-240 V~ 50 Hz, 10 A max.}
       \HBOverviewPair{}{}{Ingresso DC (2×porte DC8020)}{PV: 16-60 V⎓12 A max., fino a 21 A max. / 400 W max. con doppio ingresso \newline Auto: 11-16 V⎓8 A max., fino a 8 A max. con doppio ingresso}
       }
@@ -68,8 +68,8 @@
 
           2200 W nominali, 4400 W di picco
 
-   VISTA LATO DESTRO
-   -----------------
+   VISTA LATERALE DESTRA
+   ---------------------
 
    .. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
       :alt: Segnaposto diagramma vista lato destro.

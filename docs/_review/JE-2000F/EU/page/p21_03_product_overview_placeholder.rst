@@ -13,7 +13,7 @@
       \HBOverviewPair{Bouton CC / USB}{}{Lumière LED}{}
       \HBOverviewPair{Sortie USB-C 30 W}{30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A}{Bouton CA}{}
       \HBOverviewPair{Sortie USB-C 100 W}{100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A}{}{}
-      \HBOverviewPair{USB-A 18 W Sortie}{18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A}{Sortie CA}{230 V~ 50 Hz, 10 A max., 2200 W nominal au total, 4400 W pointe de surtension}
+      \HBOverviewPair{Sortie USB-A 18 W}{18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A}{Sortie CA}{230 V~ 50 Hz, 10 A max., 2200 W nominal au total, 4400 W pointe de surtension}
       \HBOverviewFull{Sortie totale}{2200 W Nominal, 4400 W crête}
       }
       \HBOverviewPanel{VUE LATÉRALE DROITE}{right_side_ports.png}{%
@@ -53,7 +53,7 @@
 
           100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A
         -
-      * - **USB-A 18 W Sortie**
+      * - **Sortie USB-A 18 W**
 
           18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A
         - **Sortie CA**

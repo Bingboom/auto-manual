@@ -17,7 +17,7 @@ MARCHE/ARRÊT
 | **Temps de veille par défaut :** 2 heures.
 | Le produit s'éteindra automatiquement après 2 heures d'inactivité, sans charge ni décharge.
 | \*Le temps de veille peut être réglé dans l'application Jackery.
-| Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton CA ou le bouton CC / USB est activé mais que le produit ne charge ni ne décharge.
+| Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton CA ou le bouton CC/USB est activé mais que le produit ne charge ni ne décharge.
 
 SORTIE CA MARCHE/ARRÊT
 ----------------------
