@@ -48,6 +48,18 @@ class BuildValueIndexTests(unittest.TestCase):
             self.assertEqual(copy["table"], "Localized_Copy")
             self.assertEqual(copy["copy_key"], "op_guide.title")
 
+    def test_line_order_is_carried_for_fallback_disambiguation(self) -> None:
+        # A multi-line spec row carries Line_order on its source_ref so the sidecar
+        # can disambiguate an otherwise-ambiguous (doc, Row_key, empty Slot_key) key.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Spec_Master.csv").write_text(
+                "document_key,Row_key,Slot_key,Line_order,Value_en\nD,storage_temperature,,2,32 F to 113 F\n",
+                encoding="utf-8",
+            )
+            index = build_value_index(root, "en")
+            self.assertEqual(index["32 F to 113 F"]["line_order"], "2")
+
     def test_lang_selects_value_column(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             index = build_value_index(_snapshot(tmp), "en")

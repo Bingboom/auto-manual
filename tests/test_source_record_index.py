@@ -173,6 +173,83 @@ class OptionalSlotKeyTests(unittest.TestCase):
         self.assertEqual(resolve_by_table(index, ref), ("recPP", "resolved"))
 
 
+def _line_row(doc: str, row_key: str, slot: str, line_order: str) -> dict:
+    return {"document_key": doc, "Row_key": row_key, "Slot_key": slot, "Line_order": line_order}
+
+
+class LineOrderFallbackTests(unittest.TestCase):
+    """Tier 2: an ambiguous empty-Slot_key key disambiguates by Line_order fallback."""
+
+    def _multiline_index(self):
+        return build_index(
+            {
+                "Spec_Master": [
+                    (_line_row("D", "storage_temperature", "", "1"), "recST1"),
+                    (_line_row("D", "storage_temperature", "", "2"), "recST2"),
+                    (_line_row("D", "storage_temperature", "", "3"), "recST3"),
+                    (_line_row("D", "capacity", "", ""), "recCAP"),  # unique base key
+                    (_line_row("D", "usb_c", "30w", "1"), "recUSB30"),  # slotted base key
+                ]
+            }
+        )
+
+    def _ref(self, row_key, slot, line_order):
+        return {
+            "table": "Spec_Master",
+            "document_key": "D",
+            "row_key": row_key,
+            "slot_key": slot,
+            "line_order": line_order,
+        }
+
+    def test_multiline_resolves_by_line_order(self) -> None:
+        index = self._multiline_index()
+        sm = index["tables"]["Spec_Master"]
+        self.assertIn(_KEY_SEP.join(["D", "storage_temperature", ""]), sm["ambiguous"])
+        self.assertEqual(len(sm["records_by_fallback"]), 3)
+        self.assertEqual(resolve_by_table(index, self._ref("storage_temperature", "", "2")), ("recST2", "resolved"))
+        self.assertEqual(resolve_by_table(index, self._ref("storage_temperature", "", "3")), ("recST3", "resolved"))
+
+    def test_base_key_path_is_unchanged(self) -> None:
+        index = self._multiline_index()
+        # Unique / slotted rows still resolve via the primary records map (no fallback).
+        self.assertEqual(resolve_by_table(index, self._ref("capacity", "", "")), ("recCAP", "resolved"))
+        self.assertEqual(resolve_by_table(index, self._ref("usb_c", "30w", "1")), ("recUSB30", "resolved"))
+
+    def test_ambiguous_without_a_line_order_value_stays_ambiguous(self) -> None:
+        index = self._multiline_index()
+        self.assertEqual(resolve_by_table(index, self._ref("storage_temperature", "", "")), (None, "ambiguous"))
+
+    def test_line_order_collision_still_abstains(self) -> None:
+        # Two rows share Row_key AND Line_order (e.g. input vs output port, disambiguated
+        # by Section, not Line_order) -> the fallback key is itself ambiguous -> abstain.
+        index = build_index(
+            {
+                "Spec_Master": [
+                    (_line_row("D", "battery_pack", "", "1"), "recIN"),
+                    (_line_row("D", "battery_pack", "", "1"), "recOUT"),
+                ]
+            }
+        )
+        self.assertEqual(index["tables"]["Spec_Master"].get("records_by_fallback", {}), {})
+        self.assertEqual(resolve_by_table(index, self._ref("battery_pack", "", "1")), (None, "ambiguous"))
+
+    def test_old_sidecar_without_fallback_map_degrades_safely(self) -> None:
+        # A sidecar built before Tier 2 has an ambiguous key but no records_by_fallback;
+        # resolution must abstain, never crash.
+        index = {
+            "schema_version": "x",
+            "tables": {
+                "Spec_Master": {
+                    "key_fields": ["document_key", "Row_key", "Slot_key"],
+                    "records": {},
+                    "ambiguous": [_KEY_SEP.join(["D", "storage_temperature", ""])],
+                }
+            },
+        }
+        self.assertEqual(resolve_by_table(index, self._ref("storage_temperature", "", "2")), (None, "ambiguous"))
+
+
 class CollectIndexRowsTests(unittest.TestCase):
     def test_pairs_normalized_rows_with_record_ids(self) -> None:
         normalized = {"lcd_icons": [_lcd_row("battery", "JE-1000F", "0.7")]}
