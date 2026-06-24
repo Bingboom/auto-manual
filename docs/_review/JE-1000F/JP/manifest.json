@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-06-20T12:41:18.416600+00:00",
+  "git_sha": "79b0417902d01d5b014ce7fc9fb082f38c6268f5",
+  "model": "JE-1000F",
+  "region": "JP",
+  "lang": null,
+  "runtime_bundle_dir": "docs/_build/JE-1000F/JP/rst",
+  "review_dir": "docs/_review/JE-1000F/JP",
+  "index_path": "docs/_review/JE-1000F/JP/index.rst",
+  "page_files": [
+    "docs/_review/JE-1000F/JP/page/01_meaning_of_symbols.rst",
+    "docs/_review/JE-1000F/JP/page/02_whats_in_the_box.rst",
+    "docs/_review/JE-1000F/JP/page/03_product_overview_placeholder.rst",
+    "docs/_review/JE-1000F/JP/page/05_operation_guide_placeholder.rst",
+    "docs/_review/JE-1000F/JP/page/06_ups_mode.rst",
+    "docs/_review/JE-1000F/JP/page/08_charging_methods.rst",
+    "docs/_review/JE-1000F/JP/page/11_warranty.rst",
+    "docs/_review/JE-1000F/JP/page/12_app_setup_placeholder.rst",
+    "docs/_review/JE-1000F/JP/page/charging.rst",
+    "docs/_review/JE-1000F/JP/page/cover_jp.rst",
+    "docs/_review/JE-1000F/JP/page/lcd_icons_ja.rst",
+    "docs/_review/JE-1000F/JP/page/safety_ja.rst",
+    "docs/_review/JE-1000F/JP/page/spec_ja.rst",
+    "docs/_review/JE-1000F/JP/page/troubleshooting_ja.rst"
+  ],
+  "generated_files": [
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/draft/03_product_overview_ja.rst",
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/draft/05_operation_guide_ja.rst",
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/draft/12_app_setup_ja.rst",
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/lcd_icons_ja.rst",
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/spec_ja.rst",
+    "docs/_review/JE-1000F/JP/generated/JE-1000F/troubleshooting_ja.rst"
+  ],
+  "override_files": [
+    "docs/_review/JE-1000F/JP/overrides/README.md"
+  ],
+  "page_manifest": "docs/manifests/manual_jp.yaml",
+  "recipe_ids": [
+    "03_product_overview",
+    "05_operation_guide",
+    "12_app_setup"
+  ],
+  "snippet_ids": [],
+  "spec_master": {
+    "path": "/home/runner/work/auto-manual/auto-manual/.tmp/review-start/phase2/Spec_Master.csv",
+    "sha256": "ce5a907d993a1887af4c4de41b6f24120f1f450a552da5ab6c14ca38a07505ba"
+  }
+}
