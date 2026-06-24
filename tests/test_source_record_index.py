@@ -104,6 +104,75 @@ class BuildIndexTests(unittest.TestCase):
         self.assertEqual(record_count(index), 0)
 
 
+def _spec_row(doc: str, row_key: str, slot: str) -> dict:
+    return {"document_key": doc, "Row_key": row_key, "Slot_key": slot}
+
+
+class OptionalSlotKeyTests(unittest.TestCase):
+    """Tier 1: Spec_Master Slot_key is an optional disambiguator.
+
+    Rows without one (product_name, capacity…) — ~half of Spec_Master — must
+    still index/resolve by (document_key, Row_key); collisions still abstain.
+    """
+
+    def test_unique_empty_slot_row_is_indexed_and_resolves(self) -> None:
+        index = build_index({"Spec_Master": [(_spec_row("JE-1000F_US", "capacity", ""), "recCAP")]})
+        records = index["tables"]["Spec_Master"]["records"]
+        self.assertEqual(records[_KEY_SEP.join(["JE-1000F_US", "capacity", ""])], "recCAP")
+        ref = {"table": "Spec_Master", "document_key": "JE-1000F_US", "row_key": "capacity", "slot_key": ""}
+        self.assertEqual(resolve_by_table(index, ref), ("recCAP", "resolved"))
+
+    def test_empty_slot_collision_still_abstains(self) -> None:
+        # storage_temperature x3 (1/3/12 months) share an empty Slot_key; they are
+        # disambiguated by Line_order, not Slot_key, so they remain ambiguous.
+        index = build_index(
+            {
+                "Spec_Master": [
+                    (_spec_row("JE-1000F_US", "storage_temperature", ""), "recST1"),
+                    (_spec_row("JE-1000F_US", "storage_temperature", ""), "recST2"),
+                ]
+            }
+        )
+        table = index["tables"]["Spec_Master"]
+        self.assertIn(_KEY_SEP.join(["JE-1000F_US", "storage_temperature", ""]), table["ambiguous"])
+        ref = {"table": "Spec_Master", "document_key": "JE-1000F_US", "row_key": "storage_temperature", "slot_key": ""}
+        self.assertEqual(resolve_by_table(index, ref), (None, "ambiguous"))
+
+    def test_filled_and_empty_slot_keys_do_not_collide(self) -> None:
+        index = build_index(
+            {
+                "Spec_Master": [
+                    (_spec_row("JE-1000F_US", "usb_c", "30w"), "recUSB30"),
+                    (_spec_row("JE-1000F_US", "usb_c", "100w"), "recUSB100"),
+                    (_spec_row("JE-1000F_US", "capacity", ""), "recCAP"),
+                ]
+            }
+        )
+        base = {"table": "Spec_Master", "document_key": "JE-1000F_US"}
+        self.assertEqual(resolve_by_table(index, {**base, "row_key": "usb_c", "slot_key": "30w"}), ("recUSB30", "resolved"))
+        self.assertEqual(resolve_by_table(index, {**base, "row_key": "usb_c", "slot_key": "100w"}), ("recUSB100", "resolved"))
+        self.assertEqual(resolve_by_table(index, {**base, "row_key": "capacity", "slot_key": ""}), ("recCAP", "resolved"))
+        # A slotted Row_key queried with an empty slot has no such row -> no false match.
+        self.assertEqual(resolve_by_table(index, {**base, "row_key": "usb_c", "slot_key": ""}), (None, "unresolved"))
+
+    def test_missing_required_field_still_skipped(self) -> None:
+        # An optional Slot_key may be empty, but a missing document_key (required) is not safe.
+        index = build_index(
+            {
+                "Spec_Master": [
+                    (_spec_row("", "capacity", ""), "recNoDoc"),
+                    (_spec_row("JE-1000F_US", "", ""), "recNoRow"),
+                ]
+            }
+        )
+        self.assertEqual(record_count(index), 0)
+
+    def test_page_placeholders_also_allow_empty_slot(self) -> None:
+        index = build_index({"Page_Placeholders_Source": [(_spec_row("JE-2000F_EU", "power", ""), "recPP")]})
+        ref = {"table": "Page_Placeholders_Source", "document_key": "JE-2000F_EU", "row_key": "power", "slot_key": ""}
+        self.assertEqual(resolve_by_table(index, ref), ("recPP", "resolved"))
+
+
 class CollectIndexRowsTests(unittest.TestCase):
     def test_pairs_normalized_rows_with_record_ids(self) -> None:
         normalized = {"lcd_icons": [_lcd_row("battery", "JE-1000F", "0.7")]}
