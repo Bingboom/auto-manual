@@ -76,6 +76,18 @@ TABLE_OPTIONAL_KEY_FIELDS: dict[str, frozenset[str]] = {
     "Page_Placeholders_Source": frozenset({"Slot_key"}),
 }
 
+# A FALLBACK disambiguator used only when the primary composite key is ambiguous
+# (a Row_key with an empty Slot_key that legitimately repeats — a multi-line spec
+# like ``storage_temperature`` ×3 = 1/3/12 months, disambiguated by ``Line_order``
+# not ``Slot_key``). Mapping: index table -> (CSV column, source_ref field). It is
+# applied ONLY to keys that landed in ``ambiguous``, so the primary records map (the
+# 405 already-resolving rows) is byte-identical and an older sidecar without the
+# extra map degrades gracefully (the ambiguous rows simply stay ``ambiguous``).
+TABLE_FALLBACK_KEY_FIELD: dict[str, tuple[str, str]] = {
+    "Spec_Master": ("Line_order", "line_order"),
+    "Page_Placeholders_Source": ("Line_order", "line_order"),
+}
+
 # sync logical table name -> index table name used in the sidecar / source_ref.
 INDEXED_LOGICAL_TABLES: dict[str, str] = {
     "lcd_icons": "lcd_icons_blocks",
@@ -182,6 +194,7 @@ def build_index(rows_by_table: dict[str, list[tuple[dict[str, Any], str]]]) -> d
         pairs = rows_by_table.get(table) or []
         records: dict[str, str] = {}
         ambiguous: set[str] = set()
+        rows_by_key: dict[str, list[tuple[str, dict[str, Any]]]] = {}
         for row, record_id in pairs:
             rid = _clean(record_id)
             values = [_clean(row.get(field)) for field in key_fields]
@@ -191,6 +204,7 @@ def build_index(rows_by_table: dict[str, list[tuple[dict[str, Any], str]]]) -> d
                 # still keyed by its required fields.)
                 continue
             key = _join_key(values)
+            rows_by_key.setdefault(key, []).append((rid, row))
             existing = records.get(key)
             if existing is None and key not in ambiguous:
                 records[key] = rid
@@ -198,12 +212,47 @@ def build_index(rows_by_table: dict[str, list[tuple[dict[str, Any], str]]]) -> d
                 ambiguous.add(key)
         for key in ambiguous:
             records.pop(key, None)
-        tables[table] = {
+        table_entry: dict[str, Any] = {
             "key_fields": list(key_fields),
             "records": records,
             "ambiguous": sorted(ambiguous),
         }
+        fallback = _build_fallback_records(table, ambiguous, rows_by_key)
+        if fallback:
+            table_entry["records_by_fallback"] = fallback
+        tables[table] = table_entry
     return {"schema_version": SCHEMA_VERSION, "tables": tables}
+
+
+def _build_fallback_records(
+    table: str, ambiguous: set[str], rows_by_key: dict[str, list[tuple[str, dict[str, Any]]]]
+) -> dict[str, str]:
+    """For each ambiguous primary key, key its rows by ``primary_key + fallback`` so a
+    multi-line row (e.g. ``storage_temperature`` ×3) resolves by its ``Line_order``.
+
+    Exact-or-abstain still holds: a ``(primary_key, fallback)`` that maps to >1 record,
+    or rows with no fallback value, are dropped.
+    """
+    spec = TABLE_FALLBACK_KEY_FIELD.get(table)
+    if spec is None or not ambiguous:
+        return {}
+    csv_column, _ = spec
+    fallback: dict[str, str] = {}
+    fb_ambiguous: set[str] = set()
+    for key in ambiguous:
+        for rid, row in rows_by_key.get(key, []):
+            fb = _clean(row.get(csv_column))
+            if not fb:
+                continue
+            ext = _join_key([key, fb])
+            existing = fallback.get(ext)
+            if existing is None and ext not in fb_ambiguous:
+                fallback[ext] = rid
+            elif existing is not None and existing != rid:
+                fb_ambiguous.add(ext)
+    for ext in fb_ambiguous:
+        fallback.pop(ext, None)
+    return fallback
 
 
 def collect_index_rows(
@@ -313,11 +362,28 @@ def resolve_by_table(index: dict[str, Any], source_ref: dict[str, Any]) -> tuple
         return None, "unresolved"
     key = _join_key(values)
     if key in (table_index.get("ambiguous") or []):
-        return None, "ambiguous"
+        # Primary key is ambiguous (a repeating empty-Slot_key Row_key). Try the
+        # fallback disambiguator (e.g. Line_order) before giving up.
+        return _resolve_fallback(index_table, table_index, key, source_ref)
     record_id = (table_index.get("records") or {}).get(key)
     if record_id:
         return record_id, "resolved"
     return None, "unresolved"
+
+
+def _resolve_fallback(
+    index_table: str, table_index: dict[str, Any], key: str, source_ref: dict[str, Any]
+) -> tuple[str | None, str]:
+    """Disambiguate an ambiguous primary key via the fallback field; else ``ambiguous``."""
+    spec = TABLE_FALLBACK_KEY_FIELD.get(index_table)
+    if spec is not None:
+        _, ref_field = spec
+        fb_value = _clean(source_ref.get(ref_field))
+        if fb_value:
+            record_id = (table_index.get("records_by_fallback") or {}).get(_join_key([key, fb_value]))
+            if record_id:
+                return record_id, "resolved"
+    return None, "ambiguous"
 
 
 # content_lint ``source_ref`` ``kind`` -> (index table, ((source_ref_field, key_field), ...))

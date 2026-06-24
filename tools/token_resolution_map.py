@@ -89,6 +89,11 @@ def build_value_index(snapshot_root: Path, lang: str) -> dict[str, dict[str, Any
             "document_key": (row.get("document_key") or "").strip(),
             "row_key": (row.get("Row_key") or "").strip(),
             "slot_key": (row.get("Slot_key") or "").strip(),
+            # Fallback disambiguator for a multi-line row (e.g. storage_temperature
+            # ×3) whose (document_key, Row_key, Slot_key) is ambiguous: the sidecar
+            # resolves it by Line_order. Carried on every ref; used only when the
+            # primary key is ambiguous (see source_record_index._resolve_fallback).
+            "line_order": (row.get("Line_order") or "").strip(),
         }
         # A source-language review (e.g. US-en) has its values in <base>_source — the real
         # Spec_Master carries Value_source plus localized columns but no Value_en. Index
