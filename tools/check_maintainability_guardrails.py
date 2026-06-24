@@ -28,7 +28,7 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # (cloud_doc_backport.py reached 4183 lines outside any threshold). Now capped.
     # cloud_doc_backport.py is set EXACTLY at its current size (no headroom) so the
     # in-progress decomposition can only push it DOWN, never up.
-    "tools/cloud_doc_backport.py": 1711,
+    "tools/cloud_doc_backport.py": 1425,
     "tools/cloud_doc_backport_reports.py": 880,
     "tools/sync_data_runtime.py": 900,
     "tools/content_lint.py": 800,

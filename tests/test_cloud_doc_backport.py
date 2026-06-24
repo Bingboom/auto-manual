@@ -932,7 +932,7 @@ class CloudDocBackportTest(unittest.TestCase):
                     return "https://github.com/Bingboom/auto-manual/pull/999"
                 return ""
 
-            with patch("tools.cloud_doc_backport._run_pr_command", side_effect=fake_run):
+            with patch("tools.cloud_doc_backport_pr._run_pr_command", side_effect=fake_run):
                 result = open_backport_pr_from_manifest(
                     manifest_path=manifest_path,
                     repo_root=root,
@@ -1000,7 +1000,7 @@ class CloudDocBackportTest(unittest.TestCase):
                     raise RuntimeError("HTTP 403: Resource not accessible by integration")
                 return ""
 
-            with patch("tools.cloud_doc_backport._run_pr_command", side_effect=fake_run):
+            with patch("tools.cloud_doc_backport_pr._run_pr_command", side_effect=fake_run):
                 result = open_backport_pr_from_manifest(
                     manifest_path=manifest_path,
                     repo_root=root,
@@ -1052,7 +1052,7 @@ class CloudDocBackportTest(unittest.TestCase):
                     )
                 return "main"
 
-            with patch("tools.cloud_doc_backport._run_pr_command", side_effect=fake_run):
+            with patch("tools.cloud_doc_backport_pr._run_pr_command", side_effect=fake_run):
                 with self.assertRaisesRegex(RuntimeError, "unrelated working-tree changes"):
                     open_backport_pr_from_manifest(manifest_path=manifest_path, repo_root=root)
 
