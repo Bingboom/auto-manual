@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
@@ -57,6 +58,22 @@ TABLE_KEY_FIELDS: dict[str, tuple[str, ...]] = {
     # (see TABLE_ROW_FILTERS) so only the current authoring row is keyed; a
     # genuine cross-row copy_key collision still abstains.
     "Manual_Copy_Source": ("copy_key",),
+}
+
+# Key fields that are an OPTIONAL disambiguator, not part of the row's primary
+# identity. ``Slot_key`` is filled only for collision classes (e.g. usb_c
+# 30w/100w sharing one Row_key) and is legitimately EMPTY for ~half of
+# Spec_Master rows (product_name, capacity, weight…), which are uniquely keyed by
+# (document_key, Row_key) alone. Such rows must still be indexed/resolvable — the
+# earlier "all key fields non-empty" rule dropped them, so their Class D source
+# edits could never be written back. The composite key still keeps the (empty)
+# slot segment, so a filled-slot key (``doc␟row␟30w``) never collides with an
+# empty-slot one (``doc␟row␟``); and a genuine empty-slot collision — a Row_key
+# that repeats with an empty Slot_key, disambiguated elsewhere (e.g.
+# storage_temperature ×3 by Line_order) — still abstains via the ambiguity guard.
+TABLE_OPTIONAL_KEY_FIELDS: dict[str, frozenset[str]] = {
+    "Spec_Master": frozenset({"Slot_key"}),
+    "Page_Placeholders_Source": frozenset({"Slot_key"}),
 }
 
 # sync logical table name -> index table name used in the sidecar / source_ref.
@@ -122,6 +139,17 @@ def _join_key(values: list[str]) -> str:
     return _KEY_SEP.join(values)
 
 
+def _required_key_present(table: str, key_fields: Sequence[str], values: Sequence[str]) -> bool:
+    """True when every REQUIRED (non-optional) key field has a non-empty value.
+
+    ``key_fields`` and ``values`` are positionally aligned. A field listed in
+    ``TABLE_OPTIONAL_KEY_FIELDS`` (e.g. Spec_Master ``Slot_key``) may be empty;
+    every other key field must be present, else the row cannot be safely keyed.
+    """
+    optional = TABLE_OPTIONAL_KEY_FIELDS.get(table, frozenset())
+    return all(value for field, value in zip(key_fields, values) if field not in optional)
+
+
 def _clean(value: Any) -> str:
     return str(value if value is not None else "").strip()
 
@@ -157,8 +185,10 @@ def build_index(rows_by_table: dict[str, list[tuple[dict[str, Any], str]]]) -> d
         for row, record_id in pairs:
             rid = _clean(record_id)
             values = [_clean(row.get(field)) for field in key_fields]
-            if not rid or not all(values):
-                # Incomplete key or missing id -> cannot resolve safely: abstain.
+            if not rid or not _required_key_present(table, key_fields, values):
+                # Missing id or a missing REQUIRED key field -> cannot resolve
+                # safely: abstain. (An optional Slot_key may be empty; the row is
+                # still keyed by its required fields.)
                 continue
             key = _join_key(values)
             existing = records.get(key)
@@ -278,7 +308,8 @@ def resolve_by_table(index: dict[str, Any], source_ref: dict[str, Any]) -> tuple
     if not isinstance(table_index, dict):
         return None, "unresolved"
     values = [_clean(source_ref.get(ref_field)) for ref_field, _ in field_map]
-    if not all(values):
+    key_fields = [key_field for _, key_field in field_map]
+    if not _required_key_present(index_table, key_fields, values):
         return None, "unresolved"
     key = _join_key(values)
     if key in (table_index.get("ambiguous") or []):
