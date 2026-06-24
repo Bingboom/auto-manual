@@ -24,6 +24,16 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/spec_master_rebuild.py": 1150,
     "tools/process_docs/build_review_preview_targets.py": 430,
     "tools/queue_lark_ops.py": 360,
+    # Backport / data-sync surface — previously ungoverned and grew unchecked
+    # (cloud_doc_backport.py reached 4183 lines outside any threshold). Now capped.
+    # cloud_doc_backport.py is set EXACTLY at its current size (no headroom) so the
+    # in-progress decomposition can only push it DOWN, never up.
+    "tools/cloud_doc_backport.py": 4183,
+    "tools/sync_data_runtime.py": 900,
+    "tools/content_lint.py": 800,
+    "tools/translation_memory.py": 790,
+    "tools/source_record_index.py": 500,
+    "tools/source_table_sync.py": 500,
 }
 
 
