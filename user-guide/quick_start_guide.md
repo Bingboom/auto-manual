@@ -42,6 +42,17 @@ python3 build.py spec-master-rebuild --config configs/config.ja.yaml --expect-sp
 `Row_key` 也是 lookup 列，来自 `参数名.Row_key`；新增或更换参数概念时，先维护/选择 `Row_key_link`。
 两张源表不再维护 `Model` / `Region`；rebuild 会从 `document_key` 自动生成给本地 read model 使用。
 
+如果原始输入是一份规格书、Word 说明书转出的结构化 Markdown，或飞书云文档里的规格/文案表，先用 source intake 做候选沉淀：
+
+```bash
+python3 tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2 --out reports/source_intake/<run-id>
+python3 tools/source_intake.py approve --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approve <delta_hash> --out reports/source_intake/<run-id>
+python3 tools/source_intake.py apply --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --out reports/source_intake/<run-id>
+python3 tools/source_intake.py verify --candidates reports/source_intake/<run-id>/source_intake_candidates.json --change-request reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --apply-report reports/source_intake/<run-id>/source_intake_apply.json --check-command "sync-data=python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master" --check-command "build=python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US" --out reports/source_intake/<run-id>
+```
+
+`apply` 默认只做 dry-run 计划；只有人工确认后显式加 `--write --table-binding TABLE=BASE:TABLE_ID`，才会写线上 Feishu 源表。新增行仍先停在候选/人审层，不自动创建线上记录。
+
 不要把 [`data/phase2/`](../data/phase2) 当成主编辑面；它是 gitignored 本地 snapshot，每个镜像仓应从自己的 Feishu Base 生成。唯一入库的例外是 [`page_registry.csv`](../data/phase2/page_registry.csv)（仓库维护的页面结构输入，`sync-data` 每次运行都要读取）。
 只有当 `Document_link.是否强制刷新数据 = 勾选` 时，队列才会在这次构建前执行 `sync-data`；不勾时会直接复用当前本地 snapshot。
 
