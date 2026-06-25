@@ -67,7 +67,7 @@ class CloudDocBackportTest(unittest.TestCase):
             stderr="",
         )
 
-        with patch("tools.cloud_doc_backport.subprocess.run", return_value=completed):
+        with patch("tools.cloud_doc_backport_model.subprocess.run", return_value=completed):
             text = fetch_doc_text("https://example.feishu.cn/wiki/doc-1")
 
         self.assertEqual(text, "# Safety\n\n- Read all instructions.\n")
@@ -96,7 +96,7 @@ class CloudDocBackportTest(unittest.TestCase):
             calls.append(command)
             return completed
 
-        with patch("tools.cloud_doc_backport.subprocess.run", side_effect=fake_run):
+        with patch("tools.cloud_doc_backport_model.subprocess.run", side_effect=fake_run):
             text = fetch_doc_text("https://example.feishu.cn/wiki/doc-1")
 
         self.assertEqual(text, "# Safety\n\n- Read all instructions.\n")
@@ -1229,11 +1229,11 @@ class RunReviewBranchGuardTests(unittest.TestCase):
         import io
 
         resolved = {"git_ref": "codex/review-id-x", "review_dir": "docs/_review/JE-1000F/US", "pr_url": None}
-        with patch("tools.cloud_doc_backport._fetch_build_table_records", return_value=[]), \
-             patch("tools.cloud_doc_backport.match_review_branch_by_name", return_value=resolved), \
-             patch("tools.cloud_doc_backport.ensure_review_worktree", return_value="/tmp/wt"), \
-             patch("tools.cloud_doc_backport.doc_token", return_value="tok"), \
-             patch("tools.cloud_doc_backport.load_baseline", return_value=None):
+        with patch("tools.cloud_doc_backport_cli._fetch_build_table_records", return_value=[]), \
+             patch("tools.cloud_doc_backport_cli.match_review_branch_by_name", return_value=resolved), \
+             patch("tools.cloud_doc_backport_cli.ensure_review_worktree", return_value="/tmp/wt"), \
+             patch("tools.cloud_doc_backport_cli.doc_token", return_value="tok"), \
+             patch("tools.cloud_doc_backport_cli.load_baseline", return_value=None):
             err = io.StringIO()
             with contextlib.redirect_stderr(err):
                 rc = _run_review_branch(self._args(write=True, page=None))
@@ -1254,13 +1254,13 @@ class RunReviewBranchGuardTests(unittest.TestCase):
             captured["baseline_from_seed"] = baseline_from_seed
             return 0
 
-        with patch("tools.cloud_doc_backport._fetch_build_table_records", return_value=[]), \
-             patch("tools.cloud_doc_backport.match_review_branch_by_name", return_value=resolved), \
-             patch("tools.cloud_doc_backport.ensure_review_worktree", return_value="/tmp/wt"), \
-             patch("tools.cloud_doc_backport.doc_token", return_value="tok"), \
-             patch("tools.cloud_doc_backport.fetch_doc_text", return_value="R0 RENDER TEXT") as fetch, \
-             patch("tools.cloud_doc_backport.load_baseline") as load_file, \
-             patch("tools.cloud_doc_backport._run_review_branch_baseline", side_effect=fake_baseline):
+        with patch("tools.cloud_doc_backport_cli._fetch_build_table_records", return_value=[]), \
+             patch("tools.cloud_doc_backport_cli.match_review_branch_by_name", return_value=resolved), \
+             patch("tools.cloud_doc_backport_cli.ensure_review_worktree", return_value="/tmp/wt"), \
+             patch("tools.cloud_doc_backport_cli.doc_token", return_value="tok"), \
+             patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value="R0 RENDER TEXT") as fetch, \
+             patch("tools.cloud_doc_backport_cli.load_baseline") as load_file, \
+             patch("tools.cloud_doc_backport_cli._run_review_branch_baseline", side_effect=fake_baseline):
             rc = _run_review_branch(self._args(write=False, page=None))
         self.assertEqual(rc, 0)
         self.assertEqual(captured["baseline_text"], "R0 RENDER TEXT")  # the fetched doc baseline
@@ -1274,11 +1274,11 @@ class RunReviewBranchGuardTests(unittest.TestCase):
         import io
 
         resolved = {"git_ref": "codex/review-id-x", "review_dir": "docs/_review/JE-1000F/US", "pr_url": None}
-        with patch("tools.cloud_doc_backport._fetch_build_table_records", return_value=[]), \
-             patch("tools.cloud_doc_backport.match_review_branch_by_name", return_value=resolved), \
-             patch("tools.cloud_doc_backport.ensure_review_worktree", return_value="/tmp/wt-missing"), \
-             patch("tools.cloud_doc_backport.doc_token", return_value="tok"), \
-             patch("tools.cloud_doc_backport.load_baseline", return_value=None):
+        with patch("tools.cloud_doc_backport_cli._fetch_build_table_records", return_value=[]), \
+             patch("tools.cloud_doc_backport_cli.match_review_branch_by_name", return_value=resolved), \
+             patch("tools.cloud_doc_backport_cli.ensure_review_worktree", return_value="/tmp/wt-missing"), \
+             patch("tools.cloud_doc_backport_cli.doc_token", return_value="tok"), \
+             patch("tools.cloud_doc_backport_cli.load_baseline", return_value=None):
             err = io.StringIO()
             with contextlib.redirect_stderr(err):
                 _run_review_branch(self._args(write=False, page=None))
@@ -1352,13 +1352,13 @@ class RunReviewBranchFamilyScopeTests(unittest.TestCase):
             (page_dir / "00_preface.rst").write_text("Hello\n", encoding="utf-8")
             resolved = {"git_ref": "review/JE-1000F-US", "review_dir": "docs/_review/JE-1000F/US", "pr_url": None}
             args = self._args(write=False, page=None, out=str(Path(wt) / "out"))
-            with patch("tools.cloud_doc_backport._fetch_build_table_records", return_value=[]), \
-                 patch("tools.cloud_doc_backport.match_review_branch_by_name", return_value=resolved), \
-                 patch("tools.cloud_doc_backport.ensure_review_worktree", return_value=wt), \
-                 patch("tools.cloud_doc_backport.doc_token", return_value="tok"), \
-                 patch("tools.cloud_doc_backport.load_baseline", return_value=None), \
-                 patch("tools.cloud_doc_backport.fetch_doc_text", return_value="EDITED"), \
-                 patch("tools.cloud_doc_backport.subprocess.run", side_effect=fake_run):
+            with patch("tools.cloud_doc_backport_cli._fetch_build_table_records", return_value=[]), \
+                 patch("tools.cloud_doc_backport_cli.match_review_branch_by_name", return_value=resolved), \
+                 patch("tools.cloud_doc_backport_cli.ensure_review_worktree", return_value=wt), \
+                 patch("tools.cloud_doc_backport_cli.doc_token", return_value="tok"), \
+                 patch("tools.cloud_doc_backport_cli.load_baseline", return_value=None), \
+                 patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value="EDITED"), \
+                 patch("tools.cloud_doc_backport_model.subprocess.run", side_effect=fake_run):
                 rc = _run_review_branch(args)
         self.assertIn(rc, (0, 1))
         self.assertTrue(captured, "the per-page run-review worker should have been invoked")
@@ -1574,7 +1574,7 @@ class BaselineDiffTests(unittest.TestCase):
                 write=True, push=True,  # must be a no-op in baseline mode
             )
             resolved = {"git_ref": "review/JE-1000F-EU", "pr_url": "https://github.com/x/y/pull/1"}
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=self.EDITED):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value=self.EDITED):
                 rc = _run_review_branch_baseline(
                     args, resolved=resolved, worktree=tmp,
                     review_dir="docs/_review/JE-1000F/EU", doc_tok="doc-1",
@@ -1603,7 +1603,7 @@ class BaselineDiffTests(unittest.TestCase):
                 out=str(out_dir), lark_cli="lark-cli", write=False, push=False,
                 doc_name="manual_je1000f_us_en_1.0", lang=None, data_root="data/phase2",
             )
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=edited):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value=edited):
                 rc = _run_review_branch_baseline(
                     args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
                     worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-2",
@@ -1630,7 +1630,7 @@ class BaselineDiffTests(unittest.TestCase):
                 git_bin="git", remote="origin",
             )
             edited = "**FR IMPORTANT test**\n\nKeep this manual handy.\n"
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=edited):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value=edited):
                 rc = _run_review_branch_baseline(
                     args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
                     worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-3",
@@ -1657,7 +1657,7 @@ class BaselineDiffTests(unittest.TestCase):
                 git_bin="git", remote="origin",
             )
             edited = "**FR IMPORTANT test**\n\nKeep this manual handy.\n"
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=edited):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value=edited):
                 rc = _run_review_branch_baseline(
                     args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
                     worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-seed",
@@ -1688,7 +1688,7 @@ class BaselineDiffTests(unittest.TestCase):
             )
             baseline = "**FR IMPORTANT**\n\nKeep this manual handy.\n\n| **USB-C 100 W Output** | 100 W |\n"
             edited = "**FR IMPORTANT test**\n\nKeep this manual handy.\n\n| **USB-C 100 W Output test** | 100 W |\n"
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value=edited):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value=edited):
                 rc = _run_review_branch_baseline(
                     args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
                     worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-seed2",
@@ -1721,7 +1721,7 @@ class BaselineDiffTests(unittest.TestCase):
                 doc_name="manual_je1000f_us_en_1.0", lang=None, data_root=str(data_root),
                 git_bin="git", remote="origin",
             )
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="Operation Manual\n"):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value="Operation Manual\n"):
                 rc = _run_review_branch_baseline(
                     args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
                     worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-f2",
@@ -1744,7 +1744,7 @@ class ResolveBackportDataRootTests(unittest.TestCase):
             root = Path(tmp)
             (root / "data" / "phase2").mkdir(parents=True)
             (root / "data" / "phase2" / "Spec_Master.csv").write_text("document_key\n", encoding="utf-8")
-            with patch("tools.cloud_doc_backport.get_paths", return_value=SimpleNamespace(root=root)):
+            with patch("tools.cloud_doc_backport_cli.get_paths", return_value=SimpleNamespace(root=root)):
                 self.assertEqual(_resolve_backport_data_root(None), str(root / "data" / "phase2"))
 
     def test_none_when_phase2_unsynced(self) -> None:
@@ -1752,7 +1752,7 @@ class ResolveBackportDataRootTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / "data" / "phase2").mkdir(parents=True)
-            with patch("tools.cloud_doc_backport.get_paths", return_value=SimpleNamespace(root=root)):
+            with patch("tools.cloud_doc_backport_cli.get_paths", return_value=SimpleNamespace(root=root)):
                 self.assertIsNone(_resolve_backport_data_root(None))
 
 
@@ -1825,7 +1825,7 @@ class RebuildRediffBlessedGateTests(unittest.TestCase):
             page_dir.mkdir(parents=True)
             (page_dir / "00_preface.rst").write_text("**FR IMPORTANT**\n\nKeep this manual handy.\n", encoding="utf-8")
             out = io.StringIO()
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="**FR IMPORTANT test**\n\nKeep this manual handy.\n"):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value="**FR IMPORTANT test**\n\nKeep this manual handy.\n"):
                 with contextlib.redirect_stdout(out):
                     rc = _run_review_branch_baseline(
                         self._baseline_args(tmp),
@@ -1853,9 +1853,9 @@ class RebuildRediffBlessedGateTests(unittest.TestCase):
             (page_dir / "00_preface.rst").write_text("**FR IMPORTANT**\n\nKeep this manual handy.\n", encoding="utf-8")
             args = self._baseline_args(tmp, push=True)
             err = io.StringIO()
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="**FR IMPORTANT test**\n\nKeep this manual handy.\n"), \
-                 patch("tools.cloud_doc_backport._rebuild_rediff_gate", return_value={"passed": False, "unexpected": ["x->y"], "missing": []}), \
-                 patch("tools.cloud_doc_backport._open_backport_pr", side_effect=fake_open_pr):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value="**FR IMPORTANT test**\n\nKeep this manual handy.\n"), \
+                 patch("tools.cloud_doc_backport_cli._rebuild_rediff_gate", return_value={"passed": False, "unexpected": ["x->y"], "missing": []}), \
+                 patch("tools.cloud_doc_backport_cli._open_backport_pr", side_effect=fake_open_pr):
                 with contextlib.redirect_stderr(err):
                     rc = _run_review_branch_baseline(
                         args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
@@ -1897,7 +1897,7 @@ class BaselineArtifactEmissionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             (Path(tmp) / "docs/_review/JE-1000F/US/page").mkdir(parents=True)
             out = io.StringIO()
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="Keep this manual handy edited.\n"):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value="Keep this manual handy edited.\n"):
                 with contextlib.redirect_stdout(out):
                     rc = _run_review_branch_baseline(
                         self._args(tmp),
@@ -1928,7 +1928,7 @@ class BaselineArtifactEmissionTests(unittest.TestCase):
             sibling.write_text("Shared safety note\n", encoding="utf-8")  # same line as the baseline
             out = io.StringIO()
             args = self._args(tmp, sibling=[str(sibling)])
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="Shared safety note revised\n"):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value="Shared safety note revised\n"):
                 with contextlib.redirect_stdout(out):
                     _run_review_branch_baseline(
                         args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
@@ -2072,8 +2072,8 @@ class ClassRBlockApplyTests(unittest.TestCase):
                 git_bin="git", remote="origin",
             )
             out = io.StringIO()
-            with patch("tools.cloud_doc_backport.fetch_doc_text", return_value="## 增加设备\n\n正文。\n"), \
-                 patch("tools.cloud_doc_backport._open_backport_pr", side_effect=fake_open_pr):
+            with patch("tools.cloud_doc_backport_cli.fetch_doc_text", return_value="## 增加设备\n\n正文。\n"), \
+                 patch("tools.cloud_doc_backport_cli._open_backport_pr", side_effect=fake_open_pr):
                 with contextlib.redirect_stdout(out):
                     rc = _run_review_branch_baseline(
                         args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
