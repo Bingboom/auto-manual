@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-06-25
+Updated: 2026-06-26
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -268,7 +268,35 @@ fill values (table/view IDs are discoverable per tenant via `lark-cli base
 `lark-cli wiki +node-get`), and check with
 [`scripts/validate_required_env.sh`](../../scripts/validate_required_env.sh).
 
-## 7. Maintenance Rules
+## 7. Source Intake Modules
+
+The source-intake closed loop converts structured specs/manual-source documents
+into reviewable source-table candidates, then hands existing-row changes to the
+same approval-gated source-table writer used by cloud-doc backport.
+
+- [`tools/source_intake.py`](../../tools/source_intake.py)
+  - CLI entrypoint and command orchestration for `run`, `approve`, `apply`, and `verify`.
+- [`tools/source_intake_extract.py`](../../tools/source_intake_extract.py)
+  - input acquisition and Markdown-table parsing from local Markdown, stdin, or Feishu/Lark cloud-doc text.
+- [`tools/source_intake_model.py`](../../tools/source_intake_model.py)
+  - candidate schema constants, target-table names, hash helpers, and text normalization.
+- [`tools/source_intake_runtime.py`](../../tools/source_intake_runtime.py)
+  - candidate extraction, snapshot enrichment, existing-row change-request building, and run/report writing.
+- [`tools/source_intake_closure.py`](../../tools/source_intake_closure.py)
+  - P4-P7 closure reports: approval artifact, apply handoff report, labeled verification command results, and closure checklist.
+
+The write boundary stays in [`tools/source_table_sync.py`](../../tools/source_table_sync.py):
+source intake may approve and invoke it, but does not own live Feishu write
+semantics. Live transports are still constructed through
+[`tools/cloud_doc_backport_transports.py`](../../tools/cloud_doc_backport_transports.py)
+so table-binding parsing and source-table GET/verify behavior stay shared.
+
+Tests: [`tests/test_source_intake.py`](../../tests/test_source_intake.py)
+covers candidate extraction, snapshot enrichment, change-request bridging,
+approval artifacts, dry-run/live-transport apply behavior, and CLI-level
+P4-P7 closure.
+
+## 8. Maintenance Rules
 
 When adding or moving logic in this area:
 
@@ -281,7 +309,7 @@ When adding or moving logic in this area:
 5. If a wrapper stops being needed, remove it only after tests and call sites are updated together.
 6. When encoded field names are normalized, prefer unicode-escaped canonical constants in helper modules before deleting old literals from entry files.
 
-## 8. Known Next Decomposition Candidates
+## 9. Known Next Decomposition Candidates
 
 These areas still deserve follow-up only when a concrete hotspot reappears:
 
