@@ -125,31 +125,65 @@ def build_value_index(snapshot_root: Path, lang: str) -> dict[str, dict[str, Any
     return index
 
 
-_CELL_SPLIT_RE = re.compile(r"<br\s*/?>|\|", re.IGNORECASE)
+# Cell / sub-value boundaries: a markdown pipe, a ``<br/>``, or an HTML table
+# cell/row boundary tag (``<td>``, ``</tr>``, ``<table>``, ``<col/>`` …). A real
+# cloud-doc SPECIFICATIONS table arrives as HTML (``<table>…<td>value</td>…``),
+# not markdown pipes, so the splitter must cut on table tags too — otherwise a
+# spec-cell edit is one opaque blob that never reaches the value index.
+_CELL_SPLIT_RE = re.compile(
+    r"<br\s*/?>|</?(?:table|thead|tbody|tfoot|tr|td|th|caption|colgroup|col)[^>]*>|\|",
+    re.IGNORECASE,
+)
+# Any residual inline tag inside a cell is stripped so the cell text stays intact
+# (``<b>Car:</b> 11 V`` -> ``Car: 11 V``).
+_TAG_RE = re.compile(r"<[^>]+>")
+# Only sub-split text that actually carries cell structure; a bare value or a
+# prose paragraph (no pipe / ``<br/>`` / HTML table tag) is never sub-split.
+_TABLE_HINT_RE = re.compile(r"\||<(?:br|table|tr|td|th)\b", re.IGNORECASE)
+
+
+def split_cells(text: str | None) -> list[str]:
+    """Atomic, tag-stripped, normalized cell / sub-value parts of a (possibly
+    markdown- or HTML-) table text, in document order.
+
+    Returns ``[]`` for plain text with no cell structure, so a bare value or a
+    prose paragraph is never sub-split. Shared with the F6 write path
+    (``source_table_sync._atomic_values``) so cell detection for *resolution* and
+    for *new-value extraction* stay byte-identical.
+    """
+
+    norm = _normalize(text)
+    if not norm or not _TABLE_HINT_RE.search(norm):
+        return []
+    parts: list[str] = []
+    for raw in _CELL_SPLIT_RE.split(norm):
+        cand = _normalize(_TAG_RE.sub(" ", raw))
+        if cand:
+            parts.append(cand)
+    return parts
 
 
 def _value_candidates(text: str | None) -> list[str]:
     """Atomic value candidates from a delta's normalized text.
 
     The whole text first (a bare value or a body-copy paragraph), then — when the
-    delta carries table structure — each cell and ``<br/>``-joined sub-value. A real
-    cloud-doc delta arrives at row/paragraph granularity (``| value <br/> value |
-    label |``), not as a bare cell, so a contained-value match is what lets the value
-    index resolve it deterministically. Feed this the **normalized** (markdown-stripped)
-    text so cells compare cleanly against the snapshot CSV values.
+    delta carries table structure — each cell / ``<br/>``-joined / HTML ``<td>``
+    sub-value. A real cloud-doc delta arrives at row/paragraph granularity (a
+    markdown ``| value <br/> value | label |`` row or an HTML ``<table>`` block),
+    not as a bare cell, so a contained-value match is what lets the value index
+    resolve it deterministically. Feed this the **normalized** text so cells
+    compare cleanly against the snapshot CSV values.
     """
 
     norm = _normalize(text)
     if not norm:
         return []
     candidates = [norm]
-    if "|" in norm or "<br" in norm.lower():
-        seen = {norm}
-        for part in _CELL_SPLIT_RE.split(norm):
-            cand = _normalize(part)
-            if cand and cand not in seen:
-                seen.add(cand)
-                candidates.append(cand)
+    seen = {norm}
+    for cand in split_cells(norm):
+        if cand not in seen:
+            seen.add(cand)
+            candidates.append(cand)
     return candidates
 
 
@@ -161,22 +195,30 @@ def classify_data_origin(text: str | None, value_index: dict[str, dict[str, Any]
     to its source value (the cloud-doc delta granularity is a whole row, not a bare cell).
 
     A value that maps to **more than one source row** is marked ``ambiguous`` by
-    ``build_value_index``; it can't pick a unique slot, so it **abstains** (returns None)
-    rather than guess one (e.g. ``12V⎓最大10A`` living in both a port's ``front.label``
-    and ``front.spec`` — auto-resolving to the first would write the wrong slot).
+    ``build_value_index``; that candidate is **skipped** (never resolved to an
+    arbitrary slot), but a *different* uniquely-resolvable cell in the same table
+    row can still match — e.g. a shared label like ``1 × AC Input`` (ambiguous
+    across sibling docs) is skipped while the unique spec cell that changed
+    resolves. If no candidate resolves uniquely, it abstains (returns None).
     """
 
     if not value_index:
         return None
     for candidate in _value_candidates(text):
         hit = value_index.get(candidate)
-        if hit is not None:
-            if hit.get("ambiguous"):
-                # The matched value is in >1 source row — no unique slot to write. Abstain
-                # (a Class D delta with no source_ref -> apply-source-table skips -> human picks).
-                return None
-            # Carry the exact matched value (a bare cell value for a table-row delta,
-            # or the whole text for a body-copy/bare match) so the F6 write path can
-            # extract the corresponding NEW cell value instead of writing the whole row.
-            return {**hit, "matched_value": candidate}
+        if hit is None:
+            continue
+        if hit.get("ambiguous"):
+            # This candidate value is in >1 source row — no unique slot. SKIP it and
+            # keep scanning: another cell in the same table row may resolve uniquely
+            # (a shared label such as "1 × AC Input" precedes the unique spec cell
+            # that actually changed). The ambiguous value itself is never resolved, so
+            # the "don't guess a slot" guarantee holds; and the F6 write path
+            # (_resolve_written_value) abstains unless the matched cell is the one that
+            # changed, so matching a unique *unchanged* cell stays safe.
+            continue
+        # Carry the exact matched value (a bare cell value for a table-row delta,
+        # or the whole text for a body-copy/bare match) so the F6 write path can
+        # extract the corresponding NEW cell value instead of writing the whole row.
+        return {**hit, "matched_value": candidate}
     return None

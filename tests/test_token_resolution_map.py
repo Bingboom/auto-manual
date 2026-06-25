@@ -15,6 +15,7 @@ from tools.cloud_doc_backport import _classify_route, _looks_data_like, diff_blo
 from tools.token_resolution_map import (  # noqa: E402
     build_value_index,
     classify_data_origin,
+    split_cells,
 )
 
 _SPEC_MASTER = (
@@ -160,6 +161,36 @@ class ClassifyDataOriginTests(unittest.TestCase):
         unique = {"12V⎓最大10A": {"table": "Spec_Master", "slot_key": "front.spec"}}
         self.assertIsNotNone(classify_data_origin("12V⎓最大10A", unique))
 
+    def test_html_table_resolves_via_contained_cell(self) -> None:
+        # A cloud-doc SPECIFICATIONS table arrives as HTML (<table>…<td>…), not markdown
+        # pipes. The changed cell value must still resolve to its source row via HTML
+        # cell extraction, or every spec-table edit silently mis-routes to review text.
+        index = {"Car: 11 V-16 V⎓8 A max.": {"table": "Spec_Master", "row_key": "dc8020_ports"}}
+        html = (
+            '<table><tbody><tr><td rowspan="2">2 × DC8020 Ports</td>'
+            "<td>Car: 11 V-16 V⎓8 A max.</td></tr>"
+            "<tr><td>PV: 16 V-60 V⎓12 A</td></tr></tbody></table>"
+        )
+        hit = classify_data_origin(html, index)
+        self.assertIsNotNone(hit)
+        self.assertEqual(hit["row_key"], "dc8020_ports")
+        self.assertEqual(hit["matched_value"], "Car: 11 V-16 V⎓8 A max.")
+
+    def test_ambiguous_cell_is_skipped_for_a_unique_sibling(self) -> None:
+        # A table row whose LEADING cell is an ambiguous shared label ("1 × AC Input",
+        # common across sibling docs) must NOT abstain the whole row: a sibling cell with
+        # a unique value still resolves. The ambiguous value itself is never resolved.
+        index = {
+            "1 × AC Input": {"table": "Spec_Master", "slot_key": "ac.label", "ambiguous": True},
+            "Car: 11 V-16 V⎓8 A max.": {"table": "Spec_Master", "row_key": "dc8020_ports"},
+        }
+        html = "<table><tbody><tr><td>1 × AC Input</td><td>Car: 11 V-16 V⎓8 A max.</td></tr></tbody></table>"
+        hit = classify_data_origin(html, index)
+        self.assertIsNotNone(hit)
+        self.assertEqual(hit["row_key"], "dc8020_ports")
+        # the ambiguous label on its own (no unique sibling) still abstains
+        self.assertIsNone(classify_data_origin("1 × AC Input", index))
+
     def test_build_value_index_marks_a_repeated_value_ambiguous(self) -> None:
         # two source rows (front.label + front.spec) sharing the same value -> ambiguous,
         # so the end-to-end classify abstains on it.
@@ -173,6 +204,26 @@ class ClassifyDataOriginTests(unittest.TestCase):
             index = build_value_index(Path(tmp), "zh")
             self.assertTrue(index["12V⎓最大10A"].get("ambiguous"))
             self.assertIsNone(classify_data_origin("12V⎓最大10A", index))
+
+
+class SplitCellsTests(unittest.TestCase):
+    def test_splits_markdown_pipes_and_br(self) -> None:
+        self.assertEqual(split_cells("| A <br/> B | C |"), ["A", "B", "C"])
+
+    def test_splits_html_table_cells_and_strips_inline_tags(self) -> None:
+        html = (
+            "<table><colgroup><col/><col/></colgroup><tbody>"
+            '<tr><td rowspan="2">1 × AC Input</td><td><b>Charge</b> Mode</td></tr>'
+            "<tr><td>Car: 11 V</td></tr></tbody></table>"
+        )
+        self.assertEqual(split_cells(html), ["1 × AC Input", "Charge Mode", "Car: 11 V"])
+
+    def test_plain_text_and_empty_have_no_cells(self) -> None:
+        # No pipe / <br/> / HTML table tag -> never sub-split (a bare value or prose).
+        self.assertEqual(split_cells("a bare value"), [])
+        self.assertEqual(split_cells("产品默认开启节能模式。"), [])
+        self.assertEqual(split_cells(""), [])
+        self.assertEqual(split_cells(None), [])
 
 
 class ClassifyRouteTests(unittest.TestCase):
