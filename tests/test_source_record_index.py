@@ -249,6 +249,27 @@ class LineOrderFallbackTests(unittest.TestCase):
         }
         self.assertEqual(resolve_by_table(index, self._ref("storage_temperature", "", "2")), (None, "ambiguous"))
 
+    def test_section_fallback_resolves_same_line_order_ports(self) -> None:
+        # Tier 3: two rows share (doc, Row_key, empty Slot_key, Line_order); only
+        # Section differs (an input-vs-output port, e.g. dc_expansion_port). Line_order
+        # alone can't split them; Section (the second fallback field) does.
+        def port_row(section, rid):
+            return (
+                {"document_key": "D", "Row_key": "dc_expansion_port", "Slot_key": "", "Line_order": "1", "Section": section},
+                rid,
+            )
+        index = build_index({"Spec_Master": [port_row("INPUT PORTS", "recIN"), port_row("OUTPUT PORTS", "recOUT")]})
+
+        def ref(section):
+            return {
+                "table": "Spec_Master", "document_key": "D", "row_key": "dc_expansion_port",
+                "slot_key": "", "line_order": "1", "section": section,
+            }
+        self.assertEqual(resolve_by_table(index, ref("INPUT PORTS")), ("recIN", "resolved"))
+        self.assertEqual(resolve_by_table(index, ref("OUTPUT PORTS")), ("recOUT", "resolved"))
+        # same Line_order AND no Section -> still ambiguous (exact-or-abstain)
+        self.assertEqual(resolve_by_table(index, ref("")), (None, "ambiguous"))
+
 
 class CollectIndexRowsTests(unittest.TestCase):
     def test_pairs_normalized_rows_with_record_ids(self) -> None:
