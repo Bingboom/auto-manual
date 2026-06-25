@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-05-07
+Updated: 2026-06-25
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -209,7 +209,66 @@ Quality and release logic should follow concern-specific modules instead of drif
   - explicit queue transition payload model for running, success, failure, and writeback-failed states
   - focused test target for queue writeback semantics before live Feishu/Lark transport is involved
 
-## 6. Maintenance Rules
+## 6. Cloud-Doc Backport Modules
+
+The cloud-doc backport closed loop (fetch → diff → classify/route → write-back)
+was decomposed from a single 4183-line `cloud_doc_backport.py` into focused
+layers (debt-paydown, 2026-06). The entry path is unchanged: every
+`from tools.cloud_doc_backport import X` and `python3 tools/cloud_doc_backport.py …`
+still works because the entry file re-exports all public symbols.
+
+- [`tools/cloud_doc_backport.py`](../../tools/cloud_doc_backport.py)
+  - thin entry shim (~200 lines): re-exports every public symbol from the modules
+    below + the `__main__` guard. Keep it shim-only.
+- [`tools/cloud_doc_backport_model.py`](../../tools/cloud_doc_backport_model.py)
+  - foundation: `Block` model, document fetch/normalization, markdown→block
+    parsing, section selection. Imports only stdlib + `path_utils` (no cycle).
+- [`tools/cloud_doc_backport_util.py`](../../tools/cloud_doc_backport_util.py)
+  - shared constants (schema versions) + scaffolding (counters, git-ref,
+    timestamp, source-path resolution).
+- [`tools/cloud_doc_backport_routing.py`](../../tools/cloud_doc_backport_routing.py)
+  - delta classification + routing (Class R / D / T / image / semantic) + `diff_blocks`.
+- [`tools/cloud_doc_backport_apply.py`](../../tools/cloud_doc_backport_apply.py)
+  - guarded Class-R write-back (literal-first + block-fallback RST rewrite) + apply-report builders.
+- [`tools/cloud_doc_backport_render.py`](../../tools/cloud_doc_backport_render.py)
+  - markdown report renderers (pure report-dict → markdown).
+- [`tools/cloud_doc_backport_transports.py`](../../tools/cloud_doc_backport_transports.py)
+  - live Feishu source-table / TM transports + `--table-binding` parsing.
+- [`tools/cloud_doc_backport_reports.py`](../../tools/cloud_doc_backport_reports.py)
+  - report builders (`build_report` + verify / source-table-suggestions / template-sync-proposal / review-run).
+- [`tools/cloud_doc_backport_pr.py`](../../tools/cloud_doc_backport_pr.py)
+  - PR/git helpers (`gh` PR creation + 403 compare-url fallback, branch naming, `open_backport_pr_from_manifest`).
+- [`tools/cloud_doc_backport_cli.py`](../../tools/cloud_doc_backport_cli.py)
+  - CLI + orchestration conductor: argparse, the `_run_*` command handlers, the
+    `run-review-branch` / baseline flow, and `main`.
+
+Layering (import direction, bottom → top): `model` → `util` → `routing` /
+`apply` / `render` / `transports` / `reports` / `pr` → `cli` → entry shim. A new
+extraction must import from the **leaf modules**, never from the entry file
+(that would cycle), and the entry file re-exports it.
+
+Record-resolution + source-table write are in sibling modules:
+[`tools/source_record_index.py`](../../tools/source_record_index.py) (the
+`source_record_index.json` sidecar: business key → Feishu `record_id`),
+[`tools/token_resolution_map.py`](../../tools/token_resolution_map.py) (value →
+source_ref), [`tools/source_table_sync.py`](../../tools/source_table_sync.py)
+(exact-or-abstain F6 write).
+
+Tests: `tests/test_backport_golden_corpus.py` (routing matrix),
+`tests/test_source_table_sync_invariants.py` (F6 write-side fuzz),
+`tests/test_backport_harness.py` (+ `tools/backport_harness.py`, offline
+multi-edit integration), `tests/test_backport_noise_injection.py`,
+`tests/test_backport_live_check.py` (+ `tools/backport_live_check.py`, operator
+live round-trip).
+
+Sync-env bootstrap (`sync-data` needs `FEISHU_PHASE2_*` + TM env): copy
+[`scripts/hello_docs_binding.env.example`](../../scripts/hello_docs_binding.env.example),
+fill values (table/view IDs are discoverable per tenant via `lark-cli base
++table-list` / `+view-list`; a wiki-wrapped base resolves to its app_token via
+`lark-cli wiki +node-get`), and check with
+[`scripts/validate_required_env.sh`](../../scripts/validate_required_env.sh).
+
+## 7. Maintenance Rules
 
 When adding or moving logic in this area:
 
@@ -222,7 +281,7 @@ When adding or moving logic in this area:
 5. If a wrapper stops being needed, remove it only after tests and call sites are updated together.
 6. When encoded field names are normalized, prefer unicode-escaped canonical constants in helper modules before deleting old literals from entry files.
 
-## 7. Known Next Decomposition Candidates
+## 8. Known Next Decomposition Candidates
 
 These areas still deserve follow-up only when a concrete hotspot reappears:
 
