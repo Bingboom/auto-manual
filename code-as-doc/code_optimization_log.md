@@ -692,3 +692,17 @@ Why it mattered:
 
 - in live use the chat LLM's target-resolution was too uncertain — a CN-doc backport ask resolved to the wrong (EU) review branch and reported 379 phantom cross-language diffs against a doc nobody had edited
 - the deterministic [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py) CLI (unchanged) resolves the review branch from the build table, so backport stays a confident, reviewable operation; the decision keeps high-risk, strong-determinism writes on the CLI execution plane instead of the LLM chat control plane
+
+## 43. 2026-06-25: Backport Hotspot Decomposition + Hotspot Governance
+
+Main outcomes:
+
+- governed the previously-ungoverned backport/data-sync hotspots in [`tools/check_maintainability_guardrails.py`](../tools/check_maintainability_guardrails.py): `tools/cloud_doc_backport.py` had reached 4183 lines — the largest file in the repo — outside any threshold; added it (capped exactly, only-descend) plus `sync_data_runtime.py` / `content_lint.py` / `translation_memory.py` / `source_record_index.py` / `source_table_sync.py` (#478)
+- decomposed [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py) from **4183 → 202 lines (−95%)** into nine focused modules behind a re-export entry shim: `_model` (Block/parse/normalize/section), `_util` (schema consts + scaffolding), `_routing` (classify/route/diff), `_apply` (Class-R write-back), `_render` (markdown), `_transports` (Feishu transports), `_reports` (report builders), `_pr` (gh PR helpers), `_cli` (CLI + orchestration conductor) — #479–#487
+- every step was behavior-preserving (move + re-export; the entry file re-exports all public symbols, so every `from tools.cloud_doc_backport import X` and `python3 tools/cloud_doc_backport.py …` is unchanged) and gated by the full suite (1183 tests) + ruff + guardrails, ratcheting the threshold down each step
+- recorded the new module map in [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md) §6 (incl. the leaf→cli→shim import layering, the test layers, and the sync-env bootstrap pointer)
+
+Why it mattered:
+
+- the loop's core had escaped the maintainability guardrail entirely and grown through ~90 mostly-reactive PRs into a 4183-line grab-bag; this consolidated the debt before any further closed-loop optimization (prefer complexity-reducing work first)
+- the AST-closure-check + re-export method (verify a cluster's deps are only stdlib/leaf-modules, move it, re-export, ratchet) kept each extraction safe and independently revertable; the conductor stays as a single `_cli` module so the live entry behavior is unchanged
