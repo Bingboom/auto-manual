@@ -31,6 +31,7 @@ from tools.source_record_index import (
     resolve as _resolve_record,
     resolve_by_table as _resolve_by_table,
 )
+from tools.token_resolution_map import split_cells
 
 CHANGE_REQUEST_SCHEMA_VERSION = "source-table-change-request/v1"
 
@@ -53,7 +54,6 @@ def _resolve_record_id(source_ref: dict[str, Any], sidecar_index: dict[str, Any]
 
 
 _WS_RE = re.compile(r"\s+")
-_CELL_SPLIT_RE = re.compile(r"<br\s*/?>|\|", re.IGNORECASE)
 
 
 def _norm(text: Any) -> str:
@@ -61,13 +61,14 @@ def _norm(text: Any) -> str:
 
 
 def _atomic_values(text: Any) -> list[str]:
-    """Normalized cell / ``<br/>``-joined sub-values of a (possibly table-row) text, in order."""
+    """Normalized cell / ``<br/>``-joined / HTML ``<td>`` sub-values of a (possibly
+    table-row) text, in order; the whole normalized text when there is no cell
+    structure. Shares ``split_cells`` with the resolver so the cells aligned here are
+    exactly the cells the value index matched against."""
     norm = _norm(text)
     if not norm:
         return []
-    if "|" in norm or "<br" in norm.lower():
-        return [value for value in (_norm(part) for part in _CELL_SPLIT_RE.split(norm)) if value]
-    return [norm]
+    return split_cells(norm) or [norm]
 
 
 def _resolve_written_value(old_normalized: Any, new_normalized: Any, matched_value: Any) -> str | None:

@@ -122,6 +122,17 @@ class WrittenValueAlignmentFuzzTests(unittest.TestCase):
         new = "alpha<br/>BETA<br/>gamma"
         self.assertEqual(_resolve_written_value(old, new, "beta"), "BETA")
 
+    def test_html_table_cell_value_is_extracted(self) -> None:
+        # A SPECIFICATIONS delta arrives as an HTML <table>; the changed <td> value must
+        # align positionally like a pipe/<br/> cell so the write puts the new cell value
+        # (not the whole table markup) into the field.
+        old = (
+            "<table><tbody><tr><td>2 × DC8020 Ports</td><td>Car: 11 V-16 V</td></tr>"
+            "<tr><td>PV: 16 V-60 V</td></tr></tbody></table>"
+        )
+        new = old.replace("Car: 11 V-16 V", "Vehicle: 11 V-16 V")
+        self.assertEqual(_resolve_written_value(old, new, "Car: 11 V-16 V"), "Vehicle: 11 V-16 V")
+
     def test_cjk_and_parenthesized_cell_value_is_extracted_verbatim(self) -> None:
         old = _row(["IN1", "DC 12V点烟口", "label"])
         new = _row(["IN1", "DC 12V车载口", "label"])
