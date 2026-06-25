@@ -48,17 +48,22 @@ class BuildValueIndexTests(unittest.TestCase):
             self.assertEqual(copy["table"], "Localized_Copy")
             self.assertEqual(copy["copy_key"], "op_guide.title")
 
-    def test_line_order_is_carried_for_fallback_disambiguation(self) -> None:
-        # A multi-line spec row carries Line_order on its source_ref so the sidecar
-        # can disambiguate an otherwise-ambiguous (doc, Row_key, empty Slot_key) key.
+    def test_line_order_and_section_are_carried_for_fallback_disambiguation(self) -> None:
+        # A spec row carries Line_order + Section on its source_ref so the sidecar can
+        # disambiguate an otherwise-ambiguous (doc, Row_key, empty Slot_key) key
+        # (Line_order for multi-line rows, Section for same-Line_order port rows).
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / "Spec_Master.csv").write_text(
-                "document_key,Row_key,Slot_key,Line_order,Value_en\nD,storage_temperature,,2,32 F to 113 F\n",
+                "document_key,Row_key,Slot_key,Line_order,Section,Value_en\n"
+                "D,storage_temperature,,2,ENV,32 F to 113 F\n"
+                "D,dc_expansion_port,,1,INPUT PORTS,57.6 V 75 A\n",
                 encoding="utf-8",
             )
             index = build_value_index(root, "en")
             self.assertEqual(index["32 F to 113 F"]["line_order"], "2")
+            self.assertEqual(index["32 F to 113 F"]["section"], "ENV")
+            self.assertEqual(index["57.6 V 75 A"]["section"], "INPUT PORTS")
 
     def test_lang_selects_value_column(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
