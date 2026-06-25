@@ -98,6 +98,14 @@ manually.
 Cloud-doc backport runs from Claude Code / Codex / a terminal only; it is not a
 Feishu IM / BlockClaw command.
 
+For first-pass intake of structured specs/manual tables into reviewable source
+data, use `python tools/source_intake.py run --input <spec.md-or-doc-url>
+--document-key <MODEL_REGION> --data-root data/phase2 --out
+reports/source_intake/<run-id>`. The MVP emits candidate rows and existing-row
+source-table change requests only; live writes still go through the existing
+human-approved `apply-source-table` flow. Track the staged rollout in
+[`code-as-doc/dev/source_intake_mvp_checklist.md`](code-as-doc/dev/source_intake_mvp_checklist.md).
+
 For the full review-first flow, queue-driven Draft/Publish workers, matrix runners, and every command flag, see [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For the editing-surface and source-of-truth rules, see [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) and [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md). For BlockClaw / Feishu IM behavior, including batch document-link replies and read-only `发布文档管理` manual-index lookups, see [`integrations/openclaw/feishu-im-webhook-adapter/README.md`](integrations/openclaw/feishu-im-webhook-adapter/README.md).
 
 The fixed US + JP release matrix runners — [`scripts/build_us_jp_manuals.py`](scripts/build_us_jp_manuals.py), [`scripts/build_us_jp_manuals.ps1`](scripts/build_us_jp_manuals.ps1), and the US-only [`scripts/build_us_manuals.ps1`](scripts/build_us_manuals.ps1) — are documented in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).
