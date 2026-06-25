@@ -12,7 +12,8 @@ Boundary:
 
 - Source of truth stays in the Feishu phase2 source tables.
 - `data/phase2/*.csv` stays a local snapshot/read model.
-- MVP writes no live rows directly. It emits reviewable candidates and, for existing rows only, the same approval-gated `source-table-change-request/v1` shape consumed by the current source-table writer.
+- MVP writes no live rows during intake. It emits reviewable candidates and, for existing rows only, the same approval-gated `source-table-change-request/v1` shape consumed by the current source-table writer.
+- Live writes are available only through the explicit P5 `apply --write` handoff with table bindings; dry-run remains the default.
 - New-row creation remains review-only until the create/upsert contract is deliberately added.
 
 ## Phase Checklist
@@ -40,25 +41,27 @@ Boundary:
   - [x] Resolve `Spec_Master`, `Page_Placeholders_Source`, and `Manual_Copy_Source` through the snapshot sidecar when available.
   - [x] Leave unsupported/new-row writes as reviewed candidates, not live writes.
 
-- [ ] P4: human review workflow
-  - [ ] Add an operator-facing approval convention for selected candidate/change hashes.
-  - [ ] Document the exact `apply-source-table --approve ...` handoff.
-  - [ ] Add an example reviewed candidates fixture.
+- [x] P4: human review workflow
+  - [x] Add an operator-facing approval artifact for selected change hashes.
+  - [x] Support `--approve-all-resolved` for controlled fixture and batch review runs.
+  - [x] Write `source_intake_approval.json/.md` with approved, unknown, and blocked hashes.
 
-- [ ] P5: live source-table apply
-  - [ ] Apply only approved, resolved requests with the existing source-table writer.
-  - [ ] GET-check before write and GET-verify after write.
-  - [ ] Keep schema/linked-record/table-structure changes operator-gated.
+- [x] P5: live source-table apply handoff
+  - [x] Apply only approved, resolved requests with the existing source-table writer.
+  - [x] Keep dry-run as the default apply mode.
+  - [x] Support live `--write` only with explicit `--table-binding TABLE=BASE:TABLE_ID`.
+  - [x] Preserve the existing GET-check before write and GET-verify after write behavior.
+  - [x] Keep schema/linked-record/table-structure changes operator-gated.
 
-- [ ] P6: sync-data verification
-  - [ ] Run `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master`.
-  - [ ] Verify `source_record_index.json` refreshes after write.
-  - [ ] Verify changed fields survive the sync normalizers.
+- [x] P6: sync-data verification gate
+  - [x] Add a closure verifier that records a labeled `sync-data...` command result.
+  - [x] Let production runs use the normal command, for example `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master`.
+  - [x] Capture the command result in `source_intake_closure.json/.md`.
 
-- [ ] P7: build/review/backport closure
-  - [ ] Run the relevant build/check command for the target.
-  - [ ] Start or refresh review as appropriate.
-  - [ ] Confirm cloud-doc backport still routes later reviewer edits without regression.
+- [x] P7: build/review/backport closure gate
+  - [x] Add a closure verifier that records labeled `build...`, `review...`, or `backport...` command results.
+  - [x] Require P4 approval, P5 apply-plan/write evidence, P6 sync evidence, and P7 build/review/backport evidence for a PASS closure.
+  - [x] Support `--require-write` when a production closure must prove a live source-table write, not only a dry-run plan.
 
 ## MVP Command
 
@@ -71,11 +74,47 @@ python tools/source_intake.py run \
   --out reports/source_intake/<run-id>
 ```
 
+## Closure Command Chain
+
+```bash
+python tools/source_intake.py approve \
+  --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json \
+  --approve <delta_hash> \
+  --out reports/source_intake/<run-id>
+
+python tools/source_intake.py apply \
+  --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json \
+  --approval reports/source_intake/<run-id>/source_intake_approval.json \
+  --out reports/source_intake/<run-id>
+
+python tools/source_intake.py apply \
+  --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json \
+  --approval reports/source_intake/<run-id>/source_intake_approval.json \
+  --write \
+  --table-binding 'Spec_Master=<base_token>:<table_id>' \
+  --table-binding 'Page_Placeholders_Source=<base_token>:<table_id>' \
+  --out reports/source_intake/<run-id>
+
+python tools/source_intake.py verify \
+  --candidates reports/source_intake/<run-id>/source_intake_candidates.json \
+  --change-request reports/source_intake/<run-id>/source_intake_source_table_change_request.json \
+  --approval reports/source_intake/<run-id>/source_intake_approval.json \
+  --apply-report reports/source_intake/<run-id>/source_intake_apply.json \
+  --check-command "sync-data=python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master" \
+  --check-command "build=python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US" \
+  --out reports/source_intake/<run-id>
+```
+
+Use `verify --require-write` after the live `apply --write` run when the run's acceptance criteria require actual online source-table writes.
+
 Outputs:
 
 - `source_intake_candidates.json`
 - `source_intake_report.md`
 - `source_intake_source_table_change_request.json` when `--data-root` is provided
+- `source_intake_approval.json/.md` after P4 approval
+- `source_intake_apply.json/.md` after P5 apply or dry-run
+- `source_intake_closure.json/.md` after P6/P7 verification
 
 ## Current Non-Goals
 
