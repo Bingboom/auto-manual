@@ -38,6 +38,8 @@ Do not move new low-level implementation back into these files unless the behavi
 
 - [`tools/build_main.py`](../../tools/build_main.py)
   - CLI bootstrap and top-level error boundary for `build.py`
+- [`tools/local_env.py`](../../tools/local_env.py)
+  - loads `~/.auto-manual-phase2.env` into the environment at startup (non-overriding, no-op when absent); called once by `build_main.run_main` so `sync-data`/review run without a manual `source`
 - [`tools/build_cli.py`](../../tools/build_cli.py)
   - argument parsing
 - [`tools/build_dispatch.py`](../../tools/build_dispatch.py)
