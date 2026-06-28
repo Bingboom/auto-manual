@@ -1,0 +1,589 @@
+{
+  "schema_version": "phase2-source-table-contract/v1",
+  "updated": "2026-06-29",
+  "purpose": "Machine-readable contract for phase2 source tables used by source intake, cloud-doc backport, source-table writeback, sync-data, and build/review flows.",
+  "source_of_truth": {
+    "phase2_base": "Feishu phase2 source tables",
+    "translation_memory_base": "Feishu Translation_Memory base",
+    "snapshot_root": "data/phase2",
+    "rule": "Online tables are the source of truth. data/phase2 CSVs are generated snapshots/read models and must not be hand-edited."
+  },
+  "global_write_rules": [
+    "live writes are dry-run by default",
+    "human approval is required before any source-table write",
+    "record_id resolution is exact-or-abstain through source_record_index.json",
+    "formula, lookup, link, attachment, and workflow/progress fields are not direct write targets",
+    "create/upsert of new source rows remains review-only unless a table-specific create contract is added"
+  ],
+  "tables": [
+    {
+      "contract_name": "Spec_Master",
+      "online_table": {
+        "base": "phase2",
+        "display_name": "03_内容源_规格参数明细",
+        "reference_table_id": "tblTw54UzV4ry5VD"
+      },
+      "snapshot": {
+        "logical_name": "spec_master",
+        "file": "Spec_Master.csv",
+        "row_filter": "Page is blank or includes specifications"
+      },
+      "identity": {
+        "business_key_fields": ["document_key", "Row_key", "Slot_key"],
+        "optional_key_fields": ["Slot_key"],
+        "fallback_key_fields": ["Line_order", "Section"],
+        "source_record_index_table": "Spec_Master",
+        "source_ref_fields": {
+          "document_key": "document_key",
+          "row_key": "Row_key",
+          "slot_key": "Slot_key",
+          "line_order": "Line_order",
+          "section": "Section"
+        }
+      },
+      "intake": {
+        "target_table": "Spec_Master",
+        "supported": true,
+        "candidate_fields": [
+          "document_key",
+          "Model",
+          "Region",
+          "Source_lang",
+          "Version",
+          "Is_Latest",
+          "Page",
+          "Section",
+          "Section_order",
+          "Row_order",
+          "Row_key",
+          "Slot_key",
+          "Row_label_source",
+          "Row_label_footnote_refs",
+          "Line_order",
+          "Param_source",
+          "Param_footnote_refs",
+          "Value_source",
+          "Value_footnote_refs"
+        ],
+        "existing_row_change_request": true,
+        "new_row_live_write": false
+      },
+      "writeback": {
+        "change_request_update": true,
+        "table_binding_name": "Spec_Master",
+        "writable_fields": [
+          "Row_label_source",
+          "Row_label_footnote_refs",
+          "Param_source",
+          "Param_footnote_refs",
+          "Value_source",
+          "Value_footnote_refs"
+        ],
+        "blocked_field_kinds": ["formula", "lookup", "link", "attachment", "checkbox", "workflow"]
+      },
+      "commands": {
+        "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master",
+        "intake": "python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2",
+        "backport": "python tools/cloud_doc_backport.py run-review-branch --doc-name <doc-name> --cloud-doc <url>"
+      },
+      "skills": ["spec-sheet-structured-intake", "manual-revision-backport", "manual-rewrite-with-tm"]
+    },
+    {
+      "contract_name": "Page_Placeholders_Source",
+      "online_table": {
+        "base": "phase2",
+        "display_name": "03_内容源_页面占位参数",
+        "reference_table_id": "tblhckTT7PfVBsuG"
+      },
+      "snapshot": {
+        "logical_name": "spec_master",
+        "file": "Spec_Master.csv",
+        "row_filter": "Page is present and does not include specifications"
+      },
+      "identity": {
+        "business_key_fields": ["document_key", "Row_key", "Slot_key"],
+        "optional_key_fields": ["Slot_key"],
+        "fallback_key_fields": ["Line_order", "Section"],
+        "source_record_index_table": "Page_Placeholders_Source",
+        "source_ref_fields": {
+          "document_key": "document_key",
+          "row_key": "Row_key",
+          "slot_key": "Slot_key",
+          "line_order": "Line_order",
+          "section": "Section"
+        }
+      },
+      "intake": {
+        "target_table": "Page_Placeholders_Source",
+        "supported": true,
+        "candidate_fields": [
+          "document_key",
+          "Model",
+          "Region",
+          "Source_lang",
+          "Version",
+          "Is_Latest",
+          "Page",
+          "Section",
+          "Section_order",
+          "Row_order",
+          "Row_key",
+          "Slot_key",
+          "Row_label_source",
+          "Row_label_footnote_refs",
+          "Line_order",
+          "Param_source",
+          "Param_footnote_refs",
+          "Value_source",
+          "Value_footnote_refs"
+        ],
+        "existing_row_change_request": true,
+        "new_row_live_write": false
+      },
+      "writeback": {
+        "change_request_update": true,
+        "table_binding_name": "Page_Placeholders_Source",
+        "writable_fields": [
+          "Row_label_source",
+          "Row_label_footnote_refs",
+          "Param_source",
+          "Param_footnote_refs",
+          "Value_source",
+          "Value_footnote_refs"
+        ],
+        "blocked_field_kinds": ["formula", "lookup", "link", "attachment", "checkbox", "workflow"]
+      },
+      "commands": {
+        "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master",
+        "intake": "python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2",
+        "backport": "python tools/cloud_doc_backport.py run-review-branch --doc-name <doc-name> --cloud-doc <url>"
+      },
+      "skills": ["spec-sheet-structured-intake", "manual-revision-backport"]
+    },
+    {
+      "contract_name": "Manual_Copy_Source",
+      "online_table": {
+        "base": "phase2",
+        "display_name": "03_内容源_Manual_Copy_Source",
+        "reference_table_id": "tbl9grwLXLmpmZ1t"
+      },
+      "snapshot": {
+        "logical_name": "manual_copy_source",
+        "file": "Manual_Copy_Source.csv",
+        "row_filter": "Is_Latest is not explicitly false"
+      },
+      "identity": {
+        "business_key_fields": ["copy_key"],
+        "optional_key_fields": [],
+        "fallback_key_fields": [],
+        "source_record_index_table": "Manual_Copy_Source",
+        "source_ref_fields": {
+          "copy_key": "copy_key"
+        },
+        "derived_source_refs": [
+          {
+            "origin_table": "Localized_Copy",
+            "write_table": "Manual_Copy_Source",
+            "write_field": "source_text",
+            "condition": "reviewed lang equals Source_lang; otherwise route to Translation_Memory suggestion"
+          }
+        ]
+      },
+      "intake": {
+        "target_table": "Manual_Copy_Source",
+        "supported": true,
+        "candidate_fields": [
+          "copy_key",
+          "page_id",
+          "copy_type",
+          "Market",
+          "Model",
+          "Source_lang",
+          "Is_Latest",
+          "Version",
+          "source_text",
+          "section_order",
+          "notes"
+        ],
+        "existing_row_change_request": true,
+        "new_row_live_write": false
+      },
+      "writeback": {
+        "change_request_update": true,
+        "table_binding_name": "Manual_Copy_Source",
+        "writable_fields": ["source_text", "notes"],
+        "blocked_field_kinds": ["formula", "lookup", "link", "attachment", "checkbox", "workflow"]
+      },
+      "derived_outputs": [
+        {
+          "file": "Localized_Copy.csv",
+          "source": "Manual_Copy_Source x Translation_Memory"
+        },
+        {
+          "file": "spec_titles.csv",
+          "source": "Manual_Copy_Source x Translation_Memory"
+        },
+        {
+          "file": "Status_Words.csv",
+          "source": "Translation_Memory rows marked as status words"
+        }
+      ],
+      "commands": {
+        "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table manual_copy_source",
+        "intake": "python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2"
+      },
+      "skills": ["spec-sheet-structured-intake", "bilingual-tm-maintenance", "manual-rewrite-with-tm"]
+    },
+    {
+      "contract_name": "Spec_Footnotes",
+      "online_table": {
+        "base": "phase2",
+        "display_name": "03_内容源_规格页Footnotes",
+        "reference_table_id": "tbl34wpGJkMipCrg"
+      },
+      "snapshot": {
+        "logical_name": "spec_footnotes",
+        "file": "Spec_Footnotes.csv",
+        "row_filter": "Enabled rows are renderable; disabled rows stay in the snapshot for traceability"
+      },
+      "identity": {
+        "business_key_fields": ["Footnote_id", "Region", "Model", "Page"],
+        "optional_key_fields": [],
+        "fallback_key_fields": [],
+        "source_record_index_table": null,
+        "source_ref_fields": {
+          "Footnote_id": "Footnote_id",
+          "Region": "Region",
+          "Model": "Model",
+          "Page": "Page"
+        }
+      },
+      "intake": {
+        "target_table": "Spec_Footnotes",
+        "supported": true,
+        "candidate_fields": [
+          "Footnote_id",
+          "Region",
+          "Model",
+          "Source_lang",
+          "Is_Latest",
+          "Page",
+          "Footnote_order",
+          "Type",
+          "Text_en",
+          "Text_fr",
+          "Text_es",
+          "Text_de",
+          "Text_it",
+          "Text_uk",
+          "Text_ja",
+          "Text_pt-BR",
+          "Enabled"
+        ],
+        "existing_row_change_request": false,
+        "new_row_live_write": false
+      },
+      "writeback": {
+        "change_request_update": false,
+        "table_binding_name": "Spec_Footnotes",
+        "writable_fields": [],
+        "blocked_field_kinds": ["formula", "lookup", "link", "attachment", "checkbox", "workflow"]
+      },
+      "commands": {
+        "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_footnotes",
+        "intake": "python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2"
+      },
+      "skills": ["spec-sheet-structured-intake", "manual-revision-backport"]
+    },
+    {
+      "contract_name": "Spec_Notes",
+      "online_table": {
+        "base": "phase2",
+        "display_name": "03_内容源_规格页notes",
+        "reference_table_id": "tbl1vhTHwllyMGCx"
+      },
+      "snapshot": {
+        "logical_name": "spec_notes",
+        "file": "Spec_Notes.csv",
+        "row_filter": "Enabled rows are renderable; disabled rows stay in the snapshot for traceability"
+      },
+      "identity": {
+        "business_key_fields": ["Note_id", "Region", "Model", "Page"],
+        "optional_key_fields": [],
+        "fallback_key_fields": [],
+        "source_record_index_table": null,
+        "source_ref_fields": {
+          "Note_id": "Note_id",
+          "Region": "Region",
+          "Model": "Model",
+          "Page": "Page"
+        }
+      },
+      "intake": {
+        "target_table": "Spec_Notes",
+        "supported": true,
+        "candidate_fields": [
+          "Note_id",
+          "Region",
+          "Model",
+          "Source_lang",
+          "Is_Latest",
+          "Page",
+          "Note_order",
+          "Type",
+          "Text_en",
+          "Text_fr",
+          "Text_es",
+          "Text_de",
+          "Text_it",
+          "Text_uk",
+          "Text_ja",
+          "Text_pt-BR",
+          "Enabled"
+        ],
+        "existing_row_change_request": false,
+        "new_row_live_write": false
+      },
+      "writeback": {
+        "change_request_update": false,
+        "table_binding_name": "Spec_Notes",
+        "writable_fields": [],
+        "blocked_field_kinds": ["formula", "lookup", "link", "attachment", "checkbox", "workflow"]
+      },
+      "commands": {
+        "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_notes",
+        "intake": "python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2"
+      },
+      "skills": ["spec-sheet-structured-intake", "manual-revision-backport"]
+    },
+    {
+      "contract_name": "symbols_blocks",
+      "online_table": {
+        "base": "phase2",
+        "display_name": "03_内容源_Symbols",
+        "reference_table_id": "tbl5ZXEVAzDMrvXN"
+      },
+      "snapshot": {
+        "logical_name": "symbols_blocks",
+        "file": "symbols_blocks.csv",
+        "row_filter": "Is_Latest/source scope selected by sync-data and renderer"
+      },
+      "identity": {
+        "business_key_fields": ["symbol_key", "Market", "Model"],
+        "optional_key_fields": ["Market", "Model"],
+        "fallback_key_fields": ["order"],
+        "source_record_index_table": null,
+        "source_ref_fields": {
+          "symbol_key": "symbol_key",
+          "market": "Market",
+          "model": "Model"
+        }
+      },
+      "intake": {
+        "target_table": null,
+        "supported": false,
+        "candidate_fields": [],
+        "existing_row_change_request": false,
+        "new_row_live_write": false
+      },
+      "writeback": {
+        "change_request_update": false,
+        "table_binding_name": "symbols_blocks",
+        "writable_fields": [],
+        "blocked_field_kinds": ["formula", "lookup", "link", "attachment", "checkbox", "workflow"]
+      },
+      "commands": {
+        "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table symbols_blocks"
+      },
+      "skills": ["markdown-rst-template-intake", "manual-revision-backport"]
+    },
+    {
+      "contract_name": "lcd_icons_blocks",
+      "online_table": {
+        "base": "phase2",
+        "display_name": "03_内容源_LCD icons",
+        "reference_table_id": "tblDII3oyqFhQYHn"
+      },
+      "snapshot": {
+        "logical_name": "lcd_icons",
+        "file": "lcd_icons_blocks.csv",
+        "row_filter": "Is_latest/source scope selected by sync-data and renderer"
+      },
+      "identity": {
+        "business_key_fields": ["icon_en", "Model", "Version"],
+        "optional_key_fields": [],
+        "fallback_key_fields": [],
+        "source_record_index_table": "lcd_icons_blocks",
+        "source_ref_fields": {
+          "icon_en": "icon_en",
+          "model": "Model",
+          "version": "Version"
+        }
+      },
+      "intake": {
+        "target_table": null,
+        "supported": false,
+        "candidate_fields": [],
+        "existing_row_change_request": false,
+        "new_row_live_write": false
+      },
+      "writeback": {
+        "change_request_update": false,
+        "table_binding_name": "lcd_icons",
+        "writable_fields": [],
+        "blocked_field_kinds": ["formula", "lookup", "link", "attachment", "checkbox", "workflow"]
+      },
+      "commands": {
+        "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table lcd_icons"
+      },
+      "skills": ["manual-revision-backport", "bilingual-tm-maintenance"]
+    },
+    {
+      "contract_name": "troubleshooting_blocks",
+      "online_table": {
+        "base": "phase2",
+        "display_name": "03_内容源_TROUBLESHOOTING",
+        "reference_table_id": "tblUSuk3Q5BKTdTh"
+      },
+      "snapshot": {
+        "logical_name": "troubleshooting",
+        "file": "troubleshooting_blocks.csv",
+        "row_filter": "Is_latest/source scope selected by sync-data and renderer"
+      },
+      "identity": {
+        "business_key_fields": ["error_code", "Model", "Region", "Version"],
+        "optional_key_fields": ["Version"],
+        "fallback_key_fields": ["No."],
+        "source_record_index_table": null,
+        "source_ref_fields": {
+          "error_code": "error_code",
+          "model": "Model",
+          "region": "Region",
+          "version": "Version"
+        }
+      },
+      "intake": {
+        "target_table": null,
+        "supported": false,
+        "candidate_fields": [],
+        "existing_row_change_request": false,
+        "new_row_live_write": false
+      },
+      "writeback": {
+        "change_request_update": false,
+        "table_binding_name": "troubleshooting",
+        "writable_fields": [],
+        "blocked_field_kinds": ["formula", "lookup", "link", "attachment", "checkbox", "workflow"]
+      },
+      "commands": {
+        "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table troubleshooting"
+      },
+      "skills": ["manual-revision-backport", "bilingual-tm-maintenance"]
+    },
+    {
+      "contract_name": "Variable_Defaults",
+      "online_table": {
+        "base": "phase2",
+        "display_name": "03_内容源_Variable_Defaults",
+        "reference_table_id": "tblRyRdqRg2MGVgH"
+      },
+      "snapshot": {
+        "logical_name": "variable_defaults",
+        "file": "Variable_Defaults.csv",
+        "row_filter": "all synced rows"
+      },
+      "identity": {
+        "business_key_fields": ["Variable_key", "Model"],
+        "optional_key_fields": ["Model"],
+        "fallback_key_fields": [],
+        "source_record_index_table": null,
+        "source_ref_fields": {
+          "variable_key": "Variable_key",
+          "model": "Model"
+        }
+      },
+      "intake": {
+        "target_table": null,
+        "supported": false,
+        "candidate_fields": [],
+        "existing_row_change_request": false,
+        "new_row_live_write": false
+      },
+      "writeback": {
+        "change_request_update": false,
+        "table_binding_name": "variable_defaults",
+        "writable_fields": [],
+        "blocked_field_kinds": ["formula", "lookup", "link", "attachment", "checkbox", "workflow"]
+      },
+      "commands": {
+        "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table variable_defaults"
+      },
+      "skills": ["manual-revision-backport"]
+    },
+    {
+      "contract_name": "Variable_Lang_Overrides",
+      "online_table": {
+        "base": "phase2",
+        "display_name": "03_内容源_Variable_Lang_Overrides",
+        "reference_table_id": "tblkcXujDMGXnHMo"
+      },
+      "snapshot": {
+        "logical_name": "variable_lang_overrides",
+        "file": "Variable_Lang_Overrides.csv",
+        "row_filter": "all synced rows"
+      },
+      "identity": {
+        "business_key_fields": ["Variable_key", "lang"],
+        "optional_key_fields": [],
+        "fallback_key_fields": [],
+        "source_record_index_table": null,
+        "source_ref_fields": {
+          "variable_key": "Variable_key",
+          "lang": "lang"
+        }
+      },
+      "intake": {
+        "target_table": null,
+        "supported": false,
+        "candidate_fields": [],
+        "existing_row_change_request": false,
+        "new_row_live_write": false
+      },
+      "writeback": {
+        "change_request_update": false,
+        "table_binding_name": "variable_lang_overrides",
+        "writable_fields": [],
+        "blocked_field_kinds": ["formula", "lookup", "link", "attachment", "checkbox", "workflow"]
+      },
+      "commands": {
+        "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table variable_lang_overrides"
+      },
+      "skills": ["manual-revision-backport"]
+    }
+  ],
+  "derived_contracts": [
+    {
+      "contract_name": "Translation_Memory",
+      "online_table": {
+        "base": "translation_memory",
+        "display_name": "Translation_Memory",
+        "reference_table_id": "tbl6gKPJPTvOcTWv"
+      },
+      "key_fields": ["en"],
+      "derived_files": ["Localized_Copy.csv", "spec_titles.csv", "Status_Words.csv"],
+      "write_rule": "TM maintenance uses the bilingual-tm-maintenance skill and TM-specific logs; cloud-doc/source-intake source-table writers do not directly write TM rows."
+    },
+    {
+      "contract_name": "page_registry",
+      "source": "repo-maintained",
+      "file": "data/phase2/page_registry.csv",
+      "write_rule": "Tracked repo input copied into isolated phase2 snapshots by sync-data."
+    },
+    {
+      "contract_name": "row_key_mapping",
+      "source": "derived from Row_key dictionary and sync-data",
+      "file": "data/phase2/row_key_mapping.csv",
+      "write_rule": "Generated snapshot output; update online Row_key dictionary or sync logic, not the generated CSV."
+    }
+  ]
+}
