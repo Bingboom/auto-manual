@@ -1,0 +1,157 @@
+name: Feishu Schema Parity
+
+# Gap E: scheduled, read-only alert when the PROD Bitable structure lags DEV.
+# Code mirrors dev->prod automatically, but the prod tenant's tables/fields do NOT
+# (they are promoted by hand via `bitable_schema apply --profile prod`). This job
+# catches "prod is missing a table/field the mirrored code expects" before it breaks
+# a prod build. Read-only: it never writes either tenant.
+
+on:
+  schedule:
+    - cron: "0 1 * * *" # daily 01:00 UTC (~09:00 CST)
+  workflow_dispatch:
+
+concurrency:
+  group: feishu-schema-parity
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  parity:
+    # Only the dev source repo runs this: its bot reads BOTH tenants (dev natively +
+    # prod via the cross-tenant read share). The Hello-Docs mirror copies this file
+    # but must not run the job.
+    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    runs-on: ubuntu-latest
+    env:
+      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+      FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
+      FEISHU_PHASE2_PROD_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_PROD_BASE_TOKEN }}
+      # dev-only scratch/experiment/archive tables prod is correct NOT to mirror
+      PARITY_IGNORE_PREFIX: "99_"
+      PARITY_IGNORE_TABLES: "QC_Report,数据表"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check configuration
+        id: cfg
+        shell: bash
+        run: |
+          if [ -z "$FEISHU_APP_ID" ] || [ -z "$FEISHU_APP_SECRET" ] || [ -z "$FEISHU_PHASE2_BASE_TOKEN" ] || [ -z "$FEISHU_PHASE2_PROD_BASE_TOKEN" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "### Feishu Schema Parity — not configured (no-op)"
+              echo
+              echo "Add these repo secrets to enable the prod-drift alert:"
+              echo "- \`FEISHU_APP_ID\` / \`FEISHU_APP_SECRET\` (dev app; already set for the build queue)"
+              echo "- \`FEISHU_PHASE2_BASE_TOKEN\` (dev base; already set)"
+              echo "- \`FEISHU_PHASE2_PROD_BASE_TOKEN\` (**new** — the prod tenant base token)"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: ./.github/actions/feishu-common-setup
+        if: ${{ steps.cfg.outputs.configured == 'true' }}
+
+      - name: Run parity (prod vs dev)
+        id: parity
+        if: ${{ steps.cfg.outputs.configured == 'true' }}
+        shell: bash
+        run: |
+          set +e
+          ignore_args=()
+          IFS=',' read -ra names <<< "${PARITY_IGNORE_TABLES}"
+          for n in "${names[@]}"; do
+            [ -n "$n" ] && ignore_args+=(--ignore-table "$n")
+          done
+          python tools/bitable_schema.py parity \
+            --source-base "$FEISHU_PHASE2_BASE_TOKEN" \
+            --target-base "$FEISHU_PHASE2_PROD_BASE_TOKEN" \
+            --ignore-table-prefix "$PARITY_IGNORE_PREFIX" \
+            "${ignore_args[@]}" \
+            --fail-on missing | tee parity_out.txt
+          rc=${PIPESTATUS[0]}
+          {
+            echo "### Feishu Schema Parity (prod vs dev)"
+            echo
+            echo '```'
+            cat parity_out.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$rc" -ne 0 ]; then
+            echo "drift=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "drift=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open / update drift issue
+        if: ${{ steps.cfg.outputs.configured == 'true' && steps.parity.outputs.drift == 'true' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = "[schema-drift] prod Bitable structure lags dev";
+            const out = fs.readFileSync('parity_out.txt', 'utf8');
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              "Prod tenant is **missing a table/field** that dev defines, so a mirrored-code build may break.",
+              "Promote the structure to prod, then re-run this workflow:",
+              "",
+              "```",
+              "python tools/bitable_schema.py apply --manifest bitable_schema/manifest.json \\",
+              "  --base-token <PROD_BASE_TOKEN> --profile prod --identity user --write --yes",
+              "```",
+              "",
+              "See `code-as-doc/dev/bitable_schema_sync.md`.",
+              "",
+              "```",
+              out,
+              "```",
+              "",
+              `Run: ${runUrl}`,
+            ].join("\n");
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: "open", per_page: 100,
+            });
+            const existing = issues.find((i) => i.title === marker && !i.pull_request);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo, issue_number: existing.number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo, title: marker, body,
+              });
+            }
+
+      - name: Resolve drift issue (parity green)
+        if: ${{ steps.cfg.outputs.configured == 'true' && steps.parity.outputs.drift == 'false' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const marker = "[schema-drift] prod Bitable structure lags dev";
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: "open", per_page: 100,
+            });
+            const existing = issues.find((i) => i.title === marker && !i.pull_request);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo, issue_number: existing.number,
+                body: `Resolved — parity green. Run: ${runUrl}`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo, issue_number: existing.number, state: "closed",
+              });
+            }
+
+      - name: Fail if drift
+        if: ${{ steps.cfg.outputs.configured == 'true' && steps.parity.outputs.drift == 'true' }}
+        run: |
+          echo "::error::prod Bitable structure lags dev — see the [schema-drift] issue + run summary."
+          exit 1
