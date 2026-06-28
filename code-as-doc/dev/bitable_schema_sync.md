@@ -58,16 +58,27 @@ the production repo. No extra step.
 On the prod side, with the **prod** tenant's base token:
 
 ```bash
-# dry-run first — shows what would be created
+# dry-run first — prints "Target base: <token> (N tables)" so you can confirm the
+# tenant, plus what would be created and any DRIFT (see below)
 python3 tools/bitable_schema.py apply \
   --manifest bitable_schema/manifest.json --base-token <PROD_BASE_TOKEN>
 
-# apply
+# apply — --write is REFUSED without --yes (guards against pointing at the wrong base)
 python3 tools/bitable_schema.py apply \
-  --manifest bitable_schema/manifest.json --base-token <PROD_BASE_TOKEN> --write
+  --manifest bitable_schema/manifest.json --base-token <PROD_BASE_TOKEN> --write --yes
 ```
 
-`apply --write` prints the new prod table IDs. Add them to the prod
+Two guards in `apply`:
+
+- **base confirmation** — `--write` is ignored unless `--yes` is also passed; the run
+  always prints `Target base: <token> (N existing tables)` first, so you verify the
+  tenant before writing.
+- **drift report** — if a field already exists in the target but with a different
+  type / select-options / multiple flag than the manifest, it is reported as
+  `⚠ DRIFT ... — NOT changed, reconcile by hand`. `apply` only ever *adds*; it never
+  alters an existing field, so a real divergence is surfaced, not silently overwritten.
+
+`apply --write --yes` prints the new prod table IDs. Add them to the prod
 `FEISHU_PHASE2_*` env / GitHub Secrets (e.g. `FEISHU_PHASE2_RULE_MAP_TABLE_ID`,
 `FEISHU_PHASE2_INTAKE_TABLE_ID`). Re-running `apply` is safe (idempotent: 0 created).
 

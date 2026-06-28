@@ -97,18 +97,32 @@ def _create_field(base_token: str, tid: str, field: dict, lark_cli: str) -> bool
     return bool(r.get("ok"))
 
 
+def _field_differs(want: dict, have: dict) -> str:
+    """Return a human reason if an existing field's shape diverges from the manifest, else ''.
+    apply never auto-changes an existing field; this only surfaces silent drift."""
+    if (want.get("type") or "") != (have.get("type") or ""):
+        return f"type {have.get('type')!r} ≠ {want.get('type')!r}"
+    if want.get("type") == "select":
+        if set(want.get("options") or []) != set(have.get("options") or []):
+            return f"options {have.get('options')} ≠ {want.get('options')}"
+        if bool(want.get("multiple")) != bool(have.get("multiple")):
+            return f"multiple {have.get('multiple')} ≠ {want.get('multiple')}"
+    return ""
+
+
 def apply(manifest: dict, base_token: str, write: bool, lark_cli: str) -> dict:
     tl = _lark(["base", "+table-list", "--base-token", base_token, "--format", "json", "--as", "bot"], lark_cli)
     tables = tl.get("data", {}).get("tables") or tl.get("data", {}).get("items") or []
     existing = {t.get("name"): (t.get("id") or t.get("table_id")) for t in tables}
-    plan: dict = {"create_tables": [], "create_fields": [], "skip_existing": [], "manual_complex": [], "new_table_ids": {}, "external_write": bool(write)}
+    plan: dict = {"create_tables": [], "create_fields": [], "skip_existing": [], "drift": [],
+                  "manual_complex": [], "new_table_ids": {}, "target_tables": sorted(existing), "external_write": bool(write)}
 
     for tbl in manifest.get("tables", []):
         tname = tbl["name"]
         simple = [f for f in tbl["fields"] if f.get("type") in SIMPLE_TYPES]
-        complex_ = [f for f in tbl["fields"] if f.get("type") not in SIMPLE_TYPES]
-        for f in complex_:
-            plan["manual_complex"].append({"table": tname, "field": f["name"], "type": f["type"]})
+        for f in tbl["fields"]:
+            if f.get("type") not in SIMPLE_TYPES:
+                plan["manual_complex"].append({"table": tname, "field": f["name"], "type": f["type"]})
         if tname not in existing:
             plan["create_tables"].append(tname)
             if write:
@@ -117,17 +131,23 @@ def apply(manifest: dict, base_token: str, write: bool, lark_cli: str) -> dict:
                     existing[tname] = tid
                     plan["new_table_ids"][tname] = tid
             continue
-        # table exists -> add missing fields
+        # table exists -> add missing fields, flag drift on existing ones (never alter)
         tid = existing[tname]
         fl = _lark(["base", "+field-list", "--base-token", base_token, "--table-id", tid, "--format", "json", "--as", "bot"], lark_cli)
-        have = {(f.get("field_name") or f.get("name")) for f in (fl.get("data", {}).get("items") or fl.get("data", {}).get("fields") or [])}
-        for f in simple:
-            if f["name"] in have:
-                plan["skip_existing"].append({"table": tname, "field": f["name"]})
+        target = {fe["name"]: fe for fe in (_field_export(f) for f in (fl.get("data", {}).get("items") or fl.get("data", {}).get("fields") or []))}
+        for f in tbl["fields"]:
+            if f["name"] not in target:
+                if f.get("type") in SIMPLE_TYPES:
+                    plan["create_fields"].append({"table": tname, "field": f["name"], "type": f["type"]})
+                    if write:
+                        _create_field(base_token, tid, f, lark_cli)
+                # missing complex field already recorded in manual_complex
+                continue
+            reason = _field_differs(f, target[f["name"]])
+            if reason:
+                plan["drift"].append({"table": tname, "field": f["name"], "detail": reason})
             else:
-                plan["create_fields"].append({"table": tname, "field": f["name"], "type": f["type"]})
-                if write:
-                    _create_field(base_token, tid, f, lark_cli)
+                plan["skip_existing"].append({"table": tname, "field": f["name"]})
     return plan
 
 
@@ -145,6 +165,7 @@ def _parser() -> argparse.ArgumentParser:
     a.add_argument("--manifest", required=True)
     a.add_argument("--base-token", required=True, help="TARGET (e.g. prod) base token")
     a.add_argument("--write", action="store_true", help="actually create missing tables/fields (else dry-run plan)")
+    a.add_argument("--yes", action="store_true", help="confirm the TARGET base is correct; REQUIRED together with --write")
     a.add_argument("--lark-cli", default="lark-cli")
     return p
 
@@ -165,14 +186,20 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "apply":
         manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
-        plan = apply(manifest, args.base_token, args.write, args.lark_cli)
+        write = bool(args.write and args.yes)
+        plan = apply(manifest, args.base_token, write, args.lark_cli)
+        print(f"Target base: {args.base_token}  ({len(plan['target_tables'])} existing tables)")
+        if args.write and not args.yes:
+            print("⚠ --write ignored: re-run with --write --yes once you've confirmed this is the intended (prod) base.")
         mode = "WRITE" if plan["external_write"] else "dry-run"
         print(f"APPLY ({mode}): create {len(plan['create_tables'])} table(s), {len(plan['create_fields'])} field(s); "
-              f"skip {len(plan['skip_existing'])} existing; {len(plan['manual_complex'])} complex field(s) need manual setup")
+              f"skip {len(plan['skip_existing'])}; DRIFT {len(plan['drift'])}; {len(plan['manual_complex'])} complex (manual)")
         for t in plan["create_tables"]:
             print(f"  + TABLE {t}{'  -> ' + plan['new_table_ids'].get(t, '') if plan['new_table_ids'].get(t) else ''}")
         for f in plan["create_fields"]:
             print(f"  + FIELD {f['table']}.{f['field']} ({f['type']})")
+        for d in plan["drift"]:
+            print(f"  ⚠ DRIFT {d['table']}.{d['field']}: {d['detail']} — NOT changed, reconcile by hand")
         for f in plan["manual_complex"]:
             print(f"  ! MANUAL {f['table']}.{f['field']} ({f['type']}) — link/formula/lookup, set up by hand")
         if plan["new_table_ids"]:

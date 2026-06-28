@@ -78,13 +78,17 @@ class ApplyTests(unittest.TestCase):
             if "+table-list" in args:
                 return {"ok": True, "data": {"tables": [{"id": "tblA", "name": "T1"}]}}
             if "+field-list" in args:
-                return _fields_response([{"name": "Name"}, {"name": "St"}])
+                return _fields_response([
+                    {"name": "Name", "type": "text"},
+                    {"name": "St", "type": "select", "multiple": False, "options": [{"name": "a"}]},
+                ])
             return {"ok": False}
 
         with mock.patch.object(bs, "_lark", side_effect=fake):
             plan = bs.apply(self.MANIFEST, "prodbase", write=False, lark_cli="lark-cli")
         self.assertEqual(plan["create_tables"], [])
         self.assertEqual(plan["create_fields"], [])          # both simple fields already exist
+        self.assertEqual(plan["drift"], [])                  # and identical -> no drift
         self.assertEqual(len(plan["skip_existing"]), 2)
 
     def test_apply_adds_only_missing_field(self):
@@ -92,12 +96,32 @@ class ApplyTests(unittest.TestCase):
             if "+table-list" in args:
                 return {"ok": True, "data": {"tables": [{"id": "tblA", "name": "T1"}]}}
             if "+field-list" in args:
-                return _fields_response([{"name": "Name"}])   # missing "St"
+                return _fields_response([{"name": "Name", "type": "text"}])   # missing "St"
             return {"ok": False}
 
         with mock.patch.object(bs, "_lark", side_effect=fake):
             plan = bs.apply(self.MANIFEST, "prodbase", write=False, lark_cli="lark-cli")
         self.assertEqual([f["field"] for f in plan["create_fields"]], ["St"])
+
+    def test_apply_flags_drift_but_does_not_change(self):
+        # existing "St" select has different options than the manifest -> DRIFT, not skip, not changed
+        def fake(args, lark_cli="lark-cli"):
+            if "+table-list" in args:
+                return {"ok": True, "data": {"tables": [{"id": "tblA", "name": "T1"}]}}
+            if "+field-list" in args:
+                return _fields_response([
+                    {"name": "Name", "type": "text"},
+                    {"name": "St", "type": "select", "multiple": False, "options": [{"name": "x"}]},
+                ])
+            return {"ok": False}
+
+        calls = []
+        with mock.patch.object(bs, "_lark", side_effect=lambda a, lark_cli="lark-cli": calls.append(a) or fake(a, lark_cli)):
+            plan = bs.apply(self.MANIFEST, "prodbase", write=True, lark_cli="lark-cli")
+        self.assertEqual([d["field"] for d in plan["drift"]], ["St"])
+        self.assertEqual(plan["create_fields"], [])
+        # never issued a field-update/create for the drifted field
+        self.assertFalse(any("+field-update" in c for c in calls))
 
 
 if __name__ == "__main__":
