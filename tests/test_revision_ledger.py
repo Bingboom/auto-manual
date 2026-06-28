@@ -130,6 +130,118 @@ class TestRevisionLedgerIngest(unittest.TestCase):
             self.assertEqual(summary["rows_written"], 1)
 
 
+_REVIEW_REL = "docs/_review/JE-1000F/US/en/page/01_overview.rst"
+
+
+def _write_review(root: Path, body: str) -> None:
+    path = root / _REVIEW_REL
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(body, encoding="utf-8")
+
+
+class TestRevisionLedgerReconcile(unittest.TestCase):
+    def _ingest(self, root: Path, report: dict | None = None) -> Path:
+        ledger = root / "ledger.jsonl"
+        revision_ledger.ingest_report(report or _report(), ledger_path=ledger)
+        return ledger
+
+    def test_reviewer_text_present_is_accepted(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            ledger = self._ingest(root)
+            summary = revision_ledger.reconcile(
+                ledger, root=root, merge_meta={"merged_pr": "#499"}
+            )
+            self.assertEqual(summary["rows_reconciled"], 1)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+            self.assertEqual(row["final_text"], "Charge the battery fully before first use.")
+            self.assertEqual(row["merged_pr"], "#499")
+
+    def test_machine_text_still_present_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery.\n")
+            ledger = self._ingest(root)
+            revision_ledger.reconcile(ledger, root=root)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.REJECTED_STATUS)
+            self.assertEqual(row["final_text"], "Charge the battery.")
+
+    def test_neither_text_present_is_edited_further(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Top up the cells before initial operation.\n")
+            ledger = self._ingest(root)
+            revision_ledger.reconcile(ledger, root=root)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.EDITED_STATUS)
+            self.assertIsNone(row["final_text"])
+
+    def test_missing_source_stays_pending(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)  # no review file written
+            ledger = self._ingest(root)
+            summary = revision_ledger.reconcile(ledger, root=root)
+            self.assertEqual(summary["rows_reconciled"], 0)
+            self.assertEqual(summary["verdicts"].get(revision_ledger.SOURCE_MISSING_STATUS), 1)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.PENDING_STATUS)
+
+    def test_reconcile_is_idempotent_and_skips_decided_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            ledger = self._ingest(root)
+            revision_ledger.reconcile(ledger, root=root)
+            # Source now changes, but a decided row must not be re-evaluated.
+            _write_review(root, "Charge the battery.\n")
+            second = revision_ledger.reconcile(ledger, root=root)
+            self.assertEqual(second["rows_reconciled"], 0)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+
+    def test_force_re_evaluates_decided_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            ledger = self._ingest(root)
+            revision_ledger.reconcile(ledger, root=root)
+            _write_review(root, "Charge the battery.\n")
+            forced = revision_ledger.reconcile(ledger, root=root, force=True)
+            self.assertEqual(forced["rows_reconciled"], 1)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.REJECTED_STATUS)
+
+    def test_deletion_proposal_accepted_when_text_gone(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Unrelated content only.\n")
+            report = _report()
+            report["deltas"][0]["change_type"] = "delete"
+            report["deltas"][0]["new_text"] = ""
+            ledger = self._ingest(root, report)
+            revision_ledger.reconcile(ledger, root=root)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+
+    def test_cli_reconcile_command(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            report_path = root / "report.json"
+            report_path.write_text(json.dumps(_report()), encoding="utf-8")
+            ledger = root / "ledger.jsonl"
+            revision_ledger.main(["ingest", "--report", str(report_path), "--ledger", str(ledger)])
+            rc = revision_ledger.main(
+                ["reconcile", "--ledger", str(ledger), "--root", str(root), "--merged-pr", "#499"]
+            )
+            self.assertEqual(rc, 0)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+
+
 class TestRevisionLedgerCli(unittest.TestCase):
     def test_cli_ingest_command(self) -> None:
         with tempfile.TemporaryDirectory() as td:
