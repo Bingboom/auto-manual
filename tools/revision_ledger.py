@@ -297,6 +297,105 @@ def reconcile(
     return summary
 
 
+_DECIDED_STATUSES = (ACCEPTED_STATUS, REJECTED_STATUS, EDITED_STATUS)
+
+# Verdicts where the machine output was changed (the reviewer's text landed, or
+# something other than the machine text did) — i.e. a real correction signal.
+_CORRECTION_STATUSES = (ACCEPTED_STATUS, EDITED_STATUS)
+
+
+def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Aggregate the ledger into quality metrics.
+
+    ``acceptance_rate`` is the share of *decided* rows whose proposed reviewer
+    correction landed verbatim (``accepted_as_proposed``); it measures how often
+    a captured reviewer edit survived to the merged source. ``top_corrected_sources``
+    ranks the files where the machine output was changed most often.
+    """
+    by_status: dict[str, int] = {}
+    by_route: dict[str, dict[str, int]] = {}
+    corrected_by_source: dict[str, int] = {}
+    for row in rows:
+        status = row.get("final_status") or PENDING_STATUS
+        by_status[status] = by_status.get(status, 0) + 1
+        if status in _DECIDED_STATUSES:
+            route = row.get("route_class") or "unknown"
+            bucket = by_route.setdefault(route, {})
+            bucket[status] = bucket.get(status, 0) + 1
+        if status in _CORRECTION_STATUSES:
+            source = row.get("source_path") or "unknown"
+            corrected_by_source[source] = corrected_by_source.get(source, 0) + 1
+
+    decided = sum(by_status.get(status, 0) for status in _DECIDED_STATUSES)
+    accepted = by_status.get(ACCEPTED_STATUS, 0)
+    route_rates: dict[str, dict[str, Any]] = {}
+    for route, bucket in by_route.items():
+        route_decided = sum(bucket.values())
+        route_rates[route] = {
+            **bucket,
+            "decided": route_decided,
+            "acceptance_rate": (
+                round(bucket.get(ACCEPTED_STATUS, 0) / route_decided, 4) if route_decided else None
+            ),
+        }
+    top = sorted(corrected_by_source.items(), key=lambda item: (-item[1], item[0]))
+    return {
+        "total_rows": len(rows),
+        "by_status": by_status,
+        "decided": decided,
+        "acceptance_rate": round(accepted / decided, 4) if decided else None,
+        "by_route_class": route_rates,
+        "top_corrected_sources": [
+            {"source_path": source, "corrections": count} for source, count in top[:20]
+        ],
+    }
+
+
+def export_pairs(
+    rows: list[dict[str, Any]], *, include_rejected: bool = False
+) -> list[dict[str, Any]]:
+    """Emit ``machine_text -> final_text`` training pairs from reconciled rows.
+
+    Yields one pair per ``accepted_as_proposed`` row where the text actually
+    changed (a genuine correction). With ``include_rejected`` it also emits
+    ``rejected`` rows as no-change examples (machine output was kept).
+    ``edited_further`` rows are skipped because the landed text is unknown.
+    """
+    pairs: list[dict[str, Any]] = []
+    for row in rows:
+        status = row.get("final_status")
+        if status == ACCEPTED_STATUS:
+            machine = row.get("machine_text")
+            final = row.get("final_text")
+            if final is None or machine == final:
+                continue
+        elif status == REJECTED_STATUS and include_rejected:
+            machine = row.get("machine_text")
+            final = row.get("final_text")
+        else:
+            continue
+        pairs.append(
+            {
+                "input": machine,
+                "target": final,
+                "verdict": status,
+                "route_class": row.get("route_class"),
+                "model": row.get("model"),
+                "region": row.get("region"),
+                "lang": row.get("lang"),
+                "delta_hash": row.get("delta_hash"),
+            }
+        )
+    return pairs
+
+
+def write_pairs(pairs: list[dict[str, Any]], out_path: Path) -> None:
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with out_path.open("w", encoding="utf-8") as handle:
+        for pair in pairs:
+            handle.write(json.dumps(pair, ensure_ascii=False, sort_keys=True) + "\n")
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="revision_ledger",
@@ -346,6 +445,36 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="Re-evaluate rows that already carry a verdict, not just pending ones.",
     )
+
+    stats = sub.add_parser("stats", help="Print quality metrics aggregated from the ledger.")
+    stats.add_argument(
+        "--ledger",
+        type=Path,
+        default=None,
+        help="Ledger JSONL path (default: reports/revision_ledger/ledger.jsonl).",
+    )
+
+    export = sub.add_parser(
+        "export",
+        help="Export machine_text -> final_text training pairs from reconciled rows.",
+    )
+    export.add_argument(
+        "--ledger",
+        type=Path,
+        default=None,
+        help="Ledger JSONL path (default: reports/revision_ledger/ledger.jsonl).",
+    )
+    export.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help="Write pairs as JSONL to this path (default: print to stdout).",
+    )
+    export.add_argument(
+        "--include-rejected",
+        action="store_true",
+        help="Also emit rejected rows as no-change (machine-kept) examples.",
+    )
     return parser.parse_args(argv)
 
 
@@ -367,6 +496,21 @@ def main(argv: list[str] | None = None) -> int:
         }
         summary = reconcile(ledger_path, root=root, merge_meta=merge_meta, force=args.force)
         print(json.dumps(summary, ensure_ascii=False, indent=2))
+        return 0
+    if args.command == "stats":
+        ledger_path = args.ledger or default_ledger_path()
+        summary = summarize(load_ledger(ledger_path))
+        print(json.dumps(summary, ensure_ascii=False, indent=2))
+        return 0
+    if args.command == "export":
+        ledger_path = args.ledger or default_ledger_path()
+        pairs = export_pairs(load_ledger(ledger_path), include_rejected=args.include_rejected)
+        if args.out is not None:
+            write_pairs(pairs, args.out)
+            print(json.dumps({"out": str(args.out), "pairs": len(pairs)}, ensure_ascii=False))
+        else:
+            for pair in pairs:
+                print(json.dumps(pair, ensure_ascii=False, sort_keys=True))
         return 0
     return 1
 

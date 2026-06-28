@@ -242,6 +242,99 @@ class TestRevisionLedgerReconcile(unittest.TestCase):
             self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
 
 
+def _row(**overrides: object) -> dict:
+    row = {
+        "final_status": revision_ledger.ACCEPTED_STATUS,
+        "route_class": "repo_review_text",
+        "source_path": _REVIEW_REL,
+        "machine_text": "old",
+        "final_text": "new",
+        "reviewer_text": "new",
+        "model": "JE-1000F",
+        "region": "US",
+        "lang": "en",
+        "delta_hash": "h",
+    }
+    row.update(overrides)
+    return row
+
+
+class TestRevisionLedgerStats(unittest.TestCase):
+    def test_summarize_counts_and_acceptance_rate(self) -> None:
+        rows = [
+            _row(final_status=revision_ledger.ACCEPTED_STATUS),
+            _row(final_status=revision_ledger.REJECTED_STATUS),
+            _row(final_status=revision_ledger.EDITED_STATUS),
+            _row(final_status=revision_ledger.PENDING_STATUS),
+        ]
+        summary = revision_ledger.summarize(rows)
+        self.assertEqual(summary["total_rows"], 4)
+        self.assertEqual(summary["decided"], 3)
+        self.assertEqual(summary["by_status"][revision_ledger.ACCEPTED_STATUS], 1)
+        self.assertAlmostEqual(summary["acceptance_rate"], round(1 / 3, 4))
+
+    def test_summarize_per_route_class_and_top_sources(self) -> None:
+        rows = [
+            _row(route_class="repo_review_text", source_path="a.rst"),
+            _row(route_class="repo_review_text", source_path="a.rst"),
+            _row(
+                route_class="repo_template_text",
+                source_path="b.rst",
+                final_status=revision_ledger.REJECTED_STATUS,
+            ),
+        ]
+        summary = revision_ledger.summarize(rows)
+        self.assertEqual(summary["by_route_class"]["repo_review_text"]["acceptance_rate"], 1.0)
+        self.assertEqual(summary["by_route_class"]["repo_template_text"]["acceptance_rate"], 0.0)
+        self.assertEqual(summary["top_corrected_sources"][0], {"source_path": "a.rst", "corrections": 2})
+
+    def test_summarize_empty_ledger(self) -> None:
+        summary = revision_ledger.summarize([])
+        self.assertEqual(summary["total_rows"], 0)
+        self.assertIsNone(summary["acceptance_rate"])
+
+
+class TestRevisionLedgerExport(unittest.TestCase):
+    def test_export_emits_accepted_correction_pairs_only(self) -> None:
+        rows = [
+            _row(final_status=revision_ledger.ACCEPTED_STATUS, machine_text="x", final_text="y"),
+            _row(final_status=revision_ledger.REJECTED_STATUS, machine_text="x", final_text="x"),
+            _row(final_status=revision_ledger.EDITED_STATUS, machine_text="x", final_text=None),
+            _row(final_status=revision_ledger.PENDING_STATUS),
+        ]
+        pairs = revision_ledger.export_pairs(rows)
+        self.assertEqual(len(pairs), 1)
+        self.assertEqual(pairs[0]["input"], "x")
+        self.assertEqual(pairs[0]["target"], "y")
+        self.assertEqual(pairs[0]["verdict"], revision_ledger.ACCEPTED_STATUS)
+
+    def test_export_skips_accepted_noop_pairs(self) -> None:
+        rows = [_row(final_status=revision_ledger.ACCEPTED_STATUS, machine_text="same", final_text="same")]
+        self.assertEqual(revision_ledger.export_pairs(rows), [])
+
+    def test_export_include_rejected_adds_no_change_examples(self) -> None:
+        rows = [_row(final_status=revision_ledger.REJECTED_STATUS, machine_text="x", final_text="x")]
+        pairs = revision_ledger.export_pairs(rows, include_rejected=True)
+        self.assertEqual(len(pairs), 1)
+        self.assertEqual(pairs[0]["verdict"], revision_ledger.REJECTED_STATUS)
+
+    def test_cli_stats_and_export(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            ledger = Path(td) / "ledger.jsonl"
+            revision_ledger.write_ledger(
+                [_row(final_status=revision_ledger.ACCEPTED_STATUS, machine_text="x", final_text="y")],
+                ledger,
+            )
+            self.assertEqual(revision_ledger.main(["stats", "--ledger", str(ledger)]), 0)
+            out = Path(td) / "pairs.jsonl"
+            rc = revision_ledger.main(
+                ["export", "--ledger", str(ledger), "--out", str(out)]
+            )
+            self.assertEqual(rc, 0)
+            exported = [json.loads(line) for line in out.read_text(encoding="utf-8").splitlines()]
+            self.assertEqual(exported[0]["target"], "y")
+
+
 class TestRevisionLedgerCli(unittest.TestCase):
     def test_cli_ingest_command(self) -> None:
         with tempfile.TemporaryDirectory() as td:

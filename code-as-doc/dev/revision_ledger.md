@@ -50,6 +50,33 @@ derived in, via the backport's `parse_blocks` / `_normalize_inline`):
 Decided rows are skipped on re-run (idempotent); pass `--force` to re-evaluate
 them. Only the merge fields you supply are stamped.
 
+### stats
+
+`stats` aggregates the ledger into quality metrics:
+
+```bash
+python3 -m tools.revision_ledger stats
+```
+
+Reports verdict counts, overall and per-`route_class` acceptance rate
+(`accepted_as_proposed` / decided), and the files whose machine output was
+corrected most often (`top_corrected_sources`).
+
+### export
+
+`export` emits `machine_text -> final_text` training pairs from reconciled rows:
+
+```bash
+python3 -m tools.revision_ledger export --out reports/revision_ledger/pairs.jsonl
+python3 -m tools.revision_ledger export --include-rejected   # add no-change examples
+```
+
+One pair per `accepted_as_proposed` row where the text actually changed (a
+genuine correction); `--include-rejected` also emits `rejected` rows as
+no-change examples. `edited_further` rows are skipped (the landed text is
+unknown). Each pair carries `verdict`, `route_class`, and `model/region/lang`
+for filtering.
+
 Properties:
 
 - **Append-only JSON Lines**, one delta per row. Matches the repo's JSON-report
@@ -80,12 +107,8 @@ Properties:
 
 ## Roadmap
 
-- **P2 — analytics views**: materialize CSV/DuckDB views and ship queries such as
-  most-corrected sections, per-`route_class` acceptance rate, and an eval set for
-  the generation step.
-- **P3 — training corpus**: export `machine_text` → `final_text` pairs (the
-  `accepted_as_proposed` / `edited_further` rows) for domain model tuning.
-
-Wiring `ingest` into the review-start worker, `reconcile` into the post-merge
-step, and a `build.py revision-ledger` subcommand is deferred until the ledger
-shape is validated in use.
+- Wire `ingest` into the review-start worker, `reconcile` into the post-merge
+  step, and add a `build.py revision-ledger` subcommand once the shape is
+  validated in use.
+- Richer analytics (CSV/DuckDB materialized views, an eval harness over the
+  exported pairs) on top of `stats` / `export` as the corpus grows.
