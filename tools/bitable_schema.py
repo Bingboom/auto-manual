@@ -151,6 +151,27 @@ def apply(manifest: dict, base_token: str, write: bool, lark_cli: str) -> dict:
     return plan
 
 
+def parity(source_base: str, target_base: str, table_filter: list[str] | None, lark_cli: str) -> dict:
+    """Read-only structure diff between two tenants (e.g. dev vs prod).
+
+    Reports what the SOURCE tenant has that the TARGET lacks (missing tables/fields) or
+    has differently (drift). The TARGET may legitimately have *extra* tables (reported
+    as informational, not a parity failure). Writes nothing.
+    """
+    src = export(source_base, table_filter, lark_cli)
+    plan = apply(src, target_base, write=False, lark_cli=lark_cli)
+    src_names = {t["name"] for t in src["tables"]}
+    extra = sorted(set(plan["target_tables"]) - src_names) if table_filter is None else []
+    return {
+        "missing_tables": plan["create_tables"],
+        "missing_fields": plan["create_fields"],
+        "drift": plan["drift"],
+        "manual_complex": plan["manual_complex"],
+        "extra_tables": extra,
+        "in_parity": not (plan["create_tables"] or plan["create_fields"] or plan["drift"]),
+    }
+
+
 def _parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Export / apply Feishu Bitable schema for dev->prod tenant parity.")
     sub = p.add_subparsers(dest="command", required=True)
@@ -167,6 +188,12 @@ def _parser() -> argparse.ArgumentParser:
     a.add_argument("--write", action="store_true", help="actually create missing tables/fields (else dry-run plan)")
     a.add_argument("--yes", action="store_true", help="confirm the TARGET base is correct; REQUIRED together with --write")
     a.add_argument("--lark-cli", default="lark-cli")
+
+    pa = sub.add_parser("parity", description="Read-only: report structure differences between a SOURCE tenant (e.g. dev) and a TARGET tenant (e.g. prod). Exit 1 if the target lags/diverges — usable as a CI parity gate.")
+    pa.add_argument("--source-base", required=True, help="reference tenant base token (e.g. dev)")
+    pa.add_argument("--target-base", required=True, help="tenant to check (e.g. prod)")
+    pa.add_argument("--tables", help="comma-separated table names; omit for the whole base")
+    pa.add_argument("--lark-cli", default="lark-cli")
     return p
 
 
@@ -207,6 +234,23 @@ def main(argv: list[str] | None = None) -> int:
             for n, i in plan["new_table_ids"].items():
                 print(f"  # {n} = {i}")
         return 0
+    if args.command == "parity":
+        tables = [t.strip() for t in args.tables.split(",")] if args.tables else None
+        res = parity(args.source_base, args.target_base, tables, args.lark_cli)
+        if res["in_parity"]:
+            print("PARITY ✅ — target has every table/field the source defines")
+        else:
+            print(f"PARITY ✗ — target lags source: {len(res['missing_tables'])} table(s), "
+                  f"{len(res['missing_fields'])} field(s), {len(res['drift'])} drift")
+        for t in res["missing_tables"]:
+            print(f"  - MISSING TABLE {t}")
+        for f in res["missing_fields"]:
+            print(f"  - MISSING FIELD {f['table']}.{f['field']} ({f['type']})")
+        for d in res["drift"]:
+            print(f"  ⚠ DRIFT {d['table']}.{d['field']}: {d['detail']}")
+        if res["extra_tables"]:
+            print(f"  (target also has {len(res['extra_tables'])} extra table(s) not in source — informational)")
+        return 0 if res["in_parity"] else 1
     raise AssertionError(args.command)
 
 

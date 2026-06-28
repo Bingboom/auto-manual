@@ -124,5 +124,50 @@ class ApplyTests(unittest.TestCase):
         self.assertFalse(any("+field-update" in c for c in calls))
 
 
+class ParityTests(unittest.TestCase):
+    """parity = export(source) diffed against target (dev vs prod). Read-only."""
+
+    def _fake(self, prod_tables, prod_fields):
+        src_fields = [{"name": "Name", "type": "text"},
+                      {"name": "St", "type": "select", "multiple": False, "options": [{"name": "a"}]}]
+
+        def fake(args, lark_cli="lark-cli"):
+            bt = args[args.index("--base-token") + 1] if "--base-token" in args else ""
+            if "+table-list" in args:
+                if bt == "DEV":
+                    return {"ok": True, "data": {"tables": [{"id": "d1", "name": "T1"}]}}
+                return {"ok": True, "data": {"tables": prod_tables}}
+            if "+field-list" in args:
+                tid = args[args.index("--table-id") + 1] if "--table-id" in args else ""
+                return _fields_response(src_fields if tid == "d1" else prod_fields)
+            return {"ok": False}
+        return fake
+
+    def test_parity_pass_when_target_matches(self):
+        fake = self._fake([{"id": "p1", "name": "T1"}],
+                          [{"name": "Name", "type": "text"},
+                           {"name": "St", "type": "select", "multiple": False, "options": [{"name": "a"}]}])
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            res = bs.parity("DEV", "PROD", None, "lark-cli")
+        self.assertTrue(res["in_parity"])
+        self.assertEqual(res["missing_tables"], [])
+        self.assertEqual(res["drift"], [])
+
+    def test_parity_flags_missing_table(self):
+        with mock.patch.object(bs, "_lark", side_effect=self._fake([], [])):
+            res = bs.parity("DEV", "PROD", None, "lark-cli")
+        self.assertFalse(res["in_parity"])
+        self.assertEqual(res["missing_tables"], ["T1"])
+
+    def test_parity_flags_drift(self):
+        fake = self._fake([{"id": "p1", "name": "T1"}],
+                          [{"name": "Name", "type": "text"},
+                           {"name": "St", "type": "select", "multiple": False, "options": [{"name": "DIFFERENT"}]}])
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            res = bs.parity("DEV", "PROD", None, "lark-cli")
+        self.assertFalse(res["in_parity"])
+        self.assertEqual([d["field"] for d in res["drift"]], ["St"])
+
+
 if __name__ == "__main__":
     unittest.main()

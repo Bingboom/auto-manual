@@ -102,6 +102,23 @@ python3 build.py sync-data --config configs/config.us.yaml --data-root data/phas
 python3 tools/schema_drift.py   # snapshot header parity (see REQUIRED_CSV_HEADERS)
 ```
 
+## Tenant parity check (catch silent drift)
+
+`apply` answers "is the target up to the *committed manifest*". `parity` answers the
+sharper question "does the **prod tenant** still match the **dev tenant** live" — it
+exports both and reports what prod lacks or has differently. Read-only; exits non-zero
+when prod lags, so it can run as a scheduled / CI parity gate.
+
+```bash
+python3 tools/bitable_schema.py parity \
+  --source-base <DEV_BASE_TOKEN> --target-base <PROD_BASE_TOKEN>
+# PARITY ✅            -> prod has every table/field dev defines (extra prod tables are OK)
+# PARITY ✗ + a list   -> MISSING TABLE / MISSING FIELD / ⚠ DRIFT  (exit 1)
+```
+
+Run it after a promotion, and on a schedule, so divergence between the two tenants is
+surfaced instead of accumulating unseen.
+
 ## When you add a new table going forward
 
 1. Create it in the **dev** tenant.
