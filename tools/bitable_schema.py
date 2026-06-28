@@ -185,17 +185,35 @@ def apply(manifest: dict, base_token: str, write: bool, lark_cli: str) -> dict:
     return plan
 
 
-def parity(source_base: str, target_base: str, table_filter: list[str] | None, lark_cli: str) -> dict:
+def parity(
+    source_base: str,
+    target_base: str,
+    table_filter: list[str] | None,
+    lark_cli: str,
+    ignore_prefixes: "tuple[str, ...] | list[str] | None" = None,
+    ignore_names: "set[str] | list[str] | None" = None,
+) -> dict:
     """Read-only structure diff between two tenants (e.g. dev vs prod).
 
     Reports what the SOURCE tenant has that the TARGET lacks (missing tables/fields) or
     has differently (drift). The TARGET may legitimately have *extra* tables (reported
     as informational, not a parity failure). Writes nothing.
+
+    ``ignore_prefixes`` / ``ignore_names`` drop SOURCE-only scratch tables (e.g. the dev
+    tenant's ``99_*`` experiment/archive tables, ``QC_Report``) from the comparison so a
+    prod-lag alert isn't permanently red over tables prod is correct NOT to have.
     """
+    ignore_prefixes = tuple(ignore_prefixes or ())
+    ignore_names = set(ignore_names or ())
+
+    def _ignored(name: str) -> bool:
+        return name in ignore_names or any(name.startswith(p) for p in ignore_prefixes)
+
     src = export(source_base, table_filter, lark_cli)
+    src["tables"] = [t for t in src["tables"] if not _ignored(t["name"])]
     plan = apply(src, target_base, write=False, lark_cli=lark_cli)
     src_names = {t["name"] for t in src["tables"]}
-    extra = sorted(set(plan["target_tables"]) - src_names) if table_filter is None else []
+    extra = sorted(n for n in (set(plan["target_tables"]) - src_names) if not _ignored(n)) if table_filter is None else []
     return {
         "missing_tables": plan["create_tables"],
         "missing_fields": plan["create_fields"],
@@ -235,6 +253,13 @@ def _parser() -> argparse.ArgumentParser:
     pa.add_argument("--source-base", required=True, help="reference tenant base token (e.g. dev)")
     pa.add_argument("--target-base", required=True, help="tenant to check (e.g. prod)")
     pa.add_argument("--tables", help="comma-separated table names; omit for the whole base")
+    pa.add_argument("--ignore-table-prefix", action="append", default=[], metavar="PREFIX",
+                    help="drop SOURCE tables whose name starts with PREFIX (repeatable; e.g. dev scratch '99_')")
+    pa.add_argument("--ignore-table", action="append", default=[], metavar="NAME",
+                    help="drop a SOURCE table by exact name (repeatable; e.g. 'QC_Report')")
+    pa.add_argument("--fail-on", choices=["any", "missing"], default="any",
+                    help="exit 1 on 'any' divergence (default) or only on 'missing' tables/fields "
+                         "(drift still reported but not failed — for a prod-lag alert where dev may carry extra/dirty options)")
     pa.add_argument("--lark-cli", default="lark-cli")
     _add_routing(pa)
     return p
@@ -282,9 +307,15 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "parity":
         tables = [t.strip() for t in args.tables.split(",")] if args.tables else None
-        res = parity(args.source_base, args.target_base, tables, args.lark_cli)
+        res = parity(args.source_base, args.target_base, tables, args.lark_cli,
+                     ignore_prefixes=args.ignore_table_prefix, ignore_names=args.ignore_table)
+        missing = bool(res["missing_tables"] or res["missing_fields"])
+        fail = (not res["in_parity"]) if args.fail_on == "any" else missing
         if res["in_parity"]:
             print("PARITY ✅ — target has every table/field the source defines")
+        elif not fail:
+            print(f"PARITY ⚠ — 0 missing table/field; {len(res['drift'])} drift reported below "
+                  f"(informational under --fail-on missing)")
         else:
             print(f"PARITY ✗ — target lags source: {len(res['missing_tables'])} table(s), "
                   f"{len(res['missing_fields'])} field(s), {len(res['drift'])} drift")
@@ -296,7 +327,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  ⚠ DRIFT {d['table']}.{d['field']}: {d['detail']}")
         if res["extra_tables"]:
             print(f"  (target also has {len(res['extra_tables'])} extra table(s) not in source — informational)")
-        return 0 if res["in_parity"] else 1
+        return 1 if fail else 0
     raise AssertionError(args.command)
 
 

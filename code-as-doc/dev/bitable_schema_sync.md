@@ -166,8 +166,27 @@ python3 tools/bitable_schema.py parity \
 # PARITY ✗ + a list   -> MISSING TABLE / MISSING FIELD / ⚠ DRIFT  (exit 1)
 ```
 
-Run it after a promotion, and on a schedule, so divergence between the two tenants is
-surfaced instead of accumulating unseen.
+Two flags keep a *prod-lag alert* from being permanently red over things prod is correct
+about (the dev tenant carries scratch tables and may have dirtier select options than
+prod):
+
+- `--ignore-table-prefix 99_` / `--ignore-table QC_Report --ignore-table 数据表` — drop
+  dev-only scratch/experiment/archive tables from the comparison.
+- `--fail-on missing` — exit non-zero only when **prod is missing a table/field** dev
+  defines; drift (option/type divergence) is still printed but does not fail. (Default
+  `--fail-on any` keeps the strict behavior.)
+
+### Automated (Gap E): daily drift alert in CI
+
+[`.github/workflows/feishu-schema-parity.yml`](../../.github/workflows/feishu-schema-parity.yml)
+runs this read-only parity **daily + on demand** from the dev repo (the dev bot reads
+both tenants), scoped as above. On a real prod lag it opens/updates a `[schema-drift]`
+GitHub issue; when parity goes green it auto-closes it.
+
+Enable it by adding one repo secret: **`FEISHU_PHASE2_PROD_BASE_TOKEN`** (the prod tenant
+base token). `FEISHU_APP_ID` / `FEISHU_APP_SECRET` / `FEISHU_PHASE2_BASE_TOKEN` are
+already set for the build queue. Without the prod secret the job no-ops with a "not
+configured" summary (no false alarms).
 
 ## When you add a new table going forward
 

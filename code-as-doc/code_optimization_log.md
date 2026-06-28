@@ -706,3 +706,16 @@ Why it mattered:
 
 - the loop's core had escaped the maintainability guardrail entirely and grown through ~90 mostly-reactive PRs into a 4183-line grab-bag; this consolidated the debt before any further closed-loop optimization (prefer complexity-reducing work first)
 - the AST-closure-check + re-export method (verify a cluster's deps are only stdlib/leaf-modules, move it, re-export, ratchet) kept each extraction safe and independently revertable; the conductor stays as a single `_cli` module so the live entry behavior is unchanged
+
+## 44. 2026-06-29: Dev→Prod Bitable Tenant Sync + Drift Alert (Closed-Loop Gap E)
+
+Main outcomes:
+
+- [`tools/bitable_schema.py`](../tools/bitable_schema.py) gained cross-tenant write (`--profile` / `--identity`) so the prod side of a dev→prod structure sync runs from one machine via a separate prod-tenant device-flow profile (dev's default profile untouched), plus a select-field write-format fix (`_field_for_write`: options must be `[{"name": …}]` objects, not bare strings — bare strings were silently dropped) and a table-id re-list fallback — #498 and follow-up
+- `parity` gained `--ignore-table-prefix` / `--ignore-table` (drop dev-only `99_*` scratch tables) and `--fail-on missing` (alert only when prod is *missing* a table/field; report drift without failing, since the dev tenant may carry extra/dirty select options)
+- added [`.github/workflows/feishu-schema-parity.yml`](../.github/workflows/feishu-schema-parity.yml): a daily read-only parity that alerts (open/auto-close a `[schema-drift]` issue) when prod structure lags dev — the read-only half of Gap E in [`dev/closed_loop_gaps.md`](dev/closed_loop_gaps.md)
+- runbook [`dev/bitable_schema_sync.md`](dev/bitable_schema_sync.md) updated with the cross-tenant profile flow, the seed/record mechanics (record-upsert raw map, `--yes` delete, select object format), and the CI alert
+
+Why it mattered:
+
+- code mirrors dev→prod automatically but Bitable **structure** does not; a mirrored code change that expects a new table/field would break a prod build silently. This makes structure promotion a recorded, repeatable act and adds an automated "prod is behind" alarm instead of waiting for a broken build.

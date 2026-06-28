@@ -216,6 +216,36 @@ class ParityTests(unittest.TestCase):
         self.assertFalse(res["in_parity"])
         self.assertEqual([d["field"] for d in res["drift"]], ["St"])
 
+    def test_parity_ignores_scratch_tables_by_prefix(self):
+        # dev carries a scratch table prod correctly lacks -> must not count as a prod lag
+        def fake(args, lark_cli="lark-cli"):
+            bt = args[args.index("--base-token") + 1] if "--base-token" in args else ""
+            if "+table-list" in args:
+                if bt == "DEV":
+                    return {"ok": True, "data": {"tables": [{"id": "d1", "name": "T1"}, {"id": "d9", "name": "99_scratch"}]}}
+                return {"ok": True, "data": {"tables": [{"id": "p1", "name": "T1"}]}}
+            if "+field-list" in args:
+                return _fields_response([{"name": "Name", "type": "text"}])
+            return {"ok": False}
+
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            res_no = bs.parity("DEV", "PROD", None, "lark-cli")
+            res_ig = bs.parity("DEV", "PROD", None, "lark-cli", ignore_prefixes=["99_"])
+        self.assertIn("99_scratch", res_no["missing_tables"])
+        self.assertNotIn("99_scratch", res_ig["missing_tables"])
+        self.assertTrue(res_ig["in_parity"])
+
+    def test_main_fail_on_missing_does_not_alert_on_drift_only(self):
+        # drift but no missing table/field: 'any' fails (exit 1), 'missing' passes (exit 0)
+        fake = self._fake([{"id": "p1", "name": "T1"}],
+                          [{"name": "Name", "type": "text"},
+                           {"name": "St", "type": "select", "multiple": False, "options": [{"name": "DIFFERENT"}]}])
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            rc_any = bs.main(["parity", "--source-base", "DEV", "--target-base", "PROD", "--fail-on", "any"])
+            rc_missing = bs.main(["parity", "--source-base", "DEV", "--target-base", "PROD", "--fail-on", "missing"])
+        self.assertEqual(rc_any, 1)
+        self.assertEqual(rc_missing, 0)
+
 
 if __name__ == "__main__":
     unittest.main()

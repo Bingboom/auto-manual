@@ -21,7 +21,7 @@ the dev→prod **Bitable** promotion (code already auto-mirrors).
 | Build / review / publish + queue writeback | `feishu-*-queue.yml`, `feishu-start-review.yml` | ✅ CI-automated |
 | Content round-trip (source → build → review → **backport** → source) | `cloud_doc_backport*` + `source_table_sync` (sidecar + value-index + drift guard) | ✅ closed; return-end has a human tail (see D) |
 | Intake (spec sheet → structured → 入库) | `source_intake*` + `bitable_schema` rule library + completeness gate | ✅ closed; low autonomy (see D) |
-| **Bitable structure dev→prod** | `tools/bitable_schema.py` `export`/`apply`/`parity` | 🟡 tooling ready; prod-side run is manual (see A/E) |
+| **Bitable structure dev→prod** | `tools/bitable_schema.py` `export`/`apply`/`parity` | 🟡 tooling ready; prod apply manual, drift now alerted daily in CI (E) |
 | **Bitable reference data dev→prod** | manual seed import (runbook) | 🔴 manual, not idempotent (see C) |
 | Validation / QC | `check` (hard) + `content_lint`/`normalize`/`schema_drift` (advisory) | 🟡 partly advisory |
 
@@ -47,11 +47,17 @@ that, given a target tenant, runs `apply` + reference-`seed-import` + prints the
 delta, gated by `parity` before/after. Bundles {structure + reference data + env} into
 one dev→prod step (code already rides `sync-hello-docs`).
 
-### E. Prod side is manually triggered — TODO (medium)
-Code mirrors via CI, but prod-tenant `apply`/`seed`/`parity` are run by hand → prod can
-silently lag dev. **Closes by:** a scheduled CI job running `parity` (read-only, safe)
-to alert on drift; an *apply-on-promotion* job needs prod creds in CI — weigh the
-security tradeoff before automating writes.
+### E. Prod side is manually triggered — 🟡 parity alert DONE; apply-on-promotion still manual
+The **read-only half is closed**: [`.github/workflows/feishu-schema-parity.yml`](../../.github/workflows/feishu-schema-parity.yml)
+runs `parity` daily (+ `workflow_dispatch`), scoped to production tables (ignores the dev
+`99_*` scratch/experiment tables + `QC_Report`/`数据表`), and **fails only when prod is
+missing a table/field** dev defines (`--fail-on missing`; drift is reported but not
+alerted, since the dev tenant may legitimately carry extra/dirty select options). On a
+miss it opens/updates a `[schema-drift]` issue; on green it auto-closes it. The dev bot
+already reads prod cross-tenant, so the only new secret is `FEISHU_PHASE2_PROD_BASE_TOKEN`
+(absent → the job no-ops with a "not configured" summary). **Still open:** the *write*
+half — an apply-on-promotion job would need prod **write** creds in CI; weigh the security
+tradeoff first (today prod writes go through the operator's device-flow `--profile prod`).
 
 ### D. Content-loop recall has a human tail — TODO (incremental)
 - **Intake (entry):** rule-driven auto-resolve ~33–38%; new-row CREATE + dictionary
@@ -65,7 +71,8 @@ security tradeoff before automating writes.
 
 ## Recommended order
 
-`B (done) → C → A → E (parity-in-CI) → D (ongoing)`.
+`B (done) → E parity-alert (done) → C → A → E apply-on-promotion → D (ongoing)`.
 
-B removes the silent-drift blind spot now; C+A make dev→prod a single safe promotion;
-E automates the safe checks; D is steady maturation of the two content-loop ends.
+B removed the silent-drift blind spot; E's read-only parity alert now runs it daily in
+CI; C+A make dev→prod a single safe promotion; E's write half (apply-on-promotion) and
+D (the two content-loop ends) are the remaining maturation.
