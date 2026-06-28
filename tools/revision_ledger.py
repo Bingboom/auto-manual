@@ -44,11 +44,19 @@ LEDGER_FILENAME = "ledger.jsonl"
 # review PR is merged and the final landed text is known.
 PENDING_STATUS = "pending"
 
-# Verdicts the reconcile step assigns once the landed _review text is known.
+# Verdicts the reconcile step assigns once the landed text is known.
 ACCEPTED_STATUS = "accepted_as_proposed"
 REJECTED_STATUS = "rejected"
 EDITED_STATUS = "edited_further"
 SOURCE_MISSING_STATUS = "source_missing"
+# Class-D only: the source-table sync neither wrote nor was declined — it
+# abstained (drift, verify failure, dry-run, or unresolved record). Surfaced for
+# a human; the row is not yet a clean label.
+SOURCE_TABLE_ABSTAINED_STATUS = "source_table_abstained"
+
+# Backport route classes this reconcile step knows how to resolve.
+ROUTE_REVIEW = "repo_review_text"
+ROUTE_SOURCE_TABLE = "source_table_suggestion"
 
 _MERGE_FIELDS = ("merged_pr", "merged_commit", "merged_at", "reviewer")
 
@@ -243,34 +251,87 @@ def _final_text_for(row: dict[str, Any], status: str) -> str | None:
     return None
 
 
+def index_apply_report(apply_report: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
+    """Index a source_table_sync apply report by delta_hash.
+
+    Both ``plan`` (includes skipped/not-approved entries with their reason) and
+    ``applied`` (the entries that reached a write outcome) are keyed; ``applied``
+    wins because it carries the authoritative final status.
+    """
+    index: dict[str, dict[str, Any]] = {}
+    if not apply_report:
+        return index
+    for entry in apply_report.get("plan") or []:
+        delta_hash = entry.get("delta_hash")
+        if delta_hash:
+            index[delta_hash] = entry
+    for entry in apply_report.get("applied") or []:
+        delta_hash = entry.get("delta_hash")
+        if delta_hash:
+            index[delta_hash] = entry
+    return index
+
+
+def classify_source_table_verdict(entry: dict[str, Any]) -> str:
+    """Map a source_table_sync plan/applied entry to a ledger verdict.
+
+    written/already_applied -> accepted; a human-not-approved skip -> rejected;
+    any abstain (drift, verify failure, dry-run ``planned``, unresolved record,
+    or a non-approval skip) -> source_table_abstained.
+    """
+    status = entry.get("status")
+    if status in ("written", "already_applied"):
+        return ACCEPTED_STATUS
+    if status in ("drift_abstained", "verify_failed", "error", "planned"):
+        return SOURCE_TABLE_ABSTAINED_STATUS
+    if entry.get("action") == "skip":
+        if "not approved" in (entry.get("reason") or ""):
+            return REJECTED_STATUS
+        return SOURCE_TABLE_ABSTAINED_STATUS
+    return SOURCE_TABLE_ABSTAINED_STATUS
+
+
 def reconcile_rows(
     rows: list[dict[str, Any]],
     *,
     root: Path,
     merge_meta: dict[str, Any] | None = None,
+    apply_index: dict[str, dict[str, Any]] | None = None,
     force: bool = False,
 ) -> dict[str, Any]:
-    """Fill verdict + merge fields on pending rows in place.
+    """Fill verdict + merge fields on pending rows in place, routed by route_class.
 
-    Rows already carrying a non-pending verdict are left untouched unless
-    ``force`` is set. Source files are read once and cached across rows that
-    share a path. Returns a summary with per-verdict counts.
+    ``repo_review_text`` rows reconcile against the branch ``_review`` text;
+    ``source_table_suggestion`` rows reconcile against ``apply_index`` (a
+    source_table_sync apply report, keyed by delta_hash). Rows of other route
+    classes, and source-table rows with no apply entry yet, are left pending.
+    Decided rows are skipped unless ``force``. Returns per-verdict counts.
     """
     merge_meta = merge_meta or {}
+    apply_index = apply_index or {}
     haystacks: dict[str, str | None] = {}
     counts: dict[str, int] = {}
     reconciled = 0
     for row in rows:
         if not force and row.get("final_status") != PENDING_STATUS:
             continue
-        source_path = row.get("source_path")
-        key = source_path or ""
-        if key not in haystacks:
-            haystacks[key] = _source_haystack(root, source_path)
-        status = classify_verdict(row, haystacks[key])
-        if status == SOURCE_MISSING_STATUS:
-            counts[status] = counts.get(status, 0) + 1
-            continue
+        route = row.get("route_class")
+        if route == ROUTE_SOURCE_TABLE:
+            entry = apply_index.get(row.get("delta_hash"))
+            if entry is None:
+                continue  # no apply outcome yet -> stays pending
+            status = classify_source_table_verdict(entry)
+        elif route == ROUTE_REVIEW:
+            source_path = row.get("source_path")
+            key = source_path or ""
+            if key not in haystacks:
+                haystacks[key] = _source_haystack(root, source_path)
+            status = classify_verdict(row, haystacks[key])
+            if status == SOURCE_MISSING_STATUS:
+                counts[status] = counts.get(status, 0) + 1
+                continue
+        else:
+            continue  # template / image / needs_human_mapping: not reconciled here
         row["final_status"] = status
         row["final_text"] = _final_text_for(row, status)
         for field in _MERGE_FIELDS:
@@ -286,11 +347,19 @@ def reconcile(
     *,
     root: Path,
     merge_meta: dict[str, Any] | None = None,
+    apply_report: dict[str, Any] | None = None,
     force: bool = False,
 ) -> dict[str, Any]:
-    """Load a ledger, reconcile pending rows against merged sources, write back."""
+    """Load a ledger, reconcile pending rows, write back.
+
+    ``apply_report`` is an optional source_table_sync apply report used to resolve
+    ``source_table_suggestion`` (online-table) rows.
+    """
     rows = load_ledger(ledger_path)
-    summary = reconcile_rows(rows, root=root, merge_meta=merge_meta, force=force)
+    apply_index = index_apply_report(apply_report)
+    summary = reconcile_rows(
+        rows, root=root, merge_meta=merge_meta, apply_index=apply_index, force=force
+    )
     if summary["rows_reconciled"]:
         write_ledger(rows, ledger_path)
     summary["ledger"] = str(ledger_path)
@@ -436,6 +505,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=None,
         help="Repo root used to resolve each row's source_path (default: repo root).",
     )
+    rec.add_argument(
+        "--apply-report",
+        type=Path,
+        default=None,
+        help="source_table_sync apply report JSON, used to resolve online-table "
+        "(source_table_suggestion) rows.",
+    )
     rec.add_argument("--merged-pr", default=None, help="PR reference to stamp on reconciled rows.")
     rec.add_argument("--merged-commit", default=None, help="Merge commit SHA to stamp.")
     rec.add_argument("--merged-at", default=None, help="Merge timestamp to stamp.")
@@ -488,13 +564,24 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "reconcile":
         ledger_path = args.ledger or default_ledger_path()
         root = args.root or get_paths().root
+        apply_report = (
+            json.loads(args.apply_report.read_text(encoding="utf-8"))
+            if args.apply_report is not None
+            else None
+        )
         merge_meta = {
             "merged_pr": args.merged_pr,
             "merged_commit": args.merged_commit,
             "merged_at": args.merged_at,
             "reviewer": args.reviewer,
         }
-        summary = reconcile(ledger_path, root=root, merge_meta=merge_meta, force=args.force)
+        summary = reconcile(
+            ledger_path,
+            root=root,
+            merge_meta=merge_meta,
+            apply_report=apply_report,
+            force=args.force,
+        )
         print(json.dumps(summary, ensure_ascii=False, indent=2))
         return 0
     if args.command == "stats":

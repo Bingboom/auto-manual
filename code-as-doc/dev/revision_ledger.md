@@ -25,27 +25,47 @@ python3 -m tools.revision_ledger ingest --report <report.json> --ledger <path.js
 
 ### reconcile
 
-`reconcile` runs after the review PR merges. It reads the landed `docs/_review`
-text for each pending row and fills the verdict fields, turning a proposal into a
-true label:
+`reconcile` runs after the review PR merges / the source-table sync applies. It
+fills each pending row's verdict, turning a proposal into a true label. A
+backport lands in two places, so reconcile routes by the delta's `route_class`:
 
 ```bash
+# Class R only (edits that landed in the branch _review tree):
 python3 -m tools.revision_ledger reconcile \
-  --merged-pr "#499" --merged-commit <sha> --merged-at <iso8601> --reviewer <name>
+  --merged-pr "#500" --merged-commit <sha> --merged-at <iso8601> --reviewer <name>
+
+# Also resolve Class D (edits that landed in the online Feishu tables):
+python3 -m tools.revision_ledger reconcile --apply-report <source_table_sync apply.json>
+
 # scope/override:
 python3 -m tools.revision_ledger reconcile --ledger <path.jsonl> --root <repo_root> [--force]
 ```
 
-Verdict heuristic (works in the same normalized text space the deltas were
-derived in, via the backport's `parse_blocks` / `_normalize_inline`):
+**Class R — `repo_review_text` (branch `_review`).** Matched in the same
+normalized text space the deltas were derived in (the backport's `parse_blocks` /
+`_normalize_inline`):
 
 - `accepted_as_proposed` — the reviewer's text is present in the merged source
-  (or, for a deletion proposal, the machine text is gone). `final_text` = the
-  reviewer text.
-- `rejected` — the machine's original text is still present. `final_text` = the
+  (or, for a deletion, the machine text is gone). `final_text` = reviewer text.
+- `rejected` — the machine's original text is still present. `final_text` =
   machine text.
 - `edited_further` — neither landed verbatim; something else was written.
 - `source_missing` — the source file could not be read; the row stays `pending`.
+
+**Class D — `source_table_suggestion` (online Feishu tables).** Resolved from the
+`source_table_sync` apply report (`--apply-report`), joined by `delta_hash`
+against its `plan` + `applied` entries:
+
+- `accepted_as_proposed` — sync status `written` / `already_applied`.
+- `rejected` — a `skip` whose reason is "not approved by a human" (operator
+  declined).
+- `source_table_abstained` — `drift_abstained` / `verify_failed` / `error` /
+  dry-run `planned` / unresolved-record skip; the system did not write and it is
+  not a clean label. Surfaced for a human.
+- A `delta_hash` absent from the apply report stays `pending` (not yet processed).
+
+Other route classes (`repo_template_text`, `image_asset_delta`,
+`needs_human_mapping`) are left `pending` — out of scope for this reconcile.
 
 Decided rows are skipped on re-run (idempotent); pass `--force` to re-evaluate
 them. Only the merge fields you supply are stamped.

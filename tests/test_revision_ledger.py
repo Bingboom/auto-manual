@@ -242,6 +242,137 @@ class TestRevisionLedgerReconcile(unittest.TestCase):
             self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
 
 
+def _source_table_report(**overrides: object) -> dict:
+    report = _report()
+    delta = report["deltas"][0]
+    delta["route_class"] = "source_table_suggestion"
+    delta["old_text"] = "230V"
+    delta["new_text"] = "240V"
+    report.update(overrides)
+    return report
+
+
+def _apply_report(*, plan: list | None = None, applied: list | None = None) -> dict:
+    return {"plan": plan or [], "applied": applied or []}
+
+
+class TestRevisionLedgerSourceTableReconcile(unittest.TestCase):
+    def _ingest_source_table(self, root: Path) -> Path:
+        ledger = root / "ledger.jsonl"
+        revision_ledger.ingest_report(_source_table_report(), ledger_path=ledger)
+        return ledger
+
+    def test_written_to_table_is_accepted(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            ledger = self._ingest_source_table(root)
+            report = _apply_report(applied=[{"delta_hash": "hash-a", "status": "written"}])
+            summary = revision_ledger.reconcile(ledger, root=root, apply_report=report)
+            self.assertEqual(summary["rows_reconciled"], 1)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+            self.assertEqual(row["final_text"], "240V")
+
+    def test_already_applied_is_accepted(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            ledger = self._ingest_source_table(root)
+            report = _apply_report(applied=[{"delta_hash": "hash-a", "status": "already_applied"}])
+            revision_ledger.reconcile(ledger, root=root, apply_report=report)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+
+    def test_not_approved_skip_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            ledger = self._ingest_source_table(root)
+            report = _apply_report(
+                plan=[{"delta_hash": "hash-a", "action": "skip", "reason": "not approved by a human"}]
+            )
+            revision_ledger.reconcile(ledger, root=root, apply_report=report)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.REJECTED_STATUS)
+            self.assertEqual(row["final_text"], "230V")
+
+    def test_drift_abstained_is_source_table_abstained(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            ledger = self._ingest_source_table(root)
+            report = _apply_report(applied=[{"delta_hash": "hash-a", "status": "drift_abstained"}])
+            revision_ledger.reconcile(ledger, root=root, apply_report=report)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.SOURCE_TABLE_ABSTAINED_STATUS)
+            self.assertIsNone(row["final_text"])
+
+    def test_abstain_skip_reason_is_source_table_abstained(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            ledger = self._ingest_source_table(root)
+            report = _apply_report(
+                plan=[{"delta_hash": "hash-a", "action": "skip", "reason": "record_id unresolved (exact-or-abstain)"}]
+            )
+            revision_ledger.reconcile(ledger, root=root, apply_report=report)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.SOURCE_TABLE_ABSTAINED_STATUS)
+
+    def test_missing_from_apply_report_stays_pending(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            ledger = self._ingest_source_table(root)
+            summary = revision_ledger.reconcile(ledger, root=root, apply_report=_apply_report())
+            self.assertEqual(summary["rows_reconciled"], 0)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.PENDING_STATUS)
+
+    def test_applied_status_wins_over_plan(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            ledger = self._ingest_source_table(root)
+            report = _apply_report(
+                plan=[{"delta_hash": "hash-a", "action": "apply", "value": "240V"}],
+                applied=[{"delta_hash": "hash-a", "status": "written"}],
+            )
+            revision_ledger.reconcile(ledger, root=root, apply_report=report)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+
+    def test_mixed_ledger_routes_each_class_to_its_source(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            ledger = root / "ledger.jsonl"
+            # Class R row (review text) and Class D row (online table), distinct hashes.
+            revision_ledger.ingest_report(_report(), ledger_path=ledger)
+            st = _source_table_report(run_id="run-st")
+            st["deltas"][0]["delta_hash"] = "hash-st"
+            revision_ledger.ingest_report(st, ledger_path=ledger)
+            report = _apply_report(applied=[{"delta_hash": "hash-st", "status": "written"}])
+            summary = revision_ledger.reconcile(ledger, root=root, apply_report=report)
+            self.assertEqual(summary["rows_reconciled"], 2)
+            by_hash = {r["delta_hash"]: r for r in revision_ledger.load_ledger(ledger)}
+            self.assertEqual(by_hash["hash-a"]["final_status"], revision_ledger.ACCEPTED_STATUS)
+            self.assertEqual(by_hash["hash-st"]["final_status"], revision_ledger.ACCEPTED_STATUS)
+
+    def test_cli_reconcile_with_apply_report(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            ledger = root / "ledger.jsonl"
+            report_path = root / "report.json"
+            report_path.write_text(json.dumps(_source_table_report()), encoding="utf-8")
+            revision_ledger.main(["ingest", "--report", str(report_path), "--ledger", str(ledger)])
+            apply_path = root / "apply.json"
+            apply_path.write_text(
+                json.dumps(_apply_report(applied=[{"delta_hash": "hash-a", "status": "written"}])),
+                encoding="utf-8",
+            )
+            rc = revision_ledger.main(
+                ["reconcile", "--ledger", str(ledger), "--root", str(root), "--apply-report", str(apply_path)]
+            )
+            self.assertEqual(rc, 0)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+
+
 def _row(**overrides: object) -> dict:
     row = {
         "final_status": revision_ledger.ACCEPTED_STATUS,
