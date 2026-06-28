@@ -719,3 +719,15 @@ Main outcomes:
 Why it mattered:
 
 - code mirrors dev→prod automatically but Bitable **structure** does not; a mirrored code change that expects a new table/field would break a prod build silently. This makes structure promotion a recorded, repeatable act and adds an automated "prod is behind" alarm instead of waiting for a broken build.
+
+## 45. 2026-06-29: Phase2 Source-Table Contract Index (P0)
+
+Main outcomes:
+
+- added [`data/source_table_contracts/phase2_source_tables.json`](../data/source_table_contracts/phase2_source_tables.json), a machine-readable index for phase2 source-table ownership, snapshot files, business keys, source-record-index mapping, intake targets, guarded writer fields, and default no-live-create boundaries
+- added [`tools/source_table_contract.py`](../tools/source_table_contract.py) plus [`tests/test_source_table_contract.py`](../tests/test_source_table_contract.py) so the contract is validated against the existing source-intake, source-record-index, and phase2 snapshot constants
+- updated the external table contract, phase2 source-table reference, build guide, user guide, and README so schema changes have one explicit maintenance surface instead of relying on operator memory
+
+Why it mattered:
+
+- the intake/backport loop is now protected by a committed contract index: future online table-structure changes have a concrete artifact to update before they can silently desynchronize Skill routing, source-record lookup, writer fields, and snapshot expectations

@@ -3,6 +3,12 @@
 > **Purpose.** A single reference for the Feishu (Lark) bitable source tables behind the manual build — what each table is *for*, how it is *keyed*, what its *fields* mean, how tables *relate*, and where each one *lands in `data/phase2/*.csv`*. Written as the baseline for ongoing **structure optimization** (e.g. the value-dedup work in [`spec_overview_value_dedup_proposal.md`](spec_overview_value_dedup_proposal.md)).
 >
 > **Snapshot:** 2026-06-07. Schemas drift — re-dump with `lark-cli api GET …/tables/<id>/fields --as bot` before relying on an exact field list.
+>
+> **Machine-readable contract:** [`../../data/source_table_contracts/phase2_source_tables.json`](../../data/source_table_contracts/phase2_source_tables.json)
+> records the current automation-facing contract for source-table keys, snapshot
+> files, intake targets, writeback fields, source-record index mapping, and
+> guarded writer boundaries. Update it together with this reference whenever the
+> online source-table structure changes.
 
 ---
 
@@ -211,5 +217,7 @@ These are the structural smells this reference exists to track. None block the c
 ## 7. Maintenance
 
 - Re-dump field lists with `lark-cli api GET /open-apis/bitable/v1/apps/<base>/tables/<id>/fields --as bot --format json` (a ready dumper lived at `/tmp/dump_schemas.py` this session).
-- When a table's schema changes, update this file in the same change.
+- When a table's schema changes, update this file and
+  [`../../data/source_table_contracts/phase2_source_tables.json`](../../data/source_table_contracts/phase2_source_tables.json)
+  in the same change, then run `python3 -m unittest tests.test_source_table_contract`.
 - Companion docs: [`spec_overview_value_dedup_proposal.md`](spec_overview_value_dedup_proposal.md) (the active dedup workstream) and [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md) (long-term direction). The phase2 / TM editing skills are registered in [`AGENTS.md`](../../AGENTS.md) §7.
