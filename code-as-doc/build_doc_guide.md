@@ -230,7 +230,7 @@ Windows cleanup note:
 GitHub validation note:
 
 - `Manual Validation` is the repository CI workflow
-- `Manual Validation` uses `tests/fixtures/phase2` for check/doctor/schema-drift smoke coverage so GitHub runners do not require a live `data/phase2` snapshot
+- `Manual Validation` uses `tests/fixtures/phase2` for check/doctor/schema-drift smoke coverage so GitHub runners do not require a live `data/phase2` snapshot. The schema-drift gate also validates `data/source_table_contracts/phase2_source_tables.json` against fixture/local snapshot headers, so source-table identity or writable-field drift is caught before a live Feishu run.
 - that workflow now runs `python -m ruff check build.py integrations tools tests scripts` as the minimal static gate before the heavier unit/build jobs
 - that workflow now also runs `npm ci && npm test` in [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer) so the OpenClaw command bridge stays covered in CI
 - that same workflow now also runs stable smoke paths for `build.py diff-report` and `build.py release-manifest`

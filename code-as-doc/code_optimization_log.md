@@ -731,3 +731,15 @@ Main outcomes:
 Why it mattered:
 
 - the intake/backport loop is now protected by a committed contract index: future online table-structure changes have a concrete artifact to update before they can silently desynchronize Skill routing, source-record lookup, writer fields, and snapshot expectations
+
+## 46. 2026-06-29: Source-Table Contract Drift Gate (P1)
+
+Main outcomes:
+
+- extended [`tools/schema_drift.py`](../tools/schema_drift.py) so the existing schema-drift CI path validates [`data/source_table_contracts/phase2_source_tables.json`](../data/source_table_contracts/phase2_source_tables.json) by default
+- the gate now fails when contract-declared source identity keys or guarded writable fields disappear from fixture/local phase2 snapshot headers, and when the contract drifts from source-intake writer tables or `source_record_index` key definitions
+- added schema-drift tests for contract-declared writable-field loss, while keeping the existing queue-contract workflow entrypoint unchanged
+
+Why it mattered:
+
+- P0 created the source-table index; P1 turns it into an automatic guard, so future online table edits that would break intake/backport/writeback are caught in CI before they reach a live sync or review backport run
