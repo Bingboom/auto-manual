@@ -81,8 +81,29 @@ def parse_markdown_tables(text: str) -> list[MarkdownTable]:
     return tables
 
 
+def pdf_to_text(path: str) -> str:
+    """Extract the text layer of a 产品规格书 PDF via ``pdftotext``.
+
+    Spec sheets are vector/text PDFs; the text layer (label line then value
+    line(s)) is what the rule engine parses. Raises a clear error when the file
+    has no usable text layer (scanned image) or is not a real PDF.
+    """
+    import shutil
+    import subprocess
+
+    if not shutil.which("pdftotext"):
+        raise RuntimeError("pdftotext not found (install poppler) to read PDF spec sheets")
+    proc = subprocess.run(["pdftotext", "-layout", path, "-"], capture_output=True, text=True)
+    text = proc.stdout or ""
+    if not text.strip():
+        raise RuntimeError(
+            f"no extractable text in {path} (scanned/encrypted PDF?): {(proc.stderr or '').strip()[:120]}"
+        )
+    return text
+
+
 def read_input_text(source: str, *, lark_cli: str = "lark-cli") -> str:
-    """Read a local Markdown file, stdin, or a Feishu/Lark doc supported by the backport fetcher."""
+    """Read a local Markdown/PDF file, stdin, or a Feishu/Lark doc (backport fetcher)."""
     if source == "-":
         import sys
 
@@ -92,6 +113,8 @@ def read_input_text(source: str, *, lark_cli: str = "lark-cli") -> str:
 
     path = Path(source)
     if path.exists():
+        if path.suffix.lower() == ".pdf":
+            return pdf_to_text(str(path))
         return path.read_text(encoding="utf-8-sig")
 
     from tools.cloud_doc_backport_model import fetch_doc_text
