@@ -79,21 +79,71 @@ Two guards in `apply`:
   alters an existing field, so a real divergence is surfaced, not silently overwritten.
 
 `apply --write --yes` prints the new prod table IDs. Add them to the prod
-`FEISHU_PHASE2_*` env / GitHub Secrets (e.g. `FEISHU_PHASE2_RULE_MAP_TABLE_ID`,
-`FEISHU_PHASE2_INTAKE_TABLE_ID`). Re-running `apply` is safe (idempotent: 0 created).
+`FEISHU_PHASE2_*` env / GitHub Secrets if the code reads them by env (the intake tables
+currently take their id as a CLI arg, so recording the id is enough). Re-running
+`apply` is safe (idempotent: 0 created).
+
+#### Cross-tenant from one machine (when you can't grant the bot edit rights)
+
+A cross-tenant external share is **read-only**: the dev bot (and even the dev *user*
+token) can read the prod base but `table-create` / `field-create` return
+`code 91403 "you don't have permission"`. If you can't grant the bot edit rights on the
+prod base, run the prod side through a **separate lark-cli profile** authed to the prod
+tenant as its owner — the dev default profile is never touched:
+
+```bash
+# one-time: add a prod profile (the PROD tenant's own self-built app id+secret)
+pbpaste | lark-cli profile add --name prod --app-id <PROD_APP_ID> --app-secret-stdin   # secret via stdin, not echoed
+lark-cli --profile prod auth login --no-wait --json --domain base,wiki   # device flow -> open the URL, authorize
+lark-cli --profile prod auth login --device-code <code>                  # complete after authorizing
+
+# apply through that profile as the owner's USER token (the prod app's bot is usually
+# not a base collaborator, so --identity user is the reliable choice)
+python3 tools/bitable_schema.py apply \
+  --manifest bitable_schema/manifest.json --base-token <PROD_BASE_TOKEN> \
+  --profile prod --identity user --write --yes
+```
+
+`--profile` / `--identity` are accepted by `export`, `apply`, and `parity`. Never use
+`lark-cli profile use` (it switches the global default); always pass `--profile prod`
+per-command. Remove the profile with `lark-cli profile remove prod` when finished.
 
 ### 4. Prod — seed reference data
 
-For a new reference table, import the committed seed rows:
+Import the committed seed rows with `+record-upsert`. Two gotchas the tooling already
+handles or that you must mirror by hand:
+
+- the payload is a **raw field map**, NOT wrapped in `{"fields": ...}`;
+- convert checkbox columns to bool and number columns to int; an empty cell is `null`.
 
 ```bash
 python3 - <<'PY'
-import csv, json, subprocess
-rows=[{"fields":r} for r in csv.DictReader(open("bitable_schema/seed/规格书字段映射规则.csv",encoding="utf-8-sig"))]
-# resolve the prod table id, then:
-# lark-cli base +record-batch-create --base-token <PROD> --table-id <id> --json {"records": rows} --as bot
+import csv, json, subprocess, os
+env={**os.environ, "LARK_CLI_NO_PROXY": "1"}
+PROD="<PROD_BASE_TOKEN>"; TID="<prod rule-map table id>"
+def conv(c, v):
+    v = (v or "").strip()
+    if c == "manual_facing": return v == "True"   # checkbox -> bool
+    if c == "Line_order":    return int(v) if v else None   # number -> int
+    return v or None
+for r in csv.DictReader(open("bitable_schema/seed/规格书字段映射规则.csv", encoding="utf-8-sig")):
+    m = {c: conv(c, r.get(c)) for c in r if conv(c, r.get(c)) is not None}
+    subprocess.run(["lark-cli", "--profile", "prod", "base", "+record-upsert",
+        "--base-token", PROD, "--table-id", TID,
+        "--json", json.dumps(m, ensure_ascii=False), "--as", "user"], env=env)
 PY
 ```
+
+`upsert` with no record-id always **creates**, so re-running duplicates rows. To redo
+cleanly, delete first — `+record-delete --json '{"record_id_list":[...]}' --yes` (the
+`--yes` is required for this high-risk write; `record-list` returns the ids under
+`data.record_id_list`, not `data.records`).
+
+> **select fields:** a `select` field's options are stored in the manifest as a name
+> list but must be written to lark-cli as objects `[{"name": ...}]`. `apply` converts
+> this for you (`_field_for_write`); if you ever hand-write a select via `field-create`,
+> use the object form or the field is silently dropped and the table is created with
+> only a default `ID` column.
 
 ### 5. Prod — verify
 
@@ -101,6 +151,23 @@ PY
 python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --dry-run
 python3 tools/schema_drift.py   # snapshot header parity (see REQUIRED_CSV_HEADERS)
 ```
+
+## Tenant parity check (catch silent drift)
+
+`apply` answers "is the target up to the *committed manifest*". `parity` answers the
+sharper question "does the **prod tenant** still match the **dev tenant** live" — it
+exports both and reports what prod lacks or has differently. Read-only; exits non-zero
+when prod lags, so it can run as a scheduled / CI parity gate.
+
+```bash
+python3 tools/bitable_schema.py parity \
+  --source-base <DEV_BASE_TOKEN> --target-base <PROD_BASE_TOKEN>
+# PARITY ✅            -> prod has every table/field dev defines (extra prod tables are OK)
+# PARITY ✗ + a list   -> MISSING TABLE / MISSING FIELD / ⚠ DRIFT  (exit 1)
+```
+
+Run it after a promotion, and on a schedule, so divergence between the two tenants is
+surfaced instead of accumulating unseen.
 
 ## When you add a new table going forward
 

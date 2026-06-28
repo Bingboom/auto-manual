@@ -41,10 +41,27 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 SIMPLE_TYPES = {"text", "number", "checkbox", "datetime", "select", "phone", "url", "rating", "currency", "percent"}
 COMPLEX_TYPES = {"link", "one_way_link", "two_way_link", "formula", "lookup", "auto_number", "autonumber", "button", "attachment", "user", "group_chat"}
 
+# Per-run lark-cli routing, set by main() from CLI flags. _PROFILE selects a lark-cli
+# config profile (e.g. a separate prod-tenant login, so dev's default profile is never
+# touched); _IDENTITY chooses the bot vs user token. Defaults preserve the original
+# behavior (active profile, bot identity). Cross-tenant writes typically need
+# ``--profile <prod> --identity user`` (the prod owner's token), because the prod app's
+# bot may not be a collaborator on the base.
+_PROFILE: str | None = None
+_IDENTITY: str = "bot"
+
 
 def _lark(args: list[str], lark_cli: str = "lark-cli") -> dict:
     env = {**os.environ, "LARK_CLI_NO_PROXY": os.environ.get("LARK_CLI_NO_PROXY", "1")}
-    out = subprocess.run([lark_cli, *args], capture_output=True, text=True, env=env).stdout
+    cmd = [lark_cli]
+    if _PROFILE:
+        cmd += ["--profile", _PROFILE]
+    a = list(args)
+    if "--as" in a:  # callers pass a default "--as bot"; honor the run-level identity instead
+        i = a.index("--as")
+        del a[i:i + 2]
+    cmd += [*a, "--as", _IDENTITY]
+    out = subprocess.run(cmd, capture_output=True, text=True, env=env).stdout
     try:
         return json.loads(out[out.index("{"):])
     except ValueError:
@@ -83,16 +100,28 @@ def export(base_token: str, table_filter: list[str] | None, lark_cli: str) -> di
     return {"schema_version": "bitable-schema/v1", "tables": out_tables}
 
 
+def _field_for_write(field: dict) -> dict:
+    """Convert a manifest field (select options stored as a NAME LIST) into lark-cli's
+    create payload, where select options must be OBJECTS: ``[{"name": ...}]``. Passing
+    bare strings makes table-create / field-create silently reject the field."""
+    out = {k: v for k, v in field.items() if v is not None}
+    if out.get("type") == "select" and out.get("options"):
+        out["options"] = [{"name": o} if isinstance(o, str) else o for o in out["options"]]
+    return out
+
+
 def _create_table(base_token: str, name: str, simple_fields: list[dict], lark_cli: str) -> tuple[bool, str]:
     # table-create needs >=1 field; create with all simple fields at once.
-    fields_json = json.dumps(simple_fields or [{"name": "Name", "type": "text"}], ensure_ascii=False)
+    fields = [_field_for_write(f) for f in simple_fields] or [{"name": "Name", "type": "text"}]
+    fields_json = json.dumps(fields, ensure_ascii=False)
     r = _lark(["base", "+table-create", "--base-token", base_token, "--name", name, "--fields", fields_json, "--format", "json", "--as", "bot"], lark_cli)
-    tid = (r.get("data", {}) or {}).get("table_id") or (r.get("data", {}) or {}).get("table", {}).get("table_id")
+    data = r.get("data", {}) or {}
+    tid = data.get("table_id") or (data.get("table", {}) or {}).get("table_id") or data.get("id")
     return bool(r.get("ok")), (tid or "")
 
 
 def _create_field(base_token: str, tid: str, field: dict, lark_cli: str) -> bool:
-    payload = {k: v for k, v in field.items() if v is not None}
+    payload = _field_for_write(field)
     r = _lark(["base", "+field-create", "--base-token", base_token, "--table-id", tid, "--json", json.dumps(payload, ensure_ascii=False), "--format", "json", "--as", "bot"], lark_cli)
     return bool(r.get("ok"))
 
@@ -127,6 +156,11 @@ def apply(manifest: dict, base_token: str, write: bool, lark_cli: str) -> dict:
             plan["create_tables"].append(tname)
             if write:
                 ok, tid = _create_table(base_token, tname, simple, lark_cli)
+                if ok and not tid:  # some lark-cli builds don't echo the new id -> re-resolve by name
+                    rl = _lark(["base", "+table-list", "--base-token", base_token, "--format", "json", "--as", "bot"], lark_cli)
+                    for t in (rl.get("data", {}).get("tables") or rl.get("data", {}).get("items") or []):
+                        if t.get("name") == tname:
+                            tid = t.get("id") or t.get("table_id") or ""
                 if ok and tid:
                     existing[tname] = tid
                     plan["new_table_ids"][tname] = tid
@@ -151,6 +185,33 @@ def apply(manifest: dict, base_token: str, write: bool, lark_cli: str) -> dict:
     return plan
 
 
+def parity(source_base: str, target_base: str, table_filter: list[str] | None, lark_cli: str) -> dict:
+    """Read-only structure diff between two tenants (e.g. dev vs prod).
+
+    Reports what the SOURCE tenant has that the TARGET lacks (missing tables/fields) or
+    has differently (drift). The TARGET may legitimately have *extra* tables (reported
+    as informational, not a parity failure). Writes nothing.
+    """
+    src = export(source_base, table_filter, lark_cli)
+    plan = apply(src, target_base, write=False, lark_cli=lark_cli)
+    src_names = {t["name"] for t in src["tables"]}
+    extra = sorted(set(plan["target_tables"]) - src_names) if table_filter is None else []
+    return {
+        "missing_tables": plan["create_tables"],
+        "missing_fields": plan["create_fields"],
+        "drift": plan["drift"],
+        "manual_complex": plan["manual_complex"],
+        "extra_tables": extra,
+        "in_parity": not (plan["create_tables"] or plan["create_fields"] or plan["drift"]),
+    }
+
+
+def _add_routing(sp: argparse.ArgumentParser) -> None:
+    """Add the shared lark-cli routing flags (profile + identity) to a subparser."""
+    sp.add_argument("--profile", help="lark-cli config profile to route through (e.g. a separate prod-tenant login; dev's default profile is left untouched)")
+    sp.add_argument("--identity", default="bot", choices=["bot", "user"], help="lark-cli token identity (default: bot; cross-tenant writes usually need 'user', the base owner's token)")
+
+
 def _parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Export / apply Feishu Bitable schema for dev->prod tenant parity.")
     sub = p.add_subparsers(dest="command", required=True)
@@ -160,6 +221,7 @@ def _parser() -> argparse.ArgumentParser:
     e.add_argument("--tables", help="comma-separated table names to export; omit for the whole base")
     e.add_argument("--out", required=True, help="manifest output path (committed)")
     e.add_argument("--lark-cli", default="lark-cli")
+    _add_routing(e)
 
     a = sub.add_parser("apply", description="Idempotently create missing tables/fields in a TARGET tenant from the manifest. Dry-run unless --write.")
     a.add_argument("--manifest", required=True)
@@ -167,11 +229,22 @@ def _parser() -> argparse.ArgumentParser:
     a.add_argument("--write", action="store_true", help="actually create missing tables/fields (else dry-run plan)")
     a.add_argument("--yes", action="store_true", help="confirm the TARGET base is correct; REQUIRED together with --write")
     a.add_argument("--lark-cli", default="lark-cli")
+    _add_routing(a)
+
+    pa = sub.add_parser("parity", description="Read-only: report structure differences between a SOURCE tenant (e.g. dev) and a TARGET tenant (e.g. prod). Exit 1 if the target lags/diverges — usable as a CI parity gate.")
+    pa.add_argument("--source-base", required=True, help="reference tenant base token (e.g. dev)")
+    pa.add_argument("--target-base", required=True, help="tenant to check (e.g. prod)")
+    pa.add_argument("--tables", help="comma-separated table names; omit for the whole base")
+    pa.add_argument("--lark-cli", default="lark-cli")
+    _add_routing(pa)
     return p
 
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
+    global _PROFILE, _IDENTITY
+    _PROFILE = getattr(args, "profile", None)
+    _IDENTITY = getattr(args, "identity", None) or "bot"
     if args.command == "export":
         if not args.base_token:
             print("bitable-schema: --base-token or $FEISHU_PHASE2_BASE_TOKEN required", file=sys.stderr)
@@ -207,6 +280,23 @@ def main(argv: list[str] | None = None) -> int:
             for n, i in plan["new_table_ids"].items():
                 print(f"  # {n} = {i}")
         return 0
+    if args.command == "parity":
+        tables = [t.strip() for t in args.tables.split(",")] if args.tables else None
+        res = parity(args.source_base, args.target_base, tables, args.lark_cli)
+        if res["in_parity"]:
+            print("PARITY ✅ — target has every table/field the source defines")
+        else:
+            print(f"PARITY ✗ — target lags source: {len(res['missing_tables'])} table(s), "
+                  f"{len(res['missing_fields'])} field(s), {len(res['drift'])} drift")
+        for t in res["missing_tables"]:
+            print(f"  - MISSING TABLE {t}")
+        for f in res["missing_fields"]:
+            print(f"  - MISSING FIELD {f['table']}.{f['field']} ({f['type']})")
+        for d in res["drift"]:
+            print(f"  ⚠ DRIFT {d['table']}.{d['field']}: {d['detail']}")
+        if res["extra_tables"]:
+            print(f"  (target also has {len(res['extra_tables'])} extra table(s) not in source — informational)")
+        return 0 if res["in_parity"] else 1
     raise AssertionError(args.command)
 
 

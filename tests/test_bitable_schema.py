@@ -3,6 +3,7 @@
 """Tests for tools/bitable_schema.py (Bitable schema export/apply for tenant parity)."""
 from __future__ import annotations
 
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -122,6 +123,98 @@ class ApplyTests(unittest.TestCase):
         self.assertEqual(plan["create_fields"], [])
         # never issued a field-update/create for the drifted field
         self.assertFalse(any("+field-update" in c for c in calls))
+
+
+class FieldWriteFormatTests(unittest.TestCase):
+    """select options are stored in the manifest as a name list, but lark-cli's
+    create payload needs objects [{"name": ...}]. Bare strings are silently rejected."""
+
+    def test_field_for_write_converts_select_options_to_objects(self):
+        out = bs._field_for_write({"name": "St", "type": "select", "multiple": False, "options": ["a", "b"]})
+        self.assertEqual(out["options"], [{"name": "a"}, {"name": "b"}])
+
+    def test_field_for_write_leaves_non_select_untouched(self):
+        self.assertEqual(bs._field_for_write({"name": "N", "type": "number"}), {"name": "N", "type": "number"})
+
+    def test_apply_create_field_sends_object_options(self):
+        manifest = {"tables": [{"name": "T1", "fields": [{"name": "St", "type": "select", "options": ["x", "y"]}]}]}
+
+        def fake(args, lark_cli="lark-cli"):
+            if "+table-list" in args:
+                return {"ok": True, "data": {"tables": [{"id": "tblA", "name": "T1"}]}}
+            if "+field-list" in args:
+                return _fields_response([{"name": "Name", "type": "text"}])  # "St" missing -> create it
+            return {"ok": True, "data": {}}
+
+        calls = []
+        with mock.patch.object(bs, "_lark", side_effect=lambda a, lark_cli="lark-cli": calls.append(a) or fake(a, lark_cli)):
+            bs.apply(manifest, "prodbase", write=True, lark_cli="lark-cli")
+        fc = next(c for c in calls if "+field-create" in c)
+        payload = json.loads(fc[fc.index("--json") + 1])
+        self.assertEqual(payload["options"], [{"name": "x"}, {"name": "y"}])
+
+    def test_apply_create_table_sends_object_options(self):
+        manifest = {"tables": [{"name": "New", "fields": [{"name": "St", "type": "select", "options": ["p"]}]}]}
+
+        def fake(args, lark_cli="lark-cli"):
+            if "+table-list" in args:
+                return {"ok": True, "data": {"tables": []}}  # fresh -> create table
+            if "+table-create" in args:
+                return {"ok": True, "data": {"table_id": "tblNew"}}
+            return {"ok": True, "data": {}}
+
+        calls = []
+        with mock.patch.object(bs, "_lark", side_effect=lambda a, lark_cli="lark-cli": calls.append(a) or fake(a, lark_cli)):
+            bs.apply(manifest, "prodbase", write=True, lark_cli="lark-cli")
+        tc = next(c for c in calls if "+table-create" in c)
+        fields = json.loads(tc[tc.index("--fields") + 1])
+        st = next(f for f in fields if f["name"] == "St")
+        self.assertEqual(st["options"], [{"name": "p"}])
+
+
+class ParityTests(unittest.TestCase):
+    """parity = export(source) diffed against target (dev vs prod). Read-only."""
+
+    def _fake(self, prod_tables, prod_fields):
+        src_fields = [{"name": "Name", "type": "text"},
+                      {"name": "St", "type": "select", "multiple": False, "options": [{"name": "a"}]}]
+
+        def fake(args, lark_cli="lark-cli"):
+            bt = args[args.index("--base-token") + 1] if "--base-token" in args else ""
+            if "+table-list" in args:
+                if bt == "DEV":
+                    return {"ok": True, "data": {"tables": [{"id": "d1", "name": "T1"}]}}
+                return {"ok": True, "data": {"tables": prod_tables}}
+            if "+field-list" in args:
+                tid = args[args.index("--table-id") + 1] if "--table-id" in args else ""
+                return _fields_response(src_fields if tid == "d1" else prod_fields)
+            return {"ok": False}
+        return fake
+
+    def test_parity_pass_when_target_matches(self):
+        fake = self._fake([{"id": "p1", "name": "T1"}],
+                          [{"name": "Name", "type": "text"},
+                           {"name": "St", "type": "select", "multiple": False, "options": [{"name": "a"}]}])
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            res = bs.parity("DEV", "PROD", None, "lark-cli")
+        self.assertTrue(res["in_parity"])
+        self.assertEqual(res["missing_tables"], [])
+        self.assertEqual(res["drift"], [])
+
+    def test_parity_flags_missing_table(self):
+        with mock.patch.object(bs, "_lark", side_effect=self._fake([], [])):
+            res = bs.parity("DEV", "PROD", None, "lark-cli")
+        self.assertFalse(res["in_parity"])
+        self.assertEqual(res["missing_tables"], ["T1"])
+
+    def test_parity_flags_drift(self):
+        fake = self._fake([{"id": "p1", "name": "T1"}],
+                          [{"name": "Name", "type": "text"},
+                           {"name": "St", "type": "select", "multiple": False, "options": [{"name": "DIFFERENT"}]}])
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            res = bs.parity("DEV", "PROD", None, "lark-cli")
+        self.assertFalse(res["in_parity"])
+        self.assertEqual([d["field"] for d in res["drift"]], ["St"])
 
 
 if __name__ == "__main__":
