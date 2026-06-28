@@ -118,6 +118,23 @@ def _parser() -> argparse.ArgumentParser:
     )
     verify.add_argument("--cwd", help="Working directory for --check-command; defaults to repo root")
     verify.add_argument("--out", help="Output directory; defaults to the candidates report directory")
+
+    spec = subparsers.add_parser(
+        "spec-extract",
+        description=(
+            "Extract structured candidates from a 产品规格书 (PDF/Markdown/cloud-doc) via the "
+            "field-mapping rule library, with region-aware unit transforms. Optional pre-ingest "
+            "completeness gate against a reference target (same product's sibling)."
+        ),
+    )
+    spec.add_argument("--input", required=True, help="spec sheet: PDF/Markdown file, stdin '-', or cloud-doc URL")
+    spec.add_argument("--rules", required=True, help="rule-library JSON (list of field-mapping rule dicts)")
+    spec.add_argument("--document-key", required=True, help="Target document key, e.g. JE-2000E_JP")
+    spec.add_argument("--region", default="US", help="US -> dual imperial/metric units; otherwise metric")
+    spec.add_argument("--source-lang", default="en", help="Source language code; default: en")
+    spec.add_argument("--reference", help="reference rows JSON (sibling target) for the completeness gate")
+    spec.add_argument("--out", help="Output directory; defaults to reports/source_intake/<document-key>")
+    spec.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary when --input is a cloud doc")
     return parser
 
 
@@ -249,9 +266,50 @@ def _verify(args: argparse.Namespace) -> int:
     return 0 if summary.get("passed") else 1
 
 
+def _spec_extract(args: argparse.Namespace) -> int:
+    import collections
+    import json
+
+    from tools.source_intake_completeness import check_completeness
+    from tools.source_intake_extract import read_input_text
+    from tools.source_intake_rules import FieldRule, extract_candidates
+
+    out_dir = Path(args.out).resolve() if args.out else _default_out_dir(str(args.document_key))
+    report = None
+    try:
+        text = read_input_text(args.input, lark_cli=args.lark_cli)
+        rules = [FieldRule.from_dict(d) for d in json.loads(Path(args.rules).read_text(encoding="utf-8"))]
+        candidates = extract_candidates(
+            text, rules, region=str(args.region or "US"),
+            document_key=str(args.document_key), source_lang=str(args.source_lang or "en"),
+        )
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "spec_intake_candidates.json").write_text(
+            json.dumps(candidates, ensure_ascii=False, indent=2), encoding="utf-8")
+        if args.reference:
+            ref = json.loads(Path(args.reference).read_text(encoding="utf-8"))
+            report = check_completeness(candidates, ref)
+            (out_dir / "spec_intake_completeness.json").write_text(json.dumps({
+                "passed": report.passed, "summary": report.summary(),
+                "missing_rows": report.missing_rows, "extra_rows": report.extra_rows,
+                "field_gaps": report.field_gaps,
+            }, ensure_ascii=False, indent=2), encoding="utf-8")
+    except (OSError, RuntimeError, ValueError) as exc:
+        print(f"source-intake: {exc}", file=sys.stderr)
+        return 2
+    print(f"WROTE candidates {out_dir / 'spec_intake_candidates.json'}")
+    print(f"CANDIDATES {len(candidates)}  {dict(collections.Counter(c['status'] for c in candidates))}")
+    if report is not None:
+        print(f"COMPLETENESS {report.summary()}")
+        return 0 if report.passed else 1
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = _parser()
     args = parser.parse_args(argv)
+    if args.command == "spec-extract":
+        return _spec_extract(args)
     if args.command == "run":
         return _run(args)
     if args.command == "approve":
