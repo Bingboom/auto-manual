@@ -6,6 +6,8 @@ import sys
 from pathlib import Path
 from typing import Callable
 
+from tools.local_env import load_local_env_file
+
 
 def run_main(
     argv: list[str] | None = None,
@@ -39,6 +41,12 @@ def run_main(
     clean_build_artifacts: Callable[[Path], None],
     maybe_sync_review_before_build: Callable[[argparse.Namespace], None],
 ) -> int:
+    # Make phase2/Feishu secrets from ~/.auto-manual-phase2.env available to this
+    # process (and the child processes it spawns, e.g. tools/sync_data.py) without
+    # requiring a manual `source`. No-op when the file is absent; never overrides
+    # variables already set to a non-empty value. See tools/local_env.py.
+    load_local_env_file()
+
     args = parse_args(argv)
     config_path = resolve_path_from_root(args.config)
 
