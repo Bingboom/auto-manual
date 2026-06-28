@@ -247,5 +247,87 @@ class ParityTests(unittest.TestCase):
         self.assertEqual(rc_missing, 0)
 
 
+class SeedImportTests(unittest.TestCase):
+    """seed-import = idempotent upsert of reference rows by a business key (Gap C)."""
+
+    def _fake(self, existing_rows, rids):
+        def fake(args, lark_cli="lark-cli"):
+            if "+table-list" in args:
+                return {"ok": True, "data": {"tables": [{"id": "tblR", "name": "Rules"}]}}
+            if "+field-list" in args:
+                return _fields_response([
+                    {"name": "Row_key", "type": "text"},
+                    {"name": "取值规则", "type": "text"},
+                    {"name": "manual_facing", "type": "checkbox"},
+                    {"name": "Slot_key", "type": "lookup"},  # complex -> never written
+                ])
+            if "+record-list" in args:
+                return {"ok": True, "data": {"fields": ["Row_key", "取值规则", "manual_facing"], "data": existing_rows, "record_id_list": rids}}
+            return {"ok": True, "data": {}}
+        return fake
+
+    def test_create_update_skip(self):
+        existing = [["r1", "manual", True], ["r2", "auto", False]]
+        seed = [
+            {"Row_key": "r1", "取值规则": "manual", "manual_facing": "True"},     # identical -> skip
+            {"Row_key": "r2", "取值规则": "CHANGED", "manual_facing": "False"},   # one field -> update
+            {"Row_key": "r3", "取值规则": "new", "manual_facing": "True"},        # absent -> create
+        ]
+        with mock.patch.object(bs, "_lark", side_effect=self._fake(existing, ["rec1", "rec2"])):
+            plan = bs.seed_import("PROD", "Rules", seed, "Row_key", write=False, lark_cli="lark-cli")
+        self.assertEqual(plan["create"], ["r3"])
+        self.assertEqual([u["key"] for u in plan["update"]], ["r2"])
+        self.assertEqual(plan["update"][0]["fields"], ["取值规则"])
+        self.assertEqual(plan["skip"], ["r1"])
+        self.assertEqual(plan["extras"], [])
+
+    def test_idempotent_rerun_is_all_skip(self):
+        existing = [["r1", "manual", True]]
+        seed = [{"Row_key": "r1", "取值规则": "manual", "manual_facing": "True"}]
+        with mock.patch.object(bs, "_lark", side_effect=self._fake(existing, ["rec1"])):
+            plan = bs.seed_import("PROD", "Rules", seed, "Row_key", write=False, lark_cli="lark-cli")
+        self.assertEqual((plan["create"], plan["update"], plan["skip"]), ([], [], ["r1"]))
+
+    def test_reports_extras_without_prune(self):
+        existing = [["r1", "manual", True], ["rX", "stale", False]]
+        seed = [{"Row_key": "r1", "取值规则": "manual", "manual_facing": "True"}]
+        with mock.patch.object(bs, "_lark", side_effect=self._fake(existing, ["rec1", "recX"])):
+            plan = bs.seed_import("PROD", "Rules", seed, "Row_key", write=False, lark_cli="lark-cli")
+        self.assertEqual(plan["extras"], ["rX"])
+        self.assertEqual(plan["pruned"], [])
+
+    def test_composite_key_distinguishes_same_row_key(self):
+        # two rows share Row_key but differ in 规格书字段 -> a composite key keeps them distinct
+        def fake(args, lark_cli="lark-cli"):
+            if "+table-list" in args:
+                return {"ok": True, "data": {"tables": [{"id": "tblR", "name": "Rules"}]}}
+            if "+field-list" in args:
+                return _fields_response([{"name": "Row_key", "type": "text"}, {"name": "规格书字段", "type": "text"}, {"name": "取值规则", "type": "text"}])
+            if "+record-list" in args:
+                return {"ok": True, "data": {"fields": ["Row_key", "规格书字段", "取值规则"],
+                                             "data": [["x", "A", "keep"], ["x", "B", "keep"]], "record_id_list": ["r1", "r2"]}}
+            return {"ok": True, "data": {}}
+        seed = [{"Row_key": "x", "规格书字段": "A", "取值规则": "keep"},
+                {"Row_key": "x", "规格书字段": "B", "取值规则": "keep"},
+                {"Row_key": "x", "规格书字段": "C", "取值规则": "new"}]
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            plan = bs.seed_import("PROD", "Rules", seed, ["Row_key", "规格书字段"], write=False, lark_cli="lark-cli")
+        self.assertEqual(plan["dup_keys"], [])            # composite key -> no false duplicates
+        self.assertEqual(plan["create"], ["x | C"])       # only the genuinely-new (x, C)
+        self.assertEqual(sorted(plan["skip"]), ["x | A", "x | B"])
+
+    def test_write_create_uses_record_upsert_without_record_id(self):
+        seed = [{"Row_key": "r3", "取值规则": "new", "manual_facing": "True"}]
+        calls = []
+        with mock.patch.object(bs, "_lark", side_effect=lambda a, lark_cli="lark-cli": calls.append(a) or self._fake([], [])(a, lark_cli)):
+            bs.seed_import("PROD", "Rules", seed, "Row_key", write=True, lark_cli="lark-cli")
+        upserts = [c for c in calls if "+record-upsert" in c]
+        self.assertEqual(len(upserts), 1)
+        self.assertNotIn("--record-id", upserts[0])  # create, not update
+        payload = json.loads(upserts[0][upserts[0].index("--json") + 1])
+        self.assertEqual(payload["manual_facing"], True)  # checkbox coerced to bool
+        self.assertNotIn("Slot_key", payload)             # lookup never written
+
+
 if __name__ == "__main__":
     unittest.main()

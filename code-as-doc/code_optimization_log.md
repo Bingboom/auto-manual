@@ -719,3 +719,16 @@ Main outcomes:
 Why it mattered:
 
 - code mirrors dev→prod automatically but Bitable **structure** does not; a mirrored code change that expects a new table/field would break a prod build silently. This makes structure promotion a recorded, repeatable act and adds an automated "prod is behind" alarm instead of waiting for a broken build.
+
+## 45. 2026-06-29: Idempotent Reference-Data Seed Sync (Closed-Loop Gap C)
+
+Main outcomes:
+
+- [`tools/bitable_schema.py`](../tools/bitable_schema.py) gained `seed-export` (a reference table's simple-field rows → committed CSV) and `seed-import` (idempotent upsert of those rows into a target tenant, matched by a **business key**; dry-run unless `--write --yes`; `--prune` to delete rows absent from the seed; only simple writable fields touched; an empty cell never clears)
+- the business key may be **composite** (comma-separated): the rule library needs `Row_key,规格书字段` because `Row_key` alone repeats (a parameter recurs across sections; `(剔除)` excludes one row per source field). `seed-import` flags a non-unique key as `DUPLICATE` rather than silently mismatching
+- hardened `_lark` to also parse JSON from stderr (record-upsert emits its result there), replacing the earlier hand-rolled `record-upsert` loop that was not idempotent (it created duplicate rows — observed live: 26 → 53 → 79 before a manual wipe)
+- proven idempotent against the prod rule library (`create 0, update 0, skip 26, extras 0`); docs: `dev/closed_loop_gaps.md` (Gap C done), `dev/bitable_schema_sync.md` (§4 rewritten around the new commands)
+
+Why it mattered:
+
+- only *structure* rode the dev→prod path; config tables whose **rows** drive code behavior (the extraction rule library, dictionaries) were seeded by hand and the import duplicated rows on re-run. This makes reference-data promotion a safe, re-runnable command — the last shared-config leg of dev→prod before a single `promote` (Gap A) can compose structure + reference data + env.

@@ -22,7 +22,7 @@ the dev→prod **Bitable** promotion (code already auto-mirrors).
 | Content round-trip (source → build → review → **backport** → source) | `cloud_doc_backport*` + `source_table_sync` (sidecar + value-index + drift guard) | ✅ closed; return-end has a human tail (see D) |
 | Intake (spec sheet → structured → 入库) | `source_intake*` + `bitable_schema` rule library + completeness gate | ✅ closed; low autonomy (see D) |
 | **Bitable structure dev→prod** | `tools/bitable_schema.py` `export`/`apply`/`parity` | 🟡 tooling ready; prod apply manual, drift now alerted daily in CI (E) |
-| **Bitable reference data dev→prod** | manual seed import (runbook) | 🔴 manual, not idempotent (see C) |
+| **Bitable reference data dev→prod** | `bitable_schema.py` `seed-export`/`seed-import` (idempotent, by business key) | 🟡 idempotent tool ready; prod-side run still manual (see C/A) |
 | Validation / QC | `check` (hard) + `content_lint`/`normalize`/`schema_drift` (advisory) | 🟡 partly advisory |
 
 ## Gaps (optimize incrementally)
@@ -33,12 +33,16 @@ tenant lacks/diverges (missing tables/fields, drift), read-only, exits non-zero 
 divergence. Closes the biggest blind spot (silent dev↔prod structure drift). **Next:
 run it on a schedule / in CI** (overlaps E).
 
-### C. Reference-data dev→prod is manual — TODO (high)
-Only *structure* auto-syncs. Config tables whose rows must match across tenants — the
-rule library (`规格书字段映射规则`), and dictionaries (`参数名`, `Document_key`) — are
-seeded by hand and the import isn't idempotent. **Closes by:** a `seed-export` /
-`seed-import` (upsert-by-business-key, idempotent) for the small set of reference tables,
-committed seeds riding the code mirror.
+### C. Reference-data dev→prod — ✅ DONE (tooling)
+`bitable_schema.py` gained `seed-export` (table rows → committed CSV) and `seed-import`
+(idempotent upsert by a business key; dry-run unless `--write --yes`; `--prune` for
+extras; only simple writable fields). The committed seed CSVs ride the code mirror; the
+prod-side import is one re-runnable command (proven idempotent against the prod rule
+library: `create 0, update 0, skip 26`). The business key may be **composite** —
+the rule library needs `Row_key,规格书字段` (`Row_key` alone repeats), and the tool flags
+non-unique keys as `DUPLICATE` instead of silently mismatching. **Remaining:** still run
+by hand on the prod side (folds into A's `promote`), and the other reference tables
+(`参数名`, `Document_key`) aren't seeded yet — add their CSVs + keys when needed.
 
 ### A. No unified promotion — TODO (high)
 A feature that adds code + a table + seed + an env var lands in 4–5 separate manual
@@ -71,8 +75,10 @@ tradeoff first (today prod writes go through the operator's device-flow `--profi
 
 ## Recommended order
 
-`B (done) → E parity-alert (done) → C → A → E apply-on-promotion → D (ongoing)`.
+`B (done) → E parity-alert (done) → C (done) → A → E apply-on-promotion → D (ongoing)`.
 
-B removed the silent-drift blind spot; E's read-only parity alert now runs it daily in
-CI; C+A make dev→prod a single safe promotion; E's write half (apply-on-promotion) and
-D (the two content-loop ends) are the remaining maturation.
+B removed the silent-drift blind spot; E's read-only parity alert runs it daily in CI;
+C makes reference-data promotion idempotent. **A** (one `promote` = `apply` +
+`seed-import` + env delta, parity-gated) now just composes the finished B/C/E pieces;
+E's write half (apply-on-promotion) and D (the two content-loop ends) are the remaining
+maturation.
