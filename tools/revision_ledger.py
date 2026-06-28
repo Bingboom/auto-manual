@@ -33,6 +33,7 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from tools.cloud_doc_backport_model import _normalize_inline, parse_blocks  # noqa: E402
 from tools.utils.path_utils import PathSegments, get_paths, revision_ledger_of  # noqa: E402
 
 LEDGER_SCHEMA_VERSION = 1
@@ -42,6 +43,14 @@ LEDGER_FILENAME = "ledger.jsonl"
 # Verdict assigned at ingest time; the reconcile step overwrites it once the
 # review PR is merged and the final landed text is known.
 PENDING_STATUS = "pending"
+
+# Verdicts the reconcile step assigns once the landed _review text is known.
+ACCEPTED_STATUS = "accepted_as_proposed"
+REJECTED_STATUS = "rejected"
+EDITED_STATUS = "edited_further"
+SOURCE_MISSING_STATUS = "source_missing"
+
+_MERGE_FIELDS = ("merged_pr", "merged_commit", "merged_at", "reviewer")
 
 
 def default_ledger_path(base_root: Path | None = None) -> Path:
@@ -179,6 +188,115 @@ def ingest_report_file(report_path: Path, *, ledger_path: Path) -> dict[str, Any
     return ingest_report(report, ledger_path=ledger_path)
 
 
+def write_ledger(rows: list[dict[str, Any]], ledger_path: Path) -> None:
+    """Rewrite the whole ledger from rows (used by reconcile's in-place updates)."""
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
+    with ledger_path.open("w", encoding="utf-8") as handle:
+        for row in rows:
+            handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
+
+
+def _source_haystack(root: Path, source_path: str | None) -> str | None:
+    """Return the normalized text of a review source file, or None if absent.
+
+    The source is parsed with the same block parser the backport uses, then each
+    block's normalized form is joined, so the comparison runs in the exact text
+    space the deltas were derived in (markup, spacing, and image noise removed).
+    """
+    if not source_path:
+        return None
+    path = root / source_path
+    if not path.exists():
+        return None
+    blocks = parse_blocks(path.read_text(encoding="utf-8-sig"))
+    return " ".join(block.normalized for block in blocks)
+
+
+def classify_verdict(row: dict[str, Any], haystack: str | None) -> str:
+    """Decide what landed for one row, given the merged source's normalized text.
+
+    Heuristic (MVP): work in the normalized text space.
+    - Deletion proposal (reviewer_text empty): accepted if the machine text is
+      gone from the source, else rejected.
+    - Otherwise: accepted if the reviewer's text is present; else rejected if the
+      machine's original text is still present; else edited_further (something
+      other than either landed).
+    """
+    if haystack is None:
+        return SOURCE_MISSING_STATUS
+    reviewer = _normalize_inline(row.get("reviewer_text") or "")
+    machine = _normalize_inline(row.get("machine_text") or "")
+    if not reviewer:
+        return REJECTED_STATUS if (machine and machine in haystack) else ACCEPTED_STATUS
+    if reviewer in haystack:
+        return ACCEPTED_STATUS
+    if machine and machine in haystack:
+        return REJECTED_STATUS
+    return EDITED_STATUS
+
+
+def _final_text_for(row: dict[str, Any], status: str) -> str | None:
+    if status == ACCEPTED_STATUS:
+        return row.get("reviewer_text")
+    if status == REJECTED_STATUS:
+        return row.get("machine_text")
+    return None
+
+
+def reconcile_rows(
+    rows: list[dict[str, Any]],
+    *,
+    root: Path,
+    merge_meta: dict[str, Any] | None = None,
+    force: bool = False,
+) -> dict[str, Any]:
+    """Fill verdict + merge fields on pending rows in place.
+
+    Rows already carrying a non-pending verdict are left untouched unless
+    ``force`` is set. Source files are read once and cached across rows that
+    share a path. Returns a summary with per-verdict counts.
+    """
+    merge_meta = merge_meta or {}
+    haystacks: dict[str, str | None] = {}
+    counts: dict[str, int] = {}
+    reconciled = 0
+    for row in rows:
+        if not force and row.get("final_status") != PENDING_STATUS:
+            continue
+        source_path = row.get("source_path")
+        key = source_path or ""
+        if key not in haystacks:
+            haystacks[key] = _source_haystack(root, source_path)
+        status = classify_verdict(row, haystacks[key])
+        if status == SOURCE_MISSING_STATUS:
+            counts[status] = counts.get(status, 0) + 1
+            continue
+        row["final_status"] = status
+        row["final_text"] = _final_text_for(row, status)
+        for field in _MERGE_FIELDS:
+            if merge_meta.get(field) is not None:
+                row[field] = merge_meta[field]
+        counts[status] = counts.get(status, 0) + 1
+        reconciled += 1
+    return {"rows_reconciled": reconciled, "verdicts": counts}
+
+
+def reconcile(
+    ledger_path: Path,
+    *,
+    root: Path,
+    merge_meta: dict[str, Any] | None = None,
+    force: bool = False,
+) -> dict[str, Any]:
+    """Load a ledger, reconcile pending rows against merged sources, write back."""
+    rows = load_ledger(ledger_path)
+    summary = reconcile_rows(rows, root=root, merge_meta=merge_meta, force=force)
+    if summary["rows_reconciled"]:
+        write_ledger(rows, ledger_path)
+    summary["ledger"] = str(ledger_path)
+    return summary
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="revision_ledger",
@@ -202,6 +320,32 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=None,
         help="Ledger JSONL path (default: reports/revision_ledger/ledger.jsonl).",
     )
+
+    rec = sub.add_parser(
+        "reconcile",
+        help="Fill verdict/merge fields on pending rows from merged _review text.",
+    )
+    rec.add_argument(
+        "--ledger",
+        type=Path,
+        default=None,
+        help="Ledger JSONL path (default: reports/revision_ledger/ledger.jsonl).",
+    )
+    rec.add_argument(
+        "--root",
+        type=Path,
+        default=None,
+        help="Repo root used to resolve each row's source_path (default: repo root).",
+    )
+    rec.add_argument("--merged-pr", default=None, help="PR reference to stamp on reconciled rows.")
+    rec.add_argument("--merged-commit", default=None, help="Merge commit SHA to stamp.")
+    rec.add_argument("--merged-at", default=None, help="Merge timestamp to stamp.")
+    rec.add_argument("--reviewer", default=None, help="Reviewer identity to stamp.")
+    rec.add_argument(
+        "--force",
+        action="store_true",
+        help="Re-evaluate rows that already carry a verdict, not just pending ones.",
+    )
     return parser.parse_args(argv)
 
 
@@ -210,6 +354,18 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "ingest":
         ledger_path = args.ledger or default_ledger_path()
         summary = ingest_report_file(args.report, ledger_path=ledger_path)
+        print(json.dumps(summary, ensure_ascii=False, indent=2))
+        return 0
+    if args.command == "reconcile":
+        ledger_path = args.ledger or default_ledger_path()
+        root = args.root or get_paths().root
+        merge_meta = {
+            "merged_pr": args.merged_pr,
+            "merged_commit": args.merged_commit,
+            "merged_at": args.merged_at,
+            "reviewer": args.reviewer,
+        }
+        summary = reconcile(ledger_path, root=root, merge_meta=merge_meta, force=args.force)
         print(json.dumps(summary, ensure_ascii=False, indent=2))
         return 0
     return 1

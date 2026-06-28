@@ -9,7 +9,9 @@ currently produce and then scatter.
 Implementation: [`tools/revision_ledger.py`](../../tools/revision_ledger.py).
 Tests: [`tests/test_revision_ledger.py`](../../tests/test_revision_ledger.py).
 
-## What it does today (MVP — ingest only)
+## What it does today
+
+### ingest
 
 `ingest` reads one backport diff report (the dict written by
 `cloud_doc_backport_reports.build_report`) and appends one row per delta to
@@ -20,6 +22,33 @@ python3 -m tools.revision_ledger ingest --report <backport_report.json>
 # custom location:
 python3 -m tools.revision_ledger ingest --report <report.json> --ledger <path.jsonl>
 ```
+
+### reconcile
+
+`reconcile` runs after the review PR merges. It reads the landed `docs/_review`
+text for each pending row and fills the verdict fields, turning a proposal into a
+true label:
+
+```bash
+python3 -m tools.revision_ledger reconcile \
+  --merged-pr "#499" --merged-commit <sha> --merged-at <iso8601> --reviewer <name>
+# scope/override:
+python3 -m tools.revision_ledger reconcile --ledger <path.jsonl> --root <repo_root> [--force]
+```
+
+Verdict heuristic (works in the same normalized text space the deltas were
+derived in, via the backport's `parse_blocks` / `_normalize_inline`):
+
+- `accepted_as_proposed` — the reviewer's text is present in the merged source
+  (or, for a deletion proposal, the machine text is gone). `final_text` = the
+  reviewer text.
+- `rejected` — the machine's original text is still present. `final_text` = the
+  machine text.
+- `edited_further` — neither landed verbatim; something else was written.
+- `source_missing` — the source file could not be read; the row stays `pending`.
+
+Decided rows are skipped on re-run (idempotent); pass `--force` to re-evaluate
+them. Only the merge fields you supply are stamped.
 
 Properties:
 
@@ -51,14 +80,12 @@ Properties:
 
 ## Roadmap
 
-- **P1 — reconcile**: after the review PR merges, read the landed `docs/_review`
-  text and fill the verdict fields (`accepted_as_proposed` / `edited_further` /
-  `rejected`, plus `final_text`). This is what makes each row a true label.
 - **P2 — analytics views**: materialize CSV/DuckDB views and ship queries such as
   most-corrected sections, per-`route_class` acceptance rate, and an eval set for
   the generation step.
-- **P3 — training corpus**: export `machine_text` → `final_text` pairs for
-  domain model tuning.
+- **P3 — training corpus**: export `machine_text` → `final_text` pairs (the
+  `accepted_as_proposed` / `edited_further` rows) for domain model tuning.
 
-Wiring an `ingest` step into the review-start worker and a `build.py`
-subcommand is deferred until the ledger shape is validated in use.
+Wiring `ingest` into the review-start worker, `reconcile` into the post-merge
+step, and a `build.py revision-ledger` subcommand is deferred until the ledger
+shape is validated in use.
