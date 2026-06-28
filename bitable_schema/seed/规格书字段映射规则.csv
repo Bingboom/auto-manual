@@ -1,0 +1,27 @@
+﻿Row_key,章节,行标签,规格书字段,取值规则,默认值,manual_facing,Slot_key,Line_order,备注
+product_name,GENERAL INFO,Product Name,封面机型名,manual,,True,,1,"封面图文本,不在PDF文字层→需人工确认"
+model_no,GENERAL INFO,Model No.,客户型号,passthrough,,True,,1,客户型号直取(制造商型号 HTE… 不入手册)
+capacity,GENERAL INFO,Capacity,额定容量(Wh),capacity,,True,,1,"格式 {Wh} Wh ({Ah} Ah / {V} V DC),丢电芯内部信息"
+cell_chemistry,GENERAL INFO,Cell Chemistry,(默认),default,LiFePO₄,True,,1,产品线恒为 LiFePO₄
+weight,GENERAL INFO,Weight,产品重量(Kg),weight,,True,,1,美规双单位 About {lbs} lbs/{kg} kg;其它区域 About {kg} kg
+dimensions,GENERAL INFO,Dimensions,尺寸,dims_mm_to_cm,,True,,1,美规双单位 {in} in / {cm} cm;其它区域只 cm
+cycle_life,GENERAL INFO,Cycle Life,循环寿命,cycle_life,,True,,1,取 {N} cycles to 70%+ capacity
+charging_temperature,ENVIRONMENTAL OPERATING TEMPERATURE,Charging Temperature,工作环境温度(℃),temp,,True,,1,美规双单位 °F/°C;充/放电拆分仍需人工→⚠️
+discharging_temperature,ENVIRONMENTAL OPERATING TEMPERATURE,Discharging Temperature,工作环境温度(℃),temp,,True,,1,同上
+ac_input,INPUT PORTS,1 × AC Input,充电输入(AC),manual,,True,,1,"区域电压口径,需人工核"
+dc8020_ports,INPUT PORTS,DC Input,充电输入(车充),manual,,True,,1,"端口名沿用,需确认"
+dc8020_ports,INPUT PORTS,DC Input,充电输入(DC/PV),manual,,True,,2,PV/扩容口
+ac_output,OUTPUT PORTS,4 × AC,交流输出,manual,,True,,1,"区域电压+口数,需人工"
+ac_output_bypass,OUTPUT PORTS,AC Output in Bypass Mode,旁路模式,manual,,True,,1,"旁路口径,需确认是否纳入"
+usb_c,OUTPUT PORTS,1 × USB-C,USBC输出〔140W〕,manual,,True,140w,1,从合并USB单元拆140W
+usb_c,OUTPUT PORTS,1 × USB-C,USBC输出〔30W〕,manual,,True,30w,1,拆30W
+usb_a,OUTPUT PORTS,1 × USB-A,USBA输出,manual,,True,,1,
+dc12_port,OUTPUT PORTS,1 × DC 12V Port,车充输出,dc12,,True,,1,{V} V⎓{A} A max.
+(剔除),-,-,污染等级,exclude,,False,,0,"工程参数,不进手册"
+(剔除),-,-,防护等级,exclude,,False,,0,"工程参数,不进手册"
+(剔除),-,-,自耗电,exclude,,False,,0,"工程参数,不进手册"
+(剔除),-,-,放电容量(Wh),exclude,,False,,0,"工程参数,不进手册"
+(剔除),-,-,充电时间(hrs),exclude,,False,,0,"营销/工程,不进规格表"
+ac_input,INPUT PORTS,1 × AC Input,充电输入(AC)第2档,manual,,True,,2,"完整性补:ac_input 第2行(如 12A 档),值需人工"
+dc_expansion_port,INPUT PORTS,1 × DC Expansion Port,直流扩容口(输入),manual,,True,,1,完整性补:直流扩容口输入侧最大电流;区域无关
+dc_expansion_port,OUTPUT PORTS,1 × DC Expansion Port,直流扩容口(输出),manual,,True,,1,完整性补:直流扩容口输出侧最大电流;区域无关

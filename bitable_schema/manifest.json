@@ -1,0 +1,121 @@
+{
+  "schema_version": "bitable-schema/v1",
+  "tables": [
+    {
+      "name": "数据入库表",
+      "fields": [
+        {
+          "name": "状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "✅直通",
+            "🔧已变换",
+            "⚠️需确认"
+          ]
+        },
+        {
+          "name": "document_key",
+          "type": "text"
+        },
+        {
+          "name": "Line_order",
+          "type": "number"
+        },
+        {
+          "name": "入库结果",
+          "type": "text"
+        },
+        {
+          "name": "手册值",
+          "type": "text"
+        },
+        {
+          "name": "Source_lang",
+          "type": "text"
+        },
+        {
+          "name": "行标签",
+          "type": "text"
+        },
+        {
+          "name": "Slot_key",
+          "type": "text"
+        },
+        {
+          "name": "章节",
+          "type": "text"
+        },
+        {
+          "name": "Page",
+          "type": "text"
+        },
+        {
+          "name": "Row_key",
+          "type": "text"
+        },
+        {
+          "name": "确认",
+          "type": "checkbox"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "规格书原值",
+          "type": "text"
+        },
+        {
+          "name": "规格书字段",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "规格书字段映射规则",
+      "fields": [
+        {
+          "name": "manual_facing",
+          "type": "checkbox"
+        },
+        {
+          "name": "Slot_key",
+          "type": "text"
+        },
+        {
+          "name": "Row_key",
+          "type": "text"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "取值规则",
+          "type": "text"
+        },
+        {
+          "name": "章节",
+          "type": "text"
+        },
+        {
+          "name": "行标签",
+          "type": "text"
+        },
+        {
+          "name": "Line_order",
+          "type": "number"
+        },
+        {
+          "name": "默认值",
+          "type": "text"
+        },
+        {
+          "name": "规格书字段",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
