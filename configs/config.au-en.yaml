@@ -1,0 +1,17 @@
+extends: config-bases/eu-single-language-base.yaml
+
+build:
+  family_id: au-en
+  default_region: AU
+  targets:
+    - model: JE-1000F
+      region: AU
+  languages: [en]
+  word_reference_doc: docs/templates/word_template/reference_en.docx
+  word_title: "|PRODUCT_NAME| User Manual"
+  rst_substitutions:
+    MANUAL_LANGUAGE_SCOPE: English
+    WARRANTY_EMAIL: hello.aus@jackery.com
+
+paths:
+  page_manifest: docs/manifests/manual_au-en.yaml
