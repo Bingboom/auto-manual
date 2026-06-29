@@ -1,14 +1,27 @@
 # External Table Contracts
 
-Updated: 2026-05-07
+Updated: 2026-06-29
 
 This file records the first repo-owned contract for external Feishu/Lark Base tables.
 It is the stability boundary between external content governance and the local build,
 queue, review, and release code.
 
+Machine-readable phase2 source-table contract:
+
+- [`../../data/source_table_contracts/phase2_source_tables.json`](../../data/source_table_contracts/phase2_source_tables.json)
+- Loader/validator: [`../../tools/source_table_contract.py`](../../tools/source_table_contract.py)
+- Drift-facing tests: [`../../tests/test_source_table_contract.py`](../../tests/test_source_table_contract.py)
+
+Use the JSON contract as the durable index when changing online source-table
+structure. This document explains the human workflow; the JSON records the
+table-by-table keys, snapshot file, intake target, writable fields, source-record
+index mapping, and guarded writer boundary used by automation.
+
 Keep this document aligned when changing:
 
 - [`tools/data_snapshot.py`](../../tools/data_snapshot.py)
+- [`tools/source_table_contract.py`](../../tools/source_table_contract.py)
+- [`data/source_table_contracts/phase2_source_tables.json`](../../data/source_table_contracts/phase2_source_tables.json)
 - [`tools/validate_config.py`](../../tools/validate_config.py)
 - [`tools/queue_contract.py`](../../tools/queue_contract.py)
 - [`tools/process_review_start_queue_records.py`](../../tools/process_review_start_queue_records.py)
@@ -35,6 +48,15 @@ Required synced tables:
 | `manual_copy_source` | `Manual_Copy_Source.csv` | single-language source rows for page titles, headers, labels, and spec titles |
 | Translation Memory rows tagged `manual_copy` | `Localized_Copy.csv` | generated multilingual short-copy runtime file |
 | Translation Memory rows with `是否为 status word=Y` | `Status_Words.csv` | LCD status-word matching snapshot for bolding description prefixes |
+
+The source-table contract additionally records whether each source table is:
+
+- an intake target (`Spec_Master`, `Page_Placeholders_Source`,
+  `Manual_Copy_Source`, `Spec_Footnotes`, `Spec_Notes`);
+- update-capable through `source-table-change-request/v1`
+  (`Spec_Master`, `Page_Placeholders_Source`, `Manual_Copy_Source`);
+- indexed by `source_record_index.json` for exact live `record_id` resolution;
+- a generated snapshot/read model only.
 
 Required derived files:
 
@@ -146,12 +168,18 @@ Writeback fields:
 
 - Field additions, removals, aliases, or type changes must update this document
   and the relevant parser/writeback tests in the same change.
+- Phase2 content-source table changes must also update
+  [`../../data/source_table_contracts/phase2_source_tables.json`](../../data/source_table_contracts/phase2_source_tables.json).
+  Treat that file as the source-table structure index for Agent/Skill routing.
 - Config validation should reject unsupported phase2 table keys before a live
   queue run can depend on them.
 - Schema drift checks should run against fixed fixtures or dry-run payloads
   before depending on real Feishu network state.
 - First offline gate: `python3 tools/schema_drift.py --payload tests/fixtures/schema_drift/passing_payload.json`
-  validates required phase2 logical tables, required CSV headers, and required
-  queue writeback fields without contacting Feishu.
+  validates required phase2 logical tables, required CSV headers, required queue
+  writeback fields, and the source-table contract without contacting Feishu.
+- Source-table contract gate: `python3 -m unittest tests.test_source_table_contract`
+  validates the contract shape and checks it against source-intake, source-record
+  index, and phase2 snapshot constants.
 - External table names are product contracts. Prefer adding compatibility aliases
   before renaming a live field.

@@ -31,6 +31,26 @@ from tools.queue_contract import (  # noqa: E402
     RESULT_FIELD,
     TRIGGER_FIELD,
 )
+from tools.source_intake_model import (  # noqa: E402
+    MANUAL_COPY_TEXT_FIELDS,
+    SPEC_TEXT_FIELDS,
+    TARGET_MANUAL_COPY,
+    TARGET_PAGE_PLACEHOLDERS,
+    TARGET_SPEC_MASTER,
+    UPDATE_CAPABLE_TABLES,
+)
+from tools.source_record_index import (  # noqa: E402
+    TABLE_FALLBACK_KEY_FIELDS,
+    TABLE_KEY_FIELDS,
+    TABLE_OPTIONAL_KEY_FIELDS,
+)
+from tools.source_table_contract import (  # noqa: E402
+    DEFAULT_CONTRACT_PATH,
+    load_source_table_contract,
+    source_table_by_name,
+    source_tables,
+    validate_source_table_contract,
+)
 
 REQUIRED_CSV_HEADERS: dict[str, tuple[str, ...]] = {
     "spec_master": ("document_key", "Region", "Model", "Page", "Row_key"),
@@ -58,6 +78,12 @@ REQUIRED_QUEUE_WRITABLE_FIELDS = (
     FORCE_PHASE2_REFRESH_FIELD,
     DATA_SYNC_FIELD,
 )
+
+EXPECTED_WRITABLE_FIELDS_BY_SOURCE_TABLE: dict[str, tuple[str, ...]] = {
+    TARGET_SPEC_MASTER: SPEC_TEXT_FIELDS,
+    TARGET_PAGE_PLACEHOLDERS: SPEC_TEXT_FIELDS,
+    TARGET_MANUAL_COPY: MANUAL_COPY_TEXT_FIELDS,
+}
 
 
 @dataclass(frozen=True)
@@ -110,6 +136,184 @@ def _csv_headers(path: Path) -> set[str]:
     except OSError as exc:
         raise RuntimeError(f"{path} cannot be read: {exc}") from exc
     return {str(item).strip() for item in header if str(item).strip()}
+
+
+def _contract_path(path: Path | None) -> Path | None:
+    return path
+
+
+def _contract_snapshot_file_by_logical(payload: dict[str, Any]) -> dict[str, set[str]]:
+    files_by_logical: dict[str, set[str]] = {}
+    for table in source_tables(payload):
+        snapshot = table.get("snapshot") if isinstance(table.get("snapshot"), dict) else {}
+        logical_name = str((snapshot or {}).get("logical_name") or "").strip()
+        file_name = str((snapshot or {}).get("file") or "").strip()
+        if logical_name and file_name:
+            files_by_logical.setdefault(logical_name, set()).add(file_name)
+    return files_by_logical
+
+
+def _source_contract_base_issues(contract_path: Path | None) -> tuple[list[SchemaDriftIssue], dict[str, Any] | None]:
+    resolved = _contract_path(contract_path)
+    if resolved is None:
+        return [], None
+    try:
+        contract = load_source_table_contract(resolved)
+    except RuntimeError as exc:
+        return [SchemaDriftIssue("source_contract.load_failed", str(exc), surface=str(resolved))], None
+
+    issues: list[SchemaDriftIssue] = []
+    validation = validate_source_table_contract(contract)
+    for issue in validation.issues:
+        issues.append(
+            SchemaDriftIssue(
+                f"source_contract.{issue.code}",
+                issue.message,
+                surface=issue.table or "source_table_contract",
+            )
+        )
+
+    files_by_logical = _contract_snapshot_file_by_logical(contract)
+    for logical_name, file_name in PHASE2_REQUIRED_TABLE_FILES.items():
+        contract_files = files_by_logical.get(logical_name, set())
+        if file_name not in contract_files:
+            issues.append(
+                SchemaDriftIssue(
+                    "source_contract.snapshot_file_missing",
+                    f"contract must map {logical_name} to {file_name}",
+                    surface=logical_name,
+                    missing=(file_name,),
+                )
+            )
+
+    tables_by_name = source_table_by_name(contract)
+    update_tables = {
+        name
+        for name, table in tables_by_name.items()
+        if isinstance(table.get("writeback"), dict) and table["writeback"].get("change_request_update")
+    }
+    missing_update = tuple(sorted(set(UPDATE_CAPABLE_TABLES) - update_tables))
+    extra_update = tuple(sorted(update_tables - set(UPDATE_CAPABLE_TABLES)))
+    if missing_update:
+        issues.append(
+            SchemaDriftIssue(
+                "source_contract.update_table_missing",
+                "contract is missing update-capable source table(s): " + ", ".join(missing_update),
+                surface="source_table_contract.writeback",
+                missing=missing_update,
+            )
+        )
+    if extra_update:
+        issues.append(
+            SchemaDriftIssue(
+                "source_contract.update_table_extra",
+                "contract marks unsupported update table(s): " + ", ".join(extra_update),
+                surface="source_table_contract.writeback",
+                missing=extra_update,
+            )
+        )
+
+    for table_name, expected_fields in EXPECTED_WRITABLE_FIELDS_BY_SOURCE_TABLE.items():
+        table = tables_by_name.get(table_name)
+        writeback = table.get("writeback") if isinstance(table, dict) and isinstance(table.get("writeback"), dict) else {}
+        actual = tuple(str(item) for item in (writeback or {}).get("writable_fields") or [])
+        if actual != tuple(expected_fields):
+            issues.append(
+                SchemaDriftIssue(
+                    "source_contract.writable_fields_drift",
+                    f"{table_name} writable_fields {list(actual)} != {list(expected_fields)}",
+                    surface=table_name,
+                )
+            )
+
+    for table_name, key_fields in TABLE_KEY_FIELDS.items():
+        table = tables_by_name.get(table_name)
+        identity = table.get("identity") if isinstance(table, dict) and isinstance(table.get("identity"), dict) else {}
+        actual_keys = tuple(str(item) for item in (identity or {}).get("business_key_fields") or [])
+        if actual_keys != tuple(key_fields):
+            issues.append(
+                SchemaDriftIssue(
+                    "source_contract.source_record_key_drift",
+                    f"{table_name} business_key_fields {list(actual_keys)} != {list(key_fields)}",
+                    surface=table_name,
+                )
+            )
+        actual_optional = tuple(sorted(str(item) for item in (identity or {}).get("optional_key_fields") or []))
+        expected_optional = tuple(sorted(TABLE_OPTIONAL_KEY_FIELDS.get(table_name, frozenset())))
+        if actual_optional != expected_optional:
+            issues.append(
+                SchemaDriftIssue(
+                    "source_contract.optional_key_drift",
+                    f"{table_name} optional_key_fields {list(actual_optional)} != {list(expected_optional)}",
+                    surface=table_name,
+                )
+            )
+        actual_fallback = tuple(str(item) for item in (identity or {}).get("fallback_key_fields") or [])
+        expected_fallback = tuple(csv_field for csv_field, _ in TABLE_FALLBACK_KEY_FIELDS.get(table_name, ()))
+        if actual_fallback != expected_fallback:
+            issues.append(
+                SchemaDriftIssue(
+                    "source_contract.fallback_key_drift",
+                    f"{table_name} fallback_key_fields {list(actual_fallback)} != {list(expected_fallback)}",
+                    surface=table_name,
+                )
+            )
+    return issues, contract
+
+
+def _source_contract_required_headers(contract: dict[str, Any]) -> dict[str, dict[str, set[str]]]:
+    required: dict[str, dict[str, set[str]]] = {}
+    for table in source_tables(contract):
+        table_name = str(table.get("contract_name") or "").strip()
+        snapshot = table.get("snapshot") if isinstance(table.get("snapshot"), dict) else {}
+        logical_name = str((snapshot or {}).get("logical_name") or "").strip()
+        if not table_name or not logical_name:
+            continue
+        identity = table.get("identity") if isinstance(table.get("identity"), dict) else {}
+        writeback = table.get("writeback") if isinstance(table.get("writeback"), dict) else {}
+        fields = {
+            str(item).strip()
+            for item in [
+                *((identity or {}).get("business_key_fields") or []),
+                *((writeback or {}).get("writable_fields") or []),
+            ]
+            if str(item).strip()
+        }
+        if not fields:
+            continue
+        required.setdefault(logical_name, {}).setdefault(table_name, set()).update(fields)
+    return required
+
+
+def _source_contract_header_issues(
+    *,
+    contract: dict[str, Any],
+    csv_headers_by_logical: dict[str, set[str]],
+) -> list[SchemaDriftIssue]:
+    issues: list[SchemaDriftIssue] = []
+    for logical_name, required_by_table in _source_contract_required_headers(contract).items():
+        actual_headers = csv_headers_by_logical.get(logical_name, set())
+        if not actual_headers:
+            issues.append(
+                SchemaDriftIssue(
+                    "source_contract.csv_headers_missing",
+                    f"no CSV headers available for contract logical table: {logical_name}",
+                    surface=logical_name,
+                )
+            )
+            continue
+        for table_name, required_fields in required_by_table.items():
+            missing = tuple(sorted(required_fields - actual_headers))
+            if missing:
+                issues.append(
+                    SchemaDriftIssue(
+                        "source_contract.required_header_missing",
+                        f"{table_name} contract field(s) missing from {logical_name}: " + ", ".join(missing),
+                        surface=table_name,
+                        missing=missing,
+                    )
+                )
+    return issues
 
 
 def inspect_phase2_schema(*, phase2_root: Path, manifest_path: Path | None = None) -> list[SchemaDriftIssue]:
@@ -321,11 +525,44 @@ def _payload_queue_field_issues(payload: dict[str, Any]) -> list[SchemaDriftIssu
     ]
 
 
-def check_schema_drift_payload(payload: dict[str, Any]) -> SchemaDriftResult:
+def _payload_source_contract_issues(
+    payload: dict[str, Any],
+    *,
+    source_table_contract_path: Path | None = DEFAULT_CONTRACT_PATH,
+) -> list[SchemaDriftIssue]:
+    issues, contract = _source_contract_base_issues(source_table_contract_path)
+    if contract is None:
+        return issues
+    raw_csv_headers = payload.get("csv_headers")
+    if not isinstance(raw_csv_headers, dict):
+        return issues
+    csv_headers_by_logical = {
+        str(logical_name).strip(): {str(item).strip() for item in headers if str(item).strip()}
+        for logical_name, headers in raw_csv_headers.items()
+        if str(logical_name).strip() and isinstance(headers, list)
+    }
+    return [
+        *issues,
+        *_source_contract_header_issues(
+            contract=contract,
+            csv_headers_by_logical=csv_headers_by_logical,
+        ),
+    ]
+
+
+def check_schema_drift_payload(
+    payload: dict[str, Any],
+    *,
+    source_table_contract_path: Path | None = DEFAULT_CONTRACT_PATH,
+) -> SchemaDriftResult:
     issues = [
         *_payload_manifest_issues(payload),
         *_payload_csv_header_issues(payload),
         *_payload_queue_field_issues(payload),
+        *_payload_source_contract_issues(
+            payload,
+            source_table_contract_path=source_table_contract_path,
+        ),
     ]
     return SchemaDriftResult(issues=tuple(issues))
 
@@ -341,10 +578,25 @@ def inspect_schema_drift(
     phase2_root: Path,
     manifest_path: Path | None = None,
     queue_fields_path: Path | None = None,
+    source_table_contract_path: Path | None = DEFAULT_CONTRACT_PATH,
 ) -> list[SchemaDriftIssue]:
     issues = inspect_phase2_schema(phase2_root=phase2_root, manifest_path=manifest_path)
     if queue_fields_path is not None:
         issues.extend(inspect_queue_fields_payload(queue_fields_path))
+    contract_issues, contract = _source_contract_base_issues(source_table_contract_path)
+    issues.extend(contract_issues)
+    if contract is not None:
+        csv_headers_by_logical: dict[str, set[str]] = {}
+        for logical_name, file_name in {**PHASE2_REQUIRED_TABLE_FILES, **PHASE2_REQUIRED_DERIVED_FILES}.items():
+            path = phase2_root / file_name
+            if path.exists():
+                csv_headers_by_logical[logical_name] = _csv_headers(path)
+        issues.extend(
+            _source_contract_header_issues(
+                contract=contract,
+                csv_headers_by_logical=csv_headers_by_logical,
+            )
+        )
     return issues
 
 
@@ -354,14 +606,33 @@ def run(argv: list[str] | None = None) -> int:
     parser.add_argument("--phase2-root", default="data/phase2", help="Phase2 snapshot root to inspect.")
     parser.add_argument("--manifest", default=None, help="Optional snapshot manifest path override.")
     parser.add_argument("--queue-fields", default=None, help="Optional JSON field-list fixture or dry-run payload.")
+    parser.add_argument(
+        "--source-table-contract",
+        default=str(DEFAULT_CONTRACT_PATH.relative_to(ROOT)),
+        help="Source-table contract JSON to validate alongside schema drift checks.",
+    )
+    parser.add_argument(
+        "--no-source-table-contract",
+        action="store_true",
+        help="Skip source-table contract validation.",
+    )
     args = parser.parse_args(argv)
+
+    source_table_contract_path = None
+    if not args.no_source_table_contract:
+        source_table_contract_path = Path(args.source_table_contract)
+        if not source_table_contract_path.is_absolute():
+            source_table_contract_path = ROOT / source_table_contract_path
 
     if args.payload:
         payload_path = Path(args.payload)
         if not payload_path.is_absolute():
             payload_path = ROOT / payload_path
         try:
-            result = check_schema_drift_payload(load_schema_drift_payload(payload_path))
+            result = check_schema_drift_payload(
+                load_schema_drift_payload(payload_path),
+                source_table_contract_path=source_table_contract_path,
+            )
         except RuntimeError as exc:
             print(f"[schema-drift] ERROR {exc}", file=sys.stderr)
             return 1
@@ -383,6 +654,7 @@ def run(argv: list[str] | None = None) -> int:
             phase2_root=phase2_root,
             manifest_path=manifest_path,
             queue_fields_path=queue_fields_path,
+            source_table_contract_path=source_table_contract_path,
         )
     except RuntimeError as exc:
         print(f"[schema-drift] ERROR {exc}", file=sys.stderr)

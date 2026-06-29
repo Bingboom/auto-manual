@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import unittest
 from pathlib import Path
 
@@ -58,6 +59,22 @@ class SchemaDriftTests(unittest.TestCase):
         ]
         self.assertEqual(1, len(matching))
         self.assertEqual((DATA_SYNC_FIELD,), matching[0].missing)
+
+    def test_source_table_contract_missing_writable_header_should_fail(self) -> None:
+        payload = copy.deepcopy(schema_drift.load_schema_drift_payload(FIXTURE_DIR / "passing_payload.json"))
+        payload["csv_headers"]["manual_copy_source"].remove("notes")
+
+        result = schema_drift.check_schema_drift_payload(payload)
+
+        self.assertFalse(result.valid)
+        matching = [
+            issue
+            for issue in result.issues
+            if issue.code == "source_contract.required_header_missing"
+            and issue.surface == "Manual_Copy_Source"
+        ]
+        self.assertEqual(1, len(matching))
+        self.assertEqual(("notes",), matching[0].missing)
 
 
 if __name__ == "__main__":
