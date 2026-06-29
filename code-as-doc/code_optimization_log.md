@@ -732,3 +732,15 @@ Main outcomes:
 Why it mattered:
 
 - only *structure* rode the dev→prod path; config tables whose **rows** drive code behavior (the extraction rule library, dictionaries) were seeded by hand and the import duplicated rows on re-run. This makes reference-data promotion a safe, re-runnable command — the last shared-config leg of dev→prod before a single `promote` (Gap A) can compose structure + reference data + env.
+
+## 46. 2026-06-29: One-Step Dev→Prod `promote` (Closed-Loop Gap A)
+
+Main outcomes:
+
+- [`tools/bitable_schema.py`](../tools/bitable_schema.py) gained `promote`: one dev→prod step that runs `apply` (structure — converging a freshly-created table's fields over up to 2 passes), then `seed_import` for every table in the committed `bitable_schema/seeds.json` registry (reference data), prints the **env delta** (new table IDs for the prod `FEISHU_PHASE2_*`), and self-gates with a post-apply re-check (`structure up to date ✅` or a still-missing list). Dry-run unless `--write --yes`; `--profile`/`--identity`/`--prune` pass through
+- added the committed seed registry [`bitable_schema/seeds.json`](../bitable_schema/seeds.json) (table → seed CSV → business key), so adding a reference table to the promotion is a one-line edit
+- proven against the live prod tenant as a clean no-op once promoted (`+0 tables, +0 fields, skip 26`); docs: `dev/closed_loop_gaps.md` (Gap A done; recommended order updated), `dev/bitable_schema_sync.md` (new §3 one-step promote, granular steps renumbered 3a/3b)
+
+Why it mattered:
+
+- a structure+table+seed+env change previously landed in 4–5 separate manual steps; `promote` bundles {structure + reference data + env delta} into one self-gated command (code already rides `sync-hello-docs`). Together with B (parity) and E (daily drift alarm), the dev→prod **structure/reference** loop is now closed end-to-end: one operator command to promote, one daily CI alarm if prod falls behind.

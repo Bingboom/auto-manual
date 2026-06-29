@@ -373,6 +373,35 @@ def seed_import(base_token: str, table_name: str, seed_rows: list[dict], key: st
     return plan
 
 
+def promote(manifest: dict, seeds: list[dict], base_token: str, write: bool, lark_cli: str, prune: bool = False) -> dict:
+    """One dev→prod step (Gap A): structure (``apply``) + reference data (``seed_import``)
+    + the env delta, self-gated by a re-applied structure check. Dry-run unless ``write``.
+
+    ``seeds`` is ``[{"table": str, "key": list[str], "rows": list[dict]}]`` (CSVs are
+    loaded by the caller). Composes the finished apply/seed-import pieces; business data
+    is never touched. Returns a report dict for the CLI to print.
+    """
+    result: dict = {"write": bool(write), "new_table_ids": {}, "seeds": [], "post_missing": {"tables": [], "fields": []}}
+    first = apply(manifest, base_token, write=write, lark_cli=lark_cli)
+    result["structure"] = first  # the original gap (what was missing / created on pass 1)
+    new_ids = dict(first.get("new_table_ids") or {})
+    if write:
+        plan = first
+        for _ in range(2):  # a freshly-created table may need a 2nd pass to add its fields
+            if not plan["create_tables"] and not plan["create_fields"]:
+                break
+            plan = apply(manifest, base_token, write=True, lark_cli=lark_cli)
+            new_ids.update(plan.get("new_table_ids") or {})
+    result["new_table_ids"] = new_ids
+    for s in seeds:
+        sp = seed_import(base_token, s["table"], s["rows"], s["key"], write, lark_cli, prune=prune)
+        result["seeds"].append({"table": s["table"], "plan": sp})
+    if write:
+        post = apply(manifest, base_token, write=False, lark_cli=lark_cli)
+        result["post_missing"] = {"tables": post["create_tables"], "fields": post["create_fields"]}
+    return result
+
+
 def _add_routing(sp: argparse.ArgumentParser) -> None:
     """Add the shared lark-cli routing flags (profile + identity) to a subparser."""
     sp.add_argument("--profile", help="lark-cli config profile to route through (e.g. a separate prod-tenant login; dev's default profile is left untouched)")
@@ -429,6 +458,16 @@ def _parser() -> argparse.ArgumentParser:
     si.add_argument("--prune", action="store_true", help="also DELETE target rows whose key is absent from the seed (destructive)")
     si.add_argument("--lark-cli", default="lark-cli")
     _add_routing(si)
+
+    pr = sub.add_parser("promote", description="One dev->prod step: apply structure + seed reference data + print the env delta, self-gated by a re-check. Dry-run unless --write.")
+    pr.add_argument("--manifest", required=True, help="structure manifest (bitable_schema/manifest.json)")
+    pr.add_argument("--seeds", default="bitable_schema/seeds.json", help="seed registry JSON listing reference tables/csv/key (default: bitable_schema/seeds.json)")
+    pr.add_argument("--base-token", required=True, help="TARGET (e.g. prod) base token")
+    pr.add_argument("--write", action="store_true", help="apply structure + seeds (else dry-run plan)")
+    pr.add_argument("--yes", action="store_true", help="confirm the TARGET base is correct; REQUIRED together with --write")
+    pr.add_argument("--prune", action="store_true", help="seed-import: delete target rows whose key is absent from the seed (destructive)")
+    pr.add_argument("--lark-cli", default="lark-cli")
+    _add_routing(pr)
     return p
 
 
@@ -534,6 +573,52 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  ! EXTRAS in target, not in seed{tail}: {', '.join(plan['extras'][:10])}{' …' if len(plan['extras']) > 10 else ''}")
         if plan["dup_keys"]:
             print(f"  ⚠ DUPLICATE {args.key} in target (upsert ambiguous): {', '.join(sorted(set(plan['dup_keys']))[:10])}")
+        return 0
+    if args.command == "promote":
+        manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
+        seeds = []
+        if args.seeds and Path(args.seeds).exists():
+            for s in json.loads(Path(args.seeds).read_text(encoding="utf-8")).get("seeds", []):
+                with open(s["csv"], encoding="utf-8-sig") as fh:
+                    rows = list(csv.DictReader(fh))
+                seeds.append({"table": s["table"], "key": [c.strip() for c in s["key"].split(",")], "rows": rows})
+        write = bool(args.write and args.yes)
+        res = promote(manifest, seeds, args.base_token, write, args.lark_cli, prune=args.prune)
+        st = res["structure"]
+        print(f"PROMOTE ({'WRITE' if res['write'] else 'dry-run'}) -> {args.base_token}")
+        if args.write and not args.yes:
+            print("⚠ --write ignored: re-run with --write --yes once you've confirmed the TARGET base.")
+        print(f"  [structure] tables +{len(st['create_tables'])}, fields +{len(st['create_fields'])}, "
+              f"drift {len(st['drift'])}, complex/manual {len(st['manual_complex'])}")
+        for t in st["create_tables"]:
+            print(f"     + TABLE {t}")
+        for f in st["create_fields"]:
+            print(f"     + FIELD {f['table']}.{f['field']} ({f['type']})")
+        for d in st["drift"]:
+            print(f"     ⚠ DRIFT {d['table']}.{d['field']}: {d['detail']}")
+        for f in st["manual_complex"]:
+            print(f"     ! MANUAL {f['table']}.{f['field']} ({f['type']}) — set up by hand")
+        print(f"  [reference data] {len(res['seeds'])} table(s):")
+        for s in res["seeds"]:
+            p = s["plan"]
+            pruned = f", pruned {len(p['pruned'])}" if p.get("pruned") else ""
+            dup = f"  ⚠ {len(set(p['dup_keys']))} DUP key(s)" if p.get("dup_keys") else ""
+            print(f"     - {s['table']}: create {len(p['create'])}, update {len(p['update'])}, "
+                  f"skip {len(p['skip'])}, extras {len(p['extras'])}{pruned}{dup}")
+        print("  [env delta] add to the target FEISHU_PHASE2_* env:")
+        if res["new_table_ids"]:
+            for n, i in res["new_table_ids"].items():
+                print(f"     # {n} = {i}")
+        elif res["write"]:
+            print("     (no new tables created)")
+        else:
+            print("     (dry-run: run --write --yes to create tables and emit their IDs)")
+        if res["write"]:
+            pm = res["post_missing"]
+            if not pm["tables"] and not pm["fields"]:
+                print("  [post-check] structure up to date ✅")
+            else:
+                print(f"  [post-check] ⚠ still missing {len(pm['tables'])} table(s), {len(pm['fields'])} field(s) — re-run promote")
         return 0
     raise AssertionError(args.command)
 

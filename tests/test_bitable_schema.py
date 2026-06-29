@@ -329,5 +329,46 @@ class SeedImportTests(unittest.TestCase):
         self.assertNotIn("Slot_key", payload)             # lookup never written
 
 
+class PromoteTests(unittest.TestCase):
+    """promote = apply (structure) + seed_import (reference data) + env delta, one step (Gap A)."""
+
+    def test_dry_run_composes_structure_and_seed(self):
+        manifest = {"tables": [{"name": "T1", "fields": [{"name": "Name", "type": "text"}]}]}
+        seeds = [{"table": "Rules", "key": ["k"], "rows": [{"k": "r1", "v": "x"}]}]
+
+        def fake(args, lark_cli="lark-cli"):
+            if "+table-list" in args:
+                return {"ok": True, "data": {"tables": [{"id": "tblRules", "name": "Rules"}]}}  # T1 absent
+            if "+field-list" in args:
+                return _fields_response([{"name": "k", "type": "text"}, {"name": "v", "type": "text"}])
+            if "+record-list" in args:
+                return {"ok": True, "data": {"fields": ["k", "v"], "data": [], "record_id_list": []}}
+            return {"ok": True, "data": {}}
+
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            res = bs.promote(manifest, seeds, "PROD", write=False, lark_cli="lark-cli")
+        self.assertEqual(res["structure"]["create_tables"], ["T1"])      # structure gap surfaced
+        self.assertEqual(res["seeds"][0]["table"], "Rules")
+        self.assertEqual(res["seeds"][0]["plan"]["create"], ["r1"])      # reference row to create
+        self.assertEqual(res["new_table_ids"], {})                       # dry-run: nothing created
+        self.assertEqual(res["post_missing"], {"tables": [], "fields": []})
+
+    def test_write_runs_post_check(self):
+        manifest = {"tables": [{"name": "Rules", "fields": [{"name": "k", "type": "text"}]}]}  # already present
+        seeds = []
+
+        def fake(args, lark_cli="lark-cli"):
+            if "+table-list" in args:
+                return {"ok": True, "data": {"tables": [{"id": "tblRules", "name": "Rules"}]}}
+            if "+field-list" in args:
+                return _fields_response([{"name": "k", "type": "text"}])
+            return {"ok": True, "data": {}}
+
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            res = bs.promote(manifest, seeds, "PROD", write=True, lark_cli="lark-cli")
+        self.assertTrue(res["write"])
+        self.assertEqual(res["post_missing"], {"tables": [], "fields": []})  # nothing missing -> clean
+
+
 if __name__ == "__main__":
     unittest.main()
