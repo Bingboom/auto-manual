@@ -108,36 +108,33 @@ python3 tools/bitable_schema.py apply \
 `lark-cli profile use` (it switches the global default); always pass `--profile prod`
 per-command. Remove the profile with `lark-cli profile remove prod` when finished.
 
-### 4. Prod — seed reference data
+### 4. Prod — seed reference data (idempotent, Gap C)
 
-Import the committed seed rows with `+record-upsert`. Two gotchas the tooling already
-handles or that you must mirror by hand:
-
-- the payload is a **raw field map**, NOT wrapped in `{"fields": ...}`;
-- convert checkbox columns to bool and number columns to int; an empty cell is `null`.
+Reference tables whose **rows** must match across tenants — the rule library, dictionaries —
+sync via `seed-export` / `seed-import`. `seed-import` upserts by a business key, so it is
+**idempotent**: re-running is safe (no duplicate rows; the old hand-rolled `record-upsert`
+loop created dups).
 
 ```bash
-python3 - <<'PY'
-import csv, json, subprocess, os
-env={**os.environ, "LARK_CLI_NO_PROXY": "1"}
-PROD="<PROD_BASE_TOKEN>"; TID="<prod rule-map table id>"
-def conv(c, v):
-    v = (v or "").strip()
-    if c == "manual_facing": return v == "True"   # checkbox -> bool
-    if c == "Line_order":    return int(v) if v else None   # number -> int
-    return v or None
-for r in csv.DictReader(open("bitable_schema/seed/规格书字段映射规则.csv", encoding="utf-8-sig")):
-    m = {c: conv(c, r.get(c)) for c in r if conv(c, r.get(c)) is not None}
-    subprocess.run(["lark-cli", "--profile", "prod", "base", "+record-upsert",
-        "--base-token", PROD, "--table-id", TID,
-        "--json", json.dumps(m, ensure_ascii=False), "--as", "user"], env=env)
-PY
+# dev: refresh the committed seed from the live table (it rides the code mirror to prod)
+python3 tools/bitable_schema.py seed-export \
+  --table 规格书字段映射规则 --out bitable_schema/seed/规格书字段映射规则.csv
+
+# prod: dry-run plan first, then apply (idempotent). --profile/--identity as in step 3.
+python3 tools/bitable_schema.py seed-import \
+  --base-token <PROD_BASE_TOKEN> --table 规格书字段映射规则 \
+  --seed bitable_schema/seed/规格书字段映射规则.csv --key "Row_key,规格书字段" \
+  --profile prod --identity user                 # plan: create/update/skip/extras
+python3 tools/bitable_schema.py seed-import ... --profile prod --identity user --write --yes
 ```
 
-`upsert` with no record-id always **creates**, so re-running duplicates rows. To redo
-cleanly, delete first — `+record-delete --json '{"record_id_list":[...]}' --yes` (the
-`--yes` is required for this high-risk write; `record-list` returns the ids under
-`data.record_id_list`, not `data.records`).
+`--key` must be **unique per row** — comma-separated for a composite. For the rule library
+it is `Row_key,规格书字段` (`Row_key` alone repeats: a parameter recurs across sections,
+and `(剔除)` excludes one row per source field). If the key isn't unique, `seed-import`
+prints `DUPLICATE` and skips those — add columns. Rows in prod but absent from the seed are
+reported as `EXTRAS` and left as-is unless you pass `--prune` (destructive). Only simple
+writable fields are written; formula/lookup/link are never touched; an empty seed cell is
+left unset (it does not clear an existing value).
 
 > **select fields:** a `select` field's options are stored in the manifest as a name
 > list but must be written to lark-cli as objects `[{"name": ...}]`. `apply` converts

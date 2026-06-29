@@ -22,6 +22,7 @@ env files, never in git.
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import subprocess
@@ -61,11 +62,14 @@ def _lark(args: list[str], lark_cli: str = "lark-cli") -> dict:
         i = a.index("--as")
         del a[i:i + 2]
     cmd += [*a, "--as", _IDENTITY]
-    out = subprocess.run(cmd, capture_output=True, text=True, env=env).stdout
-    try:
-        return json.loads(out[out.index("{"):])
-    except ValueError:
-        return {"ok": False, "_raw": out[:200]}
+    proc = subprocess.run(cmd, capture_output=True, text=True, env=env)
+    # reads emit JSON on stdout; some writes (record-upsert) emit it on stderr -> try both
+    for text in (proc.stdout, (proc.stdout or "") + (proc.stderr or "")):
+        try:
+            return json.loads(text[text.index("{"):])
+        except ValueError:
+            continue
+    return {"ok": False, "_raw": ((proc.stdout or "") + (proc.stderr or ""))[:200]}
 
 
 def _norm_select(raw_type: str, multiple: bool) -> str:
@@ -224,6 +228,151 @@ def parity(
     }
 
 
+# --- reference-data seed sync (Gap C) ---------------------------------------
+# Structure rides `apply`/`parity`; this syncs the ROWS of small reference/config tables
+# (rule library, dictionaries) that must match across tenants, idempotently by a business
+# key. Business data (per-model spec/page rows) stays in its tenant and is NOT synced here.
+
+
+def _resolve_table_id(base_token: str, table_name: str, lark_cli: str) -> str | None:
+    tl = _lark(["base", "+table-list", "--base-token", base_token, "--format", "json", "--as", "bot"], lark_cli)
+    for t in (tl.get("data", {}).get("tables") or tl.get("data", {}).get("items") or []):
+        if t.get("name") == table_name:
+            return t.get("id") or t.get("table_id")
+    return None
+
+
+def _field_types(base_token: str, tid: str, lark_cli: str) -> dict:
+    fl = _lark(["base", "+field-list", "--base-token", base_token, "--table-id", tid, "--format", "json", "--as", "bot"], lark_cli)
+    return {f.get("name"): (f.get("type") or "").lower() for f in (fl.get("data", {}).get("fields") or fl.get("data", {}).get("items") or [])}
+
+
+def _norm_cell(v) -> str:
+    """Canonical string for comparing a cell value across tenants / CSV."""
+    if v is None:
+        return ""
+    if isinstance(v, bool):
+        return "true" if v else ""
+    if isinstance(v, (int, float)):
+        return str(int(v)) if float(v).is_integer() else str(v)
+    if isinstance(v, str):
+        return v.strip()
+    if isinstance(v, list):
+        return "".join(_norm_cell(x) for x in v)
+    if isinstance(v, dict):
+        return str(v.get("text") or v.get("name") or v.get("value") or "")
+    return str(v)
+
+
+def _serialize_cell(v, ftype: str) -> str:
+    """Record value -> CSV string (checkbox as True/False to match committed seeds)."""
+    if ftype == "checkbox":
+        return "True" if v in (True, 1, "true", "True", "1") else "False"
+    return _norm_cell(v)
+
+
+def _coerce_cell(value: str, ftype: str):
+    """CSV string -> typed record value for writing (None for an empty cell)."""
+    v = (value or "").strip()
+    if v == "":
+        return None
+    if ftype == "checkbox":
+        return v.lower() in ("true", "1", "yes", "✓")
+    if ftype in ("number", "currency", "percent", "rating"):
+        try:
+            f = float(v)
+            return int(f) if f.is_integer() else f
+        except ValueError:
+            return v
+    return v
+
+
+def _read_records(base_token: str, tid: str, lark_cli: str) -> tuple[list[dict], list[str]]:
+    """Return ([row dict], [record_id]) for a table (first 200 rows — reference tables are small)."""
+    rl = _lark(["base", "+record-list", "--base-token", base_token, "--table-id", tid, "--limit", "200", "--format", "json", "--as", "bot"], lark_cli)
+    data = rl.get("data", {}) or {}
+    flds = data.get("fields") or []
+    rids = data.get("record_id_list") or []
+    rows = [dict(zip(flds, row)) for row in (data.get("data") or [])]
+    return rows, rids
+
+
+def seed_export(base_token: str, table_name: str, lark_cli: str) -> tuple[list[str], list[dict]]:
+    """Snapshot a reference table's simple-field rows to (columns, rows) for a committed CSV."""
+    tid = _resolve_table_id(base_token, table_name, lark_cli)
+    if not tid:
+        raise ValueError(f"table not found: {table_name}")
+    ftypes = _field_types(base_token, tid, lark_cli)
+    cols = [n for n, t in ftypes.items() if t in SIMPLE_TYPES]
+    rows, _ = _read_records(base_token, tid, lark_cli)
+    return cols, [{c: _serialize_cell(r.get(c), ftypes[c]) for c in cols} for r in rows]
+
+
+def seed_import(base_token: str, table_name: str, seed_rows: list[dict], key: str, write: bool, lark_cli: str, prune: bool = False) -> dict:
+    """Idempotently upsert reference rows into a target table, matched by the ``key`` column.
+
+    Re-runnable: existing rows (by key) get only their changed simple cells updated, new
+    keys are created, keys absent from the seed are reported (deleted only with ``prune``).
+    Only simple writable fields are touched; formula/lookup/link are never written. An
+    empty seed cell is left unset (it does not clear an existing value).
+    """
+    tid = _resolve_table_id(base_token, table_name, lark_cli)
+    plan: dict = {"table_id": tid, "create": [], "update": [], "skip": [], "extras": [], "dup_keys": [], "pruned": [], "write": bool(write)}
+    if not tid:
+        plan["error"] = f"table not found: {table_name}"
+        return plan
+    ftypes = _field_types(base_token, tid, lark_cli)
+    write_cols = [c for c in (seed_rows[0].keys() if seed_rows else []) if ftypes.get(c) in SIMPLE_TYPES]
+    key_cols = [key] if isinstance(key, str) else list(key)
+
+    def _kv(row: dict) -> tuple:
+        return tuple(_norm_cell(row.get(c)) for c in key_cols)
+
+    def _disp(kv: tuple) -> str:
+        return " | ".join(kv)
+
+    rows, rids = _read_records(base_token, tid, lark_cli)
+    existing: dict = {}
+    for r, rid in zip(rows, rids):
+        kv = _kv(r)
+        if kv in existing:
+            plan["dup_keys"].append(_disp(kv))
+        else:
+            existing[kv] = (rid, r)
+    seen: set = set()
+    for row in seed_rows:
+        kv = _kv(row)
+        if not any(kv) or kv in seen:  # wholly-empty key -> skip; intra-seed dup -> first wins
+            continue
+        seen.add(kv)
+        payload = {c: _coerce_cell(row.get(c), ftypes[c]) for c in write_cols}
+        payload = {c: v for c, v in payload.items() if v is not None}
+        if kv in existing:
+            rid, trec = existing[kv]
+            diffs = [c for c in write_cols if c in payload and _norm_cell(trec.get(c)) != _norm_cell(payload[c])]
+            if diffs:
+                plan["update"].append({"key": _disp(kv), "fields": diffs})
+                if write:
+                    _lark(["base", "+record-upsert", "--base-token", base_token, "--table-id", tid, "--record-id", rid,
+                           "--json", json.dumps({c: payload[c] for c in diffs}, ensure_ascii=False), "--format", "json", "--as", "bot"], lark_cli)
+            else:
+                plan["skip"].append(_disp(kv))
+        else:
+            plan["create"].append(_disp(kv))
+            if write:
+                _lark(["base", "+record-upsert", "--base-token", base_token, "--table-id", tid,
+                       "--json", json.dumps(payload, ensure_ascii=False), "--format", "json", "--as", "bot"], lark_cli)
+    extra_kvs = [k for k in existing if k not in seen]
+    plan["extras"] = sorted(_disp(k) for k in extra_kvs)
+    if prune and write and extra_kvs:
+        ids = [existing[k][0] for k in extra_kvs]
+        for i in range(0, len(ids), 100):
+            _lark(["base", "+record-delete", "--base-token", base_token, "--table-id", tid,
+                   "--json", json.dumps({"record_id_list": ids[i:i + 100]}), "--yes", "--format", "json", "--as", "bot"], lark_cli)
+        plan["pruned"] = list(plan["extras"])
+    return plan
+
+
 def _add_routing(sp: argparse.ArgumentParser) -> None:
     """Add the shared lark-cli routing flags (profile + identity) to a subparser."""
     sp.add_argument("--profile", help="lark-cli config profile to route through (e.g. a separate prod-tenant login; dev's default profile is left untouched)")
@@ -262,6 +411,24 @@ def _parser() -> argparse.ArgumentParser:
                          "(drift still reported but not failed — for a prod-lag alert where dev may carry extra/dirty options)")
     pa.add_argument("--lark-cli", default="lark-cli")
     _add_routing(pa)
+
+    se = sub.add_parser("seed-export", description="Snapshot a reference table's rows to a committed seed CSV (simple fields only).")
+    se.add_argument("--base-token", default=os.environ.get("FEISHU_PHASE2_BASE_TOKEN"), help="source base token (default: $FEISHU_PHASE2_BASE_TOKEN)")
+    se.add_argument("--table", required=True, help="reference table name to export")
+    se.add_argument("--out", required=True, help="seed CSV output path (committed; rides the code mirror)")
+    se.add_argument("--lark-cli", default="lark-cli")
+    _add_routing(se)
+
+    si = sub.add_parser("seed-import", description="Idempotently upsert a seed CSV into a TARGET table's rows, matched by --key. Dry-run unless --write.")
+    si.add_argument("--base-token", required=True, help="TARGET (e.g. prod) base token")
+    si.add_argument("--table", required=True, help="reference table name")
+    si.add_argument("--seed", required=True, help="seed CSV path (e.g. bitable_schema/seed/<table>.csv)")
+    si.add_argument("--key", required=True, help="business-key column(s) to match rows by; comma-separated for a composite key (e.g. 'Row_key,规格书字段')")
+    si.add_argument("--write", action="store_true", help="apply the upserts (else dry-run plan)")
+    si.add_argument("--yes", action="store_true", help="confirm the TARGET base is correct; REQUIRED together with --write")
+    si.add_argument("--prune", action="store_true", help="also DELETE target rows whose key is absent from the seed (destructive)")
+    si.add_argument("--lark-cli", default="lark-cli")
+    _add_routing(si)
     return p
 
 
@@ -328,6 +495,46 @@ def main(argv: list[str] | None = None) -> int:
         if res["extra_tables"]:
             print(f"  (target also has {len(res['extra_tables'])} extra table(s) not in source — informational)")
         return 1 if fail else 0
+    if args.command == "seed-export":
+        if not args.base_token:
+            print("bitable-schema: --base-token or $FEISHU_PHASE2_BASE_TOKEN required", file=sys.stderr)
+            return 2
+        cols, rows = seed_export(args.base_token, args.table, args.lark_cli)
+        out = Path(args.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        with out.open("w", encoding="utf-8-sig", newline="") as fh:
+            writer = csv.DictWriter(fh, fieldnames=cols)
+            writer.writeheader()
+            writer.writerows(rows)
+        print(f"WROTE {out}  ({len(rows)} rows, {len(cols)} cols)")
+        return 0
+    if args.command == "seed-import":
+        with open(args.seed, encoding="utf-8-sig") as fh:
+            seed_rows = list(csv.DictReader(fh))
+        key = [c.strip() for c in args.key.split(",") if c.strip()]
+        write = bool(args.write and args.yes)
+        plan = seed_import(args.base_token, args.table, seed_rows, key, write, args.lark_cli, prune=args.prune)
+        if plan.get("error"):
+            print(f"seed-import: {plan['error']}", file=sys.stderr)
+            return 2
+        if args.write and not args.yes:
+            print("⚠ --write ignored: re-run with --write --yes once you've confirmed the TARGET base.")
+        mode = "WRITE" if plan["write"] else "dry-run"
+        line = (f"SEED-IMPORT ({mode}) {args.table} by {args.key}: "
+                f"create {len(plan['create'])}, update {len(plan['update'])}, skip {len(plan['skip'])}, extras {len(plan['extras'])}")
+        if plan.get("pruned"):
+            line += f", pruned {len(plan['pruned'])}"
+        print(line)
+        for k in plan["create"]:
+            print(f"  + CREATE {k}")
+        for u in plan["update"]:
+            print(f"  ~ UPDATE {u['key']}: {', '.join(u['fields'])}")
+        if plan["extras"]:
+            tail = " — pruned" if plan.get("pruned") else " — left as-is (use --prune to delete)"
+            print(f"  ! EXTRAS in target, not in seed{tail}: {', '.join(plan['extras'][:10])}{' …' if len(plan['extras']) > 10 else ''}")
+        if plan["dup_keys"]:
+            print(f"  ⚠ DUPLICATE {args.key} in target (upsert ambiguous): {', '.join(sorted(set(plan['dup_keys']))[:10])}")
+        return 0
     raise AssertionError(args.command)
 
 

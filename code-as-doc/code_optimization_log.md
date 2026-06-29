@@ -720,26 +720,15 @@ Why it mattered:
 
 - code mirrors dev→prod automatically but Bitable **structure** does not; a mirrored code change that expects a new table/field would break a prod build silently. This makes structure promotion a recorded, repeatable act and adds an automated "prod is behind" alarm instead of waiting for a broken build.
 
-## 45. 2026-06-29: Phase2 Source-Table Contract Index (P0)
+## 45. 2026-06-29: Idempotent Reference-Data Seed Sync (Closed-Loop Gap C)
 
 Main outcomes:
 
-- added [`data/source_table_contracts/phase2_source_tables.json`](../data/source_table_contracts/phase2_source_tables.json), a machine-readable index for phase2 source-table ownership, snapshot files, business keys, source-record-index mapping, intake targets, guarded writer fields, and default no-live-create boundaries
-- added [`tools/source_table_contract.py`](../tools/source_table_contract.py) plus [`tests/test_source_table_contract.py`](../tests/test_source_table_contract.py) so the contract is validated against the existing source-intake, source-record-index, and phase2 snapshot constants
-- updated the external table contract, phase2 source-table reference, build guide, user guide, and README so schema changes have one explicit maintenance surface instead of relying on operator memory
+- [`tools/bitable_schema.py`](../tools/bitable_schema.py) gained `seed-export` (a reference table's simple-field rows → committed CSV) and `seed-import` (idempotent upsert of those rows into a target tenant, matched by a **business key**; dry-run unless `--write --yes`; `--prune` to delete rows absent from the seed; only simple writable fields touched; an empty cell never clears)
+- the business key may be **composite** (comma-separated): the rule library needs `Row_key,规格书字段` because `Row_key` alone repeats (a parameter recurs across sections; `(剔除)` excludes one row per source field). `seed-import` flags a non-unique key as `DUPLICATE` rather than silently mismatching
+- hardened `_lark` to also parse JSON from stderr (record-upsert emits its result there), replacing the earlier hand-rolled `record-upsert` loop that was not idempotent (it created duplicate rows — observed live: 26 → 53 → 79 before a manual wipe)
+- proven idempotent against the prod rule library (`create 0, update 0, skip 26, extras 0`); docs: `dev/closed_loop_gaps.md` (Gap C done), `dev/bitable_schema_sync.md` (§4 rewritten around the new commands)
 
 Why it mattered:
 
-- the intake/backport loop is now protected by a committed contract index: future online table-structure changes have a concrete artifact to update before they can silently desynchronize Skill routing, source-record lookup, writer fields, and snapshot expectations
-
-## 46. 2026-06-29: Source-Table Contract Drift Gate (P1)
-
-Main outcomes:
-
-- extended [`tools/schema_drift.py`](../tools/schema_drift.py) so the existing schema-drift CI path validates [`data/source_table_contracts/phase2_source_tables.json`](../data/source_table_contracts/phase2_source_tables.json) by default
-- the gate now fails when contract-declared source identity keys or guarded writable fields disappear from fixture/local phase2 snapshot headers, and when the contract drifts from source-intake writer tables or `source_record_index` key definitions
-- added schema-drift tests for contract-declared writable-field loss, while keeping the existing queue-contract workflow entrypoint unchanged
-
-Why it mattered:
-
-- P0 created the source-table index; P1 turns it into an automatic guard, so future online table edits that would break intake/backport/writeback are caught in CI before they reach a live sync or review backport run
+- only *structure* rode the dev→prod path; config tables whose **rows** drive code behavior (the extraction rule library, dictionaries) were seeded by hand and the import duplicated rows on re-run. This makes reference-data promotion a safe, re-runnable command — the last shared-config leg of dev→prod before a single `promote` (Gap A) can compose structure + reference data + env.
