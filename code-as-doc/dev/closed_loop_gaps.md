@@ -44,12 +44,16 @@ non-unique keys as `DUPLICATE` instead of silently mismatching. **Remaining:** s
 by hand on the prod side (folds into A's `promote`), and the other reference tables
 (`参数名`, `Document_key`) aren't seeded yet — add their CSVs + keys when needed.
 
-### A. No unified promotion — TODO (high)
-A feature that adds code + a table + seed + an env var lands in 4–5 separate manual
-steps (PR-merge → mirror → `apply` → seed → wire env). **Closes by:** one `promote`
-that, given a target tenant, runs `apply` + reference-`seed-import` + prints the env
-delta, gated by `parity` before/after. Bundles {structure + reference data + env} into
-one dev→prod step (code already rides `sync-hello-docs`).
+### A. Unified promotion — ✅ DONE
+`bitable_schema.py promote` is one dev→prod step: it runs `apply` (structure, converging
+a freshly-created table's fields), then `seed_import` for every table in the committed
+`bitable_schema/seeds.json` registry (reference data), prints the **env delta** (new
+table IDs to wire into the prod `FEISHU_PHASE2_*`), and self-gates with a post-apply
+re-check (`structure up to date ✅` or a still-missing list). Dry-run unless
+`--write --yes`; `--profile`/`--identity` route to the prod tenant. Proven against the
+live prod tenant as a clean no-op once promoted (`+0 tables, +0 fields, skip 26`).
+**Remaining:** triggering is still operator-run (the *write* side of E); a CI
+apply-on-promotion would need prod write creds — weigh the security tradeoff first.
 
 ### E. Prod side is manually triggered — 🟡 parity alert DONE; apply-on-promotion still manual
 The **read-only half is closed**: [`.github/workflows/feishu-schema-parity.yml`](../../.github/workflows/feishu-schema-parity.yml)
@@ -75,10 +79,11 @@ tradeoff first (today prod writes go through the operator's device-flow `--profi
 
 ## Recommended order
 
-`B (done) → E parity-alert (done) → C (done) → A → E apply-on-promotion → D (ongoing)`.
+`B (done) → E parity-alert (done) → C (done) → A (done) → E apply-on-promotion → D (ongoing)`.
 
 B removed the silent-drift blind spot; E's read-only parity alert runs it daily in CI;
-C makes reference-data promotion idempotent. **A** (one `promote` = `apply` +
-`seed-import` + env delta, parity-gated) now just composes the finished B/C/E pieces;
-E's write half (apply-on-promotion) and D (the two content-loop ends) are the remaining
-maturation.
+C made reference-data promotion idempotent; A bundles structure + reference data + env
+into one `promote`. The dev→prod **structure/reference** loop is now closed end-to-end
+(one operator command + a daily drift alarm). Remaining: E's *write* half
+(apply-on-promotion in CI — needs prod write creds, weigh the security tradeoff) and D
+(the two content-loop ends).

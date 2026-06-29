@@ -53,7 +53,33 @@ also commit a seed under `bitable_schema/seed/`.
 The normal `auto-manual` → `Hello-Docs` mirror brings the manifest, seed, and tool to
 the production repo. No extra step.
 
-### 3. Prod — apply structure to the prod tenant
+### 3. Prod — one-step `promote` (preferred)
+
+`promote` does steps 3a (structure) + 3b (reference data) + the env delta in one
+self-gated command. Dry-run first, then `--write --yes`:
+
+```bash
+python3 tools/bitable_schema.py promote \
+  --manifest bitable_schema/manifest.json --seeds bitable_schema/seeds.json \
+  --base-token <PROD_BASE_TOKEN> --profile prod --identity user            # dry-run plan
+python3 tools/bitable_schema.py promote ... --profile prod --identity user --write --yes
+```
+
+It prints `[structure]` (tables/fields created, drift, manual-complex), `[reference data]`
+(per-table create/update/skip/extras for each entry in `bitable_schema/seeds.json`),
+`[env delta]` (new table IDs to add to the prod `FEISHU_PHASE2_*`), and a `[post-check]`
+(`structure up to date ✅` or a still-missing list). Idempotent — re-running on an
+up-to-date prod is a clean no-op. The granular steps below (3a/3b) are what `promote`
+composes; use them directly only for a partial sync.
+
+### 3a. Prod — apply structure to the prod tenant
+
+On the prod side, with the **prod** tenant's base token:
+
+```bash
+# dry-run first — prints "Target base: <token> (N tables)" so you can confirm the
+# tenant, plus what would be created and any DRIFT (see below)
+python3 tools/bitable_schema.py apply \
 
 On the prod side, with the **prod** tenant's base token:
 
@@ -108,7 +134,7 @@ python3 tools/bitable_schema.py apply \
 `lark-cli profile use` (it switches the global default); always pass `--profile prod`
 per-command. Remove the profile with `lark-cli profile remove prod` when finished.
 
-### 4. Prod — seed reference data (idempotent, Gap C)
+### 3b. Prod — seed reference data (idempotent, Gap C)
 
 Reference tables whose **rows** must match across tenants — the rule library, dictionaries —
 sync via `seed-export` / `seed-import`. `seed-import` upserts by a business key, so it is
@@ -142,7 +168,7 @@ left unset (it does not clear an existing value).
 > use the object form or the field is silently dropped and the table is created with
 > only a default `ID` column.
 
-### 5. Prod — verify
+### 4. Prod — verify
 
 ```bash
 python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --dry-run

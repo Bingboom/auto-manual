@@ -1,0 +1,10 @@
+{
+  "schema_version": "bitable-seeds/v1",
+  "seeds": [
+    {
+      "table": "规格书字段映射规则",
+      "csv": "bitable_schema/seed/规格书字段映射规则.csv",
+      "key": "Row_key,规格书字段"
+    }
+  ]
+}
