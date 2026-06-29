@@ -28,6 +28,13 @@ Run the query script in the foreground and wait for the one result. It reads wit
 
 Results are sorted latest-version-first, so the freshest manual is the default answer.
 
+## Query rules — search one code, filter the rest
+
+- Put **only a single 型号 or 项目 code** in the search argument (e.g. `HTE139`, `JE-2000F`). 项目 codes such as `HTE139` are searchable — the catalog matches them in the `项目` field.
+- **Never put a region / 文档类型 / 版本 inside the search string.** The match is substring-per-field, so `"HTE139 欧规"` matches nothing and returns 0 rows. Apply those as `--region` / `--doc-type` filters, or filter the returned rows after a bare-code search.
+- A "型号/项目 + 区域" ask like "HTE139 欧规的说明书" means: search `HTE139` (or add `--region 欧规`), then keep the 欧规 row(s) — **not** search the literal string "HTE139 欧规".
+- If a code search returns 0 rows, retry with just the bare code (or a looser code) before telling the user 查不到.
+
 ## Output rules
 
 - Render each `说明书链接` as a Markdown link with the manual name as anchor text — e.g. `[Jackery Explorer 2000 User Manual V2.0](https://alidocs.dingtalk.com/i/nodes/…)` — so Feishu shows it as a clickable document card. Never paste a bare URL. The script already formats links this way; keep that form when you relay the answer.
