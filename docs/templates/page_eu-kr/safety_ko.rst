@@ -1,0 +1,62 @@
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \section{IMPORTANT SAFETY INFORMATION}
+
+   .. raw:: latex
+
+      \safetywarning{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
+
+   .. raw:: latex
+
+      \begin{safetysinglecol}
+
+
+   .. raw:: latex
+
+      \safetylead{Always follow these basic precautions when using this product.}
+
+
+   - Read all instructions before using this product.
+   - Do not allow children to play with the product. Close supervision is necessary when the product is used near children.
+   - Risk of electric shock may occur if accessories recommended or sold by non-professional manufacturers are used.
+   - When the product is not in use, unplug the power plug from the product outlet.
+   - Do not disassemble the product, as this may cause unpredictable risks such as fire, explosion, or electric shock.
+   - Do not use the product with damaged cords, plugs, or output cables, as this may cause electric shock.
+   - To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.
+
+     - Charging in damp or poorly ventilated spaces may cause safety hazards.
+     - Water can cause short circuits or damage to the charger, leading to safety risks.
+
+   - Do not expose the product to fire, high temperatures, direct sunlight, or hot environments such as the interior of a parked vehicle. Such exposure may cause fire or explosion.
+
+
+   .. raw:: latex
+
+      \end{safetysinglecol}
+
+
+.. only:: html
+
+   .. raw:: html
+
+      <div class="hb-safety">
+        <h1 class="hb-h1-pill">IMPORTANT SAFETY INFORMATION</h1>
+
+        <div class="hb-warning-box">
+          <div class="hb-warning-row">
+            <div class="hb-warning-lockup">WARNING</div>
+            <div class="hb-warning-text">INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS</div>
+          </div>
+        </div>
+
+        <div class="hb-single-col">
+          <p class="hb-lead">Always follow these basic precautions when using this product.</p>
+          <ul class="hb-list"><li>Read all instructions before using this product.</li><li>Do not allow children to play with the product. Close supervision is necessary when the product is used near children.</li><li>Risk of electric shock may occur if accessories recommended or sold by non-professional manufacturers are used.</li><li>When the product is not in use, unplug the power plug from the product outlet.</li><li>Do not disassemble the product, as this may cause unpredictable risks such as fire, explosion, or electric shock.</li><li>Do not use the product with damaged cords, plugs, or output cables, as this may cause electric shock.</li><li>To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.<ul class="hb-sublist"><li>Charging in damp or poorly ventilated spaces may cause safety hazards.</li><li>Water can cause short circuits or damage to the charger, leading to safety risks.</li></ul></li><li>Do not expose the product to fire, high temperatures, direct sunlight, or hot environments such as the interior of a parked vehicle. Such exposure may cause fire or explosion.</li></ul>
+        </div>
+      </div>

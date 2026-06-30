@@ -1,0 +1,20 @@
+extends: config-bases/phase2-sync-base.yaml
+
+build:
+  family_id: kr-ko
+  default_model: JE-1000F
+  default_region: KR
+  targets:
+    - model: JE-1000F
+      region: KR
+  languages: [ko]
+  include_lang_in_output_path: true
+  word_reference_doc: docs/templates/word_template/template.docx
+  word_title: "|PRODUCT_NAME| 사용자 매뉴얼"
+  rst_substitutions:
+    MANUAL_LANGUAGE_SCOPE: 한국어
+    WARRANTY_EMAIL: hello.kr@jackery.com
+    LEGAL_COMPANY_NAME: Jackery
+
+paths:
+  page_manifest: docs/manifests/manual_kr.yaml

@@ -15,7 +15,7 @@ from tools.utils.spec_master import canonicalize_model_token
 from tools.utils.variable_resolver import parse_model_tokens
 
 _DEFAULT_LANG = "en"
-_SUPPORTED_LANGS = {"en", "zh", "ja", "jp", "fr", "es", "pt-br", "pt_br", "br", "de", "it", "uk", "ukr"}
+_SUPPORTED_LANGS = {"en", "zh", "ja", "jp", "fr", "es", "pt-br", "pt_br", "br", "de", "it", "uk", "ukr", "ko"}
 _SIGNAL_WORD_KEYS = {"warning", "danger", "caution", "note", "tips"}
 _SIGNAL_WORD_ALIASES = {"tip": "tips", "safety_warning": "warning", "symbols_notice": "danger"}
 _TRUE_VALUES = {"1", "true", "yes", "y"}
