@@ -1,5 +1,5 @@
 page_id,order,page_type,sku_scope,langs,template,content_query,asset_ref,enabled
-symbols,15,csv_page,ALL,"de,en,es,fr,it,pt-BR,uk",symbols_template.rst,page_id=symbols,,1
-lcd_icons,16,csv_page,ALL,"de,en,es,fr,it,ja,pt-BR,uk,zh",lcd_icons_template.rst,page_id=lcd_icons,,1
-troubleshooting,17,csv_page,ALL,"de,en,es,fr,it,ja,pt-BR,uk,zh",docs/templates/{template_lang_dir}/10_troubleshooting.rst,page_id=troubleshooting,,1
-spec,20,csv_page,ALL,"de,en,es,fr,it,ja,pt-BR,uk,zh",spec_template.rst,page_id=spec,,1
+symbols,15,csv_page,ALL,"de,en,es,fr,it,ko,pt-BR,uk",symbols_template.rst,page_id=symbols,,1
+lcd_icons,16,csv_page,ALL,"de,en,es,fr,it,ja,ko,pt-BR,uk,zh",lcd_icons_template.rst,page_id=lcd_icons,,1
+troubleshooting,17,csv_page,ALL,"de,en,es,fr,it,ja,ko,pt-BR,uk,zh",docs/templates/{template_lang_dir}/10_troubleshooting.rst,page_id=troubleshooting,,1
+spec,20,csv_page,ALL,"de,en,es,fr,it,ja,ko,pt-BR,uk,zh",spec_template.rst,page_id=spec,,1
