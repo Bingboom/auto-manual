@@ -25,6 +25,23 @@ Two write categories, per AGENTS.md:
 `data/phase2/*.csv` are **sync snapshots** — most are gitignored (except
 `page_registry.csv`). Never hand-edit the snapshots; edit the source + re-sync.
 
+### ⚠️ Repo changes go to `auto-manual`, not the `Hello-Docs` mirror
+`Bingboom/Hello-Docs` is a **one-way, destructive mirror** of `Bingboom/auto-manual`.
+`.github/workflows/sync-hello-docs.yml` fires on every push to **auto-manual/main** and
+runs `rsync -a --delete --exclude '.git/' source/ mirror/` — so Hello-Docs/main is
+force-overwritten and **any change committed only in Hello-Docs is deleted on the next
+sync**. All repo-side changes above MUST be committed to **`auto-manual`** and PR'd into
+`auto-manual/main`; the mirror receives them after merge. `git remote -v` before you
+commit. On this machine auto-manual is at `../auto-manual`; port from a Hello-Docs
+checkout via an isolated worktree that leaves any in-progress branch untouched:
+```
+git -C ../auto-manual fetch origin
+git -C ../auto-manual worktree add -b <branch> /path/to/wt origin/main
+# apply repo changes in the worktree (git am the patches, or edit directly), validate, push, PR into auto-manual/main
+git -C ../auto-manual worktree remove /path/to/wt   # when done
+```
+Feishu source tables (+ dictionary + TM) are **shared** and unaffected by the mirror.
+
 ---
 
 ## 1. Repo config + templates

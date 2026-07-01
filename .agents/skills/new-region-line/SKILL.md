@@ -21,6 +21,27 @@ A line spans **four surfaces**, and skipping any one leaves the build broken:
 Read [`references/setup-map.md`](references/setup-map.md) for the exact files,
 table IDs, `lark-cli` recipes, and command sequence. Keep it open while you work.
 
+## ⚠️ Land repo changes in `auto-manual`, NOT the `Hello-Docs` mirror
+
+`Bingboom/Hello-Docs` is a **one-way, destructive mirror** of `Bingboom/auto-manual`:
+`.github/workflows/sync-hello-docs.yml` runs on every push to **auto-manual/main** and
+`rsync -a --delete`s auto-manual's tree onto Hello-Docs/main. **Any repo change
+committed only in Hello-Docs is wiped on the next sync** — a PR into Hello-Docs is
+the wrong target.
+
+So for surfaces 1 & 2 (config/manifest/templates/code/`data/phase2/page_registry.csv`):
+- Make the changes in **`auto-manual`** and PR into **`auto-manual/main`**; the mirror
+  picks them up automatically after merge.
+- **Before committing, run `git remote -v` and confirm you are in `auto-manual`**, not
+  Hello-Docs. On this machine auto-manual is a sibling: `../auto-manual`.
+- If you only have a Hello-Docs checkout, port via an **isolated worktree** so you don't
+  disturb any in-progress branch:
+  `git -C ../auto-manual fetch origin && git -C ../auto-manual worktree add -b <branch> <path> origin/main`
+  (apply changes there → validate → PR into auto-manual/main).
+
+Surfaces 3 & 4 (Feishu source tables + operator inputs) are **shared** and unaffected
+by which git repo — they live in Feishu, not the tree.
+
 ## When to use
 
 - The `(Model, Region)` or output language does **not** exist yet in the repo.
@@ -51,7 +72,9 @@ product name, warranty email, and compliance/symbol sets are the common gaps.
 
 ## Workflow (high level — details in references/setup-map.md)
 
-1. **Branch** off up-to-date `main` (`scripts/start_branch.sh`).
+1. **Branch** off up-to-date **`auto-manual/main`** (NOT the Hello-Docs mirror — see
+   the ⚠️ section above; confirm `git remote -v`). Use `scripts/start_branch.sh`, or a
+   worktree if porting from a Hello-Docs checkout.
 2. **Config + templates**: clone an existing line (pick the closest regime).
    Copy its `config.*.yaml` (keep the **full `paths` block**), `manifest`, and
    `page_*` template dirs; set region/lang/substitutions.
@@ -66,7 +89,7 @@ product name, warranty email, and compliance/symbol sets are the common gaps.
 5. **Sync**: `build.py sync-data` (full run for TM-derived files).
 6. **Validate**: `build.py check` for the new target, plus a **regression check**
    on an existing region, plus `python -m unittest`.
-7. **PR** per AGENTS.md §8.6.
+7. **PR into `auto-manual/main`** per AGENTS.md §8.6 (never into the Hello-Docs mirror).
 
 ## Validation (must pass before PR)
 
