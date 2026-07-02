@@ -225,10 +225,12 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as td:
             cache_dir = Path(td)
-            # Default invocation (sentence scope, no explicit ids) keys the cache on the
-            # table-name selector, matching what main() computes below.
+            # Default invocation (sentence scope, no explicit ids, no wiki fallback
+            # since the G4 convergence) keys the cache on the table-name selector
+            # with wiki_token=None, matching what main() computes below. A recent
+            # cache hit must work with NO base binding at all.
             cache_key = query_live_translation_memory.build_cache_key(
-                wiki_token=query_live_translation_memory.DEFAULT_WIKI_TOKEN,
+                wiki_token=None,
                 base_token=None,
                 table_id="name:Translation_Memory",
                 view_id="auto",
@@ -238,7 +240,7 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
                 query_live_translation_memory.save_cached_table_snapshot(
                     cache_dir=cache_dir,
                     cache_key=cache_key,
-                    wiki_token=query_live_translation_memory.DEFAULT_WIKI_TOKEN,
+                    wiki_token=None,
                     table_id="name:Translation_Memory",
                     view_id="auto",
                     max_records=query_live_translation_memory.DEFAULT_MAX_RECORDS,
@@ -281,7 +283,7 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             cache_dir = Path(td)
             cache_key = query_live_translation_memory.build_cache_key(
-                wiki_token=query_live_translation_memory.DEFAULT_WIKI_TOKEN,
+                wiki_token=query_live_translation_memory.ARCHIVE_WIKI_TOKEN,
                 base_token=None,
                 table_id="name:Translation_Memory",
                 view_id="auto",
@@ -291,7 +293,7 @@ class TestLiveTranslationMemoryCache(unittest.TestCase):
                 query_live_translation_memory.save_cached_table_snapshot(
                     cache_dir=cache_dir,
                     cache_key=cache_key,
-                    wiki_token=query_live_translation_memory.DEFAULT_WIKI_TOKEN,
+                    wiki_token=query_live_translation_memory.ARCHIVE_WIKI_TOKEN,
                     table_id="name:Translation_Memory",
                     view_id="auto",
                     max_records=query_live_translation_memory.DEFAULT_MAX_RECORDS,

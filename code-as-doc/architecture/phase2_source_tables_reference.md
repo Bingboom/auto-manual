@@ -15,7 +15,7 @@
 ## 0. Where these live & how they reach the build
 
 - **Phase2 base** (app token `DOp8bczA8aGLhJsc5iMcOqOvnpg`, wiki node `JKVAwNWlbilFiXkFc99cmRMPnhd`, "文档构建") holds the master + content tables (`02_主数据_*`, `03_内容源_*`).
-- **Translation_Memory base** is **separate** (app token `LUIcbxeKdaCY2rsEHwCcnVQSnUe`, wiki node `X3O8wCpXPifqGKkP2sYccyxznQb`, "多维表CAT").
+- **Translation_Memory base** is **separate**. Since the G4 base convergence (2026-07-02) the canonical live base is whatever `$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN` names (tables resolved by name); the old A/wiki mirror (app token `LUIcbxeKdaCY2rsEHwCcnVQSnUe`, wiki node `X3O8wCpXPifqGKkP2sYccyxznQb`, "多维表CAT") is a **read-only archive**.
 - **Naming convention:**
   - `02_主数据_*` — **master / dictionary** tables (controlled vocabularies, model/region/project registries). Mostly small, referenced by `Link` + `Lookup` from the content tables.
   - `03_内容源_*` — **content source** tables (the actual manual text, per language).

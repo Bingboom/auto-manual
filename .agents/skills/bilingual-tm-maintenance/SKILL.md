@@ -11,12 +11,17 @@ This is an evidence-first data maintenance workflow, not a free-translation work
 
 ## Source Of Truth
 
-- Current TM wiki node: `X3O8wCpXPifqGKkP2sYccyxznQb`
-- Current Base token: `LUIcbxeKdaCY2rsEHwCcnVQSnUe`
-- Current table: `tbl6gKPJPTvOcTWv`
-- Current default view: `veweqW2fQv`
+- **Canonical write base (G4 convergence, 2026-07-02):** the Base that
+  `$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN` names. Resolve the table **by name**
+  inside it (`Translation_Memory` for sentence pairs, `Terms` for terminology):
+  `lark-cli base +table-list --base-token "$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN"`.
+- **Read-only archive (do NOT write):** the old A/wiki mirror — wiki node
+  `X3O8wCpXPifqGKkP2sYccyxznQb`, Base `LUIcbxeKdaCY2rsEHwCcnVQSnUe`, table
+  `tbl6gKPJPTvOcTWv`. It is kept for history only; every write goes to the
+  canonical base above.
 
-Before writing, run `lark-cli base +table-get` and use the returned field IDs. Do not rely on guessed field names when writing.
+Before writing, run `lark-cli base +table-get` against the canonical base and
+use the returned field IDs. Do not rely on guessed field names when writing.
 
 ## Language Field Pattern
 
@@ -101,25 +106,25 @@ Do not trust dry-run output or CLI echo text as proof that Unicode stored correc
 Field discovery:
 
 ```powershell
-lark-cli base +table-get --base-token LUIcbxeKdaCY2rsEHwCcnVQSnUe --table-id tbl6gKPJPTvOcTWv
+lark-cli base +table-get --base-token "$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN" --table-id <resolved Translation_Memory table id>
 ```
 
 Projected read:
 
 ```powershell
-lark-cli base +record-get --base-token LUIcbxeKdaCY2rsEHwCcnVQSnUe --table-id tbl6gKPJPTvOcTWv --record-id <record_id> --field-id <en_field_id> --field-id <target_field_id> --field-id <maintenance_log_field_id> --field-id <audit_log_field_id> --format json
+lark-cli base +record-get --base-token "$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN" --table-id <resolved Translation_Memory table id> --record-id <record_id> --field-id <en_field_id> --field-id <target_field_id> --field-id <maintenance_log_field_id> --field-id <audit_log_field_id> --format json
 ```
 
 Write one record:
 
 ```powershell
-lark-cli base +record-upsert --base-token LUIcbxeKdaCY2rsEHwCcnVQSnUe --table-id tbl6gKPJPTvOcTWv --record-id <record_id> --json @./.tmp_tm_payload.json
+lark-cli base +record-upsert --base-token "$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN" --table-id <resolved Translation_Memory table id> --record-id <record_id> --json @./.tmp_tm_payload.json
 ```
 
 Create one record:
 
 ```powershell
-lark-cli base +record-upsert --base-token LUIcbxeKdaCY2rsEHwCcnVQSnUe --table-id tbl6gKPJPTvOcTWv --json @./.tmp_tm_payload.json
+lark-cli base +record-upsert --base-token "$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN" --table-id <resolved Translation_Memory table id> --json @./.tmp_tm_payload.json
 ```
 
 ## Audit Outcome

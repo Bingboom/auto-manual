@@ -21,6 +21,12 @@ Operational tooling lives in:
 
 ## 1. Table identity
 
+> **G4 base convergence (2026-07-02):** the coordinates below describe the
+> **A/wiki mirror**, which is now a **read-only archive**. The canonical live
+> Translation_Memory / Terms base is whatever `$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`
+> names (tables resolved by name inside it); every skill/script write path
+> targets that base. Do not write the archive.
+
 | | Translation Memory (句对库) | Glossary (术语库) |
 | --- | --- | --- |
 | Role | full source→target **sentences/segments** for reuse and leverage | controlled **terms / UI labels / status words**, one canonical target each |

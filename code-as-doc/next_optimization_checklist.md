@@ -675,10 +675,20 @@ change.
     - each preprocess run appends its per-run stats (matched units / total units, by language pair and document) to a cumulative hit-rate ledger under `reports/`
     - a baseline hit-rate number exists so G2/G4 improvements are measurable
 
-- [ ] PR G4: TM base convergence (工程④)
-  - Status: `pending`
-  - Note: **operator decision required** — pick the canonical write base between
-    the A (wiki) and B (env-token) mirrors; the other becomes read-only archive
+- [x] PR G4: TM base convergence (工程④)
+  - Status: `done`
+  - Completed: `2026-07-02`
+  - Note: operator decision (2026-07-02): **B — the env-token base — is the
+    canonical write base**; the A/wiki mirror (`X3O8…`/`LUIc…`/`tbl6gK…`) is a
+    read-only archive. One config point: `$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`,
+    tables resolved by NAME inside it. Converged: the TM query script no longer
+    silently falls back to the A wiki token (missing binding now fails loudly;
+    `--wiki-token` remains for explicit archive reads), the docx-preprocess
+    script's TM defaults switched from hardcoded A coordinates to env-first +
+    by-name table resolution, `bilingual-tm-maintenance` (the write skill) now
+    targets the canonical base with an explicit do-not-write archive note, and
+    the four docs describing A as live carry convergence banners. Data
+    migration/backfill of any rows unique to A is operator work outside this PR.
   - Done when:
     - exactly one TM base accepts writes; skills and scripts resolve it from one config point
     - the retired mirror is marked read-only/archived and no skill defaults to it
