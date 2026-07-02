@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -78,9 +79,27 @@ def probe_feishu(config: str) -> ProbeResult:
     elapsed = time.monotonic() - started
     if code == 0:
         return ProbeResult("Feishu/Lark", "ok", f"sync-data --dry-run ok in {elapsed:.1f}s")
-    tail = (stderr or stdout).splitlines()
-    detail = tail[-1] if tail else f"exit={code}"
-    return ProbeResult("Feishu/Lark", "failed", f"sync-data --dry-run failed: {detail}")
+    return ProbeResult(
+        "Feishu/Lark", "failed", f"sync-data --dry-run failed: {_failure_detail(stderr, stdout, code)}"
+    )
+
+
+def _failure_detail(stderr: str, stdout: str, code: int) -> str:
+    """A diagnosable one-liner from a failed command's output.
+
+    The old ``last line`` heuristic returned literally ``}`` whenever the error
+    was a multi-line JSON dump, which made every distinct failure look
+    identical. Prefer the last line that carries an error-ish signal; fall back
+    to the last few non-empty lines joined together.
+    """
+    lines = [line.strip() for line in (stderr or stdout).splitlines() if line.strip()]
+    if not lines:
+        return f"exit={code}"
+    error_re = re.compile(r"error|failed|denied|permission|exception|traceback|missing", re.IGNORECASE)
+    for line in reversed(lines):
+        if error_re.search(line) and len(line) > 3:
+            return line[:300]
+    return " | ".join(lines[-3:])[:300]
 
 
 def probe_dingtalk() -> ProbeResult:
