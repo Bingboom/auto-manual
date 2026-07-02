@@ -17,6 +17,7 @@ furo>=2024.8.6
 # Asset utilities
 Pillow>=10.0
 numpy>=1.26
+PyMuPDF>=1.24  # QC findings -> annotated-PDF renderer (tools/pdf_annotate.py)
 oss2>=2.19
 
 # Notes:

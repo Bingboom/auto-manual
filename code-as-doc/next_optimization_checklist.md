@@ -683,14 +683,21 @@ change.
     - exactly one TM base accepts writes; skills and scripts resolve it from one config point
     - the retired mirror is marked read-only/archived and no skill defaults to it
 
-- [ ] PR G5: PDF annotation renderer MVP (工程⑤)
-  - Status: `pending`
-  - Note: annotate on the PDF, correct at the source — the renderer is a
-    read-only presentation of QC findings; fixes flow through the existing
-    docx/cloud-doc backport path
+- [x] PR G5: PDF annotation renderer MVP (工程⑤)
+  - Status: `done`
+  - Completed: `2026-07-02`
+  - Note: `tools/pdf_annotate.py` (PyMuPDF, new `requirements.txt` dependency)
+    searches each finding's evidence text on the built PDF and writes a
+    highlight + note (severity / rule / message / `source_ref` / suggested
+    action / fix-at-the-source pointer); unlocatable findings degrade to a
+    page-1 summary note — no misplaced highlights. `content_lint` itself was
+    untouched (its findings.json is consumed as-is). New skill
+    `pdf-annotate-qc` registered in AGENTS.md §7 as the PDF counterpart of
+    `docx-highlight-changes`. Known limitation: two-column layouts can defeat
+    text search; those findings degrade to the summary note.
   - Target files:
-    - [`../tools/content_lint.py`](../tools/content_lint.py) (findings input)
-    - new renderer module + skill entry
+    - [`../tools/pdf_annotate.py`](../tools/pdf_annotate.py)
+    - [`../.agents/skills/pdf-annotate-qc/SKILL.md`](../.agents/skills/pdf-annotate-qc/SKILL.md)
   - Done when:
     - `content_lint` findings render as highlight + comment annotations on the built PDF (pymupdf text search; page-level fallback when text location fails)
     - each annotation names the source location (table/slot or template) so the reviewer can route the fix
