@@ -84,8 +84,6 @@ These files are kept for traceability, not as the current source of truth.
   - archived rollout checklist for an earlier OpenClaw phase
 - [`phase2_lark_setup_and_parity_plan.md`](phase2_lark_setup_and_parity_plan.md)
   - archived machine bring-up and parity record
-- [`dev/system_contract(draft_not_in_used).md`](dev/system_contract(draft_not_in_used).md)
-  - abandoned draft kept only as a marked archive
 - [`code_optimization_log.md`](code_optimization_log.md)
   - historical maintenance milestones
 - [`dev/dev_log.md`](dev/dev_log.md)

@@ -1,5 +1,12 @@
 # Content Assembly Pilot Plan
 
+> **ARCHIVED — rolled back 2026-05-30.** The assembly pilot described here was
+> removed from the codebase (the `assembly_pilot` switch and
+> `product_overview_renderer` no longer exist); Workstream N in
+> [`optimization_project.md`](../optimization_project.md) supersedes this
+> direction. Kept as the historical record referenced by
+> [`Long_Form_Content_Block_Design.md`](../architecture/Long_Form_Content_Block_Design.md).
+
 This note is the pre-template-splitting safety plan for the long-term
 content assembly pilot. It is intentionally narrower than the architecture
 strategy: the goal is to prove one page can be described by explicit data and
