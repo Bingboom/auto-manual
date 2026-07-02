@@ -1,0 +1,70 @@
+manifest_id: manual_kr
+pages:
+  - type: rst_include
+    lang: ko
+    file: templates/page_shared/ko/00_preface.rst
+  - type: rst_include
+    lang: ko
+    file: templates/page_eu-kr/safety_ko.rst
+  - type: rst_include
+    lang: ko
+    file: templates/page_shared/ko/01_user_maintenance_instructions.rst
+  - type: csv_page
+    source: phase2
+    page: symbols
+    langs: [ko]
+    include_dir: generated/{model}
+  - type: rst_include
+    lang: ko
+    file: templates/page_shared/ko/02_whats_in_the_box.rst
+  - type: generated_page
+    page: 03_product_overview
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/03_product_overview.yaml
+    template: templates/page_eu-kr/03_product_overview_placeholder.rst
+    langs: [ko]
+    include_dir: generated/{model}/draft
+  - type: csv_page
+    source: phase2
+    page: lcd_icons
+    langs: [ko]
+    include_dir: generated/{model}
+  - type: generated_page
+    page: 05_operation_guide
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/05_operation_guide.yaml
+    template: templates/page_eu-kr/05_operation_guide_placeholder.rst
+    langs: [ko]
+    include_dir: generated/{model}/draft
+  - type: rst_include
+    lang: ko
+    file: templates/page_shared/ko/06_ups_mode.rst
+  - type: rst_include
+    lang: ko
+    file: templates/page_shared/ko/charging.rst
+  - type: rst_include
+    lang: ko
+    file: templates/page_shared/ko/08_charging_methods.rst
+  - type: rst_include
+    lang: ko
+    file: templates/page_shared/ko/09_storage_and_maintenance.rst
+  - type: csv_page
+    source: phase2
+    page: troubleshooting
+    langs: [ko]
+    include_dir: generated/{model}
+  - type: csv_page
+    source: phase2
+    page: spec
+    langs: [ko]
+    include_dir: generated/{model}
+  - type: rst_include
+    lang: ko
+    file: templates/page_shared/ko/11_warranty.rst
+  - type: generated_page
+    page: 12_app_setup
+    engine: draft_v1
+    recipe: templates/recipes/eu-shared-en/12_app_setup.yaml
+    template: templates/page_shared/ko/12_app_setup_placeholder.rst
+    langs: [ko]
+    include_dir: generated/{model}/draft

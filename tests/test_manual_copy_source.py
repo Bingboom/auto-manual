@@ -52,6 +52,7 @@ class TestManualCopySource(unittest.TestCase):
             "de": "WARNUNG",
             "it": "AVVERTENZA",
             "uk": "WARNING UK",
+            "ko": "경고",
         }
         meaning_languages = {
             "en": "Hazardous practices.",
@@ -63,6 +64,7 @@ class TestManualCopySource(unittest.TestCase):
             "de": "Gefaehrliche Handlungen.",
             "it": "Pratiche pericolose.",
             "uk": "Hazardous practices UK.",
+            "ko": "위험한 행위.",
         }
         tm_rows = [
             {**tm_languages, MANUAL_COPY_TAG_FIELD: "manual_copy"},

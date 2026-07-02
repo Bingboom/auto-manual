@@ -50,6 +50,7 @@ LOCALIZED_COPY_COLUMNS = (
     "text_de",
     "text_it",
     "text_uk",
+    "text_ko",
     "notes",
 )
 
@@ -67,6 +68,7 @@ TM_LANGUAGE_FIELDS = {
     "it": "it",
     "uk": "uk",
     "ukr": "uk",
+    "ko": "ko",
 }
 
 LOCALIZED_COPY_TEXT_COLUMNS = {
@@ -79,9 +81,10 @@ LOCALIZED_COPY_TEXT_COLUMNS = {
     "text_de": "de",
     "text_it": "it",
     "text_uk": "uk",
+    "text_ko": "ko",
 }
 
-STATUS_WORD_COLUMNS = ("en", "zh", "jp", "fr", "es", "pt-BR", "de", "it", "uk", STATUS_WORD_MARKER_FIELD)
+STATUS_WORD_COLUMNS = ("en", "zh", "jp", "fr", "es", "pt-BR", "de", "it", "uk", "ko", STATUS_WORD_MARKER_FIELD)
 TRANSLATION_MEMORY_COLUMNS = (*STATUS_WORD_COLUMNS[:-1], MANUAL_COPY_TAG_FIELD, STATUS_WORD_MARKER_FIELD)
 SPEC_TITLE_COLUMNS = (
     "title_en",

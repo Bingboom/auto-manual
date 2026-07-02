@@ -30,6 +30,7 @@ _LANG_TEXT_COLUMNS = {
     "it": "text_it",
     "uk": "text_uk",
     "ukr": "text_uk",
+    "ko": "text_ko",
 }
 
 
