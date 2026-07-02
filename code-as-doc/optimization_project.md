@@ -120,7 +120,7 @@ Use this section for short milestone-style updates.
 - completed the entrypoint-and-tooling parity workstream by removing hardcoded low-level `JE-1000F` diff-report defaults, centralizing shared target/config defaults, and aligning review-preview/matrix scripts with shared family config metadata
 - continued Workstream A by moving [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py) and [`tools/process_docs/build_review_preview.py`](../tools/process_docs/build_review_preview.py) to config-derived target metadata instead of hardcoded per-language output rules
 - finished the remaining `scripts/` bootstrap cleanup so [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py) and [`scripts/local_build.py`](../scripts/local_build.py) now share the repo-root bootstrap path used across `tools/`
-- collapsed [`scripts/build_us_manuals.ps1`](../scripts/build_us_manuals.ps1) into a thin compatibility wrapper over [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py), removing its duplicate per-language matrix loop and hardcoded default model
+- collapsed `scripts/build_us_manuals.ps1` (later removed 2026-07-02) into a thin compatibility wrapper over [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py), removing its duplicate per-language matrix loop and hardcoded default model
 - updated maintainer and user-facing docs so script examples and preview defaults match the current supported baseline
 
 ### 2026-04-06
