@@ -85,6 +85,12 @@ The JSON result includes:
 - `output_docx`: local processed file.
 - `report_json`: replacement report with match source, score, and row key.
 - `change_count`: replacement count.
+- `units_total` / `units_matched` / `hit_rate`: sentence-level TM hit-rate
+  counters for this run.
+- `hit_rate_ledger`: where the run was appended in the cumulative hit-rate
+  ledger (`reports/tm_hit_rate/ledger.jsonl`, via `tools/tm_hit_rate.py`), or
+  the append-failure note. The ledger append is best-effort and never fails
+  the run; query the trend with `python3 -m tools.tm_hit_rate stats`.
 - `highlighted_runs`: highlighted run count in `word/document.xml`.
 - `upload.url`: Feishu uploaded file URL when upload succeeds.
 - `source_wiki_node.parent_node_token`: evidence for same-path upload.
