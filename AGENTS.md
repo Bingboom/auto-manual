@@ -23,6 +23,7 @@ For current human workflows, read:
 
 - [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
 - [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
+- [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) — the two-plane topology (auto-manual = engineering plane, Hello-Docs mirror = business plane, old/new Feishu bases, TM-B as the single corpus): read this before reasoning about which repo, base, or tenant an operation touches
 
 ## 1. Entrypoint
 
