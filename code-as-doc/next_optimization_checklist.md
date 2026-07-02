@@ -685,11 +685,18 @@ change.
     - a review cloud doc with edits newer than its last backport for N days opens/updates a reminder issue (report-only, no auto-backport)
     - the issue closes itself once the backport lands
 
-- [ ] PR G7: Intake completeness gate default-on (工程⑦)
-  - Status: `pending`
+- [x] PR G7: Intake completeness gate default-on (工程⑦)
+  - Status: `done`
+  - Completed: `2026-07-02`
+  - Note: `spec-extract` now errors (exit 2, no outputs written) when
+    `--reference` is absent unless `--skip-completeness` is passed explicitly.
+    The second done-when was verified already true in current code — no change
+    needed: `enrich_candidates_with_snapshot` escalates multi-match business
+    keys to `needs_review` (operation + status + warning), and extract-side
+    warnings already force `needs_review` status; the original screening claim
+    ("ambiguous only warns") was stale.
   - Target files:
-    - [`../tools/source_intake_runtime.py`](../tools/source_intake_runtime.py)
-    - [`../tools/source_intake_completeness.py`](../tools/source_intake_completeness.py)
+    - [`../tools/source_intake.py`](../tools/source_intake.py)
   - Done when:
     - `spec-extract` without `--reference` fails loudly unless `--skip-completeness` is passed explicitly (no silent skip)
     - ambiguous snapshot keys require review instead of warning

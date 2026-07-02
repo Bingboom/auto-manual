@@ -68,5 +68,74 @@ class CompletenessTests(unittest.TestCase):
                          ("x", "", "S", "2"))
 
 
+class SpecExtractGateDefaultTests(unittest.TestCase):
+    """spec-extract must not silently skip the completeness gate (G7)."""
+
+    def _spec_md(self, td: Path) -> tuple[Path, Path]:
+        spec = td / "spec.md"
+        spec.write_text("| label | value |\n| --- | --- |\n| Rated Power | 1000W |\n",
+                        encoding="utf-8")
+        rules = td / "rules.json"
+        rules.write_text("[]", encoding="utf-8")
+        return spec, rules
+
+    def test_no_reference_without_skip_flag_fails_loudly(self):
+        import contextlib
+        import io
+        import tempfile
+
+        from tools import source_intake
+
+        with tempfile.TemporaryDirectory() as raw:
+            td = Path(raw)
+            spec, rules = self._spec_md(td)
+            stderr = io.StringIO()
+            with contextlib.redirect_stderr(stderr):
+                rc = source_intake.main([
+                    "spec-extract", "--input", str(spec), "--rules", str(rules),
+                    "--document-key", "JE-2000E_JP", "--region", "JP",
+                    "--out", str(td / "out"),
+                ])
+            self.assertEqual(rc, 2)
+            self.assertIn("--skip-completeness", stderr.getvalue())
+            self.assertFalse((td / "out" / "spec_intake_candidates.json").exists())
+
+    def test_explicit_skip_flag_runs_without_gate(self):
+        import tempfile
+
+        from tools import source_intake
+
+        with tempfile.TemporaryDirectory() as raw:
+            td = Path(raw)
+            spec, rules = self._spec_md(td)
+            rc = source_intake.main([
+                "spec-extract", "--input", str(spec), "--rules", str(rules),
+                "--document-key", "JE-2000E_JP", "--region", "JP",
+                "--skip-completeness", "--out", str(td / "out"),
+            ])
+            self.assertEqual(rc, 0)
+            self.assertTrue((td / "out" / "spec_intake_candidates.json").exists())
+            self.assertFalse((td / "out" / "spec_intake_completeness.json").exists())
+
+    def test_reference_still_runs_the_gate(self):
+        import json
+        import tempfile
+
+        from tools import source_intake
+
+        with tempfile.TemporaryDirectory() as raw:
+            td = Path(raw)
+            spec, rules = self._spec_md(td)
+            reference = td / "sibling.json"
+            reference.write_text(json.dumps([_row("rated_power")]), encoding="utf-8")
+            rc = source_intake.main([
+                "spec-extract", "--input", str(spec), "--rules", str(rules),
+                "--document-key", "JE-2000E_JP", "--region", "JP",
+                "--reference", str(reference), "--out", str(td / "out"),
+            ])
+            self.assertIn(rc, (0, 1))  # gate verdict decides the code, not a crash
+            self.assertTrue((td / "out" / "spec_intake_completeness.json").exists())
+
+
 if __name__ == "__main__":
     unittest.main()
