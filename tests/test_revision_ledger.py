@@ -479,5 +479,184 @@ class TestRevisionLedgerCli(unittest.TestCase):
             self.assertEqual(len(revision_ledger.load_ledger(ledger)), 1)
 
 
+class TestRevisionLedgerSimilarityVerdict(unittest.TestCase):
+    """Fuzzy layer: punctuation/line-break edits must not misclassify."""
+
+    def test_reviewer_text_with_punctuation_tweak_is_accepted(self) -> None:
+        # Landed text differs from the proposal by one comma: exact containment
+        # fails, the similarity layer should still call it accepted.
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully, before first use.\n")
+            ledger = root / "ledger.jsonl"
+            revision_ledger.ingest_report(_report(), ledger_path=ledger)
+            revision_ledger.reconcile(ledger, root=root)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+
+    def test_machine_text_with_tiny_tweak_is_rejected(self) -> None:
+        # The machine text survived with a trailing-word tweak and the reviewer
+        # proposal is nowhere: near-match on machine text -> rejected.
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Please charge the battery now.\n")
+            report = _report()
+            report["deltas"][0]["old_text"] = "Please charge the battery."
+            report["deltas"][0]["new_text"] = "Top up the cells before initial operation."
+            ledger = root / "ledger.jsonl"
+            revision_ledger.ingest_report(report, ledger_path=ledger)
+            revision_ledger.reconcile(ledger, root=root)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.REJECTED_STATUS)
+
+    def test_short_needle_stays_containment_only(self) -> None:
+        # Below MIN_FUZZY_LENGTH the ratio is noise; a near-miss short string
+        # must not fuzzy-accept.
+        row = {"reviewer_text": "AC 100W", "machine_text": "AC 200W"}
+        haystack = "the port supports ac 150w output"
+        self.assertEqual(
+            revision_ledger.classify_verdict(row, haystack),
+            revision_ledger.EDITED_STATUS,
+        )
+
+    def test_deletion_proposal_with_near_present_machine_text_is_rejected(self) -> None:
+        row = {"reviewer_text": "", "machine_text": "Never cover the vents while charging."}
+        haystack = "warning: never cover the vents, while charging."
+        normalized_hay = haystack  # already lowercase/plain
+        self.assertEqual(
+            revision_ledger.classify_verdict(row, normalized_hay),
+            revision_ledger.REJECTED_STATUS,
+        )
+
+
+def _git(root: Path, *args: str, env: dict | None = None) -> None:
+    import subprocess
+
+    base_env = {
+        "GIT_AUTHOR_NAME": "Rev Reviewer",
+        "GIT_AUTHOR_EMAIL": "rev@example.invalid",
+        "GIT_COMMITTER_NAME": "Rev Reviewer",
+        "GIT_COMMITTER_EMAIL": "rev@example.invalid",
+        "PATH": __import__("os").environ.get("PATH", ""),
+        "HOME": __import__("os").environ.get("HOME", ""),
+    }
+    if env:
+        base_env.update(env)
+    subprocess.run(["git", "-C", str(root), *args], check=True, capture_output=True, env=base_env)
+
+
+class TestRevisionLedgerAutoMergeMeta(unittest.TestCase):
+    def test_auto_reconcile_stamps_commit_author_and_pr(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            _git(root, "init", "-q")
+            _git(root, "add", ".")
+            _git(root, "commit", "-q", "-m", "feat(review): land reviewer edits (#742)")
+            ledger = root / "ledger.jsonl"
+            revision_ledger.ingest_report(_report(), ledger_path=ledger)
+            summary = revision_ledger.reconcile(ledger, root=root, auto_merge_meta=True)
+            self.assertEqual(summary["rows_reconciled"], 1)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+            self.assertEqual(row["merged_pr"], "#742")
+            self.assertEqual(row["reviewer"], "Rev Reviewer")
+            self.assertTrue(row["merged_commit"])
+            self.assertTrue(row["merged_at"])
+
+    def test_explicit_merge_meta_wins_over_auto(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            _git(root, "init", "-q")
+            _git(root, "add", ".")
+            _git(root, "commit", "-q", "-m", "feat(review): land reviewer edits (#742)")
+            ledger = root / "ledger.jsonl"
+            revision_ledger.ingest_report(_report(), ledger_path=ledger)
+            revision_ledger.reconcile(
+                ledger,
+                root=root,
+                merge_meta={"merged_pr": "#900"},
+                auto_merge_meta=True,
+            )
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["merged_pr"], "#900")
+            self.assertEqual(row["reviewer"], "Rev Reviewer")
+
+    def test_auto_without_git_repo_still_reconciles_unstamped(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            ledger = root / "ledger.jsonl"
+            revision_ledger.ingest_report(_report(), ledger_path=ledger)
+            summary = revision_ledger.reconcile(ledger, root=root, auto_merge_meta=True)
+            self.assertEqual(summary["rows_reconciled"], 1)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+            self.assertIsNone(row["merged_commit"])
+
+
+class TestRevisionLedgerIngestPiggyback(unittest.TestCase):
+    def test_cli_ingest_runs_reconcile_by_default(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            report_path = root / "report.json"
+            report_path.write_text(json.dumps(_report()), encoding="utf-8")
+            ledger = root / "ledger.jsonl"
+            rc = revision_ledger.main(
+                [
+                    "ingest",
+                    "--report",
+                    str(report_path),
+                    "--ledger",
+                    str(ledger),
+                    "--root",
+                    str(root),
+                ]
+            )
+            self.assertEqual(rc, 0)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
+
+    def test_cli_ingest_no_reconcile_leaves_rows_pending(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            report_path = root / "report.json"
+            report_path.write_text(json.dumps(_report()), encoding="utf-8")
+            ledger = root / "ledger.jsonl"
+            rc = revision_ledger.main(
+                [
+                    "ingest",
+                    "--report",
+                    str(report_path),
+                    "--ledger",
+                    str(ledger),
+                    "--root",
+                    str(root),
+                    "--no-reconcile",
+                ]
+            )
+            self.assertEqual(rc, 0)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.PENDING_STATUS)
+
+
+class TestRevisionLedgerReflowRate(unittest.TestCase):
+    def test_reflow_rate_counts_rows_that_left_pending(self) -> None:
+        rows = [
+            {"final_status": revision_ledger.ACCEPTED_STATUS},
+            {"final_status": revision_ledger.REJECTED_STATUS},
+            {"final_status": revision_ledger.PENDING_STATUS},
+            {"final_status": revision_ledger.PENDING_STATUS},
+        ]
+        summary = revision_ledger.summarize(rows)
+        self.assertEqual(summary["reflow_rate"], 0.5)
+
+    def test_reflow_rate_empty_ledger_is_none(self) -> None:
+        self.assertIsNone(revision_ledger.summarize([])["reflow_rate"])
+
+
 if __name__ == "__main__":
     unittest.main()

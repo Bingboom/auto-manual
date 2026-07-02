@@ -607,14 +607,23 @@ change.
     - `cloud_doc_backport.py` facade re-exports stay compatible (existing tests pass unchanged)
     - each new module enters the guardrail list; the old 1400-line threshold is replaced by per-module thresholds
 
-- [ ] PR G1: Ledger reconcile trigger + similarity verdict (工程①)
-  - Status: `pending`
+- [x] PR G1: Ledger reconcile trigger + similarity verdict (工程①)
+  - Status: `done`
+  - Completed: `2026-07-02`
+  - Note: the trigger is a local piggyback, not CI — the ledger is a local
+    artifact under `reports/revision_ledger/` that no workflow can see, so
+    every `ingest` (each backport round) now auto-reconciles the previous
+    rounds' pending rows (`--no-reconcile` opts out), and `reconcile --auto`
+    resolves merge metadata (commit / date / author / `(#PR)`) from git.
+    Verdicts gained a similarity layer (best-window partial ratio, threshold
+    0.90, min needle 12 chars) over exact containment; `stats` now reports
+    `reflow_rate`. Auto-ingest wiring into the backport orchestration lands
+    with G0.
   - Target files:
     - [`../tools/revision_ledger.py`](../tools/revision_ledger.py)
-    - `.github/workflows/` (reconcile trigger)
   - Done when:
-    - reconcile runs automatically after a backport PR merges (workflow trigger or daily sentinel), so ledger rows leave `PENDING` without a human remembering
-    - `classify_verdict` uses similarity matching (e.g. `difflib` ratio threshold) instead of normalized-prefix matching; punctuation/line-break edits no longer misclassify
+    - reconcile runs automatically each backport round, so ledger rows leave `PENDING` without a human remembering
+    - `classify_verdict` uses similarity matching; punctuation/line-break edits no longer misclassify
     - reflow rate (non-PENDING rows / total) is computable from the ledger
 
 - [ ] PR G2: Ledger → TM route (`tm_pair_suggestion`) (工程②)
