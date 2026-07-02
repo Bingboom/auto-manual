@@ -597,8 +597,20 @@ executing agent when the full matching validation set is green; the grant
 expires when G1–G7 are done. Each PR updates its item status here in the same
 change.
 
-- [ ] PR G0: Split `cloud_doc_backport_cli.py` (args / commands / orchestration)
-  - Status: `pending`
+- [x] PR G0: Split `cloud_doc_backport_cli.py` (args / commands / orchestration)
+  - Status: `done`
+  - Completed: `2026-07-02`
+  - Note: 1380-line conductor → `args` (422, argparse + arg-interpretation
+    helpers) / `commands` (497, single-command runners) / `orchestration`
+    (802, review-branch + baseline + PR flow) / `cli` (222, `main` + the
+    compatibility re-export hub). One-way imports (`args` ← `commands` /
+    `orchestration` ← `cli`); facade unchanged. One deviation from "tests pass
+    unchanged": 39 test patches targeted `cloud_doc_backport_cli.*` seams
+    whose call sites moved — retargeted to `cloud_doc_backport_orchestration.*`
+    (patching a re-export never intercepted the real call). Also lands the G1
+    tail: the orchestration baseline flow feeds the revision ledger
+    best-effort (`AUTO_MANUAL_REVISION_LEDGER_PATH`; `off` disables; tests
+    isolated via setUpModule).
   - Target files:
     - [`../tools/cloud_doc_backport_cli.py`](../tools/cloud_doc_backport_cli.py)
     - [`../tools/check_maintainability_guardrails.py`](../tools/check_maintainability_guardrails.py)
