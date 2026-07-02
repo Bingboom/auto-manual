@@ -1,0 +1,141 @@
+name: Backport Reminder
+
+# Milestone G / PR G6: scheduled, read-only alert when an in-review cloud doc
+# carries edits that no backport has collected. The backport is CLI-only (#453)
+# and operator-run; this sentinel is the "did anyone remember" check. It compares
+# each InReview doc's live text against the committed render baseline on its
+# review branch (docs/_review/<model>/<region>/.backport/<token>.baseline.md) —
+# content, not timestamps — so the alert clears exactly when a backport advances
+# the baseline. Read-only: it never writes Feishu, the repo, or the branches.
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # daily 02:00 UTC (~10:00 CST), offset from schema-parity
+  workflow_dispatch:
+
+concurrency:
+  group: backport-reminder
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  remind:
+    # Only the dev source repo runs this; the Hello-Docs mirror copies the file
+    # but must not run the job.
+    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    runs-on: ubuntu-latest
+    env:
+      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+      FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
+      FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
+      FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check configuration
+        id: cfg
+        shell: bash
+        run: |
+          if [ -z "$FEISHU_APP_ID" ] || [ -z "$FEISHU_APP_SECRET" ] || [ -z "$FEISHU_PHASE2_BASE_TOKEN" ] || [ -z "$FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "### Backport Reminder — not configured (no-op)"
+              echo
+              echo "Uses the same repo secrets as the build queue:"
+              echo "- \`FEISHU_APP_ID\` / \`FEISHU_APP_SECRET\`"
+              echo "- \`FEISHU_PHASE2_BASE_TOKEN\` / \`FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID\`"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch review branches
+        if: ${{ steps.cfg.outputs.configured == 'true' }}
+        shell: bash
+        run: git fetch origin '+refs/heads/review/*:refs/remotes/origin/review/*'
+
+      - uses: ./.github/actions/feishu-common-setup
+        if: ${{ steps.cfg.outputs.configured == 'true' }}
+
+      - name: Check in-review docs against their baselines
+        id: remind
+        if: ${{ steps.cfg.outputs.configured == 'true' }}
+        shell: bash
+        run: |
+          set +e
+          python tools/backport_reminder.py check | tee reminder_out.txt
+          rc=${PIPESTATUS[0]}
+          {
+            echo "### Backport Reminder (in-review docs vs baselines)"
+            echo
+            echo '```'
+            cat reminder_out.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$rc" -ne 0 ]; then
+            echo "pending=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "pending=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open / update reminder issue
+        if: ${{ steps.cfg.outputs.configured == 'true' && steps.remind.outputs.pending == 'true' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = "[backport-reminder] review docs have un-backported edits";
+            const out = fs.readFileSync('reminder_out.txt', 'utf8');
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              "An in-review cloud doc differs from its committed render baseline, so reviewer edits exist that no backport has collected (or the review has never been backported).",
+              "Collect them with the CLI backport, which advances the baseline and clears this alert:",
+              "",
+              "```",
+              "python tools/cloud_doc_backport.py run-review-branch --doc-name <doc name> --cloud-doc <url>",
+              "```",
+              "",
+              "```",
+              out,
+              "```",
+              "",
+              `Run: ${runUrl}`,
+            ].join("\n");
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: "open", per_page: 100,
+            });
+            const existing = issues.find((i) => i.title === marker && !i.pull_request);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo, issue_number: existing.number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo, title: marker, body,
+              });
+            }
+
+      - name: Resolve reminder issue (all synced)
+        if: ${{ steps.cfg.outputs.configured == 'true' && steps.remind.outputs.pending == 'false' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const marker = "[backport-reminder] review docs have un-backported edits";
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: "open", per_page: 100,
+            });
+            const existing = issues.find((i) => i.title === marker && !i.pull_request);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo, issue_number: existing.number,
+                body: `Every in-review doc now matches its baseline. Closing.\n\nRun: ${runUrl}`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo, issue_number: existing.number, state: "closed",
+              });
+            }

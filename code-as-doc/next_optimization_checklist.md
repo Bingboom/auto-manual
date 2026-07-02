@@ -696,12 +696,24 @@ change.
     - each annotation names the source location (table/slot or template) so the reviewer can route the fix
     - output is a sidecar `*_annotated.pdf`; the shipped PDF is untouched
 
-- [ ] PR G6: Backport reminder sentinel (工程⑥)
-  - Status: `pending`
+- [x] PR G6: Backport reminder sentinel (工程⑥)
+  - Status: `done`
+  - Completed: `2026-07-02`
+  - Note: content comparison instead of timestamps — `tools/backport_reminder.py`
+    compares every InReview doc's live text (lark-cli fetch) against the
+    committed render baseline on its review branch (read via `git show`, no
+    worktree), in the same normalized text space the backport diffs in. Any
+    difference (or a missing baseline) means un-backported edits, and the
+    alert clears exactly when a backport advances the baseline — no N-day
+    heuristic needed, and no dependency on an unverified doc-meta API.
+    Daily workflow `backport-reminder.yml` (02:00 UTC) opens/updates/closes
+    the `[backport-reminder]` issue, same pattern as schema-parity; reuses
+    the build-queue secrets and `feishu-common-setup`.
   - Target files:
-    - `.github/workflows/` (daily sentinel, same pattern as `feishu-schema-parity.yml`)
+    - [`../tools/backport_reminder.py`](../tools/backport_reminder.py)
+    - `.github/workflows/backport-reminder.yml`
   - Done when:
-    - a review cloud doc with edits newer than its last backport for N days opens/updates a reminder issue (report-only, no auto-backport)
+    - a review cloud doc with un-backported edits opens/updates a reminder issue (report-only, no auto-backport)
     - the issue closes itself once the backport lands
 
 - [x] PR G7: Intake completeness gate default-on (工程⑦)
