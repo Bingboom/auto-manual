@@ -744,3 +744,20 @@ Main outcomes:
 Why it mattered:
 
 - a structure+table+seed+env change previously landed in 4–5 separate manual steps; `promote` bundles {structure + reference data + env delta} into one self-gated command (code already rides `sync-hello-docs`). Together with B (parity) and E (daily drift alarm), the dev→prod **structure/reference** loop is now closed end-to-end: one operator command to promote, one daily CI alarm if prod falls behind.
+
+## 47. 2026-07-02: Business Closed-Loop Engineering (Milestone G / Workstream R, G0–G7)
+
+Main outcomes:
+
+- **Revision reflow closed (G1, #514 + G0 tail, #517):** every `revision_ledger ingest` now auto-reconciles earlier rounds' pending rows (`--no-reconcile` opts out) and `reconcile --auto` stamps merge metadata from git; verdicts gained a similarity layer (best-window partial ratio ≥ 0.90, min needle 12 chars) so punctuation-level edits stop misclassifying; `stats` reports `reflow_rate`. The backport orchestration feeds the ledger best-effort per round (`AUTO_MANUAL_REVISION_LEDGER_PATH`; `off` disables) — the ledger is a local artifact, so the per-round piggyback, not CI, is the trigger.
+- **Reviewer corrections reach the TM (G2, #518):** `tm-candidates` projects accepted review-route rows into the suggestion shape the existing gated TM write path consumes; `tm-apply` drives `translation_memory_sync.apply_translation_suggestions` (approval hashes, exact-or-abstain, GET-verified) — no new write path was built.
+- **TM utilization is measurable (G3, #515):** the preprocess `Matcher` counts sentence-level units attempted vs matched; each run appends to `reports/tm_hit_rate/ledger.jsonl` via the stdlib-only [`tools/tm_hit_rate.py`](../tools/tm_hit_rate.py) (`stats` = overall + per-language-pair rates).
+- **One canonical TM base (G4, #521, operator decision):** the env-token base (`$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`, tables by name) is the single write base; the A/wiki mirror is a read-only archive — the query script no longer falls back to it silently, the preprocess script resolves env-first, and the `bilingual-tm-maintenance` write skill targets the canonical base.
+- **PDF gains an annotation surface (G5, #520):** [`tools/pdf_annotate.py`](../tools/pdf_annotate.py) (PyMuPDF) renders `content_lint` findings as highlight+note annotations on a sidecar `*_annotated.pdf` — annotate on the PDF, correct at the source; unlocatable findings degrade to a page-1 summary note, never a misplaced highlight. New skill `pdf-annotate-qc`.
+- **Nobody has to remember the backport (G6, #519):** [`tools/backport_reminder.py`](../tools/backport_reminder.py) + a daily `backport-reminder.yml` sentinel compare every InReview doc's live text against its committed render baseline (content, not timestamps) and keep a `[backport-reminder]` issue open exactly while un-backported edits exist.
+- **The intake gate cannot be skipped silently (G7, #516):** `spec-extract` without `--reference` errors out unless `--skip-completeness` is explicit; the "ambiguous keys only warn" claim was verified stale (multi-match already escalates to `needs_review`).
+- **Prerequisite refactor (G0, #517):** the 1380-line `cloud_doc_backport_cli.py` split into `args` / `commands` / `orchestration` / a 222-line dispatcher, all under per-module guardrails (22 hotspot files governed); 39 test patches retargeted to the orchestration seams (patching a re-export never intercepted the real call).
+
+Why it mattered:
+
+- the 2026-07-02 closed-loop analysis found the main line broke at reflow: reviewer corrections were recorded but never reconciled (reflow rate ≈ 0%) and never reached the TM corpus, TM utilization had no denominator, and PDF was the only reviewer surface with zero annotation capability. G0–G7 close the loop end-to-end and make its health measurable (reflow rate, hit rate); the remaining operator legs are the first live hit-rate baseline run, a `workflow_dispatch` of the reminder sentinel, and migrating any rows unique to the archived A base.

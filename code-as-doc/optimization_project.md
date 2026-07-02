@@ -522,7 +522,7 @@ Exit criteria:
 
 ### Workstream R: Business Closed-Loop — Revision Reflow, TM Corpus Lifecycle, PDF Annotation
 
-Status: active
+Status: done (2026-07-02; log entry 47 — G0–G7 delivered in #514–#521; remaining operator legs: first live hit-rate baseline, reminder-sentinel dispatch, A-base row migration)
 
 PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone G.
 
