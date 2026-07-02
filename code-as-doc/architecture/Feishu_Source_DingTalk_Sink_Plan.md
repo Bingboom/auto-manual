@@ -2,7 +2,15 @@
 
 Updated: 2026-04-14
 
-This document matches the repo's current DingTalk implementation.
+> **RETIRED — 2026-07-02.** The DingTalk AliDocs mirror-upload chain was
+> withdrawn by operator decision: the one-click queue wrapper
+> (`process_build_queue_dingtalk.ps1`), the browser-session upload CLI
+> (`alidocs_session_upload_cli.py`), and the operator setup guide were removed.
+> The queue-side `dingtalk_alidocs_session` provider code referenced below is
+> dormant pending a separate removal decision. Kept as the historical record of
+> the sink design.
+
+This document matches the repo's DingTalk implementation as of 2026-04-14.
 
 The maintained direction today is:
 
@@ -24,11 +32,11 @@ As of 2026-04-14, the hybrid path is already implemented:
 - queue execution supports `lark_drive` and `dingtalk_alidocs_session`
 - DingTalk browser-session upload exists in
   [`../../tools/dingtalk/alidocs_session.py`](../../tools/dingtalk/alidocs_session.py)
-- the manual smoke helper for that upload path exists in
-  [`../../tools/dingtalk/alidocs_session_upload_cli.py`](../../tools/dingtalk/alidocs_session_upload_cli.py)
-- local wrappers exist for Feishu-only and Feishu-plus-DingTalk runs:
+- the manual smoke helper for that upload path was
+  `tools/dingtalk/alidocs_session_upload_cli.py` (removed 2026-07-02)
+- local wrappers existed for Feishu-only and Feishu-plus-DingTalk runs:
   [`../../scripts/process_build_queue_feishu.ps1`](../../scripts/process_build_queue_feishu.ps1),
-  [`../../scripts/process_build_queue_dingtalk.ps1`](../../scripts/process_build_queue_dingtalk.ps1)
+  `scripts/process_build_queue_dingtalk.ps1` (removed 2026-07-02)
 - the remote GitHub Draft/Publish workers keep Feishu/wiki as primary and
   enable DingTalk mirror mode when the required DingTalk secrets are present:
   [`../../.github/workflows/feishu-draft-build-queue.yml`](../../.github/workflows/feishu-draft-build-queue.yml),
@@ -221,7 +229,8 @@ control plane itself is intentionally being redesigned.
   [`../../user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md)
 - current quick operator guide for maintaining the queue table:
   [`../../user-guide/quick_start_guide.md`](../../user-guide/quick_start_guide.md)
-- DingTalk local setup and smoke steps:
-  [`../../user-guide/dingtalk_alidocs_upload_setup_guide.md`](../../user-guide/dingtalk_alidocs_upload_setup_guide.md)
+- DingTalk local setup and smoke steps: the setup guide
+  (`user-guide/dingtalk_alidocs_upload_setup_guide.md`) was removed with the
+  chain retirement (2026-07-02)
 - current OpenClaw and queue architecture context:
   [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)
