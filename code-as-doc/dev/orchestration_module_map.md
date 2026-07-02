@@ -240,14 +240,27 @@ still works because the entry file re-exports all public symbols.
   - report builders (`build_report` + verify / source-table-suggestions / template-sync-proposal / review-run).
 - [`tools/cloud_doc_backport_pr.py`](../../tools/cloud_doc_backport_pr.py)
   - PR/git helpers (`gh` PR creation + 403 compare-url fallback, branch naming, `open_backport_pr_from_manifest`).
+- [`tools/cloud_doc_backport_args.py`](../../tools/cloud_doc_backport_args.py)
+  - argparse surface + arg-interpretation helpers (`_parse_args`,
+    `_value_index_from_args`, `_family_index_from_args`).
+- [`tools/cloud_doc_backport_commands.py`](../../tools/cloud_doc_backport_commands.py)
+  - single-command runners: `_run_diff` / `_run_apply*` / `_run_review` /
+    `_run_verify_review` / `_run_open_pr` / `_run_apply_source_table`.
+- [`tools/cloud_doc_backport_orchestration.py`](../../tools/cloud_doc_backport_orchestration.py)
+  - multi-step flows: review-branch resolution, worktree sync, the
+    render-baseline diff, sibling scope, the backport-PR flow, and the
+    best-effort revision-ledger ingest hook
+    (`AUTO_MANUAL_REVISION_LEDGER_PATH`; `off` disables). **Patch seams for
+    review-branch tests live here**, not on the cli re-exports.
 - [`tools/cloud_doc_backport_cli.py`](../../tools/cloud_doc_backport_cli.py)
-  - CLI + orchestration conductor: argparse, the `_run_*` command handlers, the
-    `run-review-branch` / baseline flow, and `main`.
+  - thin dispatcher: `main` + the compatibility re-export hub the facade
+    imports from.
 
 Layering (import direction, bottom → top): `model` → `util` → `routing` /
-`apply` / `render` / `transports` / `reports` / `pr` → `cli` → entry shim. A new
-extraction must import from the **leaf modules**, never from the entry file
-(that would cycle), and the entry file re-exports it.
+`apply` / `render` / `transports` / `reports` / `pr` → `args` → `commands` /
+`orchestration` → `cli` → entry shim. A new extraction must import from the
+**leaf modules**, never from the entry file (that would cycle), and the entry
+file re-exports it.
 
 Record-resolution + source-table write are in sibling modules:
 [`tools/source_record_index.py`](../../tools/source_record_index.py) (the

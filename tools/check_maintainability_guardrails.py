@@ -29,7 +29,12 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # cloud_doc_backport.py is set EXACTLY at its current size (no headroom) so the
     # in-progress decomposition can only push it DOWN, never up.
     "tools/cloud_doc_backport.py": 210,
-    "tools/cloud_doc_backport_cli.py": 1400,
+    # G0 split of the former 1400-line CLI conductor: dispatcher / argparse /
+    # single-command runners / multi-step orchestration, one-way imports only.
+    "tools/cloud_doc_backport_cli.py": 260,
+    "tools/cloud_doc_backport_args.py": 470,
+    "tools/cloud_doc_backport_commands.py": 550,
+    "tools/cloud_doc_backport_orchestration.py": 880,
     "tools/cloud_doc_backport_reports.py": 880,
     "tools/sync_data_runtime.py": 900,
     "tools/content_lint.py": 800,
