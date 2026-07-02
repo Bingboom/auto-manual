@@ -84,7 +84,8 @@ lark-cli api GET /open-apis/wiki/v2/spaces/get_node \
 for section-title / derived-CSV fixes:
 
 ```bash
-# TM base: wiki node X3O8wCpXPifqGKkP2sYccyxznQb -> app LUIcbxeKdaCY2rsEHwCcnVQSnUe
+# TM base (G4, 2026-07-02): canonical = $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN (tables by name).
+# Read-only archive: wiki node X3O8wCpXPifqGKkP2sYccyxznQb -> app LUIcbxeKdaCY2rsEHwCcnVQSnUe
 #          table tbl6gKPJPTvOcTWv (view veweqW2fQv); rows keyed by lang fields en/de/fr/es/it/uk/jp/...
 ```
 

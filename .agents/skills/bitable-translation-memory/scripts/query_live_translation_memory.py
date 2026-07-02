@@ -24,20 +24,21 @@ from tools.translation_memory import (  # noqa: E402
     split_translation_units,
 )
 
-# Fallback Base when no base token is provided (neither --base-token nor
-# $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN). Resolves the "多维表CAT" base via this
-# wiki node; the sentence/term tables inside are then resolved by name, not id,
-# so mirrored Bases with different table ids still work.
-DEFAULT_WIKI_TOKEN = "X3O8wCpXPifqGKkP2sYccyxznQb"
+# The A/wiki mirror is a READ-ONLY ARCHIVE since the 2026-07-02 base
+# convergence (Milestone G PR G4): the canonical live base is whatever
+# $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN names. The archive token stays for
+# explicit --wiki-token access only — it is deliberately no longer a default,
+# so a missing env binding fails loudly instead of silently reading the stale
+# archive corpus. Tables are still resolved by NAME inside whichever base is
+# active.
+ARCHIVE_WIKI_TOKEN = "X3O8wCpXPifqGKkP2sYccyxznQb"
 DEFAULT_PAGE_SIZE = 200
 DEFAULT_MAX_RECORDS = 2000
 DEFAULT_CACHE_TTL_SECONDS = 900
 CACHE_SCHEMA_VERSION = 2
 LIVE_TM_LANGUAGE_FIELDS = {"en", "fr", "es", "de", "it", "uk", "jp", "ja", "ko", "kr", "pt-br", "zh"}
 
-# When set, this env var pins the live lookup to a specific Base token. It takes
-# precedence over the bundled DEFAULT_WIKI_TOKEN so a host can point the skill at
-# its own (e.g. mirrored) Base without editing this file.
+# The canonical live-base binding (G4). --base-token overrides it explicitly.
 ENV_BASE_TOKEN_VAR = "FEISHU_TRANSLATION_MEMORY_BASE_TOKEN"
 
 # Lookup scope -> Base table name. Short terms search the terminology table; full
@@ -68,7 +69,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default="sentence",
         help="Which library to search: 'sentence' -> Translation_Memory table (default), 'term' -> Terms table. Ignored when --table-id is given.",
     )
-    parser.add_argument("--wiki-token", default=DEFAULT_WIKI_TOKEN, help="Wiki node token for the translation-memory base (fallback when no base token is set)")
+    parser.add_argument("--wiki-token", default=None, help="Explicit wiki node token (e.g. the read-only A archive); no longer a default — set $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN for the canonical base")
     parser.add_argument("--table-id", default=None, help="Explicit bitable table id; overrides --scope name resolution")
     parser.add_argument("--view-id", default=None, help="Explicit bitable view id; defaults to the resolved table's first grid view")
     parser.add_argument(
@@ -114,6 +115,13 @@ def main(argv: list[str] | None = None) -> int:
     resolved_view_id = args.view_id
     if cached_snapshot is None:
         cli = resolve_lark_cli()
+        if not base_token_arg and not args.wiki_token:
+            raise SystemExit(
+                "translation-memory: no base binding. Set "
+                f"${ENV_BASE_TOKEN_VAR} (the canonical live base) or pass "
+                "--base-token / --wiki-token explicitly. The A/wiki mirror is a "
+                "read-only archive and is no longer the silent default."
+            )
         base_token = base_token_arg or resolve_base_token(cli=cli, wiki_token=args.wiki_token)
         resolved_table_id = args.table_id or resolve_table_id_by_name(
             cli=cli, base_token=base_token, table_name=table_name

@@ -37,6 +37,12 @@ the 46 short strings that are duplicated across both tables.
 
 ## 0. Ground truth (verified 2026-06-01)
 
+> **G4 base convergence (2026-07-02):** the coordinates below describe the
+> **A/wiki mirror**, which is now a **read-only archive**. The canonical live
+> Translation_Memory / Terms base is whatever `$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`
+> names (tables resolved by name inside it); every skill/script write path
+> targets that base. Do not write the archive.
+
 - Table names behind the IDs: TM `tbl6gKPJPTvOcTWv` is named **`Translation_Memory`**;
   glossary `tblBIEtLSoAA6W9U` is named **`Terms`**. The legacy lookups' `from` values
   (`"Terms"` / `"Translation_Memory"`) are these **table names**, not relation-field names.

@@ -208,12 +208,25 @@ def load_live_tm_rows(args: argparse.Namespace) -> tuple[list[str], list[dict[st
         return cached
 
     cli = helper.resolve_lark_cli()
-    base_token = args.tm_base_token or helper.resolve_base_token(cli=cli, wiki_token=args.tm_wiki_token)
-    language_fields = helper.get_table_language_fields(cli=cli, base_token=base_token, table_id=args.tm_table_id)
+    env_base = os.environ.get("FEISHU_TRANSLATION_MEMORY_BASE_TOKEN", "").strip() or None
+    base_token = args.tm_base_token or env_base
+    if not base_token:
+        if not args.tm_wiki_token:
+            raise SystemExit(
+                "tm-preprocess: no TM base binding. Set "
+                "$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN (canonical base) or pass "
+                "--tm-base-token / --tm-wiki-token explicitly (the A/wiki mirror "
+                "is a read-only archive, no longer the silent default)."
+            )
+        base_token = helper.resolve_base_token(cli=cli, wiki_token=args.tm_wiki_token)
+    table_id = args.tm_table_id or helper.resolve_table_id_by_name(
+        cli=cli, base_token=base_token, table_name=args.tm_table_name
+    )
+    language_fields = helper.get_table_language_fields(cli=cli, base_token=base_token, table_id=table_id)
     rows = helper.list_records(
         cli=cli,
         base_token=base_token,
-        table_id=args.tm_table_id,
+        table_id=table_id,
         view_id=args.tm_view_id,
         max_records=args.max_records,
     )
@@ -221,7 +234,7 @@ def load_live_tm_rows(args: argparse.Namespace) -> tuple[list[str], list[dict[st
         cache_dir=cache_dir,
         cache_key=cache_key,
         wiki_token=args.tm_wiki_token,
-        table_id=args.tm_table_id,
+        table_id=table_id,
         view_id=args.tm_view_id,
         max_records=args.max_records,
         language_fields=language_fields,
@@ -923,8 +936,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--cache-ttl-seconds", type=int, default=86400)
     parser.add_argument("--cache-dir", default=None)
     parser.add_argument("--no-cache", action="store_true")
-    parser.add_argument("--tm-wiki-token", default="X3O8wCpXPifqGKkP2sYccyxznQb")
-    parser.add_argument("--tm-table-id", default="tbl6gKPJPTvOcTWv")
+    # G4 base convergence: the canonical TM base comes from
+    # $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN (or --tm-base-token); the table is
+    # resolved by NAME inside it. The A/wiki mirror is a read-only archive and
+    # is no longer a silent default — pass --tm-wiki-token explicitly to read it.
+    parser.add_argument("--tm-wiki-token", default=None)
+    parser.add_argument("--tm-table-id", default=None)
+    parser.add_argument("--tm-table-name", default="Translation_Memory")
     parser.add_argument("--tm-view-id", default="veweqW2fQv")
     parser.add_argument("--tm-base-token", default=None)
     parser.add_argument("--max-records", type=int, default=2000)
