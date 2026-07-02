@@ -7,6 +7,7 @@
 - `hello_auto-doc.md`: current human workflow guide.
 - `quick_start_guide.md`: happy-path onboarding and sample commands.
 - `closed_loop_ops_guide.md`: operator playbook for the closed-loop machinery (revision ledger, TM harvest, sentinels, annotated PDFs).
+- `two_plane_map.md`: authoritative map of the two git repos + two Feishu base sets (who runs where, sync channels, naming discipline).
 
 ## Local Rules
 
