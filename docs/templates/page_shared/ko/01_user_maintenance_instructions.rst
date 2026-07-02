@@ -1,4 +1,4 @@
-USER MAINTENANCE INSTRUCTIONS
-=============================
+사용자 유지 관리 지침
+==============================
 
-During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.
+에너지 저장 제품의 수명 주기 동안 일정 수준의 용량 및 에너지 저하가 예상됩니다. 충전 및 방전 사이클 수가 증가하고 보관 기간이 길어짐에 따라 이러한 저하는 점진적으로 심화되며, 이는 배터리 셀의 자연스러운 노화에 따른 정상적인 현상입니다.

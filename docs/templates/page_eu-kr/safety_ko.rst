@@ -1,16 +1,16 @@
 .. raw:: latex
 
-   \HBApplyLang{en}
+   \HBApplyLang{ko}
 
 .. only:: latex
 
    .. raw:: latex
 
-      \section{IMPORTANT SAFETY INFORMATION}
+      \section{중요 안전 정보}
 
    .. raw:: latex
 
-      \safetywarning{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
+      \safetywarning{화재, 감전 또는 인명 피해 위험과 관련된 지침}
 
    .. raw:: latex
 
@@ -19,21 +19,21 @@
 
    .. raw:: latex
 
-      \safetylead{Always follow these basic precautions when using this product.}
+      \safetylead{본 제품을 사용할 때는 항상 다음의 기본적인 주의 사항을 따르시기 바랍니다.}
 
 
-   - Read all instructions before using this product.
-   - Do not allow children to play with the product. Close supervision is necessary when the product is used near children.
-   - Risk of electric shock may occur if accessories recommended or sold by non-professional manufacturers are used.
-   - When the product is not in use, unplug the power plug from the product outlet.
-   - Do not disassemble the product, as this may cause unpredictable risks such as fire, explosion, or electric shock.
-   - Do not use the product with damaged cords, plugs, or output cables, as this may cause electric shock.
-   - To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.
+   - 제품 사용 전 모든 지침을 읽어야 합니다.
+   - 어린이가 제품을 가지고 놀지 않도록 하십시오. 제품을 어린이 근처에서 사용할 때에는 어린이를 면밀히 감독해야 합니다.
+   - 전문 제조업체에서 권장하거나 판매하지 않은 액세서리를 사용할 경우 감전 위험이 발생할 수 있습니다.
+   - 제품을 사용하지 않을 때는 제품의 콘센트에서 전원 플러그를 분리하십시오.
+   - 제품을 분해하는 경우 화재, 폭발, 감전 등 예기치 못한 위험이 발생할 수 있습니다.
+   - 손상된 코드, 플러그 또는 출력 케이블과 함께 제품을 사용하지 마십시오. 이로 인해 감전될 수 있습니다.
+   - 적절한 공기 순환을 위해 제품 통풍구를 막지 마십시오. 제품을 사용하는 공간은 과열을 방지하기 위해 서늘하고 건조한 환경이어야 하며, 충분히 통풍이 되어야 합니다.
 
-     - Charging in damp or poorly ventilated spaces may cause safety hazards.
-     - Water can cause short circuits or damage to the charger, leading to safety risks.
+     - 습하거나 환기가 잘 되지 않는 공간에서 충전하면 안전에 위험이 발생할 수 있습니다.
+     - 물은 충전기에 합선이나 손상을 일으켜 안전 위험을 초래할 수 있습니다.
 
-   - Do not expose the product to fire, high temperatures, direct sunlight, or hot environments such as the interior of a parked vehicle. Such exposure may cause fire or explosion.
+   - 제품을 화기, 고온, 직사광선 또는 주차된 차량 내부와 같은 고온 환경에 노출시키지 마십시오. 이러한 노출은 화재나 폭발을 초래할 수 있습니다.
 
 
    .. raw:: latex
@@ -46,17 +46,17 @@
    .. raw:: html
 
       <div class="hb-safety">
-        <h1 class="hb-h1-pill">IMPORTANT SAFETY INFORMATION</h1>
+        <h1 class="hb-h1-pill">중요 안전 정보</h1>
 
         <div class="hb-warning-box">
           <div class="hb-warning-row">
-            <div class="hb-warning-lockup">WARNING</div>
-            <div class="hb-warning-text">INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS</div>
+            <div class="hb-warning-lockup">경고</div>
+            <div class="hb-warning-text">화재, 감전 또는 인명 피해 위험과 관련된 지침</div>
           </div>
         </div>
 
         <div class="hb-single-col">
-          <p class="hb-lead">Always follow these basic precautions when using this product.</p>
-          <ul class="hb-list"><li>Read all instructions before using this product.</li><li>Do not allow children to play with the product. Close supervision is necessary when the product is used near children.</li><li>Risk of electric shock may occur if accessories recommended or sold by non-professional manufacturers are used.</li><li>When the product is not in use, unplug the power plug from the product outlet.</li><li>Do not disassemble the product, as this may cause unpredictable risks such as fire, explosion, or electric shock.</li><li>Do not use the product with damaged cords, plugs, or output cables, as this may cause electric shock.</li><li>To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.<ul class="hb-sublist"><li>Charging in damp or poorly ventilated spaces may cause safety hazards.</li><li>Water can cause short circuits or damage to the charger, leading to safety risks.</li></ul></li><li>Do not expose the product to fire, high temperatures, direct sunlight, or hot environments such as the interior of a parked vehicle. Such exposure may cause fire or explosion.</li></ul>
+          <p class="hb-lead">본 제품을 사용할 때는 항상 다음의 기본적인 주의 사항을 따르시기 바랍니다.</p>
+          <ul class="hb-list"><li>제품 사용 전 모든 지침을 읽어야 합니다.</li><li>어린이가 제품을 가지고 놀지 않도록 하십시오. 제품을 어린이 근처에서 사용할 때에는 어린이를 면밀히 감독해야 합니다.</li><li>전문 제조업체에서 권장하거나 판매하지 않은 액세서리를 사용할 경우 감전 위험이 발생할 수 있습니다.</li><li>제품을 사용하지 않을 때는 제품의 콘센트에서 전원 플러그를 분리하십시오.</li><li>제품을 분해하는 경우 화재, 폭발, 감전 등 예기치 못한 위험이 발생할 수 있습니다.</li><li>손상된 코드, 플러그 또는 출력 케이블과 함께 제품을 사용하지 마십시오. 이로 인해 감전될 수 있습니다.</li><li>적절한 공기 순환을 위해 제품 통풍구를 막지 마십시오. 제품을 사용하는 공간은 과열을 방지하기 위해 서늘하고 건조한 환경이어야 하며, 충분히 통풍이 되어야 합니다.<ul class="hb-sublist"><li>습하거나 환기가 잘 되지 않는 공간에서 충전하면 안전에 위험이 발생할 수 있습니다.</li><li>물은 충전기에 합선이나 손상을 일으켜 안전 위험을 초래할 수 있습니다.</li></ul></li><li>제품을 화기, 고온, 직사광선 또는 주차된 차량 내부와 같은 고온 환경에 노출시키지 마십시오. 이러한 노출은 화재나 폭발을 초래할 수 있습니다.</li></ul>
         </div>
       </div>
