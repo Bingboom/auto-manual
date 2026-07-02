@@ -104,6 +104,9 @@ Updated: 2026-07-02
    parity 哨兵会把它当漂移报出来。
 3. **语料只写 TM-B**。`tm-apply --tm-binding` 只能指向 B。
 4. 业务评审、业务账本、业务回收都在 **Hello-Docs checkout** 操作。
+5. **模板更新要进在飞评审**时，先 backport 收干净、再合模板 PR、再重触发
+   Start Review（force reseed）——完整决策见
+   [`closed_loop_ops_guide.md`](closed_loop_ops_guide.md) §4.5。
 
 ## 6. 收口清单（2026-07-02 遗留，做完删本节）
 
