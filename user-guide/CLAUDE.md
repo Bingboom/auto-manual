@@ -6,6 +6,7 @@
 
 - `hello_auto-doc.md`: current human workflow guide.
 - `quick_start_guide.md`: happy-path onboarding and sample commands.
+- `closed_loop_ops_guide.md`: operator playbook for the closed-loop machinery (revision ledger, TM harvest, sentinels, annotated PDFs).
 
 ## Local Rules
 
