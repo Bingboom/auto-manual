@@ -1,6 +1,6 @@
 ---
 name: manual-rewrite-with-tm
-description: "Rewrite or translate full manuals and other structured markdown/doc-style content with translation-memory-first behavior. Use when the user asks to translate or rewrite documentation by memory rules such as: prefer translation-memory matches, keep unmatched source text in place and highlight it with ==...==, unify terminology, preserve markdown structure, or reuse a matched sentence pattern while replacing only parameters like wattage, voltage, model names, temperatures, units, ports, or counts."
+description: "Rewrite or translate Markdown / plain-text manual content with translation-memory-first behavior. Use when the user asks to translate or rewrite markdown documentation by memory rules such as: prefer translation-memory matches, keep unmatched source text in place marked with ==...==, unify terminology, preserve markdown structure, or reuse a matched sentence pattern while replacing only parameters like wattage, voltage, model names, temperatures, units, ports, or counts. NOT for .docx / Feishu cloud-doc pre-translation — that carrier needs real colour highlights, which Markdown cannot express; use lark-tm-translation-preprocess instead."
 ---
 
 # Manual Rewrite With TM
@@ -14,6 +14,8 @@ Preserve document structure, keep markdown stable, and apply deterministic rewri
 ## Skill boundary in this repo
 
 Use `bitable-translation-memory` for one-shot sentence translation, terminology lookup, or prompt-ready live TM context.
+
+Use `lark-tm-translation-preprocess` for `.docx` / Feishu cloud-doc pre-translation: it replaces TM matches in the Word file and colour-highlights every replaced span. Since colour annotation is required for reviewer-facing pre-translation, the `.docx` path is the primary pre-translation flow; this skill's `==...==` marker is a plain-text convention for Markdown output only.
 
 Use this skill for whole files, long sections, or structured Markdown/manual content where headings, lists, tables, images, and unmatched-source fallback must stay stable.
 
@@ -134,39 +136,9 @@ Preferred query pattern:
 
 For larger work, run multiple focused queries on representative paragraphs, labels, or table rows.
 
-## Batch markdown script
+## Batch processing
 
-Use `scripts/rewrite_markdown_with_tm.py` when the task is a full markdown file or a long manual.
-
-Example:
-
-`python3 .agents/skills/manual-rewrite-with-tm/scripts/rewrite_markdown_with_tm.py input.md --target-lang de -o output.de.md`
-
-Use bound Feishu terminology source first:
-
-`python3 .agents/skills/manual-rewrite-with-tm/scripts/rewrite_markdown_with_tm.py input.md --target-lang de --use-feishu-term-source -o output.de.md`
-
-Current script behavior:
-
-- splits markdown into headings, text blocks, lists, tables, and images
-- applies a term-priority table before paragraph translation
-- splits normal text more finely by sentence to reduce whole-paragraph fallback highlighting
-- queries translation memory block by block
-- prefers exact sentence matches
-- reuses translation-memory sentence skeletons when only parameters differ
-- preserves unmatched source text and highlights it with `==...==`
-- keeps markdown tables and image links in place
-
-Term-priority table:
-
-- bound terminology source record: `references/term-source.md`
-- local fallback example file: `references/term-priority.example.tsv`
-- format: tab-separated with `source` and `target` columns
-- use it for button names, port names, warning labels, UI strings, and other repeated terms that should be normalized before sentence-level processing
-- use `--use-feishu-term-source` to read the bound Feishu terminology table in a `master_spec`-style live-table flow
-- when the live Feishu terminology source is reachable, treat it as the preferred term source; otherwise fall back to the local TSV table and cached term snapshot when available
-
-Use this script as the default batch path, then spot-check the output for terminology consistency and any missed structural edge cases.
+There is no bundled batch script in this skill (an earlier revision referenced `scripts/rewrite_markdown_with_tm.py` and a `references/` term table; neither was ever implemented). For a full markdown file, work through the Core workflow chunk by chunk with focused `bitable-translation-memory` queries. For batch `.docx` pre-translation, use `lark-tm-translation-preprocess`, which does bundle a working script.
 
 ## Quality check before returning
 

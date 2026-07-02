@@ -13,41 +13,41 @@ Document boundary:
 
 For long-term direction, read:
 
-- [`code-as-doc/architecture/System Evolution Strategy.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/architecture/System%20Evolution%20Strategy.md)
+- [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
 
 For repo optimization priorities, read:
 
-- [`code-as-doc/optimization_project.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/optimization_project.md)
+- [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md)
 
 For current human workflows, read:
 
-- [`code-as-doc/build_doc_guide.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/build_doc_guide.md)
-- [`user-guide/hello_auto-doc.md`](/Users/pika/Documents/GitHub/auto-manual/user-guide/hello_auto-doc.md)
+- [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
+- [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
 
 ## 1. Entrypoint
 
-- Default to [`build.py`](/Users/pika/Documents/GitHub/auto-manual/build.py).
-- Treat [`tools/`](/Users/pika/Documents/GitHub/auto-manual/tools) as low-level implementation unless the task is explicitly about those scripts.
-- Claude Code navigation is layered: root [`CLAUDE.md`](/Users/pika/Documents/GitHub/auto-manual/CLAUDE.md) stays thin, while directory-local `CLAUDE.md` files provide local maps and targeted validation commands.
+- Default to [`build.py`](build.py).
+- Treat [`tools/`](tools) as low-level implementation unless the task is explicitly about those scripts.
+- Claude Code navigation is layered: root [`CLAUDE.md`](CLAUDE.md) stays thin, while directory-local `CLAUDE.md` files provide local maps and targeted validation commands.
   These files are navigation overlays, not a second policy source; this `AGENTS.md` wins on conflict.
 
 ## 2. Editing Surface
 
-- Shared changes: [`docs/templates/`](/Users/pika/Documents/GitHub/auto-manual/docs/templates), [`data/phase2/`](/Users/pika/Documents/GitHub/auto-manual/data/phase2)
-- Target review changes after review starts: [`docs/_review/`](/Users/pika/Documents/GitHub/auto-manual/docs/_review)
-- Generated output only: [`docs/_build/`](/Users/pika/Documents/GitHub/auto-manual/docs/_build)
-- Do not hand-edit [`docs/index.rst`](/Users/pika/Documents/GitHub/auto-manual/docs/index.rst) unless the task is about index generation.
+- Shared changes: [`docs/templates/`](docs/templates), [`data/phase2/`](data/phase2)
+- Target review changes after review starts: [`docs/_review/`](docs/_review)
+- Generated output only: [`docs/_build/`](docs/_build)
+- Do not hand-edit [`docs/index.rst`](docs/index.rst) unless the task is about index generation.
 
 ## 3. Workflow Rules
 
 - Do not create one config per model just because the model changed.
-- Keep the shared family config pattern with [`configs/config.us.yaml`](/Users/pika/Documents/GitHub/auto-manual/configs/config.us.yaml) and [`configs/config.ja.yaml`](/Users/pika/Documents/GitHub/auto-manual/configs/config.ja.yaml).
+- Keep the shared family config pattern with [`configs/config.us.yaml`](configs/config.us.yaml) and [`configs/config.ja.yaml`](configs/config.ja.yaml).
 - If a target is already in review, prefer `sync-review` over `review --refresh-review` for data-driven updates.
 - **Cloud-doc backport (Claude Code / Codex / CLI — _not_ BlockClaw / IM; LLM target-resolution in chat is too uncertain):** to back-port a Feishu cloud-doc's edits, run `python tools/cloud_doc_backport.py run-review-branch --doc-name <doc name, e.g. manual_je1000f_eu_en_0.8> --cloud-doc <url>` (add `--page <p>` for one page; omit it to diff the whole doc against every `docs/_review/<model>/<region>/page/*.rst`). It resolves the review branch from the doc name/URL via the `文档构建表`, runs in a sparse worktree of that branch, and writes only `docs/_review/...`. Do **NOT** guess a path or write `docs/templates/`, `docs/_build/`, or `data/phase2/` source tables from a backport — the review derivative is the only writable target (template changes go through the template-sync role; source-table writes through the approval-gated F6 path). Dry-run by default; `--write` applies, `--push` opens a draft PR **into the review branch** (a `backport/...` sub-branch → base = the review branch) for the operator to verify and merge — it never commits straight onto the review branch.
 - Review overrides must stay under `overrides/_assets/`, `overrides/_static/`, or `overrides/renderers/`.
 - Avoid hardcoded model defaults such as `JE-1000F` in CLI behavior, report paths, or release paths.
-- Build repo-relative paths through [`tools/utils/path_utils.py`](/Users/pika/Documents/GitHub/auto-manual/tools/utils/path_utils.py) — its `PathSegments` constants, `Paths` members, and `*_of(base)` helpers — instead of hardcoding segments such as `docs/_build`, `_review`, `reports/version_tracking`, or `renderers/latex`. When a site already holds a base (repo root, a worktree, a config-resolved `docs_dir`), pass that base to the `*_of(base)` helpers rather than re-anchoring at repo root.
-- Keep config-driven `docs_dir` / `layout_params_csv` / staging resolution in [`tools/build_paths.py`](/Users/pika/Documents/GitHub/auto-manual/tools/build_paths.py); it is a thin adapter that delegates path construction to `path_utils`. Do not add a parallel path-segment helper module.
+- Build repo-relative paths through [`tools/utils/path_utils.py`](tools/utils/path_utils.py) — its `PathSegments` constants, `Paths` members, and `*_of(base)` helpers — instead of hardcoding segments such as `docs/_build`, `_review`, `reports/version_tracking`, or `renderers/latex`. When a site already holds a base (repo root, a worktree, a config-resolved `docs_dir`), pass that base to the `*_of(base)` helpers rather than re-anchoring at repo root.
+- Keep config-driven `docs_dir` / `layout_params_csv` / staging resolution in [`tools/build_paths.py`](tools/build_paths.py); it is a thin adapter that delegates path construction to `path_utils`. Do not add a parallel path-segment helper module.
 
 ## 4. Validation
 
@@ -60,10 +60,10 @@ For current human workflows, read:
 ## 5. Documentation
 
 - Update docs in the same change when behavior changes.
-- Minimum set: [`README.md`](/Users/pika/Documents/GitHub/auto-manual/README.md), [`code-as-doc/build_doc_guide.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/build_doc_guide.md), [`user-guide/hello_auto-doc.md`](/Users/pika/Documents/GitHub/auto-manual/user-guide/hello_auto-doc.md)
-- If a code change affects the current workflow, editing surface, environment setup, or release flow, update [`user-guide/hello_auto-doc.md`](/Users/pika/Documents/GitHub/auto-manual/user-guide/hello_auto-doc.md) in the same change.
-- If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update [`user-guide/quick_start_guide.md`](/Users/pika/Documents/GitHub/auto-manual/user-guide/quick_start_guide.md) in the same change.
-- When a phase or workstream from [`code-as-doc/optimization_project.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/optimization_project.md) is completed, add a matching maintenance record to [`code-as-doc/code_optimization_log.md`](/Users/pika/Documents/GitHub/auto-manual/code-as-doc/code_optimization_log.md).
+- Minimum set: [`README.md`](README.md), [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md), [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
+- If a code change affects the current workflow, editing surface, environment setup, or release flow, update [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) in the same change.
+- If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) in the same change.
+- When a phase or workstream from [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md) is completed, add a matching maintenance record to [`code-as-doc/code_optimization_log.md`](code-as-doc/code_optimization_log.md).
 
 ## 6. Working Tree Safety
 
@@ -72,18 +72,19 @@ For current human workflows, read:
 
 ## 7. Local Skills
 
-- Use [`.claude/skills/config-review/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.claude/skills/config-review/SKILL.md) for Claude Code scaffolding review.
+- Use [`.claude/skills/config-review/SKILL.md`](.claude/skills/config-review/SKILL.md) for Claude Code scaffolding review.
   Use it when changing root or nested `CLAUDE.md`, `.claude/settings.json`, hooks, skills, permissions, plugin/MCP setup, or model-release configuration cleanup.
-- Use [`.agents/skills/markdown-rst-template-intake/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/markdown-rst-template-intake/SKILL.md) when mapping external Markdown manuals into this repo's reusable RST template and recipe layout.
-- Use [`.agents/skills/spec-sheet-structured-intake/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/spec-sheet-structured-intake/SKILL.md) when onboarding a new model/region from a product spec sheet (产品规格书, PDF/Markdown): rule-driven region-aware extraction into structured candidates, completeness gate against a sibling target, human confirmation, then clone-ingest into both phase2 source tables (`规格参数明细` + `页面占位参数`) followed by sync-data/check/build. The entry counterpart of `cloud_doc_backport.py` (the return path); backed by `tools/source_intake*.py`.
-- Use [`.agents/skills/bitable-translation-memory/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/bitable-translation-memory/SKILL.md) for one-shot sentence translation, terminology lookup, and live sentence-pair retrieval.
-- Use [`.agents/skills/product-manual-catalog/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/product-manual-catalog/SKILL.md) to look up a shipped product's manual link/version/region/document type, or a catalog overview, from the Feishu `发布文档管理` Base. Read-only catalog lookup, distinct from the phase2 build-source tables and from `Translation_Memory`.
-- Use [`.agents/skills/manual-rewrite-with-tm/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/manual-rewrite-with-tm/SKILL.md) for full manual or Markdown rewrite tasks that must preserve structure, reuse translation-memory phrasing, or keep unmatched source text highlighted with `==...==`.
-- Use [`.agents/skills/bilingual-tm-maintenance/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/bilingual-tm-maintenance/SKILL.md) when bilingual source/target copy should be written to live `Translation_Memory`, followed by target-language maintenance logs, bilingual audit, and audit logs.
-- Use [`.agents/skills/manual-revision-backport/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/manual-revision-backport/SKILL.md) when back-porting a reviewer's tracked-changes manual `.docx` (e.g. `…修订.docx`) into source: extract the changes, map each to its repo template or Feishu phase2 table, diff against the current source instead of transcribing, surface model/region/sibling scope decisions, and verify zero residuals before claiming done. This is reverse-sync of reviewed output — distinct from Markdown intake and from TM translation/rewrite.
-- Use [`.agents/skills/docx-highlight-changes/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/docx-highlight-changes/SKILL.md) to highlight specific text spans in a built `.docx` with a colour of your choice — e.g. marking exactly what you corrected so a reviewer sees every change. It colours only the target text (splits runs; handles cross-run words and single accent characters), via background shading (any hex) or the Word highlighter pen, through its bundled `scripts/highlight_changes.py`. Pairs with `manual-revision-backport` / `manual-rewrite-with-tm` when a reviewed Word file needs its edits visually flagged for the reviewer.
-- Use [`.agents/skills/new-region-line/SKILL.md`](/Users/pika/Documents/GitHub/auto-manual/.agents/skills/new-region-line/SKILL.md) when standing up a **brand-new region / compliance manual line** (a `(Model, Region, Language)` target that does not exist yet — e.g. 新建韩规/欧规安规产线, "onboard a new market/language"). It is the end-to-end playbook: the family config + manifest + cloned page templates, the code registration for a new output language, the Feishu source-table data entry (spec params via the 入库表 + 字段映射规则表, page placeholders, localized content, market/region tags, dictionary + TM entries), sync, and validation — plus the checklist of operator inputs (spec-sheet PDF, product display name, warranty/legal, compliance + translation decisions). Distinct from plain spec ingest, rewrite, and backport. See its `references/setup-map.md` for exact files, table IDs, and `lark-cli` recipes.
-- For TM-guided rewrite jobs, use the skills in this order: `bitable-translation-memory` for lookup, then `manual-rewrite-with-tm` for the structure-preserving rewrite flow.
+- Use [`.agents/skills/markdown-rst-template-intake/SKILL.md`](.agents/skills/markdown-rst-template-intake/SKILL.md) when mapping external Markdown manuals into this repo's reusable RST template and recipe layout.
+- Use [`.agents/skills/spec-sheet-structured-intake/SKILL.md`](.agents/skills/spec-sheet-structured-intake/SKILL.md) when onboarding a new model/region from a product spec sheet (产品规格书, PDF/Markdown): rule-driven region-aware extraction into structured candidates, completeness gate against a sibling target, human confirmation, then clone-ingest into both phase2 source tables (`规格参数明细` + `页面占位参数`) followed by sync-data/check/build. The entry counterpart of `cloud_doc_backport.py` (the return path); backed by `tools/source_intake*.py`.
+- Use [`.agents/skills/bitable-translation-memory/SKILL.md`](.agents/skills/bitable-translation-memory/SKILL.md) for one-shot sentence translation, terminology lookup, and live sentence-pair retrieval.
+- Use [`.agents/skills/product-manual-catalog/SKILL.md`](.agents/skills/product-manual-catalog/SKILL.md) to look up a shipped product's manual link/version/region/document type, or a catalog overview, from the Feishu `发布文档管理` Base. Read-only catalog lookup, distinct from the phase2 build-source tables and from `Translation_Memory`.
+- Use [`.agents/skills/manual-rewrite-with-tm/SKILL.md`](.agents/skills/manual-rewrite-with-tm/SKILL.md) for Markdown / plain-text rewrite tasks that must preserve structure and reuse translation-memory phrasing (unmatched source text stays in place, marked `==...==` — a text convention, not a colour). For document pre-translation that must show colour highlights, use `lark-tm-translation-preprocess` on the `.docx` instead.
+- Use [`.agents/skills/bilingual-tm-maintenance/SKILL.md`](.agents/skills/bilingual-tm-maintenance/SKILL.md) when bilingual source/target copy should be written to live `Translation_Memory`, followed by target-language maintenance logs, bilingual audit, and audit logs.
+- Use [`.agents/skills/lark-tm-translation-preprocess/SKILL.md`](.agents/skills/lark-tm-translation-preprocess/SKILL.md) to TM-pretranslate a Feishu/Lark cloud doc or `.docx`: download, replace exact / parameter-fuzzy TM matches with the target-language sentence, colour-highlight every replaced span, verify the output opens cleanly, and upload back to the original path. This is the primary pre-translation pass — the carrier is Word (`.docx`), because Markdown cannot express colour annotations. Unmatched text is left unchanged for a later human/LLM pass.
+- Use [`.agents/skills/manual-revision-backport/SKILL.md`](.agents/skills/manual-revision-backport/SKILL.md) when back-porting a reviewer's tracked-changes manual `.docx` (e.g. `…修订.docx`) into source: extract the changes, map each to its repo template or Feishu phase2 table, diff against the current source instead of transcribing, surface model/region/sibling scope decisions, and verify zero residuals before claiming done. This is reverse-sync of reviewed output — distinct from Markdown intake and from TM translation/rewrite.
+- Use [`.agents/skills/docx-highlight-changes/SKILL.md`](.agents/skills/docx-highlight-changes/SKILL.md) to highlight specific text spans in a built `.docx` with a colour of your choice — e.g. marking exactly what you corrected so a reviewer sees every change. It colours only the target text (splits runs; handles cross-run words and single accent characters), via background shading (any hex) or the Word highlighter pen, through its bundled `scripts/highlight_changes.py`. Pairs with `manual-revision-backport` / `manual-rewrite-with-tm` when a reviewed Word file needs its edits visually flagged for the reviewer.
+- Use [`.agents/skills/new-region-line/SKILL.md`](.agents/skills/new-region-line/SKILL.md) when standing up a **brand-new region / compliance manual line** (a `(Model, Region, Language)` target that does not exist yet — e.g. 新建韩规/欧规安规产线, "onboard a new market/language"). It is the end-to-end playbook: the family config + manifest + cloned page templates, the code registration for a new output language, the Feishu source-table data entry (spec params via the 入库表 + 字段映射规则表, page placeholders, localized content, market/region tags, dictionary + TM entries), sync, and validation — plus the checklist of operator inputs (spec-sheet PDF, product display name, warranty/legal, compliance + translation decisions). Distinct from plain spec ingest, rewrite, and backport. See its `references/setup-map.md` for exact files, table IDs, and `lark-cli` recipes.
+- For TM-guided translation jobs, route by carrier: `.docx` / Feishu cloud doc pre-translation → `lark-tm-translation-preprocess`; Markdown / plain-text rewrite → `bitable-translation-memory` for lookup, then `manual-rewrite-with-tm` for the structure-preserving rewrite flow.
 
 ## 8. Multi-Window Parallel Development
 
