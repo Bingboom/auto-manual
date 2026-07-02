@@ -726,7 +726,10 @@ change.
     heuristic needed, and no dependency on an unverified doc-meta API.
     Daily workflow `backport-reminder.yml` (02:00 UTC) opens/updates/closes
     the `[backport-reminder]` issue, same pattern as schema-parity; reuses
-    the build-queue secrets and `feishu-common-setup`.
+    the build-queue secrets and `feishu-common-setup`. 2026-07-02 follow-up:
+    the repo guard copied from parity was wrong for this workflow — reviews
+    happen on the business plane (Hello-Docs mirror), so the sentinel now runs
+    in both repos, each against its own bound base.
   - Target files:
     - [`../tools/backport_reminder.py`](../tools/backport_reminder.py)
     - `.github/workflows/backport-reminder.yml`

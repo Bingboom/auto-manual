@@ -23,9 +23,11 @@ permissions:
 
 jobs:
   remind:
-    # Only the dev source repo runs this; the Hello-Docs mirror copies the file
-    # but must not run the job.
-    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    # Unlike schema-parity (an engineering-plane comparison that must run only in
+    # the source repo), this sentinel belongs wherever reviews actually happen —
+    # so it runs in BOTH repos, each against its own bound base: auto-manual
+    # (engineering plane, legacy base) and the Hello-Docs mirror (business plane,
+    # its own secrets). An unconfigured repo degrades to a no-op summary.
     runs-on: ubuntu-latest
     env:
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
