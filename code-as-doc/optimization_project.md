@@ -520,6 +520,29 @@ Exit criteria:
 - the template-sync runbook exists; the dedicated agent remains a documented, deferred follow-up
 - Class `D` deltas reach Bitable only via the source-table-sync role after explicit human approval and exact `record_id` resolution; no guessed or unapproved writes
 
+### Workstream R: Business Closed-Loop — Revision Reflow, TM Corpus Lifecycle, PDF Annotation
+
+Status: active
+
+PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone G.
+
+Why now:
+
+- the 2026-07-02 closed-loop analysis found the main-line break: `revision_ledger` records reviewer corrections but nothing reconciles them after merge (`verdict` stays `PENDING`, reflow rate ≈ 0%), and no route feeds accepted sentence pairs into `Translation_Memory` — the highest-value corpus (reviewer-confirmed pairs) is lost every review round
+- TM pre-translation's bottleneck is corpus lifecycle, not matching: the match engine is three-tier (exact / parameter-skeleton / fuzzy-threshold) but corpus intake is manual-only, the A/B mirror bases split the corpus, and hit rate has no measurement
+- PDF review annotation is a missing capability (docx is the only annotation carrier); the architecture rule is annotate-on-PDF, correct-at-source
+
+Scope:
+
+- reconcile trigger + similarity verdict; `tm_pair_suggestion` ledger route with operator-approved live writes; hit-rate ledger; TM base convergence (operator decision); `content_lint` → annotated-PDF renderer MVP; backport reminder sentinel; intake completeness gate default-on
+- prerequisite refactor: split `cloud_doc_backport_cli.py` into args / commands / orchestration modules under guardrails
+
+Exit criteria:
+
+- reflow rate is computable and >90% of ledger rows leave `PENDING` automatically after merge
+- every review round emits TM pair candidates; approved pairs land in exactly one canonical TM base; hit rate has a baseline and a visible trend
+- QC findings can be delivered as an annotated sidecar PDF without touching the shipped PDF
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.

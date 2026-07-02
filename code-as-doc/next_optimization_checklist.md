@@ -578,6 +578,104 @@ dry-run boundary; live activation is the operator's, per
     - rows carry `run_id`, `finding_hash`, severity, rule, source ref, resolved `record_id` (from F1) when available, and suggested action
     - content-row QC status fields stay out of scope
 
+## 6e. Milestone G: Business Closed-Loop Engineering
+
+Milestone status: `in_progress`
+Milestone target: `2026-07`
+Milestone note: PR-level breakdown of the 2026-07-02 business closed-loop
+analysis (main line: spec intake → source tables → build → revision →
+**reflow**; capability lines: TM pre-translation hit rate, PDF review
+annotation). The central finding: revision reflow (G1/G2) and TM corpus growth
+are one loop — `revision_ledger` records reviewer corrections but nothing
+reconciles them (`verdict` stays `PENDING`) and no route feeds accepted
+sentence pairs into `Translation_Memory`. Suggested order: G1 → G3 → G7 → G0 →
+G2 → G6 → G4 → G5; G0 is the prerequisite for G2 (route-layer changes land in
+the split modules, not the 1380-line CLI). G2's live apply and G4 need operator
+decisions where marked.
+**Operator grant (2026-07-02):** PRs in this milestone may be merged by the
+executing agent when the full matching validation set is green; the grant
+expires when G1–G7 are done. Each PR updates its item status here in the same
+change.
+
+- [ ] PR G0: Split `cloud_doc_backport_cli.py` (args / commands / orchestration)
+  - Status: `pending`
+  - Target files:
+    - [`../tools/cloud_doc_backport_cli.py`](../tools/cloud_doc_backport_cli.py)
+    - [`../tools/check_maintainability_guardrails.py`](../tools/check_maintainability_guardrails.py)
+  - Done when:
+    - argparse definitions, per-command run functions, and multi-step orchestration (review-branch / baseline / PR opening) live in separate modules with one-way imports
+    - `cloud_doc_backport.py` facade re-exports stay compatible (existing tests pass unchanged)
+    - each new module enters the guardrail list; the old 1400-line threshold is replaced by per-module thresholds
+
+- [ ] PR G1: Ledger reconcile trigger + similarity verdict (工程①)
+  - Status: `pending`
+  - Target files:
+    - [`../tools/revision_ledger.py`](../tools/revision_ledger.py)
+    - `.github/workflows/` (reconcile trigger)
+  - Done when:
+    - reconcile runs automatically after a backport PR merges (workflow trigger or daily sentinel), so ledger rows leave `PENDING` without a human remembering
+    - `classify_verdict` uses similarity matching (e.g. `difflib` ratio threshold) instead of normalized-prefix matching; punctuation/line-break edits no longer misclassify
+    - reflow rate (non-PENDING rows / total) is computable from the ledger
+
+- [ ] PR G2: Ledger → TM route (`tm_pair_suggestion`) (工程②)
+  - Status: `pending`
+  - Note: live TM writes stay operator-approved (candidate → approve → apply,
+    the same pattern as source intake); apply targets the converged base from G4
+  - Target files:
+    - [`../tools/revision_ledger.py`](../tools/revision_ledger.py)
+    - [`../tools/translation_memory.py`](../tools/translation_memory.py)
+  - Done when:
+    - accepted revision deltas that rewrite translated prose emit TM pair candidates (source sentence, target sentence, provenance, confidence)
+    - candidates are reviewable and only reach live `Translation_Memory` after operator approval
+    - reviewer-corrected sentence pairs stop being lost after each review round
+
+- [ ] PR G3: TM hit-rate ledger (工程③)
+  - Status: `pending`
+  - Target files:
+    - [`../.agents/skills/lark-tm-translation-preprocess/scripts/preprocess_lark_docx_with_tm.py`](../.agents/skills/lark-tm-translation-preprocess/scripts/preprocess_lark_docx_with_tm.py)
+    - `reports/` (new hit-rate ledger location via `path_utils`)
+  - Done when:
+    - each preprocess run appends its per-run stats (matched units / total units, by language pair and document) to a cumulative hit-rate ledger under `reports/`
+    - a baseline hit-rate number exists so G2/G4 improvements are measurable
+
+- [ ] PR G4: TM base convergence (工程④)
+  - Status: `pending`
+  - Note: **operator decision required** — pick the canonical write base between
+    the A (wiki) and B (env-token) mirrors; the other becomes read-only archive
+  - Done when:
+    - exactly one TM base accepts writes; skills and scripts resolve it from one config point
+    - the retired mirror is marked read-only/archived and no skill defaults to it
+
+- [ ] PR G5: PDF annotation renderer MVP (工程⑤)
+  - Status: `pending`
+  - Note: annotate on the PDF, correct at the source — the renderer is a
+    read-only presentation of QC findings; fixes flow through the existing
+    docx/cloud-doc backport path
+  - Target files:
+    - [`../tools/content_lint.py`](../tools/content_lint.py) (findings input)
+    - new renderer module + skill entry
+  - Done when:
+    - `content_lint` findings render as highlight + comment annotations on the built PDF (pymupdf text search; page-level fallback when text location fails)
+    - each annotation names the source location (table/slot or template) so the reviewer can route the fix
+    - output is a sidecar `*_annotated.pdf`; the shipped PDF is untouched
+
+- [ ] PR G6: Backport reminder sentinel (工程⑥)
+  - Status: `pending`
+  - Target files:
+    - `.github/workflows/` (daily sentinel, same pattern as `feishu-schema-parity.yml`)
+  - Done when:
+    - a review cloud doc with edits newer than its last backport for N days opens/updates a reminder issue (report-only, no auto-backport)
+    - the issue closes itself once the backport lands
+
+- [ ] PR G7: Intake completeness gate default-on (工程⑦)
+  - Status: `pending`
+  - Target files:
+    - [`../tools/source_intake_runtime.py`](../tools/source_intake_runtime.py)
+    - [`../tools/source_intake_completeness.py`](../tools/source_intake_completeness.py)
+  - Done when:
+    - `spec-extract` without `--reference` fails loudly unless `--skip-completeness` is passed explicitly (no silent skip)
+    - ambiguous snapshot keys require review instead of warning
+
 ## 7. Deferred: Do Not Touch Yet
 
 - [ ] Deferred 1: large multi-target conditional-content redesign
