@@ -643,6 +643,99 @@ class TestRevisionLedgerIngestPiggyback(unittest.TestCase):
             self.assertEqual(row["final_status"], revision_ledger.PENDING_STATUS)
 
 
+class TestTmCandidates(unittest.TestCase):
+    @staticmethod
+    def _accepted_row(**overrides: object) -> dict:
+        row = {
+            "final_status": revision_ledger.ACCEPTED_STATUS,
+            "route_class": revision_ledger.ROUTE_REVIEW,
+            "lang": "ko",
+            "delta_hash": "hash-tm-1",
+            "machine_text": "기계 번역 문장.",
+            "reviewer_text": "검토자가 고친 문장.",
+            "final_text": "검토자가 고친 문장.",
+            "row_key": "run-1:hash-tm-1",
+            "run_id": "run-1",
+            "source_path": "docs/_review/JE-1000F/KR/ko/page/x.rst",
+            "model": "JE-1000F",
+            "region": "KR",
+            "merged_pr": "#600",
+        }
+        row.update(overrides)
+        return row
+
+    def test_accepted_row_becomes_suggestion_shaped_candidate(self) -> None:
+        candidates = revision_ledger.tm_candidates([self._accepted_row()])
+        self.assertEqual(len(candidates), 1)
+        candidate = candidates[0]
+        self.assertEqual(candidate["delta_hash"], "hash-tm-1")
+        self.assertEqual(candidate["lang"], "ko")
+        self.assertEqual(candidate["old_text"], "기계 번역 문장.")
+        self.assertEqual(candidate["new_text"], "검토자가 고친 문장.")
+        self.assertEqual(candidate["routing_hint"], "translation_memory")
+        self.assertEqual(candidate["provenance"]["merged_pr"], "#600")
+
+    def test_filters_non_qualifying_rows(self) -> None:
+        rows = [
+            self._accepted_row(final_status=revision_ledger.EDITED_STATUS),
+            self._accepted_row(route_class=revision_ledger.ROUTE_SOURCE_TABLE),
+            self._accepted_row(lang=None),
+            self._accepted_row(delta_hash=None),
+            self._accepted_row(final_text="기계 번역 문장.", machine_text="기계 번역 문장."),
+        ]
+        self.assertEqual(revision_ledger.tm_candidates(rows), [])
+
+    def test_dedupes_by_delta_hash(self) -> None:
+        rows = [self._accepted_row(), self._accepted_row(row_key="run-2:hash-tm-1", run_id="run-2")]
+        self.assertEqual(len(revision_ledger.tm_candidates(rows)), 1)
+
+    def test_candidates_ride_the_gated_apply_path(self) -> None:
+        from tools.translation_memory_sync import apply_translation_suggestions
+
+        candidates = revision_ledger.tm_candidates([self._accepted_row()])
+        unapproved = apply_translation_suggestions(
+            candidates, approved_hashes=set(), transport=None, write=False
+        )
+        self.assertEqual(unapproved["summary"]["apply"], 0)
+        approved = apply_translation_suggestions(
+            candidates, approved_hashes={"hash-tm-1"}, transport=None, write=False
+        )
+        self.assertEqual(approved["summary"]["apply"], 1)
+        self.assertFalse(approved["external_write"])
+
+    def test_cli_tm_candidates_then_dry_run_apply(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            ledger = Path(td) / "ledger.jsonl"
+            revision_ledger.write_ledger([self._accepted_row()], ledger)
+            out = Path(td) / "tm_candidates.jsonl"
+            rc = revision_ledger.main(
+                ["tm-candidates", "--ledger", str(ledger), "--out", str(out)]
+            )
+            self.assertEqual(rc, 0)
+            self.assertEqual(len(revision_ledger.load_tm_candidates(out)), 1)
+            rc = revision_ledger.main(
+                ["tm-apply", "--candidates", str(out), "--approve", "hash-tm-1"]
+            )
+            self.assertEqual(rc, 0)
+
+    def test_cli_tm_apply_write_requires_binding(self) -> None:
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td) / "tm_candidates.jsonl"
+            revision_ledger.write_tm_candidates(
+                revision_ledger.tm_candidates([self._accepted_row()]), out
+            )
+            stderr = io.StringIO()
+            with contextlib.redirect_stderr(stderr):
+                rc = revision_ledger.main(
+                    ["tm-apply", "--candidates", str(out), "--approve", "hash-tm-1", "--write"]
+                )
+            self.assertEqual(rc, 2)
+            self.assertIn("--tm-binding", stderr.getvalue())
+
+
 class TestRevisionLedgerReflowRate(unittest.TestCase):
     def test_reflow_rate_counts_rows_that_left_pending(self) -> None:
         rows = [
