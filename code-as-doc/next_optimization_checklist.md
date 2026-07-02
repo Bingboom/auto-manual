@@ -638,11 +638,20 @@ change.
     - candidates are reviewable and only reach live `Translation_Memory` after operator approval
     - reviewer-corrected sentence pairs stop being lost after each review round
 
-- [ ] PR G3: TM hit-rate ledger (工程③)
-  - Status: `pending`
+- [x] PR G3: TM hit-rate ledger (工程③)
+  - Status: `done`
+  - Completed: `2026-07-02`
+  - Note: `Matcher` counts sentence-level units attempted vs matched (tiny
+    texts excluded); the run report gains `units_total` / `units_matched` /
+    `hit_rate`, and every run best-effort appends to
+    `reports/tm_hit_rate/ledger.jsonl` via the new stdlib-only
+    `tools/tm_hit_rate.py` (`ingest` idempotent by run fingerprint; `stats`
+    reports overall + per-language-pair rates; legacy counter-less reports are
+    reported separately, never averaged in). The baseline number materializes
+    with the first operator preprocess run after merge.
   - Target files:
     - [`../.agents/skills/lark-tm-translation-preprocess/scripts/preprocess_lark_docx_with_tm.py`](../.agents/skills/lark-tm-translation-preprocess/scripts/preprocess_lark_docx_with_tm.py)
-    - `reports/` (new hit-rate ledger location via `path_utils`)
+    - [`../tools/tm_hit_rate.py`](../tools/tm_hit_rate.py)
   - Done when:
     - each preprocess run appends its per-run stats (matched units / total units, by language pair and document) to a cumulative hit-rate ledger under `reports/`
     - a baseline hit-rate number exists so G2/G4 improvements are measurable

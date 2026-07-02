@@ -350,6 +350,10 @@ class Matcher:
         self.min_fuzzy_score = min_fuzzy_score
         self.exact: dict[str, Pair] = {}
         self.abstract: dict[str, Pair] = {}
+        # Hit-rate counters (sentence-level units attempted vs matched),
+        # aggregated into reports/tm_hit_rate/ledger.jsonl after each run.
+        self.units_total = 0
+        self.units_matched = 0
         for pair in pairs:
             self.exact.setdefault(base_norm(pair.source), pair)
             self.abstract.setdefault(abstract_norm(pair.source), pair)
@@ -394,8 +398,17 @@ class Matcher:
         return None, best_score, best_reason or "below-threshold"
 
     def translate(self, text: str) -> tuple[str | None, dict[str, object] | None]:
+        # Hit-rate accounting: one sentence-level unit is the denominator grain.
+        # Texts too short to ever match (best_pair's own "empty" guard) are not
+        # counted, so numbers-only cells cannot deflate the rate.
+        units = split_units(text)
+        n_units = max(len(units), 1)
+        countable = len(text.strip()) >= 2
         pair, score, reason = self.best_pair(text)
         if pair is not None:
+            if countable:
+                self.units_total += n_units
+                self.units_matched += n_units
             return adapt_target(pair.target, pair.source, text), {
                 "mode": "full",
                 "source": text,
@@ -406,8 +419,9 @@ class Matcher:
                 "kind": pair.kind,
             }
 
-        units = split_units(text)
         if len(units) <= 1:
+            if countable:
+                self.units_total += n_units
             return None, None
         translated_units: list[str] = []
         records: list[dict[str, object]] = []
@@ -427,6 +441,9 @@ class Matcher:
                     "kind": pair.kind,
                 }
             )
+        if countable:
+            self.units_total += len(units)
+            self.units_matched += len(records)
         if records:
             return " ".join(translated_units), {"mode": "split", "source": text, "matched_units": records}
         return None, None
@@ -611,12 +628,20 @@ def preprocess_docx(
             for path in sorted(files, key=_opc_rank):
                 zout.write(path, path.relative_to(temp_dir).as_posix())
 
+        hit_rate = (
+            round(matcher.units_matched / matcher.units_total, 4)
+            if matcher.units_total
+            else None
+        )
         report = {
             "input_docx": str(input_docx),
             "output_docx": str(output_docx),
             "source_lang": source_lang,
             "target_lang": target_lang,
             "change_count": len(changes),
+            "units_total": matcher.units_total,
+            "units_matched": matcher.units_matched,
+            "hit_rate": hit_rate,
             "changes": changes,
         }
         report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -952,6 +977,20 @@ def main(argv: list[str] | None = None) -> int:
     elif args.no_upload:
         upload_skipped_reason = "no_upload"
 
+    # Best-effort hit-rate ledger append (reports/tm_hit_rate/ledger.jsonl):
+    # tools.tm_hit_rate is stdlib-only, so it imports under this skill's Python
+    # too. A ledger failure must never fail the preprocess run itself.
+    hit_rate_ledger: str
+    try:
+        if str(REPO_ROOT) not in sys.path:
+            sys.path.insert(0, str(REPO_ROOT))
+        from tools.tm_hit_rate import default_ledger_path, ingest_report
+
+        ledger_summary = ingest_report(report, ledger_path=default_ledger_path(REPO_ROOT))
+        hit_rate_ledger = ledger_summary["ledger"]
+    except Exception as exc:  # noqa: BLE001 - ledger is observability, not the job
+        hit_rate_ledger = f"append failed: {exc}"
+
     result = {
         "ok": verified,
         "verified": verified,
@@ -961,6 +1000,10 @@ def main(argv: list[str] | None = None) -> int:
         "available_languages": available_langs,
         "pair_count": len(pairs),
         "change_count": report["change_count"],
+        "units_total": report["units_total"],
+        "units_matched": report["units_matched"],
+        "hit_rate": report["hit_rate"],
+        "hit_rate_ledger": hit_rate_ledger,
         "highlight_color": highlight_color,
         "highlighted_runs": verification["highlighted_runs"],
         "work_dir": str(work_dir),
