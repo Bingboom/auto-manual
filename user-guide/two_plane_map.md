@@ -25,6 +25,51 @@ Updated: 2026-07-02
 [`../code-as-doc/dev/bitable_schema_sync.md`](../code-as-doc/dev/bitable_schema_sync.md)
 与 parity 检查；飞书复制 base 时 view_id 不变、table_id 变。
 
+## 1.1 业务面 base 清单（操作者 2026-07-02 live 逐表枚举确认）
+
+三个 base 都绑定在 Hello-Docs 对应的业务飞书主体（xcn57j1urbe6）上。
+
+**① 文档构建（phase2 构建源）** — base `LD3lb4G1ua4GOVs1vxAc9W2enje`，wiki 节点 `BLYEwfMMFiS7wsk9MuvcOvdVnje`，20 张表：
+
+| 分组 | 表名 | table_id |
+| --- | --- | --- |
+| 主表 | 文档构建表 | `tblbnRHjpJeCVTtj` |
+| 02_主数据 | 产品信息表 | `tbl9SuJR2W1P2Rsa` |
+| 02_主数据 | 项目信息 | `tblNW1zcgM75HcvL` |
+| 02_主数据 | Slot | `tblS7qyV1DTZkoNq` |
+| 02_主数据 | Document_key | `tbltnkDIdwiDOP7d` |
+| 02_主数据 | 参数名 | `tbl8yQfXYe3KKyAM` |
+| 02_主数据 | 语言 | `tblVNk16VXXVo5oj` |
+| 02_主数据 | 区域法规 | `tblvBsr8qGPjXWdA` |
+| 03_内容源 | 规格参数明细 | `tblPUFJqt2uGGvTT` |
+| 03_内容源 | 页面占位参数 | `tblEhqJVXiyKtnwq` |
+| 03_内容源 | Manual_Copy_Source | `tblboUMUiLbWk9nF` |
+| 03_内容源 | Symbols | `tblSZX8hBzpJLqAe` |
+| 03_内容源 | LCD icons | `tblW5fCuJ6YdAcND` |
+| 03_内容源 | TROUBLESHOOTING | `tblOmJoAfU35brkb` |
+| 03_内容源 | Variable_Defaults | `tblS7vc8LqR0GGNv` |
+| 03_内容源 | 规格页Footnotes | `tblVusBZ8Fi56AWN` |
+| 03_内容源 | 规格页notes | `tblgJCepw4JvbMbH` |
+| 03_内容源 | Variable_Lang_Overrides | `tblZvjTiBypTAtdi` |
+| 入库 staging | 数据入库表 | `tblIi0BEufjvGLIU` |
+| 入库 staging | 规格书字段映射规则 | `tblHrelfzylJIRT2` |
+
+**② 多维表CAT（翻译记忆，TM-B = 语料唯一规范写库）** — base
+`Ji1hb5ub1aUbewsTljGccvx5nhc`，wiki 节点 `FRUywcjrPiMoPrkxnadcQhhenmb`：
+
+| 表名 | table_id | 视图 |
+| --- | --- | --- |
+| Translation_Memory | `tblqtvNbgjDwR4ya` | 总表 `veweqW2fQv` |
+| Terms | `tblzerRpOEuDIkKA` | `vewChPXyP9` |
+
+**③ 发布文档管理（成品说明书目录，`product-manual-catalog` 技能读这里）** — base
+`WGVwb2HctauRi7sEiKqcIzTRn1c`，wiki 节点 `QKNGwHFwPiY7J7kZ0bzcximKnyb`：
+
+| 表名 | table_id |
+| --- | --- |
+| 交付资料管理 | `tbldqnNBxFQsxpeN` |
+| 包材附件 | `tblmfCf3Pdk3YsdU` |
+
 ## 2. 三条同步通道
 
 | 通道 | 方向 | 机制 | 频率 |
