@@ -580,7 +580,8 @@ dry-run boundary; live activation is the operator's, per
 
 ## 6e. Milestone G: Business Closed-Loop Engineering
 
-Milestone status: `in_progress`
+Milestone status: `done`
+Milestone completed: `2026-07-02`
 Milestone target: `2026-07`
 Milestone note: PR-level breakdown of the 2026-07-02 business closed-loop
 analysis (main line: spec intake → source tables → build → revision →
