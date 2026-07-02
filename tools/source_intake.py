@@ -133,6 +133,12 @@ def _parser() -> argparse.ArgumentParser:
     spec.add_argument("--region", default="US", help="US -> dual imperial/metric units; otherwise metric")
     spec.add_argument("--source-lang", default="en", help="Source language code; default: en")
     spec.add_argument("--reference", help="reference rows JSON (sibling target) for the completeness gate")
+    spec.add_argument(
+        "--skip-completeness",
+        action="store_true",
+        help="Run without the completeness gate. The gate is mandatory by default: "
+        "omitting --reference without this flag is an error, not a silent skip.",
+    )
     spec.add_argument("--out", help="Output directory; defaults to reports/source_intake/<document-key>")
     spec.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary when --input is a cloud doc")
     return parser
@@ -274,6 +280,16 @@ def _spec_extract(args: argparse.Namespace) -> int:
     from tools.source_intake_extract import read_input_text
     from tools.source_intake_rules import FieldRule, extract_candidates
 
+    if not args.reference and not args.skip_completeness:
+        # The gate silently not running is exactly the QC gap this guards
+        # against (a candidate set can look complete while missing whole
+        # sibling rows). Skipping must be an explicit decision.
+        print(
+            "source-intake: spec-extract requires --reference <sibling_rows.json> "
+            "for the completeness gate; pass --skip-completeness to run without it.",
+            file=sys.stderr,
+        )
+        return 2
     out_dir = Path(args.out).resolve() if args.out else _default_out_dir(str(args.document_key))
     report = None
     try:

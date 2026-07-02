@@ -41,7 +41,10 @@ share the same spine: `data/phase2/source_record_index.json` sidecar, the
      --document-key JE-2000E_JP --region JP \
      --reference <sibling_rows.json> --out reports/source_intake/<run>
    ```
-   `--reference` runs the **completeness gate** (see below). Unmatched/abstained fields land as
+   `--reference` runs the **completeness gate** (see below), and the gate is **mandatory by
+   default**: running spec-extract without `--reference` is an error unless you pass
+   `--skip-completeness` explicitly (a silent skip is exactly the QC gap that once let a
+   candidate set look complete while missing sibling rows). Unmatched/abstained fields land as
    `needs_review` — never guessed.
 3. **Completeness pre-gate (BOTH tables).** A spec sheet only yields the SPECIFICATIONS rows.
    A full manual also needs **页面占位参数** placeholders (Product overview port/button labels,
