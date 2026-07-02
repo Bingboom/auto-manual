@@ -512,6 +512,86 @@ _DECIDED_STATUSES = (ACCEPTED_STATUS, REJECTED_STATUS, EDITED_STATUS)
 # something other than the machine text did) — i.e. a real correction signal.
 _CORRECTION_STATUSES = (ACCEPTED_STATUS, EDITED_STATUS)
 
+TM_CANDIDATES_FILENAME = "tm_candidates.jsonl"
+
+
+def tm_candidates(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Project accepted review-prose corrections into TM pair suggestions.
+
+    Emits the exact suggestion shape ``translation_memory_sync.
+    apply_translation_suggestions`` consumes (delta_hash / lang / old_text /
+    new_text), so the reviewer-corrected sentence pair rides the existing
+    approval-gated, exact-or-abstain, GET-verified TM write path instead of a
+    new one. Only ``accepted_as_proposed`` review-route rows with a known
+    target language and a real text change qualify; ``edited_further`` rows are
+    excluded because the landed text is unknown. De-duplicated by
+    ``delta_hash`` (the same correction seen in a later run adds nothing).
+    """
+    candidates: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for row in rows:
+        if row.get("final_status") != ACCEPTED_STATUS:
+            continue
+        if row.get("route_class") != ROUTE_REVIEW:
+            continue
+        lang = row.get("lang")
+        old_text = row.get("machine_text")
+        new_text = row.get("final_text") or row.get("reviewer_text")
+        delta_hash = row.get("delta_hash")
+        if not (lang and delta_hash and old_text and new_text):
+            continue
+        if _normalize_inline(str(old_text)) == _normalize_inline(str(new_text)):
+            continue
+        if delta_hash in seen:
+            continue
+        seen.add(delta_hash)
+        candidates.append(
+            {
+                "delta_hash": delta_hash,
+                "copy_key": None,
+                "lang": lang,
+                "source_lang": None,
+                "old_text": old_text,
+                "new_text": new_text,
+                "routing_hint": "translation_memory",
+                "provenance": {
+                    "row_key": row.get("row_key"),
+                    "run_id": row.get("run_id"),
+                    "source_path": row.get("source_path"),
+                    "model": row.get("model"),
+                    "region": row.get("region"),
+                    "merged_pr": row.get("merged_pr"),
+                },
+            }
+        )
+    return candidates
+
+
+def write_tm_candidates(candidates: list[dict[str, Any]], out_path: Path) -> None:
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with out_path.open("w", encoding="utf-8") as handle:
+        for candidate in candidates:
+            handle.write(json.dumps(candidate, ensure_ascii=False, sort_keys=True) + "\n")
+
+
+def load_tm_candidates(path: Path) -> list[dict[str, Any]]:
+    candidates: list[dict[str, Any]] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line:
+            candidates.append(json.loads(line))
+    return candidates
+
+
+def _approved_hashes(approve: list[str] | None, approve_file: Path | None) -> set[str]:
+    hashes = {value.strip() for value in (approve or []) if value.strip()}
+    if approve_file is not None:
+        for line in approve_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#"):
+                hashes.add(line)
+    return hashes
+
 
 def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
     """Aggregate the ledger into quality metrics.
@@ -714,6 +794,59 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="Also emit rejected rows as no-change (machine-kept) examples.",
     )
+
+    tmc = sub.add_parser(
+        "tm-candidates",
+        help="Emit TM pair suggestions from accepted review-prose corrections.",
+    )
+    tmc.add_argument(
+        "--ledger",
+        type=Path,
+        default=None,
+        help="Ledger JSONL path (default: reports/revision_ledger/ledger.jsonl).",
+    )
+    tmc.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help="Candidates JSONL path (default: reports/revision_ledger/tm_candidates.jsonl).",
+    )
+
+    tma = sub.add_parser(
+        "tm-apply",
+        help="Apply approved TM pair candidates via the gated TM write path "
+        "(dry-run unless --write with --tm-binding).",
+    )
+    tma.add_argument(
+        "--candidates",
+        type=Path,
+        default=None,
+        help="Candidates JSONL (default: reports/revision_ledger/tm_candidates.jsonl).",
+    )
+    tma.add_argument(
+        "--approve",
+        action="append",
+        default=None,
+        help="delta_hash approved by a human (repeatable).",
+    )
+    tma.add_argument(
+        "--approve-file",
+        type=Path,
+        default=None,
+        help="File with one approved delta_hash per line (# comments allowed).",
+    )
+    tma.add_argument(
+        "--tm-binding",
+        default=None,
+        help="Live Translation_Memory binding BASE:TABLE_ID (required with --write).",
+    )
+    tma.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary for the live transport.")
+    tma.add_argument("--identity", default="bot", help="lark-cli identity for the live transport.")
+    tma.add_argument(
+        "--write",
+        action="store_true",
+        help="Perform live TM writes (GET-verified, idempotent). Dry-run without it.",
+    )
     return parser.parse_args(argv)
 
 
@@ -772,6 +905,45 @@ def main(argv: list[str] | None = None) -> int:
         else:
             for pair in pairs:
                 print(json.dumps(pair, ensure_ascii=False, sort_keys=True))
+        return 0
+    if args.command == "tm-candidates":
+        ledger_path = args.ledger or default_ledger_path()
+        out_path = args.out or (get_paths().revision_ledger_dir / TM_CANDIDATES_FILENAME)
+        candidates = tm_candidates(load_ledger(ledger_path))
+        write_tm_candidates(candidates, out_path)
+        print(
+            json.dumps(
+                {"out": str(out_path), "candidates": len(candidates)}, ensure_ascii=False
+            )
+        )
+        return 0
+    if args.command == "tm-apply":
+        from tools.translation_memory_sync import apply_translation_suggestions
+
+        candidates_path = args.candidates or (
+            get_paths().revision_ledger_dir / TM_CANDIDATES_FILENAME
+        )
+        candidates = load_tm_candidates(candidates_path)
+        approved = _approved_hashes(args.approve, args.approve_file)
+        transport = None
+        if args.write:
+            if not args.tm_binding:
+                print("revision-ledger: --write requires --tm-binding BASE:TABLE_ID", file=sys.stderr)
+                return 2
+            from tools.cloud_doc_backport_transports import _tm_transport
+
+            transport = _tm_transport(
+                args.tm_binding, lark_cli=args.lark_cli, identity=args.identity
+            )
+        result = apply_translation_suggestions(
+            candidates,
+            approved_hashes=approved,
+            transport=transport,
+            write=bool(args.write),
+        )
+        result["candidates"] = str(candidates_path)
+        result["approved_count"] = len(approved)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     return 1
 

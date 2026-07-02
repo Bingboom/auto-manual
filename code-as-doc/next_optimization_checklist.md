@@ -638,13 +638,20 @@ change.
     - `classify_verdict` uses similarity matching; punctuation/line-break edits no longer misclassify
     - reflow rate (non-PENDING rows / total) is computable from the ledger
 
-- [ ] PR G2: Ledger → TM route (`tm_pair_suggestion`) (工程②)
-  - Status: `pending`
-  - Note: live TM writes stay operator-approved (candidate → approve → apply,
-    the same pattern as source intake); apply targets the converged base from G4
+- [x] PR G2: Ledger → TM route (工程②)
+  - Status: `done`
+  - Completed: `2026-07-02`
+  - Note: no new write path was built — `tm-candidates` projects accepted
+    review-route rows into the suggestion shape the **existing** gated TM
+    write path already consumes, and `tm-apply` drives
+    `translation_memory_sync.apply_translation_suggestions` (human-approval
+    hashes, exact-or-abstain resolution by old target text, GET-verified
+    idempotent writes; dry-run unless `--write --tm-binding`). Candidates
+    whose old translation is not in the TM abstain and stay visible for the
+    manual `bilingual-tm-maintenance` flow. Which base `--tm-binding` names is
+    the G4 decision.
   - Target files:
     - [`../tools/revision_ledger.py`](../tools/revision_ledger.py)
-    - [`../tools/translation_memory.py`](../tools/translation_memory.py)
   - Done when:
     - accepted revision deltas that rewrite translated prose emit TM pair candidates (source sentence, target sentence, provenance, confidence)
     - candidates are reviewable and only reach live `Translation_Memory` after operator approval

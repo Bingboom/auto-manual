@@ -147,13 +147,35 @@ Properties:
 | `source_evidence` | delta | Data-origin evidence, when present |
 | `final_status`, `final_text`, `merged_pr`, `merged_commit`, `merged_at`, `reviewer` | reconcile (later) | Human verdict; `pending` until filled |
 
+### tm-candidates / tm-apply
+
+Accepted review-prose corrections are the highest-value TM corpus (reviewer-
+confirmed sentence pairs) and used to be lost after each round. `tm-candidates`
+projects them into the exact suggestion shape the existing gated TM write path
+consumes; `tm-apply` runs that path (`translation_memory_sync.
+apply_translation_suggestions`: human-approval hashes, exact-or-abstain
+resolution against the live TM's target-language column, GET-verified
+idempotent writes):
+
+```bash
+# 1. Emit candidates from reconciled accepted rows:
+python3 -m tools.revision_ledger tm-candidates
+# 2. A human reviews reports/revision_ledger/tm_candidates.jsonl and approves:
+python3 -m tools.revision_ledger tm-apply --approve <delta_hash> [--approve <hash>...]
+# 3. Live write (operator-run; the binding names the canonical TM base):
+python3 -m tools.revision_ledger tm-apply --approve-file approved.txt \
+  --tm-binding BASE:TABLE_ID --write
+```
+
+Only `accepted_as_proposed` review-route rows with a known target language and
+a real text change qualify (`edited_further` is excluded — the landed text is
+unknown). A candidate whose old translation is not found in the TM abstains
+(exact-or-abstain); those corrections stay visible in the candidates file for
+the manual `bilingual-tm-maintenance` flow. Dry-run unless `--write` with
+`--tm-binding`; which base the binding names is the G4 base-convergence
+decision.
+
 ## Roadmap
 
-- Wire `ingest` into the backport orchestration itself (planned with the
-  backport-CLI split, Milestone G PR G0), so each `run-review-branch` round
-  ingests its report without a manual step; `reconcile` already piggybacks on
-  every ingest.
-- A `tm_pair_suggestion` route feeding accepted translated-prose corrections
-  into `Translation_Memory` as operator-approved candidates (Milestone G PR G2).
 - Richer analytics (CSV/DuckDB materialized views, an eval harness over the
   exported pairs) on top of `stats` / `export` as the corpus grows.
