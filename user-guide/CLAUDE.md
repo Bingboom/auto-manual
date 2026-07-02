@@ -6,7 +6,6 @@
 
 - `hello_auto-doc.md`: current human workflow guide.
 - `quick_start_guide.md`: happy-path onboarding and sample commands.
-- `dingtalk_alidocs_upload_setup_guide.md`: DingTalk/AliDocs setup workflow.
 
 ## Local Rules
 

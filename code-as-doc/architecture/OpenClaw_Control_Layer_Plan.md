@@ -309,7 +309,7 @@ Reference docs:
 
 - [`../build_doc_guide.md`](../build_doc_guide.md)
 - [`../../user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md)
-- [`../../user-guide/dingtalk_alidocs_upload_setup_guide.md`](../../user-guide/dingtalk_alidocs_upload_setup_guide.md)
+- the DingTalk AliDocs setup guide was removed when the mirror-upload chain was retired (2026-07-02); the queue-side `dingtalk_alidocs_session` provider described above is dormant
 
 ### 3.4 Ownership Boundary
 

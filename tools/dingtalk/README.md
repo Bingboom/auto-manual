@@ -1,26 +1,24 @@
 # DingTalk Integration
 
-This package is the repo-owned DingTalk integration surface for the current
-hybrid Feishu queue flow.
+> **Chain retired 2026-07-02.** The AliDocs mirror-upload chain was withdrawn
+> by operator decision: the one-click queue wrapper
+> (`scripts/process_build_queue_dingtalk.ps1`), the browser-session upload CLI
+> (`alidocs_session_upload_cli.py`), and the operator setup guide were removed.
+> Feishu/wiki (`lark_drive`) is the only artifact upload target in operation.
+> The modules below remain either because production code still imports them
+> (credential probing, queue provider plumbing) or as dormant provider code
+> pending a separate removal decision.
 
-Current maintained scope:
+Remaining modules:
 
-- Feishu phase2 tables remain the source of truth for queue rows and writeback
-- `build.py process-build-queue` remains the execution entrypoint
-- DingTalk is an optional artifact destination:
-  - Feishu/wiki primary + DingTalk mirror
-  - DingTalk primary replace mode when explicitly requested
-- the current DingTalk upload path is the observed AliDocs browser-session
-  chain, not a public OpenAPI knowledge-base upload provider
-
-Current modules:
-
-- `auth.py`: verified App-Only token helper for future endpoint-based work
-- `workspace.py`: DingTalk docs node parsing helpers
-- `alidocs_session.py`: current browser-session upload implementation
-- `alidocs_session_upload_cli.py`: manual upload smoke helper for the same chain
-- `spike.py` / `spike_cli.py`: endpoint-driven capability spike helpers kept for
-  future provider work
+- `auth.py`: verified App-Only token helper (used by `cred_health_check.py`)
+- `workspace.py`: DingTalk docs node parsing helpers (imported by
+  `queue_artifact_sink.py`)
+- `alidocs_session.py`: browser-session upload implementation (dormant provider
+  `dingtalk_alidocs_session`)
+- `contracts.py`: shared dataclasses for the above
+- `spike_cli.py`: endpoint-driven capability spike helper kept for future
+  provider work
 
 ## Queue Integration
 
@@ -136,26 +134,9 @@ They do not auto-switch the primary sink to DingTalk.
 
 ## Manual Smoke
 
-For a local smoke run:
-
-```powershell
-$env:AUTO_MANUAL_ARTIFACT_SINK_PROVIDER="lark_drive"
-$env:AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER="dingtalk_alidocs_session"
-powershell -ExecutionPolicy Bypass -File scripts\process_build_queue_dingtalk.ps1 --record-id <record_id>
-```
-
-For a direct upload helper smoke:
-
-```powershell
-python tools\dingtalk\alidocs_session_upload_cli.py `
-  --target-node-url https://alidocs.dingtalk.com/i/nodes/... `
-  --file .tmp\phase0-smoke.docx
-```
-
-## Operational Gaps
-
-The main remaining gaps are operational, not boundary discovery:
-
-- browser-session rotation and storage hygiene
-- live GitHub worker smoke validation with real secrets
-- future migration to an app-only or officially supported DingTalk upload path
+The one-click smoke wrapper (`scripts/process_build_queue_dingtalk.ps1`) and
+the direct upload helper (`alidocs_session_upload_cli.py`) were removed with
+the chain retirement (2026-07-02). To exercise the dormant provider, set
+`AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=dingtalk_alidocs_session` with the
+`DINGTALK_DOCS_*` env values and run `python build.py process-build-queue ...`
+directly.
