@@ -27,7 +27,10 @@ backport behaviour.
 from __future__ import annotations
 
 import argparse
+import difflib
 import json
+import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -59,6 +62,14 @@ ROUTE_REVIEW = "repo_review_text"
 ROUTE_SOURCE_TABLE = "source_table_suggestion"
 
 _MERGE_FIELDS = ("merged_pr", "merged_commit", "merged_at", "reviewer")
+
+# Fuzzy-verdict tuning. Exact containment stays the fast path; the similarity
+# layer only decides rows where punctuation / line-break / single-word edits
+# broke exact containment. Below MIN_FUZZY_LENGTH the ratio is too noisy to
+# trust (a 6-char fragment matches half the document at 0.9), so short needles
+# stay containment-only.
+SIMILARITY_THRESHOLD = 0.90
+MIN_FUZZY_LENGTH = 12
 
 
 def default_ledger_path(base_root: Path | None = None) -> Path:
@@ -220,25 +231,90 @@ def _source_haystack(root: Path, source_path: str | None) -> str | None:
     return " ".join(block.normalized for block in blocks)
 
 
-def classify_verdict(row: dict[str, Any], haystack: str | None) -> str:
+def _partial_ratio(needle: str, hay: str) -> float:
+    """Best similarity of ``needle`` against any needle-sized window of ``hay``.
+
+    Sliding-window best-alignment ratio (the classic partial-ratio shape):
+    anchor candidate windows at each matching block, then score the window with
+    a plain ``SequenceMatcher`` ratio. Returns 0.0..1.0.
+    """
+    if not needle or not hay:
+        return 0.0
+    if len(needle) > len(hay):
+        needle, hay = hay, needle
+    anchor = difflib.SequenceMatcher(None, needle, hay, autojunk=False)
+    best = 0.0
+    for block in anchor.get_matching_blocks():
+        start = max(block.b - block.a, 0)
+        window = hay[start : start + len(needle)]
+        if not window:
+            continue
+        ratio = difflib.SequenceMatcher(None, needle, window, autojunk=False).ratio()
+        if ratio > best:
+            best = ratio
+        if best >= 0.995:
+            break
+    return best
+
+
+def _fuzzy_present(needle: str, haystack: str, threshold: float) -> bool:
+    """True when ``needle`` (near-)appears in ``haystack``.
+
+    Exact containment first; the similarity layer only runs for needles long
+    enough for the ratio to be meaningful.
+    """
+    if not needle:
+        return False
+    if needle in haystack:
+        return True
+    if len(needle) < MIN_FUZZY_LENGTH:
+        return False
+    return _partial_ratio(needle, haystack) >= threshold
+
+
+def classify_verdict(
+    row: dict[str, Any],
+    haystack: str | None,
+    *,
+    threshold: float = SIMILARITY_THRESHOLD,
+) -> str:
     """Decide what landed for one row, given the merged source's normalized text.
 
-    Heuristic (MVP): work in the normalized text space.
+    Works in the normalized text space, with a similarity layer on top of exact
+    containment so punctuation / line-break level edits do not misclassify:
+
     - Deletion proposal (reviewer_text empty): accepted if the machine text is
-      gone from the source, else rejected.
-    - Otherwise: accepted if the reviewer's text is present; else rejected if the
-      machine's original text is still present; else edited_further (something
-      other than either landed).
+      gone (exactly and near-exactly), else rejected.
+    - Otherwise: accepted if the reviewer's text (near-)appears; else rejected
+      if the machine's original text still (near-)appears; else edited_further.
+
+    When both texts near-appear, the higher partial ratio wins, so a reviewer
+    edit that landed with a tweaked comma is ``accepted_as_proposed`` rather
+    than falling through to the machine text's stale match. Near-match
+    acceptance means ``final_text`` (the reviewer's proposal) may differ from
+    the landed text by up to ``1 - threshold``.
     """
     if haystack is None:
         return SOURCE_MISSING_STATUS
     reviewer = _normalize_inline(row.get("reviewer_text") or "")
     machine = _normalize_inline(row.get("machine_text") or "")
     if not reviewer:
-        return REJECTED_STATUS if (machine and machine in haystack) else ACCEPTED_STATUS
+        return REJECTED_STATUS if _fuzzy_present(machine, haystack, threshold) else ACCEPTED_STATUS
     if reviewer in haystack:
         return ACCEPTED_STATUS
     if machine and machine in haystack:
+        return REJECTED_STATUS
+    reviewer_ratio = (
+        _partial_ratio(reviewer, haystack) if len(reviewer) >= MIN_FUZZY_LENGTH else 0.0
+    )
+    machine_ratio = (
+        _partial_ratio(machine, haystack)
+        if machine and len(machine) >= MIN_FUZZY_LENGTH
+        else 0.0
+    )
+    if reviewer_ratio >= threshold and reviewer_ratio >= machine_ratio:
+        return ACCEPTED_STATUS
+    if machine_ratio >= threshold:
         return REJECTED_STATUS
     return EDITED_STATUS
 
@@ -249,6 +325,51 @@ def _final_text_for(row: dict[str, Any], status: str) -> str | None:
     if status == REJECTED_STATUS:
         return row.get("machine_text")
     return None
+
+
+def _git_merge_meta(root: Path, source_path: str | None) -> dict[str, Any]:
+    """Resolve merge metadata for a source file from its last landing commit.
+
+    Reads the newest commit touching ``source_path`` (on the current checkout):
+    commit SHA, commit date, author, and the PR number when the squash-merge
+    subject carries the conventional ``(#123)`` suffix. Returns {} when git or
+    the path is unavailable, so reconcile degrades to unstamped verdicts.
+    """
+    if not source_path:
+        return {}
+    try:
+        proc = subprocess.run(
+            [
+                "git",
+                "-C",
+                str(root),
+                "log",
+                "-1",
+                "--format=%H%x1f%cI%x1f%an%x1f%s",
+                "--",
+                source_path,
+            ],
+            capture_output=True,
+            text=True,
+            timeout=30,
+            check=False,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return {}
+    line = (proc.stdout or "").strip()
+    if proc.returncode != 0 or not line:
+        return {}
+    parts = line.split("\x1f")
+    if len(parts) != 4:
+        return {}
+    sha, committed_at, author, subject = parts
+    pr_match = re.search(r"\(#(\d+)\)", subject)
+    return {
+        "merged_commit": sha,
+        "merged_at": committed_at,
+        "reviewer": author,
+        "merged_pr": f"#{pr_match.group(1)}" if pr_match else None,
+    }
 
 
 def index_apply_report(apply_report: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
@@ -298,6 +419,7 @@ def reconcile_rows(
     merge_meta: dict[str, Any] | None = None,
     apply_index: dict[str, dict[str, Any]] | None = None,
     force: bool = False,
+    auto_merge_meta: bool = False,
 ) -> dict[str, Any]:
     """Fill verdict + merge fields on pending rows in place, routed by route_class.
 
@@ -306,23 +428,28 @@ def reconcile_rows(
     source_table_sync apply report, keyed by delta_hash). Rows of other route
     classes, and source-table rows with no apply entry yet, are left pending.
     Decided rows are skipped unless ``force``. Returns per-verdict counts.
+
+    With ``auto_merge_meta``, merge metadata for review-route rows is resolved
+    from git (the last commit touching each row's source file); explicit
+    ``merge_meta`` values win over the resolved ones.
     """
     merge_meta = merge_meta or {}
     apply_index = apply_index or {}
     haystacks: dict[str, str | None] = {}
+    git_meta: dict[str, dict[str, Any]] = {}
     counts: dict[str, int] = {}
     reconciled = 0
     for row in rows:
         if not force and row.get("final_status") != PENDING_STATUS:
             continue
         route = row.get("route_class")
+        source_path = row.get("source_path")
         if route == ROUTE_SOURCE_TABLE:
             entry = apply_index.get(row.get("delta_hash"))
             if entry is None:
                 continue  # no apply outcome yet -> stays pending
             status = classify_source_table_verdict(entry)
         elif route == ROUTE_REVIEW:
-            source_path = row.get("source_path")
             key = source_path or ""
             if key not in haystacks:
                 haystacks[key] = _source_haystack(root, source_path)
@@ -334,9 +461,15 @@ def reconcile_rows(
             continue  # template / image / needs_human_mapping: not reconciled here
         row["final_status"] = status
         row["final_text"] = _final_text_for(row, status)
+        resolved_meta = merge_meta
+        if auto_merge_meta and route == ROUTE_REVIEW:
+            key = source_path or ""
+            if key not in git_meta:
+                git_meta[key] = _git_merge_meta(root, source_path)
+            resolved_meta = {**git_meta[key], **{k: v for k, v in merge_meta.items() if v is not None}}
         for field in _MERGE_FIELDS:
-            if merge_meta.get(field) is not None:
-                row[field] = merge_meta[field]
+            if resolved_meta.get(field) is not None:
+                row[field] = resolved_meta[field]
         counts[status] = counts.get(status, 0) + 1
         reconciled += 1
     return {"rows_reconciled": reconciled, "verdicts": counts}
@@ -349,16 +482,23 @@ def reconcile(
     merge_meta: dict[str, Any] | None = None,
     apply_report: dict[str, Any] | None = None,
     force: bool = False,
+    auto_merge_meta: bool = False,
 ) -> dict[str, Any]:
     """Load a ledger, reconcile pending rows, write back.
 
     ``apply_report`` is an optional source_table_sync apply report used to resolve
-    ``source_table_suggestion`` (online-table) rows.
+    ``source_table_suggestion`` (online-table) rows. ``auto_merge_meta`` resolves
+    merge metadata from git per source file (explicit ``merge_meta`` wins).
     """
     rows = load_ledger(ledger_path)
     apply_index = index_apply_report(apply_report)
     summary = reconcile_rows(
-        rows, root=root, merge_meta=merge_meta, apply_index=apply_index, force=force
+        rows,
+        root=root,
+        merge_meta=merge_meta,
+        apply_index=apply_index,
+        force=force,
+        auto_merge_meta=auto_merge_meta,
     )
     if summary["rows_reconciled"]:
         write_ledger(rows, ledger_path)
@@ -408,10 +548,16 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
             ),
         }
     top = sorted(corrected_by_source.items(), key=lambda item: (-item[1], item[0]))
+    pending = by_status.get(PENDING_STATUS, 0)
+    total = len(rows)
     return {
-        "total_rows": len(rows),
+        "total_rows": total,
         "by_status": by_status,
         "decided": decided,
+        # The closed-loop health metric: share of captured corrections that have
+        # left ``pending`` (reconciled to any outcome). 0.0 means the ledger is
+        # recording but nobody is closing the loop.
+        "reflow_rate": round((total - pending) / total, 4) if total else None,
         "acceptance_rate": round(accepted / decided, 4) if decided else None,
         "by_route_class": route_rates,
         "top_corrected_sources": [
@@ -488,6 +634,17 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=None,
         help="Ledger JSONL path (default: reports/revision_ledger/ledger.jsonl).",
     )
+    ingest.add_argument(
+        "--no-reconcile",
+        action="store_true",
+        help="Skip the automatic reconcile pass that runs after ingest.",
+    )
+    ingest.add_argument(
+        "--root",
+        type=Path,
+        default=None,
+        help="Repo root for the post-ingest reconcile pass (default: repo root).",
+    )
 
     rec = sub.add_parser(
         "reconcile",
@@ -520,6 +677,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--force",
         action="store_true",
         help="Re-evaluate rows that already carry a verdict, not just pending ones.",
+    )
+    rec.add_argument(
+        "--auto",
+        action="store_true",
+        help="Resolve merge metadata (commit, date, author, PR) from git per "
+        "source file; explicit --merged-*/--reviewer values win.",
     )
 
     stats = sub.add_parser("stats", help="Print quality metrics aggregated from the ledger.")
@@ -559,6 +722,16 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "ingest":
         ledger_path = args.ledger or default_ledger_path()
         summary = ingest_report_file(args.report, ledger_path=ledger_path)
+        if not args.no_reconcile:
+            # Close the loop opportunistically: every ingest (each backport
+            # round) also settles the still-pending rows from earlier rounds
+            # against the current checkout, so the ledger reconciles without a
+            # separate human-remembered step. The ledger is a local artifact,
+            # so this local piggyback — not CI — is the merge-time trigger.
+            root = args.root or get_paths().root
+            summary["reconcile"] = reconcile(
+                ledger_path, root=root, auto_merge_meta=True
+            )
         print(json.dumps(summary, ensure_ascii=False, indent=2))
         return 0
     if args.command == "reconcile":
@@ -581,6 +754,7 @@ def main(argv: list[str] | None = None) -> int:
             merge_meta=merge_meta,
             apply_report=apply_report,
             force=args.force,
+            auto_merge_meta=args.auto,
         )
         print(json.dumps(summary, ensure_ascii=False, indent=2))
         return 0

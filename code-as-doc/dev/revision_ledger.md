@@ -21,7 +21,15 @@ Tests: [`tests/test_revision_ledger.py`](../../tests/test_revision_ledger.py).
 python3 -m tools.revision_ledger ingest --report <backport_report.json>
 # custom location:
 python3 -m tools.revision_ledger ingest --report <report.json> --ledger <path.jsonl>
+# skip the automatic post-ingest reconcile pass:
+python3 -m tools.revision_ledger ingest --report <report.json> --no-reconcile
 ```
+
+Every `ingest` also runs an automatic reconcile pass over the still-pending
+rows from earlier rounds (with git-resolved merge metadata, see `--auto`
+below). The ledger is a local artifact, so this per-round piggyback — not a CI
+workflow — is the merge-time trigger: each backport round settles the previous
+round's rows without a separately remembered step. `--no-reconcile` opts out.
 
 ### reconcile
 
@@ -30,7 +38,10 @@ fills each pending row's verdict, turning a proposal into a true label. A
 backport lands in two places, so reconcile routes by the delta's `route_class`:
 
 ```bash
-# Class R only (edits that landed in the branch _review tree):
+# Class R with merge metadata resolved from git (recommended):
+python3 -m tools.revision_ledger reconcile --auto
+
+# Class R with explicit merge metadata (explicit values win over --auto):
 python3 -m tools.revision_ledger reconcile \
   --merged-pr "#500" --merged-commit <sha> --merged-at <iso8601> --reviewer <name>
 
@@ -41,15 +52,24 @@ python3 -m tools.revision_ledger reconcile --apply-report <source_table_sync app
 python3 -m tools.revision_ledger reconcile --ledger <path.jsonl> --root <repo_root> [--force]
 ```
 
+`--auto` resolves each review-route row's merge metadata from the last commit
+touching its source file: commit SHA, commit date, author, and the PR number
+when the squash-merge subject carries the conventional `(#123)` suffix.
+
 **Class R — `repo_review_text` (branch `_review`).** Matched in the same
 normalized text space the deltas were derived in (the backport's `parse_blocks` /
-`_normalize_inline`):
+`_normalize_inline`), with a similarity layer on top of exact containment
+(best-window partial ratio, threshold 0.90, needles ≥ 12 chars) so
+punctuation / line-break level edits do not misclassify:
 
-- `accepted_as_proposed` — the reviewer's text is present in the merged source
-  (or, for a deletion, the machine text is gone). `final_text` = reviewer text.
-- `rejected` — the machine's original text is still present. `final_text` =
+- `accepted_as_proposed` — the reviewer's text (near-)appears in the merged
+  source (or, for a deletion, the machine text is gone). `final_text` =
+  reviewer text; on a near match the landed text may differ from it by up to
+  the threshold margin.
+- `rejected` — the machine's original text still (near-)appears. `final_text` =
   machine text.
-- `edited_further` — neither landed verbatim; something else was written.
+- `edited_further` — neither landed (even approximately); something else was
+  written.
 - `source_missing` — the source file could not be read; the row stays `pending`.
 
 **Class D — `source_table_suggestion` (online Feishu tables).** Resolved from the
@@ -78,7 +98,9 @@ them. Only the merge fields you supply are stamped.
 python3 -m tools.revision_ledger stats
 ```
 
-Reports verdict counts, overall and per-`route_class` acceptance rate
+Reports verdict counts, the closed-loop health metric `reflow_rate` (share of
+rows that have left `pending` — 0.0 means the ledger records but nobody closes
+the loop), overall and per-`route_class` acceptance rate
 (`accepted_as_proposed` / decided), and the files whose machine output was
 corrected most often (`top_corrected_sources`).
 
@@ -127,8 +149,11 @@ Properties:
 
 ## Roadmap
 
-- Wire `ingest` into the review-start worker, `reconcile` into the post-merge
-  step, and add a `build.py revision-ledger` subcommand once the shape is
-  validated in use.
+- Wire `ingest` into the backport orchestration itself (planned with the
+  backport-CLI split, Milestone G PR G0), so each `run-review-branch` round
+  ingests its report without a manual step; `reconcile` already piggybacks on
+  every ingest.
+- A `tm_pair_suggestion` route feeding accepted translated-prose corrections
+  into `Translation_Memory` as operator-approved candidates (Milestone G PR G2).
 - Richer analytics (CSV/DuckDB materialized views, an eval harness over the
   exported pairs) on top of `stats` / `export` as the corpus grows.
