@@ -543,6 +543,12 @@ Exit criteria:
 - every review round emits TM pair candidates; approved pairs land in exactly one canonical TM base; hit rate has a baseline and a visible trend
 - QC findings can be delivered as an annotated sidecar PDF without touching the shipped PDF
 
+### Workstream S: Corpus-Driven Template Optimization + Three-Flow Dashboards
+
+Status: next
+
+PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone H (H1 lint → H2 recurrence miner → H3 two-face dashboards). The 查客服答案 capability is a recorded candidate under that milestone, not scheduled.
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
