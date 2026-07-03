@@ -124,6 +124,9 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "Row_label_uk",
             "Param_uk",
             "Value_uk",
+            "Row_label_ko",
+            "Param_ko",
+            "Value_ko",
         ),
     ),
     "spec_footnotes": TableSchema(

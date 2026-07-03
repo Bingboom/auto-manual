@@ -127,6 +127,9 @@ class TestSyncData(unittest.TestCase):
                 "Row_label_uk",
                 "Param_uk",
                 "Value_uk",
+                "Row_label_ko",
+                "Param_ko",
+                "Value_ko",
             ),
             sync_data.TABLE_SCHEMAS["spec_master"].columns,
         )
@@ -671,7 +674,7 @@ class TestSyncData(unittest.TestCase):
 
             master_lines = (root / "data" / "phase2" / "Spec_Master.csv").read_text(encoding="utf-8").splitlines()
             self.assertEqual(
-                "spec_row_key,document_key,Model,Region,Source_lang,Version,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Row_label_fr,Param_fr,Value_fr,Row_label_es,Param_es,Value_es,Row_label_br,Param_br,Value_br,Row_label_de,Param_de,Value_de,Row_label_it,Param_it,Value_it,Row_label_uk,Param_uk,Value_uk",
+                "spec_row_key,document_key,Model,Region,Source_lang,Version,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Row_label_fr,Param_fr,Value_fr,Row_label_es,Param_es,Value_es,Row_label_br,Param_br,Value_br,Row_label_de,Param_de,Value_de,Row_label_it,Param_it,Value_it,Row_label_uk,Param_uk,Value_uk,Row_label_ko,Param_ko,Value_ko",
                 master_lines[0],
             )
             self.assertIn("TRUE", master_lines[1])
