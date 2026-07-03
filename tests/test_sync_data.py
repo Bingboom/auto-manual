@@ -666,7 +666,7 @@ class TestSyncData(unittest.TestCase):
 
             titles_lines = (root / "data" / "phase2" / "spec_titles.csv").read_text(encoding="utf-8").splitlines()
             self.assertEqual(
-                "title_en,section_order,title_zh,title_jp,title_fr,title_es,title_de,title_it,title_uk",
+                "title_en,section_order,title_zh,title_jp,title_fr,title_es,title_de,title_it,title_uk,title_ko",
                 titles_lines[0],
             )
             self.assertTrue(titles_lines[1].startswith("A,1"))

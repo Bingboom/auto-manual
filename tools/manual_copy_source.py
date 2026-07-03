@@ -96,6 +96,7 @@ SPEC_TITLE_COLUMNS = (
     "title_de",
     "title_it",
     "title_uk",
+    "title_ko",
 )
 SPEC_TITLE_TEXT_COLUMNS = {
     "title_en": "en",
@@ -106,6 +107,7 @@ SPEC_TITLE_TEXT_COLUMNS = {
     "title_de": "de",
     "title_it": "it",
     "title_uk": "uk",
+    "title_ko": "ko",
 }
 
 _TRUE_VALUES = {"1", "true", "yes", "y"}

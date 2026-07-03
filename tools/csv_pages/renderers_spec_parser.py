@@ -155,6 +155,8 @@ def _pick_title_lang(lang: str, vars_map: dict[str, str]) -> str:
         return "zh"
     if value in {"br"} or value.startswith("pt"):
         return "pt-BR"
+    if value.startswith("ko"):
+        return "ko"
     return "en"
 
 
