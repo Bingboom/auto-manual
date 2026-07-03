@@ -77,7 +77,7 @@ DC 12V/USB 출력 켜기/끄기
 
 출력을 끄는 것을 잊어 발생하는 불필요한 배터리 소모를 방지하기 위해 본 제품은 기본적으로 에너지 절약 모드가 활성화되어 있습니다. AC 출력 또는 DC/USB 출력이 켜지면 LCD 화면에 에너지 절약 모드 아이콘이 표시됩니다. 이 모드에서는 연결된 기기가 없거나 연결된 기기의 소비 전력이 특정 임계값(AC 출력 |ENERGY_SAVING_AC_THRESHOLD| 또는 DC/USB 출력 |ENERGY_SAVING_DC_THRESHOLD|) 미만인 경우 설정된 시간이 지나면 해당 출력이 자동으로 꺼집니다. 기본 설정은 |ENERGY_SAVING_AUTO_OFF_DURATION|입니다. 에너지 절약 모드 지속 시간은 Jackery App에서 1H, 2H, 8H, 12H 또는 24H로 설정할 수 있습니다. Never Off로 설정하면 에너지 절약 모드는 비활성화됩니다.
 
-에너지 절약 모드를 비활성화하려면 AC 전원 버튼과 메인 POWER 버튼을 동시에 3초 이상 길게 누르십시오. 에너지 절약 모드가 비활성화되면 LCD 화면에 아이콘이 더 이상 표시되지 않으며, 제품은 AC 또는 USB 출력을 자동으로 끄지 않습니다.
+에너지 절약 모드를 비활성화하려면 AC 전원 버튼과 전원 버튼을 동시에 3초 이상 길게 누르십시오. 에너지 절약 모드가 비활성화되면 LCD 화면에 아이콘이 더 이상 표시되지 않으며, 제품은 AC 또는 USB 출력을 자동으로 끄지 않습니다.
 
 저전력 기기(AC ≤ |ENERGY_SAVING_AC_THRESHOLD| 또는 DC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|)에 전원을 공급할 때는 출력이 자동으로 꺼지는 것을 방지하려면 에너지 절약 모드를 비활성화하십시오.
 
@@ -143,11 +143,11 @@ LCD 화면
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">잠시 켜기</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">켜기</td>
-          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">POWER 버튼을 누르거나 제품이 충전 중일 때 켜집니다.</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">전원 버튼을 누르거나 제품이 충전 중일 때 켜집니다.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">끄기</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">POWER 버튼을 누르십시오.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">전원 버튼을 누르십시오.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">자동으로 끄기</td>
@@ -156,11 +156,11 @@ LCD 화면
         <tr>
           <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">상시 켜짐(충전 또는 방전 상태에서)</td>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">켜기</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">제품 전원이 켜진 상태에서 POWER 버튼을 두 번 누르십시오.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">제품 전원이 켜진 상태에서 전원 버튼을 두 번 누르십시오.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">끄기</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">POWER 버튼을 누르십시오.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">전원 버튼을 누르십시오.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">자동으로 끄기</td>
@@ -173,8 +173,8 @@ LCD 화면
    .. raw:: latex
 
       \begin{HBLcdModeTable}{lcd_mode.png}
-      \HBLcdModeFirstGroup{잠시 켜기}{켜기}{POWER 버튼을 누르거나 제품이 충전 중일 때 켜집니다.}{끄기}{POWER 버튼을 누르십시오.}{자동으로 끄기}{2분 동안 조작이 없으면 LCD 화면이 자동으로 꺼지고 절전 모드로 전환됩니다.}
-      \HBLcdModeSecondGroup{상시 켜짐(충전 또는 방전 상태에서)}{켜기}{제품 전원이 켜진 상태에서 POWER 버튼을 두 번 누르십시오.}{끄기}{POWER 버튼을 누르십시오.}{자동으로 끄기}{|DEFAULT_STANDBY_DURATION| 동안 조작이 없으면 LCD 화면이 자동으로 꺼집니다.}
+      \HBLcdModeFirstGroup{잠시 켜기}{켜기}{전원 버튼을 누르거나 제품이 충전 중일 때 켜집니다.}{끄기}{전원 버튼을 누르십시오.}{자동으로 끄기}{2분 동안 조작이 없으면 LCD 화면이 자동으로 꺼지고 절전 모드로 전환됩니다.}
+      \HBLcdModeSecondGroup{상시 켜짐(충전 또는 방전 상태에서)}{켜기}{제품 전원이 켜진 상태에서 전원 버튼을 두 번 누르십시오.}{끄기}{전원 버튼을 누르십시오.}{자동으로 끄기}{|DEFAULT_STANDBY_DURATION| 동안 조작이 없으면 LCD 화면이 자동으로 꺼집니다.}
       \end{HBLcdModeTable}
 
 또한 Jackery App에서 화면 표시 모드를 설정할 수 있습니다.
@@ -189,15 +189,15 @@ LCD 화면
    * - 버튼
      - 조작
      - 기능
-   * - 메인 POWER 버튼 + AC 전원 버튼
+   * - 전원 버튼 + AC 전원 버튼
      - 두 버튼을 3초 동안 길게 누르기
      - 에너지 절약 모드 켜기/끄기
-   * - 메인 POWER 버튼 + DC/USB 전원 버튼
+   * - 전원 버튼 + DC/USB 전원 버튼
      - 두 버튼을 3초 동안 길게 누르기
      - Wi-Fi 및 블루투스 재설정
    * - DC/USB 전원 버튼 + AC 전원 버튼
      - 두 버튼을 1초 동안 길게 누르기
      - Wi-Fi 및 블루투스 켜기/끄기
-   * - 메인 POWER 버튼 + LED 조명 버튼
+   * - 전원 버튼 + LED 조명 버튼
      - 두 버튼을 1초 동안 길게 누르기
      - 비상 충전 모드 켜기/끄기
