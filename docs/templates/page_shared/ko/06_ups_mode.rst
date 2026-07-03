@@ -1,21 +1,21 @@
-UNINTERRUPTIBLE POWER SUPPLY (UPS)
-==================================
-| Connect the product to a wall outlet with the AC charging cable, then press the |AC_POWER_BUTTON_LABEL_LOWER| and power your appliances at the same time.
+무정전 전원 공급 장치 (UPS)
+===================================
+| AC 충전 케이블로 제품을 벽면 콘센트에 연결한 다음, |AC_POWER_BUTTON_LABEL_LOWER|을(를) 눌러 가전제품에 동시에 전원을 공급하십시오.
 .. image:: templates/word_template/common_assets/operation/ups_mode.png
    :alt: UPS connection diagram placeholder.
    :width: 360px
 
-| An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails.
-| In the event of a sudden loss of grid power, |PRODUCT_NAME| will automatically switch to stored power within 10 ms to keep your appliances running.
-| In UPS mode, the unit's peak output reaches |UPS_BYPASS_OUTPUT_TEXT| before power outages. As simultaneous charging/discharging is enabled in Bypass Mode,
-| the actual output power is lower than the rated output power in this mode but returns to rated output power during outages.
+| 무정전 전원 공급 장치(UPS)는 상용 전원(그리드 전력)이 중단될 때 부하에 자동으로 백업 전력을 제공하는 연속 전원 시스템의 한 유형입니다.
+| 그리드 전력이 갑자기 중단되는 경우, |PRODUCT_NAME|은(는) 10 ms 이내에 저장된 전원으로 자동 전환되어 가전제품의 작동을 유지합니다.
+| UPS 모드에서는 정전 발생 전 장치의 최대 출력이 |UPS_BYPASS_OUTPUT_TEXT|에 도달합니다. 바이패스 모드에서는 동시 충전/방전이 가능하므로,
+| 이 모드에서 실제 출력 전력은 정격 출력 전력보다 낮지만 정전 시에는 정격 출력 전력으로 복귀합니다.
 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
 
-   * - **CAUTION**
+   * - **주의**
      -
-       - This product does not support 0 ms switching. Do not connect it to equipment that requires a 0 ms switching power supply, such as data servers or workstations.
-       - Before use, please test compatibility with your device multiple times.
-       - Do not connect loads exceeding the maximum output power of the product. Otherwise, overload protection will be triggered.
+       - 이 제품은 0 ms 스위칭을 지원하지 않습니다. 데이터 서버나 워크스테이션과 같이 0 ms 전환 전원 공급이 필요한 장비에는 연결하지 마십시오.
+       - 사용 전에 기기와의 호환성을 여러 번 테스트하십시오.
+       - 제품의 최대 출력 전력을 초과하는 부하를 연결하지 마십시오. 그렇지 않으면 과부하 보호 기능이 작동할 수 있습니다.
