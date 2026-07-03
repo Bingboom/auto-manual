@@ -1,22 +1,8 @@
 |MANUAL_LANGUAGE_SCOPE|
 
-**IMPORTANT**
+**중요**
 
-| Congratulations on your new |PRODUCT_NAME|. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.
-| In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, |LEGAL_COMPANY_NAME| assumes no responsibility for any errors that may appear.
-| Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com.
-| \* The images are for reference purposes only. Please refer to the actual product.
-|
-**FR IMPORTANT**
-
-| Félicitations pour votre nouveau |PRODUCT_NAME|. Veuillez lire attentivement ce manuel avant d'utiliser le produit, en particulier les précautions à prendre pour garantir une utilisation correcte du produit. Conservez ce manuel dans un endroit accessible pour pouvoir vous y référer ultérieurement.
-| Conformément aux lois et réglementations en vigueur, le droit d'interprétation final de ce document et de tous les documents associés à ce produit appartient à l'entreprise. Bien que tous les efforts aient été déployés pour garantir l'exactitude de ce manuel, |LEGAL_COMPANY_NAME| n'assume aucune responsabilité pour les erreurs qui pourraient y figurer.
-| Veuillez noter qu'aucune autre notification ne sera faite en cas de mise à jour, de révision ou de résiliation. Pour la dernière version des manuels du produit, consultez support.jackery.com.
-| \* Les chiffres sont donnés à titre indicatif uniquement. Veuillez vous référer au produit réel.
-| 
-**ES IMPORTANTE**
-
-| Felicitaciones por su nuevo |PRODUCT_NAME|. Antes de utilizar el producto, lea cuidadosamente este manual, especialmente las precauciones relevantes para asegurar un uso adecuado. Mantenga este manual en un lugar accesible para futuras consultas.
-| De acuerdo con las leyes y regulaciones, el derecho de interpretación final de este documento y todos los documentos relacionados con este producto corresponde a la Empresa. Aunque se ha hecho todo lo posible para garantizar la exactitud de este manual, |LEGAL_COMPANY_NAME| no asume ninguna responsabilidad por los errores que puedan aparecer.
-| Tenga en cuenta que no se emitirán notificaciones adicionales en caso de actualizaciones, revisiones o terminación. Para obtener la última versión de los manuales del producto, visite support.jackery.com.
-| \* Las cifras son sólo de referencia. Consulte el producto real.
+| 새로운 |PRODUCT_NAME|을(를) 구매해 주셔서 감사합니다. 제품을 사용하기 전에 본 사용자 설명서를 주의 깊게 읽고, 특히 관련 주의사항을 확인하여 올바르게 사용하십시오. 향후 참고를 위해 본 사용자 설명서를 접근하기 쉬운 장소에 보관하십시오.
+| 관련 법규에 따라, 본 문서 및 본 제품과 관련된 모든 문서에 대한 최종 해석권은 회사에 있습니다. 본 사용자 설명서의 정확성을 보장하기 위해 최선을 다했으나, |LEGAL_COMPANY_NAME|은(는) 발생할 수 있는 오류에 대해 어떠한 책임도 지지 않습니다.
+| 업데이트, 개정 또는 종료 시 별도의 통지가 제공되지 않음을 유의하십시오. 최신 버전의 제품 사용자 설명서는 support.jackery.com을 방문해 주십시오.
+| \* 이미지는 참고용입니다. 실제 제품을 참고하십시오.

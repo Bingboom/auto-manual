@@ -1,69 +1,59 @@
-WARRANTY
+보증
 ========
 
-**This warranty applies only to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.**
+**본 보증은 Jackery 공식 웹사이트, Jackery 브랜드의 제3자 판매 플랫폼 또는 지역 공인 대리점에서 구매한 고객에게만 적용됩니다.**
 
-\*Warranty period and details may vary according to local laws, regulations, and authorized dealers.
+\*보증 기간 및 세부 사항은 현지 법률, 규정 및 공인 대리점에 따라 달라질 수 있습니다.
 
-Limited Warranty
-----------------
+제한 보증
+------------------------
 
-|LEGAL_COMPANY_NAME| warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.
+|LEGAL_COMPANY_NAME|은(는) 아래 '보증 기간' 섹션에 명시된 해당 보증 기간 동안, 아래에 명시된 제외 사항을 조건으로 정상적인 소비자 사용 환경에서 Jackery 제품에 제조상 또는 재료상의 결함이 없음을 최초 소비자 구매자에게 보증합니다.
 
-This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.
+본 보증서는 Jackery의 전적이며 배타적인 보증 의무를 규정합니다. 당사는 제품 판매와 관련하여 어떠한 추가 책임도 부담하지 않으며, 제3자가 당사를 대신하여 그러한 책임을 부담하도록 승인하지 않습니다.
 
-Warranty Period
----------------
+보증 기간
+------------------------
 
 .. list-table::
    :header-rows: 0
    :widths: 50 50
 
-   * - **3 YEARS**
+   * - **3년**
 
-       **Standard Warranty**
+       **표준 보증**
 
-       The standard warranty period for |PRODUCT_NAME| is 36 months.
-       In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser.
-       The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.
+       |PRODUCT_NAME|의 표준 보증 기간은 36개월입니다.
+       각 경우, 보증 기간은 최초 소비자 구매자의 구매일을 기준으로 산정됩니다.
+       보증 기간의 시작일을 확인하려면 최초 소비자 구매자의 구매 영수증 또는 기타 합리적인 증빙 서류가 필요합니다.
 
-     - **2 YEARS**
+     - **2년**
 
-       **Extended Warranty**
+       **연장 보증**
 
-       To activate the Warranty Extension, you must register your product online or contact our customer service team at |WARRANTY_EMAIL| to extend the standard warranty period.
+       보증 연장을 활성화하려면 제품을 온라인으로 등록하거나 고객 서비스 팀(|WARRANTY_EMAIL|)에 문의하여 표준 보증 기간을 연장해야 합니다.
 
-.. only:: region_us
+교환
+------------------------
 
-   Repair or replacement
-   ---------------------
+Jackery는 해당 보증 기간 내에 제조상 또는 재료상의 결함으로 작동하지 않는 모든 Jackery 제품을 Jackery의 비용으로 교체합니다. 교체 제품은 원래 제품의 남은 보증 기간을 승계합니다.
 
-   Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or materials.
-   The repaired/replaced product assumes the remaining warranty of the original date of purchase.
+최초 소비자 구매자에 한정
+------------------------
 
-.. only:: region_eu
+Jackery 제품의 보증은 최초 소비자 구매자에게만 적용되며 이후 소유자에게 양도할 수 없습니다.
 
-   Exchange
-   --------
+면책 사항
+------------------------
 
-   Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. A replacement product assumes the remaining warranty of the original product.
+다음의 경우 Jackery의 보증은 적용되지 않습니다:
 
-Limited to Original Consumer Buyer
-----------------------------------
+- 오용, 남용, 개조, 사고로 인한 손상 또는 Jackery의 최신 제품 문서에서 허용한 정상적인 소비자 사용 범위를 벗어난 용도로 사용된 제품.
+- 공인된 서비스 기관이 아닌 곳에서 수리를 시도한 경우.
+- 온라인 경매를 통해 구매한 제품.
+- 제품 구매 후 7일 이내에 배터리 셀을 완전히 충전하고, 이후에도 최소 6개월마다 한 번 이상 완전 충전을 수행해야 합니다. 이 조건을 충족하지 않을 경우 배터리 셀에는 Jackery의 보증이 적용되지 않습니다.
 
-The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.
+해석 권한
+------------------------
 
-Exclusions
-----------
-
-Jackery's warranty does not apply to:
-
-- Any product that has been misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.
-- Attempted repair by anyone other than an authorized facility.
-- Any product purchased through an online auction house.
-- Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.
-
-Interpretation Rights
----------------------
-
-Jackery reserves the right to the final interpretation of the above customer after-sales policy.
+Jackery는 상기 애프터서비스 정책에 대한 최종 해석 권한을 보유합니다.

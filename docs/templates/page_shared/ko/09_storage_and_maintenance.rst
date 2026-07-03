@@ -1,9 +1,9 @@
-STORAGE
-=======
-| Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:
+보관
+========
+| 제품을 건조하고 깨끗하며 통풍이 잘 되는 장소에 보관하십시오. 보관 온도 및 습도:
 
 - |STORAGE_TEMPERATURE_LINE_1|
 - |STORAGE_TEMPERATURE_LINE_2|
 - |STORAGE_TEMPERATURE_LINE_3|
- 
-| If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.
+
+| 이 제품을 전원이 완전히 방전된 상태로 장기간(3~6개월) 보관하면 충전이 불가능해질 수 있습니다. 이를 방지하고 배터리 상태를 유지하기 위해 3개월마다 제품을 점검 및 충전하고, 6~12개월마다 최소 한 번 완전 충전 및 방전 주기를 수행할 것을 권장합니다.

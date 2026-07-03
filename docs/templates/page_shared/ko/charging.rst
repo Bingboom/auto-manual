@@ -1,80 +1,24 @@
-.. only:: model_je_2000e
-
-   CONNECT TO BATTERY PACK(S) (SOLD SEPARATELY)
-   ============================================
-
-   This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the *Jackery Battery Pack 2000 User Manual*.
-
-   .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
-      :alt: Battery pack connection diagram placeholder.
-      :width: 360px
-
-   .. only:: region_us
-
-      .. list-table::
-         :header-rows: 0
-         :widths: 12 88
-
-         * - **CAUTION**
-           - - Ensure all products are powered off before connecting |PRODUCT_NAME| to the Jackery Battery Pack 2000.
-             - To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (about 200 mm) of space between the vents and any objects to allow for proper heat dissipation.
-             - When the product is used with connected battery packs, the default maximum number of stacked battery packs is 3, and the product must be placed on a flat, stable surface with sufficient load-bearing capacity.
-             - If 4 or more battery packs need to be stacked, the product must be placed in a stable area against a wall and protected from external impact, and the necessary anti-tip securing measures must be taken.
-
-
-   .. only:: region_eu
-
-      .. list-table::
-         :header-rows: 0
-         :widths: 12 88
-
-         * - **CAUTION**
-           - - Ensure all products are powered off before connecting |PRODUCT_NAME| to the Jackery Battery Pack 2000.
-             - To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.
-             - When the product is used with connected battery packs, the default maximum number of stacked battery packs is 3, and the product must be placed on a flat, stable surface with sufficient load-bearing capacity.
-             - If 4 or more battery packs need to be stacked, the product must be placed in a stable area against a wall and protected from external impact, and the necessary anti-tip securing measures must be taken.
-
-   .. only:: region_us
-
-      .. list-table::
-         :header-rows: 0
-         :widths: 34 33 33
-
-         * - **Jackery Battery Pack 2000**
-           - **Expansion Cable**
-           - **User Manual**
-
-   .. only:: region_eu
-
-      .. list-table::
-         :header-rows: 0
-         :widths: 34 33 33
-
-         * - **Jackery Battery Pack 2000**
-           - **Expansion Cable**
-           - **User Manual**
-
-CHARGING
+충전
 ========
 
-**Green energy first:** We advocate using green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging, and both methods will be used to charge the battery at the maximum permissible power.
+**그린 에너지 우선:** 그린 에너지 사용을 우선 권장합니다. 이 제품은 두 가지 충전 방식을 동시에 지원합니다: 태양광 충전 및 AC 벽면 충전입니다. AC 벽면 충전과 태양광 충전을 동시에 사용할 경우, 제품은 태양광 충전을 우선하며 두 방식을 모두 사용해 허용 가능한 최대 전력으로 배터리를 충전합니다.
 
 
-**Fully charge the product before its first use.**
+**처음 사용하기 전에 제품을 완전히 충전하십시오.**
 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
 
-   * - **NOTE**
-     - - The recommended charging temperature for the product ranges from |CHARGING_TEMPERATURE_VALUE_1|, and the discharging temperature ranges from |DISCHARGING_TEMPERATURE_VALUE_1|.
-       - Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.
-       - The charging power and battery capacity of the product may vary due to temperature fluctuations.
+   * - **참고**
+     - - 제품의 권장 충전 온도 범위는 |CHARGING_TEMPERATURE_VALUE_1|이며, 방전 온도 범위는 |DISCHARGING_TEMPERATURE_VALUE_1|입니다.
+       - 이 온도 범위를 벗어나 제품을 작동할 경우 충전 및 방전 성능이 제한되거나, 충전 또는 방전이 불가능해질 수 있습니다.
+       - 온도 변화로 인해 제품의 충전 전력과 배터리 용량이 달라질 수 있습니다.
 
-CHARGING VIA AC WALL OUTLET
----------------------------
+AC 벽면 콘센트를 통한 충전
+----------------------------------------
 
-Connect the AC charging cable to the AC input port of the product and a wall outlet.
+AC 충전 케이블을 제품의 AC 입력 포트와 벽면 콘센트에 연결하십시오.
 
 .. image:: templates/word_template/common_assets/charging/ac_wall.png
    :alt: AC wall charging diagram placeholder.
@@ -84,11 +28,11 @@ Connect the AC charging cable to the AC input port of the product and a wall out
    :header-rows: 0
    :widths: 12 88
 
-   * - **CAUTION**
-     - Make sure the AC charging cable is fully and securely plugged into the AC input port. An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction.
+   * - **주의**
+     - AC 충전 케이블이 AC 입력 포트에 완전히 단단히 연결되었는지 확인하십시오. 불완전한 연결은 전류 불안정, 과열, 접촉 불량 또는 장치 오작동을 유발할 수 있습니다.
 
 
-**Emergency Charging Mode**
+**비상 충전 모드**
 
-| Under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery App. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
-| \*To maximize battery lifespan, it is best to charge at normal speed. Use emergency charging mode only when necessary. It's not recommended for regular, long-term use.
+| 이 모드에서는 AC 충전 방식을 사용하여 휴대용 파워 스테이션을 빠르게 충전할 수 있습니다. 이 비상 충전 기능은 Jackery App을 통해 활성화하거나 비활성화할 수 있습니다. 비상 충전 모드에서는 충전 상태(SOC)를 나타내는 원형 표시등이 더 빠르게 깜박입니다.
+| \*배터리 수명을 최대화하려면 정상 속도로 충전하는 것이 가장 좋습니다. 필요한 경우에만 비상 충전 모드를 사용하십시오. 일반적인 장기 사용에는 권장되지 않습니다.
