@@ -78,19 +78,11 @@ def _normalized_review_status(value: Any) -> str:
     return re.sub(r"[^a-z0-9]+", "", text)
 
 
-def _normalized_review_action(value: Any) -> str:
-    text = str(value or "").strip().lower()
-    return re.sub(r"[^a-z0-9]+", " ", text).strip()
-
-
-def _looks_like_start_review_record(record: Any) -> bool:
-    action = _normalized_review_action(getattr(record, "workflow_action", ""))
-    return not action or action in {"start review", "seed draft", "start review seed draft"}
-
-
 def _is_completed_review_start_record(record: Any) -> bool:
-    if not _looks_like_start_review_record(record):
-        return False
+    # Workflow_action is deliberately NOT checked here: once review-start succeeds,
+    # the business plane advances the row's action to later stages (e.g. Build Draft
+    # Package) while Git_ref + Review_status keep proving the review exists. A
+    # duplicate targeted dispatch must key off that outcome, not the action label.
     status = _normalized_review_status(getattr(record, "review_status", ""))
     git_ref = str(getattr(record, "git_ref", "") or "").strip()
     return bool(git_ref) and status in {"inreview", "readyforpublish"}
