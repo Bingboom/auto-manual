@@ -2205,3 +2205,51 @@ class LedgerIngestHookTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestReviewBundlePages(unittest.TestCase):
+    """_review_bundle_pages covers flat and per-lang review bundle layouts."""
+
+    def _touch(self, path: Path) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("x\n", encoding="utf-8")
+
+    def test_flat_layout(self) -> None:
+        from tools.cloud_doc_backport_orchestration import _review_bundle_pages
+
+        with tempfile.TemporaryDirectory() as tmp:
+            rd = "docs/_review/JE-2000F/CN"
+            self._touch(Path(tmp) / rd / "page" / "00_preface.rst")
+            self._touch(Path(tmp) / rd / "page" / "01_safety.rst")
+            pages = _review_bundle_pages(tmp, rd)
+        self.assertEqual([p.name for p in pages], ["00_preface.rst", "01_safety.rst"])
+
+    def test_lang_scoped_layout(self) -> None:
+        from tools.cloud_doc_backport_orchestration import _review_bundle_pages
+
+        with tempfile.TemporaryDirectory() as tmp:
+            rd = "docs/_review/JE-1000F/AU"
+            self._touch(Path(tmp) / rd / "en" / "page" / "00_preface.rst")
+            self._touch(Path(tmp) / rd / ".backport" / "doc.baseline.md")
+            pages = _review_bundle_pages(tmp, rd)
+        self.assertEqual(len(pages), 1)
+        self.assertEqual(pages[0].name, "00_preface.rst")
+        self.assertIn("/en/page/", pages[0].as_posix())
+
+    def test_mixed_layout_and_dot_dirs_skipped(self) -> None:
+        from tools.cloud_doc_backport_orchestration import _review_bundle_pages
+
+        with tempfile.TemporaryDirectory() as tmp:
+            rd = "docs/_review/JE-1000F/US"
+            self._touch(Path(tmp) / rd / "page" / "a.rst")
+            self._touch(Path(tmp) / rd / "en" / "page" / "b.rst")
+            self._touch(Path(tmp) / rd / "fr" / "page" / "c.rst")
+            self._touch(Path(tmp) / rd / ".backport" / "page" / "ghost.rst")
+            pages = _review_bundle_pages(tmp, rd)
+        self.assertEqual([p.name for p in pages], ["a.rst", "b.rst", "c.rst"])
+
+    def test_missing_bundle_returns_empty(self) -> None:
+        from tools.cloud_doc_backport_orchestration import _review_bundle_pages
+
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(_review_bundle_pages(tmp, "docs/_review/X/Y"), [])
