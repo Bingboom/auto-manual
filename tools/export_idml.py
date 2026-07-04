@@ -336,16 +336,42 @@ class IdmlWriter:
         therefore ends with <Br/> unless it is the story's last one.
         """
         lines = cls._clean_text(text).split("\n")
-        content = "<Br/>".join(f"<Content>{escape(l)}</Content>" for l in lines)
+        line_xmls = []
+        for line in lines:
+            runs = cls._bold_runs(line)
+            line_xmls.append("".join(
+                '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+                + (' FontStyle="Bold"' if bold else "")
+                + f'><Content>{escape(seg)}</Content></CharacterStyleRange>'
+                for seg, bold in runs
+            ) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                 '<Content></Content></CharacterStyleRange>')
+        br = ('<CharacterStyleRange AppliedCharacterStyle='
+              '"CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>')
+        content = br.join(line_xmls)
         if not terminal:
-            content += "<Br/>"
+            content += br
         sid = "ParagraphStyle/" + style.replace(" ", "%20")
         return (
             f'  <ParagraphStyleRange AppliedParagraphStyle="{sid}">\n'
-            f'    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-            f'{content}</CharacterStyleRange>\n'
+            f'    {content}\n'
             '  </ParagraphStyleRange>\n'
         )
+
+    @staticmethod
+    def _bold_runs(line: str) -> list[tuple[str, bool]]:
+        """Split rst inline strong markup (**x**) into (text, bold) runs.
+
+        Designer-reported: literal ** asterisks in body text. Bare *
+        emphasis is left alone (rare in the bundles and ambiguous with
+        footnote markers).
+        """
+        runs: list[tuple[str, bool]] = []
+        parts = re.split(r"\*\*(.+?)\*\*", line)
+        for i, part in enumerate(parts):
+            if part:
+                runs.append((part, i % 2 == 1))
+        return runs
 
     def _table(self, tid: str, rows: list[tuple[str, str]]) -> str:
         left_ratio = float(self.params.get("comp_spec_table_left_ratio", ("0.315", ""))[0])
@@ -647,7 +673,7 @@ class IdmlWriter:
                    if fig and fig.exists() else "")
             cell_defs = (
                 (self._psr("HB Spec Label", row["no"], terminal=True), 0),
-                ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">'
+                ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
                  '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                  + img + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n', 1),
                 (self._psr("HB Spec Label", row["name"], terminal=True), 2),
@@ -711,7 +737,7 @@ class IdmlWriter:
                 img = (self._image_cell_content(f"{tid}img{ri}", fig, icon_pt, icon_pt)
                        if fig and fig.exists() else "")
                 img_cell = (
-                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">'
+                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
                     '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                     + img + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
                 for ci, content in ((0, img_cell),

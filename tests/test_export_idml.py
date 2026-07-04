@@ -266,6 +266,24 @@ class ExportIdmlTests(unittest.TestCase):
             ROOT, True)
         self.assertIn('SpanColumnType="SpanColumns"', xml)
 
+    def test_inline_strong_markup_becomes_bold_runs(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        psr = IdmlWriter(params)._psr("HB Body", "**Note:** stay safe", terminal=True)
+        self.assertNotIn("**", psr)
+        self.assertIn('FontStyle="Bold"', psr)
+        self.assertIn("Note:", psr)
+        self.assertIn("stay safe", psr)
+
+    def test_table_icon_cells_use_figure_style(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = load_lcd_rows(FIXTURE_DATA_ROOT, "JE-1000F")
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        story = dict(w.stories)["st_lcd"]
+        # icon cells must use the auto-leading figure style, or fixed leading
+        # pushes the anchored icon a full row upward (designer-reported)
+        self.assertIn("HB%20Figure", story)
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
