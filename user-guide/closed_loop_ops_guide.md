@@ -196,11 +196,13 @@ python tools/flow_dashboard.py report
   checkout 各攒各的账，跨仓合并去重按 delta_hash）
 - `--baseline-hours-per-manual <小时>`：省时叙事的操作者基准数
   （= 以前手工做一本要多久），不给就显示"待基准数"。
-  **操作者基准（2026-07-03 夏冰口径）：首版 ≥10 个工作日 ≈ 80 小时**——
-  获取规格书后文案 3 天、设计排版+评审约 1 周；产品阶段 EVT→DVT→PVT
-  每轮规格变更都触发同流程的修订（文案→设计→评审→发布），PVT 变更较少
-  但仍有。月度例行跑法：
-  `python tools/flow_dashboard.py report --baseline-hours-per-manual 80`。
+  **操作者基准（2026-07-03 夏冰口径，当日修正）：系统当前替代的是
+  文案环节，不是整本 PDF**——3–6 个语言的文案准备约 3–5 个工作日
+  （≈24–40 小时），取中值 **32 小时/份**；设计排版+评审（约 1 周）
+  仍在系统外，不计入省时。产品阶段 EVT→DVT→PVT 每轮规格变更都触发
+  同流程的修订（文案→设计→评审→发布），PVT 变更较少但仍有。
+  月度例行跑法：
+  `python tools/flow_dashboard.py report --baseline-hours-per-manual 32`。
   修订轮的省时暂未单独计价（可数轮数在修订台账里，等 H2 一起做每轮基准）
 - 已审计 PDF 数的数据源是 `reports/pdf_annotate/ledger.jsonl`——
   `pdf_annotate` 每次运行自动记账（`--no-ledger` 关闭）；
