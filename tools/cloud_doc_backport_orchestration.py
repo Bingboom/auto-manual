@@ -464,12 +464,16 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         if args.page:
             source_rels = [derive_review_source_rel(review_dir, args.page)]
         else:
-            page_dir = Path(worktree) / review_dir / "page"
-            if not page_dir.is_dir():
-                raise RuntimeError(f"no page directory on branch {git_ref}: {review_dir}/page")
-            source_rels = [f"{review_dir}/page/{path.name}" for path in sorted(page_dir.glob("*.rst"))]
-            if not source_rels:
-                raise RuntimeError(f"no .rst pages under {review_dir}/page on branch {git_ref}")
+            pages = _review_bundle_pages(worktree, review_dir)
+            if not pages:
+                raise RuntimeError(
+                    f"no .rst pages under {review_dir}/page or {review_dir}/<lang>/page "
+                    f"on branch {git_ref}"
+                )
+            bundle_root = Path(worktree) / review_dir
+            source_rels = [
+                f"{review_dir}/{page.relative_to(bundle_root).as_posix()}" for page in pages
+            ]
         run_id = str(args.run_id or "").strip() or "cloud-doc-backport-branch"
         out_dir = Path(args.out) if args.out else _default_out_dir(run_id)
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -535,6 +539,29 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         ensure_ascii=False, sort_keys=True,
     ))
     return 1 if failed else 0
+
+def _review_bundle_pages(worktree: str, review_dir: str) -> list[Path]:
+    """Every review page of the bundle, covering both bundle layouts.
+
+    Flat families keep pages at ``<review_dir>/page/*.rst``; families with
+    ``include_lang_in_output_path`` (us-en, au-en, kr-ko, …) nest them one
+    level deeper at ``<review_dir>/<lang>/page/*.rst``. Missing either layout
+    is fine — the caller decides whether an empty result is an error.
+    """
+    bundle_root = Path(worktree) / review_dir
+    page_dirs: list[Path] = []
+    flat = bundle_root / "page"
+    if flat.is_dir():
+        page_dirs.append(flat)
+    if bundle_root.is_dir():
+        for child in sorted(bundle_root.iterdir()):
+            if not child.is_dir() or child.name.startswith(".") or child.name == "page":
+                continue
+            nested = child / "page"
+            if nested.is_dir():
+                page_dirs.append(nested)
+    return [page for page_dir in page_dirs for page in sorted(page_dir.glob("*.rst"))]
+
 
 def _run_review_branch_baseline(
     args: argparse.Namespace,
@@ -660,8 +687,8 @@ def _run_review_branch_baseline(
     gate_pages: list[dict[str, Any]] = []
     gate_passed = True
     if args.write and review_bound:
-        page_dir = Path(worktree) / review_dir / "page"
-        for page in sorted(page_dir.glob("*.rst")):
+        bundle_root = Path(worktree) / review_dir
+        for page in _review_bundle_pages(worktree, review_dir):
             pre_text = page.read_text(encoding="utf-8") if page.is_file() else ""
             apply_rep = build_review_apply_report(
                 report, source_path=page, write=True,
@@ -674,7 +701,7 @@ def _run_review_branch_baseline(
             }
             applied_hashes |= page_applied
             if apply_rep["summary"].get("changed"):
-                changed_rels.append(f"{review_dir}/page/{page.name}")
+                changed_rels.append(f"{review_dir}/{page.relative_to(bundle_root).as_posix()}")
                 gate = _rebuild_rediff_gate(
                     baseline_text=pre_text,
                     edited_text=page.read_text(encoding="utf-8"),
