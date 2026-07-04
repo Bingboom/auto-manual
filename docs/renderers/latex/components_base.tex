@@ -637,16 +637,26 @@
   left=0mm,right=0mm,top=0mm,bottom=0mm,
 }
 
+% longtable instead of a framed tabular: the tcolorbox frame ("clip upper")
+% cannot break across pages, so a tall icon table overflowed the 130x185
+% text block, clipped its last rows, and collided with the page number
+% (reports/typography_gap/2026-07-03 #1/#2). longtable breaks between rows;
+% \endhead re-draws the top rule on every continuation page, and each row's
+% own \hline closes the bottom edge before a break.
+% Trade-off: the rounded outer corner (HBcomp_table_outer_arc) is dropped
+% for this table.
 \newenvironment{HBLcdIconTable}{%
-  \par\noindent
-  \begin{hblcdicontableframe}
   \begingroup
   \arrayrulecolor{LineK40}
   \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
   \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
   \setlength{\tabcolsep}{\csname HBcomp_lcd_table_tabcolsep\endcsname}
   \renewcommand{\arraystretch}{\csname HBcomp_lcd_table_row_stretch\endcsname}
-  \begin{tabular}{|
+  \setlength{\LTpre}{0pt}%
+  \setlength{\LTpost}{0pt}%
+  \setlength{\LTleft}{0pt}%
+  \setlength{\LTright}{\fill}%
+  \begin{longtable}{|
     >{\centering\arraybackslash}m{\csname HBcomp_lcd_no_col_width\endcsname}|
     >{\centering\arraybackslash}m{\csname HBcomp_lcd_icon_col_width\endcsname}|
     >{\RaggedRight\arraybackslash}m{\csname HBcomp_lcd_label_col_width\endcsname}|
@@ -655,11 +665,10 @@
       -\csname HBcomp_lcd_icon_col_width\endcsname
       -\csname HBcomp_lcd_label_col_width\endcsname
       -8\tabcolsep-5\arrayrulewidth\relax}|}
-  \hline
+  \hline\endhead
 }{%
-  \end{tabular}
+  \end{longtable}
   \endgroup
-  \end{hblcdicontableframe}
   \par
 }
 

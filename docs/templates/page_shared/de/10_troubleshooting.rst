@@ -5,6 +5,7 @@ Wenn einer der folgenden Fehlercodes angezeigt wird, befolgen Sie die aufgeführ
 Wenn der Fehler weiterhin besteht, wenden Sie sich bitte an den Jackery-Kundendienst.
 
 .. list-table::
+   :class: longtable
    :header-rows: 1
    :widths: 14 86
 

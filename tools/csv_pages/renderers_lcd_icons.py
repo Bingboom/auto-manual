@@ -456,6 +456,9 @@ def _append_text_cell(
 def _rst_table(rows: list[dict[str, str]], *, status_labels: tuple[str, ...]) -> str:
     lines: list[str] = [
         ".. list-table::",
+        # longtable: allow page breaks between rows so oversized tables cannot
+        # overflow the 130x185 text block into the footer (see reports/typography_gap)
+        "   :class: longtable",
         "   :header-rows: 0",
         "   :widths: 8 12 28 52",
         "",
