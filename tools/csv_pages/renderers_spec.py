@@ -39,10 +39,12 @@ def _render_spec_sections_latex(
     for sec in sections:
         title = rst_escape(str(sec.get("title") or ""))
         rows = sec.get("rows") or []
+        # spectable is now a longtable-based environment (the column spec
+        # lives in components_spec.tex) so tall sections break at row
+        # boundaries instead of overflowing the page (typography_gap #5).
         tex_lines: list[str] = [
             rf"\specsectiontitle{{{spec_latex_escape(title)}}}",
             r"\begin{spectable}",
-            r"\noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}",
         ]
         row_count = len(rows)
         for idx, (left, right) in enumerate(rows):
@@ -54,7 +56,6 @@ def _render_spec_sections_latex(
             if idx < row_count - 1:
                 tex_lines.append(r"\hline")
         tex_lines += [
-            r"\end{tabularx}",
             r"\end{spectable}",
         ]
         blocks.append(raw_latex_block(tex_lines))

@@ -34,13 +34,36 @@
   \HBTitleLevelTwoBlock{#1}%
 }
 
-% ---- spec table wrapper (reuses shared style from components_base.tex) ----
+% ---- spec table wrapper ----
+% longtable instead of HBSharedDataTable (tcolorbox + tabularx): the box
+% cannot break across pages and "clip upper" silently clips overflowing
+% rows (reports/typography_gap/2026-07-03 #5). The left-column tint that
+% the frame overlay used to paint is reproduced with \columncolor.
+% Trade-off: rounded outer corner dropped. Rows are emitted by
+% renderers_spec.py as "label & value \\" with \hline separators.
 \newenvironment{spectable}{%
-  \begin{HBSharedDataTable}
-    {\csname HBcomp_spec_table_left_ratio\endcsname}
-    {\csname HBcomp_spec_table_tabcolsep\endcsname}
+  \begingroup
+  \parindent=0pt\relax
+  \arrayrulecolor{HBSharedTableFrameColor}
+  \setlength{\tabcolsep}{\csname HBcomp_spec_table_tabcolsep\endcsname}
+  \renewcommand{\arraystretch}{\csname HBcomp_spec_table_row_stretch\endcsname}
+  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
+  \ifdim\arrayrulewidth<0.24pt\arrayrulewidth=0.24pt\fi
+  \setlength{\LTpre}{0pt}%
+  \setlength{\LTpost}{0pt}%
+  \setlength{\LTleft}{0pt}%
+  \setlength{\LTright}{\fill}%
+  \begin{longtable}{|
+    >{\columncolor{HBSharedTableLeftBg}\raggedright\arraybackslash}%
+      m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|
+    >{\raggedright\arraybackslash}m{\dimexpr\linewidth
+      -\csname HBcomp_spec_table_left_ratio\endcsname\linewidth
+      -4\tabcolsep-3\arrayrulewidth\relax}|}
+  \hline\endhead
 }{%
-  \end{HBSharedDataTable}
+  \hline
+  \end{longtable}
+  \endgroup
 }
 
 % ---- spec text styles ----

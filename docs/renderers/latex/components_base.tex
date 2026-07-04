@@ -513,16 +513,23 @@
   left=0mm,right=0mm,top=0mm,bottom=0mm,
 }
 
+% longtable instead of a framed tabular (same P0 pattern as HBLcdIconTable:
+% the tcolorbox cannot break across pages and "clip upper" silently clips
+% overflowing rows — reports/typography_gap/2026-07-03 #5). The header row
+% sits in \endhead so it repeats on every continuation page.
+% Trade-off: rounded outer corner dropped for this table.
 \newcommand{\HBSymbolTable}[3]{%
-  \par\noindent
-  \begin{hbsymboltableframe}
   \begingroup
   \arrayrulecolor{HBSharedTableFrameColor}
   \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
   \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
   \setlength{\tabcolsep}{\csname HBcomp_symbol_table_tabcolsep\endcsname}
   \renewcommand{\arraystretch}{\csname HBcomp_symbol_table_row_stretch\endcsname}
-  \begin{tabular}{|
+  \setlength{\LTpre}{0pt}%
+  \setlength{\LTpost}{0pt}%
+  \setlength{\LTleft}{0pt}%
+  \setlength{\LTright}{\fill}%
+  \begin{longtable}{|
     >{\centering\arraybackslash}m{\csname HBcomp_symbol_icon_col_width\endcsname}|
     >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
       -\csname HBcomp_symbol_icon_col_width\endcsname
@@ -530,11 +537,10 @@
   \hline
   \rowcolor{HBSharedTableLeftBg}
   \HBTypeSymbolHeader{#1} & \HBTypeSymbolHeader{#2}\tabularnewline
-  \hline
+  \hline\endhead
   #3%
-  \end{tabular}
+  \end{longtable}
   \endgroup
-  \end{hbsymboltableframe}
   \par
 }
 
@@ -704,7 +710,6 @@
 
 \newtcolorbox{hblcdmodetableframe}{
   enhanced,
-  clip upper,
   colback=white,
   colframe=LineK40,
   arc=\csname HBcomp_table_outer_arc\endcsname,
@@ -713,9 +718,20 @@
   left=0mm,right=0mm,top=0mm,bottom=0mm,
 }
 
+% Rebuilt without \multirow (typography_gap/2026-07-03 #5, the 45.8pt
+% Overfull \vbox): \multirow does not grow its rows, so a state label
+% taller than the three action rows it spanned spilled out of the table
+% and "clip upper" hid the damage. Structure is now nested tables —
+% outer (image | groups) -> one row per group (state | actions) ->
+% action rows (action | text) — so every row grows to fit its tallest
+% cell and nothing can overflow. "clip upper" is also removed from the
+% frame: a future overflow must be visible, never silently clipped.
+% Macro signatures are unchanged.
 \makeatletter
+\newdimen\HB@lcdmoderestw
+\newdimen\HB@lcdmodeactblockw
+\newdimen\HB@lcdmodetextw
 \newenvironment{HBLcdModeTable}[1]{%
-  \def\HB@lcdmodeimage{#1}%
   \par\noindent
   \begin{hblcdmodetableframe}
   \begingroup
@@ -724,50 +740,61 @@
   \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
   \setlength{\tabcolsep}{\csname HBcomp_lcd_mode_table_tabcolsep\endcsname}
   \renewcommand{\arraystretch}{\csname HBcomp_lcd_mode_table_row_stretch\endcsname}
+  % width of the group block (everything right of the image column)
+  \HB@lcdmoderestw=\dimexpr\linewidth
+    -\csname HBcomp_lcd_mode_image_col_width\endcsname
+    -2\tabcolsep-3\arrayrulewidth\relax
+  % width of the actions block (right of the state column)
+  \HB@lcdmodeactblockw=\dimexpr\HB@lcdmoderestw
+    -\csname HBcomp_lcd_mode_state_col_width\endcsname
+    -2\tabcolsep-\arrayrulewidth\relax
+  % width of the description column inside the actions block
+  \HB@lcdmodetextw=\dimexpr\HB@lcdmodeactblockw
+    -\csname HBcomp_lcd_mode_action_col_width\endcsname
+    -4\tabcolsep-\arrayrulewidth\relax
   \begin{tabular}{|
     >{\centering\arraybackslash}m{\csname HBcomp_lcd_mode_image_col_width\endcsname}|
-    >{\RaggedRight\arraybackslash}m{\csname HBcomp_lcd_mode_state_col_width\endcsname}|
-    >{\RaggedRight\arraybackslash}m{\csname HBcomp_lcd_mode_action_col_width\endcsname}|
-    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
-      -\csname HBcomp_lcd_mode_image_col_width\endcsname
-      -\csname HBcomp_lcd_mode_state_col_width\endcsname
-      -\csname HBcomp_lcd_mode_action_col_width\endcsname
-      -8\tabcolsep-5\arrayrulewidth\relax}|}
+    @{}>{\centering\arraybackslash}m{\HB@lcdmoderestw}@{}|}
   \hline
+  \HBImageOrPlaceholder
+    {\csname HBcomp_lcd_mode_image_width\endcsname}
+    {\csname HBcomp_lcd_mode_image_height\endcsname}
+    {#1}%
+  &
+  \begin{tabular}[c]{
+    >{\RaggedRight\arraybackslash}m{\csname HBcomp_lcd_mode_state_col_width\endcsname}|
+    @{}>{\centering\arraybackslash}m{\HB@lcdmodeactblockw}@{}}
 }{%
+  \end{tabular}%
+  \tabularnewline
+  \hline
   \end{tabular}
   \endgroup
   \end{hblcdmodetableframe}
   \par
 }
 
+\newcommand{\HB@lcdmodeactions}[6]{%
+  \begin{tabular}[c]{
+    >{\RaggedRight\arraybackslash}m{\csname HBcomp_lcd_mode_action_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\HB@lcdmodetextw}}
+  \HBTypeLcdLabel{#1} & \HBTypeLcdText{#2}\tabularnewline \hline
+  \HBTypeLcdLabel{#3} & \HBTypeLcdText{#4}\tabularnewline \hline
+  \HBTypeLcdLabel{#5} & \HBTypeLcdText{#6}%
+  \end{tabular}%
+}
+
 \newcommand{\HBLcdModeFirstGroup}[7]{%
-  \multirow{6}{*}{%
-    \parbox[c]{\csname HBcomp_lcd_mode_image_col_width\endcsname}{%
-      \centering
-      \HBImageOrPlaceholder
-        {\csname HBcomp_lcd_mode_image_width\endcsname}
-        {\csname HBcomp_lcd_mode_image_height\endcsname}
-        {\HB@lcdmodeimage}%
-    }%
-  }%
+  \HBTypeLcdLabel{#1}
   &
-  \multirow{3}{*}{%
-    \parbox[t]{\csname HBcomp_lcd_mode_state_col_width\endcsname}{\HBTypeLcdLabel{#1}}%
-  }%
-  & \HBTypeLcdLabel{#2} & \HBTypeLcdText{#3}\tabularnewline \cline{3-4}
-  & & \HBTypeLcdLabel{#4} & \HBTypeLcdText{#5}\tabularnewline \cline{3-4}
-  & & \HBTypeLcdLabel{#6} & \HBTypeLcdText{#7}\tabularnewline \cline{2-4}
+  \HB@lcdmodeactions{#2}{#3}{#4}{#5}{#6}{#7}%
+  \tabularnewline \hline
 }
 
 \newcommand{\HBLcdModeSecondGroup}[7]{%
+  \HBTypeLcdLabel{#1}
   &
-  \multirow{3}{*}{%
-    \parbox[t]{\csname HBcomp_lcd_mode_state_col_width\endcsname}{\HBTypeLcdLabel{#1}}%
-  }%
-  & \HBTypeLcdLabel{#2} & \HBTypeLcdText{#3}\tabularnewline \cline{3-4}
-  & & \HBTypeLcdLabel{#4} & \HBTypeLcdText{#5}\tabularnewline \cline{3-4}
-  & & \HBTypeLcdLabel{#6} & \HBTypeLcdText{#7}\tabularnewline \hline
+  \HB@lcdmodeactions{#2}{#3}{#4}{#5}{#6}{#7}%
 }
 \makeatother
 
