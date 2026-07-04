@@ -471,6 +471,134 @@ def render_markdown(dashboard: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+_HTML_STYLE = """
+:root {
+  --ground: #F7F8F6; --card: #FFFFFF; --ink: #1F2A2E; --muted: #5C6B68;
+  --accent: #0F6B5C; --ok: #2E7D4F; --warn: #B7791F; --crit: #B3402A;
+  --ghost: #8A9490; --line: #E2E7E4;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  background: var(--ground); color: var(--ink);
+  font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.5; padding: 40px 24px 64px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+header h1 { font-size: 26px; font-weight: 700; letter-spacing: 0.02em; }
+header .meta { color: var(--muted); font-size: 13px; margin-top: 6px; }
+section { margin-top: 36px; }
+.face-title { display: flex; align-items: baseline; gap: 12px; border-bottom: 2px solid var(--ink); padding-bottom: 8px; }
+.face-title h2 { font-size: 17px; font-weight: 700; }
+.face-title span { color: var(--muted); font-size: 13px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-top: 16px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.card.nodata { background: transparent; border: 1px dashed var(--ghost); color: var(--ghost); }
+.card .label { font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; }
+.card.nodata .label { color: var(--ghost); }
+.card .value { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; font-family: "SF Mono", Menlo, Consolas, monospace; }
+.card .value.small { font-size: 18px; line-height: 1.35; font-family: inherit; }
+.card.nodata .value { font-size: 16px; font-weight: 600; font-family: inherit; }
+.chip { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 999px; align-self: flex-start; }
+.chip.ok { background: #E4F0E8; color: var(--ok); }
+.chip.warn { background: #F6ECD9; color: var(--warn); }
+.chip.crit { background: #F5E2DC; color: var(--crit); }
+.chip.ghost { background: #ECEFED; color: var(--ghost); }
+.gauge { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.gauge i { display: block; height: 100%; background: var(--accent); }
+.note { font-size: 13px; color: var(--muted); }
+.card.nodata .note { color: var(--ghost); }
+.src { font-size: 11px; color: var(--ghost); font-family: "SF Mono", Menlo, Consolas, monospace; word-break: break-all; }
+.trend { display: flex; align-items: flex-end; gap: 3px; height: 34px; margin-top: 2px; }
+.trend b { display: block; width: 18px; background: var(--accent); opacity: 0.75; border-radius: 2px 2px 0 0; }
+.trend-lbl { font-size: 10px; color: var(--ghost); font-family: "SF Mono", Menlo, monospace; }
+"""
+
+
+def _html_escape(text: str) -> str:
+    return (
+        str(text)
+        .replace("&", "&amp;").replace("<", "&lt;")
+        .replace(">", "&gt;").replace('"', "&quot;")
+    )
+
+
+def _metric_card_html(metric: dict[str, Any]) -> str:
+    status = metric["status"]
+    is_rate = metric["key"].endswith("_rate") or metric["key"] == "tm_hit_rate"
+    ghost = status in ("no_data", "needs_baseline")
+    chip = {"no_data": ("ghost", "暂无数据"), "needs_baseline": ("warn", "待基准数")}.get(status)
+    if chip is None:
+        # A 0% rate over real rows is a live warning, not health.
+        if is_rate and metric["value"] == 0 and metric.get("detail", {}).get("total"):
+            chip = ("crit", "需要关注")
+        else:
+            chip = ("ok", "有数据")
+    value = _format_value(metric)
+    value_class = "value"
+    if ghost:
+        value_class = "value"
+    elif not is_rate and not str(value).replace("约 ", "").replace(" 小时", "").replace(".", "").isdigit():
+        value_class = "value small"
+    parts = [
+        '<div class="card%s">' % (" nodata" if ghost else ""),
+        f'<div class="label">{_html_escape(metric["label"])}</div>',
+        f'<div class="{value_class}">{_html_escape(value)}</div>',
+        f'<span class="chip {chip[0]}">{chip[1]}</span>',
+    ]
+    if is_rate and isinstance(metric["value"], (int, float)) and not ghost:
+        pct = max(0.0, min(1.0, float(metric["value"]))) * 100
+        parts.append(f'<div class="gauge"><i style="width:{pct:.1f}%"></i></div>')
+    monthly = metric.get("monthly") or {}
+    if monthly and not ghost:
+        peak = max(monthly.values()) or 1
+        bars = "".join(
+            f'<b style="height:{max(8, round(count / peak * 100))}%" title="{month}: {count}"></b>'
+            for month, count in monthly.items()
+        )
+        labels = " · ".join(f"{month} {count}" for month, count in monthly.items())
+        parts.append(f'<div class="trend">{bars}</div><div class="trend-lbl">{labels}</div>')
+    if metric.get("note"):
+        parts.append(f'<div class="note">{_html_escape(metric["note"])}</div>')
+    if metric.get("source"):
+        parts.append(f'<div class="src">{_html_escape(metric["source"])}</div>')
+    parts.append("</div>")
+    return "".join(parts)
+
+
+def render_html_body(dashboard: dict[str, Any]) -> str:
+    """The dashboard as a self-contained HTML fragment (style + content)."""
+    faces = [
+        (OPS_FACE, "运营面", "系统健康 · 给自己看"),
+        (VALUE_FACE, "价值面", "产出证明 · 给别人看"),
+    ]
+    sections = []
+    for face, title, subtitle in faces:
+        cards = "".join(_metric_card_html(metric) for metric in dashboard["faces"][face])
+        sections.append(
+            f'<section><div class="face-title"><h2>{title}</h2>'
+            f"<span>{subtitle}</span></div>"
+            f'<div class="grid">{cards}</div></section>'
+        )
+    return (
+        f"<style>{_HTML_STYLE}</style>"
+        '<div class="wrap"><header><h1>三流转双面仪表</h1>'
+        f'<div class="meta">生成时间 {_html_escape(dashboard["generated_at"])}'
+        " · 原则：从零起步 / 只读聚合 / 无数据不造数</div></header>"
+        + "".join(sections)
+        + "</div>"
+    )
+
+
+def render_html(dashboard: dict[str, Any]) -> str:
+    return (
+        "<!doctype html>\n<html lang=\"zh-CN\">\n<head>\n<meta charset=\"utf-8\">\n"
+        '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        "<title>三流转双面仪表</title>\n</head>\n<body>\n"
+        + render_html_body(dashboard)
+        + "\n</body>\n</html>\n"
+    )
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="flow_dashboard",
@@ -530,8 +658,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     markdown = render_markdown(dashboard)
     md_path.write_text(markdown + "\n", encoding="utf-8")
+    html_path = out_dir / "dashboard.html"
+    html_path.write_text(render_html(dashboard), encoding="utf-8")
     print(markdown)
-    print(f"\nWROTE {json_path}\nWROTE {md_path}", file=sys.stderr)
+    print(f"\nWROTE {json_path}\nWROTE {md_path}\nWROTE {html_path}", file=sys.stderr)
     return 0
 
 
