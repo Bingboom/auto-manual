@@ -512,3 +512,18 @@
 
 % FR: tighter spec value font size
 \expandafter\def\csname HBlang_fr_type_spec_value_font_size\endcsname{5.9pt}
+
+% Demerits for two consecutive hyphenated lines
+\expandafter\def\csname HBtext_doublehyphendemerits\endcsname{10000}
+
+% Extra stretch pass to even out word spacing
+\expandafter\def\csname HBtext_emergencystretch\endcsname{1.0em}
+
+% Demerits for hyphen on the second-to-last line
+\expandafter\def\csname HBtext_finalhyphendemerits\endcsname{8000}
+
+% Hyphenation penalty (higher = fewer hyphens; TeX default 50)
+\expandafter\def\csname HBtext_hyphenpenalty\endcsname{800}
+
+% Justification tolerance before hyphenating (TeX default 200)
+\expandafter\def\csname HBtext_tolerance\endcsname{1500}

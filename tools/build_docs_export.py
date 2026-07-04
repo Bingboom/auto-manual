@@ -25,11 +25,18 @@ def _copy_attachment_images_for_latex(
     cell silently rendered as an empty placeholder
     (reports/typography_gap/2026-07-03 #3).
     """
-    attachments_roots = sorted(
+    image_roots = sorted(
         (bundle_dir / "_repo_assets").glob("**/_attachments"),
     )
+    # word_template common assets are also referenced by bare basename from
+    # raw latex (e.g. HBInBoxThree -> main_unit1.png); the static
+    # latex_additional_files list in conf_base.py only carries a couple of
+    # them, so sweep the whole bundled common_assets tree as well.
+    common_assets = bundle_dir / "_assets" / "templates" / "word_template" / "common_assets"
+    if common_assets.is_dir():
+        image_roots.append(common_assets)
     copied = 0
-    for root in attachments_roots:
+    for root in image_roots:
         for src in sorted(root.rglob("*")):
             if not src.is_file() or src.suffix.lower() not in (".png", ".jpg", ".jpeg", ".pdf"):
                 continue
@@ -38,7 +45,7 @@ def _copy_attachment_images_for_latex(
                 dst.write_bytes(src.read_bytes())
                 copied += 1
     if copied:
-        printer(f"[build] Copied {copied} attachment image(s) into latex dir")
+        printer(f"[build] Copied {copied} attachment/asset image(s) into latex dir")
 
 
 def build_target(

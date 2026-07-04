@@ -257,7 +257,10 @@
 }
 
 \providecommand{\HBInBoxCell}[2]{%
-  \begin{minipage}[t]{0.29\linewidth}
+  % Full cell width: inside an m-column \linewidth IS the column width, so
+  % the old 0.29\linewidth squeezed labels into ~10% of the page and words
+  % like "Explorer" overflowed and got clipped (typography_gap follow-up).
+  \begin{minipage}[t]{\linewidth}
     \centering
     \HBImageOrPlaceholder
       {\csname HBcomp_inbox_image_width\endcsname}
@@ -268,9 +271,9 @@
   \end{minipage}%
 }
 
+% no "clip upper": overflow must stay visible, never silently clipped
 \newtcolorbox{hbinboxthreeframe}{
   enhanced,
-  clip upper,
   colback=white,
   colframe=HBSharedTableFrameColor,
   arc=\csname HBcomp_table_outer_arc\endcsname,
