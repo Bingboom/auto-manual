@@ -15,6 +15,7 @@ from tools.export_idml import (  # noqa: E402
     check_idml,
     load_layout_params,
     load_lcd_rows,
+    load_spec_annotations,
     load_spec_sections,
     load_symbols_rows,
     load_trouble_rows,
@@ -233,7 +234,7 @@ class ExportIdmlTests(unittest.TestCase):
         # notice: gray fill, no stroke
         xml, _ = w._render_component("t", 1, {
             "kind": "notice", "label": "TIP", "texts": ["hello"]}, bundle, True)
-        self.assertIn('CellFillColor="Color/HB Bg K05"', xml)
+        self.assertIn('FillColor="Color/HB Bg K05"', xml)
         # warnbox: lockup art + label style
         xml, _ = w._render_component("t", 2, {
             "kind": "warnbox", "label": "WARNING", "texts": ["stay safe"]}, bundle, True)
@@ -243,7 +244,7 @@ class ExportIdmlTests(unittest.TestCase):
         xml, _ = w._render_component("t", 3, {
             "kind": "fcc", "texts": ["left", "right"]}, bundle, True)
         self.assertIn("fcc_mark", xml)
-        self.assertEqual(xml.count('CellFillColor="Color/HB Bg K05"'), 2)
+        self.assertEqual(xml.count('FillColor="Color/HB Bg K05"'), 2)
 
     def test_extractor_emits_component_blocks(self) -> None:
         from tools.idml_rst_extract import extract_page
@@ -283,6 +284,31 @@ class ExportIdmlTests(unittest.TestCase):
         # icon cells must use the auto-leading figure style, or fixed leading
         # pushes the anchored icon a full row upward (designer-reported)
         self.assertIn("HB%20Figure", story)
+
+    def test_shading_uses_paragraph_prefixed_attributes(self) -> None:
+        # bare ShadingOn/ShadingColor are silently ignored by InDesign
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        styles = IdmlWriter(params).styles_xml()
+        self.assertIn('ParagraphShadingOn="true"', styles)
+        self.assertNotIn(' ShadingOn=', styles)
+
+    def test_cell_fill_uses_fillcolor(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        cell = w._cell("c1", "0:0", "<Content/>", fill="Color/HB Bg K05")
+        self.assertIn('FillColor="Color/HB Bg K05"', cell)
+        self.assertNotIn("CellFillColor", cell)
+
+    def test_spec_story_appends_annotations(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
+        notes = load_spec_annotations(FIXTURE_DATA_ROOT, "JE-1000F", "US")
+        w = IdmlWriter(params)
+        w.add_spec_story(sections, notes)
+        story = dict(w.stories)["st_spec"]
+        if notes:
+            self.assertIn("HB%20Spec%20Note", story)
+            self.assertIn(notes[0][:20].replace("&", "&amp;"), story)
 
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
