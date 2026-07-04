@@ -181,7 +181,8 @@ python tools/flow_dashboard.py report
 ```
 
 只读聚合既有台账/报告，输出 `reports/flow_dashboard/dashboard.md`（同目录还有
-`dashboard.json`），分两张脸：
+`dashboard.json` 和可直接双击打开的可视化 `dashboard.html`——卡片+仪表条+
+月度趋势柱，零外部依赖，适合直接发给干系人看），分两张脸：
 
 - **运营面**（给自己看健康）：回灌率、TM 命中率、二次修订率、模板复发修正率、
   模板句语料覆盖率
