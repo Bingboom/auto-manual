@@ -80,6 +80,17 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn(" DC ", psr)
         self.assertIn("LiFePO4", psr)
 
+    def test_page_count_follows_content(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
+        w = IdmlWriter(params)
+        # current fixture spec content fits one page — no trailing blanks
+        pages = w.pages_for_height(w.estimate_spec_height(sections))
+        self.assertEqual(pages, 1)
+        # a synthetic 10x volume must request more pages
+        big = [{"title": s2["title"], "rows": s2["rows"] * 10} for s2 in sections]
+        self.assertGreater(w.pages_for_height(w.estimate_spec_height(big)), 1)
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
