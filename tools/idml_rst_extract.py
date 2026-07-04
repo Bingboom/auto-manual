@@ -125,30 +125,30 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
             j = k + 1
         args, j = _read_braced_args(body, j, argc if macro != "\\HBNoticeBlock" else 3)
         args = [_detex(a) for a in args]
+        import json as _json
         if kind == "warnbox" and args:
-            result.blocks.append(("h3", "WARNING"))
-            result.blocks.append(("body", args[0]))
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "warnbox", "label": "WARNING", "texts": [args[0]]},
+                ensure_ascii=False)))
         elif kind == "labelled" and args:
-            result.blocks.append(("h3", args[0]))
-            for a in args[1:]:
-                if a:
-                    result.blocks.append(("body", a))
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "warnbox", "label": args[0],
+                 "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
         elif kind == "noticed" and args:
-            result.blocks.append(("h3", args[0] or optional.upper() or "NOTICE"))
-            for a in args[1:]:
-                if a:
-                    result.blocks.append(("body", a))
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "notice", "label": args[0] or optional.upper() or "NOTICE",
+                 "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
         elif kind == "bodies":
-            for a in args:
-                if a:
-                    result.blocks.append(("body", a))
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "fcc", "texts": [a for a in args if a]}, ensure_ascii=False)))
         elif kind == "langtag" and len(args) == 2:
             result.blocks.append(("h2", f"[{args[0]}] {args[1]}"))
         elif kind == "inbox" and len(args) == 6:
-            for n, (img, label) in enumerate(zip(args[0::2], args[1::2]), 1):
-                if img:
-                    result.blocks.append(("image", img))
-                result.blocks.append(("body", f"{n}. {label}"))
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "inbox",
+                 "items": [{"img": i, "label": l}
+                           for i, l in zip(args[0::2], args[1::2])]},
+                ensure_ascii=False)))
         elif kind == "h1x" and args:
             result.blocks.append(("h1", args[0]))
         elif kind == "h2" and args:

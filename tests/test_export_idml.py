@@ -217,6 +217,44 @@ class ExportIdmlTests(unittest.TestCase):
         except ImportError:
             self.assertAlmostEqual(fh / fw, 0.62, places=2)
 
+    def test_components_render_as_tables(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        bundle = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "rst"
+        # inbox: 3-column card table with linked art and numbered labels
+        xml, h = w._render_component("t", 0, {
+            "kind": "inbox",
+            "items": [{"img": "x.png", "label": "A"},
+                      {"img": "", "label": "B"},
+                      {"img": "", "label": "C"}]}, bundle, True)
+        self.assertIn('ColumnCount="3"', xml)
+        self.assertIn(">A<", xml)
+        self.assertGreater(h, 0)
+        # notice: gray fill, no stroke
+        xml, _ = w._render_component("t", 1, {
+            "kind": "notice", "label": "TIP", "texts": ["hello"]}, bundle, True)
+        self.assertIn('CellFillColor="Color/HB Bg K05"', xml)
+        # warnbox: lockup art + label style
+        xml, _ = w._render_component("t", 2, {
+            "kind": "warnbox", "label": "WARNING", "texts": ["stay safe"]}, bundle, True)
+        self.assertIn("warning_lockup", xml)
+        self.assertIn("HB%20Notice%20Label", xml)
+        # fcc: two gray columns with the mark
+        xml, _ = w._render_component("t", 3, {
+            "kind": "fcc", "texts": ["left", "right"]}, bundle, True)
+        self.assertIn("fcc_mark", xml)
+        self.assertEqual(xml.count('CellFillColor="Color/HB Bg K05"'), 2)
+
+    def test_extractor_emits_component_blocks(self) -> None:
+        from tools.idml_rst_extract import extract_page
+        bundle = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "rst"
+        page = bundle / "page" / "02_whats_in_the_box.rst"
+        if not page.exists():
+            self.skipTest("no prepared bundle in this checkout")
+        res = extract_page(page, {"latex", "region_us", "lang_en", "model_je_1000f"})
+        kinds = [k for k, _ in res.blocks]
+        self.assertIn("component", kinds)
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
