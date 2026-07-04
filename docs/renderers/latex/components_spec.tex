@@ -53,10 +53,13 @@
   \setlength{\LTpost}{0pt}%
   \setlength{\LTleft}{0pt}%
   \setlength{\LTright}{\fill}%
+  % \RaggedRight (ragged2e) instead of \raggedright: allows hyphenation and
+  % balanced breaks in the value column, avoiding one-word orphan lines
+  % like "Surge Peak" (typography_gap #7).
   \begin{longtable}{|
-    >{\columncolor{HBSharedTableLeftBg}\raggedright\arraybackslash}%
+    >{\columncolor{HBSharedTableLeftBg}\RaggedRight\arraybackslash}%
       m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|
-    >{\raggedright\arraybackslash}m{\dimexpr\linewidth
+    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
       -\csname HBcomp_spec_table_left_ratio\endcsname\linewidth
       -4\tabcolsep-3\arrayrulewidth\relax}|}
   \hline\endhead

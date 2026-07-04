@@ -19,6 +19,14 @@ page_footer_leading_zero,1,int,Leading zero
 page_footskip,8,mm,Distance from text block to footer baseline
 ,,,
 ,,,
+,,,==================== LINE BREAKING ====================
+text_hyphenpenalty,800,int,Hyphenation penalty (higher = fewer hyphens; TeX default 50)
+text_doublehyphendemerits,10000,int,Demerits for two consecutive hyphenated lines
+text_finalhyphendemerits,8000,int,Demerits for hyphen on the second-to-last line
+text_tolerance,1500,int,Justification tolerance before hyphenating (TeX default 200)
+text_emergencystretch,1.0,em,Extra stretch pass to even out word spacing
+,,,
+,,,
 ,,,==================== TYPE SYSTEM ====================
 type_h1_font_size,9.0,pt,H1 font size
 type_h1_font_leading,10.8,pt,H1 leading

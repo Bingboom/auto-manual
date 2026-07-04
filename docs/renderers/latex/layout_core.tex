@@ -40,6 +40,24 @@
 \setlength{\parindent}{\csname HBpage_parindent\endcsname}
 \setlength{\parskip}{\csname HBpage_parskip\endcsname}
 
+% ==========================
+% GLOBAL LINE BREAKING
+% TeX defaults hyphenate aggressively in the narrow 130mm measure
+% (typography_gap/2026-07-03 #9/#10). Raise the hyphenation cost and
+% give justification an emergency pass so word spacing stays even.
+% Values are tuned in data/layout_params.csv (LINE BREAKING block).
+% ==========================
+\expandafter\providecommand\csname HBtext_hyphenpenalty\endcsname{800}
+\expandafter\providecommand\csname HBtext_doublehyphendemerits\endcsname{10000}
+\expandafter\providecommand\csname HBtext_finalhyphendemerits\endcsname{8000}
+\expandafter\providecommand\csname HBtext_tolerance\endcsname{1500}
+\expandafter\providecommand\csname HBtext_emergencystretch\endcsname{1.0em}
+\hyphenpenalty=\csname HBtext_hyphenpenalty\endcsname\relax
+\doublehyphendemerits=\csname HBtext_doublehyphendemerits\endcsname\relax
+\finalhyphendemerits=\csname HBtext_finalhyphendemerits\endcsname\relax
+\tolerance=\csname HBtext_tolerance\endcsname\relax
+\setlength{\emergencystretch}{\csname HBtext_emergencystretch\endcsname}
+
 % ==================================================
 % PRINT FOOTER: odd-left / even-right, 01 02 ...
 % This MUST live in theme (NOT conf), and must override plain.
