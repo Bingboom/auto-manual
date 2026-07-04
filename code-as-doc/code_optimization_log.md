@@ -761,3 +761,15 @@ Main outcomes:
 Why it mattered:
 
 - the 2026-07-02 closed-loop analysis found the main line broke at reflow: reviewer corrections were recorded but never reconciled (reflow rate ≈ 0%) and never reached the TM corpus, TM utilization had no denominator, and PDF was the only reviewer surface with zero annotation capability. G0–G7 close the loop end-to-end and make its health measurable (reflow rate, hit rate); the remaining operator legs are the first live hit-rate baseline run, a `workflow_dispatch` of the reminder sentinel, and migrating any rows unique to the archived A base.
+
+## 48. 2026-07-03: Three-Flow Dashboards (Milestone H, H3)
+
+What changed:
+
+- **One command, two faces (H3):** [`tools/flow_dashboard.py`](../tools/flow_dashboard.py) `report` aggregates the existing run artifacts (revision ledger — multiple checkouts merged and de-duplicated by `delta_hash` — TM hit-rate ledger, `pdf_annotate` run ledger, `tm_candidates` files, content-audit/QC reports, family configs, release manifests) into `reports/flow_dashboard/dashboard.{md,json}`. Ops face: reflow rate, TM hit rate, second-revision rate, template recurrence rate, template-sentence corpus coverage. Value face: audited-PDF count, model/region/language coverage, machine-findings count, reflow counts, TM candidate counts, and the time-saved narrative (`--baseline-hours-per-manual`, the operator's pre-system effort estimate).
+- **Record-from-zero rule enforced in code:** a metric whose data source does not exist yet renders as `no_data` with the reason (the two template-flow metrics stay `no_data` until H1/H2 land); nothing is fabricated. Every ledger-backed metric buckets by month so trend review works as soon as history exists.
+- **`pdf_annotate` gained a run ledger (`reports/pdf_annotate/ledger.jsonl`)** mirroring `tm_hit_rate.py` (idempotent by run key, best-effort append, `--no-ledger` opt-out, `--backfill-summary` for historical runs), so the audited-PDF count has a data source.
+
+Why it mattered:
+
+- Milestone G made the loop *work*; H3 makes it *visible* — the very first real run surfaced an actionable gap (reflow rate 0%: the JE-2000F CN round's 39 deltas all landed in source tables but were never stamped `accepted` in the ledger), which is exactly the class of silent drift the dashboard exists to catch. The value face gives stakeholder-facing numbers a single provenance-backed source instead of ad-hoc counting.

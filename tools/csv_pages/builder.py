@@ -220,7 +220,7 @@ class CsvPageBuilder:
     @staticmethod
     def _trailer_text_fields(row: dict[str, str], *, kind: str) -> dict[str, str]:
         fields: dict[str, str] = {}
-        for suffix in ("en", "fr", "es", "ja", "jp", "de", "it", "uk", "pt-BR", "br"):
+        for suffix in ("en", "fr", "es", "ja", "jp", "zh", "de", "it", "uk", "pt-BR", "br"):
             text = CsvPageBuilder._localized_text_value(row, suffix)
             if not text:
                 continue

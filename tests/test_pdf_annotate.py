@@ -123,11 +123,55 @@ class TestAnnotatePdf(unittest.TestCase):
             self._make_pdf(pdf, "Charge the JE-2000E battery fully.")
             findings_path = Path(td) / "findings.json"
             findings_path.write_text(json.dumps([_finding()]), encoding="utf-8")
+            ledger = Path(td) / "ledger.jsonl"
             rc = pdf_annotate.main(
-                ["--pdf", str(pdf), "--findings", str(findings_path)]
+                ["--pdf", str(pdf), "--findings", str(findings_path), "--ledger", str(ledger)]
             )
             self.assertEqual(rc, 0)
             self.assertTrue((Path(td) / "manual_annotated.pdf").exists())
+            self.assertEqual(len(pdf_annotate.load_ledger(ledger)), 1)
+
+
+class TestRunLedger(unittest.TestCase):
+    _SUMMARY = {
+        "pdf": "manual.pdf",
+        "out": "manual_annotated.pdf",
+        "findings": 3,
+        "located": [{"rule": "stale_model_name", "page": 1, "needle": "x"}],
+        "unlocated": 2,
+    }
+
+    def test_append_is_idempotent_per_run(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            ledger = Path(td) / "ledger.jsonl"
+            first = pdf_annotate.append_run_to_ledger(self._SUMMARY, ledger_path=ledger)
+            second = pdf_annotate.append_run_to_ledger(self._SUMMARY, ledger_path=ledger)
+            self.assertEqual(first["written"], 1)
+            self.assertEqual(second["skipped"], 1)
+            rows = pdf_annotate.load_ledger(ledger)
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["findings"], 3)
+            self.assertEqual(rows[0]["located"], 1)
+            self.assertEqual(rows[0]["unlocated"], 2)
+
+    def test_backfill_summary_cli_appends_without_annotating(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            summary_path = Path(td) / "summary.json"
+            summary_path.write_text(json.dumps(self._SUMMARY), encoding="utf-8")
+            ledger = Path(td) / "ledger.jsonl"
+            rc = pdf_annotate.main(
+                ["--backfill-summary", str(summary_path), "--ledger", str(ledger)]
+            )
+            self.assertEqual(rc, 0)
+            self.assertEqual(len(pdf_annotate.load_ledger(ledger)), 1)
+
+    def test_backfill_conflicts_with_pdf(self) -> None:
+        with self.assertRaises(SystemExit):
+            pdf_annotate.parse_args(["--backfill-summary", "s.json", "--pdf", "m.pdf"])
+
+    def test_pdf_and_findings_still_required_without_backfill(self) -> None:
+        with self.assertRaises(SystemExit):
+            pdf_annotate.parse_args(["--pdf", "m.pdf"])
 
 
 if __name__ == "__main__":

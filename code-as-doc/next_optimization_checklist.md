@@ -789,8 +789,13 @@ stock-manual-onboarding evaluation.
     - the first corpus-driven template fix is applied by a human through the existing Workstream Q runbook
     - the 模板复发修正率 metric is computable
 
-- [ ] PR H3: Three-flow dashboards — ops face + value face (工程 H3, scope expanded 2026-07-03)
-  - Status: `pending`
+- [x] PR H3: Three-flow dashboards — ops face + value face (工程 H3, scope expanded 2026-07-03; done 2026-07-03)
+  - Status: `done` — `tools/flow_dashboard.py report` emits both faces
+    (markdown + json under `reports/flow_dashboard/`) with monthly buckets;
+    `pdf_annotate` appends a run ledger (`--backfill-summary` for history);
+    the two template-flow metrics correctly show `no_data` until H1/H2 land.
+    First real run immediately surfaced an actionable signal: reflow rate 0%
+    because landed deltas were never stamped `accepted` in the ledger.
   - Note: expanded from the original five-metric health report into a
     **two-face dashboard**. Ops face (system health, for the operator):
     reflow rate, TM hit rate, second-revision rate, template recurrence rate,
