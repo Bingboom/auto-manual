@@ -5,6 +5,7 @@
 Якщо несправність не зникає, зверніться до служби підтримки Jackery.
 
 .. list-table::
+   :class: longtable
    :header-rows: 1
    :widths: 14 86
 

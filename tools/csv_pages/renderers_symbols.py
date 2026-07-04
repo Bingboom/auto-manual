@@ -279,6 +279,7 @@ def _append_notice_table(
     lines.extend(
         [
             ".. list-table::",
+            "   :class: longtable",
             "   :header-rows: 0",
             "   :widths: 18 82",
             "",
@@ -539,6 +540,7 @@ def _signal_section(
 
     signal_table_lines: list[str] = [
         ".. list-table::",
+        "   :class: longtable",
         "   :header-rows: 1",
         "   :widths: 22 78",
         "",
@@ -651,6 +653,7 @@ def _icon_table(lang: str, vars_map: dict[str, str], groups: dict[str, list[dict
 
     table_lines: list[str] = [
         ".. list-table::",
+        "   :class: longtable",
         "   :header-rows: 0",
         "   :widths: 12 38 12 38",
         "",

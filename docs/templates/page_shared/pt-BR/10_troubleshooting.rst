@@ -5,6 +5,7 @@ Se qualquer um dos seguintes códigos de falha aparecer, siga as ações correti
 Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.
 
 .. list-table::
+   :class: longtable
    :header-rows: 1
    :widths: 14 86
 

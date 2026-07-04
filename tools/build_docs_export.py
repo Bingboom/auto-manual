@@ -12,6 +12,35 @@ from tools.build_docs_artifacts import (
 )
 
 
+def _copy_attachment_images_for_latex(
+    bundle_dir: Path,
+    latex_out_dir: Path,
+    printer: Callable[[str], None],
+) -> None:
+    """Flat-copy synced bitable attachment images into the LaTeX build dir.
+
+    Raw-latex renderers reference these by bare basename via
+    \\HBImageOrPlaceholder -> \\IfFileExists; Sphinx only copies images it
+    sees in ``.. image::`` directives, so without this step every icon
+    cell silently rendered as an empty placeholder
+    (reports/typography_gap/2026-07-03 #3).
+    """
+    attachments_roots = sorted(
+        (bundle_dir / "_repo_assets").glob("**/_attachments"),
+    )
+    copied = 0
+    for root in attachments_roots:
+        for src in sorted(root.rglob("*")):
+            if not src.is_file() or src.suffix.lower() not in (".png", ".jpg", ".jpeg", ".pdf"):
+                continue
+            dst = latex_out_dir / src.name
+            if not dst.exists():
+                dst.write_bytes(src.read_bytes())
+                copied += 1
+    if copied:
+        printer(f"[build] Copied {copied} attachment image(s) into latex dir")
+
+
 def build_target(
     cfg: dict,
     *,
@@ -118,6 +147,9 @@ def build_target(
             model=target_model,
             region=target_region,
             lang=target_lang or artifact_plan.primary_lang,
+        )
+        _copy_attachment_images_for_latex(
+            Path(bundle.bundle_dir), Path(artifact_plan.latex_out_dir), printer,
         )
         patch_fonts(artifact_plan.patch_fonts_script, artifact_plan.main_tex, build_dir=artifact_plan.latex_out_dir)
         compile_xelatex(artifact_plan.main_tex, artifact_plan.xelatex_runs, cwd=artifact_plan.latex_out_dir)
