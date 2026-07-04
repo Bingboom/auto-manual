@@ -835,8 +835,13 @@
 }
 
 % Apply shared H1 styling to all section-level headings generated from rst.
+% titlesec afterskip stays 0: the space after the title block is owned by a
+% single parameter, comp_h1_pill_after (the tcolorbox after skip inside
+% \HBTitleLevelOne). The old split — pill after 0.8mm plus a hidden
+% section_after_fix of -2mm here — made the net H1 spacing impossible to
+% reason about from either place (typography_gap/2026-07-03 #11).
 \titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
-\titlespacing*{\section}{0pt}{0pt}{\csname HBsection_after_fix\endcsname}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
 \setcounter{secnumdepth}{0}
 
 % ------------------------------
