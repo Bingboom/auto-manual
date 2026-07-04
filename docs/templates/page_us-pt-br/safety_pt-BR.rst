@@ -82,13 +82,11 @@
 
    .. raw:: latex
 
-      \safetywarning{AVISO}
-
-   A conexão incorreta do condutor de aterramento do equipamento pode resultar em risco de choque elétrico. Consulte um eletricista qualificado se tiver dúvidas sobre se o produto está devidamente aterrado. Não modifique o plugue fornecido com o produto; se ele não se encaixar na tomada, solicite a instalação de uma tomada adequada por um eletricista qualificado.
+      \safetywarning{A conexão incorreta do condutor de aterramento do equipamento pode resultar em risco de choque elétrico. Consulte um eletricista qualificado se tiver dúvidas sobre se o produto está devidamente aterrado. Não modifique o plugue fornecido com o produto; se ele não se encaixar na tomada, solicite a instalação de uma tomada adequada por um eletricista qualificado.}
 
    .. raw:: latex
 
-      \HBNoticeBlock{PERIGO}{Este dispositivo destina-se apenas ao uso interno (caso seja utilizado ao ar livre, mantenha-o em um ambiente protegido, semelhante a um ambiente interno, como dentro de residências, RVs, tendas, cabanas, etc.).}{※ Este dispositivo não é à prova d'água nem à prova de poeira. Mantenha-o afastado da chuva e de ambientes úmidos durante o uso.}
+      \HBDangerBlock{PERIGO}{Este dispositivo destina-se apenas ao uso interno (caso seja utilizado ao ar livre, mantenha-o em um ambiente protegido, semelhante a um ambiente interno, como dentro de residências, RVs, tendas, cabanas, etc.).}{※ Este dispositivo não é à prova d'água nem à prova de poeira. Mantenha-o afastado da chuva e de ambientes úmidos durante o uso.}
 
 
 .. only:: html
