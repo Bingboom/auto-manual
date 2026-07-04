@@ -19,7 +19,7 @@
 
    .. raw:: latex
 
-      \safetylead{Always follow these basic precautions when using this product.}
+      \HBWarningLeadBlock{WARNING}{Always follow these basic precautions when using this product.}
 
 
    - Read all the instructions before using the product.

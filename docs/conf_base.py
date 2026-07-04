@@ -51,6 +51,7 @@ latex_additional_files = [
     "renderers/latex/tools.tex",
     "renderers/latex/params.tex",
     "renderers/latex/assets/warning_lockup.png",
+    "renderers/latex/assets/fcc_mark.pdf",
     "renderers/latex/layout_templates.tex",
     "renderers/latex/layout_core.tex",
     "renderers/latex/components_base.tex",

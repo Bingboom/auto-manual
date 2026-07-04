@@ -19,7 +19,7 @@
 
    .. raw:: latex
 
-      \safetylead{Respectez toujours les précautions suivantes lors de l’utilisation du produit.}
+      \HBWarningLeadBlock{AVERTISSEMENT}{Respectez toujours les précautions suivantes lors de l’utilisation du produit.}
 
 
    - Lisez toutes les instructions avant d’utiliser le produit.

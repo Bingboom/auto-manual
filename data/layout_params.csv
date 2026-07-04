@@ -129,6 +129,7 @@ comp_spec_section_after,0.13,mm,Spec section title space after (tightened to one
 comp_spec_section_bullet_raise,-0.16,ex,Spec section bullet raise offset (optical baseline align)
 comp_spec_section_bullet_symbol,\scalebox{1.67}{\textbullet},none,Spec section bullet symbol (scaled 1.67x, baseline aligned)
 comp_spec_section_bullet_gap,0.36,em,Spec section bullet to title gap
+comp_spec_table_left_tint,0,int,Spec/LCD left-column tint percent black (V2.0 master: 0 = white)
 comp_spec_table_left_ratio,0.315,ratio,Spec table left column ratio of textwidth (archive: 0.315)
 comp_spec_table_tabcolsep,2.6,pt,Spec table cell horizontal padding
 comp_spec_table_row_stretch,1.34,ratio,Spec table row vertical stretch (archive row height 10.3pt at 6.6pt leading)

@@ -77,7 +77,14 @@
 \expandafter\providecommand\csname HBcomp_spec_table_tabcolsep\endcsname{3.2pt}
 \expandafter\providecommand\csname HBcomp_spec_table_row_stretch\endcsname{1.10}
 
-\colorlet{HBSharedTableLeftBg}{black!20}% archive 1500 Ultra left-column tint (measured ~20% black)
+% Left-column tint is parameterized; the V2.0 JE-1000F master
+% (2026-06-05) draws spec/LCD tables WITHOUT a tinted left column, so
+% the default is 0 (white). Set comp_spec_table_left_tint in
+% layout_params.csv to restore a tint for older-style targets.
+\expandafter\providecommand\csname HBcomp_spec_table_left_tint\endcsname{0}
+\colorlet{HBSharedTableLeftBg}{black!\csname HBcomp_spec_table_left_tint\endcsname}
+% Table header row tint (Symbol/Meaning header bars in the V2.0 master)
+\colorlet{HBTableHeadBg}{black!8}
 \colorlet{HBSharedTableFrameColor}{black}
 
 \providecommand{\HBsharedXcolumn}[1]{m{#1}}
@@ -256,19 +263,41 @@
    \centering #1}%
 }
 
-\providecommand{\HBInBoxCell}[2]{%
-  % Full cell width: inside an m-column \linewidth IS the column width, so
-  % the old 0.29\linewidth squeezed labels into ~10% of the page and words
-  % like "Explorer" overflowed and got clipped (typography_gap follow-up).
-  \begin{minipage}[t]{\linewidth}
-    \centering
-    \HBImageOrPlaceholder
-      {\csname HBcomp_inbox_image_width\endcsname}
-      {\csname HBcomp_inbox_image_height\endcsname}
-      {#1}%
-    \par\vspace{\csname HBcomp_inbox_label_gap\endcsname}%
-    \HBTypeInBoxLabel{#2}%
-  \end{minipage}%
+% V2.0 master: each item is its own rounded card with a circled index
+% at the top-left, the line art centered, and the label underneath.
+\providecommand{\HBInBoxCard}[3]{%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=LineK40,
+    arc=\csname HBcomp_inbox_card_arc\endcsname,
+    boxrule=\csname HBcomp_table_outer_rule\endcsname,
+    boxsep=0mm,
+    left=1.2mm,right=1.2mm,top=1.2mm,bottom=1.6mm,
+    width=\csname HBcomp_inbox_card_width\endcsname\linewidth,
+    nobeforeafter,
+    equal height group=hbinbox,
+    valign=top,
+  ]
+    {\HBCircledNumFilled{#1}}\par
+    \vspace{0.4mm}
+    {\centering
+     \HBImageOrPlaceholder
+       {\csname HBcomp_inbox_image_width\endcsname}
+       {\csname HBcomp_inbox_image_height\endcsname}
+       {#2}\par}%
+    \vspace{\csname HBcomp_inbox_label_gap\endcsname}%
+    {\centering\HBTypeInBoxLabel{#3}\par}%
+  \end{tcolorbox}%
+}
+
+% Filled circled index (white numeral on brand-dark disc), V2.0 master.
+\providecommand{\HBCircledNumFilled}[1]{%
+  \begin{tikzpicture}[baseline=(n.base)]
+    \node[fill=BrandDark, circle, inner sep=0.5mm,
+          font=\HBFontHeavy\fontsize{6.5pt}{6.5pt}\selectfont,
+          text=white] (n) {#1};
+  \end{tikzpicture}%
 }
 
 % no "clip upper": overflow must stay visible, never silently clipped
@@ -284,25 +313,17 @@
   after skip=\csname HBcomp_inbox_after\endcsname,
 }
 
+\expandafter\providecommand\csname HBcomp_inbox_card_arc\endcsname{1.6mm}
+\expandafter\providecommand\csname HBcomp_inbox_card_width\endcsname{0.315}
+
+% V2.0 master: three independent rounded cards (no shared grid frame).
 \newcommand{\HBInBoxThree}[6]{%
   \par\noindent
-  \begin{hbinboxthreeframe}
-  \begingroup
-  \arrayrulecolor{HBSharedTableFrameColor}
-  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
-  \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
-  \setlength{\tabcolsep}{\csname HBcomp_inbox_table_tabcolsep\endcsname}
-  \renewcommand{\arraystretch}{\csname HBcomp_inbox_table_row_stretch\endcsname}
-  \begin{tabular}{|
-    >{\centering\arraybackslash}m{\dimexpr(\linewidth-6\tabcolsep-4\arrayrulewidth)/3\relax}|
-    >{\centering\arraybackslash}m{\dimexpr(\linewidth-6\tabcolsep-4\arrayrulewidth)/3\relax}|
-    >{\centering\arraybackslash}m{\dimexpr(\linewidth-6\tabcolsep-4\arrayrulewidth)/3\relax}|}
-  \hline
-  \HBInBoxCell{#1}{#2} & \HBInBoxCell{#3}{#4} & \HBInBoxCell{#5}{#6}\tabularnewline
-  \hline
-  \end{tabular}
-  \endgroup
-  \end{hbinboxthreeframe}
+  \makebox[\linewidth][s]{%
+    \HBInBoxCard{1}{#1}{#2}\hfill
+    \HBInBoxCard{2}{#3}{#4}\hfill
+    \HBInBoxCard{3}{#5}{#6}%
+  }%
   \par
 }
 
@@ -546,7 +567,7 @@
       -\csname HBcomp_symbol_icon_col_width\endcsname
       -4\tabcolsep-3\arrayrulewidth\relax}|}
   \hline
-  \rowcolor{HBSharedTableLeftBg}
+  \rowcolor{HBTableHeadBg}
   \HBTypeSymbolHeader{#1} & \HBTypeSymbolHeader{#2}\tabularnewline
   \hline\endhead
   #3%
@@ -625,12 +646,19 @@
 \expandafter\providecommand\csname HBtype_lcd_body_font_size\endcsname{6.0pt}
 \expandafter\providecommand\csname HBtype_lcd_body_font_leading\endcsname{6.8pt}
 
+% Circled row numbers, matching the V2.0 JE-1000F master's LCD table.
+\providecommand{\HBCircledNum}[1]{%
+  \begin{tikzpicture}[baseline=(n.base)]
+    \node[draw=\csname HBtype_body_color\endcsname, circle, inner sep=0.28mm,
+          line width=0.28pt,
+          font=\HBFontRegular\fontsize{\csname HBtype_lcd_no_font_size\endcsname}
+                {\csname HBtype_lcd_no_font_leading\endcsname}\selectfont,
+          text=\csname HBtype_body_color\endcsname] (n) {#1};
+  \end{tikzpicture}%
+}
+
 \providecommand{\HBTypeLcdNo}[1]{%
-  {\HBFontRegular
-   \color{\csname HBtype_body_color\endcsname}%
-   \fontsize{\csname HBtype_lcd_no_font_size\endcsname}
-            {\csname HBtype_lcd_no_font_leading\endcsname}\selectfont
-   \centering #1}%
+  {\centering\HBCircledNum{#1}\par}%
 }
 
 \providecommand{\HBTypeLcdLabel}[1]{%
@@ -814,6 +842,57 @@
   \HB@lcdmodeactions{#2}{#3}{#4}{#5}{#6}{#7}%
 }
 \makeatother
+
+% ------------------------------
+% FCC statement block (V2.0 master p6): light-gray rounded box with the
+% FCC mark at the top-left and two text columns.
+% Signature: \HBFccBlock{left column text}{right column text}
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_fcc_arc\endcsname{2.0mm}
+\expandafter\providecommand\csname HBcomp_fcc_mark_width\endcsname{11mm}
+
+\providecommand{\HBFccBlock}[2]{%
+  \par\noindent
+  \begin{tcolorbox}[
+    enhanced,
+    colback=BgK05,
+    colframe=BgK05,
+    arc=\csname HBcomp_fcc_arc\endcsname,
+    boxrule=0pt,
+    boxsep=0mm,
+    left=2mm,right=2mm,top=2mm,bottom=2mm,
+  ]
+    \begin{minipage}[t]{0.48\linewidth}
+      \HBTypeNoticeBody{%
+        \IfFileExists{fcc_mark.pdf}{%
+          \raisebox{-1.2mm}{\includegraphics[width=\csname HBcomp_fcc_mark_width\endcsname]{fcc_mark.pdf}}\hspace{1.2mm}%
+        }{}%
+        #1}%
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.48\linewidth}
+      \HBTypeNoticeBody{#2}%
+    \end{minipage}%
+  \end{tcolorbox}%
+  \par
+}
+
+% ------------------------------
+% Language tag line (V2.0 master p2): small brand-dark tag + heading,
+% e.g. [EN] IMPORTANT
+% Signature: \HBLangTagLine{EN}{IMPORTANT}
+% ------------------------------
+\providecommand{\HBLangTagLine}[2]{%
+  \par\noindent
+  \begingroup
+  \setlength{\fboxsep}{0pt}%
+  \colorbox{BrandDark}{\makebox[4.6mm][c]{\rule{0pt}{2.9mm}%
+    {\color{white}\HBFontHeavy\fontsize{5.6pt}{5.6pt}\selectfont #1}}}%
+  \hspace{1.4mm}%
+  {\HBFontSemiBold\color{\csname HBtype_body_color\endcsname}%
+   \fontsize{7.2pt}{8.0pt}\selectfont #2}%
+  \endgroup
+  \par
+}
 
 % ------------------------------
 % Shared level-1 section title
