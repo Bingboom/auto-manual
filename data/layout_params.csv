@@ -116,7 +116,13 @@ comp_list_bullet_symbol,\small\textbullet,none,Bullet TeX (use single backslash)
 comp_table_inner_rule,0.2,pt,Table inner rule width
 comp_table_tabcolsep,2.4,pt,Table tabcolsep
 comp_table_outer_arc,0.9,mm,Table outer corner radius
-comp_table_outer_rule,0.5,pt,Table outer rule width
+comp_table_outer_rule,0.75,pt,Table outer rule width (archive 1500 Ultra: 0.75pt)
+,,,
+,,,------ DATA TABLE DENSITY (archive 1500 Ultra parity) ------
+comp_lcd_table_row_stretch,2.0,ratio,LCD icon table row stretch (archive min row ~27pt)
+type_lcd_label_font_size,7.0,pt,LCD name-column font size (archive: 7.0)
+type_lcd_label_font_leading,7.6,pt,LCD name-column leading
+comp_symbol_table_row_stretch,1.3,ratio,Symbols table row stretch (relaxed to archive density)
 ,,,
 ,,,------ SPEC TABLE PAGE ------
 comp_spec_section_before,1.1,mm,Spec section title space before (larger gap from previous table)
@@ -124,18 +130,18 @@ comp_spec_section_after,0.13,mm,Spec section title space after (tightened to one
 comp_spec_section_bullet_raise,-0.16,ex,Spec section bullet raise offset (optical baseline align)
 comp_spec_section_bullet_symbol,\scalebox{1.67}{\textbullet},none,Spec section bullet symbol (scaled 1.67x, baseline aligned)
 comp_spec_section_bullet_gap,0.36,em,Spec section bullet to title gap
-comp_spec_table_left_ratio,0.33,ratio,Spec table left column ratio of textwidth
+comp_spec_table_left_ratio,0.315,ratio,Spec table left column ratio of textwidth (archive: 0.315)
 comp_spec_table_tabcolsep,2.6,pt,Spec table cell horizontal padding
-comp_spec_table_row_stretch,0.78,ratio,Spec table row vertical stretch (flatter)
+comp_spec_table_row_stretch,1.34,ratio,Spec table row vertical stretch (archive row height 10.3pt at 6.6pt leading)
 comp_spec_notes_before,0.8,mm,Spec notes block space before
 comp_spec_footnotes_before,1.2,mm,Spec footnotes block space before
 ,,,
 type_spec_section_font_size,8.8,pt,Spec section title font size
 type_spec_section_font_leading,9.6,pt,Spec section title leading
-type_spec_label_font_size,5.7,pt,Spec left-cell label font size
-type_spec_label_font_leading,6.1,pt,Spec left-cell label leading
-type_spec_value_font_size,5.7,pt,Spec right-cell value font size
-type_spec_value_font_leading,6.1,pt,Spec right-cell value leading
+type_spec_label_font_size,6.0,pt,Spec left-cell label font size (archive: 6.0)
+type_spec_label_font_leading,6.6,pt,Spec left-cell label leading
+type_spec_value_font_size,6.0,pt,Spec right-cell value font size (archive: 6.0)
+type_spec_value_font_leading,6.6,pt,Spec right-cell value leading
 type_spec_note_font_size,5.4,pt,Spec note/footnote font size
 type_spec_note_font_leading,6.0,pt,Spec note/footnote leading
 ,,,
