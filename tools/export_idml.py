@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import re
 import sys
 import zipfile
 from pathlib import Path
@@ -28,8 +29,10 @@ from xml.etree import ElementTree as ET
 from xml.sax.saxutils import escape
 
 try:
+    from tools.idml_rst_extract import bundle_page_order, extract_page
     from tools.script_bootstrap import bootstrap_repo_root
 except ImportError:  # pragma: no cover - direct script execution fallback
+    from idml_rst_extract import bundle_page_order, extract_page  # type: ignore
     from script_bootstrap import bootstrap_repo_root
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
@@ -389,6 +392,64 @@ class IdmlWriter:
             '</Rectangle>'
         )
 
+    _PROSE_STYLE = {"h1": "HB H1", "h2": "HB Title L2", "h3": "HB Title L3",
+                    "body": "HB Body", "list": "HB List"}
+
+    def _resolve_bundle_image(self, bundle_root: Path, ref: str) -> Path | None:
+        """Resolve an image reference from a bundle page.
+
+        Refs are either bundle-relative paths (_assets/..., _repo_assets/...)
+        or bare basenames from component macro args (main_unit1.png).
+        """
+        cand = bundle_root / ref
+        if cand.exists():
+            return cand
+        name = Path(ref).name
+        for base in (bundle_root / "_assets", bundle_root / "_repo_assets"):
+            if base.is_dir():
+                hits = sorted(base.rglob(name))
+                if hits:
+                    return hits[0]
+        return None
+
+    def add_prose_story(self, sid: str, title: str, blocks: list[tuple[str, str]],
+                        bundle_root: Path) -> tuple[str, float]:
+        """Story from extracted prose blocks; returns (sid, est_height_pt)."""
+        parts: list[str] = []
+        est = 0.0
+        img_n = 0
+        last_idx = len(blocks) - 1
+        for bi, (kind, text) in enumerate(blocks):
+            terminal = bi == last_idx
+            if kind == "image":
+                img = self._resolve_bundle_image(bundle_root, text)
+                if img is None:
+                    continue
+                img_n += 1
+                w_pt = min(160.0, self.page_w - self.m_l - self.m_r)
+                h_pt = w_pt * 0.6
+                rect = self._image_cell_content(f"{sid}_im{img_n}", img, w_pt, h_pt)
+                parts.append(
+                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">'
+                    '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                    + rect + ("<Content></Content>" if terminal else "<Br/>")
+                    + "</CharacterStyleRange></ParagraphStyleRange>\n")
+                est += h_pt + 4
+                continue
+            style = self._PROSE_STYLE.get(kind, "HB Body")
+            parts.append(self._psr(style, text, terminal=terminal))
+            lines = max(1, text.count("\n") + 1) + len(text) // 95
+            est += {"h1": 16.0, "h2": 13.0, "h3": 11.0}.get(kind, 0.0) or 8.5 * lines
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{escape(title)}">\n'
+            '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
+            + "".join(parts) + '</Story>\n</idPkg:Story>\n'
+        )
+        self.stories.append((sid, xml))
+        return sid, est
+
     def add_lcd_story(self, rows: list[dict], data_root: Path) -> str:
         """LCD icon table: circled-no / icon image / name / description."""
         sid = "st_lcd"
@@ -542,7 +603,8 @@ class IdmlWriter:
             '    </Properties>\n'
         )
 
-    def add_spread_chain(self, story_id: str, n_pages: int, start_index: int) -> None:
+    def add_spread_chain(self, story_id: str, n_pages: int, start_index: int,
+                         columns: int = 1) -> None:
         """One spread per page, each holding one frame of a linked chain.
 
         Spread coordinates: origin at the spread center; the page's
@@ -573,7 +635,7 @@ class IdmlWriter:
                 'ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
                 'ItemTransform="1 0 0 1 0 0">\n'
                 + self._path_geometry(x1, y1, x2, y2) +
-                '    <TextFramePreference TextColumnCount="1" AutoSizingType="Off"/>\n'
+                f'    <TextFramePreference TextColumnCount="{columns}" TextColumnGutter="11" AutoSizingType="Off"/>\n'
                 '  </TextFrame>\n'
                 '</Spread>\n'
                 '</idPkg:Spread>\n'
@@ -682,6 +744,8 @@ def main() -> int:
     ap.add_argument("--lang", default="en")
     ap.add_argument("--data-root", default="data/phase2")
     ap.add_argument("--out", default=None)
+    ap.add_argument("--bundle-root", default=None,
+                    help="Prepared rst bundle dir (default: docs/_build/<model>/<region>/<lang>/rst); prose pages are skipped if absent")
     ap.add_argument("--check", default=None, help="validate an existing .idml and exit")
     args = ap.parse_args()
 
@@ -700,35 +764,67 @@ def main() -> int:
         return 1
 
     w = IdmlWriter(params)
-    intro = w.add_text_story(
-        "st_intro", "About this export",
-        [("HB H1", "IDML HANDOFF"),
-         ("HB Body",
-          f"Model {args.model} / Region {args.region} / Lang {args.lang}. "
-          "Styles map 1:1 to data/layout_params.csv; spec tables are fed from the "
-          "phase2 Spec_Master snapshot. Edit freely - this file is a pipeline export."),
-         ])
-    spec = w.add_spec_story(sections)
     lcd_rows = load_lcd_rows(data_root, args.model)
     trouble_rows = load_trouble_rows(data_root, args.model, args.region)
 
-    w.add_spread_chain(intro, 1, 0)
-    page_cursor = 1
-    spec_pages = w.pages_for_height(w.estimate_spec_height(sections))
-    w.add_spread_chain(spec, spec_pages, page_cursor)
-    page_cursor += spec_pages
-    if lcd_rows:
-        lcd = w.add_lcd_story(lcd_rows, data_root)
-        lcd_pages = w.pages_for_height(
-            16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in lcd_rows))
-        w.add_spread_chain(lcd, lcd_pages, page_cursor)
-        page_cursor += lcd_pages
-    if trouble_rows:
-        trouble = w.add_trouble_story(trouble_rows)
-        trouble_pages = w.pages_for_height(
-            16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in trouble_rows))
-        w.add_spread_chain(trouble, trouble_pages, page_cursor)
-        page_cursor += trouble_pages
+    bundle_root = Path(args.bundle_root) if args.bundle_root else (
+        ROOT / "docs" / "_build" / args.model / args.region / args.lang / "rst")
+    tags = {
+        "latex",
+        f"region_{args.region.lower()}",
+        f"lang_{args.lang.lower()}",
+        "model_" + args.model.lower().replace("-", "_"),
+    }
+    page_cursor = 0
+    skipped_raw = 0
+    prose_pages = 0
+
+    def chain(story_id: str, est_h: float, columns: int = 1) -> None:
+        nonlocal page_cursor
+        pages = w.pages_for_height(est_h)
+        w.add_spread_chain(story_id, pages, page_cursor, columns=columns)
+        page_cursor += pages
+
+    DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_"}
+    ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
+    if not ordered:
+        print(f"[export-idml] NOTE: no prepared bundle at {bundle_root}; "
+              "exporting data pages only (run `build.py rst` first for full prose)")
+
+    emitted = {"spec": False, "lcd": False, "trouble": False}
+
+    def emit_data_page(kind: str) -> None:
+        if emitted[kind]:
+            return
+        emitted[kind] = True
+        if kind == "spec":
+            sid = w.add_spec_story(sections)
+            chain(sid, w.estimate_spec_height(sections))
+        elif kind == "lcd" and lcd_rows:
+            sid = w.add_lcd_story(lcd_rows, data_root)
+            chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in lcd_rows))
+        elif kind == "trouble" and trouble_rows:
+            sid = w.add_trouble_story(trouble_rows)
+            chain(sid, 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in trouble_rows))
+
+    for page in ordered:
+        matched = next((k for k, prefix in DATA_PAGES.items()
+                        if page.name.startswith(prefix)), None)
+        if matched:
+            emit_data_page(matched)
+            continue
+        res = extract_page(page, tags)
+        skipped_raw += res.skipped_raw
+        if not res.blocks:
+            continue
+        sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
+        _, est = w.add_prose_story(sid, page.stem, res.blocks, bundle_root)
+        chain(sid, est, columns=2 if res.twocol else 1)
+        prose_pages += 1
+
+    # data pages always ship, bundle or not
+    for kind in ("spec", "lcd", "trouble"):
+        emit_data_page(kind)
 
     tag = f"manual_{args.model.replace('-', '').lower()}_{args.region.lower()}_{args.lang}"
     out = Path(args.out) if args.out else (
@@ -740,8 +836,8 @@ def main() -> int:
     n_rows = sum(len(s["rows"]) for s in sections)
     print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
     print(f"[export-idml] stories={len(w.stories)} spreads={len(w.spreads)} "
-          f"spec sections={len(sections)} rows={n_rows} "
-          f"lcd rows={len(lcd_rows)} trouble rows={len(trouble_rows)}")
+          f"prose pages={prose_pages} skipped raw blocks={skipped_raw} | "
+          f"spec rows={n_rows} lcd rows={len(lcd_rows)} trouble rows={len(trouble_rows)}")
     return 1 if issues else 0
 
 

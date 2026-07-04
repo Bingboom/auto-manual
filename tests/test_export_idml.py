@@ -111,6 +111,28 @@ class ExportIdmlTests(unittest.TestCase):
             self.assertTrue(code)
             self.assertTrue(measure)
 
+    def test_prose_extraction_covers_bundle_pages(self) -> None:
+        from tools.idml_rst_extract import bundle_page_order, extract_page
+        bundle = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "rst"
+        if not bundle.is_dir():
+            self.skipTest("no prepared bundle in this checkout")
+        tags = {"latex", "region_us", "lang_en", "model_je_1000f"}
+        pages = bundle_page_order(bundle)
+        self.assertGreater(len(pages), 10)
+        total = sum(len(extract_page(p, tags).blocks) for p in pages)
+        self.assertGreater(total, 100)
+
+    def test_prose_story_marks_safety_twocol(self) -> None:
+        from tools.idml_rst_extract import extract_page
+        bundle = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "rst"
+        page = bundle / "page" / "safety_en.rst"
+        if not page.exists():
+            self.skipTest("no prepared bundle in this checkout")
+        res = extract_page(page, {"latex", "region_us", "lang_en", "model_je_1000f"})
+        self.assertTrue(res.twocol)
+        kinds = {k for k, _ in res.blocks}
+        self.assertIn("list", kinds)
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
