@@ -70,6 +70,36 @@
 }
 
 % ==================================================
+% DANGER BOX
+% Same box + lockup layout as \safetywarning so WARNING/DANGER blocks
+% render as one visual family (archive HomePower 2000 Plus V2 p5).
+% Signature mirrors \HBNoticeBlock so templates can swap 1:1:
+%   \HBDangerBlock{label}{primary text}{secondary text}
+% #1 (label) is currently unused — the warning lockup image stands in
+% until a dedicated DANGER lockup asset ships.
+% ==================================================
+
+\providecommand{\HBDangerBlock}[3]{%
+  \begin{safetywarningbox}%
+    \noindent
+    \begin{tabular}{@{}m{\csname HBcomp_lockup_width\endcsname}%
+                    @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
+                    m{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}@{}}%
+      \centering\warninglockup
+      &
+      \parbox[c]{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}{%
+        \HBTypeWarningTextStart
+        \HBapplyalignment
+        \HBtightlines{\csname HBtype_warning_text_font_leading\endcsname}{%
+          #2%
+          \HBIfBlankTF{#3}{}{\par #3}%
+        }%
+      }%
+    \end{tabular}%
+  \end{safetywarningbox}%
+}
+
+% ==================================================
 % SUBBAR
 % ==================================================
 

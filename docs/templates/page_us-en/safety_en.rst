@@ -82,13 +82,11 @@
 
    .. raw:: latex
 
-      \safetywarning{WARNING}
-
-   Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product – if it will not fit the outlet, have a proper outlet installed by a qualified electrician.
+      \safetywarning{Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product – if it will not fit the outlet, have a proper outlet installed by a qualified electrician.}
 
    .. raw:: latex
 
-      \HBNoticeBlock{DANGER}{This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).}{※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.}
+      \HBDangerBlock{DANGER}{This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).}{※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.}
 
 
 .. only:: html

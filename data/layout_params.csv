@@ -57,7 +57,7 @@ type_list_font_leading,6.4,pt,List leading (independent from body)
 ,,,
 type_warning_text_font_size,6.4,pt,Warning right text font size
 type_warning_text_font_leading,7.2,pt,Warning right text leading
-type_warning_text_force_upper,1,int,0 keep case / 1 uppercase
+type_warning_text_force_upper,0,int,0 keep case / 1 uppercase (body prose keeps case; the lead-in safety sentence is uppercase in the source)
 ,,,
 ,,,==================== COMPONENTS ====================
 comp_h1_pill_arc,0.8,mm,H1 pill corner radius

@@ -469,8 +469,16 @@
 % ------------------------------
 \expandafter\providecommand\csname HBcomp_symbol_icon_width\endcsname{8.5mm}
 \expandafter\providecommand\csname HBcomp_symbol_icon_height\endcsname{8.5mm}
-\expandafter\providecommand\csname HBcomp_symbol_signal_width\endcsname{30mm}
-\expandafter\providecommand\csname HBcomp_symbol_signal_height\endcsname{8.5mm}
+% Signal pill geometry measured from the archived 1500 Ultra manual
+% (MEANING OF SYMBOLS p5): all four kinds (WARNING/CAUTION/NOTE/TIP)
+% share one pill of 61.2x15.4pt with the content centered both ways.
+\expandafter\providecommand\csname HBcomp_symbol_signal_width\endcsname{21.5mm}
+\expandafter\providecommand\csname HBcomp_symbol_signal_height\endcsname{5.4mm}
+\expandafter\providecommand\csname HBcomp_symbol_signal_tri_base\endcsname{3.6}
+\expandafter\providecommand\csname HBcomp_symbol_signal_tri_height\endcsname{3.2}
+\expandafter\providecommand\csname HBcomp_symbol_signal_gap\endcsname{1.1mm}
+\expandafter\providecommand\csname HBtype_symbol_signal_font_size\endcsname{9.9pt}
+\expandafter\providecommand\csname HBtype_symbol_signal_font_leading\endcsname{10.5pt}
 \expandafter\providecommand\csname HBcomp_symbol_icon_col_width\endcsname{32mm}
 \expandafter\providecommand\csname HBcomp_symbol_table_tabcolsep\endcsname{2.2pt}
 \expandafter\providecommand\csname HBcomp_symbol_table_row_stretch\endcsname{0.86}
@@ -556,21 +564,27 @@
         {\csname HBcomp_symbol_signal_height\endcsname}
         {#1}%
     }{%
+      % Compact pill, content centered both ways (was a baseline-rule
+      % hack that grew a tall flush slab with bottom-aligned content).
       \begingroup
       \setlength{\fboxsep}{0pt}%
       \colorbox{BrandDark}{%
-        \makebox[\csname HBcomp_symbol_signal_width\endcsname][l]{%
-          \rule{0pt}{\csname HBcomp_symbol_signal_height\endcsname}%
-          \hspace{1.5mm}%
-          \raisebox{-0.35mm}{%
-            \begin{tikzpicture}[x=1mm,y=1mm,baseline=(base)]
-              \coordinate (base) at (0,1.25);
-              \fill[white] (0,0) -- (2.5,4.4) -- (5,0) -- cycle;
-              \node[BrandDark,font=\fontsize{3.2pt}{3.2pt}\selectfont\bfseries] at (2.5,1.45) {!};
+        \parbox[c][\csname HBcomp_symbol_signal_height\endcsname][c]%
+               {\csname HBcomp_symbol_signal_width\endcsname}{%
+          \centering
+          \raisebox{-0.55mm}{%
+            \begin{tikzpicture}[x=1mm,y=1mm]
+              \fill[white] (0,0)
+                -- (\csname HBcomp_symbol_signal_tri_base\endcsname/2,\csname HBcomp_symbol_signal_tri_height\endcsname)
+                -- (\csname HBcomp_symbol_signal_tri_base\endcsname,0) -- cycle;
+              \node[BrandDark,font=\fontsize{4pt}{4pt}\selectfont\bfseries]
+                at (\csname HBcomp_symbol_signal_tri_base\endcsname/2,1.05) {!};
             \end{tikzpicture}%
           }%
-          \hspace{1.1mm}%
-          {\color{white}\HBFontHeavy\fontsize{5.2pt}{5.8pt}\selectfont #2}%
+          \hspace{\csname HBcomp_symbol_signal_gap\endcsname}%
+          {\color{white}\HBFontHeavy
+           \fontsize{\csname HBtype_symbol_signal_font_size\endcsname}
+                    {\csname HBtype_symbol_signal_font_leading\endcsname}\selectfont #2}%
         }%
       }%
       \endgroup
