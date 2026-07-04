@@ -135,8 +135,25 @@ def _dispatch_build_action(args: argparse.Namespace, context: DispatchContext) -
     context.run_checked(context.build_docs_command(args))
 
 
+def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") -> None:
+    """Export the editable InDesign handoff package (tools/export_idml.py)."""
+    import sys as _sys
+
+    cmd = [_sys.executable, str(Path(__file__).resolve().parents[1] / "tools" / "export_idml.py")]
+    if getattr(args, "model", None):
+        cmd += ["--model", args.model]
+    if getattr(args, "region", None):
+        cmd += ["--region", args.region]
+    if getattr(args, "lang", None):
+        cmd += ["--lang", args.lang]
+    if getattr(args, "data_root", None):
+        cmd += ["--data-root", args.data_root]
+    context.run_checked(cmd)
+
+
 ACTION_HANDLERS: dict[str, ActionHandler] = {
     "validate": _dispatch_validate_action,
+    "idml": _dispatch_idml_action,
     "doctor": _dispatch_doctor_action,
     "review": _dispatch_review_action,
     "check": _dispatch_check_action,
