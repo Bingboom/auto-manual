@@ -634,6 +634,35 @@ class IdmlWriter:
             per_line = max(20, int(body_w / 2 / (0.52 * 6.2)))
             lines = max((len(t) + per_line - 1) // per_line for t in texts) if texts else 1
             return self._wrap_table_paragraph(table, terminal), 7.5 * lines + 30
+        if kind == "lcdmode":
+            # LCD screen mode table (the last annotated-insert holdout):
+            # state | action | description rows, LCD art above the table
+            groups = spec.get("groups", [])
+            img_ref = spec.get("img", "")
+            art = ""
+            img = self._resolve_bundle_image(bundle_root, img_ref) if img_ref else None
+            if img is not None:
+                iw, ih = self._art_frame_size(img, max_w=110.0)
+                art = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+                       '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                       + self._image_cell_content(f"{tid}art", img, iw, ih)
+                       + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
+            cols = [body_w * 0.22, body_w * 0.18, body_w * 0.60]
+            cells = []
+            ri = 0
+            for g in groups:
+                for ai, (action, desc) in enumerate(g.get("actions", [])):
+                    state_txt = g.get("state", "") if ai == 0 else ""
+                    cells.append(self._cell(f"{tid}c{ri}_0", f"0:{ri}",
+                                            self._psr("HB Spec Label", state_txt, terminal=True)))
+                    cells.append(self._cell(f"{tid}c{ri}_1", f"1:{ri}",
+                                            self._psr("HB Spec Label", action, terminal=True)))
+                    cells.append(self._cell(f"{tid}c{ri}_2", f"2:{ri}",
+                                            self._psr("HB Spec Value", desc, terminal=True)))
+                    ri += 1
+            table = self._component_table(tid, cols, cells, n_rows=ri)
+            xml = art + self._wrap_table_paragraph(table, terminal)
+            return xml, 70.0 + 12.0 * ri
         return "", 0.0
 
     def add_prose_story(self, sid: str, title: str, blocks: list[tuple[str, str]],
@@ -655,12 +684,30 @@ class IdmlWriter:
                 continue
             if kind == "table":
                 import json as _json
-                rows = [tuple(r) if len(r) == 2 else (r[0], " / ".join(r[1:]))
-                        for r in _json.loads(text)]
+                raw_rows = _json.loads(text)
                 img_n += 1
-                table = self._table(f"{sid}_t{img_n}", [(str(a), str(b)) for a, b in rows])
+                n_cols = max(len(r) for r in raw_rows)
+                if n_cols <= 2:
+                    rows2 = [(r[0], r[1] if len(r) > 1 else "") for r in raw_rows]
+                    table = self._table(f"{sid}_t{img_n}",
+                                        [(str(a), str(b)) for a, b in rows2])
+                else:
+                    # N-column prose tables (e.g. KEY COMBINATIONS): first
+                    # column narrow-ish, rest evenly split
+                    body_w2 = self.page_w - self.m_l - self.m_r
+                    cols = [body_w2 * 0.3] + [body_w2 * 0.7 / (n_cols - 1)] * (n_cols - 1)
+                    tid = f"{sid}_t{img_n}"
+                    cells = []
+                    for ri, r in enumerate(raw_rows):
+                        for ci in range(n_cols):
+                            txt = str(r[ci]) if ci < len(r) else ""
+                            style = "HB Spec Label" if ri == 0 else "HB Spec Value"
+                            cells.append(self._cell(
+                                f"{tid}c{ri}_{ci}", f"{ci}:{ri}",
+                                self._psr(style, txt, terminal=True)))
+                    table = self._component_table(tid, cols, cells, n_rows=len(raw_rows))
                 parts.append(self._wrap_table_paragraph(table, terminal))
-                est += 11.0 * (len(rows) + 1)
+                est += 11.0 * (len(raw_rows) + 1)
                 continue
             if kind == "image":
                 img = self._resolve_bundle_image(bundle_root, text)

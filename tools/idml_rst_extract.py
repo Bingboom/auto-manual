@@ -102,6 +102,31 @@ _MACROS: tuple[tuple[str, int, str], ...] = (
 def _extract_raw_latex(body: str, result: ExtractResult) -> None:
     if "safetytwocol" in body:
         result.twocol = True
+    # HBLcdModeTable environment: structured mode/action/description groups
+    mt = re.search(r"\\begin\{HBLcdModeTable\}", body)
+    if mt:
+        import json as _json
+        j = mt.end()
+        img_args, j = _read_braced_args(body, j, 1)
+        groups = []
+        for macro in ("\\HBLcdModeFirstGroup", "\\HBLcdModeSecondGroup"):
+            pos = body.find(macro + "{", j)
+            if pos == -1:
+                continue
+            args, _ = _read_braced_args(body, pos + len(macro), 7)
+            args = [_detex(a) for a in args]
+            if len(args) == 7:
+                groups.append({"state": args[0],
+                               "actions": [[args[1], args[2]],
+                                           [args[3], args[4]],
+                                           [args[5], args[6]]]})
+        if groups:
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "lcdmode",
+                 "img": img_args[0] if img_args else "",
+                 "groups": groups}, ensure_ascii=False)))
+            return
+
     i = 0
     consumed_any = False
     while i < len(body):
@@ -239,7 +264,12 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
             elif directive == "image":
                 result.blocks.append(("image", arg))
             elif directive == "list-table":
-                result.skipped_raw += 1  # tables are covered by data stories
+                import json as _json
+                rows = _parse_list_table(body)
+                if rows:
+                    result.blocks.append(("table", _json.dumps(rows, ensure_ascii=False)))
+                else:
+                    result.skipped_raw += 1
             i = i2
             continue
 
@@ -357,4 +387,28 @@ def _parse_grid_table(grid: list[str]) -> list[list[str]]:
             a, b = cols[ci] + 1, cols[ci + 1]
             seg = line[a:b].strip() if a < len(line) else ""
             current[ci].append(seg)
+    return [r for r in rows if any(r)]
+
+def _parse_list_table(body: list[str]) -> list[list[str]]:
+    """Parse a list-table directive body into row cell-text lists."""
+    rows: list[list[str]] = []
+    cell: list[str] | None = None
+    for raw in body:
+        line = raw.strip()
+        if not line or line.startswith(":"):
+            continue
+        m = re.match(r"\*\s+-\s?(.*)", line)
+        if m:
+            rows.append([])
+            cell = [m.group(1).strip()]
+            rows[-1].append("")
+        elif line.startswith("- ") and rows:
+            if cell is not None:
+                rows[-1][-1] = " ".join(x for x in cell if x).strip()
+            cell = [line[2:].strip()]
+            rows[-1].append("")
+        elif cell is not None:
+            cell.append(line)
+        if cell is not None and rows:
+            rows[-1][-1] = " ".join(x for x in cell if x).strip()
     return [r for r in rows if any(r)]
