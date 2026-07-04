@@ -20,12 +20,18 @@ result) as ``unlocated``.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from tools.utils.path_utils import get_paths, pdf_annotate_reports_of  # noqa: E402
+
+LEDGER_SCHEMA_VERSION = 1
+LEDGER_FILENAME = "ledger.jsonl"
 
 # RGB 0..1 — a soft amber, distinct from reviewer-pen colors.
 HIGHLIGHT_COLOR = (1.0, 0.82, 0.3)
@@ -171,16 +177,83 @@ def default_out_path(pdf_path: Path) -> Path:
     return pdf_path.with_name(f"{pdf_path.stem}_annotated{pdf_path.suffix}")
 
 
+def default_ledger_path(base_root: Path | None = None) -> Path:
+    if base_root is None:
+        return get_paths().pdf_annotate_reports_dir / LEDGER_FILENAME
+    return pdf_annotate_reports_of(base_root) / LEDGER_FILENAME
+
+
+def _ledger_run_key(summary: dict[str, Any]) -> str:
+    fingerprint = json.dumps(
+        {
+            "pdf": summary.get("pdf"),
+            "out": summary.get("out"),
+            "findings": summary.get("findings"),
+            "located": len(summary.get("located") or []),
+            "unlocated": summary.get("unlocated"),
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+    )
+    return hashlib.sha1(fingerprint.encode("utf-8")).hexdigest()
+
+
+def ledger_entry_from_summary(
+    summary: dict[str, Any], *, recorded_at: str | None = None
+) -> dict[str, Any]:
+    """Project one annotate run summary into a ledger entry.
+
+    The entry is what the flow dashboard's audited-PDF count reads, so a run
+    (or an operator backfill of a historical run) records only the summary
+    facts — never the finding contents.
+    """
+    return {
+        "ledger_schema_version": LEDGER_SCHEMA_VERSION,
+        "run_key": _ledger_run_key(summary),
+        "recorded_at": recorded_at
+        or datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "pdf": summary.get("pdf"),
+        "out": summary.get("out"),
+        "findings": summary.get("findings"),
+        "located": len(summary.get("located") or []),
+        "unlocated": summary.get("unlocated"),
+    }
+
+
+def load_ledger(ledger_path: Path) -> list[dict[str, Any]]:
+    if not ledger_path.exists():
+        return []
+    rows: list[dict[str, Any]] = []
+    for line in ledger_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line:
+            rows.append(json.loads(line))
+    return rows
+
+
+def append_run_to_ledger(
+    summary: dict[str, Any], *, ledger_path: Path, recorded_at: str | None = None
+) -> dict[str, Any]:
+    """Append one run to the ledger; re-appending the same run is a no-op."""
+    entry = ledger_entry_from_summary(summary, recorded_at=recorded_at)
+    existing = {row.get("run_key") for row in load_ledger(ledger_path)}
+    if entry["run_key"] in existing:
+        return {"ledger": str(ledger_path), "written": 0, "skipped": 1, "entry": entry}
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
+    with ledger_path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(entry, ensure_ascii=False, sort_keys=True) + "\n")
+    return {"ledger": str(ledger_path), "written": 1, "skipped": 0, "entry": entry}
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="pdf_annotate",
         description="Render QC findings as highlight annotations on a built PDF "
         "(sidecar output; the shipped PDF is never touched).",
     )
-    parser.add_argument("--pdf", required=True, type=Path, help="Built PDF to annotate.")
+    parser.add_argument("--pdf", type=Path, help="Built PDF to annotate.")
     parser.add_argument(
         "--findings",
-        required=True,
         type=Path,
         help="content_lint findings.json (list or {'findings': [...]}).",
     )
@@ -190,14 +263,56 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=None,
         help="Output path (default: <pdf-stem>_annotated.pdf next to the input).",
     )
-    return parser.parse_args(argv)
+    parser.add_argument(
+        "--ledger",
+        type=Path,
+        default=None,
+        help="Run-ledger JSONL path (default: reports/pdf_annotate/ledger.jsonl).",
+    )
+    parser.add_argument(
+        "--no-ledger",
+        action="store_true",
+        help="Do not append this run to the run ledger.",
+    )
+    parser.add_argument(
+        "--backfill-summary",
+        type=Path,
+        default=None,
+        help="Append a historical run's summary JSON to the ledger without "
+        "annotating (operator backfill; mutually exclusive with --pdf).",
+    )
+    args = parser.parse_args(argv)
+    if args.backfill_summary is None and (args.pdf is None or args.findings is None):
+        parser.error("--pdf and --findings are required unless --backfill-summary is given")
+    if args.backfill_summary is not None and args.pdf is not None:
+        parser.error("--backfill-summary cannot be combined with --pdf")
+    return args
 
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    ledger_path = args.ledger or default_ledger_path()
+    if args.backfill_summary is not None:
+        summary = json.loads(args.backfill_summary.read_text(encoding="utf-8"))
+        if not isinstance(summary, dict):
+            raise ValueError(f"{args.backfill_summary} is not a JSON object")
+        print(json.dumps(
+            append_run_to_ledger(summary, ledger_path=ledger_path),
+            ensure_ascii=False, indent=2,
+        ))
+        return 0
     findings = load_findings(args.findings)
     out_path = args.out or default_out_path(args.pdf)
     summary = annotate_pdf(args.pdf, findings, out_path)
+    if not args.no_ledger:
+        try:
+            ledger_result = append_run_to_ledger(summary, ledger_path=ledger_path)
+            summary["ledger"] = {
+                "path": ledger_result["ledger"],
+                "written": ledger_result["written"],
+            }
+        except OSError as exc:  # ledger append is best-effort, never blocks the sidecar
+            summary["ledger"] = {"error": str(exc)}
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0
 
