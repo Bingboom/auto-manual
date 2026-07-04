@@ -255,6 +255,17 @@ class ExportIdmlTests(unittest.TestCase):
         kinds = [k for k, _ in res.blocks]
         self.assertIn("component", kinds)
 
+    def test_component_tables_span_columns(self) -> None:
+        # V2.0 master: warning boxes run full measure across the two-column
+        # safety text; without SpanColumns the full-width table overlaps the
+        # second column (designer-reported)
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        xml, _ = w._render_component("t", 0, {
+            "kind": "warnbox", "label": "WARNING", "texts": ["x"]},
+            ROOT, True)
+        self.assertIn('SpanColumnType="SpanColumns"', xml)
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)

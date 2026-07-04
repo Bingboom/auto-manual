@@ -487,8 +487,13 @@ class IdmlWriter:
             f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n")
 
     def _wrap_table_paragraph(self, table: str, terminal: bool) -> str:
+        # SpanColumns: component tables run full measure across multi-column
+        # frames (V2.0 master: warning boxes span the two-column safety text;
+        # designer-reported overlap otherwise). No effect in single-column
+        # frames.
         return (
-            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
+            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body" '
+            'SpanColumnType="SpanColumns">\n'
             '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
             + table +
             ('    <Content></Content></CharacterStyleRange>\n' if terminal else
@@ -591,11 +596,7 @@ class IdmlWriter:
                         for r in _json.loads(text)]
                 img_n += 1
                 table = self._table(f"{sid}_t{img_n}", [(str(a), str(b)) for a, b in rows])
-                parts.append(
-                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">'
-                    '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                    + table + ("<Content></Content>" if terminal else "<Br/>")
-                    + "</CharacterStyleRange></ParagraphStyleRange>\n")
+                parts.append(self._wrap_table_paragraph(table, terminal))
                 est += 11.0 * (len(rows) + 1)
                 continue
             if kind == "image":
