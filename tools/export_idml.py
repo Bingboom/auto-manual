@@ -317,17 +317,50 @@ class IdmlWriter:
         self.stories.append((sid, xml))
         return sid
 
+    @staticmethod
+    def _path_geometry(x1: float, y1: float, x2: float, y2: float) -> str:
+        """Rectangle as IDML PathGeometry.
+
+        Spline items (TextFrame etc.) do NOT take a GeometricBounds
+        attribute — that is a scripting-DOM property. InDesign silently
+        ignores it and instantiates a degenerate (invisible) frame, which
+        is exactly the "opens fine but every page is blank" failure mode.
+        The geometry must be a four-anchor closed path in Properties.
+        """
+        pts = ((x1, y1), (x1, y2), (x2, y2), (x2, y1))
+        anchors = "\n".join(
+            f'            <PathPointType Anchor="{x:g} {y:g}" '
+            f'LeftDirection="{x:g} {y:g}" RightDirection="{x:g} {y:g}"/>'
+            for x, y in pts
+        )
+        return (
+            '    <Properties>\n'
+            '      <PathGeometry>\n'
+            '        <GeometryPathType PathOpen="false">\n'
+            '          <PathPointArray>\n'
+            f'{anchors}\n'
+            '          </PathPointArray>\n'
+            '        </GeometryPathType>\n'
+            '      </PathGeometry>\n'
+            '    </Properties>\n'
+        )
+
     def add_spread_chain(self, story_id: str, n_pages: int, start_index: int) -> None:
-        """One spread per page, each holding one frame of a linked chain."""
-        frame_w = self.page_w - self.m_l - self.m_r
-        frame_h = self.page_h - self.m_t - self.m_b
+        """One spread per page, each holding one frame of a linked chain.
+
+        Spread coordinates: origin at the spread center; the page's
+        top-left corner sits at (-w/2, -h/2), so the type area is that
+        corner offset by the page margins.
+        """
+        x1 = -self.page_w / 2 + self.m_l
+        x2 = self.page_w / 2 - self.m_r
+        y1 = -self.page_h / 2 + self.m_t
+        y2 = self.page_h / 2 - self.m_b
         for i in range(n_pages):
             spread_id = f"sp_{start_index + i}"
             frame_id = f"tf_{story_id}_{i}"
             prev = f'PreviousTextFrame="tf_{story_id}_{i-1}"' if i > 0 else 'PreviousTextFrame="n"'
             nxt = f'NextTextFrame="tf_{story_id}_{i+1}"' if i < n_pages - 1 else 'NextTextFrame="n"'
-            y1, x1 = -frame_h / 2, -frame_w / 2
-            y2, x2 = frame_h / 2, frame_w / 2
             xml = (
                 '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
                 f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
@@ -341,7 +374,8 @@ class IdmlWriter:
                 '  </Page>\n'
                 f'  <TextFrame Self="{frame_id}" ParentStory="{story_id}" {prev} {nxt} '
                 'ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
-                f'GeometricBounds="{y1:g} {x1:g} {y2:g} {x2:g}" ItemTransform="1 0 0 1 0 0">\n'
+                'ItemTransform="1 0 0 1 0 0">\n'
+                + self._path_geometry(x1, y1, x2, y2) +
                 '    <TextFramePreference TextColumnCount="1" AutoSizingType="Off"/>\n'
                 '  </TextFrame>\n'
                 '</Spread>\n'
@@ -424,6 +458,19 @@ def check_idml(path: Path) -> list[str]:
             src = el.attrib.get("src")
             if src and src not in names:
                 issues.append(f"designmap references missing part: {src}")
+        # spline items must carry PathGeometry — a GeometricBounds
+        # attribute is silently ignored by InDesign and yields invisible
+        # frames ("opens fine but blank pages")
+        for name in names:
+            if not name.startswith("Spreads/"):
+                continue
+            spread = ET.fromstring(zf.read(name))
+            for frame in spread.iter("TextFrame"):
+                if "GeometricBounds" in frame.attrib:
+                    issues.append(f"{name}: TextFrame {frame.get('Self')} uses "
+                                  "GeometricBounds (ignored by InDesign; use PathGeometry)")
+                if frame.find("./Properties/PathGeometry") is None:
+                    issues.append(f"{name}: TextFrame {frame.get('Self')} has no PathGeometry")
     return issues
 
 

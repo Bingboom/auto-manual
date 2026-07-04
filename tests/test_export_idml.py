@@ -53,6 +53,16 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("GENERAL INFO", story)
         self.assertIn("Product Name", story)
 
+    def test_text_frames_use_path_geometry(self) -> None:
+        out = self._write_package()
+        with zipfile.ZipFile(out) as zf:
+            for name in zf.namelist():
+                if not name.startswith("Spreads/"):
+                    continue
+                xml = zf.read(name).decode("utf-8")
+                self.assertIn("<PathGeometry>", xml)
+                self.assertNotIn("GeometricBounds", xml.split("<TextFrame", 1)[-1])
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
