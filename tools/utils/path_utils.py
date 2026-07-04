@@ -44,6 +44,8 @@ class PathSegments:
     SOURCE_INTAKE = "source_intake"
     REVISION_LEDGER = "revision_ledger"
     TM_HIT_RATE = "tm_hit_rate"
+    PDF_ANNOTATE = "pdf_annotate"
+    FLOW_DASHBOARD = "flow_dashboard"
 
     PARAMS_TEX = "params.tex"
     FONTS_TEX = "fonts.tex"
@@ -115,6 +117,14 @@ def revision_ledger_of(base_root: Path) -> Path:
 
 def tm_hit_rate_of(base_root: Path) -> Path:
     return base_root / PathSegments.REPORTS / PathSegments.TM_HIT_RATE
+
+
+def pdf_annotate_reports_of(base_root: Path) -> Path:
+    return base_root / PathSegments.REPORTS / PathSegments.PDF_ANNOTATE
+
+
+def flow_dashboard_reports_of(base_root: Path) -> Path:
+    return base_root / PathSegments.REPORTS / PathSegments.FLOW_DASHBOARD
 
 
 @dataclass(frozen=True)
@@ -229,6 +239,14 @@ class Paths:
     @property
     def tm_hit_rate_dir(self) -> Path:
         return tm_hit_rate_of(self.root)
+
+    @property
+    def pdf_annotate_reports_dir(self) -> Path:
+        return pdf_annotate_reports_of(self.root)
+
+    @property
+    def flow_dashboard_reports_dir(self) -> Path:
+        return flow_dashboard_reports_of(self.root)
 
     def safety_rst(self, lang: str) -> Path:
         return self.docs_dir / f"safety_{lang}.rst"
