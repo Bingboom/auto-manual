@@ -39,6 +39,18 @@ LOCAL_GILROY_REQUIRED_FILES = (
     "Gilroy-LightItalic-12.otf",
     "Gilroy-ExtraBoldItalic-10.otf",
 )
+# Optional weight files: when present in the same dir, the component weight
+# macros (\HBFontRegular/Medium/SemiBold/Bold/Heavy) are mapped onto them so
+# raw-latex components match the archived manuals, which use Gilroy Medium
+# and SemiBold (typography_gap #13). SemiBold is not shipped in the licensed
+# set, so it falls back to Medium — same policy as \HBSetupLatinWeightMacros.
+LOCAL_GILROY_WEIGHT_FILES = (
+    ("HBGilroyLocalRegular", "HBFontRegular", "gilroy-regular-3.otf"),
+    ("HBGilroyLocalMedium", "HBFontMedium", "Gilroy-Medium-2.otf"),
+    ("HBGilroyLocalSemiBold", "HBFontSemiBold", "Gilroy-Medium-2.otf"),
+    ("HBGilroyLocalBold", "HBFontBold", "gilroy-bold-4.otf"),
+    ("HBGilroyLocalHeavy", "HBFontHeavy", "Radomir-Tinkov-Gilroy-Heavy-9.otf"),
+)
 
 
 def die(msg: str) -> None:
@@ -148,10 +160,25 @@ def build_local_gilroy_override(font_dir: Path) -> str:
             "      ItalicFont=Gilroy-LightItalic-12.otf,",
             "      BoldItalicFont=Gilroy-ExtraBoldItalic-10.otf",
             "    ]",
+            *_local_weight_macro_lines(font_dir),
             "    \\global\\HBLocalGilroyFontsConfiguredtrue",
             "  }{}",
         )
     )
+
+
+def _local_weight_macro_lines(font_dir: Path) -> list[str]:
+    font_path = font_dir.as_posix().rstrip("/") + "/"
+    lines: list[str] = []
+    for family_macro, weight_macro, file_name in LOCAL_GILROY_WEIGHT_FILES:
+        font_file = (font_dir / file_name).as_posix()
+        lines += [
+            f"    \\IfFileExists{{{font_file}}}{{%",
+            f"      \\newfontfamily\\{family_macro}{{{file_name}}}[Path={{{font_path}}},Ligatures=TeX]%",
+            f"      \\renewcommand{{\\{weight_macro}}}{{\\{family_macro}}}%",
+            "    }{}",
+        ]
+    return lines
 
 
 def apply_local_gilroy_override(fonts_path: Path) -> bool:
