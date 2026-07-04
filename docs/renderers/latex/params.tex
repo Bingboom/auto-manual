@@ -52,9 +52,6 @@
 % Paragraph skip
 \expandafter\def\csname HBpage_parskip\endcsname{0pt}
 
-% Negative spacing after section to cancel Sphinx glue
-\expandafter\def\csname HBsection_after_fix\endcsname{-2mm}
-
 % ===== BRAND =====
 
 % Accent blue
@@ -190,8 +187,8 @@
 
 % ===== COMPONENTS =====
 
-% Space after H1 pill
-\expandafter\def\csname HBcomp_h1_pill_after\endcsname{0.8mm}
+% Space after H1 pill (single point; negative offsets the first paragraph's inherent leading after the title block)
+\expandafter\def\csname HBcomp_h1_pill_after\endcsname{-1.2mm}
 
 % H1 pill corner radius
 \expandafter\def\csname HBcomp_h1_pill_arc\endcsname{0.8mm}
@@ -304,9 +301,6 @@
 % Subbar top/bottom padding
 \expandafter\def\csname HBcomp_subbar_pad_tb\endcsname{0.35mm}
 
-% Extra negative vspace after subbar to cancel Sphinx glue (store POSITIVE number)
-\expandafter\def\csname HBcomp_subbar_tighten\endcsname{5mm}
-
 % Subbar width ratio of \textwidth
 \expandafter\def\csname HBcomp_subbar_width\endcsname{1}
 
@@ -352,14 +346,14 @@
 % Minimum room to keep a level 3 title with following content
 \expandafter\def\csname HBcomp_title_l3_needspace\endcsname{8mm}
 
-% Space after two-column block
-\expandafter\def\csname HBcomp_twocol_after\endcsname{0mm}
+% Space after two-column block (declared; replaces the zeroed trailing \multicolsep)
+\expandafter\def\csname HBcomp_twocol_after\endcsname{4.2mm}
+
+% Space before two-column block (declared; \multicolsep is zeroed inside safetytwocol)
+\expandafter\def\csname HBcomp_twocol_before\endcsname{1.2mm}
 
 % Space between two columns
 \expandafter\def\csname HBcomp_twocol_sep\endcsname{4mm}
-
-% Negative vspace before two-column list to cancel Sphinx glue (store POSITIVE number)
-\expandafter\def\csname HBcomp_twocol_tighten\endcsname{3mm}
 
 % Space after warning box
 \expandafter\def\csname HBcomp_warning_box_after\endcsname{1.0mm}
@@ -388,7 +382,7 @@
 % ===== OTHER =====
 
 % ES: space after H1 pill
-\expandafter\def\csname HBlang_es_comp_h1_pill_after\endcsname{0.6mm}
+\expandafter\def\csname HBlang_es_comp_h1_pill_after\endcsname{-1.4mm}
 
 % ES: space after lead line
 \expandafter\def\csname HBlang_es_comp_lead_after\endcsname{0.5mm}
@@ -420,8 +414,8 @@
 % ES: level 2 title space before
 \expandafter\def\csname HBlang_es_comp_title_l2_before\endcsname{0.8mm}
 
-% ES: extra tighten before two-column block
-\expandafter\def\csname HBlang_es_comp_twocol_tighten\endcsname{6mm}
+% ES: space before two-column block (tighter)
+\expandafter\def\csname HBlang_es_comp_twocol_before\endcsname{-1.8mm}
 
 % ES: space after warning box
 \expandafter\def\csname HBlang_es_comp_warning_box_after\endcsname{2mm}
@@ -451,7 +445,7 @@
 \expandafter\def\csname HBlang_es_type_spec_value_font_size\endcsname{5.9pt}
 
 % FR: space after H1 pill
-\expandafter\def\csname HBlang_fr_comp_h1_pill_after\endcsname{0.6mm}
+\expandafter\def\csname HBlang_fr_comp_h1_pill_after\endcsname{-1.4mm}
 
 % FR: space after lead line
 \expandafter\def\csname HBlang_fr_comp_lead_after\endcsname{0.5mm}
@@ -483,8 +477,8 @@
 % FR: level 2 title space before
 \expandafter\def\csname HBlang_fr_comp_title_l2_before\endcsname{0.8mm}
 
-% FR: extra tighten before two-column block
-\expandafter\def\csname HBlang_fr_comp_twocol_tighten\endcsname{6mm}
+% FR: space before two-column block (tighter)
+\expandafter\def\csname HBlang_fr_comp_twocol_before\endcsname{-1.8mm}
 
 % FR: space after warning box
 \expandafter\def\csname HBlang_fr_comp_warning_box_after\endcsname{2mm}
