@@ -95,6 +95,12 @@
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_h1_force_upper\endcsname{1}
 
+% LCD name-column leading
+\expandafter\def\csname HBtype_lcd_label_font_leading\endcsname{7.6pt}
+
+% LCD name-column font size (archive: 7.0)
+\expandafter\def\csname HBtype_lcd_label_font_size\endcsname{7.0pt}
+
 % List text color name
 \expandafter\def\csname HBtype_list_color\endcsname{TextGray}
 
@@ -114,10 +120,10 @@
 \expandafter\def\csname HBtype_rubric_font_size\endcsname{8.6pt}
 
 % Spec left-cell label leading
-\expandafter\def\csname HBtype_spec_label_font_leading\endcsname{6.1pt}
+\expandafter\def\csname HBtype_spec_label_font_leading\endcsname{6.6pt}
 
-% Spec left-cell label font size
-\expandafter\def\csname HBtype_spec_label_font_size\endcsname{5.7pt}
+% Spec left-cell label font size (archive: 6.0)
+\expandafter\def\csname HBtype_spec_label_font_size\endcsname{6.0pt}
 
 % Spec note/footnote leading
 \expandafter\def\csname HBtype_spec_note_font_leading\endcsname{6.0pt}
@@ -132,10 +138,10 @@
 \expandafter\def\csname HBtype_spec_section_font_size\endcsname{8.8pt}
 
 % Spec right-cell value leading
-\expandafter\def\csname HBtype_spec_value_font_leading\endcsname{6.1pt}
+\expandafter\def\csname HBtype_spec_value_font_leading\endcsname{6.6pt}
 
-% Spec right-cell value font size
-\expandafter\def\csname HBtype_spec_value_font_size\endcsname{5.7pt}
+% Spec right-cell value font size (archive: 6.0)
+\expandafter\def\csname HBtype_spec_value_font_size\endcsname{6.0pt}
 
 % Subbar leading
 \expandafter\def\csname HBtype_subbar_font_leading\endcsname{7.2pt}
@@ -201,6 +207,9 @@
 
 % H1 pill width ratio of \textwidth
 \expandafter\def\csname HBcomp_h1_pill_width\endcsname{1}
+
+% LCD icon table row stretch (archive min row ~27pt)
+\expandafter\def\csname HBcomp_lcd_table_row_stretch\endcsname{2.0}
 
 % Space after lead line
 \expandafter\def\csname HBcomp_lead_after\endcsname{0.6mm}
@@ -277,11 +286,11 @@
 % Spec section bullet symbol (scaled 1.67x
 \expandafter\def\csname HBcomp_spec_section_bullet_symbol\endcsname{\scalebox{1.67}{\textbullet}}
 
-% Spec table left column ratio of textwidth
-\expandafter\def\csname HBcomp_spec_table_left_ratio\endcsname{0.33}
+% Spec table left column ratio of textwidth (archive: 0.315)
+\expandafter\def\csname HBcomp_spec_table_left_ratio\endcsname{0.315}
 
-% Spec table row vertical stretch (flatter)
-\expandafter\def\csname HBcomp_spec_table_row_stretch\endcsname{0.78}
+% Spec table row vertical stretch (archive row height 10.3pt at 6.6pt leading)
+\expandafter\def\csname HBcomp_spec_table_row_stretch\endcsname{1.34}
 
 % Spec table cell horizontal padding
 \expandafter\def\csname HBcomp_spec_table_tabcolsep\endcsname{2.6pt}
@@ -304,14 +313,17 @@
 % Subbar width ratio of \textwidth
 \expandafter\def\csname HBcomp_subbar_width\endcsname{1}
 
+% Symbols table row stretch (relaxed to archive density)
+\expandafter\def\csname HBcomp_symbol_table_row_stretch\endcsname{1.3}
+
 % Table inner rule width
 \expandafter\def\csname HBcomp_table_inner_rule\endcsname{0.2pt}
 
 % Table outer corner radius
 \expandafter\def\csname HBcomp_table_outer_arc\endcsname{0.9mm}
 
-% Table outer rule width
-\expandafter\def\csname HBcomp_table_outer_rule\endcsname{0.5pt}
+% Table outer rule width (archive 1500 Ultra: 0.75pt)
+\expandafter\def\csname HBcomp_table_outer_rule\endcsname{0.75pt}
 
 % Table tabcolsep
 \expandafter\def\csname HBcomp_table_tabcolsep\endcsname{2.4pt}
