@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import io
+import json
 import sys
 import tempfile
+import threading
 import unittest
 import zipfile
 from pathlib import Path
@@ -153,6 +155,58 @@ class ExportIdmlTests(unittest.TestCase):
         ]
         rows = _parse_grid_table(grid)
         self.assertEqual(rows, [["A", "B"], ["a1", "b1"], ["a2", "b2"]])
+
+    def test_unclosed_optional_arg_does_not_hang(self) -> None:
+        # A truncated `\HBNoticeBlock[warn` (no closing `]`) must not spin the
+        # macro scanner forever. Run under a watchdog thread so a regression
+        # fails cleanly instead of hanging the whole suite.
+        from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
+
+        result = ExtractResult()
+        done = threading.Event()
+
+        def _run() -> None:
+            _extract_raw_latex("\\HBNoticeBlock[warn oops no closing bracket", result)
+            done.set()
+
+        worker = threading.Thread(target=_run, daemon=True)
+        worker.start()
+        worker.join(timeout=5)
+        self.assertTrue(done.is_set(), "extraction hung on an unclosed optional arg")
+
+    def test_escaped_asterisk_in_json_block_stays_valid_json(self) -> None:
+        # A JSON payload (table/component) carries `\*` already JSON-escaped; the
+        # unescape must reach into the string values, not corrupt the envelope.
+        from tools.idml_rst_extract import _unescape_rst_stars
+
+        payload = json.dumps([["Rated power\\*", "1000 W"]], ensure_ascii=False)
+        out = _unescape_rst_stars("table", payload)
+        self.assertEqual(json.loads(out), [["Rated power*", "1000 W"]])
+
+    def test_escaped_asterisk_in_prose_block_is_unescaped(self) -> None:
+        from tools.idml_rst_extract import _unescape_rst_stars
+
+        self.assertEqual(_unescape_rst_stars("body", "Rated power\\*"), "Rated power*")
+
+    def test_grid_table_cell_with_escaped_asterisk_round_trips(self) -> None:
+        # End-to-end: a grid-table cell with an escaped asterisk survives
+        # extract_page as a valid table block (the #562 list-table JSON path).
+        from tools.idml_rst_extract import extract_page
+
+        grid = (
+            "+----------------+--------+\n"
+            "| Param          | Value  |\n"
+            "+================+========+\n"
+            "| Rated power\\*   | 1000 W |\n"
+            "+----------------+--------+\n"
+        )
+        with tempfile.TemporaryDirectory() as td:
+            page = Path(td) / "spec.rst"
+            page.write_text(grid, encoding="utf-8")
+            res = extract_page(page, {"latex"})
+        tables = [json.loads(t) for k, t in res.blocks if k == "table"]
+        self.assertTrue(tables)
+        self.assertIn("Rated power*", [cell for row in tables[0] for cell in row])
 
     def test_inline_image_anchors_hang_from_baseline(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
