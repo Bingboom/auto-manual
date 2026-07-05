@@ -70,6 +70,51 @@
 }
 
 % ==================================================
+% LEAD WARNING BOX (V2.0 master p4): large plain triangle icon on the
+% left, bold "WARNING" heading + lead sentence stacked on the right.
+% Signature: \HBWarningLeadBlock{heading}{lead sentence}
+% ==================================================
+
+\providecommand{\HBWarningLeadTriangle}{%
+  \begin{tikzpicture}[x=1mm,y=1mm]
+    \draw[line width=0.55pt, line join=round, color=BrandDark]
+      (0,0) -- (4.6,8.1) -- (9.2,0) -- cycle;
+    \node[BrandDark,font=\fontsize{8.5pt}{8.5pt}\selectfont\bfseries] at (4.6,2.6) {!};
+  \end{tikzpicture}%
+}
+
+\providecommand{\HBWarningLeadBlock}[2]{%
+  % Column-safe: sized off \linewidth (not \textwidth) so the block can
+  % sit inside safetytwocol's left column, matching the V2.0 master p4.
+  \par\noindent
+  \begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=LineK40,
+    boxsep=\csname HBcomp_warning_box_sep\endcsname,
+    arc=\csname HBcomp_warning_box_arc\endcsname,
+    boxrule=\csname HBcomp_warning_box_rule\endcsname,
+    left=\csname HBcomp_warning_box_pad_lr\endcsname,
+    right=\csname HBcomp_warning_box_pad_lr\endcsname,
+    top=0.8mm, bottom=0.8mm,
+    before skip=\csname HBcomp_warning_box_before\endcsname,
+    after skip=\csname HBcomp_warning_box_after\endcsname,
+  ]
+    \noindent
+    \begin{tabular}{@{}m{9.5mm}@{\hspace{1.6mm}}m{\dimexpr\linewidth-9.5mm-1.6mm-2\tabcolsep\relax}@{}}%
+      \centering\HBWarningLeadTriangle
+      &
+      {\HBFontHeavy\color{\csname HBtype_body_color\endcsname}%
+       \fontsize{8pt}{9pt}\selectfont #1}%
+      \par\vspace{0.4mm}%
+      {\HBTypeWarningTextStart #2}%
+      \tabularnewline
+    \end{tabular}%
+  \end{tcolorbox}%
+  \par
+}
+
+% ==================================================
 % DANGER BOX
 % Same box + lockup layout as \safetywarning so WARNING/DANGER blocks
 % render as one visual family (archive HomePower 2000 Plus V2 p5).
