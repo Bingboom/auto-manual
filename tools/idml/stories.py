@@ -16,6 +16,15 @@ from .primitives import _ATTR_ENTITIES
 
 ROOT = Path(__file__).resolve().parents[2]
 
+# Height-ESTIMATION constants for sizing the linked spread chain. These are
+# deliberately NOT the paragraph-style sizes/leadings from styles.para_styles
+# (the leadings here include inter-paragraph spacing, and estimation is
+# intentionally coarse: an underestimate surfaces as InDesign overset — one
+# drag — while an overestimate leaves trailing blank pages). Do not "unify"
+# them with the style table without regenerating the golden deliberately.
+_EST_SIZE = {"h1": 9.0, "h2": 8.6, "h3": 7.0, "label": 6.8}
+_EST_LEADING = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}
+
 
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path) -> tuple[str, float]:
@@ -75,8 +84,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         parts.append(writer._psr(
             style, text, terminal=terminal, span_columns=span_columns))
         # width-aware: chars/line ~ frame_width / (0.52 * font size)
-        size = {"h1": 9.0, "h2": 8.6, "h3": 7.0, "label": 6.8}.get(kind, 6.2)
-        leading = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}.get(kind, 7.5)
+        size = _EST_SIZE.get(kind, 6.2)
+        leading = _EST_LEADING.get(kind, 7.5)
         measure = column_measure if in_twocol else text_measure
         per_line = max(20, int(measure / (0.52 * size)))
         lines = sum(max(1, (len(seg) + per_line - 1) // per_line)
@@ -107,48 +116,19 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path) -> str:
                if fig and fig.exists() else "")
         cell_defs = (
             (writer._psr("HB Spec Label", row["no"], terminal=True), 0),
-            ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
-             '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-             + img + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n', 1),
+            (_components.figure_paragraph(img, tail="<Content></Content>"), 1),
             (writer._psr("HB Spec Label", row["name"], terminal=True), 2),
             (writer._psr("HB Spec Value", row["desc"], terminal=True), 3),
         )
         for content, ci in cell_defs:
-            cells.append(
-                f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" RowSpan="1" ColumnSpan="1" '
-                'AppliedCellStyle="CellStyle/$ID/[None]" '
-                'TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">\n'
-                + content + '    </Cell>'
-            )
-    row_els = "\n".join(
-        f'    <Row Self="{tid}r{ri}" Name="{ri}"/>' for ri in range(len(rows))
-    )
-    col_els = "\n".join(
-        f'    <Column Self="{tid}col{ci}" Name="{ci}" SingleColumnWidth="{wd:g}"/>'
-        for ci, wd in enumerate(cols)
-    )
-    table = (
-        f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
-        f'BodyRowCount="{len(rows)}" ColumnCount="{len(cols)}" HeaderRowCount="0" FooterRowCount="0">\n'
-        f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n"
-    )
+            cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
+                                      top=2, bottom=2, left=3, right=3))
+    table = writer._component_table(tid, list(cols), cells, n_rows=len(rows))
     parts = [
         writer._psr("HB H1", "LCD DISPLAY"),
-        '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
-        '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
-        + table +
-        '    <Content></Content></CharacterStyleRange>\n'
-        '  </ParagraphStyleRange>\n',
+        writer._wrap_table_paragraph(table, True, span_columns=False),
     ]
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="LCD DISPLAY">\n'
-        '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
-        + "".join(parts) + '</Story>\n</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
-    return sid
+    return writer._add_story_parts(sid, "LCD DISPLAY", parts)
 
 def add_symbols_story(writer, signals: list[tuple[str, str]],
                       icons: list[dict], data_root: Path, lang: str = "en") -> str:
@@ -157,10 +137,7 @@ def add_symbols_story(writer, signals: list[tuple[str, str]],
     parts = [writer._psr("HB H1", copy["title"])]
     if signals:
         table = writer._table("tbl_sym_sig", signals, label_style="HB Notice Label")
-        parts.append(
-            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
-            '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
-            + table + '    <Br/></CharacterStyleRange>\n  </ParagraphStyleRange>\n')
+        parts.append(writer._wrap_table_paragraph(table, False, span_columns=False))
     if icons:
         body_w = writer.page_w - writer.m_l - writer.m_r
         cols = (body_w * 0.18, body_w * 0.82)
@@ -171,38 +148,14 @@ def add_symbols_story(writer, signals: list[tuple[str, str]],
             fig = (ROOT / row["figure"]) if row["figure"] else None
             img = (writer._image_cell_content(f"{tid}img{ri}", fig, icon_pt, icon_pt)
                    if fig and fig.exists() else "")
-            img_cell = (
-                '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
-                '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                + img + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
+            img_cell = _components.figure_paragraph(img, tail="<Content></Content>")
             for ci, content in ((0, img_cell),
                                 (1, writer._psr("HB Spec Value", row["text"], terminal=True))):
-                cells.append(
-                    f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" RowSpan="1" ColumnSpan="1" '
-                    'AppliedCellStyle="CellStyle/$ID/[None]" '
-                    'TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">\n'
-                    + content + '    </Cell>')
-        row_els = "\n".join(f'    <Row Self="{tid}r{ri}" Name="{ri}"/>' for ri in range(len(icons)))
-        col_els = "\n".join(
-            f'    <Column Self="{tid}col{ci}" Name="{ci}" SingleColumnWidth="{wd:g}"/>'
-            for ci, wd in enumerate(cols))
-        table2 = (
-            f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
-            f'BodyRowCount="{len(icons)}" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">\n'
-            f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n")
-        parts.append(
-            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
-            '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
-            + table2 + '    <Content></Content></CharacterStyleRange>\n  </ParagraphStyleRange>\n')
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="MEANING OF SYMBOLS">\n'
-        '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
-        + "".join(parts) + '</Story>\n</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
-    return sid
+                cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
+                                          top=2, bottom=2, left=3, right=3))
+        table2 = writer._component_table(tid, list(cols), cells, n_rows=len(icons))
+        parts.append(writer._wrap_table_paragraph(table2, True, span_columns=False))
+    return writer._add_story_parts(sid, "MEANING OF SYMBOLS", parts)
 
 def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
     sid = "st_trouble"

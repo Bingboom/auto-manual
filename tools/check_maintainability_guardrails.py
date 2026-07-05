@@ -60,7 +60,7 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/idml/styles.py": 220,
     "tools/idml/loaders.py": 220,
     "tools/idml/components/callout.py": 200,
-    "tools/idml/stories.py": 320,
+    "tools/idml/stories.py": 240,
     "tools/idml/pages.py": 500,
     "tools/idml/package.py": 160,
 }
