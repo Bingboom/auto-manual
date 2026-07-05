@@ -2392,6 +2392,30 @@ class ApplyEvidenceGateTests(unittest.TestCase):
         self.assertEqual(reason, "delta is not marked as a repo write candidate")
 
 
+class DefaultRunIdTests(unittest.TestCase):
+    """The un-tagged run-review-branch default run id is date-stamped + branch-scoped
+    so each round is a distinct revision-ledger run instead of colliding on one id."""
+
+    def test_date_stamped_and_branch_scoped(self) -> None:
+        from tools.cloud_doc_backport_orchestration import _default_run_id
+
+        rid = _default_run_id("review/JE-1000F-EU")
+        self.assertTrue(rid.startswith("backport-review-JE-1000F-EU-"))
+        self.assertRegex(rid, r"-\d{8}$")  # trailing UTC yyyymmdd
+
+    def test_distinct_across_branches_same_day(self) -> None:
+        from tools.cloud_doc_backport_orchestration import _default_run_id
+
+        self.assertNotEqual(
+            _default_run_id("review/JE-1000F-EU"), _default_run_id("review/JE-2000F-CN")
+        )
+
+    def test_blank_ref_falls_back_to_review(self) -> None:
+        from tools.cloud_doc_backport_orchestration import _default_run_id
+
+        self.assertTrue(_default_run_id("").startswith("backport-review-"))
+
+
 class LedgerIngestHookTests(unittest.TestCase):
     """The review-branch flow feeds the revision ledger best-effort (G0/G1)."""
 

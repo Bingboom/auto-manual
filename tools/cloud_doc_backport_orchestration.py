@@ -11,6 +11,7 @@ import os
 import re
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -327,6 +328,20 @@ def _backport_pr_branch(git_ref: str, run_id: str) -> str:
     safe = re.sub(r"[^A-Za-z0-9._-]+", "-", f"{git_ref}-{run_id}").strip("-")[:80] or "edits"
     return f"backport/{safe}"
 
+
+def _default_run_id(git_ref: str) -> str:
+    """Date-stamped, branch-scoped default run id when ``--run-id`` is not given.
+
+    The revision ledger keys rows by ``(run_id, delta_hash)``; a constant default
+    made every un-tagged backport round collapse onto ONE run_id, so a correction
+    observed again in a later round was deduped away instead of recorded. Stamping
+    the day and the review branch separates rounds, while keeping same-day re-runs
+    of the same round idempotent (re-ingesting a report stays a no-op).
+    """
+    safe_ref = re.sub(r"[^A-Za-z0-9._-]+", "-", str(git_ref or "").strip()).strip("-") or "review"
+    today = datetime.now(timezone.utc).strftime("%Y%m%d")
+    return f"backport-{safe_ref}-{today}"
+
 def _lang_from_doc_name(doc_name: str | None) -> str:
     """Best-effort value-column lang from a doc name, e.g. ``manual_je1000f_eu_en_0.8`` -> ``en``."""
     for part in re.split(r"[_\s]+", str(doc_name or "").strip()):
@@ -506,7 +521,7 @@ def _run_review_branch(args: argparse.Namespace) -> int:
             source_rels = [
                 f"{review_dir}/{page.relative_to(bundle_root).as_posix()}" for page in pages
             ]
-        run_id = str(args.run_id or "").strip() or "cloud-doc-backport-branch"
+        run_id = str(args.run_id or "").strip() or _default_run_id(git_ref)
         out_dir = Path(args.out) if args.out else _default_out_dir(run_id)
         out_dir.mkdir(parents=True, exist_ok=True)
         # Fetch the cloud-doc ONCE; diff every page against this local fixture so a
@@ -642,7 +657,7 @@ def _run_review_branch_baseline(
     (idempotent no-ops on apply).
     """
     git_ref = resolved["git_ref"]
-    run_id = str(args.run_id or "").strip() or "cloud-doc-backport-branch"
+    run_id = str(args.run_id or "").strip() or _default_run_id(git_ref)
     out_dir = Path(args.out) if args.out else _default_out_dir(run_id)
     # F2 value-index: derive the value-column lang from --lang, else the doc name.
     if not getattr(args, "lang", None):
