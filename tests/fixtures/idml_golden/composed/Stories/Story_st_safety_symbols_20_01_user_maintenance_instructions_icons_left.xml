@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_left" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Symbol icons left">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
+  <Table Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tbl" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tblr0" Name="0"/>
+    <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tblcol0" Name="0" SingleColumnWidth="41.5783"/>
+    <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tblcol1" Name="1" SingleColumnWidth="112.415"/>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tblc0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Symbol</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tblc0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="5" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Meaning</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+  </Table>
+    <Content></Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+</Story>
+</idPkg:Story>

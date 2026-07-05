@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Styles xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+  <RootCharacterStyleGroup Self="rcsg">
+    <CharacterStyle Self="CharacterStyle/$ID/[No character style]" Name="$ID/[No character style]"/>
+  </RootCharacterStyleGroup>
+  <RootParagraphStyleGroup Self="rpsg">
+    <ParagraphStyle Self="ParagraphStyle/$ID/[No paragraph style]" Name="$ID/[No paragraph style]"/>
+    <ParagraphStyle Self="ParagraphStyle/$ID/NormalParagraphStyle" Name="$ID/NormalParagraphStyle"/>
+  <ParagraphStyle Self="ParagraphStyle/HB%20H1" Name="HB H1" PointSize="9" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="ColumnWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" SpaceBefore="4" SpaceAfter="3" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">10.8</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Title%20L2" Name="HB Title L2" PointSize="8.6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">9.4</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Title%20L3" Name="HB Title L3" PointSize="7" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Medium</FontStyle>
+      <Leading type="unit">8</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Notice%20Label" Name="HB Notice Label" PointSize="6.8" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="ColumnWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" SpaceBefore="4" SpaceAfter="3" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">7.4</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Notice%20Side%20Label" Name="HB Notice Side Label" PointSize="6.8" FillColor="Color/HB Brand Dark" Justification="CenterAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">7.4</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Card%20Number" Name="HB Card Number" PointSize="6.5" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="TextWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" SpaceBefore="7" SpaceAfter="6" Justification="CenterAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">7</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20InBox%20Label" Name="HB InBox Label" PointSize="6.3" FillColor="Color/HB Brand Dark" Justification="CenterAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">7</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Capsule%20Text" Name="HB Capsule Text" PointSize="8.6" FillColor="Color/Paper" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">9.4</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Figure" Name="HB Figure" PointSize="6.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="enum">Auto</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Body" Name="HB Body" PointSize="6.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.5</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20List" Name="HB List" PointSize="5.4" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">6.4</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Spec%20Section" Name="HB Spec Section" PointSize="8.8" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">9.6</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Spec%20Label" Name="HB Spec Label" PointSize="6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">6.6</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Spec%20Value" Name="HB Spec Value" PointSize="6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">6.6</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB%20Spec%20Note" Name="HB Spec Note" PointSize="5.4" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">6</Leading>
+    </Properties>
+  </ParagraphStyle>
+  </RootParagraphStyleGroup>
+  <RootCellStyleGroup Self="rcellsg">
+    <CellStyle Self="CellStyle/$ID/[None]" Name="$ID/[None]"/>
+  </RootCellStyleGroup>
+  <RootTableStyleGroup Self="rtsg">
+    <TableStyle Self="TableStyle/$ID/[Basic Table]" Name="$ID/[Basic Table]"/>
+  </RootTableStyleGroup>
+  <RootObjectStyleGroup Self="rosg">
+    <ObjectStyle Self="ObjectStyle/$ID/[None]" Name="$ID/[None]"/>
+    <ObjectStyle Self="ObjectStyle/$ID/[Normal Text Frame]" Name="$ID/[Normal Text Frame]"/>
+  </RootObjectStyleGroup>
+</idPkg:Styles>
