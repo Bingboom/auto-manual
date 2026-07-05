@@ -11,6 +11,7 @@ from unittest import mock
 
 from tests.test_helpers import write_lines, write_text
 from tools.translation_memory import (
+    _row_matches,
     build_translation_memory_payload,
     collect_translation_memory_entries,
     query_translation_memory_entries,
@@ -209,6 +210,29 @@ class TestTranslationMemory(unittest.TestCase):
         self.assertIn("Source language: `en`", rendered)
         self.assertIn("Target language: `fr`", rendered)
         self.assertIn("Lisez toutes les instructions avant utilisation.", rendered)
+
+
+class TestRowMatches(unittest.TestCase):
+    def test_multi_value_model_cell_matches_any_listed_model(self) -> None:
+        row = {"Model": "JE-1000F, JE-2000E, JE-2000F", "Region": ""}
+        self.assertTrue(_row_matches(row, model="JE-1000F", region=None))
+        self.assertTrue(_row_matches(row, model="JE-2000F", region=None))
+
+    def test_model_not_in_multi_value_cell_is_excluded(self) -> None:
+        row = {"Model": "JE-1000F, JE-2000E", "Region": ""}
+        self.assertFalse(_row_matches(row, model="JE-9999Z", region=None))
+
+    def test_all_sentinel_and_blank_cells_match_every_target(self) -> None:
+        self.assertTrue(_row_matches({"Model": "ALL", "Region": "ALL"}, model="JE-1000F", region="US"))
+        self.assertTrue(_row_matches({"Model": "", "Region": ""}, model="JE-1000F", region="US"))
+
+    def test_multi_value_region_cell_matches_per_token(self) -> None:
+        row = {"Model": "", "Region": "US, EU"}
+        self.assertTrue(_row_matches(row, model=None, region="EU"))
+        self.assertFalse(_row_matches(row, model=None, region="JP"))
+
+    def test_matching_is_case_insensitive(self) -> None:
+        self.assertTrue(_row_matches({"Model": "je-1000f", "Region": ""}, model="JE-1000F", region=None))
 
 
 class TestLiveTranslationMemoryCache(unittest.TestCase):

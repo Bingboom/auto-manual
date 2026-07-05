@@ -370,5 +370,47 @@ class PromoteTests(unittest.TestCase):
         self.assertEqual(res["post_missing"], {"tables": [], "fields": []})  # nothing missing -> clean
 
 
+class ReadRecordsPaginationTests(unittest.TestCase):
+    """_read_records must follow has_more, not silently stop at the first page."""
+
+    def _paged_fake(self, seen_offsets):
+        def fake(args, lark_cli="lark-cli"):
+            offset = int(args[args.index("--offset") + 1]) if "--offset" in args else 0
+            seen_offsets.append(offset)
+            if offset == 0:
+                return {"ok": True, "data": {
+                    "fields": ["Key", "Val"],
+                    "data": [["k1", "v1"], ["k2", "v2"]],
+                    "record_id_list": ["rec1", "rec2"],
+                    "has_more": True,
+                }}
+            return {"ok": True, "data": {
+                "fields": ["Key", "Val"],
+                "data": [["k3", "v3"]],
+                "record_id_list": ["rec3"],
+                "has_more": False,
+            }}
+        return fake
+
+    def test_read_records_concatenates_all_pages(self):
+        offsets: list[int] = []
+        with mock.patch.object(bs, "_lark", side_effect=self._paged_fake(offsets)):
+            rows, rids = bs._read_records("base", "tbl", "lark-cli")
+        self.assertEqual(rows, [
+            {"Key": "k1", "Val": "v1"},
+            {"Key": "k2", "Val": "v2"},
+            {"Key": "k3", "Val": "v3"},
+        ])
+        self.assertEqual(rids, ["rec1", "rec2", "rec3"])
+        self.assertEqual(offsets, [0, 2])  # second page requested at offset=len(page1)
+
+    def test_read_records_single_page_when_no_has_more(self):
+        def fake(args, lark_cli="lark-cli"):
+            return {"ok": True, "data": {"fields": ["K"], "data": [["a"]], "record_id_list": ["r1"]}}
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            rows, rids = bs._read_records("base", "tbl", "lark-cli")
+        self.assertEqual((rows, rids), ([{"K": "a"}], ["r1"]))
+
+
 if __name__ == "__main__":
     unittest.main()

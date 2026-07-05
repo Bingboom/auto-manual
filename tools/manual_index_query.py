@@ -431,17 +431,21 @@ def _looks_like_product_token(token: str) -> bool:
 
 def _extract_filters(raw_text: str) -> ManualIndexFilters:
     lowered = _search_normalize(raw_text)
+    # Token-boundary match only. The former `or alias in raw_text` fallback was a
+    # boundary-free substring test, so 2-letter aliases fired on unrelated words
+    # ("us" inside "backup plus" -> 美加规; "ph" inside "alpha"; "en" inside
+    # "energy"), wrongly filtering out every other region/language. The regex
+    # already handles CJK (_search_normalize preserves it), so the fallback was
+    # redundant as well as harmful.
     regions = _unique(
         value
         for alias, value in _REGION_ALIASES.items()
         if re.search(rf"(?<![a-z0-9]){re.escape(alias.casefold())}(?![a-z0-9])", lowered)
-        or alias in raw_text
     )
     source_langs = _unique(
         value
         for alias, value in _LANG_ALIASES.items()
         if re.search(rf"(?<![a-z0-9]){re.escape(alias.casefold())}(?![a-z0-9])", lowered)
-        or alias in raw_text
     )
     versions = _unique(match.group(0).upper() for match in _VERSION_RE.finditer(raw_text))
     doc_types: list[str] = []

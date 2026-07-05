@@ -9,6 +9,7 @@ from typing import Any
 
 from tools.build_paths import load_config
 from tools.data_snapshot import resolve_data_snapshot_paths, resolve_phase2_export_root
+from tools.utils.spec_master_row_helpers import multi_value_tokens
 
 LANGUAGE_ALIASES = {
     "cn": "zh",
@@ -599,12 +600,29 @@ def _read_csv_rows(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def _dimension_matches(row_value: str, target: str | None) -> bool:
+    """Whether a Model/Region cell applies to ``target``.
+
+    Model/Region cells are multi-value across this repo (comma/semicolon/newline
+    separated, e.g. ``"JE-1000F, JE-2000E, JE-2000F"``) and a blank cell or the
+    ``ALL`` sentinel means "every target". A whole-string compare (the previous
+    behavior) silently dropped every shared row; match per token instead.
+    """
+    if not target:
+        return True
+    tokens = multi_value_tokens(row_value)
+    if not tokens:
+        return True  # blank cell applies to every target
+    target_key = target.strip().casefold()
+    return any(
+        token.upper() == "ALL" or token.casefold() == target_key for token in tokens
+    )
+
+
 def _row_matches(row: dict[str, str], *, model: str | None, region: str | None) -> bool:
-    row_model = _clean(row.get("Model"))
-    row_region = _clean(row.get("Region"))
-    if model and row_model and row_model.lower() != model.lower():
+    if not _dimension_matches(_clean(row.get("Model")), model):
         return False
-    if region and row_region and row_region.lower() != region.lower():
+    if not _dimension_matches(_clean(row.get("Region")), region):
         return False
     return True
 
