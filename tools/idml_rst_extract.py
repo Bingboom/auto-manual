@@ -21,11 +21,17 @@ Design decisions:
 """
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
 Block = tuple[str, str]
+
+# Block kinds whose text payload is a JSON document (rows / component spec),
+# not prose — the RST unescape pass must reach INTO their string values, never
+# rewrite the JSON envelope (see _unescape_rst_stars).
+_JSON_BLOCK_KINDS = frozenset({"component", "table"})
 
 
 @dataclass
@@ -76,6 +82,32 @@ def _detex(s: str) -> str:
     s = re.sub(r"\\[a-zA-Z@]+", " ", s)  # any leftover control words
     s = re.sub(r"[{}]", "", s)
     return re.sub(r"[ \t]+", " ", s).strip()
+
+
+def _unescape_stars(value: object) -> object:
+    """Turn the RST escaped asterisk ``\\*`` into a literal ``*`` in every string,
+    recursing through the JSON containers (list rows, component dicts)."""
+    if isinstance(value, str):
+        return value.replace("\\*", "*")
+    if isinstance(value, list):
+        return [_unescape_stars(item) for item in value]
+    if isinstance(value, dict):
+        return {key: _unescape_stars(item) for key, item in value.items()}
+    return value
+
+
+def _unescape_rst_stars(kind: str, text: str) -> str:
+    """Apply the ``\\*`` -> ``*`` unescape.
+
+    Prose blocks are plain text, so the replace runs on the whole string. JSON
+    blocks (``table`` / ``component``) carry a serialized payload where ``\\*``
+    is already JSON-escaped as ``\\\\*``; a blind replace would collapse it to
+    an invalid ``\\*`` escape and crash the downstream ``json.loads``. So decode,
+    unescape inside the string values, and re-encode.
+    """
+    if kind not in _JSON_BLOCK_KINDS:
+        return text.replace("\\*", "*")
+    return json.dumps(_unescape_stars(json.loads(text)), ensure_ascii=False)
 
 
 # ---------------------------------------------------------------------------
@@ -146,6 +178,13 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
         optional = ""
         if j < len(body) and body[j] == "[":
             k = body.find("]", j)
+            if k == -1:
+                # truncated/malformed optional arg (no closing ]): skip this
+                # macro occurrence so the scan makes forward progress. Without
+                # this, k=-1 -> j=0 -> _read_braced_args returns 0 -> i=0 and
+                # the loop re-finds the same macro forever (hang).
+                i = j
+                continue
             optional = body[j + 1:k]
             j = k + 1
         args, j = _read_braced_args(body, j, argc if macro != "\\HBNoticeBlock" else 3)
@@ -335,7 +374,7 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
             continue
 
         i += 1
-    result.blocks = [(k, t.replace("\\*", "*")) for k, t in result.blocks if t.strip()]
+    result.blocks = [(k, _unescape_rst_stars(k, t)) for k, t in result.blocks if t.strip()]
     return result
 
 
