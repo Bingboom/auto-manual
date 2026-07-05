@@ -196,6 +196,7 @@ class IdmlWriter:
             ("HB Title L2", sz("type_title_l2_font_size", 8.6), sz("type_title_l2_font_leading", 9.4), "Bold", ""),
             ("HB Title L3", sz("type_title_l3_font_size", 7.0), sz("type_title_l3_font_leading", 8.0), "Medium", ""),
             ("HB Notice Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "label"),
+            ("HB Figure", sz("type_body_font_size", 6.2), 0.0, "Regular", "figure"),
             ("HB Body", sz("type_body_font_size", 6.2), sz("type_body_font_leading", 7.5), "Regular", ""),
             ("HB List", sz("type_list_font_size", 5.4), sz("type_list_font_leading", 6.4), "Regular", ""),
             ("HB Spec Section", sz("type_spec_section_font_size", 8.8), sz("type_spec_section_font_leading", 9.6), "Bold", ""),
@@ -225,7 +226,11 @@ class IdmlWriter:
                 f'    <Properties>\n'
                 f'      <AppliedFont type="string">Gilroy</AppliedFont>\n'
                 f'      <FontStyle type="string">{weight}</FontStyle>\n'
-                f'      <Leading type="unit">{leading:g}</Leading>\n'
+                # fixed leading does not grow for inline anchored objects —
+                # figure paragraphs need Auto so art doesn't shoot out the top
+                + (f'      <Leading type="unit">{leading:g}</Leading>\n'
+                   if kind != "figure" else
+                   '      <Leading type="enum">Auto</Leading>\n') +
                 f'    </Properties>\n'
                 f'  </ParagraphStyle>'
             )
@@ -443,6 +448,20 @@ class IdmlWriter:
                     return hits[0]
         return None
 
+    def _art_frame_size(self, img: Path, max_w: float = 120.0) -> tuple[float, float]:
+        """Frame size honoring the image's real aspect ratio (Pillow when
+        available; 0.62 heuristic keeps working without it)."""
+        w_pt = min(max_w, self.page_w - self.m_l - self.m_r)
+        try:
+            from PIL import Image as _PILImage
+            with _PILImage.open(img) as im:
+                iw, ih = im.size
+            if iw > 0:
+                return w_pt, w_pt * ih / iw
+        except Exception:
+            pass
+        return w_pt, w_pt * 0.62
+
     def add_prose_story(self, sid: str, title: str, blocks: list[tuple[str, str]],
                         bundle_root: Path) -> tuple[str, float]:
         """Story from extracted prose blocks; returns (sid, est_height_pt)."""
@@ -470,11 +489,10 @@ class IdmlWriter:
                 if img is None:
                     continue
                 img_n += 1
-                w_pt = min(120.0, self.page_w - self.m_l - self.m_r)
-                h_pt = w_pt * 0.62
+                w_pt, h_pt = self._art_frame_size(img)
                 rect = self._image_cell_content(f"{sid}_im{img_n}", img, w_pt, h_pt)
                 parts.append(
-                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">'
+                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
                     '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                     + rect + ("<Content></Content>" if terminal else "<Br/>")
                     + "</CharacterStyleRange></ParagraphStyleRange>\n")

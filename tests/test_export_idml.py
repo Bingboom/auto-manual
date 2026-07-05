@@ -196,6 +196,27 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("<Table ", story)
         self.assertIn("WARNING", story)
 
+    def test_figure_style_uses_auto_leading(self) -> None:
+        # fixed leading does not grow for inline anchored objects, so art
+        # shoots out of the frame top (designer-reported stacked images)
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        styles = IdmlWriter(params).styles_xml()
+        fig = styles.split('Name="HB Figure"')[1].split("</ParagraphStyle>")[0]
+        self.assertIn(">Auto<", fig)
+
+    def test_art_frames_honor_aspect_ratio(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        img = ROOT / "docs" / "renderers" / "latex" / "assets" / "warning_lockup.png"
+        fw, fh = w._art_frame_size(img)
+        try:
+            from PIL import Image
+            with Image.open(img) as im:
+                iw, ih = im.size
+            self.assertAlmostEqual(fh / fw, ih / iw, places=2)
+        except ImportError:
+            self.assertAlmostEqual(fh / fw, 0.62, places=2)
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
