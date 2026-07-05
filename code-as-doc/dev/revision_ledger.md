@@ -143,7 +143,12 @@ Properties:
   convention; trivial to load later with pandas/duckdb.
 - **Idempotent**: rows are de-duped by `row_key` (`run_id` + `delta_hash`, or the
   delta index when no hash is present), so re-ingesting the same report is a
-  no-op. The same correction observed in a *later* run is kept as a new row.
+  no-op. The same correction observed in a *later* run is kept as a new row —
+  which only works if each round has a distinct `run_id`. `run-review-branch`'s
+  default `run_id` is therefore date-stamped and branch-scoped
+  (`backport-<review-branch>-<UTC yyyymmdd>`): distinct across days/branches, but
+  stable for same-day re-runs of one round so those stay idempotent. Pass an
+  explicit `--run-id` when a finer round identity is needed.
 - **Read-only on everything else**: it only reads reports and appends to the
   ledger file. It does not touch source tables, templates, the review bundle, or
   backport behaviour.

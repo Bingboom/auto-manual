@@ -361,7 +361,13 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     run_review_branch_parser.add_argument("--remote", default="origin", help="git remote")
     run_review_branch_parser.add_argument("--git-bin", default="git", help="git binary")
     run_review_branch_parser.add_argument("--full-checkout", action="store_true", help="materialize the whole repo in the worktree (default: sparse, only docs/_review/<model>/<region>)")
-    run_review_branch_parser.add_argument("--run-id", default="cloud-doc-backport-branch")
+    run_review_branch_parser.add_argument(
+        "--run-id",
+        default=None,
+        help="run id for reports + the revision ledger row keys "
+        "(default: backport-<review-branch>-<UTC yyyymmdd>, so each round is a distinct "
+        "ledger run instead of colliding on one constant id)",
+    )
     run_review_branch_parser.add_argument("--out", help="output directory for run-review reports")
     run_review_branch_parser.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary")
     run_review_branch_parser.add_argument("--identity", default="bot", help="lark-cli identity (user|bot)")
