@@ -110,18 +110,56 @@ def _unescape_rst_stars(kind: str, text: str) -> str:
     return json.dumps(_unescape_stars(json.loads(text)), ensure_ascii=False)
 
 
+def _clean_rst_text(s: str) -> str:
+    s = re.sub(r"\*\*([^*]+)\*\*", r"\1", s)
+    s = re.sub(r"\s+", " ", s)
+    return s.strip()
+
+
+def _notice_from_list_table(rows: list[list[str]]) -> dict | None:
+    """Detect list-table blocks used as HBNoticeBlock fallbacks.
+
+    Templates use a single-row ``list-table`` for NOTE/CAUTION/TIP blocks:
+    left cell = label, right cell = paragraph or nested bullet list. Those are
+    component semantics, not data tables, so route them before generic table
+    rendering.
+    """
+    if len(rows) != 1 or len(rows[0]) < 2:
+        return None
+    row = rows[0]
+    label = _clean_rst_text(row[0]).rstrip("-").strip()
+    label_key = label.upper()
+    if label_key not in {"NOTE", "TIP", "TIPS", "CAUTION", "WARNING", "DANGER"}:
+        return None
+    texts = []
+    list_like = len(row) > 2
+    for cell in row[1:]:
+        text = _clean_rst_text(cell).strip()
+        if text.startswith("- "):
+            list_like = True
+            text = text[2:].strip()
+        if text:
+            texts.append(text)
+    if not texts:
+        return None
+    variant = "tip" if label_key in {"TIP", "TIPS"} else label_key.lower()
+    return {"kind": "notice", "label": label, "variant": variant,
+            "texts": texts, "list": list_like}
+
+
 # ---------------------------------------------------------------------------
 # raw latex block -> blocks
 # ---------------------------------------------------------------------------
 
 _MACROS: tuple[tuple[str, int, str], ...] = (
     # (macro, arg count, kind)  kind: label1 = arg0 is a heading, rest body
-    ("\\safetywarning", 1, "warnbox"),
-    ("\\HBWarningLeadBlock", 2, "labelled"),
+    ("\\safetywarning", 1, "safetywarning"),
+    ("\\HBWarningLeadBlock", 2, "warninglead"),
     ("\\HBDangerBlock", 3, "labelled"),
     ("\\HBNoticeBlock", 4, "noticed"),   # [kind]{label}{p}{s} — optional arg handled below
-    ("\\HBNoteBlock", 2, "labelled"),
-    ("\\HBTipBlock", 2, "labelled"),
+    ("\\HBNoteBlock", 2, "note"),
+    ("\\HBTipBlock", 2, "tip"),
+    ("\\HBCautionBlock", 2, "caution"),
     ("\\HBFccBlock", 2, "bodies"),
     ("\\HBLangTagLine", 2, "langtag"),
     ("\\HBInBoxThree", 6, "inbox"),
@@ -132,6 +170,14 @@ _MACROS: tuple[tuple[str, int, str], ...] = (
 
 
 def _extract_raw_latex(body: str, result: ExtractResult) -> None:
+    stripped_body = body.strip()
+    if stripped_body == r"\begin{safetytwocol}":
+        result.twocol = True
+        result.blocks.append(("layout", "twocol_start"))
+        return
+    if stripped_body == r"\end{safetytwocol}":
+        result.blocks.append(("layout", "twocol_end"))
+        return
     if "safetytwocol" in body:
         result.twocol = True
     # HBLcdModeTable environment: structured mode/action/description groups
@@ -190,10 +236,14 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
         args, j = _read_braced_args(body, j, argc if macro != "\\HBNoticeBlock" else 3)
         args = [_detex(a) for a in args]
         import json as _json
-        if kind == "warnbox" and args:
+        if kind == "safetywarning" and args:
             result.blocks.append(("component", _json.dumps(
-                {"kind": "warnbox", "label": "WARNING", "texts": [args[0]]},
+                {"kind": "safetywarning", "texts": [args[0]]},
                 ensure_ascii=False)))
+        elif kind == "warninglead" and args:
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "warninglead", "label": args[0],
+                 "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
         elif kind == "labelled" and args:
             result.blocks.append(("component", _json.dumps(
                 {"kind": "warnbox", "label": args[0],
@@ -201,6 +251,11 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
         elif kind == "noticed" and args:
             result.blocks.append(("component", _json.dumps(
                 {"kind": "notice", "label": args[0] or optional.upper() or "NOTICE",
+                 "variant": optional or "notice",
+                 "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
+        elif kind in {"note", "tip", "caution"} and args:
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "notice", "label": args[0], "variant": kind,
                  "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
         elif kind == "bodies":
             result.blocks.append(("component", _json.dumps(
@@ -305,7 +360,10 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
             elif directive == "list-table":
                 import json as _json
                 rows = _parse_list_table(body)
-                if rows:
+                notice = _notice_from_list_table(rows)
+                if notice is not None:
+                    result.blocks.append(("component", _json.dumps(notice, ensure_ascii=False)))
+                elif rows:
                     result.blocks.append(("table", _json.dumps(rows, ensure_ascii=False)))
                 else:
                     result.skipped_raw += 1
