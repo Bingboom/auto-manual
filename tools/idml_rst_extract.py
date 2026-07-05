@@ -65,8 +65,10 @@ def _read_braced_args(text: str, start: int, count: int) -> tuple[list[str], int
 
 def _detex(s: str) -> str:
     """Strip the latex-isms our own macros/templates use."""
-    # line-continuation comments: a % swallows the rest of the source line
-    s = re.sub(r"(?<!\\)%[^\n]*", "", s)
+    # line-continuation comments: an unescaped % swallows the rest of the
+    # source line INCLUDING the newline and the next line's indentation
+    # (latex semantics), so wrapped macro arguments join seamlessly
+    s = re.sub(r"(?<!\\)%[^\n]*\n?", "", s)
     s = s.replace("\\par", "\n").replace("\\textbullet", "•")
     s = re.sub(r"\\textbf\{([^{}]*)\}", r"\1", s)
     s = re.sub(r"\\text(?:sub|super)script\{([^{}]*)\}", r"\1", s)
