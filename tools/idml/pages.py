@@ -7,11 +7,10 @@ byte-comparison pins equivalence.
 """
 from __future__ import annotations
 
-import json
-import re
 from pathlib import Path
 
 from . import components as _components
+from .fcc_fallback import component_spec, fcc_spec_from_blocks
 from .loaders import symbol_copy
 from .params import IDPKG
 
@@ -169,6 +168,7 @@ def _single_component_story(writer, sid: str, title: str, spec: dict,
         terminal=True, span_columns=False, measure_w=measure_w)
     return writer._add_story_parts(sid, title, [xml_part])
 
+
 def add_fcc_inbox_page(
     writer,
     sid: str,
@@ -178,33 +178,14 @@ def add_fcc_inbox_page(
     page_index: int,
 ) -> str:
     """V2.0 page 03: FCC notice and inbox cards share one page."""
-    import json as _json
 
     body_x = 27.4
     body_w = writer.page_w - body_x * 2
-    fcc_spec = next(
-        (
-            _json.loads(text) for kind, text in fcc_blocks
-            if kind == "component" and _json.loads(text).get("kind") == "fcc"
-        ),
-        {"kind": "fcc", "texts": ["", ""]},
-    )
+    fcc_spec = fcc_spec_from_blocks(fcc_blocks)
     inbox_title = next((text for kind, text in inbox_blocks if kind == "h1"),
                        "WHAT'S IN THE BOX")
-    inbox_spec = next(
-        (
-            _json.loads(text) for kind, text in inbox_blocks
-            if kind == "component" and _json.loads(text).get("kind") == "inbox"
-        ),
-        None,
-    )
-    tip_spec = next(
-        (
-            _json.loads(text) for kind, text in inbox_blocks
-            if kind == "component" and _json.loads(text).get("kind") == "notice"
-        ),
-        None,
-    )
+    inbox_spec = component_spec(inbox_blocks, "inbox")
+    tip_spec = component_spec(inbox_blocks, "notice")
 
     fcc_sid = f"{sid}_fcc"
     writer._single_component_story(

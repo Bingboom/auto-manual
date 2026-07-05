@@ -577,6 +577,32 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("AC Charging Cable", stories["st_fcc_inbox_inbox"])
         self.assertIn(">TIP<", stories["st_fcc_inbox_tip"])
 
+    def test_fcc_inbox_page_falls_back_to_plain_localized_fcc_prose(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        fcc = [
+            ("h1", "FCC"),
+            ("body", "Este dispositivo cumple con la parte 15 de las Reglas de la FCC."),
+            ("body", "**NOTA:** Este aparato ha sido probado y cumple con los limites."),
+            ("body", "Estos limites estan disenados para proporcionar una proteccion razonable."),
+            ("body", "Si este aparato causa interferencias daninas en la recepcion de radio."),
+            ("list", "• Reorientar o reubicar la antena receptora."),
+            ("body", "**MODIFICACION:** Cualquier cambio podria anular la autoridad."),
+        ]
+        inbox = [
+            ("h1", "WHAT'S IN THE BOX"),
+            ("component", json.dumps({
+                "kind": "inbox",
+                "items": [{"img": "", "label": "Documents"}],
+            })),
+        ]
+        w.add_fcc_inbox_page("st_fcc_plain", fcc, inbox, ROOT, 3)
+        story = dict(w.stories)["st_fcc_plain_fcc"]
+        self.assertIn("Este dispositivo cumple", story)
+        self.assertIn("Si este aparato causa", story)
+        self.assertIn("Reorientar o reubicar", story)
+        self.assertIn("MODIFICACION:", story)
+
     def test_default_idml_paths_follow_region_level_bundle(self) -> None:
         bundle = default_bundle_root("JE-1000F", "US", "en")
         self.assertEqual(
@@ -610,6 +636,43 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(data["kind"], "notice")
         self.assertTrue(data["list"])
         self.assertEqual(data["texts"], ["First item.", "Second item.", "Third item."])
+
+    def test_localized_notice_list_tables_are_components_not_data_tables(self) -> None:
+        import json
+        from tools.idml_rst_extract import _parse_text
+
+        cases = [
+            ("REMARQUE", "note"),
+            ("NOTA", "note"),
+            ("CONSEILS", "tip"),
+            ("CONSEJOS", "tip"),
+            ("ATTENTION", "caution"),
+            ("PRECAUCIÓN", "caution"),
+        ]
+        for label, variant in cases:
+            with self.subTest(label=label):
+                text = f"""
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **{label}** -
+     - First localized item.
+     - Second localized item.
+"""
+                res = _parse_text(text, {"latex"})
+                self.assertEqual(len(res.blocks), 1)
+                kind, payload = res.blocks[0]
+                self.assertEqual(kind, "component")
+                data = json.loads(payload)
+                self.assertEqual(data["kind"], "notice")
+                self.assertEqual(data["label"], label)
+                self.assertEqual(data["variant"], variant)
+                self.assertTrue(data["list"])
+                self.assertEqual(
+                    data["texts"],
+                    ["First localized item.", "Second localized item."],
+                )
 
     def test_inline_strong_markup_becomes_bold_runs(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

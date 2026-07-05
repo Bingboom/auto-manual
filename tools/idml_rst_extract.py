@@ -26,6 +26,11 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
+try:
+    from tools.idml.notice_labels import notice_label_variant
+except ModuleNotFoundError:  # direct tools/export_idml.py execution
+    from idml.notice_labels import notice_label_variant  # type: ignore
+
 Block = tuple[str, str]
 
 # Component spec kinds this extractor can emit in ("component", json) blocks.
@@ -126,20 +131,14 @@ def _clean_rst_text(s: str) -> str:
 
 
 def _notice_from_list_table(rows: list[list[str]]) -> dict | None:
-    """Detect list-table blocks used as HBNoticeBlock fallbacks.
-
-    Templates use a single-row ``list-table`` for NOTE/CAUTION/TIP blocks:
-    left cell = label, right cell = paragraph or nested bullet list. Those are
-    component semantics, not data tables, so route them before generic table
-    rendering.
-    """
+    """Detect single-row list-table blocks used as HBNoticeBlock fallbacks."""
     if len(rows) != 1 or len(rows[0]) < 2:
         return None
     row = rows[0]
-    label = _clean_rst_text(row[0]).rstrip("-").strip()
-    label_key = label.upper()
-    if label_key not in {"NOTE", "TIP", "TIPS", "CAUTION", "WARNING", "DANGER"}:
+    label_variant = notice_label_variant(_clean_rst_text(row[0]))
+    if label_variant is None:
         return None
+    label, variant = label_variant
     texts = []
     list_like = len(row) > 2
     for cell in row[1:]:
@@ -151,7 +150,6 @@ def _notice_from_list_table(rows: list[list[str]]) -> dict | None:
             texts.append(text)
     if not texts:
         return None
-    variant = "tip" if label_key in {"TIP", "TIPS"} else label_key.lower()
     return {"kind": "notice", "label": label, "variant": variant,
             "texts": texts, "list": list_like}
 
