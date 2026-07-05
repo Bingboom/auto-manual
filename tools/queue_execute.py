@@ -15,6 +15,7 @@ from tools.queue_query import (
     apply_inferred_queue_query,
     collect_queue_query_rows,
     filter_queue_query_rows,
+    should_apply_latest_per_document_key,
 )
 
 _CONTROL_LAYER_CLI = (
@@ -83,7 +84,15 @@ def select_queue_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> tu
     skipped instead of silently dropping them.
     """
     resolved_args = apply_inferred_queue_query(args)
-    selection_args = _namespace_with(resolved_args, allow_multiple=False, limit=1000)
+    # Dropping allow_multiple bypasses the trigger pre-filter, but the
+    # latest-per-document-key collapse keys off allow_multiple too — pin it to
+    # the original args so the collapse cannot swallow trigger-enabled rows.
+    selection_args = _namespace_with(
+        resolved_args,
+        allow_multiple=False,
+        latest_per_document_key=should_apply_latest_per_document_key(resolved_args),
+        limit=1000,
+    )
     filtered = filter_queue_query_rows(selection_args, rows)
     if not filtered:
         request_text = str(getattr(args, "query_text", "") or "").strip()
