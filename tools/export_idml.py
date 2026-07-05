@@ -42,6 +42,37 @@ IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
 
 MM_TO_PT = 72.0 / 25.4
 
+SYMBOL_COPY = {
+    "en": {
+        "title": "MEANING OF SYMBOLS",
+        "symbol": "Symbol",
+        "meaning": "Meaning",
+        "warning": "WARNING",
+    },
+    "fr": {
+        "title": "SIGNIFICATION DES SYMBOLES",
+        "symbol": "Symbole",
+        "meaning": "Signification",
+        "warning": "AVERTISSEMENT",
+    },
+    "es": {
+        "title": "SIGNIFICADO DE LOS SÍMBOLOS",
+        "symbol": "Símbolo",
+        "meaning": "Significado",
+        "warning": "ADVERTENCIA",
+    },
+}
+
+
+def normalize_lang(lang: str | None) -> str:
+    lang = (lang or "en").strip()
+    aliases = {"ja": "jp", "pt-br": "pt-BR", "pt_BR": "pt-BR"}
+    return aliases.get(lang, aliases.get(lang.lower(), lang.lower() or "en"))
+
+
+def symbol_copy(lang: str | None) -> dict[str, str]:
+    return SYMBOL_COPY.get(normalize_lang(lang), SYMBOL_COPY["en"])
+
 
 # ---------------------------------------------------------------------------
 # layout params
@@ -162,18 +193,25 @@ def load_spec_annotations(data_root: Path, model: str, region: str) -> list[str]
     return out
 
 
-def load_symbols_rows(data_root: Path) -> tuple[list[tuple[str, str]], list[dict]]:
-    """symbols_blocks.csv -> (signal rows [label, meaning], icon rows)."""
+def load_symbols_rows(data_root: Path, lang: str = "en") -> tuple[list[tuple[str, str]], list[dict]]:
+    """symbols_blocks.csv -> localized (signal rows [label, meaning], icon rows)."""
     path = data_root / "symbols_blocks.csv"
     signals: list[tuple[str, str]] = []
     icons: list[dict] = []
+    lang = normalize_lang(lang)
+    label_col = f"label_{lang}"
+    text_col = f"text_{lang}"
     rows = [r for r in csv.DictReader(path.open(encoding="utf-8"))
             if r.get("Is_Latest", r.get("Is_latest")) == "TRUE"]
     rows.sort(key=lambda r: float(r.get("order") or 0))
     for r in rows:
-        text = (r.get("text_en") or "").strip()
+        text = ((r.get(text_col) or "").strip()
+                or (r.get("text_en") or "").strip())
         if r.get("block_type") == "signal_row":
-            signals.append(((r.get("label_en") or "").strip(), text))
+            if text:
+                label = ((r.get(label_col) or "").strip()
+                         or (r.get("label_en") or "").strip())
+                signals.append((label, text))
         elif r.get("block_type") == "table_row":
             icons.append({"figure": (r.get("image_path") or "").strip(), "text": text})
     return signals, icons
@@ -222,6 +260,10 @@ class IdmlWriter:
             ("HB Title L2", sz("type_title_l2_font_size", 8.6), sz("type_title_l2_font_leading", 9.4), "Bold", ""),
             ("HB Title L3", sz("type_title_l3_font_size", 7.0), sz("type_title_l3_font_leading", 8.0), "Medium", ""),
             ("HB Notice Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "label"),
+            ("HB Notice Side Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "center"),
+            ("HB Card Number", sz("type_inbox_label_font_size", 6.5), sz("type_inbox_label_font_leading", 7.0), "Bold", "card_number"),
+            ("HB InBox Label", sz("type_inbox_label_font_size", 6.3), sz("type_inbox_label_font_leading", 7.0), "Bold", "center"),
+            ("HB Capsule Text", sz("type_title_l2_font_size", 8.6), sz("type_title_l2_font_leading", 9.4), "Bold", "capsule_text"),
             ("HB Figure", sz("type_body_font_size", 6.2), 0.0, "Regular", "figure"),
             ("HB Body", sz("type_body_font_size", 6.2), sz("type_body_font_leading", 7.5), "Regular", ""),
             ("HB List", sz("type_list_font_size", 5.4), sz("type_list_font_leading", 6.4), "Regular", ""),
@@ -237,12 +279,25 @@ class IdmlWriter:
             self_id = "ParagraphStyle/" + name.replace(" ", "%20")
             # V2.0 master: H1 is a white-on-brand-dark bar; notice labels are
             # compact dark pills. Both map to paragraph shading in IDML.
-            shaded = name == "HB H1" or kind == "label"
-            fill = "Color/Paper" if shaded else "Color/HB Brand Dark"
+            shaded = name == "HB H1" or kind in {"label", "card_number"}
+            fill = "Color/Paper" if shaded or kind == "capsule_text" else "Color/HB Brand Dark"
             # NOTE the Paragraph* prefix: bare ShadingOn/ShadingColor are
             # silently ignored by InDesign (designer-reported: no H1 bar,
             # invisible white labels/numerals)
-            shading = (
+            if kind == "card_number":
+                shading = (
+                    'ParagraphShadingOn="true" '
+                    'ParagraphShadingColor="Color/HB Brand Dark" '
+                    'ParagraphShadingTint="100" '
+                    'ParagraphShadingWidth="TextWidth" '
+                    'ParagraphShadingTopOrigin="AscentTopOrigin" '
+                    'ParagraphShadingBottomOrigin="DescentBottomOrigin" '
+                    'ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" '
+                    'ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" '
+                    'SpaceBefore="7" SpaceAfter="6" '
+                )
+            elif shaded:
+                shading = (
                 'ParagraphShadingOn="true" '
                 'ParagraphShadingColor="Color/HB Brand Dark" '
                 'ParagraphShadingTint="100" '
@@ -252,11 +307,14 @@ class IdmlWriter:
                 'ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" '
                 'ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" '
                 'SpaceBefore="4" SpaceAfter="3" '
-            ) if shaded else ""
+                )
+            else:
+                shading = ""
+            justification = "CenterAlign" if kind in {"center", "card_number"} else "LeftAlign"
             styles.append(
                 f'  <ParagraphStyle Self="{self_id}" Name="{name}" '
                 f'PointSize="{size:g}" FillColor="{fill}" {shading}'
-                f'Justification="LeftAlign">\n'
+                f'Justification="{justification}">\n'
                 f'    <Properties>\n'
                 f'      <AppliedFont type="string">Gilroy</AppliedFont>\n'
                 f'      <FontStyle type="string">{weight}</FontStyle>\n'
@@ -360,7 +418,8 @@ class IdmlWriter:
         return text
 
     @classmethod
-    def _psr(cls, style: str, text: str, *, terminal: bool = False) -> str:
+    def _psr(cls, style: str, text: str, *, terminal: bool = False,
+             span_columns: bool = False) -> str:
         """One ParagraphStyleRange.
 
         IDML paragraphs are delimited by explicit <Br/> characters in the
@@ -386,8 +445,9 @@ class IdmlWriter:
         if not terminal:
             content += br
         sid = "ParagraphStyle/" + style.replace(" ", "%20")
+        span_attr = ' SpanColumnType="SpanColumns"' if span_columns else ""
         return (
-            f'  <ParagraphStyleRange AppliedParagraphStyle="{sid}">\n'
+            f'  <ParagraphStyleRange AppliedParagraphStyle="{sid}"{span_attr}>\n'
             f'    {content}\n'
             '  </ParagraphStyleRange>\n'
         )
@@ -524,7 +584,8 @@ class IdmlWriter:
         return w_pt, w_pt * 0.62
 
     def _cell(self, cid: str, name: str, content: str, *, fill: str | None = None,
-              stroke: bool = True) -> str:
+              stroke: bool = True, top: float = 3, bottom: float = 3,
+              left: float = 4, right: float = 4) -> str:
         # cell fill is FillColor in IDML; CellFillColor is silently ignored
         # (designer-reported: no gray FCC/notice panels)
         fill_attr = f'FillColor="{fill}" ' if fill else ""
@@ -534,7 +595,8 @@ class IdmlWriter:
         return (
             f'    <Cell Self="{cid}" Name="{name}" RowSpan="1" ColumnSpan="1" '
             f'AppliedCellStyle="CellStyle/$ID/[None]" {fill_attr}{stroke_attr}'
-            'TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">\n'
+            f'TopInset="{top:g}" BottomInset="{bottom:g}" '
+            f'LeftInset="{left:g}" RightInset="{right:g}">\n'
             + content + '    </Cell>')
 
     def _component_table(self, tid: str, cols: list[float], cells: list[str],
@@ -549,14 +611,16 @@ class IdmlWriter:
             f'BodyRowCount="{n_rows}" ColumnCount="{len(cols)}" HeaderRowCount="0" FooterRowCount="0">\n'
             f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n")
 
-    def _wrap_table_paragraph(self, table: str, terminal: bool) -> str:
+    def _wrap_table_paragraph(self, table: str, terminal: bool,
+                              span_columns: bool = True) -> str:
         # SpanColumns: component tables run full measure across multi-column
         # frames (V2.0 master: warning boxes span the two-column safety text;
         # designer-reported overlap otherwise). No effect in single-column
         # frames.
+        span_attr = ' SpanColumnType="SpanColumns"' if span_columns else ""
         return (
-            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body" '
-            'SpanColumnType="SpanColumns">\n'
+            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body"'
+            f'{span_attr}>\n'
             '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
             + table +
             ('    <Content></Content></CharacterStyleRange>\n' if terminal else
@@ -564,11 +628,17 @@ class IdmlWriter:
             + '  </ParagraphStyleRange>\n')
 
     def _render_component(self, sid: str, n: int, spec: dict,
-                          bundle_root: Path, terminal: bool) -> tuple[str, float]:
+                          bundle_root: Path, terminal: bool,
+                          span_columns: bool = True,
+                          measure_w: float | None = None) -> tuple[str, float]:
         """Component spec -> (xml, est_height). Table-based fidelity layer."""
         kind = spec.get("kind")
-        body_w = self.page_w - self.m_l - self.m_r
+        body_w = measure_w or (self.page_w - self.m_l - self.m_r)
         tid = f"{sid}_cmp{n}"
+        warning_icon_asset = (
+            ROOT / "docs" / "templates" / "word_template" / "common_assets"
+            / "symbols" / "warning_triangle.png"
+        )
         if kind == "inbox":
             items = spec.get("items", [])[:3]
             cols = [body_w / 3.0] * 3
@@ -581,37 +651,134 @@ class IdmlWriter:
                     iw, ih = self._art_frame_size(img, max_w=min(icon_w, 60.0))
                     icon = self._image_cell_content(f"{tid}i{ci}", img, iw, ih)
                 content = (
-                    self._psr("HB Notice Label", str(ci + 1)) +
+                    self._psr("HB Card Number", str(ci + 1)) +
                     '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
                     '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                     + icon + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n'
-                    + self._psr("HB Spec Label", item.get("label", ""), terminal=True))
-                cells.append(self._cell(f"{tid}c0_{ci}", f"{ci}:0", content))
+                    + self._psr("HB InBox Label", item.get("label", ""), terminal=True))
+                cells.append(self._cell(
+                    f"{tid}c0_{ci}", f"{ci}:0", content,
+                    top=9, bottom=10, left=6, right=6,
+                ))
             table = self._component_table(tid, cols, cells)
-            return self._wrap_table_paragraph(table, terminal), 110.0
-        if kind in ("warnbox", "notice"):
-            fill = "Color/HB Bg K05" if kind == "notice" else None
-            label = spec.get("label", "")
+            return self._wrap_table_paragraph(table, terminal, span_columns), 110.0
+        if kind == "safetywarning":
             texts = spec.get("texts", [])
-            lockup = ROOT / "docs" / "renderers" / "latex" / "assets" / "warning_lockup.png"
+            body = "\n".join(texts)
             icon = ""
-            if kind == "warnbox" and lockup.exists():
+            if warning_icon_asset.exists():
+                iw, ih = self._art_frame_size(warning_icon_asset, max_w=18.0)
                 icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
                         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                        + self._image_cell_content(f"{tid}lk", lockup, 52.0, 14.0)
+                        + self._image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih)
                         + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
-            left = icon + self._psr("HB Notice Label", label, terminal=True)
-            body = "\n".join(texts)
-            right = self._psr("HB Body", body, terminal=True)
-            cols = [body_w * 0.2, body_w * 0.8]
+            cols = [24.0, max(24.0, body_w - 24.0)]
             cells = [
-                self._cell(f"{tid}c0", "0:0", left, fill=fill, stroke=kind != "notice"),
-                self._cell(f"{tid}c1", "1:0", right, fill=fill, stroke=kind != "notice"),
+                self._cell(f"{tid}c0", "0:0", icon),
+                self._cell(f"{tid}c1", "1:0",
+                           self._psr("HB Title L3", body, terminal=True)),
             ]
             table = self._component_table(tid, cols, cells)
-            per_line = max(20, int(body_w * 0.8 / (0.52 * 6.6)))
+            return self._wrap_table_paragraph(table, terminal, span_columns), 28.0
+        if kind == "warninglead":
+            label = spec.get("label", "")
+            texts = spec.get("texts", [])
+            icon = ""
+            if warning_icon_asset.exists():
+                iw, ih = self._art_frame_size(warning_icon_asset, max_w=24.0)
+                icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+                        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                        + self._image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih)
+                        + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
+            body = "\n".join(texts)
+            right = self._psr("HB Title L2", label) + self._psr("HB Body", body, terminal=True)
+            icon_w = min(36.0, max(28.0, body_w * 0.25))
+            cols = [icon_w, max(36.0, body_w - icon_w)]
+            cells = [
+                self._cell(f"{tid}c0", "0:0", icon,
+                           top=4, bottom=4, left=4, right=4),
+                self._cell(f"{tid}c1", "1:0", right,
+                           top=4, bottom=4, left=5, right=4),
+            ]
+            table = self._component_table(tid, cols, cells)
+            per_line = max(12, int((body_w - icon_w) / (0.52 * 6.6)))
             lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
-            return self._wrap_table_paragraph(table, terminal), max(24.0, 7.4 * lines + 10)
+            return self._wrap_table_paragraph(table, terminal, span_columns), max(36.0, 7.4 * (lines + 1) + 10)
+        if kind == "tailwarnbox":
+            label = spec.get("label", "")
+            texts = spec.get("texts", [])
+            icon = ""
+            if warning_icon_asset.exists():
+                iw, ih = self._art_frame_size(warning_icon_asset, max_w=24.0)
+                icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+                        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                        + self._image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih)
+                        + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
+            body = " ".join(t.strip() for t in texts if str(t).strip())
+            label_w = 58.0
+            icon_w = 32.0
+            cols = [icon_w, label_w, max(80.0, body_w - icon_w - label_w)]
+            cells = [
+                self._cell(f"{tid}c0", "0:0", icon,
+                           top=1, bottom=1, left=4, right=3),
+                self._cell(f"{tid}c1", "1:0",
+                           self._psr("HB Title L2", label, terminal=True),
+                           top=1, bottom=1, left=3, right=3),
+                self._cell(f"{tid}c2", "2:0",
+                           self._psr("HB Body", body, terminal=True),
+                           top=1, bottom=1, left=3, right=4),
+            ]
+            table = self._component_table(tid, cols, cells)
+            per_line = max(20, int((body_w - icon_w - label_w) / (0.52 * 6.2)))
+            lines = max(1, (len(body) + per_line - 1) // per_line)
+            return self._wrap_table_paragraph(table, terminal, span_columns), max(30.0, 7.5 * lines + 8)
+        if kind == "warnbox":
+            label = spec.get("label", "")
+            texts = spec.get("texts", [])
+            icon = ""
+            if warning_icon_asset.exists():
+                iw, ih = self._art_frame_size(warning_icon_asset, max_w=28.0)
+                icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+                        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                        + self._image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih)
+                        + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
+            body = "\n".join(texts)
+            right = self._psr("HB Title L2", label) + self._psr("HB Body", body, terminal=True)
+            cols = [36.0, max(36.0, body_w - 36.0)]
+            cells = [
+                self._cell(f"{tid}c0", "0:0", icon),
+                self._cell(f"{tid}c1", "1:0", right),
+            ]
+            table = self._component_table(tid, cols, cells)
+            per_line = max(20, int((body_w - 36.0) / (0.52 * 6.6)))
+            lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
+            return self._wrap_table_paragraph(table, terminal, span_columns), max(34.0, 7.4 * (lines + 1) + 12)
+        if kind == "notice":
+            fill = "Color/HB Bg K05"
+            label = spec.get("label", "")
+            texts = spec.get("texts", [])
+            left = self._psr("HB Notice Side Label", label, terminal=True)
+            body = "\n".join(texts)
+            if spec.get("list"):
+                items = [t.strip() for t in texts if str(t).strip()]
+                right = "".join(
+                    self._psr("HB List", "• " + item, terminal=i == len(items) - 1)
+                    for i, item in enumerate(items)
+                )
+            else:
+                right = self._psr("HB Body", body, terminal=True)
+            label_w = max(34.0, body_w * 0.14)
+            cols = [label_w, body_w - label_w]
+            cells = [
+                self._cell(f"{tid}c0", "0:0", left, fill="Color/Paper",
+                           stroke=False, top=10, bottom=10, left=6, right=6),
+                self._cell(f"{tid}c1", "1:0", right, fill=fill,
+                           stroke=False, top=10, bottom=10, left=6, right=6),
+            ]
+            table = self._component_table(tid, cols, cells)
+            per_line = max(20, int((body_w - label_w) / (0.52 * 6.6)))
+            lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
+            return self._wrap_table_paragraph(table, terminal, span_columns), max(24.0, 7.4 * lines + 10)
         if kind == "fcc":
             texts = spec.get("texts", ["", ""])[:2]
             mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.pdf"
@@ -633,7 +800,7 @@ class IdmlWriter:
             table = self._component_table(tid, cols, cells)
             per_line = max(20, int(body_w / 2 / (0.52 * 6.2)))
             lines = max((len(t) + per_line - 1) // per_line for t in texts) if texts else 1
-            return self._wrap_table_paragraph(table, terminal), 7.5 * lines + 30
+            return self._wrap_table_paragraph(table, terminal, span_columns), 7.5 * lines + 30
         if kind == "lcdmode":
             # LCD screen mode table (the last annotated-insert holdout):
             # state | action | description rows, LCD art above the table
@@ -661,7 +828,7 @@ class IdmlWriter:
                                             self._psr("HB Spec Value", desc, terminal=True)))
                     ri += 1
             table = self._component_table(tid, cols, cells, n_rows=ri)
-            xml = art + self._wrap_table_paragraph(table, terminal)
+            xml = art + self._wrap_table_paragraph(table, terminal, span_columns)
             return xml, 70.0 + 12.0 * ri
         return "", 0.0
 
@@ -671,13 +838,28 @@ class IdmlWriter:
         parts: list[str] = []
         est = 0.0
         img_n = 0
-        last_idx = len(blocks) - 1
+        content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
+        last_idx = content_indices[-1] if content_indices else -1
+        in_twocol = False
+        has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
+        text_measure = self.page_w - self.m_l - self.m_r
+        column_measure = (text_measure - 11.0) / 2.0
         for bi, (kind, text) in enumerate(blocks):
+            if kind == "layout":
+                if text == "twocol_start":
+                    in_twocol = True
+                elif text == "twocol_end":
+                    in_twocol = False
+                continue
             terminal = bi == last_idx
             if kind == "component":
                 import json as _json
+                spec = _json.loads(text)
+                span_columns = not in_twocol
+                measure_w = column_measure if in_twocol else None
                 xml_part, h = self._render_component(
-                    sid, bi, _json.loads(text), bundle_root, terminal)
+                    sid, bi, spec, bundle_root, terminal,
+                    span_columns=span_columns, measure_w=measure_w)
                 if xml_part:
                     parts.append(xml_part)
                     est += h
@@ -706,7 +888,8 @@ class IdmlWriter:
                                 f"{tid}c{ri}_{ci}", f"{ci}:{ri}",
                                 self._psr(style, txt, terminal=True)))
                     table = self._component_table(tid, cols, cells, n_rows=len(raw_rows))
-                parts.append(self._wrap_table_paragraph(table, terminal))
+                parts.append(self._wrap_table_paragraph(
+                    table, terminal, span_columns=not in_twocol))
                 est += 11.0 * (len(raw_rows) + 1)
                 continue
             if kind == "image":
@@ -724,11 +907,14 @@ class IdmlWriter:
                 est += h_pt + 4
                 continue
             style = self._PROSE_STYLE.get(kind, "HB Body")
-            parts.append(self._psr(style, text, terminal=terminal))
+            span_columns = has_twocol_layout and not in_twocol and kind in {"h1", "h2"}
+            parts.append(self._psr(
+                style, text, terminal=terminal, span_columns=span_columns))
             # width-aware: chars/line ~ frame_width / (0.52 * font size)
             size = {"h1": 9.0, "h2": 8.6, "h3": 7.0, "label": 6.8}.get(kind, 6.2)
             leading = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}.get(kind, 7.5)
-            per_line = max(20, int((self.page_w - self.m_l - self.m_r) / (0.52 * size)))
+            measure = column_measure if in_twocol else text_measure
+            per_line = max(20, int(measure / (0.52 * size)))
             lines = sum(max(1, (len(seg) + per_line - 1) // per_line)
                         for seg in text.split("\n"))
             est += leading * lines
@@ -801,9 +987,10 @@ class IdmlWriter:
         return sid
 
     def add_symbols_story(self, signals: list[tuple[str, str]],
-                          icons: list[dict], data_root: Path) -> str:
+                          icons: list[dict], data_root: Path, lang: str = "en") -> str:
         sid = "st_symbols"
-        parts = [self._psr("HB H1", "MEANING OF SYMBOLS")]
+        copy = symbol_copy(lang)
+        parts = [self._psr("HB H1", copy["title"])]
         if signals:
             table = self._table("tbl_sym_sig", signals, label_style="HB Notice Label")
             parts.append(
@@ -913,6 +1100,9 @@ class IdmlWriter:
             self._psr(style, text, terminal=(i == len(blocks) - 1))
             for i, (style, text) in enumerate(blocks)
         ]
+        return self._add_story_parts(sid, title, parts)
+
+    def _add_story_parts(self, sid: str, title: str, parts: list[str]) -> str:
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
             f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
@@ -924,6 +1114,446 @@ class IdmlWriter:
         )
         self.stories.append((sid, xml))
         return sid
+
+    def _frame_xml(self, frame_id: str, story_id: str,
+                   x1: float, y1: float, x2: float, y2: float, *,
+                   columns: int = 1, fill: str | None = None,
+                   rounded: bool = False, balance_columns: bool = False,
+                   inset: tuple[float, float, float, float] | None = None) -> str:
+        fill_attr = f'FillColor="{fill}" ' if fill else ""
+        stroke_attr = (
+            'StrokeColor="Swatch/None" StrokeWeight="0" '
+            if fill else ""
+        )
+        corner_attr = 'CornerOption="RoundedCorner" CornerRadius="7" ' if rounded else ""
+        balance_attr = ' VerticalBalanceColumns="true"' if balance_columns else ""
+        inset_attr = ""
+        if inset is not None:
+            inset_attr = ' InsetSpacing="' + " ".join(f"{v:g}" for v in inset) + '"'
+        return (
+            f'  <TextFrame Self="{frame_id}" ParentStory="{story_id}" '
+            'PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" '
+            'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
+            f'{fill_attr}{stroke_attr}{corner_attr}'
+            'ItemTransform="1 0 0 1 0 0">\n'
+            + self._path_geometry(x1, y1, x2, y2) +
+            f'    <TextFramePreference TextColumnCount="{columns}" '
+            f'TextColumnGutter="11" AutoSizingType="Off"{balance_attr}{inset_attr}/>\n'
+            '  </TextFrame>\n'
+        )
+
+    def _page_rect(self, x: float, y: float, w: float, h: float) -> tuple[float, float, float, float]:
+        return (
+            -self.page_w / 2 + x,
+            -self.page_h / 2 + y,
+            -self.page_w / 2 + x + w,
+            -self.page_h / 2 + y + h,
+        )
+
+    def _safety_section_story(self, sid: str, title: str,
+                              blocks: list[tuple[str, str]],
+                              bundle_root: Path) -> str:
+        parts: list[str] = []
+        text_measure = self.page_w - self.m_l - self.m_r
+        column_measure = (text_measure - 11.0) / 2.0
+        content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
+        last_idx = content_indices[-1] if content_indices else -1
+        for bi, (kind, text) in enumerate(blocks):
+            terminal = bi == last_idx
+            if kind == "component":
+                import json as _json
+                xml_part, _ = self._render_component(
+                    sid, bi, _json.loads(text), bundle_root, terminal,
+                    span_columns=False, measure_w=column_measure)
+                parts.append(xml_part)
+            elif kind == "body":
+                parts.append(self._psr("HB Title L2", text, terminal=terminal))
+            elif kind == "list":
+                parts.append(self._psr("HB List", text, terminal=terminal))
+            elif kind in {"h1", "h2", "h3"}:
+                parts.append(self._psr(self._PROSE_STYLE[kind], text, terminal=terminal))
+        return self._add_story_parts(sid, title, parts)
+
+    def add_safety_page(self, sid: str, title: str, blocks: list[tuple[str, str]],
+                        bundle_root: Path, page_index: int) -> str:
+        """V2.0 US safety page 01: fixed component regions, not one flow."""
+        h1 = next((t for k, t in blocks if k == "h1"), title)
+        top_warning = next((t for k, t in blocks
+                            if k == "component" and '"kind": "safetywarning"' in t), None)
+        subbar = next((t for k, t in blocks if k == "h2"), "OPERATING INSTRUCTIONS")
+
+        sections: list[list[tuple[str, str]]] = []
+        cur: list[tuple[str, str]] | None = None
+        for kind, text in blocks:
+            if kind == "layout" and text == "twocol_start":
+                cur = []
+            elif kind == "layout" and text == "twocol_end":
+                if cur is not None:
+                    sections.append(cur)
+                cur = None
+            elif cur is not None:
+                cur.append((kind, text))
+
+        title_sid = f"{sid}_title"
+        self._add_story_parts(
+            title_sid, f"{title} title",
+            [self._psr("HB Capsule Text", h1, terminal=True)])
+        warning_sid = f"{sid}_top_warning"
+        if top_warning:
+            import json as _json
+            xml_part, _ = self._render_component(
+                warning_sid, 0, _json.loads(top_warning), bundle_root,
+                terminal=True, span_columns=False)
+            self._add_story_parts(warning_sid, f"{title} warning", [xml_part])
+        bar_sid = f"{sid}_subbar"
+        self._add_story_parts(
+            bar_sid, f"{title} subbar",
+            [self._psr("HB Capsule Text", subbar, terminal=True)])
+        section_sids = []
+        for idx, section in enumerate(sections[:2]):
+            sec_sid = f"{sid}_section{idx + 1}"
+            self._safety_section_story(sec_sid, f"{title} section {idx + 1}",
+                                       section, bundle_root)
+            section_sids.append(sec_sid)
+
+        spread_id = f"sp_{page_index}"
+        page_no = page_index + 1
+        body_x = 27.4
+        body_w = self.page_w - body_x * 2
+        frames = []
+        for frame_id, story_id, rect, opts in (
+            ("title", title_sid, (body_x, 27.5, body_w, 18.8),
+             {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (1, 5, 1, 6)}),
+            ("warning", warning_sid, (body_x, 55.5, body_w, 31.5),
+             {"inset": (0, 0, 0, 0)}),
+            ("section1", section_sids[0] if section_sids else "", (body_x, 93.5, body_w, 162.0),
+             {"columns": 2, "balance_columns": True, "inset": (0, 0, 0, 0)}),
+            ("subbar", bar_sid, (body_x, 263.5, body_w, 17.2),
+             {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (0.5, 5, 0.5, 6)}),
+            ("section2", section_sids[1] if len(section_sids) > 1 else "",
+             (body_x, 286.0, body_w, 205.0),
+             {"columns": 2, "balance_columns": True, "inset": (0, 0, 0, 0)}),
+        ):
+            if not story_id:
+                continue
+            x1, y1, x2, y2 = self._page_rect(*rect)
+            frames.append(self._frame_xml(
+                f"tf_{sid}_{frame_id}", story_id, x1, y1, x2, y2, **opts))
+
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+            f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
+            f'  <Page Self="{spread_id}_pg" Name="{page_no}" '
+            'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
+            f'GeometricBounds="0 0 {self.page_h:g} {self.page_w:g}" '
+            f'ItemTransform="1 0 0 1 {-self.page_w / 2:g} {-self.page_h / 2:g}">\n'
+            '    <MarginPreference ColumnCount="1" ColumnGutter="12" '
+            f'Top="{self.m_t:g}" Bottom="{self.m_b:g}" '
+            f'Left="{self.m_l:g}" Right="{self.m_r:g}"/>\n'
+            '  </Page>\n'
+            + "".join(frames) +
+            '</Spread>\n'
+            '</idPkg:Spread>\n'
+        )
+        self.spreads.append((spread_id, xml))
+        return spread_id
+
+    def _single_component_story(self, sid: str, title: str, spec: dict,
+                                bundle_root: Path, measure_w: float) -> str:
+        xml_part, _ = self._render_component(
+            sid, 0, spec, bundle_root,
+            terminal=True, span_columns=False, measure_w=measure_w)
+        return self._add_story_parts(sid, title, [xml_part])
+
+    def add_fcc_inbox_page(
+        self,
+        sid: str,
+        fcc_blocks: list[tuple[str, str]],
+        inbox_blocks: list[tuple[str, str]],
+        bundle_root: Path,
+        page_index: int,
+    ) -> str:
+        """V2.0 page 03: FCC notice and inbox cards share one page."""
+        import json as _json
+
+        body_x = 27.4
+        body_w = self.page_w - body_x * 2
+        fcc_spec = next(
+            (
+                _json.loads(text) for kind, text in fcc_blocks
+                if kind == "component" and _json.loads(text).get("kind") == "fcc"
+            ),
+            {"kind": "fcc", "texts": ["", ""]},
+        )
+        inbox_title = next((text for kind, text in inbox_blocks if kind == "h1"),
+                           "WHAT'S IN THE BOX")
+        inbox_spec = next(
+            (
+                _json.loads(text) for kind, text in inbox_blocks
+                if kind == "component" and _json.loads(text).get("kind") == "inbox"
+            ),
+            None,
+        )
+        tip_spec = next(
+            (
+                _json.loads(text) for kind, text in inbox_blocks
+                if kind == "component" and _json.loads(text).get("kind") == "notice"
+            ),
+            None,
+        )
+
+        fcc_sid = f"{sid}_fcc"
+        self._single_component_story(
+            fcc_sid, "FCC notice", fcc_spec, bundle_root, body_w)
+        title_sid = f"{sid}_title"
+        self._add_story_parts(
+            title_sid, "Inbox title",
+            [self._psr("HB Capsule Text", inbox_title, terminal=True)])
+        frame_specs: list[tuple[str, str, tuple[float, float, float, float], dict]] = [
+            ("fcc", fcc_sid, (body_x, 34.0, body_w, 184.0),
+             {"fill": "Color/HB Bg K05", "rounded": True, "inset": (0, 0, 0, 0)}),
+            ("title", title_sid, (body_x, 250.0, body_w, 21.5),
+             {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (1, 5, 1, 6)}),
+        ]
+        if inbox_spec:
+            inbox_sid = f"{sid}_inbox"
+            self._single_component_story(
+                inbox_sid, "Inbox cards", inbox_spec, bundle_root, body_w)
+            frame_specs.append(
+                ("inbox", inbox_sid, (body_x, 278.0, body_w, 160.0),
+                 {"inset": (0, 0, 0, 0)})
+            )
+        if tip_spec:
+            tip_sid = f"{sid}_tip"
+            self._single_component_story(
+                tip_sid, "Inbox tip", tip_spec, bundle_root, body_w)
+            frame_specs.append(
+                ("tip", tip_sid, (body_x, 456.0, body_w, 42.0),
+                 {"inset": (0, 0, 0, 0)})
+            )
+
+        spread_id = f"sp_{page_index}"
+        page_no = page_index + 1
+        frames = []
+        for frame_id, story_id, rect, opts in frame_specs:
+            x1, y1, x2, y2 = self._page_rect(*rect)
+            frames.append(self._frame_xml(
+                f"tf_{sid}_{frame_id}", story_id, x1, y1, x2, y2, **opts))
+
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+            f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
+            f'  <Page Self="{spread_id}_pg" Name="{page_no}" '
+            'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
+            f'GeometricBounds="0 0 {self.page_h:g} {self.page_w:g}" '
+            f'ItemTransform="1 0 0 1 {-self.page_w / 2:g} {-self.page_h / 2:g}">\n'
+            '    <MarginPreference ColumnCount="1" ColumnGutter="12" '
+            f'Top="{self.m_t:g}" Bottom="{self.m_b:g}" '
+            f'Left="{self.m_l:g}" Right="{self.m_r:g}"/>\n'
+            '  </Page>\n'
+            + "".join(frames) +
+            '</Spread>\n'
+            '</idPkg:Spread>\n'
+        )
+        self.spreads.append((spread_id, xml))
+        return spread_id
+
+    def _symbol_signal_bar(self, tid: str, label: str, bundle_root: Path) -> str:
+        asset_name = f"{label.lower()}_bar.png"
+        asset = (
+            ROOT / "docs" / "templates" / "word_template" / "common_assets"
+            / "symbols" / asset_name
+        )
+        if asset.exists():
+            return ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+                    '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                    + self._image_cell_content(tid, asset, 61.2, 16.2)
+                    + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
+        return self._psr("HB Capsule Text", label, terminal=True)
+
+    def _symbols_signal_table(self, tid: str, signals: list[tuple[str, str]],
+                              width: float, bundle_root: Path,
+                              lang: str = "en") -> str:
+        copy = symbol_copy(lang)
+        rows = [(copy["symbol"], copy["meaning"], True)] + [
+            (label, text, False) for label, text in signals
+        ]
+        cols = [width * 0.24, width * 0.76]
+        cells = []
+        for ri, (left, right, header) in enumerate(rows):
+            if header:
+                left_xml = self._psr("HB Spec Label", left, terminal=True)
+                right_xml = self._psr("HB Spec Label", right, terminal=True)
+            else:
+                left_xml = self._symbol_signal_bar(f"{tid}sig{ri}", left, bundle_root)
+                right_xml = self._psr("HB Spec Value", right, terminal=True)
+            cells.append(self._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
+                                    top=3, bottom=3, left=6, right=4))
+            cells.append(self._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
+                                    top=3, bottom=3, left=7, right=5))
+        return self._component_table(tid, cols, cells, n_rows=len(rows))
+
+    def _symbols_icon_table(self, tid: str, icons: list[dict], width: float,
+                            lang: str = "en") -> str:
+        copy = symbol_copy(lang)
+        rows = [{"figure": "", "text": copy["meaning"], "header": True}] + [
+            {**row, "header": False} for row in icons
+        ]
+        cols = [width * 0.27, width * 0.73]
+        cells = []
+        for ri, row in enumerate(rows):
+            if row.get("header"):
+                left_xml = self._psr("HB Spec Label", copy["symbol"], terminal=True)
+                right_xml = self._psr("HB Spec Label", row["text"], terminal=True)
+            else:
+                fig = (ROOT / row["figure"]) if row.get("figure") else None
+                icon = ""
+                if fig and fig.exists():
+                    icon = self._image_cell_content(f"{tid}img{ri}", fig, 28.0, 28.0)
+                left_xml = (
+                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+                    '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                    + icon + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
+                right_xml = self._psr("HB Spec Value", row["text"], terminal=True)
+            cells.append(self._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
+                                    top=3, bottom=3, left=4, right=4))
+            cells.append(self._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
+                                    top=3, bottom=3, left=5, right=4))
+        return self._component_table(tid, cols, cells, n_rows=len(rows))
+
+    def _table_story(self, sid: str, title: str, table: str) -> str:
+        return self._add_story_parts(
+            sid, title,
+            ['  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
+             '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
+             + table +
+             '    <Content></Content></CharacterStyleRange>\n'
+             '  </ParagraphStyleRange>\n'])
+
+    def add_safety_symbols_page(
+        self,
+        sid: str,
+        tail_blocks: list[tuple[str, str]],
+        maintenance_blocks: list[tuple[str, str]],
+        signals: list[tuple[str, str]],
+        icons: list[dict],
+        bundle_root: Path,
+        page_index: int,
+        lang: str = "en",
+    ) -> str:
+        """V2.0 page 02: safety tail + maintenance + symbols on one page."""
+        import json as _json
+        copy = symbol_copy(lang)
+
+        tail_sids: list[str] = []
+        for bi, (kind, text) in enumerate(tail_blocks):
+            if kind != "component":
+                continue
+            spec = _json.loads(text)
+            if spec.get("kind") == "safetywarning":
+                spec = {
+                    "kind": "tailwarnbox",
+                    "label": copy["warning"],
+                    "texts": spec.get("texts", []),
+                }
+            elif spec.get("kind") == "warnbox":
+                spec = {
+                    **spec,
+                    "kind": "tailwarnbox",
+                }
+            tail_sid = f"{sid}_tail_{spec.get('label', bi).lower()}"
+            xml_part, _ = self._render_component(
+                tail_sid, bi, spec, bundle_root,
+                terminal=True, span_columns=False)
+            self._add_story_parts(tail_sid, f"Safety tail {bi}", [xml_part])
+            tail_sids.append(tail_sid)
+
+        maint_title = next((t for k, t in maintenance_blocks if k == "h1"),
+                           "USER MAINTENANCE INSTRUCTIONS")
+        maint_text = "\n".join(t for k, t in maintenance_blocks if k == "body")
+        maint_title_sid = f"{sid}_maintenance_title"
+        self._add_story_parts(
+            maint_title_sid, "Maintenance title",
+            [self._psr("HB Capsule Text", maint_title, terminal=True)])
+        maint_body_sid = f"{sid}_maintenance_body"
+        self._add_story_parts(
+            maint_body_sid, "Maintenance body",
+            [self._psr("HB Body", maint_text, terminal=True)])
+
+        symbols_title_sid = f"{sid}_symbols_title"
+        self._add_story_parts(
+            symbols_title_sid, "Symbols title",
+            [self._psr("HB Capsule Text", copy["title"], terminal=True)])
+
+        body_x = 27.4
+        body_w = self.page_w - body_x * 2
+        icon_gap = 6.0
+        icon_table_w = (body_w - icon_gap) / 2.0
+        left_icons = icons[:6]
+        right_icons = icons[6:]
+        signal_sid = f"{sid}_signals"
+        self._table_story(
+            signal_sid, "Signal words",
+            self._symbols_signal_table(
+                f"{sid}_sig_tbl", signals, body_w, bundle_root, lang))
+        left_sid = f"{sid}_icons_left"
+        self._table_story(
+            left_sid, "Symbol icons left",
+            self._symbols_icon_table(f"{sid}_icons_l_tbl", left_icons, icon_table_w, lang))
+        right_sid = f"{sid}_icons_right"
+        self._table_story(
+            right_sid, "Symbol icons right",
+            self._symbols_icon_table(
+                f"{sid}_icons_r_tbl", right_icons, icon_table_w, lang))
+
+        frame_specs = (
+            ("tail_warning", tail_sids[0] if tail_sids else "", (body_x, 18.0, body_w, 46.0),
+             {"inset": (0, 0, 0, 0)}),
+            ("tail_danger", tail_sids[1] if len(tail_sids) > 1 else "", (body_x, 68.0, body_w, 38.0),
+             {"inset": (0, 0, 0, 0)}),
+            ("maint_title", maint_title_sid, (body_x, 113.0, body_w, 16.5),
+             {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (0.5, 5, 0.5, 6)}),
+            ("maint_body", maint_body_sid, (body_x, 132.5, body_w, 34.0),
+             {"inset": (0, 0, 0, 0)}),
+            ("symbols_title", symbols_title_sid, (body_x, 173.5, body_w, 27.0),
+             {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (2, 5, 1, 6)}),
+            ("signals", signal_sid, (body_x, 211.5, body_w, 111.0),
+             {"inset": (0, 0, 0, 0)}),
+            ("icons_left", left_sid, (body_x, 329.0, icon_table_w, 179.0),
+             {"inset": (0, 0, 0, 0)}),
+            ("icons_right", right_sid, (body_x + icon_table_w + icon_gap, 329.0, icon_table_w, 179.0),
+             {"inset": (0, 0, 0, 0)}),
+        )
+
+        spread_id = f"sp_{page_index}"
+        page_no = page_index + 1
+        frames = []
+        for frame_id, story_id, rect, opts in frame_specs:
+            if not story_id:
+                continue
+            x1, y1, x2, y2 = self._page_rect(*rect)
+            frames.append(self._frame_xml(
+                f"tf_{sid}_{frame_id}", story_id, x1, y1, x2, y2, **opts))
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+            f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
+            f'  <Page Self="{spread_id}_pg" Name="{page_no}" '
+            'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
+            f'GeometricBounds="0 0 {self.page_h:g} {self.page_w:g}" '
+            f'ItemTransform="1 0 0 1 {-self.page_w / 2:g} {-self.page_h / 2:g}">\n'
+            '    <MarginPreference ColumnCount="1" ColumnGutter="12" '
+            f'Top="{self.m_t:g}" Bottom="{self.m_b:g}" '
+            f'Left="{self.m_l:g}" Right="{self.m_r:g}"/>\n'
+            '  </Page>\n'
+            + "".join(frames) +
+            '</Spread>\n'
+            '</idPkg:Spread>\n'
+        )
+        self.spreads.append((spread_id, xml))
+        return spread_id
 
     @staticmethod
     def _path_geometry(x1: float, y1: float, x2: float, y2: float) -> str:
@@ -1047,6 +1677,9 @@ def check_idml(path: Path) -> list[str]:
     issues: list[str] = []
     with zipfile.ZipFile(path) as zf:
         names = zf.namelist()
+        duplicates = sorted({name for name in names if names.count(name) > 1})
+        for name in duplicates:
+            issues.append(f"duplicate package part: {name}")
         if names[0] != "mimetype":
             issues.append("mimetype is not the first zip entry")
         info = zf.getinfo("mimetype")
@@ -1083,6 +1716,53 @@ def check_idml(path: Path) -> list[str]:
     return issues
 
 
+def split_safety_first_page(
+    blocks: list[tuple[str, str]],
+) -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
+    """Keep the V2.0 safety page-01 composition aligned with the master.
+
+    The source template places the two main ``safetytwocol`` sections on page
+    01. The trailing WARNING/DANGER boxes continue at the top of page 02 before
+    the next prose section. Split at the second ``twocol_end`` marker rather
+    than keying off copy text, so localized safety pages keep the same layout
+    contract.
+    """
+    ends = 0
+    for idx, (kind, text) in enumerate(blocks):
+        if kind == "layout" and text == "twocol_end":
+            ends += 1
+            if ends == 2:
+                return blocks[:idx + 1], blocks[idx + 1:]
+    return blocks, []
+
+
+def default_bundle_root(model: str, region: str, lang: str) -> Path:
+    """Pick the prepared RST bundle path used by the current target layout."""
+    lang_bundle = ROOT / "docs" / "_build" / model / region / lang / "rst"
+    region_bundle = ROOT / "docs" / "_build" / model / region / "rst"
+    return lang_bundle if lang_bundle.is_dir() else region_bundle
+
+
+def default_output_path(model: str, region: str, lang: str, bundle_root: Path) -> Path:
+    """Match the IDML output location to the prepared bundle layout."""
+    region_bundle = ROOT / "docs" / "_build" / model / region / "rst"
+    model_slug = model.replace("-", "").lower()
+    region_slug = region.lower()
+    try:
+        is_region_bundle = bundle_root.resolve() == region_bundle.resolve()
+    except FileNotFoundError:
+        is_region_bundle = bundle_root == region_bundle
+    if is_region_bundle:
+        return (
+            ROOT / "docs" / "_build" / model / region / "idml"
+            / f"manual_{model_slug}_{region_slug}.idml"
+        )
+    return (
+        ROOT / "docs" / "_build" / model / region / lang / "idml"
+        / f"manual_{model_slug}_{region_slug}_{lang}.idml"
+    )
+
+
 # ---------------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------------
@@ -1116,11 +1796,17 @@ def main() -> int:
     w = IdmlWriter(params)
     lcd_rows = load_lcd_rows(data_root, args.model)
     trouble_rows = load_trouble_rows(data_root, args.model, args.region)
-    sym_signals, sym_icons = load_symbols_rows(data_root)
     spec_annotations = load_spec_annotations(data_root, args.model, args.region)
+    symbol_cache: dict[str, tuple[list[tuple[str, str]], list[dict]]] = {}
+
+    def symbol_rows_for(lang: str) -> tuple[list[tuple[str, str]], list[dict]]:
+        lang = normalize_lang(lang)
+        if lang not in symbol_cache:
+            symbol_cache[lang] = load_symbols_rows(data_root, lang)
+        return symbol_cache[lang]
 
     bundle_root = Path(args.bundle_root) if args.bundle_root else (
-        ROOT / "docs" / "_build" / args.model / args.region / args.lang / "rst")
+        default_bundle_root(args.model, args.region, args.lang))
     tags = {
         "latex",
         f"region_{args.region.lower()}",
@@ -1133,22 +1819,66 @@ def main() -> int:
 
     def chain(story_id: str, est_h: float, columns: int = 1) -> None:
         nonlocal page_cursor
-        # a two-column frame holds twice the height; keep a 1.2 safety factor
-        # so underestimates surface as overset (one drag) instead of blanks
-        pages = w.pages_for_height(est_h * 1.2 / max(1, columns))
+        # A two-column frame holds twice the height. Do not add an extra
+        # safety multiplier here: when the estimate already fits, that creates
+        # trailing blank linked frames in InDesign.
+        pages = w.pages_for_height(est_h / max(1, columns))
         w.add_spread_chain(story_id, pages, page_cursor, columns=columns)
         page_cursor += pages
 
-    DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_",
-                  "symbols": "symbols_"}
+    DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_"}
     ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
     if not ordered:
         print(f"[export-idml] NOTE: no prepared bundle at {bundle_root}; "
               "exporting data pages only (run `build.py rst` first for full prose)")
 
     emitted = {"spec": False, "lcd": False, "trouble": False, "symbols": False}
+    pending_prefix_blocks: list[tuple[str, str]] = []
+    pending_fcc_blocks: list[tuple[str, str]] = []
+    pending_fcc_title = ""
+
+    def page_lang(page: Path) -> str:
+        try:
+            text = page.read_text(encoding="utf-8")
+        except OSError:
+            text = ""
+        match = re.search(r"\\HBApplyLang\{([^}]+)\}", text)
+        if match:
+            return normalize_lang(match.group(1))
+        suffix = page.stem.rsplit("_", 1)[-1]
+        return normalize_lang(suffix if len(suffix) <= 5 else args.lang)
+
+    def page_stem_has(page: Path, suffix: str) -> bool:
+        return page.stem == suffix or page.stem.endswith("_" + suffix)
+
+    def slug_stem(stem: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "_", stem.lower()).strip("_")
+
+    def flush_pending_prefix() -> None:
+        nonlocal pending_prefix_blocks, prose_pages
+        if not pending_prefix_blocks:
+            return
+        sid = f"st_pending_{page_cursor}"
+        _, est = w.add_prose_story(sid, sid, pending_prefix_blocks, bundle_root)
+        chain(sid, est)
+        prose_pages += 1
+        pending_prefix_blocks = []
+
+    def flush_pending_fcc() -> None:
+        nonlocal pending_fcc_blocks, pending_fcc_title, prose_pages
+        if not pending_fcc_blocks:
+            return
+        sid = "st_" + slug_stem(pending_fcc_title or f"fcc_{page_cursor}")
+        _, est = w.add_prose_story(
+            sid, pending_fcc_title or sid, pending_fcc_blocks, bundle_root)
+        chain(sid, est)
+        prose_pages += 1
+        pending_fcc_blocks = []
+        pending_fcc_title = ""
 
     def emit_data_page(kind: str) -> None:
+        flush_pending_fcc()
+        flush_pending_prefix()
         if emitted[kind]:
             return
         emitted[kind] = True
@@ -1161,11 +1891,17 @@ def main() -> int:
         elif kind == "trouble" and trouble_rows:
             sid = w.add_trouble_story(trouble_rows)
             chain(sid, 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in trouble_rows))
-        elif kind == "symbols" and (sym_signals or sym_icons):
-            sid = w.add_symbols_story(sym_signals, sym_icons, data_root)
+        elif kind == "symbols":
+            sym_signals, sym_icons = symbol_rows_for(args.lang)
+            if not (sym_signals or sym_icons):
+                return
+            sid = w.add_symbols_story(sym_signals, sym_icons, data_root, args.lang)
             chain(sid, 16.0 + 14.0 * len(sym_signals) + 26.0 * len(sym_icons))
 
     for page in ordered:
+        if page.name.startswith("symbols_") and emitted["symbols"] \
+                and not pending_prefix_blocks and not pending_fcc_blocks:
+            continue
         matched = next((k for k, prefix in DATA_PAGES.items()
                         if page.name.startswith(prefix)), None)
         if matched:
@@ -1173,10 +1909,73 @@ def main() -> int:
             continue
         res = extract_page(page, tags)
         skipped_raw += res.skipped_raw
-        if not res.blocks:
+        blocks = res.blocks
+        if pending_prefix_blocks and "user_maintenance" in page.stem:
+            lang = page_lang(page)
+            sym_signals, sym_icons = symbol_rows_for(lang)
+            if not (sym_signals or sym_icons):
+                flush_pending_fcc()
+                blocks = pending_prefix_blocks + blocks
+                pending_prefix_blocks = []
+            else:
+                sid = "st_safety_symbols_" + re.sub(
+                    r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
+                w.add_safety_symbols_page(
+                    sid, pending_prefix_blocks, blocks, sym_signals, sym_icons,
+                    bundle_root, page_cursor, lang)
+                emitted["symbols"] = True
+                pending_prefix_blocks = []
+                page_cursor += 1
+                prose_pages += 1
+                continue
+        if pending_fcc_blocks and page_stem_has(page, "02_whats_in_the_box"):
+            sid = "st_fcc_inbox_" + slug_stem(page.stem)
+            w.add_fcc_inbox_page(
+                sid, pending_fcc_blocks, blocks, bundle_root, page_cursor)
+            pending_fcc_blocks = []
+            pending_fcc_title = ""
+            page_cursor += 1
+            prose_pages += 1
+            continue
+        flush_pending_fcc()
+        if page_stem_has(page, "01_fcc"):
+            flush_pending_prefix()
+            if blocks:
+                pending_fcc_blocks = blocks
+                pending_fcc_title = page.stem
+            continue
+        if page.name.startswith("symbols_"):
+            if emitted["symbols"]:
+                continue
+            lang = page_lang(page)
+            sym_signals, sym_icons = symbol_rows_for(lang)
+            if pending_prefix_blocks and (sym_signals or sym_icons):
+                sid = "st_safety_symbols_" + re.sub(
+                    r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
+                w.add_safety_symbols_page(
+                    sid, pending_prefix_blocks, [], sym_signals, sym_icons,
+                    bundle_root, page_cursor, lang)
+                emitted["symbols"] = True
+                pending_prefix_blocks = []
+                page_cursor += 1
+                prose_pages += 1
+                continue
+            emit_data_page("symbols")
+            continue
+        if pending_prefix_blocks:
+            blocks = pending_prefix_blocks + blocks
+            pending_prefix_blocks = []
+        if not blocks:
+            continue
+        if page.name.startswith("safety_") and res.twocol:
+            blocks, pending_prefix_blocks = split_safety_first_page(blocks)
+            sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
+            w.add_safety_page(sid, page.stem, blocks, bundle_root, page_cursor)
+            page_cursor += 1
+            prose_pages += 1
             continue
         sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
-        _, est = w.add_prose_story(sid, page.stem, res.blocks, bundle_root)
+        _, est = w.add_prose_story(sid, page.stem, blocks, bundle_root)
         chain(sid, est, columns=2 if res.twocol else 1)
         prose_pages += 1
 
@@ -1184,9 +1983,8 @@ def main() -> int:
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind)
 
-    tag = f"manual_{args.model.replace('-', '').lower()}_{args.region.lower()}_{args.lang}"
     out = Path(args.out) if args.out else (
-        ROOT / "docs" / "_build" / args.model / args.region / args.lang / "idml" / f"{tag}.idml")
+        default_output_path(args.model, args.region, args.lang, bundle_root))
     w.write(out)
     issues = check_idml(out)
     for i in issues:

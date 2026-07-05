@@ -94,6 +94,26 @@ class TestBuildDispatch(unittest.TestCase):
 
         self.assertEqual(("maybe-sync-review", "fast", {"source_override": "runtime"}), calls[1])
 
+    def test_dispatch_idml_should_prepare_bundle_before_export(self) -> None:
+        calls = self._dispatch("idml")
+
+        self.assertEqual(("ensure", "idml"), calls[0])
+        self.assertEqual(
+            (
+                "build-docs",
+                "idml",
+                {
+                    "action_override": "rst",
+                    "source_override": "runtime",
+                },
+            ),
+            calls[1],
+        )
+        self.assertEqual(("run-checked", ("build-docs",)), calls[2])
+        self.assertEqual(calls[3][0], "run-checked")
+        self.assertTrue(calls[3][1][1].endswith("tools/export_idml.py"))
+        self.assertIn("--data-root", calls[3][1])
+
     def _dispatch(self, action: str) -> list[tuple]:
         args = SimpleNamespace(action=action, data_root="data/phase2", model="JE-1000F", region="US")
         calls: list[tuple] = []
