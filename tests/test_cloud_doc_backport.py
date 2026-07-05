@@ -1660,6 +1660,64 @@ class BaselineDiffTests(unittest.TestCase):
             # the Class R edit landed in the page RST (guarded apply matched the prose)
             self.assertIn("FR IMPORTANT test", preface.read_text(encoding="utf-8"))
 
+    def test_baseline_write_run_stamps_applied_page_into_ledger(self) -> None:
+        # The ledger row must carry the _review page the delta landed on plus the
+        # doc-level lang — a source-less row can never be reconciled (it reads as
+        # source_missing forever) and a lang-less row can never emit TM candidates.
+        # Fresh rows stay pending: their PR has not merged yet.
+        with tempfile.TemporaryDirectory() as tmp:
+            page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            preface = page_dir / "00_preface.rst"
+            preface.write_text("**FR IMPORTANT**\n\nKeep this manual handy.\n", encoding="utf-8")
+            ledger = Path(tmp) / "ledger.jsonl"
+            out_dir = Path(tmp) / "out"
+            args = SimpleNamespace(
+                cloud_doc="https://example.feishu.cn/wiki/doc-ledger", run_id="ledger-attrib",
+                out=str(out_dir), lark_cli="lark-cli", write=True, push=False,
+                doc_name="manual_je1000f_us_en_1.0", lang=None, data_root=None,
+                git_bin="git", remote="origin",
+            )
+            edited = "**FR IMPORTANT test**\n\nKeep this manual handy.\n"
+            with patch("tools.cloud_doc_backport_orchestration.fetch_doc_text", return_value=edited), \
+                 patch.dict(os.environ, {_LEDGER_ENV: str(ledger)}):
+                rc = _run_review_branch_baseline(
+                    args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                    worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-ledger",
+                    baseline_text="**FR IMPORTANT**\n\nKeep this manual handy.\n",
+                )
+            self.assertEqual(rc, 0)
+            from tools.revision_ledger import load_ledger
+
+            rows = [r for r in load_ledger(ledger) if r["route_class"] == "repo_review_text"]
+            self.assertTrue(rows)
+            self.assertEqual(rows[0]["source_path"], "docs/_review/JE-1000F/US/page/00_preface.rst")
+            self.assertEqual(rows[0]["model"], "JE-1000F")
+            self.assertEqual(rows[0]["region"], "US")
+            self.assertEqual(rows[0]["lang"], "en")
+            self.assertEqual(rows[0]["final_status"], "pending")
+
+    def test_baseline_dry_run_does_not_ingest_into_ledger(self) -> None:
+        # Dry-run rows could never gain a source path, and the row_key dedup would
+        # then block the enriched write-run rows — so only write runs ingest.
+        with tempfile.TemporaryDirectory() as tmp:
+            ledger = Path(tmp) / "ledger.jsonl"
+            out_dir = Path(tmp) / "out"
+            args = SimpleNamespace(
+                cloud_doc="https://example.feishu.cn/wiki/doc-dry", run_id="ledger-dry",
+                out=str(out_dir), lark_cli="lark-cli", write=False, push=False,
+                doc_name="manual_je1000f_us_en_1.0", lang=None, data_root=None,
+            )
+            with patch("tools.cloud_doc_backport_orchestration.fetch_doc_text", return_value="edited text\n"), \
+                 patch.dict(os.environ, {_LEDGER_ENV: str(ledger)}):
+                rc = _run_review_branch_baseline(
+                    args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                    worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-dry",
+                    baseline_text="baseline text\n",
+                )
+            self.assertEqual(rc, 0)
+            self.assertFalse(ledger.exists())
+
     def test_seed_baseline_cursor_advances_on_full_apply(self) -> None:
         # design §6: on a FULL apply (all deltas pure Class R, all applied) against a
         # .backport/ SEED baseline, advance the cursor -> rewrite the seed to C_now so the
@@ -2182,6 +2240,27 @@ class LedgerIngestHookTests(unittest.TestCase):
             rows = load_ledger(ledger)
             self.assertEqual(len(rows), 1)
             self.assertEqual(rows[0]["delta_hash"], "hook-hash")
+
+    def test_fresh_rows_stay_pending_then_settle_on_the_next_round(self) -> None:
+        # Round N ingests its rows but must not judge them against the same
+        # unmerged tree that produced them; round N+1's piggyback settles them.
+        from tools.cloud_doc_backport_orchestration import _ledger_ingest_best_effort
+        from tools.revision_ledger import load_ledger
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            review = root / "docs/_review/JE-1000F/US/en/page/x.rst"
+            review.parent.mkdir(parents=True)
+            review.write_text("new\n", encoding="utf-8")
+            report = self._diff_report()
+            ledger = Path(td) / "ledger.jsonl"
+            with patch.dict(os.environ, {_LEDGER_ENV: str(ledger)}):
+                _ledger_ingest_best_effort(report, root=root)
+                self.assertEqual(load_ledger(ledger)[0]["final_status"], "pending")
+                _ledger_ingest_best_effort(report, root=root)
+                self.assertEqual(
+                    load_ledger(ledger)[0]["final_status"], "accepted_as_proposed"
+                )
 
     def test_env_off_disables_the_hook(self) -> None:
         from tools.cloud_doc_backport_orchestration import _ledger_ingest_best_effort

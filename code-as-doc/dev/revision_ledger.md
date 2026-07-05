@@ -31,6 +31,24 @@ below). The ledger is a local artifact, so this per-round piggyback — not a CI
 workflow — is the merge-time trigger: each backport round settles the previous
 round's rows without a separately remembered step. `--no-reconcile` opts out.
 
+The in-flow hook (`run-review-branch --write`) differs from the manual CLI in
+three ways, all so a row can actually leave `pending`:
+
+- it ingests **after** the guarded apply and stamps each applied delta with the
+  `_review` page it landed on (`applied_source_path`) plus the doc-level
+  language — a source-less row reads as `source_missing` forever and a
+  lang-less row can never emit TM candidates;
+- its piggyback reconcile runs against the **review-branch worktree** (the
+  `_review` sources exist only there) and **excludes the rows it just wrote**:
+  their PR has not merged yet, so they settle on the next round, not against
+  the same unmerged tree that produced them;
+- dry runs do not ingest at all — a dry-run row could never gain a source path,
+  and the `row_key` de-dup would then block the enriched write-run row.
+
+The manual CLI keeps the reconcile-everything behavior: ingesting a report
+after its PR merged (backfill) is exactly the case where fresh rows should
+settle immediately.
+
 ### reconcile
 
 `reconcile` runs after the review PR merges / the source-table sync applies. It

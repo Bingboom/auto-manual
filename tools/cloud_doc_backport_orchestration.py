@@ -44,13 +44,22 @@ from tools.utils.path_utils import get_paths  # noqa: E402
 REVISION_LEDGER_ENV = "AUTO_MANUAL_REVISION_LEDGER_PATH"
 
 
-def _ledger_ingest_best_effort(report: dict[str, Any]) -> None:
+def _ledger_ingest_best_effort(
+    report: dict[str, Any],
+    *,
+    root: Path | None = None,
+    default_lang: str | None = None,
+) -> None:
     """Feed a diff report into the revision ledger without risking the run.
 
     This is the G1 closed-loop wiring: every review-branch backport round both
     records its deltas and (via the ledger's ingest piggyback semantics)
-    settles earlier rounds' pending rows. Observability must never fail the
-    backport itself, so every failure degrades to a stderr note.
+    settles earlier rounds' pending rows. ``root`` must be the review-branch
+    worktree — the ``_review`` sources the rows point at exist only there, not
+    in the main checkout. The rows written by this very call are excluded from
+    the piggyback reconcile (their PR has not merged yet); they settle on the
+    next round. Observability must never fail the backport itself, so every
+    failure degrades to a stderr note.
     """
     target = os.environ.get(REVISION_LEDGER_ENV, "").strip()
     if target.lower() == "off":
@@ -59,8 +68,13 @@ def _ledger_ingest_best_effort(report: dict[str, Any]) -> None:
         from tools.revision_ledger import default_ledger_path, ingest_report, reconcile
 
         ledger_path = Path(target) if target else default_ledger_path()
-        ingest_report(report, ledger_path=ledger_path)
-        reconcile(ledger_path, root=get_paths().root, auto_merge_meta=True)
+        summary = ingest_report(report, ledger_path=ledger_path, default_lang=default_lang)
+        reconcile(
+            ledger_path,
+            root=root or get_paths().root,
+            auto_merge_meta=True,
+            skip_row_keys=set(summary.get("row_keys") or ()),
+        )
     except Exception as exc:  # noqa: BLE001 - ledger is observability, not the job
         print(f"cloud-doc-backport: revision-ledger ingest skipped: {exc}", file=sys.stderr)
 from tools.cloud_doc_backport_pr import (  # noqa: E402,F401
@@ -634,7 +648,6 @@ def _run_review_branch_baseline(
         print(f"cloud-doc-backport: {exc}", file=sys.stderr)
         return 2
     written = write_reports(report, out_dir)
-    _ledger_ingest_best_effort(report)
     # Emit the actionable Class D / Class T artifacts (parity with the per-page run-review
     # worker). The blessed baseline path classifies these deltas but previously wrote only
     # the diff report, so the operator had nothing to feed `apply-source-table` (which reads
@@ -684,6 +697,7 @@ def _run_review_branch_baseline(
     # corrupted apply. A failure blocks the cursor advance and the PR push (the worktree is
     # left for inspection) — so a backport PR is only ever opened from a verified-clean apply.
     all_deltas = report.get("deltas") or []
+    delta_pages: dict[str, str] = {}
     gate_pages: list[dict[str, Any]] = []
     gate_passed = True
     if args.write and review_bound:
@@ -700,8 +714,11 @@ def _run_review_branch_baseline(
                 if op.get("status") == "applied" and op.get("delta_hash")
             }
             applied_hashes |= page_applied
+            page_rel = f"{review_dir}/{page.relative_to(bundle_root).as_posix()}"
+            for delta_hash in page_applied:
+                delta_pages[delta_hash] = page_rel
             if apply_rep["summary"].get("changed"):
-                changed_rels.append(f"{review_dir}/{page.relative_to(bundle_root).as_posix()}")
+                changed_rels.append(page_rel)
                 gate = _rebuild_rediff_gate(
                     baseline_text=pre_text,
                     edited_text=page.read_text(encoding="utf-8"),
@@ -738,6 +755,19 @@ def _run_review_branch_baseline(
                     "frozen — re-snapshot it to advance the cursor (operator follow-up). "
                     "Re-runs re-report (idempotent)."
                 )
+    # Ledger ingest runs on write runs only, AFTER the apply: each applied delta is
+    # stamped with the _review page it landed on, which is what lets reconcile ever
+    # settle the row (a source-less row is source_missing forever). Dry runs do not
+    # ingest — their rows could never gain a source path, and the row_key dedup
+    # would then block the enriched write-run rows.
+    if args.write:
+        for delta in all_deltas:
+            page_rel = delta_pages.get(str(delta.get("delta_hash")))
+            if page_rel:
+                delta["applied_source_path"] = page_rel
+        _ledger_ingest_best_effort(
+            report, root=Path(worktree), default_lang=getattr(args, "lang", None) or None
+        )
     pushed = False
     backport_pr_url = ""
     if args.write and args.push and changed_rels and not gate_passed:
