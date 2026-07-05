@@ -209,19 +209,62 @@ def footnote_record_id_to_id_map(raw_records: list[dict[str, Any]]) -> dict[str,
     return mapping
 
 
-def record_id_from_ref_token(token: str) -> str | None:
-    raw = (token or "").strip()
+# A Feishu record id is `rec` + base62 (no underscores/spaces), always long. A
+# business Footnote_id that merely starts with "rec" (e.g. `recharge_time`,
+# `recycle_note`) must NOT be mistaken for one, or it is collected as an
+# unresolvable linked-record ref and aborts the whole sync.
+_FEISHU_RECORD_ID_RE = re.compile(r"^rec[A-Za-z0-9]{10,}$")
+
+
+def _iter_footnote_ref_tokens(value: str) -> list[Any]:
+    """Split a footnote-ref cell into tokens (a linked-record dict or a literal id str).
+
+    A linked-record cell arrives as ``", ".join(json.dumps(item))`` (see
+    ``_coerce_scalar``), which is a JSON array once wrapped in ``[]``. Parsing the
+    whole cell that way keeps a multi-key ``{"id": ..., "text": ...}`` dict intact
+    — a bare comma split shreds it into invalid ``{"id": ...`` / ``"text": ...}``
+    fragments and silently drops the ref. A plain cell (comma-separated literal
+    Footnote_ids) falls back to comma splitting.
+    """
+    raw = (value or "").strip()
+    if not raw:
+        return []
+    if raw[:1] in "[{":
+        candidate = raw if raw[:1] == "[" else "[" + raw + "]"
+        try:
+            parsed = json.loads(candidate)
+        except json.JSONDecodeError:
+            parsed = None
+        if isinstance(parsed, list):
+            return parsed
+        if isinstance(parsed, dict):
+            return [parsed]
+    return [token.strip() for token in raw.split(",") if token.strip()]
+
+
+def record_id_from_ref_token(token: Any) -> str | None:
+    """The Feishu record id a token points at, or None for a literal Footnote_id.
+
+    A token is a linked-record dict (``{"id": "rec…", ...}``) or a string. A bare
+    string is a record id only if it matches the Feishu record-id shape, so a
+    literal Footnote_id is never misread as a broken record ref.
+    """
+    if isinstance(token, dict):
+        record_id = str(token.get("id") or "").strip()
+        return record_id or None
+    raw = str(token or "").strip()
     if not raw:
         return None
-    if raw.startswith("rec"):
+    if _FEISHU_RECORD_ID_RE.match(raw):
         return raw
-    try:
-        payload = json.loads(raw)
-    except json.JSONDecodeError:
-        return None
-    if isinstance(payload, dict):
-        record_id = str(payload.get("id") or "").strip()
-        return record_id or None
+    if raw[:1] == "{":  # defensive: a JSON object handed in as a raw string
+        try:
+            payload = json.loads(raw)
+        except json.JSONDecodeError:
+            return None
+        if isinstance(payload, dict):
+            record_id = str(payload.get("id") or "").strip()
+            return record_id or None
     return None
 
 
@@ -229,7 +272,7 @@ def collect_footnote_record_id_refs(rows: list[dict[str, str]]) -> list[str]:
     refs: list[str] = []
     for row in rows:
         for column in FOOTNOTE_REF_COLUMNS:
-            for token in str(row.get(column) or "").split(","):
+            for token in _iter_footnote_ref_tokens(str(row.get(column) or "")):
                 record_id = record_id_from_ref_token(token)
                 if record_id and record_id not in refs:
                     refs.append(record_id)
@@ -242,11 +285,12 @@ def normalize_footnote_ref_value(value: str, mapping: dict[str, str]) -> str:
         return value
 
     refs: list[str] = []
-    for token in raw.split(","):
-        item = token.strip()
-        if not item:
-            continue
-        mapped = mapping.get(record_id_from_ref_token(item) or "", item)
+    for token in _iter_footnote_ref_tokens(raw):
+        record_id = record_id_from_ref_token(token)
+        if record_id is not None:
+            mapped = mapping.get(record_id, record_id)
+        else:
+            mapped = token if isinstance(token, str) else str(token)
         if mapped not in refs:
             refs.append(mapped)
     return ", ".join(refs)
