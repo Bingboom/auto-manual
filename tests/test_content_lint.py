@@ -9,7 +9,7 @@ import io
 import json
 import tempfile
 import unittest
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
 from tools.content_lint import (
@@ -135,6 +135,19 @@ class ContentLintTest(unittest.TestCase):
             _write(root, "lcd_icons_blocks.csv", ["icon_en", "icon_desc_it"],
                    [{"icon_en": "TOU", "icon_desc_it": "On: abilitata."}])
             self.assertEqual(main(["--data-root", str(root)]), 1)
+
+    def test_main_rejects_unsupported_lang_cleanly(self) -> None:
+        # A --langs value the suffix maps can't resolve (e.g. the shipped ja line)
+        # must exit non-zero with a clear message, not crash with a KeyError.
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _status_words(root)
+            stderr = io.StringIO()
+            with redirect_stderr(stderr):
+                exit_code = main(["--data-root", str(root), "--langs", "ja"])
+            self.assertEqual(exit_code, 2)
+            self.assertIn("unsupported --langs", stderr.getvalue())
+            self.assertIn("ja", stderr.getvalue())
 
     def test_main_json_output_is_machine_readable(self) -> None:
         with tempfile.TemporaryDirectory() as td:
