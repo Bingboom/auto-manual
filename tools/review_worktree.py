@@ -20,10 +20,15 @@ is unit-testable without a real repo.
 from __future__ import annotations
 
 import subprocess
+import sys
 from pathlib import Path, PurePosixPath
 from typing import Callable
 
 RunGit = Callable[[list[str]], str]
+
+
+def _default_printer(message: str) -> None:
+    print(message, file=sys.stderr)
 
 
 def worktree_dirname(git_ref: str) -> str:
@@ -108,31 +113,49 @@ def ensure_review_worktree(
     git_bin: str = "git",
     run_git: RunGit | None = None,
     sparse_paths: list[str] | None = None,
+    printer: Callable[[str], None] | None = None,
 ) -> str:
     """Return the path to a worktree checked out on ``git_ref``, creating it if
     needed (idempotent). Fetches ``remote/git_ref`` before adding the worktree.
 
-    When ``sparse_paths`` is given the checkout is shrunk to a **cone-mode
-    sparse-checkout** limited to those directories (e.g.
-    ``docs/_review/<model>/<region>``), so it keeps only the review tree (plus the
-    small cone of ancestor root files) instead of the whole repo. An
-    already-existing worktree is reused as-is and not re-sparsified.
+    A **reused** worktree is refreshed to the freshly-fetched ``remote/git_ref``
+    so a backport never diffs/applies against a review branch that has advanced
+    on the remote since the worktree was created — but only when the worktree is
+    clean; if it carries uncommitted changes it is reused as-is with a warning,
+    so in-progress work is never discarded.
+
+    A **new** worktree is created with ``worktree add -B`` from ``remote/git_ref``,
+    so it starts at the latest remote content AND on a real branch (a later run
+    can re-find it; the old ``--detach`` fallback produced a worktree that
+    ``parse_worktree_for_ref`` could not match, so the next run's ``worktree add``
+    on the same path hard-failed).
+
+    When ``sparse_paths`` is given the new checkout is shrunk to a **cone-mode
+    sparse-checkout** of just those directories (e.g.
+    ``docs/_review/<model>/<region>``) plus the small cone of ancestor root files.
+    An already-existing worktree is not re-sparsified.
     """
     if not str(git_ref or "").strip():
         raise RuntimeError("git_ref is required")
     runner = run_git or _default_run_git(Path(repo_root), git_bin)
+    emit = printer or _default_printer
+    remote_ref = f"{remote}/{git_ref}"
     existing = parse_worktree_for_ref(runner(["worktree", "list", "--porcelain"]), git_ref)
     if existing:
+        runner(["fetch", remote, git_ref])
+        if runner(["-C", existing, "status", "--porcelain"]).strip():
+            emit(
+                f"[worktree] {existing} has uncommitted changes; reusing as-is without "
+                f"refreshing to {remote_ref}. Inspect it if a backport looks stale."
+            )
+        else:
+            runner(["-C", existing, "reset", "--hard", remote_ref])
         return existing
     runner(["fetch", remote, git_ref])
     worktrees_root = Path(worktrees_root)
     worktrees_root.mkdir(parents=True, exist_ok=True)
     path = worktrees_root / worktree_dirname(git_ref)
-    try:
-        runner(["worktree", "add", str(path), git_ref])
-    except RuntimeError:
-        # Local branch absent / not DWIM-able: attach detached from the remote ref.
-        runner(["worktree", "add", "--detach", str(path), f"{remote}/{git_ref}"])
+    runner(["worktree", "add", "-B", git_ref, str(path), remote_ref])
     if sparse_paths:
         # Shrink the full checkout to a cone-mode sparse-checkout of just the review
         # tree (+ the small cone of ancestor root files) — e.g. 250M -> ~1M.

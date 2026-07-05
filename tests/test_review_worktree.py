@@ -80,25 +80,44 @@ class ParseWorktreeTests(unittest.TestCase):
 
 
 class _FakeGit:
-    def __init__(self, list_output: str = "") -> None:
+    def __init__(self, list_output: str = "", status_output: str = "") -> None:
         self.calls: list[list[str]] = []
         self.list_output = list_output
+        self.status_output = status_output
 
     def __call__(self, args: list[str]) -> str:
         self.calls.append(args)
         if args[:2] == ["worktree", "list"]:
             return self.list_output
+        if "status" in args and "--porcelain" in args:
+            return self.status_output
         return ""
 
 
 class EnsureWorktreeTests(unittest.TestCase):
-    def test_reuses_existing_worktree(self) -> None:
-        fake = _FakeGit("worktree /wt/review-eu\nbranch refs/heads/codex/r1\n")
+    def test_reuses_and_refreshes_clean_existing_worktree(self) -> None:
+        fake = _FakeGit("worktree /wt/review-eu\nbranch refs/heads/codex/r1\n")  # clean status
         with tempfile.TemporaryDirectory() as tmp:
             path = ensure_review_worktree("codex/r1", worktrees_root=tmp, run_git=fake)
         self.assertEqual(path, "/wt/review-eu")
-        # no fetch / add when it already exists
-        self.assertTrue(all(call[:1] != ["fetch"] and call[:2] != ["worktree", "add"] for call in fake.calls))
+        # a clean reuse fetches and fast-forwards to the remote ref, never adds a worktree
+        self.assertIn(["fetch", "origin", "codex/r1"], fake.calls)
+        self.assertIn(["-C", "/wt/review-eu", "reset", "--hard", "origin/codex/r1"], fake.calls)
+        self.assertTrue(all(call[:2] != ["worktree", "add"] for call in fake.calls))
+
+    def test_reuse_of_dirty_worktree_warns_and_does_not_reset(self) -> None:
+        fake = _FakeGit(
+            "worktree /wt/review-eu\nbranch refs/heads/codex/r1\n",
+            status_output=" M docs/_review/JE-1000F/EU/page/00_preface.rst\n",
+        )
+        warnings: list[str] = []
+        with tempfile.TemporaryDirectory() as tmp:
+            path = ensure_review_worktree(
+                "codex/r1", worktrees_root=tmp, run_git=fake, printer=warnings.append
+            )
+        self.assertEqual(path, "/wt/review-eu")
+        self.assertTrue(all(call[:2] != ["reset", "--hard"] and "reset" not in call for call in fake.calls))
+        self.assertTrue(any("uncommitted changes" in w for w in warnings))
 
     def test_creates_when_missing(self) -> None:
         fake = _FakeGit("")  # no existing worktrees
@@ -108,7 +127,10 @@ class EnsureWorktreeTests(unittest.TestCase):
         self.assertIn(["fetch", "origin", "codex/r1"], fake.calls)
         add_calls = [c for c in fake.calls if c[:2] == ["worktree", "add"]]
         self.assertTrue(add_calls)
-        self.assertNotIn("--no-checkout", add_calls[0])  # full checkout when no sparse_paths
+        # -B from the remote ref: fresh, non-stale, on a re-findable branch
+        self.assertIn("-B", add_calls[0])
+        self.assertIn("origin/codex/r1", add_calls[0])
+        self.assertNotIn("--no-checkout", add_calls[0])
 
     def test_creates_sparse_when_paths_given(self) -> None:
         fake = _FakeGit("")
