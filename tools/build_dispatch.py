@@ -33,7 +33,7 @@ class DispatchContext:
     run_diff_report: Callable[[argparse.Namespace], None]
     release_manifest_command: Callable[[argparse.Namespace], list[str]]
     clean_build_artifacts: Callable[[Path], None]
-    maybe_sync_review_before_build: Callable[[argparse.Namespace], None]
+    maybe_sync_review_before_build: Callable[..., None]
 
 
 ActionHandler = Callable[[argparse.Namespace, DispatchContext], None]
@@ -131,7 +131,14 @@ def _dispatch_clean_action(args: argparse.Namespace, context: DispatchContext) -
 
 
 def _dispatch_build_action(args: argparse.Namespace, context: DispatchContext) -> None:
-    context.maybe_sync_review_before_build(args)
+    # `fast` forces a runtime-source, no-clean build (build_docs_command), so its
+    # effective source is runtime. Tell the review pre-sync that too, or it gates
+    # on the raw --source (default auto) and runs a --clean RST rebuild + a
+    # docs/_review params rewrite as an unexpected side effect of a "quick" build.
+    if args.action == "fast":
+        context.maybe_sync_review_before_build(args, source_override="runtime")
+    else:
+        context.maybe_sync_review_before_build(args)
     context.run_checked(context.build_docs_command(args))
 
 
