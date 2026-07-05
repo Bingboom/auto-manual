@@ -110,7 +110,7 @@
     </Cell>
     <Cell Self="tbl_spec1c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Charge Mode: 100V-120V~60Hz, 15A Max</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Bypass Mode: 100V-120V~60Hz, 12A Max</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Charge Mode: 100V-120V~60Hz, 15A Max</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Bypass Mode①: 100V-120V~60Hz, 12A Max</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_spec1c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
@@ -226,7 +226,7 @@
     <Br/></CharacterStyleRange>
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Note">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Note">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>* USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.</Content></CharacterStyleRange>

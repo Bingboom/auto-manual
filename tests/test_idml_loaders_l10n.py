@@ -77,3 +77,34 @@ class LocalizedLoaderTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FootnoteMarkerTests(unittest.TestCase):
+    """Spec footnote ① markers — parity with the PDF renderer."""
+
+    def test_marker_function_matches_the_pdf_renderer(self) -> None:
+        from tools.csv_pages.renderers_spec_parser import (
+            _footnote_marker_for_order as pdf_marker,
+        )
+        from tools.idml.loaders import _footnote_marker_for_order as idml_marker
+
+        for order in (0, 1, 2, 5, 10, 11, 12):
+            self.assertEqual(idml_marker(order), pdf_marker(order), order)
+
+    def test_referencing_cell_carries_the_marker(self) -> None:
+        sections = load_spec_sections(FIXTURES, "JE-1000F", "US")
+        cells = [line for s in sections for _, line in s["rows"]]
+        self.assertTrue(any("Bypass Mode①" in cell for cell in cells), cells)
+
+    def test_footnote_line_carries_marker_and_notes_stay_plain(self) -> None:
+        annotations = load_spec_annotations(FIXTURES, "JE-1000F", "US")
+        self.assertTrue(annotations[0].startswith("① "), annotations[0])
+        self.assertTrue(any(a.startswith("※") for a in annotations), annotations)
+
+    def test_markers_scope_to_the_target(self) -> None:
+        from tools.idml.loaders import load_footnote_markers
+
+        self.assertEqual(load_footnote_markers(FIXTURES, "JE-1000F", "US"),
+                         {"ac_bypass": "①"})
+        jp = load_footnote_markers(FIXTURES, "JE-1000F", "JP")
+        self.assertEqual(jp, {"max_charge_power": "①", "ac_bypass": "②"})

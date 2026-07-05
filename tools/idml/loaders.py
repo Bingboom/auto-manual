@@ -7,6 +7,7 @@ localized snapshot columns.
 from __future__ import annotations
 
 import csv
+import re
 from pathlib import Path
 
 SYMBOL_COPY = {
@@ -74,6 +75,69 @@ def _localized_cell(row: dict, base: str, lang: str | None,
     return ""
 
 
+# Footnote ① markers — MIRRORS tools/csv_pages/renderers_spec_parser.py
+# (_footnote_marker_for_order / _parse_footnote_refs / _append_footnote_markers),
+# parity is test-enforced so the IDML spec page can never drift from the PDF.
+_CIRCLED_NUMBER_MARKERS = {
+    1: "\u2460", 2: "\u2461", 3: "\u2462", 4: "\u2463", 5: "\u2464",
+    6: "\u2465", 7: "\u2466", 8: "\u2467", 9: "\u2468", 10: "\u2469",
+}
+_LEGACY_FOOTNOTE_PREFIX_RE = re.compile(r"^(?:[\u2460-\u2473]|\(\d+\)|\d+\.)\s*")
+
+
+def _footnote_marker_for_order(order: float) -> str:
+    normalized = int(order)
+    if normalized <= 0:
+        return ""
+    return _CIRCLED_NUMBER_MARKERS.get(normalized, f"({normalized})")
+
+
+def _parse_footnote_refs(value: str) -> list[str]:
+    refs: list[str] = []
+    for token in (value or "").split(","):
+        item = token.strip()
+        if item and item not in refs:
+            refs.append(item)
+    return refs
+
+
+def _append_footnote_markers(text: str, refs: list[str], marker_by_id: dict[str, str]) -> str:
+    if not text:
+        return text
+    markers = "".join(marker_by_id.get(ref, "") for ref in refs if marker_by_id.get(ref, ""))
+    if not markers:
+        return text
+    return f"{text}{markers}"
+
+
+def _target_matches(row: dict, model: str, region: str) -> bool:
+    if row.get("Is_Latest") != "TRUE" or row.get("Enabled", "TRUE") == "FALSE":
+        return False
+    models = [m.strip() for m in (row.get("Model") or "").split(",") if m.strip()]
+    if models and model not in models and "ALL" not in models:
+        return False
+    regions = [x.strip() for x in (row.get("Region") or "").split(",") if x.strip()]
+    if regions and region not in regions and "ALL" not in regions:
+        return False
+    return True
+
+
+def load_footnote_markers(data_root: Path, model: str, region: str) -> dict[str, str]:
+    """Footnote_id -> ① marker for the target, from Spec_Footnotes.csv."""
+    path = data_root / "Spec_Footnotes.csv"
+    if not path.exists():
+        return {}
+    markers: dict[str, str] = {}
+    for r in csv.DictReader(path.open(encoding="utf-8")):
+        if not _target_matches(r, model, region):
+            continue
+        footnote_id = (r.get("Footnote_id") or "").strip()
+        marker = _footnote_marker_for_order(float(r.get("Footnote_order") or 0))
+        if footnote_id and marker:
+            markers[footnote_id] = marker
+    return markers
+
+
 def load_spec_sections(data_root: Path, model: str, region: str,
                        lang: str = "en") -> list[dict]:
     doc_key = f"{model}_{region}"
@@ -87,15 +151,22 @@ def load_spec_sections(data_root: Path, model: str, region: str,
     rows.sort(key=lambda r: (float(r.get("Section_order") or 0),
                              float(r.get("Row_order") or 0),
                              float(r.get("Line_order") or 0)))
+    marker_by_id = load_footnote_markers(data_root, model, region)
     sections: list[dict] = []
     # rows sharing (Section, Row_order) merge into one multi-line value cell
     for r in rows:
         title = (r.get("Section") or "").strip()
         if not sections or sections[-1]["title"] != title:
             sections.append({"title": title, "rows": []})
-        label = _localized_cell(r, "Row_label", lang, ("Row_label_source",))
-        param = _localized_cell(r, "Param", lang, ("Param_source",))
-        value = _localized_cell(r, "Value", lang, ("Value_source",))
+        label = _append_footnote_markers(
+            _localized_cell(r, "Row_label", lang, ("Row_label_source",)),
+            _parse_footnote_refs(r.get("Row_label_footnote_refs") or ""), marker_by_id)
+        param = _append_footnote_markers(
+            _localized_cell(r, "Param", lang, ("Param_source",)),
+            _parse_footnote_refs(r.get("Param_footnote_refs") or ""), marker_by_id)
+        value = _append_footnote_markers(
+            _localized_cell(r, "Value", lang, ("Value_source",)),
+            _parse_footnote_refs(r.get("Value_footnote_refs") or ""), marker_by_id)
         line = f"{param}: {value}" if param else value
         sec_rows = sections[-1]["rows"]
         if sec_rows and sec_rows[-1][0] == label and float(r.get("Line_order") or 1) > 1:
@@ -146,6 +217,12 @@ def load_spec_annotations(data_root: Path, model: str, region: str,
             if regions and region not in regions and "ALL" not in regions:
                 continue
             text = _localized_cell(r, "Text", lang, ("Text_en",))
+            if text and fname == "Spec_Footnotes.csv":
+                # PDF parity: the footnote line under the tables carries the
+                # same ① marker its referencing cells display.
+                order = float(r.get(order_col) or 0)
+                text = f"{_footnote_marker_for_order(order)} " \
+                       f"{_LEGACY_FOOTNOTE_PREFIX_RE.sub('', text, count=1).strip()}".strip()
             if text:
                 rows.append((float(r.get(order_col) or 0), text))
         out.extend(t for _, t in sorted(rows))

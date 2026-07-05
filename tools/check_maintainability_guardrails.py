@@ -58,7 +58,9 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/idml_rst_extract.py": 520,
     "tools/idml/primitives.py": 300,
     "tools/idml/styles.py": 220,
-    "tools/idml/loaders.py": 220,
+    # loaders 220 -> 290: the spec footnote ①-marker mirror (PDF-renderer
+    # parity, test-enforced) lives beside the loaders it decorates.
+    "tools/idml/loaders.py": 290,
     "tools/idml/components/callout.py": 200,
     "tools/idml/stories.py": 240,
     "tools/idml/pages.py": 500,
