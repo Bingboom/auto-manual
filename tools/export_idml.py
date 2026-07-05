@@ -136,6 +136,32 @@ def load_lcd_rows(data_root: Path, model: str) -> list[dict]:
     return out
 
 
+def load_spec_annotations(data_root: Path, model: str, region: str) -> list[str]:
+    """Spec-page footnotes + notes for the target — the master prints them
+    under the spec tables (user-reported as missing)."""
+    out: list[str] = []
+    for fname, order_col in (("Spec_Footnotes.csv", "Footnote_order"),
+                             ("Spec_Notes.csv", "Note_order")):
+        path = data_root / fname
+        if not path.exists():
+            continue
+        rows: list[tuple[float, str]] = []
+        for r in csv.DictReader(path.open(encoding="utf-8")):
+            if r.get("Is_Latest") != "TRUE" or r.get("Enabled", "TRUE") == "FALSE":
+                continue
+            models = [m.strip() for m in (r.get("Model") or "").split(",") if m.strip()]
+            if models and model not in models and "ALL" not in models:
+                continue
+            regions = [x.strip() for x in (r.get("Region") or "").split(",") if x.strip()]
+            if regions and region not in regions and "ALL" not in regions:
+                continue
+            text = (r.get("Text_en") or "").strip()
+            if text:
+                rows.append((float(r.get(order_col) or 0), text))
+        out.extend(t for _, t in sorted(rows))
+    return out
+
+
 def load_symbols_rows(data_root: Path) -> tuple[list[tuple[str, str]], list[dict]]:
     """symbols_blocks.csv -> (signal rows [label, meaning], icon rows)."""
     path = data_root / "symbols_blocks.csv"
@@ -213,10 +239,14 @@ class IdmlWriter:
             # compact dark pills. Both map to paragraph shading in IDML.
             shaded = name == "HB H1" or kind == "label"
             fill = "Color/Paper" if shaded else "Color/HB Brand Dark"
+            # NOTE the Paragraph* prefix: bare ShadingOn/ShadingColor are
+            # silently ignored by InDesign (designer-reported: no H1 bar,
+            # invisible white labels/numerals)
             shading = (
-                'ShadingOn="true" ShadingColor="Color/HB Brand Dark" '
-                'ShadingOffsetTop="2" ShadingOffsetBottom="2" '
-                'ShadingOffsetLeft="3" ShadingOffsetRight="3" '
+                'ParagraphShadingOn="true" '
+                'ParagraphShadingColor="Color/HB Brand Dark" '
+                'ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" '
+                'ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" '
                 'SpaceBefore="4" SpaceAfter="3" '
             ) if shaded else ""
             styles.append(
@@ -373,14 +403,15 @@ class IdmlWriter:
                 runs.append((part, i % 2 == 1))
         return runs
 
-    def _table(self, tid: str, rows: list[tuple[str, str]]) -> str:
+    def _table(self, tid: str, rows: list[tuple[str, str]],
+               label_style: str = "HB Spec Label") -> str:
         left_ratio = float(self.params.get("comp_spec_table_left_ratio", ("0.315", ""))[0])
         body_w = self.page_w - self.m_l - self.m_r
         col1 = body_w * left_ratio
         col2 = body_w - col1
         cells = []
         for ri, (label, value) in enumerate(rows):
-            for ci, (txt, style) in enumerate(((label, "HB Spec Label"), (value, "HB Spec Value"))):
+            for ci, (txt, style) in enumerate(((label, label_style), (value, "HB Spec Value"))):
                 cells.append(
                     f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" RowSpan="1" ColumnSpan="1" '
                     'AppliedCellStyle="CellStyle/$ID/[None]" '
@@ -490,7 +521,9 @@ class IdmlWriter:
 
     def _cell(self, cid: str, name: str, content: str, *, fill: str | None = None,
               stroke: bool = True) -> str:
-        fill_attr = f'CellFillColor="{fill}" ' if fill else ""
+        # cell fill is FillColor in IDML; CellFillColor is silently ignored
+        # (designer-reported: no gray FCC/notice panels)
+        fill_attr = f'FillColor="{fill}" ' if fill else ""
         stroke_attr = "" if stroke else (
             'LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" '
             'TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" ')
@@ -721,7 +754,7 @@ class IdmlWriter:
         sid = "st_symbols"
         parts = [self._psr("HB H1", "MEANING OF SYMBOLS")]
         if signals:
-            table = self._table("tbl_sym_sig", signals)
+            table = self._table("tbl_sym_sig", signals, label_style="HB Notice Label")
             parts.append(
                 '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
                 '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
@@ -790,7 +823,8 @@ class IdmlWriter:
         self.stories.append((sid, xml))
         return sid
 
-    def add_spec_story(self, sections: list[dict]) -> str:
+    def add_spec_story(self, sections: list[dict],
+                       annotations: list[str] | None = None) -> str:
         sid = "st_spec"
         parts = [self._psr("HB H1", "SPECIFICATIONS")]
         for si, sec in enumerate(sections):
@@ -798,7 +832,7 @@ class IdmlWriter:
             # table anchored in its own paragraph; the paragraph still needs
             # its own <Br/> so the next section title starts a new paragraph
             table = self._table(f"tbl_spec{si}", sec["rows"])
-            last = si == len(sections) - 1
+            last = si == len(sections) - 1 and not annotations
             parts.append(
                 '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
                 '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
@@ -807,6 +841,10 @@ class IdmlWriter:
                  '    <Br/></CharacterStyleRange>\n')
                 + '  </ParagraphStyleRange>\n'
             )
+        # footnotes + notes under the tables (master parity)
+        for ai, note in enumerate(annotations or []):
+            parts.append(self._psr("HB Spec Note", note,
+                                   terminal=(ai == len(annotations) - 1)))
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
             f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
@@ -1028,6 +1066,7 @@ def main() -> int:
     lcd_rows = load_lcd_rows(data_root, args.model)
     trouble_rows = load_trouble_rows(data_root, args.model, args.region)
     sym_signals, sym_icons = load_symbols_rows(data_root)
+    spec_annotations = load_spec_annotations(data_root, args.model, args.region)
 
     bundle_root = Path(args.bundle_root) if args.bundle_root else (
         ROOT / "docs" / "_build" / args.model / args.region / args.lang / "rst")
@@ -1063,8 +1102,8 @@ def main() -> int:
             return
         emitted[kind] = True
         if kind == "spec":
-            sid = w.add_spec_story(sections)
-            chain(sid, w.estimate_spec_height(sections))
+            sid = w.add_spec_story(sections, spec_annotations)
+            chain(sid, w.estimate_spec_height(sections) + 10.0 * len(spec_annotations))
         elif kind == "lcd" and lcd_rows:
             sid = w.add_lcd_story(lcd_rows, data_root)
             chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in lcd_rows))
