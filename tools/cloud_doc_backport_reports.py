@@ -41,6 +41,7 @@ from tools.cloud_doc_backport_routing import (  # noqa: E402
 )
 from tools.cloud_doc_backport_apply import (  # noqa: E402
     _heading_text_key,
+    _match_review_block,
 )
 from tools.cloud_doc_backport_render import (  # noqa: E402
     markdown_apply_report,
@@ -284,12 +285,12 @@ def _verify_delta(index: int, delta: dict[str, Any], current_text: str) -> dict[
         }
 
     if change_type == "delete":
-        if old_matches == 0:
+        if old_matches >= 2:
             return {
                 **base_result,
-                "category": "applied_resolved",
-                "status": "resolved",
-                "reason": "deleted old_text no longer exists",
+                "category": "unsafe_or_ambiguous",
+                "status": "blocked",
+                "reason": "deleted old_text has an ambiguous match count",
                 "old_matches": old_matches,
                 "new_matches": new_matches,
             }
@@ -302,11 +303,38 @@ def _verify_delta(index: int, delta: dict[str, Any], current_text: str) -> dict[
                 "old_matches": old_matches,
                 "new_matches": new_matches,
             }
+        # old_matches == 0. A literal 0-count only proves deletion when old_text
+        # was literally present to begin with; a soft-wrapped / markup-bearing
+        # paragraph's rendered old_text never byte-matches, so a delete that was
+        # skipped would falsely read as resolved. When the evidence says the old
+        # text did NOT byte-match the baseline, verify by block presence (the
+        # same match the apply uses): if the old block is still there, it is
+        # still pending, not resolved.
+        if (delta.get("source_evidence") or {}).get("old_text_in_baseline") is False:
+            block, _next_line_no, reason = _match_review_block(current_text, delta)
+            if block is not None:
+                return {
+                    **base_result,
+                    "category": "still_pending",
+                    "status": "pending",
+                    "reason": "deleted block still present in the review source",
+                    "old_matches": old_matches,
+                    "new_matches": new_matches,
+                }
+            if reason and "ambiguous" in reason:
+                return {
+                    **base_result,
+                    "category": "unsafe_or_ambiguous",
+                    "status": "blocked",
+                    "reason": "deleted block has an ambiguous match",
+                    "old_matches": old_matches,
+                    "new_matches": new_matches,
+                }
         return {
             **base_result,
-            "category": "unsafe_or_ambiguous",
-            "status": "blocked",
-            "reason": "deleted old_text has an ambiguous match count",
+            "category": "applied_resolved",
+            "status": "resolved",
+            "reason": "deleted old_text no longer exists",
             "old_matches": old_matches,
             "new_matches": new_matches,
         }

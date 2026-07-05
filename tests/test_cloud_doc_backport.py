@@ -2147,6 +2147,77 @@ class ClassRBlockApplyTests(unittest.TestCase):
             self.assertIn("“12H”", out)  # curly quotes preserved (not flattened to ")
 
 
+class VerifyDeletionAccuracyTests(unittest.TestCase):
+    """A delete's literal 0-count only proves deletion when old_text was literally
+    present; a soft-wrapped paragraph never byte-matches, so a skipped delete must
+    not read as resolved."""
+
+    def _delete_delta(self, *, old_in_baseline: bool) -> dict:
+        return {
+            "route_class": "repo_review_text",
+            "change_type": "delete",
+            "old_text": "Remove me fully.",
+            "new_text": "",
+            "old_normalized": "Remove me fully.",
+            "location": {"kind": "paragraph"},
+            "source_evidence": {"old_text_in_baseline": old_in_baseline},
+        }
+
+    def test_soft_wrapped_delete_not_applied_reads_as_pending(self) -> None:
+        from tools.cloud_doc_backport_reports import _verify_delta
+
+        # old_text never byte-matched (soft-wrapped across two lines), and the
+        # block is still present -> the delete did NOT happen.
+        current = "Remove me\nfully.\n"
+        result = _verify_delta(1, self._delete_delta(old_in_baseline=False), current)
+        self.assertEqual(result["old_matches"], 0)  # literal count is meaningless here
+        self.assertEqual(result["status"], "pending")
+
+    def test_soft_wrapped_delete_actually_gone_reads_as_resolved(self) -> None:
+        from tools.cloud_doc_backport_reports import _verify_delta
+
+        result = _verify_delta(1, self._delete_delta(old_in_baseline=False), "Other content.\n")
+        self.assertEqual(result["status"], "resolved")
+
+    def test_literal_delete_gone_still_resolves(self) -> None:
+        from tools.cloud_doc_backport_reports import _verify_delta
+
+        # old_text WAS literally present (old_text_in_baseline True) and is now
+        # gone -> resolved, the unchanged happy path.
+        result = _verify_delta(1, self._delete_delta(old_in_baseline=True), "Other content.\n")
+        self.assertEqual(result["status"], "resolved")
+
+
+class ApplyEvidenceGateTests(unittest.TestCase):
+    """The per-delta evidence gate must not pre-empt the repo_review_text block
+    fallback (headings / soft-wrapped paragraphs that never byte-match)."""
+
+    def _delta(self, route_class: str) -> dict:
+        return {
+            "route_class": route_class,
+            "change_type": "replace",
+            "old_text": "Add device",
+            "new_text": "Add new device",
+            "source_evidence": {"repo_write_candidate": False},
+        }
+
+    def test_review_delta_not_skipped_by_evidence_gate(self) -> None:
+        from tools.cloud_doc_backport_apply import _apply_skip_reason
+
+        # repo_review_text with repo_write_candidate False must fall through to the
+        # guarded block fallback, not be skipped here.
+        self.assertIsNone(
+            _apply_skip_reason(self._delta("repo_review_text"), route_class="repo_review_text")
+        )
+
+    def test_template_delta_still_gated(self) -> None:
+        from tools.cloud_doc_backport_apply import _apply_skip_reason
+
+        # Other routes have no fallback, so the evidence gate still applies.
+        reason = _apply_skip_reason(self._delta("repo_template_text"), route_class="repo_template_text")
+        self.assertEqual(reason, "delta is not marked as a repo write candidate")
+
+
 class LedgerIngestHookTests(unittest.TestCase):
     """The review-branch flow feeds the revision ledger best-effort (G0/G1)."""
 

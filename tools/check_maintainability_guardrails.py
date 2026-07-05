@@ -35,7 +35,9 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/cloud_doc_backport_args.py": 470,
     "tools/cloud_doc_backport_commands.py": 550,
     "tools/cloud_doc_backport_orchestration.py": 880,
-    "tools/cloud_doc_backport_reports.py": 880,
+    # 880 -> 900: the delete-verify block-presence check (apply-parity accuracy
+    # fix) is a correctness guard that belongs next to the verify verdicts.
+    "tools/cloud_doc_backport_reports.py": 900,
     "tools/sync_data_runtime.py": 900,
     "tools/content_lint.py": 800,
     "tools/translation_memory.py": 790,

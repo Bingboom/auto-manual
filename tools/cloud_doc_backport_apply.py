@@ -239,7 +239,18 @@ def _apply_skip_reason(delta: dict[str, Any], *, route_class: str) -> str | None
     if change_type == "replace" and old_text == new_text:
         return "old_text and new_text are identical"
     evidence = delta.get("source_evidence")
-    if isinstance(evidence, dict) and evidence.get("repo_write_candidate") is False:
+    # The evidence gate skips a delta whose rendered old_text does not byte-match
+    # the baseline. For repo_review_text that is exactly the reST-heading /
+    # soft-wrapped-paragraph case the block-level fallback in _apply_operation was
+    # built to handle — so do NOT pre-empt it here; let the delta reach the
+    # fallback, which has its own guards (unique normalized block match, plain
+    # block, loss-free rewrite) and is backstopped by the R7 rebuild+rediff gate.
+    # Other routes have no fallback, so the gate still applies to them.
+    if (
+        route_class != "repo_review_text"
+        and isinstance(evidence, dict)
+        and evidence.get("repo_write_candidate") is False
+    ):
         return "delta is not marked as a repo write candidate"
     return None
 
