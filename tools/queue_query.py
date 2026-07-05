@@ -435,6 +435,17 @@ def _should_apply_latest_per_document_key(args: argparse.Namespace, normalized_a
     return True
 
 
+def should_apply_latest_per_document_key(args: argparse.Namespace) -> bool:
+    """Whether a query for `args` collapses rows to the latest per document key.
+
+    Exposed for callers that rebuild selection args (e.g. batch dispatch drops
+    `allow_multiple` to bypass the trigger pre-filter) and must pin the collapse
+    decision to the original args instead of the rebuilt ones.
+    """
+    normalized_action = _normalize_query_workflow_action(getattr(args, "query_workflow_action", None))
+    return _should_apply_latest_per_document_key(args, normalized_action)
+
+
 def _infer_document_filters(text: str) -> tuple[str, str, str, str]:
     for token in _UNDERSCORE_TOKEN_RE.findall(text):
         parts = token.split("_")
@@ -686,13 +697,15 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     elif any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
         workflow_action = "build-draft-package"
         queue_scope = "document-link"
+    elif "publish" in normalized_text or "发布" in text:
+        # Publish outranks the generic build verbs: "触发 X 发布" / "发起 X 的发布"
+        # is a publish ask, not a draft-build ask.
+        workflow_action = "publish"
+        queue_scope = "document-link"
     elif not successful_link_query and (
         any(token in text for token in _BUILD_DRAFT_INTENT_KEYWORDS) or "manual copy" in normalized_text
     ):
         workflow_action = "build-draft-package"
-        queue_scope = "document-link"
-    elif "publish" in normalized_text or "发布" in text:
-        workflow_action = "publish"
         queue_scope = "document-link"
     elif _has_start_review_intent(text, normalized_text):
         workflow_action = "start-review"

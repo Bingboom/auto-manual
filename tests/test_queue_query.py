@@ -270,6 +270,15 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("build-draft-package", inferred.query_workflow_action)
         self.assertEqual("document-link", inferred.queue_scope)
 
+    def test_infer_queue_query_from_text_should_prefer_publish_over_build_verbs(self) -> None:
+        # "触发/发起 … 发布" is a publish ask; the generic build verbs must not
+        # reclassify it into an unrequested draft build.
+        for text in ("触发 JE-1000F_US_0.3 发布", "帮我发起 JE-1000F_US_0.3 的发布"):
+            with self.subTest(text=text):
+                inferred = queue_query.infer_queue_query_from_text(text)
+                self.assertEqual("publish", inferred.query_workflow_action)
+                self.assertEqual("JE-1000F_US_0.3", inferred.document_id)
+
     def test_infer_queue_query_from_text_should_parse_document_key_for_link_queries(self) -> None:
         inferred = queue_query.infer_queue_query_from_text("把 JE-1000F US 最新链接发我")
 
