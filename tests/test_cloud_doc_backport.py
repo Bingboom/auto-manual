@@ -1306,6 +1306,86 @@ class RunReviewBranchGuardTests(unittest.TestCase):
         self.assertNotIn("refusing whole-doc --write", err.getvalue())
 
 
+class RunReviewBranchPageGateTests(unittest.TestCase):
+    """A per-page worker FAIL that is a rebuild+rediff gate failure (corrupted
+    apply) must exclude the page from the backport PR — parity with the baseline
+    path's refusal. A residual-only FAIL (partial apply, gate OK) still ships."""
+
+    def _gate_passed(self, payload) -> bool:
+        from tools.cloud_doc_backport_orchestration import _page_gate_passed
+
+        with tempfile.TemporaryDirectory() as td:
+            page_out = Path(td)
+            if payload is not None:
+                (page_out / "cloud_doc_backport_verify.json").write_text(
+                    json.dumps(payload), encoding="utf-8"
+                )
+            return _page_gate_passed(page_out)
+
+    def test_page_gate_passed_reads_verify_verdict(self) -> None:
+        self.assertTrue(self._gate_passed({"rebuild_rediff": {"passed": True}}))
+        self.assertFalse(self._gate_passed({"rebuild_rediff": {"passed": False}}))
+
+    def test_page_gate_fails_closed_without_verify_report(self) -> None:
+        self.assertFalse(self._gate_passed(None))
+        self.assertFalse(self._gate_passed({"summary": {}}))
+
+    def _run_page_write(self, tmp: str, *, gate_passed: bool) -> dict:
+        import contextlib
+        import io
+
+        page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+        page_dir.mkdir(parents=True, exist_ok=True)
+        (page_dir / "00_preface.rst").write_text("body\n", encoding="utf-8")
+        out_dir = Path(tmp) / "out"
+        page_out = out_dir / "00_preface"
+        page_out.mkdir(parents=True)
+        (page_out / "cloud_doc_backport_report.json").write_text(
+            json.dumps({"section_selection": {"applied": True}, "summary": {"total_deltas": 1}}),
+            encoding="utf-8",
+        )
+        (page_out / "cloud_doc_backport_verify.json").write_text(
+            json.dumps({"rebuild_rediff": {"passed": gate_passed}}), encoding="utf-8"
+        )
+        args = SimpleNamespace(
+            worktrees_root=None, lark_cli="lark-cli", identity="user",
+            doc_name="manual_je1000f_us_en_1.0",
+            cloud_doc="https://test-degwga5x6ex8.feishu.cn/wiki/tok",
+            remote="origin", git_bin="git", full_checkout=False,
+            seed=False, reseed=False, push=False, write=True,
+            page="00_preface.rst", run_id="gate-test", out=str(out_dir),
+            data_root=None, lang=None,
+        )
+        resolved = {"git_ref": "review/JE-1000F-US", "review_dir": "docs/_review/JE-1000F/US", "pr_url": None}
+        worker = SimpleNamespace(returncode=1, stdout="", stderr="")
+        buf, err = io.StringIO(), io.StringIO()
+        with patch("tools.cloud_doc_backport_orchestration._fetch_build_table_records", return_value=[]), \
+             patch("tools.cloud_doc_backport_orchestration.match_review_branch_by_name", return_value=resolved), \
+             patch("tools.cloud_doc_backport_orchestration.ensure_review_worktree", return_value=tmp), \
+             patch("tools.cloud_doc_backport_orchestration.doc_token", return_value="tok"), \
+             patch("tools.cloud_doc_backport_orchestration.fetch_doc_text", return_value="doc text"), \
+             patch("tools.cloud_doc_backport_orchestration.subprocess.run", return_value=worker), \
+             contextlib.redirect_stdout(buf), contextlib.redirect_stderr(err):
+            rc = _run_review_branch(args)
+        payload = json.loads(buf.getvalue().strip().splitlines()[-1])
+        payload["_rc"] = rc
+        payload["_stderr"] = err.getvalue()
+        return payload
+
+    def test_gate_failed_page_is_excluded_and_run_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            payload = self._run_page_write(tmp, gate_passed=False)
+        self.assertEqual(payload["_rc"], 1)
+        self.assertEqual(payload["changed"], [])
+        self.assertIn("GATE FAIL", payload["_stderr"])
+
+    def test_residual_fail_with_clean_gate_still_ships_the_page(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            payload = self._run_page_write(tmp, gate_passed=True)
+        self.assertEqual(payload["changed"], ["docs/_review/JE-1000F/US/page/00_preface.rst"])
+        self.assertNotIn("GATE FAIL", payload["_stderr"])
+
+
 class RunReviewBranchFamilyScopeTests(unittest.TestCase):
     """F3 / Class T: run-review-branch auto-resolves the page_shared/<lang> shared
     templates as family-scope siblings, so a reviewer's shared-template prose delta is
@@ -1659,6 +1739,42 @@ class BaselineDiffTests(unittest.TestCase):
             self.assertEqual(rc, 0)
             # the Class R edit landed in the page RST (guarded apply matched the prose)
             self.assertIn("FR IMPORTANT test", preface.read_text(encoding="utf-8"))
+
+    def test_baseline_write_abstains_on_cross_page_ambiguous_delta(self) -> None:
+        # The reviewer edited ONE instance of a boilerplate paragraph in the cloud
+        # doc. Two _review pages contain the same paragraph; applying the delta to
+        # both would write the edit into a page the reviewer never touched.
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as tmp:
+            page_dir = Path(tmp) / "docs/_review/JE-1000F/US/page"
+            page_dir.mkdir(parents=True)
+            shared = "Keep the device away from water.\n"
+            page_a = page_dir / "01_safety.rst"
+            page_b = page_dir / "09_storage.rst"
+            page_a.write_text(shared, encoding="utf-8")
+            page_b.write_text(shared, encoding="utf-8")
+            out_dir = Path(tmp) / "out"
+            args = SimpleNamespace(
+                cloud_doc="https://example.feishu.cn/wiki/doc-xpage", run_id="xpage",
+                out=str(out_dir), lark_cli="lark-cli", write=True, push=False,
+                doc_name="manual_je1000f_us_en_1.0", lang=None, data_root=None,
+                git_bin="git", remote="origin",
+            )
+            edited = "Keep the device far away from water.\n"
+            err = io.StringIO()
+            with patch("tools.cloud_doc_backport_orchestration.fetch_doc_text", return_value=edited), \
+                 contextlib.redirect_stderr(err):
+                rc = _run_review_branch_baseline(
+                    args, resolved={"git_ref": "review/JE-1000F-US", "pr_url": None},
+                    worktree=tmp, review_dir="docs/_review/JE-1000F/US", doc_tok="doc-xpage",
+                    baseline_text=shared,
+                )
+            self.assertEqual(rc, 0)
+            self.assertEqual(page_a.read_text(encoding="utf-8"), shared)
+            self.assertEqual(page_b.read_text(encoding="utf-8"), shared)
+            self.assertIn("cross-page ambiguous", err.getvalue())
 
     def test_baseline_write_run_stamps_applied_page_into_ledger(self) -> None:
         # The ledger row must carry the _review page the delta landed on plus the
