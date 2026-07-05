@@ -310,6 +310,15 @@ class ExportIdmlTests(unittest.TestCase):
             self.assertIn("HB%20Spec%20Note", story)
             self.assertIn(notes[0][:20].replace("&", "&amp;"), story)
 
+    def test_dom_version_supports_paragraph_shading(self) -> None:
+        # paragraph shading is CC2015+; a DOMVersion 8.0 doc is parsed with
+        # CS6 semantics and the shading attributes are dropped (designer-
+        # reported: H1 bar still missing after the attribute-name fix)
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        self.assertIn('DOMVersion="15.0"', w.styles_xml())
+        self.assertNotIn('DOMVersion="8.0"', w.designmap_xml())
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)

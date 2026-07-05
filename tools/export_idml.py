@@ -245,6 +245,10 @@ class IdmlWriter:
             shading = (
                 'ParagraphShadingOn="true" '
                 'ParagraphShadingColor="Color/HB Brand Dark" '
+                'ParagraphShadingTint="100" '
+                'ParagraphShadingWidth="ColumnWidth" '
+                'ParagraphShadingTopOrigin="AscentTopOrigin" '
+                'ParagraphShadingBottomOrigin="DescentBottomOrigin" '
                 'ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" '
                 'ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" '
                 'SpaceBefore="4" SpaceAfter="3" '
@@ -266,7 +270,7 @@ class IdmlWriter:
             )
         return (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Styles xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<idPkg:Styles xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             '  <RootCharacterStyleGroup Self="rcsg">\n'
             '    <CharacterStyle Self="CharacterStyle/$ID/[No character style]" Name="$ID/[No character style]"/>\n'
             '  </RootCharacterStyleGroup>\n'
@@ -304,7 +308,7 @@ class IdmlWriter:
             )
         return (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Graphic xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<idPkg:Graphic xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             '  <Color Self="Color/Black" Model="Process" Space="CMYK" ColorValue="0 0 0 100" Name="Black"/>\n'
             '  <Color Self="Color/Paper" Model="Process" Space="CMYK" ColorValue="0 0 0 0" Name="Paper"/>\n'
             + "\n".join(colors) + "\n"
@@ -315,7 +319,7 @@ class IdmlWriter:
     def fonts_xml(self) -> str:
         return (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Fonts xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<idPkg:Fonts xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             '  <FontFamily Self="ff_gilroy" Name="Gilroy">\n'
             '    <Font Self="ff_gilroy_r" FontFamily="Gilroy" Name="Gilroy Regular" PostScriptName="Gilroy-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeCFF"/>\n'
             '    <Font Self="ff_gilroy_m" FontFamily="Gilroy" Name="Gilroy Medium" PostScriptName="Gilroy-Medium" Status="Installed" FontStyleName="Medium" FontType="OpenTypeCFF"/>\n'
@@ -328,7 +332,7 @@ class IdmlWriter:
     def preferences_xml(self) -> str:
         return (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Preferences xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<idPkg:Preferences xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             f'  <DocumentPreference PageWidth="{self.page_w:g}" PageHeight="{self.page_h:g}" '
             'PagesPerDocument="1" FacingPages="true" PageOrientation="Portrait" '
             'DocumentBleedTopOffset="8.5" DocumentBleedBottomOffset="8.5" '
@@ -683,7 +687,7 @@ class IdmlWriter:
             est += leading * lines
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{escape(title)}">\n'
             '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
             + "".join(parts) + '</Story>\n</idPkg:Story>\n'
@@ -741,7 +745,7 @@ class IdmlWriter:
         ]
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="LCD DISPLAY">\n'
             '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
             + "".join(parts) + '</Story>\n</idPkg:Story>\n'
@@ -794,7 +798,7 @@ class IdmlWriter:
                 + table2 + '    <Content></Content></CharacterStyleRange>\n  </ParagraphStyleRange>\n')
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="MEANING OF SYMBOLS">\n'
             '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
             + "".join(parts) + '</Story>\n</idPkg:Story>\n'
@@ -815,7 +819,7 @@ class IdmlWriter:
         )
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TROUBLESHOOTING">\n'
             '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
             + "".join(parts) + '</Story>\n</idPkg:Story>\n'
@@ -847,7 +851,7 @@ class IdmlWriter:
                                    terminal=(ai == len(annotations) - 1)))
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="SPECIFICATIONS">\n'
             '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
             + "".join(parts) +
@@ -864,7 +868,7 @@ class IdmlWriter:
         ]
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{escape(title)}">\n'
             '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
             + "".join(parts) +
@@ -921,7 +925,7 @@ class IdmlWriter:
             nxt = f'NextTextFrame="tf_{story_id}_{i+1}"' if i < n_pages - 1 else 'NextTextFrame="n"'
             xml = (
                 '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-                f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+                f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
                 f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
                 f'  <Page Self="{spread_id}_pg" Name="{start_index + i + 1}" '
                 'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
@@ -951,8 +955,8 @@ class IdmlWriter:
         )
         return (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            '<?aid style="50" type="document" readerVersion="6.0" featureSet="257" product="8.0(370)"?>\n'
-            f'<Document xmlns:idPkg="{IDPKG}" DOMVersion="8.0" Self="doc" '
+            '<?aid style="50" type="document" readerVersion="15.0" featureSet="257" product="15.0(100)"?>\n'
+            f'<Document xmlns:idPkg="{IDPKG}" DOMVersion="15.0" Self="doc" '
             'StoryList="' + " ".join(sid for sid, _ in self.stories) + '" Name="manual">\n'
             '  <Language Self="Language/$ID/English%3a USA" Name="$ID/English: USA" '
             'SingleQuotes="&#8216;&#8217;" DoubleQuotes="&#8220;&#8221;"/>\n'
