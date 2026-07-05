@@ -10,7 +10,6 @@ page_parindent,0,pt,Paragraph indent
 page_parskip,0,pt,Paragraph skip
 page_headrulewidth,0,pt,Header rule width
 page_footrulewidth,0,pt,Footer rule width
-section_after_fix,-2,mm,Negative spacing after section to cancel Sphinx glue
 page_footer_raise,3,mm,Raises page number up
 page_footer_font_size,6,pt,Footer font size
 page_footer_font_leading,7.2,pt,Footer leading
@@ -65,7 +64,7 @@ comp_h1_pill_arc,0.8,mm,H1 pill corner radius
 comp_h1_pill_pad_lr,1.0,mm,H1 pill left/right padding
 comp_h1_pill_pad_tb,0.45,mm,H1 pill top/bottom padding
 comp_h1_pill_width,1,ratio,H1 pill width ratio of \textwidth
-comp_h1_pill_after,0.8,mm,Space after H1 pill
+comp_h1_pill_after,-1.2,mm,Space after H1 pill (single point; negative offsets the first paragraph's inherent leading after the title block)
 ,,,
 comp_title_l2_before,1.2,mm,Level 2 title space before
 comp_title_l2_after,1.4,mm,Level 2 title space after
@@ -159,13 +158,12 @@ brand_color_bgk05,"0,0,0,0.05",cmyk,Background light gray
 brand_color_accentblue,"0,0,0,0",cmyk,Accent blue
 brand_color_textk90,"0,0,0,0.90",cmyk,Strong text
 ,,,
-comp_subbar_tighten,5,mm,Extra negative vspace after subbar to cancel Sphinx glue (store POSITIVE number)
-comp_twocol_tighten,3,mm,Negative vspace before two-column list to cancel Sphinx glue (store POSITIVE number)
+comp_twocol_before,1.2,mm,Space before two-column block (declared; \multicolsep is zeroed inside safetytwocol)
 type_body_color,TextGray,none,Body text color name
 type_list_color,TextGray,none,List text color name
 type_rubric_color,TextK90,none,Rubric text color name
 type_warning_text_color,TextGray,none,Warning right text color name
-comp_twocol_after,0,mm,Space after two-column block
+comp_twocol_after,4.2,mm,Space after two-column block (declared; replaces the zeroed trailing \multicolsep)
 type_warning_text_align,justified,none,Warning right text alignment (ragged|justified)
 
 ,,,==================== LANGUAGE DENSITY OVERRIDES ====================
@@ -173,11 +171,11 @@ type_warning_text_align,justified,none,Warning right text alignment (ragged|just
 ,,,EN uses base values. If a lang key is missing, base value is used.
 
 ,,,------ FR (French tighter layout to fit one page) ------
-lang_fr_comp_h1_pill_after,0.6,mm,FR: space after H1 pill
+lang_fr_comp_h1_pill_after,-1.4,mm,FR: space after H1 pill
 lang_fr_comp_title_l2_before,0.8,mm,FR: level 2 title space before
 lang_fr_comp_title_l2_after,1.0,mm,FR: level 2 title space after
 lang_fr_comp_subbar_after,2,mm,FR: space after subbar
-lang_fr_comp_twocol_tighten,6,mm,FR: extra tighten before two-column block
+lang_fr_comp_twocol_before,-1.8,mm,FR: space before two-column block (tighter)
 lang_fr_comp_lead_after,0.5,mm,FR: space after lead line
 lang_fr_comp_warning_box_after,2,mm,FR: space after warning box
 lang_fr_comp_warning_box_before,0.6,mm,FR: space before warning box
@@ -196,11 +194,11 @@ lang_fr_type_spec_note_font_size,5.6,pt,FR: tighter note font size
 lang_fr_type_spec_note_font_leading,6.3,pt,FR: tighter note leading
 
 ,,,------ ES (Spanish tighter layout to fit one page) ------
-lang_es_comp_h1_pill_after,0.6,mm,ES: space after H1 pill
+lang_es_comp_h1_pill_after,-1.4,mm,ES: space after H1 pill
 lang_es_comp_title_l2_before,0.8,mm,ES: level 2 title space before
 lang_es_comp_title_l2_after,1.0,mm,ES: level 2 title space after
 lang_es_comp_subbar_after,2,mm,ES: space after subbar
-lang_es_comp_twocol_tighten,6,mm,ES: extra tighten before two-column block
+lang_es_comp_twocol_before,-1.8,mm,ES: space before two-column block (tighter)
 lang_es_comp_lead_after,0.5,mm,ES: space after lead line
 lang_es_comp_warning_box_after,2,mm,ES: space after warning box
 lang_es_comp_warning_box_before,0.6,mm,ES: space before warning box

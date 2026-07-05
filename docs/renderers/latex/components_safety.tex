@@ -115,9 +115,15 @@
 
 \setlength{\columnsep}{\csname HBcomp_twocol_sep\endcsname}
 
+% Spacing is declared, not cancelled: \multicolsep (multicol's own 12pt
+% glue before/after the columns — the actual source the old negative
+% comp_twocol_tighten was fighting, not "Sphinx glue") is zeroed inside
+% the environment group, and comp_twocol_before / comp_twocol_after state
+% the intended gaps directly (typography_gap/2026-07-03 #11).
 \newenvironment{safetytwocol}{%
   \par\noindent
-  \vspace*{-\csname HBcomp_twocol_tighten\endcsname}%
+  \setlength{\multicolsep}{0pt}%
+  \vspace*{\csname HBcomp_twocol_before\endcsname}%
   \begin{multicols}{2}
     \HBTypeListStart
 }{%
@@ -178,7 +184,7 @@
 \HBStoreBaseFromKey{comp_title_l2_before}%
 \HBStoreBaseFromKey{comp_title_l2_after}%
 \HBStoreBaseFromKey{comp_subbar_after}%
-\HBStoreBaseFromKey{comp_twocol_tighten}%
+\HBStoreBaseFromKey{comp_twocol_before}%
 \HBStoreBaseFromKey{comp_lead_after}%
 \HBStoreBaseFromKey{comp_warning_box_before}%
 \HBStoreBaseFromKey{comp_warning_box_after}%
@@ -204,7 +210,7 @@
   \HBOverrideFromKey{comp_title_l2_before}{base_comp_title_l2_before}%
   \HBOverrideFromKey{comp_title_l2_after}{base_comp_title_l2_after}%
   \HBOverrideFromKey{comp_subbar_after}{base_comp_subbar_after}%
-  \HBOverrideFromKey{comp_twocol_tighten}{base_comp_twocol_tighten}%
+  \HBOverrideFromKey{comp_twocol_before}{base_comp_twocol_before}%
   \HBOverrideFromKey{comp_lead_after}{base_comp_lead_after}%
   \HBOverrideFromKey{comp_warning_box_before}{base_comp_warning_box_before}%
   \HBOverrideFromKey{comp_warning_box_after}{base_comp_warning_box_after}%
@@ -227,7 +233,7 @@
   \HBOverrideFromKey{comp_title_l2_before}{lang_\HB@lang_comp_title_l2_before}%
   \HBOverrideFromKey{comp_title_l2_after}{lang_\HB@lang_comp_title_l2_after}%
   \HBOverrideFromKey{comp_subbar_after}{lang_\HB@lang_comp_subbar_after}%
-  \HBOverrideFromKey{comp_twocol_tighten}{lang_\HB@lang_comp_twocol_tighten}%
+  \HBOverrideFromKey{comp_twocol_before}{lang_\HB@lang_comp_twocol_before}%
   \HBOverrideFromKey{comp_lead_after}{lang_\HB@lang_comp_lead_after}%
   \HBOverrideFromKey{comp_warning_box_before}{lang_\HB@lang_comp_warning_box_before}%
   \HBOverrideFromKey{comp_warning_box_after}{lang_\HB@lang_comp_warning_box_after}%
