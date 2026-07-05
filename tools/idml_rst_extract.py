@@ -65,6 +65,8 @@ def _read_braced_args(text: str, start: int, count: int) -> tuple[list[str], int
 
 def _detex(s: str) -> str:
     """Strip the latex-isms our own macros/templates use."""
+    # line-continuation comments: a % swallows the rest of the source line
+    s = re.sub(r"(?<!\\)%[^\n]*", "", s)
     s = s.replace("\\par", "\n").replace("\\textbullet", "•")
     s = re.sub(r"\\textbf\{([^{}]*)\}", r"\1", s)
     s = re.sub(r"\\text(?:sub|super)script\{([^{}]*)\}", r"\1", s)
@@ -248,6 +250,21 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
                 i += 2
                 continue
 
+        # rst grid tables (+---+ borders) -> ("table", json rows)
+        if re.match(r"\+-[-+]*-\+$", stripped):
+            import json as _json
+            grid = [line.rstrip()]
+            k = i + 1
+            while k < n and (lines[k].strip().startswith("|") or
+                             re.match(r"\+[=+-]+\+$", lines[k].strip())):
+                grid.append(lines[k].rstrip())
+                k += 1
+            rows = _parse_grid_table(grid)
+            if rows:
+                result.blocks.append(("table", _json.dumps(rows, ensure_ascii=False)))
+                i = k
+                continue
+
         # line blocks
         if stripped.startswith("| "):
             buf = []
@@ -313,3 +330,29 @@ def bundle_page_order(bundle_root: Path) -> list[Path]:
             if p.exists():
                 order.append(p)
     return order
+
+def _parse_grid_table(grid: list[str]) -> list[list[str]]:
+    """Parse an rst grid table block into row cell-text lists."""
+    border = grid[0]
+    cols = [m.start() for m in re.finditer(r"\+", border)]
+    if len(cols) < 2:
+        return []
+    rows: list[list[str]] = []
+    current: list[list[str]] | None = None
+    for line in grid:
+        stripped = line.strip()
+        if re.match(r"\+[=+-]+\+$", stripped):
+            if current is not None:
+                rows.append([" ".join(part for part in cell if part).strip()
+                             for cell in current])
+            current = None
+            continue
+        if not stripped.startswith("|"):
+            continue
+        if current is None:
+            current = [[] for _ in range(len(cols) - 1)]
+        for ci in range(len(cols) - 1):
+            a, b = cols[ci] + 1, cols[ci + 1]
+            seg = line[a:b].strip() if a < len(line) else ""
+            current[ci].append(seg)
+    return [r for r in rows if any(r)]

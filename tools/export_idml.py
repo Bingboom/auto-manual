@@ -372,7 +372,10 @@ class IdmlWriter:
         a hand-built document.
         """
         uri = image_path.resolve().as_uri()
-        x1, y1, x2, y2 = 0.0, 0.0, w_pt, h_pt
+        # Inline anchored objects hang from the text baseline: the path must
+        # span y in [-h, 0]. A [0, h] path drops below the line and overlaps
+        # the following text (designer-reported).
+        x1, y1, x2, y2 = 0.0, -h_pt, w_pt, 0.0
         pts = ((x1, y1), (x1, y2), (x2, y2), (x2, y1))
         anchors = "".join(
             f'<PathPointType Anchor="{x:g} {y:g}" LeftDirection="{x:g} {y:g}" '
@@ -421,13 +424,26 @@ class IdmlWriter:
         last_idx = len(blocks) - 1
         for bi, (kind, text) in enumerate(blocks):
             terminal = bi == last_idx
+            if kind == "table":
+                import json as _json
+                rows = [tuple(r) if len(r) == 2 else (r[0], " / ".join(r[1:]))
+                        for r in _json.loads(text)]
+                img_n += 1
+                table = self._table(f"{sid}_t{img_n}", [(str(a), str(b)) for a, b in rows])
+                parts.append(
+                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">'
+                    '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                    + table + ("<Content></Content>" if terminal else "<Br/>")
+                    + "</CharacterStyleRange></ParagraphStyleRange>\n")
+                est += 11.0 * (len(rows) + 1)
+                continue
             if kind == "image":
                 img = self._resolve_bundle_image(bundle_root, text)
                 if img is None:
                     continue
                 img_n += 1
-                w_pt = min(160.0, self.page_w - self.m_l - self.m_r)
-                h_pt = w_pt * 0.6
+                w_pt = min(120.0, self.page_w - self.m_l - self.m_r)
+                h_pt = w_pt * 0.62
                 rect = self._image_cell_content(f"{sid}_im{img_n}", img, w_pt, h_pt)
                 parts.append(
                     '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">'

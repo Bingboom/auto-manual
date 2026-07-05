@@ -133,6 +133,33 @@ class ExportIdmlTests(unittest.TestCase):
         kinds = {k for k, _ in res.blocks}
         self.assertIn("list", kinds)
 
+    def test_latex_percent_comments_are_stripped(self) -> None:
+        from tools.idml_rst_extract import _detex
+        self.assertEqual(_detex("hello%\n world"), "hello world")
+        self.assertEqual(_detex("100\\% done"), "100% done")
+
+    def test_grid_tables_become_table_blocks(self) -> None:
+        from tools.idml_rst_extract import _parse_grid_table
+        grid = [
+            "+------+------+",
+            "| A    | B    |",
+            "+======+======+",
+            "| a1   | b1   |",
+            "+------+------+",
+            "| a2   | b2   |",
+            "+------+------+",
+        ]
+        rows = _parse_grid_table(grid)
+        self.assertEqual(rows, [["A", "B"], ["a1", "b1"], ["a2", "b2"]])
+
+    def test_inline_image_anchors_hang_from_baseline(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        img = ROOT / "docs" / "renderers" / "latex" / "assets" / "warning_lockup.png"
+        rect = w._image_cell_content("r1", img, 100.0, 60.0)
+        self.assertIn('Anchor="0 -60', rect)
+        self.assertNotIn('Anchor="0 60', rect)
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
