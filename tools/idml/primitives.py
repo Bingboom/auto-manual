@@ -11,6 +11,10 @@ import re
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+# saxutils.escape only handles &<> by default; inside a double-quoted
+# XML attribute a raw " truncates the value and malforms the part.
+_ATTR_ENTITIES = {'"': "&quot;"}
+
 # Characters Gilroy has no glyph for — same policy as the PDF path's
 # FRAGILE_UNICODE_REPLACEMENTS in patch_latex_fonts.py. Without this,
 # InDesign shows pink missing-glyph boxes (designer-reported).
@@ -137,7 +141,7 @@ def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float)
         f'<PathPointArray>{anchors}</PathPointArray>'
         '</GeometryPathType></PathGeometry></Properties>'
         f'<Image Self="{rect_id}_img" ItemTransform="1 0 0 1 0 0">'
-        f'<Link Self="{rect_id}_lnk" LinkResourceURI="{escape(uri)}"/>'
+        f'<Link Self="{rect_id}_lnk" LinkResourceURI="{escape(uri, _ATTR_ENTITIES)}"/>'
         '</Image>'
         '<FrameFittingOption FittingOnEmptyFrame="Proportionally"/>'
         '</Rectangle>'

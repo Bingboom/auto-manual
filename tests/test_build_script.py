@@ -1168,3 +1168,17 @@ class TestBuildScript(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class StagingActionGuardTests(unittest.TestCase):
+    def test_idml_refuses_staging_root(self) -> None:
+        # With staging active the rst prepare writes into the staging root while
+        # the exporter reads the repo bundle — refuse instead of silently
+        # exporting stale content (same contract as `review`).
+        args = build_cli.parse_args(["idml", "--staging-root", ".tmp/staging"])
+        with self.assertRaisesRegex(RuntimeError, "idml does not support --staging-root"):
+            build_cli.ensure_supported_staging_action(args)
+
+    def test_idml_without_staging_passes_the_guard(self) -> None:
+        args = build_cli.parse_args(["idml"])
+        build_cli.ensure_supported_staging_action(args)  # must not raise

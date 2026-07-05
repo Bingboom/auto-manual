@@ -208,6 +208,8 @@ def ensure_supported_staging_action(args: argparse.Namespace) -> None:
         return
     if args.action == "review":
         raise RuntimeError("review does not support --staging-root because it seeds docs/_review from the repo runtime bundle")
+    if args.action == "idml":
+        raise RuntimeError("idml does not support --staging-root: the rst prepare would write into the staging root while the exporter reads the repo bundle (run it without staging)")
 
 
 def normalize_cli_build_queue_action(workflow_action: str | None = None, doc_phase: str | None = None) -> str | None:

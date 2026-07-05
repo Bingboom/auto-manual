@@ -82,3 +82,24 @@ class ComponentRegistryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FccEdgeCaseTests(unittest.TestCase):
+    def test_empty_texts_render_instead_of_crashing(self) -> None:
+        # `\HBFccBlock{}{}` arrives as texts=[]; this used to IndexError and
+        # abort the whole export.
+        from tools.idml.components import render
+
+        xml, est = render({"kind": "fcc", "texts": []}, _ctx(), tid="t_fcc0", terminal=True)
+        self.assertIn("<Table ", xml)
+        self.assertGreater(est, 0.0)
+
+    def test_single_text_fills_left_panel_only(self) -> None:
+        from tools.idml.components import render
+
+        xml, _ = render({"kind": "fcc", "texts": ["Only left."]}, _ctx(),
+                        tid="t_fcc1", terminal=True)
+        self.assertIn("Only left.", xml)
+        left, right = xml.split('Name="1:0"', 1)
+        self.assertIn("Only left.", left)
+        self.assertNotIn("Only left.", right)
