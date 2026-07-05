@@ -302,6 +302,28 @@ class IdmlWriter:
             '  </Table>\n'
         )
 
+    def frame_height(self) -> float:
+        return self.page_h - self.m_t - self.m_b
+
+    @staticmethod
+    def estimate_spec_height(sections: list[dict]) -> float:
+        """Rough content height in pt for page-count estimation.
+
+        Deliberately coarse: if it underestimates, InDesign shows the
+        standard overset indicator and the designer drags the chain one
+        frame longer — a trailing blank page is worse than that.
+        """
+        h = 16.0  # H1
+        for sec in sections:
+            h += 14.0  # section title
+            for _, value in sec["rows"]:
+                h += 11.0 * max(1, value.count("\n") + 1)
+        return h
+
+    def pages_for_height(self, height_pt: float) -> int:
+        import math
+        return max(1, math.ceil(height_pt / self.frame_height()))
+
     def add_spec_story(self, sections: list[dict]) -> str:
         sid = "st_spec"
         parts = [self._psr("HB H1", "SPECIFICATIONS")]
@@ -544,7 +566,8 @@ def main() -> int:
          ])
     spec = w.add_spec_story(sections)
     w.add_spread_chain(intro, 1, 0)
-    w.add_spread_chain(spec, 2, 1)
+    spec_pages = w.pages_for_height(w.estimate_spec_height(sections))
+    w.add_spread_chain(spec, spec_pages, 1)
 
     tag = f"manual_{args.model.replace('-', '').lower()}_{args.region.lower()}_{args.lang}"
     out = Path(args.out) if args.out else (
