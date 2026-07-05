@@ -66,6 +66,13 @@ _TROUBLE = {"en": "en", "fr": "fr", "es": "es", "de": "de", "it": "it", "uk": "u
 _TEXT = {"en": "en", "fr": "fr", "es": "es", "de": "de", "it": "it", "uk": "uk"}
 _VALUE = {"en": "source", "fr": "fr", "es": "es", "de": "de", "it": "it", "uk": "uk"}
 
+# Langs every per-file suffix map can resolve. A --langs value outside this set
+# would KeyError deep inside a check (the maps only carry en + the EU langs), so
+# main() rejects it up front with a clear message. A QC gate that can't lint a
+# language (e.g. ja) must say so, not crash like an infra failure or silently
+# skip it — add the language's column suffix to the maps above to support it.
+SUPPORTED_LANGS = tuple(sorted(set(_LCD_DESC) & set(_TROUBLE) & set(_TEXT) & set(_VALUE)))
+
 # English state words that should never survive into a localized column.
 _ENGLISH_RESIDUE = ("On:", "Off:", "Blinking", "Flashing")
 
@@ -736,6 +743,15 @@ def main(argv: list[str] | None = None) -> int:
 
     root = Path(args.data_root)
     langs = tuple(part.strip() for part in args.langs.split(",") if part.strip())
+    unsupported = [lang for lang in langs if lang not in SUPPORTED_LANGS]
+    if unsupported:
+        print(
+            f"content_lint: unsupported --langs {unsupported}; supported: "
+            f"{', '.join(SUPPORTED_LANGS)}. Add the language's column suffix to the "
+            "per-file maps in content_lint.py to lint it.",
+            file=sys.stderr,
+        )
+        return 2
     started_at = _utc_now()
     checks = _check_specs(root, langs)
     run_id = str(args.run_id or "").strip() or "content-lint-local"
