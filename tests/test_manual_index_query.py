@@ -4,6 +4,7 @@ import unittest
 
 from tools.manual_index_query import (
     ManualIndexSettings,
+    _extract_filters,
     infer_manual_index_intent,
     query_manual_index_records,
 )
@@ -99,6 +100,26 @@ class TestManualIndexQuery(unittest.TestCase):
         self.assertEqual(2, result.overview["total_manuals"])
         self.assertEqual({"美加规": 1, "欧英规": 1}, result.overview["by_region"])
         self.assertEqual([], result.rows)
+
+
+class TestExtractFilters(unittest.TestCase):
+    def test_two_letter_alias_does_not_match_inside_a_word(self) -> None:
+        # "us" in "backup plus", "ph" in "alpha", "en" in "energy" must NOT
+        # trigger region/source-language filters.
+        filters = _extract_filters("backup plus alpha energy 说明书")
+        self.assertEqual((), filters.regions)
+        self.assertEqual((), filters.source_langs)
+
+    def test_standalone_region_alias_still_matches(self) -> None:
+        self.assertEqual(("美加规",), _extract_filters("查 US 说明书").regions)
+        self.assertEqual(("欧规",), _extract_filters("eu manual link").regions)
+
+    def test_cjk_region_alias_still_matches(self) -> None:
+        self.assertEqual(("美加规",), _extract_filters("美加规说明书链接").regions)
+
+    def test_language_alias_boundary(self) -> None:
+        self.assertEqual(("EN",), _extract_filters("查 en 说明书").source_langs)
+        self.assertEqual((), _extract_filters("energy 说明书").source_langs)
 
 
 if __name__ == "__main__":
