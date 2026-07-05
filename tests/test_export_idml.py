@@ -319,6 +319,49 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('DOMVersion="15.0"', w.styles_xml())
         self.assertNotIn('DOMVersion="8.0"', w.designmap_xml())
 
+    def test_lcdmode_component_parses_and_renders(self) -> None:
+        from tools.idml_rst_extract import extract_page
+        bundle = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "rst"
+        page = bundle / "page" / "05_operation_guide_placeholder.rst"
+        if not page.exists():
+            self.skipTest("no prepared bundle in this checkout")
+        res = extract_page(page, {"latex", "region_us", "lang_en", "model_je_1000f"})
+        import json
+        comps = [json.loads(t) for k, t in res.blocks if k == "component"]
+        lcd = [c for c in comps if c.get("kind") == "lcdmode"]
+        self.assertTrue(lcd)
+        self.assertEqual(len(lcd[0]["groups"]), 2)
+        self.assertEqual(len(lcd[0]["groups"][0]["actions"]), 3)
+
+    def test_list_tables_are_extracted_not_skipped(self) -> None:
+        from tools.idml_rst_extract import _parse_list_table
+        body = [
+            "   :header-rows: 1",
+            "",
+            "   * - Buttons",
+            "     - Operation",
+            "     - Function",
+            "   * - A + B",
+            "     - Hold 3s",
+            "     - Toggle mode",
+        ]
+        rows = _parse_list_table(body)
+        self.assertEqual(rows[0], ["Buttons", "Operation", "Function"])
+        self.assertEqual(rows[1], ["A + B", "Hold 3s", "Toggle mode"])
+
+    def test_full_bundle_extraction_has_zero_skips(self) -> None:
+        from tools.idml_rst_extract import bundle_page_order, extract_page
+        bundle = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "rst"
+        if not bundle.is_dir():
+            self.skipTest("no prepared bundle in this checkout")
+        tags = {"latex", "region_us", "lang_en", "model_je_1000f"}
+        data_prefixes = ("spec_", "lcd_icons_", "troubleshooting_", "symbols_")
+        total = sum(
+            extract_page(p, tags).skipped_raw
+            for p in bundle_page_order(bundle)
+            if not p.name.startswith(data_prefixes))
+        self.assertEqual(total, 0)
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
