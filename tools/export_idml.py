@@ -462,6 +462,112 @@ class IdmlWriter:
             pass
         return w_pt, w_pt * 0.62
 
+    def _cell(self, cid: str, name: str, content: str, *, fill: str | None = None,
+              stroke: bool = True) -> str:
+        fill_attr = f'CellFillColor="{fill}" ' if fill else ""
+        stroke_attr = "" if stroke else (
+            'LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" '
+            'TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" ')
+        return (
+            f'    <Cell Self="{cid}" Name="{name}" RowSpan="1" ColumnSpan="1" '
+            f'AppliedCellStyle="CellStyle/$ID/[None]" {fill_attr}{stroke_attr}'
+            'TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">\n'
+            + content + '    </Cell>')
+
+    def _component_table(self, tid: str, cols: list[float], cells: list[str],
+                         n_rows: int = 1) -> str:
+        row_els = "\n".join(f'    <Row Self="{tid}r{ri}" Name="{ri}"/>'
+                             for ri in range(n_rows))
+        col_els = "\n".join(
+            f'    <Column Self="{tid}col{ci}" Name="{ci}" SingleColumnWidth="{wd:g}"/>'
+            for ci, wd in enumerate(cols))
+        return (
+            f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
+            f'BodyRowCount="{n_rows}" ColumnCount="{len(cols)}" HeaderRowCount="0" FooterRowCount="0">\n'
+            f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n")
+
+    def _wrap_table_paragraph(self, table: str, terminal: bool) -> str:
+        return (
+            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
+            '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
+            + table +
+            ('    <Content></Content></CharacterStyleRange>\n' if terminal else
+             '    <Br/></CharacterStyleRange>\n')
+            + '  </ParagraphStyleRange>\n')
+
+    def _render_component(self, sid: str, n: int, spec: dict,
+                          bundle_root: Path, terminal: bool) -> tuple[str, float]:
+        """Component spec -> (xml, est_height). Table-based fidelity layer."""
+        kind = spec.get("kind")
+        body_w = self.page_w - self.m_l - self.m_r
+        tid = f"{sid}_cmp{n}"
+        if kind == "inbox":
+            items = spec.get("items", [])[:3]
+            cols = [body_w / 3.0] * 3
+            cells = []
+            for ci, item in enumerate(items):
+                img = self._resolve_bundle_image(bundle_root, item.get("img", ""))
+                icon_w = body_w / 3.0 - 14
+                icon = ""
+                if img is not None:
+                    iw, ih = self._art_frame_size(img, max_w=min(icon_w, 60.0))
+                    icon = self._image_cell_content(f"{tid}i{ci}", img, iw, ih)
+                content = (
+                    self._psr("HB Notice Label", str(ci + 1)) +
+                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+                    '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                    + icon + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n'
+                    + self._psr("HB Spec Label", item.get("label", ""), terminal=True))
+                cells.append(self._cell(f"{tid}c0_{ci}", f"{ci}:0", content))
+            table = self._component_table(tid, cols, cells)
+            return self._wrap_table_paragraph(table, terminal), 110.0
+        if kind in ("warnbox", "notice"):
+            fill = "Color/HB Bg K05" if kind == "notice" else None
+            label = spec.get("label", "")
+            texts = spec.get("texts", [])
+            lockup = ROOT / "docs" / "renderers" / "latex" / "assets" / "warning_lockup.png"
+            icon = ""
+            if kind == "warnbox" and lockup.exists():
+                icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+                        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                        + self._image_cell_content(f"{tid}lk", lockup, 52.0, 14.0)
+                        + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
+            left = icon + self._psr("HB Notice Label", label, terminal=True)
+            body = "\n".join(texts)
+            right = self._psr("HB Body", body, terminal=True)
+            cols = [body_w * 0.2, body_w * 0.8]
+            cells = [
+                self._cell(f"{tid}c0", "0:0", left, fill=fill, stroke=kind != "notice"),
+                self._cell(f"{tid}c1", "1:0", right, fill=fill, stroke=kind != "notice"),
+            ]
+            table = self._component_table(tid, cols, cells)
+            per_line = max(20, int(body_w * 0.8 / (0.52 * 6.6)))
+            lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
+            return self._wrap_table_paragraph(table, terminal), max(24.0, 7.4 * lines + 10)
+        if kind == "fcc":
+            texts = spec.get("texts", ["", ""])[:2]
+            mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.pdf"
+            icon = ""
+            if mark.exists():
+                icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+                        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                        + self._image_cell_content(f"{tid}fm", mark, 32.0, 22.0)
+                        + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
+            cols = [body_w / 2.0] * 2
+            cells = [
+                self._cell(f"{tid}c0", "0:0",
+                           icon + self._psr("HB Body", texts[0], terminal=True),
+                           fill="Color/HB Bg K05", stroke=False),
+                self._cell(f"{tid}c1", "1:0",
+                           self._psr("HB Body", texts[1] if len(texts) > 1 else "", terminal=True),
+                           fill="Color/HB Bg K05", stroke=False),
+            ]
+            table = self._component_table(tid, cols, cells)
+            per_line = max(20, int(body_w / 2 / (0.52 * 6.2)))
+            lines = max((len(t) + per_line - 1) // per_line for t in texts) if texts else 1
+            return self._wrap_table_paragraph(table, terminal), 7.5 * lines + 30
+        return "", 0.0
+
     def add_prose_story(self, sid: str, title: str, blocks: list[tuple[str, str]],
                         bundle_root: Path) -> tuple[str, float]:
         """Story from extracted prose blocks; returns (sid, est_height_pt)."""
@@ -471,6 +577,14 @@ class IdmlWriter:
         last_idx = len(blocks) - 1
         for bi, (kind, text) in enumerate(blocks):
             terminal = bi == last_idx
+            if kind == "component":
+                import json as _json
+                xml_part, h = self._render_component(
+                    sid, bi, _json.loads(text), bundle_root, terminal)
+                if xml_part:
+                    parts.append(xml_part)
+                    est += h
+                continue
             if kind == "table":
                 import json as _json
                 rows = [tuple(r) if len(r) == 2 else (r[0], " / ".join(r[1:]))
