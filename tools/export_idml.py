@@ -236,11 +236,36 @@ class IdmlWriter:
         )
 
     # -- content -----------------------------------------------------------
-    @staticmethod
-    def _psr(style: str, text: str) -> str:
-        """One ParagraphStyleRange with newline-separated content lines."""
-        lines = text.split("\n")
+
+    # Characters Gilroy has no glyph for — same policy as the PDF path's
+    # FRAGILE_UNICODE_REPLACEMENTS in patch_latex_fonts.py. Without this,
+    # InDesign shows pink missing-glyph boxes (designer-reported).
+    GLYPH_FALLBACKS = (
+        ("⎓", " DC "),   # ⎓ direct-current symbol
+        ("※", "*"),      # ※ reference mark
+        ("₄", "4"),      # ₄ subscript four (LiFePO4)
+    )
+
+    @classmethod
+    def _clean_text(cls, text: str) -> str:
+        for raw, replacement in cls.GLYPH_FALLBACKS:
+            text = text.replace(raw, replacement)
+        return text
+
+    @classmethod
+    def _psr(cls, style: str, text: str, *, terminal: bool = False) -> str:
+        """One ParagraphStyleRange.
+
+        IDML paragraphs are delimited by explicit <Br/> characters in the
+        content stream, NOT by ParagraphStyleRange boundaries — without a
+        trailing <Br/> adjacent ranges fuse into one paragraph
+        ("SPECIFICATIONSGENERAL INFO", designer-reported). Every range
+        therefore ends with <Br/> unless it is the story's last one.
+        """
+        lines = cls._clean_text(text).split("\n")
         content = "<Br/>".join(f"<Content>{escape(l)}</Content>" for l in lines)
+        if not terminal:
+            content += "<Br/>"
         sid = "ParagraphStyle/" + style.replace(" ", "%20")
         return (
             f'  <ParagraphStyleRange AppliedParagraphStyle="{sid}">\n'
@@ -261,7 +286,7 @@ class IdmlWriter:
                     f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" RowSpan="1" ColumnSpan="1" '
                     'AppliedCellStyle="CellStyle/$ID/[None]" '
                     'TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">\n'
-                    + self._psr(style, txt) +
+                    + self._psr(style, txt, terminal=True) +
                     '    </Cell>'
                 )
         row_els = "\n".join(
@@ -282,14 +307,17 @@ class IdmlWriter:
         parts = [self._psr("HB H1", "SPECIFICATIONS")]
         for si, sec in enumerate(sections):
             parts.append(self._psr("HB Spec Section", sec["title"]))
-            # table anchored in its own paragraph
+            # table anchored in its own paragraph; the paragraph still needs
+            # its own <Br/> so the next section title starts a new paragraph
             table = self._table(f"tbl_spec{si}", sec["rows"])
+            last = si == len(sections) - 1
             parts.append(
                 '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
                 '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
                 + table +
-                '    <Content></Content></CharacterStyleRange>\n'
-                '  </ParagraphStyleRange>\n'
+                ('    <Content></Content></CharacterStyleRange>\n' if last else
+                 '    <Br/></CharacterStyleRange>\n')
+                + '  </ParagraphStyleRange>\n'
             )
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
@@ -304,7 +332,10 @@ class IdmlWriter:
         return sid
 
     def add_text_story(self, sid: str, title: str, blocks: list[tuple[str, str]]) -> str:
-        parts = [self._psr(style, text) for style, text in blocks]
+        parts = [
+            self._psr(style, text, terminal=(i == len(blocks) - 1))
+            for i, (style, text) in enumerate(blocks)
+        ]
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
             f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'

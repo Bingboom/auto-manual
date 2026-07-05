@@ -63,6 +63,23 @@ class ExportIdmlTests(unittest.TestCase):
                 self.assertIn("<PathGeometry>", xml)
                 self.assertNotIn("GeometricBounds", xml.split("<TextFrame", 1)[-1])
 
+    def test_paragraphs_are_delimited_by_br(self) -> None:
+        out = self._write_package()
+        with zipfile.ZipFile(out) as zf:
+            story = zf.read("Stories/Story_st_spec.xml").decode("utf-8")
+        # H1 must not fuse with the first section title
+        h1_range = story.split("</ParagraphStyleRange>")[0]
+        self.assertIn("<Br/>", h1_range)
+
+    def test_missing_glyph_characters_are_replaced(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        psr = w._psr("HB Body", "16 V-60 V\u23935 A and LiFePO\u2084", terminal=True)
+        self.assertNotIn("\u2393", psr)
+        self.assertNotIn("\u2084", psr)
+        self.assertIn(" DC ", psr)
+        self.assertIn("LiFePO4", psr)
+
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
