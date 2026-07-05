@@ -288,12 +288,35 @@ def _coerce_cell(value: str, ftype: str):
 
 
 def _read_records(base_token: str, tid: str, lark_cli: str) -> tuple[list[dict], list[str]]:
-    """Return ([row dict], [record_id]) for a table (first 200 rows — reference tables are small)."""
-    rl = _lark(["base", "+record-list", "--base-token", base_token, "--table-id", tid, "--limit", "200", "--format", "json", "--as", "bot"], lark_cli)
-    data = rl.get("data", {}) or {}
-    flds = data.get("fields") or []
-    rids = data.get("record_id_list") or []
-    rows = [dict(zip(flds, row)) for row in (data.get("data") or [])]
+    """Return ([row dict], [record_id]) for a table, following pagination.
+
+    Reference tables are usually small, but a single ``--limit 200`` call silently
+    truncated any table past 200 rows: ``seed_export`` would drop the tail from the
+    committed CSV and ``seed_import`` would classify those rows as ``create`` and
+    duplicate them on every run (breaking the idempotency contract). Page with
+    ``--offset`` / ``has_more`` so every row is seen.
+    """
+    rows: list[dict] = []
+    rids: list[str] = []
+    offset = 0
+    limit = 200
+    while True:
+        args = [
+            "base", "+record-list", "--base-token", base_token, "--table-id", tid,
+            "--limit", str(limit), "--format", "json", "--as", "bot",
+        ]
+        if offset:
+            args += ["--offset", str(offset)]
+        data = _lark(args, lark_cli).get("data", {}) or {}
+        flds = data.get("fields") or []
+        page_rows = [dict(zip(flds, row)) for row in (data.get("data") or [])]
+        rows.extend(page_rows)
+        rids.extend(data.get("record_id_list") or [])
+        if not bool(data.get("has_more")):
+            break
+        if not page_rows:
+            raise RuntimeError(f"record-list signaled has_more but returned no rows for table {tid}")
+        offset += len(page_rows)
     return rows, rids
 
 
