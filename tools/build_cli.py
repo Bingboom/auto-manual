@@ -19,6 +19,7 @@ def parse_args(
             "validate",
             "doctor",
             *build_actions,
+            "idml",
             "review",
             "check",
             "sync-review",

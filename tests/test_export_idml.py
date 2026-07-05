@@ -14,7 +14,9 @@ from tools.export_idml import (  # noqa: E402
     IdmlWriter,
     check_idml,
     load_layout_params,
+    load_lcd_rows,
     load_spec_sections,
+    load_trouble_rows,
 )
 
 FIXTURE_DATA_ROOT = ROOT / "tests" / "fixtures" / "phase2"
@@ -90,6 +92,24 @@ class ExportIdmlTests(unittest.TestCase):
         # a synthetic 10x volume must request more pages
         big = [{"title": s2["title"], "rows": s2["rows"] * 10} for s2 in sections]
         self.assertGreater(w.pages_for_height(w.estimate_spec_height(big)), 1)
+
+    def test_lcd_story_embeds_linked_images(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = load_lcd_rows(FIXTURE_DATA_ROOT, "JE-1000F")
+        self.assertTrue(rows)
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        story = dict(w.stories)["st_lcd"]
+        self.assertIn("<Table ", story)
+        self.assertIn("LinkResourceURI=", story)
+        self.assertIn("Wi-Fi", story)
+
+    def test_trouble_rows_match_model_all_and_region_lists(self) -> None:
+        rows = load_trouble_rows(FIXTURE_DATA_ROOT, "JE-1000F", "US")
+        self.assertTrue(rows)
+        for code, measure in rows:
+            self.assertTrue(code)
+            self.assertTrue(measure)
 
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

@@ -113,6 +113,43 @@ def load_spec_sections(data_root: Path, model: str, region: str) -> list[dict]:
     return sections
 
 
+def load_lcd_rows(data_root: Path, model: str) -> list[dict]:
+    """LCD icon table rows for one model: no / icon path / name / description."""
+    path = data_root / "lcd_icons_blocks.csv"
+    out: list[dict] = []
+    for r in csv.DictReader(path.open(encoding="utf-8")):
+        if r.get("Is_latest") != "TRUE":
+            continue
+        models = [m.strip() for m in (r.get("Model") or "").split(",")]
+        if model not in models:
+            continue
+        out.append({
+            "no": (r.get("No.") or "").strip(),
+            "figure": (r.get("figure") or "").strip(),
+            "name": (r.get("icon_en") or "").strip(),
+            "desc": (r.get("icon_desc_en") or "").strip(),
+        })
+    out.sort(key=lambda x: float(x["no"] or 0))
+    return out
+
+
+def load_trouble_rows(data_root: Path, model: str, region: str) -> list[tuple[str, str]]:
+    path = data_root / "troubleshooting_blocks.csv"
+    out: list[tuple[str, str]] = []
+    for r in csv.DictReader(path.open(encoding="utf-8")):
+        if r.get("Is_latest") != "TRUE":
+            continue
+        models = [m.strip() for m in (r.get("Model") or "").split(",") if m.strip()]
+        if models and model not in models and "ALL" not in models:
+            continue
+        regions = [x.strip() for x in (r.get("Region") or "").split(",") if x.strip()]
+        if regions and region not in regions and "ALL" not in regions:
+            continue
+        out.append(((r.get("error_code") or "").strip(),
+                    (r.get("corrective_measures_en") or "").strip()))
+    return out
+
+
 # ---------------------------------------------------------------------------
 # IDML package writer
 # ---------------------------------------------------------------------------
@@ -323,6 +360,113 @@ class IdmlWriter:
     def pages_for_height(self, height_pt: float) -> int:
         import math
         return max(1, math.ceil(height_pt / self.frame_height()))
+
+    def _image_cell_content(self, rect_id: str, image_path: Path, w_pt: float, h_pt: float) -> str:
+        """Anchored image frame for a table cell, linked to a file on disk.
+
+        The Link keeps the file external (URI), so the designer relinks or
+        edits assets through InDesign's Links panel — the same contract as
+        a hand-built document.
+        """
+        uri = image_path.resolve().as_uri()
+        x1, y1, x2, y2 = 0.0, 0.0, w_pt, h_pt
+        pts = ((x1, y1), (x1, y2), (x2, y2), (x2, y1))
+        anchors = "".join(
+            f'<PathPointType Anchor="{x:g} {y:g}" LeftDirection="{x:g} {y:g}" '
+            f'RightDirection="{x:g} {y:g}"/>' for x, y in pts
+        )
+        return (
+            f'<Rectangle Self="{rect_id}" ContentType="GraphicType" '
+            'AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" '
+            'AnchoredPosition="InlinePosition">'
+            '<Properties><PathGeometry><GeometryPathType PathOpen="false">'
+            f'<PathPointArray>{anchors}</PathPointArray>'
+            '</GeometryPathType></PathGeometry></Properties>'
+            f'<Image Self="{rect_id}_img" ItemTransform="1 0 0 1 0 0">'
+            f'<Link Self="{rect_id}_lnk" LinkResourceURI="{escape(uri)}"/>'
+            '</Image>'
+            '<FrameFittingOption FittingOnEmptyFrame="Proportionally"/>'
+            '</Rectangle>'
+        )
+
+    def add_lcd_story(self, rows: list[dict], data_root: Path) -> str:
+        """LCD icon table: circled-no / icon image / name / description."""
+        sid = "st_lcd"
+        body_w = self.page_w - self.m_l - self.m_r
+        cols = (body_w * 0.08, body_w * 0.12, body_w * 0.28, body_w * 0.52)
+        tid = "tbl_lcd"
+        cells = []
+        icon_pt = 24.0
+        for ri, row in enumerate(rows):
+            # figure paths are repo-relative in both live and fixture snapshots
+            fig = (ROOT / row["figure"]) if row["figure"] else None
+            img = (self._image_cell_content(f"{tid}img{ri}", fig, icon_pt, icon_pt)
+                   if fig and fig.exists() else "")
+            cell_defs = (
+                (self._psr("HB Spec Label", row["no"], terminal=True), 0),
+                ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">'
+                 '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                 + img + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n', 1),
+                (self._psr("HB Spec Label", row["name"], terminal=True), 2),
+                (self._psr("HB Spec Value", row["desc"], terminal=True), 3),
+            )
+            for content, ci in cell_defs:
+                cells.append(
+                    f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" RowSpan="1" ColumnSpan="1" '
+                    'AppliedCellStyle="CellStyle/$ID/[None]" '
+                    'TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">\n'
+                    + content + '    </Cell>'
+                )
+        row_els = "\n".join(
+            f'    <Row Self="{tid}r{ri}" Name="{ri}"/>' for ri in range(len(rows))
+        )
+        col_els = "\n".join(
+            f'    <Column Self="{tid}col{ci}" Name="{ci}" SingleColumnWidth="{wd:g}"/>'
+            for ci, wd in enumerate(cols)
+        )
+        table = (
+            f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
+            f'BodyRowCount="{len(rows)}" ColumnCount="{len(cols)}" HeaderRowCount="0" FooterRowCount="0">\n'
+            f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n"
+        )
+        parts = [
+            self._psr("HB H1", "LCD DISPLAY"),
+            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
+            '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
+            + table +
+            '    <Content></Content></CharacterStyleRange>\n'
+            '  </ParagraphStyleRange>\n',
+        ]
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="LCD DISPLAY">\n'
+            '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
+            + "".join(parts) + '</Story>\n</idPkg:Story>\n'
+        )
+        self.stories.append((sid, xml))
+        return sid
+
+    def add_trouble_story(self, rows: list[tuple[str, str]]) -> str:
+        sid = "st_trouble"
+        parts = [self._psr("HB H1", "TROUBLESHOOTING")]
+        table = self._table("tbl_trouble", rows)
+        parts.append(
+            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
+            '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
+            + table +
+            '    <Content></Content></CharacterStyleRange>\n'
+            '  </ParagraphStyleRange>\n'
+        )
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TROUBLESHOOTING">\n'
+            '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
+            + "".join(parts) + '</Story>\n</idPkg:Story>\n'
+        )
+        self.stories.append((sid, xml))
+        return sid
 
     def add_spec_story(self, sections: list[dict]) -> str:
         sid = "st_spec"
@@ -565,9 +709,26 @@ def main() -> int:
           "phase2 Spec_Master snapshot. Edit freely - this file is a pipeline export."),
          ])
     spec = w.add_spec_story(sections)
+    lcd_rows = load_lcd_rows(data_root, args.model)
+    trouble_rows = load_trouble_rows(data_root, args.model, args.region)
+
     w.add_spread_chain(intro, 1, 0)
+    page_cursor = 1
     spec_pages = w.pages_for_height(w.estimate_spec_height(sections))
-    w.add_spread_chain(spec, spec_pages, 1)
+    w.add_spread_chain(spec, spec_pages, page_cursor)
+    page_cursor += spec_pages
+    if lcd_rows:
+        lcd = w.add_lcd_story(lcd_rows, data_root)
+        lcd_pages = w.pages_for_height(
+            16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in lcd_rows))
+        w.add_spread_chain(lcd, lcd_pages, page_cursor)
+        page_cursor += lcd_pages
+    if trouble_rows:
+        trouble = w.add_trouble_story(trouble_rows)
+        trouble_pages = w.pages_for_height(
+            16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in trouble_rows))
+        w.add_spread_chain(trouble, trouble_pages, page_cursor)
+        page_cursor += trouble_pages
 
     tag = f"manual_{args.model.replace('-', '').lower()}_{args.region.lower()}_{args.lang}"
     out = Path(args.out) if args.out else (
@@ -579,7 +740,8 @@ def main() -> int:
     n_rows = sum(len(s["rows"]) for s in sections)
     print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
     print(f"[export-idml] stories={len(w.stories)} spreads={len(w.spreads)} "
-          f"spec sections={len(sections)} rows={n_rows}")
+          f"spec sections={len(sections)} rows={n_rows} "
+          f"lcd rows={len(lcd_rows)} trouble rows={len(trouble_rows)}")
     return 1 if issues else 0
 
 

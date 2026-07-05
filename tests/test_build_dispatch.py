@@ -31,6 +31,7 @@ class TestBuildDispatch(unittest.TestCase):
             "diff-report",
             "release-manifest",
             "clean",
+            "idml",
         }
 
         self.assertEqual(expected, set(build_dispatch.registered_actions()))
