@@ -304,6 +304,24 @@ def _diff_delta_count(page_out: Path) -> int:
         return 0
     return int((payload.get("summary") or {}).get("total_deltas") or 0)
 
+def _page_gate_passed(page_out: Path) -> bool:
+    """Rebuild+rediff verdict from a per-page worker's verify report.
+
+    The worker writes ``cloud_doc_backport_verify.json`` on every ``--write`` run;
+    an unreadable or missing report fails closed — a page whose apply cannot be
+    verified must not ride into the backport PR.
+    """
+    verify_path = page_out / "cloud_doc_backport_verify.json"
+    try:
+        payload = json.loads(verify_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    gate = payload.get("rebuild_rediff")
+    if not isinstance(gate, dict):
+        return False
+    return bool(gate.get("passed"))
+
+
 def _backport_pr_branch(git_ref: str, run_id: str) -> str:
     """Name of the sub-branch that carries backport edits as a PR into the review branch."""
     safe = re.sub(r"[^A-Za-z0-9._-]+", "-", f"{git_ref}-{run_id}").strip("-")[:80] or "edits"
@@ -527,9 +545,21 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         if args.write:
             review_cmd.append("--write")
         proc = subprocess.run(review_cmd, cwd=str(get_paths().root), capture_output=True, text=True)
-        if proc.returncode not in (0, 1):  # run-review returns 1 only on a FAIL residual result
+        if proc.returncode not in (0, 1):  # run-review returns 1 on a FAIL result
             failed = True
             print(f"  ERROR {source_rel} (rc {proc.returncode})", file=sys.stderr)
+            continue
+        # rc 1 covers two FAIL shapes: residual pending deltas (partial apply — still
+        # push what landed cleanly) and a rebuild+rediff gate failure (the apply
+        # corrupted the RST — never commit or push that page; parity with the
+        # baseline path's refusal).
+        if args.write and proc.returncode == 1 and not _page_gate_passed(page_out):
+            failed = True
+            print(
+                f"  GATE FAIL {source_rel}: the apply changed more than the intended "
+                "deltas — page excluded from the backport PR; inspect the worktree.",
+                file=sys.stderr,
+            )
             continue
         deltas = _diff_delta_count(page_out)
         if deltas > 0:
@@ -702,10 +732,40 @@ def _run_review_branch_baseline(
     gate_passed = True
     if args.write and review_bound:
         bundle_root = Path(worktree) / review_dir
-        for page in _review_bundle_pages(worktree, review_dir):
+        bundle_pages = _review_bundle_pages(worktree, review_dir)
+        # Plan pass: find which page(s) each delta would land on. The reviewer edited
+        # ONE instance in the cloud doc, so a delta that applies cleanly in more than
+        # one page (shared boilerplate) is cross-page ambiguous — abstain instead of
+        # fanning the edit out to every page that happens to contain the same text.
+        plan_pages: dict[str, list[Path]] = {}
+        for page in bundle_pages:
+            plan_rep = build_review_apply_report(
+                report, source_path=page, write=False,
+                command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-plan"],
+            )
+            for op in plan_rep.get("operations") or []:
+                if op.get("status") == "planned" and op.get("delta_hash"):
+                    plan_pages.setdefault(str(op["delta_hash"]), []).append(page)
+        cross_page_ambiguous = {h for h, hits in plan_pages.items() if len(hits) > 1}
+        if cross_page_ambiguous:
+            print(
+                f"  SKIP {len(cross_page_ambiguous)} delta(s): old text applies cleanly in "
+                "more than one _review page (cross-page ambiguous) — route manually to the "
+                "intended page.",
+                file=sys.stderr,
+            )
+        for page in bundle_pages:
+            page_deltas = [
+                delta
+                for delta in all_deltas
+                if str(delta.get("delta_hash")) not in cross_page_ambiguous
+                and plan_pages.get(str(delta.get("delta_hash")), [None])[0] == page
+            ]
+            if not page_deltas:
+                continue
             pre_text = page.read_text(encoding="utf-8") if page.is_file() else ""
             apply_rep = build_review_apply_report(
-                report, source_path=page, write=True,
+                {**report, "deltas": page_deltas}, source_path=page, write=True,
                 command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-apply"],
             )
             page_applied = {
