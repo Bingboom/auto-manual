@@ -122,12 +122,17 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
 
 export async function resolveTrackedRun({ github, stateStore, settings, requestedRunId }) {
   const tracked = requestedRunId ? await stateStore.getRecordByRunId(String(requestedRunId)) : await stateStore.getLastRecord();
-  if (!tracked) {
+  // An explicit run id with no local record still needs a real observation: the
+  // IM adapters dispatch via `build.py queue-execute`, so those run ids never
+  // enter this state store, and resolveAccurateRowState() asks us for their
+  // status precisely to catch a run that failed before writeback. Only bail out
+  // when there is nothing to look up (no id and no last record).
+  if (!tracked && !requestedRunId) {
     return { tracked: null, run: null, metadata: null, artifacts: [], observationError: null };
   }
 
   let runId = requestedRunId ? String(requestedRunId) : tracked.runId;
-  if (!runId && tracked.openclawDispatchNonce && tracked.workflowFile) {
+  if (!runId && tracked?.openclawDispatchNonce && tracked?.workflowFile) {
     try {
       const run = await github.findDispatchedRun({
         workflowFile: tracked.workflowFile,
@@ -182,11 +187,16 @@ export async function resolveTrackedRun({ github, stateStore, settings, requeste
     observationError = error.message;
   }
 
-  await stateStore.saveRecord({
-    ...tracked,
-    runId,
-    runUrl: run?.html_url || tracked.runUrl,
-    queueRecordId: metadata?.queue_record_id || tracked.queueRecordId,
-  });
+  // Only persist state for a run this control layer actually tracks. An
+  // ad-hoc observation of an externally-dispatched run id must not fabricate a
+  // record (it has no dispatch nonce / queue binding to own).
+  if (tracked) {
+    await stateStore.saveRecord({
+      ...tracked,
+      runId,
+      runUrl: run?.html_url || tracked.runUrl,
+      queueRecordId: metadata?.queue_record_id || tracked.queueRecordId,
+    });
+  }
   return { tracked, run, metadata, artifacts, observationError };
 }
