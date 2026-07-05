@@ -79,12 +79,20 @@ class TestBuildDispatch(unittest.TestCase):
         self.assertEqual(
             [
                 ("ensure", "word"),
-                ("maybe-sync-review", "word"),
+                ("maybe-sync-review", "word", {}),
                 ("build-docs", "word", {}),
                 ("run-checked", ("build-docs",)),
             ],
             calls,
         )
+
+    def test_dispatch_action_fast_forces_runtime_source_for_review_presync(self) -> None:
+        # `fast` builds runtime + no-clean, so the review pre-sync must be told the
+        # effective source is runtime (else it runs a --clean RST rebuild + a
+        # docs/_review params rewrite as a surprise side effect of a quick build).
+        calls = self._dispatch("fast")
+
+        self.assertEqual(("maybe-sync-review", "fast", {"source_override": "runtime"}), calls[1])
 
     def _dispatch(self, action: str) -> list[tuple]:
         args = SimpleNamespace(action=action, data_root="data/phase2", model="JE-1000F", region="US")
@@ -102,6 +110,9 @@ class TestBuildDispatch(unittest.TestCase):
                 return [name]
 
             return command
+
+        def record_maybe_sync(parsed_args, **kwargs):
+            calls.append(("maybe-sync-review", parsed_args.action, kwargs))
 
         def review_bundle_command(parsed_args):
             calls.append(("review-bundle", parsed_args.action))
@@ -134,7 +145,7 @@ class TestBuildDispatch(unittest.TestCase):
             run_diff_report=record_arg("diff-report"),
             release_manifest_command=lambda parsed_args: ["release-manifest", parsed_args.action],
             clean_build_artifacts=lambda config_path: calls.append(("clean", config_path)),
-            maybe_sync_review_before_build=record_arg("maybe-sync-review"),
+            maybe_sync_review_before_build=record_maybe_sync,
         )
         return calls
 

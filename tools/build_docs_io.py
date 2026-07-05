@@ -64,8 +64,20 @@ def clean_build_targets(
     build_root_for_target: Callable[..., Path],
     cleanup_legacy_rst_artifacts: Callable[..., None],
     remove_tree_with_retries: Callable[[Path], None],
+    output_root: Path | None = None,
     printer: Callable[[str], None] = print,
 ) -> None:
+    # A preview writes straight into output_root, which already encodes the
+    # (possibly staged) docs_build_dir + model/region/preview/page. Clean exactly
+    # that, so a `preview --staging-root` cleans the staged preview dir instead of
+    # the repo's default docs/_build preview dir (and never leaves the staged one
+    # stale).
+    if output_root is not None:
+        if output_root.exists():
+            printer(f"[build] Cleaning preview output: {output_root}")
+            remove_tree_with_retries(output_root)
+        return
+
     actual_docs_build_dir = docs_build_dir_of(docs_dir)
 
     for target in targets:

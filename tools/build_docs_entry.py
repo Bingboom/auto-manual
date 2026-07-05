@@ -68,8 +68,12 @@ def run_build(
     if args.clean:
         if output_base_root is not None:
             clean_build_targets(targets, docs_dir=output_base_root.parent)
+        elif output_root is not None:
+            # preview: clean exactly the output dir it writes into (handles a
+            # staged --output-root instead of the repo's default preview dir).
+            clean_build_targets(targets, output_root=output_root)
         else:
-            clean_build_targets(targets, preview_name=args.page_selector if output_root else None)
+            clean_build_targets(targets)
 
     requested_formats = resolve_requested_formats(cfg, args.formats)
     pdf_mode = resolve_pdf_mode(cfg, args.pdf_mode) if "pdf" in requested_formats else "latex"
