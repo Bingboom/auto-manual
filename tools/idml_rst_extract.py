@@ -28,6 +28,15 @@ from pathlib import Path
 
 Block = tuple[str, str]
 
+# Component spec kinds this extractor can emit in ("component", json) blocks.
+# Parity with the IDML component registry (tools/idml/components.REGISTRY) is
+# test-enforced so a new kind can never ship extractor-side without a renderer.
+# "tailwarnbox" is deliberately absent: the safety+symbols page composer
+# synthesizes it from trailing safety warnboxes; it has no extracted form.
+EMITTED_COMPONENT_KINDS = (
+    "fcc", "inbox", "lcdmode", "notice", "safetywarning", "warninglead", "warnbox",
+)
+
 # Block kinds whose text payload is a JSON document (rows / component spec),
 # not prose — the RST unescape pass must reach INTO their string values, never
 # rewrite the JSON envelope (see _unescape_rst_stars).
