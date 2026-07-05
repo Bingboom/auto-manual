@@ -110,6 +110,71 @@ class TestRevisionLedgerIngest(unittest.TestCase):
             second = revision_ledger.ingest_report(report, ledger_path=ledger)
             self.assertEqual(second["rows_written"], 0)
 
+    def test_applied_source_path_wins_over_report_target(self) -> None:
+        # Whole-doc baseline runs have source_target.path=None; the apply stamps
+        # each delta with the _review page it landed on, and that page is what
+        # the ledger row must point at (else reconcile is source_missing forever).
+        with tempfile.TemporaryDirectory() as td:
+            ledger = Path(td) / "ledger.jsonl"
+            report = _report(source_target={"path": None, "kind": "review"})
+            report["deltas"][0]["applied_source_path"] = (
+                "docs/_review/JE-2000F/CN/page/03_product_overview_zh.rst"
+            )
+            revision_ledger.ingest_report(report, ledger_path=ledger)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(
+                row["source_path"], "docs/_review/JE-2000F/CN/page/03_product_overview_zh.rst"
+            )
+            self.assertEqual(row["model"], "JE-2000F")
+            self.assertEqual(row["region"], "CN")
+            self.assertEqual(row["lang"], "zh")
+
+    def test_lang_from_filename_suffix_not_from_page_segment(self) -> None:
+        # Real bundles have no lang dir: docs/_review/<model>/<region>/page/x_<lang>.rst.
+        # The "page" segment must not be mistaken for a language, and a non-lang
+        # filename suffix ("01_fcc") must yield None, not "fcc".
+        cases = {
+            "docs/_review/JE-1000F/EU/page/03_product_overview_en.rst": "en",
+            "docs/_review/JE-1000F/US/page/01_fcc.rst": None,
+            "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/05_operation_guide_uk.rst": "uk",
+        }
+        for path, expected_lang in cases.items():
+            with self.subTest(path=path):
+                target = revision_ledger._target_from_source_path(path)
+                self.assertEqual(target["lang"], expected_lang)
+                self.assertEqual(target["model"], "JE-1000F")
+
+    def test_default_lang_fills_missing_lang(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            ledger = Path(td) / "ledger.jsonl"
+            report = _report(source_target={"path": None, "kind": "review"})
+            revision_ledger.ingest_report(report, ledger_path=ledger, default_lang="en")
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["lang"], "en")
+
+    def test_semantic_review_read_from_nested_delta_shape(self) -> None:
+        # Deltas carry semantic_review={"required": ..., "flags": [...]}; only the
+        # report summary has the flat semantic_review_required key.
+        with tempfile.TemporaryDirectory() as td:
+            ledger = Path(td) / "ledger.jsonl"
+            report = _report()
+            del report["deltas"][0]["semantic_review_required"]
+            report["deltas"][0]["semantic_review"] = {
+                "required": True,
+                "flags": [{"type": "output_to_button"}],
+            }
+            revision_ledger.ingest_report(report, ledger_path=ledger)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertTrue(row["semantic_review_required"])
+
+    def test_ingest_summary_reports_written_row_keys(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            ledger = Path(td) / "ledger.jsonl"
+            summary = revision_ledger.ingest_report(_report(), ledger_path=ledger)
+            self.assertEqual(summary["row_keys"], ["run-123:hash-a"])
+            again = revision_ledger.ingest_report(_report(), ledger_path=ledger)
+            self.assertEqual(again["row_keys"], [])
+
     def test_non_review_source_path_yields_null_target(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             ledger = Path(td) / "ledger.jsonl"
@@ -158,6 +223,20 @@ class TestRevisionLedgerReconcile(unittest.TestCase):
             self.assertEqual(row["final_status"], revision_ledger.ACCEPTED_STATUS)
             self.assertEqual(row["final_text"], "Charge the battery fully before first use.")
             self.assertEqual(row["merged_pr"], "#499")
+
+    def test_skip_row_keys_leaves_fresh_rows_pending(self) -> None:
+        # The ingest piggyback passes the keys it just wrote: a row's verdict must
+        # never be taken from the same unmerged working tree that produced it.
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            _write_review(root, "Charge the battery fully before first use.\n")
+            ledger = self._ingest(root)
+            summary = revision_ledger.reconcile(
+                ledger, root=root, skip_row_keys={"run-123:hash-a"}
+            )
+            self.assertEqual(summary["rows_reconciled"], 0)
+            row = revision_ledger.load_ledger(ledger)[0]
+            self.assertEqual(row["final_status"], revision_ledger.PENDING_STATUS)
 
     def test_machine_text_still_present_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as td:

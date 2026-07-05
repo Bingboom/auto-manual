@@ -79,13 +79,23 @@ def default_ledger_path(base_root: Path | None = None) -> Path:
     return revision_ledger_of(base_root) / LEDGER_FILENAME
 
 
+# Output languages a review path segment / filename suffix may carry. Kept as a
+# local literal (mirrors cloud_doc_backport_args._KNOWN_VALUE_LANGS) so this
+# leaf module does not pull in the whole backport CLI import graph.
+_KNOWN_LANGS = frozenset(
+    {"pt-BR", "pt-br", "en", "fr", "es", "de", "it", "uk", "ja", "zh", "ko", "nl", "pl", "sv"}
+)
+
+
 def _target_from_source_path(source_path: str | None) -> dict[str, str | None]:
     """Best-effort (model, region, lang) parse from a review source path.
 
-    Review sources live under ``docs/_review/<model>/<region>/<lang>/...``; the
-    segments right after ``_review`` carry the target identity. Anything that does
-    not match that layout (e.g. a template source) yields ``None`` fields rather
-    than a guess.
+    Review sources live under ``docs/_review/<model>/<region>/...``; the two
+    segments right after ``_review`` carry model and region. The language is the
+    third segment when the bundle nests per-lang dirs, else the filename's
+    ``_<lang>`` suffix (``03_product_overview_en.rst``); segments/suffixes that
+    are not a known output language (``page``, ``generated``, ``01_fcc``) yield
+    ``None`` rather than a guess.
     """
     empty: dict[str, str | None] = {"model": None, "region": None, "lang": None}
     if not source_path:
@@ -94,8 +104,18 @@ def _target_from_source_path(source_path: str | None) -> dict[str, str | None]:
     if PathSegments.REVIEW not in parts:
         return empty
     after = parts[parts.index(PathSegments.REVIEW) + 1 :]
-    keys = ("model", "region", "lang")
-    return {key: (after[i] if i < len(after) else None) for i, key in enumerate(keys)}
+    lang: str | None = None
+    if len(after) > 2 and after[2] in _KNOWN_LANGS:
+        lang = after[2]
+    else:
+        suffix = Path(source_path).stem.rsplit("_", 1)[-1]
+        if suffix in _KNOWN_LANGS:
+            lang = suffix
+    return {
+        "model": after[0] if len(after) > 0 else None,
+        "region": after[1] if len(after) > 1 else None,
+        "lang": lang,
+    }
 
 
 def _row_key(run_id: str | None, delta: dict[str, Any]) -> str:
@@ -109,13 +129,28 @@ def _row_key(run_id: str | None, delta: dict[str, Any]) -> str:
     return f"{run_id or 'unknown-run'}:{discriminator}"
 
 
-def delta_to_row(report: dict[str, Any], delta: dict[str, Any]) -> dict[str, Any]:
-    """Project one backport delta + its report header into a ledger row."""
+def delta_to_row(
+    report: dict[str, Any], delta: dict[str, Any], *, default_lang: str | None = None
+) -> dict[str, Any]:
+    """Project one backport delta + its report header into a ledger row.
+
+    A per-delta ``applied_source_path`` (stamped by the whole-doc baseline apply,
+    which resolves each delta to the ``_review`` page it landed on) wins over the
+    report-level ``source_target.path`` (None for whole-doc runs). ``default_lang``
+    fills the language when the path itself does not carry one — a backport run
+    is single-language, so the doc-level lang is authoritative.
+    """
     metadata = report.get("metadata") or {}
     source_target = report.get("source_target") or {}
-    source_path = source_target.get("path")
+    source_path = delta.get("applied_source_path") or source_target.get("path")
     location = delta.get("location") or {}
     target = _target_from_source_path(source_path)
+    semantic_review = delta.get("semantic_review")
+    semantic_review_required = (
+        semantic_review.get("required")
+        if isinstance(semantic_review, dict)
+        else delta.get("semantic_review_required")
+    )
     return {
         "ledger_schema_version": LEDGER_SCHEMA_VERSION,
         "row_key": _row_key(report.get("run_id"), delta),
@@ -127,7 +162,7 @@ def delta_to_row(report: dict[str, Any], delta: dict[str, Any]) -> dict[str, Any
         "doc_url": report.get("doc_url"),
         "model": target["model"],
         "region": target["region"],
-        "lang": target["lang"],
+        "lang": target["lang"] or default_lang,
         "source_path": source_path,
         "block_kind": location.get("kind"),
         "heading_path": location.get("heading_path") or [],
@@ -135,7 +170,7 @@ def delta_to_row(report: dict[str, Any], delta: dict[str, Any]) -> dict[str, Any
         "change_type": delta.get("change_type"),
         "route_class": delta.get("route_class"),
         "confidence": delta.get("confidence"),
-        "semantic_review_required": delta.get("semantic_review_required"),
+        "semantic_review_required": semantic_review_required,
         # The flywheel signal: what the machine produced vs what the reviewer wrote.
         "machine_text": delta.get("old_text"),
         "reviewer_text": delta.get("new_text"),
@@ -167,18 +202,22 @@ def existing_row_keys(ledger_path: Path) -> set[str]:
     return {row.get("row_key") for row in load_ledger(ledger_path) if row.get("row_key")}
 
 
-def ingest_report(report: dict[str, Any], *, ledger_path: Path) -> dict[str, Any]:
+def ingest_report(
+    report: dict[str, Any], *, ledger_path: Path, default_lang: str | None = None
+) -> dict[str, Any]:
     """Append the report's deltas to the ledger, skipping already-present rows.
 
     Returns a small summary dict: how many deltas were seen, written, and
-    skipped as duplicates.
+    skipped as duplicates, plus the ``row_keys`` written by this call (so a
+    same-run reconcile pass can leave the fresh rows pending until their PR
+    merges).
     """
     deltas = report.get("deltas") or []
     seen_keys = existing_row_keys(ledger_path)
     new_rows: list[dict[str, Any]] = []
     skipped = 0
     for delta in deltas:
-        row = delta_to_row(report, delta)
+        row = delta_to_row(report, delta, default_lang=default_lang)
         if row["row_key"] in seen_keys:
             skipped += 1
             continue
@@ -197,14 +236,17 @@ def ingest_report(report: dict[str, Any], *, ledger_path: Path) -> dict[str, Any
         "deltas_seen": len(deltas),
         "rows_written": len(new_rows),
         "rows_skipped": skipped,
+        "row_keys": [row["row_key"] for row in new_rows],
     }
 
 
-def ingest_report_file(report_path: Path, *, ledger_path: Path) -> dict[str, Any]:
+def ingest_report_file(
+    report_path: Path, *, ledger_path: Path, default_lang: str | None = None
+) -> dict[str, Any]:
     report = json.loads(report_path.read_text(encoding="utf-8"))
     if not isinstance(report, dict):
         raise ValueError(f"report {report_path} is not a JSON object")
-    return ingest_report(report, ledger_path=ledger_path)
+    return ingest_report(report, ledger_path=ledger_path, default_lang=default_lang)
 
 
 def write_ledger(rows: list[dict[str, Any]], ledger_path: Path) -> None:
@@ -420,6 +462,7 @@ def reconcile_rows(
     apply_index: dict[str, dict[str, Any]] | None = None,
     force: bool = False,
     auto_merge_meta: bool = False,
+    skip_row_keys: set[str] | None = None,
 ) -> dict[str, Any]:
     """Fill verdict + merge fields on pending rows in place, routed by route_class.
 
@@ -429,18 +472,25 @@ def reconcile_rows(
     classes, and source-table rows with no apply entry yet, are left pending.
     Decided rows are skipped unless ``force``. Returns per-verdict counts.
 
+    ``skip_row_keys`` exempts rows from this pass entirely — the ingest piggyback
+    passes the keys it just wrote, so a row's verdict is never taken from the
+    same unmerged working tree that produced it.
+
     With ``auto_merge_meta``, merge metadata for review-route rows is resolved
     from git (the last commit touching each row's source file); explicit
     ``merge_meta`` values win over the resolved ones.
     """
     merge_meta = merge_meta or {}
     apply_index = apply_index or {}
+    skip_row_keys = skip_row_keys or set()
     haystacks: dict[str, str | None] = {}
     git_meta: dict[str, dict[str, Any]] = {}
     counts: dict[str, int] = {}
     reconciled = 0
     for row in rows:
         if not force and row.get("final_status") != PENDING_STATUS:
+            continue
+        if row.get("row_key") in skip_row_keys:
             continue
         route = row.get("route_class")
         source_path = row.get("source_path")
@@ -483,12 +533,14 @@ def reconcile(
     apply_report: dict[str, Any] | None = None,
     force: bool = False,
     auto_merge_meta: bool = False,
+    skip_row_keys: set[str] | None = None,
 ) -> dict[str, Any]:
     """Load a ledger, reconcile pending rows, write back.
 
     ``apply_report`` is an optional source_table_sync apply report used to resolve
     ``source_table_suggestion`` (online-table) rows. ``auto_merge_meta`` resolves
     merge metadata from git per source file (explicit ``merge_meta`` wins).
+    ``skip_row_keys`` rows are left pending (see ``reconcile_rows``).
     """
     rows = load_ledger(ledger_path)
     apply_index = index_apply_report(apply_report)
@@ -499,6 +551,7 @@ def reconcile(
         apply_index=apply_index,
         force=force,
         auto_merge_meta=auto_merge_meta,
+        skip_row_keys=skip_row_keys,
     )
     if summary["rows_reconciled"]:
         write_ledger(rows, ledger_path)
