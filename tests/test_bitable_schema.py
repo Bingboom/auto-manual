@@ -375,6 +375,8 @@ class ReadRecordsPaginationTests(unittest.TestCase):
 
     def _paged_fake(self, seen_offsets):
         def fake(args, lark_cli="lark-cli"):
+            if "+field-list" in args:
+                return _fields_response([{"name": "Key", "type": "text"}, {"name": "Val", "type": "text"}])
             offset = int(args[args.index("--offset") + 1]) if "--offset" in args else 0
             seen_offsets.append(offset)
             if offset == 0:
@@ -406,10 +408,32 @@ class ReadRecordsPaginationTests(unittest.TestCase):
 
     def test_read_records_single_page_when_no_has_more(self):
         def fake(args, lark_cli="lark-cli"):
+            if "+field-list" in args:
+                return _fields_response([{"name": "K", "type": "text"}])
             return {"ok": True, "data": {"fields": ["K"], "data": [["a"]], "record_id_list": ["r1"]}}
         with mock.patch.object(bs, "_lark", side_effect=fake):
             rows, rids = bs._read_records("base", "tbl", "lark-cli")
         self.assertEqual((rows, rids), ([{"K": "a"}], ["r1"]))
+
+    def test_read_records_keys_rows_by_field_list_name_not_display_name(self):
+        # record-list `fields` (display) diverges from the +field-list name; rows
+        # must be keyed by the authoritative field-list name via field_id_list.
+        def fake(args, lark_cli="lark-cli"):
+            if "+field-list" in args:
+                return {"ok": True, "data": {"fields": [
+                    {"field_id": "fldA", "name": "Row_key", "type": "text"},
+                    {"field_id": "fldB", "name": "取值规则", "type": "text"},
+                ]}}
+            return {"ok": True, "data": {
+                "fields": ["Row key (display)", "取值规则 (显示)"],  # divergent display names
+                "field_id_list": ["fldA", "fldB"],
+                "data": [["r1", "manual"]],
+                "record_id_list": ["rec1"],
+            }}
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            rows, rids = bs._read_records("base", "tbl", "lark-cli")
+        self.assertEqual(rows, [{"Row_key": "r1", "取值规则": "manual"}])
+        self.assertEqual(rids, ["rec1"])
 
 
 if __name__ == "__main__":
