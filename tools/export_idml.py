@@ -136,6 +136,23 @@ def load_lcd_rows(data_root: Path, model: str) -> list[dict]:
     return out
 
 
+def load_symbols_rows(data_root: Path) -> tuple[list[tuple[str, str]], list[dict]]:
+    """symbols_blocks.csv -> (signal rows [label, meaning], icon rows)."""
+    path = data_root / "symbols_blocks.csv"
+    signals: list[tuple[str, str]] = []
+    icons: list[dict] = []
+    rows = [r for r in csv.DictReader(path.open(encoding="utf-8"))
+            if r.get("Is_Latest", r.get("Is_latest")) == "TRUE"]
+    rows.sort(key=lambda r: float(r.get("order") or 0))
+    for r in rows:
+        text = (r.get("text_en") or "").strip()
+        if r.get("block_type") == "signal_row":
+            signals.append(((r.get("label_en") or "").strip(), text))
+        elif r.get("block_type") == "table_row":
+            icons.append({"figure": (r.get("image_path") or "").strip(), "text": text})
+    return signals, icons
+
+
 def load_trouble_rows(data_root: Path, model: str, region: str) -> list[tuple[str, str]]:
     path = data_root / "troubleshooting_blocks.csv"
     out: list[tuple[str, str]] = []
@@ -177,7 +194,8 @@ class IdmlWriter:
         return [
             ("HB H1", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", ""),
             ("HB Title L2", sz("type_title_l2_font_size", 8.6), sz("type_title_l2_font_leading", 9.4), "Bold", ""),
-            ("HB Title L3", sz("type_title_l3_font_size", 7.0), sz("type_title_l3_font_leading", 8.0), "Semibold", ""),
+            ("HB Title L3", sz("type_title_l3_font_size", 7.0), sz("type_title_l3_font_leading", 8.0), "Medium", ""),
+            ("HB Notice Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "label"),
             ("HB Body", sz("type_body_font_size", 6.2), sz("type_body_font_leading", 7.5), "Regular", ""),
             ("HB List", sz("type_list_font_size", 5.4), sz("type_list_font_leading", 6.4), "Regular", ""),
             ("HB Spec Section", sz("type_spec_section_font_size", 8.8), sz("type_spec_section_font_leading", 9.6), "Bold", ""),
@@ -188,11 +206,21 @@ class IdmlWriter:
 
     def styles_xml(self) -> str:
         styles = []
-        for name, size, leading, weight, _ in self.para_styles():
+        for name, size, leading, weight, kind in self.para_styles():
             self_id = "ParagraphStyle/" + name.replace(" ", "%20")
+            # V2.0 master: H1 is a white-on-brand-dark bar; notice labels are
+            # compact dark pills. Both map to paragraph shading in IDML.
+            shaded = name == "HB H1" or kind == "label"
+            fill = "Color/Paper" if shaded else "Color/HB Brand Dark"
+            shading = (
+                'ShadingOn="true" ShadingColor="Color/HB Brand Dark" '
+                'ShadingOffsetTop="2" ShadingOffsetBottom="2" '
+                'ShadingOffsetLeft="3" ShadingOffsetRight="3" '
+                'SpaceBefore="4" SpaceAfter="3" '
+            ) if shaded else ""
             styles.append(
                 f'  <ParagraphStyle Self="{self_id}" Name="{name}" '
-                f'PointSize="{size:g}" FillColor="Color/HB Brand Dark" '
+                f'PointSize="{size:g}" FillColor="{fill}" {shading}'
                 f'Justification="LeftAlign">\n'
                 f'    <Properties>\n'
                 f'      <AppliedFont type="string">Gilroy</AppliedFont>\n'
@@ -396,7 +424,7 @@ class IdmlWriter:
         )
 
     _PROSE_STYLE = {"h1": "HB H1", "h2": "HB Title L2", "h3": "HB Title L3",
-                    "body": "HB Body", "list": "HB List"}
+                    "label": "HB Notice Label", "body": "HB Body", "list": "HB List"}
 
     def _resolve_bundle_image(self, bundle_root: Path, ref: str) -> Path | None:
         """Resolve an image reference from a bundle page.
@@ -454,8 +482,13 @@ class IdmlWriter:
                 continue
             style = self._PROSE_STYLE.get(kind, "HB Body")
             parts.append(self._psr(style, text, terminal=terminal))
-            lines = max(1, text.count("\n") + 1) + len(text) // 95
-            est += {"h1": 16.0, "h2": 13.0, "h3": 11.0}.get(kind, 0.0) or 8.5 * lines
+            # width-aware: chars/line ~ frame_width / (0.52 * font size)
+            size = {"h1": 9.0, "h2": 8.6, "h3": 7.0, "label": 6.8}.get(kind, 6.2)
+            leading = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}.get(kind, 7.5)
+            per_line = max(20, int((self.page_w - self.m_l - self.m_r) / (0.52 * size)))
+            lines = sum(max(1, (len(seg) + per_line - 1) // per_line)
+                        for seg in text.split("\n"))
+            est += leading * lines
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
             f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
@@ -518,6 +551,59 @@ class IdmlWriter:
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
             f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
             f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="LCD DISPLAY">\n'
+            '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
+            + "".join(parts) + '</Story>\n</idPkg:Story>\n'
+        )
+        self.stories.append((sid, xml))
+        return sid
+
+    def add_symbols_story(self, signals: list[tuple[str, str]],
+                          icons: list[dict], data_root: Path) -> str:
+        sid = "st_symbols"
+        parts = [self._psr("HB H1", "MEANING OF SYMBOLS")]
+        if signals:
+            table = self._table("tbl_sym_sig", signals)
+            parts.append(
+                '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
+                '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
+                + table + '    <Br/></CharacterStyleRange>\n  </ParagraphStyleRange>\n')
+        if icons:
+            body_w = self.page_w - self.m_l - self.m_r
+            cols = (body_w * 0.18, body_w * 0.82)
+            tid = "tbl_sym_ico"
+            cells = []
+            icon_pt = 20.0
+            for ri, row in enumerate(icons):
+                fig = (ROOT / row["figure"]) if row["figure"] else None
+                img = (self._image_cell_content(f"{tid}img{ri}", fig, icon_pt, icon_pt)
+                       if fig and fig.exists() else "")
+                img_cell = (
+                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">'
+                    '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                    + img + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
+                for ci, content in ((0, img_cell),
+                                    (1, self._psr("HB Spec Value", row["text"], terminal=True))):
+                    cells.append(
+                        f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" RowSpan="1" ColumnSpan="1" '
+                        'AppliedCellStyle="CellStyle/$ID/[None]" '
+                        'TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">\n'
+                        + content + '    </Cell>')
+            row_els = "\n".join(f'    <Row Self="{tid}r{ri}" Name="{ri}"/>' for ri in range(len(icons)))
+            col_els = "\n".join(
+                f'    <Column Self="{tid}col{ci}" Name="{ci}" SingleColumnWidth="{wd:g}"/>'
+                for ci, wd in enumerate(cols))
+            table2 = (
+                f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
+                f'BodyRowCount="{len(icons)}" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">\n'
+                f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n")
+            parts.append(
+                '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
+                '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
+                + table2 + '    <Content></Content></CharacterStyleRange>\n  </ParagraphStyleRange>\n')
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="8.0">\n'
+            f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="MEANING OF SYMBOLS">\n'
             '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
             + "".join(parts) + '</Story>\n</idPkg:Story>\n'
         )
@@ -782,6 +868,7 @@ def main() -> int:
     w = IdmlWriter(params)
     lcd_rows = load_lcd_rows(data_root, args.model)
     trouble_rows = load_trouble_rows(data_root, args.model, args.region)
+    sym_signals, sym_icons = load_symbols_rows(data_root)
 
     bundle_root = Path(args.bundle_root) if args.bundle_root else (
         ROOT / "docs" / "_build" / args.model / args.region / args.lang / "rst")
@@ -797,17 +884,20 @@ def main() -> int:
 
     def chain(story_id: str, est_h: float, columns: int = 1) -> None:
         nonlocal page_cursor
-        pages = w.pages_for_height(est_h)
+        # a two-column frame holds twice the height; keep a 1.2 safety factor
+        # so underestimates surface as overset (one drag) instead of blanks
+        pages = w.pages_for_height(est_h * 1.2 / max(1, columns))
         w.add_spread_chain(story_id, pages, page_cursor, columns=columns)
         page_cursor += pages
 
-    DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_"}
+    DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_",
+                  "symbols": "symbols_"}
     ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
     if not ordered:
         print(f"[export-idml] NOTE: no prepared bundle at {bundle_root}; "
               "exporting data pages only (run `build.py rst` first for full prose)")
 
-    emitted = {"spec": False, "lcd": False, "trouble": False}
+    emitted = {"spec": False, "lcd": False, "trouble": False, "symbols": False}
 
     def emit_data_page(kind: str) -> None:
         if emitted[kind]:
@@ -822,6 +912,9 @@ def main() -> int:
         elif kind == "trouble" and trouble_rows:
             sid = w.add_trouble_story(trouble_rows)
             chain(sid, 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in trouble_rows))
+        elif kind == "symbols" and (sym_signals or sym_icons):
+            sid = w.add_symbols_story(sym_signals, sym_icons, data_root)
+            chain(sid, 16.0 + 14.0 * len(sym_signals) + 26.0 * len(sym_icons))
 
     for page in ordered:
         matched = next((k for k, prefix in DATA_PAGES.items()
@@ -839,7 +932,7 @@ def main() -> int:
         prose_pages += 1
 
     # data pages always ship, bundle or not
-    for kind in ("spec", "lcd", "trouble"):
+    for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind)
 
     tag = f"manual_{args.model.replace('-', '').lower()}_{args.region.lower()}_{args.lang}"

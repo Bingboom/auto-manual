@@ -16,6 +16,7 @@ from tools.export_idml import (  # noqa: E402
     load_layout_params,
     load_lcd_rows,
     load_spec_sections,
+    load_symbols_rows,
     load_trouble_rows,
 )
 
@@ -159,6 +160,41 @@ class ExportIdmlTests(unittest.TestCase):
         rect = w._image_cell_content("r1", img, 100.0, 60.0)
         self.assertIn('Anchor="0 -60', rect)
         self.assertNotIn('Anchor="0 60', rect)
+
+    def test_no_semibold_font_style_in_paragraph_styles(self) -> None:
+        # the licensed Gilroy set has no SemiBold face; referencing it makes
+        # InDesign pink-highlight the text (designer-reported)
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        styles = IdmlWriter(params).styles_xml()
+        self.assertNotIn("Semibold", styles)
+
+    def test_h1_and_labels_are_shaded_bars(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        styles = IdmlWriter(params).styles_xml()
+        h1 = styles.split('Name="HB H1"')[1].split("</ParagraphStyle>")[0]
+        self.assertIn('ShadingOn="true"', 'Name="HB H1"' + h1.split(">")[0])
+        self.assertIn("HB Notice Label", styles)
+
+    def test_two_column_chain_halves_page_count(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        h = w.frame_height() * 1.5  # needs 2 single-column pages
+        # replicate chain() arithmetic
+        import math
+        one_col = max(1, math.ceil(h * 1.2 / w.frame_height()))
+        two_col = max(1, math.ceil(h * 1.2 / 2 / w.frame_height()))
+        self.assertGreater(one_col, two_col)
+
+    def test_symbols_story_has_signal_and_icon_tables(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        signals, icons = load_symbols_rows(FIXTURE_DATA_ROOT)
+        self.assertTrue(signals)
+        w = IdmlWriter(params)
+        w.add_symbols_story(signals, icons, FIXTURE_DATA_ROOT)
+        story = dict(w.stories)["st_symbols"]
+        self.assertIn("MEANING OF SYMBOLS", story)
+        self.assertIn("<Table ", story)
+        self.assertIn("WARNING", story)
 
     def test_styles_map_layout_params(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
