@@ -10,6 +10,7 @@ from unittest import mock
 
 import build as build_cli
 from tests.test_helpers import patch_module_attrs, temp_test_root, write_text
+from tools import build_docs_io
 from tools.build_runtime import review_sync_target_args as runtime_review_sync_target_args
 from tools.review_support import resolve_existing_review_bundle_dir
 
@@ -139,6 +140,29 @@ class TestBuildScript(unittest.TestCase):
             with mock.patch.object(build_cli, "load_config", side_effect=RuntimeError("Config not found")):
                 with self.assertRaises(RuntimeError):
                     build_cli.clean_targets_for_config(config_path)
+
+    def test_clean_build_targets_with_output_root_cleans_exactly_that_dir(self) -> None:
+        # A preview writes into output_root; with a staged output_root the clean
+        # must target that dir, not the repo's default preview dir (nor call the
+        # per-target build-root computation / legacy cleanup).
+        with temp_test_root() as root:
+            output_root = root / "staging" / "docs" / "_build" / "JE-1000F" / "US" / "preview" / "05"
+            output_root.mkdir(parents=True)
+            removed: list[Path] = []
+            build_root_calls: list[object] = []
+            legacy_calls: list[object] = []
+            build_docs_io.clean_build_targets(
+                [SimpleNamespace(model="JE-1000F", region="US", lang="en")],
+                docs_dir=root / "docs",
+                preview_name="05",
+                output_root=output_root,
+                build_root_for_target=lambda *a, **k: build_root_calls.append((a, k)) or Path("/unused"),
+                cleanup_legacy_rst_artifacts=lambda **k: legacy_calls.append(k),
+                remove_tree_with_retries=lambda path: removed.append(path),
+            )
+            self.assertEqual(removed, [output_root])
+            self.assertEqual(build_root_calls, [])  # output_root path bypasses per-target computation
+            self.assertEqual(legacy_calls, [])
 
     def test_collect_legacy_docs_output_dirs_should_find_legacy_generated_and_bundle_dirs(self) -> None:
         with temp_test_root() as root:

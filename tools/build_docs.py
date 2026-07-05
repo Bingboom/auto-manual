@@ -187,6 +187,7 @@ def clean_build_targets(
     *,
     docs_dir: Path | None = None,
     preview_name: str | None = None,
+    output_root: Path | None = None,
 ) -> None:
     return _clean_build_targets_impl(
         targets,
@@ -195,6 +196,7 @@ def clean_build_targets(
         build_root_for_target=build_root_for_target,
         cleanup_legacy_rst_artifacts=cleanup_legacy_rst_artifacts,
         remove_tree_with_retries=remove_tree_with_retries,
+        output_root=output_root,
     )
 
 
