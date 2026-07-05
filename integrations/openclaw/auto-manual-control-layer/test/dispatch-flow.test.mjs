@@ -332,3 +332,59 @@ test("resolveTrackedRun keeps the run but flags observationError when the artifa
   assert.match(resolved.observationError, /502/);
   assert.equal(savedRecords.length, 1);
 });
+
+test("resolveTrackedRun observes an explicit run id with no local record (external dispatch)", async () => {
+  // The IM adapters dispatch via `build.py queue-execute`, so the run id is not
+  // in this state store. A status query must still fetch the real state instead
+  // of returning null (which downstream renders as "processing" forever).
+  const savedRecords = [];
+  const github = {
+    async getRun(runId) {
+      assert.equal(runId, "999");
+      return {
+        id: 999,
+        html_url: "https://example.com/runs/999",
+        status: "completed",
+        conclusion: "failure",
+      };
+    },
+    async listArtifacts() {
+      return [];
+    },
+    async readMetadataArtifact() {
+      return null;
+    },
+  };
+  const stateStore = {
+    async getRecordByRunId() {
+      return null; // externally dispatched: nothing tracked here
+    },
+    async saveRecord(record) {
+      savedRecords.push(record);
+      return record;
+    },
+  };
+
+  const resolved = await resolveTrackedRun({ github, stateStore, settings, requestedRunId: "999" });
+  assert.equal(resolved.tracked, null);
+  assert.equal(resolved.run.id, 999);
+  assert.equal(resolved.run.conclusion, "failure");
+  assert.equal(savedRecords.length, 0); // must not fabricate a record it does not own
+});
+
+test("resolveTrackedRun still returns empty when there is no id and no last record", async () => {
+  const github = {
+    async getRun() {
+      throw new Error("getRun should not be called");
+    },
+  };
+  const stateStore = {
+    async getLastRecord() {
+      return null;
+    },
+  };
+
+  const resolved = await resolveTrackedRun({ github, stateStore, settings, requestedRunId: null });
+  assert.equal(resolved.tracked, null);
+  assert.equal(resolved.run, null);
+});
