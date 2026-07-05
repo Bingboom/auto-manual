@@ -465,6 +465,38 @@ class TestQueueExecute(unittest.TestCase):
         # as skipped rather than silently dropped.
         self.assertEqual({"rec_a", "rec_b"}, {r.record_id for r in matched})
 
+    def test_select_queue_rows_keeps_triggered_row_when_latest_collapse_inferred(self) -> None:
+        # Dropping allow_multiple (to bypass the trigger pre-filter) must not
+        # re-enable the latest-per-document-key collapse: the trigger-enabled
+        # older version would vanish behind the already-built newer one.
+        old_triggered = queue_query.QueueQueryRow(
+            **{
+                **_draft_row("rec_old").__dict__,
+                "document_id": "JE-1000F_EU_0.8",
+                "document_key": "JE-1000F_EU",
+                "version": "0.8",
+                "build_trigger_requested": True,
+            }
+        )
+        new_built = queue_query.QueueQueryRow(
+            **{
+                **_draft_row("rec_new").__dict__,
+                "document_id": "JE-1000F_EU_0.9",
+                "document_key": "JE-1000F_EU",
+                "version": "0.9",
+                "build_trigger_requested": False,
+            }
+        )
+        _resolved, matched = queue_execute.select_queue_rows(
+            self._args(
+                query_workflow_action="build-draft-package",
+                allow_multiple=True,
+                latest_per_document_key=True,
+            ),
+            [old_triggered, new_built],
+        )
+        self.assertEqual({"rec_old", "rec_new"}, {r.record_id for r in matched})
+
     def test_dispatch_one_row_skips_untriggered_draft_without_calling_dispatch(self) -> None:
         row = queue_query.QueueQueryRow(**{**_draft_row("rec_us").__dict__, "build_trigger_requested": False})
         with mock.patch.object(queue_execute, "_run_control_layer_cli") as mock_cli:

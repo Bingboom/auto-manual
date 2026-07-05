@@ -98,11 +98,7 @@ def resolve_docs_dir(
     repo_root: Path,
     config_loader: Callable[[Path], dict[str, Any]] = load_config,
 ) -> Path:
-    try:
-        cfg = config_loader(config_path)
-    except RuntimeError:
-        return Paths(root=repo_root).docs_dir
-
+    cfg = config_loader(config_path)
     paths_cfg = cfg.get("paths", {})
     if isinstance(paths_cfg, dict):
         raw = paths_cfg.get("docs_dir")

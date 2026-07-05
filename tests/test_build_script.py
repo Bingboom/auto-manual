@@ -131,6 +131,15 @@ class TestBuildScript(unittest.TestCase):
             self.assertEqual(docs_dir / "_build", build_dir)
             self.assertEqual(docs_dir / "renderers" / "latex" / "params.tex", params_tex)
 
+    def test_clean_targets_for_config_should_raise_when_config_unloadable(self) -> None:
+        # A typo'd --config must fail loudly instead of falling back to the
+        # default docs dir and handing `clean` the real docs/_build to delete.
+        with temp_test_root() as root:
+            config_path = root / "config.missing.yaml"
+            with mock.patch.object(build_cli, "load_config", side_effect=RuntimeError("Config not found")):
+                with self.assertRaises(RuntimeError):
+                    build_cli.clean_targets_for_config(config_path)
+
     def test_collect_legacy_docs_output_dirs_should_find_legacy_generated_and_bundle_dirs(self) -> None:
         with temp_test_root() as root:
             docs_dir = root / "docs"

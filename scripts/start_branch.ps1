@@ -13,8 +13,9 @@ param(
 $ErrorActionPreference = "Stop"
 
 function Resolve-PythonCommand {
-    $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-    $repoRoot = [System.IO.Path]::GetFullPath((Join-Path $scriptDir ".."))
+    # $MyInvocation.MyCommand.Path is $null inside a function; $PSScriptRoot
+    # is the only form that resolves the script directory here.
+    $repoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot ".."))
 
     if ($env:PYTHON) {
         return @($env:PYTHON)
@@ -43,8 +44,7 @@ function Resolve-PythonCommand {
     throw "Python 3 is required to run scripts/git_branch_guard.py."
 }
 
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$repoRoot = [System.IO.Path]::GetFullPath((Join-Path $scriptDir ".."))
+$repoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot ".."))
 $pythonCommand = @(Resolve-PythonCommand)
 $pythonBinary = $pythonCommand[0]
 $pythonPrefix = @()

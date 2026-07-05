@@ -427,7 +427,9 @@ def _latest_per_document_key(rows: list[QueueQueryRow]) -> list[QueueQueryRow]:
     return [selected[key] for key in order]
 
 
-def _should_apply_latest_per_document_key(args: argparse.Namespace, normalized_action: str | None) -> bool:
+def should_apply_latest_per_document_key(args: argparse.Namespace) -> bool:
+    """Latest-per-key collapse decision; public so batch dispatch can pin it to the original args."""
+    normalized_action = _normalize_query_workflow_action(getattr(args, "query_workflow_action", None))
     if not getattr(args, "latest_per_document_key", False):
         return False
     if getattr(args, "allow_multiple", False) and normalized_action in {"draft", "publish"}:
@@ -686,13 +688,13 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     elif any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
         workflow_action = "build-draft-package"
         queue_scope = "document-link"
+    elif "publish" in normalized_text or "发布" in text:
+        workflow_action = "publish"
+        queue_scope = "document-link"
     elif not successful_link_query and (
         any(token in text for token in _BUILD_DRAFT_INTENT_KEYWORDS) or "manual copy" in normalized_text
     ):
         workflow_action = "build-draft-package"
-        queue_scope = "document-link"
-    elif "publish" in normalized_text or "发布" in text:
-        workflow_action = "publish"
         queue_scope = "document-link"
     elif _has_start_review_intent(text, normalized_text):
         workflow_action = "start-review"
@@ -1053,7 +1055,7 @@ def query_queue_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> Que
             lang_filters=lang_filters,
         )
     ]
-    if _should_apply_latest_per_document_key(args, normalized_action):
+    if should_apply_latest_per_document_key(args):
         filtered = _latest_per_document_key(filtered)
     limit = _effective_queue_query_limit(args, normalized_action)
     limited_rows = apply_freshness_to_rows(args, filtered[:limit])
