@@ -16,6 +16,7 @@ from typing import Any, Callable, Mapping, Protocol
 
 from tools.spec_master_sources import (
     collect_footnote_record_id_refs,
+    normalize_footnote_ref_value,
     normalize_spec_master_source_rows,
     source_table_bindings_from_cfg,
 )
@@ -218,38 +219,6 @@ def _footnote_record_id_to_id_map(raw_records: list[dict[str, Any]]) -> dict[str
     return mapping
 
 
-def _record_id_from_ref_token(token: str) -> str | None:
-    raw = (token or "").strip()
-    if not raw:
-        return None
-    if raw.startswith("rec"):
-        return raw
-    try:
-        payload = json.loads(raw)
-    except json.JSONDecodeError:
-        return None
-    if isinstance(payload, dict):
-        record_id = str(payload.get("id") or "").strip()
-        return record_id or None
-    return None
-
-
-def _normalize_footnote_ref_value(value: str, mapping: dict[str, str]) -> str:
-    raw = (value or "").strip()
-    if not raw:
-        return value
-
-    refs: list[str] = []
-    for token in raw.split(","):
-        item = token.strip()
-        if not item:
-            continue
-        mapped = mapping.get(_record_id_from_ref_token(item) or "", item)
-        if mapped not in refs:
-            refs.append(mapped)
-    return ", ".join(refs)
-
-
 def _normalize_spec_master_footnote_refs(
     rows: list[dict[str, str]],
     *,
@@ -263,7 +232,7 @@ def _normalize_spec_master_footnote_refs(
             "Param_footnote_refs",
             "Value_footnote_refs",
         ):
-            row[column] = _normalize_footnote_ref_value(
+            row[column] = normalize_footnote_ref_value(
                 str(row.get(column) or ""),
                 footnote_record_id_map,
             )
