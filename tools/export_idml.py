@@ -706,7 +706,6 @@ class IdmlWriter:
                                 f"{tid}c{ri}_{ci}", f"{ci}:{ri}",
                                 self._psr(style, txt, terminal=True)))
                     table = self._component_table(tid, cols, cells, n_rows=len(raw_rows))
-                    rows = raw_rows
                 parts.append(self._wrap_table_paragraph(table, terminal))
                 est += 11.0 * (len(raw_rows) + 1)
                 continue
