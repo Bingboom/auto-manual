@@ -287,8 +287,34 @@ def _coerce_cell(value: str, ftype: str):
     return v
 
 
+def _field_id_name_map(base_token: str, tid: str, lark_cli: str) -> dict[str, str]:
+    """``{field_id: authoritative field name}`` from ``+field-list``.
+
+    record-list returns column *display* names in ``fields``, which can diverge
+    from the real field names (``+field-list``). Keying rows off the display
+    names then makes ``_kv`` / ``seed_export`` read the wrong column -> empty ->
+    updates get misclassified as creates. Rebuild names from field-list, the same
+    authoritative source ``sync_data`` uses.
+    """
+    fl = _lark(["base", "+field-list", "--base-token", base_token, "--table-id", tid, "--format", "json", "--as", "bot"], lark_cli)
+    items = fl.get("data", {}).get("fields") or fl.get("data", {}).get("items") or []
+    mapping: dict[str, str] = {}
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        field_id = str(item.get("field_id") or item.get("id") or "").strip()
+        name = str(item.get("field_name") or item.get("name") or "").strip()
+        if field_id and name:
+            mapping[field_id] = name
+    return mapping
+
+
 def _read_records(base_token: str, tid: str, lark_cli: str) -> tuple[list[dict], list[str]]:
     """Return ([row dict], [record_id]) for a table, following pagination.
+
+    Rows are keyed by the authoritative field names (from ``+field-list`` via the
+    record-list ``field_id_list``), not the record-list display names, which can
+    diverge and misalign seed_export / seed_import against the real columns.
 
     Reference tables are usually small, but a single ``--limit 200`` call silently
     truncated any table past 200 rows: ``seed_export`` would drop the tail from the
@@ -296,6 +322,7 @@ def _read_records(base_token: str, tid: str, lark_cli: str) -> tuple[list[dict],
     duplicate them on every run (breaking the idempotency contract). Page with
     ``--offset`` / ``has_more`` so every row is seen.
     """
+    id_name = _field_id_name_map(base_token, tid, lark_cli)
     rows: list[dict] = []
     rids: list[str] = []
     offset = 0
@@ -308,8 +335,18 @@ def _read_records(base_token: str, tid: str, lark_cli: str) -> tuple[list[dict],
         if offset:
             args += ["--offset", str(offset)]
         data = _lark(args, lark_cli).get("data", {}) or {}
-        flds = data.get("fields") or []
-        page_rows = [dict(zip(flds, row)) for row in (data.get("data") or [])]
+        display = data.get("fields") or []
+        field_ids = data.get("field_id_list") or []
+        if field_ids:
+            # Rebuild column names from field-list; fall back to the display name
+            # (then the raw id) per position when a field is not in the map.
+            col_names = [
+                id_name.get(str(fid)) or (display[i] if i < len(display) else str(fid))
+                for i, fid in enumerate(field_ids)
+            ]
+        else:
+            col_names = display  # older CLI without field_id_list: display names as-is
+        page_rows = [dict(zip(col_names, row)) for row in (data.get("data") or [])]
         rows.extend(page_rows)
         rids.extend(data.get("record_id_list") or [])
         if not bool(data.get("has_more")):
