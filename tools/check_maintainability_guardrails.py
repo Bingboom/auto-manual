@@ -52,8 +52,9 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # P1 moved params/loaders/primitives/styles/check out (2001 -> 1470);
     # P2 moved the component renderers into tools/idml/components/
     # (1470 -> 1260; extractor +9 for the parity constant); P3 moved the
-    # story builders and composed-page assemblers out (1260 -> 647).
-    "tools/export_idml.py": 647,
+    # story builders and composed-page assemblers out (1260 -> 647); P4 moved
+    # package assembly (spread chain / designmap / zip) out (647 -> 563).
+    "tools/export_idml.py": 563,
     "tools/idml_rst_extract.py": 520,
     "tools/idml/primitives.py": 300,
     "tools/idml/styles.py": 220,
@@ -61,6 +62,7 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/idml/components/callout.py": 200,
     "tools/idml/stories.py": 320,
     "tools/idml/pages.py": 500,
+    "tools/idml/package.py": 160,
 }
 
 
