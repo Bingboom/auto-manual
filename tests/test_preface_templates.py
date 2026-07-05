@@ -11,7 +11,14 @@ class PrefaceTemplateTests(unittest.TestCase):
     def test_shared_source_preface_should_keep_multilingual_notice_blocks(self) -> None:
         text = (ROOT / "docs" / "templates" / "page_shared" / "en" / "00_preface.rst").read_text(encoding="utf-8")
 
-        self.assertIn("|MANUAL_LANGUAGE_SCOPE|", text)
+        # The V2.0 JE-1000F master (2026-06-05) drops the language-scope
+        # lead line and marks each section with a brand-dark language tag
+        # (\HBLangTagLine) instead of a bold text heading; the bold
+        # headings remain as the non-latex (html/word) fallback.
+        self.assertNotIn("|MANUAL_LANGUAGE_SCOPE|", text)
+        self.assertIn("\\HBLangTagLine{EN}{IMPORTANT}", text)
+        self.assertIn("\\HBLangTagLine{FR}{IMPORTANT}", text)
+        self.assertIn("\\HBLangTagLine{ES}{IMPORTANTE}", text)
         self.assertIn("**IMPORTANT**", text)
         self.assertIn("FR IMPORTANT", text)
         self.assertIn("ES IMPORTANTE", text)
