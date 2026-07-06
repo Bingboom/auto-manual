@@ -41,7 +41,41 @@ def symbol_copy(lang: str | None) -> dict[str, str]:
     return SYMBOL_COPY.get(normalize_lang(lang), SYMBOL_COPY["en"])
 
 
-def load_spec_sections(data_root: Path, model: str, region: str) -> list[dict]:
+# The snapshot's localized column suffixes are not uniform across tables
+# (lcd/trouble use jp + ukr + both pt-BR/br; Spec_Footnotes/Notes use ja + uk),
+# so a language maps to a candidate-suffix tuple, tried in order.
+_SUFFIX_CANDIDATES = {
+    "jp": ("jp", "ja"),
+    "uk": ("uk", "ukr"),
+    "pt-BR": ("pt-BR", "br"),
+    "zh": ("zh", "cn"),
+}
+
+
+def _lang_suffixes(lang: str | None) -> tuple[str, ...]:
+    lang = normalize_lang(lang)
+    return _SUFFIX_CANDIDATES.get(lang, (lang,))
+
+
+def _localized_cell(row: dict, base: str, lang: str | None,
+                    fallbacks: tuple[str, ...] = ()) -> str:
+    """``{base}_{lang-suffix}`` with per-table suffix aliases, falling back to
+    the given source/en columns — the same fallback philosophy as
+    load_symbols_rows: untranslated cells ship the source text rather than
+    a hole."""
+    for suffix in _lang_suffixes(lang):
+        value = (row.get(f"{base}_{suffix}") or "").strip()
+        if value:
+            return value
+    for col in fallbacks:
+        value = (row.get(col) or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def load_spec_sections(data_root: Path, model: str, region: str,
+                       lang: str = "en") -> list[dict]:
     doc_key = f"{model}_{region}"
     path = data_root / "Spec_Master.csv"
     rows = [
@@ -59,9 +93,9 @@ def load_spec_sections(data_root: Path, model: str, region: str) -> list[dict]:
         title = (r.get("Section") or "").strip()
         if not sections or sections[-1]["title"] != title:
             sections.append({"title": title, "rows": []})
-        label = (r.get("Row_label_source") or "").strip()
-        param = (r.get("Param_source") or "").strip()
-        value = (r.get("Value_source") or "").strip()
+        label = _localized_cell(r, "Row_label", lang, ("Row_label_source",))
+        param = _localized_cell(r, "Param", lang, ("Param_source",))
+        value = _localized_cell(r, "Value", lang, ("Value_source",))
         line = f"{param}: {value}" if param else value
         sec_rows = sections[-1]["rows"]
         if sec_rows and sec_rows[-1][0] == label and float(r.get("Line_order") or 1) > 1:
@@ -71,7 +105,7 @@ def load_spec_sections(data_root: Path, model: str, region: str) -> list[dict]:
     return sections
 
 
-def load_lcd_rows(data_root: Path, model: str) -> list[dict]:
+def load_lcd_rows(data_root: Path, model: str, lang: str = "en") -> list[dict]:
     """LCD icon table rows for one model: no / icon path / name / description."""
     path = data_root / "lcd_icons_blocks.csv"
     out: list[dict] = []
@@ -84,14 +118,15 @@ def load_lcd_rows(data_root: Path, model: str) -> list[dict]:
         out.append({
             "no": (r.get("No.") or "").strip(),
             "figure": (r.get("figure") or "").strip(),
-            "name": (r.get("icon_en") or "").strip(),
-            "desc": (r.get("icon_desc_en") or "").strip(),
+            "name": _localized_cell(r, "icon", lang, ("icon_en",)),
+            "desc": _localized_cell(r, "icon_desc", lang, ("icon_desc_en",)),
         })
     out.sort(key=lambda x: float(x["no"] or 0))
     return out
 
 
-def load_spec_annotations(data_root: Path, model: str, region: str) -> list[str]:
+def load_spec_annotations(data_root: Path, model: str, region: str,
+                          lang: str = "en") -> list[str]:
     """Spec-page footnotes + notes for the target — the master prints them
     under the spec tables (user-reported as missing)."""
     out: list[str] = []
@@ -110,7 +145,7 @@ def load_spec_annotations(data_root: Path, model: str, region: str) -> list[str]
             regions = [x.strip() for x in (r.get("Region") or "").split(",") if x.strip()]
             if regions and region not in regions and "ALL" not in regions:
                 continue
-            text = (r.get("Text_en") or "").strip()
+            text = _localized_cell(r, "Text", lang, ("Text_en",))
             if text:
                 rows.append((float(r.get(order_col) or 0), text))
         out.extend(t for _, t in sorted(rows))
@@ -141,7 +176,8 @@ def load_symbols_rows(data_root: Path, lang: str = "en") -> tuple[list[tuple[str
     return signals, icons
 
 
-def load_trouble_rows(data_root: Path, model: str, region: str) -> list[tuple[str, str]]:
+def load_trouble_rows(data_root: Path, model: str, region: str,
+                      lang: str = "en") -> list[tuple[str, str]]:
     path = data_root / "troubleshooting_blocks.csv"
     out: list[tuple[str, str]] = []
     for r in csv.DictReader(path.open(encoding="utf-8")):
@@ -154,5 +190,6 @@ def load_trouble_rows(data_root: Path, model: str, region: str) -> list[tuple[st
         if regions and region not in regions and "ALL" not in regions:
             continue
         out.append(((r.get("error_code") or "").strip(),
-                    (r.get("corrective_measures_en") or "").strip()))
+                    _localized_cell(r, "corrective_measures", lang,
+                                    ("corrective_measures_en",))))
     return out

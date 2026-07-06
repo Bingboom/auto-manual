@@ -350,15 +350,15 @@ def main() -> int:
 
     params = load_layout_params(ROOT / "data" / "layout_params.csv")
     data_root = (ROOT / args.data_root) if not Path(args.data_root).is_absolute() else Path(args.data_root)
-    sections = load_spec_sections(data_root, args.model, args.region)
+    sections = load_spec_sections(data_root, args.model, args.region, args.lang)
     if not sections:
         print(f"[export-idml] ERROR: no specifications rows for {args.model}_{args.region} in {data_root}")
         return 1
 
     w = IdmlWriter(params)
-    lcd_rows = load_lcd_rows(data_root, args.model)
-    trouble_rows = load_trouble_rows(data_root, args.model, args.region)
-    spec_annotations = load_spec_annotations(data_root, args.model, args.region)
+    lcd_rows = load_lcd_rows(data_root, args.model, args.lang)
+    trouble_rows = load_trouble_rows(data_root, args.model, args.region, args.lang)
+    spec_annotations = load_spec_annotations(data_root, args.model, args.region, args.lang)
     symbol_cache: dict[str, tuple[list[tuple[str, str]], list[dict]]] = {}
 
     def symbol_rows_for(lang: str) -> tuple[list[tuple[str, str]], list[dict]]:
