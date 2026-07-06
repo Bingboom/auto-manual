@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Spread xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Spread Self="sp_1" PageCount="1" BindingLocation="0" ShowMasterItems="true">
+  <Page Self="sp_1_pg" Name="2" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346">
+    <MarginPreference ColumnCount="1" ColumnGutter="12" Top="14.1732" Bottom="36.8504" Left="28.3465" Right="28.3465"/>
+  </Page>
+  <TextFrame Self="tf_st_safety_en_title" ParentStory="st_safety_en_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" CornerOption="RoundedCorner" CornerRadius="7" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.994 -234.846" LeftDirection="-156.994 -234.846" RightDirection="-156.994 -234.846"/>
+            <PathPointType Anchor="-156.994 -216.046" LeftDirection="-156.994 -216.046" RightDirection="-156.994 -216.046"/>
+            <PathPointType Anchor="156.994 -216.046" LeftDirection="156.994 -216.046" RightDirection="156.994 -216.046"/>
+            <PathPointType Anchor="156.994 -234.846" LeftDirection="156.994 -234.846" RightDirection="156.994 -234.846"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1 5 1 6"/>
+  </TextFrame>
+  <TextFrame Self="tf_st_safety_en_warning" ParentStory="st_safety_en_top_warning" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.994 -206.846" LeftDirection="-156.994 -206.846" RightDirection="-156.994 -206.846"/>
+            <PathPointType Anchor="-156.994 -175.346" LeftDirection="-156.994 -175.346" RightDirection="-156.994 -175.346"/>
+            <PathPointType Anchor="156.994 -175.346" LeftDirection="156.994 -175.346" RightDirection="156.994 -175.346"/>
+            <PathPointType Anchor="156.994 -206.846" LeftDirection="156.994 -206.846" RightDirection="156.994 -206.846"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_st_safety_en_section1" ParentStory="st_safety_en_section1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.994 -168.846" LeftDirection="-156.994 -168.846" RightDirection="-156.994 -168.846"/>
+            <PathPointType Anchor="-156.994 -6.84646" LeftDirection="-156.994 -6.84646" RightDirection="-156.994 -6.84646"/>
+            <PathPointType Anchor="156.994 -6.84646" LeftDirection="156.994 -6.84646" RightDirection="156.994 -6.84646"/>
+            <PathPointType Anchor="156.994 -168.846" LeftDirection="156.994 -168.846" RightDirection="156.994 -168.846"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="2" TextColumnGutter="11" AutoSizingType="Off" VerticalBalanceColumns="true" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_st_safety_en_subbar" ParentStory="st_safety_en_subbar" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" CornerOption="RoundedCorner" CornerRadius="7" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.994 1.15354" LeftDirection="-156.994 1.15354" RightDirection="-156.994 1.15354"/>
+            <PathPointType Anchor="-156.994 18.3535" LeftDirection="-156.994 18.3535" RightDirection="-156.994 18.3535"/>
+            <PathPointType Anchor="156.994 18.3535" LeftDirection="156.994 18.3535" RightDirection="156.994 18.3535"/>
+            <PathPointType Anchor="156.994 1.15354" LeftDirection="156.994 1.15354" RightDirection="156.994 1.15354"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0.5 5 0.5 6"/>
+  </TextFrame>
+  <TextFrame Self="tf_st_safety_en_section2" ParentStory="st_safety_en_section2" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.994 23.6535" LeftDirection="-156.994 23.6535" RightDirection="-156.994 23.6535"/>
+            <PathPointType Anchor="-156.994 228.654" LeftDirection="-156.994 228.654" RightDirection="-156.994 228.654"/>
+            <PathPointType Anchor="156.994 228.654" LeftDirection="156.994 228.654" RightDirection="156.994 228.654"/>
+            <PathPointType Anchor="156.994 23.6535" LeftDirection="156.994 23.6535" RightDirection="156.994 23.6535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="2" TextColumnGutter="11" AutoSizingType="Off" VerticalBalanceColumns="true" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+</Spread>
+</idPkg:Spread>

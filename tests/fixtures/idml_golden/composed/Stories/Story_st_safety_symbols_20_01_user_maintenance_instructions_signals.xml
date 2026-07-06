@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_safety_symbols_20_01_user_maintenance_instructions_signals" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Signal words">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
+  <Table Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tbl" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="5" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr0" Name="0"/>
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr1" Name="1"/>
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr2" Name="2"/>
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr3" Name="3"/>
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr4" Name="4"/>
+    <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblcol0" Name="0" SingleColumnWidth="75.357"/>
+    <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblcol1" Name="1" SingleColumnWidth="238.63"/>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="6" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Symbol</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="7" RightInset="5">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Meaning</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="6" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig1" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -16.2" LeftDirection="0 -16.2" RightDirection="0 -16.2"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="61.2 0" LeftDirection="61.2 0" RightDirection="61.2 0"/><PathPointType Anchor="61.2 -16.2" LeftDirection="61.2 -16.2" RightDirection="61.2 -16.2"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig1_img" ItemTransform="1 0 0 1 0 0"><Link Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig1_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/symbols/warning_bar.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="7" RightInset="5">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Hazardous practices that may result in severe injury, death, and/or property damage.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="6" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig2" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -16.2" LeftDirection="0 -16.2" RightDirection="0 -16.2"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="61.2 0" LeftDirection="61.2 0" RightDirection="61.2 0"/><PathPointType Anchor="61.2 -16.2" LeftDirection="61.2 -16.2" RightDirection="61.2 -16.2"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig2_img" ItemTransform="1 0 0 1 0 0"><Link Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig2_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/symbols/caution_bar.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="7" RightInset="5">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Hazardous practices that may result in personal injury and/or property damage.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc3_0" Name="0:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="6" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig3" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -16.2" LeftDirection="0 -16.2" RightDirection="0 -16.2"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="61.2 0" LeftDirection="61.2 0" RightDirection="61.2 0"/><PathPointType Anchor="61.2 -16.2" LeftDirection="61.2 -16.2" RightDirection="61.2 -16.2"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig3_img" ItemTransform="1 0 0 1 0 0"><Link Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig3_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/symbols/note_bar.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc3_1" Name="1:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="7" RightInset="5">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc4_0" Name="0:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="6" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig4" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -16.2" LeftDirection="0 -16.2" RightDirection="0 -16.2"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="61.2 0" LeftDirection="61.2 0" RightDirection="61.2 0"/><PathPointType Anchor="61.2 -16.2" LeftDirection="61.2 -16.2" RightDirection="61.2 -16.2"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig4_img" ItemTransform="1 0 0 1 0 0"><Link Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblsig4_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/symbols/tip_bar.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc4_1" Name="1:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="7" RightInset="5">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Supplements the important information or operation tips in the text.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+  </Table>
+    <Content></Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+</Story>
+</idPkg:Story>

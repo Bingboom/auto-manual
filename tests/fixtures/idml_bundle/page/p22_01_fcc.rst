@@ -1,0 +1,9 @@
+.. raw:: latex
+
+   \HBApplyLang{en}
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \HBFccBlock{This device complies with Part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) this device may not cause harmful interference, and (2) this device must accept any interference received.}{NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to Part 15 of the FCC Rules. Any changes or modifications not expressly approved could void the user's authority to operate the equipment.}

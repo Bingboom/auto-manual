@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?aid style="50" type="document" readerVersion="15.0" featureSet="257" product="15.0(100)"?>
+<Document xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0" Self="doc" StoryList="st_spec st_lcd st_trouble st_symbols" Name="manual">
+  <Language Self="Language/$ID/English%3a USA" Name="$ID/English: USA" SingleQuotes="&#8216;&#8217;" DoubleQuotes="&#8220;&#8221;"/>
+  <idPkg:Graphic src="Resources/Graphic.xml"/>
+  <idPkg:Fonts src="Resources/Fonts.xml"/>
+  <idPkg:Styles src="Resources/Styles.xml"/>
+  <idPkg:Preferences src="Resources/Preferences.xml"/>
+  <idPkg:Spread src="Spreads/Spread_sp_0.xml"/>
+  <idPkg:Spread src="Spreads/Spread_sp_1.xml"/>
+  <idPkg:Spread src="Spreads/Spread_sp_2.xml"/>
+  <idPkg:Spread src="Spreads/Spread_sp_3.xml"/>
+  <idPkg:Spread src="Spreads/Spread_sp_4.xml"/>
+  <idPkg:Story src="Stories/Story_st_spec.xml"/>
+  <idPkg:Story src="Stories/Story_st_lcd.xml"/>
+  <idPkg:Story src="Stories/Story_st_trouble.xml"/>
+  <idPkg:Story src="Stories/Story_st_symbols.xml"/>
+</Document>

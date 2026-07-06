@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Preferences xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+  <DocumentPreference PageWidth="368.787" PageHeight="524.693" PagesPerDocument="1" FacingPages="true" PageOrientation="Portrait" DocumentBleedTopOffset="8.5" DocumentBleedBottomOffset="8.5" DocumentBleedInsideOrLeftOffset="8.5" DocumentBleedOutsideOrRightOffset="8.5"/>
+  <MarginPreference ColumnCount="1" ColumnGutter="12" Top="14.1732" Bottom="36.8504" Left="28.3465" Right="28.3465"/>
+</idPkg:Preferences>
