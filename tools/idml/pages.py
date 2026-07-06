@@ -8,6 +8,7 @@ byte-comparison pins equivalence.
 from __future__ import annotations
 
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 from . import components as _components
 from .fcc_fallback import component_spec, fcc_spec_from_blocks
@@ -268,7 +269,25 @@ def add_fcc_inbox_page(
     writer.spreads.append((spread_id, xml))
     return spread_id
 
-def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> tuple[str, str | None]:
+def _localized_signal_label_bar(label: str) -> str:
+    style_ref = paragraph_style_ref("HB Notice Side Label")
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}" '
+        'ParagraphShadingOn="true" '
+        'ParagraphShadingColor="Color/HB Brand Dark" '
+        'ParagraphShadingTint="100" '
+        'ParagraphShadingWidth="ColumnWidth" '
+        'ParagraphShadingTopOrigin="AscentTopOrigin" '
+        'ParagraphShadingBottomOrigin="DescentBottomOrigin" '
+        'ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" '
+        'ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3">\n'
+        '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'FillColor="Color/Paper"><Content>{escape(label)}</Content></CharacterStyleRange>\n'
+        '  </ParagraphStyleRange>\n'
+    )
+
+
+def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> str:
     asset_name = f"{label.lower()}_bar.png"
     asset = (
         ROOT / "docs" / "templates" / "word_template" / "common_assets"
@@ -279,9 +298,8 @@ def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> tuple
         return (f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
                 '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                 + writer._image_cell_content(tid, asset, 61.2, 16.2)
-                + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n',
-                None)
-    return writer._psr("HB Capsule Text", label, terminal=True), "Color/HB Brand Dark"
+                + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
+    return _localized_signal_label_bar(label)
 
 def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                           width: float, bundle_root: Path,
@@ -293,16 +311,14 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
     cols = [width * 0.24, width * 0.76]
     cells = []
     for ri, (left, right, header) in enumerate(rows):
-        left_fill = None
         if header:
             left_xml = writer._psr("HB Spec Label", left, terminal=True)
             right_xml = writer._psr("HB Spec Label", right, terminal=True)
         else:
-            left_xml, left_fill = writer._symbol_signal_bar(
-                f"{tid}sig{ri}", left, bundle_root)
+            left_xml = writer._symbol_signal_bar(f"{tid}sig{ri}", left, bundle_root)
             right_xml = writer._psr("HB Spec Value", right, terminal=True)
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
-                                fill=left_fill, top=3, bottom=3, left=6, right=4))
+                                top=3, bottom=3, left=6, right=4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                 top=3, bottom=3, left=7, right=5))
     return writer._component_table(tid, cols, cells, n_rows=len(rows))

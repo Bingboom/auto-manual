@@ -553,7 +553,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Signification", stories["st_safety_symbols_fr_icons_left"])
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_signals"])
         self.assertIn(
-            'FillColor="Color/HB Brand Dark"',
+            'ParagraphShadingColor="Color/HB Brand Dark"',
             stories["st_safety_symbols_fr_signals"],
         )
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_tail_avertissement"])
