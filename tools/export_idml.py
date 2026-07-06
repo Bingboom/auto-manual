@@ -30,6 +30,7 @@ try:
     from tools.idml_rst_extract import bundle_page_order, extract_page
     from tools.script_bootstrap import bootstrap_repo_root
     from tools.idml import check as _check
+    from tools.idml import components as _components
     from tools.idml import loaders as _loaders
     from tools.idml import params as _params
     from tools.idml import primitives as _prim
@@ -38,6 +39,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml_rst_extract import bundle_page_order, extract_page  # type: ignore
     from script_bootstrap import bootstrap_repo_root
     from idml import check as _check  # type: ignore
+    from idml import components as _components  # type: ignore
     from idml import loaders as _loaders  # type: ignore
     from idml import params as _params  # type: ignore
     from idml import primitives as _prim  # type: ignore
@@ -171,206 +173,15 @@ class IdmlWriter:
                           bundle_root: Path, terminal: bool,
                           span_columns: bool = True,
                           measure_w: float | None = None) -> tuple[str, float]:
-        """Component spec -> (xml, est_height). Table-based fidelity layer."""
-        kind = spec.get("kind")
-        body_w = measure_w or (self.page_w - self.m_l - self.m_r)
-        tid = f"{sid}_cmp{n}"
-        warning_icon_asset = (
-            ROOT / "docs" / "templates" / "word_template" / "common_assets"
-            / "symbols" / "warning_triangle.png"
-        )
-        if kind == "inbox":
-            items = spec.get("items", [])[:3]
-            cols = [body_w / 3.0] * 3
-            cells = []
-            for ci, item in enumerate(items):
-                img = self._resolve_bundle_image(bundle_root, item.get("img", ""))
-                icon_w = body_w / 3.0 - 14
-                icon = ""
-                if img is not None:
-                    iw, ih = self._art_frame_size(img, max_w=min(icon_w, 60.0))
-                    icon = self._image_cell_content(f"{tid}i{ci}", img, iw, ih)
-                content = (
-                    self._psr("HB Card Number", str(ci + 1)) +
-                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
-                    '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                    + icon + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n'
-                    + self._psr("HB InBox Label", item.get("label", ""), terminal=True))
-                cells.append(self._cell(
-                    f"{tid}c0_{ci}", f"{ci}:0", content,
-                    top=9, bottom=10, left=6, right=6,
-                ))
-            table = self._component_table(tid, cols, cells)
-            return self._wrap_table_paragraph(table, terminal, span_columns), 110.0
-        if kind == "safetywarning":
-            texts = spec.get("texts", [])
-            body = "\n".join(texts)
-            icon = ""
-            if warning_icon_asset.exists():
-                iw, ih = self._art_frame_size(warning_icon_asset, max_w=18.0)
-                icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
-                        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                        + self._image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih)
-                        + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
-            cols = [24.0, max(24.0, body_w - 24.0)]
-            cells = [
-                self._cell(f"{tid}c0", "0:0", icon),
-                self._cell(f"{tid}c1", "1:0",
-                           self._psr("HB Title L3", body, terminal=True)),
-            ]
-            table = self._component_table(tid, cols, cells)
-            return self._wrap_table_paragraph(table, terminal, span_columns), 28.0
-        if kind == "warninglead":
-            label = spec.get("label", "")
-            texts = spec.get("texts", [])
-            icon = ""
-            if warning_icon_asset.exists():
-                iw, ih = self._art_frame_size(warning_icon_asset, max_w=24.0)
-                icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
-                        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                        + self._image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih)
-                        + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
-            body = "\n".join(texts)
-            right = self._psr("HB Title L2", label) + self._psr("HB Body", body, terminal=True)
-            icon_w = min(36.0, max(28.0, body_w * 0.25))
-            cols = [icon_w, max(36.0, body_w - icon_w)]
-            cells = [
-                self._cell(f"{tid}c0", "0:0", icon,
-                           top=4, bottom=4, left=4, right=4),
-                self._cell(f"{tid}c1", "1:0", right,
-                           top=4, bottom=4, left=5, right=4),
-            ]
-            table = self._component_table(tid, cols, cells)
-            per_line = max(12, int((body_w - icon_w) / (0.52 * 6.6)))
-            lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
-            return self._wrap_table_paragraph(table, terminal, span_columns), max(36.0, 7.4 * (lines + 1) + 10)
-        if kind == "tailwarnbox":
-            label = spec.get("label", "")
-            texts = spec.get("texts", [])
-            icon = ""
-            if warning_icon_asset.exists():
-                iw, ih = self._art_frame_size(warning_icon_asset, max_w=24.0)
-                icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
-                        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                        + self._image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih)
-                        + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
-            body = " ".join(t.strip() for t in texts if str(t).strip())
-            label_w = 58.0
-            icon_w = 32.0
-            cols = [icon_w, label_w, max(80.0, body_w - icon_w - label_w)]
-            cells = [
-                self._cell(f"{tid}c0", "0:0", icon,
-                           top=1, bottom=1, left=4, right=3),
-                self._cell(f"{tid}c1", "1:0",
-                           self._psr("HB Title L2", label, terminal=True),
-                           top=1, bottom=1, left=3, right=3),
-                self._cell(f"{tid}c2", "2:0",
-                           self._psr("HB Body", body, terminal=True),
-                           top=1, bottom=1, left=3, right=4),
-            ]
-            table = self._component_table(tid, cols, cells)
-            per_line = max(20, int((body_w - icon_w - label_w) / (0.52 * 6.2)))
-            lines = max(1, (len(body) + per_line - 1) // per_line)
-            return self._wrap_table_paragraph(table, terminal, span_columns), max(30.0, 7.5 * lines + 8)
-        if kind == "warnbox":
-            label = spec.get("label", "")
-            texts = spec.get("texts", [])
-            icon = ""
-            if warning_icon_asset.exists():
-                iw, ih = self._art_frame_size(warning_icon_asset, max_w=28.0)
-                icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
-                        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                        + self._image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih)
-                        + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
-            body = "\n".join(texts)
-            right = self._psr("HB Title L2", label) + self._psr("HB Body", body, terminal=True)
-            cols = [36.0, max(36.0, body_w - 36.0)]
-            cells = [
-                self._cell(f"{tid}c0", "0:0", icon),
-                self._cell(f"{tid}c1", "1:0", right),
-            ]
-            table = self._component_table(tid, cols, cells)
-            per_line = max(20, int((body_w - 36.0) / (0.52 * 6.6)))
-            lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
-            return self._wrap_table_paragraph(table, terminal, span_columns), max(34.0, 7.4 * (lines + 1) + 12)
-        if kind == "notice":
-            fill = "Color/HB Bg K05"
-            label = spec.get("label", "")
-            texts = spec.get("texts", [])
-            left = self._psr("HB Notice Side Label", label, terminal=True)
-            body = "\n".join(texts)
-            if spec.get("list"):
-                items = [t.strip() for t in texts if str(t).strip()]
-                right = "".join(
-                    self._psr("HB List", "• " + item, terminal=i == len(items) - 1)
-                    for i, item in enumerate(items)
-                )
-            else:
-                right = self._psr("HB Body", body, terminal=True)
-            label_w = max(34.0, body_w * 0.14)
-            cols = [label_w, body_w - label_w]
-            cells = [
-                self._cell(f"{tid}c0", "0:0", left, fill="Color/Paper",
-                           stroke=False, top=10, bottom=10, left=6, right=6),
-                self._cell(f"{tid}c1", "1:0", right, fill=fill,
-                           stroke=False, top=10, bottom=10, left=6, right=6),
-            ]
-            table = self._component_table(tid, cols, cells)
-            per_line = max(20, int((body_w - label_w) / (0.52 * 6.6)))
-            lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
-            return self._wrap_table_paragraph(table, terminal, span_columns), max(24.0, 7.4 * lines + 10)
-        if kind == "fcc":
-            texts = spec.get("texts", ["", ""])[:2]
-            mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.pdf"
-            icon = ""
-            if mark.exists():
-                icon = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
-                        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                        + self._image_cell_content(f"{tid}fm", mark, 32.0, 22.0)
-                        + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
-            cols = [body_w / 2.0] * 2
-            cells = [
-                self._cell(f"{tid}c0", "0:0",
-                           icon + self._psr("HB Body", texts[0], terminal=True),
-                           fill="Color/HB Bg K05", stroke=False),
-                self._cell(f"{tid}c1", "1:0",
-                           self._psr("HB Body", texts[1] if len(texts) > 1 else "", terminal=True),
-                           fill="Color/HB Bg K05", stroke=False),
-            ]
-            table = self._component_table(tid, cols, cells)
-            per_line = max(20, int(body_w / 2 / (0.52 * 6.2)))
-            lines = max((len(t) + per_line - 1) // per_line for t in texts) if texts else 1
-            return self._wrap_table_paragraph(table, terminal, span_columns), 7.5 * lines + 30
-        if kind == "lcdmode":
-            # LCD screen mode table (the last annotated-insert holdout):
-            # state | action | description rows, LCD art above the table
-            groups = spec.get("groups", [])
-            img_ref = spec.get("img", "")
-            art = ""
-            img = self._resolve_bundle_image(bundle_root, img_ref) if img_ref else None
-            if img is not None:
-                iw, ih = self._art_frame_size(img, max_w=110.0)
-                art = ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
-                       '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                       + self._image_cell_content(f"{tid}art", img, iw, ih)
-                       + '<Br/></CharacterStyleRange></ParagraphStyleRange>\n')
-            cols = [body_w * 0.22, body_w * 0.18, body_w * 0.60]
-            cells = []
-            ri = 0
-            for g in groups:
-                for ai, (action, desc) in enumerate(g.get("actions", [])):
-                    state_txt = g.get("state", "") if ai == 0 else ""
-                    cells.append(self._cell(f"{tid}c{ri}_0", f"0:{ri}",
-                                            self._psr("HB Spec Label", state_txt, terminal=True)))
-                    cells.append(self._cell(f"{tid}c{ri}_1", f"1:{ri}",
-                                            self._psr("HB Spec Label", action, terminal=True)))
-                    cells.append(self._cell(f"{tid}c{ri}_2", f"2:{ri}",
-                                            self._psr("HB Spec Value", desc, terminal=True)))
-                    ri += 1
-            table = self._component_table(tid, cols, cells, n_rows=ri)
-            xml = art + self._wrap_table_paragraph(table, terminal, span_columns)
-            return xml, 70.0 + 12.0 * ri
-        return "", 0.0
+        """Component spec -> (xml, est_height) via the component registry."""
+        return _components.render(
+            spec, self._render_context(bundle_root), tid=f"{sid}_cmp{n}",
+            terminal=terminal, span_columns=span_columns, measure_w=measure_w)
+
+    def _render_context(self, bundle_root: Path) -> "_components.RenderContext":
+        return _components.RenderContext(
+            params=self.params, page_w=self.page_w, m_l=self.m_l, m_r=self.m_r,
+            root=ROOT, bundle_root=bundle_root)
 
     def add_prose_story(self, sid: str, title: str, blocks: list[tuple[str, str]],
                         bundle_root: Path) -> tuple[str, float]:
@@ -408,43 +219,22 @@ class IdmlWriter:
                 import json as _json
                 raw_rows = _json.loads(text)
                 img_n += 1
-                n_cols = max(len(r) for r in raw_rows)
-                if n_cols <= 2:
-                    rows2 = [(r[0], r[1] if len(r) > 1 else "") for r in raw_rows]
-                    table = self._table(f"{sid}_t{img_n}",
-                                        [(str(a), str(b)) for a, b in rows2])
-                else:
-                    # N-column prose tables (e.g. KEY COMBINATIONS): first
-                    # column narrow-ish, rest evenly split
-                    body_w2 = self.page_w - self.m_l - self.m_r
-                    cols = [body_w2 * 0.3] + [body_w2 * 0.7 / (n_cols - 1)] * (n_cols - 1)
-                    tid = f"{sid}_t{img_n}"
-                    cells = []
-                    for ri, r in enumerate(raw_rows):
-                        for ci in range(n_cols):
-                            txt = str(r[ci]) if ci < len(r) else ""
-                            style = "HB Spec Label" if ri == 0 else "HB Spec Value"
-                            cells.append(self._cell(
-                                f"{tid}c{ri}_{ci}", f"{ci}:{ri}",
-                                self._psr(style, txt, terminal=True)))
-                    table = self._component_table(tid, cols, cells, n_rows=len(raw_rows))
-                parts.append(self._wrap_table_paragraph(
-                    table, terminal, span_columns=not in_twocol))
-                est += 11.0 * (len(raw_rows) + 1)
+                xml_part, h = _components.render_table_block(
+                    raw_rows, self._render_context(bundle_root),
+                    tid=f"{sid}_t{img_n}", terminal=terminal,
+                    span_columns=not in_twocol)
+                parts.append(xml_part)
+                est += h
                 continue
             if kind == "image":
-                img = self._resolve_bundle_image(bundle_root, text)
-                if img is None:
+                xml_part, h = _components.render_image_block(
+                    text, self._render_context(bundle_root),
+                    rect_id=f"{sid}_im{img_n + 1}", terminal=terminal)
+                if xml_part is None:
                     continue
                 img_n += 1
-                w_pt, h_pt = self._art_frame_size(img)
-                rect = self._image_cell_content(f"{sid}_im{img_n}", img, w_pt, h_pt)
-                parts.append(
-                    '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
-                    '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                    + rect + ("<Content></Content>" if terminal else "<Br/>")
-                    + "</CharacterStyleRange></ParagraphStyleRange>\n")
-                est += h_pt + 4
+                parts.append(xml_part)
+                est += h
                 continue
             style = self._PROSE_STYLE.get(kind, "HB Body")
             span_columns = has_twocol_layout and not in_twocol and kind in {"h1", "h2"}
