@@ -46,11 +46,15 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/translation_memory.py": 790,
     "tools/source_record_index.py": 500,
     "tools/source_table_sync.py": 500,
-    # IDML surface — pinned EXACTLY at current size (no headroom) at the start
-    # of the componentization plan (reports/idml_componentization/20260705-01):
-    # the decomposition into tools/idml/ may only push these DOWN, never up.
-    "tools/export_idml.py": 2001,
+    # IDML surface — pinned EXACTLY at current size (no headroom) during the
+    # componentization plan (reports/idml_componentization/20260705-01): the
+    # decomposition into tools/idml/ may only push the façade DOWN, never up.
+    # P1 moved params/loaders/primitives/styles/check out (2001 -> 1470).
+    "tools/export_idml.py": 1470,
     "tools/idml_rst_extract.py": 511,
+    "tools/idml/primitives.py": 300,
+    "tools/idml/styles.py": 220,
+    "tools/idml/loaders.py": 220,
 }
 
 

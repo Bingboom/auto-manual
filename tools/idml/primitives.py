@@ -1,0 +1,253 @@
+"""IDML XML building blocks (componentization P1).
+
+Pure functions extracted verbatim from IdmlWriter — every string literal
+here is load-bearing for InDesign (designer-reported traps are kept in the
+comments next to the code that dodges them). Page geometry arrives as
+explicit arguments so components/stories can be built without the writer.
+"""
+from __future__ import annotations
+
+import re
+from pathlib import Path
+from xml.sax.saxutils import escape
+
+# Characters Gilroy has no glyph for — same policy as the PDF path's
+# FRAGILE_UNICODE_REPLACEMENTS in patch_latex_fonts.py. Without this,
+# InDesign shows pink missing-glyph boxes (designer-reported).
+GLYPH_FALLBACKS = (
+    ("⎓", " DC "),   # ⎓ direct-current symbol
+    ("※", "*"),      # ※ reference mark
+    ("₄", "4"),      # ₄ subscript four (LiFePO4)
+)
+
+PROSE_STYLE = {"h1": "HB H1", "h2": "HB Title L2", "h3": "HB Title L3",
+               "label": "HB Notice Label", "body": "HB Body", "list": "HB List"}
+
+
+def clean_text(text: str) -> str:
+    for raw, replacement in GLYPH_FALLBACKS:
+        text = text.replace(raw, replacement)
+    return text
+
+
+def bold_runs(line: str) -> list[tuple[str, bool]]:
+    """Split rst inline strong markup (**x**) into (text, bold) runs.
+
+    Designer-reported: literal ** asterisks in body text. Bare *
+    emphasis is left alone (rare in the bundles and ambiguous with
+    footnote markers).
+    """
+    runs: list[tuple[str, bool]] = []
+    parts = re.split(r"\*\*(.+?)\*\*", line)
+    for i, part in enumerate(parts):
+        if part:
+            runs.append((part, i % 2 == 1))
+    return runs
+
+
+def psr(style: str, text: str, *, terminal: bool = False,
+        span_columns: bool = False) -> str:
+    """One ParagraphStyleRange.
+
+    IDML paragraphs are delimited by explicit <Br/> characters in the
+    content stream, NOT by ParagraphStyleRange boundaries — without a
+    trailing <Br/> adjacent ranges fuse into one paragraph
+    ("SPECIFICATIONSGENERAL INFO", designer-reported). Every range
+    therefore ends with <Br/> unless it is the story's last one.
+    """
+    lines = clean_text(text).split("\n")
+    line_xmls = []
+    for line in lines:
+        runs = bold_runs(line)
+        line_xmls.append("".join(
+            '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+            + (' FontStyle="Bold"' if bold else "")
+            + f'><Content>{escape(seg)}</Content></CharacterStyleRange>'
+            for seg, bold in runs
+        ) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+             '<Content></Content></CharacterStyleRange>')
+    br = ('<CharacterStyleRange AppliedCharacterStyle='
+          '"CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>')
+    content = br.join(line_xmls)
+    if not terminal:
+        content += br
+    sid = "ParagraphStyle/" + style.replace(" ", "%20")
+    span_attr = ' SpanColumnType="SpanColumns"' if span_columns else ""
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{sid}"{span_attr}>\n'
+        f'    {content}\n'
+        '  </ParagraphStyleRange>\n'
+    )
+
+
+def spec_table(tid: str, rows: list[tuple[str, str]],
+               label_style: str = "HB Spec Label", *,
+               params: dict[str, tuple[str, str]],
+               page_w: float, m_l: float, m_r: float) -> str:
+    left_ratio = float(params.get("comp_spec_table_left_ratio", ("0.315", ""))[0])
+    body_w = page_w - m_l - m_r
+    col1 = body_w * left_ratio
+    col2 = body_w - col1
+    cells = []
+    for ri, (label, value) in enumerate(rows):
+        for ci, (txt, style) in enumerate(((label, label_style), (value, "HB Spec Value"))):
+            cells.append(
+                f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" RowSpan="1" ColumnSpan="1" '
+                'AppliedCellStyle="CellStyle/$ID/[None]" '
+                'TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">\n'
+                + psr(style, txt, terminal=True) +
+                '    </Cell>'
+            )
+    row_els = "\n".join(
+        f'    <Row Self="{tid}r{ri}" Name="{ri}" SingleRowHeight="10.3"/>' for ri in range(len(rows))
+    )
+    return (
+        f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
+        f'BodyRowCount="{len(rows)}" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">\n'
+        f'{row_els}\n'
+        f'    <Column Self="{tid}col0" Name="0" SingleColumnWidth="{col1:g}"/>\n'
+        f'    <Column Self="{tid}col1" Name="1" SingleColumnWidth="{col2:g}"/>\n'
+        + "\n".join(cells) + "\n"
+        '  </Table>\n'
+    )
+
+
+def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float) -> str:
+    """Anchored image frame for a table cell, linked to a file on disk.
+
+    The Link keeps the file external (URI), so the designer relinks or
+    edits assets through InDesign's Links panel — the same contract as
+    a hand-built document.
+    """
+    uri = image_path.resolve().as_uri()
+    # Inline anchored objects hang from the text baseline: the path must
+    # span y in [-h, 0]. A [0, h] path drops below the line and overlaps
+    # the following text (designer-reported).
+    x1, y1, x2, y2 = 0.0, -h_pt, w_pt, 0.0
+    pts = ((x1, y1), (x1, y2), (x2, y2), (x2, y1))
+    anchors = "".join(
+        f'<PathPointType Anchor="{x:g} {y:g}" LeftDirection="{x:g} {y:g}" '
+        f'RightDirection="{x:g} {y:g}"/>' for x, y in pts
+    )
+    return (
+        f'<Rectangle Self="{rect_id}" ContentType="GraphicType" '
+        'AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" '
+        'AnchoredPosition="InlinePosition">'
+        '<Properties><PathGeometry><GeometryPathType PathOpen="false">'
+        f'<PathPointArray>{anchors}</PathPointArray>'
+        '</GeometryPathType></PathGeometry></Properties>'
+        f'<Image Self="{rect_id}_img" ItemTransform="1 0 0 1 0 0">'
+        f'<Link Self="{rect_id}_lnk" LinkResourceURI="{escape(uri)}"/>'
+        '</Image>'
+        '<FrameFittingOption FittingOnEmptyFrame="Proportionally"/>'
+        '</Rectangle>'
+    )
+
+
+def resolve_bundle_image(bundle_root: Path, ref: str) -> Path | None:
+    """Resolve an image reference from a bundle page.
+
+    Refs are either bundle-relative paths (_assets/..., _repo_assets/...)
+    or bare basenames from component macro args (main_unit1.png).
+    """
+    cand = bundle_root / ref
+    if cand.exists():
+        return cand
+    name = Path(ref).name
+    for base in (bundle_root / "_assets", bundle_root / "_repo_assets"):
+        if base.is_dir():
+            hits = sorted(base.rglob(name))
+            if hits:
+                return hits[0]
+    return None
+
+
+def art_frame_size(img: Path, max_w: float = 120.0, *,
+                   page_w: float, m_l: float, m_r: float) -> tuple[float, float]:
+    """Frame size honoring the image's real aspect ratio (Pillow when
+    available; 0.62 heuristic keeps working without it)."""
+    w_pt = min(max_w, page_w - m_l - m_r)
+    try:
+        from PIL import Image as _PILImage
+        with _PILImage.open(img) as im:
+            iw, ih = im.size
+        if iw > 0:
+            return w_pt, w_pt * ih / iw
+    except Exception:
+        pass
+    return w_pt, w_pt * 0.62
+
+
+def cell(cid: str, name: str, content: str, *, fill: str | None = None,
+         stroke: bool = True, top: float = 3, bottom: float = 3,
+         left: float = 4, right: float = 4) -> str:
+    # cell fill is FillColor in IDML; CellFillColor is silently ignored
+    # (designer-reported: no gray FCC/notice panels)
+    fill_attr = f'FillColor="{fill}" ' if fill else ""
+    stroke_attr = "" if stroke else (
+        'LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" '
+        'TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" ')
+    return (
+        f'    <Cell Self="{cid}" Name="{name}" RowSpan="1" ColumnSpan="1" '
+        f'AppliedCellStyle="CellStyle/$ID/[None]" {fill_attr}{stroke_attr}'
+        f'TopInset="{top:g}" BottomInset="{bottom:g}" '
+        f'LeftInset="{left:g}" RightInset="{right:g}">\n'
+        + content + '    </Cell>')
+
+
+def component_table(tid: str, cols: list[float], cells: list[str],
+                    n_rows: int = 1) -> str:
+    row_els = "\n".join(f'    <Row Self="{tid}r{ri}" Name="{ri}"/>'
+                         for ri in range(n_rows))
+    col_els = "\n".join(
+        f'    <Column Self="{tid}col{ci}" Name="{ci}" SingleColumnWidth="{wd:g}"/>'
+        for ci, wd in enumerate(cols))
+    return (
+        f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
+        f'BodyRowCount="{n_rows}" ColumnCount="{len(cols)}" HeaderRowCount="0" FooterRowCount="0">\n'
+        f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n")
+
+
+def wrap_table_paragraph(table: str, terminal: bool,
+                         span_columns: bool = True) -> str:
+    # SpanColumns: component tables run full measure across multi-column
+    # frames (V2.0 master: warning boxes span the two-column safety text;
+    # designer-reported overlap otherwise). No effect in single-column
+    # frames.
+    span_attr = ' SpanColumnType="SpanColumns"' if span_columns else ""
+    return (
+        '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body"'
+        f'{span_attr}>\n'
+        '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
+        + table +
+        ('    <Content></Content></CharacterStyleRange>\n' if terminal else
+         '    <Br/></CharacterStyleRange>\n')
+        + '  </ParagraphStyleRange>\n')
+
+
+def path_geometry(x1: float, y1: float, x2: float, y2: float) -> str:
+    """Rectangle as IDML PathGeometry.
+
+    Spline items (TextFrame etc.) do NOT take a GeometricBounds
+    attribute — that is a scripting-DOM property. InDesign silently
+    ignores it and instantiates a degenerate (invisible) frame, which
+    is exactly the "opens fine but every page is blank" failure mode.
+    The geometry must be a four-anchor closed path in Properties.
+    """
+    pts = ((x1, y1), (x1, y2), (x2, y2), (x2, y1))
+    anchors = "\n".join(
+        f'            <PathPointType Anchor="{x:g} {y:g}" '
+        f'LeftDirection="{x:g} {y:g}" RightDirection="{x:g} {y:g}"/>'
+        for x, y in pts
+    )
+    return (
+        '    <Properties>\n'
+        '      <PathGeometry>\n'
+        '        <GeometryPathType PathOpen="false">\n'
+        '          <PathPointArray>\n'
+        f'{anchors}\n'
+        '          </PathPointArray>\n'
+        '        </GeometryPathType>\n'
+        '      </PathGeometry>\n'
+        '    </Properties>\n'
+    )

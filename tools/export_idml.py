@@ -20,218 +20,48 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import csv
 import re
 import sys
 import zipfile
 from pathlib import Path
-from xml.etree import ElementTree as ET
 from xml.sax.saxutils import escape
 
 try:
     from tools.idml_rst_extract import bundle_page_order, extract_page
     from tools.script_bootstrap import bootstrap_repo_root
+    from tools.idml import check as _check
+    from tools.idml import loaders as _loaders
+    from tools.idml import params as _params
+    from tools.idml import primitives as _prim
+    from tools.idml import styles as _styles
 except ImportError:  # pragma: no cover - direct script execution fallback
     from idml_rst_extract import bundle_page_order, extract_page  # type: ignore
     from script_bootstrap import bootstrap_repo_root
+    from idml import check as _check  # type: ignore
+    from idml import loaders as _loaders  # type: ignore
+    from idml import params as _params  # type: ignore
+    from idml import primitives as _prim  # type: ignore
+    from idml import styles as _styles  # type: ignore
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-MIMETYPE = "application/vnd.adobe.indesign-idml-package"
-IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
+MIMETYPE = _params.MIMETYPE
+IDPKG = _params.IDPKG
+MM_TO_PT = _params.MM_TO_PT
+load_layout_params = _params.load_layout_params
+param_pt = _params.param_pt
+brand_cmyk = _params.brand_cmyk
 
-MM_TO_PT = 72.0 / 25.4
+SYMBOL_COPY = _loaders.SYMBOL_COPY
+normalize_lang = _loaders.normalize_lang
+symbol_copy = _loaders.symbol_copy
+load_spec_sections = _loaders.load_spec_sections
+load_lcd_rows = _loaders.load_lcd_rows
+load_spec_annotations = _loaders.load_spec_annotations
+load_symbols_rows = _loaders.load_symbols_rows
+load_trouble_rows = _loaders.load_trouble_rows
 
-SYMBOL_COPY = {
-    "en": {
-        "title": "MEANING OF SYMBOLS",
-        "symbol": "Symbol",
-        "meaning": "Meaning",
-        "warning": "WARNING",
-    },
-    "fr": {
-        "title": "SIGNIFICATION DES SYMBOLES",
-        "symbol": "Symbole",
-        "meaning": "Signification",
-        "warning": "AVERTISSEMENT",
-    },
-    "es": {
-        "title": "SIGNIFICADO DE LOS SÍMBOLOS",
-        "symbol": "Símbolo",
-        "meaning": "Significado",
-        "warning": "ADVERTENCIA",
-    },
-}
-
-
-def normalize_lang(lang: str | None) -> str:
-    lang = (lang or "en").strip()
-    aliases = {"ja": "jp", "pt-br": "pt-BR", "pt_BR": "pt-BR"}
-    return aliases.get(lang, aliases.get(lang.lower(), lang.lower() or "en"))
-
-
-def symbol_copy(lang: str | None) -> dict[str, str]:
-    return SYMBOL_COPY.get(normalize_lang(lang), SYMBOL_COPY["en"])
-
-
-# ---------------------------------------------------------------------------
-# layout params
-# ---------------------------------------------------------------------------
-
-def load_layout_params(csv_path: Path) -> dict[str, tuple[str, str]]:
-    """key -> (value, unit)"""
-    out: dict[str, tuple[str, str]] = {}
-    with csv_path.open(encoding="utf-8") as fh:
-        for row in csv.DictReader(fh):
-            key = (row.get("key") or "").strip()
-            if not key:
-                continue
-            out[key] = ((row.get("value") or "").strip(), (row.get("unit") or "").strip())
-    return out
-
-
-def param_pt(params: dict[str, tuple[str, str]], key: str, default: float) -> float:
-    value, unit = params.get(key, ("", ""))
-    if not value:
-        return default
-    try:
-        v = float(value)
-    except ValueError:
-        return default
-    if unit == "mm":
-        return v * MM_TO_PT
-    return v  # pt / em treated as pt at this level
-
-
-def brand_cmyk(params: dict[str, tuple[str, str]], key: str, default: str) -> tuple[float, float, float, float]:
-    value, unit = params.get(key, (default, "cmyk"))
-    parts = [p.strip() for p in (value or default).split(",")]
-    try:
-        c, m, y, k = (float(p) for p in parts)
-    except (ValueError, TypeError):
-        c, m, y, k = 0.0, 0.0, 0.0, 1.0
-    return c * 100, m * 100, y * 100, k * 100
-
-
-# ---------------------------------------------------------------------------
-# spec data
-# ---------------------------------------------------------------------------
-
-def load_spec_sections(data_root: Path, model: str, region: str) -> list[dict]:
-    doc_key = f"{model}_{region}"
-    path = data_root / "Spec_Master.csv"
-    rows = [
-        r for r in csv.DictReader(path.open(encoding="utf-8"))
-        if r.get("document_key") == doc_key
-        and r.get("Is_Latest") == "TRUE"
-        and r.get("Page") == "specifications"
-    ]
-    rows.sort(key=lambda r: (float(r.get("Section_order") or 0),
-                             float(r.get("Row_order") or 0),
-                             float(r.get("Line_order") or 0)))
-    sections: list[dict] = []
-    # rows sharing (Section, Row_order) merge into one multi-line value cell
-    for r in rows:
-        title = (r.get("Section") or "").strip()
-        if not sections or sections[-1]["title"] != title:
-            sections.append({"title": title, "rows": []})
-        label = (r.get("Row_label_source") or "").strip()
-        param = (r.get("Param_source") or "").strip()
-        value = (r.get("Value_source") or "").strip()
-        line = f"{param}: {value}" if param else value
-        sec_rows = sections[-1]["rows"]
-        if sec_rows and sec_rows[-1][0] == label and float(r.get("Line_order") or 1) > 1:
-            sec_rows[-1] = (label, sec_rows[-1][1] + "\n" + line)
-        else:
-            sec_rows.append((label, line))
-    return sections
-
-
-def load_lcd_rows(data_root: Path, model: str) -> list[dict]:
-    """LCD icon table rows for one model: no / icon path / name / description."""
-    path = data_root / "lcd_icons_blocks.csv"
-    out: list[dict] = []
-    for r in csv.DictReader(path.open(encoding="utf-8")):
-        if r.get("Is_latest") != "TRUE":
-            continue
-        models = [m.strip() for m in (r.get("Model") or "").split(",")]
-        if model not in models:
-            continue
-        out.append({
-            "no": (r.get("No.") or "").strip(),
-            "figure": (r.get("figure") or "").strip(),
-            "name": (r.get("icon_en") or "").strip(),
-            "desc": (r.get("icon_desc_en") or "").strip(),
-        })
-    out.sort(key=lambda x: float(x["no"] or 0))
-    return out
-
-
-def load_spec_annotations(data_root: Path, model: str, region: str) -> list[str]:
-    """Spec-page footnotes + notes for the target — the master prints them
-    under the spec tables (user-reported as missing)."""
-    out: list[str] = []
-    for fname, order_col in (("Spec_Footnotes.csv", "Footnote_order"),
-                             ("Spec_Notes.csv", "Note_order")):
-        path = data_root / fname
-        if not path.exists():
-            continue
-        rows: list[tuple[float, str]] = []
-        for r in csv.DictReader(path.open(encoding="utf-8")):
-            if r.get("Is_Latest") != "TRUE" or r.get("Enabled", "TRUE") == "FALSE":
-                continue
-            models = [m.strip() for m in (r.get("Model") or "").split(",") if m.strip()]
-            if models and model not in models and "ALL" not in models:
-                continue
-            regions = [x.strip() for x in (r.get("Region") or "").split(",") if x.strip()]
-            if regions and region not in regions and "ALL" not in regions:
-                continue
-            text = (r.get("Text_en") or "").strip()
-            if text:
-                rows.append((float(r.get(order_col) or 0), text))
-        out.extend(t for _, t in sorted(rows))
-    return out
-
-
-def load_symbols_rows(data_root: Path, lang: str = "en") -> tuple[list[tuple[str, str]], list[dict]]:
-    """symbols_blocks.csv -> localized (signal rows [label, meaning], icon rows)."""
-    path = data_root / "symbols_blocks.csv"
-    signals: list[tuple[str, str]] = []
-    icons: list[dict] = []
-    lang = normalize_lang(lang)
-    label_col = f"label_{lang}"
-    text_col = f"text_{lang}"
-    rows = [r for r in csv.DictReader(path.open(encoding="utf-8"))
-            if r.get("Is_Latest", r.get("Is_latest")) == "TRUE"]
-    rows.sort(key=lambda r: float(r.get("order") or 0))
-    for r in rows:
-        text = ((r.get(text_col) or "").strip()
-                or (r.get("text_en") or "").strip())
-        if r.get("block_type") == "signal_row":
-            if text:
-                label = ((r.get(label_col) or "").strip()
-                         or (r.get("label_en") or "").strip())
-                signals.append((label, text))
-        elif r.get("block_type") == "table_row":
-            icons.append({"figure": (r.get("image_path") or "").strip(), "text": text})
-    return signals, icons
-
-
-def load_trouble_rows(data_root: Path, model: str, region: str) -> list[tuple[str, str]]:
-    path = data_root / "troubleshooting_blocks.csv"
-    out: list[tuple[str, str]] = []
-    for r in csv.DictReader(path.open(encoding="utf-8")):
-        if r.get("Is_latest") != "TRUE":
-            continue
-        models = [m.strip() for m in (r.get("Model") or "").split(",") if m.strip()]
-        if models and model not in models and "ALL" not in models:
-            continue
-        regions = [x.strip() for x in (r.get("Region") or "").split(",") if x.strip()]
-        if regions and region not in regions and "ALL" not in regions:
-            continue
-        out.append(((r.get("error_code") or "").strip(),
-                    (r.get("corrective_measures_en") or "").strip()))
-    return out
+check_idml = _check.check_idml
 
 
 # ---------------------------------------------------------------------------
@@ -252,249 +82,43 @@ class IdmlWriter:
 
     # -- styles ------------------------------------------------------------
     def para_styles(self) -> list[tuple[str, float, float, str, str]]:
-        """(name, size, leading, font_style, extras)"""
-        p = self.params
-        def sz(key, d): return param_pt(p, key, d)
-        return [
-            ("HB H1", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", ""),
-            ("HB Title L2", sz("type_title_l2_font_size", 8.6), sz("type_title_l2_font_leading", 9.4), "Bold", ""),
-            ("HB Title L3", sz("type_title_l3_font_size", 7.0), sz("type_title_l3_font_leading", 8.0), "Medium", ""),
-            ("HB Notice Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "label"),
-            ("HB Notice Side Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "center"),
-            ("HB Card Number", sz("type_inbox_label_font_size", 6.5), sz("type_inbox_label_font_leading", 7.0), "Bold", "card_number"),
-            ("HB InBox Label", sz("type_inbox_label_font_size", 6.3), sz("type_inbox_label_font_leading", 7.0), "Bold", "center"),
-            ("HB Capsule Text", sz("type_title_l2_font_size", 8.6), sz("type_title_l2_font_leading", 9.4), "Bold", "capsule_text"),
-            ("HB Figure", sz("type_body_font_size", 6.2), 0.0, "Regular", "figure"),
-            ("HB Body", sz("type_body_font_size", 6.2), sz("type_body_font_leading", 7.5), "Regular", ""),
-            ("HB List", sz("type_list_font_size", 5.4), sz("type_list_font_leading", 6.4), "Regular", ""),
-            ("HB Spec Section", sz("type_spec_section_font_size", 8.8), sz("type_spec_section_font_leading", 9.6), "Bold", ""),
-            ("HB Spec Label", sz("type_spec_label_font_size", 6.0), sz("type_spec_label_font_leading", 6.6), "Regular", ""),
-            ("HB Spec Value", sz("type_spec_value_font_size", 6.0), sz("type_spec_value_font_leading", 6.6), "Regular", ""),
-            ("HB Spec Note", sz("type_spec_note_font_size", 5.4), sz("type_spec_note_font_leading", 6.0), "Regular", ""),
-        ]
+        return _styles.para_styles(self.params)
 
     def styles_xml(self) -> str:
-        styles = []
-        for name, size, leading, weight, kind in self.para_styles():
-            self_id = "ParagraphStyle/" + name.replace(" ", "%20")
-            # V2.0 master: H1 is a white-on-brand-dark bar; notice labels are
-            # compact dark pills. Both map to paragraph shading in IDML.
-            shaded = name == "HB H1" or kind in {"label", "card_number"}
-            fill = "Color/Paper" if shaded or kind == "capsule_text" else "Color/HB Brand Dark"
-            # NOTE the Paragraph* prefix: bare ShadingOn/ShadingColor are
-            # silently ignored by InDesign (designer-reported: no H1 bar,
-            # invisible white labels/numerals)
-            if kind == "card_number":
-                shading = (
-                    'ParagraphShadingOn="true" '
-                    'ParagraphShadingColor="Color/HB Brand Dark" '
-                    'ParagraphShadingTint="100" '
-                    'ParagraphShadingWidth="TextWidth" '
-                    'ParagraphShadingTopOrigin="AscentTopOrigin" '
-                    'ParagraphShadingBottomOrigin="DescentBottomOrigin" '
-                    'ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" '
-                    'ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" '
-                    'SpaceBefore="7" SpaceAfter="6" '
-                )
-            elif shaded:
-                shading = (
-                'ParagraphShadingOn="true" '
-                'ParagraphShadingColor="Color/HB Brand Dark" '
-                'ParagraphShadingTint="100" '
-                'ParagraphShadingWidth="ColumnWidth" '
-                'ParagraphShadingTopOrigin="AscentTopOrigin" '
-                'ParagraphShadingBottomOrigin="DescentBottomOrigin" '
-                'ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" '
-                'ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" '
-                'SpaceBefore="4" SpaceAfter="3" '
-                )
-            else:
-                shading = ""
-            justification = "CenterAlign" if kind in {"center", "card_number"} else "LeftAlign"
-            styles.append(
-                f'  <ParagraphStyle Self="{self_id}" Name="{name}" '
-                f'PointSize="{size:g}" FillColor="{fill}" {shading}'
-                f'Justification="{justification}">\n'
-                f'    <Properties>\n'
-                f'      <AppliedFont type="string">Gilroy</AppliedFont>\n'
-                f'      <FontStyle type="string">{weight}</FontStyle>\n'
-                # fixed leading does not grow for inline anchored objects —
-                # figure paragraphs need Auto so art doesn't shoot out the top
-                + (f'      <Leading type="unit">{leading:g}</Leading>\n'
-                   if kind != "figure" else
-                   '      <Leading type="enum">Auto</Leading>\n') +
-                f'    </Properties>\n'
-                f'  </ParagraphStyle>'
-            )
-        return (
-            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Styles xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-            '  <RootCharacterStyleGroup Self="rcsg">\n'
-            '    <CharacterStyle Self="CharacterStyle/$ID/[No character style]" Name="$ID/[No character style]"/>\n'
-            '  </RootCharacterStyleGroup>\n'
-            '  <RootParagraphStyleGroup Self="rpsg">\n'
-            '    <ParagraphStyle Self="ParagraphStyle/$ID/[No paragraph style]" Name="$ID/[No paragraph style]"/>\n'
-            '    <ParagraphStyle Self="ParagraphStyle/$ID/NormalParagraphStyle" Name="$ID/NormalParagraphStyle"/>\n'
-            + "\n".join(styles) + "\n"
-            '  </RootParagraphStyleGroup>\n'
-            '  <RootCellStyleGroup Self="rcellsg">\n'
-            '    <CellStyle Self="CellStyle/$ID/[None]" Name="$ID/[None]"/>\n'
-            '  </RootCellStyleGroup>\n'
-            '  <RootTableStyleGroup Self="rtsg">\n'
-            '    <TableStyle Self="TableStyle/$ID/[Basic Table]" Name="$ID/[Basic Table]"/>\n'
-            '  </RootTableStyleGroup>\n'
-            '  <RootObjectStyleGroup Self="rosg">\n'
-            '    <ObjectStyle Self="ObjectStyle/$ID/[None]" Name="$ID/[None]"/>\n'
-            '    <ObjectStyle Self="ObjectStyle/$ID/[Normal Text Frame]" Name="$ID/[Normal Text Frame]"/>\n'
-            '  </RootObjectStyleGroup>\n'
-            '</idPkg:Styles>\n'
-        )
+        return _styles.styles_xml(self.params)
 
     def graphic_xml(self) -> str:
-        p = self.params
-        colors = []
-        for name, key, default in (
-            ("HB Brand Dark", "brand_color_branddark", "0,0,0,0.90"),
-            ("HB Text Gray", "brand_color_textgray", "0,0,0,0.90"),
-            ("HB Line K40", "brand_color_linek40", "0,0,0,0.80"),
-            ("HB Bg K05", "brand_color_bgk05", "0,0,0,0.05"),
-        ):
-            c, m, y, k = brand_cmyk(p, key, default)
-            colors.append(
-                f'  <Color Self="Color/{name}" Model="Process" Space="CMYK" '
-                f'ColorValue="{c:g} {m:g} {y:g} {k:g}" Name="{name}"/>'
-            )
-        return (
-            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Graphic xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-            '  <Color Self="Color/Black" Model="Process" Space="CMYK" ColorValue="0 0 0 100" Name="Black"/>\n'
-            '  <Color Self="Color/Paper" Model="Process" Space="CMYK" ColorValue="0 0 0 0" Name="Paper"/>\n'
-            + "\n".join(colors) + "\n"
-            '  <Swatch Self="Swatch/None" Name="None"/>\n'
-            '</idPkg:Graphic>\n'
-        )
+        return _styles.graphic_xml(self.params)
 
     def fonts_xml(self) -> str:
-        return (
-            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Fonts xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-            '  <FontFamily Self="ff_gilroy" Name="Gilroy">\n'
-            '    <Font Self="ff_gilroy_r" FontFamily="Gilroy" Name="Gilroy Regular" PostScriptName="Gilroy-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeCFF"/>\n'
-            '    <Font Self="ff_gilroy_m" FontFamily="Gilroy" Name="Gilroy Medium" PostScriptName="Gilroy-Medium" Status="Installed" FontStyleName="Medium" FontType="OpenTypeCFF"/>\n'
-            '    <Font Self="ff_gilroy_sb" FontFamily="Gilroy" Name="Gilroy Semibold" PostScriptName="Gilroy-SemiBold" Status="Installed" FontStyleName="Semibold" FontType="OpenTypeCFF"/>\n'
-            '    <Font Self="ff_gilroy_b" FontFamily="Gilroy" Name="Gilroy Bold" PostScriptName="Gilroy-Bold" Status="Installed" FontStyleName="Bold" FontType="OpenTypeCFF"/>\n'
-            '  </FontFamily>\n'
-            '</idPkg:Fonts>\n'
-        )
+        return _styles.fonts_xml()
 
     def preferences_xml(self) -> str:
-        return (
-            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<idPkg:Preferences xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-            f'  <DocumentPreference PageWidth="{self.page_w:g}" PageHeight="{self.page_h:g}" '
-            'PagesPerDocument="1" FacingPages="true" PageOrientation="Portrait" '
-            'DocumentBleedTopOffset="8.5" DocumentBleedBottomOffset="8.5" '
-            'DocumentBleedInsideOrLeftOffset="8.5" DocumentBleedOutsideOrRightOffset="8.5"/>\n'
-            '  <MarginPreference ColumnCount="1" ColumnGutter="12" '
-            f'Top="{self.m_t:g}" Bottom="{self.m_b:g}" Left="{self.m_l:g}" Right="{self.m_r:g}"/>\n'
-            '</idPkg:Preferences>\n'
-        )
+        return _styles.preferences_xml(page_w=self.page_w, page_h=self.page_h,
+                                       m_t=self.m_t, m_b=self.m_b,
+                                       m_l=self.m_l, m_r=self.m_r)
 
     # -- content -----------------------------------------------------------
 
-    # Characters Gilroy has no glyph for — same policy as the PDF path's
-    # FRAGILE_UNICODE_REPLACEMENTS in patch_latex_fonts.py. Without this,
-    # InDesign shows pink missing-glyph boxes (designer-reported).
-    GLYPH_FALLBACKS = (
-        ("⎓", " DC "),   # ⎓ direct-current symbol
-        ("※", "*"),      # ※ reference mark
-        ("₄", "4"),      # ₄ subscript four (LiFePO4)
-    )
+    GLYPH_FALLBACKS = _prim.GLYPH_FALLBACKS
 
     @classmethod
     def _clean_text(cls, text: str) -> str:
-        for raw, replacement in cls.GLYPH_FALLBACKS:
-            text = text.replace(raw, replacement)
-        return text
+        return _prim.clean_text(text)
 
     @classmethod
     def _psr(cls, style: str, text: str, *, terminal: bool = False,
              span_columns: bool = False) -> str:
-        """One ParagraphStyleRange.
-
-        IDML paragraphs are delimited by explicit <Br/> characters in the
-        content stream, NOT by ParagraphStyleRange boundaries — without a
-        trailing <Br/> adjacent ranges fuse into one paragraph
-        ("SPECIFICATIONSGENERAL INFO", designer-reported). Every range
-        therefore ends with <Br/> unless it is the story's last one.
-        """
-        lines = cls._clean_text(text).split("\n")
-        line_xmls = []
-        for line in lines:
-            runs = cls._bold_runs(line)
-            line_xmls.append("".join(
-                '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
-                + (' FontStyle="Bold"' if bold else "")
-                + f'><Content>{escape(seg)}</Content></CharacterStyleRange>'
-                for seg, bold in runs
-            ) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                 '<Content></Content></CharacterStyleRange>')
-        br = ('<CharacterStyleRange AppliedCharacterStyle='
-              '"CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>')
-        content = br.join(line_xmls)
-        if not terminal:
-            content += br
-        sid = "ParagraphStyle/" + style.replace(" ", "%20")
-        span_attr = ' SpanColumnType="SpanColumns"' if span_columns else ""
-        return (
-            f'  <ParagraphStyleRange AppliedParagraphStyle="{sid}"{span_attr}>\n'
-            f'    {content}\n'
-            '  </ParagraphStyleRange>\n'
-        )
+        return _prim.psr(style, text, terminal=terminal, span_columns=span_columns)
 
     @staticmethod
     def _bold_runs(line: str) -> list[tuple[str, bool]]:
-        """Split rst inline strong markup (**x**) into (text, bold) runs.
-
-        Designer-reported: literal ** asterisks in body text. Bare *
-        emphasis is left alone (rare in the bundles and ambiguous with
-        footnote markers).
-        """
-        runs: list[tuple[str, bool]] = []
-        parts = re.split(r"\*\*(.+?)\*\*", line)
-        for i, part in enumerate(parts):
-            if part:
-                runs.append((part, i % 2 == 1))
-        return runs
+        return _prim.bold_runs(line)
 
     def _table(self, tid: str, rows: list[tuple[str, str]],
                label_style: str = "HB Spec Label") -> str:
-        left_ratio = float(self.params.get("comp_spec_table_left_ratio", ("0.315", ""))[0])
-        body_w = self.page_w - self.m_l - self.m_r
-        col1 = body_w * left_ratio
-        col2 = body_w - col1
-        cells = []
-        for ri, (label, value) in enumerate(rows):
-            for ci, (txt, style) in enumerate(((label, label_style), (value, "HB Spec Value"))):
-                cells.append(
-                    f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" RowSpan="1" ColumnSpan="1" '
-                    'AppliedCellStyle="CellStyle/$ID/[None]" '
-                    'TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">\n'
-                    + self._psr(style, txt, terminal=True) +
-                    '    </Cell>'
-                )
-        row_els = "\n".join(
-            f'    <Row Self="{tid}r{ri}" Name="{ri}" SingleRowHeight="10.3"/>' for ri in range(len(rows))
-        )
-        return (
-            f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
-            f'BodyRowCount="{len(rows)}" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">\n'
-            f'{row_els}\n'
-            f'    <Column Self="{tid}col0" Name="0" SingleColumnWidth="{col1:g}"/>\n'
-            f'    <Column Self="{tid}col1" Name="1" SingleColumnWidth="{col2:g}"/>\n'
-            + "\n".join(cells) + "\n"
-            '  </Table>\n'
-        )
+        return _prim.spec_table(tid, rows, label_style, params=self.params,
+                                page_w=self.page_w, m_l=self.m_l, m_r=self.m_r)
 
     def frame_height(self) -> float:
         return self.page_h - self.m_t - self.m_b
@@ -519,113 +143,29 @@ class IdmlWriter:
         return max(1, math.ceil(height_pt / self.frame_height()))
 
     def _image_cell_content(self, rect_id: str, image_path: Path, w_pt: float, h_pt: float) -> str:
-        """Anchored image frame for a table cell, linked to a file on disk.
+        return _prim.image_cell_content(rect_id, image_path, w_pt, h_pt)
 
-        The Link keeps the file external (URI), so the designer relinks or
-        edits assets through InDesign's Links panel — the same contract as
-        a hand-built document.
-        """
-        uri = image_path.resolve().as_uri()
-        # Inline anchored objects hang from the text baseline: the path must
-        # span y in [-h, 0]. A [0, h] path drops below the line and overlaps
-        # the following text (designer-reported).
-        x1, y1, x2, y2 = 0.0, -h_pt, w_pt, 0.0
-        pts = ((x1, y1), (x1, y2), (x2, y2), (x2, y1))
-        anchors = "".join(
-            f'<PathPointType Anchor="{x:g} {y:g}" LeftDirection="{x:g} {y:g}" '
-            f'RightDirection="{x:g} {y:g}"/>' for x, y in pts
-        )
-        return (
-            f'<Rectangle Self="{rect_id}" ContentType="GraphicType" '
-            'AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" '
-            'AnchoredPosition="InlinePosition">'
-            '<Properties><PathGeometry><GeometryPathType PathOpen="false">'
-            f'<PathPointArray>{anchors}</PathPointArray>'
-            '</GeometryPathType></PathGeometry></Properties>'
-            f'<Image Self="{rect_id}_img" ItemTransform="1 0 0 1 0 0">'
-            f'<Link Self="{rect_id}_lnk" LinkResourceURI="{escape(uri)}"/>'
-            '</Image>'
-            '<FrameFittingOption FittingOnEmptyFrame="Proportionally"/>'
-            '</Rectangle>'
-        )
-
-    _PROSE_STYLE = {"h1": "HB H1", "h2": "HB Title L2", "h3": "HB Title L3",
-                    "label": "HB Notice Label", "body": "HB Body", "list": "HB List"}
+    _PROSE_STYLE = _prim.PROSE_STYLE
 
     def _resolve_bundle_image(self, bundle_root: Path, ref: str) -> Path | None:
-        """Resolve an image reference from a bundle page.
-
-        Refs are either bundle-relative paths (_assets/..., _repo_assets/...)
-        or bare basenames from component macro args (main_unit1.png).
-        """
-        cand = bundle_root / ref
-        if cand.exists():
-            return cand
-        name = Path(ref).name
-        for base in (bundle_root / "_assets", bundle_root / "_repo_assets"):
-            if base.is_dir():
-                hits = sorted(base.rglob(name))
-                if hits:
-                    return hits[0]
-        return None
+        return _prim.resolve_bundle_image(bundle_root, ref)
 
     def _art_frame_size(self, img: Path, max_w: float = 120.0) -> tuple[float, float]:
-        """Frame size honoring the image's real aspect ratio (Pillow when
-        available; 0.62 heuristic keeps working without it)."""
-        w_pt = min(max_w, self.page_w - self.m_l - self.m_r)
-        try:
-            from PIL import Image as _PILImage
-            with _PILImage.open(img) as im:
-                iw, ih = im.size
-            if iw > 0:
-                return w_pt, w_pt * ih / iw
-        except Exception:
-            pass
-        return w_pt, w_pt * 0.62
+        return _prim.art_frame_size(img, max_w, page_w=self.page_w, m_l=self.m_l, m_r=self.m_r)
 
     def _cell(self, cid: str, name: str, content: str, *, fill: str | None = None,
               stroke: bool = True, top: float = 3, bottom: float = 3,
               left: float = 4, right: float = 4) -> str:
-        # cell fill is FillColor in IDML; CellFillColor is silently ignored
-        # (designer-reported: no gray FCC/notice panels)
-        fill_attr = f'FillColor="{fill}" ' if fill else ""
-        stroke_attr = "" if stroke else (
-            'LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" '
-            'TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" ')
-        return (
-            f'    <Cell Self="{cid}" Name="{name}" RowSpan="1" ColumnSpan="1" '
-            f'AppliedCellStyle="CellStyle/$ID/[None]" {fill_attr}{stroke_attr}'
-            f'TopInset="{top:g}" BottomInset="{bottom:g}" '
-            f'LeftInset="{left:g}" RightInset="{right:g}">\n'
-            + content + '    </Cell>')
+        return _prim.cell(cid, name, content, fill=fill, stroke=stroke,
+                          top=top, bottom=bottom, left=left, right=right)
 
     def _component_table(self, tid: str, cols: list[float], cells: list[str],
                          n_rows: int = 1) -> str:
-        row_els = "\n".join(f'    <Row Self="{tid}r{ri}" Name="{ri}"/>'
-                             for ri in range(n_rows))
-        col_els = "\n".join(
-            f'    <Column Self="{tid}col{ci}" Name="{ci}" SingleColumnWidth="{wd:g}"/>'
-            for ci, wd in enumerate(cols))
-        return (
-            f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
-            f'BodyRowCount="{n_rows}" ColumnCount="{len(cols)}" HeaderRowCount="0" FooterRowCount="0">\n'
-            f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n")
+        return _prim.component_table(tid, cols, cells, n_rows)
 
     def _wrap_table_paragraph(self, table: str, terminal: bool,
                               span_columns: bool = True) -> str:
-        # SpanColumns: component tables run full measure across multi-column
-        # frames (V2.0 master: warning boxes span the two-column safety text;
-        # designer-reported overlap otherwise). No effect in single-column
-        # frames.
-        span_attr = ' SpanColumnType="SpanColumns"' if span_columns else ""
-        return (
-            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body"'
-            f'{span_attr}>\n'
-            '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
-            + table +
-            ('    <Content></Content></CharacterStyleRange>\n' if terminal else
-             '    <Br/></CharacterStyleRange>\n')
-            + '  </ParagraphStyleRange>\n')
+        return _prim.wrap_table_paragraph(table, terminal, span_columns)
 
     def _render_component(self, sid: str, n: int, spec: dict,
                           bundle_root: Path, terminal: bool,
@@ -1557,31 +1097,7 @@ class IdmlWriter:
 
     @staticmethod
     def _path_geometry(x1: float, y1: float, x2: float, y2: float) -> str:
-        """Rectangle as IDML PathGeometry.
-
-        Spline items (TextFrame etc.) do NOT take a GeometricBounds
-        attribute — that is a scripting-DOM property. InDesign silently
-        ignores it and instantiates a degenerate (invisible) frame, which
-        is exactly the "opens fine but every page is blank" failure mode.
-        The geometry must be a four-anchor closed path in Properties.
-        """
-        pts = ((x1, y1), (x1, y2), (x2, y2), (x2, y1))
-        anchors = "\n".join(
-            f'            <PathPointType Anchor="{x:g} {y:g}" '
-            f'LeftDirection="{x:g} {y:g}" RightDirection="{x:g} {y:g}"/>'
-            for x, y in pts
-        )
-        return (
-            '    <Properties>\n'
-            '      <PathGeometry>\n'
-            '        <GeometryPathType PathOpen="false">\n'
-            '          <PathPointArray>\n'
-            f'{anchors}\n'
-            '          </PathPointArray>\n'
-            '        </GeometryPathType>\n'
-            '      </PathGeometry>\n'
-            '    </Properties>\n'
-        )
+        return _prim.path_geometry(x1, y1, x2, y2)
 
     def add_spread_chain(self, story_id: str, n_pages: int, start_index: int,
                          columns: int = 1) -> None:
@@ -1667,53 +1183,6 @@ class IdmlWriter:
                 add(f"Spreads/Spread_{sid}.xml", xml)
             for sid, xml in self.stories:
                 add(f"Stories/Story_{sid}.xml", xml)
-
-
-# ---------------------------------------------------------------------------
-# validation
-# ---------------------------------------------------------------------------
-
-def check_idml(path: Path) -> list[str]:
-    issues: list[str] = []
-    with zipfile.ZipFile(path) as zf:
-        names = zf.namelist()
-        duplicates = sorted({name for name in names if names.count(name) > 1})
-        for name in duplicates:
-            issues.append(f"duplicate package part: {name}")
-        if names[0] != "mimetype":
-            issues.append("mimetype is not the first zip entry")
-        info = zf.getinfo("mimetype")
-        if info.compress_type != zipfile.ZIP_STORED:
-            issues.append("mimetype entry is compressed (must be STORED)")
-        if zf.read("mimetype").decode() != MIMETYPE:
-            issues.append("mimetype content mismatch")
-        for name in names:
-            if name.endswith(".xml"):
-                try:
-                    ET.fromstring(zf.read(name))
-                except ET.ParseError as exc:
-                    issues.append(f"{name}: XML parse error: {exc}")
-        # designmap references must resolve
-        dm = zf.read("designmap.xml").decode("utf-8")
-        root = ET.fromstring(dm)
-        for el in root.iter():
-            src = el.attrib.get("src")
-            if src and src not in names:
-                issues.append(f"designmap references missing part: {src}")
-        # spline items must carry PathGeometry — a GeometricBounds
-        # attribute is silently ignored by InDesign and yields invisible
-        # frames ("opens fine but blank pages")
-        for name in names:
-            if not name.startswith("Spreads/"):
-                continue
-            spread = ET.fromstring(zf.read(name))
-            for frame in spread.iter("TextFrame"):
-                if "GeometricBounds" in frame.attrib:
-                    issues.append(f"{name}: TextFrame {frame.get('Self')} uses "
-                                  "GeometricBounds (ignored by InDesign; use PathGeometry)")
-                if frame.find("./Properties/PathGeometry") is None:
-                    issues.append(f"{name}: TextFrame {frame.get('Self')} has no PathGeometry")
-    return issues
 
 
 def split_safety_first_page(
