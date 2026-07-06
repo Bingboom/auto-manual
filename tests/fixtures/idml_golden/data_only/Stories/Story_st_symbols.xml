@@ -2,10 +2,10 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_symbols" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="MEANING OF SYMBOLS">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20H1">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading1">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>MEANING OF SYMBOLS</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="tbl_sym_sig" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="4" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_sym_sigr0" Name="0" SingleRowHeight="10.3"/>
@@ -15,42 +15,42 @@
     <Column Self="tbl_sym_sigcol0" Name="0" SingleColumnWidth="98.3098"/>
     <Column Self="tbl_sym_sigcol1" Name="1" SingleColumnWidth="213.785"/>
     <Cell Self="tbl_sym_sigc0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Notice%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Caution">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>WARNING</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_sym_sigc0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Hazardous practices that may result in severe injury, death, and/or property damage.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_sym_sigc1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Notice%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Caution">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>CAUTION</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_sym_sigc1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Hazardous practices that may result in personal injury and/or property damage.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_sym_sigc2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Notice%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Caution">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>NOTE</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_sym_sigc2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_sym_sigc3_0" Name="0:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Notice%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Caution">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>TIP</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_sym_sigc3_1" Name="1:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Supplements the important information or operation tips in the text.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>

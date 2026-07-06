@@ -111,7 +111,9 @@ class TestBuildDispatch(unittest.TestCase):
         )
         self.assertEqual(("run-checked", ("build-docs",)), calls[2])
         self.assertEqual(calls[3][0], "run-checked")
-        self.assertTrue(calls[3][1][1].endswith("tools/export_idml.py"))
+        export_script = Path(calls[3][1][1])
+        self.assertEqual("tools", export_script.parent.name)
+        self.assertEqual("export_idml.py", export_script.name)
         self.assertIn("--data-root", calls[3][1])
 
     def _dispatch(self, action: str) -> list[tuple]:

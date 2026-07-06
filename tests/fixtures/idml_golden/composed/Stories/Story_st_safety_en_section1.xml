@@ -2,33 +2,33 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_safety_en_section1" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="safety_en section 1">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="st_safety_en_section1_cmp0" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_safety_en_section1_cmp0r0" Name="0"/>
     <Column Self="st_safety_en_section1_cmp0col0" Name="0" SingleColumnWidth="36"/>
     <Column Self="st_safety_en_section1_cmp0col1" Name="1" SingleColumnWidth="114.547"/>
     <Cell Self="st_safety_en_section1_cmp0c0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="4" BottomInset="4" LeftInset="4" RightInset="4">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="st_safety_en_section1_cmp0wi" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -21.1364" LeftDirection="0 -21.1364" RightDirection="0 -21.1364"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -21.1364" LeftDirection="24 -21.1364" RightDirection="24 -21.1364"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="st_safety_en_section1_cmp0wi_img" ItemTransform="1 0 0 1 0 0"><Link Self="st_safety_en_section1_cmp0wi_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/symbols/warning_triangle.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Br/></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="st_safety_en_section1_cmp0wi" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -21.1364" LeftDirection="0 -21.1364" RightDirection="0 -21.1364"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -21.1364" LeftDirection="24 -21.1364" RightDirection="24 -21.1364"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="st_safety_en_section1_cmp0wi_img" ItemTransform="1 0 0 1 0 0"><Link Self="st_safety_en_section1_cmp0wi_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/symbols/warning_triangle.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Br/></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="st_safety_en_section1_cmp0c1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="4" BottomInset="4" LeftInset="5" RightInset="4">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Title%20L2">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>WARNING</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Always follow these basic precautions when using this product.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
   </Table>
     <Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20List">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Read all the instructions before using the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20List">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Do not allow children to play on the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20List">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Stop using the product immediately if it has been physically damaged or modified.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>

@@ -2,10 +2,10 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_lcd" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="LCD DISPLAY">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20H1">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading1">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>LCD DISPLAY</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="tbl_lcd" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="26" ColumnCount="4" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_lcdr0" Name="0"/>
@@ -39,470 +39,470 @@
     <Column Self="tbl_lcdcol2" Name="2" SingleColumnWidth="87.3865"/>
     <Column Self="tbl_lcdcol3" Name="3" SingleColumnWidth="162.289"/>
     <Cell Self="tbl_lcdc0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>1</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg0" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg0_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg0_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg0" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg0_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg0_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc0_2" Name="2:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Wi-Fi</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc0_3" Name="3:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: Wi-Fi connected.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Blink: Ready to connect to Wi-Fi.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: Wi-Fi disconnected.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>2</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg1" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg1_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg1_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg1" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg1_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg1_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc1_2" Name="2:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Bluetooth</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc1_3" Name="3:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: Bluetooth connected.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Blink: Ready to connect to Bluetooth.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off:  Bluetooth disconnected.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg2" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg2_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg2_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg2" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg2_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg2_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc2_2" Name="2:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Quiet Charging Mode</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc2_3" Name="3:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: Quiet Charging Mode is disabled.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc3_0" Name="0:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>4</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc3_1" Name="1:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg3" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg3_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg3_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg3" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg3_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg3_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc3_2" Name="2:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Charging Plan</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc3_3" Name="3:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Customizes the charging time of the {{PRODUCT_NAME}}. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc4_0" Name="0:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>5</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc4_1" Name="1:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg4" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg4_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg4_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg4" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg4_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg4_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc4_2" Name="2:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Self-powered Mode</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc4_3" Name="3:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs. The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc5_0" Name="0:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>6</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc5_1" Name="1:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg5" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg5_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg5_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg5" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg5_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg5_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc5_2" Name="2:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>TOU Mode</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc5_3" Name="3:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: TOU mode is enabled (default backup SOC: 60%). During peak periods, the product prioritizes discharging the battery to reduce peak electricity costs when the stored energy exceeds the backup SOC. During off peak periods, the product charges the battery from the grid to achieve peak shaving and valley filling.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: TOU mode is disabled. The product does not follow the TOU (time of use) strategy and operates according to the default power supply and charging logic.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc6_0" Name="0:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>7</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc6_1" Name="1:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg6" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg6_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg6_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg6" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg6_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg6_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc6_2" Name="2:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>UPS</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc6_3" Name="3:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: The product is operating in bypass mode. Loads connected to the AC ports consume power from the grid instead of the power station. If the grid suddenly fails, the product automatically switches to its battery power within 10 ms.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: The product is not in bypass mode. Loads connected to the AC ports are powered by the internal battery of the power station.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc7_0" Name="0:7" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>8</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc7_1" Name="1:7" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg7" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg7_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg7_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg7" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg7_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg7_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc7_2" Name="2:7" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>AC Power Indicator</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc7_3" Name="3:7" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The AC output (pure sine wave) is on.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc8_0" Name="0:8" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>9</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc8_1" Name="1:8" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg8" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg8_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg8_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg8" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg8_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg8_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc8_2" Name="2:8" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Output Voltage and Frequency</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc8_3" Name="3:8" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Displays the output voltage and frequency when the AC output is turned on.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc9_0" Name="0:9" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>10</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc9_1" Name="1:9" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg9" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg9_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg9_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg9" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg9_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg9_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc9_2" Name="2:9" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Input Power</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc9_3" Name="3:9" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Displays the input power in watts.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc10_0" Name="0:10" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>11</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc10_1" Name="1:10" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg10" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg10_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg10_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg10" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg10_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg10_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc10_2" Name="2:10" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Remaining Charge Time</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc10_3" Name="3:10" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Displays the remaining charging time.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc11_0" Name="0:11" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>12</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc11_1" Name="1:11" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg11" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg11_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg11_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg11" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg11_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg11_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc11_2" Name="2:11" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>AC Wall Charging Indicator</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc11_3" Name="3:11" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The product is charged via the AC Input using grid power.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc12_0" Name="0:12" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>13</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc12_1" Name="1:12" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg12" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg12_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg12_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg12" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg12_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg12_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc12_2" Name="2:12" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Car Charging Indicator</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc12_3" Name="3:12" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The product is charged via the DC Input (DC8020) using DC 12V (car charging).</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc13_0" Name="0:13" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>14</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc13_1" Name="1:13" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg13" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg13_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg13_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg13" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg13_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg13_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc13_2" Name="2:13" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Solar Charging Indicator</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc13_3" Name="3:13" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The product is charged via the DC Input (DC8020) using solar panel(s).</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc14_0" Name="0:14" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>15</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc14_1" Name="1:14" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg14" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg14_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg14_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg14" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg14_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg14_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc14_2" Name="2:14" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Battery Saving Mode</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc14_3" Name="3:14" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: Battery Saving Mode is enabled. Charge and discharge limits are applied to help extend battery lifespan.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: Battery Saving Mode is disabled.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>When this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc15_0" Name="0:15" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>16</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc15_1" Name="1:15" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg15" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg15_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg15_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg15" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg15_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg15_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc15_2" Name="2:15" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Charging Power Limit</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc15_3" Name="3:15" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: Charging Power limit is enabled in the Jackery App.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: Charging Power limit is disabled in the Jackery App.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The setting is retained when the device is powered off.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc16_0" Name="0:16" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>17</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc16_1" Name="1:16" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg16" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg16_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg16_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_WqL2b7JZio7HnGxsWaOctZ7inkh.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg16" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg16_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg16_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_WqL2b7JZio7HnGxsWaOctZ7inkh.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc16_2" Name="2:16" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Battery Power Indicator</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc16_3" Name="3:16" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc17_0" Name="0:17" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>18</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc17_1" Name="1:17" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg17" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg17_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg17_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg17" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg17_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg17_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc17_2" Name="2:17" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Remaining Battery Percentage</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc17_3" Name="3:17" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Displays the remaining battery percentage.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc18_0" Name="0:18" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>19</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc18_1" Name="1:18" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg18" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg18_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg18_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg18" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg18_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg18_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc18_2" Name="2:18" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Low Battery Indicator</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc18_3" Name="3:18" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: The battery level is below 20%.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Blink: The battery level is below 5%.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: The battery level is not below 20% or the product is charging.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc19_0" Name="0:19" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>20</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc19_1" Name="1:19" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg19" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg19_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg19_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg19" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg19_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg19_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc19_2" Name="2:19" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Discharge Timer</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc19_3" Name="3:19" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: A discharge timer is set.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: No discharge timer is set.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc20_0" Name="0:20" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>22</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc20_1" Name="1:20" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg20" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg20_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg20_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg20" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg20_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg20_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc20_2" Name="2:20" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Energy Saving Mode</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc20_3" Name="3:20" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>When the AC or DC output is turned on by pressing the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} power button:</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: Energy Saving Mode is enabled.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: Energy Saving Mode is disabled.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The setting is retained when the device is powered off.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc21_0" Name="0:21" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>23</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc21_1" Name="1:21" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg21" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg21_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg21_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_HbD7betDOoeilexZaaQcqOknnMd.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg21" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg21_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg21_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_HbD7betDOoeilexZaaQcqOknnMd.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc21_2" Name="2:21" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>High Temperature Indicator</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc21_3" Name="3:21" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc22_0" Name="0:22" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>24</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc22_1" Name="1:22" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg22" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg22_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg22_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_PkYSbqrsooorJhxkTOfcUutJnKu.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg22" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg22_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg22_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_PkYSbqrsooorJhxkTOfcUutJnKu.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc22_2" Name="2:22" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Low Temperature Indicator</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc22_3" Name="3:22" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Low temperature protection is triggered.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The product may stop functioning until its temperature returns to the normal operating range.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc23_0" Name="0:23" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>25</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc23_1" Name="1:23" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg23" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg23_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg23_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg23" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg23_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg23_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc23_2" Name="2:23" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Fault code</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc23_3" Name="3:23" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>A product error has occurred. Please refer to the Troubleshooting section for details.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc24_0" Name="0:24" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>26</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc24_1" Name="1:24" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg24" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg24_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg24_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/26_Output_Power_MRflbp7C7oqGbdxeWO1cl79XnBc.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg24" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg24_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg24_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/26_Output_Power_MRflbp7C7oqGbdxeWO1cl79XnBc.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc24_2" Name="2:24" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Output Power</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc24_3" Name="3:24" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Displays the output power in watts.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc25_0" Name="0:25" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>27</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc25_1" Name="1:25" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg25" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg25_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg25_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="tbl_lcdimg25" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" AnchoredPosition="InlinePosition"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24" LeftDirection="0 -24" RightDirection="0 -24"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -24" LeftDirection="24 -24" RightDirection="24 -24"/></PathPointArray></GeometryPathType></PathGeometry></Properties><Image Self="tbl_lcdimg25_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcdimg25_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc25_2" Name="2:25" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Remaining Discharge Time</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc25_3" Name="3:25" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Displays the remaining discharging time.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>

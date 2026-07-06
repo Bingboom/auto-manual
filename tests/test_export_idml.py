@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import io
 import json
 import sys
 import tempfile
@@ -25,6 +24,7 @@ from tools.export_idml import (  # noqa: E402
     load_trouble_rows,
     split_safety_first_page,
 )
+from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
 
 FIXTURE_DATA_ROOT = ROOT / "tests" / "fixtures" / "phase2"
 
@@ -233,9 +233,11 @@ class ExportIdmlTests(unittest.TestCase):
     def test_h1_and_labels_are_shaded_bars(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         styles = IdmlWriter(params).styles_xml()
-        h1 = styles.split('Name="HB H1"')[1].split("</ParagraphStyle>")[0]
-        self.assertIn('ShadingOn="true"', 'Name="HB H1"' + h1.split(">")[0])
-        self.assertIn("HB Notice Label", styles)
+        h1_name = paragraph_style_name("HB H1")
+        h1 = styles.split(f'Name="{h1_name}"')[1].split("</ParagraphStyle>")[0]
+        self.assertIn('ShadingOn="true"', f'Name="{h1_name}"' + h1.split(">")[0])
+        self.assertIn(f'Name="{paragraph_style_name("HB Notice Label")}"', styles)
+        self.assertNotIn('Name="HB H1"', styles)
 
     def test_two_column_chain_halves_page_count(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -298,7 +300,8 @@ class ExportIdmlTests(unittest.TestCase):
         # shoots out of the frame top (designer-reported stacked images)
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         styles = IdmlWriter(params).styles_xml()
-        fig = styles.split('Name="HB Figure"')[1].split("</ParagraphStyle>")[0]
+        figure_name = paragraph_style_name("HB Figure")
+        fig = styles.split(f'Name="{figure_name}"')[1].split("</ParagraphStyle>")[0]
         self.assertIn(">Auto<", fig)
 
     def test_art_frames_honor_aspect_ratio(self) -> None:
@@ -326,16 +329,16 @@ class ExportIdmlTests(unittest.TestCase):
                       {"img": "", "label": "C"}]}, bundle, True)
         self.assertIn('ColumnCount="3"', xml)
         self.assertIn(">A<", xml)
-        self.assertIn("HB%20Card%20Number", xml)
-        self.assertIn("HB%20InBox%20Label", xml)
-        self.assertNotIn("HB%20Notice%20Label", xml)
+        self.assertIn(paragraph_style_ref("HB Card Number"), xml)
+        self.assertIn(paragraph_style_ref("HB InBox Label"), xml)
+        self.assertNotIn(paragraph_style_ref("HB Notice Label"), xml)
         self.assertGreater(h, 0)
         # notice/tip: plain left label + gray text panel; no warning icon
         xml, _ = w._render_component("t", 1, {
             "kind": "notice", "label": "TIP", "texts": ["hello"]}, bundle, True)
         self.assertIn('FillColor="Color/HB Bg K05"', xml)
         self.assertIn('FillColor="Color/Paper"', xml)
-        self.assertIn("HB%20Notice%20Side%20Label", xml)
+        self.assertIn(paragraph_style_ref("HB Notice Side Label"), xml)
         self.assertNotIn("warning_triangle", xml)
         # warnbox: triangle icon + one editable label; do not place the
         # WARNING lockup art and then print WARNING again below it.
@@ -343,12 +346,12 @@ class ExportIdmlTests(unittest.TestCase):
             "kind": "warnbox", "label": "WARNING", "texts": ["stay safe"]}, bundle, True)
         self.assertIn("warning_triangle", xml)
         self.assertNotIn("warning_lockup", xml)
-        self.assertIn("HB%20Title%20L2", xml)
+        self.assertIn(paragraph_style_ref("HB Title L2"), xml)
         self.assertEqual(xml.count(">WARNING<"), 1)
         xml, _ = w._render_component("t", 4, {
             "kind": "safetywarning", "texts": ["RISK OF FIRE"]}, bundle, True)
         self.assertIn("warning_triangle", xml)
-        self.assertIn("HB%20Title%20L3", xml)
+        self.assertIn(paragraph_style_ref("HB Title L3"), xml)
         self.assertNotIn(">WARNING<", xml)
         xml, _ = w._render_component("t", 5, {
             "kind": "warninglead", "label": "WARNING", "texts": ["lead"]},
@@ -690,7 +693,7 @@ class ExportIdmlTests(unittest.TestCase):
         story = dict(w.stories)["st_lcd"]
         # icon cells must use the auto-leading figure style, or fixed leading
         # pushes the anchored icon a full row upward (designer-reported)
-        self.assertIn("HB%20Figure", story)
+        self.assertIn(paragraph_style_ref("HB Figure"), story)
 
     def test_shading_uses_paragraph_prefixed_attributes(self) -> None:
         # bare ShadingOn/ShadingColor are silently ignored by InDesign
@@ -714,7 +717,7 @@ class ExportIdmlTests(unittest.TestCase):
         w.add_spec_story(sections, notes)
         story = dict(w.stories)["st_spec"]
         if notes:
-            self.assertIn("HB%20Spec%20Note", story)
+            self.assertIn(paragraph_style_ref("HB Spec Note"), story)
             self.assertIn(notes[0][:20].replace("&", "&amp;"), story)
 
     def test_dom_version_supports_paragraph_shading(self) -> None:
@@ -773,12 +776,17 @@ class ExportIdmlTests(unittest.TestCase):
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
         styles = w.styles_xml()
-        for name in ("HB H1", "HB Body", "HB Spec Label", "HB Spec Value"):
-            self.assertIn(f'Name="{name}"', styles)
-        self.assertIn('Name="HB Capsule Text"', styles)
-        self.assertIn('Name="HB Notice Side Label"', styles)
-        self.assertIn('Name="HB Card Number"', styles)
-        card = styles.split('Name="HB Card Number"')[1].split("</ParagraphStyle>")[0]
+        semantic_names = (
+            "HB H1", "HB Body", "HB Spec Label", "HB Spec Value",
+            "HB Capsule Text", "HB Notice Side Label", "HB Card Number",
+        )
+        for name in semantic_names:
+            self.assertIn(f'Name="{paragraph_style_name(name)}"', styles)
+            self.assertNotIn(f'Name="{name}"', styles)
+        self.assertIn('Name="Heading1"', styles)
+        self.assertIn('Name="Figure"', styles)
+        card_name = paragraph_style_name("HB Card Number")
+        card = styles.split(f'Name="{card_name}"')[1].split("</ParagraphStyle>")[0]
         self.assertIn('ParagraphShadingWidth="TextWidth"', card)
         self.assertIn('Justification="CenterAlign"', card)
         self.assertIn("Gilroy", styles)

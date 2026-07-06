@@ -2,7 +2,7 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_safety_symbols_20_01_user_maintenance_instructions_symbols_title" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Symbols title">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Capsule%20Text">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/带底Heading2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>MEANING OF SYMBOLS</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>

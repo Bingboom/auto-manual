@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Callable
 
 from ..primitives import art_frame_size, resolve_bundle_image
+from ..style_names import paragraph_style_ref
 
 # (spec, ctx, *, tid, terminal, span_columns, measure_w) -> (xml, est_height)
 ComponentRenderer = Callable[..., tuple[str, float]]
@@ -50,6 +51,7 @@ class RenderContext:
 
 def figure_paragraph(inner: str, tail: str = "<Br/>") -> str:
     """An HB Figure paragraph wrapping inline art (icon / mark / LCD shot)."""
-    return ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+    style_ref = paragraph_style_ref("HB Figure")
+    return (f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
             '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
             + inner + tail + '</CharacterStyleRange></ParagraphStyleRange>\n')
