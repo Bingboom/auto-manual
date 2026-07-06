@@ -1,5 +1,6 @@
 ﻿from __future__ import annotations
 
+import os
 import subprocess
 import shutil
 import tempfile
@@ -14,6 +15,14 @@ FIXTURES_ROOT = Path(__file__).resolve().parent / "fixtures" / "diff_report"
 
 
 def git(repo: Path, *args: str) -> str:
+    env = {
+        **os.environ,
+        "GIT_CONFIG_COUNT": "2",
+        "GIT_CONFIG_KEY_0": "gc.auto",
+        "GIT_CONFIG_VALUE_0": "0",
+        "GIT_CONFIG_KEY_1": "maintenance.auto",
+        "GIT_CONFIG_VALUE_1": "false",
+    }
     proc = subprocess.run(
         ["git", *args],
         cwd=str(repo),
@@ -21,6 +30,7 @@ def git(repo: Path, *args: str) -> str:
         capture_output=True,
         text=True,
         encoding="utf-8",
+        env=env,
     )
     return proc.stdout
 
