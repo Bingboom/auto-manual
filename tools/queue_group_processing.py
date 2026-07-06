@@ -241,6 +241,7 @@ def process_queue_record_group(
         document_link_url = artifact_result.document_link_url
         document_link_dd_url = artifact_result.document_link_dd_url
         latest_document_link_dd_url = document_link_dd_url or None
+        built_at = datetime.now().astimezone()
         feishu_cloud_doc_url = ""
         baseline_doc_url = ""
         cloud_doc_status_notes: tuple[str, ...] = ()
@@ -268,10 +269,13 @@ def process_queue_record_group(
             # Frozen baseline (R0): a second import of the same markdown, placed in the
             # review-doc node WITHOUT an edit grant. Backport later diffs the editable
             # 飞书云文档 against this (render-vs-render → only the reviewer's edits).
+            # Suffix the name with _基线<YYYYMMDD> so the frozen baseline is
+            # distinguishable from the identically-sourced editable 飞书云文档.
             _baseline_token, baseline_doc_url = import_markdown_to_cloud_doc(
                 cli_bin=cli_bin,
                 markdown_output_path=md_output_path,
                 identity=identity,
+                doc_name=f"{md_output_path.stem}_基线{built_at:%Y%m%d}",
             )
             baseline_doc_url = finalize_cloud_doc(
                 cli_bin=cli_bin,
@@ -283,7 +287,6 @@ def process_queue_record_group(
                 grant=False,
             )
             cloud_doc_status_notes = ("cloud_doc=ok", "baseline_doc=ok")
-        built_at = datetime.now().astimezone()
         success_fields = build_success_fields(
             version=record.version,
             word_output_path=word_output_path,
