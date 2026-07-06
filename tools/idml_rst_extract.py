@@ -28,8 +28,16 @@ from pathlib import Path
 
 try:
     from tools.idml.notice_labels import notice_label_variant
+    from tools.idml_rst_tables import (
+        parse_grid_table as _parse_grid_table_impl,
+        parse_list_table as _parse_list_table_impl,
+    )
 except ModuleNotFoundError:  # direct tools/export_idml.py execution
     from idml.notice_labels import notice_label_variant  # type: ignore
+    from idml_rst_tables import (  # type: ignore
+        parse_grid_table as _parse_grid_table_impl,
+        parse_list_table as _parse_list_table_impl,
+    )
 
 Block = tuple[str, str]
 
@@ -469,50 +477,8 @@ def bundle_page_order(bundle_root: Path) -> list[Path]:
 
 def _parse_grid_table(grid: list[str]) -> list[list[str]]:
     """Parse an rst grid table block into row cell-text lists."""
-    border = grid[0]
-    cols = [m.start() for m in re.finditer(r"\+", border)]
-    if len(cols) < 2:
-        return []
-    rows: list[list[str]] = []
-    current: list[list[str]] | None = None
-    for line in grid:
-        stripped = line.strip()
-        if re.match(r"\+[=+-]+\+$", stripped):
-            if current is not None:
-                rows.append([" ".join(part for part in cell if part).strip()
-                             for cell in current])
-            current = None
-            continue
-        if not stripped.startswith("|"):
-            continue
-        if current is None:
-            current = [[] for _ in range(len(cols) - 1)]
-        for ci in range(len(cols) - 1):
-            a, b = cols[ci] + 1, cols[ci + 1]
-            seg = line[a:b].strip() if a < len(line) else ""
-            current[ci].append(seg)
-    return [r for r in rows if any(r)]
+    return _parse_grid_table_impl(grid)
 
 def _parse_list_table(body: list[str]) -> list[list[str]]:
     """Parse a list-table directive body into row cell-text lists."""
-    rows: list[list[str]] = []
-    cell: list[str] | None = None
-    for raw in body:
-        line = raw.strip()
-        if not line or line.startswith(":"):
-            continue
-        m = re.match(r"\*\s+-\s?(.*)", line)
-        if m:
-            rows.append([])
-            cell = [m.group(1).strip()]
-            rows[-1].append("")
-        elif line.startswith("- ") and rows:
-            if cell is not None:
-                rows[-1][-1] = " ".join(x for x in cell if x).strip()
-            cell = [line[2:].strip()]
-            rows[-1].append("")
-        elif cell is not None:
-            cell.append(line)
-        if cell is not None and rows:
-            rows[-1][-1] = " ".join(x for x in cell if x).strip()
-    return [r for r in rows if any(r)]
+    return _parse_list_table_impl(body)

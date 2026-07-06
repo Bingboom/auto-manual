@@ -170,6 +170,22 @@ def _single_component_story(writer, sid: str, title: str, spec: dict,
     return writer._add_story_parts(sid, title, [xml_part])
 
 
+def _fcc_flow_story(writer, sid: str, title: str, spec: dict) -> str:
+    mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.pdf"
+    parts: list[str] = []
+    if mark.exists():
+        style_ref = paragraph_style_ref("HB Figure")
+        parts.append(
+            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
+            '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+            + writer._image_cell_content(f"{sid}_fm", mark, 32.0, 22.0)
+            + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n'
+        )
+    body = "\n".join(t.strip() for t in spec.get("texts", []) if str(t).strip())
+    parts.append(writer._psr("HB Body", body, terminal=True))
+    return writer._add_story_parts(sid, title, parts)
+
+
 def add_fcc_inbox_page(
     writer,
     sid: str,
@@ -182,6 +198,7 @@ def add_fcc_inbox_page(
 
     body_x = 27.4
     body_w = writer.page_w - body_x * 2
+    explicit_fcc = component_spec(fcc_blocks, "fcc") is not None
     fcc_spec = fcc_spec_from_blocks(fcc_blocks)
     inbox_title = next((text for kind, text in inbox_blocks if kind == "h1"),
                        "WHAT'S IN THE BOX")
@@ -189,15 +206,21 @@ def add_fcc_inbox_page(
     tip_spec = component_spec(inbox_blocks, "notice")
 
     fcc_sid = f"{sid}_fcc"
-    writer._single_component_story(
-        fcc_sid, "FCC notice", fcc_spec, bundle_root, body_w)
+    if explicit_fcc:
+        writer._single_component_story(
+            fcc_sid, "FCC notice", fcc_spec, bundle_root, body_w)
+        fcc_opts = {"fill": "Color/HB Bg K05", "rounded": True,
+                    "inset": (0, 0, 0, 0)}
+    else:
+        _fcc_flow_story(writer, fcc_sid, "FCC notice", fcc_spec)
+        fcc_opts = {"columns": 2, "fill": "Color/HB Bg K05", "rounded": True,
+                    "inset": (4, 6, 4, 6)}
     title_sid = f"{sid}_title"
     writer._add_story_parts(
         title_sid, "Inbox title",
         [writer._psr("HB Capsule Text", inbox_title, terminal=True)])
     frame_specs: list[tuple[str, str, tuple[float, float, float, float], dict]] = [
-        ("fcc", fcc_sid, (body_x, 34.0, body_w, 184.0),
-         {"fill": "Color/HB Bg K05", "rounded": True, "inset": (0, 0, 0, 0)}),
+        ("fcc", fcc_sid, (body_x, 34.0, body_w, 184.0), fcc_opts),
         ("title", title_sid, (body_x, 250.0, body_w, 21.5),
          {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (1, 5, 1, 6)}),
     ]
@@ -245,7 +268,7 @@ def add_fcc_inbox_page(
     writer.spreads.append((spread_id, xml))
     return spread_id
 
-def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> str:
+def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> tuple[str, str | None]:
     asset_name = f"{label.lower()}_bar.png"
     asset = (
         ROOT / "docs" / "templates" / "word_template" / "common_assets"
@@ -256,8 +279,9 @@ def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> str:
         return (f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
                 '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                 + writer._image_cell_content(tid, asset, 61.2, 16.2)
-                + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
-    return writer._psr("HB Capsule Text", label, terminal=True)
+                + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n',
+                None)
+    return writer._psr("HB Capsule Text", label, terminal=True), "Color/HB Brand Dark"
 
 def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                           width: float, bundle_root: Path,
@@ -269,14 +293,16 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
     cols = [width * 0.24, width * 0.76]
     cells = []
     for ri, (left, right, header) in enumerate(rows):
+        left_fill = None
         if header:
             left_xml = writer._psr("HB Spec Label", left, terminal=True)
             right_xml = writer._psr("HB Spec Label", right, terminal=True)
         else:
-            left_xml = writer._symbol_signal_bar(f"{tid}sig{ri}", left, bundle_root)
+            left_xml, left_fill = writer._symbol_signal_bar(
+                f"{tid}sig{ri}", left, bundle_root)
             right_xml = writer._psr("HB Spec Value", right, terminal=True)
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
-                                top=3, bottom=3, left=6, right=4))
+                                fill=left_fill, top=3, bottom=3, left=6, right=4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                 top=3, bottom=3, left=7, right=5))
     return writer._component_table(tid, cols, cells, n_rows=len(rows))

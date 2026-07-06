@@ -42,6 +42,8 @@ tools/idml/
 tools/idml_rst_extract.py     prepared-bundle RST -> block stream; owns component spec
                               shapes and EMITTED_COMPONENT_KINDS (registry parity is
                               test-enforced)
+tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by the
+                              extractor
 ```
 
 ## Contracts to know before touching anything

@@ -163,6 +163,25 @@ class ExportIdmlTests(unittest.TestCase):
         rows = _parse_grid_table(grid)
         self.assertEqual(rows, [["A", "B"], ["a1", "b1"], ["a2", "b2"]])
 
+    def test_grid_table_partial_rules_split_spanned_rows(self) -> None:
+        from tools.idml_rst_extract import _parse_grid_table
+        grid = [
+            "+----------------+----------------+",
+            "| Left           | Right          |",
+            "+================+================+",
+            "| left first     | right one      |",
+            "| continued      +----------------+",
+            "|                | right two      |",
+            "+----------------+----------------+",
+        ]
+        rows = _parse_grid_table(grid)
+        self.assertEqual(rows, [
+            ["Left", "Right"],
+            ["left first continued", "right one"],
+            ["", "right two"],
+        ])
+        self.assertFalse(any("----" in cell or "|" in cell for row in rows for cell in row))
+
     def test_unclosed_optional_arg_does_not_hang(self) -> None:
         # A truncated `\HBNoticeBlock[warn` (no closing `]`) must not spin the
         # macro scanner forever. Run under a watchdog thread so a regression
@@ -533,6 +552,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Symbole", stories["st_safety_symbols_fr_signals"])
         self.assertIn("Signification", stories["st_safety_symbols_fr_icons_left"])
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_signals"])
+        self.assertIn(
+            'FillColor="Color/HB Brand Dark"',
+            stories["st_safety_symbols_fr_signals"],
+        )
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_tail_avertissement"])
         self.assertNotIn(">WARNING<", stories["st_safety_symbols_fr_tail_avertissement"])
         self.assertIn(
@@ -572,7 +595,8 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("tf_st_fcc_inbox_inbox", spread)
         self.assertIn("tf_st_fcc_inbox_tip", spread)
         self.assertEqual(spread.count('CornerOption="RoundedCorner"'), 2)
-        fcc_frame = spread.split('Self="tf_st_fcc_inbox_fcc"', 1)[1].split("</TextFrame>", 1)[0]
+        fcc_frame = spread.split('Self="tf_st_fcc_inbox_fcc"', 1)[1].split(
+            "</TextFrame>", 1)[0]
         self.assertIn('InsetSpacing="0 0 0 0"', fcc_frame)
         stories = dict(w.stories)
         self.assertIn("FCC left copy.", stories["st_fcc_inbox_fcc"])
@@ -600,7 +624,12 @@ class ExportIdmlTests(unittest.TestCase):
             })),
         ]
         w.add_fcc_inbox_page("st_fcc_plain", fcc, inbox, ROOT, 3)
+        spread = dict(w.spreads)["sp_3"]
+        fcc_frame = spread.split('Self="tf_st_fcc_plain_fcc"', 1)[1].split(
+            "</TextFrame>", 1)[0]
+        self.assertIn('TextColumnCount="2"', fcc_frame)
         story = dict(w.stories)["st_fcc_plain_fcc"]
+        self.assertNotIn("<Table", story)
         self.assertIn("Este dispositivo cumple", story)
         self.assertIn("Si este aparato causa", story)
         self.assertIn("Reorientar o reubicar", story)
