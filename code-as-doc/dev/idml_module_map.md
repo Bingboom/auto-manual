@@ -14,6 +14,8 @@ tools/export_idml.py          façade + CLI: main()'s page-composition state mac
 tools/idml/
   pages.py                    composed-page assemblers: safety page (segmented capsules),
                               safety+symbols merge, fcc+inbox merge + frame helpers
+  prose_flow.py               ordinary-page flow buffering: adjacent prose pages share
+                              one linked story until a hard layout boundary
   fcc_fallback.py             localized FCC prose -> fcc component fallback when the
                               source page has no explicit HBFccBlock
   notice_labels.py            localized NOTE/TIP/CAUTION/WARNING/DANGER label mapping

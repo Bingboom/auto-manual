@@ -22,9 +22,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
-import zipfile
 from pathlib import Path
-from xml.sax.saxutils import escape
 
 try:
     from tools.idml_rst_extract import bundle_page_order, extract_page
@@ -36,6 +34,7 @@ try:
     from tools.idml import pages as _pages
     from tools.idml import params as _params
     from tools.idml import primitives as _prim
+    from tools.idml import prose_flow as _prose_flow
     from tools.idml import stories as _stories
     from tools.idml import styles as _styles
 except ImportError:  # pragma: no cover - direct script execution fallback
@@ -48,6 +47,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import pages as _pages  # type: ignore
     from idml import params as _params  # type: ignore
     from idml import primitives as _prim  # type: ignore
+    from idml import prose_flow as _prose_flow  # type: ignore
     from idml import stories as _stories  # type: ignore
     from idml import styles as _styles  # type: ignore
 
@@ -70,6 +70,7 @@ load_symbols_rows = _loaders.load_symbols_rows
 load_trouble_rows = _loaders.load_trouble_rows
 
 check_idml = _check.check_idml
+split_safety_first_page = _prose_flow.split_safety_first_page
 
 
 # ---------------------------------------------------------------------------
@@ -278,26 +279,6 @@ class IdmlWriter:
         return _package.write(self, out_path)
 
 
-def split_safety_first_page(
-    blocks: list[tuple[str, str]],
-) -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
-    """Keep the V2.0 safety page-01 composition aligned with the master.
-
-    The source template places the two main ``safetytwocol`` sections on page
-    01. The trailing WARNING/DANGER boxes continue at the top of page 02 before
-    the next prose section. Split at the second ``twocol_end`` marker rather
-    than keying off copy text, so localized safety pages keep the same layout
-    contract.
-    """
-    ends = 0
-    for idx, (kind, text) in enumerate(blocks):
-        if kind == "layout" and text == "twocol_end":
-            ends += 1
-            if ends == 2:
-                return blocks[:idx + 1], blocks[idx + 1:]
-    return blocks, []
-
-
 def default_bundle_root(model: str, region: str, lang: str) -> Path:
     """Pick the prepared RST bundle path used by the current target layout."""
     lang_bundle = ROOT / "docs" / "_build" / model / region / lang / "rst"
@@ -398,6 +379,7 @@ def main() -> int:
     pending_prefix_blocks: list[tuple[str, str]] = []
     pending_fcc_blocks: list[tuple[str, str]] = []
     pending_fcc_title = ""
+    prose_flow = _prose_flow.ProseFlowBuffer()
 
     def page_lang(page: Path) -> str:
         try:
@@ -416,29 +398,31 @@ def main() -> int:
     def slug_stem(stem: str) -> str:
         return re.sub(r"[^a-z0-9]+", "_", stem.lower()).strip("_")
 
-    def flush_pending_prefix() -> None:
-        nonlocal pending_prefix_blocks, prose_pages
-        if not pending_prefix_blocks:
-            return
-        sid = f"st_pending_{page_cursor}"
-        _, est = w.add_prose_story(sid, sid, pending_prefix_blocks, bundle_root)
-        chain(sid, est)
+    def emit_prose_story(sid: str, title: str, blocks: list[tuple[str, str]], columns: int = 1) -> None:
+        nonlocal prose_pages
+        _, est = w.add_prose_story(sid, title, blocks, bundle_root)
+        chain(sid, est, columns=columns)
         prose_pages += 1
-        pending_prefix_blocks = []
+
+    def flush_prose_flow() -> None: prose_flow.flush(emit_prose_story, slug_stem)
+
+    def flush_pending_prefix() -> None:
+        nonlocal pending_prefix_blocks
+        if pending_prefix_blocks:
+            sid = f"st_pending_{page_cursor}"
+            emit_prose_story(sid, sid, pending_prefix_blocks)
+            pending_prefix_blocks = []
 
     def flush_pending_fcc() -> None:
-        nonlocal pending_fcc_blocks, pending_fcc_title, prose_pages
-        if not pending_fcc_blocks:
-            return
-        sid = "st_" + slug_stem(pending_fcc_title or f"fcc_{page_cursor}")
-        _, est = w.add_prose_story(
-            sid, pending_fcc_title or sid, pending_fcc_blocks, bundle_root)
-        chain(sid, est)
-        prose_pages += 1
-        pending_fcc_blocks = []
-        pending_fcc_title = ""
+        nonlocal pending_fcc_blocks, pending_fcc_title
+        if pending_fcc_blocks:
+            sid = "st_" + slug_stem(pending_fcc_title or f"fcc_{page_cursor}")
+            emit_prose_story(sid, pending_fcc_title or sid, pending_fcc_blocks)
+            pending_fcc_blocks = []
+            pending_fcc_title = ""
 
     def emit_data_page(kind: str) -> None:
+        flush_prose_flow()
         flush_pending_fcc()
         flush_pending_prefix()
         if emitted[kind]:
@@ -467,12 +451,20 @@ def main() -> int:
         matched = next((k for k, prefix in DATA_PAGES.items()
                         if page.name.startswith(prefix)), None)
         if matched:
+            if matched == "trouble":
+                res = extract_page(page, tags)
+                if res.blocks:
+                    skipped_raw += res.skipped_raw
+                    emitted["trouble"] = True
+                    prose_flow.add(page.stem, res.blocks)
+                    continue
             emit_data_page(matched)
             continue
         res = extract_page(page, tags)
         skipped_raw += res.skipped_raw
         blocks = res.blocks
         if pending_prefix_blocks and "user_maintenance" in page.stem:
+            flush_prose_flow()
             lang = page_lang(page)
             sym_signals, sym_icons = symbol_rows_for(lang)
             if not (sym_signals or sym_icons):
@@ -480,8 +472,7 @@ def main() -> int:
                 blocks = pending_prefix_blocks + blocks
                 pending_prefix_blocks = []
             else:
-                sid = "st_safety_symbols_" + re.sub(
-                    r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
+                sid = "st_safety_symbols_" + slug_stem(page.stem)
                 w.add_safety_symbols_page(
                     sid, pending_prefix_blocks, blocks, sym_signals, sym_icons,
                     bundle_root, page_cursor, lang)
@@ -491,6 +482,7 @@ def main() -> int:
                 prose_pages += 1
                 continue
         if pending_fcc_blocks and page_stem_has(page, "02_whats_in_the_box"):
+            flush_prose_flow()
             sid = "st_fcc_inbox_" + slug_stem(page.stem)
             w.add_fcc_inbox_page(
                 sid, pending_fcc_blocks, blocks, bundle_root, page_cursor)
@@ -501,19 +493,20 @@ def main() -> int:
             continue
         flush_pending_fcc()
         if page_stem_has(page, "01_fcc"):
+            flush_prose_flow()
             flush_pending_prefix()
             if blocks:
                 pending_fcc_blocks = blocks
                 pending_fcc_title = page.stem
             continue
         if page.name.startswith("symbols_"):
+            flush_prose_flow()
             if emitted["symbols"]:
                 continue
             lang = page_lang(page)
             sym_signals, sym_icons = symbol_rows_for(lang)
             if pending_prefix_blocks and (sym_signals or sym_icons):
-                sid = "st_safety_symbols_" + re.sub(
-                    r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
+                sid = "st_safety_symbols_" + slug_stem(page.stem)
                 w.add_safety_symbols_page(
                     sid, pending_prefix_blocks, [], sym_signals, sym_icons,
                     bundle_root, page_cursor, lang)
@@ -530,6 +523,7 @@ def main() -> int:
         if not blocks:
             continue
         if page.name.startswith("safety_") and res.twocol:
+            flush_prose_flow()
             blocks, pending_prefix_blocks = split_safety_first_page(blocks)
             sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
             w.add_safety_page(sid, page.stem, blocks, bundle_root, page_cursor)
@@ -537,11 +531,14 @@ def main() -> int:
             prose_pages += 1
             continue
         sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
-        _, est = w.add_prose_story(sid, page.stem, blocks, bundle_root)
-        chain(sid, est, columns=2 if res.twocol else 1)
-        prose_pages += 1
+        if res.twocol:
+            flush_prose_flow()
+            emit_prose_story(sid, page.stem, blocks, columns=2)
+        else:
+            prose_flow.add(page.stem, blocks)
 
     # data pages always ship, bundle or not
+    flush_prose_flow()
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind)
 
