@@ -629,6 +629,13 @@ python build.py word --config configs/config.eu-en.yaml --model JE-1000F --regio
 python build.py pdf --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
+Export the editable InDesign handoff package (runs an rst prepare first, then
+`tools/export_idml.py`; architecture in [`dev/idml_module_map.md`](dev/idml_module_map.md)):
+
+```powershell
+python build.py idml --model JE-1000F --region US
+```
+
 `configs/config.eu.yaml` now represents the live `EU` region-family row as `eu-merged`, routes blank-`Lang` queue rows to the merged EU manual, and keeps `sync.phase2.tables.spec_master` pinned to the live Base view that contains `JE-1000F_EU` rows. `configs/config.eu-en.yaml`, `configs/config.eu-fr.yaml`, and `configs/config.eu-es.yaml` are the explicit English, French, and Spanish single-language EU surfaces when you need one language family at a time.
 
 Word styling note:

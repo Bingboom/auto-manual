@@ -32,6 +32,7 @@ try:
     from tools.idml import check as _check
     from tools.idml import components as _components
     from tools.idml import loaders as _loaders
+    from tools.idml import package as _package
     from tools.idml import pages as _pages
     from tools.idml import params as _params
     from tools.idml import primitives as _prim
@@ -43,6 +44,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import check as _check  # type: ignore
     from idml import components as _components  # type: ignore
     from idml import loaders as _loaders  # type: ignore
+    from idml import package as _package  # type: ignore
     from idml import pages as _pages  # type: ignore
     from idml import params as _params  # type: ignore
     from idml import primitives as _prim  # type: ignore
@@ -127,26 +129,14 @@ class IdmlWriter:
                                 page_w=self.page_w, m_l=self.m_l, m_r=self.m_r)
 
     def frame_height(self) -> float:
-        return self.page_h - self.m_t - self.m_b
+        return _package.frame_height(self)
 
     @staticmethod
     def estimate_spec_height(sections: list[dict]) -> float:
-        """Rough content height in pt for page-count estimation.
-
-        Deliberately coarse: if it underestimates, InDesign shows the
-        standard overset indicator and the designer drags the chain one
-        frame longer — a trailing blank page is worse than that.
-        """
-        h = 16.0  # H1
-        for sec in sections:
-            h += 14.0  # section title
-            for _, value in sec["rows"]:
-                h += 11.0 * max(1, value.count("\n") + 1)
-        return h
+        return _package.estimate_spec_height(sections)
 
     def pages_for_height(self, height_pt: float) -> int:
-        import math
-        return max(1, math.ceil(height_pt / self.frame_height()))
+        return _package.pages_for_height(self, height_pt)
 
     def _image_cell_content(self, rect_id: str, image_path: Path, w_pt: float, h_pt: float) -> str:
         return _prim.image_cell_content(rect_id, image_path, w_pt, h_pt)
@@ -278,88 +268,14 @@ class IdmlWriter:
 
     def add_spread_chain(self, story_id: str, n_pages: int, start_index: int,
                          columns: int = 1) -> None:
-        """One spread per page, each holding one frame of a linked chain.
-
-        Spread coordinates: origin at the spread center; the page's
-        top-left corner sits at (-w/2, -h/2), so the type area is that
-        corner offset by the page margins.
-        """
-        x1 = -self.page_w / 2 + self.m_l
-        x2 = self.page_w / 2 - self.m_r
-        y1 = -self.page_h / 2 + self.m_t
-        y2 = self.page_h / 2 - self.m_b
-        for i in range(n_pages):
-            spread_id = f"sp_{start_index + i}"
-            frame_id = f"tf_{story_id}_{i}"
-            prev = f'PreviousTextFrame="tf_{story_id}_{i-1}"' if i > 0 else 'PreviousTextFrame="n"'
-            nxt = f'NextTextFrame="tf_{story_id}_{i+1}"' if i < n_pages - 1 else 'NextTextFrame="n"'
-            xml = (
-                '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-                f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-                f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
-                f'  <Page Self="{spread_id}_pg" Name="{start_index + i + 1}" '
-                'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
-                f'GeometricBounds="0 0 {self.page_h:g} {self.page_w:g}" '
-                f'ItemTransform="1 0 0 1 {-self.page_w / 2:g} {-self.page_h / 2:g}">\n'
-                '    <MarginPreference ColumnCount="1" ColumnGutter="12" '
-                f'Top="{self.m_t:g}" Bottom="{self.m_b:g}" Left="{self.m_l:g}" Right="{self.m_r:g}"/>\n'
-                '  </Page>\n'
-                f'  <TextFrame Self="{frame_id}" ParentStory="{story_id}" {prev} {nxt} '
-                'ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
-                'ItemTransform="1 0 0 1 0 0">\n'
-                + self._path_geometry(x1, y1, x2, y2) +
-                f'    <TextFramePreference TextColumnCount="{columns}" TextColumnGutter="11" AutoSizingType="Off"/>\n'
-                '  </TextFrame>\n'
-                '</Spread>\n'
-                '</idPkg:Spread>\n'
-            )
-            self.spreads.append((spread_id, xml))
+        return _package.add_spread_chain(self, story_id, n_pages, start_index, columns=columns)
 
     # -- assembly ----------------------------------------------------------
     def designmap_xml(self) -> str:
-        spread_refs = "\n".join(
-            f'  <idPkg:Spread src="Spreads/Spread_{sid}.xml"/>' for sid, _ in self.spreads
-        )
-        story_refs = "\n".join(
-            f'  <idPkg:Story src="Stories/Story_{sid}.xml"/>' for sid, _ in self.stories
-        )
-        return (
-            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            '<?aid style="50" type="document" readerVersion="15.0" featureSet="257" product="15.0(100)"?>\n'
-            f'<Document xmlns:idPkg="{IDPKG}" DOMVersion="15.0" Self="doc" '
-            'StoryList="' + " ".join(sid for sid, _ in self.stories) + '" Name="manual">\n'
-            '  <Language Self="Language/$ID/English%3a USA" Name="$ID/English: USA" '
-            'SingleQuotes="&#8216;&#8217;" DoubleQuotes="&#8220;&#8221;"/>\n'
-            f'  <idPkg:Graphic src="Resources/Graphic.xml"/>\n'
-            f'  <idPkg:Fonts src="Resources/Fonts.xml"/>\n'
-            f'  <idPkg:Styles src="Resources/Styles.xml"/>\n'
-            f'  <idPkg:Preferences src="Resources/Preferences.xml"/>\n'
-            f'{spread_refs}\n'
-            f'{story_refs}\n'
-            '</Document>\n'
-        )
+        return _package.designmap_xml(self)
 
     def write(self, out_path: Path) -> None:
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        with zipfile.ZipFile(out_path, "w") as zf:
-            # mimetype must be first and stored uncompressed
-            zf.writestr(zipfile.ZipInfo("mimetype"), MIMETYPE, compress_type=zipfile.ZIP_STORED)
-            def add(name: str, data: str) -> None:
-                zf.writestr(name, data, compress_type=zipfile.ZIP_DEFLATED)
-            add("designmap.xml", self.designmap_xml())
-            add("META-INF/container.xml",
-                '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-                '<container xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="1.0">\n'
-                '  <rootfiles><rootfile full-path="designmap.xml" media-type="text/xml"/></rootfiles>\n'
-                '</container>\n')
-            add("Resources/Graphic.xml", self.graphic_xml())
-            add("Resources/Fonts.xml", self.fonts_xml())
-            add("Resources/Styles.xml", self.styles_xml())
-            add("Resources/Preferences.xml", self.preferences_xml())
-            for sid, xml in self.spreads:
-                add(f"Spreads/Spread_{sid}.xml", xml)
-            for sid, xml in self.stories:
-                add(f"Stories/Story_{sid}.xml", xml)
+        return _package.write(self, out_path)
 
 
 def split_safety_first_page(
