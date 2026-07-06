@@ -12,6 +12,7 @@ from xml.sax.saxutils import escape
 from . import components as _components
 from .loaders import symbol_copy
 from .params import IDPKG
+from .primitives import _ATTR_ENTITIES
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -84,7 +85,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{escape(title)}">\n'
+        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
         '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
         + "".join(parts) + '</Story>\n</idPkg:Story>\n'
     )
@@ -269,7 +270,7 @@ def _add_story_parts(writer, sid: str, title: str, parts: list[str]) -> str:
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{escape(title)}">\n'
+        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
         '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
         + "".join(parts) +
         '</Story>\n'

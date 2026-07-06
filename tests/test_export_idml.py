@@ -729,3 +729,25 @@ class ExportIdmlTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AttributeEscapingTests(unittest.TestCase):
+    def test_story_title_with_quotes_stays_well_formed(self) -> None:
+        # saxutils.escape leaves `"` alone; inside StoryTitle="..." a raw quote
+        # truncates the attribute and malforms the story part.
+        from xml.etree import ElementTree as ET
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        w.add_text_story("st_q", 'The "Explorer" manual', [("HB Body", "x")])
+        xml = dict(w.stories)["st_q"]
+        self.assertIn('StoryTitle="The &quot;Explorer&quot; manual"', xml)
+        ET.fromstring(xml)  # must parse
+
+    def test_prose_story_title_with_quotes_stays_well_formed(self) -> None:
+        from xml.etree import ElementTree as ET
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        w.add_prose_story("st_q2", 'page "one"', [("body", "x")], ROOT)
+        ET.fromstring(dict(w.stories)["st_q2"])

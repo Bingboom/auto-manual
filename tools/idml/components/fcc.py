@@ -9,7 +9,10 @@ def render_fcc(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
                span_columns: bool = True,
                measure_w: float | None = None) -> tuple[str, float]:
     body_w = measure_w or ctx.text_measure
-    texts = spec.get("texts", ["", ""])[:2]
+    # Pad to two panels: `\HBFccBlock{}{}` (or args reduced to empty by _detex)
+    # used to arrive as texts=[] and crash on texts[0] — an extractor kind must
+    # never be able to abort the whole export.
+    texts = ((spec.get("texts") or []) + ["", ""])[:2]
     mark = ctx.root / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.pdf"
     icon = ""
     if mark.exists():
