@@ -8,6 +8,7 @@ leading for figure paragraphs, DOMVersion 15.0) and must not be
 from __future__ import annotations
 
 from .params import IDPKG, brand_cmyk, param_pt
+from .style_names import paragraph_style_name, paragraph_style_ref
 
 
 def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, float, str, str]]:
@@ -36,7 +37,8 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
 def styles_xml(params: dict[str, tuple[str, str]]) -> str:
     styles = []
     for name, size, leading, weight, kind in para_styles(params):
-        self_id = "ParagraphStyle/" + name.replace(" ", "%20")
+        template_name = paragraph_style_name(name)
+        self_id = paragraph_style_ref(name)
         # V2.0 master: H1 is a white-on-brand-dark bar; notice labels are
         # compact dark pills. Both map to paragraph shading in IDML.
         shaded = name == "HB H1" or kind in {"label", "card_number"}
@@ -72,7 +74,7 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
             shading = ""
         justification = "CenterAlign" if kind in {"center", "card_number"} else "LeftAlign"
         styles.append(
-            f'  <ParagraphStyle Self="{self_id}" Name="{name}" '
+            f'  <ParagraphStyle Self="{self_id}" Name="{template_name}" '
             f'PointSize="{size:g}" FillColor="{fill}" {shading}'
             f'Justification="{justification}">\n'
             f'    <Properties>\n'

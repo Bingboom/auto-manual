@@ -13,6 +13,7 @@ from . import components as _components
 from .loaders import symbol_copy
 from .params import IDPKG
 from .primitives import _ATTR_ENTITIES
+from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -161,8 +162,9 @@ def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
     sid = "st_trouble"
     parts = [writer._psr("HB H1", "TROUBLESHOOTING")]
     table = writer._table("tbl_trouble", rows)
+    body_style_ref = paragraph_style_ref("HB Body")
     parts.append(
-        '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{body_style_ref}">\n'
         '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
         + table +
         '    <Content></Content></CharacterStyleRange>\n'
@@ -188,8 +190,9 @@ def add_spec_story(writer, sections: list[dict],
         # its own <Br/> so the next section title starts a new paragraph
         table = writer._table(f"tbl_spec{si}", sec["rows"])
         last = si == len(sections) - 1 and not annotations
+        body_style_ref = paragraph_style_ref("HB Body")
         parts.append(
-            '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
+            f'  <ParagraphStyleRange AppliedParagraphStyle="{body_style_ref}">\n'
             '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
             + table +
             ('    <Content></Content></CharacterStyleRange>\n' if last else

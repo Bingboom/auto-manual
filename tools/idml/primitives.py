@@ -11,6 +11,8 @@ import re
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+from .style_names import paragraph_style_ref
+
 # saxutils.escape only handles &<> by default; inside a double-quoted
 # XML attribute a raw " truncates the value and malforms the part.
 _ATTR_ENTITIES = {'"': "&quot;"}
@@ -75,7 +77,7 @@ def psr(style: str, text: str, *, terminal: bool = False,
     content = br.join(line_xmls)
     if not terminal:
         content += br
-    sid = "ParagraphStyle/" + style.replace(" ", "%20")
+    sid = paragraph_style_ref(style)
     span_attr = ' SpanColumnType="SpanColumns"' if span_columns else ""
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{sid}"{span_attr}>\n'
@@ -219,8 +221,9 @@ def wrap_table_paragraph(table: str, terminal: bool,
     # designer-reported overlap otherwise). No effect in single-column
     # frames.
     span_attr = ' SpanColumnType="SpanColumns"' if span_columns else ""
+    style_ref = paragraph_style_ref("HB Body")
     return (
-        '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body"'
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}"'
         f'{span_attr}>\n'
         '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
         + table +

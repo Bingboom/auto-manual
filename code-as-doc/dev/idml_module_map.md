@@ -32,6 +32,8 @@ tools/idml/
   primitives.py               XML building blocks: psr/<Br/> semantics, bold runs, glyph
                               fallbacks, cells, tables, image frames, path geometry
   styles.py                   resource parts: paragraph styles/colors/fonts/preferences
+  style_names.py              internal HB semantic style -> designer-template paragraph
+                              style names, so exported stories can inherit the template
   loaders.py                  phase2 CSV -> rows (incl. SYMBOL_COPY l10n)
   params.py                   shared constants + layout_params.csv access
   check.py                    structural .idml validation (also the post-write self-check)
@@ -53,6 +55,10 @@ tools/idml_rst_extract.py     prepared-bundle RST -> block stream; owns componen
 - **Adding a component**: one module under `components/` + one REGISTRY entry
   (+ extractor emission if it has a source form) + a golden regeneration if it
   changes shipped output. No writer surgery.
+- **Template style names**: RST/LaTeX extraction may keep semantic `HB ...`
+  names, but emitted IDML paragraph style refs and `Resources/Styles.xml`
+  names must go through `tools/idml/style_names.py` so generated stories match
+  the designer template's paragraph-style family.
 - **Designer-reported InDesign traps** live as comments next to the exact
   strings that dodge them (`<Br/>` paragraph delimiting, `Paragraph*`-prefixed
   shading, `FillColor` not `CellFillColor`, PathGeometry not GeometricBounds,

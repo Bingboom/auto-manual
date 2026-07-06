@@ -2,10 +2,10 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_trouble" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TROUBLESHOOTING">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20H1">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading1">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>TROUBLESHOOTING</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="tbl_trouble" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="11" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_troubler0" Name="0" SingleRowHeight="10.3"/>
@@ -22,112 +22,112 @@
     <Column Self="tbl_troublecol0" Name="0" SingleColumnWidth="98.3098"/>
     <Column Self="tbl_troublecol1" Name="1" SingleColumnWidth="213.785"/>
     <Cell Self="tbl_troublec0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F0</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Restart the product.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F1</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Restart the product.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F2</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Restart the product.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec3_0" Name="0:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F3</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec3_1" Name="1:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Restart the product.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec4_0" Name="0:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F4</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec4_1" Name="1:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Connect the product to loads to discharge its battery until the fault disappears.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec5_0" Name="0:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F5</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec5_1" Name="1:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Charge the product via solar panels or an AC wall outlet until the fault disappears.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec6_0" Name="0:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F6</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec6_1" Name="1:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>1. Wait for the grid to normalize before charging the product via an AC wall outlet.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (20 cm) clearance on both sides of the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>5. Restart the product.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec7_0" Name="0:7" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F7</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec7_1" Name="1:7" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>1. Remove all DC inputs from the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>2. Check the open-circuit voltage (V\ :sub:`oc`) of the connected solar panels. The product allows a maximum DC input voltage of 60V.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3. Restart the product and keep it idle. Wait until the fault disappears.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec8_0" Name="0:8" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F8</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec8_1" Name="1:8" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Contact Jackery Customer Support.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec9_0" Name="0:9" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F9</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec9_1" Name="1:9" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Remove the load connected to the USB ports of the product. Wait until the fault disappears.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec10_0" Name="0:10" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Label">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>FE</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_troublec10_1" Name="1:10" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Spec%20Value">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Contact Jackery Customer Support.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>

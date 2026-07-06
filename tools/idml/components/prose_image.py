@@ -5,6 +5,7 @@ resolve in the bundle, so the story skips it without consuming an id.
 from __future__ import annotations
 
 from ..primitives import image_cell_content
+from ..style_names import paragraph_style_ref
 from .base import RenderContext
 
 
@@ -15,8 +16,9 @@ def render_image_block(ref: str, ctx: RenderContext, *, rect_id: str,
         return None, 0.0
     w_pt, h_pt = ctx.art_frame_size(img)
     rect = image_cell_content(rect_id, img, w_pt, h_pt)
+    style_ref = paragraph_style_ref("HB Figure")
     xml = (
-        '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         + rect + ("<Content></Content>" if terminal else "<Br/>")
         + "</CharacterStyleRange></ParagraphStyleRange>\n")

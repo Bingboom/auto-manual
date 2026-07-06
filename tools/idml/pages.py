@@ -13,6 +13,7 @@ from . import components as _components
 from .fcc_fallback import component_spec, fcc_spec_from_blocks
 from .loaders import symbol_copy
 from .params import IDPKG
+from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -251,7 +252,8 @@ def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> str:
         / "symbols" / asset_name
     )
     if asset.exists():
-        return ('  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+        style_ref = paragraph_style_ref("HB Figure")
+        return (f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
                 '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                 + writer._image_cell_content(tid, asset, 61.2, 16.2)
                 + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
@@ -296,8 +298,9 @@ def _symbols_icon_table(writer, tid: str, icons: list[dict], width: float,
             icon = ""
             if fig and fig.exists():
                 icon = writer._image_cell_content(f"{tid}img{ri}", fig, 28.0, 28.0)
+            figure_style_ref = paragraph_style_ref("HB Figure")
             left_xml = (
-                '  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Figure">'
+                f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style_ref}">'
                 '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                 + icon + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
             right_xml = writer._psr("HB Spec Value", row["text"], terminal=True)
@@ -308,9 +311,10 @@ def _symbols_icon_table(writer, tid: str, icons: list[dict], width: float,
     return writer._component_table(tid, cols, cells, n_rows=len(rows))
 
 def _table_story(writer, sid: str, title: str, table: str) -> str:
+    style_ref = paragraph_style_ref("HB Body")
     return writer._add_story_parts(
         sid, title,
-        ['  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB%20Body">\n'
+        [f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
          '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
          + table +
          '    <Content></Content></CharacterStyleRange>\n'
