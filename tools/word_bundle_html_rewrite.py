@@ -564,8 +564,17 @@ def _rewrite_word_friendly_children(
             index += 1
             continue
 
+        # A signal-word heading (警告/注意/WARNING…) directly above a data table (the
+        # icon+text warning grid) stays a heading ABOVE that table — do NOT fold the
+        # whole grid into a [label | grid] callout cell. Alert headings over lists /
+        # paragraphs still become labeled callout tables (the intended note style).
         alert_label = _extract_alert_label(child, alert_labels)
-        if alert_label is not None:
+        heading_over_table = (
+            child_tag in {"h1", "h2", "h3"}
+            and index + 1 < len(normalized_children)
+            and _html_tag_name(normalized_children[index + 1]) == "table"
+        )
+        if alert_label is not None and not heading_over_table:
             body_nodes: list[ET.Element] = []
             next_index = index + 1
             saw_terminal_block = False
