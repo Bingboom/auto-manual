@@ -29,6 +29,7 @@ try:
     from tools.script_bootstrap import bootstrap_repo_root
     from tools.idml import check as _check
     from tools.idml import components as _components
+    from tools.idml import flow as _flow
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
     from tools.idml import pages as _pages
@@ -42,6 +43,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from script_bootstrap import bootstrap_repo_root
     from idml import check as _check  # type: ignore
     from idml import components as _components  # type: ignore
+    from idml import flow as _flow  # type: ignore
     from idml import loaders as _loaders  # type: ignore
     from idml import package as _package  # type: ignore
     from idml import pages as _pages  # type: ignore
@@ -320,6 +322,10 @@ def main() -> int:
     ap.add_argument("--bundle-root", default=None,
                     help="Prepared rst bundle dir (default: docs/_build/<model>/<region>/<lang>/rst); prose pages are skipped if absent")
     ap.add_argument("--check", default=None, help="validate an existing .idml and exit")
+    ap.add_argument("--flow", action="store_true",
+                    help="single-story book: thread the whole manual through one "
+                         "linked frame chain (Word-like continuous reflow) instead "
+                         "of the composed fixed-layout pages")
     args = ap.parse_args()
 
     if args.check:
@@ -359,6 +365,30 @@ def main() -> int:
     page_cursor = 0
     skipped_raw = 0
     prose_pages = 0
+
+    if args.flow:
+        ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
+        if not ordered:
+            print(f"[export-idml] ERROR: --flow needs a prepared bundle at {bundle_root} "
+                  "(run `build.py rst` first)")
+            return 1
+        sid, est, skipped_raw = _flow.build_flow_story(
+            w, ordered, tags, extract_page=extract_page, bundle_root=bundle_root,
+            sections=sections, spec_annotations=spec_annotations,
+            lcd_rows=lcd_rows, trouble_rows=trouble_rows,
+            symbol_rows_for=symbol_rows_for, default_lang=args.lang)
+        pages = w.pages_for_height(est)
+        w.add_spread_chain(sid, pages, 0)
+        out = Path(args.out) if args.out else default_output_path(
+            args.model, args.region, args.lang, bundle_root)
+        w.write(out)
+        issues = check_idml(out)
+        for i in issues:
+            print(f"[export-idml] SELF-CHECK FAIL: {i}")
+        print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
+        print(f"[export-idml] FLOW single story | spreads={pages} "
+              f"skipped raw blocks={skipped_raw}")
+        return 1 if issues else 0
 
     def chain(story_id: str, est_h: float, columns: int = 1) -> None:
         nonlocal page_cursor

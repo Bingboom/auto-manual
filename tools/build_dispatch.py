@@ -156,6 +156,8 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
         cmd += ["--lang", args.lang]
     if getattr(args, "data_root", None):
         cmd += ["--data-root", args.data_root]
+    if getattr(args, "flow", False):
+        cmd += ["--flow"]
     context.run_checked(cmd)
 
 

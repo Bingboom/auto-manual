@@ -27,14 +27,21 @@ _EST_SIZE = {"h1": 9.0, "h2": 8.6, "h3": 7.0, "label": 6.8}
 _EST_LEADING = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}
 
 
-def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
-                    bundle_root: Path) -> tuple[str, float]:
-    """Story from extracted prose blocks; returns (sid, est_height_pt)."""
+def prose_blocks_to_parts(writer, sid: str, blocks: list[tuple[str, str]],
+                          bundle_root: Path, *,
+                          terminal_last: bool = True) -> tuple[list[str], float]:
+    """Extracted prose blocks -> (parts, est_height_pt).
+
+    Shared by the per-page story path (add_prose_story) and the single-flow
+    book path (idml.flow). ``terminal_last`` controls whether the final content
+    paragraph omits its trailing <Br/>: True for a standalone story, False when
+    the parts feed a larger flow so the next section cannot fuse onto this one.
+    """
     parts: list[str] = []
     est = 0.0
     img_n = 0
     content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
-    last_idx = content_indices[-1] if content_indices else -1
+    last_idx = content_indices[-1] if (content_indices and terminal_last) else -1
     in_twocol = False
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
     text_measure = writer.page_w - writer.m_l - writer.m_r
@@ -92,6 +99,13 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         lines = sum(max(1, (len(seg) + per_line - 1) // per_line)
                     for seg in text.split("\n"))
         est += leading * lines
+    return parts, est
+
+
+def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
+                    bundle_root: Path) -> tuple[str, float]:
+    """Story from extracted prose blocks; returns (sid, est_height_pt)."""
+    parts, est = prose_blocks_to_parts(writer, sid, blocks, bundle_root)
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
@@ -102,12 +116,10 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     writer.stories.append((sid, xml))
     return sid, est
 
-def add_lcd_story(writer, rows: list[dict], data_root: Path) -> str:
-    """LCD icon table: circled-no / icon image / name / description."""
-    sid = "st_lcd"
+def lcd_parts(writer, rows: list[dict], *, tid: str = "tbl_lcd",
+             terminal_last: bool = True) -> list[str]:
     body_w = writer.page_w - writer.m_l - writer.m_r
     cols = (body_w * 0.08, body_w * 0.12, body_w * 0.28, body_w * 0.52)
-    tid = "tbl_lcd"
     cells = []
     icon_pt = 24.0
     for ri, row in enumerate(rows):
@@ -125,51 +137,69 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path) -> str:
             cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
                                       top=2, bottom=2, left=3, right=3))
     table = writer._component_table(tid, list(cols), cells, n_rows=len(rows))
-    parts = [
+    return [
         writer._psr("HB H1", "LCD DISPLAY"),
-        writer._wrap_table_paragraph(table, True, span_columns=False),
+        writer._wrap_table_paragraph(table, terminal_last, span_columns=False),
     ]
-    return writer._add_story_parts(sid, "LCD DISPLAY", parts)
 
-def add_symbols_story(writer, signals: list[tuple[str, str]],
-                      icons: list[dict], data_root: Path, lang: str = "en") -> str:
-    sid = "st_symbols"
+
+def add_lcd_story(writer, rows: list[dict], data_root: Path) -> str:
+    """LCD icon table: circled-no / icon image / name / description."""
+    return writer._add_story_parts("st_lcd", "LCD DISPLAY", lcd_parts(writer, rows))
+
+def symbols_parts(writer, signals: list[tuple[str, str]], icons: list[dict],
+                  lang: str = "en", *, sig_tid: str = "tbl_sym_sig",
+                  ico_tid: str = "tbl_sym_ico", terminal_last: bool = True) -> list[str]:
     copy = symbol_copy(lang)
     parts = [writer._psr("HB H1", copy["title"])]
     if signals:
-        table = writer._table("tbl_sym_sig", signals, label_style="HB Notice Label")
+        table = writer._table(sig_tid, signals, label_style="HB Notice Label")
+        # signals table is never the terminal element (a trailing <Br/> keeps
+        # the icon table or the flow's next section on its own paragraph)
         parts.append(writer._wrap_table_paragraph(table, False, span_columns=False))
     if icons:
         body_w = writer.page_w - writer.m_l - writer.m_r
         cols = (body_w * 0.18, body_w * 0.82)
-        tid = "tbl_sym_ico"
         cells = []
         icon_pt = 20.0
         for ri, row in enumerate(icons):
             fig = (ROOT / row["figure"]) if row["figure"] else None
-            img = (writer._image_cell_content(f"{tid}img{ri}", fig, icon_pt, icon_pt)
+            img = (writer._image_cell_content(f"{ico_tid}img{ri}", fig, icon_pt, icon_pt)
                    if fig and fig.exists() else "")
             img_cell = _components.figure_paragraph(img, tail="<Content></Content>")
             for ci, content in ((0, img_cell),
                                 (1, writer._psr("HB Spec Value", row["text"], terminal=True))):
-                cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
+                cells.append(writer._cell(f"{ico_tid}c{ri}_{ci}", f"{ci}:{ri}", content,
                                           top=2, bottom=2, left=3, right=3))
-        table2 = writer._component_table(tid, list(cols), cells, n_rows=len(icons))
-        parts.append(writer._wrap_table_paragraph(table2, True, span_columns=False))
-    return writer._add_story_parts(sid, "MEANING OF SYMBOLS", parts)
+        table2 = writer._component_table(ico_tid, list(cols), cells, n_rows=len(icons))
+        parts.append(writer._wrap_table_paragraph(table2, terminal_last, span_columns=False))
+    return parts
 
-def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
-    sid = "st_trouble"
+
+def add_symbols_story(writer, signals: list[tuple[str, str]],
+                      icons: list[dict], data_root: Path, lang: str = "en") -> str:
+    return writer._add_story_parts(
+        "st_symbols", "MEANING OF SYMBOLS", symbols_parts(writer, signals, icons, lang))
+
+def trouble_parts(writer, rows: list[tuple[str, str]], *, tid: str = "tbl_trouble",
+                  terminal_last: bool = True) -> list[str]:
     parts = [writer._psr("HB H1", "TROUBLESHOOTING")]
-    table = writer._table("tbl_trouble", rows)
+    table = writer._table(tid, rows)
     body_style_ref = paragraph_style_ref("HB Body")
+    tail = ('    <Content></Content></CharacterStyleRange>\n' if terminal_last
+            else '    <Br/></CharacterStyleRange>\n')
     parts.append(
         f'  <ParagraphStyleRange AppliedParagraphStyle="{body_style_ref}">\n'
         '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
-        + table +
-        '    <Content></Content></CharacterStyleRange>\n'
-        '  </ParagraphStyleRange>\n'
+        + table + tail
+        + '  </ParagraphStyleRange>\n'
     )
+    return parts
+
+
+def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
+    sid = "st_trouble"
+    parts = trouble_parts(writer, rows)
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
@@ -180,16 +210,15 @@ def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
     writer.stories.append((sid, xml))
     return sid
 
-def add_spec_story(writer, sections: list[dict],
-                   annotations: list[str] | None = None) -> str:
-    sid = "st_spec"
+def spec_parts(writer, sections: list[dict], annotations: list[str] | None = None,
+               *, tid_prefix: str = "tbl_spec", terminal_last: bool = True) -> list[str]:
     parts = [writer._psr("HB H1", "SPECIFICATIONS")]
     for si, sec in enumerate(sections):
         parts.append(writer._psr("HB Spec Section", sec["title"]))
         # table anchored in its own paragraph; the paragraph still needs
         # its own <Br/> so the next section title starts a new paragraph
-        table = writer._table(f"tbl_spec{si}", sec["rows"])
-        last = si == len(sections) - 1 and not annotations
+        table = writer._table(f"{tid_prefix}{si}", sec["rows"])
+        last = terminal_last and si == len(sections) - 1 and not annotations
         body_style_ref = paragraph_style_ref("HB Body")
         parts.append(
             f'  <ParagraphStyleRange AppliedParagraphStyle="{body_style_ref}">\n'
@@ -202,7 +231,14 @@ def add_spec_story(writer, sections: list[dict],
     # footnotes + notes under the tables (master parity)
     for ai, note in enumerate(annotations or []):
         parts.append(writer._psr("HB Spec Note", note,
-                               terminal=(ai == len(annotations) - 1)))
+                               terminal=(terminal_last and ai == len(annotations) - 1)))
+    return parts
+
+
+def add_spec_story(writer, sections: list[dict],
+                   annotations: list[str] | None = None) -> str:
+    sid = "st_spec"
+    parts = spec_parts(writer, sections, annotations)
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
