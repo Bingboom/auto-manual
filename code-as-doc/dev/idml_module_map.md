@@ -13,6 +13,8 @@ tools/export_idml.py          façade + CLI: main()'s page-composition state mac
                               every method is a thin delegate), full re-export surface
 tools/idml/
   export_paths.py             shared production / flow output path helpers
+  flow_idml.py                flow-idml Phase 3 continuous-story IDML writer:
+                              manual.flow.idml + flow_style_map.json
   flow_md.py                  flow-idml Phase 2 semantic Markdown artifacts:
                               manual.flow.md + trace + asset manifest + notes
   pages.py                    composed-page assemblers: safety page (segmented capsules),
@@ -80,7 +82,7 @@ tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by 
   (runs an rst prepare first, then the exporter; see `_dispatch_idml_action`;
   defaults to `--idml-mode production`)
 - `python build.py idml --idml-mode flow --model M --region R [--lang L]`
-  writes semantic flow artifacts under
+  writes semantic flow artifacts and a simple continuous-story IDML under
   `docs/_build/<model>/<region>/<lang>/idml/flow/` for template handoff
 - `python build.py idml --idml-mode both --model M --region R [--lang L]`
   writes the production IDML and the flow artifacts in one run

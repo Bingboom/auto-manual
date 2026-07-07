@@ -30,7 +30,7 @@ try:
     from tools.idml import check as _check
     from tools.idml import components as _components
     from tools.idml import export_paths as _export_paths
-    from tools.idml import flow_md as _flow_md
+    from tools.idml import flow_idml as _flow_idml
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
     from tools.idml import pages as _pages
@@ -45,7 +45,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import check as _check  # type: ignore
     from idml import components as _components  # type: ignore
     from idml import export_paths as _export_paths  # type: ignore
-    from idml import flow_md as _flow_md  # type: ignore
+    from idml import flow_idml as _flow_idml  # type: ignore
     from idml import loaders as _loaders  # type: ignore
     from idml import package as _package  # type: ignore
     from idml import pages as _pages  # type: ignore
@@ -318,10 +318,11 @@ def main() -> int:
     bundle_root = Path(args.bundle_root) if args.bundle_root else (
         default_bundle_root(args.model, args.region, args.lang))
     if args.mode == "flow":
-        artifacts = _flow_md.write_flow_artifacts(
+        flow = _flow_idml.write_flow_outputs(
             root=ROOT, model=args.model, region=args.region, lang=args.lang,
             data_root=data_root, bundle_root=bundle_root, build_command=sys.argv)
-        print(f"[export-idml] FLOW OK: {artifacts.markdown}")
+        print(f"[export-idml] FLOW OK: {flow.markdown}")
+        print(f"[export-idml] FLOW IDML OK: {flow.idml}")
         return 0
     params = load_layout_params(ROOT / "data" / "layout_params.csv")
     sections = load_spec_sections(data_root, args.model, args.region, args.lang)
@@ -540,10 +541,11 @@ def main() -> int:
     for i in issues:
         print(f"[export-idml] SELF-CHECK FAIL: {i}")
     if args.mode == "both":
-        artifacts = _flow_md.write_flow_artifacts(
+        flow = _flow_idml.write_flow_outputs(
             root=ROOT, model=args.model, region=args.region, lang=args.lang,
             data_root=data_root, bundle_root=bundle_root, build_command=sys.argv)
-        print(f"[export-idml] FLOW OK: {artifacts.markdown}")
+        print(f"[export-idml] FLOW OK: {flow.markdown}")
+        print(f"[export-idml] FLOW IDML OK: {flow.idml}")
     n_rows = sum(len(s["rows"]) for s in sections)
     print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
     print(f"[export-idml] stories={len(w.stories)} spreads={len(w.spreads)} "

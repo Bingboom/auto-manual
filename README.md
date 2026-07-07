@@ -22,7 +22,8 @@ This repository is responsible for:
 - validating review/runtime bundles before release
 - exporting revision reports and release manifests
 - generating design handoff outputs, including production IDML and flow-mode
-  semantic Markdown artifacts for InDesign template handoff
+  semantic Markdown / continuous-story IDML artifacts for InDesign template
+  handoff
 
 This repository is not the place to define the long-term platform strategy.
 That boundary lives in [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md).
