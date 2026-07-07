@@ -93,7 +93,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("\u203b", psr)
         self.assertIn("\u2460", psr)
         self.assertNotIn(" DC ", psr)
-        self.assertIn('AppliedFont="Arial Unicode MS"', psr)
+        self.assertNotIn('AppliedFont="Arial Unicode MS"', psr)
+        self.assertIn("<Properties><AppliedFont type=\"string\">Apple Symbols</AppliedFont></Properties>", psr)
+        self.assertIn("<Content>\u2393</Content>", psr)
+        self.assertIn("<Properties><AppliedFont type=\"string\">Arial Unicode MS</AppliedFont></Properties>", psr)
         self.assertIn('FontStyle="Regular"', psr)
 
     def test_fonts_xml_declares_symbol_fallback_font(self) -> None:
@@ -101,6 +104,8 @@ class ExportIdmlTests(unittest.TestCase):
         fonts = IdmlWriter(params).fonts_xml()
         self.assertIn('Name="Arial Unicode MS"', fonts)
         self.assertIn('PostScriptName="ArialUnicodeMS"', fonts)
+        self.assertIn('Name="Apple Symbols"', fonts)
+        self.assertIn('PostScriptName="AppleSymbols"', fonts)
 
     def test_page_count_follows_content(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
