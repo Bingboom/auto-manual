@@ -9,9 +9,6 @@ can fine-tune pipeline output in InDesign instead of retouching PDFs:
   the phase2 Spec_Master snapshot (section titles + label/value rows)
 - body sections flow through linked text frames so InDesign reflows freely
 
-MVP scope (M1-M3): valid package + style system + spec tables/story.
-Not yet covered: image frames, two-column safety layout, full page set.
-
 Usage:
   python tools/export_idml.py --model JE-1000F --region US [--lang en]
       [--data-root data/phase2] [--out docs/_build/.../manual.idml]
@@ -29,6 +26,7 @@ try:
     from tools.script_bootstrap import bootstrap_repo_root
     from tools.idml import check as _check
     from tools.idml import components as _components
+    from tools.idml import design_handoff as _design_handoff
     from tools.idml import export_paths as _export_paths
     from tools.idml import flow_idml as _flow_idml
     from tools.idml import loaders as _loaders
@@ -44,6 +42,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from script_bootstrap import bootstrap_repo_root
     from idml import check as _check  # type: ignore
     from idml import components as _components  # type: ignore
+    from idml import design_handoff as _design_handoff  # type: ignore
     from idml import export_paths as _export_paths  # type: ignore
     from idml import flow_idml as _flow_idml  # type: ignore
     from idml import loaders as _loaders  # type: ignore
@@ -319,8 +318,8 @@ def main() -> int:
         default_bundle_root(args.model, args.region, args.lang))
     if args.mode == "flow":
         flow = _flow_idml.write_flow_outputs(
-            root=ROOT, model=args.model, region=args.region, lang=args.lang,
-            data_root=data_root, bundle_root=bundle_root, build_command=sys.argv)
+            root=ROOT, model=args.model, region=args.region, lang=args.lang, data_root=data_root,
+            bundle_root=bundle_root, build_command=sys.argv)
         print(f"[export-idml] FLOW OK: {flow.markdown}")
         print(f"[export-idml] FLOW IDML OK: {flow.idml}")
         return 0
@@ -542,10 +541,15 @@ def main() -> int:
         print(f"[export-idml] SELF-CHECK FAIL: {i}")
     if args.mode == "both":
         flow = _flow_idml.write_flow_outputs(
-            root=ROOT, model=args.model, region=args.region, lang=args.lang,
-            data_root=data_root, bundle_root=bundle_root, build_command=sys.argv)
+            root=ROOT, model=args.model, region=args.region, lang=args.lang, data_root=data_root,
+            bundle_root=bundle_root, build_command=sys.argv)
         print(f"[export-idml] FLOW OK: {flow.markdown}")
         print(f"[export-idml] FLOW IDML OK: {flow.idml}")
+        handoff = _design_handoff.write_handoff_package(
+            root=ROOT, model=args.model, region=args.region, lang=args.lang,
+            data_root=data_root, bundle_root=bundle_root,
+            production_idml=out, flow=flow, build_command=sys.argv)
+        print(f"[export-idml] HANDOFF OK: {handoff.root}")
     n_rows = sum(len(s["rows"]) for s in sections)
     print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
     print(f"[export-idml] stories={len(w.stories)} spreads={len(w.spreads)} "

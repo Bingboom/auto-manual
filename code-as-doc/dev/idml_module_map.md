@@ -12,6 +12,8 @@ tools/export_idml.py          façade + CLI: main()'s page-composition state mac
                               IdmlWriter (state: params/geometry + stories/spreads sinks;
                               every method is a thin delegate), full re-export surface
 tools/idml/
+  design_handoff.py          Phase 5 package writer: production copy, source
+                              trace, missing-assets report, checklist, feedback
   export_paths.py             shared production / flow output path helpers
   flow_idml.py                flow-idml Phase 3 continuous-story IDML writer:
                               manual.flow.idml + flow_style_map.json
@@ -85,7 +87,8 @@ tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by 
   writes semantic flow artifacts and a simple continuous-story IDML under
   `docs/_build/<model>/<region>/<lang>/idml/flow/` for template handoff
 - `python build.py idml --idml-mode both --model M --region R [--lang L]`
-  writes the production IDML and the flow artifacts in one run
+  writes the production IDML, the flow artifacts, and the design handoff package
+  in one run
 - `python tools/export_idml.py …` (direct CLI; `--check <file.idml>` validates)
 - Tests: `python -m unittest tests.test_export_idml tests.test_export_idml_golden
   tests.test_export_idml_cli tests.test_idml_components tests.test_idml_package_layout`

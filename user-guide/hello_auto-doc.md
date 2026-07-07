@@ -59,6 +59,11 @@ manifest files for a designer's InDesign template workflow. Both are generated
 outputs; content corrections still go back to the source tables, templates,
 review cloud doc, or TM layer before regeneration.
 
+Use `python build.py idml --idml-mode both ...` when design needs the paired
+handoff folder: it keeps the legacy production IDML, adds
+`production/manual.production.idml`, the flow folder, `missing_assets_report.md`,
+`designer_checklist.md`, and `layout_feedback.md`.
+
 GitHub note:
 
 - pull requests are gated by the `Manual Validation` workflow
