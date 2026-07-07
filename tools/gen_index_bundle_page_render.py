@@ -190,7 +190,7 @@ def materialize_planned_page(
     else:
         raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
 
-    if not source_path.exists():
+    if not isinstance(page, generated_page_cls) and not source_path.exists():
         raise RuntimeError(f"Missing source RST for bundle materialization: {source_path}")
 
     if not isinstance(page, generated_page_cls):

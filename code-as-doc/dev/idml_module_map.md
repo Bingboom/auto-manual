@@ -12,6 +12,9 @@ tools/export_idml.py          façade + CLI: main()'s page-composition state mac
                               IdmlWriter (state: params/geometry + stories/spreads sinks;
                               every method is a thin delegate), full re-export surface
 tools/idml/
+  export_paths.py             shared production / flow output path helpers
+  flow_md.py                  flow-idml Phase 2 semantic Markdown artifacts:
+                              manual.flow.md + trace + asset manifest + notes
   pages.py                    composed-page assemblers: safety page (segmented capsules),
                               safety+symbols merge, fcc+inbox merge + frame helpers
   prose_flow.py               ordinary-page flow buffering: adjacent prose pages share
@@ -74,7 +77,13 @@ tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by 
 ## Entry points
 
 - `python build.py idml --model M --region R [--lang L] [--data-root D]`
-  (runs an rst prepare first, then the exporter; see `_dispatch_idml_action`)
+  (runs an rst prepare first, then the exporter; see `_dispatch_idml_action`;
+  defaults to `--idml-mode production`)
+- `python build.py idml --idml-mode flow --model M --region R [--lang L]`
+  writes semantic flow artifacts under
+  `docs/_build/<model>/<region>/<lang>/idml/flow/` for template handoff
+- `python build.py idml --idml-mode both --model M --region R [--lang L]`
+  writes the production IDML and the flow artifacts in one run
 - `python tools/export_idml.py …` (direct CLI; `--check <file.idml>` validates)
 - Tests: `python -m unittest tests.test_export_idml tests.test_export_idml_golden
   tests.test_export_idml_cli tests.test_idml_components tests.test_idml_package_layout`

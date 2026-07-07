@@ -265,6 +265,7 @@ def materialize_bundle_pages(
             region=context.target_region,
             draft_placeholders=context.draft_placeholders,
         )
+        target_path.parent.mkdir(parents=True, exist_ok=True)
         target_path.write_text(rendered if rendered.endswith("\n") else f"{rendered}\n", encoding="utf-8")
         page_paths.append(target_path)
         if generated_render is not None:

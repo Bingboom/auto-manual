@@ -29,6 +29,8 @@ try:
     from tools.script_bootstrap import bootstrap_repo_root
     from tools.idml import check as _check
     from tools.idml import components as _components
+    from tools.idml import export_paths as _export_paths
+    from tools.idml import flow_md as _flow_md
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
     from tools.idml import pages as _pages
@@ -42,6 +44,8 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from script_bootstrap import bootstrap_repo_root
     from idml import check as _check  # type: ignore
     from idml import components as _components  # type: ignore
+    from idml import export_paths as _export_paths  # type: ignore
+    from idml import flow_md as _flow_md  # type: ignore
     from idml import loaders as _loaders  # type: ignore
     from idml import package as _package  # type: ignore
     from idml import pages as _pages  # type: ignore
@@ -280,30 +284,11 @@ class IdmlWriter:
 
 
 def default_bundle_root(model: str, region: str, lang: str) -> Path:
-    """Pick the prepared RST bundle path used by the current target layout."""
-    lang_bundle = ROOT / "docs" / "_build" / model / region / lang / "rst"
-    region_bundle = ROOT / "docs" / "_build" / model / region / "rst"
-    return lang_bundle if lang_bundle.is_dir() else region_bundle
+    return _export_paths.default_bundle_root(ROOT, model, region, lang)
 
 
 def default_output_path(model: str, region: str, lang: str, bundle_root: Path) -> Path:
-    """Match the IDML output location to the prepared bundle layout."""
-    region_bundle = ROOT / "docs" / "_build" / model / region / "rst"
-    model_slug = model.replace("-", "").lower()
-    region_slug = region.lower()
-    try:
-        is_region_bundle = bundle_root.resolve() == region_bundle.resolve()
-    except FileNotFoundError:
-        is_region_bundle = bundle_root == region_bundle
-    if is_region_bundle:
-        return (
-            ROOT / "docs" / "_build" / model / region / "idml"
-            / f"manual_{model_slug}_{region_slug}.idml"
-        )
-    return (
-        ROOT / "docs" / "_build" / model / region / lang / "idml"
-        / f"manual_{model_slug}_{region_slug}_{lang}.idml"
-    )
+    return _export_paths.default_output_path(ROOT, model, region, lang, bundle_root)
 
 # ---------------------------------------------------------------------------
 # main
@@ -329,11 +314,16 @@ def main() -> int:
             print(f"[idml-check] FAIL {i}")
         print(f"[idml-check] {'OK' if not issues else f'{len(issues)} issue(s)'}: {args.check}")
         return 1 if issues else 0
-    if args.mode != "production":
-        print("[export-idml] ERROR: flow/both modes are registered but not implemented yet; use --mode production.")
-        return 2
-    params = load_layout_params(ROOT / "data" / "layout_params.csv")
     data_root = (ROOT / args.data_root) if not Path(args.data_root).is_absolute() else Path(args.data_root)
+    bundle_root = Path(args.bundle_root) if args.bundle_root else (
+        default_bundle_root(args.model, args.region, args.lang))
+    if args.mode == "flow":
+        artifacts = _flow_md.write_flow_artifacts(
+            root=ROOT, model=args.model, region=args.region, lang=args.lang,
+            data_root=data_root, bundle_root=bundle_root, build_command=sys.argv)
+        print(f"[export-idml] FLOW OK: {artifacts.markdown}")
+        return 0
+    params = load_layout_params(ROOT / "data" / "layout_params.csv")
     sections = load_spec_sections(data_root, args.model, args.region, args.lang)
     if not sections:
         print(f"[export-idml] ERROR: no specifications rows for {args.model}_{args.region} in {data_root}")
@@ -351,8 +341,6 @@ def main() -> int:
             symbol_cache[lang] = load_symbols_rows(data_root, lang)
         return symbol_cache[lang]
 
-    bundle_root = Path(args.bundle_root) if args.bundle_root else (
-        default_bundle_root(args.model, args.region, args.lang))
     tags = {
         "latex",
         f"region_{args.region.lower()}",
@@ -551,6 +539,11 @@ def main() -> int:
     issues = check_idml(out)
     for i in issues:
         print(f"[export-idml] SELF-CHECK FAIL: {i}")
+    if args.mode == "both":
+        artifacts = _flow_md.write_flow_artifacts(
+            root=ROOT, model=args.model, region=args.region, lang=args.lang,
+            data_root=data_root, bundle_root=bundle_root, build_command=sys.argv)
+        print(f"[export-idml] FLOW OK: {artifacts.markdown}")
     n_rows = sum(len(s["rows"]) for s in sections)
     print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
     print(f"[export-idml] stories={len(w.stories)} spreads={len(w.spreads)} "

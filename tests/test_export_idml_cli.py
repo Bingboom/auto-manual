@@ -12,6 +12,7 @@ import sys
 import tempfile
 import unittest
 import zipfile
+import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,16 +26,58 @@ def _run(*argv: str) -> subprocess.CompletedProcess:
 
 
 class ExportIdmlCliSmokeTests(unittest.TestCase):
-    def test_mode_flow_is_registered_but_not_implemented_in_phase_one(self) -> None:
-        result = _run(
-            "--model", "JE-1000F", "--region", "US", "--lang", "en",
-            "--data-root", str(DATA_FIXTURE),
-            "--bundle-root", str(BUNDLE_FIXTURE),
-            "--mode", "flow",
-        )
+    def test_mode_flow_writes_markdown_trace_manifest_and_notes(self) -> None:
+        out_dir = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "idml" / "flow"
+        shutil.rmtree(out_dir, ignore_errors=True)
+        try:
+            result = _run(
+                "--model", "JE-1000F", "--region", "US", "--lang", "en",
+                "--data-root", str(DATA_FIXTURE),
+                "--bundle-root", str(BUNDLE_FIXTURE),
+                "--mode", "flow",
+            )
 
-        self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
-        self.assertIn("flow/both modes are registered", result.stdout)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("[export-idml] FLOW OK:", result.stdout)
+            md = (out_dir / "manual.flow.md").read_text(encoding="utf-8")
+            self.assertIn("idml_mode: flow", md)
+            self.assertIn("<!-- source_ref:", md)
+            self.assertIn("::: fcc", md)
+            self.assertIn("::: inbox", md)
+            self.assertIn("main_unit1.png", md)
+            self.assertIn("# SPECIFICATIONS", md)
+            self.assertIn("| Product Name | Jackery Explorer 1000 |", md)
+            self.assertIn("# LCD DISPLAY", md)
+            self.assertIn("# TROUBLESHOOTING", md)
+            manifest = (out_dir / "manual.flow.asset_manifest.csv").read_text(encoding="utf-8")
+            self.assertIn("main_unit1,main_unit1.png", manifest)
+            self.assertTrue((out_dir / "manual.flow.source_trace.json").is_file())
+            self.assertTrue((out_dir / "manual.flow.asset_manifest.csv").is_file())
+            self.assertTrue((out_dir / "flow_conversion_notes.md").is_file())
+        finally:
+            shutil.rmtree(ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en", ignore_errors=True)
+
+    def test_mode_both_keeps_production_idml_and_adds_flow_artifacts(self) -> None:
+        out_dir = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "idml" / "flow"
+        shutil.rmtree(out_dir, ignore_errors=True)
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td) / "production.idml"
+            try:
+                result = _run(
+                    "--model", "JE-1000F", "--region", "US", "--lang", "en",
+                    "--data-root", str(DATA_FIXTURE),
+                    "--bundle-root", str(BUNDLE_FIXTURE),
+                    "--out", str(out),
+                    "--mode", "both",
+                )
+
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                self.assertTrue(out.is_file())
+                self.assertTrue((out_dir / "manual.flow.md").is_file())
+                self.assertIn("[export-idml] OK:", result.stdout)
+                self.assertIn("[export-idml] FLOW OK:", result.stdout)
+            finally:
+                shutil.rmtree(ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en", ignore_errors=True)
 
     def test_export_then_check_roundtrip(self) -> None:
         with tempfile.TemporaryDirectory() as td:
