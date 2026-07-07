@@ -65,7 +65,7 @@ def build_flow_story(writer, ordered, tags, *, extract_page, bundle_root,
                 return
             p = _sp.symbols_parts(writer, sig, ico, default_lang,
                                        sig_tid="flow_tbl_sym_sig", ico_tid="flow_tbl_sym_ico",
-                                       terminal_last=False)
+                                       terminal_last=False, flow_friendly=True)
             est += 16.0 + 14.0 * len(sig) + 26.0 * len(ico)
         else:
             return

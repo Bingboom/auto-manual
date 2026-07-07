@@ -1,0 +1,70 @@
+# ════════════════════════════════════════════════════════════════════
+# 语言 → 字体 对应表（全局·脚本驱动）
+# ════════════════════════════════════════════════════════════════════
+# 原则：字体按【脚本 script】选，不按语言。一个脚本一套字体/一个 fontmap，
+#       覆盖该脚本下的所有语言 —— 所以"英文字体 Gilroy"其实是"拉丁字体"，
+#       德/法/西/意/荷/葡/波/捷…同一套。
+# 语言清单来源：规范/华宝新能 - 产品文档配套规范.md §4.4 + 共享内容/通用/配套规范.yml
+# 字形覆盖结论：fontTools 读 Gilroy OTF cmap 实测（见 verified 字段），非推测。
+# 用途：translate-idml retypeset / 新语种立项时，按目标语言查该用哪个 fontmap。
+# ════════════════════════════════════════════════════════════════════
+updated: "2026-07-02"
+source: "规范/华宝新能 - 产品文档配套规范.md §4.4"
+
+# ───────── 脚本 → 字体方案 ─────────
+scripts:
+  latin:                     # 拉丁字母（含西欧变音符、波兰/捷克扩展拉丁）
+    font: "Gilroy (OTF)"
+    fontmap: "fontmap-EN-gilroy.json"     # 中文源字体 → Gilroy 权重
+    status: ok
+    verified: "Gilroy Regular/Medium/Bold 实测 cmap 覆盖 西欧变音符 + 波兰(ł ą ę ń ś ż ź ć) + 捷克(č ř š ž ě ů ď ť ň) 全字符"
+    caveat: "Light/SemiBold/ExtraBold 三字重仓库无字体文件、未验证；以 InDesign 机器上授权版 Gilroy 为准"
+
+  cjk_ja:                    # 日语（假名 + 汉字）
+    font: "Noto Sans JP"
+    fontmap: "fontmap-JA-noto.json"
+    status: ok
+
+  cjk_zh:                    # 简体中文（源语言，不做 retypeset）
+    font: "方正兰亭黑简体 / 思源黑体（源版原样）"
+    fontmap: null
+    status: ok
+
+  cjk_ko:                    # 韩语（谚文）—— Gilroy 不覆盖，用 Source Han Sans K
+    font: "Source Han Sans K"
+    fontmap: "fontmap-KO-source-han.json"
+    status: ok
+    caveat: "fontmap 已建但未经实测（暂无韩语源）；首次 KO retypeset 时校验豆腐字/字重/粉色字体名"
+
+  cyrillic:                  # 西里尔（乌克兰语/俄语）
+    font: "Gilroy (OTF)"     # 用户 2026-07-02 决定：接受 Gilroy 西里尔字形
+    fontmap: "fontmap-EN-gilroy.json"
+    status: ok
+    verified: "Gilroy Regular/Medium/Bold 实测 cmap 覆盖 а б в г д и й є і ї 等西里尔字符；用户已接受字形质量"
+
+  arabic:                    # 阿拉伯语（RTL）
+    font: null
+    fontmap: null
+    status: out-of-scope     # 用户 2026-07-02 决定：暂不在范围（需阿拉伯字体 + RTL 版式支持，管线暂不支持）
+
+# ───────── 语言 → 脚本（status 继承脚本，特殊处标注）─────────
+# status: ok=可直接用 | confirm=需你确认 | todo=需先建资产
+languages:
+  zh-CN: { name: 简体中文,        script: cjk_zh,   status: ok }
+  en-US: { name: 英语(美式),      script: latin,    status: ok }
+  en-GB: { name: 英语(英式),      script: latin,    status: ok }
+  fr-FR: { name: 法语(法国),      script: latin,    status: ok }
+  fr-CA: { name: 法语(加拿大),    script: latin,    status: ok }
+  de-DE: { name: 德语,            script: latin,    status: ok }
+  it-IT: { name: 意大利语,        script: latin,    status: ok }
+  es-ES: { name: 西班牙语(西),    script: latin,    status: ok }
+  es-MX: { name: 西班牙语(拉美),  script: latin,    status: ok }
+  nl-NL: { name: 荷兰语,          script: latin,    status: ok }
+  pl-PL: { name: 波兰语,          script: latin,    status: ok }    # 字形已验证覆盖
+  cs-CZ: { name: 捷克语,          script: latin,    status: ok }    # 字形已验证覆盖；规范§4.4 Tier3 列
+  ja-JP: { name: 日语,            script: cjk_ja,   status: ok }
+  ko-KR: { name: 韩语,            script: cjk_ko,   status: ok }     # Source Han Sans K（fontmap 已建，待实测）
+  uk-UA: { name: 乌克兰语,        script: cyrillic, status: ok }     # 西里尔，用户接受 Gilroy
+  ru-RU: { name: 俄语,            script: cyrillic, status: ok }     # 西里尔，用户接受 Gilroy
+  pt-PT: { name: 葡萄牙语,        script: latin,    status: ok }     # 用户 2026-07-02 确认为目标语种；⚠ 配套规范§4.4 未列，建议补录
+  ar:    { name: 阿拉伯语,        script: arabic,   status: out-of-scope }  # 用户 2026-07-02：暂不在范围

@@ -46,6 +46,19 @@ This writes `findings.json` and `report.md` under `reports/content_qc/<run-id>/`
 It is a local report step only; it does not write Feishu rows or change Word
 delivery semantics.
 
+Optional editable InDesign flow handoff:
+
+```bash
+python3 build.py idml --config configs/config.us.yaml --model JE-1000F --region US --flow --template docs/templates/idml_template/manual.idml
+```
+
+This writes `docs/_build/<model>/<region>/idml/manual_<model>_<region>.idml`.
+The template supplies the InDesign shell (styles, resources, fonts, page geometry,
+and master spreads); generated manual content is still rebuilt from the current
+template/data/review source. If `docs/templates/idml_template/字体映射/` is
+present, the exporter applies that language font map to the template styles and
+font declarations.
+
 Optional cloud-doc template backport check:
 
 ```bash

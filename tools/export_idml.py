@@ -6,6 +6,7 @@ fine-tune pipeline output in InDesign instead of retouching PDFs.
 
 Usage:
   python tools/export_idml.py --model JE-1000F --region US [--lang en] [--flow]
+  python tools/export_idml.py --model JE-1000F --region US --flow --template docs/templates/idml_template/manual.idml
   python tools/export_idml.py --check <file.idml>    # structural validation
 """
 from __future__ import annotations
@@ -20,6 +21,7 @@ try:
     from tools.script_bootstrap import bootstrap_repo_root
     from tools.idml import check as _check
     from tools.idml import components as _components
+    from tools.idml import export_paths as _export_paths
     from tools.idml import flow as _flow
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
@@ -29,11 +31,13 @@ try:
     from tools.idml import prose_flow as _prose_flow
     from tools.idml import stories as _stories
     from tools.idml import styles as _styles
+    from tools.idml import template as _template
 except ImportError:  # pragma: no cover - direct script execution fallback
     from idml_rst_extract import bundle_page_order, extract_page  # type: ignore
     from script_bootstrap import bootstrap_repo_root
     from idml import check as _check  # type: ignore
     from idml import components as _components  # type: ignore
+    from idml import export_paths as _export_paths  # type: ignore
     from idml import flow as _flow  # type: ignore
     from idml import loaders as _loaders  # type: ignore
     from idml import package as _package  # type: ignore
@@ -43,6 +47,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import prose_flow as _prose_flow  # type: ignore
     from idml import stories as _stories  # type: ignore
     from idml import styles as _styles  # type: ignore
+    from idml import template as _template  # type: ignore
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
@@ -64,6 +69,8 @@ load_trouble_rows = _loaders.load_trouble_rows
 
 check_idml = _check.check_idml
 split_safety_first_page = _prose_flow.split_safety_first_page
+default_bundle_root = _export_paths.default_bundle_root
+default_output_path = _export_paths.default_output_path
 
 
 # ---------------------------------------------------------------------------
@@ -71,14 +78,17 @@ split_safety_first_page = _prose_flow.split_safety_first_page
 # ---------------------------------------------------------------------------
 
 class IdmlWriter:
-    def __init__(self, params: dict[str, tuple[str, str]]):
+    def __init__(self, params: dict[str, tuple[str, str]],
+                 template: _template.IdmlTemplate | None = None):
         self.params = params
-        self.page_w = param_pt(params, "page_paperwidth", 368.79)
-        self.page_h = param_pt(params, "page_paperheight", 524.69)
-        self.m_l = param_pt(params, "page_margin_left", 28.35)
-        self.m_r = param_pt(params, "page_margin_right", 28.35)
-        self.m_t = param_pt(params, "page_margin_top", 14.17)
-        self.m_b = param_pt(params, "page_margin_bottom", 36.85)
+        self.template = template
+        self.page_w = template.page_w if template and template.page_w else param_pt(params, "page_paperwidth", 368.79)
+        self.page_h = template.page_h if template and template.page_h else param_pt(params, "page_paperheight", 524.69)
+        margins = template.margins if template else None
+        self.m_t = margins[0] if margins else param_pt(params, "page_margin_top", 14.17)
+        self.m_b = margins[1] if margins else param_pt(params, "page_margin_bottom", 36.85)
+        self.m_l = margins[2] if margins else param_pt(params, "page_margin_left", 28.35)
+        self.m_r = margins[3] if margins else param_pt(params, "page_margin_right", 28.35)
         self.stories: list[tuple[str, str]] = []   # (id, xml)
         self.spreads: list[tuple[str, str]] = []
 
@@ -87,15 +97,23 @@ class IdmlWriter:
         return _styles.para_styles(self.params)
 
     def styles_xml(self) -> str:
+        if self.template and self.template.resource("Resources/Styles.xml"):
+            return self.template.resource("Resources/Styles.xml") or ""
         return _styles.styles_xml(self.params)
 
     def graphic_xml(self) -> str:
+        if self.template and self.template.resource("Resources/Graphic.xml"):
+            return self.template.resource("Resources/Graphic.xml") or ""
         return _styles.graphic_xml(self.params)
 
     def fonts_xml(self) -> str:
+        if self.template:
+            return self.template.fonts_xml(_styles.fonts_xml())
         return _styles.fonts_xml()
 
     def preferences_xml(self) -> str:
+        if self.template and self.template.resource("Resources/Preferences.xml"):
+            return self.template.resource("Resources/Preferences.xml") or ""
         return _styles.preferences_xml(page_w=self.page_w, page_h=self.page_h,
                                        m_t=self.m_t, m_b=self.m_b,
                                        m_l=self.m_l, m_r=self.m_r)
@@ -272,33 +290,6 @@ class IdmlWriter:
         return _package.write(self, out_path)
 
 
-def default_bundle_root(model: str, region: str, lang: str) -> Path:
-    """Pick the prepared RST bundle path used by the current target layout."""
-    lang_bundle = ROOT / "docs" / "_build" / model / region / lang / "rst"
-    region_bundle = ROOT / "docs" / "_build" / model / region / "rst"
-    return lang_bundle if lang_bundle.is_dir() else region_bundle
-
-
-def default_output_path(model: str, region: str, lang: str, bundle_root: Path) -> Path:
-    """Match the IDML output location to the prepared bundle layout."""
-    region_bundle = ROOT / "docs" / "_build" / model / region / "rst"
-    model_slug = model.replace("-", "").lower()
-    region_slug = region.lower()
-    try:
-        is_region_bundle = bundle_root.resolve() == region_bundle.resolve()
-    except FileNotFoundError:
-        is_region_bundle = bundle_root == region_bundle
-    if is_region_bundle:
-        return (
-            ROOT / "docs" / "_build" / model / region / "idml"
-            / f"manual_{model_slug}_{region_slug}.idml"
-        )
-    return (
-        ROOT / "docs" / "_build" / model / region / lang / "idml"
-        / f"manual_{model_slug}_{region_slug}_{lang}.idml"
-    )
-
-
 # ---------------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------------
@@ -315,6 +306,8 @@ def main() -> int:
     ap.add_argument("--check", default=None, help="validate an existing .idml and exit")
     ap.add_argument("--flow", action="store_true",
                     help="single-story book (threaded frames, Word-like reflow)")
+    ap.add_argument("--template", default=None,
+                    help="Optional IDML template shell for resources, styles, page geometry, and master spreads")
     args = ap.parse_args()
 
     if args.check:
@@ -331,7 +324,12 @@ def main() -> int:
         print(f"[export-idml] ERROR: no specifications rows for {args.model}_{args.region} in {data_root}")
         return 1
 
-    w = IdmlWriter(params)
+    try:
+        template = _template.load_optional_idml_template(args.template, ROOT, lang=args.lang)
+    except FileNotFoundError as exc:
+        print(f"[export-idml] ERROR: template not found: {exc.filename}")
+        return 1
+    w = IdmlWriter(params, template=template)
     lcd_rows = load_lcd_rows(data_root, args.model, args.lang)
     trouble_rows = load_trouble_rows(data_root, args.model, args.region, args.lang)
     spec_annotations = load_spec_annotations(data_root, args.model, args.region, args.lang)

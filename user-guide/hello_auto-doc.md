@@ -254,6 +254,7 @@ The manual system now has four layers, but they are used at different stages.
    - [`docs/_build/<model>/<region>/html/**`](../docs/_build)
    - [`docs/_build/<model>/<region>/word/**`](../docs/_build)
    - [`docs/_build/<model>/<region>/pdf/**`](../docs/_build)
+   - [`docs/_build/<model>/<region>/idml/**`](../docs/_build)
    - [`docs/index.rst`](../docs/index.rst)
    - Responsibility: generated bundle plus final outputs
 
@@ -267,6 +268,7 @@ Rules:
 - Current example: if `charging.rst` changes in the source-language family template, keep the same battery-pack `.. only:: model_je_2000e` block boundary in the corresponding derived-language templates instead of updating only one language.
 - Edit CSV when product parameters change.
 - Treat [`docs/_build/...`](../docs/_build/) as generated runtime output.
+- For editable InDesign finishing, use `python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --flow --template docs/templates/idml_template/manual.idml`. The reusable template shell lives at [`docs/templates/idml_template/manual.idml`](../docs/templates/idml_template/manual.idml), and the adjacent [`docs/templates/idml_template/字体映射`](../docs/templates/idml_template/字体映射) directory controls language-specific font retypesetting; the generated IDML under `_build` is a handoff artifact, not a new source of truth.
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
 - When design needs to review layout or page effect, share a review handoff workspace built from `_review`, not the raw `.rst`.
 - when that workspace is packaged for review sharing, let GitHub Actions build the package first and keep it as an artifact; Vercel is reserved for the latest publish HTML only
@@ -290,7 +292,7 @@ If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scrip
 
 Current flow:
 
-1. `python build.py sync-data|process-build-queue|message-control-dry-run|rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
+1. `python build.py sync-data|process-build-queue|message-control-dry-run|rst|html|word|pdf|all|idml|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
 1. `python build.py listen-message-control --config configs/config.us.yaml`
 2. [`tools/build_docs.py`](../tools/build_docs.py) validates config and layout params
 3. target `model` and `region` are resolved from CLI or `build.targets`

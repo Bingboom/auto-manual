@@ -12,6 +12,22 @@ from pathlib import Path
 from .params import IDPKG, MIMETYPE
 
 
+def _template(writer):
+    return getattr(writer, "template", None)
+
+def _applied_master(writer) -> str:
+    template = _template(writer)
+    return template.master_self if template and template.master_self else "n"
+
+def _master_spread_entries(writer) -> list[tuple[str, str]]:
+    template = _template(writer)
+    if not template:
+        return []
+    return [
+        (Path(name).stem.removeprefix("MasterSpread_"), xml)
+        for name, xml in sorted(template.master_spreads.items())
+    ]
+
 def frame_height(writer) -> float:
     return writer.page_h - writer.m_t - writer.m_b
 
@@ -45,6 +61,7 @@ def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
     x2 = writer.page_w / 2 - writer.m_r
     y1 = -writer.page_h / 2 + writer.m_t
     y2 = writer.page_h / 2 - writer.m_b
+    applied_master = _applied_master(writer)
     for i in range(n_pages):
         spread_id = f"sp_{start_index + i}"
         frame_id = f"tf_{story_id}_{i}"
@@ -55,7 +72,7 @@ def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
             f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
             f'  <Page Self="{spread_id}_pg" Name="{start_index + i + 1}" '
-            'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
+            f'AppliedMaster="{applied_master}" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
             f'GeometricBounds="0 0 {writer.page_h:g} {writer.page_w:g}" '
             f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} {-writer.page_h / 2:g}">\n'
             '    <MarginPreference ColumnCount="1" ColumnGutter="12" '
@@ -73,6 +90,11 @@ def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
         writer.spreads.append((spread_id, xml))
 
 def designmap_xml(writer) -> str:
+    master_refs = "\n".join(
+        f'  <idPkg:MasterSpread src="MasterSpreads/MasterSpread_{sid}.xml"/>'
+        for sid, _ in _master_spread_entries(writer)
+    )
+    master_block = f"{master_refs}\n" if master_refs else ""
     spread_refs = "\n".join(
         f'  <idPkg:Spread src="Spreads/Spread_{sid}.xml"/>' for sid, _ in writer.spreads
     )
@@ -90,6 +112,7 @@ def designmap_xml(writer) -> str:
         f'  <idPkg:Fonts src="Resources/Fonts.xml"/>\n'
         f'  <idPkg:Styles src="Resources/Styles.xml"/>\n'
         f'  <idPkg:Preferences src="Resources/Preferences.xml"/>\n'
+        f'{master_block}'
         f'{spread_refs}\n'
         f'{story_refs}\n'
         '</Document>\n'
@@ -112,6 +135,8 @@ def write(writer, out_path: Path) -> None:
         add("Resources/Fonts.xml", writer.fonts_xml())
         add("Resources/Styles.xml", writer.styles_xml())
         add("Resources/Preferences.xml", writer.preferences_xml())
+        for sid, xml in _master_spread_entries(writer):
+            add(f"MasterSpreads/MasterSpread_{sid}.xml", xml)
         for sid, xml in writer.spreads:
             add(f"Spreads/Spread_{sid}.xml", xml)
         for sid, xml in writer.stories:

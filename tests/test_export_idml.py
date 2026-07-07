@@ -25,6 +25,7 @@ from tools.export_idml import (  # noqa: E402
     split_safety_first_page,
 )
 from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
+from tools.idml.template import load_idml_template  # noqa: E402
 
 FIXTURE_DATA_ROOT = ROOT / "tests" / "fixtures" / "phase2"
 
@@ -106,6 +107,139 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('PostScriptName="ArialUnicodeMS"', fonts)
         self.assertIn('Name="Apple Symbols"', fonts)
         self.assertIn('PostScriptName="AppleSymbols"', fonts)
+
+    def test_writer_can_use_idml_template_shell(self) -> None:
+        template_path = Path(tempfile.mkdtemp()) / "template.idml"
+        with zipfile.ZipFile(template_path, "w") as zf:
+            zf.writestr("mimetype", "application/vnd.adobe.indesign-idml-package")
+            zf.writestr(
+                "Resources/Preferences.xml",
+                '<?xml version="1.0" encoding="UTF-8"?><idPkg:Preferences '
+                'xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging">'
+                '<DocumentPreference PageWidth="200" PageHeight="300"/></idPkg:Preferences>',
+            )
+            zf.writestr(
+                "Resources/Graphic.xml",
+                '<?xml version="1.0" encoding="UTF-8"?><idPkg:Graphic '
+                'xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging">'
+                '<Color Self="Color/TemplateMarker" Name="TemplateMarker"/></idPkg:Graphic>',
+            )
+            zf.writestr(
+                "Resources/Styles.xml",
+                '<?xml version="1.0" encoding="UTF-8"?><idPkg:Styles '
+                'xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"/>',
+            )
+            zf.writestr(
+                "Resources/Fonts.xml",
+                '<?xml version="1.0" encoding="UTF-8"?><idPkg:Fonts '
+                'xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging">'
+                '<FontFamily Self="ff_arial_unicode_ms" Name="Arial Unicode MS"/>'
+                '</idPkg:Fonts>',
+            )
+            zf.writestr(
+                "MasterSpreads/MasterSpread_tpl.xml",
+                '<?xml version="1.0" encoding="UTF-8"?><idPkg:MasterSpread '
+                'xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging">'
+                '<MasterSpread Self="tpl"/></idPkg:MasterSpread>',
+            )
+            zf.writestr(
+                "Spreads/Spread_tpl.xml",
+                '<?xml version="1.0" encoding="UTF-8"?><idPkg:Spread '
+                'xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging">'
+                '<Spread><Page><MarginPreference Top="10" Bottom="20" Left="30" Right="40"/>'
+                '</Page></Spread></idPkg:Spread>',
+            )
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params, template=load_idml_template(template_path))
+        self.assertEqual((w.page_w, w.page_h), (200, 300))
+        self.assertEqual((w.m_t, w.m_b, w.m_l, w.m_r), (10, 20, 30, 40))
+        self.assertIn("TemplateMarker", w.graphic_xml())
+        self.assertIn("Apple Symbols", w.fonts_xml())
+        sid = w.add_text_story("st_intro", "Intro", [("HB Body", "hello")])
+        w.add_spread_chain(sid, 1, 0)
+        out = Path(tempfile.mkdtemp()) / "templated.idml"
+        w.write(out)
+        self.assertEqual(check_idml(out), [])
+        with zipfile.ZipFile(out) as zf:
+            names = zf.namelist()
+            spread = zf.read("Spreads/Spread_sp_0.xml").decode("utf-8")
+            designmap = zf.read("designmap.xml").decode("utf-8")
+        self.assertIn("MasterSpreads/MasterSpread_tpl.xml", names)
+        self.assertIn('AppliedMaster="tpl"', spread)
+        self.assertIn('src="MasterSpreads/MasterSpread_tpl.xml"', designmap)
+
+    def test_template_font_map_retypesets_styles_and_fonts(self) -> None:
+        work = Path(tempfile.mkdtemp())
+        template_path = work / "template.idml"
+        with zipfile.ZipFile(template_path, "w") as zf:
+            zf.writestr("mimetype", "application/vnd.adobe.indesign-idml-package")
+            zf.writestr(
+                "Resources/Preferences.xml",
+                '<?xml version="1.0" encoding="UTF-8"?><idPkg:Preferences '
+                'xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging">'
+                '<DocumentPreference PageWidth="200" PageHeight="300"/></idPkg:Preferences>',
+            )
+            zf.writestr(
+                "Resources/Styles.xml",
+                '<?xml version="1.0" encoding="UTF-8"?><idPkg:Styles '
+                'xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging">'
+                '<RootParagraphStyleGroup Self="rpsg"><ParagraphStyle Self="ParagraphStyle/正文" '
+                'Name="正文" FontStyle="L" Hyphenation="false"><Properties>'
+                '<AppliedFont type="string">Adobe 宋体 Std</AppliedFont>'
+                '</Properties></ParagraphStyle></RootParagraphStyleGroup></idPkg:Styles>',
+            )
+            zf.writestr(
+                "Resources/Fonts.xml",
+                '<?xml version="1.0" encoding="UTF-8"?><idPkg:Fonts '
+                'xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging">'
+                '<FontFamily Self="ff_adobe_song" Name="Adobe 宋体 Std"/>'
+                '<CompositeFont Self="CompositeFont/$ID/[No composite font]" '
+                'Name="$ID/[No composite font]"><CompositeFontEntry Self="u1" '
+                'Name="$ID/Kanji" FontStyle="L"><Properties>'
+                '<AppliedFont type="string">Adobe 宋体 Std</AppliedFont>'
+                '</Properties></CompositeFontEntry></CompositeFont>'
+                '</idPkg:Fonts>',
+            )
+            zf.writestr(
+                "Spreads/Spread_tpl.xml",
+                '<?xml version="1.0" encoding="UTF-8"?><idPkg:Spread '
+                'xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging">'
+                '<Spread><Page><MarginPreference Top="1" Bottom="2" Left="3" Right="4"/>'
+                '</Page></Spread></idPkg:Spread>',
+            )
+        fontmap_dir = work / "字体映射"
+        fontmap_dir.mkdir()
+        (fontmap_dir / "语言字体映射.yml").write_text(
+            "scripts:\n"
+            "  latin:\n"
+            "    fontmap: fontmap-EN-gilroy.json\n"
+            "languages:\n"
+            "  en-US: { script: latin }\n",
+            encoding="utf-8",
+        )
+        (fontmap_dir / "fontmap-EN-gilroy.json").write_text(
+            json.dumps({
+                "fonts": {
+                    "Adobe 宋体 Std": {
+                        "family": "Gilroy (OTF)",
+                        "style": "Regular",
+                    },
+                },
+                "paragraph_style_attrs": {"Hyphenation": "true"},
+            }),
+            encoding="utf-8",
+        )
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params, template=load_idml_template(template_path, lang="en"))
+        self.assertIn("<AppliedFont type=\"string\">Gilroy (OTF)</AppliedFont>", w.styles_xml())
+        self.assertIn('FontStyle="Regular"', w.styles_xml())
+        self.assertIn('Hyphenation="true"', w.styles_xml())
+        self.assertIn('Name="Gilroy (OTF)"', w.fonts_xml())
+        self.assertNotIn('Name="Adobe 宋体 Std"', w.fonts_xml())
+        self.assertNotIn(">Adobe 宋体 Std<", w.fonts_xml())
+        self.assertIn("<AppliedFont type=\"string\">Gilroy (OTF)</AppliedFont>", w.fonts_xml())
 
     def test_page_count_follows_content(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -300,6 +434,26 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("MEANING OF SYMBOLS", story)
         self.assertIn("<Table ", story)
         self.assertIn("WARNING", story)
+
+    def test_flow_symbols_render_without_blocking_icon_tables(self) -> None:
+        from tools.idml.section_parts import symbols_parts
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        signals = [("WARNING", "Hazard"), ("TIP", "Useful note")]
+        icons = [
+            {"figure": "", "text": "Read the user manual before operation."},
+            {"figure": "", "text": "Keep the product away from fire."},
+        ]
+        w = IdmlWriter(params)
+        default_parts = symbols_parts(w, signals, icons, "en", ico_tid="sym_ico")
+        flow_parts = symbols_parts(
+            w, signals, icons, "en", ico_tid="flow_sym_ico",
+            terminal_last=False, flow_friendly=True)
+        default_xml = "".join(default_parts)
+        flow_xml = "".join(flow_parts)
+        self.assertEqual(default_xml.count('Self="sym_ico"'), 1)
+        self.assertNotIn("<Table ", flow_xml)
+        self.assertIn("Read the user manual before operation.", flow_xml)
 
     def test_symbols_rows_use_requested_language(self) -> None:
         signals, icons = load_symbols_rows(FIXTURE_DATA_ROOT, "fr")

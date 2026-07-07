@@ -1,0 +1,19 @@
+{
+  "_说明": "中文字体 → Gilroy 权重映射，用于把已译英文 IDML 的字符级/段落级样式与局部覆盖统一换成 Gilroy，导出为英文电子版模板。Noto Sans SC 保留（日语前言在用，不动）。",
+  "_preserve": ["Noto Sans SC (OTF)"],
+  "fonts": {
+    "方正兰亭细黑简体": { "family": "Gilroy (OTF)", "style": "Light" },
+    "方正兰亭中黑简体": { "family": "Gilroy (OTF)", "style": "Medium" },
+    "方正兰亭黑简体":   { "family": "Gilroy (OTF)", "style": "SemiBold" },
+    "方正兰亭粗黑简体": { "family": "Gilroy (OTF)", "style": "Bold" },
+    "方正兰亭特黑简体": { "family": "Gilroy (OTF)", "style": "ExtraBold" },
+    "思源黑体":        { "family": "Gilroy (OTF)", "style": "Regular" },
+    "Adobe 宋体 Std":  { "family": "Gilroy (OTF)", "style": "Regular" },
+    "HONOR Sans":      { "family": "Gilroy (OTF)", "style": "Regular" },
+    "Arial Unicode MS":{ "family": "Gilroy (OTF)", "style": "Regular" },
+    "等线":            { "family": "Gilroy (OTF)", "style": "Regular" }
+  },
+  "paragraph_style_attrs": {
+    "Hyphenation": "true"
+  }
+}

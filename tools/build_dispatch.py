@@ -158,6 +158,8 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
         cmd += ["--data-root", args.data_root]
     if getattr(args, "flow", False):
         cmd += ["--flow"]
+    if getattr(args, "template", None):
+        cmd += ["--template", args.template]
     context.run_checked(cmd)
 
 

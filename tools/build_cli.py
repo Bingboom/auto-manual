@@ -48,6 +48,11 @@ def parse_args(
     ap.add_argument("--flow", action="store_true",
                     help="For idml: single-story book (Word-like continuous threading) "
                          "instead of the composed fixed-layout pages")
+    ap.add_argument(
+        "--template",
+        default=None,
+        help="For idml: optional IDML template shell for --flow/manual InDesign finishing",
+    )
     ap.add_argument("--model", default=None, help="Build a single model instead of build.targets")
     ap.add_argument("--region", default=None, help="Build a single region instead of build.targets")
     ap.add_argument(

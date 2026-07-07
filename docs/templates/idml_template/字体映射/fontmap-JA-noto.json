@@ -1,0 +1,9 @@
+{
+  "_说明": "日本語版：欧文 Gilroy → Noto Sans JP に置換（本文の日本語グリフ豆腐化を防ぐ）。日本語前文の Noto Sans SC と絵文字 EmojiOne は _preserve で温存。字重は元の FontStyle を維持（style 省略）。SemiBold は旧 Noto に無いため別途 Bold へ正規化（fill スクリプト側）。",
+  "_preserve": ["Noto Sans SC (OTF)", "EmojiOne", "Minion Pro", "Adobe 黑体 Std", "Adobe 宋体 Std"],
+  "fonts": {
+    "Gilroy (OTF)": { "family": "Noto Sans JP" },
+    "HONOR Sans": { "family": "Noto Sans JP" }
+  },
+  "paragraph_style_attrs": {}
+}

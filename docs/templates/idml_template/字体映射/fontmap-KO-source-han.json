@@ -1,0 +1,18 @@
+{
+  "_说明": "韩语版：把源版所有正文字体（中文方正兰亭各字重 + 思源黑体 + 欧文 Gilroy）→ Source Han Sans K，防谚文(Hangul)豆腐字。Source Han Sans K 自带拉丁字形，欧文一并归一无副作用。字重按源映射；Source Han Sans 无 SemiBold，黑/粗黑简体归一到 Bold。⚠ 未经实测（暂无韩语源），首次 KO retypeset 时校验豆腐字/字重/粉色字体名（本机实名可能为 'SourceHanSansK' 或 '思源黑体 K'，粉色即改 family 为已安装实名后重跑）。",
+  "_preserve": ["EmojiOne", "Minion Pro"],
+  "fonts": {
+    "方正兰亭细黑简体": { "family": "Source Han Sans K", "style": "Light" },
+    "方正兰亭中黑简体": { "family": "Source Han Sans K", "style": "Medium" },
+    "方正兰亭黑简体":   { "family": "Source Han Sans K", "style": "Bold" },
+    "方正兰亭粗黑简体": { "family": "Source Han Sans K", "style": "Bold" },
+    "方正兰亭特黑简体": { "family": "Source Han Sans K", "style": "Heavy" },
+    "思源黑体":        { "family": "Source Han Sans K", "style": "Regular" },
+    "Gilroy (OTF)":    { "family": "Source Han Sans K", "style": "Regular" },
+    "Adobe 宋体 Std":  { "family": "Source Han Sans K", "style": "Regular" },
+    "HONOR Sans":      { "family": "Source Han Sans K", "style": "Regular" },
+    "Arial Unicode MS":{ "family": "Source Han Sans K", "style": "Regular" },
+    "等线":            { "family": "Source Han Sans K", "style": "Regular" }
+  },
+  "paragraph_style_attrs": {}
+}

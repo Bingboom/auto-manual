@@ -133,9 +133,24 @@ def lcd_parts(writer, rows: list[dict], *, tid: str = "tbl_lcd",
 
 def symbols_parts(writer, signals: list[tuple[str, str]], icons: list[dict],
                   lang: str = "en", *, sig_tid: str = "tbl_sym_sig",
-                  ico_tid: str = "tbl_sym_ico", terminal_last: bool = True) -> list[str]:
+                  ico_tid: str = "tbl_sym_ico", terminal_last: bool = True,
+                  icon_chunk_size: int | None = None,
+                  flow_friendly: bool = False) -> list[str]:
     copy = symbol_copy(lang)
     parts = [writer._psr("HB H1", copy["title"])]
+    if flow_friendly:
+        for label, meaning in signals:
+            parts.append(writer._psr("HB Notice Label", label))
+            parts.append(writer._psr("HB Spec Value", meaning))
+        for ri, row in enumerate(icons):
+            fig = (ROOT / row["figure"]) if row["figure"] else None
+            if fig and fig.exists():
+                img = writer._image_cell_content(f"{ico_tid}img{ri}", fig, 20.0, 20.0)
+                parts.append(_components.figure_paragraph(img))
+            parts.append(writer._psr(
+                "HB Spec Value", row["text"],
+                terminal=terminal_last and ri == len(icons) - 1))
+        return parts
     if signals:
         table = writer._table(sig_tid, signals, label_style="HB Notice Label")
         # signals table is never the terminal element (a trailing <Br/> keeps
@@ -144,19 +159,29 @@ def symbols_parts(writer, signals: list[tuple[str, str]], icons: list[dict],
     if icons:
         body_w = writer.page_w - writer.m_l - writer.m_r
         cols = (body_w * 0.18, body_w * 0.82)
-        cells = []
         icon_pt = 20.0
-        for ri, row in enumerate(icons):
-            fig = (ROOT / row["figure"]) if row["figure"] else None
-            img = (writer._image_cell_content(f"{ico_tid}img{ri}", fig, icon_pt, icon_pt)
-                   if fig and fig.exists() else "")
-            img_cell = _components.figure_paragraph(img, tail="<Content></Content>")
-            for ci, content in ((0, img_cell),
-                                (1, writer._psr("HB Spec Value", row["text"], terminal=True))):
-                cells.append(writer._cell(f"{ico_tid}c{ri}_{ci}", f"{ci}:{ri}", content,
-                                          top=2, bottom=2, left=3, right=3))
-        table2 = writer._component_table(ico_tid, list(cols), cells, n_rows=len(icons))
-        parts.append(writer._wrap_table_paragraph(table2, terminal_last, span_columns=False))
+        chunk_size = icon_chunk_size or len(icons)
+        for chunk_start in range(0, len(icons), chunk_size):
+            chunk = icons[chunk_start:chunk_start + chunk_size]
+            chunk_tid = ico_tid if len(icons) == len(chunk) else f"{ico_tid}_{chunk_start}"
+            cells = []
+            for ri, row in enumerate(chunk):
+                src_ri = chunk_start + ri
+                fig = (ROOT / row["figure"]) if row["figure"] else None
+                img = (writer._image_cell_content(f"{chunk_tid}img{src_ri}", fig, icon_pt, icon_pt)
+                       if fig and fig.exists() else "")
+                img_cell = _components.figure_paragraph(img, tail="<Content></Content>")
+                for ci, content in (
+                    (0, img_cell),
+                    (1, writer._psr("HB Spec Value", row["text"], terminal=True)),
+                ):
+                    cells.append(writer._cell(
+                        f"{chunk_tid}c{ri}_{ci}", f"{ci}:{ri}", content,
+                        top=2, bottom=2, left=3, right=3))
+            table2 = writer._component_table(chunk_tid, list(cols), cells, n_rows=len(chunk))
+            is_last_chunk = chunk_start + chunk_size >= len(icons)
+            parts.append(writer._wrap_table_paragraph(
+                table2, terminal_last and is_last_chunk, span_columns=False))
     return parts
 
 

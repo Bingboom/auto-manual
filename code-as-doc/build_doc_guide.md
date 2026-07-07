@@ -48,6 +48,7 @@ python build.py message-control-dry-run --message "publish JE-1000F us-merged fr
 python build.py handoff --config configs/config.us-en.yaml --model JE-1000F --region US --version V0.1 --baseline docs/_build/JE-1000F/US/en/rst
 python build.py preview --config configs/config.ja.yaml --model JE-1000F --region JP --page 03_product_overview_placeholder
 python build.py fast --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --flow --template docs/templates/idml_template/manual.idml
 python build.py html
 python build.py word
 python build.py pdf
@@ -182,6 +183,7 @@ Meaning:
 - `publish`: run `check -> diff-report -> word -> pdf -> md -> release-manifest` for one explicit target
 - `release-manifest`: write JSON / CSV release traceability for one explicit target
 - `handoff`: create a minimal explicit target design handoff package with rule-based diff outputs and traceability metadata
+- `idml --flow --template <file.idml>`: export an editable, threaded InDesign flow package while reusing the template shell's resources, styles, fonts, preferences, page geometry, and master spreads. Template stories/spreads are not copied as content; the generated manual story still comes from the current template/data/review source.
 - `preview`: materialize one exact page selector under a preview-only output root
 - `fast`: materialize a runtime draft only, with `prepare-only + no-clean`
 - `html`, `word`, `pdf`, `md`: prepare RST first, then export; Markdown uses a native MyST writer when Pandoc provides one, otherwise a MyST-compatible CommonMark writer
@@ -634,7 +636,18 @@ Export the editable InDesign handoff package (runs an rst prepare first, then
 
 ```powershell
 python build.py idml --model JE-1000F --region US
+python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --flow --template docs/templates/idml_template/manual.idml
 ```
+
+Use the `--flow --template` form when the designer wants a Word-like continuous
+story for fast InDesign finishing. The committed default shell is
+[`../docs/templates/idml_template/manual.idml`](../docs/templates/idml_template/manual.idml).
+It contributes document resources and master spread setup; the generated manual
+content still comes from the current build source and is written to
+`docs/_build/<model>/<region>/idml/manual_<model>_<region>.idml`. When the
+template directory contains `字体映射/语言字体映射.yml`, the exporter applies the
+matching language font map to template styles and font declarations before
+packaging.
 
 `configs/config.eu.yaml` now represents the live `EU` region-family row as `eu-merged`, routes blank-`Lang` queue rows to the merged EU manual, and keeps `sync.phase2.tables.spec_master` pinned to the live Base view that contains `JE-1000F_EU` rows. `configs/config.eu-en.yaml`, `configs/config.eu-fr.yaml`, and `configs/config.eu-es.yaml` are the explicit English, French, and Spanish single-language EU surfaces when you need one language family at a time.
 
