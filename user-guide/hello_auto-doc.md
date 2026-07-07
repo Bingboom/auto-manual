@@ -51,6 +51,13 @@ If the env var is not set, or the folder is incomplete, the build keeps the norm
 
 If you only need the exact command semantics for one export path, use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) as the authoritative reference.
 
+InDesign export has two handoff modes: the default `idml` production path keeps
+the component-heavy editable IDML for visual design review, while
+`python build.py idml --idml-mode flow ...` writes semantic flow Markdown,
+source trace, and asset manifest files for a designer's InDesign template
+workflow. Both are generated outputs; content corrections still go back to the
+source tables, templates, review cloud doc, or TM layer before regeneration.
+
 GitHub note:
 
 - pull requests are gated by the `Manual Validation` workflow

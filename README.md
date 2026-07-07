@@ -21,7 +21,8 @@ This repository is responsible for:
 - moving target-specific editing into [`docs/_review/`](docs/_review) once review starts
 - validating review/runtime bundles before release
 - exporting revision reports and release manifests
-- generating a minimal design handoff package for explicit target delivery prep
+- generating design handoff outputs, including production IDML and flow-mode
+  semantic Markdown artifacts for InDesign template handoff
 
 This repository is not the place to define the long-term platform strategy.
 That boundary lives in [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md).
