@@ -1650,6 +1650,13 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(2, len(cloud_import_calls))
         self.assertEqual(md_path, cloud_import_calls[0]["markdown_output_path"])
         self.assertEqual(md_path, cloud_import_calls[1]["markdown_output_path"])
+        # the editable 飞书云文档 keeps the default (markdown stem) name; the frozen
+        # baseline is suffixed _基线<YYYYMMDD> so the two are distinguishable in the node
+        self.assertIsNone(cloud_import_calls[0].get("doc_name"))
+        baseline_name = str(cloud_import_calls[1]["doc_name"])
+        self.assertTrue(baseline_name.startswith(f"{md_path.stem}_基线"))
+        baseline_date = baseline_name.rsplit("_基线", 1)[1]
+        self.assertTrue(baseline_date.isdigit() and len(baseline_date) == 8)
         success_payload = captured_upserts[-1]["record"]
         self.assertIsInstance(success_payload, dict)
         self.assertEqual(

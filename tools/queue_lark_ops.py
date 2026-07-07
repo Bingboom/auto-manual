@@ -142,6 +142,7 @@ def import_markdown_to_cloud_doc(
     repo_root: Path,
     run_lark_cli_json: Callable[..., dict[str, Any]],
     cli_relative_file_arg: Callable[..., str],
+    doc_name: str | None = None,
 ) -> tuple[str, str]:
     if not markdown_output_path.exists():
         raise RuntimeError(f"Markdown output was not created: {markdown_output_path}")
@@ -156,7 +157,7 @@ def import_markdown_to_cloud_doc(
             "--file",
             cli_relative_file_arg(repo_root=repo_root, path=markdown_output_path),
             "--name",
-            markdown_output_path.stem,
+            doc_name or markdown_output_path.stem,
             "--type",
             "docx",
         ],
