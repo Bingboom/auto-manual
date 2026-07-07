@@ -1182,3 +1182,11 @@ class StagingActionGuardTests(unittest.TestCase):
     def test_idml_without_staging_passes_the_guard(self) -> None:
         args = build_cli.parse_args(["idml"])
         build_cli.ensure_supported_staging_action(args)  # must not raise
+
+    def test_idml_mode_defaults_to_production(self) -> None:
+        args = build_cli.parse_args(["idml"])
+        self.assertEqual("production", args.idml_mode)
+
+    def test_idml_mode_accepts_flow_and_both(self) -> None:
+        self.assertEqual("flow", build_cli.parse_args(["idml", "--idml-mode", "flow"]).idml_mode)
+        self.assertEqual("both", build_cli.parse_args(["idml", "--idml-mode", "both"]).idml_mode)

@@ -25,6 +25,17 @@ def _run(*argv: str) -> subprocess.CompletedProcess:
 
 
 class ExportIdmlCliSmokeTests(unittest.TestCase):
+    def test_mode_flow_is_registered_but_not_implemented_in_phase_one(self) -> None:
+        result = _run(
+            "--model", "JE-1000F", "--region", "US", "--lang", "en",
+            "--data-root", str(DATA_FIXTURE),
+            "--bundle-root", str(BUNDLE_FIXTURE),
+            "--mode", "flow",
+        )
+
+        self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+        self.assertIn("flow/both modes are registered", result.stdout)
+
     def test_export_then_check_roundtrip(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "smoke.idml"
