@@ -137,15 +137,17 @@ def _first_nested_string(payload: Any, keys: set[str], *, url_only: bool = False
 def import_markdown_to_cloud_doc(
     *,
     cli_bin: str,
-    markdown_output_path: Path,
+    source_path: Path,
     identity: str,
     repo_root: Path,
     run_lark_cli_json: Callable[..., dict[str, Any]],
     cli_relative_file_arg: Callable[..., str],
     doc_name: str | None = None,
 ) -> tuple[str, str]:
-    if not markdown_output_path.exists():
-        raise RuntimeError(f"Markdown output was not created: {markdown_output_path}")
+    # ``source_path`` should be the built Word ``.docx`` (images embedded): Feishu
+    # cannot fetch a Markdown export's local relative image paths (blank images).
+    if not source_path.exists():
+        raise RuntimeError(f"Cloud-doc source file was not created: {source_path}")
 
     payload = run_lark_cli_json(
         cli_bin=cli_bin,
@@ -155,9 +157,9 @@ def import_markdown_to_cloud_doc(
             "--as",
             identity,
             "--file",
-            cli_relative_file_arg(repo_root=repo_root, path=markdown_output_path),
+            cli_relative_file_arg(repo_root=repo_root, path=source_path),
             "--name",
-            doc_name or markdown_output_path.stem,
+            doc_name or source_path.stem,
             "--type",
             "docx",
         ],
