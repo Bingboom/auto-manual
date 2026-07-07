@@ -1,12 +1,21 @@
 """IDML exporter — route B of the InDesign handoff plan.
 
-Produces an editable .idml package (styles/geometry mapped 1:1 from
-data/layout_params.csv, CMYK swatches, data pages as real tables) so designers
-fine-tune pipeline output in InDesign instead of retouching PDFs.
+Produces an editable .idml (InDesign Markup Language) package so designers
+can fine-tune pipeline output in InDesign instead of retouching PDFs:
+
+- page geometry and paragraph styles are mapped 1:1 from data/layout_params.csv
+- brand colors are emitted as CMYK swatches (from the brand_color_* keys)
+- the SPECIFICATIONS page is exported as real IDML tables fed straight from
+  the phase2 Spec_Master snapshot (section titles + label/value rows)
+- body sections flow through linked text frames so InDesign reflows freely
+
+MVP scope (M1-M3): valid package + style system + spec tables/story.
+Not yet covered: image frames, two-column safety layout, full page set.
 
 Usage:
-  python tools/export_idml.py --model JE-1000F --region US [--lang en] [--flow]
-  python tools/export_idml.py --check <file.idml>    # structural validation
+  python tools/export_idml.py --model JE-1000F --region US [--lang en]
+      [--data-root data/phase2] [--out docs/_build/.../manual.idml]
+  python tools/export_idml.py --check <file.idml>   # structural validation
 """
 from __future__ import annotations
 
@@ -20,7 +29,6 @@ try:
     from tools.script_bootstrap import bootstrap_repo_root
     from tools.idml import check as _check
     from tools.idml import components as _components
-    from tools.idml import flow as _flow
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
     from tools.idml import pages as _pages
@@ -34,7 +42,6 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from script_bootstrap import bootstrap_repo_root
     from idml import check as _check  # type: ignore
     from idml import components as _components  # type: ignore
-    from idml import flow as _flow  # type: ignore
     from idml import loaders as _loaders  # type: ignore
     from idml import package as _package  # type: ignore
     from idml import pages as _pages  # type: ignore
@@ -313,8 +320,6 @@ def main() -> int:
     ap.add_argument("--bundle-root", default=None,
                     help="Prepared rst bundle dir (default: docs/_build/<model>/<region>/<lang>/rst); prose pages are skipped if absent")
     ap.add_argument("--check", default=None, help="validate an existing .idml and exit")
-    ap.add_argument("--flow", action="store_true",
-                    help="single-story book (threaded frames, Word-like reflow)")
     args = ap.parse_args()
 
     if args.check:
@@ -354,14 +359,6 @@ def main() -> int:
     page_cursor = 0
     skipped_raw = 0
     prose_pages = 0
-
-    if args.flow:
-        return _flow.run_flow(
-            w, args, bundle_root=bundle_root, tags=tags,
-            bundle_page_order=bundle_page_order, extract_page=extract_page,
-            sections=sections, spec_annotations=spec_annotations, lcd_rows=lcd_rows,
-            trouble_rows=trouble_rows, symbol_rows_for=symbol_rows_for,
-            default_output_path=default_output_path, check_idml=check_idml)
 
     def chain(story_id: str, est_h: float, columns: int = 1) -> None:
         nonlocal page_cursor
