@@ -649,6 +649,21 @@ python build.py idml --model JE-1000F --region US --idml-mode both
 Flow artifacts are generated handoff files, not a new content source. Fix copy
 in the Feishu/source-table/review layer and regenerate.
 
+`--idml-mode both` also writes a compact design handoff package beside the
+legacy production IDML:
+
+```text
+docs/_build/<model>/<region>/<lang>/idml/
+  production/manual.production.idml
+  production/source_trace.json
+  production/asset_manifest.csv
+  flow/manual.flow.md
+  flow/manual.flow.idml
+  missing_assets_report.md
+  designer_checklist.md
+  layout_feedback.md
+```
+
 The default flow style map lives at
 `docs/templates/idml_template/style_mapping/flow_style_map.json` and is copied
 to each flow output folder as `flow_style_map.json` so design can map the story
