@@ -17,13 +17,16 @@ from .style_names import paragraph_style_ref
 # XML attribute a raw " truncates the value and malforms the part.
 _ATTR_ENTITIES = {'"': "&quot;"}
 
-# Characters Gilroy has no glyph for — same policy as the PDF path's
-# FRAGILE_UNICODE_REPLACEMENTS in patch_latex_fonts.py. Without this,
-# InDesign shows pink missing-glyph boxes (designer-reported).
-GLYPH_FALLBACKS = (
-    ("⎓", " DC "),   # ⎓ direct-current symbol
-    ("※", "*"),      # ※ reference mark
-    ("₄", "4"),      # ₄ subscript four (LiFePO4)
+# Text fallbacks are kept as a public compatibility hook for the writer,
+# but semantic symbols should render as symbols, not be rewritten into
+# approximate ASCII. Characters that Gilroy lacks are handled by
+# SYMBOL_FONT_FALLBACK_CHARS below at character-run level.
+GLYPH_FALLBACKS: tuple[tuple[str, str], ...] = ()
+
+SYMBOL_FONT_FALLBACK = "Arial Unicode MS"
+SYMBOL_FONT_FALLBACK_STYLE = "Regular"
+SYMBOL_FONT_FALLBACK_CHARS = frozenset(
+    "⎓※₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩"
 )
 
 PROSE_STYLE = {"h1": "HB H1", "h2": "HB Title L2", "h3": "HB Title L3",
@@ -51,6 +54,37 @@ def bold_runs(line: str) -> list[tuple[str, bool]]:
     return runs
 
 
+def _character_runs(seg: str) -> list[tuple[str, bool]]:
+    """Split a run by whether it needs a symbol-capable font."""
+    runs: list[tuple[str, bool]] = []
+    buf: list[str] = []
+    current_needs_fallback: bool | None = None
+    for ch in seg:
+        needs_fallback = ch in SYMBOL_FONT_FALLBACK_CHARS
+        if current_needs_fallback is None:
+            current_needs_fallback = needs_fallback
+        if needs_fallback != current_needs_fallback:
+            runs.append(("".join(buf), current_needs_fallback))
+            buf = []
+            current_needs_fallback = needs_fallback
+        buf.append(ch)
+    if buf and current_needs_fallback is not None:
+        runs.append(("".join(buf), current_needs_fallback))
+    return runs
+
+
+def _character_style_range(seg: str, *, bold: bool, symbol_fallback: bool) -> str:
+    attrs = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+    if symbol_fallback:
+        attrs += (
+            f' AppliedFont="{SYMBOL_FONT_FALLBACK}"'
+            f' FontStyle="{SYMBOL_FONT_FALLBACK_STYLE}"'
+        )
+    elif bold:
+        attrs += ' FontStyle="Bold"'
+    return f'<CharacterStyleRange {attrs}><Content>{escape(seg)}</Content></CharacterStyleRange>'
+
+
 def psr(style: str, text: str, *, terminal: bool = False,
         span_columns: bool = False) -> str:
     """One ParagraphStyleRange.
@@ -66,10 +100,9 @@ def psr(style: str, text: str, *, terminal: bool = False,
     for line in lines:
         runs = bold_runs(line)
         line_xmls.append("".join(
-            '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
-            + (' FontStyle="Bold"' if bold else "")
-            + f'><Content>{escape(seg)}</Content></CharacterStyleRange>'
+            _character_style_range(piece, bold=bold, symbol_fallback=symbol_fallback)
             for seg, bold in runs
+            for piece, symbol_fallback in _character_runs(seg)
         ) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
              '<Content></Content></CharacterStyleRange>')
     br = ('<CharacterStyleRange AppliedCharacterStyle='

@@ -80,14 +80,27 @@ class ExportIdmlTests(unittest.TestCase):
         h1_range = story.split("</ParagraphStyleRange>")[0]
         self.assertIn("<Br/>", h1_range)
 
-    def test_missing_glyph_characters_are_replaced(self) -> None:
+    def test_symbol_glyphs_use_fallback_font_without_text_rewrite(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
-        psr = w._psr("HB Body", "16 V-60 V\u23935 A and LiFePO\u2084", terminal=True)
-        self.assertNotIn("\u2393", psr)
-        self.assertNotIn("\u2084", psr)
-        self.assertIn(" DC ", psr)
-        self.assertIn("LiFePO4", psr)
+        psr = w._psr(
+            "HB Body",
+            "16 V-60 V\u23935 A and LiFePO\u2084 \u203b \u2460",
+            terminal=True,
+        )
+        self.assertIn("\u2393", psr)
+        self.assertIn("\u2084", psr)
+        self.assertIn("\u203b", psr)
+        self.assertIn("\u2460", psr)
+        self.assertNotIn(" DC ", psr)
+        self.assertIn('AppliedFont="Arial Unicode MS"', psr)
+        self.assertIn('FontStyle="Regular"', psr)
+
+    def test_fonts_xml_declares_symbol_fallback_font(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        fonts = IdmlWriter(params).fonts_xml()
+        self.assertIn('Name="Arial Unicode MS"', fonts)
+        self.assertIn('PostScriptName="ArialUnicodeMS"', fonts)
 
     def test_page_count_follows_content(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -162,6 +175,25 @@ class ExportIdmlTests(unittest.TestCase):
         ]
         rows = _parse_grid_table(grid)
         self.assertEqual(rows, [["A", "B"], ["a1", "b1"], ["a2", "b2"]])
+
+    def test_grid_table_partial_rules_split_spanned_rows(self) -> None:
+        from tools.idml_rst_extract import _parse_grid_table
+        grid = [
+            "+----------------+----------------+",
+            "| Left           | Right          |",
+            "+================+================+",
+            "| left first     | right one      |",
+            "| continued      +----------------+",
+            "|                | right two      |",
+            "+----------------+----------------+",
+        ]
+        rows = _parse_grid_table(grid)
+        self.assertEqual(rows, [
+            ["Left", "Right"],
+            ["left first continued", "right one"],
+            ["", "right two"],
+        ])
+        self.assertFalse(any("----" in cell or "|" in cell for row in rows for cell in row))
 
     def test_unclosed_optional_arg_does_not_hang(self) -> None:
         # A truncated `\HBNoticeBlock[warn` (no closing `]`) must not spin the
@@ -533,6 +565,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Symbole", stories["st_safety_symbols_fr_signals"])
         self.assertIn("Signification", stories["st_safety_symbols_fr_icons_left"])
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_signals"])
+        self.assertIn(
+            'ParagraphShadingColor="Color/HB Brand Dark"',
+            stories["st_safety_symbols_fr_signals"],
+        )
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_tail_avertissement"])
         self.assertNotIn(">WARNING<", stories["st_safety_symbols_fr_tail_avertissement"])
         self.assertIn(
@@ -572,7 +608,8 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("tf_st_fcc_inbox_inbox", spread)
         self.assertIn("tf_st_fcc_inbox_tip", spread)
         self.assertEqual(spread.count('CornerOption="RoundedCorner"'), 2)
-        fcc_frame = spread.split('Self="tf_st_fcc_inbox_fcc"', 1)[1].split("</TextFrame>", 1)[0]
+        fcc_frame = spread.split('Self="tf_st_fcc_inbox_fcc"', 1)[1].split(
+            "</TextFrame>", 1)[0]
         self.assertIn('InsetSpacing="0 0 0 0"', fcc_frame)
         stories = dict(w.stories)
         self.assertIn("FCC left copy.", stories["st_fcc_inbox_fcc"])
@@ -600,7 +637,12 @@ class ExportIdmlTests(unittest.TestCase):
             })),
         ]
         w.add_fcc_inbox_page("st_fcc_plain", fcc, inbox, ROOT, 3)
+        spread = dict(w.spreads)["sp_3"]
+        fcc_frame = spread.split('Self="tf_st_fcc_plain_fcc"', 1)[1].split(
+            "</TextFrame>", 1)[0]
+        self.assertIn('TextColumnCount="2"', fcc_frame)
         story = dict(w.stories)["st_fcc_plain_fcc"]
+        self.assertNotIn("<Table", story)
         self.assertIn("Este dispositivo cumple", story)
         self.assertIn("Si este aparato causa", story)
         self.assertIn("Reorientar o reubicar", story)
@@ -718,7 +760,9 @@ class ExportIdmlTests(unittest.TestCase):
         story = dict(w.stories)["st_spec"]
         if notes:
             self.assertIn(paragraph_style_ref("HB Spec Note"), story)
-            self.assertIn(notes[0][:20].replace("&", "&amp;"), story)
+            marker, body = notes[0].split(" ", 1)
+            self.assertIn(f"<Content>{marker}</Content>", story)
+            self.assertIn(body[:20].replace("&", "&amp;"), story)
 
     def test_dom_version_supports_paragraph_shading(self) -> None:
         # paragraph shading is CC2015+; a DOMVersion 8.0 doc is parsed with

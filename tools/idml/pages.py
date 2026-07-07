@@ -8,6 +8,7 @@ byte-comparison pins equivalence.
 from __future__ import annotations
 
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 from . import components as _components
 from .fcc_fallback import component_spec, fcc_spec_from_blocks
@@ -170,6 +171,22 @@ def _single_component_story(writer, sid: str, title: str, spec: dict,
     return writer._add_story_parts(sid, title, [xml_part])
 
 
+def _fcc_flow_story(writer, sid: str, title: str, spec: dict) -> str:
+    mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.pdf"
+    parts: list[str] = []
+    if mark.exists():
+        style_ref = paragraph_style_ref("HB Figure")
+        parts.append(
+            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
+            '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+            + writer._image_cell_content(f"{sid}_fm", mark, 32.0, 22.0)
+            + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n'
+        )
+    body = "\n".join(t.strip() for t in spec.get("texts", []) if str(t).strip())
+    parts.append(writer._psr("HB Body", body, terminal=True))
+    return writer._add_story_parts(sid, title, parts)
+
+
 def add_fcc_inbox_page(
     writer,
     sid: str,
@@ -182,6 +199,7 @@ def add_fcc_inbox_page(
 
     body_x = 27.4
     body_w = writer.page_w - body_x * 2
+    explicit_fcc = component_spec(fcc_blocks, "fcc") is not None
     fcc_spec = fcc_spec_from_blocks(fcc_blocks)
     inbox_title = next((text for kind, text in inbox_blocks if kind == "h1"),
                        "WHAT'S IN THE BOX")
@@ -189,15 +207,21 @@ def add_fcc_inbox_page(
     tip_spec = component_spec(inbox_blocks, "notice")
 
     fcc_sid = f"{sid}_fcc"
-    writer._single_component_story(
-        fcc_sid, "FCC notice", fcc_spec, bundle_root, body_w)
+    if explicit_fcc:
+        writer._single_component_story(
+            fcc_sid, "FCC notice", fcc_spec, bundle_root, body_w)
+        fcc_opts = {"fill": "Color/HB Bg K05", "rounded": True,
+                    "inset": (0, 0, 0, 0)}
+    else:
+        _fcc_flow_story(writer, fcc_sid, "FCC notice", fcc_spec)
+        fcc_opts = {"columns": 2, "fill": "Color/HB Bg K05", "rounded": True,
+                    "inset": (4, 6, 4, 6)}
     title_sid = f"{sid}_title"
     writer._add_story_parts(
         title_sid, "Inbox title",
         [writer._psr("HB Capsule Text", inbox_title, terminal=True)])
     frame_specs: list[tuple[str, str, tuple[float, float, float, float], dict]] = [
-        ("fcc", fcc_sid, (body_x, 34.0, body_w, 184.0),
-         {"fill": "Color/HB Bg K05", "rounded": True, "inset": (0, 0, 0, 0)}),
+        ("fcc", fcc_sid, (body_x, 34.0, body_w, 184.0), fcc_opts),
         ("title", title_sid, (body_x, 250.0, body_w, 21.5),
          {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (1, 5, 1, 6)}),
     ]
@@ -245,6 +269,24 @@ def add_fcc_inbox_page(
     writer.spreads.append((spread_id, xml))
     return spread_id
 
+def _localized_signal_label_bar(label: str) -> str:
+    style_ref = paragraph_style_ref("HB Notice Side Label")
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}" '
+        'ParagraphShadingOn="true" '
+        'ParagraphShadingColor="Color/HB Brand Dark" '
+        'ParagraphShadingTint="100" '
+        'ParagraphShadingWidth="ColumnWidth" '
+        'ParagraphShadingTopOrigin="AscentTopOrigin" '
+        'ParagraphShadingBottomOrigin="DescentBottomOrigin" '
+        'ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" '
+        'ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3">\n'
+        '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'FillColor="Color/Paper"><Content>{escape(label)}</Content></CharacterStyleRange>\n'
+        '  </ParagraphStyleRange>\n'
+    )
+
+
 def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> str:
     asset_name = f"{label.lower()}_bar.png"
     asset = (
@@ -257,7 +299,7 @@ def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> str:
                 '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                 + writer._image_cell_content(tid, asset, 61.2, 16.2)
                 + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
-    return writer._psr("HB Capsule Text", label, terminal=True)
+    return _localized_signal_label_bar(label)
 
 def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                           width: float, bundle_root: Path,
