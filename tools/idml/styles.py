@@ -149,7 +149,10 @@ def fonts_xml() -> str:
         '    <Font Self="ff_gilroy_b" FontFamily="Gilroy" Name="Gilroy Bold" PostScriptName="Gilroy-Bold" Status="Installed" FontStyleName="Bold" FontType="OpenTypeCFF"/>\n'
         '  </FontFamily>\n'
         '  <FontFamily Self="ff_arial_unicode_ms" Name="Arial Unicode MS">\n'
-        '    <Font Self="ff_arial_unicode_ms_r" FontFamily="Arial Unicode MS" Name="Arial Unicode MS" PostScriptName="ArialUnicodeMS" Status="Installed" FontStyleName="Regular" FontType="TrueType"/>\n'
+        '    <Font Self="ff_arial_unicode_ms_r" FontFamily="Arial Unicode MS" Name="Arial Unicode MS Regular" PostScriptName="ArialUnicodeMS" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>\n'
+        '  </FontFamily>\n'
+        '  <FontFamily Self="ff_apple_symbols" Name="Apple Symbols">\n'
+        '    <Font Self="ff_apple_symbols_r" FontFamily="Apple Symbols" Name="Apple Symbols Regular" PostScriptName="AppleSymbols" Status="Installed" FontStyleName="Regular" FontType="TrueType"/>\n'
         '  </FontFamily>\n'
         '</idPkg:Fonts>\n'
     )

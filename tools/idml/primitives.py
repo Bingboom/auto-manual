@@ -23,11 +23,14 @@ _ATTR_ENTITIES = {'"': "&quot;"}
 # SYMBOL_FONT_FALLBACK_CHARS below at character-run level.
 GLYPH_FALLBACKS: tuple[tuple[str, str], ...] = ()
 
-SYMBOL_FONT_FALLBACK = "Arial Unicode MS"
+DIRECT_CURRENT_SYMBOL_FONT = "Apple Symbols"
+GENERAL_SYMBOL_FONT = "Arial Unicode MS"
 SYMBOL_FONT_FALLBACK_STYLE = "Regular"
-SYMBOL_FONT_FALLBACK_CHARS = frozenset(
-    "⎓※₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩"
-)
+SYMBOL_FONT_FALLBACKS = {
+    "⎓": DIRECT_CURRENT_SYMBOL_FONT,
+    "※": GENERAL_SYMBOL_FONT,
+    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩"},
+}
 
 PROSE_STYLE = {"h1": "HB H1", "h2": "HB Title L2", "h3": "HB Title L3",
                "label": "HB Notice Label", "body": "HB Body", "list": "HB List"}
@@ -54,35 +57,36 @@ def bold_runs(line: str) -> list[tuple[str, bool]]:
     return runs
 
 
-def _character_runs(seg: str) -> list[tuple[str, bool]]:
-    """Split a run by whether it needs a symbol-capable font."""
-    runs: list[tuple[str, bool]] = []
+def _character_runs(seg: str) -> list[tuple[str, str | None]]:
+    """Split a run by the explicit font fallback it needs."""
+    runs: list[tuple[str, str | None]] = []
     buf: list[str] = []
-    current_needs_fallback: bool | None = None
+    current_font = SYMBOL_FONT_FALLBACKS.get(seg[0]) if seg else None
     for ch in seg:
-        needs_fallback = ch in SYMBOL_FONT_FALLBACK_CHARS
-        if current_needs_fallback is None:
-            current_needs_fallback = needs_fallback
-        if needs_fallback != current_needs_fallback:
-            runs.append(("".join(buf), current_needs_fallback))
+        font = SYMBOL_FONT_FALLBACKS.get(ch)
+        if font != current_font:
+            runs.append(("".join(buf), current_font))
             buf = []
-            current_needs_fallback = needs_fallback
+            current_font = font
         buf.append(ch)
-    if buf and current_needs_fallback is not None:
-        runs.append(("".join(buf), current_needs_fallback))
+    if buf:
+        runs.append(("".join(buf), current_font))
     return runs
 
 
-def _character_style_range(seg: str, *, bold: bool, symbol_fallback: bool) -> str:
+def _character_style_range(seg: str, *, bold: bool, fallback_font: str | None) -> str:
     attrs = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
-    if symbol_fallback:
-        attrs += (
-            f' AppliedFont="{SYMBOL_FONT_FALLBACK}"'
-            f' FontStyle="{SYMBOL_FONT_FALLBACK_STYLE}"'
+    properties = ""
+    if fallback_font:
+        attrs += f' FontStyle="{SYMBOL_FONT_FALLBACK_STYLE}"'
+        properties = (
+            "<Properties>"
+            f'<AppliedFont type="string">{escape(fallback_font)}</AppliedFont>'
+            "</Properties>"
         )
     elif bold:
         attrs += ' FontStyle="Bold"'
-    return f'<CharacterStyleRange {attrs}><Content>{escape(seg)}</Content></CharacterStyleRange>'
+    return f'<CharacterStyleRange {attrs}>{properties}<Content>{escape(seg)}</Content></CharacterStyleRange>'
 
 
 def psr(style: str, text: str, *, terminal: bool = False,
@@ -100,9 +104,9 @@ def psr(style: str, text: str, *, terminal: bool = False,
     for line in lines:
         runs = bold_runs(line)
         line_xmls.append("".join(
-            _character_style_range(piece, bold=bold, symbol_fallback=symbol_fallback)
+            _character_style_range(piece, bold=bold, fallback_font=fallback_font)
             for seg, bold in runs
-            for piece, symbol_fallback in _character_runs(seg)
+            for piece, fallback_font in _character_runs(seg)
         ) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
              '<Content></Content></CharacterStyleRange>')
     br = ('<CharacterStyleRange AppliedCharacterStyle='
