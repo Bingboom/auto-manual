@@ -1,21 +1,12 @@
 """IDML exporter — route B of the InDesign handoff plan.
 
-Produces an editable .idml (InDesign Markup Language) package so designers
-can fine-tune pipeline output in InDesign instead of retouching PDFs:
-
-- page geometry and paragraph styles are mapped 1:1 from data/layout_params.csv
-- brand colors are emitted as CMYK swatches (from the brand_color_* keys)
-- the SPECIFICATIONS page is exported as real IDML tables fed straight from
-  the phase2 Spec_Master snapshot (section titles + label/value rows)
-- body sections flow through linked text frames so InDesign reflows freely
-
-MVP scope (M1-M3): valid package + style system + spec tables/story.
-Not yet covered: image frames, two-column safety layout, full page set.
+Produces an editable .idml package (styles/geometry mapped 1:1 from
+data/layout_params.csv, CMYK swatches, data pages as real tables) so designers
+fine-tune pipeline output in InDesign instead of retouching PDFs.
 
 Usage:
-  python tools/export_idml.py --model JE-1000F --region US [--lang en]
-      [--data-root data/phase2] [--out docs/_build/.../manual.idml]
-  python tools/export_idml.py --check <file.idml>   # structural validation
+  python tools/export_idml.py --model JE-1000F --region US [--lang en] [--flow]
+  python tools/export_idml.py --check <file.idml>    # structural validation
 """
 from __future__ import annotations
 
@@ -323,9 +314,7 @@ def main() -> int:
                     help="Prepared rst bundle dir (default: docs/_build/<model>/<region>/<lang>/rst); prose pages are skipped if absent")
     ap.add_argument("--check", default=None, help="validate an existing .idml and exit")
     ap.add_argument("--flow", action="store_true",
-                    help="single-story book: thread the whole manual through one "
-                         "linked frame chain (Word-like continuous reflow) instead "
-                         "of the composed fixed-layout pages")
+                    help="single-story book (threaded frames, Word-like reflow)")
     args = ap.parse_args()
 
     if args.check:
@@ -367,28 +356,12 @@ def main() -> int:
     prose_pages = 0
 
     if args.flow:
-        ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
-        if not ordered:
-            print(f"[export-idml] ERROR: --flow needs a prepared bundle at {bundle_root} "
-                  "(run `build.py rst` first)")
-            return 1
-        sid, est, skipped_raw = _flow.build_flow_story(
-            w, ordered, tags, extract_page=extract_page, bundle_root=bundle_root,
-            sections=sections, spec_annotations=spec_annotations,
-            lcd_rows=lcd_rows, trouble_rows=trouble_rows,
-            symbol_rows_for=symbol_rows_for, default_lang=args.lang)
-        pages = w.pages_for_height(est)
-        w.add_spread_chain(sid, pages, 0)
-        out = Path(args.out) if args.out else default_output_path(
-            args.model, args.region, args.lang, bundle_root)
-        w.write(out)
-        issues = check_idml(out)
-        for i in issues:
-            print(f"[export-idml] SELF-CHECK FAIL: {i}")
-        print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
-        print(f"[export-idml] FLOW single story | spreads={pages} "
-              f"skipped raw blocks={skipped_raw}")
-        return 1 if issues else 0
+        return _flow.run_flow(
+            w, args, bundle_root=bundle_root, tags=tags,
+            bundle_page_order=bundle_page_order, extract_page=extract_page,
+            sections=sections, spec_annotations=spec_annotations, lcd_rows=lcd_rows,
+            trouble_rows=trouble_rows, symbol_rows_for=symbol_rows_for,
+            default_output_path=default_output_path, check_idml=check_idml)
 
     def chain(story_id: str, est_h: float, columns: int = 1) -> None:
         nonlocal page_cursor

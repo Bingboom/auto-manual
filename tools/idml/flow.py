@@ -16,9 +16,10 @@ keeps its trailing <Br/> and sections cannot fuse across the join.
 """
 from __future__ import annotations
 
+from pathlib import Path
 from xml.sax.saxutils import escape
 
-from . import stories as _stories
+from . import section_parts as _sp
 from .params import IDPKG
 from .primitives import _ATTR_ENTITIES
 
@@ -48,21 +49,21 @@ def build_flow_story(writer, ordered, tags, *, extract_page, bundle_root,
             return
         emitted.add(kind)
         if kind == "spec":
-            p = _stories.spec_parts(writer, sections, spec_annotations,
+            p = _sp.spec_parts(writer, sections, spec_annotations,
                                     tid_prefix="flow_tbl_spec", terminal_last=False)
             est += writer.estimate_spec_height(sections) + 10.0 * len(spec_annotations)
         elif kind == "lcd" and lcd_rows:
-            p = _stories.lcd_parts(writer, lcd_rows, tid="flow_tbl_lcd", terminal_last=False)
+            p = _sp.lcd_parts(writer, lcd_rows, tid="flow_tbl_lcd", terminal_last=False)
             est += 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in lcd_rows)
         elif kind == "trouble" and trouble_rows:
-            p = _stories.trouble_parts(writer, trouble_rows, tid="flow_tbl_trouble",
+            p = _sp.trouble_parts(writer, trouble_rows, tid="flow_tbl_trouble",
                                        terminal_last=False)
             est += 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in trouble_rows)
         elif kind == "symbols":
             sig, ico = symbol_rows_for(default_lang)
             if not (sig or ico):
                 return
-            p = _stories.symbols_parts(writer, sig, ico, default_lang,
+            p = _sp.symbols_parts(writer, sig, ico, default_lang,
                                        sig_tid="flow_tbl_sym_sig", ico_tid="flow_tbl_sym_ico",
                                        terminal_last=False)
             est += 16.0 + 14.0 * len(sig) + 26.0 * len(ico)
@@ -82,7 +83,7 @@ def build_flow_story(writer, ordered, tags, *, extract_page, bundle_root,
         # unique tid seed per page so component/table ids never collide in the
         # single story
         seed = "flow_" + page.stem.replace("-", "_")
-        sub, sub_est = _stories.prose_blocks_to_parts(
+        sub, sub_est = _sp.prose_blocks_to_parts(
             writer, seed, res.blocks, bundle_root, terminal_last=False)
         parts.extend(sub)
         est += sub_est
@@ -97,3 +98,31 @@ def build_flow_story(writer, ordered, tags, *, extract_page, bundle_root,
     )
     writer.stories.append((sid, xml))
     return sid, est, skipped
+
+
+def run_flow(writer, args, *, bundle_root, tags, bundle_page_order, extract_page,
+             sections, spec_annotations, lcd_rows, trouble_rows, symbol_rows_for,
+             default_output_path, check_idml) -> int:
+    """Full --flow path: single threaded story + one frame chain; writes + checks."""
+    ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
+    if not ordered:
+        print(f"[export-idml] ERROR: --flow needs a prepared bundle at {bundle_root} "
+              "(run `build.py rst` first)")
+        return 1
+    sid, est, skipped = build_flow_story(
+        writer, ordered, tags, extract_page=extract_page, bundle_root=bundle_root,
+        sections=sections, spec_annotations=spec_annotations,
+        lcd_rows=lcd_rows, trouble_rows=trouble_rows,
+        symbol_rows_for=symbol_rows_for, default_lang=args.lang)
+    pages = writer.pages_for_height(est)
+    writer.add_spread_chain(sid, pages, 0)
+    out = Path(args.out) if args.out else default_output_path(
+        args.model, args.region, args.lang, bundle_root)
+    writer.write(out)
+    issues = check_idml(out)
+    for i in issues:
+        print(f"[export-idml] SELF-CHECK FAIL: {i}")
+    print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
+    print(f"[export-idml] FLOW single story | spreads={pages} "
+          f"skipped raw blocks={skipped}")
+    return 1 if issues else 0
