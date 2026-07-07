@@ -115,9 +115,26 @@ class TestBuildDispatch(unittest.TestCase):
         self.assertEqual("tools", export_script.parent.name)
         self.assertEqual("export_idml.py", export_script.name)
         self.assertIn("--data-root", calls[3][1])
+        self.assertIn("--mode", calls[3][1])
+        self.assertIn("production", calls[3][1])
 
-    def _dispatch(self, action: str) -> list[tuple]:
-        args = SimpleNamespace(action=action, data_root="data/phase2", model="JE-1000F", region="US")
+    def test_dispatch_idml_should_pass_requested_mode_to_exporter(self) -> None:
+        calls = self._dispatch("idml", idml_mode="flow")
+
+        self.assertIn("--mode", calls[3][1])
+        mode_index = calls[3][1].index("--mode")
+        self.assertEqual("flow", calls[3][1][mode_index + 1])
+
+    def _dispatch(self, action: str, **overrides) -> list[tuple]:
+        values = {
+            "action": action,
+            "data_root": "data/phase2",
+            "model": "JE-1000F",
+            "region": "US",
+            "idml_mode": "production",
+        }
+        values.update(overrides)
+        args = SimpleNamespace(**values)
         calls: list[tuple] = []
 
         def record_call(name: str):

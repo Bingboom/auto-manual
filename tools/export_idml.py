@@ -305,7 +305,6 @@ def default_output_path(model: str, region: str, lang: str, bundle_root: Path) -
         / f"manual_{model_slug}_{region_slug}_{lang}.idml"
     )
 
-
 # ---------------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------------
@@ -319,6 +318,8 @@ def main() -> int:
     ap.add_argument("--out", default=None)
     ap.add_argument("--bundle-root", default=None,
                     help="Prepared rst bundle dir (default: docs/_build/<model>/<region>/<lang>/rst); prose pages are skipped if absent")
+    ap.add_argument("--mode", "--idml-mode", dest="mode", choices=("production", "flow", "both"), default="production",
+                    help="IDML export mode; production preserves historical behavior.")
     ap.add_argument("--check", default=None, help="validate an existing .idml and exit")
     args = ap.parse_args()
 
@@ -328,7 +329,9 @@ def main() -> int:
             print(f"[idml-check] FAIL {i}")
         print(f"[idml-check] {'OK' if not issues else f'{len(issues)} issue(s)'}: {args.check}")
         return 1 if issues else 0
-
+    if args.mode != "production":
+        print("[export-idml] ERROR: flow/both modes are registered but not implemented yet; use --mode production.")
+        return 2
     params = load_layout_params(ROOT / "data" / "layout_params.csv")
     data_root = (ROOT / args.data_root) if not Path(args.data_root).is_absolute() else Path(args.data_root)
     sections = load_spec_sections(data_root, args.model, args.region, args.lang)

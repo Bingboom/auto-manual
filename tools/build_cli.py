@@ -74,6 +74,15 @@ def parse_args(
     )
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--pdf-mode", choices=("latex", "word"), default=None, help="Override PDF backend")
+    ap.add_argument(
+        "--idml-mode",
+        choices=("production", "flow", "both"),
+        default="production",
+        help=(
+            "For idml: choose production IDML, flow handoff artifacts, or both. "
+            "Default production preserves the historical idml action."
+        ),
+    )
     ap.add_argument("--open", action="store_true", help="Allow opening generated artifacts after build")
     ap.add_argument("--no-clean", action="store_true", help="Skip cleaning current target outputs before build")
     ap.add_argument(
