@@ -1280,7 +1280,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             ):
                 token, cloud_doc_url = process_build_queue.import_markdown_to_cloud_doc(
                     cli_bin="lark-cli",
-                    markdown_output_path=md_path,
+                    source_path=md_path,
                     identity="bot",
                 )
 
@@ -1646,13 +1646,15 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
 
         self.assertEqual(0, exit_code)
-        # two imports: the editable cloud doc + the frozen baseline (same markdown)
+        # two imports: the editable cloud doc + the frozen baseline. Both import the
+        # built Word .docx (images embedded), NOT the Markdown (whose local image
+        # paths Feishu cannot resolve).
         self.assertEqual(2, len(cloud_import_calls))
-        self.assertEqual(md_path, cloud_import_calls[0]["markdown_output_path"])
-        self.assertEqual(md_path, cloud_import_calls[1]["markdown_output_path"])
-        # the editable 飞书云文档 keeps the default (markdown stem) name; the frozen
-        # baseline is suffixed _基线<YYYYMMDD> so the two are distinguishable in the node
-        self.assertIsNone(cloud_import_calls[0].get("doc_name"))
+        self.assertEqual(word_path, cloud_import_calls[0]["source_path"])
+        self.assertEqual(word_path, cloud_import_calls[1]["source_path"])
+        # the editable 飞书云文档 keeps the versioned Markdown stem as its name; the
+        # frozen baseline is suffixed _基线<YYYYMMDD> so the two are distinguishable
+        self.assertEqual(md_path.stem, cloud_import_calls[0]["doc_name"])
         baseline_name = str(cloud_import_calls[1]["doc_name"])
         self.assertTrue(baseline_name.startswith(f"{md_path.stem}_基线"))
         baseline_date = baseline_name.rsplit("_基线", 1)[1]

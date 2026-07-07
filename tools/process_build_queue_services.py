@@ -66,13 +66,13 @@ def import_markdown_to_cloud_doc(
     module: Any,
     *,
     cli_bin: str,
-    markdown_output_path: Path,
+    source_path: Path,
     identity: str,
     doc_name: str | None = None,
 ) -> tuple[str, str]:
     return _import_markdown_to_cloud_doc_impl(
         cli_bin=cli_bin,
-        markdown_output_path=markdown_output_path,
+        source_path=source_path,
         identity=identity,
         repo_root=module.ROOT,
         run_lark_cli_json=module._run_lark_cli_json,

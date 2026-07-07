@@ -248,10 +248,14 @@ def process_queue_record_group(
         if can_write_feishu_cloud_doc:
             if md_output_path is None:
                 raise RuntimeError("Markdown output was not created for Feishu cloud doc import")
+            # Import the built Word .docx (images embedded) — NOT the Markdown, whose
+            # local relative image paths Feishu cannot resolve (blank images). Keep the
+            # Markdown's versioned stem as the cloud-doc display name.
             _cloud_doc_token, feishu_cloud_doc_url = import_markdown_to_cloud_doc(
                 cli_bin=cli_bin,
-                markdown_output_path=md_output_path,
+                source_path=word_output_path,
                 identity=identity,
+                doc_name=md_output_path.stem,
             )
             # Grant the operator edit access (the bot owns the import, so without
             # this they can only make a 副本) and co-locate it in the Word's wiki
@@ -266,14 +270,14 @@ def process_queue_record_group(
                 destination=effective_artifact_destination,
             )
             latest_feishu_cloud_doc_url = feishu_cloud_doc_url
-            # Frozen baseline (R0): a second import of the same markdown, placed in the
-            # review-doc node WITHOUT an edit grant. Backport later diffs the editable
-            # 飞书云文档 against this (render-vs-render → only the reviewer's edits).
-            # Suffix the name with _基线<YYYYMMDD> so the frozen baseline is
+            # Frozen baseline (R0): a second import of the same Word .docx, placed in
+            # the review-doc node WITHOUT an edit grant. Backport later diffs the
+            # editable 飞书云文档 against this (render-vs-render → only the reviewer's
+            # edits). Suffix the name with _基线<YYYYMMDD> so the frozen baseline is
             # distinguishable from the identically-sourced editable 飞书云文档.
             _baseline_token, baseline_doc_url = import_markdown_to_cloud_doc(
                 cli_bin=cli_bin,
-                markdown_output_path=md_output_path,
+                source_path=word_output_path,
                 identity=identity,
                 doc_name=f"{md_output_path.stem}_基线{built_at:%Y%m%d}",
             )
