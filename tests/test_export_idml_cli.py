@@ -54,6 +54,8 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
             self.assertTrue((out_dir / "manual.flow.source_trace.json").is_file())
             self.assertTrue((out_dir / "manual.flow.asset_manifest.csv").is_file())
             self.assertTrue((out_dir / "flow_conversion_notes.md").is_file())
+            self.assertTrue((out_dir / "flow_style_map.json").is_file())
+            self.assertTrue((out_dir / "manual.flow.idml").is_file())
         finally:
             shutil.rmtree(ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en", ignore_errors=True)
 
@@ -74,8 +76,10 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
                 self.assertTrue(out.is_file())
                 self.assertTrue((out_dir / "manual.flow.md").is_file())
+                self.assertTrue((out_dir / "manual.flow.idml").is_file())
                 self.assertIn("[export-idml] OK:", result.stdout)
                 self.assertIn("[export-idml] FLOW OK:", result.stdout)
+                self.assertIn("[export-idml] FLOW IDML OK:", result.stdout)
             finally:
                 shutil.rmtree(ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en", ignore_errors=True)
 

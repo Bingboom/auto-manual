@@ -1,0 +1,13 @@
+{
+  "h1": "Manual H1",
+  "h2": "Manual H2",
+  "h3": "Manual H3",
+  "paragraph": "Body",
+  "list": "Bullet List",
+  "table": "Simple Table",
+  "warning": "Warning Paragraph",
+  "caution": "Caution Paragraph",
+  "note": "Note Paragraph",
+  "tip": "Tip Paragraph",
+  "caption": "Figure Caption"
+}

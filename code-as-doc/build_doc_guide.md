@@ -637,7 +637,8 @@ python build.py idml --model JE-1000F --region US
 ```
 
 `idml` defaults to the production exporter. For the design-template handoff
-path, use flow mode; it writes semantic Markdown plus trace files under
+path, use flow mode; it writes semantic Markdown, a simple continuous-story
+IDML, style map, and trace files under
 `docs/_build/<model>/<region>/<lang>/idml/flow/`:
 
 ```powershell
@@ -647,6 +648,11 @@ python build.py idml --model JE-1000F --region US --idml-mode both
 
 Flow artifacts are generated handoff files, not a new content source. Fix copy
 in the Feishu/source-table/review layer and regenerate.
+
+The default flow style map lives at
+`docs/templates/idml_template/style_mapping/flow_style_map.json` and is copied
+to each flow output folder as `flow_style_map.json` so design can map the story
+to an InDesign template without changing production styles.
 
 `configs/config.eu.yaml` now represents the live `EU` region-family row as `eu-merged`, routes blank-`Lang` queue rows to the merged EU manual, and keeps `sync.phase2.tables.spec_master` pinned to the live Base view that contains `JE-1000F_EU` rows. `configs/config.eu-en.yaml`, `configs/config.eu-fr.yaml`, and `configs/config.eu-es.yaml` are the explicit English, French, and Spanish single-language EU surfaces when you need one language family at a time.
 
