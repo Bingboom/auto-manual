@@ -186,6 +186,28 @@ class TestWordBundle(unittest.TestCase):
         self.assertIn("Always follow these basic precautions.", html)
         self.assertIn("Item 4", html)
 
+    def test_rewrite_should_keep_signal_word_heading_above_table_not_in_callout(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            symbols = self._write_alert_labels_symbols_blocks(Path(td))
+            fragment = (
+                "<h2>警告</h2>"
+                "<table><tbody>"
+                "<tr><td>icon</td><td><strong>火のそばで使用しない</strong></td></tr>"
+                "</tbody></table>"
+                "<p><strong>危险</strong></p>"
+                "<p>この製品は…</p>"
+            )
+            html = _rewrite_word_friendly_fragment(
+                fragment, lang="zh", symbols_blocks_csv=str(symbols)
+            )
+        # the 警告 section heading stays a heading directly above its table,
+        # NOT folded into a [警告 | table] callout
+        self.assertRegex(html, r"<h2>警告</h2>\s*<table")
+        self.assertNotIn("<td>警告</td>", html)
+        self.assertNotIn(">警告</strong>", html)
+        # an inline signal-word label (standalone strong paragraph) still becomes a callout
+        self.assertIn("manual-callout-table", html)
+
     def test_convert_rst_fragment_to_html_should_keep_troubleshooting_steps_plain_in_tables(self) -> None:
         rst = """
 TROUBLESHOOTING
