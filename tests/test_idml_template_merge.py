@@ -58,8 +58,16 @@ class TemplateMergeTest(unittest.TestCase):
                     '<Color Self="Color/HB Bg K05" Name="HB Bg K05" ColorValue="0 0 0 5"/>'
                     '</idPkg:Graphic>',
             fonts='<idPkg:Fonts xmlns:idPkg="x"><FontFamily Name="Ours"/></idPkg:Fonts>',
-            story='<Story><ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">'
-                  '<Cell FillColor="Color/HB Bg K05"/></ParagraphStyleRange></Story>',
+            story='<Story>'
+                  # non-cell reference to the brand swatch -> drives injection
+                  '<ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文" '
+                  'ParagraphShadingColor="Color/HB Bg K05">'
+                  # a real (non-self-closing) cell carrying local overrides
+                  '<Table AppliedTableStyle="TableStyle/正文表格">'
+                  '<Cell Self="c0" Name="0:0" RowSpan="1" ColumnSpan="1" '
+                  'AppliedCellStyle="CellStyle/$ID/[None]" FillColor="Color/黑色" '
+                  'TopInset="3" LeftInset="4">hello</Cell>'
+                  '</Table></ParagraphStyleRange></Story>',
         )
         # template: same-named body style but the DESIGNER definition (7pt),
         # and no HB Bg K05 swatch
@@ -96,6 +104,12 @@ class TemplateMergeTest(unittest.TestCase):
         self.assertIn('Self="Color/黑色"', graphic)
         # our content preserved verbatim
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/正文"', story)
+        # cell overrides stripped so template region cell styles govern; Self /
+        # Name / content kept, fill+inset gone
+        self.assertNotIn("FillColor", story.split("<Cell", 1)[1].split(">", 1)[0])
+        self.assertNotIn("Inset", story)
+        self.assertIn('<Cell Self="c0" Name="0:0"', story)
+        self.assertIn(">hello</Cell>", story)
         # mimetype first and stored
         self.assertEqual(names[0], "mimetype")
         with zipfile.ZipFile(self.out) as z:
