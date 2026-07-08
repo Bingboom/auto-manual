@@ -8,12 +8,12 @@
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>BUTTONS &amp; KEY COMBINATIONS</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Press the DISPLAY button to wake the screen. Hold it for two seconds to turn the unit off.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文" SpanColumnType="SpanColumns">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式" SpanColumnType="SpanColumns">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="st_05_operation_guide_t1" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="3" ColumnCount="3" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="st_05_operation_guide_t1" AppliedTableStyle="TableStyle/正文表格" BodyRowCount="3" ColumnCount="3" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_05_operation_guide_t1r0" Name="0"/>
     <Row Self="st_05_operation_guide_t1r1" Name="1"/>
     <Row Self="st_05_operation_guide_t1r2" Name="2"/>
@@ -68,9 +68,9 @@
   </Table>
     <Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文" SpanColumnType="SpanColumns">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式" SpanColumnType="SpanColumns">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="st_05_operation_guide_cmp4" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="st_05_operation_guide_cmp4" AppliedTableStyle="TableStyle/Notice表格" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_05_operation_guide_cmp4r0" Name="0"/>
     <Column Self="st_05_operation_guide_cmp4col0" Name="0" SingleColumnWidth="43.6932"/>
     <Column Self="st_05_operation_guide_cmp4col1" Name="1" SingleColumnWidth="268.401"/>
@@ -80,7 +80,7 @@
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="st_05_operation_guide_cmp4c1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" FillColor="Color/HB Bg K05" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" TopInset="10" BottomInset="10" LeftInset="6" RightInset="6">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The AC output turns off automatically after 12 hours without load. Rated power* values are measured at 25°C.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
@@ -90,9 +90,9 @@
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>SCREEN MODES</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文" SpanColumnType="SpanColumns">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式" SpanColumnType="SpanColumns">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="st_05_operation_guide_cmp6" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="6" ColumnCount="3" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="st_05_operation_guide_cmp6" AppliedTableStyle="TableStyle/正文表格" BodyRowCount="6" ColumnCount="3" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_05_operation_guide_cmp6r0" Name="0"/>
     <Row Self="st_05_operation_guide_cmp6r1" Name="1"/>
     <Row Self="st_05_operation_guide_cmp6r2" Name="2"/>

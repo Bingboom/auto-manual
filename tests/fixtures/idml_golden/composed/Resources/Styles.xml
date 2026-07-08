@@ -69,7 +69,7 @@
       <Leading type="enum">Auto</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/正文" Name="正文" PointSize="6.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/段落样式" Name="段落样式" PointSize="6.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Regular</FontStyle>

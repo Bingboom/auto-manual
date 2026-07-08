@@ -31,6 +31,6 @@ def render_lcdmode(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
             cells.append(cell(f"{tid}c{ri}_2", f"2:{ri}",
                               psr("HB Spec Value", desc, terminal=True)))
             ri += 1
-    table = component_table(tid, cols, cells, n_rows=ri)
+    table = component_table(tid, cols, cells, n_rows=ri, role="data")
     xml = art + wrap_table_paragraph(table, terminal, span_columns)
     return xml, 70.0 + 12.0 * ri

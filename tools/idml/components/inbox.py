@@ -27,5 +27,5 @@ def render_inbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
             f"{tid}c0_{ci}", f"{ci}:0", content,
             top=9, bottom=10, left=6, right=6,
         ))
-    table = component_table(tid, cols, cells)
+    table = component_table(tid, cols, cells, role="layout")
     return wrap_table_paragraph(table, terminal, span_columns), 110.0
