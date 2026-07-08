@@ -11,7 +11,7 @@ import re
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from .style_names import paragraph_style_ref
+from .style_names import paragraph_style_ref, table_style_ref
 
 # saxutils.escape only handles &<> by default; inside a double-quoted
 # XML attribute a raw " truncates the value and malforms the part.
@@ -126,7 +126,9 @@ def psr(style: str, text: str, *, terminal: bool = False,
 def spec_table(tid: str, rows: list[tuple[str, str]],
                label_style: str = "HB Spec Label", *,
                params: dict[str, tuple[str, str]],
-               page_w: float, m_l: float, m_r: float) -> str:
+               page_w: float, m_l: float, m_r: float,
+               role: str | None = None) -> str:
+    table_style = table_style_ref(role)
     left_ratio = float(params.get("comp_spec_table_left_ratio", ("0.315", ""))[0])
     body_w = page_w - m_l - m_r
     col1 = body_w * left_ratio
@@ -145,7 +147,7 @@ def spec_table(tid: str, rows: list[tuple[str, str]],
         f'    <Row Self="{tid}r{ri}" Name="{ri}" SingleRowHeight="10.3"/>' for ri in range(len(rows))
     )
     return (
-        f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
+        f'  <Table Self="{tid}" AppliedTableStyle="{table_style}" '
         f'BodyRowCount="{len(rows)}" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">\n'
         f'{row_els}\n'
         f'    <Column Self="{tid}col0" Name="0" SingleColumnWidth="{col1:g}"/>\n'
@@ -239,14 +241,15 @@ def cell(cid: str, name: str, content: str, *, fill: str | None = None,
 
 
 def component_table(tid: str, cols: list[float], cells: list[str],
-                    n_rows: int = 1) -> str:
+                    n_rows: int = 1, role: str | None = None) -> str:
+    table_style = table_style_ref(role)
     row_els = "\n".join(f'    <Row Self="{tid}r{ri}" Name="{ri}"/>'
                          for ri in range(n_rows))
     col_els = "\n".join(
         f'    <Column Self="{tid}col{ci}" Name="{ci}" SingleColumnWidth="{wd:g}"/>'
         for ci, wd in enumerate(cols))
     return (
-        f'  <Table Self="{tid}" AppliedTableStyle="TableStyle/$ID/[Basic Table]" '
+        f'  <Table Self="{tid}" AppliedTableStyle="{table_style}" '
         f'BodyRowCount="{n_rows}" ColumnCount="{len(cols)}" HeaderRowCount="0" FooterRowCount="0">\n'
         f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n")
 

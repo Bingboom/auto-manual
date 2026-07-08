@@ -37,6 +37,7 @@ try:
     from tools.idml import prose_flow as _prose_flow
     from tools.idml import stories as _stories
     from tools.idml import styles as _styles
+    from tools.idml import template_merge as _template_merge
 except ImportError:  # pragma: no cover - direct script execution fallback
     from idml_rst_extract import bundle_page_order, extract_page  # type: ignore
     from script_bootstrap import bootstrap_repo_root
@@ -53,6 +54,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import prose_flow as _prose_flow  # type: ignore
     from idml import stories as _stories  # type: ignore
     from idml import styles as _styles  # type: ignore
+    from idml import template_merge as _template_merge  # type: ignore
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
@@ -128,9 +130,9 @@ class IdmlWriter:
         return _prim.bold_runs(line)
 
     def _table(self, tid: str, rows: list[tuple[str, str]],
-               label_style: str = "HB Spec Label") -> str:
+               label_style: str = "HB Spec Label", *, role: str | None = None) -> str:
         return _prim.spec_table(tid, rows, label_style, params=self.params,
-                                page_w=self.page_w, m_l=self.m_l, m_r=self.m_r)
+                                page_w=self.page_w, m_l=self.m_l, m_r=self.m_r, role=role)
 
     def frame_height(self) -> float:
         return _package.frame_height(self)
@@ -160,8 +162,8 @@ class IdmlWriter:
                           top=top, bottom=bottom, left=left, right=right)
 
     def _component_table(self, tid: str, cols: list[float], cells: list[str],
-                         n_rows: int = 1) -> str:
-        return _prim.component_table(tid, cols, cells, n_rows)
+                         n_rows: int = 1, *, role: str | None = None) -> str:
+        return _prim.component_table(tid, cols, cells, n_rows, role=role)
 
     def _wrap_table_paragraph(self, table: str, terminal: bool,
                               span_columns: bool = True) -> str:
@@ -305,14 +307,11 @@ def main() -> int:
     ap.add_argument("--mode", "--idml-mode", dest="mode", choices=("production", "flow", "both"), default="production",
                     help="IDML export mode; production preserves historical behavior.")
     ap.add_argument("--check", default=None, help="validate an existing .idml and exit")
+    ap.add_argument("--template", default=None, help="bake production idml into this template .idml (pre-styled)")
     args = ap.parse_args()
 
     if args.check:
-        issues = check_idml(Path(args.check))
-        for i in issues:
-            print(f"[idml-check] FAIL {i}")
-        print(f"[idml-check] {'OK' if not issues else f'{len(issues)} issue(s)'}: {args.check}")
-        return 1 if issues else 0
+        return _check.run_check_cli(args.check)
     data_root = (ROOT / args.data_root) if not Path(args.data_root).is_absolute() else Path(args.data_root)
     bundle_root = Path(args.bundle_root) if args.bundle_root else (
         default_bundle_root(args.model, args.region, args.lang))
@@ -550,6 +549,8 @@ def main() -> int:
             data_root=data_root, bundle_root=bundle_root,
             production_idml=out, flow=flow, build_command=sys.argv)
         print(f"[export-idml] HANDOFF OK: {handoff.root}")
+    if args.template:
+        _template_merge.bake_beside(out, args.template, check_idml)
     n_rows = sum(len(s["rows"]) for s in sections)
     print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
     print(f"[export-idml] stories={len(w.stories)} spreads={len(w.spreads)} "

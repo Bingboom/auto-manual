@@ -321,7 +321,7 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                                 top=3, bottom=3, left=6, right=4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                 top=3, bottom=3, left=7, right=5))
-    return writer._component_table(tid, cols, cells, n_rows=len(rows))
+    return writer._component_table(tid, cols, cells, n_rows=len(rows), role="data")
 
 def _symbols_icon_table(writer, tid: str, icons: list[dict], width: float,
                         lang: str = "en") -> str:
@@ -350,7 +350,7 @@ def _symbols_icon_table(writer, tid: str, icons: list[dict], width: float,
                                 top=3, bottom=3, left=4, right=4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                 top=3, bottom=3, left=5, right=4))
-    return writer._component_table(tid, cols, cells, n_rows=len(rows))
+    return writer._component_table(tid, cols, cells, n_rows=len(rows), role="data")
 
 def _table_story(writer, sid: str, title: str, table: str) -> str:
     style_ref = paragraph_style_ref("HB Body")

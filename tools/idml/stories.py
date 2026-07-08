@@ -124,7 +124,7 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path) -> str:
         for content, ci in cell_defs:
             cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
                                       top=2, bottom=2, left=3, right=3))
-    table = writer._component_table(tid, list(cols), cells, n_rows=len(rows))
+    table = writer._component_table(tid, list(cols), cells, n_rows=len(rows), role="data")
     parts = [
         writer._psr("HB H1", "LCD DISPLAY"),
         writer._wrap_table_paragraph(table, True, span_columns=False),
@@ -137,7 +137,7 @@ def add_symbols_story(writer, signals: list[tuple[str, str]],
     copy = symbol_copy(lang)
     parts = [writer._psr("HB H1", copy["title"])]
     if signals:
-        table = writer._table("tbl_sym_sig", signals, label_style="HB Notice Label")
+        table = writer._table("tbl_sym_sig", signals, label_style="HB Notice Label", role="data")
         parts.append(writer._wrap_table_paragraph(table, False, span_columns=False))
     if icons:
         body_w = writer.page_w - writer.m_l - writer.m_r
@@ -154,14 +154,14 @@ def add_symbols_story(writer, signals: list[tuple[str, str]],
                                 (1, writer._psr("HB Spec Value", row["text"], terminal=True))):
                 cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
                                           top=2, bottom=2, left=3, right=3))
-        table2 = writer._component_table(tid, list(cols), cells, n_rows=len(icons))
+        table2 = writer._component_table(tid, list(cols), cells, n_rows=len(icons), role="data")
         parts.append(writer._wrap_table_paragraph(table2, True, span_columns=False))
     return writer._add_story_parts(sid, "MEANING OF SYMBOLS", parts)
 
 def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
     sid = "st_trouble"
     parts = [writer._psr("HB H1", "TROUBLESHOOTING")]
-    table = writer._table("tbl_trouble", rows)
+    table = writer._table("tbl_trouble", rows, role="data")
     body_style_ref = paragraph_style_ref("HB Body")
     parts.append(
         f'  <ParagraphStyleRange AppliedParagraphStyle="{body_style_ref}">\n'
@@ -188,7 +188,7 @@ def add_spec_story(writer, sections: list[dict],
         parts.append(writer._psr("HB Spec Section", sec["title"]))
         # table anchored in its own paragraph; the paragraph still needs
         # its own <Br/> so the next section title starts a new paragraph
-        table = writer._table(f"tbl_spec{si}", sec["rows"])
+        table = writer._table(f"tbl_spec{si}", sec["rows"], role="spec")
         last = si == len(sections) - 1 and not annotations
         body_style_ref = paragraph_style_ref("HB Body")
         parts.append(

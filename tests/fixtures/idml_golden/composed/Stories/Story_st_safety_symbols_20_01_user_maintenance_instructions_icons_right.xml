@@ -2,9 +2,9 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_right" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Symbol icons right">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_r_tbl" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_r_tbl" AppliedTableStyle="TableStyle/正文表格" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_r_tblr0" Name="0"/>
     <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_r_tblcol0" Name="0" SingleColumnWidth="41.5783"/>
     <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_r_tblcol1" Name="1" SingleColumnWidth="112.415"/>

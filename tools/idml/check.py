@@ -49,3 +49,12 @@ def check_idml(path: Path) -> list[str]:
                 if frame.find("./Properties/PathGeometry") is None:
                     issues.append(f"{name}: TextFrame {frame.get('Self')} has no PathGeometry")
     return issues
+
+
+def run_check_cli(path: str) -> int:
+    """--check CLI: validate an existing .idml, print results, return exit code."""
+    issues = check_idml(Path(path))
+    for i in issues:
+        print(f"[idml-check] FAIL {i}")
+    print(f"[idml-check] {'OK' if not issues else f'{len(issues)} issue(s)'}: {path}")
+    return 1 if issues else 0

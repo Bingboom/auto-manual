@@ -26,7 +26,7 @@ def render_fcc(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
              psr("HB Body", texts[1] if len(texts) > 1 else "", terminal=True),
              fill="Color/HB Bg K05", stroke=False),
     ]
-    table = component_table(tid, cols, cells)
+    table = component_table(tid, cols, cells, role="layout")
     per_line = max(20, int(body_w / 2 / (0.52 * 6.2)))
     lines = max((len(t) + per_line - 1) // per_line for t in texts) if texts else 1
     return wrap_table_paragraph(table, terminal, span_columns), 7.5 * lines + 30
