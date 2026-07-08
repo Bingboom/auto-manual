@@ -143,10 +143,58 @@ def build_icml_story(writer, ordered, tags, *, extract_page, bundle_root,
 
 
 def run_alt(writer, args, *, check_idml, **kw) -> int:
-    """Dispatch to the .icml or --flow export path (whichever args selects)."""
+    """Dispatch to the .icml / --template / --flow export path args selects."""
     if args.icml:
         return run_icml(writer, args, **kw)
+    if getattr(args, "template", None):
+        return run_template(writer, args, check_idml=check_idml, **kw)
     return run_flow(writer, args, check_idml=check_idml, **kw)
+
+
+def run_template(writer, args, *, bundle_root, tags, bundle_page_order, extract_page,
+                 sections, spec_annotations, lcd_rows, trouble_rows, symbol_rows_for,
+                 default_output_path, check_idml) -> int:
+    """--template path: bake the flow story into the designer template package.
+
+    Builds the same single-story flow as --flow, then swaps in the template's
+    style/colour/font Resources so the result opens directly with the designer
+    formatting (no InCopy Place step).
+    """
+    import tempfile
+
+    from . import template_merge
+
+    ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
+    if not ordered:
+        print(f"[export-idml] ERROR: --template needs a prepared bundle at {bundle_root} "
+              "(run `build.py rst` first)")
+        return 1
+    sid, est, skipped = build_flow_story(
+        writer, ordered, tags, extract_page=extract_page, bundle_root=bundle_root,
+        sections=sections, spec_annotations=spec_annotations,
+        lcd_rows=lcd_rows, trouble_rows=trouble_rows,
+        symbol_rows_for=symbol_rows_for, default_lang=args.lang)
+    pages = writer.pages_for_height(est)
+    writer.add_spread_chain(sid, pages, 0)
+    if args.out:
+        out = Path(args.out)
+    else:
+        p = default_output_path(args.model, args.region, args.lang, bundle_root)
+        out = p.with_name(p.stem + "_tpl" + p.suffix)
+    with tempfile.NamedTemporaryFile(suffix=".idml", delete=False) as tf:
+        tmp = Path(tf.name)
+    writer.write(tmp)
+    res = template_merge.merge_into_template(tmp, Path(args.template), out)
+    tmp.unlink(missing_ok=True)
+    issues = check_idml(out)
+    for i in issues:
+        print(f"[export-idml] SELF-CHECK FAIL: {i}")
+    if res["unresolved_colors"]:
+        print(f"[export-idml] WARN unresolved colours: {res['unresolved_colors']}")
+    print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
+    print(f"[export-idml] TEMPLATE-baked single story | spreads={pages} "
+          f"injected colours={res['injected_colors']} skipped raw blocks={skipped}")
+    return 1 if issues else 0
 
 
 def run_flow(writer, args, *, bundle_root, tags, bundle_page_order, extract_page,

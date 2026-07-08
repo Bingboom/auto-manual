@@ -304,6 +304,8 @@ def main() -> int:
                     help="single-story book (threaded frames, Word-like reflow)")
     ap.add_argument("--icml", action="store_true",
                     help="placeable InCopy story (.icml) for the designer template")
+    ap.add_argument("--template", default=None,
+                    help="bake the flow story into this template .idml (opens pre-styled, no Place)")
     args = ap.parse_args()
 
     if args.check:
@@ -344,7 +346,7 @@ def main() -> int:
     skipped_raw = 0
     prose_pages = 0
 
-    if args.icml or args.flow:
+    if args.icml or args.flow or args.template:
         return _flow.run_alt(
             w, args, bundle_root=bundle_root, tags=tags,
             bundle_page_order=bundle_page_order, extract_page=extract_page,
