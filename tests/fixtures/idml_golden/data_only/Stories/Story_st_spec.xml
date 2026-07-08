@@ -8,7 +8,7 @@
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/TableHeading">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>GENERAL INFO</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="tbl_spec0" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="7" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_spec0r0" Name="0" SingleRowHeight="10.3"/>
@@ -96,7 +96,7 @@
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/TableHeading">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>INPUT PORTS</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="tbl_spec1" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="2" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_spec1r0" Name="0" SingleRowHeight="10.3"/>
@@ -129,7 +129,7 @@
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/TableHeading">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>OUTPUT PORTS</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="tbl_spec2" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="5" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_spec2r0" Name="0" SingleRowHeight="10.3"/>
@@ -195,7 +195,7 @@
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/TableHeading">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>ENVIRONMENTAL OPERATING TEMPERATURE</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="tbl_spec3" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="2" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_spec3r0" Name="0" SingleRowHeight="10.3"/>

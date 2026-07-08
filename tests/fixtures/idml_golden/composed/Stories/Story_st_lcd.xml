@@ -5,7 +5,7 @@
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading1">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>LCD DISPLAY</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="tbl_lcd" AppliedTableStyle="TableStyle/正文表格" BodyRowCount="26" ColumnCount="4" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_lcdr0" Name="0"/>

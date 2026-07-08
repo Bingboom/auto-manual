@@ -2,7 +2,7 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_fcc_inbox_p23_02_whats_in_the_box_inbox" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Inbox cards">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="st_fcc_inbox_p23_02_whats_in_the_box_inbox_cmp0" AppliedTableStyle="TableStyle/无表头表格" BodyRowCount="1" ColumnCount="3" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_fcc_inbox_p23_02_whats_in_the_box_inbox_cmp0r0" Name="0"/>

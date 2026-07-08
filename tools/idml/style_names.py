@@ -18,7 +18,7 @@ PARAGRAPH_STYLE_NAME_MAP = {
     "HB InBox Label": "Item List Text",
     "HB Capsule Text": "\u5e26\u5e95Heading2",
     "HB Figure": "Figure",
-    "HB Body": "\u6b63\u6587",
+    "HB Body": "\u6bb5\u843d\u6837\u5f0f",
     "HB List": "Item List",
     "HB Spec Section": "TableHeading",
     "HB Spec Label": "\u6bb5\u843d\u6837\u5f0f-\u52a0\u7c97",

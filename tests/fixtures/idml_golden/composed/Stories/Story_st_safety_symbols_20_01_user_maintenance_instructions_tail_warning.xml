@@ -2,7 +2,7 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_safety_symbols_20_01_user_maintenance_instructions_tail_warning" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Safety tail 0">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="st_safety_symbols_20_01_user_maintenance_instructions_tail_warning_cmp0" AppliedTableStyle="TableStyle/Warning表格" BodyRowCount="1" ColumnCount="3" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_tail_warning_cmp0r0" Name="0"/>
@@ -18,7 +18,7 @@
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_tail_warning_cmp0c2" Name="2:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="1" BottomInset="1" LeftInset="3" RightInset="4">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
