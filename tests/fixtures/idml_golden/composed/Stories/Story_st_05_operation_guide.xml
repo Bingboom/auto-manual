@@ -13,7 +13,7 @@
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文" SpanColumnType="SpanColumns">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="st_05_operation_guide_t1" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="3" ColumnCount="3" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="st_05_operation_guide_t1" AppliedTableStyle="TableStyle/正文表格" BodyRowCount="3" ColumnCount="3" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_05_operation_guide_t1r0" Name="0"/>
     <Row Self="st_05_operation_guide_t1r1" Name="1"/>
     <Row Self="st_05_operation_guide_t1r2" Name="2"/>
@@ -70,7 +70,7 @@
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文" SpanColumnType="SpanColumns">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="st_05_operation_guide_cmp4" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="st_05_operation_guide_cmp4" AppliedTableStyle="TableStyle/Notice表格" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_05_operation_guide_cmp4r0" Name="0"/>
     <Column Self="st_05_operation_guide_cmp4col0" Name="0" SingleColumnWidth="43.6932"/>
     <Column Self="st_05_operation_guide_cmp4col1" Name="1" SingleColumnWidth="268.401"/>
@@ -92,7 +92,7 @@
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文" SpanColumnType="SpanColumns">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="st_05_operation_guide_cmp6" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="6" ColumnCount="3" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="st_05_operation_guide_cmp6" AppliedTableStyle="TableStyle/正文表格" BodyRowCount="6" ColumnCount="3" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_05_operation_guide_cmp6r0" Name="0"/>
     <Row Self="st_05_operation_guide_cmp6r1" Name="1"/>
     <Row Self="st_05_operation_guide_cmp6r2" Name="2"/>

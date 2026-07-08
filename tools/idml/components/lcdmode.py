@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from ..primitives import cell, component_table, image_cell_content, psr, wrap_table_paragraph
+from ..style_names import table_style_ref
 from .base import RenderContext, figure_paragraph
 
 
@@ -31,6 +32,6 @@ def render_lcdmode(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
             cells.append(cell(f"{tid}c{ri}_2", f"2:{ri}",
                               psr("HB Spec Value", desc, terminal=True)))
             ri += 1
-    table = component_table(tid, cols, cells, n_rows=ri)
+    table = component_table(tid, cols, cells, n_rows=ri, table_style=table_style_ref("data"))
     xml = art + wrap_table_paragraph(table, terminal, span_columns)
     return xml, 70.0 + 12.0 * ri

@@ -10,7 +10,7 @@
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="tbl_spec0" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="7" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="tbl_spec0" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="7" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_spec0r0" Name="0" SingleRowHeight="10.3"/>
     <Row Self="tbl_spec0r1" Name="1" SingleRowHeight="10.3"/>
     <Row Self="tbl_spec0r2" Name="2" SingleRowHeight="10.3"/>
@@ -98,7 +98,7 @@
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="tbl_spec1" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="2" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="tbl_spec1" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="2" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_spec1r0" Name="0" SingleRowHeight="10.3"/>
     <Row Self="tbl_spec1r1" Name="1" SingleRowHeight="10.3"/>
     <Column Self="tbl_spec1col0" Name="0" SingleColumnWidth="98.3098"/>
@@ -131,7 +131,7 @@
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="tbl_spec2" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="5" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="tbl_spec2" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="5" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_spec2r0" Name="0" SingleRowHeight="10.3"/>
     <Row Self="tbl_spec2r1" Name="1" SingleRowHeight="10.3"/>
     <Row Self="tbl_spec2r2" Name="2" SingleRowHeight="10.3"/>
@@ -197,7 +197,7 @@
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="tbl_spec3" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="2" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="tbl_spec3" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="2" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="tbl_spec3r0" Name="0" SingleRowHeight="10.3"/>
     <Row Self="tbl_spec3r1" Name="1" SingleRowHeight="10.3"/>
     <Column Self="tbl_spec3col0" Name="0" SingleColumnWidth="98.3098"/>

@@ -29,6 +29,8 @@ try:
     from tools.idml import prose_flow as _prose_flow
     from tools.idml import stories as _stories
     from tools.idml import styles as _styles
+    from tools.idml import style_names as _style_names
+    from tools.idml import paths as _paths
 except ImportError:  # pragma: no cover - direct script execution fallback
     from idml_rst_extract import bundle_page_order, extract_page  # type: ignore
     from script_bootstrap import bootstrap_repo_root
@@ -43,6 +45,8 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import prose_flow as _prose_flow  # type: ignore
     from idml import stories as _stories  # type: ignore
     from idml import styles as _styles  # type: ignore
+    from idml import style_names as _style_names  # type: ignore
+    from idml import paths as _paths  # type: ignore
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
@@ -118,9 +122,10 @@ class IdmlWriter:
         return _prim.bold_runs(line)
 
     def _table(self, tid: str, rows: list[tuple[str, str]],
-               label_style: str = "HB Spec Label") -> str:
+               label_style: str = "HB Spec Label", *, role: str | None = None) -> str:
         return _prim.spec_table(tid, rows, label_style, params=self.params,
-                                page_w=self.page_w, m_l=self.m_l, m_r=self.m_r)
+                                page_w=self.page_w, m_l=self.m_l, m_r=self.m_r,
+                                table_style=_style_names.table_style_ref(role))
 
     def frame_height(self) -> float:
         return _package.frame_height(self)
@@ -150,8 +155,9 @@ class IdmlWriter:
                           top=top, bottom=bottom, left=left, right=right)
 
     def _component_table(self, tid: str, cols: list[float], cells: list[str],
-                         n_rows: int = 1) -> str:
-        return _prim.component_table(tid, cols, cells, n_rows)
+                         n_rows: int = 1, *, role: str | None = None) -> str:
+        return _prim.component_table(tid, cols, cells, n_rows,
+                                     table_style=_style_names.table_style_ref(role))
 
     def _wrap_table_paragraph(self, table: str, terminal: bool,
                               span_columns: bool = True) -> str:
@@ -273,30 +279,11 @@ class IdmlWriter:
 
 
 def default_bundle_root(model: str, region: str, lang: str) -> Path:
-    """Pick the prepared RST bundle path used by the current target layout."""
-    lang_bundle = ROOT / "docs" / "_build" / model / region / lang / "rst"
-    region_bundle = ROOT / "docs" / "_build" / model / region / "rst"
-    return lang_bundle if lang_bundle.is_dir() else region_bundle
+    return _paths.default_bundle_root(ROOT, model, region, lang)
 
 
 def default_output_path(model: str, region: str, lang: str, bundle_root: Path) -> Path:
-    """Match the IDML output location to the prepared bundle layout."""
-    region_bundle = ROOT / "docs" / "_build" / model / region / "rst"
-    model_slug = model.replace("-", "").lower()
-    region_slug = region.lower()
-    try:
-        is_region_bundle = bundle_root.resolve() == region_bundle.resolve()
-    except FileNotFoundError:
-        is_region_bundle = bundle_root == region_bundle
-    if is_region_bundle:
-        return (
-            ROOT / "docs" / "_build" / model / region / "idml"
-            / f"manual_{model_slug}_{region_slug}.idml"
-        )
-    return (
-        ROOT / "docs" / "_build" / model / region / lang / "idml"
-        / f"manual_{model_slug}_{region_slug}_{lang}.idml"
-    )
+    return _paths.default_output_path(ROOT, model, region, lang, bundle_root)
 
 
 # ---------------------------------------------------------------------------
@@ -315,6 +302,8 @@ def main() -> int:
     ap.add_argument("--check", default=None, help="validate an existing .idml and exit")
     ap.add_argument("--flow", action="store_true",
                     help="single-story book (threaded frames, Word-like reflow)")
+    ap.add_argument("--icml", action="store_true",
+                    help="placeable InCopy story (.icml) for the designer template")
     args = ap.parse_args()
 
     if args.check:
@@ -355,8 +344,8 @@ def main() -> int:
     skipped_raw = 0
     prose_pages = 0
 
-    if args.flow:
-        return _flow.run_flow(
+    if args.icml or args.flow:
+        return _flow.run_alt(
             w, args, bundle_root=bundle_root, tags=tags,
             bundle_page_order=bundle_page_order, extract_page=extract_page,
             sections=sections, spec_annotations=spec_annotations, lcd_rows=lcd_rows,

@@ -10,6 +10,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from ..primitives import cell, component_table, psr, image_cell_content, wrap_table_paragraph
+from ..style_names import table_style_ref
 from .base import RenderContext, figure_paragraph
 
 
@@ -37,7 +38,7 @@ def render_safetywarning(spec: dict, ctx: RenderContext, *, tid: str, terminal: 
         cell(f"{tid}c1", "1:0",
              psr("HB Title L3", body, terminal=True)),
     ]
-    table = component_table(tid, cols, cells)
+    table = component_table(tid, cols, cells, table_style=table_style_ref("warning"))
     return wrap_table_paragraph(table, terminal, span_columns), 28.0
 
 
@@ -62,7 +63,7 @@ def render_warninglead(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
         cell(f"{tid}c1", "1:0", right,
              top=4, bottom=4, left=5, right=4),
     ]
-    table = component_table(tid, cols, cells)
+    table = component_table(tid, cols, cells, table_style=table_style_ref("warning"))
     per_line = max(12, int((body_w - icon_w) / (0.52 * 6.6)))
     lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
     return wrap_table_paragraph(table, terminal, span_columns), max(36.0, 7.4 * (lines + 1) + 10)
@@ -94,7 +95,7 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
              psr("HB Body", body, terminal=True),
              top=1, bottom=1, left=3, right=4),
     ]
-    table = component_table(tid, cols, cells)
+    table = component_table(tid, cols, cells, table_style=table_style_ref("warning"))
     per_line = max(20, int((body_w - icon_w - label_w) / (0.52 * 6.2)))
     lines = max(1, (len(body) + per_line - 1) // per_line)
     return wrap_table_paragraph(table, terminal, span_columns), max(30.0, 7.5 * lines + 8)
@@ -118,7 +119,7 @@ def render_warnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         cell(f"{tid}c0", "0:0", icon),
         cell(f"{tid}c1", "1:0", right),
     ]
-    table = component_table(tid, cols, cells)
+    table = component_table(tid, cols, cells, table_style=table_style_ref("warning"))
     per_line = max(20, int((body_w - 36.0) / (0.52 * 6.6)))
     lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
     return wrap_table_paragraph(table, terminal, span_columns), max(34.0, 7.4 * (lines + 1) + 12)
@@ -149,7 +150,7 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         cell(f"{tid}c1", "1:0", right, fill=fill,
              stroke=False, top=10, bottom=10, left=6, right=6),
     ]
-    table = component_table(tid, cols, cells)
+    table = component_table(tid, cols, cells, table_style=table_style_ref("notice"))
     per_line = max(20, int((body_w - label_w) / (0.52 * 6.6)))
     lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
     return wrap_table_paragraph(table, terminal, span_columns), max(24.0, 7.4 * lines + 10)

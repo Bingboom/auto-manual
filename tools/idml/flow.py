@@ -31,10 +31,14 @@ _DATA_PREFIXES = {
 }
 
 
-def build_flow_story(writer, ordered, tags, *, extract_page, bundle_root,
-                     sections, spec_annotations, lcd_rows, trouble_rows,
-                     symbol_rows_for, default_lang, sid="st_flow"):
-    """Assemble every bundle construct into one story; returns (sid, est, skipped)."""
+def flow_parts(writer, ordered, tags, *, extract_page, bundle_root,
+               sections, spec_annotations, lcd_rows, trouble_rows,
+               symbol_rows_for, default_lang):
+    """Reading-order parts for the whole book; returns (parts, est, skipped).
+
+    Shared by the .idml single-story path (build_flow_story) and the .icml
+    placeable-story path (build_icml_story).
+    """
     parts: list[str] = []
     est = 0.0
     skipped = 0
@@ -87,7 +91,18 @@ def build_flow_story(writer, ordered, tags, *, extract_page, bundle_root,
             writer, seed, res.blocks, bundle_root, terminal_last=False)
         parts.extend(sub)
         est += sub_est
+    return parts, est, skipped
 
+
+def build_flow_story(writer, ordered, tags, *, extract_page, bundle_root,
+                     sections, spec_annotations, lcd_rows, trouble_rows,
+                     symbol_rows_for, default_lang, sid="st_flow"):
+    """Assemble every bundle construct into one .idml story; (sid, est, skipped)."""
+    parts, est, skipped = flow_parts(
+        writer, ordered, tags, extract_page=extract_page, bundle_root=bundle_root,
+        sections=sections, spec_annotations=spec_annotations, lcd_rows=lcd_rows,
+        trouble_rows=trouble_rows, symbol_rows_for=symbol_rows_for,
+        default_lang=default_lang)
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
@@ -98,6 +113,40 @@ def build_flow_story(writer, ordered, tags, *, extract_page, bundle_root,
     )
     writer.stories.append((sid, xml))
     return sid, est, skipped
+
+
+def build_icml_story(writer, ordered, tags, *, extract_page, bundle_root,
+                     sections, spec_annotations, lcd_rows, trouble_rows,
+                     symbol_rows_for, default_lang, sid="ust_flow"):
+    """Placeable InCopy (.icml) story XML — content + style-name refs only.
+
+    No spreads / styles / colors / geometry: File→Place into the designer
+    template and every paragraph/table style name resolves against the
+    template's own definitions (precise match, zero duplication).
+    """
+    parts, est, skipped = flow_parts(
+        writer, ordered, tags, extract_page=extract_page, bundle_root=bundle_root,
+        sections=sections, spec_annotations=spec_annotations, lcd_rows=lcd_rows,
+        trouble_rows=trouble_rows, symbol_rows_for=symbol_rows_for,
+        default_lang=default_lang)
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        '<?aid style="50" type="document" readerVersion="6.0" featureSet="257" '
+        'product="15.0(100)"?>\n'
+        '<?aid SnippetType="InCopyInterchange"?>\n'
+        f'<Story xmlns:idPkg="{IDPKG}" Self="{sid}" AppliedTOCStyle="n" '
+        f'TrackChanges="false" StoryTitle="{escape("Manual", _ATTR_ENTITIES)}">\n'
+        '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
+        + "".join(parts) + '</Story>\n'
+    )
+    return xml, est, skipped
+
+
+def run_alt(writer, args, *, check_idml, **kw) -> int:
+    """Dispatch to the .icml or --flow export path (whichever args selects)."""
+    if args.icml:
+        return run_icml(writer, args, **kw)
+    return run_flow(writer, args, check_idml=check_idml, **kw)
 
 
 def run_flow(writer, args, *, bundle_root, tags, bundle_page_order, extract_page,
@@ -126,3 +175,38 @@ def run_flow(writer, args, *, bundle_root, tags, bundle_page_order, extract_page
     print(f"[export-idml] FLOW single story | spreads={pages} "
           f"skipped raw blocks={skipped}")
     return 1 if issues else 0
+
+
+def run_icml(writer, args, *, bundle_root, tags, bundle_page_order, extract_page,
+             sections, spec_annotations, lcd_rows, trouble_rows, symbol_rows_for,
+             default_output_path) -> int:
+    """--icml path: write a placeable InCopy story (.icml) for the template."""
+    from xml.etree import ElementTree as ET
+
+    ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
+    if not ordered:
+        print(f"[export-idml] ERROR: --icml needs a prepared bundle at {bundle_root} "
+              "(run `build.py rst` first)")
+        return 1
+    xml, _est, skipped = build_icml_story(
+        writer, ordered, tags, extract_page=extract_page, bundle_root=bundle_root,
+        sections=sections, spec_annotations=spec_annotations,
+        lcd_rows=lcd_rows, trouble_rows=trouble_rows,
+        symbol_rows_for=symbol_rows_for, default_lang=args.lang)
+    if args.out:
+        out = Path(args.out)
+    else:
+        idml_out = default_output_path(args.model, args.region, args.lang, bundle_root)
+        out = idml_out.with_suffix(".icml")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(xml, encoding="utf-8")
+    # self-check: the story body (minus the aid PIs) must be well-formed XML
+    try:
+        ET.fromstring(xml.split("?>\n", 1)[-1].split("?>\n", 1)[-1])
+        ok = True
+    except ET.ParseError as exc:
+        print(f"[export-idml] SELF-CHECK FAIL: icml not well-formed: {exc}")
+        ok = False
+    print(f"[export-idml] {'OK' if ok else 'WROTE WITH ISSUES'}: {out}")
+    print(f"[export-idml] ICML placeable story | skipped raw blocks={skipped}")
+    return 0 if ok else 1

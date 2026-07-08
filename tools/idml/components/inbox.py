@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from ..primitives import cell, component_table, image_cell_content, psr, wrap_table_paragraph
+from ..style_names import table_style_ref
 from .base import RenderContext, figure_paragraph
 
 
@@ -27,5 +28,5 @@ def render_inbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
             f"{tid}c0_{ci}", f"{ci}:0", content,
             top=9, bottom=10, left=6, right=6,
         ))
-    table = component_table(tid, cols, cells)
+    table = component_table(tid, cols, cells, table_style=table_style_ref("layout"))
     return wrap_table_paragraph(table, terminal, span_columns), 110.0

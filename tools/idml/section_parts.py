@@ -124,7 +124,7 @@ def lcd_parts(writer, rows: list[dict], *, tid: str = "tbl_lcd",
         for content, ci in cell_defs:
             cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
                                       top=2, bottom=2, left=3, right=3))
-    table = writer._component_table(tid, list(cols), cells, n_rows=len(rows))
+    table = writer._component_table(tid, list(cols), cells, n_rows=len(rows), role="data")
     return [
         writer._psr("HB H1", "LCD DISPLAY"),
         writer._wrap_table_paragraph(table, terminal_last, span_columns=False),
@@ -137,7 +137,7 @@ def symbols_parts(writer, signals: list[tuple[str, str]], icons: list[dict],
     copy = symbol_copy(lang)
     parts = [writer._psr("HB H1", copy["title"])]
     if signals:
-        table = writer._table(sig_tid, signals, label_style="HB Notice Label")
+        table = writer._table(sig_tid, signals, label_style="HB Notice Label", role="data")
         # signals table is never the terminal element (a trailing <Br/> keeps
         # the icon table or the flow's next section on its own paragraph)
         parts.append(writer._wrap_table_paragraph(table, False, span_columns=False))
@@ -155,7 +155,7 @@ def symbols_parts(writer, signals: list[tuple[str, str]], icons: list[dict],
                                 (1, writer._psr("HB Spec Value", row["text"], terminal=True))):
                 cells.append(writer._cell(f"{ico_tid}c{ri}_{ci}", f"{ci}:{ri}", content,
                                           top=2, bottom=2, left=3, right=3))
-        table2 = writer._component_table(ico_tid, list(cols), cells, n_rows=len(icons))
+        table2 = writer._component_table(ico_tid, list(cols), cells, n_rows=len(icons), role="data")
         parts.append(writer._wrap_table_paragraph(table2, terminal_last, span_columns=False))
     return parts
 
@@ -163,7 +163,7 @@ def symbols_parts(writer, signals: list[tuple[str, str]], icons: list[dict],
 def trouble_parts(writer, rows: list[tuple[str, str]], *, tid: str = "tbl_trouble",
                   terminal_last: bool = True) -> list[str]:
     parts = [writer._psr("HB H1", "TROUBLESHOOTING")]
-    table = writer._table(tid, rows)
+    table = writer._table(tid, rows, role="data")
     body_style_ref = paragraph_style_ref("HB Body")
     tail = ('    <Content></Content></CharacterStyleRange>\n' if terminal_last
             else '    <Br/></CharacterStyleRange>\n')
@@ -183,7 +183,7 @@ def spec_parts(writer, sections: list[dict], annotations: list[str] | None = Non
         parts.append(writer._psr("HB Spec Section", sec["title"]))
         # table anchored in its own paragraph; the paragraph still needs
         # its own <Br/> so the next section title starts a new paragraph
-        table = writer._table(f"{tid_prefix}{si}", sec["rows"])
+        table = writer._table(f"{tid_prefix}{si}", sec["rows"], role="spec")
         last = terminal_last and si == len(sections) - 1 and not annotations
         body_style_ref = paragraph_style_ref("HB Body")
         parts.append(

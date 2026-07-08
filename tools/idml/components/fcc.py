@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from ..primitives import cell, component_table, image_cell_content, psr, wrap_table_paragraph
+from ..style_names import table_style_ref
 from .base import RenderContext, figure_paragraph
 
 
@@ -26,7 +27,7 @@ def render_fcc(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
              psr("HB Body", texts[1] if len(texts) > 1 else "", terminal=True),
              fill="Color/HB Bg K05", stroke=False),
     ]
-    table = component_table(tid, cols, cells)
+    table = component_table(tid, cols, cells, table_style=table_style_ref("layout"))
     per_line = max(20, int(body_w / 2 / (0.52 * 6.2)))
     lines = max((len(t) + per_line - 1) // per_line for t in texts) if texts else 1
     return wrap_table_paragraph(table, terminal, span_columns), 7.5 * lines + 30

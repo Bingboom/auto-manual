@@ -6,6 +6,7 @@ split for the rest.
 from __future__ import annotations
 
 from ..primitives import cell, component_table, psr, spec_table, wrap_table_paragraph
+from ..style_names import table_style_ref
 from .base import RenderContext
 
 
@@ -16,7 +17,8 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
         rows2 = [(r[0], r[1] if len(r) > 1 else "") for r in raw_rows]
         table = spec_table(tid, [(str(a), str(b)) for a, b in rows2],
                            params=ctx.params, page_w=ctx.page_w,
-                           m_l=ctx.m_l, m_r=ctx.m_r)
+                           m_l=ctx.m_l, m_r=ctx.m_r,
+                           table_style=table_style_ref("data"))
     else:
         # N-column prose tables (e.g. KEY COMBINATIONS): first
         # column narrow-ish, rest evenly split
@@ -30,6 +32,6 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
                 cells.append(cell(
                     f"{tid}c{ri}_{ci}", f"{ci}:{ri}",
                     psr(style, txt, terminal=True)))
-        table = component_table(tid, cols, cells, n_rows=len(raw_rows))
+        table = component_table(tid, cols, cells, n_rows=len(raw_rows), table_style=table_style_ref("data"))
     xml = wrap_table_paragraph(table, terminal, span_columns=span_columns)
     return xml, 11.0 * (len(raw_rows) + 1)

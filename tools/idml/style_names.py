@@ -27,9 +27,27 @@ PARAGRAPH_STYLE_NAME_MAP = {
 }
 
 
+# Table styles: semantic role -> designer-template TableStyle name, so a
+# placed .icml (or the standalone .idml) adopts the template's table look.
+# Unmapped roles fall back to the built-in [Basic Table].
+TABLE_STYLE_NAME_MAP = {
+    "spec": "竖型表格",   # 竖型表格 (vertical key/value)
+    "data": "正文表格",   # 正文表格 (lcd/symbols/trouble/prose)
+    "warning": "Warning表格",
+    "caution": "Caution表格",
+    "notice": "Notice表格",
+    "layout": "无表头表格",  # borderless layout grids (in-box cards, fcc)
+}
+
+
 def paragraph_style_name(name: str) -> str:
     return PARAGRAPH_STYLE_NAME_MAP.get(name, name)
 
 
 def paragraph_style_ref(name: str) -> str:
     return "ParagraphStyle/" + paragraph_style_name(name)
+
+
+def table_style_ref(role: str | None) -> str:
+    name = TABLE_STYLE_NAME_MAP.get(role or "", "$ID/[Basic Table]")
+    return "TableStyle/" + name

@@ -4,7 +4,7 @@
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/正文">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="st_fcc_inbox_p23_02_whats_in_the_box_fcc_cmp0" AppliedTableStyle="TableStyle/$ID/[Basic Table]" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+  <Table Self="st_fcc_inbox_p23_02_whats_in_the_box_fcc_cmp0" AppliedTableStyle="TableStyle/无表头表格" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
     <Row Self="st_fcc_inbox_p23_02_whats_in_the_box_fcc_cmp0r0" Name="0"/>
     <Column Self="st_fcc_inbox_p23_02_whats_in_the_box_fcc_cmp0col0" Name="0" SingleColumnWidth="156.994"/>
     <Column Self="st_fcc_inbox_p23_02_whats_in_the_box_fcc_cmp0col1" Name="1" SingleColumnWidth="156.994"/>
