@@ -86,9 +86,7 @@
 
    .. raw:: latex
 
-      \safetywarning{ADVERTENCIA}
-
-   Una conexión incorrecta del conductor de conexión a tierra del equipo puede provocar riesgo de descarga eléctrica. Consulte con un electricista cualificado si tiene dudas sobre si el producto está conectado a tierra correctamente. No modifique el enchufe proporcionado con el producto; si no se ajusta al tomacorriente, haga que un electricista cualificado instale un tomacorriente adecuado.
+      \safetywarning{Una conexión incorrecta del conductor de conexión a tierra del equipo puede provocar riesgo de descarga eléctrica. Consulte con un electricista cualificado si tiene dudas sobre si el producto está conectado a tierra correctamente. No modifique el enchufe proporcionado con el producto; si no se ajusta al tomacorriente, haga que un electricista cualificado instale un tomacorriente adecuado.}
 
    .. raw:: latex
 
