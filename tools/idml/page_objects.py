@@ -3,6 +3,9 @@ from __future__ import annotations
 
 CAPSULE_OBJECT_STYLE = "ObjectStyle/HB Capsule Heading"
 ROUNDED_TABLE_OBJECT_STYLE = "ObjectStyle/HB Rounded Table Outer"
+PANEL_OBJECT_STYLE = "ObjectStyle/HB Rounded Panel"
+CARD_OBJECT_STYLE = "ObjectStyle/HB Inbox Card"
+BADGE_OBJECT_STYLE = "ObjectStyle/HB Badge"
 
 
 def capsule_opts(inset: tuple[float, float, float, float]) -> dict:
@@ -142,6 +145,77 @@ def bottom_rounded_path_geometry(x1: float, y1: float, x2: float, y2: float,
         '        </GeometryPathType>\n'
         '      </PathGeometry>\n'
         '    </Properties>\n'
+    )
+
+
+def left_rounded_path_geometry(x1: float, y1: float, x2: float, y2: float,
+                               radius: float) -> str:
+    """Closed rectangle with rounded left corners and square right corners."""
+    r = max(0.0, min(radius, abs(x2 - x1) / 2.0, abs(y2 - y1) / 2.0))
+    if r <= 0:
+        from .primitives import path_geometry
+        return path_geometry(x1, y1, x2, y2)
+    k = r * 0.5522847498
+    points = (
+        ((x2, y1), (x2, y1), (x2, y1)),
+        ((x2, y2), (x2, y2), (x2, y2)),
+        ((x1 + r, y2), (x1 + r, y2), (x1 + r - k, y2)),
+        ((x1, y2 - r), (x1, y2 - r + k), (x1, y2 - r)),
+        ((x1, y1 + r), (x1, y1 + r), (x1, y1 + r - k)),
+        ((x1 + r, y1), (x1 + r - k, y1), (x1 + r, y1)),
+    )
+    anchors = "\n".join(
+        f'            <PathPointType Anchor="{anchor[0]:g} {anchor[1]:g}" '
+        f'LeftDirection="{left[0]:g} {left[1]:g}" '
+        f'RightDirection="{right[0]:g} {right[1]:g}"/>'
+        for anchor, left, right in points
+    )
+    return (
+        '    <Properties>\n'
+        '      <PathGeometry>\n'
+        '        <GeometryPathType PathOpen="false">\n'
+        '          <PathPointArray>\n'
+        f'{anchors}\n'
+        '          </PathPointArray>\n'
+        '        </GeometryPathType>\n'
+        '      </PathGeometry>\n'
+        '    </Properties>\n'
+    )
+
+
+def page_rectangle_xml(writer, rect_id: str,
+                       rect: tuple[float, float, float, float], *,
+                       fill: str = "Color/Paper",
+                       stroke_color: str = "Color/HB Line K40",
+                       stroke_weight: float = 0.75,
+                       corner_radius: float = 5.5,
+                       object_style: str = ROUNDED_TABLE_OBJECT_STYLE,
+                       rounded: bool = True) -> str:
+    x1, y1, x2, y2 = writer._page_rect(*rect)
+    return rectangle_xml(
+        rect_id, x1, y1, x2, y2,
+        fill=fill,
+        stroke_color=stroke_color,
+        stroke_weight=stroke_weight,
+        rounded=rounded,
+        corner_radius=corner_radius,
+        object_style=object_style,
+    )
+
+
+def left_rounded_xml(writer, rect_id: str,
+                     rect: tuple[float, float, float, float], *,
+                     fill: str = "Color/Paper",
+                     corner_radius: float = 5.5,
+                     object_style: str = PANEL_OBJECT_STYLE) -> str:
+    x1, y1, x2, y2 = writer._page_rect(*rect)
+    return (
+        f'  <Rectangle Self="{rect_id}" ContentType="Unassigned" '
+        f'AppliedObjectStyle="{object_style}" FillColor="{fill}" '
+        'StrokeColor="Swatch/None" StrokeWeight="0" '
+        'ItemTransform="1 0 0 1 0 0">\n'
+        + left_rounded_path_geometry(x1, y1, x2, y2, corner_radius) +
+        '  </Rectangle>\n'
     )
 
 

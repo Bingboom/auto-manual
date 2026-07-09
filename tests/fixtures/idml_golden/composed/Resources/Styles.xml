@@ -123,5 +123,8 @@
     <ObjectStyle Self="ObjectStyle/$ID/[Normal Text Frame]" Name="$ID/[Normal Text Frame]"/>
     <ObjectStyle Self="ObjectStyle/HB Capsule Heading" Name="HB Capsule Heading"/>
     <ObjectStyle Self="ObjectStyle/HB Rounded Table Outer" Name="HB Rounded Table Outer"/>
+    <ObjectStyle Self="ObjectStyle/HB Rounded Panel" Name="HB Rounded Panel"/>
+    <ObjectStyle Self="ObjectStyle/HB Inbox Card" Name="HB Inbox Card"/>
+    <ObjectStyle Self="ObjectStyle/HB Badge" Name="HB Badge"/>
   </RootObjectStyleGroup>
 </idPkg:Styles>

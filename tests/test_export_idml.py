@@ -736,21 +736,44 @@ class ExportIdmlTests(unittest.TestCase):
         ]
         w.add_fcc_inbox_page("st_fcc_inbox", fcc, inbox, ROOT, 3)
         spread = dict(w.spreads)["sp_3"]
-        self.assertEqual(spread.count("<TextFrame "), 4)
-        self.assertIn("tf_st_fcc_inbox_fcc", spread)
+        self.assertEqual(spread.count("<TextFrame "), 11)
+        self.assertEqual(spread.count("<Rectangle "), 10)
+        self.assertEqual(
+            spread.count('AppliedObjectStyle="ObjectStyle/HB Rounded Panel"'),
+            3,
+        )
+        self.assertEqual(
+            spread.count('AppliedObjectStyle="ObjectStyle/HB Inbox Card"'),
+            3,
+        )
+        self.assertEqual(
+            spread.count('AppliedObjectStyle="ObjectStyle/HB Badge"'),
+            3,
+        )
+        self.assertIn("tf_st_fcc_inbox_fcc_left", spread)
+        self.assertIn("tf_st_fcc_inbox_fcc_right", spread)
         self.assertIn("tf_st_fcc_inbox_title", spread)
-        self.assertIn("tf_st_fcc_inbox_inbox", spread)
-        self.assertIn("tf_st_fcc_inbox_tip", spread)
-        self.assertEqual(spread.count('CornerOption="RoundedCorner"'), 1)
+        self.assertIn("tf_st_fcc_inbox_card_1", spread)
+        self.assertIn("tf_st_fcc_inbox_card_2", spread)
+        self.assertIn("tf_st_fcc_inbox_card_3", spread)
+        self.assertIn("tf_st_fcc_inbox_tip_label", spread)
+        self.assertIn("tf_st_fcc_inbox_tip_body", spread)
         self.assertIn('Self="bg_st_fcc_inbox_title"', spread)
-        fcc_frame = spread.split('Self="tf_st_fcc_inbox_fcc"', 1)[1].split(
+        fcc_frame = spread.split('Self="tf_st_fcc_inbox_fcc_left"', 1)[1].split(
             "</TextFrame>", 1)[0]
         self.assertIn('InsetSpacing="0 0 0 0"', fcc_frame)
         stories = dict(w.stories)
-        self.assertIn("FCC left copy.", stories["st_fcc_inbox_fcc"])
+        self.assertIn("FCC left copy.", stories["st_fcc_inbox_fcc_left"])
+        self.assertIn("FCC right copy.", stories["st_fcc_inbox_fcc_right"])
         self.assertIn("WHAT'S IN THE BOX", stories["st_fcc_inbox_title"])
-        self.assertIn("AC Charging Cable", stories["st_fcc_inbox_inbox"])
-        self.assertIn(">TIP<", stories["st_fcc_inbox_tip"])
+        self.assertIn("AC Charging Cable", stories["st_fcc_inbox_card_2"])
+        self.assertIn(">TIPS<", stories["st_fcc_inbox_tip_label"])
+        self.assertIn(
+            "The car charging cable is sold separately.",
+            stories["st_fcc_inbox_tip_body"],
+        )
+        for key in ("st_fcc_inbox_card_1", "st_fcc_inbox_tip_body"):
+            self.assertNotIn("<Table", stories[key])
 
     def test_fcc_inbox_page_falls_back_to_plain_localized_fcc_prose(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -773,10 +796,11 @@ class ExportIdmlTests(unittest.TestCase):
         ]
         w.add_fcc_inbox_page("st_fcc_plain", fcc, inbox, ROOT, 3)
         spread = dict(w.spreads)["sp_3"]
-        fcc_frame = spread.split('Self="tf_st_fcc_plain_fcc"', 1)[1].split(
+        fcc_frame = spread.split('Self="tf_st_fcc_plain_fcc_left"', 1)[1].split(
             "</TextFrame>", 1)[0]
-        self.assertIn('TextColumnCount="2"', fcc_frame)
-        story = dict(w.stories)["st_fcc_plain_fcc"]
+        self.assertIn('TextColumnCount="1"', fcc_frame)
+        stories = dict(w.stories)
+        story = stories["st_fcc_plain_fcc_left"] + stories["st_fcc_plain_fcc_right"]
         self.assertNotIn("<Table", story)
         self.assertIn("Este dispositivo cumple", story)
         self.assertIn("Si este aparato causa", story)

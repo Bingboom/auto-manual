@@ -110,6 +110,9 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
         '    <ObjectStyle Self="ObjectStyle/$ID/[Normal Text Frame]" Name="$ID/[Normal Text Frame]"/>\n'
         '    <ObjectStyle Self="ObjectStyle/HB Capsule Heading" Name="HB Capsule Heading"/>\n'
         '    <ObjectStyle Self="ObjectStyle/HB Rounded Table Outer" Name="HB Rounded Table Outer"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB Rounded Panel" Name="HB Rounded Panel"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB Inbox Card" Name="HB Inbox Card"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB Badge" Name="HB Badge"/>\n'
         '  </RootObjectStyleGroup>\n'
         '</idPkg:Styles>\n'
     )

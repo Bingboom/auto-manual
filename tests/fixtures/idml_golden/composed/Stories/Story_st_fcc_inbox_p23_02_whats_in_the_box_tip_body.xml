@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_fcc_inbox_p23_02_whats_in_the_box_tip_body" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Inbox tip body">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The car charging cable is sold separately on our official website. For assistance, contact Jackery Customer Support.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+</Story>
+</idPkg:Story>

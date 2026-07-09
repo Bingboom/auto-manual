@@ -11,7 +11,6 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from . import components as _components
-from .fcc_fallback import component_spec, fcc_spec_from_blocks
 from .layout_est import est_table_height, template_symbol_split
 from .loaders import symbol_copy
 from .page_objects import frame_with_background, heading_bar_opts, heading_text, with_rounded_outer
@@ -177,22 +176,6 @@ def _single_component_story(writer, sid: str, title: str, spec: dict,
     return writer._add_story_parts(sid, title, [xml_part])
 
 
-def _fcc_flow_story(writer, sid: str, title: str, spec: dict) -> str:
-    mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.pdf"
-    parts: list[str] = []
-    if mark.exists():
-        style_ref = paragraph_style_ref("HB Figure")
-        parts.append(
-            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
-            '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-            + writer._image_cell_content(f"{sid}_fm", mark, 32.0, 22.0)
-            + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n'
-        )
-    body = "\n".join(t.strip() for t in spec.get("texts", []) if str(t).strip())
-    parts.append(writer._psr("HB Body", body, terminal=True))
-    return writer._add_story_parts(sid, title, parts)
-
-
 def add_fcc_inbox_page(
     writer,
     sid: str,
@@ -201,77 +184,10 @@ def add_fcc_inbox_page(
     bundle_root: Path,
     page_index: int,
 ) -> str:
-    """V2.0 page 03: FCC notice and inbox cards share one page."""
+    from .page03 import add_fcc_inbox_page as _add_fcc_inbox_page
 
-    body_x = 27.4
-    body_w = writer.page_w - body_x * 2
-    explicit_fcc = component_spec(fcc_blocks, "fcc") is not None
-    fcc_spec = fcc_spec_from_blocks(fcc_blocks)
-    inbox_title = next((text for kind, text in inbox_blocks if kind == "h1"),
-                       "WHAT'S IN THE BOX")
-    inbox_spec = component_spec(inbox_blocks, "inbox")
-    tip_spec = component_spec(inbox_blocks, "notice")
-
-    fcc_sid = f"{sid}_fcc"
-    if explicit_fcc:
-        writer._single_component_story(
-            fcc_sid, "FCC notice", fcc_spec, bundle_root, body_w)
-        fcc_opts = {"fill": "Color/HB Bg K05", "rounded": True,
-                    "inset": (0, 0, 0, 0)}
-    else:
-        _fcc_flow_story(writer, fcc_sid, "FCC notice", fcc_spec)
-        fcc_opts = {"columns": 2, "fill": "Color/HB Bg K05", "rounded": True,
-                    "inset": (4, 6, 4, 6)}
-    title_sid = f"{sid}_title"
-    writer._add_story_parts(
-        title_sid, "Inbox title",
-        [heading_text(writer, inbox_title, level=1)])
-    frame_specs: list[tuple[str, str, tuple[float, float, float, float], dict]] = [
-        ("fcc", fcc_sid, (body_x, 34.0, body_w, 184.0), fcc_opts),
-        ("title", title_sid, (body_x, 250.0, body_w, H1_BAR_H),
-         heading_bar_opts(1, (1.5, 5, 1, 6))),
-    ]
-    if inbox_spec:
-        inbox_sid = f"{sid}_inbox"
-        writer._single_component_story(
-            inbox_sid, "Inbox cards", inbox_spec, bundle_root, body_w)
-        frame_specs.append(
-            ("inbox", inbox_sid, (body_x, 278.0, body_w, 160.0),
-             {"inset": (0, 0, 0, 0)})
-        )
-    if tip_spec:
-        tip_sid = f"{sid}_tip"
-        writer._single_component_story(
-            tip_sid, "Inbox tip", tip_spec, bundle_root, body_w)
-        frame_specs.append(
-            ("tip", tip_sid, (body_x, 456.0, body_w, 42.0),
-             {"inset": (0, 0, 0, 0)})
-        )
-
-    spread_id = f"sp_{page_index}"
-    page_no = page_index + 1
-    frames = []
-    for frame_id, story_id, rect, opts in frame_specs:
-        frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
-
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
-        f'  <Page Self="{spread_id}_pg" Name="{page_no}" '
-        'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
-        f'GeometricBounds="0 0 {writer.page_h:g} {writer.page_w:g}" '
-        f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} {-writer.page_h / 2:g}">\n'
-        '    <MarginPreference ColumnCount="1" ColumnGutter="12" '
-        f'Top="{writer.m_t:g}" Bottom="{writer.m_b:g}" '
-        f'Left="{writer.m_l:g}" Right="{writer.m_r:g}"/>\n'
-        '  </Page>\n'
-        + "".join(frames) +
-        '</Spread>\n'
-        '</idPkg:Spread>\n'
-    )
-    writer.spreads.append((spread_id, xml))
-    return spread_id
+    return _add_fcc_inbox_page(
+        writer, sid, fcc_blocks, inbox_blocks, bundle_root, page_index)
 
 def _localized_signal_label_bar(label: str) -> str:
     style_ref = paragraph_style_ref("HB Notice Side Label")

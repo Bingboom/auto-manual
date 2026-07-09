@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_fcc_inbox_p23_02_whats_in_the_box_badge_2" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Inbox badge 2">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List Text" Justification="CenterAlign">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FillColor="Color/Paper" PointSize="7.4"><Content>2</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+</Story>
+</idPkg:Story>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?aid style="50" type="document" readerVersion="15.0" featureSet="257" product="15.0(100)"?>
-<Document xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0" Self="doc" StoryList="st_00_preface st_safety_en_title st_safety_en_top_warning st_safety_en_subbar st_safety_en_section1 st_safety_en_section2 st_safety_symbols_20_01_user_maintenance_instructions_tail_warning st_safety_symbols_20_01_user_maintenance_instructions_tail_danger st_safety_symbols_20_01_user_maintenance_instructions_maintenance_title st_safety_symbols_20_01_user_maintenance_instructions_maintenance_body st_safety_symbols_20_01_user_maintenance_instructions_symbols_title st_safety_symbols_20_01_user_maintenance_instructions_signals st_safety_symbols_20_01_user_maintenance_instructions_icons_left st_safety_symbols_20_01_user_maintenance_instructions_icons_right st_fcc_inbox_p23_02_whats_in_the_box_fcc st_fcc_inbox_p23_02_whats_in_the_box_title st_fcc_inbox_p23_02_whats_in_the_box_inbox st_fcc_inbox_p23_02_whats_in_the_box_tip st_05_operation_guide st_lcd st_trouble st_spec" Name="manual">
+<Document xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0" Self="doc" StoryList="st_00_preface st_safety_en_title st_safety_en_top_warning st_safety_en_subbar st_safety_en_section1 st_safety_en_section2 st_safety_symbols_20_01_user_maintenance_instructions_tail_warning st_safety_symbols_20_01_user_maintenance_instructions_tail_danger st_safety_symbols_20_01_user_maintenance_instructions_maintenance_title st_safety_symbols_20_01_user_maintenance_instructions_maintenance_body st_safety_symbols_20_01_user_maintenance_instructions_symbols_title st_safety_symbols_20_01_user_maintenance_instructions_signals st_safety_symbols_20_01_user_maintenance_instructions_icons_left st_safety_symbols_20_01_user_maintenance_instructions_icons_right st_fcc_inbox_p23_02_whats_in_the_box_title st_fcc_inbox_p23_02_whats_in_the_box_fcc_left st_fcc_inbox_p23_02_whats_in_the_box_fcc_right st_fcc_inbox_p23_02_whats_in_the_box_badge_1 st_fcc_inbox_p23_02_whats_in_the_box_card_1 st_fcc_inbox_p23_02_whats_in_the_box_badge_2 st_fcc_inbox_p23_02_whats_in_the_box_card_2 st_fcc_inbox_p23_02_whats_in_the_box_badge_3 st_fcc_inbox_p23_02_whats_in_the_box_card_3 st_fcc_inbox_p23_02_whats_in_the_box_tip_label st_fcc_inbox_p23_02_whats_in_the_box_tip_body st_05_operation_guide st_lcd st_trouble st_spec" Name="manual">
   <Language Self="Language/$ID/English%3a USA" Name="$ID/English: USA" SingleQuotes="&#8216;&#8217;" DoubleQuotes="&#8220;&#8221;"/>
   <idPkg:Graphic src="Resources/Graphic.xml"/>
   <idPkg:Fonts src="Resources/Fonts.xml"/>
@@ -29,10 +29,17 @@
   <idPkg:Story src="Stories/Story_st_safety_symbols_20_01_user_maintenance_instructions_signals.xml"/>
   <idPkg:Story src="Stories/Story_st_safety_symbols_20_01_user_maintenance_instructions_icons_left.xml"/>
   <idPkg:Story src="Stories/Story_st_safety_symbols_20_01_user_maintenance_instructions_icons_right.xml"/>
-  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_fcc.xml"/>
   <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_title.xml"/>
-  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_inbox.xml"/>
-  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_tip.xml"/>
+  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_fcc_left.xml"/>
+  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_fcc_right.xml"/>
+  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_badge_1.xml"/>
+  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_card_1.xml"/>
+  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_badge_2.xml"/>
+  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_card_2.xml"/>
+  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_badge_3.xml"/>
+  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_card_3.xml"/>
+  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_tip_label.xml"/>
+  <idPkg:Story src="Stories/Story_st_fcc_inbox_p23_02_whats_in_the_box_tip_body.xml"/>
   <idPkg:Story src="Stories/Story_st_05_operation_guide.xml"/>
   <idPkg:Story src="Stories/Story_st_lcd.xml"/>
   <idPkg:Story src="Stories/Story_st_trouble.xml"/>
