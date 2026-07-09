@@ -20,6 +20,15 @@ else
   exit 1
 fi
 
+# Advisory (non-blocking): if this push changes shared templates/manifests,
+# remind that open review/* branches hold frozen derivatives and must be
+# refreshed via sync-review (merge_params). Never blocks the push (|| true);
+# only reaches the review remote when shared source actually changed.
+"${python_cmd}" "${repo_root}/tools/check_review_branch_sync.py" \
+  --repo-root "${repo_root}" \
+  --base "origin/${AUTO_MANUAL_BASE_BRANCH:-main}" \
+  --remote "${REVIEW_REMOTE:-hello-docs}" || true
+
 exec "${python_cmd}" "${repo_root}/scripts/git_branch_guard.py" \
   pre-push \
   --repo-root "${repo_root}" \
