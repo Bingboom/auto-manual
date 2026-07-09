@@ -439,6 +439,7 @@ def stage_publish_assets_to_host_repo(
     built_pdf_output_path: Path,
     built_md_output_path: Path,
     built_html_dir: Path,
+    built_idml_output_path: Path,
     host_config_path: Path,
     model: str,
     region: str,
@@ -446,7 +447,7 @@ def stage_publish_assets_to_host_repo(
     publish_release_version_dir_for_target: Callable[..., Path],
     publish_release_latest_dir_for_target: Callable[..., Path],
     copy_tree: Callable[[Path, Path], None],
-) -> tuple[Path, Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path, Path]:
     version_dir = publish_release_version_dir_for_target(
         config_path=host_config_path,
         model=model,
@@ -470,9 +471,17 @@ def stage_publish_assets_to_host_repo(
         built_md_output_path=built_md_output_path,
         staged_md_output_path=staged_md_output_path,
     )
+    staged_idml_output_path = version_dir / built_idml_output_path.name
+    shutil.copy2(built_idml_output_path, staged_idml_output_path)
     latest_html_dir = latest_dir / "html"
     copy_tree(built_html_dir, latest_html_dir)
-    return staged_word_output_path, staged_pdf_output_path, staged_md_output_path, latest_html_dir
+    return (
+        staged_word_output_path,
+        staged_pdf_output_path,
+        staged_md_output_path,
+        latest_html_dir,
+        staged_idml_output_path,
+    )
 
 
 def write_publish_release_metadata(

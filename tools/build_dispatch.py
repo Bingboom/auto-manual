@@ -146,7 +146,12 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
     """Export the editable InDesign handoff package (tools/export_idml.py)."""
     import sys as _sys
 
-    context.run_checked(context.build_docs_command(args, action_override="rst", source_override="runtime"))
+    # Build the rst bundle the exporter reads. Standalone `build.py idml` builds
+    # from runtime; the publish queue passes `--source review` so the IDML matches
+    # the reviewed Word/PDF/HTML rather than the (possibly newer) runtime data.
+    _src = getattr(args, "source", None)
+    source_override = _src if _src in {"review", "runtime"} else "runtime"
+    context.run_checked(context.build_docs_command(args, action_override="rst", source_override=source_override))
     cmd = [_sys.executable, str(Path(__file__).resolve().parents[1] / "tools" / "export_idml.py")]
     if getattr(args, "model", None):
         cmd += ["--model", args.model]

@@ -16,7 +16,11 @@ DOC_PHASE_FIELD = "Doc_phase"
 GIT_REF_FIELD = "Git_ref"
 BUILD_STARTED_AT_FIELD = "\u5f00\u59cb\u6784\u5efa\u65f6\u95f4"
 DOCUMENT_DIRECTORY_FIELD = "Document directory"
-DOCUMENT_LINK_FIELD = "Document link"
+# Renamed from "Document link": in review the deliverable is now the Feishu
+# cloud doc (飞书云文档); in publish the uploaded artifact is the IDML file, and
+# its knowledge-base link lands here. (Constant name kept to avoid churn across
+# the writeback plumbing; the column it maps to is now "idml_file".)
+DOCUMENT_LINK_FIELD = "idml_file"
 DOCUMENT_LINK_DD_FIELD = "Document link_dd"
 FEISHU_CLOUD_DOC_FIELD = "飞书云文档"
 # Frozen baseline (R0) doc — a second import of the build's markdown, made at build

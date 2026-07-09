@@ -227,25 +227,36 @@ def process_queue_record_group(
             pdf_output_path = built_outputs.pdf_output_path
             md_output_path = built_outputs.md_output_path
             artifact_output_path = built_outputs.upload_output_path
-        artifact_result = publish_word_artifact(
-            cfg=cfg,
-            cli_bin=cli_bin,
-            artifact_output_path=artifact_output_path,
-            identity=identity,
-            artifact_destination=effective_artifact_destination,
-            dingtalk_mirror_destination=dingtalk_mirror_destination,
-            dingtalk_operator_union_id=dingtalk_operator_union_id,
-            artifact_label="pdf" if artifact_output_path.suffix.lower() == ".pdf" else "docx",
-        )
-        latest_link_url = artifact_result.latest_link_url
-        document_link_url = artifact_result.document_link_url
-        document_link_dd_url = artifact_result.document_link_dd_url
-        latest_document_link_dd_url = document_link_dd_url or None
+        # Upload the built artifact to the knowledge base ONLY in publish: the IDML
+        # file's link lands in the idml_file field. In review the deliverable is the
+        # Feishu cloud doc (below), so the Word is NOT uploaded to the KB.
+        artifact_status_notes: tuple[str, ...] = ()
+        document_link_url = ""
+        document_link_dd_url = ""
+        if effective_doc_phase == "publish":
+            _suffix = artifact_output_path.suffix.lower() if artifact_output_path else ""
+            artifact_result = publish_word_artifact(
+                cfg=cfg,
+                cli_bin=cli_bin,
+                artifact_output_path=artifact_output_path,
+                identity=identity,
+                artifact_destination=effective_artifact_destination,
+                dingtalk_mirror_destination=dingtalk_mirror_destination,
+                dingtalk_operator_union_id=dingtalk_operator_union_id,
+                artifact_label={".idml": "idml", ".pdf": "pdf"}.get(_suffix, "docx"),
+            )
+            latest_link_url = artifact_result.latest_link_url
+            document_link_url = artifact_result.document_link_url
+            document_link_dd_url = artifact_result.document_link_dd_url
+            latest_document_link_dd_url = document_link_dd_url or None
+            artifact_status_notes = artifact_result.status_notes
         built_at = datetime.now().astimezone()
         feishu_cloud_doc_url = ""
         baseline_doc_url = ""
         cloud_doc_status_notes: tuple[str, ...] = ()
-        if can_write_feishu_cloud_doc:
+        # Cloud doc (+ frozen baseline) is a REVIEW deliverable only; publish emits
+        # IDML/HTML/PDF and does not build a Feishu cloud doc.
+        if can_write_feishu_cloud_doc and effective_doc_phase == "draft":
             if md_output_path is None:
                 raise RuntimeError("Markdown output was not created for Feishu cloud doc import")
             # Import the built Word .docx (images embedded) — NOT the Markdown, whose
@@ -301,7 +312,7 @@ def process_queue_record_group(
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
             data_sync_status=data_sync_status,
-            status_notes=(*artifact_result.status_notes, *cloud_doc_status_notes, *deferred_status_notes),
+            status_notes=(*artifact_status_notes, *cloud_doc_status_notes, *deferred_status_notes),
             clear_force_phase2_refresh=can_write_force_phase2_refresh,
             write_data_sync=can_write_data_sync,
             write_document_link_dd=can_write_document_link_dd,

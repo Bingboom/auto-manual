@@ -282,7 +282,7 @@
           "field_name": "Document directory"
         },
         {
-          "field_name": "Document link"
+          "field_name": "idml_file"
         },
         {
           "field_name": "Document link_dd"

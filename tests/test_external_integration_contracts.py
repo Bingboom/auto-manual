@@ -298,8 +298,10 @@ class TestExternalIntegrationContracts(unittest.TestCase):
         self.assertEqual(1, result.processed_rows)
         self.assertIsNone(result.failure_message)
         self.assertEqual(1, len(source.upserts))
-        self.assertEqual(1, len(publish_calls))
-        self.assertIsNone(publish_calls[0]["dingtalk_mirror_destination"])
+        # Draft no longer uploads the artifact, so the publish artifact is never invoked;
+        # the DingTalk mirror probe still runs before the phase gate and its failure is
+        # surfaced as a warning + deferred status note.
+        self.assertEqual(0, len(publish_calls))
         self.assertIn("WARNING DingTalk sync unavailable", stderr.getvalue())
         self.assertIn("using Feishu/wiki only", stderr.getvalue())
         status_notes = captured["status_notes"]

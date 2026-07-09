@@ -143,7 +143,7 @@ def build_document_for_task(
     versioned_word_output_path: Callable[..., Path],
     versioned_md_output_path: Callable[..., Path],
     resolve_html_output_dir_for_target: Callable[..., Path],
-    stage_publish_assets_to_host_repo: Callable[..., tuple[Path, Path, Path, Path]],
+    stage_publish_assets_to_host_repo: Callable[..., tuple[Path, Path, Path, Path, Path]],
     stage_draft_word_output_to_host_repo: Callable[..., Path],
     stage_draft_md_output_to_host_repo: Callable[..., Path],
 ) -> BuiltDocumentOutputs:
@@ -245,6 +245,22 @@ def build_document_for_task(
                 ),
                 cwd=effective_repo_root,
             )
+            # IDML is the publish upload artifact (replaces the old Word/PDF upload).
+            # --source review so it matches the reviewed content; production mode is
+            # the `idml` action default (non-flow).
+            run_command(
+                build_py_target_command(
+                    repo_root=effective_repo_root,
+                    action="idml",
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    lang=lang,
+                    data_root=effective_data_root,
+                    source="review",
+                ),
+                cwd=effective_repo_root,
+            )
         else:
             run_command(
                 build_py_target_command(
@@ -334,22 +350,40 @@ def build_document_for_task(
             )
             if not html_output_dir.exists():
                 raise RuntimeError(f"HTML output was not created for publish: {html_output_dir}")
+            # Locate the production IDML the `idml` step just built (mode=production
+            # emits a single manual_<model>_<region>[_<lang>].idml; the flow writer's
+            # *.flow.idml, if any, is excluded).
+            idml_search_root = effective_repo_root / "docs" / "_build" / model / region
+            idml_candidates = sorted(
+                p for p in idml_search_root.rglob("*.idml") if not p.name.endswith(".flow.idml")
+            )
+            if not idml_candidates:
+                raise RuntimeError(f"IDML output was not created for publish under: {idml_search_root}")
+            idml_output_path = idml_candidates[-1]
             host_config_path = config_path_in_repo_root(config_path, repo_root=repo_root)
             if md_output_path is None:
                 raise RuntimeError("Markdown output was not created for publish")
-            staged_word_output_path, staged_pdf_output_path, staged_md_output_path, latest_html_dir = stage_publish_assets_to_host_repo(
+            (
+                staged_word_output_path,
+                staged_pdf_output_path,
+                staged_md_output_path,
+                latest_html_dir,
+                staged_idml_output_path,
+            ) = stage_publish_assets_to_host_repo(
                 built_word_output_path=word_output_path,
                 built_pdf_output_path=pdf_output_path,
                 built_md_output_path=md_output_path,
                 built_html_dir=html_output_dir,
+                built_idml_output_path=idml_output_path,
                 host_config_path=host_config_path,
                 model=model,
                 region=region,
                 version=version,
             )
+            # Upload the IDML (not the PDF/Word) to the knowledge base -> idml_file.
             return BuiltDocumentOutputs(
                 word_output_path=staged_word_output_path,
-                upload_output_path=staged_pdf_output_path,
+                upload_output_path=staged_idml_output_path,
                 md_output_path=staged_md_output_path,
                 pdf_output_path=staged_pdf_output_path,
                 html_output_dir=latest_html_dir,
