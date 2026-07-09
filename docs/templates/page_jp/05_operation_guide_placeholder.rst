@@ -92,11 +92,11 @@ USB/カーポート出力オン/オフ
 
        ● この機能はあくまで車のバッテリーの緊急補助用であり、深刻なバッテリー上がりや故障したバッテリーには対応しておりません。
 
-.. |energy_saving_12h_title| image:: templates/word_template/common_assets/operation/energy_saving_12h.svg
+.. |energy_saving_12h_title| image:: templates/word_template/common_assets/operation/energy_saving_12h.png
    :alt: 12H省エネアイコン
    :width: 28px
 
-.. |energy_saving_12h_icon| image:: templates/word_template/common_assets/operation/energy_saving_12h.svg
+.. |energy_saving_12h_icon| image:: templates/word_template/common_assets/operation/energy_saving_12h.png
    :alt: 12H省エネアイコン
    :width: 16px
 
