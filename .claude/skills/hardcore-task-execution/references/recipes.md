@@ -10,6 +10,7 @@ Concrete patterns for the practices in `SKILL.md`. Copy and adapt; the point is 
 - [Façade + delegate decomposition](#façade--delegate-decomposition)
 - [Registry parity test](#registry-parity-test)
 - [Discovery + plan report shape](#discovery--plan-report-shape)
+- [Mid-plan re-inventory addendum](#mid-plan-re-inventory-addendum)
 
 ---
 
@@ -113,3 +114,15 @@ For a large task, write these two before any code and let the user confirm the p
 - **Ordered phases**, each independently shippable and revertable, with the one-line goal of each.
 - **Per phase**: files touched, the safety net that pins it, the verification rungs to run.
 - **Non-goals**: what this work deliberately does *not* do, so scope stays bounded.
+
+## Mid-plan re-inventory addendum
+
+When something lands in the repo between planning and execution (a parallel window's PR, a teammate's merge), do not execute the stale plan and do not silently rewrite it. Fetch, then re-check only the assumptions the *remaining* phases stand on, and record the delta as an addendum next to the original plan:
+
+`addendum_<pr-or-event>.md`:
+- **What landed**: the commit/PR and a one-line summary of its effect.
+- **Assumptions invalidated**: each plan statement that is no longer true, with the corrected fact (e.g. "component inventory: 5 kinds → 8; three new renderers already registered").
+- **Phase impact**: per remaining phase — unaffected / adjusted (how) / absorbed (already done by the landing).
+- **New coverage needed**: anything the landing added that the safety net does not yet pin (extend the golden variants before the next phase, not after).
+
+The addendum keeps the original plan as an honest record of what was believed when, which matters when a later phase misbehaves and you are reconstructing why a decision was made.
