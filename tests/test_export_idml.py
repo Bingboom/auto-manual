@@ -529,8 +529,9 @@ class ExportIdmlTests(unittest.TestCase):
         spread = dict(w.spreads)["sp_2"]
         self.assertEqual(spread.count("<TextFrame "), 8)
         self.assertEqual(spread.count('CornerOption="RoundedCorner"'), 2)
-        self.assertIn("tf_st_safety_symbols_tail_warning", spread)
-        self.assertIn("tf_st_safety_symbols_tail_danger", spread)
+        # Frames are cursor-flowed and index-named; stories keep label names.
+        self.assertIn("tf_st_safety_symbols_tail_0", spread)
+        self.assertIn("tf_st_safety_symbols_tail_1", spread)
         self.assertIn("tf_st_safety_symbols_icons_left", spread)
         self.assertIn("tf_st_safety_symbols_icons_right", spread)
         stories = dict(w.stories)
