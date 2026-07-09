@@ -27,8 +27,17 @@ import sys
 from pathlib import Path
 
 # Shared-source paths whose edits drift from in-review branch derivatives.
-_TEMPLATE_RE = re.compile(r"^docs/templates/page_([a-z0-9-]+)/")
-_MANIFEST_RE = re.compile(r"^docs/manifests/manual_([a-z0-9-]+)\.ya?ml$")
+# Shared source that drifts from in-review derivatives: ALL templates + manifests.
+_SHARED_RE = re.compile(r"^docs/templates/.+$|^docs/manifests/.+\.ya?ml$")
+# A lang/region token narrows the blast radius; paths without one (page_shared/,
+# snippets/, word_template/, contracts/, top-level *_template.rst, …) are
+# region-agnostic and affect every open review branch.
+_LANG_TOKEN_RES = (
+    re.compile(r"^docs/templates/page_([a-z0-9-]+)/"),
+    re.compile(r"^docs/templates/recipes/([a-z0-9-]+)/"),
+    re.compile(r"^docs/manifests/manual_([a-z0-9-]+)\.ya?ml$"),
+)
+_ALL_SCOPE = "*"  # region-agnostic shared source
 _REVIEW_BRANCH_RE = re.compile(r"^review/.+-([A-Za-z0-9]+)$")
 
 
@@ -48,12 +57,24 @@ def changed_files(base: str, cwd: Path) -> list[str]:
 
 
 def scope_hits(paths: list[str]) -> dict[str, list[str]]:
-    """Map each shared-source token (``jp``, ``us``, …) to the paths that touched it."""
+    """Map each shared-source scope token to the paths that touched it.
+
+    Token is a lang/region (``jp``, ``us-en``, …) when the path carries one, else
+    ``*`` (region-agnostic — affects every review branch).
+    """
     hits: dict[str, list[str]] = {}
     for path in paths:
-        match = _TEMPLATE_RE.match(path) or _MANIFEST_RE.match(path)
-        if match:
-            hits.setdefault(match.group(1), []).append(path)
+        if not _SHARED_RE.match(path):
+            continue
+        token = _ALL_SCOPE
+        for pattern in _LANG_TOKEN_RES:
+            match = pattern.match(path)
+            if match:
+                token = match.group(1)
+                break
+        if token == "shared":  # page_shared/ is region-agnostic, not a lang
+            token = _ALL_SCOPE
+        hits.setdefault(token, []).append(path)
     return hits
 
 
@@ -97,9 +118,12 @@ def build_report(hits: dict[str, list[str]], branches: list[str] | None) -> tupl
         "  Shared source touched:",
     ]
     for token in sorted(hits):
+        label = "ALL (region-agnostic)" if token == _ALL_SCOPE else token.upper()
         for path in sorted(hits[token]):
-            lines.append(f"    - {path}  (scope: {token.upper()})")
+            lines.append(f"    - {path}  (scope: {label})")
 
+    all_scope = _ALL_SCOPE in hits
+    region_tokens = set(hits) - {_ALL_SCOPE}
     affected = False
     if branches is None:
         lines += ["", "  Open review branches: (remote unreachable — list them manually)"]
@@ -107,10 +131,9 @@ def build_report(hits: dict[str, list[str]], branches: list[str] | None) -> tupl
         lines += ["", "  Open review branches: none found."]
     else:
         lines += ["", "  Open review branches to consider refreshing:"]
-        tokens = set(hits)
         for branch in branches:
             region = region_of(branch)
-            match = any(token_matches_region(tok, region) for tok in tokens)
+            match = all_scope or any(token_matches_region(tok, region) for tok in region_tokens)
             flag = "  <-- likely affected" if match else ""
             affected = affected or match
             lines.append(f"    - {branch}{flag}")

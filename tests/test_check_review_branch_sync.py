@@ -9,23 +9,49 @@ from tools.check_review_branch_sync import (
 
 
 class ScopeHitsTests(unittest.TestCase):
-    def test_matches_templates_and_manifests(self):
+    def test_lang_tokened_paths(self):
         hits = scope_hits(
             [
                 "docs/templates/page_jp/06_ups_mode.rst",
-                "docs/templates/page_jp/01_meaning_of_symbols.rst",
                 "docs/manifests/manual_jp.yaml",
-                "docs/templates/page_us/safety_en.rst",
-                "tools/build_docs.py",
-                "docs/_review/JE-900B/JP/page/charging.rst",
+                "docs/templates/recipes/jp/03_product_overview.yaml",
+                "docs/templates/page_us-en/01_fcc.rst",
             ]
         )
-        self.assertEqual(sorted(hits), ["jp", "us"])
+        self.assertEqual(sorted(hits), ["jp", "us-en"])
         self.assertIn("docs/manifests/manual_jp.yaml", hits["jp"])
-        self.assertEqual(hits["us"], ["docs/templates/page_us/safety_en.rst"])
+        self.assertIn("docs/templates/recipes/jp/03_product_overview.yaml", hits["jp"])
+
+    def test_region_agnostic_templates_scope_star(self):
+        hits = scope_hits(
+            [
+                "docs/templates/page_shared/foo.rst",
+                "docs/templates/snippets/bar.rst",
+                "docs/templates/word_template/common_assets/x.svg",
+                "docs/templates/contracts/spec.yaml",
+                "docs/templates/cover_template.rst",
+            ]
+        )
+        self.assertEqual(list(hits), ["*"])
+        self.assertEqual(len(hits["*"]), 5)
+
+    def test_mixed_scopes(self):
+        hits = scope_hits(["docs/templates/page_jp/x.rst", "docs/templates/snippets/y.rst"])
+        self.assertEqual(sorted(hits), ["*", "jp"])
 
     def test_ignores_unrelated_paths(self):
-        self.assertEqual(scope_hits(["tools/x.py", "docs/_build/a.rst", "README.md"]), {})
+        self.assertEqual(
+            scope_hits(
+                [
+                    "tools/x.py",
+                    "docs/_build/a.rst",
+                    "docs/_review/JE-900B/JP/page/charging.rst",
+                    "docs/manifests/notes.txt",
+                    "README.md",
+                ]
+            ),
+            {},
+        )
 
 
 class RegionTests(unittest.TestCase):
@@ -66,6 +92,16 @@ class BuildReportTests(unittest.TestCase):
         msg, affected = build_report({"jp": ["docs/templates/page_jp/x.rst"]}, None)
         self.assertFalse(affected)
         self.assertIn("remote unreachable", msg)
+
+    def test_region_agnostic_flags_all_branches(self):
+        hits = {"*": ["docs/templates/snippets/bar.rst"]}
+        branches = ["review/JE-900B-JP", "review/JE-1000F-US", "review/JE-2000F-CN"]
+        msg, affected = build_report(hits, branches)
+        self.assertTrue(affected)
+        self.assertIn("ALL (region-agnostic)", msg)
+        for branch in branches:
+            line = next(ln for ln in msg.splitlines() if branch in ln)
+            self.assertIn("likely affected", line)
 
     def test_advisory_language_present(self):
         msg, _ = build_report({"jp": ["docs/manifests/manual_jp.yaml"]}, [])
