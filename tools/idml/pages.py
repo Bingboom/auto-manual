@@ -340,7 +340,7 @@ def _symbols_icon_table(writer, tid: str, icons: list[dict], width: float,
             fig = (ROOT / row["figure"]) if row.get("figure") else None
             icon = ""
             if fig and fig.exists():
-                icon = writer._image_cell_content(f"{tid}img{ri}", fig, 22.0, 22.0)
+                icon = writer._image_cell_content(f"{tid}img{ri}", fig, 18.0, 18.0)
             figure_style_ref = paragraph_style_ref("HB Figure")
             left_xml = (
                 f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style_ref}">'
@@ -383,16 +383,11 @@ def add_safety_symbols_page(
         if kind != "component":
             continue
         spec = _json.loads(text)
-        if spec.get("kind") == "safetywarning":
+        if spec.get("kind") in {"safetywarning", "warnbox", "notice"}:
             spec = {
                 "kind": "tailwarnbox",
-                "label": copy["warning"],
+                "label": spec.get("label") or copy["warning"],
                 "texts": spec.get("texts", []),
-            }
-        elif spec.get("kind") == "warnbox":
-            spec = {
-                **spec,
-                "kind": "tailwarnbox",
             }
         tail_sid = f"{sid}_tail_{spec.get('label', bi).lower()}"
         xml_part, tail_h = writer._render_component(
@@ -422,7 +417,7 @@ def add_safety_symbols_page(
     body_w = writer.page_w - body_x * 2
     icon_gap = 6.0
     icon_table_w = (body_w - icon_gap) / 2.0
-    left_icons, right_icons = balanced_icon_split(icons, icon_table_w * 0.73, 26.0)
+    left_icons, right_icons = balanced_icon_split(icons, icon_table_w * 0.73, 24.0)
     signal_sid = f"{sid}_signals"
     writer._table_story(
         signal_sid, "Signal words",
@@ -450,19 +445,19 @@ def add_safety_symbols_page(
         y += h + gap
 
     for ti, (t_sid, t_h) in enumerate(tail_stories):
-        _place(f"tail_{ti}", t_sid, t_h, {"inset": (0, 0, 0, 0)})
+        _place(f"tail_{ti}", t_sid, t_h * 1.1 + 3.0, {"inset": (0, 0, 0, 0)})
     maint_h = est_table_height([maint_text], body_w, 24.0) - 16.0
     _place("maint_title", maint_title_sid, 16.5,
            {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (0.5, 5, 0.5, 6)}, gap=3.5)
     _place("maint_body", maint_body_sid, maint_h, {"inset": (0, 0, 0, 0)}, gap=8.0)
-    _place("symbols_title", symbols_title_sid, 27.0,
+    _place("symbols_title", symbols_title_sid, 17.0,
            {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (2, 5, 1, 6)}, gap=11.0)
-    signals_h = est_table_height([t for _, t in signals], body_w * 0.76, 22.0)
+    signals_h = est_table_height([t for _, t in signals], body_w * 0.76, 26.0)
     _place("signals", signal_sid, signals_h, {"inset": (0, 0, 0, 0)}, gap=6.5)
-    bottom = writer.page_h - writer.m_b + 20.0
+    bottom = writer.page_h - 2.0
     icons_h = max(60.0, min(
-        max(est_table_height([r.get("text", "") for r in left_icons], icon_table_w * 0.73, 26.0),
-            est_table_height([r.get("text", "") for r in right_icons], icon_table_w * 0.73, 26.0)),
+        max(est_table_height([r.get("text", "") for r in left_icons], icon_table_w * 0.73, 24.0),
+            est_table_height([r.get("text", "") for r in right_icons], icon_table_w * 0.73, 24.0)),
         bottom - y))
     frame_specs.append(("icons_left", left_sid, (body_x, y, icon_table_w, icons_h),
                         {"inset": (0, 0, 0, 0)}))
