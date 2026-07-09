@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import os
 import shutil
 import sys
 from pathlib import Path
 from typing import Callable
 
+from tools.idml.delivery import build_delivery_package
 from tools.utils.path_utils import PathSegments, review_dir_of
 
 
@@ -29,6 +31,7 @@ def build_py_target_command(
     lang: str | None = None,
     source: str | None = None,
     no_clean: bool = False,
+    idml_mode: str | None = None,
 ) -> list[str]:
     cmd = [
         sys.executable,
@@ -47,6 +50,8 @@ def build_py_target_command(
         cmd += ["--source", source]
     if no_clean:
         cmd.append("--no-clean")
+    if idml_mode:
+        cmd += ["--idml-mode", idml_mode]
     if data_root:
         cmd += ["--data-root", data_root]
     return cmd
@@ -246,9 +251,10 @@ def build_document_for_task(
                 cwd=effective_repo_root,
             )
             # IDML is the publish upload artifact (replaces the old Word/PDF upload).
-            # --source review so it matches the reviewed content; production mode is
-            # the `idml` action default (non-flow). no_clean keeps the word/pdf/md/html
-            # outputs the earlier publish/html steps just built (default --clean wipes
+            # --source review so it matches the reviewed content; --idml-mode both
+            # also emits the flow outputs and handoff reports the delivery zip below
+            # packages. no_clean keeps the word/pdf/md/html outputs the earlier
+            # publish/html steps just built (default --clean wipes
             # docs/_build/<model>/<region>, failing the artifact checks below).
             run_command(
                 build_py_target_command(
@@ -261,6 +267,7 @@ def build_document_for_task(
                     data_root=effective_data_root,
                     source="review",
                     no_clean=True,
+                    idml_mode="both",
                 ),
                 cwd=effective_repo_root,
             )
@@ -353,16 +360,33 @@ def build_document_for_task(
             )
             if not html_output_dir.exists():
                 raise RuntimeError(f"HTML output was not created for publish: {html_output_dir}")
-            # Locate the production IDML the `idml` step just built (mode=production
-            # emits a single manual_<model>_<region>[_<lang>].idml; the flow writer's
-            # *.flow.idml, if any, is excluded).
+            # Locate the production IDML the `idml` step just built: the direct
+            # export at .../idml/manual_*.idml (parent dir "idml" excludes the
+            # flow/ variant and the production/ handoff copy that --idml-mode
+            # both also writes), then package it with its linked images into
+            # one designer handoff zip — the bare .idml only carries absolute
+            # build-machine link URIs, dead once this worktree is removed.
             idml_search_root = effective_repo_root / "docs" / "_build" / model / region
             idml_candidates = sorted(
-                p for p in idml_search_root.rglob("*.idml") if not p.name.endswith(".flow.idml")
+                p for p in idml_search_root.rglob("manual_*.idml") if p.parent.name == "idml"
             )
             if not idml_candidates:
                 raise RuntimeError(f"IDML output was not created for publish under: {idml_search_root}")
-            idml_output_path = idml_candidates[-1]
+            production_idml_path = idml_candidates[-1]
+            versioned_stem = "_".join(
+                part for part in (production_idml_path.stem, normalized_doc_phase, version) if part
+            )
+            fonts_dir_env = os.environ.get("AUTO_MANUAL_LOCAL_GILROY_DIR", "").strip()
+            delivery = build_delivery_package(
+                production_idml=production_idml_path,
+                handoff_root=production_idml_path.parent,
+                out_zip=production_idml_path.parent / f"{versioned_stem}_handoff.zip",
+                idml_arcname=f"{versioned_stem}.idml",
+                version=version or None,
+                reference_pdf=pdf_output_path,
+                fonts_dir=Path(fonts_dir_env) if fonts_dir_env else None,
+            )
+            idml_output_path = delivery.zip_path
             host_config_path = config_path_in_repo_root(config_path, repo_root=repo_root)
             if md_output_path is None:
                 raise RuntimeError("Markdown output was not created for publish")
@@ -383,7 +407,7 @@ def build_document_for_task(
                 region=region,
                 version=version,
             )
-            # Upload the IDML (not the PDF/Word) to the knowledge base -> idml_file.
+            # Upload the handoff zip (not the PDF/Word) to the knowledge base -> idml_file.
             return BuiltDocumentOutputs(
                 word_output_path=staged_word_output_path,
                 upload_output_path=staged_idml_output_path,

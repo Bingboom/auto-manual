@@ -243,7 +243,7 @@ def process_queue_record_group(
                 artifact_destination=effective_artifact_destination,
                 dingtalk_mirror_destination=dingtalk_mirror_destination,
                 dingtalk_operator_union_id=dingtalk_operator_union_id,
-                artifact_label={".idml": "idml", ".pdf": "pdf"}.get(_suffix, "docx"),
+                artifact_label={".zip": "handoff", ".idml": "idml", ".pdf": "pdf"}.get(_suffix, "docx"),
             )
             latest_link_url = artifact_result.latest_link_url
             document_link_url = artifact_result.document_link_url

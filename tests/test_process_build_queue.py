@@ -10,6 +10,30 @@ from tools import process_build_queue
 from tools import process_build_queue_main
 from tests.test_helpers import temp_test_root
 
+_IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
+
+
+def _write_minimal_production_idml(path: Path) -> None:
+    """Smallest IDML honoring the zip contract the delivery packager verifies."""
+    import zipfile
+
+    from tools.idml.params import MIMETYPE
+
+    designmap = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<Document xmlns:idPkg="{_IDPKG}" Self="doc">'
+        '<idPkg:Story src="Stories/Story_s1.xml"/></Document>\n'
+    )
+    story = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Story xmlns:idPkg="{_IDPKG}"><Story Self="s1"/></idPkg:Story>\n'
+    )
+    with zipfile.ZipFile(path, "w") as zf:
+        zf.writestr(zipfile.ZipInfo("mimetype"), MIMETYPE, compress_type=zipfile.ZIP_STORED)
+        zf.writestr("designmap.xml", designmap, compress_type=zipfile.ZIP_DEFLATED)
+        zf.writestr("Stories/Story_s1.xml", story, compress_type=zipfile.ZIP_DEFLATED)
+
+
 
 class TestProcessBuildQueue(unittest.TestCase):
     def test_config_path_in_repo_root_should_preserve_configs_dir(self) -> None:
@@ -770,7 +794,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "idml" / "manual_je1000f_us.idml"
             )
             main_worktree_idml_path.parent.mkdir(parents=True, exist_ok=True)
-            main_worktree_idml_path.write_bytes(b"idml")
+            _write_minimal_production_idml(main_worktree_idml_path)
             (root / "data" / "phase2").mkdir(parents=True, exist_ok=True)
             (root / "data" / "phase2" / "Spec_Master.csv").write_text("fresh-main-data\n", encoding="utf-8")
             (review_worktree / "docs" / "_review" / "JE-1000F" / "US").mkdir(parents=True, exist_ok=True)
@@ -834,7 +858,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             resolved_path.word_output_path,
         )
         self.assertEqual(
-            root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us.idml",
+            root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_publish_0.2_handoff.zip",
             resolved_path.upload_output_path,
         )
         self.assertEqual(
@@ -850,6 +874,9 @@ class TestProcessBuildQueue(unittest.TestCase):
         # Regression: idml must not --clean away the word/pdf/md/html outputs
         # built by the earlier publish/html steps.
         self.assertIn("--no-clean", commands[2][0])
+        # Publish exports dual-mode so the handoff zip can include flow outputs.
+        self.assertIn("--idml-mode", commands[2][0])
+        self.assertIn("both", commands[2][0])
         self.assertEqual(main_worktree, commands[2][1])
         self.assertEqual([mock.call("main"), mock.call("codex/review-us-en")], prepare_mock.call_args_list)
         self.assertEqual([mock.call(review_worktree), mock.call(main_worktree)], remove_mock.call_args_list)
@@ -1044,7 +1071,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             # fabricate the production IDML the publish glob will discover.
             idml_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "idml" / "manual_je1000f_jp.idml"
             idml_path.parent.mkdir(parents=True, exist_ok=True)
-            idml_path.write_bytes(b"idml")
+            _write_minimal_production_idml(idml_path)
 
             with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
                 process_build_queue,
@@ -1083,7 +1110,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             resolved_path.word_output_path,
         )
         self.assertEqual(
-            root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp.idml",
+            root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0_handoff.zip",
             resolved_path.upload_output_path,
         )
         self.assertEqual(
@@ -1096,6 +1123,8 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual("idml", commands[2][2])
         # Regression: idml must not --clean away the earlier steps' outputs.
         self.assertIn("--no-clean", commands[2])
+        self.assertIn("--idml-mode", commands[2])
+        self.assertIn("both", commands[2])
         self.assertIn("--data-root", commands[0])
 
     def test_write_publish_release_metadata_should_write_latest_and_version_metadata(self) -> None:
