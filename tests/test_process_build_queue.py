@@ -764,6 +764,13 @@ class TestProcessBuildQueue(unittest.TestCase):
             main_worktree_md_path.write_text("# Manual\n", encoding="utf-8")
             main_worktree_html_dir.mkdir(parents=True, exist_ok=True)
             (main_worktree_html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
+            # The `build.py idml` step is mocked away (run_command is stubbed), so
+            # fabricate the production IDML the publish glob will discover.
+            main_worktree_idml_path = (
+                main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "idml" / "manual_je1000f_us.idml"
+            )
+            main_worktree_idml_path.parent.mkdir(parents=True, exist_ok=True)
+            main_worktree_idml_path.write_bytes(b"idml")
             (root / "data" / "phase2").mkdir(parents=True, exist_ok=True)
             (root / "data" / "phase2" / "Spec_Master.csv").write_text("fresh-main-data\n", encoding="utf-8")
             (review_worktree / "docs" / "_review" / "JE-1000F" / "US").mkdir(parents=True, exist_ok=True)
@@ -827,18 +834,20 @@ class TestProcessBuildQueue(unittest.TestCase):
             resolved_path.word_output_path,
         )
         self.assertEqual(
-            root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.pdf",
+            root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us.idml",
             resolved_path.upload_output_path,
         )
         self.assertEqual(
             root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.md",
             resolved_path.md_output_path,
         )
-        self.assertEqual(2, len(commands))
+        self.assertEqual(3, len(commands))
         self.assertEqual("publish", commands[0][0][2])
         self.assertEqual(main_worktree, commands[0][1])
         self.assertEqual("html", commands[1][0][2])
         self.assertEqual(main_worktree, commands[1][1])
+        self.assertEqual("idml", commands[2][0][2])
+        self.assertEqual(main_worktree, commands[2][1])
         self.assertEqual([mock.call("main"), mock.call("codex/review-us-en")], prepare_mock.call_args_list)
         self.assertEqual([mock.call(review_worktree), mock.call(main_worktree)], remove_mock.call_args_list)
 
@@ -1028,6 +1037,11 @@ class TestProcessBuildQueue(unittest.TestCase):
             md_path.write_text("# Manual\n", encoding="utf-8")
             html_dir.mkdir(parents=True, exist_ok=True)
             (html_dir / "index.html").write_text("<html>publish</html>\n", encoding="utf-8")
+            # The `build.py idml` step is mocked away (run_command is stubbed), so
+            # fabricate the production IDML the publish glob will discover.
+            idml_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "idml" / "manual_je1000f_jp.idml"
+            idml_path.parent.mkdir(parents=True, exist_ok=True)
+            idml_path.write_bytes(b"idml")
 
             with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
                 process_build_queue,
@@ -1066,16 +1080,17 @@ class TestProcessBuildQueue(unittest.TestCase):
             resolved_path.word_output_path,
         )
         self.assertEqual(
-            root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.pdf",
+            root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp.idml",
             resolved_path.upload_output_path,
         )
         self.assertEqual(
             root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.md",
             resolved_path.md_output_path,
         )
-        self.assertEqual(2, len(commands))
+        self.assertEqual(3, len(commands))
         self.assertEqual("publish", commands[0][2])
         self.assertEqual("html", commands[1][2])
+        self.assertEqual("idml", commands[2][2])
         self.assertIn("--data-root", commands[0])
 
     def test_write_publish_release_metadata_should_write_latest_and_version_metadata(self) -> None:
@@ -1504,10 +1519,8 @@ class TestProcessBuildQueue(unittest.TestCase):
             generated_path.resolve(strict=False).as_posix(),
             record_payload[process_build_queue.DOCUMENT_DIRECTORY_FIELD],
         )
-        self.assertEqual(
-            "https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-            record_payload[process_build_queue.DOCUMENT_LINK_FIELD],
-        )
+        # Draft no longer uploads the artifact to the KB, so the idml_file field is empty.
+        self.assertEqual("", record_payload[process_build_queue.DOCUMENT_LINK_FIELD])
         self.assertFalse(record_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
         self.assertFalse(record_payload[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
         self.assertEqual("skipped", record_payload[process_build_queue.DATA_SYNC_FIELD])
@@ -1790,11 +1803,10 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertIsInstance(failure_payload, dict)
         self.assertIn("FAILED", failure_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("cloud import failed", failure_payload[process_build_queue.RESULT_FIELD])
-        self.assertEqual(
-            "https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
-            failure_payload[process_build_queue.DOCUMENT_LINK_FIELD],
-        )
-        self.assertIn("latest_drive_link_preserved", failure_payload[process_build_queue.RESULT_FIELD])
+        # Draft no longer uploads the artifact to the KB, so there is no idml_file link
+        # to write or preserve on failure: the field is absent and no preserved-link note.
+        self.assertNotIn(process_build_queue.DOCUMENT_LINK_FIELD, failure_payload)
+        self.assertNotIn("latest_drive_link_preserved", failure_payload[process_build_queue.RESULT_FIELD])
 
     def test_process_build_queue_should_preserve_drive_link_when_wiki_move_fails(self) -> None:
         cfg = {
@@ -2353,10 +2365,8 @@ class TestProcessBuildQueue(unittest.TestCase):
             generated_path.resolve(strict=False).as_posix(),
             success_payload_1[process_build_queue.DOCUMENT_DIRECTORY_FIELD],
         )
-        self.assertEqual(
-            "https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-            success_payload_1[process_build_queue.DOCUMENT_LINK_FIELD],
-        )
+        # Draft no longer uploads the artifact to the KB, so the idml_file field is empty.
+        self.assertEqual("", success_payload_1[process_build_queue.DOCUMENT_LINK_FIELD])
         self.assertEqual(success_payload_1, success_payload_2)
 
     def test_publish_word_artifact_should_sync_dingtalk_mirror_without_replacing_feishu_link(self) -> None:
@@ -2624,17 +2634,13 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
 
         self.assertEqual(0, exit_code)
-        self.assertEqual(1, len(publish_calls))
+        # Draft no longer uploads the artifact (nor mirrors it to DingTalk), so the
+        # publish artifact is never invoked and both link fields stay empty.
+        self.assertEqual(0, len(publish_calls))
         success_payload = captured_upserts[1]["record"]
-        self.assertEqual(
-            "https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-            success_payload[process_build_queue.DOCUMENT_LINK_FIELD],
-        )
-        self.assertEqual(
-            "https://alidocs.dingtalk.com/i/nodes/MirrorUpload123",
-            success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD],
-        )
-        self.assertIn("dingtalk_sync=ok", success_payload[process_build_queue.RESULT_FIELD])
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_FIELD])
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD])
+        self.assertNotIn("dingtalk_sync=ok", success_payload[process_build_queue.RESULT_FIELD])
 
     def test_process_build_queue_should_continue_when_operator_session_is_missing_for_mirror(self) -> None:
         cfg = {
@@ -2768,14 +2774,14 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(0, exit_code)
         build_document_mock.assert_called_once()
-        self.assertEqual(1, len(publish_calls))
+        # Draft no longer uploads the artifact, so the idml_file field stays empty.
+        self.assertEqual(0, len(publish_calls))
         self.assertEqual(2, len(captured_upserts))
         success_payload = captured_upserts[1]["record"]
-        self.assertEqual(
-            "https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-            success_payload[process_build_queue.DOCUMENT_LINK_FIELD],
-        )
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_FIELD])
         self.assertIn("SUCCESS", success_payload[process_build_queue.RESULT_FIELD])
+        # DingTalk mirror resolution still runs before the phase gate, so the failed
+        # session probe is still surfaced as a deferred status note in draft.
         self.assertIn("dingtalk_sync=failed", success_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("operator_union_id=alice", success_payload[process_build_queue.RESULT_FIELD])
         self.assertFalse(success_payload[process_build_queue.IMMEDIATE_TRIGGER_FIELD])
@@ -2898,9 +2904,12 @@ class TestProcessBuildQueue(unittest.TestCase):
 
         self.assertEqual(0, exit_code)
         build_document_mock.assert_called_once()
-        self.assertEqual(1, len(publish_calls))
+        # Draft no longer uploads the artifact, so the publish artifact is never invoked.
+        self.assertEqual(0, len(publish_calls))
         success_payload = captured_upserts[1]["record"]
         self.assertIn("SUCCESS", success_payload[process_build_queue.RESULT_FIELD])
+        # DingTalk mirror resolution still runs before the phase gate, so the invalid
+        # target is still surfaced as a deferred status note in draft.
         self.assertIn("dingtalk_sync=failed", success_payload[process_build_queue.RESULT_FIELD])
         self.assertIn("Invalid DingTalk workspace URL: -", success_payload[process_build_queue.RESULT_FIELD])
 
@@ -3016,13 +3025,13 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
 
         self.assertEqual(0, exit_code)
-        self.assertEqual(1, len(publish_calls))
+        # Draft no longer uploads the artifact, so the idml_file field stays empty.
+        self.assertEqual(0, len(publish_calls))
         success_payload = captured_upserts[1]["record"]
-        self.assertEqual(
-            "https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-            success_payload[process_build_queue.DOCUMENT_LINK_FIELD],
-        )
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_FIELD])
         self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD])
+        # DingTalk mirror resolution still runs before the phase gate, so the disabled
+        # mirror is still surfaced as a deferred status note in draft.
         self.assertIn("dingtalk_sync=skipped", success_payload[process_build_queue.RESULT_FIELD])
 
     def test_process_build_queue_should_write_dingtalk_node_url_back_to_document_link_and_document_link_dd(self) -> None:
@@ -3136,14 +3145,10 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(2, len(captured_upserts))
         success_payload = captured_upserts[1]["record"]
         self.assertIsInstance(success_payload, dict)
-        self.assertEqual(
-            "https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
-            success_payload[process_build_queue.DOCUMENT_LINK_FIELD],
-        )
-        self.assertEqual(
-            "https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
-            success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD],
-        )
+        # Draft no longer uploads the artifact (to Feishu or its DingTalk mirror), so
+        # neither the idml_file field nor the DingTalk link field is populated.
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_FIELD])
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD])
         self.assertEqual(
             generated_path.resolve(strict=False).as_posix(),
             success_payload[process_build_queue.DOCUMENT_DIRECTORY_FIELD],
@@ -3280,12 +3285,11 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
 
         self.assertEqual(0, exit_code)
-        self.assertEqual(1, len(publish_destinations))
+        # Draft no longer uploads the artifact, so the publish artifact is never invoked
+        # and the DingTalk link field stays empty.
+        self.assertEqual(0, len(publish_destinations))
         success_payload = captured_upserts[1]["record"]
-        self.assertEqual(
-            "https://alidocs.dingtalk.com/i/nodes/UploadedRowTargetNode",
-            success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD],
-        )
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD])
 
     def test_process_build_queue_should_allow_row_level_dingtalk_target_without_default_target(self) -> None:
         cfg = {
@@ -3416,12 +3420,11 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
 
         self.assertEqual(0, exit_code)
-        self.assertEqual(1, len(publish_destinations))
+        # Draft no longer uploads the artifact, so the publish artifact is never invoked
+        # and the DingTalk link field stays empty.
+        self.assertEqual(0, len(publish_destinations))
         success_payload = captured_upserts[1]["record"]
-        self.assertEqual(
-            "https://alidocs.dingtalk.com/i/nodes/UploadedRowOnlyTargetNode",
-            success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD],
-        )
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD])
 
     def test_process_build_queue_should_accept_default_target_node_url_field_as_dingtalk_alias(self) -> None:
         cfg = {
@@ -3552,12 +3555,11 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
 
         self.assertEqual(0, exit_code)
-        self.assertEqual(1, len(publish_destinations))
+        # Draft no longer uploads the artifact, so the publish artifact is never invoked
+        # and the DingTalk link field stays empty.
+        self.assertEqual(0, len(publish_destinations))
         success_payload = captured_upserts[1]["record"]
-        self.assertEqual(
-            "https://alidocs.dingtalk.com/i/nodes/UploadedDefaultAliasNode",
-            success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD],
-        )
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD])
 
     def test_process_build_queue_should_fallback_to_feishu_when_dingtalk_upload_is_not_checked(self) -> None:
         cfg = {
@@ -3680,14 +3682,13 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
 
         self.assertEqual(0, exit_code)
-        self.assertEqual(1, len(publish_destinations))
+        # Draft no longer uploads the artifact, so the publish artifact is never invoked
+        # and the idml_file field stays empty.
+        self.assertEqual(0, len(publish_destinations))
         self.assertEqual(2, len(captured_upserts))
         success_payload = captured_upserts[1]["record"]
         self.assertIsInstance(success_payload, dict)
-        self.assertEqual(
-            "https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-            success_payload[process_build_queue.DOCUMENT_LINK_FIELD],
-        )
+        self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_FIELD])
         self.assertEqual("", success_payload[process_build_queue.DOCUMENT_LINK_DD_FIELD])
 
     def test_build_success_fields_should_optionally_write_dingtalk_link(self) -> None:

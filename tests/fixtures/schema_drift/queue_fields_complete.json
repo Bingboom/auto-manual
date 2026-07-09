@@ -3,7 +3,7 @@
     {"field_name": "开始构建时间"},
     {"field_name": "构建结果"},
     {"field_name": "Document directory"},
-    {"field_name": "Document link"},
+    {"field_name": "idml_file"},
     {"field_name": "是否触发文档构建"},
     {"field_name": "是否立即构建"},
     {"field_name": "是否强制刷新数据"},

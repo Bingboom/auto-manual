@@ -239,16 +239,18 @@ def stage_publish_assets_to_host_repo(
     built_pdf_output_path: Path,
     built_md_output_path: Path,
     built_html_dir: Path,
+    built_idml_output_path: Path,
     host_config_path: Path,
     model: str,
     region: str,
     version: str,
-) -> tuple[Path, Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path, Path]:
     return _stage_publish_assets_to_host_repo_impl(
         built_word_output_path=built_word_output_path,
         built_pdf_output_path=built_pdf_output_path,
         built_md_output_path=built_md_output_path,
         built_html_dir=built_html_dir,
+        built_idml_output_path=built_idml_output_path,
         host_config_path=host_config_path,
         model=model,
         region=region,
