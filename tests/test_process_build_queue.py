@@ -847,6 +847,9 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual("html", commands[1][0][2])
         self.assertEqual(main_worktree, commands[1][1])
         self.assertEqual("idml", commands[2][0][2])
+        # Regression: idml must not --clean away the word/pdf/md/html outputs
+        # built by the earlier publish/html steps.
+        self.assertIn("--no-clean", commands[2][0])
         self.assertEqual(main_worktree, commands[2][1])
         self.assertEqual([mock.call("main"), mock.call("codex/review-us-en")], prepare_mock.call_args_list)
         self.assertEqual([mock.call(review_worktree), mock.call(main_worktree)], remove_mock.call_args_list)
@@ -1091,6 +1094,8 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual("publish", commands[0][2])
         self.assertEqual("html", commands[1][2])
         self.assertEqual("idml", commands[2][2])
+        # Regression: idml must not --clean away the earlier steps' outputs.
+        self.assertIn("--no-clean", commands[2])
         self.assertIn("--data-root", commands[0])
 
     def test_write_publish_release_metadata_should_write_latest_and_version_metadata(self) -> None:
