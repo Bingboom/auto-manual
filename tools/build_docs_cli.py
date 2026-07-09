@@ -22,9 +22,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--skip-root-index", action="store_true", help="Do not rewrite docs/index.rst")
     ap.add_argument(
         "--source",
-        choices=("auto", "review", "runtime"),
+        choices=("auto", "review", "review-asis", "runtime"),
         default="auto",
-        help="Content source for bundle materialization: auto, runtime, or review",
+        help=(
+            "Content source for bundle materialization: auto, runtime, review, or "
+            "review-asis (render the committed review bundle as-is, without "
+            "re-deriving pages from the data-root)"
+        ),
     )
     ap.add_argument(
         "--draft-placeholders",

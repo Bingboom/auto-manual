@@ -41,6 +41,12 @@ def prepare_manual_bundle(
     if source_mode not in valid_source_modes:
         raise RuntimeError(f"Unsupported source mode: {source_mode}")
 
+    # "review-asis" renders the committed review bundle without re-deriving any
+    # page from the build data-root: only the conf/asset skeleton is materialized
+    # and the review overlay supplies every content page. This is what lets a
+    # review-only render (e.g. the CI HTML preview) succeed for a model that is
+    # absent from the data-root.
+    skeleton_only = source_mode == "review-asis"
     bundle = materialize_bundle(
         cfg,
         model=model,
@@ -52,9 +58,10 @@ def prepare_manual_bundle(
         bundle_dir_override=(output_root / "rst") if output_root else None,
         write_wrapper_index=write_wrapper_index,
         draft_placeholders=draft_placeholders,
+        skeleton_only=skeleton_only,
     )
     review_applied = False
-    if source_mode in {"auto", "review"}:
+    if source_mode in {"auto", "review", "review-asis"}:
         review_lang_candidates = [lang]
         if (lang or "").strip():
             review_lang_candidates.append(None)
@@ -95,7 +102,7 @@ def prepare_manual_bundle(
                 )
                 review_applied = True
                 break
-        if source_mode == "review" and not review_applied:
+        if source_mode in {"review", "review-asis"} and not review_applied:
             raise RuntimeError(
                 "Review bundle not found for "
                 f"model='{model or ''}', region='{region or ''}'. "

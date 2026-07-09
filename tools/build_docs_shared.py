@@ -6,7 +6,7 @@ from pathlib import Path
 
 VALID_FORMATS = {"html", "word", "pdf", "md"}
 VALID_PDF_MODES = {"latex", "word"}
-VALID_SOURCE_MODES = {"auto", "runtime", "review"}
+VALID_SOURCE_MODES = {"auto", "runtime", "review", "review-asis"}
 _TEMPLATE_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
 MANUAL_META_FILE_NAME = "manual_meta.json"
 SWITCHER_BLOCK_START = "<!-- HB_MANUAL_SWITCHER_START -->"

@@ -416,6 +416,7 @@ def materialize_bundle(
     bundle_dir_override: Path | None = None,
     write_wrapper_index: bool = True,
     draft_placeholders: bool = False,
+    skeleton_only: bool = False,
 ) -> MaterializedBundle:
     context = _resolve_bundle_materialization_context_impl(
         cfg,
@@ -452,7 +453,9 @@ def materialize_bundle(
         context,
         cfg=cfg,
         data_root=data_root,
-        ensure_csv_pages=ensure_csv_pages,
+        # Skeleton-only builds render nothing from data; the committed review
+        # bundle is overlaid afterwards and provides every generated page.
+        ensure_csv_pages=ensure_csv_pages and not skeleton_only,
         bundle_dir_override=bundle_dir_override,
         csv_page_cls=CsvPage,
         cleanup_legacy_rst_artifacts=cleanup_legacy_rst_artifacts,
@@ -463,11 +466,18 @@ def materialize_bundle(
         write_bundle_conf_files=_write_bundle_conf_files,
     )
 
-    page_paths, recipe_ids, snippet_ids = _materialize_bundle_pages_impl(
-        context,
-        cfg=cfg,
-        materialize_planned_page=_materialize_planned_page,
-    )
+    if skeleton_only:
+        # Emit only the conf/asset skeleton; the caller overlays the committed
+        # review bundle (index.rst + page/ + generated/) on top. This lets a
+        # review render succeed for a target whose model is absent from the
+        # build data-root (e.g. the CI review-preview fixtures).
+        page_paths, recipe_ids, snippet_ids = [], [], []
+    else:
+        page_paths, recipe_ids, snippet_ids = _materialize_bundle_pages_impl(
+            context,
+            cfg=cfg,
+            materialize_planned_page=_materialize_planned_page,
+        )
 
     _write_bundle_outputs_impl(
         context,

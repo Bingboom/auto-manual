@@ -297,13 +297,17 @@ def build_spec_for_target(
         review_availability=review_availability,
         docs_dir=docs_dir,
     )
-    source_mode = "review" if has_review_bundle else "runtime"
+    # The preview renders the committed review bundle as-is (review-asis) rather
+    # than re-deriving pages from the build data-root. That is both the correct
+    # semantic for a review preview and what lets targets whose model is absent
+    # from the fixtures (e.g. a newly onboarded model) render instead of failing.
+    source_mode = "review-asis" if has_review_bundle else "runtime"
     source_label = source_mode
     if target.key == requested_target.key:
         requested_source = args.source
-        if requested_source == "review" and not has_review_bundle:
-            source_mode = "runtime"
-            source_label = "runtime"
+        if requested_source in {"review", "review-asis"}:
+            source_mode = "review-asis" if has_review_bundle else "runtime"
+            source_label = source_mode
         else:
             source_mode = requested_source
             source_label = requested_source
