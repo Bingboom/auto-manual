@@ -161,9 +161,8 @@ class IdmlWriter:
         return _prim.cell(cid, name, content, fill=fill, stroke=stroke,
                           top=top, bottom=bottom, left=left, right=right)
 
-    def _component_table(self, tid: str, cols: list[float], cells: list[str],
-                         n_rows: int = 1, *, role: str | None = None) -> str:
-        return _prim.component_table(tid, cols, cells, n_rows, role=role)
+    def _component_table(self, tid: str, cols: list[float], cells: list[str], n_rows: int = 1, **kwargs) -> str:
+        return _prim.component_table(tid, cols, cells, n_rows, **kwargs)
 
     def _wrap_table_paragraph(self, table: str, terminal: bool,
                               span_columns: bool = True) -> str:
@@ -211,8 +210,9 @@ class IdmlWriter:
                    x1: float, y1: float, x2: float, y2: float, *,
                    columns: int = 1, fill: str | None = None,
                    rounded: bool = False, balance_columns: bool = False,
-                   inset: tuple[float, float, float, float] | None = None) -> str:
-        return _pages._frame_xml(self, frame_id, story_id, x1, y1, x2, y2, columns=columns, fill=fill, rounded=rounded, balance_columns=balance_columns, inset=inset)
+                   inset: tuple[float, float, float, float] | None = None,
+                   **kwargs) -> str:
+        return _pages._frame_xml(self, frame_id, story_id, x1, y1, x2, y2, columns=columns, fill=fill, rounded=rounded, balance_columns=balance_columns, inset=inset, **kwargs)
 
     def _page_rect(self, x: float, y: float, w: float, h: float) -> tuple[float, float, float, float]:
         return _pages._page_rect(self, x, y, w, h)

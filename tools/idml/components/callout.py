@@ -33,9 +33,9 @@ def render_safetywarning(spec: dict, ctx: RenderContext, *, tid: str, terminal: 
         icon = figure_paragraph(image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih))
     cols = [24.0, max(24.0, body_w - 24.0)]
     cells = [
-        cell(f"{tid}c0", "0:0", icon),
+        cell(f"{tid}c0", "0:0", icon, stroke=False),
         cell(f"{tid}c1", "1:0",
-             psr("HB Title L3", body, terminal=True)),
+             psr("HB Title L3", body, terminal=True), stroke=False),
     ]
     table = component_table(tid, cols, cells, role="warning")
     return wrap_table_paragraph(table, terminal, span_columns), 28.0
@@ -86,13 +86,13 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
     cols = [icon_w, label_w, max(80.0, body_w - icon_w - label_w)]
     cells = [
         cell(f"{tid}c0", "0:0", icon,
-             top=1, bottom=1, left=4, right=3),
+             stroke=False, top=1, bottom=1, left=4, right=3),
         cell(f"{tid}c1", "1:0",
              psr("HB Title L2", label, terminal=True),
-             top=1, bottom=1, left=3, right=3),
+             stroke=False, top=1, bottom=1, left=3, right=3),
         cell(f"{tid}c2", "2:0",
              psr("HB Body", body, terminal=True),
-             top=1, bottom=1, left=3, right=4),
+             stroke=False, top=1, bottom=1, left=3, right=4),
     ]
     table = component_table(tid, cols, cells, role="warning")
     per_line = max(20, int((body_w - icon_w - label_w) / (0.52 * 6.2)))

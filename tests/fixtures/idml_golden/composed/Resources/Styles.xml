@@ -55,11 +55,11 @@
       <Leading type="unit">7</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/带底Heading2" Name="带底Heading2" PointSize="8.6" FillColor="Color/Paper" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/带底Heading2" Name="带底Heading2" PointSize="9.4" FillColor="Color/Paper" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
-      <Leading type="unit">9.4</Leading>
+      <Leading type="unit">10.8</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/Figure" Name="Figure" PointSize="6.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
@@ -121,5 +121,7 @@
   <RootObjectStyleGroup Self="rosg">
     <ObjectStyle Self="ObjectStyle/$ID/[None]" Name="$ID/[None]"/>
     <ObjectStyle Self="ObjectStyle/$ID/[Normal Text Frame]" Name="$ID/[Normal Text Frame]"/>
+    <ObjectStyle Self="ObjectStyle/HB Capsule Heading" Name="HB Capsule Heading"/>
+    <ObjectStyle Self="ObjectStyle/HB Rounded Table Outer" Name="HB Rounded Table Outer"/>
   </RootObjectStyleGroup>
 </idPkg:Styles>

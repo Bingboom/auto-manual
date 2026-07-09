@@ -30,6 +30,10 @@ _RESOURCE_FONTS = "Resources/Fonts.xml"
 # else on a <Cell> (FillColor, edge strokes, insets) is a local override that
 # would mask the template table style's region cell styles, so it is dropped.
 _CELL_KEEP = ("Self", "Name", "RowSpan", "ColumnSpan")
+_ZERO_EDGE_STROKES = (
+    "LeftEdgeStrokeWeight", "RightEdgeStrokeWeight",
+    "TopEdgeStrokeWeight", "BottomEdgeStrokeWeight",
+)
 
 
 def _strip_cell_overrides(story_xml: str) -> str:
@@ -37,7 +41,17 @@ def _strip_cell_overrides(story_xml: str) -> str:
     cell styles (header / left-column / body) paint the table instead."""
     def repl(m: "re.Match[str]") -> str:
         attrs = dict(re.findall(r'(\w+)="([^"]*)"', m.group(0)))
-        kept = " ".join(f'{k}="{attrs[k]}"' for k in _CELL_KEEP if k in attrs)
+        kept_pairs = [(k, attrs[k]) for k in _CELL_KEEP if k in attrs]
+        for key in _ZERO_EDGE_STROKES:
+            if key not in attrs:
+                continue
+            try:
+                is_zero = float(attrs[key]) == 0.0
+            except ValueError:
+                is_zero = False
+            if is_zero:
+                kept_pairs.append((key, attrs[key]))
+        kept = " ".join(f'{k}="{v}"' for k, v in kept_pairs)
         return f'<Cell {kept} AppliedCellStyle="CellStyle/$ID/[None]">'
     return re.sub(r'<Cell\b[^>]*?>', repl, story_xml)
 
@@ -63,6 +77,20 @@ def _defined_colors(graphic_xml: str) -> set[str]:
     return set(re.findall(pat, graphic_xml))
 
 
+def _referenced_object_styles(members: dict[str, bytes]) -> set[str]:
+    refs: set[str] = set()
+    for name, data in members.items():
+        if not name.startswith(_CONTENT_DIRS):
+            continue
+        text = data.decode("utf-8", "replace")
+        refs.update(re.findall(r'AppliedObjectStyle="([^"]+)"', text))
+    return {r for r in refs if r.startswith("ObjectStyle/")}
+
+
+def _defined_object_styles(styles_xml: str) -> set[str]:
+    return set(re.findall(r'<ObjectStyle\b[^>]*?\bSelf="([^"]*)"', styles_xml))
+
+
 def _color_element(graphic_xml: str, self_id: str) -> str | None:
     esc = re.escape(self_id)
     for tag in _COLORISH:
@@ -72,6 +100,14 @@ def _color_element(graphic_xml: str, self_id: str) -> str | None:
         if m:
             return m.group(0)
     return None
+
+
+def _object_style_element(styles_xml: str, self_id: str) -> str | None:
+    esc = re.escape(self_id)
+    m = re.search(
+        r'<ObjectStyle\b[^>]*?\bSelf="%s".*?(?:/>|</ObjectStyle>)' % esc,
+        styles_xml, re.S)
+    return m.group(0) if m else None
 
 
 def _inject_colors(template_graphic: str, our_graphic: str,
@@ -93,6 +129,41 @@ def _inject_colors(template_graphic: str, our_graphic: str,
     return merged, injected
 
 
+def _inject_object_styles(template_styles: str, our_styles: str,
+                          missing: set[str]) -> tuple[str, list[str]]:
+    injected: list[str] = []
+    additions: list[str] = []
+    for self_id in sorted(missing):
+        el = _object_style_element(our_styles, self_id)
+        if el:
+            additions.append(el)
+            injected.append(self_id)
+    if not additions:
+        return template_styles, injected
+    close_group = re.search(r'</RootObjectStyleGroup>', template_styles)
+    if close_group:
+        return (
+            template_styles[:close_group.start()]
+            + "\n".join(additions) + "\n"
+            + template_styles[close_group.start():],
+            injected,
+        )
+    close_styles = re.search(r'</idPkg:Styles>', template_styles)
+    if close_styles:
+        group = (
+            '<RootObjectStyleGroup Self="rosg">\n'
+            + "\n".join(additions)
+            + "\n</RootObjectStyleGroup>\n"
+        )
+        return (
+            template_styles[:close_styles.start()]
+            + group
+            + template_styles[close_styles.start():],
+            injected,
+        )
+    return template_styles, injected
+
+
 def merge_into_template(ours_idml: Path, template_idml: Path,
                         out_idml: Path) -> dict:
     """Write out_idml = our content wearing the template's Resources.
@@ -107,6 +178,7 @@ def merge_into_template(ours_idml: Path, template_idml: Path,
         tpl_fonts = t.read(_RESOURCE_FONTS).decode("utf-8")
 
     our_graphic = members[_RESOURCE_GRAPHIC].decode("utf-8")
+    our_styles = members[_RESOURCE_STYLES].decode("utf-8")
 
     # let the template's table/cell styles paint every table: drop per-cell
     # fill/stroke/inset overrides BEFORE computing which colours are still
@@ -121,8 +193,12 @@ def merge_into_template(ours_idml: Path, template_idml: Path,
     missing = _referenced_colors(members) - _defined_colors(tpl_graphic)
     merged_graphic, injected = _inject_colors(tpl_graphic, our_graphic, missing)
     unresolved = sorted(missing - set(injected))
+    missing_objects = _referenced_object_styles(members) - _defined_object_styles(tpl_styles)
+    merged_styles, injected_objects = _inject_object_styles(
+        tpl_styles, our_styles, missing_objects)
+    unresolved_objects = sorted(missing_objects - set(injected_objects))
 
-    members[_RESOURCE_STYLES] = tpl_styles.encode("utf-8")
+    members[_RESOURCE_STYLES] = merged_styles.encode("utf-8")
     members[_RESOURCE_GRAPHIC] = merged_graphic.encode("utf-8")
     members[_RESOURCE_FONTS] = tpl_fonts.encode("utf-8")
 
@@ -135,6 +211,8 @@ def merge_into_template(ours_idml: Path, template_idml: Path,
             z.writestr(name, data)
 
     return {"injected_colors": injected, "unresolved_colors": unresolved,
+            "injected_object_styles": injected_objects,
+            "unresolved_object_styles": unresolved_objects,
             "cells_style_driven": stripped_cells}
 
 

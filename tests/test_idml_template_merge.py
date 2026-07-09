@@ -53,7 +53,10 @@ class TemplateMergeTest(unittest.TestCase):
             self.ours,
             styles='<idPkg:Styles xmlns:idPkg="x"><RootParagraphStyleGroup>'
                    '<ParagraphStyle Self="ParagraphStyle/正文" Name="正文" PointSize="99"/>'
-                   '</RootParagraphStyleGroup></idPkg:Styles>',
+                   '</RootParagraphStyleGroup><RootObjectStyleGroup>'
+                   '<ObjectStyle Self="ObjectStyle/HB Rounded Table Outer" '
+                   'Name="HB Rounded Table Outer"/>'
+                   '</RootObjectStyleGroup></idPkg:Styles>',
             graphic='<idPkg:Graphic xmlns:idPkg="x">'
                     '<Color Self="Color/HB Bg K05" Name="HB Bg K05" ColorValue="0 0 0 5"/>'
                     '</idPkg:Graphic>',
@@ -66,8 +69,11 @@ class TemplateMergeTest(unittest.TestCase):
                   '<Table AppliedTableStyle="TableStyle/正文表格">'
                   '<Cell Self="c0" Name="0:0" RowSpan="1" ColumnSpan="1" '
                   'AppliedCellStyle="CellStyle/$ID/[None]" FillColor="Color/黑色" '
-                  'TopInset="3" LeftInset="4">hello</Cell>'
+                  'TopInset="3" LeftInset="4" TopEdgeStrokeWeight="0">hello</Cell>'
                   '</Table></ParagraphStyleRange></Story>',
+            spread='<Spread><Rectangle Self="r0" ContentType="Unassigned" '
+                   'AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" '
+                   'FillColor="Color/HB Bg K05"/></Spread>',
         )
         # template: same-named body style but the DESIGNER definition (7pt),
         # and no HB Bg K05 swatch
@@ -75,7 +81,9 @@ class TemplateMergeTest(unittest.TestCase):
             self.tpl,
             styles='<idPkg:Styles xmlns:idPkg="x"><RootParagraphStyleGroup>'
                    '<ParagraphStyle Self="ParagraphStyle/正文" Name="正文" PointSize="7"/>'
-                   '</RootParagraphStyleGroup></idPkg:Styles>',
+                   '</RootParagraphStyleGroup><RootObjectStyleGroup>'
+                   '<ObjectStyle Self="ObjectStyle/$ID/[None]" Name="$ID/[None]"/>'
+                   '</RootObjectStyleGroup></idPkg:Styles>',
             graphic='<idPkg:Graphic xmlns:idPkg="x">'
                     '<Color Self="Color/黑色" Name="黑色" ColorValue="0 0 0 100"/>'
                     '</idPkg:Graphic>',
@@ -96,6 +104,9 @@ class TemplateMergeTest(unittest.TestCase):
         # template style definition wins (7pt), not ours (99pt)
         self.assertIn('PointSize="7"', styles)
         self.assertNotIn('PointSize="99"', styles)
+        # object styles referenced by our spread are merged into the
+        # template style resource instead of dangling after replacement.
+        self.assertIn('Self="ObjectStyle/HB Rounded Table Outer"', styles)
         # template fonts adopted
         self.assertIn("Designer", fonts)
         self.assertNotIn("Ours", fonts)
@@ -108,6 +119,7 @@ class TemplateMergeTest(unittest.TestCase):
         # Name / content kept, fill+inset gone
         self.assertNotIn("FillColor", story.split("<Cell", 1)[1].split(">", 1)[0])
         self.assertNotIn("Inset", story)
+        self.assertIn('TopEdgeStrokeWeight="0"', story)
         self.assertIn('<Cell Self="c0" Name="0:0"', story)
         self.assertIn(">hello</Cell>", story)
         # mimetype first and stored
@@ -122,12 +134,16 @@ class TemplateMergeTest(unittest.TestCase):
             styles = z.read("Resources/Styles.xml").decode()
             graphic = z.read("Resources/Graphic.xml").decode()
             story = z.read("Stories/Story_a.xml").decode()
+            spread = z.read("Spreads/Spread_a.xml").decode()
         defined_p = set(re.findall(r'<ParagraphStyle\b[^>]*?\bSelf="([^"]*)"', styles))
         defined_c = set(re.findall(r'<Color\b[^>]*?\bSelf="([^"]*)"', graphic))
+        defined_o = set(re.findall(r'<ObjectStyle\b[^>]*?\bSelf="([^"]*)"', styles))
         used_p = set(re.findall(r'AppliedParagraphStyle="([^"]*)"', story))
         used_c = set(re.findall(r'FillColor="([^"]*)"', story))
+        used_o = set(re.findall(r'AppliedObjectStyle="([^"]*)"', spread))
         self.assertEqual(used_p - defined_p, set())
         self.assertEqual(used_c - defined_c, set())
+        self.assertEqual(used_o - defined_o, set())
 
 
 if __name__ == "__main__":

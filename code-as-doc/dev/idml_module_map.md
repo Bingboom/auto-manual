@@ -19,8 +19,12 @@ tools/idml/
                               manual.flow.idml + flow_style_map.json
   flow_md.py                  flow-idml Phase 2 semantic Markdown artifacts:
                               manual.flow.md + trace + asset manifest + notes
-  pages.py                    composed-page assemblers: safety page (segmented capsules),
-                              safety+symbols merge, fcc+inbox merge + frame helpers
+  pages.py                    composed-page assemblers: safety page, safety+symbols
+                              merge, fcc+inbox merge + frame helpers; declares
+                              heading levels and frame geometry, not corner shapes
+  page_objects.py             spread-level visual objects for composed pages:
+                              H1/H2 heading object-style opts and independent
+                              rounded table/callout outline rectangles
   prose_flow.py               ordinary-page flow buffering: adjacent prose pages share
                               one linked story until a hard layout boundary
   fcc_fallback.py             localized FCC prose -> fcc component fallback when the
@@ -40,6 +44,8 @@ tools/idml/
     prose_image.py            the extractor's ("image", ref) block
   primitives.py               XML building blocks: psr/<Br/> semantics, bold runs, glyph
                               fallbacks, cells, tables, image frames, path geometry
+  table_borders.py            table XML border helpers: table perimeter suppression
+                              when a separate rounded outline object owns the border
   styles.py                   resource parts: paragraph styles/colors/fonts/preferences
   style_names.py              internal HB semantic style -> designer-template paragraph
                               style names, so exported stories can inherit the template
@@ -70,6 +76,22 @@ tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by 
   names, but emitted IDML paragraph style refs and `Resources/Styles.xml`
   names must go through `tools/idml/style_names.py` so generated stories match
   the designer template's paragraph-style family.
+- **Composed-page visual objects**: safety/symbols headings and rounded table
+  outlines are spread-level objects with named object styles. H1 bars generated
+  from section-level template semantics (`IMPORTANT SAFETY INFORMATION`,
+  `MEANING OF SYMBOLS`, `WHAT'S IN THE BOX`) use square top corners and rounded
+  bottom corners. H2/subbar components (`OPERATING INSTRUCTIONS`, the merged
+  `USER MAINTENANCE INSTRUCTIONS` strip) stay full-pill. The symbol icon pair
+  follows the template split (orders 1-6 left, 7-11 right; `weee2` is not forced
+  into this page). The table story owns only the editable cell grid;
+  `table_borders.py` suppresses the perimeter cell edges where a separate
+  rounded outline object owns the border. Safety callouts follow the same rule:
+  the spread-level rounded object owns the outer shape; the component table
+  only carries editable icon/text content.
+- **Template-baked object styles**: `tools/idml/template_merge.py` still adopts
+  the designer template's resources, but it now injects object styles referenced
+  by our spread/story content when the template does not define them, just like
+  the existing missing-colour injection path.
 - **Designer-reported InDesign traps** live as comments next to the exact
   strings that dodge them (`<Br/>` paragraph delimiting, `Paragraph*`-prefixed
   shading, `FillColor` not `CellFillColor`, PathGeometry not GeometricBounds,

@@ -12,6 +12,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from .style_names import paragraph_style_ref, table_style_ref
+from .table_borders import component_table_xml
 
 # saxutils.escape only handles &<> by default; inside a double-quoted
 # XML attribute a raw " truncates the value and malforms the part.
@@ -241,17 +242,9 @@ def cell(cid: str, name: str, content: str, *, fill: str | None = None,
 
 
 def component_table(tid: str, cols: list[float], cells: list[str],
-                    n_rows: int = 1, role: str | None = None) -> str:
-    table_style = table_style_ref(role)
-    row_els = "\n".join(f'    <Row Self="{tid}r{ri}" Name="{ri}"/>'
-                         for ri in range(n_rows))
-    col_els = "\n".join(
-        f'    <Column Self="{tid}col{ci}" Name="{ci}" SingleColumnWidth="{wd:g}"/>'
-        for ci, wd in enumerate(cols))
-    return (
-        f'  <Table Self="{tid}" AppliedTableStyle="{table_style}" '
-        f'BodyRowCount="{n_rows}" ColumnCount="{len(cols)}" HeaderRowCount="0" FooterRowCount="0">\n'
-        f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n")
+                    n_rows: int = 1, role: str | None = None, *,
+                    outer_stroke: bool = True) -> str:
+    return component_table_xml(tid, cols, cells, n_rows, role=role, outer_stroke=outer_stroke)
 
 
 def wrap_table_paragraph(table: str, terminal: bool,
