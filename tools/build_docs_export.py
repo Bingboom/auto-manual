@@ -102,13 +102,17 @@ def build_target(
         build_root_for_target=build_root_for_target,
         render_build_template=render_build_template,
     )
-    ensure_target_identity(
-        cfg,
-        model=target_model,
-        region=target_region,
-        lang=artifact_plan.primary_lang,
-        data_root=data_root,
-    )
+    # review-asis renders the committed review bundle without touching the
+    # data-root, so the Spec_Master identity guard (which would fail for a model
+    # absent from that data-root) does not apply.
+    if source_mode != "review-asis":
+        ensure_target_identity(
+            cfg,
+            model=target_model,
+            region=target_region,
+            lang=artifact_plan.primary_lang,
+            data_root=data_root,
+        )
 
     bundle = prepare_manual_bundle(
         cfg,

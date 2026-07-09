@@ -59,9 +59,13 @@ def parse_args(
     )
     ap.add_argument(
         "--source",
-        choices=("auto", "runtime", "review"),
+        choices=("auto", "runtime", "review", "review-asis"),
         default="auto",
-        help="Content source for build actions: auto, runtime, or review",
+        help=(
+            "Content source for build actions: auto, runtime, review, or "
+            "review-asis (render the committed review bundle as-is, without "
+            "re-deriving pages from the data-root)"
+        ),
     )
     ap.add_argument(
         "--draft-placeholders",

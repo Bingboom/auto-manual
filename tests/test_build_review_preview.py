@@ -130,8 +130,10 @@ class TestBuildReviewPreview(unittest.TestCase):
         )
 
         self.assertEqual(build_review_preview.resolve_path("configs/config.us-en.yaml"), spec["config_path"])
-        self.assertEqual("review", spec["source_mode"])
-        self.assertEqual("review", spec["source_label"])
+        # Preview renders the committed review bundle as-is (review-asis), not a
+        # data-refreshed review build.
+        self.assertEqual("review-asis", spec["source_mode"])
+        self.assertEqual("review-asis", spec["source_label"])
         self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
 
     def test_build_spec_for_target_should_fallback_to_runtime_for_requested_target_without_review_bundle(self) -> None:
@@ -200,8 +202,10 @@ class TestBuildReviewPreview(unittest.TestCase):
         )
 
         self.assertEqual(build_review_preview.resolve_path("configs/config.us-es.yaml"), spec["config_path"])
-        self.assertEqual("review", spec["source_mode"])
-        self.assertEqual("review", spec["source_label"])
+        # Preview renders the committed review bundle as-is (review-asis), not a
+        # data-refreshed review build.
+        self.assertEqual("review-asis", spec["source_mode"])
+        self.assertEqual("review-asis", spec["source_label"])
         self.assertEqual(build_review_preview.output_root_for_target("JE-1000F", target), spec["output_root"])
 
     def test_build_spec_for_target_should_fallback_to_runtime_for_secondary_language_without_review_baseline(self) -> None:

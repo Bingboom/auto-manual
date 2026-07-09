@@ -71,6 +71,53 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
             allow_index=False,
         )
 
+    def test_prepare_manual_bundle_review_asis_materializes_skeleton_only_and_overlays(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1800B" / "JP" / "rst"
+            (bundle_dir / "page").mkdir(parents=True, exist_ok=True)
+            (bundle_dir / "index.rst").write_text("skeleton index\n", encoding="utf-8")
+
+            review_dir = docs_dir / "_review" / "JE-1800B" / "JP"
+            (review_dir / "page").mkdir(parents=True, exist_ok=True)
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "page" / "overview.rst").write_text("review overview\n", encoding="utf-8")
+
+            bundle = MaterializedBundle(
+                bundle_dir=bundle_dir,
+                page_dir=bundle_dir / "page",
+                index_path=bundle_dir / "index.rst",
+                conf_path=bundle_dir / "conf.py",
+                conf_base_path=bundle_dir / "conf_base.py",
+                wrapper_index_path=docs_dir / "index.rst",
+                page_paths=(),
+                title="Demo",
+                reference_doc=None,
+                model="JE-1800B",
+                region="JP",
+                lang=None,
+            )
+
+            with (
+                mock.patch.object(build_docs, "paths", SimpleNamespace(docs_dir=docs_dir)),
+                mock.patch.object(build_docs, "materialize_bundle", return_value=bundle) as materialize,
+                mock.patch.object(build_docs, "overlay_review_onto_bundle") as overlay_review_bundle,
+                mock.patch.object(build_docs, "overlay_review_content_onto_bundle") as overlay_review_content,
+            ):
+                result = build_docs.prepare_manual_bundle(
+                    {"doc_type": "manual_bundle"},
+                    model="JE-1800B",
+                    region="JP",
+                    source_mode="review-asis",
+                )
+
+        self.assertEqual(bundle, result)
+        # Skeleton-only materialization: no page is rendered from the data-root.
+        self.assertTrue(materialize.call_args.kwargs["skeleton_only"])
+        # The committed review bundle is still overlaid to supply the content.
+        overlay_review_bundle.assert_called_once()
+        overlay_review_content.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()
