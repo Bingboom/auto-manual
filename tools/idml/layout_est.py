@@ -28,12 +28,13 @@ def balanced_icon_split(icons: list[dict], text_col_w: float,
 
 def est_table_height(texts: list[str], text_col_w: float, min_row: float) -> float:
     """Header row plus a wrap estimate per row (7.4pt/line, ~0.52em glyphs)."""
-    per_line = max(16, int(text_col_w / (0.52 * 6.6)))
+    # Table body text is HB Spec Value (6.0pt / 6.6 leading).
+    per_line = max(16, int(text_col_w / (0.525 * 6.0)))
     height = 16.0
     for text in texts:
         lines = sum(
             max(1, (len(part) + per_line - 1) // per_line)
             for part in str(text).split("\n")
         )
-        height += max(min_row, 7.4 * lines + 5.0)
+        height += max(min_row, 7.0 * lines + 5.0)
     return height
