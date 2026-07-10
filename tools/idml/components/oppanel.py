@@ -39,9 +39,10 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     right_parts = []
     if prereq:
         right_parts.append(psr("HB Notice Label", prereq))
-    for label, instruction in rows:
-        right_parts.append(psr("HB Title L3", label))
-        right_parts.append(psr("HB Body", instruction))
+    for ri, (label, instruction) in enumerate(rows):
+        right_parts.append(psr("HB Title L2", label))
+        gap = "" if ri == len(rows) - 1 else "\n"
+        right_parts.append(psr("HB Body", instruction + gap))
     if right_parts:
         right_parts[-1] = right_parts[-1].replace("<Br/>", "", 1)
     right = "".join(right_parts)
