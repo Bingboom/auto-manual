@@ -76,7 +76,8 @@ class ComponentRegistryTests(unittest.TestCase):
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
         ctx = RenderContext(params=params, page_w=w.page_w, m_l=w.m_l, m_r=w.m_r,
-                            root=ROOT, bundle_root=ROOT / "does-not-exist")
+                            root=ROOT, bundle_root=ROOT / "does-not-exist",
+                            add_story=w._add_story_parts)
         for kind, spec in MINIMAL_SPECS.items():
             with self.subTest(kind=kind):
                 via_writer = w._render_component(

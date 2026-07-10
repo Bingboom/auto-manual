@@ -37,6 +37,10 @@ class RenderContext:
     m_r: float
     root: Path
     bundle_root: Path
+    # writer._add_story_parts, for components that render rounded objects
+    # as anchored frames (one sub-story per frame). None in pure/table-only
+    # contexts; renderers must keep a table fallback for that case.
+    add_story: Callable[[str, str, list[str]], str] | None = None
 
     @property
     def text_measure(self) -> float:

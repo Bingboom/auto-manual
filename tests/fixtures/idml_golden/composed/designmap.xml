@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?aid style="50" type="document" readerVersion="15.0" featureSet="257" product="15.0(100)"?>
-<Document xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0" Self="doc" StoryList="st_00_preface st_safety_en_title st_safety_en_top_warning st_safety_en_subbar st_safety_en_section1 st_safety_en_section2 st_safety_symbols_20_01_user_maintenance_instructions_tail_warning st_safety_symbols_20_01_user_maintenance_instructions_tail_danger st_safety_symbols_20_01_user_maintenance_instructions_maintenance_title st_safety_symbols_20_01_user_maintenance_instructions_maintenance_body st_safety_symbols_20_01_user_maintenance_instructions_symbols_title st_safety_symbols_20_01_user_maintenance_instructions_signals st_safety_symbols_20_01_user_maintenance_instructions_icons_left st_safety_symbols_20_01_user_maintenance_instructions_icons_right st_fcc_inbox_p23_02_whats_in_the_box_title st_fcc_inbox_p23_02_whats_in_the_box_fcc_left st_fcc_inbox_p23_02_whats_in_the_box_fcc_right st_fcc_inbox_p23_02_whats_in_the_box_badge_1 st_fcc_inbox_p23_02_whats_in_the_box_card_1 st_fcc_inbox_p23_02_whats_in_the_box_badge_2 st_fcc_inbox_p23_02_whats_in_the_box_card_2 st_fcc_inbox_p23_02_whats_in_the_box_badge_3 st_fcc_inbox_p23_02_whats_in_the_box_card_3 st_fcc_inbox_p23_02_whats_in_the_box_tip_label st_fcc_inbox_p23_02_whats_in_the_box_tip_body st_05_operation_guide st_lcd st_trouble st_spec st_back_cover_company st_back_cover_phone st_back_cover_lines st_toc_title st_toc_bar_0 st_toc_seg0_c0 st_toc_seg0_c1 st_folio_3 st_folio_4 st_folio_5 st_folio_6 st_folio_7 st_folio_8 st_folio_9 st_anchor_h1pill_0 st_anchor_h1pill_26 st_anchor_h1pill_28 st_anchor_h1pill_30 st_anchor_h1pill_32" Name="manual">
+<Document xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0" Self="doc" StoryList="st_00_preface st_safety_en_title st_safety_en_top_warning st_safety_en_subbar st_safety_en_section1 st_safety_en_section2 st_safety_symbols_20_01_user_maintenance_instructions_tail_warning st_safety_symbols_20_01_user_maintenance_instructions_tail_danger st_safety_symbols_20_01_user_maintenance_instructions_maintenance_title st_safety_symbols_20_01_user_maintenance_instructions_maintenance_body st_safety_symbols_20_01_user_maintenance_instructions_symbols_title st_safety_symbols_20_01_user_maintenance_instructions_signals st_safety_symbols_20_01_user_maintenance_instructions_icons_left st_safety_symbols_20_01_user_maintenance_instructions_icons_right st_fcc_inbox_p23_02_whats_in_the_box_title st_fcc_inbox_p23_02_whats_in_the_box_fcc_left st_fcc_inbox_p23_02_whats_in_the_box_fcc_right st_fcc_inbox_p23_02_whats_in_the_box_badge_1 st_fcc_inbox_p23_02_whats_in_the_box_card_1 st_fcc_inbox_p23_02_whats_in_the_box_badge_2 st_fcc_inbox_p23_02_whats_in_the_box_card_2 st_fcc_inbox_p23_02_whats_in_the_box_badge_3 st_fcc_inbox_p23_02_whats_in_the_box_card_3 st_fcc_inbox_p23_02_whats_in_the_box_tip_label st_fcc_inbox_p23_02_whats_in_the_box_tip_body st_05_operation_guide st_lcd st_trouble st_spec st_back_cover_company st_back_cover_phone st_back_cover_lines st_toc_title st_toc_bar_0 st_toc_seg0_c0 st_toc_seg0_c1 st_folio_3 st_folio_4 st_folio_5 st_folio_6 st_folio_7 st_folio_8 st_folio_9 st_anchor_h1pill_34 st_anchor_h1pill_32 st_anchor_h1pill_30 st_anchor_notice_st_05_operation_guide_cmp4 st_anchor_chip_st_05_operation_guide_cmp4 st_anchor_h1pill_26 st_anchor_h1pill_0" Name="manual">
   <Language Self="Language/$ID/English%3a USA" Name="$ID/English: USA" SingleQuotes="&#8216;&#8217;" DoubleQuotes="&#8220;&#8221;"/>
   <idPkg:Graphic src="Resources/Graphic.xml"/>
   <idPkg:Fonts src="Resources/Fonts.xml"/>
@@ -60,9 +60,11 @@
   <idPkg:Story src="Stories/Story_st_folio_7.xml"/>
   <idPkg:Story src="Stories/Story_st_folio_8.xml"/>
   <idPkg:Story src="Stories/Story_st_folio_9.xml"/>
-  <idPkg:Story src="Stories/Story_st_anchor_h1pill_0.xml"/>
-  <idPkg:Story src="Stories/Story_st_anchor_h1pill_26.xml"/>
-  <idPkg:Story src="Stories/Story_st_anchor_h1pill_28.xml"/>
-  <idPkg:Story src="Stories/Story_st_anchor_h1pill_30.xml"/>
+  <idPkg:Story src="Stories/Story_st_anchor_h1pill_34.xml"/>
   <idPkg:Story src="Stories/Story_st_anchor_h1pill_32.xml"/>
+  <idPkg:Story src="Stories/Story_st_anchor_h1pill_30.xml"/>
+  <idPkg:Story src="Stories/Story_st_anchor_notice_st_05_operation_guide_cmp4.xml"/>
+  <idPkg:Story src="Stories/Story_st_anchor_chip_st_05_operation_guide_cmp4.xml"/>
+  <idPkg:Story src="Stories/Story_st_anchor_h1pill_26.xml"/>
+  <idPkg:Story src="Stories/Story_st_anchor_h1pill_0.xml"/>
 </Document>

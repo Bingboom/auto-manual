@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?aid style="50" type="document" readerVersion="15.0" featureSet="257" product="15.0(100)"?>
-<Document xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0" Self="doc" StoryList="st_spec st_lcd st_trouble st_symbols st_back_cover_company st_back_cover_phone st_back_cover_lines st_toc_title st_toc_bar_0 st_toc_seg0_c0 st_toc_seg0_c1 st_folio_3 st_folio_4 st_folio_5 st_anchor_h1pill_0 st_anchor_h1pill_2 st_anchor_h1pill_4 st_anchor_h1pill_6" Name="manual">
+<Document xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0" Self="doc" StoryList="st_spec st_lcd st_trouble st_symbols st_back_cover_company st_back_cover_phone st_back_cover_lines st_toc_title st_toc_bar_0 st_toc_seg0_c0 st_toc_seg0_c1 st_folio_3 st_folio_4 st_folio_5 st_anchor_h1pill_6 st_anchor_h1pill_4 st_anchor_h1pill_2 st_anchor_h1pill_0" Name="manual">
   <Language Self="Language/$ID/English%3a USA" Name="$ID/English: USA" SingleQuotes="&#8216;&#8217;" DoubleQuotes="&#8220;&#8221;"/>
   <idPkg:Graphic src="Resources/Graphic.xml"/>
   <idPkg:Fonts src="Resources/Fonts.xml"/>
@@ -27,8 +27,8 @@
   <idPkg:Story src="Stories/Story_st_folio_3.xml"/>
   <idPkg:Story src="Stories/Story_st_folio_4.xml"/>
   <idPkg:Story src="Stories/Story_st_folio_5.xml"/>
-  <idPkg:Story src="Stories/Story_st_anchor_h1pill_0.xml"/>
-  <idPkg:Story src="Stories/Story_st_anchor_h1pill_2.xml"/>
-  <idPkg:Story src="Stories/Story_st_anchor_h1pill_4.xml"/>
   <idPkg:Story src="Stories/Story_st_anchor_h1pill_6.xml"/>
+  <idPkg:Story src="Stories/Story_st_anchor_h1pill_4.xml"/>
+  <idPkg:Story src="Stories/Story_st_anchor_h1pill_2.xml"/>
+  <idPkg:Story src="Stories/Story_st_anchor_h1pill_0.xml"/>
 </Document>
