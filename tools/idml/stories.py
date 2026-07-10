@@ -108,12 +108,13 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     writer.stories.append((sid, xml))
     return sid, est
 
-def add_lcd_story(writer, rows: list[dict], data_root: Path) -> str:
+def add_lcd_story(writer, rows: list[dict], data_root: Path,
+                  lang: str = "en", title: str = "LCD DISPLAY") -> str:
     """LCD icon table: circled-no / icon image / name / description."""
-    sid = "st_lcd"
+    sid = "st_lcd" if lang == "en" else f"st_lcd_{lang}"
     body_w = writer.page_w - writer.m_l - writer.m_r
     cols = (body_w * 0.08, body_w * 0.12, body_w * 0.28, body_w * 0.52)
-    tid = "tbl_lcd"
+    tid = "tbl_lcd" if lang == "en" else f"tbl_lcd_{lang}"
     cells = []
     icon_pt = 24.0
     for ri, row in enumerate(rows):
@@ -132,11 +133,11 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path) -> str:
                                       top=2, bottom=2, left=3, right=3))
     table = _tb.fill_column_xml(writer._component_table(tid, list(cols), cells, n_rows=len(rows), role="data"), 1, "Color/HB Bg K05")
     parts = [
-        _po.h1_pill_paragraph(writer, "LCD DISPLAY", writer.page_w - writer.m_l - writer.m_r),
+        _po.h1_pill_paragraph(writer, title, writer.page_w - writer.m_l - writer.m_r),
         _po.lcd_hero_paragraph(writer),
         writer._wrap_table_paragraph(table, True, span_columns=False),
     ]
-    return writer._add_story_parts(sid, "LCD DISPLAY", parts)
+    return writer._add_story_parts(sid, title, parts)
 
 def add_symbols_story(writer, signals: list[tuple[str, str]],
                       icons: list[dict], data_root: Path, lang: str = "en") -> str:
@@ -188,15 +189,16 @@ def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
     return sid
 
 def add_spec_story(writer, sections: list[dict],
-                   annotations: list[str] | None = None) -> str:
-    sid = "st_spec"
-    parts = [_po.h1_pill_paragraph(writer, "SPECIFICATIONS", writer.page_w - writer.m_l - writer.m_r)]
+                   annotations: list[str] | None = None,
+                   lang: str = "en", title: str = "SPECIFICATIONS") -> str:
+    sid = "st_spec" if lang == "en" else f"st_spec_{lang}"
+    parts = [_po.h1_pill_paragraph(writer, title, writer.page_w - writer.m_l - writer.m_r)]
     for si, sec in enumerate(sections):
         parts.append(writer._psr("HB Spec Section", "\u25cf " + sec["title"]))
         # table anchored in its own paragraph; the paragraph still needs
         # its own <Br/> so the next section title starts a new paragraph
         table = _tb.fill_column_xml(_tb.suppress_inner_vertical_edges_xml(
-            writer._table(f"tbl_spec{si}", sec["rows"], role="spec"), 2),
+            writer._table(f"tbl_spec_{lang}{si}", sec["rows"], role="spec"), 2),
             0, "Color/HB Bg K05")
         last = si == len(sections) - 1 and not annotations
         body_style_ref = paragraph_style_ref("HB Body")
@@ -215,7 +217,7 @@ def add_spec_story(writer, sections: list[dict],
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="SPECIFICATIONS">\n'
+        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{title}">\n'
         '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
         + "".join(parts) +
         '</Story>\n'

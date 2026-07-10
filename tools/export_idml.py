@@ -79,6 +79,7 @@ load_lcd_rows = _loaders.load_lcd_rows
 load_spec_annotations = _loaders.load_spec_annotations
 load_symbols_rows = _loaders.load_symbols_rows
 load_trouble_rows = _loaders.load_trouble_rows
+load_page_title = _loaders.load_page_title
 
 check_idml = _check.check_idml
 split_safety_first_page = _prose_flow.split_safety_first_page
@@ -192,8 +193,8 @@ class IdmlWriter:
                         bundle_root: Path) -> tuple[str, float]:
         return _stories.add_prose_story(self, sid, title, blocks, bundle_root)
 
-    def add_lcd_story(self, rows: list[dict], data_root: Path) -> str:
-        return _stories.add_lcd_story(self, rows, data_root)
+    def add_lcd_story(self, rows: list[dict], data_root: Path, **kw) -> str:
+        return _stories.add_lcd_story(self, rows, data_root, **kw)
 
     def add_symbols_story(self, signals: list[tuple[str, str]],
                           icons: list[dict], data_root: Path, lang: str = "en") -> str:
@@ -203,8 +204,8 @@ class IdmlWriter:
         return _stories.add_trouble_story(self, rows)
 
     def add_spec_story(self, sections: list[dict],
-                       annotations: list[str] | None = None) -> str:
-        return _stories.add_spec_story(self, sections, annotations)
+                       annotations: list[str] | None = None, **kw) -> str:
+        return _stories.add_spec_story(self, sections, annotations, **kw)
 
     def add_text_story(self, sid: str, title: str, blocks: list[tuple[str, str]]) -> str:
         return _stories.add_text_story(self, sid, title, blocks)
@@ -370,7 +371,7 @@ def main() -> int:
     if not ordered:
         print(f"[export-idml] NOTE: no prepared bundle at {bundle_root}; exporting data pages only (run `build.py rst` first)")
 
-    emitted = {"spec": False, "lcd": False, "trouble": False, "symbols": False}
+    emitted: set[str] = set()  # "spec:fr", "lcd:es", "trouble", "symbols"
     pending_prefix_blocks: list[tuple[str, str]] = []
     pending_fcc_blocks, pending_fcc_title = [], ""
     prose_flow = _prose_flow.ProseFlowBuffer()
@@ -419,32 +420,46 @@ def main() -> int:
             pending_fcc_blocks = []
             pending_fcc_title = ""
 
-    def emit_data_page(kind: str) -> None:
+    def emit_data_page(kind: str, lang: str) -> None:
         flush_prose_flow()
         flush_pending_fcc()
         flush_pending_prefix()
-        if emitted[kind]:
+        key = f"{kind}:{lang}" if kind in {"spec", "lcd"} else kind
+        if key in emitted:
             return
-        emitted[kind] = True
-        toc.note(_toc.DATA_TITLES.get(kind, ""), page_cursor)
+        emitted.add(key)
         if kind == "spec":
-            sid = w.add_spec_story(sections, spec_annotations)
-            chain(sid, w.estimate_spec_height(sections) + 10.0 * len(spec_annotations))
-        elif kind == "lcd" and lcd_rows:
-            sid = w.add_lcd_story(lcd_rows, data_root)
-            chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in lcd_rows))
+            secs = sections if lang == args.lang else load_spec_sections(
+                data_root, args.model, args.region, lang)
+            notes = spec_annotations if lang == args.lang else load_spec_annotations(
+                data_root, args.model, args.region, lang)
+            title = load_page_title(data_root, "spec.page_title", lang, "SPECIFICATIONS")
+            toc.note(title, page_cursor, lang)
+            sid = w.add_spec_story(secs, notes, lang=lang, title=title)
+            chain(sid, w.estimate_spec_height(secs) + 10.0 * len(notes))
+        elif kind == "lcd":
+            rows = lcd_rows if lang == args.lang else load_lcd_rows(
+                data_root, args.model, lang, args.region)
+            if not rows:
+                return
+            title = load_page_title(data_root, "lcd_icons.page_title", lang, "LCD DISPLAY")
+            toc.note(title, page_cursor, lang)
+            sid = w.add_lcd_story(rows, data_root, lang=lang, title=title)
+            chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in rows))
         elif kind == "trouble" and trouble_rows:
+            toc.note(_toc.DATA_TITLES.get(kind, ""), page_cursor)
             sid = w.add_trouble_story(trouble_rows)
             chain(sid, 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in trouble_rows))
         elif kind == "symbols":
             sym_signals, sym_icons = symbol_rows_for(args.lang)
             if not (sym_signals or sym_icons):
                 return
+            toc.note(_toc.DATA_TITLES.get(kind, ""), page_cursor)
             sid = w.add_symbols_story(sym_signals, sym_icons, data_root, args.lang)
             chain(sid, 16.0 + 14.0 * len(sym_signals) + 26.0 * len(sym_icons))
 
     for page in ordered:
-        if page.name.startswith("symbols_") and emitted["symbols"] \
+        if page.name.startswith("symbols_") and "symbols" in emitted \
                 and not pending_prefix_blocks and not pending_fcc_blocks:
             continue
         toc.lang = page_lang(page)
@@ -464,11 +479,11 @@ def main() -> int:
                 res = extract_page(page, tags)
                 if res.blocks:
                     skipped_raw += res.skipped_raw
-                    emitted["trouble"] = True
+                    emitted.add("trouble")
                     toc.stem_langs[page.stem] = page_lang(page)
                     prose_flow.add(page.stem, res.blocks)
                     continue
-            emit_data_page(matched)
+            emit_data_page(matched, page_lang(page))
             continue
         res = extract_page(page, tags)
         skipped_raw += res.skipped_raw
@@ -487,7 +502,7 @@ def main() -> int:
                 w.add_safety_symbols_page(
                     sid, pending_prefix_blocks, blocks, sym_signals, sym_icons,
                     bundle_root, page_cursor, lang)
-                emitted["symbols"] = True
+                emitted.add("symbols")
                 pending_prefix_blocks = []
                 page_cursor += 1
                 prose_pages += 1
@@ -513,7 +528,7 @@ def main() -> int:
             continue
         if page.name.startswith("symbols_"):
             flush_prose_flow()
-            if emitted["symbols"]:
+            if "symbols" in emitted:
                 continue
             lang = page_lang(page)
             sym_signals, sym_icons = symbol_rows_for(lang)
@@ -523,12 +538,12 @@ def main() -> int:
                 w.add_safety_symbols_page(
                     sid, pending_prefix_blocks, [], sym_signals, sym_icons,
                     bundle_root, page_cursor, lang)
-                emitted["symbols"] = True
+                emitted.add("symbols")
                 pending_prefix_blocks = []
                 page_cursor += 1
                 prose_pages += 1
                 continue
-            emit_data_page("symbols")
+            emit_data_page("symbols", lang)
             continue
         if pending_prefix_blocks:
             blocks = pending_prefix_blocks + blocks
@@ -556,7 +571,7 @@ def main() -> int:
     # data pages always ship, bundle or not
     flush_prose_flow()
     for kind in ("spec", "lcd", "trouble", "symbols"):
-        emit_data_page(kind)
+        emit_data_page(kind, args.lang)
     if _placed.add_back_cover_page(w, args.region, page_cursor):
         page_cursor += 1
     _toc.finalize(w, toc, w._add_story_parts, w._psr)

@@ -68,7 +68,11 @@ class LocalizedLoaderTests(unittest.TestCase):
     def test_spec_sections_localize_values_with_source_fallback(self) -> None:
         en = load_spec_sections(FIXTURES, "JE-1000F", "US", lang="en")
         fr = load_spec_sections(FIXTURES, "JE-1000F", "US", lang="fr")
-        self.assertEqual([s["title"] for s in en], [s["title"] for s in fr])
+        # section heads localize through spec_titles.csv (master parity)
+        self.assertEqual([s["title"] for s in en][:2],
+                         ["GENERAL INFO", "INPUT PORTS"])
+        self.assertEqual([s["title"] for s in fr][:2],
+                         ["INFORMATIONS GÉNÉRALES", "PORTS D’ENTRÉE"])
         en_cells = [line for s in en for _, line in s["rows"]]
         fr_cells = [line for s in fr for _, line in s["rows"]]
         self.assertEqual(len(en_cells), len(fr_cells))
