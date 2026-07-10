@@ -38,6 +38,8 @@ PROSE_STYLE = {"h1": "HB H1", "h2": "HB Title L2", "h3": "HB Title L3",
 
 
 def clean_text(text: str) -> str:
+    from .text_clean import strip_rst_inline
+    text = strip_rst_inline(text)
     for raw, replacement in GLYPH_FALLBACKS:
         text = text.replace(raw, replacement)
     return text
