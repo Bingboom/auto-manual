@@ -86,9 +86,7 @@
 
    .. raw:: latex
 
-      \safetywarning{AVISO}
-
-   A conexão incorreta do condutor de aterramento do equipamento pode resultar em risco de choque elétrico. Consulte um eletricista qualificado se tiver dúvidas sobre se o produto está devidamente aterrado. Não modifique o plugue fornecido com o produto; se ele não se encaixar na tomada, solicite a instalação de uma tomada adequada por um eletricista qualificado.
+      \safetywarning{A conexão incorreta do condutor de aterramento do equipamento pode resultar em risco de choque elétrico. Consulte um eletricista qualificado se tiver dúvidas sobre se o produto está devidamente aterrado. Não modifique o plugue fornecido com o produto; se ele não se encaixar na tomada, solicite a instalação de uma tomada adequada por um eletricista qualificado.}
 
    .. raw:: latex
 

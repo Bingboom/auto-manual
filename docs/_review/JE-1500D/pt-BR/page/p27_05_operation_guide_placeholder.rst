@@ -170,20 +170,10 @@ TELA LCD
 
    .. raw:: latex
 
-      \begingroup
-      \renewcommand{\arraystretch}{1.25}
-      \setlength{\tabcolsep}{6pt}
-      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
-      \hline
-      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Ligado temporariamente}} & Ligar & Pressione o botão Power principal ou quando o produto estiver carregando. \\ \cline{3-4}
-      & & Desligar & Pressione o botão Power principal. \\ \cline{3-4}
-      & & Desligamento automático & A tela LCD desliga automaticamente e entra em modo de suspensão após 2 minutos de inatividade. \\ \cline{2-4}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Sempre ligada (durante carregamento ou descarregamento)}} & Ligar & Pressione duas vezes o botão Power principal quando o produto estiver ligado. \\ \cline{3-4}
-      & & Desligar & Pressione o botão Power principal. \\ \cline{3-4}
-      & & Desligamento automático & A tela LCD desliga automaticamente após 2 horas de inatividade. \\ \hline
-      \end{tabular}
-      \endgroup
+      \begin{HBLcdModeTable}{lcd_mode.png}
+      \HBLcdModeFirstGroup{Ligado temporariamente}{Ligar}{Pressione o botão Power principal ou quando o produto estiver carregando.}{Desligar}{Pressione o botão Power principal.}{Desligamento automático}{A tela LCD desliga automaticamente e entra em modo de suspensão após 2 minutos de inatividade.}
+      \HBLcdModeSecondGroup{Sempre ligada (durante carregamento ou descarregamento)}{Ligar}{Pressione duas vezes o botão Power principal quando o produto estiver ligado.}{Desligar}{Pressione o botão Power principal.}{Desligamento automático}{A tela LCD desliga automaticamente após 2 horas de inatividade.}
+      \end{HBLcdModeTable}
 
 Você também pode definir o modo de exibição da tela no aplicativo Jackery.
 
