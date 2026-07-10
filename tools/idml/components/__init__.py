@@ -24,6 +24,7 @@ from .lcdmode import render_lcdmode
 from .prose_image import render_image_block
 from .prose_table import render_table_block
 
+from .langbadge import render_langtag
 from .oppanel import render_oppanel
 
 REGISTRY: dict[str, ComponentRenderer] = {
@@ -34,6 +35,7 @@ REGISTRY: dict[str, ComponentRenderer] = {
     "warnbox": render_warnbox,
     "notice": render_notice,
     "oppanel": render_oppanel,
+    "langtag": render_langtag,
     "fcc": render_fcc,
     "lcdmode": render_lcdmode,
 }

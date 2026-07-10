@@ -47,6 +47,7 @@ Block = tuple[str, str]
 # "tailwarnbox" is deliberately absent: the safety+symbols page composer
 # synthesizes it from trailing safety warnboxes; it has no extracted form.
 EMITTED_COMPONENT_KINDS = (
+    "langtag",
     "fcc", "inbox", "lcdmode", "notice", "safetywarning", "warninglead", "warnbox",
 )
 
@@ -280,7 +281,9 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
             result.blocks.append(("component", _json.dumps(
                 {"kind": "fcc", "texts": [a for a in args if a]}, ensure_ascii=False)))
         elif kind == "langtag" and len(args) == 2:
-            result.blocks.append(("h2", f"[{args[0]}] {args[1]}"))
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "langtag", "lang": args[0], "texts": [args[1]]},
+                ensure_ascii=False)))
         elif kind == "inbox" and len(args) == 6:
             result.blocks.append(("component", _json.dumps(
                 {"kind": "inbox",

@@ -24,6 +24,10 @@ _PREREQ = re.compile(
     re.I,
 )
 _BOLD = re.compile(r"\*\*([^*]+)\*\*")
+# De-templated preface language tags: the shared template uses
+# \HBLangTagLine{FR}{IMPORTANT}; flattened review pages carry
+# "**FR IMPORTANT**" (first block may omit the language prefix).
+_FLAT_LANGTAG = re.compile(r"^\*\*(?:([A-Z]{2})\s+)?(IMPORTANT\w*)\*\*$")
 
 
 def _label_of(line: str) -> tuple[str, str] | None:
@@ -60,6 +64,14 @@ def transform(blocks: list[Block]) -> list[Block]:
     i = 0
     while i < len(blocks):
         kind, text = blocks[i]
+        if kind == "body":
+            tag = _FLAT_LANGTAG.match(text.strip())
+            if tag:
+                out.append(("component", json.dumps(
+                    {"kind": "langtag", "lang": tag.group(1) or "EN",
+                     "texts": [tag.group(2)]}, ensure_ascii=False)))
+                i += 1
+                continue
         if kind == "image" and i + 1 < len(blocks) and blocks[i + 1][0] == "body":
             rows = parse_rows(blocks[i + 1][1])
             if rows:
