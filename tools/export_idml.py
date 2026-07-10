@@ -186,7 +186,7 @@ class IdmlWriter:
     def _render_context(self, bundle_root: Path) -> "_components.RenderContext":
         return _components.RenderContext(
             params=self.params, page_w=self.page_w, m_l=self.m_l, m_r=self.m_r,
-            root=ROOT, bundle_root=bundle_root)
+            root=ROOT, bundle_root=bundle_root, add_story=self._add_story_parts)
 
     def add_prose_story(self, sid: str, title: str, blocks: list[tuple[str, str]],
                         bundle_root: Path) -> tuple[str, float]:

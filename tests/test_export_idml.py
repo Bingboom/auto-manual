@@ -390,9 +390,12 @@ class ExportIdmlTests(unittest.TestCase):
         # notice/tip: plain left label + gray text panel; no warning icon
         xml, _ = w._render_component("t", 1, {
             "kind": "notice", "label": "TIP", "texts": ["hello"]}, bundle, True)
+        # rounded parity: grey rounded panel frame; label chip + body live
+        # in the anchored sub-story
         self.assertIn('FillColor="Color/HB Bg K05"', xml)
-        self.assertIn('FillColor="Color/Paper"', xml)
-        self.assertIn(paragraph_style_ref("HB Notice Side Label"), xml)
+        self.assertIn('ParentStory="st_anchor_notice_t_cmp1"', xml)
+        panel = dict(w.stories)["st_anchor_notice_t_cmp1"]
+        self.assertIn('FillColor="Color/Paper"', panel)
         self.assertNotIn("warning_triangle", xml)
         # warnbox: triangle icon + one editable label; do not place the
         # WARNING lockup art and then print WARNING again below it.

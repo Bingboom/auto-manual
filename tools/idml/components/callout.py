@@ -142,6 +142,12 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     else:
         right = psr("HB Body", body, terminal=True)
     label_w = max(34.0, body_w * 0.14)
+    per_line = max(20, int((body_w - label_w) / (0.52 * 6.6)))
+    lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
+    if ctx.add_story is not None:
+        return _rounded_notice(ctx, tid=tid, terminal=terminal, label=label,
+                               body_psr=right, body_w=body_w, label_w=label_w,
+                               lines=lines)
     cols = [label_w, body_w - label_w]
     cells = [
         cell(f"{tid}c0", "0:0", left, fill="Color/Paper",
@@ -150,6 +156,45 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
              stroke=False, top=10, bottom=10, left=6, right=6),
     ]
     table = component_table(tid, cols, cells, role="notice")
-    per_line = max(20, int((body_w - label_w) / (0.52 * 6.6)))
-    lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
     return wrap_table_paragraph(table, terminal, span_columns), max(24.0, 7.4 * lines + 10)
+
+
+def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
+                    label: str, body_psr: str, body_w: float, label_w: float,
+                    lines: int) -> tuple[str, float]:
+    """The master's notice bar: full-measure rounded grey panel with the
+    label in a white rounded chip on top (template: 311.8x23.2 panel,
+    50.5x18.2 chip for NOTE)."""
+    from .. import page_objects as _po
+    from ..style_names import paragraph_style_ref
+    chip_h = 18.0
+    chip_w = min(label_w - 4.0, max(40.0, 7.5 * len(label) + 20.0))
+    chip_sid = ctx.add_story(
+        f"st_anchor_chip_{tid}", f"{label} chip",
+        [psr("HB Notice Side Label", label, terminal=True)])
+    chip = _po.anchored_rounded_frame_xml(
+        chip_sid, chip_w, chip_h, fill="Color/Paper", radius=5.5,
+        inset=(1, 4, 1, 4))
+    chip_par = figure_paragraph(chip, tail="<Content></Content>")
+    cols = [label_w, body_w - label_w - 10.0]
+    cells = [
+        cell(f"{tid}c0", "0:0", chip_par, stroke=False,
+             top=1, bottom=1, left=2, right=4),
+        cell(f"{tid}c1", "1:0", body_psr, stroke=False,
+             top=3, bottom=3, left=4, right=6),
+    ]
+    inner = wrap_table_paragraph(
+        component_table(tid, cols, cells, role="notice"), True, False)
+    panel_h = max(chip_h + 8.0, 7.4 * lines + 12.0)
+    panel_sid = ctx.add_story(
+        f"st_anchor_notice_{tid}", f"{label} notice panel", [inner])
+    panel = _po.anchored_rounded_frame_xml(
+        panel_sid, body_w, panel_h, fill="Color/HB Bg K05", radius=7.0,
+        inset=(2, 2, 2, 2))
+    style_ref = paragraph_style_ref("HB Figure")
+    xml = (f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
+           '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+           + panel + '<Content></Content>'
+           + ('' if terminal else '<Br/>')
+           + '</CharacterStyleRange></ParagraphStyleRange>\n')
+    return xml, panel_h + 6.0

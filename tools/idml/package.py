@@ -79,8 +79,13 @@ def designmap_xml(writer) -> str:
     # InDesign binds an anchored frame's ParentStory only when the sub-story
     # is declared AFTER its host story (forward reference); declared before,
     # it imports as an orphan and the frame comes up empty.
-    ordered = sorted(writer.stories,
-                     key=lambda item: item[0].startswith("st_anchor_"))
+    plain = [s for s in writer.stories if not s[0].startswith("st_anchor_")]
+    # Within the anchored block, reversed creation order keeps the
+    # forward-reference contract even for nesting: a nested chip story is
+    # created while its host panel's parts are assembled (earlier), so
+    # reversing declares the host first and the chip after it.
+    anchored = [s for s in writer.stories if s[0].startswith("st_anchor_")]
+    ordered = plain + anchored[::-1]
     story_refs = "\n".join(
         f'  <idPkg:Story src="Stories/Story_{sid}.xml"/>' for sid, _ in ordered
     )
