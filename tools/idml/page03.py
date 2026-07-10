@@ -117,7 +117,7 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
     bg = page_rectangle_xml(
         writer,
         f"bg_{sid}_fcc_panel",
-        (BODY_X, 28.0, BODY_W, 129.5),
+        (BODY_X, 28.0, BODY_W, 168.0),
         fill="Color/HB Bg K05",
         stroke_color="Swatch/None",
         stroke_weight=0,
@@ -130,7 +130,7 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
             sid,
             "fcc_left",
             left_sid,
-            (BODY_X + 4.0, 34.0, 145.0, 116.0),
+            (BODY_X + 4.0, 34.0, 145.0, 156.0),
             {"inset": (0, 0, 0, 0)},
         ),
         frame_with_background(
@@ -138,7 +138,7 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
             sid,
             "fcc_right",
             right_sid,
-            (BODY_X + 156.0, 34.0, BODY_W - 162.0, 116.0),
+            (BODY_X + 156.0, 34.0, BODY_W - 162.0, 156.0),
             {"inset": (0, 0, 0, 0)},
         ),
     ]
@@ -168,7 +168,7 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             stroke_weight=0.75,
             object_style=CARD_OBJECT_STYLE,
         ))
-        badge_rect = (x + card_w / 2.0 - 6.75, card_y + 21.0, 13.5, 13.5)
+        badge_rect = (x + card_w / 2.0 - 6.75, card_y + 16.0, 13.5, 13.5)
         frames.append(page_rectangle_xml(
             writer,
             f"bg_{sid}_badge_{idx + 1}",
@@ -199,8 +199,8 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             sid,
             f"card_{idx + 1}",
             card_sid,
-            (x + 8.0, card_y + 37.0, card_w - 16.0, 125.5),
-            {"inset": (0, 0, 0, 0)},
+            (x + 8.0, card_y + 36.0, card_w - 16.0, 128.0),
+            {"inset": (0, 0, 0, 0), "valign": "CenterAlign"},
         ))
     return story_ids, frames
 
@@ -211,7 +211,7 @@ def _tip_objects(writer, sid: str,
         return [], []
     label = str(tip_spec.get("label", "TIP"))
     body = "\n".join(str(t).strip() for t in tip_spec.get("texts", []) if str(t).strip())
-    tip_rect = (BODY_X, 453.5, BODY_W, 42.0)
+    tip_rect = (BODY_X, 458.0, BODY_W, 30.0)
     label_w = 52.0
     label_sid = f"{sid}_tip_label"
     body_sid = f"{sid}_tip_body"
@@ -239,7 +239,7 @@ def _tip_objects(writer, sid: str,
             "tip_label",
             label_sid,
             (BODY_X, tip_rect[1], label_w, tip_rect[3]),
-            {"inset": (15.0, 2.0, 0, 2.0)},
+            {"inset": (0, 2.0, 0, 2.0), "valign": "CenterAlign"},
         ),
         frame_with_background(
             writer,
@@ -247,7 +247,7 @@ def _tip_objects(writer, sid: str,
             "tip_body",
             body_sid,
             (BODY_X + label_w, tip_rect[1], BODY_W - label_w, tip_rect[3]),
-            {"inset": (12.0, 7.0, 0, 7.0)},
+            {"inset": (0, 7.0, 0, 7.0), "valign": "CenterAlign"},
         ),
     ]
     return [label_sid, body_sid], frames
