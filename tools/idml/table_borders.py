@@ -69,3 +69,29 @@ def fill_column_xml(table_xml: str, col: int, color: str, tint: int = 100) -> st
         rf'(<Cell\b[^>]*?Name="{col}:\d+")',
         rf'\1 FillColor="{color}" FillTint="{tint}"',
         table_xml)
+
+
+def suppress_outer_edges_xml(table_xml: str, n_cols: int) -> str:
+    """Zero the boundary cells' outer edges (the rounded wrapper frame
+    draws the outline instead; keeping both doubles the border)."""
+    m = re.search(r'BodyRowCount="(\d+)"', table_xml)
+    n_rows = int(m.group(1)) if m else 1
+
+    def _edges(col: int, row: int) -> str:
+        parts = []
+        if row == 0:
+            parts.append('TopEdgeStrokeWeight="0"')
+        if row == n_rows - 1:
+            parts.append('BottomEdgeStrokeWeight="0"')
+        if col == 0:
+            parts.append('LeftEdgeStrokeWeight="0"')
+        if col == n_cols - 1:
+            parts.append('RightEdgeStrokeWeight="0"')
+        return " ".join(parts)
+
+    def _sub(match: re.Match) -> str:
+        col, row = int(match.group(2)), int(match.group(3))
+        extra = _edges(col, row)
+        return f"{match.group(1)} {extra}" if extra else match.group(1)
+
+    return re.sub(r'(<Cell\b[^>]*?Name="(\d+):(\d+)")', _sub, table_xml)

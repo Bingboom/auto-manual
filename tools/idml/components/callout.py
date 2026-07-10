@@ -186,15 +186,9 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
     inner = wrap_table_paragraph(
         component_table(tid, cols, cells, role="notice"), True, False)
     panel_h = max(chip_h + 8.0, 7.4 * lines + 12.0)
-    panel_sid = ctx.add_story(
-        f"st_anchor_notice_{tid}", f"{label} notice panel", [inner])
-    panel = _po.anchored_rounded_frame_xml(
-        panel_sid, body_w, panel_h, fill="Color/HB Bg K05", radius=7.0,
-        inset=(2, 2, 2, 2))
-    style_ref = paragraph_style_ref("HB Figure")
-    xml = (f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
-           '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-           + panel + '<Content></Content>'
-           + ('' if terminal else '<Br/>')
-           + '</CharacterStyleRange></ParagraphStyleRange>\n')
+    xml = _po.anchored_panel_paragraph(
+        ctx.add_story, f"st_anchor_notice_{tid}", f"{label} notice panel",
+        [inner], body_w, panel_h, terminal=terminal,
+        fill="Color/HB Bg K05", radius=7.0, inset=(2, 2, 2, 2),
+        auto_height=True)
     return xml, panel_h + 6.0
