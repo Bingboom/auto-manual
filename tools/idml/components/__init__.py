@@ -24,6 +24,8 @@ from .lcdmode import render_lcdmode
 from .prose_image import render_image_block
 from .prose_table import render_table_block
 
+from .oppanel import render_oppanel
+
 REGISTRY: dict[str, ComponentRenderer] = {
     "inbox": render_inbox,
     "safetywarning": render_safetywarning,
@@ -31,6 +33,7 @@ REGISTRY: dict[str, ComponentRenderer] = {
     "tailwarnbox": render_tailwarnbox,
     "warnbox": render_warnbox,
     "notice": render_notice,
+    "oppanel": render_oppanel,
     "fcc": render_fcc,
     "lcdmode": render_lcdmode,
 }
