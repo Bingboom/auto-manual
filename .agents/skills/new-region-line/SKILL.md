@@ -1,6 +1,6 @@
 ---
 name: new-region-line
-description: Stand up a NEW region / compliance manual line end-to-end (e.g. 新建韩规/欧规/日规安规产线, "add a KR line", "onboard a new market", "新增一个区域/语言产线", "新建安规产线要补什么配置和料"). Covers everything from zero: the config + manifest + templates, the code registration for a new output language, the Feishu source-table data entry (spec params, page placeholders, localized content, market tags), sync, and validation — plus the checklist of inputs the operator must supply (spec-sheet PDF, product name, warranty/legal, compliance & translation decisions). Use when creating a line that does not exist yet. NOT for editing an existing line's data (that is normal spec ingest / rewrite / backport).
+description: "Stand up a NEW region / compliance manual line end-to-end (e.g. 新建韩规/欧规/日规安规产线, add a KR line, onboard a new market, 新增一个区域/语言产线, or 新建安规产线要补什么配置和料). Covers config, manifests, templates, code registration for a new output language, Feishu source-table data entry, sync, validation, and the operator-input checklist. Use when creating a line that does not exist yet. NOT for editing an existing line's data (that is normal spec ingest / rewrite / backport)."
 ---
 
 # New Region / Compliance Manual Line

@@ -87,7 +87,7 @@ GitHub note:
 
 Git branch hygiene note:
 
-- after one PR is merged or closed, start the next change with `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>` on Windows or `./scripts/start_branch.sh codex/<topic>` on mac/Linux so the new branch comes from the latest `origin/main`
+- after one PR is merged or closed, start the next change with `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>` on Windows or `./scripts/start_branch.sh <type>/<area>-<topic>` on mac/Linux so the new branch comes from the latest `origin/main`; use a change-type prefix such as `feat/`, `fix/`, `refactor/`, or `docs/`, never an agent-name prefix
 - enable the repo-managed pre-push guard with `git config core.hooksPath .githooks`
 - that guard now runs through the shared [`../scripts/git_branch_guard.py`](../scripts/git_branch_guard.py) core instead of a bash-only hook, and the repo also ships [`.githooks/pre-push.cmd`](../.githooks/pre-push.cmd) plus [`.githooks/pre-push.ps1`](../.githooks/pre-push.ps1) as Windows-native companion launchers
 - that guard blocks pushes from branches that do not contain the latest `origin/main`; bypass only when intentional with `git push --no-verify`

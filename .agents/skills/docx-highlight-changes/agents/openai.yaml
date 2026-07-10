@@ -1,0 +1,4 @@
+interface:
+  display_name: "Highlight DOCX Changes"
+  short_description: "Mark exact edited spans in Word documents"
+  default_prompt: "Use $docx-highlight-changes to highlight these exact edited text spans in the Word document and leave all other content unchanged."

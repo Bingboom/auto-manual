@@ -29,8 +29,8 @@ For current human workflows, read:
 
 - Default to [`build.py`](build.py).
 - Treat [`tools/`](tools) as low-level implementation unless the task is explicitly about those scripts.
-- Claude Code navigation is layered: root [`CLAUDE.md`](CLAUDE.md) stays thin, while directory-local `CLAUDE.md` files provide local maps and targeted validation commands.
-  These files are navigation overlays, not a second policy source; this `AGENTS.md` wins on conflict.
+- Agent navigation is layered: this root `AGENTS.md` owns shared policy, while directory-local `AGENTS.md` files provide Codex local maps and targeted validation commands. Directory-local `CLAUDE.md` files remain Claude Code compatibility overlays.
+  Local files are navigation/ownership overlays, not a second policy source; this root `AGENTS.md` wins on conflict.
 
 ## 2. Editing Surface
 
@@ -73,8 +73,8 @@ For current human workflows, read:
 
 ## 7. Local Skills
 
-- Use [`.claude/skills/config-review/SKILL.md`](.claude/skills/config-review/SKILL.md) for Claude Code scaffolding review.
-  Use it when changing root or nested `CLAUDE.md`, `.claude/settings.json`, hooks, skills, permissions, plugin/MCP setup, or model-release configuration cleanup.
+- For Codex scaffolding, use [`.agents/skills/config-review/SKILL.md`](.agents/skills/config-review/SKILL.md) when changing root or nested `AGENTS.md`, `.agents/skills`, `.codexignore`, permissions, plugin/MCP setup, or model-release configuration.
+- For Claude Code scaffolding, keep using [`.claude/skills/config-review/SKILL.md`](.claude/skills/config-review/SKILL.md) when changing root or nested `CLAUDE.md`, `.claude/settings.json`, Claude hooks/skills, permissions, plugin/MCP setup, or model-release configuration. Do not replace or redirect the Claude skill through the Codex copy.
 - Use [`.agents/skills/markdown-rst-template-intake/SKILL.md`](.agents/skills/markdown-rst-template-intake/SKILL.md) when mapping external Markdown manuals into this repo's reusable RST template and recipe layout.
 - Use [`.agents/skills/spec-sheet-structured-intake/SKILL.md`](.agents/skills/spec-sheet-structured-intake/SKILL.md) when onboarding a new model/region from a product spec sheet (产品规格书, PDF/Markdown): rule-driven region-aware extraction into structured candidates, completeness gate against a sibling target, human confirmation, then clone-ingest into both phase2 source tables (`规格参数明细` + `页面占位参数`) followed by sync-data/check/build. The entry counterpart of `cloud_doc_backport.py` (the return path); backed by `tools/source_intake*.py`.
 - Use [`.agents/skills/bitable-translation-memory/SKILL.md`](.agents/skills/bitable-translation-memory/SKILL.md) for one-shot sentence translation, terminology lookup, and live sentence-pair retrieval.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Bilingual TM Maintenance"
   short_description: "Update live Translation_Memory from bilingual copy, then write maintenance and audit logs"
-  default_prompt: "When maintaining bilingual manual copy in Translation_Memory, update existing English-linked rows first, create missing rows only when requested, append the target-language maintenance log, audit the bilingual pair against source material, and append the target-language audit log without overwriting old log text."
+  default_prompt: "Use $bilingual-tm-maintenance to maintain bilingual manual copy in Translation_Memory, update existing English-linked rows first, and append maintenance and audit logs without overwriting old log text."

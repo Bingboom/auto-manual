@@ -1,4 +1,4 @@
 interface:
   display_name: "Manual Revision Back-port"
   short_description: "Reverse-sync a reviewer's tracked-changes manual .docx into repo templates + Feishu source"
-  default_prompt: "When handed a reviewed/修订 manual .docx (Word tracked changes), extract the changes, map each to its source (RST template or Feishu phase2 table), diff against the CURRENT source instead of transcribing the docx, surface model/region/sibling scope decisions to the operator, apply only confirmed in-scope deltas (templates via branch/PR; Feishu rows via lark-cli --as bot, fetch→PUT→verify), and confirm zero residuals with the residual scan before reporting done."
+  default_prompt: "Use $manual-revision-backport to extract a reviewed Word manual's changes, map them to current RST or Feishu sources, apply only confirmed deltas, and verify zero residuals."

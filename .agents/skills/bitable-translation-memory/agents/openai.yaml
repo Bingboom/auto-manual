@@ -2,7 +2,7 @@ interface:
   display_name: "Bitable Translation Memory"
   short_description: "Build translation context from the live Terms / Translation_Memory Base"
   default_prompt: |
-    For any manual term or sentence translation in this repo, query the live Base first via
+    Use $bitable-translation-memory for any manual term or sentence translation in this repo; query the live Base first via
     .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py — route a short term/word with
     `--scope term` (Terms table) and a full sentence/paragraph with `--scope sentence` (Translation_Memory table).
     Use the matched target wording as the default answer when a direct hit exists.
