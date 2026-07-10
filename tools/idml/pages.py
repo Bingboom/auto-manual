@@ -35,6 +35,7 @@ def _frame_xml(writer, frame_id: str, story_id: str,
                x1: float, y1: float, x2: float, y2: float, *,
                columns: int = 1, fill: str | None = None,
                rounded: bool = False, balance_columns: bool = False,
+               valign: str | None = None,
                inset: tuple[float, float, float, float] | None = None,
                object_style: str | None = None) -> str:
     fill_attr = f'FillColor="{fill}" ' if fill else ""
@@ -44,6 +45,7 @@ def _frame_xml(writer, frame_id: str, story_id: str,
     )
     corner_attr = 'CornerOption="RoundedCorner" CornerRadius="7" ' if rounded else ""
     balance_attr = ' VerticalBalanceColumns="true"' if balance_columns else ""
+    valign_attr = f' VerticalJustification="{valign}"' if valign else ""
     inset_attr = ""
     if inset is not None:
         inset_attr = ' InsetSpacing="' + " ".join(f"{v:g}" for v in inset) + '"'
@@ -56,7 +58,7 @@ def _frame_xml(writer, frame_id: str, story_id: str,
         'ItemTransform="1 0 0 1 0 0">\n'
         + writer._path_geometry(x1, y1, x2, y2) +
         f'    <TextFramePreference TextColumnCount="{columns}" '
-        f'TextColumnGutter="11" AutoSizingType="Off"{balance_attr}{inset_attr}/>\n'
+        f'TextColumnGutter="11" AutoSizingType="Off"{balance_attr}{valign_attr}{inset_attr}/>\n'
         '  </TextFrame>\n'
     )
 
