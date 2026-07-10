@@ -247,7 +247,9 @@ def build_document_for_task(
             )
             # IDML is the publish upload artifact (replaces the old Word/PDF upload).
             # --source review so it matches the reviewed content; production mode is
-            # the `idml` action default (non-flow).
+            # the `idml` action default (non-flow). no_clean keeps the word/pdf/md/html
+            # outputs the earlier publish/html steps just built (default --clean wipes
+            # docs/_build/<model>/<region>, failing the artifact checks below).
             run_command(
                 build_py_target_command(
                     repo_root=effective_repo_root,
@@ -258,6 +260,7 @@ def build_document_for_task(
                     lang=lang,
                     data_root=effective_data_root,
                     source="review",
+                    no_clean=True,
                 ),
                 cwd=effective_repo_root,
             )
