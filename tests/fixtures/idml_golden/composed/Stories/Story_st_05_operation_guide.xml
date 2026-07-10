@@ -102,7 +102,7 @@
         </GeometryPathType>
       </PathGeometry>
     </Properties>
-    <TextFramePreference TextColumnCount="1" VerticalJustification="CenterAlign"><Properties><InsetSpacing type="list"><ListItem type="unit">2</ListItem><ListItem type="unit">2</ListItem><ListItem type="unit">2</ListItem><ListItem type="unit">2</ListItem></InsetSpacing></Properties></TextFramePreference>
+    <TextFramePreference TextColumnCount="1" VerticalJustification="CenterAlign" AutoSizingType="HeightOnly" AutoSizingReferencePoint="TopCenterPoint"><Properties><InsetSpacing type="list"><ListItem type="unit">2</ListItem><ListItem type="unit">2</ListItem><ListItem type="unit">2</ListItem><ListItem type="unit">2</ListItem></InsetSpacing></Properties></TextFramePreference>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </TextFrame><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading2">

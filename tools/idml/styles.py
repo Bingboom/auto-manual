@@ -128,6 +128,7 @@ def graphic_xml(params: dict[str, tuple[str, str]]) -> str:
         ("HB Text Gray", "brand_color_textgray", "0,0,0,0.90"),
         ("HB Line K40", "brand_color_linek40", "0,0,0,0.80"),
         ("HB Bg K05", "brand_color_bgk05", "0,0,0,0.05"),
+        ("HB Border K10", "brand_color_borderk10", "0,0,0,0.10"),
     ):
         c, m, y, k = brand_cmyk(p, key, default)
         colors.append(

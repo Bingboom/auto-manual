@@ -48,13 +48,33 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     right = "".join(right_parts)
 
     img_col = body_w * 0.5
+    rows_h = (14.0 if prereq else 0.0) + sum(
+        9.0 + 7.5 * max(1, len(instr) // 60 + 1) for _, instr in rows)
+    est = max(img_h + 12.0, rows_h + 12.0, 40.0)
+    if ctx.add_story is not None:
+        # master parity: rounded light-grey outline, no inner grid
+        from .. import page_objects as _po
+        inner_w = body_w - 8.0
+        icol = inner_w * 0.5
+        cells = [
+            cell(f"{tid}c0", "0:0", icon, stroke=False,
+                 top=5, bottom=5, left=5, right=4),
+            cell(f"{tid}c1", "1:0", right, stroke=False,
+                 top=6, bottom=5, left=6, right=5),
+        ]
+        inner = wrap_table_paragraph(component_table(
+            tid, [icol, max(60.0, inner_w - icol)], cells,
+            role="warning"), True, False)
+        xml = _po.anchored_panel_paragraph(
+            ctx.add_story, f"st_anchor_oppanel_{tid}", "operation panel",
+            [inner], body_w, est * 1.15 + 8.0, terminal=terminal,
+            stroke="Color/HB Border K10", stroke_weight=1.1, radius=10.0,
+            inset=(3, 3, 3, 3), valign="TopAlign", auto_height=True)
+        return xml, est + 8.0
     cols = [img_col, max(60.0, body_w - img_col)]
     cells = [
         cell(f"{tid}c0", "0:0", icon, top=5, bottom=5, left=5, right=4),
         cell(f"{tid}c1", "1:0", right, top=6, bottom=5, left=6, right=5),
     ]
     table = component_table(tid, cols, cells, role="warning")
-    rows_h = (14.0 if prereq else 0.0) + sum(
-        9.0 + 7.5 * max(1, len(instr) // 60 + 1) for _, instr in rows)
-    est = max(img_h + 12.0, rows_h + 12.0, 40.0)
     return wrap_table_paragraph(table, terminal, span_columns), est

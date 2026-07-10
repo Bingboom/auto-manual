@@ -288,9 +288,13 @@ def lcd_hero_paragraph(writer) -> str:
 
 
 def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
-                               fill: str, radius: float = 7.0,
+                               fill: str = "Swatch/None",
+                               stroke: str | None = None,
+                               stroke_weight: float = 1.0,
+                               radius: float = 7.0,
                                inset: tuple[float, float, float, float] = (1, 7, 1, 7),
-                               valign: str = "CenterAlign") -> str:
+                               valign: str = "CenterAlign",
+                               auto_height: bool = False) -> str:
     """An inline anchored text frame with a rounded filled path.
 
     Paragraph shading and table cells cannot round their corners; every
@@ -301,15 +305,25 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
     """
     geometry = rounded_path_geometry(0.0, -height, width, 0.0, radius)
     insets = "".join(f'<ListItem type="unit">{v:g}</ListItem>' for v in inset)
+    stroke_attr = (f'StrokeColor="{stroke}" StrokeWeight="{stroke_weight:g}"'
+                   if stroke else 'StrokeColor="Swatch/None" StrokeWeight="0"')
+    # AutoSizingType is honored on IDML import (verified live): the frame
+    # hugs its content, so `height` is only the flow estimate. Keep the
+    # TOP reference point — BottomCenterPoint invalidates the anchored
+    # frame on import (Object-is-invalid). Estimate generously: an
+    # under-estimate grows the frame down over the following lines.
+    auto_attr = (' AutoSizingType="HeightOnly" '
+                 'AutoSizingReferencePoint="TopCenterPoint"'
+                 if auto_height else '')
     return (
         f'<TextFrame Self="tfp_{sid}" ParentStory="{sid}" '
         'PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" '
         'AppliedObjectStyle="ObjectStyle/HB Capsule Heading" '
-        f'FillColor="{fill}" StrokeColor="Swatch/None" StrokeWeight="0" '
+        f'FillColor="{fill}" {stroke_attr} '
         'ItemTransform="1 0 0 1 0 0">\n'
         + geometry +
         '    <TextFramePreference TextColumnCount="1" '
-        f'VerticalJustification="{valign}">'
+        f'VerticalJustification="{valign}"{auto_attr}>'
         f'<Properties><InsetSpacing type="list">{insets}'
         '</InsetSpacing></Properties></TextFramePreference>\n'
         '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
@@ -342,4 +356,26 @@ def h1_pill_paragraph(writer, text: str, width: float,
                                      fill="Color/HB Brand Dark")
         + '<Content></Content><Br/></CharacterStyleRange>'
         '</ParagraphStyleRange>\n'
+    )
+
+
+def anchored_panel_paragraph(add_story, sid: str, title: str,
+                             parts: list[str], width: float, height: float, *,
+                             terminal: bool = False, **frame_kwargs) -> str:
+    """A host paragraph carrying one rounded panel (sub-story + frame).
+
+    The shared shape behind notice bars, operation panels and data-table
+    outlines: content goes into an anchored sub-story, the rounded frame
+    is inlined in an HB Figure paragraph.
+    """
+    story_sid = add_story(sid, title, parts)
+    frame = anchored_rounded_frame_xml(story_sid, width, height, **frame_kwargs)
+    from .style_names import paragraph_style_ref as _psr_ref
+    style_ref = _psr_ref("HB Figure")
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        + frame + '<Content></Content>'
+        + ('' if terminal else '<Br/>')
+        + '</CharacterStyleRange></ParagraphStyleRange>\n'
     )

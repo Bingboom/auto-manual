@@ -6,5 +6,6 @@
   <Color Self="Color/HB Text Gray" Model="Process" Space="CMYK" ColorValue="0 0 0 90" Name="HB Text Gray"/>
   <Color Self="Color/HB Line K40" Model="Process" Space="CMYK" ColorValue="0 0 0 80" Name="HB Line K40"/>
   <Color Self="Color/HB Bg K05" Model="Process" Space="CMYK" ColorValue="0 0 0 5" Name="HB Bg K05"/>
+  <Color Self="Color/HB Border K10" Model="Process" Space="CMYK" ColorValue="0 0 0 10" Name="HB Border K10"/>
   <Swatch Self="Swatch/None" Name="None"/>
 </idPkg:Graphic>
