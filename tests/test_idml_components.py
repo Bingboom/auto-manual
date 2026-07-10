@@ -24,6 +24,8 @@ MINIMAL_SPECS: dict[str, dict] = {
     "fcc": {"kind": "fcc", "texts": ["Left copy.", "Right copy."]},
     "lcdmode": {"kind": "lcdmode", "img": "",
                 "groups": [{"state": "On", "actions": [["Press", "Wakes"]]}]},
+    "oppanel": {"kind": "oppanel", "image": "", "prereq": "Prerequisite: powered on.",
+                "rows": [["On", "Press once"], ["Off", "Press once"]]},
 }
 
 

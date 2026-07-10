@@ -23,7 +23,9 @@ class ProseFlowBuffer:
             return False
         stems = [stem for stem, _, _ in self.items]
         columns = self.items[0][2]
-        blocks = [block for _, page_blocks, _ in self.items for block in page_blocks]
+        from . import oppanel as _oppanel
+        blocks = _oppanel.transform(
+            [block for _, page_blocks, _ in self.items for block in page_blocks])
         if len(stems) == 1:
             sid = "st_" + slug_stem(stems[0])
             title = stems[0]
