@@ -32,6 +32,7 @@ try:
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
     from tools.idml import page_placed as _placed
+    from tools.idml import page_toc as _toc
     from tools.idml import pages as _pages
     from tools.idml import params as _params
     from tools.idml import primitives as _prim
@@ -46,6 +47,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import components as _components  # type: ignore
     from idml import design_handoff as _design_handoff  # type: ignore
     from idml import page_placed as _placed  # type: ignore
+    from idml import page_toc as _toc  # type: ignore
     from idml import export_paths as _export_paths  # type: ignore
     from idml import flow_idml as _flow_idml  # type: ignore
     from idml import loaders as _loaders  # type: ignore
@@ -349,6 +351,7 @@ def main() -> int:
     }
     page_cursor = 0
     skipped_raw = 0
+    toc = _toc.TocCollector()
     prose_pages = 0
 
     def chain(story_id: str, est_h: float, columns: int = 1) -> None:
@@ -388,9 +391,13 @@ def main() -> int:
         return re.sub(r"[^a-z0-9]+", "_", stem.lower()).strip("_")
 
     def emit_prose_story(sid: str, title: str, blocks: list[tuple[str, str]], columns: int = 1) -> None:
-        nonlocal prose_pages
+        nonlocal prose_pages, page_cursor
+        toc.latch(title)
         _, est = w.add_prose_story(sid, title, blocks, bundle_root)
-        chain(sid, est, columns=columns)
+        pages = w.pages_for_height(est / max(1, columns))
+        toc.note_h1s(blocks, page_cursor, pages)
+        w.add_spread_chain(sid, pages, page_cursor, columns=columns)
+        page_cursor += pages
         prose_pages += 1
 
     def flush_prose_flow() -> None: prose_flow.flush(emit_prose_story, slug_stem)
@@ -417,6 +424,7 @@ def main() -> int:
         if emitted[kind]:
             return
         emitted[kind] = True
+        toc.note(_toc.DATA_TITLES.get(kind, ""), page_cursor)
         if kind == "spec":
             sid = w.add_spec_story(sections, spec_annotations)
             chain(sid, w.estimate_spec_height(sections) + 10.0 * len(spec_annotations))
@@ -437,9 +445,12 @@ def main() -> int:
         if page.name.startswith("symbols_") and emitted["symbols"] \
                 and not pending_prefix_blocks and not pending_fcc_blocks:
             continue
-        placed_asset = _placed.placed_asset_for(page.stem, page_lang(page), ROOT / "docs")
+        toc.lang = page_lang(page)
+        placed_asset = _placed.placed_asset_for(page.stem, toc.lang, ROOT / "docs")
         if placed_asset is not None:
             flush_prose_flow()
+            if "overview" in page.stem:
+                toc.note(_toc.OVERVIEW_TITLES.get(toc.lang, _toc.OVERVIEW_TITLES["en"]), page_cursor, toc.lang)
             _placed.add_placed_pdf_page(w, "st_placed_" + slug_stem(page.stem), placed_asset, page_cursor)
             page_cursor += 1
             prose_pages += 1
@@ -452,6 +463,7 @@ def main() -> int:
                 if res.blocks:
                     skipped_raw += res.skipped_raw
                     emitted["trouble"] = True
+                    toc.stem_langs[page.stem] = page_lang(page)
                     prose_flow.add(page.stem, res.blocks)
                     continue
             emit_data_page(matched)
@@ -469,6 +481,7 @@ def main() -> int:
                 pending_prefix_blocks = []
             else:
                 sid = "st_safety_symbols_" + slug_stem(page.stem)
+                toc.note(_toc.SYMBOL_TITLES.get(lang, _toc.SYMBOL_TITLES["en"]), page_cursor, lang)
                 w.add_safety_symbols_page(
                     sid, pending_prefix_blocks, blocks, sym_signals, sym_icons,
                     bundle_root, page_cursor, lang)
@@ -480,6 +493,7 @@ def main() -> int:
         if pending_fcc_blocks and page_stem_has(page, "02_whats_in_the_box"):
             flush_prose_flow()
             sid = "st_fcc_inbox_" + slug_stem(page.stem)
+            toc.note_h1s(blocks, page_cursor)
             w.add_fcc_inbox_page(
                 sid, pending_fcc_blocks, blocks, bundle_root, page_cursor)
             pending_fcc_blocks = []
@@ -503,6 +517,7 @@ def main() -> int:
             sym_signals, sym_icons = symbol_rows_for(lang)
             if pending_prefix_blocks and (sym_signals or sym_icons):
                 sid = "st_safety_symbols_" + slug_stem(page.stem)
+                toc.note(_toc.SYMBOL_TITLES.get(lang, _toc.SYMBOL_TITLES["en"]), page_cursor, lang)
                 w.add_safety_symbols_page(
                     sid, pending_prefix_blocks, [], sym_signals, sym_icons,
                     bundle_root, page_cursor, lang)
@@ -522,6 +537,8 @@ def main() -> int:
             flush_prose_flow()
             blocks, pending_prefix_blocks = split_safety_first_page(blocks)
             sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
+            toc.lang = page_lang(page)
+            toc.note_h1s(blocks, page_cursor)
             w.add_safety_page(sid, page.stem, blocks, bundle_root, page_cursor)
             page_cursor += 1
             prose_pages += 1
@@ -531,6 +548,7 @@ def main() -> int:
             flush_prose_flow()
             emit_prose_story(sid, page.stem, blocks, columns=2)
         else:
+            toc.stem_langs[page.stem] = page_lang(page)
             prose_flow.add(page.stem, blocks)
 
     # data pages always ship, bundle or not
@@ -539,6 +557,7 @@ def main() -> int:
         emit_data_page(kind)
     if _placed.add_back_cover_page(w, args.region, page_cursor):
         page_cursor += 1
+    _toc.finalize(w, toc, w._add_story_parts, w._psr)
 
     out = Path(args.out) if args.out else (
         default_output_path(args.model, args.region, args.lang, bundle_root))
