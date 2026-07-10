@@ -6,7 +6,7 @@
   <RootParagraphStyleGroup Self="rpsg">
     <ParagraphStyle Self="ParagraphStyle/$ID/[No paragraph style]" Name="$ID/[No paragraph style]"/>
     <ParagraphStyle Self="ParagraphStyle/$ID/NormalParagraphStyle" Name="$ID/NormalParagraphStyle"/>
-  <ParagraphStyle Self="ParagraphStyle/Heading1" Name="Heading1" PointSize="9" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="ColumnWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" SpaceBefore="4" SpaceAfter="3" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/Heading1" Name="Heading1" PointSize="9" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="ColumnWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" LeftIndent="7" SpaceBefore="4" SpaceAfter="3" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
@@ -27,7 +27,7 @@
       <Leading type="unit">8</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/Caution" Name="Caution" PointSize="6.8" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="ColumnWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" SpaceBefore="4" SpaceAfter="3" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/Caution" Name="Caution" PointSize="6.8" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="ColumnWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" LeftIndent="7" SpaceBefore="4" SpaceAfter="3" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>

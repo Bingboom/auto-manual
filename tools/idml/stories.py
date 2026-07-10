@@ -9,7 +9,7 @@ from __future__ import annotations
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from . import components as _components
+from . import components as _components, page_objects as _po
 from . import table_borders as _tb
 from .loaders import symbol_copy
 from .params import IDPKG
@@ -82,6 +82,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             est += h
             continue
         style = writer._PROSE_STYLE.get(kind, "HB Body")
+        text = "\u25cf " + text if kind == "h2" else text
         span_columns = has_twocol_layout and not in_twocol and kind in {"h1", "h2"}
         parts.append(writer._psr(
             style, text, terminal=terminal, span_columns=span_columns))
@@ -125,9 +126,10 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path) -> str:
         for content, ci in cell_defs:
             cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
                                       top=2, bottom=2, left=3, right=3))
-    table = writer._component_table(tid, list(cols), cells, n_rows=len(rows), role="data")
+    table = _tb.fill_column_xml(writer._component_table(tid, list(cols), cells, n_rows=len(rows), role="data"), 1, "Color/HB Bg K05")
     parts = [
         writer._psr("HB H1", "LCD DISPLAY"),
+        _po.lcd_hero_paragraph(writer),
         writer._wrap_table_paragraph(table, True, span_columns=False),
     ]
     return writer._add_story_parts(sid, "LCD DISPLAY", parts)

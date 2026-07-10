@@ -61,3 +61,11 @@ def component_table_xml(tid: str, cols: list[float], cells: list[str],
         f'  <Table Self="{tid}" AppliedTableStyle="{table_style}" '
         f'BodyRowCount="{n_rows}" ColumnCount="{len(cols)}" HeaderRowCount="0" FooterRowCount="0">\n'
         f'{row_els}\n{col_els}\n' + "\n".join(cells) + "\n  </Table>\n")
+
+
+def fill_column_xml(table_xml: str, col: int, color: str, tint: int = 100) -> str:
+    """Give one column's cells a fill (the master's icon plates)."""
+    return re.sub(
+        rf'(<Cell\b[^>]*?Name="{col}:\d+")',
+        rf'\1 FillColor="{color}" FillTint="{tint}"',
+        table_xml)

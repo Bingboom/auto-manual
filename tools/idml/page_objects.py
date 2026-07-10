@@ -262,3 +262,26 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     parts.append(writer._frame_xml(
         f"tf_{sid}_{frame_id}", story_id, x1, y1, x2, y2, **opts))
     return "".join(parts)
+
+
+def lcd_hero_paragraph(writer) -> str:
+    """The master's annotated LCD line-art above the icon table
+    (finished art cropped from the V2.0 PDF; numbers only, so one asset
+    serves every language). Empty string when the asset is absent."""
+    from pathlib import Path as _P
+
+    from tools.utils.path_utils import latex_renderer_of
+
+    from .style_names import paragraph_style_ref
+    root = _P(__file__).resolve().parents[2]
+    hero = latex_renderer_of(root / "docs") / "assets" / "lcd_display_hero.png"
+    if not hero.is_file():
+        return ""
+    width, height = writer._art_frame_size(hero, max_w=250.0)
+    style = paragraph_style_ref("HB Figure")
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style}" Justification="CenterAlign">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        + writer._image_cell_content("lcd_hero", hero, width, height)
+        + "<Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>\n"
+    )

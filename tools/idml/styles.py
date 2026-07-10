@@ -69,6 +69,7 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
             'ParagraphShadingBottomOrigin="DescentBottomOrigin" '
             'ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" '
             'ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" '
+            'LeftIndent="7" '
             'SpaceBefore="4" SpaceAfter="3" '
             )
         else:
