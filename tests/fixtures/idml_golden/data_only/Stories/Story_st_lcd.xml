@@ -107,7 +107,7 @@
     </Cell>
     <Cell Self="tbl_lcdc3_3" Name="3:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Customizes the charging time of the {{PRODUCT_NAME}}. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Customizes the charging time of the Jackery Explorer 1000. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc4_0" Name="0:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
@@ -400,7 +400,7 @@
     </Cell>
     <Cell Self="tbl_lcdc20_0" Name="0:20" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>22</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>21</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc20_1" Name="1:20" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
@@ -413,12 +413,12 @@
     </Cell>
     <Cell Self="tbl_lcdc20_3" Name="3:20" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>When the AC or DC output is turned on by pressing the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} power button:</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: Energy Saving Mode is enabled.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: Energy Saving Mode is disabled.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The setting is retained when the device is powered off.</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>When the AC or DC output is turned on by pressing the AC or DC/USB power button:</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>On: Energy Saving Mode is enabled.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Off: Energy Saving Mode is disabled.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The setting is retained when the device is powered off.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc21_0" Name="0:21" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>23</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>22</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc21_1" Name="1:21" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
@@ -436,7 +436,7 @@
     </Cell>
     <Cell Self="tbl_lcdc22_0" Name="0:22" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>24</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>23</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc22_1" Name="1:22" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
@@ -454,7 +454,7 @@
     </Cell>
     <Cell Self="tbl_lcdc23_0" Name="0:23" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>25</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>24</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc23_1" Name="1:23" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
@@ -472,7 +472,7 @@
     </Cell>
     <Cell Self="tbl_lcdc24_0" Name="0:24" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>26</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>25</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc24_1" Name="1:24" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
@@ -490,7 +490,7 @@
     </Cell>
     <Cell Self="tbl_lcdc25_0" Name="0:25" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>27</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>26</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="tbl_lcdc25_1" Name="1:25" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">

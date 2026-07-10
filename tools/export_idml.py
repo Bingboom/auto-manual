@@ -329,7 +329,7 @@ def main() -> int:
         return 1
 
     w = IdmlWriter(params)
-    lcd_rows = load_lcd_rows(data_root, args.model, args.lang)
+    lcd_rows = load_lcd_rows(data_root, args.model, args.lang, args.region)
     trouble_rows = load_trouble_rows(data_root, args.model, args.region, args.lang)
     spec_annotations = load_spec_annotations(data_root, args.model, args.region, args.lang)
     symbol_cache: dict[str, tuple[list[tuple[str, str]], list[dict]]] = {}

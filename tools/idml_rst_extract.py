@@ -134,6 +134,10 @@ def _unescape_rst_stars(kind: str, text: str) -> str:
 
 def _clean_rst_text(s: str) -> str:
     s = re.sub(r"\*\*([^*]+)\*\*", r"\1", s)
+    # Inline sub/sup roles render as plain text; drop the escaped joiner too
+    # (otherwise prose ships literal "V\ :sub:`oc`").
+    s = re.sub(r"\\?\s*:(?:sub|sup):`([^`]*)`", r"\1", s)
+    s = s.replace("\\ ", "")
     s = re.sub(r"\s+", " ", s)
     return s.strip()
 
