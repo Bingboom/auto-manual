@@ -174,20 +174,10 @@ LCD SCREEN
 
    .. raw:: latex
 
-      \begingroup
-      \renewcommand{\arraystretch}{1.25}
-      \setlength{\tabcolsep}{6pt}
-      \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
-      \hline
-      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Shortly On}} & Turn on & Press the main POWER button or when the product is charging. \\ \cline{3-4}
-      & & Turn off & Press the main POWER button. \\ \cline{3-4}
-      & & Auto-off & The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity. \\ \cline{2-4}
-      & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Steady On (in charging or discharging state)}} & Turn on & Press the main POWER button twice when the product is powered on. \\ \cline{3-4}
-      & & Turn off & Press the main POWER button. \\ \cline{3-4}
-      & & Auto-off & The LCD turns off automatically after 2 hours of inactivity. \\ \hline
-      \end{tabular}
-      \endgroup
+      \begin{HBLcdModeTable}{lcd_mode.png}
+      \HBLcdModeFirstGroup{Shortly On}{Turn on}{Press the main POWER button or when the product is charging.}{Turn off}{Press the main POWER button.}{Auto-off}{The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.}
+      \HBLcdModeSecondGroup{Steady On (in charging or discharging state)}{Turn on}{Press the main POWER button twice when the product is powered on.}{Turn off}{Press the main POWER button.}{Auto-off}{The LCD turns off automatically after 2 hours of inactivity.}
+      \end{HBLcdModeTable}
 
 You can also set the screen display mode in the Jackery App.
 
