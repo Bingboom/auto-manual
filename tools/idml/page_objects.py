@@ -294,7 +294,8 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
                                radius: float = 7.0,
                                inset: tuple[float, float, float, float] = (1, 7, 1, 7),
                                valign: str = "CenterAlign",
-                               auto_height: bool = False) -> str:
+                               auto_height: bool = False,
+                               bottom_only: bool = False) -> str:
     """An inline anchored text frame with a rounded filled path.
 
     Paragraph shading and table cells cannot round their corners; every
@@ -303,7 +304,9 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
     AnchoredObjectSetting element — as a TextFrame attribute InDesign
     silently drops it, and with it the ParentStory binding.
     """
-    geometry = rounded_path_geometry(0.0, -height, width, 0.0, radius)
+    geometry = (bottom_rounded_path_geometry(0.0, -height, width, 0.0, radius)
+                if bottom_only
+                else rounded_path_geometry(0.0, -height, width, 0.0, radius))
     insets = "".join(f'<ListItem type="unit">{v:g}</ListItem>' for v in inset)
     stroke_attr = (f'StrokeColor="{stroke}" StrokeWeight="{stroke_weight:g}"'
                    if stroke else 'StrokeColor="Swatch/None" StrokeWeight="0"')
@@ -337,23 +340,26 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
 
 
 def h1_pill_paragraph(writer, text: str, width: float,
-                      height: float = 16.5) -> str:
-    """The master's rounded H1 capsule inside a flowed story.
-
-    One definition serving every flowed page, like the LaTeX H1 macro.
+                      height: float = 20.0) -> str:
+    """The master's H1 bar inside a flowed story: sharp top corners,
+    rounded bottom corners (\\HBTitleLevelOne / capsule_xml bottom_only —
+    see STYLE_MAP.md). One definition serving every flowed page, like
+    the LaTeX H1 macro.
     """
     # st_anchor_ prefix: package.designmap_xml declares these after their
     # host stories, which is what makes InDesign bind ParentStory at all.
     sid = f"st_anchor_h1pill_{len(writer.stories)}"
     writer._add_story_parts(
-        sid, text, [writer._psr("HB Capsule Text", text, terminal=True)])
+        sid, text, [heading_text(writer, text, level=1)])
     from .style_names import paragraph_style_ref as _psr_ref
     figure_style = _psr_ref("HB Figure")
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style}">'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         + anchored_rounded_frame_xml(sid, width, height,
-                                     fill="Color/HB Brand Dark")
+                                     fill="Color/HB Brand Dark",
+                                     bottom_only=True,
+                                     inset=(1.5, 5, 1, 6))
         + '<Content></Content><Br/></CharacterStyleRange>'
         '</ParagraphStyleRange>\n'
     )

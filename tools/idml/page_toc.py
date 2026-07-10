@@ -12,6 +12,7 @@ import re
 from dataclasses import dataclass, field
 
 from .params import IDPKG
+from . import page_objects as _po
 from .style_names import paragraph_style_ref
 
 # The template's language block headers; entries carry the language they
@@ -116,13 +117,14 @@ def finalize(writer, collector: TocCollector, add_story_parts, psr) -> bool:
     col_w = (body_w - 12.0) / 2.0
     y = 24.0
     frames: list[str] = []
+    # master: plain large dark text, no bar (STYLE_MAP.md 标题族)
     title_sid = add_story_parts(
-        "st_toc_title", "TOC title", [psr("HB Capsule Text", "TABLE OF CONTENTS", terminal=True)])
+        "st_toc_title", "TOC title",
+        [psr("HB Big Numeral", "TABLE OF CONTENTS", terminal=True)])
     frames.append(writer._frame_xml(
-        "tf_toc_title", title_sid, *writer._page_rect(body_x, y, body_w, 20.0),
-        fill="Color/HB Brand Dark", rounded=True, valign="CenterAlign",
-        inset=(1, 7, 1, 7)))
-    y += 30.0
+        "tf_toc_title", title_sid, *writer._page_rect(body_x, y, body_w, 30.0),
+        valign="CenterAlign", inset=(0, 0, 0, 0)))
+    y += 38.0
 
     for si, (seg_lang, segment) in enumerate(segments):
         header = _LANG_HEADERS.get(seg_lang, seg_lang.upper())
@@ -131,10 +133,14 @@ def finalize(writer, collector: TocCollector, add_story_parts, psr) -> bool:
         bar_sid = add_story_parts(
             f"st_toc_bar_{si}", f"TOC bar {si}",
             [psr("HB Capsule Text", f"{header}\t{rng}", terminal=True)])
+        # rounded via the capsule path Rectangle: CornerOption attrs are
+        # unreliable on generated frames (STYLE_MAP.md 机制备忘)
+        frames.append(_po.capsule_xml(
+            writer, f"bg_toc_bar_{si}", (body_x, y, body_w, 14.0)))
         frames.append(writer._frame_xml(
             f"tf_toc_bar_{si}", bar_sid,
-            *writer._page_rect(body_x, y, body_w, 14.0),
-            fill="Color/HB Brand Dark", rounded=True, inset=(1, 5, 1, 6)))
+            *writer._page_rect(body_x + 8.0, y, body_w - 16.0, 14.0),
+            inset=(1, 0, 1, 0)))
         y += 20.0
         half = (len(segment) + 1) // 2
         for ci, chunk in enumerate((segment[:half], segment[half:])):
