@@ -27,6 +27,8 @@ MINIMAL_SPECS: dict[str, dict] = {
     "oppanel": {"kind": "oppanel", "image": "", "prereq": "Prerequisite: powered on.",
                 "rows": [["On", "Press once"], ["Off", "Press once"]]},
     "langtag": {"kind": "langtag", "lang": "EN", "texts": ["IMPORTANT"]},
+    "warrantyyears": {"kind": "warrantyyears", "items": [
+        {"number": "3", "unit": "YEARS", "label": "Standard", "text": "Copy."}]},
 }
 
 

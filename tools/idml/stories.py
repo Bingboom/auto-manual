@@ -10,6 +10,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from . import components as _components
+from . import table_borders as _tb
 from .loaders import symbol_copy
 from .params import IDPKG
 from .primitives import _ATTR_ENTITIES
@@ -188,7 +189,8 @@ def add_spec_story(writer, sections: list[dict],
         parts.append(writer._psr("HB Spec Section", sec["title"]))
         # table anchored in its own paragraph; the paragraph still needs
         # its own <Br/> so the next section title starts a new paragraph
-        table = writer._table(f"tbl_spec{si}", sec["rows"], role="spec")
+        table = _tb.suppress_inner_vertical_edges_xml(
+            writer._table(f"tbl_spec{si}", sec["rows"], role="spec"), 2)
         last = si == len(sections) - 1 and not annotations
         body_style_ref = paragraph_style_ref("HB Body")
         parts.append(

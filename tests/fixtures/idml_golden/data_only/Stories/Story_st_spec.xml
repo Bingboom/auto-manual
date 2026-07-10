@@ -20,72 +20,72 @@
     <Row Self="tbl_spec0r6" Name="6" SingleRowHeight="10.3"/>
     <Column Self="tbl_spec0col0" Name="0" SingleColumnWidth="98.3098"/>
     <Column Self="tbl_spec0col1" Name="1" SingleColumnWidth="213.785"/>
-    <Cell Self="tbl_spec0c0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Product Name</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Jackery Explorer 1000</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Model No.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>JE-1000F / JE-1000F-SG</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Capacity</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>1024 Wh (20 Ah/51.2 V DC)</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c3_0" Name="0:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c3_0" Name="0:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Cell Chemistry</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c3_1" Name="1:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c3_1" Name="1:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>LiFePO</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>₄</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c4_0" Name="0:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c4_0" Name="0:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Weight</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c4_1" Name="1:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c4_1" Name="1:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>About 23.4 lbs/10.6 kg</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c5_0" Name="0:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c5_0" Name="0:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Dimensions</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c5_1" Name="1:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c5_1" Name="1:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>12.4 x 7.9 x 9.2 in / 31.4 x 20.1 x 23.4 cm</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c6_0" Name="0:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c6_0" Name="0:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Cycle Life</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec0c6_1" Name="1:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec0c6_1" Name="1:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>6000 cycles to 70%+ capacity</Content></CharacterStyleRange>
   </ParagraphStyleRange>
@@ -103,22 +103,22 @@
     <Row Self="tbl_spec1r1" Name="1" SingleRowHeight="10.3"/>
     <Column Self="tbl_spec1col0" Name="0" SingleColumnWidth="98.3098"/>
     <Column Self="tbl_spec1col1" Name="1" SingleColumnWidth="213.785"/>
-    <Cell Self="tbl_spec1c0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec1c0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>1 × AC Input</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec1c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec1c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Charge Mode: 100V-120V~60Hz, 15A Max</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Bypass Mode</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>①</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>: 100V-120V~60Hz, 12A Max</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec1c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec1c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>2 × DC8020 Ports</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec1c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec1c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>11V-16V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>8A Max, Double to 8A Max</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>16V-60V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>12A, Double to 21A / 400W Max</Content></CharacterStyleRange>
   </ParagraphStyleRange>
@@ -139,52 +139,52 @@
     <Row Self="tbl_spec2r4" Name="4" SingleRowHeight="10.3"/>
     <Column Self="tbl_spec2col0" Name="0" SingleColumnWidth="98.3098"/>
     <Column Self="tbl_spec2col1" Name="1" SingleColumnWidth="213.785"/>
-    <Cell Self="tbl_spec2c0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec2c0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3 × AC</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec2c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec2c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>120 V~ 60 Hz, 12.5 A max., 1500 W Rated per port, 1500 W in Total, 3000 W Surge Peak</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec2c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec2c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>AC Output in Bypass Mode</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec2c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec2c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>120 V~, 60 Hz, 13.2 A max.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec2c2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec2c2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>2 × USB-C</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec2c2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec2c2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>30W Max, 5V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3A, 9V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3A, 12V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>2.5A, 15V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>2A, 20V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>1.5A</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>100W Max, 5V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3A, 9V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3A, 12V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3A, 15V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3A, 20V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>5A</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>USB-C 100W output disabled (-4°F to 14°F / -20°C to -10°C)</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec2c3_0" Name="0:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec2c3_0" Name="0:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>1 × USB-A</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec2c3_1" Name="1:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec2c3_1" Name="1:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>18W Max, 5-6V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>3A, 6-9V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>2A, 9-12V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>1.5A</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec2c4_0" Name="0:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec2c4_0" Name="0:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>1 × DC 12V Port</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec2c4_1" Name="1:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec2c4_1" Name="1:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>12 V</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Apple Symbols</AppliedFont></Properties><Content>⎓</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>10 A Max</Content></CharacterStyleRange>
   </ParagraphStyleRange>
@@ -202,22 +202,22 @@
     <Row Self="tbl_spec3r1" Name="1" SingleRowHeight="10.3"/>
     <Column Self="tbl_spec3col0" Name="0" SingleColumnWidth="98.3098"/>
     <Column Self="tbl_spec3col1" Name="1" SingleColumnWidth="213.785"/>
-    <Cell Self="tbl_spec3c0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec3c0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Charging Temperature</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec3c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec3c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>14°F to 113°F / -10°C to 45°C</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec3c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec3c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Discharging Temperature</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="tbl_spec3c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
+    <Cell Self="tbl_spec3c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>14°F to 113°F / -10°C to 45°C</Content></CharacterStyleRange>
   </ParagraphStyleRange>
