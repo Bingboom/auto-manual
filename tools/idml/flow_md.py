@@ -217,7 +217,7 @@ class _FlowMarkdownWriter:
         return lines
 
     def _lcd_page(self, source_ref: str) -> list[str] | None:
-        rows = _loaders.load_lcd_rows(self.data_root, self.model, self.lang)
+        rows = _loaders.load_lcd_rows(self.data_root, self.model, self.lang, self.region)
         if not rows:
             return None
         table = [["No.", "Asset", "Name", "Description"]]

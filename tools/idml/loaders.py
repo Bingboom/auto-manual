@@ -10,6 +10,8 @@ import csv
 import re
 from pathlib import Path
 
+from .text_clean import VariableSubstituter, clean_cell
+
 SYMBOL_COPY = {
     "en": {
         "title": "MEANING OF SYMBOLS",
@@ -176,9 +178,10 @@ def load_spec_sections(data_root: Path, model: str, region: str,
     return sections
 
 
-def load_lcd_rows(data_root: Path, model: str, lang: str = "en") -> list[dict]:
+def load_lcd_rows(data_root: Path, model: str, lang: str = "en", region: str | None = None) -> list[dict]:
     """LCD icon table rows for one model: no / icon path / name / description."""
     path = data_root / "lcd_icons_blocks.csv"
+    subst = VariableSubstituter(data_root, model=model, lang=lang, region=region)
     out: list[dict] = []
     for r in csv.DictReader(path.open(encoding="utf-8")):
         if r.get("Is_latest") != "TRUE":
@@ -189,10 +192,14 @@ def load_lcd_rows(data_root: Path, model: str, lang: str = "en") -> list[dict]:
         out.append({
             "no": (r.get("No.") or "").strip(),
             "figure": (r.get("figure") or "").strip(),
-            "name": _localized_cell(r, "icon", lang, ("icon_en",)),
-            "desc": _localized_cell(r, "icon_desc", lang, ("icon_desc_en",)),
+            "name": clean_cell(_localized_cell(r, "icon", lang, ("icon_en",)), subst),
+            "desc": clean_cell(_localized_cell(r, "icon_desc", lang, ("icon_desc_en",)), subst),
         })
     out.sort(key=lambda x: float(x["no"] or 0))
+    # The master numbers rows continuously; source "No." values may skip
+    # (JE-1000F has no 21), so renumber for display.
+    for index, row in enumerate(out, start=1):
+        row["no"] = str(index)
     return out
 
 
@@ -275,6 +282,6 @@ def load_trouble_rows(data_root: Path, model: str, region: str,
         if regions and region not in regions and "ALL" not in regions:
             continue
         out.append(((r.get("error_code") or "").strip(),
-                    _localized_cell(r, "corrective_measures", lang,
-                                    ("corrective_measures_en",))))
+                    clean_cell(_localized_cell(r, "corrective_measures", lang,
+                                               ("corrective_measures_en",)))))
     return out
