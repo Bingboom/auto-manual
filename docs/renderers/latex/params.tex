@@ -196,8 +196,8 @@
 % Space after H1 pill (single point; negative offsets the first paragraph's inherent leading after the title block)
 \expandafter\def\csname HBcomp_h1_pill_after\endcsname{-1.2mm}
 
-% H1 pill corner radius
-\expandafter\def\csname HBcomp_h1_pill_arc\endcsname{0.8mm}
+% H1 bar bottom corner radius (master ~5.8pt; sharp top + rounded south)
+\expandafter\def\csname HBcomp_h1_pill_arc\endcsname{2.0mm}
 
 % H1 pill left/right padding
 \expandafter\def\csname HBcomp_h1_pill_pad_lr\endcsname{1.0mm}
@@ -301,8 +301,8 @@
 % Space after subbar
 \expandafter\def\csname HBcomp_subbar_after\endcsname{0.7mm}
 
-% Subbar corner radius
-\expandafter\def\csname HBcomp_subbar_arc\endcsname{0.8mm}
+% Subbar capsule corner radius (half the 13.9pt bar: full-round stadium)
+\expandafter\def\csname HBcomp_subbar_arc\endcsname{2.45mm}
 
 % Minimum room to keep a subbar with the content that follows
 \expandafter\def\csname HBcomp_subbar_needspace\endcsname{18mm}

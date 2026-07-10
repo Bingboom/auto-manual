@@ -60,7 +60,7 @@ type_warning_text_font_leading,7.2,pt,Warning right text leading
 type_warning_text_force_upper,0,int,0 keep case / 1 uppercase (body prose keeps case; the lead-in safety sentence is uppercase in the source)
 ,,,
 ,,,==================== COMPONENTS ====================
-comp_h1_pill_arc,0.8,mm,H1 pill corner radius
+comp_h1_pill_arc,2.0,mm,H1 bar bottom corner radius (master ~5.8pt; sharp top + rounded south)
 comp_h1_pill_pad_lr,1.0,mm,H1 pill left/right padding
 comp_h1_pill_pad_tb,0.45,mm,H1 pill top/bottom padding
 comp_h1_pill_width,1,ratio,H1 pill width ratio of \textwidth
@@ -78,7 +78,7 @@ comp_title_l3_bullet_radius,0.28,mm,Level 3 title bullet radius
 comp_title_l3_gap,0.9,mm,Level 3 title bullet-to-text gap
 comp_title_l3_needspace,8,mm,Minimum room to keep a level 3 title with following content
 ,,,
-comp_subbar_arc,0.8,mm,Subbar corner radius
+comp_subbar_arc,2.45,mm,Subbar capsule corner radius (half the 13.9pt bar: full-round stadium)
 comp_subbar_pad_lr,0.8,mm,Subbar left/right padding
 comp_subbar_pad_tb,0.35,mm,Subbar top/bottom padding
 comp_subbar_width,1,ratio,Subbar width ratio of \textwidth

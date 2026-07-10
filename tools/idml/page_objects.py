@@ -219,13 +219,26 @@ def left_rounded_xml(writer, rect_id: str,
     )
 
 
+def h1_arc_pt(writer) -> float:
+    """H1 bottom-corner radius from the shared layout param (mm -> pt),
+    the same key params.tex feeds \\HBTitleLevelOne (STYLE_MAP.md)."""
+    raw = writer.params.get("comp_h1_pill_arc", ("2.0", "mm"))[0]
+    try:
+        return float(raw) * 2.83465
+    except ValueError:
+        return 5.67
+
+
 def capsule_xml(writer, rect_id: str,
                 rect: tuple[float, float, float, float], *,
                 bottom_only: bool = False) -> str:
     x1, y1, x2, y2 = writer._page_rect(*rect)
+    # capsules are stadiums (radius = half height); H1 bars take the
+    # shared CSV radius
     geometry = (
-        bottom_rounded_path_geometry(x1, y1, x2, y2, 7.0)
-        if bottom_only else rounded_path_geometry(x1, y1, x2, y2, 7.0)
+        bottom_rounded_path_geometry(x1, y1, x2, y2, h1_arc_pt(writer))
+        if bottom_only
+        else rounded_path_geometry(x1, y1, x2, y2, abs(y2 - y1) / 2.0)
     )
     return (
         f'  <Rectangle Self="{rect_id}" ContentType="Unassigned" '
@@ -358,7 +371,7 @@ def h1_pill_paragraph(writer, text: str, width: float,
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         + anchored_rounded_frame_xml(sid, width, height,
                                      fill="Color/HB Brand Dark",
-                                     bottom_only=True,
+                                     bottom_only=True, radius=h1_arc_pt(writer),
                                      inset=(1.5, 5, 1, 6))
         + '<Content></Content><Br/></CharacterStyleRange>'
         '</ParagraphStyleRange>\n'

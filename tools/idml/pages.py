@@ -319,7 +319,7 @@ def add_safety_symbols_page(
         writer._add_story_parts(tail_sid, f"Safety tail {bi}", [xml_part])
         tail_stories.append((tail_sid, tail_h))
 
-    maint_title = next((t for k, t in maintenance_blocks if k == "h1"),
+    maint_title = next((t for k, t in maintenance_blocks if k in ("h1", "h2")),
                        "USER MAINTENANCE INSTRUCTIONS")
     maint_text = "\n".join(t for k, t in maintenance_blocks if k == "body")
     maint_title_sid = f"{sid}_maintenance_title"
