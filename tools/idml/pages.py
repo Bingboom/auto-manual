@@ -13,13 +13,12 @@ from xml.sax.saxutils import escape
 from . import components as _components
 from .layout_est import est_table_height, template_symbol_split
 from .loaders import symbol_copy
-from .page_objects import frame_with_background, heading_bar_opts, heading_text, with_rounded_outer
+from .page_objects import frame_with_background, h1_bar_h_pt, heading_bar_opts, heading_text, with_rounded_outer
 from .params import IDPKG
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
-H1_BAR_H = 20.0
-SUBBAR_H = 13.5
+SUBBAR_H = 13.9  # master/publish-PDF measured capsule height
 
 
 def _page_rect(writer, x: float, y: float, w: float, h: float) -> tuple[float, float, float, float]:
@@ -80,7 +79,8 @@ def _safety_section_story(writer, sid: str, title: str,
                 span_columns=False, measure_w=column_measure)
             parts.append(xml_part)
         elif kind == "body":
-            parts.append(writer._psr("HB Title L2", text, terminal=terminal))
+            # \HBTypeBody territory: lead-ins are body Medium, not L2 Bold
+            parts.append(writer._psr("HB Body", text, terminal=terminal))
         elif kind == "list":
             parts.append(writer._psr("HB List", text, terminal=terminal))
         elif kind in {"h1", "h2", "h3"}:
@@ -135,7 +135,7 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     body_w = writer.page_w - body_x * 2
     frames = []
     for frame_id, story_id, rect, opts in (
-        ("title", title_sid, (body_x, 27.5, body_w, H1_BAR_H),
+        ("title", title_sid, (body_x, 27.5, body_w, h1_bar_h_pt(writer)),
          heading_bar_opts(1, (1.5, 5, 1, 6))),
         ("warning", warning_sid, (body_x, 55.5, body_w, 31.5),
          with_rounded_outer({"inset": (0, 0, 0, 0)})),
@@ -376,7 +376,7 @@ def add_safety_symbols_page(
     _place("maint_title", maint_title_sid, SUBBAR_H,
            heading_bar_opts(2, (0.5, 5, 0.5, 6)), gap=3.5)
     _place("maint_body", maint_body_sid, maint_h, {"inset": (0, 0, 0, 0)}, gap=8.0)
-    _place("symbols_title", symbols_title_sid, H1_BAR_H,
+    _place("symbols_title", symbols_title_sid, h1_bar_h_pt(writer),
            heading_bar_opts(1, (1.5, 5, 1, 6)), gap=9.0)
     signals_h = est_table_height([t for _, t in signals], body_w * 0.76, 26.0)
     _place("signals", signal_sid, signals_h, with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=6.5)

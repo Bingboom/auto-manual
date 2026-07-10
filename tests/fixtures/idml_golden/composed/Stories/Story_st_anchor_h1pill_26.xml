@@ -3,7 +3,7 @@
 <Story Self="st_anchor_h1pill_26" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="OPERATION GUIDE">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/带底Heading2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="12.4"><Content>OPERATION GUIDE</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>OPERATION GUIDE</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

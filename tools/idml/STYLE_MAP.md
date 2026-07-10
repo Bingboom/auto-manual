@@ -30,6 +30,19 @@
 | warranty 大字卡 | 圆角框 + 26pt 大字 | warranty 盒 | — | `components/warranty`(HB Big Numeral 26pt) | ✅ #635 |
 | 语言徽章 langtag(前言 EN/FR/ES) | 深色小 pill + 粗标题 | 前言宏 | — | `components/langbadge` | ✅ #634 |
 
+## 字号/字重收敛(2026-07-11 参数收敛轮,fitz 双线实测)
+
+| 元素 | 共用键 | 双线实测 | 备注 |
+|---|---|---|---|
+| H1 盒字 | `type_h1_font_size/leading`(9.0/10.8) | 9.0pt 两线一致 | 字重 LaTeX=Heavy、IDML=Bold(IDML 未注册 Gilroy-Heavy,近似) |
+| H1 条高 | `type_h1_font_leading + 2×comp_h1_pill_pad_tb + 1.45`(tcolorbox 盒模型修正) | 14.8pt 两线一致 | IDML 走 `page_objects.h1_bar_h_pt` |
+| subbar 盒字 | `type_subbar_font_size/leading`(6.6/7.2) | 6.6pt Medium 两线一致 | \HBTypeSubbar 实渲染 Gilroy-Medium(SemiBold 字体缺→回退) |
+| subbar 条高 | 常量 13.9(模板/发布 PDF 双实测) | 13.9pt 两线一致 | `pages.SUBBAR_H` |
+| 正文/lead-in | `type_body_font_size/leading`(6.2/7.5) | 6.2pt Medium 两线一致 | \HBTypeBody=HBFontMedium;IDML HB Body 字重已改 Medium;安全页 lead-in 曾误映射 HB Title L2(8.6 Bold)已修 |
+| 列表 | `type_list_font_size/leading`(5.4/6.4) | 5.4pt Regular 两线一致 | |
+
+坑:type_system.tex 曾有两个 `\HBTypeSubbar`(providecommand 先到先得),#645 误加的重复宏(title_l2 8.6 Heavy)压住了原生宏(subbar 键 6.6 SemiBold)——已删,参数表原值恢复生效。
+
 ## 机制备忘(锚定框铁律)
 
 - 锚定子故事必须在 designmap 中声明于宿主故事**之后**(前向引用),否则孤儿空框;`st_anchor_` 前缀 + `package.designmap_xml` 排序负责此契约(嵌套一层=块内倒创建序)。
