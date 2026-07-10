@@ -199,7 +199,7 @@ def load_lcd_rows(data_root: Path, model: str, lang: str = "en", region: str | N
     # The master numbers rows continuously; source "No." values may skip
     # (JE-1000F has no 21), so renumber for display.
     for index, row in enumerate(out, start=1):
-        row["no"] = str(index)
+        row["no"] = chr(0x245F + index) if index <= 20 else chr(0x323C + index)
     return out
 
 
