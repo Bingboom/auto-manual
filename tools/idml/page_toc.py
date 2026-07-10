@@ -117,10 +117,11 @@ def finalize(writer, collector: TocCollector, add_story_parts, psr) -> bool:
     y = 24.0
     frames: list[str] = []
     title_sid = add_story_parts(
-        "st_toc_title", "TOC title", [psr("HB H1", "TABLE OF CONTENTS", terminal=True)])
+        "st_toc_title", "TOC title", [psr("HB Capsule Text", "TABLE OF CONTENTS", terminal=True)])
     frames.append(writer._frame_xml(
         "tf_toc_title", title_sid, *writer._page_rect(body_x, y, body_w, 20.0),
-        inset=(0, 0, 0, 0)))
+        fill="Color/HB Brand Dark", rounded=True, valign="CenterAlign",
+        inset=(1, 7, 1, 7)))
     y += 30.0
 
     for si, (seg_lang, segment) in enumerate(segments):

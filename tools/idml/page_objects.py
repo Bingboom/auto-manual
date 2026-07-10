@@ -285,3 +285,45 @@ def lcd_hero_paragraph(writer) -> str:
         + writer._image_cell_content("lcd_hero", hero, width, height)
         + "<Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>\n"
     )
+
+
+def h1_pill_paragraph(writer, text: str, width: float,
+                      height: float = 16.5) -> str:
+    """The master's rounded H1 capsule inside a flowed story.
+
+    Paragraph shading cannot round its corners, so the pill is an inline
+    anchored text frame (dark fill, rounded, white capsule text) — one
+    definition serving every flowed page, like the LaTeX H1 macro.
+    """
+    # st_anchor_ prefix: package.designmap_xml declares these after their
+    # host stories, which is what makes InDesign bind ParentStory at all.
+    sid = f"st_anchor_h1pill_{len(writer.stories)}"
+    writer._add_story_parts(
+        sid, text, [writer._psr("HB Capsule Text", text, terminal=True)])
+    from .style_names import paragraph_style_ref as _psr_ref
+    figure_style = _psr_ref("HB Figure")
+    geometry = rounded_path_geometry(0.0, -height, width, 0.0, 7.0)
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style}">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        f'<TextFrame Self="tfp_{sid}" ParentStory="{sid}" '
+        'PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" '
+        'AppliedObjectStyle="ObjectStyle/HB Capsule Heading" '
+        'FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" '
+        'ItemTransform="1 0 0 1 0 0">\n'
+        + geometry +
+        '    <TextFramePreference TextColumnCount="1" '
+        'VerticalJustification="CenterAlign">'
+        '<Properties><InsetSpacing type="list">'
+        '<ListItem type="unit">1</ListItem><ListItem type="unit">7</ListItem>'
+        '<ListItem type="unit">1</ListItem><ListItem type="unit">7</ListItem>'
+        '</InsetSpacing></Properties></TextFramePreference>\n'
+        '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
+        'SpineRelative="false" LockPosition="false" PinPosition="true" '
+        'AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" '
+        'HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" '
+        'VerticalReferencePoint="LineBaseline" AnchorXoffset="0" '
+        'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
+        '  </TextFrame><Content></Content><Br/></CharacterStyleRange>'
+        '</ParagraphStyleRange>\n'
+    )
