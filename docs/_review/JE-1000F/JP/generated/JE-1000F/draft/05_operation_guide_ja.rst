@@ -214,20 +214,10 @@ LCDスクリーン
 
    .. raw:: latex
 
-      \begingroup
-      \renewcommand{\arraystretch}{1.25}
-      \setlength{\tabcolsep}{6pt}
-      \begin{tabular}{|m{0.24\linewidth}|m{0.12\linewidth}|m{0.12\linewidth}|m{0.40\linewidth}|}
-      \hline
-      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
-      & \multirow{3}{*}{短くオン} & オンにする & 主電源ボタンを押すか、充電入力がある場合。 \\ \cline{3-4}
-      & & オフにする & 主電源ボタンを押します。 \\ \cline{3-4}
-      & & 自動オフ & 2分後にLCDは自動的に消灯し、スリープモードになります。 \\ \cline{2-4}
-      & \multirow{3}{*}{常時オン} & オンにする & デバイスが起動している状態で主電源ボタンを2回押します。 \\ \cline{3-4}
-      & & オフにする & 主電源ボタンを押します。 \\ \cline{3-4}
-      & & 自動オフ & 常時点灯ディスプレイモードは、2時間操作がないと自動的に消灯します。 \\ \hline
-      \end{tabular}
-      \endgroup
+      \begin{HBLcdModeTable}{lcd_mode.png}
+      \HBLcdModeFirstGroup{短くオン}{オンにする}{主電源ボタンを押すか、充電入力がある場合。}{オフにする}{主電源ボタンを押します。}{自動オフ}{2分後にLCDは自動的に消灯し、スリープモードになります。}
+      \HBLcdModeSecondGroup{常時オン}{オンにする}{デバイスが起動している状態で主電源ボタンを2回押します。}{オフにする}{主電源ボタンを押します。}{自動オフ}{常時点灯ディスプレイモードは、2時間操作がないと自動的に消灯します。}
+      \end{HBLcdModeTable}
 
 Jackeryアプリで画面表示モードを設定することもできます。
 
