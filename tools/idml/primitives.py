@@ -30,7 +30,7 @@ SYMBOL_FONT_FALLBACK_STYLE = "Regular"
 SYMBOL_FONT_FALLBACKS = {
     "⎓": DIRECT_CURRENT_SYMBOL_FONT,
     "※": GENERAL_SYMBOL_FONT,
-    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩"},
+    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖"},
 }
 
 PROSE_STYLE = {"h1": "HB H1", "h2": "HB Title L2", "h3": "HB Title L3",
@@ -178,7 +178,7 @@ def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float)
     return (
         f'<Rectangle Self="{rect_id}" ContentType="GraphicType" '
         'AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" '
-        'AnchoredPosition="InlinePosition">'
+        'StrokeColor="Swatch/None" StrokeWeight="0" AnchoredPosition="InlinePosition">'
         '<Properties><PathGeometry><GeometryPathType PathOpen="false">'
         f'<PathPointArray>{anchors}</PathPointArray>'
         '</GeometryPathType></PathGeometry></Properties>'
