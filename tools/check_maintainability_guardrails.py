@@ -62,7 +62,7 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # parity, test-enforced) lives beside the loaders it decorates.
     "tools/idml/loaders.py": 290,
     "tools/idml/components/callout.py": 200,
-    "tools/idml/stories.py": 244,  # +4: flowed H1 -> rounded capsule component (parity)
+    "tools/idml/stories.py": 245,  # +1: spec label column grey fill wrap (parity)
     "tools/idml/pages.py": 500,
     "tools/idml/package.py": 160,
 }

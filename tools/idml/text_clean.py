@@ -26,6 +26,8 @@ from tools.utils.variable_resolver import resolve_variable_value
 _VAR = re.compile(r"\{\{([A-Z0-9_]+)\}\}")
 _RST_SUB = re.compile(r"\\?\s*:(?:sub|sup):`([^`]*)`")
 _LINE_BLOCK_PIPE = re.compile(r"(?m)^\s*\|\s?")
+# line-block pipes that survived upstream line-joining ("... | 2. Check ...")
+_JOINED_STEP_PIPE = re.compile(r"(?<=\S)\s*\|\s+(?=\d+\.\s)")
 _JOINER = "\\ "
 
 
@@ -33,6 +35,7 @@ def strip_rst_inline(text: str) -> str:
     """Drop RST inline-markup remnants: sub/sup roles and line-block pipes."""
     cleaned = _RST_SUB.sub(r"\1", text)
     cleaned = cleaned.replace(_JOINER, "")
+    cleaned = _JOINED_STEP_PIPE.sub("\n", cleaned)
     return _LINE_BLOCK_PIPE.sub("", cleaned)
 
 
