@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spec Sheet Structured Intake"
+  short_description: "Extract and gate product specs for ingestion"
+  default_prompt: "Use $spec-sheet-structured-intake to extract this product spec sheet into reviewable rows, gate completeness, and prepare the approved phase2 intake."

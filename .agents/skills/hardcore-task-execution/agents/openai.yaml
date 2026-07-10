@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hardcore Task Execution"
+  short_description: "Plan and verify high-risk repository changes"
+  default_prompt: "Use $hardcore-task-execution to decompose this high-risk task, define a safety net, make reversible edits, and verify on a staged ladder."

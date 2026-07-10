@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Config Review"
+  short_description: "Audit Codex and Claude scaffolding for safe discovery"
+  default_prompt: "Use $config-review to audit this repository's AGENTS.md, CLAUDE.md, skills, ignore rules, hooks, and project settings, then report risks and safe edits."

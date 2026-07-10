@@ -51,6 +51,10 @@ These files describe the repo behavior that should be maintained today.
   - ownership map for orchestration-first entrypoints
 - [`dev/code_review_checklist.md`](dev/code_review_checklist.md)
   - code/config/data/doc review checklist
+- [`reviews/codex_scaffolding_discovery.md`](reviews/codex_scaffolding_discovery.md)
+  - repository architecture, maintainability, and Codex/Claude scaffolding audit
+- [`reviews/codex_scaffolding_implementation_plan.md`](reviews/codex_scaffolding_implementation_plan.md)
+  - bounded Codex skill and directory-navigation migration plan
 - [`dev/vercel_review_preview_guide.md`](dev/vercel_review_preview_guide.md)
   - latest-publish / review-preview hosting rules
 - [`tests/README.md`](tests/README.md)

@@ -7,7 +7,7 @@ The current maintained smoke-check baseline is `JE-1000F` across US and JP.
 
 **This README is a quickstart and a navigation map. The full command reference, every operational note (Phase 2 snapshot, review sync, Word/HTML/PDF/MD export, Vercel publish, Read the Docs catalog, Windows cleanup, Git workflow, queue routing) lives in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).**
 
-**For AI agent windows (Claude Code / Codex):** Claude Code auto-loads [`CLAUDE.md`](CLAUDE.md), which inlines the shared rules in [`AGENTS.md`](AGENTS.md); Codex reads [`AGENTS.md`](AGENTS.md) directly. To start a task in a new window, run `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>` for a fresh branch off up-to-date `main` (the wrapper refuses a dirty tree). Multi-window concurrency rules are in [`AGENTS.md`](AGENTS.md) §8.
+**For AI agent windows (Claude Code / Codex):** Claude Code auto-loads [`CLAUDE.md`](CLAUDE.md), which inlines the shared rules in [`AGENTS.md`](AGENTS.md); Codex reads [`AGENTS.md`](AGENTS.md) and the nearest directory-level `AGENTS.md` directly. To start a task in a new window, run `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>` for a fresh branch off up-to-date `main` (the wrapper refuses a dirty tree). Multi-window concurrency rules are in [`AGENTS.md`](AGENTS.md) §8.
 
 ## 1. Current Role
 
@@ -158,7 +158,9 @@ Use the document that owns the topic:
 - happy-path example: [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md)
 - architecture doc index: [`code-as-doc/architecture/README.md`](code-as-doc/architecture/README.md)
 - current repository component map: [`code-as-doc/architecture/Hello_Docs_Architecture.md`](code-as-doc/architecture/Hello_Docs_Architecture.md)
-- AI agent operating rules (Claude / Codex / future agents): [`AGENTS.md`](AGENTS.md), with [`CLAUDE.md`](CLAUDE.md) as the Claude Code entrypoint
+- AI agent operating rules (Claude / Codex / future agents): [`AGENTS.md`](AGENTS.md), with [`CLAUDE.md`](CLAUDE.md) as the Claude Code entrypoint and directory-level `AGENTS.md` files as the Codex local maps
+- Codex scaffolding and architecture audit: [`code-as-doc/reviews/codex_scaffolding_discovery.md`](code-as-doc/reviews/codex_scaffolding_discovery.md)
+- Codex skill migration plan: [`code-as-doc/reviews/codex_scaffolding_implementation_plan.md`](code-as-doc/reviews/codex_scaffolding_implementation_plan.md)
 - current OpenClaw bootstrap: [`agent/BOOTSTRAP.md`](agent/BOOTSTRAP.md)
 - current OpenClaw integration package: [`integrations/openclaw/README.md`](integrations/openclaw/README.md)
 - repo-local translation memory skill for OpenClaw-assisted multilingual work: [`.agents/skills/bitable-translation-memory/SKILL.md`](.agents/skills/bitable-translation-memory/SKILL.md)

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Annotate PDF QC Findings"
+  short_description: "Annotate built PDFs without changing source output"
+  default_prompt: "Use $pdf-annotate-qc to render these QC findings as highlight and note annotations on a read-only PDF sidecar."
