@@ -2,9 +2,26 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_00_preface" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="00_preface">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading1">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>PREFACE</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
-  </ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><TextFrame Self="tfp_st_anchor_h1pill_0" ParentStory="st_anchor_h1pill_0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="0 -9.5" LeftDirection="0 -9.5" RightDirection="0 -9.5"/>
+            <PathPointType Anchor="0 -7" LeftDirection="0 -7" RightDirection="0 -3.13401"/>
+            <PathPointType Anchor="7 0" LeftDirection="3.13401 0" RightDirection="7 0"/>
+            <PathPointType Anchor="305.094 0" LeftDirection="305.094 0" RightDirection="308.96 0"/>
+            <PathPointType Anchor="312.094 -7" LeftDirection="312.094 -3.13401" RightDirection="312.094 -7"/>
+            <PathPointType Anchor="312.094 -9.5" LeftDirection="312.094 -9.5" RightDirection="312.094 -13.366"/>
+            <PathPointType Anchor="305.094 -16.5" LeftDirection="308.96 -16.5" RightDirection="305.094 -16.5"/>
+            <PathPointType Anchor="7 -16.5" LeftDirection="7 -16.5" RightDirection="3.13401 -16.5"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" VerticalJustification="CenterAlign"><Properties><InsetSpacing type="list"><ListItem type="unit">1</ListItem><ListItem type="unit">7</ListItem><ListItem type="unit">1</ListItem><ListItem type="unit">7</ListItem></InsetSpacing></Properties></TextFramePreference>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+  </TextFrame><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Thank you for choosing the Jackery Explorer 1000 v2 portable power station.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>

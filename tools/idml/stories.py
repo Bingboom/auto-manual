@@ -81,6 +81,10 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             parts.append(xml_part)
             est += h
             continue
+        if kind == "h1":
+            parts.append(_po.h1_pill_paragraph(writer, text, text_measure))
+            est += 24.0
+            continue
         style = writer._PROSE_STYLE.get(kind, "HB Body")
         text = "\u25cf " + text if kind == "h2" else text
         span_columns = has_twocol_layout and not in_twocol and kind in {"h1", "h2"}
@@ -128,7 +132,7 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path) -> str:
                                       top=2, bottom=2, left=3, right=3))
     table = _tb.fill_column_xml(writer._component_table(tid, list(cols), cells, n_rows=len(rows), role="data"), 1, "Color/HB Bg K05")
     parts = [
-        writer._psr("HB H1", "LCD DISPLAY"),
+        _po.h1_pill_paragraph(writer, "LCD DISPLAY", writer.page_w - writer.m_l - writer.m_r),
         _po.lcd_hero_paragraph(writer),
         writer._wrap_table_paragraph(table, True, span_columns=False),
     ]
@@ -138,7 +142,7 @@ def add_symbols_story(writer, signals: list[tuple[str, str]],
                       icons: list[dict], data_root: Path, lang: str = "en") -> str:
     sid = "st_symbols"
     copy = symbol_copy(lang)
-    parts = [writer._psr("HB H1", copy["title"])]
+    parts = [_po.h1_pill_paragraph(writer, copy["title"], writer.page_w - writer.m_l - writer.m_r)]
     if signals:
         table = writer._table("tbl_sym_sig", signals, label_style="HB Notice Label", role="data")
         parts.append(writer._wrap_table_paragraph(table, False, span_columns=False))
@@ -163,7 +167,7 @@ def add_symbols_story(writer, signals: list[tuple[str, str]],
 
 def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
     sid = "st_trouble"
-    parts = [writer._psr("HB H1", "TROUBLESHOOTING")]
+    parts = [_po.h1_pill_paragraph(writer, "TROUBLESHOOTING", writer.page_w - writer.m_l - writer.m_r)]
     table = writer._table("tbl_trouble", rows, role="data")
     body_style_ref = paragraph_style_ref("HB Body")
     parts.append(
@@ -186,7 +190,7 @@ def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
 def add_spec_story(writer, sections: list[dict],
                    annotations: list[str] | None = None) -> str:
     sid = "st_spec"
-    parts = [writer._psr("HB H1", "SPECIFICATIONS")]
+    parts = [_po.h1_pill_paragraph(writer, "SPECIFICATIONS", writer.page_w - writer.m_l - writer.m_r)]
     for si, sec in enumerate(sections):
         parts.append(writer._psr("HB Spec Section", sec["title"]))
         # table anchored in its own paragraph; the paragraph still needs

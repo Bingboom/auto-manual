@@ -76,14 +76,19 @@ def designmap_xml(writer) -> str:
     spread_refs = "\n".join(
         f'  <idPkg:Spread src="Spreads/Spread_{sid}.xml"/>' for sid, _ in writer.spreads
     )
+    # InDesign binds an anchored frame's ParentStory only when the sub-story
+    # is declared AFTER its host story (forward reference); declared before,
+    # it imports as an orphan and the frame comes up empty.
+    ordered = sorted(writer.stories,
+                     key=lambda item: item[0].startswith("st_anchor_"))
     story_refs = "\n".join(
-        f'  <idPkg:Story src="Stories/Story_{sid}.xml"/>' for sid, _ in writer.stories
+        f'  <idPkg:Story src="Stories/Story_{sid}.xml"/>' for sid, _ in ordered
     )
     return (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         '<?aid style="50" type="document" readerVersion="15.0" featureSet="257" product="15.0(100)"?>\n'
         f'<Document xmlns:idPkg="{IDPKG}" DOMVersion="15.0" Self="doc" '
-        'StoryList="' + " ".join(sid for sid, _ in writer.stories) + '" Name="manual">\n'
+        'StoryList="' + " ".join(sid for sid, _ in ordered) + '" Name="manual">\n'
         '  <Language Self="Language/$ID/English%3a USA" Name="$ID/English: USA" '
         'SingleQuotes="&#8216;&#8217;" DoubleQuotes="&#8220;&#8221;"/>\n'
         f'  <idPkg:Graphic src="Resources/Graphic.xml"/>\n'

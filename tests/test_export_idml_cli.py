@@ -155,8 +155,14 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 self.assertNotIn("Stories/Story_st_00_alpha.xml", names)
                 self.assertNotIn("Stories/Story_st_01_beta.xml", names)
                 story = zf.read(flow).decode("utf-8")
-                self.assertIn("ALPHA", story)
-                self.assertIn("BETA", story)
+                # H1 text lives in the anchored capsule sub-story; the flow
+                # story carries the anchoring frame that references it.
+                self.assertIn('ParentStory="st_anchor_h1pill_', story)
+                pills = "".join(
+                    zf.read(n).decode("utf-8") for n in names
+                    if n.startswith("Stories/Story_st_anchor_h1pill_"))
+                self.assertIn("ALPHA", pills)
+                self.assertIn("BETA", pills)
                 spread = zf.read("Spreads/Spread_sp_0.xml").decode("utf-8")
                 self.assertIn('ParentStory="st_flow_00_alpha_01_beta"', spread)
 
@@ -214,9 +220,13 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 self.assertIn(flow, names)
                 self.assertNotIn("Stories/Story_st_trouble.xml", names)
                 story = zf.read(flow).decode("utf-8")
-                self.assertIn("STORAGE", story)
-                self.assertIn("TROUBLESHOOTING", story)
                 self.assertIn("Restart the product.", story)
+                self.assertIn('ParentStory="st_anchor_h1pill_', story)
+                pills = "".join(
+                    zf.read(n).decode("utf-8") for n in names
+                    if n.startswith("Stories/Story_st_anchor_h1pill_"))
+                self.assertIn("STORAGE", pills)
+                self.assertIn("TROUBLESHOOTING", pills)
 
     def test_missing_spec_rows_fail_loudly(self) -> None:
         with tempfile.TemporaryDirectory() as td:
