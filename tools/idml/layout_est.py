@@ -26,6 +26,18 @@ def balanced_icon_split(icons: list[dict], text_col_w: float,
     return icons[: best[1]], icons[best[1]:]
 
 
+def template_symbol_split(icons: list[dict]) -> tuple[list[dict], list[dict], list[dict]]:
+    """Safety-symbols page parity: left 1-6, right 7-11; keep extras out."""
+    ordered = sorted(icons, key=lambda row: float(row.get("order") or 0))
+    page_rows = [row for row in ordered if row.get("symbol_key") != "weee2"]
+    overflow = [row for row in ordered if row.get("symbol_key") == "weee2"]
+    left = [row for row in page_rows if 1 <= float(row.get("order") or 0) <= 6]
+    right = [row for row in page_rows if 7 <= float(row.get("order") or 0) <= 11]
+    if left or right:
+        return left, right, overflow
+    return page_rows[:6], page_rows[6:11], page_rows[11:] + overflow
+
+
 def est_table_height(texts: list[str], text_col_w: float, min_row: float) -> float:
     """Header row plus a wrap estimate per row (7.4pt/line, ~0.52em glyphs)."""
     # Table body text is HB Spec Value (6.0pt / 6.6 leading).

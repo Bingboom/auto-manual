@@ -237,8 +237,11 @@ def load_symbols_rows(data_root: Path, lang: str = "en") -> tuple[list[tuple[str
     lang = normalize_lang(lang)
     label_col = f"label_{lang}"
     text_col = f"text_{lang}"
-    rows = [r for r in csv.DictReader(path.open(encoding="utf-8"))
-            if r.get("Is_Latest", r.get("Is_latest")) == "TRUE"]
+    with path.open(encoding="utf-8") as fh:
+        rows = [
+            r for r in csv.DictReader(fh)
+            if r.get("Is_Latest", r.get("Is_latest")) == "TRUE"
+        ]
     rows.sort(key=lambda r: float(r.get("order") or 0))
     for r in rows:
         text = ((r.get(text_col) or "").strip()
@@ -249,7 +252,12 @@ def load_symbols_rows(data_root: Path, lang: str = "en") -> tuple[list[tuple[str
                          or (r.get("label_en") or "").strip())
                 signals.append((label, text))
         elif r.get("block_type") == "table_row":
-            icons.append({"figure": (r.get("image_path") or "").strip(), "text": text})
+            icons.append({
+                "symbol_key": (r.get("symbol_key") or "").strip(),
+                "order": (r.get("order") or "").strip(),
+                "figure": (r.get("image_path") or "").strip(),
+                "text": text,
+            })
     return signals, icons
 
 

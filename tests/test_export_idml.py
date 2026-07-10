@@ -14,8 +14,6 @@ sys.path.insert(0, str(ROOT))
 from tools.export_idml import (  # noqa: E402
     IdmlWriter,
     check_idml,
-    default_bundle_root,
-    default_output_path,
     load_layout_params,
     load_lcd_rows,
     load_spec_annotations,
@@ -24,6 +22,7 @@ from tools.export_idml import (  # noqa: E402
     load_trouble_rows,
     split_safety_first_page,
 )
+from tools.idml import export_paths as idml_export_paths  # noqa: E402
 from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
 
 FIXTURE_DATA_ROOT = ROOT / "tests" / "fixtures" / "phase2"
@@ -301,6 +300,24 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("<Table ", story)
         self.assertIn("WARNING", story)
 
+    def test_symbols_icon_rows_keep_key_and_order(self) -> None:
+        import csv
+        tmp = Path(tempfile.mkdtemp())
+        with (tmp / "symbols_blocks.csv").open("w", encoding="utf-8", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=[
+                "Is_Latest", "block_type", "order", "symbol_key",
+                "label_en", "text_en", "image_path",
+            ])
+            w.writeheader()
+            w.writerow({
+                "Is_Latest": "TRUE", "block_type": "table_row", "order": "1",
+                "symbol_key": "warning_triangle", "label_en": "",
+                "text_en": "Warning symbol", "image_path": "symbol.png",
+            })
+        _, icons = load_symbols_rows(tmp)
+        self.assertEqual(icons[0]["symbol_key"], "warning_triangle")
+        self.assertEqual(icons[0]["order"], "1")
+
     def test_symbols_rows_use_requested_language(self) -> None:
         signals, icons = load_symbols_rows(FIXTURE_DATA_ROOT, "fr")
         self.assertIn(
@@ -427,6 +444,31 @@ class ExportIdmlTests(unittest.TestCase):
             ROOT, True, span_columns=False, measure_w=150.0)
         self.assertNotIn('SpanColumnType="SpanColumns"', xml)
 
+    def test_component_table_can_leave_outer_border_to_page_object(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        cells = [
+            w._cell("c00", "0:0", w._psr("HB Spec Label", "Symbol", terminal=True)),
+            w._cell("c01", "1:0", w._psr("HB Spec Label", "Meaning", terminal=True)),
+            w._cell("c10", "0:1", w._psr("HB Spec Value", "WARNING", terminal=True)),
+            w._cell("c11", "1:1", w._psr("HB Spec Value", "Hazard", terminal=True)),
+        ]
+        table = w._component_table(
+            "tbl_inner_grid", [72.0, 180.0], cells, n_rows=2,
+            role="data", outer_stroke=False,
+        )
+        c00 = table.split('Self="c00"', 1)[1].split(">", 1)[0]
+        c01 = table.split('Self="c01"', 1)[1].split(">", 1)[0]
+        c10 = table.split('Self="c10"', 1)[1].split(">", 1)[0]
+        c11 = table.split('Self="c11"', 1)[1].split(">", 1)[0]
+        self.assertIn('LeftEdgeStrokeWeight="0"', c00)
+        self.assertIn('TopEdgeStrokeWeight="0"', c00)
+        self.assertNotIn('RightEdgeStrokeWeight="0"', c00)
+        self.assertIn('RightEdgeStrokeWeight="0"', c01)
+        self.assertIn('BottomEdgeStrokeWeight="0"', c10)
+        self.assertIn('RightEdgeStrokeWeight="0"', c11)
+        self.assertIn('BottomEdgeStrokeWeight="0"', c11)
+
     def test_safetywarning_macro_keeps_distinct_component(self) -> None:
         import json
         from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
@@ -496,8 +538,25 @@ class ExportIdmlTests(unittest.TestCase):
         w.add_safety_page("st_safety_en", "safety_en", blocks, ROOT, 1)
         spread = dict(w.spreads)["sp_1"]
         self.assertEqual(spread.count("<TextFrame "), 5)
-        self.assertEqual(spread.count('CornerOption="RoundedCorner"'), 2)
+        self.assertEqual(spread.count("<Rectangle "), 3)
         self.assertEqual(spread.count('FillColor="Color/HB Brand Dark"'), 2)
+        self.assertEqual(
+            spread.count('AppliedObjectStyle="ObjectStyle/HB Capsule Heading"'),
+            2,
+        )
+        import re
+        title_bg = spread.split('Self="bg_st_safety_en_title"', 1)[1].split(
+            "</Rectangle>", 1)[0]
+        subbar_bg = spread.split('Self="bg_st_safety_en_subbar"', 1)[1].split(
+            "</Rectangle>", 1)[0]
+        self.assertEqual(len(re.findall(r'Anchor="[-0-9.]+ [-0-9.]+"', title_bg)), 6)
+        self.assertEqual(len(re.findall(r'Anchor="[-0-9.]+ [-0-9.]+"', subbar_bg)), 8)
+        self.assertIn('Self="bg_st_safety_en_warning"', spread)
+        self.assertIn(
+            'AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer"',
+            spread.split('Self="bg_st_safety_en_warning"', 1)[1].split(
+                "</Rectangle>", 1)[0],
+        )
         self.assertEqual(spread.count('VerticalBalanceColumns="true"'), 2)
         self.assertIn("tf_st_safety_en_section1", spread)
         self.assertIn("tf_st_safety_en_section2", spread)
@@ -528,12 +587,32 @@ class ExportIdmlTests(unittest.TestCase):
             "st_safety_symbols", tail, maintenance, signals, icons, ROOT, 2)
         spread = dict(w.spreads)["sp_2"]
         self.assertEqual(spread.count("<TextFrame "), 8)
-        self.assertEqual(spread.count('CornerOption="RoundedCorner"'), 2)
+        self.assertEqual(spread.count("<Rectangle "), 7)
+        self.assertEqual(
+            spread.count('AppliedObjectStyle="ObjectStyle/HB Capsule Heading"'),
+            2,
+        )
+        self.assertEqual(
+            spread.count('AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer"'),
+            5,
+        )
+        self.assertIn('Self="bg_st_safety_symbols_tail_0"', spread)
+        self.assertIn('Self="bg_st_safety_symbols_tail_1"', spread)
+        self.assertIn('Self="bg_st_safety_symbols_signals"', spread)
+        self.assertIn('Self="bg_st_safety_symbols_icons_left"', spread)
+        self.assertIn('Self="bg_st_safety_symbols_icons_right"', spread)
         # Frames are cursor-flowed and index-named; stories keep label names.
         self.assertIn("tf_st_safety_symbols_tail_0", spread)
         self.assertIn("tf_st_safety_symbols_tail_1", spread)
         self.assertIn("tf_st_safety_symbols_icons_left", spread)
         self.assertIn("tf_st_safety_symbols_icons_right", spread)
+        import re
+        maint_bg = spread.split('Self="bg_st_safety_symbols_maint_title"', 1)[1].split(
+            "</Rectangle>", 1)[0]
+        symbols_bg = spread.split('Self="bg_st_safety_symbols_symbols_title"', 1)[1].split(
+            "</Rectangle>", 1)[0]
+        self.assertEqual(len(re.findall(r'Anchor="[-0-9.]+ [-0-9.]+"', maint_bg)), 8)
+        self.assertEqual(len(re.findall(r'Anchor="[-0-9.]+ [-0-9.]+"', symbols_bg)), 6)
         stories = dict(w.stories)
         self.assertIn("st_safety_symbols_tail_warning", stories)
         self.assertIn("st_safety_symbols_tail_danger", stories)
@@ -546,6 +625,14 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("USER MAINTENANCE", stories["st_safety_symbols_maintenance_title"])
         self.assertIn("Icon 0", stories["st_safety_symbols_icons_left"])
         self.assertIn("Icon 7", stories["st_safety_symbols_icons_right"])
+        self.assertIn(
+            'TopEdgeStrokeWeight="0"',
+            stories["st_safety_symbols_signals"],
+        )
+        self.assertIn(
+            'BottomEdgeStrokeWeight="0"',
+            stories["st_safety_symbols_icons_left"],
+        )
 
     def test_safety_symbols_page_uses_localized_symbol_copy(self) -> None:
         import json
@@ -583,6 +670,47 @@ class ExportIdmlTests(unittest.TestCase):
         )
         self.assertIn("Icône localisée", stories["st_safety_symbols_fr_icons_left"])
 
+    def test_safety_symbols_page_uses_template_icon_split(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        signals = [("WARNING", "Hazardous practice.")]
+        icon_rows = [
+            ("warning_triangle", 1, "Warning row"),
+            ("read_manual", 2, "Read manual"),
+            ("electric_shock", 3, "Risk of electric shock."),
+            ("battery_charging", 4, "Battery charging"),
+            ("explosive_material", 5, "Explosive material"),
+            ("heavy_object", 6, "Heavy object"),
+            ("do_not_dismantle", 7, "Do not dismantle the product."),
+            ("no_open_flame", 8, "Keep the product away from fire."),
+            ("keep_away_from_children", 9, "Keep away from children."),
+            ("li_ion", 10, "Lithium-ion battery."),
+            ("weee", 11, "Household waste recycling."),
+            ("weee2", 12, "Batteries and accumulators."),
+        ]
+        icons = [
+            {"symbol_key": key, "order": str(order), "figure": "", "text": text}
+            for key, order, text in icon_rows
+        ]
+        w = IdmlWriter(params)
+        w.add_safety_symbols_page(
+            "st_safety_symbols_tpl",
+            [],
+            [("h1", "USER MAINTENANCE INSTRUCTIONS"), ("body", "Body.")],
+            signals,
+            icons,
+            ROOT,
+            4,
+            "en",
+        )
+        stories = dict(w.stories)
+        left = stories["st_safety_symbols_tpl_icons_left"]
+        right = stories["st_safety_symbols_tpl_icons_right"]
+        self.assertIn("Heavy object", left)
+        self.assertNotIn("Do not dismantle", left)
+        self.assertIn("Do not dismantle the product.", right)
+        self.assertIn("Keep away from children.", right)
+        self.assertNotIn("Batteries and accumulators", left + right)
+
     def test_fcc_inbox_page_combines_two_template_pages(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
@@ -608,20 +736,44 @@ class ExportIdmlTests(unittest.TestCase):
         ]
         w.add_fcc_inbox_page("st_fcc_inbox", fcc, inbox, ROOT, 3)
         spread = dict(w.spreads)["sp_3"]
-        self.assertEqual(spread.count("<TextFrame "), 4)
-        self.assertIn("tf_st_fcc_inbox_fcc", spread)
+        self.assertEqual(spread.count("<TextFrame "), 11)
+        self.assertEqual(spread.count("<Rectangle "), 10)
+        self.assertEqual(
+            spread.count('AppliedObjectStyle="ObjectStyle/HB Rounded Panel"'),
+            3,
+        )
+        self.assertEqual(
+            spread.count('AppliedObjectStyle="ObjectStyle/HB Inbox Card"'),
+            3,
+        )
+        self.assertEqual(
+            spread.count('AppliedObjectStyle="ObjectStyle/HB Badge"'),
+            3,
+        )
+        self.assertIn("tf_st_fcc_inbox_fcc_left", spread)
+        self.assertIn("tf_st_fcc_inbox_fcc_right", spread)
         self.assertIn("tf_st_fcc_inbox_title", spread)
-        self.assertIn("tf_st_fcc_inbox_inbox", spread)
-        self.assertIn("tf_st_fcc_inbox_tip", spread)
-        self.assertEqual(spread.count('CornerOption="RoundedCorner"'), 2)
-        fcc_frame = spread.split('Self="tf_st_fcc_inbox_fcc"', 1)[1].split(
+        self.assertIn("tf_st_fcc_inbox_card_1", spread)
+        self.assertIn("tf_st_fcc_inbox_card_2", spread)
+        self.assertIn("tf_st_fcc_inbox_card_3", spread)
+        self.assertIn("tf_st_fcc_inbox_tip_label", spread)
+        self.assertIn("tf_st_fcc_inbox_tip_body", spread)
+        self.assertIn('Self="bg_st_fcc_inbox_title"', spread)
+        fcc_frame = spread.split('Self="tf_st_fcc_inbox_fcc_left"', 1)[1].split(
             "</TextFrame>", 1)[0]
         self.assertIn('InsetSpacing="0 0 0 0"', fcc_frame)
         stories = dict(w.stories)
-        self.assertIn("FCC left copy.", stories["st_fcc_inbox_fcc"])
+        self.assertIn("FCC left copy.", stories["st_fcc_inbox_fcc_left"])
+        self.assertIn("FCC right copy.", stories["st_fcc_inbox_fcc_right"])
         self.assertIn("WHAT'S IN THE BOX", stories["st_fcc_inbox_title"])
-        self.assertIn("AC Charging Cable", stories["st_fcc_inbox_inbox"])
-        self.assertIn(">TIP<", stories["st_fcc_inbox_tip"])
+        self.assertIn("AC Charging Cable", stories["st_fcc_inbox_card_2"])
+        self.assertIn(">TIPS<", stories["st_fcc_inbox_tip_label"])
+        self.assertIn(
+            "The car charging cable is sold separately.",
+            stories["st_fcc_inbox_tip_body"],
+        )
+        for key in ("st_fcc_inbox_card_1", "st_fcc_inbox_tip_body"):
+            self.assertNotIn("<Table", stories[key])
 
     def test_fcc_inbox_page_falls_back_to_plain_localized_fcc_prose(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -644,26 +796,39 @@ class ExportIdmlTests(unittest.TestCase):
         ]
         w.add_fcc_inbox_page("st_fcc_plain", fcc, inbox, ROOT, 3)
         spread = dict(w.spreads)["sp_3"]
-        fcc_frame = spread.split('Self="tf_st_fcc_plain_fcc"', 1)[1].split(
+        fcc_frame = spread.split('Self="tf_st_fcc_plain_fcc_left"', 1)[1].split(
             "</TextFrame>", 1)[0]
-        self.assertIn('TextColumnCount="2"', fcc_frame)
-        story = dict(w.stories)["st_fcc_plain_fcc"]
+        self.assertIn('TextColumnCount="1"', fcc_frame)
+        stories = dict(w.stories)
+        story = stories["st_fcc_plain_fcc_left"] + stories["st_fcc_plain_fcc_right"]
         self.assertNotIn("<Table", story)
         self.assertIn("Este dispositivo cumple", story)
         self.assertIn("Si este aparato causa", story)
         self.assertIn("Reorientar o reubicar", story)
         self.assertIn("MODIFICACION:", story)
 
-    def test_default_idml_paths_follow_region_level_bundle(self) -> None:
-        bundle = default_bundle_root("JE-1000F", "US", "en")
+    def test_default_idml_paths_follow_prepared_bundle_layout(self) -> None:
+        tmp = Path(tempfile.mkdtemp())
+        region_bundle = tmp / "docs" / "_build" / "JE-1000F" / "US" / "rst"
+        region_bundle.mkdir(parents=True)
+        bundle = idml_export_paths.default_bundle_root(tmp, "JE-1000F", "US", "en")
         self.assertEqual(
             bundle,
-            ROOT / "docs" / "_build" / "JE-1000F" / "US" / "rst",
+            region_bundle,
         )
         self.assertEqual(
-            default_output_path("JE-1000F", "US", "en", bundle),
-            ROOT / "docs" / "_build" / "JE-1000F" / "US" / "idml"
+            idml_export_paths.default_output_path(tmp, "JE-1000F", "US", "en", bundle),
+            tmp / "docs" / "_build" / "JE-1000F" / "US" / "idml"
             / "manual_je1000f_us.idml",
+        )
+        lang_bundle = tmp / "docs" / "_build" / "JE-1000F" / "US" / "en" / "rst"
+        lang_bundle.mkdir(parents=True)
+        bundle = idml_export_paths.default_bundle_root(tmp, "JE-1000F", "US", "en")
+        self.assertEqual(bundle, lang_bundle)
+        self.assertEqual(
+            idml_export_paths.default_output_path(tmp, "JE-1000F", "US", "en", bundle),
+            tmp / "docs" / "_build" / "JE-1000F" / "US" / "en" / "idml"
+            / "manual_je1000f_us_en.idml",
         )
 
     def test_notice_list_tables_are_components_not_data_tables(self) -> None:

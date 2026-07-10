@@ -11,20 +11,32 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from . import components as _components
-from .fcc_fallback import component_spec, fcc_spec_from_blocks
-from .layout_est import balanced_icon_split, est_table_height
+from .layout_est import est_table_height, template_symbol_split
 from .loaders import symbol_copy
+from .page_objects import frame_with_background, heading_bar_opts, heading_text, with_rounded_outer
 from .params import IDPKG
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
+H1_BAR_H = 20.0
+SUBBAR_H = 13.5
+
+
+def _page_rect(writer, x: float, y: float, w: float, h: float) -> tuple[float, float, float, float]:
+    return (
+        -writer.page_w / 2 + x,
+        -writer.page_h / 2 + y,
+        -writer.page_w / 2 + x + w,
+        -writer.page_h / 2 + y + h,
+    )
 
 
 def _frame_xml(writer, frame_id: str, story_id: str,
                x1: float, y1: float, x2: float, y2: float, *,
                columns: int = 1, fill: str | None = None,
                rounded: bool = False, balance_columns: bool = False,
-               inset: tuple[float, float, float, float] | None = None) -> str:
+               inset: tuple[float, float, float, float] | None = None,
+               object_style: str | None = None) -> str:
     fill_attr = f'FillColor="{fill}" ' if fill else ""
     stroke_attr = (
         'StrokeColor="Swatch/None" StrokeWeight="0" '
@@ -35,10 +47,11 @@ def _frame_xml(writer, frame_id: str, story_id: str,
     inset_attr = ""
     if inset is not None:
         inset_attr = ' InsetSpacing="' + " ".join(f"{v:g}" for v in inset) + '"'
+    applied_style = object_style or "ObjectStyle/$ID/[Normal Text Frame]"
     return (
         f'  <TextFrame Self="{frame_id}" ParentStory="{story_id}" '
         'PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" '
-        'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
+        f'AppliedObjectStyle="{applied_style}" '
         f'{fill_attr}{stroke_attr}{corner_attr}'
         'ItemTransform="1 0 0 1 0 0">\n'
         + writer._path_geometry(x1, y1, x2, y2) +
@@ -47,13 +60,6 @@ def _frame_xml(writer, frame_id: str, story_id: str,
         '  </TextFrame>\n'
     )
 
-def _page_rect(writer, x: float, y: float, w: float, h: float) -> tuple[float, float, float, float]:
-    return (
-        -writer.page_w / 2 + x,
-        -writer.page_h / 2 + y,
-        -writer.page_w / 2 + x + w,
-        -writer.page_h / 2 + y + h,
-    )
 
 def _safety_section_story(writer, sid: str, title: str,
                           blocks: list[tuple[str, str]],
@@ -102,7 +108,7 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     title_sid = f"{sid}_title"
     writer._add_story_parts(
         title_sid, f"{title} title",
-        [writer._psr("HB Capsule Text", h1, terminal=True)])
+        [heading_text(writer, h1, level=1)])
     warning_sid = f"{sid}_top_warning"
     if top_warning:
         import json as _json
@@ -113,7 +119,7 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     bar_sid = f"{sid}_subbar"
     writer._add_story_parts(
         bar_sid, f"{title} subbar",
-        [writer._psr("HB Capsule Text", subbar, terminal=True)])
+        [heading_text(writer, subbar, level=2)])
     section_sids = []
     for idx, section in enumerate(sections[:2]):
         sec_sid = f"{sid}_section{idx + 1}"
@@ -127,23 +133,21 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     body_w = writer.page_w - body_x * 2
     frames = []
     for frame_id, story_id, rect, opts in (
-        ("title", title_sid, (body_x, 27.5, body_w, 18.8),
-         {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (1, 5, 1, 6)}),
+        ("title", title_sid, (body_x, 27.5, body_w, H1_BAR_H),
+         heading_bar_opts(1, (1.5, 5, 1, 6))),
         ("warning", warning_sid, (body_x, 55.5, body_w, 31.5),
-         {"inset": (0, 0, 0, 0)}),
+         with_rounded_outer({"inset": (0, 0, 0, 0)})),
         ("section1", section_sids[0] if section_sids else "", (body_x, 93.5, body_w, 162.0),
          {"columns": 2, "balance_columns": True, "inset": (0, 0, 0, 0)}),
-        ("subbar", bar_sid, (body_x, 263.5, body_w, 17.2),
-         {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (0.5, 5, 0.5, 6)}),
+        ("subbar", bar_sid, (body_x, 263.0, body_w, SUBBAR_H),
+         heading_bar_opts(2, (0.5, 5, 0.5, 6))),
         ("section2", section_sids[1] if len(section_sids) > 1 else "",
          (body_x, 286.0, body_w, 205.0),
          {"columns": 2, "balance_columns": True, "inset": (0, 0, 0, 0)}),
     ):
         if not story_id:
             continue
-        x1, y1, x2, y2 = writer._page_rect(*rect)
-        frames.append(writer._frame_xml(
-            f"tf_{sid}_{frame_id}", story_id, x1, y1, x2, y2, **opts))
+        frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
 
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
@@ -172,22 +176,6 @@ def _single_component_story(writer, sid: str, title: str, spec: dict,
     return writer._add_story_parts(sid, title, [xml_part])
 
 
-def _fcc_flow_story(writer, sid: str, title: str, spec: dict) -> str:
-    mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.pdf"
-    parts: list[str] = []
-    if mark.exists():
-        style_ref = paragraph_style_ref("HB Figure")
-        parts.append(
-            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
-            '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-            + writer._image_cell_content(f"{sid}_fm", mark, 32.0, 22.0)
-            + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n'
-        )
-    body = "\n".join(t.strip() for t in spec.get("texts", []) if str(t).strip())
-    parts.append(writer._psr("HB Body", body, terminal=True))
-    return writer._add_story_parts(sid, title, parts)
-
-
 def add_fcc_inbox_page(
     writer,
     sid: str,
@@ -196,79 +184,10 @@ def add_fcc_inbox_page(
     bundle_root: Path,
     page_index: int,
 ) -> str:
-    """V2.0 page 03: FCC notice and inbox cards share one page."""
+    from .page03 import add_fcc_inbox_page as _add_fcc_inbox_page
 
-    body_x = 27.4
-    body_w = writer.page_w - body_x * 2
-    explicit_fcc = component_spec(fcc_blocks, "fcc") is not None
-    fcc_spec = fcc_spec_from_blocks(fcc_blocks)
-    inbox_title = next((text for kind, text in inbox_blocks if kind == "h1"),
-                       "WHAT'S IN THE BOX")
-    inbox_spec = component_spec(inbox_blocks, "inbox")
-    tip_spec = component_spec(inbox_blocks, "notice")
-
-    fcc_sid = f"{sid}_fcc"
-    if explicit_fcc:
-        writer._single_component_story(
-            fcc_sid, "FCC notice", fcc_spec, bundle_root, body_w)
-        fcc_opts = {"fill": "Color/HB Bg K05", "rounded": True,
-                    "inset": (0, 0, 0, 0)}
-    else:
-        _fcc_flow_story(writer, fcc_sid, "FCC notice", fcc_spec)
-        fcc_opts = {"columns": 2, "fill": "Color/HB Bg K05", "rounded": True,
-                    "inset": (4, 6, 4, 6)}
-    title_sid = f"{sid}_title"
-    writer._add_story_parts(
-        title_sid, "Inbox title",
-        [writer._psr("HB Capsule Text", inbox_title, terminal=True)])
-    frame_specs: list[tuple[str, str, tuple[float, float, float, float], dict]] = [
-        ("fcc", fcc_sid, (body_x, 34.0, body_w, 184.0), fcc_opts),
-        ("title", title_sid, (body_x, 250.0, body_w, 21.5),
-         {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (1, 5, 1, 6)}),
-    ]
-    if inbox_spec:
-        inbox_sid = f"{sid}_inbox"
-        writer._single_component_story(
-            inbox_sid, "Inbox cards", inbox_spec, bundle_root, body_w)
-        frame_specs.append(
-            ("inbox", inbox_sid, (body_x, 278.0, body_w, 160.0),
-             {"inset": (0, 0, 0, 0)})
-        )
-    if tip_spec:
-        tip_sid = f"{sid}_tip"
-        writer._single_component_story(
-            tip_sid, "Inbox tip", tip_spec, bundle_root, body_w)
-        frame_specs.append(
-            ("tip", tip_sid, (body_x, 456.0, body_w, 42.0),
-             {"inset": (0, 0, 0, 0)})
-        )
-
-    spread_id = f"sp_{page_index}"
-    page_no = page_index + 1
-    frames = []
-    for frame_id, story_id, rect, opts in frame_specs:
-        x1, y1, x2, y2 = writer._page_rect(*rect)
-        frames.append(writer._frame_xml(
-            f"tf_{sid}_{frame_id}", story_id, x1, y1, x2, y2, **opts))
-
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
-        f'  <Page Self="{spread_id}_pg" Name="{page_no}" '
-        'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
-        f'GeometricBounds="0 0 {writer.page_h:g} {writer.page_w:g}" '
-        f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} {-writer.page_h / 2:g}">\n'
-        '    <MarginPreference ColumnCount="1" ColumnGutter="12" '
-        f'Top="{writer.m_t:g}" Bottom="{writer.m_b:g}" '
-        f'Left="{writer.m_l:g}" Right="{writer.m_r:g}"/>\n'
-        '  </Page>\n'
-        + "".join(frames) +
-        '</Spread>\n'
-        '</idPkg:Spread>\n'
-    )
-    writer.spreads.append((spread_id, xml))
-    return spread_id
+    return _add_fcc_inbox_page(
+        writer, sid, fcc_blocks, inbox_blocks, bundle_root, page_index)
 
 def _localized_signal_label_bar(label: str) -> str:
     style_ref = paragraph_style_ref("HB Notice Side Label")
@@ -322,7 +241,8 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                                 top=3, bottom=3, left=6, right=4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                 top=3, bottom=3, left=7, right=5))
-    return writer._component_table(tid, cols, cells, n_rows=len(rows), role="data")
+    return writer._component_table(
+        tid, cols, cells, n_rows=len(rows), role="data", outer_stroke=False)
 
 def _symbols_icon_table(writer, tid: str, icons: list[dict], width: float,
                         lang: str = "en") -> str:
@@ -351,7 +271,8 @@ def _symbols_icon_table(writer, tid: str, icons: list[dict], width: float,
                                 top=2, bottom=2, left=4, right=4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                 top=2, bottom=2, left=5, right=4))
-    return writer._component_table(tid, cols, cells, n_rows=len(rows), role="data")
+    return writer._component_table(
+        tid, cols, cells, n_rows=len(rows), role="data", outer_stroke=False)
 
 def _table_story(writer, sid: str, title: str, table: str) -> str:
     style_ref = paragraph_style_ref("HB Body")
@@ -402,7 +323,7 @@ def add_safety_symbols_page(
     maint_title_sid = f"{sid}_maintenance_title"
     writer._add_story_parts(
         maint_title_sid, "Maintenance title",
-        [writer._psr("HB Capsule Text", maint_title, terminal=True)])
+        [heading_text(writer, maint_title, level=2)])
     maint_body_sid = f"{sid}_maintenance_body"
     writer._add_story_parts(
         maint_body_sid, "Maintenance body",
@@ -411,13 +332,13 @@ def add_safety_symbols_page(
     symbols_title_sid = f"{sid}_symbols_title"
     writer._add_story_parts(
         symbols_title_sid, "Symbols title",
-        [writer._psr("HB Capsule Text", copy["title"], terminal=True)])
+        [heading_text(writer, copy["title"], level=1)])
 
     body_x = 27.4
     body_w = writer.page_w - body_x * 2
     icon_gap = 6.0
     icon_table_w = (body_w - icon_gap) / 2.0
-    left_icons, right_icons = balanced_icon_split(icons, icon_table_w * 0.73, 24.0)
+    left_icons, right_icons, _overflow_icons = template_symbol_split(icons)
     signal_sid = f"{sid}_signals"
     writer._table_story(
         signal_sid, "Signal words",
@@ -436,7 +357,7 @@ def add_safety_symbols_page(
     # Flow the frames from a cursor using coarse content-height estimates
     # instead of fixed rects (fixed heights hid taller content as overset);
     # the icon tables then take whatever remains down to the bottom margin.
-    y = 18.0
+    y = 27.5
     frame_specs: list[tuple[str, str, tuple[float, float, float, float], dict]] = []
 
     def _place(fid: str, story: str, h: float, opts: dict, gap: float = 6.0) -> None:
@@ -445,25 +366,28 @@ def add_safety_symbols_page(
         y += h + gap
 
     for ti, (t_sid, t_h) in enumerate(tail_stories):
-        _place(f"tail_{ti}", t_sid, t_h * 1.1 + 3.0, {"inset": (0, 0, 0, 0)})
+        target_h = 34.5 if ti == 0 else 28.0
+        tail_h = min(max(target_h, t_h + 1.0), target_h + 4.0)
+        _place(f"tail_{ti}", t_sid, tail_h,
+               with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=5.0)
     maint_h = est_table_height([maint_text], body_w, 24.0) - 16.0
-    _place("maint_title", maint_title_sid, 16.5,
-           {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (0.5, 5, 0.5, 6)}, gap=3.5)
+    _place("maint_title", maint_title_sid, SUBBAR_H,
+           heading_bar_opts(2, (0.5, 5, 0.5, 6)), gap=3.5)
     _place("maint_body", maint_body_sid, maint_h, {"inset": (0, 0, 0, 0)}, gap=8.0)
-    _place("symbols_title", symbols_title_sid, 17.0,
-           {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (2, 5, 1, 6)}, gap=11.0)
+    _place("symbols_title", symbols_title_sid, H1_BAR_H,
+           heading_bar_opts(1, (1.5, 5, 1, 6)), gap=9.0)
     signals_h = est_table_height([t for _, t in signals], body_w * 0.76, 26.0)
-    _place("signals", signal_sid, signals_h, {"inset": (0, 0, 0, 0)}, gap=6.5)
+    _place("signals", signal_sid, signals_h, with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=6.5)
     bottom = writer.page_h - 2.0
     icons_h = max(60.0, min(
         max(est_table_height([r.get("text", "") for r in left_icons], icon_table_w * 0.73, 24.0),
             est_table_height([r.get("text", "") for r in right_icons], icon_table_w * 0.73, 24.0)),
         bottom - y))
     frame_specs.append(("icons_left", left_sid, (body_x, y, icon_table_w, icons_h),
-                        {"inset": (0, 0, 0, 0)}))
+                        with_rounded_outer({"inset": (0, 0, 0, 0)})))
     frame_specs.append(("icons_right", right_sid,
                         (body_x + icon_table_w + icon_gap, y, icon_table_w, icons_h),
-                        {"inset": (0, 0, 0, 0)}))
+                        with_rounded_outer({"inset": (0, 0, 0, 0)})))
 
     spread_id = f"sp_{page_index}"
     page_no = page_index + 1
@@ -471,9 +395,7 @@ def add_safety_symbols_page(
     for frame_id, story_id, rect, opts in frame_specs:
         if not story_id:
             continue
-        x1, y1, x2, y2 = writer._page_rect(*rect)
-        frames.append(writer._frame_xml(
-            f"tf_{sid}_{frame_id}", story_id, x1, y1, x2, y2, **opts))
+        frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'

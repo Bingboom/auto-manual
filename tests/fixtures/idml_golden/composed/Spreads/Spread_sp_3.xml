@@ -4,65 +4,346 @@
   <Page Self="sp_3_pg" Name="4" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346">
     <MarginPreference ColumnCount="1" ColumnGutter="12" Top="14.1732" Bottom="36.8504" Left="28.3465" Right="28.3465"/>
   </Page>
-  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_fcc" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_fcc" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Color/HB Bg K05" StrokeColor="Swatch/None" StrokeWeight="0" CornerOption="RoundedCorner" CornerRadius="7" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_fcc_inbox_p23_02_whats_in_the_box_fcc_panel" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Panel" FillColor="Color/HB Bg K05" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -228.346" LeftDirection="-156.994 -228.346" RightDirection="-156.994 -228.346"/>
-            <PathPointType Anchor="-156.994 -44.3465" LeftDirection="-156.994 -44.3465" RightDirection="-156.994 -44.3465"/>
-            <PathPointType Anchor="156.994 -44.3465" LeftDirection="156.994 -44.3465" RightDirection="156.994 -44.3465"/>
-            <PathPointType Anchor="156.994 -228.346" LeftDirection="156.994 -228.346" RightDirection="156.994 -228.346"/>
+            <PathPointType Anchor="-157.894 -228.846" LeftDirection="-157.894 -228.846" RightDirection="-157.894 -228.846"/>
+            <PathPointType Anchor="-157.894 -110.346" LeftDirection="-157.894 -110.346" RightDirection="-157.894 -107.309"/>
+            <PathPointType Anchor="-152.394 -104.846" LeftDirection="-155.431 -104.846" RightDirection="-152.394 -104.846"/>
+            <PathPointType Anchor="147.606 -104.846" LeftDirection="147.606 -104.846" RightDirection="150.644 -104.846"/>
+            <PathPointType Anchor="153.106 -110.346" LeftDirection="153.106 -107.309" RightDirection="153.106 -110.346"/>
+            <PathPointType Anchor="153.106 -228.846" LeftDirection="153.106 -228.846" RightDirection="153.106 -231.884"/>
+            <PathPointType Anchor="147.606 -234.346" LeftDirection="150.644 -234.346" RightDirection="147.606 -234.346"/>
+            <PathPointType Anchor="-152.394 -234.346" LeftDirection="-152.394 -234.346" RightDirection="-155.431 -234.346"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_fcc_left" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_fcc_left" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-153.894 -228.346" LeftDirection="-153.894 -228.346" RightDirection="-153.894 -228.346"/>
+            <PathPointType Anchor="-153.894 -112.346" LeftDirection="-153.894 -112.346" RightDirection="-153.894 -112.346"/>
+            <PathPointType Anchor="-8.8937 -112.346" LeftDirection="-8.8937 -112.346" RightDirection="-8.8937 -112.346"/>
+            <PathPointType Anchor="-8.8937 -228.346" LeftDirection="-8.8937 -228.346" RightDirection="-8.8937 -228.346"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_title" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" CornerOption="RoundedCorner" CornerRadius="7" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_fcc_right" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_fcc_right" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -12.3465" LeftDirection="-156.994 -12.3465" RightDirection="-156.994 -12.3465"/>
-            <PathPointType Anchor="-156.994 9.15354" LeftDirection="-156.994 9.15354" RightDirection="-156.994 9.15354"/>
-            <PathPointType Anchor="156.994 9.15354" LeftDirection="156.994 9.15354" RightDirection="156.994 9.15354"/>
-            <PathPointType Anchor="156.994 -12.3465" LeftDirection="156.994 -12.3465" RightDirection="156.994 -12.3465"/>
-          </PathPointArray>
-        </GeometryPathType>
-      </PathGeometry>
-    </Properties>
-    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1 5 1 6"/>
-  </TextFrame>
-  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_inbox" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_inbox" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
-    <Properties>
-      <PathGeometry>
-        <GeometryPathType PathOpen="false">
-          <PathPointArray>
-            <PathPointType Anchor="-156.994 15.6535" LeftDirection="-156.994 15.6535" RightDirection="-156.994 15.6535"/>
-            <PathPointType Anchor="-156.994 175.654" LeftDirection="-156.994 175.654" RightDirection="-156.994 175.654"/>
-            <PathPointType Anchor="156.994 175.654" LeftDirection="156.994 175.654" RightDirection="156.994 175.654"/>
-            <PathPointType Anchor="156.994 15.6535" LeftDirection="156.994 15.6535" RightDirection="156.994 15.6535"/>
+            <PathPointType Anchor="-1.8937 -228.346" LeftDirection="-1.8937 -228.346" RightDirection="-1.8937 -228.346"/>
+            <PathPointType Anchor="-1.8937 -112.346" LeftDirection="-1.8937 -112.346" RightDirection="-1.8937 -112.346"/>
+            <PathPointType Anchor="147.106 -112.346" LeftDirection="147.106 -112.346" RightDirection="147.106 -112.346"/>
+            <PathPointType Anchor="147.106 -228.346" LeftDirection="147.106 -228.346" RightDirection="147.106 -228.346"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_tip" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_tip" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_fcc_inbox_p23_02_whats_in_the_box_title" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 193.654" LeftDirection="-156.994 193.654" RightDirection="-156.994 193.654"/>
-            <PathPointType Anchor="-156.994 235.654" LeftDirection="-156.994 235.654" RightDirection="-156.994 235.654"/>
-            <PathPointType Anchor="156.994 235.654" LeftDirection="156.994 235.654" RightDirection="156.994 235.654"/>
-            <PathPointType Anchor="156.994 193.654" LeftDirection="156.994 193.654" RightDirection="156.994 193.654"/>
+            <PathPointType Anchor="-157.894 -17.3465" LeftDirection="-157.894 -17.3465" RightDirection="-157.894 -17.3465"/>
+            <PathPointType Anchor="-157.894 -4.34646" LeftDirection="-157.894 -4.34646" RightDirection="-157.894 -0.480463"/>
+            <PathPointType Anchor="-150.894 2.65354" LeftDirection="-154.76 2.65354" RightDirection="-150.894 2.65354"/>
+            <PathPointType Anchor="146.106 2.65354" LeftDirection="146.106 2.65354" RightDirection="149.972 2.65354"/>
+            <PathPointType Anchor="153.106 -4.34646" LeftDirection="153.106 -0.480463" RightDirection="153.106 -4.34646"/>
+            <PathPointType Anchor="153.106 -17.3465" LeftDirection="153.106 -17.3465" RightDirection="153.106 -17.3465"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_title" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-157.894 -17.3465" LeftDirection="-157.894 -17.3465" RightDirection="-157.894 -17.3465"/>
+            <PathPointType Anchor="-157.894 2.65354" LeftDirection="-157.894 2.65354" RightDirection="-157.894 2.65354"/>
+            <PathPointType Anchor="153.106 2.65354" LeftDirection="153.106 2.65354" RightDirection="153.106 2.65354"/>
+            <PathPointType Anchor="153.106 -17.3465" LeftDirection="153.106 -17.3465" RightDirection="153.106 -17.3465"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1.5 5 1 6"/>
+  </TextFrame>
+  <Rectangle Self="bg_st_fcc_inbox_p23_02_whats_in_the_box_card_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Inbox Card" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-157.894 16.1535" LeftDirection="-157.894 16.1535" RightDirection="-157.894 16.1535"/>
+            <PathPointType Anchor="-157.894 177.654" LeftDirection="-157.894 177.654" RightDirection="-157.894 180.691"/>
+            <PathPointType Anchor="-152.394 183.154" LeftDirection="-155.431 183.154" RightDirection="-152.394 183.154"/>
+            <PathPointType Anchor="-63.8937 183.154" LeftDirection="-63.8937 183.154" RightDirection="-60.8561 183.154"/>
+            <PathPointType Anchor="-58.3937 177.654" LeftDirection="-58.3937 180.691" RightDirection="-58.3937 177.654"/>
+            <PathPointType Anchor="-58.3937 16.1535" LeftDirection="-58.3937 16.1535" RightDirection="-58.3937 13.116"/>
+            <PathPointType Anchor="-63.8937 10.6535" LeftDirection="-60.8561 10.6535" RightDirection="-63.8937 10.6535"/>
+            <PathPointType Anchor="-152.394 10.6535" LeftDirection="-152.394 10.6535" RightDirection="-155.431 10.6535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <Rectangle Self="bg_st_fcc_inbox_p23_02_whats_in_the_box_badge_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Badge" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-114.894 38.4035" LeftDirection="-114.894 38.4035" RightDirection="-114.894 38.4035"/>
+            <PathPointType Anchor="-114.894 38.4035" LeftDirection="-114.894 38.4035" RightDirection="-114.894 42.1315"/>
+            <PathPointType Anchor="-108.144 45.1535" LeftDirection="-111.872 45.1535" RightDirection="-108.144 45.1535"/>
+            <PathPointType Anchor="-108.144 45.1535" LeftDirection="-108.144 45.1535" RightDirection="-104.416 45.1535"/>
+            <PathPointType Anchor="-101.394 38.4035" LeftDirection="-101.394 42.1315" RightDirection="-101.394 38.4035"/>
+            <PathPointType Anchor="-101.394 38.4035" LeftDirection="-101.394 38.4035" RightDirection="-101.394 34.6756"/>
+            <PathPointType Anchor="-108.144 31.6535" LeftDirection="-104.416 31.6535" RightDirection="-108.144 31.6535"/>
+            <PathPointType Anchor="-108.144 31.6535" LeftDirection="-108.144 31.6535" RightDirection="-111.872 31.6535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_badge_1" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_badge_1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-114.894 31.4535" LeftDirection="-114.894 31.4535" RightDirection="-114.894 31.4535"/>
+            <PathPointType Anchor="-114.894 44.9535" LeftDirection="-114.894 44.9535" RightDirection="-114.894 44.9535"/>
+            <PathPointType Anchor="-101.394 44.9535" LeftDirection="-101.394 44.9535" RightDirection="-101.394 44.9535"/>
+            <PathPointType Anchor="-101.394 31.4535" LeftDirection="-101.394 31.4535" RightDirection="-101.394 31.4535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1.4 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_card_1" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_card_1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-149.894 47.6535" LeftDirection="-149.894 47.6535" RightDirection="-149.894 47.6535"/>
+            <PathPointType Anchor="-149.894 173.154" LeftDirection="-149.894 173.154" RightDirection="-149.894 173.154"/>
+            <PathPointType Anchor="-66.3937 173.154" LeftDirection="-66.3937 173.154" RightDirection="-66.3937 173.154"/>
+            <PathPointType Anchor="-66.3937 47.6535" LeftDirection="-66.3937 47.6535" RightDirection="-66.3937 47.6535"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <Rectangle Self="bg_st_fcc_inbox_p23_02_whats_in_the_box_card_2" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Inbox Card" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-51.8937 16.1535" LeftDirection="-51.8937 16.1535" RightDirection="-51.8937 16.1535"/>
+            <PathPointType Anchor="-51.8937 177.654" LeftDirection="-51.8937 177.654" RightDirection="-51.8937 180.691"/>
+            <PathPointType Anchor="-46.3937 183.154" LeftDirection="-49.4313 183.154" RightDirection="-46.3937 183.154"/>
+            <PathPointType Anchor="42.1063 183.154" LeftDirection="42.1063 183.154" RightDirection="45.1439 183.154"/>
+            <PathPointType Anchor="47.6063 177.654" LeftDirection="47.6063 180.691" RightDirection="47.6063 177.654"/>
+            <PathPointType Anchor="47.6063 16.1535" LeftDirection="47.6063 16.1535" RightDirection="47.6063 13.116"/>
+            <PathPointType Anchor="42.1063 10.6535" LeftDirection="45.1439 10.6535" RightDirection="42.1063 10.6535"/>
+            <PathPointType Anchor="-46.3937 10.6535" LeftDirection="-46.3937 10.6535" RightDirection="-49.4313 10.6535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <Rectangle Self="bg_st_fcc_inbox_p23_02_whats_in_the_box_badge_2" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Badge" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-8.8937 38.4035" LeftDirection="-8.8937 38.4035" RightDirection="-8.8937 38.4035"/>
+            <PathPointType Anchor="-8.8937 38.4035" LeftDirection="-8.8937 38.4035" RightDirection="-8.8937 42.1315"/>
+            <PathPointType Anchor="-2.1437 45.1535" LeftDirection="-5.87162 45.1535" RightDirection="-2.1437 45.1535"/>
+            <PathPointType Anchor="-2.1437 45.1535" LeftDirection="-2.1437 45.1535" RightDirection="1.58422 45.1535"/>
+            <PathPointType Anchor="4.6063 38.4035" LeftDirection="4.6063 42.1315" RightDirection="4.6063 38.4035"/>
+            <PathPointType Anchor="4.6063 38.4035" LeftDirection="4.6063 38.4035" RightDirection="4.6063 34.6756"/>
+            <PathPointType Anchor="-2.1437 31.6535" LeftDirection="1.58422 31.6535" RightDirection="-2.1437 31.6535"/>
+            <PathPointType Anchor="-2.1437 31.6535" LeftDirection="-2.1437 31.6535" RightDirection="-5.87162 31.6535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_badge_2" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_badge_2" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-8.8937 31.4535" LeftDirection="-8.8937 31.4535" RightDirection="-8.8937 31.4535"/>
+            <PathPointType Anchor="-8.8937 44.9535" LeftDirection="-8.8937 44.9535" RightDirection="-8.8937 44.9535"/>
+            <PathPointType Anchor="4.6063 44.9535" LeftDirection="4.6063 44.9535" RightDirection="4.6063 44.9535"/>
+            <PathPointType Anchor="4.6063 31.4535" LeftDirection="4.6063 31.4535" RightDirection="4.6063 31.4535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1.4 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_card_2" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_card_2" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-43.8937 47.6535" LeftDirection="-43.8937 47.6535" RightDirection="-43.8937 47.6535"/>
+            <PathPointType Anchor="-43.8937 173.154" LeftDirection="-43.8937 173.154" RightDirection="-43.8937 173.154"/>
+            <PathPointType Anchor="39.6063 173.154" LeftDirection="39.6063 173.154" RightDirection="39.6063 173.154"/>
+            <PathPointType Anchor="39.6063 47.6535" LeftDirection="39.6063 47.6535" RightDirection="39.6063 47.6535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <Rectangle Self="bg_st_fcc_inbox_p23_02_whats_in_the_box_card_3" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Inbox Card" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="53.6063 16.1535" LeftDirection="53.6063 16.1535" RightDirection="53.6063 16.1535"/>
+            <PathPointType Anchor="53.6063 177.654" LeftDirection="53.6063 177.654" RightDirection="53.6063 180.691"/>
+            <PathPointType Anchor="59.1063 183.154" LeftDirection="56.0687 183.154" RightDirection="59.1063 183.154"/>
+            <PathPointType Anchor="147.606 183.154" LeftDirection="147.606 183.154" RightDirection="150.644 183.154"/>
+            <PathPointType Anchor="153.106 177.654" LeftDirection="153.106 180.691" RightDirection="153.106 177.654"/>
+            <PathPointType Anchor="153.106 16.1535" LeftDirection="153.106 16.1535" RightDirection="153.106 13.116"/>
+            <PathPointType Anchor="147.606 10.6535" LeftDirection="150.644 10.6535" RightDirection="147.606 10.6535"/>
+            <PathPointType Anchor="59.1063 10.6535" LeftDirection="59.1063 10.6535" RightDirection="56.0687 10.6535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <Rectangle Self="bg_st_fcc_inbox_p23_02_whats_in_the_box_badge_3" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Badge" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="96.6063 38.4035" LeftDirection="96.6063 38.4035" RightDirection="96.6063 38.4035"/>
+            <PathPointType Anchor="96.6063 38.4035" LeftDirection="96.6063 38.4035" RightDirection="96.6063 42.1315"/>
+            <PathPointType Anchor="103.356 45.1535" LeftDirection="99.6284 45.1535" RightDirection="103.356 45.1535"/>
+            <PathPointType Anchor="103.356 45.1535" LeftDirection="103.356 45.1535" RightDirection="107.084 45.1535"/>
+            <PathPointType Anchor="110.106 38.4035" LeftDirection="110.106 42.1315" RightDirection="110.106 38.4035"/>
+            <PathPointType Anchor="110.106 38.4035" LeftDirection="110.106 38.4035" RightDirection="110.106 34.6756"/>
+            <PathPointType Anchor="103.356 31.6535" LeftDirection="107.084 31.6535" RightDirection="103.356 31.6535"/>
+            <PathPointType Anchor="103.356 31.6535" LeftDirection="103.356 31.6535" RightDirection="99.6284 31.6535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_badge_3" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_badge_3" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="96.6063 31.4535" LeftDirection="96.6063 31.4535" RightDirection="96.6063 31.4535"/>
+            <PathPointType Anchor="96.6063 44.9535" LeftDirection="96.6063 44.9535" RightDirection="96.6063 44.9535"/>
+            <PathPointType Anchor="110.106 44.9535" LeftDirection="110.106 44.9535" RightDirection="110.106 44.9535"/>
+            <PathPointType Anchor="110.106 31.4535" LeftDirection="110.106 31.4535" RightDirection="110.106 31.4535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1.4 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_card_3" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_card_3" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="61.6063 47.6535" LeftDirection="61.6063 47.6535" RightDirection="61.6063 47.6535"/>
+            <PathPointType Anchor="61.6063 173.154" LeftDirection="61.6063 173.154" RightDirection="61.6063 173.154"/>
+            <PathPointType Anchor="145.106 173.154" LeftDirection="145.106 173.154" RightDirection="145.106 173.154"/>
+            <PathPointType Anchor="145.106 47.6535" LeftDirection="145.106 47.6535" RightDirection="145.106 47.6535"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <Rectangle Self="bg_st_fcc_inbox_p23_02_whats_in_the_box_tip_strip" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Panel" FillColor="Color/HB Bg K05" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-157.894 196.654" LeftDirection="-157.894 196.654" RightDirection="-157.894 196.654"/>
+            <PathPointType Anchor="-157.894 227.654" LeftDirection="-157.894 227.654" RightDirection="-157.894 230.691"/>
+            <PathPointType Anchor="-152.394 233.154" LeftDirection="-155.431 233.154" RightDirection="-152.394 233.154"/>
+            <PathPointType Anchor="147.606 233.154" LeftDirection="147.606 233.154" RightDirection="150.644 233.154"/>
+            <PathPointType Anchor="153.106 227.654" LeftDirection="153.106 230.691" RightDirection="153.106 227.654"/>
+            <PathPointType Anchor="153.106 196.654" LeftDirection="153.106 196.654" RightDirection="153.106 193.616"/>
+            <PathPointType Anchor="147.606 191.154" LeftDirection="150.644 191.154" RightDirection="147.606 191.154"/>
+            <PathPointType Anchor="-152.394 191.154" LeftDirection="-152.394 191.154" RightDirection="-155.431 191.154"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <Rectangle Self="bg_st_fcc_inbox_p23_02_whats_in_the_box_tip_label" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Panel" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-105.894 191.154" LeftDirection="-105.894 191.154" RightDirection="-105.894 191.154"/>
+            <PathPointType Anchor="-105.894 233.154" LeftDirection="-105.894 233.154" RightDirection="-105.894 233.154"/>
+            <PathPointType Anchor="-152.394 233.154" LeftDirection="-152.394 233.154" RightDirection="-155.431 233.154"/>
+            <PathPointType Anchor="-157.894 227.654" LeftDirection="-157.894 230.691" RightDirection="-157.894 227.654"/>
+            <PathPointType Anchor="-157.894 196.654" LeftDirection="-157.894 196.654" RightDirection="-157.894 193.616"/>
+            <PathPointType Anchor="-152.394 191.154" LeftDirection="-155.431 191.154" RightDirection="-152.394 191.154"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_tip_label" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_tip_label" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-157.894 191.154" LeftDirection="-157.894 191.154" RightDirection="-157.894 191.154"/>
+            <PathPointType Anchor="-157.894 233.154" LeftDirection="-157.894 233.154" RightDirection="-157.894 233.154"/>
+            <PathPointType Anchor="-105.894 233.154" LeftDirection="-105.894 233.154" RightDirection="-105.894 233.154"/>
+            <PathPointType Anchor="-105.894 191.154" LeftDirection="-105.894 191.154" RightDirection="-105.894 191.154"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="15 2 0 2"/>
+  </TextFrame>
+  <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_tip_body" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_tip_body" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-105.894 191.154" LeftDirection="-105.894 191.154" RightDirection="-105.894 191.154"/>
+            <PathPointType Anchor="-105.894 233.154" LeftDirection="-105.894 233.154" RightDirection="-105.894 233.154"/>
+            <PathPointType Anchor="153.106 233.154" LeftDirection="153.106 233.154" RightDirection="153.106 233.154"/>
+            <PathPointType Anchor="153.106 191.154" LeftDirection="153.106 191.154" RightDirection="153.106 191.154"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="12 7 0 7"/>
   </TextFrame>
 </Spread>
 </idPkg:Spread>

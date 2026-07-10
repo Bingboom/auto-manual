@@ -23,7 +23,7 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Notice Side Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "center"),
         ("HB Card Number", sz("type_inbox_label_font_size", 6.5), sz("type_inbox_label_font_leading", 7.0), "Bold", "card_number"),
         ("HB InBox Label", sz("type_inbox_label_font_size", 6.3), sz("type_inbox_label_font_leading", 7.0), "Bold", "center"),
-        ("HB Capsule Text", sz("type_title_l2_font_size", 8.6), sz("type_title_l2_font_leading", 9.4), "Bold", "capsule_text"),
+        ("HB Capsule Text", max(sz("type_title_l2_font_size", 8.6), 9.4), max(sz("type_title_l2_font_leading", 9.4), 10.8), "Bold", "capsule_text"),
         ("HB Figure", sz("type_body_font_size", 6.2), 0.0, "Regular", "figure"),
         ("HB Body", sz("type_body_font_size", 6.2), sz("type_body_font_leading", 7.5), "Regular", ""),
         ("HB List", sz("type_list_font_size", 5.4), sz("type_list_font_leading", 6.4), "Regular", ""),
@@ -108,6 +108,11 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
         '  <RootObjectStyleGroup Self="rosg">\n'
         '    <ObjectStyle Self="ObjectStyle/$ID/[None]" Name="$ID/[None]"/>\n'
         '    <ObjectStyle Self="ObjectStyle/$ID/[Normal Text Frame]" Name="$ID/[Normal Text Frame]"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB Capsule Heading" Name="HB Capsule Heading"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB Rounded Table Outer" Name="HB Rounded Table Outer"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB Rounded Panel" Name="HB Rounded Panel"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB Inbox Card" Name="HB Inbox Card"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB Badge" Name="HB Badge"/>\n'
         '  </RootObjectStyleGroup>\n'
         '</idPkg:Styles>\n'
     )
