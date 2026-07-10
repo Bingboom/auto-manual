@@ -26,6 +26,7 @@ MINIMAL_SPECS: dict[str, dict] = {
                 "groups": [{"state": "On", "actions": [["Press", "Wakes"]]}]},
     "oppanel": {"kind": "oppanel", "image": "", "prereq": "Prerequisite: powered on.",
                 "rows": [["On", "Press once"], ["Off", "Press once"]]},
+    "langtag": {"kind": "langtag", "lang": "EN", "texts": ["IMPORTANT"]},
 }
 
 

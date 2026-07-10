@@ -49,6 +49,21 @@ class TransformTest(unittest.TestCase):
         self.assertTrue(spec["prereq"].startswith("Prerequisite"))
         self.assertEqual([["On", "Press once"], ["Off", "Press once"]], spec["rows"])
 
+    def test_flattened_langtag_becomes_component(self) -> None:
+        blocks = [
+            ("body", "**IMPORTANT**"),
+            ("body", "Congratulations."),
+            ("body", "**FR IMPORTANT**"),
+            ("body", "Félicitations."),
+        ]
+        out = transform(blocks)
+        self.assertEqual(["component", "body", "component", "body"],
+                         [k for k, _ in out])
+        first = json.loads(out[0][1])
+        self.assertEqual({"kind": "langtag", "lang": "EN", "texts": ["IMPORTANT"]}, first)
+        second = json.loads(out[2][1])
+        self.assertEqual("FR", second["lang"])
+
     def test_plain_image_is_untouched(self) -> None:
         blocks = [("image", "_assets/x/solar.png"), ("body", "A caption line.")]
         self.assertEqual(blocks, transform(blocks))

@@ -32,6 +32,7 @@ try:
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
     from tools.idml import page_placed as _placed
+    from tools.idml import page_folio as _folio
     from tools.idml import page_toc as _toc
     from tools.idml import pages as _pages
     from tools.idml import params as _params
@@ -47,6 +48,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import components as _components  # type: ignore
     from idml import design_handoff as _design_handoff  # type: ignore
     from idml import page_placed as _placed  # type: ignore
+    from idml import page_folio as _folio  # type: ignore
     from idml import page_toc as _toc  # type: ignore
     from idml import export_paths as _export_paths  # type: ignore
     from idml import flow_idml as _flow_idml  # type: ignore
@@ -558,6 +560,7 @@ def main() -> int:
     if _placed.add_back_cover_page(w, args.region, page_cursor):
         page_cursor += 1
     _toc.finalize(w, toc, w._add_story_parts, w._psr)
+    _folio.apply(w, w._add_story_parts, w._psr)
 
     out = Path(args.out) if args.out else (
         default_output_path(args.model, args.region, args.lang, bundle_root))
