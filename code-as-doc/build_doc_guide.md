@@ -665,6 +665,21 @@ docs/_build/<model>/<region>/<lang>/idml/
   layout_feedback.md
 ```
 
+On the publish queue path (`Workflow_action = Publish`), the worker runs the
+idml step with `--idml-mode both` and then packages the export into one
+designer delivery zip via `tools/idml/delivery.py`:
+`manual_<model>_<region>[_<lang>]_publish_<version>_handoff.zip` containing the
+production IDML with every `LinkResourceURI` rewritten to `file:Links/<name>`,
+the linked images collected under `Links/`, the flow outputs, the handoff
+reports, `source_trace.json` stamped with the queue row's real version, a
+fonts manifest (plus `Document fonts/` when `AUTO_MANUAL_LOCAL_GILROY_DIR` is
+provisioned on the build machine), and the versioned reference PDF. The zip is
+staged under `reports/releases/<model>/<region>/<lang>/versions/<version>/`,
+uploaded to the knowledge base, and its link is written to the queue row's
+`idml_file` field. The bare `.idml` is no longer uploaded: its image links are
+absolute build-machine paths that die with the build worktree, so only the
+packaged zip is a usable designer deliverable.
+
 The default flow style map lives at
 `docs/templates/idml_template/style_mapping/flow_style_map.json` and is copied
 to each flow output folder as `flow_style_map.json` so design can map the story

@@ -270,6 +270,7 @@ def _build_py_target_command(
     lang: str | None = None,
     source: str | None = None,
     no_clean: bool = False,
+    idml_mode: str | None = None,
 ) -> list[str]:
     return _build_py_target_command_service(
         _service_module(),
@@ -282,6 +283,7 @@ def _build_py_target_command(
         lang=lang,
         source=source,
         no_clean=no_clean,
+        idml_mode=idml_mode,
     )
 
 

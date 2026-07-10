@@ -64,6 +64,15 @@ handoff folder: it keeps the legacy production IDML, adds
 `production/manual.production.idml`, the flow folder, `missing_assets_report.md`,
 `designer_checklist.md`, and `layout_feedback.md`.
 
+Publish queue runs use `--idml-mode both` automatically and upload a single
+designer delivery zip (`manual_..._publish_<version>_handoff.zip`) instead of
+the bare `.idml`: it bundles the production IDML with its image links
+rewritten to a packaged `Links/` folder, the flow outputs, the handoff
+reports, a fonts manifest, and the reference PDF, and the zip's knowledge-base
+link is what lands in the queue row's `idml_file` field. If
+`AUTO_MANUAL_LOCAL_GILROY_DIR` is set on the build machine, the fonts from
+that folder are also packed into the zip's `Document fonts/`.
+
 GitHub note:
 
 - pull requests are gated by the `Manual Validation` workflow
