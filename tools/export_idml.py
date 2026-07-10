@@ -31,6 +31,7 @@ try:
     from tools.idml import flow_idml as _flow_idml
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
+    from tools.idml import page_placed as _placed
     from tools.idml import pages as _pages
     from tools.idml import params as _params
     from tools.idml import primitives as _prim
@@ -44,6 +45,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import check as _check  # type: ignore
     from idml import components as _components  # type: ignore
     from idml import design_handoff as _design_handoff  # type: ignore
+    from idml import page_placed as _placed  # type: ignore
     from idml import export_paths as _export_paths  # type: ignore
     from idml import flow_idml as _flow_idml  # type: ignore
     from idml import loaders as _loaders  # type: ignore
@@ -319,8 +321,7 @@ def main() -> int:
         flow = _flow_idml.write_flow_outputs(
             root=ROOT, model=args.model, region=args.region, lang=args.lang, data_root=data_root,
             bundle_root=bundle_root, build_command=sys.argv)
-        print(f"[export-idml] FLOW OK: {flow.markdown}")
-        print(f"[export-idml] FLOW IDML OK: {flow.idml}")
+        print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
         return 0
     params = load_layout_params(ROOT / "data" / "layout_params.csv")
     sections = load_spec_sections(data_root, args.model, args.region, args.lang)
@@ -438,6 +439,13 @@ def main() -> int:
         if page.name.startswith("symbols_") and emitted["symbols"] \
                 and not pending_prefix_blocks and not pending_fcc_blocks:
             continue
+        placed_asset = _placed.placed_asset_for(page.stem, page_lang(page), ROOT / "docs")
+        if placed_asset is not None:
+            flush_prose_flow()
+            _placed.add_placed_pdf_page(w, "st_placed_" + slug_stem(page.stem), placed_asset, page_cursor)
+            page_cursor += 1
+            prose_pages += 1
+            continue
         matched = next((k for k, prefix in DATA_PAGES.items()
                         if page.name.startswith(prefix)), None)
         if matched:
@@ -542,8 +550,7 @@ def main() -> int:
         flow = _flow_idml.write_flow_outputs(
             root=ROOT, model=args.model, region=args.region, lang=args.lang, data_root=data_root,
             bundle_root=bundle_root, build_command=sys.argv)
-        print(f"[export-idml] FLOW OK: {flow.markdown}")
-        print(f"[export-idml] FLOW IDML OK: {flow.idml}")
+        print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
         handoff = _design_handoff.write_handoff_package(
             root=ROOT, model=args.model, region=args.region, lang=args.lang,
             data_root=data_root, bundle_root=bundle_root,

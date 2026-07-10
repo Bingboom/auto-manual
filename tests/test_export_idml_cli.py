@@ -84,7 +84,7 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 self.assertTrue((package_dir / "missing_assets_report.md").is_file())
                 self.assertIn("[export-idml] OK:", result.stdout)
                 self.assertIn("[export-idml] FLOW OK:", result.stdout)
-                self.assertIn("[export-idml] FLOW IDML OK:", result.stdout)
+                self.assertIn("FLOW IDML OK:", result.stdout)
                 self.assertIn("[export-idml] HANDOFF OK:", result.stdout)
             finally:
                 shutil.rmtree(ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en", ignore_errors=True)
