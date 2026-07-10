@@ -12,6 +12,7 @@ from xml.sax.saxutils import escape
 
 from . import components as _components
 from .fcc_fallback import component_spec, fcc_spec_from_blocks
+from .layout_est import balanced_icon_split, est_table_height
 from .loaders import symbol_copy
 from .params import IDPKG
 from .style_names import paragraph_style_ref
@@ -339,7 +340,7 @@ def _symbols_icon_table(writer, tid: str, icons: list[dict], width: float,
             fig = (ROOT / row["figure"]) if row.get("figure") else None
             icon = ""
             if fig and fig.exists():
-                icon = writer._image_cell_content(f"{tid}img{ri}", fig, 28.0, 28.0)
+                icon = writer._image_cell_content(f"{tid}img{ri}", fig, 22.0, 22.0)
             figure_style_ref = paragraph_style_ref("HB Figure")
             left_xml = (
                 f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style_ref}">'
@@ -347,9 +348,9 @@ def _symbols_icon_table(writer, tid: str, icons: list[dict], width: float,
                 + icon + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
             right_xml = writer._psr("HB Spec Value", row["text"], terminal=True)
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
-                                top=3, bottom=3, left=4, right=4))
+                                top=2, bottom=2, left=4, right=4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
-                                top=3, bottom=3, left=5, right=4))
+                                top=2, bottom=2, left=5, right=4))
     return writer._component_table(tid, cols, cells, n_rows=len(rows), role="data")
 
 def _table_story(writer, sid: str, title: str, table: str) -> str:
@@ -377,7 +378,7 @@ def add_safety_symbols_page(
     import json as _json
     copy = symbol_copy(lang)
 
-    tail_sids: list[str] = []
+    tail_stories: list[tuple[str, float]] = []
     for bi, (kind, text) in enumerate(tail_blocks):
         if kind != "component":
             continue
@@ -394,11 +395,11 @@ def add_safety_symbols_page(
                 "kind": "tailwarnbox",
             }
         tail_sid = f"{sid}_tail_{spec.get('label', bi).lower()}"
-        xml_part, _ = writer._render_component(
+        xml_part, tail_h = writer._render_component(
             tail_sid, bi, spec, bundle_root,
             terminal=True, span_columns=False)
         writer._add_story_parts(tail_sid, f"Safety tail {bi}", [xml_part])
-        tail_sids.append(tail_sid)
+        tail_stories.append((tail_sid, tail_h))
 
     maint_title = next((t for k, t in maintenance_blocks if k == "h1"),
                        "USER MAINTENANCE INSTRUCTIONS")
@@ -421,8 +422,7 @@ def add_safety_symbols_page(
     body_w = writer.page_w - body_x * 2
     icon_gap = 6.0
     icon_table_w = (body_w - icon_gap) / 2.0
-    left_icons = icons[:6]
-    right_icons = icons[6:]
+    left_icons, right_icons = balanced_icon_split(icons, icon_table_w * 0.73, 26.0)
     signal_sid = f"{sid}_signals"
     writer._table_story(
         signal_sid, "Signal words",
@@ -438,24 +438,37 @@ def add_safety_symbols_page(
         writer._symbols_icon_table(
             f"{sid}_icons_r_tbl", right_icons, icon_table_w, lang))
 
-    frame_specs = (
-        ("tail_warning", tail_sids[0] if tail_sids else "", (body_x, 18.0, body_w, 46.0),
-         {"inset": (0, 0, 0, 0)}),
-        ("tail_danger", tail_sids[1] if len(tail_sids) > 1 else "", (body_x, 68.0, body_w, 38.0),
-         {"inset": (0, 0, 0, 0)}),
-        ("maint_title", maint_title_sid, (body_x, 113.0, body_w, 16.5),
-         {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (0.5, 5, 0.5, 6)}),
-        ("maint_body", maint_body_sid, (body_x, 132.5, body_w, 34.0),
-         {"inset": (0, 0, 0, 0)}),
-        ("symbols_title", symbols_title_sid, (body_x, 173.5, body_w, 27.0),
-         {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (2, 5, 1, 6)}),
-        ("signals", signal_sid, (body_x, 211.5, body_w, 111.0),
-         {"inset": (0, 0, 0, 0)}),
-        ("icons_left", left_sid, (body_x, 329.0, icon_table_w, 179.0),
-         {"inset": (0, 0, 0, 0)}),
-        ("icons_right", right_sid, (body_x + icon_table_w + icon_gap, 329.0, icon_table_w, 179.0),
-         {"inset": (0, 0, 0, 0)}),
-    )
+    # Flow the frames from a cursor using coarse content-height estimates
+    # instead of fixed rects (fixed heights hid taller content as overset);
+    # the icon tables then take whatever remains down to the bottom margin.
+    y = 18.0
+    frame_specs: list[tuple[str, str, tuple[float, float, float, float], dict]] = []
+
+    def _place(fid: str, story: str, h: float, opts: dict, gap: float = 6.0) -> None:
+        nonlocal y
+        frame_specs.append((fid, story, (body_x, y, body_w, h), opts))
+        y += h + gap
+
+    for ti, (t_sid, t_h) in enumerate(tail_stories):
+        _place(f"tail_{ti}", t_sid, t_h, {"inset": (0, 0, 0, 0)})
+    maint_h = est_table_height([maint_text], body_w, 24.0) - 16.0
+    _place("maint_title", maint_title_sid, 16.5,
+           {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (0.5, 5, 0.5, 6)}, gap=3.5)
+    _place("maint_body", maint_body_sid, maint_h, {"inset": (0, 0, 0, 0)}, gap=8.0)
+    _place("symbols_title", symbols_title_sid, 27.0,
+           {"fill": "Color/HB Brand Dark", "rounded": True, "inset": (2, 5, 1, 6)}, gap=11.0)
+    signals_h = est_table_height([t for _, t in signals], body_w * 0.76, 22.0)
+    _place("signals", signal_sid, signals_h, {"inset": (0, 0, 0, 0)}, gap=6.5)
+    bottom = writer.page_h - writer.m_b + 20.0
+    icons_h = max(60.0, min(
+        max(est_table_height([r.get("text", "") for r in left_icons], icon_table_w * 0.73, 26.0),
+            est_table_height([r.get("text", "") for r in right_icons], icon_table_w * 0.73, 26.0)),
+        bottom - y))
+    frame_specs.append(("icons_left", left_sid, (body_x, y, icon_table_w, icons_h),
+                        {"inset": (0, 0, 0, 0)}))
+    frame_specs.append(("icons_right", right_sid,
+                        (body_x + icon_table_w + icon_gap, y, icon_table_w, icons_h),
+                        {"inset": (0, 0, 0, 0)}))
 
     spread_id = f"sp_{page_index}"
     page_no = page_index + 1

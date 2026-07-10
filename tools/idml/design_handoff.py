@@ -129,6 +129,9 @@ def _designer_checklist(model: str, region: str, lang: str) -> str:
 - Open `flow/manual.flow.idml` for continuous-story template styling.
 - Use `flow/manual.flow.md` as the readable semantic reference.
 - Check `missing_assets_report.md` before relinking or replacing assets.
+- A red ⊞ overset marker on a frame means the content IS in the file but the
+  frame's estimated height was too small — drag the frame taller to reveal it;
+  frame heights are deliberately coarse estimates, not content loss.
 - Record visual feedback in `layout_feedback.md`.
 - Do not treat edited IDML text as the source of truth; route copy fixes back to source tables, templates, review docs, or TM.
 """
