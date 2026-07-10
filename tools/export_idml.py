@@ -363,13 +363,11 @@ def main() -> int:
     DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_"}
     ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
     if not ordered:
-        print(f"[export-idml] NOTE: no prepared bundle at {bundle_root}; "
-              "exporting data pages only (run `build.py rst` first for full prose)")
+        print(f"[export-idml] NOTE: no prepared bundle at {bundle_root}; exporting data pages only (run `build.py rst` first)")
 
     emitted = {"spec": False, "lcd": False, "trouble": False, "symbols": False}
     pending_prefix_blocks: list[tuple[str, str]] = []
-    pending_fcc_blocks: list[tuple[str, str]] = []
-    pending_fcc_title = ""
+    pending_fcc_blocks, pending_fcc_title = [], ""
     prose_flow = _prose_flow.ProseFlowBuffer()
 
     def page_lang(page: Path) -> str:
@@ -539,6 +537,8 @@ def main() -> int:
     flush_prose_flow()
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind)
+    if _placed.add_back_cover_page(w, args.region, page_cursor):
+        page_cursor += 1
 
     out = Path(args.out) if args.out else (
         default_output_path(args.model, args.region, args.lang, bundle_root))
