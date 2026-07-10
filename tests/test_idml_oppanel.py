@@ -64,6 +64,24 @@ class TransformTest(unittest.TestCase):
         second = json.loads(out[2][1])
         self.assertEqual("FR", second["lang"])
 
+    def test_warranty_years_table_becomes_component(self) -> None:
+        rows = [[
+            "**3 YEARS** **Standard Warranty** The standard warranty period is 36 months.",
+            "**2 YEARS** **Extended Warranty** To activate, register your product online.",
+        ]]
+        out = transform([("table", str(rows))])
+        self.assertEqual("component", out[0][0])
+        spec = json.loads(out[0][1])
+        self.assertEqual("warrantyyears", spec["kind"])
+        self.assertEqual(
+            [("3", "YEARS", "Standard Warranty"), ("2", "YEARS", "Extended Warranty")],
+            [(i["number"], i["unit"], i["label"]) for i in spec["items"]],
+        )
+
+    def test_ordinary_table_is_untouched(self) -> None:
+        blocks = [("table", str([["Header", "Value"], ["A", "B"]]))]
+        self.assertEqual(blocks, transform(blocks))
+
     def test_plain_image_is_untouched(self) -> None:
         blocks = [("image", "_assets/x/solar.png"), ("body", "A caption line.")]
         self.assertEqual(blocks, transform(blocks))

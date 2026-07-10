@@ -30,6 +30,22 @@ def suppress_outer_cell_edges(cells: list[str], n_rows: int, n_cols: int) -> lis
     return out
 
 
+def suppress_inner_vertical_edges_xml(table_xml: str, n_cols: int) -> str:
+    """Drop the internal column dividers of a rendered table; keep the
+    perimeter and row hairlines (master spec-table look). Cells carry
+    Name="col:row" so the column is recoverable from the XML alone."""
+    def _patch(match: re.Match[str]) -> str:
+        head, col = match.group(1), int(match.group(2))
+        attrs = []
+        if col > 0:
+            attrs.append('LeftEdgeStrokeWeight="0"')
+        if col < n_cols - 1:
+            attrs.append('RightEdgeStrokeWeight="0"')
+        return head + (" " + " ".join(attrs) if attrs else "")
+
+    return re.sub(r'(<Cell\b[^>]*?Name="(\d+):\d+"[^>]*?)(?=/?>)', _patch, table_xml)
+
+
 def component_table_xml(tid: str, cols: list[float], cells: list[str],
                         n_rows: int = 1, role: str | None = None, *,
                         outer_stroke: bool = True) -> str:

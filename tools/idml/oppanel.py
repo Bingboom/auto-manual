@@ -10,6 +10,7 @@ text lines.
 """
 from __future__ import annotations
 
+import ast
 import json
 import re
 
@@ -28,6 +29,9 @@ _BOLD = re.compile(r"\*\*([^*]+)\*\*")
 # \HBLangTagLine{FR}{IMPORTANT}; flattened review pages carry
 # "**FR IMPORTANT**" (first block may omit the language prefix).
 _FLAT_LANGTAG = re.compile(r"^\*\*(?:([A-Z]{2})\s+)?(IMPORTANT\w*)\*\*$")
+# Warranty-period cells: "**3 YEARS** **Standard Warranty** <copy>".
+_WARRANTY_CELL = re.compile(
+    r"^\*\*(\d+)\s+(YEARS?|ANS|AÑOS)\*\*\s*\*\*([^*]+)\*\*\s*(.*)$", re.S)
 
 
 def _label_of(line: str) -> tuple[str, str] | None:
@@ -64,6 +68,22 @@ def transform(blocks: list[Block]) -> list[Block]:
     i = 0
     while i < len(blocks):
         kind, text = blocks[i]
+        if kind == "table":
+            try:
+                rows = text if isinstance(text, list) else ast.literal_eval(text)
+            except (ValueError, SyntaxError):
+                rows = None
+            if rows and len(rows) == 1 and len(rows[0]) >= 2:
+                matches = [_WARRANTY_CELL.match(c.strip()) for c in rows[0]]
+                if all(matches):
+                    items = [{"number": m.group(1), "unit": m.group(2),
+                              "label": m.group(3).strip(),
+                              "text": m.group(4).strip()} for m in matches]
+                    out.append(("component", json.dumps(
+                        {"kind": "warrantyyears", "items": items},
+                        ensure_ascii=False)))
+                    i += 1
+                    continue
         if kind == "body":
             tag = _FLAT_LANGTAG.match(text.strip())
             if tag:

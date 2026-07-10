@@ -26,6 +26,7 @@ from .prose_table import render_table_block
 
 from .langbadge import render_langtag
 from .oppanel import render_oppanel
+from .warranty import render_warrantyyears
 
 REGISTRY: dict[str, ComponentRenderer] = {
     "inbox": render_inbox,
@@ -36,6 +37,7 @@ REGISTRY: dict[str, ComponentRenderer] = {
     "notice": render_notice,
     "oppanel": render_oppanel,
     "langtag": render_langtag,
+    "warrantyyears": render_warrantyyears,
     "fcc": render_fcc,
     "lcdmode": render_lcdmode,
 }

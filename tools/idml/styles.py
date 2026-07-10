@@ -31,6 +31,7 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Spec Label", sz("type_spec_label_font_size", 6.0), sz("type_spec_label_font_leading", 6.6), "Regular", ""),
         ("HB Spec Value", sz("type_spec_value_font_size", 6.0), sz("type_spec_value_font_leading", 6.6), "Regular", ""),
         ("HB Spec Note", sz("type_spec_note_font_size", 5.4), sz("type_spec_note_font_leading", 6.0), "Regular", ""),
+        ("HB Big Numeral", 26.0, 26.0, "Bold", ""),
     ]
 
 

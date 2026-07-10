@@ -111,6 +111,13 @@
       <Leading type="unit">6</Leading>
     </Properties>
   </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Big Numeral" Name="HB Big Numeral" PointSize="26" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">26</Leading>
+    </Properties>
+  </ParagraphStyle>
   </RootParagraphStyleGroup>
   <RootCellStyleGroup Self="rcellsg">
     <CellStyle Self="CellStyle/$ID/[None]" Name="$ID/[None]"/>
