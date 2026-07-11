@@ -421,17 +421,23 @@
 % Rubric space before
 \expandafter\def\csname HBcomp_rubric_before\endcsname{0mm}
 
+% Spec environmental section extra space before
+\expandafter\def\csname HBcomp_spec_environment_extra_before\endcsname{1.2mm}
+
+% Spec first section title space after H1
+\expandafter\def\csname HBcomp_spec_first_section_before\endcsname{1.3mm}
+
 % Spec footnotes block space before
 \expandafter\def\csname HBcomp_spec_footnotes_before\endcsname{1.2mm}
 
 % Spec notes block space before
-\expandafter\def\csname HBcomp_spec_notes_before\endcsname{0.8mm}
+\expandafter\def\csname HBcomp_spec_notes_before\endcsname{4.2mm}
 
-% Spec section title space after (tightened to one-third)
-\expandafter\def\csname HBcomp_spec_section_after\endcsname{0.13mm}
+% Spec section title space after
+\expandafter\def\csname HBcomp_spec_section_after\endcsname{2.0mm}
 
-% Spec section title space before (larger gap from previous table)
-\expandafter\def\csname HBcomp_spec_section_before\endcsname{1.1mm}
+% Spec section title space before (reference dedicated-page rhythm)
+\expandafter\def\csname HBcomp_spec_section_before\endcsname{4.3mm}
 
 % Spec section bullet to title gap
 \expandafter\def\csname HBcomp_spec_section_bullet_gap\endcsname{0.36em}
@@ -445,14 +451,23 @@
 % Spec table left column ratio of textwidth (archive: 0.315)
 \expandafter\def\csname HBcomp_spec_table_left_ratio\endcsname{0.315}
 
-% Spec/LCD left-column tint percent black (V2.0 master: 0 = white)
-\expandafter\def\csname HBcomp_spec_table_left_tint\endcsname{0}
+% Spec table left-column tint percent black
+\expandafter\def\csname HBcomp_spec_table_left_tint\endcsname{5}
 
-% Spec table row vertical stretch (archive row height 10.3pt at 6.6pt leading)
-\expandafter\def\csname HBcomp_spec_table_row_stretch\endcsname{1.34}
+% Spec multiline row strut depth
+\expandafter\def\csname HBcomp_spec_table_multiline_depth\endcsname{4.5pt}
+
+% Spec multiline row minimum height
+\expandafter\def\csname HBcomp_spec_table_multiline_min_height\endcsname{15.0pt}
+
+% Spec table row vertical stretch (reference single-row height)
+\expandafter\def\csname HBcomp_spec_table_row_stretch\endcsname{1.90}
 
 % Spec table cell horizontal padding
 \expandafter\def\csname HBcomp_spec_table_tabcolsep\endcsname{2.6pt}
+
+% Spec footnote-marker row extra height
+\expandafter\def\csname HBcomp_spec_table_tall_row_extra\endcsname{2.1pt}
 
 % Space after subbar
 \expandafter\def\csname HBcomp_subbar_after\endcsname{1.5mm}

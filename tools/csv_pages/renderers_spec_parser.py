@@ -12,7 +12,6 @@ from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
 from ..utils.spec_master import (
     canonicalize_model_token,
     collect_matching_footnote_rows,
-    is_page_value_row,
     model_value_matches_target,
     page_value_matches,
     region_value_matches_target,
@@ -402,7 +401,8 @@ def _parse_spec_master_sections(
         row_key = _first_non_empty(row, ["Row_key", "row_key"])
         if not section_key or not row_key:
             continue
-        if is_page_value_row(row) or section_key.strip().lower() == "template vars":
+        usage_type = _first_non_empty(row, ["Usage_type", "usage_type"]).strip().lower()
+        if usage_type == "page_value" or section_key.strip().lower() == "template vars":
             continue
 
         section_title = _pick_spec_lang_text(

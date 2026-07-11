@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import re
+
 from .renderers_common import (
     html_escape,
     latex_arg_escape,
@@ -35,13 +37,30 @@ def _indent_block(text: str, spaces: int = 3) -> str:
 def _render_spec_sections_latex(
     sections: list[dict[str, object]],
 ) -> str:
+    def expand_rows(rows: list[tuple[str, str]]) -> list[tuple[str, str]]:
+        expanded: list[tuple[str, str]] = []
+        for left, right in rows:
+            lines = [line for line in split_spec_lines(str(right)) if line]
+            normalized_left = str(left).upper().replace(" ", "")
+            is_usb_c_group = "USB-C" in normalized_left and len(lines) > 1
+            power_lines: list[tuple[str, str]] = []
+            if is_usb_c_group:
+                for line in lines:
+                    match = re.match(r"\s*(\d+(?:\.\d+)?)\s*W\b", line, flags=re.IGNORECASE)
+                    if not match:
+                        power_lines = []
+                        break
+                    power_lines.append((f"USB-C {match.group(1)}W", line))
+            if power_lines:
+                expanded.extend(power_lines)
+            else:
+                expanded.append((left, right))
+        return expanded
+
     blocks: list[str] = []
     for sec in sections:
         title = rst_escape(str(sec.get("title") or ""))
-        rows = sec.get("rows") or []
-        # spectable is now a longtable-based environment (the column spec
-        # lives in components_spec.tex) so tall sections break at row
-        # boundaries instead of overflowing the page (typography_gap #5).
+        rows = expand_rows(sec.get("rows") or [])
         tex_lines: list[str] = [
             rf"\specsectiontitle{{{spec_latex_escape(title)}}}",
             r"\begin{spectable}",
@@ -50,8 +69,16 @@ def _render_spec_sections_latex(
         for idx, (left, right) in enumerate(rows):
             left_txt = spec_latex_cell(str(left))
             right_txt = spec_latex_cell(str(right))
+            right_lines = split_spec_lines(str(right))
+            needs_multiline_strut = len(right_lines) > 1 or len(str(right)) >= 90
+            has_marker = any(
+                "HBSpecMarker" in text for text in (left_txt, right_txt)
+            )
+            value_prefix = r"\HBSpecMultilineRowStrut{}" if needs_multiline_strut else ""
+            row_break = r"\HBSpecTallRowBreak" if has_marker else r"\tabularnewline"
             tex_lines.append(
-                rf"\HBTypeSpecLabel{{{left_txt}}} & \HBTypeSpecValue{{{right_txt}}} \\"
+                rf"\HBTypeSpecLabel{{{left_txt}}} & {value_prefix}"
+                rf"\HBTypeSpecValue{{{right_txt}}} {row_break}"
             )
             if idx < row_count - 1:
                 tex_lines.append(r"\hline")
@@ -141,7 +168,7 @@ def render_spec_page(
     notes = data["notes"]
     footnotes = data["footnotes"]
 
-    title_main_latex = rf"\section{{{latex_arg_escape(title_main)}}}"
+    title_main_latex = rf"\HBSpecPageStart \section{{{latex_arg_escape(title_main)}}}"
     sections_latex = _render_spec_sections_latex(sections)
     notes_latex = _render_text_blocks_latex(
         notes, before_vspace_tex=r"\csname HBcomp_spec_notes_before\endcsname"
@@ -149,6 +176,7 @@ def render_spec_page(
     footnotes_latex = _render_text_blocks_latex(
         footnotes, before_vspace_tex=r"\csname HBcomp_spec_footnotes_before\endcsname"
     )
+    footnotes_latex += raw_latex_block([r"\HBSpecPageEnd"])
 
     sections_html = _render_spec_sections_html(sections)
     notes_html = _render_text_blocks_html(notes, class_name="hb-spec-note", kind="note")

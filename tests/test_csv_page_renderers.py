@@ -104,6 +104,54 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn('class="hb-spec-note" data-spec-trailer-kind="note"', out)
         self.assertIn('class="hb-spec-footnote" data-spec-trailer-kind="footnote"', out)
         self.assertLess(out.index("Demo note line"), out.index("Demo footnote"))
+        self.assertLess(out.index(r"\HBSpecPageStart"), out.index(r"\section{SPECIFICATIONS}"))
+        self.assertGreater(out.index(r"\HBSpecPageEnd"), out.index("Demo footnote"))
+
+    def test_render_spec_page_marks_multiline_rows_for_reference_height(self) -> None:
+        blocks = self._spec_blocks()
+        blocks[2]["text_en"] = "Input || Charge mode\nBypass mode"
+
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        self.assertIn(r"& \HBSpecMultilineRowStrut{}\HBTypeSpecValue", out)
+
+    def test_render_spec_page_splits_usb_c_power_variants_for_latex(self) -> None:
+        blocks = self._spec_blocks()
+        blocks.insert(
+            3,
+            {
+                "block_type": "row_item",
+                "order": "111.5",
+                "sku_scope": "ALL",
+                "enabled": "1",
+                "meta_json": "{}",
+                "text_en": (
+                    "2 × USB-C || 30 W max., 5 V / 3 A"
+                    "\n100 W max., 5 V / 3 A"
+                ),
+            },
+        )
+
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        self.assertIn(r"\HBTypeSpecLabel{USB-C 30W}", out)
+        self.assertIn(r"\HBTypeSpecLabel{USB-C 100W}", out)
+        self.assertIn(
+            r"\HBTypeSpecLabel{USB-C 30W} & \HBTypeSpecValue{30 W max., 5 V / 3 A} \tabularnewline",
+            out,
+        )
 
     def test_render_spec_page_row_without_delimiter_should_fail(self) -> None:
         blocks = self._spec_blocks()
@@ -272,6 +320,37 @@ class TestCsvPageRenderers(unittest.TestCase):
         ac_pos = out.find("1 x AC Input")
         self.assertGreater(model_pos, -1)
         self.assertGreater(ac_pos, -1)
+
+    def test_render_spec_page_keeps_legacy_named_usb_c_rows_on_spec_page(self) -> None:
+        blocks = self._spec_master_blocks()
+        usb_rows = []
+        for order, slot, value in (
+            ("1", "30w", "30 W max., 5 V / 3 A"),
+            ("2", "100w", "100 W max., 5 V / 3 A"),
+        ):
+            row = dict(blocks[0])
+            row.update(
+                {
+                    "Row_key": "usb_c",
+                    "Slot_key": slot,
+                    "Row_label_source": "2 × USB-C",
+                    "Param_source": "",
+                    "Line_order": order,
+                    "Value_source": value,
+                }
+            )
+            usb_rows.append(row)
+
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=usb_rows,
+            sku_id="JB1000",
+            lang="en",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        self.assertIn(r"\HBTypeSpecLabel{USB-C 30W}", out)
+        self.assertIn(r"\HBTypeSpecLabel{USB-C 100W}", out)
 
     def test_render_spec_page_should_fallback_to_sibling_region_footnote_definition(self) -> None:
         blocks = self._spec_master_blocks()

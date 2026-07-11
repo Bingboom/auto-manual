@@ -193,16 +193,21 @@ type_preface_body_font_size,6.0,pt,Preface body font size
 type_preface_body_font_leading,7.2,pt,Preface body leading
 ,,,
 ,,,------ SPEC TABLE PAGE ------
-comp_spec_section_before,1.1,mm,Spec section title space before (larger gap from previous table)
-comp_spec_section_after,0.13,mm,Spec section title space after (tightened to one-third)
+comp_spec_section_before,4.3,mm,Spec section title space before (reference dedicated-page rhythm)
+comp_spec_first_section_before,1.3,mm,Spec first section title space after H1
+comp_spec_section_after,2.0,mm,Spec section title space after
 comp_spec_section_bullet_raise,-0.16,ex,Spec section bullet raise offset (optical baseline align)
 comp_spec_section_bullet_symbol,\scalebox{1.67}{\textbullet},none,Spec section bullet symbol (scaled 1.67x, baseline aligned)
 comp_spec_section_bullet_gap,0.36,em,Spec section bullet to title gap
-comp_spec_table_left_tint,0,int,Spec/LCD left-column tint percent black (V2.0 master: 0 = white)
+comp_spec_table_left_tint,5,int,Spec table left-column tint percent black
 comp_spec_table_left_ratio,0.315,ratio,Spec table left column ratio of textwidth (archive: 0.315)
 comp_spec_table_tabcolsep,2.6,pt,Spec table cell horizontal padding
-comp_spec_table_row_stretch,1.34,ratio,Spec table row vertical stretch (archive row height 10.3pt at 6.6pt leading)
-comp_spec_notes_before,0.8,mm,Spec notes block space before
+comp_spec_table_row_stretch,1.90,ratio,Spec table row vertical stretch (reference single-row height)
+comp_spec_table_tall_row_extra,2.1,pt,Spec footnote-marker row extra height
+comp_spec_table_multiline_min_height,15.0,pt,Spec multiline row minimum height
+comp_spec_table_multiline_depth,4.5,pt,Spec multiline row strut depth
+comp_spec_environment_extra_before,1.2,mm,Spec environmental section extra space before
+comp_spec_notes_before,4.2,mm,Spec notes block space before
 comp_spec_footnotes_before,1.2,mm,Spec footnotes block space before
 ,,,
 type_spec_section_font_size,8.8,pt,Spec section title font size
