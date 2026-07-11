@@ -242,9 +242,15 @@
     arc=\csname HBcomp_tip_arc\endcsname,
     boxrule=\csname HBcomp_callout_rule\endcsname,
     boxsep=0mm,
-    left=0mm,right=\csname HBcomp_tip_pad_lr\endcsname,
+    leftupper=0mm,rightupper=0mm,
+    leftlower=\csname HBcomp_callout_body_inset\endcsname,
+    rightlower=\csname HBcomp_tip_pad_lr\endcsname,
     top=\csname HBcomp_caution_pad_tb\endcsname,
     bottom=\csname HBcomp_caution_pad_tb\endcsname,
+    sidebyside,
+    sidebyside align=center,
+    sidebyside gap=0mm,
+    lefthand width=#3,
     before skip=1.2mm,
     after skip=1.2mm,
     underlay={
@@ -256,21 +262,21 @@
           yshift=-\csname HBcomp_callout_label_inset\endcsname]frame.north west);
     }
   ]%
-    \begin{tabular}{@{}m{#3}
-      @{\hspace{\csname HBcomp_callout_body_inset\endcsname}}%
-      m{\dimexpr\linewidth-#3-\csname HBcomp_callout_body_inset\endcsname\relax}@{}}%
-      {\centering\HBFontSemiBold
-       \rule{0pt}{\dimexpr\csname HBcomp_tip_height\endcsname
-         -2\csname HBcomp_caution_pad_tb\endcsname\relax}%
-       \fontsize{\csname HBtype_tip_label_font_size\endcsname}
-                {\csname HBtype_tip_label_font_leading\endcsname}\selectfont #1\par}
-      &
-      {\HBFontRegular
-       \fontsize{\csname HBtype_tip_body_font_size\endcsname}
-                {\csname HBtype_tip_body_font_leading\endcsname}\selectfont
-       \RaggedRight #2}
-      \tabularnewline
-    \end{tabular}%
+    \begin{minipage}[c]
+      [\dimexpr\csname HBcomp_tip_height\endcsname
+        -2\csname HBcomp_caution_pad_tb\endcsname\relax]
+      [c]{\linewidth}%
+      \centering\HBFontSemiBold
+      \fontsize{\csname HBtype_tip_label_font_size\endcsname}
+               {\csname HBtype_tip_label_font_leading\endcsname}\selectfont
+      #1\par
+    \end{minipage}%
+    \tcblower
+    \HBFontRegular
+    \fontsize{\csname HBtype_tip_body_font_size\endcsname}
+             {\csname HBtype_tip_body_font_leading\endcsname}\selectfont
+    \setlength{\parskip}{0pt}%
+    \RaggedRight #2\par
   \end{tcolorbox}%
   \par
 }

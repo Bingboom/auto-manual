@@ -111,6 +111,10 @@ class LatexCalloutTests(unittest.TestCase):
         self.assertIn("HBcomp_callout_body_inset", component)
         self.assertIn("HBcomp_callout_bullet_indent", component)
         self.assertIn("HBcomp_callout_bullet_width", component)
+        self.assertIn("\\begin{minipage}[c]", component)
+        self.assertIn("\\setlength{\\parskip}{0pt}", component)
+        self.assertIn("sidebyside align=center", component)
+        self.assertIn("lefthand width=#3", component)
 
 
 if __name__ == "__main__":
