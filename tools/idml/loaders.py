@@ -156,8 +156,10 @@ def load_spec_sections(data_root: Path, model: str, region: str,
     marker_by_id = load_footnote_markers(data_root, model, region)
     sections: list[dict] = []
     # rows sharing (Section, Row_order) merge into one multi-line value cell
+    titles = load_spec_title_map(data_root, lang)
     for r in rows:
         title = (r.get("Section") or "").strip()
+        title = titles.get(title, title)
         if not sections or sections[-1]["title"] != title:
             sections.append({"title": title, "rows": []})
         label = _append_footnote_markers(
@@ -285,3 +287,32 @@ def load_trouble_rows(data_root: Path, model: str, region: str,
                     clean_cell(_localized_cell(r, "corrective_measures", lang,
                                                ("corrective_measures_en",)))))
     return out
+
+
+_TITLE_SUFFIX = {"jp": "jp", "ja": "jp", "uk": "uk", "ukr": "uk", "ko": "ko"}
+
+
+def load_spec_title_map(data_root: Path, lang: str | None) -> dict[str, str]:
+    """EN spec section title -> localized title (spec_titles.csv)."""
+    suffix = _TITLE_SUFFIX.get((lang or "en").lower(), (lang or "en").lower())
+    path = data_root / "spec_titles.csv"
+    if suffix == "en" or not path.exists():
+        return {}
+    out: dict[str, str] = {}
+    for r in csv.DictReader(path.open(encoding="utf-8")):
+        localized = (r.get(f"title_{suffix}") or "").strip()
+        if localized:
+            out[(r.get("title_en") or "").strip()] = localized
+    return out
+
+
+def load_page_title(data_root: Path, copy_key: str, lang: str | None,
+                    default: str) -> str:
+    """Localized data-page H1/TOC title from Localized_Copy.csv."""
+    path = data_root / "Localized_Copy.csv"
+    if not path.exists():
+        return default
+    for r in csv.DictReader(path.open(encoding="utf-8")):
+        if r.get("copy_key") == copy_key and r.get("Is_Latest") == "TRUE":
+            return _localized_cell(r, "text", lang, ("text_en",)) or default
+    return default

@@ -54,15 +54,15 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # (1470 -> 1260; extractor +9 for the parity constant); P3 moved the
     # story builders and composed-page assemblers out (1260 -> 647); P4 moved
     # package assembly (spread chain / designmap / zip) out (647 -> 563).
-    "tools/export_idml.py": 592,  # +7 placed-page hook, +14 TOC hooks (template-parity P2)
+    "tools/export_idml.py": 607,  # +15: per-language spec/LCD emission with localized titles
     "tools/idml_rst_extract.py": 520,
     "tools/idml/primitives.py": 300,
     "tools/idml/styles.py": 220,
     # loaders 220 -> 290: the spec footnote ①-marker mirror (PDF-renderer
     # parity, test-enforced) lives beside the loaders it decorates.
-    "tools/idml/loaders.py": 290,
+    "tools/idml/loaders.py": 318,  # +31: localized spec-section/page-title loaders (per-language data pages)
     "tools/idml/components/callout.py": 200,
-    "tools/idml/stories.py": 245,  # +1: spec label column grey fill wrap (parity)
+    "tools/idml/stories.py": 247,  # +2: per-language data-page titles/sids (parity)
     "tools/idml/pages.py": 500,
     "tools/idml/package.py": 160,
 }
