@@ -14,7 +14,7 @@
 
    .. raw:: latex
 
-      \safetywarning{ADVERTENCIA\hspace{0.75em}INSTRUCCIONES RELATIVAS AL RIESGO DE INCENDIO, DESCARGA ELÉCTRICA O LESIONES PERSONALES}
+      \HBSafetyInstruction{INSTRUCCIONES RELATIVAS AL RIESGO DE INCENDIO, DESCARGA ELÉCTRICA O LESIONES PERSONALES}
 
    .. raw:: latex
 
@@ -23,7 +23,7 @@
 
    .. raw:: latex
 
-      \safetylead{Sigue siempre estas precauciones básicas al usar este producto.}
+      \HBWarningLeadBlock{ADVERTENCIA}{Sigue siempre estas precauciones básicas al usar este producto.}
 
 
    - Lee todas las instrucciones antes de usar el producto.
@@ -90,7 +90,7 @@
 
    .. raw:: latex
 
-      \HBNoticeBlock{PELIGRO}{Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un entorno interior similar cuando lo use en exteriores, por ejemplo, hogar, RV, tiendas de campaña, cabañas, etc.).}{※ Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y de ambientes húmedos durante el uso.}
+      \HBDangerBlock{PELIGRO}{Este dispositivo está diseñado únicamente para uso en interiores (coloque este dispositivo en un entorno interior similar cuando lo use en exteriores, por ejemplo, hogar, RV, tiendas de campaña, cabañas, etc.).}{※ Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y de ambientes húmedos durante el uso.}
 
 
 .. only:: html

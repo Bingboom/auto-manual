@@ -631,10 +631,43 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         self.assertNotIn(r"\HBNoticeBlock{DANGER}", out)
         self.assertIn(r"\HBSymbolTable{Symbol}{Meaning}{%", out)
+        self.assertIn(r"\HBSymbolTwoColumnTables{Symbol}{Meaning}{%", out)
         self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{WARNING}{Data warning.}", out)
         self.assertIn(r"\HBSymbolIconRow{warning_triangle.png}{Warning symbol meaning.}", out)
         self.assertIn(".. only:: not latex", out)
         self.assertIn("hb-warning-lockup", out)
+
+    def test_render_symbols_page_keeps_latex_columns_in_source_order(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="en",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        left_start = out.index(r"\HBSymbolTwoColumnTables{Symbol}{Meaning}{%")
+        warning_pos = out.index(r"\HBSymbolIconRow{warning_triangle.png}", left_start)
+        right_start = out.index("}{%", warning_pos)
+        manual_pos = out.index(r"\HBSymbolIconRow{read_manual_operator.png}", left_start)
+        dismantle_pos = out.index(r"\HBSymbolIconRow{do_not_dismantle.png}", left_start)
+
+        self.assertLess(warning_pos, right_start)
+        self.assertLess(manual_pos, right_start)
+        self.assertGreater(dismantle_pos, right_start)
+
+    def test_render_symbols_page_uses_controlled_split_for_long_locales(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="es",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        self.assertIn(r"\HBSymbolTwoColumnTablesSplit{Símbolo}{Significado}{%", out)
+        self.assertIn(r"\HBSymbolIconRow{warning_triangle.png}", out)
+        self.assertIn(r"\HBSymbolIconRow{do_not_dismantle.png}", out)
 
     def test_render_symbols_page_latex_image_args_use_basenames(self) -> None:
         blocks = self._symbols_blocks()
@@ -1022,10 +1055,7 @@ class TestCsvPageRenderers(unittest.TestCase):
         )
 
         order_positions = [out.index(f"Order {idx}.") for idx in range(1, 6)]
-        self.assertLess(order_positions[0], order_positions[3])
-        self.assertLess(order_positions[3], order_positions[1])
-        self.assertLess(order_positions[1], order_positions[4])
-        self.assertLess(order_positions[4], order_positions[2])
+        self.assertEqual(order_positions, sorted(order_positions))
 
     def test_render_symbols_page_should_use_market_field(self) -> None:
         blocks = self._symbols_blocks()

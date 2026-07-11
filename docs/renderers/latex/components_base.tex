@@ -235,10 +235,102 @@
   \HBNoticeBlock[note]{#1}{#2}{}%
 }
 \providecommand{\HBTipBlock}[2]{%
-  \HBNoticeBlock[tip]{#1}{#2}{}%
+  \par\noindent
+  \begin{tcolorbox}[
+    enhanced,
+    colback=BgK05,
+    colframe=BgK05,
+    arc=\csname HBcomp_tip_arc\endcsname,
+    boxrule=0pt,
+    boxsep=0mm,
+    left=0mm,right=\csname HBcomp_tip_pad_lr\endcsname,
+    top=0mm,bottom=0mm,
+    height=\csname HBcomp_tip_height\endcsname,
+    valign=center,
+    before skip=1.8mm,
+    after skip=0mm,
+    overlay={
+      \fill[white]
+        (frame.south west) rectangle
+        ([xshift=\csname HBcomp_tip_label_width\endcsname]frame.north west);
+    }
+  ]%
+    \begin{tabular}{@{}m{\csname HBcomp_tip_label_width\endcsname}
+      @{}m{\dimexpr\linewidth-\csname HBcomp_tip_label_width\endcsname\relax}@{}}%
+      {\centering\HBFontSemiBold
+       \fontsize{\csname HBtype_tip_label_font_size\endcsname}
+                {\csname HBtype_tip_label_font_leading\endcsname}\selectfont #1\par}
+      &
+      {\HBFontRegular
+       \fontsize{\csname HBtype_tip_body_font_size\endcsname}
+                {\csname HBtype_tip_body_font_leading\endcsname}\selectfont
+       \RaggedRight #2}
+      \tabularnewline
+    \end{tabular}%
+  \end{tcolorbox}%
+  \par
 }
 \providecommand{\HBCautionBlock}[2]{%
   \HBNoticeBlock[caution]{#1}{#2}{}%
+}
+
+% Fixed-format components own their explicit page boundaries.
+\providecommand{\HBPageBreak}{\clearpage}
+
+\providecommand{\HBBackCoverPage}[3]{%
+  \clearpage
+  \thispagestyle{empty}%
+  \null\vfill
+  \begin{minipage}[b]{0.70\textwidth}
+    {\HBFontSemiBold\fontsize{5.8pt}{6.6pt}\selectfont #1\par}
+    \vspace{1.2mm}
+    {\HBFontRegular\fontsize{4.8pt}{5.7pt}\selectfont #2\par}
+    \vspace{2.2mm}
+    \rule{\linewidth}{0.35pt}\par
+    \vspace{1.2mm}
+    {\HBFontSemiBold\fontsize{6.2pt}{7pt}\selectfont #3\par}
+  \end{minipage}%
+  \vspace*{2mm}
+}
+
+% App-setup page primitives.
+\providecommand{\HBAppStep}[2]{%
+  \par\vspace{1.1mm}\noindent
+  {\HBFontBold\fontsize{8pt}{9pt}\selectfont
+   \tikz[baseline=-0.45ex]\fill[BrandDark] (0,0) circle (0.85mm);%
+   \hspace{1.2mm}#1 #2}\par\vspace{0.8mm}%
+}
+
+\providecommand{\HBAppBody}[1]{%
+  {\HBFontRegular\fontsize{5.6pt}{6.5pt}\selectfont\RaggedRight #1\par}%
+}
+
+\providecommand{\HBAppAsset}[3]{%
+  \par\vspace{1mm}
+  \begin{center}
+    \HBImageOrPlaceholder{#2}{#3}{#1}%
+  \end{center}
+  \vspace{0.6mm}\par
+}
+
+\providecommand{\HBAppNotice}[2]{%
+  \par\vspace{1mm}\noindent
+  \begin{tcolorbox}[
+    enhanced,
+    colback=BgK05,
+    colframe=BgK05,
+    arc=\csname HBcomp_table_outer_arc\endcsname,
+    boxrule=0pt,
+    boxsep=0mm,
+    left=1.4mm,right=1.4mm,top=1.2mm,bottom=1.2mm,
+  ]
+    \begin{tabular}{@{}>{\centering\arraybackslash}m{15mm}
+      >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth-15mm-2\tabcolsep\relax}@{}}
+      {\HBFontBold\fontsize{6pt}{6.6pt}\selectfont #1} &
+      {\HBFontRegular\fontsize{5.2pt}{6pt}\selectfont #2}
+    \end{tabular}
+  \end{tcolorbox}
+  \par
 }
 
 % ------------------------------
@@ -246,8 +338,8 @@
 % Signature:
 %   \HBInBoxThree{image1}{label1}{image2}{label2}{image3}{label3}
 % ------------------------------
-\expandafter\providecommand\csname HBcomp_inbox_image_width\endcsname{24mm}
-\expandafter\providecommand\csname HBcomp_inbox_image_height\endcsname{18mm}
+\expandafter\providecommand\csname HBcomp_inbox_image_width\endcsname{26mm}
+\expandafter\providecommand\csname HBcomp_inbox_image_height\endcsname{31mm}
 \expandafter\providecommand\csname HBcomp_inbox_table_tabcolsep\endcsname{2.2pt}
 \expandafter\providecommand\csname HBcomp_inbox_table_row_stretch\endcsname{0.9}
 \expandafter\providecommand\csname HBcomp_inbox_label_gap\endcsname{0.65mm}
@@ -273,19 +365,26 @@
     arc=\csname HBcomp_inbox_card_arc\endcsname,
     boxrule=\csname HBcomp_table_outer_rule\endcsname,
     boxsep=0mm,
-    left=1.2mm,right=1.2mm,top=1.2mm,bottom=1.6mm,
+    left=1.2mm,right=1.2mm,top=5.8mm,bottom=2.0mm,
     width=\csname HBcomp_inbox_card_width\endcsname\linewidth,
+    height=\csname HBcomp_inbox_card_height\endcsname,
     nobeforeafter,
     equal height group=hbinbox,
-    valign=top,
+    valign=center,
+    overlay={
+      \node[fill=BrandDark,circle,inner sep=0.65mm,
+            font=\HBFontHeavy\fontsize{6.5pt}{6.5pt}\selectfont,
+            text=white]
+        at ([yshift=-4.2mm]frame.north) {#1};
+    },
   ]
-    {\HBCircledNumFilled{#1}}\par
-    \vspace{0.4mm}
     {\centering
-     \HBImageOrPlaceholder
-       {\csname HBcomp_inbox_image_width\endcsname}
-       {\csname HBcomp_inbox_image_height\endcsname}
-       {#2}\par}%
+     \parbox[c][\csname HBcomp_inbox_image_height\endcsname][c]
+       {\linewidth}{\centering
+         \HBImageOrPlaceholder
+           {\csname HBcomp_inbox_image_width\endcsname}
+           {\csname HBcomp_inbox_image_height\endcsname}
+           {#2}\par}\par}%
     \vspace{\csname HBcomp_inbox_label_gap\endcsname}%
     {\centering\HBTypeInBoxLabel{#3}\par}%
   \end{tcolorbox}%
@@ -313,8 +412,9 @@
   after skip=\csname HBcomp_inbox_after\endcsname,
 }
 
-\expandafter\providecommand\csname HBcomp_inbox_card_arc\endcsname{1.6mm}
+\expandafter\providecommand\csname HBcomp_inbox_card_arc\endcsname{2.4mm}
 \expandafter\providecommand\csname HBcomp_inbox_card_width\endcsname{0.315}
+\expandafter\providecommand\csname HBcomp_inbox_card_height\endcsname{60.6mm}
 
 % V2.0 master: three independent rounded cards (no shared grid frame).
 \newcommand{\HBInBoxThree}[6]{%
@@ -500,7 +600,11 @@
 \expandafter\providecommand\csname HBcomp_symbol_signal_gap\endcsname{1.1mm}
 \expandafter\providecommand\csname HBtype_symbol_signal_font_size\endcsname{9.9pt}
 \expandafter\providecommand\csname HBtype_symbol_signal_font_leading\endcsname{10.5pt}
-\expandafter\providecommand\csname HBcomp_symbol_icon_col_width\endcsname{32mm}
+\providecommand{\HBSignalWordFontSize}{\csname HBtype_symbol_signal_font_size\endcsname}
+\providecommand{\HBSignalWordLeading}{\csname HBtype_symbol_signal_font_leading\endcsname}
+\expandafter\providecommand\csname HBcomp_symbol_icon_col_width\endcsname{14mm}
+\expandafter\providecommand\csname HBcomp_symbol_signal_col_width\endcsname{26.4mm}
+\expandafter\providecommand\csname HBcomp_symbol_column_gap\endcsname{2.6mm}
 \expandafter\providecommand\csname HBcomp_symbol_table_tabcolsep\endcsname{2.2pt}
 \expandafter\providecommand\csname HBcomp_symbol_table_row_stretch\endcsname{0.86}
 \expandafter\providecommand\csname HBtype_symbol_header_font_size\endcsname{6.4pt}
@@ -545,11 +649,8 @@
   left=0mm,right=0mm,top=0mm,bottom=0mm,
 }
 
-% longtable instead of a framed tabular (same P0 pattern as HBLcdIconTable:
-% the tcolorbox cannot break across pages and "clip upper" silently clips
-% overflowing rows — reports/typography_gap/2026-07-03 #5). The header row
-% sits in \endhead so it repeats on every continuation page.
-% Trade-off: rounded outer corner dropped for this table.
+% Full-width signal-word table. The rounded frame owns only the outer stroke;
+% the tabular owns the internal grid.
 \newcommand{\HBSymbolTable}[3]{%
   \begingroup
   \arrayrulecolor{HBSharedTableFrameColor}
@@ -557,22 +658,92 @@
   \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
   \setlength{\tabcolsep}{\csname HBcomp_symbol_table_tabcolsep\endcsname}
   \renewcommand{\arraystretch}{\csname HBcomp_symbol_table_row_stretch\endcsname}
-  \setlength{\LTpre}{0pt}%
-  \setlength{\LTpost}{0pt}%
-  \setlength{\LTleft}{0pt}%
-  \setlength{\LTright}{\fill}%
-  \begin{longtable}{|
+  \begin{hbsymboltableframe}
+  \begin{tabular}{@{}|
+    >{\centering\arraybackslash}m{\csname HBcomp_symbol_signal_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
+      -\csname HBcomp_symbol_signal_col_width\endcsname
+      -4\tabcolsep-3\arrayrulewidth\relax}|@{}}
+    \hline
+    \rowcolor{HBTableHeadBg}
+    \HBTypeSymbolHeader{#1} & \HBTypeSymbolHeader{#2}\tabularnewline
+    \hline
+    #3%
+  \end{tabular}
+  \end{hbsymboltableframe}
+  \endgroup
+  \par
+}
+
+% Independent left/right icon tables. Keeping the outer frames separate is
+% what lets the V2.0 layout use six rows on the left and five on the right
+% without a fake shared grid or a continuation page.
+\newcommand{\HBSymbolMiniTable}[3]{%
+  \begin{hbsymboltableframe}
+  \begingroup
+  \arrayrulecolor{HBSharedTableFrameColor}%
+  \arrayrulewidth=0.35pt
+  \setlength{\tabcolsep}{\csname HBcomp_symbol_table_tabcolsep\endcsname}%
+  \renewcommand{\arraystretch}{\csname HBcomp_symbol_table_row_stretch\endcsname}%
+  \begin{tabular}{@{}|
     >{\centering\arraybackslash}m{\csname HBcomp_symbol_icon_col_width\endcsname}|
     >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
       -\csname HBcomp_symbol_icon_col_width\endcsname
-      -4\tabcolsep-3\arrayrulewidth\relax}|}
-  \hline
-  \rowcolor{HBTableHeadBg}
-  \HBTypeSymbolHeader{#1} & \HBTypeSymbolHeader{#2}\tabularnewline
-  \hline\endhead
-  #3%
-  \end{longtable}
+      -4\tabcolsep-3\arrayrulewidth\relax}|@{}}
+    \hline
+    \rowcolor{HBTableHeadBg}
+    \HBTypeSymbolHeader{#1} & \HBTypeSymbolHeader{#2}\tabularnewline
+    \hline
+    #3%
+  \end{tabular}
   \endgroup
+  \end{hbsymboltableframe}%
+}
+
+\newcommand{\HBSymbolMiniTableContinuation}[1]{%
+  \begin{hbsymboltableframe}
+  \begingroup
+  \arrayrulecolor{HBSharedTableFrameColor}%
+  \arrayrulewidth=0.35pt
+  \setlength{\tabcolsep}{\csname HBcomp_symbol_table_tabcolsep\endcsname}%
+  \renewcommand{\arraystretch}{\csname HBcomp_symbol_table_row_stretch\endcsname}%
+  \begin{tabular}{@{}|
+    >{\centering\arraybackslash}m{\csname HBcomp_symbol_icon_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
+      -\csname HBcomp_symbol_icon_col_width\endcsname
+      -4\tabcolsep-3\arrayrulewidth\relax}|@{}}
+    \hline
+    #1%
+  \end{tabular}
+  \endgroup
+  \end{hbsymboltableframe}%
+}
+
+\newcommand{\HBSymbolTwoColumnTables}[4]{%
+  \par\noindent
+  \begin{minipage}[t]{\dimexpr(\linewidth-\csname HBcomp_symbol_column_gap\endcsname)/2\relax}
+    \HBSymbolMiniTable{#1}{#2}{#3}%
+  \end{minipage}%
+  \hspace{\csname HBcomp_symbol_column_gap\endcsname}%
+  \begin{minipage}[t]{\dimexpr(\linewidth-\csname HBcomp_symbol_column_gap\endcsname)/2\relax}
+    \HBSymbolMiniTable{#1}{#2}{#4}%
+  \end{minipage}%
+  \par
+}
+
+% Localized copy can require the reference master's controlled 4+remainder
+% split. Both columns preserve source order and continue on the same next page.
+\newcommand{\HBSymbolTwoColumnTablesSplit}[6]{%
+  \HBSymbolTwoColumnTables{#1}{#2}{#3}{#4}%
+  \HBPageBreak
+  \par\noindent
+  \begin{minipage}[t]{\dimexpr(\linewidth-\csname HBcomp_symbol_column_gap\endcsname)/2\relax}
+    \HBSymbolMiniTableContinuation{#5}%
+  \end{minipage}%
+  \hspace{\csname HBcomp_symbol_column_gap\endcsname}%
+  \begin{minipage}[t]{\dimexpr(\linewidth-\csname HBcomp_symbol_column_gap\endcsname)/2\relax}
+    \HBSymbolMiniTableContinuation{#6}%
+  \end{minipage}%
   \par
 }
 
@@ -604,8 +775,8 @@
           }%
           \hspace{\csname HBcomp_symbol_signal_gap\endcsname}%
           {\color{white}\HBFontHeavy
-           \fontsize{\csname HBtype_symbol_signal_font_size\endcsname}
-                    {\csname HBtype_symbol_signal_font_leading\endcsname}\selectfont #2}%
+           \fontsize{\HBSignalWordFontSize}
+                    {\HBSignalWordLeading}\selectfont #2}%
         }%
       }%
       \endgroup
@@ -850,6 +1021,20 @@
 % ------------------------------
 \expandafter\providecommand\csname HBcomp_fcc_arc\endcsname{2.0mm}
 \expandafter\providecommand\csname HBcomp_fcc_mark_width\endcsname{11mm}
+\expandafter\providecommand\csname HBcomp_fcc_height\endcsname{45.9mm}
+\expandafter\providecommand\csname HBcomp_fcc_column_gap\endcsname{2.6mm}
+\expandafter\providecommand\csname HBcomp_fcc_pad_lr\endcsname{2.2mm}
+\expandafter\providecommand\csname HBcomp_fcc_pad_tb\endcsname{2.2mm}
+\expandafter\providecommand\csname HBtype_fcc_font_size\endcsname{5.6pt}
+\expandafter\providecommand\csname HBtype_fcc_font_leading\endcsname{6.5pt}
+
+\providecommand{\HBTypeFccText}[1]{%
+  {\HBFontRegular
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_fcc_font_size\endcsname}
+            {\csname HBtype_fcc_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
 
 \providecommand{\HBFccBlock}[2]{%
   \par\noindent
@@ -860,17 +1045,22 @@
     arc=\csname HBcomp_fcc_arc\endcsname,
     boxrule=0pt,
     boxsep=0mm,
-    left=2mm,right=2mm,top=2mm,bottom=2mm,
+    left=\csname HBcomp_fcc_pad_lr\endcsname,
+    right=\csname HBcomp_fcc_pad_lr\endcsname,
+    top=\csname HBcomp_fcc_pad_tb\endcsname,
+    bottom=\csname HBcomp_fcc_pad_tb\endcsname,
+    height=\csname HBcomp_fcc_height\endcsname,
+    valign=center,
   ]
-    \begin{minipage}[t]{0.48\linewidth}
-      \HBTypeNoticeBody{%
+    \begin{minipage}[t]{\dimexpr(\linewidth-\csname HBcomp_fcc_column_gap\endcsname)/2\relax}
+      \HBTypeFccText{%
         \IfFileExists{fcc_mark.pdf}{%
           \raisebox{-1.2mm}{\includegraphics[width=\csname HBcomp_fcc_mark_width\endcsname]{fcc_mark.pdf}}\hspace{1.2mm}%
         }{}%
         #1}%
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.48\linewidth}
-      \HBTypeNoticeBody{#2}%
+    \end{minipage}\hspace{\csname HBcomp_fcc_column_gap\endcsname}%
+    \begin{minipage}[t]{\dimexpr(\linewidth-\csname HBcomp_fcc_column_gap\endcsname)/2\relax}
+      \HBTypeFccText{#2}%
     \end{minipage}%
   \end{tcolorbox}%
   \par
@@ -881,17 +1071,82 @@
 % e.g. [EN] IMPORTANT
 % Signature: \HBLangTagLine{EN}{IMPORTANT}
 % ------------------------------
+\providecommand{\HBPrefacePageBegin}{%
+  \clearpage
+  \thispagestyle{empty}%
+  \begingroup
+  \fontsize{\csname HBtype_preface_body_font_size\endcsname}
+           {\csname HBtype_preface_body_font_leading\endcsname}\selectfont
+}
+
+\providecommand{\HBPrefacePageEnd}{%
+  \par\endgroup
+  \clearpage
+  \pagenumbering{arabic}%
+  \setcounter{page}{1}%
+}
+
 \providecommand{\HBLangTagLine}[2]{%
   \par\noindent
   \begingroup
   \setlength{\fboxsep}{0pt}%
   \colorbox{BrandDark}{\makebox[4.6mm][c]{\rule{0pt}{2.9mm}%
-    {\color{white}\HBFontHeavy\fontsize{5.6pt}{5.6pt}\selectfont #1}}}%
+    {\color{white}\HBFontHeavy
+     \fontsize{\csname HBtype_preface_tag_font_size\endcsname}
+              {\csname HBtype_preface_tag_font_size\endcsname}\selectfont #1}}}%
   \hspace{1.4mm}%
   {\HBFontSemiBold\color{\csname HBtype_body_color\endcsname}%
-   \fontsize{7.2pt}{8.0pt}\selectfont #2}%
+   \fontsize{\csname HBtype_preface_title_font_size\endcsname}
+            {\csname HBtype_preface_title_font_size\endcsname}\selectfont #2}%
   \endgroup
-  \par
+  \par\vspace{0.8mm}%
+}
+
+% ------------------------------
+% Multilingual contents page
+% ------------------------------
+\providecommand{\HBTocPageBegin}{%
+  \clearpage
+  \thispagestyle{empty}%
+  \begingroup
+  \parindent=0pt
+  \vspace*{6.5mm}%
+}
+
+\providecommand{\HBTocPageEnd}{%
+  \par\endgroup
+  \clearpage
+  \pagenumbering{arabic}%
+  \setcounter{page}{1}%
+}
+
+\providecommand{\HBTocTitle}[1]{%
+  {\HBFontHeavy\fontsize{17pt}{19pt}\selectfont\RaggedRight #1\par}%
+  \vspace{4.2mm}%
+}
+
+\providecommand{\HBTocEntry}[2]{%
+  {\HBFontRegular\fontsize{6.5pt}{7.6pt}\selectfont
+   \makebox[\linewidth][s]{#1\leaders\hbox to 1.15mm{\hss.\hss}\hfill\hbox to 4.5mm{\hfil #2}}\par}%
+  \vspace{1.55mm}%
+}
+
+\providecommand{\HBTocLanguageBlock}[5]{%
+  \begin{tcolorbox}[
+    enhanced,colback=BrandDark,colframe=BrandDark,
+    arc=2.4mm,boxrule=0pt,boxsep=0mm,
+    left=1.6mm,right=1.6mm,top=0.7mm,bottom=0.7mm,
+    before skip=0mm,after skip=3.4mm
+  ]%
+    {\color{white}\HBFontHeavy\fontsize{10pt}{10pt}\selectfont #1}%
+    \hspace{1.2mm}%
+    {\color{white}\HBFontSemiBold\fontsize{6.5pt}{7pt}\selectfont #2}%
+    \hfill
+    {\color{white}\HBFontHeavy\fontsize{8pt}{8.5pt}\selectfont #3}%
+  \end{tcolorbox}%
+  \begin{minipage}[t]{0.48\linewidth}#4\end{minipage}\hfill
+  \begin{minipage}[t]{0.48\linewidth}#5\end{minipage}%
+  \par\vspace{5.4mm}%
 }
 
 % ------------------------------
@@ -904,18 +1159,22 @@
   \par\noindent
   \hspace*{-\leftskip}%
   \begin{tcolorbox}[
+    enhanced,
     colback=BrandDark,
     colframe=BrandDark,
     arc=\csname HBcomp_h1_pill_arc\endcsname,
     rounded corners=south,
     sharp corners=north,
     boxrule=0pt,
+    boxsep=0mm,
     left=\csname HBcomp_h1_pill_pad_lr\endcsname,
     right=\csname HBcomp_h1_pill_pad_lr\endcsname,
     top=\csname HBcomp_h1_pill_pad_tb\endcsname,
     bottom=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    height=\csname HBcomp_h1_pill_height\endcsname,
+    valign=center,
     width=\csname HBcomp_h1_pill_width\endcsname\textwidth,
-    before skip=0mm,
+    before skip=0.6mm,
     after skip=\csname HBcomp_h1_pill_after\endcsname
   ]
     \HBTypeTitleLevelOne{#1}

@@ -2,6 +2,14 @@
 
    \HBApplyLang{es}
 
+.. only:: latex
+
+   .. raw:: latex
+
+      \HBFccBlock{Este dispositivo cumple con la parte 15 de las Reglas de la FCC. Su funcionamiento está sujeto a dos condiciones: no debe causar interferencias dañinas y debe aceptar cualquier interferencia recibida. NOTA: este aparato cumple los límites para dispositivos digitales de Clase B. Estos límites proporcionan una protección razonable contra interferencias en instalaciones residenciales.}{Si este aparato causa interferencias en la recepción de radio o televisión, apáguelo y enciéndalo e intente estas medidas: reorientar la antena, aumentar la separación, usar una toma de otro circuito o consultar a un técnico de radio/TV. MODIFICACIÓN: los cambios no aprobados expresamente pueden anular la autoridad del usuario para utilizar el dispositivo.}
+
+      \iffalse
+
 .. raw:: latex
 
    \section{FCC}
@@ -27,3 +35,9 @@
 **MODIFICACIÓN:**
 
 Cualquier cambio o modificación no aprobado expresamente por el cesionario de este dispositivo podría anular la autoridad del usuario para utilizar el dispositivo.
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \fi

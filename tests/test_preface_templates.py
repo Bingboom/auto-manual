@@ -23,6 +23,39 @@ class PrefaceTemplateTests(unittest.TestCase):
         self.assertIn("FR IMPORTANT", text)
         self.assertIn("ES IMPORTANTE", text)
 
+    def test_us_review_preface_should_keep_latex_page_component_contract(self) -> None:
+        text = (ROOT / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn(r"\HBPrefacePageBegin", text)
+        self.assertIn(r"\HBLangTagLine{EN}{IMPORTANT}", text)
+        self.assertIn(r"\HBLangTagLine{FR}{IMPORTANT}", text)
+        self.assertIn(r"\HBLangTagLine{ES}{IMPORTANTE}", text)
+        self.assertIn(r"\HBPrefacePageEnd", text)
+
+    def test_us_inbox_pages_should_end_with_explicit_page_boundary(self) -> None:
+        for lang in ("en", "fr", "es"):
+            text = (
+                ROOT / "docs" / "templates" / "page_shared" / lang / "02_whats_in_the_box.rst"
+            ).read_text(encoding="utf-8")
+            self.assertIn(r"\HBInBoxThree", text)
+            self.assertIn(r"\HBTipBlock", text)
+            self.assertIn(r"\HBPageBreak", text)
+
+    def test_us_spanish_app_and_back_cover_should_use_page_components(self) -> None:
+        app_text = (
+            ROOT / "docs" / "templates" / "page_shared" / "es" / "12_app_setup_placeholder.rst"
+        ).read_text(encoding="utf-8")
+        back_text = (
+            ROOT / "docs" / "templates" / "page_shared" / "en" / "99_back_cover.rst"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn(r"\HBPageBreak", app_text)
+        self.assertIn(r"\HBAppStep", app_text)
+        self.assertIn(r"\HBAppNotice", app_text)
+        self.assertIn(r"\HBBackCoverPage", back_text)
+
     def test_eu_preface_should_cover_all_merged_languages(self) -> None:
         text = (ROOT / "docs" / "templates" / "page_eu" / "00_preface.rst").read_text(encoding="utf-8")
         config_text = (ROOT / "configs/config.eu.yaml").read_text(encoding="utf-8")

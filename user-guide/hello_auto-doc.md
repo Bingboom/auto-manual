@@ -38,6 +38,12 @@ python3 -m pip install -r requirements.txt
 The dependency install step is mandatory.
 Do not skip `python -m pip install -r requirements.txt` or `python3 -m pip install -r requirements.txt` when preparing a fresh environment.
 
+For fixed-layout PDF work, edit the shared LaTeX component or its
+data/layout_params.csv values instead of drawing borders directly in page
+RST. Titles, safety boxes, FCC panels, inbox cards, tip strips, symbol tables,
+and app notices are reusable objects; page RST supplies their text and image
+arguments.
+
 ### 1.2 External Tools
 
 - PDF export requires `xelatex`.

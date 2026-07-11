@@ -6,11 +6,11 @@
   <RootParagraphStyleGroup Self="rpsg">
     <ParagraphStyle Self="ParagraphStyle/$ID/[No paragraph style]" Name="$ID/[No paragraph style]"/>
     <ParagraphStyle Self="ParagraphStyle/$ID/NormalParagraphStyle" Name="$ID/NormalParagraphStyle"/>
-  <ParagraphStyle Self="ParagraphStyle/Heading1" Name="Heading1" PointSize="9" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="ColumnWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" LeftIndent="7" SpaceBefore="4" SpaceAfter="3" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/Heading1" Name="Heading1" PointSize="12" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="ColumnWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" LeftIndent="7" SpaceBefore="4" SpaceAfter="3" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
-      <Leading type="unit">10.8</Leading>
+      <Leading type="unit">14.4</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/Heading2" Name="Heading2" PointSize="8.6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
@@ -45,42 +45,42 @@
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
-      <Leading type="unit">7</Leading>
+      <Leading type="unit">7.2</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/Item List Text" Name="Item List Text" PointSize="6.3" FillColor="Color/HB Brand Dark" Justification="CenterAlign">
+  <ParagraphStyle Self="ParagraphStyle/Item List Text" Name="Item List Text" PointSize="6.5" FillColor="Color/HB Brand Dark" Justification="CenterAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
-      <Leading type="unit">7</Leading>
+      <Leading type="unit">7.2</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/带底Heading2" Name="带底Heading2" PointSize="9" FillColor="Color/Paper" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/带底Heading2" Name="带底Heading2" PointSize="12" FillColor="Color/Paper" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
-      <Leading type="unit">10.8</Leading>
+      <Leading type="unit">14.4</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/Figure" Name="Figure" PointSize="6.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/Figure" Name="Figure" PointSize="6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Regular</FontStyle>
       <Leading type="enum">Auto</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/段落样式" Name="段落样式" PointSize="6.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/段落样式" Name="段落样式" PointSize="6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Medium</FontStyle>
-      <Leading type="unit">7.5</Leading>
+      <Leading type="unit">7.2</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/Item List" Name="Item List" PointSize="5.4" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/Item List" Name="Item List" PointSize="6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Regular</FontStyle>
-      <Leading type="unit">6.4</Leading>
+      <Leading type="unit">7</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/TableHeading" Name="TableHeading" PointSize="8.8" FillColor="Color/HB Brand Dark" Justification="LeftAlign">

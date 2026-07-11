@@ -78,37 +78,73 @@
 \expandafter\def\csname HBtype_body_color\endcsname{TextGray}
 
 % Body/lead leading (MUST NOT affect list/warning)
-\expandafter\def\csname HBtype_body_font_leading\endcsname{7.5pt}
+\expandafter\def\csname HBtype_body_font_leading\endcsname{7.2pt}
 
 % Body/lead font size
-\expandafter\def\csname HBtype_body_font_size\endcsname{6.2pt}
+\expandafter\def\csname HBtype_body_font_size\endcsname{6.0pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_body_force_upper\endcsname{0}
 
+% FCC body leading
+\expandafter\def\csname HBtype_fcc_font_leading\endcsname{6.5pt}
+
+% FCC body font size
+\expandafter\def\csname HBtype_fcc_font_size\endcsname{5.6pt}
+
 % H1 leading
-\expandafter\def\csname HBtype_h1_font_leading\endcsname{10.8pt}
+\expandafter\def\csname HBtype_h1_font_leading\endcsname{14.4pt}
 
 % H1 font size
-\expandafter\def\csname HBtype_h1_font_size\endcsname{9.0pt}
+\expandafter\def\csname HBtype_h1_font_size\endcsname{12.0pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_h1_force_upper\endcsname{1}
 
-% LCD name-column leading
-\expandafter\def\csname HBtype_lcd_label_font_leading\endcsname{7.6pt}
+% Inbox label leading
+\expandafter\def\csname HBtype_inbox_label_font_leading\endcsname{7.2pt}
 
-% LCD name-column font size (archive: 7.0)
-\expandafter\def\csname HBtype_lcd_label_font_size\endcsname{7.0pt}
+% Inbox label font size
+\expandafter\def\csname HBtype_inbox_label_font_size\endcsname{6.5pt}
+
+% LCD description leading
+\expandafter\def\csname HBtype_lcd_body_font_leading\endcsname{5.8pt}
+
+% LCD description font size
+\expandafter\def\csname HBtype_lcd_body_font_size\endcsname{5.2pt}
+
+% LCD name-column leading
+\expandafter\def\csname HBtype_lcd_label_font_leading\endcsname{6.0pt}
+
+% LCD name-column font size
+\expandafter\def\csname HBtype_lcd_label_font_size\endcsname{5.4pt}
+
+% LCD row-number leading
+\expandafter\def\csname HBtype_lcd_no_font_leading\endcsname{5.8pt}
+
+% LCD row-number font size
+\expandafter\def\csname HBtype_lcd_no_font_size\endcsname{5.2pt}
 
 % List text color name
 \expandafter\def\csname HBtype_list_color\endcsname{TextGray}
 
 % List leading (independent from body)
-\expandafter\def\csname HBtype_list_font_leading\endcsname{6.4pt}
+\expandafter\def\csname HBtype_list_font_leading\endcsname{7.0pt}
 
 % List font size
-\expandafter\def\csname HBtype_list_font_size\endcsname{5.4pt}
+\expandafter\def\csname HBtype_list_font_size\endcsname{6.0pt}
+
+% Preface body leading
+\expandafter\def\csname HBtype_preface_body_font_leading\endcsname{7.2pt}
+
+% Preface body font size
+\expandafter\def\csname HBtype_preface_body_font_size\endcsname{6.0pt}
+
+% Preface language tag font size
+\expandafter\def\csname HBtype_preface_tag_font_size\endcsname{6.0pt}
+
+% Preface title font size
+\expandafter\def\csname HBtype_preface_title_font_size\endcsname{8.0pt}
 
 % Rubric text color name
 \expandafter\def\csname HBtype_rubric_color\endcsname{TextK90}
@@ -144,13 +180,43 @@
 \expandafter\def\csname HBtype_spec_value_font_size\endcsname{6.0pt}
 
 % Subbar leading
-\expandafter\def\csname HBtype_subbar_font_leading\endcsname{7.2pt}
+\expandafter\def\csname HBtype_subbar_font_leading\endcsname{9.6pt}
 
 % Subbar font size
-\expandafter\def\csname HBtype_subbar_font_size\endcsname{6.6pt}
+\expandafter\def\csname HBtype_subbar_font_size\endcsname{8.0pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_subbar_force_upper\endcsname{1}
+
+% Symbol table body leading
+\expandafter\def\csname HBtype_symbol_body_font_leading\endcsname{6.5pt}
+
+% Symbol table body font size
+\expandafter\def\csname HBtype_symbol_body_font_size\endcsname{5.6pt}
+
+% Symbol table header leading
+\expandafter\def\csname HBtype_symbol_header_font_leading\endcsname{7.2pt}
+
+% Symbol table header font size
+\expandafter\def\csname HBtype_symbol_header_font_size\endcsname{6.5pt}
+
+% Signal word leading
+\expandafter\def\csname HBtype_symbol_signal_font_leading\endcsname{10.5pt}
+
+% Signal word font size
+\expandafter\def\csname HBtype_symbol_signal_font_size\endcsname{9.9pt}
+
+% Tip body leading
+\expandafter\def\csname HBtype_tip_body_font_leading\endcsname{7.4pt}
+
+% Tip body font size
+\expandafter\def\csname HBtype_tip_body_font_size\endcsname{6.5pt}
+
+% Tip label leading
+\expandafter\def\csname HBtype_tip_label_font_leading\endcsname{9.0pt}
+
+% Tip label font size
+\expandafter\def\csname HBtype_tip_label_font_size\endcsname{8.0pt}
 
 % Level 2 title color
 \expandafter\def\csname HBtype_title_l2_color\endcsname{TextGray}
@@ -183,33 +249,93 @@
 \expandafter\def\csname HBtype_warning_text_color\endcsname{TextGray}
 
 % Warning right text leading
-\expandafter\def\csname HBtype_warning_text_font_leading\endcsname{7.2pt}
+\expandafter\def\csname HBtype_warning_text_font_leading\endcsname{6.2pt}
 
 % Warning right text font size
-\expandafter\def\csname HBtype_warning_text_font_size\endcsname{6.4pt}
+\expandafter\def\csname HBtype_warning_text_font_size\endcsname{5.6pt}
 
 % 0 keep case / 1 uppercase (body prose keeps case; the lead-in safety sentence is uppercase in the source)
 \expandafter\def\csname HBtype_warning_text_force_upper\endcsname{0}
 
 % ===== COMPONENTS =====
 
-% Space after H1 pill (single point; negative offsets the first paragraph's inherent leading after the title block)
+% FCC panel corner radius
+\expandafter\def\csname HBcomp_fcc_arc\endcsname{2.4mm}
+
+% FCC text column gap
+\expandafter\def\csname HBcomp_fcc_column_gap\endcsname{2.6mm}
+
+% FCC panel height
+\expandafter\def\csname HBcomp_fcc_height\endcsname{45.9mm}
+
+% FCC mark width
+\expandafter\def\csname HBcomp_fcc_mark_width\endcsname{14.0mm}
+
+% FCC panel horizontal padding
+\expandafter\def\csname HBcomp_fcc_pad_lr\endcsname{2.2mm}
+
+% FCC panel vertical padding
+\expandafter\def\csname HBcomp_fcc_pad_tb\endcsname{2.2mm}
+
+% Space after H1 pill (offsets paragraph glue to match the 2.5 mm visual gap)
 \expandafter\def\csname HBcomp_h1_pill_after\endcsname{-1.2mm}
 
 % H1 bar bottom corner radius (master ~5.8pt; sharp top + rounded south)
 \expandafter\def\csname HBcomp_h1_pill_arc\endcsname{2.0mm}
 
+% H1 bar fixed height
+\expandafter\def\csname HBcomp_h1_pill_height\endcsname{7.1mm}
+
 % H1 pill left/right padding
-\expandafter\def\csname HBcomp_h1_pill_pad_lr\endcsname{1.0mm}
+\expandafter\def\csname HBcomp_h1_pill_pad_lr\endcsname{2.2mm}
 
 % H1 pill top/bottom padding
-\expandafter\def\csname HBcomp_h1_pill_pad_tb\endcsname{0.45mm}
+\expandafter\def\csname HBcomp_h1_pill_pad_tb\endcsname{1.0mm}
 
 % H1 pill width ratio of \textwidth
 \expandafter\def\csname HBcomp_h1_pill_width\endcsname{1}
 
-% LCD icon table row stretch (archive min row ~27pt)
-\expandafter\def\csname HBcomp_lcd_table_row_stretch\endcsname{2.0}
+% Space after inbox cards
+\expandafter\def\csname HBcomp_inbox_after\endcsname{2.5mm}
+
+% Inbox card corner radius
+\expandafter\def\csname HBcomp_inbox_card_arc\endcsname{2.4mm}
+
+% Inbox card height
+\expandafter\def\csname HBcomp_inbox_card_height\endcsname{60.6mm}
+
+% Inbox card width ratio
+\expandafter\def\csname HBcomp_inbox_card_width\endcsname{0.316}
+
+% Inbox image reserved height
+\expandafter\def\csname HBcomp_inbox_image_height\endcsname{31mm}
+
+% Inbox image maximum width
+\expandafter\def\csname HBcomp_inbox_image_width\endcsname{26mm}
+
+% Inbox image-to-label gap
+\expandafter\def\csname HBcomp_inbox_label_gap\endcsname{2.0mm}
+
+% LCD icon column width
+\expandafter\def\csname HBcomp_lcd_icon_col_width\endcsname{9.2mm}
+
+% LCD icon maximum height
+\expandafter\def\csname HBcomp_lcd_icon_height\endcsname{6.6mm}
+
+% LCD icon maximum width
+\expandafter\def\csname HBcomp_lcd_icon_width\endcsname{6.6mm}
+
+% LCD name-column width
+\expandafter\def\csname HBcomp_lcd_label_col_width\endcsname{0.22\linewidth}
+
+% LCD row-number column width
+\expandafter\def\csname HBcomp_lcd_no_col_width\endcsname{4.8mm}
+
+% LCD icon table row stretch
+\expandafter\def\csname HBcomp_lcd_table_row_stretch\endcsname{0.82}
+
+% LCD table cell padding
+\expandafter\def\csname HBcomp_lcd_table_tabcolsep\endcsname{1.4pt}
 
 % Space after lead line
 \expandafter\def\csname HBcomp_lead_after\endcsname{0.6mm}
@@ -239,16 +365,16 @@
 \expandafter\def\csname HBcomp_list_topsep\endcsname{0mm}
 
 % Gap between lockup and warning text
-\expandafter\def\csname HBcomp_lockup_gap\endcsname{4mm}
+\expandafter\def\csname HBcomp_lockup_gap\endcsname{2.0mm}
 
-% warning_lockup.png height
-\expandafter\def\csname HBcomp_lockup_height\endcsname{6mm}
+% Signal icon height
+\expandafter\def\csname HBcomp_lockup_height\endcsname{8.0mm}
 
 % Reserved (viewport macro is fragile; keep for future trim-based cropping)
 \expandafter\def\csname HBcomp_lockup_viewport\endcsname{79 70 2125 549}
 
-% Width reserved for lockup column
-\expandafter\def\csname HBcomp_lockup_width\endcsname{24mm}
+% Width reserved for signal icon and label
+\expandafter\def\csname HBcomp_lockup_width\endcsname{24.5mm}
 
 % Note box corner radius
 \expandafter\def\csname HBcomp_note_arc\endcsname{2.4mm}
@@ -258,6 +384,9 @@
 
 % Note top/bottom padding
 \expandafter\def\csname HBcomp_note_pad_tb\endcsname{0.5mm}
+
+% Gap between language notice blocks
+\expandafter\def\csname HBcomp_preface_block_gap\endcsname{3.2mm}
 
 % Rubric space after
 \expandafter\def\csname HBcomp_rubric_after\endcsname{12mm}
@@ -299,37 +428,76 @@
 \expandafter\def\csname HBcomp_spec_table_tabcolsep\endcsname{2.6pt}
 
 % Space after subbar
-\expandafter\def\csname HBcomp_subbar_after\endcsname{0.7mm}
+\expandafter\def\csname HBcomp_subbar_after\endcsname{1.5mm}
 
 % Subbar capsule corner radius (half the 13.9pt bar: full-round stadium)
 \expandafter\def\csname HBcomp_subbar_arc\endcsname{2.45mm}
+
+% Subbar fixed height
+\expandafter\def\csname HBcomp_subbar_height\endcsname{4.9mm}
 
 % Minimum room to keep a subbar with the content that follows
 \expandafter\def\csname HBcomp_subbar_needspace\endcsname{18mm}
 
 % Subbar left/right padding
-\expandafter\def\csname HBcomp_subbar_pad_lr\endcsname{0.8mm}
+\expandafter\def\csname HBcomp_subbar_pad_lr\endcsname{2.2mm}
 
 % Subbar top/bottom padding
-\expandafter\def\csname HBcomp_subbar_pad_tb\endcsname{0.35mm}
+\expandafter\def\csname HBcomp_subbar_pad_tb\endcsname{0.75mm}
 
 % Subbar width ratio of \textwidth
 \expandafter\def\csname HBcomp_subbar_width\endcsname{1}
 
-% Symbols table row stretch (relaxed to archive density)
-\expandafter\def\csname HBcomp_symbol_table_row_stretch\endcsname{1.3}
+% Gap between the two symbol tables
+\expandafter\def\csname HBcomp_symbol_column_gap\endcsname{2.6mm}
+
+% Symbol-grid icon column width
+\expandafter\def\csname HBcomp_symbol_icon_col_width\endcsname{14.0mm}
+
+% Symbol icon maximum height
+\expandafter\def\csname HBcomp_symbol_icon_height\endcsname{8.5mm}
+
+% Symbol icon maximum width
+\expandafter\def\csname HBcomp_symbol_icon_width\endcsname{8.5mm}
+
+% Signal-word table first column width
+\expandafter\def\csname HBcomp_symbol_signal_col_width\endcsname{26.4mm}
+
+% Signal word swatch height
+\expandafter\def\csname HBcomp_symbol_signal_height\endcsname{5.4mm}
+
+% Signal word swatch width
+\expandafter\def\csname HBcomp_symbol_signal_width\endcsname{21.5mm}
+
+% Symbols table row stretch
+\expandafter\def\csname HBcomp_symbol_table_row_stretch\endcsname{1.0}
+
+% Symbol table cell padding
+\expandafter\def\csname HBcomp_symbol_table_tabcolsep\endcsname{2.2pt}
 
 % Table inner rule width
 \expandafter\def\csname HBcomp_table_inner_rule\endcsname{0.2pt}
 
 % Table outer corner radius
-\expandafter\def\csname HBcomp_table_outer_arc\endcsname{0.9mm}
+\expandafter\def\csname HBcomp_table_outer_arc\endcsname{2.4mm}
 
 % Table outer rule width (archive 1500 Ultra: 0.75pt)
 \expandafter\def\csname HBcomp_table_outer_rule\endcsname{0.75pt}
 
 % Table tabcolsep
 \expandafter\def\csname HBcomp_table_tabcolsep\endcsname{2.4pt}
+
+% Tip strip corner radius
+\expandafter\def\csname HBcomp_tip_arc\endcsname{2.4mm}
+
+% Tip strip height
+\expandafter\def\csname HBcomp_tip_height\endcsname{14.7mm}
+
+% Tip strip label panel width
+\expandafter\def\csname HBcomp_tip_label_width\endcsname{18.5mm}
+
+% Tip strip horizontal padding
+\expandafter\def\csname HBcomp_tip_pad_lr\endcsname{2.2mm}
 
 % Level 2 title space after
 \expandafter\def\csname HBcomp_title_l2_after\endcsname{1.4mm}
@@ -362,31 +530,31 @@
 \expandafter\def\csname HBcomp_title_l3_needspace\endcsname{8mm}
 
 % Space after two-column block (declared; replaces the zeroed trailing \multicolsep)
-\expandafter\def\csname HBcomp_twocol_after\endcsname{4.2mm}
+\expandafter\def\csname HBcomp_twocol_after\endcsname{1.8mm}
 
 % Space before two-column block (declared; \multicolsep is zeroed inside safetytwocol)
 \expandafter\def\csname HBcomp_twocol_before\endcsname{1.2mm}
 
 % Space between two columns
-\expandafter\def\csname HBcomp_twocol_sep\endcsname{4mm}
+\expandafter\def\csname HBcomp_twocol_sep\endcsname{2.2mm}
 
 % Space after warning box
-\expandafter\def\csname HBcomp_warning_box_after\endcsname{1.0mm}
+\expandafter\def\csname HBcomp_warning_box_after\endcsname{1.4mm}
 
 % Warning box corner radius
-\expandafter\def\csname HBcomp_warning_box_arc\endcsname{1.0mm}
+\expandafter\def\csname HBcomp_warning_box_arc\endcsname{2.0mm}
 
 % Space before warning box
 \expandafter\def\csname HBcomp_warning_box_before\endcsname{0.5mm}
 
 % Warning box left/right padding
-\expandafter\def\csname HBcomp_warning_box_pad_lr\endcsname{0.8mm}
+\expandafter\def\csname HBcomp_warning_box_pad_lr\endcsname{2.2mm}
 
 % Warning box top/bottom padding
-\expandafter\def\csname HBcomp_warning_box_pad_tb\endcsname{0mm}
+\expandafter\def\csname HBcomp_warning_box_pad_tb\endcsname{0.3mm}
 
 % Warning box border width
-\expandafter\def\csname HBcomp_warning_box_rule\endcsname{0.5pt}
+\expandafter\def\csname HBcomp_warning_box_rule\endcsname{0.75pt}
 
 % Warning box inner boxsep
 \expandafter\def\csname HBcomp_warning_box_sep\endcsname{0.6mm}

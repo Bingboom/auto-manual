@@ -2,6 +2,14 @@
 
    \HBApplyLang{fr}
 
+.. only:: latex
+
+   .. raw:: latex
+
+      \HBFccBlock{Cet appareil est conforme à la partie 15 du règlement de la FCC. Son fonctionnement dépend de deux conditions : il ne doit pas provoquer d'interférences dangereuses et doit accepter toute interférence reçue. REMARQUE : cet équipement respecte les limites des appareils numériques de classe B. Ces limites offrent une protection raisonnable contre les interférences dans une installation résidentielle.}{Si cet équipement trouble la réception radio ou télévision, éteignez-le puis rallumez-le et essayez les mesures suivantes : réorienter l'antenne, éloigner l'équipement du récepteur, utiliser une prise d'un autre circuit ou consulter un technicien radio/télévision. MODIFICATION : toute modification non expressément approuvée peut annuler l'autorisation d'utiliser l'appareil.}
+
+      \iffalse
+
 .. raw:: latex
 
    \section{FCC}
@@ -26,3 +34,9 @@
 **MODIFICATION :**
 
 Tout changement ou modification non expressément approuvé par le titulaire de cet appareil pourrait annuler l'autorisation de l'utilisateur à utiliser l'appareil.
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \fi

@@ -2,6 +2,14 @@
 
    \HBApplyLang{en}
 
+.. only:: latex
+
+   .. raw:: latex
+
+      \HBFccBlock{This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) this device must accept any interference received, including interference that may cause undesired operation. NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits provide reasonable protection against harmful interference in a residential installation.}{If this equipment causes harmful interference to radio or television reception, turn the equipment off and on and try one or more of these measures: Reorient or relocate the receiving antenna. Increase the separation between the equipment and receiver. Connect the equipment to an outlet on a different circuit. Consult the dealer or an experienced radio/TV technician. MODIFICATION: Changes not expressly approved by the grantee could void the authority to operate the device.}
+
+      \iffalse
+
 .. raw:: latex
 
    \section{FCC}
@@ -26,3 +34,9 @@ These limits are designed to provide reasonable protection against harmful inter
 
 **MODIFICATION:**
 Any changes or modifications not expressly approved by the grantee of this device could void the user's authority to operate the device.
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \fi
