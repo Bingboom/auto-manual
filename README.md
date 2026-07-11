@@ -26,7 +26,8 @@ This repository is responsible for:
   handoff, plus paired design checklist and feedback files
 - generating fixed-format LaTeX manuals through shared page components: H1
   bars, capsule subbars, safety callouts, rounded table frames, FCC panels,
-  inbox cards, tip strips, controlled symbol continuations, and app steps
+  inbox cards, warning/caution/note/tip strips, controlled symbol
+  continuations, and app steps
 
 This repository is not the place to define the long-term platform strategy.
 That boundary lives in [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md).

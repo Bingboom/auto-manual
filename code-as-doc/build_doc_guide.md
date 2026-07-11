@@ -729,7 +729,10 @@ The LaTeX backend keeps presentation in
 Page RST should call those components and keep content separate from the
 visual frame. Fixed-format boundaries use **HBPageBreak**; rounded tables use
 an independent outer frame while their tabular content owns only the internal
-grid. Tune shared geometry in
+grid. In LaTeX output, one-row label/body tables whose labels resolve to
+WARNING, CAUTION, NOTE, or TIP (including the supported localized labels) are
+automatically rendered by the shared rounded callout component; HTML and Word
+keep the source table. Tune shared geometry in
 [layout_params.csv](../data/layout_params.csv), then regenerate params.tex
 with python tools/csv_to_tex_params.py.
 

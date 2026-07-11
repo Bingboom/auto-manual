@@ -3,11 +3,16 @@
 
 from __future__ import annotations
 from pathlib import Path
+import sys
+
+_LATEX_EXTENSION_DIR = Path(__file__).resolve().parent / "renderers" / "latex"
+if str(_LATEX_EXTENSION_DIR) not in sys.path:
+    sys.path.insert(0, str(_LATEX_EXTENSION_DIR))
 
 # --- project-independent defaults ---
 project = ""
 author = ""
-extensions: list[str] = []
+extensions: list[str] = ["hb_latex_callouts"]
 exclude_patterns = [
     "_build",
     "templates/*",

@@ -42,7 +42,8 @@ For fixed-layout PDF work, edit the shared LaTeX component or its
 data/layout_params.csv values instead of drawing borders directly in page
 RST. Titles, safety boxes, FCC panels, inbox cards, tip strips, symbol tables,
 and app notices are reusable objects; page RST supplies their text and image
-arguments.
+arguments. Body WARNING, CAUTION, NOTE, and TIP label/body tables are mapped
+to the same rounded callout family automatically for LaTeX PDF output.
 
 ### 1.2 External Tools
 

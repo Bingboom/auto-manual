@@ -231,33 +231,33 @@
   \end{tcolorbox}%
 }
 
-\providecommand{\HBNoteBlock}[2]{%
-  \HBNoticeBlock[note]{#1}{#2}{}%
-}
-\providecommand{\HBTipBlock}[2]{%
+% Four inline notice variants share one visual component. The source table
+% supplies content; this component owns the rounded panel, split, and type.
+\providecommand{\HBCalloutBlock}[3]{%
   \par\noindent
   \begin{tcolorbox}[
     enhanced,
     colback=BgK05,
-    colframe=BgK05,
+    colframe=LineK40!35!white,
     arc=\csname HBcomp_tip_arc\endcsname,
-    boxrule=0pt,
+    boxrule=\csname HBcomp_callout_rule\endcsname,
     boxsep=0mm,
     left=0mm,right=\csname HBcomp_tip_pad_lr\endcsname,
-    top=0mm,bottom=0mm,
-    height=\csname HBcomp_tip_height\endcsname,
-    valign=center,
-    before skip=1.8mm,
-    after skip=0mm,
-    overlay={
+    top=\csname HBcomp_caution_pad_tb\endcsname,
+    bottom=\csname HBcomp_caution_pad_tb\endcsname,
+    before skip=1.2mm,
+    after skip=1.2mm,
+    underlay={
       \fill[white]
-        (frame.south west) rectangle
-        ([xshift=\csname HBcomp_tip_label_width\endcsname]frame.north west);
+        (interior.south west) rectangle
+        ([xshift=#3]interior.north west);
     }
   ]%
-    \begin{tabular}{@{}m{\csname HBcomp_tip_label_width\endcsname}
-      @{}m{\dimexpr\linewidth-\csname HBcomp_tip_label_width\endcsname\relax}@{}}%
+    \begin{tabular}{@{}m{#3}
+      @{}m{\dimexpr\linewidth-#3\relax}@{}}%
       {\centering\HBFontSemiBold
+       \rule{0pt}{\dimexpr\csname HBcomp_tip_height\endcsname
+         -2\csname HBcomp_caution_pad_tb\endcsname\relax}%
        \fontsize{\csname HBtype_tip_label_font_size\endcsname}
                 {\csname HBtype_tip_label_font_leading\endcsname}\selectfont #1\par}
       &
@@ -270,8 +270,22 @@
   \end{tcolorbox}%
   \par
 }
+\providecommand{\HBCalloutBullet}[1]{%
+  \par\noindent
+  \hangindent=2mm\hangafter=1
+  \makebox[2mm][l]{\raisebox{0.15ex}{\fontsize{4.2pt}{4.2pt}\selectfont\textbullet}}#1%
+}
+\providecommand{\HBWarningBlock}[2]{%
+  \HBCalloutBlock{#1}{#2}{\csname HBcomp_caution_label_width\endcsname}%
+}
 \providecommand{\HBCautionBlock}[2]{%
-  \HBNoticeBlock[caution]{#1}{#2}{}%
+  \HBCalloutBlock{#1}{#2}{\csname HBcomp_caution_label_width\endcsname}%
+}
+\providecommand{\HBNoteBlock}[2]{%
+  \HBCalloutBlock{#1}{#2}{\csname HBcomp_tip_label_width\endcsname}%
+}
+\providecommand{\HBTipBlock}[2]{%
+  \HBCalloutBlock{#1}{#2}{\csname HBcomp_tip_label_width\endcsname}%
 }
 
 % Fixed-format components own their explicit page boundaries.

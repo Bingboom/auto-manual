@@ -149,7 +149,7 @@ type_symbol_header_font_leading,7.2,pt,Symbol table header leading
 type_symbol_body_font_size,5.6,pt,Symbol table body font size
 type_symbol_body_font_leading,6.5,pt,Symbol table body leading
 ,,,
-,,,------ FCC / INBOX / TIP ------
+,,,------ FCC / INBOX / CALLOUT STRIPS ------
 comp_fcc_arc,2.4,mm,FCC panel corner radius
 comp_fcc_height,45.9,mm,FCC panel height
 comp_fcc_mark_width,14.0,mm,FCC mark width
@@ -168,9 +168,13 @@ comp_inbox_after,2.5,mm,Space after inbox cards
 type_inbox_label_font_size,6.5,pt,Inbox label font size
 type_inbox_label_font_leading,7.2,pt,Inbox label leading
 comp_tip_arc,2.4,mm,Tip strip corner radius
+comp_callout_rule,0.4,pt,Tip and caution outer border width
 comp_tip_height,14.7,mm,Tip strip height
 comp_tip_label_width,18.5,mm,Tip strip label panel width
 comp_tip_pad_lr,2.2,mm,Tip strip horizontal padding
+comp_caution_label_width,18.5,mm,Caution strip label panel width
+comp_caution_pad_lr,2.2,mm,Caution strip horizontal padding
+comp_caution_pad_tb,1.2,mm,Caution strip vertical padding
 type_tip_label_font_size,8.0,pt,Tip label font size
 type_tip_label_font_leading,9.0,pt,Tip label leading
 type_tip_body_font_size,6.5,pt,Tip body font size
