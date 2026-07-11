@@ -55,7 +55,7 @@
       <Leading type="unit">7</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/带底Heading2" Name="带底Heading2" PointSize="9.4" FillColor="Color/Paper" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/带底Heading2" Name="带底Heading2" PointSize="9" FillColor="Color/Paper" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
@@ -72,7 +72,7 @@
   <ParagraphStyle Self="ParagraphStyle/段落样式" Name="段落样式" PointSize="6.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
-      <FontStyle type="string">Regular</FontStyle>
+      <FontStyle type="string">Medium</FontStyle>
       <Leading type="unit">7.5</Leading>
     </Properties>
   </ParagraphStyle>

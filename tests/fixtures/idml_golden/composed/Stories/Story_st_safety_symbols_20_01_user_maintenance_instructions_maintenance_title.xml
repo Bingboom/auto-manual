@@ -3,7 +3,7 @@
 <Story Self="st_safety_symbols_20_01_user_maintenance_instructions_maintenance_title" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Maintenance title">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/带底Heading2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>USER MAINTENANCE INSTRUCTIONS</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="6.6" FontStyle="Medium"><Content>USER MAINTENANCE INSTRUCTIONS</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

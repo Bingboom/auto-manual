@@ -27,14 +27,6 @@
    \HBifupper{\csname HBtype_h1_force_upper\endcsname}{#1}}%
 }
 
-% Subbar capsule text: white heavy at the L2 size (master's full-round
-% dark capsules: OPERATING INSTRUCTIONS / USER MAINTENANCE INSTRUCTIONS).
-\providecommand{\HBTypeSubbar}[1]{%
-  {\color{white}\HBFontHeavy
-   \fontsize{\csname HBtype_title_l2_font_size\endcsname}{\csname HBtype_title_l2_font_leading\endcsname}\selectfont
-   \HBifupper{\csname HBtype_h1_force_upper\endcsname}{#1}}%
-}
-
 % Structural title level 1. Keep as an alias so existing H1 params remain stable.
 \providecommand{\HBTypeTitleLevelOne}[1]{%
   \HBTypeHOne{#1}%

@@ -35,15 +35,24 @@ def capsule_text(writer, text: str, *, point_size: float | None = None) -> str:
 
 def heading_text(writer, text: str, *, level: int,
                  point_size: float | None = None) -> str:
-    if point_size is None and level == 1:
-        point_size = 12.4
+    # level 1 rides the HB Capsule Text baseline (the type_h1_* keys);
+    # level 2 takes the subbar type size, both shared with params.tex.
+    font_style = None
+    if point_size is None and level == 2:
+        from .params import param_pt
+        point_size = param_pt(writer.params, "type_subbar_font_size", 6.6)
+        # \HBTypeSubbar renders Gilroy-Medium in the publish line
+        font_style = "Medium"
     xml = writer._psr("HB Capsule Text", text, terminal=True)
     if point_size is None:
         return xml
+    override = f'PointSize="{point_size:g}"'
+    if font_style:
+        override += f' FontStyle="{font_style}"'
     return xml.replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'PointSize="{point_size:g}"',
+        + override,
         1,
     )
 
@@ -220,13 +229,20 @@ def left_rounded_xml(writer, rect_id: str,
 
 
 def h1_arc_pt(writer) -> float:
-    """H1 bottom-corner radius from the shared layout param (mm -> pt),
-    the same key params.tex feeds \\HBTitleLevelOne (STYLE_MAP.md)."""
-    raw = writer.params.get("comp_h1_pill_arc", ("2.0", "mm"))[0]
-    try:
-        return float(raw) * 2.83465
-    except ValueError:
-        return 5.67
+    """H1 bottom-corner radius from the shared layout param, the same
+    key params.tex feeds \\HBTitleLevelOne (STYLE_MAP.md)."""
+    from .params import param_pt
+    return param_pt(writer.params, "comp_h1_pill_arc", 5.67)
+
+
+def h1_bar_h_pt(writer) -> float:
+    """H1 bar height derived like the LaTeX tcolorbox: leading plus the
+    vertical pads plus the box-model correction measured on the accepted
+    publish PDF (14.8pt with the current CSV values)."""
+    from .params import param_pt
+    return (param_pt(writer.params, "type_h1_font_leading", 10.8)
+            + 2 * param_pt(writer.params, "comp_h1_pill_pad_tb", 1.28)
+            + 1.45)
 
 
 def capsule_xml(writer, rect_id: str,
@@ -353,7 +369,7 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
 
 
 def h1_pill_paragraph(writer, text: str, width: float,
-                      height: float = 20.0) -> str:
+                      height: float | None = None) -> str:
     """The master's H1 bar inside a flowed story: sharp top corners,
     rounded bottom corners (\\HBTitleLevelOne / capsule_xml bottom_only —
     see STYLE_MAP.md). One definition serving every flowed page, like
@@ -361,6 +377,8 @@ def h1_pill_paragraph(writer, text: str, width: float,
     """
     # st_anchor_ prefix: package.designmap_xml declares these after their
     # host stories, which is what makes InDesign bind ParentStory at all.
+    if height is None:
+        height = h1_bar_h_pt(writer)
     sid = f"st_anchor_h1pill_{len(writer.stories)}"
     writer._add_story_parts(
         sid, text, [heading_text(writer, text, level=1)])
