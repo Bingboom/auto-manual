@@ -238,7 +238,7 @@
   \begin{tcolorbox}[
     enhanced,
     colback=BgK05,
-    colframe=LineK40!35!white,
+    colframe=BgK05,
     arc=\csname HBcomp_tip_arc\endcsname,
     boxrule=\csname HBcomp_callout_rule\endcsname,
     boxsep=0mm,
@@ -249,8 +249,11 @@
     after skip=1.2mm,
     underlay={
       \fill[white]
-        (interior.south west) rectangle
-        ([xshift=#3]interior.north west);
+        ([xshift=\csname HBcomp_callout_label_inset\endcsname,
+          yshift=\csname HBcomp_callout_label_inset\endcsname]frame.south west)
+        rectangle
+        ([xshift=#3,
+          yshift=-\csname HBcomp_callout_label_inset\endcsname]frame.north west);
     }
   ]%
     \begin{tabular}{@{}m{#3}
@@ -280,7 +283,7 @@
   \makebox[\csname HBcomp_callout_bullet_width\endcsname][l]{%
     \fontsize{\csname HBtype_callout_bullet_font_size\endcsname}
              {\csname HBtype_callout_bullet_font_size\endcsname}\selectfont\textbullet}%
-  #1%
+  #1\par
 }
 \providecommand{\HBWarningBlock}[2]{%
   \HBCalloutBlock{#1}{#2}{\csname HBcomp_caution_label_width\endcsname}%

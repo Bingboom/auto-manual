@@ -169,6 +169,7 @@ type_inbox_label_font_size,6.5,pt,Inbox label font size
 type_inbox_label_font_leading,7.2,pt,Inbox label leading
 comp_tip_arc,2.4,mm,Tip strip corner radius
 comp_callout_rule,1.2,pt,Warning caution note and tip outer border width
+comp_callout_label_inset,1.2,mm,White label panel inset inside the gray callout shell
 comp_callout_body_inset,1.5,mm,Callout body inset from the label panel
 comp_callout_bullet_indent,0.9,mm,Callout bullet inset from the body start
 comp_callout_bullet_width,1.2,mm,Callout bullet hanging-indent width

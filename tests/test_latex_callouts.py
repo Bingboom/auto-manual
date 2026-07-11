@@ -106,6 +106,8 @@ class LatexCalloutTests(unittest.TestCase):
         )
 
         self.assertIn("comp_callout_rule,1.2,pt", params)
+        self.assertIn("comp_callout_label_inset,1.2,mm", params)
+        self.assertIn("colback=BgK05,\n    colframe=BgK05", component)
         self.assertIn("HBcomp_callout_body_inset", component)
         self.assertIn("HBcomp_callout_bullet_indent", component)
         self.assertIn("HBcomp_callout_bullet_width", component)
