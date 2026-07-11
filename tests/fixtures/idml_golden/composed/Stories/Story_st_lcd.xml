@@ -8,10 +8,10 @@
         <GeometryPathType PathOpen="false">
           <PathPointArray>
             <PathPointType Anchor="0 -20" LeftDirection="0 -20" RightDirection="0 -20"/>
-            <PathPointType Anchor="0 -7" LeftDirection="0 -7" RightDirection="0 -3.13401"/>
-            <PathPointType Anchor="7 0" LeftDirection="3.13401 0" RightDirection="7 0"/>
-            <PathPointType Anchor="305.094 0" LeftDirection="305.094 0" RightDirection="308.96 0"/>
-            <PathPointType Anchor="312.094 -7" LeftDirection="312.094 -3.13401" RightDirection="312.094 -7"/>
+            <PathPointType Anchor="0 -5.6693" LeftDirection="0 -5.6693" RightDirection="0 -2.53823"/>
+            <PathPointType Anchor="5.6693 0" LeftDirection="2.53823 0" RightDirection="5.6693 0"/>
+            <PathPointType Anchor="306.425 0" LeftDirection="306.425 0" RightDirection="309.556 0"/>
+            <PathPointType Anchor="312.094 -5.6693" LeftDirection="312.094 -2.53823" RightDirection="312.094 -5.6693"/>
             <PathPointType Anchor="312.094 -20" LeftDirection="312.094 -20" RightDirection="312.094 -20"/>
           </PathPointArray>
         </GeometryPathType>

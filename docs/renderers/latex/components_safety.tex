@@ -150,8 +150,28 @@
 
 \expandafter\providecommand\csname HBcomp_subbar_needspace\endcsname{18mm}
 \providecommand{\safetysubbar}[1]{}
+% Master parity: the subbar is a full-round dark capsule (stadium), the
+% H2-family counterpart of the sharp-top/rounded-south H1 bar
+% (tools/idml/STYLE_MAP.md 标题族).
 \renewcommand{\safetysubbar}[1]{%
-  \HBTitleLevelTwoBlock{#1}%
+  \par\Needspace{\csname HBcomp_subbar_needspace\endcsname}%
+  \noindent
+  \begin{tcolorbox}[
+    colback=BrandDark,
+    colframe=BrandDark,
+    arc=\csname HBcomp_subbar_arc\endcsname,
+    boxrule=0pt,
+    left=\csname HBcomp_subbar_pad_lr\endcsname,
+    right=\csname HBcomp_subbar_pad_lr\endcsname,
+    top=\csname HBcomp_subbar_pad_tb\endcsname,
+    bottom=\csname HBcomp_subbar_pad_tb\endcsname,
+    width=\csname HBcomp_subbar_width\endcsname\textwidth,
+    before skip=0mm,
+    after skip=\csname HBcomp_subbar_after\endcsname
+  ]
+    \HBTypeSubbar{#1}
+  \end{tcolorbox}%
+  \par
 }
 
 % ==================================================
