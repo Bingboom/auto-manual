@@ -2,45 +2,63 @@
 <idPkg:Spread xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Spread Self="sp_toc" PageCount="1" BindingLocation="0" ShowMasterItems="true">
   <Page Self="sp_toc_pg" Name="3" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346"/>
-  <TextFrame Self="tf_toc_title" ParentStory="st_toc_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" CornerOption="RoundedCorner" CornerRadius="7" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_toc_title" ParentStory="st_toc_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
             <PathPointType Anchor="-156.994 -238.346" LeftDirection="-156.994 -238.346" RightDirection="-156.994 -238.346"/>
-            <PathPointType Anchor="-156.994 -218.346" LeftDirection="-156.994 -218.346" RightDirection="-156.994 -218.346"/>
-            <PathPointType Anchor="156.994 -218.346" LeftDirection="156.994 -218.346" RightDirection="156.994 -218.346"/>
+            <PathPointType Anchor="-156.994 -208.346" LeftDirection="-156.994 -208.346" RightDirection="-156.994 -208.346"/>
+            <PathPointType Anchor="156.994 -208.346" LeftDirection="156.994 -208.346" RightDirection="156.994 -208.346"/>
             <PathPointType Anchor="156.994 -238.346" LeftDirection="156.994 -238.346" RightDirection="156.994 -238.346"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
-    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="1 7 1 7"/>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <TextFrame Self="tf_toc_bar_0" ParentStory="st_toc_bar_0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" CornerOption="RoundedCorner" CornerRadius="7" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_toc_bar_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -208.346" LeftDirection="-156.994 -208.346" RightDirection="-156.994 -208.346"/>
-            <PathPointType Anchor="-156.994 -194.346" LeftDirection="-156.994 -194.346" RightDirection="-156.994 -194.346"/>
-            <PathPointType Anchor="156.994 -194.346" LeftDirection="156.994 -194.346" RightDirection="156.994 -194.346"/>
-            <PathPointType Anchor="156.994 -208.346" LeftDirection="156.994 -208.346" RightDirection="156.994 -208.346"/>
+            <PathPointType Anchor="-156.994 -193.346" LeftDirection="-156.994 -193.346" RightDirection="-156.994 -193.346"/>
+            <PathPointType Anchor="-156.994 -193.346" LeftDirection="-156.994 -193.346" RightDirection="-156.994 -189.48"/>
+            <PathPointType Anchor="-149.994 -186.346" LeftDirection="-153.86 -186.346" RightDirection="-149.994 -186.346"/>
+            <PathPointType Anchor="149.994 -186.346" LeftDirection="149.994 -186.346" RightDirection="153.86 -186.346"/>
+            <PathPointType Anchor="156.994 -193.346" LeftDirection="156.994 -189.48" RightDirection="156.994 -193.346"/>
+            <PathPointType Anchor="156.994 -193.346" LeftDirection="156.994 -193.346" RightDirection="156.994 -197.212"/>
+            <PathPointType Anchor="149.994 -200.346" LeftDirection="153.86 -200.346" RightDirection="149.994 -200.346"/>
+            <PathPointType Anchor="-149.994 -200.346" LeftDirection="-149.994 -200.346" RightDirection="-153.86 -200.346"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
-    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1 5 1 6"/>
+  </Rectangle>
+  <TextFrame Self="tf_toc_bar_0" ParentStory="st_toc_bar_0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-148.994 -200.346" LeftDirection="-148.994 -200.346" RightDirection="-148.994 -200.346"/>
+            <PathPointType Anchor="-148.994 -186.346" LeftDirection="-148.994 -186.346" RightDirection="-148.994 -186.346"/>
+            <PathPointType Anchor="148.994 -186.346" LeftDirection="148.994 -186.346" RightDirection="148.994 -186.346"/>
+            <PathPointType Anchor="148.994 -200.346" LeftDirection="148.994 -200.346" RightDirection="148.994 -200.346"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1 0 1 0"/>
   </TextFrame>
   <TextFrame Self="tf_toc_seg0_c0" ParentStory="st_toc_seg0_c0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -188.346" LeftDirection="-156.994 -188.346" RightDirection="-156.994 -188.346"/>
-            <PathPointType Anchor="-156.994 -148.346" LeftDirection="-156.994 -148.346" RightDirection="-156.994 -148.346"/>
-            <PathPointType Anchor="-6 -148.346" LeftDirection="-6 -148.346" RightDirection="-6 -148.346"/>
-            <PathPointType Anchor="-6 -188.346" LeftDirection="-6 -188.346" RightDirection="-6 -188.346"/>
+            <PathPointType Anchor="-156.994 -180.346" LeftDirection="-156.994 -180.346" RightDirection="-156.994 -180.346"/>
+            <PathPointType Anchor="-156.994 -140.346" LeftDirection="-156.994 -140.346" RightDirection="-156.994 -140.346"/>
+            <PathPointType Anchor="-6 -140.346" LeftDirection="-6 -140.346" RightDirection="-6 -140.346"/>
+            <PathPointType Anchor="-6 -180.346" LeftDirection="-6 -180.346" RightDirection="-6 -180.346"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -52,10 +70,10 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="6 -188.346" LeftDirection="6 -188.346" RightDirection="6 -188.346"/>
-            <PathPointType Anchor="6 -148.346" LeftDirection="6 -148.346" RightDirection="6 -148.346"/>
-            <PathPointType Anchor="156.994 -148.346" LeftDirection="156.994 -148.346" RightDirection="156.994 -148.346"/>
-            <PathPointType Anchor="156.994 -188.346" LeftDirection="156.994 -188.346" RightDirection="156.994 -188.346"/>
+            <PathPointType Anchor="6 -180.346" LeftDirection="6 -180.346" RightDirection="6 -180.346"/>
+            <PathPointType Anchor="6 -140.346" LeftDirection="6 -140.346" RightDirection="6 -140.346"/>
+            <PathPointType Anchor="156.994 -140.346" LeftDirection="156.994 -140.346" RightDirection="156.994 -140.346"/>
+            <PathPointType Anchor="156.994 -180.346" LeftDirection="156.994 -180.346" RightDirection="156.994 -180.346"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
