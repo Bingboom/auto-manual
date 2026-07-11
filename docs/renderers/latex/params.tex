@@ -86,6 +86,9 @@
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_body_force_upper\endcsname{0}
 
+% Callout bullet glyph size
+\expandafter\def\csname HBtype_callout_bullet_font_size\endcsname{4.8pt}
+
 % FCC body leading
 \expandafter\def\csname HBtype_fcc_font_leading\endcsname{6.5pt}
 
@@ -259,8 +262,17 @@
 
 % ===== COMPONENTS =====
 
-% Tip and caution outer border width
-\expandafter\def\csname HBcomp_callout_rule\endcsname{0.4pt}
+% Callout body inset from the label panel
+\expandafter\def\csname HBcomp_callout_body_inset\endcsname{1.5mm}
+
+% Callout bullet inset from the body start
+\expandafter\def\csname HBcomp_callout_bullet_indent\endcsname{0.9mm}
+
+% Callout bullet hanging-indent width
+\expandafter\def\csname HBcomp_callout_bullet_width\endcsname{1.2mm}
+
+% Warning caution note and tip outer border width
+\expandafter\def\csname HBcomp_callout_rule\endcsname{1.2pt}
 
 % Caution strip label panel width
 \expandafter\def\csname HBcomp_caution_label_width\endcsname{18.5mm}

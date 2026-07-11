@@ -168,7 +168,11 @@ comp_inbox_after,2.5,mm,Space after inbox cards
 type_inbox_label_font_size,6.5,pt,Inbox label font size
 type_inbox_label_font_leading,7.2,pt,Inbox label leading
 comp_tip_arc,2.4,mm,Tip strip corner radius
-comp_callout_rule,0.4,pt,Tip and caution outer border width
+comp_callout_rule,1.2,pt,Warning caution note and tip outer border width
+comp_callout_body_inset,1.5,mm,Callout body inset from the label panel
+comp_callout_bullet_indent,0.9,mm,Callout bullet inset from the body start
+comp_callout_bullet_width,1.2,mm,Callout bullet hanging-indent width
+type_callout_bullet_font_size,4.8,pt,Callout bullet glyph size
 comp_tip_height,14.7,mm,Tip strip height
 comp_tip_label_width,18.5,mm,Tip strip label panel width
 comp_tip_pad_lr,2.2,mm,Tip strip horizontal padding

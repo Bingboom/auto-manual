@@ -254,7 +254,8 @@
     }
   ]%
     \begin{tabular}{@{}m{#3}
-      @{}m{\dimexpr\linewidth-#3\relax}@{}}%
+      @{\hspace{\csname HBcomp_callout_body_inset\endcsname}}%
+      m{\dimexpr\linewidth-#3-\csname HBcomp_callout_body_inset\endcsname\relax}@{}}%
       {\centering\HBFontSemiBold
        \rule{0pt}{\dimexpr\csname HBcomp_tip_height\endcsname
          -2\csname HBcomp_caution_pad_tb\endcsname\relax}%
@@ -272,8 +273,14 @@
 }
 \providecommand{\HBCalloutBullet}[1]{%
   \par\noindent
-  \hangindent=2mm\hangafter=1
-  \makebox[2mm][l]{\raisebox{0.15ex}{\fontsize{4.2pt}{4.2pt}\selectfont\textbullet}}#1%
+  \hangindent=\dimexpr\csname HBcomp_callout_bullet_indent\endcsname
+    +\csname HBcomp_callout_bullet_width\endcsname\relax
+  \hangafter=1
+  \hspace*{\csname HBcomp_callout_bullet_indent\endcsname}%
+  \makebox[\csname HBcomp_callout_bullet_width\endcsname][l]{%
+    \fontsize{\csname HBtype_callout_bullet_font_size\endcsname}
+             {\csname HBtype_callout_bullet_font_size\endcsname}\selectfont\textbullet}%
+  #1%
 }
 \providecommand{\HBWarningBlock}[2]{%
   \HBCalloutBlock{#1}{#2}{\csname HBcomp_caution_label_width\endcsname}%

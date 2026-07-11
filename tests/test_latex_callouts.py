@@ -99,6 +99,17 @@ class LatexCalloutTests(unittest.TestCase):
 
         self.assertEqual(["\\HBCalloutBullet{%\n"], translator.body)
 
+    def test_callout_geometry_keeps_border_and_list_alignment_parameterized(self) -> None:
+        params = (ROOT / "data" / "layout_params.csv").read_text(encoding="utf-8")
+        component = (ROOT / "docs" / "renderers" / "latex" / "components_base.tex").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("comp_callout_rule,1.2,pt", params)
+        self.assertIn("HBcomp_callout_body_inset", component)
+        self.assertIn("HBcomp_callout_bullet_indent", component)
+        self.assertIn("HBcomp_callout_bullet_width", component)
+
 
 if __name__ == "__main__":
     unittest.main()
