@@ -1,0 +1,144 @@
+% ==================================================
+% components_data_tables.tex
+% Rounded body-data tables built on HBSharedDataTable
+% ==================================================
+
+\expandafter\providecommand\csname HBcomp_data_table_tabcolsep\endcsname{2.4pt}
+\expandafter\providecommand\csname HBcomp_data_table_row_stretch\endcsname{1.0}
+\expandafter\providecommand\csname HBcomp_data_table_before\endcsname{1.2mm}
+\expandafter\providecommand\csname HBcomp_data_table_after\endcsname{1.2mm}
+\expandafter\providecommand\csname HBcomp_data_table_header_height\endcsname{5.4mm}
+\expandafter\providecommand\csname HBcomp_data_table_row_height\endcsname{5.0mm}
+\expandafter\providecommand\csname HBcomp_auto_resume_left_ratio\endcsname{0.50}
+\expandafter\providecommand\csname HBcomp_key_table_left_ratio\endcsname{0.41}
+\expandafter\providecommand\csname HBcomp_key_table_middle_ratio\endcsname{0.29}
+\expandafter\providecommand\csname HBcomp_key_table_row_height\endcsname{13.2mm}
+\expandafter\providecommand\csname HBcomp_key_section_needspace\endcsname{54mm}
+\expandafter\providecommand\csname HBcomp_trouble_left_ratio\endcsname{0.14}
+\expandafter\providecommand\csname HBcomp_trouble_step_indent\endcsname{3.4mm}
+\expandafter\providecommand\csname HBcomp_trouble_steps_pad_tb\endcsname{1.0mm}
+\expandafter\providecommand\csname HBcomp_trouble_section_needspace\endcsname{102mm}
+\expandafter\providecommand\csname HBtype_data_table_font_size\endcsname{5.9pt}
+\expandafter\providecommand\csname HBtype_data_table_font_leading\endcsname{6.7pt}
+\expandafter\providecommand\csname HBtype_data_table_header_font_size\endcsname{6.2pt}
+\expandafter\providecommand\csname HBtype_data_table_header_font_leading\endcsname{7.0pt}
+\expandafter\providecommand\csname HBtype_trouble_code_font_size\endcsname{8.2pt}
+\expandafter\providecommand\csname HBtype_trouble_code_font_leading\endcsname{8.8pt}
+
+\providecommand{\HBDataCenteredCell}[2]{%
+  \parbox[c][#1][c]{\linewidth}{#2}%
+}
+
+\providecommand{\HBDataNaturalCenteredCell}[1]{%
+  \parbox[c]{\linewidth}{#1}%
+}
+
+\providecommand{\HBDataHeaderCell}[1]{%
+  \HBDataCenteredCell{\csname HBcomp_data_table_header_height\endcsname}{%
+    {\HBFontHeavy\color{TextK90}%
+     \fontsize{\csname HBtype_data_table_header_font_size\endcsname}
+              {\csname HBtype_data_table_header_font_leading\endcsname}\selectfont
+     \RaggedRight #1}%
+  }%
+}
+
+\providecommand{\HBDataBodyCell}[1]{%
+  {\HBFontRegular\color{TextK90}%
+   \fontsize{\csname HBtype_data_table_font_size\endcsname}
+            {\csname HBtype_data_table_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\providecommand{\HBDataCodeCell}[1]{%
+  {\HBFontHeavy\color{TextK90}%
+   \fontsize{\csname HBtype_trouble_code_font_size\endcsname}
+            {\csname HBtype_trouble_code_font_leading\endcsname}\selectfont
+   \centering #1}%
+}
+
+\providecommand{\HBDataAutoResumeCell}[1]{%
+  \HBDataCenteredCell{\csname HBcomp_data_table_row_height\endcsname}{%
+    \HBDataBodyCell{#1}%
+  }%
+}
+
+\providecommand{\HBDataKeyCombinationsCell}[1]{%
+  \HBDataCenteredCell{\csname HBcomp_key_table_row_height\endcsname}{%
+    \HBDataBodyCell{#1}%
+  }%
+}
+
+\providecommand{\HBDataTroubleshootingCell}[1]{%
+  \HBDataCenteredCell{\csname HBcomp_data_table_row_height\endcsname}{%
+    \HBDataBodyCell{#1}%
+  }%
+}
+
+\providecommand{\HBDataStepsCell}[1]{%
+  \HBDataNaturalCenteredCell{%
+    \HBDataBodyCell{%
+      \vspace*{\csname HBcomp_trouble_steps_pad_tb\endcsname}%
+      #1%
+      \vspace*{\csname HBcomp_trouble_steps_pad_tb\endcsname}%
+    }%
+  }%
+}
+
+\providecommand{\HBDataCellBreak}{\par\noindent}
+\providecommand{\HBDataKeySectionGuard}{%
+  \Needspace{\csname HBcomp_key_section_needspace\endcsname}%
+}
+\providecommand{\HBDataTroubleSectionGuard}{%
+  \Needspace{\csname HBcomp_trouble_section_needspace\endcsname}%
+}
+\providecommand{\HBDataHangingLine}[2]{%
+  \par\noindent
+  \hangindent=\csname HBcomp_trouble_step_indent\endcsname
+  \hangafter=1
+  \makebox[\csname HBcomp_trouble_step_indent\endcsname][l]{#1.}#2\par
+}
+
+\newenvironment{HBDataTableFrame}[1]{%
+  \par\vspace{\csname HBcomp_data_table_before\endcsname}%
+  \begingroup
+  \setlength{\parskip}{0pt}%
+  \setlength{\parindent}{0pt}%
+  \colorlet{HBSharedTableLeftBg}{BgK05}%
+  \begin{HBSharedDataTable}{#1}{\csname HBcomp_data_table_tabcolsep\endcsname}%
+  \renewcommand{\arraystretch}{\csname HBcomp_data_table_row_stretch\endcsname}%
+}{%
+  \end{HBSharedDataTable}%
+  \endgroup
+  \par\vspace{\csname HBcomp_data_table_after\endcsname}%
+}
+
+\NewEnviron{HBAutoResumeTable}{%
+  \begin{HBDataTableFrame}{\csname HBcomp_auto_resume_left_ratio\endcsname}%
+  \begin{tabularx}{\linewidth}{@{}
+    >{\RaggedRight\arraybackslash}m{\csname HBcomp_auto_resume_left_ratio\endcsname\linewidth}|
+    >{\RaggedRight\arraybackslash}X@{}}%
+  \BODY
+  \end{tabularx}%
+  \end{HBDataTableFrame}%
+}
+
+\NewEnviron{HBKeyCombinationTable}{%
+  \begin{HBDataTableFrame}{\csname HBcomp_key_table_left_ratio\endcsname}%
+  \begin{tabularx}{\linewidth}{@{}
+    >{\RaggedRight\arraybackslash}m{\csname HBcomp_key_table_left_ratio\endcsname\linewidth}|
+    >{\RaggedRight\arraybackslash}m{\csname HBcomp_key_table_middle_ratio\endcsname\linewidth}|
+    >{\RaggedRight\arraybackslash}X@{}}%
+  \BODY
+  \end{tabularx}%
+  \end{HBDataTableFrame}%
+}
+
+\NewEnviron{HBTroubleshootingTable}{%
+  \begin{HBDataTableFrame}{\csname HBcomp_trouble_left_ratio\endcsname}%
+  \begin{tabularx}{\linewidth}{@{}
+    >{\centering\arraybackslash}m{\csname HBcomp_trouble_left_ratio\endcsname\linewidth}|
+    >{\RaggedRight\arraybackslash}X@{}}%
+  \BODY
+  \end{tabularx}%
+  \end{HBDataTableFrame}%
+}

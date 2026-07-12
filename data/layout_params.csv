@@ -119,6 +119,29 @@ comp_table_tabcolsep,2.4,pt,Table tabcolsep
 comp_table_outer_arc,2.4,mm,Table outer corner radius
 comp_table_outer_rule,0.75,pt,Table outer rule width (archive 1500 Ultra: 0.75pt)
 ,,,
+,,,------ BODY DATA TABLES ------
+comp_data_table_tabcolsep,2.4,pt,Body data table cell horizontal padding
+comp_data_table_row_stretch,1.0,ratio,Body data table row stretch independent of spec tables
+comp_data_table_before,1.2,mm,Space before body data tables
+comp_data_table_after,1.2,mm,Space after body data tables
+comp_data_table_header_height,5.2,mm,Body data table header minimum height
+comp_data_table_row_height,4.2,mm,Body data table ordinary row minimum height
+comp_auto_resume_left_ratio,0.50,ratio,Auto-resume table left column ratio
+comp_key_table_left_ratio,0.41,ratio,Key-combination table first column ratio
+comp_key_table_middle_ratio,0.29,ratio,Key-combination table middle column ratio
+comp_key_table_row_height,11.6,mm,Key-combination table body row minimum height
+comp_key_section_needspace,54,mm,Minimum space required for key-combination heading and table
+comp_trouble_left_ratio,0.11,ratio,Troubleshooting error-code column ratio before cell padding
+comp_trouble_step_indent,3.4,mm,Troubleshooting numbered-step hanging indent
+comp_trouble_steps_pad_tb,1.0,mm,Troubleshooting numbered-step cell top/bottom padding
+comp_trouble_section_needspace,102,mm,Minimum space required for troubleshooting heading and table
+type_data_table_font_size,5.9,pt,Body data table font size
+type_data_table_font_leading,6.7,pt,Body data table leading
+type_data_table_header_font_size,6.2,pt,Body data table header font size
+type_data_table_header_font_leading,7.0,pt,Body data table header leading
+type_trouble_code_font_size,7.5,pt,Troubleshooting error-code font size
+type_trouble_code_font_leading,8.0,pt,Troubleshooting error-code leading
+,,,
 ,,,------ DATA TABLE DENSITY (archive 1500 Ultra parity) ------
 comp_lcd_table_row_stretch,0.82,ratio,LCD icon table row stretch
 comp_lcd_no_col_width,4.8,mm,LCD row-number column width
