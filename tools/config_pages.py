@@ -19,6 +19,8 @@ class PageParseIssue:
 class CoverPdfPage:
     page_type: str
     file: str
+    # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
+    capability: str | None = None
 
 
 @dataclass(frozen=True)
@@ -28,6 +30,8 @@ class CsvPage:
     source: str
     langs: tuple[str, ...]
     include_dir: str | None
+    # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
+    capability: str | None = None
 
 
 @dataclass(frozen=True)
@@ -39,6 +43,8 @@ class GeneratedPage:
     template: str
     langs: tuple[str, ...]
     include_dir: str | None
+    # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
+    capability: str | None = None
 
 
 @dataclass(frozen=True)
@@ -46,6 +52,8 @@ class PdfInsertPage:
     page_type: str
     file_map: dict[str, str]
     langs: tuple[str, ...]
+    # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
+    capability: str | None = None
 
 
 @dataclass(frozen=True)
@@ -53,6 +61,8 @@ class RstIncludePage:
     page_type: str
     file: str
     lang: str | None
+    # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
+    capability: str | None = None
 
 
 ConfigPage: TypeAlias = CoverPdfPage | CsvPage | GeneratedPage | PdfInsertPage | RstIncludePage
@@ -86,12 +96,20 @@ def parse_config_pages(
             issues.append(PageParseIssue("ERROR", f"pages[{idx}].type invalid: {page_type}"))
             continue
 
+        capability_raw = raw.get("capability")
+        if capability_raw is not None and (
+                not isinstance(capability_raw, str) or not capability_raw.strip()):
+            issues.append(PageParseIssue(
+                "ERROR", f"pages[{idx}].capability must be a non-empty string"))
+            continue
+        capability = capability_raw.strip() if isinstance(capability_raw, str) else None
+
         if page_type == "cover_pdf":
             file_name = raw.get("file")
             if not isinstance(file_name, str) or not file_name.strip():
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] cover_pdf requires file"))
                 continue
-            parsed.append(CoverPdfPage(page_type=page_type, file=file_name.strip()))
+            parsed.append(CoverPdfPage(page_type=page_type, file=file_name.strip(), capability=capability))
             continue
 
         if page_type == "csv_page":
@@ -127,6 +145,7 @@ def parse_config_pages(
                     source=source,
                     langs=page_langs,
                     include_dir=include_dir_text,
+                    capability=capability,
                 )
             )
             continue
@@ -191,6 +210,7 @@ def parse_config_pages(
                     template=template.strip(),
                     langs=page_langs,
                     include_dir=include_dir_text,
+                    capability=capability,
                 )
             )
             continue
@@ -227,6 +247,7 @@ def parse_config_pages(
                     page_type=page_type,
                     file_map=file_map,
                     langs=tuple(page_langs_raw),
+                    capability=capability,
                 )
             )
             continue
@@ -248,6 +269,7 @@ def parse_config_pages(
                     page_type=page_type,
                     file=file_name.strip(),
                     lang=lang,
+                    capability=capability,
                 )
             )
             continue

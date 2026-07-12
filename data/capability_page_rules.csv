@@ -1,6 +1,6 @@
 capability,scope,page_stem,match_regex,required_when_true,forbidden_when_false,notes
 UPS功能,page,06_ups_mode,,Y,Y,UPS 能力决定 UPS 章节页的有无
-加电包扩容,page,07_extra_battery,,N,Y,"扩容页模板待建;暂只拦""无能力却含页"""
+加电包扩容,page,07_extra_battery,,Y,Y,"2026-07-12 三语骨架模板已建(07_extra_battery),true 侧开启;装配期由 manifest capability 注解选配"
 LED照明灯,section,05_operation_guide,LED[ 　]*(LIGHT|ライト|照明)|LED 라이트,Y,Y,操作指南内 LED 小节
 TOU/计划充电,section,lcd_icons|12_app_setup,TOU|充电计划|計画充電|Charging Schedule|충전 계획,Y,N,"2026-07-12 终裁:HTE153 支持 TOU,手册体现于 LCD 图标表 TOU Mode 行(HTE154 同款);true 侧强制开启"
 自发自用模式,section,12_app_setup,自发自用|自家発電|Self[- ]?Consumption,Y,N,App 页自发自用小节
