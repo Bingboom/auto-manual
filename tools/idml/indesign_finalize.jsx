@@ -1,0 +1,160 @@
+/* InDesign final-mile runner. HB_JOB_PATH is injected by tools/indesign_finalize.py. */
+(function () {
+    function jsonParse(text) {
+        return eval("(" + text + ")");
+    }
+
+    function jsonStringify(value) {
+        if (value === null) { return "null"; }
+        if (typeof value === "string") {
+            var escaped = "";
+            for (var ci = 0; ci < value.length; ci += 1) {
+                var character = value.charAt(ci);
+                var code = value.charCodeAt(ci);
+                if (character === "\\") { escaped += "\\\\"; }
+                else if (character === '"') { escaped += '\\"'; }
+                else if (character === "\r") { escaped += "\\r"; }
+                else if (character === "\n") { escaped += "\\n"; }
+                else if (character === "\t") { escaped += "\\t"; }
+                else if (code < 32) { escaped += "\\u00" + (code < 16 ? "0" : "") + code.toString(16); }
+                else { escaped += character; }
+            }
+            return '"' + escaped + '"';
+        }
+        if (typeof value === "number" || typeof value === "boolean") { return String(value); }
+        if (value instanceof Array) {
+            var items = [];
+            for (var ai = 0; ai < value.length; ai += 1) { items.push(jsonStringify(value[ai])); }
+            return "[" + items.join(",") + "]";
+        }
+        var fields = [];
+        for (var key in value) {
+            if (value.hasOwnProperty(key)) {
+                fields.push(jsonStringify(key) + ":" + jsonStringify(value[key]));
+            }
+        }
+        return "{" + fields.join(",") + "}";
+    }
+
+    function readText(path) {
+        var file = File(path);
+        file.encoding = "UTF-8";
+        if (!file.open("r")) { throw Error("cannot open job: " + path); }
+        var text = file.read();
+        file.close();
+        return text;
+    }
+
+    function writeJson(path, value) {
+        var file = File(path);
+        file.parent.create();
+        file.encoding = "UTF-8";
+        if (!file.open("w")) { throw Error("cannot write report: " + path); }
+        file.write(jsonStringify(value));
+        file.write("\n");
+        file.close();
+    }
+
+    function itemLabel(item) {
+        try { return String(item.label || ""); } catch (_) { return ""; }
+    }
+
+    var job = jsonParse(readText(HB_JOB_PATH));
+    var report = {
+        schema_version: "indesign-preflight/v1",
+        input_idml: job.input_idml,
+        output_indd: job.output_indd,
+        output_pdf: job.output_pdf,
+        success: false,
+        page_count: 0,
+        story_count: 0,
+        overset_stories: [],
+        missing_fonts: [],
+        bad_links: [],
+        stable_labels: {pages: 0, text_frames: 0},
+        stage: "init",
+        error: null
+    };
+    var doc = null;
+    var oldInteraction = app.scriptPreferences.userInteractionLevel;
+    try {
+        app.scriptPreferences.userInteractionLevel = UserInteractionLevels.NEVER_INTERACT;
+        report.stage = "open_idml";
+        doc = app.open(File(job.input_idml), false);
+        doc.recompose();
+        report.page_count = doc.pages.length;
+        report.story_count = doc.stories.length;
+
+        for (var pi = 0; pi < doc.pages.length; pi += 1) {
+            try {
+                doc.pages[pi].insertLabel("hb:page_id", "physical-" + (pi + 1));
+                report.stable_labels.pages += 1;
+            } catch (_) {}
+        }
+        var frames = doc.textFrames.everyItem().getElements();
+        for (var ti = 0; ti < frames.length; ti += 1) {
+            var parentPage = frames[ti].parentPage;
+            var pagePart = parentPage && parentPage.isValid ? parentPage.documentOffset + 1 : 0;
+            frames[ti].label = "hb:page=" + pagePart + ";frame=" + ti;
+            report.stable_labels.text_frames += 1;
+        }
+
+        for (var si = 0; si < doc.stories.length; si += 1) {
+            var story = doc.stories[si];
+            if (story.overflows) {
+                var containers = [];
+                for (var tci = 0; tci < story.textContainers.length; tci += 1) {
+                    var container = story.textContainers[tci];
+                    var containerPage = container.parentPage;
+                    containers.push({
+                        page: containerPage && containerPage.isValid ? containerPage.documentOffset + 1 : 0,
+                        label: itemLabel(container)
+                    });
+                }
+                report.overset_stories.push({
+                    index: si,
+                    id: String(story.id),
+                    label: itemLabel(story),
+                    preview: String(story.contents).replace(/[\r\n]+/g, " ").slice(0, 120),
+                    text_containers: containers
+                });
+            }
+        }
+
+        var fonts = doc.fonts.everyItem().getElements();
+        for (var fi = 0; fi < fonts.length; fi += 1) {
+            var font = fonts[fi];
+            if (font.status !== FontStatus.INSTALLED) {
+                report.missing_fonts.push({name: String(font.name), status: String(font.status)});
+            }
+        }
+
+        for (var li = 0; li < doc.links.length; li += 1) {
+            var link = doc.links[li];
+            if (link.status !== LinkStatus.NORMAL) {
+                report.bad_links.push({
+                    name: String(link.name), status: String(link.status),
+                    path: String(link.filePath || "")
+                });
+            }
+        }
+
+        report.stage = "save_indd";
+        doc.save(File(job.output_indd));
+        report.stage = "export_pdf";
+        doc.exportFile(ExportFormat.pdfType, File(job.output_pdf), false);
+        report.stage = "complete";
+        report.success = report.overset_stories.length === 0 &&
+            report.missing_fonts.length === 0 && report.bad_links.length === 0;
+        doc.close(SaveOptions.YES);
+        doc = null;
+    } catch (error) {
+        report.error = String(error) + (error.line ? " at line " + error.line : "");
+        if (doc !== null) {
+            try { doc.close(SaveOptions.NO); } catch (_) {}
+        }
+    } finally {
+        app.scriptPreferences.userInteractionLevel = oldInteraction;
+        writeJson(job.report_json, report);
+    }
+}());
