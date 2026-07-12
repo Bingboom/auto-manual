@@ -27,12 +27,14 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 try:
+    from tools.idml.data_components import is_data_plumbing, parse_data_component
     from tools.idml.notice_labels import notice_label_variant
     from tools.idml_rst_tables import (
         parse_grid_table as _parse_grid_table_impl,
         parse_list_table as _parse_list_table_impl,
     )
 except ModuleNotFoundError:  # direct tools/export_idml.py execution
+    from idml.data_components import is_data_plumbing, parse_data_component  # type: ignore
     from idml.notice_labels import notice_label_variant  # type: ignore
     from idml_rst_tables import (  # type: ignore
         parse_grid_table as _parse_grid_table_impl,
@@ -54,7 +56,7 @@ EMITTED_COMPONENT_KINDS = (
 # Block kinds whose text payload is a JSON document (rows / component spec),
 # not prose — the RST unescape pass must reach INTO their string values, never
 # rewrite the JSON envelope (see _unescape_rst_stars).
-_JSON_BLOCK_KINDS = frozenset({"component", "table"})
+_JSON_BLOCK_KINDS = frozenset({"component", "data", "table"})
 
 
 @dataclass
@@ -197,6 +199,10 @@ _MACROS: tuple[tuple[str, int, str], ...] = (
 
 def _extract_raw_latex(body: str, result: ExtractResult) -> None:
     stripped_body = body.strip()
+    data_payload = parse_data_component(body)
+    if data_payload is not None:
+        result.blocks.append(("data", json.dumps(data_payload, ensure_ascii=False)))
+        return
     if stripped_body == r"\begin{safetytwocol}":
         result.twocol = True
         result.blocks.append(("layout", "twocol_start"))
@@ -312,9 +318,9 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
         # raw content with no recognizable macro (pure latex plumbing like
         # \HBApplyLang, tabular constructs...) — plumbing is silent, real
         # constructs count as skipped.
-        stripped = re.sub(r"\\HBApplyLang\{[^}]*\}", "", body)
-        stripped = re.sub(r"\\(?:fi|HBPageBreak|HBPrefacePageEnd)\b", "", stripped).strip()
-        if stripped and not stripped.startswith("\\begin{safetytwocol}") \
+        stripped = re.sub(r"\\HBApplyLang\{[^}]*\}", "", body).strip()
+        if stripped and not is_data_plumbing(stripped) \
+                and not stripped.startswith("\\begin{safetytwocol}") \
                 and not stripped.startswith("\\end{safetytwocol}"):
             result.skipped_raw += 1
 

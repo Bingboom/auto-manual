@@ -86,6 +86,72 @@ class ManualIRTests(unittest.TestCase):
         self.assertEqual(BUNDLE.parent / "ir", manual_ir_dir_of(BUNDLE))
         self.assertEqual(expected, Paths.manual_ir_json_for(BUNDLE))
 
+    def test_generated_data_page_macros_become_typed_ir(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "rst"
+            page_dir = bundle / "page"
+            page_dir.mkdir(parents=True)
+            (bundle / "index.rst").write_text(
+                ".. include:: page/spec_en.rst\n"
+                ".. include:: page/lcd_icons_en.rst\n"
+                ".. include:: page/symbols_en.rst\n",
+                encoding="utf-8",
+            )
+            (page_dir / "spec_en.rst").write_text(
+                ".. raw:: latex\n\n"
+                "   \\HBSpecPageStart \\section{SPECIFICATIONS}\n\n"
+                ".. raw:: latex\n\n"
+                "   \\specsectiontitle{INPUT PORTS}\n"
+                "   \\begin{spectable}\n"
+                "   \\HBTypeSpecLabel{AC Input} & "
+                "\\HBTypeSpecValue{120 V\\textasciitilde{} 60 Hz} \\tabularnewline\n"
+                "   \\end{spectable}\n\n"
+                ".. raw:: latex\n\n"
+                "   \\HBTypeSpecNote{\\HBSpecMarkerOne{} Note text}\\par\n\n"
+                ".. raw:: latex\n\n"
+                "   \\HBSpecPageEnd\n",
+                encoding="utf-8",
+            )
+            (page_dir / "lcd_icons_en.rst").write_text(
+                ".. raw:: latex\n\n"
+                "   \\begin{HBLcdIconTable}\n"
+                "   \\HBLcdIconRow{1}{wifi.png}{Wi-Fi}"
+                "{\\textbf{On:} Connected. \\newline \\textbf{Off:} Disconnected.}\n"
+                "   \\end{HBLcdIconTable}\n",
+                encoding="utf-8",
+            )
+            (page_dir / "symbols_en.rst").write_text(
+                ".. raw:: latex\n\n"
+                "   \\HBSymbolTable{Symbol}{Meaning}{%\n"
+                "   \\HBSymbolSignalRow{warning.png}{WARNING}{Read this.}\n"
+                "   }\n\n"
+                ".. raw:: latex\n\n"
+                "   \\HBSymbolTwoColumnTables{Symbol}{Meaning}{%\n"
+                "   \\HBSymbolIconRow{manual.png}{Read the manual.}\n"
+                "   }{%\n"
+                "   \\HBSymbolIconRow{fire.png}{Keep away from fire.}\n"
+                "   }\n",
+                encoding="utf-8",
+            )
+            ir = self._build(bundle)
+
+        self.assertEqual(0, ir.metadata["skipped_raw"])
+        payloads = [
+            block.payload for page in ir.pages for block in page.blocks
+            if block.kind == "data"
+        ]
+        self.assertEqual(
+            ["spec_start", "spec_section", "spec_annotations", "lcd_icons",
+             "symbol_signals", "symbol_icons"],
+            [payload["kind"] for payload in payloads],
+        )
+        self.assertEqual("120 V 60 Hz", payloads[1]["rows"][0][1])
+        self.assertEqual("On: Connected.\nOff: Disconnected.", payloads[3]["rows"][0]["desc"])
+        self.assertEqual(
+            ["wifi.png", "warning.png", "manual.png", "fire.png"],
+            list(ir.asset_refs),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

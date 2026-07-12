@@ -14,7 +14,7 @@ from .hashing import file_sha256, ordered_files_sha256, value_sha256
 from .model import ManualBlock, ManualIR, ManualPage
 
 
-_JSON_BLOCK_KINDS = frozenset({"component", "table"})
+_JSON_BLOCK_KINDS = frozenset({"component", "data", "table"})
 _ASSET_KEYS = frozenset({"asset", "asset_ref", "figure", "image", "img", "src"})
 
 
