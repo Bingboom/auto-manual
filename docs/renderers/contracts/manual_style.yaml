@@ -1,0 +1,293 @@
+schema_version: 1
+contract_id: hb-manual-style
+latex_registry: ../latex/STYLE_REGISTRY.md
+token_source: ../../../data/layout_params.csv
+
+defaults:
+  final_mile:
+    content_editable: false
+    allowed_adjustments:
+      - frame_geometry
+      - explicit_page_break
+      - asset_fitting
+      - limited_tracking
+
+styles:
+  HB-TYPE-BODY:
+    role: Body paragraph
+    semantic_source_kinds: [paragraph]
+    token_refs: [type_body_font_size, type_body_font_leading, page_parskip, type_body_color]
+    latex: {owner: type_system.tex, entrypoints: [HBTypeBaseStart, HBTypeBody]}
+    indesign: {renderer: paragraph, paragraph_style: 段落样式}
+    status: aligned
+
+  HB-TYPE-LIST:
+    role: Bulleted and numbered copy
+    semantic_source_kinds: [list, list_item]
+    token_refs: [type_list_font_size, type_list_font_leading, comp_list_leftmargin, comp_list_labelsep, comp_list_itemsep, comp_list_topsep]
+    latex: {owner: components_base.tex, entrypoints: [HBTypeListStart]}
+    indesign: {renderer: list, paragraph_style: Item List}
+    status: partial
+    debt: [IDML does not yet apply language-density list overrides through a typed cascade.]
+
+  HB-TITLE-L1:
+    role: Level-one section band
+    semantic_source_kinds: [heading_1]
+    token_refs: [type_h1_font_size, type_h1_font_leading, type_h1_force_upper, comp_h1_pill_arc, comp_h1_pill_height, comp_h1_pill_pad_lr, comp_h1_pill_pad_tb, comp_h1_pill_after]
+    latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelOne]}
+    indesign: {renderer: heading_band, paragraph_style: Heading1, object_style: HB Capsule Heading}
+    status: partial
+    debt: [IDML still derives band height independently instead of using comp_h1_pill_height.]
+
+  HB-TITLE-L2:
+    role: Dot-led level-two heading
+    semantic_source_kinds: [heading_2]
+    token_refs: [type_title_l2_font_size, type_title_l2_font_leading, comp_title_l2_before, comp_title_l2_after, comp_title_l2_bullet_radius, comp_title_l2_gap, comp_title_l2_needspace]
+    latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelTwo]}
+    indesign: {renderer: heading, paragraph_style: Heading2}
+    status: partial
+    debt: [IDML does not yet enforce the shared keep-with-next policy.]
+
+  HB-TITLE-L3:
+    role: Compact level-three heading
+    semantic_source_kinds: [heading_3]
+    token_refs: [type_title_l3_font_size, type_title_l3_font_leading, comp_title_l3_before, comp_title_l3_after, comp_title_l3_bullet_radius, comp_title_l3_gap, comp_title_l3_needspace]
+    latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelThree]}
+    indesign: {renderer: heading, paragraph_style: Heading3}
+    status: partial
+    debt: [IDML does not yet enforce the shared keep-with-next policy.]
+
+  HB-TYPE-LEAD:
+    role: Lead and rubric copy
+    semantic_source_kinds: [lead, rubric]
+    token_refs: [type_rubric_font_size, type_rubric_font_leading, type_warning_text_font_size, type_warning_text_font_leading, type_warning_text_align]
+    latex: {owner: type_system.tex, entrypoints: [HBTypeWarningTextStart, HBTypeRubricStart]}
+    indesign: {renderer: paragraph, paragraph_style: HB Lead}
+    status: partial
+    debt: [IDML currently borrows body or heading styles instead of an explicit lead style.]
+
+  HB-TYPE-FOOTER:
+    role: Footer text
+    semantic_source_kinds: [footer]
+    token_refs: [page_footer_font_size, page_footer_font_leading, page_footer_color, page_footer_raise, page_footskip]
+    latex: {owner: type_system.tex, entrypoints: [HBTypeFooter]}
+    indesign: {renderer: folio, paragraph_style: HB Footer}
+    status: partial
+    debt: [IDML folios currently borrow a specification note style.]
+
+  HB-TYPE-PAGE-NUMBER:
+    role: Page number
+    semantic_source_kinds: [page_number]
+    token_refs: [page_footer_font_size, page_footer_font_leading, page_footer_color, page_footskip]
+    latex: {owner: type_system.tex, entrypoints: [HBTypePageNumber]}
+    indesign: {renderer: folio, paragraph_style: HB Page Number}
+    status: partial
+    debt: [Dedicated page-number tokens and IDML style are not yet shared.]
+
+  HB-CALLOUT-STRIP:
+    role: Warning caution note and tip strips
+    semantic_source_kinds: [callout_strip]
+    variants: [warning, caution, note, tip]
+    token_refs: [comp_callout_rule, comp_callout_label_inset, comp_callout_body_inset, comp_callout_bullet_indent, comp_callout_bullet_width, type_callout_bullet_font_size]
+    latex: {owner: components_base.tex, entrypoints: [HBWarningBlock, HBCautionBlock, HBNoteBlock, HBTipBlock]}
+    indesign: {renderer: callout_strip, paragraph_style: Caution, object_style: HB Rounded Panel, table_style: Notice表格}
+    status: partial
+    debt: [Variant geometry and typography are not yet completely token-driven in IDML.]
+
+  HB-SAFETY-INSTRUCTION:
+    role: Safety instruction lockup
+    semantic_source_kinds: [safety_instruction]
+    token_refs: [comp_warning_box_arc, comp_warning_box_rule, type_warning_text_font_size, type_warning_text_font_leading]
+    latex: {owner: components_safety.tex, entrypoints: [HBSafetyInstruction]}
+    indesign: {renderer: safety_instruction, object_style: HB Rounded Panel}
+    status: partial
+    debt: [Production IDML has no explicit safety-instruction component kind.]
+
+  HB-SAFETY-WARNING:
+    role: Standard safety warning panel
+    semantic_source_kinds: [safety_warning]
+    token_refs: [comp_warning_box_arc, comp_warning_box_rule, comp_warning_box_pad_lr, comp_warning_box_pad_tb, comp_warning_box_before, comp_warning_box_after]
+    latex: {owner: components_safety.tex, entrypoints: [safetywarningbox, safetywarning]}
+    indesign: {renderer: safetywarning, object_style: HB Rounded Panel, table_style: Warning表格}
+    status: partial
+    debt: [IDML visible geometry still contains renderer-local constants.]
+
+  HB-SAFETY-LEAD:
+    role: Large warning lead panel
+    semantic_source_kinds: [safety_lead]
+    token_refs: [comp_lockup_height, comp_lockup_width, comp_lockup_gap, type_warning_text_font_size, type_warning_text_font_leading]
+    latex: {owner: components_safety.tex, entrypoints: [HBWarningLeadBlock]}
+    indesign: {renderer: warninglead, object_style: HB Rounded Panel}
+    status: partial
+    debt: [IDML and LaTeX use different internal frame formulas.]
+
+  HB-SAFETY-DANGER:
+    role: Danger lockup
+    semantic_source_kinds: [safety_danger]
+    token_refs: [comp_warning_box_arc, comp_warning_box_rule, comp_lockup_height, type_warning_text_font_size, type_warning_text_font_leading]
+    latex: {owner: components_safety.tex, entrypoints: [HBDangerBlock]}
+    indesign: {renderer: danger, object_style: HB Rounded Panel}
+    status: partial
+    debt: [IDML currently degrades danger to the generic warnbox renderer.]
+
+  HB-TABLE-SPEC:
+    role: Specification section tables
+    semantic_source_kinds: [table_spec]
+    token_refs: [comp_table_outer_arc, comp_table_outer_rule, comp_spec_table_left_ratio, comp_spec_table_tabcolsep, comp_spec_table_row_stretch, type_spec_label_font_size, type_spec_value_font_size]
+    latex: {owner: components_spec.tex, entrypoints: [spectable]}
+    indesign: {renderer: spec_table, table_style: 竖型表格, object_style: HB Rounded Table Outer}
+    status: partial
+    debt: [IDML row heights and multiline behavior are not fully token-driven.]
+
+  HB-TABLE-SYMBOL-SIGNAL:
+    role: Signal-word table
+    semantic_source_kinds: [table_symbol_signal]
+    token_refs: [comp_symbol_signal_col_width, comp_symbol_table_tabcolsep, comp_symbol_signal_width, comp_symbol_signal_height, type_symbol_signal_font_size, type_symbol_body_font_size]
+    latex: {owner: components_symbols.tex, entrypoints: [HBSymbolTable]}
+    indesign: {renderer: symbol_signal_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
+    status: partial
+    debt: [IDML page composition still owns visible constants.]
+
+  HB-TABLE-SYMBOL-ICON:
+    role: Symbol icon tables
+    semantic_source_kinds: [table_symbol_icon]
+    token_refs: [comp_symbol_icon_width, comp_symbol_icon_height, comp_symbol_icon_col_width, comp_symbol_column_gap, comp_symbol_table_tabcolsep, type_symbol_header_font_size, type_symbol_body_font_size]
+    latex: {owner: components_symbols.tex, entrypoints: [HBSymbolTwoColumnTables]}
+    indesign: {renderer: symbol_icon_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
+    status: partial
+    debt: [IDML page composition still owns visible constants.]
+
+  HB-TABLE-LCD-ICON:
+    role: LCD icon table
+    semantic_source_kinds: [table_lcd_icon]
+    token_refs: [comp_lcd_table_row_stretch, comp_lcd_no_col_width, comp_lcd_icon_width, comp_lcd_icon_height, comp_lcd_icon_col_width, comp_lcd_table_tabcolsep, type_lcd_label_font_size, type_lcd_body_font_size]
+    latex: {owner: components_lcd.tex, entrypoints: [HBLcdIconTable]}
+    indesign: {renderer: lcd_icon_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
+    status: partial
+    debt: [IDML row estimation and page breaking are independent from LaTeX.]
+
+  HB-TABLE-LCD-MODE:
+    role: LCD mode table
+    semantic_source_kinds: [table_lcd_mode]
+    token_refs: [comp_table_outer_arc, comp_table_outer_rule, comp_data_table_tabcolsep, type_data_table_font_size, type_data_table_font_leading]
+    latex: {owner: components_lcd.tex, entrypoints: [HBLcdModeTable]}
+    indesign: {renderer: lcdmode, table_style: 正文表格, object_style: HB Rounded Table Outer}
+    status: partial
+    debt: [LCD-mode-specific geometry still lives in renderer-local fallbacks.]
+
+  HB-TABLE-AUTO-RESUME:
+    role: Auto Resume conditions table
+    semantic_source_kinds: [table_auto_resume]
+    token_refs: [comp_auto_resume_left_ratio, comp_data_table_tabcolsep, comp_data_table_row_stretch, comp_data_table_header_height, comp_data_table_row_height, type_data_table_font_size]
+    latex: {owner: components_data_tables.tex, entrypoints: [HBAutoResumeTable]}
+    indesign: {renderer: data_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
+    status: partial
+    debt: [Production IDML has no explicit auto-resume table role.]
+
+  HB-TABLE-KEY-COMBINATIONS:
+    role: Key combinations table
+    semantic_source_kinds: [table_key_combinations]
+    token_refs: [comp_key_table_left_ratio, comp_key_table_middle_ratio, comp_key_table_row_height, comp_key_section_needspace, type_data_table_font_size]
+    latex: {owner: components_data_tables.tex, entrypoints: [HBKeyCombinationTable]}
+    indesign: {renderer: data_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
+    status: partial
+    debt: [Production IDML has no explicit key-combinations table role.]
+
+  HB-TABLE-TROUBLESHOOTING:
+    role: Troubleshooting table
+    semantic_source_kinds: [table_troubleshooting]
+    token_refs: [comp_trouble_left_ratio, comp_trouble_step_indent, comp_trouble_steps_pad_tb, comp_trouble_section_needspace, type_trouble_code_font_size, type_data_table_font_size]
+    latex: {owner: components_data_tables.tex, entrypoints: [HBTroubleshootingTable]}
+    indesign: {renderer: trouble_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
+    status: partial
+    debt: [IDML table layout does not yet consume all troubleshooting tokens.]
+
+  HB-SPECIAL-FCC:
+    role: FCC panel
+    semantic_source_kinds: [fcc]
+    token_refs: [comp_fcc_arc, comp_fcc_height, comp_fcc_mark_width, comp_fcc_column_gap, comp_fcc_pad_lr, comp_fcc_pad_tb, type_fcc_font_size, type_fcc_font_leading]
+    latex: {owner: components_special_pages.tex, entrypoints: [HBFccBlock]}
+    indesign: {renderer: fcc, object_style: HB Rounded Panel, table_style: 无表头表格}
+    status: partial
+    debt: [IDML uses a dedicated absolute-position page composer.]
+
+  HB-SPECIAL-INBOX:
+    role: What's In The Box cards
+    semantic_source_kinds: [inbox]
+    token_refs: [comp_inbox_card_arc, comp_inbox_card_width, comp_inbox_card_height, comp_inbox_image_width, comp_inbox_image_height, comp_inbox_label_gap, type_inbox_label_font_size]
+    latex: {owner: components_special_pages.tex, entrypoints: [HBInBoxThree]}
+    indesign: {renderer: inbox, paragraph_style: Item List Text, object_style: HB Inbox Card, table_style: 无表头表格}
+    status: partial
+    debt: [IDML uses a dedicated absolute-position page composer.]
+
+  HB-SPECIAL-OVERVIEW:
+    role: Product overview panel
+    semantic_source_kinds: [overview]
+    token_refs: [page_paperwidth, page_paperheight]
+    latex: {owner: components_special_pages.tex, entrypoints: [HBOverviewPanel]}
+    indesign: {renderer: placed_art, object_style: HB Placed Art}
+    status: partial
+    debt: [Overview is placed finished art and its component tokens still include LaTeX fallbacks.]
+
+  HB-SPECIAL-APP:
+    role: App setup primitives
+    semantic_source_kinds: [app_step, app_asset, app_notice]
+    token_refs: [type_body_font_size, type_body_font_leading, comp_note_arc]
+    latex: {owner: components_special_pages.tex, entrypoints: [HBAppStep, HBAppAsset, HBAppNotice]}
+    indesign: {renderer: app, paragraph_style: 段落样式, object_style: HB Rounded Panel}
+    status: partial
+    debt: [Production IDML has no explicit app primitive renderer family.]
+
+  HB-WARRANTY-LEAD:
+    role: Warranty lead panel
+    semantic_source_kinds: [warranty_lead]
+    token_refs: [comp_warranty_lead_arc, comp_warranty_lead_pad_lr, comp_warranty_lead_pad_tb, comp_warranty_lead_after, type_warranty_lead_font_size, type_warranty_lead_font_leading]
+    latex: {owner: components_warranty.tex, entrypoints: [HBWarrantyLead]}
+    indesign: {renderer: warranty_lead, object_style: HB Rounded Panel}
+    status: partial
+    debt: [IDML currently recognizes only the warranty-years text pattern explicitly.]
+
+  HB-WARRANTY-SECTION:
+    role: Warranty section panel
+    semantic_source_kinds: [warranty_section]
+    token_refs: [comp_warranty_section_arc, comp_warranty_section_rule, comp_warranty_section_pad_lr, comp_warranty_section_pad_top, comp_warranty_section_pad_bottom, type_warranty_title_font_size, type_warranty_body_font_size]
+    latex: {owner: components_warranty.tex, entrypoints: [HBWarrantySection]}
+    indesign: {renderer: warranty_section, object_style: HB Rounded Panel}
+    status: partial
+    debt: [Production IDML has no explicit warranty-section component kind.]
+
+  HB-WARRANTY-YEARS:
+    role: Warranty year cards
+    semantic_source_kinds: [warranty_years]
+    token_refs: [comp_warranty_year_badge_size, comp_warranty_year_column_gap, comp_warranty_year_left_ratio, type_warranty_year_number_font_size, type_warranty_year_unit_font_size, type_warranty_year_subtitle_font_size]
+    latex: {owner: components_warranty.tex, entrypoints: [HBWarrantyYears]}
+    indesign: {renderer: warrantyyears, paragraph_style: HB Big Numeral, object_style: HB Rounded Panel}
+    status: partial
+    debt: [IDML recognition is currently based on prose-shape heuristics.]
+
+  HB-PAGE-STANDARD:
+    role: Standard body page with footer
+    semantic_source_kinds: [page_standard]
+    token_refs: [page_paperwidth, page_paperheight, page_margin_left, page_margin_right, page_margin_top, page_margin_bottom, page_footskip]
+    latex: {owner: layout_templates.tex, entrypoints: [HBPageTemplateStandard]}
+    indesign: {renderer: page_template, object_style: HB Standard Page}
+    status: partial
+    debt: [IDML page and folio rules still depend on page position and story names.]
+
+  HB-PAGE-NO-FOOTER:
+    role: Footerless page
+    semantic_source_kinds: [page_no_footer]
+    token_refs: [page_paperwidth, page_paperheight, page_margin_left, page_margin_right, page_margin_top, page_margin_bottom]
+    latex: {owner: layout_templates.tex, entrypoints: [HBPageTemplateNoFooter]}
+    indesign: {renderer: page_template, object_style: HB No Footer Page}
+    status: partial
+    debt: [IDML page-template selection is not represented in a shared page plan.]
+
+  HB-PAGE-COVER:
+    role: Front and back cover page
+    semantic_source_kinds: [page_cover]
+    token_refs: [page_paperwidth, page_paperheight]
+    latex: {owner: layout_templates.tex, entrypoints: [HBPageTemplateCover, HBBackCoverPage]}
+    indesign: {renderer: page_template, object_style: HB Cover Page}
+    status: partial
+    debt: [Front cover is placed art while the back cover is still independently composed in IDML.]
