@@ -186,6 +186,12 @@ _MACROS: tuple[tuple[str, int, str], ...] = (
     ("\\section", 1, "h1x"),
     ("\\safetysubbar", 1, "h2"),
     ("\\safetylead", 1, "body"),
+    # JE-2000E-era page macros
+    ("\\HBSafetyInstruction", 1, "safetywarning"),
+    ("\\HBAppStep", 2, "h2num"),
+    ("\\HBAppBody", 1, "body"),
+    ("\\HBAppAsset", 3, "image1"),
+    ("\\HBAppNotice", 2, "note"),
 )
 
 
@@ -294,6 +300,10 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
             result.blocks.append(("h1", args[0]))
         elif kind == "h2" and args:
             result.blocks.append(("h2", args[0]))
+        elif kind == "h2num" and len(args) == 2:
+            result.blocks.append(("h2", f"{args[0]} {args[1]}".strip()))
+        elif kind == "image1" and args:
+            result.blocks.append(("image", args[0]))
         elif kind == "body" and args:
             result.blocks.append(("body", args[0]))
         consumed_any = True
@@ -302,7 +312,8 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
         # raw content with no recognizable macro (pure latex plumbing like
         # \HBApplyLang, tabular constructs...) — plumbing is silent, real
         # constructs count as skipped.
-        stripped = re.sub(r"\\HBApplyLang\{[^}]*\}", "", body).strip()
+        stripped = re.sub(r"\\HBApplyLang\{[^}]*\}", "", body)
+        stripped = re.sub(r"\\(?:fi|HBPageBreak|HBPrefacePageEnd)\b", "", stripped).strip()
         if stripped and not stripped.startswith("\\begin{safetytwocol}") \
                 and not stripped.startswith("\\end{safetytwocol}"):
             result.skipped_raw += 1
