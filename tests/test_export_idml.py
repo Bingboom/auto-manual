@@ -258,6 +258,27 @@ class ExportIdmlTests(unittest.TestCase):
         rect = w._image_cell_content("r1", img, 100.0, 60.0)
         self.assertIn('Anchor="0 -60', rect)
         self.assertNotIn('Anchor="0 60', rect)
+        self.assertIn('<AnchoredObjectSetting AnchoredPosition="InlinePosition"', rect)
+        self.assertNotIn('StrokeWeight="0" AnchoredPosition=', rect)
+
+    def test_prose_images_take_an_above_line_layout_slot(self) -> None:
+        from tools.idml.components.prose_image import render_image_block
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        bundle = ROOT / "tests" / "fixtures" / "idml_bundle"
+        image = ROOT / "docs" / "renderers" / "latex" / "assets" / "warning_lockup.png"
+        xml, _ = render_image_block(
+            image.as_posix(), w._render_context(bundle), rect_id="r2", terminal=False)
+        self.assertIn('AnchoredPosition="AboveLine"', xml)
+        self.assertIn('Anchor="0 0"', xml)
+        self.assertNotIn('Anchor="0 -', xml)
+
+        result = ROOT / "docs" / "templates" / "word_template" / "common_assets" / "app" / "connect_result.png"
+        result_xml, height = render_image_block(
+            result.as_posix(),
+            w._render_context(bundle), rect_id="r3", terminal=False)
+        self.assertIn(f'AnchorSpaceAbove="{height - 4:g}"', result_xml)
 
     def test_no_semibold_font_style_in_paragraph_styles(self) -> None:
         # the licensed Gilroy set has no SemiBold face; referencing it makes
@@ -500,6 +521,15 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(res.blocks[1], ("h2", "2 Connect the device"))
         self.assertEqual(res.blocks[2], ("image", "app.png"))
 
+        paged = ExtractResult()
+        _extract_raw_latex(
+            r"\HBPageBreak{}\HBAppBody{First.}\HBPageBreak{}\HBAppBody{Second.}",
+            paged,
+        )
+        self.assertEqual(paged.blocks, [
+            ("body", "First."), ("layout", "page_break"), ("body", "Second."),
+        ])
+
     def test_latex_false_fallback_is_not_duplicated_in_ir(self) -> None:
         from tools.idml_rst_extract import _parse_text
 
@@ -525,6 +555,87 @@ class ExportIdmlTests(unittest.TestCase):
         )
         self.assertEqual([kind for kind, _ in fcc.blocks], ["h1", "component"])
         self.assertEqual(fcc.blocks[0], ("h1", "FCC"))
+
+    def test_prose_flow_splits_at_reference_page_starts(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("operation", [("h1", "Operation")])
+        flow.add("ups", [("h1", "UPS")])
+        flow.add("charging", [("h1", "Charging")])
+        emitted = []
+        starts = {"operation": 10, "ups": 14, "charging": 14}
+
+        flow.flush(
+            lambda _sid, title, _blocks, _columns: emitted.append(title),
+            lambda stem: stem,
+            {"pages": [
+                {"source_path": f"page/{stem}.rst", "latex_start_page": start}
+                for stem, start in starts.items()
+            ]},
+        )
+
+        self.assertEqual(emitted, ["operation", "ups + charging"])
+
+    def test_prose_flow_merges_a_group_that_exceeds_its_page_span(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("ups", [("body", "ups"), ("body", "overflow")])
+        for stem in ("methods", "storage"):
+            flow.add(stem, [("body", stem)])
+        emitted = []
+        plan = {"pages": [
+            {"source_path": "page/ups.rst", "latex_start_page": 10},
+            {"source_path": "page/methods.rst", "latex_start_page": 11},
+            {"source_path": "page/storage.rst", "latex_start_page": 14},
+        ]}
+
+        flow.flush(
+            lambda _sid, title, _blocks, _columns: emitted.append(title),
+            lambda stem: stem,
+            plan,
+            estimate_pages=lambda blocks, _columns: len(blocks),
+        )
+
+        self.assertEqual(emitted, ["ups + methods", "storage"])
+
+    def test_long_troubleshooting_table_starts_on_its_second_page(self) -> None:
+        from tools.idml.prose_flow import align_trouble_table
+
+        blocks = [("h1", "Trouble"), ("body", "Intro"), ("table", "[]")]
+        plan = {"pages": [
+            {"source_path": "page/troubleshooting_es.rst", "latex_start_page": 54},
+            {"source_path": "page/spec_es.rst", "latex_start_page": 56},
+        ]}
+
+        aligned = align_trouble_table(blocks, plan, "troubleshooting_es")
+
+        self.assertEqual(aligned[-2], ("layout", "table_next_page"))
+
+    def test_four_page_operation_flow_keeps_final_h2_on_last_page(self) -> None:
+        from tools.idml.prose_flow import align_operation_tail
+
+        blocks = [("h1", "Operations"), ("h2", "LCD"), ("table", "[]"),
+                  ("h2", "Keys"), ("table", "[]")]
+        plan = {"pages": [
+            {"source_path": "page/05_operation_guide.rst", "latex_start_page": 10},
+            {"source_path": "page/06_ups.rst", "latex_start_page": 14},
+        ]}
+
+        aligned = align_operation_tail(blocks, plan, "05_operation_guide")
+
+        self.assertEqual(aligned[-3], ("layout", "page_break"))
+
+    def test_page_break_layout_does_not_enable_two_columns(self) -> None:
+        from tools.idml.ir_projection import project_pages
+        from tools.manual_ir.model import ManualBlock, ManualIR, ManualPage
+
+        block = ManualBlock("b", "page/x#b", "layout", "page_break", "h", ())
+        page = ManualPage("p", "page/x", "page/x.rst", "en", "h", 0, (block,))
+        ir = ManualIR("M", "US", "en", "test", ".", "h", None, "h", "h", "h", (page,), ())
+
+        self.assertFalse(project_pages(ir, ROOT)[0].twocol)
 
     def test_safety_layout_markers_and_warninglead_are_preserved(self) -> None:
         import json

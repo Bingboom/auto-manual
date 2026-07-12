@@ -53,9 +53,7 @@ EMITTED_COMPONENT_KINDS = ("langtag",
     "fcc", "inbox", "lcdmode", "notice", "safetyinstruction", "safetywarning",
     "warninglead", "warnbox")
 
-# Block kinds whose text payload is a JSON document (rows / component spec),
-# not prose — the RST unescape pass must reach INTO their string values, never
-# rewrite the JSON envelope (see _unescape_rst_stars).
+# JSON block payloads must be unescaped inside their values, not their envelope.
 _JSON_BLOCK_KINDS = frozenset({"component", "data", "table"})
 
 
@@ -189,6 +187,7 @@ _MACROS: tuple[tuple[str, int, str], ...] = (
     ("\\safetysubbar", 1, "h2"),
     ("\\safetylead", 1, "body"),
     # JE-2000E-era page macros
+    ("\\HBPageBreak", 1, "pagebreak"),
     ("\\HBAppStep", 2, "h2num"),
     ("\\HBAppBody", 1, "body"),
     ("\\HBAppAsset", 3, "image1"),
@@ -315,6 +314,8 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
             result.blocks.append(("image", args[0]))
         elif kind == "body" and args:
             result.blocks.append(("body", args[0]))
+        elif kind == "pagebreak" and consumed_any:
+            result.blocks.append(("layout", "page_break"))
         consumed_any = True
         i = j
     if not consumed_any and body.strip():
@@ -336,10 +337,7 @@ _UNDERLINES = {"=": "h1", "-": "h2", "~": "h3", "^": "h3"}
 
 
 def _only_matches(expr: str, tags: set[str]) -> bool:
-    """Evaluate a sphinx ``only::`` expression against active tags.
-
-    Supports the bundle's vocabulary: bare tags, ``and``, and ``not``.
-    """
+    """Evaluate the bundle's bare-tag/``and``/``not`` only-expression subset."""
     for clause in expr.split(" and "):
         clause = clause.strip()
         if clause.startswith("not "):

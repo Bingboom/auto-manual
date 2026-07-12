@@ -667,6 +667,10 @@ python tools/indesign_finalize.py --idml docs/_build/JE-1000F/US/idml/manual_je1
 python tools/idml_pdf_parity.py --latex-pdf docs/_build/JE-1000F/US/pdf/manual_je1000f_us.pdf --indesign-pdf output/pdf/JE-1000F_US_indesign.pdf --preflight output/indesign/JE-1000F_US_preflight.json --manual-ir docs/_build/JE-1000F/US/idml/manual.ir.json --idml docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml --indd output/indesign/JE-1000F_US_same_source.indd --pages all --out output/comparison/JE-1000F_US_same_source_parity.json
 ```
 
+The parity gate also rejects any page where the LaTeX reference has substantive
+text but the InDesign export is effectively blank. Visual deltas remain
+descriptive because InDesign is expected to make final-mile design changes.
+
 The preflight fails on overset stories, missing fonts, or bad links. The parity
 report hard-gates page count and page size, records artifact/source hashes, and
 measures every page's raster delta. Raster differences are descriptive design

@@ -160,7 +160,8 @@ def spec_table(tid: str, rows: list[tuple[str, str]],
     )
 
 
-def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float) -> str:
+def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float,
+                       anchored_position: str = "InlinePosition") -> str:
     """Anchored image frame for a table cell, linked to a file on disk.
 
     The Link keeps the file external (URI), so the designer relinks or
@@ -171,7 +172,8 @@ def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float)
     # Inline anchored objects hang from the text baseline: the path must
     # span y in [-h, 0]. A [0, h] path drops below the line and overlaps
     # the following text (designer-reported).
-    x1, y1, x2, y2 = 0.0, -h_pt, w_pt, 0.0
+    x1, x2 = 0.0, w_pt
+    y1, y2 = ((0.0, h_pt) if anchored_position == "AboveLine" else (-h_pt, 0.0))
     pts = ((x1, y1), (x1, y2), (x2, y2), (x2, y1))
     anchors = "".join(
         f'<PathPointType Anchor="{x:g} {y:g}" LeftDirection="{x:g} {y:g}" '
@@ -180,10 +182,10 @@ def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float)
     return (
         f'<Rectangle Self="{rect_id}" ContentType="GraphicType" '
         'AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" '
-        'StrokeColor="Swatch/None" StrokeWeight="0" AnchoredPosition="InlinePosition">'
+        'StrokeColor="Swatch/None" StrokeWeight="0">'
         '<Properties><PathGeometry><GeometryPathType PathOpen="false">'
         f'<PathPointArray>{anchors}</PathPointArray>'
-        '</GeometryPathType></PathGeometry></Properties>'
+        f'</GeometryPathType></PathGeometry></Properties><AnchoredObjectSetting AnchoredPosition="{anchored_position}" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>'
         f'<Image Self="{rect_id}_img" ItemTransform="1 0 0 1 0 0">'
         f'<Link Self="{rect_id}_lnk" LinkResourceURI="{escape(uri, _ATTR_ENTITIES)}"/>'
         '</Image>'

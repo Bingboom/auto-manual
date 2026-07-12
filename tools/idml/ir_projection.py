@@ -74,7 +74,8 @@ def project_pages(ir: ManualIR, bundle_root: Path) -> tuple[ProjectedPage, ...]:
             language=page.language,
             blocks=blocks,
             skipped_raw=page.skipped_raw,
-            twocol=any(kind == "layout" for kind, _ in blocks),
+            twocol=any(kind == "layout" and value.startswith("twocol_")
+                       for kind, value in blocks),
         ))
     return tuple(pages)
 

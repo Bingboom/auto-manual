@@ -106,6 +106,27 @@ def _visual_report(
     }
 
 
+def _page_text_counts(pdf: Path) -> list[int]:
+    result = subprocess.run(
+        ["pdftotext", "-layout", str(pdf), "-"], check=True,
+        capture_output=True, text=True, encoding="utf-8", errors="replace")
+    pages = result.stdout.split("\f")
+    if pages and not pages[-1].strip():
+        pages.pop()
+    return [len(re.sub(r"\s+", "", page)) for page in pages]
+
+
+def _occupancy_report(latex_counts: list[int], indesign_counts: list[int],
+                      reference_min: int = 80, target_min: int = 20) -> dict[str, Any]:
+    missing = [
+        {"page": index + 1, "latex_chars": left, "indesign_chars": right}
+        for index, (left, right) in enumerate(zip(latex_counts, indesign_counts))
+        if left >= reference_min and right < target_min
+    ]
+    return {"reference_min_chars": reference_min, "target_min_chars": target_min,
+            "missing_content_pages": missing, "pass": not missing}
+
+
 def build_report(args: argparse.Namespace) -> dict[str, Any]:
     latex_pdf = Path(args.latex_pdf)
     indesign_pdf = Path(args.indesign_pdf)
@@ -127,6 +148,8 @@ def build_report(args: argparse.Namespace) -> dict[str, Any]:
             artifacts[key] = {"path": str(path.resolve()), "sha256": _sha256(path)}
     structure_pass = count_match and size_delta <= args.page_size_tolerance
     preflight_pass = bool(preflight.get("success"))
+    occupancy = _occupancy_report(
+        _page_text_counts(latex_pdf), _page_text_counts(indesign_pdf))
     return {
         "schema_version": "same-source-parity/v1",
         "source_identity": {
@@ -142,8 +165,9 @@ def build_report(args: argparse.Namespace) -> dict[str, Any]:
             "pass": structure_pass,
         },
         "indesign_preflight": preflight,
+        "content_occupancy": occupancy,
         "visual_delta": _visual_report(latex_pdf, indesign_pdf, pages, args.dpi),
-        "accepted": structure_pass and preflight_pass,
+        "accepted": structure_pass and preflight_pass and occupancy["pass"],
     }
 
 
@@ -161,6 +185,7 @@ def _markdown(report: dict[str, Any]) -> str:
         f"- Page count match: {report['structure']['page_count_match']}\n"
         f"- Page size delta: {report['structure']['page_size_delta_pt']} pt\n"
         f"- InDesign preflight: {report['indesign_preflight'].get('success')}\n"
+        f"- Content occupancy: {report['content_occupancy']['pass']}\n"
         f"- Mean visual difference: {visual['mean_absolute_difference']}\n"
         f"- Mean changed-pixel ratio: {visual['mean_changed_pixel_ratio']}\n\n"
         "Visual deltas are descriptive final-mile design differences, not a content gate.\n\n"

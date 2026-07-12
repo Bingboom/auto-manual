@@ -374,7 +374,7 @@ def main() -> int:
     pending_prefix_blocks: list[tuple[str, str]] = []
     pending_fcc_blocks, pending_fcc_title = [], ""
     prose_flow = _prose_flow.ProseFlowBuffer()
-
+    prose_estimator = _prose_flow.idml_page_estimator(IdmlWriter, params, bundle_root)
     def page_lang(page: Path) -> str: return _page_identity.page_language(page, args.lang)
     page_stem_has = _page_identity.stem_has
     slug_stem = _page_identity.slug
@@ -390,7 +390,7 @@ def main() -> int:
         page_cursor += pages
         prose_pages += 1
 
-    def flush_prose_flow() -> None: prose_flow.flush(emit_prose_story, slug_stem)
+    def flush_prose_flow() -> None: prose_flow.flush(emit_prose_story, slug_stem, page_plan, prose_estimator)
 
     def flush_pending_prefix() -> None:
         nonlocal pending_prefix_blocks
@@ -479,13 +479,13 @@ def main() -> int:
                     skipped_raw += res.skipped_raw
                     emitted.add("trouble")
                     toc.stem_langs[page.stem] = page_lang(page)
-                    prose_flow.add(page.stem, res.blocks)
+                    prose_flow.add(page.stem, _prose_flow.align_trouble_table(res.blocks, page_plan, page.stem))
                     continue
             emit_data_page(matched, page_lang(page))
             continue
         res = projected_by_path[page]
         skipped_raw += res.skipped_raw
-        blocks = res.blocks
+        blocks = _prose_flow.align_operation_tail(res.blocks, page_plan, page.stem)
         if pending_prefix_blocks and "user_maintenance" in page.stem:
             flush_prose_flow()
             lang = page_lang(page)

@@ -6,7 +6,12 @@ from pathlib import Path
 
 from PIL import Image
 
-from tools.idml_pdf_parity import _parse_pdfinfo, _selected_pages, _visual_metrics
+from tools.idml_pdf_parity import (
+    _occupancy_report,
+    _parse_pdfinfo,
+    _selected_pages,
+    _visual_metrics,
+)
 
 
 class IdmlPdfParityTests(unittest.TestCase):
@@ -37,6 +42,12 @@ class IdmlPdfParityTests(unittest.TestCase):
         self.assertEqual(0.0, identical["mean_absolute_difference"])
         self.assertGreater(delta["mean_absolute_difference"], 0.0)
         self.assertEqual(0.01, delta["changed_pixel_ratio"])
+
+    def test_content_occupancy_rejects_a_blank_indesign_page(self) -> None:
+        report = _occupancy_report([100, 2, 120], [2, 2, 90])
+
+        self.assertFalse(report["pass"])
+        self.assertEqual([1], [item["page"] for item in report["missing_content_pages"]])
 
 
 if __name__ == "__main__":

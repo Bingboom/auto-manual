@@ -4,7 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from . import components as _components, page_objects as _po
+from . import components as _components, page_objects as _po, prose_flow as _flow
 from . import table_borders as _tb
 from . import lcd_style as _lcd
 from .loaders import symbol_copy
@@ -22,7 +22,6 @@ ROOT = Path(__file__).resolve().parents[2]
 # them with the style table without regenerating the golden deliberately.
 _EST_SIZE = {"h1": 9.0, "h2": 8.6, "h3": 7.0, "label": 6.8}
 _EST_LEADING = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}
-
 
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path) -> tuple[str, float]:
@@ -42,6 +41,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 in_twocol = True
             elif text == "twocol_end":
                 in_twocol = False
+            elif text == "page_break": parts.append(_flow.start_next_page(writer._psr("HB Body", "")))
             continue
         terminal = bi == last_idx
         if kind == "component":
@@ -64,6 +64,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 raw_rows, writer._render_context(bundle_root),
                 tid=f"{sid}_t{img_n}", terminal=terminal,
                 span_columns=not in_twocol)
+            xml_part = _flow.align_table_xml(xml_part, blocks, bi)
             parts.append(xml_part)
             est += h
             continue
