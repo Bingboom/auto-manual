@@ -594,6 +594,11 @@ def _collect_icon_rows(
             )
         if symbol_key not in SYMBOL_ASSETS:
             raise ValueError(f"unknown symbols symbol_key='{symbol_key}'")
+        # The JE-1000F US V2.0 master ends at the product-WEEE row. The
+        # battery-WEEE2 notice belongs to the EU disposal set and must not
+        # create a twelfth row or a continuation page in the US manual.
+        if symbol_key == "weee2" and _pick_target_region(vars_map).casefold() == "us":
+            continue
         asset = SYMBOL_ASSETS[symbol_key]
         image_path = _figure_image_path(block.get("Figure") or block.get("figure") or "")
         image_path = image_path or (block.get("image_path") or "").strip() or asset.path
@@ -623,32 +628,44 @@ def _icon_table(lang: str, vars_map: dict[str, str], groups: dict[str, list[dict
     max_rows = max(len(left_rows), len(right_rows))
 
     # LaTeX component contract:
-    # \HBSymbolTable{symbol header}{meaning header}{row macro calls}
+    # \HBSymbolTwoColumnTables{symbol header}{meaning header}{left rows}{right rows}
     # \HBSymbolIconRow{image basename}{meaning}
-    tex_rows: list[str] = []
-    for idx in range(max_rows):
-        paired_rows = (
-            left_rows[idx] if idx < len(left_rows) else None,
-            right_rows[idx] if idx < len(right_rows) else None,
-        )
-        for row in paired_rows:
-            if row is None:
-                continue
-            tex_rows.append(
-                rf"\HBSymbolIconRow{{{_latex_image_name(str(row['image_path']))}}}"
-                rf"{{{_latex_text_arg(row['text'])}}}"
-            )
+    def latex_rows(rows: list[dict[str, str]]) -> list[str]:
+        return [
+            rf"\HBSymbolIconRow{{{_latex_image_name(str(row['image_path']))}}}"
+            rf"{{{_latex_text_arg(row['text'])}}}"
+            for row in rows
+        ]
+
+    left_tex_rows = latex_rows(left_rows)
+    right_tex_rows = latex_rows(right_rows)
 
     lines: list[str] = []
-    lines.extend(
-        _only_latex_raw_block(
-            [
-                rf"\HBSymbolTable{{{latex_arg_escape(header_symbol)}}}{{{latex_arg_escape(header_meaning)}}}{{%",
-                *tex_rows,
-                "}",
-            ]
-        )
-    )
+    if lang.casefold() in {"fr", "es"}:
+        left_top, left_rest = left_tex_rows[:4], left_tex_rows[4:]
+        right_top, right_rest = right_tex_rows[:4], right_tex_rows[4:]
+        latex_component = [
+            rf"\HBSymbolTwoColumnTablesSplit{{{latex_arg_escape(header_symbol)}}}"
+            rf"{{{latex_arg_escape(header_meaning)}}}{{%",
+            *left_top,
+            "}{%",
+            *right_top,
+            "}{%",
+            *left_rest,
+            "}{%",
+            *right_rest,
+            "}",
+        ]
+    else:
+        latex_component = [
+            rf"\HBSymbolTwoColumnTables{{{latex_arg_escape(header_symbol)}}}"
+            rf"{{{latex_arg_escape(header_meaning)}}}{{%",
+            *left_tex_rows,
+            "}{%",
+            *right_tex_rows,
+            "}",
+        ]
+    lines.extend(_only_latex_raw_block(latex_component))
     lines.append("")
 
     table_lines: list[str] = [

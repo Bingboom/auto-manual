@@ -27,8 +27,8 @@ text_emergencystretch,1.0,em,Extra stretch pass to even out word spacing
 ,,,
 ,,,
 ,,,==================== TYPE SYSTEM ====================
-type_h1_font_size,9.0,pt,H1 font size
-type_h1_font_leading,10.8,pt,H1 leading
+type_h1_font_size,12.0,pt,H1 font size
+type_h1_font_leading,14.4,pt,H1 leading
 type_h1_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
 type_title_l2_color,TextGray,none,Level 2 title color
@@ -41,30 +41,31 @@ type_title_l3_font_size,7.0,pt,Level 3 title font size
 type_title_l3_font_leading,8.0,pt,Level 3 title leading
 type_title_l3_force_upper,0,int,Level 3 title uppercase
 ,,,
-type_subbar_font_size,6.6,pt,Subbar font size
-type_subbar_font_leading,7.2,pt,Subbar leading
+type_subbar_font_size,8.0,pt,Subbar font size
+type_subbar_font_leading,9.6,pt,Subbar leading
 type_subbar_force_upper,1,int,0 keep case / 1 uppercase
 ,,,
 type_rubric_font_size,8.6,pt,Rubric font size
 type_rubric_font_leading,9.4,pt,Rubric leading
 ,,,
-type_body_font_size,6.2,pt,Body/lead font size
-type_body_font_leading,7.5,pt,Body/lead leading (MUST NOT affect list/warning)
+type_body_font_size,6.0,pt,Body/lead font size
+type_body_font_leading,7.2,pt,Body/lead leading (MUST NOT affect list/warning)
 type_body_force_upper,0,int,0 keep case / 1 uppercase
 ,,,
-type_list_font_size,5.4,pt,List font size
-type_list_font_leading,6.4,pt,List leading (independent from body)
+type_list_font_size,6.0,pt,List font size
+type_list_font_leading,7.0,pt,List leading (independent from body)
 ,,,
-type_warning_text_font_size,6.4,pt,Warning right text font size
-type_warning_text_font_leading,7.2,pt,Warning right text leading
+type_warning_text_font_size,5.6,pt,Warning right text font size
+type_warning_text_font_leading,6.2,pt,Warning right text leading
 type_warning_text_force_upper,0,int,0 keep case / 1 uppercase (body prose keeps case; the lead-in safety sentence is uppercase in the source)
 ,,,
 ,,,==================== COMPONENTS ====================
 comp_h1_pill_arc,2.0,mm,H1 bar bottom corner radius (master ~5.8pt; sharp top + rounded south)
-comp_h1_pill_pad_lr,1.0,mm,H1 pill left/right padding
-comp_h1_pill_pad_tb,0.45,mm,H1 pill top/bottom padding
+comp_h1_pill_height,7.1,mm,H1 bar fixed height
+comp_h1_pill_pad_lr,2.2,mm,H1 pill left/right padding
+comp_h1_pill_pad_tb,1.0,mm,H1 pill top/bottom padding
 comp_h1_pill_width,1,ratio,H1 pill width ratio of \textwidth
-comp_h1_pill_after,-1.2,mm,Space after H1 pill (single point; negative offsets the first paragraph's inherent leading after the title block)
+comp_h1_pill_after,-1.2,mm,Space after H1 pill (offsets paragraph glue to match the 2.5 mm visual gap)
 ,,,
 comp_title_l2_before,1.2,mm,Level 2 title space before
 comp_title_l2_after,1.4,mm,Level 2 title space after
@@ -79,27 +80,28 @@ comp_title_l3_gap,0.9,mm,Level 3 title bullet-to-text gap
 comp_title_l3_needspace,8,mm,Minimum room to keep a level 3 title with following content
 ,,,
 comp_subbar_arc,2.45,mm,Subbar capsule corner radius (half the 13.9pt bar: full-round stadium)
-comp_subbar_pad_lr,0.8,mm,Subbar left/right padding
-comp_subbar_pad_tb,0.35,mm,Subbar top/bottom padding
+comp_subbar_height,4.9,mm,Subbar fixed height
+comp_subbar_pad_lr,2.2,mm,Subbar left/right padding
+comp_subbar_pad_tb,0.75,mm,Subbar top/bottom padding
 comp_subbar_width,1,ratio,Subbar width ratio of \textwidth
-comp_subbar_after,0.7,mm,Space after subbar
+comp_subbar_after,1.5,mm,Space after subbar
 comp_subbar_needspace,18,mm,Minimum room to keep a subbar with the content that follows
 ,,,
-comp_warning_box_arc,1.0,mm,Warning box corner radius
-comp_warning_box_rule,0.5,pt,Warning box border width
-comp_warning_box_pad_lr,0.8,mm,Warning box left/right padding
-comp_warning_box_pad_tb,0,mm,Warning box top/bottom padding
+comp_warning_box_arc,2.0,mm,Warning box corner radius
+comp_warning_box_rule,0.75,pt,Warning box border width
+comp_warning_box_pad_lr,2.2,mm,Warning box left/right padding
+comp_warning_box_pad_tb,0.3,mm,Warning box top/bottom padding
 comp_warning_box_before,0.5,mm,Space before warning box
-comp_warning_box_after,1.0,mm,Space after warning box
+comp_warning_box_after,1.4,mm,Space after warning box
 comp_warning_box_width,1,ratio,Warning box width ratio of \textwidth
 comp_warning_box_sep,0.6,mm,Warning box inner boxsep
 ,,,
-comp_lockup_height,6,mm,warning_lockup.png height
-comp_lockup_width,24,mm,Width reserved for lockup column
-comp_lockup_gap,4,mm,Gap between lockup and warning text
+comp_lockup_height,8.0,mm,Signal icon height
+comp_lockup_width,24.5,mm,Width reserved for signal icon and label
+comp_lockup_gap,2.0,mm,Gap between lockup and warning text
 comp_lockup_viewport,79 70 2125 549,none,Reserved (viewport macro is fragile; keep for future trim-based cropping)
 ,,,
-comp_twocol_sep,4,mm,Space between two columns
+comp_twocol_sep,2.2,mm,Space between two columns
 ,,,
 comp_lead_after,0.6,mm,Space after lead line
 ,,,
@@ -114,26 +116,121 @@ comp_list_bullet_symbol,\small\textbullet,none,Bullet TeX (use single backslash)
 ,,,
 comp_table_inner_rule,0.2,pt,Table inner rule width
 comp_table_tabcolsep,2.4,pt,Table tabcolsep
-comp_table_outer_arc,0.9,mm,Table outer corner radius
+comp_table_outer_arc,2.4,mm,Table outer corner radius
 comp_table_outer_rule,0.75,pt,Table outer rule width (archive 1500 Ultra: 0.75pt)
 ,,,
+,,,------ BODY DATA TABLES ------
+comp_data_table_tabcolsep,2.4,pt,Body data table cell horizontal padding
+comp_data_table_row_stretch,1.0,ratio,Body data table row stretch independent of spec tables
+comp_data_table_before,1.2,mm,Space before body data tables
+comp_data_table_after,1.2,mm,Space after body data tables
+comp_data_table_header_height,5.2,mm,Body data table header minimum height
+comp_data_table_row_height,4.2,mm,Body data table ordinary row minimum height
+comp_auto_resume_left_ratio,0.50,ratio,Auto-resume table left column ratio
+comp_key_table_left_ratio,0.41,ratio,Key-combination table first column ratio
+comp_key_table_middle_ratio,0.29,ratio,Key-combination table middle column ratio
+comp_key_table_row_height,11.6,mm,Key-combination table body row minimum height
+comp_key_section_needspace,54,mm,Minimum space required for key-combination heading and table
+comp_trouble_left_ratio,0.11,ratio,Troubleshooting error-code column ratio before cell padding
+comp_trouble_step_indent,3.4,mm,Troubleshooting numbered-step hanging indent
+comp_trouble_steps_pad_tb,1.0,mm,Troubleshooting numbered-step cell top/bottom padding
+comp_trouble_section_needspace,102,mm,Minimum space required for troubleshooting heading and table
+type_data_table_font_size,5.9,pt,Body data table font size
+type_data_table_font_leading,6.7,pt,Body data table leading
+type_data_table_header_font_size,6.2,pt,Body data table header font size
+type_data_table_header_font_leading,7.0,pt,Body data table header leading
+type_trouble_code_font_size,7.5,pt,Troubleshooting error-code font size
+type_trouble_code_font_leading,8.0,pt,Troubleshooting error-code leading
+,,,
 ,,,------ DATA TABLE DENSITY (archive 1500 Ultra parity) ------
-comp_lcd_table_row_stretch,2.0,ratio,LCD icon table row stretch (archive min row ~27pt)
-type_lcd_label_font_size,7.0,pt,LCD name-column font size (archive: 7.0)
-type_lcd_label_font_leading,7.6,pt,LCD name-column leading
-comp_symbol_table_row_stretch,1.3,ratio,Symbols table row stretch (relaxed to archive density)
+comp_lcd_table_row_stretch,0.82,ratio,LCD icon table row stretch
+comp_lcd_no_col_width,4.8,mm,LCD row-number column width
+comp_lcd_icon_width,6.6,mm,LCD icon maximum width
+comp_lcd_icon_height,6.6,mm,LCD icon maximum height
+comp_lcd_icon_col_width,9.2,mm,LCD icon column width
+comp_lcd_label_col_width,0.22\linewidth,none,LCD name-column width
+comp_lcd_table_tabcolsep,1.4,pt,LCD table cell padding
+type_lcd_no_font_size,5.2,pt,LCD row-number font size
+type_lcd_no_font_leading,5.8,pt,LCD row-number leading
+type_lcd_label_font_size,5.4,pt,LCD name-column font size
+type_lcd_label_font_leading,6.0,pt,LCD name-column leading
+type_lcd_body_font_size,5.2,pt,LCD description font size
+type_lcd_body_font_leading,5.8,pt,LCD description leading
+comp_symbol_table_row_stretch,1.0,ratio,Symbols table row stretch
+comp_symbol_icon_width,8.5,mm,Symbol icon maximum width
+comp_symbol_icon_height,8.5,mm,Symbol icon maximum height
+comp_symbol_icon_col_width,14.0,mm,Symbol-grid icon column width
+comp_symbol_signal_col_width,26.4,mm,Signal-word table first column width
+comp_symbol_table_tabcolsep,2.2,pt,Symbol table cell padding
+comp_symbol_column_gap,2.6,mm,Gap between the two symbol tables
+comp_symbol_signal_width,21.5,mm,Signal word swatch width
+comp_symbol_signal_height,5.4,mm,Signal word swatch height
+type_symbol_signal_font_size,9.9,pt,Signal word font size
+type_symbol_signal_font_leading,10.5,pt,Signal word leading
+type_symbol_header_font_size,6.5,pt,Symbol table header font size
+type_symbol_header_font_leading,7.2,pt,Symbol table header leading
+type_symbol_body_font_size,5.6,pt,Symbol table body font size
+type_symbol_body_font_leading,6.5,pt,Symbol table body leading
+,,,
+,,,------ FCC / INBOX / CALLOUT STRIPS ------
+comp_fcc_arc,2.4,mm,FCC panel corner radius
+comp_fcc_height,45.9,mm,FCC panel height
+comp_fcc_mark_width,14.0,mm,FCC mark width
+comp_fcc_column_gap,2.6,mm,FCC text column gap
+comp_fcc_pad_lr,2.2,mm,FCC panel horizontal padding
+comp_fcc_pad_tb,2.2,mm,FCC panel vertical padding
+type_fcc_font_size,5.6,pt,FCC body font size
+type_fcc_font_leading,6.5,pt,FCC body leading
+comp_inbox_card_arc,2.4,mm,Inbox card corner radius
+comp_inbox_card_width,0.316,ratio,Inbox card width ratio
+comp_inbox_card_height,60.6,mm,Inbox card height
+comp_inbox_image_width,26,mm,Inbox image maximum width
+comp_inbox_image_height,31,mm,Inbox image reserved height
+comp_inbox_label_gap,2.0,mm,Inbox image-to-label gap
+comp_inbox_after,2.5,mm,Space after inbox cards
+type_inbox_label_font_size,6.5,pt,Inbox label font size
+type_inbox_label_font_leading,7.2,pt,Inbox label leading
+comp_tip_arc,2.4,mm,Tip strip corner radius
+comp_callout_rule,1.2,pt,Warning caution note and tip outer border width
+comp_callout_label_inset,1.2,mm,White label panel inset inside the gray callout shell
+comp_callout_body_inset,1.5,mm,Callout body inset from the label panel
+comp_callout_bullet_indent,0.9,mm,Callout bullet inset from the body start
+comp_callout_bullet_width,1.2,mm,Callout bullet hanging-indent width
+type_callout_bullet_font_size,4.8,pt,Callout bullet glyph size
+comp_tip_height,14.7,mm,Tip strip height
+comp_tip_label_width,18.5,mm,Tip strip label panel width
+comp_tip_pad_lr,2.2,mm,Tip strip horizontal padding
+comp_caution_label_width,18.5,mm,Caution strip label panel width
+comp_caution_pad_lr,2.2,mm,Caution strip horizontal padding
+comp_caution_pad_tb,1.2,mm,Caution strip vertical padding
+type_tip_label_font_size,8.0,pt,Tip label font size
+type_tip_label_font_leading,9.0,pt,Tip label leading
+type_tip_body_font_size,6.5,pt,Tip body font size
+type_tip_body_font_leading,7.4,pt,Tip body leading
+,,,
+,,,------ PREFACE / TOC ------
+comp_preface_block_gap,3.2,mm,Gap between language notice blocks
+type_preface_tag_font_size,6.0,pt,Preface language tag font size
+type_preface_title_font_size,8.0,pt,Preface title font size
+type_preface_body_font_size,6.0,pt,Preface body font size
+type_preface_body_font_leading,7.2,pt,Preface body leading
 ,,,
 ,,,------ SPEC TABLE PAGE ------
-comp_spec_section_before,1.1,mm,Spec section title space before (larger gap from previous table)
-comp_spec_section_after,0.13,mm,Spec section title space after (tightened to one-third)
+comp_spec_section_before,4.3,mm,Spec section title space before (reference dedicated-page rhythm)
+comp_spec_first_section_before,1.3,mm,Spec first section title space after H1
+comp_spec_section_after,2.0,mm,Spec section title space after
 comp_spec_section_bullet_raise,-0.16,ex,Spec section bullet raise offset (optical baseline align)
 comp_spec_section_bullet_symbol,\scalebox{1.67}{\textbullet},none,Spec section bullet symbol (scaled 1.67x, baseline aligned)
 comp_spec_section_bullet_gap,0.36,em,Spec section bullet to title gap
-comp_spec_table_left_tint,0,int,Spec/LCD left-column tint percent black (V2.0 master: 0 = white)
+comp_spec_table_left_tint,5,int,Spec table left-column tint percent black
 comp_spec_table_left_ratio,0.315,ratio,Spec table left column ratio of textwidth (archive: 0.315)
 comp_spec_table_tabcolsep,2.6,pt,Spec table cell horizontal padding
-comp_spec_table_row_stretch,1.34,ratio,Spec table row vertical stretch (archive row height 10.3pt at 6.6pt leading)
-comp_spec_notes_before,0.8,mm,Spec notes block space before
+comp_spec_table_row_stretch,1.90,ratio,Spec table row vertical stretch (reference single-row height)
+comp_spec_table_tall_row_extra,2.1,pt,Spec footnote-marker row extra height
+comp_spec_table_multiline_min_height,15.0,pt,Spec multiline row minimum height
+comp_spec_table_multiline_depth,4.5,pt,Spec multiline row strut depth
+comp_spec_environment_extra_before,1.2,mm,Spec environmental section extra space before
+comp_spec_notes_before,4.2,mm,Spec notes block space before
 comp_spec_footnotes_before,1.2,mm,Spec footnotes block space before
 ,,,
 type_spec_section_font_size,8.8,pt,Spec section title font size
@@ -144,6 +241,41 @@ type_spec_value_font_size,6.0,pt,Spec right-cell value font size (archive: 6.0)
 type_spec_value_font_leading,6.6,pt,Spec right-cell value leading
 type_spec_note_font_size,5.4,pt,Spec note/footnote font size
 type_spec_note_font_leading,6.0,pt,Spec note/footnote leading
+,,,
+,,,------ WARRANTY PAGE ------
+comp_warranty_page_after_h1,4.0,mm,Warranty page gap after H1
+comp_warranty_page_extra_height,6.0,mm,Warranty page local extra body height
+comp_warranty_lead_arc,3.2,mm,Warranty lead box corner radius
+comp_warranty_lead_pad_lr,3.6,mm,Warranty lead horizontal padding
+comp_warranty_lead_pad_tb,2.7,mm,Warranty lead vertical padding
+comp_warranty_lead_after,1.0,mm,Warranty lead space after
+comp_warranty_section_arc,2.4,mm,Warranty section frame corner radius
+comp_warranty_section_rule,0.9,pt,Warranty section frame rule
+comp_warranty_section_pad_lr,3.2,mm,Warranty section horizontal padding
+comp_warranty_section_pad_top,3.2,mm,Warranty section top padding
+comp_warranty_section_pad_bottom,1.8,mm,Warranty section bottom padding
+comp_warranty_exclusions_pad_bottom,5.8,mm,Warranty exclusions bottom padding
+comp_warranty_section_before,1.5,mm,Warranty later-section space before
+comp_warranty_first_section_before,2.5,mm,Warranty first-section space before
+comp_warranty_period_section_before,2.6,mm,Warranty period-section space before
+comp_warranty_final_section_before,2.9,mm,Warranty final-section space before
+comp_warranty_section_after,0.4,mm,Warranty section space after
+comp_warranty_title_arc,1.7,mm,Warranty section title corner radius
+comp_warranty_title_pad_lr,1.8,mm,Warranty section title horizontal padding
+comp_warranty_title_pad_tb,0.7,mm,Warranty section title vertical padding
+comp_warranty_title_inset,3.0,mm,Warranty section title left inset
+comp_warranty_year_badge_size,8.4,mm,Warranty year numeral badge diameter
+comp_warranty_year_column_gap,0.8,mm,Warranty year columns gap
+comp_warranty_year_left_ratio,0.59,ratio,Warranty year left column ratio
+type_warranty_lead_font_size,7.0,pt,Warranty lead font size
+type_warranty_lead_font_leading,8.2,pt,Warranty lead leading
+type_warranty_body_font_size,6.0,pt,Warranty panel body font size
+type_warranty_body_font_leading,7.2,pt,Warranty panel body leading
+type_warranty_title_font_size,8.2,pt,Warranty panel title font size
+type_warranty_title_font_leading,8.8,pt,Warranty panel title leading
+type_warranty_year_number_font_size,21,pt,Warranty year badge numeral size
+type_warranty_year_unit_font_size,12,pt,Warranty year unit size
+type_warranty_year_subtitle_font_size,7.2,pt,Warranty year subtitle size
 ,,,
 comp_note_arc,2.4,mm,Note box corner radius
 comp_note_pad_lr,0,mm,Note left/right padding
@@ -164,7 +296,7 @@ type_body_color,TextGray,none,Body text color name
 type_list_color,TextGray,none,List text color name
 type_rubric_color,TextK90,none,Rubric text color name
 type_warning_text_color,TextGray,none,Warning right text color name
-comp_twocol_after,4.2,mm,Space after two-column block (declared; replaces the zeroed trailing \multicolsep)
+comp_twocol_after,1.8,mm,Space after two-column block (declared; replaces the zeroed trailing \multicolsep)
 type_warning_text_align,justified,none,Warning right text alignment (ragged|justified)
 
 ,,,==================== LANGUAGE DENSITY OVERRIDES ====================

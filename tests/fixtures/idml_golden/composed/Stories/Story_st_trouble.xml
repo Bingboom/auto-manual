@@ -7,12 +7,12 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="0 -14.8012" LeftDirection="0 -14.8012" RightDirection="0 -14.8012"/>
+            <PathPointType Anchor="0 -21.5193" LeftDirection="0 -21.5193" RightDirection="0 -21.5193"/>
             <PathPointType Anchor="0 -5.66929" LeftDirection="0 -5.66929" RightDirection="0 -2.53823"/>
             <PathPointType Anchor="5.66929 0" LeftDirection="2.53823 0" RightDirection="5.66929 0"/>
             <PathPointType Anchor="306.425 0" LeftDirection="306.425 0" RightDirection="309.556 0"/>
             <PathPointType Anchor="312.094 -5.66929" LeftDirection="312.094 -2.53823" RightDirection="312.094 -5.66929"/>
-            <PathPointType Anchor="312.094 -14.8012" LeftDirection="312.094 -14.8012" RightDirection="312.094 -14.8012"/>
+            <PathPointType Anchor="312.094 -21.5193" LeftDirection="312.094 -21.5193" RightDirection="312.094 -21.5193"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>

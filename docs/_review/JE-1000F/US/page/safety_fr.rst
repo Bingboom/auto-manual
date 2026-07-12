@@ -14,7 +14,7 @@
 
    .. raw:: latex
 
-      \safetywarning{INSTRUCTIONS CONCERNANT LES RISQUES D’INCENDIE, DE CHOC ÉLECTRIQUE OU DE BLESSURES}
+      \HBSafetyInstruction{INSTRUCTIONS CONCERNANT LES RISQUES D’INCENDIE, DE CHOC ÉLECTRIQUE OU DE BLESSURES}
 
    .. raw:: latex
 
@@ -23,7 +23,7 @@
 
    .. raw:: latex
 
-      \safetylead{Respectez toujours les précautions suivantes lors de l’utilisation du produit.}
+      \HBWarningLeadBlock{AVERTISSEMENT}{Respectez toujours les précautions suivantes lors de l’utilisation du produit.}
 
 
    - Lisez toutes les instructions avant d’utiliser le produit.
@@ -92,7 +92,7 @@
 
    .. raw:: latex
 
-      \HBNoticeBlock{DANGER}{Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple, maison, VR, tentes, cabines, etc.).}{※ Cet appareil n'est ni étanche ni résistant à la poussière. Gardez-le à l'abri de la pluie et des environnements humides pendant l'utilisation.}
+      \HBDangerBlock{DANGER}{Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple, maison, VR, tentes, cabines, etc.).}{※ Cet appareil n'est ni étanche ni résistant à la poussière. Gardez-le à l'abri de la pluie et des environnements humides pendant l'utilisation.}
 
 
 .. only:: html

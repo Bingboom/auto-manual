@@ -2,6 +2,34 @@
 
    \HBApplyLang{es}
 
+.. only:: latex
+
+   .. raw:: latex
+
+      \HBPageBreak
+      \section{CONFIGURACIÓN DE LA APLICACIÓN}
+      \HBAppStep{1.}{Descargar la aplicación e iniciar sesión}
+      \HBAppAsset{download.png}{62mm}{24mm}
+      \HBAppBody{Buscar "Jackery" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarse e iniciar sesión. Alternativamente, escanee el código QR para descargar e instalar la app.}
+      \HBAppStep{2.}{Añadir un dispositivo}
+      \HBAppBody{\textbf{2.1} Haga clic en el botón \textbf{Añadir dispositivo}. \textbf{2.2} Presione una vez el botón de encendido del dispositivo. Los iconos del Wi-Fi y Bluetooth parpadearán; pulse el icono parpadeante y permita que la aplicación se conecte a los dispositivos cercanos.}
+      \HBAppAsset{add_device.png}{66mm}{57mm}
+      \HBAppBody{\textbf{2.3} Tras hacer clic en el icono del dispositivo buscado, la aplicación conecta automáticamente el dispositivo a través de Bluetooth.}
+      \HBPageBreak
+      \HBAppNotice{NOTA}{Si durante la vinculación se indica que el dispositivo ya está vinculado, el propietario puede compartirlo mediante la App o se puede reiniciar Wi-Fi y Bluetooth manteniendo pulsados durante 3 segundos el botón de encendido y el botón de energía CC/USB.}
+      \HBAppBody{\textbf{2.4} Una vez conectado el dispositivo, introduzca la contraseña de la red Wi-Fi y toque \textbf{OK}.}
+      \HBAppNotice{NOTA}{Seleccione una red Wi-Fi de 2,4 GHz. El dispositivo no admite redes Wi-Fi de 5 GHz.}
+      \HBAppBody{Después de agregar el dispositivo en la App, el icono de Wi-Fi permanecerá encendido.}
+      \HBAppAsset{connect_result.png}{78mm}{50mm}
+      \HBAppBody{Las capturas de pantalla anteriores sirven solo de referencia.}
+      \HBAppNotice{PRECAUCIÓN}{La aplicación Jackery solo puede conectarse a una estación de energía a la vez mediante Bluetooth. Regresar a la lista de dispositivos desconecta Bluetooth; toque la estación nuevamente para reconectarse.}
+      \HBAppStep{3.}{Desvincular el dispositivo}
+      \HBAppBody{Abra \textbf{Configuración} en la interfaz principal y pulse \textbf{Desvincular} en la parte inferior de la página.}
+      \HBAppStep{4.}{Notas}
+      \HBAppBody{\textbf{4.1 Para activar Wi-Fi y Bluetooth:} encienda el dispositivo o pulse al mismo tiempo los botones de energía CC/USB y Power CA. \textbf{4.2 Para desactivarlos:} mantenga pulsados ambos botones hasta que se apaguen los iconos. \textbf{4.3 Para restablecerlos:} pulse el botón de encendido y el botón de energía CC/USB durante 3 segundos.}
+
+      \iffalse
+
 CONFIGURACIÓN DE LA APLICACIÓN
 ==============================
 
@@ -91,3 +119,9 @@ Mantenga pulsados botón de energía CC / USB y botón Power CA al mismo tiempo 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Pulsa el botón de encendido y botón de energía CC / USB al mismo tiempo durante 3 segundos para restablecer los ajustes de fábrica de Wi-Fi y Bluetooth. Se desvinculará la cuenta de la aplicación conectada.
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \fi

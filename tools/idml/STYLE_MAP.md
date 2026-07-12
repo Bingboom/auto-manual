@@ -25,9 +25,9 @@
 | notice 条(NOTE/TIP/CAUTION) | 整宽灰面板 311.8×23.2 圆角 + 白 chip 50.5×18.2 圆角 | notice tcolorbox | `comp_notice_arc` | `components/callout._rounded_notice`(锚定灰面板 r7 auto-height + 嵌套白 chip r5.5) | ✅ #640 |
 | note box | 灰圆角 | notebox | `comp_note_arc`(2.4mm≈6.8pt) | 同上(notice 路径) | ✅ |
 | 操作面板 oppanel | 圆角浅灰描边外框,无内网格 | 操作面板盒 | — | `components/oppanel`(锚定描边框 HB Border K10 1.1pt r10 auto-height) | ✅ #642 |
-| spec/LCD/trouble 表外框 | 深色圆角描边(spec r≈5 sw0.75-0.87;trouble sw0.57)+ 仅横线 + label 列灰底 | `tableframe` 等 | `comp_table_outer_arc`(0.9mm) | 表格本体(竖线抑制+灰底)✅;**圆角外框未实现** | 锚定 auto-size 对表格按声明行高贴合(10.3/行)不可用;待走 composed 矩形路线(`rounded_outer_xml`/`ROUNDED_TABLE_OBJECT_STYLE`) |
+| spec/LCD/正文数据表外框 | 深色圆角描边 + 灰色表头/label 列 + 内部网格；单元格文字纵向居中 | `HBSharedDataTable`；spec、LCD、Auto Resume、Key Combinations、Troubleshooting 只声明列与行语义，列为 `m` / 内容盒为 `[c]` | `comp_table_outer_arc` / `comp_table_outer_rule` / `comp_data_table_*` | 表格本体(内部网格+灰底)✅；圆角外框仍待 composed 矩形路线 | LaTeX 已统一外框对象、内部网格与纵向居中；IDML 保持当前限制说明 |
 | inbox 三卡 | 圆角卡片 | inbox card tcolorbox | `comp_inbox_card_arc` | `components/inbox` + page03 卡片框 | ✅(#636 校准) |
-| warranty 大字卡 | 圆角框 + 26pt 大字 | warranty 盒 | — | `components/warranty`(HB Big Numeral 26pt) | ✅ #635 |
+| warranty 专页/大字卡 | 灰底导语 + 悬浮标签圆角框 + 3/2 年双栏圆章 | `hb_latex_warranty.py` doctree 映射 + `components_warranty.tex` | `comp_warranty_*` / `type_warranty_*` | `components/warranty`(HB Big Numeral 26pt) | ✅ LaTeX 独占页与 IDML 组件化 |
 | 语言徽章 langtag(前言 EN/FR/ES) | 深色小 pill + 粗标题 | 前言宏 | — | `components/langbadge` | ✅ #634 |
 
 ## 字号/字重收敛(2026-07-11 参数收敛轮,fitz 双线实测)

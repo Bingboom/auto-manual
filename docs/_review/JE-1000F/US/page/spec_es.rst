@@ -6,64 +6,60 @@
 
    .. raw:: latex
 
-      \section{ESPECIFICACIONES}
+      \HBSpecPageStart \section{ESPECIFICACIONES}
 
 .. raw:: latex
 
    \specsectiontitle{INFORMACIÓN GENERAL}
    \begin{spectable}
-   \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{Nombre del producto} & \HBTypeSpecValue{Jackery Explorer 1000} \\
+   \HBTypeSpecLabel{Nombre del producto} & \HBTypeSpecValue{Jackery Explorer 1000} \tabularnewline
    \hline
-   \HBTypeSpecLabel{N° de modelo} & \HBTypeSpecValue{JE-1000F / JE-1000F-SG} \\
+   \HBTypeSpecLabel{N° de modelo} & \HBTypeSpecValue{JE-1000F / JE-1000F-SG} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Capacidad} & \HBTypeSpecValue{1024 Wh (20 Ah / 51,2 V CC)} \\
+   \HBTypeSpecLabel{Capacidad} & \HBTypeSpecValue{1024 Wh (20 Ah / 51,2 V CC)} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Química Celular} & \HBTypeSpecValue{LiFePO₄} \\
+   \HBTypeSpecLabel{Química Celular} & \HBTypeSpecValue{LiFePO₄} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Peso} & \HBTypeSpecValue{Aproximadamente 23,4 libras / 10,6 kg} \\
+   \HBTypeSpecLabel{Peso} & \HBTypeSpecValue{Aproximadamente 23,4 libras / 10,6 kg} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Dimensiones} & \HBTypeSpecValue{12,4 x 7,9 x 9,2 pulgadas / 31,4 x 20,1 x 23,4 cm} \\
+   \HBTypeSpecLabel{Dimensiones} & \HBTypeSpecValue{12,4 x 7,9 x 9,2 pulgadas / 31,4 x 20,1 x 23,4 cm} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Ciclo de vida} & \HBTypeSpecValue{6000 ciclos de carga hasta 70 \% + de capacidad} \\
-   \end{tabularx}
+   \HBTypeSpecLabel{Ciclo de vida} & \HBTypeSpecValue{6000 ciclos de carga hasta 70 \% + de capacidad} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
 
    \specsectiontitle{PUERTOS DE ENTRADA}
    \begin{spectable}
-   \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{1 × Entrada CA} & \HBTypeSpecValue{Modo de carga: 100-120 V\textasciitilde{} 60 Hz,15 A máx. \newline Modo de derivación\HBSpecMarkerOne{}: 100-120 V\textasciitilde{} 60 Hz,12 A máx.} \\
+   \HBTypeSpecLabel{1 × Entrada CA} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{Modo de carga: 100-120 V\textasciitilde{} 60 Hz,15 A máx. \newline Modo de derivación\HBSpecMarkerOne{}: 100-120 V\textasciitilde{} 60 Hz,12 A máx.} \HBSpecTallRowBreak
    \hline
-   \HBTypeSpecLabel{2 × Puertos DC8020} & \HBTypeSpecValue{11 V-16 V⎓8 A máx.,doble a 8 A máx. \newline 16 V-60 V⎓12 A,doble a 21 A / 400 W máx.} \\
-   \end{tabularx}
+   \HBTypeSpecLabel{2 × Puertos DC8020} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{11 V-16 V⎓8 A máx.,doble a 8 A máx. \newline 16 V-60 V⎓12 A,doble a 21 A / 400 W máx.} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
 
    \specsectiontitle{PUERTOS DE SALIDA}
    \begin{spectable}
-   \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{3 × Salidas CA} & \HBTypeSpecValue{120 V\textasciitilde{} 60 Hz, 12,5 A máx., 1500 W nominales por puerto,1500 W en total, pico de sobretensión de 3000 W} \\
+   \HBTypeSpecLabel{3 × Salidas CA} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{120 V\textasciitilde{} 60 Hz, 12,5 A máx., 1500 W nominales por puerto,1500 W en total, pico de sobretensión de 3000 W} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Salida de CA en modo derivación\HBSpecMarkerOne{}} & \HBTypeSpecValue{120 V\textasciitilde{}, 60 Hz, 12 A máx.} \\
+   \HBTypeSpecLabel{Salida de CA en modo derivación\HBSpecMarkerOne{}} & \HBTypeSpecValue{120 V\textasciitilde{}, 60 Hz, 12 A máx.} \HBSpecTallRowBreak
    \hline
-   \HBTypeSpecLabel{1 × Salida USB-A} & \HBTypeSpecValue{18 W máx.,5-6 V⎓3 A,6-9 V⎓2 A,9-12 V⎓1.5 A} \\
+   \HBTypeSpecLabel{USB-C 30W} & \HBTypeSpecValue{30 W máx.,5 V⎓3 A,9 V⎓3 A,12 V⎓2.5 A,15 V⎓2 A,20 V⎓1,5 A} \tabularnewline
    \hline
-   \HBTypeSpecLabel{1 × Puerto DC 12V} & \HBTypeSpecValue{12 V⎓10 A máx.} \\
-   \end{tabularx}
+   \HBTypeSpecLabel{USB-C 100W} & \HBTypeSpecValue{100 W máx.,5 V⎓3 A,9 V⎓3 A,12 V⎓3 A,15 V⎓3 A,20 V⎓5 A} \tabularnewline
+   \hline
+   \HBTypeSpecLabel{1 × Salida USB-A} & \HBTypeSpecValue{18 W máx.,5-6 V⎓3 A,6-9 V⎓2 A,9-12 V⎓1.5 A} \tabularnewline
+   \hline
+   \HBTypeSpecLabel{1 × Puerto DC 12V} & \HBTypeSpecValue{12 V⎓10 A máx.} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
 
    \specsectiontitle{ENVIRONMENTAL OPERATING TEMPERATURE}
    \begin{spectable}
-   \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{Temperatura de carga} & \HBTypeSpecValue{14 °F a 113 °F / -10 °C a 45 °C} \\
+   \HBTypeSpecLabel{Temperatura de carga} & \HBTypeSpecValue{14 °F a 113 °F / -10 °C a 45 °C} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Temperatura de descarga} & \HBTypeSpecValue{14°F a 113°F / -10°C a 45°C} \\
-   \end{tabularx}
+   \HBTypeSpecLabel{Temperatura de descarga} & \HBTypeSpecValue{14°F a 113°F / -10°C a 45°C} \tabularnewline
    \end{spectable}
 
 
@@ -83,6 +79,10 @@
    {\noindent
    \HBTypeSpecNote{\HBSpecMarkerOne{} El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.}\par
    }
+
+.. raw:: latex
+
+   \HBSpecPageEnd
 
 
 
@@ -157,6 +157,10 @@
           <tr>
             <th scope="row" class="hb-spec-label">Salida de CA en modo derivación①</th>
             <td class="hb-spec-value">120 V~, 60 Hz, 12 A máx.</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">2 × Salidas USB-C</th>
+            <td class="hb-spec-value">30 W máx.,5 V⎓3 A,9 V⎓3 A,12 V⎓2.5 A,15 V⎓2 A,20 V⎓1,5 A<br/>100 W máx.,5 V⎓3 A,9 V⎓3 A,12 V⎓3 A,15 V⎓3 A,20 V⎓5 A</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">1 × Salida USB-A</th>

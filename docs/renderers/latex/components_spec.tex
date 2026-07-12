@@ -10,6 +10,7 @@
 
 % ---- fallbacks (safe defaults if params are missing) ----
 \expandafter\providecommand\csname HBcomp_spec_section_before\endcsname{0.6mm}
+\expandafter\providecommand\csname HBcomp_spec_first_section_before\endcsname{0.6mm}
 \expandafter\providecommand\csname HBcomp_spec_section_after\endcsname{0.9mm}
 \expandafter\providecommand\csname HBcomp_spec_section_bullet_raise\endcsname{-0.16ex}
 \expandafter\providecommand\csname HBcomp_spec_section_bullet_symbol\endcsname{\scalebox{1.67}{\textbullet}}
@@ -17,6 +18,10 @@
 \expandafter\providecommand\csname HBcomp_spec_table_left_ratio\endcsname{0.33}
 \expandafter\providecommand\csname HBcomp_spec_table_tabcolsep\endcsname{3.2pt}
 \expandafter\providecommand\csname HBcomp_spec_table_row_stretch\endcsname{1.10}
+\expandafter\providecommand\csname HBcomp_spec_table_tall_row_extra\endcsname{2.1pt}
+\expandafter\providecommand\csname HBcomp_spec_table_multiline_min_height\endcsname{23.4pt}
+\expandafter\providecommand\csname HBcomp_spec_table_multiline_depth\endcsname{7.0pt}
+\expandafter\providecommand\csname HBcomp_spec_environment_extra_before\endcsname{1.2mm}
 \expandafter\providecommand\csname HBcomp_spec_notes_before\endcsname{0.8mm}
 \expandafter\providecommand\csname HBcomp_spec_footnotes_before\endcsname{1.2mm}
 
@@ -30,43 +35,76 @@
 \expandafter\providecommand\csname HBtype_spec_note_font_leading\endcsname{6.7pt}
 
 % ---- spec section title (shared level-2 dot heading) ----
+\newif\ifHBSpecFirstSection
+\newcount\HBSpecSectionIndex
 \providecommand{\specsectiontitle}[1]{%
-  \HBTitleLevelTwoBlock{#1}%
+  \par
+  \global\advance\HBSpecSectionIndex by 1\relax
+  \ifHBSpecFirstSection
+    \vspace{\csname HBcomp_spec_first_section_before\endcsname}%
+    \HBSpecFirstSectionfalse
+  \else
+    \vspace{\csname HBcomp_spec_section_before\endcsname}%
+    \ifnum\HBSpecSectionIndex=4\relax
+      \vspace{\csname HBcomp_spec_environment_extra_before\endcsname}%
+    \fi
+  \fi
+  \Needspace{\csname HBcomp_title_l2_needspace\endcsname}%
+  \HBTitleLevelTwo{#1}%
+  \vspace{\csname HBcomp_spec_section_after\endcsname}%
 }
 
+% Specifications are a fixed-format page in the reference manual. These
+% boundaries keep adjacent sections from flowing into or out of the page.
+\providecommand{\HBSpecPageStart}{%
+  \clearpage
+  \global\HBSpecSectionIndex=0\relax
+  \HBSpecFirstSectiontrue
+}
+\providecommand{\HBSpecPageEnd}{\clearpage}
+
 % ---- spec table wrapper ----
-% longtable instead of HBSharedDataTable (tcolorbox + tabularx): the box
-% cannot break across pages and "clip upper" silently clips overflowing
-% rows (reports/typography_gap/2026-07-03 #5). The left-column tint that
-% the frame overlay used to paint is reproduced with \columncolor.
-% Trade-off: rounded outer corner dropped. Rows are emitted by
-% renderers_spec.py as "label & value \\" with \hline separators.
-\newenvironment{spectable}{%
+% Each section fits on the dedicated spec page, so a non-breaking framed
+% table can own the rounded outer stroke while tabularx owns only the inner
+% divider and row rules.
+\NewEnviron{spectable}{%
   \begingroup
   \parindent=0pt\relax
   \arrayrulecolor{HBSharedTableFrameColor}
+  \let\tabularxcolumn\HBsharedXcolumn
   \setlength{\tabcolsep}{\csname HBcomp_spec_table_tabcolsep\endcsname}
   \renewcommand{\arraystretch}{\csname HBcomp_spec_table_row_stretch\endcsname}
   \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
   \ifdim\arrayrulewidth<0.24pt\arrayrulewidth=0.24pt\fi
-  \setlength{\LTpre}{0pt}%
-  \setlength{\LTpost}{0pt}%
-  \setlength{\LTleft}{0pt}%
-  \setlength{\LTright}{\fill}%
-  % \RaggedRight (ragged2e) instead of \raggedright: allows hyphenation and
-  % balanced breaks in the value column, avoiding one-word orphan lines
-  % like "Surge Peak" (typography_gap #7).
-  \begin{longtable}{|
+  \begin{tcolorbox}[
+    enhanced,
+    clip upper,
+    colback=white,
+    colframe=HBSharedTableFrameColor,
+    arc=\csname HBcomp_table_outer_arc\endcsname,
+    boxrule=\csname HBcomp_table_outer_rule\endcsname,
+    boxsep=0mm,
+    left=0mm,right=0mm,top=0mm,bottom=0mm,
+    before skip=0mm,after skip=0mm
+  ]%
+  \begin{tabularx}{\linewidth}{@{}
     >{\columncolor{HBSharedTableLeftBg}\RaggedRight\arraybackslash}%
       m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|
-    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
-      -\csname HBcomp_spec_table_left_ratio\endcsname\linewidth
-      -4\tabcolsep-3\arrayrulewidth\relax}|}
-  \hline\endhead
-}{%
-  \hline
-  \end{longtable}
+    >{\RaggedRight\arraybackslash}X@{}}%
+    \BODY
+  \end{tabularx}%
+  \end{tcolorbox}%
   \endgroup
+}
+
+% Reference rows containing multiple value lines or a footnote marker carry
+% a little more vertical air than ordinary single-line rows.
+\providecommand{\HBSpecTallRowBreak}{%
+  \tabularnewline[\csname HBcomp_spec_table_tall_row_extra\endcsname]%
+}
+\providecommand{\HBSpecMultilineRowStrut}{%
+  \rule[-\csname HBcomp_spec_table_multiline_depth\endcsname]{0pt}%
+       {\csname HBcomp_spec_table_multiline_min_height\endcsname}%
 }
 
 % ---- spec text styles ----

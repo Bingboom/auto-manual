@@ -723,6 +723,19 @@ python build.py pdf --config configs/config.us.yaml --pdf-mode latex
 python build.py pdf --config configs/config.us.yaml --pdf-mode word
 ```
 
+The LaTeX backend keeps presentation in
+[components_base.tex](../docs/renderers/latex/components_base.tex) and
+[components_safety.tex](../docs/renderers/latex/components_safety.tex).
+Page RST should call those components and keep content separate from the
+visual frame. Fixed-format boundaries use **HBPageBreak**; rounded tables use
+an independent outer frame while their tabular content owns only the internal
+grid. In LaTeX output, one-row label/body tables whose labels resolve to
+WARNING, CAUTION, NOTE, or TIP (including the supported localized labels) are
+automatically rendered by the shared rounded callout component; HTML and Word
+keep the source table. Tune shared geometry in
+[layout_params.csv](../data/layout_params.csv), then regenerate params.tex
+with python tools/csv_to_tex_params.py.
+
 ## 6. Diff Report
 
 Typical usage:

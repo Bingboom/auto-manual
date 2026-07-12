@@ -104,6 +104,54 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn('class="hb-spec-note" data-spec-trailer-kind="note"', out)
         self.assertIn('class="hb-spec-footnote" data-spec-trailer-kind="footnote"', out)
         self.assertLess(out.index("Demo note line"), out.index("Demo footnote"))
+        self.assertLess(out.index(r"\HBSpecPageStart"), out.index(r"\section{SPECIFICATIONS}"))
+        self.assertGreater(out.index(r"\HBSpecPageEnd"), out.index("Demo footnote"))
+
+    def test_render_spec_page_marks_multiline_rows_for_reference_height(self) -> None:
+        blocks = self._spec_blocks()
+        blocks[2]["text_en"] = "Input || Charge mode\nBypass mode"
+
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        self.assertIn(r"& \HBSpecMultilineRowStrut{}\HBTypeSpecValue", out)
+
+    def test_render_spec_page_splits_usb_c_power_variants_for_latex(self) -> None:
+        blocks = self._spec_blocks()
+        blocks.insert(
+            3,
+            {
+                "block_type": "row_item",
+                "order": "111.5",
+                "sku_scope": "ALL",
+                "enabled": "1",
+                "meta_json": "{}",
+                "text_en": (
+                    "2 × USB-C || 30 W max., 5 V / 3 A"
+                    "\n100 W max., 5 V / 3 A"
+                ),
+            },
+        )
+
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=blocks,
+            sku_id="JB1000",
+            lang="en",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        self.assertIn(r"\HBTypeSpecLabel{USB-C 30W}", out)
+        self.assertIn(r"\HBTypeSpecLabel{USB-C 100W}", out)
+        self.assertIn(
+            r"\HBTypeSpecLabel{USB-C 30W} & \HBTypeSpecValue{30 W max., 5 V / 3 A} \tabularnewline",
+            out,
+        )
 
     def test_render_spec_page_row_without_delimiter_should_fail(self) -> None:
         blocks = self._spec_blocks()
@@ -272,6 +320,37 @@ class TestCsvPageRenderers(unittest.TestCase):
         ac_pos = out.find("1 x AC Input")
         self.assertGreater(model_pos, -1)
         self.assertGreater(ac_pos, -1)
+
+    def test_render_spec_page_keeps_legacy_named_usb_c_rows_on_spec_page(self) -> None:
+        blocks = self._spec_master_blocks()
+        usb_rows = []
+        for order, slot, value in (
+            ("1", "30w", "30 W max., 5 V / 3 A"),
+            ("2", "100w", "100 W max., 5 V / 3 A"),
+        ):
+            row = dict(blocks[0])
+            row.update(
+                {
+                    "Row_key": "usb_c",
+                    "Slot_key": slot,
+                    "Row_label_source": "2 × USB-C",
+                    "Param_source": "",
+                    "Line_order": order,
+                    "Value_source": value,
+                }
+            )
+            usb_rows.append(row)
+
+        out = renderers.render_spec_page(
+            template=self._spec_template(),
+            blocks=usb_rows,
+            sku_id="JB1000",
+            lang="en",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        self.assertIn(r"\HBTypeSpecLabel{USB-C 30W}", out)
+        self.assertIn(r"\HBTypeSpecLabel{USB-C 100W}", out)
 
     def test_render_spec_page_should_fallback_to_sibling_region_footnote_definition(self) -> None:
         blocks = self._spec_master_blocks()
@@ -631,10 +710,43 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         self.assertNotIn(r"\HBNoticeBlock{DANGER}", out)
         self.assertIn(r"\HBSymbolTable{Symbol}{Meaning}{%", out)
+        self.assertIn(r"\HBSymbolTwoColumnTables{Symbol}{Meaning}{%", out)
         self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{WARNING}{Data warning.}", out)
         self.assertIn(r"\HBSymbolIconRow{warning_triangle.png}{Warning symbol meaning.}", out)
         self.assertIn(".. only:: not latex", out)
         self.assertIn("hb-warning-lockup", out)
+
+    def test_render_symbols_page_keeps_latex_columns_in_source_order(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="en",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        left_start = out.index(r"\HBSymbolTwoColumnTables{Symbol}{Meaning}{%")
+        warning_pos = out.index(r"\HBSymbolIconRow{warning_triangle.png}", left_start)
+        right_start = out.index("}{%", warning_pos)
+        manual_pos = out.index(r"\HBSymbolIconRow{read_manual_operator.png}", left_start)
+        dismantle_pos = out.index(r"\HBSymbolIconRow{do_not_dismantle.png}", left_start)
+
+        self.assertLess(warning_pos, right_start)
+        self.assertLess(manual_pos, right_start)
+        self.assertGreater(dismantle_pos, right_start)
+
+    def test_render_symbols_page_uses_controlled_split_for_long_locales(self) -> None:
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JB1000",
+            lang="es",
+            vars_map=self._localized_copy_vars(),
+        )
+
+        self.assertIn(r"\HBSymbolTwoColumnTablesSplit{Símbolo}{Significado}{%", out)
+        self.assertIn(r"\HBSymbolIconRow{warning_triangle.png}", out)
+        self.assertIn(r"\HBSymbolIconRow{do_not_dismantle.png}", out)
 
     def test_render_symbols_page_latex_image_args_use_basenames(self) -> None:
         blocks = self._symbols_blocks()
@@ -1022,10 +1134,7 @@ class TestCsvPageRenderers(unittest.TestCase):
         )
 
         order_positions = [out.index(f"Order {idx}.") for idx in range(1, 6)]
-        self.assertLess(order_positions[0], order_positions[3])
-        self.assertLess(order_positions[3], order_positions[1])
-        self.assertLess(order_positions[1], order_positions[4])
-        self.assertLess(order_positions[4], order_positions[2])
+        self.assertEqual(order_positions, sorted(order_positions))
 
     def test_render_symbols_page_should_use_market_field(self) -> None:
         blocks = self._symbols_blocks()

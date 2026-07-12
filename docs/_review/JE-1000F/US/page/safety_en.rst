@@ -14,7 +14,7 @@
 
    .. raw:: latex
 
-      \safetywarning{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
+      \HBSafetyInstruction{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
 
    .. raw:: latex
 
@@ -23,7 +23,7 @@
 
    .. raw:: latex
 
-      \safetylead{Always follow these basic precautions when using this product.}
+      \HBWarningLeadBlock{WARNING}{Always follow these basic precautions when using this product.}
 
 
    - Read all the instructions before using the product.
@@ -90,7 +90,7 @@
 
    .. raw:: latex
 
-      \HBNoticeBlock{DANGER}{This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).}{※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.}
+      \HBDangerBlock{DANGER}{This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.).}{※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.}
 
 
 .. only:: html

@@ -3,11 +3,20 @@
 
 from __future__ import annotations
 from pathlib import Path
+import sys
+
+_LATEX_EXTENSION_DIR = Path(__file__).resolve().parent / "renderers" / "latex"
+if str(_LATEX_EXTENSION_DIR) not in sys.path:
+    sys.path.insert(0, str(_LATEX_EXTENSION_DIR))
 
 # --- project-independent defaults ---
 project = ""
 author = ""
-extensions: list[str] = []
+extensions: list[str] = [
+    "hb_latex_callouts",
+    "hb_latex_data_tables",
+    "hb_latex_warranty",
+]
 exclude_patterns = [
     "_build",
     "templates/*",
@@ -55,8 +64,14 @@ latex_additional_files = [
     "renderers/latex/layout_templates.tex",
     "renderers/latex/layout_core.tex",
     "renderers/latex/components_base.tex",
+    "renderers/latex/components_headings.tex",
+    "renderers/latex/components_special_pages.tex",
+    "renderers/latex/components_symbols.tex",
+    "renderers/latex/components_lcd.tex",
     "renderers/latex/components_safety.tex",
     "renderers/latex/components_spec.tex",
+    "renderers/latex/components_data_tables.tex",
+    "renderers/latex/components_warranty.tex",
     "renderers/latex/page_fit.tex",
     "_assets/templates/word_template/common_assets/operation/lcd_mode.png",
 ]

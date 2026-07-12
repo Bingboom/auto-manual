@@ -8,6 +8,8 @@
 
 .. include:: page/00_preface.rst
 
+.. include:: page/00_toc.rst
+
 .. include:: page/safety_en.rst
 
 .. include:: page/01_user_maintenance_instructions.rst
@@ -104,3 +106,4 @@
 
 .. include:: page/p50_12_app_setup_placeholder.rst
 
+.. include:: page/99_back_cover.rst

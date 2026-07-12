@@ -5,6 +5,7 @@
       \section{CONTENU DE LA BOÎTE}
       \HBInBoxThree{main_unit1.png}{|PRODUCT_NAME|}{ac_charging_cable.png}{Câble de charge CA}{manual_icon1.png}{Documents}
       \HBTipBlock{CONSEILS}{Le câble de chargement pour voiture n'est pas inclus, mais peut être acheté séparément sur notre site Web. Pour obtenir de l'aide, veuillez contacter le service client Jackery.}
+      \HBPageBreak
 
 .. only:: latex and region_eu
 

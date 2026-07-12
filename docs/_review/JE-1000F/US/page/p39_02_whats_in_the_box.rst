@@ -9,6 +9,7 @@
       \section{CONTENIDO DE LA CAJA}
       \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Cable de carga de CA}{manual_icon1.png}{Documentos}
       \HBTipBlock{CONSEJOS}{El cable de carga para vehículo no está incluido, pero está disponible para su compra por separado en nuestro sitio web. Para obtener asistencia, comunícate con el servicio al cliente de Jackery.}
+      \HBPageBreak
 
 .. only:: latex and region_eu
 

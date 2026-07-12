@@ -24,6 +24,10 @@ This repository is responsible for:
 - generating design handoff outputs, including production IDML and flow-mode
   semantic Markdown / continuous-story IDML artifacts for InDesign template
   handoff, plus paired design checklist and feedback files
+- generating fixed-format LaTeX manuals through shared page components: H1
+  bars, capsule subbars, safety callouts, rounded table frames, FCC panels,
+  inbox cards, warning/caution/note/tip strips, controlled symbol
+  continuations, and app steps
 
 This repository is not the place to define the long-term platform strategy.
 That boundary lives in [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md).
