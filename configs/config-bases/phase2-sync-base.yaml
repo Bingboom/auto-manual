@@ -43,6 +43,8 @@ sync:
         base_token_env: FEISHU_TRANSLATION_MEMORY_BASE_TOKEN
         table_id_env: FEISHU_TRANSLATION_MEMORY_TABLE_ID
         view_id_env: FEISHU_TRANSLATION_MEMORY_VIEW_ID
+    model_capabilities:
+      table_id_env: FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID
     document_link:
       table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
       view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID
