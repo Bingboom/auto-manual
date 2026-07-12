@@ -77,8 +77,13 @@
     };
     var doc = null;
     var oldInteraction = app.scriptPreferences.userInteractionLevel;
+    var oldBackground = null;
     try {
         app.scriptPreferences.userInteractionLevel = UserInteractionLevels.NEVER_INTERACT;
+        try {
+            oldBackground = app.backgroundTaskPreferences.enableBackgroundTask;
+            app.backgroundTaskPreferences.enableBackgroundTask = false;
+        } catch (_) {}
         report.stage = "open_idml";
         doc = app.open(File(job.input_idml), false);
         doc.recompose();
@@ -154,6 +159,9 @@
             try { doc.close(SaveOptions.NO); } catch (_) {}
         }
     } finally {
+        if (oldBackground !== null) {
+            try { app.backgroundTaskPreferences.enableBackgroundTask = oldBackground; } catch (_) {}
+        }
         app.scriptPreferences.userInteractionLevel = oldInteraction;
         writeJson(job.report_json, report);
     }

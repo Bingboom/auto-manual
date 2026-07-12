@@ -92,7 +92,9 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     """V2.0 US safety page 01: fixed component regions, not one flow."""
     h1 = next((t for k, t in blocks if k == "h1"), title)
     top_warning = next((t for k, t in blocks
-                        if k == "component" and '"kind": "safetywarning"' in t), None)
+                        if k == "component" and any(
+                            f'"kind": "{name}"' in t
+                            for name in ("safetywarning", "safetyinstruction"))), None)
     subbar = next((t for k, t in blocks if k == "h2"), "OPERATING INSTRUCTIONS")
 
     sections: list[list[tuple[str, str]]] = []
@@ -136,13 +138,15 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     frames = []
     for frame_id, story_id, rect, opts in (
         ("title", title_sid, (body_x, 27.5, body_w, h1_bar_h_pt(writer)),
-         heading_bar_opts(1, (1.5, 5, 1, 6))),
+         {**heading_bar_opts(1, (1.5, 0, 1, 0)),
+          "text_rect": (body_x + 6.0, 27.5, body_w - 12.0, h1_bar_h_pt(writer))}),
         ("warning", warning_sid, (body_x, 55.5, body_w, 31.5),
          with_rounded_outer({"inset": (0, 0, 0, 0)})),
         ("section1", section_sids[0] if section_sids else "", (body_x, 93.5, body_w, 162.0),
          {"columns": 2, "balance_columns": True, "inset": (0, 0, 0, 0)}),
         ("subbar", bar_sid, (body_x, 263.0, body_w, SUBBAR_H),
-         heading_bar_opts(2, (0.5, 5, 0.5, 6))),
+         {**heading_bar_opts(2, (0.5, 0, 0.5, 0)),
+          "text_rect": (body_x + 6.0, 263.0, body_w - 12.0, SUBBAR_H)}),
         ("section2", section_sids[1] if len(section_sids) > 1 else "",
          (body_x, 286.0, body_w, 205.0),
          {"columns": 2, "balance_columns": True, "inset": (0, 0, 0, 0)}),
@@ -371,14 +375,16 @@ def add_safety_symbols_page(
         target_h = 34.5 if ti == 0 else 28.0
         tail_h = min(max(target_h, t_h + 3.0), target_h + 6.0) + 3.0
         _place(f"tail_{ti}", t_sid, tail_h,
-               with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=0.0)
+               with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=4.0)
     maint_h = est_table_height([maint_text], body_w, 24.0) - 16.0
     _place("maint_title", maint_title_sid, SUBBAR_H,
            heading_bar_opts(2, (0.5, 5, 0.5, 6)), gap=3.5)
     _place("maint_body", maint_body_sid, maint_h, {"inset": (0, 0, 0, 0)}, gap=8.0)
     _place("symbols_title", symbols_title_sid, h1_bar_h_pt(writer),
            heading_bar_opts(1, (1.5, 5, 1, 6)), gap=9.0)
-    signals_h = est_table_height([t for _, t in signals], body_w * 0.76, 26.0)
+    signal_row_h = 26.0 if lang == "en" else 18.0
+    signals_h = est_table_height(
+        [t for _, t in signals], body_w * 0.76, signal_row_h)
     _place("signals", signal_sid, signals_h, with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=6.5)
     bottom = writer.page_h - 2.0
     icons_h = max(60.0, min(
@@ -397,6 +403,9 @@ def add_safety_symbols_page(
     for frame_id, story_id, rect, opts in frame_specs:
         if not story_id:
             continue
+        if frame_id in {"maint_title", "symbols_title"}:
+            opts = {**opts, "text_rect": (
+                rect[0] + 6.0, rect[1], rect[2] - 12.0, rect[3])}
         frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

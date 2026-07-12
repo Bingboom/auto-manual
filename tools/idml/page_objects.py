@@ -279,7 +279,9 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     capsule_bg = bool(opts.pop("capsule_bg", False))
     h1_bar_bg = bool(opts.pop("h1_bar_bg", False))
     rounded_outer = bool(opts.pop("rounded_outer", False))
+    text_rect = opts.pop("text_rect", rect)
     x1, y1, x2, y2 = writer._page_rect(*rect)
+    tx1, ty1, tx2, ty2 = writer._page_rect(*text_rect)
     parts: list[str] = []
     if capsule_bg:
         parts.append(capsule_xml(writer, f"bg_{sid}_{frame_id}", rect))
@@ -289,7 +291,7 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     if rounded_outer:
         parts.append(rounded_outer_xml(writer, f"bg_{sid}_{frame_id}", rect))
     parts.append(writer._frame_xml(
-        f"tf_{sid}_{frame_id}", story_id, x1, y1, x2, y2, **opts))
+        f"tf_{sid}_{frame_id}", story_id, tx1, ty1, tx2, ty2, **opts))
     return "".join(parts)
 
 

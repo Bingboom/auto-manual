@@ -25,15 +25,15 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -234.846" LeftDirection="-156.994 -234.846" RightDirection="-156.994 -234.846"/>
-            <PathPointType Anchor="-156.994 -213.327" LeftDirection="-156.994 -213.327" RightDirection="-156.994 -213.327"/>
-            <PathPointType Anchor="156.994 -213.327" LeftDirection="156.994 -213.327" RightDirection="156.994 -213.327"/>
-            <PathPointType Anchor="156.994 -234.846" LeftDirection="156.994 -234.846" RightDirection="156.994 -234.846"/>
+            <PathPointType Anchor="-150.994 -234.846" LeftDirection="-150.994 -234.846" RightDirection="-150.994 -234.846"/>
+            <PathPointType Anchor="-150.994 -213.327" LeftDirection="-150.994 -213.327" RightDirection="-150.994 -213.327"/>
+            <PathPointType Anchor="150.994 -213.327" LeftDirection="150.994 -213.327" RightDirection="150.994 -213.327"/>
+            <PathPointType Anchor="150.994 -234.846" LeftDirection="150.994 -234.846" RightDirection="150.994 -234.846"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
-    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1.5 5 1 6"/>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1.5 0 1 0"/>
   </TextFrame>
   <Rectangle Self="bg_st_safety_en_warning" Label="hb:self=bg_st_safety_en_warning" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
     <Properties>
@@ -106,15 +106,15 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 0.653543" LeftDirection="-156.994 0.653543" RightDirection="-156.994 0.653543"/>
-            <PathPointType Anchor="-156.994 14.5535" LeftDirection="-156.994 14.5535" RightDirection="-156.994 14.5535"/>
-            <PathPointType Anchor="156.994 14.5535" LeftDirection="156.994 14.5535" RightDirection="156.994 14.5535"/>
-            <PathPointType Anchor="156.994 0.653543" LeftDirection="156.994 0.653543" RightDirection="156.994 0.653543"/>
+            <PathPointType Anchor="-150.994 0.653543" LeftDirection="-150.994 0.653543" RightDirection="-150.994 0.653543"/>
+            <PathPointType Anchor="-150.994 14.5535" LeftDirection="-150.994 14.5535" RightDirection="-150.994 14.5535"/>
+            <PathPointType Anchor="150.994 14.5535" LeftDirection="150.994 14.5535" RightDirection="150.994 14.5535"/>
+            <PathPointType Anchor="150.994 0.653543" LeftDirection="150.994 0.653543" RightDirection="150.994 0.653543"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
-    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0.5 5 0.5 6"/>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0.5 0 0.5 0"/>
   </TextFrame>
   <TextFrame Self="tf_st_safety_en_section2" Label="hb:self=tf_st_safety_en_section2" ParentStory="st_safety_en_section2" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>

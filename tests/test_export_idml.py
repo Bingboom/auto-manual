@@ -521,7 +521,7 @@ class ExportIdmlTests(unittest.TestCase):
         blocks = [
             ("h1", "IMPORTANT SAFETY INFORMATION"),
             ("component", json.dumps({
-                "kind": "safetywarning",
+                "kind": "safetyinstruction",
                 "texts": ["INSTRUCTIONS PERTAINING TO RISK OF FIRE"],
             })),
             ("layout", "twocol_start"),
@@ -539,6 +539,7 @@ class ExportIdmlTests(unittest.TestCase):
             ("layout", "twocol_end"),
         ]
         w.add_safety_page("st_safety_en", "safety_en", blocks, ROOT, 1)
+        self.assertIn("st_safety_en_top_warning", dict(w.stories))
         spread = dict(w.spreads)["sp_1"]
         self.assertEqual(spread.count("<TextFrame "), 5)
         self.assertEqual(spread.count("<Rectangle "), 3)

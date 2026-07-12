@@ -20,6 +20,13 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("LinkStatus.NORMAL", jsx)
         self.assertIn("hb:page=", jsx)
         self.assertIn("doc.exportFile", jsx)
+        self.assertIn("backgroundTaskPreferences.enableBackgroundTask = false", jsx)
+
+    def test_runner_allows_synchronous_pdf_export_to_finish(self) -> None:
+        runner = (JSX.parent.parent / "indesign_finalize.py").read_text(encoding="utf-8")
+
+        self.assertIn("with timeout of 600 seconds", runner)
+        self.assertIn("timeout=660", runner)
 
 
 if __name__ == "__main__":

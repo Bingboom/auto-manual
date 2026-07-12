@@ -94,7 +94,7 @@ class TestBuildDispatch(unittest.TestCase):
 
         self.assertEqual(("maybe-sync-review", "fast", {"source_override": "runtime"}), calls[1])
 
-    def test_dispatch_idml_should_prepare_bundle_before_export(self) -> None:
+    def test_dispatch_idml_should_prepare_latex_reference_before_export(self) -> None:
         calls = self._dispatch("idml")
 
         self.assertEqual(("ensure", "idml"), calls[0])
@@ -103,7 +103,7 @@ class TestBuildDispatch(unittest.TestCase):
                 "build-docs",
                 "idml",
                 {
-                    "action_override": "rst",
+                    "action_override": "pdf",
                     "source_override": "runtime",
                 },
             ),
@@ -121,9 +121,15 @@ class TestBuildDispatch(unittest.TestCase):
     def test_dispatch_idml_should_pass_requested_mode_to_exporter(self) -> None:
         calls = self._dispatch("idml", idml_mode="flow")
 
+        self.assertEqual("rst", calls[1][2]["action_override"])
         self.assertIn("--mode", calls[3][1])
         mode_index = calls[3][1].index("--mode")
         self.assertEqual("flow", calls[3][1][mode_index + 1])
+
+    def test_dispatch_idml_preserves_review_asis_source(self) -> None:
+        calls = self._dispatch("idml", source="review-asis")
+
+        self.assertEqual("review-asis", calls[1][2]["source_override"])
 
     def _dispatch(self, action: str, **overrides) -> list[tuple]:
         values = {

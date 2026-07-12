@@ -146,12 +146,17 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
     """Export the editable InDesign handoff package (tools/export_idml.py)."""
     import sys as _sys
 
-    # Build the rst bundle the exporter reads. Standalone `build.py idml` builds
-    # from runtime; the publish queue passes `--source review` so the IDML matches
-    # the reviewed Word/PDF/HTML rather than the (possibly newer) runtime data.
+    # Production IDML needs both the prepared bundle and the LaTeX reference PDF
+    # used by its page plan. Flow-only mode still needs just the RST bundle.
     _src = getattr(args, "source", None)
-    source_override = _src if _src in {"review", "runtime"} else "runtime"
-    context.run_checked(context.build_docs_command(args, action_override="rst", source_override=source_override))
+    source_override = _src if _src in {"review", "review-asis", "runtime"} else "runtime"
+    mode = getattr(args, "idml_mode", "production")
+    build_action = "rst" if mode == "flow" else "pdf"
+    build_args = argparse.Namespace(**vars(args))
+    if build_action == "pdf":
+        build_args.pdf_mode = "latex"
+    context.run_checked(context.build_docs_command(
+        build_args, action_override=build_action, source_override=source_override))
     cmd = [_sys.executable, str(Path(__file__).resolve().parents[1] / "tools" / "export_idml.py")]
     if getattr(args, "model", None):
         cmd += ["--model", args.model]
@@ -161,8 +166,8 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
         cmd += ["--lang", args.lang]
     if getattr(args, "data_root", None):
         cmd += ["--data-root", args.data_root]
-    if getattr(args, "idml_mode", None):
-        cmd += ["--mode", args.idml_mode]
+    if mode:
+        cmd += ["--mode", mode]
     context.run_checked(cmd)
 
 

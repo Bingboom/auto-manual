@@ -345,7 +345,6 @@ def main() -> int:
     trouble_rows: list[tuple[str, str]] = []
     w = IdmlWriter(params)
     symbol_cache: dict[str, tuple[list[tuple[str, str]], list[dict]]] = {}
-
     def symbol_rows_for(lang: str) -> tuple[list[tuple[str, str]], list[dict]]:
         lang = normalize_lang(lang)
         if lang not in symbol_cache:
@@ -571,11 +570,12 @@ def main() -> int:
     flush_prose_flow()
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind, args.lang)
-    if _placed.add_back_cover_page(w, args.region, page_cursor):
+    back_copy = _ir_projection.back_cover_data(manual_ir)
+    if _placed.add_back_cover_page(w, args.region, page_cursor, back_copy):
         page_cursor += 1
-    _toc.finalize(w, toc, w._add_story_parts, w._psr)
+    _toc.finalize(w, toc, w._add_story_parts, w._psr,
+                  source=_ir_projection.toc_page_data(manual_ir))
     _folio.apply(w, w._add_story_parts, w._psr)
-
     out = Path(args.out) if args.out else default_output_path(args.model, args.region, args.lang, bundle_root)
     _ir_projection.emit_reference_page_plan(page_plan, out_dir=out.parent)
     _ir_sidecar.write_manual_ir_sidecar(manual_ir, out.parent)

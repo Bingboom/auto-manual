@@ -45,10 +45,12 @@ def _run_jsx(job: dict[str, str], *, application: str) -> None:
             encoding="utf-8",
         )
         apple_script = (
+            "with timeout of 600 seconds\n"
             f'tell application "{application}" to do script '
-            f'(POSIX file {json.dumps(str(wrapper))}) language javascript'
+            f'(POSIX file {json.dumps(str(wrapper))}) language javascript\n'
+            "end timeout"
         )
-        subprocess.run(["osascript", "-e", apple_script], check=True)
+        subprocess.run(["osascript", "-e", apple_script], check=True, timeout=660)
 
 
 def main() -> int:

@@ -94,6 +94,21 @@ def _data_payloads(page: ManualPage | None) -> list[dict[str, Any]]:
             if block.kind == "data" and isinstance(block.payload, dict)]
 
 
+def _special_payload(ir: ManualIR, kind: str) -> dict[str, Any] | None:
+    return next((payload for page in ir.pages for payload in _data_payloads(page)
+                 if payload.get("kind") == kind), None)
+
+
+def toc_page_data(ir: ManualIR) -> dict[str, Any] | None:
+    """Return the source-authored TOC title, language blocks, and folios."""
+    return _special_payload(ir, "toc")
+
+
+def back_cover_data(ir: ManualIR) -> dict[str, Any] | None:
+    """Return the source-authored back-cover company/contact copy."""
+    return _special_payload(ir, "back_cover")
+
+
 def _heading(page: ManualPage | None, fallback: str) -> str:
     if page is not None:
         for block in page.blocks:
@@ -213,6 +228,18 @@ def same_source_issues(ir: ManualIR) -> list[str]:
             ir, lang, root=Path("."), data_root=Path(".")
         ) is None:
             issues.append(f"{lang}: symbols page has no semantic rows")
+    source_names = {Path(page.source_path).name for page in ir.pages}
+    toc = toc_page_data(ir)
+    if "00_toc.rst" in source_names and (
+        not toc or not toc.get("languages")
+        or any(not language.get("entries") for language in toc["languages"])
+    ):
+        issues.append("TOC page has no complete semantic source payload")
+    back = back_cover_data(ir)
+    if "99_back_cover.rst" in source_names and (
+        not back or any(not back.get(field) for field in ("company", "address", "phone"))
+    ):
+        issues.append("back cover has no complete semantic source payload")
     return issues
 
 

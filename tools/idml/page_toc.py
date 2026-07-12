@@ -87,7 +87,7 @@ def _folio(spread_index: int) -> int:
     return max(1, spread_index - 1)
 
 
-def _entry_psr(title: str, folio: int, col_w: float) -> str:
+def _entry_psr(title: str, folio: int | str, col_w: float) -> str:
     style = paragraph_style_ref("HB Spec Label")
     leader = (
         '<Properties><TabList type="list"><ListItem type="record">'
@@ -101,14 +101,37 @@ def _entry_psr(title: str, folio: int, col_w: float) -> str:
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">{leader}'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-        f"<Content>{safe}\t{folio:02d}</Content><Br/>"
+        f"<Content>{safe}\t{str(folio).zfill(2)}</Content><Br/>"
         "</CharacterStyleRange></ParagraphStyleRange>\n"
     )
 
 
-def finalize(writer, collector: TocCollector, add_story_parts, psr) -> bool:
+def _display_segments(
+    collector: TocCollector, source: dict | None,
+) -> tuple[str, list[tuple[str, str, list[tuple[str, int | str]]]]]:
+    if source:
+        segments = []
+        for language in source.get("languages", []):
+            header = f"{language.get('code', '')}  {language.get('label', '')}".strip()
+            entries = [(str(entry.get("title", "")), str(entry.get("folio", "")))
+                       for entry in language.get("entries", [])]
+            segments.append((header, str(language.get("page_range", "")), entries))
+        return str(source.get("title") or "TABLE OF CONTENTS"), segments
+    segments = []
+    for lang, entries in _segments(collector.entries):
+        folios = [_folio(index) for _, index in entries]
+        segments.append((_LANG_HEADERS.get(lang, lang.upper()),
+                         f"{min(folios):02d}-{max(folios):02d}",
+                         [(title, _folio(index)) for title, index in entries]))
+    return "TABLE OF CONTENTS", segments
+
+
+def finalize(
+    writer, collector: TocCollector, add_story_parts, psr,
+    source: dict | None = None,
+) -> bool:
     """Build the TOC spread and splice it into the template slot."""
-    segments = _segments(collector.entries)
+    title, segments = _display_segments(collector, source)
     if not segments or len(writer.spreads) <= _TOC_SLOT:
         return False
 
@@ -120,16 +143,13 @@ def finalize(writer, collector: TocCollector, add_story_parts, psr) -> bool:
     # master: plain large dark text, no bar (STYLE_MAP.md 标题族)
     title_sid = add_story_parts(
         "st_toc_title", "TOC title",
-        [psr("HB Big Numeral", "TABLE OF CONTENTS", terminal=True)])
+        [psr("HB Big Numeral", title, terminal=True)])
     frames.append(writer._frame_xml(
         "tf_toc_title", title_sid, *writer._page_rect(body_x, y, body_w, 30.0),
         valign="CenterAlign", inset=(0, 0, 0, 0)))
     y += 38.0
 
-    for si, (seg_lang, segment) in enumerate(segments):
-        header = _LANG_HEADERS.get(seg_lang, seg_lang.upper())
-        folios = [_folio(i) for _, i in segment]
-        rng = f"{min(folios):02d}-{max(folios):02d}"
+    for si, (header, rng, segment) in enumerate(segments):
         bar_sid = add_story_parts(
             f"st_toc_bar_{si}", f"TOC bar {si}",
             [psr("HB Capsule Text", f"{header}\t{rng}", terminal=True)])
@@ -146,7 +166,7 @@ def finalize(writer, collector: TocCollector, add_story_parts, psr) -> bool:
         for ci, chunk in enumerate((segment[:half], segment[half:])):
             if not chunk:
                 continue
-            xml = "".join(_entry_psr(t, _folio(i), col_w) for t, i in chunk)
+            xml = "".join(_entry_psr(t, folio, col_w) for t, folio in chunk)
             sid = add_story_parts(f"st_toc_seg{si}_c{ci}", f"TOC {si}/{ci}", [xml])
             frames.append(writer._frame_xml(
                 f"tf_toc_seg{si}_c{ci}", sid,
