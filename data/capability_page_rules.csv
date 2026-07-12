@@ -1,0 +1,10 @@
+capability,scope,page_stem,match_regex,required_when_true,forbidden_when_false,notes
+UPS功能,page,06_ups_mode,,Y,Y,UPS 能力决定 UPS 章节页的有无
+加电包扩容,page,07_extra_battery,,N,Y,"扩容页模板待建;暂只拦""无能力却含页"""
+LED照明灯,section,05_operation_guide,LED[ 　]*(LIGHT|ライト|照明)|LED 라이트,Y,Y,操作指南内 LED 小节
+TOU/计划充电,section,lcd_icons|12_app_setup,TOU|充电计划|計画充電|Charging Schedule|충전 계획,Y,N,"2026-07-12 终裁:HTE153 支持 TOU,手册体现于 LCD 图标表 TOU Mode 行(HTE154 同款);true 侧强制开启"
+自发自用模式,section,12_app_setup,自发自用|自家発電|Self[- ]?Consumption,Y,N,App 页自发自用小节
+应急快充模式,section,08_charging_methods|charging,应急|Emergency Charg|緊急充電,N,N,记录性:各线措辞未归一后再收紧
+静音充电,section,08_charging_methods|charging,静音|Quiet Charg|静音充電,N,N,记录性:各线措辞未归一后再收紧
+AC/DC输出记忆恢复,section,05_operation_guide,记忆|恢复输出|(?i)output memory|記憶,N,N,记录性:各线措辞未归一后再收紧
+并机/扩展,page,07_parallel,,N,Y,"并机页模板待建;暂只拦""无能力却含页"""

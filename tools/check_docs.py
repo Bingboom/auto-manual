@@ -41,6 +41,7 @@ from tools.check_docs_bundle import (  # noqa: E402
     resolve_local_reference as _resolve_local_reference_impl,
 )
 from tools.check_docs_entry import run_check_entry as _run_check_entry_impl  # noqa: E402
+from tools.check_docs_capability import collect_capability_issues as _collect_capability_issues_impl  # noqa: E402
 from tools.check_docs_generated import collect_generated_page_issues as _collect_generated_page_issues_impl  # noqa: E402
 from tools.check_docs_identity import (  # noqa: E402
     collect_identity_drift_issues as _collect_identity_drift_issues_impl,
@@ -480,6 +481,9 @@ def collect_check_issues(
         collect_bundle_issues=collect_bundle_issues,
         collect_identity_drift_issues=collect_identity_drift_issues,
         collect_duplicate_render_text_issues=collect_duplicate_render_text_issues,
+        collect_capability_issues=lambda **kw: _collect_capability_issues_impl(
+            data_dir=kw.pop("docs_dir").parent / "data",
+            issue_cls=CheckIssue, **kw),
     )
 
 

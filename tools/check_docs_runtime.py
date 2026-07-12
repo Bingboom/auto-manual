@@ -64,6 +64,7 @@ def collect_check_issues(
     collect_bundle_issues: Callable[..., list[Any]],
     collect_identity_drift_issues: Callable[..., list[Any]],
     collect_duplicate_render_text_issues: Callable[..., list[Any]],
+    collect_capability_issues: Callable[..., list[Any]] | None = None,
 ) -> list[Any]:
     cfg = load_config(cfg_path)
     docs_dir = resolve_docs_dir(cfg)
@@ -148,4 +149,13 @@ def collect_check_issues(
                 data_root=data_root,
             )
         )
+        if collect_capability_issues is not None:
+            issues.extend(
+                collect_capability_issues(
+                    bundle_dir=bundle_dir,
+                    docs_dir=docs_dir,
+                    model=target.model,
+                    region=target.region,
+                )
+            )
     return issues
