@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-05-28
+Updated: 2026-07-12
 
 Auto-Manual turns structured content (Feishu/Lark Base CSV snapshots plus shared RST templates) into target-specific manual bundles and release outputs across the active US, EU, JP, and CN config families.
 The current maintained smoke-check baseline is `JE-1000F` across US and JP.
@@ -21,9 +21,10 @@ This repository is responsible for:
 - moving target-specific editing into [`docs/_review/`](docs/_review) once review starts
 - validating review/runtime bundles before release
 - exporting revision reports and release manifests
-- generating design handoff outputs, including production IDML and flow-mode
-  semantic Markdown / continuous-story IDML artifacts for InDesign template
-  handoff, plus paired design checklist and feedback files
+- generating same-source design handoff outputs: production IDML is projected
+  from the prepared bundle's deterministic manual IR, shared layout tokens,
+  and measured LaTeX page plan; flow-mode semantic Markdown / continuous-story
+  IDML remains an optional template handoff attachment
 - generating fixed-format LaTeX manuals through shared page components: H1
   bars, capsule subbars, safety callouts, rounded table frames, FCC panels,
   inbox cards, warning/caution/note/tip strips, controlled symbol
@@ -41,6 +42,17 @@ python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --reg
 python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
 python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
 ```
+
+For an editable InDesign handoff that follows the LaTeX reference pagination:
+
+```bash
+python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source review-asis
+```
+
+Production/both mode builds the LaTeX reference PDF first, then emits
+`manual.ir.json`, `latex_page_plan.json`, and the production IDML from that
+same frozen bundle. InDesign is the final-mile layout workspace; copy, tables,
+specifications, legal text, and asset identity remain source-owned.
 
 Optional local content QC for the current snapshot:
 

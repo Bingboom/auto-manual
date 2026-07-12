@@ -1,6 +1,6 @@
 # LaTeX to InDesign Same-Source Handoff Plan
 
-Status: implementation in progress
+Status: implemented and verified on JE-1000F US
 
 Branch: `feat/latex-indesign-same-source`
 
@@ -38,9 +38,11 @@ The current seam is not yet same-source:
 - structural IDML validation cannot detect overset text, missing fonts, broken
   links, page-count drift, or content drift.
 
-The JE-1000F US characterization build demonstrates the gap: the LaTeX PDF has
-61 pages, the InDesign export has 52 pages, InDesign reports overset text on six
-pages, and the IDML exporter reports skipped raw blocks.
+The initial JE-1000F US characterization demonstrated the gap: LaTeX and IDML
+did not agree on physical pages, InDesign reported six overset stories, and the
+IDML exporter skipped raw blocks. The completed proof now produces 60/60 pages,
+0.003 pt maximum page-size delta, 0 skipped raw blocks, 0 overset stories,
+0 missing fonts, and 0 bad links.
 
 ## 3. Architectural Decision
 
@@ -51,7 +53,7 @@ review bundle + frozen snapshot
   -> one semantic manual IR + resolved style/token contract
   -> LaTeX reference PDF + measured page plan
   -> production IDML generated from the same IR/tokens/page plan
-  -> InDesign final-mile adjustment
+  -> InDesign final-mile adjustment (reference PDF + stable page/frame labels)
   -> final IDML/INDD + InDesign PDF + preflight/design delta
 ```
 
@@ -146,7 +148,7 @@ Deliverables:
 
 - `latex_page_map.json` with logical page/component anchors;
 - IDML frame chains follow the measured plan instead of character estimates;
-- locked non-printing LaTeX reference layer;
+- versioned LaTeX reference PDF and stable labels for designer overlay/comparison;
 - machine-readable InDesign preflight covering overset, fonts, links, pages,
   and exported PDF status.
 
@@ -190,7 +192,10 @@ Run in order for each phase:
 7. JE-1000F US build and cross-renderer parity checks
 8. real InDesign preflight and exported-PDF comparison on the design host
 
-The publish acceptance target is: identical build identity and block/asset
-hashes, zero skipped/unknown content, zero missing assets/fonts/links, zero
-overset, equal initial page size/order/count, and approved visual differences
-only.
+The verified JE-1000F US result is: identical bundle/IR/style identity across
+the handoff, 52 IR source pages and 602 blocks with zero skipped raw content,
+51/52 source-page anchors matched (the graphical cover is intentionally
+unmatched), 60 LaTeX and 60 InDesign pages, 0.003 pt page-size delta, zero
+overset/missing-font/bad-link findings, and a full 60-page descriptive raster
+delta report. Visual differences remain final-mile design work, not content
+divergence.

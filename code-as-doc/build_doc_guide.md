@@ -630,12 +630,20 @@ python build.py word --config configs/config.eu-en.yaml --model JE-1000F --regio
 python build.py pdf --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
-Export the editable InDesign handoff package (runs an rst prepare first, then
-`tools/export_idml.py`; architecture in [`dev/idml_module_map.md`](dev/idml_module_map.md)):
+Export the editable InDesign handoff package (production/both mode first builds
+the LaTeX reference PDF, then projects the same prepared bundle through
+`manual.ir.json`, shared layout tokens, and `latex_page_plan.json`; architecture
+in [`dev/idml_module_map.md`](dev/idml_module_map.md)):
 
 ```powershell
-python build.py idml --model JE-1000F --region US
+python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source review-asis
 ```
+
+The production gate rejects skipped raw content. The measured page plan fixes
+the initial IDML physical span/order to the LaTeX reference instead of relying
+only on character-height estimates. The source-authored TOC folios and back
+cover copy also come from the IR; they are not recomputed or hardcoded in the
+InDesign renderer.
 
 `idml` defaults to the production exporter. For the design-template handoff
 path, use flow mode; it writes semantic Markdown, a simple continuous-story
@@ -650,11 +658,28 @@ python build.py idml --model JE-1000F --region US --idml-mode both
 Flow artifacts are generated handoff files, not a new content source. Fix copy
 in the Feishu/source-table/review layer and regenerate.
 
+On a provisioned macOS design host, create the native INDD, export the InDesign
+PDF, and run the runtime preflight after closing any older copy of the target
+INDD:
+
+```powershell
+python tools/indesign_finalize.py --idml docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml --indd output/indesign/JE-1000F_US_same_source.indd --pdf output/pdf/JE-1000F_US_indesign.pdf --report output/indesign/JE-1000F_US_preflight.json
+python tools/idml_pdf_parity.py --latex-pdf docs/_build/JE-1000F/US/pdf/manual_je1000f_us.pdf --indesign-pdf output/pdf/JE-1000F_US_indesign.pdf --preflight output/indesign/JE-1000F_US_preflight.json --manual-ir docs/_build/JE-1000F/US/idml/manual.ir.json --idml docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml --indd output/indesign/JE-1000F_US_same_source.indd --pages all --out output/comparison/JE-1000F_US_same_source_parity.json
+```
+
+The preflight fails on overset stories, missing fonts, or bad links. The parity
+report hard-gates page count and page size, records artifact/source hashes, and
+measures every page's raster delta. Raster differences are descriptive design
+deltas: InDesign is expected to refine geometry, tracking, and asset fitting,
+but it must not become a second content source.
+
 `--idml-mode both` also writes a compact design handoff package beside the
 legacy production IDML:
 
 ```text
 docs/_build/<model>/<region>/<lang>/idml/
+  manual.ir.json
+  latex_page_plan.json
   production/manual.production.idml
   production/source_trace.json
   production/asset_manifest.csv

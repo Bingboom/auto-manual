@@ -100,8 +100,7 @@ styles:
     token_refs: [comp_warning_box_arc, comp_warning_box_rule, type_warning_text_font_size, type_warning_text_font_leading]
     latex: {owner: components_safety.tex, entrypoints: [HBSafetyInstruction]}
     indesign: {renderer: safety_instruction, object_style: HB Rounded Panel}
-    status: partial
-    debt: [Production IDML has no explicit safety-instruction component kind.]
+    status: aligned
 
   HB-SAFETY-WARNING:
     role: Standard safety warning panel
@@ -164,7 +163,7 @@ styles:
     latex: {owner: components_lcd.tex, entrypoints: [HBLcdIconTable]}
     indesign: {renderer: lcd_icon_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
     status: partial
-    debt: [IDML row estimation and page breaking are independent from LaTeX.]
+    debt: [Physical span follows the LaTeX page plan; row breaks inside that span remain InDesign-native.]
 
   HB-TABLE-LCD-MODE:
     role: LCD mode table
@@ -272,7 +271,7 @@ styles:
     latex: {owner: layout_templates.tex, entrypoints: [HBPageTemplateStandard]}
     indesign: {renderer: page_template, object_style: HB Standard Page}
     status: partial
-    debt: [IDML page and folio rules still depend on page position and story names.]
+    debt: [Physical spans follow the LaTeX page plan and stable labels; folio suppression still uses semantic page roles.]
 
   HB-PAGE-NO-FOOTER:
     role: Footerless page
@@ -290,4 +289,4 @@ styles:
     latex: {owner: layout_templates.tex, entrypoints: [HBPageTemplateCover, HBBackCoverPage]}
     indesign: {renderer: page_template, object_style: HB Cover Page}
     status: partial
-    debt: [Front cover is placed art while the back cover is still independently composed in IDML.]
+    debt: [Front cover remains placed finished art; back-cover geometry is InDesign-native but its copy comes from the shared IR.]

@@ -482,6 +482,22 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
    - `是否强制刷新数据 = 只有这次确实要拉最新 phase2 时才勾`
 4. 等队列回写 `Document directory`（DOCX 留档路径）、`Document link`（PDF 链接）和可选的 `飞书云文档`；如果表里有 `HTML_link`，还会看到最新 Vercel HTML 链接，并确认 Vercel 最新页面已刷新
 
+### 如果你要把 LaTeX 版面交给 InDesign 细调
+
+1. 冻结当前 review 内容，不再在 InDesign 中改文案或规格。
+2. 运行：
+
+   ```bash
+   python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source review-asis
+   ```
+
+3. 打开 `docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml`。同目录的
+   `manual.ir.json` 是内容身份，`latex_page_plan.json` 是 LaTeX 实测分页。
+4. InDesign 只做框体几何、显式分页、图片适配和有限字距调整；内容问题回源修改后重新生成。
+5. 在装有 InDesign 的设计 Mac 上运行 `tools/indesign_finalize.py`，确认
+   `overset / missing fonts / bad links` 都为 0；再用
+   `tools/idml_pdf_parity.py` 比较 LaTeX PDF 和 InDesign PDF。
+
 ## 9. 一句话规则
 
 - 改数据：去改 Feishu
