@@ -15,6 +15,8 @@ import zipfile
 import shutil
 from pathlib import Path
 
+from tools.manual_ir import read_manual_ir, validate_manual_ir
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FIXTURE = ROOT / "tests" / "fixtures" / "phase2"
 BUNDLE_FIXTURE = ROOT / "tests" / "fixtures" / "idml_bundle"
@@ -56,6 +58,9 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
             self.assertTrue((out_dir / "flow_conversion_notes.md").is_file())
             self.assertTrue((out_dir / "flow_style_map.json").is_file())
             self.assertTrue((out_dir / "manual.flow.idml").is_file())
+            manual_ir = read_manual_ir(out_dir / "manual.ir.json")
+            self.assertEqual([], validate_manual_ir(manual_ir))
+            self.assertEqual("JE-1000F", manual_ir.model)
         finally:
             shutil.rmtree(ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en", ignore_errors=True)
 
@@ -103,6 +108,9 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
             self.assertIn("stories=", build.stdout)
             self.assertIn("skipped raw blocks=0", build.stdout)
             self.assertTrue(out.is_file())
+            manual_ir = read_manual_ir(Path(td) / "manual.ir.json")
+            self.assertEqual([], validate_manual_ir(manual_ir))
+            self.assertEqual(9, len(manual_ir.pages))
 
             check = _run("--check", str(out))
             self.assertEqual(check.returncode, 0, check.stdout + check.stderr)

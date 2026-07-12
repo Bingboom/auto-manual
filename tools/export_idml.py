@@ -31,6 +31,7 @@ try:
     from tools.idml import flow_idml as _flow_idml
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
+    from tools.idml import page_identity as _page_identity
     from tools.idml import page_placed as _placed
     from tools.idml import page_folio as _folio
     from tools.idml import page_toc as _toc
@@ -54,6 +55,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import flow_idml as _flow_idml  # type: ignore
     from idml import loaders as _loaders  # type: ignore
     from idml import package as _package  # type: ignore
+    from idml import page_identity as _page_identity  # type: ignore
     from idml import pages as _pages  # type: ignore
     from idml import params as _params  # type: ignore
     from idml import primitives as _prim  # type: ignore
@@ -63,6 +65,8 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import template_merge as _template_merge  # type: ignore
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
+
+from tools.idml import ir_sidecar as _ir_sidecar
 
 MIMETYPE = _params.MIMETYPE
 IDPKG = _params.IDPKG
@@ -322,10 +326,14 @@ def main() -> int:
     data_root = (ROOT / args.data_root) if not Path(args.data_root).is_absolute() else Path(args.data_root)
     bundle_root = Path(args.bundle_root) if args.bundle_root else (
         default_bundle_root(args.model, args.region, args.lang))
+
     if args.mode == "flow":
         flow = _flow_idml.write_flow_outputs(
             root=ROOT, model=args.model, region=args.region, lang=args.lang, data_root=data_root,
             bundle_root=bundle_root, build_command=sys.argv)
+        _ir_sidecar.emit_manual_ir_sidecar(
+            root=ROOT, bundle_root=bundle_root, out_dir=flow.idml.parent,
+            model=args.model, region=args.region, lang=args.lang, data_root=data_root)
         print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
         return 0
     params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -376,22 +384,9 @@ def main() -> int:
     pending_fcc_blocks, pending_fcc_title = [], ""
     prose_flow = _prose_flow.ProseFlowBuffer()
 
-    def page_lang(page: Path) -> str:
-        try:
-            text = page.read_text(encoding="utf-8")
-        except OSError:
-            text = ""
-        match = re.search(r"\\HBApplyLang\{([^}]+)\}", text)
-        if match:
-            return normalize_lang(match.group(1))
-        suffix = page.stem.rsplit("_", 1)[-1]
-        return normalize_lang(suffix if len(suffix) <= 5 else args.lang)
-
-    def page_stem_has(page: Path, suffix: str) -> bool:
-        return page.stem == suffix or page.stem.endswith("_" + suffix)
-
-    def slug_stem(stem: str) -> str:
-        return re.sub(r"[^a-z0-9]+", "_", stem.lower()).strip("_")
+    def page_lang(page: Path) -> str: return _page_identity.page_language(page, args.lang)
+    page_stem_has = _page_identity.stem_has
+    slug_stem = _page_identity.slug
 
     def emit_prose_story(sid: str, title: str, blocks: list[tuple[str, str]], columns: int = 1) -> None:
         nonlocal prose_pages, page_cursor
@@ -579,6 +574,9 @@ def main() -> int:
 
     out = Path(args.out) if args.out else (
         default_output_path(args.model, args.region, args.lang, bundle_root))
+    _ir_sidecar.emit_manual_ir_sidecar(
+        root=ROOT, bundle_root=bundle_root, out_dir=out.parent,
+        model=args.model, region=args.region, lang=args.lang, data_root=data_root)
     w.write(out)
     issues = check_idml(out)
     for i in issues:
