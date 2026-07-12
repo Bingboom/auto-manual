@@ -110,7 +110,7 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
             self.assertTrue(out.is_file())
             manual_ir = read_manual_ir(Path(td) / "manual.ir.json")
             self.assertEqual([], validate_manual_ir(manual_ir))
-            self.assertEqual(9, len(manual_ir.pages))
+            self.assertEqual(10, len(manual_ir.pages))
 
             check = _run("--check", str(out))
             self.assertEqual(check.returncode, 0, check.stdout + check.stderr)
@@ -236,7 +236,7 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 self.assertIn("STORAGE", pills)
                 self.assertIn("TROUBLESHOOTING", pills)
 
-    def test_missing_spec_rows_fail_loudly(self) -> None:
+    def test_missing_prepared_bundle_fails_loudly(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "never.idml"
             proc = _run(
@@ -244,7 +244,7 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 "--data-root", str(DATA_FIXTURE), "--out", str(out),
             )
             self.assertEqual(proc.returncode, 1)
-            self.assertIn("no specifications rows", proc.stdout)
+            self.assertIn("prepared bundle is required for same-source IDML", proc.stdout)
             self.assertFalse(out.exists())
 
 

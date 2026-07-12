@@ -39,7 +39,8 @@ def _read_braced_args(text: str, start: int, count: int) -> tuple[list[str], int
 def _text(value: str) -> str:
     """Decode the narrow LaTeX vocabulary emitted by CSV page renderers."""
     value = re.sub(r"(?<!\\)%[^\n]*\n?", "", value)
-    value = value.replace(r"\textasciitilde{}", "~")
+    tilde_token = "\u0000HB_TILDE\u0000"
+    value = value.replace(r"\textasciitilde{}", tilde_token)
     value = value.replace(r"\HBSpecMarkerOne{}", "①")
     value = value.replace(r"\HBSpecMultilineRowStrut{}", "")
     value = value.replace(r"\newline", "\n").replace(r"\par", "\n")
@@ -50,7 +51,7 @@ def _text(value: str) -> str:
     value = re.sub(r"\\[a-zA-Z@]+", " ", value)
     value = re.sub(r"[{}]", "", value)
     lines = [re.sub(r"[ \t]+", " ", line).strip() for line in value.splitlines()]
-    return "\n".join(line for line in lines if line)
+    return "\n".join(line for line in lines if line).replace(tilde_token, "~")
 
 
 def _calls(text: str, macro: str, argc: int) -> list[list[str]]:

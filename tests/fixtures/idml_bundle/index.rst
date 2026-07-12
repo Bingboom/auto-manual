@@ -9,6 +9,7 @@ components, list/grid tables, lcdmode, and the data-page triggers.
 .. include:: page/00_preface.rst
 .. include:: page/safety_en.rst
 .. include:: page/20_01_user_maintenance_instructions.rst
+.. include:: page/symbols_en.rst
 .. include:: page/p22_01_fcc.rst
 .. include:: page/p23_02_whats_in_the_box.rst
 .. include:: page/05_operation_guide.rst

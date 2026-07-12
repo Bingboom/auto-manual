@@ -4,11 +4,7 @@
 
 Builds the .idml package through the real CLI (``tools/export_idml.py``) from
 committed fixtures and compares every zip part byte-for-byte against a
-committed golden snapshot. Two variants:
-
-- ``data_only``  — fixtures snapshot, no prepared bundle: the four data pages
-  (spec / lcd / trouble / symbols) end to end.
-- ``composed``   — fixtures snapshot + the synthetic bundle in
+committed golden snapshot. The ``composed`` variant uses the synthetic bundle in
   ``tests/fixtures/idml_bundle``: prose stories, the safety twocol split, the
   safety+symbols merged page, the fcc+inbox merged page, components
   (safetywarning / warninglead / warnbox / notice / fcc / inbox / lcdmode),
@@ -42,8 +38,6 @@ ROOT_URI = ROOT.resolve().as_uri()
 URI_PLACEHOLDER = "file://IDML-GOLDEN-ROOT"
 
 VARIANTS: dict[str, dict] = {
-    # bundle-root pointing at a non-directory => data pages only
-    "data_only": {"bundle_root": ROOT / "tests" / "fixtures" / "idml_bundle_absent"},
     "composed": {"bundle_root": BUNDLE_FIXTURE},
 }
 
@@ -125,9 +119,6 @@ class IdmlGoldenTests(unittest.TestCase):
                     golden_text, built_text,
                     f"{variant}/{name}: content diverged from golden",
                 )
-
-    def test_data_only_package_matches_golden(self) -> None:
-        self._assert_matches_golden("data_only")
 
     def test_composed_package_matches_golden(self) -> None:
         self._assert_matches_golden("composed")

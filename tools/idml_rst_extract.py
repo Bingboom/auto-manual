@@ -384,6 +384,16 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
             body, i2 = indented_body(i + 1, indent)
             if directive == "raw" and arg == "latex":
                 _extract_raw_latex("\n".join(body), result)
+            elif directive == "raw" and arg == "manual-ir":
+                try:
+                    payload = json.loads("\n".join(line.strip() for line in body))
+                except json.JSONDecodeError:
+                    result.skipped_raw += 1
+                else:
+                    if isinstance(payload, dict) and payload.get("kind"):
+                        result.blocks.append(("data", json.dumps(payload, ensure_ascii=False)))
+                    else:
+                        result.skipped_raw += 1
             elif directive == "only":
                 if _only_matches(arg, tags):
                     # re-parse the body as page content (dedented)

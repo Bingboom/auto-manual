@@ -1,13 +1,7 @@
 """IDML exporter — route B of the InDesign handoff plan.
 
-Produces an editable .idml (InDesign Markup Language) package so designers
-can fine-tune pipeline output in InDesign instead of retouching PDFs:
-
-- page geometry and paragraph styles are mapped 1:1 from data/layout_params.csv
-- brand colors are emitted as CMYK swatches (from the brand_color_* keys)
-- the SPECIFICATIONS page is exported as real IDML tables fed straight from
-  the phase2 Spec_Master snapshot (section titles + label/value rows)
-- body sections flow through linked text frames so InDesign reflows freely
+Produces an editable .idml package from the same prepared-bundle IR as LaTeX,
+so designers can fine-tune pipeline output instead of retouching PDFs.
 
 Usage:
   python tools/export_idml.py --model JE-1000F --region US [--lang en]
@@ -22,7 +16,6 @@ import sys
 from pathlib import Path
 
 try:
-    from tools.idml_rst_extract import bundle_page_order, extract_page
     from tools.script_bootstrap import bootstrap_repo_root
     from tools.idml import check as _check
     from tools.idml import components as _components
@@ -43,7 +36,6 @@ try:
     from tools.idml import styles as _styles
     from tools.idml import template_merge as _template_merge
 except ImportError:  # pragma: no cover - direct script execution fallback
-    from idml_rst_extract import bundle_page_order, extract_page  # type: ignore
     from script_bootstrap import bootstrap_repo_root
     from idml import check as _check  # type: ignore
     from idml import components as _components  # type: ignore
@@ -67,6 +59,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.idml import ir_sidecar as _ir_sidecar
+from tools.idml import ir_projection as _ir_projection
 
 MIMETYPE = _params.MIMETYPE
 IDPKG = _params.IDPKG
@@ -337,29 +330,31 @@ def main() -> int:
         print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
         return 0
     params = load_layout_params(ROOT / "data" / "layout_params.csv")
-    sections = load_spec_sections(data_root, args.model, args.region, args.lang)
-    if not sections:
-        print(f"[export-idml] ERROR: no specifications rows for {args.model}_{args.region} in {data_root}")
+    try:
+        manual_ir = _ir_projection.build_same_source_ir(
+            root=ROOT, bundle_root=bundle_root, model=args.model, region=args.region,
+            lang=args.lang, data_root=data_root)
+    except ValueError as exc:
+        print(f"[export-idml] ERROR: prepared bundle is required for same-source IDML: {exc}")
         return 1
 
+    projected_pages = _ir_projection.project_pages(manual_ir, bundle_root)
+    projected_by_path = {page.path: page for page in projected_pages}
+    sections: list[dict] = []
+    lcd_rows: list[dict] = []
+    trouble_rows: list[tuple[str, str]] = []
+
     w = IdmlWriter(params)
-    lcd_rows = load_lcd_rows(data_root, args.model, args.lang, args.region)
-    trouble_rows = load_trouble_rows(data_root, args.model, args.region, args.lang)
-    spec_annotations = load_spec_annotations(data_root, args.model, args.region, args.lang)
     symbol_cache: dict[str, tuple[list[tuple[str, str]], list[dict]]] = {}
 
     def symbol_rows_for(lang: str) -> tuple[list[tuple[str, str]], list[dict]]:
         lang = normalize_lang(lang)
         if lang not in symbol_cache:
-            symbol_cache[lang] = load_symbols_rows(data_root, lang)
+            data = _ir_projection.symbol_page_data(
+                manual_ir, lang, root=ROOT, data_root=data_root)
+            symbol_cache[lang] = (
+                list(data.signals) if data else [], list(data.icons) if data else [])
         return symbol_cache[lang]
-
-    tags = {
-        "latex",
-        f"region_{args.region.lower()}",
-        f"lang_{args.lang.lower()}",
-        "model_" + args.model.lower().replace("-", "_"),
-    }
     page_cursor = 0
     skipped_raw = 0
     toc = _toc.TocCollector()
@@ -375,9 +370,7 @@ def main() -> int:
         page_cursor += pages
 
     DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_"}
-    ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
-    if not ordered:
-        print(f"[export-idml] NOTE: no prepared bundle at {bundle_root}; exporting data pages only (run `build.py rst` first)")
+    ordered = [page.path for page in projected_pages]
 
     emitted: set[str] = set()  # "spec:fr", "lcd:es", "trouble", "symbols"
     pending_prefix_blocks: list[tuple[str, str]] = []
@@ -424,27 +417,38 @@ def main() -> int:
             return
         emitted.add(key)
         if kind == "spec":
-            secs = sections if lang == args.lang else load_spec_sections(
-                data_root, args.model, args.region, lang)
-            notes = spec_annotations if lang == args.lang else load_spec_annotations(
-                data_root, args.model, args.region, lang)
-            title = load_page_title(data_root, "spec.page_title", lang, "SPECIFICATIONS")
+            data = _ir_projection.spec_page_data(manual_ir, lang)
+            if data is None:
+                return
+            secs = list(data.sections)
+            notes = list(data.annotations)
+            if lang == args.lang:
+                sections[:] = secs
+            title = data.title
             toc.note(title, page_cursor, lang)
             sid = w.add_spec_story(secs, notes, lang=lang, title=title)
             chain(sid, w.estimate_spec_height(secs) + 10.0 * len(notes))
         elif kind == "lcd":
-            rows = lcd_rows if lang == args.lang else load_lcd_rows(
-                data_root, args.model, lang, args.region)
-            if not rows:
+            data = _ir_projection.lcd_page_data(
+                manual_ir, lang, root=ROOT, data_root=data_root)
+            if data is None:
                 return
-            title = load_page_title(data_root, "lcd_icons.page_title", lang, "LCD DISPLAY")
+            rows = list(data.rows)
+            if lang == args.lang:
+                lcd_rows[:] = rows
+            title = data.title
             toc.note(title, page_cursor, lang)
             sid = w.add_lcd_story(rows, data_root, lang=lang, title=title)
             chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in rows))
-        elif kind == "trouble" and trouble_rows:
+        elif kind == "trouble":
+            rows = list(_ir_projection.trouble_rows(manual_ir, lang))
+            if not rows:
+                return
+            if lang == args.lang:
+                trouble_rows[:] = rows
             toc.note(_toc.DATA_TITLES.get(kind, ""), page_cursor)
-            sid = w.add_trouble_story(trouble_rows)
-            chain(sid, 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in trouble_rows))
+            sid = w.add_trouble_story(rows)
+            chain(sid, 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in rows))
         elif kind == "symbols":
             sym_signals, sym_icons = symbol_rows_for(args.lang)
             if not (sym_signals or sym_icons):
@@ -471,7 +475,7 @@ def main() -> int:
                         if page.name.startswith(prefix)), None)
         if matched:
             if matched == "trouble":
-                res = extract_page(page, tags)
+                res = projected_by_path[page]
                 if res.blocks:
                     skipped_raw += res.skipped_raw
                     emitted.add("trouble")
@@ -480,7 +484,7 @@ def main() -> int:
                     continue
             emit_data_page(matched, page_lang(page))
             continue
-        res = extract_page(page, tags)
+        res = projected_by_path[page]
         skipped_raw += res.skipped_raw
         blocks = res.blocks
         if pending_prefix_blocks and "user_maintenance" in page.stem:
@@ -563,7 +567,7 @@ def main() -> int:
             toc.stem_langs[page.stem] = page_lang(page)
             prose_flow.add(page.stem, blocks)
 
-    # data pages always ship, bundle or not
+    # Emit source-declared data pages that were not placed in the ordered walk.
     flush_prose_flow()
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind, args.lang)
@@ -574,9 +578,7 @@ def main() -> int:
 
     out = Path(args.out) if args.out else (
         default_output_path(args.model, args.region, args.lang, bundle_root))
-    _ir_sidecar.emit_manual_ir_sidecar(
-        root=ROOT, bundle_root=bundle_root, out_dir=out.parent,
-        model=args.model, region=args.region, lang=args.lang, data_root=data_root)
+    _ir_sidecar.write_manual_ir_sidecar(manual_ir, out.parent)
     w.write(out)
     issues = check_idml(out)
     for i in issues:

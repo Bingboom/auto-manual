@@ -31,7 +31,7 @@ class ManualIRTests(unittest.TestCase):
         second = self._build()
         self.assertEqual(first, second)
         self.assertEqual([], validate_manual_ir(first))
-        self.assertEqual(9, len(first.pages))
+        self.assertEqual(10, len(first.pages))
         self.assertGreater(first.metadata["block_count"], 20)
         self.assertRegex(first.content_sha256, r"^[0-9a-f]{64}$")
         self.assertRegex(first.bundle_sha256, r"^[0-9a-f]{64}$")
@@ -145,7 +145,7 @@ class ManualIRTests(unittest.TestCase):
              "symbol_signals", "symbol_icons"],
             [payload["kind"] for payload in payloads],
         )
-        self.assertEqual("120 V 60 Hz", payloads[1]["rows"][0][1])
+        self.assertEqual("120 V~ 60 Hz", payloads[1]["rows"][0][1])
         self.assertEqual("On: Connected.\nOff: Disconnected.", payloads[3]["rows"][0]["desc"])
         self.assertEqual(
             ["wifi.png", "warning.png", "manual.png", "fire.png"],

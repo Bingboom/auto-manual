@@ -4,7 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from tools.idml_rst_extract import bundle_page_order
-from tools.manual_ir import build_manual_ir, validate_manual_ir, write_manual_ir
+from tools.manual_ir import ManualIR, build_manual_ir, validate_manual_ir, write_manual_ir
 from tools.utils.path_utils import PathSegments
 
 
@@ -30,6 +30,21 @@ def emit_manual_ir_sidecar(
         data_root=data_root,
     )
     issues = validate_manual_ir(manual_ir)
+    if issues:
+        raise RuntimeError("manual IR validation failed: " + "; ".join(issues))
+    ir_path = out_dir / PathSegments.MANUAL_IR_JSON
+    write_manual_ir(manual_ir, ir_path)
+    print(
+        f"[export-idml] IR OK: {ir_path} | pages={len(manual_ir.pages)} "
+        f"blocks={manual_ir.metadata['block_count']} "
+        f"skipped_raw={manual_ir.metadata['skipped_raw']}"
+    )
+    return ir_path
+
+
+def write_manual_ir_sidecar(manual_ir: ManualIR, out_dir: Path) -> Path:
+    """Write the exact IR object consumed by production IDML."""
+    issues = validate_manual_ir(manual_ir, require_zero_skipped_raw=True)
     if issues:
         raise RuntimeError("manual IR validation failed: " + "; ".join(issues))
     ir_path = out_dir / PathSegments.MANUAL_IR_JSON
