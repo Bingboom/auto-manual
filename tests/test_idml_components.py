@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MINIMAL_SPECS: dict[str, dict] = {
     "inbox": {"kind": "inbox", "items": [{"img": "", "label": "Unit"}]},
     "safetywarning": {"kind": "safetywarning", "texts": ["Risk text."]},
+    "safetyinstruction": {"kind": "safetyinstruction", "texts": ["Instruction text."]},
     "warninglead": {"kind": "warninglead", "label": "WARNING", "texts": ["Lead."]},
     "tailwarnbox": {"kind": "tailwarnbox", "label": "WARNING", "texts": ["Tail."]},
     "warnbox": {"kind": "warnbox", "label": "DANGER", "texts": ["Boxed."]},

@@ -8,6 +8,11 @@ import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 
+try:
+    from tools.utils.path_utils import PathSegments
+except ModuleNotFoundError:  # direct tools/export_idml.py execution
+    from utils.path_utils import PathSegments  # type: ignore
+
 from .flow_idml import FlowOutputs
 
 
@@ -20,6 +25,7 @@ class HandoffOutputs:
     missing_assets_report: Path
     designer_checklist: Path
     layout_feedback: Path
+    latex_page_plan: Path | None
 
 
 def write_handoff_package(*, root: Path, model: str, region: str, lang: str,
@@ -37,6 +43,10 @@ def write_handoff_package(*, root: Path, model: str, region: str, lang: str,
     else:
         production_manifest.write_text("asset_id,asset_ref,resolved_path,source_ref,kind\n", encoding="utf-8")
     production_trace = production_dir / "source_trace.json"
+    source_page_plan = production_idml.parent / PathSegments.LATEX_PAGE_PLAN_JSON
+    production_page_plan = production_dir / PathSegments.LATEX_PAGE_PLAN_JSON
+    if source_page_plan.is_file():
+        shutil.copyfile(source_page_plan, production_page_plan)
     production_trace.write_text(
         json.dumps(
             _production_trace(
@@ -69,6 +79,7 @@ def write_handoff_package(*, root: Path, model: str, region: str, lang: str,
         missing_assets_report=missing_report,
         designer_checklist=checklist,
         layout_feedback=feedback,
+        latex_page_plan=production_page_plan if production_page_plan.is_file() else None,
     )
 
 
@@ -91,6 +102,9 @@ def _production_trace(*, root: Path, model: str, region: str, lang: str,
         "idml_mode": "production",
         "bundle_root": _display_path(root, bundle_root),
         "production_idml": _display_path(root, production_idml),
+        "manual_ir": _display_path(root, production_idml.parent.parent / PathSegments.MANUAL_IR_JSON),
+        "latex_page_plan": _display_path(
+            root, production_idml.parent / PathSegments.LATEX_PAGE_PLAN_JSON),
     }
 
 

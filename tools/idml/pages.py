@@ -369,9 +369,9 @@ def add_safety_symbols_page(
 
     for ti, (t_sid, t_h) in enumerate(tail_stories):
         target_h = 34.5 if ti == 0 else 28.0
-        tail_h = min(max(target_h, t_h + 1.0), target_h + 4.0)
+        tail_h = min(max(target_h, t_h + 3.0), target_h + 6.0) + 3.0
         _place(f"tail_{ti}", t_sid, tail_h,
-               with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=5.0)
+               with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=0.0)
     maint_h = est_table_height([maint_text], body_w, 24.0) - 16.0
     _place("maint_title", maint_title_sid, SUBBAR_H,
            heading_bar_opts(2, (0.5, 5, 0.5, 6)), gap=3.5)

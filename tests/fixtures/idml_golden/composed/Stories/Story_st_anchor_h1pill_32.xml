@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Story Self="st_anchor_h1pill_32" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TROUBLESHOOTING">
+<Story Self="st_anchor_h1pill_32" Label="hb:self=st_anchor_h1pill_32" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TROUBLESHOOTING">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/带底Heading2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>TROUBLESHOOTING</Content></CharacterStyleRange>

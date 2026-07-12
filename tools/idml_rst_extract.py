@@ -50,7 +50,8 @@ Block = tuple[str, str]
 # synthesizes it from trailing safety warnboxes; it has no extracted form.
 EMITTED_COMPONENT_KINDS = (
     "langtag",
-    "fcc", "inbox", "lcdmode", "notice", "safetywarning", "warninglead", "warnbox",
+    "fcc", "inbox", "lcdmode", "notice", "safetyinstruction", "safetywarning",
+    "warninglead", "warnbox",
 )
 
 # Block kinds whose text payload is a JSON document (rows / component spec),
@@ -176,6 +177,7 @@ def _notice_from_list_table(rows: list[list[str]]) -> dict | None:
 _MACROS: tuple[tuple[str, int, str], ...] = (
     # (macro, arg count, kind)  kind: label1 = arg0 is a heading, rest body
     ("\\safetywarning", 1, "safetywarning"),
+    ("\\HBSafetyInstruction", 1, "safetyinstruction"),
     ("\\HBWarningLeadBlock", 2, "warninglead"),
     ("\\HBDangerBlock", 3, "labelled"),
     ("\\HBNoticeBlock", 4, "noticed"),   # [kind]{label}{p}{s} — optional arg handled below
@@ -271,6 +273,10 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
         if kind == "safetywarning" and args:
             result.blocks.append(("component", _json.dumps(
                 {"kind": "safetywarning", "texts": [args[0]]},
+                ensure_ascii=False)))
+        elif kind == "safetyinstruction" and args:
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "safetyinstruction", "texts": [args[0]]},
                 ensure_ascii=False)))
         elif kind == "warninglead" and args:
             result.blocks.append(("component", _json.dumps(

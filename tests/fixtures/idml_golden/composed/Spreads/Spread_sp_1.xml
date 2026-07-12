@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Spread xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Spread Self="sp_1" PageCount="1" BindingLocation="0" ShowMasterItems="true">
-  <Page Self="sp_1_pg" Name="2" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346">
+<Spread Self="sp_1" Label="hb:self=sp_1" PageCount="1" BindingLocation="0" ShowMasterItems="true">
+  <Page Self="sp_1_pg" Label="hb:self=sp_1_pg" Name="2" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346">
     <MarginPreference ColumnCount="1" ColumnGutter="12" Top="14.1732" Bottom="36.8504" Left="28.3465" Right="28.3465"/>
   </Page>
-  <Rectangle Self="bg_st_safety_en_title" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_safety_en_title" Label="hb:self=bg_st_safety_en_title" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -20,7 +20,7 @@
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_st_safety_en_title" ParentStory="st_safety_en_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_en_title" Label="hb:self=tf_st_safety_en_title" ParentStory="st_safety_en_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -35,7 +35,7 @@
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1.5 5 1 6"/>
   </TextFrame>
-  <Rectangle Self="bg_st_safety_en_warning" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_safety_en_warning" Label="hb:self=bg_st_safety_en_warning" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -53,7 +53,7 @@
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_st_safety_en_warning" ParentStory="st_safety_en_top_warning" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_en_warning" Label="hb:self=tf_st_safety_en_warning" ParentStory="st_safety_en_top_warning" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -68,7 +68,7 @@
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <TextFrame Self="tf_st_safety_en_section1" ParentStory="st_safety_en_section1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_en_section1" Label="hb:self=tf_st_safety_en_section1" ParentStory="st_safety_en_section1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -83,7 +83,7 @@
     </Properties>
     <TextFramePreference TextColumnCount="2" TextColumnGutter="11" AutoSizingType="Off" VerticalBalanceColumns="true" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <Rectangle Self="bg_st_safety_en_subbar" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_safety_en_subbar" Label="hb:self=bg_st_safety_en_subbar" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -101,7 +101,7 @@
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_st_safety_en_subbar" ParentStory="st_safety_en_subbar" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_en_subbar" Label="hb:self=tf_st_safety_en_subbar" ParentStory="st_safety_en_subbar" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -116,7 +116,7 @@
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0.5 5 0.5 6"/>
   </TextFrame>
-  <TextFrame Self="tf_st_safety_en_section2" ParentStory="st_safety_en_section2" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_en_section2" Label="hb:self=tf_st_safety_en_section2" ParentStory="st_safety_en_section2" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Spread xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Spread Self="sp_0" PageCount="1" BindingLocation="0" ShowMasterItems="true">
-  <Page Self="sp_0_pg" Name="1" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346">
+<Spread Self="sp_0" Label="hb:self=sp_0" PageCount="1" BindingLocation="0" ShowMasterItems="true">
+  <Page Self="sp_0_pg" Label="hb:self=sp_0_pg" Name="1" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346">
     <MarginPreference ColumnCount="1" ColumnGutter="12" Top="14.1732" Bottom="36.8504" Left="28.3465" Right="28.3465"/>
   </Page>
-  <TextFrame Self="tf_st_00_preface_0" ParentStory="st_00_preface" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_00_preface_0" Label="hb:self=tf_st_00_preface_0" ParentStory="st_00_preface" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">

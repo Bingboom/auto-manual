@@ -10,6 +10,7 @@ import zipfile
 from pathlib import Path
 
 from .params import IDPKG, MIMETYPE
+from .stable_ids import apply_stable_labels
 
 
 def frame_height(writer) -> float:
@@ -34,7 +35,7 @@ def pages_for_height(writer, height_pt: float) -> int:
     return max(1, math.ceil(height_pt / writer.frame_height()))
 
 def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
-                     columns: int = 1) -> None:
+                     columns: int = 1, bottom_extra: float = 0.0) -> None:
     """One spread per page, each holding one frame of a linked chain.
 
     Spread coordinates: origin at the spread center; the page's
@@ -44,7 +45,7 @@ def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
     x1 = -writer.page_w / 2 + writer.m_l
     x2 = writer.page_w / 2 - writer.m_r
     y1 = -writer.page_h / 2 + writer.m_t
-    y2 = writer.page_h / 2 - writer.m_b
+    y2 = writer.page_h / 2 - writer.m_b + bottom_extra
     for i in range(n_pages):
         spread_id = f"sp_{start_index + i}"
         frame_id = f"tf_{story_id}_{i}"
@@ -123,6 +124,6 @@ def write(writer, out_path: Path) -> None:
         add("Resources/Styles.xml", writer.styles_xml())
         add("Resources/Preferences.xml", writer.preferences_xml())
         for sid, xml in writer.spreads:
-            add(f"Spreads/Spread_{sid}.xml", xml)
+            add(f"Spreads/Spread_{sid}.xml", apply_stable_labels(xml))
         for sid, xml in writer.stories:
-            add(f"Stories/Story_{sid}.xml", xml)
+            add(f"Stories/Story_{sid}.xml", apply_stable_labels(xml))

@@ -12,6 +12,15 @@ from pathlib import Path
 from typing import Any
 
 from tools.manual_ir import ManualIR, ManualPage, build_manual_ir, validate_manual_ir
+from tools.utils.path_utils import PathSegments
+
+from .latex_page_plan import (
+    build_page_plan,
+    find_reference_pdf,
+    planned_span,
+    validate_page_plan,
+    write_page_plan,
+)
 
 
 @dataclass(frozen=True)
@@ -220,3 +229,31 @@ def build_same_source_ir(
     if issues:
         raise ValueError("; ".join(issues))
     return ir
+
+
+def build_reference_page_plan(ir: ManualIR, *, bundle_root: Path) -> dict[str, Any] | None:
+    reference_pdf = find_reference_pdf(bundle_root)
+    if reference_pdf is None:
+        return None
+    plan = build_page_plan(ir, reference_pdf)
+    issues = validate_page_plan(plan)
+    if issues:
+        raise ValueError("LaTeX page plan validation failed: " + "; ".join(issues))
+    return plan
+
+
+def emit_reference_page_plan(plan: dict[str, Any] | None, *, out_dir: Path) -> Path | None:
+    """Write a validated LaTeX reference plan beside production IDML."""
+    if plan is None:
+        return None
+    path = write_page_plan(plan, out_dir / PathSegments.LATEX_PAGE_PLAN_JSON)
+    print(
+        f"[export-idml] PAGE PLAN OK: {path} | "
+        f"physical={plan['physical_page_count']} matched={plan['matched_source_pages']}/"
+        f"{plan['source_page_count']} ({plan['match_rate']:.1%})"
+    )
+    return path
+
+
+def planned_story_pages(plan: dict[str, Any] | None, title: str, fallback: int) -> int:
+    return planned_span(plan, title.split(" + "), fallback)

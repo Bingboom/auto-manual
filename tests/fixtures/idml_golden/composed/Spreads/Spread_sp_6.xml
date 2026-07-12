@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Spread xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Spread Self="sp_6" PageCount="1" BindingLocation="0" ShowMasterItems="true">
-  <Page Self="sp_6_pg" Name="7" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346">
+<Spread Self="sp_6" Label="hb:self=sp_6" PageCount="1" BindingLocation="0" ShowMasterItems="true">
+  <Page Self="sp_6_pg" Label="hb:self=sp_6_pg" Name="7" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346">
     <MarginPreference ColumnCount="1" ColumnGutter="12" Top="14.1732" Bottom="36.8504" Left="28.3465" Right="28.3465"/>
   </Page>
-  <TextFrame Self="tf_st_lcd_0" ParentStory="st_lcd" PreviousTextFrame="n" NextTextFrame="tf_st_lcd_1" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_lcd_0" Label="hb:self=tf_st_lcd_0" ParentStory="st_lcd" PreviousTextFrame="n" NextTextFrame="tf_st_lcd_1" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
             <PathPointType Anchor="-156.047 -248.173" LeftDirection="-156.047 -248.173" RightDirection="-156.047 -248.173"/>
-            <PathPointType Anchor="-156.047 225.496" LeftDirection="-156.047 225.496" RightDirection="-156.047 225.496"/>
-            <PathPointType Anchor="156.047 225.496" LeftDirection="156.047 225.496" RightDirection="156.047 225.496"/>
+            <PathPointType Anchor="-156.047 243.496" LeftDirection="-156.047 243.496" RightDirection="-156.047 243.496"/>
+            <PathPointType Anchor="156.047 243.496" LeftDirection="156.047 243.496" RightDirection="156.047 243.496"/>
             <PathPointType Anchor="156.047 -248.173" LeftDirection="156.047 -248.173" RightDirection="156.047 -248.173"/>
           </PathPointArray>
         </GeometryPathType>
@@ -19,7 +19,7 @@
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off"/>
   </TextFrame>
-  <TextFrame Self="tf_folio_6" ParentStory="st_folio_6" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_folio_6" Label="hb:self=tf_folio_6" ParentStory="st_folio_6" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">

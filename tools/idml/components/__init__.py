@@ -31,6 +31,7 @@ from .warranty import render_warrantyyears
 REGISTRY: dict[str, ComponentRenderer] = {
     "inbox": render_inbox,
     "safetywarning": render_safetywarning,
+    "safetyinstruction": render_safetywarning,
     "warninglead": render_warninglead,
     "tailwarnbox": render_tailwarnbox,
     "warnbox": render_warnbox,

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Story Self="st_toc_bar_0" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TOC bar 0">
+<Story Self="st_toc_bar_0" Label="hb:self=st_toc_bar_0" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TOC bar 0">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/带底Heading2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>EN  English	01-07</Content></CharacterStyleRange>

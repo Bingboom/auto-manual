@@ -134,9 +134,44 @@ def _symbol_payload(body: str) -> dict[str, Any] | None:
     return None
 
 
+def _special_page_payload(body: str) -> dict[str, Any] | None:
+    included = re.search(r"\\includepdf(?:\[[^]]*\])?\{([^{}]+)\}", body)
+    if included:
+        return {"kind": "placed_pdf", "asset": included.group(1).strip()}
+    back_cover = _calls(body, "HBBackCoverPage", 3)
+    if back_cover:
+        company, address, phone = back_cover[0]
+        return {
+            "kind": "back_cover",
+            "company": _text(company),
+            "address": _text(address),
+            "phone": _text(phone),
+        }
+    if r"\HBTocPageBegin" in body:
+        titles = _calls(body, "HBTocTitle", 1)
+        languages = []
+        for code, label, page_range, left, right in _calls(body, "HBTocLanguageBlock", 5):
+            entries = [
+                {"title": _text(title), "folio": _text(folio)}
+                for title, folio in _calls(left + "\n" + right, "HBTocEntry", 2)
+            ]
+            languages.append({
+                "code": _text(code), "label": _text(label),
+                "page_range": _text(page_range).replace("--", "-"),
+                "entries": entries,
+            })
+        return {
+            "kind": "toc",
+            "title": _text(titles[0][0]) if titles else "TABLE OF CONTENTS",
+            "languages": languages,
+        }
+    return None
+
+
 def parse_data_component(body: str) -> dict[str, Any] | None:
     """Return a typed data-page payload for one raw LaTeX block."""
-    return _lcd_payload(body) or _symbol_payload(body) or _spec_payload(body)
+    return (_lcd_payload(body) or _symbol_payload(body) or _spec_payload(body)
+            or _special_page_payload(body))
 
 
 def is_data_plumbing(body: str) -> bool:

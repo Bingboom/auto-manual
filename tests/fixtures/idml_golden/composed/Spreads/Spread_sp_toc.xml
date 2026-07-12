@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Spread xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Spread Self="sp_toc" PageCount="1" BindingLocation="0" ShowMasterItems="true">
-  <Page Self="sp_toc_pg" Name="3" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346"/>
-  <TextFrame Self="tf_toc_title" ParentStory="st_toc_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+<Spread Self="sp_toc" Label="hb:self=sp_toc" PageCount="1" BindingLocation="0" ShowMasterItems="true">
+  <Page Self="sp_toc_pg" Label="hb:self=sp_toc_pg" Name="3" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346"/>
+  <TextFrame Self="tf_toc_title" Label="hb:self=tf_toc_title" ParentStory="st_toc_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -17,7 +17,7 @@
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <Rectangle Self="bg_toc_bar_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_toc_bar_0" Label="hb:self=bg_toc_bar_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -35,7 +35,7 @@
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_toc_bar_0" ParentStory="st_toc_bar_0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_toc_bar_0" Label="hb:self=tf_toc_bar_0" ParentStory="st_toc_bar_0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -50,7 +50,7 @@
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1 0 1 0"/>
   </TextFrame>
-  <TextFrame Self="tf_toc_seg0_c0" ParentStory="st_toc_seg0_c0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_toc_seg0_c0" Label="hb:self=tf_toc_seg0_c0" ParentStory="st_toc_seg0_c0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -65,7 +65,7 @@
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <TextFrame Self="tf_toc_seg0_c1" ParentStory="st_toc_seg0_c1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_toc_seg0_c1" Label="hb:self=tf_toc_seg0_c1" ParentStory="st_toc_seg0_c1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">

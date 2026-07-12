@@ -277,8 +277,8 @@ class IdmlWriter:
         return _prim.path_geometry(x1, y1, x2, y2)
 
     def add_spread_chain(self, story_id: str, n_pages: int, start_index: int,
-                         columns: int = 1) -> None:
-        return _package.add_spread_chain(self, story_id, n_pages, start_index, columns=columns)
+                         columns: int = 1, bottom_extra: float = 0.0) -> None:
+        return _package.add_spread_chain(self, story_id, n_pages, start_index, columns=columns, bottom_extra=bottom_extra)
 
     # -- assembly ----------------------------------------------------------
     def designmap_xml(self) -> str:
@@ -338,12 +338,11 @@ def main() -> int:
         print(f"[export-idml] ERROR: prepared bundle is required for same-source IDML: {exc}")
         return 1
 
-    projected_pages = _ir_projection.project_pages(manual_ir, bundle_root)
-    projected_by_path = {page.path: page for page in projected_pages}
+    projected_by_path = {page.path: page for page in _ir_projection.project_pages(manual_ir, bundle_root)}
+    page_plan = _ir_projection.build_reference_page_plan(manual_ir, bundle_root=bundle_root)
     sections: list[dict] = []
     lcd_rows: list[dict] = []
     trouble_rows: list[tuple[str, str]] = []
-
     w = IdmlWriter(params)
     symbol_cache: dict[str, tuple[list[tuple[str, str]], list[dict]]] = {}
 
@@ -360,17 +359,17 @@ def main() -> int:
     toc = _toc.TocCollector()
     prose_pages = 0
 
-    def chain(story_id: str, est_h: float, columns: int = 1) -> None:
+    def chain(story_id: str, est_h: float, columns: int = 1, bottom_extra: float = 0.0) -> None:
         nonlocal page_cursor
         # A two-column frame holds twice the height. Do not add an extra
         # safety multiplier here: when the estimate already fits, that creates
         # trailing blank linked frames in InDesign.
         pages = w.pages_for_height(est_h / max(1, columns))
-        w.add_spread_chain(story_id, pages, page_cursor, columns=columns)
+        w.add_spread_chain(story_id, pages, page_cursor, columns=columns, bottom_extra=bottom_extra)
         page_cursor += pages
 
     DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_"}
-    ordered = [page.path for page in projected_pages]
+    ordered = list(projected_by_path)
 
     emitted: set[str] = set()  # "spec:fr", "lcd:es", "trouble", "symbols"
     pending_prefix_blocks: list[tuple[str, str]] = []
@@ -386,6 +385,7 @@ def main() -> int:
         toc.latch(title)
         _, est = w.add_prose_story(sid, title, blocks, bundle_root)
         pages = w.pages_for_height(est / max(1, columns))
+        pages = _ir_projection.planned_story_pages(page_plan, title, pages)
         toc.note_h1s(blocks, page_cursor, pages)
         w.add_spread_chain(sid, pages, page_cursor, columns=columns)
         page_cursor += pages
@@ -439,7 +439,7 @@ def main() -> int:
             title = data.title
             toc.note(title, page_cursor, lang)
             sid = w.add_lcd_story(rows, data_root, lang=lang, title=title)
-            chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in rows))
+            chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in rows), bottom_extra=18.0)
         elif kind == "trouble":
             rows = list(_ir_projection.trouble_rows(manual_ir, lang))
             if not rows:
@@ -576,8 +576,8 @@ def main() -> int:
     _toc.finalize(w, toc, w._add_story_parts, w._psr)
     _folio.apply(w, w._add_story_parts, w._psr)
 
-    out = Path(args.out) if args.out else (
-        default_output_path(args.model, args.region, args.lang, bundle_root))
+    out = Path(args.out) if args.out else default_output_path(args.model, args.region, args.lang, bundle_root)
+    _ir_projection.emit_reference_page_plan(page_plan, out_dir=out.parent)
     _ir_sidecar.write_manual_ir_sidecar(manual_ir, out.parent)
     w.write(out)
     issues = check_idml(out)

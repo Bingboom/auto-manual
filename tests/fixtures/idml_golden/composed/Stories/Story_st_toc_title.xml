@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Story Self="st_toc_title" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TOC title">
+<Story Self="st_toc_title" Label="hb:self=st_toc_title" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TOC title">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Big Numeral">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>TABLE OF CONTENTS</Content></CharacterStyleRange>

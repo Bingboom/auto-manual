@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Spread xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Spread Self="sp_3" PageCount="1" BindingLocation="0" ShowMasterItems="true">
-  <Page Self="sp_3_pg" Name="4" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346">
+<Spread Self="sp_3" Label="hb:self=sp_3" PageCount="1" BindingLocation="0" ShowMasterItems="true">
+  <Page Self="sp_3_pg" Label="hb:self=sp_3_pg" Name="4" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346">
     <MarginPreference ColumnCount="1" ColumnGutter="12" Top="14.1732" Bottom="36.8504" Left="28.3465" Right="28.3465"/>
   </Page>
-  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_tail_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_tail_0" Label="hb:self=bg_st_safety_symbols_20_01_user_maintenance_instructions_tail_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
             <PathPointType Anchor="-156.994 -229.346" LeftDirection="-156.994 -229.346" RightDirection="-156.994 -229.346"/>
-            <PathPointType Anchor="-156.994 -205.846" LeftDirection="-156.994 -205.846" RightDirection="-156.994 -202.809"/>
-            <PathPointType Anchor="-151.494 -200.346" LeftDirection="-154.531 -200.346" RightDirection="-151.494 -200.346"/>
-            <PathPointType Anchor="151.494 -200.346" LeftDirection="151.494 -200.346" RightDirection="154.531 -200.346"/>
-            <PathPointType Anchor="156.994 -205.846" LeftDirection="156.994 -202.809" RightDirection="156.994 -205.846"/>
+            <PathPointType Anchor="-156.994 -202.846" LeftDirection="-156.994 -202.846" RightDirection="-156.994 -199.809"/>
+            <PathPointType Anchor="-151.494 -197.346" LeftDirection="-154.531 -197.346" RightDirection="-151.494 -197.346"/>
+            <PathPointType Anchor="151.494 -197.346" LeftDirection="151.494 -197.346" RightDirection="154.531 -197.346"/>
+            <PathPointType Anchor="156.994 -202.846" LeftDirection="156.994 -199.809" RightDirection="156.994 -202.846"/>
             <PathPointType Anchor="156.994 -229.346" LeftDirection="156.994 -229.346" RightDirection="156.994 -232.384"/>
             <PathPointType Anchor="151.494 -234.846" LeftDirection="154.531 -234.846" RightDirection="151.494 -234.846"/>
             <PathPointType Anchor="-151.494 -234.846" LeftDirection="-151.494 -234.846" RightDirection="-154.531 -234.846"/>
@@ -22,14 +22,14 @@
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_tail_0" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_tail_warning" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_tail_0" Label="hb:self=tf_st_safety_symbols_20_01_user_maintenance_instructions_tail_0" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_tail_warning" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
             <PathPointType Anchor="-156.994 -234.846" LeftDirection="-156.994 -234.846" RightDirection="-156.994 -234.846"/>
-            <PathPointType Anchor="-156.994 -200.346" LeftDirection="-156.994 -200.346" RightDirection="-156.994 -200.346"/>
-            <PathPointType Anchor="156.994 -200.346" LeftDirection="156.994 -200.346" RightDirection="156.994 -200.346"/>
+            <PathPointType Anchor="-156.994 -197.346" LeftDirection="-156.994 -197.346" RightDirection="-156.994 -197.346"/>
+            <PathPointType Anchor="156.994 -197.346" LeftDirection="156.994 -197.346" RightDirection="156.994 -197.346"/>
             <PathPointType Anchor="156.994 -234.846" LeftDirection="156.994 -234.846" RightDirection="156.994 -234.846"/>
           </PathPointArray>
         </GeometryPathType>
@@ -37,218 +37,218 @@
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_tail_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_tail_1" Label="hb:self=bg_st_safety_symbols_20_01_user_maintenance_instructions_tail_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -189.846" LeftDirection="-156.994 -189.846" RightDirection="-156.994 -189.846"/>
-            <PathPointType Anchor="-156.994 -169.346" LeftDirection="-156.994 -169.346" RightDirection="-156.994 -166.309"/>
-            <PathPointType Anchor="-151.494 -163.846" LeftDirection="-154.531 -163.846" RightDirection="-151.494 -163.846"/>
-            <PathPointType Anchor="151.494 -163.846" LeftDirection="151.494 -163.846" RightDirection="154.531 -163.846"/>
-            <PathPointType Anchor="156.994 -169.346" LeftDirection="156.994 -166.309" RightDirection="156.994 -169.346"/>
-            <PathPointType Anchor="156.994 -189.846" LeftDirection="156.994 -189.846" RightDirection="156.994 -192.884"/>
-            <PathPointType Anchor="151.494 -195.346" LeftDirection="154.531 -195.346" RightDirection="151.494 -195.346"/>
-            <PathPointType Anchor="-151.494 -195.346" LeftDirection="-151.494 -195.346" RightDirection="-154.531 -195.346"/>
+            <PathPointType Anchor="-156.994 -191.846" LeftDirection="-156.994 -191.846" RightDirection="-156.994 -191.846"/>
+            <PathPointType Anchor="-156.994 -166.346" LeftDirection="-156.994 -166.346" RightDirection="-156.994 -163.309"/>
+            <PathPointType Anchor="-151.494 -160.846" LeftDirection="-154.531 -160.846" RightDirection="-151.494 -160.846"/>
+            <PathPointType Anchor="151.494 -160.846" LeftDirection="151.494 -160.846" RightDirection="154.531 -160.846"/>
+            <PathPointType Anchor="156.994 -166.346" LeftDirection="156.994 -163.309" RightDirection="156.994 -166.346"/>
+            <PathPointType Anchor="156.994 -191.846" LeftDirection="156.994 -191.846" RightDirection="156.994 -194.884"/>
+            <PathPointType Anchor="151.494 -197.346" LeftDirection="154.531 -197.346" RightDirection="151.494 -197.346"/>
+            <PathPointType Anchor="-151.494 -197.346" LeftDirection="-151.494 -197.346" RightDirection="-154.531 -197.346"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_tail_1" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_tail_danger" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_tail_1" Label="hb:self=tf_st_safety_symbols_20_01_user_maintenance_instructions_tail_1" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_tail_danger" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -195.346" LeftDirection="-156.994 -195.346" RightDirection="-156.994 -195.346"/>
-            <PathPointType Anchor="-156.994 -163.846" LeftDirection="-156.994 -163.846" RightDirection="-156.994 -163.846"/>
-            <PathPointType Anchor="156.994 -163.846" LeftDirection="156.994 -163.846" RightDirection="156.994 -163.846"/>
-            <PathPointType Anchor="156.994 -195.346" LeftDirection="156.994 -195.346" RightDirection="156.994 -195.346"/>
+            <PathPointType Anchor="-156.994 -197.346" LeftDirection="-156.994 -197.346" RightDirection="-156.994 -197.346"/>
+            <PathPointType Anchor="-156.994 -160.846" LeftDirection="-156.994 -160.846" RightDirection="-156.994 -160.846"/>
+            <PathPointType Anchor="156.994 -160.846" LeftDirection="156.994 -160.846" RightDirection="156.994 -160.846"/>
+            <PathPointType Anchor="156.994 -197.346" LeftDirection="156.994 -197.346" RightDirection="156.994 -197.346"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_maint_title" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_maint_title" Label="hb:self=bg_st_safety_symbols_20_01_user_maintenance_instructions_maint_title" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -151.896" LeftDirection="-156.994 -151.896" RightDirection="-156.994 -151.896"/>
-            <PathPointType Anchor="-156.994 -151.896" LeftDirection="-156.994 -151.896" RightDirection="-156.994 -148.058"/>
-            <PathPointType Anchor="-150.044 -144.946" LeftDirection="-153.882 -144.946" RightDirection="-150.044 -144.946"/>
-            <PathPointType Anchor="150.044 -144.946" LeftDirection="150.044 -144.946" RightDirection="153.882 -144.946"/>
-            <PathPointType Anchor="156.994 -151.896" LeftDirection="156.994 -148.058" RightDirection="156.994 -151.896"/>
-            <PathPointType Anchor="156.994 -151.896" LeftDirection="156.994 -151.896" RightDirection="156.994 -155.735"/>
-            <PathPointType Anchor="150.044 -158.846" LeftDirection="153.882 -158.846" RightDirection="150.044 -158.846"/>
-            <PathPointType Anchor="-150.044 -158.846" LeftDirection="-150.044 -158.846" RightDirection="-153.882 -158.846"/>
+            <PathPointType Anchor="-156.994 -153.896" LeftDirection="-156.994 -153.896" RightDirection="-156.994 -153.896"/>
+            <PathPointType Anchor="-156.994 -153.896" LeftDirection="-156.994 -153.896" RightDirection="-156.994 -150.058"/>
+            <PathPointType Anchor="-150.044 -146.946" LeftDirection="-153.882 -146.946" RightDirection="-150.044 -146.946"/>
+            <PathPointType Anchor="150.044 -146.946" LeftDirection="150.044 -146.946" RightDirection="153.882 -146.946"/>
+            <PathPointType Anchor="156.994 -153.896" LeftDirection="156.994 -150.058" RightDirection="156.994 -153.896"/>
+            <PathPointType Anchor="156.994 -153.896" LeftDirection="156.994 -153.896" RightDirection="156.994 -157.735"/>
+            <PathPointType Anchor="150.044 -160.846" LeftDirection="153.882 -160.846" RightDirection="150.044 -160.846"/>
+            <PathPointType Anchor="-150.044 -160.846" LeftDirection="-150.044 -160.846" RightDirection="-153.882 -160.846"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_maint_title" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_maintenance_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_maint_title" Label="hb:self=tf_st_safety_symbols_20_01_user_maintenance_instructions_maint_title" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_maintenance_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -158.846" LeftDirection="-156.994 -158.846" RightDirection="-156.994 -158.846"/>
-            <PathPointType Anchor="-156.994 -144.946" LeftDirection="-156.994 -144.946" RightDirection="-156.994 -144.946"/>
-            <PathPointType Anchor="156.994 -144.946" LeftDirection="156.994 -144.946" RightDirection="156.994 -144.946"/>
-            <PathPointType Anchor="156.994 -158.846" LeftDirection="156.994 -158.846" RightDirection="156.994 -158.846"/>
+            <PathPointType Anchor="-156.994 -160.846" LeftDirection="-156.994 -160.846" RightDirection="-156.994 -160.846"/>
+            <PathPointType Anchor="-156.994 -146.946" LeftDirection="-156.994 -146.946" RightDirection="-156.994 -146.946"/>
+            <PathPointType Anchor="156.994 -146.946" LeftDirection="156.994 -146.946" RightDirection="156.994 -146.946"/>
+            <PathPointType Anchor="156.994 -160.846" LeftDirection="156.994 -160.846" RightDirection="156.994 -160.846"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0.5 5 0.5 6"/>
   </TextFrame>
-  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_maint_body" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_maintenance_body" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_maint_body" Label="hb:self=tf_st_safety_symbols_20_01_user_maintenance_instructions_maint_body" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_maintenance_body" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -141.446" LeftDirection="-156.994 -141.446" RightDirection="-156.994 -141.446"/>
-            <PathPointType Anchor="-156.994 -108.446" LeftDirection="-156.994 -108.446" RightDirection="-156.994 -108.446"/>
-            <PathPointType Anchor="156.994 -108.446" LeftDirection="156.994 -108.446" RightDirection="156.994 -108.446"/>
-            <PathPointType Anchor="156.994 -141.446" LeftDirection="156.994 -141.446" RightDirection="156.994 -141.446"/>
+            <PathPointType Anchor="-156.994 -143.446" LeftDirection="-156.994 -143.446" RightDirection="-156.994 -143.446"/>
+            <PathPointType Anchor="-156.994 -110.446" LeftDirection="-156.994 -110.446" RightDirection="-156.994 -110.446"/>
+            <PathPointType Anchor="156.994 -110.446" LeftDirection="156.994 -110.446" RightDirection="156.994 -110.446"/>
+            <PathPointType Anchor="156.994 -143.446" LeftDirection="156.994 -143.446" RightDirection="156.994 -143.446"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_symbols_title" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_symbols_title" Label="hb:self=bg_st_safety_symbols_20_01_user_maintenance_instructions_symbols_title" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -100.446" LeftDirection="-156.994 -100.446" RightDirection="-156.994 -100.446"/>
-            <PathPointType Anchor="-156.994 -84.5965" LeftDirection="-156.994 -84.5965" RightDirection="-156.994 -81.4654"/>
-            <PathPointType Anchor="-151.324 -78.9272" LeftDirection="-154.455 -78.9272" RightDirection="-151.324 -78.9272"/>
-            <PathPointType Anchor="151.324 -78.9272" LeftDirection="151.324 -78.9272" RightDirection="154.455 -78.9272"/>
-            <PathPointType Anchor="156.994 -84.5965" LeftDirection="156.994 -81.4654" RightDirection="156.994 -84.5965"/>
-            <PathPointType Anchor="156.994 -100.446" LeftDirection="156.994 -100.446" RightDirection="156.994 -100.446"/>
+            <PathPointType Anchor="-156.994 -102.446" LeftDirection="-156.994 -102.446" RightDirection="-156.994 -102.446"/>
+            <PathPointType Anchor="-156.994 -86.5965" LeftDirection="-156.994 -86.5965" RightDirection="-156.994 -83.4654"/>
+            <PathPointType Anchor="-151.324 -80.9272" LeftDirection="-154.455 -80.9272" RightDirection="-151.324 -80.9272"/>
+            <PathPointType Anchor="151.324 -80.9272" LeftDirection="151.324 -80.9272" RightDirection="154.455 -80.9272"/>
+            <PathPointType Anchor="156.994 -86.5965" LeftDirection="156.994 -83.4654" RightDirection="156.994 -86.5965"/>
+            <PathPointType Anchor="156.994 -102.446" LeftDirection="156.994 -102.446" RightDirection="156.994 -102.446"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_symbols_title" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_symbols_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_symbols_title" Label="hb:self=tf_st_safety_symbols_20_01_user_maintenance_instructions_symbols_title" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_symbols_title" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -100.446" LeftDirection="-156.994 -100.446" RightDirection="-156.994 -100.446"/>
-            <PathPointType Anchor="-156.994 -78.9272" LeftDirection="-156.994 -78.9272" RightDirection="-156.994 -78.9272"/>
-            <PathPointType Anchor="156.994 -78.9272" LeftDirection="156.994 -78.9272" RightDirection="156.994 -78.9272"/>
-            <PathPointType Anchor="156.994 -100.446" LeftDirection="156.994 -100.446" RightDirection="156.994 -100.446"/>
+            <PathPointType Anchor="-156.994 -102.446" LeftDirection="-156.994 -102.446" RightDirection="-156.994 -102.446"/>
+            <PathPointType Anchor="-156.994 -80.9272" LeftDirection="-156.994 -80.9272" RightDirection="-156.994 -80.9272"/>
+            <PathPointType Anchor="156.994 -80.9272" LeftDirection="156.994 -80.9272" RightDirection="156.994 -80.9272"/>
+            <PathPointType Anchor="156.994 -102.446" LeftDirection="156.994 -102.446" RightDirection="156.994 -102.446"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1.5 5 1 6"/>
   </TextFrame>
-  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_signals" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_signals" Label="hb:self=bg_st_safety_symbols_20_01_user_maintenance_instructions_signals" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -64.4272" LeftDirection="-156.994 -64.4272" RightDirection="-156.994 -64.4272"/>
-            <PathPointType Anchor="-156.994 44.5728" LeftDirection="-156.994 44.5728" RightDirection="-156.994 47.6104"/>
-            <PathPointType Anchor="-151.494 50.0728" LeftDirection="-154.531 50.0728" RightDirection="-151.494 50.0728"/>
-            <PathPointType Anchor="151.494 50.0728" LeftDirection="151.494 50.0728" RightDirection="154.531 50.0728"/>
-            <PathPointType Anchor="156.994 44.5728" LeftDirection="156.994 47.6104" RightDirection="156.994 44.5728"/>
-            <PathPointType Anchor="156.994 -64.4272" LeftDirection="156.994 -64.4272" RightDirection="156.994 -67.4647"/>
-            <PathPointType Anchor="151.494 -69.9272" LeftDirection="154.531 -69.9272" RightDirection="151.494 -69.9272"/>
-            <PathPointType Anchor="-151.494 -69.9272" LeftDirection="-151.494 -69.9272" RightDirection="-154.531 -69.9272"/>
+            <PathPointType Anchor="-156.994 -66.4272" LeftDirection="-156.994 -66.4272" RightDirection="-156.994 -66.4272"/>
+            <PathPointType Anchor="-156.994 42.5728" LeftDirection="-156.994 42.5728" RightDirection="-156.994 45.6104"/>
+            <PathPointType Anchor="-151.494 48.0728" LeftDirection="-154.531 48.0728" RightDirection="-151.494 48.0728"/>
+            <PathPointType Anchor="151.494 48.0728" LeftDirection="151.494 48.0728" RightDirection="154.531 48.0728"/>
+            <PathPointType Anchor="156.994 42.5728" LeftDirection="156.994 45.6104" RightDirection="156.994 42.5728"/>
+            <PathPointType Anchor="156.994 -66.4272" LeftDirection="156.994 -66.4272" RightDirection="156.994 -69.4647"/>
+            <PathPointType Anchor="151.494 -71.9272" LeftDirection="154.531 -71.9272" RightDirection="151.494 -71.9272"/>
+            <PathPointType Anchor="-151.494 -71.9272" LeftDirection="-151.494 -71.9272" RightDirection="-154.531 -71.9272"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_signals" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_signals" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_signals" Label="hb:self=tf_st_safety_symbols_20_01_user_maintenance_instructions_signals" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_signals" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -69.9272" LeftDirection="-156.994 -69.9272" RightDirection="-156.994 -69.9272"/>
-            <PathPointType Anchor="-156.994 50.0728" LeftDirection="-156.994 50.0728" RightDirection="-156.994 50.0728"/>
-            <PathPointType Anchor="156.994 50.0728" LeftDirection="156.994 50.0728" RightDirection="156.994 50.0728"/>
-            <PathPointType Anchor="156.994 -69.9272" LeftDirection="156.994 -69.9272" RightDirection="156.994 -69.9272"/>
+            <PathPointType Anchor="-156.994 -71.9272" LeftDirection="-156.994 -71.9272" RightDirection="-156.994 -71.9272"/>
+            <PathPointType Anchor="-156.994 48.0728" LeftDirection="-156.994 48.0728" RightDirection="-156.994 48.0728"/>
+            <PathPointType Anchor="156.994 48.0728" LeftDirection="156.994 48.0728" RightDirection="156.994 48.0728"/>
+            <PathPointType Anchor="156.994 -71.9272" LeftDirection="156.994 -71.9272" RightDirection="156.994 -71.9272"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_icons_left" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_icons_left" Label="hb:self=bg_st_safety_symbols_20_01_user_maintenance_instructions_icons_left" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 62.0728" LeftDirection="-156.994 62.0728" RightDirection="-156.994 62.0728"/>
-            <PathPointType Anchor="-156.994 111.073" LeftDirection="-156.994 111.073" RightDirection="-156.994 114.11"/>
-            <PathPointType Anchor="-151.494 116.573" LeftDirection="-154.531 116.573" RightDirection="-151.494 116.573"/>
-            <PathPointType Anchor="-8.5 116.573" LeftDirection="-8.5 116.573" RightDirection="-5.46243 116.573"/>
-            <PathPointType Anchor="-3 111.073" LeftDirection="-3 114.11" RightDirection="-3 111.073"/>
-            <PathPointType Anchor="-3 62.0728" LeftDirection="-3 62.0728" RightDirection="-3 59.0353"/>
-            <PathPointType Anchor="-8.5 56.5728" LeftDirection="-5.46243 56.5728" RightDirection="-8.5 56.5728"/>
-            <PathPointType Anchor="-151.494 56.5728" LeftDirection="-151.494 56.5728" RightDirection="-154.531 56.5728"/>
+            <PathPointType Anchor="-156.994 60.0728" LeftDirection="-156.994 60.0728" RightDirection="-156.994 60.0728"/>
+            <PathPointType Anchor="-156.994 109.073" LeftDirection="-156.994 109.073" RightDirection="-156.994 112.11"/>
+            <PathPointType Anchor="-151.494 114.573" LeftDirection="-154.531 114.573" RightDirection="-151.494 114.573"/>
+            <PathPointType Anchor="-8.5 114.573" LeftDirection="-8.5 114.573" RightDirection="-5.46243 114.573"/>
+            <PathPointType Anchor="-3 109.073" LeftDirection="-3 112.11" RightDirection="-3 109.073"/>
+            <PathPointType Anchor="-3 60.0728" LeftDirection="-3 60.0728" RightDirection="-3 57.0353"/>
+            <PathPointType Anchor="-8.5 54.5728" LeftDirection="-5.46243 54.5728" RightDirection="-8.5 54.5728"/>
+            <PathPointType Anchor="-151.494 54.5728" LeftDirection="-151.494 54.5728" RightDirection="-154.531 54.5728"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_icons_left" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_icons_left" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_icons_left" Label="hb:self=tf_st_safety_symbols_20_01_user_maintenance_instructions_icons_left" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_icons_left" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 56.5728" LeftDirection="-156.994 56.5728" RightDirection="-156.994 56.5728"/>
-            <PathPointType Anchor="-156.994 116.573" LeftDirection="-156.994 116.573" RightDirection="-156.994 116.573"/>
-            <PathPointType Anchor="-3 116.573" LeftDirection="-3 116.573" RightDirection="-3 116.573"/>
-            <PathPointType Anchor="-3 56.5728" LeftDirection="-3 56.5728" RightDirection="-3 56.5728"/>
+            <PathPointType Anchor="-156.994 54.5728" LeftDirection="-156.994 54.5728" RightDirection="-156.994 54.5728"/>
+            <PathPointType Anchor="-156.994 114.573" LeftDirection="-156.994 114.573" RightDirection="-156.994 114.573"/>
+            <PathPointType Anchor="-3 114.573" LeftDirection="-3 114.573" RightDirection="-3 114.573"/>
+            <PathPointType Anchor="-3 54.5728" LeftDirection="-3 54.5728" RightDirection="-3 54.5728"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_icons_right" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_st_safety_symbols_20_01_user_maintenance_instructions_icons_right" Label="hb:self=bg_st_safety_symbols_20_01_user_maintenance_instructions_icons_right" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="3 62.0728" LeftDirection="3 62.0728" RightDirection="3 62.0728"/>
-            <PathPointType Anchor="3 111.073" LeftDirection="3 111.073" RightDirection="3 114.11"/>
-            <PathPointType Anchor="8.5 116.573" LeftDirection="5.46243 116.573" RightDirection="8.5 116.573"/>
-            <PathPointType Anchor="151.494 116.573" LeftDirection="151.494 116.573" RightDirection="154.531 116.573"/>
-            <PathPointType Anchor="156.994 111.073" LeftDirection="156.994 114.11" RightDirection="156.994 111.073"/>
-            <PathPointType Anchor="156.994 62.0728" LeftDirection="156.994 62.0728" RightDirection="156.994 59.0353"/>
-            <PathPointType Anchor="151.494 56.5728" LeftDirection="154.531 56.5728" RightDirection="151.494 56.5728"/>
-            <PathPointType Anchor="8.5 56.5728" LeftDirection="8.5 56.5728" RightDirection="5.46243 56.5728"/>
+            <PathPointType Anchor="3 60.0728" LeftDirection="3 60.0728" RightDirection="3 60.0728"/>
+            <PathPointType Anchor="3 109.073" LeftDirection="3 109.073" RightDirection="3 112.11"/>
+            <PathPointType Anchor="8.5 114.573" LeftDirection="5.46243 114.573" RightDirection="8.5 114.573"/>
+            <PathPointType Anchor="151.494 114.573" LeftDirection="151.494 114.573" RightDirection="154.531 114.573"/>
+            <PathPointType Anchor="156.994 109.073" LeftDirection="156.994 112.11" RightDirection="156.994 109.073"/>
+            <PathPointType Anchor="156.994 60.0728" LeftDirection="156.994 60.0728" RightDirection="156.994 57.0353"/>
+            <PathPointType Anchor="151.494 54.5728" LeftDirection="154.531 54.5728" RightDirection="151.494 54.5728"/>
+            <PathPointType Anchor="8.5 54.5728" LeftDirection="8.5 54.5728" RightDirection="5.46243 54.5728"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
   </Rectangle>
-  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_icons_right" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_icons_right" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_st_safety_symbols_20_01_user_maintenance_instructions_icons_right" Label="hb:self=tf_st_safety_symbols_20_01_user_maintenance_instructions_icons_right" ParentStory="st_safety_symbols_20_01_user_maintenance_instructions_icons_right" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="3 56.5728" LeftDirection="3 56.5728" RightDirection="3 56.5728"/>
-            <PathPointType Anchor="3 116.573" LeftDirection="3 116.573" RightDirection="3 116.573"/>
-            <PathPointType Anchor="156.994 116.573" LeftDirection="156.994 116.573" RightDirection="156.994 116.573"/>
-            <PathPointType Anchor="156.994 56.5728" LeftDirection="156.994 56.5728" RightDirection="156.994 56.5728"/>
+            <PathPointType Anchor="3 54.5728" LeftDirection="3 54.5728" RightDirection="3 54.5728"/>
+            <PathPointType Anchor="3 114.573" LeftDirection="3 114.573" RightDirection="3 114.573"/>
+            <PathPointType Anchor="156.994 114.573" LeftDirection="156.994 114.573" RightDirection="156.994 114.573"/>
+            <PathPointType Anchor="156.994 54.5728" LeftDirection="156.994 54.5728" RightDirection="156.994 54.5728"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
-  <TextFrame Self="tf_folio_3" ParentStory="st_folio_3" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_folio_3" Label="hb:self=tf_folio_3" ParentStory="st_folio_3" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">

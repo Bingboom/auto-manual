@@ -53,6 +53,7 @@ class PathSegments:
     LAYOUT_PARAMS_CSV = "layout_params.csv"
     MANUAL_STYLE_CONTRACT = "manual_style.yaml"
     MANUAL_IR_JSON = "manual.ir.json"
+    LATEX_PAGE_PLAN_JSON = "latex_page_plan.json"
 
     DEFAULT_CONFIG_US = "config.us.yaml"
     DEFAULT_CONFIG_JA = "config.ja.yaml"

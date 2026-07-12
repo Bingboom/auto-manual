@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Story Self="st_fcc_inbox_p23_02_whats_in_the_box_tip_label" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Inbox tip label">
+<Story Self="st_fcc_inbox_p23_02_whats_in_the_box_tip_label" Label="hb:self=st_fcc_inbox_p23_02_whats_in_the_box_tip_label" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Inbox tip label">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/黑底段落-文本" Justification="CenterAlign">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>TIPS</Content></CharacterStyleRange>

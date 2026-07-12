@@ -1,9 +1,4 @@
-"""Story builders for the IDML exporter (componentization P3).
-
-Each function takes the writer (geometry/params/primitives via its thin
-delegates + the stories/spreads sinks) and appends the built story. Moved
-verbatim from IdmlWriter — the golden byte-comparison pins equivalence.
-"""
+"""Story builders whose golden byte-comparison pins IDML equivalence."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -11,6 +6,7 @@ from xml.sax.saxutils import escape
 
 from . import components as _components, page_objects as _po
 from . import table_borders as _tb
+from . import lcd_style as _lcd
 from .loaders import symbol_copy
 from .params import IDPKG
 from .primitives import _ATTR_ENTITIES
@@ -113,24 +109,27 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
     """LCD icon table: circled-no / icon image / name / description."""
     sid = "st_lcd" if lang == "en" else f"st_lcd_{lang}"
     body_w = writer.page_w - writer.m_l - writer.m_r
-    cols = (body_w * 0.08, body_w * 0.12, body_w * 0.28, body_w * 0.52)
+    cols, icon_pt, pad = _lcd.layout_tokens(writer, body_w)
     tid = "tbl_lcd" if lang == "en" else f"tbl_lcd_{lang}"
     cells = []
-    icon_pt = 24.0
+
     for ri, row in enumerate(rows):
         # figure paths are repo-relative in both live and fixture snapshots
         fig = (ROOT / row["figure"]) if row["figure"] else None
         img = (writer._image_cell_content(f"{tid}img{ri}", fig, icon_pt, icon_pt)
                if fig and fig.exists() else "")
         cell_defs = (
-            (writer._psr("HB Spec Label", row["no"], terminal=True), 0),
+            (_lcd.typed_paragraph(writer, "HB Spec Label", row["no"],
+                                  "type_lcd_no_font_size", "type_lcd_no_font_leading"), 0),
             (_components.figure_paragraph(img, tail="<Content></Content>"), 1),
-            (writer._psr("HB Spec Label", row["name"], terminal=True), 2),
-            (writer._psr("HB Spec Value", row["desc"], terminal=True), 3),
+            (_lcd.typed_paragraph(writer, "HB Spec Label", row["name"],
+                                  "type_lcd_label_font_size", "type_lcd_label_font_leading"), 2),
+            (_lcd.typed_paragraph(writer, "HB Spec Value", row["desc"],
+                                  "type_lcd_body_font_size", "type_lcd_body_font_leading"), 3),
         )
         for content, ci in cell_defs:
             cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
-                                      top=2, bottom=2, left=3, right=3))
+                                      top=pad, bottom=pad, left=pad, right=pad))
     table = _tb.fill_column_xml(writer._component_table(tid, list(cols), cells, n_rows=len(rows), role="data"), 1, "Color/HB Bg K05")
     parts = [
         _po.h1_pill_paragraph(writer, title, writer.page_w - writer.m_l - writer.m_r),

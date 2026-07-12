@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Story Self="st_anchor_notice_st_05_operation_guide_cmp4" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="NOTE notice panel">
+<Story Self="st_anchor_notice_st_05_operation_guide_cmp4" Label="hb:self=st_anchor_notice_st_05_operation_guide_cmp4" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="NOTE notice panel">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
@@ -9,7 +9,7 @@
     <Column Self="st_05_operation_guide_cmp4col0" Name="0" SingleColumnWidth="43.6932"/>
     <Column Self="st_05_operation_guide_cmp4col1" Name="1" SingleColumnWidth="258.401"/>
     <Cell Self="st_05_operation_guide_cmp4c0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" TopInset="1" BottomInset="1" LeftInset="2" RightInset="4">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><TextFrame Self="tfp_st_anchor_chip_st_05_operation_guide_cmp4" ParentStory="st_anchor_chip_st_05_operation_guide_cmp4" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><TextFrame Self="tfp_st_anchor_chip_st_05_operation_guide_cmp4" Label="hb:self=tfp_st_anchor_chip_st_05_operation_guide_cmp4" ParentStory="st_anchor_chip_st_05_operation_guide_cmp4" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
