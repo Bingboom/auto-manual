@@ -219,6 +219,41 @@ type_spec_value_font_leading,6.6,pt,Spec right-cell value leading
 type_spec_note_font_size,5.4,pt,Spec note/footnote font size
 type_spec_note_font_leading,6.0,pt,Spec note/footnote leading
 ,,,
+,,,------ WARRANTY PAGE ------
+comp_warranty_page_after_h1,4.0,mm,Warranty page gap after H1
+comp_warranty_page_extra_height,6.0,mm,Warranty page local extra body height
+comp_warranty_lead_arc,3.2,mm,Warranty lead box corner radius
+comp_warranty_lead_pad_lr,3.6,mm,Warranty lead horizontal padding
+comp_warranty_lead_pad_tb,2.7,mm,Warranty lead vertical padding
+comp_warranty_lead_after,1.0,mm,Warranty lead space after
+comp_warranty_section_arc,2.4,mm,Warranty section frame corner radius
+comp_warranty_section_rule,0.9,pt,Warranty section frame rule
+comp_warranty_section_pad_lr,3.2,mm,Warranty section horizontal padding
+comp_warranty_section_pad_top,3.2,mm,Warranty section top padding
+comp_warranty_section_pad_bottom,1.8,mm,Warranty section bottom padding
+comp_warranty_exclusions_pad_bottom,5.8,mm,Warranty exclusions bottom padding
+comp_warranty_section_before,1.5,mm,Warranty later-section space before
+comp_warranty_first_section_before,2.5,mm,Warranty first-section space before
+comp_warranty_period_section_before,2.6,mm,Warranty period-section space before
+comp_warranty_final_section_before,2.9,mm,Warranty final-section space before
+comp_warranty_section_after,0.4,mm,Warranty section space after
+comp_warranty_title_arc,1.7,mm,Warranty section title corner radius
+comp_warranty_title_pad_lr,1.8,mm,Warranty section title horizontal padding
+comp_warranty_title_pad_tb,0.7,mm,Warranty section title vertical padding
+comp_warranty_title_inset,3.0,mm,Warranty section title left inset
+comp_warranty_year_badge_size,8.4,mm,Warranty year numeral badge diameter
+comp_warranty_year_column_gap,0.8,mm,Warranty year columns gap
+comp_warranty_year_left_ratio,0.59,ratio,Warranty year left column ratio
+type_warranty_lead_font_size,7.0,pt,Warranty lead font size
+type_warranty_lead_font_leading,8.2,pt,Warranty lead leading
+type_warranty_body_font_size,6.0,pt,Warranty panel body font size
+type_warranty_body_font_leading,7.2,pt,Warranty panel body leading
+type_warranty_title_font_size,8.2,pt,Warranty panel title font size
+type_warranty_title_font_leading,8.8,pt,Warranty panel title leading
+type_warranty_year_number_font_size,21,pt,Warranty year badge numeral size
+type_warranty_year_unit_font_size,12,pt,Warranty year unit size
+type_warranty_year_subtitle_font_size,7.2,pt,Warranty year subtitle size
+,,,
 comp_note_arc,2.4,mm,Note box corner radius
 comp_note_pad_lr,0,mm,Note left/right padding
 comp_note_pad_tb,0.5,mm,Note top/bottom padding
