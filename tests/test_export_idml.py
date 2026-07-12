@@ -487,6 +487,45 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(json.loads(res.blocks[1][1])["kind"], "notice")
         self.assertEqual(json.loads(res.blocks[1][1])["variant"], "tip")
 
+    def test_upstream_page_macros_keep_same_source_semantics(self) -> None:
+        import json
+        from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
+
+        res = ExtractResult()
+        _extract_raw_latex(r"\HBSafetyInstruction{Keep this instruction.}", res)
+        _extract_raw_latex(r"\HBAppStep{2}{Connect the device}", res)
+        _extract_raw_latex(r"\HBAppAsset{app.png}{ignored}{ignored}", res)
+
+        self.assertEqual(json.loads(res.blocks[0][1])["kind"], "safetyinstruction")
+        self.assertEqual(res.blocks[1], ("h2", "2 Connect the device"))
+        self.assertEqual(res.blocks[2], ("image", "app.png"))
+
+    def test_latex_false_fallback_is_not_duplicated_in_ir(self) -> None:
+        from tools.idml_rst_extract import _parse_text
+
+        text = (
+            ".. only:: latex\n\n"
+            "   .. raw:: latex\n\n"
+            "      \\HBAppBody{Canonical copy.}\n"
+            "      \\iffalse\n\n"
+            "Fallback copy.\n\n"
+            ".. only:: latex\n\n"
+            "   .. raw:: latex\n\n"
+            "      \\fi\n"
+        )
+        latex = _parse_text(text, {"latex"})
+        fallback = _parse_text(text, {"html"})
+
+        self.assertEqual(latex.blocks, [("body", "Canonical copy.")])
+        self.assertEqual(fallback.blocks, [("body", "Fallback copy.")])
+
+        fcc = _parse_text(
+            ".. raw:: latex\n\n   \\HBFccBlock{Left copy.}{Right copy.}\n",
+            {"latex"},
+        )
+        self.assertEqual([kind for kind, _ in fcc.blocks], ["h1", "component"])
+        self.assertEqual(fcc.blocks[0], ("h1", "FCC"))
+
     def test_safety_layout_markers_and_warninglead_are_preserved(self) -> None:
         import json
         from tools.idml_rst_extract import ExtractResult, _extract_raw_latex

@@ -28,6 +28,7 @@ from pathlib import Path
 
 try:
     from tools.idml.data_components import is_data_plumbing, parse_data_component
+    from tools.idml.latex_conditionals import active_lines
     from tools.idml.notice_labels import notice_label_variant
     from tools.idml_rst_tables import (
         parse_grid_table as _parse_grid_table_impl,
@@ -35,6 +36,7 @@ try:
     )
 except ModuleNotFoundError:  # direct tools/export_idml.py execution
     from idml.data_components import is_data_plumbing, parse_data_component  # type: ignore
+    from idml.latex_conditionals import active_lines  # type: ignore
     from idml.notice_labels import notice_label_variant  # type: ignore
     from idml_rst_tables import (  # type: ignore
         parse_grid_table as _parse_grid_table_impl,
@@ -42,17 +44,14 @@ except ModuleNotFoundError:  # direct tools/export_idml.py execution
     )
 
 Block = tuple[str, str]
-
 # Component spec kinds this extractor can emit in ("component", json) blocks.
 # Parity with the IDML component registry (tools/idml/components.REGISTRY) is
 # test-enforced so a new kind can never ship extractor-side without a renderer.
 # "tailwarnbox" is deliberately absent: the safety+symbols page composer
 # synthesizes it from trailing safety warnboxes; it has no extracted form.
-EMITTED_COMPONENT_KINDS = (
-    "langtag",
+EMITTED_COMPONENT_KINDS = ("langtag",
     "fcc", "inbox", "lcdmode", "notice", "safetyinstruction", "safetywarning",
-    "warninglead", "warnbox",
-)
+    "warninglead", "warnbox")
 
 # Block kinds whose text payload is a JSON document (rows / component spec),
 # not prose — the RST unescape pass must reach INTO their string values, never
@@ -111,8 +110,7 @@ def _detex(s: str) -> str:
 
 
 def _unescape_stars(value: object) -> object:
-    """Turn the RST escaped asterisk ``\\*`` into a literal ``*`` in every string,
-    recursing through the JSON containers (list rows, component dicts)."""
+    """Unescape ``\\*`` recursively through JSON containers and strings."""
     if isinstance(value, str):
         return value.replace("\\*", "*")
     if isinstance(value, list):
@@ -191,7 +189,6 @@ _MACROS: tuple[tuple[str, int, str], ...] = (
     ("\\safetysubbar", 1, "h2"),
     ("\\safetylead", 1, "body"),
     # JE-2000E-era page macros
-    ("\\HBSafetyInstruction", 1, "safetywarning"),
     ("\\HBAppStep", 2, "h2num"),
     ("\\HBAppBody", 1, "body"),
     ("\\HBAppAsset", 3, "image1"),
@@ -296,8 +293,8 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
                 {"kind": "notice", "label": args[0], "variant": kind,
                  "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
         elif kind == "bodies":
-            result.blocks.append(("component", _json.dumps(
-                {"kind": "fcc", "texts": [a for a in args if a]}, ensure_ascii=False)))
+            result.blocks.extend([("h1", "FCC"), ("component", _json.dumps(
+                {"kind": "fcc", "texts": [a for a in args if a]}, ensure_ascii=False))])
         elif kind == "langtag" and len(args) == 2:
             result.blocks.append(("component", _json.dumps(
                 {"kind": "langtag", "lang": args[0], "texts": [args[1]]},
@@ -356,7 +353,7 @@ def _only_matches(expr: str, tags: set[str]) -> bool:
 def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
     tags = tags if tags is not None else {"latex"}
     result = ExtractResult()
-    lines = path.read_text(encoding="utf-8").splitlines()
+    lines = active_lines(path.read_text(encoding="utf-8").splitlines(), tags)
     i = 0
     n = len(lines)
 
@@ -514,7 +511,6 @@ def bundle_page_order(bundle_root: Path) -> list[Path]:
             if p.exists():
                 order.append(p)
     return order
-
 def _parse_grid_table(grid: list[str]) -> list[list[str]]:
     """Parse an rst grid table block into row cell-text lists."""
     return _parse_grid_table_impl(grid)

@@ -23,6 +23,10 @@ class LatexPagePlanTests(unittest.TestCase):
         page = next(page for page in self.ir.pages if page.source_path.endswith("symbols_en.rst"))
         self.assertEqual("meaning of symbols", anchor_candidates(page)[0])
 
+    def test_standard_short_fcc_heading_is_a_page_anchor(self) -> None:
+        page = next(page for page in self.ir.pages if page.source_path.endswith("01_fcc.rst"))
+        self.assertEqual("fcc", anchor_candidates(page)[0])
+
     def test_mapping_is_monotonic_and_keeps_unmatched_pages_explicit(self) -> None:
         pdf_pages = [
             "Synthetic cover",

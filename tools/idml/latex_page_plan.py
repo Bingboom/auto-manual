@@ -65,7 +65,8 @@ def _ranked_anchor_candidates(page: ManualPage) -> list[tuple[int, str]]:
         priority = {"h1": 0, "h2": 1, "body": 2, "list": 3}.get(block.kind, 4)
         for raw in _strings(block.payload):
             text = _normalize(raw)
-            minimum = 6 if block.kind in {"h1", "h2"} else 12
+            minimum = 3 if block.kind == "h1" and text == "fcc" else (
+                6 if block.kind in {"h1", "h2"} else 12)
             if len(text) >= minimum:
                 ranked.append((priority, " ".join(text.split()[:12])))
     unique: dict[str, int] = {}
