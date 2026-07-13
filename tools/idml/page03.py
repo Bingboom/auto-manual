@@ -22,6 +22,8 @@ ROOT = Path(__file__).resolve().parents[2]
 H1_BAR_H = 20.0
 BODY_X = 26.5
 BODY_W = 311.0
+BADGE_DIAMETER = 13.785
+BADGE_Y_OFFSET = 22.431
 
 
 def _story(writer, sid: str, title: str, parts: list[str]) -> str:
@@ -49,7 +51,8 @@ def _badge_text(number: int) -> str:
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}" '
         'Justification="CenterAlign">\n'
         '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        'FillColor="Color/Paper" PointSize="7.4">'
+        'FillColor="Color/Paper" PointSize="10.912" FontStyle="Medium" '
+        'BaselineShift="0.45">'
         f'<Content>{number}</Content></CharacterStyleRange>\n'
         '  </ParagraphStyleRange>\n'
     )
@@ -168,7 +171,12 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             stroke_weight=0.75,
             object_style=CARD_OBJECT_STYLE,
         ))
-        badge_rect = (x + card_w / 2.0 - 6.75, card_y + 16.0, 13.5, 13.5)
+        badge_rect = (
+            x + card_w / 2.0 - BADGE_DIAMETER / 2.0,
+            card_y + BADGE_Y_OFFSET,
+            BADGE_DIAMETER,
+            BADGE_DIAMETER,
+        )
         frames.append(page_rectangle_xml(
             writer,
             f"bg_{sid}_badge_{idx + 1}",
@@ -176,7 +184,7 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             fill="Color/HB Brand Dark",
             stroke_color="Swatch/None",
             stroke_weight=0,
-            corner_radius=6.75,
+            corner_radius=BADGE_DIAMETER / 2.0,
             object_style=BADGE_OBJECT_STYLE,
         ))
         badge_sid = f"{sid}_badge_{idx + 1}"
@@ -187,8 +195,8 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             sid,
             f"badge_{idx + 1}",
             badge_sid,
-            (badge_rect[0], badge_rect[1] - 0.2, badge_rect[2], badge_rect[3]),
-            {"inset": (1.4, 0, 0, 0)},
+            badge_rect,
+            {"inset": (0, 0, 0, 0), "valign": "CenterAlign"},
         ))
 
         card_sid = f"{sid}_card_{idx + 1}"

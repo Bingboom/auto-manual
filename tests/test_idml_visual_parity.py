@@ -13,6 +13,7 @@ from tools.idml.components.prose_table import render_table_block
 from tools.idml.page_objects import (
     anchored_panel_group_paragraph,
     h1_bar_h_pt,
+    heading_bar_opts,
     rounded_path_geometry,
 )
 from tools.idml.params import param_pt
@@ -23,13 +24,20 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class IdmlVisualParityTests(unittest.TestCase):
+    def test_subbar_text_frame_is_vertically_centered(self) -> None:
+        self.assertEqual(
+            "CenterAlign",
+            heading_bar_opts(2, (0.5, 0, 0.5, 0))["valign"],
+        )
+
     def test_english_data_table_type_matches_the_production_master(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
         styles = {
             name: (size, leading, weight)
             for name, size, leading, weight, _kind in para_styles(writer.params)
         }
-        self.assertEqual((6.6, 7.0, "Bold"), styles["HB Data Header"])
+        self.assertEqual((6.6, 7.0, "Heavy"), styles["HB Data Header"])
+        self.assertEqual((8.6, 9.4, "Heavy"), styles["HB Title L2"])
         self.assertEqual((8.0, 8.0, "Bold"), styles["HB Data Code"])
         self.assertEqual((8.0, 9.6, "Bold"), styles["HB Spec Section"])
         self.assertEqual((6.0, 6.6, "Medium"), styles["HB Spec Label"])
@@ -181,6 +189,48 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn('<Rectangle Self="bg_group_st_anchor_test_table"', xml)
         self.assertIn('<TextFrame Self="tf_group_st_anchor_test_table"', xml)
         self.assertIn('ParentStory="st_anchor_test_table"', xml)
+
+    def test_operation_data_tables_share_latex_table_tokens(self) -> None:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        ctx = RenderContext(
+            params=writer.params,
+            page_w=writer.page_w,
+            m_l=writer.m_l,
+            m_r=writer.m_r,
+            root=ROOT,
+            bundle_root=ROOT / "docs",
+            add_story=writer._add_story_parts,
+        )
+        auto_rows = [
+            ["Auto Resume Conditions", "Not Auto Resume Conditions"],
+            ["Power-on/Restart", "Manual output off"],
+            ["Battery SOC", "Energy Saving mode output off"],
+            ["", "Protection-triggered output off"],
+            ["OTA upgrade completed", "Discharge timer-triggered output off"],
+        ]
+        auto_xml, _ = render_table_block(
+            auto_rows, ctx, tid="tbl_auto", terminal=True)
+        auto_story = dict(writer.stories)["st_anchor_data_tbl_auto"]
+        self.assertIn('RowSpan="2"', auto_story)
+        self.assertNotIn('Self="tbl_autoc3_0"', auto_story)
+        self.assertIn('FillColor="Color/HB Header K08"', auto_story)
+        self.assertIn('FillColor="Color/HB Bg K05"', auto_story)
+        self.assertIn('MinimumHeight="11.9055"', auto_story)
+        self.assertIn('<Group Self="grp_st_anchor_data_tbl_auto"', auto_xml)
+        self.assertIn('SingleColumnWidth="158.057"', auto_story)
+        self.assertIn('LeftInset="0"', auto_story)
+
+        key_rows = [
+            ["Buttons", "Operation", "Function"],
+            ["Main POWER button", "Press and hold", "Turn on/off"],
+        ]
+        render_table_block(key_rows, ctx, tid="tbl_key", terminal=True)
+        key_story = dict(writer.stories)["st_anchor_data_tbl_key"]
+        self.assertIn('MinimumHeight="32.8819"', key_story)
+        self.assertIn('SingleColumnWidth="130.104"', key_story)
+        self.assertIn('SingleColumnWidth="95.2224"', key_story)
+        self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Header"', key_story)
+        self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Body"', key_story)
 
     def test_explicit_story_frames_merge_two_stories_on_one_spread(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

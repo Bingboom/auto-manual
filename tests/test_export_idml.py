@@ -416,12 +416,14 @@ class ExportIdmlTests(unittest.TestCase):
         # notice/tip: plain left label + gray text panel; no warning icon
         xml, _ = w._render_component("t", 1, {
             "kind": "notice", "label": "TIP", "texts": ["hello"]}, bundle, True)
-        # rounded parity: grey rounded panel frame; label chip + body live
-        # in the anchored sub-story
+        # rounded parity: grey shell, equal-height white label plate, and
+        # separate editable label/body stories in one anchored group.
         self.assertIn('FillColor="Color/HB Bg K05"', xml)
-        self.assertIn('ParentStory="st_anchor_notice_t_cmp1"', xml)
-        panel = dict(w.stories)["st_anchor_notice_t_cmp1"]
-        self.assertIn('FillColor="Color/Paper"', panel)
+        self.assertIn('FillColor="Color/Paper"', xml)
+        self.assertIn('ParentStory="st_anchor_notice_label_t_cmp1"', xml)
+        self.assertIn('ParentStory="st_anchor_notice_body_t_cmp1"', xml)
+        self.assertIn("st_anchor_notice_label_t_cmp1", dict(w.stories))
+        self.assertIn("st_anchor_notice_body_t_cmp1", dict(w.stories))
         self.assertNotIn("warning_triangle", xml)
         # warnbox: triangle icon + one editable label; do not place the
         # WARNING lockup art and then print WARNING again below it.
@@ -763,6 +765,10 @@ class ExportIdmlTests(unittest.TestCase):
         # Frames are cursor-flowed and index-named; stories keep label names.
         self.assertIn("tf_st_safety_symbols_tail_0", spread)
         self.assertIn("tf_st_safety_symbols_tail_1", spread)
+        tail_frame = spread.split('Self="tf_st_safety_symbols_tail_0"', 1)[1].split(
+            "</TextFrame>", 1,
+        )[0]
+        self.assertIn('VerticalJustification="CenterAlign"', tail_frame)
         self.assertIn("tf_st_safety_symbols_icons_left", spread)
         self.assertIn("tf_st_safety_symbols_icons_right", spread)
         import re
@@ -776,6 +782,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("st_safety_symbols_tail_warning", stories)
         self.assertIn("st_safety_symbols_tail_danger", stories)
         self.assertIn(">WARNING<", stories["st_safety_symbols_tail_warning"])
+        self.assertIn(
+            'BaselineShift="0.68"',
+            stories["st_safety_symbols_tail_warning"],
+        )
         self.assertIn(">DANGER<", stories["st_safety_symbols_tail_danger"])
         self.assertIn("st_safety_symbols_signals", stories)
         self.assertIn("st_safety_symbols_icons_left", stories)
@@ -915,6 +925,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("tf_st_fcc_inbox_card_1", spread)
         self.assertIn("tf_st_fcc_inbox_card_2", spread)
         self.assertIn("tf_st_fcc_inbox_card_3", spread)
+        badge_frame = spread.split('Self="tf_st_fcc_inbox_badge_1"', 1)[1].split(
+            "</TextFrame>", 1,
+        )[0]
+        self.assertIn('VerticalJustification="CenterAlign"', badge_frame)
         self.assertIn("tf_st_fcc_inbox_tip_label", spread)
         self.assertIn("tf_st_fcc_inbox_tip_body", spread)
         self.assertIn('Self="bg_st_fcc_inbox_title"', spread)
@@ -926,6 +940,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("FCC right copy.", stories["st_fcc_inbox_fcc_right"])
         self.assertIn("WHAT'S IN THE BOX", stories["st_fcc_inbox_title"])
         self.assertIn("AC Charging Cable", stories["st_fcc_inbox_card_2"])
+        self.assertIn(
+            'PointSize="10.912" FontStyle="Medium" BaselineShift="0.45"',
+            stories["st_fcc_inbox_badge_1"],
+        )
         self.assertIn(">TIPS<", stories["st_fcc_inbox_tip_label"])
         self.assertIn(
             "The car charging cable is sold separately.",
@@ -1066,6 +1084,10 @@ class ExportIdmlTests(unittest.TestCase):
         # icon cells must use the auto-leading figure style, or fixed leading
         # pushes the anchored icon a full row upward (designer-reported)
         self.assertIn(paragraph_style_ref("HB Figure"), story)
+        icon_cell = story.split('Self="tbl_lcdc0_1"', 1)[1].split("</Cell>", 1)[0]
+        self.assertIn('VerticalJustification="CenterAlign"', icon_cell)
+        self.assertIn('BaselineShift="0.6"', icon_cell)
+        self.assertNotIn('BaselineShift="8.9"', story)
 
     def test_shading_uses_paragraph_prefixed_attributes(self) -> None:
         # bare ShadingOn/ShadingColor are silently ignored by InDesign

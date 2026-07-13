@@ -12,7 +12,6 @@ from __future__ import annotations
 
 from .base import ComponentRenderer, RenderContext, figure_paragraph
 from .callout import (
-    render_notice,
     render_safetywarning,
     render_tailwarnbox,
     render_warnbox,
@@ -21,6 +20,7 @@ from .callout import (
 from .fcc import render_fcc
 from .inbox import render_inbox
 from .lcdmode import render_lcdmode
+from .notice import render_notice
 from .prose_image import render_image_block
 from .prose_table import render_table_block
 

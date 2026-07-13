@@ -3,7 +3,7 @@
 <Story Self="st_fcc_inbox_p23_02_whats_in_the_box_badge_1" Label="hb:self=st_fcc_inbox_p23_02_whats_in_the_box_badge_1" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Inbox badge 1">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List Text" Justification="CenterAlign">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FillColor="Color/Paper" PointSize="7.4"><Content>1</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FillColor="Color/Paper" PointSize="10.912" FontStyle="Medium" BaselineShift="0.45"><Content>1</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

@@ -376,7 +376,10 @@ def add_safety_symbols_page(
         tail_h = (target_h if lang == "en" else
                   min(max(target_h, t_h + 3.0), target_h + 6.0) + 3.0)
         _place(f"tail_{ti}", t_sid, tail_h,
-               with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=4.0)
+               with_rounded_outer({
+                   "inset": (0, 0, 0, 0),
+                   "valign": "CenterAlign",
+               }), gap=4.0)
     maint_h = (25.0 if lang == "en" else
                est_table_height([maint_text], body_w, 24.0) - 16.0)
     _place("maint_title", maint_title_sid, SUBBAR_H,
@@ -406,9 +409,18 @@ def add_safety_symbols_page(
     for frame_id, story_id, rect, opts in frame_specs:
         if not story_id:
             continue
-        if frame_id in {"maint_title", "symbols_title"}:
+        if frame_id == "maint_title":
             opts = {**opts, "text_rect": (
                 rect[0] + 6.0, rect[1], rect[2] - 12.0, rect[3])}
+        elif frame_id == "symbols_title":
+            # The production page keeps the text at this baseline but places
+            # the 20.126 pt H1 bar 1.918 pt lower around it.  Separate the two
+            # rectangles so the visible title is vertically centered without
+            # shifting the already aligned signal table below.
+            text_y = rect[1]
+            rect = (rect[0], rect[1] + 1.918, rect[2], rect[3])
+            opts = {**opts, "text_rect": (
+                rect[0] + 6.0, text_y, rect[2] - 12.0, rect[3])}
         frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

@@ -25,7 +25,11 @@ def heading_bar_opts(level: int,
             "valign": "CenterAlign",
         }
     if level == 2:
-        return {"capsule_bg": True, "inset": inset}
+        return {
+            "capsule_bg": True,
+            "inset": inset,
+            "valign": "CenterAlign",
+        }
     return {"inset": inset}
 
 
@@ -465,7 +469,8 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
                                     fill: str = "Color/Paper",
                                     stroke: str = "Color/HB Line K40",
                                     stroke_weight: float = 0.75,
-                                    radius: float = 6.8) -> str:
+                                    radius: float = 6.8,
+                                    content_inset: float = 0.0) -> str:
     """Rounded background plus square content frame in one anchored group.
 
     A table directly inside a rounded text-frame is inset by InDesign at
@@ -500,7 +505,10 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
         'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
         'FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" '
         'ItemTransform="1 0 0 1 0 0">\n'
-        + path_geometry(0.0, -height, width, 0.0)
+        + path_geometry(
+            content_inset, -height + content_inset,
+            width - content_inset, -content_inset,
+        )
         + '    <TextFramePreference TextColumnCount="1" '
         'VerticalJustification="TopAlign" AutoSizingType="Off">'
         '<Properties><InsetSpacing type="list">'
@@ -511,7 +519,7 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
     )
     group = (
         f'<Group Self="grp_{sid}" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-        'ItemTransform="1 0 0 1 0 0">\n'
+        'ItemTransform="1 0 0 1 -0.37 0">\n'
         + background + frame + '</Group>'
     )
     style_ref = _psr_ref("HB Figure")

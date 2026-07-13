@@ -158,9 +158,9 @@ class IdmlWriter:
 
     def _cell(self, cid: str, name: str, content: str, *, fill: str | None = None,
               stroke: bool = True, top: float = 3, bottom: float = 3,
-              left: float = 4, right: float = 4) -> str:
+              left: float = 4, right: float = 4, valign: str | None = None) -> str:
         return _prim.cell(cid, name, content, fill=fill, stroke=stroke,
-                          top=top, bottom=bottom, left=left, right=right)
+                          top=top, bottom=bottom, left=left, right=right, valign=valign)
 
     def _component_table(self, tid: str, cols: list[float], cells: list[str], n_rows: int = 1, **kwargs) -> str:
         return _prim.component_table(tid, cols, cells, n_rows, **kwargs)

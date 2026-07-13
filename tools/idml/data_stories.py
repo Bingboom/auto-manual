@@ -35,13 +35,12 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
         )
         image_paragraph = _components.figure_paragraph(
             image, tail="<Content></Content>")
-        if lang == "en":
-            image_paragraph = image_paragraph.replace(
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                'BaselineShift="8.9"',
-                1,
-            )
+        image_paragraph = image_paragraph.replace(
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            'BaselineShift="0.6"',
+            1,
+        )
         cell_defs = (
             (_lcd.typed_paragraph(
                 writer, "HB Spec Label", row["no"],
@@ -57,7 +56,8 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
         for content, ci in cell_defs:
             cells.append(writer._cell(
                 f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
-                top=pad, bottom=pad, left=pad, right=pad))
+                top=pad, bottom=pad, left=pad, right=pad,
+                valign="CenterAlign" if ci == 1 else None))
     table = _tb.fill_column_xml(
         writer._component_table(
             tid, list(cols), cells, n_rows=len(rows), role="data"),

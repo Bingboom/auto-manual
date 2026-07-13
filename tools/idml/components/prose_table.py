@@ -5,6 +5,8 @@ split for the rest.
 """
 from __future__ import annotations
 
+import re
+
 from .. import page_objects as _page_objects
 from ..params import param_pt
 from ..primitives import cell, component_table, psr, spec_table, wrap_table_paragraph
@@ -172,6 +174,77 @@ def _troubleshooting_table(raw_rows: list[list], ctx: RenderContext, tid: str) -
     )
 
 
+def _body_data_table(raw_rows: list[list], ctx: RenderContext, tid: str,
+                     kind: str) -> tuple[str, float]:
+    """Mirror the shared LaTeX Auto Resume / Key Combination table tokens."""
+    body_w = ctx.text_measure - 1.5
+    # LaTeX's m-columns add tabcolsep around the declared percentage.
+    # These optical additions place the visible dividers at the same x
+    # coordinates instead of treating the bare percentages as full cells.
+    first_optical = 2.76
+    if kind == "auto_resume":
+        left = float(ctx.params.get("comp_auto_resume_left_ratio", ("0.5", ""))[0])
+        first_w = body_w * left + first_optical
+        cols = [first_w, body_w - first_w]
+    else:
+        left = float(ctx.params.get("comp_key_table_left_ratio", ("0.41", ""))[0])
+        middle = float(ctx.params.get("comp_key_table_middle_ratio", ("0.29", ""))[0])
+        first_w = body_w * left + first_optical
+        middle_w = body_w * middle + 5.15
+        cols = [first_w, middle_w, body_w - first_w - middle_w]
+    header_h = param_pt(ctx.params, "comp_data_table_header_height", 14.74)
+    row_h = param_pt(
+        ctx.params,
+        "comp_key_table_row_height" if kind == "key_combinations"
+        else "comp_data_table_row_height",
+        32.88 if kind == "key_combinations" else 11.91,
+    )
+    pad = param_pt(ctx.params, "comp_data_table_tabcolsep", 2.4)
+    rule = param_pt(ctx.params, "comp_table_inner_rule", 0.2)
+    cells: list[str] = []
+    n_cols = len(cols)
+    for ri, row in enumerate(raw_rows):
+        for ci in range(n_cols):
+            text = str(row[ci]) if ci < len(row) else ""
+            if kind == "auto_resume" and ci == 0 and ri > 0 and not text.strip():
+                continue
+            rowspan = (
+                2 if kind == "auto_resume" and ci == 0
+                and ri + 1 < len(raw_rows)
+                and not str(raw_rows[ri + 1][0]).strip()
+                else 1
+            )
+            fill = (
+                "Color/HB Header K08" if ri == 0
+                else "Color/HB Bg K05" if ci == 0
+                else None
+            )
+            cell_xml = cell(
+                f"{tid}c{ri}_{ci}", f"{ci}:{ri}",
+                psr("HB Data Header" if ri == 0 else "HB Data Body",
+                    text, terminal=True),
+                fill=fill, top=0, bottom=0,
+                left=0 if ci == 0 else pad, right=pad,
+                edge_weight=rule, edge_color="Color/HB Brand Dark",
+                valign="CenterAlign",
+            )
+            if rowspan > 1:
+                cell_xml = cell_xml.replace('RowSpan="1"', f'RowSpan="{rowspan}"', 1)
+            cells.append(cell_xml)
+    table = component_table(tid, cols, cells, n_rows=len(raw_rows), role="data")
+    table = suppress_outer_edges_xml(table, n_cols)
+    for ri in range(len(raw_rows)):
+        minimum = header_h if ri == 0 else row_h
+        table = re.sub(
+            rf'(<Row Self="{re.escape(tid)}r{ri}" Name="{ri}")/?>',
+            rf'\1 SingleRowHeight="{minimum:g}" MinimumHeight="{minimum:g}" '
+            'AutoGrow="true"/>',
+            table,
+            count=1,
+        )
+    return table, header_h + row_h * (len(raw_rows) - 1) + 3.0
+
+
 def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
                        terminal: bool, span_columns: bool = True) -> tuple[str, float]:
     n_cols = max(len(r) for r in raw_rows)
@@ -181,10 +254,20 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
         n_cols == 2 and bool(raw_rows)
         and str(raw_rows[0][0]).strip().casefold() == "error code"
     )
+    is_auto_resume = n_cols == 2 and first_cell == "Auto Resume Conditions"
+    is_key_combinations = (
+        n_cols == 3 and first_cell == "Buttons" and bool(raw_rows)
+        and [str(cell).strip() for cell in raw_rows[0][1:3]] == ["Operation", "Function"]
+    )
     if is_overview:
         table = _overview_table(raw_rows, ctx, tid)
     elif is_troubleshooting:
         table = _troubleshooting_table(raw_rows, ctx, tid)
+    elif is_auto_resume or is_key_combinations:
+        table, framed_h = _body_data_table(
+            raw_rows, ctx, tid,
+            "auto_resume" if is_auto_resume else "key_combinations",
+        )
     elif n_cols <= 2:
         rows2 = [(r[0], r[1] if len(r) > 1 else "") for r in raw_rows]
         table = spec_table(tid, [(str(a), str(b)) for a, b in rows2],
@@ -206,7 +289,29 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
                     psr(style, txt, terminal=True)))
         table = component_table(tid, cols, cells, n_rows=len(raw_rows),
                                 role="data")
-    if is_troubleshooting and ctx.add_story is not None:
+    if (is_auto_resume or is_key_combinations) and ctx.add_story is not None:
+        inner = wrap_table_paragraph(table, True, span_columns=False)
+        xml = _page_objects.anchored_panel_group_paragraph(
+            ctx.add_story,
+            f"st_anchor_data_{tid}",
+            "body data table",
+            [inner],
+            ctx.text_measure,
+            framed_h,
+            terminal=terminal,
+            fill="Color/Paper",
+            stroke="Color/HB Brand Dark",
+            stroke_weight=param_pt(ctx.params, "comp_table_outer_rule", 0.75),
+            radius=param_pt(ctx.params, "comp_table_outer_arc", 6.8),
+            content_inset=0.0,
+        )
+        gap = param_pt(ctx.params, "comp_data_table_before", 3.4)
+        xml = xml.replace(
+            "<ParagraphStyleRange ",
+            f'<ParagraphStyleRange SpaceBefore="{gap:g}" SpaceAfter="{gap:g}" ',
+            1,
+        )
+    elif is_troubleshooting and ctx.add_story is not None:
         table = suppress_outer_edges_xml(table, 2)
         inner = wrap_table_paragraph(table, True, span_columns=False)
         xml = _page_objects.anchored_panel_group_paragraph(
@@ -246,4 +351,6 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             '<ParagraphStyleRange SpaceBefore="9.74" ',
             1,
         )
+    if is_auto_resume or is_key_combinations:
+        return xml, framed_h + 2 * param_pt(ctx.params, "comp_data_table_before", 3.4)
     return xml, 11.0 * (len(raw_rows) + 1)

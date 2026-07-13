@@ -93,10 +93,10 @@ class ReferenceStoryEmitter:
         writer.add_prose_story(
             charging_sid, title + " CHARGING", charging_intro,
             self.bundle_root)
-        writer.add_story_frames(ups_sid, [(page_cursor, 33.04, 375.0)])
+        writer.add_story_frames(ups_sid, [(page_cursor, 33.04, 365.0)])
         writer.add_story_frames(
             charging_sid,
-            [(page_cursor, 377.42, writer.page_h - writer.m_b)],
+            [(page_cursor, 367.42, writer.page_h - writer.m_b)],
         )
         self.toc.note_h1s(ups_blocks, page_cursor, 1)
         self.toc.note_h1s(charging_intro, page_cursor, 1)

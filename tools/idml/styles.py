@@ -17,7 +17,7 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
     def sz(key, d): return param_pt(p, key, d)
     return [
         ("HB H1", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", ""),
-        ("HB Title L2", sz("type_title_l2_font_size", 8.6), sz("type_title_l2_font_leading", 9.4), "Bold", ""),
+        ("HB Title L2", sz("type_title_l2_font_size", 8.6), sz("type_title_l2_font_leading", 9.4), "Heavy", ""),
         ("HB Title L3", sz("type_title_l3_font_size", 7.0), sz("type_title_l3_font_leading", 8.0), "Medium", ""),
         ("HB Notice Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "label"),
         ("HB Notice Side Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "center"),
@@ -35,8 +35,8 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Spec Label", sz("type_spec_label_font_size", 6.0), sz("type_spec_label_font_leading", 6.6), "Medium", ""),
         ("HB Spec Value", sz("type_spec_value_font_size", 6.0), sz("type_spec_value_font_leading", 6.6), "Regular", ""),
         ("HB Spec Note", sz("type_spec_note_font_size", 5.4), sz("type_spec_note_font_leading", 6.0), "Regular", ""),
-        ("HB Data Header", sz("type_data_table_header_font_size", 6.6), sz("type_data_table_header_font_leading", 7.0), "Bold", ""),
-        ("HB Data Header Center", sz("type_data_table_header_font_size", 6.6), sz("type_data_table_header_font_leading", 7.0), "Bold", "center"),
+        ("HB Data Header", sz("type_data_table_header_font_size", 6.6), sz("type_data_table_header_font_leading", 7.0), "Heavy", ""),
+        ("HB Data Header Center", sz("type_data_table_header_font_size", 6.6), sz("type_data_table_header_font_leading", 7.0), "Heavy", "center"),
         ("HB Data Body", sz("type_data_table_font_size", 5.9), sz("type_data_table_font_leading", 6.7), "Regular", ""),
         ("HB Data Code", sz("type_trouble_code_font_size", 8.0), sz("type_trouble_code_font_leading", 8.0), "Bold", "center"),
         ("HB TOC Title", 22.25, 26.0, "Bold", "toc_title"),
@@ -149,6 +149,7 @@ def graphic_xml(params: dict[str, tuple[str, str]]) -> str:
         ("HB Line K40", "brand_color_linek40", "0,0,0,0.80"),
         ("HB Bg K05", "brand_color_bgk05", "0,0,0,0.05"),
         ("HB Border K10", "brand_color_borderk10", "0,0,0,0.10"),
+        ("HB Header K08", "brand_color_headerk08", "0,0,0,0.08"),
     ):
         c, m, y, k = brand_cmyk(p, key, default)
         colors.append(

@@ -16,7 +16,7 @@
   <ParagraphStyle Self="ParagraphStyle/Heading2" Name="Heading2" PointSize="8.6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
-      <FontStyle type="string">Bold</FontStyle>
+      <FontStyle type="string">Heavy</FontStyle>
       <Leading type="unit">9.4</Leading>
     </Properties>
   </ParagraphStyle>
@@ -142,14 +142,14 @@
   <ParagraphStyle Self="ParagraphStyle/HB Data Header" Name="HB Data Header" PointSize="6.6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
-      <FontStyle type="string">Bold</FontStyle>
+      <FontStyle type="string">Heavy</FontStyle>
       <Leading type="unit">7</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/HB Data Header Center" Name="HB Data Header Center" PointSize="6.6" FillColor="Color/HB Brand Dark" Justification="CenterAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
-      <FontStyle type="string">Bold</FontStyle>
+      <FontStyle type="string">Heavy</FontStyle>
       <Leading type="unit">7</Leading>
     </Properties>
   </ParagraphStyle>

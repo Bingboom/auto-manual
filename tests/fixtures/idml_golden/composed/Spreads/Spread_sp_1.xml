@@ -114,7 +114,7 @@
         </GeometryPathType>
       </PathGeometry>
     </Properties>
-    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0.5 0 0.5 0"/>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0.5 0 0.5 0"/>
   </TextFrame>
   <TextFrame Self="tf_st_safety_en_section2" Label="hb:self=tf_st_safety_en_section2" ParentStory="st_safety_en_section2" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
