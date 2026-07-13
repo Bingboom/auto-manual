@@ -98,6 +98,14 @@ class CapabilityCheckTests(unittest.TestCase):
             {})
         self.assertEqual(issues, [])
 
+    def test_overflowing_notes_column_does_not_crash(self) -> None:
+        # an unquoted comma in notes shunts cells into DictReader's restkey
+        issues = self._run(
+            "JE-1000F_US,HTE153,TRUE,TRUE",
+            "UPS功能,page,06_ups_mode,,Y,Y,note with, stray comma",
+            {"06_ups_mode.rst": "UPS body"})
+        self.assertEqual(issues, [])
+
 
 if __name__ == "__main__":
     unittest.main()

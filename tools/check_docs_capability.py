@@ -39,7 +39,8 @@ def load_capabilities(data_dir: Path) -> dict[str, dict[str, bool]]:
         out[key] = {
             k: v.strip().upper() == "TRUE"
             for k, v in row.items()
-            if k not in ("Document_key", "Project") and v is not None
+            if k not in ("Document_key", "Project", None)
+            and isinstance(v, str)
         }
     return out
 
@@ -48,8 +49,11 @@ def load_rules(data_dir: Path) -> list[dict[str, str]]:
     path = data_dir / RULES_CSV
     if not path.exists():
         return []
+    # DictReader shunts overflow cells (an unquoted comma in notes) into a
+    # None restkey with a list value — drop those instead of crashing.
     return [
-        {k: (v or "").strip() for k, v in row.items()}
+        {k: (v or "").strip() for k, v in row.items()
+         if k is not None and isinstance(v, (str, type(None)))}
         for row in csv.DictReader(path.open(encoding="utf-8"))
         if (row.get("capability") or "").strip()
     ]
