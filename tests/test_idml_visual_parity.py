@@ -189,6 +189,17 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn('<Rectangle Self="bg_group_st_anchor_test_table"', xml)
         self.assertIn('<TextFrame Self="tf_group_st_anchor_test_table"', xml)
         self.assertIn('ParentStory="st_anchor_test_table"', xml)
+        self.assertEqual(4, xml.count('Self="mask_'))
+        self.assertIn(
+            '<Rectangle Self="outline_group_st_anchor_test_table"', xml)
+        background = xml.split(
+            '<Rectangle Self="bg_group_st_anchor_test_table"', 1
+        )[1].split('</Rectangle>', 1)[0]
+        self.assertIn('StrokeColor="Swatch/None" StrokeWeight="0"', background)
+        outline = xml.split(
+            '<Rectangle Self="outline_group_st_anchor_test_table"', 1
+        )[1].split('</Rectangle>', 1)[0]
+        self.assertIn('FillColor="Swatch/None"', outline)
 
     def test_operation_data_tables_share_latex_table_tokens(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

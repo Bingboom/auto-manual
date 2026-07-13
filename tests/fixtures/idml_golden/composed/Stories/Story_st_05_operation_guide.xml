@@ -159,7 +159,7 @@
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>●</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content> SCREEN MODES</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Group Self="grp_st_anchor_lcdmode_st_05_operation_guide_cmp6" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 -0.37 0">
-  <Rectangle Self="bg_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=bg_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="bg_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=bg_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -194,6 +194,81 @@
     <TextFramePreference TextColumnCount="1" VerticalJustification="TopAlign" AutoSizingType="Off"><Properties><InsetSpacing type="list"><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem></InsetSpacing></Properties></TextFramePreference>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </TextFrame>
+  <Rectangle Self="mask_top_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=mask_top_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-0.37 -64.5" LeftDirection="-0.37 -64.5" RightDirection="-0.37 -64.5"/>
+            <PathPointType Anchor="6.43315 -64.5" LeftDirection="6.43315 -64.5" RightDirection="2.67587 -64.5"/>
+            <PathPointType Anchor="-0.37 -57.6969" LeftDirection="-0.37 -61.4541" RightDirection="-0.37 -57.6969"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+  </Rectangle>
+  <Rectangle Self="mask_top_right_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=mask_top_right_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="311.724 -64.5" LeftDirection="311.724 -64.5" RightDirection="311.724 -64.5"/>
+            <PathPointType Anchor="311.724 -57.6969" LeftDirection="311.724 -57.6969" RightDirection="311.724 -61.4541"/>
+            <PathPointType Anchor="304.921 -64.5" LeftDirection="308.679 -64.5" RightDirection="304.921 -64.5"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+  </Rectangle>
+  <Rectangle Self="mask_bottom_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=mask_bottom_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-0.37 0" LeftDirection="-0.37 0" RightDirection="-0.37 0"/>
+            <PathPointType Anchor="-0.37 -6.80315" LeftDirection="-0.37 -6.80315" RightDirection="-0.37 -3.04587"/>
+            <PathPointType Anchor="6.43315 0" LeftDirection="2.67587 0" RightDirection="6.43315 0"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+  </Rectangle>
+  <Rectangle Self="mask_bottom_right_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=mask_bottom_right_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="311.724 0" LeftDirection="311.724 0" RightDirection="311.724 0"/>
+            <PathPointType Anchor="304.921 0" LeftDirection="304.921 0" RightDirection="308.679 0"/>
+            <PathPointType Anchor="311.724 -6.80315" LeftDirection="311.724 -3.04587" RightDirection="311.724 -6.80315"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+  </Rectangle>
+  <Rectangle Self="outline_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=outline_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Swatch/None" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-0.37 -57.6969" LeftDirection="-0.37 -61.4541" RightDirection="-0.37 -57.6969"/>
+            <PathPointType Anchor="-0.37 -6.80315" LeftDirection="-0.37 -6.80315" RightDirection="-0.37 -3.04587"/>
+            <PathPointType Anchor="6.43315 0" LeftDirection="2.67587 0" RightDirection="6.43315 0"/>
+            <PathPointType Anchor="304.921 0" LeftDirection="304.921 0" RightDirection="308.679 0"/>
+            <PathPointType Anchor="311.724 -6.80315" LeftDirection="311.724 -3.04587" RightDirection="311.724 -6.80315"/>
+            <PathPointType Anchor="311.724 -57.6969" LeftDirection="311.724 -57.6969" RightDirection="311.724 -61.4541"/>
+            <PathPointType Anchor="304.921 -64.5" LeftDirection="308.679 -64.5" RightDirection="304.921 -64.5"/>
+            <PathPointType Anchor="6.43315 -64.5" LeftDirection="6.43315 -64.5" RightDirection="2.67587 -64.5"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+  </Rectangle>
 </Group><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Keep the vents uncovered while any output is active.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>

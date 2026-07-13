@@ -286,14 +286,14 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-157.894 201.154" LeftDirection="-157.894 198.116" RightDirection="-157.894 201.154"/>
-            <PathPointType Anchor="-157.894 220.154" LeftDirection="-157.894 220.154" RightDirection="-157.894 223.191"/>
-            <PathPointType Anchor="-152.394 225.654" LeftDirection="-155.431 225.654" RightDirection="-152.394 225.654"/>
-            <PathPointType Anchor="147.606 225.654" LeftDirection="147.606 225.654" RightDirection="150.644 225.654"/>
-            <PathPointType Anchor="153.106 220.154" LeftDirection="153.106 223.191" RightDirection="153.106 220.154"/>
-            <PathPointType Anchor="153.106 201.154" LeftDirection="153.106 201.154" RightDirection="153.106 198.116"/>
-            <PathPointType Anchor="147.606 195.654" LeftDirection="150.644 195.654" RightDirection="147.606 195.654"/>
-            <PathPointType Anchor="-152.394 195.654" LeftDirection="-152.394 195.654" RightDirection="-155.431 195.654"/>
+            <PathPointType Anchor="-157.894 202.457" LeftDirection="-157.894 198.699" RightDirection="-157.894 202.457"/>
+            <PathPointType Anchor="-157.894 211.454" LeftDirection="-157.894 211.454" RightDirection="-157.894 215.211"/>
+            <PathPointType Anchor="-151.091 218.257" LeftDirection="-154.848 218.257" RightDirection="-151.091 218.257"/>
+            <PathPointType Anchor="146.303 218.257" LeftDirection="146.303 218.257" RightDirection="150.06 218.257"/>
+            <PathPointType Anchor="153.106 211.454" LeftDirection="153.106 215.211" RightDirection="153.106 211.454"/>
+            <PathPointType Anchor="153.106 202.457" LeftDirection="153.106 202.457" RightDirection="153.106 198.699"/>
+            <PathPointType Anchor="146.303 195.654" LeftDirection="150.06 195.654" RightDirection="146.303 195.654"/>
+            <PathPointType Anchor="-151.091 195.654" LeftDirection="-151.091 195.654" RightDirection="-154.848 195.654"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -304,12 +304,14 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-105.894 195.654" LeftDirection="-105.894 195.654" RightDirection="-105.894 195.654"/>
-            <PathPointType Anchor="-105.894 225.654" LeftDirection="-105.894 225.654" RightDirection="-105.894 225.654"/>
-            <PathPointType Anchor="-152.394 225.654" LeftDirection="-152.394 225.654" RightDirection="-155.431 225.654"/>
-            <PathPointType Anchor="-157.894 220.154" LeftDirection="-157.894 223.191" RightDirection="-157.894 220.154"/>
-            <PathPointType Anchor="-157.894 201.154" LeftDirection="-157.894 201.154" RightDirection="-157.894 198.116"/>
-            <PathPointType Anchor="-152.394 195.654" LeftDirection="-155.431 195.654" RightDirection="-152.394 195.654"/>
+            <PathPointType Anchor="-154.492 204.555" LeftDirection="-154.492 201.518" RightDirection="-154.492 204.555"/>
+            <PathPointType Anchor="-154.492 209.355" LeftDirection="-154.492 209.355" RightDirection="-154.492 212.393"/>
+            <PathPointType Anchor="-148.992 214.855" LeftDirection="-152.03 214.855" RightDirection="-148.992 214.855"/>
+            <PathPointType Anchor="-110.953 214.855" LeftDirection="-110.953 214.855" RightDirection="-107.915 214.855"/>
+            <PathPointType Anchor="-105.453 209.355" LeftDirection="-105.453 212.393" RightDirection="-105.453 209.355"/>
+            <PathPointType Anchor="-105.453 204.555" LeftDirection="-105.453 204.555" RightDirection="-105.453 201.518"/>
+            <PathPointType Anchor="-110.953 199.055" LeftDirection="-107.915 199.055" RightDirection="-110.953 199.055"/>
+            <PathPointType Anchor="-148.992 199.055" LeftDirection="-148.992 199.055" RightDirection="-152.03 199.055"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -320,30 +322,30 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-157.894 195.654" LeftDirection="-157.894 195.654" RightDirection="-157.894 195.654"/>
-            <PathPointType Anchor="-157.894 225.654" LeftDirection="-157.894 225.654" RightDirection="-157.894 225.654"/>
-            <PathPointType Anchor="-105.894 225.654" LeftDirection="-105.894 225.654" RightDirection="-105.894 225.654"/>
-            <PathPointType Anchor="-105.894 195.654" LeftDirection="-105.894 195.654" RightDirection="-105.894 195.654"/>
+            <PathPointType Anchor="-154.492 199.055" LeftDirection="-154.492 199.055" RightDirection="-154.492 199.055"/>
+            <PathPointType Anchor="-154.492 214.855" LeftDirection="-154.492 214.855" RightDirection="-154.492 214.855"/>
+            <PathPointType Anchor="-105.453 214.855" LeftDirection="-105.453 214.855" RightDirection="-105.453 214.855"/>
+            <PathPointType Anchor="-105.453 199.055" LeftDirection="-105.453 199.055" RightDirection="-105.453 199.055"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
-    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 2 0 2"/>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 1"/>
   </TextFrame>
   <TextFrame Self="tf_st_fcc_inbox_p23_02_whats_in_the_box_tip_body" Label="hb:self=tf_st_fcc_inbox_p23_02_whats_in_the_box_tip_body" ParentStory="st_fcc_inbox_p23_02_whats_in_the_box_tip_body" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-105.894 195.654" LeftDirection="-105.894 195.654" RightDirection="-105.894 195.654"/>
-            <PathPointType Anchor="-105.894 225.654" LeftDirection="-105.894 225.654" RightDirection="-105.894 225.654"/>
-            <PathPointType Anchor="153.106 225.654" LeftDirection="153.106 225.654" RightDirection="153.106 225.654"/>
-            <PathPointType Anchor="153.106 195.654" LeftDirection="153.106 195.654" RightDirection="153.106 195.654"/>
+            <PathPointType Anchor="-101.703 199.055" LeftDirection="-101.703 199.055" RightDirection="-101.703 199.055"/>
+            <PathPointType Anchor="-101.703 214.855" LeftDirection="-101.703 214.855" RightDirection="-101.703 214.855"/>
+            <PathPointType Anchor="146.87 214.855" LeftDirection="146.87 214.855" RightDirection="146.87 214.855"/>
+            <PathPointType Anchor="146.87 199.055" LeftDirection="146.87 199.055" RightDirection="146.87 199.055"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
-    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 7 0 7"/>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 0"/>
   </TextFrame>
   <TextFrame Self="tf_folio_4" Label="hb:self=tf_folio_4" ParentStory="st_folio_4" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>

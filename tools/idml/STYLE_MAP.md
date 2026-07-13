@@ -22,10 +22,10 @@
 
 | 样式 | 模板实测 | LaTeX | layout_params 键 | IDML 组件 | 备注 |
 |---|---|---|---|---|---|
-| notice 条(NOTE/TIP/CAUTION/WARNING) | 整宽灰面板；左侧 49.04pt 等高白色圆角标签栏；正文 6.5pt；项目符号 4.8pt | `\HBCalloutBlock` + `\HBCalloutBullet` | `comp_tip_arc` / `comp_caution_label_width` / `comp_callout_*` / `type_tip_*` | `components/notice` 四层锚定组（灰底、白标签板、标签文本框、正文文本框），不嵌套小 chip / 表格 | ✅ 外框/标签栏 x 坐标 0.00pt；CAUTION 高度残差 0.13pt；NOTE 高度残差 0.37pt |
+| notice 条(NOTE/TIP/CAUTION/WARNING) | 整宽灰面板；左侧 49.04pt 等高白色圆角标签栏；正文 6.5pt；项目符号 4.8pt | `\HBCalloutBlock` + `\HBCalloutBullet` | `comp_tip_arc` / `comp_caution_label_width` / `comp_callout_*` / `type_tip_*` | `components/notice` 四层锚定组（灰底、白标签板、标签文本框、正文文本框），page03 TIP 复用同一量测；不嵌套小 chip / 表格 | ✅ 外框/标签栏 x 坐标 0.00pt；标签逐字透传 RST/线上表进入 IR 的源值，渲染器不得改词或复数化 |
 | note box | 灰圆角、按正文真实行数自适应 | `\HBNoteBlock` | 同上 | 同上；Gilroy 字宽估算后固定可编辑组高，避免 auto-size 覆盖下一段 | ✅ |
 | 操作面板 oppanel | 圆角浅灰描边外框,无内网格 | 操作面板盒 | — | `components/oppanel`(锚定描边框 HB Border K10 1.1pt r10 auto-height) | ✅ #642 |
-| spec/LCD/正文数据表外框 | 深色圆角描边 + 灰色表头/label 列 + 内部网格；单元格文字纵向居中 | `HBSharedDataTable`；spec、LCD、Auto Resume、Key Combinations、Troubleshooting 只声明列与行语义，列为 `m` / 内容盒为 `[c]` | `comp_table_outer_arc` / `comp_table_outer_rule` / `comp_data_table_*` | 表格本体(内部网格+灰底)✅；spec/troubleshooting 使用“圆角背景 + 方形可编辑内容框”分组，避免曲线内缩 | ✅ 圆角外框与可编辑表格已分层组合；跨页 LCD 仍由 InDesign 原生续表处理 |
+| spec/LCD/正文数据表外框 | 深色圆角描边 + 灰色表头/label 列 + 内部网格；单元格文字纵向居中 | `HBSharedDataTable`；spec、LCD、Auto Resume、Key Combinations、Troubleshooting 只声明列与行语义，列为 `m` / 内容盒为 `[c]` | `comp_table_outer_arc` / `comp_table_outer_rule` / `comp_data_table_*` | 表格本体(内部网格+灰底)✅；公共容器使用“圆角背景 + 方形可编辑内容框 + 四角弧外遮罩 + 顶层描边”分组 | ✅ 灰色单元格填充不会穿出圆角；表格仍保持原生可编辑；跨页 LCD 仍由 InDesign 原生续表处理 |
 | inbox 三卡 | 圆角卡片 + 13.785pt 圆形编号，10.912pt Medium 白字 | inbox card tcolorbox | `comp_inbox_card_arc` | `components/inbox` + page03 卡片框；编号框和字均纵向居中 | ✅ 编号字形中心与圆心残差 0.003pt |
 | warranty 专页/大字卡 | 灰底导语 + 悬浮标签圆角框 + 3/2 年双栏圆章 | `hb_latex_warranty.py` doctree 映射 + `components_warranty.tex` | `comp_warranty_*` / `type_warranty_*` | `components/warranty`(HB Big Numeral 26pt) | ✅ LaTeX 独占页与 IDML 组件化 |
 | 语言徽章 langtag(前言 EN/FR/ES) | 深色小 pill + 粗标题 | 前言宏 | — | `components/langbadge` | ✅ #634 |

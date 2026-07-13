@@ -142,6 +142,65 @@ def rounded_path_geometry(x1: float, y1: float, x2: float, y2: float,
     )
 
 
+def rounded_corner_mask_geometry(x1: float, y1: float,
+                                 x2: float, y2: float,
+                                 radius: float, corner: str) -> str:
+    """Return the square-corner area outside one rounded-rectangle arc.
+
+    Editable InDesign tables remain rectangular even when their separate
+    outer frame is rounded.  These three-point paths cover only the area
+    outside the matching Bezier arc, preventing cell fills from protruding
+    through the four corners without rasterizing or clipping the table.
+    """
+    r = max(0.0, min(radius, abs(x2 - x1) / 2.0, abs(y2 - y1) / 2.0))
+    if r <= 0:
+        return ""
+    k = r * 0.5522847498
+    if corner == "top_left":
+        points = (
+            ((x1, y1), (x1, y1), (x1, y1)),
+            ((x1 + r, y1), (x1 + r, y1), (x1 + r - k, y1)),
+            ((x1, y1 + r), (x1, y1 + r - k), (x1, y1 + r)),
+        )
+    elif corner == "top_right":
+        points = (
+            ((x2, y1), (x2, y1), (x2, y1)),
+            ((x2, y1 + r), (x2, y1 + r), (x2, y1 + r - k)),
+            ((x2 - r, y1), (x2 - r + k, y1), (x2 - r, y1)),
+        )
+    elif corner == "bottom_left":
+        points = (
+            ((x1, y2), (x1, y2), (x1, y2)),
+            ((x1, y2 - r), (x1, y2 - r), (x1, y2 - r + k)),
+            ((x1 + r, y2), (x1 + r - k, y2), (x1 + r, y2)),
+        )
+    elif corner == "bottom_right":
+        points = (
+            ((x2, y2), (x2, y2), (x2, y2)),
+            ((x2 - r, y2), (x2 - r, y2), (x2 - r + k, y2)),
+            ((x2, y2 - r), (x2, y2 - r + k), (x2, y2 - r)),
+        )
+    else:
+        raise ValueError(f"unsupported rounded corner: {corner}")
+    anchors = "\n".join(
+        f'            <PathPointType Anchor="{anchor[0]:g} {anchor[1]:g}" '
+        f'LeftDirection="{left[0]:g} {left[1]:g}" '
+        f'RightDirection="{right[0]:g} {right[1]:g}"/>'
+        for anchor, left, right in points
+    )
+    return (
+        '    <Properties>\n'
+        '      <PathGeometry>\n'
+        '        <GeometryPathType PathOpen="false">\n'
+        '          <PathPointArray>\n'
+        f'{anchors}\n'
+        '          </PathPointArray>\n'
+        '        </GeometryPathType>\n'
+        '      </PathGeometry>\n'
+        '    </Properties>\n'
+    )
+
+
 def bottom_rounded_path_geometry(x1: float, y1: float, x2: float, y2: float,
                                  radius: float) -> str:
     """Closed rectangle with square top corners and rounded bottom corners."""
@@ -490,12 +549,16 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
         'VerticalReferencePoint="LineBaseline" AnchorXoffset="0" '
         'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
     )
+    path_x1 = -0.37
+    path_x2 = width - 0.37
+    path_y1 = -height
+    path_y2 = 0.0
     background = (
         f'  <Rectangle Self="bg_group_{sid}" ContentType="Unassigned" '
         f'AppliedObjectStyle="{ROUNDED_TABLE_OBJECT_STYLE}" FillColor="{fill}" '
-        f'StrokeColor="{stroke}" StrokeWeight="{stroke_weight:g}" '
+        'StrokeColor="Swatch/None" StrokeWeight="0" '
         'ItemTransform="1 0 0 1 0 0">\n'
-        + rounded_path_geometry(-0.37, -height, width - 0.37, 0.0, radius)
+        + rounded_path_geometry(path_x1, path_y1, path_x2, path_y2, radius)
         + anchor
         + '  </Rectangle>\n'
     )
@@ -517,10 +580,34 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
         + anchor
         + '  </TextFrame>\n'
     )
+    masks = "".join(
+        (
+            f'  <Rectangle Self="mask_{corner}_group_{sid}" '
+            'ContentType="Unassigned" '
+            'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+            f'FillColor="{fill}" StrokeColor="Swatch/None" StrokeWeight="0" '
+            'ItemTransform="1 0 0 1 0 0">\n'
+            + rounded_corner_mask_geometry(
+                path_x1, path_y1, path_x2, path_y2, radius, corner)
+            + anchor
+            + '  </Rectangle>\n'
+        )
+        for corner in (
+            "top_left", "top_right", "bottom_left", "bottom_right")
+    )
+    outline = (
+        f'  <Rectangle Self="outline_group_{sid}" ContentType="Unassigned" '
+        f'AppliedObjectStyle="{ROUNDED_TABLE_OBJECT_STYLE}" '
+        f'FillColor="Swatch/None" StrokeColor="{stroke}" '
+        f'StrokeWeight="{stroke_weight:g}" ItemTransform="1 0 0 1 0 0">\n'
+        + rounded_path_geometry(path_x1, path_y1, path_x2, path_y2, radius)
+        + anchor
+        + '  </Rectangle>\n'
+    )
     group = (
         f'<Group Self="grp_{sid}" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
         'ItemTransform="1 0 0 1 -0.37 0">\n'
-        + background + frame + '</Group>'
+        + background + frame + masks + outline + '</Group>'
     )
     style_ref = _psr_ref("HB Figure")
     return (

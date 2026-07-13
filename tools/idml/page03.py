@@ -4,6 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+from .components.notice import notice_box_layout
 from .fcc_fallback import component_spec, fcc_spec_from_blocks
 from .page_objects import (
     BADGE_OBJECT_STYLE,
@@ -12,7 +13,6 @@ from .page_objects import (
     frame_with_background,
     heading_bar_opts,
     heading_text,
-    left_rounded_xml,
     page_rectangle_xml,
 )
 from .params import IDPKG
@@ -77,19 +77,27 @@ def _card_story(writer, sid: str, item: dict, bundle_root: Path,
     return _story(writer, sid, "Inbox card", parts)
 
 
-def _tip_label(label: str) -> str:
-    text = "TIPS" if label.strip().upper() == "TIP" else label.strip().upper()
-    return (
-        writer_psr_template("HB Notice Side Label", text)
+def _tip_label(label: str, *, point_size: float, leading: float) -> str:
+    return writer_psr_template(
+        "HB Notice Side Label",
+        label.strip(),
+        character_attrs=(
+            f'PointSize="{point_size:g}" Leading="{leading:g}" '
+            'FontStyle="Medium"'
+        ),
     )
 
 
-def writer_psr_template(style: str, text: str) -> str:
+def writer_psr_template(style: str, text: str, *,
+                        character_attrs: str = "") -> str:
     style_ref = paragraph_style_ref(style)
+    attrs = f" {character_attrs}" if character_attrs else ""
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}" '
         'Justification="CenterAlign">\n'
-        '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        '    <CharacterStyleRange '
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+        f'{attrs}>'
         f'<Content>{escape(text)}</Content></CharacterStyleRange>\n'
         '  </ParagraphStyleRange>\n'
     )
@@ -112,7 +120,11 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
                  bundle_root: Path) -> tuple[list[str], list[str]]:
     spec = fcc_spec_from_blocks(fcc_blocks)
     texts = ((spec.get("texts") or []) + ["", ""])[:2]
-    mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.pdf"
+    # The cropped PDF carries out-of-page legacy text in its content stream.
+    # InDesign clips it visually but re-exposes that hidden text on PDF export.
+    # Use the clean transparent raster derivative for the decorative mark so
+    # searchable text remains exclusively sourced from the RST/IR stories.
+    mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.png"
     left_sid = f"{sid}_fcc_left"
     right_sid = f"{sid}_fcc_right"
     _fcc_text_story(writer, left_sid, "FCC notice left", texts[0], image=mark)
@@ -218,13 +230,37 @@ def _tip_objects(writer, sid: str,
     if not tip_spec:
         return [], []
     label = str(tip_spec.get("label", "TIP"))
-    body = "\n".join(str(t).strip() for t in tip_spec.get("texts", []) if str(t).strip())
-    tip_rect = (BODY_X, 458.0, BODY_W, 30.0)
-    label_w = 52.0
+    texts = [str(t).strip() for t in tip_spec.get("texts", []) if str(t).strip()]
+    body = "\n".join(texts)
+    layout = notice_box_layout(writer.params, BODY_W, label, texts)
+    tip_rect = (BODY_X, 458.0, BODY_W, layout.panel_height)
+    plate_rect = (
+        BODY_X + layout.plate_left,
+        tip_rect[1] + layout.pad_tb,
+        layout.plate_width,
+        tip_rect[3] - 2 * layout.pad_tb,
+    )
+    body_x = BODY_X + layout.plate_left + layout.plate_width + layout.body_inset
+    body_rect = (
+        body_x,
+        tip_rect[1] + layout.pad_tb,
+        BODY_X + BODY_W - layout.right_inset - body_x,
+        tip_rect[3] - 2 * layout.pad_tb,
+    )
     label_sid = f"{sid}_tip_label"
     body_sid = f"{sid}_tip_body"
-    _story(writer, label_sid, "Inbox tip label", [_tip_label(label)])
-    _story(writer, body_sid, "Inbox tip body", [writer._psr("HB Body", body, terminal=True)])
+    _story(writer, label_sid, "Inbox tip label", [_tip_label(
+        label,
+        point_size=layout.label_size,
+        leading=layout.label_leading,
+    )])
+    body_xml = writer._psr("HB Body", body, terminal=True).replace(
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'PointSize="{layout.body_size:g}" Leading="{layout.body_leading:g}"',
+        1,
+    )
+    _story(writer, body_sid, "Inbox tip body", [body_xml])
     frames = [
         page_rectangle_xml(
             writer,
@@ -233,29 +269,34 @@ def _tip_objects(writer, sid: str,
             fill="Color/HB Bg K05",
             stroke_color="Swatch/None",
             stroke_weight=0,
+            corner_radius=layout.arc,
             object_style=PANEL_OBJECT_STYLE,
         ),
-        left_rounded_xml(
+        page_rectangle_xml(
             writer,
             f"bg_{sid}_tip_label",
-            (BODY_X, tip_rect[1], label_w, tip_rect[3]),
+            plate_rect,
             fill="Color/Paper",
+            stroke_color="Swatch/None",
+            stroke_weight=0,
+            corner_radius=5.5,
+            object_style=PANEL_OBJECT_STYLE,
         ),
         frame_with_background(
             writer,
             sid,
             "tip_label",
             label_sid,
-            (BODY_X, tip_rect[1], label_w, tip_rect[3]),
-            {"inset": (0, 2.0, 0, 2.0), "valign": "CenterAlign"},
+            plate_rect,
+            {"inset": (0, 0, 0, 1.0), "valign": "CenterAlign"},
         ),
         frame_with_background(
             writer,
             sid,
             "tip_body",
             body_sid,
-            (BODY_X + label_w, tip_rect[1], BODY_W - label_w, tip_rect[3]),
-            {"inset": (0, 7.0, 0, 7.0), "valign": "CenterAlign"},
+            body_rect,
+            {"inset": (0, 0, 0, 0), "valign": "CenterAlign"},
         ),
     ]
     return [label_sid, body_sid], frames

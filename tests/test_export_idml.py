@@ -937,6 +937,8 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('InsetSpacing="0 0 0 0"', fcc_frame)
         stories = dict(w.stories)
         self.assertIn("FCC left copy.", stories["st_fcc_inbox_fcc_left"])
+        self.assertIn("fcc_mark.png", stories["st_fcc_inbox_fcc_left"])
+        self.assertNotIn("fcc_mark.pdf", stories["st_fcc_inbox_fcc_left"])
         self.assertIn("FCC right copy.", stories["st_fcc_inbox_fcc_right"])
         self.assertIn("WHAT'S IN THE BOX", stories["st_fcc_inbox_title"])
         self.assertIn("AC Charging Cable", stories["st_fcc_inbox_card_2"])
@@ -944,7 +946,16 @@ class ExportIdmlTests(unittest.TestCase):
             'PointSize="10.912" FontStyle="Medium" BaselineShift="0.45"',
             stories["st_fcc_inbox_badge_1"],
         )
-        self.assertIn(">TIPS<", stories["st_fcc_inbox_tip_label"])
+        self.assertIn(">TIP<", stories["st_fcc_inbox_tip_label"])
+        self.assertNotIn("TIPS", stories["st_fcc_inbox_tip_label"])
+        self.assertIn(
+            'PointSize="8" Leading="9" FontStyle="Medium"',
+            stories["st_fcc_inbox_tip_label"],
+        )
+        self.assertIn(
+            'PointSize="6.5" Leading="7.4"',
+            stories["st_fcc_inbox_tip_body"],
+        )
         self.assertIn(
             "The car charging cable is sold separately.",
             stories["st_fcc_inbox_tip_body"],

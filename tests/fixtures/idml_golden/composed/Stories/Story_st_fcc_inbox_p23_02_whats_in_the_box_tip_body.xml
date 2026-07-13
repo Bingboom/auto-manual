@@ -3,7 +3,7 @@
 <Story Self="st_fcc_inbox_p23_02_whats_in_the_box_tip_body" Label="hb:self=st_fcc_inbox_p23_02_whats_in_the_box_tip_body" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="Inbox tip body">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>The car charging cable is sold separately on our official website. For assistance, contact Jackery Customer Support.</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="6.5" Leading="7.4"><Content>The car charging cable is sold separately on our official website. For assistance, contact Jackery Customer Support.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

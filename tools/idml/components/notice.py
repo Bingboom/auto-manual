@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import math
 import unicodedata
+from dataclasses import dataclass
 
 from .. import page_objects as _po
 from ..params import param_pt
@@ -35,6 +36,24 @@ _GILROY_WIDTHS = {
          0.540, 0.709, 0.170, 0.500, 0.660, 0.760, 0.386),
     )),
 }
+
+
+@dataclass(frozen=True)
+class NoticeBoxLayout:
+    body_width: float
+    label_width: float
+    plate_left: float
+    plate_width: float
+    body_inset: float
+    right_inset: float
+    pad_tb: float
+    arc: float
+    label_size: float
+    label_leading: float
+    body_size: float
+    body_leading: float
+    lines: int
+    panel_height: float
 
 
 def _typed(xml: str, size: float, leading: float, weight: str | None = None) -> str:
@@ -132,20 +151,64 @@ def _wrapped_lines(text: str, available: float, size: float) -> int:
     return lines
 
 
+def notice_box_layout(params: dict, body_width: float, label: str,
+                      texts: list, *, is_list: bool = False) -> NoticeBoxLayout:
+    """Resolve the shared geometry and type tokens for every notice carrier."""
+    label_size = param_pt(params, "type_tip_label_font_size", 8.0)
+    label_leading = param_pt(params, "type_tip_label_font_leading", 9.0)
+    body_size = param_pt(params, "type_tip_body_font_size", 6.5)
+    body_leading = param_pt(params, "type_tip_body_font_leading", 7.4)
+    label_width = param_pt(params, "comp_caution_label_width", 52.44)
+    plate_left = param_pt(params, "comp_callout_label_inset", 3.4)
+    body_inset = 3.75
+    right_inset = param_pt(params, "comp_tip_pad_lr", 6.24)
+    pad_tb = param_pt(params, "comp_caution_pad_tb", 3.4)
+    label_available = label_width - plate_left - 1.0
+    estimated_label_width = _gilroy_width(label, label_size) * 1.03
+    if estimated_label_width > label_available:
+        scale = label_available / estimated_label_width
+        label_size = max(6.5, label_size * scale)
+        label_leading = max(label_size + 0.8, label_leading * scale)
+    plate_width = label_width - plate_left
+    body_frame_width = body_width - (
+        plate_left + plate_width + body_inset + right_inset)
+    hanging_indent = 3.4 if is_list else 0.0
+    available = max(20.0, body_frame_width - hanging_indent)
+    lines = sum(_wrapped_lines(str(text), available, body_size)
+                for text in texts) or 1
+    panel_height = body_leading * lines + 2 * pad_tb + 1.0
+    return NoticeBoxLayout(
+        body_width=body_width,
+        label_width=label_width,
+        plate_left=plate_left,
+        plate_width=plate_width,
+        body_inset=body_inset,
+        right_inset=right_inset,
+        pad_tb=pad_tb,
+        arc=param_pt(params, "comp_tip_arc", 6.8),
+        label_size=label_size,
+        label_leading=label_leading,
+        body_size=body_size,
+        body_leading=body_leading,
+        lines=lines,
+        panel_height=panel_height,
+    )
+
+
 def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
-                    label: str, label_psr: str, body_psr: str, body_w: float,
-                    label_w: float, lines: int) -> tuple[str, float]:
+                    label: str, label_psr: str, body_psr: str,
+                    layout: NoticeBoxLayout) -> tuple[str, float]:
     # A four-item anchored group mirrors the LaTeX tcolorbox directly:
     # rounded grey shell, rounded white plate, centred label frame, and
     # the body frame.  A rounded frame nested in a table cell leaves an
     # overset anchor marker in InDesign, so the parts must be siblings.
-    plate_left = param_pt(ctx.params, "comp_callout_label_inset", 3.4)
-    body_inset = 3.75
-    right_inset = param_pt(ctx.params, "comp_tip_pad_lr", 6.24)
-    pad_tb = param_pt(ctx.params, "comp_caution_pad_tb", 3.4)
-    plate_w = label_w - plate_left
-    leading = param_pt(ctx.params, "type_tip_body_font_leading", 7.4)
-    panel_h = leading * lines + 2 * pad_tb + 1.0
+    body_w = layout.body_width
+    plate_left = layout.plate_left
+    plate_w = layout.plate_width
+    body_inset = layout.body_inset
+    right_inset = layout.right_inset
+    pad_tb = layout.pad_tb
+    panel_h = layout.panel_height
     label_sid = ctx.add_story(
         f"st_anchor_notice_label_{tid}",
         f"{label} notice label plate",
@@ -174,7 +237,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
             -panel_h,
             body_w,
             0.0,
-            param_pt(ctx.params, "comp_tip_arc", 6.8),
+            layout.arc,
         )
         + anchor
         + '</Rectangle>\n'
@@ -254,35 +317,17 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     body_w = measure_w or ctx.text_measure
     label = spec.get("label", "")
     texts = spec.get("texts", [])
-    label_size = param_pt(ctx.params, "type_tip_label_font_size", 8.0)
-    label_leading = param_pt(ctx.params, "type_tip_label_font_leading", 9.0)
-    body_size = param_pt(ctx.params, "type_tip_body_font_size", 6.5)
-    body_leading = param_pt(ctx.params, "type_tip_body_font_leading", 7.4)
-    label_w = param_pt(ctx.params, "comp_caution_label_width", 52.44)
-    plate_left = param_pt(ctx.params, "comp_callout_label_inset", 3.4)
-    label_available = label_w - plate_left - 1.0
-    estimated_label_w = _gilroy_width(label, label_size) * 1.03
-    if estimated_label_w > label_available:
-        scale = label_available / estimated_label_w
-        label_size = max(6.5, label_size * scale)
-        label_leading = max(label_size + 0.8, label_leading * scale)
+    layout = notice_box_layout(
+        ctx.params, body_w, label, texts, is_list=bool(spec.get("list")))
     label_psr = _typed(
         psr("HB Notice Side Label", label, terminal=True),
-        label_size, label_leading, "Medium")
-    body_psr = _body_xml(spec, body_size, body_leading)
-    right_inset = param_pt(ctx.params, "comp_tip_pad_lr", 6.24)
-    plate_w = label_w - plate_left
-    body_frame_w = body_w - (
-        plate_left + plate_w + 3.75 + right_inset)
-    hanging_indent = 3.4 if spec.get("list") else 0.0
-    available = max(20.0, body_frame_w - hanging_indent)
-    lines = sum(_wrapped_lines(str(text), available, body_size)
-                for text in texts) or 1
+        layout.label_size, layout.label_leading, "Medium")
+    body_psr = _body_xml(spec, layout.body_size, layout.body_leading)
     if ctx.add_story is not None:
         return _rounded_notice(
             ctx, tid=tid, terminal=terminal, label=label, label_psr=label_psr,
-            body_psr=body_psr, body_w=body_w, label_w=label_w, lines=lines)
-    cols = [label_w, body_w - label_w]
+            body_psr=body_psr, layout=layout)
+    cols = [layout.label_width, body_w - layout.label_width]
     cells = [
         cell(f"{tid}c0", "0:0", label_psr, fill="Color/Paper", stroke=False,
              top=10, bottom=10, left=6, right=6),
@@ -291,4 +336,4 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     ]
     table = component_table(tid, cols, cells, role="notice")
     return wrap_table_paragraph(table, terminal, span_columns), max(
-        24.0, body_leading * lines + 10)
+        24.0, layout.body_leading * layout.lines + 10)
