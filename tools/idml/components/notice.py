@@ -52,31 +52,60 @@ class NoticeBoxLayout:
     label_leading: float
     body_size: float
     body_leading: float
+    body_horizontal_scale: float
+    label_baseline_shift: float
+    body_baseline_shift: float
     lines: int
     panel_height: float
 
 
-def _typed(xml: str, size: float, leading: float, weight: str | None = None) -> str:
+def source_notice_label(spec: dict) -> str:
+    """Return the notice label verbatim from IR; never synthesize display copy."""
+    value = spec.get("label")
+    label = str(value).strip() if value is not None else ""
+    if not label:
+        raise ValueError("notice label is required from source IR")
+    return label
+
+
+def _typed(xml: str, size: float, leading: float, weight: str | None = None,
+           *, horizontal_scale: float | None = None,
+           baseline_shift: float | None = None) -> str:
     attrs = f'PointSize="{size:g}" Leading="{leading:g}"'
     if weight:
         attrs += f' FontStyle="{weight}"'
+    if horizontal_scale is not None:
+        attrs += f' HorizontalScale="{horizontal_scale * 100:g}"'
+    if baseline_shift is not None:
+        attrs += f' BaselineShift="{baseline_shift:g}"'
     return xml.replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" ' + attrs,
     )
 
 
-def _body_xml(spec: dict, size: float, leading: float) -> str:
+def _body_xml(spec: dict, size: float, leading: float,
+              horizontal_scale: float, baseline_shift: float) -> str:
     texts = spec.get("texts", [])
     if not spec.get("list"):
-        return _typed(psr("HB Body", "\n".join(texts), terminal=True), size, leading)
+        return _typed(
+            psr("HB Callout Body", "\n".join(texts), terminal=True),
+            size,
+            leading,
+            "Medium",
+            horizontal_scale=horizontal_scale,
+            baseline_shift=baseline_shift,
+        )
     items = [text.strip() for text in texts if str(text).strip()]
     paragraphs = []
     for index, item in enumerate(items):
         paragraph = _typed(
-            psr("HB List", item, terminal=index == len(items) - 1),
+            psr("HB Callout Body", item, terminal=index == len(items) - 1),
             size,
             leading,
+            "Medium",
+            horizontal_scale=horizontal_scale,
+            baseline_shift=baseline_shift,
         )
         paragraph = paragraph.replace(
             "<ParagraphStyleRange ",
@@ -86,11 +115,14 @@ def _body_xml(spec: dict, size: float, leading: float) -> str:
         bullet = (
             '<CharacterStyleRange '
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'PointSize="4.8" Leading="{leading:g}"><Content>•</Content>'
+            f'PointSize="4.8" Leading="{leading:g}" '
+            f'BaselineShift="{baseline_shift:g}"><Content>•</Content>'
             '</CharacterStyleRange>'
             '<CharacterStyleRange '
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'PointSize="{size:g}" Leading="{leading:g}"><Content> </Content>'
+            f'PointSize="{size:g}" Leading="{leading:g}" FontStyle="Medium" '
+            f'HorizontalScale="{horizontal_scale * 100:g}" '
+            f'BaselineShift="{baseline_shift:g}"><Content> </Content>'
             '</CharacterStyleRange>'
         )
         paragraph = paragraph.replace(
@@ -152,15 +184,20 @@ def _wrapped_lines(text: str, available: float, size: float) -> int:
 
 
 def notice_box_layout(params: dict, body_width: float, label: str,
-                      texts: list, *, is_list: bool = False) -> NoticeBoxLayout:
+                      texts: list, *, variant: str = "",
+                      is_list: bool = False) -> NoticeBoxLayout:
     """Resolve the shared geometry and type tokens for every notice carrier."""
     label_size = param_pt(params, "type_tip_label_font_size", 8.0)
     label_leading = param_pt(params, "type_tip_label_font_leading", 9.0)
     body_size = param_pt(params, "type_tip_body_font_size", 6.5)
-    body_leading = param_pt(params, "type_tip_body_font_leading", 7.4)
+    body_leading = param_pt(params, "type_tip_body_font_leading", 7.83)
+    body_horizontal_scale = param_pt(
+        params, "type_tip_body_horizontal_scale", 1.0)
     label_width = param_pt(params, "comp_caution_label_width", 52.44)
     plate_left = param_pt(params, "comp_callout_label_inset", 3.4)
-    body_inset = 3.75
+    callout_rule = param_pt(params, "comp_callout_rule", 1.2)
+    body_inset = callout_rule + param_pt(
+        params, "comp_callout_body_inset", 4.25)
     right_inset = param_pt(params, "comp_tip_pad_lr", 6.24)
     pad_tb = param_pt(params, "comp_caution_pad_tb", 3.4)
     label_available = label_width - plate_left - 1.0
@@ -174,9 +211,18 @@ def notice_box_layout(params: dict, body_width: float, label: str,
         plate_left + plate_width + body_inset + right_inset)
     hanging_indent = 3.4 if is_list else 0.0
     available = max(20.0, body_frame_width - hanging_indent)
-    lines = sum(_wrapped_lines(str(text), available, body_size)
-                for text in texts) or 1
-    panel_height = body_leading * lines + 2 * pad_tb + 1.0
+    lines = sum(
+        _wrapped_lines(
+            str(text), available, body_size * body_horizontal_scale,
+        )
+        for text in texts
+    ) or 1
+    natural_height = body_leading * lines + 2 * pad_tb + 1.0
+    tip_min_height = (
+        param_pt(params, "comp_tip_height", 41.67)
+        if variant == "tip" else 0.0
+    )
+    panel_height = max(natural_height, tip_min_height)
     return NoticeBoxLayout(
         body_width=body_width,
         label_width=label_width,
@@ -185,11 +231,16 @@ def notice_box_layout(params: dict, body_width: float, label: str,
         body_inset=body_inset,
         right_inset=right_inset,
         pad_tb=pad_tb,
-        arc=param_pt(params, "comp_tip_arc", 6.8),
+        arc=param_pt(params, "comp_tip_arc", 4.9) + callout_rule,
         label_size=label_size,
         label_leading=label_leading,
         body_size=body_size,
         body_leading=body_leading,
+        body_horizontal_scale=body_horizontal_scale,
+        label_baseline_shift=param_pt(
+            params, "idml_callout_label_baseline_shift", 2.63),
+        body_baseline_shift=param_pt(
+            params, "idml_callout_body_baseline_shift", 0.9),
         lines=lines,
         panel_height=panel_height,
     )
@@ -247,18 +298,19 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
         'AppliedObjectStyle="ObjectStyle/HB Rounded Panel" '
         'FillColor="Color/Paper" StrokeColor="Swatch/None" '
         'StrokeWeight="0" ItemTransform="1 0 0 1 0 0">\n'
-        + _po.rounded_path_geometry(
+        + _po.left_rounded_path_geometry(
             plate_left,
-            -panel_h + pad_tb,
+            -panel_h + plate_left,
             plate_left + plate_w,
-            -pad_tb,
-            5.5,
+            -plate_left,
+            max(0.0, layout.arc - plate_left / 2.0),
         )
         + anchor
         + '</Rectangle>\n'
     )
 
     def _text_frame(sid: str, self_id: str, x1: float, x2: float, *,
+                    vertical_inset: float,
                     right_text_inset: float = 0.0) -> str:
         insets = (0.0, 0.0, 0.0, right_text_inset)
         inset_xml = "".join(
@@ -269,7 +321,8 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
             'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
             'FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" '
             'ItemTransform="1 0 0 1 0 0">\n'
-            + path_geometry(x1, -panel_h + pad_tb, x2, -pad_tb)
+            + path_geometry(
+                x1, -panel_h + vertical_inset, x2, -vertical_inset)
             + '    <TextFramePreference TextColumnCount="1" '
             'VerticalJustification="CenterAlign" AutoSizingType="Off">'
             f'<Properties><InsetSpacing type="list">{inset_xml}'
@@ -283,6 +336,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
         f"tf_notice_label_{tid}",
         plate_left,
         plate_left + plate_w,
+        vertical_inset=plate_left,
         right_text_inset=1.0,
     )
     body_left = plate_left + plate_w + body_inset
@@ -291,6 +345,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
         f"tf_notice_body_{tid}",
         body_left,
         body_w - right_inset,
+        vertical_inset=pad_tb,
     )
     group = (
         f'<Group Self="grp_notice_{tid}" '
@@ -315,14 +370,30 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
                   span_columns: bool = True,
                   measure_w: float | None = None) -> tuple[str, float]:
     body_w = measure_w or ctx.text_measure
-    label = spec.get("label", "")
+    label = source_notice_label(spec)
     texts = spec.get("texts", [])
     layout = notice_box_layout(
-        ctx.params, body_w, label, texts, is_list=bool(spec.get("list")))
+        ctx.params,
+        body_w,
+        label,
+        texts,
+        variant=str(spec.get("variant", "")),
+        is_list=bool(spec.get("list")),
+    )
     label_psr = _typed(
-        psr("HB Notice Side Label", label, terminal=True),
-        layout.label_size, layout.label_leading, "Medium")
-    body_psr = _body_xml(spec, layout.body_size, layout.body_leading)
+        psr("HB Callout Label", label, terminal=True),
+        layout.label_size,
+        layout.label_leading,
+        "Bold",
+        baseline_shift=layout.label_baseline_shift,
+    )
+    body_psr = _body_xml(
+        spec,
+        layout.body_size,
+        layout.body_leading,
+        layout.body_horizontal_scale,
+        layout.body_baseline_shift,
+    )
     if ctx.add_story is not None:
         return _rounded_notice(
             ctx, tid=tid, terminal=terminal, label=label, label_psr=label_psr,

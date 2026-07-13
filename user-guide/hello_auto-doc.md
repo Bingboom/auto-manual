@@ -44,6 +44,10 @@ RST. Titles, safety boxes, FCC panels, inbox cards, tip strips, symbol tables,
 and app notices are reusable objects; page RST supplies their text and image
 arguments. Body WARNING, CAUTION, NOTE, and TIP label/body tables are mapped
 to the same rounded callout family automatically for LaTeX PDF output.
+The visible label itself always comes from the page RST / source table. The
+renderer does not change `TIP` to `TIPS` (or create any other fallback word),
+and a missing label stops the LaTeX/IDML handoff instead of silently inventing
+copy.
 
 ### 1.2 External Tools
 

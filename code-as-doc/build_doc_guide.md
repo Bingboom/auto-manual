@@ -657,6 +657,11 @@ keeps LCD/operations, UPS/charging, and charging/storage/troubleshooting on the
 master page sequence while preserving separate editable stories. Data-table
 rounding is also non-destructive: a rounded background and a square editable
 table frame are grouped, avoiding InDesign's curved-corner cell inset.
+Callout labels are not style defaults. WARNING, CAUTION, NOTE, and TIP labels
+must be present in the prepared RST/IR, are emitted verbatim in LaTeX and IDML,
+and cause export to fail when absent. Tune the shared LaTeX geometry first, then
+use the InDesign-specific optical baseline tokens only to align native
+paragraph styles to that frozen PDF.
 
 `idml` defaults to the production exporter. For the design-template handoff
 path, use flow mode; it writes semantic Markdown, a simple continuous-story

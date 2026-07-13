@@ -105,7 +105,10 @@ class ComponentRegistryTests(unittest.TestCase):
         story_map = {sid: "".join(parts) for sid, _title, parts in stories}
         label_story = story_map["st_anchor_notice_label_notice_wrap"]
         body_story = story_map["st_anchor_notice_body_notice_wrap"]
-        self.assertIn('FontStyle="Medium"', label_story)
+        self.assertIn('FontStyle="Bold"', label_story)
+        self.assertIn('BaselineShift="2.63"', label_story)
+        self.assertIn('Leading="7.83"', body_story)
+        self.assertIn('BaselineShift="0.9"', body_story)
         self.assertIn('PointSize="4.8"', body_story)
         self.assertIn('LeftIndent="3.4" FirstLineIndent="-3.4"', body_story)
         self.assertIn('<Group Self="grp_notice_notice_wrap"', _xml)

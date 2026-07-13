@@ -2,8 +2,8 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_anchor_notice_label_st_05_operation_guide_cmp4" Label="hb:self=st_anchor_notice_label_st_05_operation_guide_cmp4" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="NOTE notice label plate">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/黑底段落-文本">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="8" Leading="9" FontStyle="Medium"><Content>NOTE</Content></CharacterStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Callout Label">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="8" Leading="9" FontStyle="Bold" BaselineShift="2.63"><Content>NOTE</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

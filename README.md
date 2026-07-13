@@ -61,6 +61,9 @@ Master-fixed English layouts may share explicit regions on one physical page
 (for example charging/storage/troubleshooting). Rounded data tables remain
 editable: the IDML groups a rounded background with a square content frame so
 InDesign does not inset the first/last cells at curved corners.
+NOTE/TIP/CAUTION/WARNING labels are source-owned display text: the LaTeX and
+IDML renderers preserve the RST/IR value verbatim and fail when it is missing;
+they never singularize, pluralize, translate, or invent a fallback label.
 
 Optional local content QC for the current snapshot:
 

@@ -222,10 +222,13 @@
 \expandafter\def\csname HBtype_symbol_signal_font_size\endcsname{9.9pt}
 
 % Tip body leading
-\expandafter\def\csname HBtype_tip_body_font_leading\endcsname{7.4pt}
+\expandafter\def\csname HBtype_tip_body_font_leading\endcsname{7.83pt}
 
 % Tip body font size
 \expandafter\def\csname HBtype_tip_body_font_size\endcsname{6.5pt}
+
+% Tip body horizontal scale for production CFF metric parity
+\expandafter\def\csname HBtype_tip_body_horizontal_scale\endcsname{1.069}
 
 % Tip label leading
 \expandafter\def\csname HBtype_tip_label_font_leading\endcsname{9.0pt}
@@ -320,7 +323,7 @@
 \expandafter\def\csname HBcomp_callout_bullet_width\endcsname{1.2mm}
 
 % White label panel inset inside the gray callout shell
-\expandafter\def\csname HBcomp_callout_label_inset\endcsname{1.2mm}
+\expandafter\def\csname HBcomp_callout_label_inset\endcsname{0.44mm}
 
 % Warning caution note and tip outer border width
 \expandafter\def\csname HBcomp_callout_rule\endcsname{1.2pt}
@@ -608,16 +611,19 @@
 \expandafter\def\csname HBcomp_table_tabcolsep\endcsname{2.4pt}
 
 % Tip strip corner radius
-\expandafter\def\csname HBcomp_tip_arc\endcsname{2.4mm}
+\expandafter\def\csname HBcomp_tip_arc\endcsname{1.73mm}
 
 % Tip strip height
 \expandafter\def\csname HBcomp_tip_height\endcsname{14.7mm}
+
+% Tip label baseline offset from panel centre
+\expandafter\def\csname HBcomp_tip_label_baseline_shift\endcsname{-0.57pt}
 
 % Tip strip label panel width
 \expandafter\def\csname HBcomp_tip_label_width\endcsname{18.5mm}
 
 % Tip strip horizontal padding
-\expandafter\def\csname HBcomp_tip_pad_lr\endcsname{2.2mm}
+\expandafter\def\csname HBcomp_tip_pad_lr\endcsname{1.15mm}
 
 % Level 2 title space after
 \expandafter\def\csname HBcomp_title_l2_after\endcsname{1.4mm}
@@ -767,6 +773,12 @@
 \expandafter\def\csname HBcomp_warranty_year_left_ratio\endcsname{0.59}
 
 % ===== OTHER =====
+
+% InDesign callout body baseline correction
+\expandafter\def\csname HBidml_callout_body_baseline_shift\endcsname{0.9pt}
+
+% InDesign callout label baseline correction
+\expandafter\def\csname HBidml_callout_label_baseline_shift\endcsname{2.63pt}
 
 % ES: space after H1 pill
 \expandafter\def\csname HBlang_es_comp_h1_pill_after\endcsname{-1.4mm}

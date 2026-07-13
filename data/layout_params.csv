@@ -190,23 +190,27 @@ comp_inbox_label_gap,2.0,mm,Inbox image-to-label gap
 comp_inbox_after,2.5,mm,Space after inbox cards
 type_inbox_label_font_size,6.5,pt,Inbox label font size
 type_inbox_label_font_leading,7.2,pt,Inbox label leading
-comp_tip_arc,2.4,mm,Tip strip corner radius
+comp_tip_arc,1.73,mm,Tip strip corner radius
 comp_callout_rule,1.2,pt,Warning caution note and tip outer border width
-comp_callout_label_inset,1.2,mm,White label panel inset inside the gray callout shell
+comp_callout_label_inset,0.44,mm,White label panel inset inside the gray callout shell
 comp_callout_body_inset,1.5,mm,Callout body inset from the label panel
 comp_callout_bullet_indent,0.9,mm,Callout bullet inset from the body start
 comp_callout_bullet_width,1.2,mm,Callout bullet hanging-indent width
 type_callout_bullet_font_size,4.8,pt,Callout bullet glyph size
 comp_tip_height,14.7,mm,Tip strip height
 comp_tip_label_width,18.5,mm,Tip strip label panel width
-comp_tip_pad_lr,2.2,mm,Tip strip horizontal padding
+comp_tip_pad_lr,1.15,mm,Tip strip horizontal padding
+comp_tip_label_baseline_shift,-0.57,pt,Tip label baseline offset from panel centre
+idml_callout_label_baseline_shift,2.63,pt,InDesign callout label baseline correction
+idml_callout_body_baseline_shift,0.9,pt,InDesign callout body baseline correction
 comp_caution_label_width,18.5,mm,Caution strip label panel width
 comp_caution_pad_lr,2.2,mm,Caution strip horizontal padding
 comp_caution_pad_tb,1.2,mm,Caution strip vertical padding
 type_tip_label_font_size,8.0,pt,Tip label font size
 type_tip_label_font_leading,9.0,pt,Tip label leading
 type_tip_body_font_size,6.5,pt,Tip body font size
-type_tip_body_font_leading,7.4,pt,Tip body leading
+type_tip_body_font_leading,7.83,pt,Tip body leading
+type_tip_body_horizontal_scale,1.069,ratio,Tip body horizontal scale for production CFF metric parity
 ,,,
 ,,,------ PREFACE / TOC ------
 comp_preface_block_gap,3.2,mm,Gap between language notice blocks

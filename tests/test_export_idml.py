@@ -222,6 +222,15 @@ class ExportIdmlTests(unittest.TestCase):
         worker.join(timeout=5)
         self.assertTrue(done.is_set(), "extraction hung on an unclosed optional arg")
 
+    def test_notice_macro_requires_source_label(self) -> None:
+        from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
+
+        with self.assertRaisesRegex(ValueError, "required from source RST"):
+            _extract_raw_latex(
+                r"\HBNoticeBlock[tip]{}{renderer must not invent a label}{}",
+                ExtractResult(),
+            )
+
     def test_escaped_asterisk_in_json_block_stays_valid_json(self) -> None:
         # A JSON payload (table/component) carries `\*` already JSON-escaped; the
         # unescape must reach into the string values, not corrupt the envelope.
@@ -425,9 +434,15 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("st_anchor_notice_label_t_cmp1", dict(w.stories))
         self.assertIn("st_anchor_notice_body_t_cmp1", dict(w.stories))
         self.assertNotIn("warning_triangle", xml)
+        with self.assertRaisesRegex(ValueError, "required from source IR"):
+            w._render_component(
+                "t", 2,
+                {"kind": "notice", "texts": ["renderer must not label this"]},
+                bundle, True,
+            )
         # warnbox: triangle icon + one editable label; do not place the
         # WARNING lockup art and then print WARNING again below it.
-        xml, _ = w._render_component("t", 2, {
+        xml, _ = w._render_component("t", 3, {
             "kind": "warnbox", "label": "WARNING", "texts": ["stay safe"]}, bundle, True)
         self.assertIn("warning_triangle", xml)
         self.assertNotIn("warning_lockup", xml)
@@ -900,6 +915,7 @@ class ExportIdmlTests(unittest.TestCase):
             ("component", json.dumps({
                 "kind": "notice",
                 "label": "TIP",
+                "variant": "tip",
                 "texts": ["The car charging cable is sold separately."],
             })),
         ]
@@ -949,11 +965,12 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn(">TIP<", stories["st_fcc_inbox_tip_label"])
         self.assertNotIn("TIPS", stories["st_fcc_inbox_tip_label"])
         self.assertIn(
-            'PointSize="8" Leading="9" FontStyle="Medium"',
+            'PointSize="8" Leading="9" FontStyle="Bold" BaselineShift="2.63"',
             stories["st_fcc_inbox_tip_label"],
         )
         self.assertIn(
-            'PointSize="6.5" Leading="7.4"',
+            'PointSize="6.5" Leading="7.83" FontStyle="Medium" '
+            'HorizontalScale="106.9" BaselineShift="0.9"',
             stories["st_fcc_inbox_tip_body"],
         )
         self.assertIn(

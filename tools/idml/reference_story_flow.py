@@ -96,7 +96,14 @@ class ReferenceStoryEmitter:
         writer.add_story_frames(ups_sid, [(page_cursor, 33.04, 365.0)])
         writer.add_story_frames(
             charging_sid,
-            [(page_cursor, 367.42, writer.page_h - writer.m_b)],
+            [(
+                page_cursor,
+                367.42,
+                # The LaTeX-parity NOTE is taller than the legacy strip. The
+                # production page still has an 18 pt footer-safe region below
+                # the normal body margin, also used by the LCD continuation.
+                writer.page_h - writer.m_b + 18.0,
+            )],
         )
         self.toc.note_h1s(ups_blocks, page_cursor, 1)
         self.toc.note_h1s(charging_intro, page_cursor, 1)

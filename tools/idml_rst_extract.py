@@ -1,8 +1,7 @@
 """Prose extraction for the IDML exporter (M4b).
 
-Parses the *prepared bundle* rst pages (docs/_build/<model>/<region>/<lang>/
-rst/page/*.rst — variables already substituted, same source the PDF build
-consumes) into a flat list of blocks the IDML writer can emit:
+Parses the prepared bundle under docs/_build/<model>/<region>/<lang>/rst/page
+(variables already substituted) into blocks the IDML writer can emit:
 
     ("h1"|"h2"|"h3"|"body"|"list", text)
     ("image", bundle-relative-path)
@@ -283,8 +282,11 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
                 {"kind": "warnbox", "label": args[0],
                  "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
         elif kind == "noticed" and args:
+            label = args[0].strip()
+            if not label:
+                raise ValueError("notice label is required from source RST")
             result.blocks.append(("component", _json.dumps(
-                {"kind": "notice", "label": args[0] or optional.upper() or "NOTICE",
+                {"kind": "notice", "label": label,
                  "variant": optional or "notice",
                  "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
         elif kind in {"note", "tip", "caution"} and args:

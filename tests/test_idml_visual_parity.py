@@ -9,11 +9,13 @@ from tools.attachment_identity import stage_bundle_attachment_aliases
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml import ir_projection, page_placed, page_toc
 from tools.idml.components.base import RenderContext
+from tools.idml.components.notice import notice_box_layout
 from tools.idml.components.prose_table import render_table_block
 from tools.idml.page_objects import (
     anchored_panel_group_paragraph,
     h1_bar_h_pt,
     heading_bar_opts,
+    left_rounded_path_geometry,
     rounded_path_geometry,
 )
 from tools.idml.params import param_pt
@@ -24,6 +26,37 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class IdmlVisualParityTests(unittest.TestCase):
+    def test_tip_notice_uses_the_frozen_latex_geometry_and_type(self) -> None:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        text = (
+            "The car charging cable is not included but is available for purchase "
+            "separately on our website. For assistance, please contact Jackery "
+            "customer service."
+        )
+        tip = notice_box_layout(
+            writer.params, 311.0, "TIP", [text], variant="tip")
+        note = notice_box_layout(
+            writer.params, 311.0, "NOTE", ["Short note."], variant="note")
+
+        self.assertAlmostEqual(41.6693, tip.panel_height, places=3)
+        self.assertAlmostEqual(6.10394, tip.arc, places=3)
+        self.assertAlmostEqual(1.24724, tip.plate_left, places=3)
+        self.assertAlmostEqual(5.45197, tip.body_inset, places=3)
+        self.assertAlmostEqual(1.069, tip.body_horizontal_scale, places=3)
+        self.assertAlmostEqual(2.63, tip.label_baseline_shift, places=3)
+        self.assertAlmostEqual(0.9, tip.body_baseline_shift, places=3)
+        self.assertLess(note.panel_height, tip.panel_height)
+
+        plate = left_rounded_path_geometry(0.0, 0.0, 50.0, 40.0, 5.0)
+        self.assertIn(
+            'Anchor="50 0" LeftDirection="50 0" RightDirection="50 0"',
+            plate,
+        )
+        self.assertIn(
+            'Anchor="50 40" LeftDirection="50 40" RightDirection="50 40"',
+            plate,
+        )
+
     def test_subbar_text_frame_is_vertically_centered(self) -> None:
         self.assertEqual(
             "CenterAlign",
@@ -41,6 +74,8 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertEqual((8.0, 8.0, "Bold"), styles["HB Data Code"])
         self.assertEqual((8.0, 9.6, "Bold"), styles["HB Spec Section"])
         self.assertEqual((6.0, 6.6, "Medium"), styles["HB Spec Label"])
+        self.assertEqual((8.0, 9.0, "Bold"), styles["HB Callout Label"])
+        self.assertEqual((6.5, 7.83, "Medium"), styles["HB Callout Body"])
 
     def test_h1_bar_height_uses_the_explicit_shared_height_token(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

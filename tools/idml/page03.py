@@ -4,7 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from .components.notice import notice_box_layout
+from .components.notice import notice_box_layout, source_notice_label
 from .fcc_fallback import component_spec, fcc_spec_from_blocks
 from .page_objects import (
     BADGE_OBJECT_STYLE,
@@ -13,6 +13,7 @@ from .page_objects import (
     frame_with_background,
     heading_bar_opts,
     heading_text,
+    left_rounded_xml,
     page_rectangle_xml,
 )
 from .params import IDPKG
@@ -77,13 +78,14 @@ def _card_story(writer, sid: str, item: dict, bundle_root: Path,
     return _story(writer, sid, "Inbox card", parts)
 
 
-def _tip_label(label: str, *, point_size: float, leading: float) -> str:
+def _tip_label(label: str, *, point_size: float, leading: float,
+               baseline_shift: float) -> str:
     return writer_psr_template(
-        "HB Notice Side Label",
+        "HB Callout Label",
         label.strip(),
         character_attrs=(
             f'PointSize="{point_size:g}" Leading="{leading:g}" '
-            'FontStyle="Medium"'
+            f'FontStyle="Bold" BaselineShift="{baseline_shift:g}"'
         ),
     )
 
@@ -229,16 +231,22 @@ def _tip_objects(writer, sid: str,
                  tip_spec: dict | None) -> tuple[list[str], list[str]]:
     if not tip_spec:
         return [], []
-    label = str(tip_spec.get("label", "TIP"))
+    label = source_notice_label(tip_spec)
     texts = [str(t).strip() for t in tip_spec.get("texts", []) if str(t).strip()]
     body = "\n".join(texts)
-    layout = notice_box_layout(writer.params, BODY_W, label, texts)
+    layout = notice_box_layout(
+        writer.params,
+        BODY_W,
+        label,
+        texts,
+        variant=str(tip_spec.get("variant", "")),
+    )
     tip_rect = (BODY_X, 458.0, BODY_W, layout.panel_height)
     plate_rect = (
         BODY_X + layout.plate_left,
-        tip_rect[1] + layout.pad_tb,
+        tip_rect[1] + layout.plate_left,
         layout.plate_width,
-        tip_rect[3] - 2 * layout.pad_tb,
+        tip_rect[3] - 2 * layout.plate_left,
     )
     body_x = BODY_X + layout.plate_left + layout.plate_width + layout.body_inset
     body_rect = (
@@ -253,11 +261,15 @@ def _tip_objects(writer, sid: str,
         label,
         point_size=layout.label_size,
         leading=layout.label_leading,
+        baseline_shift=layout.label_baseline_shift,
     )])
-    body_xml = writer._psr("HB Body", body, terminal=True).replace(
+    body_xml = writer._psr("HB Callout Body", body, terminal=True).replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'PointSize="{layout.body_size:g}" Leading="{layout.body_leading:g}"',
+        f'PointSize="{layout.body_size:g}" Leading="{layout.body_leading:g}" '
+        f'FontStyle="Medium" '
+        f'HorizontalScale="{layout.body_horizontal_scale * 100:g}" '
+        f'BaselineShift="{layout.body_baseline_shift:g}"',
         1,
     )
     _story(writer, body_sid, "Inbox tip body", [body_xml])
@@ -272,14 +284,12 @@ def _tip_objects(writer, sid: str,
             corner_radius=layout.arc,
             object_style=PANEL_OBJECT_STYLE,
         ),
-        page_rectangle_xml(
+        left_rounded_xml(
             writer,
             f"bg_{sid}_tip_label",
             plate_rect,
             fill="Color/Paper",
-            stroke_color="Swatch/None",
-            stroke_weight=0,
-            corner_radius=5.5,
+            corner_radius=max(0.0, layout.arc - layout.plate_left / 2.0),
             object_style=PANEL_OBJECT_STYLE,
         ),
         frame_with_background(
@@ -311,8 +321,10 @@ def add_fcc_inbox_page(
     page_index: int,
 ) -> str:
     """V2.0 page 03: FCC panel, inbox card trio, and tip strip."""
-    inbox_title = next((text for kind, text in inbox_blocks if kind == "h1"),
-                       "WHAT'S IN THE BOX")
+    inbox_title = next((text.strip() for kind, text in inbox_blocks
+                        if kind == "h1" and text.strip()), "")
+    if not inbox_title:
+        raise ValueError("inbox title is required from source RST")
     inbox_spec = component_spec(inbox_blocks, "inbox")
     tip_spec = component_spec(inbox_blocks, "notice")
 
