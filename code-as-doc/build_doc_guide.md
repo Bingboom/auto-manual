@@ -736,6 +736,15 @@ keep the source table. Tune shared geometry in
 [layout_params.csv](../data/layout_params.csv), then regenerate params.tex
 with python tools/csv_to_tex_params.py.
 
+## 5.1 Capability Gate
+
+`build.py check` validates each target against the product capability matrix:
+
+- `data/model_capabilities.csv` — per-`Document_key` feature booleans, mirrored from the 文档构建表 checkboxes (说明书盘点 2026-07-06).
+- `data/capability_page_rules.csv` — capability -> chapter mapping. `scope=page` requires/forbids a bundle page stem; `scope=section` greps a regex inside matching pages. `required_when_true` / `forbidden_when_false` toggle enforcement per direction, so uncertain rules can be recorded without failing builds.
+
+Failure codes: `CAPABILITY_CONTENT_MISSING` (capability TRUE, chapter absent) and `CAPABILITY_CONTENT_UNEXPECTED` (capability FALSE, chapter present). Targets missing from the capabilities CSV are skipped — absence of inventory data is not a defect.
+
 ## 6. Diff Report
 
 Typical usage:
