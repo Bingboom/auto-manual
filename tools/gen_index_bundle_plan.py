@@ -90,6 +90,12 @@ def plan_materialized_pages(
         error_prefix="config.pages",
     ).pages
 
+    from tools.capability_pages import filter_pages_by_capability
+    pages, dropped = filter_pages_by_capability(
+        pages, model=model, region=region, data_dir=root / "data")
+    for note in dropped:
+        print(f"[bundle-plan] {note}")
+
     planned: list[Any] = []
     seen_names: set[str] = set()
 
