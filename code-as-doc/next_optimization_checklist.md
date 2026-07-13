@@ -824,6 +824,58 @@ downstream of stock-manual onboarding (content must be in the system before it
 can be cited). Size it as its own workstream after Milestone H and the
 stock-onboarding pilot; do not let it slip into an "entry-point polish" PR.
 
+## 6g. Milestone I: Unknown-Unknown Probes + Handover Assurance
+
+Registered 2026-07-12 (operator-approved) from the workspace census ×
+esp-docs comparison (see the espressif/esp-docs defensive-subsystem
+inventory). Theme: auto-manual's defenses concentrate on **content
+correctness**; the blind spots concentrate on **publication
+sustainability** (links, language parity, environment drift, warning
+debt) and **maintainer hand-over**. These are sensors first, fixes
+second — each probe converts an unknown-unknown into a measured known.
+
+- [ ] PR I1: Language-tree parity check (探针·跨语言结构漂移)
+  - Status: `pending`
+  - Done when: per-language bundle page/block/figure counts are reconciled
+    per target in `check`; the three historical incident classes (AU FR/ES
+    leftover preface, KR English-shell pages, #654 silent block loss)
+    would each have tripped it.
+- [ ] PR I2: Build-warning ratchet (探针·警告债棘轮)
+  - Status: `pending`
+  - Done when: Sphinx/xelatex/extractor warning streams are sanitized and
+    diffed against a committed known-warnings baseline (esp-docs
+    `check_docs.py` pattern); any NEW warning fails check; a missing
+    baseline file also fails.
+- [ ] PR I3: Environment pinning + version provenance (探针·环境漂移)
+  - Status: `pending`
+  - Done when: a lock file pins Python deps; `doctor` reports TeX/pandoc
+    (and, on the operator Mac, InDesign) versions; release-manifest embeds
+    the toolchain versions so any published PDF can name the environment
+    that produced it.
+- [ ] PR I4: Printed-URL inventory (探针·印刷外链)
+  - Status: `pending`
+  - Done when: a scan collects every URL/QR target that ships inside
+    built manuals (templates + snippets + back cover assets) into a
+    tracked inventory; the monthly ops rhythm includes a liveness pass.
+- [ ] PR I5: Feishu base rebuild drill (探针·灾备演练)
+  - Status: `pending`
+  - Done when: a documented drill restores schema (bitable_schema mirror)
+    + values (sync-data snapshot) into a scratch base on the test tenant,
+    and the measured time-to-restore is recorded in the ops guide.
+- [x] PR I0: ONBOARDING.md + cold-start drill protocol (接手保障)
+  - Status: `done` — repo-root ONBOARDING.md is the single first-hour
+    entrypoint (two-plane map, bus-factor register, golden-path drill);
+    its quality is enforced by the quarterly cold-start drill (§7 of the
+    file): a fresh maintainer or memory-less agent runs the golden path
+    from repo docs alone; every blocker is a doc bug fixed same-day and
+    logged in code_optimization_log.md.
+- [ ] PR I6: Repo-health metrics on the ops dashboard (接手保障·复杂度可见)
+  - Status: `pending`
+  - Done when: flow_dashboard's ops face reports worktree count, dirty
+    files on the main checkout, tracked files under `docs/_build`,
+    tools module count and largest-module size — so complexity growth is
+    a monthly number, not a feeling.
+
 ## 7. Deferred: Do Not Touch Yet
 
 - [ ] Deferred 1: large multi-target conditional-content redesign

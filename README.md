@@ -7,6 +7,8 @@ The current maintained smoke-check baseline is `JE-1000F` across US and JP.
 
 **This README is a quickstart and a navigation map. The full command reference, every operational note (Phase 2 snapshot, review sync, Word/HTML/PDF/MD export, Vercel publish, Read the Docs catalog, Windows cleanup, Git workflow, queue routing) lives in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).**
 
+**New maintainer? Start with [`ONBOARDING.md`](ONBOARDING.md)** — the first-hour entrypoint: two-plane topology, what-runs-where (bus-factor register), and the golden-path drill that certifies a hand-over.
+
 **For AI agent windows (Claude Code / Codex):** Claude Code auto-loads [`CLAUDE.md`](CLAUDE.md), which inlines the shared rules in [`AGENTS.md`](AGENTS.md); Codex reads [`AGENTS.md`](AGENTS.md) and the nearest directory-level `AGENTS.md` directly. To start a task in a new window, run `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>` for a fresh branch off up-to-date `main` (the wrapper refuses a dirty tree). Multi-window concurrency rules are in [`AGENTS.md`](AGENTS.md) §8.
 
 ## 1. Current Role
