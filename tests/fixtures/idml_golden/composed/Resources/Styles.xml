@@ -55,6 +55,13 @@
       <Leading type="unit">7.83</Leading>
     </Properties>
   </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Emphasis Pill" Name="HB Emphasis Pill" PointSize="7" FillColor="Color/Paper" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">8.2</Leading>
+    </Properties>
+  </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/Step" Name="Step" PointSize="6.5" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="TextWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" SpaceBefore="7" SpaceAfter="6" Justification="CenterAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
@@ -90,6 +97,27 @@
       <Leading type="unit">7.2</Leading>
     </Properties>
   </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Safety Lead" Name="HB Safety Lead" PointSize="8" FillColor="Color/HB Brand Dark" SpaceAfter="4.2" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">9.6</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Warning Lead Label" Name="HB Warning Lead Label" PointSize="10" FillColor="Color/HB Brand Dark" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">10.6</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Warning Lead Body" Name="HB Warning Lead Body" PointSize="6.5" FillColor="Color/HB Brand Dark" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/HB FCC Text" Name="HB FCC Text" PointSize="5.6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
@@ -118,11 +146,74 @@
       <Leading type="unit">7.5</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/Item List" Name="Item List" PointSize="6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/Item List" Name="Item List" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" SpaceAfter="2.06929" Hyphenation="false" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Regular</FontStyle>
-      <Leading type="unit">7</Leading>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Safety List" Name="HB Safety List" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" SpaceAfter="2.06929" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Safety Sublist" Name="HB Safety Sublist" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="9.58" FirstLineIndent="-6.04" RightIndent="0" SpaceAfter="2" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Warranty Lead" Name="HB Warranty Lead" PointSize="7" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">8.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Warranty Note" Name="HB Warranty Note" PointSize="6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Warranty Body" Name="HB Warranty Body" PointSize="6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Warranty Title" Name="HB Warranty Title" PointSize="8.2" FillColor="Color/Paper" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">8.8</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Warranty List" Name="HB Warranty List" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="8.8" FirstLineIndent="-5.0" RightIndent="0" SpaceAfter="0.7" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Warranty Year Heading" Name="HB Warranty Year Heading" PointSize="12" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Heavy</FontStyle>
+      <Leading type="unit">12</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Warranty Year Subtitle" Name="HB Warranty Year Subtitle" PointSize="7.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">7.2</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/TableHeading" Name="TableHeading" PointSize="8" FillColor="Color/HB Brand Dark" Justification="LeftAlign">

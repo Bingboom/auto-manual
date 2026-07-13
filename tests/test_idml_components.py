@@ -30,6 +30,10 @@ MINIMAL_SPECS: dict[str, dict] = {
     "langtag": {"kind": "langtag", "lang": "EN", "texts": ["IMPORTANT"]},
     "warrantyyears": {"kind": "warrantyyears", "items": [
         {"number": "3", "unit": "YEARS", "label": "Standard", "text": "Copy."}]},
+    "warrantylead": {"kind": "warrantylead", "texts": ["Purchase-channel lead."]},
+    "warrantysection": {"kind": "warrantysection", "title": "Limited Warranty",
+                        "index": 1, "blocks": [{"kind": "body", "text": "Copy."}]},
+    "emphasispill": {"kind": "emphasispill", "texts": ["Charge before first use."]},
 }
 
 

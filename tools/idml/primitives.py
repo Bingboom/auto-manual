@@ -15,14 +15,10 @@ from .spec_tables import spec_table_xml
 from .style_names import paragraph_style_ref
 from .table_borders import component_table_xml
 
-# saxutils.escape only handles &<> by default; inside a double-quoted
-# XML attribute a raw " truncates the value and malforms the part.
+# saxutils.escape needs an explicit quote entity inside XML attributes.
 _ATTR_ENTITIES = {'"': "&quot;"}
 
-# Text fallbacks are kept as a public compatibility hook for the writer,
-# but semantic symbols should render as symbols, not be rewritten into
-# approximate ASCII. Characters that Gilroy lacks are handled by
-# SYMBOL_FONT_FALLBACK_CHARS below at character-run level.
+# Compatibility hook; semantic symbols stay intact and use font fallbacks.
 GLYPH_FALLBACKS: tuple[tuple[str, str], ...] = ()
 
 DIRECT_CURRENT_SYMBOL_FONT = "Apple Symbols"
@@ -31,11 +27,20 @@ SYMBOL_FONT_FALLBACK_STYLE = "Regular"
 SYMBOL_FONT_FALLBACKS = {
     "⎓": DIRECT_CURRENT_SYMBOL_FONT,
     "※": GENERAL_SYMBOL_FONT,
-    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖●"},
+    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖❶❷❸❹❺❻❼❽❾●"},
 }
 
-PROSE_STYLE = {"h1": "HB H1", "h2": "HB Title L2", "h3": "HB Title L3",
-               "label": "HB Notice Label", "body": "HB Body", "list": "HB List"}
+PROSE_STYLE = {
+    "h1": "HB H1",
+    "h2": "HB Title L2",
+    "h3": "HB Title L3",
+    "label": "HB Notice Label",
+    "body": "HB Body",
+    "safetylead": "HB Safety Lead",
+    "warrantynote": "HB Warranty Note",
+    "list": "HB List",
+    "sublist": "HB Sublist",
+}
 
 
 def clean_text(text: str) -> str:

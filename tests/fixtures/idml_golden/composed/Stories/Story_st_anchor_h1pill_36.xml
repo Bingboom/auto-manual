@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Story Self="st_anchor_h1pill_31" Label="hb:self=st_anchor_h1pill_31" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="LCD DISPLAY">
+<Story Self="st_anchor_h1pill_36" Label="hb:self=st_anchor_h1pill_36" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="SPECIFICATIONS">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange LeftIndent="4.74" AppliedParagraphStyle="ParagraphStyle/带底Heading2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="-1.5"><Content>LCD DISPLAY</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="0.5"><Content>SPECIFICATIONS</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

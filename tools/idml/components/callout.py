@@ -3,8 +3,15 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from ..primitives import cell, component_table, psr, image_cell_content, wrap_table_paragraph
+from ..primitives import (
+    cell,
+    component_table,
+    image_cell_content,
+    psr,
+    wrap_table_paragraph,
+)
 from .base import RenderContext, figure_paragraph
+from .warning_lead import rounded_warninglead
 
 
 def _warning_icon_asset(ctx: RenderContext) -> Path:
@@ -39,6 +46,14 @@ def render_warninglead(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
                        span_columns: bool = True,
                        measure_w: float | None = None) -> tuple[str, float]:
     body_w = measure_w or ctx.text_measure
+    if ctx.add_story is not None:
+        return rounded_warninglead(
+            spec,
+            ctx,
+            tid=tid,
+            terminal=terminal,
+            body_w=body_w,
+        )
     warning_icon_asset = _warning_icon_asset(ctx)
     label = spec.get("label", "")
     texts = spec.get("texts", [])
@@ -47,7 +62,9 @@ def render_warninglead(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
         iw, ih = ctx.art_frame_size(warning_icon_asset, max_w=24.0)
         icon = figure_paragraph(image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih))
     body = "\n".join(texts)
-    right = psr("HB Title L2", label) + psr("HB Body", body, terminal=True)
+    right = psr("HB Warning Lead Label", label) + psr(
+        "HB Warning Lead Body", body, terminal=True,
+    )
     icon_w = min(36.0, max(28.0, body_w * 0.25))
     cols = [icon_w, max(36.0, body_w - icon_w)]
     cells = [

@@ -14,6 +14,24 @@ from ..table_borders import suppress_outer_edges_xml
 from .base import RenderContext
 
 
+def body_data_table_kind(raw_rows: list[list]) -> str | None:
+    """Classify the two source-driven body tables that share group layout."""
+    if not raw_rows:
+        return None
+    n_cols = max(len(row) for row in raw_rows)
+    first_cell = str(raw_rows[0][0]).replace("**", "").strip()
+    if n_cols == 2 and first_cell == "Auto Resume Conditions":
+        return "auto_resume"
+    if (
+        n_cols == 3
+        and first_cell == "Buttons"
+        and [str(cell).strip() for cell in raw_rows[0][1:3]]
+        == ["Operation", "Function"]
+    ):
+        return "key_combinations"
+    return None
+
+
 def _overview_table(raw_rows: list[list], ctx: RenderContext, tid: str) -> str:
     n_cols = max(len(row) for row in raw_rows)
     body_w = ctx.text_measure
@@ -177,7 +195,8 @@ def _troubleshooting_table(raw_rows: list[list], ctx: RenderContext, tid: str) -
 def _body_data_table(raw_rows: list[list], ctx: RenderContext, tid: str,
                      kind: str) -> tuple[str, float]:
     """Mirror the shared LaTeX Auto Resume / Key Combination table tokens."""
-    body_w = ctx.text_measure - 1.5
+    group_indent = param_pt(ctx.params, "comp_body_table_group_indent", 9.92)
+    body_w = ctx.text_measure - group_indent - 1.5
     # LaTeX's m-columns add tabcolsep around the declared percentage.
     # These optical additions place the visible dividers at the same x
     # coordinates instead of treating the bare percentages as full cells.
@@ -254,11 +273,9 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
         n_cols == 2 and bool(raw_rows)
         and str(raw_rows[0][0]).strip().casefold() == "error code"
     )
-    is_auto_resume = n_cols == 2 and first_cell == "Auto Resume Conditions"
-    is_key_combinations = (
-        n_cols == 3 and first_cell == "Buttons" and bool(raw_rows)
-        and [str(cell).strip() for cell in raw_rows[0][1:3]] == ["Operation", "Function"]
-    )
+    body_kind = body_data_table_kind(raw_rows)
+    is_auto_resume = body_kind == "auto_resume"
+    is_key_combinations = body_kind == "key_combinations"
     if is_overview:
         table = _overview_table(raw_rows, ctx, tid)
     elif is_troubleshooting:
@@ -290,13 +307,15 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
         table = component_table(tid, cols, cells, n_rows=len(raw_rows),
                                 role="data")
     if (is_auto_resume or is_key_combinations) and ctx.add_story is not None:
+        group_indent = param_pt(ctx.params, "comp_body_table_group_indent", 9.92)
+        group_width = ctx.text_measure - group_indent
         inner = wrap_table_paragraph(table, True, span_columns=False)
         xml = _page_objects.anchored_panel_group_paragraph(
             ctx.add_story,
             f"st_anchor_data_{tid}",
             "body data table",
             [inner],
-            ctx.text_measure,
+            group_width,
             framed_h,
             terminal=terminal,
             fill="Color/Paper",
@@ -304,11 +323,20 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             stroke_weight=param_pt(ctx.params, "comp_table_outer_rule", 0.75),
             radius=param_pt(ctx.params, "comp_table_outer_arc", 6.8),
             content_inset=0.0,
+            corner_fills={
+                "top_left": "Color/HB Header K08",
+                "top_right": "Color/HB Header K08",
+                "bottom_left": (
+                    "Color/HB Bg K05" if is_auto_resume else "Color/Paper"
+                ),
+                "bottom_right": "Color/Paper",
+            },
         )
         gap = param_pt(ctx.params, "comp_data_table_before", 3.4)
         xml = xml.replace(
             "<ParagraphStyleRange ",
-            f'<ParagraphStyleRange SpaceBefore="{gap:g}" SpaceAfter="{gap:g}" ',
+            f'<ParagraphStyleRange LeftIndent="{group_indent:g}" '
+            f'SpaceBefore="{gap:g}" SpaceAfter="{gap:g}" ',
             1,
         )
     elif is_troubleshooting and ctx.add_story is not None:

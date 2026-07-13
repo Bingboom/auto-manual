@@ -457,7 +457,15 @@ class ExportIdmlTests(unittest.TestCase):
             "kind": "warninglead", "label": "WARNING", "texts": ["lead"]},
             bundle, True, span_columns=False, measure_w=150.0)
         self.assertIn("warning_triangle", xml)
-        self.assertIn(">WARNING<", xml)
+        self.assertIn('FillColor="Color/HB Brand Dark"', xml)
+        warninglead_story = dict(w.stories)["st_anchor_warninglead_text_t_cmp5"]
+        self.assertIn(">WARNING<", warninglead_story)
+        self.assertIn(
+            paragraph_style_ref("HB Warning Lead Label"), warninglead_story,
+        )
+        self.assertIn(
+            paragraph_style_ref("HB Warning Lead Body"), warninglead_story,
+        )
         self.assertNotIn('SpanColumnType="SpanColumns"', xml)
         # fcc: two gray columns with the mark
         xml, _ = w._render_component("t", 3, {
@@ -670,6 +678,29 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(res.blocks[2], ("layout", "twocol_end"))
         self.assertEqual(json.loads(res.blocks[1][1])["kind"], "warninglead")
 
+    def test_safety_lead_and_nested_lists_keep_their_source_semantics(self) -> None:
+        from tools.idml_rst_extract import _parse_text
+
+        res = _parse_text(
+            """.. raw:: latex
+
+   \\safetylead{SAVE THESE INSTRUCTIONS}
+
+- Parent item:
+
+  - Charging temperature: 14°F to 113°F
+  - Discharging temperature: 14°F to 113°F
+""",
+            {"latex"},
+        )
+
+        self.assertEqual(res.blocks, [
+            ("safetylead", "SAVE THESE INSTRUCTIONS"),
+            ("list", "• Parent item:"),
+            ("sublist", "– Charging temperature: 14°F to 113°F"),
+            ("sublist", "– Discharging temperature: 14°F to 113°F"),
+        ])
+
     def test_safety_first_page_split_stops_after_second_twocol(self) -> None:
         blocks = [
             ("h1", "IMPORTANT SAFETY INFORMATION"),
@@ -706,8 +737,9 @@ class ExportIdmlTests(unittest.TestCase):
             ("layout", "twocol_end"),
             ("h2", "OPERATING INSTRUCTIONS"),
             ("layout", "twocol_start"),
-            ("body", "SAVE THESE INSTRUCTIONS"),
+            ("safetylead", "SAVE THESE INSTRUCTIONS"),
             ("list", "• Stop using the product immediately."),
+            ("sublist", "– Charging temperature: 14°F to 113°F"),
             ("layout", "twocol_end"),
         ]
         w.add_safety_page("st_safety_en", "safety_en", blocks, ROOT, 1)
@@ -740,6 +772,21 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("st_safety_en_subbar", stories)
         self.assertIn("OPERATING INSTRUCTIONS", stories["st_safety_en_subbar"])
         self.assertIn("SAVE THESE INSTRUCTIONS", stories["st_safety_en_section2"])
+        self.assertIn(
+            paragraph_style_ref("HB Safety Lead"),
+            stories["st_safety_en_section2"],
+        )
+        self.assertIn(
+            paragraph_style_ref("HB Safety Sublist"),
+            stories["st_safety_en_section2"],
+        )
+        self.assertIn(
+            'LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0"',
+            stories["st_safety_en_section2"],
+        )
+        self.assertIn(
+            'HorizontalScale="98"', stories["st_safety_en_section2"],
+        )
 
     def test_safety_symbols_page_combines_tail_maintenance_and_symbols(self) -> None:
         import json

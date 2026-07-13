@@ -43,11 +43,6 @@ except ModuleNotFoundError:  # direct tools/export_idml.py execution
     )
 
 Block = tuple[str, str]
-# Component spec kinds this extractor can emit in ("component", json) blocks.
-# Parity with the IDML component registry (tools/idml/components.REGISTRY) is
-# test-enforced so a new kind can never ship extractor-side without a renderer.
-# "tailwarnbox" is deliberately absent: the safety+symbols page composer
-# synthesizes it from trailing safety warnboxes; it has no extracted form.
 EMITTED_COMPONENT_KINDS = ("langtag",
     "fcc", "inbox", "lcdmode", "notice", "safetyinstruction", "safetywarning",
     "warninglead", "warnbox")
@@ -184,7 +179,7 @@ _MACROS: tuple[tuple[str, int, str], ...] = (
     ("\\HBInBoxThree", 6, "inbox"),
     ("\\section", 1, "h1x"),
     ("\\safetysubbar", 1, "h2"),
-    ("\\safetylead", 1, "body"),
+    ("\\safetylead", 1, "safetylead"),
     # JE-2000E-era page macros
     ("\\HBPageBreak", 1, "pagebreak"),
     ("\\HBAppStep", 2, "h2num"),
@@ -314,8 +309,8 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
             result.blocks.append(("h2", f"{args[0]} {args[1]}".strip()))
         elif kind == "image1" and args:
             result.blocks.append(("image", args[0]))
-        elif kind == "body" and args:
-            result.blocks.append(("body", args[0]))
+        elif kind in {"body", "safetylead"} and args:
+            result.blocks.append((kind, args[0]))
         elif kind == "pagebreak" and consumed_any:
             result.blocks.append(("layout", "page_break"))
         consumed_any = True
@@ -459,13 +454,18 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
 
         # bullet lists
         if stripped.startswith("- "):
+            indent = len(line) - len(line.lstrip())
             item = [stripped[2:]]
             i += 1
             while i < n and lines[i].strip() and not lines[i].strip().startswith("- ") \
                     and (len(lines[i]) - len(lines[i].lstrip())) >= 2:
                 item.append(lines[i].strip())
                 i += 1
-            result.blocks.append(("list", "• " + " ".join(item)))
+            nested = indent >= 2
+            result.blocks.append((
+                "sublist" if nested else "list",
+                ("– " if nested else "• ") + " ".join(item),
+            ))
             continue
 
         # plain paragraph

@@ -54,6 +54,19 @@
   label=\raisebox{\csname HBcomp_list_bullet_raise\endcsname}{\csname HBcomp_list_bullet_symbol\endcsname}
 }
 
+% Nested manual items are a distinct dash-led level in the production
+% master.  Keep the hierarchy semantic so Sphinx, LaTeX, and IDML can all
+% preserve it instead of flattening child items into parent prose.
+\setlist[itemize,2]{
+  leftmargin=\csname HBcomp_sublist_leftmargin\endcsname,
+  labelsep=\csname HBcomp_sublist_labelsep\endcsname,
+  itemsep=\csname HBcomp_sublist_itemsep\endcsname,
+  topsep=\csname HBcomp_sublist_topsep\endcsname,
+  parsep=0pt,
+  partopsep=0pt,
+  label=\csname HBcomp_sublist_bullet_symbol\endcsname
+}
+
 % ------------------------------
 % Table base
 % ------------------------------

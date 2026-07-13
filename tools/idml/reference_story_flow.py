@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from . import ir_projection
+from .params import param_pt
 
 
 @dataclass
@@ -60,6 +61,11 @@ class ReferenceStoryEmitter:
         master_offsets = {"WARRANTY": 12.30, "APP SETUP": 13.13}
         writer.add_spread_chain(
             sid, pages, page_cursor, columns=columns,
+            bottom_extra=(
+                param_pt(
+                    writer.params, "comp_warranty_page_extra_height", 17.0,
+                ) if first_h1 == "WARRANTY" else 0.0
+            ),
             first_top_offset=(
                 master_offsets.get(first_h1, 13.81)
                 if first_kind == "h1" else 0.0
@@ -102,7 +108,7 @@ class ReferenceStoryEmitter:
                 # The LaTeX-parity NOTE is taller than the legacy strip. The
                 # production page still has an 18 pt footer-safe region below
                 # the normal body margin, also used by the LCD continuation.
-                writer.page_h - writer.m_b + 18.0,
+                writer.page_h - 4.0,
             )],
         )
         self.toc.note_h1s(ups_blocks, page_cursor, 1)

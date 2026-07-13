@@ -114,11 +114,11 @@ styles:
   HB-SAFETY-LEAD:
     role: Large warning lead panel
     semantic_source_kinds: [safety_lead]
-    token_refs: [comp_lockup_height, comp_lockup_width, comp_lockup_gap, type_warning_text_font_size, type_warning_text_font_leading]
+    token_refs: [comp_warning_lead_height, comp_warning_lead_dark_width, comp_warning_lead_width_trim, comp_warning_lead_text_left_pad, comp_warning_lead_right_pad, comp_warning_lead_icon_width, comp_warning_lead_icon_height, type_warning_lead_label_font_size, type_warning_lead_label_font_leading, type_warning_lead_body_font_size, type_warning_lead_body_font_leading, comp_twocol_before]
     latex: {owner: components_safety.tex, entrypoints: [HBWarningLeadBlock]}
     indesign: {renderer: warninglead, object_style: HB Rounded Panel}
-    status: partial
-    debt: [IDML and LaTeX use different internal frame formulas.]
+    status: aligned
+    debt: []
 
   HB-SAFETY-DANGER:
     role: Danger lockup

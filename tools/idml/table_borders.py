@@ -24,9 +24,18 @@ def suppress_outer_cell_edges(cells: list[str], n_rows: int, n_cols: int) -> lis
         if not attrs:
             out.append(cell_xml)
             continue
-        out.append(re.sub(r'(<Cell\b[^>]*)(>)',
-                          r'\1 ' + " ".join(attrs) + r'\2',
-                          cell_xml, count=1))
+        def _patch(match: re.Match[str]) -> str:
+            head = match.group(1)
+            for assignment in attrs:
+                attr, value = assignment.split("=", 1)
+                pattern = rf'{re.escape(attr)}="[^"]*"'
+                if re.search(pattern, head):
+                    head = re.sub(pattern, f'{attr}={value}', head, count=1)
+                else:
+                    head += " " + assignment
+            return head + match.group(2)
+
+        out.append(re.sub(r'(<Cell\b[^>]*)(>)', _patch, cell_xml, count=1))
     return out
 
 

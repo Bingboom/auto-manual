@@ -2,34 +2,83 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_safety_en_section1" Label="hb:self=st_safety_en_section1" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="safety_en section 1">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
-  <Table Self="st_safety_en_section1_cmp0" AppliedTableStyle="TableStyle/Warning表格" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
-    <Row Self="st_safety_en_section1_cmp0r0" Name="0"/>
-    <Column Self="st_safety_en_section1_cmp0col0" Name="0" SingleColumnWidth="36"/>
-    <Column Self="st_safety_en_section1_cmp0col1" Name="1" SingleColumnWidth="114.547"/>
-    <Cell Self="st_safety_en_section1_cmp0c0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="4" BottomInset="4" LeftInset="4" RightInset="4">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="st_safety_en_section1_cmp0wi" Label="hb:self=st_safety_en_section1_cmp0wi" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" StrokeColor="Swatch/None" StrokeWeight="0"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -21.1364" LeftDirection="0 -21.1364" RightDirection="0 -21.1364"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="24 0" LeftDirection="24 0" RightDirection="24 0"/><PathPointType Anchor="24 -21.1364" LeftDirection="24 -21.1364" RightDirection="24 -21.1364"/></PathPointArray></GeometryPathType></PathGeometry></Properties><AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/><Image Self="st_safety_en_section1_cmp0wi_img" ItemTransform="1 0 0 1 0 0"><Link Self="st_safety_en_section1_cmp0wi_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/symbols/warning_triangle.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Br/></CharacterStyleRange></ParagraphStyleRange>
-    </Cell>
-    <Cell Self="st_safety_en_section1_cmp0c1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="4" BottomInset="4" LeftInset="5" RightInset="4">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>WARNING</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
+  <ParagraphStyleRange SpaceAfter="0.47" AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Group Self="grp_warninglead_st_safety_en_section1_cmp0" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0">
+<Rectangle Self="bg_warninglead_st_safety_en_section1_cmp0" Label="hb:self=bg_warninglead_st_safety_en_section1_cmp0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Panel" FillColor="Color/Paper" StrokeColor="Color/HB Brand Dark" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="0 -34.0157" LeftDirection="0 -37.1468" RightDirection="0 -34.0157"/>
+            <PathPointType Anchor="0 -5.66929" LeftDirection="0 -5.66929" RightDirection="0 -2.53823"/>
+            <PathPointType Anchor="5.66929 0" LeftDirection="2.53823 0" RightDirection="5.66929 0"/>
+            <PathPointType Anchor="145.134 0" LeftDirection="145.134 0" RightDirection="148.265 0"/>
+            <PathPointType Anchor="150.803 -5.66929" LeftDirection="150.803 -2.53823" RightDirection="150.803 -5.66929"/>
+            <PathPointType Anchor="150.803 -34.0157" LeftDirection="150.803 -34.0157" RightDirection="150.803 -37.1468"/>
+            <PathPointType Anchor="145.134 -39.685" LeftDirection="148.265 -39.685" RightDirection="145.134 -39.685"/>
+            <PathPointType Anchor="5.66929 -39.685" LeftDirection="5.66929 -39.685" RightDirection="2.53823 -39.685"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+</Rectangle>
+<Rectangle Self="plate_warninglead_st_safety_en_section1_cmp0" Label="hb:self=plate_warninglead_st_safety_en_section1_cmp0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Panel" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="42.1358 -39.685" LeftDirection="42.1358 -39.685" RightDirection="42.1358 -39.685"/>
+            <PathPointType Anchor="42.1358 0" LeftDirection="42.1358 0" RightDirection="42.1358 0"/>
+            <PathPointType Anchor="5.66929 0" LeftDirection="5.66929 0" RightDirection="2.53823 0"/>
+            <PathPointType Anchor="0 -5.66929" LeftDirection="0 -2.53823" RightDirection="0 -5.66929"/>
+            <PathPointType Anchor="0 -34.0157" LeftDirection="0 -34.0157" RightDirection="0 -37.1468"/>
+            <PathPointType Anchor="5.66929 -39.685" LeftDirection="2.53823 -39.685" RightDirection="5.66929 -39.685"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+</Rectangle>
+<Rectangle Self="icon_warninglead_st_safety_en_section1_cmp0" Label="hb:self=icon_warninglead_st_safety_en_section1_cmp0" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="6.91736 -32.4283" LeftDirection="6.91736 -32.4283" RightDirection="6.91736 -32.4283"/>
+            <PathPointType Anchor="6.91736 -7.25669" LeftDirection="6.91736 -7.25669" RightDirection="6.91736 -7.25669"/>
+            <PathPointType Anchor="35.2185 -7.25669" LeftDirection="35.2185 -7.25669" RightDirection="35.2185 -7.25669"/>
+            <PathPointType Anchor="35.2185 -32.4283" LeftDirection="35.2185 -32.4283" RightDirection="35.2185 -32.4283"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+<Image Self="icon_warninglead_st_safety_en_section1_cmp0_img" ItemTransform="1 0 0 1 0 0"><Link Self="icon_warninglead_st_safety_en_section1_cmp0_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/symbols/warning_triangle_white.svg"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle>
+<TextFrame Self="tf_warninglead_st_safety_en_section1_cmp0" Label="hb:self=tf_warninglead_st_safety_en_section1_cmp0" ParentStory="st_anchor_warninglead_text_st_safety_en_section1_cmp0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="46.6965 -39.685" LeftDirection="46.6965 -39.685" RightDirection="46.6965 -39.685"/>
+            <PathPointType Anchor="46.6965 0" LeftDirection="46.6965 0" RightDirection="46.6965 0"/>
+            <PathPointType Anchor="145.701 0" LeftDirection="145.701 0" RightDirection="145.701 0"/>
+            <PathPointType Anchor="145.701 -39.685" LeftDirection="145.701 -39.685" RightDirection="145.701 -39.685"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" VerticalJustification="CenterAlign" AutoSizingType="Off"><Properties><InsetSpacing type="list"><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem></InsetSpacing></Properties></TextFramePreference>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+</TextFrame>
+</Group><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>• Read all the instructions before using the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Always follow these basic precautions when using this product.</Content></CharacterStyleRange>
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>• Do not allow children to play on the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-    </Cell>
-  </Table>
-    <Br/></CharacterStyleRange>
-  </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Read all the instructions before using the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
-  </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Do not allow children to play on the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
-  </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Stop using the product immediately if it has been physically damaged or modified.</Content></CharacterStyleRange>
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>• Stop using the product immediately if it has been physically damaged or modified.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

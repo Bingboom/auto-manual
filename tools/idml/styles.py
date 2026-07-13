@@ -7,7 +7,8 @@ leading for figure paragraphs, DOMVersion 15.0) and must not be
 """
 from __future__ import annotations
 
-from .params import IDPKG, brand_cmyk, param_pt
+from .params import IDPKG, param_pt
+from .style_resources import fonts_xml, graphic_xml, preferences_xml
 from .style_names import paragraph_style_name, paragraph_style_ref
 
 
@@ -23,16 +24,29 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Notice Side Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "center"),
         ("HB Callout Label", sz("type_tip_label_font_size", 8.0), sz("type_tip_label_font_leading", 9.0), "Bold", "center"),
         ("HB Callout Body", sz("type_tip_body_font_size", 6.5), sz("type_tip_body_font_leading", 7.83), "Medium", ""),
+        ("HB Emphasis Pill", sz("type_warranty_lead_font_size", 7.0), sz("type_warranty_lead_font_leading", 8.2), "Bold", "emphasis"),
         ("HB Card Number", sz("type_inbox_label_font_size", 6.5), sz("type_inbox_label_font_leading", 7.0), "Bold", "card_number"),
         ("HB InBox Label", sz("type_inbox_label_font_size", 6.3), sz("type_inbox_label_font_leading", 7.0), "Bold", "center"),
         ("HB Capsule Text", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", "capsule_text"),
         ("HB Figure", sz("type_body_font_size", 6.2), 0.0, "Regular", "figure"),
         ("HB Body", sz("type_body_font_size", 6.2), sz("type_body_font_leading", 7.5), "Medium", ""),  # \HBTypeBody is HBFontMedium
+        ("HB Safety Lead", sz("type_safety_lead_font_size", 8.0), sz("type_safety_lead_font_leading", 9.6), "Bold", "safety_lead"),
+        ("HB Warning Lead Label", sz("type_warning_lead_label_font_size", 10.0), sz("type_warning_lead_label_font_leading", 10.6), "Bold", "warning_lead"),
+        ("HB Warning Lead Body", sz("type_warning_lead_body_font_size", 6.5), sz("type_warning_lead_body_font_leading", 7.2), "Bold", "warning_lead"),
         ("HB FCC Text", 5.6, 6.15, "Regular", ""),
         ("HB Safety Tail Label", 9.85, 10.2, "Bold", ""),
         ("HB Safety Tail Body", 5.6, 6.2, "Regular", ""),
         ("HB Maintenance Body", 6.0, 7.5, "Regular", ""),
-        ("HB List", sz("type_list_font_size", 5.4), sz("type_list_font_leading", 6.4), "Regular", ""),
+        ("HB List", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "list"),
+        ("HB Safety List", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "list"),
+        ("HB Safety Sublist", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "sublist"),
+        ("HB Warranty Lead", sz("type_warranty_lead_font_size", 7.0), sz("type_warranty_lead_font_leading", 8.2), "Bold", ""),
+        ("HB Warranty Note", sz("type_warranty_body_font_size", 6.0), sz("type_warranty_body_font_leading", 7.2), "Regular", ""),
+        ("HB Warranty Body", sz("type_warranty_body_font_size", 6.0), sz("type_warranty_body_font_leading", 7.2), "Regular", ""),
+        ("HB Warranty Title", sz("type_warranty_title_font_size", 8.2), sz("type_warranty_title_font_leading", 8.8), "Bold", "warranty_title"),
+        ("HB Warranty List", sz("type_warranty_body_font_size", 6.0), sz("type_warranty_body_font_leading", 7.2), "Regular", "warranty_list"),
+        ("HB Warranty Year Heading", sz("type_warranty_year_unit_font_size", 12.0), sz("type_warranty_year_unit_font_size", 12.0), "Heavy", ""),
+        ("HB Warranty Year Subtitle", sz("type_warranty_year_subtitle_font_size", 7.2), sz("type_warranty_year_subtitle_font_size", 7.2), "Bold", ""),
         ("HB Spec Section", sz("type_spec_section_font_size", 8.8), sz("type_spec_section_font_leading", 9.6), "Bold", ""),
         ("HB Spec Label", sz("type_spec_label_font_size", 6.0), sz("type_spec_label_font_leading", 6.6), "Medium", ""),
         ("HB Spec Value", sz("type_spec_value_font_size", 6.0), sz("type_spec_value_font_leading", 6.6), "Regular", ""),
@@ -59,7 +73,7 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
         shaded = name == "HB H1" or kind in {"label", "card_number"}
         fill = (
             "Color/Paper"
-            if shaded or kind in {"capsule_text", "toc_bar", "toc_range"}
+            if shaded or kind in {"capsule_text", "toc_bar", "toc_range", "emphasis", "warranty_title"}
             else "Color/HB Brand Dark"
         )
         # NOTE the Paragraph* prefix: bare ShadingOn/ShadingColor are
@@ -97,10 +111,39 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
             else "RightAlign" if kind == "toc_range"
             else "LeftAlign"
         )
+        paragraph_attrs = ""
+        if kind == "list":
+            paragraph_attrs = (
+                f'LeftIndent="{param_pt(params, "idml_list_left_indent", 3.7):g}" '
+                f'FirstLineIndent="{param_pt(params, "idml_list_first_line_indent", -6.25):g}" '
+                'RightIndent="0" '
+                f'SpaceAfter="{param_pt(params, "comp_list_itemsep", 2.07):g}" '
+                'Hyphenation="false" '
+            )
+        elif kind == "sublist":
+            paragraph_attrs = (
+                f'LeftIndent="{param_pt(params, "idml_sublist_left_indent", 10.38):g}" '
+                f'FirstLineIndent="{param_pt(params, "idml_sublist_first_line_indent", -6.04):g}" '
+                'RightIndent="0" '
+                f'SpaceAfter="{param_pt(params, "comp_sublist_itemsep", 2.0):g}" '
+                'Hyphenation="false" '
+            )
+        elif kind == "safety_lead":
+            paragraph_attrs = (
+                f'SpaceAfter="{param_pt(params, "idml_safety_lead_space_after", 2.4):g}" '
+                'Hyphenation="false" '
+            )
+        elif kind == "warning_lead":
+            paragraph_attrs = 'Hyphenation="false" '
+        elif kind == "warranty_list":
+            paragraph_attrs = (
+                'LeftIndent="8.8" FirstLineIndent="-5.0" RightIndent="0" '
+                'SpaceAfter="0.7" Hyphenation="false" '
+            )
         styles.append(
             f'  <ParagraphStyle Self="{self_id}" Name="{template_name}" '
             f'PointSize="{size:g}" FillColor="{fill}" {shading}'
-            f'Justification="{justification}">\n'
+            f'{paragraph_attrs}Justification="{justification}">\n'
             f'    <Properties>\n'
             f'      <AppliedFont type="string">Gilroy</AppliedFont>\n'
             f'      <FontStyle type="string">{weight}</FontStyle>\n'
@@ -139,67 +182,4 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
         '    <ObjectStyle Self="ObjectStyle/HB Badge" Name="HB Badge"/>\n'
         '  </RootObjectStyleGroup>\n'
         '</idPkg:Styles>\n'
-    )
-
-
-def graphic_xml(params: dict[str, tuple[str, str]]) -> str:
-    p = params
-    colors = []
-    for name, key, default in (
-        ("HB Brand Dark", "brand_color_branddark", "0,0,0,0.90"),
-        ("HB Text Gray", "brand_color_textgray", "0,0,0,0.90"),
-        ("HB Line K40", "brand_color_linek40", "0,0,0,0.80"),
-        ("HB Bg K05", "brand_color_bgk05", "0,0,0,0.05"),
-        ("HB Border K10", "brand_color_borderk10", "0,0,0,0.10"),
-        ("HB Header K08", "brand_color_headerk08", "0,0,0,0.08"),
-    ):
-        c, m, y, k = brand_cmyk(p, key, default)
-        colors.append(
-            f'  <Color Self="Color/{name}" Model="Process" Space="CMYK" '
-            f'ColorValue="{c:g} {m:g} {y:g} {k:g}" Name="{name}"/>'
-        )
-    return (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Graphic xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        '  <Color Self="Color/Black" Model="Process" Space="CMYK" ColorValue="0 0 0 100" Name="Black"/>\n'
-        '  <Color Self="Color/Paper" Model="Process" Space="CMYK" ColorValue="0 0 0 0" Name="Paper"/>\n'
-        + "\n".join(colors) + "\n"
-        '  <Swatch Self="Swatch/None" Name="None"/>\n'
-        '</idPkg:Graphic>\n'
-    )
-
-
-def fonts_xml() -> str:
-    return (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Fonts xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        '  <FontFamily Self="ff_gilroy" Name="Gilroy">\n'
-        '    <Font Self="ff_gilroy_r" FontFamily="Gilroy" Name="Gilroy Regular" PostScriptName="Gilroy-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeCFF"/>\n'
-        '    <Font Self="ff_gilroy_m" FontFamily="Gilroy" Name="Gilroy Medium" PostScriptName="Gilroy-Medium" Status="Installed" FontStyleName="Medium" FontType="OpenTypeCFF"/>\n'
-        '    <Font Self="ff_gilroy_sb" FontFamily="Gilroy" Name="Gilroy Semibold" PostScriptName="Gilroy-SemiBold" Status="Installed" FontStyleName="Semibold" FontType="OpenTypeCFF"/>\n'
-        '    <Font Self="ff_gilroy_b" FontFamily="Gilroy" Name="Gilroy Bold" PostScriptName="Gilroy-Bold" Status="Installed" FontStyleName="Bold" FontType="OpenTypeCFF"/>\n'
-        '    <Font Self="ff_gilroy_h" FontFamily="Gilroy" Name="Gilroy Heavy" PostScriptName="Gilroy-Heavy" Status="Installed" FontStyleName="Heavy" FontType="OpenTypeCFF"/>\n'
-        '  </FontFamily>\n'
-        '  <FontFamily Self="ff_arial_unicode_ms" Name="Arial Unicode MS">\n'
-        '    <Font Self="ff_arial_unicode_ms_r" FontFamily="Arial Unicode MS" Name="Arial Unicode MS Regular" PostScriptName="ArialUnicodeMS" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>\n'
-        '  </FontFamily>\n'
-        '  <FontFamily Self="ff_apple_symbols" Name="Apple Symbols">\n'
-        '    <Font Self="ff_apple_symbols_r" FontFamily="Apple Symbols" Name="Apple Symbols Regular" PostScriptName="AppleSymbols" Status="Installed" FontStyleName="Regular" FontType="TrueType"/>\n'
-        '  </FontFamily>\n'
-        '</idPkg:Fonts>\n'
-    )
-
-
-def preferences_xml(*, page_w: float, page_h: float,
-                    m_t: float, m_b: float, m_l: float, m_r: float) -> str:
-    return (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Preferences xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'  <DocumentPreference PageWidth="{page_w:g}" PageHeight="{page_h:g}" '
-        'PagesPerDocument="1" FacingPages="true" PageOrientation="Portrait" '
-        'DocumentBleedTopOffset="8.5" DocumentBleedBottomOffset="8.5" '
-        'DocumentBleedInsideOrLeftOffset="8.5" DocumentBleedOutsideOrRightOffset="8.5"/>\n'
-        '  <MarginPreference ColumnCount="1" ColumnGutter="12" '
-        f'Top="{m_t:g}" Bottom="{m_b:g}" Left="{m_l:g}" Right="{m_r:g}"/>\n'
-        '</idPkg:Preferences>\n'
     )

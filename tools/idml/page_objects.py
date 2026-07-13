@@ -53,11 +53,10 @@ def heading_text(writer, text: str, *, level: int,
         font_style = "Medium"
     xml = writer._psr("HB Capsule Text", text, terminal=True)
     if level == 1:
-        # PDF coordinate comparison against the LaTeX master shows that
-        # InDesign's Gilroy metrics place the visible cap-height about
-        # 1.5 pt above the shared optical baseline.  Keep this correction
-        # on the character run so it applies equally to flowed and composed
-        # H1 bars without changing their geometry.
+        # CenterAlign centres the font's line box, not Gilroy's visible caps.
+        # Fixed/composed title frames need a slight downward optical shift;
+        # flowed H1 hosts override it below because their inline line box has
+        # different metrics.
         xml = xml.replace(
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
@@ -480,6 +479,11 @@ def h1_pill_paragraph(writer, text: str, width: float,
     sid = f"st_anchor_h1pill_{len(writer.stories)}"
     title_xml = heading_text(writer, text, level=1, point_size=point_size)
     title_xml = title_xml.replace(
+        'BaselineShift="-1.5"',
+        'BaselineShift="0.5"',
+        1,
+    )
+    title_xml = title_xml.replace(
         "<ParagraphStyleRange ",
         '<ParagraphStyleRange LeftIndent="4.74" ',
         1,
@@ -529,7 +533,8 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
                                     stroke: str = "Color/HB Line K40",
                                     stroke_weight: float = 0.75,
                                     radius: float = 6.8,
-                                    content_inset: float = 0.0) -> str:
+                                    content_inset: float = 0.0,
+                                    corner_fills: dict[str, str] | None = None) -> str:
     """Rounded background plus square content frame in one anchored group.
 
     A table directly inside a rounded text-frame is inset by InDesign at
@@ -580,12 +585,14 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
         + anchor
         + '  </TextFrame>\n'
     )
+    corner_fills = corner_fills or {}
     masks = "".join(
         (
             f'  <Rectangle Self="mask_{corner}_group_{sid}" '
             'ContentType="Unassigned" '
             'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-            f'FillColor="{fill}" StrokeColor="Swatch/None" StrokeWeight="0" '
+            f'FillColor="{corner_fills.get(corner, fill)}" '
+            'StrokeColor="Swatch/None" StrokeWeight="0" '
             'ItemTransform="1 0 0 1 0 0">\n'
             + rounded_corner_mask_geometry(
                 path_x1, path_y1, path_x2, path_y2, radius, corner)

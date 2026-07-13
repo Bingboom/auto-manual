@@ -85,6 +85,38 @@ class IdmlVisualParityTests(unittest.TestCase):
             places=5,
         )
 
+    def test_body_table_group_is_indented_and_corner_fills_reach_outline(self) -> None:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        ctx = RenderContext(
+            params=writer.params,
+            page_w=writer.page_w,
+            m_l=writer.m_l,
+            m_r=writer.m_r,
+            root=ROOT,
+            bundle_root=ROOT,
+            add_story=writer._add_story_parts,
+        )
+        rows = [
+            ["Auto Resume Conditions", "Not Auto Resume Conditions"],
+            ["Power-on", "Manual output off"],
+            ["", "Energy Saving mode output off"],
+        ]
+        xml, _ = render_table_block(rows, ctx, tid="auto_indent", terminal=True)
+        indent = param_pt(writer.params, "comp_body_table_group_indent", 9.92)
+        self.assertIn(f'LeftIndent="{indent:g}"', xml)
+        self.assertIn(
+            'Self="mask_top_left_group_st_anchor_data_auto_indent" '
+            'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+            'FillColor="Color/HB Header K08"',
+            xml,
+        )
+        self.assertIn(
+            'Self="mask_bottom_left_group_st_anchor_data_auto_indent" '
+            'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+            'FillColor="Color/HB Bg K05"',
+            xml,
+        )
+
     def test_full_capsule_has_a_real_incoming_upper_left_handle(self) -> None:
         radius = 7.0
         kappa = radius * 0.5522847498
@@ -263,7 +295,7 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn('FillColor="Color/HB Bg K05"', auto_story)
         self.assertIn('MinimumHeight="11.9055"', auto_story)
         self.assertIn('<Group Self="grp_st_anchor_data_tbl_auto"', auto_xml)
-        self.assertIn('SingleColumnWidth="158.057"', auto_story)
+        self.assertIn('SingleColumnWidth="153.097"', auto_story)
         self.assertIn('LeftInset="0"', auto_story)
 
         key_rows = [
@@ -273,8 +305,8 @@ class IdmlVisualParityTests(unittest.TestCase):
         render_table_block(key_rows, ctx, tid="tbl_key", terminal=True)
         key_story = dict(writer.stories)["st_anchor_data_tbl_key"]
         self.assertIn('MinimumHeight="32.8819"', key_story)
-        self.assertIn('SingleColumnWidth="130.104"', key_story)
-        self.assertIn('SingleColumnWidth="95.2224"', key_story)
+        self.assertIn('SingleColumnWidth="126.036"', key_story)
+        self.assertIn('SingleColumnWidth="92.3452"', key_story)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Header"', key_story)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Body"', key_story)
 

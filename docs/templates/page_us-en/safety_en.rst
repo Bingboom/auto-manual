@@ -56,9 +56,11 @@
 
    - Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance.
    - Do not charge the battery in extremely hot or cold environments and strictly adhere to the product's specified operating temperature ranges:
+
      - Charging temperature: |CHARGING_TEMPERATURE_VALUE_1|
      - Discharging temperature: |DISCHARGING_TEMPERATURE_VALUE_1|
    - To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.
+
      - Charging in damp or poorly ventilated spaces may cause safety hazards.
      - Water can cause short circuits or damage to the charger, leading to safety risks.
    - Unplug the power cord from a power outlet during a storm.
