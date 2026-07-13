@@ -379,9 +379,20 @@ def h1_pill_paragraph(writer, text: str, width: float,
     # host stories, which is what makes InDesign bind ParentStory at all.
     if height is None:
         height = h1_bar_h_pt(writer)
+    # fit-to-width: long localized titles (FR/ES) must not overset the
+    # single-line bar — shrink the point size until the estimated run
+    # fits the measure, floor 7pt (the LaTeX box wraps instead; a capped
+    # shrink keeps the IDML bar single-line like the master).
+    from .params import param_pt
+    size = param_pt(writer.params, "type_h1_font_size", 9.0)
+    avail = width - 11.0  # left/right insets
+    est_w = len(text) * size * 0.62
+    point_size = None
+    if est_w > avail and len(text) > 0:
+        point_size = max(7.0, avail / (len(text) * 0.62))
     sid = f"st_anchor_h1pill_{len(writer.stories)}"
     writer._add_story_parts(
-        sid, text, [heading_text(writer, text, level=1)])
+        sid, text, [heading_text(writer, text, level=1, point_size=point_size)])
     from .style_names import paragraph_style_ref as _psr_ref
     figure_style = _psr_ref("HB Figure")
     return (
