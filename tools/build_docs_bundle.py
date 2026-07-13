@@ -3,6 +3,9 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.attachment_identity import stage_bundle_attachment_aliases
+from tools.data_snapshot import resolve_active_data_root
+
 
 def _existing_review_overlay_paths(bundle_dir: Path) -> tuple[Path, ...]:
     paths: list[Path] = []
@@ -33,6 +36,7 @@ def prepare_manual_bundle(
     review_content_exists: Callable[..., bool],
     overlay_review_content_onto_bundle: Callable[..., None],
     docs_dir: Path,
+    repo_root: Path,
     printer: Callable[[str], None] = print,
 ) -> Any:
     doc_type = cfg.get("doc_type", "manual_bundle")
@@ -107,6 +111,28 @@ def prepare_manual_bundle(
                 "Review bundle not found for "
                 f"model='{model or ''}', region='{region or ''}'. "
                 "Run 'python build.py review ...' first."
+            )
+    if review_applied:
+        active_data_root = resolve_active_data_root(
+            cfg,
+            repo_root=repo_root,
+            data_root=data_root,
+            model=model,
+            region=region,
+        )
+        alias_report = stage_bundle_attachment_aliases(
+            bundle.bundle_dir,
+            active_data_root,
+        )
+        if alias_report.missing:
+            raise RuntimeError(
+                "Review bundle has unresolved attachment(s): "
+                + ", ".join(alias_report.missing)
+            )
+        if alias_report.aliases:
+            printer(
+                f"[build] Staged {alias_report.aliases} frozen attachment alias(es) "
+                f"across {alias_report.rewritten_files} review file(s)"
             )
     printer(f"[build] Prepared bundle: {bundle.bundle_dir}")
     printer("[build] Bundle source: review" if review_applied else "[build] Bundle source: runtime")

@@ -2,8 +2,8 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_anchor_h1pill_0" Label="hb:self=st_anchor_h1pill_0" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="PREFACE">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/带底Heading2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>PREFACE</Content></CharacterStyleRange>
+  <ParagraphStyleRange LeftIndent="4.74" AppliedParagraphStyle="ParagraphStyle/带底Heading2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="-1.5"><Content>PREFACE</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

@@ -79,6 +79,13 @@ native INDD/PDF and zero-overset/font/link preflight; use
 `tools/idml_pdf_parity.py` to record the page-size/count gate and the visual
 delta against the LaTeX PDF.
 
+If a review page still references an attachment basename with an older opaque
+hash, the build now stages the unique current semantic match under that frozen
+name. Missing or ambiguous matches fail before handoff. The production IDML
+also supports several editable stories on one physical master page and uses
+grouped rounded-table backgrounds, so designers can edit table cells without
+reintroducing the curved-corner inset or changing the approved pagination.
+
 Use `python build.py idml --idml-mode both ...` when design needs the paired
 handoff folder: it keeps the legacy production IDML, adds
 `production/manual.production.idml`, the flow folder, `missing_assets_report.md`,

@@ -137,9 +137,9 @@ comp_trouble_steps_pad_tb,1.0,mm,Troubleshooting numbered-step cell top/bottom p
 comp_trouble_section_needspace,102,mm,Minimum space required for troubleshooting heading and table
 type_data_table_font_size,5.9,pt,Body data table font size
 type_data_table_font_leading,6.7,pt,Body data table leading
-type_data_table_header_font_size,6.2,pt,Body data table header font size
+type_data_table_header_font_size,6.6,pt,Body data table header font size
 type_data_table_header_font_leading,7.0,pt,Body data table header leading
-type_trouble_code_font_size,7.5,pt,Troubleshooting error-code font size
+type_trouble_code_font_size,8.0,pt,Troubleshooting error-code font size
 type_trouble_code_font_leading,8.0,pt,Troubleshooting error-code leading
 ,,,
 ,,,------ DATA TABLE DENSITY (archive 1500 Ultra parity) ------
@@ -233,7 +233,7 @@ comp_spec_environment_extra_before,1.2,mm,Spec environmental section extra space
 comp_spec_notes_before,4.2,mm,Spec notes block space before
 comp_spec_footnotes_before,1.2,mm,Spec footnotes block space before
 ,,,
-type_spec_section_font_size,8.8,pt,Spec section title font size
+type_spec_section_font_size,8.0,pt,Spec section title font size
 type_spec_section_font_leading,9.6,pt,Spec section title leading
 type_spec_label_font_size,6.0,pt,Spec left-cell label font size (archive: 6.0)
 type_spec_label_font_leading,6.6,pt,Spec left-cell label leading

@@ -5,6 +5,7 @@
     <Font Self="ff_gilroy_m" FontFamily="Gilroy" Name="Gilroy Medium" PostScriptName="Gilroy-Medium" Status="Installed" FontStyleName="Medium" FontType="OpenTypeCFF"/>
     <Font Self="ff_gilroy_sb" FontFamily="Gilroy" Name="Gilroy Semibold" PostScriptName="Gilroy-SemiBold" Status="Installed" FontStyleName="Semibold" FontType="OpenTypeCFF"/>
     <Font Self="ff_gilroy_b" FontFamily="Gilroy" Name="Gilroy Bold" PostScriptName="Gilroy-Bold" Status="Installed" FontStyleName="Bold" FontType="OpenTypeCFF"/>
+    <Font Self="ff_gilroy_h" FontFamily="Gilroy" Name="Gilroy Heavy" PostScriptName="Gilroy-Heavy" Status="Installed" FontStyleName="Heavy" FontType="OpenTypeCFF"/>
   </FontFamily>
   <FontFamily Self="ff_arial_unicode_ms" Name="Arial Unicode MS">
     <Font Self="ff_arial_unicode_ms_r" FontFamily="Arial Unicode MS" Name="Arial Unicode MS Regular" PostScriptName="ArialUnicodeMS" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>

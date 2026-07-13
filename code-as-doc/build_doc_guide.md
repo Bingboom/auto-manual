@@ -645,6 +645,19 @@ only on character-height estimates. The source-authored TOC folios and back
 cover copy also come from the IR; they are not recomputed or hardcoded in the
 InDesign renderer.
 
+Review bundles may retain an older opaque attachment hash after the live
+snapshot refreshes that file. The IDML build resolves a unique current file by
+the stable category/order/name identity, stages it under the frozen basename,
+and rejects missing or ambiguous matches. It does not silently emit a broken
+InDesign link.
+
+Where the production master shares one physical English page across semantic
+stories, the production IDML uses explicit non-overlapping story regions. This
+keeps LCD/operations, UPS/charging, and charging/storage/troubleshooting on the
+master page sequence while preserving separate editable stories. Data-table
+rounding is also non-destructive: a rounded background and a square editable
+table frame are grouped, avoiding InDesign's curved-corner cell inset.
+
 `idml` defaults to the production exporter. For the design-template handoff
 path, use flow mode; it writes semantic Markdown, a simple continuous-story
 IDML, style map, and trace files under

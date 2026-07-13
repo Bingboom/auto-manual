@@ -19,7 +19,11 @@ def h1_bar_opts(inset: tuple[float, float, float, float]) -> dict:
 def heading_bar_opts(level: int,
                      inset: tuple[float, float, float, float]) -> dict:
     if level == 1:
-        return {"h1_bar_bg": True, "inset": inset}
+        return {
+            "h1_bar_bg": True,
+            "inset": inset,
+            "valign": "CenterAlign",
+        }
     if level == 2:
         return {"capsule_bg": True, "inset": inset}
     return {"inset": inset}
@@ -44,6 +48,18 @@ def heading_text(writer, text: str, *, level: int,
         # \HBTypeSubbar renders Gilroy-Medium in the publish line
         font_style = "Medium"
     xml = writer._psr("HB Capsule Text", text, terminal=True)
+    if level == 1:
+        # PDF coordinate comparison against the LaTeX master shows that
+        # InDesign's Gilroy metrics place the visible cap-height about
+        # 1.5 pt above the shared optical baseline.  Keep this correction
+        # on the character run so it applies equally to flowed and composed
+        # H1 bars without changing their geometry.
+        xml = xml.replace(
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            'BaselineShift="-1.5"',
+            1,
+        )
     if point_size is None:
         return xml
     override = f'PointSize="{point_size:g}"'
@@ -94,7 +110,7 @@ def rounded_path_geometry(x1: float, y1: float, x2: float, y2: float,
         return path_geometry(x1, y1, x2, y2)
     k = r * 0.5522847498
     points = (
-        ((x1, y1 + r), (x1, y1 + r), (x1, y1 + r)),
+        ((x1, y1 + r), (x1, y1 + r - k), (x1, y1 + r)),
         ((x1, y2 - r), (x1, y2 - r), (x1, y2 - r + k)),
         ((x1 + r, y2), (x1 + r - k, y2), (x1 + r, y2)),
         ((x2 - r, y2), (x2 - r, y2), (x2 - r + k, y2)),
@@ -236,13 +252,9 @@ def h1_arc_pt(writer) -> float:
 
 
 def h1_bar_h_pt(writer) -> float:
-    """H1 bar height derived like the LaTeX tcolorbox: leading plus the
-    vertical pads plus the box-model correction measured on the accepted
-    publish PDF (14.8pt with the current CSV values)."""
+    """H1 bar height from the same explicit token used by LaTeX."""
     from .params import param_pt
-    return (param_pt(writer.params, "type_h1_font_leading", 10.8)
-            + 2 * param_pt(writer.params, "comp_h1_pill_pad_tb", 1.28)
-            + 1.45)
+    return param_pt(writer.params, "comp_h1_pill_height", 20.126)
 
 
 def capsule_xml(writer, rect_id: str,
@@ -301,17 +313,20 @@ def lcd_hero_paragraph(writer) -> str:
     serves every language). Empty string when the asset is absent."""
     from pathlib import Path as _P
 
-    from tools.utils.path_utils import latex_renderer_of
-
     from .style_names import paragraph_style_ref
     root = _P(__file__).resolve().parents[2]
-    hero = latex_renderer_of(root / "docs") / "assets" / "lcd_display_hero.png"
+    hero = (
+        root / "docs" / "templates" / "word_template" / "common_assets"
+        / "lcd" / "lcd_map.png"
+    )
     if not hero.is_file():
         return ""
-    width, height = writer._art_frame_size(hero, max_w=250.0)
+    width, height = writer._art_frame_size(
+        hero, max_w=writer.page_w - writer.m_l - writer.m_r)
     style = paragraph_style_ref("HB Figure")
     return (
-        f'  <ParagraphStyleRange AppliedParagraphStyle="{style}" Justification="CenterAlign">'
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style}" '
+        'Justification="CenterAlign" SpaceBefore="5.72" SpaceAfter="3.37">'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         + writer._image_cell_content("lcd_hero", hero, width, height)
         + "<Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>\n"
@@ -326,7 +341,8 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
                                inset: tuple[float, float, float, float] = (1, 7, 1, 7),
                                valign: str = "CenterAlign",
                                auto_height: bool = False,
-                               bottom_only: bool = False) -> str:
+                               bottom_only: bool = False,
+                               anchor_x_offset: float = 0.0) -> str:
     """An inline anchored text frame with a rounded filled path.
 
     Paragraph shading and table cells cannot round their corners; every
@@ -364,7 +380,8 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
         'SpineRelative="false" LockPosition="false" PinPosition="true" '
         'AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" '
         'HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" '
-        'VerticalReferencePoint="LineBaseline" AnchorXoffset="0" '
+        'VerticalReferencePoint="LineBaseline" '
+        f'AnchorXoffset="{anchor_x_offset:g}" '
         'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
         '  </TextFrame>'
     )
@@ -393,8 +410,14 @@ def h1_pill_paragraph(writer, text: str, width: float,
     if est_w > avail and len(text) > 0:
         point_size = max(7.0, avail / (len(text) * 0.62))
     sid = f"st_anchor_h1pill_{len(writer.stories)}"
+    title_xml = heading_text(writer, text, level=1, point_size=point_size)
+    title_xml = title_xml.replace(
+        "<ParagraphStyleRange ",
+        '<ParagraphStyleRange LeftIndent="4.74" ',
+        1,
+    )
     writer._add_story_parts(
-        sid, text, [heading_text(writer, text, level=1, point_size=point_size)])
+        sid, text, [title_xml])
     from .style_names import paragraph_style_ref as _psr_ref
     figure_style = _psr_ref("HB Figure")
     return (
@@ -403,7 +426,7 @@ def h1_pill_paragraph(writer, text: str, width: float,
         + anchored_rounded_frame_xml(sid, width, height,
                                      fill="Color/HB Brand Dark",
                                      bottom_only=True, radius=h1_arc_pt(writer),
-                                     inset=(1.5, 5, 1, 6))
+                                     inset=(1.5, 1.0, 1, 1.0))
         + '<Content></Content><Br/></CharacterStyleRange>'
         '</ParagraphStyleRange>\n'
     )
@@ -428,4 +451,125 @@ def anchored_panel_paragraph(add_story, sid: str, title: str,
         + frame + '<Content></Content>'
         + ('' if terminal else '<Br/>')
         + '</CharacterStyleRange></ParagraphStyleRange>\n'
+    )
+
+
+def anchored_panel_group_paragraph(add_story, sid: str, title: str,
+                                    parts: list[str], width: float, height: float, *,
+                                    terminal: bool = False,
+                                    fill: str = "Color/Paper",
+                                    stroke: str = "Color/HB Line K40",
+                                    stroke_weight: float = 0.75,
+                                    radius: float = 6.8) -> str:
+    """Rounded background plus square content frame in one anchored group.
+
+    A table directly inside a rounded text-frame is inset by InDesign at
+    the curved top corners.  Separating the rounded rectangle from the
+    square text-frame preserves the exact table measure while keeping the
+    whole object editable and movable as one inline group.
+    """
+    from .primitives import path_geometry
+    from .style_names import paragraph_style_ref as _psr_ref
+
+    story_sid = add_story(sid, title, parts)
+    anchor = (
+        '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
+        'SpineRelative="false" LockPosition="false" PinPosition="true" '
+        'AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" '
+        'HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" '
+        'VerticalReferencePoint="LineBaseline" AnchorXoffset="0" '
+        'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
+    )
+    background = (
+        f'  <Rectangle Self="bg_group_{sid}" ContentType="Unassigned" '
+        f'AppliedObjectStyle="{ROUNDED_TABLE_OBJECT_STYLE}" FillColor="{fill}" '
+        f'StrokeColor="{stroke}" StrokeWeight="{stroke_weight:g}" '
+        'ItemTransform="1 0 0 1 0 0">\n'
+        + rounded_path_geometry(-0.37, -height, width - 0.37, 0.0, radius)
+        + anchor
+        + '  </Rectangle>\n'
+    )
+    frame = (
+        f'  <TextFrame Self="tf_group_{sid}" ParentStory="{story_sid}" '
+        'PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" '
+        'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
+        'FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" '
+        'ItemTransform="1 0 0 1 0 0">\n'
+        + path_geometry(0.0, -height, width, 0.0)
+        + '    <TextFramePreference TextColumnCount="1" '
+        'VerticalJustification="TopAlign" AutoSizingType="Off">'
+        '<Properties><InsetSpacing type="list">'
+        + ''.join('<ListItem type="unit">0</ListItem>' for _ in range(4))
+        + '</InsetSpacing></Properties></TextFramePreference>\n'
+        + anchor
+        + '  </TextFrame>\n'
+    )
+    group = (
+        f'<Group Self="grp_{sid}" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+        'ItemTransform="1 0 0 1 0 0">\n'
+        + background + frame + '</Group>'
+    )
+    style_ref = _psr_ref("HB Figure")
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        + group + '<Content></Content>'
+        + ('' if terminal else '<Br/>')
+        + '</CharacterStyleRange></ParagraphStyleRange>\n'
+    )
+
+
+def vertical_spacer_paragraph(rect_id: str, height: float) -> str:
+    """Invisible inline rectangle that contributes an exact flow height."""
+    from .primitives import path_geometry
+    from .style_names import paragraph_style_ref as _psr_ref
+
+    style_ref = _psr_ref("HB Figure")
+    rectangle = (
+        f'<Rectangle Self="{rect_id}" ContentType="Unassigned" '
+        'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+        'FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" '
+        'ItemTransform="1 0 0 1 0 0">\n'
+        + path_geometry(0.0, -height, 1.0, 0.0)
+        + '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
+        'SpineRelative="false" LockPosition="false" PinPosition="true" '
+        'AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" '
+        'HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" '
+        'VerticalReferencePoint="LineBaseline" AnchorXoffset="0" '
+        'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
+        '  </Rectangle>'
+    )
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        + rectangle
+        + '<Content></Content><Br/></CharacterStyleRange>'
+        '</ParagraphStyleRange>\n'
+    )
+
+
+def anchored_spacer_paragraph(add_story, sid: str, height: float) -> str:
+    """Invisible anchored text-frame used when a real flow gap is required."""
+    from .style_names import paragraph_style_ref as _psr_ref
+
+    empty_style = _psr_ref("HB Body")
+    empty = (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{empty_style}">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n'
+    )
+    return anchored_panel_paragraph(
+        add_story,
+        sid,
+        "vertical spacer",
+        [empty],
+        1.0,
+        height,
+        fill="Swatch/None",
+        stroke="Swatch/None",
+        stroke_weight=0,
+        radius=0,
+        inset=(0, 0, 0, 0),
+        valign="TopAlign",
+        auto_height=False,
     )

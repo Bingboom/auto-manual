@@ -77,7 +77,7 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
     texts = spec.get("texts", [])
     icon = ""
     if warning_icon_asset.exists():
-        iw, ih = ctx.art_frame_size(warning_icon_asset, max_w=24.0)
+        iw, ih = ctx.art_frame_size(warning_icon_asset, max_w=22.0)
         icon = figure_paragraph(image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih),
                                 tail="<Content></Content>")
     body = " ".join(t.strip() for t in texts if str(t).strip())
@@ -86,13 +86,13 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
     cols = [icon_w, label_w, max(80.0, body_w - icon_w - label_w)]
     cells = [
         cell(f"{tid}c0", "0:0", icon,
-             stroke=False, top=1, bottom=1, left=4, right=3),
+             stroke=False, top=0, bottom=0, left=4, right=3),
         cell(f"{tid}c1", "1:0",
-             psr("HB Title L2", label, terminal=True),
-             stroke=False, top=1, bottom=1, left=3, right=3),
+             psr("HB Safety Tail Label", label, terminal=True),
+             stroke=False, top=0, bottom=0, left=3, right=3),
         cell(f"{tid}c2", "2:0",
-             psr("HB Body", body, terminal=True),
-             stroke=False, top=1, bottom=1, left=3, right=4),
+             psr("HB Safety Tail Body", body, terminal=True),
+             stroke=False, top=0, bottom=0, left=3, right=4),
     ]
     table = component_table(tid, cols, cells, role="warning")
     per_line = max(20, int((body_w - icon_w - label_w) / (0.52 * 6.2)))
@@ -185,7 +185,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
     ]
     inner = wrap_table_paragraph(
         component_table(tid, cols, cells, role="notice"), True, False)
-    panel_h = max(chip_h + 8.0, 7.4 * lines + 12.0)
+    panel_h = max(chip_h + 8.0, 6.4 * lines + 6.0)
     xml = _po.anchored_panel_paragraph(
         ctx.add_story, f"st_anchor_notice_{tid}", f"{label} notice panel",
         [inner], body_w, panel_h, terminal=terminal,

@@ -1,4 +1,4 @@
-"""Full-page placed-PDF spreads (cover, product overview).
+"""Full-page placed-PDF spreads (cover and product overview).
 
 The LaTeX pipeline ships these pages as finished art via ``\\includepdf``
 (``docs/renderers/latex/assets/cover-en.pdf``,

@@ -228,8 +228,18 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 self.assertIn(flow, names)
                 self.assertNotIn("Stories/Story_st_trouble.xml", names)
                 story = zf.read(flow).decode("utf-8")
-                self.assertIn("Restart the product.", story)
                 self.assertIn('ParentStory="st_anchor_h1pill_', story)
+                trouble_stories = [
+                    name
+                    for name in names
+                    if name.startswith(
+                        "Stories/Story_st_anchor_trouble_"
+                        "st_flow_09_storage_troubleshooting_en"
+                    )
+                ]
+                self.assertEqual(len(trouble_stories), 1)
+                trouble_story = zf.read(trouble_stories[0]).decode("utf-8")
+                self.assertIn("Restart the product.", trouble_story)
                 pills = "".join(
                     zf.read(n).decode("utf-8") for n in names
                     if n.startswith("Stories/Story_st_anchor_h1pill_"))

@@ -26,11 +26,23 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Capsule Text", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", "capsule_text"),
         ("HB Figure", sz("type_body_font_size", 6.2), 0.0, "Regular", "figure"),
         ("HB Body", sz("type_body_font_size", 6.2), sz("type_body_font_leading", 7.5), "Medium", ""),  # \HBTypeBody is HBFontMedium
+        ("HB FCC Text", 5.6, 6.15, "Regular", ""),
+        ("HB Safety Tail Label", 9.85, 10.2, "Bold", ""),
+        ("HB Safety Tail Body", 5.6, 6.2, "Regular", ""),
+        ("HB Maintenance Body", 6.0, 7.5, "Regular", ""),
         ("HB List", sz("type_list_font_size", 5.4), sz("type_list_font_leading", 6.4), "Regular", ""),
         ("HB Spec Section", sz("type_spec_section_font_size", 8.8), sz("type_spec_section_font_leading", 9.6), "Bold", ""),
-        ("HB Spec Label", sz("type_spec_label_font_size", 6.0), sz("type_spec_label_font_leading", 6.6), "Regular", ""),
+        ("HB Spec Label", sz("type_spec_label_font_size", 6.0), sz("type_spec_label_font_leading", 6.6), "Medium", ""),
         ("HB Spec Value", sz("type_spec_value_font_size", 6.0), sz("type_spec_value_font_leading", 6.6), "Regular", ""),
         ("HB Spec Note", sz("type_spec_note_font_size", 5.4), sz("type_spec_note_font_leading", 6.0), "Regular", ""),
+        ("HB Data Header", sz("type_data_table_header_font_size", 6.6), sz("type_data_table_header_font_leading", 7.0), "Bold", ""),
+        ("HB Data Header Center", sz("type_data_table_header_font_size", 6.6), sz("type_data_table_header_font_leading", 7.0), "Bold", "center"),
+        ("HB Data Body", sz("type_data_table_font_size", 5.9), sz("type_data_table_font_leading", 6.7), "Regular", ""),
+        ("HB Data Code", sz("type_trouble_code_font_size", 8.0), sz("type_trouble_code_font_leading", 8.0), "Bold", "center"),
+        ("HB TOC Title", 22.25, 26.0, "Bold", "toc_title"),
+        ("HB TOC Bar", 10.0, 10.0, "Heavy", "toc_bar"),
+        ("HB TOC Range", 9.0, 10.0, "Bold", "toc_range"),
+        ("HB TOC Entry", 6.5, 14.0, "Regular", "toc_entry"),
         ("HB Big Numeral", 26.0, 26.0, "Bold", ""),
     ]
 
@@ -43,7 +55,11 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
         # V2.0 master: H1 is a white-on-brand-dark bar; notice labels are
         # compact dark pills. Both map to paragraph shading in IDML.
         shaded = name == "HB H1" or kind in {"label", "card_number"}
-        fill = "Color/Paper" if shaded or kind == "capsule_text" else "Color/HB Brand Dark"
+        fill = (
+            "Color/Paper"
+            if shaded or kind in {"capsule_text", "toc_bar", "toc_range"}
+            else "Color/HB Brand Dark"
+        )
         # NOTE the Paragraph* prefix: bare ShadingOn/ShadingColor are
         # silently ignored by InDesign (designer-reported: no H1 bar,
         # invisible white labels/numerals)
@@ -74,7 +90,11 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
             )
         else:
             shading = ""
-        justification = "CenterAlign" if kind in {"center", "card_number"} else "LeftAlign"
+        justification = (
+            "CenterAlign" if kind in {"center", "card_number"}
+            else "RightAlign" if kind == "toc_range"
+            else "LeftAlign"
+        )
         styles.append(
             f'  <ParagraphStyle Self="{self_id}" Name="{template_name}" '
             f'PointSize="{size:g}" FillColor="{fill}" {shading}'
@@ -155,6 +175,7 @@ def fonts_xml() -> str:
         '    <Font Self="ff_gilroy_m" FontFamily="Gilroy" Name="Gilroy Medium" PostScriptName="Gilroy-Medium" Status="Installed" FontStyleName="Medium" FontType="OpenTypeCFF"/>\n'
         '    <Font Self="ff_gilroy_sb" FontFamily="Gilroy" Name="Gilroy Semibold" PostScriptName="Gilroy-SemiBold" Status="Installed" FontStyleName="Semibold" FontType="OpenTypeCFF"/>\n'
         '    <Font Self="ff_gilroy_b" FontFamily="Gilroy" Name="Gilroy Bold" PostScriptName="Gilroy-Bold" Status="Installed" FontStyleName="Bold" FontType="OpenTypeCFF"/>\n'
+        '    <Font Self="ff_gilroy_h" FontFamily="Gilroy" Name="Gilroy Heavy" PostScriptName="Gilroy-Heavy" Status="Installed" FontStyleName="Heavy" FontType="OpenTypeCFF"/>\n'
         '  </FontFamily>\n'
         '  <FontFamily Self="ff_arial_unicode_ms" Name="Arial Unicode MS">\n'
         '    <Font Self="ff_arial_unicode_ms_r" FontFamily="Arial Unicode MS" Name="Arial Unicode MS Regular" PostScriptName="ArialUnicodeMS" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>\n'

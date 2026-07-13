@@ -11,7 +11,8 @@ import re
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from .style_names import paragraph_style_ref, table_style_ref
+from .spec_tables import spec_table_xml
+from .style_names import paragraph_style_ref
 from .table_borders import component_table_xml
 
 # saxutils.escape only handles &<> by default; inside a double-quoted
@@ -130,33 +131,12 @@ def spec_table(tid: str, rows: list[tuple[str, str]],
                label_style: str = "HB Spec Label", *,
                params: dict[str, tuple[str, str]],
                page_w: float, m_l: float, m_r: float,
-               role: str | None = None) -> str:
-    table_style = table_style_ref(role)
-    left_ratio = float(params.get("comp_spec_table_left_ratio", ("0.315", ""))[0])
-    body_w = page_w - m_l - m_r
-    col1 = body_w * left_ratio
-    col2 = body_w - col1
-    cells = []
-    for ri, (label, value) in enumerate(rows):
-        for ci, (txt, style) in enumerate(((label, label_style), (value, "HB Spec Value"))):
-            cells.append(
-                f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" RowSpan="1" ColumnSpan="1" '
-                'AppliedCellStyle="CellStyle/$ID/[None]" '
-                'TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">\n'
-                + psr(style, txt, terminal=True) +
-                '    </Cell>'
-            )
-    row_els = "\n".join(
-        f'    <Row Self="{tid}r{ri}" Name="{ri}" SingleRowHeight="10.3"/>' for ri in range(len(rows))
-    )
-    return (
-        f'  <Table Self="{tid}" AppliedTableStyle="{table_style}" '
-        f'BodyRowCount="{len(rows)}" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">\n'
-        f'{row_els}\n'
-        f'    <Column Self="{tid}col0" Name="0" SingleColumnWidth="{col1:g}"/>\n'
-        f'    <Column Self="{tid}col1" Name="1" SingleColumnWidth="{col2:g}"/>\n'
-        + "\n".join(cells) + "\n"
-        '  </Table>\n'
+               role: str | None = None,
+               visual_parity: bool = False) -> str:
+    return spec_table_xml(
+        tid, rows, label_style,
+        params=params, page_w=page_w, m_l=m_l, m_r=m_r,
+        role=role, visual_parity=visual_parity, paragraph_xml=psr,
     )
 
 
@@ -230,16 +210,34 @@ def art_frame_size(img: Path, max_w: float = 120.0, *,
 
 def cell(cid: str, name: str, content: str, *, fill: str | None = None,
          stroke: bool = True, top: float = 3, bottom: float = 3,
-         left: float = 4, right: float = 4) -> str:
+         left: float = 4, right: float = 4,
+         edge_weight: float | None = None,
+         edge_color: str | None = None,
+         valign: str | None = None) -> str:
     # cell fill is FillColor in IDML; CellFillColor is silently ignored
     # (designer-reported: no gray FCC/notice panels)
     fill_attr = f'FillColor="{fill}" ' if fill else ""
     stroke_attr = "" if stroke else (
         'LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" '
         'TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" ')
+    if stroke and edge_weight is not None:
+        stroke_attr = (
+            f'LeftEdgeStrokeWeight="{edge_weight:g}" '
+            f'RightEdgeStrokeWeight="{edge_weight:g}" '
+            f'TopEdgeStrokeWeight="{edge_weight:g}" '
+            f'BottomEdgeStrokeWeight="{edge_weight:g}" '
+        )
+    if stroke and edge_color:
+        stroke_attr += (
+            f'LeftEdgeStrokeColor="{edge_color}" '
+            f'RightEdgeStrokeColor="{edge_color}" '
+            f'TopEdgeStrokeColor="{edge_color}" '
+            f'BottomEdgeStrokeColor="{edge_color}" '
+        )
+    valign_attr = f'VerticalJustification="{valign}" ' if valign else ""
     return (
         f'    <Cell Self="{cid}" Name="{name}" RowSpan="1" ColumnSpan="1" '
-        f'AppliedCellStyle="CellStyle/$ID/[None]" {fill_attr}{stroke_attr}'
+        f'AppliedCellStyle="CellStyle/$ID/[None]" {fill_attr}{stroke_attr}{valign_attr}'
         f'TopInset="{top:g}" BottomInset="{bottom:g}" '
         f'LeftInset="{left:g}" RightInset="{right:g}">\n'
         + content + '    </Cell>')

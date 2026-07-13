@@ -133,13 +133,13 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
 
     spread_id = f"sp_{page_index}"
     page_no = page_index + 1
-    body_x = 27.4
-    body_w = writer.page_w - body_x * 2
+    body_x = writer.m_l
+    body_w = writer.page_w - writer.m_l - writer.m_r
     frames = []
     for frame_id, story_id, rect, opts in (
-        ("title", title_sid, (body_x, 27.5, body_w, h1_bar_h_pt(writer)),
+        ("title", title_sid, (body_x, 27.92, body_w, h1_bar_h_pt(writer)),
          {**heading_bar_opts(1, (1.5, 0, 1, 0)),
-          "text_rect": (body_x + 6.0, 27.5, body_w - 12.0, h1_bar_h_pt(writer))}),
+          "text_rect": (body_x + 6.0, 26.0, body_w - 12.0, h1_bar_h_pt(writer))}),
         ("warning", warning_sid, (body_x, 55.5, body_w, 31.5),
          with_rounded_outer({"inset": (0, 0, 0, 0)})),
         ("section1", section_sids[0] if section_sids else "", (body_x, 93.5, body_w, 162.0),
@@ -333,15 +333,15 @@ def add_safety_symbols_page(
     maint_body_sid = f"{sid}_maintenance_body"
     writer._add_story_parts(
         maint_body_sid, "Maintenance body",
-        [writer._psr("HB Body", maint_text, terminal=True)])
+        [writer._psr("HB Maintenance Body", maint_text, terminal=True)])
 
     symbols_title_sid = f"{sid}_symbols_title"
     writer._add_story_parts(
         symbols_title_sid, "Symbols title",
         [heading_text(writer, copy["title"], level=1)])
 
-    body_x = 27.4
-    body_w = writer.page_w - body_x * 2
+    body_x = writer.m_l
+    body_w = writer.page_w - writer.m_l - writer.m_r
     icon_gap = 6.0
     icon_table_w = (body_w - icon_gap) / 2.0
     left_icons, right_icons, _overflow_icons = template_symbol_split(icons)
@@ -373,13 +373,16 @@ def add_safety_symbols_page(
 
     for ti, (t_sid, t_h) in enumerate(tail_stories):
         target_h = 34.5 if ti == 0 else 28.0
-        tail_h = min(max(target_h, t_h + 3.0), target_h + 6.0) + 3.0
+        tail_h = (target_h if lang == "en" else
+                  min(max(target_h, t_h + 3.0), target_h + 6.0) + 3.0)
         _place(f"tail_{ti}", t_sid, tail_h,
                with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=4.0)
-    maint_h = est_table_height([maint_text], body_w, 24.0) - 16.0
+    maint_h = (25.0 if lang == "en" else
+               est_table_height([maint_text], body_w, 24.0) - 16.0)
     _place("maint_title", maint_title_sid, SUBBAR_H,
            heading_bar_opts(2, (0.5, 5, 0.5, 6)), gap=3.5)
-    _place("maint_body", maint_body_sid, maint_h, {"inset": (0, 0, 0, 0)}, gap=8.0)
+    _place("maint_body", maint_body_sid, maint_h, {"inset": (0, 0, 0, 0)},
+           gap=0.4 if lang == "en" else 8.0)
     _place("symbols_title", symbols_title_sid, h1_bar_h_pt(writer),
            heading_bar_opts(1, (1.5, 5, 1, 6)), gap=9.0)
     signal_row_h = 26.0 if lang == "en" else 18.0
@@ -387,7 +390,7 @@ def add_safety_symbols_page(
         [t for _, t in signals], body_w * 0.76, signal_row_h)
     _place("signals", signal_sid, signals_h, with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=6.5)
     bottom = writer.page_h - 2.0
-    icons_h = max(60.0, min(
+    icons_h = 3.0 + max(60.0, min(
         max(est_table_height([r.get("text", "") for r in left_icons], icon_table_w * 0.73, 24.0),
             est_table_height([r.get("text", "") for r in right_icons], icon_table_w * 0.73, 24.0)),
         bottom - y))

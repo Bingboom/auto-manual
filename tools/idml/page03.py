@@ -60,7 +60,7 @@ def _fcc_text_story(writer, sid: str, title: str, text: str, *,
     parts: list[str] = []
     if image is not None and image.exists():
         parts.append(_image_paragraph(writer, f"{sid}_mark", image, 32.0, center=False))
-    parts.append(writer._psr("HB Body", text.strip(), terminal=True))
+    parts.append(writer._psr("HB FCC Text", text.strip(), terminal=True))
     return _story(writer, sid, title, parts)
 
 
@@ -130,7 +130,7 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
             sid,
             "fcc_left",
             left_sid,
-            (BODY_X + 4.0, 34.0, 145.0, 156.0),
+            (BODY_X + 4.0, 34.0, 145.0, 162.0),
             {"inset": (0, 0, 0, 0)},
         ),
         frame_with_background(
@@ -138,7 +138,7 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
             sid,
             "fcc_right",
             right_sid,
-            (BODY_X + 156.0, 34.0, BODY_W - 162.0, 156.0),
+            (BODY_X + 156.0, 34.0, BODY_W - 162.0, 162.0),
             {"inset": (0, 0, 0, 0)},
         ),
     ]
@@ -282,7 +282,8 @@ def add_fcc_inbox_page(
             "title",
             title_sid,
             (BODY_X, 245.0, BODY_W, H1_BAR_H),
-            heading_bar_opts(1, (1.5, 5, 1, 6)),
+            {**heading_bar_opts(1, (1.5, 5, 1, 6)),
+             "text_rect": (BODY_X + 6.4, 243.04, BODY_W - 12.8, H1_BAR_H)},
         ),
         *card_frames,
         *tip_frames,

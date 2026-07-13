@@ -7,29 +7,29 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -238.346" LeftDirection="-156.994 -238.346" RightDirection="-156.994 -238.346"/>
-            <PathPointType Anchor="-156.994 -208.346" LeftDirection="-156.994 -208.346" RightDirection="-156.994 -208.346"/>
-            <PathPointType Anchor="156.994 -208.346" LeftDirection="156.994 -208.346" RightDirection="156.994 -208.346"/>
-            <PathPointType Anchor="156.994 -238.346" LeftDirection="156.994 -238.346" RightDirection="156.994 -238.346"/>
+            <PathPointType Anchor="-154.937 -228.506" LeftDirection="-154.937 -228.506" RightDirection="-154.937 -228.506"/>
+            <PathPointType Anchor="-154.937 -198.506" LeftDirection="-154.937 -198.506" RightDirection="-154.937 -198.506"/>
+            <PathPointType Anchor="156.047 -198.506" LeftDirection="156.047 -198.506" RightDirection="156.047 -198.506"/>
+            <PathPointType Anchor="156.047 -228.506" LeftDirection="156.047 -228.506" RightDirection="156.047 -228.506"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
-    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 0"/>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
   </TextFrame>
   <Rectangle Self="bg_toc_bar_0" Label="hb:self=bg_toc_bar_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -193.346" LeftDirection="-156.994 -193.346" RightDirection="-156.994 -193.346"/>
-            <PathPointType Anchor="-156.994 -193.346" LeftDirection="-156.994 -193.346" RightDirection="-156.994 -189.48"/>
-            <PathPointType Anchor="-149.994 -186.346" LeftDirection="-153.86 -186.346" RightDirection="-149.994 -186.346"/>
-            <PathPointType Anchor="149.994 -186.346" LeftDirection="149.994 -186.346" RightDirection="153.86 -186.346"/>
-            <PathPointType Anchor="156.994 -193.346" LeftDirection="156.994 -189.48" RightDirection="156.994 -193.346"/>
-            <PathPointType Anchor="156.994 -193.346" LeftDirection="156.994 -193.346" RightDirection="156.994 -197.212"/>
-            <PathPointType Anchor="149.994 -200.346" LeftDirection="153.86 -200.346" RightDirection="149.994 -200.346"/>
-            <PathPointType Anchor="-149.994 -200.346" LeftDirection="-149.994 -200.346" RightDirection="-153.86 -200.346"/>
+            <PathPointType Anchor="-156.047 -189.411" LeftDirection="-156.047 -193.512" RightDirection="-156.047 -189.411"/>
+            <PathPointType Anchor="-156.047 -189.411" LeftDirection="-156.047 -189.411" RightDirection="-156.047 -185.311"/>
+            <PathPointType Anchor="-148.622 -181.986" LeftDirection="-152.723 -181.986" RightDirection="-148.622 -181.986"/>
+            <PathPointType Anchor="148.622 -181.986" LeftDirection="148.622 -181.986" RightDirection="152.723 -181.986"/>
+            <PathPointType Anchor="156.047 -189.411" LeftDirection="156.047 -185.311" RightDirection="156.047 -189.411"/>
+            <PathPointType Anchor="156.047 -189.411" LeftDirection="156.047 -189.411" RightDirection="156.047 -193.512"/>
+            <PathPointType Anchor="148.622 -196.836" LeftDirection="152.723 -196.836" RightDirection="148.622 -196.836"/>
+            <PathPointType Anchor="-148.622 -196.836" LeftDirection="-148.622 -196.836" RightDirection="-152.723 -196.836"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -40,25 +40,40 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-148.994 -200.346" LeftDirection="-148.994 -200.346" RightDirection="-148.994 -200.346"/>
-            <PathPointType Anchor="-148.994 -186.346" LeftDirection="-148.994 -186.346" RightDirection="-148.994 -186.346"/>
-            <PathPointType Anchor="148.994 -186.346" LeftDirection="148.994 -186.346" RightDirection="148.994 -186.346"/>
-            <PathPointType Anchor="148.994 -200.346" LeftDirection="148.994 -200.346" RightDirection="148.994 -200.346"/>
+            <PathPointType Anchor="-150.117 -196.836" LeftDirection="-150.117 -196.836" RightDirection="-150.117 -196.836"/>
+            <PathPointType Anchor="-150.117 -181.986" LeftDirection="-150.117 -181.986" RightDirection="-150.117 -181.986"/>
+            <PathPointType Anchor="21.5347 -181.986" LeftDirection="21.5347 -181.986" RightDirection="21.5347 -181.986"/>
+            <PathPointType Anchor="21.5347 -196.836" LeftDirection="21.5347 -196.836" RightDirection="21.5347 -196.836"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
-    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="1 0 1 0"/>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_toc_range_0" Label="hb:self=tf_toc_range_0" ParentStory="st_toc_range_0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="122.707 -196.206" LeftDirection="122.707 -196.206" RightDirection="122.707 -196.206"/>
+            <PathPointType Anchor="122.707 -181.356" LeftDirection="122.707 -181.356" RightDirection="122.707 -181.356"/>
+            <PathPointType Anchor="151.107 -181.356" LeftDirection="151.107 -181.356" RightDirection="151.107 -181.356"/>
+            <PathPointType Anchor="151.107 -196.206" LeftDirection="151.107 -196.206" RightDirection="151.107 -196.206"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 0"/>
   </TextFrame>
   <TextFrame Self="tf_toc_seg0_c0" Label="hb:self=tf_toc_seg0_c0" ParentStory="st_toc_seg0_c0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-156.994 -180.346" LeftDirection="-156.994 -180.346" RightDirection="-156.994 -180.346"/>
-            <PathPointType Anchor="-156.994 -140.346" LeftDirection="-156.994 -140.346" RightDirection="-156.994 -140.346"/>
-            <PathPointType Anchor="-6 -140.346" LeftDirection="-6 -140.346" RightDirection="-6 -140.346"/>
-            <PathPointType Anchor="-6 -180.346" LeftDirection="-6 -180.346" RightDirection="-6 -180.346"/>
+            <PathPointType Anchor="-156.047 -170.856" LeftDirection="-156.047 -170.856" RightDirection="-156.047 -170.856"/>
+            <PathPointType Anchor="-156.047 -58.8565" LeftDirection="-156.047 -58.8565" RightDirection="-156.047 -58.8565"/>
+            <PathPointType Anchor="-6.24189 -58.8565" LeftDirection="-6.24189 -58.8565" RightDirection="-6.24189 -58.8565"/>
+            <PathPointType Anchor="-6.24189 -170.856" LeftDirection="-6.24189 -170.856" RightDirection="-6.24189 -170.856"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -70,10 +85,166 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="6 -180.346" LeftDirection="6 -180.346" RightDirection="6 -180.346"/>
-            <PathPointType Anchor="6 -140.346" LeftDirection="6 -140.346" RightDirection="6 -140.346"/>
-            <PathPointType Anchor="156.994 -140.346" LeftDirection="156.994 -140.346" RightDirection="156.994 -140.346"/>
-            <PathPointType Anchor="156.994 -180.346" LeftDirection="156.994 -180.346" RightDirection="156.994 -180.346"/>
+            <PathPointType Anchor="6.24189 -170.856" LeftDirection="6.24189 -170.856" RightDirection="6.24189 -170.856"/>
+            <PathPointType Anchor="6.24189 -58.8565" LeftDirection="6.24189 -58.8565" RightDirection="6.24189 -58.8565"/>
+            <PathPointType Anchor="156.047 -58.8565" LeftDirection="156.047 -58.8565" RightDirection="156.047 -58.8565"/>
+            <PathPointType Anchor="156.047 -170.856" LeftDirection="156.047 -170.856" RightDirection="156.047 -170.856"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <Rectangle Self="bg_toc_bar_1" Label="hb:self=bg_toc_bar_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.047 -46.6615" LeftDirection="-156.047 -50.7622" RightDirection="-156.047 -46.6615"/>
+            <PathPointType Anchor="-156.047 -46.6615" LeftDirection="-156.047 -46.6615" RightDirection="-156.047 -42.5607"/>
+            <PathPointType Anchor="-148.622 -39.2365" LeftDirection="-152.723 -39.2365" RightDirection="-148.622 -39.2365"/>
+            <PathPointType Anchor="148.622 -39.2365" LeftDirection="148.622 -39.2365" RightDirection="152.723 -39.2365"/>
+            <PathPointType Anchor="156.047 -46.6615" LeftDirection="156.047 -42.5607" RightDirection="156.047 -46.6615"/>
+            <PathPointType Anchor="156.047 -46.6615" LeftDirection="156.047 -46.6615" RightDirection="156.047 -50.7622"/>
+            <PathPointType Anchor="148.622 -54.0865" LeftDirection="152.723 -54.0865" RightDirection="148.622 -54.0865"/>
+            <PathPointType Anchor="-148.622 -54.0865" LeftDirection="-148.622 -54.0865" RightDirection="-152.723 -54.0865"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <TextFrame Self="tf_toc_bar_1" Label="hb:self=tf_toc_bar_1" ParentStory="st_toc_bar_1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-150.117 -54.0865" LeftDirection="-150.117 -54.0865" RightDirection="-150.117 -54.0865"/>
+            <PathPointType Anchor="-150.117 -39.2365" LeftDirection="-150.117 -39.2365" RightDirection="-150.117 -39.2365"/>
+            <PathPointType Anchor="21.5347 -39.2365" LeftDirection="21.5347 -39.2365" RightDirection="21.5347 -39.2365"/>
+            <PathPointType Anchor="21.5347 -54.0865" LeftDirection="21.5347 -54.0865" RightDirection="21.5347 -54.0865"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_toc_range_1" Label="hb:self=tf_toc_range_1" ParentStory="st_toc_range_1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="122.707 -53.4565" LeftDirection="122.707 -53.4565" RightDirection="122.707 -53.4565"/>
+            <PathPointType Anchor="122.707 -38.6065" LeftDirection="122.707 -38.6065" RightDirection="122.707 -38.6065"/>
+            <PathPointType Anchor="151.107 -38.6065" LeftDirection="151.107 -38.6065" RightDirection="151.107 -38.6065"/>
+            <PathPointType Anchor="151.107 -53.4565" LeftDirection="151.107 -53.4565" RightDirection="151.107 -53.4565"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_toc_seg1_c0" Label="hb:self=tf_toc_seg1_c0" ParentStory="st_toc_seg1_c0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.047 -28.1065" LeftDirection="-156.047 -28.1065" RightDirection="-156.047 -28.1065"/>
+            <PathPointType Anchor="-156.047 83.8935" LeftDirection="-156.047 83.8935" RightDirection="-156.047 83.8935"/>
+            <PathPointType Anchor="-6.24189 83.8935" LeftDirection="-6.24189 83.8935" RightDirection="-6.24189 83.8935"/>
+            <PathPointType Anchor="-6.24189 -28.1065" LeftDirection="-6.24189 -28.1065" RightDirection="-6.24189 -28.1065"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_toc_seg1_c1" Label="hb:self=tf_toc_seg1_c1" ParentStory="st_toc_seg1_c1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="6.24189 -28.1065" LeftDirection="6.24189 -28.1065" RightDirection="6.24189 -28.1065"/>
+            <PathPointType Anchor="6.24189 83.8935" LeftDirection="6.24189 83.8935" RightDirection="6.24189 83.8935"/>
+            <PathPointType Anchor="156.047 83.8935" LeftDirection="156.047 83.8935" RightDirection="156.047 83.8935"/>
+            <PathPointType Anchor="156.047 -28.1065" LeftDirection="156.047 -28.1065" RightDirection="156.047 -28.1065"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <Rectangle Self="bg_toc_bar_2" Label="hb:self=bg_toc_bar_2" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.047 102.559" LeftDirection="-156.047 98.4578" RightDirection="-156.047 102.559"/>
+            <PathPointType Anchor="-156.047 102.559" LeftDirection="-156.047 102.559" RightDirection="-156.047 106.659"/>
+            <PathPointType Anchor="-148.622 109.984" LeftDirection="-152.723 109.984" RightDirection="-148.622 109.984"/>
+            <PathPointType Anchor="148.622 109.984" LeftDirection="148.622 109.984" RightDirection="152.723 109.984"/>
+            <PathPointType Anchor="156.047 102.559" LeftDirection="156.047 106.659" RightDirection="156.047 102.559"/>
+            <PathPointType Anchor="156.047 102.559" LeftDirection="156.047 102.559" RightDirection="156.047 98.4578"/>
+            <PathPointType Anchor="148.622 95.1335" LeftDirection="152.723 95.1335" RightDirection="148.622 95.1335"/>
+            <PathPointType Anchor="-148.622 95.1335" LeftDirection="-148.622 95.1335" RightDirection="-152.723 95.1335"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+  </Rectangle>
+  <TextFrame Self="tf_toc_bar_2" Label="hb:self=tf_toc_bar_2" ParentStory="st_toc_bar_2" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-150.117 95.1335" LeftDirection="-150.117 95.1335" RightDirection="-150.117 95.1335"/>
+            <PathPointType Anchor="-150.117 109.984" LeftDirection="-150.117 109.984" RightDirection="-150.117 109.984"/>
+            <PathPointType Anchor="21.5347 109.984" LeftDirection="21.5347 109.984" RightDirection="21.5347 109.984"/>
+            <PathPointType Anchor="21.5347 95.1335" LeftDirection="21.5347 95.1335" RightDirection="21.5347 95.1335"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_toc_range_2" Label="hb:self=tf_toc_range_2" ParentStory="st_toc_range_2" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="122.707 95.7635" LeftDirection="122.707 95.7635" RightDirection="122.707 95.7635"/>
+            <PathPointType Anchor="122.707 110.614" LeftDirection="122.707 110.614" RightDirection="122.707 110.614"/>
+            <PathPointType Anchor="151.107 110.614" LeftDirection="151.107 110.614" RightDirection="151.107 110.614"/>
+            <PathPointType Anchor="151.107 95.7635" LeftDirection="151.107 95.7635" RightDirection="151.107 95.7635"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" VerticalJustification="CenterAlign" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_toc_seg2_c0" Label="hb:self=tf_toc_seg2_c0" ParentStory="st_toc_seg2_c0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.047 121.114" LeftDirection="-156.047 121.114" RightDirection="-156.047 121.114"/>
+            <PathPointType Anchor="-156.047 233.114" LeftDirection="-156.047 233.114" RightDirection="-156.047 233.114"/>
+            <PathPointType Anchor="-6.24189 233.114" LeftDirection="-6.24189 233.114" RightDirection="-6.24189 233.114"/>
+            <PathPointType Anchor="-6.24189 121.114" LeftDirection="-6.24189 121.114" RightDirection="-6.24189 121.114"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_toc_seg2_c1" Label="hb:self=tf_toc_seg2_c1" ParentStory="st_toc_seg2_c1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="6.24189 121.114" LeftDirection="6.24189 121.114" RightDirection="6.24189 121.114"/>
+            <PathPointType Anchor="6.24189 233.114" LeftDirection="6.24189 233.114" RightDirection="6.24189 233.114"/>
+            <PathPointType Anchor="156.047 233.114" LeftDirection="156.047 233.114" RightDirection="156.047 233.114"/>
+            <PathPointType Anchor="156.047 121.114" LeftDirection="156.047 121.114" RightDirection="156.047 121.114"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>

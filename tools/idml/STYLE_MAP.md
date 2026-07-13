@@ -25,7 +25,7 @@
 | notice 条(NOTE/TIP/CAUTION) | 整宽灰面板 311.8×23.2 圆角 + 白 chip 50.5×18.2 圆角 | notice tcolorbox | `comp_notice_arc` | `components/callout._rounded_notice`(锚定灰面板 r7 auto-height + 嵌套白 chip r5.5) | ✅ #640 |
 | note box | 灰圆角 | notebox | `comp_note_arc`(2.4mm≈6.8pt) | 同上(notice 路径) | ✅ |
 | 操作面板 oppanel | 圆角浅灰描边外框,无内网格 | 操作面板盒 | — | `components/oppanel`(锚定描边框 HB Border K10 1.1pt r10 auto-height) | ✅ #642 |
-| spec/LCD/正文数据表外框 | 深色圆角描边 + 灰色表头/label 列 + 内部网格；单元格文字纵向居中 | `HBSharedDataTable`；spec、LCD、Auto Resume、Key Combinations、Troubleshooting 只声明列与行语义，列为 `m` / 内容盒为 `[c]` | `comp_table_outer_arc` / `comp_table_outer_rule` / `comp_data_table_*` | 表格本体(内部网格+灰底)✅；圆角外框仍待 composed 矩形路线 | LaTeX 已统一外框对象、内部网格与纵向居中；IDML 保持当前限制说明 |
+| spec/LCD/正文数据表外框 | 深色圆角描边 + 灰色表头/label 列 + 内部网格；单元格文字纵向居中 | `HBSharedDataTable`；spec、LCD、Auto Resume、Key Combinations、Troubleshooting 只声明列与行语义，列为 `m` / 内容盒为 `[c]` | `comp_table_outer_arc` / `comp_table_outer_rule` / `comp_data_table_*` | 表格本体(内部网格+灰底)✅；spec/troubleshooting 使用“圆角背景 + 方形可编辑内容框”分组，避免曲线内缩 | ✅ 圆角外框与可编辑表格已分层组合；跨页 LCD 仍由 InDesign 原生续表处理 |
 | inbox 三卡 | 圆角卡片 | inbox card tcolorbox | `comp_inbox_card_arc` | `components/inbox` + page03 卡片框 | ✅(#636 校准) |
 | warranty 专页/大字卡 | 灰底导语 + 悬浮标签圆角框 + 3/2 年双栏圆章 | `hb_latex_warranty.py` doctree 映射 + `components_warranty.tex` | `comp_warranty_*` / `type_warranty_*` | `components/warranty`(HB Big Numeral 26pt) | ✅ LaTeX 独占页与 IDML 组件化 |
 | 语言徽章 langtag(前言 EN/FR/ES) | 深色小 pill + 粗标题 | 前言宏 | — | `components/langbadge` | ✅ #634 |
@@ -40,6 +40,8 @@
 | subbar 条高 | 常量 13.9(模板/发布 PDF 双实测) | 13.9pt 两线一致 | `pages.SUBBAR_H` |
 | 正文/lead-in | `type_body_font_size/leading`(6.2/7.5) | 6.2pt Medium 两线一致 | \HBTypeBody=HBFontMedium;IDML HB Body 字重已改 Medium;安全页 lead-in 曾误映射 HB Title L2(8.6 Bold)已修 |
 | 列表 | `type_list_font_size/leading`(5.4/6.4) | 5.4pt Regular 两线一致 | |
+| 故障表表头/错误码 | `type_data_table_header_font_size`(6.6) / `type_trouble_code_font_size`(8.0) | 6.6pt Bold / 8.0pt Bold，与生产原稿一致 | 内线 0.25pt、外框 0.57pt，均使用品牌深灰 |
+| 规格分组/左列标签 | `type_spec_section_font_size`(8.0) / `type_spec_label_font_size`(6.0) | 8.0pt Bold / 6.0pt Medium，与生产原稿一致 | 内线 0.50pt、外框 0.75pt，均使用品牌深灰 |
 
 坑:type_system.tex 曾有两个 `\HBTypeSubbar`(providecommand 先到先得),#645 误加的重复宏(title_l2 8.6 Heavy)压住了原生宏(subbar 键 6.6 SemiBold)——已删,参数表原值恢复生效。
 

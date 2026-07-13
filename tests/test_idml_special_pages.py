@@ -43,7 +43,8 @@ class IdmlSpecialPageTests(unittest.TestCase):
             self.writer._add_story_parts, self.writer._psr, source=source))
         stories = "".join(xml for _, xml in self.writer.stories)
         self.assertIn("SOURCE CONTENTS", stories)
-        self.assertIn("EN  English", stories)
+        self.assertIn("<Content>EN</Content>", stories)
+        self.assertIn("<Content>\u00a0\u00a0\u00a0English</Content>", stories)
         self.assertIn("01-18", stories)
         self.assertIn("OPERATIONS\t07", stories)
 

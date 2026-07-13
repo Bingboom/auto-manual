@@ -57,9 +57,14 @@ class ExportIdmlTests(unittest.TestCase):
         out = self._write_package()
         with zipfile.ZipFile(out) as zf:
             story = zf.read("Stories/Story_st_spec.xml").decode("utf-8")
-        self.assertIn("<Table ", story)
+            table_stories = "".join(
+                zf.read(name).decode("utf-8")
+                for name in zf.namelist()
+                if name.startswith("Stories/Story_st_anchor_spec_")
+            )
+        self.assertIn("<Table ", table_stories)
         self.assertIn("GENERAL INFO", story)
-        self.assertIn("Product Name", story)
+        self.assertIn("Product Name", table_stories)
 
     def test_text_frames_use_path_geometry(self) -> None:
         out = self._write_package()

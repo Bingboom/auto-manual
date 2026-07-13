@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from tools.attachment_identity import resolve_semantic_attachment
 from tools.manual_ir import ManualIR, ManualPage, build_manual_ir, validate_manual_ir
 from tools.utils.path_utils import PathSegments
 
@@ -21,6 +22,7 @@ from .latex_page_plan import (
     validate_page_plan,
     write_page_plan,
 )
+from .data_components import parse_data_component
 
 
 @dataclass(frozen=True)
@@ -100,9 +102,26 @@ def _special_payload(ir: ManualIR, kind: str) -> dict[str, Any] | None:
                  if payload.get("kind") == kind), None)
 
 
-def toc_page_data(ir: ManualIR) -> dict[str, Any] | None:
+def toc_page_data(ir: ManualIR, bundle_root: Path | None = None) -> dict[str, Any] | None:
     """Return the source-authored TOC title, language blocks, and folios."""
-    return _special_payload(ir, "toc")
+    payload = _special_payload(ir, "toc")
+    if payload is not None or bundle_root is None:
+        return payload
+    template_toc = (
+        Path(__file__).resolve().parents[2]
+        / "docs" / "templates" / "page_shared" / "en" / "00_toc.rst"
+    )
+    for candidate in (
+        bundle_root / "page" / "00_toc.rst",
+        bundle_root / "00_toc.rst",
+        template_toc,
+    ):
+        if not candidate.is_file():
+            continue
+        parsed = parse_data_component(candidate.read_text(encoding="utf-8"))
+        if parsed and parsed.get("kind") == "toc":
+            return parsed
+    return None
 
 
 def back_cover_data(ir: ManualIR) -> dict[str, Any] | None:
@@ -147,10 +166,32 @@ def _asset_path(root: Path, data_root: Path, category: str, reference: str) -> s
     direct = root / path
     if direct.exists():
         return direct.as_posix()
-    attachment = data_root / "_attachments" / category / path.name
-    if attachment.exists():
+    attachment = resolve_semantic_attachment(
+        data_root / "_attachments" / category,
+        path.name,
+    )
+    if attachment is not None:
         return attachment.as_posix()
     return reference
+
+
+def asset_resolution_issues(ir: ManualIR, *, root: Path, data_root: Path) -> list[str]:
+    """Reject semantic rows whose projected artwork cannot be resolved."""
+    issues: list[str] = []
+    for lang in sorted({page.language for page in ir.pages}):
+        lcd = lcd_page_data(ir, lang, root=root, data_root=data_root)
+        if lcd is not None:
+            for row in lcd.rows:
+                figure = str(row.get("figure") or "")
+                if figure and not Path(figure).is_file():
+                    issues.append(f"{lang}: unresolved LCD asset: {figure}")
+        symbols = symbol_page_data(ir, lang, root=root, data_root=data_root)
+        if symbols is not None:
+            for row in symbols.icons:
+                figure = str(row.get("figure") or "")
+                if figure and not Path(figure).is_file():
+                    issues.append(f"{lang}: unresolved symbol asset: {figure}")
+    return issues
 
 
 def lcd_page_data(
@@ -254,6 +295,7 @@ def build_same_source_ir(
         lang=lang, source="prepared-bundle", data_root=data_root)
     issues = validate_manual_ir(ir, require_zero_skipped_raw=True)
     issues.extend(same_source_issues(ir))
+    issues.extend(asset_resolution_issues(ir, root=root, data_root=data_root))
     if issues:
         raise ValueError("; ".join(issues))
     return ir

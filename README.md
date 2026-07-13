@@ -54,6 +54,14 @@ Production/both mode builds the LaTeX reference PDF first, then emits
 same frozen bundle. InDesign is the final-mile layout workspace; copy, tables,
 specifications, legal text, and asset identity remain source-owned.
 
+Frozen review attachment names are resolved by their stable semantic identity
+and staged under the frozen basename; an unresolved or ambiguous asset now
+fails the IDML export instead of producing a silent missing-link placeholder.
+Master-fixed English layouts may share explicit regions on one physical page
+(for example charging/storage/troubleshooting). Rounded data tables remain
+editable: the IDML groups a rounded background with a square content frame so
+InDesign does not inset the first/last cells at curved corners.
+
 Optional local content QC for the current snapshot:
 
 ```bash

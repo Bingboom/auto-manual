@@ -14,7 +14,7 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="0 -12.5" LeftDirection="0 -12.5" RightDirection="0 -12.5"/>
+            <PathPointType Anchor="0 -12.5" LeftDirection="0 -15.5376" RightDirection="0 -12.5"/>
             <PathPointType Anchor="0 -5.5" LeftDirection="0 -5.5" RightDirection="0 -2.46243"/>
             <PathPointType Anchor="5.5 0" LeftDirection="2.46243 0" RightDirection="5.5 0"/>
             <PathPointType Anchor="34.1932 0" LeftDirection="34.1932 0" RightDirection="37.2308 0"/>

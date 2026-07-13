@@ -32,6 +32,7 @@ try:
     from tools.idml import params as _params
     from tools.idml import primitives as _prim
     from tools.idml import prose_flow as _prose_flow
+    from tools.idml import reference_story_flow as _reference_story_flow
     from tools.idml import stories as _stories
     from tools.idml import styles as _styles
     from tools.idml import template_merge as _template_merge
@@ -52,12 +53,12 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import params as _params  # type: ignore
     from idml import primitives as _prim  # type: ignore
     from idml import prose_flow as _prose_flow  # type: ignore
+    from idml import reference_story_flow as _reference_story_flow  # type: ignore
     from idml import stories as _stories  # type: ignore
     from idml import styles as _styles  # type: ignore
     from idml import template_merge as _template_merge  # type: ignore
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
-
 from tools.idml import ir_sidecar as _ir_sidecar
 from tools.idml import ir_projection as _ir_projection
 
@@ -134,19 +135,15 @@ class IdmlWriter:
         return _prim.bold_runs(line)
 
     def _table(self, tid: str, rows: list[tuple[str, str]],
-               label_style: str = "HB Spec Label", *, role: str | None = None) -> str:
+               label_style: str = "HB Spec Label", *, role: str | None = None,
+               visual_parity: bool = False) -> str:
         return _prim.spec_table(tid, rows, label_style, params=self.params,
-                                page_w=self.page_w, m_l=self.m_l, m_r=self.m_r, role=role)
+                                page_w=self.page_w, m_l=self.m_l, m_r=self.m_r,
+                                role=role, visual_parity=visual_parity)
 
-    def frame_height(self) -> float:
-        return _package.frame_height(self)
-
-    @staticmethod
-    def estimate_spec_height(sections: list[dict]) -> float:
-        return _package.estimate_spec_height(sections)
-
-    def pages_for_height(self, height_pt: float) -> int:
-        return _package.pages_for_height(self, height_pt)
+    frame_height = _package.frame_height
+    estimate_spec_height = staticmethod(_package.estimate_spec_height)
+    pages_for_height = _package.pages_for_height
 
     def _image_cell_content(self, rect_id: str, image_path: Path, w_pt: float, h_pt: float) -> str:
         return _prim.image_cell_content(rect_id, image_path, w_pt, h_pt)
@@ -272,20 +269,13 @@ class IdmlWriter:
     ) -> str:
         return _pages.add_safety_symbols_page(self, sid, tail_blocks, maintenance_blocks, signals, icons, bundle_root, page_index, lang)
 
-    @staticmethod
-    def _path_geometry(x1: float, y1: float, x2: float, y2: float) -> str:
-        return _prim.path_geometry(x1, y1, x2, y2)
-
-    def add_spread_chain(self, story_id: str, n_pages: int, start_index: int,
-                         columns: int = 1, bottom_extra: float = 0.0) -> None:
-        return _package.add_spread_chain(self, story_id, n_pages, start_index, columns=columns, bottom_extra=bottom_extra)
+    _path_geometry = staticmethod(_prim.path_geometry)
+    add_spread_chain = _package.add_spread_chain
+    add_story_frames = _package.add_story_frames
 
     # -- assembly ----------------------------------------------------------
-    def designmap_xml(self) -> str:
-        return _package.designmap_xml(self)
-
-    def write(self, out_path: Path) -> None:
-        return _package.write(self, out_path)
+    designmap_xml = _package.designmap_xml
+    write = _package.write
 
 
 def default_bundle_root(model: str, region: str, lang: str) -> Path:
@@ -364,7 +354,9 @@ def main() -> int:
         # safety multiplier here: when the estimate already fits, that creates
         # trailing blank linked frames in InDesign.
         pages = w.pages_for_height(est_h / max(1, columns))
-        w.add_spread_chain(story_id, pages, page_cursor, columns=columns, bottom_extra=bottom_extra)
+        w.add_spread_chain(
+            story_id, pages, page_cursor, columns=columns,
+            bottom_extra=bottom_extra, first_top_offset=13.81)
         page_cursor += pages
 
     DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_"}
@@ -379,15 +371,14 @@ def main() -> int:
     page_stem_has = _page_identity.stem_has
     slug_stem = _page_identity.slug
 
-    def emit_prose_story(sid: str, title: str, blocks: list[tuple[str, str]], columns: int = 1) -> None:
+    story_emitter = _reference_story_flow.ReferenceStoryEmitter(
+        w, toc, bundle_root, page_plan)
+
+    def emit_prose_story(sid: str, title: str, blocks: list[tuple[str, str]],
+                         columns: int = 1) -> None:
         nonlocal prose_pages, page_cursor
-        toc.latch(title)
-        _, est = w.add_prose_story(sid, title, blocks, bundle_root)
-        pages = w.pages_for_height(est / max(1, columns))
-        pages = _ir_projection.planned_story_pages(page_plan, title, pages)
-        toc.note_h1s(blocks, page_cursor, pages)
-        w.add_spread_chain(sid, pages, page_cursor, columns=columns)
-        page_cursor += pages
+        page_cursor = story_emitter.emit(
+            sid, title, blocks, page_cursor, columns=columns)
         prose_pages += 1
 
     def flush_prose_flow() -> None: prose_flow.flush(emit_prose_story, slug_stem, page_plan, prose_estimator)
@@ -408,6 +399,7 @@ def main() -> int:
             pending_fcc_title = ""
 
     def emit_data_page(kind: str, lang: str) -> None:
+        nonlocal page_cursor
         flush_prose_flow()
         flush_pending_fcc()
         flush_pending_prefix()
@@ -438,7 +430,15 @@ def main() -> int:
             title = data.title
             toc.note(title, page_cursor, lang)
             sid = w.add_lcd_story(rows, data_root, lang=lang, title=title)
-            chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in rows), bottom_extra=18.0)
+            if lang == "en":
+                bottom = w.page_h - w.m_b + 18.0
+                w.add_story_frames(sid, [
+                    (page_cursor, 27.33, bottom),
+                    (page_cursor + 1, w.m_t, bottom),
+                ])
+                page_cursor += 2
+            else:
+                chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in rows), bottom_extra=18.0)
         elif kind == "trouble":
             rows = list(_ir_projection.trouble_rows(manual_ir, lang))
             if not rows:
@@ -574,7 +574,7 @@ def main() -> int:
     if _placed.add_back_cover_page(w, args.region, page_cursor, back_copy):
         page_cursor += 1
     _toc.finalize(w, toc, w._add_story_parts, w._psr,
-                  source=_ir_projection.toc_page_data(manual_ir))
+                  source=_ir_projection.toc_page_data(manual_ir, bundle_root))
     _folio.apply(w, w._add_story_parts, w._psr)
     out = Path(args.out) if args.out else default_output_path(args.model, args.region, args.lang, bundle_root)
     _ir_projection.emit_reference_page_plan(page_plan, out_dir=out.parent)

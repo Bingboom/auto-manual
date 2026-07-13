@@ -10,8 +10,8 @@
     <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr2" Name="2"/>
     <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr3" Name="3"/>
     <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr4" Name="4"/>
-    <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblcol0" Name="0" SingleColumnWidth="75.357"/>
-    <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblcol1" Name="1" SingleColumnWidth="238.63"/>
+    <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblcol0" Name="0" SingleColumnWidth="74.9027"/>
+    <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblcol1" Name="1" SingleColumnWidth="237.192"/>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="6" RightInset="4" TopEdgeStrokeWeight="0" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Symbol</Content></CharacterStyleRange>
