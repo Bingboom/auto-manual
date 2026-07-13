@@ -15,6 +15,8 @@ import zipfile
 import shutil
 from pathlib import Path
 
+from tools.manual_ir import read_manual_ir, validate_manual_ir
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FIXTURE = ROOT / "tests" / "fixtures" / "phase2"
 BUNDLE_FIXTURE = ROOT / "tests" / "fixtures" / "idml_bundle"
@@ -56,6 +58,9 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
             self.assertTrue((out_dir / "flow_conversion_notes.md").is_file())
             self.assertTrue((out_dir / "flow_style_map.json").is_file())
             self.assertTrue((out_dir / "manual.flow.idml").is_file())
+            manual_ir = read_manual_ir(out_dir / "manual.ir.json")
+            self.assertEqual([], validate_manual_ir(manual_ir))
+            self.assertEqual("JE-1000F", manual_ir.model)
         finally:
             shutil.rmtree(ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en", ignore_errors=True)
 
@@ -103,6 +108,9 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
             self.assertIn("stories=", build.stdout)
             self.assertIn("skipped raw blocks=0", build.stdout)
             self.assertTrue(out.is_file())
+            manual_ir = read_manual_ir(Path(td) / "manual.ir.json")
+            self.assertEqual([], validate_manual_ir(manual_ir))
+            self.assertEqual(10, len(manual_ir.pages))
 
             check = _run("--check", str(out))
             self.assertEqual(check.returncode, 0, check.stdout + check.stderr)
@@ -220,15 +228,25 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 self.assertIn(flow, names)
                 self.assertNotIn("Stories/Story_st_trouble.xml", names)
                 story = zf.read(flow).decode("utf-8")
-                self.assertIn("Restart the product.", story)
                 self.assertIn('ParentStory="st_anchor_h1pill_', story)
+                trouble_stories = [
+                    name
+                    for name in names
+                    if name.startswith(
+                        "Stories/Story_st_anchor_trouble_"
+                        "st_flow_09_storage_troubleshooting_en"
+                    )
+                ]
+                self.assertEqual(len(trouble_stories), 1)
+                trouble_story = zf.read(trouble_stories[0]).decode("utf-8")
+                self.assertIn("Restart the product.", trouble_story)
                 pills = "".join(
                     zf.read(n).decode("utf-8") for n in names
                     if n.startswith("Stories/Story_st_anchor_h1pill_"))
                 self.assertIn("STORAGE", pills)
                 self.assertIn("TROUBLESHOOTING", pills)
 
-    def test_missing_spec_rows_fail_loudly(self) -> None:
+    def test_missing_prepared_bundle_fails_loudly(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "never.idml"
             proc = _run(
@@ -236,7 +254,7 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 "--data-root", str(DATA_FIXTURE), "--out", str(out),
             )
             self.assertEqual(proc.returncode, 1)
-            self.assertIn("no specifications rows", proc.stdout)
+            self.assertIn("prepared bundle is required for same-source IDML", proc.stdout)
             self.assertFalse(out.exists())
 
 

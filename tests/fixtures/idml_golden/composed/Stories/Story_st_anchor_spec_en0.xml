@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_anchor_spec_en0" Label="hb:self=st_anchor_spec_en0" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="GENERAL INFO specification table">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
+  <Table Self="tbl_spec_en0" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="7" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0" SpaceBefore="0" SpaceAfter="0">
+    <Row Self="tbl_spec_en0r0" Name="0" SingleRowHeight="10.3"/>
+    <Row Self="tbl_spec_en0r1" Name="1" SingleRowHeight="10.3"/>
+    <Row Self="tbl_spec_en0r2" Name="2" SingleRowHeight="10.3"/>
+    <Row Self="tbl_spec_en0r3" Name="3" SingleRowHeight="10.3"/>
+    <Row Self="tbl_spec_en0r4" Name="4" SingleRowHeight="10.3"/>
+    <Row Self="tbl_spec_en0r5" Name="5" SingleRowHeight="10.3"/>
+    <Row Self="tbl_spec_en0r6" Name="6" SingleRowHeight="10.3"/>
+    <Column Self="tbl_spec_en0col0" Name="0" SingleColumnWidth="100.254"/>
+    <Column Self="tbl_spec_en0col1" Name="1" SingleColumnWidth="210.711"/>
+    <Cell Self="tbl_spec_en0c0_0" Name="0:0" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.58214" BottomInset="4.58214" LeftInset="5.85" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>Product Name</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.58214" BottomInset="4.58214" LeftInset="2.26" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>Jackery Explorer 1000</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c1_0" Name="0:1" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.38214" BottomInset="4.38214" LeftInset="5.85" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>Model No.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.38214" BottomInset="4.38214" LeftInset="2.26" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>JE-1000F / JE-1000F-SG</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c2_0" Name="0:2" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.38214" BottomInset="4.38214" LeftInset="5.85" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>Capacity</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.38214" BottomInset="4.38214" LeftInset="2.26" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>1024 Wh (20 Ah/51.2 V DC)</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c3_0" Name="0:3" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.38214" BottomInset="4.38214" LeftInset="5.85" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>Cell Chemistry</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c3_1" Name="1:3" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.38214" BottomInset="4.38214" LeftInset="2.26" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>LiFePO</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>₄</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c4_0" Name="0:4" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.38214" BottomInset="4.38214" LeftInset="5.85" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>Weight</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c4_1" Name="1:4" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.38214" BottomInset="4.38214" LeftInset="2.26" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>About 23.4 lbs/10.6 kg</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c5_0" Name="0:5" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.38214" BottomInset="4.38214" LeftInset="5.85" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>Dimensions</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c5_1" Name="1:5" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.38214" BottomInset="4.38214" LeftInset="2.26" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>12.4 x 7.9 x 9.2 in / 31.4 x 20.1 x 23.4 cm</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c6_0" Name="0:6" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.58214" BottomInset="4.58214" LeftInset="5.85" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>Cycle Life</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en0c6_1" Name="1:6" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.58214" BottomInset="4.58214" LeftInset="2.26" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="1.33"><Content>6000 cycles to 70%+ capacity</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+  </Table>
+    <Content></Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+</Story>
+</idPkg:Story>

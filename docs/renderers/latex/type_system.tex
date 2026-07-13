@@ -84,6 +84,16 @@
   \fontsize{\csname HBtype_list_font_size\endcsname}{\csname HBtype_list_font_leading\endcsname}\selectfont
 }
 
+% Safety section lead-ins such as "SAVE THESE INSTRUCTIONS" are a
+% compact local heading, not ordinary body copy.
+\providecommand{\HBTypeSafetyLead}[1]{%
+  {\HBFontBold
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_safety_lead_font_size\endcsname}
+            {\csname HBtype_safety_lead_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
 % Warning right text (font only; alignment handled elsewhere)
 \providecommand{\HBTypeWarningTextStart}{%
   \HBFontSemiBold

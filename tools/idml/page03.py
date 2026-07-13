@@ -4,6 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+from .components.notice import notice_box_layout, source_notice_label
 from .fcc_fallback import component_spec, fcc_spec_from_blocks
 from .page_objects import (
     BADGE_OBJECT_STYLE,
@@ -22,6 +23,8 @@ ROOT = Path(__file__).resolve().parents[2]
 H1_BAR_H = 20.0
 BODY_X = 26.5
 BODY_W = 311.0
+BADGE_DIAMETER = 13.785
+BADGE_Y_OFFSET = 22.431
 
 
 def _story(writer, sid: str, title: str, parts: list[str]) -> str:
@@ -49,7 +52,8 @@ def _badge_text(number: int) -> str:
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}" '
         'Justification="CenterAlign">\n'
         '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        'FillColor="Color/Paper" PointSize="7.4">'
+        'FillColor="Color/Paper" PointSize="10.912" FontStyle="Medium" '
+        'BaselineShift="0.45">'
         f'<Content>{number}</Content></CharacterStyleRange>\n'
         '  </ParagraphStyleRange>\n'
     )
@@ -60,7 +64,7 @@ def _fcc_text_story(writer, sid: str, title: str, text: str, *,
     parts: list[str] = []
     if image is not None and image.exists():
         parts.append(_image_paragraph(writer, f"{sid}_mark", image, 32.0, center=False))
-    parts.append(writer._psr("HB Body", text.strip(), terminal=True))
+    parts.append(writer._psr("HB FCC Text", text.strip(), terminal=True))
     return _story(writer, sid, title, parts)
 
 
@@ -74,19 +78,28 @@ def _card_story(writer, sid: str, item: dict, bundle_root: Path,
     return _story(writer, sid, "Inbox card", parts)
 
 
-def _tip_label(label: str) -> str:
-    text = "TIPS" if label.strip().upper() == "TIP" else label.strip().upper()
-    return (
-        writer_psr_template("HB Notice Side Label", text)
+def _tip_label(label: str, *, point_size: float, leading: float,
+               baseline_shift: float) -> str:
+    return writer_psr_template(
+        "HB Callout Label",
+        label.strip(),
+        character_attrs=(
+            f'PointSize="{point_size:g}" Leading="{leading:g}" '
+            f'FontStyle="Bold" BaselineShift="{baseline_shift:g}"'
+        ),
     )
 
 
-def writer_psr_template(style: str, text: str) -> str:
+def writer_psr_template(style: str, text: str, *,
+                        character_attrs: str = "") -> str:
     style_ref = paragraph_style_ref(style)
+    attrs = f" {character_attrs}" if character_attrs else ""
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}" '
         'Justification="CenterAlign">\n'
-        '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        '    <CharacterStyleRange '
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+        f'{attrs}>'
         f'<Content>{escape(text)}</Content></CharacterStyleRange>\n'
         '  </ParagraphStyleRange>\n'
     )
@@ -109,7 +122,11 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
                  bundle_root: Path) -> tuple[list[str], list[str]]:
     spec = fcc_spec_from_blocks(fcc_blocks)
     texts = ((spec.get("texts") or []) + ["", ""])[:2]
-    mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.pdf"
+    # The cropped PDF carries out-of-page legacy text in its content stream.
+    # InDesign clips it visually but re-exposes that hidden text on PDF export.
+    # Use the clean transparent raster derivative for the decorative mark so
+    # searchable text remains exclusively sourced from the RST/IR stories.
+    mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.png"
     left_sid = f"{sid}_fcc_left"
     right_sid = f"{sid}_fcc_right"
     _fcc_text_story(writer, left_sid, "FCC notice left", texts[0], image=mark)
@@ -130,7 +147,7 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
             sid,
             "fcc_left",
             left_sid,
-            (BODY_X + 4.0, 34.0, 145.0, 156.0),
+            (BODY_X + 4.0, 34.0, 145.0, 162.0),
             {"inset": (0, 0, 0, 0)},
         ),
         frame_with_background(
@@ -138,7 +155,7 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
             sid,
             "fcc_right",
             right_sid,
-            (BODY_X + 156.0, 34.0, BODY_W - 162.0, 156.0),
+            (BODY_X + 156.0, 34.0, BODY_W - 162.0, 162.0),
             {"inset": (0, 0, 0, 0)},
         ),
     ]
@@ -168,7 +185,12 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             stroke_weight=0.75,
             object_style=CARD_OBJECT_STYLE,
         ))
-        badge_rect = (x + card_w / 2.0 - 6.75, card_y + 16.0, 13.5, 13.5)
+        badge_rect = (
+            x + card_w / 2.0 - BADGE_DIAMETER / 2.0,
+            card_y + BADGE_Y_OFFSET,
+            BADGE_DIAMETER,
+            BADGE_DIAMETER,
+        )
         frames.append(page_rectangle_xml(
             writer,
             f"bg_{sid}_badge_{idx + 1}",
@@ -176,7 +198,7 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             fill="Color/HB Brand Dark",
             stroke_color="Swatch/None",
             stroke_weight=0,
-            corner_radius=6.75,
+            corner_radius=BADGE_DIAMETER / 2.0,
             object_style=BADGE_OBJECT_STYLE,
         ))
         badge_sid = f"{sid}_badge_{idx + 1}"
@@ -187,8 +209,8 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             sid,
             f"badge_{idx + 1}",
             badge_sid,
-            (badge_rect[0], badge_rect[1] - 0.2, badge_rect[2], badge_rect[3]),
-            {"inset": (1.4, 0, 0, 0)},
+            badge_rect,
+            {"inset": (0, 0, 0, 0), "valign": "CenterAlign"},
         ))
 
         card_sid = f"{sid}_card_{idx + 1}"
@@ -209,14 +231,48 @@ def _tip_objects(writer, sid: str,
                  tip_spec: dict | None) -> tuple[list[str], list[str]]:
     if not tip_spec:
         return [], []
-    label = str(tip_spec.get("label", "TIP"))
-    body = "\n".join(str(t).strip() for t in tip_spec.get("texts", []) if str(t).strip())
-    tip_rect = (BODY_X, 458.0, BODY_W, 30.0)
-    label_w = 52.0
+    label = source_notice_label(tip_spec)
+    texts = [str(t).strip() for t in tip_spec.get("texts", []) if str(t).strip()]
+    body = "\n".join(texts)
+    layout = notice_box_layout(
+        writer.params,
+        BODY_W,
+        label,
+        texts,
+        variant=str(tip_spec.get("variant", "")),
+    )
+    tip_rect = (BODY_X, 458.0, BODY_W, layout.panel_height)
+    plate_rect = (
+        BODY_X + layout.plate_left,
+        tip_rect[1] + layout.plate_left,
+        layout.plate_width,
+        tip_rect[3] - 2 * layout.plate_left,
+    )
+    body_x = BODY_X + layout.plate_left + layout.plate_width + layout.body_inset
+    body_rect = (
+        body_x,
+        tip_rect[1] + layout.pad_tb,
+        BODY_X + BODY_W - layout.right_inset - body_x,
+        tip_rect[3] - 2 * layout.pad_tb,
+    )
     label_sid = f"{sid}_tip_label"
     body_sid = f"{sid}_tip_body"
-    _story(writer, label_sid, "Inbox tip label", [_tip_label(label)])
-    _story(writer, body_sid, "Inbox tip body", [writer._psr("HB Body", body, terminal=True)])
+    _story(writer, label_sid, "Inbox tip label", [_tip_label(
+        label,
+        point_size=layout.label_size,
+        leading=layout.label_leading,
+        baseline_shift=layout.label_baseline_shift,
+    )])
+    body_xml = writer._psr("HB Callout Body", body, terminal=True).replace(
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'PointSize="{layout.body_size:g}" Leading="{layout.body_leading:g}" '
+        f'FontStyle="Medium" '
+        f'HorizontalScale="{layout.body_horizontal_scale * 100:g}" '
+        f'BaselineShift="{layout.body_baseline_shift:g}"',
+        1,
+    )
+    _story(writer, body_sid, "Inbox tip body", [body_xml])
     frames = [
         page_rectangle_xml(
             writer,
@@ -225,29 +281,32 @@ def _tip_objects(writer, sid: str,
             fill="Color/HB Bg K05",
             stroke_color="Swatch/None",
             stroke_weight=0,
+            corner_radius=layout.arc,
             object_style=PANEL_OBJECT_STYLE,
         ),
         left_rounded_xml(
             writer,
             f"bg_{sid}_tip_label",
-            (BODY_X, tip_rect[1], label_w, tip_rect[3]),
+            plate_rect,
             fill="Color/Paper",
+            corner_radius=max(0.0, layout.arc - layout.plate_left / 2.0),
+            object_style=PANEL_OBJECT_STYLE,
         ),
         frame_with_background(
             writer,
             sid,
             "tip_label",
             label_sid,
-            (BODY_X, tip_rect[1], label_w, tip_rect[3]),
-            {"inset": (0, 2.0, 0, 2.0), "valign": "CenterAlign"},
+            plate_rect,
+            {"inset": (0, 0, 0, 1.0), "valign": "CenterAlign"},
         ),
         frame_with_background(
             writer,
             sid,
             "tip_body",
             body_sid,
-            (BODY_X + label_w, tip_rect[1], BODY_W - label_w, tip_rect[3]),
-            {"inset": (0, 7.0, 0, 7.0), "valign": "CenterAlign"},
+            body_rect,
+            {"inset": (0, 0, 0, 0), "valign": "CenterAlign"},
         ),
     ]
     return [label_sid, body_sid], frames
@@ -262,8 +321,10 @@ def add_fcc_inbox_page(
     page_index: int,
 ) -> str:
     """V2.0 page 03: FCC panel, inbox card trio, and tip strip."""
-    inbox_title = next((text for kind, text in inbox_blocks if kind == "h1"),
-                       "WHAT'S IN THE BOX")
+    inbox_title = next((text.strip() for kind, text in inbox_blocks
+                        if kind == "h1" and text.strip()), "")
+    if not inbox_title:
+        raise ValueError("inbox title is required from source RST")
     inbox_spec = component_spec(inbox_blocks, "inbox")
     tip_spec = component_spec(inbox_blocks, "notice")
 
@@ -282,7 +343,8 @@ def add_fcc_inbox_page(
             "title",
             title_sid,
             (BODY_X, 245.0, BODY_W, H1_BAR_H),
-            heading_bar_opts(1, (1.5, 5, 1, 6)),
+            {**heading_bar_opts(1, (1.5, 5, 1, 6)),
+             "text_rect": (BODY_X + 6.4, 243.04, BODY_W - 12.8, H1_BAR_H)},
         ),
         *card_frames,
         *tip_frames,

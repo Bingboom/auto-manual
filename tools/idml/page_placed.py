@@ -1,4 +1,4 @@
-"""Full-page placed-PDF spreads (cover, product overview).
+"""Full-page placed-PDF spreads (cover and product overview).
 
 The LaTeX pipeline ships these pages as finished art via ``\\includepdf``
 (``docs/renderers/latex/assets/cover-en.pdf``,
@@ -91,9 +91,11 @@ _BACK_COVER_COPY = {
 }
 
 
-def add_back_cover_page(writer, region: str, page_index: int) -> bool:
+def add_back_cover_page(
+    writer, region: str, page_index: int, copy: dict[str, str] | None = None,
+) -> bool:
     """Compose the template's back page: company block + contact bar."""
-    copy = _BACK_COVER_COPY.get(region)
+    copy = copy or _BACK_COVER_COPY.get(region)
     if copy is None:
         return False
     from . import page_objects as _po
@@ -108,9 +110,10 @@ def add_back_cover_page(writer, region: str, page_index: int) -> bool:
     phone_sid = writer._add_story_parts(
         f"{sid}_phone", "Back cover phone",
         [writer._psr("HB Spec Section", copy["phone"], terminal=True)])
-    lines_sid = writer._add_story_parts(
+    lines = copy.get("lines", "")
+    lines_sid = (writer._add_story_parts(
         f"{sid}_lines", "Back cover contact lines",
-        [writer._psr("HB Body", copy["lines"], terminal=True)])
+        [writer._psr("HB Body", lines, terminal=True)]) if lines else None)
 
     bar_y = writer.page_h - writer.m_b - 30.0
     bar_h = 27.0
@@ -124,11 +127,13 @@ def add_back_cover_page(writer, region: str, page_index: int) -> bool:
                           *writer._page_rect(body_x + 8.0, bar_y + 7.0,
                                              body_w * 0.34, 14.0),
                           inset=(0, 0, 0, 0)),
-        writer._frame_xml(f"tf_{sid}_lines", lines_sid,
-                          *writer._page_rect(body_x + 8.0 + body_w * 0.36,
-                                             bar_y + 3.0, body_w * 0.24, 20.0),
-                          inset=(0, 0, 0, 0)),
     ]
+    if lines_sid:
+        frames.append(writer._frame_xml(
+            f"tf_{sid}_lines", lines_sid,
+            *writer._page_rect(body_x + 8.0 + body_w * 0.36,
+                               bar_y + 3.0, body_w * 0.24, 20.0),
+            inset=(0, 0, 0, 0)))
     spread_id = f"sp_{page_index}"
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

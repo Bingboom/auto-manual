@@ -44,6 +44,10 @@ RST. Titles, safety boxes, FCC panels, inbox cards, tip strips, symbol tables,
 and app notices are reusable objects; page RST supplies their text and image
 arguments. Body WARNING, CAUTION, NOTE, and TIP label/body tables are mapped
 to the same rounded callout family automatically for LaTeX PDF output.
+The visible label itself always comes from the page RST / source table. The
+renderer does not change `TIP` to `TIPS` (or create any other fallback word),
+and a missing label stops the LaTeX/IDML handoff instead of silently inventing
+copy.
 
 ### 1.2 External Tools
 
@@ -59,12 +63,32 @@ If the env var is not set, or the folder is incomplete, the build keeps the norm
 If you only need the exact command semantics for one export path, use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) as the authoritative reference.
 
 InDesign export has two handoff modes: the default `idml` production path keeps
-the component-heavy editable IDML for visual design review, while
+the component-heavy editable IDML for visual design review. Production/both
+mode first builds the LaTeX reference PDF and then uses one deterministic
+`manual.ir.json`, the shared layout-token contract, and
+`latex_page_plan.json` to create the IDML. This makes InDesign the layout-only
+continuation of the frozen LaTeX build rather than a second content pipeline.
+In contrast,
 `python build.py idml --idml-mode flow ...` writes semantic flow Markdown, a
 simple continuous-story `manual.flow.idml`, source trace, style map, and asset
 manifest files for a designer's InDesign template workflow. Both are generated
 outputs; content corrections still go back to the source tables, templates,
 review cloud doc, or TM layer before regeneration.
+
+After opening the production IDML, designers may adjust frame geometry,
+explicit page breaks, asset fitting, and limited tracking. Do not edit copy,
+translations, specifications, legal text, table structure, or asset identity
+in INDD. Run `tools/indesign_finalize.py` on the provisioned design Mac for the
+native INDD/PDF and zero-overset/font/link preflight; use
+`tools/idml_pdf_parity.py` to record the page-size/count gate and the visual
+delta against the LaTeX PDF.
+
+If a review page still references an attachment basename with an older opaque
+hash, the build now stages the unique current semantic match under that frozen
+name. Missing or ambiguous matches fail before handoff. The production IDML
+also supports several editable stories on one physical master page and uses
+grouped rounded-table backgrounds, so designers can edit table cells without
+reintroducing the curved-corner inset or changing the approved pagination.
 
 Use `python build.py idml --idml-mode both ...` when design needs the paired
 handoff folder: it keeps the legacy production IDML, adds
@@ -321,7 +345,7 @@ If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scrip
 
 Current flow:
 
-1. `python build.py sync-data|process-build-queue|message-control-dry-run|rst|html|word|pdf|all|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
+1. `python build.py sync-data|process-build-queue|message-control-dry-run|rst|html|word|pdf|all|idml|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
 1. `python build.py listen-message-control --config configs/config.us.yaml`
 2. [`tools/build_docs.py`](../tools/build_docs.py) validates config and layout params
 3. target `model` and `region` are resolved from CLI or `build.targets`

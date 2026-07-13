@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MINIMAL_SPECS: dict[str, dict] = {
     "inbox": {"kind": "inbox", "items": [{"img": "", "label": "Unit"}]},
     "safetywarning": {"kind": "safetywarning", "texts": ["Risk text."]},
+    "safetyinstruction": {"kind": "safetyinstruction", "texts": ["Instruction text."]},
     "warninglead": {"kind": "warninglead", "label": "WARNING", "texts": ["Lead."]},
     "tailwarnbox": {"kind": "tailwarnbox", "label": "WARNING", "texts": ["Tail."]},
     "warnbox": {"kind": "warnbox", "label": "DANGER", "texts": ["Boxed."]},
@@ -29,6 +30,10 @@ MINIMAL_SPECS: dict[str, dict] = {
     "langtag": {"kind": "langtag", "lang": "EN", "texts": ["IMPORTANT"]},
     "warrantyyears": {"kind": "warrantyyears", "items": [
         {"number": "3", "unit": "YEARS", "label": "Standard", "text": "Copy."}]},
+    "warrantylead": {"kind": "warrantylead", "texts": ["Purchase-channel lead."]},
+    "warrantysection": {"kind": "warrantysection", "title": "Limited Warranty",
+                        "index": 1, "blocks": [{"kind": "body", "text": "Copy."}]},
+    "emphasispill": {"kind": "emphasispill", "texts": ["Charge before first use."]},
 }
 
 
@@ -62,6 +67,77 @@ class ComponentRegistryTests(unittest.TestCase):
                 self.assertTrue(xml, f"{kind} rendered empty")
                 self.assertGreater(est, 0.0)
                 self.assertIn("<Table ", xml)
+
+    def test_tail_warning_cells_are_vertically_centered(self) -> None:
+        from tools.idml.components import render
+
+        xml, _ = render(
+            MINIMAL_SPECS["tailwarnbox"],
+            _ctx(),
+            tid="t_tail_center",
+            terminal=True,
+        )
+        self.assertEqual(3, xml.count('VerticalJustification="CenterAlign"'))
+
+    def test_rounded_notice_reserves_rendered_height_and_rounded_label(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
+        base = _ctx()
+        ctx = RenderContext(
+            params=base.params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            add_story=add_story,
+        )
+        spec = {
+            "kind": "notice",
+            "label": "CAUTION",
+            "list": True,
+            "texts": ["x" * 90, "x" * 125, "x" * 92],
+        }
+        _xml, estimate = render(spec, ctx, tid="notice_wrap", terminal=True)
+        self.assertGreaterEqual(estimate, 56.8)
+        story_map = {sid: "".join(parts) for sid, _title, parts in stories}
+        label_story = story_map["st_anchor_notice_label_notice_wrap"]
+        body_story = story_map["st_anchor_notice_body_notice_wrap"]
+        self.assertIn('FontStyle="Bold"', label_story)
+        self.assertIn('BaselineShift="2.63"', label_story)
+        self.assertIn('Leading="7.83"', body_story)
+        self.assertIn('BaselineShift="0.9"', body_story)
+        self.assertIn('PointSize="4.8"', body_story)
+        self.assertIn('LeftIndent="3.4" FirstLineIndent="-3.4"', body_story)
+        self.assertIn('<Group Self="grp_notice_notice_wrap"', _xml)
+        self.assertIn('<Rectangle Self="plate_notice_notice_wrap"', _xml)
+        self.assertNotIn('<Table ', _xml)
+
+    def test_lcd_mode_states_are_true_vertical_rowspans(self) -> None:
+        from tools.idml.components import render
+
+        spec = {
+            "kind": "lcdmode",
+            "img": "",
+            "groups": [{
+                "state": "Shortly On",
+                "actions": [["Turn on", "Press once"],
+                            ["Turn off", "Press once"],
+                            ["Auto-off", "After two minutes"]],
+            }],
+        }
+        xml, _ = render(spec, _ctx(), tid="lcd_vertical", terminal=True)
+        self.assertIn('Self="lcd_verticalc0_0"', xml)
+        self.assertIn('RowSpan="3"', xml)
+        self.assertNotIn('Self="lcd_verticalc1_0"', xml)
+        self.assertIn('FillColor="Color/HB Bg K05"', xml)
+        self.assertEqual(7, xml.count('VerticalJustification="CenterAlign"'))
 
     def test_unknown_kind_renders_nothing(self) -> None:
         from tools.idml.components import render

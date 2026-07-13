@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Story Self="st_fcc_inbox_p23_02_whats_in_the_box_fcc_right" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="FCC notice right">
+<Story Self="st_fcc_inbox_p23_02_whats_in_the_box_fcc_right" Label="hb:self=st_fcc_inbox_p23_02_whats_in_the_box_fcc_right" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="FCC notice right">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB FCC Text">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to Part 15 of the FCC Rules. Any changes or modifications not expressly approved could void the user's authority to operate the equipment.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>

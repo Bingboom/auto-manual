@@ -1,13 +1,7 @@
 """IDML exporter — route B of the InDesign handoff plan.
 
-Produces an editable .idml (InDesign Markup Language) package so designers
-can fine-tune pipeline output in InDesign instead of retouching PDFs:
-
-- page geometry and paragraph styles are mapped 1:1 from data/layout_params.csv
-- brand colors are emitted as CMYK swatches (from the brand_color_* keys)
-- the SPECIFICATIONS page is exported as real IDML tables fed straight from
-  the phase2 Spec_Master snapshot (section titles + label/value rows)
-- body sections flow through linked text frames so InDesign reflows freely
+Produces an editable .idml package from the same prepared-bundle IR as LaTeX,
+so designers can fine-tune pipeline output instead of retouching PDFs.
 
 Usage:
   python tools/export_idml.py --model JE-1000F --region US [--lang en]
@@ -22,7 +16,6 @@ import sys
 from pathlib import Path
 
 try:
-    from tools.idml_rst_extract import bundle_page_order, extract_page
     from tools.script_bootstrap import bootstrap_repo_root
     from tools.idml import check as _check
     from tools.idml import components as _components
@@ -31,6 +24,7 @@ try:
     from tools.idml import flow_idml as _flow_idml
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
+    from tools.idml import page_identity as _page_identity
     from tools.idml import page_placed as _placed
     from tools.idml import page_folio as _folio
     from tools.idml import page_toc as _toc
@@ -38,11 +32,11 @@ try:
     from tools.idml import params as _params
     from tools.idml import primitives as _prim
     from tools.idml import prose_flow as _prose_flow
+    from tools.idml import reference_story_flow as _reference_story_flow
     from tools.idml import stories as _stories
     from tools.idml import styles as _styles
     from tools.idml import template_merge as _template_merge
 except ImportError:  # pragma: no cover - direct script execution fallback
-    from idml_rst_extract import bundle_page_order, extract_page  # type: ignore
     from script_bootstrap import bootstrap_repo_root
     from idml import check as _check  # type: ignore
     from idml import components as _components  # type: ignore
@@ -54,15 +48,19 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import flow_idml as _flow_idml  # type: ignore
     from idml import loaders as _loaders  # type: ignore
     from idml import package as _package  # type: ignore
+    from idml import page_identity as _page_identity  # type: ignore
     from idml import pages as _pages  # type: ignore
     from idml import params as _params  # type: ignore
     from idml import primitives as _prim  # type: ignore
     from idml import prose_flow as _prose_flow  # type: ignore
+    from idml import reference_story_flow as _reference_story_flow  # type: ignore
     from idml import stories as _stories  # type: ignore
     from idml import styles as _styles  # type: ignore
     from idml import template_merge as _template_merge  # type: ignore
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
+from tools.idml import ir_sidecar as _ir_sidecar
+from tools.idml import ir_projection as _ir_projection
 
 MIMETYPE = _params.MIMETYPE
 IDPKG = _params.IDPKG
@@ -137,19 +135,15 @@ class IdmlWriter:
         return _prim.bold_runs(line)
 
     def _table(self, tid: str, rows: list[tuple[str, str]],
-               label_style: str = "HB Spec Label", *, role: str | None = None) -> str:
+               label_style: str = "HB Spec Label", *, role: str | None = None,
+               visual_parity: bool = False) -> str:
         return _prim.spec_table(tid, rows, label_style, params=self.params,
-                                page_w=self.page_w, m_l=self.m_l, m_r=self.m_r, role=role)
+                                page_w=self.page_w, m_l=self.m_l, m_r=self.m_r,
+                                role=role, visual_parity=visual_parity)
 
-    def frame_height(self) -> float:
-        return _package.frame_height(self)
-
-    @staticmethod
-    def estimate_spec_height(sections: list[dict]) -> float:
-        return _package.estimate_spec_height(sections)
-
-    def pages_for_height(self, height_pt: float) -> int:
-        return _package.pages_for_height(self, height_pt)
+    frame_height = _package.frame_height
+    estimate_spec_height = staticmethod(_package.estimate_spec_height)
+    pages_for_height = _package.pages_for_height
 
     def _image_cell_content(self, rect_id: str, image_path: Path, w_pt: float, h_pt: float) -> str:
         return _prim.image_cell_content(rect_id, image_path, w_pt, h_pt)
@@ -164,9 +158,9 @@ class IdmlWriter:
 
     def _cell(self, cid: str, name: str, content: str, *, fill: str | None = None,
               stroke: bool = True, top: float = 3, bottom: float = 3,
-              left: float = 4, right: float = 4) -> str:
+              left: float = 4, right: float = 4, valign: str | None = None) -> str:
         return _prim.cell(cid, name, content, fill=fill, stroke=stroke,
-                          top=top, bottom=bottom, left=left, right=right)
+                          top=top, bottom=bottom, left=left, right=right, valign=valign)
 
     def _component_table(self, tid: str, cols: list[float], cells: list[str], n_rows: int = 1, **kwargs) -> str:
         return _prim.component_table(tid, cols, cells, n_rows, **kwargs)
@@ -275,20 +269,13 @@ class IdmlWriter:
     ) -> str:
         return _pages.add_safety_symbols_page(self, sid, tail_blocks, maintenance_blocks, signals, icons, bundle_root, page_index, lang)
 
-    @staticmethod
-    def _path_geometry(x1: float, y1: float, x2: float, y2: float) -> str:
-        return _prim.path_geometry(x1, y1, x2, y2)
-
-    def add_spread_chain(self, story_id: str, n_pages: int, start_index: int,
-                         columns: int = 1) -> None:
-        return _package.add_spread_chain(self, story_id, n_pages, start_index, columns=columns)
+    _path_geometry = staticmethod(_prim.path_geometry)
+    add_spread_chain = _package.add_spread_chain
+    add_story_frames = _package.add_story_frames
 
     # -- assembly ----------------------------------------------------------
-    def designmap_xml(self) -> str:
-        return _package.designmap_xml(self)
-
-    def write(self, out_path: Path) -> None:
-        return _package.write(self, out_path)
+    designmap_xml = _package.designmap_xml
+    write = _package.write
 
 
 def default_bundle_root(model: str, region: str, lang: str) -> Path:
@@ -322,88 +309,79 @@ def main() -> int:
     data_root = (ROOT / args.data_root) if not Path(args.data_root).is_absolute() else Path(args.data_root)
     bundle_root = Path(args.bundle_root) if args.bundle_root else (
         default_bundle_root(args.model, args.region, args.lang))
+
     if args.mode == "flow":
         flow = _flow_idml.write_flow_outputs(
             root=ROOT, model=args.model, region=args.region, lang=args.lang, data_root=data_root,
             bundle_root=bundle_root, build_command=sys.argv)
+        _ir_sidecar.emit_manual_ir_sidecar(
+            root=ROOT, bundle_root=bundle_root, out_dir=flow.idml.parent,
+            model=args.model, region=args.region, lang=args.lang, data_root=data_root)
         print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
         return 0
     params = load_layout_params(ROOT / "data" / "layout_params.csv")
-    sections = load_spec_sections(data_root, args.model, args.region, args.lang)
-    if not sections:
-        print(f"[export-idml] ERROR: no specifications rows for {args.model}_{args.region} in {data_root}")
+    try:
+        manual_ir = _ir_projection.build_same_source_ir(
+            root=ROOT, bundle_root=bundle_root, model=args.model, region=args.region,
+            lang=args.lang, data_root=data_root)
+    except ValueError as exc:
+        print(f"[export-idml] ERROR: prepared bundle is required for same-source IDML: {exc}")
         return 1
 
+    projected_by_path = {page.path: page for page in _ir_projection.project_pages(manual_ir, bundle_root)}
+    page_plan = _ir_projection.build_reference_page_plan(manual_ir, bundle_root=bundle_root)
+    sections: list[dict] = []
+    lcd_rows: list[dict] = []
+    trouble_rows: list[tuple[str, str]] = []
     w = IdmlWriter(params)
-    lcd_rows = load_lcd_rows(data_root, args.model, args.lang, args.region)
-    trouble_rows = load_trouble_rows(data_root, args.model, args.region, args.lang)
-    spec_annotations = load_spec_annotations(data_root, args.model, args.region, args.lang)
     symbol_cache: dict[str, tuple[list[tuple[str, str]], list[dict]]] = {}
-
     def symbol_rows_for(lang: str) -> tuple[list[tuple[str, str]], list[dict]]:
         lang = normalize_lang(lang)
         if lang not in symbol_cache:
-            symbol_cache[lang] = load_symbols_rows(data_root, lang)
+            data = _ir_projection.symbol_page_data(
+                manual_ir, lang, root=ROOT, data_root=data_root)
+            symbol_cache[lang] = (
+                list(data.signals) if data else [], list(data.icons) if data else [])
         return symbol_cache[lang]
-
-    tags = {
-        "latex",
-        f"region_{args.region.lower()}",
-        f"lang_{args.lang.lower()}",
-        "model_" + args.model.lower().replace("-", "_"),
-    }
     page_cursor = 0
     skipped_raw = 0
     toc = _toc.TocCollector()
     prose_pages = 0
 
-    def chain(story_id: str, est_h: float, columns: int = 1) -> None:
+    def chain(story_id: str, est_h: float, columns: int = 1, bottom_extra: float = 0.0) -> None:
         nonlocal page_cursor
         # A two-column frame holds twice the height. Do not add an extra
         # safety multiplier here: when the estimate already fits, that creates
         # trailing blank linked frames in InDesign.
         pages = w.pages_for_height(est_h / max(1, columns))
-        w.add_spread_chain(story_id, pages, page_cursor, columns=columns)
+        w.add_spread_chain(
+            story_id, pages, page_cursor, columns=columns,
+            bottom_extra=bottom_extra, first_top_offset=13.81)
         page_cursor += pages
 
     DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_"}
-    ordered = bundle_page_order(bundle_root) if bundle_root.is_dir() else []
-    if not ordered:
-        print(f"[export-idml] NOTE: no prepared bundle at {bundle_root}; exporting data pages only (run `build.py rst` first)")
+    ordered = list(projected_by_path)
 
     emitted: set[str] = set()  # "spec:fr", "lcd:es", "trouble", "symbols"
     pending_prefix_blocks: list[tuple[str, str]] = []
     pending_fcc_blocks, pending_fcc_title = [], ""
     prose_flow = _prose_flow.ProseFlowBuffer()
+    prose_estimator = _prose_flow.idml_page_estimator(IdmlWriter, params, bundle_root)
+    def page_lang(page: Path) -> str: return _page_identity.page_language(page, args.lang)
+    page_stem_has = _page_identity.stem_has
+    slug_stem = _page_identity.slug
 
-    def page_lang(page: Path) -> str:
-        try:
-            text = page.read_text(encoding="utf-8")
-        except OSError:
-            text = ""
-        match = re.search(r"\\HBApplyLang\{([^}]+)\}", text)
-        if match:
-            return normalize_lang(match.group(1))
-        suffix = page.stem.rsplit("_", 1)[-1]
-        return normalize_lang(suffix if len(suffix) <= 5 else args.lang)
+    story_emitter = _reference_story_flow.ReferenceStoryEmitter(
+        w, toc, bundle_root, page_plan)
 
-    def page_stem_has(page: Path, suffix: str) -> bool:
-        return page.stem == suffix or page.stem.endswith("_" + suffix)
-
-    def slug_stem(stem: str) -> str:
-        return re.sub(r"[^a-z0-9]+", "_", stem.lower()).strip("_")
-
-    def emit_prose_story(sid: str, title: str, blocks: list[tuple[str, str]], columns: int = 1) -> None:
+    def emit_prose_story(sid: str, title: str, blocks: list[tuple[str, str]],
+                         columns: int = 1) -> None:
         nonlocal prose_pages, page_cursor
-        toc.latch(title)
-        _, est = w.add_prose_story(sid, title, blocks, bundle_root)
-        pages = w.pages_for_height(est / max(1, columns))
-        toc.note_h1s(blocks, page_cursor, pages)
-        w.add_spread_chain(sid, pages, page_cursor, columns=columns)
-        page_cursor += pages
+        page_cursor = story_emitter.emit(
+            sid, title, blocks, page_cursor, columns=columns)
         prose_pages += 1
 
-    def flush_prose_flow() -> None: prose_flow.flush(emit_prose_story, slug_stem)
+    def flush_prose_flow() -> None: prose_flow.flush(emit_prose_story, slug_stem, page_plan, prose_estimator)
 
     def flush_pending_prefix() -> None:
         nonlocal pending_prefix_blocks
@@ -421,6 +399,7 @@ def main() -> int:
             pending_fcc_title = ""
 
     def emit_data_page(kind: str, lang: str) -> None:
+        nonlocal page_cursor
         flush_prose_flow()
         flush_pending_fcc()
         flush_pending_prefix()
@@ -429,27 +408,46 @@ def main() -> int:
             return
         emitted.add(key)
         if kind == "spec":
-            secs = sections if lang == args.lang else load_spec_sections(
-                data_root, args.model, args.region, lang)
-            notes = spec_annotations if lang == args.lang else load_spec_annotations(
-                data_root, args.model, args.region, lang)
-            title = load_page_title(data_root, "spec.page_title", lang, "SPECIFICATIONS")
+            data = _ir_projection.spec_page_data(manual_ir, lang)
+            if data is None:
+                return
+            secs = list(data.sections)
+            notes = list(data.annotations)
+            if lang == args.lang:
+                sections[:] = secs
+            title = data.title
             toc.note(title, page_cursor, lang)
             sid = w.add_spec_story(secs, notes, lang=lang, title=title)
             chain(sid, w.estimate_spec_height(secs) + 10.0 * len(notes))
         elif kind == "lcd":
-            rows = lcd_rows if lang == args.lang else load_lcd_rows(
-                data_root, args.model, lang, args.region)
-            if not rows:
+            data = _ir_projection.lcd_page_data(
+                manual_ir, lang, root=ROOT, data_root=data_root)
+            if data is None:
                 return
-            title = load_page_title(data_root, "lcd_icons.page_title", lang, "LCD DISPLAY")
+            rows = list(data.rows)
+            if lang == args.lang:
+                lcd_rows[:] = rows
+            title = data.title
             toc.note(title, page_cursor, lang)
             sid = w.add_lcd_story(rows, data_root, lang=lang, title=title)
-            chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in rows))
-        elif kind == "trouble" and trouble_rows:
+            if lang == "en":
+                bottom = w.page_h - w.m_b + 18.0
+                w.add_story_frames(sid, [
+                    (page_cursor, 27.33, bottom),
+                    (page_cursor + 1, w.m_t, bottom),
+                ])
+                page_cursor += 2
+            else:
+                chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in rows), bottom_extra=18.0)
+        elif kind == "trouble":
+            rows = list(_ir_projection.trouble_rows(manual_ir, lang))
+            if not rows:
+                return
+            if lang == args.lang:
+                trouble_rows[:] = rows
             toc.note(_toc.DATA_TITLES.get(kind, ""), page_cursor)
-            sid = w.add_trouble_story(trouble_rows)
-            chain(sid, 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in trouble_rows))
+            sid = w.add_trouble_story(rows)
+            chain(sid, 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in rows))
         elif kind == "symbols":
             sym_signals, sym_icons = symbol_rows_for(args.lang)
             if not (sym_signals or sym_icons):
@@ -476,18 +474,18 @@ def main() -> int:
                         if page.name.startswith(prefix)), None)
         if matched:
             if matched == "trouble":
-                res = extract_page(page, tags)
+                res = projected_by_path[page]
                 if res.blocks:
                     skipped_raw += res.skipped_raw
                     emitted.add("trouble")
                     toc.stem_langs[page.stem] = page_lang(page)
-                    prose_flow.add(page.stem, res.blocks)
+                    prose_flow.add(page.stem, _prose_flow.align_trouble_table(res.blocks, page_plan, page.stem))
                     continue
             emit_data_page(matched, page_lang(page))
             continue
-        res = extract_page(page, tags)
+        res = projected_by_path[page]
         skipped_raw += res.skipped_raw
-        blocks = res.blocks
+        blocks = _prose_flow.align_operation_tail(res.blocks, page_plan, page.stem)
         if pending_prefix_blocks and "user_maintenance" in page.stem:
             flush_prose_flow()
             lang = page_lang(page)
@@ -568,17 +566,19 @@ def main() -> int:
             toc.stem_langs[page.stem] = page_lang(page)
             prose_flow.add(page.stem, blocks)
 
-    # data pages always ship, bundle or not
+    # Emit source-declared data pages that were not placed in the ordered walk.
     flush_prose_flow()
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind, args.lang)
-    if _placed.add_back_cover_page(w, args.region, page_cursor):
+    back_copy = _ir_projection.back_cover_data(manual_ir)
+    if _placed.add_back_cover_page(w, args.region, page_cursor, back_copy):
         page_cursor += 1
-    _toc.finalize(w, toc, w._add_story_parts, w._psr)
+    _toc.finalize(w, toc, w._add_story_parts, w._psr,
+                  source=_ir_projection.toc_page_data(manual_ir, bundle_root))
     _folio.apply(w, w._add_story_parts, w._psr)
-
-    out = Path(args.out) if args.out else (
-        default_output_path(args.model, args.region, args.lang, bundle_root))
+    out = Path(args.out) if args.out else default_output_path(args.model, args.region, args.lang, bundle_root)
+    _ir_projection.emit_reference_page_plan(page_plan, out_dir=out.parent)
+    _ir_sidecar.write_manual_ir_sidecar(manual_ir, out.parent)
     w.write(out)
     issues = check_idml(out)
     for i in issues:

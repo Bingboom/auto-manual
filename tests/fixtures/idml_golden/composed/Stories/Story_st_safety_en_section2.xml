@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
-<Story Self="st_safety_en_section2" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="safety_en section 2">
+<Story Self="st_safety_en_section2" Label="hb:self=st_safety_en_section2" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="safety_en section 2">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Safety Lead">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>SAVE THESE INSTRUCTIONS</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Stop using the product immediately if it shows signs of damage.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>• Stop using the product immediately if it shows signs of damage.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Do not charge the battery in extremely hot or cold environments and strictly adhere to the specified operating temperature ranges:</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>• Do not charge the battery in extremely hot or cold environments and strictly adhere to the specified operating temperature ranges:</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Charging temperature: 0°C to 40°C (32°F to 104°F)</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
+  <ParagraphStyleRange SpaceBefore="0.45" LeftIndent="9.58" FirstLineIndent="-6.04" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety Sublist">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>– Charging temperature: 0°C to 40°C (32°F to 104°F)</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Discharging temperature: -10°C to 40°C (14°F to 104°F)</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
+  <ParagraphStyleRange LeftIndent="9.58" FirstLineIndent="-6.04" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety Sublist">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>– Discharging temperature: -10°C to 40°C (14°F to 104°F)</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Item List">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>• Unplug the power cord from a power outlet during a storm.</Content></CharacterStyleRange>
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>• Unplug the power cord from a power outlet during a storm.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

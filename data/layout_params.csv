@@ -54,6 +54,12 @@ type_body_force_upper,0,int,0 keep case / 1 uppercase
 ,,,
 type_list_font_size,6.0,pt,List font size
 type_list_font_leading,7.0,pt,List leading (independent from body)
+type_safety_lead_font_size,8.0,pt,Safety section lead font size
+type_safety_lead_font_leading,9.6,pt,Safety section lead leading
+type_warning_lead_label_font_size,10.0,pt,Warning lead card label font size
+type_warning_lead_label_font_leading,10.6,pt,Warning lead card label leading
+type_warning_lead_body_font_size,6.5,pt,Warning lead card body font size
+type_warning_lead_body_font_leading,7.2,pt,Warning lead card body leading
 ,,,
 type_warning_text_font_size,5.6,pt,Warning right text font size
 type_warning_text_font_leading,6.2,pt,Warning right text leading
@@ -84,7 +90,7 @@ comp_subbar_height,4.9,mm,Subbar fixed height
 comp_subbar_pad_lr,2.2,mm,Subbar left/right padding
 comp_subbar_pad_tb,0.75,mm,Subbar top/bottom padding
 comp_subbar_width,1,ratio,Subbar width ratio of \textwidth
-comp_subbar_after,1.5,mm,Space after subbar
+comp_subbar_after,-1.35,mm,Safety subbar compensation before the following RST column block
 comp_subbar_needspace,18,mm,Minimum room to keep a subbar with the content that follows
 ,,,
 comp_warning_box_arc,2.0,mm,Warning box corner radius
@@ -100,19 +106,31 @@ comp_lockup_height,8.0,mm,Signal icon height
 comp_lockup_width,24.5,mm,Width reserved for signal icon and label
 comp_lockup_gap,2.0,mm,Gap between lockup and warning text
 comp_lockup_viewport,79 70 2125 549,none,Reserved (viewport macro is fragile; keep for future trim-based cropping)
+comp_warning_lead_height,14.0,mm,Safety lead card fixed height
+comp_warning_lead_dark_width,14.6,mm,Safety lead card dark icon pane width
+comp_warning_lead_width_trim,0.75,mm,Safety lead card trim from the active column width
+comp_warning_lead_text_left_pad,1.75,mm,Safety lead card left text inset
+comp_warning_lead_right_pad,1.8,mm,Safety lead card right text inset
+comp_warning_lead_icon_width,10.4,mm,Safety lead card warning icon width
+comp_warning_lead_icon_height,9.25,mm,Safety lead card warning icon height
 ,,,
 comp_twocol_sep,2.2,mm,Space between two columns
 ,,,
-comp_lead_after,0.6,mm,Space after lead line
+comp_lead_after,2.40,mm,Space after lead line
 ,,,
-comp_list_leftmargin,0.9,em,itemize leftmargin
+comp_list_leftmargin,0.62,em,itemize hanging left margin
 comp_list_labelsep,0.35,em,itemize labelsep
-comp_list_itemsep,0.2,mm,itemize itemsep
+comp_list_itemsep,0.73,mm,itemize itemsep
 comp_list_topsep,0,mm,itemize topsep
 comp_list_parsep,0,mm,itemize parsep
 comp_list_partopsep,0,mm,itemize partopsep
 comp_list_bullet_raise,-0.12,ex,Bullet raise offset (optical baseline align)
 comp_list_bullet_symbol,\small\textbullet,none,Bullet TeX (use single backslash)
+comp_sublist_leftmargin,6.7,pt,Nested item left margin
+comp_sublist_labelsep,2.1,pt,Nested item label gap
+comp_sublist_itemsep,2.0,pt,Nested item vertical gap
+comp_sublist_topsep,0.9,pt,Nested item top gap
+comp_sublist_bullet_symbol,\textendash,none,Nested item dash symbol
 ,,,
 comp_table_inner_rule,0.2,pt,Table inner rule width
 comp_table_tabcolsep,2.4,pt,Table tabcolsep
@@ -124,6 +142,7 @@ comp_data_table_tabcolsep,2.4,pt,Body data table cell horizontal padding
 comp_data_table_row_stretch,1.0,ratio,Body data table row stretch independent of spec tables
 comp_data_table_before,1.2,mm,Space before body data tables
 comp_data_table_after,1.2,mm,Space after body data tables
+comp_body_table_group_indent,3.5,mm,Left indent shared by body-table heading description and table
 comp_data_table_header_height,5.2,mm,Body data table header minimum height
 comp_data_table_row_height,4.2,mm,Body data table ordinary row minimum height
 comp_auto_resume_left_ratio,0.50,ratio,Auto-resume table left column ratio
@@ -137,9 +156,9 @@ comp_trouble_steps_pad_tb,1.0,mm,Troubleshooting numbered-step cell top/bottom p
 comp_trouble_section_needspace,102,mm,Minimum space required for troubleshooting heading and table
 type_data_table_font_size,5.9,pt,Body data table font size
 type_data_table_font_leading,6.7,pt,Body data table leading
-type_data_table_header_font_size,6.2,pt,Body data table header font size
+type_data_table_header_font_size,6.6,pt,Body data table header font size
 type_data_table_header_font_leading,7.0,pt,Body data table header leading
-type_trouble_code_font_size,7.5,pt,Troubleshooting error-code font size
+type_trouble_code_font_size,8.0,pt,Troubleshooting error-code font size
 type_trouble_code_font_leading,8.0,pt,Troubleshooting error-code leading
 ,,,
 ,,,------ DATA TABLE DENSITY (archive 1500 Ultra parity) ------
@@ -190,23 +209,36 @@ comp_inbox_label_gap,2.0,mm,Inbox image-to-label gap
 comp_inbox_after,2.5,mm,Space after inbox cards
 type_inbox_label_font_size,6.5,pt,Inbox label font size
 type_inbox_label_font_leading,7.2,pt,Inbox label leading
-comp_tip_arc,2.4,mm,Tip strip corner radius
+comp_tip_arc,1.73,mm,Tip strip corner radius
 comp_callout_rule,1.2,pt,Warning caution note and tip outer border width
-comp_callout_label_inset,1.2,mm,White label panel inset inside the gray callout shell
+comp_callout_label_inset,0.44,mm,White label panel inset inside the gray callout shell
 comp_callout_body_inset,1.5,mm,Callout body inset from the label panel
 comp_callout_bullet_indent,0.9,mm,Callout bullet inset from the body start
 comp_callout_bullet_width,1.2,mm,Callout bullet hanging-indent width
 type_callout_bullet_font_size,4.8,pt,Callout bullet glyph size
 comp_tip_height,14.7,mm,Tip strip height
 comp_tip_label_width,18.5,mm,Tip strip label panel width
-comp_tip_pad_lr,2.2,mm,Tip strip horizontal padding
+comp_tip_pad_lr,1.15,mm,Tip strip horizontal padding
+comp_tip_label_baseline_shift,-0.57,pt,Tip label baseline offset from panel centre
+idml_callout_label_baseline_shift,2.63,pt,InDesign callout label baseline correction
+idml_callout_body_baseline_shift,0.9,pt,InDesign callout body baseline correction
+idml_list_left_indent,3.70,pt,InDesign first-level list continuation indent
+idml_list_first_line_indent,-6.25,pt,InDesign first-level list hanging indent
+idml_list_font_leading,7.2,pt,InDesign list leading correction for production font metrics
+idml_safety_list_horizontal_scale,0.98,ratio,InDesign safety-list horizontal metric correction
+idml_safety_list_horizontal_scale_dense,0.90,ratio,InDesign FR and ES safety-list horizontal metric correction
+idml_sublist_left_indent,9.58,pt,InDesign nested list continuation indent
+idml_sublist_first_line_indent,-6.04,pt,InDesign nested list hanging indent
+idml_sublist_first_space_before,0.45,pt,InDesign space before the first nested item
+idml_safety_lead_space_after,4.2,pt,InDesign space after safety lead paragraph
 comp_caution_label_width,18.5,mm,Caution strip label panel width
 comp_caution_pad_lr,2.2,mm,Caution strip horizontal padding
 comp_caution_pad_tb,1.2,mm,Caution strip vertical padding
 type_tip_label_font_size,8.0,pt,Tip label font size
 type_tip_label_font_leading,9.0,pt,Tip label leading
 type_tip_body_font_size,6.5,pt,Tip body font size
-type_tip_body_font_leading,7.4,pt,Tip body leading
+type_tip_body_font_leading,7.83,pt,Tip body leading
+type_tip_body_horizontal_scale,1.069,ratio,Tip body horizontal scale for production CFF metric parity
 ,,,
 ,,,------ PREFACE / TOC ------
 comp_preface_block_gap,3.2,mm,Gap between language notice blocks
@@ -233,7 +265,7 @@ comp_spec_environment_extra_before,1.2,mm,Spec environmental section extra space
 comp_spec_notes_before,4.2,mm,Spec notes block space before
 comp_spec_footnotes_before,1.2,mm,Spec footnotes block space before
 ,,,
-type_spec_section_font_size,8.8,pt,Spec section title font size
+type_spec_section_font_size,8.0,pt,Spec section title font size
 type_spec_section_font_leading,9.6,pt,Spec section title leading
 type_spec_label_font_size,6.0,pt,Spec left-cell label font size (archive: 6.0)
 type_spec_label_font_leading,6.6,pt,Spec left-cell label leading
@@ -244,6 +276,12 @@ type_spec_note_font_leading,6.0,pt,Spec note/footnote leading
 ,,,
 ,,,------ WARRANTY PAGE ------
 comp_warranty_page_after_h1,4.0,mm,Warranty page gap after H1
+idml_warranty_lead_before,0.7,mm,InDesign warranty lead gap after the anchored H1 host
+idml_warranty_period_section_before,3.0,pt,InDesign optical gap before warranty period panel
+idml_warranty_section_before,1.0,pt,InDesign optical gap before ordinary warranty panels
+idml_warranty_panel_trim_first,10.0,pt,InDesign first warranty panel whitespace correction
+idml_warranty_panel_trim_period,0.0,pt,InDesign warranty period panel whitespace correction
+idml_warranty_panel_trim_exclusions,8.0,pt,InDesign exclusions panel whitespace correction
 comp_warranty_page_extra_height,6.0,mm,Warranty page local extra body height
 comp_warranty_lead_arc,3.2,mm,Warranty lead box corner radius
 comp_warranty_lead_pad_lr,3.6,mm,Warranty lead horizontal padding
@@ -274,6 +312,7 @@ type_warranty_body_font_leading,7.2,pt,Warranty panel body leading
 type_warranty_title_font_size,8.2,pt,Warranty panel title font size
 type_warranty_title_font_leading,8.8,pt,Warranty panel title leading
 type_warranty_year_number_font_size,21,pt,Warranty year badge numeral size
+idml_warranty_year_glyph_size,24,pt,InDesign black-circled numeral optical size
 type_warranty_year_unit_font_size,12,pt,Warranty year unit size
 type_warranty_year_subtitle_font_size,7.2,pt,Warranty year subtitle size
 ,,,
@@ -291,7 +330,7 @@ brand_color_bgk05,"0,0,0,0.05",cmyk,Background light gray
 brand_color_accentblue,"0,0,0,0",cmyk,Accent blue
 brand_color_textk90,"0,0,0,0.90",cmyk,Strong text
 ,,,
-comp_twocol_before,1.2,mm,Space before two-column block (declared; \multicolsep is zeroed inside safetytwocol)
+comp_twocol_before,2.35,mm,Space before two-column block (declared; \multicolsep is zeroed inside safetytwocol)
 type_body_color,TextGray,none,Body text color name
 type_list_color,TextGray,none,List text color name
 type_rubric_color,TextK90,none,Rubric text color name

@@ -42,6 +42,12 @@ def check_idml(path: Path) -> list[str]:
             if not name.startswith("Spreads/"):
                 continue
             spread = ET.fromstring(zf.read(name))
+            for element_name in ("Spread", "Page", "TextFrame", "Rectangle"):
+                for element in spread.iter(element_name):
+                    expected = f"hb:self={element.get('Self')}"
+                    if element.get("Label") != expected:
+                        issues.append(f"{name}: {element_name} {element.get('Self')} "
+                                      "has no stable hb label")
             for frame in spread.iter("TextFrame"):
                 if "GeometricBounds" in frame.attrib:
                     issues.append(f"{name}: TextFrame {frame.get('Self')} uses "

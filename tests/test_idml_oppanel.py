@@ -78,6 +78,34 @@ class TransformTest(unittest.TestCase):
             [(i["number"], i["unit"], i["label"]) for i in spec["items"]],
         )
 
+    def test_charging_emphasis_uses_structure_not_rendered_wording(self) -> None:
+        blocks = [
+            ("h1", "CHARGING"),
+            ("body", "**Green first:** Introductory copy."),
+            ("body", "**Localized source sentence.**"),
+            ("component", json.dumps({"kind": "notice", "label": "NOTE"})),
+        ]
+        out = transform(blocks)
+        self.assertEqual("component", out[2][0])
+        self.assertEqual("emphasispill", json.loads(out[2][1])["kind"])
+        self.assertEqual(["Localized source sentence."], json.loads(out[2][1])["texts"])
+
+    def test_warranty_page_groups_source_sections(self) -> None:
+        blocks = [
+            ("h1", "WARRANTY"),
+            ("body", "**Purchase channel.**"),
+            ("body", "*Local-law note."),
+            ("h2", "Limited Warranty"),
+            ("body", "Warranty copy."),
+        ]
+        out = transform(blocks)
+        self.assertEqual(["h1", "component", "warrantynote", "component"],
+                         [kind for kind, _ in out])
+        self.assertEqual("warrantylead", json.loads(out[1][1])["kind"])
+        section = json.loads(out[3][1])
+        self.assertEqual("warrantysection", section["kind"])
+        self.assertEqual("Limited Warranty", section["title"])
+
     def test_ordinary_table_is_untouched(self) -> None:
         blocks = [("table", str([["Header", "Value"], ["A", "B"]]))]
         self.assertEqual(blocks, transform(blocks))

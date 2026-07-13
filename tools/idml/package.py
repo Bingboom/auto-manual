@@ -10,6 +10,8 @@ import zipfile
 from pathlib import Path
 
 from .params import IDPKG, MIMETYPE
+from .stable_ids import apply_stable_labels
+from .story_frames import add_story_frames
 
 
 def frame_height(writer) -> float:
@@ -34,7 +36,8 @@ def pages_for_height(writer, height_pt: float) -> int:
     return max(1, math.ceil(height_pt / writer.frame_height()))
 
 def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
-                     columns: int = 1) -> None:
+                     columns: int = 1, bottom_extra: float = 0.0,
+                     first_top_offset: float = 0.0) -> None:
     """One spread per page, each holding one frame of a linked chain.
 
     Spread coordinates: origin at the spread center; the page's
@@ -43,9 +46,11 @@ def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
     """
     x1 = -writer.page_w / 2 + writer.m_l
     x2 = writer.page_w / 2 - writer.m_r
-    y1 = -writer.page_h / 2 + writer.m_t
-    y2 = writer.page_h / 2 - writer.m_b
+    y2 = writer.page_h / 2 - writer.m_b + bottom_extra
     for i in range(n_pages):
+        first_offset = first_top_offset if i == 0 else 0.0
+        y1 = -writer.page_h / 2 + writer.m_t + first_offset
+        frame_y2 = y2 + first_offset
         spread_id = f"sp_{start_index + i}"
         frame_id = f"tf_{story_id}_{i}"
         prev = f'PreviousTextFrame="tf_{story_id}_{i-1}"' if i > 0 else 'PreviousTextFrame="n"'
@@ -64,13 +69,14 @@ def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
             f'  <TextFrame Self="{frame_id}" ParentStory="{story_id}" {prev} {nxt} '
             'ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
             'ItemTransform="1 0 0 1 0 0">\n'
-            + writer._path_geometry(x1, y1, x2, y2) +
+            + writer._path_geometry(x1, y1, x2, frame_y2) +
             f'    <TextFramePreference TextColumnCount="{columns}" TextColumnGutter="11" AutoSizingType="Off"/>\n'
             '  </TextFrame>\n'
             '</Spread>\n'
             '</idPkg:Spread>\n'
         )
         writer.spreads.append((spread_id, xml))
+
 
 def designmap_xml(writer) -> str:
     spread_refs = "\n".join(
@@ -123,6 +129,6 @@ def write(writer, out_path: Path) -> None:
         add("Resources/Styles.xml", writer.styles_xml())
         add("Resources/Preferences.xml", writer.preferences_xml())
         for sid, xml in writer.spreads:
-            add(f"Spreads/Spread_{sid}.xml", xml)
+            add(f"Spreads/Spread_{sid}.xml", apply_stable_labels(xml))
         for sid, xml in writer.stories:
-            add(f"Stories/Story_{sid}.xml", xml)
+            add(f"Stories/Story_{sid}.xml", apply_stable_labels(xml))

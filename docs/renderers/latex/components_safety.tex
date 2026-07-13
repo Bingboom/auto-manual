@@ -29,6 +29,18 @@
   \end{tikzpicture}%
 }
 
+% The lead card uses the larger production-master lockup.  It is separate
+% from the compact white triangle used by other safety components.
+\providecommand{\HBWarningTriangleWhiteLead}{%
+  \begin{tikzpicture}[x=1mm,y=1mm,baseline=-0.5mm]
+    \fill[white,rounded corners=0.9mm]
+      (0,0) -- (5.2,\csname HBcomp_warning_lead_icon_height\endcsname)
+      -- (\csname HBcomp_warning_lead_icon_width\endcsname,0) -- cycle;
+    \node[BrandDark,font=\HBFontHeavy\fontsize{9.5pt}{9.5pt}\selectfont]
+      at (5.2,3.15) {!};
+  \end{tikzpicture}%
+}
+
 \newsavebox{\HBSignalWordBox}
 \providecommand{\HBSignalLockup}[1]{%
   \sbox{\HBSignalWordBox}{\HBFontHeavy\fontsize{10pt}{10.6pt}\selectfont #1}%
@@ -105,28 +117,47 @@
   \par\noindent
   \begin{tcolorbox}[
     enhanced,
-    colback=white,
-    colframe=LineK40,
-    boxsep=\csname HBcomp_warning_box_sep\endcsname,
+    bicolor,
+    sidebyside,
+    sidebyside align=center,
+    sidebyside gap=0mm,
+    lefthand width=\csname HBcomp_warning_lead_dark_width\endcsname,
+    colback=BrandDark,
+    colbacklower=white,
+    colframe=BrandDark,
+    boxsep=0mm,
     arc=\csname HBcomp_warning_box_arc\endcsname,
     boxrule=\csname HBcomp_warning_box_rule\endcsname,
-    left=0mm,right=1.6mm,top=0mm,bottom=0mm,
-    height=14mm,
+    left=0mm,
+    right=0mm,
+    leftupper=0mm,
+    rightupper=0.9mm,
+    leftlower=0mm,
+    rightlower=0mm,
+    top=0mm,
+    bottom=0mm,
+    height=\csname HBcomp_warning_lead_height\endcsname,
+    width=\dimexpr\linewidth-\csname HBcomp_warning_lead_width_trim\endcsname\relax,
     valign=center,
-    clip upper,
-    before skip=\csname HBcomp_warning_box_before\endcsname,
+    before skip=0mm,
     after skip=\csname HBcomp_warning_box_after\endcsname,
   ]
-    \noindent
-    \begin{tabular}{@{}>{\columncolor{BrandDark}}m{14.8mm}@{\hspace{2.4mm}}m{\dimexpr\linewidth-14.8mm-2.4mm-2\tabcolsep\relax}@{}}%
-      {\centering\HBWarningTriangleWhite\par}
-      &
-      {\HBFontHeavy\color{\csname HBtype_body_color\endcsname}%
-       \fontsize{8pt}{9pt}\selectfont #1}%
-      \par\vspace{0.25mm}%
-      {\HBFontSemiBold\fontsize{6.5pt}{7.2pt}\selectfont\RaggedRight #2}%
-      \tabularnewline
-    \end{tabular}%
+    \centering\raisebox{0.39mm}{\HBWarningTriangleWhiteLead}
+    \tcblower
+    \hspace*{\csname HBcomp_warning_lead_text_left_pad\endcsname}%
+    \begin{minipage}[c]{\dimexpr\linewidth
+      -\csname HBcomp_warning_lead_text_left_pad\endcsname
+      -\csname HBcomp_warning_lead_right_pad\endcsname\relax}%
+      \noindent
+      {\HBFontBold\color{\csname HBtype_body_color\endcsname}%
+       \fontsize{\csname HBtype_warning_lead_label_font_size\endcsname}
+                {\csname HBtype_warning_lead_label_font_leading\endcsname}\selectfont #1}%
+      \par\vspace{1.0mm}%
+      {\HBFontBold
+       \fontsize{\csname HBtype_warning_lead_body_font_size\endcsname}
+                {\csname HBtype_warning_lead_body_font_leading\endcsname}\selectfont
+       \RaggedRight #2}%
+    \end{minipage}%
   \end{tcolorbox}%
   \par
 }
@@ -207,6 +238,9 @@
   \vspace*{\csname HBcomp_twocol_before\endcsname}%
   \begin{multicols}{2}
     \HBTypeListStart
+    \RaggedRight
+    \hyphenpenalty=10000\relax
+    \exhyphenpenalty=10000\relax
 }{%
   \end{multicols}
   \par\vspace*{\csname HBcomp_twocol_after\endcsname}
@@ -233,7 +267,7 @@
 \providecommand{\safetylead}[1]{}
 \renewcommand{\safetylead}[1]{%
   \par\noindent
-  \HBTypeBody{#1}
+  \HBTypeSafetyLead{#1}
   \par\vspace{\csname HBcomp_lead_after\endcsname}%
 }
 

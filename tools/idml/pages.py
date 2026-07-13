@@ -1,10 +1,4 @@
-"""Composed-page assemblers for the IDML exporter (componentization P3).
-
-Absolute-positioned multi-frame spreads (the V2.0-master safety page, the
-safety+symbols merge, the fcc+inbox merge). Each function takes the writer
-and appends stories + a spread. Moved verbatim from IdmlWriter — the golden
-byte-comparison pins equivalence.
-"""
+"""Absolute-positioned composed-page assemblers for the IDML exporter."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -14,9 +8,8 @@ from . import components as _components
 from .layout_est import est_table_height, template_symbol_split
 from .loaders import symbol_copy
 from .page_objects import frame_with_background, h1_bar_h_pt, heading_bar_opts, heading_text, with_rounded_outer
-from .params import IDPKG
+from .params import IDPKG, param_pt
 from .style_names import paragraph_style_ref
-
 ROOT = Path(__file__).resolve().parents[2]
 SUBBAR_H = 13.9  # master/publish-PDF measured capsule height
 
@@ -33,6 +26,7 @@ def _page_rect(writer, x: float, y: float, w: float, h: float) -> tuple[float, f
 def _frame_xml(writer, frame_id: str, story_id: str,
                x1: float, y1: float, x2: float, y2: float, *,
                columns: int = 1, fill: str | None = None,
+               gutter: float = 11.0,
                rounded: bool = False, balance_columns: bool = False,
                valign: str | None = None,
                inset: tuple[float, float, float, float] | None = None,
@@ -57,7 +51,8 @@ def _frame_xml(writer, frame_id: str, story_id: str,
         'ItemTransform="1 0 0 1 0 0">\n'
         + writer._path_geometry(x1, y1, x2, y2) +
         f'    <TextFramePreference TextColumnCount="{columns}" '
-        f'TextColumnGutter="11" AutoSizingType="Off"{balance_attr}{valign_attr}{inset_attr}/>\n'
+        f'TextColumnGutter="{gutter:g}" AutoSizingType="Off"'
+        f'{balance_attr}{valign_attr}{inset_attr}/>\n'
         '  </TextFrame>\n'
     )
 
@@ -67,9 +62,19 @@ def _safety_section_story(writer, sid: str, title: str,
                           bundle_root: Path) -> str:
     parts: list[str] = []
     text_measure = writer.page_w - writer.m_l - writer.m_r
-    column_measure = (text_measure - 11.0) / 2.0
+    column_gap = param_pt(writer.params, "comp_twocol_sep", 6.24)
+    column_measure = (text_measure - column_gap) / 2.0
     content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
     last_idx = content_indices[-1] if content_indices else -1
+    previous_kind = ""
+    dense_language = any(marker in sid.casefold() for marker in ("_fr_", "_es_"))
+    scale_key = (
+        "idml_safety_list_horizontal_scale_dense"
+        if dense_language else "idml_safety_list_horizontal_scale"
+    )
+    horizontal_scale = 100.0 * float(
+        writer.params.get(scale_key, ("0.90" if dense_language else "0.98", "ratio"))[0]
+    )
     for bi, (kind, text) in enumerate(blocks):
         terminal = bi == last_idx
         if kind == "component":
@@ -81,10 +86,59 @@ def _safety_section_story(writer, sid: str, title: str,
         elif kind == "body":
             # \HBTypeBody territory: lead-ins are body Medium, not L2 Bold
             parts.append(writer._psr("HB Body", text, terminal=terminal))
+        elif kind == "safetylead":
+            parts.append(writer._psr("HB Safety Lead", text, terminal=terminal))
         elif kind == "list":
-            parts.append(writer._psr("HB List", text, terminal=terminal))
+            list_xml = writer._psr("HB Safety List", text, terminal=terminal)
+            list_xml = list_xml.replace(
+                "<ParagraphStyleRange ",
+                (
+                    '<ParagraphStyleRange '
+                    f'LeftIndent="{param_pt(writer.params, "idml_list_left_indent", 3.7):g}" '
+                    f'FirstLineIndent="{param_pt(writer.params, "idml_list_first_line_indent", -6.25):g}" '
+                    'RightIndent="0" Hyphenation="false" '
+                ),
+                1,
+            )
+            list_xml = list_xml.replace(
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                f'HorizontalScale="{horizontal_scale:g}"',
+            )
+            parts.append(list_xml)
+        elif kind == "sublist":
+            sublist_xml = writer._psr(
+                "HB Safety Sublist", text, terminal=terminal,
+            )
+            sublist_xml = sublist_xml.replace(
+                "<ParagraphStyleRange ",
+                (
+                    '<ParagraphStyleRange '
+                    f'LeftIndent="{param_pt(writer.params, "idml_sublist_left_indent", 9.58):g}" '
+                    f'FirstLineIndent="{param_pt(writer.params, "idml_sublist_first_line_indent", -6.04):g}" '
+                    'RightIndent="0" Hyphenation="false" '
+                ),
+                1,
+            )
+            if previous_kind != "sublist":
+                first_gap = param_pt(
+                    writer.params, "idml_sublist_first_space_before", 0.45,
+                )
+                sublist_xml = sublist_xml.replace(
+                    "<ParagraphStyleRange ",
+                    f'<ParagraphStyleRange SpaceBefore="{first_gap:g}" ',
+                    1,
+                )
+            sublist_xml = sublist_xml.replace(
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                f'HorizontalScale="{horizontal_scale:g}"',
+            )
+            parts.append(sublist_xml)
         elif kind in {"h1", "h2", "h3"}:
             parts.append(writer._psr(writer._PROSE_STYLE[kind], text, terminal=terminal))
+        if kind != "layout":
+            previous_kind = kind
     return writer._add_story_parts(sid, title, parts)
 
 def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
@@ -92,7 +146,9 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     """V2.0 US safety page 01: fixed component regions, not one flow."""
     h1 = next((t for k, t in blocks if k == "h1"), title)
     top_warning = next((t for k, t in blocks
-                        if k == "component" and '"kind": "safetywarning"' in t), None)
+                        if k == "component" and any(
+                            f'"kind": "{name}"' in t
+                            for name in ("safetywarning", "safetyinstruction"))), None)
     subbar = next((t for k, t in blocks if k == "h2"), "OPERATING INSTRUCTIONS")
 
     sections: list[list[tuple[str, str]]] = []
@@ -131,21 +187,26 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
 
     spread_id = f"sp_{page_index}"
     page_no = page_index + 1
-    body_x = 27.4
-    body_w = writer.page_w - body_x * 2
+    body_x = writer.m_l
+    body_w = writer.page_w - writer.m_l - writer.m_r
+    column_gap = param_pt(writer.params, "comp_twocol_sep", 6.24)
     frames = []
     for frame_id, story_id, rect, opts in (
-        ("title", title_sid, (body_x, 27.5, body_w, h1_bar_h_pt(writer)),
-         heading_bar_opts(1, (1.5, 5, 1, 6))),
+        ("title", title_sid, (body_x, 27.92, body_w, h1_bar_h_pt(writer)),
+         {**heading_bar_opts(1, (1.5, 0, 1, 0)),
+          "text_rect": (body_x + 6.0, 26.0, body_w - 12.0, h1_bar_h_pt(writer))}),
         ("warning", warning_sid, (body_x, 55.5, body_w, 31.5),
          with_rounded_outer({"inset": (0, 0, 0, 0)})),
-        ("section1", section_sids[0] if section_sids else "", (body_x, 93.5, body_w, 162.0),
-         {"columns": 2, "balance_columns": True, "inset": (0, 0, 0, 0)}),
+        ("section1", section_sids[0] if section_sids else "", (body_x, 95.77, body_w, 162.0),
+         {"columns": 2, "gutter": column_gap,
+          "balance_columns": True, "inset": (0, 0, 0, 0)}),
         ("subbar", bar_sid, (body_x, 263.0, body_w, SUBBAR_H),
-         heading_bar_opts(2, (0.5, 5, 0.5, 6))),
+         {**heading_bar_opts(2, (0.5, 0, 0.5, 0)),
+          "text_rect": (body_x + 6.0, 263.0, body_w - 12.0, SUBBAR_H)}),
         ("section2", section_sids[1] if len(section_sids) > 1 else "",
-         (body_x, 286.0, body_w, 205.0),
-         {"columns": 2, "balance_columns": True, "inset": (0, 0, 0, 0)}),
+         (body_x, 281.88, body_w, 209.12),
+         {"columns": 2, "gutter": column_gap,
+          "balance_columns": True, "inset": (0, 0, 0, 0)}),
     ):
         if not story_id:
             continue
@@ -329,15 +390,15 @@ def add_safety_symbols_page(
     maint_body_sid = f"{sid}_maintenance_body"
     writer._add_story_parts(
         maint_body_sid, "Maintenance body",
-        [writer._psr("HB Body", maint_text, terminal=True)])
+        [writer._psr("HB Maintenance Body", maint_text, terminal=True)])
 
     symbols_title_sid = f"{sid}_symbols_title"
     writer._add_story_parts(
         symbols_title_sid, "Symbols title",
         [heading_text(writer, copy["title"], level=1)])
 
-    body_x = 27.4
-    body_w = writer.page_w - body_x * 2
+    body_x = writer.m_l
+    body_w = writer.page_w - writer.m_l - writer.m_r
     icon_gap = 6.0
     icon_table_w = (body_w - icon_gap) / 2.0
     left_icons, right_icons, _overflow_icons = template_symbol_split(icons)
@@ -369,19 +430,27 @@ def add_safety_symbols_page(
 
     for ti, (t_sid, t_h) in enumerate(tail_stories):
         target_h = 34.5 if ti == 0 else 28.0
-        tail_h = min(max(target_h, t_h + 1.0), target_h + 4.0)
+        tail_h = (target_h if lang == "en" else
+                  min(max(target_h, t_h + 3.0), target_h + 6.0) + 3.0)
         _place(f"tail_{ti}", t_sid, tail_h,
-               with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=5.0)
-    maint_h = est_table_height([maint_text], body_w, 24.0) - 16.0
+               with_rounded_outer({
+                   "inset": (0, 0, 0, 0),
+                   "valign": "CenterAlign",
+               }), gap=4.0)
+    maint_h = (25.0 if lang == "en" else
+               est_table_height([maint_text], body_w, 24.0) - 16.0)
     _place("maint_title", maint_title_sid, SUBBAR_H,
            heading_bar_opts(2, (0.5, 5, 0.5, 6)), gap=3.5)
-    _place("maint_body", maint_body_sid, maint_h, {"inset": (0, 0, 0, 0)}, gap=8.0)
+    _place("maint_body", maint_body_sid, maint_h, {"inset": (0, 0, 0, 0)},
+           gap=0.4 if lang == "en" else 8.0)
     _place("symbols_title", symbols_title_sid, h1_bar_h_pt(writer),
            heading_bar_opts(1, (1.5, 5, 1, 6)), gap=9.0)
-    signals_h = est_table_height([t for _, t in signals], body_w * 0.76, 26.0)
+    signal_row_h = 26.0 if lang == "en" else 18.0
+    signals_h = est_table_height(
+        [t for _, t in signals], body_w * 0.76, signal_row_h)
     _place("signals", signal_sid, signals_h, with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=6.5)
     bottom = writer.page_h - 2.0
-    icons_h = max(60.0, min(
+    icons_h = 3.0 + max(60.0, min(
         max(est_table_height([r.get("text", "") for r in left_icons], icon_table_w * 0.73, 24.0),
             est_table_height([r.get("text", "") for r in right_icons], icon_table_w * 0.73, 24.0)),
         bottom - y))
@@ -397,6 +466,18 @@ def add_safety_symbols_page(
     for frame_id, story_id, rect, opts in frame_specs:
         if not story_id:
             continue
+        if frame_id == "maint_title":
+            opts = {**opts, "text_rect": (
+                rect[0] + 6.0, rect[1], rect[2] - 12.0, rect[3])}
+        elif frame_id == "symbols_title":
+            # The production page keeps the text at this baseline but places
+            # the 20.126 pt H1 bar 1.918 pt lower around it.  Separate the two
+            # rectangles so the visible title is vertically centered without
+            # shifting the already aligned signal table below.
+            text_y = rect[1]
+            rect = (rect[0], rect[1] + 1.918, rect[2], rect[3])
+            opts = {**opts, "text_rect": (
+                rect[0] + 6.0, text_y, rect[2] - 12.0, rect[3])}
         frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

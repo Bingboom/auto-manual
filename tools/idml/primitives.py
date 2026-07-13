@@ -11,17 +11,14 @@ import re
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from .style_names import paragraph_style_ref, table_style_ref
+from .spec_tables import spec_table_xml
+from .style_names import paragraph_style_ref
 from .table_borders import component_table_xml
 
-# saxutils.escape only handles &<> by default; inside a double-quoted
-# XML attribute a raw " truncates the value and malforms the part.
+# saxutils.escape needs an explicit quote entity inside XML attributes.
 _ATTR_ENTITIES = {'"': "&quot;"}
 
-# Text fallbacks are kept as a public compatibility hook for the writer,
-# but semantic symbols should render as symbols, not be rewritten into
-# approximate ASCII. Characters that Gilroy lacks are handled by
-# SYMBOL_FONT_FALLBACK_CHARS below at character-run level.
+# Compatibility hook; semantic symbols stay intact and use font fallbacks.
 GLYPH_FALLBACKS: tuple[tuple[str, str], ...] = ()
 
 DIRECT_CURRENT_SYMBOL_FONT = "Apple Symbols"
@@ -30,11 +27,20 @@ SYMBOL_FONT_FALLBACK_STYLE = "Regular"
 SYMBOL_FONT_FALLBACKS = {
     "⎓": DIRECT_CURRENT_SYMBOL_FONT,
     "※": GENERAL_SYMBOL_FONT,
-    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖●"},
+    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖❶❷❸❹❺❻❼❽❾●"},
 }
 
-PROSE_STYLE = {"h1": "HB H1", "h2": "HB Title L2", "h3": "HB Title L3",
-               "label": "HB Notice Label", "body": "HB Body", "list": "HB List"}
+PROSE_STYLE = {
+    "h1": "HB H1",
+    "h2": "HB Title L2",
+    "h3": "HB Title L3",
+    "label": "HB Notice Label",
+    "body": "HB Body",
+    "safetylead": "HB Safety Lead",
+    "warrantynote": "HB Warranty Note",
+    "list": "HB List",
+    "sublist": "HB Sublist",
+}
 
 
 def clean_text(text: str) -> str:
@@ -130,37 +136,17 @@ def spec_table(tid: str, rows: list[tuple[str, str]],
                label_style: str = "HB Spec Label", *,
                params: dict[str, tuple[str, str]],
                page_w: float, m_l: float, m_r: float,
-               role: str | None = None) -> str:
-    table_style = table_style_ref(role)
-    left_ratio = float(params.get("comp_spec_table_left_ratio", ("0.315", ""))[0])
-    body_w = page_w - m_l - m_r
-    col1 = body_w * left_ratio
-    col2 = body_w - col1
-    cells = []
-    for ri, (label, value) in enumerate(rows):
-        for ci, (txt, style) in enumerate(((label, label_style), (value, "HB Spec Value"))):
-            cells.append(
-                f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" RowSpan="1" ColumnSpan="1" '
-                'AppliedCellStyle="CellStyle/$ID/[None]" '
-                'TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">\n'
-                + psr(style, txt, terminal=True) +
-                '    </Cell>'
-            )
-    row_els = "\n".join(
-        f'    <Row Self="{tid}r{ri}" Name="{ri}" SingleRowHeight="10.3"/>' for ri in range(len(rows))
-    )
-    return (
-        f'  <Table Self="{tid}" AppliedTableStyle="{table_style}" '
-        f'BodyRowCount="{len(rows)}" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">\n'
-        f'{row_els}\n'
-        f'    <Column Self="{tid}col0" Name="0" SingleColumnWidth="{col1:g}"/>\n'
-        f'    <Column Self="{tid}col1" Name="1" SingleColumnWidth="{col2:g}"/>\n'
-        + "\n".join(cells) + "\n"
-        '  </Table>\n'
+               role: str | None = None,
+               visual_parity: bool = False) -> str:
+    return spec_table_xml(
+        tid, rows, label_style,
+        params=params, page_w=page_w, m_l=m_l, m_r=m_r,
+        role=role, visual_parity=visual_parity, paragraph_xml=psr,
     )
 
 
-def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float) -> str:
+def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float,
+                       anchored_position: str = "InlinePosition") -> str:
     """Anchored image frame for a table cell, linked to a file on disk.
 
     The Link keeps the file external (URI), so the designer relinks or
@@ -171,7 +157,8 @@ def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float)
     # Inline anchored objects hang from the text baseline: the path must
     # span y in [-h, 0]. A [0, h] path drops below the line and overlaps
     # the following text (designer-reported).
-    x1, y1, x2, y2 = 0.0, -h_pt, w_pt, 0.0
+    x1, x2 = 0.0, w_pt
+    y1, y2 = ((0.0, h_pt) if anchored_position == "AboveLine" else (-h_pt, 0.0))
     pts = ((x1, y1), (x1, y2), (x2, y2), (x2, y1))
     anchors = "".join(
         f'<PathPointType Anchor="{x:g} {y:g}" LeftDirection="{x:g} {y:g}" '
@@ -180,10 +167,10 @@ def image_cell_content(rect_id: str, image_path: Path, w_pt: float, h_pt: float)
     return (
         f'<Rectangle Self="{rect_id}" ContentType="GraphicType" '
         'AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" '
-        'StrokeColor="Swatch/None" StrokeWeight="0" AnchoredPosition="InlinePosition">'
+        'StrokeColor="Swatch/None" StrokeWeight="0">'
         '<Properties><PathGeometry><GeometryPathType PathOpen="false">'
         f'<PathPointArray>{anchors}</PathPointArray>'
-        '</GeometryPathType></PathGeometry></Properties>'
+        f'</GeometryPathType></PathGeometry></Properties><AnchoredObjectSetting AnchoredPosition="{anchored_position}" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>'
         f'<Image Self="{rect_id}_img" ItemTransform="1 0 0 1 0 0">'
         f'<Link Self="{rect_id}_lnk" LinkResourceURI="{escape(uri, _ATTR_ENTITIES)}"/>'
         '</Image>'
@@ -228,16 +215,34 @@ def art_frame_size(img: Path, max_w: float = 120.0, *,
 
 def cell(cid: str, name: str, content: str, *, fill: str | None = None,
          stroke: bool = True, top: float = 3, bottom: float = 3,
-         left: float = 4, right: float = 4) -> str:
+         left: float = 4, right: float = 4,
+         edge_weight: float | None = None,
+         edge_color: str | None = None,
+         valign: str | None = None) -> str:
     # cell fill is FillColor in IDML; CellFillColor is silently ignored
     # (designer-reported: no gray FCC/notice panels)
     fill_attr = f'FillColor="{fill}" ' if fill else ""
     stroke_attr = "" if stroke else (
         'LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" '
         'TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" ')
+    if stroke and edge_weight is not None:
+        stroke_attr = (
+            f'LeftEdgeStrokeWeight="{edge_weight:g}" '
+            f'RightEdgeStrokeWeight="{edge_weight:g}" '
+            f'TopEdgeStrokeWeight="{edge_weight:g}" '
+            f'BottomEdgeStrokeWeight="{edge_weight:g}" '
+        )
+    if stroke and edge_color:
+        stroke_attr += (
+            f'LeftEdgeStrokeColor="{edge_color}" '
+            f'RightEdgeStrokeColor="{edge_color}" '
+            f'TopEdgeStrokeColor="{edge_color}" '
+            f'BottomEdgeStrokeColor="{edge_color}" '
+        )
+    valign_attr = f'VerticalJustification="{valign}" ' if valign else ""
     return (
         f'    <Cell Self="{cid}" Name="{name}" RowSpan="1" ColumnSpan="1" '
-        f'AppliedCellStyle="CellStyle/$ID/[None]" {fill_attr}{stroke_attr}'
+        f'AppliedCellStyle="CellStyle/$ID/[None]" {fill_attr}{stroke_attr}{valign_attr}'
         f'TopInset="{top:g}" BottomInset="{bottom:g}" '
         f'LeftInset="{left:g}" RightInset="{right:g}">\n'
         + content + '    </Cell>')

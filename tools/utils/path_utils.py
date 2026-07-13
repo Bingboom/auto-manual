@@ -32,6 +32,7 @@ class PathSegments:
     RENDERERS = "renderers"
     TEMPLATES = "templates"
     LATEX = "latex"
+    IR = "ir"
     CONTRACTS = "contracts"
     RECIPES = "recipes"
     WORD_TEMPLATE = "word_template"
@@ -50,6 +51,9 @@ class PathSegments:
     PARAMS_TEX = "params.tex"
     FONTS_TEX = "fonts.tex"
     LAYOUT_PARAMS_CSV = "layout_params.csv"
+    MANUAL_STYLE_CONTRACT = "manual_style.yaml"
+    MANUAL_IR_JSON = "manual.ir.json"
+    LATEX_PAGE_PLAN_JSON = "latex_page_plan.json"
 
     DEFAULT_CONFIG_US = "config.us.yaml"
     DEFAULT_CONFIG_JA = "config.ja.yaml"
@@ -66,6 +70,10 @@ def docs_build_dir_of(docs_dir: Path) -> Path:
     return docs_dir / PathSegments.BUILD
 
 
+def manual_ir_dir_of(bundle_root: Path) -> Path:
+    return bundle_root.parent / PathSegments.IR
+
+
 def review_dir_of(docs_dir: Path) -> Path:
     return docs_dir / PathSegments.REVIEW
 
@@ -76,6 +84,10 @@ def static_dir_of(docs_dir: Path) -> Path:
 
 def latex_renderer_of(docs_dir: Path) -> Path:
     return docs_dir / PathSegments.RENDERERS / PathSegments.LATEX
+
+
+def renderer_contracts_of(docs_dir: Path) -> Path:
+    return docs_dir / PathSegments.RENDERERS / PathSegments.CONTRACTS
 
 
 def contracts_dir_of(docs_dir: Path) -> Path:
@@ -169,6 +181,10 @@ class Paths:
         return latex_renderer_of(self.docs_dir)
 
     @property
+    def renderer_contracts_dir(self) -> Path:
+        return renderer_contracts_of(self.docs_dir)
+
+    @property
     def latex_theme_dir(self) -> Path:
         # Backward-compatible alias; repo now uses docs/renderers/latex.
         return self.latex_renderer_dir
@@ -211,6 +227,14 @@ class Paths:
         # build_paths.resolve_layout_params_csv; do not use this property where
         # the ``paths.layout_params_csv`` config key must win.
         return self.data_dir / PathSegments.LAYOUT_PARAMS_CSV
+
+    @property
+    def manual_style_contract(self) -> Path:
+        return self.renderer_contracts_dir / PathSegments.MANUAL_STYLE_CONTRACT
+
+    @staticmethod
+    def manual_ir_json_for(bundle_root: Path) -> Path:
+        return manual_ir_dir_of(bundle_root) / PathSegments.MANUAL_IR_JSON
 
     @property
     def version_tracking_dir(self) -> Path:

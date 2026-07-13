@@ -1,22 +1,18 @@
-"""Story builders for the IDML exporter (componentization P3).
-
-Each function takes the writer (geometry/params/primitives via its thin
-delegates + the stories/spreads sinks) and appends the built story. Moved
-verbatim from IdmlWriter — the golden byte-comparison pins equivalence.
-"""
+"""Story builders whose golden byte-comparison pins IDML equivalence."""
 from __future__ import annotations
 
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from . import components as _components, page_objects as _po
-from . import table_borders as _tb
-from .loaders import symbol_copy
-from .params import IDPKG
+from . import components as _components, page_objects as _po, prose_flow as _flow
+from .data_stories import (
+    add_lcd_story,
+    add_spec_story,
+    add_symbols_story,
+    add_trouble_story,
+)
+from .params import IDPKG, param_pt
 from .primitives import _ATTR_ENTITIES
-from .style_names import paragraph_style_ref
-
-ROOT = Path(__file__).resolve().parents[2]
 
 # Height-ESTIMATION constants for sizing the linked spread chain. These are
 # deliberately NOT the paragraph-style sizes/leadings from styles.para_styles
@@ -27,7 +23,6 @@ ROOT = Path(__file__).resolve().parents[2]
 _EST_SIZE = {"h1": 9.0, "h2": 8.6, "h3": 7.0, "label": 6.8}
 _EST_LEADING = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}
 
-
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path) -> tuple[str, float]:
     """Story from extracted prose blocks; returns (sid, est_height_pt)."""
@@ -37,15 +32,36 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
     last_idx = content_indices[-1] if content_indices else -1
     in_twocol = False
+    next_h1_page_top: float | None = None
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
     text_measure = writer.page_w - writer.m_l - writer.m_r
     column_measure = (text_measure - 11.0) / 2.0
+    body_table_group_indices: set[int] = set()
+    import json as _json
+    for table_index, (block_kind, block_text) in enumerate(blocks):
+        if block_kind != "table":
+            continue
+        try:
+            table_kind = _components.body_data_table_kind(_json.loads(block_text))
+        except (TypeError, _json.JSONDecodeError):
+            table_kind = None
+        if table_kind is None:
+            continue
+        cursor = table_index - 1
+        while cursor >= 0 and blocks[cursor][0] not in {"h1", "h2"}:
+            body_table_group_indices.add(cursor)
+            cursor -= 1
+        if cursor >= 0 and blocks[cursor][0] == "h2":
+            body_table_group_indices.add(cursor)
     for bi, (kind, text) in enumerate(blocks):
         if kind == "layout":
             if text == "twocol_start":
                 in_twocol = True
             elif text == "twocol_end":
                 in_twocol = False
+            elif text == "page_break": parts.append(_flow.start_next_page(writer._psr("HB Body", "")))
+            elif text.startswith("next_h1_page_top:"):
+                next_h1_page_top = float(text.split(":", 1)[1])
             continue
         terminal = bi == last_idx
         if kind == "component":
@@ -68,6 +84,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 raw_rows, writer._render_context(bundle_root),
                 tid=f"{sid}_t{img_n}", terminal=terminal,
                 span_columns=not in_twocol)
+            xml_part = _flow.align_table_xml(xml_part, blocks, bi)
             parts.append(xml_part)
             est += h
             continue
@@ -82,17 +99,60 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             est += h
             continue
         if kind == "h1":
-            parts.append(_po.h1_pill_paragraph(writer, text, text_measure))
+            h1_xml = _po.h1_pill_paragraph(writer, text, text_measure)
+            if next_h1_page_top is not None:
+                offset = max(0.0, next_h1_page_top - writer.m_t)
+                h1_xml = h1_xml.replace(
+                    "<ParagraphStyleRange ",
+                    f'<ParagraphStyleRange StartParagraph="NextPage" '
+                    f'SpaceBefore="{offset:g}" ',
+                    1,
+                )
+                next_h1_page_top = None
+            parts.append(h1_xml)
             est += 24.0
             continue
-        style = writer._PROSE_STYLE.get(kind, "HB Body")
-        text = "\u25cf " + text if kind == "h2" else text
+        overview_h2 = kind in {"h2_overview_front", "h2_overview_right"}
+        semantic_kind = "h2" if overview_h2 else kind
+        style = writer._PROSE_STYLE.get(semantic_kind, "HB Body")
+        text = "\u25cf " + text if semantic_kind == "h2" else text
         span_columns = has_twocol_layout and not in_twocol and kind in {"h1", "h2"}
-        parts.append(writer._psr(
-            style, text, terminal=terminal, span_columns=span_columns))
+        paragraph = writer._psr(
+            style, text, terminal=terminal, span_columns=span_columns)
+        if bi in body_table_group_indices:
+            indent = param_pt(
+                writer.params, "comp_body_table_group_indent", 9.92,
+            )
+            paragraph = paragraph.replace(
+                "<ParagraphStyleRange ",
+                f'<ParagraphStyleRange LeftIndent="{indent:g}" ',
+                1,
+            )
+        if kind == "h2_overview_front":
+            paragraph = paragraph.replace(
+                "<ParagraphStyleRange ",
+                '<ParagraphStyleRange SpaceBefore="5.19" SpaceAfter="10.66" '
+                'LeftIndent="0.91" ',
+                1,
+            )
+        elif kind == "h2_overview_right":
+            paragraph = paragraph.replace(
+                "<ParagraphStyleRange ",
+                '<ParagraphStyleRange LeftIndent="0.91" ',
+                1,
+            )
+            paragraph = paragraph.replace(
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                'BaselineShift="-0.32"',
+                1,
+            )
+            paragraph = _po.vertical_spacer_paragraph(
+                f"spacer_{sid}_overview_right", 0.0) + paragraph
+        parts.append(paragraph)
         # width-aware: chars/line ~ frame_width / (0.52 * font size)
-        size = _EST_SIZE.get(kind, 6.2)
-        leading = _EST_LEADING.get(kind, 7.5)
+        size = _EST_SIZE.get(semantic_kind, 6.2)
+        leading = _EST_LEADING.get(semantic_kind, 7.5)
         measure = column_measure if in_twocol else text_measure
         per_line = max(20, int(measure / (0.52 * size)))
         lines = sum(max(1, (len(seg) + per_line - 1) // per_line)
@@ -107,124 +167,6 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     )
     writer.stories.append((sid, xml))
     return sid, est
-
-def add_lcd_story(writer, rows: list[dict], data_root: Path,
-                  lang: str = "en", title: str = "LCD DISPLAY") -> str:
-    """LCD icon table: circled-no / icon image / name / description."""
-    sid = "st_lcd" if lang == "en" else f"st_lcd_{lang}"
-    body_w = writer.page_w - writer.m_l - writer.m_r
-    cols = (body_w * 0.08, body_w * 0.12, body_w * 0.28, body_w * 0.52)
-    tid = "tbl_lcd" if lang == "en" else f"tbl_lcd_{lang}"
-    cells = []
-    icon_pt = 24.0
-    for ri, row in enumerate(rows):
-        # figure paths are repo-relative in both live and fixture snapshots
-        fig = (ROOT / row["figure"]) if row["figure"] else None
-        img = (writer._image_cell_content(f"{tid}img{ri}", fig, icon_pt, icon_pt)
-               if fig and fig.exists() else "")
-        cell_defs = (
-            (writer._psr("HB Spec Label", row["no"], terminal=True), 0),
-            (_components.figure_paragraph(img, tail="<Content></Content>"), 1),
-            (writer._psr("HB Spec Label", row["name"], terminal=True), 2),
-            (writer._psr("HB Spec Value", row["desc"], terminal=True), 3),
-        )
-        for content, ci in cell_defs:
-            cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
-                                      top=2, bottom=2, left=3, right=3))
-    table = _tb.fill_column_xml(writer._component_table(tid, list(cols), cells, n_rows=len(rows), role="data"), 1, "Color/HB Bg K05")
-    parts = [
-        _po.h1_pill_paragraph(writer, title, writer.page_w - writer.m_l - writer.m_r),
-        _po.lcd_hero_paragraph(writer),
-        writer._wrap_table_paragraph(table, True, span_columns=False),
-    ]
-    return writer._add_story_parts(sid, title, parts)
-
-def add_symbols_story(writer, signals: list[tuple[str, str]],
-                      icons: list[dict], data_root: Path, lang: str = "en") -> str:
-    sid = "st_symbols"
-    copy = symbol_copy(lang)
-    parts = [_po.h1_pill_paragraph(writer, copy["title"], writer.page_w - writer.m_l - writer.m_r)]
-    if signals:
-        table = writer._table("tbl_sym_sig", signals, label_style="HB Notice Label", role="data")
-        parts.append(writer._wrap_table_paragraph(table, False, span_columns=False))
-    if icons:
-        body_w = writer.page_w - writer.m_l - writer.m_r
-        cols = (body_w * 0.18, body_w * 0.82)
-        tid = "tbl_sym_ico"
-        cells = []
-        icon_pt = 20.0
-        for ri, row in enumerate(icons):
-            fig = (ROOT / row["figure"]) if row["figure"] else None
-            img = (writer._image_cell_content(f"{tid}img{ri}", fig, icon_pt, icon_pt)
-                   if fig and fig.exists() else "")
-            img_cell = _components.figure_paragraph(img, tail="<Content></Content>")
-            for ci, content in ((0, img_cell),
-                                (1, writer._psr("HB Spec Value", row["text"], terminal=True))):
-                cells.append(writer._cell(f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
-                                          top=2, bottom=2, left=3, right=3))
-        table2 = writer._component_table(tid, list(cols), cells, n_rows=len(icons), role="data")
-        parts.append(writer._wrap_table_paragraph(table2, True, span_columns=False))
-    return writer._add_story_parts(sid, "MEANING OF SYMBOLS", parts)
-
-def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
-    sid = "st_trouble"
-    parts = [_po.h1_pill_paragraph(writer, "TROUBLESHOOTING", writer.page_w - writer.m_l - writer.m_r)]
-    table = writer._table("tbl_trouble", rows, role="data")
-    body_style_ref = paragraph_style_ref("HB Body")
-    parts.append(
-        f'  <ParagraphStyleRange AppliedParagraphStyle="{body_style_ref}">\n'
-        '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
-        + table +
-        '    <Content></Content></CharacterStyleRange>\n'
-        '  </ParagraphStyleRange>\n'
-    )
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TROUBLESHOOTING">\n'
-        '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
-        + "".join(parts) + '</Story>\n</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
-    return sid
-
-def add_spec_story(writer, sections: list[dict],
-                   annotations: list[str] | None = None,
-                   lang: str = "en", title: str = "SPECIFICATIONS") -> str:
-    sid = "st_spec" if lang == "en" else f"st_spec_{lang}"
-    parts = [_po.h1_pill_paragraph(writer, title, writer.page_w - writer.m_l - writer.m_r)]
-    for si, sec in enumerate(sections):
-        parts.append(writer._psr("HB Spec Section", "\u25cf " + sec["title"]))
-        # table anchored in its own paragraph; the paragraph still needs
-        # its own <Br/> so the next section title starts a new paragraph
-        table = _tb.fill_column_xml(_tb.suppress_inner_vertical_edges_xml(
-            writer._table(f"tbl_spec_{lang}{si}", sec["rows"], role="spec"), 2),
-            0, "Color/HB Bg K05")
-        last = si == len(sections) - 1 and not annotations
-        body_style_ref = paragraph_style_ref("HB Body")
-        parts.append(
-            f'  <ParagraphStyleRange AppliedParagraphStyle="{body_style_ref}">\n'
-            '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
-            + table +
-            ('    <Content></Content></CharacterStyleRange>\n' if last else
-             '    <Br/></CharacterStyleRange>\n')
-            + '  </ParagraphStyleRange>\n'
-        )
-    # footnotes + notes under the tables (master parity)
-    for ai, note in enumerate(annotations or []):
-        parts.append(writer._psr("HB Spec Note", note,
-                               terminal=(ai == len(annotations) - 1)))
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{title}">\n'
-        '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
-        + "".join(parts) +
-        '</Story>\n'
-        '</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
-    return sid
 
 def add_text_story(writer, sid: str, title: str, blocks: list[tuple[str, str]]) -> str:
     parts = [

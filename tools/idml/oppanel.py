@@ -105,4 +105,84 @@ def transform(blocks: list[Block]) -> list[Block]:
                 continue
         out.append((kind, text))
         i += 1
-    return out
+    return _group_warranty_page(_group_charging_emphasis(out))
+
+
+def _group_charging_emphasis(blocks: list[Block]) -> list[Block]:
+    """Preserve the source's standalone pre-charge emphasis semantically.
+
+    The sentence is localized, so the carrier is detected by structure: a
+    fully-strong paragraph after introductory body copy and immediately
+    before a notice.  No rendered wording or language title is matched here.
+    """
+    grouped: list[Block] = []
+    for index, (kind, text) in enumerate(blocks):
+        next_kind = blocks[index + 1][0] if index + 1 < len(blocks) else ""
+        previous_kind = blocks[index - 1][0] if index > 0 else ""
+        full_strong = re.fullmatch(r"\*\*[^*]+\*\*", text.strip()) is not None
+        if (
+            kind == "body"
+            and previous_kind == "body"
+            and full_strong
+            and next_kind == "component"
+        ):
+            try:
+                next_spec = json.loads(blocks[index + 1][1])
+            except (TypeError, json.JSONDecodeError):
+                next_spec = {}
+            if next_spec.get("kind") == "notice":
+                grouped.append(("component", json.dumps({
+                    "kind": "emphasispill",
+                    "texts": [text.strip()[2:-2]],
+                }, ensure_ascii=False)))
+                continue
+        grouped.append((kind, text))
+    return grouped
+
+
+def _group_warranty_page(blocks: list[Block]) -> list[Block]:
+    """Turn the English warranty prose into editable visual components."""
+    if not any(kind == "h1" and text.strip().casefold() == "warranty"
+               for kind, text in blocks):
+        return blocks
+
+    grouped: list[Block] = []
+    index = 0
+    lead_seen = False
+    i = 0
+    while i < len(blocks):
+        kind, text = blocks[i]
+        if kind == "h1":
+            grouped.append((kind, text))
+            i += 1
+            continue
+        if kind == "body" and not lead_seen and text.strip().startswith("**"):
+            grouped.append(("component", json.dumps({
+                "kind": "warrantylead",
+                "texts": [text],
+            }, ensure_ascii=False)))
+            lead_seen = True
+            i += 1
+            continue
+        if kind == "h2":
+            index += 1
+            section_blocks: list[dict] = []
+            i += 1
+            while i < len(blocks) and blocks[i][0] not in {"h1", "h2"}:
+                child_kind, child_text = blocks[i]
+                if child_kind == "component":
+                    spec = json.loads(child_text)
+                    section_blocks.append({"kind": "component", "spec": spec})
+                else:
+                    section_blocks.append({"kind": child_kind, "text": child_text})
+                i += 1
+            grouped.append(("component", json.dumps({
+                "kind": "warrantysection",
+                "title": text,
+                "index": index,
+                "blocks": section_blocks,
+            }, ensure_ascii=False)))
+            continue
+        grouped.append(("warrantynote" if lead_seen else kind, text))
+        i += 1
+    return grouped

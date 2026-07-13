@@ -54,6 +54,19 @@
   label=\raisebox{\csname HBcomp_list_bullet_raise\endcsname}{\csname HBcomp_list_bullet_symbol\endcsname}
 }
 
+% Nested manual items are a distinct dash-led level in the production
+% master.  Keep the hierarchy semantic so Sphinx, LaTeX, and IDML can all
+% preserve it instead of flattening child items into parent prose.
+\setlist[itemize,2]{
+  leftmargin=\csname HBcomp_sublist_leftmargin\endcsname,
+  labelsep=\csname HBcomp_sublist_labelsep\endcsname,
+  itemsep=\csname HBcomp_sublist_itemsep\endcsname,
+  topsep=\csname HBcomp_sublist_topsep\endcsname,
+  parsep=0pt,
+  partopsep=0pt,
+  label=\csname HBcomp_sublist_bullet_symbol\endcsname
+}
+
 % ------------------------------
 % Table base
 % ------------------------------
@@ -234,7 +247,7 @@
 
 % Four inline notice variants share one visual component. The source table
 % supplies content; this component owns the rounded panel, split, and type.
-\providecommand{\HBCalloutBlock}[3]{%
+\providecommand{\HBCalloutBlock}[4]{%
   \par\noindent
   \begin{tcolorbox}[
     enhanced,
@@ -244,13 +257,16 @@
     boxrule=\csname HBcomp_callout_rule\endcsname,
     boxsep=0mm,
     leftupper=0mm,rightupper=0mm,
-    leftlower=\csname HBcomp_callout_body_inset\endcsname,
+    leftlower=0mm,
     rightlower=\csname HBcomp_tip_pad_lr\endcsname,
     top=\csname HBcomp_caution_pad_tb\endcsname,
     bottom=\csname HBcomp_caution_pad_tb\endcsname,
+    height from={#4} to {\textheight},
+    valign=center,
+    valign lower=center,
     sidebyside,
     sidebyside align=center,
-    sidebyside gap=0mm,
+    sidebyside gap=\csname HBcomp_callout_body_inset\endcsname,
     lefthand width=#3,
     before skip=1.2mm,
     after skip=1.2mm,
@@ -261,19 +277,21 @@
         rectangle
         ([xshift=#3,
           yshift=-\csname HBcomp_callout_label_inset\endcsname]frame.north west);
+      \node[anchor=base,inner sep=0pt] at
+        ([xshift=\dimexpr(#3+\csname HBcomp_callout_label_inset\endcsname)/2\relax,
+          yshift=\csname HBcomp_tip_label_baseline_shift\endcsname]frame.west)
+        {\HBFontBold
+         \fontsize{\csname HBtype_tip_label_font_size\endcsname}
+                  {\csname HBtype_tip_label_font_leading\endcsname}\selectfont
+         #1};
     }
   ]%
-    \begin{minipage}[c]
-      [\dimexpr\csname HBcomp_tip_height\endcsname
-        -2\csname HBcomp_caution_pad_tb\endcsname\relax]
-      [c]{\linewidth}%
-      \centering\HBFontSemiBold
-      \fontsize{\csname HBtype_tip_label_font_size\endcsname}
-               {\csname HBtype_tip_label_font_leading\endcsname}\selectfont
-      #1\par
+    \begin{minipage}[c]{\linewidth}%
+      \mbox{}%
     \end{minipage}%
     \tcblower
-    \HBFontRegular
+    \HBFontMedium
+    \addfontfeatures{FakeStretch=\csname HBtype_tip_body_horizontal_scale\endcsname}%
     \fontsize{\csname HBtype_tip_body_font_size\endcsname}
              {\csname HBtype_tip_body_font_leading\endcsname}\selectfont
     \setlength{\parskip}{0pt}%
@@ -293,14 +311,15 @@
   #1\par
 }
 \providecommand{\HBWarningBlock}[2]{%
-  \HBCalloutBlock{#1}{#2}{\csname HBcomp_caution_label_width\endcsname}%
+  \HBCalloutBlock{#1}{#2}{\csname HBcomp_caution_label_width\endcsname}{0pt}%
 }
 \providecommand{\HBCautionBlock}[2]{%
-  \HBCalloutBlock{#1}{#2}{\csname HBcomp_caution_label_width\endcsname}%
+  \HBCalloutBlock{#1}{#2}{\csname HBcomp_caution_label_width\endcsname}{0pt}%
 }
 \providecommand{\HBNoteBlock}[2]{%
-  \HBCalloutBlock{#1}{#2}{\csname HBcomp_tip_label_width\endcsname}%
+  \HBCalloutBlock{#1}{#2}{\csname HBcomp_tip_label_width\endcsname}{0pt}%
 }
 \providecommand{\HBTipBlock}[2]{%
   \HBCalloutBlock{#1}{#2}{\csname HBcomp_tip_label_width\endcsname}%
+    {\csname HBcomp_tip_height\endcsname}%
 }

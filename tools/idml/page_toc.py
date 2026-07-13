@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
+from xml.sax.saxutils import escape
 
 from .params import IDPKG
 from . import page_objects as _po
@@ -37,6 +38,24 @@ SYMBOL_TITLES = {
     "es": "SIGNIFICADO DE LOS SÍMBOLOS",
 }
 _TOC_SLOT = 2  # cover, preface, TOC, then the numbered content pages
+
+# Vector measurements from physical page 3 of the production PDF.  These
+# language bars are rounded rectangles, not the full-stadium subheading token.
+_BAR_X_OFFSET = 1.780
+_BAR_X_STEP = 0.115
+_BAR_Y_OFFSET = -0.340
+_BAR_WIDTH = 311.810
+_BAR_HEIGHT = 15.852
+_BAR_RADIUS = 4.753
+_CODE_X = (34.285, 34.399, 35.294)
+_LABEL_X = (53.688, 53.802, 53.917)
+_LABEL_HORIZONTAL_SCALE = (101.194, 100.777, 100.357)
+_RANGE_RIGHT = (335.503, 336.041, 337.281)
+_RANGE_HORIZONTAL_SCALE = (100.041, 98.506, 99.697)
+_LEFT_ENTRY_X = (29.896, 30.012, 30.127)
+_LEFT_ENTRY_WIDTH = (151.461, 151.461, 151.346)
+_RIGHT_ENTRY_X = 189.261
+_RIGHT_ENTRY_WIDTH = (154.676, 154.790, 154.905)
 
 
 @dataclass
@@ -87,73 +106,170 @@ def _folio(spread_index: int) -> int:
     return max(1, spread_index - 1)
 
 
-def _entry_psr(title: str, folio: int, col_w: float) -> str:
-    style = paragraph_style_ref("HB Spec Label")
+def _entry_psr(title: str, folio: int | str, col_w: float) -> str:
+    style = paragraph_style_ref("HB TOC Entry")
+    available = col_w - 8.0
+    point_size = min(6.5, available / max(1.0, len(title) * 0.56))
+    point_size = max(5.4, point_size)
     leader = (
         '<Properties><TabList type="list"><ListItem type="record">'
         '<Alignment type="enumeration">RightAlign</Alignment>'
         '<AlignmentCharacter type="string">.</AlignmentCharacter>'
-        '<Leader type="string">.</Leader>'
+        '<Leader type="string">. </Leader>'
         f'<Position type="unit">{col_w - 2:.1f}</Position>'
         "</ListItem></TabList></Properties>"
     )
     safe = title.replace("&", "&amp;").replace("<", "&lt;")
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">{leader}'
-        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-        f"<Content>{safe}\t{folio:02d}</Content><Br/>"
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'PointSize="{point_size:.3f}" FontStyle="Medium" '
+        'HorizontalScale="100.693">'
+        f"<Content>{safe}</Content>"
+        '</CharacterStyleRange>'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        'PointSize="6.5" FontStyle="Regular"><Content>\t</Content>'
+        '</CharacterStyleRange>'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        'PointSize="7" FontStyle="Regular" BaselineShift="0.20">'
+        f"<Content>{str(folio).zfill(2)}</Content><Br/>"
         "</CharacterStyleRange></ParagraphStyleRange>\n"
     )
 
 
-def finalize(writer, collector: TocCollector, add_story_parts, psr) -> bool:
+def _bar_code_psr(code: str) -> str:
+    style = paragraph_style_ref("HB TOC Bar")
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'PointSize="12" FontStyle="Bold"><Content>{escape(code)}</Content></CharacterStyleRange>'
+        '</ParagraphStyleRange>\n'
+    )
+
+
+def _bar_label_psr(label: str, horizontal_scale: float) -> str:
+    style = paragraph_style_ref("HB TOC Bar")
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'PointSize="7" FontStyle="Medium" HorizontalScale="{horizontal_scale:g}">'
+        f'<Content>{escape(label)}</Content></CharacterStyleRange>'
+        '</ParagraphStyleRange>\n'
+    )
+
+
+def _display_segments(
+    collector: TocCollector, source: dict | None,
+) -> tuple[str, list[tuple[str, str, list[tuple[str, int | str]]]]]:
+    if source:
+        segments = []
+        for language in source.get("languages", []):
+            header = f"{language.get('code', '')}  {language.get('label', '')}".strip()
+            entries = [(str(entry.get("title", "")), str(entry.get("folio", "")))
+                       for entry in language.get("entries", [])]
+            segments.append((header, str(language.get("page_range", "")), entries))
+        return str(source.get("title") or "TABLE OF CONTENTS"), segments
+    segments = []
+    for lang, entries in _segments(collector.entries):
+        folios = [_folio(index) for _, index in entries]
+        segments.append((_LANG_HEADERS.get(lang, lang.upper()),
+                         f"{min(folios):02d}-{max(folios):02d}",
+                         [(title, _folio(index)) for title, index in entries]))
+    return "TABLE OF CONTENTS", segments
+
+
+def finalize(
+    writer, collector: TocCollector, add_story_parts, psr,
+    source: dict | None = None,
+) -> bool:
     """Build the TOC spread and splice it into the template slot."""
-    segments = _segments(collector.entries)
+    title, segments = _display_segments(collector, source)
     if not segments or len(writer.spreads) <= _TOC_SLOT:
         return False
 
-    body_x = 27.4
-    body_w = writer.page_w - body_x * 2
-    col_w = (body_w - 12.0) / 2.0
-    y = 24.0
+    body_x = writer.m_l
+    body_w = writer.page_w - writer.m_l - writer.m_r
+    y = 33.84
     frames: list[str] = []
     # master: plain large dark text, no bar (STYLE_MAP.md 标题族)
+    title_xml = psr("HB TOC Title", title, terminal=True).replace(
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        'HorizontalScale="100.884"',
+        1,
+    )
     title_sid = add_story_parts(
         "st_toc_title", "TOC title",
-        [psr("HB Big Numeral", "TABLE OF CONTENTS", terminal=True)])
+        [title_xml])
     frames.append(writer._frame_xml(
-        "tf_toc_title", title_sid, *writer._page_rect(body_x, y, body_w, 30.0),
-        valign="CenterAlign", inset=(0, 0, 0, 0)))
-    y += 38.0
+        "tf_toc_title", title_sid,
+        *writer._page_rect(body_x + 1.11, y + 0.667, body_w - 1.11, 30.0),
+        inset=(0, 0, 0, 0)))
+    y = 65.51
 
-    for si, (seg_lang, segment) in enumerate(segments):
-        header = _LANG_HEADERS.get(seg_lang, seg_lang.upper())
-        folios = [_folio(i) for _, i in segment]
-        rng = f"{min(folios):02d}-{max(folios):02d}"
+    for si, (header, rng, segment) in enumerate(segments):
+        code, _, label = header.partition("  ")
         bar_sid = add_story_parts(
             f"st_toc_bar_{si}", f"TOC bar {si}",
-            [psr("HB Capsule Text", f"{header}\t{rng}", terminal=True)])
+            [_bar_code_psr(code)])
+        label_sid = add_story_parts(
+            f"st_toc_bar_label_{si}", f"TOC bar label {si}",
+            [_bar_label_psr(label, _LABEL_HORIZONTAL_SCALE[si])])
+        range_xml = psr("HB TOC Range", rng, terminal=True).replace(
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            f'HorizontalScale="{_RANGE_HORIZONTAL_SCALE[si]:g}"',
+            1,
+        )
+        range_sid = add_story_parts(
+            f"st_toc_range_{si}", f"TOC range {si}",
+            [range_xml])
         # rounded via the capsule path Rectangle: CornerOption attrs are
         # unreliable on generated frames (STYLE_MAP.md 机制备忘)
+        bar_x = body_x + _BAR_X_OFFSET + si * _BAR_X_STEP
+        bar_y = y + _BAR_Y_OFFSET
         frames.append(_po.capsule_xml(
-            writer, f"bg_toc_bar_{si}", (body_x, y, body_w, 14.0)))
+            writer,
+            f"bg_toc_bar_{si}",
+            (bar_x, bar_y, _BAR_WIDTH, _BAR_HEIGHT),
+            corner_radius=_BAR_RADIUS,
+        ))
         frames.append(writer._frame_xml(
             f"tf_toc_bar_{si}", bar_sid,
-            *writer._page_rect(body_x + 8.0, y, body_w - 16.0, 14.0),
-            inset=(1, 0, 1, 0)))
-        y += 20.0
+            *writer._page_rect(_CODE_X[si], bar_y + 0.074, 17.0, 14.85),
+            valign="CenterAlign", inset=(0, 0, 0, 0)))
+        frames.append(writer._frame_xml(
+            f"tf_toc_bar_label_{si}", label_sid,
+            *writer._page_rect(_LABEL_X[si], bar_y + 1.598, 80.0, 14.85),
+            valign="CenterAlign", inset=(0, 0, 0, 0)))
+        frames.append(writer._frame_xml(
+            f"tf_toc_range_{si}", range_sid,
+            *writer._page_rect(
+                _RANGE_RIGHT[si] - 28.40,
+                bar_y + (0.163 if si == 0 else 0.114),
+                28.40,
+                14.85,
+            ),
+            valign="CenterAlign", inset=(0, 0, 0, 0)))
+        entry_y = y + 25.615 - (2.828 if si else 0.0)
         half = (len(segment) + 1) // 2
         for ci, chunk in enumerate((segment[:half], segment[half:])):
             if not chunk:
                 continue
-            xml = "".join(_entry_psr(t, _folio(i), col_w) for t, i in chunk)
+            entry_x = _LEFT_ENTRY_X[si] if ci == 0 else _RIGHT_ENTRY_X
+            entry_w = (
+                _LEFT_ENTRY_WIDTH[si] if ci == 0
+                else _RIGHT_ENTRY_WIDTH[si]
+            )
+            xml = "".join(_entry_psr(t, folio, entry_w) for t, folio in chunk)
             sid = add_story_parts(f"st_toc_seg{si}_c{ci}", f"TOC {si}/{ci}", [xml])
             frames.append(writer._frame_xml(
                 f"tf_toc_seg{si}_c{ci}", sid,
-                *writer._page_rect(body_x + ci * (col_w + 12.0), y,
-                                   col_w, 9.0 * half + 4.0),
+                *writer._page_rect(
+                    entry_x, entry_y, entry_w, 14.0 * half + 14.0,
+                ),
                 inset=(0, 0, 0, 0)))
-        y += 9.0 * half + 14.0
+        y += 142.75 if si == 0 else 149.22
 
     spread_xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

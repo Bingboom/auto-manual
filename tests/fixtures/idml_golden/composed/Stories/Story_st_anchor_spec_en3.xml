@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_anchor_spec_en3" Label="hb:self=st_anchor_spec_en3" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="ENVIRONMENTAL OPERATING TEMPERATURE specification table">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
+  <Table Self="tbl_spec_en3" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="2" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0" SpaceBefore="0" SpaceAfter="0">
+    <Row Self="tbl_spec_en3r0" Name="0" SingleRowHeight="10.3"/>
+    <Row Self="tbl_spec_en3r1" Name="1" SingleRowHeight="10.3"/>
+    <Column Self="tbl_spec_en3col0" Name="0" SingleColumnWidth="100.254"/>
+    <Column Self="tbl_spec_en3col1" Name="1" SingleColumnWidth="210.711"/>
+    <Cell Self="tbl_spec_en3c0_0" Name="0:0" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.0875" BottomInset="4.0875" LeftInset="5.85" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="0.91"><Content>Charging Temperature</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en3c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.0875" BottomInset="4.0875" LeftInset="2.26" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="0.91"><Content>14°F to 113°F / -10°C to 45°C</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en3c1_0" Name="0:1" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.0875" BottomInset="4.0875" LeftInset="5.85" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="0.91"><Content>Discharging Temperature</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_spec_en3c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.0875" BottomInset="4.0875" LeftInset="2.26" RightInset="3">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="0.91"><Content>14°F to 113°F / -10°C to 45°C</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+  </Table>
+    <Content></Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+</Story>
+</idPkg:Story>

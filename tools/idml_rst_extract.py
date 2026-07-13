@@ -1,8 +1,7 @@
 """Prose extraction for the IDML exporter (M4b).
 
-Parses the *prepared bundle* rst pages (docs/_build/<model>/<region>/<lang>/
-rst/page/*.rst — variables already substituted, same source the PDF build
-consumes) into a flat list of blocks the IDML writer can emit:
+Parses the prepared bundle under docs/_build/<model>/<region>/<lang>/rst/page
+(variables already substituted) into blocks the IDML writer can emit:
 
     ("h1"|"h2"|"h3"|"body"|"list", text)
     ("image", bundle-relative-path)
@@ -27,12 +26,16 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 try:
+    from tools.idml.data_components import is_data_plumbing, parse_data_component
+    from tools.idml.latex_conditionals import active_lines
     from tools.idml.notice_labels import notice_label_variant
     from tools.idml_rst_tables import (
         parse_grid_table as _parse_grid_table_impl,
         parse_list_table as _parse_list_table_impl,
     )
 except ModuleNotFoundError:  # direct tools/export_idml.py execution
+    from idml.data_components import is_data_plumbing, parse_data_component  # type: ignore
+    from idml.latex_conditionals import active_lines  # type: ignore
     from idml.notice_labels import notice_label_variant  # type: ignore
     from idml_rst_tables import (  # type: ignore
         parse_grid_table as _parse_grid_table_impl,
@@ -40,21 +43,12 @@ except ModuleNotFoundError:  # direct tools/export_idml.py execution
     )
 
 Block = tuple[str, str]
+EMITTED_COMPONENT_KINDS = ("langtag",
+    "fcc", "inbox", "lcdmode", "notice", "safetyinstruction", "safetywarning",
+    "warninglead", "warnbox")
 
-# Component spec kinds this extractor can emit in ("component", json) blocks.
-# Parity with the IDML component registry (tools/idml/components.REGISTRY) is
-# test-enforced so a new kind can never ship extractor-side without a renderer.
-# "tailwarnbox" is deliberately absent: the safety+symbols page composer
-# synthesizes it from trailing safety warnboxes; it has no extracted form.
-EMITTED_COMPONENT_KINDS = (
-    "langtag",
-    "fcc", "inbox", "lcdmode", "notice", "safetywarning", "warninglead", "warnbox",
-)
-
-# Block kinds whose text payload is a JSON document (rows / component spec),
-# not prose — the RST unescape pass must reach INTO their string values, never
-# rewrite the JSON envelope (see _unescape_rst_stars).
-_JSON_BLOCK_KINDS = frozenset({"component", "table"})
+# JSON block payloads must be unescaped inside their values, not their envelope.
+_JSON_BLOCK_KINDS = frozenset({"component", "data", "table"})
 
 
 @dataclass
@@ -108,8 +102,7 @@ def _detex(s: str) -> str:
 
 
 def _unescape_stars(value: object) -> object:
-    """Turn the RST escaped asterisk ``\\*`` into a literal ``*`` in every string,
-    recursing through the JSON containers (list rows, component dicts)."""
+    """Unescape ``\\*`` recursively through JSON containers and strings."""
     if isinstance(value, str):
         return value.replace("\\*", "*")
     if isinstance(value, list):
@@ -174,6 +167,7 @@ def _notice_from_list_table(rows: list[list[str]]) -> dict | None:
 _MACROS: tuple[tuple[str, int, str], ...] = (
     # (macro, arg count, kind)  kind: label1 = arg0 is a heading, rest body
     ("\\safetywarning", 1, "safetywarning"),
+    ("\\HBSafetyInstruction", 1, "safetyinstruction"),
     ("\\HBWarningLeadBlock", 2, "warninglead"),
     ("\\HBDangerBlock", 3, "labelled"),
     ("\\HBNoticeBlock", 4, "noticed"),   # [kind]{label}{p}{s} — optional arg handled below
@@ -185,9 +179,9 @@ _MACROS: tuple[tuple[str, int, str], ...] = (
     ("\\HBInBoxThree", 6, "inbox"),
     ("\\section", 1, "h1x"),
     ("\\safetysubbar", 1, "h2"),
-    ("\\safetylead", 1, "body"),
+    ("\\safetylead", 1, "safetylead"),
     # JE-2000E-era page macros
-    ("\\HBSafetyInstruction", 1, "safetywarning"),
+    ("\\HBPageBreak", 1, "pagebreak"),
     ("\\HBAppStep", 2, "h2num"),
     ("\\HBAppBody", 1, "body"),
     ("\\HBAppAsset", 3, "image1"),
@@ -197,6 +191,10 @@ _MACROS: tuple[tuple[str, int, str], ...] = (
 
 def _extract_raw_latex(body: str, result: ExtractResult) -> None:
     stripped_body = body.strip()
+    data_payload = parse_data_component(body)
+    if data_payload is not None:
+        result.blocks.append(("data", json.dumps(data_payload, ensure_ascii=False)))
+        return
     if stripped_body == r"\begin{safetytwocol}":
         result.twocol = True
         result.blocks.append(("layout", "twocol_start"))
@@ -266,6 +264,10 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
             result.blocks.append(("component", _json.dumps(
                 {"kind": "safetywarning", "texts": [args[0]]},
                 ensure_ascii=False)))
+        elif kind == "safetyinstruction" and args:
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "safetyinstruction", "texts": [args[0]]},
+                ensure_ascii=False)))
         elif kind == "warninglead" and args:
             result.blocks.append(("component", _json.dumps(
                 {"kind": "warninglead", "label": args[0],
@@ -275,8 +277,11 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
                 {"kind": "warnbox", "label": args[0],
                  "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
         elif kind == "noticed" and args:
+            label = args[0].strip()
+            if not label:
+                raise ValueError("notice label is required from source RST")
             result.blocks.append(("component", _json.dumps(
-                {"kind": "notice", "label": args[0] or optional.upper() or "NOTICE",
+                {"kind": "notice", "label": label,
                  "variant": optional or "notice",
                  "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
         elif kind in {"note", "tip", "caution"} and args:
@@ -284,8 +289,8 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
                 {"kind": "notice", "label": args[0], "variant": kind,
                  "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
         elif kind == "bodies":
-            result.blocks.append(("component", _json.dumps(
-                {"kind": "fcc", "texts": [a for a in args if a]}, ensure_ascii=False)))
+            result.blocks.extend([("h1", "FCC"), ("component", _json.dumps(
+                {"kind": "fcc", "texts": [a for a in args if a]}, ensure_ascii=False))])
         elif kind == "langtag" and len(args) == 2:
             result.blocks.append(("component", _json.dumps(
                 {"kind": "langtag", "lang": args[0], "texts": [args[1]]},
@@ -304,17 +309,19 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
             result.blocks.append(("h2", f"{args[0]} {args[1]}".strip()))
         elif kind == "image1" and args:
             result.blocks.append(("image", args[0]))
-        elif kind == "body" and args:
-            result.blocks.append(("body", args[0]))
+        elif kind in {"body", "safetylead"} and args:
+            result.blocks.append((kind, args[0]))
+        elif kind == "pagebreak" and consumed_any:
+            result.blocks.append(("layout", "page_break"))
         consumed_any = True
         i = j
     if not consumed_any and body.strip():
         # raw content with no recognizable macro (pure latex plumbing like
         # \HBApplyLang, tabular constructs...) — plumbing is silent, real
         # constructs count as skipped.
-        stripped = re.sub(r"\\HBApplyLang\{[^}]*\}", "", body)
-        stripped = re.sub(r"\\(?:fi|HBPageBreak|HBPrefacePageEnd)\b", "", stripped).strip()
-        if stripped and not stripped.startswith("\\begin{safetytwocol}") \
+        stripped = re.sub(r"\\HBApplyLang\{[^}]*\}", "", body).strip()
+        if stripped and not is_data_plumbing(stripped) \
+                and not stripped.startswith("\\begin{safetytwocol}") \
                 and not stripped.startswith("\\end{safetytwocol}"):
             result.skipped_raw += 1
 
@@ -327,10 +334,7 @@ _UNDERLINES = {"=": "h1", "-": "h2", "~": "h3", "^": "h3"}
 
 
 def _only_matches(expr: str, tags: set[str]) -> bool:
-    """Evaluate a sphinx ``only::`` expression against active tags.
-
-    Supports the bundle's vocabulary: bare tags, ``and``, and ``not``.
-    """
+    """Evaluate the bundle's bare-tag/``and``/``not`` only-expression subset."""
     for clause in expr.split(" and "):
         clause = clause.strip()
         if clause.startswith("not "):
@@ -344,7 +348,7 @@ def _only_matches(expr: str, tags: set[str]) -> bool:
 def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
     tags = tags if tags is not None else {"latex"}
     result = ExtractResult()
-    lines = path.read_text(encoding="utf-8").splitlines()
+    lines = active_lines(path.read_text(encoding="utf-8").splitlines(), tags)
     i = 0
     n = len(lines)
 
@@ -378,6 +382,16 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
             body, i2 = indented_body(i + 1, indent)
             if directive == "raw" and arg == "latex":
                 _extract_raw_latex("\n".join(body), result)
+            elif directive == "raw" and arg == "manual-ir":
+                try:
+                    payload = json.loads("\n".join(line.strip() for line in body))
+                except json.JSONDecodeError:
+                    result.skipped_raw += 1
+                else:
+                    if isinstance(payload, dict) and payload.get("kind"):
+                        result.blocks.append(("data", json.dumps(payload, ensure_ascii=False)))
+                    else:
+                        result.skipped_raw += 1
             elif directive == "only":
                 if _only_matches(arg, tags):
                     # re-parse the body as page content (dedented)
@@ -440,13 +454,18 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
 
         # bullet lists
         if stripped.startswith("- "):
+            indent = len(line) - len(line.lstrip())
             item = [stripped[2:]]
             i += 1
             while i < n and lines[i].strip() and not lines[i].strip().startswith("- ") \
                     and (len(lines[i]) - len(lines[i].lstrip())) >= 2:
                 item.append(lines[i].strip())
                 i += 1
-            result.blocks.append(("list", "• " + " ".join(item)))
+            nested = indent >= 2
+            result.blocks.append((
+                "sublist" if nested else "list",
+                ("– " if nested else "• ") + " ".join(item),
+            ))
             continue
 
         # plain paragraph
@@ -492,7 +511,6 @@ def bundle_page_order(bundle_root: Path) -> list[Path]:
             if p.exists():
                 order.append(p)
     return order
-
 def _parse_grid_table(grid: list[str]) -> list[list[str]]:
     """Parse an rst grid table block into row cell-text lists."""
     return _parse_grid_table_impl(grid)

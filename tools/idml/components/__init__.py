@@ -12,25 +12,31 @@ from __future__ import annotations
 
 from .base import ComponentRenderer, RenderContext, figure_paragraph
 from .callout import (
-    render_notice,
     render_safetywarning,
     render_tailwarnbox,
     render_warnbox,
     render_warninglead,
 )
 from .fcc import render_fcc
+from .emphasis import render_emphasispill
 from .inbox import render_inbox
 from .lcdmode import render_lcdmode
+from .notice import render_notice
 from .prose_image import render_image_block
-from .prose_table import render_table_block
+from .prose_table import body_data_table_kind, render_table_block
 
 from .langbadge import render_langtag
 from .oppanel import render_oppanel
-from .warranty import render_warrantyyears
+from .warranty import (
+    render_warrantylead,
+    render_warrantysection,
+    render_warrantyyears,
+)
 
 REGISTRY: dict[str, ComponentRenderer] = {
     "inbox": render_inbox,
     "safetywarning": render_safetywarning,
+    "safetyinstruction": render_safetywarning,
     "warninglead": render_warninglead,
     "tailwarnbox": render_tailwarnbox,
     "warnbox": render_warnbox,
@@ -38,7 +44,10 @@ REGISTRY: dict[str, ComponentRenderer] = {
     "oppanel": render_oppanel,
     "langtag": render_langtag,
     "warrantyyears": render_warrantyyears,
+    "warrantylead": render_warrantylead,
+    "warrantysection": render_warrantysection,
     "fcc": render_fcc,
+    "emphasispill": render_emphasispill,
     "lcdmode": render_lcdmode,
 }
 
@@ -62,4 +71,5 @@ def render(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
 __all__ = [
     "ComponentRenderer", "RenderContext", "REGISTRY", "render",
     "figure_paragraph", "render_image_block", "render_table_block",
+    "body_data_table_kind",
 ]

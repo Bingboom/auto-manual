@@ -106,14 +106,43 @@ class LatexCalloutTests(unittest.TestCase):
         )
 
         self.assertIn("comp_callout_rule,1.2,pt", params)
-        self.assertIn("comp_callout_label_inset,1.2,mm", params)
+        self.assertIn("comp_callout_label_inset,0.44,mm", params)
+        self.assertIn("comp_tip_pad_lr,1.15,mm", params)
+        self.assertIn("comp_tip_label_baseline_shift,-0.57,pt", params)
+        self.assertIn("type_tip_body_horizontal_scale,1.069,ratio", params)
         self.assertIn("colback=BgK05,\n    colframe=BgK05", component)
         self.assertIn("HBcomp_callout_body_inset", component)
         self.assertIn("HBcomp_callout_bullet_indent", component)
         self.assertIn("HBcomp_callout_bullet_width", component)
-        self.assertIn("\\begin{minipage}[c]", component)
+        self.assertIn(
+            "height from={#4} to {\\textheight}",
+            component,
+        )
+        self.assertIn(
+            "\\HBCalloutBlock{#1}{#2}{\\csname HBcomp_caution_label_width\\endcsname}{0pt}",
+            component,
+        )
+        self.assertIn(
+            "{\\csname HBcomp_tip_height\\endcsname}",
+            component,
+        )
+        self.assertIn("\\begin{minipage}[c]{\\linewidth}", component)
         self.assertIn("\\setlength{\\parskip}{0pt}", component)
         self.assertIn("sidebyside align=center", component)
+        self.assertIn(
+            "sidebyside gap=\\csname HBcomp_callout_body_inset\\endcsname",
+            component,
+        )
+        self.assertIn("valign lower=center", component)
+        self.assertIn("\\node[anchor=base,inner sep=0pt]", component)
+        self.assertIn(
+            "xshift=\\dimexpr(#3+\\csname HBcomp_callout_label_inset",
+            component,
+        )
+        self.assertIn("yshift=\\csname HBcomp_tip_label_baseline_shift", component)
+        self.assertIn("\\HBFontBold", component)
+        self.assertIn("\\HBFontMedium", component)
+        self.assertIn("FakeStretch=\\csname HBtype_tip_body_horizontal_scale", component)
         self.assertIn("lefthand width=#3", component)
 
 

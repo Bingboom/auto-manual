@@ -57,9 +57,14 @@ class ExportIdmlTests(unittest.TestCase):
         out = self._write_package()
         with zipfile.ZipFile(out) as zf:
             story = zf.read("Stories/Story_st_spec.xml").decode("utf-8")
-        self.assertIn("<Table ", story)
+            table_stories = "".join(
+                zf.read(name).decode("utf-8")
+                for name in zf.namelist()
+                if name.startswith("Stories/Story_st_anchor_spec_")
+            )
+        self.assertIn("<Table ", table_stories)
         self.assertIn("GENERAL INFO", story)
-        self.assertIn("Product Name", story)
+        self.assertIn("Product Name", table_stories)
 
     def test_text_frames_use_path_geometry(self) -> None:
         out = self._write_package()
@@ -217,6 +222,15 @@ class ExportIdmlTests(unittest.TestCase):
         worker.join(timeout=5)
         self.assertTrue(done.is_set(), "extraction hung on an unclosed optional arg")
 
+    def test_notice_macro_requires_source_label(self) -> None:
+        from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
+
+        with self.assertRaisesRegex(ValueError, "required from source RST"):
+            _extract_raw_latex(
+                r"\HBNoticeBlock[tip]{}{renderer must not invent a label}{}",
+                ExtractResult(),
+            )
+
     def test_escaped_asterisk_in_json_block_stays_valid_json(self) -> None:
         # A JSON payload (table/component) carries `\*` already JSON-escaped; the
         # unescape must reach into the string values, not corrupt the envelope.
@@ -258,6 +272,27 @@ class ExportIdmlTests(unittest.TestCase):
         rect = w._image_cell_content("r1", img, 100.0, 60.0)
         self.assertIn('Anchor="0 -60', rect)
         self.assertNotIn('Anchor="0 60', rect)
+        self.assertIn('<AnchoredObjectSetting AnchoredPosition="InlinePosition"', rect)
+        self.assertNotIn('StrokeWeight="0" AnchoredPosition=', rect)
+
+    def test_prose_images_take_an_above_line_layout_slot(self) -> None:
+        from tools.idml.components.prose_image import render_image_block
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        bundle = ROOT / "tests" / "fixtures" / "idml_bundle"
+        image = ROOT / "docs" / "renderers" / "latex" / "assets" / "warning_lockup.png"
+        xml, _ = render_image_block(
+            image.as_posix(), w._render_context(bundle), rect_id="r2", terminal=False)
+        self.assertIn('AnchoredPosition="AboveLine"', xml)
+        self.assertIn('Anchor="0 0"', xml)
+        self.assertNotIn('Anchor="0 -', xml)
+
+        result = ROOT / "docs" / "templates" / "word_template" / "common_assets" / "app" / "connect_result.png"
+        result_xml, height = render_image_block(
+            result.as_posix(),
+            w._render_context(bundle), rect_id="r3", terminal=False)
+        self.assertIn(f'AnchorSpaceAbove="{height - 4:g}"', result_xml)
 
     def test_no_semibold_font_style_in_paragraph_styles(self) -> None:
         # the licensed Gilroy set has no SemiBold face; referencing it makes
@@ -390,16 +425,24 @@ class ExportIdmlTests(unittest.TestCase):
         # notice/tip: plain left label + gray text panel; no warning icon
         xml, _ = w._render_component("t", 1, {
             "kind": "notice", "label": "TIP", "texts": ["hello"]}, bundle, True)
-        # rounded parity: grey rounded panel frame; label chip + body live
-        # in the anchored sub-story
+        # rounded parity: grey shell, equal-height white label plate, and
+        # separate editable label/body stories in one anchored group.
         self.assertIn('FillColor="Color/HB Bg K05"', xml)
-        self.assertIn('ParentStory="st_anchor_notice_t_cmp1"', xml)
-        panel = dict(w.stories)["st_anchor_notice_t_cmp1"]
-        self.assertIn('FillColor="Color/Paper"', panel)
+        self.assertIn('FillColor="Color/Paper"', xml)
+        self.assertIn('ParentStory="st_anchor_notice_label_t_cmp1"', xml)
+        self.assertIn('ParentStory="st_anchor_notice_body_t_cmp1"', xml)
+        self.assertIn("st_anchor_notice_label_t_cmp1", dict(w.stories))
+        self.assertIn("st_anchor_notice_body_t_cmp1", dict(w.stories))
         self.assertNotIn("warning_triangle", xml)
+        with self.assertRaisesRegex(ValueError, "required from source IR"):
+            w._render_component(
+                "t", 2,
+                {"kind": "notice", "texts": ["renderer must not label this"]},
+                bundle, True,
+            )
         # warnbox: triangle icon + one editable label; do not place the
         # WARNING lockup art and then print WARNING again below it.
-        xml, _ = w._render_component("t", 2, {
+        xml, _ = w._render_component("t", 3, {
             "kind": "warnbox", "label": "WARNING", "texts": ["stay safe"]}, bundle, True)
         self.assertIn("warning_triangle", xml)
         self.assertNotIn("warning_lockup", xml)
@@ -414,7 +457,15 @@ class ExportIdmlTests(unittest.TestCase):
             "kind": "warninglead", "label": "WARNING", "texts": ["lead"]},
             bundle, True, span_columns=False, measure_w=150.0)
         self.assertIn("warning_triangle", xml)
-        self.assertIn(">WARNING<", xml)
+        self.assertIn('FillColor="Color/HB Brand Dark"', xml)
+        warninglead_story = dict(w.stories)["st_anchor_warninglead_text_t_cmp5"]
+        self.assertIn(">WARNING<", warninglead_story)
+        self.assertIn(
+            paragraph_style_ref("HB Warning Lead Label"), warninglead_story,
+        )
+        self.assertIn(
+            paragraph_style_ref("HB Warning Lead Body"), warninglead_story,
+        )
         self.assertNotIn('SpanColumnType="SpanColumns"', xml)
         # fcc: two gray columns with the mark
         xml, _ = w._render_component("t", 3, {
@@ -487,6 +538,135 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(json.loads(res.blocks[1][1])["kind"], "notice")
         self.assertEqual(json.loads(res.blocks[1][1])["variant"], "tip")
 
+    def test_upstream_page_macros_keep_same_source_semantics(self) -> None:
+        import json
+        from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
+
+        res = ExtractResult()
+        _extract_raw_latex(r"\HBSafetyInstruction{Keep this instruction.}", res)
+        _extract_raw_latex(r"\HBAppStep{2}{Connect the device}", res)
+        _extract_raw_latex(r"\HBAppAsset{app.png}{ignored}{ignored}", res)
+
+        self.assertEqual(json.loads(res.blocks[0][1])["kind"], "safetyinstruction")
+        self.assertEqual(res.blocks[1], ("h2", "2 Connect the device"))
+        self.assertEqual(res.blocks[2], ("image", "app.png"))
+
+        paged = ExtractResult()
+        _extract_raw_latex(
+            r"\HBPageBreak{}\HBAppBody{First.}\HBPageBreak{}\HBAppBody{Second.}",
+            paged,
+        )
+        self.assertEqual(paged.blocks, [
+            ("body", "First."), ("layout", "page_break"), ("body", "Second."),
+        ])
+
+    def test_latex_false_fallback_is_not_duplicated_in_ir(self) -> None:
+        from tools.idml_rst_extract import _parse_text
+
+        text = (
+            ".. only:: latex\n\n"
+            "   .. raw:: latex\n\n"
+            "      \\HBAppBody{Canonical copy.}\n"
+            "      \\iffalse\n\n"
+            "Fallback copy.\n\n"
+            ".. only:: latex\n\n"
+            "   .. raw:: latex\n\n"
+            "      \\fi\n"
+        )
+        latex = _parse_text(text, {"latex"})
+        fallback = _parse_text(text, {"html"})
+
+        self.assertEqual(latex.blocks, [("body", "Canonical copy.")])
+        self.assertEqual(fallback.blocks, [("body", "Fallback copy.")])
+
+        fcc = _parse_text(
+            ".. raw:: latex\n\n   \\HBFccBlock{Left copy.}{Right copy.}\n",
+            {"latex"},
+        )
+        self.assertEqual([kind for kind, _ in fcc.blocks], ["h1", "component"])
+        self.assertEqual(fcc.blocks[0], ("h1", "FCC"))
+
+    def test_prose_flow_splits_at_reference_page_starts(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("operation", [("h1", "Operation")])
+        flow.add("ups", [("h1", "UPS")])
+        flow.add("charging", [("h1", "Charging")])
+        emitted = []
+        starts = {"operation": 10, "ups": 14, "charging": 14}
+
+        flow.flush(
+            lambda _sid, title, _blocks, _columns: emitted.append(title),
+            lambda stem: stem,
+            {"pages": [
+                {"source_path": f"page/{stem}.rst", "latex_start_page": start}
+                for stem, start in starts.items()
+            ]},
+        )
+
+        self.assertEqual(emitted, ["operation", "ups + charging"])
+
+    def test_prose_flow_merges_a_group_that_exceeds_its_page_span(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("ups", [("body", "ups"), ("body", "overflow")])
+        for stem in ("methods", "storage"):
+            flow.add(stem, [("body", stem)])
+        emitted = []
+        plan = {"pages": [
+            {"source_path": "page/ups.rst", "latex_start_page": 10},
+            {"source_path": "page/methods.rst", "latex_start_page": 11},
+            {"source_path": "page/storage.rst", "latex_start_page": 14},
+        ]}
+
+        flow.flush(
+            lambda _sid, title, _blocks, _columns: emitted.append(title),
+            lambda stem: stem,
+            plan,
+            estimate_pages=lambda blocks, _columns: len(blocks),
+        )
+
+        self.assertEqual(emitted, ["ups + methods", "storage"])
+
+    def test_long_troubleshooting_table_starts_on_its_second_page(self) -> None:
+        from tools.idml.prose_flow import align_trouble_table
+
+        blocks = [("h1", "Trouble"), ("body", "Intro"), ("table", "[]")]
+        plan = {"pages": [
+            {"source_path": "page/troubleshooting_es.rst", "latex_start_page": 54},
+            {"source_path": "page/spec_es.rst", "latex_start_page": 56},
+        ]}
+
+        aligned = align_trouble_table(blocks, plan, "troubleshooting_es")
+
+        self.assertEqual(aligned[-2], ("layout", "table_next_page"))
+
+    def test_four_page_operation_flow_keeps_final_h2_on_last_page(self) -> None:
+        from tools.idml.prose_flow import align_operation_tail
+
+        blocks = [("h1", "Operations"), ("h2", "LCD"), ("table", "[]"),
+                  ("h2", "Keys"), ("table", "[]")]
+        plan = {"pages": [
+            {"source_path": "page/05_operation_guide.rst", "latex_start_page": 10},
+            {"source_path": "page/06_ups.rst", "latex_start_page": 14},
+        ]}
+
+        aligned = align_operation_tail(blocks, plan, "05_operation_guide")
+
+        self.assertEqual(aligned[-3], ("layout", "page_break"))
+
+    def test_page_break_layout_does_not_enable_two_columns(self) -> None:
+        from tools.idml.ir_projection import project_pages
+        from tools.manual_ir.model import ManualBlock, ManualIR, ManualPage
+
+        block = ManualBlock("b", "page/x#b", "layout", "page_break", "h", ())
+        page = ManualPage("p", "page/x", "page/x.rst", "en", "h", 0, (block,))
+        ir = ManualIR("M", "US", "en", "test", ".", "h", None, "h", "h", "h", (page,), ())
+
+        self.assertFalse(project_pages(ir, ROOT)[0].twocol)
+
     def test_safety_layout_markers_and_warninglead_are_preserved(self) -> None:
         import json
         from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
@@ -497,6 +677,29 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(res.blocks[0], ("layout", "twocol_start"))
         self.assertEqual(res.blocks[2], ("layout", "twocol_end"))
         self.assertEqual(json.loads(res.blocks[1][1])["kind"], "warninglead")
+
+    def test_safety_lead_and_nested_lists_keep_their_source_semantics(self) -> None:
+        from tools.idml_rst_extract import _parse_text
+
+        res = _parse_text(
+            """.. raw:: latex
+
+   \\safetylead{SAVE THESE INSTRUCTIONS}
+
+- Parent item:
+
+  - Charging temperature: 14°F to 113°F
+  - Discharging temperature: 14°F to 113°F
+""",
+            {"latex"},
+        )
+
+        self.assertEqual(res.blocks, [
+            ("safetylead", "SAVE THESE INSTRUCTIONS"),
+            ("list", "• Parent item:"),
+            ("sublist", "– Charging temperature: 14°F to 113°F"),
+            ("sublist", "– Discharging temperature: 14°F to 113°F"),
+        ])
 
     def test_safety_first_page_split_stops_after_second_twocol(self) -> None:
         blocks = [
@@ -521,7 +724,7 @@ class ExportIdmlTests(unittest.TestCase):
         blocks = [
             ("h1", "IMPORTANT SAFETY INFORMATION"),
             ("component", json.dumps({
-                "kind": "safetywarning",
+                "kind": "safetyinstruction",
                 "texts": ["INSTRUCTIONS PERTAINING TO RISK OF FIRE"],
             })),
             ("layout", "twocol_start"),
@@ -534,11 +737,13 @@ class ExportIdmlTests(unittest.TestCase):
             ("layout", "twocol_end"),
             ("h2", "OPERATING INSTRUCTIONS"),
             ("layout", "twocol_start"),
-            ("body", "SAVE THESE INSTRUCTIONS"),
+            ("safetylead", "SAVE THESE INSTRUCTIONS"),
             ("list", "• Stop using the product immediately."),
+            ("sublist", "– Charging temperature: 14°F to 113°F"),
             ("layout", "twocol_end"),
         ]
         w.add_safety_page("st_safety_en", "safety_en", blocks, ROOT, 1)
+        self.assertIn("st_safety_en_top_warning", dict(w.stories))
         spread = dict(w.spreads)["sp_1"]
         self.assertEqual(spread.count("<TextFrame "), 5)
         self.assertEqual(spread.count("<Rectangle "), 3)
@@ -567,6 +772,21 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("st_safety_en_subbar", stories)
         self.assertIn("OPERATING INSTRUCTIONS", stories["st_safety_en_subbar"])
         self.assertIn("SAVE THESE INSTRUCTIONS", stories["st_safety_en_section2"])
+        self.assertIn(
+            paragraph_style_ref("HB Safety Lead"),
+            stories["st_safety_en_section2"],
+        )
+        self.assertIn(
+            paragraph_style_ref("HB Safety Sublist"),
+            stories["st_safety_en_section2"],
+        )
+        self.assertIn(
+            'LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0"',
+            stories["st_safety_en_section2"],
+        )
+        self.assertIn(
+            'HorizontalScale="98"', stories["st_safety_en_section2"],
+        )
 
     def test_safety_symbols_page_combines_tail_maintenance_and_symbols(self) -> None:
         import json
@@ -607,6 +827,10 @@ class ExportIdmlTests(unittest.TestCase):
         # Frames are cursor-flowed and index-named; stories keep label names.
         self.assertIn("tf_st_safety_symbols_tail_0", spread)
         self.assertIn("tf_st_safety_symbols_tail_1", spread)
+        tail_frame = spread.split('Self="tf_st_safety_symbols_tail_0"', 1)[1].split(
+            "</TextFrame>", 1,
+        )[0]
+        self.assertIn('VerticalJustification="CenterAlign"', tail_frame)
         self.assertIn("tf_st_safety_symbols_icons_left", spread)
         self.assertIn("tf_st_safety_symbols_icons_right", spread)
         import re
@@ -620,6 +844,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("st_safety_symbols_tail_warning", stories)
         self.assertIn("st_safety_symbols_tail_danger", stories)
         self.assertIn(">WARNING<", stories["st_safety_symbols_tail_warning"])
+        self.assertIn(
+            'BaselineShift="0.68"',
+            stories["st_safety_symbols_tail_warning"],
+        )
         self.assertIn(">DANGER<", stories["st_safety_symbols_tail_danger"])
         self.assertIn("st_safety_symbols_signals", stories)
         self.assertIn("st_safety_symbols_icons_left", stories)
@@ -734,6 +962,7 @@ class ExportIdmlTests(unittest.TestCase):
             ("component", json.dumps({
                 "kind": "notice",
                 "label": "TIP",
+                "variant": "tip",
                 "texts": ["The car charging cable is sold separately."],
             })),
         ]
@@ -759,6 +988,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("tf_st_fcc_inbox_card_1", spread)
         self.assertIn("tf_st_fcc_inbox_card_2", spread)
         self.assertIn("tf_st_fcc_inbox_card_3", spread)
+        badge_frame = spread.split('Self="tf_st_fcc_inbox_badge_1"', 1)[1].split(
+            "</TextFrame>", 1,
+        )[0]
+        self.assertIn('VerticalJustification="CenterAlign"', badge_frame)
         self.assertIn("tf_st_fcc_inbox_tip_label", spread)
         self.assertIn("tf_st_fcc_inbox_tip_body", spread)
         self.assertIn('Self="bg_st_fcc_inbox_title"', spread)
@@ -767,10 +1000,26 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('InsetSpacing="0 0 0 0"', fcc_frame)
         stories = dict(w.stories)
         self.assertIn("FCC left copy.", stories["st_fcc_inbox_fcc_left"])
+        self.assertIn("fcc_mark.png", stories["st_fcc_inbox_fcc_left"])
+        self.assertNotIn("fcc_mark.pdf", stories["st_fcc_inbox_fcc_left"])
         self.assertIn("FCC right copy.", stories["st_fcc_inbox_fcc_right"])
         self.assertIn("WHAT'S IN THE BOX", stories["st_fcc_inbox_title"])
         self.assertIn("AC Charging Cable", stories["st_fcc_inbox_card_2"])
-        self.assertIn(">TIPS<", stories["st_fcc_inbox_tip_label"])
+        self.assertIn(
+            'PointSize="10.912" FontStyle="Medium" BaselineShift="0.45"',
+            stories["st_fcc_inbox_badge_1"],
+        )
+        self.assertIn(">TIP<", stories["st_fcc_inbox_tip_label"])
+        self.assertNotIn("TIPS", stories["st_fcc_inbox_tip_label"])
+        self.assertIn(
+            'PointSize="8" Leading="9" FontStyle="Bold" BaselineShift="2.63"',
+            stories["st_fcc_inbox_tip_label"],
+        )
+        self.assertIn(
+            'PointSize="6.5" Leading="7.83" FontStyle="Medium" '
+            'HorizontalScale="106.9" BaselineShift="0.9"',
+            stories["st_fcc_inbox_tip_body"],
+        )
         self.assertIn(
             "The car charging cable is sold separately.",
             stories["st_fcc_inbox_tip_body"],
@@ -910,6 +1159,10 @@ class ExportIdmlTests(unittest.TestCase):
         # icon cells must use the auto-leading figure style, or fixed leading
         # pushes the anchored icon a full row upward (designer-reported)
         self.assertIn(paragraph_style_ref("HB Figure"), story)
+        icon_cell = story.split('Self="tbl_lcdc0_1"', 1)[1].split("</Cell>", 1)[0]
+        self.assertIn('VerticalJustification="CenterAlign"', icon_cell)
+        self.assertIn('BaselineShift="0.6"', icon_cell)
+        self.assertNotIn('BaselineShift="8.9"', story)
 
     def test_shading_uses_paragraph_prefixed_attributes(self) -> None:
         # bare ShadingOn/ShadingColor are silently ignored by InDesign

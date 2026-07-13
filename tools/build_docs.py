@@ -244,7 +244,7 @@ def render_csv_pages(
         resolve_config_pages_or_raise=resolve_config_pages_or_raise,
         resolve_data_snapshot_paths=resolve_data_snapshot_paths,
         run=run,
-        repo_root=paths.root,
+        repo_root=getattr(paths, "root", ROOT),
     )
 
 
@@ -716,6 +716,7 @@ def prepare_manual_bundle(
         review_content_exists=review_content_exists,
         overlay_review_content_onto_bundle=overlay_review_content_onto_bundle,
         docs_dir=paths.docs_dir,
+        repo_root=getattr(paths, "root", ROOT),
     )
 
 

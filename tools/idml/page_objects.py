@@ -19,9 +19,17 @@ def h1_bar_opts(inset: tuple[float, float, float, float]) -> dict:
 def heading_bar_opts(level: int,
                      inset: tuple[float, float, float, float]) -> dict:
     if level == 1:
-        return {"h1_bar_bg": True, "inset": inset}
+        return {
+            "h1_bar_bg": True,
+            "inset": inset,
+            "valign": "CenterAlign",
+        }
     if level == 2:
-        return {"capsule_bg": True, "inset": inset}
+        return {
+            "capsule_bg": True,
+            "inset": inset,
+            "valign": "CenterAlign",
+        }
     return {"inset": inset}
 
 
@@ -44,6 +52,17 @@ def heading_text(writer, text: str, *, level: int,
         # \HBTypeSubbar renders Gilroy-Medium in the publish line
         font_style = "Medium"
     xml = writer._psr("HB Capsule Text", text, terminal=True)
+    if level == 1:
+        # CenterAlign centres the font's line box, not Gilroy's visible caps.
+        # Fixed/composed title frames need a slight downward optical shift;
+        # flowed H1 hosts override it below because their inline line box has
+        # different metrics.
+        xml = xml.replace(
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            'BaselineShift="-1.5"',
+            1,
+        )
     if point_size is None:
         return xml
     override = f'PointSize="{point_size:g}"'
@@ -94,7 +113,7 @@ def rounded_path_geometry(x1: float, y1: float, x2: float, y2: float,
         return path_geometry(x1, y1, x2, y2)
     k = r * 0.5522847498
     points = (
-        ((x1, y1 + r), (x1, y1 + r), (x1, y1 + r)),
+        ((x1, y1 + r), (x1, y1 + r - k), (x1, y1 + r)),
         ((x1, y2 - r), (x1, y2 - r), (x1, y2 - r + k)),
         ((x1 + r, y2), (x1 + r - k, y2), (x1 + r, y2)),
         ((x2 - r, y2), (x2 - r, y2), (x2 - r + k, y2)),
@@ -103,6 +122,65 @@ def rounded_path_geometry(x1: float, y1: float, x2: float, y2: float,
         ((x2 - r, y1), (x2 - r + k, y1), (x2 - r, y1)),
         ((x1 + r, y1), (x1 + r, y1), (x1 + r - k, y1)),
     )
+    anchors = "\n".join(
+        f'            <PathPointType Anchor="{anchor[0]:g} {anchor[1]:g}" '
+        f'LeftDirection="{left[0]:g} {left[1]:g}" '
+        f'RightDirection="{right[0]:g} {right[1]:g}"/>'
+        for anchor, left, right in points
+    )
+    return (
+        '    <Properties>\n'
+        '      <PathGeometry>\n'
+        '        <GeometryPathType PathOpen="false">\n'
+        '          <PathPointArray>\n'
+        f'{anchors}\n'
+        '          </PathPointArray>\n'
+        '        </GeometryPathType>\n'
+        '      </PathGeometry>\n'
+        '    </Properties>\n'
+    )
+
+
+def rounded_corner_mask_geometry(x1: float, y1: float,
+                                 x2: float, y2: float,
+                                 radius: float, corner: str) -> str:
+    """Return the square-corner area outside one rounded-rectangle arc.
+
+    Editable InDesign tables remain rectangular even when their separate
+    outer frame is rounded.  These three-point paths cover only the area
+    outside the matching Bezier arc, preventing cell fills from protruding
+    through the four corners without rasterizing or clipping the table.
+    """
+    r = max(0.0, min(radius, abs(x2 - x1) / 2.0, abs(y2 - y1) / 2.0))
+    if r <= 0:
+        return ""
+    k = r * 0.5522847498
+    if corner == "top_left":
+        points = (
+            ((x1, y1), (x1, y1), (x1, y1)),
+            ((x1 + r, y1), (x1 + r, y1), (x1 + r - k, y1)),
+            ((x1, y1 + r), (x1, y1 + r - k), (x1, y1 + r)),
+        )
+    elif corner == "top_right":
+        points = (
+            ((x2, y1), (x2, y1), (x2, y1)),
+            ((x2, y1 + r), (x2, y1 + r), (x2, y1 + r - k)),
+            ((x2 - r, y1), (x2 - r + k, y1), (x2 - r, y1)),
+        )
+    elif corner == "bottom_left":
+        points = (
+            ((x1, y2), (x1, y2), (x1, y2)),
+            ((x1, y2 - r), (x1, y2 - r), (x1, y2 - r + k)),
+            ((x1 + r, y2), (x1 + r - k, y2), (x1 + r, y2)),
+        )
+    elif corner == "bottom_right":
+        points = (
+            ((x2, y2), (x2, y2), (x2, y2)),
+            ((x2 - r, y2), (x2 - r, y2), (x2 - r + k, y2)),
+            ((x2, y2 - r), (x2, y2 - r + k), (x2, y2 - r)),
+        )
+    else:
+        raise ValueError(f"unsupported rounded corner: {corner}")
     anchors = "\n".join(
         f'            <PathPointType Anchor="{anchor[0]:g} {anchor[1]:g}" '
         f'LeftDirection="{left[0]:g} {left[1]:g}" '
@@ -236,25 +314,26 @@ def h1_arc_pt(writer) -> float:
 
 
 def h1_bar_h_pt(writer) -> float:
-    """H1 bar height derived like the LaTeX tcolorbox: leading plus the
-    vertical pads plus the box-model correction measured on the accepted
-    publish PDF (14.8pt with the current CSV values)."""
+    """H1 bar height from the same explicit token used by LaTeX."""
     from .params import param_pt
-    return (param_pt(writer.params, "type_h1_font_leading", 10.8)
-            + 2 * param_pt(writer.params, "comp_h1_pill_pad_tb", 1.28)
-            + 1.45)
+    return param_pt(writer.params, "comp_h1_pill_height", 20.126)
 
 
 def capsule_xml(writer, rect_id: str,
                 rect: tuple[float, float, float, float], *,
-                bottom_only: bool = False) -> str:
+                bottom_only: bool = False,
+                corner_radius: float | None = None) -> str:
     x1, y1, x2, y2 = writer._page_rect(*rect)
     # capsules are stadiums (radius = half height); H1 bars take the
-    # shared CSV radius
+    # shared CSV radius.  Composed pages may pass a measured master radius
+    # when the source object is a rounded rectangle rather than a stadium.
     geometry = (
         bottom_rounded_path_geometry(x1, y1, x2, y2, h1_arc_pt(writer))
         if bottom_only
-        else rounded_path_geometry(x1, y1, x2, y2, abs(y2 - y1) / 2.0)
+        else rounded_path_geometry(
+            x1, y1, x2, y2,
+            abs(y2 - y1) / 2.0 if corner_radius is None else corner_radius,
+        )
     )
     return (
         f'  <Rectangle Self="{rect_id}" ContentType="Unassigned" '
@@ -279,7 +358,9 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     capsule_bg = bool(opts.pop("capsule_bg", False))
     h1_bar_bg = bool(opts.pop("h1_bar_bg", False))
     rounded_outer = bool(opts.pop("rounded_outer", False))
+    text_rect = opts.pop("text_rect", rect)
     x1, y1, x2, y2 = writer._page_rect(*rect)
+    tx1, ty1, tx2, ty2 = writer._page_rect(*text_rect)
     parts: list[str] = []
     if capsule_bg:
         parts.append(capsule_xml(writer, f"bg_{sid}_{frame_id}", rect))
@@ -289,7 +370,7 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     if rounded_outer:
         parts.append(rounded_outer_xml(writer, f"bg_{sid}_{frame_id}", rect))
     parts.append(writer._frame_xml(
-        f"tf_{sid}_{frame_id}", story_id, x1, y1, x2, y2, **opts))
+        f"tf_{sid}_{frame_id}", story_id, tx1, ty1, tx2, ty2, **opts))
     return "".join(parts)
 
 
@@ -299,17 +380,20 @@ def lcd_hero_paragraph(writer) -> str:
     serves every language). Empty string when the asset is absent."""
     from pathlib import Path as _P
 
-    from tools.utils.path_utils import latex_renderer_of
-
     from .style_names import paragraph_style_ref
     root = _P(__file__).resolve().parents[2]
-    hero = latex_renderer_of(root / "docs") / "assets" / "lcd_display_hero.png"
+    hero = (
+        root / "docs" / "templates" / "word_template" / "common_assets"
+        / "lcd" / "lcd_map.png"
+    )
     if not hero.is_file():
         return ""
-    width, height = writer._art_frame_size(hero, max_w=250.0)
+    width, height = writer._art_frame_size(
+        hero, max_w=writer.page_w - writer.m_l - writer.m_r)
     style = paragraph_style_ref("HB Figure")
     return (
-        f'  <ParagraphStyleRange AppliedParagraphStyle="{style}" Justification="CenterAlign">'
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style}" '
+        'Justification="CenterAlign" SpaceBefore="5.72" SpaceAfter="3.37">'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         + writer._image_cell_content("lcd_hero", hero, width, height)
         + "<Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>\n"
@@ -324,7 +408,8 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
                                inset: tuple[float, float, float, float] = (1, 7, 1, 7),
                                valign: str = "CenterAlign",
                                auto_height: bool = False,
-                               bottom_only: bool = False) -> str:
+                               bottom_only: bool = False,
+                               anchor_x_offset: float = 0.0) -> str:
     """An inline anchored text frame with a rounded filled path.
 
     Paragraph shading and table cells cannot round their corners; every
@@ -362,7 +447,8 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
         'SpineRelative="false" LockPosition="false" PinPosition="true" '
         'AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" '
         'HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" '
-        'VerticalReferencePoint="LineBaseline" AnchorXoffset="0" '
+        'VerticalReferencePoint="LineBaseline" '
+        f'AnchorXoffset="{anchor_x_offset:g}" '
         'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
         '  </TextFrame>'
     )
@@ -391,8 +477,19 @@ def h1_pill_paragraph(writer, text: str, width: float,
     if est_w > avail and len(text) > 0:
         point_size = max(7.0, avail / (len(text) * 0.62))
     sid = f"st_anchor_h1pill_{len(writer.stories)}"
+    title_xml = heading_text(writer, text, level=1, point_size=point_size)
+    title_xml = title_xml.replace(
+        'BaselineShift="-1.5"',
+        'BaselineShift="0.5"',
+        1,
+    )
+    title_xml = title_xml.replace(
+        "<ParagraphStyleRange ",
+        '<ParagraphStyleRange LeftIndent="4.74" ',
+        1,
+    )
     writer._add_story_parts(
-        sid, text, [heading_text(writer, text, level=1, point_size=point_size)])
+        sid, text, [title_xml])
     from .style_names import paragraph_style_ref as _psr_ref
     figure_style = _psr_ref("HB Figure")
     return (
@@ -401,7 +498,7 @@ def h1_pill_paragraph(writer, text: str, width: float,
         + anchored_rounded_frame_xml(sid, width, height,
                                      fill="Color/HB Brand Dark",
                                      bottom_only=True, radius=h1_arc_pt(writer),
-                                     inset=(1.5, 5, 1, 6))
+                                     inset=(1.5, 1.0, 1, 1.0))
         + '<Content></Content><Br/></CharacterStyleRange>'
         '</ParagraphStyleRange>\n'
     )
@@ -426,4 +523,160 @@ def anchored_panel_paragraph(add_story, sid: str, title: str,
         + frame + '<Content></Content>'
         + ('' if terminal else '<Br/>')
         + '</CharacterStyleRange></ParagraphStyleRange>\n'
+    )
+
+
+def anchored_panel_group_paragraph(add_story, sid: str, title: str,
+                                    parts: list[str], width: float, height: float, *,
+                                    terminal: bool = False,
+                                    fill: str = "Color/Paper",
+                                    stroke: str = "Color/HB Line K40",
+                                    stroke_weight: float = 0.75,
+                                    radius: float = 6.8,
+                                    content_inset: float = 0.0,
+                                    corner_fills: dict[str, str] | None = None) -> str:
+    """Rounded background plus square content frame in one anchored group.
+
+    A table directly inside a rounded text-frame is inset by InDesign at
+    the curved top corners.  Separating the rounded rectangle from the
+    square text-frame preserves the exact table measure while keeping the
+    whole object editable and movable as one inline group.
+    """
+    from .primitives import path_geometry
+    from .style_names import paragraph_style_ref as _psr_ref
+
+    story_sid = add_story(sid, title, parts)
+    anchor = (
+        '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
+        'SpineRelative="false" LockPosition="false" PinPosition="true" '
+        'AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" '
+        'HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" '
+        'VerticalReferencePoint="LineBaseline" AnchorXoffset="0" '
+        'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
+    )
+    path_x1 = -0.37
+    path_x2 = width - 0.37
+    path_y1 = -height
+    path_y2 = 0.0
+    background = (
+        f'  <Rectangle Self="bg_group_{sid}" ContentType="Unassigned" '
+        f'AppliedObjectStyle="{ROUNDED_TABLE_OBJECT_STYLE}" FillColor="{fill}" '
+        'StrokeColor="Swatch/None" StrokeWeight="0" '
+        'ItemTransform="1 0 0 1 0 0">\n'
+        + rounded_path_geometry(path_x1, path_y1, path_x2, path_y2, radius)
+        + anchor
+        + '  </Rectangle>\n'
+    )
+    frame = (
+        f'  <TextFrame Self="tf_group_{sid}" ParentStory="{story_sid}" '
+        'PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" '
+        'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
+        'FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" '
+        'ItemTransform="1 0 0 1 0 0">\n'
+        + path_geometry(
+            content_inset, -height + content_inset,
+            width - content_inset, -content_inset,
+        )
+        + '    <TextFramePreference TextColumnCount="1" '
+        'VerticalJustification="TopAlign" AutoSizingType="Off">'
+        '<Properties><InsetSpacing type="list">'
+        + ''.join('<ListItem type="unit">0</ListItem>' for _ in range(4))
+        + '</InsetSpacing></Properties></TextFramePreference>\n'
+        + anchor
+        + '  </TextFrame>\n'
+    )
+    corner_fills = corner_fills or {}
+    masks = "".join(
+        (
+            f'  <Rectangle Self="mask_{corner}_group_{sid}" '
+            'ContentType="Unassigned" '
+            'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+            f'FillColor="{corner_fills.get(corner, fill)}" '
+            'StrokeColor="Swatch/None" StrokeWeight="0" '
+            'ItemTransform="1 0 0 1 0 0">\n'
+            + rounded_corner_mask_geometry(
+                path_x1, path_y1, path_x2, path_y2, radius, corner)
+            + anchor
+            + '  </Rectangle>\n'
+        )
+        for corner in (
+            "top_left", "top_right", "bottom_left", "bottom_right")
+    )
+    outline = (
+        f'  <Rectangle Self="outline_group_{sid}" ContentType="Unassigned" '
+        f'AppliedObjectStyle="{ROUNDED_TABLE_OBJECT_STYLE}" '
+        f'FillColor="Swatch/None" StrokeColor="{stroke}" '
+        f'StrokeWeight="{stroke_weight:g}" ItemTransform="1 0 0 1 0 0">\n'
+        + rounded_path_geometry(path_x1, path_y1, path_x2, path_y2, radius)
+        + anchor
+        + '  </Rectangle>\n'
+    )
+    group = (
+        f'<Group Self="grp_{sid}" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+        'ItemTransform="1 0 0 1 -0.37 0">\n'
+        + background + frame + masks + outline + '</Group>'
+    )
+    style_ref = _psr_ref("HB Figure")
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        + group + '<Content></Content>'
+        + ('' if terminal else '<Br/>')
+        + '</CharacterStyleRange></ParagraphStyleRange>\n'
+    )
+
+
+def vertical_spacer_paragraph(rect_id: str, height: float) -> str:
+    """Invisible inline rectangle that contributes an exact flow height."""
+    from .primitives import path_geometry
+    from .style_names import paragraph_style_ref as _psr_ref
+
+    style_ref = _psr_ref("HB Figure")
+    rectangle = (
+        f'<Rectangle Self="{rect_id}" ContentType="Unassigned" '
+        'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+        'FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" '
+        'ItemTransform="1 0 0 1 0 0">\n'
+        + path_geometry(0.0, -height, 1.0, 0.0)
+        + '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
+        'SpineRelative="false" LockPosition="false" PinPosition="true" '
+        'AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" '
+        'HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" '
+        'VerticalReferencePoint="LineBaseline" AnchorXoffset="0" '
+        'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
+        '  </Rectangle>'
+    )
+    return (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        + rectangle
+        + '<Content></Content><Br/></CharacterStyleRange>'
+        '</ParagraphStyleRange>\n'
+    )
+
+
+def anchored_spacer_paragraph(add_story, sid: str, height: float) -> str:
+    """Invisible anchored text-frame used when a real flow gap is required."""
+    from .style_names import paragraph_style_ref as _psr_ref
+
+    empty_style = _psr_ref("HB Body")
+    empty = (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{empty_style}">'
+        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n'
+    )
+    return anchored_panel_paragraph(
+        add_story,
+        sid,
+        "vertical spacer",
+        [empty],
+        1.0,
+        height,
+        fill="Swatch/None",
+        stroke="Swatch/None",
+        stroke_weight=0,
+        radius=0,
+        inset=(0, 0, 0, 0),
+        valign="TopAlign",
+        auto_height=False,
     )

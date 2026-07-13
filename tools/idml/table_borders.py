@@ -24,9 +24,18 @@ def suppress_outer_cell_edges(cells: list[str], n_rows: int, n_cols: int) -> lis
         if not attrs:
             out.append(cell_xml)
             continue
-        out.append(re.sub(r'(<Cell\b[^>]*)(>)',
-                          r'\1 ' + " ".join(attrs) + r'\2',
-                          cell_xml, count=1))
+        def _patch(match: re.Match[str]) -> str:
+            head = match.group(1)
+            for assignment in attrs:
+                attr, value = assignment.split("=", 1)
+                pattern = rf'{re.escape(attr)}="[^"]*"'
+                if re.search(pattern, head):
+                    head = re.sub(pattern, f'{attr}={value}', head, count=1)
+                else:
+                    head += " " + assignment
+            return head + match.group(2)
+
+        out.append(re.sub(r'(<Cell\b[^>]*)(>)', _patch, cell_xml, count=1))
     return out
 
 
@@ -38,10 +47,16 @@ def suppress_inner_vertical_edges_xml(table_xml: str, n_cols: int) -> str:
         head, col = match.group(1), int(match.group(2))
         attrs = []
         if col > 0:
-            attrs.append('LeftEdgeStrokeWeight="0"')
+            attrs.append("LeftEdgeStrokeWeight")
         if col < n_cols - 1:
-            attrs.append('RightEdgeStrokeWeight="0"')
-        return head + (" " + " ".join(attrs) if attrs else "")
+            attrs.append("RightEdgeStrokeWeight")
+        for attr in attrs:
+            pattern = rf'{re.escape(attr)}="[^"]*"'
+            if re.search(pattern, head):
+                head = re.sub(pattern, f'{attr}="0"', head, count=1)
+            else:
+                head += f' {attr}="0"'
+        return head
 
     return re.sub(r'(<Cell\b[^>]*?Name="(\d+):\d+"[^>]*?)(?=/?>)', _patch, table_xml)
 
@@ -90,8 +105,18 @@ def suppress_outer_edges_xml(table_xml: str, n_cols: int) -> str:
         return " ".join(parts)
 
     def _sub(match: re.Match) -> str:
-        col, row = int(match.group(2)), int(match.group(3))
-        extra = _edges(col, row)
-        return f"{match.group(1)} {extra}" if extra else match.group(1)
+        head, col, row = match.group(1), int(match.group(2)), int(match.group(3))
+        for assignment in _edges(col, row).split():
+            attr, value = assignment.split("=", 1)
+            pattern = rf'{re.escape(attr)}="[^"]*"'
+            if re.search(pattern, head):
+                head = re.sub(pattern, f'{attr}={value}', head, count=1)
+            else:
+                head += " " + assignment
+        return head
 
-    return re.sub(r'(<Cell\b[^>]*?Name="(\d+):(\d+)")', _sub, table_xml)
+    return re.sub(
+        r'(<Cell\b[^>]*?Name="(\d+):(\d+)"[^>]*)(?=>)',
+        _sub,
+        table_xml,
+    )

@@ -99,7 +99,7 @@
 \expandafter\def\csname HBtype_data_table_header_font_leading\endcsname{7.0pt}
 
 % Body data table header font size
-\expandafter\def\csname HBtype_data_table_header_font_size\endcsname{6.2pt}
+\expandafter\def\csname HBtype_data_table_header_font_size\endcsname{6.6pt}
 
 % FCC body leading
 \expandafter\def\csname HBtype_fcc_font_leading\endcsname{6.5pt}
@@ -170,6 +170,12 @@
 % Rubric font size
 \expandafter\def\csname HBtype_rubric_font_size\endcsname{8.6pt}
 
+% Safety section lead leading
+\expandafter\def\csname HBtype_safety_lead_font_leading\endcsname{9.6pt}
+
+% Safety section lead font size
+\expandafter\def\csname HBtype_safety_lead_font_size\endcsname{8.0pt}
+
 % Spec left-cell label leading
 \expandafter\def\csname HBtype_spec_label_font_leading\endcsname{6.6pt}
 
@@ -186,7 +192,7 @@
 \expandafter\def\csname HBtype_spec_section_font_leading\endcsname{9.6pt}
 
 % Spec section title font size
-\expandafter\def\csname HBtype_spec_section_font_size\endcsname{8.8pt}
+\expandafter\def\csname HBtype_spec_section_font_size\endcsname{8.0pt}
 
 % Spec right-cell value leading
 \expandafter\def\csname HBtype_spec_value_font_leading\endcsname{6.6pt}
@@ -222,10 +228,13 @@
 \expandafter\def\csname HBtype_symbol_signal_font_size\endcsname{9.9pt}
 
 % Tip body leading
-\expandafter\def\csname HBtype_tip_body_font_leading\endcsname{7.4pt}
+\expandafter\def\csname HBtype_tip_body_font_leading\endcsname{7.83pt}
 
 % Tip body font size
 \expandafter\def\csname HBtype_tip_body_font_size\endcsname{6.5pt}
+
+% Tip body horizontal scale for production CFF metric parity
+\expandafter\def\csname HBtype_tip_body_horizontal_scale\endcsname{1.069}
 
 % Tip label leading
 \expandafter\def\csname HBtype_tip_label_font_leading\endcsname{9.0pt}
@@ -261,7 +270,19 @@
 \expandafter\def\csname HBtype_trouble_code_font_leading\endcsname{8.0pt}
 
 % Troubleshooting error-code font size
-\expandafter\def\csname HBtype_trouble_code_font_size\endcsname{7.5pt}
+\expandafter\def\csname HBtype_trouble_code_font_size\endcsname{8.0pt}
+
+% Warning lead card body leading
+\expandafter\def\csname HBtype_warning_lead_body_font_leading\endcsname{7.2pt}
+
+% Warning lead card body font size
+\expandafter\def\csname HBtype_warning_lead_body_font_size\endcsname{6.5pt}
+
+% Warning lead card label leading
+\expandafter\def\csname HBtype_warning_lead_label_font_leading\endcsname{10.6pt}
+
+% Warning lead card label font size
+\expandafter\def\csname HBtype_warning_lead_label_font_size\endcsname{10.0pt}
 
 % Warning right text alignment (ragged|justified)
 \expandafter\def\csname HBtype_warning_text_align\endcsname{justified}
@@ -310,6 +331,9 @@
 % Auto-resume table left column ratio
 \expandafter\def\csname HBcomp_auto_resume_left_ratio\endcsname{0.50}
 
+% Left indent shared by body-table heading description and table
+\expandafter\def\csname HBcomp_body_table_group_indent\endcsname{3.5mm}
+
 % Callout body inset from the label panel
 \expandafter\def\csname HBcomp_callout_body_inset\endcsname{1.5mm}
 
@@ -320,7 +344,7 @@
 \expandafter\def\csname HBcomp_callout_bullet_width\endcsname{1.2mm}
 
 % White label panel inset inside the gray callout shell
-\expandafter\def\csname HBcomp_callout_label_inset\endcsname{1.2mm}
+\expandafter\def\csname HBcomp_callout_label_inset\endcsname{0.44mm}
 
 % Warning caution note and tip outer border width
 \expandafter\def\csname HBcomp_callout_rule\endcsname{1.2pt}
@@ -443,7 +467,7 @@
 \expandafter\def\csname HBcomp_lcd_table_tabcolsep\endcsname{1.4pt}
 
 % Space after lead line
-\expandafter\def\csname HBcomp_lead_after\endcsname{0.6mm}
+\expandafter\def\csname HBcomp_lead_after\endcsname{2.40mm}
 
 % Bullet raise offset (optical baseline align)
 \expandafter\def\csname HBcomp_list_bullet_raise\endcsname{-0.12ex}
@@ -452,13 +476,13 @@
 \expandafter\def\csname HBcomp_list_bullet_symbol\endcsname{\small\textbullet}
 
 % itemize itemsep
-\expandafter\def\csname HBcomp_list_itemsep\endcsname{0.2mm}
+\expandafter\def\csname HBcomp_list_itemsep\endcsname{0.73mm}
 
 % itemize labelsep
 \expandafter\def\csname HBcomp_list_labelsep\endcsname{0.35em}
 
-% itemize leftmargin
-\expandafter\def\csname HBcomp_list_leftmargin\endcsname{0.9em}
+% itemize hanging left margin
+\expandafter\def\csname HBcomp_list_leftmargin\endcsname{0.62em}
 
 % itemize parsep
 \expandafter\def\csname HBcomp_list_parsep\endcsname{0mm}
@@ -547,8 +571,8 @@
 % Spec footnote-marker row extra height
 \expandafter\def\csname HBcomp_spec_table_tall_row_extra\endcsname{2.1pt}
 
-% Space after subbar
-\expandafter\def\csname HBcomp_subbar_after\endcsname{1.5mm}
+% Safety subbar compensation before the following RST column block
+\expandafter\def\csname HBcomp_subbar_after\endcsname{-1.35mm}
 
 % Subbar capsule corner radius (half the 13.9pt bar: full-round stadium)
 \expandafter\def\csname HBcomp_subbar_arc\endcsname{2.45mm}
@@ -567,6 +591,21 @@
 
 % Subbar width ratio of \textwidth
 \expandafter\def\csname HBcomp_subbar_width\endcsname{1}
+
+% Nested item dash symbol
+\expandafter\def\csname HBcomp_sublist_bullet_symbol\endcsname{\textendash}
+
+% Nested item vertical gap
+\expandafter\def\csname HBcomp_sublist_itemsep\endcsname{2.0pt}
+
+% Nested item label gap
+\expandafter\def\csname HBcomp_sublist_labelsep\endcsname{2.1pt}
+
+% Nested item left margin
+\expandafter\def\csname HBcomp_sublist_leftmargin\endcsname{6.7pt}
+
+% Nested item top gap
+\expandafter\def\csname HBcomp_sublist_topsep\endcsname{0.9pt}
 
 % Gap between the two symbol tables
 \expandafter\def\csname HBcomp_symbol_column_gap\endcsname{2.6mm}
@@ -608,16 +647,19 @@
 \expandafter\def\csname HBcomp_table_tabcolsep\endcsname{2.4pt}
 
 % Tip strip corner radius
-\expandafter\def\csname HBcomp_tip_arc\endcsname{2.4mm}
+\expandafter\def\csname HBcomp_tip_arc\endcsname{1.73mm}
 
 % Tip strip height
 \expandafter\def\csname HBcomp_tip_height\endcsname{14.7mm}
+
+% Tip label baseline offset from panel centre
+\expandafter\def\csname HBcomp_tip_label_baseline_shift\endcsname{-0.57pt}
 
 % Tip strip label panel width
 \expandafter\def\csname HBcomp_tip_label_width\endcsname{18.5mm}
 
 % Tip strip horizontal padding
-\expandafter\def\csname HBcomp_tip_pad_lr\endcsname{2.2mm}
+\expandafter\def\csname HBcomp_tip_pad_lr\endcsname{1.15mm}
 
 % Level 2 title space after
 \expandafter\def\csname HBcomp_title_l2_after\endcsname{1.4mm}
@@ -665,7 +707,7 @@
 \expandafter\def\csname HBcomp_twocol_after\endcsname{1.8mm}
 
 % Space before two-column block (declared; \multicolsep is zeroed inside safetytwocol)
-\expandafter\def\csname HBcomp_twocol_before\endcsname{1.2mm}
+\expandafter\def\csname HBcomp_twocol_before\endcsname{2.35mm}
 
 % Space between two columns
 \expandafter\def\csname HBcomp_twocol_sep\endcsname{2.2mm}
@@ -693,6 +735,27 @@
 
 % Warning box width ratio of \textwidth
 \expandafter\def\csname HBcomp_warning_box_width\endcsname{1}
+
+% Safety lead card dark icon pane width
+\expandafter\def\csname HBcomp_warning_lead_dark_width\endcsname{14.6mm}
+
+% Safety lead card fixed height
+\expandafter\def\csname HBcomp_warning_lead_height\endcsname{14.0mm}
+
+% Safety lead card warning icon height
+\expandafter\def\csname HBcomp_warning_lead_icon_height\endcsname{9.25mm}
+
+% Safety lead card warning icon width
+\expandafter\def\csname HBcomp_warning_lead_icon_width\endcsname{10.4mm}
+
+% Safety lead card right text inset
+\expandafter\def\csname HBcomp_warning_lead_right_pad\endcsname{1.8mm}
+
+% Safety lead card left text inset
+\expandafter\def\csname HBcomp_warning_lead_text_left_pad\endcsname{1.75mm}
+
+% Safety lead card trim from the active column width
+\expandafter\def\csname HBcomp_warning_lead_width_trim\endcsname{0.75mm}
 
 % Warranty exclusions bottom padding
 \expandafter\def\csname HBcomp_warranty_exclusions_pad_bottom\endcsname{5.8mm}
@@ -767,6 +830,60 @@
 \expandafter\def\csname HBcomp_warranty_year_left_ratio\endcsname{0.59}
 
 % ===== OTHER =====
+
+% InDesign callout body baseline correction
+\expandafter\def\csname HBidml_callout_body_baseline_shift\endcsname{0.9pt}
+
+% InDesign callout label baseline correction
+\expandafter\def\csname HBidml_callout_label_baseline_shift\endcsname{2.63pt}
+
+% InDesign first-level list hanging indent
+\expandafter\def\csname HBidml_list_first_line_indent\endcsname{-6.25pt}
+
+% InDesign list leading correction for production font metrics
+\expandafter\def\csname HBidml_list_font_leading\endcsname{7.2pt}
+
+% InDesign first-level list continuation indent
+\expandafter\def\csname HBidml_list_left_indent\endcsname{3.70pt}
+
+% InDesign space after safety lead paragraph
+\expandafter\def\csname HBidml_safety_lead_space_after\endcsname{4.2pt}
+
+% InDesign safety-list horizontal metric correction
+\expandafter\def\csname HBidml_safety_list_horizontal_scale\endcsname{0.98}
+
+% InDesign FR and ES safety-list horizontal metric correction
+\expandafter\def\csname HBidml_safety_list_horizontal_scale_dense\endcsname{0.90}
+
+% InDesign nested list hanging indent
+\expandafter\def\csname HBidml_sublist_first_line_indent\endcsname{-6.04pt}
+
+% InDesign space before the first nested item
+\expandafter\def\csname HBidml_sublist_first_space_before\endcsname{0.45pt}
+
+% InDesign nested list continuation indent
+\expandafter\def\csname HBidml_sublist_left_indent\endcsname{9.58pt}
+
+% InDesign warranty lead gap after the anchored H1 host
+\expandafter\def\csname HBidml_warranty_lead_before\endcsname{0.7mm}
+
+% InDesign exclusions panel whitespace correction
+\expandafter\def\csname HBidml_warranty_panel_trim_exclusions\endcsname{8.0pt}
+
+% InDesign first warranty panel whitespace correction
+\expandafter\def\csname HBidml_warranty_panel_trim_first\endcsname{10.0pt}
+
+% InDesign warranty period panel whitespace correction
+\expandafter\def\csname HBidml_warranty_panel_trim_period\endcsname{0.0pt}
+
+% InDesign optical gap before warranty period panel
+\expandafter\def\csname HBidml_warranty_period_section_before\endcsname{3.0pt}
+
+% InDesign optical gap before ordinary warranty panels
+\expandafter\def\csname HBidml_warranty_section_before\endcsname{1.0pt}
+
+% InDesign black-circled numeral optical size
+\expandafter\def\csname HBidml_warranty_year_glyph_size\endcsname{24pt}
 
 % ES: space after H1 pill
 \expandafter\def\csname HBlang_es_comp_h1_pill_after\endcsname{-1.4mm}
