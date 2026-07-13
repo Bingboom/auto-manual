@@ -83,9 +83,29 @@ class IdmlVisualParityTests(unittest.TestCase):
         stories = dict(writer.stories)
         self.assertIn("ParagraphStyle/HB TOC Title", stories["st_toc_title"])
         self.assertIn("ParagraphStyle/HB TOC Bar", stories["st_toc_bar_0"])
+        self.assertIn(
+            'PointSize="7" FontStyle="Medium"',
+            stories["st_toc_bar_label_0"],
+        )
         self.assertIn("ParagraphStyle/HB TOC Entry", stories["st_toc_seg0_c0"])
+        self.assertIn('FontStyle="Medium"', stories["st_toc_seg0_c0"])
+        self.assertIn('PointSize="7" FontStyle="Regular"', stories["st_toc_seg0_c0"])
         self.assertNotIn("HB Big Numeral", stories["st_toc_title"])
         self.assertNotIn("HB Spec Label", stories["st_toc_seg0_c0"])
+
+        toc_xml = dict(writer.spreads)["sp_toc"]
+        bar = toc_xml.split('Self="bg_toc_bar_0"', 1)[1].split(
+            "</Rectangle>", 1,
+        )[0]
+        anchors = [
+            (float(x), float(y))
+            for x, y in re.findall(r'Anchor="([-.0-9]+) ([-.0-9]+)"', bar)
+        ]
+        left_x = min(x for x, _ in anchors)
+        left_ys = sorted(y for x, y in anchors if x == left_x)
+        self.assertAlmostEqual(15.852, max(y for _, y in anchors) - min(y for _, y in anchors), places=3)
+        self.assertAlmostEqual(4.753, left_ys[0] - min(y for _, y in anchors), places=3)
+        self.assertAlmostEqual(6.346, left_ys[1] - left_ys[0], places=3)
 
     def test_stale_attachment_hash_resolves_by_unique_semantic_identity(self) -> None:
         with tempfile.TemporaryDirectory() as td:

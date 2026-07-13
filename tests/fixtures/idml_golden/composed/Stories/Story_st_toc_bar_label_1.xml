@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_toc_bar_label_1" Label="hb:self=st_toc_bar_label_1" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TOC bar label 1">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB TOC Bar"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="7" FontStyle="Medium" HorizontalScale="100.777"><Content>Français</Content></CharacterStyleRange></ParagraphStyleRange>
+</Story>
+</idPkg:Story>

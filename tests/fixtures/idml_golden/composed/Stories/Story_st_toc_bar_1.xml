@@ -2,6 +2,6 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_toc_bar_1" Label="hb:self=st_toc_bar_1" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TOC bar 1">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB TOC Bar"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="12" FontStyle="Bold"><Content>FR</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="7" FontStyle="SemiBold"><Content>   Français</Content></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB TOC Bar"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="12" FontStyle="Bold"><Content>FR</Content></CharacterStyleRange></ParagraphStyleRange>
 </Story>
 </idPkg:Story>

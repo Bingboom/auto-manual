@@ -3,7 +3,7 @@
 <Story Self="st_toc_title" Label="hb:self=st_toc_title" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TOC title">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB TOC Title">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>TABLE OF CONTENTS</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="100.884"><Content>TABLE OF CONTENTS</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

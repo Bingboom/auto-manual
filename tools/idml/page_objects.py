@@ -259,14 +259,19 @@ def h1_bar_h_pt(writer) -> float:
 
 def capsule_xml(writer, rect_id: str,
                 rect: tuple[float, float, float, float], *,
-                bottom_only: bool = False) -> str:
+                bottom_only: bool = False,
+                corner_radius: float | None = None) -> str:
     x1, y1, x2, y2 = writer._page_rect(*rect)
     # capsules are stadiums (radius = half height); H1 bars take the
-    # shared CSV radius
+    # shared CSV radius.  Composed pages may pass a measured master radius
+    # when the source object is a rounded rectangle rather than a stadium.
     geometry = (
         bottom_rounded_path_geometry(x1, y1, x2, y2, h1_arc_pt(writer))
         if bottom_only
-        else rounded_path_geometry(x1, y1, x2, y2, abs(y2 - y1) / 2.0)
+        else rounded_path_geometry(
+            x1, y1, x2, y2,
+            abs(y2 - y1) / 2.0 if corner_radius is None else corner_radius,
+        )
     )
     return (
         f'  <Rectangle Self="{rect_id}" ContentType="Unassigned" '

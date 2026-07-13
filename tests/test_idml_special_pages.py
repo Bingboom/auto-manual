@@ -44,9 +44,15 @@ class IdmlSpecialPageTests(unittest.TestCase):
         stories = "".join(xml for _, xml in self.writer.stories)
         self.assertIn("SOURCE CONTENTS", stories)
         self.assertIn("<Content>EN</Content>", stories)
-        self.assertIn("<Content>\u00a0\u00a0\u00a0English</Content>", stories)
+        self.assertIn('Story Self="st_toc_bar_label_0"', stories)
+        self.assertIn(
+            'FontStyle="Medium" HorizontalScale="101.194"'
+            "><Content>English</Content>",
+            stories,
+        )
         self.assertIn("01-18", stories)
-        self.assertIn("OPERATIONS\t07", stories)
+        self.assertIn("<Content>OPERATIONS</Content>", stories)
+        self.assertIn("<Content>07</Content>", stories)
 
     def test_special_page_macros_form_complete_ir_payloads(self) -> None:
         with tempfile.TemporaryDirectory() as td:

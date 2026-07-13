@@ -16,7 +16,7 @@
 | **H2 行内标题**(● POWER ON/OFF 等) | 无底色,`●` + 加粗大写 | `\HBTitleLevelTwo` + `●` 前缀 | `type_title_l2_font_*` | `stories.add_prose_story` h2 分支(`● ` 前缀,HB Title L2) | ✅ 一致 |
 | **spec 小节头**(● GENERAL INFO) | 无底色 `●`+粗体 | `\specsectiontitle` | `spec_titles.csv` 本地化 | `add_spec_story`(HB Spec Section + `●`) | ✅ 一致 |
 | **TOC 大标题**(TABLE OF CONTENTS) | **纯深色大字,无底条** | 目录页模板 | — | `page_toc` 标题(无填充框 + 深色大字) | 曾误做成深色圆角条,已改回 |
-| **TOC 语言条**(EN English … 01-18) | 312×15.9pt 全圆,白字,右侧页码区间 | — | — | `page_toc` 语言条框(fill BrandDark + rounded) | 全圆族 ✅ |
+| **TOC 语言条**(EN English … 01-18) | 311.81×15.852pt,**圆角矩形 r=4.753pt**(左侧保留 6.346pt 直边),白字,右侧页码区间 | — | — | `page_toc` 专用量测几何 + `capsule_xml(corner_radius=4.753)` | 不属于 subbar 全圆族；生产 PDF 矢量坐标逐点校准 ✅ |
 
 ## 盒/面板族
 
