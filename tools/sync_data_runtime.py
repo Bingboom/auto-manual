@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from tools.sync_model_capabilities import sync_capability_mirror as _sync_capability_mirror
+
 import csv
 import io
 import json
@@ -657,6 +659,18 @@ def sync_phase2_snapshot(
             "Missing repo-maintained page registry CSV: "
             + _display_path(page_registry_source_path, repo_root=deps.repo_root)
         )
+    mc_result, mc_written = _sync_capability_mirror(
+        cfg,
+        source=resolved_source,
+        repo_root=deps.repo_root,
+        sha256_text=deps.sha256_text,
+        sha256_file=deps.sha256_file,
+        result_cls=deps.table_sync_result_cls,
+    )
+    if mc_result is not None and mc_written is not None:
+        derived_results.append(mc_result)
+        written_files.append(mc_written)
+
     page_registry_text = page_registry_source_path.read_text(encoding="utf-8")
     page_registry_sha256 = deps.sha256_text(page_registry_text)
     previous_page_registry_sha256 = deps.sha256_file(page_registry_path)
