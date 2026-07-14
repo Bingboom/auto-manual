@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import ClassVar
 
 from . import ir_projection
 from .params import param_pt
@@ -10,6 +11,11 @@ from .params import param_pt
 
 @dataclass
 class ReferenceStoryEmitter:
+    dedicated_story_titles: ClassVar[frozenset[str]] = frozenset({
+        "09_storage_and_maintenance",
+        "troubleshooting_en",
+    })
+
     writer: object
     toc: object
     bundle_root: Path

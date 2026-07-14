@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_anchor_lcd_table_en_2" Label="hb:self=st_anchor_lcd_table_en_2" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="LCD DISPLAY table segment 3">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
+  <Table Self="tbl_lcd_cont_en" AppliedTableStyle="TableStyle/正文表格" BodyRowCount="1" ColumnCount="4" HeaderRowCount="0" FooterRowCount="0">
+    <Row Self="tbl_lcd_cont_enr0" Name="0"/>
+    <Column Self="tbl_lcd_cont_encol0" Name="0" SingleColumnWidth="20.6463"/>
+    <Column Self="tbl_lcd_cont_encol1" Name="1" SingleColumnWidth="31.1811"/>
+    <Column Self="tbl_lcd_cont_encol2" Name="2" SingleColumnWidth="74.9027"/>
+    <Column Self="tbl_lcd_cont_encol3" Name="3" SingleColumnWidth="185.364"/>
+    <Cell Self="tbl_lcd_cont_enc25_0" Name="0:0" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="1.4" BottomInset="1.4" LeftInset="1.4" RightInset="1.4" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" LeftEdgeStrokeWeight="0">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="9" Leading="9.4" FontStyle="Regular"><Properties><AppliedFont type="string">Apple SD Gothic Neo</AppliedFont></Properties><Content>㉖</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_lcd_cont_enc25_1" Name="1:0" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="1.4" BottomInset="1.4" LeftInset="1.4" RightInset="1.4" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="0.6"><Rectangle Self="tbl_lcd_cont_enimg25" Label="hb:self=tbl_lcd_cont_enimg25" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" StrokeColor="Swatch/None" StrokeWeight="0"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -18.7087" LeftDirection="0 -18.7087" RightDirection="0 -18.7087"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="18.7087 0" LeftDirection="18.7087 0" RightDirection="18.7087 0"/><PathPointType Anchor="18.7087 -18.7087" LeftDirection="18.7087 -18.7087" RightDirection="18.7087 -18.7087"/></PathPointArray></GeometryPathType></PathGeometry></Properties><AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/><Image Self="tbl_lcd_cont_enimg25_img" ItemTransform="1 0 0 1 0 0"><Link Self="tbl_lcd_cont_enimg25_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/tests/fixtures/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content></CharacterStyleRange></ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_lcd_cont_enc25_2" Name="2:0" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="1.4" BottomInset="1.4" LeftInset="5.2" RightInset="1.4" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="6.2" Leading="6.8" FontStyle="Bold"><Content>Remaining Discharge Time</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+    <Cell Self="tbl_lcd_cont_enc25_3" Name="3:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="1.4" BottomInset="1.4" LeftInset="5.2" RightInset="1.4" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" RightEdgeStrokeWeight="0">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="5.2" Leading="5.8"><Content>Displays the remaining discharging time.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+  </Table>
+    <Content></Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+</Story>
+</idPkg:Story>

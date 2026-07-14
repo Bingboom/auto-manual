@@ -129,16 +129,16 @@
 \expandafter\def\csname HBtype_lcd_body_font_size\endcsname{5.2pt}
 
 % LCD name-column leading
-\expandafter\def\csname HBtype_lcd_label_font_leading\endcsname{6.0pt}
+\expandafter\def\csname HBtype_lcd_label_font_leading\endcsname{6.8pt}
 
 % LCD name-column font size
-\expandafter\def\csname HBtype_lcd_label_font_size\endcsname{5.4pt}
+\expandafter\def\csname HBtype_lcd_label_font_size\endcsname{6.2pt}
 
 % LCD row-number leading
-\expandafter\def\csname HBtype_lcd_no_font_leading\endcsname{5.8pt}
+\expandafter\def\csname HBtype_lcd_no_font_leading\endcsname{9.4pt}
 
 % LCD row-number font size
-\expandafter\def\csname HBtype_lcd_no_font_size\endcsname{5.2pt}
+\expandafter\def\csname HBtype_lcd_no_font_size\endcsname{9.0pt}
 
 % List text color name
 \expandafter\def\csname HBtype_list_color\endcsname{TextGray}
@@ -445,8 +445,23 @@
 % Key-combination table body row minimum height
 \expandafter\def\csname HBcomp_key_table_row_height\endcsname{11.6mm}
 
+% LCD continuation rounded table segment height
+\expandafter\def\csname HBcomp_lcd_continuation_panel_height\endcsname{465pt}
+
+% LCD rows in an English continuation segment
+\expandafter\def\csname HBcomp_lcd_continuation_segment_rows\endcsname{18}
+
+% LCD first rounded table segment height
+\expandafter\def\csname HBcomp_lcd_first_panel_height\endcsname{286pt}
+
+% LCD rows in the first rounded table segment
+\expandafter\def\csname HBcomp_lcd_first_segment_rows\endcsname{7}
+
+% LCD rounded table grey-band width through the label column
+\expandafter\def\csname HBcomp_lcd_grey_width_ratio\endcsname{0.41}
+
 % LCD icon column width
-\expandafter\def\csname HBcomp_lcd_icon_col_width\endcsname{9.2mm}
+\expandafter\def\csname HBcomp_lcd_icon_col_width\endcsname{11.0mm}
 
 % LCD icon maximum height
 \expandafter\def\csname HBcomp_lcd_icon_height\endcsname{6.6mm}
@@ -455,16 +470,31 @@
 \expandafter\def\csname HBcomp_lcd_icon_width\endcsname{6.6mm}
 
 % LCD name-column width
-\expandafter\def\csname HBcomp_lcd_label_col_width\endcsname{0.22\linewidth}
+\expandafter\def\csname HBcomp_lcd_label_col_width\endcsname{0.24\linewidth}
 
 % LCD row-number column width
 \expandafter\def\csname HBcomp_lcd_no_col_width\endcsname{4.8mm}
+
+% LCD short final-segment shell allowance
+\expandafter\def\csname HBcomp_lcd_partial_panel_extra\endcsname{4pt}
+
+% LCD short final-segment minimum shell height
+\expandafter\def\csname HBcomp_lcd_partial_panel_min_height\endcsname{30pt}
+
+% LCD short final-segment row height allowance
+\expandafter\def\csname HBcomp_lcd_partial_row_height\endcsname{27pt}
 
 % LCD icon table row stretch
 \expandafter\def\csname HBcomp_lcd_table_row_stretch\endcsname{0.82}
 
 % LCD table cell padding
 \expandafter\def\csname HBcomp_lcd_table_tabcolsep\endcsname{1.4pt}
+
+% LCD rows in a translated continuation segment
+\expandafter\def\csname HBcomp_lcd_translated_continuation_segment_rows\endcsname{16}
+
+% LCD rows in a translated first rounded table segment
+\expandafter\def\csname HBcomp_lcd_translated_first_segment_rows\endcsname{6}
 
 % Space after lead line
 \expandafter\def\csname HBcomp_lead_after\endcsname{2.40mm}
@@ -645,6 +675,9 @@
 
 % Table tabcolsep
 \expandafter\def\csname HBcomp_table_tabcolsep\endcsname{2.4pt}
+
+% One body-character leading inset shared by rounded table text cells
+\expandafter\def\csname HBcomp_table_text_indent\endcsname{5.2pt}
 
 % Tip strip corner radius
 \expandafter\def\csname HBcomp_tip_arc\endcsname{1.73mm}

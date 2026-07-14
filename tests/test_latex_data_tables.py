@@ -132,7 +132,9 @@ class LatexDataTableTests(unittest.TestCase):
 
         self.assertIn("comp_trouble_left_ratio,0.11,ratio", params)
         self.assertIn("comp_data_table_row_stretch,1.0,ratio", params)
+        self.assertIn("comp_table_text_indent,5.2,pt", params)
         self.assertIn("begin{HBSharedDataTable}", component)
+        self.assertIn("HBcomp_table_text_indent", component)
         self.assertIn("HBDataHangingLine", component)
         self.assertIn(r"\parbox[c][#1][c]", component)
         self.assertIn("HBDataNaturalCenteredCell", component)

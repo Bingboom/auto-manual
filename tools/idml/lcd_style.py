@@ -25,11 +25,6 @@ def layout_tokens(writer, body_w: float) -> tuple[tuple[float, ...], float, floa
     return columns, icon_pt, padding
 
 
-def table_left_indent(writer) -> float:
-    """Return the reference table's one-body-character leading indent."""
-    return param_pt(writer.params, "comp_lcd_table_left_indent", 5.2)
-
-
 def typed_paragraph(writer, style: str, text: str,
                     size_key: str, leading_key: str, *,
                     bold: bool = False,

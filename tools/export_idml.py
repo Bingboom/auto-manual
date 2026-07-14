@@ -98,6 +98,7 @@ class IdmlWriter:
         self.m_b = param_pt(params, "page_margin_bottom", 36.85)
         self.stories: list[tuple[str, str]] = []   # (id, xml)
         self.spreads: list[tuple[str, str]] = []
+        self.lcd_segment_counts: dict[str, int] = {}
 
     # -- styles ------------------------------------------------------------
     def para_styles(self) -> list[tuple[str, float, float, str, str]]:
@@ -381,7 +382,11 @@ def main() -> int:
             sid, title, blocks, page_cursor, columns=columns)
         prose_pages += 1
 
-    def flush_prose_flow() -> None: prose_flow.flush(emit_prose_story, slug_stem, page_plan, prose_estimator)
+    def flush_prose_flow() -> None:
+        prose_flow.flush(
+            emit_prose_story, slug_stem, page_plan, prose_estimator,
+            dedicated_stems=story_emitter.dedicated_story_titles,
+        )
 
     def flush_pending_prefix() -> None:
         nonlocal pending_prefix_blocks
@@ -430,15 +435,9 @@ def main() -> int:
             title = data.title
             toc.note(title, page_cursor, lang)
             sid = w.add_lcd_story(rows, data_root, lang=lang, title=title)
-            if lang == "en":
-                bottom = w.page_h - w.m_b + 18.0
-                w.add_story_frames(sid, [
-                    (page_cursor, 27.33, bottom),
-                    (page_cursor + 1, w.m_t, bottom),
-                ])
-                page_cursor += 2
-            else:
-                chain(sid, 16.0 + sum(max(28.0, 11.0 * (r["desc"].count("\n") + 1)) for r in rows), bottom_extra=18.0)
+            segment_count = w.lcd_segment_counts.get(lang, 1)
+            _package.add_lcd_story_frames(w, sid, page_cursor, segment_count)
+            page_cursor += segment_count
         elif kind == "trouble":
             rows = list(_ir_projection.trouble_rows(manual_ir, lang))
             if not rows:

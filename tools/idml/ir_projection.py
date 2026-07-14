@@ -205,7 +205,16 @@ def lcd_page_data(
     rows = []
     for index, source in enumerate(payload["rows"], start=1):
         row = {key: str(source.get(key) or "") for key in ("no", "figure", "name", "desc")}
-        row["no"] = _circled(index)
+        source_number = row["no"].strip()
+        try:
+            numeric_number = float(source_number)
+            row["no"] = (
+                _circled(int(numeric_number))
+                if numeric_number.is_integer() and numeric_number > 0
+                else source_number
+            )
+        except ValueError:
+            row["no"] = source_number or _circled(index)
         row["figure"] = _asset_path(root, data_root, "lcd_icons", row["figure"])
         rows.append(row)
     return LcdPageData(_heading(page, "LCD DISPLAY"), tuple(rows))

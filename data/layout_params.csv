@@ -136,6 +136,7 @@ comp_table_inner_rule,0.2,pt,Table inner rule width
 comp_table_tabcolsep,2.4,pt,Table tabcolsep
 comp_table_outer_arc,2.4,mm,Table outer corner radius
 comp_table_outer_rule,0.75,pt,Table outer rule width (archive 1500 Ultra: 0.75pt)
+comp_table_text_indent,5.2,pt,One body-character leading inset shared by rounded table text cells
 ,,,
 ,,,------ BODY DATA TABLES ------
 comp_data_table_tabcolsep,2.4,pt,Body data table cell horizontal padding
@@ -169,7 +170,16 @@ comp_lcd_icon_height,6.6,mm,LCD icon maximum height
 comp_lcd_icon_col_width,11.0,mm,LCD icon column width
 comp_lcd_label_col_width,0.24\linewidth,none,LCD name-column width
 comp_lcd_table_tabcolsep,1.4,pt,LCD table cell padding
-comp_lcd_table_left_indent,5.2,pt,LCD table one-character leading indent
+comp_lcd_first_segment_rows,7,int,LCD rows in the first rounded table segment
+comp_lcd_translated_first_segment_rows,6,int,LCD rows in a translated first rounded table segment
+comp_lcd_continuation_segment_rows,18,int,LCD rows in an English continuation segment
+comp_lcd_translated_continuation_segment_rows,16,int,LCD rows in a translated continuation segment
+comp_lcd_grey_width_ratio,0.41,ratio,LCD rounded table grey-band width through the label column
+comp_lcd_first_panel_height,286,pt,LCD first rounded table segment height
+comp_lcd_continuation_panel_height,465,pt,LCD continuation rounded table segment height
+comp_lcd_partial_row_height,27,pt,LCD short final-segment row height allowance
+comp_lcd_partial_panel_extra,4,pt,LCD short final-segment shell allowance
+comp_lcd_partial_panel_min_height,30,pt,LCD short final-segment minimum shell height
 type_lcd_no_font_size,9.0,pt,LCD row-number font size
 type_lcd_no_font_leading,9.4,pt,LCD row-number leading
 type_lcd_label_font_size,6.2,pt,LCD name-column font size

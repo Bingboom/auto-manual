@@ -11,6 +11,7 @@ from tools.idml import ir_projection, page_placed, page_toc
 from tools.idml.components.base import RenderContext
 from tools.idml.components.notice import notice_box_layout
 from tools.idml.components.prose_table import render_table_block
+from tools.idml.components.rounded_table import rounded_table_panel, table_text_indent
 from tools.idml.page_objects import (
     anchored_panel_group_paragraph,
     h1_bar_h_pt,
@@ -268,6 +269,41 @@ class IdmlVisualParityTests(unittest.TestCase):
         )[1].split('</Rectangle>', 1)[0]
         self.assertIn('FillColor="Swatch/None"', outline)
 
+    def test_shared_rounded_table_component_owns_frame_and_text_indent(self) -> None:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        indent = table_text_indent(writer.params)
+        self.assertAlmostEqual(5.2, indent, places=3)
+        xml = rounded_table_panel(
+            writer._add_story_parts,
+            writer.params,
+            sid="st_anchor_shared_table",
+            title="shared table",
+            table_xml=writer._component_table(
+                "tbl_shared",
+                [50.0, 50.0],
+                [
+                    writer._cell(
+                        "tbl_shared_c0", "0:0", writer._psr("HB Body", "A"),
+                        left=indent, right=indent,
+                    ),
+                    writer._cell(
+                        "tbl_shared_c1", "1:0", writer._psr("HB Body", "B"),
+                        left=indent, right=indent,
+                    ),
+                ],
+                n_rows=1,
+                role="data",
+            ),
+            width=100.0,
+            height=20.0,
+            n_cols=2,
+            terminal=True,
+        )
+        self.assertIn('<Group Self="grp_st_anchor_shared_table"', xml)
+        story = dict(writer.stories)["st_anchor_shared_table"]
+        self.assertIn('LeftEdgeStrokeWeight="0"', story)
+        self.assertIn('RightEdgeStrokeWeight="0"', story)
+
     def test_operation_data_tables_share_latex_table_tokens(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
         ctx = RenderContext(
@@ -296,7 +332,9 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn('MinimumHeight="11.9055"', auto_story)
         self.assertIn('<Group Self="grp_st_anchor_data_tbl_auto"', auto_xml)
         self.assertIn('SingleColumnWidth="153.097"', auto_story)
-        self.assertIn('LeftInset="0"', auto_story)
+        indent = table_text_indent(writer.params)
+        self.assertIn(f'LeftInset="{indent:g}"', auto_story)
+        self.assertNotIn('LeftInset="0"', auto_story)
 
         key_rows = [
             ["Buttons", "Operation", "Function"],
@@ -309,6 +347,7 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn('SingleColumnWidth="92.3452"', key_story)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Header"', key_story)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Body"', key_story)
+        self.assertIn(f'LeftInset="{indent:g}"', key_story)
 
     def test_explicit_story_frames_merge_two_stories_on_one_spread(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

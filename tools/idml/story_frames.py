@@ -70,3 +70,17 @@ def add_story_frames(
             '</idPkg:Spread>\n'
         )
         writer.spreads.append((spread_id, xml))
+
+
+def add_lcd_story_frames(
+    writer,
+    story_id: str,
+    start_page: int,
+    segment_count: int,
+) -> None:
+    """Place one complete rounded LCD table segment on each page."""
+    bottom = writer.page_h - writer.m_b + 18.0
+    add_story_frames(writer, story_id, [
+        (start_page + offset, 27.33 if offset == 0 else writer.m_t, bottom)
+        for offset in range(segment_count)
+    ])
