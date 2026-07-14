@@ -1,0 +1,365 @@
+{
+  "schema_version": "bitable-schema/v1",
+  "tables": [
+    {
+      "name": "Translation_Memory",
+      "fields": [
+        {
+          "name": "西语维护Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "term_de",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "raw_value",
+            "from": "Terms",
+            "select": "fldt6BzFRt",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "uk",
+          "type": "text"
+        },
+        {
+          "name": "西语校验Log（AI）",
+          "type": "text"
+        },
+        {
+          "name": "意大利语校验Log（AI）",
+          "type": "text"
+        },
+        {
+          "name": "最后更新时间",
+          "type": "updated_at"
+        },
+        {
+          "name": "葡语校验log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "en",
+          "type": "text"
+        },
+        {
+          "name": "term_it",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "raw_value",
+            "from": "Terms",
+            "select": "flduItRNgY",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "Model",
+          "type": "select",
+          "multiple": true,
+          "options": [
+            "JE-2000E",
+            "TBD",
+            "JE-1000F"
+          ]
+        },
+        {
+          "name": "日语校验Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "法语维护Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "it",
+          "type": "text"
+        },
+        {
+          "name": "term_zh",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "raw_value",
+            "from": "Terms",
+            "select": "fldyyHoBFy",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "德语维护Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "英语校验Log（AI）",
+          "type": "text"
+        },
+        {
+          "name": "term_ja",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "raw_value",
+            "from": "Terms",
+            "select": "fld0jnHIge",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "韩语维护Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "Glossary_term",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tblzerRpOEuDIkKA"
+          }
+        },
+        {
+          "name": "term_es",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "raw_value",
+            "from": "Terms",
+            "select": "fldPEQoGOq",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "葡语维护Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "意大利语维护Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "法语校验Log（AI）",
+          "type": "text"
+        },
+        {
+          "name": "pt-BR",
+          "type": "text"
+        },
+        {
+          "name": "乌克兰语维护Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "英语维护Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "term_fr",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "raw_value",
+            "from": "Terms",
+            "select": "fldyjUfB8U",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "用途标签",
+          "type": "select",
+          "multiple": true,
+          "options": [
+            "manual_copy"
+          ]
+        },
+        {
+          "name": "de",
+          "type": "text"
+        },
+        {
+          "name": "es",
+          "type": "text"
+        },
+        {
+          "name": "德语校验Log（AI）",
+          "type": "text"
+        },
+        {
+          "name": "term_uk",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "raw_value",
+            "from": "Terms",
+            "select": "fld6k2itpg",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "jp",
+          "type": "text"
+        },
+        {
+          "name": "term_pt-BR",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "raw_value",
+            "from": "Terms",
+            "select": "fldKaXcnTu",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "content_attribute",
+          "type": "select",
+          "multiple": true,
+          "options": [
+            "page_title",
+            "table_header",
+            "panel_title",
+            "part_name",
+            "section_title"
+          ]
+        },
+        {
+          "name": "日语维护Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "zh",
+          "type": "text"
+        },
+        {
+          "name": "维护Log （人工）",
+          "type": "text"
+        },
+        {
+          "name": "韩语校验Log (AI)",
+          "type": "text"
+        },
+        {
+          "name": "乌克兰语校验Log（AI）",
+          "type": "text"
+        },
+        {
+          "name": "是否为 status word",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "Y",
+            "N"
+          ]
+        },
+        {
+          "name": "ko",
+          "type": "text"
+        },
+        {
+          "name": "term_ko",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "raw_value",
+            "from": "Terms",
+            "select": "fldy9fiac8",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "fr",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "Terms",
+      "fields": [
+        {
+          "name": "es",
+          "type": "text"
+        },
+        {
+          "name": "de",
+          "type": "text"
+        },
+        {
+          "name": "uk",
+          "type": "text"
+        },
+        {
+          "name": "Model",
+          "type": "select",
+          "multiple": true,
+          "options": [
+            "JE-2000E"
+          ]
+        },
+        {
+          "name": "fr",
+          "type": "text"
+        },
+        {
+          "name": "ko",
+          "type": "text"
+        },
+        {
+          "name": "it",
+          "type": "text"
+        },
+        {
+          "name": "jp",
+          "type": "text"
+        },
+        {
+          "name": "zh",
+          "type": "text"
+        },
+        {
+          "name": "pt-BR",
+          "type": "text"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "Tages",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "LCD Icon",
+            "颜色",
+            "Warning box"
+          ]
+        },
+        {
+          "name": "No",
+          "type": "number"
+        },
+        {
+          "name": "en",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

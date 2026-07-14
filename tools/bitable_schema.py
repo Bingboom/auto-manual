@@ -86,6 +86,21 @@ def _field_export(f: dict) -> dict:
         rec["multiple"] = bool(f.get("multiple")) or t == "multi_select"
         opts = f.get("options") or prop.get("options") or []
         rec["options"] = [o.get("name") for o in opts if isinstance(o, dict) and o.get("name")]
+    if rec["type"] in COMPLEX_TYPES:
+        # Disaster-recovery detail: apply cannot auto-create these, but the
+        # manifest must record HOW to rebuild them by hand — a lookup's source
+        # table/field, a link's target table, a formula's expression. Without
+        # this the mirror only says "a formula existed here".
+        detail = {
+            key: value
+            for key, value in f.items()
+            if key not in ("field_name", "name", "type", "id", "style", "is_primary")
+            and value not in (None, "", [], {})
+        }
+        if prop:
+            detail.setdefault("property", prop)
+        if detail:
+            rec["detail"] = detail
     return rec
 
 

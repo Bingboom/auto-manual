@@ -42,6 +42,26 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(st["options"], ["a", "b"])
         self.assertFalse(st["multiple"])
 
+    def test_export_preserves_complex_field_rebuild_detail(self):
+        def fake(args, lark_cli="lark-cli"):
+            if "+table-list" in args:
+                return {"ok": True, "data": {"tables": [{"id": "tblA", "name": "T1"}]}}
+            return _fields_response([
+                {"name": "Slot_key", "type": "lookup", "id": "fldX",
+                 "from": "02_主数据_Slot", "select": "fldY", "aggregate": "unique"},
+                {"name": "refs", "type": "link", "id": "fldZ",
+                 "link_table": "tblVus", "bidirectional": False},
+                {"name": "Value_source", "type": "text", "id": "fldT"},
+            ])
+
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            manifest = bs.export("baseX", None, "lark-cli")
+        fields = {f["name"]: f for f in manifest["tables"][0]["fields"]}
+        self.assertEqual(fields["Slot_key"]["detail"]["from"], "02_主数据_Slot")
+        self.assertEqual(fields["refs"]["detail"]["link_table"], "tblVus")
+        self.assertNotIn("detail", fields["Value_source"])
+        self.assertNotIn("id", fields["Slot_key"]["detail"])
+
     def test_export_table_filter(self):
         def fake(args, lark_cli="lark-cli"):
             if "+table-list" in args:
