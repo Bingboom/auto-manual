@@ -38,6 +38,15 @@ python3 -m pip install -r requirements.txt
 The dependency install step is mandatory.
 Do not skip `python -m pip install -r requirements.txt` or `python3 -m pip install -r requirements.txt` when preparing a fresh environment.
 
+To reproduce the exact environment a release was built with (or to avoid
+rendering drift on a long-lived checkout), install from the pinned snapshot
+instead: `pip install -r requirements.lock`. Regenerate the lock only on an
+intentional dependency change (`pip freeze --exclude-editable`, keep the file
+header). `python build.py doctor` prints the effective toolchain versions
+(Python packages, xelatex, pandoc, InDesign when present), and every release
+manifest embeds the same record under a `toolchain` key — a published PDF can
+always name the environment that produced it.
+
 For fixed-layout PDF work, edit the shared LaTeX component or its
 data/layout_params.csv values instead of drawing borders directly in page
 RST. Titles, safety boxes, FCC panels, inbox cards, tip strips, symbol tables,

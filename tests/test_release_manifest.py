@@ -81,6 +81,10 @@ class TestReleaseManifest(unittest.TestCase):
 
             manifest = json.loads(json_path.read_text(encoding="utf-8"))
             self.assertEqual("abc123", manifest["git_sha"])
+            self.assertEqual(1, manifest["toolchain"]["schema_version"])
+            self.assertIn("python", manifest["toolchain"])
+            csv_header = csv_path.read_text(encoding="utf-8").splitlines()[0]
+            self.assertIn("toolchain_python", csv_header)
             self.assertEqual("JE-1000F", manifest["model"])
             self.assertEqual("US", manifest["region"])
             self.assertEqual(["en"], manifest["build_languages"])

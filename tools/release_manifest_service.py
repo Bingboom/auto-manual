@@ -18,6 +18,7 @@ from tools.gen_index_bundle import bundle_dir_for_target
 from tools.release_contract import release_manifests_dir_for_target
 from tools.review_bundle import resolve_docs_dir
 from tools.review_support import review_dir_for_target
+from tools.toolchain_provenance import collect_toolchain
 from tools.utils.path_utils import docs_build_dir_of
 from tools.utils.targets import resolve_output_lang
 
@@ -61,6 +62,7 @@ def build_release_manifest(
     built_at: datetime | None = None,
     docs_build_dir: Path | None = None,
     releases_root: Path | None = None,
+    toolchain: dict[str, object] | None = None,
 ) -> tuple[Path, Path]:
     cfg = load_config(config_path)
     docs_dir = resolve_docs_dir(cfg)
@@ -139,9 +141,15 @@ def build_release_manifest(
         repo_root=repo_root,
     )
 
+    # Toolchain provenance (Milestone I3): the release must be able to name the
+    # exact environment that produced it — the LaTeX line has no golden
+    # snapshot, so this record is the only way to attribute a rendering drift.
+    toolchain_record = toolchain if toolchain is not None else collect_toolchain(repo_root=repo_root)
+
     manifest = {
         "git_sha": git_sha,
         "built_at": built_at_value.isoformat(),
+        "toolchain": toolchain_record,
         "config_path": repo_relative(config_path, repo_root=repo_root),
         "model": model,
         "region": region,
@@ -163,6 +171,9 @@ def build_release_manifest(
     csv_row = {
         "git_sha": manifest["git_sha"] or "",
         "built_at": manifest["built_at"],
+        "toolchain_python": str(toolchain_record.get("python") or ""),
+        "toolchain_xelatex": str(toolchain_record.get("xelatex") or ""),
+        "toolchain_pandoc": str(toolchain_record.get("pandoc") or ""),
         "config_path": manifest["config_path"] or "",
         "model": model,
         "region": region,
