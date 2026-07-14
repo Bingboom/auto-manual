@@ -93,6 +93,12 @@ native INDD/PDF and zero-overset/font/link preflight; use
 delta against the LaTeX PDF. Finalization also closes each LCD rounded shell to
 the exact height of its native InDesign rows; check
 `fitted_lcd_table_groups` in the preflight report when reviewing bottom fills.
+The 26-row LCD icon table is delivered as two pages per language (7 rows then
+19 rows), with 5.6 mm maximum table icons and segment-specific vertical
+padding aligned to the `Jackery Explorer 1000 User Manual V2.0` reference.
+Finalization also gives every Meaning of Symbols table a light-grey first
+column and closes its rounded shell to the native table height; review
+`fitted_symbol_table_shells` beside the LCD counter in the preflight report.
 
 If a review page still references an attachment basename with an older opaque
 hash, the build now stages the unique current semantic match under that frozen

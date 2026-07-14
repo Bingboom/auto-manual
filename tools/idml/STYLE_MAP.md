@@ -26,6 +26,7 @@
 | note box | 灰圆角、按正文真实行数自适应 | `\HBNoteBlock` | 同上 | 同上；Gilroy 字宽估算后固定可编辑组高，避免 auto-size 覆盖下一段 | ✅ |
 | 操作面板 oppanel | 圆角浅灰描边外框,无内网格 | 操作面板盒 | — | `components/oppanel`(锚定描边框 HB Border K10 1.1pt r10 auto-height) | ✅ #642 |
 | spec/LCD/正文数据表外框 | 深色圆角描边 + 灰色表头/label 列 + 内部网格；单元格文字纵向居中；文字离左边界一个字符位 | `HBSharedDataTable`；spec、LCD、Auto Resume、Key Combinations、Troubleshooting 只声明列与行语义，列为 `m` / 内容盒为 `[c]` | `comp_table_outer_arc` / `comp_table_outer_rule` / `comp_data_table_*` / `comp_table_text_indent` | `components/rounded_table` 公共容器：“圆角背景 + 方形可编辑内容框 + 四角弧外遮罩 + 顶层描边”；正文正式表占满正文栏宽，字符缩进只落在 cell；`indesign_finalize.jsx` 按原生行高收紧每段 LCD 壳体 | ✅ 灰色单元格填充不会穿出圆角；表格仍保持原生可编辑；LCD 按同一分段规则生成多个完整圆角表，LaTeX/InDesign 共用 `lcd_table_layout.py`；英/法/西及短尾段均不会留下底部白带；源编号逐值透传，不得按行序重编 |
+| Meaning of Symbols 表 | 圆角描边 + 首列 K05 浅灰 + 内部网格；左右表按各自内容高度收口 | `HBSymbolTable` / `HBSymbolTwoColumnTablesSplit` | `comp_symbol_*` | `pages._symbols_signal_table` / `_symbols_icon_table`；`indesign_finalize.jsx` 累加原生 `row.height`，同步收紧内容框和圆角外框 | ✅ 英/法/西首列统一浅灰；`fitted_symbol_table_shells` 记录最终化数量；短列不再保留底部白带 |
 | inbox 三卡 | 圆角卡片 + 13.785pt 圆形编号，10.912pt Medium 白字 | inbox card tcolorbox | `comp_inbox_card_arc` | `components/inbox` + page03 卡片框；编号框和字均纵向居中 | ✅ 编号字形中心与圆心残差 0.003pt |
 | warranty 专页/大字卡 | 灰底导语 + 悬浮标签圆角框 + 3/2 年双栏圆章 | `hb_latex_warranty.py` doctree 映射 + `components_warranty.tex` | `comp_warranty_*` / `type_warranty_*` | `components/warranty`(HB Big Numeral 26pt) | ✅ LaTeX 独占页与 IDML 组件化 |
 | 语言徽章 langtag(前言 EN/FR/ES) | 深色小 pill + 粗标题 | 前言宏 | — | `components/langbadge` | ✅ #634 |
@@ -54,4 +55,4 @@
 - LCD 图标单元格显式使用 `CenterAlign`，仅保留实测 0.6pt 光学校正；禁止恢复旧的 8.9pt `BaselineShift` 硬推定位。最终 9 个英文图标中心残差均为 0.00pt。
 - `PRODUCT OVERVIEW` 下的产品部位标注网格属于待替换的 AI 插画内容，不进入正式数据表组件，也不参与表格样式验收。缺少最终 AI 图时，LaTeX 与 InDesign 的页码/分页只记录、不作为样式验收门槛。
 - notice 列表正文使用 3.4pt 悬挂缩进；项目符号与正文拆成独立字号运行。提示框按 Gilroy 实际字宽预估换行并固定组高，避免 auto-height 向下覆盖；跨页 CAUTION 到下一标题的间距为 2.69pt（LaTeX 2.68pt）。
-- `AutoSizingType="HeightOnly"` 导入生效;参考点必须 `TopCenterPoint`(Bottom→Object-is-invalid);路径高度过估(框只向下贴合)。表格外框不使用通用 auto-size；LCD 在最终 InDesign 合成后由 `fitLcdTableShells` 累加原生 `row.height`，同步收紧背景、内容框、底部遮罩和描边，预检以 `fitted_lcd_table_groups` 记录处理数量。
+- `AutoSizingType="HeightOnly"` 导入生效;参考点必须 `TopCenterPoint`(Bottom→Object-is-invalid);路径高度过估(框只向下贴合)。表格外框不使用通用 auto-size；LCD 在最终 InDesign 合成后由 `fitLcdTableShells` 累加原生 `row.height`，同步收紧背景、内容框、底部遮罩和描边，预检以 `fitted_lcd_table_groups` 记录处理数量。Meaning of Symbols 的信号词/图标表由 `fitComposedSymbolTableShells` 独立量测和收口，预检以 `fitted_symbol_table_shells` 记录处理数量。

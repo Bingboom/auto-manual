@@ -662,6 +662,14 @@ left edge; only cell text receives the shared one-character inset. The native
 finalizer then measures every composed LCD row and resizes the shell and its
 bottom corner masks to the exact table height, including translated and short
 continuation segments.
+For the 26-row LCD icon table, the IDML uses a 7-row first segment and a
+19-row continuation in every output language. The icon frame is capped at
+5.6 mm, while first/continuation vertical padding remains independently
+tokenized so translated text fits without creating a third page.
+The composed Meaning of Symbols tables also use the shared light-grey first
+column. Native finalization measures each signal/icon table independently and
+resizes both its text frame and rounded outline to the exact InDesign row
+height; `fitted_symbol_table_shells` records the number adjusted.
 Callout labels are not style defaults. WARNING, CAUTION, NOTE, and TIP labels
 must be present in the prepared RST/IR, are emitted verbatim in LaTeX and IDML,
 and cause export to fail when absent. Tune the shared LaTeX geometry first, then

@@ -1426,9 +1426,9 @@ class TestCsvPageRenderers(unittest.TestCase):
             vars_map=self._localized_copy_vars(model="JE-1000F"),
         )
 
-        self.assertEqual(3, out.count(r"\begin{HBLcdIconTable}"))
-        self.assertEqual(3, out.count(r"\end{HBLcdIconTable}"))
-        self.assertEqual(2, out.count(r"\clearpage"))
+        self.assertEqual(2, out.count(r"\begin{HBLcdIconTable}"))
+        self.assertEqual(2, out.count(r"\end{HBLcdIconTable}"))
+        self.assertEqual(1, out.count(r"\clearpage"))
         self.assertEqual(26, out.count(r"\HBLcdIconRow"))
 
     def test_render_lcd_icons_page_should_normalize_document_key_style_target_model(self) -> None:

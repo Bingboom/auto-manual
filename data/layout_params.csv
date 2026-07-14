@@ -164,15 +164,18 @@ type_trouble_code_font_leading,8.0,pt,Troubleshooting error-code leading
 ,,,------ DATA TABLE DENSITY (archive 1500 Ultra parity) ------
 comp_lcd_table_row_stretch,0.82,ratio,LCD icon table row stretch
 comp_lcd_no_col_width,4.8,mm,LCD row-number column width
-comp_lcd_icon_width,6.6,mm,LCD icon maximum width
-comp_lcd_icon_height,6.6,mm,LCD icon maximum height
+comp_lcd_icon_width,5.6,mm,LCD icon maximum width
+comp_lcd_icon_height,5.6,mm,LCD icon maximum height
 comp_lcd_icon_col_width,11.0,mm,LCD icon column width
 comp_lcd_label_col_width,0.24\linewidth,none,LCD name-column width
 comp_lcd_table_tabcolsep,1.4,pt,LCD table cell padding
+comp_lcd_first_vertical_padding,1.6,pt,LCD English first-segment cell top/bottom padding
+comp_lcd_translated_first_vertical_padding,0.7,pt,LCD translated first-segment cell top/bottom padding
+comp_lcd_continuation_vertical_padding,1.2,pt,LCD continuation cell top/bottom padding
 comp_lcd_first_segment_rows,7,int,LCD rows in the first rounded table segment
-comp_lcd_translated_first_segment_rows,6,int,LCD rows in a translated first rounded table segment
-comp_lcd_continuation_segment_rows,18,int,LCD rows in an English continuation segment
-comp_lcd_translated_continuation_segment_rows,16,int,LCD rows in a translated continuation segment
+comp_lcd_translated_first_segment_rows,7,int,LCD rows in a translated first rounded table segment
+comp_lcd_continuation_segment_rows,19,int,LCD rows in an English continuation segment
+comp_lcd_translated_continuation_segment_rows,19,int,LCD rows in a translated continuation segment
 comp_lcd_grey_width_ratio,0.41,ratio,LCD rounded table grey-band width through the label column
 comp_lcd_first_panel_height,286,pt,LCD first rounded table segment height
 comp_lcd_continuation_panel_height,465,pt,LCD continuation rounded table segment height

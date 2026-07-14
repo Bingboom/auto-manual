@@ -901,6 +901,24 @@ class ExportIdmlTests(unittest.TestCase):
             'BottomEdgeStrokeWeight="0"',
             stories["st_safety_symbols_icons_left"],
         )
+        self.assertIn(
+            'Name="0:0" RowSpan="1" ColumnSpan="1" '
+            'AppliedCellStyle="CellStyle/$ID/[None]" '
+            'FillColor="Color/HB Bg K05"',
+            stories["st_safety_symbols_signals"],
+        )
+        self.assertIn(
+            'Name="0:1" RowSpan="1" ColumnSpan="1" '
+            'AppliedCellStyle="CellStyle/$ID/[None]" '
+            'FillColor="Color/HB Bg K05"',
+            stories["st_safety_symbols_icons_left"],
+        )
+        self.assertIn(
+            'Name="0:1" RowSpan="1" ColumnSpan="1" '
+            'AppliedCellStyle="CellStyle/$ID/[None]" '
+            'FillColor="Color/HB Bg K05"',
+            stories["st_safety_symbols_icons_right"],
+        )
 
     def test_safety_symbols_page_uses_localized_symbol_copy(self) -> None:
         import json
@@ -1215,8 +1233,8 @@ class ExportIdmlTests(unittest.TestCase):
             if sid.startswith("st_anchor_lcd_table_")
         )
 
-        self.assertEqual(3, story.count("<Table "))
-        self.assertEqual(3, stories["st_lcd"].count("<Group "))
+        self.assertEqual(2, story.count("<Table "))
+        self.assertEqual(2, stories["st_lcd"].count("<Group "))
         self.assertIn('StartParagraph="NextPage"', stories["st_lcd"])
 
         for column in range(4):
@@ -1239,7 +1257,12 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('LeftInset="5.2"', description_cell)
         number_cell = story.split('Self="tbl_lcdc0_0"', 1)[1].split("</Cell>", 1)[0]
         self.assertIn('PointSize="9" Leading="9.4"', number_cell)
-        self.assertIn('TopInset="1.4" BottomInset="1.4"', number_cell)
+        self.assertIn('TopInset="1.6" BottomInset="1.6"', number_cell)
+        continuation_cell = story.split(
+            'Self="tbl_lcd_cont_enc7_0"', 1
+        )[1].split("</Cell>", 1)[0]
+        self.assertIn(
+            'TopInset="1.2" BottomInset="1.2"', continuation_cell)
         self.assertIn(
             '<AppliedFont type="string">Apple SD Gothic Neo</AppliedFont>',
             number_cell,
@@ -1260,9 +1283,10 @@ class ExportIdmlTests(unittest.TestCase):
         w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
         stories = dict(w.stories)
 
-        self.assertEqual(3, stories["st_lcd"].count("<Group "))
-        self.assertEqual(3, w.lcd_segment_counts["en"])
-        self.assertIn("st_anchor_lcd_table_en_2", stories)
+        self.assertEqual(2, stories["st_lcd"].count("<Group "))
+        self.assertEqual(2, w.lcd_segment_counts["en"])
+        self.assertIn("st_anchor_lcd_table_en_1", stories)
+        self.assertNotIn("st_anchor_lcd_table_en_2", stories)
         self.assertNotIn('<ParagraphStyleRange LeftIndent="5.2"', stories["st_lcd"])
 
     def test_lcd_high_circled_numbers_use_a_font_that_covers_them(self) -> None:

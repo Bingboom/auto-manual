@@ -32,12 +32,12 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
     first_limit = int(float(writer.params.get(
         "comp_lcd_first_segment_rows" if is_english
         else "comp_lcd_translated_first_segment_rows",
-        ("7" if is_english else "6", "count"),
+        ("7", "count"),
     )[0]))
     continuation_limit = int(float(writer.params.get(
         "comp_lcd_continuation_segment_rows" if is_english
         else "comp_lcd_translated_continuation_segment_rows",
-        ("18" if is_english else "16", "count"),
+        ("19", "count"),
     )[0]))
     segments = split_lcd_table_rows(
         rows,
@@ -50,6 +50,15 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
     table_panels: list[str] = []
     global_ri = 0
     for segment_index, segment in enumerate(segments):
+        if segment_index > 0:
+            vertical_pad = param_pt(
+                writer.params, "comp_lcd_continuation_vertical_padding", 1.2)
+        elif is_english:
+            vertical_pad = param_pt(
+                writer.params, "comp_lcd_first_vertical_padding", 1.6)
+        else:
+            vertical_pad = param_pt(
+                writer.params, "comp_lcd_translated_first_vertical_padding", 0.7)
         tid = (
             "tbl_lcd" if segment_index == 0 and lang == "en"
             else f"tbl_lcd_{lang}" if segment_index == 0
@@ -88,7 +97,7 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             for content, ci in cell_defs:
                 cells.append(writer._cell(
                     f"{tid}c{global_ri}_{ci}", f"{ci}:{local_ri}", content,
-                    top=pad, bottom=pad,
+                    top=vertical_pad, bottom=vertical_pad,
                     left=text_indent if ci >= 2 else pad,
                     right=pad,
                     valign="CenterAlign"))

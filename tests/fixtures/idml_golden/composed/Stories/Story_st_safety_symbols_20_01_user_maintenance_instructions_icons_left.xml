@@ -8,7 +8,7 @@
     <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tblr0" Name="0"/>
     <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tblcol0" Name="0" SingleColumnWidth="41.3228"/>
     <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tblcol1" Name="1" SingleColumnWidth="111.724"/>
-    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tblc0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="4" RightInset="4" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" LeftEdgeStrokeWeight="0">
+    <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_l_tblc0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" FillColor="Color/HB Bg K05" TopInset="2" BottomInset="2" LeftInset="4" RightInset="4" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Symbol</Content></CharacterStyleRange>
   </ParagraphStyleRange>

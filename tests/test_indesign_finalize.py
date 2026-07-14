@@ -25,6 +25,9 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn('indexOf(" table segment ")', jsx)
         self.assertIn("table.rows[ri].height", jsx)
         self.assertIn("fitted_lcd_table_groups", jsx)
+        self.assertIn("fitComposedSymbolTableShells(doc)", jsx)
+        self.assertIn('title.indexOf("Symbol icons ")', jsx)
+        self.assertIn("fitted_symbol_table_shells", jsx)
 
     def test_runner_allows_synchronous_pdf_export_to_finish(self) -> None:
         runner = (JSX.parent.parent / "indesign_finalize.py").read_text(encoding="utf-8")
