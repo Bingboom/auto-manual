@@ -1,0 +1,2 @@
+model,region,code,page,note
+JE-1000F,US,LANG_PARITY_FOREIGN_LANG_BLOCK,00_preface.rst,us-en single-language line inherits the trilingual page_shared/en preface (FR/ES blocks) — trim decision pending with the operator; AU precedent removed them (Hello-Docs#12). Delete this row once decided.
