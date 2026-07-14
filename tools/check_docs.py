@@ -42,6 +42,8 @@ from tools.check_docs_bundle import (  # noqa: E402
 )
 from tools.check_docs_entry import run_check_entry as _run_check_entry_impl  # noqa: E402
 from tools.check_docs_capability import collect_capability_issues as _collect_capability_issues_impl  # noqa: E402
+from tools.check_docs_lang_parity import collect_lang_parity_issues as _collect_lang_parity_issues_impl  # noqa: E402
+from tools.check_docs_lang_parity import load_known_exceptions as _load_lang_parity_exceptions  # noqa: E402
 from tools.check_docs_generated import collect_generated_page_issues as _collect_generated_page_issues_impl  # noqa: E402
 from tools.check_docs_identity import (  # noqa: E402
     collect_identity_drift_issues as _collect_identity_drift_issues_impl,
@@ -484,6 +486,10 @@ def collect_check_issues(
         collect_capability_issues=lambda **kw: _collect_capability_issues_impl(
             data_dir=kw.pop("docs_dir").parent / "data",
             issue_cls=CheckIssue, **kw),
+        collect_lang_parity_issues=lambda **kw: _collect_lang_parity_issues_impl(
+            issue_cls=CheckIssue,
+            exceptions=_load_lang_parity_exceptions(
+                kw.pop("docs_dir").parent / "data"), **kw),
     )
 
 
