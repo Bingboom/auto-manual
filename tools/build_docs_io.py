@@ -118,6 +118,7 @@ def sphinx_build(
     run: Callable[..., None],
     repo_root: Path,
     printer: Callable[[str], None] = print,
+    warning_ratchet_hook: Callable[[str, Path], None] | None = None,
 ) -> None:
     printer(f"[build] Sphinx -> {builder.upper()}")
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -130,7 +131,13 @@ def sphinx_build(
             "html_theme=alabaster",
         ]
     cmd = with_rst_epilog(cmd, substitutions)
+    # Warning ratchet (Milestone I2): capture the warning stream to a file so
+    # the post-build hook can diff it against the committed baseline.
+    warn_log = out_dir / "sphinx-warnings.log"
+    cmd += ["-w", str(warn_log)]
     run(cmd, cwd=repo_root)
+    if warning_ratchet_hook is not None:
+        warning_ratchet_hook(builder, warn_log)
 
 
 def patch_fonts(
