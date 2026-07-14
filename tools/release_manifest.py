@@ -44,6 +44,7 @@ def build_release_manifest(
     built_at: datetime | None = None,
     docs_build_dir: Path | None = None,
     releases_root: Path | None = None,
+    toolchain: dict[str, object] | None = None,
 ) -> tuple[Path, Path]:
     return _build_release_manifest(
         repo_root=ROOT,
@@ -55,6 +56,7 @@ def build_release_manifest(
         built_at=built_at,
         docs_build_dir=docs_build_dir,
         releases_root=releases_root,
+        toolchain=toolchain,
     )
 
 
