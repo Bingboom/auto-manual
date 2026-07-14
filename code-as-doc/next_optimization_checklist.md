@@ -864,8 +864,11 @@ second — each probe converts an unknown-unknown into a measured known.
     scratch base + 2 tables + fields + 25 seed rows restored from repo
     artifacts alone in **86s** (read-back verified). Headline finding: the
     schema mirror covers only 2/20 business tables — the other 18 tables'
-    field structures live only in Feishu. Follow-up registered: extend
-    `bitable_schema export` to every business table.
+    field structures live only in Feishu. Follow-up CLOSED same day:
+    whole-base export committed (`bitable_schema/business_base_manifest.json`
+    21 tables/366 fields + `tm_base_manifest.json` 2/58), complex fields
+    carry rebuild detail (lookup source, link target, formula property);
+    re-export rhythm documented in ops guide §4.7.
 - [x] PR I0: ONBOARDING.md + cold-start drill protocol (接手保障)
   - Status: `done` — repo-root ONBOARDING.md is the single first-hour
     entrypoint (two-plane map, bus-factor register, golden-path drill);

@@ -218,8 +218,10 @@ python tools/flow_dashboard.py report
 # 1. 建演练用 scratch base（用完由操作者删除；命名带"演练-"前缀）
 lark-cli base +base-create --name "演练-base重建-<日期>"
 # 2. 从 schema 镜像重建表结构（幂等，dry-run 默认，--write 执行）
-python tools/bitable_schema.py apply --manifest bitable_schema/manifest.json \
+# 完整重建用整库镜像（21 表）；promote 流程的 2 表小 manifest 仍是 manifest.json
+python tools/bitable_schema.py apply --manifest bitable_schema/business_base_manifest.json \
   --base-token <scratch> --identity user --write --yes
+# 复杂字段（公式/lookup/link）apply 会列跳过清单——按 manifest 里的 detail 手工重建
 # 3. 从种子/快照灌数据
 python tools/bitable_schema.py seed-import --base-token <scratch> \
   --table 规格书字段映射规则 --seed bitable_schema/seed/规格书字段映射规则.csv \
@@ -231,7 +233,8 @@ python tools/bitable_schema.py seed-import --base-token <scratch> \
 
 | 日期 | 范围 | 耗时 | 发现 |
 | --- | --- | --- | --- |
-| 2026-07-13 | scratch base + 2 表结构 + 25 种子行（首演） | **86 秒**，回读 25 行/10 字段 ✓ | **schema 镜像只覆盖 2/20 张表**——其余 18 张表的字段结构只存在于飞书里，真灾难时无法从仓库重建；值快照（sync-data CSV）覆盖 phase2 子集但没有字段定义。跟进：把 `bitable_schema export` 扩到全部业务表并纳入例行同步 |
+| 2026-07-13 | scratch base + 2 表结构 + 25 种子行（首演） | **86 秒**，回读 25 行/10 字段 ✓ | **schema 镜像只覆盖 2/20 张表**——其余 18 张表的字段结构只存在于飞书里，真灾难时无法从仓库重建；值快照（sync-data CSV）覆盖 phase2 子集但没有字段定义。跟进：把 `bitable_schema export` 扩到全部业务表并纳入例行同步（**已闭口，见下行**） |
+| 2026-07-13 | schema 镜像扩全表（缺口闭合） | 业务 base **21 表/366 字段** + TM base 2 表/58 字段整库导出入库（`bitable_schema/business_base_manifest.json` / `tm_base_manifest.json`）；44+10 个复杂字段（公式/lookup/link）带**重建细节**（lookup 源表、link 目标表等，apply 不自动建、按细节手工重建） | 例行：**每次表结构变更后（至少季度演练前）重跑整库 export 并提交 diff**；全表 parity 哨兵可作后续 |
 
 **底线**：季度一次；每次把耗时和新发现追加到上表。演练不达标（重建不出来/
 耗时不可接受）= 灾备欠账，进 checklist。
