@@ -1,0 +1,5 @@
+# Known-warnings baseline (warning ratchet, Milestone I2).
+# One sanitized warning per line; a warning NOT listed here fails the
+# strict check. Regenerate after an intentional change:
+#   python tools/warning_ratchet.py update --stream sphinx-html --log <warnings.log>
+docs/_build/JE-1000F/US/en/rst/page/06_ups_mode.rst: WARNING: Line block ends without a blank line. [docutils]

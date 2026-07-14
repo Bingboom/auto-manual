@@ -610,7 +610,28 @@ def sphinx_build(
         with_rst_epilog=_with_rst_epilog,
         run=run,
         repo_root=paths.root,
+        warning_ratchet_hook=_warning_ratchet_hook,
     )
+
+
+def _warning_ratchet_hook(builder: str, warn_log: Path) -> None:
+    # Staged enforcement (Milestone I2): report by default, strict via env.
+    mode = os.environ.get("AUTO_MANUAL_WARNING_RATCHET", "report").strip().lower()
+    if mode == "off":
+        return
+    from tools.warning_ratchet import check_stream, default_baseline_dir
+
+    log_text = warn_log.read_text(encoding="utf-8") if warn_log.exists() else ""
+    rc = check_stream(
+        stream=f"sphinx-{builder}",
+        log_text=log_text,
+        baseline_dir=default_baseline_dir(paths.root),
+    )
+    if mode == "strict" and rc != 0:
+        raise RuntimeError(
+            f"warning ratchet failed for sphinx-{builder} (rc={rc}); "
+            "register intentional warnings via tools/warning_ratchet.py update"
+        )
 
 
 def patch_fonts(patch_fonts_script: str, main_tex: str, *, build_dir: Path) -> None:
