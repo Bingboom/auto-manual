@@ -82,6 +82,12 @@ def render_lcdmode(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
             n_cols=3,
             terminal=terminal,
             fill="Color/Paper", stroke="Color/HB Line K40",
+            corner_fills={
+                "top_left": "Color/HB Bg K05",
+                "bottom_left": "Color/HB Bg K05",
+                "top_right": "Color/Paper",
+                "bottom_right": "Color/Paper",
+            },
         )
     else:
         table_xml = wrap_table_paragraph(table, terminal, span_columns)

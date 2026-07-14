@@ -11,7 +11,7 @@ from .data_stories import (
     add_symbols_story,
     add_trouble_story,
 )
-from .params import IDPKG, param_pt
+from .params import IDPKG
 from .primitives import _ATTR_ENTITIES
 
 # Height-ESTIMATION constants for sizing the linked spread chain. These are
@@ -36,23 +36,6 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
     text_measure = writer.page_w - writer.m_l - writer.m_r
     column_measure = (text_measure - 11.0) / 2.0
-    body_table_group_indices: set[int] = set()
-    import json as _json
-    for table_index, (block_kind, block_text) in enumerate(blocks):
-        if block_kind != "table":
-            continue
-        try:
-            table_kind = _components.body_data_table_kind(_json.loads(block_text))
-        except (TypeError, _json.JSONDecodeError):
-            table_kind = None
-        if table_kind is None:
-            continue
-        cursor = table_index - 1
-        while cursor >= 0 and blocks[cursor][0] not in {"h1", "h2"}:
-            body_table_group_indices.add(cursor)
-            cursor -= 1
-        if cursor >= 0 and blocks[cursor][0] == "h2":
-            body_table_group_indices.add(cursor)
     for bi, (kind, text) in enumerate(blocks):
         if kind == "layout":
             if text == "twocol_start":
@@ -119,15 +102,6 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         span_columns = has_twocol_layout and not in_twocol and kind in {"h1", "h2"}
         paragraph = writer._psr(
             style, text, terminal=terminal, span_columns=span_columns)
-        if bi in body_table_group_indices:
-            indent = param_pt(
-                writer.params, "comp_body_table_group_indent", 9.92,
-            )
-            paragraph = paragraph.replace(
-                "<ParagraphStyleRange ",
-                f'<ParagraphStyleRange LeftIndent="{indent:g}" ',
-                1,
-            )
         if kind == "h2_overview_front":
             paragraph = paragraph.replace(
                 "<ParagraphStyleRange ",

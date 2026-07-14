@@ -195,8 +195,10 @@ def _troubleshooting_table(raw_rows: list[list], ctx: RenderContext, tid: str) -
 def _body_data_table(raw_rows: list[list], ctx: RenderContext, tid: str,
                      kind: str) -> tuple[str, float]:
     """Mirror the shared LaTeX Auto Resume / Key Combination table tokens."""
-    group_indent = param_pt(ctx.params, "comp_body_table_group_indent", 9.92)
-    body_w = ctx.text_measure - group_indent - 1.5
+    # The table shell owns the full body measure.  The requested one-character
+    # inset belongs to the cells (``comp_table_text_indent``), never to the
+    # heading/description/table group as a whole.
+    body_w = ctx.text_measure - 1.5
     # LaTeX's m-columns add tabcolsep around the declared percentage.
     # These optical additions place the visible dividers at the same x
     # coordinates instead of treating the bare percentages as full cells.
@@ -308,15 +310,13 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
         table = component_table(tid, cols, cells, n_rows=len(raw_rows),
                                 role="data")
     if (is_auto_resume or is_key_combinations) and ctx.add_story is not None:
-        group_indent = param_pt(ctx.params, "comp_body_table_group_indent", 9.92)
-        group_width = ctx.text_measure - group_indent
         xml = rounded_table_panel(
             ctx.add_story,
             ctx.params,
             sid=f"st_anchor_data_{tid}",
             title="body data table",
             table_xml=table,
-            width=group_width,
+            width=ctx.text_measure,
             height=framed_h,
             n_cols=n_cols,
             terminal=terminal,
@@ -330,7 +330,6 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
                 ),
                 "bottom_right": "Color/Paper",
             },
-            left_indent=group_indent,
             space_before=param_pt(ctx.params, "comp_data_table_before", 3.4),
             space_after=param_pt(ctx.params, "comp_data_table_after", 3.4),
         )

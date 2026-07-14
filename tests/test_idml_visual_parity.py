@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 import tempfile
 import unittest
@@ -86,7 +87,7 @@ class IdmlVisualParityTests(unittest.TestCase):
             places=5,
         )
 
-    def test_body_table_group_is_indented_and_corner_fills_reach_outline(self) -> None:
+    def test_body_table_group_uses_full_measure_and_corner_fills_reach_outline(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
         ctx = RenderContext(
             params=writer.params,
@@ -103,8 +104,11 @@ class IdmlVisualParityTests(unittest.TestCase):
             ["", "Energy Saving mode output off"],
         ]
         xml, _ = render_table_block(rows, ctx, tid="auto_indent", terminal=True)
-        indent = param_pt(writer.params, "comp_body_table_group_indent", 9.92)
-        self.assertIn(f'LeftIndent="{indent:g}"', xml)
+        self.assertNotIn('LeftIndent=', xml)
+        self.assertIn(
+            f'Anchor="{ctx.text_measure - 0.37:g} 0"',
+            xml,
+        )
         self.assertIn(
             'Self="mask_top_left_group_st_anchor_data_auto_indent" '
             'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
@@ -117,6 +121,19 @@ class IdmlVisualParityTests(unittest.TestCase):
             'FillColor="Color/HB Bg K05"',
             xml,
         )
+
+        writer.add_prose_story(
+            "st_body_table_alignment",
+            "aligned body table",
+            [
+                ("h2", "AC AND DC Output Resume Function"),
+                ("body", "The AC/DC Output Resume Function is disabled by default."),
+                ("table", json.dumps(rows)),
+            ],
+            ROOT,
+        )
+        prose_story = dict(writer.stories)["st_body_table_alignment"]
+        self.assertNotIn('LeftIndent=', prose_story)
 
     def test_full_capsule_has_a_real_incoming_upper_left_handle(self) -> None:
         radius = 7.0
@@ -331,7 +348,7 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn('FillColor="Color/HB Bg K05"', auto_story)
         self.assertIn('MinimumHeight="11.9055"', auto_story)
         self.assertIn('<Group Self="grp_st_anchor_data_tbl_auto"', auto_xml)
-        self.assertIn('SingleColumnWidth="153.097"', auto_story)
+        self.assertIn('SingleColumnWidth="158.057"', auto_story)
         indent = table_text_indent(writer.params)
         self.assertIn(f'LeftInset="{indent:g}"', auto_story)
         self.assertNotIn('LeftInset="0"', auto_story)
@@ -343,8 +360,8 @@ class IdmlVisualParityTests(unittest.TestCase):
         render_table_block(key_rows, ctx, tid="tbl_key", terminal=True)
         key_story = dict(writer.stories)["st_anchor_data_tbl_key"]
         self.assertIn('MinimumHeight="32.8819"', key_story)
-        self.assertIn('SingleColumnWidth="126.036"', key_story)
-        self.assertIn('SingleColumnWidth="92.3452"', key_story)
+        self.assertIn('SingleColumnWidth="130.104"', key_story)
+        self.assertIn('SingleColumnWidth="95.2224"', key_story)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Header"', key_story)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Body"', key_story)
         self.assertIn(f'LeftInset="{indent:g}"', key_story)

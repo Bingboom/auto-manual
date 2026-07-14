@@ -143,7 +143,6 @@ comp_data_table_tabcolsep,2.4,pt,Body data table cell horizontal padding
 comp_data_table_row_stretch,1.0,ratio,Body data table row stretch independent of spec tables
 comp_data_table_before,1.2,mm,Space before body data tables
 comp_data_table_after,1.2,mm,Space after body data tables
-comp_body_table_group_indent,3.5,mm,Left indent shared by body-table heading description and table
 comp_data_table_header_height,5.2,mm,Body data table header minimum height
 comp_data_table_row_height,4.2,mm,Body data table ordinary row minimum height
 comp_auto_resume_left_ratio,0.50,ratio,Auto-resume table left column ratio

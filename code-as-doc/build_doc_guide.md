@@ -656,7 +656,12 @@ stories, the production IDML uses explicit non-overlapping story regions. This
 keeps LCD/operations, UPS/charging, and charging/storage/troubleshooting on the
 master page sequence while preserving separate editable stories. Data-table
 rounding is also non-destructive: a rounded background and a square editable
-table frame are grouped, avoiding InDesign's curved-corner cell inset.
+table frame are grouped, avoiding InDesign's curved-corner cell inset. Formal
+body-table headings, descriptions, and outer shells stay on the common body
+left edge; only cell text receives the shared one-character inset. The native
+finalizer then measures every composed LCD row and resizes the shell and its
+bottom corner masks to the exact table height, including translated and short
+continuation segments.
 Callout labels are not style defaults. WARNING, CAUTION, NOTE, and TIP labels
 must be present in the prepared RST/IR, are emitted verbatim in LaTeX and IDML,
 and cause export to fail when absent. Tune the shared LaTeX geometry first, then
@@ -689,7 +694,9 @@ The parity gate also rejects any page where the LaTeX reference has substantive
 text but the InDesign export is effectively blank. Visual deltas remain
 descriptive because InDesign is expected to make final-mile design changes.
 
-The preflight fails on overset stories, missing fonts, or bad links. The parity
+The preflight fails on overset stories, missing fonts, or bad links. Its
+`fitted_lcd_table_groups` count records how many LCD shells were reconciled to
+their composed native-table height. The parity
 report hard-gates page count and page size, records artifact/source hashes, and
 measures every page's raster delta. Raster differences are descriptive design
 deltas: InDesign is expected to refine geometry, tracking, and asset fitting,

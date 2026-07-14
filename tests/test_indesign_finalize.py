@@ -21,6 +21,10 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("hb:page=", jsx)
         self.assertIn("doc.exportFile", jsx)
         self.assertIn("backgroundTaskPreferences.enableBackgroundTask = false", jsx)
+        self.assertIn("fitLcdTableShells(doc)", jsx)
+        self.assertIn('indexOf(" table segment ")', jsx)
+        self.assertIn("table.rows[ri].height", jsx)
+        self.assertIn("fitted_lcd_table_groups", jsx)
 
     def test_runner_allows_synchronous_pdf_export_to_finish(self) -> None:
         runner = (JSX.parent.parent / "indesign_finalize.py").read_text(encoding="utf-8")
