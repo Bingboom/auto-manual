@@ -35,11 +35,12 @@ _FONT_EXTENSIONS = {".otf", ".ttf", ".ttc"}
 
 # The fonts the IDML styles reference (styles.fonts_xml / primitives
 # symbol fallbacks). None are redistributable from this repo: Gilroy is a
-# commercial license, the other two are system fonts.
+# commercial license, the others are system fonts.
 _FONT_ROWS = (
     ("Gilroy", "Gilroy-Regular / Gilroy-Medium / Gilroy-SemiBold / Gilroy-Bold", "commercial (Radomir Tinkov)"),
     ("Arial Unicode MS", "ArialUnicodeMS", "system font (symbol fallback)"),
     ("Apple Symbols", "AppleSymbols", "system font (symbol fallback)"),
+    ("Apple SD Gothic Neo", "AppleSDGothicNeo-Regular", "macOS system font (circled-number fallback)"),
 )
 
 

@@ -19,10 +19,10 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
     """LCD icon table: circled-no / icon image / name / description."""
     sid = "st_lcd" if lang == "en" else f"st_lcd_{lang}"
     body_w = writer.page_w - writer.m_l - writer.m_r
-    cols, icon_pt, pad = _lcd.layout_tokens(writer, body_w)
+    table_indent = _lcd.table_left_indent(writer)
+    cols, icon_pt, pad = _lcd.layout_tokens(writer, body_w - table_indent)
     if lang == "en":
         icon_pt = min(icon_pt, 23.0)
-        pad = min(pad, 0.63)
         cols = (cols[0] + 7.04, cols[1], cols[2], cols[3] - 7.04)
     tid = "tbl_lcd" if lang == "en" else f"tbl_lcd_{lang}"
     cells = []
@@ -44,11 +44,13 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
         cell_defs = (
             (_lcd.typed_paragraph(
                 writer, "HB Spec Label", row["no"],
-                "type_lcd_no_font_size", "type_lcd_no_font_leading"), 0),
+                "type_lcd_no_font_size", "type_lcd_no_font_leading",
+                font="Apple SD Gothic Neo"), 0),
             (image_paragraph, 1),
             (_lcd.typed_paragraph(
                 writer, "HB Spec Label", row["name"],
-                "type_lcd_label_font_size", "type_lcd_label_font_leading"), 2),
+                "type_lcd_label_font_size", "type_lcd_label_font_leading",
+                bold=True), 2),
             (_lcd.typed_paragraph(
                 writer, "HB Spec Value", row["desc"],
                 "type_lcd_body_font_size", "type_lcd_body_font_leading"), 3),
@@ -57,18 +59,23 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             cells.append(writer._cell(
                 f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
                 top=pad, bottom=pad, left=pad, right=pad,
-                valign="CenterAlign" if ci == 1 else None))
-    table = _tb.fill_column_xml(
-        writer._component_table(
-            tid, list(cols), cells, n_rows=len(rows), role="data"),
+                valign="CenterAlign"))
+    table = writer._component_table(
+        tid, list(cols), cells, n_rows=len(rows), role="data")
+    for column in range(3):
+        table = _tb.fill_column_xml(table, column, "Color/HB Bg K05")
+    table_paragraph = writer._wrap_table_paragraph(
+        table, True, span_columns=False)
+    table_paragraph = table_paragraph.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange LeftIndent="{table_indent:g}" ',
         1,
-        "Color/HB Bg K05",
     )
     parts = [
         _po.h1_pill_paragraph(
             writer, title, writer.page_w - writer.m_l - writer.m_r),
         _po.lcd_hero_paragraph(writer),
-        writer._wrap_table_paragraph(table, True, span_columns=False),
+        table_paragraph,
     ]
     return writer._add_story_parts(sid, title, parts)
 

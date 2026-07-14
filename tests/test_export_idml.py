@@ -110,6 +110,8 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('PostScriptName="ArialUnicodeMS"', fonts)
         self.assertIn('Name="Apple Symbols"', fonts)
         self.assertIn('PostScriptName="AppleSymbols"', fonts)
+        self.assertIn('Name="Apple SD Gothic Neo"', fonts)
+        self.assertIn('PostScriptName="AppleSDGothicNeo-Regular"', fonts)
 
     def test_page_count_follows_content(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -1163,6 +1165,47 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('VerticalJustification="CenterAlign"', icon_cell)
         self.assertIn('BaselineShift="0.6"', icon_cell)
         self.assertNotIn('BaselineShift="8.9"', story)
+
+    def test_lcd_table_matches_reference_cell_styling(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = load_lcd_rows(FIXTURE_DATA_ROOT, "JE-1000F")
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        story = dict(w.stories)["st_lcd"]
+
+        for column in range(4):
+            cell = story.split(f'Self="tbl_lcdc0_{column}"', 1)[1].split(
+                "</Cell>", 1
+            )[0]
+            self.assertIn('VerticalJustification="CenterAlign"', cell)
+            if column < 3:
+                self.assertIn('FillColor="Color/HB Bg K05"', cell)
+            else:
+                self.assertNotIn('FillColor="Color/HB Bg K05"', cell)
+
+        label_cell = story.split('Self="tbl_lcdc0_2"', 1)[1].split("</Cell>", 1)[0]
+        self.assertIn('FontStyle="Bold"', label_cell)
+        self.assertIn('PointSize="6.2" Leading="6.8"', label_cell)
+        number_cell = story.split('Self="tbl_lcdc0_0"', 1)[1].split("</Cell>", 1)[0]
+        self.assertIn('PointSize="9" Leading="9.4"', number_cell)
+        self.assertIn('TopInset="1.4" BottomInset="1.4"', number_cell)
+        self.assertIn(
+            '<AppliedFont type="string">Apple SD Gothic Neo</AppliedFont>',
+            number_cell,
+        )
+        self.assertIn(
+            '<ParagraphStyleRange LeftIndent="5.2" '
+            f'AppliedParagraphStyle="{paragraph_style_ref("HB Body")}">',
+            story,
+        )
+
+    def test_lcd_high_circled_numbers_use_a_font_that_covers_them(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        psr = IdmlWriter(params)._psr("HB Spec Label", "㉑", terminal=True)
+        self.assertIn(
+            '<Properties><AppliedFont type="string">Apple SD Gothic Neo</AppliedFont>',
+            psr,
+        )
 
     def test_shading_uses_paragraph_prefixed_attributes(self) -> None:
         # bare ShadingOn/ShadingColor are silently ignored by InDesign

@@ -166,13 +166,14 @@ comp_lcd_table_row_stretch,0.82,ratio,LCD icon table row stretch
 comp_lcd_no_col_width,4.8,mm,LCD row-number column width
 comp_lcd_icon_width,6.6,mm,LCD icon maximum width
 comp_lcd_icon_height,6.6,mm,LCD icon maximum height
-comp_lcd_icon_col_width,9.2,mm,LCD icon column width
-comp_lcd_label_col_width,0.22\linewidth,none,LCD name-column width
+comp_lcd_icon_col_width,11.0,mm,LCD icon column width
+comp_lcd_label_col_width,0.24\linewidth,none,LCD name-column width
 comp_lcd_table_tabcolsep,1.4,pt,LCD table cell padding
-type_lcd_no_font_size,5.2,pt,LCD row-number font size
-type_lcd_no_font_leading,5.8,pt,LCD row-number leading
-type_lcd_label_font_size,5.4,pt,LCD name-column font size
-type_lcd_label_font_leading,6.0,pt,LCD name-column leading
+comp_lcd_table_left_indent,5.2,pt,LCD table one-character leading indent
+type_lcd_no_font_size,9.0,pt,LCD row-number font size
+type_lcd_no_font_leading,9.4,pt,LCD row-number leading
+type_lcd_label_font_size,6.2,pt,LCD name-column font size
+type_lcd_label_font_leading,6.8,pt,LCD name-column leading
 type_lcd_body_font_size,5.2,pt,LCD description font size
 type_lcd_body_font_leading,5.8,pt,LCD description leading
 comp_symbol_table_row_stretch,1.0,ratio,Symbols table row stretch
