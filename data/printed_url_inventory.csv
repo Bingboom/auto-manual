@@ -1,0 +1,7 @@
+target,kind,occurrences,sources
+hello.aus@jackery.com,email,1,configs/config.au-en.yaml
+hello.eu@jackery.com,email,2,configs/config-bases/eu-single-language-base.yaml;configs/config.eu.yaml
+hello.kr@jackery.com,email,1,configs/config.kr.yaml
+hello@jackery.com,email,2,configs/config-bases/us-single-language-base.yaml;configs/config.us.yaml
+https://www.jackery.jp,url,1,docs/templates/page_jp/11_warranty.rst
+jackery.jp@jackery.com,email,3,docs/templates/page_jp/00_preface.rst;docs/templates/page_jp/11_warranty.rst;docs/templates/page_jp/cover_jp.rst

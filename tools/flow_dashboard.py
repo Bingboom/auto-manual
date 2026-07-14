@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -220,6 +221,65 @@ def tm_hit_rate_metric(ledger_path: Path) -> dict[str, Any]:
 # --- template flow (awaits H1 / H2) -------------------------------------------
 
 
+# --- repo health (Milestone I6) ------------------------------------------------
+
+
+def repo_health_metric(base_root: Path, *, runner: Any = subprocess.run) -> dict[str, Any]:
+    """复杂度可见化: 接手性讨论的度量面 — worktree/脏文件/被跟踪生成物/模块规模."""
+
+    def _git(*args: str) -> str | None:
+        try:
+            proc = runner(
+                ["git", "-C", str(base_root), *args],
+                capture_output=True, text=True, timeout=30,
+            )
+        except Exception:
+            return None
+        return proc.stdout if proc.returncode == 0 else None
+
+    worktrees_out = _git("worktree", "list", "--porcelain")
+    dirty_out = _git("status", "--porcelain")
+    tracked_build_out = _git("ls-files", "docs/_build")
+    if worktrees_out is None and dirty_out is None:
+        return _no_data("repo_health", OPS_FACE, "仓库健康（复杂度）", "git 不可用", "git + tools/")
+
+    worktrees = sum(1 for line in (worktrees_out or "").splitlines() if line.startswith("worktree "))
+    dirty = sum(1 for line in (dirty_out or "").splitlines() if line.strip())
+    tracked_build = sum(1 for line in (tracked_build_out or "").splitlines() if line.strip())
+
+    tools_dir = base_root / "tools"
+    module_count = 0
+    largest_name, largest_lines = "", 0
+    if tools_dir.is_dir():
+        for module in tools_dir.rglob("*.py"):
+            if "__pycache__" in module.parts:
+                continue
+            module_count += 1
+            try:
+                lines = module.read_text(encoding="utf-8", errors="replace").count("\n")
+            except OSError:
+                continue
+            if lines > largest_lines:
+                largest_lines = lines
+                largest_name = module.relative_to(base_root).as_posix()
+
+    return _metric(
+        "repo_health", OPS_FACE, "仓库健康（复杂度）",
+        value=f"{worktrees} worktree / {dirty} 脏文件 / {module_count} 模块",
+        note=(f"docs/_build 被跟踪文件 {tracked_build}；最大模块 {largest_name} "
+              f"{largest_lines} 行——趋势升高=该开精简 workstream 的信号"),
+        source="git + tools/",
+        detail={
+            "worktrees": worktrees,
+            "dirty_files": dirty,
+            "tracked_build_files": tracked_build,
+            "tools_modules": module_count,
+            "largest_module": largest_name,
+            "largest_module_lines": largest_lines,
+        },
+    )
+
+
 def template_flow_placeholders() -> list[dict[str, Any]]:
     return [
         _no_data(
@@ -407,6 +467,7 @@ def build_dashboard(
     metrics.append(tm_hit_rate_metric(tm_ledger))
     metrics.append(second_revision_metric(ledger_rows))
     metrics.extend(template_flow_placeholders())
+    metrics.append(repo_health_metric(base_root))
     metrics.append(audited_pdf_metric(pdf_ledger))
     metrics.append(coverage_metric(configs_dir))
     metrics.append(findings_metric(base_root))
