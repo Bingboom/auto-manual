@@ -161,3 +161,39 @@ class TestDashboardAssembly(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestRepoHealthMetric(unittest.TestCase):
+    def test_counts_worktrees_dirty_and_modules(self) -> None:
+        from types import SimpleNamespace
+
+        def fake_run(cmd, **kwargs):
+            args = cmd[3:]
+            if args[:2] == ["worktree", "list"]:
+                return SimpleNamespace(returncode=0, stdout="worktree /a\n\nworktree /b\n")
+            if args[:1] == ["status"]:
+                return SimpleNamespace(returncode=0, stdout=" M x.py\n?? y\n")
+            if args[:1] == ["ls-files"]:
+                return SimpleNamespace(returncode=0, stdout="docs/_build/a\ndocs/_build/b\n")
+            return SimpleNamespace(returncode=1, stdout="")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            tools_dir = root / "tools"
+            tools_dir.mkdir()
+            (tools_dir / "small.py").write_text("x = 1\n", encoding="utf-8")
+            (tools_dir / "big.py").write_text("x = 1\n" * 50, encoding="utf-8")
+            metric = flow_dashboard.repo_health_metric(root, runner=fake_run)
+        self.assertEqual(metric["detail"]["worktrees"], 2)
+        self.assertEqual(metric["detail"]["dirty_files"], 2)
+        self.assertEqual(metric["detail"]["tracked_build_files"], 2)
+        self.assertEqual(metric["detail"]["tools_modules"], 2)
+        self.assertEqual(metric["detail"]["largest_module"], "tools/big.py")
+
+    def test_git_unavailable_degrades_to_no_data(self) -> None:
+        def broken_run(cmd, **kwargs):
+            raise OSError("no git")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            metric = flow_dashboard.repo_health_metric(Path(tmp), runner=broken_run)
+        self.assertEqual(metric["status"], "no_data")

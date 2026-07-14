@@ -773,3 +773,19 @@ What changed:
 Why it mattered:
 
 - Milestone G made the loop *work*; H3 makes it *visible* — the very first real run surfaced an actionable gap (reflow rate 0%: the JE-2000F CN round's 39 deltas all landed in source tables but were never stamped `accepted` in the ledger), which is exactly the class of silent drift the dashboard exists to catch. The value face gives stakeholder-facing numbers a single provenance-backed source instead of ad-hoc counting.
+
+## 49. 2026-07-13: Unknown-Unknown Probes + Handover Assurance (Milestone I)
+
+What changed:
+
+- **Hand-over became a tested property (I0, #655):** repo-root [`ONBOARDING.md`](../ONBOARDING.md) is the single first-hour entrypoint (two-plane map, what-runs-where bus-factor register, golden-path drill); the quarterly cold-start drill protocol makes "someone else can maintain this" verifiable instead of assumed.
+- **Language-tree parity gate (I1, #657):** [`tools/check_docs_lang_parity.py`](../tools/check_docs_lang_parity.py) in `check` — foreign-script shells, foreign lang-tag blocks, per-language page-set completeness — with `data/lang_parity_known_exceptions.csv` keeping registered debt green. First run caught the us-en trilingual-preface leftover (decision pending).
+- **Warning ratchet (I2, #658):** every Sphinx run captures `-w` and diffs the sanitized stream against `data/known_warnings/` baselines (esp-docs pattern); staged enforcement (report → env-strict → default-strict after stable rounds). The one seeded warning is itself a real defect now visible as debt.
+- **Toolchain provenance (I3, #656, raised to a render-projection prerequisite after #648):** `requirements.lock` + [`tools/toolchain_provenance.py`](../tools/toolchain_provenance.py) feeding both `doctor` and the release manifest — every published PDF names its environment.
+- **Printed-URL inventory (I4):** [`tools/printed_url_inventory.py`](../tools/printed_url_inventory.py) scan/check/liveness over templates/renderers/configs/phase2; tracked inventory + manual QR register; monthly ops rhythm.
+- **Base rebuild drill (I5, first run):** ops guide §4.7 — scratch base + mirrored schema + seed rows restored from repo artifacts in 86s; headline finding: the schema mirror covers only 2/20 business tables (follow-up: extend `bitable_schema export`).
+- **Repo-health metrics (I6):** the flow dashboard's ops face now reports worktrees / dirty files / tracked `_build` files / tools module count and largest module — complexity growth is a monthly number.
+
+Why it mattered:
+
+- The workspace census × esp-docs comparison showed auto-manual's defenses concentrated on content correctness while the blind spots concentrated on publication sustainability and maintainer hand-over. Milestone I converts those unknown-unknowns into sensors — and the sensors validated themselves immediately: I3 caught a rebuilt venv on day one, I1 caught live trilingual-preface debt, I5's first drill exposed the 2/20 schema-mirror gap.

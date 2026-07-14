@@ -206,6 +206,45 @@ python tools/flow_dashboard.py report
   `pdf_annotate` 每次运行自动记账（`--no-ledger` 关闭）；
   历史审计用 `pdf_annotate --backfill-summary <run-summary.json>` 补账
 
+## 4.7 base 重建演练（灾备，季度一次）
+
+**为什么**：飞书 base 是数据单一真相，公式字段/选项/关联是不受 git 版本控制的
+"程序逻辑"。删一行构建表就曾连坐 52 行悬空——真灾难时能不能重建、要多久，
+必须演练过才算数。
+
+**演练步骤**（全部只用仓库内工件，不碰生产 base）：
+
+```bash
+# 1. 建演练用 scratch base（用完由操作者删除；命名带"演练-"前缀）
+lark-cli base +base-create --name "演练-base重建-<日期>"
+# 2. 从 schema 镜像重建表结构（幂等，dry-run 默认，--write 执行）
+python tools/bitable_schema.py apply --manifest bitable_schema/manifest.json \
+  --base-token <scratch> --identity user --write --yes
+# 3. 从种子/快照灌数据
+python tools/bitable_schema.py seed-import --base-token <scratch> \
+  --table 规格书字段映射规则 --seed bitable_schema/seed/规格书字段映射规则.csv \
+  --key 规格书字段 --identity user --write --yes
+# 4. 回读核对行数/字段数，记录耗时到本节
+```
+
+**演练记录**：
+
+| 日期 | 范围 | 耗时 | 发现 |
+| --- | --- | --- | --- |
+| 2026-07-13 | scratch base + 2 表结构 + 25 种子行（首演） | **86 秒**，回读 25 行/10 字段 ✓ | **schema 镜像只覆盖 2/20 张表**——其余 18 张表的字段结构只存在于飞书里，真灾难时无法从仓库重建；值快照（sync-data CSV）覆盖 phase2 子集但没有字段定义。跟进：把 `bitable_schema export` 扩到全部业务表并纳入例行同步 |
+
+**底线**：季度一次；每次把耗时和新发现追加到上表。演练不达标（重建不出来/
+耗时不可接受）= 灾备欠账，进 checklist。
+
+## 4.8 印刷外链清单（月度）
+
+印在纸上的 URL/QR 印出去就改不了。`data/printed_url_inventory.csv` 是唯一
+清单（模板/渲染器/配置/phase2 镜像全扫描；QR 图片目标扫不出来，手工登记进
+`data/printed_url_manual_entries.csv` 会自动并入）。月度两条命令：
+`check`（清单是否跟上源的变化）+ `liveness`（HEAD 探活，403/405 视为
+反爬不算死链）。首扫结果：6 个目标（4 个 warranty 邮箱 + jackery.jp 官网
++ jp 邮箱），2026-07-13 探活全通。
+
 ## 5. 首跑清单（一次性，做完划掉）
 
 - [ ] **命中率基线**：跑一次真实的 docx 预翻译，`tm_hit_rate stats` 出现
@@ -222,6 +261,6 @@ python tools/flow_dashboard.py report
 | --- | --- |
 | 每轮评审收尾 | `tm-candidates` → 过目 → `tm-apply`（§1.2 ②③） |
 | 有 `[backport-reminder]` issue 时 | 对着清单跑回收（§3） |
-| 每月 | `python tools/flow_dashboard.py report`（§4.6，一条命令出两面）；`top_corrected_sources` 里反复出现的文件记下来（模板优化候选） |
+| 每月 | `python tools/flow_dashboard.py report`（§4.6，一条命令出两面）；`python tools/printed_url_inventory.py check && python tools/printed_url_inventory.py liveness`（§4.8 印刷外链）；`top_corrected_sources` 里反复出现的文件记下来（模板优化候选） |
 
 跑了 2–3 轮、流程顺手之后，这套程序会固化成 skill（届时本文档仍是底层参考）。
