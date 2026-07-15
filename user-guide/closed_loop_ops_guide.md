@@ -250,11 +250,14 @@ python tools/bitable_schema.py seed-import --base-token <scratch> \
 
 ## 4.9 插图资产登记（资产环 P0，维护者代登记）
 
-单一真相 = 飞书「内容源_插图资产表」（`tblxFBWaDG4OYhqu`），仓库镜像
-`data/asset_registry.csv`（P1 接 sync-data 前为手工导出快照）。操作者已定的
-四条规则：
+业务控制面使用 `文档构建` Base 中三张独立表：`04_资产源文件`（一个母版
+修订一行）、`04_资产定义`（一个稳定 `asset_key` 一行）和 `04_资产导出物`
+（一个物理文件一行）。旧插图表只保留历史数据，新链路不读取或写入它。
+仓库侧 `data/asset_sources.csv` 与 `data/asset_registry.csv` 是可审查、可冻结的
+构建快照。操作者已定的四条规则：
 
-1. **.ai 源文件放表的附件列**，git 只存导出物 + 登记哈希（大文件不进仓库）
+1. **.ai 源文件放 `04_资产源文件.source_file` 附件列**，git 只存获批的
+   构建导出物 + 登记哈希（大文件不进仓库）
 2. **现存带字插图排期无字化**（`待无字化` 勾选；范本=LCD hero 纯数字标注
    一图通三语）；新图一律无字底图 + 文字走数据层
 3. **临时替代图显式记债**：状态 `🔧临时替代` 的资产构建可用；publish 门
@@ -262,9 +265,83 @@ python tools/bitable_schema.py seed-import --base-token <scratch> \
 4. **维护者代登记**：设计师交付文件（.ai + 导出物），维护者挂表并更新哈希
 
 导出命名契约：`<asset_key>[-<lang>].{pdf,png}`（成品页 PDF 的 -en/-es/-fr
-已是先例）。首次普查账（2026-07-13）：**71 项 = 57 成品 / 4 临时替代 /
-10 缺失**；缺失清单即向设计侧的要图清单。后续：P1 资产解析器+publish 门，
+已是先例）。当前仓库镜像统计：**71 项 = 64 成品 / 3 临时替代 /
+4 缺失**；缺失清单即向设计侧的要图清单。后续：P1 资产解析器+publish 门，
 P2 .ai 入附件列+导出自动化，P3 release manifest 加 assets 段。
+
+### 4.9.1 构建链路入口（已接入）
+
+仓库把注册表变成可调用的构建入口：
+
+```bash
+python build.py asset-check --json
+python build.py asset-check --asset-key operation/ac_output --asset-format png --json
+python build.py asset-check --asset-key hero/lcd_display --asset-format png --allow-temporary
+python build.py asset-check --publish --asset-key operation/ac_output --asset-format png
+```
+
+含义分别是：盘点注册表、解析一个成品导出、仅在草稿中显式解析临时替代、
+以及执行发布态的成品门。`asset-check` 会校验导出文件存在且哈希前缀一致；
+不会把桌面 `.ai` 路径写进构建结果。PR #662 的无字矢量试点仍兼容其过渡目录，
+解析结果会落到 `docs/renderers/latex/assets/`。
+
+后续生图工具只读取 [`data/asset_generation_candidates.csv`](../data/asset_generation_candidates.csv)：
+`generator_allowed=TRUE` 才能生成候选图；产品结构、LCD、按钮、端口、二维码、
+警示图和带精确文字的操作图必须走设计重绘或源文件导出。生成结果先登记为候选，
+经过人工确认、导出和哈希登记后，才可转为 `✅成品`。
+
+源文件元数据见 [`data/asset_sources.csv`](../data/asset_sources.csv)：它记录完整
+`.ai` SHA-256、页数、版面尺寸、适用范围和已验证的 Feishu 附件指针；归档未完成
+时指针保持为空，不记录本地桌面路径，也不回退到旧表。
+
+### 4.9.2 `.ai` 交付与登记一页流程
+
+设计师只需交付 `.ai` 和约定导出物；维护者负责登记。业务面单一真相是
+`文档构建` Base（`LD3lb4G1ua4GOVs1vxAc9W2enje`）中的三张 `04_资产*` 表。
+下列 `<source_table_id>` 必须来自新建表的真实返回；禁止替换成旧插图表 ID。
+大文件不进入 Git。
+
+1. 在文件所在目录计算完整 SHA-256，核对文件名与字节数，并把页数/画板数、成品尺寸、
+   Illustrator 版本、修订信息和完整哈希记入 `data/asset_sources.csv`。对 PDF-compatible AI，
+   可用 `pdfinfo <file.ai>` 读取页数和生成器；修订表与印刷标题栏不一致时分别记录，
+   不擅自合并成一个版本号。
+2. 先在 `04_资产源文件` 按 `source_key` 查记录及 `source_file`，下载已有附件
+   并比较哈希。哈希相同就停止，
+   不重复上传：
+
+   ```bash
+   lark-cli base +record-search --as user \
+     --base-token LD3lb4G1ua4GOVs1vxAc9W2enje \
+     --table-id <source_table_id> \
+     --keyword 'source/<master-key>' --search-field source_key \
+     --field-id source_key --field-id source_file --field-id source_sha256 --format json
+
+   lark-cli base +record-download-attachment --as user \
+     --base-token LD3lb4G1ua4GOVs1vxAc9W2enje \
+     --table-id <source_table_id> --record-id <record_id> \
+     --file-token <file_token> --output ./downloaded-master.ai
+   shasum -a 256 ./downloaded-master.ai
+   ```
+
+3. 仅当附件为空或哈希不同且本次确为新修订时上传。`--file` 必须是当前目录下的
+   相对路径；该命令会向附件单元格追加文件，因此不能用它制造同版本副本：
+
+   ```bash
+   lark-cli base +record-upload-attachment --as user \
+     --base-token LD3lb4G1ua4GOVs1vxAc9W2enje \
+     --table-id <source_table_id> --record-id <record_id> \
+     --field-id source_file --file ./master.ai
+   ```
+
+4. 回下载新 `file_token`，再次比较完整 SHA-256；一致后才更新飞书
+   `source_sha256`、
+   Git 中的 `data/asset_sources.csv` 精确记录指针，以及导出物的短哈希。旧修订是否
+   移除由维护者在确认新修订可打开、可导出后单独决定。
+
+当前批量导出结论：先不引入 ExtendScript。现有种子只有一个 59 画板主文件，且
+画板命名/导出范围尚未形成跨产品稳定契约；Illustrator 30.6（Windows）自动化会
+把桌面版本依赖带进构建链。先保留人工导出 + 注册表哈希门；累计至少两个主文件并
+固化画板命名后，再按 `indesign_finalize.jsx` 的模式评估独立、可重跑的批量导出脚本。
 
 ## 5. 首跑清单（一次性，做完划掉）
 

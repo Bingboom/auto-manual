@@ -42,6 +42,7 @@ from tools.build_entry_commands import (
     sync_data_command as _sync_data_command_impl,
     sync_review_command as _sync_review_command_impl,
 )
+from tools.asset_registry import run_asset_check as _run_asset_check_impl
 from tools.build_doctor import (
     check_word_com_available as _check_word_com_available_impl,
     collect_doctor_findings as _collect_doctor_findings_impl,
@@ -475,7 +476,6 @@ def _check_word_com_available() -> tuple[bool, str]:
 
 def _resolve_doctor_target(cfg: dict, args: argparse.Namespace) -> tuple[str | None, str | None]:
     from tools.utils.targets import resolve_build_model, resolve_build_region
-
     return _resolve_doctor_target_impl(
         cfg,
         args,
@@ -742,6 +742,7 @@ def main(argv: list[str] | None = None) -> int:
         release_manifest_command=release_manifest_command,
         clean_build_artifacts=clean_build_artifacts,
         maybe_sync_review_before_build=maybe_sync_review_before_build,
+        run_asset_check=partial(_run_asset_check_impl, repo_root=ROOT),
     )
 
 

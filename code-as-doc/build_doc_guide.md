@@ -39,6 +39,8 @@ python tools/cloud_doc_backport.py apply-template --report reports/cloud_doc_bac
 python build.py rst
 python build.py review
 python scripts\local_build.py check
+python build.py asset-check --json
+python build.py asset-check --asset-key operation/ac_output --asset-format png --json
 python build.py sync-review
 python build.py process-review-start-queue --config configs/config.us.yaml --data-root .tmp/review-start/phase2
 python scripts\local_build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP
@@ -99,6 +101,8 @@ Meaning:
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
 - `--source review-asis`: render the committed `docs/_review/<model>/<region>/` bundle exactly as-is — only the conf/asset skeleton is materialized and the review overlay supplies every content page, so no page is re-derived from the build data-root. Unlike `--source review` it neither pre-syncs review params from data nor runs the Spec_Master identity guard, so it renders a review target whose model is absent from the active data-root (e.g. the CI `Review Preview Package` fixtures under `tests/fixtures/phase2`). The `Review Preview Package` workflow uses this mode, which is why a newly onboarded model (not yet in the fixtures) previews instead of failing the whole package
 - `check`: run validation + prepare bundle + content checks, including stale identity scan, contract validation, and duplicate RST/raw HTML text consistency checks
+- `asset-check`: validate the image-asset registry and resolve approved exports for renderer imports; use `--allow-temporary` only for drafts and `--publish` for the stricter status gate. Editable `.ai` masters belong in the dedicated Feishu asset-source table, while `data/asset_sources.csv` records their hash/scope and `data/asset_generation_candidates.csv` controls which candidates may be sent to image generation.
+- `.ai` source intake is an operator workflow, not a Git large-file path: follow [`../user-guide/closed_loop_ops_guide.md` §4.9.2](../user-guide/closed_loop_ops_guide.md#492-ai-交付与登记一页流程) to hash the delivery, avoid duplicate attachments, upload through the new Base asset-source table, and verify the downloaded bytes before updating `data/asset_sources.csv`. Never fall back to the legacy illustration table.
 - `sync-review`: refresh review files affected by CSV data changes
 - `process-review-start-queue`: Start Review bridge; it consumes `sync.phase2.review_init` rows where `是否进入Review` is checked and `Workflow_action` maps to `Start Review`, resolves the review target from `Document_Key` alone, uses `Build_family` / `Lang` only as optional config-routing hints, groups only the rows whose resolved config enables `build.queue_by_document_key`, syncs the latest phase2 snapshot, always reseeds `docs/_review` from the latest `origin/main` template/data state, force-updates the routed review branch when it already exists, creates or reuses the PR, then writes back the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state to every pending row in that group
 - Start Review eligibility is the conjunction of `Document_Key` being a non-empty `<MODEL>_<REGION>` value, `是否进入Review` being checked, and `Workflow_action` mapping to `Start Review`

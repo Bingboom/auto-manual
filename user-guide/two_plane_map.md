@@ -51,7 +51,7 @@ Updated: 2026-07-02
 | 03_内容源 | 规格页Footnotes | `tblVusBZ8Fi56AWN` |
 | 03_内容源 | 规格页notes | `tblgJCepw4JvbMbH` |
 | 03_内容源 | Variable_Lang_Overrides | `tblZvjTiBypTAtdi` |
-| 03_内容源 | 插图资产表 | `tblxFBWaDG4OYhqu` |
+| 03_内容源 | 插图资产表（旧链路，历史只读；新资产管道禁止消费） | `tblxFBWaDG4OYhqu` |
 | 入库 staging | 数据入库表 | `tblIi0BEufjvGLIU` |
 | 入库 staging | 规格书字段映射规则 | `tblHrelfzylJIRT2` |
 

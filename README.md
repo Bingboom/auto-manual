@@ -43,7 +43,22 @@ The primary entrypoint is [`build.py`](build.py). A minimal US/EN smoke check:
 python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
 python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
 python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
+
+# Check the asset control plane and resolve an approved import.
+python build.py asset-check --json
+python build.py asset-check --asset-key operation/ac_output --asset-format png --json
 ```
+
+Image sources are registered separately from renderer exports: the editable
+`.ai` master is archived in the dedicated Feishu asset-source table, while
+[`data/asset_sources.csv`](data/asset_sources.csv) records its scope and hash,
+and [`data/asset_generation_candidates.csv`](data/asset_generation_candidates.csv)
+records which visual candidates may or may not be sent to an image generator.
+`asset-check` resolves only approved exports by default; a temporary asset must
+be explicitly opted into for a draft and cannot be treated as a publish asset.
+The maintainer-side `.ai` handoff, duplicate check, attachment upload, and
+downloaded-hash verification are documented in the
+[`closed_loop_ops_guide`](user-guide/closed_loop_ops_guide.md#492-ai-交付与登记一页流程).
 
 For an editable InDesign handoff with fixed component anchors and natural prose
 flow:

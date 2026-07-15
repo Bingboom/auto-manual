@@ -18,6 +18,7 @@ def parse_args(
         choices=(
             "validate",
             "doctor",
+            "asset-check",
             *build_actions,
             "idml",
             "review",
@@ -256,7 +257,28 @@ def parse_args(
         default=10,
         help="For translation-memory, queue-query, queue-resolve-action, or manual-index-query: maximum rows to return",
     )
-    ap.add_argument("--json", action="store_true", help="For queue-query, queue-resolve-action, or manual-index-query: emit machine-readable JSON")
+    ap.add_argument("--json", action="store_true", help="Emit machine-readable JSON where supported")
+    ap.add_argument(
+        "--asset-key",
+        action="append",
+        default=[],
+        help="For asset-check: asset key to resolve/check; repeat for multiple keys",
+    )
+    ap.add_argument(
+        "--asset-format",
+        default=None,
+        help="For asset-check: requested export format, such as png, svg, or pdf",
+    )
+    ap.add_argument(
+        "--allow-temporary",
+        action="store_true",
+        help="For asset-check draft resolution: allow a 🔧临时替代 asset",
+    )
+    ap.add_argument(
+        "--publish",
+        action="store_true",
+        help="For asset-check: require every selected asset to be ✅成品",
+    )
     ap.set_defaults(wait_for_completion=True)
     ap.add_argument(
         "--no-wait",

@@ -32,6 +32,7 @@ class PathSegments:
     RENDERERS = "renderers"
     TEMPLATES = "templates"
     LATEX = "latex"
+    ASSETS = "assets"
     IR = "ir"
     CONTRACTS = "contracts"
     RECIPES = "recipes"

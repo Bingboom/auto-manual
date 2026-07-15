@@ -893,19 +893,27 @@ are projections, and a textless base image + data-layer text makes an asset
 language-neutral (the LCD-hero precedent).
 
 - [x] PR J0: Asset census + registry (P0; done 2026-07-13)
-  - Status: `done` — Feishu 内容源_插图资产表 (`tblxFBWaDG4OYhqu`, 11
-    fields incl. .ai attachment column) populated with the full census:
-    **71 assets = 57 成品 / 4 临时替代 / 10 缺失** (the missing list IS the
+  - Status: `done` — the initial Feishu census is retained as historical input,
+    while the build-facing mirror is `data/asset_registry.csv`; the legacy table
+    is not consumed by the new asset pipeline. After the registered vector
+    harvest in the stacked asset PRs, the current mirror is
+    **64 成品 / 3 临时替代 / 4 缺失** (the missing list IS the
     design-side request list); repo mirror `data/asset_registry.csv`;
     naming contract `<asset_key>[-<lang>].{pdf,png}`; ops guide §4.9.
 - [ ] PR J1: Asset resolver + publish gate (P1)
-  - Status: `pending`
+  - Status: `in progress` — `build.py asset-check` now validates registry
+    exports and resolves approved assets; direct template-reference wiring and
+    target-aware publish enforcement remain.
   - Done when: builds resolve assets through the registry (missing asset →
     check error instead of silent placeholder); publish refuses
     `🔧临时替代` assets unless registered as exceptions; registry mirror
     joins sync-data (the capability-gate integration pattern).
 - [ ] PR J2: .ai sources into the pipeline (P2)
-  - Status: `pending`
+  - Status: `in progress` — the JE-1000F US PDF-compatible `.ai` master has a
+    locally verified full SHA-256 in `data/asset_sources.csv`. Source revisions,
+    stable asset identities, and physical exports will be stored in dedicated
+    Base tables rather than the legacy illustration table; upload and
+    downloaded-hash verification remain before this phase can close.
   - Done when: designers' .ai files live in the registry's attachment
     column with content hashes; the one-page designer workflow (deliver →
     register → sync) is documented; optional ExtendScript batch export

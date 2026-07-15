@@ -378,7 +378,7 @@ If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scrip
 
 Current flow:
 
-1. `python build.py sync-data|process-build-queue|message-control-dry-run|rst|html|word|pdf|all|idml|review|check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
+1. `python build.py sync-data|process-build-queue|message-control-dry-run|rst|html|word|pdf|all|idml|review|check|asset-check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
 1. `python build.py listen-message-control --config configs/config.us.yaml`
 2. [`tools/build_docs.py`](../tools/build_docs.py) validates config and layout params
 3. target `model` and `region` are resolved from CLI or `build.targets`
@@ -392,11 +392,13 @@ Current flow:
 11. `python build.py review` seeds [`docs/_review/<model>/<region>/`](../docs/_review) from the runtime bundle when review starts
 12. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
 13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
-14. `python tools/process_docs/build_review_preview.py` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
-15. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
-16. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
-17. `python build.py preview` materializes one exact page selector under a preview-only output root
-18. `python build.py fast` materializes a runtime-only draft without export
+14. `python build.py asset-check` validates the image-asset registry and resolves approved exports for renderer imports; use `--allow-temporary` only for drafts and `--publish` for the stricter status gate
+    - editable `.ai` deliveries stay out of Git; the maintainer follows [`closed_loop_ops_guide.md` §4.9.2](closed_loop_ops_guide.md#492-ai-交付与登记一页流程) for hash-first duplicate detection, upload to the dedicated Base asset-source table, and download verification; the legacy illustration table is not a fallback
+15. `python tools/process_docs/build_review_preview.py` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
+16. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
+17. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
+18. `python build.py preview` materializes one exact page selector under a preview-only output root
+19. `python build.py fast` materializes a runtime-only draft without export
 
 Important:
 
