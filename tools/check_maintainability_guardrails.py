@@ -54,7 +54,7 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # (1470 -> 1260; extractor +9 for the parity constant); P3 moved the
     # story builders and composed-page assemblers out (1260 -> 647); P4 moved
     # package assembly (spread chain / designmap / zip) out (647 -> 563).
-    "tools/export_idml.py": 612,  # +5: finished back-cover art wins over the composed page (asset loop J)
+    "tools/export_idml.py": 607,  # back-cover placement policy lives in tools/idml/page_placed.py
     "tools/idml_rst_extract.py": 520,
     "tools/idml/primitives.py": 300,
     "tools/idml/styles.py": 220,

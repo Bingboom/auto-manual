@@ -5,4 +5,5 @@ Available Manual Bundles
    :maxdepth: 1
 
    _build/JE-1000F/JP/rst/index
+   _build/JE-1000F/KR/ko/rst/index
    _build/JE-1000F/US/rst/index

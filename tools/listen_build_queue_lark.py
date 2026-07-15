@@ -92,7 +92,7 @@ def fetch_field_id_map(
 ) -> dict[str, str]:
     result: dict[str, str] = {}
     offset = 0
-    limit = 500
+    limit = 200  # lark-cli >=1.0.69 caps --limit at 200
     while True:
         payload = run_lark_cli_json(
             cli_bin=cli_bin,

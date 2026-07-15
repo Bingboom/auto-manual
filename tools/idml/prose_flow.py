@@ -24,7 +24,9 @@ class ProseFlowBuffer:
     def flush(self, emit: EmitProse, slug_stem: SlugStem,
               page_plan: dict | None = None,
               estimate_pages: EstimatePages | None = None,
-              dedicated_stems: Collection[str] = ()) -> bool:
+              dedicated_stems: Collection[str] = (),
+              *,
+              respect_page_plan: bool = True) -> bool:
         if not self.items:
             return False
         planned_starts = {
@@ -33,13 +35,13 @@ class ProseFlowBuffer:
         }
         batches: list[list[tuple[str, list[Block], int]]] = []
         for item in self.items:
-            key = planned_starts.get(item[0])
+            key = planned_starts.get(item[0]) if respect_page_plan else None
             dedicated_boundary = (
                 item[0] in dedicated_stems
                 or bool(batches and batches[-1][-1][0] in dedicated_stems)
             )
             if (not batches or dedicated_boundary
-                    or (page_plan is not None
+                    or (respect_page_plan and page_plan is not None
                         and planned_starts.get(batches[-1][0][0]) != key)):
                 batches.append([])
             batches[-1].append(item)
@@ -52,8 +54,14 @@ class ProseFlowBuffer:
             ):
                 index += 1
                 continue
-            start = planned_starts.get(batches[index][0][0])
-            next_start = planned_starts.get(batches[index + 1][0][0])
+            start = (
+                planned_starts.get(batches[index][0][0])
+                if respect_page_plan else None
+            )
+            next_start = (
+                planned_starts.get(batches[index + 1][0][0])
+                if respect_page_plan else None
+            )
             blocks, columns = self._batch_content(batches[index])
             if start and next_start and estimate_pages(blocks, columns) > next_start - start:
                 batches[index].extend(batches.pop(index + 1))

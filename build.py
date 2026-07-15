@@ -42,6 +42,7 @@ from tools.build_entry_commands import (
     sync_data_command as _sync_data_command_impl,
     sync_review_command as _sync_review_command_impl,
 )
+from tools.asset_registry import run_asset_check as _run_asset_check_impl
 from tools.build_doctor import (
     check_word_com_available as _check_word_com_available_impl,
     collect_doctor_findings as _collect_doctor_findings_impl,
@@ -59,7 +60,6 @@ from tools.build_doctor import (
 from tools.build_cli import parse_args as _parse_args_impl
 from tools.build_dispatch import dispatch_action as _dispatch_action_impl
 from tools.build_main import run_main as _run_main_impl
-from tools.asset_registry import run_asset_check as _run_asset_check_impl
 from tools.message_control_runtime import resolve_message_control as _resolve_message_control_impl
 from tools.manual_index_query import run_manual_index_query as _run_manual_index_query_impl
 from tools.queue_execute import run_queue_execute as _run_queue_execute_impl

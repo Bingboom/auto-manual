@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Resolve and validate the repository's image-asset registry.
 
-The registry is deliberately a small control plane.  Large editable sources
-(.ai) stay in the Feishu attachment column; this module only resolves approved
-exports that are safe for a renderer to import.
+The registry is deliberately a small build control plane. Large editable
+sources (.ai) are tracked separately in ``data/asset_sources.csv`` and the
+dedicated Feishu source table; this module only resolves approved exports that
+are safe for a renderer to import.
 """
 
 from __future__ import annotations
@@ -75,6 +76,7 @@ class AssetResolution:
     format: str
     status: str
     content_hash: str
+    declared_hash: str
     language: str | None
     source: str
 
@@ -249,6 +251,14 @@ def _model_matches(record: AssetRecord, model: str | None) -> bool:
     return "ALL" in scope or model.upper() in scope
 
 
+def _sha256_digest(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def resolve_asset(
     records: Iterable[AssetRecord],
     *,
@@ -282,21 +292,27 @@ def resolve_asset(
     if not existing:
         requested = format_name or "any format"
         raise AssetRegistryError(f"asset {asset_key} has no existing export for {requested}")
-    path, actual_format, digest = existing[0]
+    path, actual_format, declared_hash = existing[0]
+    actual_hash = _sha256_digest(path)
+    if not actual_hash.startswith(declared_hash.lower()):
+        raise AssetRegistryError(
+            f"asset {asset_key} export hash mismatch: {path.relative_to(repo_root)} "
+            f"(expected prefix {declared_hash})"
+        )
     return AssetResolution(
         asset_key=asset_key,
         path=str(path.relative_to(repo_root)),
         format=actual_format,
         status=record.status,
-        content_hash=digest,
+        content_hash=actual_hash,
+        declared_hash=declared_hash,
         language=language,
         source="registry-export",
     )
 
 
 def _hash_matches(path: Path, expected: str) -> bool:
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    return digest.startswith(expected.lower())
+    return _sha256_digest(path).startswith(expected.lower())
 
 
 def check_registry(

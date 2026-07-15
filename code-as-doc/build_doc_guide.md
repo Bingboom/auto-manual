@@ -101,8 +101,8 @@ Meaning:
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
 - `--source review-asis`: render the committed `docs/_review/<model>/<region>/` bundle exactly as-is — only the conf/asset skeleton is materialized and the review overlay supplies every content page, so no page is re-derived from the build data-root. Unlike `--source review` it neither pre-syncs review params from data nor runs the Spec_Master identity guard, so it renders a review target whose model is absent from the active data-root (e.g. the CI `Review Preview Package` fixtures under `tests/fixtures/phase2`). The `Review Preview Package` workflow uses this mode, which is why a newly onboarded model (not yet in the fixtures) previews instead of failing the whole package
 - `check`: run validation + prepare bundle + content checks, including stale identity scan, contract validation, and duplicate RST/raw HTML text consistency checks
-- `asset-check`: validate the image-asset registry and resolve approved exports for renderer imports; use `--allow-temporary` only for drafts and `--publish` for the stricter status gate. The editable `.ai` master remains in the Feishu asset-registry attachment, while `data/asset_sources.csv` records its hash/scope and `data/asset_generation_candidates.csv` controls which candidates may be sent to image generation.
-- `.ai` source intake is an operator workflow, not a Git large-file path: follow [`../user-guide/closed_loop_ops_guide.md` §4.9.1](../user-guide/closed_loop_ops_guide.md#491-ai-交付与登记一页流程) to hash the delivery, avoid duplicate attachments, upload through the Base attachment command, and verify the downloaded bytes before updating `data/asset_sources.csv`.
+- `asset-check`: validate the image-asset registry and resolve approved exports for renderer imports; use `--allow-temporary` only for drafts and `--publish` for the stricter status gate. Editable `.ai` masters belong in the dedicated Feishu asset-source table, while `data/asset_sources.csv` records their hash/scope and `data/asset_generation_candidates.csv` controls which candidates may be sent to image generation.
+- `.ai` source intake is an operator workflow, not a Git large-file path: follow [`../user-guide/closed_loop_ops_guide.md` §4.9.2](../user-guide/closed_loop_ops_guide.md#492-ai-交付与登记一页流程) to hash the delivery, avoid duplicate attachments, upload through the new Base asset-source table, and verify the downloaded bytes before updating `data/asset_sources.csv`. Never fall back to the legacy illustration table.
 - `sync-review`: refresh review files affected by CSV data changes
 - `process-review-start-queue`: Start Review bridge; it consumes `sync.phase2.review_init` rows where `是否进入Review` is checked and `Workflow_action` maps to `Start Review`, resolves the review target from `Document_Key` alone, uses `Build_family` / `Lang` only as optional config-routing hints, groups only the rows whose resolved config enables `build.queue_by_document_key`, syncs the latest phase2 snapshot, always reseeds `docs/_review` from the latest `origin/main` template/data state, force-updates the routed review branch when it already exists, creates or reuses the PR, then writes back the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state to every pending row in that group
 - Start Review eligibility is the conjunction of `Document_Key` being a non-empty `<MODEL>_<REGION>` value, `是否进入Review` being checked, and `Workflow_action` mapping to `Start Review`
@@ -207,6 +207,7 @@ Start Review, Build Draft Package, Publish:
 - use `process-build-queue --workflow-action publish` when a Publish row should be built through `build.py publish` plus `build.py html --source review`, uploaded as PDF, staged with DOCX/Markdown kept in `reports/releases`, and imported to `飞书云文档` when that field exists
 - `process-build-queue --record-id <record_id>` narrows one run to one `Document_link` row
 - `feishu-start-review.yml` is the Start Review worker on `main`; if Feishu triggers it, dispatch it on `main` so review-start always uses the latest workflow definition
+- review PRs created by that trusted Feishu Start Review worker automatically approve their `Manual Validation` and `Review Preview Package` checks; ordinary external pull requests still use GitHub's approval gate
 - `feishu-build-queue.yml` is the Publish-stage worker for `main`
 - `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`
 - the repo now ships one OpenClaw plugin package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer); it is the supported control-layer package when you want one chat entrypoint for these three workers
@@ -286,7 +287,7 @@ Mirror repository sync rule:
 - copy [`../scripts/hello_docs_binding.env.example`](../scripts/hello_docs_binding.env.example) to a gitignored local file such as `.tmp/hello-docs-binding/env.sh`, fill the alternate Feishu/OpenClaw values there, then run [`../scripts/configure_hello_docs_binding.sh --env-file .tmp/hello-docs-binding/env.sh --dry-run`](../scripts/configure_hello_docs_binding.sh) first and rerun without `--dry-run`; add `--include-optional` when the env file also has mirror-only Vercel, DingTalk, Feishu IM, Cloudflare tunnel, or OpenClaw adapter variables, and add `--unpause` only when the audit should also flip `FEISHU_BUILD_QUEUE_PAUSED=false`
 - run [`../scripts/audit_hello_docs_binding.sh --report-only`](../scripts/audit_hello_docs_binding.sh) to check source/mirror tree parity, the source sync token, mirror variables, required mirror secret names, the Actions PR-creation permission, and optional Feishu IM / OpenClaw entries without exposing secret values
 - enable Actions PR creation on the mirror repo, otherwise `feishu-start-review.yml` pushes the review branch but the PR step fails with `403 "GitHub Actions is not permitted to create or approve pull requests."` — the workflow already declares `pull-requests: write`, but the account/repo toggle `can_approve_pull_request_reviews` must also be on. Turn it on with `gh api -X PUT /repos/Bingboom/Hello-Docs/actions/permissions/workflow -f default_workflow_permissions=read -F can_approve_pull_request_reviews=true` (the audit reports this as `Mirror Actions PR-creation permission`)
-- before unpausing `Bingboom/Hello-Docs`, configure its own repository secrets for the remote Feishu workers: `FEISHU_APP_ID`, `FEISHU_APP_SECRET`, `FEISHU_PHASE2_BASE_TOKEN`, `FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID`, `FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID`, `FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID`, `FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_VIEW_ID`, `FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID`, `FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID`, `FEISHU_PHASE2_SPEC_NOTES_TABLE_ID`, `FEISHU_PHASE2_SPEC_NOTES_VIEW_ID`, `FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`, `FEISHU_TRANSLATION_MEMORY_TABLE_ID`, `FEISHU_TRANSLATION_MEMORY_VIEW_ID`, `FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID`, `FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID`, `FEISHU_PHASE2_LCD_ICONS_TABLE_ID`, `FEISHU_PHASE2_LCD_ICONS_VIEW_ID`, `FEISHU_PHASE2_TROUBLESHOOTING_TABLE_ID`, `FEISHU_PHASE2_TROUBLESHOOTING_VIEW_ID`, `FEISHU_PHASE2_VARIABLE_DEFAULTS_TABLE_ID`, `FEISHU_PHASE2_VARIABLE_DEFAULTS_VIEW_ID`, `FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_TABLE_ID`, `FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_VIEW_ID`, `FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID`, `FEISHU_PHASE2_MANUAL_COPY_SOURCE_VIEW_ID`, `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID`, and `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`; add `FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN` only when the mirror should force a specific wiki parent
+- before unpausing `Bingboom/Hello-Docs`, configure its own repository secrets for the remote Feishu workers: `FEISHU_APP_ID`, `FEISHU_APP_SECRET`, `FEISHU_PHASE2_BASE_TOKEN`, `FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID`, `FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID`, `FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID`, `FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID`, `FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_VIEW_ID`, `FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID`, `FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID`, `FEISHU_PHASE2_SPEC_NOTES_TABLE_ID`, `FEISHU_PHASE2_SPEC_NOTES_VIEW_ID`, `FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`, `FEISHU_TRANSLATION_MEMORY_TABLE_ID`, `FEISHU_TRANSLATION_MEMORY_VIEW_ID`, `FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID`, `FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID`, `FEISHU_PHASE2_LCD_ICONS_TABLE_ID`, `FEISHU_PHASE2_LCD_ICONS_VIEW_ID`, `FEISHU_PHASE2_TROUBLESHOOTING_TABLE_ID`, `FEISHU_PHASE2_TROUBLESHOOTING_VIEW_ID`, `FEISHU_PHASE2_VARIABLE_DEFAULTS_TABLE_ID`, `FEISHU_PHASE2_VARIABLE_DEFAULTS_VIEW_ID`, `FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_TABLE_ID`, `FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_VIEW_ID`, `FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID`, `FEISHU_PHASE2_MANUAL_COPY_SOURCE_VIEW_ID`, `FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID`, and `FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID`; add `FEISHU_PHASE2_DOCUMENT_LINK_WIKI_PARENT_TOKEN` only when the mirror should force a specific wiki parent
 - configure optional mirror-only repository secrets as needed: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` for publish HTML deploys; DingTalk secrets plus `AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=dingtalk_alidocs_session` only if the mirror should also sync DingTalk artifacts; Feishu IM adapter secrets such as `FEISHU_IM_APP_ID`, `FEISHU_IM_APP_SECRET`, `FEISHU_IM_VERIFICATION_TOKEN`, `FEISHU_IM_ENCRYPT_KEY`, optional `FEISHU_MANUAL_INDEX_BASE_TOKEN`, and `CLOUDFLARED_TUNNEL_TOKEN` only if that adapter is deployed for the mirror
 - when OpenClaw dispatches into the mirror, point the OpenClaw runtime or gateway environment at `Bingboom/Hello-Docs` through `AUTO_MANUAL_GITHUB_REPO_OWNER=Bingboom` and `AUTO_MANUAL_GITHUB_REPO_NAME=Hello-Docs` or by running it from a `Hello-Docs` checkout; use the new Feishu app values for `FEISHU_IM_APP_ID` / `FEISHU_IM_APP_SECRET` when the Feishu IM adapter is deployed for the mirror, and keep the OpenClaw plugin GitHub token in the OpenClaw plugin config or runtime environment because repository secrets are not readable by a local gateway unless explicitly exported
 
@@ -636,18 +637,20 @@ python build.py pdf --config configs/config.ja.yaml --model JE-1000F --region JP
 
 Export the editable InDesign handoff package (production/both mode first builds
 the LaTeX reference PDF, then projects the same prepared bundle through
-`manual.ir.json`, shared layout tokens, and `latex_page_plan.json`; architecture
-in [`dev/idml_module_map.md`](dev/idml_module_map.md)):
+`manual.ir.json` and shared layout tokens; `latex_page_plan.json` is retained
+as a trace artifact; architecture in
+[`dev/idml_module_map.md`](dev/idml_module_map.md)):
 
 ```powershell
 python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source review-asis
 ```
 
-The production gate rejects skipped raw content. The measured page plan fixes
-the initial IDML physical span/order to the LaTeX reference instead of relying
-only on character-height estimates. The source-authored TOC folios and back
-cover copy also come from the IR; they are not recomputed or hardcoded in the
-InDesign renderer.
+The production gate rejects skipped raw content. The IDML uses explicit new-
+page anchors for the cover/front matter, Safety + Symbols, FCC + What's in the
+Box, LCD DISPLAY, specifications, warranty, and back cover. Ordinary prose is
+measured into linked story chains and flows naturally between those anchors;
+the source-authored TOC folios and back-cover copy still come from the IR and
+are not recomputed or hardcoded in the InDesign renderer.
 
 Review bundles may retain an older opaque attachment hash after the live
 snapshot refreshes that file. The IDML build resolves a unique current file by
@@ -655,10 +658,9 @@ the stable category/order/name identity, stages it under the frozen basename,
 and rejects missing or ambiguous matches. It does not silently emit a broken
 InDesign link.
 
-Where the production master shares one physical English page across semantic
-stories, the production IDML uses explicit non-overlapping story regions. This
-keeps LCD/operations, UPS/charging, and charging/storage/troubleshooting on the
-master page sequence while preserving separate editable stories. Data-table
+Fixed composite pages use explicit component frames. Ordinary operation,
+UPS/charging, storage, and troubleshooting content uses normal linked story
+chains, so a component can continue naturally onto the next frame. Data-table
 rounding is also non-destructive: a rounded background and a square editable
 table frame are grouped, avoiding InDesign's curved-corner cell inset. Formal
 body-table headings, descriptions, and outer shells stay on the common body
@@ -681,8 +683,8 @@ use the InDesign-specific optical baseline tokens only to align native
 paragraph styles to that frozen PDF.
 
 `idml` defaults to the production exporter. For the design-template handoff
-path, use flow mode; it writes semantic Markdown, a simple continuous-story
-IDML, style map, and trace files under
+path, use flow mode; it writes semantic Markdown plus a rendered, editable
+continuous-story IDML, style map, and trace files under
 `docs/_build/<model>/<region>/<lang>/idml/flow/`:
 
 ```powershell
@@ -690,8 +692,13 @@ python build.py idml --model JE-1000F --region US --idml-mode flow
 python build.py idml --model JE-1000F --region US --idml-mode both
 ```
 
-Flow artifacts are generated handoff files, not a new content source. Fix copy
-in the Feishu/source-table/review layer and regenerate.
+The flow Markdown is the readable semantic/reference representation. The flow
+IDML is rendered from typed blocks: registered components become editable
+InDesign objects, Markdown images become linked image frames, and Markdown
+tables become native editable tables. JSON blocks that remain in the Markdown
+are serialization for traceability and must not appear as raw JSON in the flow
+IDML. Flow artifacts are generated handoff files, not a new content source;
+fix copy in the Feishu/source-table/review layer and regenerate.
 
 On a provisioned macOS design host, create the native INDD, export the InDesign
 PDF, and run the runtime preflight after closing any older copy of the target
@@ -735,8 +742,8 @@ On the publish queue path (`Workflow_action = Publish`), the worker runs the
 idml step with `--idml-mode both` and then packages the export into one
 designer delivery zip via `tools/idml/delivery.py`:
 `manual_<model>_<region>[_<lang>]_publish_<version>_handoff.zip` containing the
-production IDML with every `LinkResourceURI` rewritten to `file:Links/<name>`,
-the linked images collected under `Links/`, the flow outputs, the handoff
+production and flow IDML with every `LinkResourceURI` rewritten to
+`file:Links/<name>`, the linked images collected under `Links/`, the flow outputs, the handoff
 reports, `source_trace.json` stamped with the queue row's real version, a
 fonts manifest (plus `Document fonts/` when `AUTO_MANUAL_LOCAL_GILROY_DIR` is
 provisioned on the build machine), and the versioned reference PDF. The zip is
@@ -745,6 +752,11 @@ uploaded to the knowledge base, and its link is written to the queue row's
 `idml_file` field. The bare `.idml` is no longer uploaded: its image links are
 absolute build-machine paths that die with the build worktree, so only the
 packaged zip is a usable designer deliverable.
+
+For queue rows with `Git_ref`, the build worktree is based on the current
+`origin/main`; only the review content under `docs/_review/` is overlaid from
+the row's review ref. This prevents a stale local `main` branch from silently
+running an older renderer during Publish.
 
 The default flow style map lives at
 `docs/templates/idml_template/style_mapping/flow_style_map.json` and is copied

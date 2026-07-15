@@ -372,8 +372,7 @@ def main() -> int:
     page_stem_has = _page_identity.stem_has
     slug_stem = _page_identity.slug
 
-    story_emitter = _reference_story_flow.ReferenceStoryEmitter(
-        w, toc, bundle_root, page_plan)
+    story_emitter = _reference_story_flow.ReferenceStoryEmitter(w, toc, bundle_root)
 
     def emit_prose_story(sid: str, title: str, blocks: list[tuple[str, str]],
                          columns: int = 1) -> None:
@@ -384,10 +383,7 @@ def main() -> int:
 
     def flush_prose_flow() -> None:
         prose_flow.flush(
-            emit_prose_story, slug_stem, page_plan, prose_estimator,
-            dedicated_stems=story_emitter.dedicated_story_titles,
-        )
-
+            emit_prose_story, slug_stem, None, prose_estimator)
     def flush_pending_prefix() -> None:
         nonlocal pending_prefix_blocks
         if pending_prefix_blocks:
@@ -478,13 +474,13 @@ def main() -> int:
                     skipped_raw += res.skipped_raw
                     emitted.add("trouble")
                     toc.stem_langs[page.stem] = page_lang(page)
-                    prose_flow.add(page.stem, _prose_flow.align_trouble_table(res.blocks, page_plan, page.stem))
+                    prose_flow.add(page.stem, list(res.blocks))
                     continue
             emit_data_page(matched, page_lang(page))
             continue
         res = projected_by_path[page]
         skipped_raw += res.skipped_raw
-        blocks = _prose_flow.align_operation_tail(res.blocks, page_plan, page.stem)
+        blocks = list(res.blocks)
         if pending_prefix_blocks and "user_maintenance" in page.stem:
             flush_prose_flow()
             lang = page_lang(page)
@@ -547,6 +543,11 @@ def main() -> int:
             pending_prefix_blocks = []
         if not blocks:
             continue
+        if page_stem_has(page, "11_warranty"):
+            flush_prose_flow()
+            toc.stem_langs[page.stem] = page_lang(page)
+            emit_prose_story("st_" + slug_stem(page.stem), page.stem, blocks)
+            continue
         if page.name.startswith("safety_") and res.twocol:
             flush_prose_flow()
             blocks, pending_prefix_blocks = split_safety_first_page(blocks)
@@ -569,14 +570,8 @@ def main() -> int:
     flush_prose_flow()
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind, args.lang)
-    back_asset = _placed.placed_asset_for("back_cover", args.lang, ROOT / "docs")
-    back_copy = _ir_projection.back_cover_data(manual_ir)
-    if back_asset is not None:
-        # Finished back-cover art from the master source wins over the
-        # temporary composed page (the pending-asset note in page_placed).
-        _placed.add_placed_pdf_page(w, "st_placed_back_cover", back_asset, page_cursor)
-        page_cursor += 1
-    elif _placed.add_back_cover_page(w, args.region, page_cursor, back_copy):
+    if _placed.add_preferred_back_cover_page(
+            w, args.region, args.lang, ROOT / "docs", page_cursor, _ir_projection.back_cover_data(manual_ir)):
         page_cursor += 1
     _toc.finalize(w, toc, w._add_story_parts, w._psr,
                   source=_ir_projection.toc_page_data(manual_ir, bundle_root))
