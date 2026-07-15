@@ -380,10 +380,9 @@ class LarkCliSource:
         if not token:
             raise RuntimeError("Drive download requires a non-empty file_token")
         output_path.parent.mkdir(parents=True, exist_ok=True)
-        try:
-            output_arg = output_path.relative_to(ROOT).as_posix()
-        except ValueError:
-            output_arg = output_path.as_posix()
+        # lark-cli >=1.0.69 requires --output to be a relative path inside the
+        # process cwd, so run from the target directory (works for data roots
+        # outside the repo too).
         cmd = [
             *_resolved_cli_command_parts(self.cli_bin),
             "api",
@@ -392,13 +391,13 @@ class LarkCliSource:
             "--as",
             self.identity,
             "--output",
-            output_arg,
+            f"./{output_path.name}",
         ]
         if output_path.exists() and not overwrite:
             return
         subprocess.run(
             cmd,
-            cwd=str(ROOT),
+            cwd=str(output_path.parent),
             check=True,
             capture_output=True,
             text=True,
