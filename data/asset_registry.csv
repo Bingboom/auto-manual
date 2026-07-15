@@ -59,14 +59,15 @@ placeholder/symbols_icons,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/ren
 placeholder/symbols_signal_words,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,01_meaning_of_symbols_signal_words_placeholder.png:d90abf9cdad6,占位图
 mark/warning_lockup,标记,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,"warning_lockup.jpg:36a12bf51527,warning_lockup.png:d90abf9cdad6",裁切产物，是否成品待确认
 page/back_cover,整页PDF,按语言,❌缺失,FALSE,JE-1000F,,,,封底成品 + QR（QR 目标要登记进印刷 URL 清单）
-button/power,图标,中立,❌缺失,FALSE,ALL,,,,单体手绘圆钮，KEY COMBO 用
-button/ac,图标,中立,❌缺失,FALSE,ALL,,,,单体手绘圆钮，KEY COMBO 用
-button/dc_usb,图标,中立,❌缺失,FALSE,ALL,,,,单体手绘圆钮，KEY COMBO 用
-button/led,图标,中立,❌缺失,FALSE,ALL,,,,单体手绘圆钮，KEY COMBO 用
-icon/clock_3s,图标,中立,❌缺失,FALSE,ALL,,,,3 秒时钟图
+button/power,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:80615c7fed88,png:2ffaa205db79",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
+button/ac,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:7d0532711439,png:5f9354fc203a",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
+button/dc_usb,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:87dcc54d6114,png:765c22b94adb",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
+button/led,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:b20f5428f8ac,png:2b271050dc4c",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
+icon/clock_3s,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:7cf574aa7dfc,png:8d4996ff9894",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
 illustration/led_steps_textless,插图,中立,❌缺失,FALSE,ALL,,,,LED 步骤无字版（替换现 led_light 带日文版）
 mark/jp_certifications,标记,按语言,❌缺失,FALSE,JE-1000F_JP,,,,日规認証标志组（規格页認証：后接图）
 kr/image_placeholders,插图,按语言,❌缺失,FALSE,JE-1000F_KR,,,,KR 线 8 处图片资产占位（存量回写轮遗留）
 illustration/cjk_operation_set,插图,中立,❌缺失,FALSE,ALL,,,,操作插图带 CJK 待换（操作者定为最后处理）
 feishu/lcd_icons_attachments,图标,中立,✅成品,FALSE,ALL,data/phase2/_attachments,,sync 时物化，哈希随快照,LCD 图标表附件列——sync-data 自动物化，token 身份由 attachment_identity 解决
 feishu/symbols_attachments,图标,中立,✅成品,FALSE,ALL,data/phase2/_attachments,,sync 时物化，哈希随快照,符号表附件列——同上，已在管道内
+source/manual_je1000f_us_master,整页PDF,按语言,✅成品,FALSE,JE-1000F_US,(设计源，.ai 在表附件列),en,ai:ee1fd9367021,完整 JE-1000F US 设计源 V0.2（59 画板=总览+58 页，Illustrator 30.6，PDF 兼容层可程序化提取）；25.7MB 已挂附件列
