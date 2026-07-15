@@ -1,0 +1,360 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://auto-manual.local/schema/asset-extraction-recipe-v1.json",
+  "title": "Auto-Manual asset extraction recipe v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "coordinate_contract",
+    "normalization",
+    "source",
+    "archive",
+    "page_catalog",
+    "assets"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "coordinate_contract": {"$ref": "#/$defs/coordinate_contract"},
+    "normalization": {"$ref": "#/$defs/normalization"},
+    "source": {"$ref": "#/$defs/source"},
+    "archive": {"$ref": "#/$defs/archive"},
+    "page_catalog": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/page_catalog_entry"},
+      "uniqueItems": true
+    },
+    "assets": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/asset"},
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "coordinate_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page_numbering", "bbox_units", "bbox_origin", "bbox_space"],
+      "properties": {
+        "page_numbering": {"const": "pdf-1-based"},
+        "bbox_units": {"const": "pt"},
+        "bbox_origin": {"const": "top-left"},
+        "bbox_space": {"const": "source-page"}
+      }
+    },
+    "normalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "engine",
+        "validated_version",
+        "validated_mupdf_version",
+        "pdf_save",
+        "forbidden_pdf_markers",
+        "max_render_pixels"
+      ],
+      "properties": {
+        "engine": {"const": "pymupdf"},
+        "validated_version": {"const": "1.28.0"},
+        "validated_mupdf_version": {"const": "1.29.0"},
+        "pdf_save": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["garbage", "clean", "deflate", "no_new_id"],
+          "properties": {
+            "garbage": {"const": 4},
+            "clean": {"const": true},
+            "deflate": {"const": true},
+            "no_new_id": {"const": true}
+          }
+        },
+        "forbidden_pdf_markers": {
+          "const": ["AIPrivateData", "PieceInfo", "AIMetaData"]
+        },
+        "max_render_pixels": {"type": "integer", "minimum": 1, "maximum": 100000000}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_key", "expected_sha256", "expected_page_count"],
+      "properties": {
+        "source_key": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]*$"
+        },
+        "expected_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "expected_page_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "archive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pages", "pdf", "previews"],
+      "properties": {
+        "pages": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["first", "last"],
+          "properties": {
+            "first": {"type": "integer", "minimum": 1},
+            "last": {"type": "integer", "minimum": 1}
+          }
+        },
+        "pdf": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path_pattern"],
+          "properties": {
+            "path_pattern": {
+              "type": "string",
+              "pattern": "^archive/(?!.*\\.\\.)(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]*\\{page:04d\\}[A-Za-z0-9._-]*\\.pdf$"
+            }
+          }
+        },
+        "previews": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path_pattern", "default_scale", "page_scale"],
+          "properties": {
+            "path_pattern": {
+              "type": "string",
+              "pattern": "^archive/(?!.*\\.\\.)(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]*\\{page:04d\\}[A-Za-z0-9._-]*\\.png$"
+            },
+            "default_scale": {"type": "number", "exclusiveMinimum": 0, "maximum": 4},
+            "page_scale": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 4
+              }
+            }
+          }
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reasons"],
+      "properties": {
+        "status": {"type": "string"},
+        "reasons": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "page_catalog_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "page",
+        "page_key",
+        "role",
+        "locale",
+        "build_eligible",
+        "gate",
+        "risk_tags"
+      ],
+      "properties": {
+        "page": {"type": "integer", "minimum": 1},
+        "page_key": {"type": "string", "minLength": 1},
+        "role": {"type": "string", "minLength": 1},
+        "locale": {"type": "string", "pattern": "^(?:[a-z]{2,3}(?:-[A-Z]{2})?|mul|und)$"},
+        "build_eligible": {"const": false},
+        "gate": {
+          "allOf": [
+            {"$ref": "#/$defs/gate"},
+            {"properties": {"status": {"enum": ["archive", "quarantine"]}}}
+          ]
+        },
+        "risk_tags": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "bbox": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"type": "number", "minimum": 0, "maximum": 100000}
+    },
+    "crop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "bbox_pt"],
+      "properties": {
+        "op": {"const": "crop"},
+        "bbox_pt": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "redact_text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "images", "graphics", "fill"],
+      "properties": {
+        "op": {"const": "redact_text"},
+        "images": {"const": "preserve"},
+        "graphics": {"enum": ["preserve", "remove_if_touched"]},
+        "fill": {"type": "null"}
+      }
+    },
+    "whiteout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "bbox_pt"],
+      "properties": {
+        "op": {"const": "whiteout"},
+        "bbox_pt": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "pdf_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "path"],
+      "properties": {
+        "format": {"const": "pdf"},
+        "path": {
+          "type": "string",
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9._/-]+\\.pdf$",
+          "description": "Package-relative mirror of the intended repository path; never a direct worktree write."
+        },
+        "expected_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "png_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "path", "scale"],
+      "properties": {
+        "format": {"const": "png"},
+        "path": {
+          "type": "string",
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9._/-]+\\.png$",
+          "description": "Package-relative mirror of the intended repository path; never a direct worktree write."
+        },
+        "scale": {"type": "number", "exclusiveMinimum": 0, "maximum": 16},
+        "expected_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_key",
+        "page",
+        "build_eligible",
+        "scope",
+        "text_policy",
+        "visual_review_required",
+        "transforms",
+        "outputs",
+        "gate",
+        "risk_tags"
+      ],
+      "properties": {
+        "asset_key": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]*$"},
+        "page": {"type": "integer", "minimum": 1},
+        "build_eligible": {"type": "boolean"},
+        "scope": {"$ref": "#/$defs/scope"},
+        "text_policy": {
+          "enum": [
+            "textless",
+            "numeric-only",
+            "fixed-product-markings",
+            "localized-full-page"
+          ],
+          "description": "textless means no visible characters; fixed-product-markings permits only immutable product/UI silkscreen, never localizable manual prose."
+        },
+        "visual_review_required": {"type": "boolean"},
+        "transforms": {
+          "type": "array",
+          "minItems": 1,
+          "prefixItems": [{"$ref": "#/$defs/crop"}],
+          "items": {
+            "oneOf": [
+              {"$ref": "#/$defs/redact_text"},
+              {"$ref": "#/$defs/whiteout"}
+            ]
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {"$ref": "#/$defs/pdf_output"},
+              {"$ref": "#/$defs/png_output"}
+            ]
+          }
+        },
+        "gate": {
+          "allOf": [
+            {"$ref": "#/$defs/gate"},
+            {"properties": {"status": {"enum": ["approved", "quarantine"]}}}
+          ]
+        },
+        "risk_tags": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "gate": {
+                "properties": {"status": {"const": "approved"}},
+                "required": ["status"]
+              }
+            },
+            "required": ["gate"]
+          },
+          "then": {
+            "properties": {
+              "build_eligible": {"const": true},
+              "visual_review_required": {"const": false},
+              "outputs": {"items": {"required": ["expected_sha256"]}}
+            }
+          },
+          "else": {
+            "properties": {
+              "build_eligible": {"const": false},
+              "visual_review_required": {"const": true}
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["models", "regions", "locales"],
+      "properties": {
+        "models": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "regions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "locales": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^(?:[a-z]{2,3}(?:-[A-Z]{2})?|mul|und)$"}
+        }
+      }
+    }
+  }
+}

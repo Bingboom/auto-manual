@@ -40,7 +40,7 @@ def run_main(
     release_manifest_command: Callable[[argparse.Namespace], list[str]],
     clean_build_artifacts: Callable[[Path], None],
     maybe_sync_review_before_build: Callable[[argparse.Namespace], None],
-    run_asset_check: Callable[[argparse.Namespace], None] | None = None,
+    run_asset_command: Callable[[argparse.Namespace], None] | None = None,
 ) -> int:
     # Make phase2/Feishu secrets from ~/.auto-manual-phase2.env available to this
     # process (and the child processes it spawns, e.g. tools/sync_data.py) without
@@ -80,7 +80,7 @@ def run_main(
             release_manifest_command=release_manifest_command,
             clean_build_artifacts=clean_build_artifacts,
             maybe_sync_review_before_build=maybe_sync_review_before_build,
-            run_asset_check=run_asset_check,
+            run_asset_command=run_asset_command,
         )
     except subprocess.CalledProcessError as exc:
         return exc.returncode or 1

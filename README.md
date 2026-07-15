@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-07-12
+Updated: 2026-07-15
 
 Auto-Manual turns structured content (Feishu/Lark Base CSV snapshots plus shared RST templates) into target-specific manual bundles and release outputs across the active US, EU, JP, and CN config families.
 The current maintained smoke-check baseline is `JE-1000F` across US and JP.
@@ -47,6 +47,14 @@ python build.py review --config configs/config.us-en.yaml --model JE-1000F --reg
 # Check the asset control plane and resolve an approved import.
 python build.py asset-check --json
 python build.py asset-check --asset-key operation/ac_output --asset-format png --json
+
+# Package one PDF-compatible Illustrator master without editing the source,
+# worktree, registry, or Feishu Base. The output directory must not exist.
+python build.py asset-intake \
+  --asset-source-key source/manual_je1000f_us_master \
+  --asset-source-file '<local-master.ai>' \
+  --asset-recipe data/asset_recipes/manual_je1000f_us_master.json \
+  --asset-output-root .tmp/asset-intake/manual_je1000f_us_master/run-01
 ```
 
 Image sources are registered separately from renderer exports: the editable
@@ -56,6 +64,12 @@ and [`data/asset_generation_candidates.csv`](data/asset_generation_candidates.cs
 records which visual candidates may or may not be sent to an image generator.
 `asset-check` resolves only approved exports by default; a temporary asset must
 be explicitly opted into for a draft and cannot be treated as a publish asset.
+`asset-intake` first freezes a private, hash-verified source snapshot, then emits
+cleaned page PDFs/previews, recipe exports, `manifest.json`, `artifacts.csv`, and
+a deterministic ZIP. It fails closed on runtime drift, hash drift, unsafe paths,
+render-budget overflow, or Illustrator private markers found in raw or decoded
+PDF objects. The command is package-only: Base upload and build promotion remain
+separate reviewed steps.
 The maintainer-side `.ai` handoff, duplicate check, attachment upload, and
 downloaded-hash verification are documented in the
 [`closed_loop_ops_guide`](user-guide/closed_loop_ops_guide.md#492-ai-交付与登记一页流程).

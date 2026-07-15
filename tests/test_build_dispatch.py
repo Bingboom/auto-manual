@@ -13,6 +13,7 @@ class TestBuildDispatch(unittest.TestCase):
             "validate",
             "doctor",
             "asset-check",
+            "asset-intake",
             "review",
             "check",
             "sync-review",
@@ -73,6 +74,14 @@ class TestBuildDispatch(unittest.TestCase):
             ],
             calls,
         )
+
+    def test_dispatch_asset_actions_should_share_the_asset_facade(self) -> None:
+        for action in ("asset-check", "asset-intake"):
+            with self.subTest(action=action):
+                self.assertEqual(
+                    [("ensure", action), ("asset-command", action)],
+                    self._dispatch(action),
+                )
 
     def test_dispatch_action_should_fallback_to_build_action(self) -> None:
         calls = self._dispatch("word")
@@ -192,6 +201,7 @@ class TestBuildDispatch(unittest.TestCase):
             release_manifest_command=lambda parsed_args: ["release-manifest", parsed_args.action],
             clean_build_artifacts=lambda config_path: calls.append(("clean", config_path)),
             maybe_sync_review_before_build=record_maybe_sync,
+            run_asset_command=record_arg("asset-command"),
         )
         return calls
 

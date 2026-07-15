@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-05-25
+Updated: 2026-07-15
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -378,7 +378,7 @@ If you need the fixed `US/en + US/es + US/fr + JP/ja` export set, use [`../scrip
 
 Current flow:
 
-1. `python build.py sync-data|process-build-queue|message-control-dry-run|rst|html|word|pdf|all|idml|review|check|asset-check|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
+1. `python build.py sync-data|process-build-queue|message-control-dry-run|rst|html|word|pdf|all|idml|review|check|asset-check|asset-intake|sync-review|publish|diff-report|release-manifest|handoff|preview|fast|doctor`
 1. `python build.py listen-message-control --config configs/config.us.yaml`
 2. [`tools/build_docs.py`](../tools/build_docs.py) validates config and layout params
 3. target `model` and `region` are resolved from CLI or `build.targets`
@@ -394,11 +394,13 @@ Current flow:
 13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
 14. `python build.py asset-check` validates the image-asset registry and resolves approved exports for renderer imports; use `--allow-temporary` only for drafts and `--publish` for the stricter status gate
     - editable `.ai` deliveries stay out of Git; the maintainer follows [`closed_loop_ops_guide.md` §4.9.2](closed_loop_ops_guide.md#492-ai-交付与登记一页流程) for hash-first duplicate detection, upload to the dedicated Base asset-source table, and download verification; the legacy illustration table is not a fallback
-15. `python tools/process_docs/build_review_preview.py` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
-16. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
-17. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
-18. `python build.py preview` materializes one exact page selector under a preview-only output root
-19. `python build.py fast` materializes a runtime-only draft without export
+15. `python build.py asset-intake --asset-source-key <key> --asset-source-file <master.ai> --asset-recipe <recipe.json> --asset-output-root <new-dir>` freezes and verifies a PDF-compatible Illustrator source, then writes cleaned page archives/previews, recipe exports, `manifest.json`, `artifacts.csv`, and a deterministic ZIP into a new isolated directory
+    - this action is package-only: it does not edit the source/worktree/registry/Base, and it fails closed on source/runtime/hash/path/private-marker drift; upload and promotion remain explicit reviewed steps in the three new `04_资产*` tables
+16. `python tools/process_docs/build_review_preview.py` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
+17. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
+18. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
+19. `python build.py preview` materializes one exact page selector under a preview-only output root
+20. `python build.py fast` materializes a runtime-only draft without export
 
 Important:
 
