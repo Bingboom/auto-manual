@@ -54,11 +54,11 @@ symbols/weee2,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/com
 page/cover,整页PDF,按语言,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,en,cover-en.pdf:c58c706ad9b8,单文件命名 -en；是否需 es/fr 变体待确认
 page/product_overview,整页PDF,按语言,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,"en,es,fr","product_overview-en.pdf:bb3ca33f3a54,product_overview-es.pdf:2d7cb459cb17,product_overview-fr.pdf:14e89c01d450",模板物理页提取（#639）
 mark/fcc,标记,中立,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,,"fcc_mark.pdf:8029015efc5e,fcc_mark.png:45f309ed8b3f",
-hero/lcd_display,插图,中立,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,,"v2-pdf:5004a9fe0afe,v2-png:f82efe218bc0",矢量正式版 v2（源=master p8）；旧临时裁切 PNG 待 IDML 换装（集成 PR）
+hero/lcd_display,插图,中立,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,,"v2-pdf:5004a9fe0afe,v2-png:f82efe218bc0",矢量正式版 v2（源=master p8，25 个圆号标注，语言中立）→ lcd_display_hero_v2.pdf|png；IDML 已换装（commit d68288ef，随 PR#662）：lcd_map.png=v2 渲染+发射端 159pt 高度上限（防下游串文溢流），一图通 en/fr/es，InDesign 实测 60页/0溢流
 placeholder/symbols_icons,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,01_meaning_of_symbols_icons_placeholder.png:d90abf9cdad6,占位图；引用普查=无消费者，疑似孤儿，确认后清理
 placeholder/symbols_signal_words,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,01_meaning_of_symbols_signal_words_placeholder.png:d90abf9cdad6,占位图；引用普查=无消费者，疑似孤儿，确认后清理
 mark/warning_lockup,标记,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,"warning_lockup.jpg:36a12bf51527,warning_lockup.png:d90abf9cdad6",裁切产物，是否成品待确认
-page/back_cover,整页PDF,按语言,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,en,"pdf:7c01035f582a,png:01214504830d",整页提取（源=master p58）；QR 目标待扫码确认；含墨西哥销售主体
+page/back_cover,整页PDF,按语言,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,en,"pdf:7c01035f582a,png:01214504830d",整页提取（源=master p58）；IDML 已集成（commit d68288ef，随 PR#662）：placed-page 机制置入成品封底（back_cover-en.pdf 优先于合成页），InDesign 实测过；含 QR——目标待扫码确认后登记印刷外链清单；含墨西哥销售主体信息（V0.3 变更）
 button/power,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:80615c7fed88,png:2ffaa205db79",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
 button/ac,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:7d0532711439,png:5f9354fc203a",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
 button/dc_usb,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:87dcc54d6114,png:765c22b94adb",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
