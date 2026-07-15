@@ -23,7 +23,7 @@ class TestAssetRegistry(unittest.TestCase):
         report = check_registry(self.records, repo_root=ROOT)
 
         self.assertEqual(72, report.records)
-        self.assertEqual(0, len(report.errors))
+        self.assertEqual((), report.errors)
         self.assertEqual(65, report.status_counts[APPROVED_STATUS])
 
     def test_resolve_v2_vector_projection(self) -> None:
