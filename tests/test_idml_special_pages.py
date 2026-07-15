@@ -29,6 +29,19 @@ class IdmlSpecialPageTests(unittest.TestCase):
         self.assertNotIn("hello@jackery.com", stories)
         self.assertNotIn("94538-8301", stories)
 
+    def test_back_cover_prefers_finished_art_over_composed_copy(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs = Path(td)
+            asset = docs / "renderers" / "latex" / "assets" / "back_cover-en.pdf"
+            asset.parent.mkdir(parents=True)
+            asset.write_bytes(b"finished-art")
+
+            self.assertTrue(page_placed.add_preferred_back_cover_page(
+                self.writer, "US", "en", docs, 0, {"company": "fallback"}))
+
+        self.assertEqual([], self.writer.stories)
+        self.assertIn(asset.resolve().as_uri(), self.writer.spreads[0][1])
+
     def test_toc_uses_source_titles_ranges_and_folios(self) -> None:
         self.writer.spreads = [(f"sp_{i}", f'<Spread Self="sp_{i}"/>') for i in range(4)]
         source = {
