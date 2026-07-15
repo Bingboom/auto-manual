@@ -41,6 +41,20 @@
       <Leading type="unit">7.4</Leading>
     </Properties>
   </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Preface Tag" Name="HB Preface Tag" PointSize="6" FillColor="Color/Paper" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Heavy</FontStyle>
+      <Leading type="unit">6</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Preface Title" Name="HB Preface Title" PointSize="8" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">8</Leading>
+    </Properties>
+  </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/HB Callout Label" Name="HB Callout Label" PointSize="8" FillColor="Color/HB Brand Dark" Justification="CenterAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
@@ -95,6 +109,13 @@
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Medium</FontStyle>
       <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Preface Body" Name="HB Preface Body" PointSize="7.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Medium</FontStyle>
+      <Leading type="unit">8.6</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/HB Safety Lead" Name="HB Safety Lead" PointSize="8" FillColor="Color/HB Brand Dark" SpaceAfter="4.2" Hyphenation="false" Justification="LeftAlign">

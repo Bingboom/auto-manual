@@ -182,7 +182,11 @@ class _FlowMarkdownWriter:
             lines.extend(_markdown_table(rows))
             lines.append(":::")
             return lines
-        self.notes.append(f"{source_ref}: component {kind!r} kept as a JSON code block.")
+        self.notes.append(
+            f"{source_ref}: component {kind!r} is kept as typed JSON in the "
+            "readable flow Markdown; the flow IDML renderer may still render "
+            "registered component kinds as native editable objects."
+        )
         return ["```json", json.dumps(spec, ensure_ascii=False, indent=2), "```"]
 
     def _data_page(self, page: Path, source_ref: str) -> list[str] | None:
@@ -333,7 +337,7 @@ class _FlowMarkdownWriter:
             f"- Assets referenced: {len(self.assets)}",
             f"- Skipped raw blocks: {self.skipped_raw}",
             "",
-            "## Component Downgrades",
+            "## Markdown Representation Notes",
             "",
         ]
         if self.component_counts:

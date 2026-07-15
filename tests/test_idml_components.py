@@ -58,7 +58,7 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertEqual(sorted(MINIMAL_SPECS), sorted(REGISTRY))
 
     def test_every_registered_kind_renders(self) -> None:
-        from tools.idml.components import render
+        from tools.idml.components import RenderContext, render
 
         ctx = _ctx()
         for kind, spec in MINIMAL_SPECS.items():
@@ -67,6 +67,28 @@ class ComponentRegistryTests(unittest.TestCase):
                 self.assertTrue(xml, f"{kind} rendered empty")
                 self.assertGreater(est, 0.0)
                 self.assertIn("<Table ", xml)
+
+    def test_preface_language_badge_uses_dedicated_geometry(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        params = {
+            "idml_preface_tag_width": ("4.6", "mm"),
+            "idml_preface_tag_height": ("2.9", "mm"),
+        }
+        xml, height = render(
+            MINIMAL_SPECS["langtag"],
+            RenderContext(
+                params=params, page_w=368.79, m_l=28.35, m_r=28.35,
+                root=ROOT, bundle_root=ROOT / "does-not-exist",
+            ),
+            tid="preface_badge", terminal=True,
+        )
+        self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Preface Tag"', xml)
+        self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Preface Title"', xml)
+        self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Preface Body"', xml)
+        self.assertIn('SingleColumnWidth="13.0394"', xml)
+        self.assertIn('FillColor="Color/HB Brand Dark"', xml)
+        self.assertAlmostEqual(8.22047, height, places=4)
 
     def test_tail_warning_cells_are_vertically_centered(self) -> None:
         from tools.idml.components import render
