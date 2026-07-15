@@ -74,15 +74,21 @@ If you only need the exact command semantics for one export path, use [`../code-
 InDesign export has two handoff modes: the default `idml` production path keeps
 the component-heavy editable IDML for visual design review. Production/both
 mode first builds the LaTeX reference PDF and then uses one deterministic
-`manual.ir.json`, the shared layout-token contract, and
-`latex_page_plan.json` to create the IDML. This makes InDesign the layout-only
-continuation of the frozen LaTeX build rather than a second content pipeline.
+`manual.ir.json` and the shared layout-token contract to create the IDML;
+`latex_page_plan.json` remains available as a reference trace. Cover/front
+matter, Safety + Symbols, FCC + What's in the Box, LCD DISPLAY,
+specifications, warranty, and back cover are fixed new-page anchors. Ordinary
+prose uses linked story chains and flows naturally between those anchors. This
+makes InDesign the layout-only continuation of the frozen build rather than a
+second content pipeline.
 In contrast,
-`python build.py idml --idml-mode flow ...` writes semantic flow Markdown, a
-simple continuous-story `manual.flow.idml`, source trace, style map, and asset
-manifest files for a designer's InDesign template workflow. Both are generated
-outputs; content corrections still go back to the source tables, templates,
-review cloud doc, or TM layer before regeneration.
+`python build.py idml --idml-mode flow ...` writes semantic flow Markdown and a
+rendered, editable continuous-story `manual.flow.idml`, plus source trace,
+style map, and asset manifest files for a designer's InDesign template
+workflow. The Markdown is the readable semantic/reference representation;
+the IDML renders registered components, linked images, and native tables.
+Both are generated outputs; content corrections still go back to the source
+tables, templates, review cloud doc, or TM layer before regeneration.
 
 After opening the production IDML, designers may adjust frame geometry,
 explicit page breaks, asset fitting, and limited tracking. Do not edit copy,
@@ -103,9 +109,11 @@ column and closes its rounded shell to the native table height; review
 If a review page still references an attachment basename with an older opaque
 hash, the build now stages the unique current semantic match under that frozen
 name. Missing or ambiguous matches fail before handoff. The production IDML
-also supports several editable stories on one physical master page and uses
-grouped rounded-table backgrounds, so designers can edit table cells without
-reintroducing the curved-corner inset or changing the approved pagination.
+keeps fixed composite pages componentized and uses normal linked frame chains
+for ordinary prose. It also uses grouped rounded-table backgrounds, so
+designers can edit table cells without reintroducing the curved-corner inset.
+Fixed-page anchors are intentional; natural-flow stories may be resized or
+allowed to add frames during final design review.
 Formal body tables remain full-measure; their one-character text inset is a
 cell property and must not be recreated as a heading/table-group indent.
 

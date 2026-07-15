@@ -37,6 +37,7 @@ class RenderContext:
     m_r: float
     root: Path
     bundle_root: Path
+    data_root: Path | None = None
     # writer._add_story_parts, for components that render rounded objects
     # as anchored frames (one sub-story per frame). None in pure/table-only
     # contexts; renderers must keep a table fallback for that case.
@@ -50,7 +51,19 @@ class RenderContext:
         return art_frame_size(img, max_w, page_w=self.page_w, m_l=self.m_l, m_r=self.m_r)
 
     def resolve_bundle_image(self, ref: str) -> Path | None:
-        return resolve_bundle_image(self.bundle_root, ref)
+        # Flow IDML can carry images emitted from the phase2 data snapshot as
+        # well as images copied into the prepared RST bundle.  Keep the
+        # lookup contract in the render context so individual components do
+        # not need to know which source plane supplied an asset.
+        roots = [self.bundle_root]
+        if self.data_root is not None:
+            roots.append(self.data_root)
+        roots.append(self.root)
+        for base in roots:
+            resolved = resolve_bundle_image(base, ref)
+            if resolved is not None:
+                return resolved
+        return None
 
 
 def figure_paragraph(inner: str, tail: str = "<Br/>") -> str:

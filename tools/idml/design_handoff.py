@@ -140,8 +140,14 @@ def _designer_checklist(model: str, region: str, lang: str) -> str:
 
 - Target: `{model}_{region}_{lang}`
 - Open `production/manual.production.idml` for visual parity review.
-- Open `flow/manual.flow.idml` for continuous-story template styling.
-- Use `flow/manual.flow.md` as the readable semantic reference.
+- Open `flow/manual.flow.idml` for the rendered, editable continuous-story
+  template; verify that linked images, native tables, and registered component
+  blocks are visible instead of raw Markdown/JSON.
+- Use `flow/manual.flow.md` as the readable semantic/source trace reference;
+  its JSON blocks are a serialization format, not the intended InDesign
+  appearance.
+- When reviewing the delivery zip, check the flow IDML links as well as the
+  production IDML links under `Links/`.
 - Check `missing_assets_report.md` before relinking or replacing assets.
 - A red ⊞ overset marker on a frame means the content IS in the file but the
   frame's estimated height was too small — drag the frame taller to reveal it;

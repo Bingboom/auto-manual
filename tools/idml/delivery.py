@@ -62,6 +62,8 @@ def _uri_to_path(uri: str) -> Path | None:
 
 def _collect_link_uris(idml_path: Path) -> list[str]:
     """Unique LinkResourceURI values in first-seen part order."""
+    if not zipfile.is_zipfile(idml_path):
+        return []
     seen: list[str] = []
     with zipfile.ZipFile(idml_path) as zf:
         for name in zf.namelist():
@@ -178,16 +180,36 @@ def build_delivery_package(
     notes instead of failing the package.
     """
     arcname = idml_arcname or production_idml.name
-    uris = _collect_link_uris(production_idml)
+    flow_dir = handoff_root / "flow"
+    flow_idml = flow_dir / "manual.flow.idml"
+    idml_sources: list[tuple[Path, str]] = [(production_idml, arcname)]
+    # Flow IDML used to be a text-only artifact, so older fixture/handoff
+    # trees may contain a non-IDML placeholder.  Process a real flow package
+    # when present and leave legacy placeholders untouched.
+    flow_is_idml = flow_idml.is_file() and zipfile.is_zipfile(flow_idml)
+    if flow_is_idml:
+        idml_sources.append((flow_idml, "flow/manual.flow.idml"))
+    uris: list[str] = []
+    for source, _arcname in idml_sources:
+        for uri in _collect_link_uris(source):
+            if uri not in uris:
+                uris.append(uri)
     assigned, missing = _assign_link_names(uris)
 
-    rewritten = out_zip.parent / f".{arcname}.rewrite.tmp"
     out_zip.parent.mkdir(parents=True, exist_ok=True)
-    _rewrite_idml(production_idml, assigned, rewritten)
+    rewritten_paths: dict[str, Path] = {}
+    for index, (source, target_arcname) in enumerate(idml_sources):
+        rewritten = out_zip.parent / f".idml_{index}.rewrite.tmp"
+        _rewrite_idml(source, assigned, rewritten)
+        rewritten_paths[target_arcname] = rewritten
     try:
-        issues = check_idml(rewritten)
-        if issues:
-            raise RuntimeError("Rewritten IDML failed self-check: " + "; ".join(issues))
+        for target_arcname, rewritten in rewritten_paths.items():
+            issues = check_idml(rewritten)
+            if issues:
+                raise RuntimeError(
+                    f"Rewritten IDML {target_arcname} failed self-check: "
+                    + "; ".join(issues)
+                )
 
         notes = list(extra_notes)
         notes.append(f"Collected {len(assigned)} linked asset(s) into Links/.")
@@ -202,14 +224,18 @@ def build_delivery_package(
             notes.append(f"{len(missing)} linked asset(s) missing at package time (see export_notes.md).")
 
         with zipfile.ZipFile(out_zip, "w", compression=zipfile.ZIP_DEFLATED) as zf:
-            zf.write(rewritten, arcname)
+            zf.write(rewritten_paths[arcname], arcname)
             for source, link_name in assigned.values():
                 zf.write(source, f"Links/{link_name}")
-            flow_dir = handoff_root / "flow"
             if flow_dir.is_dir():
                 for path in sorted(flow_dir.iterdir()):
-                    if path.is_file():
+                    if path.is_file() and (path != flow_idml or not flow_is_idml):
                         zf.write(path, f"flow/{path.name}")
+                if flow_is_idml:
+                    zf.write(
+                        rewritten_paths["flow/manual.flow.idml"],
+                        "flow/manual.flow.idml",
+                    )
             for report in ("designer_checklist.md", "layout_feedback.md", "missing_assets_report.md"):
                 report_path = handoff_root / report
                 if report_path.is_file():
@@ -224,7 +250,8 @@ def build_delivery_package(
             zf.writestr("fonts_manifest.md", _fonts_manifest(bool(fonts)))
             zf.writestr("export_notes.md", _export_notes(notes, missing))
     finally:
-        rewritten.unlink(missing_ok=True)
+        for rewritten in rewritten_paths.values():
+            rewritten.unlink(missing_ok=True)
 
     return DeliveryOutputs(
         zip_path=out_zip,

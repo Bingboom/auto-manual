@@ -8,10 +8,13 @@ def add_story_frames(
     writer,
     story_id: str,
     frames: list[tuple[int, float, float]],
+    *,
+    margin_left: float | None = None,
+    margin_right: float | None = None,
 ) -> None:
     """Place one linked story in explicit page-top/page-bottom regions."""
-    x1 = -writer.page_w / 2 + writer.m_l
-    x2 = writer.page_w / 2 - writer.m_r
+    x1 = -writer.page_w / 2 + (writer.m_l if margin_left is None else margin_left)
+    x2 = writer.page_w / 2 - (writer.m_r if margin_right is None else margin_right)
     for i, (page_index, top, bottom) in enumerate(frames):
         spread_id = f"sp_{page_index}"
         frame_id = f"tf_{story_id}_{i}"
