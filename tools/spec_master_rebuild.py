@@ -213,7 +213,7 @@ def _field_list(cli_bin: str, base_token: str, table_id: str) -> list[dict[str, 
             "--table-id",
             table_id,
             "--limit",
-            "500",
+            "200",  # lark-cli >=1.0.69 caps --limit at 200
         ],
     )
     return _data_items(payload, "fields")

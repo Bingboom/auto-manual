@@ -250,7 +250,7 @@ class LarkCliSource:
             return cached
 
         offset = 0
-        limit = 500
+        limit = 200  # lark-cli >=1.0.69 caps --limit at 200
         field_name_map: dict[str, str] = {}
         while True:
             payload = self._run_base_command(
