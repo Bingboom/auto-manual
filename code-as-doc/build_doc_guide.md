@@ -203,6 +203,7 @@ Start Review, Build Draft Package, Publish:
 - use `process-build-queue --workflow-action publish` when a Publish row should be built through `build.py publish` plus `build.py html --source review`, uploaded as PDF, staged with DOCX/Markdown kept in `reports/releases`, and imported to `飞书云文档` when that field exists
 - `process-build-queue --record-id <record_id>` narrows one run to one `Document_link` row
 - `feishu-start-review.yml` is the Start Review worker on `main`; if Feishu triggers it, dispatch it on `main` so review-start always uses the latest workflow definition
+- review PRs created by that trusted Feishu Start Review worker automatically approve their `Manual Validation` and `Review Preview Package` checks; ordinary external pull requests still use GitHub's approval gate
 - `feishu-build-queue.yml` is the Publish-stage worker for `main`
 - `feishu-draft-build-queue.yml` is the Build Draft Package worker on `main`
 - the repo now ships one OpenClaw plugin package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer); it is the supported control-layer package when you want one chat entrypoint for these three workers

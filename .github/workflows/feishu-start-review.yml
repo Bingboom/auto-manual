@@ -22,6 +22,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
+  actions: write
   contents: write
   pull-requests: write
 
@@ -97,11 +98,99 @@ jobs:
       - name: Process review-start queue
         shell: bash
         run: |
+          mkdir -p .tmp/openclaw
           cmd=(python build.py process-review-start-queue --config configs/config.us.yaml --data-root .tmp/review-start/phase2)
           if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
             cmd+=(--record-id "${{ inputs.queue_record_id }}")
           fi
-          "${cmd[@]}"
+          set +e
+          "${cmd[@]}" 2>&1 | tee .tmp/openclaw/review-start-output.log
+          status=${PIPESTATUS[0]}
+          exit "$status"
+
+      - name: Auto-approve checks for trusted review PRs
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          output_path=.tmp/openclaw/review-start-output.log
+          if [ ! -s "$output_path" ]; then
+            echo "No review-start output was produced; there are no generated PRs to approve."
+            exit 0
+          fi
+
+          mapfile -t pr_urls < <(
+            sed -n 's/.*pr_url=\([^ ]*\).*/\1/p' "$output_path" | sort -u
+          )
+          if [ "${#pr_urls[@]}" -eq 0 ]; then
+            echo "No generated review PR was reported; there are no checks to approve."
+            exit 0
+          fi
+
+          approval_failed=0
+          for attempt in $(seq 1 12); do
+            pending=0
+            for pr_url in "${pr_urls[@]}"; do
+              if ! pr_json="$(gh pr view "$pr_url" --json number,author,headRefName 2>/dev/null)"; then
+                echo "Review PR is not visible yet: $pr_url"
+                pending=1
+                continue
+              fi
+
+              author="$(jq -r '.author.login // empty' <<<"$pr_json")"
+              if [ "$author" != "app/github-actions" ] && [ "$author" != "github-actions[bot]" ]; then
+                echo "Skipping non-worker PR $pr_url (author=$author)."
+                continue
+              fi
+
+              pr_number="$(jq -r '.number' <<<"$pr_json")"
+              branch="$(jq -r '.headRefName' <<<"$pr_json")"
+              run_ids="$(
+                gh api --paginate \
+                  "repos/${GITHUB_REPOSITORY}/actions/runs?event=pull_request&per_page=100" \
+                  --jq '.workflow_runs[] | {id, name, head_branch, conclusion, pull_requests}' \
+                | jq -r --arg branch "$branch" --argjson pr "$pr_number" '
+                select(.head_branch == $branch)
+                | select(.name == "Manual Validation" or .name == "Review Preview Package")
+                | select(.conclusion == "action_required")
+                | select(any(.pull_requests[]?; .number == $pr))
+                | .id
+              '
+              )"
+
+              if [ -z "$run_ids" ]; then
+                echo "Waiting for review checks for PR #$pr_number ($branch)."
+                pending=1
+                continue
+              fi
+
+              while IFS= read -r run_id; do
+                [ -z "$run_id" ] && continue
+                echo "Approving trusted review check run $run_id for PR #$pr_number."
+                if ! gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/approve" >/dev/null; then
+                  echo "::error::Could not approve trusted review check run $run_id."
+                  approval_failed=1
+                fi
+              done <<<"$run_ids"
+            done
+
+            if [ "$pending" -eq 0 ]; then
+              if [ "$approval_failed" -ne 0 ]; then
+                exit 1
+              fi
+              echo "Trusted Feishu-generated review checks are approved."
+              exit 0
+            fi
+            if [ "$attempt" -lt 12 ]; then
+              sleep 5
+            fi
+          done
+
+          if [ "$approval_failed" -ne 0 ]; then
+            exit 1
+          fi
+          echo "No action-required review checks appeared before the approval window expired."
 
       - name: Write OpenClaw run metadata
         if: always()
@@ -125,6 +214,7 @@ jobs:
           name: feishu-start-review-output
           path: |
             docs/_review
+            .tmp/openclaw/review-start-output.log
             .tmp/review-start/phase2/snapshot_manifest.json
             .tmp/review-start/phase2/row_key_mapping.csv
           if-no-files-found: ignore
