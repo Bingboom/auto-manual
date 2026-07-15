@@ -51,10 +51,11 @@ def remove_worktree(path: Path) -> None:
     _remove_worktree_impl(repo_root=_repo_root(), path=path)
 
 
-def prepare_git_ref_worktree(git_ref: str) -> Path:
+def prepare_git_ref_worktree(git_ref: str, *, prefer_local: bool = True) -> Path:
     return _prepare_git_ref_worktree_impl(
         repo_root=_repo_root(),
         git_ref=git_ref,
+        prefer_local=prefer_local,
         run_git=run_git,
         worktree_dir_for_git_ref=lambda *, repo_root, git_ref: worktree_dir_for_git_ref(git_ref),
         remove_worktree=lambda *, repo_root, path: remove_worktree(path),

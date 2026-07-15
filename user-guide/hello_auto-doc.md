@@ -131,6 +131,11 @@ link is what lands in the queue row's `idml_file` field. If
 `AUTO_MANUAL_LOCAL_GILROY_DIR` is set on the build machine, the fonts from
 that folder are also packed into the zip's `Document fonts/`.
 
+When a queue row carries `Git_ref`, the worker uses the current `origin/main`
+for build code and overlays `docs/_review/` from that review ref. This keeps
+merged renderer fixes in Publish output even when the worker's local `main`
+branch is stale.
+
 GitHub note:
 
 - pull requests are gated by the `Manual Validation` workflow

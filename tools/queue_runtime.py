@@ -127,6 +127,7 @@ def prepare_git_ref_worktree(
     *,
     repo_root: Path,
     git_ref: str,
+    prefer_local: bool = True,
     run_git: Callable[..., None],
     worktree_dir_for_git_ref: Callable[..., Path],
     remove_worktree: Callable[..., None],
@@ -180,7 +181,7 @@ def prepare_git_ref_worktree(
     source_ref = f"origin/{branch_name}"
     cached_remote_ref = f"refs/remotes/origin/{branch_name}"
     local_branch_ref = f"refs/heads/{branch_name}"
-    if git_ref_exists(repo_root=repo_root, ref=local_branch_ref):
+    if prefer_local and git_ref_exists(repo_root=repo_root, ref=local_branch_ref):
         source_ref = branch_name
         print(
             f"[build-queue] Using local Git_ref branch {branch_name}",
@@ -198,6 +199,11 @@ def prepare_git_ref_worktree(
                 )
             else:
                 raise
+        if not prefer_local:
+            print(
+                f"[build-queue] Using remote Git_ref {source_ref}",
+                file=sys.stderr,
+            )
     worktree = worktree_dir_for_git_ref(repo_root=repo_root, git_ref=branch_name)
     remove_worktree(repo_root=repo_root, path=worktree)
     worktree.parent.mkdir(parents=True, exist_ok=True)
