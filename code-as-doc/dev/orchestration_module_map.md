@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-06-26
+Updated: 2026-07-15
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -70,6 +70,21 @@ Do not move new low-level implementation back into these files unless the behavi
   - environment and dependency diagnostics
   - doctor target/pdf/reference-doc resolution
   - doctor finding collection
+- [`tools/asset_commands.py`](../../tools/asset_commands.py)
+  - single `build.py` command facade for `asset-check` and `asset-intake`
+  - fail-closed validation of the public AI-intake argument contract
+- [`tools/asset_registry.py`](../../tools/asset_registry.py)
+  - canonical asset-registry validation and approved-export resolution
+- [`tools/asset_intake.py`](../../tools/asset_intake.py)
+  - repo-root-aware adapter from public CLI arguments to the deterministic intake pipeline
+- [`tools/asset_pipeline/recipe.py`](../../tools/asset_pipeline/recipe.py)
+  - strict recipe-schema parsing and extraction-contract validation
+- [`tools/asset_pipeline/extract.py`](../../tools/asset_pipeline/extract.py)
+  - source inspection, private-marker checks, page normalization, previews, and semantic exports
+- [`tools/asset_pipeline/package.py`](../../tools/asset_pipeline/package.py)
+  - private source snapshot, manifest/CSV assembly, deterministic ZIP, and atomic publication
+- [`tools/asset_pipeline/models.py`](../../tools/asset_pipeline/models.py)
+  - immutable recipe, artifact, inspection, and intake-result contracts
 
 ## 3. Build Bundle And Export Modules
 
