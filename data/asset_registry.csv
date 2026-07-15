@@ -14,14 +14,14 @@ in_the_box/main_unit,插图,中立,✅成品,FALSE,ALL,docs/templates/word_templ
 in_the_box/main_unit1,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/in_the_box,,png:6c7f1deea2f6,文字负载普查待做（无字化排期）
 in_the_box/manual_icon1,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/in_the_box,,png:87ac44e52863,文字负载普查待做（无字化排期）
 lcd/lcd_map,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/lcd,,png:c2538515f979,文字负载普查待做（无字化排期）
-operation/ac_output,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:cda41198c395,v2-png:43a46a51a987",无字矢量 v2 已提取（源=master p10 下面板）→ docs/renderers/latex/assets/op_ac_output.pdf|png；旧 common_assets PNG=错机型+烧字，模板换装待集成 PR
-operation/dc_usb_output,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:c166a9467c81,v2-png:c46c92d6ee99",无字矢量 v2 已提取（源=master p11 面板）→ docs/renderers/latex/assets/op_dc_usb_output.pdf|png；旧 common_assets PNG=错机型+烧字，模板换装待集成 PR
+operation/ac_output,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:cda41198c395,v2-png:43a46a51a987",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p10 下面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流（本图纵横比 1.43 是原溢流元凶），InDesign 实测 60页/0溢流
+operation/dc_usb_output,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:c166a9467c81,v2-png:c46c92d6ee99",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p11 面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流，InDesign 实测 60页/0溢流
 operation/energy_saving,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,png:848b99847403,文字负载普查待做（无字化排期）
 operation/energy_saving_12h,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"png:6337b8a4f8b1,svg:cf537ed8c012",文字负载普查待做（无字化排期）
 operation/frequency_switch,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,png:7388be9e5077,文字负载普查待做（无字化排期）
 operation/lcd_mode,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,png:24a37b773bf1,文字负载普查待做（无字化排期）
 operation/led_light,插图,中立,✅成品,TRUE,ALL,docs/templates/word_template/common_assets/operation,,png:436dbc79981b,烧死日文文字——无字化改造首批（操作者已批）
-operation/main_power,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:eed017db8ecb,v2-png:74004806e6c0",无字矢量 v2 已提取（源=master p10 上面板）→ docs/renderers/latex/assets/op_main_power.pdf|png；旧 common_assets PNG=错机型+烧字，模板换装待集成 PR
+operation/main_power,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:eed017db8ecb,v2-png:74004806e6c0",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p10 上面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流，InDesign 实测 60页/0溢流
 operation/ups_mode,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,png:5866fb05040e,文字负载普查待做（无字化排期）
 overview/front_controls,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/overview,,png:aaceecad3ceb,文字负载普查待做（无字化排期）
 overview/front_product,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/overview,,jpg:562f998c918a,文字负载普查待做（无字化排期）
