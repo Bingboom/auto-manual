@@ -390,6 +390,12 @@ def lcd_hero_paragraph(writer) -> str:
         return ""
     width, height = writer._art_frame_size(
         hero, max_w=writer.page_w - writer.m_l - writer.m_r)
+    # The template reserves ~159pt for the hero slot; a taller-aspect asset
+    # (the vector v2 is 1.69:1 vs the old crop's 1.97:1) must shrink-to-fit
+    # or it pushes the downstream prose chain into overset.
+    hero_max_h = 159.0
+    if height > hero_max_h:
+        width, height = width * hero_max_h / height, hero_max_h
     style = paragraph_style_ref("HB Figure")
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}" '

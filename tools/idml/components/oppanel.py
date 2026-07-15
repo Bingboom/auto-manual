@@ -31,6 +31,13 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     asset = ctx.resolve_bundle_image(ref) if ref else None
     if asset is not None and asset.exists():
         iw, ih = ctx.art_frame_size(asset, max_w=body_w * 0.44)
+        # Panel-height budget: the reference panels keep the illustration
+        # at ~0.22-0.25x the measure; taller-aspect art must shrink-to-fit
+        # or the downstream prose chain oversets (same failure mode as the
+        # LCD hero cap in page_objects.lcd_hero_paragraph).
+        img_max_h = body_w * 0.25
+        if ih > img_max_h:
+            iw, ih = iw * img_max_h / ih, img_max_h
         icon = figure_paragraph(
             image_cell_content(f"{tid}img", asset, iw, ih),
             tail="<Content></Content>")
