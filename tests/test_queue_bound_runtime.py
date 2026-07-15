@@ -18,12 +18,14 @@ class QueueBoundRuntimeTests(unittest.TestCase):
                 *,
                 repo_root: Path,
                 git_ref: str,
+                prefer_local: bool,
                 run_git,
                 worktree_dir_for_git_ref,
                 remove_worktree,
             ) -> Path:
                 self.assertEqual(repo_root, root)
                 self.assertEqual(git_ref, "feature/test")
+                self.assertTrue(prefer_local)
                 worktree_path = worktree_dir_for_git_ref(repo_root=repo_root, git_ref=git_ref)
                 self.assertEqual(
                     worktree_path,
@@ -148,6 +150,32 @@ class QueueBoundRuntimeTests(unittest.TestCase):
             calls[-1],
         )
         self.assertEqual(1, len(calls))
+
+    def test_prepare_git_ref_worktree_should_use_remote_when_local_preference_is_disabled(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            calls: list[list[str]] = []
+
+            def fake_run_git(args: list[str]) -> None:
+                calls.append(args)
+
+            result = queue_runtime.prepare_git_ref_worktree(
+                repo_root=root,
+                git_ref="main",
+                prefer_local=False,
+                run_git=fake_run_git,
+                worktree_dir_for_git_ref=lambda *, repo_root, git_ref: root / ".tmp" / git_ref,
+                remove_worktree=lambda *, repo_root, path: None,
+                git_ref_exists=lambda *, repo_root, ref: ref == "refs/heads/main",
+                sleep=lambda seconds: None,
+            )
+
+        self.assertEqual(root / ".tmp" / "main", result)
+        self.assertEqual(
+            ["worktree", "add", "--force", "--detach", str(root / ".tmp" / "main"), "origin/main"],
+            calls[-1],
+        )
+        self.assertEqual(3, len(calls))
 
 
 if __name__ == "__main__":

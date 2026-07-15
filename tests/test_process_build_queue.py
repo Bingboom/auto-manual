@@ -878,7 +878,10 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertIn("--idml-mode", commands[2][0])
         self.assertIn("both", commands[2][0])
         self.assertEqual(main_worktree, commands[2][1])
-        self.assertEqual([mock.call("main"), mock.call("codex/review-us-en")], prepare_mock.call_args_list)
+        self.assertEqual(
+            [mock.call("main", prefer_local=False), mock.call("codex/review-us-en")],
+            prepare_mock.call_args_list,
+        )
         self.assertEqual([mock.call(review_worktree), mock.call(main_worktree)], remove_mock.call_args_list)
 
     def test_build_document_for_task_should_preserve_configs_path_in_git_ref_worktree(self) -> None:
