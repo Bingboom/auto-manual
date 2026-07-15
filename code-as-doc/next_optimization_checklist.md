@@ -907,10 +907,15 @@ language-neutral (the LCD-hero precedent).
     check error instead of silent placeholder); publish refuses
     `🔧临时替代` assets unless registered as exceptions; registry mirror
     joins sync-data (the capability-gate integration pattern).
-- [ ] PR J2: .ai sources into the pipeline (P2)
-  - Status: `in progress` — `data/asset_sources.csv` records the master hash,
-    scope, dimensions, and Feishu attachment pointer; the generator candidate
-    policy is captured separately. Attachment sync/export automation remains.
+- [x] PR J2: .ai sources into the pipeline (P2; done 2026-07-15)
+  - Status: `done` — the JE-1000F US PDF-compatible `.ai` master is live in the
+    business Base attachment column; a 2026-07-15 download was byte-identical
+    to the delivered 26 MB file and matched the full SHA-256 in
+    `data/asset_sources.csv`. The maintainer workflow now covers hash-first
+    duplicate detection, attachment upload, downloaded-hash verification, and
+    the exact record pointer. ExtendScript batch export was evaluated and
+    deferred until at least two masters establish a stable artboard contract;
+    registered manual exports remain the controlled projection meanwhile.
   - Done when: designers' .ai files live in the registry's attachment
     column with content hashes; the one-page designer workflow (deliver →
     register → sync) is documented; optional ExtendScript batch export

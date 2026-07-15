@@ -290,6 +290,52 @@ python build.py asset-check --publish --asset-key operation/ac_output --asset-fo
 源文件元数据见 [`data/asset_sources.csv`](../data/asset_sources.csv)：它记录完整
 `.ai` SHA-256、页数、版面尺寸、适用范围和 Feishu 附件指针；不记录本地桌面路径。
 
+### 4.9.1 `.ai` 交付与登记一页流程
+
+设计师只需交付 `.ai` 和约定导出物；维护者负责登记。业务面单一真相是
+`文档构建` Base（`LD3lb4G1ua4GOVs1vxAc9W2enje`）中的 `插图资产表`
+（`tblxFBWaDG4OYhqu`），附件字段是 `.ai源`。大文件不进入 Git。
+
+1. 在文件所在目录计算完整 SHA-256，核对文件名与字节数，并把页数/画板数、成品尺寸、
+   Illustrator 版本、修订信息和完整哈希记入 `data/asset_sources.csv`。对 PDF-compatible AI，
+   可用 `pdfinfo <file.ai>` 读取页数和生成器；修订表与印刷标题栏不一致时分别记录，
+   不擅自合并成一个版本号。
+2. 先按 `asset_key` 查记录及 `.ai源`，下载已有附件并比较哈希。哈希相同就停止，
+   不重复上传：
+
+   ```bash
+   lark-cli base +record-search --as user \
+     --base-token LD3lb4G1ua4GOVs1vxAc9W2enje \
+     --table-id tblxFBWaDG4OYhqu \
+     --keyword 'source/<master-key>' --search-field asset_key \
+     --field-id asset_key --field-id '.ai源' --field-id 内容哈希 --format json
+
+   lark-cli base +record-download-attachment --as user \
+     --base-token LD3lb4G1ua4GOVs1vxAc9W2enje \
+     --table-id tblxFBWaDG4OYhqu --record-id <record_id> \
+     --file-token <file_token> --output ./downloaded-master.ai
+   shasum -a 256 ./downloaded-master.ai
+   ```
+
+3. 仅当附件为空或哈希不同且本次确为新修订时上传。`--file` 必须是当前目录下的
+   相对路径；该命令会向附件单元格追加文件，因此不能用它制造同版本副本：
+
+   ```bash
+   lark-cli base +record-upload-attachment --as user \
+     --base-token LD3lb4G1ua4GOVs1vxAc9W2enje \
+     --table-id tblxFBWaDG4OYhqu --record-id <record_id> \
+     --field-id '.ai源' --file ./master.ai
+   ```
+
+4. 回下载新 `file_token`，再次比较完整 SHA-256；一致后才更新飞书 `内容哈希`、
+   Git 中的 `data/asset_sources.csv` 精确记录指针，以及导出物的短哈希。旧修订是否
+   移除由维护者在确认新修订可打开、可导出后单独决定。
+
+当前批量导出结论：先不引入 ExtendScript。现有种子只有一个 59 画板主文件，且
+画板命名/导出范围尚未形成跨产品稳定契约；Illustrator 30.6（Windows）自动化会
+把桌面版本依赖带进构建链。先保留人工导出 + 注册表哈希门；累计至少两个主文件并
+固化画板命名后，再按 `indesign_finalize.jsx` 的模式评估独立、可重跑的批量导出脚本。
+
 ## 5. 首跑清单（一次性，做完划掉）
 
 - [ ] **命中率基线**：跑一次真实的 docx 预翻译，`tm_hit_rate stats` 出现

@@ -789,3 +789,17 @@ What changed:
 Why it mattered:
 
 - The workspace census × esp-docs comparison showed auto-manual's defenses concentrated on content correctness while the blind spots concentrated on publication sustainability and maintainer hand-over. Milestone I converts those unknown-unknowns into sensors — and the sensors validated themselves immediately: I3 caught a rebuilt venv on day one, I1 caught live trilingual-preface debt, I5's first drill exposed the 2/20 schema-mirror gap.
+
+## 50. 2026-07-15: Editable AI Source Handoff (Milestone J, J2)
+
+What changed:
+
+- verified the first PDF-compatible Illustrator master through the complete control-plane loop: local delivery → business Base `.ai源` attachment → Base download, with the 26 MB files byte-identical and the full SHA-256 matching `data/asset_sources.csv`
+- replaced the generic attachment pointer with the exact Base table/record pointer while keeping the editable source out of Git
+- documented the maintainer handoff as a hash-first, duplicate-safe workflow: inspect the existing attachment, upload only a genuinely new revision, download it again, then update the registry metadata and export hashes
+- evaluated ExtendScript batch export and deferred it until at least two masters establish stable artboard names and export scopes; the current single seed remains manual-exported behind registry hash checks
+
+Why it mattered:
+
+- the asset loop now proves that the attached editable source is the file named by the repo manifest, instead of trusting filename and size alone
+- designers can hand off source files without needing repository access, while maintainers retain an auditable, repeatable registration path

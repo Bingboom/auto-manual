@@ -379,6 +379,7 @@ Current flow:
 12. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
 13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
 14. `python build.py asset-check` validates the image-asset registry and resolves approved exports for renderer imports; use `--allow-temporary` only for drafts and `--publish` for the stricter status gate
+    - editable `.ai` deliveries stay out of Git; the maintainer follows [`closed_loop_ops_guide.md` §4.9.1](closed_loop_ops_guide.md#491-ai-交付与登记一页流程) for hash-first duplicate detection, Base attachment upload, and download verification
 15. `python tools/process_docs/build_review_preview.py` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
 16. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
 17. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target

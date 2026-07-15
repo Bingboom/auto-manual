@@ -56,6 +56,9 @@ and [`data/asset_generation_candidates.csv`](data/asset_generation_candidates.cs
 records which visual candidates may or may not be sent to an image generator.
 `asset-check` resolves only approved exports by default; a temporary asset must
 be explicitly opted into for a draft and cannot be treated as a publish asset.
+The maintainer-side `.ai` handoff, duplicate check, attachment upload, and
+downloaded-hash verification are documented in the
+[`closed_loop_ops_guide`](user-guide/closed_loop_ops_guide.md#491-ai-交付与登记一页流程).
 
 For an editable InDesign handoff that follows the LaTeX reference pagination:
 
