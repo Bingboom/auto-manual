@@ -1,6 +1,6 @@
 # 闭环运营手册（操作者版）
 
-Updated: 2026-07-02
+Updated: 2026-07-15
 
 这是 Milestone G（G0–G7，PR #514–#521）交付的闭环机制的**操作者视角**说明：
 日常要跑什么命令、什么时候跑、看到什么算正常。实现细节和字段含义在
@@ -269,7 +269,7 @@ python tools/bitable_schema.py seed-import --base-token <scratch> \
 4 缺失**；缺失清单即向设计侧的要图清单。后续：P1 资产解析器+publish 门，
 P2 .ai 入附件列+导出自动化，P3 release manifest 加 assets 段。
 
-### 4.9.1 构建链路入口（已接入）
+### 4.9.1 构建链路与母版 intake 入口（已接入）
 
 仓库把注册表变成可调用的构建入口：
 
@@ -278,12 +278,29 @@ python build.py asset-check --json
 python build.py asset-check --asset-key operation/ac_output --asset-format png --json
 python build.py asset-check --asset-key hero/lcd_display --asset-format png --allow-temporary
 python build.py asset-check --publish --asset-key operation/ac_output --asset-format png
+python build.py asset-intake \
+  --asset-source-key source/manual_je1000f_us_master \
+  --asset-source-file '<local-master.ai>' \
+  --asset-recipe data/asset_recipes/manual_je1000f_us_master.json \
+  --asset-output-root .tmp/asset-intake/manual_je1000f_us_master/run-01
 ```
 
 含义分别是：盘点注册表、解析一个成品导出、仅在草稿中显式解析临时替代、
 以及执行发布态的成品门。`asset-check` 会校验导出文件存在且哈希前缀一致；
 不会把桌面 `.ai` 路径写进构建结果。PR #662 的无字矢量试点仍兼容其过渡目录，
 解析结果会落到 `docs/renderers/latex/assets/`。
+
+`asset-intake` 是独立的 package-only 入口。它先把源复制到权限受限的临时目录并
+核对完整 SHA，再只从这个快照拆分；完成后再次核对外部源，输出 59 个清理后的
+单页 PDF、页面预览、recipe 导出物、`manifest.json`、`artifacts.csv` 和固定顺序/
+时间戳的 ZIP。源、工作树、注册表和 Base 都不会被命令改写。输出目录必须不存在；
+运行时版本、完整哈希、路径、像素预算或 raw/decoded PDF 私有标记任一不合约即整批
+失败且不发布半成品目录。
+
+Recipe 的文字契约按可本地化风险区分：`textless` 必须零可见字符，
+`numeric-only` 只允许数字，`fixed-product-markings` 只允许设备实物上不会随手册语言
+变化的丝印/按钮标记，`localized-full-page` 必须按语言与区域隔离。设备上的 POWER、
+AC、DC/USB 等固定丝印不能被误记成“零文字”，也不能借该策略放入可本地化说明正文。
 
 后续生图工具只读取 [`data/asset_generation_candidates.csv`](../data/asset_generation_candidates.csv)：
 `generator_allowed=TRUE` 才能生成候选图；产品结构、LCD、按钮、端口、二维码、
@@ -305,7 +322,12 @@ python build.py asset-check --publish --asset-key operation/ac_output --asset-fo
    Illustrator 版本、修订信息和完整哈希记入 `data/asset_sources.csv`。对 PDF-compatible AI，
    可用 `pdfinfo <file.ai>` 读取页数和生成器；修订表与印刷标题栏不一致时分别记录，
    不擅自合并成一个版本号。
-2. 先在 `04_资产源文件` 按 `source_key` 查记录及 `source_file`，下载已有附件
+2. 对 PDF-compatible AI 先运行 `asset-intake`。使用 recipe 声明的 source key，
+   `--asset-output-root` 指向一个不存在的新目录；至少重跑两次并比较整树，确认
+   manifest/CSV/ZIP/全部 PDF/PNG 逐字节相同、所有获批导出命中完整预期哈希、输出 PDF
+   不含 `AIPrivateData` / `PieceInfo` / `AIMetaData`，且源文件前后 SHA 不变。隔离页和
+   `visual_review_required=true` 的资产不得借此自动放行。
+3. 先在 `04_资产源文件` 按 `source_key` 查记录及 `source_file`，下载已有附件
    并比较哈希。哈希相同就停止，
    不重复上传：
 
@@ -323,8 +345,9 @@ python build.py asset-check --publish --asset-key operation/ac_output --asset-fo
    shasum -a 256 ./downloaded-master.ai
    ```
 
-3. 仅当附件为空或哈希不同且本次确为新修订时上传。`--file` 必须是当前目录下的
-   相对路径；该命令会向附件单元格追加文件，因此不能用它制造同版本副本：
+4. 仅当附件为空或哈希不同且本次确为新修订时上传。`source_file` 放原始 AI，
+   `asset_package` 放确定性 ZIP，`manifest_file` 放匹配的 manifest；`--file` 必须是
+   当前目录下的相对路径。附件命令会向单元格追加文件，不能用它制造同版本副本：
 
    ```bash
    lark-cli base +record-upload-attachment --as user \
@@ -333,15 +356,16 @@ python build.py asset-check --publish --asset-key operation/ac_output --asset-fo
      --field-id source_file --file ./master.ai
    ```
 
-4. 回下载新 `file_token`，再次比较完整 SHA-256；一致后才更新飞书
-   `source_sha256`、
-   Git 中的 `data/asset_sources.csv` 精确记录指针，以及导出物的短哈希。旧修订是否
-   移除由维护者在确认新修订可打开、可导出后单独决定。
+5. 分别回下载 AI、ZIP 和 manifest 的新 `file_token`，再次比较完整 SHA-256；三者
+   一致后才更新飞书 `source_sha256` / `package_sha256` / `manifest_sha256`、Git 中的
+   `data/asset_sources.csv` 精确记录指针，以及 `04_资产定义` / `04_资产导出物` 的
+   recipe 资产、物理文件、scope、gate、repo path 和完整内容哈希。旧修订是否移除由
+   维护者在确认新修订可打开、可导出后单独决定。
 
-当前批量导出结论：先不引入 ExtendScript。现有种子只有一个 59 画板主文件，且
-画板命名/导出范围尚未形成跨产品稳定契约；Illustrator 30.6（Windows）自动化会
-把桌面版本依赖带进构建链。先保留人工导出 + 注册表哈希门；累计至少两个主文件并
-固化画板命名后，再按 `indesign_finalize.jsx` 的模式评估独立、可重跑的批量导出脚本。
+当前仍不引入 ExtendScript。PDF-compatible AI 走上述确定性 PDF 拆分；非 PDF-compatible
+文件、Illustrator 原生图层/画板语义和需要设计重绘的资产仍由设计工具处理。累计至少
+两个主文件并固化原生画板命名后，再按 `indesign_finalize.jsx` 的模式评估独立、可重跑
+的 Illustrator 批量导出脚本。
 
 ## 5. 首跑清单（一次性，做完划掉）
 

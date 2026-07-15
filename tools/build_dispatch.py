@@ -34,7 +34,7 @@ class DispatchContext:
     release_manifest_command: Callable[[argparse.Namespace], list[str]]
     clean_build_artifacts: Callable[[Path], None]
     maybe_sync_review_before_build: Callable[..., None]
-    run_asset_check: Callable[[argparse.Namespace], None] | None = None
+    run_asset_command: Callable[[argparse.Namespace], None] | None = None
 
 
 ActionHandler = Callable[[argparse.Namespace, DispatchContext], None]
@@ -62,10 +62,10 @@ def _dispatch_check_action(args: argparse.Namespace, context: DispatchContext) -
     context.run_check(args)
 
 
-def _dispatch_asset_check_action(args: argparse.Namespace, context: DispatchContext) -> None:
-    if context.run_asset_check is None:
-        raise RuntimeError("asset-check is not wired into this build entrypoint")
-    context.run_asset_check(args)
+def _dispatch_asset_action(args: argparse.Namespace, context: DispatchContext) -> None:
+    if context.run_asset_command is None:
+        raise RuntimeError("asset commands are not wired into this build entrypoint")
+    context.run_asset_command(args)
 
 
 def _dispatch_sync_review_action(args: argparse.Namespace, context: DispatchContext) -> None:
@@ -182,7 +182,8 @@ ACTION_HANDLERS: dict[str, ActionHandler] = {
     "validate": _dispatch_validate_action,
     "idml": _dispatch_idml_action,
     "doctor": _dispatch_doctor_action,
-    "asset-check": _dispatch_asset_check_action,
+    "asset-check": _dispatch_asset_action,
+    "asset-intake": _dispatch_asset_action,
     "review": _dispatch_review_action,
     "check": _dispatch_check_action,
     "sync-review": _dispatch_sync_review_action,
@@ -238,7 +239,7 @@ def dispatch_action(
     release_manifest_command: Callable[[argparse.Namespace], list[str]],
     clean_build_artifacts: Callable[[Path], None],
     maybe_sync_review_before_build: Callable[[argparse.Namespace], None],
-    run_asset_check: Callable[[argparse.Namespace], None] | None = None,
+    run_asset_command: Callable[[argparse.Namespace], None] | None = None,
 ) -> None:
     context = DispatchContext(
         config_path=config_path,
@@ -267,7 +268,7 @@ def dispatch_action(
         release_manifest_command=release_manifest_command,
         clean_build_artifacts=clean_build_artifacts,
         maybe_sync_review_before_build=maybe_sync_review_before_build,
-        run_asset_check=run_asset_check,
+        run_asset_command=run_asset_command,
     )
     context.ensure_supported_staging_action(args)
     ACTION_HANDLERS.get(args.action, _dispatch_build_action)(args, context)

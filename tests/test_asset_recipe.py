@@ -242,8 +242,12 @@ class TestAssetRecipe(unittest.TestCase):
         self.assertEqual(59, len(recipe.page_catalog))
         self.assertEqual(10, len(recipe.assets))
         self.assertEqual(
-            6,
-            sum(row.gate.status == "quarantine" for row in recipe.page_catalog),
+            {21, 22, 39, 40, 57, 58, 59},
+            {row.page for row in recipe.page_catalog if row.gate.status == "quarantine"},
+        )
+        self.assertEqual(
+            {"textless", "fixed-product-markings", "localized-full-page"},
+            {asset.text_policy for asset in recipe.assets},
         )
         self.assertTrue(
             any(

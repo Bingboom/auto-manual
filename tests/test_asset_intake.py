@@ -31,7 +31,7 @@ from tools.asset_pipeline.models import (
     AssetIntakeError,
     SourceValidationError,
 )
-from tools.asset_pipeline.package import run_intake
+from tools.asset_pipeline.package import result_summary, run_intake
 from tools.asset_pipeline.recipe import load_recipe
 
 
@@ -41,7 +41,13 @@ def _sha256(path: Path) -> str:
 
 @unittest.skipIf(fitz is None, "PyMuPDF not installed")
 class TestAssetIntake(unittest.TestCase):
-    def _make_source(self, path: Path, *, page_count: int = 59) -> str:
+    def _make_source(
+        self,
+        path: Path,
+        *,
+        page_count: int = 59,
+        label_prefix: str = "label",
+    ) -> str:
         document = fitz.open()
         for page_index in range(page_count):
             if page_index == 0 and page_count == 59:
@@ -50,7 +56,7 @@ class TestAssetIntake(unittest.TestCase):
                 width, height = 120, 180
             page = document.new_page(width=width, height=height)
             page.draw_rect(fitz.Rect(10, 10, min(110, width - 5), min(100, height - 5)))
-            page.insert_text((20, 40), f"label-{page_index + 1}", fontsize=9)
+            page.insert_text((20, 40), f"{label_prefix}-{page_index + 1}", fontsize=9)
         document.save(
             str(path),
             garbage=4,
@@ -138,6 +144,10 @@ class TestAssetIntake(unittest.TestCase):
             self.assertEqual(self._tree_hashes(first.output_root), self._tree_hashes(second.output_root))
             self.assertEqual(_sha256(first.manifest_path), _sha256(second.manifest_path))
             self.assertEqual(_sha256(first.package_path), _sha256(second.package_path))
+            self.assertEqual(
+                _sha256(first.manifest_path),
+                result_summary(first)["manifest_sha256"],
+            )
 
             manifest_bytes = first.manifest_path.read_bytes()
             manifest = json.loads(manifest_bytes)
@@ -255,6 +265,110 @@ class TestAssetIntake(unittest.TestCase):
                 run_intake(source_path=source, recipe=recipe, output_root=output_root)
 
             self.assertFalse(output_root.exists())
+
+    def test_non_regular_source_is_rejected_before_staging(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            recipe = self._write_recipe(
+                root / "recipe.json",
+                self._single_page_payload("0" * 64),
+            )
+            output_root = root / "failed-run"
+
+            with self.assertRaisesRegex(SourceValidationError, "not regular"):
+                run_intake(source_path=root, recipe=recipe, output_root=output_root)
+
+            self.assertFalse(output_root.exists())
+            self.assertEqual([], list(root.glob(".failed-run.tmp-*")))
+
+    def test_private_marker_scan_inspects_decoded_pdf_streams(self) -> None:
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / "compressed.pdf"
+            document = fitz.open()
+            page = document.new_page(width=200, height=100)
+            page.insert_text((20, 40), "AIPrivateData PieceInfo AIMetaData")
+            document.save(str(path), garbage=4, clean=True, deflate=True, no_new_id=True)
+            document.close()
+
+            self.assertNotIn(b"AIPrivateData", path.read_bytes())
+            counts = scan_pdf_private_markers(path)
+
+            self.assertTrue(all(count >= 1 for count in counts), counts)
+
+    def test_intake_reads_only_verified_private_source_snapshot(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "source.ai"
+            replacement = root / "replacement.ai"
+            source_sha256 = self._make_source(
+                source,
+                page_count=1,
+                label_prefix="SOURCE-A",
+            )
+            self._make_source(
+                replacement,
+                page_count=1,
+                label_prefix="SOURCE-B",
+            )
+            source_bytes = source.read_bytes()
+            recipe = self._write_recipe(
+                root / "recipe.json",
+                self._single_page_payload(source_sha256),
+            )
+            output_root = root / "complete-run"
+
+            from tools.asset_pipeline import package as asset_package
+
+            original_extract = asset_package.extract_artifacts
+
+            def swap_external_source(snapshot_path, loaded_recipe, artifact_root):
+                source.write_bytes(replacement.read_bytes())
+                try:
+                    return original_extract(snapshot_path, loaded_recipe, artifact_root)
+                finally:
+                    source.write_bytes(source_bytes)
+
+            with patch(
+                "tools.asset_pipeline.package.extract_artifacts",
+                side_effect=swap_external_source,
+            ):
+                run_intake(
+                    source_path=source,
+                    recipe=recipe,
+                    output_root=output_root,
+                )
+
+            archive_page = output_root / "artifacts/archive/pages/page-0001.pdf"
+            with fitz.open(str(archive_page)) as document:
+                archive_text = document[0].get_text()
+            self.assertIn("SOURCE-A-1", archive_text)
+            self.assertNotIn("SOURCE-B-1", archive_text)
+            self.assertEqual(source_sha256, sha256_file(source))
+
+    def test_keyboard_interrupt_removes_private_staging_directory(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "source.ai"
+            source_sha256 = self._make_source(source, page_count=1)
+            recipe = self._write_recipe(
+                root / "recipe.json",
+                self._single_page_payload(source_sha256),
+            )
+            output_root = root / "interrupted-run"
+
+            with patch(
+                "tools.asset_pipeline.package.extract_artifacts",
+                side_effect=KeyboardInterrupt,
+            ):
+                with self.assertRaises(KeyboardInterrupt):
+                    run_intake(
+                        source_path=source,
+                        recipe=recipe,
+                        output_root=output_root,
+                    )
+
+            self.assertFalse(output_root.exists())
+            self.assertEqual([], list(root.glob(".interrupted-run.tmp-*")))
 
     def test_stable_dispatcher_rejects_promotion(self) -> None:
         args = argparse.Namespace(

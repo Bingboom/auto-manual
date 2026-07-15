@@ -60,7 +60,9 @@ PDF_SAVE_CONTRACT = {
     "no_new_id": True,
 }
 FORBIDDEN_PDF_MARKERS = ("AIPrivateData", "PieceInfo", "AIMetaData")
-TEXT_POLICIES = frozenset({"textless", "numeric-only", "localized-full-page"})
+TEXT_POLICIES = frozenset(
+    {"textless", "numeric-only", "fixed-product-markings", "localized-full-page"}
+)
 
 
 def _fail(location: str, message: str) -> RecipeValidationError:

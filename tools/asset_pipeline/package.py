@@ -24,6 +24,7 @@ from tools.asset_pipeline.models import (
     IntakeRecipe,
     IntakeResult,
     SourceInspection,
+    SourceValidationError,
 )
 
 MANIFEST_NAME = "manifest.json"
@@ -243,18 +244,19 @@ def run_intake(
 ) -> IntakeResult:
     """Validate, extract, package, then atomically expose one complete run."""
 
-    inspection = validate_source(source_path, recipe)
+    if not source_path.is_file():
+        raise SourceValidationError(f"source file does not exist or is not regular: {source_path}")
     staging = _prepare_staging(output_root)
     try:
+        source_snapshot = staging / f".source-snapshot{source_path.suffix or '.bin'}"
+        shutil.copyfile(source_path, source_snapshot)
+        inspection = validate_source(source_snapshot, recipe)
+        if sha256_file(source_path) != inspection.sha256:
+            raise AssetIntakeError("source bytes changed while creating the intake snapshot")
         artifact_root = staging / "artifacts"
         artifact_root.mkdir()
-        artifacts = extract_artifacts(source_path, recipe, artifact_root)
-        source_sha256_after = sha256_file(source_path)
-        if source_sha256_after != inspection.sha256:
-            raise AssetIntakeError(
-                "source bytes changed during intake: "
-                f"started at {inspection.sha256}, ended at {source_sha256_after}"
-            )
+        artifacts = extract_artifacts(source_snapshot, recipe, artifact_root)
+        source_snapshot.unlink()
         artifacts_csv_path = staging / ARTIFACTS_CSV_NAME
         artifacts_csv_path.write_bytes(canonical_artifacts_csv_bytes(artifacts))
         artifacts_csv_sha256 = sha256_file(artifacts_csv_path)
@@ -277,8 +279,14 @@ def run_intake(
             root=staging,
             relative_paths=tuple(package_members),
         )
+        source_sha256_after = sha256_file(source_path)
+        if source_sha256_after != inspection.sha256:
+            raise AssetIntakeError(
+                "source bytes changed during intake: "
+                f"started at {inspection.sha256}, ended at {source_sha256_after}"
+            )
         staging.rename(output_root)
-    except Exception:
+    except BaseException:
         shutil.rmtree(staging, ignore_errors=True)
         raise
     return IntakeResult(
@@ -302,6 +310,7 @@ def result_summary(result: IntakeResult) -> dict[str, Any]:
         "artifacts_csv": ARTIFACTS_CSV_NAME,
         "artifacts_csv_sha256": sha256_file(result.artifacts_csv_path),
         "manifest": MANIFEST_NAME,
+        "manifest_sha256": sha256_file(result.manifest_path),
         "package": PACKAGE_NAME,
         "package_sha256": sha256_file(result.package_path),
     }

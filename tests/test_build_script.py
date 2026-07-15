@@ -200,6 +200,30 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("doctor", args.action)
         self.assertEqual("configs/config.ja.yaml", args.config)
 
+    def test_parse_args_should_support_asset_intake_contract(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "asset-intake",
+                "--asset-source-key",
+                "source/manual_je1000f_us_master",
+                "--asset-source-file",
+                "/tmp/master.ai",
+                "--asset-recipe",
+                "data/asset_recipes/manual_je1000f_us_master.json",
+                "--asset-output-root",
+                "/tmp/asset-intake/run-01",
+            ]
+        )
+
+        self.assertEqual("asset-intake", args.action)
+        self.assertEqual("source/manual_je1000f_us_master", args.asset_source_key)
+        self.assertEqual(Path("/tmp/master.ai"), args.asset_source_file)
+        self.assertEqual(
+            Path("data/asset_recipes/manual_je1000f_us_master.json"),
+            args.asset_recipe,
+        )
+        self.assertEqual(Path("/tmp/asset-intake/run-01"), args.asset_output_root)
+
     def test_parse_args_should_support_message_control_dry_run(self) -> None:
         args = build_cli.parse_args(
             [

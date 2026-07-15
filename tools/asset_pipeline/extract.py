@@ -87,9 +87,58 @@ def _count_markers(handle: BinaryIO) -> dict[bytes, int]:
     return counts
 
 
+def _count_markers_in_bytes(data: bytes) -> dict[bytes, int]:
+    counts = {marker: 0 for marker in PDF_PRIVATE_MARKERS}
+    for marker in PDF_PRIVATE_MARKERS:
+        offset = 0
+        while True:
+            found = data.find(marker, offset)
+            if found < 0:
+                break
+            counts[marker] += 1
+            offset = found + 1
+    return counts
+
+
+def _logical_pdf_marker_counts(path: Path) -> dict[bytes, int]:
+    """Inspect decoded objects/streams so compression cannot hide markers."""
+
+    counts = {marker: 0 for marker in PDF_PRIVATE_MARKERS}
+    fitz = _fitz()
+    try:
+        document = fitz.open(str(path))
+    except Exception as exc:
+        raise ArtifactValidationError(
+            f"cannot inspect PDF private markers in {path}: {exc}"
+        ) from exc
+    try:
+        for xref in range(1, document.xref_length()):
+            try:
+                object_bytes = document.xref_object(xref, compressed=False).encode(
+                    "latin-1", errors="ignore"
+                )
+                stream_bytes = document.xref_stream(xref) or b""
+            except Exception as exc:
+                raise ArtifactValidationError(
+                    f"cannot inspect PDF object {xref} in {path}: {exc}"
+                ) from exc
+            for payload in (object_bytes, stream_bytes):
+                payload_counts = _count_markers_in_bytes(payload)
+                for marker, count in payload_counts.items():
+                    counts[marker] += count
+    finally:
+        document.close()
+    return counts
+
+
 def scan_pdf_private_markers(path: Path) -> tuple[int, int, int]:
     with path.open("rb") as handle:
-        counts = _count_markers(handle)
+        physical_counts = _count_markers(handle)
+    logical_counts = _logical_pdf_marker_counts(path)
+    counts = {
+        marker: max(physical_counts[marker], logical_counts[marker])
+        for marker in PDF_PRIVATE_MARKERS
+    }
     return counts[b"AIPrivateData"], counts[b"AIMetaData"], counts[b"PieceInfo"]
 
 

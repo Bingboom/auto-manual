@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from pathlib import Path
 
 
 def parse_args(
@@ -19,6 +20,7 @@ def parse_args(
             "validate",
             "doctor",
             "asset-check",
+            "asset-intake",
             *build_actions,
             "idml",
             "review",
@@ -278,6 +280,29 @@ def parse_args(
         "--publish",
         action="store_true",
         help="For asset-check: require every selected asset to be ✅成品",
+    )
+    ap.add_argument(
+        "--asset-source-key",
+        default=None,
+        help="For asset-intake: stable source key declared by the extraction recipe",
+    )
+    ap.add_argument(
+        "--asset-source-file",
+        type=Path,
+        default=None,
+        help="For asset-intake: local PDF-compatible Illustrator source file",
+    )
+    ap.add_argument(
+        "--asset-recipe",
+        type=Path,
+        default=None,
+        help="For asset-intake: strict versioned extraction recipe JSON",
+    )
+    ap.add_argument(
+        "--asset-output-root",
+        type=Path,
+        default=None,
+        help="For asset-intake: new isolated package directory; it must not already exist",
     )
     ap.set_defaults(wait_for_completion=True)
     ap.add_argument(

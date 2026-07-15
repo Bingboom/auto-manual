@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": ["AIPrivateData", "PieceInfo", "AIMetaData"],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_je1000f_us_master",
+    "expected_sha256": "ee1fd9367021c99b3a16e14dc8aa702929c71ac4c98c7132816da05d90ce06ed",
+    "expected_page_count": 59
+  },
+  "archive": {
+    "pages": {"first": 1, "last": 59},
+    "pdf": {"path_pattern": "archive/pages/page-{page:04d}.pdf"},
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {"1": 0.25}
+    }
+  },
+  "page_catalog": [
+    {"page": 1, "page_key": "engineering_overview", "role": "engineering_overview", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": ["engineering imposition overview; never a build page"]}, "risk_tags": ["engineering-overview"]},
+    {"page": 2, "page_key": "cover_front", "role": "cover_front", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 3, "page_key": "frontmatter_important", "role": "frontmatter", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 4, "page_key": "frontmatter_toc", "role": "frontmatter", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 5, "page_key": "en_01", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 6, "page_key": "en_02", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 7, "page_key": "en_03", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 8, "page_key": "en_04", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 9, "page_key": "en_05", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 10, "page_key": "en_06", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 11, "page_key": "en_07", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 12, "page_key": "en_08", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 13, "page_key": "en_09", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 14, "page_key": "en_10", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 15, "page_key": "en_11", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 16, "page_key": "en_12", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 17, "page_key": "en_13", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 18, "page_key": "en_14", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 19, "page_key": "en_15", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 20, "page_key": "en_16", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 21, "page_key": "en_17_app", "role": "app_page", "locale": "en", "build_eligible": false, "gate": {"status": "quarantine", "reasons": ["contains app UI, QR, or model-specific screenshots requiring visual review"]}, "risk_tags": ["app-ui", "qr", "screenshot"]},
+    {"page": 22, "page_key": "en_18_app", "role": "app_page", "locale": "en", "build_eligible": false, "gate": {"status": "quarantine", "reasons": ["contains app UI, QR, or model-specific screenshots requiring visual review"]}, "risk_tags": ["app-ui", "qr", "screenshot"]},
+    {"page": 23, "page_key": "fr_01", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 24, "page_key": "fr_02", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 25, "page_key": "fr_03", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 26, "page_key": "fr_04", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 27, "page_key": "fr_05", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 28, "page_key": "fr_06", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 29, "page_key": "fr_07", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 30, "page_key": "fr_08", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 31, "page_key": "fr_09", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 32, "page_key": "fr_10", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 33, "page_key": "fr_11", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 34, "page_key": "fr_12", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 35, "page_key": "fr_13", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 36, "page_key": "fr_14", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 37, "page_key": "fr_15", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 38, "page_key": "fr_16", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 39, "page_key": "fr_17_app", "role": "app_page", "locale": "fr", "build_eligible": false, "gate": {"status": "quarantine", "reasons": ["contains localized app UI, QR, or model-specific screenshots requiring visual review"]}, "risk_tags": ["app-ui", "qr", "screenshot", "localized-ui"]},
+    {"page": 40, "page_key": "fr_18_app", "role": "app_page", "locale": "fr", "build_eligible": false, "gate": {"status": "quarantine", "reasons": ["contains localized app UI, QR, or model-specific screenshots requiring visual review"]}, "risk_tags": ["app-ui", "qr", "screenshot", "localized-ui"]},
+    {"page": 41, "page_key": "es_01", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 42, "page_key": "es_02", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 43, "page_key": "es_03", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 44, "page_key": "es_04", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 45, "page_key": "es_05", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 46, "page_key": "es_06", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 47, "page_key": "es_07", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 48, "page_key": "es_08", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 49, "page_key": "es_09", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 50, "page_key": "es_10", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 51, "page_key": "es_11", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 52, "page_key": "es_12", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 53, "page_key": "es_13", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 54, "page_key": "es_14", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 55, "page_key": "es_15", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 56, "page_key": "es_16", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 57, "page_key": "es_17_app", "role": "app_page", "locale": "es", "build_eligible": false, "gate": {"status": "quarantine", "reasons": ["contains localized app UI, QR, or model-specific screenshots requiring visual review"]}, "risk_tags": ["app-ui", "qr", "screenshot", "localized-ui"]},
+    {"page": 58, "page_key": "es_18_app", "role": "app_page", "locale": "es", "build_eligible": false, "gate": {"status": "quarantine", "reasons": ["contains localized app UI, QR, or model-specific screenshots requiring visual review"]}, "risk_tags": ["app-ui", "qr", "screenshot", "localized-ui"]},
+    {"page": 59, "page_key": "cover_back", "role": "cover_back", "locale": "en", "build_eligible": false, "gate": {"status": "quarantine", "reasons": ["contains a printed QR target and regional legal/contact content requiring verification"]}, "risk_tags": ["qr", "external-link", "localized-text", "legal-text", "regional-content"]}
+  ],
+  "assets": [
+    {
+      "asset_key": "hero/lcd_display",
+      "page": 9,
+      "build_eligible": true,
+      "scope": {"models": ["JE-1000F"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [46.5, 50.855, 315.5, 209.57482]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/lcd_display_hero_v2.pdf", "expected_sha256": "172f837bf4c0f0b81408c671537819b895255b216306d1b740df7e2b5089eb8c"},
+        {"format": "png", "path": "docs/renderers/latex/assets/lcd_display_hero_v2.png", "scale": 4, "expected_sha256": "f82efe218bc0b63cb953aced0c85f7c9553935e68d5cf70a3577df9212f550ce"},
+        {"format": "png", "path": "docs/templates/word_template/common_assets/lcd/lcd_map.png", "scale": 4, "expected_sha256": "f82efe218bc0b63cb953aced0c85f7c9553935e68d5cf70a3577df9212f550ce"}
+      ],
+      "gate": {"status": "approved", "reasons": ["numeric callouts and immutable LCD UI markings match the current repository export"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "operation/main_power",
+      "page": 11,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [31.1, 75.2, 337.8, 194.9]},
+        {"op": "redact_text", "images": "preserve", "graphics": "remove_if_touched", "fill": null},
+        {"op": "whiteout", "bbox_pt": [174, 134, 193, 145]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/op_main_power.pdf", "expected_sha256": "fc35c51b0c484becde9910d99929cd0869354c04390d0f44022d0711d5846eb8"},
+        {"format": "png", "path": "docs/renderers/latex/assets/op_main_power.png", "scale": 4, "expected_sha256": "74004806e6c0996fb77b2260c046e055194855a96bed97c519bb58c292e3b5e2"},
+        {"format": "png", "path": "docs/templates/word_template/common_assets/operation/main_power.png", "scale": 4, "expected_sha256": "74004806e6c0996fb77b2260c046e055194855a96bed97c519bb58c292e3b5e2"}
+      ],
+      "gate": {"status": "approved", "reasons": ["localized instruction copy is removed; immutable product markings match the current repository PNG"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "operation/ac_output",
+      "page": 11,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [30.6, 277.8, 337.3, 492.6]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/op_ac_output.pdf", "expected_sha256": "5a4b5ebcee18c5b0be85ac2e9602d84be9250cf3d9e0f8d3243cb3db48bdfa43"},
+        {"format": "png", "path": "docs/renderers/latex/assets/op_ac_output.png", "scale": 4, "expected_sha256": "43a46a51a98773dd307ff35dd1ac684790109b2b8c437f87ceacbc3636bc1d75"},
+        {"format": "png", "path": "docs/templates/word_template/common_assets/operation/ac_output.png", "scale": 4, "expected_sha256": "43a46a51a98773dd307ff35dd1ac684790109b2b8c437f87ceacbc3636bc1d75"}
+      ],
+      "gate": {"status": "approved", "reasons": ["localized instruction copy is removed; immutable product markings match the current repository PNG"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "operation/dc_usb_output",
+      "page": 12,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [30.6, 46.7, 337.3, 223.8]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/op_dc_usb_output.pdf", "expected_sha256": "6b3c3e999998a25c61266e77c9eaedbc910d609751ff88d4269791a9555bb5db"},
+        {"format": "png", "path": "docs/renderers/latex/assets/op_dc_usb_output.png", "scale": 4, "expected_sha256": "c46c92d6ee991a400208635802b5d2682f215cacaa748a3ca73068fdb18cdec3"},
+        {"format": "png", "path": "docs/templates/word_template/common_assets/operation/dc_usb_output.png", "scale": 4, "expected_sha256": "c46c92d6ee991a400208635802b5d2682f215cacaa748a3ca73068fdb18cdec3"}
+      ],
+      "gate": {"status": "approved", "reasons": ["localized instruction copy is removed; immutable product markings match the current repository PNG"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "button/power",
+      "page": 14,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [45.1, 209, 68.4, 232.3]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/button_power.pdf", "expected_sha256": "8a970d032af009f1a22fe256ae2120e1d5b7bc50890d3fc16cedde4a405249a8"},
+        {"format": "png", "path": "docs/renderers/latex/assets/button_power.png", "scale": 8, "expected_sha256": "2ffaa205db7940e9725568e45a334537037cbd2869933dc4c7a1102b6fd56efc"}
+      ],
+      "gate": {"status": "approved", "reasons": ["button export contains only the immutable product marking and matches the current repository PNG"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "button/ac",
+      "page": 14,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [106.4, 209, 129.7, 232.3]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/button_ac.pdf", "expected_sha256": "2138dc3975f84374f6b1eae45eb87c3605bf9bb436b0e73c7572e50ca2fed918"},
+        {"format": "png", "path": "docs/renderers/latex/assets/button_ac.png", "scale": 8, "expected_sha256": "5f9354fc203ac14ac6b23f972b5280365830bc6de87af47ed2b06ea1935b89fc"}
+      ],
+      "gate": {"status": "approved", "reasons": ["button export contains only the immutable product marking and matches the current repository PNG"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "button/dc_usb",
+      "page": 14,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [106.4, 244.5, 129.6, 267.8]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/button_dc_usb.pdf", "expected_sha256": "efe54f7c145e21184756331697422121ae3efa80ec733c6890abbdedd87fa657"},
+        {"format": "png", "path": "docs/renderers/latex/assets/button_dc_usb.png", "scale": 8, "expected_sha256": "765c22b94adb65655c638992c3ebdce43454a14e629252e56a0d8a2b3713e4e0"}
+      ],
+      "gate": {"status": "approved", "reasons": ["button export contains only the immutable product marking and matches the current repository PNG"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "button/led",
+      "page": 14,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [106.4, 314.2, 129.6, 337.5]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/button_led.pdf", "expected_sha256": "9482455a41b7a6b812834b740c0138f070e36d0f6d90fa39834742cc91af34cd"},
+        {"format": "png", "path": "docs/renderers/latex/assets/button_led.png", "scale": 8, "expected_sha256": "2b271050dc4ca2c54f2c1945891764385e8326e09bdf54f76ee87e283f789af3"}
+      ],
+      "gate": {"status": "approved", "reasons": ["button export contains only the immutable product marking and matches the current repository PNG"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "icon/clock_3s",
+      "page": 14,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [158.3, 215.6, 170, 227.3]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/icon_clock_3s.pdf", "expected_sha256": "412ae8ad8ac1ecfc787e3a7a4647ddfde88fbf69f30148d3450ec8797b73ccf1"},
+        {"format": "png", "path": "docs/renderers/latex/assets/icon_clock_3s.png", "scale": 8, "expected_sha256": "8d4996ff98941c2dd703f71e5520f911d58e0e68707c0f870fe6018b6aac89fa"}
+      ],
+      "gate": {"status": "approved", "reasons": ["the clock icon contains no visible text and matches the current repository PNG"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "page/back_cover",
+      "page": 59,
+      "build_eligible": false,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [{"op": "crop", "bbox_pt": [0, 0, 368.7869873046875, 524.6920166015625]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/back_cover-en.pdf", "expected_sha256": "b3ec75411a1fd60041952feea1d4f81faddf705efc854abb34f58d5509e938af"},
+        {"format": "png", "path": "docs/renderers/latex/assets/back_cover-en.png", "scale": 3, "expected_sha256": "01214504830dacbfb6bdf42ef1224b97e7dc8d6f8ec58ba21a68de950a0371d8"}
+      ],
+      "gate": {"status": "quarantine", "reasons": ["PNG parity is confirmed, but the printed QR target and regional legal/contact content are not yet verified"]},
+      "risk_tags": ["qr", "external-link", "localized-text", "legal-text", "regional-content"]
+    }
+  ]
+}
