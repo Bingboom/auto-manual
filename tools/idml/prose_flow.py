@@ -1,6 +1,7 @@
 """Natural flow buffering for ordinary IDML prose pages."""
 from __future__ import annotations
 
+from collections.abc import Collection
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
@@ -22,7 +23,8 @@ class ProseFlowBuffer:
 
     def flush(self, emit: EmitProse, slug_stem: SlugStem,
               page_plan: dict | None = None,
-              estimate_pages: EstimatePages | None = None) -> bool:
+              estimate_pages: EstimatePages | None = None,
+              dedicated_stems: Collection[str] = ()) -> bool:
         if not self.items:
             return False
         planned_starts = {
@@ -32,12 +34,24 @@ class ProseFlowBuffer:
         batches: list[list[tuple[str, list[Block], int]]] = []
         for item in self.items:
             key = planned_starts.get(item[0])
-            if not batches or (page_plan is not None
-                               and planned_starts.get(batches[-1][0][0]) != key):
+            dedicated_boundary = (
+                item[0] in dedicated_stems
+                or bool(batches and batches[-1][-1][0] in dedicated_stems)
+            )
+            if (not batches or dedicated_boundary
+                    or (page_plan is not None
+                        and planned_starts.get(batches[-1][0][0]) != key)):
                 batches.append([])
             batches[-1].append(item)
         index = 0
         while estimate_pages and index + 1 < len(batches):
+            if any(
+                stem in dedicated_stems
+                for batch in batches[index:index + 2]
+                for stem, _, _ in batch
+            ):
+                index += 1
+                continue
             start = planned_starts.get(batches[index][0][0])
             next_start = planned_starts.get(batches[index + 1][0][0])
             blocks, columns = self._batch_content(batches[index])

@@ -8,7 +8,14 @@ def layout_tokens(writer, body_w: float) -> tuple[tuple[float, ...], float, floa
     """Resolve LCD column, icon, and cell-padding tokens."""
     no_w = param_pt(writer.params, "comp_lcd_no_col_width", body_w * 0.08)
     icon_w = param_pt(writer.params, "comp_lcd_icon_col_width", body_w * 0.12)
-    label_w = body_w * 0.22
+    raw_label_ratio = writer.params.get(
+        "comp_lcd_label_col_width", ("0.24", "ratio")
+    )[0].replace("\\linewidth", "")
+    try:
+        label_ratio = float(raw_label_ratio)
+    except ValueError:
+        label_ratio = 0.24
+    label_w = body_w * label_ratio
     columns = (no_w, icon_w, label_w, body_w - no_w - icon_w - label_w)
     icon_pt = min(
         param_pt(writer.params, "comp_lcd_icon_width", 24.0),
@@ -19,11 +26,20 @@ def layout_tokens(writer, body_w: float) -> tuple[tuple[float, ...], float, floa
 
 
 def typed_paragraph(writer, style: str, text: str,
-                    size_key: str, leading_key: str) -> str:
+                    size_key: str, leading_key: str, *,
+                    bold: bool = False,
+                    font: str | None = None) -> str:
     """Apply shared typed LCD tokens without replacing the template style."""
     point_size = param_pt(writer.params, size_key, 5.2)
     leading = param_pt(writer.params, leading_key, 5.8)
-    return writer._psr(style, text, terminal=True).replace(
+    font_style = ' FontStyle="Bold"' if bold else ""
+    paragraph = writer._psr(style, text, terminal=True).replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'PointSize="{point_size:g}" Leading="{leading:g}"', 1)
+        f'PointSize="{point_size:g}" Leading="{leading:g}"{font_style}', 1)
+    if font:
+        paragraph = paragraph.replace(
+            '<AppliedFont type="string">Arial Unicode MS</AppliedFont>',
+            f'<AppliedFont type="string">{font}</AppliedFont>',
+        )
+    return paragraph

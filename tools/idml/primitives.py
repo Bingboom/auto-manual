@@ -27,9 +27,9 @@ SYMBOL_FONT_FALLBACK_STYLE = "Regular"
 SYMBOL_FONT_FALLBACKS = {
     "⎓": DIRECT_CURRENT_SYMBOL_FONT,
     "※": GENERAL_SYMBOL_FONT,
-    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖❶❷❸❹❺❻❼❽❾●"},
+    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾●"},
+    **{ch: "Apple SD Gothic Neo" for ch in "㉑㉒㉓㉔㉕㉖㉗"},
 }
-
 PROSE_STYLE = {
     "h1": "HB H1",
     "h2": "HB Title L2",

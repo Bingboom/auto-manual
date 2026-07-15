@@ -59,6 +59,130 @@
         try { return String(item.label || ""); } catch (_) { return ""; }
     }
 
+    function isLcdTableStory(story) {
+        try {
+            return String(story.storyTitle || "").indexOf(" table segment ") > 0;
+        } catch (_) {
+            return false;
+        }
+    }
+
+    function resizeLcdTableShell(frame) {
+        var table = frame.parentStory.tables[0];
+        var frameBounds = frame.geometricBounds;
+        var oldBottom = Number(frameBounds[2]);
+        var tableHeight = 0;
+        for (var ri = 0; ri < table.rows.length; ri += 1) {
+            tableHeight += Number(table.rows[ri].height);
+        }
+        var newBottom = Number(frameBounds[0]) + tableHeight;
+        var delta = newBottom - oldBottom;
+        if (Math.abs(delta) < 0.01) { return false; }
+
+        var oldHeight = oldBottom - Number(frameBounds[0]);
+        var oldWidth = Number(frameBounds[3]) - Number(frameBounds[1]);
+        var siblings = frame.parent.allPageItems;
+        for (var si = 0; si < siblings.length; si += 1) {
+            var item = siblings[si];
+            if (item.constructor.name !== "Rectangle") { continue; }
+            var bounds = item.geometricBounds;
+            var itemHeight = Number(bounds[2]) - Number(bounds[0]);
+            var itemWidth = Number(bounds[3]) - Number(bounds[1]);
+            var isFullShell = itemHeight > oldHeight * 0.9 && itemWidth > oldWidth * 0.9;
+            var isBottomMask = !isFullShell &&
+                Math.abs(Number(bounds[2]) - oldBottom) < 0.2;
+            if (isFullShell) {
+                bounds[2] = newBottom;
+                item.geometricBounds = bounds;
+            } else if (isBottomMask) {
+                bounds[0] = Number(bounds[0]) + delta;
+                bounds[2] = Number(bounds[2]) + delta;
+                item.geometricBounds = bounds;
+            }
+        }
+        frameBounds[2] = newBottom;
+        frame.geometricBounds = frameBounds;
+        return true;
+    }
+
+    function fitLcdTableShells(doc) {
+        var fitted = 0;
+        var items = doc.allPageItems;
+        for (var ii = 0; ii < items.length; ii += 1) {
+            var frame = items[ii];
+            if (frame.constructor.name !== "TextFrame" ||
+                    frame.parent.constructor.name !== "Group") { continue; }
+            try {
+                if (frame.parentStory.tables.length === 1 &&
+                        isLcdTableStory(frame.parentStory) &&
+                        resizeLcdTableShell(frame)) {
+                    fitted += 1;
+                }
+            } catch (_) {}
+        }
+        doc.recompose();
+        return fitted;
+    }
+
+    function isComposedSymbolTableStory(story) {
+        try {
+            var title = String(story.storyTitle || "");
+            return title === "Signal words" || title.indexOf("Symbol icons ") === 0;
+        } catch (_) {
+            return false;
+        }
+    }
+
+    function resizeComposedTableShell(frame) {
+        var table = frame.parentStory.tables[0];
+        var frameBounds = frame.geometricBounds;
+        var oldBottom = Number(frameBounds[2]);
+        var tableHeight = 0;
+        for (var ri = 0; ri < table.rows.length; ri += 1) {
+            tableHeight += Number(table.rows[ri].height);
+        }
+        var newBottom = Number(frameBounds[0]) + tableHeight + 0.25;
+        if (Math.abs(newBottom - oldBottom) < 0.01) { return false; }
+
+        var pageItems = frame.parentPage.allPageItems;
+        for (var pi = 0; pi < pageItems.length; pi += 1) {
+            var item = pageItems[pi];
+            if (item.constructor.name !== "Rectangle") { continue; }
+            var bounds = item.geometricBounds;
+            var sameShell =
+                Math.abs(Number(bounds[0]) - Number(frameBounds[0])) < 0.2 &&
+                Math.abs(Number(bounds[1]) - Number(frameBounds[1])) < 0.2 &&
+                Math.abs(Number(bounds[2]) - oldBottom) < 0.2 &&
+                Math.abs(Number(bounds[3]) - Number(frameBounds[3])) < 0.2;
+            if (sameShell) {
+                bounds[2] = newBottom;
+                item.geometricBounds = bounds;
+            }
+        }
+        frameBounds[2] = newBottom;
+        frame.geometricBounds = frameBounds;
+        return true;
+    }
+
+    function fitComposedSymbolTableShells(doc) {
+        var fitted = 0;
+        var items = doc.allPageItems;
+        for (var ii = 0; ii < items.length; ii += 1) {
+            var frame = items[ii];
+            if (frame.constructor.name !== "TextFrame") { continue; }
+            try {
+                if (frame.parentPage && frame.parentPage.isValid &&
+                        frame.parentStory.tables.length === 1 &&
+                        isComposedSymbolTableStory(frame.parentStory) &&
+                        resizeComposedTableShell(frame)) {
+                    fitted += 1;
+                }
+            } catch (_) {}
+        }
+        doc.recompose();
+        return fitted;
+    }
+
     var job = jsonParse(readText(HB_JOB_PATH));
     var report = {
         schema_version: "indesign-preflight/v1",
@@ -72,6 +196,8 @@
         missing_fonts: [],
         bad_links: [],
         stable_labels: {pages: 0, text_frames: 0},
+        fitted_lcd_table_groups: 0,
+        fitted_symbol_table_shells: 0,
         stage: "init",
         error: null
     };
@@ -87,6 +213,8 @@
         report.stage = "open_idml";
         doc = app.open(File(job.input_idml), false);
         doc.recompose();
+        report.fitted_lcd_table_groups = fitLcdTableShells(doc);
+        report.fitted_symbol_table_shells = fitComposedSymbolTableShells(doc);
         report.page_count = doc.pages.length;
         report.story_count = doc.stories.length;
 

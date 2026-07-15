@@ -174,7 +174,7 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 spread = zf.read("Spreads/Spread_sp_0.xml").decode("utf-8")
                 self.assertIn('ParentStory="st_flow_00_alpha_01_beta"', spread)
 
-    def test_real_troubleshooting_page_continues_prose_flow(self) -> None:
+    def test_real_troubleshooting_page_keeps_dedicated_shared_region_story(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             bundle = Path(td) / "bundle"
             page_dir = bundle / "page"
@@ -224,17 +224,21 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
 
             with zipfile.ZipFile(out) as zf:
                 names = zf.namelist()
-                flow = "Stories/Story_st_flow_09_storage_troubleshooting_en.xml"
-                self.assertIn(flow, names)
+                storage = "Stories/Story_st_09_storage.xml"
+                trouble = "Stories/Story_st_troubleshooting_en.xml"
+                self.assertIn(storage, names)
+                self.assertIn(trouble, names)
                 self.assertNotIn("Stories/Story_st_trouble.xml", names)
-                story = zf.read(flow).decode("utf-8")
-                self.assertIn('ParentStory="st_anchor_h1pill_', story)
+                storage_story = zf.read(storage).decode("utf-8")
+                trouble_story = zf.read(trouble).decode("utf-8")
+                self.assertIn('ParentStory="st_anchor_h1pill_', storage_story)
+                self.assertIn('ParentStory="st_anchor_h1pill_', trouble_story)
                 trouble_stories = [
                     name
                     for name in names
                     if name.startswith(
                         "Stories/Story_st_anchor_trouble_"
-                        "st_flow_09_storage_troubleshooting_en"
+                        "st_troubleshooting_en"
                     )
                 ]
                 self.assertEqual(len(trouble_stories), 1)

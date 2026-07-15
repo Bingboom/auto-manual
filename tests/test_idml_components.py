@@ -139,6 +139,40 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('FillColor="Color/HB Bg K05"', xml)
         self.assertEqual(7, xml.count('VerticalJustification="CenterAlign"'))
 
+    def test_lcd_mode_gray_state_fill_reaches_both_left_corners(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
+        base = _ctx()
+        ctx = RenderContext(
+            params=base.params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            add_story=add_story,
+        )
+        host, _ = render(
+            MINIMAL_SPECS["lcdmode"], ctx, tid="lcd_corners", terminal=True)
+        self.assertIn(
+            'Self="mask_top_left_group_st_anchor_lcdmode_lcd_corners" '
+            'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+            'FillColor="Color/HB Bg K05"',
+            host,
+        )
+        self.assertIn(
+            'Self="mask_bottom_left_group_st_anchor_lcdmode_lcd_corners" '
+            'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+            'FillColor="Color/HB Bg K05"',
+            host,
+        )
+
     def test_unknown_kind_renders_nothing(self) -> None:
         from tools.idml.components import render
 

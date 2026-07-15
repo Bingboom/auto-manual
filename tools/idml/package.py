@@ -11,7 +11,7 @@ from pathlib import Path
 
 from .params import IDPKG, MIMETYPE
 from .stable_ids import apply_stable_labels
-from .story_frames import add_story_frames
+from .story_frames import add_lcd_story_frames, add_story_frames
 
 
 def frame_height(writer) -> float:

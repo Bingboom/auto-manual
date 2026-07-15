@@ -9,6 +9,7 @@ import re
 import unicodedata
 from pathlib import Path
 
+from ..lcd_table_layout import split_lcd_table_rows
 from .renderers_common import apply_vars, latex_arg_escape, rst_escape
 from ..localized_copy import LocalizedCopyResolver
 from ..utils.spec_master import canonicalize_model_token
@@ -511,27 +512,40 @@ def _latex_description_arg(text: str, *, status_labels: tuple[str, ...]) -> str:
     return r" \newline ".join(_latex_description_line(part, status_labels=status_labels) for part in parts)
 
 
-def _latex_table(rows: list[dict[str, str]], *, status_labels: tuple[str, ...]) -> str:
-    # Worker A owns the macro definitions. Keep this renderer limited to calling
-    # the shared LCD table interface with escaped text and basename image args.
-    lines: list[str] = [
-        r"\begin{HBLcdIconTable}",
-    ]
-    for row in rows:
-        lines.append(
-            r"\HBLcdIconRow"
-            f"{{{latex_arg_escape(row['no'])}}}"
-            f"{{{_latex_image_arg(row['figure'])}}}"
-            f"{{{_latex_lines_arg(row['name'])}}}"
-            f"{{{_latex_description_arg(row['description'], status_labels=status_labels)}}}"
-        )
-    lines.append(r"\end{HBLcdIconTable}")
+def _latex_table(
+    rows: list[dict[str, str]],
+    *,
+    status_labels: tuple[str, ...],
+    lang: str,
+) -> str:
+    # Every source-driven continuation is a complete rounded table. Page-count
+    # drift is accepted while illustration placeholders await final AI artwork.
+    segments = split_lcd_table_rows(rows, lang=lang)
+    lines: list[str] = []
+    for segment_index, segment in enumerate(segments):
+        if segment_index:
+            lines.append(r"\clearpage")
+        lines.append(r"\begin{HBLcdIconTable}")
+        for row in segment:
+            lines.append(
+                r"\HBLcdIconRow"
+                f"{{{latex_arg_escape(row['no'])}}}"
+                f"{{{_latex_image_arg(row['figure'])}}}"
+                f"{{{_latex_lines_arg(row['name'])}}}"
+                f"{{{_latex_description_arg(row['description'], status_labels=status_labels)}}}"
+            )
+        lines.append(r"\end{HBLcdIconTable}")
     return "\n".join(lines)
 
 
-def _table(rows: list[dict[str, str]], *, status_labels: tuple[str, ...]) -> str:
+def _table(
+    rows: list[dict[str, str]],
+    *,
+    status_labels: tuple[str, ...],
+    lang: str,
+) -> str:
     rst_table = _rst_table(rows, status_labels=status_labels)
-    latex_table = _latex_table(rows, status_labels=status_labels)
+    latex_table = _latex_table(rows, status_labels=status_labels, lang=lang)
     return "\n".join(
         [
             ".. only:: not latex",
@@ -575,5 +589,8 @@ def render_lcd_icons_page(
     rows = _collect_rows(blocks, lang=lang, vars_map=vars_map)
     rendered = template.replace(PH_LCD_ICONS_HEADING_RST, _heading(title))
     rendered = rendered.replace(PH_LCD_ICONS_IMAGE_ALT, rst_escape(title))
-    rendered = rendered.replace(PH_LCD_ICONS_TABLE_RST, _table(rows, status_labels=status_labels))
+    rendered = rendered.replace(
+        PH_LCD_ICONS_TABLE_RST,
+        _table(rows, status_labels=status_labels, lang=lang),
+    )
     return rendered

@@ -1373,6 +1373,8 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertIn(".. only:: latex", out)
         self.assertIn(r"\begin{HBLcdIconTable}", out)
         self.assertIn(r"\end{HBLcdIconTable}", out)
+        self.assertEqual(1, out.count(r"\begin{HBLcdIconTable}"))
+        self.assertEqual(1, out.count(r"\HBLcdIconRow"))
         self.assertIn("{7_Battery_AC.png}", row_line)
         self.assertNotIn("data/phase2", row_line)
         self.assertIn(r"{Battery 50\% \& AC}", row_line)
@@ -1380,6 +1382,54 @@ class TestCsvPageRenderers(unittest.TestCase):
             r"{\textbf{On:} Charge\_\#1 \& ready. \newline \textbf{Off:} 0\% \$idle\$.}",
             row_line,
         )
+
+    def test_render_lcd_icons_page_splits_complete_rounded_tables_after_row_seven(self) -> None:
+        blocks = [
+            {
+                "No.": str(index),
+                "Model": "JE-1000F",
+                "Is_latest": "TRUE",
+                "icon_en": f"Icon {index}",
+                "icon_desc_en": f"Description {index}",
+                "figure": f"data/phase2/_attachments/lcd_icons/{index}_Icon.png",
+            }
+            for index in range(1, 9)
+        ]
+        out = renderers.render_lcd_icons_page(
+            template=self._lcd_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="en",
+            vars_map=self._localized_copy_vars(model="JE-1000F"),
+        )
+        self.assertEqual(2, out.count(r"\begin{HBLcdIconTable}"))
+        self.assertEqual(2, out.count(r"\end{HBLcdIconTable}"))
+        self.assertEqual(8, out.count(r"\HBLcdIconRow"))
+
+    def test_render_lcd_icons_page_bounds_every_continuation_table(self) -> None:
+        blocks = [
+            {
+                "No.": str(index),
+                "Model": "JE-1000F",
+                "Is_latest": "TRUE",
+                "icon_en": f"Icon {index}",
+                "icon_desc_en": f"Description {index}",
+                "figure": f"data/phase2/_attachments/lcd_icons/{index}_Icon.png",
+            }
+            for index in range(1, 27)
+        ]
+        out = renderers.render_lcd_icons_page(
+            template=self._lcd_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="en",
+            vars_map=self._localized_copy_vars(model="JE-1000F"),
+        )
+
+        self.assertEqual(2, out.count(r"\begin{HBLcdIconTable}"))
+        self.assertEqual(2, out.count(r"\end{HBLcdIconTable}"))
+        self.assertEqual(1, out.count(r"\clearpage"))
+        self.assertEqual(26, out.count(r"\HBLcdIconRow"))
 
     def test_render_lcd_icons_page_should_normalize_document_key_style_target_model(self) -> None:
         with tempfile.TemporaryDirectory() as td:

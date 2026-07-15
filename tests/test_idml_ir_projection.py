@@ -38,6 +38,32 @@ class IdmlIRProjectionTests(unittest.TestCase):
         self.assertEqual(4, len(symbols.signals))
         self.assertEqual(11, len(ir_projection.trouble_rows(self.ir, "en")))
 
+    def test_lcd_projection_preserves_source_numbering_gaps(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "rst"
+            page_dir = bundle / "page"
+            page_dir.mkdir(parents=True)
+            (bundle / "index.rst").write_text(
+                ".. include:: page/lcd_icons_en.rst\n", encoding="utf-8")
+            (page_dir / "lcd_icons_en.rst").write_text(
+                "LCD DISPLAY\n===========\n\n"
+                ".. raw:: latex\n\n"
+                "   \\begin{HBLcdIconTable}\n"
+                "   \\HBLcdIconRow{22}{}{Energy Saving Mode}{Description.}\n"
+                "   \\HBLcdIconRow{27}{}{Remaining Discharge Time}{Description.}\n"
+                "   \\end{HBLcdIconTable}\n",
+                encoding="utf-8",
+            )
+            ir = build_manual_ir(
+                root=ROOT, bundle_root=bundle, model="JE-1000F", region="US",
+                lang="en", source="test", data_root=DATA)
+            lcd = ir_projection.lcd_page_data(
+                ir, "en", root=ROOT, data_root=DATA)
+
+        self.assertIsNotNone(lcd)
+        assert lcd is not None
+        self.assertEqual(["㉒", "㉗"], [row["no"] for row in lcd.rows])
+
     def test_projected_pages_preserve_source_order_and_layout_markers(self) -> None:
         pages = ir_projection.project_pages(self.ir, BUNDLE)
         self.assertEqual(10, len(pages))

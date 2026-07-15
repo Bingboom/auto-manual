@@ -1,11 +1,10 @@
 """LCD screen-mode table component (componentization P2)."""
 from __future__ import annotations
 
-from .. import page_objects as _page_objects
 from ..params import param_pt
 from ..primitives import cell, component_table, image_cell_content, psr, wrap_table_paragraph
-from ..table_borders import suppress_outer_edges_xml
 from .base import RenderContext, figure_paragraph
+from .rounded_table import rounded_table_panel, table_text_indent
 
 
 def render_lcdmode(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
@@ -26,6 +25,7 @@ def render_lcdmode(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     action_w = param_pt(ctx.params, "comp_lcd_mode_action_col_width", 42.52)
     cols = [state_w, action_w, inner_w - state_w - action_w]
     rule = max(0.2, param_pt(ctx.params, "comp_table_outer_rule", 0.75) / 2.0)
+    text_indent = table_text_indent(ctx.params)
     cells = []
     ri = 0
     for g in groups:
@@ -35,24 +35,24 @@ def render_lcdmode(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
                 state_cell = cell(
                     f"{tid}c{ri}_0", f"0:{ri}",
                     psr("HB Spec Label", g.get("state", ""), terminal=True),
-                    fill="Color/HB Bg K05", top=2, bottom=2, left=4, right=3,
+                    fill="Color/HB Bg K05", top=2, bottom=2,
+                    left=text_indent, right=3,
                     edge_weight=rule, edge_color="Color/HB Line K40",
                     valign="CenterAlign",
                 ).replace('RowSpan="1"', f'RowSpan="{len(actions)}"', 1)
                 cells.append(state_cell)
             cells.append(cell(f"{tid}c{ri}_1", f"1:{ri}",
                               psr("HB Spec Label", action, terminal=True),
-                              top=2, bottom=2, left=3, right=3,
+                              top=2, bottom=2, left=text_indent, right=3,
                               edge_weight=rule, edge_color="Color/HB Line K40",
                               valign="CenterAlign"))
             cells.append(cell(f"{tid}c{ri}_2", f"2:{ri}",
                               psr("HB Spec Value", desc, terminal=True),
-                              top=2, bottom=2, left=4, right=4,
+                              top=2, bottom=2, left=text_indent, right=4,
                               edge_weight=rule, edge_color="Color/HB Line K40",
                               valign="CenterAlign"))
             ri += 1
     table = component_table(tid, cols, cells, n_rows=ri, role="data")
-    table = suppress_outer_edges_xml(table, 3)
     if ctx.add_story is not None:
         # This table has six real action rows.  The former 87.9 pt wrapper
         # was inherited from the image-bearing LaTeX variant and left a
@@ -71,14 +71,23 @@ def render_lcdmode(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
             framed_h = 87.9
         else:
             framed_h = ((13.2 if ri <= 3 else 10.5) * ri + 1.5)
-        inner = wrap_table_paragraph(table, True, span_columns=False)
-        table_xml = _page_objects.anchored_panel_group_paragraph(
-            ctx.add_story, f"st_anchor_lcdmode_{tid}", "LCD mode table",
-            [inner], body_w, framed_h, terminal=terminal,
+        table_xml = rounded_table_panel(
+            ctx.add_story,
+            ctx.params,
+            sid=f"st_anchor_lcdmode_{tid}",
+            title="LCD mode table",
+            table_xml=table,
+            width=body_w,
+            height=framed_h,
+            n_cols=3,
+            terminal=terminal,
             fill="Color/Paper", stroke="Color/HB Line K40",
-            stroke_weight=param_pt(ctx.params, "comp_table_outer_rule", 0.75),
-            radius=param_pt(ctx.params, "comp_table_outer_arc", 6.8),
-            content_inset=0.0,
+            corner_fills={
+                "top_left": "Color/HB Bg K05",
+                "bottom_left": "Color/HB Bg K05",
+                "top_right": "Color/Paper",
+                "bottom_right": "Color/Paper",
+            },
         )
     else:
         table_xml = wrap_table_paragraph(table, terminal, span_columns)

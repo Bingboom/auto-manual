@@ -7,11 +7,11 @@ from __future__ import annotations
 
 import re
 
-from .. import page_objects as _page_objects
 from ..params import param_pt
 from ..primitives import cell, component_table, psr, spec_table, wrap_table_paragraph
 from ..table_borders import suppress_outer_edges_xml
 from .base import RenderContext
+from .rounded_table import rounded_table_panel, table_text_indent
 
 
 def body_data_table_kind(raw_rows: list[list]) -> str | None:
@@ -195,8 +195,10 @@ def _troubleshooting_table(raw_rows: list[list], ctx: RenderContext, tid: str) -
 def _body_data_table(raw_rows: list[list], ctx: RenderContext, tid: str,
                      kind: str) -> tuple[str, float]:
     """Mirror the shared LaTeX Auto Resume / Key Combination table tokens."""
-    group_indent = param_pt(ctx.params, "comp_body_table_group_indent", 9.92)
-    body_w = ctx.text_measure - group_indent - 1.5
+    # The table shell owns the full body measure.  The requested one-character
+    # inset belongs to the cells (``comp_table_text_indent``), never to the
+    # heading/description/table group as a whole.
+    body_w = ctx.text_measure - 1.5
     # LaTeX's m-columns add tabcolsep around the declared percentage.
     # These optical additions place the visible dividers at the same x
     # coordinates instead of treating the bare percentages as full cells.
@@ -219,6 +221,7 @@ def _body_data_table(raw_rows: list[list], ctx: RenderContext, tid: str,
         32.88 if kind == "key_combinations" else 11.91,
     )
     pad = param_pt(ctx.params, "comp_data_table_tabcolsep", 2.4)
+    text_indent = table_text_indent(ctx.params)
     rule = param_pt(ctx.params, "comp_table_inner_rule", 0.2)
     cells: list[str] = []
     n_cols = len(cols)
@@ -243,7 +246,7 @@ def _body_data_table(raw_rows: list[list], ctx: RenderContext, tid: str,
                 psr("HB Data Header" if ri == 0 else "HB Data Body",
                     text, terminal=True),
                 fill=fill, top=0, bottom=0,
-                left=0 if ci == 0 else pad, right=pad,
+                left=text_indent, right=pad,
                 edge_weight=rule, edge_color="Color/HB Brand Dark",
                 valign="CenterAlign",
             )
@@ -307,22 +310,18 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
         table = component_table(tid, cols, cells, n_rows=len(raw_rows),
                                 role="data")
     if (is_auto_resume or is_key_combinations) and ctx.add_story is not None:
-        group_indent = param_pt(ctx.params, "comp_body_table_group_indent", 9.92)
-        group_width = ctx.text_measure - group_indent
-        inner = wrap_table_paragraph(table, True, span_columns=False)
-        xml = _page_objects.anchored_panel_group_paragraph(
+        xml = rounded_table_panel(
             ctx.add_story,
-            f"st_anchor_data_{tid}",
-            "body data table",
-            [inner],
-            group_width,
-            framed_h,
+            ctx.params,
+            sid=f"st_anchor_data_{tid}",
+            title="body data table",
+            table_xml=table,
+            width=ctx.text_measure,
+            height=framed_h,
+            n_cols=n_cols,
             terminal=terminal,
             fill="Color/Paper",
             stroke="Color/HB Brand Dark",
-            stroke_weight=param_pt(ctx.params, "comp_table_outer_rule", 0.75),
-            radius=param_pt(ctx.params, "comp_table_outer_arc", 6.8),
-            content_inset=0.0,
             corner_fills={
                 "top_left": "Color/HB Header K08",
                 "top_right": "Color/HB Header K08",
@@ -331,29 +330,23 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
                 ),
                 "bottom_right": "Color/Paper",
             },
-        )
-        gap = param_pt(ctx.params, "comp_data_table_before", 3.4)
-        xml = xml.replace(
-            "<ParagraphStyleRange ",
-            f'<ParagraphStyleRange LeftIndent="{group_indent:g}" '
-            f'SpaceBefore="{gap:g}" SpaceAfter="{gap:g}" ',
-            1,
+            space_before=param_pt(ctx.params, "comp_data_table_before", 3.4),
+            space_after=param_pt(ctx.params, "comp_data_table_after", 3.4),
         )
     elif is_troubleshooting and ctx.add_story is not None:
-        table = suppress_outer_edges_xml(table, 2)
-        inner = wrap_table_paragraph(table, True, span_columns=False)
-        xml = _page_objects.anchored_panel_group_paragraph(
+        xml = rounded_table_panel(
             ctx.add_story,
-            f"st_anchor_trouble_{tid}",
-            "troubleshooting table",
-            [inner],
-            ctx.text_measure - 0.75,
-            240.00,
+            ctx.params,
+            sid=f"st_anchor_trouble_{tid}",
+            title="troubleshooting table",
+            table_xml=table,
+            width=ctx.text_measure - 0.75,
+            height=240.00,
+            n_cols=2,
             terminal=terminal,
             fill="Color/Paper",
             stroke="Color/HB Brand Dark",
             stroke_weight=0.57,
-            radius=param_pt(ctx.params, "comp_table_outer_arc", 6.8),
         )
     else:
         xml = wrap_table_paragraph(table, terminal, span_columns=span_columns)

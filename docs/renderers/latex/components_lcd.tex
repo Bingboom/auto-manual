@@ -15,6 +15,7 @@
 \expandafter\providecommand\csname HBcomp_lcd_icon_col_width\endcsname{11mm}
 \expandafter\providecommand\csname HBcomp_lcd_label_col_width\endcsname{0.24\linewidth}
 \expandafter\providecommand\csname HBcomp_lcd_table_tabcolsep\endcsname{2.0pt}
+\expandafter\providecommand\csname HBcomp_lcd_grey_width_ratio\endcsname{0.41}
 \expandafter\providecommand\csname HBcomp_lcd_table_row_stretch\endcsname{0.82}
 \expandafter\providecommand\csname HBtype_lcd_no_font_size\endcsname{5.8pt}
 \expandafter\providecommand\csname HBtype_lcd_no_font_leading\endcsname{6.4pt}
@@ -39,7 +40,8 @@
 }
 
 \providecommand{\HBTypeLcdLabel}[1]{%
-  {\HBFontSemiBold
+  {\leftskip=\csname HBcomp_table_text_indent\endcsname\relax
+   \HBFontSemiBold
    \color{\csname HBtype_body_color\endcsname}%
    \fontsize{\csname HBtype_lcd_label_font_size\endcsname}
             {\csname HBtype_lcd_label_font_leading\endcsname}\selectfont
@@ -47,55 +49,34 @@
 }
 
 \providecommand{\HBTypeLcdText}[1]{%
-  {\HBFontRegular
+  {\leftskip=\csname HBcomp_table_text_indent\endcsname\relax
+   \HBFontRegular
    \color{\csname HBtype_body_color\endcsname}%
    \fontsize{\csname HBtype_lcd_body_font_size\endcsname}
             {\csname HBtype_lcd_body_font_leading\endcsname}\selectfont
    \RaggedRight #1}%
 }
 
-\newtcolorbox{hblcdicontableframe}{
-  enhanced,
-  clip upper,
-  colback=white,
-  colframe=LineK40,
-  arc=\csname HBcomp_table_outer_arc\endcsname,
-  boxrule=\csname HBcomp_table_outer_rule\endcsname,
-  boxsep=0mm,
-  left=0mm,right=0mm,top=0mm,bottom=0mm,
-}
-
-% longtable instead of a framed tabular: the tcolorbox frame ("clip upper")
-% cannot break across pages, so a tall icon table overflowed the 130x185
-% text block, clipped its last rows, and collided with the page number
-% (reports/typography_gap/2026-07-03 #1/#2). longtable breaks between rows;
-% \endhead re-draws the top rule on every continuation page, and each row's
-% own \hline closes the bottom edge before a break.
-% Trade-off: the rounded outer corner (HBcomp_table_outer_arc) is dropped
-% for this table.
-\newenvironment{HBLcdIconTable}{%
+% The renderer emits bounded segments (rows 1-7, then continuation groups),
+% allowing every LCD segment to reuse the same complete rounded shell as all
+% other data tables without clipping rows at a page boundary.
+\NewEnviron{HBLcdIconTable}{%
+  \par\noindent
   \begingroup
-  \arrayrulecolor{LineK40}
-  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
-  \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
-  \setlength{\tabcolsep}{\csname HBcomp_lcd_table_tabcolsep\endcsname}
+  \colorlet{HBSharedTableLeftBg}{BgK05}%
+  \colorlet{HBSharedTableFrameColor}{LineK40}%
+  \begin{HBSharedDataTable}
+    {\csname HBcomp_lcd_grey_width_ratio\endcsname}
+    {\csname HBcomp_lcd_table_tabcolsep\endcsname}%
   \renewcommand{\arraystretch}{\csname HBcomp_lcd_table_row_stretch\endcsname}
-  \setlength{\LTpre}{0pt}%
-  \setlength{\LTpost}{0pt}%
-  \setlength{\LTleft}{0pt}%
-  \setlength{\LTright}{\fill}%
-  \begin{longtable}{|
+  \begin{tabularx}{\linewidth}{@{}
     >{\centering\arraybackslash}m{\csname HBcomp_lcd_no_col_width\endcsname}|
     >{\centering\arraybackslash}m{\csname HBcomp_lcd_icon_col_width\endcsname}|
     >{\RaggedRight\arraybackslash}m{\csname HBcomp_lcd_label_col_width\endcsname}|
-    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
-      -\csname HBcomp_lcd_no_col_width\endcsname
-      -\csname HBcomp_lcd_icon_col_width\endcsname
-      -\csname HBcomp_lcd_label_col_width\endcsname
-      -8\tabcolsep-5\arrayrulewidth\relax}|}
-  \hline\endhead
-}{%
-  \end{longtable}
+    >{\RaggedRight\arraybackslash}X@{}}
+  \BODY
+  \end{tabularx}%
+  \end{HBSharedDataTable}%
   \endgroup
   \par
 }

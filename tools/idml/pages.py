@@ -301,6 +301,7 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
             left_xml = writer._symbol_signal_bar(f"{tid}sig{ri}", left, bundle_root)
             right_xml = writer._psr("HB Spec Value", right, terminal=True)
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
+                                fill="Color/HB Bg K05",
                                 top=3, bottom=3, left=6, right=4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                 top=3, bottom=3, left=7, right=5))
@@ -331,6 +332,7 @@ def _symbols_icon_table(writer, tid: str, icons: list[dict], width: float,
                 + icon + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
             right_xml = writer._psr("HB Spec Value", row["text"], terminal=True)
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
+                                fill="Color/HB Bg K05",
                                 top=2, bottom=2, left=4, right=4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                 top=2, bottom=2, left=5, right=4))
@@ -361,7 +363,6 @@ def add_safety_symbols_page(
     """V2.0 page 02: safety tail + maintenance + symbols on one page."""
     import json as _json
     copy = symbol_copy(lang)
-
     tail_stories: list[tuple[str, float]] = []
     for bi, (kind, text) in enumerate(tail_blocks):
         if kind != "component":

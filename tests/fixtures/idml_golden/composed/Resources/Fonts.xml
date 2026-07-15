@@ -13,4 +13,7 @@
   <FontFamily Self="ff_apple_symbols" Name="Apple Symbols">
     <Font Self="ff_apple_symbols_r" FontFamily="Apple Symbols" Name="Apple Symbols Regular" PostScriptName="AppleSymbols" Status="Installed" FontStyleName="Regular" FontType="TrueType"/>
   </FontFamily>
+  <FontFamily Self="ff_apple_sd_gothic_neo" Name="Apple SD Gothic Neo">
+    <Font Self="ff_apple_sd_gothic_neo_r" FontFamily="Apple SD Gothic Neo" Name="Apple SD Gothic Neo Regular" PostScriptName="AppleSDGothicNeo-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
+  </FontFamily>
 </idPkg:Fonts>

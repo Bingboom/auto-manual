@@ -62,7 +62,17 @@ fails the IDML export instead of producing a silent missing-link placeholder.
 Master-fixed English layouts may share explicit regions on one physical page
 (for example charging/storage/troubleshooting). Rounded data tables remain
 editable: the IDML groups a rounded background with a square content frame so
-InDesign does not inset the first/last cells at curved corners.
+InDesign does not inset the first/last cells at curved corners. Formal body
+tables use the full text measure; the one-character inset belongs to cell text,
+not to the heading/table group. During native finalization, each LCD segment's
+rounded shell is tightened to InDesign's composed row heights so translated and
+continuation tables cannot retain an unfilled bottom band.
+The 26-row LCD icon table stays on two pages per language (7-row lead segment
+plus 19-row continuation); its 5.6 mm maximum icon box and segment-specific
+vertical padding follow the `Jackery Explorer 1000 User Manual V2.0` layout.
+On the composed Meaning of Symbols page, the symbol/meaning tables use a
+light-grey first column, and native finalization tightens each rounded shell to
+its own InDesign row height so no empty band remains below the final row.
 NOTE/TIP/CAUTION/WARNING labels are source-owned display text: the LaTeX and
 IDML renderers preserve the RST/IR value verbatim and fail when it is missing;
 they never singularize, pluralize, translate, or invent a fallback label.

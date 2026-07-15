@@ -136,13 +136,13 @@ comp_table_inner_rule,0.2,pt,Table inner rule width
 comp_table_tabcolsep,2.4,pt,Table tabcolsep
 comp_table_outer_arc,2.4,mm,Table outer corner radius
 comp_table_outer_rule,0.75,pt,Table outer rule width (archive 1500 Ultra: 0.75pt)
+comp_table_text_indent,5.2,pt,One body-character leading inset shared by rounded table text cells
 ,,,
 ,,,------ BODY DATA TABLES ------
 comp_data_table_tabcolsep,2.4,pt,Body data table cell horizontal padding
 comp_data_table_row_stretch,1.0,ratio,Body data table row stretch independent of spec tables
 comp_data_table_before,1.2,mm,Space before body data tables
 comp_data_table_after,1.2,mm,Space after body data tables
-comp_body_table_group_indent,3.5,mm,Left indent shared by body-table heading description and table
 comp_data_table_header_height,5.2,mm,Body data table header minimum height
 comp_data_table_row_height,4.2,mm,Body data table ordinary row minimum height
 comp_auto_resume_left_ratio,0.50,ratio,Auto-resume table left column ratio
@@ -164,15 +164,28 @@ type_trouble_code_font_leading,8.0,pt,Troubleshooting error-code leading
 ,,,------ DATA TABLE DENSITY (archive 1500 Ultra parity) ------
 comp_lcd_table_row_stretch,0.82,ratio,LCD icon table row stretch
 comp_lcd_no_col_width,4.8,mm,LCD row-number column width
-comp_lcd_icon_width,6.6,mm,LCD icon maximum width
-comp_lcd_icon_height,6.6,mm,LCD icon maximum height
-comp_lcd_icon_col_width,9.2,mm,LCD icon column width
-comp_lcd_label_col_width,0.22\linewidth,none,LCD name-column width
+comp_lcd_icon_width,5.6,mm,LCD icon maximum width
+comp_lcd_icon_height,5.6,mm,LCD icon maximum height
+comp_lcd_icon_col_width,11.0,mm,LCD icon column width
+comp_lcd_label_col_width,0.24\linewidth,none,LCD name-column width
 comp_lcd_table_tabcolsep,1.4,pt,LCD table cell padding
-type_lcd_no_font_size,5.2,pt,LCD row-number font size
-type_lcd_no_font_leading,5.8,pt,LCD row-number leading
-type_lcd_label_font_size,5.4,pt,LCD name-column font size
-type_lcd_label_font_leading,6.0,pt,LCD name-column leading
+comp_lcd_first_vertical_padding,1.6,pt,LCD English first-segment cell top/bottom padding
+comp_lcd_translated_first_vertical_padding,0.7,pt,LCD translated first-segment cell top/bottom padding
+comp_lcd_continuation_vertical_padding,1.2,pt,LCD continuation cell top/bottom padding
+comp_lcd_first_segment_rows,7,int,LCD rows in the first rounded table segment
+comp_lcd_translated_first_segment_rows,7,int,LCD rows in a translated first rounded table segment
+comp_lcd_continuation_segment_rows,19,int,LCD rows in an English continuation segment
+comp_lcd_translated_continuation_segment_rows,19,int,LCD rows in a translated continuation segment
+comp_lcd_grey_width_ratio,0.41,ratio,LCD rounded table grey-band width through the label column
+comp_lcd_first_panel_height,286,pt,LCD first rounded table segment height
+comp_lcd_continuation_panel_height,465,pt,LCD continuation rounded table segment height
+comp_lcd_partial_row_height,27,pt,LCD short final-segment row height allowance
+comp_lcd_partial_panel_extra,4,pt,LCD short final-segment shell allowance
+comp_lcd_partial_panel_min_height,30,pt,LCD short final-segment minimum shell height
+type_lcd_no_font_size,9.0,pt,LCD row-number font size
+type_lcd_no_font_leading,9.4,pt,LCD row-number leading
+type_lcd_label_font_size,6.2,pt,LCD name-column font size
+type_lcd_label_font_leading,6.8,pt,LCD name-column leading
 type_lcd_body_font_size,5.2,pt,LCD description font size
 type_lcd_body_font_leading,5.8,pt,LCD description leading
 comp_symbol_table_row_stretch,1.0,ratio,Symbols table row stretch

@@ -84,6 +84,13 @@ class LatexComponentModuleTests(unittest.TestCase):
         for name in COMPONENT_LOAD_ORDER:
             self.assertIn(f'"renderers/latex/{name}"', conf)
 
+    def test_lcd_table_uses_the_shared_rounded_shell(self) -> None:
+        component = (LATEX_DIR / "components_lcd.tex").read_text(encoding="utf-8")
+        self.assertIn(r"\begin{HBSharedDataTable}", component)
+        self.assertIn("HBcomp_table_text_indent", component)
+        self.assertNotIn(r"\begin{longtable}", component)
+        self.assertNotIn("rounded outer corner", component)
+
     def test_domain_components_have_one_owner(self) -> None:
         owners: dict[str, list[str]] = defaultdict(list)
         for path in sorted(LATEX_DIR.glob("components_*.tex")):

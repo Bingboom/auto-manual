@@ -110,6 +110,8 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('PostScriptName="ArialUnicodeMS"', fonts)
         self.assertIn('Name="Apple Symbols"', fonts)
         self.assertIn('PostScriptName="AppleSymbols"', fonts)
+        self.assertIn('Name="Apple SD Gothic Neo"', fonts)
+        self.assertIn('PostScriptName="AppleSDGothicNeo-Regular"', fonts)
 
     def test_page_count_follows_content(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -128,7 +130,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertTrue(rows)
         w = IdmlWriter(params)
         w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
-        story = dict(w.stories)["st_lcd"]
+        story = "".join(
+            xml for sid, xml in dict(w.stories).items()
+            if sid.startswith("st_anchor_lcd_table_")
+        )
         self.assertIn("<Table ", story)
         self.assertIn("LinkResourceURI=", story)
         self.assertIn("Wi-Fi", story)
@@ -607,6 +612,38 @@ class ExportIdmlTests(unittest.TestCase):
 
         self.assertEqual(emitted, ["operation", "ups + charging"])
 
+    def test_prose_flow_keeps_shared_region_stories_separate(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("09_storage_and_maintenance", [("h1", "Storage")])
+        flow.add("troubleshooting_en", [("h1", "Troubleshooting")])
+        emitted = []
+
+        flow.flush(
+            lambda _sid, title, _blocks, _columns: emitted.append(title),
+            lambda stem: stem,
+            {"pages": [
+                {
+                    "source_path": f"page/{stem}.rst",
+                    "latex_start_page": 16,
+                }
+                for stem in (
+                    "09_storage_and_maintenance",
+                    "troubleshooting_en",
+                )
+            ]},
+            dedicated_stems={
+                "09_storage_and_maintenance",
+                "troubleshooting_en",
+            },
+        )
+
+        self.assertEqual(
+            emitted,
+            ["09_storage_and_maintenance", "troubleshooting_en"],
+        )
+
     def test_prose_flow_merges_a_group_that_exceeds_its_page_span(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer
 
@@ -863,6 +900,24 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn(
             'BottomEdgeStrokeWeight="0"',
             stories["st_safety_symbols_icons_left"],
+        )
+        self.assertIn(
+            'Name="0:0" RowSpan="1" ColumnSpan="1" '
+            'AppliedCellStyle="CellStyle/$ID/[None]" '
+            'FillColor="Color/HB Bg K05"',
+            stories["st_safety_symbols_signals"],
+        )
+        self.assertIn(
+            'Name="0:1" RowSpan="1" ColumnSpan="1" '
+            'AppliedCellStyle="CellStyle/$ID/[None]" '
+            'FillColor="Color/HB Bg K05"',
+            stories["st_safety_symbols_icons_left"],
+        )
+        self.assertIn(
+            'Name="0:1" RowSpan="1" ColumnSpan="1" '
+            'AppliedCellStyle="CellStyle/$ID/[None]" '
+            'FillColor="Color/HB Bg K05"',
+            stories["st_safety_symbols_icons_right"],
         )
 
     def test_safety_symbols_page_uses_localized_symbol_copy(self) -> None:
@@ -1155,7 +1210,10 @@ class ExportIdmlTests(unittest.TestCase):
         rows = load_lcd_rows(FIXTURE_DATA_ROOT, "JE-1000F")
         w = IdmlWriter(params)
         w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
-        story = dict(w.stories)["st_lcd"]
+        story = "".join(
+            xml for sid, xml in dict(w.stories).items()
+            if sid.startswith("st_anchor_lcd_table_")
+        )
         # icon cells must use the auto-leading figure style, or fixed leading
         # pushes the anchored icon a full row upward (designer-reported)
         self.assertIn(paragraph_style_ref("HB Figure"), story)
@@ -1163,6 +1221,85 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('VerticalJustification="CenterAlign"', icon_cell)
         self.assertIn('BaselineShift="0.6"', icon_cell)
         self.assertNotIn('BaselineShift="8.9"', story)
+
+    def test_lcd_table_matches_reference_cell_styling(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = load_lcd_rows(FIXTURE_DATA_ROOT, "JE-1000F")
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        stories = dict(w.stories)
+        story = "".join(
+            xml for sid, xml in stories.items()
+            if sid.startswith("st_anchor_lcd_table_")
+        )
+
+        self.assertEqual(2, story.count("<Table "))
+        self.assertEqual(2, stories["st_lcd"].count("<Group "))
+        self.assertIn('StartParagraph="NextPage"', stories["st_lcd"])
+
+        for column in range(4):
+            cell = story.split(f'Self="tbl_lcdc0_{column}"', 1)[1].split(
+                "</Cell>", 1
+            )[0]
+            self.assertIn('VerticalJustification="CenterAlign"', cell)
+            if column < 3:
+                self.assertIn('FillColor="Color/HB Bg K05"', cell)
+            else:
+                self.assertNotIn('FillColor="Color/HB Bg K05"', cell)
+
+        label_cell = story.split('Self="tbl_lcdc0_2"', 1)[1].split("</Cell>", 1)[0]
+        self.assertIn('FontStyle="Bold"', label_cell)
+        self.assertIn('PointSize="6.2" Leading="6.8"', label_cell)
+        self.assertIn('LeftInset="5.2"', label_cell)
+        description_cell = story.split('Self="tbl_lcdc0_3"', 1)[1].split(
+            "</Cell>", 1
+        )[0]
+        self.assertIn('LeftInset="5.2"', description_cell)
+        number_cell = story.split('Self="tbl_lcdc0_0"', 1)[1].split("</Cell>", 1)[0]
+        self.assertIn('PointSize="9" Leading="9.4"', number_cell)
+        self.assertIn('TopInset="1.6" BottomInset="1.6"', number_cell)
+        continuation_cell = story.split(
+            'Self="tbl_lcd_cont_enc7_0"', 1
+        )[1].split("</Cell>", 1)[0]
+        self.assertIn(
+            'TopInset="1.2" BottomInset="1.2"', continuation_cell)
+        self.assertIn(
+            '<AppliedFont type="string">Apple SD Gothic Neo</AppliedFont>',
+            number_cell,
+        )
+
+    def test_lcd_story_bounds_long_continuations_as_separate_rounded_tables(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+            }
+            for index in range(1, 27)
+        ]
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        stories = dict(w.stories)
+
+        self.assertEqual(2, stories["st_lcd"].count("<Group "))
+        self.assertEqual(2, w.lcd_segment_counts["en"])
+        self.assertIn("st_anchor_lcd_table_en_1", stories)
+        self.assertNotIn("st_anchor_lcd_table_en_2", stories)
+        self.assertNotIn('<ParagraphStyleRange LeftIndent="5.2"', stories["st_lcd"])
+
+    def test_lcd_high_circled_numbers_use_a_font_that_covers_them(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        for number in ("㉑", "㉗"):
+            with self.subTest(number=number):
+                psr = IdmlWriter(params)._psr(
+                    "HB Spec Label", number, terminal=True)
+                self.assertIn(
+                    '<Properties><AppliedFont type="string">'
+                    'Apple SD Gothic Neo</AppliedFont>',
+                    psr,
+                )
 
     def test_shading_uses_paragraph_prefixed_attributes(self) -> None:
         # bare ShadingOn/ShadingColor are silently ignored by InDesign

@@ -192,7 +192,7 @@
     <TextFramePreference TextColumnCount="1" VerticalJustification="TopAlign" AutoSizingType="Off"><Properties><InsetSpacing type="list"><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem></InsetSpacing></Properties></TextFramePreference>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </TextFrame>
-  <Rectangle Self="mask_top_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=mask_top_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="mask_top_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=mask_top_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/HB Bg K05" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -220,7 +220,7 @@
     </Properties>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </Rectangle>
-  <Rectangle Self="mask_bottom_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=mask_bottom_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="mask_bottom_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" Label="hb:self=mask_bottom_left_group_st_anchor_lcdmode_st_05_operation_guide_cmp6" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/HB Bg K05" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
