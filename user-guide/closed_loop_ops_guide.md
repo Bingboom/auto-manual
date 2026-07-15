@@ -262,9 +262,33 @@ python tools/bitable_schema.py seed-import --base-token <scratch> \
 4. **维护者代登记**：设计师交付文件（.ai + 导出物），维护者挂表并更新哈希
 
 导出命名契约：`<asset_key>[-<lang>].{pdf,png}`（成品页 PDF 的 -en/-es/-fr
-已是先例）。首次普查账（2026-07-13）：**71 项 = 57 成品 / 4 临时替代 /
-10 缺失**；缺失清单即向设计侧的要图清单。后续：P1 资产解析器+publish 门，
+已是先例）。当前仓库镜像统计：**72 项 = 63 成品 / 4 临时替代 /
+5 缺失**；缺失清单即向设计侧的要图清单。后续：P1 资产解析器+publish 门，
 P2 .ai 入附件列+导出自动化，P3 release manifest 加 assets 段。
+
+### 4.9.1 构建链路入口（已接入）
+
+当前分支把注册表变成可调用的构建入口：
+
+```bash
+python build.py asset-check --json
+python build.py asset-check --asset-key operation/ac_output --asset-format png --json
+python build.py asset-check --asset-key hero/lcd_display --asset-format png --allow-temporary
+python build.py asset-check --publish --asset-key operation/ac_output --asset-format png
+```
+
+含义分别是：盘点注册表、解析一个成品导出、仅在草稿中显式解析临时替代、
+以及执行发布态的成品门。`asset-check` 会校验导出文件存在且哈希前缀一致；
+不会把桌面 `.ai` 路径写进构建结果。PR #662 的无字矢量试点仍兼容其过渡目录，
+解析结果会落到 `docs/renderers/latex/assets/`。
+
+后续生图工具只读取 [`data/asset_generation_candidates.csv`](../data/asset_generation_candidates.csv)：
+`generator_allowed=TRUE` 才能生成候选图；产品结构、LCD、按钮、端口、二维码、
+警示图和带精确文字的操作图必须走设计重绘或源文件导出。生成结果先登记为候选，
+经过人工确认、导出和哈希登记后，才可转为 `✅成品`。
+
+源文件元数据见 [`data/asset_sources.csv`](../data/asset_sources.csv)：它记录完整
+`.ai` SHA-256、页数、版面尺寸、适用范围和 Feishu 附件指针；不记录本地桌面路径。
 
 ## 5. 首跑清单（一次性，做完划掉）
 

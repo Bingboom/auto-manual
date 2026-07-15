@@ -59,6 +59,7 @@ from tools.build_doctor import (
 from tools.build_cli import parse_args as _parse_args_impl
 from tools.build_dispatch import dispatch_action as _dispatch_action_impl
 from tools.build_main import run_main as _run_main_impl
+from tools.asset_registry import run_asset_check as _run_asset_check_impl
 from tools.message_control_runtime import resolve_message_control as _resolve_message_control_impl
 from tools.manual_index_query import run_manual_index_query as _run_manual_index_query_impl
 from tools.queue_execute import run_queue_execute as _run_queue_execute_impl
@@ -475,7 +476,6 @@ def _check_word_com_available() -> tuple[bool, str]:
 
 def _resolve_doctor_target(cfg: dict, args: argparse.Namespace) -> tuple[str | None, str | None]:
     from tools.utils.targets import resolve_build_model, resolve_build_region
-
     return _resolve_doctor_target_impl(
         cfg,
         args,
@@ -742,6 +742,7 @@ def main(argv: list[str] | None = None) -> int:
         release_manifest_command=release_manifest_command,
         clean_build_artifacts=clean_build_artifacts,
         maybe_sync_review_before_build=maybe_sync_review_before_build,
+        run_asset_check=partial(_run_asset_check_impl, repo_root=ROOT),
     )
 
 

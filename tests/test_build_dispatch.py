@@ -12,6 +12,7 @@ class TestBuildDispatch(unittest.TestCase):
         expected = {
             "validate",
             "doctor",
+            "asset-check",
             "review",
             "check",
             "sync-review",
