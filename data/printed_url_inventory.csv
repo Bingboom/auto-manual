@@ -1,4 +1,5 @@
 target,kind,occurrences,sources
+back_cover QR（目标待扫码确认后替换本行）,qr,1,docs/renderers/latex/assets/back_cover-en.pdf 右下角
 hello.aus@jackery.com,email,1,configs/config.au-en.yaml
 hello.eu@jackery.com,email,2,configs/config-bases/eu-single-language-base.yaml;configs/config.eu.yaml
 hello.kr@jackery.com,email,1,configs/config.kr.yaml

@@ -54,11 +54,11 @@ symbols/weee2,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/com
 page/cover,整页PDF,按语言,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,en,cover-en.pdf:c58c706ad9b8,单文件命名 -en；是否需 es/fr 变体待确认
 page/product_overview,整页PDF,按语言,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,"en,es,fr","product_overview-en.pdf:bb3ca33f3a54,product_overview-es.pdf:2d7cb459cb17,product_overview-fr.pdf:14e89c01d450",模板物理页提取（#639）
 mark/fcc,标记,中立,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,,"fcc_mark.pdf:8029015efc5e,fcc_mark.png:45f309ed8b3f",
-hero/lcd_display,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,lcd_display_hero.png:2e8838329a98,从模板 PDF 裁切的成品线稿（#638）；纯数字标注一图通三语=无字化范本；待设计出正式 .ai
-placeholder/symbols_icons,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,01_meaning_of_symbols_icons_placeholder.png:d90abf9cdad6,占位图
-placeholder/symbols_signal_words,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,01_meaning_of_symbols_signal_words_placeholder.png:d90abf9cdad6,占位图
+hero/lcd_display,插图,中立,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,,"v2-pdf:5004a9fe0afe,v2-png:f82efe218bc0",矢量正式版 v2（源=master p8）；旧临时裁切 PNG 待 IDML 换装（集成 PR）
+placeholder/symbols_icons,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,01_meaning_of_symbols_icons_placeholder.png:d90abf9cdad6,占位图；引用普查=无消费者，疑似孤儿，确认后清理
+placeholder/symbols_signal_words,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,01_meaning_of_symbols_signal_words_placeholder.png:d90abf9cdad6,占位图；引用普查=无消费者，疑似孤儿，确认后清理
 mark/warning_lockup,标记,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,"warning_lockup.jpg:36a12bf51527,warning_lockup.png:d90abf9cdad6",裁切产物，是否成品待确认
-page/back_cover,整页PDF,按语言,❌缺失,FALSE,JE-1000F,,,,封底成品 + QR（QR 目标要登记进印刷 URL 清单）
+page/back_cover,整页PDF,按语言,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,en,"pdf:7c01035f582a,png:01214504830d",整页提取（源=master p58）；QR 目标待扫码确认；含墨西哥销售主体
 button/power,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:80615c7fed88,png:2ffaa205db79",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
 button/ac,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:7d0532711439,png:5f9354fc203a",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
 button/dc_usb,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:87dcc54d6114,png:765c22b94adb",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
