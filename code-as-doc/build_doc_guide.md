@@ -633,18 +633,20 @@ python build.py pdf --config configs/config.ja.yaml --model JE-1000F --region JP
 
 Export the editable InDesign handoff package (production/both mode first builds
 the LaTeX reference PDF, then projects the same prepared bundle through
-`manual.ir.json`, shared layout tokens, and `latex_page_plan.json`; architecture
-in [`dev/idml_module_map.md`](dev/idml_module_map.md)):
+`manual.ir.json` and shared layout tokens; `latex_page_plan.json` is retained
+as a trace artifact; architecture in
+[`dev/idml_module_map.md`](dev/idml_module_map.md)):
 
 ```powershell
 python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source review-asis
 ```
 
-The production gate rejects skipped raw content. The measured page plan fixes
-the initial IDML physical span/order to the LaTeX reference instead of relying
-only on character-height estimates. The source-authored TOC folios and back
-cover copy also come from the IR; they are not recomputed or hardcoded in the
-InDesign renderer.
+The production gate rejects skipped raw content. The IDML uses explicit new-
+page anchors for the cover/front matter, Safety + Symbols, FCC + What's in the
+Box, LCD DISPLAY, specifications, warranty, and back cover. Ordinary prose is
+measured into linked story chains and flows naturally between those anchors;
+the source-authored TOC folios and back-cover copy still come from the IR and
+are not recomputed or hardcoded in the InDesign renderer.
 
 Review bundles may retain an older opaque attachment hash after the live
 snapshot refreshes that file. The IDML build resolves a unique current file by
@@ -652,10 +654,9 @@ the stable category/order/name identity, stages it under the frozen basename,
 and rejects missing or ambiguous matches. It does not silently emit a broken
 InDesign link.
 
-Where the production master shares one physical English page across semantic
-stories, the production IDML uses explicit non-overlapping story regions. This
-keeps LCD/operations, UPS/charging, and charging/storage/troubleshooting on the
-master page sequence while preserving separate editable stories. Data-table
+Fixed composite pages use explicit component frames. Ordinary operation,
+UPS/charging, storage, and troubleshooting content uses normal linked story
+chains, so a component can continue naturally onto the next frame. Data-table
 rounding is also non-destructive: a rounded background and a square editable
 table frame are grouped, avoiding InDesign's curved-corner cell inset. Formal
 body-table headings, descriptions, and outer shells stay on the common body
@@ -678,8 +679,8 @@ use the InDesign-specific optical baseline tokens only to align native
 paragraph styles to that frozen PDF.
 
 `idml` defaults to the production exporter. For the design-template handoff
-path, use flow mode; it writes semantic Markdown, a simple continuous-story
-IDML, style map, and trace files under
+path, use flow mode; it writes semantic Markdown plus a rendered, editable
+continuous-story IDML, style map, and trace files under
 `docs/_build/<model>/<region>/<lang>/idml/flow/`:
 
 ```powershell
@@ -687,8 +688,13 @@ python build.py idml --model JE-1000F --region US --idml-mode flow
 python build.py idml --model JE-1000F --region US --idml-mode both
 ```
 
-Flow artifacts are generated handoff files, not a new content source. Fix copy
-in the Feishu/source-table/review layer and regenerate.
+The flow Markdown is the readable semantic/reference representation. The flow
+IDML is rendered from typed blocks: registered components become editable
+InDesign objects, Markdown images become linked image frames, and Markdown
+tables become native editable tables. JSON blocks that remain in the Markdown
+are serialization for traceability and must not appear as raw JSON in the flow
+IDML. Flow artifacts are generated handoff files, not a new content source;
+fix copy in the Feishu/source-table/review layer and regenerate.
 
 On a provisioned macOS design host, create the native INDD, export the InDesign
 PDF, and run the runtime preflight after closing any older copy of the target
@@ -732,8 +738,8 @@ On the publish queue path (`Workflow_action = Publish`), the worker runs the
 idml step with `--idml-mode both` and then packages the export into one
 designer delivery zip via `tools/idml/delivery.py`:
 `manual_<model>_<region>[_<lang>]_publish_<version>_handoff.zip` containing the
-production IDML with every `LinkResourceURI` rewritten to `file:Links/<name>`,
-the linked images collected under `Links/`, the flow outputs, the handoff
+production and flow IDML with every `LinkResourceURI` rewritten to
+`file:Links/<name>`, the linked images collected under `Links/`, the flow outputs, the handoff
 reports, `source_trace.json` stamped with the queue row's real version, a
 fonts manifest (plus `Document fonts/` when `AUTO_MANUAL_LOCAL_GILROY_DIR` is
 provisioned on the build machine), and the versioned reference PDF. The zip is

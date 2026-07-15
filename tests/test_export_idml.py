@@ -612,6 +612,27 @@ class ExportIdmlTests(unittest.TestCase):
 
         self.assertEqual(emitted, ["operation", "ups + charging"])
 
+    def test_prose_flow_can_ignore_reference_starts_for_natural_layout(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        for stem in ("operation", "ups", "charging"):
+            flow.add(stem, [("h1", stem.title())])
+        emitted = []
+        starts = {"operation": 10, "ups": 14, "charging": 14}
+
+        flow.flush(
+            lambda _sid, title, _blocks, _columns: emitted.append(title),
+            lambda stem: stem,
+            {"pages": [
+                {"source_path": f"page/{stem}.rst", "latex_start_page": start}
+                for stem, start in starts.items()
+            ]},
+            respect_page_plan=False,
+        )
+
+        self.assertEqual(emitted, ["operation + ups + charging"])
+
     def test_prose_flow_keeps_shared_region_stories_separate(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer
 

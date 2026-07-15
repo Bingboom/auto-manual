@@ -29,7 +29,7 @@
 | Meaning of Symbols 表 | 圆角描边 + 首列 K05 浅灰 + 内部网格；左右表按各自内容高度收口 | `HBSymbolTable` / `HBSymbolTwoColumnTablesSplit` | `comp_symbol_*` | `pages._symbols_signal_table` / `_symbols_icon_table`；`indesign_finalize.jsx` 累加原生 `row.height`，同步收紧内容框和圆角外框 | ✅ 英/法/西首列统一浅灰；`fitted_symbol_table_shells` 记录最终化数量；短列不再保留底部白带 |
 | inbox 三卡 | 圆角卡片 + 13.785pt 圆形编号，10.912pt Medium 白字 | inbox card tcolorbox | `comp_inbox_card_arc` | `components/inbox` + page03 卡片框；编号框和字均纵向居中 | ✅ 编号字形中心与圆心残差 0.003pt |
 | warranty 专页/大字卡 | 灰底导语 + 悬浮标签圆角框 + 3/2 年双栏圆章 | `hb_latex_warranty.py` doctree 映射 + `components_warranty.tex` | `comp_warranty_*` / `type_warranty_*` | `components/warranty`(HB Big Numeral 26pt) | ✅ LaTeX 独占页与 IDML 组件化 |
-| 语言徽章 langtag(前言 EN/FR/ES) | 深色小 pill + 粗标题 | 前言宏 | — | `components/langbadge` | ✅ #634 |
+| 语言徽章 langtag(前言 EN/FR/ES) | 4.6mm × 2.9mm 深色标签 + Semibold 标题，前言页专用正文框 | 前言宏 | `idml_preface_*` | `components/langbadge` + `reference_story_flow` | ✅ |
 
 ## 字号/字重收敛(2026-07-11 参数收敛轮,fitz 双线实测)
 

@@ -259,6 +259,16 @@ type_preface_tag_font_size,6.0,pt,Preface language tag font size
 type_preface_title_font_size,8.0,pt,Preface title font size
 type_preface_body_font_size,6.0,pt,Preface body font size
 type_preface_body_font_leading,7.2,pt,Preface body leading
+idml_preface_margin_left,12.5,mm,IDML preface text left margin
+idml_preface_margin_right,12.5,mm,IDML preface text right margin
+idml_preface_margin_top,19.0,mm,IDML preface text top margin
+idml_preface_margin_bottom,13.0,mm,IDML preface text bottom margin
+idml_preface_tag_width,4.6,mm,IDML preface language tag width
+idml_preface_tag_height,2.9,mm,IDML preface language tag height
+idml_preface_tag_font_size,6.0,pt,IDML preface language tag font size
+idml_preface_title_font_size,8.0,pt,IDML preface title font size
+idml_preface_body_font_size,7.2,pt,IDML preface body font size
+idml_preface_body_font_leading,8.6,pt,IDML preface body leading
 ,,,
 ,,,------ SPEC TABLE PAGE ------
 comp_spec_section_before,4.3,mm,Spec section title space before (reference dedicated-page rhythm)

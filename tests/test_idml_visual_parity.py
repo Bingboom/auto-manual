@@ -375,6 +375,16 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn('ParentStory="story_top"', xml)
         self.assertIn('ParentStory="story_bottom"', xml)
 
+    def test_preface_story_frame_accepts_page_specific_margins(self) -> None:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        writer.add_story_frames(
+            "preface", [(1, 53.86, 487.84)],
+            margin_left=35.4331, margin_right=35.4331,
+        )
+        xml = writer.spreads[0][1]
+        self.assertIn('ParentStory="preface"', xml)
+        self.assertIn('Anchor="-148.961 -208.486"', xml)
+
     def test_troubleshooting_rows_emit_operational_minimum_heights(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
         ctx = RenderContext(
