@@ -13,7 +13,7 @@ in_the_box/ac_charging_cable,插图,中立,✅成品,FALSE,ALL,docs/templates/wo
 in_the_box/main_unit,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/in_the_box,,jpg:562f998c918a,文字负载普查待做（无字化排期）
 in_the_box/main_unit1,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/in_the_box,,png:6c7f1deea2f6,文字负载普查待做（无字化排期）
 in_the_box/manual_icon1,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/in_the_box,,png:87ac44e52863,文字负载普查待做（无字化排期）
-lcd/lcd_map,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/lcd,,png:c2538515f979,文字负载普查待做（无字化排期）
+lcd/lcd_map,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/lcd,,png:f82efe218bc0,无字矢量 v2 已换装（源=source/manual_je1000f_us_master p9 LCD DISPLAY）；IDML 高度上限已按新版纵横比校准
 operation/ac_output,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:cda41198c395,v2-png:43a46a51a987",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p10 下面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流（本图纵横比 1.43 是原溢流元凶），InDesign 实测 60页/0溢流
 operation/dc_usb_output,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:c166a9467c81,v2-png:c46c92d6ee99",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p11 面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流，InDesign 实测 60页/0溢流
 operation/energy_saving,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,png:848b99847403,文字负载普查待做（无字化排期）
