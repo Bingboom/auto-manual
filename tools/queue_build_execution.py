@@ -136,7 +136,7 @@ def build_document_for_task(
     version: str = "",
     git_ref: str = "",
     normalize_workflow_action: Callable[[str | None], str | None],
-    prepare_git_ref_worktree: Callable[[str], Path],
+    prepare_git_ref_worktree: Callable[..., Path],
     remove_worktree: Callable[[Path], None],
     config_path_in_repo_root: Callable[..., Path],
     run_command: Callable[..., None],
@@ -159,7 +159,10 @@ def build_document_for_task(
     build_workspace: Path | None = None
     review_workspace: Path | None = None
     if git_ref.strip():
-        build_workspace = prepare_git_ref_worktree("main")
+        # Build code must come from the current remote main, not a stale local
+        # branch left behind by an earlier worker run. Review content is still
+        # overlaid from the queue row's Git_ref below.
+        build_workspace = prepare_git_ref_worktree("main", prefer_local=False)
         review_ref = git_ref.strip()
         review_workspace = build_workspace if review_ref == "main" else prepare_git_ref_worktree(review_ref)
         if not _replace_path(

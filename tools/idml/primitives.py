@@ -42,7 +42,6 @@ PROSE_STYLE = {
     "sublist": "HB Sublist",
 }
 
-
 def clean_text(text: str) -> str:
     from .text_clean import strip_rst_inline
     text = strip_rst_inline(text)
@@ -255,13 +254,14 @@ def component_table(tid: str, cols: list[float], cells: list[str],
 
 
 def wrap_table_paragraph(table: str, terminal: bool,
-                         span_columns: bool = True) -> str:
+                         span_columns: bool = True,
+                         paragraph_style: str = "HB Body") -> str:
     # SpanColumns: component tables run full measure across multi-column
     # frames (V2.0 master: warning boxes span the two-column safety text;
     # designer-reported overlap otherwise). No effect in single-column
     # frames.
     span_attr = ' SpanColumnType="SpanColumns"' if span_columns else ""
-    style_ref = paragraph_style_ref("HB Body")
+    style_ref = paragraph_style_ref(paragraph_style)
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}"'
         f'{span_attr}>\n'

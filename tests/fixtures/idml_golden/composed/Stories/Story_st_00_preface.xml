@@ -10,9 +10,9 @@
             <PathPointType Anchor="0 -20.126" LeftDirection="0 -20.126" RightDirection="0 -20.126"/>
             <PathPointType Anchor="0 -5.66929" LeftDirection="0 -5.66929" RightDirection="0 -2.53823"/>
             <PathPointType Anchor="5.66929 0" LeftDirection="2.53823 0" RightDirection="5.66929 0"/>
-            <PathPointType Anchor="306.425 0" LeftDirection="306.425 0" RightDirection="309.556 0"/>
-            <PathPointType Anchor="312.094 -5.66929" LeftDirection="312.094 -2.53823" RightDirection="312.094 -5.66929"/>
-            <PathPointType Anchor="312.094 -20.126" LeftDirection="312.094 -20.126" RightDirection="312.094 -20.126"/>
+            <PathPointType Anchor="292.252 0" LeftDirection="292.252 0" RightDirection="295.383 0"/>
+            <PathPointType Anchor="297.921 -5.66929" LeftDirection="297.921 -2.53823" RightDirection="297.921 -5.66929"/>
+            <PathPointType Anchor="297.921 -20.126" LeftDirection="297.921 -20.126" RightDirection="297.921 -20.126"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -20,10 +20,10 @@
     <TextFramePreference TextColumnCount="1" VerticalJustification="CenterAlign"><Properties><InsetSpacing type="list"><ListItem type="unit">1.5</ListItem><ListItem type="unit">1</ListItem><ListItem type="unit">1</ListItem><ListItem type="unit">1</ListItem></InsetSpacing></Properties></TextFramePreference>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </TextFrame><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Preface Body">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Thank you for choosing the Jackery Explorer 1000 v2 portable power station.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Preface Body">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Please read this manual </Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Bold"><Content>carefully</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content> before use and keep it for future reference.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>

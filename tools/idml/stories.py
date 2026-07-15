@@ -12,6 +12,7 @@ from .data_stories import (
     add_trouble_story,
 )
 from .params import IDPKG
+from .params import param_pt
 from .primitives import _ATTR_ENTITIES
 
 # Height-ESTIMATION constants for sizing the linked spread chain. These are
@@ -29,12 +30,17 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     parts: list[str] = []
     est = 0.0
     img_n = 0
+    is_preface = title == "00_preface"
     content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
     last_idx = content_indices[-1] if content_indices else -1
     in_twocol = False
     next_h1_page_top: float | None = None
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
     text_measure = writer.page_w - writer.m_l - writer.m_r
+    if is_preface:
+        text_measure = writer.page_w - param_pt(
+            writer.params, "idml_preface_margin_left", writer.m_l,
+        ) - param_pt(writer.params, "idml_preface_margin_right", writer.m_r)
     column_measure = (text_measure - 11.0) / 2.0
     for bi, (kind, text) in enumerate(blocks):
         if kind == "layout":
@@ -51,7 +57,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             import json as _json
             spec = _json.loads(text)
             span_columns = not in_twocol
-            measure_w = column_measure if in_twocol else None
+            measure_w = column_measure if in_twocol else (text_measure if is_preface else None)
             xml_part, h = writer._render_component(
                 sid, bi, spec, bundle_root, terminal,
                 span_columns=span_columns, measure_w=measure_w)
@@ -98,6 +104,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         overview_h2 = kind in {"h2_overview_front", "h2_overview_right"}
         semantic_kind = "h2" if overview_h2 else kind
         style = writer._PROSE_STYLE.get(semantic_kind, "HB Body")
+        if is_preface and kind == "body":
+            style = "HB Preface Body"
         text = "\u25cf " + text if semantic_kind == "h2" else text
         span_columns = has_twocol_layout and not in_twocol and kind in {"h1", "h2"}
         paragraph = writer._psr(
@@ -127,6 +135,9 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         # width-aware: chars/line ~ frame_width / (0.52 * font size)
         size = _EST_SIZE.get(semantic_kind, 6.2)
         leading = _EST_LEADING.get(semantic_kind, 7.5)
+        if is_preface and kind == "body":
+            size = param_pt(writer.params, "idml_preface_body_font_size", 7.2)
+            leading = param_pt(writer.params, "idml_preface_body_font_leading", 8.6)
         measure = column_measure if in_twocol else text_measure
         per_line = max(20, int(measure / (0.52 * size)))
         lines = sum(max(1, (len(seg) + per_line - 1) // per_line)

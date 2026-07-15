@@ -74,15 +74,21 @@ If you only need the exact command semantics for one export path, use [`../code-
 InDesign export has two handoff modes: the default `idml` production path keeps
 the component-heavy editable IDML for visual design review. Production/both
 mode first builds the LaTeX reference PDF and then uses one deterministic
-`manual.ir.json`, the shared layout-token contract, and
-`latex_page_plan.json` to create the IDML. This makes InDesign the layout-only
-continuation of the frozen LaTeX build rather than a second content pipeline.
+`manual.ir.json` and the shared layout-token contract to create the IDML;
+`latex_page_plan.json` remains available as a reference trace. Cover/front
+matter, Safety + Symbols, FCC + What's in the Box, LCD DISPLAY,
+specifications, warranty, and back cover are fixed new-page anchors. Ordinary
+prose uses linked story chains and flows naturally between those anchors. This
+makes InDesign the layout-only continuation of the frozen build rather than a
+second content pipeline.
 In contrast,
-`python build.py idml --idml-mode flow ...` writes semantic flow Markdown, a
-simple continuous-story `manual.flow.idml`, source trace, style map, and asset
-manifest files for a designer's InDesign template workflow. Both are generated
-outputs; content corrections still go back to the source tables, templates,
-review cloud doc, or TM layer before regeneration.
+`python build.py idml --idml-mode flow ...` writes semantic flow Markdown and a
+rendered, editable continuous-story `manual.flow.idml`, plus source trace,
+style map, and asset manifest files for a designer's InDesign template
+workflow. The Markdown is the readable semantic/reference representation;
+the IDML renders registered components, linked images, and native tables.
+Both are generated outputs; content corrections still go back to the source
+tables, templates, review cloud doc, or TM layer before regeneration.
 
 After opening the production IDML, designers may adjust frame geometry,
 explicit page breaks, asset fitting, and limited tracking. Do not edit copy,
@@ -103,9 +109,11 @@ column and closes its rounded shell to the native table height; review
 If a review page still references an attachment basename with an older opaque
 hash, the build now stages the unique current semantic match under that frozen
 name. Missing or ambiguous matches fail before handoff. The production IDML
-also supports several editable stories on one physical master page and uses
-grouped rounded-table backgrounds, so designers can edit table cells without
-reintroducing the curved-corner inset or changing the approved pagination.
+keeps fixed composite pages componentized and uses normal linked frame chains
+for ordinary prose. It also uses grouped rounded-table backgrounds, so
+designers can edit table cells without reintroducing the curved-corner inset.
+Fixed-page anchors are intentional; natural-flow stories may be resized or
+allowed to add frames during final design review.
 Formal body tables remain full-measure; their one-character text inset is a
 cell property and must not be recreated as a heading/table-group indent.
 
@@ -122,6 +130,11 @@ reports, a fonts manifest, and the reference PDF, and the zip's knowledge-base
 link is what lands in the queue row's `idml_file` field. If
 `AUTO_MANUAL_LOCAL_GILROY_DIR` is set on the build machine, the fonts from
 that folder are also packed into the zip's `Document fonts/`.
+
+When a queue row carries `Git_ref`, the worker uses the current `origin/main`
+for build code and overlays `docs/_review/` from that review ref. This keeps
+merged renderer fixes in Publish output even when the worker's local `main`
+branch is stale.
 
 GitHub note:
 
@@ -183,7 +196,7 @@ The manual system now has four layers, but they are used at different stages.
    - GitHub `Manual Validation` uses the committed fixture snapshot under [`../tests/fixtures/phase2`](../tests/fixtures/phase2) so CI stays deterministic after `data/phase2` became gitignored; local live builds should still sync into `data/phase2`. The repo-maintained [`../data/phase2/page_registry.csv`](../data/phase2/page_registry.csv) is the one tracked exception because `sync-data` reads it as the page-structure input on every run, including fresh checkouts.
    - `Bingboom/auto-manual` is the code source of truth. Its `sync-hello-docs.yml` workflow mirrors `main` one-way into `Bingboom/Hello-Docs`; configure `HELLO_DOCS_SYNC_TOKEN` only in the source repo, keep `Hello-Docs` Feishu/OpenClaw bindings in that repo's own GitHub Secrets / Variables, and leave `FEISHU_BUILD_QUEUE_PAUSED=true` in the mirror repo until those bindings are ready. That pause variable is scoped to mirror Feishu runtime workflows and does not pause source repo behavior.
    - Copy [`../scripts/hello_docs_binding.env.example`](../scripts/hello_docs_binding.env.example) to a gitignored local file such as `.tmp/hello-docs-binding/env.sh`, fill the alternate Feishu values there, run `scripts/configure_hello_docs_binding.sh --env-file .tmp/hello-docs-binding/env.sh --dry-run`, then rerun without `--dry-run` to write the values into `Hello-Docs`; add `--include-optional` when the env file also has mirror-only Feishu IM / OpenClaw adapter values, and add `--unpause` only after the audit should allow Feishu runtime workflows to run.
-   - Before unpausing `Hello-Docs`, run `scripts/audit_hello_docs_binding.sh --report-only`; it reports source/mirror tree parity, missing GitHub Secret names, mirror variables, and optional Feishu IM / OpenClaw entries without printing secret values.
+   - Before unpausing `Hello-Docs`, run `scripts/audit_hello_docs_binding.sh --report-only`; it reports source/mirror tree parity, missing GitHub Secret names (including the model-capabilities table binding), mirror variables, and optional Feishu IM / OpenClaw entries without printing secret values.
    - For spec data authoring, edit `规格参数明细` for `Page=specifications` rows and `页面占位参数` for non-spec page placeholders. `sync-data --table spec_master` now reads those two source tables through the pinned source views and writes the local `Spec_Master.csv` read model.
    - When changing the online source-table structure, update the machine-readable source-table contract [`../data/source_table_contracts/phase2_source_tables.json`](../data/source_table_contracts/phase2_source_tables.json) in the same PR as the human reference docs. It records each table's source key, snapshot file, intake target, writable fields, and source-record-index mapping so intake/backport/writeback skills do not rely on memory. `python tools/schema_drift.py --payload tests/fixtures/schema_drift/passing_payload.json` validates this contract in CI.
    - For first-pass intake from a structured spec/manual Markdown or Feishu cloud doc, run `python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2 --out reports/source_intake/<run-id>`. This produces reviewable source-table candidates and existing-row change requests; it does not create new online rows or bypass the human-approved source-table writer. Continue with `source_intake.py approve`, `source_intake.py apply`, and `source_intake.py verify` to record the P4-P7 closure; `apply` is dry-run unless `--write --table-binding TABLE=BASE:TABLE_ID` is supplied. Use [`../code-as-doc/dev/source_intake_mvp_checklist.md`](../code-as-doc/dev/source_intake_mvp_checklist.md) as the staged checklist.
@@ -215,6 +228,7 @@ The manual system now has four layers, but they are used at different stages.
    - Start Review only starts when `Document_Key` is a non-empty `<MODEL>_<REGION>` value, `是否进入Review` is checked, and `Workflow_action` maps to `Start Review`
  - `Start Review` now means "force restart and reseed from the latest template". Existing committed `docs/_review/<model>/<region>/` content on `main` is no longer a duplicate guard, and re-checking `是否进入Review` on an `InReview` row will restart the review seed flow
  - [`../.github/workflows/feishu-start-review.yml`](../.github/workflows/feishu-start-review.yml) is the `main`-owned remote review-init worker that performs the same review-start flow from GitHub Actions after a Feishu workflow dispatch
+ - review PRs created by that trusted Feishu Start Review worker automatically approve their `Manual Validation` and `Review Preview Package` checks; ordinary external pull requests still use GitHub's approval gate
  - `python build.py queue-query --config configs/config.us.yaml --queue-scope all --task-id "JE-1000F_US_0.3_Build Draft Package" --json` is the recommended local Phase 2 lookup before a natural-language OpenClaw action; it resolves the exact Feishu row and returns the `record_id`, `Task_id`, `Workflow_action`, `Git_ref`, `Document link`, and `构建结果`
  - `python build.py queue-resolve-action --config configs/config.us.yaml --query-text "发布 JE-1000F_US_0.3" --json` is the structured dry-run resolver for the control layer; it returns the bounded `action_name`, `resolution_status`, confirmation requirement, and matched row fields before any dispatch happens
  - for a fixed "现在库里构建了多少文档" lookup, run `python build.py queue-query --config configs/config.us.yaml --queue-scope document-link --result-contains success --limit 200 --json` and the same command with `configs/config.ja.yaml`, then count rows whose `normalized_workflow_action` is `draft` or `publish`; natural-language asks such as `当前所有已构建文档链接` now resolve to the same successful `Document_link` surface with a larger default limit

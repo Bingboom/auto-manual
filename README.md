@@ -17,16 +17,16 @@ This repository is responsible for:
 
 - generating target-specific runtime bundles from templates and local Feishu-synced CSV snapshots, with a valid generated `data/phase2/` snapshot as the default build/review/publish source and explicit `--data-root` still overriding it
 - keeping CI deterministic with `tests/fixtures/phase2/` as a frozen sample snapshot while each mirror repo generates its own gitignored `data/phase2/` from its bound Feishu Base
-- syncing `main` one-way into [`Bingboom/Hello-Docs`](https://github.com/Bingboom/Hello-Docs) through [`sync-hello-docs.yml`](.github/workflows/sync-hello-docs.yml); `Hello-Docs` keeps its own GitHub Secrets / Variables for the alternate Feishu and OpenClaw bindings, with `FEISHU_BUILD_QUEUE_PAUSED=true` scoped to the mirror Feishu runtime workflows until those bindings are ready
+- syncing `main` one-way into [`Bingboom/Hello-Docs`](https://github.com/Bingboom/Hello-Docs) through [`sync-hello-docs.yml`](.github/workflows/sync-hello-docs.yml); `Hello-Docs` keeps its own GitHub Secrets / Variables for the alternate Feishu and OpenClaw bindings, including the `FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` table binding, with `FEISHU_BUILD_QUEUE_PAUSED=true` scoped to the mirror Feishu runtime workflows until those bindings are ready; trusted Feishu-triggered review PR checks are auto-approved while ordinary external PRs retain GitHub's approval gate
 - configuring the mirror binding from local environment variables with [`scripts/configure_hello_docs_binding.sh`](scripts/configure_hello_docs_binding.sh), which writes GitHub Secrets / Variables without printing secret values; use [`scripts/hello_docs_binding.env.example`](scripts/hello_docs_binding.env.example) as the local `.tmp/hello-docs-binding/env.sh` template and add `--include-optional` when the mirror should also receive Feishu IM / OpenClaw adapter values
 - auditing the mirror readiness with [`scripts/audit_hello_docs_binding.sh`](scripts/audit_hello_docs_binding.sh), which checks repo variables, required secret names, optional Feishu IM / OpenClaw entries, and source/mirror tree parity without reading secret values
 - moving target-specific editing into [`docs/_review/`](docs/_review) once review starts
 - validating review/runtime bundles before release
 - exporting revision reports and release manifests
 - generating same-source design handoff outputs: production IDML is projected
-  from the prepared bundle's deterministic manual IR, shared layout tokens,
-  and measured LaTeX page plan; flow-mode semantic Markdown / continuous-story
-  IDML remains an optional template handoff attachment
+  from the prepared bundle's deterministic manual IR and shared layout tokens;
+  the LaTeX page plan is retained as a trace, while ordinary prose uses linked
+  natural flow between explicit fixed component pages
 - generating fixed-format LaTeX manuals through shared page components: H1
   bars, capsule subbars, safety callouts, rounded table frames, FCC panels,
   inbox cards, warning/caution/note/tip strips, controlled symbol
@@ -45,7 +45,8 @@ python build.py check  --config configs/config.us-en.yaml --model JE-1000F --reg
 python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
 ```
 
-For an editable InDesign handoff that follows the LaTeX reference pagination:
+For an editable InDesign handoff with fixed component anchors and natural prose
+flow:
 
 ```bash
 python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source review-asis
@@ -53,14 +54,19 @@ python build.py idml --config configs/config.us.yaml --model JE-1000F --region U
 
 Production/both mode builds the LaTeX reference PDF first, then emits
 `manual.ir.json`, `latex_page_plan.json`, and the production IDML from that
-same frozen bundle. InDesign is the final-mile layout workspace; copy, tables,
-specifications, legal text, and asset identity remain source-owned.
+same frozen bundle. Cover/front matter, Safety + Symbols, FCC + What's in the
+Box, LCD DISPLAY, specifications, warranty, and back cover are explicit new-
+page anchors; ordinary editable prose is emitted as linked stories that flow
+naturally across page frames. InDesign is the final-mile layout workspace;
+copy, tables, specifications, legal text, and asset identity remain
+source-owned.
 
 Frozen review attachment names are resolved by their stable semantic identity
 and staged under the frozen basename; an unresolved or ambiguous asset now
 fails the IDML export instead of producing a silent missing-link placeholder.
-Master-fixed English layouts may share explicit regions on one physical page
-(for example charging/storage/troubleshooting). Rounded data tables remain
+Fixed composite pages remain componentized, while ordinary operation,
+charging, storage, and troubleshooting prose uses normal linked frame chains.
+Rounded data tables remain
 editable: the IDML groups a rounded background with a square content frame so
 InDesign does not inset the first/last cells at curved corners. Formal body
 tables use the full text measure; the one-character inset belongs to cell text,

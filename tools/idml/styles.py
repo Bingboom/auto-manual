@@ -22,6 +22,8 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Title L3", sz("type_title_l3_font_size", 7.0), sz("type_title_l3_font_leading", 8.0), "Medium", ""),
         ("HB Notice Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "label"),
         ("HB Notice Side Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "center"),
+        ("HB Preface Tag", sz("idml_preface_tag_font_size", 6.0), sz("idml_preface_tag_font_size", 6.0), "Heavy", "preface_tag"),
+        ("HB Preface Title", sz("idml_preface_title_font_size", 8.0), sz("idml_preface_title_font_size", 8.0), "Bold", "preface_title"),
         ("HB Callout Label", sz("type_tip_label_font_size", 8.0), sz("type_tip_label_font_leading", 9.0), "Bold", "center"),
         ("HB Callout Body", sz("type_tip_body_font_size", 6.5), sz("type_tip_body_font_leading", 7.83), "Medium", ""),
         ("HB Emphasis Pill", sz("type_warranty_lead_font_size", 7.0), sz("type_warranty_lead_font_leading", 8.2), "Bold", "emphasis"),
@@ -30,6 +32,7 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Capsule Text", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", "capsule_text"),
         ("HB Figure", sz("type_body_font_size", 6.2), 0.0, "Regular", "figure"),
         ("HB Body", sz("type_body_font_size", 6.2), sz("type_body_font_leading", 7.5), "Medium", ""),  # \HBTypeBody is HBFontMedium
+        ("HB Preface Body", sz("idml_preface_body_font_size", 7.2), sz("idml_preface_body_font_leading", 8.6), "Medium", "preface_body"),
         ("HB Safety Lead", sz("type_safety_lead_font_size", 8.0), sz("type_safety_lead_font_leading", 9.6), "Bold", "safety_lead"),
         ("HB Warning Lead Label", sz("type_warning_lead_label_font_size", 10.0), sz("type_warning_lead_label_font_leading", 10.6), "Bold", "warning_lead"),
         ("HB Warning Lead Body", sz("type_warning_lead_body_font_size", 6.5), sz("type_warning_lead_body_font_leading", 7.2), "Bold", "warning_lead"),
@@ -73,7 +76,7 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
         shaded = name == "HB H1" or kind in {"label", "card_number"}
         fill = (
             "Color/Paper"
-            if shaded or kind in {"capsule_text", "toc_bar", "toc_range", "emphasis", "warranty_title"}
+            if shaded or kind in {"capsule_text", "toc_bar", "toc_range", "emphasis", "warranty_title", "preface_tag"}
             else "Color/HB Brand Dark"
         )
         # NOTE the Paragraph* prefix: bare ShadingOn/ShadingColor are

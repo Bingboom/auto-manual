@@ -58,6 +58,15 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
             self.assertTrue((out_dir / "flow_conversion_notes.md").is_file())
             self.assertTrue((out_dir / "flow_style_map.json").is_file())
             self.assertTrue((out_dir / "manual.flow.idml").is_file())
+            with zipfile.ZipFile(out_dir / "manual.flow.idml") as zf:
+                story_parts = "\n".join(
+                    zf.read(name).decode("utf-8")
+                    for name in zf.namelist() if name.startswith("Stories/")
+                )
+            self.assertIn("<Rectangle ", story_parts)
+            self.assertIn("<Table ", story_parts)
+            self.assertNotIn('"kind": "langtag"', story_parts)
+            self.assertNotIn("[FIGURE:", story_parts)
             manual_ir = read_manual_ir(out_dir / "manual.ir.json")
             self.assertEqual([], validate_manual_ir(manual_ir))
             self.assertEqual("JE-1000F", manual_ir.model)
@@ -174,7 +183,81 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 spread = zf.read("Spreads/Spread_sp_0.xml").decode("utf-8")
                 self.assertIn('ParentStory="st_flow_00_alpha_01_beta"', spread)
 
-    def test_real_troubleshooting_page_keeps_dedicated_shared_region_story(self) -> None:
+    def test_warranty_starts_a_new_page_between_natural_stories(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "bundle"
+            page_dir = bundle / "page"
+            page_dir.mkdir(parents=True)
+            (bundle / "index.rst").write_text(
+                "\n".join([
+                    ".. include:: page/00_before.rst",
+                    ".. include:: page/11_warranty.rst",
+                    ".. include:: page/12_after.rst",
+                ]),
+                encoding="utf-8",
+            )
+            for stem, title in (
+                ("00_before", "BEFORE"),
+                ("11_warranty", "WARRANTY"),
+                ("12_after", "AFTER"),
+            ):
+                (page_dir / f"{stem}.rst").write_text(
+                    "\n".join([
+                        ".. raw:: latex",
+                        "",
+                        "   \\HBApplyLang{en}",
+                        "",
+                        ".. only:: latex",
+                        "",
+                        "   .. raw:: latex",
+                        "",
+                        f"      \\section{{{title}}}",
+                        "",
+                        f"   {title.title()} copy.",
+                        "",
+                    ]),
+                    encoding="utf-8",
+                )
+
+            out = Path(td) / "warranty.idml"
+            build = _run(
+                "--model", "JE-1000F", "--region", "US", "--lang", "en",
+                "--data-root", str(DATA_FIXTURE),
+                "--bundle-root", str(bundle),
+                "--out", str(out),
+            )
+            self.assertEqual(build.returncode, 0, build.stdout + build.stderr)
+
+            with zipfile.ZipFile(out) as zf:
+                names = zf.namelist()
+                for story in (
+                    "Stories/Story_st_00_before.xml",
+                    "Stories/Story_st_11_warranty.xml",
+                    "Stories/Story_st_12_after.xml",
+                ):
+                    self.assertIn(story, names)
+                spread_xml = {
+                    name: zf.read(name).decode("utf-8")
+                    for name in names if name.startswith("Spreads/")
+                }
+                locations = {
+                    story: next(
+                        name for name, xml in spread_xml.items()
+                        if f'ParentStory="{story.removeprefix("Stories/Story_").removesuffix(".xml")}"'
+                        in xml
+                    )
+                    for story in (
+                        "Stories/Story_st_00_before.xml",
+                        "Stories/Story_st_11_warranty.xml",
+                        "Stories/Story_st_12_after.xml",
+                    )
+                }
+                self.assertNotEqual(locations["Stories/Story_st_00_before.xml"],
+                                    locations["Stories/Story_st_11_warranty.xml"])
+                self.assertNotEqual(locations["Stories/Story_st_11_warranty.xml"],
+                                    locations["Stories/Story_st_12_after.xml"])
+
+    def test_real_troubleshooting_page_flows_after_storage(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             bundle = Path(td) / "bundle"
             page_dir = bundle / "page"
@@ -224,26 +307,18 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
 
             with zipfile.ZipFile(out) as zf:
                 names = zf.namelist()
-                storage = "Stories/Story_st_09_storage.xml"
-                trouble = "Stories/Story_st_troubleshooting_en.xml"
-                self.assertIn(storage, names)
-                self.assertIn(trouble, names)
+                flow = "Stories/Story_st_flow_09_storage_troubleshooting_en.xml"
+                self.assertIn(flow, names)
+                self.assertNotIn("Stories/Story_st_09_storage.xml", names)
+                self.assertNotIn("Stories/Story_st_troubleshooting_en.xml", names)
                 self.assertNotIn("Stories/Story_st_trouble.xml", names)
-                storage_story = zf.read(storage).decode("utf-8")
-                trouble_story = zf.read(trouble).decode("utf-8")
-                self.assertIn('ParentStory="st_anchor_h1pill_', storage_story)
-                self.assertIn('ParentStory="st_anchor_h1pill_', trouble_story)
-                trouble_stories = [
-                    name
-                    for name in names
-                    if name.startswith(
-                        "Stories/Story_st_anchor_trouble_"
-                        "st_troubleshooting_en"
-                    )
-                ]
-                self.assertEqual(len(trouble_stories), 1)
-                trouble_story = zf.read(trouble_stories[0]).decode("utf-8")
-                self.assertIn("Restart the product.", trouble_story)
+                flow_story = zf.read(flow).decode("utf-8")
+                self.assertIn('ParentStory="st_anchor_h1pill_', flow_story)
+                all_stories = "".join(
+                    zf.read(name).decode("utf-8")
+                    for name in names if name.startswith("Stories/")
+                )
+                self.assertIn("Restart the product.", all_stories)
                 pills = "".join(
                     zf.read(n).decode("utf-8") for n in names
                     if n.startswith("Stories/Story_st_anchor_h1pill_"))

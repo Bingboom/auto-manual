@@ -145,6 +145,34 @@ class BuildDeliveryPackageTest(unittest.TestCase):
                 manifest = zf.read("fonts_manifest.md").decode("utf-8")
                 self.assertIn("No font files are included", manifest)
 
+    def test_rewrites_links_in_real_flow_idml_too(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            idml, handoff, _ = self._fixture(root)
+            flow_asset = root / "flow-asset.png"
+            flow_asset.write_bytes(b"flow-png")
+            _write_production_idml(
+                handoff / "flow" / "manual.flow.idml",
+                [flow_asset.resolve().as_uri()],
+            )
+
+            out = build_delivery_package(
+                production_idml=idml,
+                handoff_root=handoff,
+                out_zip=root / "manual_handoff.zip",
+            )
+
+            with zipfile.ZipFile(out.zip_path) as zf:
+                self.assertIn("Links/flow-asset.png", zf.namelist())
+                flow = zf.read("flow/manual.flow.idml")
+                with tempfile.NamedTemporaryFile(suffix=".idml") as fh:
+                    fh.write(flow)
+                    fh.flush()
+                    with zipfile.ZipFile(fh.name) as flow_zip:
+                        story = flow_zip.read("Stories/Story_s1.xml").decode("utf-8")
+                self.assertIn('LinkResourceURI="file:Links/flow-asset.png"', story)
+            self.assertEqual(3, len(out.links))
+
     def test_reference_pdf_is_included_when_given(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
