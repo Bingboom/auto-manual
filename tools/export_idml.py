@@ -570,8 +570,8 @@ def main() -> int:
     flush_prose_flow()
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind, args.lang)
-    back_copy = _ir_projection.back_cover_data(manual_ir)
-    if _placed.add_back_cover_page(w, args.region, page_cursor, back_copy):
+    if _placed.add_preferred_back_cover_page(
+            w, args.region, args.lang, ROOT / "docs", page_cursor, _ir_projection.back_cover_data(manual_ir)):
         page_cursor += 1
     _toc.finalize(w, toc, w._add_story_parts, w._psr,
                   source=_ir_projection.toc_page_data(manual_ir, bundle_root))

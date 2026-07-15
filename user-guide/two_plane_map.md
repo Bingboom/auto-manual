@@ -29,7 +29,7 @@ Updated: 2026-07-02
 
 三个 base 都绑定在 Hello-Docs 对应的业务飞书主体（xcn57j1urbe6）上。
 
-**① 文档构建（phase2 构建源）** — base `LD3lb4G1ua4GOVs1vxAc9W2enje`，wiki 节点 `BLYEwfMMFiS7wsk9MuvcOvdVnje`，20 张表：
+**① 文档构建（phase2 构建源）** — base `LD3lb4G1ua4GOVs1vxAc9W2enje`，wiki 节点 `BLYEwfMMFiS7wsk9MuvcOvdVnje`，21 张表：
 
 | 分组 | 表名 | table_id |
 | --- | --- | --- |
@@ -51,6 +51,7 @@ Updated: 2026-07-02
 | 03_内容源 | 规格页Footnotes | `tblVusBZ8Fi56AWN` |
 | 03_内容源 | 规格页notes | `tblgJCepw4JvbMbH` |
 | 03_内容源 | Variable_Lang_Overrides | `tblZvjTiBypTAtdi` |
+| 03_内容源 | 插图资产表 | `tblxFBWaDG4OYhqu` |
 | 入库 staging | 数据入库表 | `tblIi0BEufjvGLIU` |
 | 入库 staging | 规格书字段映射规则 | `tblHrelfzylJIRT2` |
 
