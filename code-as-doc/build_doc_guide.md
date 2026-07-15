@@ -748,6 +748,11 @@ uploaded to the knowledge base, and its link is written to the queue row's
 absolute build-machine paths that die with the build worktree, so only the
 packaged zip is a usable designer deliverable.
 
+For queue rows with `Git_ref`, the build worktree is based on the current
+`origin/main`; only the review content under `docs/_review/` is overlaid from
+the row's review ref. This prevents a stale local `main` branch from silently
+running an older renderer during Publish.
+
 The default flow style map lives at
 `docs/templates/idml_template/style_mapping/flow_style_map.json` and is copied
 to each flow output folder as `flow_style_map.json` so design can map the story
