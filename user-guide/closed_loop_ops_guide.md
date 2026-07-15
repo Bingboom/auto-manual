@@ -262,8 +262,8 @@ python tools/bitable_schema.py seed-import --base-token <scratch> \
 4. **维护者代登记**：设计师交付文件（.ai + 导出物），维护者挂表并更新哈希
 
 导出命名契约：`<asset_key>[-<lang>].{pdf,png}`（成品页 PDF 的 -en/-es/-fr
-已是先例）。当前仓库镜像统计：**72 项 = 63 成品 / 4 临时替代 /
-5 缺失**；缺失清单即向设计侧的要图清单。后续：P1 资产解析器+publish 门，
+已是先例）。当前仓库镜像统计：**72 项 = 65 成品 / 3 临时替代 /
+4 缺失**；缺失清单即向设计侧的要图清单。后续：P1 资产解析器+publish 门，
 P2 .ai 入附件列+导出自动化，P3 release manifest 加 assets 段。
 
 ### 4.9.1 构建链路入口（已接入）

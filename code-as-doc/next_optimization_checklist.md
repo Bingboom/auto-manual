@@ -895,8 +895,9 @@ language-neutral (the LCD-hero precedent).
 - [x] PR J0: Asset census + registry (P0; done 2026-07-13)
   - Status: `done` — Feishu 内容源_插图资产表 (`tblxFBWaDG4OYhqu`, 11
     fields incl. .ai attachment column) populated with the full census:
-    **72 assets = 63 成品 / 4 临时替代 / 5 缺失** (the current repo mirror;
-    the missing list IS the
+    initial census **72 assets = 63 成品 / 4 临时替代 / 5 缺失**; after the
+    registered vector harvest in the stacked asset PRs, the current mirror is
+    **65 成品 / 3 临时替代 / 4 缺失** (the missing list IS the
     design-side request list); repo mirror `data/asset_registry.csv`;
     naming contract `<asset_key>[-<lang>].{pdf,png}`; ops guide §4.9.
 - [ ] PR J1: Asset resolver + publish gate (P1)
