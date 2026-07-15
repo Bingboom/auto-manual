@@ -32,6 +32,8 @@ def placed_asset_for(page_stem: str, lang: str, docs_dir: Path) -> Path | None:
         candidates = [f"cover-{lang}.pdf", "cover-en.pdf"]
     elif "03_product_overview" in page_stem:
         candidates = [f"product_overview-{lang}.pdf", "product_overview-en.pdf"]
+    elif page_stem.startswith("back_cover"):
+        candidates = [f"back_cover-{lang}.pdf", "back_cover-en.pdf"]
     else:
         return None
     for name in candidates:
