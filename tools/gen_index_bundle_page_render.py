@@ -103,18 +103,38 @@ def materialize_planned_page(
     page = planned.page
 
     if isinstance(page, cover_pdf_page_cls):
-        return render_cover_page_rst(title, format_tokenized(page.file, model, region)), None
+        rst_text = render_cover_page_rst(title, format_tokenized(page.file, model, region))
+        rst_text = rewrite_rst_asset_paths(
+            rst_text,
+            source_path=target_path,
+            target_path=target_path,
+            bundle_dir=bundle_dir,
+            docs_dir=docs_dir,
+            repo_root=repo_root,
+            defer_staging=True,
+        )
+        return (
+            normalize_rst_empty_line_blocks(prepend_latex_lang(rst_text, planned.lang)),
+            None,
+        )
 
     if isinstance(page, pdf_insert_page_cls):
         if planned.lang is None:
             raise RuntimeError("pdf_insert planned page is missing lang")
-        return (
-            render_pdf_insert_page_rst(
-                format_tokenized(page.file_map[planned.lang], model, region),
-                planned.lang,
-            ),
-            None,
+        rst_text = render_pdf_insert_page_rst(
+            format_tokenized(page.file_map[planned.lang], model, region),
+            planned.lang,
         )
+        rst_text = rewrite_rst_asset_paths(
+            rst_text,
+            source_path=target_path,
+            target_path=target_path,
+            bundle_dir=bundle_dir,
+            docs_dir=docs_dir,
+            repo_root=repo_root,
+            defer_staging=True,
+        )
+        return normalize_rst_empty_line_blocks(rst_text), None
 
     page_lang = planned.lang or primary_lang
     page_vars = fill_product_name_from_spec_master(
@@ -203,6 +223,7 @@ def materialize_planned_page(
         bundle_dir=bundle_dir,
         docs_dir=docs_dir,
         repo_root=repo_root,
+        defer_staging=True,
     )
     final_text = normalize_rst_empty_line_blocks(prepend_latex_lang(rst_text, planned.lang))
     if generated_render is not None and generated_render.rendered_source_path is not None:

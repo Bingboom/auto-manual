@@ -1,72 +1,72 @@
-asset_key,类别,语言维度,状态,待无字化,适用机型,导出物路径,语言变体,内容哈希,备注
-app/add_device,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/app,,png:474b6e863986,文字负载普查待做（无字化排期）
-app/add_device_plus,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/app,,"png:e0054336bae2,svg:3e957c6dedf8",文字负载普查待做（无字化排期）
-app/connect_result,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/app,,png:01d3694dd833,文字负载普查待做（无字化排期）
-app/download,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/app,,png:37bf4f4918f3,文字负载普查待做（无字化排期）
-charging/ac_wall,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/charging,,png:37f4c64bfeaa,文字负载普查待做（无字化排期）
-charging/car_charge,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/charging,,png:cc7007d5671c,文字负载普查待做（无字化排期）
-charging/solar_adapter,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/charging,,png:9df8813895e6,文字负载普查待做（无字化排期）
-charging/solar_direct,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/charging,,png:8332edf8c767,文字负载普查待做（无字化排期）
-cover/jackery_logo,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/cover,,png:d2ed71b43481,文字负载普查待做（无字化排期）
-cover/support_icon,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/cover,,png:28a1671cdf5d,文字负载普查待做（无字化排期）
-in_the_box/ac_charging_cable,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/in_the_box,,png:287650f3a89a,文字负载普查待做（无字化排期）
-in_the_box/main_unit,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/in_the_box,,jpg:562f998c918a,文字负载普查待做（无字化排期）
-in_the_box/main_unit1,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/in_the_box,,png:6c7f1deea2f6,文字负载普查待做（无字化排期）
-in_the_box/manual_icon1,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/in_the_box,,png:87ac44e52863,文字负载普查待做（无字化排期）
-lcd/lcd_map,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/lcd,,png:f82efe218bc0,无字矢量 v2 已换装（源=source/manual_je1000f_us_master p9 LCD DISPLAY）；IDML 高度上限已按新版纵横比校准
-operation/ac_output,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:cda41198c395,v2-png:43a46a51a987",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p10 下面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流（本图纵横比 1.43 是原溢流元凶），InDesign 实测 60页/0溢流
-operation/dc_usb_output,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:c166a9467c81,v2-png:c46c92d6ee99",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p11 面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流，InDesign 实测 60页/0溢流
-operation/energy_saving,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,png:848b99847403,文字负载普查待做（无字化排期）
-operation/energy_saving_12h,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"png:6337b8a4f8b1,svg:cf537ed8c012",文字负载普查待做（无字化排期）
-operation/frequency_switch,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,png:7388be9e5077,文字负载普查待做（无字化排期）
-operation/lcd_mode,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,png:24a37b773bf1,文字负载普查待做（无字化排期）
-operation/led_light,插图,中立,✅成品,TRUE,ALL,docs/templates/word_template/common_assets/operation,,png:436dbc79981b,烧死日文文字——无字化改造首批（操作者已批）
-operation/main_power,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:eed017db8ecb,v2-png:74004806e6c0",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p10 上面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流，InDesign 实测 60页/0溢流
-operation/ups_mode,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/operation,,png:5866fb05040e,文字负载普查待做（无字化排期）
-overview/front_controls,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/overview,,png:aaceecad3ceb,文字负载普查待做（无字化排期）
-overview/front_product,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/overview,,jpg:562f998c918a,文字负载普查待做（无字化排期）
-overview/right_side_ports,插图,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/overview,,png:dd6e8a9a3370,文字负载普查待做（无字化排期）
-symbols/battery_charging,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:85e5185e22e4,文字负载普查待做（无字化排期）
-symbols/battery_recycle,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:434d0907250f,文字负载普查待做（无字化排期）
-symbols/caution_bar,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:488ad9b49048,文字负载普查待做（无字化排期）
-symbols/do_not_dismantle,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:908c33c16c06,文字负载普查待做（无字化排期）
-symbols/electric_shock,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:7638826b2324,文字负载普查待做（无字化排期）
-symbols/explosive_material,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:8de051db1a3a,文字负载普查待做（无字化排期）
-symbols/grounding,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:54c57e5ecc98,文字负载普查待做（无字化排期）
-symbols/heavy_object,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:5e156fb879ab,文字负载普查待做（无字化排期）
-symbols/keep_away_from_children,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:45d63066ac4d,文字负载普查待做（无字化排期）
-symbols/keep_dry,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:3dead8521bd4,文字负载普查待做（无字化排期）
-symbols/li_ion,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:f913a65f0774,文字负载普查待做（无字化排期）
-symbols/mandatory,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:28a1671cdf5d,文字负载普查待做（无字化排期）
-symbols/no_open_flame,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:460a4a9a19fd,文字负载普查待做（无字化排期）
-symbols/no_wet_hands,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:d65978a258cc,文字负载普查待做（无字化排期）
-symbols/note_bar,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:9804efe03657,文字负载普查待做（无字化排期）
-symbols/prohibited,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:4bbbd7aa8e76,文字负载普查待做（无字化排期）
-symbols/read_manual,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:1d9fa89da31d,文字负载普查待做（无字化排期）
-symbols/read_manual_operator,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:c7a2c7dc6ddd,文字负载普查待做（无字化排期）
-symbols/tip_bar,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:be4181af5e4e,文字负载普查待做（无字化排期）
-symbols/unplug,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:4400c34e2e70,文字负载普查待做（无字化排期）
-symbols/warning_bar,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:698e38efcac9,文字负载普查待做（无字化排期）
-symbols/warning_triangle,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:24e567ffad05,文字负载普查待做（无字化排期）
-symbols/warning_triangle_white,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,svg:5e5fc8a41e7c,文字负载普查待做（无字化排期）
-symbols/weee,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:e9fc75301b8a,文字负载普查待做（无字化排期）
-symbols/weee2,图标,中立,✅成品,FALSE,ALL,docs/templates/word_template/common_assets/symbols,,png:236891c20611,文字负载普查待做（无字化排期）
-page/cover,整页PDF,按语言,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,en,cover-en.pdf:c58c706ad9b8,单文件命名 -en；是否需 es/fr 变体待确认
-page/product_overview,整页PDF,按语言,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,"en,es,fr","product_overview-en.pdf:bb3ca33f3a54,product_overview-es.pdf:2d7cb459cb17,product_overview-fr.pdf:14e89c01d450",模板物理页提取（#639）
-mark/fcc,标记,中立,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,,"fcc_mark.pdf:8029015efc5e,fcc_mark.png:45f309ed8b3f",
-hero/lcd_display,插图,中立,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,,"v2-pdf:5004a9fe0afe,v2-png:f82efe218bc0",矢量正式版 v2（源=master p8，25 个圆号标注，语言中立）→ lcd_display_hero_v2.pdf|png；IDML 已换装（commit d68288ef，随 PR#662）：lcd_map.png=v2 渲染+发射端 159pt 高度上限（防下游串文溢流），一图通 en/fr/es，InDesign 实测 60页/0溢流
-placeholder/symbols_icons,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,01_meaning_of_symbols_icons_placeholder.png:d90abf9cdad6,占位图；引用普查=无消费者，疑似孤儿，确认后清理
-placeholder/symbols_signal_words,插图,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,01_meaning_of_symbols_signal_words_placeholder.png:d90abf9cdad6,占位图；引用普查=无消费者，疑似孤儿，确认后清理
-mark/warning_lockup,标记,中立,🔧临时替代,FALSE,JE-1000F,docs/renderers/latex/assets,,"warning_lockup.jpg:36a12bf51527,warning_lockup.png:d90abf9cdad6",裁切产物，是否成品待确认
-page/back_cover,整页PDF,按语言,✅成品,FALSE,JE-1000F,docs/renderers/latex/assets,en,"pdf:7c01035f582a,png:01214504830d",整页提取（源=master p58）；IDML 已集成（commit d68288ef，随 PR#662）：placed-page 机制置入成品封底（back_cover-en.pdf 优先于合成页），InDesign 实测过；含 QR——目标待扫码确认后登记印刷外链清单；含墨西哥销售主体信息（V0.3 变更）
-button/power,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:80615c7fed88,png:2ffaa205db79",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
-button/ac,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:7d0532711439,png:5f9354fc203a",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
-button/dc_usb,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:87dcc54d6114,png:765c22b94adb",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
-button/led,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:b20f5428f8ac,png:2b271050dc4c",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
-icon/clock_3s,图标,中立,✅成品,FALSE,ALL,docs/renderers/latex/assets,,"pdf:7cf574aa7dfc,png:8d4996ff9894",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
-illustration/led_steps_textless,插图,中立,❌缺失,FALSE,ALL,,,,LED 步骤无字版（替换现 led_light 带日文版）
-mark/jp_certifications,标记,按语言,❌缺失,FALSE,JE-1000F_JP,,,,日规認証标志组（規格页認証：后接图）
-kr/image_placeholders,插图,按语言,❌缺失,FALSE,JE-1000F_KR,,,,KR 线 8 处图片资产占位（存量回写轮遗留）
-illustration/cjk_operation_set,插图,中立,❌缺失,FALSE,ALL,,,,操作插图带 CJK 待换（操作者定为最后处理）
-feishu/lcd_icons_attachments,图标,中立,✅成品,FALSE,ALL,data/phase2/_attachments,,sync 时物化，哈希随快照,LCD 图标表附件列——sync-data 自动物化，token 身份由 attachment_identity 解决
-feishu/symbols_attachments,图标,中立,✅成品,FALSE,ALL,data/phase2/_attachments,,sync 时物化，哈希随快照,符号表附件列——同上，已在管道内
+asset_key,类别,语言维度,状态,待无字化,适用机型,适用区域,导出物路径,语言变体,内容哈希,备注
+app/add_device,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/app,,png:474b6e863986,文字负载普查待做（无字化排期）
+app/add_device_plus,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/app,,"png:e0054336bae2,svg:3e957c6dedf8",文字负载普查待做（无字化排期）
+app/connect_result,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/app,,png:01d3694dd833,文字负载普查待做（无字化排期）
+app/download,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/app,,png:37bf4f4918f3,文字负载普查待做（无字化排期）
+charging/ac_wall,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/charging,,png:37f4c64bfeaa,文字负载普查待做（无字化排期）
+charging/car_charge,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/charging,,png:cc7007d5671c,文字负载普查待做（无字化排期）
+charging/solar_adapter,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/charging,,png:9df8813895e6,文字负载普查待做（无字化排期）
+charging/solar_direct,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/charging,,png:8332edf8c767,文字负载普查待做（无字化排期）
+cover/jackery_logo,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/cover,,png:d2ed71b43481,文字负载普查待做（无字化排期）
+cover/support_icon,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/cover,,png:28a1671cdf5d,文字负载普查待做（无字化排期）
+in_the_box/ac_charging_cable,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/in_the_box,,png:287650f3a89a,文字负载普查待做（无字化排期）
+in_the_box/main_unit,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/in_the_box,,jpg:562f998c918a,文字负载普查待做（无字化排期）
+in_the_box/main_unit1,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/in_the_box,,png:6c7f1deea2f6,文字负载普查待做（无字化排期）
+in_the_box/manual_icon1,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/in_the_box,,png:87ac44e52863,文字负载普查待做（无字化排期）
+lcd/lcd_map,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/lcd,,png:f82efe218bc0,无字矢量 v2 已换装（源=source/manual_je1000f_us_master p9 LCD DISPLAY）；IDML 高度上限已按新版纵横比校准
+operation/ac_output,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:cda41198c395,v2-png:43a46a51a987",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p10 下面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流（本图纵横比 1.43 是原溢流元凶），InDesign 实测 60页/0溢流
+operation/dc_usb_output,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:c166a9467c81,v2-png:c46c92d6ee99",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p11 面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流，InDesign 实测 60页/0溢流
+operation/energy_saving,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:848b99847403,文字负载普查待做（无字化排期）
+operation/energy_saving_12h,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,"png:6337b8a4f8b1,svg:cf537ed8c012",文字负载普查待做（无字化排期）
+operation/frequency_switch,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:7388be9e5077,文字负载普查待做（无字化排期）
+operation/lcd_mode,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:24a37b773bf1,文字负载普查待做（无字化排期）
+operation/led_light,插图,中立,✅成品,TRUE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:436dbc79981b,烧死日文文字——无字化改造首批（操作者已批）
+operation/main_power,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:eed017db8ecb,v2-png:74004806e6c0",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p10 上面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流，InDesign 实测 60页/0溢流
+operation/ups_mode,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:5866fb05040e,文字负载普查待做（无字化排期）
+overview/front_controls,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/overview,,png:aaceecad3ceb,文字负载普查待做（无字化排期）
+overview/front_product,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/overview,,jpg:562f998c918a,文字负载普查待做（无字化排期）
+overview/right_side_ports,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/overview,,png:dd6e8a9a3370,文字负载普查待做（无字化排期）
+symbols/battery_charging,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:85e5185e22e4,文字负载普查待做（无字化排期）
+symbols/battery_recycle,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:434d0907250f,文字负载普查待做（无字化排期）
+symbols/caution_bar,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:488ad9b49048,文字负载普查待做（无字化排期）
+symbols/do_not_dismantle,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:908c33c16c06,文字负载普查待做（无字化排期）
+symbols/electric_shock,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:7638826b2324,文字负载普查待做（无字化排期）
+symbols/explosive_material,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:8de051db1a3a,文字负载普查待做（无字化排期）
+symbols/grounding,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:54c57e5ecc98,文字负载普查待做（无字化排期）
+symbols/heavy_object,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:5e156fb879ab,文字负载普查待做（无字化排期）
+symbols/keep_away_from_children,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:45d63066ac4d,文字负载普查待做（无字化排期）
+symbols/keep_dry,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:3dead8521bd4,文字负载普查待做（无字化排期）
+symbols/li_ion,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:f913a65f0774,文字负载普查待做（无字化排期）
+symbols/mandatory,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:28a1671cdf5d,文字负载普查待做（无字化排期）
+symbols/no_open_flame,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:460a4a9a19fd,文字负载普查待做（无字化排期）
+symbols/no_wet_hands,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:d65978a258cc,文字负载普查待做（无字化排期）
+symbols/note_bar,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:9804efe03657,文字负载普查待做（无字化排期）
+symbols/prohibited,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:4bbbd7aa8e76,文字负载普查待做（无字化排期）
+symbols/read_manual,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:1d9fa89da31d,文字负载普查待做（无字化排期）
+symbols/read_manual_operator,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:c7a2c7dc6ddd,文字负载普查待做（无字化排期）
+symbols/tip_bar,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:be4181af5e4e,文字负载普查待做（无字化排期）
+symbols/unplug,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:4400c34e2e70,文字负载普查待做（无字化排期）
+symbols/warning_bar,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:698e38efcac9,文字负载普查待做（无字化排期）
+symbols/warning_triangle,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:24e567ffad05,文字负载普查待做（无字化排期）
+symbols/warning_triangle_white,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,svg:5e5fc8a41e7c,文字负载普查待做（无字化排期）
+symbols/weee,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:e9fc75301b8a,文字负载普查待做（无字化排期）
+symbols/weee2,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:236891c20611,文字负载普查待做（无字化排期）
+page/cover,整页PDF,按语言,✅成品,FALSE,JE-1000F,US,docs/renderers/latex/assets,en,cover-en.pdf:c58c706ad9b8,单文件命名 -en；是否需 es/fr 变体待确认
+page/product_overview,整页PDF,按语言,✅成品,FALSE,JE-1000F,US,docs/renderers/latex/assets,"en,es,fr","product_overview-en.pdf:bb3ca33f3a54,product_overview-es.pdf:2d7cb459cb17,product_overview-fr.pdf:14e89c01d450",模板物理页提取（#639）
+mark/fcc,标记,中立,✅成品,FALSE,JE-1000F,US,docs/renderers/latex/assets,,"fcc_mark.pdf:8029015efc5e,fcc_mark.png:45f309ed8b3f",
+hero/lcd_display,插图,中立,✅成品,FALSE,JE-1000F,ALL,docs/renderers/latex/assets,,"v2-pdf:5004a9fe0afe,v2-png:f82efe218bc0",矢量正式版 v2（源=master p8，25 个圆号标注，语言中立）→ lcd_display_hero_v2.pdf|png；IDML 已换装（commit d68288ef，随 PR#662）：lcd_map.png=v2 渲染+发射端 159pt 高度上限（防下游串文溢流），一图通 en/fr/es，InDesign 实测 60页/0溢流
+placeholder/symbols_icons,插图,中立,🔧临时替代,FALSE,JE-1000F,ALL,docs/renderers/latex/assets,,01_meaning_of_symbols_icons_placeholder.png:d90abf9cdad6,占位图；引用普查=无消费者，疑似孤儿，确认后清理
+placeholder/symbols_signal_words,插图,中立,🔧临时替代,FALSE,JE-1000F,ALL,docs/renderers/latex/assets,,01_meaning_of_symbols_signal_words_placeholder.png:d90abf9cdad6,占位图；引用普查=无消费者，疑似孤儿，确认后清理
+mark/warning_lockup,标记,中立,🔧临时替代,FALSE,JE-1000F,ALL,docs/renderers/latex/assets,,"warning_lockup.jpg:36a12bf51527,warning_lockup.png:d90abf9cdad6",裁切产物，是否成品待确认
+page/back_cover,整页PDF,按语言,⛔隔离,FALSE,JE-1000F,US,docs/renderers/latex/assets,en,"pdf:7c01035f582a,png:01214504830d",整页提取（源=master p58）；IDML 已集成（commit d68288ef，随 PR#662）：placed-page 机制置入成品封底（back_cover-en.pdf 优先于合成页），InDesign 实测过；含 QR——目标待扫码确认后登记印刷外链清单；含墨西哥销售主体信息（V0.3 变更）
+button/power,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pdf:80615c7fed88,png:2ffaa205db79",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
+button/ac,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pdf:7d0532711439,png:5f9354fc203a",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
+button/dc_usb,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pdf:87dcc54d6114,png:765c22b94adb",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
+button/led,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pdf:b20f5428f8ac,png:2b271050dc4c",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
+icon/clock_3s,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pdf:7cf574aa7dfc,png:8d4996ff9894",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
+illustration/led_steps_textless,插图,中立,❌缺失,FALSE,ALL,ALL,,,,LED 步骤无字版（替换现 led_light 带日文版）
+mark/jp_certifications,标记,按语言,❌缺失,FALSE,JE-1000F_JP,JP,,,,日规認証标志组（規格页認証：后接图）
+kr/image_placeholders,插图,按语言,❌缺失,FALSE,JE-1000F_KR,KR,,,,KR 线 8 处图片资产占位（存量回写轮遗留）
+illustration/cjk_operation_set,插图,中立,❌缺失,FALSE,ALL,ALL,,,,操作插图带 CJK 待换（操作者定为最后处理）
+feishu/lcd_icons_attachments,图标,中立,✅成品,FALSE,ALL,ALL,data/phase2/_attachments,,sync 时物化，哈希随快照,LCD 图标表附件列——sync-data 自动物化，token 身份由 attachment_identity 解决
+feishu/symbols_attachments,图标,中立,✅成品,FALSE,ALL,ALL,data/phase2/_attachments,,sync 时物化，哈希随快照,符号表附件列——同上，已在管道内

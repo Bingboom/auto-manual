@@ -13,6 +13,7 @@ from pathlib import Path
 import re
 
 from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
+from tools.safe_copy import assert_source_tree_no_symlinks, copy_regular_file_no_symlinks
 from tools.utils.path_utils import Paths, review_dir_of
 
 
@@ -226,13 +227,25 @@ def resolve_review_page_path_map(
     }
 
 
-def _overlay_file_tree(src_dir: Path, dst_dir: Path, pattern: str = "*") -> None:
+def _overlay_file_tree(
+    src_dir: Path,
+    dst_dir: Path,
+    pattern: str = "*",
+    *,
+    destination_root: Path | None = None,
+) -> None:
     if not src_dir.exists():
         return
+    assert_source_tree_no_symlinks(src_dir, label="review overlay source")
     for src_file in sorted(path for path in src_dir.rglob(pattern) if path.is_file()):
         target_path = dst_dir / src_file.relative_to(src_dir)
-        target_path.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src_file, target_path)
+        copy_regular_file_no_symlinks(
+            src_file,
+            target_path,
+            source_root=src_dir,
+            destination_root=destination_root or dst_dir,
+            label="review overlay source",
+        )
 
 
 def _overlay_selected_relative_files(
@@ -240,6 +253,7 @@ def _overlay_selected_relative_files(
     src_root: Path,
     dst_root: Path,
     relative_path_pairs: tuple[tuple[Path, Path], ...],
+    destination_root: Path | None = None,
 ) -> bool:
     copied = False
     for src_relative_path, dst_relative_path in relative_path_pairs:
@@ -247,8 +261,13 @@ def _overlay_selected_relative_files(
         if not src_path.is_file():
             continue
         target_path = dst_root / dst_relative_path
-        target_path.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src_path, target_path)
+        copy_regular_file_no_symlinks(
+            src_path,
+            target_path,
+            source_root=src_root,
+            destination_root=destination_root or dst_root,
+            label="review overlay source",
+        )
         copied = True
     return copied
 
@@ -258,7 +277,11 @@ def _overlay_override_assets(overrides_src: Path, bundle_dir: Path) -> None:
         src_dir = overrides_src / allowed_dir
         if not src_dir.exists():
             continue
-        _overlay_file_tree(src_dir, bundle_dir / allowed_dir)
+        _overlay_file_tree(
+            src_dir,
+            bundle_dir / allowed_dir,
+            destination_root=bundle_dir,
+        )
 
 
 def overlay_review_onto_bundle(
@@ -277,19 +300,31 @@ def overlay_review_onto_bundle(
 
     if not review_dir.exists():
         return None
+    assert_source_tree_no_symlinks(review_dir, label="review bundle")
     if not index_src.exists() or not page_src.is_dir():
         raise RuntimeError(f"Review bundle is incomplete: {review_dir}")
 
-    shutil.copy2(index_src, bundle_dir / "index.rst")
+    copy_regular_file_no_symlinks(
+        index_src,
+        bundle_dir / "index.rst",
+        source_root=review_dir,
+        destination_root=bundle_dir,
+        label="review index",
+    )
 
     page_dst = bundle_dir / "page"
     page_dst.mkdir(parents=True, exist_ok=True)
-    _overlay_file_tree(page_src, page_dst, "*.rst")
+    _overlay_file_tree(page_src, page_dst, "*.rst", destination_root=bundle_dir)
 
     generated_dst = bundle_dir / "generated"
     if generated_src.exists():
         generated_dst.mkdir(parents=True, exist_ok=True)
-        _overlay_file_tree(generated_src, generated_dst, "*.rst")
+        _overlay_file_tree(
+            generated_src,
+            generated_dst,
+            "*.rst",
+            destination_root=bundle_dir,
+        )
 
     if overrides_src.exists():
         _overlay_override_assets(overrides_src, bundle_dir)
@@ -311,6 +346,7 @@ def overlay_review_content_onto_bundle(
     review_dir = review_dir_for_target(docs_dir=docs_dir, model=model, region=region, lang=lang)
     if not review_content_exists(docs_dir=docs_dir, model=model, region=region, lang=lang):
         return None
+    assert_source_tree_no_symlinks(review_dir, label="review bundle")
 
     index_src = review_dir / "index.rst"
     page_src = review_dir / "page"
@@ -319,7 +355,13 @@ def overlay_review_content_onto_bundle(
     applied = False
 
     if allow_index and index_src.exists():
-        shutil.copy2(index_src, bundle_dir / "index.rst")
+        copy_regular_file_no_symlinks(
+            index_src,
+            bundle_dir / "index.rst",
+            source_root=review_dir,
+            destination_root=bundle_dir,
+            label="review index",
+        )
         applied = True
 
     page_relative_path_map = (
@@ -341,7 +383,7 @@ def overlay_review_content_onto_bundle(
     if page_src.is_dir():
         page_dst.mkdir(parents=True, exist_ok=True)
         if selected_page_paths is None:
-            _overlay_file_tree(page_src, page_dst, "*.rst")
+            _overlay_file_tree(page_src, page_dst, "*.rst", destination_root=bundle_dir)
             applied = True
         else:
             selected_page_pairs: list[tuple[Path, Path]] = []
@@ -359,6 +401,7 @@ def overlay_review_content_onto_bundle(
                 src_root=page_src,
                 dst_root=page_dst,
                 relative_path_pairs=tuple(selected_page_pairs),
+                destination_root=bundle_dir,
             ):
                 applied = True
 
@@ -375,12 +418,18 @@ def overlay_review_content_onto_bundle(
     if generated_src.is_dir():
         generated_dst.mkdir(parents=True, exist_ok=True)
         if selected_generated_paths is None:
-            _overlay_file_tree(generated_src, generated_dst, "*.rst")
+            _overlay_file_tree(
+                generated_src,
+                generated_dst,
+                "*.rst",
+                destination_root=bundle_dir,
+            )
             applied = True
         elif _overlay_selected_relative_files(
             src_root=generated_src,
             dst_root=generated_dst,
             relative_path_pairs=tuple((relative_path, relative_path) for relative_path in selected_generated_paths),
+            destination_root=bundle_dir,
         ):
             applied = True
 

@@ -1,5 +1,6 @@
 ﻿from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -13,6 +14,16 @@ from tests.test_helpers import temp_test_root, write_text
 
 
 class TestTargetResolution(unittest.TestCase):
+    @staticmethod
+    def _write_empty_asset_registry(root: Path) -> None:
+        registry = root / "data" / "asset_registry.csv"
+        registry.parent.mkdir(parents=True, exist_ok=True)
+        registry.write_text(
+            "asset_key,类别,语言维度,状态,待无字化,适用机型,适用区域,"
+            "导出物路径,语言变体,内容哈希,备注\n",
+            encoding="utf-8",
+        )
+
     def test_rewrite_rst_asset_paths_should_handle_substitution_image_directives(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -409,6 +420,7 @@ class TestTargetResolution(unittest.TestCase):
                 ],
             }
 
+            self._write_empty_asset_registry(root)
             bundle = gen_index_bundle.materialize_bundle(
                 cfg,
                 docs_dir=docs_dir,
@@ -427,6 +439,14 @@ class TestTargetResolution(unittest.TestCase):
             self.assertIn("Hello Demo Product", page_text)
             self.assertNotIn("|PRODUCT_NAME|", page_text)
             self.assertIn("_static/demo.png", page_text)
+            self.assertNotIn("bundle-source:", page_text)
+
+            asset_usage = json.loads(
+                bundle.asset_usage_manifest_path.read_text(encoding="utf-8")
+            )
+            self.assertEqual(1, len(asset_usage["assets"]))
+            self.assertEqual("legacy-path", asset_usage["assets"][0]["reference_kind"])
+            self.assertEqual("docs/_static/demo.png", asset_usage["assets"][0]["source_path"])
 
             wrapper_text = bundle.wrapper_index_path.read_text(encoding="utf-8")
             self.assertIn(".. include:: _build/M1/US/rst/index", wrapper_text)
@@ -463,6 +483,7 @@ class TestTargetResolution(unittest.TestCase):
                 ],
             }
 
+            self._write_empty_asset_registry(root)
             bundle = gen_index_bundle.materialize_bundle(
                 cfg,
                 docs_dir=docs_dir,
@@ -571,6 +592,7 @@ class TestTargetResolution(unittest.TestCase):
                 },
             }
 
+            self._write_empty_asset_registry(root)
             bundle = gen_index_bundle.materialize_bundle(
                 cfg,
                 docs_dir=docs_dir,
@@ -587,6 +609,12 @@ class TestTargetResolution(unittest.TestCase):
             self.assertTrue((bundle.bundle_dir / "bundle_manifest.json").exists())
             generated_text = (bundle.bundle_dir / "generated" / "M1" / "draft" / "draft_page_en.rst").read_text(encoding="utf-8")
             self.assertIn("_assets/templates/word_template/common_assets/overview/front_product.jpg", generated_text)
+            self.assertNotIn("bundle-source:", generated_text)
+            manifest = json.loads(bundle.manifest_path.read_text(encoding="utf-8"))
+            self.assertEqual(
+                ["generated/M1/draft/draft_page_en.rst"],
+                [row["path"] for row in manifest["generated_file_records"]],
+            )
 
     def test_materialize_bundle_should_stage_word_template_common_assets_for_review_overlay_refs(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -624,6 +652,7 @@ class TestTargetResolution(unittest.TestCase):
                 ],
             }
 
+            self._write_empty_asset_registry(root)
             bundle = gen_index_bundle.materialize_bundle(
                 cfg,
                 docs_dir=docs_dir,
@@ -685,6 +714,7 @@ class TestTargetResolution(unittest.TestCase):
                 ],
             }
 
+            self._write_empty_asset_registry(root)
             bundle = gen_index_bundle.materialize_bundle(
                 cfg,
                 docs_dir=docs_dir,
@@ -734,6 +764,7 @@ class TestTargetResolution(unittest.TestCase):
 
             with mock.patch("tools.gen_index_bundle.load_word_context", return_value=fake_builder):
                 with mock.patch("tools.gen_index_bundle.ensure_csv_page_rsts", side_effect=write_generated_csv):
+                    self._write_empty_asset_registry(root)
                     bundle = gen_index_bundle.materialize_bundle(
                         cfg,
                         docs_dir=docs_dir,
@@ -825,6 +856,7 @@ class TestTargetResolution(unittest.TestCase):
             }
 
             preview_root = docs_dir / "_build" / "M1" / "US" / "preview" / "beta"
+            self._write_empty_asset_registry(root)
             bundle = gen_index_bundle.materialize_bundle(
                 cfg,
                 docs_dir=docs_dir,
@@ -875,6 +907,7 @@ class TestTargetResolution(unittest.TestCase):
                 ],
             }
 
+            self._write_empty_asset_registry(root)
             bundle = gen_index_bundle.materialize_bundle(
                 cfg,
                 docs_dir=docs_dir,

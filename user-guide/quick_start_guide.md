@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-05-25
+Updated: 2026-07-15
 
 这份指南只讲当前真实可用的工作方式。
 核心规则只有一句：
@@ -139,6 +139,28 @@ python3 tools/source_intake.py verify --candidates reports/source_intake/<run-id
 - 如果你在表里填的是 `alice`，那就要在本机或 worker 的 session 目录里准备 `alice.json`；如果缺这个文件且也没有全局 `DINGTALK_DOCS_*`，队列会在 build 前直接失败并把原因写回 `构建结果`
 - 只有当 `是否强制刷新数据 = 勾选` 时，队列才会在这次构建前刷新一次 phase2；否则直接复用当前本地 snapshot
 - `data_sync` 会回写 `refreshed / skipped / failed`
+
+### 1.4 图片资产三张新表与构建引用
+
+图片资产不写进 phase2 内容表。业务 Base
+`LD3lb4G1ua4GOVs1vxAc9W2enje` 的唯一允许合同是另建三张独立新表：
+`04_资产源文件`、`04_资产定义`、`04_资产导出物`。旧插图表只保留历史，
+新链路不读取、不写入，也不在权限失败时回退过去。三张表的真实 table/view/field
+绑定见 [`data/asset_base_bindings.json`](../data/asset_base_bindings.json)；若这些新表
+无权限，归档步骤停止，`source_pointer` 保持为空，也不改走入库 staging 表。
+
+RST 中获批资产可按稳定身份引用：
+
+```rst
+.. image:: asset:operation/ac_output
+```
+
+构建会在 review 覆盖完成后按当前 model/region/language 解析注册表，只接受
+PNG/JPG/JPEG/SVG/PDF 成品；`.ai`、临时、缺失和隔离资产都不会通过 `asset:`
+进入 bundle。
+最终 bundle 写出 `asset_usage_manifest.json`、`asset_registry_snapshot.csv` 和带
+`bundle_sha256` 的 `bundle_manifest.json`。现有旧路径图片仍可构建，但只记为
+`legacy-path`；这表示已记账，不表示已受注册表门控。模板目前尚未批量迁移。
 
 ## 2. Build Draft Package 和 Publish 的原料分别是什么
 

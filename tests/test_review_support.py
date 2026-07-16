@@ -19,6 +19,81 @@ from tools.review_support import (
 
 
 class TestReviewSupport(unittest.TestCase):
+    def test_overlay_review_onto_bundle_should_reject_page_symlink_before_modifying_bundle(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+
+            (bundle_dir / "page").mkdir(parents=True)
+            (bundle_dir / "index.rst").write_text("runtime index\n", encoding="utf-8")
+            (bundle_dir / "page" / "runtime.rst").write_text("runtime page\n", encoding="utf-8")
+
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            outside_page = root / "outside-page.rst"
+            outside_page.write_text("outside review page\n", encoding="utf-8")
+            (review_dir / "page" / "escaped.rst").symlink_to(outside_page)
+
+            before_paths = tuple(sorted(path.relative_to(bundle_dir) for path in bundle_dir.rglob("*")))
+            before_files = {
+                path.relative_to(bundle_dir): path.read_bytes()
+                for path in bundle_dir.rglob("*")
+                if path.is_file()
+            }
+
+            with self.assertRaisesRegex(RuntimeError, "review bundle must not contain symbolic links"):
+                overlay_review_onto_bundle(
+                    bundle_dir=bundle_dir,
+                    docs_dir=docs_dir,
+                    model="JE-1000F",
+                    region="US",
+                )
+
+            self.assertEqual(before_paths, tuple(sorted(path.relative_to(bundle_dir) for path in bundle_dir.rglob("*"))))
+            self.assertEqual(
+                before_files,
+                {
+                    path.relative_to(bundle_dir): path.read_bytes()
+                    for path in bundle_dir.rglob("*")
+                    if path.is_file()
+                },
+            )
+
+    def test_overlay_review_onto_bundle_should_reject_symlinked_override_assets_directory(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+
+            (bundle_dir / "page").mkdir(parents=True)
+            (bundle_dir / "index.rst").write_text("runtime index\n", encoding="utf-8")
+            (bundle_dir / "page" / "runtime.rst").write_text("runtime page\n", encoding="utf-8")
+
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "overrides").mkdir()
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "page" / "review.rst").write_text("review page\n", encoding="utf-8")
+            outside_assets = root / "outside-assets"
+            outside_assets.mkdir()
+            (outside_assets / "managed.png").write_bytes(b"external asset")
+            (review_dir / "overrides" / "_assets").symlink_to(outside_assets, target_is_directory=True)
+
+            with self.assertRaisesRegex(RuntimeError, "review bundle must not contain symbolic links"):
+                overlay_review_onto_bundle(
+                    bundle_dir=bundle_dir,
+                    docs_dir=docs_dir,
+                    model="JE-1000F",
+                    region="US",
+                )
+
+            self.assertEqual("runtime index\n", (bundle_dir / "index.rst").read_text(encoding="utf-8"))
+            self.assertEqual("runtime page\n", (bundle_dir / "page" / "runtime.rst").read_text(encoding="utf-8"))
+            self.assertFalse((bundle_dir / "page" / "review.rst").exists())
+            self.assertFalse((bundle_dir / "_assets").exists())
+
     def test_overlay_review_onto_bundle_should_merge_review_pages_and_keep_runtime_only_files(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_dir = Path(td) / "docs"

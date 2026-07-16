@@ -1,6 +1,6 @@
 ﻿# Code Optimization Log
 
-Updated: 2026-05-31
+Updated: 2026-07-15
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -789,3 +789,21 @@ What changed:
 Why it mattered:
 
 - The workspace census × esp-docs comparison showed auto-manual's defenses concentrated on content correctness while the blind spots concentrated on publication sustainability and maintainer hand-over. Milestone I converts those unknown-unknowns into sensors — and the sensors validated themselves immediately: I3 caught a rebuilt venv on day one, I1 caught live trilingual-preface debt, I5's first drill exposed the 2/20 schema-mirror gap.
+
+## 50. 2026-07-15: Asset Registry Enters Bundle Assembly (Milestone J, P1 Core)
+
+What changed:
+
+- RST image/figure/substitution and raw-HTML `src` references can use `asset:<asset_key>`; contract checking and materialization share one resolver, and model/region/language plus approved-status checks fail closed.
+- bundle preparation now finalizes assets after review overlays and attachment aliases, then freezes `asset_usage_manifest.json`, the exact `asset_registry_snapshot.csv`, final RST/config/support-tree records, and `bundle_sha256` in `bundle_manifest.json`.
+- review seeding restores semantic URIs from rewrite provenance; explicit review overrides retain the `asset_key` and are recorded separately, while path-based images remain compatible but visible as `legacy-path` debt.
+- asset staging accepts only PNG/JPG/JPEG/SVG/PDF, never falls back to `.ai`, freezes source bytes before copying, and rejects traversal, symlink escape, collisions, staged tampering, and conflicting nested-include language contexts.
+- the registry gained explicit region scope and a quarantined status; the known full-page back cover is quarantined until its printed QR/legal risk is independently cleared.
+- created the isolated live `04_资产源文件` / `04_资产定义` / `04_资产导出物` tables and froze their real table/view/field bindings in `data/asset_base_bindings.json`; neither the legacy illustration table nor the staging intake table was used.
+- archived the JE-1000F US `.ai`, deterministic ZIP, and manifest under source record `recvpvE4YHA8rW`, then downloaded all three and verified exact SHA-256 parity; the live archive contains 10 definitions (9 approved / 1 quarantine) and 142 export rows (59 archive pages / 59 previews / 24 semantic exports).
+
+Why it mattered:
+
+- image choice is now part of the deterministic document-assembly contract instead of an untracked renderer side effect, and the HTML/Word/PDF/Markdown bundle exporters see the same post-review staged bytes.
+- the migration is observable without being overstated: current legacy paths are accounted for but are not registry-gated until templates move to `asset:`; IDML bundle-root enforcement and release-manifest asset lineage remain separate follow-up phases.
+- the first source now proves the full local-package → live-archive → attachment-download verification loop without duplicating the 142 physical exports as Base attachments; future work can build registry sync on a reviewed, real binding instead of placeholder IDs.

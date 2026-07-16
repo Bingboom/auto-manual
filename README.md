@@ -62,8 +62,10 @@ Image sources are registered separately from renderer exports: the editable
 [`data/asset_sources.csv`](data/asset_sources.csv) records its scope and hash,
 and [`data/asset_generation_candidates.csv`](data/asset_generation_candidates.csv)
 records which visual candidates may or may not be sent to an image generator.
-`asset-check` resolves only approved exports by default; a temporary asset must
-be explicitly opted into for a draft and cannot be treated as a publish asset.
+`asset-check` resolves only approved exports by default. Its
+`--allow-temporary` switch is a diagnostic/operator inspection escape hatch;
+normal bundle assembly has no such switch and rejects temporary, missing, or
+quarantined `asset:` references.
 `asset-intake` first freezes a private, hash-verified source snapshot, then emits
 cleaned page PDFs/previews, recipe exports, `manifest.json`, `artifacts.csv`, and
 a deterministic ZIP. It fails closed on runtime drift, hash drift, unsafe paths,
@@ -73,6 +75,37 @@ separate reviewed steps.
 The maintainer-side `.ai` handoff, duplicate check, attachment upload, and
 downloaded-hash verification are documented in the
 [`closed_loop_ops_guide`](user-guide/closed_loop_ops_guide.md#492-ai-交付与登记一页流程).
+
+RST can consume one approved registry export by semantic identity instead of
+by a renderer path:
+
+```rst
+.. image:: asset:operation/ac_output
+```
+
+After runtime materialization, review overlay, and attachment-alias staging,
+the bundle asset finalizer resolves each `asset:` reference against the exact
+model, region, and language, stages only PNG/JPG/JPEG/SVG/PDF exports, and
+freezes three bundle-side records: `asset_usage_manifest.json`,
+`asset_registry_snapshot.csv`, and the finalized `bundle_manifest.json` with
+`bundle_sha256`. HTML, Word, PDF, and Markdown then consume that finalized
+bundle. An explicit file under a review `overrides/` tree keeps the semantic
+`asset_key` but is recorded as `review-override`; existing path-based images
+are recorded as `legacy-path` so remaining migration debt stays visible.
+
+The current templates have not yet been bulk-migrated to `asset:`. A
+`legacy-path` row therefore means “accounted for in this bundle,” not
+“registry-gated.” Editable `.ai` files are never selected as renderer inputs.
+Release manifests do not yet embed this asset lineage; the finalized bundle
+sidecars are the current provenance surface.
+The cloud archive contract permits only three new tables in the target Base:
+`04_资产源文件` (`tblsXlZx61Ff5pQC`), `04_资产定义`
+(`tblWilXeN5FXPraC`), and `04_资产导出物` (`tblavT0dcjZGK9DR`). Their live
+table/view/field IDs are frozen in
+[`data/asset_base_bindings.json`](data/asset_base_bindings.json). The first
+master is archived and round-trip hash verified; if these tables later become
+inaccessible, archive work stops instead of falling back to the old
+illustration table or the staging intake table.
 
 For an editable InDesign handoff with fixed component anchors and natural prose
 flow:

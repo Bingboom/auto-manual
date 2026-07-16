@@ -1,7 +1,7 @@
 manifest_id: manual_us_en
 pages:
   - type: cover_pdf
-    file: cover-en.pdf
+    file: asset:page/cover
   - type: rst_include
     lang: en
     file: templates/page_shared/en/00_preface.rst

@@ -1,6 +1,6 @@
 # 双平面地图：仓库、飞书 base、谁在哪跑
 
-Updated: 2026-07-02
+Updated: 2026-07-15
 
 这套系统有 **2 个 git 仓库 + 2 组飞书 base**，四个东西都常被叫"库"，
 不看地图必混。本文是唯一的权威地图：改了拓扑（合并仓库、迁移 base、
@@ -29,7 +29,7 @@ Updated: 2026-07-02
 
 三个 base 都绑定在 Hello-Docs 对应的业务飞书主体（xcn57j1urbe6）上。
 
-**① 文档构建（phase2 构建源）** — base `LD3lb4G1ua4GOVs1vxAc9W2enje`，wiki 节点 `BLYEwfMMFiS7wsk9MuvcOvdVnje`，21 张表：
+**① 文档构建（phase2 构建源）** — base `LD3lb4G1ua4GOVs1vxAc9W2enje`，wiki 节点 `BLYEwfMMFiS7wsk9MuvcOvdVnje`，25 张表：
 
 | 分组 | 表名 | table_id |
 | --- | --- | --- |
@@ -54,6 +54,15 @@ Updated: 2026-07-02
 | 03_内容源 | 插图资产表（旧链路，历史只读；新资产管道禁止消费） | `tblxFBWaDG4OYhqu` |
 | 入库 staging | 数据入库表 | `tblIi0BEufjvGLIU` |
 | 入库 staging | 规格书字段映射规则 | `tblHrelfzylJIRT2` |
+| 入库 staging | 能力→章节映射规则 | `tblwhwpYQJsDzx5w` |
+| 04_资产 | 资产源文件 | `tblsXlZx61Ff5pQC` |
+| 04_资产 | 资产定义 | `tblWilXeN5FXPraC` |
+| 04_资产 | 资产导出物 | `tblavT0dcjZGK9DR` |
+
+资产新链路只消费上面三张 `04_资产*` 表；真实 view/field 绑定冻结在
+[`data/asset_base_bindings.json`](../data/asset_base_bindings.json)。2026-07-15 首个 AI
+母版完成附件回下载逐字节校验。本次归档未读取或写入旧插图表，也未把
+`tblIi0BEufjvGLIU` 当成资产 staging；后续权限失败仍必须停止而不是回退。
 
 **② 多维表CAT（翻译记忆，TM-B = 语料唯一规范写库）** — base
 `Ji1hb5ub1aUbewsTljGccvx5nhc`，wiki 节点 `FRUywcjrPiMoPrkxnadcQhhenmb`：

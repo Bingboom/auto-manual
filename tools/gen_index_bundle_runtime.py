@@ -295,6 +295,7 @@ def write_bundle_outputs(
         region=context.target_region,
         langs=list(context.build_langs),
         root=context.repo_root,
+        planned_pages=context.planned_pages,
     )
     context.index_path.write_text(index_text, encoding="utf-8")
 

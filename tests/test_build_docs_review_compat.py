@@ -46,6 +46,11 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
                 mock.patch.object(build_docs, "materialize_bundle", return_value=bundle),
                 mock.patch.object(build_docs, "overlay_review_onto_bundle") as overlay_review_bundle,
                 mock.patch.object(build_docs, "overlay_review_content_onto_bundle") as overlay_review_content,
+                mock.patch.object(
+                    build_docs,
+                    "finalize_materialized_bundle",
+                    return_value=bundle,
+                ) as finalize_bundle,
             ):
                 result = build_docs.prepare_manual_bundle(
                     {"doc_type": "manual_bundle"},
@@ -57,6 +62,7 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
 
         self.assertEqual(bundle, result)
         overlay_review_bundle.assert_not_called()
+        finalize_bundle.assert_called_once()
         overlay_review_content.assert_called_once_with(
             bundle_dir=bundle_dir,
             docs_dir=docs_dir,
@@ -103,6 +109,11 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
                 mock.patch.object(build_docs, "materialize_bundle", return_value=bundle) as materialize,
                 mock.patch.object(build_docs, "overlay_review_onto_bundle") as overlay_review_bundle,
                 mock.patch.object(build_docs, "overlay_review_content_onto_bundle") as overlay_review_content,
+                mock.patch.object(
+                    build_docs,
+                    "finalize_materialized_bundle",
+                    return_value=bundle,
+                ) as finalize_bundle,
             ):
                 result = build_docs.prepare_manual_bundle(
                     {"doc_type": "manual_bundle"},
@@ -114,9 +125,11 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
         self.assertEqual(bundle, result)
         # Skeleton-only materialization: no page is rendered from the data-root.
         self.assertTrue(materialize.call_args.kwargs["skeleton_only"])
+        self.assertFalse(materialize.call_args.kwargs["finalize_assets"])
         # The committed review bundle is still overlaid to supply the content.
         overlay_review_bundle.assert_called_once()
         overlay_review_content.assert_not_called()
+        finalize_bundle.assert_called_once()
 
 
 if __name__ == "__main__":
