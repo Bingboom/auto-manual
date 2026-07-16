@@ -260,6 +260,72 @@
       ],
       "gate": {"status": "quarantine", "reasons": ["PNG parity is confirmed, but the printed QR target and regional legal/contact content are not yet verified"]},
       "risk_tags": ["qr", "external-link", "localized-text", "legal-text", "regional-content"]
+    },
+    {
+      "asset_key": "overview/right_side_ports",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [30, 335, 345, 492]},
+        {"op": "redact_text", "images": "preserve", "graphics": "remove_if_touched", "fill": null},
+        {"op": "whiteout", "bbox_pt": [30.5, 344, 204.5, 360]},
+        {"op": "whiteout", "bbox_pt": [242.5, 393.5, 344.5, 404.5]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/right_side_ports.pdf", "expected_sha256": "80536d601c8cb16bf6301c4c0e8c6424f0ad9c19e1657c0c11deac8370199434"},
+        {"format": "png", "path": "docs/renderers/latex/assets/right_side_ports.png", "scale": 4, "expected_sha256": "b04dca41b7cc3211a30f3a3fc2b1e904c25330f28104e4338a8ed67a11378011"},
+        {"format": "png", "path": "docs/templates/word_template/common_assets/overview/right_side_ports.png", "scale": 4, "expected_sha256": "b04dca41b7cc3211a30f3a3fc2b1e904c25330f28104e4338a8ed67a11378011"}
+      ],
+      "gate": {"status": "approved", "reasons": ["localized callout copy and leader lines are removed; immutable product markings preserved; reviewed against source page render"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "overview/front_controls",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [28, 98, 345, 254]},
+        {"op": "redact_text", "images": "preserve", "graphics": "remove_if_touched", "fill": null},
+        {"op": "whiteout", "bbox_pt": [267.5, 158, 344.5, 198]},
+        {"op": "whiteout", "bbox_pt": [245.5, 163.5, 248.8, 172.5]},
+        {"op": "whiteout", "bbox_pt": [180, 186.5, 248, 191.5]},
+        {"op": "whiteout", "bbox_pt": [176, 187, 181, 196.2]},
+        {"op": "whiteout", "bbox_pt": [211.5, 215, 217.5, 223]},
+        {"op": "whiteout", "bbox_pt": [211.5, 226, 217.5, 249]},
+        {"op": "whiteout", "bbox_pt": [211.5, 251.8, 217.5, 253.9]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/front_controls.pdf", "expected_sha256": "5f1c26c9ad0a8e44fcc16216811b713794a28cdb0df01fdb1d6f92d6dbc58643"},
+        {"format": "png", "path": "docs/renderers/latex/assets/front_controls.png", "scale": 4, "expected_sha256": "aee24aca0d86464f590be397c08cb5b621b96b99cfddafeac6d86cf1c8700f56"},
+        {"format": "png", "path": "docs/templates/word_template/common_assets/overview/front_controls.png", "scale": 4, "expected_sha256": "aee24aca0d86464f590be397c08cb5b621b96b99cfddafeac6d86cf1c8700f56"}
+      ],
+      "gate": {"status": "approved", "reasons": ["localized callout copy and leader lines are removed; immutable product markings preserved; reviewed against source page render"]},
+      "risk_tags": []
+    },
+    {
+      "asset_key": "operation/led_light",
+      "page": 13,
+      "build_eligible": true,
+      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [44, 296, 222, 398]},
+        {"op": "redact_text", "images": "preserve", "graphics": "remove_if_touched", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/op_led_light.pdf", "expected_sha256": "68e2407169b1ad1be263d731b3956aa5d61b44a1d32964997ef3282ed37a33c9"},
+        {"format": "png", "path": "docs/renderers/latex/assets/op_led_light.png", "scale": 4, "expected_sha256": "bf4fce34dd33d44a77c7a96dd6aff81ccd76bdc5f6ba34cf59d69f95d021cdd3"},
+        {"format": "png", "path": "docs/templates/word_template/common_assets/operation/led_light.png", "scale": 4, "expected_sha256": "bf4fce34dd33d44a77c7a96dd6aff81ccd76bdc5f6ba34cf59d69f95d021cdd3"}
+      ],
+      "gate": {"status": "approved", "reasons": ["localized callout copy and leader lines are removed; immutable product markings preserved; reviewed against source page render"]},
+      "risk_tags": []
     }
   ]
 }

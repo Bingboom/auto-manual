@@ -240,7 +240,7 @@ class TestAssetRecipe(unittest.TestCase):
         recipe = load_recipe(OFFICIAL_RECIPE)
 
         self.assertEqual(59, len(recipe.page_catalog))
-        self.assertEqual(10, len(recipe.assets))
+        self.assertEqual(13, len(recipe.assets))
         self.assertEqual(
             {21, 22, 39, 40, 57, 58, 59},
             {row.page for row in recipe.page_catalog if row.gate.status == "quarantine"},
