@@ -20,12 +20,12 @@ operation/energy_saving,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/wor
 operation/energy_saving_12h,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,"png:6337b8a4f8b1,svg:cf537ed8c012",文字负载普查待做（无字化排期）
 operation/frequency_switch,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:7388be9e5077,文字负载普查待做（无字化排期）
 operation/lcd_mode,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:24a37b773bf1,文字负载普查待做（无字化排期）
-operation/led_light,插图,中立,✅成品,TRUE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:436dbc79981b,烧死日文文字——无字化改造首批（操作者已批）
+operation/led_light,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,"png:bf4fce34dd33,v2-pdf:68e2407169b1,v2-png:bf4fce34dd33",无字矢量已提取（源=source/manual_je1000f_us_master p13 LED LIGHT ON/OFF，设备+放大圈+手，步骤文字由 RST 排版承载；替换原烧死日文版，recipe 哈希锁定）
 operation/main_power,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:eed017db8ecb,v2-png:74004806e6c0",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p10 上面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流，InDesign 实测 60页/0溢流
 operation/ups_mode,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:5866fb05040e,文字负载普查待做（无字化排期）
-overview/front_controls,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/overview,,png:aaceecad3ceb,文字负载普查待做（无字化排期）
+overview/front_controls,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/overview,,"png:aee24aca0d86,v2-pdf:5f1c26c9ad0a,v2-png:aee24aca0d86",无字矢量已提取（源=source/manual_je1000f_us_master p8 FRONT VIEW，1500W 正确面板——原 2000W 机型错配一并解决；残留:散热纹处两短线/引线末端细刻 待精修，recipe 哈希锁定）
 overview/front_product,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/overview,,jpg:562f998c918a,文字负载普查待做（无字化排期）
-overview/right_side_ports,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/overview,,png:dd6e8a9a3370,文字负载普查待做（无字化排期）
+overview/right_side_ports,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/overview,,"png:b04dca41b7cc,v2-pdf:80536d601c8c,v2-png:b04dca41b7cc",无字矢量已提取（源=source/manual_je1000f_us_master p8 RIGHT SIDE VIEW，标注文字/引线已剥离；残留:AC 输入模组至机身边缘一段引线 待精修，recipe 哈希锁定）
 symbols/battery_charging,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:85e5185e22e4,文字负载普查待做（无字化排期）
 symbols/battery_recycle,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:434d0907250f,文字负载普查待做（无字化排期）
 symbols/caution_bar,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:488ad9b49048,文字负载普查待做（无字化排期）
@@ -64,7 +64,6 @@ button/ac,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pd
 button/dc_usb,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pdf:87dcc54d6114,png:765c22b94adb",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
 button/led,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pdf:b20f5428f8ac,png:2b271050dc4c",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
 icon/clock_3s,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pdf:7cf574aa7dfc,png:8d4996ff9894",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
-illustration/led_steps_textless,插图,中立,❌缺失,FALSE,ALL,ALL,,,,LED 步骤无字版（替换现 led_light 带日文版）
 mark/jp_certifications,标记,按语言,❌缺失,FALSE,JE-1000F_JP,JP,,,,日规認証标志组（規格页認証：后接图）
 kr/image_placeholders,插图,按语言,❌缺失,FALSE,JE-1000F_KR,KR,,,,KR 线 8 处图片资产占位（存量回写轮遗留）
 illustration/cjk_operation_set,插图,中立,❌缺失,FALSE,ALL,ALL,,,,操作插图带 CJK 待换（操作者定为最后处理）
