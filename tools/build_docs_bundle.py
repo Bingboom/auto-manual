@@ -14,7 +14,33 @@ def _existing_review_overlay_paths(bundle_dir: Path) -> tuple[Path, ...]:
         if not root_dir.exists():
             continue
         paths.extend(path.relative_to(bundle_dir) for path in sorted(root_dir.rglob("*.rst")) if path.is_file())
-    return tuple(paths)
+
+    # ``review-asis`` deliberately materializes only a conf/asset skeleton.
+    # Its generated index still declares the target-language page filenames,
+    # so use those declarations to select the matching rows from a shared
+    # multi-language review bundle even though ``page/`` is still empty.
+    index_path = bundle_dir / "index.rst"
+    if index_path.is_file():
+        include_prefix = ".. include::"
+        for line in index_path.read_text(encoding="utf-8").splitlines():
+            stripped = line.strip()
+            if not stripped.startswith(include_prefix):
+                continue
+            raw_value = stripped[len(include_prefix) :].strip()
+            relative = Path(raw_value)
+            if (
+                not raw_value
+                or relative.is_absolute()
+                or ".." in relative.parts
+                or not relative.parts
+                or relative.parts[0] not in {"page", "generated"}
+                or relative.suffix.casefold() != ".rst"
+            ):
+                raise RuntimeError(
+                    f"Review skeleton has an unsafe RST include: {raw_value!r}"
+                )
+            paths.append(relative)
+    return tuple(dict.fromkeys(paths))
 
 
 def prepare_manual_bundle(
@@ -94,6 +120,8 @@ def prepare_manual_bundle(
                         region=region,
                         lang=review_lang,
                     )
+                if overlay_result is None:
+                    continue
                 if isinstance(overlay_result, Path):
                     applied_review_dir = overlay_result
                 review_applied = True
@@ -109,6 +137,8 @@ def prepare_manual_bundle(
                     allowed_relative_paths=_existing_review_overlay_paths(bundle.bundle_dir) if lang_fallback else None,
                     allow_index=not lang_fallback,
                 )
+                if overlay_result is None:
+                    continue
                 if isinstance(overlay_result, Path):
                     applied_review_dir = overlay_result
                 review_applied = True

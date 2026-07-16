@@ -124,8 +124,9 @@ copy, tables, specifications, legal text, and asset identity remain
 source-owned.
 
 Frozen review attachment names are resolved by their stable semantic identity
-and staged under the frozen basename; an unresolved or ambiguous asset now
-fails the IDML export instead of producing a silent missing-link placeholder.
+(ignoring the mutable leading row ordinal and opaque Feishu token) and staged
+under the frozen basename; an unresolved or ambiguous asset now fails the IDML
+export instead of producing a silent missing-link placeholder.
 Fixed composite pages remain componentized, while ordinary operation,
 charging, storage, and troubleshooting prose uses normal linked frame chains.
 Rounded data tables remain

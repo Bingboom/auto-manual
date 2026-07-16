@@ -106,9 +106,9 @@ Finalization also gives every Meaning of Symbols table a light-grey first
 column and closes its rounded shell to the native table height; review
 `fitted_symbol_table_shells` beside the LCD counter in the preflight report.
 
-If a review page still references an attachment basename with an older opaque
-hash, the build now stages the unique current semantic match under that frozen
-name. Missing or ambiguous matches fail before handoff. The production IDML
+If a review page still references an attachment basename with an older leading
+row ordinal or opaque hash, the build stages the unique current semantic match
+under that frozen name. Missing or ambiguous matches fail before handoff. The production IDML
 keeps fixed composite pages componentized and uses normal linked frame chains
 for ordinary prose. It also uses grouped rounded-table backgrounds, so
 designers can edit table cells without reintroducing the curved-corner inset.
