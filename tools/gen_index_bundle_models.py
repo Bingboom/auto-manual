@@ -32,6 +32,8 @@ class MaterializedBundle:
     page_manifest_path: Path | None = None
     recipe_ids: tuple[str, ...] = ()
     snippet_ids: tuple[str, ...] = ()
+    asset_usage_manifest_path: Path | None = None
+    asset_registry_snapshot_path: Path | None = None
 
 
 def repo_relative(path: Path | None, *, repo_root: Path) -> str | None:

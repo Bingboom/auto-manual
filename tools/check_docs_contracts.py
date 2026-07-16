@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.contract_assets import ContractAssetResolver
+
 
 def resolve_contract_asset_path(
     raw_value: str,
@@ -14,20 +16,13 @@ def resolve_contract_asset_path(
     lang: str | None,
     render_build_template: Callable[..., str],
 ) -> Path:
-    rendered = render_build_template(
-        raw_value,
+    return ContractAssetResolver(
+        docs_dir=docs_dir,
+        repo_root=repo_root,
         model=model,
         region=region,
-        lang=lang,
-    )
-    candidate = Path(rendered)
-    if candidate.is_absolute():
-        return candidate
-
-    docs_candidate = docs_dir / candidate
-    if docs_candidate.exists():
-        return docs_candidate
-    return repo_root / candidate
+        value_renderer=render_build_template,
+    ).resolve(raw_value, lang=lang)
 
 
 def contract_asset_exists(

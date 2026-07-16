@@ -398,7 +398,9 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     for idx, page in enumerate(parsed_pages, start=1):
         if isinstance(page, CoverPdfPage):
             if strict_files:
-                if has_tokenized_value(page.file):
+                if page.file.strip().lower().startswith("asset:"):
+                    pass
+                elif has_tokenized_value(page.file):
                     issues.append(
                         Issue(
                             "WARN",
@@ -449,6 +451,8 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                 )
             if strict_files:
                 for lang, fname in page.file_map.items():
+                    if fname.strip().lower().startswith("asset:"):
+                        continue
                     if has_tokenized_value(fname):
                         issues.append(
                             Issue(

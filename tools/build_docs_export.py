@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.asset_registry import AssetRegistryError
 from tools.build_docs_artifacts import (
     build_markdown_artifact,
     build_pdf_artifact,
@@ -10,6 +12,10 @@ from tools.build_docs_artifacts import (
     finalize_html_artifact,
     resolve_build_artifact_plan,
 )
+from tools.asset_usage import ASSET_USAGE_MANIFEST_FILENAME
+from tools.gen_index_bundle_assets import raw_html_asset_values
+from tools.safe_copy import copy_regular_file_no_symlinks
+from tools.utils.path_utils import PathSegments, latex_renderer_of
 
 
 def _copy_attachment_images_for_latex(
@@ -35,17 +41,106 @@ def _copy_attachment_images_for_latex(
     common_assets = bundle_dir / "_assets" / "templates" / "word_template" / "common_assets"
     if common_assets.is_dir():
         image_roots.append(common_assets)
+    dynamic_latex_assets = latex_renderer_of(bundle_dir) / PathSegments.ASSETS
+    if dynamic_latex_assets.is_dir():
+        image_roots.append(dynamic_latex_assets)
     copied = 0
     for root in image_roots:
         for src in sorted(root.rglob("*")):
             if not src.is_file() or src.suffix.lower() not in (".png", ".jpg", ".jpeg", ".pdf"):
                 continue
             dst = latex_out_dir / src.name
-            if not dst.exists():
-                dst.write_bytes(src.read_bytes())
-                copied += 1
+            content = src.read_bytes()
+            if dst.exists() or dst.is_symlink():
+                if dst.is_symlink() or not dst.is_file() or dst.read_bytes() != content:
+                    raise AssetRegistryError(
+                        f"LaTeX asset basename collision for {src.name}: {src} -> {dst}"
+                    )
+                continue
+            dst.write_bytes(content)
+            copied += 1
     if copied:
         printer(f"[build] Copied {copied} attachment/asset image(s) into latex dir")
+
+
+def _bundle_file(root: Path, relative_value: object, *, label: str) -> Path:
+    raw_value = str(relative_value or "").strip()
+    relative = Path(raw_value)
+    if not raw_value or relative.is_absolute() or ".." in relative.parts:
+        raise AssetRegistryError(f"{label} has an unsafe bundle path: {raw_value!r}")
+    current = root
+    for part in relative.parts:
+        current = current / part
+        if current.is_symlink():
+            raise AssetRegistryError(f"{label} must not use a symbolic link: {raw_value}")
+    try:
+        canonical = current.resolve(strict=True)
+        canonical.relative_to(root)
+    except (FileNotFoundError, ValueError) as exc:
+        raise AssetRegistryError(f"{label} is outside or missing from the bundle: {raw_value}") from exc
+    if not canonical.is_file():
+        raise AssetRegistryError(f"{label} is not a regular file: {raw_value}")
+    return canonical
+
+
+def _copy_raw_html_assets_for_html(
+    bundle_dir: Path,
+    html_out_dir: Path,
+    printer: Callable[[str], None],
+) -> None:
+    """Copy exactly the accounted local assets referenced by raw HTML ``src``."""
+
+    bundle_root = bundle_dir.resolve(strict=True)
+    manifest_path = _bundle_file(
+        bundle_root,
+        ASSET_USAGE_MANIFEST_FILENAME,
+        label="asset usage manifest",
+    )
+    try:
+        payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise AssetRegistryError(f"asset usage manifest is invalid: {manifest_path}") from exc
+    rewrites = payload.get("rewrites") if isinstance(payload, dict) else None
+    if not isinstance(rewrites, list):
+        raise AssetRegistryError(f"asset usage manifest has invalid rewrites: {manifest_path}")
+
+    rendered_by_reference: dict[str, set[str]] = {}
+    for row in rewrites:
+        if not isinstance(row, dict):
+            raise AssetRegistryError(f"asset usage manifest has invalid rewrite rows: {manifest_path}")
+        reference_path = str(row.get("reference_path") or "").strip()
+        rendered_value = str(row.get("rendered_value") or "").strip()
+        if not reference_path or not rendered_value:
+            raise AssetRegistryError(f"asset usage manifest has incomplete rewrite rows: {manifest_path}")
+        rendered_by_reference.setdefault(reference_path, set()).add(rendered_value)
+
+    raw_html_paths: set[str] = set()
+    for reference_path, rendered_values in sorted(rendered_by_reference.items()):
+        reference = _bundle_file(
+            bundle_root,
+            reference_path,
+            label="raw HTML asset reference",
+        )
+        html_values = set(raw_html_asset_values(reference.read_text(encoding="utf-8")))
+        raw_html_paths.update(rendered_values & html_values)
+
+    html_out_dir.mkdir(parents=True, exist_ok=True)
+    if html_out_dir.is_symlink() or not html_out_dir.is_dir():
+        raise AssetRegistryError(f"HTML output is not a safe directory: {html_out_dir}")
+    html_root = html_out_dir.resolve(strict=True)
+    copied = 0
+    for raw_value in sorted(raw_html_paths):
+        source = _bundle_file(bundle_root, raw_value, label="raw HTML asset")
+        copy_regular_file_no_symlinks(
+            source,
+            html_root / raw_value,
+            source_root=bundle_root,
+            destination_root=html_root,
+            label="raw HTML asset",
+        )
+        copied += 1
+    if copied:
+        printer(f"[build] Copied {copied} raw-HTML asset(s) into html dir")
 
 
 def build_target(
@@ -143,6 +238,11 @@ def build_target(
             region=target_region,
             lang=target_lang or artifact_plan.primary_lang,
             minimal_theme=minimal_theme,
+        )
+        _copy_raw_html_assets_for_html(
+            Path(bundle.bundle_dir),
+            Path(artifact_plan.html_out_dir),
+            printer,
         )
         html_built = True
 

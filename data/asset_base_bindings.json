@@ -1,0 +1,104 @@
+{
+  "schema_version": "asset-base-bindings/v1",
+  "base": {
+    "name": "文档构建",
+    "base_token": "LD3lb4G1ua4GOVs1vxAc9W2enje",
+    "wiki_node_token": "BLYEwfMMFiS7wsk9MuvcOvdVnje"
+  },
+  "source_records": {
+    "source/manual_je1000f_us_master": {
+      "table": "asset_sources",
+      "record_id": "recvpvE4YHA8rW"
+    }
+  },
+  "tables": {
+    "asset_sources": {
+      "name": "04_资产源文件",
+      "table_id": "tblsXlZx61Ff5pQC",
+      "default_view_id": "vewZcSuiUo",
+      "fields": {
+        "created_at": "fldyOXwdFS",
+        "document_revision": "fldjX61GVj",
+        "package_sha256": "fldFaRvJiZ",
+        "source_file": "fld7mKmLck",
+        "manifest_sha256": "fld6h0X0gq",
+        "asset_package": "fldo1DsEnC",
+        "manifest_file": "fldgLFumZC",
+        "source_scope_region": "fld3Hij7P6",
+        "archive_status": "flduowSU6p",
+        "source_scope_lang": "fld0nffCO1",
+        "notes": "fldv8N081I",
+        "source_scope_model": "fldPy6REU7",
+        "registry_revision": "fldmCQa33U",
+        "source_sha256": "fldRPZ0gfJ",
+        "source_key": "fldlfvU5xL",
+        "page_width_mm": "fldA5uqAKu",
+        "page_count": "fldXZ3OhF9",
+        "page_height_mm": "fld6ix5WaQ",
+        "source_kind": "fldpHUzuJf",
+        "source_format": "fldyTORf4q",
+        "updated_at": "fld4pais68"
+      }
+    },
+    "asset_definitions": {
+      "name": "04_资产定义",
+      "table_id": "tblWilXeN5FXPraC",
+      "default_view_id": "vew0gl8yYS",
+      "fields": {
+        "visual_review_required": "fldlzHJCSJ",
+        "generator_allowed": "fldgmWqnfq",
+        "asset_key": "fldrnL0cQA",
+        "updated_at": "flddLOzLhu",
+        "text_policy": "fld1aQJEhS",
+        "status": "fldMhgSQj7",
+        "language_variants": "fldEeq9e4t",
+        "gate_status": "fldzv8vDNB",
+        "source_key": "fld3NoyDxB",
+        "textless_pending": "fld3YAsCu7",
+        "created_at": "fldSlxeoOR",
+        "category": "fld565X3hJ",
+        "build_eligible": "fldTNB2BX4",
+        "region_scope": "fldlZgcVbf",
+        "notes": "fldoS36GMk",
+        "language_dimension": "fldrED1SWb",
+        "recipe_revision": "fldZAchQ4C",
+        "source_crop": "fldU6aRaRW",
+        "source_record": "fldCZgaR8F",
+        "source_page": "fld79TpbgP",
+        "model_scope": "fldh37CrVv"
+      }
+    },
+    "asset_exports": {
+      "name": "04_资产导出物",
+      "table_id": "tblavT0dcjZGK9DR",
+      "default_view_id": "vewHmmr2Pn",
+      "fields": {
+        "updated_at": "fld1vKXdUT",
+        "asset_key": "fldTT2y0yq",
+        "source_key": "fld2f6jCtz",
+        "content_sha256": "fldojPSPK5",
+        "package_sha256": "fldkKAm4ro",
+        "source_page": "fldBlF6Uym",
+        "expected_sha256": "fld9NEFB5q",
+        "export_file": "fldaVpvPXr",
+        "text_policy": "fldpSHpb4n",
+        "created_at": "fld72RYrKa",
+        "intake_run_id": "fld9SIL7R9",
+        "export_key": "flduGNHjbP",
+        "locale": "fldYeGzurm",
+        "source_record": "fldCDXk97f",
+        "gate_status": "fld5K2TAUU",
+        "format": "fldBl4UUXI",
+        "artifact_path": "fldO0XFZ7j",
+        "visual_review_required": "fldX4hdfZe",
+        "build_eligible": "fldYtDGzJf",
+        "zip_member_path": "fld7hxon8g",
+        "notes": "fldFAfYnRB",
+        "artifact_kind": "fldbEDyEYw",
+        "asset_record": "fldA2vhgTZ",
+        "repo_path": "fldJ9JFlab",
+        "size_bytes": "fldm7EQ9p2"
+      }
+    }
+  }
+}

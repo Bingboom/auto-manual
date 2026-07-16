@@ -5,9 +5,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
+import tempfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,8 +22,14 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.build_docs import BuildTarget, build_root_for_target, load_config, resolve_build_targets  # noqa: E402
+from tools.asset_rewrites import restore_registry_asset_uris  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target  # noqa: E402
 from tools.review_support import review_dir_for_target  # noqa: E402
+from tools.safe_copy import (  # noqa: E402
+    assert_source_tree_no_symlinks,
+    copy_regular_file_no_symlinks,
+    copytree_replace_no_symlinks,
+)
 from tools.utils.path_utils import Paths  # noqa: E402
 
 
@@ -54,16 +62,31 @@ def _repo_relative(path: Path) -> str:
         return path.as_posix()
 
 
-def _copy_rst_tree(src_dir: Path, dst_dir: Path) -> list[Path]:
+def _repo_relative_lexical(path: Path) -> str:
+    candidate = Path(os.path.abspath(path))
+    root = Path(os.path.abspath(ROOT))
+    try:
+        return candidate.relative_to(root).as_posix()
+    except ValueError:
+        return candidate.as_posix()
+
+
+def _copy_rst_tree(src_dir: Path, dst_dir: Path, *, label: str) -> list[Path]:
     copied: list[Path] = []
     if not src_dir.exists():
         return copied
 
+    assert_source_tree_no_symlinks(src_dir, label=label)
     for src_file in sorted(path for path in src_dir.rglob("*.rst") if path.is_file()):
         rel = src_file.relative_to(src_dir)
         dst_file = dst_dir / rel
-        dst_file.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src_file, dst_file)
+        copy_regular_file_no_symlinks(
+            src_file,
+            dst_file,
+            source_root=src_dir,
+            destination_root=dst_dir,
+            label=label,
+        )
         copied.append(dst_file)
     return copied
 
@@ -141,6 +164,46 @@ def _load_existing_review_bundle(
     )
 
 
+def _replace_directory_atomically(staging_dir: Path, destination: Path) -> None:
+    """Publish a sibling staging tree, restoring the previous tree on failure."""
+
+    if destination.is_symlink():
+        raise RuntimeError(f"Review bundle must not be a symbolic link: {destination}")
+    if not destination.exists():
+        os.replace(staging_dir, destination)
+        return
+    if not destination.is_dir():
+        raise RuntimeError(f"Review bundle is not a directory: {destination}")
+
+    previous = staging_dir.with_name(f"{staging_dir.name}.previous")
+    try:
+        os.replace(destination, previous)
+        os.replace(staging_dir, destination)
+    except BaseException:
+        try:
+            if previous.exists():
+                if destination.exists():
+                    if staging_dir.exists():
+                        raise RuntimeError(
+                            "Review refresh rollback found both staging and destination trees"
+                        )
+                    os.replace(destination, staging_dir)
+                os.replace(previous, destination)
+        except BaseException as rollback_error:
+            raise RuntimeError(
+                "Review refresh failed and automatic rollback failed; "
+                f"the previous review is preserved at {previous}"
+            ) from rollback_error
+        raise
+    try:
+        shutil.rmtree(previous)
+    except OSError:
+        # The new review is already fully published.  Keeping the hidden
+        # previous tree is safer than turning a cleanup issue into a false
+        # refresh failure after the atomic swap succeeded.
+        pass
+
+
 def materialize_review_bundle(
     *,
     docs_dir: Path,
@@ -174,64 +237,114 @@ def materialize_review_bundle(
     if not page_src.exists():
         raise RuntimeError(f"Runtime bundle page directory not found: {page_src}")
 
-    overrides_backup = review_dir.parent / f".{review_dir.name}.overrides.tmp"
-    existing_overrides = review_dir / "overrides"
-    if overrides_backup.exists():
-        shutil.rmtree(overrides_backup)
-    if existing_overrides.exists():
-        shutil.copytree(existing_overrides, overrides_backup)
-    if review_dir.exists():
-        shutil.rmtree(review_dir)
-    review_dir.mkdir(parents=True, exist_ok=True)
-
-    index_dst = review_dir / "index.rst"
-    shutil.copy2(index_src, index_dst)
-
-    page_paths = _copy_rst_tree(page_src, review_dir / "page")
-    generated_paths = _copy_rst_tree(generated_src, review_dir / "generated")
-    overrides_dir = review_dir / "overrides"
-    override_paths: list[Path] = []
-    if overrides_backup.exists():
-        shutil.move(str(overrides_backup), str(overrides_dir))
-        override_paths = [path for path in overrides_dir.rglob("*") if path.is_file()]
-    else:
-        overrides_dir.mkdir(parents=True, exist_ok=True)
-    _write_overrides_readme(overrides_dir)
-    override_paths = [path for path in overrides_dir.rglob("*") if path.is_file()]
-    manifest_path = review_dir / "manifest.json"
-
-    manifest = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "git_sha": _read_git_sha(),
-        "model": model,
-        "region": region,
-        "lang": lang,
-        "runtime_bundle_dir": _repo_relative(runtime_bundle_dir),
-        "review_dir": _repo_relative(review_dir),
-        "index_path": _repo_relative(index_dst),
-        "page_files": [_repo_relative(path) for path in page_paths],
-        "generated_files": [_repo_relative(path) for path in generated_paths],
-        "override_files": [_repo_relative(path) for path in override_paths],
-    }
-    runtime_bundle_manifest = _load_runtime_bundle_manifest(runtime_bundle_dir)
-    if runtime_bundle_manifest:
-        manifest["page_manifest"] = runtime_bundle_manifest.get("page_manifest")
-        manifest["recipe_ids"] = runtime_bundle_manifest.get("recipe_ids", [])
-        manifest["snippet_ids"] = runtime_bundle_manifest.get("snippet_ids", [])
-        manifest["spec_master"] = runtime_bundle_manifest.get("spec_master", {})
-    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-    return ReviewBundle(
-        review_dir=review_dir,
-        index_path=index_dst,
-        manifest_path=manifest_path,
-        page_paths=tuple(page_paths),
-        generated_paths=tuple(generated_paths),
-        model=model,
-        region=region,
-        lang=lang,
-        reused_existing=False,
+    review_dir.parent.mkdir(parents=True, exist_ok=True)
+    staging_dir = Path(
+        tempfile.mkdtemp(
+            prefix=f".{review_dir.name}.refresh-",
+            dir=review_dir.parent,
+        )
     )
+    existing_overrides = review_dir / "overrides"
+    try:
+        index_staging = staging_dir / "index.rst"
+        copy_regular_file_no_symlinks(
+            index_src,
+            index_staging,
+            source_root=runtime_bundle_dir,
+            destination_root=staging_dir,
+            label="runtime review index",
+        )
+
+        staged_page_paths = _copy_rst_tree(
+            page_src,
+            staging_dir / "page",
+            label="runtime review page source",
+        )
+        staged_generated_paths = _copy_rst_tree(
+            generated_src,
+            staging_dir / "generated",
+            label="runtime review generated source",
+        )
+        restored_asset_references = restore_registry_asset_uris(
+            source_bundle_dir=runtime_bundle_dir,
+            target_bundle_dir=staging_dir,
+            strict=True,
+        )
+        overrides_staging = staging_dir / "overrides"
+        if existing_overrides.exists():
+            if existing_overrides.is_symlink():
+                raise RuntimeError(
+                    f"Review overrides must not be a symbolic link: {existing_overrides}"
+                )
+            assert_source_tree_no_symlinks(
+                existing_overrides,
+                label="review overrides",
+            )
+            copytree_replace_no_symlinks(
+                existing_overrides,
+                overrides_staging,
+                destination_root=staging_dir,
+                label="review overrides",
+            )
+        else:
+            overrides_staging.mkdir(parents=True, exist_ok=True)
+        _write_overrides_readme(overrides_staging)
+        staged_override_paths = [
+            path for path in overrides_staging.rglob("*") if path.is_file()
+        ]
+
+        def published(path: Path) -> Path:
+            return review_dir / path.relative_to(staging_dir)
+
+        index_path = published(index_staging)
+        page_paths = tuple(published(path) for path in staged_page_paths)
+        generated_paths = tuple(published(path) for path in staged_generated_paths)
+        override_paths = tuple(published(path) for path in staged_override_paths)
+        manifest_path = review_dir / "manifest.json"
+        manifest_staging = staging_dir / "manifest.json"
+
+        manifest = {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "git_sha": _read_git_sha(),
+            "model": model,
+            "region": region,
+            "lang": lang,
+            "runtime_bundle_dir": _repo_relative(runtime_bundle_dir),
+            "review_dir": _repo_relative_lexical(review_dir),
+            "index_path": _repo_relative_lexical(index_path),
+            "page_files": [_repo_relative_lexical(path) for path in page_paths],
+            "generated_files": [
+                _repo_relative_lexical(path) for path in generated_paths
+            ],
+            "override_files": [_repo_relative_lexical(path) for path in override_paths],
+            "semantic_asset_references": restored_asset_references,
+        }
+        runtime_bundle_manifest = _load_runtime_bundle_manifest(runtime_bundle_dir)
+        if runtime_bundle_manifest:
+            manifest["page_manifest"] = runtime_bundle_manifest.get("page_manifest")
+            manifest["recipe_ids"] = runtime_bundle_manifest.get("recipe_ids", [])
+            manifest["snippet_ids"] = runtime_bundle_manifest.get("snippet_ids", [])
+            manifest["spec_master"] = runtime_bundle_manifest.get("spec_master", {})
+        manifest_staging.write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+        _replace_directory_atomically(staging_dir, review_dir)
+        return ReviewBundle(
+            review_dir=review_dir,
+            index_path=index_path,
+            manifest_path=manifest_path,
+            page_paths=page_paths,
+            generated_paths=generated_paths,
+            model=model,
+            region=region,
+            lang=lang,
+            reused_existing=False,
+        )
+    finally:
+        if staging_dir.exists():
+            shutil.rmtree(staging_dir)
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:

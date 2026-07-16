@@ -74,7 +74,15 @@ Do not move new low-level implementation back into these files unless the behavi
   - single `build.py` command facade for `asset-check` and `asset-intake`
   - fail-closed validation of the public AI-intake argument contract
 - [`tools/asset_registry.py`](../../tools/asset_registry.py)
-  - canonical asset-registry validation and approved-export resolution
+  - canonical asset-registry validation and target-scoped approved-export resolution
+  - immutable CSV-byte parsing plus approved/temporary/missing/quarantined status contract
+- [`tools/asset_usage.py`](../../tools/asset_usage.py)
+  - target-bound `asset:` resolution, safe-format selection, frozen-byte staging, and legacy-path accounting
+  - deterministic `asset_usage_manifest.json` plus exact `asset_registry_snapshot.csv` emission
+- [`tools/contract_assets.py`](../../tools/contract_assets.py)
+  - shared legacy-path / `asset:` resolver used by both contract checking and bundle materialization
+- [`tools/asset_rewrites.py`](../../tools/asset_rewrites.py)
+  - semantic `asset:` restoration from finalized-bundle rewrite provenance when review content is seeded or re-finalized
 - [`tools/asset_intake.py`](../../tools/asset_intake.py)
   - repo-root-aware adapter from public CLI arguments to the deterministic intake pipeline
 - [`tools/asset_pipeline/recipe.py`](../../tools/asset_pipeline/recipe.py)
@@ -97,7 +105,15 @@ Do not move new low-level implementation back into these files unless the behavi
 - [`tools/build_docs_targets.py`](../../tools/build_docs_targets.py)
   - build target resolution and configured target expansion
 - [`tools/build_docs_bundle.py`](../../tools/build_docs_bundle.py)
-  - runtime bundle preparation and review overlay entry helpers
+  - ordered bundle preparation: runtime materialization, review overlay, attachment aliases, then asset finalization
+- [`tools/bundle_asset_finalize.py`](../../tools/bundle_asset_finalize.py)
+  - final `index.rst` include-closure scan with inherited language context and fail-closed conflict handling
+  - post-overlay path rewrite, final page-path recomputation, support-tree/file hashes, and `bundle_sha256`
+- [`tools/gen_index_bundle_assets.py`](../../tools/gen_index_bundle_assets.py)
+  - RST image/figure/substitution and raw-HTML `src` path mapping
+  - bundle-relative staging bridge for semantic and legacy asset references
+- [`tools/gen_index_bundle_materialize.py`](../../tools/gen_index_bundle_materialize.py)
+  - contract preflight and initial non-finalized bundle manifest assembly
 - [`tools/build_docs_export.py`](../../tools/build_docs_export.py)
   - export orchestration shell for one build target
 - [`tools/build_docs_artifacts.py`](../../tools/build_docs_artifacts.py)

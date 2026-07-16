@@ -1,6 +1,6 @@
 # Next Optimization Checklist
 
-Updated: 2026-06-18
+Updated: 2026-07-15
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
@@ -897,23 +897,30 @@ language-neutral (the LCD-hero precedent).
     while the build-facing mirror is `data/asset_registry.csv`; the legacy table
     is not consumed by the new asset pipeline. After the registered vector
     harvest in the stacked asset PRs, the current mirror is
-    **64 成品 / 3 临时替代 / 4 缺失** (the missing list IS the
+    **63 成品 / 3 临时替代 / 4 缺失 / 1 隔离** (the missing list IS the
     design-side request list); repo mirror `data/asset_registry.csv`;
     naming contract `<asset_key>[-<lang>].{pdf,png}`; ops guide §4.9.
 - [ ] PR J1: Asset resolver + publish gate (P1)
-  - Status: `in progress` — `build.py asset-check` now validates registry
-    exports and resolves approved assets; direct template-reference wiring and
-    target-aware publish enforcement remain.
-  - Done when: builds resolve assets through the registry (missing asset →
-    check error instead of silent placeholder); publish refuses
-    `🔧临时替代` assets unless registered as exceptions; registry mirror
-    joins sync-data (the capability-gate integration pattern).
+  - Status: `in progress` — `build.py asset-check` validates registry exports,
+    and final bundle assembly now resolves semantic `asset:` references after
+    review overlay with target/status gates, frozen usage/registry sidecars,
+    review round-trip provenance, and legacy-path accounting. Current templates
+    are not yet bulk-migrated, and the registry mirror is not yet synced from
+    the new Base tables.
+  - Done when: current templates resolve assets through the registry (missing
+    asset → check error instead of silent placeholder); semantic bundle
+    consumption always refuses `🔧临时替代`, `❌缺失`, and `⛔隔离` rows;
+    registry mirror joins sync-data (the capability-gate integration pattern).
 - [ ] PR J2: .ai sources into the pipeline (P2)
-  - Status: `in progress` — the JE-1000F US PDF-compatible `.ai` master has a
-    locally verified full SHA-256 in `data/asset_sources.csv`. Source revisions,
-    stable asset identities, and physical exports will be stored in dedicated
-    Base tables rather than the legacy illustration table; upload and
-    downloaded-hash verification remain before this phase can close.
+  - Status: `in progress` — deterministic `asset-intake` now freezes and splits
+    the JE-1000F US PDF-compatible `.ai` master into verified archive/previews,
+    recipe exports, manifest/CSV, and a reproducible ZIP; its full source hash
+    and verified Base record pointer are recorded in `data/asset_sources.csv`.
+    The three dedicated `04_资产*` tables now exist, their live bindings are
+    frozen in `data/asset_base_bindings.json`, and the AI/ZIP/manifest attachment
+    round trip plus 10 definition / 142 export rows have been verified. The
+    registry mirror still needs to join `sync-data`, and later native-artboard
+    automation needs evidence from more than this PDF-compatible master.
   - Done when: designers' .ai files live in the registry's attachment
     column with content hashes; the one-page designer workflow (deliver →
     register → sync) is documented; optional ExtendScript batch export

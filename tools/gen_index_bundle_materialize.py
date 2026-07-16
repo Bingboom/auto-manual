@@ -1,13 +1,11 @@
 from __future__ import annotations
 
 from pathlib import Path
-import re
 from typing import Any, Callable
 
+from tools.contract_assets import ContractAssetResolver, render_contract_asset_value
 from tools.page_contracts import contract_applies_to, find_contract_for_source, load_page_contracts, required_assets_for_lang
 from tools.utils.path_utils import contracts_dir_of, latex_renderer_of, static_dir_of, word_common_assets_of
-
-_CONTRACT_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
 
 
 def render_contract_asset_path(
@@ -17,19 +15,12 @@ def render_contract_asset_path(
     region: str | None,
     lang: str | None,
 ) -> str:
-    values = {
-        "model": (model or "").strip(),
-        "region": (region or "").strip(),
-        "lang": (lang or "").strip(),
-    }
-    tokens = {match.group(1) for match in _CONTRACT_TOKEN_RE.finditer(raw_value)}
-    unknown = sorted(token for token in tokens if token not in values)
-    if unknown:
-        raise RuntimeError(f"Unsupported contract asset token(s): {', '.join(unknown)}")
-    missing = sorted(token for token in tokens if not values[token])
-    if missing:
-        raise RuntimeError(f"Contract asset path requires value(s) for: {', '.join(missing)}")
-    return raw_value.format(**values)
+    return render_contract_asset_value(
+        raw_value,
+        model=model,
+        region=region,
+        lang=lang,
+    )
 
 
 def resolve_contract_asset_path(
@@ -42,20 +33,13 @@ def resolve_contract_asset_path(
     lang: str | None,
     render_contract_asset_path: Callable[..., str] = render_contract_asset_path,
 ) -> Path:
-    rendered = render_contract_asset_path(
-        raw_value,
+    return ContractAssetResolver(
+        docs_dir=docs_dir,
+        repo_root=repo_root,
         model=model,
         region=region,
-        lang=lang,
-    )
-    candidate = Path(rendered)
-    if candidate.is_absolute():
-        return candidate
-
-    docs_candidate = docs_dir / candidate
-    if docs_candidate.exists():
-        return docs_candidate
-    return repo_root / candidate
+        value_renderer=render_contract_asset_path,
+    ).resolve(raw_value, lang=lang)
 
 
 def preflight_contract_assets(
@@ -112,7 +96,7 @@ def preflight_contract_assets(
                     region=region,
                     lang=lang,
                 )
-                if resolved.exists():
+                if resolved.is_file():
                     continue
                 raise RuntimeError(
                     f"Page contract '{contract.page_id}' is missing required asset "
@@ -204,6 +188,8 @@ def build_bundle_manifest(
     file_sha256: Callable[[Path | None], str | None],
 ) -> dict[str, object]:
     return {
+        "schema_version": 2,
+        "finalized": False,
         "model": model,
         "region": region,
         "lang": lang,

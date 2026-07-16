@@ -106,9 +106,9 @@ Finalization also gives every Meaning of Symbols table a light-grey first
 column and closes its rounded shell to the native table height; review
 `fitted_symbol_table_shells` beside the LCD counter in the preflight report.
 
-If a review page still references an attachment basename with an older opaque
-hash, the build now stages the unique current semantic match under that frozen
-name. Missing or ambiguous matches fail before handoff. The production IDML
+If a review page still references an attachment basename with an older leading
+row ordinal or opaque hash, the build stages the unique current semantic match
+under that frozen name. Missing or ambiguous matches fail before handoff. The production IDML
 keeps fixed composite pages componentized and uses normal linked frame chains
 for ordinary prose. It also uses grouped rounded-table backgrounds, so
 designers can edit table cells without reintroducing the curved-corner inset.
@@ -387,20 +387,21 @@ Current flow:
 6. [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) materializes the runtime bundle
 7. the runtime bundle is written to [`docs/_build/<model>/<region>/rst/`](../docs/_build)
 8. if source mode is `auto` or `review` and a review bundle exists, review content is overlaid onto the runtime bundle
-9. [`docs/index.rst`](../docs/index.rst) is refreshed to point at all existing bundle roots
-10. `html`, `word`, and `pdf` outputs are built from the prepared bundle when requested
-11. `python build.py review` seeds [`docs/_review/<model>/<region>/`](../docs/_review) from the runtime bundle when review starts
-12. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
-13. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
-14. `python build.py asset-check` validates the image-asset registry and resolves approved exports for renderer imports; use `--allow-temporary` only for drafts and `--publish` for the stricter status gate
+9. after frozen attachment aliases are staged, the asset finalizer scans the final `index.rst` include closure, resolves semantic `asset:` references for the exact model/region/language, rewrites final bundle-relative paths, and freezes the bundle's asset evidence
+10. [`docs/index.rst`](../docs/index.rst) is refreshed to point at all existing bundle roots
+11. `html`, `word`, and `pdf` outputs are built from the prepared bundle when requested
+12. `python build.py review` seeds [`docs/_review/<model>/<region>/`](../docs/_review) from the runtime bundle when review starts; semantic asset identities are restored from the runtime rewrite provenance before review files are written
+13. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
+14. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
+15. `python build.py asset-check` validates the image-asset registry and resolves approved exports for renderer imports; `--allow-temporary` is diagnostic/operator inspection for `asset-check` only, while normal bundle assembly always rejects temporary, missing, and quarantined semantic assets; `--publish` is the stricter registry-wide status gate
     - editable `.ai` deliveries stay out of Git; the maintainer follows [`closed_loop_ops_guide.md` §4.9.2](closed_loop_ops_guide.md#492-ai-交付与登记一页流程) for hash-first duplicate detection, upload to the dedicated Base asset-source table, and download verification; the legacy illustration table is not a fallback
-15. `python build.py asset-intake --asset-source-key <key> --asset-source-file <master.ai> --asset-recipe <recipe.json> --asset-output-root <new-dir>` freezes and verifies a PDF-compatible Illustrator source, then writes cleaned page archives/previews, recipe exports, `manifest.json`, `artifacts.csv`, and a deterministic ZIP into a new isolated directory
+16. `python build.py asset-intake --asset-source-key <key> --asset-source-file <master.ai> --asset-recipe <recipe.json> --asset-output-root <new-dir>` freezes and verifies a PDF-compatible Illustrator source, then writes cleaned page archives/previews, recipe exports, `manifest.json`, `artifacts.csv`, and a deterministic ZIP into a new isolated directory
     - this action is package-only: it does not edit the source/worktree/registry/Base, and it fails closed on source/runtime/hash/path/private-marker drift; upload and promotion remain explicit reviewed steps in the three new `04_资产*` tables
-16. `python tools/process_docs/build_review_preview.py` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
-17. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
-18. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
-19. `python build.py preview` materializes one exact page selector under a preview-only output root
-20. `python build.py fast` materializes a runtime-only draft without export
+17. `python tools/process_docs/build_review_preview.py` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
+18. `python build.py diff-report` exports review diffs, defaulting to the resolved target review root
+19. `python build.py release-manifest` writes release traceability JSON / CSV for one explicit target
+20. `python build.py preview` materializes one exact page selector under a preview-only output root
+21. `python build.py fast` materializes a runtime-only draft without export
 
 Important:
 
@@ -415,6 +416,10 @@ Important:
 - when the queue row carries `Git_ref`, that queue step keeps the latest `main` code/toolchain and overlays only `docs/_review` from the named review branch; queue Draft/Publish builds treat `Git_ref` as review content, not as an alternate worker/toolchain branch.
 - `python build.py word`, `python build.py html`, and `python build.py pdf` all prepare the RST bundle first.
 - `python build.py all` runs `html`, `word`, and `pdf` after the same prepare step.
+- RST may reference an approved asset by identity, for example `.. image:: asset:operation/ac_output`. Bundle finalization accepts only PNG/JPG/JPEG/SVG/PDF exports; `.ai` is archive input and is never a renderer fallback.
+- Each finalized bundle contains `asset_usage_manifest.json`, `asset_registry_snapshot.csv`, and `bundle_manifest.json`. `registry-uri` means the bytes came from the frozen approved registry export; `review-override` keeps the `asset_key` while recording the explicit override bytes; `legacy-path` means a path-based image was staged and accounted for but has not yet been migrated under registry status/scope control.
+- Current templates are not yet bulk-migrated to `asset:`. The finalizer therefore makes legacy consumption observable without pretending every current image is registry-managed. Asset lineage is not yet copied into `release-manifest`; use the bundle sidecars and `bundle_sha256` for current provenance.
+- The Feishu archive/write contract permits only the three separately created `04_资产源文件`, `04_资产定义`, and `04_资产导出物` tables; their live binding is frozen in [`data/asset_base_bindings.json`](../data/asset_base_bindings.json), and the JE-1000F US master is the first source whose AI/ZIP/manifest attachments passed download hash verification. If those tables are inaccessible, stop and leave the source pointer empty; do not read, write, or fall back to the old illustration or staging intake table.
 - build actions except `fast` clean the current target output first; on Windows, close File Explorer, browser, Word, or PDF windows opened under [`docs/_build/`](../docs/_build) before rerunning, or use `--no-clean` for an in-place rebuild.
 - `python scripts/local_build.py check|diff-report|release-manifest|publish ...` keeps generated verification/build outputs under `.tmp/staging/docs/_build`, `.tmp/staging/reports/version_tracking`, and `.tmp/staging/reports/releases` without making the operator remember `--staging-root`.
 - `review` does not accept `--staging-root` because it seeds the real repo `docs/_review`, so it is intentionally excluded from `scripts/local_build.py`.
@@ -451,6 +456,9 @@ For a target such as `JE-1000F / US`, the working bundle now lives here:
 - [`docs/_build/JE-1000F/US/rst/conf_base.py`](../docs/_build/JE-1000F/US/rst/conf_base.py)
 - [`docs/_build/JE-1000F/US/rst/_static/**`](../docs/_build/JE-1000F/US/rst/_static)
 - [`docs/_build/JE-1000F/US/rst/renderers/**`](../docs/_build/JE-1000F/US/rst/renderers)
+- `docs/_build/JE-1000F/US/rst/asset_usage_manifest.json` — every semantic, review-override, and legacy image consumer plus rewrite provenance
+- `docs/_build/JE-1000F/US/rst/asset_registry_snapshot.csv` — the exact registry bytes used for this bundle
+- `docs/_build/JE-1000F/US/rst/bundle_manifest.json` — final file records plus `bundle_sha256` over the RST closure, config, support trees, and asset sidecars
 
 This is the generated bundle consumed by Sphinx, HTML export, Word export, and PDF export.
 It is not the editing surface. After review starts, `_review/...` is overlaid onto this bundle before publish.
@@ -977,6 +985,7 @@ Current scope:
 
 - contracts are matched by source template path from `config.pages`
 - `check` validates required placeholders, spec row keys, page-value selectors, and required assets
+- `required_assets` accepts both existing path values and `asset:<asset_key>`; `check` and materialization share the same model/region/language-bound resolver, so semantic scope/status decisions cannot drift between the two stages
 - current coverage includes `03_product_overview`, `05_operation_guide`, and `12_app_setup`
 - the active US and JP template families can each declare their own required placeholder sets
 - contracts can be scoped by `allowed_languages`, `allowed_regions`, and `allowed_models`

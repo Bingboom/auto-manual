@@ -14,7 +14,33 @@ def _existing_review_overlay_paths(bundle_dir: Path) -> tuple[Path, ...]:
         if not root_dir.exists():
             continue
         paths.extend(path.relative_to(bundle_dir) for path in sorted(root_dir.rglob("*.rst")) if path.is_file())
-    return tuple(paths)
+
+    # ``review-asis`` deliberately materializes only a conf/asset skeleton.
+    # Its generated index still declares the target-language page filenames,
+    # so use those declarations to select the matching rows from a shared
+    # multi-language review bundle even though ``page/`` is still empty.
+    index_path = bundle_dir / "index.rst"
+    if index_path.is_file():
+        include_prefix = ".. include::"
+        for line in index_path.read_text(encoding="utf-8").splitlines():
+            stripped = line.strip()
+            if not stripped.startswith(include_prefix):
+                continue
+            raw_value = stripped[len(include_prefix) :].strip()
+            relative = Path(raw_value)
+            if (
+                not raw_value
+                or relative.is_absolute()
+                or ".." in relative.parts
+                or not relative.parts
+                or relative.parts[0] not in {"page", "generated"}
+                or relative.suffix.casefold() != ".rst"
+            ):
+                raise RuntimeError(
+                    f"Review skeleton has an unsafe RST include: {raw_value!r}"
+                )
+            paths.append(relative)
+    return tuple(dict.fromkeys(paths))
 
 
 def prepare_manual_bundle(
@@ -35,6 +61,7 @@ def prepare_manual_bundle(
     overlay_review_onto_bundle: Callable[..., None],
     review_content_exists: Callable[..., bool],
     overlay_review_content_onto_bundle: Callable[..., None],
+    finalize_materialized_bundle: Callable[..., Any],
     docs_dir: Path,
     repo_root: Path,
     printer: Callable[[str], None] = print,
@@ -63,8 +90,10 @@ def prepare_manual_bundle(
         write_wrapper_index=write_wrapper_index,
         draft_placeholders=draft_placeholders,
         skeleton_only=skeleton_only,
+        finalize_assets=False,
     )
     review_applied = False
+    applied_review_dir: Path | None = None
     if source_mode in {"auto", "review", "review-asis"}:
         review_lang_candidates = [lang]
         if (lang or "").strip():
@@ -73,7 +102,7 @@ def prepare_manual_bundle(
             lang_fallback = bool((lang or "").strip()) and review_lang is None
             if review_bundle_exists(docs_dir=docs_dir, model=model, region=region, lang=review_lang):
                 if lang_fallback:
-                    overlay_review_content_onto_bundle(
+                    overlay_result = overlay_review_content_onto_bundle(
                         bundle_dir=bundle.bundle_dir,
                         docs_dir=docs_dir,
                         model=model,
@@ -84,17 +113,21 @@ def prepare_manual_bundle(
                         allow_index=False,
                     )
                 else:
-                    overlay_review_onto_bundle(
+                    overlay_result = overlay_review_onto_bundle(
                         bundle_dir=bundle.bundle_dir,
                         docs_dir=docs_dir,
                         model=model,
                         region=region,
                         lang=review_lang,
                     )
+                if overlay_result is None:
+                    continue
+                if isinstance(overlay_result, Path):
+                    applied_review_dir = overlay_result
                 review_applied = True
                 break
             if review_content_exists(docs_dir=docs_dir, model=model, region=region, lang=review_lang):
-                overlay_review_content_onto_bundle(
+                overlay_result = overlay_review_content_onto_bundle(
                     bundle_dir=bundle.bundle_dir,
                     docs_dir=docs_dir,
                     model=model,
@@ -104,6 +137,10 @@ def prepare_manual_bundle(
                     allowed_relative_paths=_existing_review_overlay_paths(bundle.bundle_dir) if lang_fallback else None,
                     allow_index=not lang_fallback,
                 )
+                if overlay_result is None:
+                    continue
+                if isinstance(overlay_result, Path):
+                    applied_review_dir = overlay_result
                 review_applied = True
                 break
         if source_mode in {"review", "review-asis"} and not review_applied:
@@ -134,6 +171,18 @@ def prepare_manual_bundle(
                 f"[build] Staged {alias_report.aliases} frozen attachment alias(es) "
                 f"across {alias_report.rewritten_files} review file(s)"
             )
+    bundle = finalize_materialized_bundle(
+        bundle,
+        cfg=cfg,
+        docs_dir=docs_dir,
+        repo_root=repo_root,
+        asset_override_root=(
+            applied_review_dir / "overrides"
+            if applied_review_dir is not None
+            and (applied_review_dir / "overrides").is_dir()
+            else None
+        ),
+    )
     printer(f"[build] Prepared bundle: {bundle.bundle_dir}")
     printer("[build] Bundle source: review" if review_applied else "[build] Bundle source: runtime")
     return bundle

@@ -6,7 +6,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.attachment_identity import stage_bundle_attachment_aliases
+from tools.attachment_identity import (
+    resolve_semantic_attachment,
+    semantic_attachment_key,
+    stage_bundle_attachment_aliases,
+)
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml import ir_projection, page_placed, page_toc
 from tools.idml.components.base import RenderContext
@@ -246,6 +250,60 @@ class IdmlVisualParityTests(unittest.TestCase):
                 "_repo_assets/data/phase2/_attachments/lcd_icons/" + frozen,
                 page.read_text(encoding="utf-8"),
             )
+
+    def test_attachment_identity_ignores_changed_display_ordinal(self) -> None:
+        frozen = "1_warning_triangle_OldHashToken123456789012.png"
+        current = "10_warning_triangle_CurrentHashToken123456789.png"
+        self.assertEqual(
+            semantic_attachment_key(frozen),
+            semantic_attachment_key(current),
+        )
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle = root / "bundle"
+            page = bundle / "page" / "symbols.rst"
+            page.parent.mkdir(parents=True)
+            page.write_text(
+                ".. image:: .tmp/review-start/phase2/_attachments/symbols/"
+                + frozen
+                + "\n",
+                encoding="utf-8",
+            )
+            current_dir = root / "phase2" / "_attachments" / "symbols"
+            current_dir.mkdir(parents=True)
+            (current_dir / current).write_bytes(b"current-art")
+
+            report = stage_bundle_attachment_aliases(bundle, root / "phase2")
+
+            self.assertEqual(1, report.aliases)
+            self.assertEqual((), report.missing)
+            staged = (
+                bundle
+                / "_repo_assets"
+                / "data"
+                / "phase2"
+                / "_attachments"
+                / "symbols"
+                / frozen
+            )
+            self.assertEqual(b"current-art", staged.read_bytes())
+
+    def test_attachment_identity_rejects_ambiguous_reordered_matches(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            directory = Path(td)
+            (directory / "1_warning_triangle_FirstHashToken123456789.png").write_bytes(
+                b"first"
+            )
+            (directory / "10_warning_triangle_SecondHashToken12345678.png").write_bytes(
+                b"second"
+            )
+
+            with self.assertRaisesRegex(ValueError, "ambiguous semantic attachment"):
+                resolve_semantic_attachment(
+                    directory,
+                    "2_warning_triangle_FrozenHashToken123456789.png",
+                )
 
     def test_product_overview_reuses_the_shared_finished_art_for_every_language(self) -> None:
         docs = ROOT / "docs"

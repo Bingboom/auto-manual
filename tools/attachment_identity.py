@@ -15,6 +15,7 @@ from pathlib import Path
 
 
 _TOKEN_RE = re.compile(r"^(?P<identity>.+)_(?P<token>[A-Za-z0-9]{16,})$")
+_DISPLAY_ORDINAL_RE = re.compile(r"^\d+_")
 _ATTACHMENT_REF_RE = re.compile(
     r"(?P<path>[^\s{}\"']*?_attachments/(?P<category>lcd_icons|symbols)/"
     r"(?P<name>[^\s{}\"']+\.(?:png|jpe?g|pdf|svg)))",
@@ -34,6 +35,10 @@ def semantic_attachment_key(value: str | Path) -> tuple[str, str]:
     path = Path(value)
     match = _TOKEN_RE.match(path.stem)
     identity = match.group("identity") if match else path.stem
+    # Row ordinals are presentation metadata and can change when the source
+    # table is reordered.  Keep the descriptive slug as the stable identity;
+    # duplicate slugs still fail closed as ambiguous in the resolver below.
+    identity = _DISPLAY_ORDINAL_RE.sub("", identity, count=1)
     return identity.casefold(), path.suffix.casefold()
 
 

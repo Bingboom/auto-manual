@@ -60,6 +60,7 @@ from tools.build_docs_targets import (
     resolve_build_region as _resolve_build_region_impl,
     resolve_build_targets as _resolve_build_targets_impl,
 )
+from tools.bundle_asset_finalize import finalize_materialized_bundle
 from tools.build_docs_theme import (
     body_tag_with_class as _body_tag_with_class_impl,
     effective_variants_for_current as _effective_variants_for_current_impl,
@@ -736,6 +737,7 @@ def prepare_manual_bundle(
         overlay_review_onto_bundle=overlay_review_onto_bundle,
         review_content_exists=review_content_exists,
         overlay_review_content_onto_bundle=overlay_review_content_onto_bundle,
+        finalize_materialized_bundle=finalize_materialized_bundle,
         docs_dir=paths.docs_dir,
         repo_root=getattr(paths, "root", ROOT),
     )

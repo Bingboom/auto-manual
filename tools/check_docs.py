@@ -16,6 +16,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.config_pages import GeneratedPage, RstIncludePage  # noqa: E402
+from tools.contract_assets import ContractAssetResolver  # noqa: E402
 from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.utils.path_utils import contracts_dir_of  # noqa: E402
 from tools.build_docs import (  # noqa: E402
@@ -336,6 +337,12 @@ def collect_page_contract_issues(
     langs: list[str],
     data_root: str | None = None,
 ) -> list[CheckIssue]:
+    asset_resolver = ContractAssetResolver(
+        docs_dir=docs_dir,
+        repo_root=ROOT,
+        model=target.model,
+        region=target.region,
+    )
     return _collect_page_contract_issues_impl(
         cfg,
         docs_dir=docs_dir,
@@ -364,7 +371,10 @@ def collect_page_contract_issues(
         read_spec_master_rows=read_spec_master_rows,
         resolve_spec_value_from_rows=resolve_spec_value_from_rows,
         describe_page_value_selector=describe_page_value_selector,
-        contract_asset_exists=_contract_asset_exists,
+        contract_asset_exists=lambda raw_value, **kwargs: asset_resolver.exists(
+            raw_value,
+            lang=kwargs.get("lang"),
+        ),
     )
 
 

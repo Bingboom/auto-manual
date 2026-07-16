@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import io
 import json
 import re
 import sys
@@ -25,7 +26,15 @@ REGISTRY_RELATIVE_PATH = Path(PathSegments.DATA) / "asset_registry.csv"
 APPROVED_STATUS = "✅成品"
 TEMPORARY_STATUS = "🔧临时替代"
 MISSING_STATUS = "❌缺失"
-VALID_STATUSES = frozenset({APPROVED_STATUS, TEMPORARY_STATUS, MISSING_STATUS})
+QUARANTINED_STATUS = "⛔隔离"
+VALID_STATUSES = frozenset(
+    {APPROVED_STATUS, TEMPORARY_STATUS, MISSING_STATUS, QUARANTINED_STATUS}
+)
+NEUTRAL_LANGUAGE_DIMENSION = "中立"
+LOCALIZED_LANGUAGE_DIMENSION = "按语言"
+VALID_LANGUAGE_DIMENSIONS = frozenset(
+    {NEUTRAL_LANGUAGE_DIMENSION, LOCALIZED_LANGUAGE_DIMENSION}
+)
 REQUIRED_COLUMNS = (
     "asset_key",
     "类别",
@@ -33,6 +42,7 @@ REQUIRED_COLUMNS = (
     "状态",
     "待无字化",
     "适用机型",
+    "适用区域",
     "导出物路径",
     "语言变体",
     "内容哈希",
@@ -51,6 +61,10 @@ class AssetRegistryError(RuntimeError):
     """Raised when a requested asset cannot be safely resolved."""
 
 
+class NoMatchingAssetExportError(AssetRegistryError):
+    """Raised when an asset has no materialized export matching a request."""
+
+
 @dataclass(frozen=True)
 class AssetRecord:
     asset_key: str
@@ -59,6 +73,7 @@ class AssetRecord:
     status: str
     textless_pending: bool
     model_scope: tuple[str, ...]
+    region_scope: tuple[str, ...]
     export_root: Path | None
     language_variants: tuple[str, ...]
     hashes: tuple[tuple[str, str], ...]
@@ -132,13 +147,25 @@ def _record_from_row(row: dict[str, str]) -> AssetRecord:
     status = (row.get("状态") or "").strip()
     if status not in VALID_STATUSES:
         raise AssetRegistryError(f"asset {asset_key!r} has unknown status: {status!r}")
+    language_dimension = (row.get("语言维度") or "").strip()
+    if language_dimension not in VALID_LANGUAGE_DIMENSIONS:
+        raise AssetRegistryError(
+            f"asset {asset_key!r} has unknown language dimension: {language_dimension!r}"
+        )
+    model_scope = _split_values(row.get("适用机型", ""))
+    if not model_scope:
+        raise AssetRegistryError(f"asset {asset_key!r} has no model scope")
+    region_scope = _split_values(row.get("适用区域", ""))
+    if not region_scope:
+        raise AssetRegistryError(f"asset {asset_key!r} has no region scope")
     return AssetRecord(
         asset_key=asset_key,
         category=(row.get("类别") or "").strip(),
-        language_dimension=(row.get("语言维度") or "").strip(),
+        language_dimension=language_dimension,
         status=status,
         textless_pending=(row.get("待无字化") or "").strip().upper() in {"TRUE", "YES", "Y", "1"},
-        model_scope=_split_values(row.get("适用机型", "")),
+        model_scope=model_scope,
+        region_scope=region_scope,
         export_root=_parse_export_root(row.get("导出物路径", ""), asset_key=asset_key),
         language_variants=_split_values(row.get("语言变体", "")),
         hashes=_parse_hashes(row.get("内容哈希", ""), asset_key=asset_key),
@@ -146,26 +173,39 @@ def _record_from_row(row: dict[str, str]) -> AssetRecord:
     )
 
 
-def load_registry(path: Path) -> tuple[AssetRecord, ...]:
-    """Load the CSV registry and fail closed on schema or key errors."""
+def load_registry_bytes(
+    data: bytes,
+    *,
+    source: str | Path = "<memory>",
+) -> tuple[AssetRecord, ...]:
+    """Parse one immutable CSV byte snapshot and fail closed on bad data."""
 
-    with path.open(encoding="utf-8-sig", newline="") as handle:
-        reader = csv.DictReader(handle)
-        columns = tuple(reader.fieldnames or ())
-        missing_columns = [column for column in REQUIRED_COLUMNS if column not in columns]
-        if missing_columns:
-            raise AssetRegistryError(
-                f"asset registry {path} is missing columns: {', '.join(missing_columns)}"
-            )
-        records: list[AssetRecord] = []
-        seen: set[str] = set()
-        for row in reader:
-            record = _record_from_row(row)
-            if record.asset_key in seen:
-                raise AssetRegistryError(f"duplicate asset_key: {record.asset_key}")
-            seen.add(record.asset_key)
-            records.append(record)
+    try:
+        text = data.decode("utf-8-sig")
+    except UnicodeDecodeError as exc:
+        raise AssetRegistryError(f"asset registry {source} is not valid UTF-8") from exc
+    reader = csv.DictReader(io.StringIO(text, newline=""))
+    columns = tuple(reader.fieldnames or ())
+    missing_columns = [column for column in REQUIRED_COLUMNS if column not in columns]
+    if missing_columns:
+        raise AssetRegistryError(
+            f"asset registry {source} is missing columns: {', '.join(missing_columns)}"
+        )
+    records: list[AssetRecord] = []
+    seen: set[str] = set()
+    for row in reader:
+        record = _record_from_row(row)
+        if record.asset_key in seen:
+            raise AssetRegistryError(f"duplicate asset_key: {record.asset_key}")
+        seen.add(record.asset_key)
+        records.append(record)
     return tuple(records)
+
+
+def load_registry(path: Path) -> tuple[AssetRecord, ...]:
+    """Load the CSV registry from exactly one captured byte snapshot."""
+
+    return load_registry_bytes(path.read_bytes(), source=path)
 
 
 def _artifact_format(label: str) -> str | None:
@@ -244,11 +284,29 @@ def _matching_artifacts(
     return matches
 
 
-def _model_matches(record: AssetRecord, model: str | None) -> bool:
-    if not model or not record.model_scope:
-        return True
-    scope = {value.upper() for value in record.model_scope}
-    return "ALL" in scope or model.upper() in scope
+def _scope_matches(scope_values: tuple[str, ...], requested: str | None) -> bool:
+    if requested is None:
+        return "ALL" in {value.upper() for value in scope_values}
+    normalized = requested.strip().upper()
+    if not normalized:
+        return False
+    scope = {value.upper() for value in scope_values}
+    return "ALL" in scope or normalized in scope
+
+
+def _resolution_language(record: AssetRecord, language: str | None) -> str | None:
+    if record.language_dimension == NEUTRAL_LANGUAGE_DIMENSION:
+        return None
+    if language is None or not language.strip():
+        raise AssetRegistryError(f"asset {record.asset_key} requires an explicit language")
+    variants = {variant.casefold(): variant for variant in record.language_variants}
+    requested = language.strip().casefold()
+    if requested not in variants:
+        declared = ", ".join(record.language_variants) or "none"
+        raise AssetRegistryError(
+            f"asset {record.asset_key} has no language variant {language!r}; declared: {declared}"
+        )
+    return variants[requested]
 
 
 def _sha256_digest(path: Path) -> str:
@@ -272,26 +330,30 @@ def resolve_asset(
 ) -> AssetResolution:
     """Resolve one importable export; temporary assets are opt-in."""
 
-    del region  # Region-specificity is represented by model scope today.
     record = next((item for item in records if item.asset_key == asset_key), None)
     if record is None:
         raise AssetRegistryError(f"asset not registered: {asset_key}")
-    if not _model_matches(record, model):
+    if not _scope_matches(record.model_scope, model):
         raise AssetRegistryError(f"asset {asset_key} is not registered for model {model}")
+    if not _scope_matches(record.region_scope, region):
+        raise AssetRegistryError(f"asset {asset_key} is not registered for region {region}")
     if record.status != APPROVED_STATUS and not (allow_temporary and record.status == TEMPORARY_STATUS):
         raise AssetRegistryError(
             f"asset {asset_key} is {record.status}; only {APPROVED_STATUS} assets are importable"
         )
+    resolved_language = _resolution_language(record, language)
     candidates = _matching_artifacts(
         record,
         repo_root=repo_root,
         format_name=format_name,
-        language=language,
+        language=resolved_language,
     )
     existing = [candidate for candidate in candidates if candidate[0].is_file()]
     if not existing:
         requested = format_name or "any format"
-        raise AssetRegistryError(f"asset {asset_key} has no existing export for {requested}")
+        raise NoMatchingAssetExportError(
+            f"asset {asset_key} has no existing export for {requested}"
+        )
     path, actual_format, declared_hash = existing[0]
     actual_hash = _sha256_digest(path)
     if not actual_hash.startswith(declared_hash.lower()):
@@ -306,7 +368,7 @@ def resolve_asset(
         status=record.status,
         content_hash=actual_hash,
         declared_hash=declared_hash,
-        language=language,
+        language=resolved_language,
         source="registry-export",
     )
 
