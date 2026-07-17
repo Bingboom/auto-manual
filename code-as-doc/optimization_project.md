@@ -569,11 +569,27 @@ They target the operating plane (reproducibility, alerting, backup, transport,
 propagation), not content structure, so they run alongside the Stage 3 tiers
 above rather than replacing them.
 
+Sequencing is **capacity-driven, not calendar-driven**: entry/exit conditions,
+organizational triggers, and the operator-load objectives live in
+[`architecture/platform_evolution_roadmap.md`](architecture/platform_evolution_roadmap.md)
+§3–§4; each workstream below carries only the short form (a `Capacity/trigger`
+and a `Removes from the operator` line). Work advances as abandonable
+single-PR slices between business deliveries and never blocks a delivery.
+
 ### Workstream T: Enterprise Ops Hardening (Phase 0)
 
 Status: next
 
 PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone K (K1–K7).
+
+Capacity/trigger (roadmap Phase 0): no organizational trigger — entry is
+"today"; one operator + agents suffices; every item is agent-preparable and
+none needs an org decision. K3/K4/K5 first (their cost of delay compounds or
+is catastrophic).
+
+Removes from the operator: being the platform's only recovery mechanism (no
+more watching queue runs, hand-reconstructing lost table data, or being the
+one machine that can finish a delivery).
 
 Why now:
 
@@ -599,9 +615,23 @@ Exit criteria:
 
 ### Workstream U: Platform Consolidation (Phase 1)
 
-Status: next (starts after Workstream T's first wave; items are independently landable)
+Status: next (agent-executable scope starts after Workstream T's first wave; completion is gated on an organizational trigger)
 
 PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone K (K8–K14).
+
+Capacity/trigger (roadmap Phase 1): starts within current capacity — the
+scope is behavior-preserving, test-guarded work agents execute well under
+review; K8 (transport) first because it also removes a live production pain.
+**Completion** requires one of: a second maintainer joins (even part-time),
+dedicated platform time is formally allocated, or IT takes credential/tenancy
+ownership — surfacing that ask, with the bus-factor register as evidence, is
+itself a deliverable. Until it fires, the fallback second maintainer is the
+ONBOARDING §7 memory-less-agent cold-start drill (keeps recovery honest; does
+not substitute for a human on judgment surfaces).
+
+Removes from the operator: knowledge concentration and the
+"operator reviews everything" bottleneck (CODEOWNERS narrows operator review
+to compliance/content surfaces).
 
 Why now:
 
@@ -629,6 +659,20 @@ Exit criteria:
 Status: deferred (gated on a design doc, like Workstream N)
 
 PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone K (K15 = design gate only; implementation PRs are registered after design approval).
+
+Capacity/trigger (roadmap Phase 2): entry = Workstream T exit criteria passed
+AND the K15 design doc approved. A business trigger legitimately accelerates
+it: when the dashboard shows template-fix propagation or queue wall-time
+measurably eating delivery capacity, this jumps the queue (the
+discovery-engine rule, roadmap §5). The pilot needs sustained review
+attention — either a second maintainer shares it, or business load is
+consciously shaped around the pilot window (an explicit, visible operator
+decision). Migration is one model family at a time; unmigrated branches keep
+working.
+
+Removes from the operator: repetitive maintenance — the O(N) manual
+`sync-review` propagation of every shared-template fix, and babysitting
+serial build waves.
 
 Why now:
 
