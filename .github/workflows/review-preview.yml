@@ -71,7 +71,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
+          python -m pip install -r requirements.lock
       - name: Select preview target
         id: preview-target
         shell: bash

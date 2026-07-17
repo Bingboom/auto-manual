@@ -84,5 +84,5 @@ python tools/flow_dashboard.py report     # 双面仪表（系统健康 + 产出
 - InDesign 终饰环节无 CI，但**有版本锁**（pin 不匹配拒跑，见 §3 与 second-host runbook）；文字改动**禁止**在 InDesign 层做，必须走回写回路
 - 回写对"整表/整节纯删除"是盲区——每轮回写后跑删除专项核对
 - 退役产线：关源表行 `Is_Latest`，**不要删构建表行**（公式字段架构下删行=关联行悬空）
-- 构建环境未锁定（无 lock 文件）：排版漂移目前不可自动检测（Milestone I 探针在建）
+- 构建环境已锁定：CI/ReadTheDocs/队列 worker 都从 `requirements.lock` 安装（K1）；改依赖 = 改 `requirements.txt` 范围 + 按 lock 头部的步骤重生成 lock，同一 PR 提交。排版漂移由警告棘轮（I2）+ 工具链 provenance（I3）看护
 - 多窗口并行开发是常态：动手前 `git status` + pull，见 `AGENTS.md` §8

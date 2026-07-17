@@ -1054,11 +1054,24 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     - a second-host setup procedure is documented and verified once end-to-end on a machine that is not the operator's
     - the bus-factor register entry for this leg is updated from "known risk" to "documented recovery path"
 
-- [ ] PR K1: Make `requirements.lock` the CI/RTD install source (T1)
-  - Status: `pending`
-  - Note: touches `.github/workflows/**` → operator-gated. The lock exists
-    (Milestone I3) but no workflow installs from it, so CI drifts from the
-    pinned snapshot silently.
+- [x] PR K1: Make `requirements.lock` the CI/RTD install source (T1)
+  - Status: `done`
+  - Completed: `2026-07-17`
+  - Note: all 10 `pip install -r requirements.txt` sites switched to the lock
+    (manual-validation ×7 jobs, review-preview, feishu-common-setup — which
+    also covers the queue/backup/sentinel workflows — and .readthedocs.yaml),
+    plus the pip cache key (`cache-dependency-path`) moved to the lock so
+    caches invalidate on pin changes. Lock coverage of every requirements.txt
+    top-level dep pre-verified; the PR's own CI run is the on-Linux install
+    proof. requirements.lock header now carries the refresh WHEN/HOW
+    (clean 3.12 venv, freeze, commit lock+txt together); requirements.txt
+    header states it is human-facing ranges only and fixes the stale
+    "Python >= 3.9"; ONBOARDING §8 "构建环境未锁定" line corrected.
+    Deliberate cut: the standalone ruff/mypy tool installs in CI stay
+    unpinned (lint toolchain, not build deps).
+  - Original note: touches `.github/workflows/**` → operator-gated. The lock
+    exists (Milestone I3) but no workflow installs from it, so CI drifts from
+    the pinned snapshot silently.
   - Target files:
     - [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
     - [`../.github/actions/feishu-common-setup/action.yml`](../.github/actions/feishu-common-setup/action.yml)
