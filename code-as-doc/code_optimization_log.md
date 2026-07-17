@@ -1,6 +1,6 @@
 ﻿# Code Optimization Log
 
-Updated: 2026-07-15
+Updated: 2026-07-17
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -807,3 +807,19 @@ Why it mattered:
 - image choice is now part of the deterministic document-assembly contract instead of an untracked renderer side effect, and the HTML/Word/PDF/Markdown bundle exporters see the same post-review staged bytes.
 - the migration is observable without being overstated: current legacy paths are accounted for but are not registry-gated until templates move to `asset:`; IDML bundle-root enforcement and release-manifest asset lineage remain separate follow-up phases.
 - the first source now proves the full local-package → live-archive → attachment-download verification loop without duplicating the 142 physical exports as Base attachments; future work can build registry sync on a reviewed, real binding instead of placeholder IDs.
+
+## 51. 2026-07-17: Enterprise Ops Hardening — Milestone K Tier 1 (K4/K5/K7/K1)
+
+What changed:
+
+- **The planning wave first (#674):** a four-dimension production-readiness review (archived at [`reviews/production_readiness_review_2026-07-17.md`](reviews/production_readiness_review_2026-07-17.md)) found the code plane enterprise-grade but the operating plane not; it was converted the same day into Workstreams T/U/V, the capacity-driven Platform Owner roadmap ([`architecture/platform_evolution_roadmap.md`](architecture/platform_evolution_roadmap.md) — phases advance through operator-load reduction, observable exit criteria, and organizational triggers, not calendar), and Milestone K triaged into three execution tiers so the task list reads "4 in flight", not "15 pending".
+- **K4 — source-table content backup + restore (#676):** [`tools/bitable_content_backup.py`](../tools/bitable_content_backup.py) (export / restore / verify over the schema-manifest table list, reusing `bitable_schema` primitives; restore is dry-run by default, explicit-token-only, refuses non-empty tables, never writes computed fields) + nightly `phase2-content-backup.yml` (90-day dated artifacts, sentinel Issue on failure) + ops guide §4.7b runbook. Live drill same day: TM base export 10s, business base 21 tables/1,313 rows 58s, scratch restore 888/888 verified. The drill immediately caught real drift — select options added after the schema snapshot made batch-create reject a whole table (800030005); restore now pre-syncs options via field-update. Known limitation recorded: multi-select cells restore as one concatenated option.
+- **K5 — queue-failure sentinel (#677):** reusable [`queue-sentinel-issue`](../.github/actions/queue-sentinel-issue/action.yml) composite action wired as the final `if: always()` step of all three queue workflows. Issue titles carry the record_id, so the open/close lifecycle is per-record; cancelled runs open nothing; the failure body names the writeback silent-divergence case (exit-code propagation verified: writeback failures fail the job). Wiring pinned by `tests/test_queue_failure_sentinel.py`; ops guide §3b.
+- **K7 — InDesign version lock + second host (#678):** committed pin [`tools/idml/indesign_version_pin.json`](../tools/idml/indesign_version_pin.json) (seeded live: Adobe InDesign 2026 21.0.1.6); `tools/indesign_finalize.py` checks it at finalize time — mismatch refuses to run (`--allow-version-mismatch` overrides, recorded in the report's `toolchain` block), plus `--check-host` / `--write-pin`; exact-match policy: upgrades re-pin all hosts together instead of loosening. From-zero second-host procedure at [`dev/indesign_second_host_runbook.md`](dev/indesign_second_host_runbook.md); ONBOARDING §3 register row moved from 无版本锁（已知风险） to a documented recovery path. **Residual: the one-time second-host verification run is the operator's; checklist K7 stays `in_progress` until it's recorded.**
+- **K1 — the lock becomes the install source (#679):** all 10 `pip install -r requirements.txt` sites (manual-validation ×7, review-preview, feishu-common-setup — covering every Feishu workflow — and `.readthedocs.yaml`) now install from `requirements.lock`; the pip cache key follows the lock; the lock header carries the refresh when/how; stale "Python >= 3.9" and ONBOARDING "无 lock 文件" notes corrected.
+
+Why it mattered:
+
+- Three of the review's four Critical items closed in one day: a destructive Bitable edit is now restorable from a dated export via a drilled runbook, a failed queue run alerts on its own instead of requiring a watcher, and the one delivery leg outside CI gained a version gate plus a recovery procedure. The fourth Critical (frozen-copy review-branch propagation) is deliberately parked behind the K15 design gate.
+- The discovery-engine rule proved itself twice within hours: the K4 drill exposed select-option drift the schema mirror could not see, and the K7 test suite caught a sentinel-vs-None API ambiguity before it shipped.
+- Tier 1 was scoped as "what one operator + agents can deliver between business deliveries with no organizational trigger" — and it closed as scoped. Everything remaining in Milestone K now waits on a named business-pain trigger (Tier 2) or dedicated capacity (Tier 3), which is the capacity-driven model working as designed.
