@@ -169,7 +169,7 @@ SCHERMO LCD
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Acceso brevemente}{Accendi}{Premi il pulsante POWER principale oppure quando il prodotto è in carica.}{Spegni}{Premi il pulsante POWER principale.}{Spegnimento automatico}{Lo schermo LCD si spegne automaticamente ed entra in modalità sleep dopo 2 minuti di inattività.}
       \HBLcdModeSecondGroup{Acceso fisso (in carica o in scarica)}{Accendi}{Premi due volte il pulsante POWER principale quando il prodotto è acceso.}{Spegni}{Premi il pulsante POWER principale.}{Spegnimento automatico}{Lo schermo LCD si spegne automaticamente dopo |DEFAULT_STANDBY_DURATION| di inattività.}
       \end{HBLcdModeTable}

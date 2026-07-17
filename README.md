@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-07-15
+Updated: 2026-07-16
 
 Auto-Manual turns structured content (Feishu/Lark Base CSV snapshots plus shared RST templates) into target-specific manual bundles and release outputs across the active US, EU, JP, and CN config families.
 The current maintained smoke-check baseline is `JE-1000F` across US and JP.
@@ -72,6 +72,12 @@ a deterministic ZIP. It fails closed on runtime drift, hash drift, unsafe paths,
 render-budget overflow, or Illustrator private markers found in raw or decoded
 PDF objects. The command is package-only: Base upload and build promotion remain
 separate reviewed steps.
+Sensitive App/QR candidates stay quarantined after intake. A production asset may
+use `source=reviewed-promotion:<promotion_id>` only through a narrow contract in
+[`data/asset_promotions/`](data/asset_promotions) that binds the reviewer, scope,
+source AI, frozen reference PDF, recipe/evidence, candidate bytes, output bytes,
+and composition with full SHA-256 values. Contract drift fails closed and never
+falls back to a same-named shared image.
 The maintainer-side `.ai` handoff, duplicate check, attachment upload, and
 downloaded-hash verification are documented in the
 [`closed_loop_ops_guide`](user-guide/closed_loop_ops_guide.md#492-ai-交付与登记一页流程).
@@ -93,9 +99,12 @@ bundle. An explicit file under a review `overrides/` tree keeps the semantic
 `asset_key` but is recorded as `review-override`; existing path-based images
 are recorded as `legacy-path` so remaining migration debt stays visible.
 
-The current templates have not yet been bulk-migrated to `asset:`. A
-`legacy-path` row therefore means “accounted for in this bundle,” not
-“registry-gated.” Editable `.ai` files are never selected as renderer inputs.
+Shared templates are bulk-migrated to `asset:`. A target-specific registry row
+may declare `override_for=<shared asset_key>`; the resolver selects that row
+only when its model, region, and language scope matches, otherwise the shared
+row remains in force. Ambiguous overrides fail closed. A `legacy-path` row
+therefore means “accounted for in this bundle,” not “registry-gated.” Editable
+`.ai` files are never selected as renderer inputs.
 Release manifests do not yet embed this asset lineage; the finalized bundle
 sidecars are the current provenance surface.
 The cloud archive contract permits only three new tables in the target Base:
@@ -145,6 +154,47 @@ its own InDesign row height so no empty band remains below the final row.
 NOTE/TIP/CAUTION/WARNING labels are source-owned display text: the LaTeX and
 IDML renderers preserve the RST/IR value verbatim and fail when it is missing;
 they never singularize, pluralize, translate, or invent a fallback label.
+
+Publish handoffs are portable ZIPs, not bare build-machine IDML files. The
+versioned IDML sits at the ZIP root with links rewritten to `file:Links/...`.
+Its `missing_assets_report.md` describes package-time link portability, while
+`source_asset_resolution_report.md` keeps separate source/flow diagnostics.
+
+### Approved-PDF native InDesign replica (方案 2)
+
+The approved-replica path for `JE-1000F / US / en+fr+es` is governed by the
+[`reference layout registry`](docs/renderers/contracts/reference_layout_registry.json)
+and the hash-bound
+[`JE-1000F US V2.0 contract`](docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json).
+It targets the approved
+`Jackery Explorer 1000 User Manual V2.0-2026-06-05.pdf` (SHA-256
+`e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2`):
+58 pages at `368.787 × 524.692 pt`, with 3 front-matter pages, 18 pages each
+for English/French/Spanish, and one back cover. The plan binds all 52 IR source
+references to compositions covering physical pages 1–58. A missing or
+mismatched plan, source/hash drift, or page-count drift is a hard failure; this
+approval path must not silently fall back to fuzzy PDF matching.
+
+Text, headings, tables, callouts, Product Overview, and the back cover must
+remain native InDesign objects/stories. Illustrations are linked, approved
+registry exports referenced as `asset:<asset_key>`; the immutable `.ai` master
+is archive/source material, not a renderer fallback. The approved reference
+PDF may be placed only on a non-printing comparison layer. It and whole-page
+body/back-cover exports must not become final visible content; a
+contract-approved finished-art front cover is the narrow exception.
+
+Acceptance is page-by-page, not an average score: all 58 pages are rendered at
+300 dpi to fixed `1537 × 2187` RGB rasters, with the approved ICC profile,
+1 px Gaussian blur, RGB MAD `≤ 0.008`, changed-pixel ratio `≤ 0.040`, and
+changed-channel threshold `16`. The deliverable also requires 58-page geometry,
+zero overset/missing-font/bad-link findings, PDF/X-4 with
+`Japan Color 2001 Coated` / `JC200103`, approved and hash-correct used assets,
+and no visible
+whole-page shortcut. Do not hand off the IDML/INDD/PDF until the latest parity
+report says `accepted=true`. This documentation states the workflow and gate;
+it does not claim that the current artifact has passed them. See the
+[`approved-replica plan`](code-as-doc/dev/idml_reference_replica_plan.md) and
+the [maintainer commands](code-as-doc/build_doc_guide.md#approved-pdf-native-indesign-replica-option-2).
 
 Optional local content QC for the current snapshot:
 

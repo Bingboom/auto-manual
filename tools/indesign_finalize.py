@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import tempfile
 from pathlib import Path
@@ -16,6 +17,10 @@ except ModuleNotFoundError:  # direct script execution
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 JSX = ROOT / "tools" / "idml" / "indesign_finalize.jsx"
+DEFAULT_PDF_PRESET = "[PDF/X-4:2008 (Japan)]"
+DEFAULT_OUTPUT_INTENT = "Japan Color 2001 Coated"
+DEFAULT_OUTPUT_CONDITION = "JC200103"
+DEFAULT_PDFX = "PDF/X-4"
 
 
 def _job(args: argparse.Namespace) -> dict[str, str]:
@@ -25,7 +30,48 @@ def _job(args: argparse.Namespace) -> dict[str, str]:
         "output_pdf": str(Path(args.pdf).resolve()),
         "report_json": str(Path(args.report).resolve()),
         "pdf_preset": args.pdf_preset,
+        "output_intent": args.output_intent,
+        "output_condition": args.output_condition,
+        "pdfx": args.pdfx,
     }
+
+
+def _parse_pdf_export_compliance(
+    *,
+    pdfinfo_text: str,
+    pdf_bytes: bytes,
+    expected_pdfx: str,
+    expected_output_intent: str,
+    expected_output_condition: str,
+) -> dict[str, object]:
+    subtype = re.search(r"(?m)^PDF subtype:\s+([^\r\n]+)", pdfinfo_text)
+    actual_pdfx = subtype.group(1).strip() if subtype else None
+    pdfx_match = actual_pdfx == expected_pdfx
+    intent_match = expected_output_intent.encode("ascii") in pdf_bytes
+    condition_match = expected_output_condition.encode("ascii") in pdf_bytes
+    return {
+        "expected_pdfx": expected_pdfx,
+        "actual_pdfx": actual_pdfx,
+        "pdfx_match": pdfx_match,
+        "expected_output_intent": expected_output_intent,
+        "output_intent_match": intent_match,
+        "expected_output_condition": expected_output_condition,
+        "output_condition_match": condition_match,
+        "pass": pdfx_match and intent_match and condition_match,
+    }
+
+
+def _pdf_export_compliance(path: Path, job: dict[str, str]) -> dict[str, object]:
+    result = subprocess.run(
+        ["pdfinfo", str(path)], check=True, capture_output=True, text=True,
+    )
+    return _parse_pdf_export_compliance(
+        pdfinfo_text=result.stdout,
+        pdf_bytes=path.read_bytes(),
+        expected_pdfx=job["pdfx"],
+        expected_output_intent=job["output_intent"],
+        expected_output_condition=job["output_condition"],
+    )
 
 
 def _run_jsx(job: dict[str, str], *, application: str) -> None:
@@ -59,7 +105,10 @@ def main() -> int:
     parser.add_argument("--indd", required=True)
     parser.add_argument("--pdf", required=True)
     parser.add_argument("--report", required=True)
-    parser.add_argument("--pdf-preset", default="[High Quality Print]")
+    parser.add_argument("--pdf-preset", default=DEFAULT_PDF_PRESET)
+    parser.add_argument("--output-intent", default=DEFAULT_OUTPUT_INTENT)
+    parser.add_argument("--output-condition", default=DEFAULT_OUTPUT_CONDITION)
+    parser.add_argument("--pdfx", default=DEFAULT_PDFX)
     parser.add_argument("--application", default="Adobe InDesign 2026")
     args = parser.parse_args()
     job = _job(args)
@@ -67,7 +116,18 @@ def main() -> int:
         print(f"[indesign-finalize] ERROR: IDML not found: {job['input_idml']}")
         return 1
     _run_jsx(job, application=args.application)
-    report = json.loads(Path(job["report_json"]).read_text(encoding="utf-8"))
+    report_path = Path(job["report_json"])
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    output_pdf = Path(job["output_pdf"])
+    if output_pdf.is_file():
+        compliance = _pdf_export_compliance(output_pdf, job)
+        report["pdf_export_validation"] = compliance
+        report["success"] = bool(report.get("success")) and bool(compliance["pass"])
+        if not compliance["pass"] and not report.get("error"):
+            report["error"] = "exported PDF does not satisfy the PDF/X output contract"
+        report_path.write_text(
+            json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8",
+        )
     status = "OK" if report.get("success") else "PREFLIGHT FAIL"
     print(
         f"[indesign-finalize] {status}: pages={report.get('page_count')} "

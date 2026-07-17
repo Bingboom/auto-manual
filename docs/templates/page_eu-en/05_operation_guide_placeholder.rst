@@ -170,7 +170,7 @@ LCD SCREEN
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Shortly On}{Turn on}{Press the main POWER button or when the product is charging.}{Turn off}{Press the main POWER button.}{Auto-off}{The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.}
       \HBLcdModeSecondGroup{Steady On (in charging or discharging state)}{Turn on}{Press the main POWER button twice when the product is powered on.}{Turn off}{Press the main POWER button.}{Auto-off}{The LCD turns off automatically after |DEFAULT_STANDBY_DURATION| of inactivity.}
       \end{HBLcdModeTable}

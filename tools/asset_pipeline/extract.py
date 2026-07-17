@@ -273,8 +273,16 @@ def _prepare_asset_source(
     page = source.load_page(asset.page - 1)
     crop = fitz.Rect(asset.crop_bbox)
     for transform in asset.transforms[1:]:
-        if transform.op == "redact_text":
-            for rect in _text_span_rects(fitz, page, crop):
+        if transform.op in {"redact_text", "redact_text_region"}:
+            if transform.op == "redact_text_region":
+                if transform.bbox_pt is None:
+                    raise ArtifactValidationError(
+                        f"asset {asset.asset_key!r} has invalid redact_text_region"
+                    )
+                redaction_rects = (fitz.Rect(transform.bbox_pt),)
+            else:
+                redaction_rects = _text_span_rects(fitz, page, crop)
+            for rect in redaction_rects:
                 page.add_redact_annot(rect, fill=None, cross_out=False)
             graphics = (
                 fitz.PDF_REDACT_LINE_ART_NONE

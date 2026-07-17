@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 from unittest.mock import patch
 
@@ -92,6 +93,92 @@ class IdmlIRProjectionTests(unittest.TestCase):
             ]
         ):
             self.assertEqual(0, exporter.main())
+
+    def test_production_export_keeps_overview_and_back_cover_native(self) -> None:
+        import tools.export_idml as exporter
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle = root / "rst"
+            page_dir = bundle / "page"
+            page_dir.mkdir(parents=True)
+            (bundle / "index.rst").write_text(
+                ".. include:: page/03_product_overview_placeholder.rst\n"
+                ".. include:: page/99_back_cover.rst\n",
+                encoding="utf-8",
+            )
+            (page_dir / "03_product_overview_placeholder.rst").write_text(
+                "PRODUCT OVERVIEW\n"
+                "================\n\n"
+                "FRONT VIEW\n"
+                "----------\n\n"
+                ".. list-table::\n"
+                "   :header-rows: 0\n\n"
+                "   * - **POWER Button**\n"
+                "     - **Handle**\n",
+                encoding="utf-8",
+            )
+            (page_dir / "99_back_cover.rst").write_text(
+                ".. raw:: latex\n\n"
+                "   \\HBBackCoverPage{SOURCE COMPANY}{Source address}{Source phone}"
+                "{source@example.com}{www.example.com}\n",
+                encoding="utf-8",
+            )
+            out = root / "manual.idml"
+            with patch.object(
+                exporter.sys,
+                "argv",
+                [
+                    "export_idml.py",
+                    "--model",
+                    "TEST-MODEL",
+                    "--region",
+                    "US",
+                    "--lang",
+                    "en",
+                    "--data-root",
+                    str(DATA),
+                    "--bundle-root",
+                    str(bundle),
+                    "--out",
+                    str(out),
+                ],
+            ):
+                self.assertEqual(0, exporter.main())
+
+            with zipfile.ZipFile(out) as zf:
+                package_xml = "\n".join(
+                    zf.read(name).decode("utf-8")
+                    for name in zf.namelist()
+                    if name.endswith(".xml")
+                )
+
+        self.assertNotIn("product_overview-", package_xml)
+        self.assertNotIn("back_cover-", package_xml)
+        self.assertIn("PRODUCT OVERVIEW", package_xml)
+        self.assertIn("POWER Button", package_xml)
+        self.assertIn("<Table ", package_xml)
+        self.assertIn("SOURCE COMPANY", package_xml)
+        self.assertIn("Source address", package_xml)
+        self.assertIn("Source phone", package_xml)
+        self.assertIn("source@example.com", package_xml)
+        self.assertIn("www.example.com", package_xml)
+
+    def test_reference_page_count_gate_rejects_silent_export_drift(self) -> None:
+        plan = {"physical_page_count": 60}
+
+        self.assertEqual(
+            [],
+            ir_projection.reference_page_count_issues(plan, 60),
+        )
+        self.assertEqual(
+            ["emitted 52 pages but the reference plan requires 60"],
+            ir_projection.reference_page_count_issues(plan, 52),
+        )
+        self.assertEqual(
+            [],
+            ir_projection.reference_page_count_issues(None, 52),
+        )
 
 
 if __name__ == "__main__":

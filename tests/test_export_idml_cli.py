@@ -333,7 +333,7 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 "--data-root", str(DATA_FIXTURE), "--out", str(out),
             )
             self.assertEqual(proc.returncode, 1)
-            self.assertIn("prepared bundle is required for same-source IDML", proc.stdout)
+            self.assertIn("same-source IDML preparation failed", proc.stdout)
             self.assertFalse(out.exists())
 
 

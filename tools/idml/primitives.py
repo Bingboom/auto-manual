@@ -17,10 +17,8 @@ from .table_borders import component_table_xml
 
 # saxutils.escape needs an explicit quote entity inside XML attributes.
 _ATTR_ENTITIES = {'"': "&quot;"}
-
 # Compatibility hook; semantic symbols stay intact and use font fallbacks.
 GLYPH_FALLBACKS: tuple[tuple[str, str], ...] = ()
-
 DIRECT_CURRENT_SYMBOL_FONT = "Apple Symbols"
 GENERAL_SYMBOL_FONT = "Arial Unicode MS"
 SYMBOL_FONT_FALLBACK_STYLE = "Regular"
@@ -41,7 +39,6 @@ PROSE_STYLE = {
     "list": "HB List",
     "sublist": "HB Sublist",
 }
-
 def clean_text(text: str) -> str:
     from .text_clean import strip_rst_inline
     text = strip_rst_inline(text)
@@ -136,11 +133,14 @@ def spec_table(tid: str, rows: list[tuple[str, str]],
                params: dict[str, tuple[str, str]],
                page_w: float, m_l: float, m_r: float,
                role: str | None = None,
-               visual_parity: bool = False) -> str:
+               visual_parity: bool = False,
+               section_index: int | None = None,
+               language: str | None = None) -> str:
     return spec_table_xml(
         tid, rows, label_style,
         params=params, page_w=page_w, m_l=m_l, m_r=m_r,
-        role=role, visual_parity=visual_parity, paragraph_xml=psr,
+        role=role, visual_parity=visual_parity,
+        section_index=section_index, language=language, paragraph_xml=psr,
     )
 
 
@@ -184,11 +184,11 @@ def resolve_bundle_image(bundle_root: Path, ref: str) -> Path | None:
     Refs are either bundle-relative paths (_assets/..., _repo_assets/...)
     or bare basenames from component macro args (main_unit1.png).
     """
-    cand = bundle_root / ref
-    if cand.exists():
+    if (cand := bundle_root / ref).exists():
         return cand
     name = Path(ref).name
-    for base in (bundle_root / "_assets", bundle_root / "_repo_assets"):
+    for rel in ("renderers/latex/assets", "_assets", "_repo_assets"):
+        base = bundle_root / rel
         if base.is_dir():
             hits = sorted(base.rglob(name))
             if hits:

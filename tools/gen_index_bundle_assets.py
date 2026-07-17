@@ -6,6 +6,7 @@ import shutil
 from pathlib import Path, PureWindowsPath
 from typing import Callable
 
+from tools.app_ui_promotion import reviewed_app_uri_for_raw_latex
 from tools.asset_registry import AssetRegistryError
 from tools.asset_usage import BundleAssetUsage, parse_asset_uri
 from tools.utils.path_utils import PathSegments, latex_renderer_of
@@ -17,6 +18,14 @@ _RST_ASSET_DIRECTIVE_RE = re.compile(
 _HTML_SRC_RE = re.compile(r"(\bsrc\s*=\s*)(['\"])(.*?)\2", re.IGNORECASE)
 _LATEX_INCLUDEPDF_RE = re.compile(
     r"(\\includepdf(?:\[[^\]]*\])?\{)([^{}]+)(\})",
+    re.IGNORECASE,
+)
+_LATEX_APP_ASSET_RE = re.compile(
+    r"(\\HBAppAsset\{)([^{}]+)(\})",
+    re.IGNORECASE,
+)
+_LATEX_LCD_MODE_ASSET_RE = re.compile(
+    r"(\\begin\{HBLcdModeTable\}\{)([^{}]+)(\})",
     re.IGNORECASE,
 )
 _EMPTY_TOP_LEVEL_LINE_BLOCK_RE = re.compile(r"(?m)^\|[ \t]*(\r?\n|$)")
@@ -422,6 +431,37 @@ def rewrite_rst_asset_paths(
             render_base=render_base,
         )
 
+    def transform_latex_app(raw_value: str) -> str:
+        semantic_uri = reviewed_app_uri_for_raw_latex(
+            raw_value,
+            model=model,
+            region=region,
+            language=language,
+        )
+        if semantic_uri is None or asset_usage is None or defer_staging:
+            return raw_value
+        return transform(
+            semantic_uri,
+            preserve_basename=True,
+            required_format="png",
+        )
+
+    def transform_latex_lcd_mode(raw_value: str) -> str:
+        # Only semantic registry references belong to this channel.  Review
+        # bundles can also contain non-indexed generated drafts that still
+        # carry the historical ``{lcd_mode.png}`` basename; treating those as
+        # governed references makes finalization fail before the selected
+        # review pages are built.  Preserve legacy args verbatim while new
+        # templates use ``asset:operation/lcd_mode`` and receive target-aware
+        # resolution below.
+        if parse_asset_uri(raw_value) is None:
+            return raw_value
+        return transform(
+            raw_value,
+            preserve_basename=not defer_staging,
+            required_format="png",
+        )
+
     return map_rst_asset_paths(
         text,
         transform=lambda raw_value: transform(raw_value, render_base=bundle_dir),
@@ -431,6 +471,8 @@ def rewrite_rst_asset_paths(
             preserve_basename=not defer_staging,
             required_format="pdf",
         ),
+        latex_app_transform=transform_latex_app,
+        latex_lcd_mode_transform=transform_latex_lcd_mode,
     )
 
 
@@ -440,8 +482,10 @@ def map_rst_asset_paths(
     transform: Callable[[str], str],
     html_transform: Callable[[str], str] | None = None,
     latex_transform: Callable[[str], str] | None = None,
+    latex_app_transform: Callable[[str], str] | None = None,
+    latex_lcd_mode_transform: Callable[[str], str] | None = None,
 ) -> str:
-    """Transform RST directive and raw-HTML image path values only."""
+    """Transform governed RST, HTML, and raw-LaTeX asset path values."""
 
     def replace_directive(match: re.Match[str]) -> str:
         prefix, raw_value, suffix = match.groups()
@@ -457,9 +501,23 @@ def map_rst_asset_paths(
         selected_transform = latex_transform or transform
         return f"{prefix}{selected_transform(raw_value)}{suffix}"
 
+    def replace_latex_app_asset(match: re.Match[str]) -> str:
+        prefix, raw_value, suffix = match.groups()
+        if latex_app_transform is None:
+            return match.group(0)
+        return f"{prefix}{latex_app_transform(raw_value)}{suffix}"
+
+    def replace_latex_lcd_mode_asset(match: re.Match[str]) -> str:
+        prefix, raw_value, suffix = match.groups()
+        if latex_lcd_mode_transform is None:
+            return match.group(0)
+        return f"{prefix}{latex_lcd_mode_transform(raw_value)}{suffix}"
+
     out = _RST_ASSET_DIRECTIVE_RE.sub(replace_directive, text)
     out = _HTML_SRC_RE.sub(replace_html_src, out)
-    return _LATEX_INCLUDEPDF_RE.sub(replace_latex_include, out)
+    out = _LATEX_INCLUDEPDF_RE.sub(replace_latex_include, out)
+    out = _LATEX_APP_ASSET_RE.sub(replace_latex_app_asset, out)
+    return _LATEX_LCD_MODE_ASSET_RE.sub(replace_latex_lcd_mode_asset, out)
 
 
 def raw_html_asset_values(text: str) -> tuple[str, ...]:

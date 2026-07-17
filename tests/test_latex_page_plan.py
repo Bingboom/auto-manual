@@ -102,6 +102,70 @@ class LatexPagePlanTests(unittest.TestCase):
         self.assertEqual(9, planned_span(
             plan, ["operations", "charging", "trouble"], fallback=6))
 
+    def test_approved_story_span_prefers_explicit_composition_page_count(self) -> None:
+        plan = {
+            "physical_page_count": 20,
+            "pages": [
+                {
+                    "source_path": "page/operations.rst",
+                    "latex_start_page": 10,
+                    "composition_id": "operations-en",
+                    "planned_page_count": 4,
+                },
+                {
+                    "source_path": "page/ups.rst",
+                    "latex_start_page": 16,
+                    "composition_id": "ups-en",
+                    "planned_page_count": 1,
+                },
+            ],
+        }
+
+        self.assertEqual(
+            4,
+            planned_span(plan, ["operations"], fallback=1),
+        )
+
+    def test_final_story_span_uses_physical_page_boundary(self) -> None:
+        plan = {
+            "physical_page_count": 20,
+            "pages": [
+                {"source_path": "page/warranty.rst", "latex_start_page": 17},
+            ],
+        }
+
+        self.assertEqual(4, planned_span(plan, ["warranty"], fallback=1))
+
+    def test_story_span_rejects_out_of_range_anchors(self) -> None:
+        for start in (0, 21):
+            with self.subTest(start=start):
+                plan = {
+                    "physical_page_count": 20,
+                    "pages": [
+                        {"source_path": "page/story.rst", "latex_start_page": start},
+                    ],
+                }
+
+                self.assertEqual(
+                    3,
+                    planned_span(plan, ["story"], fallback=3),
+                )
+
+    def test_story_span_rejects_non_monotonic_anchors(self) -> None:
+        plan = {
+            "physical_page_count": 20,
+            "pages": [
+                {"source_path": "page/operations.rst", "latex_start_page": 10},
+                {"source_path": "page/charging.rst", "latex_start_page": 9},
+                {"source_path": "page/trouble.rst", "latex_start_page": 15},
+            ],
+        }
+
+        self.assertEqual(
+            6,
+            planned_span(plan, ["operations", "charging"], fallback=6),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

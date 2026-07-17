@@ -259,16 +259,28 @@ type_preface_tag_font_size,6.0,pt,Preface language tag font size
 type_preface_title_font_size,8.0,pt,Preface title font size
 type_preface_body_font_size,6.0,pt,Preface body font size
 type_preface_body_font_leading,7.2,pt,Preface body leading
-idml_preface_margin_left,12.5,mm,IDML preface text left margin
-idml_preface_margin_right,12.5,mm,IDML preface text right margin
-idml_preface_margin_top,19.0,mm,IDML preface text top margin
+idml_preface_margin_left,35.882,pt,IDML preface text left margin
+idml_preface_margin_right,24.453,pt,IDML preface text right margin
+idml_preface_margin_top,52.986,pt,IDML preface text top margin
 idml_preface_margin_bottom,13.0,mm,IDML preface text bottom margin
-idml_preface_tag_width,4.6,mm,IDML preface language tag width
-idml_preface_tag_height,2.9,mm,IDML preface language tag height
-idml_preface_tag_font_size,6.0,pt,IDML preface language tag font size
+idml_preface_tag_width,14.709,pt,IDML preface language tag width
+idml_preface_tag_height,9.7,pt,IDML preface language tag height
+idml_preface_tag_font_size,8.668,pt,IDML preface language tag font size
 idml_preface_title_font_size,8.0,pt,IDML preface title font size
-idml_preface_body_font_size,7.2,pt,IDML preface body font size
-idml_preface_body_font_leading,8.6,pt,IDML preface body leading
+idml_preface_body_font_size,7.0,pt,IDML preface body font size
+idml_preface_body_font_leading,10.003,pt,IDML preface body leading
+idml_preface_tag_vertical_inset,0.966,pt,IDML preface tag cell top and bottom inset
+idml_preface_tag_left_inset,1.795,pt,IDML preface tag optical left inset
+idml_preface_title_left_inset,6.828,pt,IDML preface title optical left inset
+idml_preface_tag_baseline_shift,-0.227,pt,IDML preface tag optical baseline shift
+idml_preface_title_baseline_shift,-0.839,pt,IDML preface title optical baseline shift
+idml_preface_header_space_before,0.0,pt,IDML default gap before language badge
+idml_preface_header_space_after,5.56,pt,IDML preface header to body gap
+idml_preface_paragraph_space_after,2.0,pt,IDML preface body paragraph spacing measured from reference
+lang_fr_idml_preface_header_space_before,11.73,pt,FR preface gap before language badge measured from reference
+lang_fr_idml_preface_header_space_after,1.62,pt,FR preface badge-to-body gap measured from reference
+lang_es_idml_preface_header_space_before,13.69,pt,ES preface gap before language badge measured from reference
+lang_es_idml_preface_header_space_after,2.65,pt,ES preface badge-to-body gap measured from reference
 ,,,
 ,,,------ SPEC TABLE PAGE ------
 comp_spec_section_before,4.3,mm,Spec section title space before (reference dedicated-page rhythm)
@@ -279,6 +291,8 @@ comp_spec_section_bullet_symbol,\scalebox{1.67}{\textbullet},none,Spec section b
 comp_spec_section_bullet_gap,0.36,em,Spec section bullet to title gap
 comp_spec_table_left_tint,5,int,Spec table left-column tint percent black
 comp_spec_table_left_ratio,0.315,ratio,Spec table left column ratio of textwidth (archive: 0.315)
+idml_spec_table_left_ratio,0.315,ratio,Default InDesign specification left-column ratio
+lang_es_idml_spec_table_left_ratio,0.375,ratio,ES InDesign specification left-column ratio measured from reference
 comp_spec_table_tabcolsep,2.6,pt,Spec table cell horizontal padding
 comp_spec_table_row_stretch,1.90,ratio,Spec table row vertical stretch (reference single-row height)
 comp_spec_table_tall_row_extra,2.1,pt,Spec footnote-marker row extra height
@@ -300,9 +314,29 @@ type_spec_note_font_leading,6.0,pt,Spec note/footnote leading
 ,,,------ WARRANTY PAGE ------
 comp_warranty_page_after_h1,4.0,mm,Warranty page gap after H1
 idml_warranty_lead_before,0.7,mm,InDesign warranty lead gap after the anchored H1 host
+idml_warranty_lead_pad_tb,5.0,pt,Default InDesign warranty lead vertical padding
+lang_en_idml_warranty_lead_pad_tb,7.0,pt,EN InDesign warranty lead vertical padding
+lang_fr_idml_warranty_lead_pad_tb,3.0,pt,FR InDesign warranty lead vertical padding
+lang_es_idml_warranty_lead_pad_tb,5.0,pt,ES InDesign warranty lead vertical padding
+idml_warranty_lead_horizontal_scale,100,int,Default InDesign warranty lead horizontal scale percent
+lang_en_idml_warranty_lead_horizontal_scale,100,int,EN InDesign warranty lead horizontal scale percent
+lang_fr_idml_warranty_lead_horizontal_scale,96,int,FR InDesign warranty lead horizontal scale percent
+lang_es_idml_warranty_lead_horizontal_scale,100,int,ES InDesign warranty lead horizontal scale percent
+idml_warranty_note_horizontal_scale,100,int,InDesign warranty legal-note horizontal scale percent
+lang_fr_idml_warranty_note_horizontal_scale,94,int,FR warranty note width measured from reference
+lang_es_idml_warranty_note_horizontal_scale,94,int,ES warranty note width measured from reference
+idml_warranty_year_left_ratio,0.64,ratio,InDesign warranty period left-column ratio
 idml_warranty_period_section_before,3.0,pt,InDesign optical gap before warranty period panel
 idml_warranty_section_before,1.0,pt,InDesign optical gap before ordinary warranty panels
+idml_warranty_final_section_before,1.0,pt,InDesign optical gap before the interpretation-rights panel
+idml_warranty_body_font_leading,6.0,pt,InDesign warranty panel body leading measured from reference
+idml_warranty_title_font_size,8.0,pt,InDesign warranty panel title size measured from reference
+idml_warranty_paragraph_after,2.83,pt,InDesign warranty body paragraph spacing measured from reference
+idml_warranty_list_after,1.0,pt,InDesign warranty list item spacing measured from reference
 idml_warranty_panel_trim_first,10.0,pt,InDesign first warranty panel whitespace correction
+lang_en_idml_warranty_panel_trim_first,9.42,pt,EN first warranty panel measured trim
+lang_fr_idml_warranty_panel_trim_first,5.09,pt,FR first warranty panel measured trim
+lang_es_idml_warranty_panel_trim_first,3.44,pt,ES first warranty panel measured trim
 idml_warranty_panel_trim_period,0.0,pt,InDesign warranty period panel whitespace correction
 idml_warranty_panel_trim_exclusions,8.0,pt,InDesign exclusions panel whitespace correction
 comp_warranty_page_extra_height,6.0,mm,Warranty page local extra body height

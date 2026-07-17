@@ -19,7 +19,7 @@ class TestTargetResolution(unittest.TestCase):
         registry = root / "data" / "asset_registry.csv"
         registry.parent.mkdir(parents=True, exist_ok=True)
         registry.write_text(
-            "asset_key,类别,语言维度,状态,待无字化,适用机型,适用区域,"
+            "asset_key,override_for,类别,语言维度,状态,待无字化,适用机型,适用区域,"
             "导出物路径,语言变体,内容哈希,备注\n",
             encoding="utf-8",
         )

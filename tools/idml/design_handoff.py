@@ -26,6 +26,7 @@ class HandoffOutputs:
     designer_checklist: Path
     layout_feedback: Path
     latex_page_plan: Path | None
+    reference_layout_plan: Path | None
 
 
 def write_handoff_package(*, root: Path, model: str, region: str, lang: str,
@@ -47,6 +48,10 @@ def write_handoff_package(*, root: Path, model: str, region: str, lang: str,
     production_page_plan = production_dir / PathSegments.LATEX_PAGE_PLAN_JSON
     if source_page_plan.is_file():
         shutil.copyfile(source_page_plan, production_page_plan)
+    source_reference_plan = production_idml.parent / PathSegments.REFERENCE_LAYOUT_PLAN_JSON
+    production_reference_plan = production_dir / PathSegments.REFERENCE_LAYOUT_PLAN_JSON
+    if source_reference_plan.is_file():
+        shutil.copyfile(source_reference_plan, production_reference_plan)
     production_trace.write_text(
         json.dumps(
             _production_trace(
@@ -80,6 +85,9 @@ def write_handoff_package(*, root: Path, model: str, region: str, lang: str,
         designer_checklist=checklist,
         layout_feedback=feedback,
         latex_page_plan=production_page_plan if production_page_plan.is_file() else None,
+        reference_layout_plan=(
+            production_reference_plan if production_reference_plan.is_file() else None
+        ),
     )
 
 
@@ -105,6 +113,8 @@ def _production_trace(*, root: Path, model: str, region: str, lang: str,
         "manual_ir": _display_path(root, production_idml.parent.parent / PathSegments.MANUAL_IR_JSON),
         "latex_page_plan": _display_path(
             root, production_idml.parent / PathSegments.LATEX_PAGE_PLAN_JSON),
+        "reference_layout_plan": _display_path(
+            root, production_idml.parent / PathSegments.REFERENCE_LAYOUT_PLAN_JSON),
     }
 
 

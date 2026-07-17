@@ -138,14 +138,20 @@ def _special_page_payload(body: str) -> dict[str, Any] | None:
     included = re.search(r"\\includepdf(?:\[[^]]*\])?\{([^{}]+)\}", body)
     if included:
         return {"kind": "placed_pdf", "asset": included.group(1).strip()}
-    back_cover = _calls(body, "HBBackCoverPage", 3)
+    back_cover = _calls(body, "HBBackCoverPage", 5)
+    if not back_cover:
+        back_cover = [args + ["", ""] for args in _calls(
+            body, "HBBackCoverPage", 3,
+        )]
     if back_cover:
-        company, address, phone = back_cover[0]
+        company, address, phone, email, web = back_cover[0]
         return {
             "kind": "back_cover",
             "company": _text(company),
             "address": _text(address),
             "phone": _text(phone),
+            "email": _text(email),
+            "web": _text(web),
         }
     if r"\HBTocPageBegin" in body:
         titles = _calls(body, "HBTocTitle", 1)

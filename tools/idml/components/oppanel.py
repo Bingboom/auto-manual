@@ -30,14 +30,11 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     ref = (spec.get("image") or "").strip()
     asset = ctx.resolve_bundle_image(ref) if ref else None
     if asset is not None and asset.exists():
-        iw, ih = ctx.art_frame_size(asset, max_w=body_w * 0.44)
-        # Panel-height budget: the reference panels keep the illustration
-        # at ~0.22-0.25x the measure; taller-aspect art must shrink-to-fit
-        # or the downstream prose chain oversets (same failure mode as the
-        # LCD hero cap in page_objects.lcd_hero_paragraph).
-        img_max_h = body_w * 0.25
-        if ih > img_max_h:
-            iw, ih = iw * img_max_h / ih, img_max_h
+        # The governed operation artwork already contains the product,
+        # connector callouts, and reserved label zones.  Preserve that canvas
+        # at reference scale; the previous half-column + height cap reduced it
+        # to roughly one third of the intended visual area.
+        iw, ih = ctx.art_frame_size(asset, max_w=body_w * 0.75)
         icon = figure_paragraph(
             image_cell_content(f"{tid}img", asset, iw, ih),
             tail="<Content></Content>")
@@ -54,7 +51,7 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         right_parts[-1] = right_parts[-1].replace("<Br/>", "", 1)
     right = "".join(right_parts)
 
-    img_col = body_w * 0.5
+    img_col = body_w * 0.8
     rows_h = (14.0 if prereq else 0.0) + sum(
         9.0 + 7.5 * max(1, len(instr) // 60 + 1) for _, instr in rows)
     est = max(img_h + 12.0, rows_h + 12.0, 40.0)
@@ -62,7 +59,7 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         # master parity: rounded light-grey outline, no inner grid
         from .. import page_objects as _po
         inner_w = body_w - 8.0
-        icol = inner_w * 0.5
+        icol = inner_w * 0.8
         cells = [
             cell(f"{tid}c0", "0:0", icon, stroke=False,
                  top=5, bottom=5, left=5, right=4),

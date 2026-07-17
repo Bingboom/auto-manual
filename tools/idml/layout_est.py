@@ -7,6 +7,8 @@ dragging, not pixel-perfect fitting.
 """
 from __future__ import annotations
 
+import re
+
 
 def balanced_icon_split(icons: list[dict], text_col_w: float,
                         min_row: float) -> tuple[list[dict], list[dict]]:
@@ -26,16 +28,62 @@ def balanced_icon_split(icons: list[dict], text_col_w: float,
     return icons[: best[1]], icons[best[1]:]
 
 
-def template_symbol_split(icons: list[dict]) -> tuple[list[dict], list[dict], list[dict]]:
-    """Safety-symbols page parity: left 1-6, right 7-11; keep extras out."""
-    ordered = sorted(icons, key=lambda row: float(row.get("order") or 0))
-    page_rows = [row for row in ordered if row.get("symbol_key") != "weee2"]
-    overflow = [row for row in ordered if row.get("symbol_key") == "weee2"]
-    left = [row for row in page_rows if 1 <= float(row.get("order") or 0) <= 6]
-    right = [row for row in page_rows if 7 <= float(row.get("order") or 0) <= 11]
-    if left or right:
-        return left, right, overflow
-    return page_rows[:6], page_rows[6:11], page_rows[11:] + overflow
+_SYMBOL_KEY_ORDER = {
+    "warning_triangle": 1,
+    "read_manual": 2,
+    "electric_shock": 3,
+    "battery_charging": 4,
+    "explosive_material": 5,
+    "heavy_object": 6,
+    "do_not_dismantle": 7,
+    "no_open_flame": 8,
+    "keep_away_from_children": 9,
+    "li_ion": 10,
+    "weee": 11,
+    "weee2": 12,
+}
+
+
+def _symbol_order(row: dict, fallback: int) -> float:
+    """Recover canonical order after the renderer-neutral IR drops row keys."""
+    raw_order = row.get("order")
+    if raw_order not in (None, ""):
+        try:
+            return float(raw_order)
+        except (TypeError, ValueError):
+            pass
+    key_order = _SYMBOL_KEY_ORDER.get(str(row.get("symbol_key") or ""))
+    if key_order is not None:
+        return float(key_order)
+    figure = str(row.get("figure") or "")
+    match = re.search(r"(?:^|[/\\])(\d+)_", figure)
+    if match:
+        return float(match.group(1))
+    return float(fallback)
+
+
+def template_symbol_split(
+    icons: list[dict],
+    *,
+    dense: bool = False,
+) -> tuple[list[dict], list[dict], list[dict], list[dict]]:
+    """Split reference symbol tables into current- and continuation-page rows.
+
+    English fits canonical rows 1-6 and 7-11 on one page.  The denser French
+    and Spanish compositions keep rows 1-4 and 7-10 on the symbols page, then
+    continue with rows 5-6 and row 11 above the following FCC panel.  Row 12
+    (the separate batteries/accumulators mark) is not part of this approved
+    US reference composition.
+    """
+    indexed = [(_symbol_order(row, index), index, row)
+               for index, row in enumerate(icons, start=1)]
+    ordered = [row for order, _, row in sorted(indexed)
+               if 1 <= order <= 11]
+    left_all = ordered[:6]
+    right_all = ordered[6:11]
+    if not dense:
+        return left_all, right_all, [], []
+    return left_all[:4], right_all[:4], left_all[4:], right_all[4:]
 
 
 def est_table_height(texts: list[str], text_col_w: float, min_row: float) -> float:

@@ -124,7 +124,12 @@ def restore_registry_asset_uris(
             return original_value
 
         text = target_path.read_text(encoding="utf-8")
-        rewritten = map_rst_asset_paths(text, transform=restore)
+        rewritten = map_rst_asset_paths(
+            text,
+            transform=restore,
+            latex_app_transform=restore,
+            latex_lcd_mode_transform=restore,
+        )
         if strict:
             missing = [
                 row

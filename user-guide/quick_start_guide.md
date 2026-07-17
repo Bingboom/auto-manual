@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-07-15
+Updated: 2026-07-16
 
 这份指南只讲当前真实可用的工作方式。
 核心规则只有一句：
@@ -158,9 +158,16 @@ RST 中获批资产可按稳定身份引用：
 构建会在 review 覆盖完成后按当前 model/region/language 解析注册表，只接受
 PNG/JPG/JPEG/SVG/PDF 成品；`.ai`、临时、缺失和隔离资产都不会通过 `asset:`
 进入 bundle。
+App/QR 等敏感候选即使已拆图也继续保持隔离。只有 `data/asset_promotions/`
+中的受审契约完整绑定审核人、时间、目标 scope、AI/PDF/recipe/evidence、输入输出
+完整 SHA 和确定性组合规则时，注册表才接受
+`source=reviewed-promotion:<promotion_id>`。目标或任一字节漂移都会硬失败，且不会
+回退到同名共享旧图。
 最终 bundle 写出 `asset_usage_manifest.json`、`asset_registry_snapshot.csv` 和带
 `bundle_sha256` 的 `bundle_manifest.json`。现有旧路径图片仍可构建，但只记为
-`legacy-path`；这表示已记账，不表示已受注册表门控。模板目前尚未批量迁移。
+`legacy-path`；这表示已记账，不表示已受注册表门控。共享模板已经批量迁移到
+`asset:`。产品/区域专用导出物使用独立 key，并在注册表以
+`override_for=<共享 key>` 声明窄范围覆盖；不要缩窄或替换共享行。
 
 ## 2. Build Draft Package 和 Publish 的原料分别是什么
 
@@ -504,21 +511,77 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
    - `是否强制刷新数据 = 只有这次确实要拉最新 phase2 时才勾`
 4. 等队列回写 `Document directory`（DOCX 留档路径）、`Document link`（PDF 链接）和可选的 `飞书云文档`；如果表里有 `HTML_link`，还会看到最新 Vercel HTML 链接，并确认 Vercel 最新页面已刷新
 
-### 如果你要把 LaTeX 版面交给 InDesign 细调
+### 如果你要按方案 2 复刻获批 PDF 为原生 InDesign
 
-1. 冻结当前 review 内容，不再在 InDesign 中改文案或规格。
-2. 运行：
+1. 冻结当前 review 和 phase2 snapshot，并确认参考文件确实是
+   `Jackery Explorer 1000 User Manual V2.0-2026-06-05.pdf`：58 页、
+   `368.787 × 524.692 pt`，SHA-256 为
+   `e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2`。
+   本目标必须命中
+   [`reference_layout_registry.json`](../docs/renderers/contracts/reference_layout_registry.json)
+   里的
+   [`je1000f_us_v2_20260605.json`](../docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json)；
+   plan 缺失、hash 漂移或页数漂移都要停，不能退回 fuzzy 匹配。
+2. 从冻结来源构建 production IDML：
 
    ```bash
-   python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source review-asis
+   python3 build.py idml \
+     --config configs/config.us.yaml \
+     --model JE-1000F \
+     --region US \
+     --source review-asis \
+     --idml-mode production \
+     --data-root <phase2-snapshot>
    ```
 
-3. 打开 `docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml`。同目录的
-   `manual.ir.json` 是内容身份，`latex_page_plan.json` 是 LaTeX 实测分页。
-4. InDesign 只做框体几何、显式分页、图片适配和有限字距调整；内容问题回源修改后重新生成。
-5. 在装有 InDesign 的设计 Mac 上运行 `tools/indesign_finalize.py`，确认
-   `overset / missing fonts / bad links` 都为 0；再用
-   `tools/idml_pdf_parity.py` 比较 LaTeX PDF 和 InDesign PDF。
+   已在 reference-layout registry 注册的目标会直接使用批准的物理页合同，
+   入口只准备 RST，不再额外构建一份 LaTeX PDF；未注册目标才保留历史的
+   LaTeX 分页匹配回退。
+
+3. 打开 `docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml`。
+   `manual.ir.json` 是内容身份，`latex_page_plan.json` 只是同源 LaTeX
+   分页 trace，不是这次的视觉验收母版。文字、标题、表格、callout、
+   Product Overview 和封底必须是原生对象；插图必须是获批、scope/hash
+   正确的 linked asset。正文或封底不得靠整页 PDF 充当可见内容，参考
+   PDF 只能放在非打印比较层。内容、法务、规格或资产身份有问题时回源
+   修改后重建，不在 INDD 里另养一份内容。
+4. 在装有 InDesign 的设计 Mac 上关闭旧 INDD，再运行：
+
+   ```bash
+   python3 tools/indesign_finalize.py \
+     --idml docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml \
+     --indd output/indesign/JE-1000F_US_same_source.indd \
+     --pdf output/pdf/JE-1000F_US_indesign.pdf \
+     --report output/indesign/JE-1000F_US_preflight.json \
+     --pdf-preset '[PDF/X-4:2008 (Japan)]' \
+     --output-intent 'Japan Color 2001 Coated' \
+     --output-condition JC200103 \
+     --pdfx PDF/X-4
+   ```
+
+5. 用获批 PDF 做逐页硬门禁。这里 `--latex-pdf` 是历史参数名，传入的
+   必须是获批参考 PDF，不是本次新生成的 LaTeX PDF：
+
+   ```bash
+   python3 tools/idml_pdf_parity.py \
+     --latex-pdf <approved-reference.pdf> \
+     --indesign-pdf output/pdf/JE-1000F_US_indesign.pdf \
+     --preflight output/indesign/JE-1000F_US_preflight.json \
+     --manual-ir docs/_build/JE-1000F/US/idml/manual.ir.json \
+     --reference-layout-plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+     --idml docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml \
+     --indd output/indesign/JE-1000F_US_same_source.indd \
+     --pages all \
+     --out output/comparison/JE-1000F_US_same_source_parity.json
+   ```
+
+6. 只有以下条件全部满足才交付：58 页及 geometry 通过、overset / missing
+   fonts / bad links 全为 0、PDF/X-4 与 `Japan Color 2001 Coated` /
+   `JC200103` 正确、52/52 source identity 匹配、所有实际使用资产获批且
+   hash 正确、没有可见正文/封底整页 PDF shortcut、58 页逐页 RGB MAD
+   `≤ 0.008` 且 changed-pixel ratio `≤ 0.040`，最终 parity JSON 的
+   `accepted=true`。写完文档、生成 IDML 或肉眼看起来接近，都不等于已经
+   验收通过。
 
 ## 9. 一句话规则
 

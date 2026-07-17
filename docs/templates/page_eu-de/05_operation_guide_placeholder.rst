@@ -169,7 +169,7 @@ LCD-ANZEIGE
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Kurzzeitig an}{Ein}{Drücken Sie die Haupt-POWER-Taste oder während das Produkt geladen wird.}{Aus}{Drücken Sie die Haupt-POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach 2 Minuten Inaktivität automatisch aus und wechselt in den Schlafmodus.}
       \HBLcdModeSecondGroup{Dauerhaft an (beim Laden oder Entladen)}{Ein}{Drücken Sie die Haupt-POWER-Taste zweimal, wenn das Produkt eingeschaltet ist.}{Aus}{Drücken Sie die Haupt-POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach |DEFAULT_STANDBY_DURATION| Inaktivität automatisch aus.}
       \end{HBLcdModeTable}

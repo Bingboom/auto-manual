@@ -15,6 +15,7 @@ from .page_objects import (
     heading_text,
     left_rounded_xml,
     page_rectangle_xml,
+    with_rounded_outer,
 )
 from .params import IDPKG
 from .style_names import paragraph_style_ref
@@ -59,13 +60,51 @@ def _badge_text(number: int) -> str:
     )
 
 
-def _fcc_text_story(writer, sid: str, title: str, text: str, *,
-                    image: Path | None = None) -> str:
-    parts: list[str] = []
-    if image is not None and image.exists():
-        parts.append(_image_paragraph(writer, f"{sid}_mark", image, 32.0, center=False))
-    parts.append(writer._psr("HB FCC Text", text.strip(), terminal=True))
-    return _story(writer, sid, title, parts)
+def _fcc_text_story(writer, sid: str, title: str, text: str) -> str:
+    return _story(
+        writer,
+        sid,
+        title,
+        [writer._psr("HB FCC Text", text.strip(), terminal=True)],
+    )
+
+
+def _fcc_lead_and_body(text: str) -> tuple[str, str]:
+    """Keep the preamble and both conditions beside the FCC mark.
+
+    In the approved document the full opening, including conditions (1) and
+    (2), occupies the narrow frame beside the mark.  The full-width left frame
+    starts at the localized NOTE/REMARQUE/NOTA paragraph.  Splitting at (1)
+    made the lower frame one paragraph too long and caused a real InDesign
+    overset on page 6.
+    """
+    folded = text.casefold()
+    markers = [
+        index
+        for token in (
+            "**note:", "**remarque :", "**remarque:", "**nota:",
+            "note:", "remarque :", "remarque:", "nota:",
+        )
+        if (index := folded.find(token)) >= 40
+    ]
+    if not markers:
+        return "", text.strip()
+    marker = min(markers)
+    return text[:marker].strip(), text[marker:].strip()
+
+
+def _fcc_text_frame_geometry(lang: str) -> tuple[float, float, float]:
+    """Return lead width/height and the lower-copy top offset.
+
+    The localized reference pages preserve the FCC mark size but give the
+    longer FR/ES condition copy more room beside it.  The lower NOTE frame
+    overlaps the lead frame by two points, matching the English shell while
+    keeping both stories independent and editable.
+    """
+    language = lang.strip().casefold().replace("_", "-").split("-", 1)[0]
+    lead_width = 103.0 if language in {"fr", "es"} else 97.0
+    lead_height = {"fr": 62.0, "es": 56.0}.get(language, 50.0)
+    return lead_width, lead_height, lead_height + 6.0
 
 
 def _card_story(writer, sid: str, item: dict, bundle_root: Path,
@@ -118,8 +157,16 @@ def _spread_page(writer, spread_id: str, page_no: int) -> str:
     )
 
 
-def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
-                 bundle_root: Path) -> tuple[list[str], list[str]]:
+def _fcc_objects(
+    writer,
+    sid: str,
+    fcc_blocks: list[tuple[str, str]],
+    bundle_root: Path,
+    *,
+    panel_y: float = 28.0,
+    panel_h: float = 138.0,
+    lang: str = "en",
+) -> tuple[list[str], list[str]]:
     spec = fcc_spec_from_blocks(fcc_blocks)
     texts = ((spec.get("texts") or []) + ["", ""])[:2]
     # The cropped PDF carries out-of-page legacy text in its content stream.
@@ -127,27 +174,68 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
     # Use the clean transparent raster derivative for the decorative mark so
     # searchable text remains exclusively sourced from the RST/IR stories.
     mark = ROOT / "docs" / "renderers" / "latex" / "assets" / "fcc_mark.png"
+    mark_sid = f"{sid}_fcc_mark"
+    if mark.exists():
+        _story(
+            writer,
+            mark_sid,
+            "FCC mark",
+            [_image_paragraph(writer, f"{mark_sid}_image", mark, 39.5)],
+        )
+    lead_text, left_text = _fcc_lead_and_body(texts[0])
+    lead_sid = f"{sid}_fcc_lead"
+    if lead_text:
+        _fcc_text_story(writer, lead_sid, "FCC notice lead", lead_text)
     left_sid = f"{sid}_fcc_left"
     right_sid = f"{sid}_fcc_right"
-    _fcc_text_story(writer, left_sid, "FCC notice left", texts[0], image=mark)
+    _fcc_text_story(writer, left_sid, "FCC notice left", left_text)
     _fcc_text_story(writer, right_sid, "FCC notice right", texts[1])
     bg = page_rectangle_xml(
         writer,
         f"bg_{sid}_fcc_panel",
-        (BODY_X, 28.0, BODY_W, 168.0),
+        (BODY_X, panel_y, BODY_W, panel_h),
         fill="Color/HB Bg K05",
         stroke_color="Swatch/None",
         stroke_weight=0,
         object_style=PANEL_OBJECT_STYLE,
     )
-    frames = [
-        bg,
+    frames = [bg]
+    story_ids = [left_sid, right_sid]
+    if mark.exists():
+        story_ids.append(mark_sid)
+        frames.append(frame_with_background(
+            writer,
+            sid,
+            "fcc_mark",
+            mark_sid,
+            (BODY_X + 6.0, panel_y + 7.0, 42.0, 34.0),
+            {"inset": (0, 0, 0, 0), "valign": "CenterAlign"},
+        ))
+    if lead_text:
+        story_ids.append(lead_sid)
+        lead_w, lead_h, left_y_offset = _fcc_text_frame_geometry(lang)
+        frames.append(frame_with_background(
+            writer,
+            sid,
+            "fcc_lead",
+            lead_sid,
+            (BODY_X + 52.0, panel_y + 8.0, lead_w, lead_h),
+            {"inset": (0, 0, 0, 0)},
+        ))
+    else:
+        left_y_offset = 56.0
+    frames.extend([
         frame_with_background(
             writer,
             sid,
             "fcc_left",
             left_sid,
-            (BODY_X + 4.0, 34.0, 145.0, 162.0),
+            (
+                BODY_X + 6.4,
+                panel_y + left_y_offset,
+                150.0,
+                panel_h - left_y_offset,
+            ),
             {"inset": (0, 0, 0, 0)},
         ),
         frame_with_background(
@@ -155,11 +243,59 @@ def _fcc_objects(writer, sid: str, fcc_blocks: list[tuple[str, str]],
             sid,
             "fcc_right",
             right_sid,
-            (BODY_X + 156.0, 34.0, BODY_W - 162.0, 162.0),
+            (
+                BODY_X + 166.8,
+                panel_y + 8.0,
+                BODY_W - 172.8,
+                panel_h - 8.0,
+            ),
             {"inset": (0, 0, 0, 0)},
         ),
-    ]
-    return [left_sid, right_sid], frames
+    ])
+    return story_ids, frames
+
+
+def _symbol_continuation_objects(
+    writer,
+    sid: str,
+    symbol_overflow: tuple[list[dict], list[dict]] | None,
+    lang: str,
+) -> tuple[list[str], list[str]]:
+    if not symbol_overflow or not any(symbol_overflow):
+        return [], []
+    left_rows, right_rows = symbol_overflow
+    table_gap = 7.0
+    table_w = (BODY_W - table_gap) / 2.0
+    table_y = 25.0 if lang == "es" else 20.0
+    table_h = 68.0
+    story_ids: list[str] = []
+    frames: list[str] = []
+    for side, rows, x in (
+        ("left", left_rows, BODY_X),
+        ("right", right_rows, BODY_X + table_w + table_gap),
+    ):
+        if not rows:
+            continue
+        story_id = f"{sid}_symbols_{side}"
+        table = writer._symbols_icon_table(
+            f"{sid}_symbols_{side}_tbl",
+            rows,
+            table_w,
+            lang,
+            include_header=False,
+            row_heights=[table_h / len(rows)] * len(rows),
+        )
+        writer._table_story(story_id, f"Symbol icons continuation {side}", table)
+        story_ids.append(story_id)
+        frames.append(frame_with_background(
+            writer,
+            sid,
+            f"symbols_{side}",
+            story_id,
+            (x, table_y, table_w, table_h),
+            with_rounded_outer({"inset": (0, 0, 0, 0)}),
+        ))
+    return story_ids, frames
 
 
 def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
@@ -319,6 +455,9 @@ def add_fcc_inbox_page(
     inbox_blocks: list[tuple[str, str]],
     bundle_root: Path,
     page_index: int,
+    *,
+    symbol_overflow: tuple[list[dict], list[dict]] | None = None,
+    lang: str = "en",
 ) -> str:
     """V2.0 page 03: FCC panel, inbox card trio, and tip strip."""
     inbox_title = next((text.strip() for kind, text in inbox_blocks
@@ -331,11 +470,33 @@ def add_fcc_inbox_page(
     title_sid = f"{sid}_title"
     _story(writer, title_sid, "Inbox title",
            [heading_text(writer, inbox_title, level=1)])
-    _, fcc_frames = _fcc_objects(writer, sid, fcc_blocks, bundle_root)
+    _, symbol_frames = _symbol_continuation_objects(
+        writer,
+        sid,
+        symbol_overflow,
+        lang,
+    )
+    has_symbol_overflow = bool(symbol_frames)
+    if has_symbol_overflow:
+        fcc_y = 98.0 if lang == "es" else 95.0
+        fcc_h = 148.0 if lang == "es" else 145.0
+    else:
+        fcc_y = 28.0
+        fcc_h = 130.0
+    _, fcc_frames = _fcc_objects(
+        writer,
+        sid,
+        fcc_blocks,
+        bundle_root,
+        panel_y=fcc_y,
+        panel_h=fcc_h,
+        lang=lang,
+    )
     _, card_frames = _inbox_objects(writer, sid, inbox_spec, bundle_root)
     _, tip_frames = _tip_objects(writer, sid, tip_spec)
 
     frames = [
+        *symbol_frames,
         *fcc_frames,
         frame_with_background(
             writer,

@@ -203,6 +203,18 @@
         "fill": {"type": "null"}
       }
     },
+    "redact_text_region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "bbox_pt", "images", "graphics", "fill"],
+      "properties": {
+        "op": {"const": "redact_text_region"},
+        "bbox_pt": {"$ref": "#/$defs/bbox"},
+        "images": {"const": "preserve"},
+        "graphics": {"enum": ["preserve", "remove_if_touched"]},
+        "fill": {"type": "null"}
+      }
+    },
     "whiteout": {
       "type": "object",
       "additionalProperties": false,
@@ -278,6 +290,7 @@
           "items": {
             "oneOf": [
               {"$ref": "#/$defs/redact_text"},
+              {"$ref": "#/$defs/redact_text_region"},
               {"$ref": "#/$defs/whiteout"}
             ]
           }

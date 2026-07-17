@@ -13,7 +13,7 @@ MARCHE/ARRÊT
 | **Temps de veille par défaut :** |DEFAULT_STANDBY_DURATION|.
 | Le produit s'éteindra automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité, sans charge ni décharge.
 | \*Le temps de veille peut être réglé dans l'application Jackery.
-| Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après |ENERGY_SAVING_AUTO_OFF_DURATION| si le |AC_POWER_BUTTON_LABEL_LOWER| ou le |DC_USB_POWER_BUTTON_LABEL_LOWER| est activé mais que le produit ne charge ni ne décharge.
+| Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après |ENERGY_SAVING_AUTO_OFF_DURATION| si le bouton d’alimentation CA ou le |DC_USB_POWER_BUTTON_LABEL_LOWER| est activé mais que le produit ne charge ni ne décharge.
 
 SORTIE CA MARCHE/ARRÊT
 ----------------------
@@ -70,7 +70,7 @@ MODE D'ÉCONOMIE D'ÉNERGIE
 
 Pour éviter une consommation inutile de la batterie due à l'oubli de désactiver la sortie, le produit active par défaut le mode d'économie d'énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode d'économie d'énergie s'affiche sur l'écran LCD. Dans ce mode, si aucun appareil n'est connecté ou si la consommation de l'appareil connecté est inférieure à un certain seuil (sortie CA de |ENERGY_SAVING_AC_THRESHOLD| ou sortie CC/USB de |ENERGY_SAVING_DC_THRESHOLD|), la sortie correspondante s'éteint automatiquement après la durée définie. Le réglage par défaut est |ENERGY_SAVING_AUTO_OFF_DURATION|. La durée du mode d'économie d'énergie peut être réglée dans l'application Jackery sur 1H, 2 H, 8 H, 12 H ou 24 H. Si l'option "Never Off" est sélectionnée, le mode d'économie d'énergie sera désactivé.
 
-Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le |AC_POWER_BUTTON_LABEL_LOWER| et sur le |MAIN_POWER_BUTTON_LABEL_LOWER| pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
+Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le bouton d’alimentation CA et sur le bouton d’alimentation principal pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
 
 Lors de l'alimentation d'appareils à faible puissance (CA ≤ |ENERGY_SAVING_AC_THRESHOLD| ou CC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant le fonctionnement.
 
@@ -162,7 +162,7 @@ AFFICHAGE LCD
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Allumer en discontinu}{Allumer}{Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge.}{Éteindre}{Appuyez sur le bouton d'alimentation principal.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.}
       \HBLcdModeSecondGroup{Allumer en continu (en cours de charge ou de décharge)}{Allumer}{Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé.}{Éteindre}{Appuyez sur le bouton d'alimentation principal.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité.}
       \end{HBLcdModeTable}

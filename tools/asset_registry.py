@@ -20,6 +20,12 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Iterable
 
+from tools.app_ui_promotion import (
+    PROMOTED_ASSET_KEYS,
+    PROMOTION_ID,
+    ReviewedPromotionError,
+    validate_reviewed_promotion,
+)
 from tools.utils.path_utils import PathSegments
 
 REGISTRY_RELATIVE_PATH = Path(PathSegments.DATA) / "asset_registry.csv"
@@ -37,6 +43,7 @@ VALID_LANGUAGE_DIMENSIONS = frozenset(
 )
 REQUIRED_COLUMNS = (
     "asset_key",
+    "override_for",
     "类别",
     "语言维度",
     "状态",
@@ -78,6 +85,7 @@ class AssetRecord:
     language_variants: tuple[str, ...]
     hashes: tuple[tuple[str, str], ...]
     notes: str
+    override_for: str | None = None
 
     @property
     def hash_map(self) -> dict[str, str]:
@@ -170,6 +178,7 @@ def _record_from_row(row: dict[str, str]) -> AssetRecord:
         language_variants=_split_values(row.get("语言变体", "")),
         hashes=_parse_hashes(row.get("内容哈希", ""), asset_key=asset_key),
         notes=(row.get("备注") or "").strip(),
+        override_for=(row.get("override_for") or "").strip() or None,
     )
 
 
@@ -199,6 +208,22 @@ def load_registry_bytes(
             raise AssetRegistryError(f"duplicate asset_key: {record.asset_key}")
         seen.add(record.asset_key)
         records.append(record)
+    known_keys = {record.asset_key for record in records}
+    override_keys = {record.asset_key for record in records if record.override_for}
+    for record in records:
+        if record.override_for is None:
+            continue
+        if record.override_for == record.asset_key:
+            raise AssetRegistryError(f"asset {record.asset_key!r} cannot override itself")
+        if record.override_for not in known_keys:
+            raise AssetRegistryError(
+                f"asset {record.asset_key!r} overrides unknown key {record.override_for!r}"
+            )
+        if record.override_for in override_keys:
+            raise AssetRegistryError(
+                f"nested asset override is not allowed: {record.asset_key!r} -> "
+                f"{record.override_for!r}"
+            )
     return tuple(records)
 
 
@@ -309,6 +334,42 @@ def _resolution_language(record: AssetRecord, language: str | None) -> str | Non
     return variants[requested]
 
 
+def _select_asset_record(
+    records: tuple[AssetRecord, ...],
+    *,
+    asset_key: str,
+    model: str | None,
+    region: str | None,
+    language: str | None,
+) -> AssetRecord | None:
+    """Select one target-specific override before falling back to the base key."""
+
+    direct = next((item for item in records if item.asset_key == asset_key), None)
+    if direct is None:
+        return None
+    overrides = [
+        item
+        for item in records
+        if item.override_for == asset_key
+        and _scope_matches(item.model_scope, model)
+        and _scope_matches(item.region_scope, region)
+        and (
+            item.language_dimension == NEUTRAL_LANGUAGE_DIMENSION
+            or (
+                language is not None
+                and language.strip().casefold()
+                in {variant.casefold() for variant in item.language_variants}
+            )
+        )
+    ]
+    if len(overrides) > 1:
+        matches = ", ".join(sorted(item.asset_key for item in overrides))
+        raise AssetRegistryError(
+            f"asset {asset_key!r} has ambiguous target overrides: {matches}"
+        )
+    return overrides[0] if overrides else direct
+
+
 def _sha256_digest(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -330,9 +391,18 @@ def resolve_asset(
 ) -> AssetResolution:
     """Resolve one importable export; temporary assets are opt-in."""
 
-    record = next((item for item in records if item.asset_key == asset_key), None)
+    all_records = tuple(records)
+    requested_asset_key = asset_key
+    record = _select_asset_record(
+        all_records,
+        asset_key=requested_asset_key,
+        model=model,
+        region=region,
+        language=language,
+    )
     if record is None:
-        raise AssetRegistryError(f"asset not registered: {asset_key}")
+        raise AssetRegistryError(f"asset not registered: {requested_asset_key}")
+    asset_key = record.asset_key
     if not _scope_matches(record.model_scope, model):
         raise AssetRegistryError(f"asset {asset_key} is not registered for model {model}")
     if not _scope_matches(record.region_scope, region):
@@ -342,6 +412,19 @@ def resolve_asset(
             f"asset {asset_key} is {record.status}; only {APPROVED_STATUS} assets are importable"
         )
     resolved_language = _resolution_language(record, language)
+    resolution_source = "registry-export"
+    if asset_key in PROMOTED_ASSET_KEYS:
+        try:
+            validate_reviewed_promotion(
+                repo_root,
+                PROMOTION_ID,
+                registry_record=record,
+            )
+        except ReviewedPromotionError as exc:
+            raise AssetRegistryError(
+                f"asset {asset_key} reviewed promotion is invalid: {exc}"
+            ) from exc
+        resolution_source = f"reviewed-promotion:{PROMOTION_ID}"
     candidates = _matching_artifacts(
         record,
         repo_root=repo_root,
@@ -369,7 +452,7 @@ def resolve_asset(
         content_hash=actual_hash,
         declared_hash=declared_hash,
         language=resolved_language,
-        source="registry-export",
+        source=resolution_source,
     )
 
 
@@ -388,13 +471,42 @@ def check_registry(
     errors: list[AssetIssue] = []
     warnings: list[AssetIssue] = []
     status_counts = {status: 0 for status in VALID_STATUSES}
-    selected_records = [record for record in records if not selected_keys or record.asset_key in selected_keys]
-    known_keys = {record.asset_key for record in records}
+    all_records = tuple(records)
+    selected_records = [
+        record
+        for record in all_records
+        if not selected_keys or record.asset_key in selected_keys
+    ]
+    known_keys = {record.asset_key for record in all_records}
     for key in sorted(selected_keys - known_keys):
         errors.append(AssetIssue("unknown_asset", key, "asset key is not registered"))
+    if not selected_keys:
+        for key in sorted(set(PROMOTED_ASSET_KEYS) - known_keys):
+            errors.append(
+                AssetIssue(
+                    "reviewed_promotion_missing",
+                    key,
+                    "reviewed promotion output key is not registered",
+                )
+            )
 
     for record in selected_records:
         status_counts[record.status] += 1
+        if record.asset_key in PROMOTED_ASSET_KEYS:
+            try:
+                validate_reviewed_promotion(
+                    repo_root,
+                    PROMOTION_ID,
+                    registry_record=record,
+                )
+            except ReviewedPromotionError as exc:
+                errors.append(
+                    AssetIssue(
+                        "reviewed_promotion_invalid",
+                        record.asset_key,
+                        str(exc),
+                    )
+                )
         if publish and record.status != APPROVED_STATUS:
             errors.append(
                 AssetIssue(

@@ -210,7 +210,7 @@ LCDスクリーン
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{短くオン}{オンにする}{主電源ボタンを押すか、充電入力がある場合。}{オフにする}{主電源ボタンを押します。}{自動オフ}{2分後にLCDは自動的に消灯し、スリープモードになります。}
       \HBLcdModeSecondGroup{常時オン}{オンにする}{デバイスが起動している状態で主電源ボタンを2回押します。}{オフにする}{主電源ボタンを押します。}{自動オフ}{常時点灯ディスプレイモードは、|DEFAULT_STANDBY_DURATION|操作がないと自動的に消灯します。}
       \end{HBLcdModeTable}

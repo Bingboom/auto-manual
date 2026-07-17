@@ -9,10 +9,10 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-148.961 -208.488" LeftDirection="-148.961 -208.488" RightDirection="-148.961 -208.488"/>
-            <PathPointType Anchor="-148.961 225.496" LeftDirection="-148.961 225.496" RightDirection="-148.961 225.496"/>
-            <PathPointType Anchor="148.961 225.496" LeftDirection="148.961 225.496" RightDirection="148.961 225.496"/>
-            <PathPointType Anchor="148.961 -208.488" LeftDirection="148.961 -208.488" RightDirection="148.961 -208.488"/>
+            <PathPointType Anchor="-148.512 -209.36" LeftDirection="-148.512 -209.36" RightDirection="-148.512 -209.36"/>
+            <PathPointType Anchor="-148.512 225.496" LeftDirection="-148.512 225.496" RightDirection="-148.512 225.496"/>
+            <PathPointType Anchor="159.941 225.496" LeftDirection="159.941 225.496" RightDirection="159.941 225.496"/>
+            <PathPointType Anchor="159.941 -209.36" LeftDirection="159.941 -209.36" RightDirection="159.941 -209.36"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>

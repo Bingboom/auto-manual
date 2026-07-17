@@ -4,7 +4,7 @@
 {{ copy:product_overview.front_view }}
 -------------------------------------
 
-.. image:: asset:overview/front_product
+.. image:: asset:overview/front_controls
    :alt: {{ copy:product_overview.front_view }}
    :width: 420px
 
@@ -13,27 +13,27 @@
    :widths: 50 50
 
    * - **|MAIN_POWER_BUTTON_LABEL|**
-     - **{{ copy:product_overview.part.handle }}**
+     - **{{ copy:product_overview.part.lcd }}**
    * - **|FRONT_DC12_PORT_LABEL|**
 
        |FRONT_DC12_PORT_SPEC|
-     - **{{ copy:product_overview.part.lcd }}**
-   * - **|DC_USB_POWER_BUTTON_LABEL|**
      - **{{ copy:product_overview.part.led_light_button }}**
+   * - **|DC_USB_POWER_BUTTON_LABEL|**
+     - **{{ copy:product_overview.part.led_light }}**
    * - **|FRONT_USB_C_LOW_LABEL|**
 
        |FRONT_USB_C_LOW_SPEC|
-     - **{{ copy:product_overview.part.led_light }}**
+     - **|AC_POWER_BUTTON_LABEL|**
    * - **|FRONT_USB_C_HIGH_LABEL|**
 
        |FRONT_USB_C_HIGH_SPEC|
-     - **|AC_POWER_BUTTON_LABEL|**
-   * - **|FRONT_USB_A_LABEL|**
-
-       |FRONT_USB_A_SPEC|
      - **|FRONT_AC_OUTPUT_LABEL|**
 
        |FRONT_AC_OUTPUT_SPEC|
+   * - **|FRONT_USB_A_LABEL|**
+
+       |FRONT_USB_A_SPEC|
+     -
 
 .. list-table::
    :header-rows: 0

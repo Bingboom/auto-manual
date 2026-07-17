@@ -17,25 +17,46 @@ def spec_table_xml(
     m_r: float,
     role: str | None,
     visual_parity: bool,
+    section_index: int | None,
+    language: str | None,
     paragraph_xml: Callable[..., str],
 ) -> str:
     table_style = table_style_ref(role)
-    left_ratio = float(params.get("comp_spec_table_left_ratio", ("0.315", ""))[0])
+    language_key = (language or "").strip().casefold().replace("_", "-").split("-", 1)[0]
+    default_left_ratio = params.get("comp_spec_table_left_ratio", ("0.315", ""))
+    left_ratio = float(params.get(
+        f"lang_{language_key}_idml_spec_table_left_ratio",
+        default_left_ratio,
+    )[0])
     body_w = page_w - m_l - m_r - (1.13 if visual_parity else 0.0)
     col1 = body_w * left_ratio + (2.3 if visual_parity else 0.0)
     col2 = body_w - col1
     first_label = rows[0][0] if rows else ""
-    target_shrink = {
-        "Product Name": 0.95,
-        "1 × AC Input": 2.95,
-        "Charging Temperature": 2.25,
-    }.get(first_label, 0.0)
+    # The approved page has four semantic sections in a fixed order.  The
+    # previous implementation keyed these optical corrections from English
+    # cell copy, so the identical FR/ES tables silently skipped them after
+    # translation and their final row became overset in real InDesign.
+    # Prefer the renderer-owned section identity; retain the English lookup
+    # for older internal callers that do not yet provide it.
+    target_shrink = (
+        {0: 0.95, 1: 2.95, 3: 2.25}.get(section_index, 0.0)
+        if section_index is not None
+        else {
+            "Product Name": 0.95,
+            "1 × AC Input": 2.95,
+            "Charging Temperature": 2.25,
+        }.get(first_label, 0.0)
+    )
     inset_shrink = target_shrink / max(1, 2 * len(rows))
-    table_baseline_nudge = {
-        "Product Name": 2.85,
-        "1 × AC Input": 1.35,
-        "Charging Temperature": 2.43,
-    }.get(first_label, 0.0)
+    table_baseline_nudge = (
+        {0: 2.85, 1: 1.35, 3: 2.43}.get(section_index, 0.0)
+        if section_index is not None
+        else {
+            "Product Name": 2.85,
+            "1 × AC Input": 1.35,
+            "Charging Temperature": 2.43,
+        }.get(first_label, 0.0)
+    )
     cells = []
     for ri, (label, value) in enumerate(rows):
         if not visual_parity:
@@ -44,7 +65,7 @@ def spec_table_xml(
             inset = 6.72 + (0.445 if ri == 0 else -0.445)
         elif len(value) > 80:
             inset = 5.0
-        elif label.startswith("AC Output in Bypass"):
+        elif section_index == 2 and ri == 1 or label.startswith("AC Output in Bypass"):
             inset = 5.39
         else:
             inset = 4.45 + (0.2 if ri in {0, len(rows) - 1} else 0.0)
@@ -57,16 +78,19 @@ def spec_table_xml(
             if visual_parity:
                 if "\n" in value:
                     baseline = -1.43 if ci == 0 else 0.08
-                elif label.startswith("AC Output in Bypass"):
+                elif section_index == 2 and ri == 1 or label.startswith("AC Output in Bypass"):
                     baseline = -0.04
-                elif label.startswith(("USB-C", "1 × USB", "1 × DC")):
+                elif (
+                    section_index == 2 and ri >= 2
+                    or label.startswith(("USB-C", "1 × USB", "1 × DC"))
+                ):
                     baseline = -1.19
                 else:
                     baseline = -1.52
-                if first_label == "3 × AC":
-                    if label == "3 × AC":
+                if section_index == 2 or first_label == "3 × AC":
+                    if ri == 0:
                         baseline += 1.20
-                    elif label.startswith("AC Output in Bypass"):
+                    elif ri == 1:
                         baseline -= 1.21
                     else:
                         baseline += 0.10

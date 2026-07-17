@@ -10,9 +10,9 @@
             <PathPointType Anchor="0 -20.126" LeftDirection="0 -20.126" RightDirection="0 -20.126"/>
             <PathPointType Anchor="0 -5.66929" LeftDirection="0 -5.66929" RightDirection="0 -2.53823"/>
             <PathPointType Anchor="5.66929 0" LeftDirection="2.53823 0" RightDirection="5.66929 0"/>
-            <PathPointType Anchor="292.252 0" LeftDirection="292.252 0" RightDirection="295.383 0"/>
-            <PathPointType Anchor="297.921 -5.66929" LeftDirection="297.921 -2.53823" RightDirection="297.921 -5.66929"/>
-            <PathPointType Anchor="297.921 -20.126" LeftDirection="297.921 -20.126" RightDirection="297.921 -20.126"/>
+            <PathPointType Anchor="302.783 0" LeftDirection="302.783 0" RightDirection="305.914 0"/>
+            <PathPointType Anchor="308.452 -5.66929" LeftDirection="308.452 -2.53823" RightDirection="308.452 -5.66929"/>
+            <PathPointType Anchor="308.452 -20.126" LeftDirection="308.452 -20.126" RightDirection="308.452 -20.126"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>

@@ -8,7 +8,7 @@ CONFIGURATION DE L'APPLICATION
 1. Télécharger l'application et se connecter
 --------------------------------------------
 
-.. image:: _assets/templates/word_template/common_assets/app/download.png
+.. image:: asset:app/download
    :alt: Code QR de téléchargement de l'application et emplacement réservé aux boutiques.
    :width: 320px
 
@@ -23,7 +23,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 
 2.2 Appuyez sur le bouton d'alimentation de l’appareil pour l’allumer. Les icônes Wi-Fi et Bluetooth clignotent sur l’appareil afin d’indiquer qu’il est entré dans le mode Configuration réseau. Cliquez sur le bouton « Icône qui clignote » et autorisez l’application à se connecter aux appareils alentour, puis ouvrez les autorisations Bluetooth.
 
-.. image:: _assets/templates/word_template/common_assets/app/add_device.png
+.. image:: asset:app/add_device
    :alt: Emplacement réservé à l'étape d'ajout d'appareil dans l'application.
    :width: 320px
 
@@ -45,7 +45,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
        - Maintenez le bouton d'alimentation et le bouton d’alimentation CC / USB enfoncés pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth de l'appareil et l'associer de nouveau.
 
 
-| 2.4 Une fois l’appareil connecté avec succès, saisissez votre mot de passe Wi-Fi, puis appuyez sur le bouton **OK**.
+| 2.4 Une fois l’appairage réalisé avec succès, saisissez le nom et le mot de passe du Wi-Fi pour que l’appareil se connecte automatiquement au réseau Wi-Fi.
 
 .. list-table::
    :header-rows: 0
@@ -55,9 +55,9 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
      -
        - Veuillez choisir un réseau Wi-Fi 2,4 GHz. L'appareil ne prend pas en charge le réseau Wi-Fi 5 GHz.
 
-| Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
+| 2.5 Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
 
-.. image:: _assets/templates/word_template/common_assets/app/connect_result.png
+.. image:: asset:app/connect_result
    :alt: Emplacement réservé à l'écran de résultat de connexion dans l'application.
    :width: 360px
 

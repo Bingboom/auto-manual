@@ -8,7 +8,7 @@ OPERACIONES
 ENCENDIDO/APAGADO
 -----------------
 
-.. image:: _assets/templates/word_template/common_assets/operation/main_power.png
+.. image:: renderers/latex/assets/op_main_power.png
    :alt: Operación de encendido/apagado.
    :width: 360px
 
@@ -21,14 +21,14 @@ ENCENDIDO/APAGADO
 | **Tiempo de espera predeterminado:** 2 horas.
 | El producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga.
 | \*El tiempo de espera puede configurarse en la aplicación Jackery.
-| Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si el botón Power CA o el botón de energía CC / USB está encendido, pero el producto no está cargando ni descargando.
+| Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si el botón de energía CA o el botón de energía CC / USB está encendido, pero el producto no está cargando ni descargando.
 
 ENCENDER/APAGAR SALIDA CA
 --------------------------
 
 **Requisito previo:** el producto está encendido.
 
-.. image:: _assets/templates/word_template/common_assets/operation/ac_output.png
+.. image:: renderers/latex/assets/op_ac_output.png
    :alt: Operación de salida de CA.
    :width: 360px
 
@@ -44,7 +44,7 @@ ENCENDER/APAGAR SALIDA CC 12V/USB
 
 **Requisito previo:** el producto está encendido.
 
-.. image:: _assets/templates/word_template/common_assets/operation/dc_usb_output.png
+.. image:: renderers/latex/assets/op_dc_usb_output.png
    :alt: Operación de salida de CC y USB.
    :width: 360px
 
@@ -82,7 +82,7 @@ MODO DE AHORRO DE ENERGÍA
 
 Para evitar un consumo innecesario de batería por olvidar apagar la salida, el producto activa por defecto el Modo de Ahorro de Energía. Cuando la salida de CA o CC/USB está encendida, el icono del modo de ahorro de energía se mostrará en la pantalla LCD. En este modo, si no hay ningún dispositivo conectado o si el consumo del dispositivo conectado está por debajo de cierto umbral (25 W en salida de CA o 2 W en salida de CC/USB), la salida correspondiente se apagará automáticamente después del tiempo configurado. La configuración predeterminada es 12 horas. La duración del Modo de Ahorro de Energía puede configurarse en la aplicación Jackery en 1H, 2 H, 8 H, 12 H o 24 H. Si se establece en "Never Off", el Modo de Ahorro de Energía se desactivará.
 
-Para desactivar el modo de ahorro de energía, mantenga pulsados simultáneamente el botón Power CA y el botón de encendido durante más de 3 segundos. Una vez desactivado el modo de ahorro de energía, el icono dejará de mostrarse en la pantalla LCD y el producto no apagará automáticamente la salida de CA o CC/USB.
+Para desactivar el modo de ahorro de energía, mantenga pulsados simultáneamente el botón de energía CA y el botón de encendido principal durante más de 3 segundos. Una vez desactivado el modo de ahorro de energía, el icono dejará de mostrarse en la pantalla LCD y el producto no apagará automáticamente la salida de CA o CC/USB.
 
 Cuando alimente dispositivos de baja potencia (CA ≤ 25 W o CC/USB ≤ 2 W), desactive el modo de ahorro de energía para evitar que la salida se apague automáticamente durante el funcionamiento.
 
