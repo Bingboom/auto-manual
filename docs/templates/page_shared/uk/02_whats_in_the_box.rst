@@ -16,17 +16,17 @@
       :header-rows: 0
       :widths: 33 33 34
 
-      * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+      * - .. image:: asset:in_the_box/main_unit1
              :alt: Заглушка зображення електростанції.
              :width: 120px
 
           |PRODUCT_NAME_BOLD|
-        - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+        - .. image:: asset:in_the_box/ac_charging_cable
              :alt: Заглушка зображення кабелю для заряджання AC.
              :width: 120px
 
           **Кабель для заряджання AC**
-        - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+        - .. image:: asset:in_the_box/manual_icon1
              :alt: Заглушка зображення посібника користувача.
              :width: 120px
 

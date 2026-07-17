@@ -1,6 +1,6 @@
 {{ lcd_icons_heading_rst }}
 
-.. image:: templates/word_template/common_assets/lcd/lcd_map.png
+.. image:: asset:lcd/lcd_map
    :alt: {{ lcd_icons_image_alt }}
    :width: 420px
 

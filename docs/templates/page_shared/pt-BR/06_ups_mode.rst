@@ -2,7 +2,7 @@ FONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)
 =======================================
 
 | Conecte o produto a uma tomada com o cabo de carregamento CA, depois pressione o |AC_POWER_BUTTON_LABEL_LOWER| e alimente seus aparelhos ao mesmo tempo.
-.. image:: templates/word_template/common_assets/operation/ups_mode.png
+.. image:: asset:operation/ups_mode
    :alt: Diagrama de conexão UPS.
    :width: 360px
 

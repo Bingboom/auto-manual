@@ -70,11 +70,11 @@
    :header-rows: 0
    :widths: 10 40 10 40
 
-   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
+   * - .. image:: asset:symbols/warning_triangle
           :alt: Warning and caution symbol.
           :width: 40px
      - 潜在的な危険やリスクについて注意喚起するために、必ずお読みください。
-     - .. image:: templates/word_template/common_assets/symbols/weee.png
+     - .. image:: asset:symbols/weee
           :alt: WEEE disposal symbol.
           :width: 40px
      - このシンボルは、本製品を一般家庭ごみとして廃棄せず、リサイクルのために指定の回収施設に持ち込む必要があることを示しています。
@@ -82,19 +82,19 @@
        適切な廃棄およびリサイクルは、環境保護に役立ちます。
 
        本製品の廃棄やリサイクルについての詳細は、お住まいの自治体、廃棄物処理業者、または販売店にお問い合わせください。
-   * - .. image:: templates/word_template/common_assets/symbols/read_manual.png
+   * - .. image:: asset:symbols/read_manual
           :alt: Read manual symbol.
           :width: 40px
      - 操作の前に取扱説明書をお読みください。
-     - .. image:: templates/word_template/common_assets/symbols/no_open_flame.png
+     - .. image:: asset:symbols/no_open_flame
           :alt: No open flame symbol.
           :width: 40px
      - 本製品を火気の近くに置かないでください。
-   * - .. image:: templates/word_template/common_assets/symbols/keep_away_from_children.png
+   * - .. image:: asset:symbols/keep_away_from_children
           :alt: Keep away from children symbol.
           :width: 40px
      - 小さなお子様の手の届かない場所に保管してください。
-     - .. image:: templates/word_template/common_assets/symbols/battery_recycle.png
+     - .. image:: asset:symbols/battery_recycle
           :alt: Battery recycling symbol.
           :width: 40px
      - 電池および蓄電池は家庭ごみと一緒に廃棄してはいけません。
@@ -102,11 +102,11 @@
        消費者の皆様は、有害物質の有無にかかわらず、すべての電池および蓄電池を指定された収集場所で廃棄することが法律で義務付けられています。
 
        使用済みの電池および蓄電池は、お近くの収集拠点、リサイクルセンター、または購入した小売店にお持ちください。適切な廃棄は環境に配慮したリサイクルを確保し、人間の健康と環境への潜在的な害を防ぎます。
-   * - .. image:: templates/word_template/common_assets/symbols/do_not_dismantle.png
+   * - .. image:: asset:symbols/do_not_dismantle
           :alt: Do not dismantle symbol.
           :width: 40px
      - 製品を分解、改造を禁止する記号
-     - .. image:: templates/word_template/common_assets/symbols/li_ion.png
+     - .. image:: asset:symbols/li_ion
           :alt: Li-ion symbol.
           :width: 40px
      - **充電式電池のリサイクルについて**
@@ -116,23 +116,23 @@
        この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。
 
        充電池の取りはずしはお客様自身では行わないでください。
-   * - .. image:: templates/word_template/common_assets/symbols/unplug.png
+   * - .. image:: asset:symbols/unplug
           :alt: Unplug symbol.
           :width: 40px
      - コンセントから電源プラグを抜く記号
-     - .. image:: templates/word_template/common_assets/symbols/mandatory.png
+     - .. image:: asset:symbols/mandatory
           :alt: Mandatory action symbol.
           :width: 40px
      - 行為を指示する記号
-   * - .. image:: templates/word_template/common_assets/symbols/no_wet_hands.png
+   * - .. image:: asset:symbols/no_wet_hands
           :alt: No wet hands symbol.
           :width: 40px
      - 製品に濡れた手で触れることを禁止する記号
-     - .. image:: templates/word_template/common_assets/symbols/prohibited.png
+     - .. image:: asset:symbols/prohibited
           :alt: Prohibited action symbol.
           :width: 40px
      - 行為を禁止する記号
-   * - .. image:: templates/word_template/common_assets/symbols/keep_dry.png
+   * - .. image:: asset:symbols/keep_dry
           :alt: Keep dry symbol.
           :width: 40px
      - 製品を濡らすことを禁止する記号
@@ -146,49 +146,49 @@
    :header-rows: 0
    :widths: 10 40 10 40
 
-   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
+   * - .. image:: asset:symbols/warning_triangle
           :alt: Warning icon.
           :width: 40px
      - **火のそばや炎天下の車内、熱器具の周辺など高温（45℃以上）になる場所で使用したり、放置しない**
 
        発熱や発火、破裂する原因になります。
-     - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
+     - .. image:: asset:symbols/warning_triangle
           :alt: Warning icon.
           :width: 40px
      - **端子部にケーブル以外の金属類を差し込まない**
 
        発熱や発火の原因になります。
-   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
+   * - .. image:: asset:symbols/warning_triangle
           :alt: Warning icon.
           :width: 40px
      - **強い衝撃を与えたり、投げつけたりしない**
 
        発熱や発火、破裂する原因になります。
-     - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
+     - .. image:: asset:symbols/warning_triangle
           :alt: Warning icon.
           :width: 40px
      - **雷が鳴りだしたら、電源プラグにふれない  (充電をしない)**
 
        感電の原因になります。
-   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
+   * - .. image:: asset:symbols/warning_triangle
           :alt: Warning icon.
           :width: 40px
      - **水など、液体を入れたり、濡らしたりしない**
 
        発熱や発火の原因になります。
-     - .. image:: templates/word_template/common_assets/symbols/mandatory.png
+     - .. image:: asset:symbols/mandatory
           :alt: Mandatory symbol.
           :width: 40px
      - **各接続端子には確実に差し込む**
 
        差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。
-   * - .. image:: templates/word_template/common_assets/symbols/no_wet_hands.png
+   * - .. image:: asset:symbols/no_wet_hands
           :alt: No wet hands icon.
           :width: 40px
      - **濡れた手で本体や接続するケーブルを触らない**
 
        火災や感電の原因になります。
-     - .. image:: templates/word_template/common_assets/symbols/grounding.png
+     - .. image:: asset:symbols/grounding
           :alt: Grounding icon.
           :width: 40px
      - **接地接続は必ず、電源プラグを電源につなぐ前に行って下さい**
@@ -202,7 +202,7 @@
    :header-rows: 0
    :widths: 10 90
 
-   * - .. image:: templates/word_template/common_assets/symbols/unplug.png
+   * - .. image:: asset:symbols/unplug
           :alt: Unplug icon.
           :width: 40px
      - 万が一、次のような異常が発生したときはすぐに使用をやめる
@@ -220,19 +220,19 @@
 
        煙が出なくなることを確認してからカスタマーサポートにご連絡ください。
        お客様による修理は危険ですので絶対におやめください。
-   * - .. image:: templates/word_template/common_assets/symbols/do_not_dismantle.png
+   * - .. image:: asset:symbols/do_not_dismantle
           :alt: Do not dismantle icon.
           :width: 40px
      - **分解、改造しない**
 
        故障、発熱、火災·感電の原因になります。
-   * - .. image:: templates/word_template/common_assets/symbols/prohibited.png
+   * - .. image:: asset:symbols/prohibited
           :alt: Do not use incompatible voltage icon.
           :width: 40px
      - **表示された電源電圧以外で使用しない**
 
        故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。
-   * - .. image:: templates/word_template/common_assets/symbols/do_not_dismantle.png
+   * - .. image:: asset:symbols/do_not_dismantle
           :alt: Do not self-repair icon.
           :width: 40px
      - **付属品と本製品が破損した場合は、ご自身で修理をしない**
@@ -244,13 +244,13 @@
    :header-rows: 0
    :widths: 10 90
 
-   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
+   * - .. image:: asset:symbols/warning_triangle
           :alt: Caution icon.
           :width: 40px
      - **本製品の上に物を載せたり、不安定な場所に置かない**
 
        倒れたり、落ちたりしてけがの原因になります。
-   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
+   * - .. image:: asset:symbols/warning_triangle
           :alt: Caution icon.
           :width: 40px
      - **データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。**
@@ -258,13 +258,13 @@
        - 医療機器や使用上、生命に関わるような機器
        - 社会的、公共的に重要な機器など
        - 重要な事業用機器など
-   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
+   * - .. image:: asset:symbols/warning_triangle
           :alt: Caution icon.
           :width: 40px
      - **心臓にペースメーカーを装着している方は使用しない**
 
        ペースメーカーが、本製品の影響を受ける恐れがあります。
-   * - .. image:: templates/word_template/common_assets/symbols/warning_triangle.png
+   * - .. image:: asset:symbols/warning_triangle
           :alt: Caution icon.
           :width: 40px
      - **格納式ハンドルを使用して|PRODUCT_NAME|を移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。**

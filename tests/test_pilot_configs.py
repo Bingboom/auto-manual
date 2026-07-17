@@ -369,9 +369,9 @@ class TestPilotConfigs(unittest.TestCase):
         intro = "|PRODUCT_NAME| has two DC8020 input ports and is compatible with the Jackery solar panels."
         adapter_intro = "If one DC8020 input port needs to connect two solar panels simultaneously"
 
-        self.assertLess(text.index(intro), text.index("charging/solar_direct.png"))
-        self.assertLess(text.index("charging/solar_direct.png"), text.index(adapter_intro))
-        self.assertLess(text.index(adapter_intro), text.index("charging/solar_adapter.png"))
+        self.assertLess(text.index(intro), text.index("asset:charging/solar_direct"))
+        self.assertLess(text.index("asset:charging/solar_direct"), text.index(adapter_intro))
+        self.assertLess(text.index(adapter_intro), text.index("asset:charging/solar_adapter"))
 
     def test_shared_app_setup_wifi_added_line_should_not_be_numbered(self) -> None:
         for path in (ROOT / "docs" / "templates" / "page_shared").glob("*/12_app_setup_placeholder.rst"):

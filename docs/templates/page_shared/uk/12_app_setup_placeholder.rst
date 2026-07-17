@@ -3,7 +3,7 @@
 
 **1. Завантажте додаток і увійдіть**
 
-.. image:: templates/word_template/common_assets/app/download.png
+.. image:: asset:app/download
    :alt: Заглушка QR-коду для завантаження додатка та магазину застосунків.
    :width: 320px
 
@@ -16,7 +16,7 @@
 
 2.2 Натисніть головну кнопку POWER на пристрої, щоб увімкнути його; значки Wi-Fi та Bluetooth на пристрої блимають, що означає перехід пристрою в режим налаштування мережі, торкніться кнопки "**Значок блимає**" і дозвольте додатку підключитися до найближчих пристроїв та надати дозвіл Bluetooth.
 
-.. image:: templates/word_template/common_assets/app/add_device.png
+.. image:: asset:app/add_device
    :alt: Заглушка кроку додавання пристрою в додатку.
    :width: 320px
 
@@ -50,7 +50,7 @@
 
 | Після успішного додавання пристрою до додатка значок Wi-Fi на пристрої буде постійно увімкнений.
 
-.. image:: templates/word_template/common_assets/app/connect_result.png
+.. image:: asset:app/connect_result
    :alt: Заглушка екрана результату налаштування додатка.
    :width: 360px
 

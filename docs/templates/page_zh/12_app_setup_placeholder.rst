@@ -4,7 +4,7 @@ APP操作说明书
 下载并登录App
 -------------
 
-.. image:: templates/word_template/common_assets/app/download.png
+.. image:: asset:app/download
    :alt: App 下载二维码示意图。
    :width: 320px
 
@@ -17,7 +17,7 @@ APP操作说明书
 
 2.2 长按设备上的“总电源开关键”开机，设备上的WiFi和蓝牙图标闪烁后表示设备已进入配网模式，在App内点击“图标已快闪”按钮并允许应用连接附近的设备和打开蓝牙权限。
 
-.. image:: templates/word_template/common_assets/app/add_device.png
+.. image:: asset:app/add_device
    :alt: App 添加设备步骤示意图。
    :width: 320px
 
@@ -28,7 +28,7 @@ APP操作说明书
    * - **备注**
      - 打开设备，如果两小时内未连接到APP，设备会自动关闭Wi-Fi和蓝牙。
 
-.. image:: templates/word_template/common_assets/overview/front_controls.png
+.. image:: asset:overview/front_controls
    :alt: 前面板按键示意图。
    :width: 520px
 
@@ -59,7 +59,7 @@ APP操作说明书
 
 2.5 设备添加成功后进入设备主页面，设备上的Wi-Fi图标会常亮。
 
-.. image:: templates/word_template/common_assets/app/connect_result.png
+.. image:: asset:app/connect_result
    :alt: App 连接结果示意图。
    :width: 360px
 

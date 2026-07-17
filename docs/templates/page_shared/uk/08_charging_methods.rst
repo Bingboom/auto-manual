@@ -3,13 +3,13 @@
 
 |PRODUCT_NAME| має два вхідні порти DC8020 і сумісний із сонячними панелями Jackery.
 
-.. image:: templates/word_template/common_assets/charging/solar_direct.png
+.. image:: asset:charging/solar_direct
    :alt: Заглушка схеми підключення для сонячного заряджання 1.
    :width: 360px
 
 Якщо до одного входу DC8020 потрібно одночасно підключити дві сонячні панелі, зверніться до наведеної нижче схеми заряджання через з'єднувач сонячних панелей (продається окремо, до стандартної комплектації не входить).
 
-.. image:: templates/word_template/common_assets/charging/solar_adapter.png
+.. image:: asset:charging/solar_adapter
    :alt: Заглушка схеми підключення для сонячного заряджання 2.
    :width: 360px
 
@@ -37,7 +37,7 @@
 
 Цей пристрій можна заряджати за допомогою автомобільного зарядного пристрою 12 В. Переконайтеся, що автомобільний зарядний пристрій і автомобільна розетка живлення 12 В (прикурювач) мають надійне з'єднання.
 
-.. image:: templates/word_template/common_assets/charging/car_charge.png
+.. image:: asset:charging/car_charge
    :alt: Заглушка схеми підключення для автомобільного заряджання.
    :width: 360px
 

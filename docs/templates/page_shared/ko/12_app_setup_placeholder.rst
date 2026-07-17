@@ -3,7 +3,7 @@ APP 설정
 
 **1. APP을 다운로드하고 로그인하십시오**
 
-.. image:: templates/word_template/common_assets/app/download.png
+.. image:: asset:app/download
    :alt: App download QR and marketplace placeholder.
    :width: 320px
 
@@ -16,7 +16,7 @@ Google Play 또는 App Store에서 "Jackery"를 검색하여 APP을 설치하십
 
 2.2 장치의 |MAIN_POWER_BUTTON_LABEL_LOWER|을(를) 눌러 전원을 켜십시오. 장치의 Wi-Fi 및 블루투스 아이콘이 깜박이면 네트워크 설정 모드에 진입했음을 의미합니다. "**Icon Flashed**" 버튼을 탭한 후, APP이 주변 기기에 연결할 수 있도록 블루투스 권한을 허용하십시오.
 
-.. image:: templates/word_template/common_assets/app/add_device.png
+.. image:: asset:app/add_device
    :alt: App add device step placeholder.
    :width: 320px
 
@@ -50,7 +50,7 @@ Google Play 또는 App Store에서 "Jackery"를 검색하여 APP을 설치하십
 
 | 장치가 APP에 성공적으로 추가되면, 장치의 Wi-Fi 아이콘이 항상 켜진 상태로 유지됩니다.
 
-.. image:: templates/word_template/common_assets/app/connect_result.png
+.. image:: asset:app/connect_result
    :alt: App setup result screen placeholder.
    :width: 360px
 

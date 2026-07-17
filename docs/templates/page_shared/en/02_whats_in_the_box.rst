@@ -25,17 +25,17 @@
       :header-rows: 0
       :widths: 33 33 34
 
-      * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+      * - .. image:: asset:in_the_box/main_unit1
              :alt: Power station image placeholder.
              :width: 120px
 
           |PRODUCT_NAME_BOLD|
-        - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+        - .. image:: asset:in_the_box/ac_charging_cable
              :alt: AC charging cable image placeholder.
              :width: 120px
 
           **AC Charging Cable**
-        - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+        - .. image:: asset:in_the_box/manual_icon1
              :alt: User manual image placeholder.
              :width: 120px
 
@@ -51,17 +51,17 @@
       :header-rows: 0
       :widths: 33 33 34
 
-      * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+      * - .. image:: asset:in_the_box/main_unit1
              :alt: Power station image placeholder.
              :width: 120px
 
           |PRODUCT_NAME_BOLD|
-        - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+        - .. image:: asset:in_the_box/ac_charging_cable
              :alt: AC charging cable image placeholder.
              :width: 120px
 
           **AC Charging Cable**
-        - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+        - .. image:: asset:in_the_box/manual_icon1
              :alt: User manual image placeholder.
              :width: 120px
 

@@ -5,7 +5,7 @@
 
    Este producto puede soportar hasta 5 paquetes de baterías para satisfacer la necesidad de una gran capacidad de energía. Para detalles sobre su uso, consulte el *manual de usuario del Jackery Battery Pack 2000*.
 
-   .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+   .. image:: asset:in_the_box/main_unit1
       :alt: Diagrama de conexión del paquete de baterías.
       :width: 360px
 
@@ -78,7 +78,7 @@ CARGA MEDIANTE UNA TOMA DE CORRIENTE DE PARED ALTERNA
 
 Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una toma de corriente.
 
-.. image:: templates/word_template/common_assets/charging/ac_wall.png
+.. image:: asset:charging/ac_wall
    :alt: Diagrama de carga por toma de CA.
    :width: 360px
 

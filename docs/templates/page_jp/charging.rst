@@ -45,7 +45,7 @@ AC充電ケーブル
 
 コンセントから|PRODUCT_NAME|本体へ充電する際は、電流容量が大きいため、他の機器との併用や途中での抜き差しはお控えください。コンセントの定格を超えることで充電停止が発生したり、配線やコンセント・接続部の発熱、火災の原因となるおそれがあります。電源タップの使用や他の電気製品との併用は避けてご使用ください。
 
-.. image:: templates/word_template/common_assets/charging/ac_wall.png
+.. image:: asset:charging/ac_wall
    :alt: AC wall charging diagram.
    :width: 360px
 

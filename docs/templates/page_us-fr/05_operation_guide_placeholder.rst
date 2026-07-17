@@ -4,7 +4,7 @@ FONCTIONNEMENT
 MARCHE/ARRÊT
 ------------
 
-.. image:: templates/word_template/common_assets/operation/main_power.png
+.. image:: asset:operation/main_power
    :alt: Fonction marche/arrêt.
    :width: 360px
 
@@ -20,7 +20,7 @@ SORTIE CA MARCHE/ARRÊT
 
 **Prérequis :** Le produit est allumé.
 
-.. image:: templates/word_template/common_assets/operation/ac_output.png
+.. image:: asset:operation/ac_output
    :alt: Fonction de sortie CA.
    :width: 360px
 
@@ -34,7 +34,7 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
 
 **Prérequis :** Le produit est allumé.
 
-.. image:: templates/word_template/common_assets/operation/dc_usb_output.png
+.. image:: asset:operation/dc_usb_output
    :alt: Fonction de sortie CC et USB.
    :width: 360px
 
@@ -74,7 +74,7 @@ Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le |
 
 Lors de l'alimentation d'appareils à faible puissance (CA ≤ |ENERGY_SAVING_AC_THRESHOLD| ou CC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant le fonctionnement.
 
-.. image:: templates/word_template/common_assets/operation/energy_saving.png
+.. image:: asset:operation/energy_saving
    :alt: Fonction du mode d'économie d'énergie.
    :width: 320px
 
@@ -93,7 +93,7 @@ LAMPE LED MARCHE/ARRÊT
 
 La lampe LED dispose de deux modes : mode éclairage et mode SOS. Dans n'importe quel mode, appuyez et maintenez sur le bouton pour éteindre la lumière.
 
-.. image:: templates/word_template/common_assets/operation/led_light.png
+.. image:: asset:operation/led_light
    :alt: Fonction de la lampe LED.
    :width: 360px
 
@@ -108,11 +108,11 @@ Fonction de reprise de Sortie CA et CC
 Cette fonction mémorise l’état de la sortie et reprend automatiquement les sorties CA et CC sous certaines conditions définies.
 
 +-----------------------------------------------------------------------+------------------------------------------------------------+
-| Conditions de reprise automatique                                     | Conditions sans reprise automatique                       |
+| Conditions de reprise automatique                                     | Conditions sans reprise automatique                        |
 +=======================================================================+============================================================+
 | Mise sous tension/redémarrage après arrêt ou redémarrage              | Sortie désactivée manuellement (bouton/App)                |
 +-----------------------------------------------------------------------+------------------------------------------------------------+
-| SOC de la batterie ≥ limite de décharge +10% après avoir atteint      | Sortie désactivée en mode économie d’énergie              |
+| SOC de la batterie ≥ limite de décharge +10% après avoir atteint      | Sortie désactivée en mode économie d’énergie               |
 | la limite                                                             +------------------------------------------------------------+
 |                                                                       | Sortie désactivée suite à un déclenchement de protection   |
 +-----------------------------------------------------------------------+------------------------------------------------------------+
@@ -129,7 +129,7 @@ AFFICHAGE LCD
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Mode d'affichage LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Mode d'affichage LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en discontinu</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>

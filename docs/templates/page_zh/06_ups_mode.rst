@@ -5,7 +5,7 @@
 
 确保总电源开关键已打开。
 
-.. image:: templates/word_template/common_assets/operation/ups_mode.png
+.. image:: asset:operation/ups_mode
    :alt: UPS 连接示意图。
    :width: 360px
 

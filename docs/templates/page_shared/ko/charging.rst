@@ -20,7 +20,7 @@ AC 벽면 콘센트를 통한 충전
 
 AC 충전 케이블을 제품의 AC 입력 포트와 벽면 콘센트에 연결하십시오.
 
-.. image:: templates/word_template/common_assets/charging/ac_wall.png
+.. image:: asset:charging/ac_wall
    :alt: AC wall charging diagram placeholder.
    :width: 360px
 

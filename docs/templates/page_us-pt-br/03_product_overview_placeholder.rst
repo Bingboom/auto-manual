@@ -4,7 +4,7 @@ VISÃO GERAL DO PRODUTO
 VISTA FRONTAL
 -------------
 
-.. image:: templates/word_template/common_assets/overview/front_product.jpg
+.. image:: asset:overview/front_product
    :alt: Diagrama da vista frontal.
    :width: 420px
 
@@ -46,7 +46,7 @@ VISTA FRONTAL
 VISTA LATERAL DIREITA
 ---------------------
 
-.. image:: templates/word_template/common_assets/overview/right_side_ports.png
+.. image:: asset:overview/right_side_ports
    :alt: Diagrama da vista lateral direita.
    :width: 420px
 

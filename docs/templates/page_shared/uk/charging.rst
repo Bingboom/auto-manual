@@ -5,7 +5,7 @@
 
    Цей пристрій підтримує до 5 батарейних модулів, щоб задовольнити потребу у великій ємності накопичення енергії. Докладніше про використання див. у *Посібнику користувача Jackery Battery Pack 2000*.
 
-   .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+   .. image:: asset:in_the_box/main_unit1
       :alt: Заглушка схеми підключення батарейного модуля.
       :width: 360px
 
@@ -49,7 +49,7 @@
 
 Підключіть кабель для заряджання AC до входу AC пристрою та до настінної розетки.
 
-.. image:: templates/word_template/common_assets/charging/ac_wall.png
+.. image:: asset:charging/ac_wall
    :alt: Заглушка схеми заряджання від настінної розетки AC.
    :width: 360px
 

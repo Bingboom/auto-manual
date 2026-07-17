@@ -5,7 +5,7 @@
 
    Este produto suporta até 5 módulos de bateria para atender à necessidade de maior capacidade de energia. Para obter detalhes sobre como usá-lo, consulte o *Manual do Usuário do Jackery Battery Pack 2000*.
 
-   .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+   .. image:: asset:in_the_box/main_unit1
       :alt: Diagrama de conexão do módulo de bateria.
       :width: 360px
 
@@ -64,7 +64,7 @@ CARREGAMENTO VIA TOMADA DA REDE ELÉTRICA CA
 
 Conecte o cabo de carregamento CA à porta de entrada CA do produto e a uma tomada da rede elétrica.
 
-.. image:: templates/word_template/common_assets/charging/ac_wall.png
+.. image:: asset:charging/ac_wall
    :alt: Diagrama de carregamento por tomada CA.
    :width: 360px
 
