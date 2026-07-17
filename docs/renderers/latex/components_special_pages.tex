@@ -6,7 +6,9 @@
 % Fixed-format components own their explicit page boundaries.
 \providecommand{\HBPageBreak}{\clearpage}
 
-\providecommand{\HBBackCoverPage}[3]{%
+% The final two brace groups are optional so existing three-field review pages
+% remain buildable while current sources expose editable email and web fields.
+\ProvideDocumentCommand{\HBBackCoverPage}{m m m g g}{%
   \clearpage
   \thispagestyle{empty}%
   \null\vfill
@@ -17,7 +19,13 @@
     \vspace{2.2mm}
     \rule{\linewidth}{0.35pt}\par
     \vspace{1.2mm}
-    {\HBFontSemiBold\fontsize{6.2pt}{7pt}\selectfont #3\par}
+    \begin{minipage}[t]{0.46\linewidth}
+      {\HBFontSemiBold\fontsize{6.2pt}{7pt}\selectfont #3\par}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.46\linewidth}
+      {\HBFontRegular\fontsize{4.8pt}{5.7pt}\selectfont
+       \IfNoValueF{#4}{#4\par}\IfNoValueF{#5}{#5\par}}
+    \end{minipage}
   \end{minipage}%
   \vspace*{2mm}
 }

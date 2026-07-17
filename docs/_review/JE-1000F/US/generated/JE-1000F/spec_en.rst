@@ -38,7 +38,7 @@
    \begin{spectable}
    \HBTypeSpecLabel{3 × AC} & \HBTypeSpecValue{120 V\textasciitilde{} 60 Hz, 12.5 A max., 1500 W Rated per port, 1500 W in Total, 3000 W Surge Peak} \tabularnewline
    \hline
-   \HBTypeSpecLabel{AC Output in Bypass Mode\HBSpecMarkerOne{}} & \HBTypeSpecValue{120 V\textasciitilde{}, 60 Hz, 12 A max.} \HBSpecTallRowBreak
+   \HBTypeSpecLabel{AC Output in Bypass Mode\HBSpecMarkerOne{}} & \HBTypeSpecValue{100V-120V\textasciitilde{}60Hz, 12A max.} \HBSpecTallRowBreak
    \hline
    \HBTypeSpecLabel{USB-C 30W} & \HBTypeSpecValue{30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2.5 A, 15 V⎓2 A, 20 V⎓1.5 A} \tabularnewline
    \hline
@@ -152,7 +152,7 @@
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">AC Output in Bypass Mode①</th>
-            <td class="hb-spec-value">120 V~, 60 Hz, 12 A max.</td>
+            <td class="hb-spec-value">100V-120V~60Hz, 12A max.</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">2 × USB-C</th>

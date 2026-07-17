@@ -10,6 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
+from . import ir_projection
 from .params import param_pt
 
 
@@ -18,6 +19,7 @@ class ReferenceStoryEmitter:
     writer: object
     toc: object
     bundle_root: Path
+    page_plan: dict | None = None
 
     def emit(self, sid: str, title: str, blocks: list[tuple[str, str]],
              page_cursor: int, columns: int = 1) -> int:
@@ -48,6 +50,9 @@ class ReferenceStoryEmitter:
             return page_cursor + 1
 
         pages = writer.pages_for_height(estimate / max(1, columns))
+        pages = ir_projection.planned_story_pages(
+            self.page_plan, title, pages,
+        )
         self.toc.note_h1s(blocks, page_cursor, pages)
         first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
         first_kind = next((kind for kind, _ in blocks if kind != "layout"), "")

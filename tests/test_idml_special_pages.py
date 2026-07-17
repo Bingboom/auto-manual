@@ -29,7 +29,7 @@ class IdmlSpecialPageTests(unittest.TestCase):
         self.assertNotIn("hello@jackery.com", stories)
         self.assertNotIn("94538-8301", stories)
 
-    def test_back_cover_prefers_finished_art_over_composed_copy(self) -> None:
+    def test_back_cover_stays_editable_when_finished_art_exists(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs = Path(td)
             asset = docs / "renderers" / "latex" / "assets" / "back_cover-en.pdf"
@@ -37,10 +37,17 @@ class IdmlSpecialPageTests(unittest.TestCase):
             asset.write_bytes(b"finished-art")
 
             self.assertTrue(page_placed.add_preferred_back_cover_page(
-                self.writer, "US", "en", docs, 0, {"company": "fallback"}))
+                self.writer, "US", "en", docs, 0, {
+                    "company": "SOURCE COMPANY",
+                    "address": "Source address",
+                    "phone": "Source phone",
+                }))
 
-        self.assertEqual([], self.writer.stories)
-        self.assertIn(asset.resolve().as_uri(), self.writer.spreads[0][1])
+        stories = "".join(xml for _, xml in self.writer.stories)
+        self.assertIn("SOURCE COMPANY", stories)
+        self.assertIn("Source address", stories)
+        self.assertIn("Source phone", stories)
+        self.assertNotIn(asset.resolve().as_uri(), self.writer.spreads[0][1])
 
     def test_toc_uses_source_titles_ranges_and_folios(self) -> None:
         self.writer.spreads = [(f"sp_{i}", f'<Spread Self="sp_{i}"/>') for i in range(4)]
@@ -92,6 +99,36 @@ class IdmlSpecialPageTests(unittest.TestCase):
         self.assertEqual([], ir_projection.same_source_issues(ir))
         self.assertEqual("CONTENTS", ir_projection.toc_page_data(ir)["title"])
         self.assertEqual("Fremont, CA", ir_projection.back_cover_data(ir)["address"])
+        self.assertEqual("", ir_projection.back_cover_data(ir)["email"])
+        self.assertEqual("", ir_projection.back_cover_data(ir)["web"])
+
+    def test_five_field_back_cover_payload_renders_email_and_web(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            page = bundle / "page"
+            page.mkdir()
+            (bundle / "index.rst").write_text(
+                ".. include:: page/99_back_cover.rst\n", encoding="utf-8")
+            (page / "99_back_cover.rst").write_text(
+                ".. raw:: latex\n\n"
+                "   \\HBBackCoverPage{JACKERY INC.}{Fremont, CA}"
+                "{1-888-502-2236}{hello@jackery.com}{www.jackery.com}\n",
+                encoding="utf-8",
+            )
+            ir = build_manual_ir(
+                root=ROOT, bundle_root=bundle, model="JE-1000F", region="US",
+                lang="en", source="test", data_root=ROOT / "tests/fixtures/phase2")
+
+        copy = ir_projection.back_cover_data(ir)
+        self.assertIsNotNone(copy)
+        assert copy is not None
+        self.assertEqual("hello@jackery.com", copy["email"])
+        self.assertEqual("www.jackery.com", copy["web"])
+        self.assertTrue(page_placed.add_back_cover_page(
+            self.writer, "US", 0, copy))
+        stories = "".join(xml for _, xml in self.writer.stories)
+        self.assertIn("hello@jackery.com", stories)
+        self.assertIn("www.jackery.com", stories)
 
 
 if __name__ == "__main__":

@@ -53,6 +53,7 @@ EXPECTED_OWNERS = {
 
 DEFINITION_PATTERN = re.compile(
     r"\\(?:providecommand|newcommand|renewcommand)\{\\([A-Za-z@]+)\}"
+    r"|\\(?:Provide|New|Renew)DocumentCommand\{\\([A-Za-z@]+)\}"
     r"|\\(?:newenvironment|NewEnviron|newtcolorbox)\{([A-Za-z@]+)\}"
 )
 
@@ -75,6 +76,19 @@ def _definitions(path: Path) -> set[str]:
 
 
 class LatexComponentModuleTests(unittest.TestCase):
+    def test_back_cover_component_carries_all_editable_contact_fields(self) -> None:
+        component = (LATEX_DIR / "components_special_pages.tex").read_text(
+            encoding="utf-8",
+        )
+
+        self.assertIn(
+            r"\ProvideDocumentCommand{\HBBackCoverPage}{m m m g g}", component,
+        )
+        self.assertIn(r"\IfNoValueF{#4}", component)
+        self.assertIn(r"\IfNoValueF{#5}", component)
+        for argument in ("#1", "#2", "#3", "#4", "#5"):
+            self.assertIn(argument, component)
+
     def test_theme_loads_component_modules_in_dependency_order(self) -> None:
         theme = (LATEX_DIR / "theme.tex").read_text(encoding="utf-8")
         positions = [theme.index(rf"\input{{{name}}}") for name in COMPONENT_LOAD_ORDER]

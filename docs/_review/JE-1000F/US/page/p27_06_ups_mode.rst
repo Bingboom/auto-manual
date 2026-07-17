@@ -5,9 +5,9 @@
 ALIMENTATION SANS INTERRUPTION (ASI)
 ====================================
 
-| Connectez le produit à une prise murale à l'aide du câble de charge CA, puis appuyez sur le bouton power CA pour alimenter vos appareils en même temps.
+| Connectez le produit à une prise murale à l'aide du câble de charge CA, puis appuyez sur le bouton d’alimentation CA pour alimenter vos appareils en même temps.
 
-.. image:: _assets/templates/word_template/common_assets/operation/ups_mode.png
+.. image:: asset:operation/ups_mode
    :alt: Schéma de connexion ASI.
    :width: 360px
 

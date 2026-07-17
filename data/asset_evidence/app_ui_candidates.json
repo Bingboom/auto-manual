@@ -1,0 +1,99 @@
+{
+  "schema_version": "app-ui-candidate-evidence/v1",
+  "evidence_status": "quarantine",
+  "source": {
+    "name": "16-0102-000404 说明书 HTE1531000A-US-JAK RoHS REACH.ai",
+    "sha256": "ee1fd9367021c99b3a16e14dc8aa702929c71ac4c98c7132816da05d90ce06ed"
+  },
+  "frozen_reference": {
+    "name": "Jackery Explorer 1000 User Manual V2.0-2026-06-05.pdf",
+    "sha256": "e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2"
+  },
+  "comparison": {
+    "engine": "PyMuPDF 1.28.0 / MuPDF 1.29.0",
+    "render_scale": 4,
+    "colorspace": "RGB",
+    "changed_channel_threshold": 16,
+    "note": "Metrics compare the same page crop in the verified AI source and frozen PDF. They establish source identity, not final page-parity acceptance."
+  },
+  "superseded_production_candidates": [
+    {
+      "path": "docs/templates/word_template/common_assets/app/add_device.png",
+      "sha256": "474b6e86398672ad0e36c08df860c09fe1645f96c95e80c9d68cc5549f012f4c",
+      "observed_ui_language": "ja"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/app/connect_result.png",
+      "sha256": "01d3694dd833380066161364a6c67f5d26a088bfd4428b72d836c26e4f123a90",
+      "observed_ui_language": "ja"
+    }
+  ],
+  "candidates": [
+    {
+      "asset_key": "app/je1000f_us/english_ui/add_device_home",
+      "ai_page": 39,
+      "reference_page": 38,
+      "bbox_pt": [94.33814239501953, 225.7229766845703, 163.60916137695312, 375.71783447265625],
+      "output_path": "data/asset_evidence/app_ui/je1000f_us/ai-p39-add-device-home.png",
+      "output_dimensions_px": [278, 601],
+      "output_sha256": "5b68f2e13b4afe6fa4302ce4b6160ec64f0f7b3799e05a2a4db6ed41ea796005",
+      "page_crop_rgb_mad_255": 7.070239,
+      "page_crop_rgb_mad_normalized": 0.027726426,
+      "changed_pixel_ratio_gt_16": 0.011521565
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/bluetooth_configuration",
+      "ai_page": 39,
+      "reference_page": 38,
+      "bbox_pt": [195.0587615966797, 225.8372344970703, 264.1236267089844, 375.38568115234375],
+      "output_path": "data/asset_evidence/app_ui/je1000f_us/ai-p39-bluetooth-configuration.png",
+      "output_dimensions_px": [277, 599],
+      "output_sha256": "7d78debeed59a9076758635aefc8cb1056e6c71142a3b68b20e640c4c6ac934c",
+      "page_crop_rgb_mad_255": 2.814004,
+      "page_crop_rgb_mad_normalized": 0.01103531,
+      "changed_pixel_ratio_gt_16": 0.039295336
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/device_scan",
+      "ai_page": 40,
+      "reference_page": 39,
+      "bbox_pt": [54.30001449584961, 144.64414978027344, 122.04890441894531, 291.34307861328125],
+      "output_path": "data/asset_evidence/app_ui/je1000f_us/ai-p40-device-scan.png",
+      "output_dimensions_px": [272, 588],
+      "output_sha256": "4fc752f20312b665f84963258593960e44eb0c205686c46696e6a579ca142d4c",
+      "page_crop_rgb_mad_255": 1.408707,
+      "page_crop_rgb_mad_normalized": 0.005524342,
+      "changed_pixel_ratio_gt_16": 0.017988445
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/wifi_configuration",
+      "ai_page": 40,
+      "reference_page": 39,
+      "bbox_pt": [150.98391723632812, 144.34149169921875, 218.7012481689453, 290.9720764160156],
+      "output_path": "data/asset_evidence/app_ui/je1000f_us/ai-p40-wifi-configuration.png",
+      "output_dimensions_px": [272, 587],
+      "output_sha256": "1a22c0ccf6ce3f2827e6eb1f5e1a547f0daba8474d5ab95d66a4f5cecafa481e",
+      "page_crop_rgb_mad_255": 2.382637,
+      "page_crop_rgb_mad_normalized": 0.009343674,
+      "changed_pixel_ratio_gt_16": 0.027470187
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/device_dashboard",
+      "ai_page": 40,
+      "reference_page": 39,
+      "bbox_pt": [247.9141082763672, 143.53433227539062, 315.614990234375, 306.0164489746094],
+      "output_path": "data/asset_evidence/app_ui/je1000f_us/ai-p40-device-dashboard.png",
+      "output_dimensions_px": [272, 651],
+      "output_sha256": "816b6059fe5493ee6b9a2c3915e5b542799e47ba61160509ea81f351e539d02a",
+      "page_crop_rgb_mad_255": 2.955512,
+      "page_crop_rgb_mad_normalized": 0.011590241,
+      "changed_pixel_ratio_gt_16": 0.023397262
+    }
+  ],
+  "promotion_requirements": [
+    "record an explicit reviewer decision bound to the source, reference, recipe, and output hashes",
+    "promote immutable screenshot assets without allowing arbitrary quarantined App or QR content",
+    "map the five reviewed assets into native InDesign screenshot groups and captions",
+    "keep the legacy Japanese composites unchanged until the reviewed mapping passes bundle asset checks and real InDesign preflight"
+  ]
+}

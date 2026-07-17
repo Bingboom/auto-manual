@@ -182,18 +182,54 @@ def planned_span(plan: dict[str, Any] | None, stems: list[str], fallback: int) -
     if not plan or not stems:
         return fallback
     entries = plan.get("pages", [])
-    by_stem = {Path(entry["source_path"]).stem: index for index, entry in enumerate(entries)}
+    try:
+        physical_page_count = int(plan.get("physical_page_count") or 0)
+        anchored_starts = [
+            int(entry["latex_start_page"])
+            for entry in entries
+            if entry.get("latex_start_page") is not None
+        ]
+        by_stem = {
+            Path(entry["source_path"]).stem: index
+            for index, entry in enumerate(entries)
+        }
+    except (KeyError, TypeError, ValueError):
+        return fallback
+    if any(start <= 0 for start in anchored_starts):
+        return fallback
+    if physical_page_count and any(
+        start > physical_page_count for start in anchored_starts
+    ):
+        return fallback
+    if anchored_starts != sorted(anchored_starts):
+        return fallback
     indices = [by_stem[stem] for stem in stems if stem in by_stem]
     if not indices:
+        return fallback
+    selected = [entries[index] for index in indices]
+    explicit_counts = {
+        int(entry["planned_page_count"])
+        for entry in selected if entry.get("planned_page_count") is not None
+    }
+    explicit_compositions = {
+        entry.get("composition_id") for entry in selected
+        if entry.get("composition_id") is not None
+    }
+    if explicit_counts or explicit_compositions:
+        if len(explicit_counts) == 1 and len(explicit_compositions) == 1:
+            return next(iter(explicit_counts))
         return fallback
     first_index, last_index = min(indices), max(indices)
     first_start = entries[first_index].get("latex_start_page")
     if first_start is None:
         return fallback
+    first_start = int(first_start)
     for entry in entries[last_index + 1:]:
         next_start = entry.get("latex_start_page")
         if next_start is not None and next_start > first_start:
             return max(1, int(next_start) - int(first_start))
+    if physical_page_count:
+        return max(1, physical_page_count - first_start + 1)
     return fallback
 
 

@@ -198,6 +198,13 @@
         stable_labels: {pages: 0, text_frames: 0},
         fitted_lcd_table_groups: 0,
         fitted_symbol_table_shells: 0,
+        pdf_export: {
+            requested_preset: String(job.pdf_preset || ""),
+            applied_preset: null,
+            page_range: null,
+            requested_output_intent: String(job.output_intent || ""),
+            applied_document_cmyk_profile: null
+        },
         stage: "init",
         error: null
     };
@@ -212,6 +219,9 @@
         } catch (_) {}
         report.stage = "open_idml";
         doc = app.open(File(job.input_idml), false);
+        report.stage = "apply_output_intent";
+        doc.cmykProfile = job.output_intent;
+        report.pdf_export.applied_document_cmyk_profile = String(doc.cmykProfile);
         doc.recompose();
         report.fitted_lcd_table_groups = fitLcdTableShells(doc);
         report.fitted_symbol_table_shells = fitComposedSymbolTableShells(doc);
@@ -274,8 +284,16 @@
 
         report.stage = "save_indd";
         doc.save(File(job.output_indd));
+        report.stage = "validate_pdf_preset";
+        var pdfPreset = app.pdfExportPresets.itemByName(job.pdf_preset);
+        if (!pdfPreset.isValid) {
+            throw Error("PDF export preset is not installed: " + job.pdf_preset);
+        }
+        report.pdf_export.applied_preset = String(pdfPreset.name);
+        app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES;
+        report.pdf_export.page_range = "ALL_PAGES";
         report.stage = "export_pdf";
-        doc.exportFile(ExportFormat.pdfType, File(job.output_pdf), false);
+        doc.exportFile(ExportFormat.pdfType, File(job.output_pdf), false, pdfPreset);
         report.stage = "complete";
         report.success = report.overset_stories.length === 0 &&
             report.missing_fonts.length === 0 && report.bad_links.length === 0;

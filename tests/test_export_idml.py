@@ -294,10 +294,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertNotIn('Anchor="0 -', xml)
 
         result = ROOT / "docs" / "templates" / "word_template" / "common_assets" / "app" / "connect_result.png"
-        result_xml, height = render_image_block(
+        result_xml, _ = render_image_block(
             result.as_posix(),
             w._render_context(bundle), rect_id="r3", terminal=False)
-        self.assertIn(f'AnchorSpaceAbove="{height - 4:g}"', result_xml)
+        self.assertIn('AnchorSpaceAbove="0"', result_xml)
 
     def test_no_semibold_font_style_in_paragraph_styles(self) -> None:
         # the licensed Gilroy set has no SemiBold face; referencing it makes
@@ -565,6 +565,46 @@ class ExportIdmlTests(unittest.TestCase):
             ("body", "First."), ("layout", "page_break"), ("body", "Second."),
         ])
 
+    def test_lcd_mode_component_resolves_finalized_renderer_asset(self) -> None:
+        from tools.idml.components import RenderContext, render
+        from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
+
+        raw = (
+            r"\begin{HBLcdModeTable}{op_lcd_mode.png}"
+            r"\HBLcdModeFirstGroup{Saving On}{On}{Press}{Off}{Press}{Auto}{Two minutes}"
+            r"\HBLcdModeSecondGroup{Saving Off}{On}{Press}{Off}{Press}{Auto}{Never}"
+            r"\end{HBLcdModeTable}"
+        )
+        result = ExtractResult()
+        _extract_raw_latex(raw, result)
+        spec = json.loads(result.blocks[0][1])
+        self.assertEqual("lcdmode", spec["kind"])
+        self.assertEqual("op_lcd_mode.png", spec["img"])
+
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "bundle"
+            targeted = bundle / "renderers" / "latex" / "assets" / "op_lcd_mode.png"
+            generic = bundle / "_assets" / "common" / "lcd_mode.png"
+            targeted.parent.mkdir(parents=True)
+            generic.parent.mkdir(parents=True)
+            targeted.write_bytes(b"target-specific LCD image")
+            generic.write_bytes(b"generic LCD image")
+            ctx = RenderContext(
+                params={},
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=Path(td) / "outside",
+                bundle_root=bundle,
+            )
+
+            resolved = ctx.resolve_bundle_image(spec["img"])
+            self.assertIsNotNone(resolved)
+            self.assertEqual(targeted.resolve(), resolved.resolve())  # type: ignore[union-attr]
+            xml, _height = render(spec, ctx, tid="lcd_targeted", terminal=True)
+            self.assertIn(targeted.resolve().as_uri(), xml)
+            self.assertNotIn(generic.resolve().as_uri(), xml)
+
     def test_latex_false_fallback_is_not_duplicated_in_ir(self) -> None:
         from tools.idml_rst_extract import _parse_text
 
@@ -611,6 +651,99 @@ class ExportIdmlTests(unittest.TestCase):
         )
 
         self.assertEqual(emitted, ["operation", "ups + charging"])
+
+    def test_approved_prose_flow_groups_by_composition_without_estimator_merge(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("operation", [("h1", "Operation")])
+        flow.add("ups", [("h1", "UPS")])
+        flow.add("charging", [("h1", "Charging")])
+        emitted = []
+        plan = {
+            "plan_source": "approved-reference",
+            "pages": [
+                {
+                    "source_path": "page/operation.rst",
+                    "latex_start_page": 10,
+                    "composition_id": "operation-en",
+                    "planned_page_count": 4,
+                },
+                {
+                    "source_path": "page/ups.rst",
+                    "latex_start_page": 10,
+                    "composition_id": "charging-en",
+                    "planned_page_count": 1,
+                },
+                {
+                    "source_path": "page/charging.rst",
+                    "latex_start_page": 10,
+                    "composition_id": "charging-en",
+                    "planned_page_count": 1,
+                },
+            ],
+        }
+
+        flow.flush(
+            lambda _sid, title, _blocks, _columns: emitted.append(title),
+            lambda stem: stem,
+            plan,
+            estimate_pages=lambda _blocks, _columns: self.fail(
+                "approved compositions must not be merged by estimation"
+            ),
+        )
+
+        self.assertEqual(emitted, ["operation", "ups + charging"])
+
+    def test_approved_prose_flow_moves_declared_tail_to_next_composition(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("ups", [("h1", "UPS"), ("body", "UPS body")])
+        flow.add("charging", [
+            ("h1", "CHARGING"),
+            ("body", "Charging intro"),
+            ("h2", "AC WALL"),
+            ("body", "AC method"),
+        ])
+        flow.add("methods", [("h2", "SOLAR"), ("body", "Solar method")])
+        emitted = []
+        plan = {
+            "plan_source": "approved-reference",
+            "pages": [
+                {
+                    "source_path": "page/ups.rst",
+                    "latex_start_page": 14,
+                    "composition_id": "ups-charging",
+                },
+                {
+                    "source_path": "page/charging.rst",
+                    "latex_start_page": 14,
+                    "composition_id": "ups-charging",
+                    "flow_split": {
+                        "at_kind": "h2",
+                        "occurrence": 1,
+                        "tail_composition_id": "methods",
+                    },
+                },
+                {
+                    "source_path": "page/methods.rst",
+                    "latex_start_page": 15,
+                    "composition_id": "methods",
+                },
+            ],
+        }
+
+        flow.flush(
+            lambda _sid, title, blocks, _columns: emitted.append((title, blocks)),
+            lambda stem: stem,
+            plan,
+        )
+
+        self.assertEqual(["ups + charging", "methods"], [item[0] for item in emitted])
+        self.assertNotIn(("h2", "AC WALL"), emitted[0][1])
+        self.assertEqual(("h2", "AC WALL"), emitted[1][1][0])
+        self.assertIn(("h2", "SOLAR"), emitted[1][1])
 
     def test_prose_flow_can_ignore_reference_starts_for_natural_layout(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer
@@ -714,6 +847,224 @@ class ExportIdmlTests(unittest.TestCase):
         aligned = align_operation_tail(blocks, plan, "05_operation_guide")
 
         self.assertEqual(aligned[-3], ("layout", "page_break"))
+
+    def test_approved_operation_flow_uses_all_three_page_boundaries(self) -> None:
+        from tools.idml.prose_flow import align_operation_tail
+
+        blocks = [("h1", "Operations")]
+        blocks.extend(("h2", f"Section {index}") for index in range(1, 9))
+        plan = {
+            "plan_source": "approved-reference",
+            "pages": [{
+                "source_path": "page/05_operation_guide.rst",
+                "composition_id": "operation",
+                "planned_page_count": 4,
+            }],
+        }
+
+        aligned = align_operation_tail(blocks, plan, "05_operation_guide")
+
+        break_followers = [
+            aligned[index + 1][1]
+            for index, block in enumerate(aligned[:-1])
+            if block == ("layout", "page_break")
+        ]
+        self.assertEqual(["Section 3", "Section 4", "Section 6"], break_followers)
+
+    def test_fr_single_page_ups_callouts_use_natural_glyph_width_only(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        def rendered_scales(language: str) -> list[float | None]:
+            flow = ProseFlowBuffer()
+            notice = (
+                "component",
+                json.dumps({
+                    "kind": "notice",
+                    "label": "Localized label",
+                    "texts": ["one", "two", "three"],
+                    "list": True,
+                }),
+            )
+            flow.add("06_ups_mode", [notice])
+            flow.add("charging", [notice])
+            emitted: list[tuple[str, str]] = []
+            plan = {
+                "plan_source": "approved-reference",
+                "pages": [
+                    {
+                        "source_path": "page/06_ups_mode.rst",
+                        "composition_id": f"{language}_ups_charging",
+                        "language": language,
+                        "planned_page_count": 1,
+                    },
+                    {
+                        "source_path": "page/charging.rst",
+                        "composition_id": f"{language}_ups_charging",
+                        "language": language,
+                        "planned_page_count": 1,
+                    },
+                ],
+            }
+            flow.flush(
+                lambda _sid, _title, blocks, _columns: emitted.extend(blocks),
+                lambda value: value,
+                plan,
+            )
+            return [
+                json.loads(payload).get("body_horizontal_scale")
+                for kind, payload in emitted
+                if kind == "component"
+            ]
+
+        self.assertEqual([1.0, 1.0], rendered_scales("fr"))
+        self.assertEqual([None, None], rendered_scales("en"))
+        self.assertEqual([None, None], rendered_scales("es"))
+
+    def test_approved_charging_methods_start_second_solar_figure_on_second_page(self) -> None:
+        from tools.idml.prose_flow import align_charging_car_page
+
+        blocks = [
+            ("h2", "Solar"),
+            ("image", "solar-direct.png"),
+            ("body", "Connector guidance"),
+            ("image", "solar-adapter.png"),
+            ("component", json.dumps({"kind": "notice", "label": "CAUTION"})),
+            ("h2", "Car"), ("image", "car.png"),
+        ]
+        plan = {
+            "plan_source": "approved-reference",
+            "pages": [{
+                "source_path": "page/08_charging_methods.rst",
+                "composition_id": "charging",
+                "planned_page_count": 2,
+            }],
+        }
+
+        aligned = align_charging_car_page(blocks, plan, "08_charging_methods")
+
+        self.assertEqual(("layout", "page_break"), aligned[3])
+        self.assertEqual(("image", "solar-adapter.png"), aligned[4])
+        car_index = aligned.index(("h2", "Car"))
+        self.assertNotEqual(("layout", "page_break"), aligned[car_index - 1])
+
+    def test_approved_charging_tail_moves_car_notice_to_storage_composition(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        car_notice = (
+            "component",
+            json.dumps({"kind": "notice", "label": "PRECAUCIÓN", "texts": ["x"]}),
+        )
+        flow = ProseFlowBuffer()
+        flow.add("08_charging_methods", [
+            ("h2", "Solar"),
+            ("image", "solar-direct.png"),
+            ("image", "solar-adapter.png"),
+            ("h2", "Car"),
+            ("image", "car.png"),
+            ("body", "Localized vehicle caption"),
+            car_notice,
+        ])
+        flow.add("09_storage_and_maintenance", [("h1", "Localized storage")])
+        emitted = []
+        plan = {
+            "plan_source": "approved-reference",
+            "pages": [
+                {
+                    "source_path": "page/08_charging_methods.rst",
+                    "composition_id": "methods",
+                    "planned_page_count": 2,
+                },
+                {
+                    "source_path": "page/09_storage_and_maintenance.rst",
+                    "composition_id": "storage",
+                    "planned_page_count": 1,
+                },
+            ],
+        }
+
+        flow.flush(
+            lambda _sid, title, blocks, _columns: emitted.append((title, blocks)),
+            lambda stem: stem,
+            plan,
+        )
+
+        self.assertEqual(["08_charging_methods", "09_storage_and_maintenance"],
+                         [title for title, _blocks in emitted])
+        self.assertNotIn(car_notice, emitted[0][1])
+        self.assertEqual(car_notice, emitted[1][1][0])
+        self.assertEqual(("h1", "Localized storage"), emitted[1][1][1])
+
+    def test_unapproved_charging_tail_stays_in_its_source_composition(self) -> None:
+        from tools.idml.prose_flow import _move_car_notice_to_storage
+
+        car_notice = (
+            "component",
+            json.dumps({"kind": "notice", "label": "CAUTION", "texts": ["x"]}),
+        )
+        items = [
+            ("08_charging_methods", [
+                ("h2", "Solar"),
+                ("image", "solar.png"),
+                ("h2", "Car"),
+                ("image", "car.png"),
+                car_notice,
+            ], 1),
+            ("09_storage_and_maintenance", [("h1", "Storage")], 1),
+        ]
+
+        emitted = _move_car_notice_to_storage(
+            items,
+            {"plan_source": "measured-latex", "pages": []},
+        )
+
+        self.assertIn(car_notice, emitted[0][1])
+        self.assertNotIn(car_notice, emitted[1][1])
+
+    def test_approved_app_flow_starts_second_page_at_first_post_device_notice(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        notice = (
+            "component",
+            json.dumps({"kind": "notice", "label": "Localized note"}),
+        )
+        for stem, image_ref, existing_break in (
+            ("12_app_setup_placeholder", "_assets/app/add_device.png", False),
+            ("p34_12_app_setup_placeholder", "_assets/app/add_device.png", False),
+            ("p50_12_app_setup_placeholder", "add_device.png", True),
+        ):
+            with self.subTest(stem=stem):
+                blocks = [
+                    ("h1", "Localized app title"),
+                    ("h2", "Localized download heading"),
+                    ("image", "download.png"),
+                    ("h2", "Localized add-device heading"),
+                    ("image", image_ref),
+                    ("body", "Localized 2.3 Bluetooth copy"),
+                ]
+                if existing_break:
+                    blocks.append(("layout", "page_break"))
+                blocks.extend([notice, ("body", "Localized 2.4 copy")])
+                flow = ProseFlowBuffer()
+                flow.add(stem, blocks)
+                emitted = []
+                plan = {
+                    "plan_source": "approved-reference",
+                    "pages": [{
+                        "source_path": f"page/{stem}.rst",
+                        "composition_id": f"{stem}-composition",
+                        "planned_page_count": 2,
+                    }],
+                }
+
+                flow.flush(
+                    lambda _sid, _title, out, _columns: emitted.extend(out),
+                    lambda value: value,
+                    plan,
+                )
+
+                self.assertEqual(1, emitted.count(("layout", "page_break")))
+                notice_index = emitted.index(notice)
+                self.assertEqual(("layout", "page_break"), emitted[notice_index - 1])
 
     def test_page_break_layout_does_not_enable_two_columns(self) -> None:
         from tools.idml.ir_projection import project_pages
@@ -999,7 +1350,7 @@ class ExportIdmlTests(unittest.TestCase):
             for key, order, text in icon_rows
         ]
         w = IdmlWriter(params)
-        w.add_safety_symbols_page(
+        spread_id, symbol_overflow = w.add_safety_symbols_page(
             "st_safety_symbols_tpl",
             [],
             [("h1", "USER MAINTENANCE INSTRUCTIONS"), ("body", "Body.")],
@@ -1009,6 +1360,8 @@ class ExportIdmlTests(unittest.TestCase):
             4,
             "en",
         )
+        self.assertEqual(spread_id, "sp_4")
+        self.assertEqual(symbol_overflow, ([], []))
         stories = dict(w.stories)
         left = stories["st_safety_symbols_tpl_icons_left"]
         right = stories["st_safety_symbols_tpl_icons_right"]
@@ -1017,6 +1370,84 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Do not dismantle the product.", right)
         self.assertIn("Keep away from children.", right)
         self.assertNotIn("Batteries and accumulators", left + right)
+
+    def test_dense_safety_symbols_page_returns_reference_continuation_rows(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        icons = [
+            {"figure": "1_warning_triangle.png", "text": "Avertissement"},
+            {"figure": "2_read_manual.png", "text": "Lire le manuel"},
+            {"figure": "3_electric_shock.png", "text": "Choc électrique"},
+            {"figure": "4_battery_charging.png", "text": "Charge de batterie"},
+            {"figure": "7_do_not_dismantle.png", "text": "Ne démontez pas"},
+            {"figure": "8_no_open_flame.png", "text": "Pas de flamme"},
+            {"figure": "9_keep_away_from_children.png", "text": "Pas d’enfants"},
+            {"figure": "10_li_ion.png", "text": "Batterie lithium-ion"},
+            {"figure": "5_explosive_material.png", "text": "Matière explosive"},
+            {"figure": "6_heavy_object.png", "text": "Objet lourd"},
+            {"figure": "11_weee.png", "text": "Collecte séparée"},
+            {"figure": "12_weee2.png", "text": "Piles et accumulateurs"},
+        ]
+        w = IdmlWriter(params)
+        spread_id, (overflow_left, overflow_right) = w.add_safety_symbols_page(
+            "st_safety_symbols_dense",
+            [],
+            [("h1", "ENTRETIEN"), ("body", "Corps.")],
+            [("AVERTISSEMENT", "Pratique dangereuse.")],
+            icons,
+            ROOT,
+            22,
+            "fr",
+            dense=True,
+        )
+
+        self.assertEqual(spread_id, "sp_22")
+        self.assertEqual(
+            [row["text"] for row in overflow_left],
+            ["Matière explosive", "Objet lourd"],
+        )
+        self.assertEqual(
+            [row["text"] for row in overflow_right],
+            ["Collecte séparée"],
+        )
+        stories = dict(w.stories)
+        first_page = (
+            stories["st_safety_symbols_dense_icons_left"]
+            + stories["st_safety_symbols_dense_icons_right"]
+        )
+        self.assertNotIn("Matière explosive", first_page)
+        self.assertNotIn("Objet lourd", first_page)
+        self.assertNotIn("Collecte séparée", first_page)
+        self.assertNotIn("Piles et accumulateurs", first_page)
+        self.assertIn("Ne démontez pas", first_page)
+        self.assertIn("Batterie lithium-ion", first_page)
+
+    def test_localized_symbols_default_keeps_all_rows_on_current_page(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        icons = [
+            {"figure": f"{number}_{number}.png", "text": f"row {number}"}
+            for number in range(1, 12)
+        ]
+        w = IdmlWriter(params)
+
+        _spread_id, overflow = w.add_safety_symbols_page(
+            "st_safety_symbols_eu",
+            [],
+            [("h1", "ENTRETIEN"), ("body", "Corps.")],
+            [("AVERTISSEMENT", "Pratique dangereuse.")],
+            icons,
+            ROOT,
+            22,
+            "fr",
+        )
+
+        self.assertEqual(([], []), overflow)
+        stories = dict(w.stories)
+        page_xml = (
+            stories["st_safety_symbols_eu_icons_left"]
+            + stories["st_safety_symbols_eu_icons_right"]
+        )
+        for number in range(1, 12):
+            self.assertIn(f"row {number}", page_xml)
 
     def test_fcc_inbox_page_combines_two_template_pages(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -1044,7 +1475,7 @@ class ExportIdmlTests(unittest.TestCase):
         ]
         w.add_fcc_inbox_page("st_fcc_inbox", fcc, inbox, ROOT, 3)
         spread = dict(w.spreads)["sp_3"]
-        self.assertEqual(spread.count("<TextFrame "), 11)
+        self.assertEqual(spread.count("<TextFrame "), 12)
         self.assertEqual(spread.count("<Rectangle "), 10)
         self.assertEqual(
             spread.count('AppliedObjectStyle="ObjectStyle/HB Rounded Panel"'),
@@ -1076,8 +1507,8 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('InsetSpacing="0 0 0 0"', fcc_frame)
         stories = dict(w.stories)
         self.assertIn("FCC left copy.", stories["st_fcc_inbox_fcc_left"])
-        self.assertIn("fcc_mark.png", stories["st_fcc_inbox_fcc_left"])
-        self.assertNotIn("fcc_mark.pdf", stories["st_fcc_inbox_fcc_left"])
+        self.assertIn("fcc_mark.png", stories["st_fcc_inbox_fcc_mark"])
+        self.assertNotIn("fcc_mark.pdf", stories["st_fcc_inbox_fcc_mark"])
         self.assertIn("FCC right copy.", stories["st_fcc_inbox_fcc_right"])
         self.assertIn("WHAT'S IN THE BOX", stories["st_fcc_inbox_title"])
         self.assertIn("AC Charging Cable", stories["st_fcc_inbox_card_2"])
@@ -1102,6 +1533,167 @@ class ExportIdmlTests(unittest.TestCase):
         )
         for key in ("st_fcc_inbox_card_1", "st_fcc_inbox_tip_body"):
             self.assertNotIn("<Table", stories[key])
+
+    def test_fcc_inbox_page_prepends_native_symbol_continuation(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        fcc = [("component", json.dumps({
+            "kind": "fcc",
+            "texts": ["FCC gauche.", "FCC droite."],
+        }))]
+        inbox = [
+            ("h1", "CONTENU DE LA BOÎTE"),
+            ("component", json.dumps({
+                "kind": "inbox",
+                "items": [{"img": "", "label": "Documents"}],
+            })),
+        ]
+        overflow = (
+            [
+                {"figure": "", "text": "Matière explosive"},
+                {"figure": "", "text": "Objet lourd"},
+            ],
+            [{"figure": "", "text": "Collecte séparée"}],
+        )
+
+        w.add_fcc_inbox_page(
+            "st_fcc_dense",
+            fcc,
+            inbox,
+            ROOT,
+            23,
+            symbol_overflow=overflow,
+            lang="fr",
+        )
+
+        spread = dict(w.spreads)["sp_23"]
+        stories = dict(w.stories)
+        self.assertIn("tf_st_fcc_dense_symbols_left", spread)
+        self.assertIn("tf_st_fcc_dense_symbols_right", spread)
+        self.assertIn("bg_st_fcc_dense_symbols_left", spread)
+        self.assertIn("bg_st_fcc_dense_symbols_right", spread)
+        self.assertIn("<Table ", stories["st_fcc_dense_symbols_left"])
+        self.assertIn("<Table ", stories["st_fcc_dense_symbols_right"])
+        self.assertIn("Matière explosive", stories["st_fcc_dense_symbols_left"])
+        self.assertIn("Objet lourd", stories["st_fcc_dense_symbols_left"])
+        self.assertIn("Collecte séparée", stories["st_fcc_dense_symbols_right"])
+        self.assertIn(
+            'SingleRowHeight="34" MinimumHeight="34" AutoGrow="false"',
+            stories["st_fcc_dense_symbols_left"],
+        )
+        self.assertIn(
+            'SingleRowHeight="68" MinimumHeight="68" AutoGrow="false"',
+            stories["st_fcc_dense_symbols_right"],
+        )
+        self.assertNotIn("Signification", stories["st_fcc_dense_symbols_left"])
+        self.assertNotIn("Signification", stories["st_fcc_dense_symbols_right"])
+
+    def test_fcc_long_left_copy_wraps_beside_mark_as_native_stories(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        fcc = [("component", json.dumps({
+            "kind": "fcc",
+            "texts": [
+                "This device complies with part 15 of the FCC Rules. "
+                "Operation is subject to the following two conditions: "
+                "(1) This device may not cause harmful interference, and "
+                "(2) this device must accept any interference received.\n\n"
+                "NOTE: Tested to the applicable limits.",
+                "MODIFICATION: Changes could void the user's authority.",
+            ],
+        }))]
+        inbox = [
+            ("h1", "WHAT'S IN THE BOX"),
+            ("component", json.dumps({
+                "kind": "inbox",
+                "items": [{"img": "", "label": "Documents"}],
+            })),
+        ]
+
+        w.add_fcc_inbox_page("st_fcc_wrapped", fcc, inbox, ROOT, 5)
+
+        spread = dict(w.spreads)["sp_5"]
+        stories = dict(w.stories)
+        self.assertIn("tf_st_fcc_wrapped_fcc_mark", spread)
+        self.assertIn("tf_st_fcc_wrapped_fcc_lead", spread)
+        self.assertIn("tf_st_fcc_wrapped_fcc_left", spread)
+        self.assertIn("This device complies", stories["st_fcc_wrapped_fcc_lead"])
+        self.assertIn("(1) This device", stories["st_fcc_wrapped_fcc_lead"])
+        self.assertNotIn("NOTE: Tested", stories["st_fcc_wrapped_fcc_lead"])
+        self.assertIn("NOTE: Tested", stories["st_fcc_wrapped_fcc_left"])
+        self.assertNotIn("(1) This device", stories["st_fcc_wrapped_fcc_left"])
+        self.assertNotIn("This device complies", stories["st_fcc_wrapped_fcc_left"])
+        self.assertIn("fcc_mark.png", stories["st_fcc_wrapped_fcc_mark"])
+
+    def test_fcc_localized_lead_frames_follow_reference_geometry(self) -> None:
+        import xml.etree.ElementTree as ET
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        copy = {
+            "en": (
+                "This device complies with part 15 of the FCC Rules. "
+                "Operation is subject to conditions (1) and (2). "
+                "NOTE: Tested to the applicable limits."
+            ),
+            "fr": (
+                "Cet appareil est conforme à la partie 15 des règles de la FCC. "
+                "Son fonctionnement est soumis aux conditions (1) et (2). "
+                "REMARQUE : Cet équipement a été testé."
+            ),
+            "es": (
+                "Este dispositivo cumple con la parte 15 de la normativa FCC. "
+                "Su operación está sujeta a las condiciones (1) y (2). "
+                "NOTA: Este aparato ha sido probado."
+            ),
+        }
+        expected = {
+            "en": (97.0, 50.0),
+            "fr": (103.0, 62.0),
+            "es": (103.0, 56.0),
+        }
+
+        def bounds(spread: str, self_id: str) -> tuple[float, float, float, float]:
+            root = ET.fromstring(spread)
+            frame = next(
+                node for node in root.iter("TextFrame")
+                if node.attrib.get("Self") == self_id
+            )
+            points = [
+                tuple(float(value) for value in node.attrib["Anchor"].split())
+                for node in frame.iter("PathPointType")
+            ]
+            xs = [point[0] for point in points]
+            ys = [point[1] for point in points]
+            return min(xs), min(ys), max(xs), max(ys)
+
+        for page_index, lang in enumerate(("en", "fr", "es"), 3):
+            with self.subTest(lang=lang):
+                writer = IdmlWriter(params)
+                sid = f"st_fcc_geometry_{lang}"
+                writer.add_fcc_inbox_page(
+                    sid,
+                    [("component", json.dumps({
+                        "kind": "fcc",
+                        "texts": [copy[lang], "MODIFICATION: Right copy."],
+                    }))],
+                    [
+                        ("h1", "WHAT'S IN THE BOX"),
+                        ("component", json.dumps({
+                            "kind": "inbox",
+                            "items": [{"img": "", "label": "Documents"}],
+                        })),
+                    ],
+                    ROOT,
+                    page_index,
+                    lang=lang,
+                )
+                spread = dict(writer.spreads)[f"sp_{page_index}"]
+                lead = bounds(spread, f"tf_{sid}_fcc_lead")
+                lower = bounds(spread, f"tf_{sid}_fcc_left")
+                lead_w, lead_h = expected[lang]
+                self.assertAlmostEqual(lead_w, lead[2] - lead[0], places=3)
+                self.assertAlmostEqual(lead_h, lead[3] - lead[1], places=3)
+                self.assertAlmostEqual(lead[3] - 2.0, lower[1], places=3)
 
     def test_fcc_inbox_page_falls_back_to_plain_localized_fcc_prose(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -1128,7 +1720,11 @@ class ExportIdmlTests(unittest.TestCase):
             "</TextFrame>", 1)[0]
         self.assertIn('TextColumnCount="1"', fcc_frame)
         stories = dict(w.stories)
-        story = stories["st_fcc_plain_fcc_left"] + stories["st_fcc_plain_fcc_right"]
+        story = (
+            stories["st_fcc_plain_fcc_lead"]
+            + stories["st_fcc_plain_fcc_left"]
+            + stories["st_fcc_plain_fcc_right"]
+        )
         self.assertNotIn("<Table", story)
         self.assertIn("Este dispositivo cumple", story)
         self.assertIn("Si este aparato causa", story)

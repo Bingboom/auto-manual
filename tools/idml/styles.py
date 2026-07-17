@@ -22,7 +22,7 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Title L3", sz("type_title_l3_font_size", 7.0), sz("type_title_l3_font_leading", 8.0), "Medium", ""),
         ("HB Notice Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "label"),
         ("HB Notice Side Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "center"),
-        ("HB Preface Tag", sz("idml_preface_tag_font_size", 6.0), sz("idml_preface_tag_font_size", 6.0), "Heavy", "preface_tag"),
+        ("HB Preface Tag", sz("idml_preface_tag_font_size", 6.0), sz("idml_preface_tag_font_size", 6.0), "Bold", "preface_tag"),
         ("HB Preface Title", sz("idml_preface_title_font_size", 8.0), sz("idml_preface_title_font_size", 8.0), "Bold", "preface_title"),
         ("HB Callout Label", sz("type_tip_label_font_size", 8.0), sz("type_tip_label_font_leading", 9.0), "Bold", "center"),
         ("HB Callout Body", sz("type_tip_body_font_size", 6.5), sz("type_tip_body_font_leading", 7.83), "Medium", ""),
@@ -32,7 +32,7 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Capsule Text", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", "capsule_text"),
         ("HB Figure", sz("type_body_font_size", 6.2), 0.0, "Regular", "figure"),
         ("HB Body", sz("type_body_font_size", 6.2), sz("type_body_font_leading", 7.5), "Medium", ""),  # \HBTypeBody is HBFontMedium
-        ("HB Preface Body", sz("idml_preface_body_font_size", 7.2), sz("idml_preface_body_font_leading", 8.6), "Medium", "preface_body"),
+        ("HB Preface Body", sz("idml_preface_body_font_size", 7.2), sz("idml_preface_body_font_leading", 8.6), "Regular", "preface_body"),
         ("HB Safety Lead", sz("type_safety_lead_font_size", 8.0), sz("type_safety_lead_font_leading", 9.6), "Bold", "safety_lead"),
         ("HB Warning Lead Label", sz("type_warning_lead_label_font_size", 10.0), sz("type_warning_lead_label_font_leading", 10.6), "Bold", "warning_lead"),
         ("HB Warning Lead Body", sz("type_warning_lead_body_font_size", 6.5), sz("type_warning_lead_body_font_leading", 7.2), "Bold", "warning_lead"),
@@ -44,9 +44,9 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Safety List", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "list"),
         ("HB Safety Sublist", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "sublist"),
         ("HB Warranty Lead", sz("type_warranty_lead_font_size", 7.0), sz("type_warranty_lead_font_leading", 8.2), "Bold", ""),
-        ("HB Warranty Note", sz("type_warranty_body_font_size", 6.0), sz("type_warranty_body_font_leading", 7.2), "Regular", ""),
-        ("HB Warranty Body", sz("type_warranty_body_font_size", 6.0), sz("type_warranty_body_font_leading", 7.2), "Regular", ""),
-        ("HB Warranty Title", sz("type_warranty_title_font_size", 8.2), sz("type_warranty_title_font_leading", 8.8), "Bold", "warranty_title"),
+        ("HB Warranty Note", sz("type_warranty_body_font_size", 6.0), sz("type_warranty_body_font_leading", 7.2), "Regular", "warranty_note"),
+        ("HB Warranty Body", sz("type_warranty_body_font_size", 6.0), sz("idml_warranty_body_font_leading", 6.0), "Regular", ""),
+        ("HB Warranty Title", sz("idml_warranty_title_font_size", 8.0), sz("type_warranty_title_font_leading", 8.8), "Bold", "warranty_title"),
         ("HB Warranty List", sz("type_warranty_body_font_size", 6.0), sz("type_warranty_body_font_leading", 7.2), "Regular", "warranty_list"),
         ("HB Warranty Year Heading", sz("type_warranty_year_unit_font_size", 12.0), sz("type_warranty_year_unit_font_size", 12.0), "Heavy", ""),
         ("HB Warranty Year Subtitle", sz("type_warranty_year_subtitle_font_size", 7.2), sz("type_warranty_year_subtitle_font_size", 7.2), "Bold", ""),
@@ -137,6 +137,17 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
                 'Hyphenation="false" '
             )
         elif kind == "warning_lead":
+            paragraph_attrs = 'Hyphenation="false" '
+        elif kind == "preface_body":
+            # The approved preface never hyphenates across the right margin.
+            # Leaving the InDesign default enabled changes the FR/ES line
+            # breaks (for example ``document`` -> ``docu-`` / ``ment``) and
+            # collapses the three language blocks relative to the reference.
+            paragraph_attrs = (
+                f'SpaceAfter="{param_pt(params, "idml_preface_paragraph_space_after", 2.0):g}" '
+                'Hyphenation="false" '
+            )
+        elif kind == "warranty_note":
             paragraph_attrs = 'Hyphenation="false" '
         elif kind == "warranty_list":
             paragraph_attrs = (

@@ -305,18 +305,12 @@ class IdmlVisualParityTests(unittest.TestCase):
                     "2_warning_triangle_FrozenHashToken123456789.png",
                 )
 
-    def test_product_overview_reuses_the_shared_finished_art_for_every_language(self) -> None:
+    def test_product_overview_finished_art_is_not_a_production_idml_asset(self) -> None:
         docs = ROOT / "docs"
-        self.assertEqual(
-            docs / "renderers" / "latex" / "assets" / "product_overview-en.pdf",
-            page_placed.placed_asset_for(
-                "03_product_overview_placeholder", "en", docs),
-        )
-        self.assertEqual(
-            docs / "renderers" / "latex" / "assets" / "product_overview-fr.pdf",
-            page_placed.placed_asset_for(
-                "03_product_overview_placeholder", "fr", docs),
-        )
+        self.assertIsNone(page_placed.placed_asset_for(
+            "03_product_overview_placeholder", "en", docs))
+        self.assertIsNone(page_placed.placed_asset_for(
+            "03_product_overview_placeholder", "fr", docs))
 
     def test_rounded_table_group_keeps_a_square_editable_content_frame(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

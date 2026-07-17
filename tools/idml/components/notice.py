@@ -185,14 +185,21 @@ def _wrapped_lines(text: str, available: float, size: float) -> int:
 
 def notice_box_layout(params: dict, body_width: float, label: str,
                       texts: list, *, variant: str = "",
-                      is_list: bool = False) -> NoticeBoxLayout:
+                      is_list: bool = False,
+                      body_horizontal_scale_override: float | None = None,
+                      ) -> NoticeBoxLayout:
     """Resolve the shared geometry and type tokens for every notice carrier."""
     label_size = param_pt(params, "type_tip_label_font_size", 8.0)
     label_leading = param_pt(params, "type_tip_label_font_leading", 9.0)
     body_size = param_pt(params, "type_tip_body_font_size", 6.5)
     body_leading = param_pt(params, "type_tip_body_font_leading", 7.83)
-    body_horizontal_scale = param_pt(
-        params, "type_tip_body_horizontal_scale", 1.0)
+    body_horizontal_scale = (
+        float(body_horizontal_scale_override)
+        if body_horizontal_scale_override is not None
+        else param_pt(params, "type_tip_body_horizontal_scale", 1.0)
+    )
+    if body_horizontal_scale <= 0:
+        raise ValueError("notice body_horizontal_scale must be greater than zero")
     label_width = param_pt(params, "comp_caution_label_width", 52.44)
     plate_left = param_pt(params, "comp_callout_label_inset", 3.4)
     callout_rule = param_pt(params, "comp_callout_rule", 1.2)
@@ -379,6 +386,7 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         texts,
         variant=str(spec.get("variant", "")),
         is_list=bool(spec.get("list")),
+        body_horizontal_scale_override=spec.get("body_horizontal_scale"),
     )
     label_psr = _typed(
         psr("HB Callout Label", label, terminal=True),

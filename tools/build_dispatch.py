@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
@@ -38,6 +39,46 @@ class DispatchContext:
 
 
 ActionHandler = Callable[[argparse.Namespace, DispatchContext], None]
+
+
+def _target_has_approved_reference_plan(
+    args: argparse.Namespace,
+    *,
+    config_path: Path,
+    repo_root: Path,
+) -> bool:
+    """Return whether the exact CLI target is governed by an approved plan."""
+
+    from tools.config_loader import load_config_mapping
+
+    try:
+        cfg = load_config_mapping(config_path)
+        build = cfg.get("build", {})
+        if not isinstance(build, dict):
+            return False
+        model = str(getattr(args, "model", None) or build.get("default_model") or "").strip()
+        region = str(getattr(args, "region", None) or build.get("default_region") or "").strip()
+        raw_languages = build.get("languages")
+        if not isinstance(raw_languages, list):
+            return False
+        languages = [str(language).strip() for language in raw_languages]
+        if not model or not region or any(not language for language in languages):
+            return False
+        registry_path = (
+            repo_root
+            / "docs"
+            / "renderers"
+            / "contracts"
+            / "reference_layout_registry.json"
+        )
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    except (OSError, RuntimeError, ValueError, json.JSONDecodeError):
+        return False
+    entries = registry.get("plans") if isinstance(registry, dict) else None
+    if not isinstance(entries, list):
+        return False
+    target = {"model": model, "region": region, "languages": languages}
+    return any(isinstance(entry, dict) and entry.get("target") == target for entry in entries)
 
 
 def _dispatch_validate_action(args: argparse.Namespace, context: DispatchContext) -> None:
@@ -153,18 +194,25 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
     """Export the editable InDesign handoff package (tools/export_idml.py)."""
     import sys as _sys
 
-    # Production IDML needs both the prepared bundle and the LaTeX reference PDF
-    # used by its page plan. Flow-only mode still needs just the RST bundle.
+    # An approved target already has a hash-bound physical page plan, so building
+    # a fresh LaTeX PDF would add an unrelated failure surface. Unregistered
+    # production targets still build that PDF for the historical fuzzy plan.
     _src = getattr(args, "source", None)
     source_override = _src if _src in {"review", "review-asis", "runtime"} else "runtime"
     mode = getattr(args, "idml_mode", "production")
-    build_action = "rst" if mode == "flow" else "pdf"
+    repo_root = Path(__file__).resolve().parents[1]
+    approved_target = _target_has_approved_reference_plan(
+        args,
+        config_path=context.config_path,
+        repo_root=repo_root,
+    )
+    build_action = "rst" if mode == "flow" or approved_target else "pdf"
     build_args = argparse.Namespace(**vars(args))
     if build_action == "pdf":
         build_args.pdf_mode = "latex"
     context.run_checked(context.build_docs_command(
         build_args, action_override=build_action, source_override=source_override))
-    cmd = [_sys.executable, str(Path(__file__).resolve().parents[1] / "tools" / "export_idml.py")]
+    cmd = [_sys.executable, str(repo_root / "tools" / "export_idml.py")]
     if getattr(args, "model", None):
         cmd += ["--model", args.model]
     if getattr(args, "region", None):

@@ -14,6 +14,7 @@ from . import table_borders as _tb
 from .components.rounded_table import rounded_table_panel, table_text_indent
 from .loaders import symbol_copy
 from .params import IDPKG, param_pt
+from .primitives import spec_table
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -226,7 +227,11 @@ def add_spec_story(writer, sections: list[dict],
     sid = "st_spec" if lang == "en" else f"st_spec_{lang}"
     parts = [_po.h1_pill_paragraph(
         writer, title, writer.page_w - writer.m_l - writer.m_r)]
-    english_table_heights = (98.41, 49.06, 94.89, 27.11)
+    # The approved US master repeats one specification shell for EN/FR/ES.
+    # Localized copy changes line breaking inside the cells, not the native
+    # rounded-table geometry.  Keeping this language-neutral also prevents a
+    # translated page from silently falling back to the legacy square table.
+    reference_table_heights = (98.41, 49.06, 94.89, 27.11)
     english_section_before = (7.89, 9.56, 10.54, 14.41)
     english_table_before = (3.79, 2.47, 4.75, 3.30)
     for si, section in enumerate(sections):
@@ -252,9 +257,15 @@ def add_spec_story(writer, sections: list[dict],
         parts.append(section_title)
         table = _tb.fill_column_xml(
             _tb.suppress_inner_vertical_edges_xml(
-                writer._table(
+                spec_table(
                     f"tbl_spec_{lang}{si}", section["rows"], role="spec",
-                    visual_parity=(lang == "en"),
+                    params=writer.params,
+                    page_w=writer.page_w,
+                    m_l=writer.m_l,
+                    m_r=writer.m_r,
+                    visual_parity=True,
+                    section_index=si,
+                    language=lang,
                 ),
                 2,
             ),
@@ -262,7 +273,7 @@ def add_spec_story(writer, sections: list[dict],
             "Color/HB Bg K05",
         )
         last = si == len(sections) - 1 and not annotations
-        if lang == "en" and si < len(english_table_heights):
+        if si < len(reference_table_heights):
             table = _tb.suppress_outer_edges_xml(table, 2)
             inner = writer._wrap_table_paragraph(
                 table, True, span_columns=False)
@@ -272,7 +283,7 @@ def add_spec_story(writer, sections: list[dict],
                 f"{section['title']} specification table",
                 [inner],
                 writer.page_w - writer.m_l - writer.m_r + 0.35,
-                english_table_heights[si],
+                reference_table_heights[si],
                 terminal=last,
                 fill="Color/Paper",
                 stroke="Color/HB Brand Dark",

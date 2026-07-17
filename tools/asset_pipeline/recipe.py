@@ -379,8 +379,11 @@ def _transform(value: Any, location: str) -> TransformSpec:
     if op in {"crop", "whiteout"}:
         _keys(data, location=location, required={"op", "bbox_pt"})
         return TransformSpec(op=op, bbox_pt=_bbox(data["bbox_pt"], f"{location}.bbox_pt"))
-    if op == "redact_text":
-        _keys(data, location=location, required={"op", "images", "graphics", "fill"})
+    if op in {"redact_text", "redact_text_region"}:
+        required = {"op", "images", "graphics", "fill"}
+        if op == "redact_text_region":
+            required.add("bbox_pt")
+        _keys(data, location=location, required=required)
         if data["images"] != "preserve":
             raise _fail(f"{location}.images", "must be 'preserve'")
         if data["graphics"] not in ALLOWED_GRAPHICS_MODES:
@@ -392,11 +395,19 @@ def _transform(value: Any, location: str) -> TransformSpec:
             raise _fail(f"{location}.fill", "must be null")
         return TransformSpec(
             op=op,
+            bbox_pt=(
+                _bbox(data["bbox_pt"], f"{location}.bbox_pt")
+                if op == "redact_text_region"
+                else None
+            ),
             images="preserve",
             graphics=data["graphics"],
             fill=None,
         )
-    raise _fail(f"{location}.op", "must be crop, redact_text, or whiteout")
+    raise _fail(
+        f"{location}.op",
+        "must be crop, redact_text, redact_text_region, or whiteout",
+    )
 
 
 def _output(value: Any, location: str) -> OutputSpec:

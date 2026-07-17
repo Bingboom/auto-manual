@@ -295,6 +295,52 @@ class TestAssetIntake(unittest.TestCase):
 
             self.assertTrue(all(count >= 1 for count in counts), counts)
 
+    def test_bbox_scoped_text_redaction_removes_hidden_text_only_in_region(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "source.ai"
+            document = fitz.open()
+            page = document.new_page(width=120, height=180)
+            page.insert_text((20, 40), "KEEP", fontsize=9)
+            page.insert_text((20, 80), "REMOVE", fontsize=9)
+            document.save(
+                str(source),
+                garbage=4,
+                clean=True,
+                deflate=True,
+                no_new_id=True,
+            )
+            document.close()
+            with source.open("ab") as handle:
+                handle.write(b"\n% /AIPrivateData /AIMetaData /PieceInfo\n")
+            payload = self._single_page_payload(sha256_file(source))
+            asset = payload["assets"][0]  # type: ignore[index]
+            asset["transforms"] = [
+                {"op": "crop", "bbox_pt": [10, 10, 110, 100]},
+                {
+                    "op": "redact_text_region",
+                    "bbox_pt": [15, 65, 80, 90],
+                    "images": "preserve",
+                    "graphics": "preserve",
+                    "fill": None,
+                },
+            ]
+            asset["outputs"] = [
+                {"format": "pdf", "path": "docs/assets/region.pdf"}
+            ]
+            recipe = self._write_recipe(root / "recipe.json", payload)
+
+            result = run_intake(
+                source_path=source,
+                recipe=recipe,
+                output_root=root / "complete-run",
+            )
+
+            with fitz.open(str(result.output_root / "artifacts/docs/assets/region.pdf")) as output:
+                extracted = output[0].get_text()
+            self.assertIn("KEEP", extracted)
+            self.assertNotIn("REMOVE", extracted)
+
     def test_intake_reads_only_verified_private_source_snapshot(self) -> None:
         with TemporaryDirectory() as tmp:
             root = Path(tmp)

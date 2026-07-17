@@ -166,7 +166,7 @@ TELA LCD
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Ligado temporariamente}{Ligar}{Pressione o botão Power principal ou quando o produto estiver carregando.}{Desligar}{Pressione o botão Power principal.}{Desligamento automático}{A tela LCD desliga automaticamente e entra em modo de suspensão após 2 minutos de inatividade.}
       \HBLcdModeSecondGroup{Sempre ligada (durante carregamento ou descarregamento)}{Ligar}{Pressione duas vezes o botão Power principal quando o produto estiver ligado.}{Desligar}{Pressione o botão Power principal.}{Desligamento automático}{A tela LCD desliga automaticamente após |DEFAULT_STANDBY_DURATION| de inatividade.}
       \end{HBLcdModeTable}

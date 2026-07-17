@@ -151,6 +151,58 @@ def _export_notes(notes: Iterable[str], missing: list[str]) -> str:
     return "\n".join(lines + body) + "\n"
 
 
+def _package_missing_assets_report(
+    *, linked_assets_scanned: int, packaged_assets: int, missing: list[str]
+) -> str:
+    """Describe link portability at package time, not flow-source resolution.
+
+    The design-handoff source tree has its own missing-assets report based on
+    semantic flow references. Those rows can be useful diagnostics, but they
+    are not evidence that an IDML link is missing from the delivery zip.
+    """
+    lines = [
+        "# Package Link Report",
+        "",
+        f"- Linked assets scanned: {linked_assets_scanned}",
+        f"- Assets packaged under `Links/`: {packaged_assets}",
+        f"- Missing linked assets: {len(missing)}",
+        "",
+    ]
+    if not missing:
+        lines.append("No missing IDML links were detected at package time.")
+        return "\n".join(lines) + "\n"
+    lines.append("The following link URIs could not be packaged and were left unchanged:")
+    lines.extend(f"- `{uri}`" for uri in missing)
+    return "\n".join(lines) + "\n"
+
+
+def _portable_designer_checklist(
+    checklist_path: Path, *, idml_arcname: str, has_source_report: bool
+) -> str | None:
+    if not checklist_path.is_file():
+        return None
+    text = checklist_path.read_text(encoding="utf-8")
+    text = text.replace(
+        "`production/manual.production.idml`",
+        f"`{idml_arcname}`",
+    )
+    old_report_instruction = (
+        "- Check `missing_assets_report.md` before relinking or replacing assets."
+    )
+    if old_report_instruction in text:
+        replacement = (
+            "- Check `missing_assets_report.md` for package-time link failures "
+            "before relinking or replacing assets."
+        )
+        if has_source_report:
+            replacement += (
+                "\n- Check `source_asset_resolution_report.md` separately for "
+                "unresolved semantic references in the source/flow manifest."
+            )
+        text = text.replace(old_report_instruction, replacement)
+    return text
+
+
 def _versioned_source_trace(handoff_root: Path, version: str | None) -> str | None:
     trace_path = handoff_root / "production" / "source_trace.json"
     if not trace_path.is_file():
@@ -236,10 +288,27 @@ def build_delivery_package(
                         rewritten_paths["flow/manual.flow.idml"],
                         "flow/manual.flow.idml",
                     )
-            for report in ("designer_checklist.md", "layout_feedback.md", "missing_assets_report.md"):
-                report_path = handoff_root / report
-                if report_path.is_file():
-                    zf.write(report_path, report)
+            source_report = handoff_root / "missing_assets_report.md"
+            checklist = _portable_designer_checklist(
+                handoff_root / "designer_checklist.md",
+                idml_arcname=arcname,
+                has_source_report=source_report.is_file(),
+            )
+            if checklist is not None:
+                zf.writestr("designer_checklist.md", checklist)
+            layout_feedback = handoff_root / "layout_feedback.md"
+            if layout_feedback.is_file():
+                zf.write(layout_feedback, "layout_feedback.md")
+            zf.writestr(
+                "missing_assets_report.md",
+                _package_missing_assets_report(
+                    linked_assets_scanned=len(uris),
+                    packaged_assets=len(assigned),
+                    missing=missing,
+                ),
+            )
+            if source_report.is_file():
+                zf.write(source_report, "source_asset_resolution_report.md")
             trace = _versioned_source_trace(handoff_root, version)
             if trace is not None:
                 zf.writestr("source_trace.json", trace)

@@ -23,6 +23,7 @@ from .latex_page_plan import (
     write_page_plan,
 )
 from .data_components import parse_data_component
+from .reference_layout_plan import load_approved_reference_plan
 
 
 @dataclass(frozen=True)
@@ -310,7 +311,20 @@ def build_same_source_ir(
     return ir
 
 
-def build_reference_page_plan(ir: ManualIR, *, bundle_root: Path) -> dict[str, Any] | None:
+def build_reference_page_plan(
+    ir: ManualIR,
+    *,
+    root: Path,
+    bundle_root: Path,
+) -> dict[str, Any] | None:
+    approved = load_approved_reference_plan(root=root, ir=ir)
+    if approved is not None:
+        issues = validate_page_plan(approved)
+        if issues:
+            raise ValueError(
+                "approved reference page plan validation failed: " + "; ".join(issues)
+            )
+        return approved
     reference_pdf = find_reference_pdf(bundle_root)
     if reference_pdf is None:
         return None
@@ -326,9 +340,15 @@ def emit_reference_page_plan(plan: dict[str, Any] | None, *, out_dir: Path) -> P
     if plan is None:
         return None
     path = write_page_plan(plan, out_dir / PathSegments.LATEX_PAGE_PLAN_JSON)
+    approved_contract = plan.get("approved_contract")
+    if isinstance(approved_contract, dict):
+        write_page_plan(
+            approved_contract,
+            out_dir / PathSegments.REFERENCE_LAYOUT_PLAN_JSON,
+        )
     matchable = plan["source_page_count"] - plan.get("placed_source_pages", 0)
     print(
-        f"[export-idml] PAGE PLAN OK: {path} | "
+        f"[export-idml] PAGE PLAN OK ({plan.get('plan_source', 'latex-auto')}): {path} | "
         f"physical={plan['physical_page_count']} matched={plan['matched_source_pages']}/"
         f"{matchable} ({plan['match_rate']:.1%})"
         f" placed={plan.get('placed_source_pages', 0)}"
@@ -338,3 +358,30 @@ def emit_reference_page_plan(plan: dict[str, Any] | None, *, out_dir: Path) -> P
 
 def planned_story_pages(plan: dict[str, Any] | None, title: str, fallback: int) -> int:
     return planned_span(plan, title.split(" + "), fallback)
+
+
+def reference_page_count_issues(
+    plan: dict[str, Any] | None,
+    emitted_page_count: int,
+) -> list[str]:
+    """Reject a package whose physical pages drift from its effective plan."""
+    if plan is None:
+        return []
+    expected = int(plan.get("physical_page_count") or 0)
+    if emitted_page_count == expected:
+        return []
+    return [
+        f"emitted {emitted_page_count} pages but the reference plan requires "
+        f"{expected}"
+    ]
+
+
+def report_reference_page_count_issues(
+    plan: dict[str, Any] | None,
+    emitted_page_count: int,
+) -> bool:
+    """Print page-plan drift at the exporter boundary and report failure."""
+    issues = reference_page_count_issues(plan, emitted_page_count)
+    for issue in issues:
+        print(f"[export-idml] PAGE PLAN FAIL: {issue}")
+    return bool(issues)

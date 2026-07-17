@@ -16,7 +16,7 @@ from tools.gen_index_bundle_models import MaterializedBundle
 
 class TestBundleAssetFinalize(unittest.TestCase):
     _REGISTRY_HEADER = (
-        "asset_key,类别,语言维度,状态,待无字化,适用机型,适用区域,"
+        "asset_key,override_for,类别,语言维度,状态,待无字化,适用机型,适用区域,"
         "导出物路径,语言变体,内容哈希,备注\n"
     )
 
@@ -68,7 +68,7 @@ class TestBundleAssetFinalize(unittest.TestCase):
         digest = hashlib.sha256(content).hexdigest()
         (repo_root / "data" / "asset_registry.csv").write_text(
             self._REGISTRY_HEADER
-            + f"{asset_key},插图,中立,✅成品,FALSE,M1,US,"
+            + f"{asset_key},,插图,中立,✅成品,FALSE,M1,US,"
             f"docs/assets,,png:{digest},fixture\n",
             encoding="utf-8",
         )
@@ -87,7 +87,7 @@ class TestBundleAssetFinalize(unittest.TestCase):
         digest = hashlib.sha256(content).hexdigest()
         (repo_root / "data" / "asset_registry.csv").write_text(
             self._REGISTRY_HEADER
-            + f"page/cover,整页PDF,按语言,{status},FALSE,M1,US,"
+            + f"page/cover,,整页PDF,按语言,{status},FALSE,M1,US,"
             f"docs/renderers/latex/assets,en,cover-en.pdf:{digest},fixture\n",
             encoding="utf-8",
         )
@@ -104,12 +104,42 @@ class TestBundleAssetFinalize(unittest.TestCase):
         pdf_digest = hashlib.sha256(pdf.read_bytes()).hexdigest()
         (repo_root / "data" / "asset_registry.csv").write_text(
             self._REGISTRY_HEADER
-            + "page/cover,整页PDF,按语言,✅成品,FALSE,M1,US,"
+            + "page/cover,,整页PDF,按语言,✅成品,FALSE,M1,US,"
             + "docs/renderers/latex/assets,en,"
             + f'"cover-en.png:{png_digest},cover-en.pdf:{pdf_digest}",fixture\n',
             encoding="utf-8",
         )
         return pdf
+
+    def _add_target_aware_lcd_assets(self, *, repo_root: Path) -> tuple[Path, Path]:
+        generic_dir = repo_root / "docs" / "assets" / "generic"
+        targeted_dir = repo_root / "docs" / "renderers" / "latex" / "assets"
+        generic_dir.mkdir(parents=True, exist_ok=True)
+        targeted_dir.mkdir(parents=True, exist_ok=True)
+
+        generic_png = generic_dir / "lcd_mode.png"
+        generic_pdf = generic_dir / "lcd_mode.pdf"
+        targeted_png = targeted_dir / "op_lcd_mode.png"
+        targeted_pdf = targeted_dir / "op_lcd_mode.pdf"
+        generic_png.write_bytes(b"generic lcd png")
+        generic_pdf.write_bytes(b"generic lcd pdf")
+        targeted_png.write_bytes(b"JE-1000F US lcd png")
+        targeted_pdf.write_bytes(b"JE-1000F US lcd pdf")
+
+        def digest(path: Path) -> str:
+            return hashlib.sha256(path.read_bytes()).hexdigest()
+
+        (repo_root / "data" / "asset_registry.csv").write_text(
+            self._REGISTRY_HEADER
+            + "operation/lcd_mode,,插图,中立,✅成品,FALSE,ALL,ALL,docs/assets/generic,,"
+            + f'"lcd_mode.pdf:{digest(generic_pdf)},lcd_mode.png:{digest(generic_png)}",fixture\n'
+            + "operation/je1000f_us/lcd_mode,operation/lcd_mode,插图,中立,✅成品,"
+            + "FALSE,JE-1000F,US,docs/renderers/latex/assets,,"
+            + f'"op_lcd_mode.pdf:{digest(targeted_pdf)},'
+            + f'op_lcd_mode.png:{digest(targeted_png)}",fixture\n',
+            encoding="utf-8",
+        )
+        return generic_png, targeted_png
 
     def _finalize(
         self,
@@ -546,6 +576,115 @@ class TestBundleAssetFinalize(unittest.TestCase):
                 (bundle_dir / "renderers" / "latex" / "assets" / "cover-en.png").exists()
             )
 
+    def test_lcd_mode_table_uses_target_png_and_generic_region_fallback(self) -> None:
+        cases = (
+            (
+                "US",
+                "en",
+                "operation/je1000f_us/lcd_mode",
+                "op_lcd_mode.png",
+                "renderers/latex/assets/op_lcd_mode.png",
+            ),
+            (
+                "JP",
+                "ja",
+                "operation/lcd_mode",
+                "lcd_mode.png",
+                "_assets/assets/generic/lcd_mode.png",
+            ),
+            (
+                "EU",
+                "en",
+                "operation/lcd_mode",
+                "lcd_mode.png",
+                "_assets/assets/generic/lcd_mode.png",
+            ),
+        )
+        for region, language, expected_key, expected_name, staged_path in cases:
+            with self.subTest(region=region), tempfile.TemporaryDirectory() as td:
+                repo_root, docs_dir, bundle_dir = self._workspace(Path(td))
+                generic_png, targeted_png = self._add_target_aware_lcd_assets(
+                    repo_root=repo_root
+                )
+                page_dir = bundle_dir / "page"
+                page_dir.mkdir()
+                page = page_dir / f"lcd_{language}.rst"
+                page.write_text(
+                    ".. raw:: latex\n\n"
+                    "   \\begin{HBLcdModeTable}{asset:operation/lcd_mode}\n"
+                    "   \\end{HBLcdModeTable}\n",
+                    encoding="utf-8",
+                )
+                legacy_draft = bundle_dir / "generated" / "draft" / "lcd.rst"
+                legacy_draft.parent.mkdir(parents=True)
+                legacy_draft.write_text(
+                    ".. raw:: latex\n\n"
+                    "   \\begin{HBLcdModeTable}{lcd_mode.png}\n"
+                    "   \\end{HBLcdModeTable}\n",
+                    encoding="utf-8",
+                )
+                (bundle_dir / "index.rst").write_text(
+                    f".. include:: page/{page.name}\n",
+                    encoding="utf-8",
+                )
+                stale = page_dir / "stale.rst"
+                stale.write_text("Stale\n", encoding="utf-8")
+                bundle = replace(
+                    self._materialized_bundle(
+                        docs_dir=docs_dir,
+                        bundle_dir=bundle_dir,
+                        stale_page=stale,
+                        lang=language,
+                    ),
+                    model="JE-1000F",
+                    region=region,
+                )
+
+                finalized = finalize_materialized_bundle(
+                    bundle,
+                    cfg={"build": {"languages": [language]}},
+                    docs_dir=docs_dir,
+                    repo_root=repo_root,
+                )
+
+                usage = json.loads(
+                    finalized.asset_usage_manifest_path.read_text(encoding="utf-8")
+                )
+                row = usage["assets"][0]
+                expected_source = targeted_png if region == "US" else generic_png
+                self.assertEqual(expected_key, row["asset_key"])
+                self.assertEqual("png", row["format"])
+                self.assertEqual(staged_path, row["staged_path"])
+                self.assertEqual(
+                    hashlib.sha256(expected_source.read_bytes()).hexdigest(),
+                    row["sha256"],
+                )
+                self.assertIn(
+                    f"\\begin{{HBLcdModeTable}}{{{expected_name}}}",
+                    page.read_text(encoding="utf-8"),
+                )
+                self.assertIn(
+                    "\\begin{HBLcdModeTable}{lcd_mode.png}",
+                    legacy_draft.read_text(encoding="utf-8"),
+                )
+                self.assertEqual(
+                    "asset:operation/lcd_mode",
+                    usage["rewrites"][0]["original_value"],
+                )
+                self.assertEqual(expected_name, usage["rewrites"][0]["rendered_value"])
+                self.assertFalse((bundle_dir / Path(staged_path).with_suffix(".pdf")).exists())
+
+                second = finalize_materialized_bundle(
+                    finalized,
+                    cfg={"build": {"languages": [language]}},
+                    docs_dir=docs_dir,
+                    repo_root=repo_root,
+                )
+                second_usage = json.loads(
+                    second.asset_usage_manifest_path.read_text(encoding="utf-8")
+                )
+                self.assertEqual(usage, second_usage)
+
     def test_support_tree_rejects_symlink_aliases(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo_root, docs_dir, bundle_dir = self._workspace(Path(td))
@@ -744,7 +883,7 @@ class TestBundleAssetFinalize(unittest.TestCase):
                 hashes.append(f"{path.name}:{hashlib.sha256(content).hexdigest()}")
             (repo_root / "data" / "asset_registry.csv").write_text(
                 self._REGISTRY_HEADER
-                + "demo/localized,插图,按语言,✅成品,FALSE,M1,US,docs/assets,"
+                + "demo/localized,,插图,按语言,✅成品,FALSE,M1,US,docs/assets,"
                 + f'"en,es","{",".join(hashes)}",fixture\n',
                 encoding="utf-8",
             )

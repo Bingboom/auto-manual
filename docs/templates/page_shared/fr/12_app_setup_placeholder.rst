@@ -39,7 +39,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
        - Maintenez le |MAIN_POWER_BUTTON_LABEL_LOWER| et le |DC_USB_POWER_BUTTON_LABEL_LOWER| enfoncés pendant 3 secondes pour réinitialiser le Wi-Fi et le Bluetooth de l'appareil et l'associer de nouveau.
 
 
-| 2.4 Une fois l’appareil connecté avec succès, saisissez votre mot de passe Wi-Fi, puis appuyez sur le bouton **OK**.
+| 2.4 Une fois l’appairage réalisé avec succès, saisissez le nom et le mot de passe du Wi-Fi pour que l’appareil se connecte automatiquement au réseau Wi-Fi.
 
 .. list-table::
    :header-rows: 0
@@ -49,7 +49,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
      -
        - Veuillez choisir un réseau Wi-Fi 2,4 GHz. L'appareil ne prend pas en charge le réseau Wi-Fi 5 GHz.
 
-| Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
+| 2.5 Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
 
 .. image:: asset:app/connect_result
    :alt: Emplacement réservé à l'écran de résultat de connexion dans l'application.

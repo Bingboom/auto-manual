@@ -13,6 +13,7 @@ from tools.contract_assets import ContractAssetResolver, render_contract_asset_v
 class TestContractAssets(unittest.TestCase):
     _REGISTRY_HEADER = (
         "asset_key",
+        "override_for",
         "类别",
         "语言维度",
         "状态",

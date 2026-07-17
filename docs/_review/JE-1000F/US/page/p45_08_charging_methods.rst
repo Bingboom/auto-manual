@@ -7,14 +7,14 @@ CARGA MEDIANTE PANELES SOLARES (SE VENDEN POR SEPARADO)
 
 Jackery Explorer 1000 cuenta con dos puertos de entrada DC8020 y es compatible con los paneles solares de Jackery.
 
-.. image:: _assets/templates/word_template/common_assets/charging/solar_direct.png
+.. image:: asset:charging/solar_direct
    :alt: Diagrama de conexión para carga solar 1.
    :width: 360px
 
 
 Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 al mismo tiempo, consulte la figura siguiente para la carga mediante el conector de panel solar (se vende por separado y no se incluye de serie).
 
-.. image:: _assets/templates/word_template/common_assets/charging/solar_adapter.png
+.. image:: asset:charging/solar_adapter
    :alt: Diagrama de conexión para carga solar 2.
    :width: 360px
 
@@ -45,7 +45,7 @@ CARGA CON UN CARGADOR PARA VEHÍCULO (SE VENDE POR SEPARADO)
 
 Este producto puede cargarse usando un cargador para vehículo de 12 V. Asegúrese de que el cargador de vehículo y el encendedor de vehículo ofrezcan una buena conexión.
 
-.. image:: _assets/templates/word_template/common_assets/charging/car_charge.png
+.. image:: asset:charging/car_charge
    :alt: Diagrama de carga en vehículo.
    :width: 360px
 

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "evidence_status": "quarantine",
+  "decision": {
+    "status": "unresolved-source-mismatch",
+    "reason": "The governed design master and the frozen visual reference contain different QR payloads. Neither candidate is approved or build-eligible until the authoritative printed payload is selected."
+  },
+  "candidates": [
+    {
+      "asset_key": "qr/back_cover_ai_candidate",
+      "source_kind": "design-master",
+      "source_key": "source/manual_je1000f_us_master",
+      "source_file": "16-0102-000404 说明书 HTE1531000A-US-JAK RoHS REACH.ai",
+      "source_sha256": "ee1fd9367021c99b3a16e14dc8aa702929c71ac4c98c7132816da05d90ce06ed",
+      "page": 59,
+      "bbox_pt": [309.16900634765625, 464.8030090332031, 338.9330139160156, 494.5670166015625],
+      "decoded_payload": "160102000404",
+      "qr_contract": {
+        "version": 1,
+        "error_correction": "L",
+        "data_mask": 2,
+        "encoding_mode": "byte"
+      },
+      "verification": {
+        "decoder": "zxing-cpp 3.1.0",
+        "render_dpi": 600,
+        "matrix_size": 21,
+        "matrix_mismatches": 0
+      },
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/back_cover_qr_ai_candidate.pdf",
+          "sha256": "b3572a0e62d37199e5f4c07ef6bc8957b478e3072ecf1a0f954f7a53c479d66a"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/back_cover_qr_ai_candidate.png",
+          "sha256": "d905dda078190608d10a261cb16911eedd277992345eb22f07c13e94d4a76372",
+          "width_px": 239,
+          "height_px": 239
+        }
+      ]
+    },
+    {
+      "asset_key": "qr/back_cover_reference_candidate",
+      "source_kind": "frozen-reference-pdf",
+      "source_key": "reference/manual_je1000f_us_v2_20260605",
+      "source_file": "Jackery Explorer 1000 User Manual V2.0-2026-06-05.pdf",
+      "source_sha256": "e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2",
+      "page": 58,
+      "bbox_pt": [308.46099853515625, 463.8520202636719, 339.6419982910156, 495.03302001953125],
+      "decoded_payload": "160102000161",
+      "qr_contract": {
+        "version": 1,
+        "error_correction": "L",
+        "data_mask": 2,
+        "encoding_mode": "byte"
+      },
+      "verification": {
+        "decoder": "zxing-cpp 3.1.0",
+        "render_dpi": 600,
+        "matrix_size": 21,
+        "matrix_mismatches": 0
+      },
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/back_cover_qr_reference_candidate.pdf",
+          "sha256": "09e2d60f07da0ff3d5b9baad642c7a32e4017eb133bc356e32d52ff3bf7eaa07"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/back_cover_qr_reference_candidate.png",
+          "sha256": "866c5eef5dd90d49a8b7e09b73414e52a1cca128ae70eeb39371cf401fbdc469",
+          "width_px": 251,
+          "height_px": 251
+        }
+      ]
+    }
+  ]
+}

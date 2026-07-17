@@ -30,8 +30,10 @@ _BOLD = re.compile(r"\*\*([^*]+)\*\*")
 # "**FR IMPORTANT**" (first block may omit the language prefix).
 _FLAT_LANGTAG = re.compile(r"^\*\*(?:([A-Z]{2})\s+)?(IMPORTANT\w*)\*\*$")
 # Warranty-period cells: "**3 YEARS** **Standard Warranty** <copy>".
-_WARRANTY_CELL = re.compile(
+_WARRANTY_SPLIT_CELL = re.compile(
     r"^\*\*(\d+)\s+(YEARS?|ANS|AÑOS)\*\*\s*\*\*([^*]+)\*\*\s*(.*)$", re.S)
+_WARRANTY_COMBINED_CELL = re.compile(
+    r"^\*\*(\d+)\s+(YEARS?|ANS|AÑOS)\s+([^*]+)\*\*\s*(.*)$", re.S)
 
 
 def _label_of(line: str) -> tuple[str, str] | None:
@@ -44,23 +46,61 @@ def _label_of(line: str) -> tuple[str, str] | None:
     return None
 
 
-def parse_rows(text: str) -> list[tuple[str, str]] | None:
-    """Parse an On/Off body into [(label, instruction), ...] or None."""
+def _parse_rows_and_tail(
+    text: str,
+) -> tuple[list[tuple[str, str]] | None, str]:
+    """Parse operation rows and preserve a structurally marked prose tail.
+
+    Localized RST line blocks are not guaranteed to keep the operation rows
+    and the following standby copy as separate IR paragraphs.  Once two
+    complete On/Off rows have been found, a new bold field starts ordinary
+    full-width prose rather than extending the second row's narrow text
+    column.  Continuation lines inside the two operation rows still work as
+    before.
+    """
     rows: list[tuple[str, str]] = []
+    tail: list[str] = []
     for raw in text.splitlines():
         line = raw.strip()
         if not line:
+            continue
+        if tail:
+            tail.append(line)
             continue
         started = _label_of(line)
         if started:
             rows.append(started)
         elif rows and not rows[-1][1]:
             rows[-1] = (rows[-1][0], line)
+        elif len(rows) >= 2 and re.match(r"^\*\*[^*]+\*\*", line):
+            tail.append(line)
         elif rows:
             rows[-1] = (rows[-1][0], rows[-1][1] + " " + line)
         else:
-            return None
-    return rows if len(rows) >= 2 else None
+            return None, ""
+    if len(rows) < 2:
+        return None, ""
+    return rows, "\n".join(tail)
+
+
+def parse_rows(text: str) -> list[tuple[str, str]] | None:
+    """Parse an On/Off body into [(label, instruction), ...] or None."""
+    rows, _tail = _parse_rows_and_tail(text)
+    return rows
+
+
+def _parse_warranty_cell(text: str) -> dict[str, str] | None:
+    match = _WARRANTY_SPLIT_CELL.match(text.strip())
+    if match is None:
+        match = _WARRANTY_COMBINED_CELL.match(text.strip())
+    if match is None:
+        return None
+    return {
+        "number": match.group(1),
+        "unit": match.group(2),
+        "label": match.group(3).strip(),
+        "text": match.group(4).strip(),
+    }
 
 
 def transform(blocks: list[Block]) -> list[Block]:
@@ -74,11 +114,8 @@ def transform(blocks: list[Block]) -> list[Block]:
             except (ValueError, SyntaxError):
                 rows = None
             if rows and len(rows) == 1 and len(rows[0]) >= 2:
-                matches = [_WARRANTY_CELL.match(c.strip()) for c in rows[0]]
-                if all(matches):
-                    items = [{"number": m.group(1), "unit": m.group(2),
-                              "label": m.group(3).strip(),
-                              "text": m.group(4).strip()} for m in matches]
+                items = [_parse_warranty_cell(cell) for cell in rows[0]]
+                if all(item is not None for item in items):
                     out.append(("component", json.dumps(
                         {"kind": "warrantyyears", "items": items},
                         ensure_ascii=False)))
@@ -93,7 +130,7 @@ def transform(blocks: list[Block]) -> list[Block]:
                 i += 1
                 continue
         if kind == "image" and i + 1 < len(blocks) and blocks[i + 1][0] == "body":
-            rows = parse_rows(blocks[i + 1][1])
+            rows, tail = _parse_rows_and_tail(blocks[i + 1][1])
             if rows:
                 prereq = ""
                 if out and out[-1][0] == "body" and _PREREQ.match(out[-1][1].strip()):
@@ -101,6 +138,8 @@ def transform(blocks: list[Block]) -> list[Block]:
                 out.append(("component", json.dumps(
                     {"kind": "oppanel", "image": text, "prereq": prereq,
                      "rows": rows}, ensure_ascii=False)))
+                if tail:
+                    out.append(("body", tail))
                 i += 2
                 continue
         out.append((kind, text))
@@ -141,9 +180,21 @@ def _group_charging_emphasis(blocks: list[Block]) -> list[Block]:
 
 
 def _group_warranty_page(blocks: list[Block]) -> list[Block]:
-    """Turn the English warranty prose into editable visual components."""
-    if not any(kind == "h1" and text.strip().casefold() == "warranty"
-               for kind, text in blocks):
+    """Turn structurally identified warranty prose into editable components."""
+    has_h1 = any(kind == "h1" for kind, _text in blocks)
+    has_sections = any(kind == "h2" for kind, _text in blocks)
+    has_period_component = False
+    for kind, payload in blocks:
+        if kind != "component":
+            continue
+        try:
+            spec = json.loads(payload)
+        except (TypeError, json.JSONDecodeError):
+            continue
+        if isinstance(spec, dict) and spec.get("kind") == "warrantyyears":
+            has_period_component = True
+            break
+    if not (has_h1 and has_sections and has_period_component):
         return blocks
 
     grouped: list[Block] = []

@@ -43,7 +43,11 @@ def _write_handoff_tree(root: Path) -> Path:
     (handoff / "production").mkdir()
     (handoff / "flow" / "manual.flow.idml").write_bytes(b"flow-idml")
     (handoff / "flow" / "manual.flow.md").write_text("flow md\n", encoding="utf-8")
-    (handoff / "designer_checklist.md").write_text("checklist\n", encoding="utf-8")
+    (handoff / "designer_checklist.md").write_text(
+        "- Open `production/manual.production.idml` for review.\n"
+        "- Check `missing_assets_report.md` before relinking or replacing assets.\n",
+        encoding="utf-8",
+    )
     (handoff / "layout_feedback.md").write_text("feedback\n", encoding="utf-8")
     (handoff / "missing_assets_report.md").write_text("missing\n", encoding="utf-8")
     (handoff / "production" / "source_trace.json").write_text(
@@ -89,6 +93,7 @@ class BuildDeliveryPackageTest(unittest.TestCase):
                 self.assertIn("flow/manual.flow.idml", names)
                 self.assertIn("flow/manual.flow.md", names)
                 self.assertIn("designer_checklist.md", names)
+                self.assertIn("source_asset_resolution_report.md", names)
                 self.assertIn("source_trace.json", names)
                 self.assertIn("fonts_manifest.md", names)
                 self.assertIn("export_notes.md", names)
@@ -100,6 +105,16 @@ class BuildDeliveryPackageTest(unittest.TestCase):
                 self.assertEqual("1.5", trace["version"])
                 notes = zf.read("export_notes.md").decode("utf-8")
                 self.assertIn("gone.png", notes)
+                checklist = zf.read("designer_checklist.md").decode("utf-8")
+                self.assertIn("`manual_publish_1.5.idml`", checklist)
+                self.assertNotIn("production/manual.production.idml", checklist)
+                missing_report = zf.read("missing_assets_report.md").decode("utf-8")
+                self.assertIn("Missing linked assets: 1", missing_report)
+                self.assertIn("gone.png", missing_report)
+                self.assertEqual(
+                    "missing\n",
+                    zf.read("source_asset_resolution_report.md").decode("utf-8"),
+                )
 
                 inner = root / "inner.idml"
                 inner.write_bytes(zf.read("manual_publish_1.5.idml"))

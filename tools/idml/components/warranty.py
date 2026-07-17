@@ -23,6 +23,14 @@ def _plain_strong(text: str) -> str:
     return match.group(1) if match else text
 
 
+def _language_param(ctx: RenderContext, key: str, default: float) -> float:
+    base = param_pt(ctx.params, key, default)
+    language = (ctx.language or "").strip().lower()
+    if language:
+        return param_pt(ctx.params, f"lang_{language}_{key}", base)
+    return base
+
+
 def _wrapped_lines(text: str, width: float, size: float) -> int:
     plain = text.replace("**", "").strip()
     if not plain:
@@ -100,8 +108,12 @@ def _years_table(
     if not items:
         return "", 0.0
     gap = param_pt(ctx.params, "comp_warranty_year_column_gap", 2.27)
-    left_ratio = float(
-        ctx.params.get("comp_warranty_year_left_ratio", ("0.59", "ratio"))[0]
+    left_ratio = _language_param(
+        ctx,
+        "idml_warranty_year_left_ratio",
+        float(ctx.params.get(
+            "comp_warranty_year_left_ratio", ("0.59", "ratio"),
+        )[0]),
     )
     if len(items) == 2:
         left_w = (width - gap) * left_ratio
@@ -111,7 +123,7 @@ def _years_table(
     cells: list[str] = []
     max_height = 0.0
     body_size = param_pt(ctx.params, "type_warranty_body_font_size", 6.0)
-    body_leading = param_pt(ctx.params, "type_warranty_body_font_leading", 7.2)
+    body_leading = param_pt(ctx.params, "idml_warranty_body_font_leading", 6.0)
     badge_size = param_pt(ctx.params, "type_warranty_year_number_font_size", 21.0)
     subtitle_size = param_pt(ctx.params, "type_warranty_year_subtitle_font_size", 7.2)
     for index, (item, col_w) in enumerate(zip(items, cols)):
@@ -177,10 +189,22 @@ def render_warrantylead(
     size = param_pt(ctx.params, "type_warranty_lead_font_size", 7.0)
     leading = param_pt(ctx.params, "type_warranty_lead_font_leading", 8.2)
     pad_lr = param_pt(ctx.params, "comp_warranty_lead_pad_lr", 10.2)
-    pad_tb = param_pt(ctx.params, "comp_warranty_lead_pad_tb", 7.65)
+    pad_tb = _language_param(
+        ctx,
+        "idml_warranty_lead_pad_tb",
+        param_pt(ctx.params, "comp_warranty_lead_pad_tb", 7.65),
+    )
+    horizontal_scale = _language_param(
+        ctx, "idml_warranty_lead_horizontal_scale", 100.0,
+    )
     lines = _wrapped_lines(text, width - 2 * pad_lr, size)
     height = lines * leading + 2 * pad_tb
-    content = psr("HB Warranty Lead", text, terminal=True)
+    content = psr("HB Warranty Lead", text, terminal=True).replace(
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'HorizontalScale="{horizontal_scale:g}"',
+        1,
+    )
     if ctx.add_story is None:
         table = component_table(
             tid,
@@ -225,7 +249,10 @@ def _section_body(
     width: float,
 ) -> tuple[list[str], float]:
     body_size = param_pt(ctx.params, "type_warranty_body_font_size", 6.0)
-    leading = param_pt(ctx.params, "type_warranty_body_font_leading", 7.2)
+    body_leading = param_pt(ctx.params, "idml_warranty_body_font_leading", 6.0)
+    list_leading = param_pt(ctx.params, "type_warranty_body_font_leading", 7.2)
+    body_after = param_pt(ctx.params, "idml_warranty_paragraph_after", 2.83)
+    list_after = param_pt(ctx.params, "idml_warranty_list_after", 1.0)
     parts: list[str] = []
     height = 0.0
     for block_index, block in enumerate(blocks):
@@ -239,19 +266,22 @@ def _section_body(
             height += table_height
             continue
         text = str(block.get("text", ""))
-        style = "HB Warranty List" if kind in {"list", "sublist"} else "HB Warranty Body"
+        is_list = kind in {"list", "sublist"}
+        style = "HB Warranty List" if is_list else "HB Warranty Body"
+        leading = list_leading if is_list else body_leading
+        paragraph_after = list_after if is_list else body_after
         paragraph = psr(style, text, terminal=terminal)
         if not terminal:
             paragraph = paragraph.replace(
                 "<ParagraphStyleRange ",
-                '<ParagraphStyleRange SpaceAfter="2.27" ',
+                f'<ParagraphStyleRange SpaceAfter="{paragraph_after:g}" ',
                 1,
             )
         parts.append(paragraph)
         available = width - (9.0 if kind in {"list", "sublist"} else 0.0)
         height += _wrapped_lines(text, available, body_size) * leading
         if not terminal:
-            height += 2.27
+            height += paragraph_after
     return parts, height
 
 
@@ -287,9 +317,12 @@ def render_warrantysection(
         else "idml_warranty_panel_trim_exclusions" if index == 5
         else ""
     )
-    trim = param_pt(ctx.params, trim_key, 0.0) if trim_key else 0.0
+    trim = (
+        _language_param(ctx, trim_key, param_pt(ctx.params, trim_key, 0.0))
+        if trim_key else 0.0
+    )
     panel_h = max(22.0, pad_top + body_height + pad_bottom - trim)
-    title_size = param_pt(ctx.params, "type_warranty_title_font_size", 8.2)
+    title_size = param_pt(ctx.params, "idml_warranty_title_font_size", 8.0)
     title_leading = param_pt(ctx.params, "type_warranty_title_font_leading", 8.8)
     title_pad_lr = param_pt(ctx.params, "comp_warranty_title_pad_lr", 5.1)
     title_pad_tb = param_pt(ctx.params, "comp_warranty_title_pad_tb", 1.98)
@@ -362,7 +395,7 @@ def render_warrantysection(
         pad_lr,
         -panel_h + pad_top,
         width - pad_lr,
-        -pad_bottom,
+        -max(0.0, pad_bottom - trim),
     )
     group = (
         f'<Group Self="grp_warranty_{tid}" '
@@ -377,7 +410,7 @@ def render_warrantysection(
     before_key = (
         "comp_warranty_first_section_before" if index == 1
         else "idml_warranty_period_section_before" if index == 2
-        else "comp_warranty_final_section_before" if index == 6
+        else "idml_warranty_final_section_before" if index == 6
         else "idml_warranty_section_before"
     )
     before = param_pt(ctx.params, before_key, 4.25)

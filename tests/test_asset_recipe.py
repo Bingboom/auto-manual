@@ -178,6 +178,41 @@ class TestAssetRecipe(unittest.TestCase):
         with self.assertRaisesRegex(RecipeValidationError, "remove_if_touched"):
             self._load(payload)
 
+    def test_loads_bbox_scoped_text_redaction(self) -> None:
+        payload = sample_recipe_payload()
+        payload["assets"][0]["transforms"].insert(  # type: ignore[index]
+            1,
+            {
+                "op": "redact_text_region",
+                "bbox_pt": [70, 60, 100, 90],
+                "images": "preserve",
+                "graphics": "preserve",
+                "fill": None,
+            },
+        )
+
+        recipe = self._load(payload)
+
+        transform = recipe.assets[0].transforms[1]
+        self.assertEqual("redact_text_region", transform.op)
+        self.assertEqual((70.0, 60.0, 100.0, 90.0), transform.bbox_pt)
+        self.assertEqual("preserve", transform.graphics)
+
+    def test_rejects_bbox_scoped_text_redaction_without_bbox(self) -> None:
+        payload = sample_recipe_payload()
+        payload["assets"][0]["transforms"].insert(  # type: ignore[index]
+            1,
+            {
+                "op": "redact_text_region",
+                "images": "preserve",
+                "graphics": "preserve",
+                "fill": None,
+            },
+        )
+
+        with self.assertRaisesRegex(RecipeValidationError, "missing field.*bbox_pt"):
+            self._load(payload)
+
     def test_rejects_high_scale_engineering_overview_preview(self) -> None:
         payload = sample_recipe_payload()
         payload["archive"]["previews"]["page_scale"]["1"] = 1  # type: ignore[index]
@@ -240,13 +275,13 @@ class TestAssetRecipe(unittest.TestCase):
         recipe = load_recipe(OFFICIAL_RECIPE)
 
         self.assertEqual(59, len(recipe.page_catalog))
-        self.assertEqual(13, len(recipe.assets))
+        self.assertEqual(24, len(recipe.assets))
         self.assertEqual(
             {21, 22, 39, 40, 57, 58, 59},
             {row.page for row in recipe.page_catalog if row.gate.status == "quarantine"},
         )
         self.assertEqual(
-            {"textless", "fixed-product-markings", "localized-full-page"},
+            {"textless", "numeric-only", "fixed-product-markings", "localized-full-page"},
             {asset.text_policy for asset in recipe.assets},
         )
         self.assertTrue(
@@ -255,6 +290,39 @@ class TestAssetRecipe(unittest.TestCase):
                 for asset in recipe.assets
             )
         )
+        by_key = {asset.asset_key: asset for asset in recipe.assets}
+        expected_pages = {
+            "operation/je1000f_us/energy_saving": 13,
+            "operation/je1000f_us/lcd_mode": 14,
+            "operation/je1000f_us/ups_mode": 15,
+            "charging/je1000f_us/solar_adapter": 17,
+            "charging/je1000f_us/car_charge": 17,
+        }
+        for asset_key, page in expected_pages.items():
+            with self.subTest(asset_key=asset_key):
+                asset = by_key[asset_key]
+                self.assertEqual(page, asset.page)
+                self.assertEqual("approved", asset.gate.status)
+                self.assertEqual(("JE-1000F",), asset.scope.models)
+                self.assertEqual(("US",), asset.scope.regions)
+                self.assertTrue(all(
+                    not output.path.startswith(
+                        "docs/templates/word_template/common_assets/"
+                    )
+                    for output in asset.outputs
+                ))
+        qr_candidate = by_key["qr/back_cover_ai_candidate"]
+        self.assertEqual(59, qr_candidate.page)
+        self.assertEqual("quarantine", qr_candidate.gate.status)
+        self.assertFalse(qr_candidate.build_eligible)
+        self.assertTrue(qr_candidate.visual_review_required)
+        self.assertEqual("numeric-only", qr_candidate.text_policy)
+        self.assertEqual(
+            (309.16900634765625, 464.8030090332031,
+             338.9330139160156, 494.5670166015625),
+            qr_candidate.crop_bbox,
+        )
+        self.assertTrue(all(output.expected_sha256 for output in qr_candidate.outputs))
 
 
 if __name__ == "__main__":

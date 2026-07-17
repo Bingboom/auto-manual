@@ -169,7 +169,7 @@ PANTALLA LCD
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Encendido breve}{Encender}{Presione el botón POWER principal o cuando el producto se esté cargando.}{Apagar}{Presione el botón POWER principal.}{Apagado automático}{La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.}
       \HBLcdModeSecondGroup{Estable en (durante el estado de carga o descarga)}{Encender}{Presione dos veces el botón POWER principal cuando el producto esté encendido.}{Apagar}{Presione el botón POWER principal.}{Apagado automático}{La pantalla LCD se apaga automáticamente después de |DEFAULT_STANDBY_DURATION| de inactividad.}
       \end{HBLcdModeTable}

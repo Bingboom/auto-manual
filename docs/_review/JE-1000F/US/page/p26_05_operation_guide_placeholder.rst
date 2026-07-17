@@ -8,7 +8,7 @@ FONCTIONNEMENT
 MARCHE/ARRÊT
 ------------
 
-.. image:: _assets/templates/word_template/common_assets/operation/main_power.png
+.. image:: asset:operation/main_power
    :alt: Fonction marche/arrêt.
    :width: 360px
 
@@ -17,14 +17,14 @@ MARCHE/ARRÊT
 | **Temps de veille par défaut :** 2 heures.
 | Le produit s'éteindra automatiquement après 2 heures d'inactivité, sans charge ni décharge.
 | \*Le temps de veille peut être réglé dans l'application Jackery.
-| Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton power CA ou le bouton d’alimentation CC / USB est activé mais que le produit ne charge ni ne décharge.
+| Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton d’alimentation CA ou le bouton d’alimentation CC / USB est activé mais que le produit ne charge ni ne décharge.
 
 SORTIE CA MARCHE/ARRÊT
 ----------------------
 
 **Prérequis :** Le produit est allumé.
 
-.. image:: _assets/templates/word_template/common_assets/operation/ac_output.png
+.. image:: asset:operation/ac_output
    :alt: Fonction de sortie CA.
    :width: 360px
 
@@ -38,7 +38,7 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
 
 **Prérequis :** Le produit est allumé.
 
-.. image:: _assets/templates/word_template/common_assets/operation/dc_usb_output.png
+.. image:: asset:operation/dc_usb_output
    :alt: Fonction de sortie CC et USB.
    :width: 360px
 
@@ -74,11 +74,11 @@ MODE D'ÉCONOMIE D'ÉNERGIE
 
 Pour éviter une consommation inutile de la batterie due à l'oubli de désactiver la sortie, le produit active par défaut le mode d'économie d'énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode d'économie d'énergie s'affiche sur l'écran LCD. Dans ce mode, si aucun appareil n'est connecté ou si la consommation de l'appareil connecté est inférieure à un certain seuil (sortie CA de 25 W ou sortie CC/USB de 2 W), la sortie correspondante s'éteint automatiquement après la durée définie. Le réglage par défaut est 12 heures. La durée du mode d'économie d'énergie peut être réglée dans l'application Jackery sur 1H, 2 H, 8 H, 12 H ou 24 H. Si l'option "Never Off" est sélectionnée, le mode d'économie d'énergie sera désactivé.
 
-Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le bouton power CA et sur le bouton d'alimentation pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
+Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le bouton d’alimentation CA et sur le bouton d’alimentation principal pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
 
 Lors de l'alimentation d'appareils à faible puissance (CA ≤ 25 W ou CC/USB ≤ 2 W), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant le fonctionnement.
 
-.. image:: _assets/templates/word_template/common_assets/operation/energy_saving.png
+.. image:: asset:operation/energy_saving
    :alt: Fonction du mode d'économie d'énergie.
    :width: 320px
 
@@ -97,7 +97,7 @@ LAMPE LED MARCHE/ARRÊT
 
 La lampe LED dispose de deux modes : mode éclairage et mode SOS. Dans n'importe quel mode, appuyez et maintenez sur le bouton pour éteindre la lumière.
 
-.. image:: _assets/templates/word_template/common_assets/operation/led_light.png
+.. image:: asset:operation/led_light
    :alt: Fonction de la lampe LED.
    :width: 360px
 
@@ -112,11 +112,11 @@ Fonction de reprise de Sortie CA et CC
 Cette fonction mémorise l’état de la sortie et reprend automatiquement les sorties CA et CC sous certaines conditions définies.
 
 +-----------------------------------------------------------------------+------------------------------------------------------------+
-| Conditions de reprise automatique                                     | Conditions sans reprise automatique                        |
+| Conditions de reprise automatique                                     | Conditions sans reprise automatique                       |
 +=======================================================================+============================================================+
 | Mise sous tension/redémarrage après arrêt ou redémarrage              | Sortie désactivée manuellement (bouton/App)                |
 +-----------------------------------------------------------------------+------------------------------------------------------------+
-| SOC de la batterie ≥ limite de décharge +10% après avoir atteint      | Sortie désactivée en mode économie d’énergie               |
+| SOC de la batterie ≥ limite de décharge +10% après avoir atteint      | Sortie désactivée en mode économie d’énergie              |
 | la limite                                                             +------------------------------------------------------------+
 |                                                                       | Sortie désactivée suite à un déclenchement de protection   |
 +-----------------------------------------------------------------------+------------------------------------------------------------+
@@ -133,7 +133,7 @@ AFFICHAGE LCD
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Mode d'affichage LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Mode d'affichage LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en discontinu</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>
@@ -166,7 +166,7 @@ AFFICHAGE LCD
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Allumer en discontinu}{Allumer}{Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge.}{Éteindre}{Appuyez sur le bouton d'alimentation principal.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.}
       \HBLcdModeSecondGroup{Allumer en continu (en cours de charge ou de décharge)}{Allumer}{Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé.}{Éteindre}{Appuyez sur le bouton d'alimentation principal.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement après 2 heures d'inactivité.}
       \end{HBLcdModeTable}

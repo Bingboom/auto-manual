@@ -1,0 +1,126 @@
+{
+  "schema_version": "reviewed-asset-promotion/v1",
+  "promotion_id": "je1000f-us-app-ui-v1",
+  "decision": {
+    "reviewer": "唐夏冰",
+    "decided_at": "2026-07-16T22:35:10-07:00",
+    "outcome": "approved"
+  },
+  "scope": {
+    "models": ["JE-1000F"],
+    "regions": ["US"],
+    "languages": ["en", "fr", "es"]
+  },
+  "bindings": {
+    "source": {
+      "name": "16-0102-000404 说明书 HTE1531000A-US-JAK RoHS REACH.ai",
+      "sha256": "ee1fd9367021c99b3a16e14dc8aa702929c71ac4c98c7132816da05d90ce06ed"
+    },
+    "frozen_reference": {
+      "name": "Jackery Explorer 1000 User Manual V2.0-2026-06-05.pdf",
+      "sha256": "e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2"
+    },
+    "recipe": {
+      "path": "data/asset_recipes/manual_je1000f_us_master.json",
+      "sha256": "ed86ba70284dfdc45ab3337c557a30802425dc842700d39db191773237d943d5"
+    },
+    "evidence": {
+      "path": "data/asset_evidence/app_ui_candidates.json",
+      "sha256": "d821ead5e7cabb949294ec0a27d6a63b48ec17ce5f45f176e1521682d40f88a0"
+    }
+  },
+  "candidate_asset_key_whitelist": [
+    "app/je1000f_us/english_ui/add_device_home",
+    "app/je1000f_us/english_ui/bluetooth_configuration",
+    "app/je1000f_us/english_ui/device_scan",
+    "app/je1000f_us/english_ui/wifi_configuration",
+    "app/je1000f_us/english_ui/device_dashboard"
+  ],
+  "promoted_asset_key_whitelist": [
+    "app/je1000f_us/add_device",
+    "app/je1000f_us/connect_result"
+  ],
+  "candidate_assets": [
+    {
+      "asset_key": "app/je1000f_us/english_ui/add_device_home",
+      "path": "data/asset_evidence/app_ui/je1000f_us/ai-p39-add-device-home.png",
+      "sha256": "5b68f2e13b4afe6fa4302ce4b6160ec64f0f7b3799e05a2a4db6ed41ea796005",
+      "dimensions_px": [278, 601]
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/bluetooth_configuration",
+      "path": "data/asset_evidence/app_ui/je1000f_us/ai-p39-bluetooth-configuration.png",
+      "sha256": "7d78debeed59a9076758635aefc8cb1056e6c71142a3b68b20e640c4c6ac934c",
+      "dimensions_px": [277, 599]
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/device_scan",
+      "path": "data/asset_evidence/app_ui/je1000f_us/ai-p40-device-scan.png",
+      "sha256": "4fc752f20312b665f84963258593960e44eb0c205686c46696e6a579ca142d4c",
+      "dimensions_px": [272, 588]
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/wifi_configuration",
+      "path": "data/asset_evidence/app_ui/je1000f_us/ai-p40-wifi-configuration.png",
+      "sha256": "1a22c0ccf6ce3f2827e6eb1f5e1a547f0daba8474d5ab95d66a4f5cecafa481e",
+      "dimensions_px": [272, 587]
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/device_dashboard",
+      "path": "data/asset_evidence/app_ui/je1000f_us/ai-p40-device-dashboard.png",
+      "sha256": "816b6059fe5493ee6b9a2c3915e5b542799e47ba61160509ea81f351e539d02a",
+      "dimensions_px": [272, 651]
+    }
+  ],
+  "promoted_outputs": [
+    {
+      "asset_key": "app/je1000f_us/add_device",
+      "path": "docs/templates/word_template/common_assets/app/je1000f_us/add_device_je1000f_us.png",
+      "sha256": "90ca2154225543ebddbd91dc49ca66ba6d4534180c54d6d4d6e8c6502efeda24",
+      "dimensions_px": [680, 601],
+      "composition": {
+        "canvas_px": [680, 601],
+        "background": "#FFFFFF",
+        "placements": [
+          {
+            "candidate_asset_key": "app/je1000f_us/english_ui/add_device_home",
+            "xy_px": [0, 0],
+            "source_rect_px": [0, 0, 278, 601]
+          },
+          {
+            "candidate_asset_key": "app/je1000f_us/english_ui/bluetooth_configuration",
+            "xy_px": [403, 0],
+            "source_rect_px": [0, 0, 277, 599]
+          }
+        ]
+      }
+    },
+    {
+      "asset_key": "app/je1000f_us/connect_result",
+      "path": "docs/templates/word_template/common_assets/app/je1000f_us/connect_result_je1000f_us.png",
+      "sha256": "50eca58b0f33d54f42f0efd137a79d457d66ff9a886b1c962c2a22aab044b7ec",
+      "dimensions_px": [1046, 651],
+      "composition": {
+        "canvas_px": [1046, 651],
+        "background": "#FFFFFF",
+        "placements": [
+          {
+            "candidate_asset_key": "app/je1000f_us/english_ui/device_scan",
+            "xy_px": [0, 4],
+            "source_rect_px": [0, 0, 272, 588]
+          },
+          {
+            "candidate_asset_key": "app/je1000f_us/english_ui/wifi_configuration",
+            "xy_px": [387, 3],
+            "source_rect_px": [0, 0, 272, 587]
+          },
+          {
+            "candidate_asset_key": "app/je1000f_us/english_ui/device_dashboard",
+            "xy_px": [774, 0],
+            "source_rect_px": [0, 0, 272, 600]
+          }
+        ]
+      }
+    }
+  ]
+}

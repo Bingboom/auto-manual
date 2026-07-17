@@ -8,7 +8,7 @@ OPERATIONS
 POWER ON/OFF
 ------------
 
-.. image:: _assets/templates/word_template/common_assets/operation/main_power.png
+.. image:: renderers/latex/assets/op_main_power.png
    :alt: Power on/off operation placeholder.
    :width: 360px
 
@@ -25,7 +25,7 @@ AC OUTPUT ON/OFF
 
 **Prerequisite**: The product is powered on.
 
-.. image:: _assets/templates/word_template/common_assets/operation/ac_output.png
+.. image:: renderers/latex/assets/op_ac_output.png
    :alt: AC output on/off operation placeholder.
    :width: 360px
 
@@ -41,7 +41,7 @@ DC 12V/USB OUTPUT ON/OFF
 
 **Prerequisite**: The product is powered on.
 
-.. image:: _assets/templates/word_template/common_assets/operation/dc_usb_output.png
+.. image:: renderers/latex/assets/op_dc_usb_output.png
    :alt: DC USB output on/off operation placeholder.
    :width: 360px
 

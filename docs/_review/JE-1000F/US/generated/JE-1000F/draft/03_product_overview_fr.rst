@@ -8,7 +8,7 @@ APERÇU DU PRODUIT
 VUE DE FACE
 -----------
 
-.. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
+.. image:: _assets/templates/word_template/common_assets/overview/front_controls.png
    :alt: Schéma de la vue de face.
    :width: 420px
 

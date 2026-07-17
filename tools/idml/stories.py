@@ -36,12 +36,19 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     in_twocol = False
     next_h1_page_top: float | None = None
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
+    first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
+    page_language = {
+        "WARRANTY": "en",
+        "GARANTIE": "fr",
+        "GARANTÍA": "es",
+    }.get(first_h1)
     text_measure = writer.page_w - writer.m_l - writer.m_r
     if is_preface:
         text_measure = writer.page_w - param_pt(
             writer.params, "idml_preface_margin_left", writer.m_l,
         ) - param_pt(writer.params, "idml_preface_margin_right", writer.m_r)
     column_measure = (text_measure - 11.0) / 2.0
+
     for bi, (kind, text) in enumerate(blocks):
         if kind == "layout":
             if text == "twocol_start":
@@ -60,7 +67,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             measure_w = column_measure if in_twocol else (text_measure if is_preface else None)
             xml_part, h = writer._render_component(
                 sid, bi, spec, bundle_root, terminal,
-                span_columns=span_columns, measure_w=measure_w)
+                span_columns=span_columns, measure_w=measure_w,
+                language=page_language)
             if xml_part:
                 parts.append(xml_part)
                 est += h
@@ -110,6 +118,22 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         span_columns = has_twocol_layout and not in_twocol and kind in {"h1", "h2"}
         paragraph = writer._psr(
             style, text, terminal=terminal, span_columns=span_columns)
+        if kind == "warrantynote":
+            note_scale = param_pt(
+                writer.params,
+                f"lang_{page_language}_idml_warranty_note_horizontal_scale",
+                param_pt(
+                    writer.params,
+                    "idml_warranty_note_horizontal_scale",
+                    100.0,
+                ),
+            )
+            paragraph = paragraph.replace(
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                f'HorizontalScale="{note_scale:g}"',
+                1,
+            )
         if kind == "h2_overview_front":
             paragraph = paragraph.replace(
                 "<ParagraphStyleRange ",
@@ -142,7 +166,12 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         per_line = max(20, int(measure / (0.52 * size)))
         lines = sum(max(1, (len(seg) + per_line - 1) // per_line)
                     for seg in text.split("\n"))
-        est += leading * lines
+        paragraph_spacing = 0.0
+        if is_preface and kind == "body":
+            paragraph_spacing = param_pt(
+                writer.params, "idml_preface_paragraph_space_after", 2.0,
+            ) * len(text.split("\n"))
+        est += leading * lines + paragraph_spacing
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'

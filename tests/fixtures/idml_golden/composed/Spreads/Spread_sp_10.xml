@@ -2,12 +2,68 @@
 <idPkg:Spread xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Spread Self="sp_10" Label="hb:self=sp_10" PageCount="1" BindingLocation="0" ShowMasterItems="true">
   <Page Self="sp_10_pg" Label="hb:self=sp_10_pg" Name="11" AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" GeometricBounds="0 0 524.693 368.787" ItemTransform="1 0 0 1 -184.394 -262.346"/>
-  <Rectangle Self="rc_st_placed_back_cover" Label="hb:self=rc_st_placed_back_cover" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0">
-    <Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="-184.394 -262.346" LeftDirection="-184.394 -262.346" RightDirection="-184.394 -262.346"/><PathPointType Anchor="-184.394 262.346" LeftDirection="-184.394 262.346" RightDirection="-184.394 262.346"/><PathPointType Anchor="184.394 262.346" LeftDirection="184.394 262.346" RightDirection="184.394 262.346"/><PathPointType Anchor="184.394 -262.346" LeftDirection="184.394 -262.346" RightDirection="184.394 -262.346"/></PathPointArray></GeometryPathType></PathGeometry></Properties>
-    <Image Self="rc_st_placed_back_cover_img" ItemTransform="1 0 0 1 -184.394 -262.346">
-      <Link Self="rc_st_placed_back_cover_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/renderers/latex/assets/back_cover-en.pdf"/>
-    </Image>
-    <FrameFittingOption FittingOnEmptyFrame="Proportionally"/>
+  <Rectangle Self="bg_st_back_cover_bar" Label="hb:self=bg_st_back_cover_bar" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Color/HB Line K40" StrokeWeight="0.75" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.994 200.996" LeftDirection="-156.994 197.958" RightDirection="-156.994 200.996"/>
+            <PathPointType Anchor="-156.994 216.996" LeftDirection="-156.994 216.996" RightDirection="-156.994 220.034"/>
+            <PathPointType Anchor="-151.494 222.496" LeftDirection="-154.531 222.496" RightDirection="-151.494 222.496"/>
+            <PathPointType Anchor="32.1785 222.496" LeftDirection="32.1785 222.496" RightDirection="35.2161 222.496"/>
+            <PathPointType Anchor="37.6785 216.996" LeftDirection="37.6785 220.034" RightDirection="37.6785 216.996"/>
+            <PathPointType Anchor="37.6785 200.996" LeftDirection="37.6785 200.996" RightDirection="37.6785 197.958"/>
+            <PathPointType Anchor="32.1785 195.496" LeftDirection="35.2161 195.496" RightDirection="32.1785 195.496"/>
+            <PathPointType Anchor="-151.494 195.496" LeftDirection="-151.494 195.496" RightDirection="-154.531 195.496"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
   </Rectangle>
+  <TextFrame Self="tf_st_back_cover_company" Label="hb:self=tf_st_back_cover_company" ParentStory="st_back_cover_company" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-156.994 161.496" LeftDirection="-156.994 161.496" RightDirection="-156.994 161.496"/>
+            <PathPointType Anchor="-156.994 187.496" LeftDirection="-156.994 187.496" RightDirection="-156.994 187.496"/>
+            <PathPointType Anchor="156.994 187.496" LeftDirection="156.994 187.496" RightDirection="156.994 187.496"/>
+            <PathPointType Anchor="156.994 161.496" LeftDirection="156.994 161.496" RightDirection="156.994 161.496"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_st_back_cover_phone" Label="hb:self=tf_st_back_cover_phone" ParentStory="st_back_cover_phone" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-148.994 202.496" LeftDirection="-148.994 202.496" RightDirection="-148.994 202.496"/>
+            <PathPointType Anchor="-148.994 216.496" LeftDirection="-148.994 216.496" RightDirection="-148.994 216.496"/>
+            <PathPointType Anchor="-42.238 216.496" LeftDirection="-42.238 216.496" RightDirection="-42.238 216.496"/>
+            <PathPointType Anchor="-42.238 202.496" LeftDirection="-42.238 202.496" RightDirection="-42.238 202.496"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
+  <TextFrame Self="tf_st_back_cover_lines" Label="hb:self=tf_st_back_cover_lines" ParentStory="st_back_cover_lines" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="-35.9582 198.496" LeftDirection="-35.9582 198.496" RightDirection="-35.9582 198.496"/>
+            <PathPointType Anchor="-35.9582 218.496" LeftDirection="-35.9582 218.496" RightDirection="-35.9582 218.496"/>
+            <PathPointType Anchor="39.3987 218.496" LeftDirection="39.3987 218.496" RightDirection="39.3987 218.496"/>
+            <PathPointType Anchor="39.3987 198.496" LeftDirection="39.3987 198.496" RightDirection="39.3987 198.496"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" TextColumnGutter="11" AutoSizingType="Off" InsetSpacing="0 0 0 0"/>
+  </TextFrame>
 </Spread>
 </idPkg:Spread>

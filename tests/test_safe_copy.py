@@ -26,7 +26,7 @@ class TestRuntimeBundleSafeCopy(unittest.TestCase):
             encoding="utf-8",
         )
         (root / "data" / "asset_registry.csv").write_text(
-            "asset_key,\u7c7b\u522b,\u8bed\u8a00\u7ef4\u5ea6,\u72b6\u6001,\u5f85\u65e0\u5b57\u5316,\u9002\u7528\u673a\u578b,\u9002\u7528\u533a\u57df,"
+            "asset_key,override_for,\u7c7b\u522b,\u8bed\u8a00\u7ef4\u5ea6,\u72b6\u6001,\u5f85\u65e0\u5b57\u5316,\u9002\u7528\u673a\u578b,\u9002\u7528\u533a\u57df,"
             "\u5bfc\u51fa\u7269\u8def\u5f84,\u8bed\u8a00\u53d8\u4f53,\u5185\u5bb9\u54c8\u5e0c,\u5907\u6ce8\n",
             encoding="utf-8",
         )

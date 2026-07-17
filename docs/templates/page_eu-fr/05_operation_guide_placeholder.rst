@@ -162,7 +162,7 @@ AFFICHAGE LCD
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Allumer en discontinu}{Allumer}{Appuyez sur le bouton POWER principal ou lorsque le produit est en charge.}{Éteindre}{Appuyez sur le bouton POWER principal.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.}
       \HBLcdModeSecondGroup{Allumer en continu (en cours de charge ou de décharge)}{Allumer}{Appuyez deux fois sur le bouton POWER principal lorsque le produit est allumé.}{Éteindre}{Appuyez sur le bouton POWER principal.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité.}
       \end{HBLcdModeTable}

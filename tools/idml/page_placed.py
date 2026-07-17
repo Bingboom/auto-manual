@@ -1,11 +1,9 @@
-"""Full-page placed-PDF spreads (cover and product overview).
+"""Full-page placed-PDF cover and editable back-cover composition.
 
-The LaTeX pipeline ships these pages as finished art via ``\\includepdf``
-(``docs/renderers/latex/assets/cover-en.pdf``,
-``product_overview-<lang>.pdf``); composing them from parts would only
-drift from the master. Place the same asset as a full-bleed linked
-graphic so InDesign shows the identical page and the delivery packager
-collects the PDF into ``Links/`` like any other asset.
+Production IDML may place the cover as finished art. Body pages and the back
+cover stay native so their copy, tables, and components remain editable in
+InDesign; in particular, the LaTeX-only ``product_overview-<lang>.pdf`` and
+``back_cover-<lang>.pdf`` assets must never become production IDML links.
 """
 from __future__ import annotations
 
@@ -25,15 +23,16 @@ _ATTR = {'"': "&quot;"}
 
 
 def placed_asset_for(page_stem: str, lang: str, docs_dir: Path) -> Path | None:
-    """Resolve the finished-art PDF for a bundle page, if any."""
+    """Resolve the production-approved full-page asset, if any.
+
+    Only the cover is allowed to use a full-page placed PDF. Product overview
+    pages deliberately fall through to the editable prose/component composer,
+    and the back cover is composed from its source-authored semantic payload.
+    """
     assets_dir = latex_renderer_of(docs_dir) / "assets"
     lang = (lang or "en").lower()
     if page_stem.startswith("cover"):
         candidates = [f"cover-{lang}.pdf", "cover-en.pdf"]
-    elif "03_product_overview" in page_stem:
-        candidates = [f"product_overview-{lang}.pdf", "product_overview-en.pdf"]
-    elif page_stem.startswith("back_cover"):
-        candidates = [f"back_cover-{lang}.pdf", "back_cover-en.pdf"]
     else:
         return None
     for name in candidates:
@@ -79,10 +78,7 @@ def add_placed_pdf_page(writer, sid: str, asset: Path, page_index: int) -> str:
     return spread_id
 
 
-# Temporary composed back cover, pending a finished-art asset
-# (back_cover-<lang>.pdf) exported from the master InDesign file — copy
-# below mirrors the V2.0 template's back page verbatim. TODO: delete this
-# table once the asset lands; placed_asset_for will then take over.
+# Fallback copy for bundles that predate the semantic back-cover payload.
 _BACK_COVER_COPY = {
     "US": {
         "company": "JACKERY INC.",
@@ -112,7 +108,10 @@ def add_back_cover_page(
     phone_sid = writer._add_story_parts(
         f"{sid}_phone", "Back cover phone",
         [writer._psr("HB Spec Section", copy["phone"], terminal=True)])
-    lines = copy.get("lines", "")
+    lines = copy.get("lines", "") or "\n".join(filter(None, (
+        copy.get("email", ""),
+        copy.get("web", ""),
+    )))
     lines_sid = (writer._add_story_parts(
         f"{sid}_lines", "Back cover contact lines",
         [writer._psr("HB Body", lines, terminal=True)]) if lines else None)
@@ -161,9 +160,5 @@ def add_preferred_back_cover_page(
     page_index: int,
     copy: dict[str, str] | None = None,
 ) -> bool:
-    """Place finished back-cover art, falling back to editable composition."""
-    asset = placed_asset_for("back_cover", lang, docs_dir)
-    if asset is not None:
-        add_placed_pdf_page(writer, "st_placed_back_cover", asset, page_index)
-        return True
+    """Compose an editable back cover, even when LaTeX finished art exists."""
     return add_back_cover_page(writer, region, page_index, copy)

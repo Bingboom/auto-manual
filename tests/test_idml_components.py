@@ -88,7 +88,168 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Preface Body"', xml)
         self.assertIn('SingleColumnWidth="13.0394"', xml)
         self.assertIn('FillColor="Color/HB Brand Dark"', xml)
-        self.assertAlmostEqual(8.22047, height, places=4)
+        self.assertIn('LeftInset="2.244"', xml)
+        self.assertIn('LeftInset="8.947"', xml)
+        self.assertIn('BaselineShift="0.5672"', xml)
+        self.assertIn('BaselineShift="-1.2665"', xml)
+        self.assertIn('SpaceAfter="8.3191"', xml)
+        self.assertAlmostEqual(16.53957, height, places=4)
+
+    def test_preface_language_badge_geometry_remains_param_driven(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        params = {
+            "idml_preface_tag_left_inset": ("2.5", "pt"),
+            "idml_preface_title_left_inset": ("9.25", "pt"),
+            "idml_preface_tag_baseline_shift": ("0.4", "pt"),
+            "idml_preface_title_baseline_shift": ("-1.1", "pt"),
+            "idml_preface_header_space_after": ("7.75", "pt"),
+        }
+        xml, height = render(
+            MINIMAL_SPECS["langtag"],
+            RenderContext(
+                params=params, page_w=368.79, m_l=28.35, m_r=28.35,
+                root=ROOT, bundle_root=ROOT / "does-not-exist",
+            ),
+            tid="preface_badge_override", terminal=True,
+        )
+        self.assertIn('LeftInset="2.5"', xml)
+        self.assertIn('LeftInset="9.25"', xml)
+        self.assertIn('BaselineShift="0.4"', xml)
+        self.assertIn('BaselineShift="-1.1"', xml)
+        self.assertIn('SpaceAfter="7.75"', xml)
+        self.assertAlmostEqual(15.97047, height, places=4)
+
+    def test_reference_preface_typography_is_loaded_from_layout_params(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.styles import para_styles
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        styles = {name: (size, leading, weight) for name, size, leading, weight, _ in para_styles(params)}
+
+        self.assertEqual((8.668, 8.668, "Bold"), styles["HB Preface Tag"])
+        self.assertEqual((7.0, 10.003, "Regular"), styles["HB Preface Body"])
+
+    def test_reference_warranty_typography_separates_body_and_list_rhythm(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.styles import para_styles, styles_xml
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        styles = {
+            name: (size, leading, weight)
+            for name, size, leading, weight, _ in para_styles(params)
+        }
+
+        self.assertEqual((6.0, 6.0, "Regular"), styles["HB Warranty Body"])
+        self.assertEqual((6.0, 7.2, "Regular"), styles["HB Warranty List"])
+        self.assertEqual((8.0, 8.8, "Bold"), styles["HB Warranty Title"])
+        note_style = styles_xml(params).split(
+            'Self="ParagraphStyle/HB Warranty Note"', 1,
+        )[1].split("</ParagraphStyle>", 1)[0]
+        self.assertIn('Hyphenation="false"', note_style)
+
+    def test_localized_warranty_note_uses_reviewed_reference_width(self) -> None:
+        from tools.export_idml import IdmlWriter, load_layout_params
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        cases = {"WARRANTY": "100", "GARANTIE": "94", "GARANTÍA": "94"}
+        for heading, expected_scale in cases.items():
+            with self.subTest(heading=heading):
+                writer = IdmlWriter(params)
+                writer.add_prose_story(
+                    "st_warranty_note",
+                    "warranty",
+                    [("h1", heading), ("warrantynote", "Localized legal note.")],
+                    ROOT,
+                )
+                story = dict(writer.stories)["st_warranty_note"]
+                self.assertIn(
+                    f'HorizontalScale="{expected_scale}"',
+                    story,
+                )
+
+    def test_warranty_lead_uses_language_specific_reference_geometry(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        heights = {}
+        xml_by_language = {}
+        for language in ("en", "fr", "es"):
+            xml, height = render(
+                {
+                    "kind": "warrantylead",
+                    "texts": ["A short purchase-channel warranty lead."],
+                },
+                RenderContext(
+                    params=params,
+                    page_w=368.79,
+                    m_l=28.35,
+                    m_r=28.35,
+                    root=ROOT,
+                    bundle_root=ROOT / "does-not-exist",
+                    language=language,
+                ),
+                tid=f"warranty_lead_{language}",
+                terminal=True,
+            )
+            heights[language] = height
+            xml_by_language[language] = xml
+
+        self.assertGreater(heights["en"], heights["es"])
+        self.assertGreater(heights["es"], heights["fr"])
+        self.assertIn('HorizontalScale="96"', xml_by_language["fr"])
+        self.assertIn('HorizontalScale="100"', xml_by_language["en"])
+
+    def test_warranty_body_spacing_drives_story_and_panel_height(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        spec = {
+            "kind": "warrantysection",
+            "title": "Droits d'interprétation",
+            "index": 6,
+            "blocks": [
+                {"kind": "body", "text": "Premier paragraphe de garantie."},
+                {"kind": "body", "text": "Deuxième paragraphe de garantie."},
+                {"kind": "body", "text": "Dernier paragraphe de garantie."},
+            ],
+        }
+
+        def rendered(param_values):
+            stories = []
+
+            def add_story(sid, title, parts):
+                stories.append((sid, title, parts))
+                return sid
+
+            xml, height = render(
+                spec,
+                RenderContext(
+                    params=param_values,
+                    page_w=368.79,
+                    m_l=28.35,
+                    m_r=28.35,
+                    root=ROOT,
+                    bundle_root=ROOT / "does-not-exist",
+                    language="fr",
+                    add_story=add_story,
+                ),
+                tid="warranty_spacing",
+                terminal=True,
+            )
+            return xml, height, {sid: "".join(parts) for sid, _title, parts in stories}
+
+        _xml, compact_height, compact_stories = rendered(params)
+        body = compact_stories["st_anchor_warranty_body_warranty_spacing"]
+        self.assertEqual(2, body.count('SpaceAfter="2.83"'))
+        self.assertNotIn('SpaceAfter="2.27"', body)
+
+        loose_params = dict(params)
+        loose_params["idml_warranty_paragraph_after"] = ("2.27", "pt")
+        _xml, loose_height, _stories = rendered(loose_params)
+        self.assertAlmostEqual(2 * (2.27 - 2.83), loose_height - compact_height)
 
     def test_tail_warning_cells_are_vertically_centered(self) -> None:
         from tools.idml.components import render
@@ -140,6 +301,33 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('<Group Self="grp_notice_notice_wrap"', _xml)
         self.assertIn('<Rectangle Self="plate_notice_notice_wrap"', _xml)
         self.assertNotIn('<Table ', _xml)
+
+    def test_notice_width_override_keeps_contracted_size_and_leading(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        ctx = RenderContext(
+            params=params,
+            page_w=368.79,
+            m_l=28.35,
+            m_r=28.35,
+            root=ROOT,
+            bundle_root=ROOT / "does-not-exist",
+        )
+        spec = {
+            "kind": "notice",
+            "label": "REMARQUE",
+            "list": True,
+            "texts": ["un", "deux", "trois"],
+            "body_horizontal_scale": 1.0,
+        }
+
+        xml, _height = render(spec, ctx, tid="notice_natural_width", terminal=True)
+
+        self.assertIn('PointSize="6.5" Leading="7.83"', xml)
+        self.assertIn('HorizontalScale="100"', xml)
+        self.assertNotIn('HorizontalScale="106.9"', xml)
 
     def test_lcd_mode_states_are_true_vertical_rowspans(self) -> None:
         from tools.idml.components import render

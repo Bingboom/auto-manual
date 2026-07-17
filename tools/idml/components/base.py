@@ -38,6 +38,7 @@ class RenderContext:
     root: Path
     bundle_root: Path
     data_root: Path | None = None
+    language: str | None = None
     # writer._add_story_parts, for components that render rounded objects
     # as anchored frames (one sub-story per frame). None in pure/table-only
     # contexts; renderers must keep a table fallback for that case.

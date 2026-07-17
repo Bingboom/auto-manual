@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from types import SimpleNamespace
+from unittest.mock import patch
 
 from tools import build_dispatch
 
@@ -135,6 +137,59 @@ class TestBuildDispatch(unittest.TestCase):
         self.assertIn("--mode", calls[3][1])
         mode_index = calls[3][1].index("--mode")
         self.assertEqual("flow", calls[3][1][mode_index + 1])
+
+    def test_dispatch_idml_approved_target_skips_unrelated_latex_pdf(self) -> None:
+        with patch.object(
+            build_dispatch,
+            "_target_has_approved_reference_plan",
+            return_value=True,
+        ):
+            calls = self._dispatch("idml")
+
+        self.assertEqual("rst", calls[1][2]["action_override"])
+
+    def test_approved_reference_target_requires_exact_model_region_languages(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config = root / "configs" / "config.us.yaml"
+            config.parent.mkdir(parents=True)
+            config.write_text(
+                "build:\n"
+                "  default_model: JE-1000F\n"
+                "  default_region: US\n"
+                "  languages: [en, fr, es]\n",
+                encoding="utf-8",
+            )
+            registry = (
+                root
+                / "docs"
+                / "renderers"
+                / "contracts"
+                / "reference_layout_registry.json"
+            )
+            registry.parent.mkdir(parents=True)
+            registry.write_text(
+                '{"plans":[{"target":{"model":"JE-1000F","region":"US",'
+                '"languages":["en","fr","es"]}}]}\n',
+                encoding="utf-8",
+            )
+            args = SimpleNamespace(model="JE-1000F", region="US")
+
+            self.assertTrue(
+                build_dispatch._target_has_approved_reference_plan(
+                    args,
+                    config_path=config,
+                    repo_root=root,
+                )
+            )
+            args.region = "EU"
+            self.assertFalse(
+                build_dispatch._target_has_approved_reference_plan(
+                    args,
+                    config_path=config,
+                    repo_root=root,
+                )
+            )
 
     def test_dispatch_idml_preserves_review_asis_source(self) -> None:
         calls = self._dispatch("idml", source="review-asis")

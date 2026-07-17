@@ -247,6 +247,103 @@
       "risk_tags": []
     },
     {
+      "asset_key": "app/je1000f_us/english_ui/add_device_home",
+      "page": 39,
+      "build_eligible": false,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["en", "fr", "es"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [94.33814239501953, 225.7229766845703, 163.60916137695312, 375.71783447265625]}
+      ],
+      "outputs": [
+        {"format": "png", "path": "data/asset_evidence/app_ui/je1000f_us/ai-p39-add-device-home.png", "scale": 4, "expected_sha256": "5b68f2e13b4afe6fa4302ce4b6160ec64f0f7b3799e05a2a4db6ed41ea796005"}
+      ],
+      "gate": {"status": "quarantine", "reasons": ["English App UI matches the frozen trilingual reference, but App screenshots require an explicit reviewed promotion before any build may consume them"]},
+      "risk_tags": ["app-ui", "screenshot", "localized-ui"]
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/bluetooth_configuration",
+      "page": 39,
+      "build_eligible": false,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["en", "fr", "es"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [195.0587615966797, 225.8372344970703, 264.1236267089844, 375.38568115234375]}
+      ],
+      "outputs": [
+        {"format": "png", "path": "data/asset_evidence/app_ui/je1000f_us/ai-p39-bluetooth-configuration.png", "scale": 4, "expected_sha256": "7d78debeed59a9076758635aefc8cb1056e6c71142a3b68b20e640c4c6ac934c"}
+      ],
+      "gate": {"status": "quarantine", "reasons": ["English App UI matches the frozen trilingual reference, but App screenshots require an explicit reviewed promotion before any build may consume them"]},
+      "risk_tags": ["app-ui", "screenshot", "localized-ui"]
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/device_scan",
+      "page": 40,
+      "build_eligible": false,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["en", "fr", "es"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [54.30001449584961, 144.64414978027344, 122.04890441894531, 291.34307861328125]}
+      ],
+      "outputs": [
+        {"format": "png", "path": "data/asset_evidence/app_ui/je1000f_us/ai-p40-device-scan.png", "scale": 4, "expected_sha256": "4fc752f20312b665f84963258593960e44eb0c205686c46696e6a579ca142d4c"}
+      ],
+      "gate": {"status": "quarantine", "reasons": ["English App UI matches the frozen trilingual reference, but App screenshots require an explicit reviewed promotion before any build may consume them"]},
+      "risk_tags": ["app-ui", "screenshot", "localized-ui"]
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/wifi_configuration",
+      "page": 40,
+      "build_eligible": false,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["en", "fr", "es"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [150.98391723632812, 144.34149169921875, 218.7012481689453, 290.9720764160156]}
+      ],
+      "outputs": [
+        {"format": "png", "path": "data/asset_evidence/app_ui/je1000f_us/ai-p40-wifi-configuration.png", "scale": 4, "expected_sha256": "1a22c0ccf6ce3f2827e6eb1f5e1a547f0daba8474d5ab95d66a4f5cecafa481e"}
+      ],
+      "gate": {"status": "quarantine", "reasons": ["English App UI matches the frozen trilingual reference, but App screenshots require an explicit reviewed promotion before any build may consume them"]},
+      "risk_tags": ["app-ui", "screenshot", "localized-ui"]
+    },
+    {
+      "asset_key": "app/je1000f_us/english_ui/device_dashboard",
+      "page": 40,
+      "build_eligible": false,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["en", "fr", "es"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [247.9141082763672, 143.53433227539062, 315.614990234375, 306.0164489746094]}
+      ],
+      "outputs": [
+        {"format": "png", "path": "data/asset_evidence/app_ui/je1000f_us/ai-p40-device-dashboard.png", "scale": 4, "expected_sha256": "816b6059fe5493ee6b9a2c3915e5b542799e47ba61160509ea81f351e539d02a"}
+      ],
+      "gate": {"status": "quarantine", "reasons": ["English App UI matches the frozen trilingual reference, but App screenshots require an explicit reviewed promotion before any build may consume them"]},
+      "risk_tags": ["app-ui", "screenshot", "localized-ui"]
+    },
+    {
+      "asset_key": "qr/back_cover_ai_candidate",
+      "page": 59,
+      "build_eligible": false,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["und"]},
+      "text_policy": "numeric-only",
+      "visual_review_required": true,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [309.16900634765625, 464.8030090332031, 338.9330139160156, 494.5670166015625]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/back_cover_qr_ai_candidate.pdf", "expected_sha256": "b3572a0e62d37199e5f4c07ef6bc8957b478e3072ecf1a0f954f7a53c479d66a"},
+        {"format": "png", "path": "docs/renderers/latex/assets/back_cover_qr_ai_candidate.png", "scale": 8, "expected_sha256": "d905dda078190608d10a261cb16911eedd277992345eb22f07c13e94d4a76372"}
+      ],
+      "gate": {"status": "quarantine", "reasons": ["decoded payload is 160102000404, but the frozen reference PDF p58 QR payload is 160102000161; candidate must not be promoted until the authoritative payload is chosen"]},
+      "risk_tags": ["qr", "reference-mismatch"]
+    },
+    {
       "asset_key": "page/back_cover",
       "page": 59,
       "build_eligible": false,
@@ -326,6 +423,93 @@
       ],
       "gate": {"status": "approved", "reasons": ["localized callout copy and leader lines are removed; immutable product markings preserved; reviewed against source page render"]},
       "risk_tags": []
+    },
+    {
+      "asset_key": "operation/je1000f_us/energy_saving",
+      "page": 13,
+      "build_eligible": true,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [47, 100, 322, 182]},
+        {"op": "redact_text_region", "bbox_pt": [239, 174, 322, 182], "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/op_energy_saving.pdf", "expected_sha256": "fb0d5a068637fa7be040eea33a408ab975c7d7cc169e615ff00dd47393450e48"},
+        {"format": "png", "path": "docs/renderers/latex/assets/op_energy_saving.png", "scale": 4, "expected_sha256": "9dd943d3063031c0795ff8c4b2b6aac266bfb2bff78e2250e445f27352c23a07"}
+      ],
+      "gate": {"status": "approved", "reasons": ["JE-1000F device and button diagram matches the frozen PDF; localized On/Off instructions are removed from both visible art and the PDF text layer"]},
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "operation/je1000f_us/lcd_mode",
+      "page": 14,
+      "build_eligible": true,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [37, 55, 171, 156]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/op_lcd_mode.pdf", "expected_sha256": "488c0fd94e9c8c269bad83c19f2a143be4bf7ad1f9d5a1be11715f5d8c1c80b8"},
+        {"format": "png", "path": "docs/renderers/latex/assets/op_lcd_mode.png", "scale": 4, "expected_sha256": "7a44a5af8097bdf8c18b1faea682bc78cf8f1495f4b4d4d523466d4807be1244"}
+      ],
+      "gate": {"status": "approved", "reasons": ["JE-1000F POWER-button illustration matches the frozen PDF and contains no localizable manual copy"]},
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "operation/je1000f_us/ups_mode",
+      "page": 15,
+      "build_eligible": true,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [27.5, 36.2, 341.5, 211.8]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/op_ups_mode.pdf", "expected_sha256": "33d1b2fdc3ad18703465bed4a8bde505a589290ffa1c6bf238ba50f8b41c910a"},
+        {"format": "png", "path": "docs/renderers/latex/assets/op_ups_mode.png", "scale": 4, "expected_sha256": "e8803f665abb9353460c3800cf37eacc22ab9d0799b604fb467990303aacac55"}
+      ],
+      "gate": {"status": "approved", "reasons": ["JE-1000F UPS connection illustration matches the frozen PDF and contains only immutable device markings"]},
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "charging/je1000f_us/solar_adapter",
+      "page": 17,
+      "build_eligible": true,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [29, 35.5, 343, 180.2]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/solar_adapter.pdf", "expected_sha256": "f379d0b69e05a191cb772b2881207617d7adb27dd2dcd4ad015e0b8c77cb63ed"},
+        {"format": "png", "path": "docs/renderers/latex/assets/solar_adapter.png", "scale": 4, "expected_sha256": "cebf89383670126e410d3ec2b2ef84548ec03be709f6cc844647bdbd7a14a008"}
+      ],
+      "gate": {"status": "approved", "reasons": ["JE-1000F dual-DC8020 SolarSaga 100 Air connection illustration is byte-for-byte visually identical to the frozen PDF crop"]},
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "charging/je1000f_us/car_charge",
+      "page": 17,
+      "build_eligible": true,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [28, 376, 342, 491.3]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/car_charge.pdf", "expected_sha256": "cd525f93f086f454d9ac8e2b6e01ca4f952de2296ff55626a37b3b791b37dc57"},
+        {"format": "png", "path": "docs/renderers/latex/assets/car_charge.png", "scale": 4, "expected_sha256": "a918de3a4a3b22cc6f400d9250f24905459d010e13e4020c23eadf247e928e75"}
+      ],
+      "gate": {"status": "approved", "reasons": ["JE-1000F car-charge illustration is byte-for-byte visually identical to the frozen PDF crop after removing localizable Vehicle copy from the PDF text layer"]},
+      "risk_tags": ["model-specific"]
     }
   ]
 }

@@ -4,7 +4,7 @@ APERÇU DU PRODUIT
 VUE DE FACE
 -----------
 
-.. image:: asset:overview/front_product
+.. image:: asset:overview/front_controls
    :alt: Schéma de la vue de face.
    :width: 420px
 

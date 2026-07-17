@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-07-15
+Updated: 2026-07-16
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -71,56 +71,71 @@ If the env var is not set, or the folder is incomplete, the build keeps the norm
 
 If you only need the exact command semantics for one export path, use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) as the authoritative reference.
 
-InDesign export has two handoff modes: the default `idml` production path keeps
-the component-heavy editable IDML for visual design review. Production/both
-mode first builds the LaTeX reference PDF and then uses one deterministic
-`manual.ir.json` and the shared layout-token contract to create the IDML;
-`latex_page_plan.json` remains available as a reference trace. Cover/front
-matter, Safety + Symbols, FCC + What's in the Box, LCD DISPLAY,
-specifications, warranty, and back cover are fixed new-page anchors. Ordinary
-prose uses linked story chains and flows naturally between those anchors. This
-makes InDesign the layout-only continuation of the frozen build rather than a
-second content pipeline.
-In contrast,
-`python build.py idml --idml-mode flow ...` writes semantic flow Markdown and a
-rendered, editable continuous-story `manual.flow.idml`, plus source trace,
-style map, and asset manifest files for a designer's InDesign template
-workflow. The Markdown is the readable semantic/reference representation;
-the IDML renders registered components, linked images, and native tables.
-Both are generated outputs; content corrections still go back to the source
-tables, templates, review cloud doc, or TM layer before regeneration.
+InDesign export has two handoff modes. The default production path creates the
+component-heavy native/editable IDML from one deterministic `manual.ir.json`
+and the shared layout-token contract; `latex_page_plan.json` remains a
+same-source trace. Flow mode (`python3 build.py idml --idml-mode flow ...`)
+creates semantic Markdown plus an editable continuous-story IDML, style map,
+source trace, and asset manifest for a designer-owned template workflow. Both
+are generated outputs, never new content sources.
 
-After opening the production IDML, designers may adjust frame geometry,
-explicit page breaks, asset fitting, and limited tracking. Do not edit copy,
-translations, specifications, legal text, table structure, or asset identity
-in INDD. Run `tools/indesign_finalize.py` on the provisioned design Mac for the
-native INDD/PDF and zero-overset/font/link preflight; use
-`tools/idml_pdf_parity.py` to record the page-size/count gate and the visual
-delta against the LaTeX PDF. Finalization also closes each LCD rounded shell to
-the exact height of its native InDesign rows; check
-`fitted_lcd_table_groups` in the preflight report when reviewing bottom fills.
-The 26-row LCD icon table is delivered as two pages per language (7 rows then
-19 rows), with 5.6 mm maximum table icons and segment-specific vertical
-padding aligned to the `Jackery Explorer 1000 User Manual V2.0` reference.
-Finalization also gives every Meaning of Symbols table a light-grey first
-column and closes its rounded shell to the native table height; review
-`fitted_symbol_table_shells` beside the LCD counter in the preflight report.
+For the approved-PDF replica of `JE-1000F / US / en+fr+es` (方案 2), production
+mode must resolve the
+[`reference layout registry`](../docs/renderers/contracts/reference_layout_registry.json)
+and the
+[`JE-1000F US V2.0 contract`](../docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json).
+That contract is bound to the 58-page
+`Jackery Explorer 1000 User Manual V2.0-2026-06-05.pdf` with SHA-256
+`e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2`
+and `368.787 × 524.692 pt` page geometry. The physical structure is front
+matter 1–3, English 4–21, French 22–39, Spanish 40–57, and back cover 58. Its
+52 source references are bound by composition across all 58 pages. Missing or
+mismatched plan identity, source/hash drift, or page-count drift is a hard
+failure; the build must not silently use fuzzy PDF matching.
 
-If a review page still references an attachment basename with an older leading
-row ordinal or opaque hash, the build stages the unique current semantic match
-under that frozen name. Missing or ambiguous matches fail before handoff. The production IDML
-keeps fixed composite pages componentized and uses normal linked frame chains
-for ordinary prose. It also uses grouped rounded-table backgrounds, so
-designers can edit table cells without reintroducing the curved-corner inset.
-Fixed-page anchors are intentional; natural-flow stories may be resized or
-allowed to add frames during final design review.
-Formal body tables remain full-measure; their one-character text inset is a
-cell property and must not be recreated as a heading/table-group indent.
+The role boundary is strict:
 
-Use `python build.py idml --idml-mode both ...` when design needs the paired
-handoff folder: it keeps the legacy production IDML, adds
-`production/manual.production.idml`, the flow folder, `missing_assets_report.md`,
-`designer_checklist.md`, and `layout_feedback.md`.
+- source owners correct copy, translation, specifications, legal text, table
+  structure, and asset identity in Feishu/source tables, templates, review/TM,
+  or the asset registry, then rebuild;
+- the build creates native text, headings, tables, callouts, Product Overview,
+  and back-cover objects/stories; illustrations remain governed linked assets;
+- the designer may adjust frame geometry, explicit page breaks, asset fitting,
+  and limited tracking, but may not turn INDD into a second content source;
+- the approved reference PDF may be used only on a non-printing comparison
+  layer. Visible whole-page body/back-cover PDF placement is forbidden; a
+  contract-approved finished-art front cover is the narrow exception.
+
+Use `asset:<asset_key>` (for example `asset:operation/ac_output`) for governed
+illustrations. Only approved PNG/JPG/JPEG/SVG/PDF exports matching model,
+region, and language may resolve. The `.ai` file is an immutable source archive,
+not a renderer fallback. Missing, ambiguous, quarantined, stale, or
+hash-mismatched assets block assembly. Keep `asset_usage_manifest.json`,
+`asset_registry_snapshot.csv`, and `bundle_manifest.json`; a `legacy-path`
+entry alone does not prove that an asset is governed.
+
+The provisioned design Mac runs `tools/indesign_finalize.py` to create the INDD
+and PDF, with zero overset/missing-font/bad-link findings and PDF/X-4 using
+`Japan Color 2001 Coated` / `JC200103`. It then runs
+`tools/idml_pdf_parity.py` against the approved PDF (the historical
+`--latex-pdf` flag name does not mean the newly built LaTeX PDF here) and the
+approved contract. All 58 pages are compared at 300 dpi as fixed
+`1537 × 2187` RGB rasters with the approved ICC profile, 1 px blur, per-page
+RGB MAD `≤ 0.008`, changed-pixel ratio `≤ 0.040`, and changed-channel threshold
+`16`. Any failing page fails the run; averages cannot hide it.
+
+Delivery requires all 52/52 source identities, all used asset hashes/scopes,
+58-page geometry, native-object/no-whole-page-shortcut checks, preflight, print
+contract, and every page-level visual check to pass. The latest parity report
+must say `accepted=true`. This guide describes that acceptance contract; it
+does not claim the current IDML/INDD/PDF has already passed. Copyable commands
+are in the
+[`Approved-PDF native InDesign replica` section](../code-as-doc/build_doc_guide.md#approved-pdf-native-indesign-replica-option-2).
+
+Use `python3 build.py idml --idml-mode both ...` when design also needs the
+paired flow handoff folder: it keeps the production IDML and adds
+`production/manual.production.idml`, the flow folder,
+`missing_assets_report.md`, `designer_checklist.md`, and `layout_feedback.md`.
 
 Publish queue runs use `--idml-mode both` automatically and upload a single
 designer delivery zip (`manual_..._publish_<version>_handoff.zip`) instead of
@@ -130,6 +145,9 @@ reports, a fonts manifest, and the reference PDF, and the zip's knowledge-base
 link is what lands in the queue row's `idml_file` field. If
 `AUTO_MANUAL_LOCAL_GILROY_DIR` is set on the build machine, the fonts from
 that folder are also packed into the zip's `Document fonts/`.
+The checklist opens the versioned IDML at the zip root. Package link failures
+are reported in `missing_assets_report.md`; unresolved semantic source/flow
+references remain available separately in `source_asset_resolution_report.md`.
 
 When a queue row carries `Git_ref`, the worker uses the current `origin/main`
 for build code and overlays `docs/_review/` from that review ref. This keeps
@@ -395,6 +413,7 @@ Current flow:
 14. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
 15. `python build.py asset-check` validates the image-asset registry and resolves approved exports for renderer imports; `--allow-temporary` is diagnostic/operator inspection for `asset-check` only, while normal bundle assembly always rejects temporary, missing, and quarantined semantic assets; `--publish` is the stricter registry-wide status gate
     - editable `.ai` deliveries stay out of Git; the maintainer follows [`closed_loop_ops_guide.md` §4.9.2](closed_loop_ops_guide.md#492-ai-交付与登记一页流程) for hash-first duplicate detection, upload to the dedicated Base asset-source table, and download verification; the legacy illustration table is not a fallback
+    - sensitive App/QR candidates remain quarantined after extraction; a registry row may declare `source=reviewed-promotion:<promotion_id>` only when its contract under `data/asset_promotions/` still matches the reviewer decision, exact target scope, source AI/reference PDF/recipe/evidence identities, all candidate/output bytes, and deterministic composition by full SHA-256; any drift fails closed without a legacy-image fallback
 16. `python build.py asset-intake --asset-source-key <key> --asset-source-file <master.ai> --asset-recipe <recipe.json> --asset-output-root <new-dir>` freezes and verifies a PDF-compatible Illustrator source, then writes cleaned page archives/previews, recipe exports, `manifest.json`, `artifacts.csv`, and a deterministic ZIP into a new isolated directory
     - this action is package-only: it does not edit the source/worktree/registry/Base, and it fails closed on source/runtime/hash/path/private-marker drift; upload and promotion remain explicit reviewed steps in the three new `04_资产*` tables
 17. `python tools/process_docs/build_review_preview.py` packages review HTML, diff-report HTML/CSV/XLSX, and optional review Word output for design sharing
@@ -419,6 +438,7 @@ Important:
 - RST may reference an approved asset by identity, for example `.. image:: asset:operation/ac_output`. Bundle finalization accepts only PNG/JPG/JPEG/SVG/PDF exports; `.ai` is archive input and is never a renderer fallback.
 - Each finalized bundle contains `asset_usage_manifest.json`, `asset_registry_snapshot.csv`, and `bundle_manifest.json`. `registry-uri` means the bytes came from the frozen approved registry export; `review-override` keeps the `asset_key` while recording the explicit override bytes; `legacy-path` means a path-based image was staged and accounted for but has not yet been migrated under registry status/scope control.
 - Shared templates (`docs/templates/`) are bulk-migrated to `asset:` — every `common_assets` image and raw-HTML `src` now resolves through the registry, so status/scope/hash gating applies to all of them; write new template image references as `asset:<asset_key>`, not as file paths. `legacy-path` accounting remains for any reference that has not (or cannot) be keyed. Asset lineage is not yet copied into `release-manifest`; use the bundle sidecars and `bundle_sha256` for current provenance.
+- A product/market export keeps its own key and declares `override_for=<shared asset_key>` in `data/asset_registry.csv`; do not narrow or overwrite the shared row. The same shared template URI then resolves to that export only for the matching model/region/language. No match falls back to the shared row; multiple matches stop the build.
 - The Feishu archive/write contract permits only the three separately created `04_资产源文件`, `04_资产定义`, and `04_资产导出物` tables; their live binding is frozen in [`data/asset_base_bindings.json`](../data/asset_base_bindings.json), and the JE-1000F US master is the first source whose AI/ZIP/manifest attachments passed download hash verification. If those tables are inaccessible, stop and leave the source pointer empty; do not read, write, or fall back to the old illustration or staging intake table.
 - build actions except `fast` clean the current target output first; on Windows, close File Explorer, browser, Word, or PDF windows opened under [`docs/_build/`](../docs/_build) before rerunning, or use `--no-clean` for an in-place rebuild.
 - `python scripts/local_build.py check|diff-report|release-manifest|publish ...` keeps generated verification/build outputs under `.tmp/staging/docs/_build`, `.tmp/staging/reports/version_tracking`, and `.tmp/staging/reports/releases` without making the operator remember `--staging-root`.

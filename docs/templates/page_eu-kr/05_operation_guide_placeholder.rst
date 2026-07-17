@@ -172,7 +172,7 @@ LCD 화면
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{잠시 켜기}{켜기}{전원 버튼을 누르거나 제품이 충전 중일 때 켜집니다.}{끄기}{전원 버튼을 누르십시오.}{자동으로 끄기}{2분 동안 조작이 없으면 LCD 화면이 자동으로 꺼지고 절전 모드로 전환됩니다.}
       \HBLcdModeSecondGroup{상시 켜짐(충전 또는 방전 상태에서)}{켜기}{제품 전원이 켜진 상태에서 전원 버튼을 두 번 누르십시오.}{끄기}{전원 버튼을 누르십시오.}{자동으로 끄기}{|DEFAULT_STANDBY_DURATION| 동안 조작이 없으면 LCD 화면이 자동으로 꺼집니다.}
       \end{HBLcdModeTable}

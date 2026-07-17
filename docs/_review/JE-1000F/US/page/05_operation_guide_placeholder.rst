@@ -8,7 +8,7 @@ OPERATIONS
 POWER ON/OFF
 ------------
 
-.. image:: _assets/templates/word_template/common_assets/operation/main_power.png
+.. image:: asset:operation/main_power
    :alt: Power on/off operation placeholder.
    :width: 360px
 
@@ -25,7 +25,7 @@ AC OUTPUT ON/OFF
 
 **Prerequisite**: The product is powered on.
 
-.. image:: _assets/templates/word_template/common_assets/operation/ac_output.png
+.. image:: asset:operation/ac_output
    :alt: AC output on/off operation placeholder.
    :width: 360px
 
@@ -41,7 +41,7 @@ DC 12V/USB OUTPUT ON/OFF
 
 **Prerequisite**: The product is powered on.
 
-.. image:: _assets/templates/word_template/common_assets/operation/dc_usb_output.png
+.. image:: asset:operation/dc_usb_output
    :alt: DC USB output on/off operation placeholder.
    :width: 360px
 
@@ -85,7 +85,7 @@ To disable the energy saving mode, press and hold both the AC power button and t
 
 When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
-.. image:: _assets/templates/word_template/common_assets/operation/energy_saving.png
+.. image:: asset:operation/energy_saving
    :alt: Energy saving mode key operation placeholder.
    :width: 320px
 
@@ -105,7 +105,7 @@ LED LIGHT ON/OFF
 
 The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED light button to turn off the light.
 
-.. image:: _assets/templates/word_template/common_assets/operation/led_light.png
+.. image:: asset:operation/led_light
    :alt: LED light mode operation placeholder.
    :width: 360px
 
@@ -141,7 +141,7 @@ LCD SCREEN
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="LCD display mode placeholder." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="LCD display mode placeholder." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Shortly On</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Turn on</td>
@@ -174,7 +174,7 @@ LCD SCREEN
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Shortly On}{Turn on}{Press the main POWER button or when the product is charging.}{Turn off}{Press the main POWER button.}{Auto-off}{The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.}
       \HBLcdModeSecondGroup{Steady On (in charging or discharging state)}{Turn on}{Press the main POWER button twice when the product is powered on.}{Turn off}{Press the main POWER button.}{Auto-off}{The LCD turns off automatically after 2 hours of inactivity.}
       \end{HBLcdModeTable}

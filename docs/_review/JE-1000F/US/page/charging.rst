@@ -9,7 +9,7 @@
 
    This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the *Jackery Battery Pack 2000 User Manual*.
 
-   .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
+   .. image:: asset:in_the_box/main_unit1
       :alt: Battery pack connection diagram placeholder.
       :width: 360px
 
@@ -80,7 +80,7 @@ CHARGING VIA AC WALL OUTLET
 
 Connect the AC charging cable to the AC input port of the product and a wall outlet.
 
-.. image:: _assets/templates/word_template/common_assets/charging/ac_wall.png
+.. image:: asset:charging/ac_wall
    :alt: AC wall charging diagram placeholder.
    :width: 360px
 
