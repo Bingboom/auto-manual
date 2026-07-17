@@ -4,7 +4,7 @@ OPERACIONES
 ENCENDIDO/APAGADO
 -----------------
 
-.. image:: templates/word_template/common_assets/operation/main_power.png
+.. image:: asset:operation/main_power
    :alt: Operación de encendido/apagado.
    :width: 360px
 
@@ -24,7 +24,7 @@ ENCENDER/APAGAR SALIDA CA
 
 **Requisito previo:** el producto está encendido.
 
-.. image:: templates/word_template/common_assets/operation/ac_output.png
+.. image:: asset:operation/ac_output
    :alt: Operación de salida de CA.
    :width: 360px
 
@@ -40,7 +40,7 @@ ENCENDER/APAGAR SALIDA CC 12V/USB
 
 **Requisito previo:** el producto está encendido.
 
-.. image:: templates/word_template/common_assets/operation/dc_usb_output.png
+.. image:: asset:operation/dc_usb_output
    :alt: Operación de salida de CC y USB.
    :width: 360px
 
@@ -82,7 +82,7 @@ Para desactivar el modo de ahorro de energía, mantenga pulsados simultáneament
 
 Cuando alimente dispositivos de baja potencia (CA ≤ |ENERGY_SAVING_AC_THRESHOLD| o CC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|), desactive el modo de ahorro de energía para evitar que la salida se apague automáticamente durante el funcionamiento.
 
-.. image:: templates/word_template/common_assets/operation/energy_saving.png
+.. image:: asset:operation/energy_saving
    :alt: Operación del modo de ahorro de energía.
    :width: 320px
 
@@ -100,7 +100,7 @@ ENCENDER/APAGAR LUZ LED
 
 La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga presionado el botón de luz LED para apagarla.
 
-.. image:: templates/word_template/common_assets/operation/led_light.png
+.. image:: asset:operation/led_light
    :alt: Operación de la luz LED.
    :width: 360px
 
@@ -136,7 +136,7 @@ PANTALLA LCD
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Modo de pantalla LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Modo de pantalla LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encendido breve</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encender</td>

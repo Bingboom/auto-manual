@@ -25,7 +25,7 @@
    VORDERANSICHT
    -------------
 
-   .. image:: templates/word_template/common_assets/overview/front_product.jpg
+   .. image:: asset:overview/front_product
       :alt: Abbildung der Vorderansicht als Platzhalter.
       :width: 420px
 
@@ -67,7 +67,7 @@
    ANSICHT DER RECHTEN SEITE
    -------------------------
 
-   .. image:: templates/word_template/common_assets/overview/right_side_ports.png
+   .. image:: asset:overview/right_side_ports
       :alt: Abbildung der rechten Seitenansicht als Platzhalter.
       :width: 420px
 

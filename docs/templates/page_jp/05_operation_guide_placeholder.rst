@@ -4,7 +4,7 @@
 主電源ボタン/オフ
 -----------------
 
-.. image:: templates/word_template/common_assets/operation/main_power.png
+.. image:: asset:operation/main_power
    :alt: Main power operation diagram.
    :width: 360px
 
@@ -25,7 +25,7 @@ AC出力のオン/オフ
 
 ● **前提：** 主電源ボタンがオンになっていることを確認してください。
 
-.. image:: templates/word_template/common_assets/operation/ac_output.png
+.. image:: asset:operation/ac_output
    :alt: AC output operation diagram.
    :width: 360px
 
@@ -45,7 +45,7 @@ AC出力のオン/オフ
 
 手動調整：AC出力がオンの状態で、AC出力ボタンを5秒間長押しすることで周波数を切り替えることができ、対応する周波数が画面に表示されます。
 
-.. image:: templates/word_template/common_assets/operation/frequency_switch.png
+.. image:: asset:operation/frequency_switch
    :alt: Frequency switch diagram.
    :width: 360px
 
@@ -54,7 +54,7 @@ USB/カーポート出力オン/オフ
 
 ● **前提：** 主電源ボタンがオンになっていることを確認してください。
 
-.. image:: templates/word_template/common_assets/operation/dc_usb_output.png
+.. image:: asset:operation/dc_usb_output
    :alt: DC and USB output operation diagram.
    :width: 360px
 
@@ -92,11 +92,11 @@ USB/カーポート出力オン/オフ
 
        ● この機能はあくまで車のバッテリーの緊急補助用であり、深刻なバッテリー上がりや故障したバッテリーには対応しておりません。
 
-.. |energy_saving_12h_title| image:: templates/word_template/common_assets/operation/energy_saving_12h.png
+.. |energy_saving_12h_title| image:: asset:operation/energy_saving_12h
    :alt: 12H省エネアイコン
    :width: 28px
 
-.. |energy_saving_12h_icon| image:: templates/word_template/common_assets/operation/energy_saving_12h.png
+.. |energy_saving_12h_icon| image:: asset:operation/energy_saving_12h
    :alt: 12H省エネアイコン
    :width: 16px
 
@@ -121,7 +121,7 @@ USB/カーポート出力オン/オフ
 |
 | AC出力ボタンがオンの状態で、AC出力ボタンと主電源ボタンを同時に長押しし、省エネアイコンの表示（オン）／非表示（オフ）が切り替わるまで押し続けてください。
 
-.. image:: templates/word_template/common_assets/operation/energy_saving.png
+.. image:: asset:operation/energy_saving
    :alt: Energy saving mode diagram.
    :width: 320px
 
@@ -158,7 +158,7 @@ LEDライト
 
 LEDライトには、照明モードとSOSモードの2つのモードがあります。いずれのモードでも、LEDスイッチを長押しすることでLEDライトを消灯できます。
 
-.. image:: templates/word_template/common_assets/operation/led_light.png
+.. image:: asset:operation/led_light
    :alt: LED light operation diagram.
    :width: 360px
 
@@ -176,7 +176,7 @@ LCDスクリーン
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="LCD display mode diagram." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="LCD display mode diagram." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">短くオン</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">オンにする</td>

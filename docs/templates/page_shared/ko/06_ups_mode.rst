@@ -1,7 +1,7 @@
 무정전 전원 공급 장치 (UPS)
 ===================================
 | AC 충전 케이블로 제품을 벽면 콘센트에 연결한 다음, |AC_POWER_BUTTON_LABEL_LOWER|을(를) 눌러 가전제품에 동시에 전원을 공급하십시오.
-.. image:: templates/word_template/common_assets/operation/ups_mode.png
+.. image:: asset:operation/ups_mode
    :alt: UPS connection diagram placeholder.
    :width: 360px
 

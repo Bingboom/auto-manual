@@ -4,7 +4,7 @@ OPERAÇÕES
 LIGAR/DESLIGAR
 --------------
 
-.. image:: templates/word_template/common_assets/operation/main_power.png
+.. image:: asset:operation/main_power
    :alt: Operação de ligar/desligar.
    :width: 360px
 
@@ -21,7 +21,7 @@ SAÍDA CA LIGAR/DESLIGAR
 
 **Pré-requisito:** o produto está ligado.
 
-.. image:: templates/word_template/common_assets/operation/ac_output.png
+.. image:: asset:operation/ac_output
    :alt: Operação da saída CA.
    :width: 360px
 
@@ -37,7 +37,7 @@ SAÍDA CC 12V/USB LIGAR/DESLIGAR
 
 **Pré-requisito:** o produto está ligado.
 
-.. image:: templates/word_template/common_assets/operation/dc_usb_output.png
+.. image:: asset:operation/dc_usb_output
    :alt: Operação da saída CC/USB.
    :width: 360px
 
@@ -79,7 +79,7 @@ Para desativar o Modo de Economia de Energia, pressione e segure simultaneamente
 
 Ao alimentar dispositivos de baixa potência (CA ≤ |ENERGY_SAVING_AC_THRESHOLD| ou CC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|), desative o Modo de Economia de Energia para evitar que a saída seja desligada automaticamente durante a operação.
 
-.. image:: templates/word_template/common_assets/operation/energy_saving.png
+.. image:: asset:operation/energy_saving
    :alt: Operação das teclas do Modo de Economia de Energia.
    :width: 320px
 
@@ -97,7 +97,7 @@ LUZ LED LIGAR/DESLIGAR
 
 A luz LED possui dois modos: modo de luz e modo SOS. Em qualquer modo, pressione e segure o botão da luz LED para desligar a luz.
 
-.. image:: templates/word_template/common_assets/operation/led_light.png
+.. image:: asset:operation/led_light
    :alt: Operação do modo da luz LED.
    :width: 360px
 
@@ -111,17 +111,17 @@ FUNÇÃO DE RETOMADA DA SAÍDA CA E CC
 
 A Função de Retomada da Saída CA/CC é desativada por padrão. Ative essa função no aplicativo para permitir que o dispositivo memorize o status da saída CA/CC e retome automaticamente as saídas CA e CC em condições definidas.
 
-+---------------------------------------------------------------+------------------------------------------------+
-| Condições de retomada automática                              | Condições sem retomada automática             |
-+===============================================================+================================================+
-| Ligar/reiniciar após desligamento ou reinicialização          | Saída desligada manualmente (botão/aplicativo) |
-+---------------------------------------------------------------+------------------------------------------------+
++---------------------------------------------------------------+--------------------------------------------------+
+| Condições de retomada automática                              | Condições sem retomada automática                |
++===============================================================+==================================================+
+| Ligar/reiniciar após desligamento ou reinicialização          | Saída desligada manualmente (botão/aplicativo)   |
++---------------------------------------------------------------+--------------------------------------------------+
 | SOC da bateria ≥ limite de descarga +10% após atingir limite  | Saída desligada pelo Modo de Economia de Energia |
-+---------------------------------------------------------------+------------------------------------------------+
-|                                                               | Saída desligada por proteção acionada          |
-+---------------------------------------------------------------+------------------------------------------------+
-| Atualização OTA concluída                                     | Saída desligada por temporizador de descarga   |
-+---------------------------------------------------------------+------------------------------------------------+
++---------------------------------------------------------------+--------------------------------------------------+
+|                                                               | Saída desligada por proteção acionada            |
++---------------------------------------------------------------+--------------------------------------------------+
+| Atualização OTA concluída                                     | Saída desligada por temporizador de descarga     |
++---------------------------------------------------------------+--------------------------------------------------+
 
 TELA LCD
 --------
@@ -133,7 +133,7 @@ TELA LCD
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Modo de exibição LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Modo de exibição LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ligado temporariamente</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ligar</td>

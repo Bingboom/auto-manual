@@ -5,7 +5,7 @@
 
    Ce produit peut prendre en charge jusqu'à 5 packs batterie pour répondre aux besoins d'une grande capacité énergétique. Pour les détails sur son utilisation, veuillez vous référer au *manuel d'utilisation du Jackery Battery Pack 2000*.
 
-   .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+   .. image:: asset:in_the_box/main_unit1
       :alt: Schéma de connexion du pack batterie.
       :width: 360px
 
@@ -75,7 +75,7 @@ Quand la recharge par prise murale CA et la recharge solaire sont effectuées en
 CHARGEMENT PAR PRISE MURALE CA
 ------------------------------
 
-.. image:: templates/word_template/common_assets/charging/ac_wall.png
+.. image:: asset:charging/ac_wall
    :alt: Schéma de charge sur prise murale CA.
    :width: 360px
 

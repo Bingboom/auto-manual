@@ -1,7 +1,7 @@
 UNINTERRUPTIBLE POWER SUPPLY (UPS)
 ==================================
 | Connect the product to a wall outlet with the AC charging cable, then press the |AC_POWER_BUTTON_LABEL_LOWER| and power your appliances at the same time.
-.. image:: templates/word_template/common_assets/operation/ups_mode.png
+.. image:: asset:operation/ups_mode
    :alt: UPS connection diagram placeholder.
    :width: 360px
 

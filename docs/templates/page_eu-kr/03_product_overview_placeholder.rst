@@ -25,7 +25,7 @@
    전면 뷰
    ------------
 
-   .. image:: templates/word_template/common_assets/overview/front_product.jpg
+   .. image:: asset:overview/front_product
       :alt: Front view diagram placeholder.
       :width: 420px
 
@@ -67,7 +67,7 @@
    우측 측면 뷰
    ------------
 
-   .. image:: templates/word_template/common_assets/overview/right_side_ports.png
+   .. image:: asset:overview/right_side_ports
       :alt: Right side view diagram placeholder.
       :width: 420px
 

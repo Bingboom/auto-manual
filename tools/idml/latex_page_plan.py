@@ -79,6 +79,24 @@ def anchor_candidates(page: ManualPage) -> list[str]:
     return [text for _, text in _ranked_anchor_candidates(page)]
 
 
+def is_placed_page(page: ManualPage) -> bool:
+    """A page rendered entirely from placed finished PDFs has no text anchors.
+
+    Such pages (e.g. the cover) are structurally unmatchable against the
+    LaTeX reference text and must not dilute the match rate, or a real
+    regression could hide behind the permanently-unmatched entry.
+    """
+
+    if not page.blocks:
+        return False
+    return all(
+        block.kind == "data"
+        and isinstance(block.payload, dict)
+        and block.payload.get("kind") == "placed_pdf"
+        for block in page.blocks
+    )
+
+
 def map_pages(ir: ManualIR, pdf_pages: list[str]) -> list[dict[str, Any]]:
     normalized_pages = [_normalize(page) for page in pdf_pages]
     toc_pages = {index for index, text in enumerate(normalized_pages)
@@ -86,7 +104,8 @@ def map_pages(ir: ManualIR, pdf_pages: list[str]) -> list[dict[str, Any]]:
     cursor = 0
     entries: list[dict[str, Any]] = []
     for source_page in ir.pages:
-        ranked_candidates = _ranked_anchor_candidates(source_page)
+        placed = is_placed_page(source_page)
+        ranked_candidates = [] if placed else _ranked_anchor_candidates(source_page)
         candidates = [text for _, text in ranked_candidates]
         matches: list[tuple[int, int, int, str]] = []
         for rank, (priority, anchor) in enumerate(ranked_candidates):
@@ -110,6 +129,7 @@ def map_pages(ir: ManualIR, pdf_pages: list[str]) -> list[dict[str, Any]]:
             "latex_start_page": match_page,
             "matched_anchor": matched_anchor,
             "candidate_count": len(candidates),
+            "placed": placed,
         })
     return entries
 
@@ -117,7 +137,8 @@ def map_pages(ir: ManualIR, pdf_pages: list[str]) -> list[dict[str, Any]]:
 def build_page_plan(ir: ManualIR, pdf: Path) -> dict[str, Any]:
     pages = extract_pdf_pages(pdf)
     entries = map_pages(ir, pages)
-    matched = sum(entry["latex_start_page"] is not None for entry in entries)
+    matchable = [entry for entry in entries if not entry["placed"]]
+    matched = sum(entry["latex_start_page"] is not None for entry in matchable)
     return {
         "schema_version": SCHEMA_VERSION,
         "manual_content_sha256": ir.content_sha256,
@@ -126,9 +147,10 @@ def build_page_plan(ir: ManualIR, pdf: Path) -> dict[str, Any]:
         "reference_pdf_sha256": _sha256(pdf),
         "physical_page_count": len(pages),
         "source_page_count": len(entries),
+        "placed_source_pages": len(entries) - len(matchable),
         "matched_source_pages": matched,
-        "unmatched_source_pages": len(entries) - matched,
-        "match_rate": matched / len(entries) if entries else 0.0,
+        "unmatched_source_pages": len(matchable) - matched,
+        "match_rate": matched / len(matchable) if matchable else 0.0,
         "virtual_pages": [
             {"kind": "toc", "physical_page": index + 1}
             for index, text in enumerate(pages)

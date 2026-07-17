@@ -3,7 +3,7 @@ APP-EINSTELLUNG
 
 **1. Laden Sie die App herunter und melden Sie sich an**
 
-.. image:: templates/word_template/common_assets/app/download.png
+.. image:: asset:app/download
    :alt: Platzhalter für QR-Code und App-Store-Download.
    :width: 320px
 
@@ -16,7 +16,7 @@ Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen
 
 2.2 Drücken Sie die |MAIN_POWER_BUTTON_LABEL| am Gerät, um es einzuschalten. Die WLAN- und Bluetooth-Symbole auf dem Gerät blinken, um anzuzeigen, dass das Gerät in den Netzwerkkonfigurationsmodus gewechselt ist. Tippen Sie auf die Schaltfläche "**Symbol blinkt**" und erlauben Sie der App, sich mit Geräten in der Nähe zu verbinden und auf Bluetooth zuzugreifen.
 
-.. image:: templates/word_template/common_assets/app/add_device.png
+.. image:: asset:app/add_device
    :alt: Platzhalter für den Schritt „Gerät hinzufügen“.
    :width: 320px
 
@@ -50,7 +50,7 @@ Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen
 
 | Nachdem das Gerät erfolgreich zur App hinzugefügt wurde, leuchtet das WLAN-Symbol am Gerät dauerhaft.
 
-.. image:: templates/word_template/common_assets/app/connect_result.png
+.. image:: asset:app/connect_result
    :alt: Platzhalter für das Ergebnis der App-Einrichtung.
    :width: 360px
 

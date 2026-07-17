@@ -3,7 +3,7 @@ APP SETUP
 
 **1. Download the App and log in**
 
-.. image:: templates/word_template/common_assets/app/download.png
+.. image:: asset:app/download
    :alt: App download QR and marketplace placeholder.
    :width: 320px
 
@@ -16,7 +16,7 @@ Alternatively, scan the QR code below to download and install the App.
 
 2.2 Press the |MAIN_POWER_BUTTON_LABEL_LOWER| on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode, tap the "**Icon Flashed**" button, and allow the App to connect to nearby devices and open Bluetooth permissions.
 
-.. image:: templates/word_template/common_assets/app/add_device.png
+.. image:: asset:app/add_device
    :alt: App add device step placeholder.
    :width: 320px
 
@@ -50,7 +50,7 @@ Alternatively, scan the QR code below to download and install the App.
 
 | After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.
 
-.. image:: templates/word_template/common_assets/app/connect_result.png
+.. image:: asset:app/connect_result
    :alt: App setup result screen placeholder.
    :width: 360px
 

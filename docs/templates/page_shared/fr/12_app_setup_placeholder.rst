@@ -3,7 +3,7 @@ CONFIGURATION DE L'APPLICATION
 
 **1. Télécharger l'application et se connecter**
 
-.. image:: templates/word_template/common_assets/app/download.png
+.. image:: asset:app/download
    :alt: Code QR de téléchargement de l'application et emplacement réservé aux boutiques.
    :width: 320px
 
@@ -17,7 +17,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 
 2.2 Appuyez sur le |MAIN_POWER_BUTTON_LABEL_LOWER| de l’appareil pour l’allumer. Les icônes Wi-Fi et Bluetooth clignotent sur l’appareil afin d’indiquer qu’il est entré dans le mode Configuration réseau. Cliquez sur le bouton « Icône qui clignote » et autorisez l’application à se connecter aux appareils alentour, puis ouvrez les autorisations Bluetooth.
 
-.. image:: templates/word_template/common_assets/app/add_device.png
+.. image:: asset:app/add_device
    :alt: Emplacement réservé à l'étape d'ajout d'appareil dans l'application.
    :width: 320px
 
@@ -51,7 +51,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
 
 | Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
 
-.. image:: templates/word_template/common_assets/app/connect_result.png
+.. image:: asset:app/connect_result
    :alt: Emplacement réservé à l'écran de résultat de connexion dans l'application.
    :width: 360px
 

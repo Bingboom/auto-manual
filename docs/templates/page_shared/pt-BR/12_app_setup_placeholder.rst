@@ -3,7 +3,7 @@ CONFIGURAÇÃO DO APLICATIVO
 
 **1. Baixe o aplicativo e faça login**
 
-.. image:: templates/word_template/common_assets/app/download.png
+.. image:: asset:app/download
    :alt: Código QR de download do aplicativo e lojas.
    :width: 320px
 
@@ -16,7 +16,7 @@ Como alternativa, escaneie o código QR abaixo para baixar e instalar o aplicati
 
 2.2 Pressione o |MAIN_POWER_BUTTON_LABEL| no dispositivo para ligá-lo; os ícones de Wi-Fi e Bluetooth no dispositivo piscarão para indicar que o dispositivo entrou no modo de configuração de rede. Toque no botão "**O ícone piscou**" e permita que o aplicativo se conecte a dispositivos próximos e ative as permissões de Bluetooth.
 
-.. image:: templates/word_template/common_assets/app/add_device.png
+.. image:: asset:app/add_device
    :alt: Etapa de adição de dispositivo no aplicativo.
    :width: 320px
 
@@ -50,7 +50,7 @@ Como alternativa, escaneie o código QR abaixo para baixar e instalar o aplicati
 
 | Após o dispositivo ser adicionado com sucesso ao aplicativo, o ícone de Wi-Fi no dispositivo permanecerá aceso.
 
-.. image:: templates/word_template/common_assets/app/connect_result.png
+.. image:: asset:app/connect_result
    :alt: Tela de resultado da conexão no aplicativo.
    :width: 360px
 

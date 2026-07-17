@@ -3,13 +3,13 @@
 
 |PRODUCT_NAME|은(는) 두 개의 DC8020 입력 포트를 갖추고 있으며 Jackery 태양광 패널과 호환됩니다.
 
-.. image:: templates/word_template/common_assets/charging/solar_direct.png
+.. image:: asset:charging/solar_direct
    :alt: Solar charging connection diagram placeholder 1.
    :width: 360px
 
 하나의 DC8020 입력 포트에 두 개의 태양광 패널을 동시에 연결해야 하는 경우, 아래 그림을 참조하여 태양광 패널 커넥터(별도 판매, 기본 구성품 아님)를 통해 충전하십시오.
 
-.. image:: templates/word_template/common_assets/charging/solar_adapter.png
+.. image:: asset:charging/solar_adapter
    :alt: Solar charging connection diagram placeholder 2.
    :width: 360px
 
@@ -37,7 +37,7 @@
 
 이 제품은 12V 차량용 충전기를 사용하여 충전할 수 있습니다. 차량용 충전기와 12V 차량용 전원 콘센트(시거잭)가 확실하게 연결되었는지 확인하십시오.
 
-.. image:: templates/word_template/common_assets/charging/car_charge.png
+.. image:: asset:charging/car_charge
    :alt: Car charging connection diagram placeholder.
    :width: 360px
 

@@ -3,12 +3,12 @@ CARREGAMENTO VIA PAINÉIS SOLARES (VENDIDOS SEPARADAMENTE)
 
 O |PRODUCT_NAME| possui duas portas de entrada DC8020 e é compatível com os painéis solares Jackery. Se uma porta de entrada DC8020 precisar conectar dois painéis solares simultaneamente, consulte a figura abaixo para o carregamento por meio do conector de painel solar (vendido separadamente, não incluído como padrão).
 
-.. image:: templates/word_template/common_assets/charging/solar_direct.png
+.. image:: asset:charging/solar_direct
    :alt: Diagrama de conexão para carregamento solar 1.
    :width: 360px
 
 
-.. image:: templates/word_template/common_assets/charging/solar_adapter.png
+.. image:: asset:charging/solar_adapter
    :alt: Diagrama de conexão para carregamento solar 2.
    :width: 360px
 
@@ -36,7 +36,7 @@ CARREGAMENTO COM CARREGADOR VEICULAR (VENDIDO SEPARADAMENTE)
 
 Este produto pode ser carregado usando um carregador veicular de 12V. Certifique-se de que o carregador veicular e a tomada de 12V do veículo (acendedor de cigarros) estejam bem conectados.
 
-.. image:: templates/word_template/common_assets/charging/car_charge.png
+.. image:: asset:charging/car_charge
    :alt: Diagrama de conexão para carregamento veicular.
    :width: 360px
 

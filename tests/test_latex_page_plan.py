@@ -3,8 +3,15 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from tools.idml.latex_page_plan import anchor_candidates, map_pages, planned_span, validate_page_plan
+from tools.idml.latex_page_plan import (
+    anchor_candidates,
+    is_placed_page,
+    map_pages,
+    planned_span,
+    validate_page_plan,
+)
 from tools.manual_ir import build_manual_ir
+from tools.manual_ir.model import ManualBlock, ManualIR, ManualPage
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -49,6 +56,41 @@ class LatexPagePlanTests(unittest.TestCase):
             "pages": [],
         })
         self.assertTrue(any("match rate" in issue for issue in issues))
+
+    def test_placed_pages_are_flagged_and_skip_anchor_matching(self) -> None:
+        placed_block = ManualBlock(
+            block_id="b-0001",
+            source_ref="page/cover-en.rst",
+            kind="data",
+            payload={"asset": "cover-en.pdf", "kind": "placed_pdf"},
+            content_sha256="0" * 64,
+        )
+        cover = ManualPage(
+            page_id="page-0001-cover-en",
+            source_ref="page/cover-en.rst",
+            source_path="page/cover-en.rst",
+            language="en",
+            source_sha256="0" * 64,
+            skipped_raw=0,
+            blocks=(placed_block,),
+        )
+        self.assertTrue(is_placed_page(cover))
+        self.assertFalse(is_placed_page(self.ir.pages[0]))
+
+        synthetic_ir = ManualIR(
+            model=self.ir.model, region=self.ir.region, language=self.ir.language,
+            source=self.ir.source, bundle_root=self.ir.bundle_root,
+            bundle_sha256=self.ir.bundle_sha256, snapshot_sha256=self.ir.snapshot_sha256,
+            layout_params_sha256=self.ir.layout_params_sha256,
+            style_contract_sha256=self.ir.style_contract_sha256,
+            content_sha256=self.ir.content_sha256,
+            pages=(cover,) + self.ir.pages,
+        )
+        entries = map_pages(synthetic_ir, ["Synthetic cover", "PREFACE copy"])
+        self.assertTrue(entries[0]["placed"])
+        self.assertIsNone(entries[0]["latex_start_page"])
+        self.assertEqual(0, entries[0]["candidate_count"])
+        self.assertFalse(entries[1]["placed"])
 
     def test_story_span_uses_next_source_start(self) -> None:
         plan = {"pages": [

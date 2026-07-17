@@ -25,17 +25,17 @@
       :header-rows: 0
       :widths: 33 33 34
 
-      * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+      * - .. image:: asset:in_the_box/main_unit1
              :alt: Imagen de la estación de energía.
              :width: 120px
 
           |PRODUCT_NAME_BOLD|
-        - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+        - .. image:: asset:in_the_box/ac_charging_cable
              :alt: Imagen del cable de carga de CA.
              :width: 120px
 
           **Cable de carga de CA**
-        - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+        - .. image:: asset:in_the_box/manual_icon1
              :alt: Imagen de los documentos.
              :width: 120px
 
@@ -51,17 +51,17 @@
       :header-rows: 0
       :widths: 33 33 34
 
-      * - .. image:: templates/word_template/common_assets/in_the_box/main_unit1.png
+      * - .. image:: asset:in_the_box/main_unit1
              :alt: Imagen de la estación de energía.
              :width: 120px
 
           |PRODUCT_NAME_BOLD|
-        - .. image:: templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+        - .. image:: asset:in_the_box/ac_charging_cable
              :alt: Imagen del cable de carga de CA.
              :width: 120px
 
           **Cable de carga de CA**
-        - .. image:: templates/word_template/common_assets/in_the_box/manual_icon1.png
+        - .. image:: asset:in_the_box/manual_icon1
              :alt: Imagen del manual del usuario.
              :width: 120px
 

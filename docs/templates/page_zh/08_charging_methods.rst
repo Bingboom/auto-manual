@@ -3,13 +3,13 @@
 
 本产品有两个DC8020 直流输入端口，最大支持400W输入，可搭配电小二SolarSaga 系列太阳能板使用。
 
-.. image:: templates/word_template/common_assets/charging/solar_direct.png
+.. image:: asset:charging/solar_direct
    :alt: 太阳能直连充电示意图。
    :width: 360px
 
 如果单个DC8020直流输入端口需要同时连接两个太阳能板，请参考下图，需使用太阳能串联转接盒（单独售卖）。
 
-.. image:: templates/word_template/common_assets/charging/solar_adapter.png
+.. image:: asset:charging/solar_adapter
    :alt: 太阳能转接盒充电示意图。
    :width: 360px
 
@@ -37,7 +37,7 @@
 
 本产品适用 12V 车型车充口对本产品进行充电，请确保汽车车充口和车充线的点烟器接触良好，确保点烟器完全插入到位。
 
-.. image:: templates/word_template/common_assets/charging/car_charge.png
+.. image:: asset:charging/car_charge
    :alt: 车充充电示意图。
    :width: 360px
 

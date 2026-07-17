@@ -4,7 +4,7 @@ GRUNDLEGENDE OPERATIONEN
 HAUPTSTROMVERSORGUNG EIN/AUS
 ----------------------------
 
-.. image:: templates/word_template/common_assets/operation/main_power.png
+.. image:: asset:operation/main_power
    :alt: Platzhalter für Ein-/Ausschalten.
    :width: 360px
 
@@ -21,7 +21,7 @@ AC-AUSGANG EIN/AUS
 
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
-.. image:: templates/word_template/common_assets/operation/ac_output.png
+.. image:: asset:operation/ac_output
    :alt: Platzhalter für AC-Ausgang Ein/Aus.
    :width: 360px
 
@@ -37,7 +37,7 @@ DC 12V/USB-AUSGANG EIN/AUS
 
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
-.. image:: templates/word_template/common_assets/operation/dc_usb_output.png
+.. image:: asset:operation/dc_usb_output
    :alt: Platzhalter für DC/USB-Ausgang Ein/Aus.
    :width: 360px
 
@@ -80,7 +80,7 @@ Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Einschalttaste
 
 Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= |ENERGY_SAVING_AC_THRESHOLD| oder DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird.
 
-.. image:: templates/word_template/common_assets/operation/energy_saving.png
+.. image:: asset:operation/energy_saving
    :alt: Platzhalter für die Tastenbedienung des Energiesparmodus.
    :width: 320px
 
@@ -100,7 +100,7 @@ LED-LICHT EIN/AUS
 
 Die LED-Leuchte verfügt über zwei Modi: Lichtmodus und SOS-Modus. Halten Sie in jedem Modus die LED-Lichttaste gedrückt, um das Licht auszuschalten.
 
-.. image:: templates/word_template/common_assets/operation/led_light.png
+.. image:: asset:operation/led_light
    :alt: Platzhalter für den LED-Licht-Modus.
    :width: 360px
 
@@ -136,7 +136,7 @@ LCD-ANZEIGE
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Platzhalter für den LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Platzhalter für den LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Kurzzeitig an</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ein</td>
