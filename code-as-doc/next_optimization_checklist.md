@@ -936,66 +936,30 @@ language-neutral (the LCD-hero precedent).
 ## 6i. Milestone K: Enterprise Ops Hardening + Platform Consolidation
 
 Milestone status: `pending`
-Milestone target: `K1–K7 this wave; K8–K14 as bandwidth allows; K15 before any many-target scale-out`
+Milestone target: `tier-driven, no calendar — Tier 1 = current real execution (4 items); Tier 2 = on business-pain trigger; Tier 3 = requires dedicated capacity`
 Milestone note: registered 2026-07-17 as the PR-level breakdown of Workstreams
 T (Phase 0), U (Phase 1), and the Workstream V design gate (Phase 2) from the
 production-readiness review
 ([`reviews/production_readiness_review_2026-07-17.md`](reviews/production_readiness_review_2026-07-17.md)).
 Theme: the review found the code plane enterprise-grade but the operating plane
-not — this milestone hardens reproducibility, backup, alerting, and governance
-first (K1–K7, all independent), then consolidates transport / packaging /
-logging / queue integrity (K8–K14). K3, K4, and K5 are the three items whose
-cost grows every week they wait. V implementation is deliberately **not**
-broken down here — only its design doc (K15); implementation PRs get registered
-after the design is approved, mirroring the Workstream N gating. Items touching
+not. V implementation is deliberately **not** broken down here — only its
+design doc (K15); implementation PRs get registered after the design is
+approved, mirroring the Workstream N gating. Items touching
 `.github/workflows/**`, `requirements.txt`, git history, or queue semantics are
 operator-gated per `AGENTS.md` §8.7 and are marked below.
+**Execution tiers (operator triage 2026-07-17):** so the list reads as "4 in
+flight", not "15 pending", the items are grouped into three tiers below.
+Tier assignment governs execution order only; the T/U/V phase mapping and each
+item's technical scope are unchanged. Tier 1 items are `pending`; Tier 2/3
+items are `deferred` with an explicit `Trigger:` line and flip to `pending`
+when their trigger fires (per §1 update rules). The operator's triage named 12
+items; **K3, K14 (→ Tier 2) and K6 (→ Tier 3) are provisional placements by
+the same logic — re-tier in review if wrong.**
 
-- [ ] PR K1: Make `requirements.lock` the CI/RTD install source (T1)
-  - Status: `pending`
-  - Note: touches `.github/workflows/**` → operator-gated. The lock exists
-    (Milestone I3) but no workflow installs from it, so CI drifts from the
-    pinned snapshot silently.
-  - Target files:
-    - [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
-    - [`../.github/actions/feishu-common-setup/action.yml`](../.github/actions/feishu-common-setup/action.yml)
-    - [`../.readthedocs.yaml`](../.readthedocs.yaml)
-    - [`../requirements.txt`](../requirements.txt)
-    - [`../ONBOARDING.md`](../ONBOARDING.md)
-  - Done when:
-    - every CI python-setup path and ReadTheDocs install from `requirements.lock`; `requirements.txt` stays the human-facing range file
-    - a documented lock-refresh procedure exists (when and how to regenerate)
-    - the stale "Python >= 3.9" comment in `requirements.txt` and the stale "no lock file" note in `ONBOARDING.md` §3 are corrected
+### Tier 1 — 当前真实执行 (current real execution)
 
-- [ ] PR K2: Pin and cache the TeXLive install in queue workflows (T2)
-  - Status: `pending`
-  - Note: touches `.github/workflows/**` → operator-gated. Today the full TeX
-    stack is apt-installed unpinned on every dispatch (~minutes per run,
-    multiplied by every queue build; the org Actions quota has been exhausted
-    once already).
-  - Target files:
-    - [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml)
-    - [`.github/workflows/feishu-draft-build-queue.yml`](../.github/workflows/feishu-draft-build-queue.yml)
-  - Done when:
-    - the TeX package set is version-pinned (or moved into a prebuilt container image) and cached, so a warm run skips the apt install
-    - cold/warm run times are recorded once in the PR body as the baseline
-    - build output is byte-identical before/after (release-manifest sha256 comparison on one target)
-
-- [ ] PR K3: Route new binary artifacts to Git LFS (T3)
-  - Status: `pending`
-  - Note: operator-gated twice over — it changes `.gitattributes` storage
-    policy for `docs/_build` (adjacent to Deferred 5, but storage-only: no
-    workflow-semantics change), and the history-rewrite question (pack already
-    ~148 MiB with two 18.9 MB PDFs) is an explicit operator decision this PR
-    only records, never executes. CI runners and contributor docs must gain
-    `git lfs install`.
-  - Target files:
-    - [`../.gitattributes`](../.gitattributes)
-    - [`../ONBOARDING.md`](../ONBOARDING.md)
-  - Done when:
-    - new PNG/PDF/DOCX blobs under `docs/_build/**` and `docs/templates/word_template/**` enter LFS instead of raw history
-    - CI checkout and local onboarding steps handle LFS transparently
-    - the history-rewrite decision (do it / defer it / never) is recorded with the size evidence, as its own operator call
+Entry rule: no trigger needed. These are the next platform slices between
+business deliveries, in this order: K4 → K5 → K7 → K1.
 
 - [ ] PR K4: Scheduled versioned export of the phase2 source tables + restore runbook (T4)
   - Status: `pending`
@@ -1027,19 +991,6 @@ operator-gated per `AGENTS.md` §8.7 and are marked below.
     - the Issue closes when a subsequent run of the same record succeeds
     - writeback-failure (build succeeded, Bitable write failed) alerts too — it is the silent-divergence case
 
-- [ ] PR K6: Governance floor — CODEOWNERS, secret scanning, dependabot (T6)
-  - Status: `pending`
-  - Note: touches `.github/**` governance surfaces → operator-gated. CODEOWNERS
-    is also the enabler for Workstream V's distributed-review model (K15).
-  - Target files:
-    - `.github/CODEOWNERS` (new)
-    - `.github/dependabot.yml` (new)
-    - [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
-  - Done when:
-    - CODEOWNERS routes review by area (tools/queue vs docs/templates vs workflows), with the operator as owner of the compliance-sensitive surfaces
-    - a push/PR secret-scanning gate runs in CI; dependabot files version-bump PRs (grouped, low noise)
-    - server-side branch protection settings are verified against `AGENTS.md` §8 and the verification is recorded
-
 - [ ] PR K7: InDesign finalize — version lock + second host (T7)
   - Status: `pending`
   - Note: the top delivery SPOF: the IDML→final-PDF leg runs only on the
@@ -1054,8 +1005,73 @@ operator-gated per `AGENTS.md` §8.7 and are marked below.
     - a second-host setup procedure is documented and verified once end-to-end on a machine that is not the operator's
     - the bus-factor register entry for this leg is updated from "known risk" to "documented recovery path"
 
-- [ ] PR K8: Single Feishu transport client (U1)
+- [ ] PR K1: Make `requirements.lock` the CI/RTD install source (T1)
   - Status: `pending`
+  - Note: touches `.github/workflows/**` → operator-gated. The lock exists
+    (Milestone I3) but no workflow installs from it, so CI drifts from the
+    pinned snapshot silently.
+  - Target files:
+    - [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
+    - [`../.github/actions/feishu-common-setup/action.yml`](../.github/actions/feishu-common-setup/action.yml)
+    - [`../.readthedocs.yaml`](../.readthedocs.yaml)
+    - [`../requirements.txt`](../requirements.txt)
+    - [`../ONBOARDING.md`](../ONBOARDING.md)
+  - Done when:
+    - every CI python-setup path and ReadTheDocs install from `requirements.lock`; `requirements.txt` stays the human-facing range file
+    - a documented lock-refresh procedure exists (when and how to regenerate)
+    - the stale "Python >= 3.9" comment in `requirements.txt` and the stale "no lock file" note in `ONBOARDING.md` §3 are corrected
+
+### Tier 2 — 业务痛点触发后执行 (execute when the business pain fires)
+
+Entry rule: each item starts only when its named trigger is observed in real
+production (the discovery-engine rule, roadmap §5) — then it legitimately
+jumps the queue. Until then it stays `deferred` and exerts no pressure.
+
+- [ ] PR K2: Pin and cache the TeXLive install in queue workflows (T2)
+  - Status: `deferred`
+  - Trigger: queue wall-time or Actions-quota pain observed again (dashboard
+    queue metrics, or a quota warning/bill).
+  - Note: touches `.github/workflows/**` → operator-gated. Today the full TeX
+    stack is apt-installed unpinned on every dispatch (~minutes per run,
+    multiplied by every queue build; the org Actions quota has been exhausted
+    once already).
+  - Target files:
+    - [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml)
+    - [`.github/workflows/feishu-draft-build-queue.yml`](../.github/workflows/feishu-draft-build-queue.yml)
+  - Done when:
+    - the TeX package set is version-pinned (or moved into a prebuilt container image) and cached, so a warm run skips the apt install
+    - cold/warm run times are recorded once in the PR body as the baseline
+    - build output is byte-identical before/after (release-manifest sha256 comparison on one target)
+
+- [ ] PR K3: Route new binary artifacts to Git LFS (T3)
+  - Status: `deferred`
+  - Trigger: repo-size / clone-time / CI-checkout pain becomes visible (the
+    repo-health metric on the ops dashboard), or the operator makes the
+    storage-policy call proactively. **Provisional Tier 2 placement** (not in
+    the operator's 2026-07-17 triage): the new-binaries-only half is cheap,
+    but the policy decision and the LFS interaction with the Hello-Docs
+    mirror / CI checkout make it more than a filler slice — re-tier if wrong.
+    Caveat: history grows every week this waits; the trigger should be read
+    generously.
+  - Note: operator-gated twice over — it changes `.gitattributes` storage
+    policy for `docs/_build` (adjacent to Deferred 5, but storage-only: no
+    workflow-semantics change), and the history-rewrite question (pack already
+    ~148 MiB with two 18.9 MB PDFs) is an explicit operator decision this PR
+    only records, never executes. CI runners and contributor docs must gain
+    `git lfs install`.
+  - Target files:
+    - [`../.gitattributes`](../.gitattributes)
+    - [`../ONBOARDING.md`](../ONBOARDING.md)
+  - Done when:
+    - new PNG/PDF/DOCX blobs under `docs/_build/**` and `docs/templates/word_template/**` enter LFS instead of raw history
+    - CI checkout and local onboarding steps handle LFS transparently
+    - the history-rewrite decision (do it / defer it / never) is recorded with the size evidence, as its own operator call
+
+- [ ] PR K8: Single Feishu transport client (U1)
+  - Status: `deferred`
+  - Trigger: a live sync/backport failure attributable to the transport gap —
+    rate-limit (429) errors, a concurrent-sync race on `data/phase2/*.csv`,
+    or another divergence bug between the duplicated runners.
   - Note: five-plus independent `run_lark_cli_json` implementations exist; the
     sync path has zero retry/backoff/rate-limit and no file locking. May land
     in slices (consolidate first, then retry/lock), but one module owns the
@@ -1072,8 +1088,70 @@ operator-gated per `AGENTS.md` §8.7 and are marked below.
     - the listed call sites (plus sync/backport/intake `lark-cli` argv builders) route through it; no independent JSON-runner remains
     - `data/phase2/*.csv` snapshot writes take a file lock so concurrent syncs cannot interleave
 
+- [ ] PR K11: Structured logging baseline in queue and build orchestration (U4)
+  - Status: `deferred`
+  - Trigger: after K5 alerting lands, the first time diagnosing a queue
+    failure from print output costs real time — the alert tells you THAT it
+    failed; this item fires when finding out WHY hurts.
+  - Note: zero `logging` imports and 423 `print()` calls today. Scope is the
+    baseline, not a repo-wide sweep: queue orchestration and build entry paths
+    first; user-facing CLI output stays `print`.
+  - Target files:
+    - [`../tools/queue_orchestration.py`](../tools/queue_orchestration.py)
+    - [`../tools/build_runtime.py`](../tools/build_runtime.py)
+  - Done when:
+    - queue and build orchestration emit leveled `logging` records (level via env), with run/record correlation ids on queue paths
+    - Actions logs keep at least today's readability; `$GITHUB_STEP_SUMMARY` output is unchanged
+    - a short convention note documents what logs vs what prints, so the sweep can continue incrementally
+
+- [ ] PR K13: Data-driven language onboarding (U6)
+  - Status: `deferred`
+  - Trigger: the next new-language/region onboarding request lands (the
+    natural moment: do K13 first, then onboard the language through the new
+    data-driven path as its live proof).
+  - Note: adding a language today edits four hardcoded Python enumerations
+    plus paired golden-test expectations (`setup-map.md` §code registration) —
+    a data problem solved with code edits, which fails at 50 lines.
+  - Target files:
+    - [`../tools/signal_words.py`](../tools/signal_words.py)
+    - [`../tools/sync_data_models.py`](../tools/sync_data_models.py)
+    - [`../tools/localized_copy.py`](../tools/localized_copy.py)
+    - [`../tools/manual_copy_source.py`](../tools/manual_copy_source.py)
+  - Done when:
+    - language registration is data/config-driven (declared once, consumed by all four surfaces); an unknown language fails with a clear message, not a KeyError
+    - adding a test language in fixtures requires zero Python edits, proven by a test
+    - [`../.agents/skills/new-region-line/SKILL.md`](../.agents/skills/new-region-line/SKILL.md) and its setup-map drop the code-registration step
+
+- [ ] PR K14: Release labeling + rollback runbook (U7)
+  - Status: `deferred`
+  - Trigger: the first real rollback need (a shipped manual must be reverted
+    or re-delivered from a prior state), or the business asks for turnaround
+    commitments. **Provisional Tier 2 placement** (not in the operator's
+    2026-07-17 triage) — re-tier in review if wrong.
+  - Note: manifests already carry git SHA, toolchain provenance, and per-output
+    sha256 — traceability exists, labeling and the recovery procedure don't.
+    Complements (does not replace) E1 snapshot freezing.
+  - Target files:
+    - [`../tools/release_manifest_service.py`](../tools/release_manifest_service.py)
+    - [`../user-guide/closed_loop_ops_guide.md`](../user-guide/closed_loop_ops_guide.md)
+  - Done when:
+    - each publish gets a stable release identifier (git tag or release record) bound to its manifest
+    - a written rollback runbook covers: re-deploy a prior Vercel build, re-deliver a prior Word/PDF from its manifest, and rebuild from a prior `Git_ref`
+    - one rollback drill has been executed and timed
+
+### Tier 3 — 必须有工程资源或专门窗口 (requires dedicated capacity or a protected window)
+
+Entry rule: do NOT start these as between-delivery filler — each needs either
+a second maintainer, formally allocated platform time, or a consciously shaped
+low-delivery window (the Workstream U/V organizational triggers). Starting
+them without that capacity risks a half-moved subsystem or an unfinished
+semantic change sitting in the tree while business work resumes.
+
 - [ ] PR K9: Package the flat `tools/` namespace, one subsystem per PR (U2)
-  - Status: `pending`
+  - Status: `deferred`
+  - Trigger: dedicated capacity (second maintainer or allocated platform
+    time). Each subsystem move is individually small, but the wave only pays
+    off completed — partial packaging leaves two import styles coexisting.
   - Note: consistent with Deferred 3's rationale — this is the gradual
     boundary cleanup it calls for, explicitly NOT a big-bang rename: one
     subsystem per PR, behavior-preserving moves, import-compatible facades,
@@ -1090,7 +1168,9 @@ operator-gated per `AGENTS.md` §8.7 and are marked below.
     - the ownership map reflects the package boundaries, and no prefix-family flat modules remain at `tools/` root for the moved subsystems
 
 - [ ] PR K10: Extract target/config resolution out of the `build_docs` facade (U3)
-  - Status: `pending`
+  - Status: `deferred`
+  - Trigger: dedicated capacity; natural window = alongside or just before
+    the K9 queue-subsystem move (same import surfaces).
   - Note: 8 non-build modules (including queue code) import the 838-line
     facade just for `load_config` / `resolve_build_targets` /
     `build_root_for_target`, dragging Sphinx/export imports into queue and
@@ -1103,21 +1183,12 @@ operator-gated per `AGENTS.md` §8.7 and are marked below.
     - queue/check/sync-review/release importers stop importing `build_docs`; the facade re-exports for compatibility
     - importing a queue module no longer transitively imports the export stack (guarded by an import-time test, the Milestone A PR 1 pattern)
 
-- [ ] PR K11: Structured logging baseline in queue and build orchestration (U4)
-  - Status: `pending`
-  - Note: zero `logging` imports and 423 `print()` calls today. Scope is the
-    baseline, not a repo-wide sweep: queue orchestration and build entry paths
-    first; user-facing CLI output stays `print`.
-  - Target files:
-    - [`../tools/queue_orchestration.py`](../tools/queue_orchestration.py)
-    - [`../tools/build_runtime.py`](../tools/build_runtime.py)
-  - Done when:
-    - queue and build orchestration emit leveled `logging` records (level via env), with run/record correlation ids on queue paths
-    - Actions logs keep at least today's readability; `$GITHUB_STEP_SUMMARY` output is unchanged
-    - a short convention note documents what logs vs what prints, so the sweep can continue incrementally
-
 - [ ] PR K12: Atomic queue claim + cross-workflow concurrency contract (U5)
-  - Status: `pending`
+  - Status: `deferred`
+  - Trigger: dedicated capacity, or the concurrency assumption breaks (cron
+    re-enabled, a second dispatcher appears, or a double-claim near-miss is
+    observed). Semantic change to the queue contract — needs a protected
+    window and operator attention, not filler time.
   - Note: operator-gated — touches queue semantics, `.github/workflows/**`,
     and [`dev/external_table_contracts.md`](dev/external_table_contracts.md) /
     [`dev/queue_state_model.md`](dev/queue_state_model.md). Today the RUNNING
@@ -1134,36 +1205,12 @@ operator-gated per `AGENTS.md` §8.7 and are marked below.
     - stale claims (worker died mid-run) expire and become re-claimable, with the expiry documented in the queue state model
     - the three queue workflows share an explicit concurrency contract, and the external-table contract doc gains the claim fields
 
-- [ ] PR K13: Data-driven language onboarding (U6)
-  - Status: `pending`
-  - Note: adding a language today edits four hardcoded Python enumerations
-    plus paired golden-test expectations (`setup-map.md` §code registration) —
-    a data problem solved with code edits, which fails at 50 lines.
-  - Target files:
-    - [`../tools/signal_words.py`](../tools/signal_words.py)
-    - [`../tools/sync_data_models.py`](../tools/sync_data_models.py)
-    - [`../tools/localized_copy.py`](../tools/localized_copy.py)
-    - [`../tools/manual_copy_source.py`](../tools/manual_copy_source.py)
-  - Done when:
-    - language registration is data/config-driven (declared once, consumed by all four surfaces); an unknown language fails with a clear message, not a KeyError
-    - adding a test language in fixtures requires zero Python edits, proven by a test
-    - [`../.agents/skills/new-region-line/SKILL.md`](../.agents/skills/new-region-line/SKILL.md) and its setup-map drop the code-registration step
-
-- [ ] PR K14: Release labeling + rollback runbook (U7)
-  - Status: `pending`
-  - Note: manifests already carry git SHA, toolchain provenance, and per-output
-    sha256 — traceability exists, labeling and the recovery procedure don't.
-    Complements (does not replace) E1 snapshot freezing.
-  - Target files:
-    - [`../tools/release_manifest_service.py`](../tools/release_manifest_service.py)
-    - [`../user-guide/closed_loop_ops_guide.md`](../user-guide/closed_loop_ops_guide.md)
-  - Done when:
-    - each publish gets a stable release identifier (git tag or release record) bound to its manifest
-    - a written rollback runbook covers: re-deploy a prior Vercel build, re-deliver a prior Word/PDF from its manifest, and rebuild from a prior `Git_ref`
-    - one rollback drill has been executed and timed
-
 - [ ] PR K15: Review-branch propagation design doc (V — design gate only)
-  - Status: `pending`
+  - Status: `deferred`
+  - Trigger: dedicated capacity for sustained design + review attention
+    (roadmap Phase 2 entry: Workstream T exit criteria passed). Business pain
+    accelerates it: when the dashboard shows template-fix propagation
+    measurably eating delivery capacity, this jumps the queue.
   - Note: the frozen-copy review-branch model is the review's #1 scale wall
     (a shared-template fix reaches zero open branches;
     [`../tools/check_review_branch_sync.py`](../tools/check_review_branch_sync.py)
@@ -1178,6 +1225,25 @@ operator-gated per `AGENTS.md` §8.7 and are marked below.
     - the design covers: per-target-derivative-only review branches, a pinned-but-advanceable shared-template reference, automated per-branch bump PRs showing the rendered diff, authored-edit protection (classify-or-abstain, reusing the `sync-review` merge_params discipline), and migration of the existing open branches
     - blast radius, failure modes, and the propagation-lag metric are specified
     - the operator has approved or amended the design, recorded in the doc header
+
+- [ ] PR K6: Governance floor — CODEOWNERS, secret scanning, dependabot (T6)
+  - Status: `deferred`
+  - Trigger: a second reviewer/maintainer exists (CODEOWNERS routing is
+    mostly symbolic while one person reviews everything — its value activates
+    with the Workstream U organizational trigger). **Provisional Tier 3
+    placement** (not in the operator's 2026-07-17 triage) — re-tier if wrong.
+    The secret-scanning + dependabot slice is cheap and severable: it may be
+    pulled forward as a filler PR any time without waiting for this trigger.
+  - Note: touches `.github/**` governance surfaces → operator-gated. CODEOWNERS
+    is also the enabler for Workstream V's distributed-review model (K15).
+  - Target files:
+    - `.github/CODEOWNERS` (new)
+    - `.github/dependabot.yml` (new)
+    - [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
+  - Done when:
+    - CODEOWNERS routes review by area (tools/queue vs docs/templates vs workflows), with the operator as owner of the compliance-sensitive surfaces
+    - a push/PR secret-scanning gate runs in CI; dependabot files version-bump PRs (grouped, low noise)
+    - server-side branch protection settings are verified against `AGENTS.md` §8 and the verification is recorded
 
 ## 7. Deferred: Do Not Touch Yet
 

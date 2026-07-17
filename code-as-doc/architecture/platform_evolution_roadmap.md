@@ -60,6 +60,8 @@ Phases below are **not scheduled**. Each defines:
 
 Inside a phase, work advances as **single-PR slices absorbed between business deliveries**: agent-prepared, validation-gated, operator-approved, individually abandonable. A slice that would block a delivery is deferred by rule, not by negotiation. Rough sizing is therefore given in slices, not weeks — throughput depends on business load, and that is by design.
 
+Within phases, execution order follows the **Milestone K tier triage** (2026-07-17, in [`../next_optimization_checklist.md`](../next_optimization_checklist.md) §6i): Tier 1 = current real execution (4 items, no trigger needed); Tier 2 = starts when its named business pain fires; Tier 3 = requires dedicated capacity or a protected window and must not start as between-delivery filler. The triage exists so the task list reads as "4 in flight", not "15 pending" — deferred-with-trigger is a first-class state, not a failure to schedule.
+
 ## 4. Phases
 
 ### Phase 0 — Stabilization
@@ -67,7 +69,7 @@ Inside a phase, work advances as **single-PR slices absorbed between business de
 - **Removes from the operator:** being the platform's only recovery mechanism. After this phase the operator no longer has to remember to watch queue runs, personally reconstruct lost table data, or be the one machine that can finish a delivery.
 - **Current operating capacity:** one operator + agents, business-first. Sufficient — every item is agent-preparable and none needs an org decision.
 - **Organizational trigger:** none. Entry condition is "today." This is the only phase with no external dependency, which is exactly why it runs first.
-- **Technical scope:** Milestone K1–K7 (lockfile into CI, TeX pin+cache, LFS routing, scheduled content exports + restore drill, queue-failure sentinel, CODEOWNERS/secret-scanning/dependabot, InDesign version pin + second host). ~7 slices; K3/K4/K5 first — their cost of delay compounds (git history) or is catastrophic (source tables).
+- **Technical scope:** Milestone K1–K7 (lockfile into CI, TeX pin+cache, LFS routing, scheduled content exports + restore drill, queue-failure sentinel, CODEOWNERS/secret-scanning/dependabot, InDesign version pin + second host). Per the tier triage the current execution set is K4 → K5 → K7 → K1; K2/K3 wait on pain triggers, K6 on the second-reviewer window.
 - **Alongside business:** K4's restore drill piggybacks the existing I5 drill rhythm; the K5 sentinel reuses the existing Issue-bot pattern; nothing touches delivery paths.
 - **Exit criteria:** a content-restore drill executed and timed; the queue-failure Issue observed firing on a real failure; LFS live for new binaries; the IDML→PDF leg verified once on a second documented host.
 - **Next phase:** Phase 1 starts immediately for its agent-executable scope; its *completion* waits on an org trigger.
@@ -78,7 +80,7 @@ Inside a phase, work advances as **single-PR slices absorbed between business de
 - **Current operating capacity:** one operator + agents. The technical scope is exactly the kind of behavior-preserving, test-guarded work agents execute well under review.
 - **Organizational trigger:** *to start* — none; *to complete* — one of: a second maintainer joins (even part-time or borrowed), OR dedicated platform time is formally allocated, OR IT/security takes ownership of credentials and tenancy. **Surfacing this ask, with the bus-factor register as evidence, is itself a Phase 1 deliverable.** Until it fires, the fallback second maintainer is the documented-agent path: the quarterly cold-start drill run by a memory-less agent from repo docs alone (the ONBOARDING §7 mechanism), which keeps recovery honest but does not substitute for a human on judgment surfaces.
 - **Technical scope:** Milestone K8–K14 (single Feishu transport with retry/rate-limit/locking; gradual `tools/` packaging, one subsystem per PR; facade extraction; logging baseline; atomic queue claims; data-driven language onboarding; release labeling + rollback runbook); CODEOWNERS-scoped review so operator judgment is reserved for compliance/content surfaces; freshness checks on the two oversized guides. ~10–14 slices.
-- **Alongside business:** transport consolidation (K8) is prioritized because it also removes a live production pain (sync retries/races). Packaging PRs are ideal low-stakes filler between deliveries and are abandonable mid-stream by design.
+- **Alongside business:** per the tier triage, K8/K11/K13 fire on their business-pain triggers (K8's is a live sync failure, race, or rate-limit hit); the packaging/facade/queue-claim work (K9/K10/K12) waits for dedicated capacity or a protected window — a half-moved subsystem parked in the tree while business work resumes is worse than a flat namespace.
 - **Exit criteria:** exactly one code path talks to Feishu; queue claims are atomic (fixture-proven); a new language lands with zero Python edits; **someone who is not the operator — human, or agent via drill for the recovery path — has independently exercised build, publish, and restore**; the operator's review queue visibly narrows to compliance/content decisions.
 - **Next phase:** Phase 2, gated on the V design doc.
 

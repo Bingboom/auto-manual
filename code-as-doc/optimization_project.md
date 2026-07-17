@@ -583,9 +583,9 @@ Status: next
 PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone K (K1–K7).
 
 Capacity/trigger (roadmap Phase 0): no organizational trigger — entry is
-"today"; one operator + agents suffices; every item is agent-preparable and
-none needs an org decision. K3/K4/K5 first (their cost of delay compounds or
-is catastrophic).
+"today"; one operator + agents suffices. Per the Milestone K tier triage
+(2026-07-17), the current real execution set is **K4 → K5 → K7 → K1**;
+K2/K3 wait on business-pain triggers and K6 on the second-reviewer window.
 
 Removes from the operator: being the platform's only recovery mechanism (no
 more watching queue runs, hand-reconstructing lost table data, or being the
@@ -619,9 +619,10 @@ Status: next (agent-executable scope starts after Workstream T's first wave; com
 
 PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone K (K8–K14).
 
-Capacity/trigger (roadmap Phase 1): starts within current capacity — the
-scope is behavior-preserving, test-guarded work agents execute well under
-review; K8 (transport) first because it also removes a live production pain.
+Capacity/trigger (roadmap Phase 1): per the Milestone K tier triage,
+K8/K11/K13 (and provisionally K14) fire on business-pain triggers — K8's is
+a live sync failure/race/rate-limit hit; K9/K10/K12 need dedicated capacity
+or a protected window and must not start as between-delivery filler.
 **Completion** requires one of: a second maintainer joins (even part-time),
 dedicated platform time is formally allocated, or IT takes credential/tenancy
 ownership — surfacing that ask, with the bus-factor register as evidence, is
@@ -696,10 +697,10 @@ Exit criteria:
 Re-evaluate this order whenever a workstream closes.
 
 1. Keep the current `check` + smoke-CI baseline green.
-2. Run Phase 0 ops hardening (Workstream T) immediately and in parallel with everything else: T3 (stop raw binaries), T4 (source-table backup), and T5 (queue-failure alerting) are the three items whose cost grows every week they wait.
+2. Run the Milestone K Tier 1 set immediately and in parallel with everything else: K4 (source-table backup), K5 (queue-failure alerting), K7 (second InDesign host), K1 (lock CI deps) — the 2026-07-17 operator triage. Everything else in K waits for its named trigger or a dedicated window; the task list should read as "4 in flight", not "15 pending".
 3. Lock Stage 2 traceability and safe reverse-sync: finish the QC tail (Workstream I), enforce the backport layer-routing rules (Workstream Q), and freeze release snapshots (Workstream J).
 4. Take the safe first cut into prose: extend short-copy coverage (Workstream L) and make `page_registry` the single composition authority (Workstream M).
-5. Start Phase 1 platform consolidation (Workstream U) as bandwidth allows, transport first (U1) — it also closes the sync retry/rate-limit gap — then packaging (U2) before the team grows.
+5. Let Workstream U items fire on their tier rules: K8 (transport) when its sync-pain trigger fires; K9/K10/K12 only with dedicated capacity or a protected window — not as filler.
 6. Re-launch long-form prose assembly (Workstream N) only after the design in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md) is approved and the Feishu source model is stable.
 7. Scale online-first to more models (Workstream O) and consolidate the control plane (Workstream P) as those dependencies clear — but approve the Workstream V design doc before any many-target scale-out, because O multiplies exactly the review-branch propagation cost V removes.
 
