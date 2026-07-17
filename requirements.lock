@@ -1,8 +1,14 @@
-# Pinned dependency snapshot (Milestone I3). Reproduce the build env with:
-#   pip install -r requirements.lock
-# Regenerate after any intentional dependency change:
-#   pip freeze --exclude-editable | grep -v '^#' > requirements.lock  (keep this header)
-# Loose ranges for humans stay in requirements.txt; this file is the machine record.
+# Pinned dependency snapshot (Milestone I3; CI/RTD install source since K1).
+# This file is what CI, ReadTheDocs, and the queue workers actually install —
+# requirements.txt keeps the human-facing ranges and is NOT used by automation.
+#
+# Refresh WHEN: (a) you changed a range in requirements.txt, (b) a deliberate
+# dependency upgrade, or (c) a security fix needs a newer pin. Never as a side
+# effect of unrelated work.
+# Refresh HOW (clean venv on Python 3.12, then commit lock + txt together):
+#   python3.12 -m venv /tmp/lockenv && /tmp/lockenv/bin/pip install -r requirements.txt
+#   /tmp/lockenv/bin/pip freeze --exclude-editable | grep -v '^#' > requirements.lock
+#   (keep this header; CI proves the lock installs on Linux in the same PR)
 accessible-pygments==0.0.5
 alabaster==1.0.0
 aliyun-python-sdk-core==2.16.0

@@ -1,6 +1,12 @@
 # =====================================================
-# Auto-Manual build dependencies
-# Python >= 3.9 recommended
+# Auto-Manual build dependencies — HUMAN-FACING RANGES
+# Python 3.12 (what CI pins, ReadTheDocs uses, and the lock is
+# generated under; see pyproject.toml)
+#
+# CI and ReadTheDocs install from requirements.lock (Milestone K1),
+# NOT from this file. Edit ranges here, then refresh the lock (see
+# the lock header for the when/how) in the same PR.
+#
 # Covers Python-side dependencies for:
 # - RST / HTML build
 # - Word export
