@@ -1,8 +1,12 @@
 from __future__ import annotations
 
 import argparse
+import json
 import unittest
 from pathlib import Path
+from unittest.mock import patch
+
+from tests.test_helpers import temp_test_root
 
 from tools.indesign_finalize import (
     DEFAULT_OUTPUT_CONDITION,
@@ -10,8 +14,12 @@ from tools.indesign_finalize import (
     DEFAULT_PDF_PRESET,
     DEFAULT_PDFX,
     JSX,
+    VERSION_PIN,
     _job,
     _parse_pdf_export_compliance,
+    check_version_pin,
+    main,
+    write_version_pin,
 )
 
 
@@ -81,6 +89,67 @@ class InDesignFinalizeTests(unittest.TestCase):
 
         self.assertIn("with timeout of 600 seconds", runner)
         self.assertIn("timeout=660", runner)
+
+
+class VersionPinTests(unittest.TestCase):
+    """Milestone K7: the finalize leg refuses to run on a version-drifted host."""
+
+    PINNED = "Adobe InDesign 2026 21.0.1.6"
+
+    def _pin(self, root, expected=PINNED) -> Path:
+        pin = Path(root) / "pin.json"
+        pin.write_text(json.dumps({"expected": expected}), encoding="utf-8")
+        return pin
+
+    def test_committed_pin_exists_and_matches_the_check_shape(self) -> None:
+        self.assertTrue(VERSION_PIN.is_file(), "committed pin file missing")
+        pin = json.loads(VERSION_PIN.read_text(encoding="utf-8"))
+        self.assertRegex(pin["expected"], r"^Adobe InDesign .+ \d")
+        self.assertIn("pinned_at", pin)
+
+    def test_check_statuses(self) -> None:
+        with temp_test_root() as root:
+            pin = self._pin(root)
+            self.assertEqual(check_version_pin(pin, self.PINNED)[0], "match")
+            self.assertEqual(check_version_pin(pin, "Adobe InDesign 2026 21.0.2.1")[0], "mismatch")
+            self.assertEqual(check_version_pin(pin, None)[0], "no_indesign")
+            self.assertEqual(check_version_pin(Path(root) / "absent.json", self.PINNED)[0], "no_pin")
+
+    def test_mismatch_message_names_both_versions_and_the_runbook(self) -> None:
+        with temp_test_root() as root:
+            _, message = check_version_pin(self._pin(root), "Adobe InDesign 2027 22.0")
+            self.assertIn(self.PINNED, message)
+            self.assertIn("Adobe InDesign 2027 22.0", message)
+            self.assertIn("indesign_second_host_runbook", message)
+
+    def test_write_pin_seeds_from_host_and_refuses_without_indesign(self) -> None:
+        with temp_test_root() as root:
+            pin = Path(root) / "pin.json"
+            written = write_version_pin(pin, actual="Adobe InDesign 2026 21.0.1.6")
+            self.assertEqual(written, self.PINNED)
+            data = json.loads(pin.read_text(encoding="utf-8"))
+            self.assertEqual(data["expected"], self.PINNED)
+            with self.assertRaises(RuntimeError):
+                write_version_pin(pin, actual=None)
+
+    def test_check_host_cli_exits_zero_on_match_two_otherwise(self) -> None:
+        with patch("tools.indesign_finalize.check_version_pin",
+                   return_value=("match", "ok")):
+            with patch("sys.argv", ["indesign_finalize.py", "--check-host"]):
+                self.assertEqual(main(), 0)
+        with patch("tools.indesign_finalize.check_version_pin",
+                   return_value=("mismatch", "drift")):
+            with patch("sys.argv", ["indesign_finalize.py", "--check-host"]):
+                self.assertEqual(main(), 2)
+
+    def test_run_refuses_on_mismatch_without_override_and_never_launches(self) -> None:
+        with patch("tools.indesign_finalize.check_version_pin",
+                   return_value=("mismatch", "drift")), \
+             patch("tools.indesign_finalize._run_jsx") as run_jsx, \
+             patch("sys.argv", ["indesign_finalize.py", "--idml", "a.idml",
+                                "--indd", "a.indd", "--pdf", "a.pdf", "--report", "r.json"]):
+            self.assertEqual(main(), 2)
+            run_jsx.assert_not_called()
 
 
 if __name__ == "__main__":

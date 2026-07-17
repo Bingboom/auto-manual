@@ -33,7 +33,7 @@
 | CI 验证（lint/unittest/check/预览包） | GitHub Actions（`manual-validation.yml` 等 9 个 workflow） | 无需重建，仓库自带 |
 | 队列构建 / 评审启动 | Hello-Docs 的 Actions（`workflow_dispatch` 触发；cron 大多禁用） | secrets 见下行 |
 | 飞书读写（lark-cli / 队列） | GitHub secrets（两仓各一套）+ 操作者本机 `~/.openclaw/.env`、`~/.auto-manual-phase2.env` | 在飞书开放平台重发 app 凭据 → 更新 secrets；表/视图 ID 清单在 `two_plane_map.md` §1.1 |
-| InDesign 终饰（IDML→成品 PDF） | **仅操作者 Mac**（真 InDesign + `tools/idml/indesign_finalize.jsx`），不在任何 CI | 任何装有 InDesign 的 Mac + 本仓库；无版本锁（已知风险） |
+| InDesign 终饰（IDML→成品 PDF） | **仅操作者 Mac**（真 InDesign + `tools/idml/indesign_finalize.jsx`），不在任何 CI | **有版本锁**（`tools/idml/indesign_version_pin.json`，finalize 启动时比对、不匹配拒跑）+ 第二主机 runbook（[`code-as-doc/dev/indesign_second_host_runbook.md`](code-as-doc/dev/indesign_second_host_runbook.md)）；**待第二主机首次验证**（跑通后在 runbook §3 和本行登记日期） |
 | GitHub 推送 | 操作者 gh OAuth（`gh auth login --web`） | 新维护者自己 `gh auth login` |
 | TeX / pandoc | CI 镜像内置；本机需自装（`python build.py doctor` 自检） | doctor 会列出缺什么 |
 
@@ -81,7 +81,7 @@ python tools/flow_dashboard.py report     # 双面仪表（系统健康 + 产出
 
 ## 8. 已知的单点与坑（接手前心里有数）
 
-- InDesign 终饰环节无 CI、无版本锁（见 §3）；文字改动**禁止**在 InDesign 层做，必须走回写回路
+- InDesign 终饰环节无 CI，但**有版本锁**（pin 不匹配拒跑，见 §3 与 second-host runbook）；文字改动**禁止**在 InDesign 层做，必须走回写回路
 - 回写对"整表/整节纯删除"是盲区——每轮回写后跑删除专项核对
 - 退役产线：关源表行 `Is_Latest`，**不要删构建表行**（公式字段架构下删行=关联行悬空）
 - 构建环境未锁定（无 lock 文件）：排版漂移目前不可自动检测（Milestone I 探针在建）

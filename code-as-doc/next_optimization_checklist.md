@@ -1025,10 +1025,26 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     - writeback-failure (build succeeded, Bitable write failed) alerts too — it is the silent-divergence case
 
 - [ ] PR K7: InDesign finalize — version lock + second host (T7)
-  - Status: `pending`
-  - Note: the top delivery SPOF: the IDML→final-PDF leg runs only on the
-    operator's Mac, no CI, no version lock (ONBOARDING §3 known risk). This PR
-    is documentation + provenance binding, not automation.
+  - Status: `in_progress` (code/doc legs merged; remaining = the operator's
+    one-time second-host verification run, tracked in the runbook §3 table and
+    the ONBOARDING §3 register row)
+  - Note (2026-07-17 delivery): version pin committed at
+    `tools/idml/indesign_version_pin.json` (seeded live from the operator Mac:
+    `Adobe InDesign 2026 21.0.1.6`); `tools/indesign_finalize.py` now checks
+    the pin at finalize time via the I3 collector — **mismatch refuses to run**
+    (`--allow-version-mismatch` overrides, recorded in the report's
+    `toolchain` block), plus `--check-host` (runbook step) and `--write-pin`
+    (deliberate-upgrade re-seed). Exact-match policy: even patch-level drift
+    makes finalize output non-comparable, so upgrades re-pin instead of
+    loosening. Second-host procedure:
+    [`dev/indesign_second_host_runbook.md`](dev/indesign_second_host_runbook.md)
+    (prereqs incl. fonts from the handoff manifest, five verification steps,
+    upgrade discipline: all hosts together). ONBOARDING §3 register row
+    updated from "无版本锁（已知风险）" to the documented recovery path.
+    `--check-host` verified live on the operator Mac (match). 11 unit tests.
+  - Original note: the top delivery SPOF: the IDML→final-PDF leg runs only on
+    the operator's Mac, no CI, no version lock (ONBOARDING §3 known risk). This
+    PR is documentation + provenance binding, not automation.
   - Target files:
     - [`../tools/idml/indesign_finalize.jsx`](../tools/idml/indesign_finalize.jsx)
     - [`../tools/toolchain_provenance.py`](../tools/toolchain_provenance.py)
