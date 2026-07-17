@@ -1,0 +1,5 @@
+{
+  "expected": "Adobe InDesign 2026 21.0.1.6",
+  "pinned_at": "2026-07-17",
+  "note": "Milestone K7: the finalize leg's pinned InDesign version, seeded from the operator Mac. Every finalize host must match it (tools/indesign_finalize.py --check-host). Re-pin ONLY on a deliberate upgrade, with --write-pin, and upgrade every finalize host together."
+}
