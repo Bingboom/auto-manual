@@ -123,6 +123,22 @@ python3 -m tools.tm_hit_rate stats
 > 哨兵只报不动手，也不写任何飞书数据。首次启用建议在 GitHub Actions 页面
 > 手动 `Run workflow` 跑一遍验证凭据（见 §5）。
 
+### 3b. 队列失败哨兵（Milestone K5：构建失败不再靠盯）
+
+三个队列 workflow（`feishu-build-queue` / `feishu-draft-build-queue` /
+`feishu-start-review`）失败时**自动开 issue**，不用再守着 Actions 页面：
+
+- 标签分别是 `queue-failure-build` / `queue-failure-draft` /
+  `queue-failure-start-review`；**issue 标题带 record_id**，所以同一条记录
+  下次跑成功会自动关掉它自己的 issue（batch 跑对应 `batch` 标题）。
+- issue 正文带 run 链接、record_id、trigger 来源；正文会提醒检查
+  **writeback 静默分歧**：构建成功但飞书行回写失败时，行里的状态是旧的——
+  以 run 日志为准核对该行。
+- 操作者取消的 run 不开 issue（取消不是事故）。
+- 复用逻辑在 `.github/actions/queue-sentinel-issue/`；接线由
+  `tests/test_queue_failure_sentinel.py` 结构测试钉死，改 workflow 掉了
+  哨兵会在 CI 里挂。
+
 ---
 
 ## 4. 给审核人出带批注的 PDF

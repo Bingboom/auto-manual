@@ -993,9 +993,25 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     - a written restore runbook extends ops guide §4.7 from schema-rebuild to content-restore
     - one content-restore drill has been run and timed against a scratch base
 
-- [ ] PR K5: Queue-failure alerting via the sentinel Issue pattern (T5)
-  - Status: `pending`
-  - Note: touches `.github/workflows/**` → operator-gated. Today
+- [x] PR K5: Queue-failure alerting via the sentinel Issue pattern (T5)
+  - Status: `done`
+  - Completed: `2026-07-17`
+  - Note: delivered as the reusable composite action
+    `.github/actions/queue-sentinel-issue/` (open-on-failure / close-on-
+    success via github-script; cancelled runs open nothing) wired as the
+    final `if: always()` step of all three queue workflows with per-workflow
+    labels (`queue-failure-build` / `-draft` / `-start-review`).
+    **Issue titles carry the record_id**, so the open/close lifecycle is
+    per-record: the next successful run of the same record closes its own
+    issue (batch runs use a `batch` title). The failure body names the
+    writeback silent-divergence case (build succeeded, Bitable row stale) —
+    exit-code propagation was verified: writeback failures join the queue
+    runner's `failures` list, so the job fails and the sentinel fires.
+    Wiring is pinned by `tests/test_queue_failure_sentinel.py` (permissions,
+    last-step position, `always()`, distinct labels). Operator-facing doc:
+    ops guide §3b. First live firing will be observed on the next real
+    queue failure — nothing to pre-verify beyond a dispatch test.
+  - Original note: touches `.github/workflows/**` → operator-gated. Today
     `cred-health-check` / `feishu-schema-parity` / `backport-reminder` open and
     close Issues, but a failed build-queue run only writes `FAILED …` to the
     Bitable row and fails the Actions run — nobody is notified unless watching.
