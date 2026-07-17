@@ -1,0 +1,145 @@
+name: Phase2 Content Backup
+
+# Milestone K4: nightly point-in-time CONTENT export of the Bitable
+# source-of-truth (business base + TM base), retained as a dated artifact.
+# Structure is covered by the committed schema manifests (bitable_schema/);
+# this covers the rows. Restore procedure: ops guide §4.7 (content-restore).
+#
+# Retention window: 90 days of nightly restore points (artifact retention-days
+# below). A failed run opens the sentinel Issue (label: phase2-content-backup),
+# closed automatically by the next successful run — same lifecycle as
+# cred-health-check / feishu-schema-parity.
+
+on:
+  schedule:
+    - cron: "30 0 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: phase2-content-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    # Source repo only: the mirror carries this file but must not double-export.
+    if: ${{ github.repository != 'Bingboom/Hello-Docs' }}
+    env:
+      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+      FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
+      FEISHU_TRANSLATION_MEMORY_BASE_TOKEN: ${{ secrets.FEISHU_TRANSLATION_MEMORY_BASE_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/feishu-common-setup
+
+      - name: Validate required env
+        run: bash scripts/validate_required_env.sh phase2-content-backup
+
+      - name: Export business base content
+        id: export_business
+        continue-on-error: true
+        run: |
+          python tools/bitable_content_backup.py export \
+            --manifest bitable_schema/business_base_manifest.json \
+            --base-token-env FEISHU_PHASE2_BASE_TOKEN \
+            --label business --out backup_out | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Export TM base content
+        id: export_tm
+        continue-on-error: true
+        run: |
+          python tools/bitable_content_backup.py export \
+            --manifest bitable_schema/tm_base_manifest.json \
+            --base-token-env FEISHU_TRANSLATION_MEMORY_BASE_TOKEN \
+            --label tm --out backup_out | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload dated backup artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase2-content-backup-${{ github.run_id }}
+          path: backup_out/
+          retention-days: 90
+          if-no-files-found: error
+
+      - name: Open or update tracking issue on failure
+        if: steps.export_business.outcome == 'failure' || steps.export_tm.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Phase2 content backup failing';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              `Latest failure: ${runUrl}`,
+              '',
+              'The nightly point-in-time export of the Bitable source tables did not complete.',
+              'Until it succeeds again, the most recent restore point is aging — treat this',
+              'with the same urgency as a failed backup anywhere else.',
+              '',
+              'This issue will be closed automatically when the next scheduled or manual run succeeds.',
+            ].join('\n');
+            const search = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'phase2-content-backup',
+              per_page: 10,
+            });
+            const existing = search.data.find(issue => issue.title === title);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body: `Still failing as of ${new Date().toISOString()}. ${runUrl}`,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['phase2-content-backup'],
+              });
+            }
+
+      - name: Close tracking issue on recovery
+        if: steps.export_business.outcome == 'success' && steps.export_tm.outcome == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Phase2 content backup failing';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const search = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'phase2-content-backup',
+              per_page: 10,
+            });
+            const existing = search.data.find(issue => issue.title === title);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body: `Recovered: ${runUrl}`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                state: 'closed',
+              });
+            }
+
+      - name: Fail the run if any export failed
+        if: steps.export_business.outcome == 'failure' || steps.export_tm.outcome == 'failure'
+        run: exit 1

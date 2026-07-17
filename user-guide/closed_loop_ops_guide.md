@@ -239,6 +239,40 @@ python tools/bitable_schema.py seed-import --base-token <scratch> \
 **底线**：季度一次；每次把耗时和新发现追加到上表。演练不达标（重建不出来/
 耗时不可接受）= 灾备欠账，进 checklist。
 
+### 4.7b 内容恢复（Milestone K4：行数据的备份与回灌）
+
+结构（4.7 的 schema 镜像）之外，**行内容**由夜间备份工件覆盖：workflow
+`phase2-content-backup.yml`（每日 00:30 UTC + 手动 dispatch）用
+`tools/bitable_content_backup.py export` 把业务 base（21 表）+ TM base（2 表）
+全量导成 CSV（含公式/lookup 的**值**，留档用）+ `backup_manifest.json`
+（行数 + sha256），存 90 天 Actions artifact——即约 90 个每日恢复点。
+导出失败自动开 `phase2-content-backup` 标签的哨兵 Issue，下次成功自动关。
+
+**误删/误改恢复步骤**（scratch 验证后再考虑生产路径；恢复目标 token 永远
+显式传参，工具不读环境变量里的生产 token）：
+
+```bash
+# 1. 从 Actions 下载最近的 phase2-content-backup-<run_id> 工件并解压
+# 2. scratch base + 结构（同 4.7 步骤 1-2）
+# 3. 回灌内容（dry-run 默认；--write --yes 执行；空表才允许写入）
+python tools/bitable_content_backup.py restore \
+  --backup <解压目录>/business --base-token <scratch> \
+  --tables <误删的表> --identity user --write --yes
+# 4. 行数核对
+python tools/bitable_content_backup.py verify \
+  --backup <解压目录>/business --base-token <scratch> --identity user
+# 5. 核对通过后，把需要的行从 scratch 手工/按表搬回生产表（或对生产空表重复 3）
+```
+
+**内容恢复演练记录**：
+
+| 日期 | 范围 | 耗时 | 发现 |
+| --- | --- | --- | --- |
+| 2026-07-17 | 首演：TM base 全库（888 行）+ 业务 base 全库导出（1313 行）；scratch 回灌 TM 2 表 | 导出 TM **10s** / 业务 **58s**；结构 apply 5s；回灌 888 行 **~25s**；verify 7s ✓ 888/888 | ① **select 选项漂移**：活库在 schema 快照后新增选项，batch-create 报 800030005 拒写整批——restore 现已内建"选项预同步"（field-update 全量 PUT 补选项）；② **multi-select 保真度限制**：多选单元格按拼接串恢复成单一选项（行数正确、多选拆分丢失），修复留作 follow-up——多选列多的表恢复后需人工复核该列 |
+
+**底线**：季度演练把 4.7（结构）+ 4.7b（内容）连着跑；备份哨兵 Issue 开着
+= 恢复点在变旧，当天处理。
+
 ## 4.8 印刷外链清单（月度）
 
 印在纸上的 URL/QR 印出去就改不了。`data/printed_url_inventory.csv` 是唯一
