@@ -326,10 +326,12 @@ def emit_reference_page_plan(plan: dict[str, Any] | None, *, out_dir: Path) -> P
     if plan is None:
         return None
     path = write_page_plan(plan, out_dir / PathSegments.LATEX_PAGE_PLAN_JSON)
+    matchable = plan["source_page_count"] - plan.get("placed_source_pages", 0)
     print(
         f"[export-idml] PAGE PLAN OK: {path} | "
         f"physical={plan['physical_page_count']} matched={plan['matched_source_pages']}/"
-        f"{plan['source_page_count']} ({plan['match_rate']:.1%})"
+        f"{matchable} ({plan['match_rate']:.1%})"
+        f" placed={plan.get('placed_source_pages', 0)}"
     )
     return path
 
