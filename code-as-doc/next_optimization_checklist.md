@@ -961,11 +961,28 @@ the same logic — re-tier in review if wrong.**
 Entry rule: no trigger needed. These are the next platform slices between
 business deliveries, in this order: K4 → K5 → K7 → K1.
 
-- [ ] PR K4: Scheduled versioned export of the phase2 source tables + restore runbook (T4)
-  - Status: `pending`
-  - Note: the I5 drill proved schema restore works (86s from repo artifacts)
-    but covers structure only — table CONTENT has no point-in-time backup; a
-    destructive Bitable edit is currently unrecoverable. Read-only export, no
+- [x] PR K4: Scheduled versioned export of the phase2 source tables + restore runbook (T4)
+  - Status: `done`
+  - Completed: `2026-07-17`
+  - Note: delivered as `tools/bitable_content_backup.py` (export / restore /
+    verify, reusing the `bitable_schema` primitives; restore is dry-run by
+    default, requires an explicit target token, refuses non-empty tables, and
+    never writes formula/lookup/link columns), the nightly
+    `phase2-content-backup.yml` workflow (00:30 UTC + dispatch, 90-day
+    artifact retention, sentinel Issue on failure), the
+    `phase2-content-backup` env preset, and ops guide §4.7b (restore runbook
+    + drill record). **Live drill 2026-07-17:** TM base full export 10s /
+    business base 21 tables 58s; scratch-base restore 888/888 rows verified
+    (~25s). The drill caught real drift on day one: select options added to
+    the live base after the schema snapshot made batch-create reject the
+    whole table (800030005) — restore now pre-syncs missing select options
+    via field-update. Known limitation (recorded in the runbook): multi-select
+    cells restore as one concatenated option; fidelity fix is a follow-up.
+    First nightly artifact lands after merge — confirm it once, then this is
+    fully closed.
+  - Original note: the I5 drill proved schema restore works (86s from repo
+    artifacts) but covers structure only — table CONTENT had no point-in-time
+    backup; a destructive Bitable edit was unrecoverable. Read-only export, no
     source-table writes.
   - Target files:
     - [`../tools/data_snapshot.py`](../tools/data_snapshot.py)

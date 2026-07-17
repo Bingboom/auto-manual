@@ -70,8 +70,16 @@ case "${preset}" in
       FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID
     )
     ;;
+  phase2-content-backup)
+    required=(
+      FEISHU_APP_ID
+      FEISHU_APP_SECRET
+      FEISHU_PHASE2_BASE_TOKEN
+      FEISHU_TRANSLATION_MEMORY_BASE_TOKEN
+    )
+    ;;
   *)
-    printf 'Usage: %s <feishu-build-queue|feishu-draft-build-queue|feishu-start-review>\n' "$0" >&2
+    printf 'Usage: %s <feishu-build-queue|feishu-draft-build-queue|feishu-start-review|phase2-content-backup>\n' "$0" >&2
     exit 2
     ;;
 esac
