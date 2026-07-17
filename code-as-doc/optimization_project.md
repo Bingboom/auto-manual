@@ -29,6 +29,10 @@ For long-term direction and stable architecture boundaries, use:
 
 - [`code-as-doc/architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md)
 
+For the multi-year platform maturity view (phases, gates, KPIs), use:
+
+- [`code-as-doc/architecture/platform_evolution_roadmap.md`](architecture/platform_evolution_roadmap.md)
+
 ## 2. Maintenance Rules
 
 Update this file when one of these happens:
