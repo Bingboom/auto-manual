@@ -23,6 +23,7 @@ concurrency:
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
   process-draft-queue:
@@ -149,3 +150,18 @@ jobs:
           name: openclaw-run-metadata
           path: .tmp/openclaw/feishu-draft-build-queue-run.json
           if-no-files-found: error
+
+      # Milestone K5: a failed queue run must alert on its own instead of
+      # relying on whoever dispatched it to watch the run.
+      - name: Queue failure sentinel
+        if: always()
+        uses: ./.github/actions/queue-sentinel-issue
+        with:
+          job-status: ${{ job.status }}
+          label: queue-failure-draft
+          title: "Feishu Draft Build Queue failing: ${{ inputs.queue_record_id || 'batch' }}"
+          details: |
+            workflow: Feishu Draft Build Queue (build-draft-package)
+            record_id: ${{ inputs.queue_record_id || '(batch)' }}
+            trigger_source: ${{ inputs.trigger_source || '' }}
+            openclaw_dispatch_nonce: ${{ inputs.openclaw_dispatch_nonce || '' }}

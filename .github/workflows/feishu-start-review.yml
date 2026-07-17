@@ -24,6 +24,7 @@ concurrency:
 permissions:
   actions: write
   contents: write
+  issues: write
   pull-requests: write
 
 jobs:
@@ -226,3 +227,18 @@ jobs:
           name: openclaw-run-metadata
           path: .tmp/openclaw/feishu-start-review-run.json
           if-no-files-found: error
+
+      # Milestone K5: a failed review-start run must alert on its own instead
+      # of relying on whoever dispatched it to watch the run.
+      - name: Queue failure sentinel
+        if: always()
+        uses: ./.github/actions/queue-sentinel-issue
+        with:
+          job-status: ${{ job.status }}
+          label: queue-failure-start-review
+          title: "Feishu Start Review failing: ${{ inputs.queue_record_id || 'batch' }}"
+          details: |
+            workflow: Feishu Start Review
+            record_id: ${{ inputs.queue_record_id || '(batch)' }}
+            trigger_source: ${{ inputs.trigger_source || '' }}
+            openclaw_dispatch_nonce: ${{ inputs.openclaw_dispatch_nonce || '' }}
