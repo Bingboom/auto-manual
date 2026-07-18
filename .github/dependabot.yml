@@ -1,0 +1,41 @@
+# Milestone K6 (severable slice): dependency alerting.
+#
+# pip and npm run in SECURITY-ONLY mode (open-pull-requests-limit: 0 keeps
+# scheduled version bumps off, but security-advisory PRs still open): routine
+# Python pin changes must go through the K1 lock-refresh procedure
+# (requirements.lock header) instead of per-package bump PRs, and the adapter
+# packages should not churn. GitHub Actions get normal weekly bumps, grouped
+# into one PR to stay low-noise.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0
+
+  - package-ecosystem: npm
+    directory: /integrations/openclaw/auto-manual-control-layer
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0
+
+  - package-ecosystem: npm
+    directory: /integrations/openclaw/dingtalk-im-adapter
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0
+
+  - package-ecosystem: npm
+    directory: /integrations/openclaw/feishu-im-webhook-adapter
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0

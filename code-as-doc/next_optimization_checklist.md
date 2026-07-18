@@ -1289,13 +1289,25 @@ semantic change sitting in the tree while business work resumes.
     - the operator has approved or amended the design, recorded in the doc header
 
 - [ ] PR K6: Governance floor — CODEOWNERS, secret scanning, dependabot (T6)
-  - Status: `deferred`
-  - Trigger: a second reviewer/maintainer exists (CODEOWNERS routing is
-    mostly symbolic while one person reviews everything — its value activates
-    with the Workstream U organizational trigger). **Provisional Tier 3
-    placement** (not in the operator's 2026-07-17 triage) — re-tier if wrong.
-    The secret-scanning + dependabot slice is cheap and severable: it may be
-    pulled forward as a filler PR any time without waiting for this trigger.
+  - Status: `deferred` (severable slice delivered 2026-07-17; remainder waits
+    on the trigger below)
+  - Slice delivered (2026-07-17): the pre-authorized secret-scanning +
+    dependabot half. `secret-scan` job in `manual-validation.yml` (gitleaks
+    v8.30.1 pinned + checksum-verified, working-tree scan) with
+    `.gitleaks.toml` encoding the repo policy — Feishu RESOURCE tokens and
+    business-key vocabulary are allowlisted BY LINE SHAPE, credentials are
+    not; tuned against a full local scan (31 findings triaged: all resource
+    tokens/fixtures, zero credentials) and canary-verified both ways (clean
+    tree = 0, planted ghp_/FEISHU_APP_SECRET shapes = caught).
+    `.github/dependabot.yml`: github-actions weekly grouped bumps; pip and
+    npm in security-only mode (routine Python pins go through the K1
+    lock-refresh procedure, not per-package bumps). Remaining for the full
+    K6: CODEOWNERS + server-side branch-protection verification.
+  - Trigger (remainder): a second reviewer/maintainer exists (CODEOWNERS
+    routing is mostly symbolic while one person reviews everything — its
+    value activates with the Workstream U organizational trigger).
+    **Provisional Tier 3 placement** (not in the operator's 2026-07-17
+    triage) — re-tier if wrong.
   - Note: touches `.github/**` governance surfaces → operator-gated. CODEOWNERS
     is also the enabler for Workstream V's distributed-review model (K15).
   - Target files:
