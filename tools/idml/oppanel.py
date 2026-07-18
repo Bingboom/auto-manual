@@ -135,12 +135,21 @@ def transform(blocks: list[Block]) -> list[Block]:
                 prereq = ""
                 if out and out[-1][0] == "body" and _PREREQ.match(out[-1][1].strip()):
                     prereq = _BOLD.sub(r"\1", out.pop()[1]).strip()
+                consumed = 2
+                # The prepared RST extractor may split the power panel's
+                # standby copy into a second body block after the On/Off
+                # rows.  A bold field lead is the structural marker used by
+                # the shared templates; fold that block into the panel so
+                # the editable grey tail pill stays inside the border.
+                if not tail and i + 2 < len(blocks) and blocks[i + 2][0] == "body":
+                    candidate = blocks[i + 2][1].strip()
+                    if re.match(r"^\*{0,2}[^*\n]+\*{0,2}\s*:", candidate):
+                        tail = candidate
+                        consumed = 3
                 out.append(("component", json.dumps(
                     {"kind": "oppanel", "image": text, "prereq": prereq,
-                     "rows": rows}, ensure_ascii=False)))
-                if tail:
-                    out.append(("body", tail))
-                i += 2
+                     "rows": rows, "tail": tail}, ensure_ascii=False)))
+                i += consumed
                 continue
         out.append((kind, text))
         i += 1

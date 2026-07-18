@@ -79,14 +79,31 @@ class TransformTest(unittest.TestCase):
 
         out = transform(blocks)
 
-        self.assertEqual(["component", "body"], [kind for kind, _ in out])
+        self.assertEqual(["component"], [kind for kind, _ in out])
         spec = json.loads(out[0][1])
         self.assertEqual(
             [["Marche", "appuyez une fois."],
              ["Arrêt", "appuyez et maintenez pendant 3 secondes."]],
             spec["rows"],
         )
-        self.assertEqual("\n".join(tail_lines), out[1][1])
+        self.assertEqual("\n".join(tail_lines), spec["tail"])
+
+    def test_split_power_tail_is_folded_into_panel(self) -> None:
+        blocks = [
+            ("image", "_assets/x/main_power.png"),
+            ("body", "On: Press once.\nOff: Press and hold for 3s."),
+            ("body", "**Default standby time:** 2 hours.\nThe product shuts down."),
+            ("h2", "AC OUTPUT ON/OFF"),
+        ]
+
+        out = transform(blocks)
+
+        self.assertEqual(["component", "h2"], [kind for kind, _ in out])
+        spec = json.loads(out[0][1])
+        self.assertEqual(
+            "**Default standby time:** 2 hours.\nThe product shuts down.",
+            spec["tail"],
+        )
 
     def test_flattened_langtag_becomes_component(self) -> None:
         blocks = [

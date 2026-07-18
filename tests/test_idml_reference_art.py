@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 from tools.idml.components import RenderContext
-from tools.idml.components.oppanel import render_oppanel
+from tools.idml.components.oppanel import _prereq_overlay, render_oppanel
 from tools.idml.components.prose_image import render_image_block
 
 
@@ -117,6 +117,29 @@ class ReferenceArtGeometryTests(unittest.TestCase):
 
         self.assertGreaterEqual(_image_width(xml), ctx.text_measure * 0.74)
         self.assertGreater(height, 170.0)
+
+    def test_operation_prerequisite_replaces_baked_pill_with_editable_stack(self) -> None:
+        stories = []
+
+        def add_story(story_id, _label, _parts):
+            stories.append(story_id)
+            return story_id
+
+        base = _ctx()
+        ctx = RenderContext(
+            params=base.params, page_w=base.page_w, m_l=base.m_l, m_r=base.m_r,
+            root=base.root, bundle_root=base.bundle_root, add_story=add_story,
+        )
+        xml = _prereq_overlay(
+            ctx, tid="editable_prereq", text="Localized prerequisite",
+            image_w=200.0, image_h=100.0,
+        )
+        mask = 'Self="oppanel_prereq_mask_editable_prereq"'
+        background = 'Self="oppanel_prereq_bg_editable_prereq"'
+        text_frame = 'Self="tf_oppanel_prereq_editable_prereq"'
+        self.assertLess(xml.index(mask), xml.index(background))
+        self.assertLess(xml.index(background), xml.index(text_frame))
+        self.assertEqual(["st_anchor_oppanel_prereq_editable_prereq"], stories)
 
 
 if __name__ == "__main__":
