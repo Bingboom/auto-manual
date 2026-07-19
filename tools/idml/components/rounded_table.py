@@ -39,6 +39,7 @@ def rounded_table_panel(
     space_before: float = 0.0,
     space_after: float = 0.0,
     start_next_page: bool = False,
+    content_bottom_bleed: float = 0.0,
 ) -> str:
     """Wrap one table segment in the canonical editable rounded shell."""
     table_xml = suppress_outer_edges_xml(table_xml, n_cols)
@@ -65,12 +66,15 @@ def rounded_table_panel(
         ),
         content_inset=0.0,
         corner_fills=corner_fills,
+        # Inline groups use their own text-frame reference point; paragraph
+        # LeftIndent is preserved in IDML but ignored by InDesign for these
+        # objects. Apply the measured optical offset to the group transform.
+        group_x_offset=left_indent,
+        content_bottom_bleed=content_bottom_bleed,
     )
     attrs: list[str] = []
     if start_next_page:
         attrs.append('StartParagraph="NextPage"')
-    if left_indent:
-        attrs.append(f'LeftIndent="{left_indent:g}"')
     if space_before:
         attrs.append(f'SpaceBefore="{space_before:g}"')
     if space_after:

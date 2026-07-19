@@ -37,7 +37,8 @@ def pages_for_height(writer, height_pt: float) -> int:
 
 def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
                      columns: int = 1, bottom_extra: float = 0.0,
-                     first_top_offset: float = 0.0) -> None:
+                     first_top_offset: float = 0.0,
+                     last_frame_x_offset: float = 0.0) -> None:
     """One spread per page, each holding one frame of a linked chain.
 
     Spread coordinates: origin at the spread center; the page's
@@ -49,6 +50,7 @@ def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
     y2 = writer.page_h / 2 - writer.m_b + bottom_extra
     for i in range(n_pages):
         first_offset = first_top_offset if i == 0 else 0.0
+        frame_x_offset = last_frame_x_offset if i == n_pages - 1 else 0.0
         y1 = -writer.page_h / 2 + writer.m_t + first_offset
         frame_y2 = y2 + first_offset
         spread_id = f"sp_{start_index + i}"
@@ -69,7 +71,12 @@ def add_spread_chain(writer, story_id: str, n_pages: int, start_index: int,
             f'  <TextFrame Self="{frame_id}" ParentStory="{story_id}" {prev} {nxt} '
             'ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
             'ItemTransform="1 0 0 1 0 0">\n'
-            + writer._path_geometry(x1, y1, x2, frame_y2) +
+            + writer._path_geometry(
+                x1 + frame_x_offset,
+                y1,
+                x2 + frame_x_offset,
+                frame_y2,
+            ) +
             f'    <TextFramePreference TextColumnCount="{columns}" TextColumnGutter="11" AutoSizingType="Off"/>\n'
             '  </TextFrame>\n'
             '</Spread>\n'

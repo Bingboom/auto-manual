@@ -731,8 +731,27 @@ then emits editable shape underlays, followed by separate unlocked text frames
 for Prerequisite, standby, On, and Off. The text frames are therefore topmost
 and may be moved or edited independently during final-mile InDesign alignment;
 the Energy Saving paragraph after POWER remains full-width prose outside the
-panel.
-source-authored TOC folios and back-cover copy come from the IR; InDesign must
+panel. Energy Saving then groups its two source guidance paragraphs into the
+panel's grey header and exposes On/Off, 3s, and the localized action as separate
+top-layer frames. LED groups its source lead into the grey header and exposes
+1/2/3, SOS, and each of the three localized instructions separately. These
+special layouts are detected from governed image identity plus neighbouring IR
+structure, not localized English headings; the original Energy Saving PNG with
+baked copy is not eligible for this overlay path. LCD SCREEN composes the
+governed LCD illustration and a six-row native grid inside one rounded frame;
+its two state, six action, and six description frames are emitted last and stay
+independently movable. KEY COMBINATION is detected from its language-neutral
+three-column, four-combination source shape. Button and clock assets plus grid
+underlays are linked/drawn first; localized headers, button captions, plus
+signs, durations, operations, and functions are separate top-layer frames.
+Approved-reference operation pages additionally apply locale-measured Auto
+Resume, LCD SCREEN, and KEY COMBINATION geometry, localized flow gaps, and a
+per-language translation of the final story frame. Components compensate that
+host-frame translation with a non-negative first-line indent; keep the two
+responsibilities separate because InDesign clamps or ignores equivalent
+negative offsets on nested inline groups. Non-approved targets retain the
+generic component fallbacks.
+Source-authored TOC folios and back-cover copy come from the IR; InDesign must
 not recompute or hardcode them. Content, translation, specification, legal,
 table-structure, or asset-identity defects are corrected in the
 Feishu/source-table/template/review/TM or asset-governance layer and then

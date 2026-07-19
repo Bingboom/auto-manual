@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import unittest
 from pathlib import Path
 
@@ -18,8 +19,10 @@ class _RecordingWriter:
         self.m_b = 23.0
         self.page_h = 500.0
         self.spread_chains: list[tuple[str, int, int, int]] = []
+        self.spread_chain_options: list[dict[str, float]] = []
         self.chain_frames: list[tuple[str, int]] = []
         self.story_frames: list[tuple[str, list[tuple[int, float, float]]]] = []
+        self.prose_story_options: list[dict[str, float]] = []
 
     def add_prose_story(
         self,
@@ -27,7 +30,9 @@ class _RecordingWriter:
         _title: str,
         _blocks: list[tuple[str, str]],
         _bundle_root: Path,
+        **kwargs: float,
     ) -> tuple[str, float]:
+        self.prose_story_options.append(kwargs)
         return sid, 1.0
 
     def pages_for_height(self, _height: float) -> int:
@@ -40,9 +45,10 @@ class _RecordingWriter:
         page_cursor: int,
         *,
         columns: int,
-        **_kwargs: float,
+        **kwargs: float,
     ) -> None:
         self.spread_chains.append((sid, pages, page_cursor, columns))
+        self.spread_chain_options.append(kwargs)
         self.chain_frames.extend(
             (sid, page_cursor + offset) for offset in range(pages)
         )
@@ -122,6 +128,58 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
         self.assertEqual(1, len(writer.story_frames[0][1]))
         self.assertEqual(1, writer.story_frames[0][1][0][0])
         self.assertEqual([], toc.noted_pages)
+
+    def test_operation_chain_extends_below_the_ordinary_body_margin(self) -> None:
+        writer = _RecordingWriter()
+        toc = _RecordingToc()
+        emitter = ReferenceStoryEmitter(
+            writer,
+            toc,
+            ROOT,
+            {"plan_source": "approved-reference"},
+        )
+        key_rows = [
+            ["Buttons", "Operation", "Function"],
+            ["Power + AC", "Press 3s", "Enable"],
+        ]
+
+        emitter.emit(
+            "st_operation",
+            "05_operation_guide_placeholder",
+            [
+                ("h1", "OPERATIONS"),
+                ("table", json.dumps(key_rows)),
+            ],
+            page_cursor=7,
+        )
+
+        self.assertEqual(18.0, writer.spread_chain_options[0]["bottom_extra"])
+        self.assertEqual(
+            -6.82,
+            writer.spread_chain_options[0]["last_frame_x_offset"],
+        )
+        self.assertEqual(
+            {"inline_origin_shift": -6.82},
+            writer.prose_story_options[0],
+        )
+
+    def test_unapproved_operation_chain_keeps_the_standard_bottom(self) -> None:
+        writer = _RecordingWriter()
+        toc = _RecordingToc()
+        emitter = ReferenceStoryEmitter(writer, toc, ROOT)
+        key_rows = [
+            ["Buttons", "Operation", "Function"],
+            ["Power + AC", "Press 3s", "Enable"],
+        ]
+
+        emitter.emit(
+            "st_operation",
+            "05_operation_guide_placeholder",
+            [("table", json.dumps(key_rows))],
+            page_cursor=7,
+        )
+
+        self.assertEqual(0.0, writer.spread_chain_options[0]["bottom_extra"])
 
 
 if __name__ == "__main__":

@@ -12,6 +12,7 @@ from pathlib import Path
 
 from . import ir_projection
 from .params import param_pt
+from .prose_flow import operation_final_frame_x_offset, operation_language
 
 
 @dataclass
@@ -26,8 +27,23 @@ class ReferenceStoryEmitter:
         """Emit one editable prose story and return the next page cursor."""
         writer = self.writer
         self.toc.latch(title)
+        operation_lang = operation_language(blocks)
+        is_operation = (
+            (self.page_plan or {}).get("plan_source") == "approved-reference"
+            and "operation_guide" in title
+            and operation_lang is not None
+        )
+        final_frame_x_offset = (
+            operation_final_frame_x_offset(operation_lang)
+            if is_operation else 0.0
+        )
         _, estimate = writer.add_prose_story(
-            sid, title, blocks, self.bundle_root)
+            sid,
+            title,
+            blocks,
+            self.bundle_root,
+            inline_origin_shift=final_frame_x_offset,
+        )
         if title == "00_preface":
             preface_left = param_pt(
                 writer.params, "idml_preface_margin_left", writer.m_l,
@@ -57,13 +73,29 @@ class ReferenceStoryEmitter:
         first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
         first_kind = next((kind for kind, _ in blocks if kind != "layout"), "")
         master_offsets = {"WARRANTY": 12.30, "APP SETUP": 13.13}
+        if is_operation:
+            # The approved EN/FR/ES fourth operation pages deliberately carry
+            # the Key panel below the ordinary body-text bottom margin.  The
+            # extra frame depth is invisible, but keeps that anchored panel
+            # inside the linked story instead of turning the final paragraph
+            # into native InDesign overset.
+            bottom_extra = param_pt(
+                writer.params,
+                "comp_operation_page_extra_height",
+                18.0,
+            )
+        elif first_h1 == "WARRANTY":
+            bottom_extra = param_pt(
+                writer.params,
+                "comp_warranty_page_extra_height",
+                17.0,
+            )
+        else:
+            bottom_extra = 0.0
         writer.add_spread_chain(
             sid, pages, page_cursor, columns=columns,
-            bottom_extra=(
-                param_pt(
-                    writer.params, "comp_warranty_page_extra_height", 17.0,
-                ) if first_h1 == "WARRANTY" else 0.0
-            ),
+            bottom_extra=bottom_extra,
+            last_frame_x_offset=final_frame_x_offset,
             first_top_offset=(
                 master_offsets.get(first_h1, 13.81)
                 if first_kind == "h1" else 0.0

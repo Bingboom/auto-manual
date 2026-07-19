@@ -11,9 +11,9 @@ from .data_stories import (
     add_symbols_story,
     add_trouble_story,
 )
-from .params import IDPKG
-from .params import param_pt
+from .params import IDPKG, param_pt
 from .primitives import _ATTR_ENTITIES
+from .story_rhythm import operation_story_rhythm_for_next_block
 
 # Height-ESTIMATION constants for sizing the linked spread chain. These are
 # deliberately NOT the paragraph-style sizes/leadings from styles.para_styles
@@ -25,7 +25,8 @@ _EST_SIZE = {"h1": 9.0, "h2": 8.6, "h3": 7.0, "label": 6.8}
 _EST_LEADING = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}
 
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
-                    bundle_root: Path) -> tuple[str, float]:
+                    bundle_root: Path, *,
+                    inline_origin_shift: float = 0.0) -> tuple[str, float]:
     """Story from extracted prose blocks; returns (sid, est_height_pt)."""
     parts: list[str] = []
     est = 0.0
@@ -35,13 +36,15 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     last_idx = content_indices[-1] if content_indices else -1
     in_twocol = False
     next_h1_page_top: float | None = None
+    operation_intro_lines: int | None = None
+    operation_energy_panel_height: float | None = None
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
     first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
     page_language = {
         "WARRANTY": "en",
         "GARANTIE": "fr",
         "GARANTÍA": "es",
-    }.get(first_h1)
+    }.get(first_h1) or _flow.operation_language(blocks)
     text_measure = writer.page_w - writer.m_l - writer.m_r
     if is_preface:
         text_measure = writer.page_w - param_pt(
@@ -55,7 +58,16 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 in_twocol = True
             elif text == "twocol_end":
                 in_twocol = False
-            elif text == "page_break": parts.append(_flow.start_next_page(writer._psr("HB Body", "")))
+            elif text == "page_break" or text.startswith("page_break:"):
+                page_break = writer._psr("HB Body", "")
+                if ":" in text:
+                    space_after = float(text.split(":", 1)[1])
+                    page_break = page_break.replace(
+                        "<ParagraphStyleRange ",
+                        f'<ParagraphStyleRange SpaceAfter="{space_after:g}" ',
+                        1,
+                    )
+                parts.append(_flow.start_next_page(page_break))
             elif text.startswith("next_h1_page_top:"):
                 next_h1_page_top = float(text.split(":", 1)[1])
             continue
@@ -68,17 +80,25 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             xml_part, h = writer._render_component(
                 sid, bi, spec, bundle_root, terminal,
                 span_columns=span_columns, measure_w=measure_w,
-                language=page_language)
+                language=page_language,
+                inline_origin_shift=inline_origin_shift)
             if xml_part:
                 parts.append(xml_part)
                 est += h
+                if str(spec.get("layout") or "").strip().lower() == "energy_saving":
+                    operation_energy_panel_height = h
             continue
         if kind == "table":
             import json as _json
             raw_rows = _json.loads(text)
             img_n += 1
             xml_part, h = _components.render_table_block(
-                raw_rows, writer._render_context(bundle_root),
+                raw_rows,
+                writer._render_context(
+                    bundle_root,
+                    language=page_language,
+                    inline_origin_shift=inline_origin_shift,
+                ),
                 tid=f"{sid}_t{img_n}", terminal=terminal,
                 span_columns=not in_twocol)
             xml_part = _flow.align_table_xml(xml_part, blocks, bi)
@@ -109,15 +129,27 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             parts.append(h1_xml)
             est += 24.0
             continue
+        next_block = blocks[bi + 1] if bi + 1 < len(blocks) else ("", "")
+        operation_h2 = kind in {"h2_operation_energy", "h2_operation_led"}
         overview_h2 = kind in {"h2_overview_front", "h2_overview_right"}
-        semantic_kind = "h2" if overview_h2 else kind
+        semantic_kind = "h2" if overview_h2 or operation_h2 else kind
+        if kind == "body_operation_energy_intro":
+            semantic_kind = "body"
         style = writer._PROSE_STYLE.get(semantic_kind, "HB Body")
         if is_preface and kind == "body":
             style = "HB Preface Body"
         text = "\u25cf " + text if semantic_kind == "h2" else text
-        span_columns = has_twocol_layout and not in_twocol and kind in {"h1", "h2"}
+        span_columns = has_twocol_layout and not in_twocol and semantic_kind in {"h1", "h2"}
         paragraph = writer._psr(
             style, text, terminal=terminal, span_columns=span_columns)
+        operation_attrs, operation_spacing = operation_story_rhythm_for_next_block(
+            kind,
+            next_block,
+            page_language,
+            intro_lines=operation_intro_lines,
+            energy_panel_height=operation_energy_panel_height,
+            baseline_panel_height=text_measure * 0.545 + 2.0,
+        )
         if kind == "warrantynote":
             note_scale = param_pt(
                 writer.params,
@@ -155,6 +187,12 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             )
             paragraph = _po.vertical_spacer_paragraph(
                 f"spacer_{sid}_overview_right", 0.0) + paragraph
+        if operation_attrs is not None:
+            paragraph = paragraph.replace(
+                "<ParagraphStyleRange ",
+                f"<ParagraphStyleRange {operation_attrs} ",
+                1,
+            )
         parts.append(paragraph)
         # width-aware: chars/line ~ frame_width / (0.52 * font size)
         size = _EST_SIZE.get(semantic_kind, 6.2)
@@ -162,6 +200,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         if is_preface and kind == "body":
             size = param_pt(writer.params, "idml_preface_body_font_size", 7.2)
             leading = param_pt(writer.params, "idml_preface_body_font_leading", 8.6)
+        elif kind == "body_operation_energy_intro":
+            leading = 8.1
         measure = column_measure if in_twocol else text_measure
         per_line = max(20, int(measure / (0.52 * size)))
         lines = sum(max(1, (len(seg) + per_line - 1) // per_line)
@@ -171,6 +211,10 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             paragraph_spacing = param_pt(
                 writer.params, "idml_preface_paragraph_space_after", 2.0,
             ) * len(text.split("\n"))
+        if operation_spacing is not None:
+            paragraph_spacing = operation_spacing
+        if kind == "body_operation_energy_intro":
+            operation_intro_lines = lines
         est += leading * lines + paragraph_spacing
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

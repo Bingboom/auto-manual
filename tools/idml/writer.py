@@ -121,10 +121,15 @@ class IdmlWriter:
                           bundle_root: Path, terminal: bool,
                           span_columns: bool = True,
                           measure_w: float | None = None,
-                          language: str | None = None) -> tuple[str, float]:
+                          language: str | None = None,
+                          inline_origin_shift: float = 0.0) -> tuple[str, float]:
         """Component spec -> (xml, est_height) via the component registry."""
         return _components.render(
-            spec, self._render_context(bundle_root, language=language),
+            spec, self._render_context(
+                bundle_root,
+                language=language,
+                inline_origin_shift=inline_origin_shift,
+            ),
             tid=f"{sid}_cmp{n}",
             terminal=terminal, span_columns=span_columns, measure_w=measure_w)
 
@@ -133,16 +138,26 @@ class IdmlWriter:
         bundle_root: Path,
         *,
         language: str | None = None,
+        inline_origin_shift: float = 0.0,
     ) -> "_components.RenderContext":
         return _components.RenderContext(
             params=self.params, page_w=self.page_w, m_l=self.m_l, m_r=self.m_r,
             root=ROOT, bundle_root=bundle_root, language=language,
+            inline_origin_shift=inline_origin_shift,
             add_story=self._add_story_parts)
 
     def add_prose_story(self, sid: str, title: str,
                         blocks: list[tuple[str, str]],
-                        bundle_root: Path) -> tuple[str, float]:
-        return _stories.add_prose_story(self, sid, title, blocks, bundle_root)
+                        bundle_root: Path, *,
+                        inline_origin_shift: float = 0.0) -> tuple[str, float]:
+        return _stories.add_prose_story(
+            self,
+            sid,
+            title,
+            blocks,
+            bundle_root,
+            inline_origin_shift=inline_origin_shift,
+        )
 
     def add_lcd_story(self, rows: list[dict], data_root: Path, **kw) -> str:
         return _stories.add_lcd_story(self, rows, data_root, **kw)

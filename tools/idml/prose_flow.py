@@ -162,6 +162,49 @@ def idml_page_estimator(writer_cls, params, bundle_root) -> EstimatePages:
     return estimate
 
 
+def operation_language(blocks: list[Block]) -> str | None:
+    """Infer EN/FR/ES from the governed key-combination table headers.
+
+    The approved operation pages carry one structurally identical table in
+    each language.  Reading its three localized headers avoids page-number or
+    translated-section-title routing while giving layout components the
+    language needed for measured vertical rhythm.
+    """
+    headers = {
+        ("buttons", "operation", "function"): "en",
+        ("boutons", "utilisation", "fonction"): "fr",
+        ("botones", "operación", "función"): "es",
+    }
+    for kind, payload in blocks:
+        if kind != "table":
+            continue
+        try:
+            rows = json.loads(payload) if isinstance(payload, str) else payload
+        except (TypeError, json.JSONDecodeError):
+            continue
+        if not isinstance(rows, list) or not rows or len(rows[0]) < 3:
+            continue
+        header = tuple(
+            str(cell).replace("**", "").strip().casefold()
+            for cell in rows[0][:3]
+        )
+        if header in headers:
+            return headers[header]
+    return None
+
+
+_OPERATION_FINAL_FRAME_X_OFFSETS = {
+    "en": -6.82,
+    "fr": -2.57,
+    "es": -6.18,
+}
+
+
+def operation_final_frame_x_offset(language: str | None) -> float:
+    """Return the approved final operation-page host-frame translation."""
+    return _OPERATION_FINAL_FRAME_X_OFFSETS.get(language or "", 0.0)
+
+
 def align_trouble_table(blocks: list[Block], page_plan: dict | None,
                         stem: str) -> list[Block]:
     """Start a long troubleshooting table on its second reference page."""
@@ -185,9 +228,15 @@ def align_operation_tail(blocks: list[Block], page_plan: dict | None,
     h2_indices = [index for index, block in enumerate(aligned) if block[0] == "h2"]
     if (page_plan or {}).get("plan_source") == "approved-reference":
         # Reference pages: POWER+AC | DC/USB | Energy+LED | Resume+LCD+Keys.
+        language = operation_language(blocks) or "en"
+        resume_top_gap = {"en": 15.7, "fr": 8.1, "es": 9.3}[language]
         for ordinal in reversed((3, 4, 6)):
             if len(h2_indices) >= ordinal:
-                aligned.insert(h2_indices[ordinal - 1], ("layout", "page_break"))
+                marker = (
+                    f"page_break:{resume_top_gap:g}"
+                    if ordinal == 6 else "page_break"
+                )
+                aligned.insert(h2_indices[ordinal - 1], ("layout", marker))
     elif h2_indices:
         # Legacy measured plans only guaranteed that the final section started
         # on page four; preserve that behavior for unapproved targets.

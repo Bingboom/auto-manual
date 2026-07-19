@@ -116,6 +116,219 @@ class TransformTest(unittest.TestCase):
             spec["tail"],
         )
 
+    def test_localized_energy_saving_sections_become_editable_panels(self) -> None:
+        cases = (
+            {
+                "language": "en",
+                "heading": "ENERGY SAVING MODE",
+                "intro": "Energy Saving Mode is enabled by default.",
+                "guidance": [
+                    "To disable the mode, press and hold both power buttons.",
+                    "For low-power devices, disable Energy Saving Mode.",
+                ],
+                "action": "Press and hold both buttons for more than 3 seconds.",
+                "notice_label": "NOTE",
+            },
+            {
+                "language": "fr",
+                "heading": "MODE D'ÉCONOMIE D'ÉNERGIE",
+                "intro": "Le mode d'économie d'énergie est activé par défaut.",
+                "guidance": [
+                    "Pour désactiver le mode, maintenez les deux boutons enfoncés.",
+                    "Pour les appareils à faible puissance, désactivez ce mode.",
+                ],
+                "action": (
+                    "Maintenez les deux boutons enfoncés pendant plus de 3 secondes."
+                ),
+                "notice_label": "REMARQUE",
+            },
+            {
+                "language": "es",
+                "heading": "MODO DE AHORRO DE ENERGÍA",
+                "intro": "El modo de ahorro de energía está activado por defecto.",
+                "guidance": [
+                    "Para desactivar el modo, mantenga pulsados ambos botones.",
+                    "Para dispositivos de baja potencia, desactive este modo.",
+                ],
+                "action": "Mantenga pulsados ambos botones durante 3 segundos.",
+                "notice_label": "NOTA",
+            },
+        )
+        for case in cases:
+            with self.subTest(language=case["language"]):
+                notice = json.dumps(
+                    {
+                        "kind": "notice",
+                        "label": case["notice_label"],
+                        "texts": ["Localized note copy."],
+                    },
+                    ensure_ascii=False,
+                )
+                # The component contract intentionally requires the governed
+                # de-localized artwork; the original template PNG still has
+                # baked On/Off/action copy and must not receive overlays.
+                image = "renderers/latex/assets/op_energy_saving.png"
+                blocks = [
+                    ("h2", case["heading"]),
+                    ("body", case["intro"]),
+                    ("body", case["guidance"][0]),
+                    ("body", case["guidance"][1]),
+                    ("image", image),
+                    ("body", case["action"]),
+                    ("component", notice),
+                    ("h2", "NEXT SECTION"),
+                ]
+
+                out = transform(blocks)
+
+                self.assertEqual(
+                    [
+                        "h2_operation_energy",
+                        "body_operation_energy_intro",
+                        "component",
+                        "component",
+                        "h2",
+                    ],
+                    [kind for kind, _payload in out],
+                )
+                self.assertEqual(case["intro"], out[1][1])
+                self.assertEqual(json.loads(notice), json.loads(out[3][1]))
+                self.assertNotIn("image", [kind for kind, _payload in out])
+                self.assertEqual(
+                    [case["intro"]],
+                    [
+                        payload
+                        for kind, payload in out
+                        if kind in {"body", "body_operation_energy_intro"}
+                    ],
+                )
+                spec = json.loads(out[2][1])
+                self.assertEqual("oppanel", spec["kind"])
+                self.assertEqual("energy_saving", spec["layout"])
+                self.assertEqual(image, spec["image"])
+                self.assertEqual(case["guidance"], spec["guidance"])
+                self.assertEqual(case["action"], spec["action"])
+                self.assertEqual("On/Off", spec["mode_label"])
+                self.assertEqual("3s", spec["duration"])
+
+    def test_energy_panel_upgrades_its_governed_page_break_spacing(self) -> None:
+        blocks = [
+            ("layout", "page_break"),
+            ("h2", "MODO DE AHORRO DE ENERGÍA"),
+            ("body", "Introductory copy."),
+            ("body", "Disable guidance."),
+            ("body", "Low-power guidance."),
+            ("image", "renderers/latex/assets/op_energy_saving.png"),
+            ("body", "Mantenga pulsados ambos botones durante 3 segundos."),
+        ]
+
+        out = transform(blocks)
+
+        self.assertEqual(("layout", "page_break:10.5"), out[0])
+        self.assertEqual("h2_operation_energy", out[1][0])
+        self.assertEqual("energy_saving", json.loads(out[3][1])["layout"])
+
+    def test_localized_led_sections_become_editable_panels(self) -> None:
+        cases = (
+            (
+                "en",
+                "LED LIGHT ON/OFF",
+                "The LED light has two modes: Light mode and SOS mode.",
+                [
+                    "Press the LED Light button once to turn on the light.",
+                    "Press it again to switch to SOS Mode.",
+                    "Press it a third time to turn off the light.",
+                ],
+            ),
+            (
+                "fr",
+                "LAMPE LED MARCHE/ARRÊT",
+                "La lampe LED dispose de deux modes : éclairage et SOS.",
+                [
+                    "Appuyez une fois sur le bouton pour allumer la lampe.",
+                    "Appuyez de nouveau pour passer en mode SOS.",
+                    "Appuyez une troisième fois pour éteindre la lampe.",
+                ],
+            ),
+            (
+                "es",
+                "ENCENDER/APAGAR LUZ LED",
+                "La luz LED tiene dos modos: modo de luz y modo SOS.",
+                [
+                    "Presione una vez el botón para encender la luz.",
+                    "Presiónelo nuevamente para cambiar al modo SOS.",
+                    "Presiónelo una tercera vez para apagar la luz.",
+                ],
+            ),
+        )
+        for language, heading, lead, steps in cases:
+            with self.subTest(language=language):
+                image = (
+                    "_assets/templates/word_template/common_assets/operation/"
+                    "led_light.png"
+                )
+                blocks = [
+                    ("h2", heading),
+                    ("body", lead),
+                    ("image", image),
+                    ("body", "\n".join(steps)),
+                    ("h2", "NEXT SECTION"),
+                ]
+
+                out = transform(blocks)
+
+                self.assertEqual(
+                    ["h2_operation_led", "component", "h2"],
+                    [kind for kind, _payload in out],
+                )
+                self.assertFalse(
+                    {"body", "image"}.intersection(
+                        kind for kind, _payload in out
+                    )
+                )
+                spec = json.loads(out[1][1])
+                self.assertEqual("oppanel", spec["kind"])
+                self.assertEqual("led_light", spec["layout"])
+                self.assertEqual(image, spec["image"])
+                self.assertEqual(lead, spec["lead"])
+                self.assertEqual(steps, spec["steps"])
+
+    def test_incomplete_special_operation_sections_are_untouched(self) -> None:
+        cases = (
+            [
+                ("h2", "ENERGY SAVING MODE"),
+                ("body", "Introductory copy."),
+                ("body", "Only one guidance paragraph."),
+                ("image", "renderers/latex/assets/op_energy_saving.png"),
+                ("body", "Press and hold both buttons for 3 seconds."),
+            ],
+            [
+                ("h2", "LED LIGHT ON/OFF"),
+                ("body", "The LED light has two modes."),
+                ("image", "_assets/operation/led_light.png"),
+                ("body", "First step.\nSecond step."),
+            ],
+        )
+        for blocks in cases:
+            with self.subTest(image=blocks[-2][1]):
+                self.assertEqual(blocks, transform(blocks))
+
+    def test_baked_energy_saving_art_never_receives_editable_overlays(self) -> None:
+        blocks = [
+            ("h2", "ENERGY SAVING MODE"),
+            ("body", "Introductory copy."),
+            ("body", "Disable guidance."),
+            ("body", "Low-power guidance."),
+            (
+                "image",
+                "_assets/templates/word_template/common_assets/operation/"
+                "energy_saving.png",
+            ),
+            ("body", "Press and hold both buttons for 3 seconds."),
+        ]
+
+        self.assertEqual(blocks, transform(blocks))
+
     def test_flattened_langtag_becomes_component(self) -> None:
         blocks = [
             ("body", "**IMPORTANT**"),

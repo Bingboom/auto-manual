@@ -27,12 +27,16 @@ tools/idml/
                               rounded table/callout outline rectangles
   prose_flow.py               ordinary-page flow buffering: adjacent prose pages share
                               one linked story until a hard layout boundary
+  reference_story_flow.py     approved-reference page ordering plus per-language
+                              operation host-frame placement
+  story_rhythm.py             localized operation H2 spacing derived from the LCD/Key
+                              object that immediately follows the heading
   fcc_fallback.py             localized FCC prose -> fcc component fallback when the
                               source page has no explicit HBFccBlock
   notice_labels.py            localized NOTE/TIP/CAUTION/WARNING/DANGER label mapping
                               for notice-style list-table extraction
   stories.py                  story builders: prose (block-stream dispatch), lcd, symbols,
-                              trouble, spec, text
+                              trouble, spec, text; delegates localized operation rhythm
   package.py                  zip contract (mimetype first + STORED), designmap wiring,
                               linked spread chain, height estimation
   components/                 the component registry — REGISTRY: kind -> renderer
@@ -40,10 +44,16 @@ tools/idml/
                               future Design_Asset_Registry) + shared figure paragraph
     callout.py                safetywarning / warninglead / tailwarnbox / warnbox / notice
     inbox.py fcc.py lcdmode.py
+    oppanel.py                editable operation artwork overlays and special Energy
+                              Saving / LED panels with top-layer text frames
+    key_combinations.py       native four-row Key Combination grid, linked icons, and
+                              independently movable copy frames
     prose_table.py            the extractor's ("table", json) block
     prose_image.py            the extractor's ("image", ref) block
   primitives.py               XML building blocks: psr/<Br/> semantics, bold runs, glyph
                               fallbacks, cells, tables, image frames, path geometry
+  character_metrics.py        native-import-safe PointSize/Leading overrides for
+                              content-bearing character runs
   table_borders.py            table XML border helpers: table perimeter suppression
                               when a separate rounded outline object owns the border
   styles.py                   resource parts: paragraph styles/colors/fonts/preferences

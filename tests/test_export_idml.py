@@ -76,6 +76,22 @@ class ExportIdmlTests(unittest.TestCase):
                 self.assertIn("<PathGeometry>", xml)
                 self.assertNotIn("GeometricBounds", xml.split("<TextFrame", 1)[-1])
 
+    def test_last_spread_frame_can_shift_without_changing_earlier_frames(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        writer.add_spread_chain(
+            "st_shifted",
+            2,
+            0,
+            last_frame_x_offset=-6.82,
+        )
+        first = writer.spreads[0][1]
+        last = writer.spreads[1][1]
+        base_x = -writer.page_w / 2 + writer.m_l
+        self.assertIn(f'Anchor="{base_x:g} ', first)
+        self.assertIn(f'Anchor="{base_x - 6.82:g} ', last)
+        self.assertNotIn(f'Anchor="{base_x - 6.82:g} ', first)
+
     def test_paragraphs_are_delimited_by_br(self) -> None:
         out = self._write_package()
         with zipfile.ZipFile(out) as zf:
@@ -565,6 +581,75 @@ class ExportIdmlTests(unittest.TestCase):
             ("body", "First."), ("layout", "page_break"), ("body", "Second."),
         ])
 
+    def test_page_break_can_carry_reference_top_spacing(self) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({})
+        writer.add_prose_story(
+            "st_spaced_break",
+            "spaced break",
+            [
+                ("body", "First."),
+                ("layout", "page_break:10.5"),
+                ("h2", "Second section"),
+            ],
+            ROOT,
+        )
+        story = dict(writer.stories)["st_spaced_break"]
+
+        self.assertIn(
+            'StartParagraph="NextPage" SpaceAfter="10.5"',
+            story,
+        )
+
+    def test_operation_page_semantics_carry_reference_vertical_rhythm(self) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({})
+        writer.add_prose_story(
+            "st_operation_rhythm",
+            "operation rhythm",
+            [
+                ("layout", "twocol_start"),
+                ("body", "Earlier two-column copy."),
+                ("layout", "twocol_end"),
+                ("h2_operation_energy", "Energy"),
+                ("body_operation_energy_intro", "Introductory copy."),
+                ("h2_operation_led", "LED"),
+            ],
+            ROOT,
+        )
+        story = dict(writer.stories)["st_operation_rhythm"]
+
+        self.assertIn('SpaceAfter="7.5"', story)
+        self.assertIn('Leading="8.1" SpaceAfter="7"', story)
+        self.assertIn(
+            'SpaceBefore="22" SpaceAfter="6.5" '
+            'AppliedParagraphStyle="ParagraphStyle/Heading2" '
+            'SpanColumnType="SpanColumns"',
+            story,
+        )
+
+    def test_operation_led_gap_returns_space_consumed_by_localized_copy(self) -> None:
+        from tools.idml.oppanel import operation_story_rhythm
+
+        short_attrs, short_spacing = operation_story_rhythm(
+            "h2_operation_led",
+            intro_lines=7,
+            energy_panel_height=172.0,
+            baseline_panel_height=172.0,
+        )
+        long_attrs, long_spacing = operation_story_rhythm(
+            "h2_operation_led",
+            intro_lines=8,
+            energy_panel_height=175.0,
+            baseline_panel_height=172.0,
+        )
+        self.assertEqual('SpaceBefore="22" SpaceAfter="6.5"', short_attrs)
+        self.assertEqual(28.5, short_spacing)
+        self.assertEqual('SpaceBefore="10.9" SpaceAfter="6.5"', long_attrs)
+        self.assertAlmostEqual(17.4, long_spacing or 0.0)
+
     def test_lcd_mode_component_resolves_finalized_renderer_asset(self) -> None:
         from tools.idml.components import RenderContext, render
         from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
@@ -867,9 +952,69 @@ class ExportIdmlTests(unittest.TestCase):
         break_followers = [
             aligned[index + 1][1]
             for index, block in enumerate(aligned[:-1])
-            if block == ("layout", "page_break")
+            if block[0] == "layout" and block[1].startswith("page_break")
         ]
         self.assertEqual(["Section 3", "Section 4", "Section 6"], break_followers)
+        self.assertIn(("layout", "page_break:15.7"), aligned)
+
+    def test_operation_language_and_last_page_gap_follow_localized_key_headers(
+        self,
+    ) -> None:
+        from tools.idml.prose_flow import align_operation_tail, operation_language
+
+        headers = {
+            "en": ["Buttons", "Operation", "Function"],
+            "fr": ["Boutons", "Utilisation", "Fonction"],
+            "es": ["Botones", "Operación", "Función"],
+        }
+        expected_gaps = {"en": "15.7", "fr": "8.1", "es": "9.3"}
+        plan = {
+            "plan_source": "approved-reference",
+            "pages": [{
+                "source_path": "page/05_operation_guide.rst",
+                "composition_id": "operation",
+                "planned_page_count": 4,
+            }],
+        }
+
+        for language, header in headers.items():
+            with self.subTest(language=language):
+                blocks = [("h1", "Operations")]
+                blocks.extend(("h2", f"Section {index}") for index in range(1, 9))
+                blocks.append(("table", json.dumps([header, ["A", "B", "C"]])))
+
+                self.assertEqual(language, operation_language(blocks))
+                aligned = align_operation_tail(
+                    blocks,
+                    plan,
+                    "05_operation_guide",
+                )
+                self.assertIn(
+                    ("layout", f"page_break:{expected_gaps[language]}"),
+                    aligned,
+                )
+
+    def test_operation_page_break_gap_is_emitted_on_the_new_page_carrier(
+        self,
+    ) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+
+        writer.add_prose_story(
+            "st_operation_gap",
+            "operation gap",
+            [
+                ("layout", "page_break:8.1"),
+                ("h2", "AFFICHAGE LCD"),
+            ],
+            ROOT,
+        )
+
+        story = dict(writer.stories)["st_operation_gap"]
+        self.assertIn(
+            '<ParagraphStyleRange StartParagraph="NextPage" SpaceAfter="8.1" ',
+            story,
+        )
 
     def test_fr_single_page_ups_callouts_use_natural_glyph_width_only(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer

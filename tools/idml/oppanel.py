@@ -1,18 +1,18 @@
 """Detect the template's operation panels in extracted prose blocks.
 
-The V2.0 master renders every operation (power / AC / DC-USB / energy
-saving / LED / UPS / charging) as a panel: illustration left, bold
-On/Off rows right, an optional "Prerequisite" pill on top. The RST
-source carries the same content as ``[prereq body?] [image] [on/off
-body]``; this pass rewrites that run into an ``oppanel`` component spec
-so the renderer can build the panel instead of a bare image plus loose
-text lines.
+The V2.0 master renders operations as bordered panels. Power / AC / DC-USB
+use illustration + On/Off rows and an optional prerequisite pill; Energy
+Saving and LED use dedicated grey-header and instruction-overlay layouts.
+This pass identifies those source runs by governed image identity plus exact
+neighbouring block structure and rewrites them into ``oppanel`` specs, without
+matching localized section titles.
 """
 from __future__ import annotations
 
 import ast
 import json
 import re
+from pathlib import Path
 
 Block = tuple[str, str]
 
@@ -35,6 +35,132 @@ _WARRANTY_SPLIT_CELL = re.compile(
     r"^\*\*(\d+)\s+(YEARS?|ANS|AÑOS)\*\*\s*\*\*([^*]+)\*\*\s*(.*)$", re.S)
 _WARRANTY_COMBINED_CELL = re.compile(
     r"^\*\*(\d+)\s+(YEARS?|ANS|AÑOS)\s+([^*]+)\*\*\s*(.*)$", re.S)
+
+_ENERGY_SAVING_ART = {"op_energy_saving"}
+_LED_LIGHT_ART = {"led_light", "op_led_light"}
+
+
+def operation_story_rhythm(
+    kind: str,
+    *,
+    intro_lines: int | None,
+    energy_panel_height: float | None,
+    baseline_panel_height: float,
+) -> tuple[str | None, float | None]:
+    """Return language-neutral paragraph attributes and estimated spacing."""
+    if kind == "h2_operation_energy":
+        return 'SpaceAfter="7.5"', 7.5
+    if kind == "body_operation_energy_intro":
+        return 'Leading="8.1" SpaceAfter="7"', 7.0
+    if kind != "h2_operation_led":
+        return None, None
+    extra_intro = max(0, (intro_lines or 0) - 7) * 8.1
+    extra_panel = max(
+        0.0,
+        (energy_panel_height or baseline_panel_height) - baseline_panel_height,
+    )
+    before = max(0.0, 22.0 - extra_intro - extra_panel)
+    return f'SpaceBefore="{before:g}" SpaceAfter="6.5"', before + 6.5
+
+
+def _image_stem(ref: str) -> str:
+    """Return a normalized image stem for structure-first panel matching."""
+    return Path(ref.replace("\\", "/")).stem.lower()
+
+
+def _duration_label(text: str) -> str:
+    """Derive the compact reference label from localized action copy."""
+    match = re.search(
+        r"\b(\d+)\s*(?:seconds?|secondes?|segundos?|s)\b", text, re.I,
+    )
+    return f"{match.group(1)}s" if match else "3s"
+
+
+def _special_operation_panel(
+    out: list[Block], blocks: list[Block], index: int,
+) -> tuple[Block, int] | None:
+    """Group Energy Saving / LED artwork with its editable source copy.
+
+    These two V2.0 panels do not use the generic image + On/Off-row carrier.
+    Match them by governed art basename and exact neighbouring block shape so
+    localized headings never become part of the detection contract.
+    """
+    kind, ref = blocks[index]
+    if kind != "image" or index + 1 >= len(blocks):
+        return None
+    stem = _image_stem(ref)
+
+    if stem in _ENERGY_SAVING_ART:
+        # h2, intro, disable guidance, low-power guidance, image, action.
+        if (
+            len(out) < 4
+            or [item[0] for item in out[-4:]] != ["h2", "body", "body", "body"]
+            or blocks[index + 1][0] != "body"
+        ):
+            return None
+        out[-4] = ("h2_operation_energy", out[-4][1])
+        out[-3] = ("body_operation_energy_intro", out[-3][1])
+        guidance = [out[-2][1], out[-1][1]]
+        # The approved operation composition starts the Energy + LED page
+        # 10.5pt lower than the ordinary continuation-frame top.  Upgrade the
+        # governed page break immediately before this localized section; the
+        # story renderer turns the suffix into paragraph space after the
+        # forced break.  Matching the structural page boundary keeps this
+        # language-neutral and avoids title-text contracts.
+        for position in range(len(out) - 5, -1, -1):
+            if out[position] == ("layout", "page_break"):
+                out[position] = ("layout", "page_break:10.5")
+                break
+        del out[-2:]
+        action = blocks[index + 1][1].strip()
+        return (
+            "component",
+            json.dumps(
+                {
+                    "kind": "oppanel",
+                    "layout": "energy_saving",
+                    "image": ref,
+                    "guidance": guidance,
+                    "action": action,
+                    # Reference-layout decorations are language-neutral in
+                    # the EN/FR/ES master; the full localized instruction is
+                    # still sourced from the IR above.
+                    "mode_label": "On/Off",
+                    "duration": _duration_label(action),
+                },
+                ensure_ascii=False,
+            ),
+        ), 2
+
+    if stem in _LED_LIGHT_ART:
+        # h2, lead, image, exactly three newline-separated instructions.
+        if (
+            len(out) < 2
+            or [item[0] for item in out[-2:]] != ["h2", "body"]
+            or blocks[index + 1][0] != "body"
+        ):
+            return None
+        steps = [line.strip() for line in blocks[index + 1][1].splitlines()
+                 if line.strip()]
+        if len(steps) != 3:
+            return None
+        out[-2] = ("h2_operation_led", out[-2][1])
+        lead = out.pop()[1]
+        return (
+            "component",
+            json.dumps(
+                {
+                    "kind": "oppanel",
+                    "layout": "led_light",
+                    "image": ref,
+                    "lead": lead,
+                    "steps": steps,
+                },
+                ensure_ascii=False,
+            ),
+        ), 2
+
+    return None
 
 
 def _label_of(line: str) -> tuple[str, str] | None:
@@ -145,6 +271,12 @@ def transform(blocks: list[Block]) -> list[Block]:
                      "texts": [tag.group(2)]}, ensure_ascii=False)))
                 i += 1
                 continue
+        special = _special_operation_panel(out, blocks, i)
+        if special is not None:
+            component, consumed = special
+            out.append(component)
+            i += consumed
+            continue
         if kind == "image" and i + 1 < len(blocks) and blocks[i + 1][0] == "body":
             rows, tail = _parse_rows_and_tail(blocks[i + 1][1])
             if rows:

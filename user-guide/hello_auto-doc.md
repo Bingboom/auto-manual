@@ -82,7 +82,15 @@ are generated outputs, never new content sources.
 In production IDML operation panels, Prerequisite, standby, On, and Off are
 separate unlocked text frames placed above the linked illustration. Designers
 may select, edit, and move each frame for alignment without editing the image;
-copy corrections still belong in the source and must be rebuilt.
+copy corrections still belong in the source and must be rebuilt. Energy Saving
+also exposes its two grey-box paragraphs, On/Off, 3s, and action instruction as
+top-layer frames. LED exposes its grey-box lead, 1/2/3, SOS, and three step
+instructions separately; their linked art and native shape underlays remain
+below the text. LCD SCREEN likewise exposes two state, six action, and six
+description frames above its left-side illustration and grid. KEY COMBINATION
+uses linked button/clock graphics while every header, caption, plus sign,
+duration, operation, and function remains a separate movable text frame across
+English, French, and Spanish.
 
 For the approved-PDF replica of `JE-1000F / US / en+fr+es` (方案 2), production
 mode must resolve the

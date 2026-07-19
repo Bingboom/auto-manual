@@ -139,9 +139,17 @@ export instead of producing a silent missing-link placeholder.
 Fixed composite pages remain componentized, while ordinary operation,
 charging, storage, and troubleshooting prose uses normal linked frame chains.
 Operation-panel callouts are native top-layer objects: Prerequisite, standby,
-On, and Off copy each has its own unlocked text frame above the linked artwork,
-so an InDesign operator can edit or reposition every label without altering the
-source image.
+On, and Off copy each has its own unlocked text frame above the linked artwork.
+The Energy Saving and LED cards use the same contract for their grey-box copy,
+On/Off, 3s, step numbers, SOS label, and individual instructions; the linked
+artwork and native shape underlays stay below those frames. An InDesign
+operator can therefore edit or reposition every label without altering the
+source image. The LCD SCREEN card uses the same positioned-object contract for
+its left illustration and 14 state/action/description frames. KEY COMBINATION
+reconstructs each row from linked button and clock assets, native grid shapes,
+and independently movable captions, plus signs, durations, operations, and
+functions; the structural 3-column/4-combination shape works identically for
+English, French, and Spanish headings.
 Rounded data tables remain
 editable: the IDML groups a rounded background with a square content frame so
 InDesign does not inset the first/last cells at curved corners. Formal body
