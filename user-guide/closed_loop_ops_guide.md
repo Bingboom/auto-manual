@@ -262,7 +262,10 @@ python tools/bitable_schema.py seed-import --base-token <scratch> \
 `tools/bitable_content_backup.py export` 把业务 base（21 表）+ TM base（2 表）
 全量导成 CSV（含公式/lookup 的**值**，留档用）+ `backup_manifest.json`
 （行数 + sha256），存 90 天 Actions artifact——即约 90 个每日恢复点。
-导出失败自动开 `phase2-content-backup` 标签的哨兵 Issue，下次成功自动关。
+设计目标是导出失败自动开 `phase2-content-backup` 标签的哨兵 Issue、下次成功
+自动关。2026-07-19 首个夜间工件核验发现当前 workflow 的 `export | tee`
+没有启用 `pipefail`，会把 exporter 的非零退出码掩成绿色；在该 workflow 修复并
+产出一份完整的 21 + 2 表工件前，**绿色 run 不能替代 manifest 完整性核对**。
 
 **误删/误改恢复步骤**（scratch 验证后再考虑生产路径；恢复目标 token 永远
 显式传参，工具不读环境变量里的生产 token）：
@@ -286,8 +289,14 @@ python tools/bitable_content_backup.py verify \
 | --- | --- | --- | --- |
 | 2026-07-17 | 首演：TM base 全库（888 行）+ 业务 base 全库导出（1313 行）；scratch 回灌 TM 2 表 | 导出 TM **10s** / 业务 **58s**；结构 apply 5s；回灌 888 行 **~25s**；verify 7s ✓ 888/888 | ① **select 选项漂移**：活库在 schema 快照后新增选项，batch-create 报 800030005 拒写整批——restore 现已内建"选项预同步"（field-update 全量 PUT 补选项）；② **multi-select 保真度限制**：多选单元格按拼接串恢复成单一选项（行数正确、多选拆分丢失），修复留作 follow-up——多选列多的表恢复后需人工复核该列 |
 
+**夜间工件核验记录**：
+
+| 日期 | Actions run / artifact | 结果 | 后续 |
+| --- | --- | --- | --- |
+| 2026-07-19 | [`29672759849`](https://github.com/Bingboom/auto-manual/actions/runs/29672759849) / `phase2-content-backup-29672759849` | **失败（run 假绿）**：已包含 CSV 的行数和 SHA-256 全通过；business 仅 18 表/850 行，缺 `01_数据入库`、`02_文档构建`、`能力→章节映射规则`；TM 为 0 表，缺 `Translation_Memory`、`Terms` | 修复 workflow 的退出码传播并核对 GitHub secrets/base 绑定；下一份工件须完整覆盖 21 + 2 表后才能关闭 K4。演练 Base `演练-K4内容恢复-20260717` 已于 2026-07-20 移入回收站，清空搜索缓存后精确搜索为 0 结果 |
+
 **底线**：季度演练把 4.7（结构）+ 4.7b（内容）连着跑；备份哨兵 Issue 开着
-= 恢复点在变旧，当天处理。
+或工件 manifest 缺表 = 恢复点在变旧，当天处理。
 
 ## 4.8 印刷外链清单（月度）
 
