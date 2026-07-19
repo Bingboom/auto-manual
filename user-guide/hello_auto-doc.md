@@ -79,6 +79,11 @@ creates semantic Markdown plus an editable continuous-story IDML, style map,
 source trace, and asset manifest for a designer-owned template workflow. Both
 are generated outputs, never new content sources.
 
+In production IDML operation panels, Prerequisite, standby, On, and Off are
+separate unlocked text frames placed above the linked illustration. Designers
+may select, edit, and move each frame for alignment without editing the image;
+copy corrections still belong in the source and must be rebuilt.
+
 For the approved-PDF replica of `JE-1000F / US / en+fr+es` (方案 2), production
 mode must resolve the
 [`reference layout registry`](../docs/renderers/contracts/reference_layout_registry.json)

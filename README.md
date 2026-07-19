@@ -138,6 +138,10 @@ under the frozen basename; an unresolved or ambiguous asset now fails the IDML
 export instead of producing a silent missing-link placeholder.
 Fixed composite pages remain componentized, while ordinary operation,
 charging, storage, and troubleshooting prose uses normal linked frame chains.
+Operation-panel callouts are native top-layer objects: Prerequisite, standby,
+On, and Off copy each has its own unlocked text frame above the linked artwork,
+so an InDesign operator can edit or reposition every label without altering the
+source image.
 Rounded data tables remain
 editable: the IDML groups a rounded background with a square content frame so
 InDesign does not inset the first/last cells at curved corners. Formal body

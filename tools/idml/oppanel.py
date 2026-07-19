@@ -18,7 +18,8 @@ Block = tuple[str, str]
 
 _LABELS = {
     "on", "off", "on/off", "marche", "arrêt", "arret", "marche/arrêt",
-    "encender", "apagar", "オン", "オフ", "开", "关", "开启", "关闭",
+    "encender", "apagar", "encendido", "apagado",
+    "オン", "オフ", "开", "关", "开启", "关闭",
 }
 _PREREQ = re.compile(
     r"^\*{0,2}(prerequisite|prérequis|prerequis|requisito previo|前提)\*{0,2}\s*[::]",
@@ -89,6 +90,21 @@ def parse_rows(text: str) -> list[tuple[str, str]] | None:
     return rows
 
 
+def _split_panel_tail(text: str) -> tuple[str, str]:
+    """Split the grey standby note from following full-width prose.
+
+    The source line block marks the final line inside the grey note with a
+    literal single-star lead.  Any following lines belong below the panel.
+    This structural boundary is stable across localized wording and avoids
+    squeezing the Energy Saving explanation into the operation artwork.
+    """
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    for index, line in enumerate(lines):
+        if re.match(r"^(?:\\\*|\*(?!\*))", line) and index + 1 < len(lines):
+            return "\n".join(lines[:index + 1]), "\n".join(lines[index + 1:])
+    return "\n".join(lines), ""
+
+
 def _parse_warranty_cell(text: str) -> dict[str, str] | None:
     match = _WARRANTY_SPLIT_CELL.match(text.strip())
     if match is None:
@@ -146,9 +162,12 @@ def transform(blocks: list[Block]) -> list[Block]:
                     if re.match(r"^\*{0,2}[^*\n]+\*{0,2}\s*:", candidate):
                         tail = candidate
                         consumed = 3
+                panel_tail, following_body = _split_panel_tail(tail)
                 out.append(("component", json.dumps(
                     {"kind": "oppanel", "image": text, "prereq": prereq,
-                     "rows": rows, "tail": tail}, ensure_ascii=False)))
+                     "rows": rows, "tail": panel_tail}, ensure_ascii=False)))
+                if following_body:
+                    out.append(("body", following_body))
                 i += consumed
                 continue
         out.append((kind, text))

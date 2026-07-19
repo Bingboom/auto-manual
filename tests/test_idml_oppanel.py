@@ -26,6 +26,16 @@ class ParseRowsTest(unittest.TestCase):
             parse_rows("**Marche**\nappuyez une fois\n**Arrêt**\nappuyez une fois"),
         )
 
+    def test_spanish_status_labels(self) -> None:
+        self.assertEqual(
+            [("Encendido", "Presione una vez"),
+             ("Apagado", "Mantenga presionado")],
+            parse_rows(
+                "**Encendido**\nPresione una vez\n"
+                "**Apagado**\nMantenga presionado"
+            ),
+        )
+
     def test_bold_field_after_two_rows_is_not_folded_into_off_instruction(self) -> None:
         self.assertEqual(
             [("Marche", "appuyez une fois."),
@@ -79,14 +89,15 @@ class TransformTest(unittest.TestCase):
 
         out = transform(blocks)
 
-        self.assertEqual(["component"], [kind for kind, _ in out])
+        self.assertEqual(["component", "body"], [kind for kind, _ in out])
         spec = json.loads(out[0][1])
         self.assertEqual(
             [["Marche", "appuyez une fois."],
              ["Arrêt", "appuyez et maintenez pendant 3 secondes."]],
             spec["rows"],
         )
-        self.assertEqual("\n".join(tail_lines), spec["tail"])
+        self.assertEqual("\n".join(tail_lines[:3]), spec["tail"])
+        self.assertEqual(tail_lines[3], out[1][1])
 
     def test_split_power_tail_is_folded_into_panel(self) -> None:
         blocks = [

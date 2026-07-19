@@ -726,6 +726,12 @@ preference:
 The production gate also rejects skipped raw content. Fixed composite pages
 use explicit component frames, while ordinary operation, UPS/charging,
 storage, and troubleshooting content flows through linked story chains. The
+operation-panel renderer keeps the illustration at the bottom of its group,
+then emits editable shape underlays, followed by separate unlocked text frames
+for Prerequisite, standby, On, and Off. The text frames are therefore topmost
+and may be moved or edited independently during final-mile InDesign alignment;
+the Energy Saving paragraph after POWER remains full-width prose outside the
+panel.
 source-authored TOC folios and back-cover copy come from the IR; InDesign must
 not recompute or hardcode them. Content, translation, specification, legal,
 table-structure, or asset-identity defects are corrected in the
