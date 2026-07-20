@@ -26,8 +26,15 @@ concurrency:
 jobs:
   backup:
     runs-on: ubuntu-latest
-    # Source repo only: the mirror carries this file but must not double-export.
-    if: ${{ github.repository != 'Bingboom/Hello-Docs' }}
+    # BUSINESS PLANE ONLY (guard flipped 2026-07-20 after the first-nightly
+    # incident): the data this backs up lives in the NEW business-plane bases
+    # (two_plane_map §1), whose credentials are Hello-Docs' secrets — the
+    # queue workers there use them daily. auto-manual's Feishu secrets are the
+    # ENGINEERING-plane binding (old sandbox base, correct for parity/promote,
+    # wrong for this backup): the 2026-07-19 false-green exported the old base
+    # by name and matched only 18/21 manifest tables. Sentinel Issues open in
+    # Hello-Docs, same as backport-reminder.
+    if: ${{ github.repository == 'Bingboom/Hello-Docs' }}
     env:
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
       FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}

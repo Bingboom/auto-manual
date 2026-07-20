@@ -266,11 +266,16 @@ python tools/bitable_schema.py seed-import --base-token <scratch> \
 2026-07-19 首个夜间工件核验发现 workflow 的 `export | tee` 没启用
 `pipefail`，把 exporter 的非零退出码掩成绿色——**且假绿还会执行
 "recovery" 步骤、把当时已开的哨兵 Issue 关掉**（双重消音）。退出码传播已
-修复（export 步骤显式 `shell: bash`，自带 `-eo pipefail`）；缺表的根因是
-CI bot 身份/base 绑定（本地演练用 user 身份直连，CI 用 bot + secrets），
-待操作者核对。在产出一份完整的 21 + 2 表工件前，**绿色 run 不能替代
-manifest 完整性核对**——修复后的预期行为是：绑定问题解决前夜间 run 会红、
-哨兵会开，那是正确状态，不要为绿而绿。
+修复（export 步骤显式 `shell: bash`，自带 `-eo pipefail`）。缺表的根因
+2026-07-20 已实证定位：**两面拓扑的面错配**——auto-manual 仓库的 Feishu
+secrets 是工程面绑定（旧沙盒 base，对 parity/promote 正确），而备份的
+manifest 来自新业务面 base；旧库按名只命中 21 张 manifest 表中的 18 张
+（`数据入库表`/`文档构建表` 是旧名、`能力→章节映射规则` 不存在），TM
+secret 在 base API 下无效 → 0 表。**bot 权限本身无问题**（同一 bot 本机对
+两个规范 base 全可见）。修复：workflow 守卫翻转为**只在 Hello-Docs
+（业务面）跑**，用业务面 secrets 备业务面数据，哨兵 Issue 开在业务面。
+在产出一份完整的 21 + 2 表工件前，**绿色 run 不能替代 manifest 完整性
+核对**。
 
 **误删/误改恢复步骤**（scratch 验证后再考虑生产路径；恢复目标 token 永远
 显式传参，工具不读环境变量里的生产 token）：
@@ -298,7 +303,7 @@ python tools/bitable_content_backup.py verify \
 
 | 日期 | Actions run / artifact | 结果 | 后续 |
 | --- | --- | --- | --- |
-| 2026-07-19 | [`29672759849`](https://github.com/Bingboom/auto-manual/actions/runs/29672759849) / `phase2-content-backup-29672759849` | **失败（run 假绿）**：已包含 CSV 的行数和 SHA-256 全通过；business 仅 18 表/850 行，缺 `01_数据入库`、`02_文档构建`、`能力→章节映射规则`；TM 为 0 表，缺 `Translation_Memory`、`Terms`。复核补充：该假绿 run 的 "Close tracking issue on recovery" 步骤实际执行了——假绿不仅不告警，还会关掉已开的哨兵 Issue | 退出码传播已修复（export 步骤显式 `shell: bash`）；剩余：核对 GitHub secrets/base 绑定与 bot 权限（本地 user 身份 07-17 能读全表，CI bot 缺 3 张业务表且 TM 整库不可见）；下一份工件须完整覆盖 21 + 2 表后才能关闭 K4。演练 Base `演练-K4内容恢复-20260717` 已于 2026-07-20 移入回收站，清空搜索缓存后精确搜索为 0 结果 |
+| 2026-07-19 | [`29672759849`](https://github.com/Bingboom/auto-manual/actions/runs/29672759849) / `phase2-content-backup-29672759849` | **失败（run 假绿）**：已包含 CSV 的行数和 SHA-256 全通过；business 仅 18 表/850 行，缺 `01_数据入库`、`02_文档构建`、`能力→章节映射规则`；TM 为 0 表，缺 `Translation_Memory`、`Terms`。复核补充：该假绿 run 的 "Close tracking issue on recovery" 步骤实际执行了——假绿不仅不告警，还会关掉已开的哨兵 Issue | 退出码传播已修复（export 步骤显式 `shell: bash`）；根因已实证定位=**面错配**（auto-manual secrets 指旧工程面 base：18/21 表名签名完全吻合，`数据入库表`/`文档构建表` 旧名 + `能力→章节映射规则` 不存在；TM secret 对 base API 无效→0 表；bot 权限本身无问题），守卫已翻转为只在 Hello-Docs（业务面）跑；剩余：在 Hello-Docs dispatch/等夜间跑出**首份完整 21+2 工件**后关闭 K4。演练 Base `演练-K4内容恢复-20260717` 已于 2026-07-20 移入回收站，清空搜索缓存后精确搜索为 0 结果 |
 
 **底线**：季度演练把 4.7（结构）+ 4.7b（内容）连着跑；备份哨兵 Issue 开着
 或工件 manifest 缺表 = 恢复点在变旧，当天处理。
