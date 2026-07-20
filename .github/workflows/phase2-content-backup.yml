@@ -26,8 +26,15 @@ concurrency:
 jobs:
   backup:
     runs-on: ubuntu-latest
-    # Source repo only: the mirror carries this file but must not double-export.
-    if: ${{ github.repository != 'Bingboom/Hello-Docs' }}
+    # BUSINESS PLANE ONLY (guard flipped 2026-07-20 after the first-nightly
+    # incident): the data this backs up lives in the NEW business-plane bases
+    # (two_plane_map §1), whose credentials are Hello-Docs' secrets — the
+    # queue workers there use them daily. auto-manual's Feishu secrets are the
+    # ENGINEERING-plane binding (old sandbox base, correct for parity/promote,
+    # wrong for this backup): the 2026-07-19 false-green exported the old base
+    # by name and matched only 18/21 manifest tables. Sentinel Issues open in
+    # Hello-Docs, same as backport-reminder.
+    if: ${{ github.repository == 'Bingboom/Hello-Docs' }}
     env:
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
       FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
@@ -42,9 +49,17 @@ jobs:
       - name: Validate required env
         run: bash scripts/validate_required_env.sh phase2-content-backup
 
+      # Both export steps declare `shell: bash` EXPLICITLY: GitHub's default
+      # run shell is `bash -e {0}` WITHOUT pipefail, so `exporter | tee`
+      # reported tee's exit 0 and turned an incomplete backup into a green run
+      # (first-nightly incident, 2026-07-19, run 29672759849 — worse, the
+      # false green also auto-closed the sentinel Issue). The explicit form is
+      # `bash --noprofile --norc -eo pipefail {0}`, which propagates the
+      # exporter's non-zero exit through the pipe.
       - name: Export business base content
         id: export_business
         continue-on-error: true
+        shell: bash
         run: |
           python tools/bitable_content_backup.py export \
             --manifest bitable_schema/business_base_manifest.json \
@@ -54,6 +69,7 @@ jobs:
       - name: Export TM base content
         id: export_tm
         continue-on-error: true
+        shell: bash
         run: |
           python tools/bitable_content_backup.py export \
             --manifest bitable_schema/tm_base_manifest.json \

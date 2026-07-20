@@ -993,6 +993,27 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     `演练-K4内容恢复-20260717` was moved to the Feishu recycle bin on
     2026-07-20 after its exact token and owner were rechecked; an exact-name
     search then returned no result.
+    **Exit-propagation fix landed 2026-07-20:** both export steps now declare
+    `shell: bash` explicitly (GitHub's DEFAULT run shell is `bash -e {0}`
+    without pipefail; the explicit form is `bash --noprofile --norc -eo
+    pipefail {0}`) — verified by local simulation of both shells (0 vs 1).
+    Review of the false-green run also found it had executed the
+    "Close tracking issue on recovery" step, so a false green would silence
+    an already-open sentinel too.
+    **Root cause proven 2026-07-20 (plane mismatch, NOT bot permissions):**
+    the same bot reads both canonical bases fully from the operator machine;
+    the CI failure signature matches the OLD engineering-plane base exactly
+    (18/21 manifest names present; `数据入库表`/`文档构建表` are the old
+    names of the two missing `0x_` tables; `能力→章节映射规则` absent), and
+    auto-manual's `FEISHU_PHASE2_BASE_TOKEN` secret predates the 06-11 base
+    migration — it is the ENGINEERING-plane binding, correct for
+    parity/promote, wrong for this backup; the TM secret is invalid for the
+    base API (→ 0 tables, mechanism reproduced). Fix: the workflow guard is
+    flipped to run ONLY in Hello-Docs (business plane), whose secrets bind
+    the new bases the manifests describe; sentinel Issues open there (the
+    backport-reminder precedent). Remaining to close K4: one complete 21 + 2
+    artifact from a Hello-Docs run (dispatch once after merge, or wait for
+    the nightly).
   - Original note: the I5 drill proved schema restore works (86s from repo
     artifacts) but covers structure only — table CONTENT had no point-in-time
     backup; a destructive Bitable edit was unrecoverable. Read-only export, no
