@@ -961,9 +961,10 @@ the same logic — re-tier in review if wrong.**
 Entry rule: no trigger needed. These are the next platform slices between
 business deliveries, in this order: K4 → K5 → K7 → K1.
 
-- [x] PR K4: Scheduled versioned export of the phase2 source tables + restore runbook (T4)
-  - Status: `done`
-  - Completed: `2026-07-17`
+- [ ] PR K4: Scheduled versioned export of the phase2 source tables + restore runbook (T4)
+  - Status: `in_progress` (implementation and scratch restore drill merged;
+    first nightly artifact verification failed on 2026-07-19)
+  - Delivery merged: `2026-07-17`
   - Note: delivered as `tools/bitable_content_backup.py` (export / restore /
     verify, reusing the `bitable_schema` primitives; restore is dry-run by
     default, requires an explicit target token, refuses non-empty tables, and
@@ -978,8 +979,20 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     whole table (800030005) — restore now pre-syncs missing select options
     via field-update. Known limitation (recorded in the runbook): multi-select
     cells restore as one concatenated option; fidelity fix is a follow-up.
-    First nightly artifact lands after merge — confirm it once, then this is
-    fully closed.
+    **First-nightly verification 2026-07-19:** Actions run
+    [`29672759849`](https://github.com/Bingboom/auto-manual/actions/runs/29672759849)
+    was green, and every included CSV passed manifest row-count and SHA-256
+    checks, but the artifact was incomplete: business exported 18 tables /
+    850 rows and missed `01_数据入库`, `02_文档构建`, and
+    `能力→章节映射规则`; TM exported 0 tables and missed
+    `Translation_Memory` and `Terms`. The exporter returns non-zero for
+    missing tables, but the workflow pipes it through `tee` without
+    `pipefail`, so the shell reports `tee`'s zero exit code. K4 is reopened
+    until the workflow failure is propagated and a subsequent artifact
+    contains the complete 21 + 2 table set. The restore scratch Base
+    `演练-K4内容恢复-20260717` was moved to the Feishu recycle bin on
+    2026-07-20 after its exact token and owner were rechecked; an exact-name
+    search then returned no result.
   - Original note: the I5 drill proved schema restore works (86s from repo
     artifacts) but covers structure only — table CONTENT had no point-in-time
     backup; a destructive Bitable edit was unrecoverable. Read-only export, no
@@ -992,6 +1005,7 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     - a scheduled workflow exports full phase2 table content to a dated, retained artifact (retention window recorded)
     - a written restore runbook extends ops guide §4.7 from schema-rebuild to content-restore
     - one content-restore drill has been run and timed against a scratch base
+    - one scheduled artifact has been opened and verified to contain all 21 business + 2 TM tables, with a non-zero export exit code reaching the job result
 
 - [x] PR K5: Queue-failure alerting via the sentinel Issue pattern (T5)
   - Status: `done`
@@ -1041,7 +1055,12 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     (prereqs incl. fonts from the handoff manifest, five verification steps,
     upgrade discipline: all hosts together). ONBOARDING §3 register row
     updated from "无版本锁（已知风险）" to the documented recovery path.
-    `--check-host` verified live on the operator Mac (match). 11 unit tests.
+    `--check-host` verified live on the operator Mac (match). **Second-host
+    preflight 2026-07-20:** `ArriettyMac-mini.local` also reported an exact
+    match for `Adobe InDesign 2026 21.0.1.6`. No known-good IDML was present
+    in the downloaded-main checkout, so finalize steps 3-5 were not run and
+    this is deliberately not recorded as the one-time end-to-end verification.
+    11 unit tests.
   - Original note: the top delivery SPOF: the IDML→final-PDF leg runs only on
     the operator's Mac, no CI, no version lock (ONBOARDING §3 known risk). This
     PR is documentation + provenance binding, not automation.

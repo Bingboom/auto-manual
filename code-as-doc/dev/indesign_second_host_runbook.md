@@ -55,6 +55,13 @@ python tools/indesign_finalize.py \
 
 ## 3. 验证登记
 
+主机预检只证明版本锁可用，**不等于**跑通 finalize。预检可先登记，完整首验仍须
+填写后面的端到端表格。
+
+| 日期 | 主机 | InDesign 版本 | 预检结果 | 尚欠 |
+| --- | --- | --- | --- | --- |
+| 2026-07-20 | `ArriettyMac-mini.local` | Adobe InDesign 2026 21.0.1.6 | `python tools/indesign_finalize.py --check-host` → `match` | 下载的 main 目录没有已知良品 IDML；§2 步骤 3-5 未执行，K7 仍为 `in_progress` |
+
 跑通一次后,把记录追加到下表**并同步更新 `ONBOARDING.md` §3 登记表**
 (这一行从"待第二主机验证"改为"已验证 + 日期")。
 

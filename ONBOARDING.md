@@ -33,7 +33,7 @@
 | CI 验证（lint/unittest/check/预览包） | GitHub Actions（`manual-validation.yml` 等 9 个 workflow） | 无需重建，仓库自带 |
 | 队列构建 / 评审启动 | Hello-Docs 的 Actions（`workflow_dispatch` 触发；cron 大多禁用） | secrets 见下行 |
 | 飞书读写（lark-cli / 队列） | GitHub secrets（两仓各一套）+ 操作者本机 `~/.openclaw/.env`、`~/.auto-manual-phase2.env` | 在飞书开放平台重发 app 凭据 → 更新 secrets；表/视图 ID 清单在 `two_plane_map.md` §1.1 |
-| InDesign 终饰（IDML→成品 PDF） | **仅操作者 Mac**（真 InDesign + `tools/idml/indesign_finalize.jsx`），不在任何 CI | **有版本锁**（`tools/idml/indesign_version_pin.json`，finalize 启动时比对、不匹配拒跑）+ 第二主机 runbook（[`code-as-doc/dev/indesign_second_host_runbook.md`](code-as-doc/dev/indesign_second_host_runbook.md)）；**待第二主机首次验证**（跑通后在 runbook §3 和本行登记日期） |
+| InDesign 终饰（IDML→成品 PDF） | **仅操作者 Mac**（真 InDesign + `tools/idml/indesign_finalize.jsx`），不在任何 CI | **有版本锁**（`tools/idml/indesign_version_pin.json`，finalize 启动时比对、不匹配拒跑）+ 第二主机 runbook（[`code-as-doc/dev/indesign_second_host_runbook.md`](code-as-doc/dev/indesign_second_host_runbook.md)）；第二主机 `ArriettyMac-mini.local` 已于 2026-07-20 通过版本预检，**仍待首次端到端验证**（跑通后在 runbook §3 和本行登记日期） |
 | GitHub 推送 | 操作者 gh OAuth（`gh auth login --web`） | 新维护者自己 `gh auth login` |
 | TeX / pandoc | CI 镜像内置；本机需自装（`python build.py doctor` 自检） | doctor 会列出缺什么 |
 

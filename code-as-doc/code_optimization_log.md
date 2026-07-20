@@ -823,3 +823,14 @@ Why it mattered:
 - Three of the review's four Critical items closed in one day: a destructive Bitable edit is now restorable from a dated export via a drilled runbook, a failed queue run alerts on its own instead of requiring a watcher, and the one delivery leg outside CI gained a version gate plus a recovery procedure. The fourth Critical (frozen-copy review-branch propagation) is deliberately parked behind the K15 design gate.
 - The discovery-engine rule proved itself twice within hours: the K4 drill exposed select-option drift the schema mirror could not see, and the K7 test suite caught a sentinel-vs-None API ambiguity before it shipped.
 - Tier 1 was scoped as "what one operator + agents can deliver between business deliveries with no organizational trigger" — and it closed as scoped. Everything remaining in Milestone K now waits on a named business-pain trigger (Tier 2) or dedicated capacity (Tier 3), which is the capacity-driven model working as designed.
+
+## 52. 2026-07-20: Milestone K Operational Verification
+
+What was verified:
+
+- **K4 first-nightly artifact:** run [`29672759849`](https://github.com/Bingboom/auto-manual/actions/runs/29672759849) was green, but its artifact was incomplete. The business manifest contained 18 tables / 850 rows and missed three required tables; the TM manifest contained zero tables and missed both `Translation_Memory` and `Terms`. Included CSV row counts and SHA-256 values were internally consistent, so the failure is completeness, not archive corruption. The workflow's `export | tee` pipeline masks the exporter's non-zero exit code without `pipefail`; K4 was reopened pending an operator-approved workflow fix and one complete 21 + 2 table artifact. The restore-drill scratch Base was moved to the Feishu recycle bin and an exact-name search returned no active result.
+- **K7 second-host preflight:** `ArriettyMac-mini.local` reported an exact version-pin match for Adobe InDesign 2026 21.0.1.6. The downloaded-main checkout contained no known-good IDML, so no finalize report was produced; the runbook now distinguishes this preflight from the still-pending end-to-end second-host verification.
+
+Why it mattered:
+
+- the first operational follow-up caught two ways a checklist can overstate readiness: a green CI status with an incomplete recovery point, and a version match without a rendered deliverable. The checklist now remains open until the observable exit criteria are actually present.
