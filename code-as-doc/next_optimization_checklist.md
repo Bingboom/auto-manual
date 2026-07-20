@@ -961,10 +961,20 @@ the same logic — re-tier in review if wrong.**
 Entry rule: no trigger needed. These are the next platform slices between
 business deliveries, in this order: K4 → K5 → K7 → K1.
 
-- [ ] PR K4: Scheduled versioned export of the phase2 source tables + restore runbook (T4)
-  - Status: `in_progress` (implementation and scratch restore drill merged;
-    first nightly artifact verification failed on 2026-07-19)
-  - Delivery merged: `2026-07-17`
+- [x] PR K4: Scheduled versioned export of the phase2 source tables + restore runbook (T4)
+  - Status: `done`
+  - Completed: `2026-07-20` (delivery merged 2026-07-17; reopened by the
+    2026-07-19 false-green verification; closed by the first complete
+    business-plane artifact)
+  - Closing verification (2026-07-20, after #684's guard flip + mirror sync):
+    dispatched `Phase2 Content Backup` in Hello-Docs — run
+    [`29715297977`](https://github.com/Bingboom/Hello-Docs/actions/runs/29715297977)
+    green, artifact opened and verified: business **21/21 tables / 1,314
+    rows**, TM **2/2 tables / 888 rows**, `missing_tables` empty on both
+    manifests, every CSV sha256 matches. Exit-code propagation is proven by
+    mechanism (shell simulation in #684) rather than a live red run — the
+    plane fix removed the failing condition before a red could be observed;
+    the next real export failure exercises it end-to-end.
   - Note: delivered as `tools/bitable_content_backup.py` (export / restore /
     verify, reusing the `bitable_schema` primitives; restore is dry-run by
     default, requires an explicit target token, refuses non-empty tables, and

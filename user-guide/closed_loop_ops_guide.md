@@ -304,6 +304,7 @@ python tools/bitable_content_backup.py verify \
 | 日期 | Actions run / artifact | 结果 | 后续 |
 | --- | --- | --- | --- |
 | 2026-07-19 | [`29672759849`](https://github.com/Bingboom/auto-manual/actions/runs/29672759849) / `phase2-content-backup-29672759849` | **失败（run 假绿）**：已包含 CSV 的行数和 SHA-256 全通过；business 仅 18 表/850 行，缺 `01_数据入库`、`02_文档构建`、`能力→章节映射规则`；TM 为 0 表，缺 `Translation_Memory`、`Terms`。复核补充：该假绿 run 的 "Close tracking issue on recovery" 步骤实际执行了——假绿不仅不告警，还会关掉已开的哨兵 Issue | 退出码传播已修复（export 步骤显式 `shell: bash`）；根因已实证定位=**面错配**（auto-manual secrets 指旧工程面 base：18/21 表名签名完全吻合，`数据入库表`/`文档构建表` 旧名 + `能力→章节映射规则` 不存在；TM secret 对 base API 无效→0 表；bot 权限本身无问题），守卫已翻转为只在 Hello-Docs（业务面）跑；剩余：在 Hello-Docs dispatch/等夜间跑出**首份完整 21+2 工件**后关闭 K4。演练 Base `演练-K4内容恢复-20260717` 已于 2026-07-20 移入回收站，清空搜索缓存后精确搜索为 0 结果 |
+| 2026-07-20 | [`29715297977`](https://github.com/Bingboom/Hello-Docs/actions/runs/29715297977)（**Hello-Docs**，#684 守卫翻转后首次 dispatch） | **通过**：business **21/21 表 / 1,314 行**、TM **2/2 表 / 888 行**；两份 manifest 的 `missing_tables` 均为空；全部 CSV sha256 与 manifest 一致（下载工件逐一校验，非只看 run 颜色） | K4 关闭。此后为 Hello-Docs 每日 00:30 UTC 例行；月度抽一份工件重复本行的 manifest 校验（命令见上）即可 |
 
 **底线**：季度演练把 4.7（结构）+ 4.7b（内容）连着跑；备份哨兵 Issue 开着
 或工件 manifest 缺表 = 恢复点在变旧，当天处理。
