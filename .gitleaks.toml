@@ -1,0 +1,31 @@
+# Milestone K6 (severable slice): secret-scanning config for the CI gate in
+# manual-validation.yml. Tuned against a full local scan on 2026-07-17: 31
+# findings, all Feishu RESOURCE tokens (base / wiki / table ids) or test
+# fixtures — zero credentials.
+#
+# Policy encoded here (matches user-guide/two_plane_map.md §1.1): Feishu
+# resource tokens are identifiers, deliberately committed — holding one grants
+# nothing without FEISHU_APP_ID/FEISHU_APP_SECRET. Real credential shapes
+# (app secrets, cloud keys, private keys, high-entropy assignments under other
+# keywords) are NOT allowlisted and must keep failing the scan.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Feishu resource tokens are committed by policy; credentials are not"
+regexTarget = "line"
+regexes = [
+  # env-style / python-constant / doc assignments of Feishu RESOURCE tokens
+  '''(?i)[A-Z_]*(BASE_TOKEN|WIKI_TOKEN|WIKI_NODE|NODE_TOKEN|OBJ_TOKEN)[A-Z_]*\s*[=:]''',
+  # json/yaml resource-token fields (asset_base_bindings.json, lark-cli --params)
+  '''"(base_token|wiki_node_token|wiki_token|obj_token|token)"\s*:\s*"[A-Za-z0-9]{20,32}"''',
+  # domain vocabulary: business keys are identifiers, not credentials
+  '''(?i)(document_key|row_key|symbol_key|copy_key|asset_key|business_key|page_key|source_key|record_key)\s*[=:]''',
+  # bare 27/28-char Feishu-token fixture assignment (tests)
+  '''(?i)^\s*token\s*=\s*"[A-Za-z0-9]{27,28}"''',
+]
+paths = [
+  # generated diff-report artifacts: links carry resource tokens by design
+  '''reports/version_tracking/.*\.html''',
+]
