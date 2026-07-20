@@ -5,30 +5,6 @@
       "name": "01_数据入库",
       "fields": [
         {
-          "name": "备注",
-          "type": "text"
-        },
-        {
-          "name": "行标签",
-          "type": "text"
-        },
-        {
-          "name": "ID",
-          "type": "auto_number"
-        },
-        {
-          "name": "规格书原值",
-          "type": "text"
-        },
-        {
-          "name": "确认",
-          "type": "checkbox"
-        },
-        {
-          "name": "Row_key",
-          "type": "text"
-        },
-        {
           "name": "Page",
           "type": "text"
         },
@@ -37,7 +13,51 @@
           "type": "text"
         },
         {
+          "name": "Row_key",
+          "type": "text"
+        },
+        {
+          "name": "入库结果",
+          "type": "text"
+        },
+        {
+          "name": "行标签",
+          "type": "text"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "确认",
+          "type": "checkbox"
+        },
+        {
           "name": "规格书字段",
+          "type": "text"
+        },
+        {
+          "name": "章节",
+          "type": "text"
+        },
+        {
+          "name": "ID",
+          "type": "auto_number"
+        },
+        {
+          "name": "Slot_key",
+          "type": "text"
+        },
+        {
+          "name": "Line_order",
+          "type": "number"
+        },
+        {
+          "name": "规格书原值",
+          "type": "text"
+        },
+        {
+          "name": "document_key",
           "type": "text"
         },
         {
@@ -51,27 +71,7 @@
           ]
         },
         {
-          "name": "Line_order",
-          "type": "number"
-        },
-        {
-          "name": "Slot_key",
-          "type": "text"
-        },
-        {
-          "name": "入库结果",
-          "type": "text"
-        },
-        {
           "name": "Source_lang",
-          "type": "text"
-        },
-        {
-          "name": "document_key",
-          "type": "text"
-        },
-        {
-          "name": "章节",
           "type": "text"
         }
       ]
@@ -80,100 +80,42 @@
       "name": "02_文档构建",
       "fields": [
         {
-          "name": "是否强制刷新数据",
-          "type": "checkbox"
-        },
-        {
-          "name": "是否立即构建",
-          "type": "checkbox"
-        },
-        {
-          "name": "Document_ID",
-          "type": "formula",
-          "detail": {
-            "expression": "IF(ISBLANK(bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]), IF(ISBLANK(bitable::$table[tblbnRHjpJeCVTtj].$field[fldePoRXDw]), bitable::$table[tblbnRHjpJeCVTtj].$field[fldXDCS3AS], bitable::$table[tblbnRHjpJeCVTtj].$field[fldXDCS3AS] & \"_\" & bitable::$table[tblbnRHjpJeCVTtj].$field[fldePoRXDw]), bitable::$table[tblbnRHjpJeCVTtj].$field[fldXDCS3AS] & \"_\" & bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO] & \"_\" & bitable::$table[tblbnRHjpJeCVTtj].$field[fldePoRXDw])"
-          }
-        },
-        {
-          "name": "是否上传钉钉",
-          "type": "checkbox"
-        },
-        {
-          "name": "Build_family",
-          "type": "formula",
-          "detail": {
-            "expression": "IF(OR(CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"pt-BR\"),CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"Brazil\"),CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"_BR\")),\"pt-br\",IF(bitable::$table[tblbnRHjpJeCVTtj].$field[fldY30O2zc]=\"Publish\",SWITCH(bitable::$table[tblbnRHjpJeCVTtj].$field[fldWhUiTmR],\"US\",\"us-merged\",\"JP\",\"jp-ja\",\"CN\",\"cn-zh\",\"EU\",\"eu-merged\",\"AU\",\"au-en\",\"KR\",\"kr-ko\",\"\"),IF(bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO].COUNTA()=0,SWITCH(bitable::$table[tblbnRHjpJeCVTtj].$field[fldWhUiTmR],\"US\",\"us-merged\",\"JP\",\"jp-ja\",\"CN\",\"cn-zh\",\"EU\",\"eu-merged\",\"AU\",\"au-en\",\"KR\",\"kr-ko\",\"\"),SWITCH(bitable::$table[tblbnRHjpJeCVTtj].$field[fldWhUiTmR]&\"_\"&LOWER(bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]),\"US_en\",\"us-en\",\"US_fr\",\"us-fr\",\"US_es\",\"us-es\",\"JP_ja\",\"jp-ja\",\"CN_zh\",\"cn-zh\",\"EU_en\",\"eu-en\",\"EU_fr\",\"eu-fr\",\"EU_es\",\"eu-es\",\"EU_de\",\"eu-de\",\"EU_it\",\"eu-it\",\"EU_uk\",\"eu-uk\",\"AU_en\",\"au-en\",\"KR_ko\",\"kr-ko\",\"\"))))"
-          }
-        },
-        {
-          "name": "Doc_phase",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "Draft",
-            "Publish"
-          ]
-        },
-        {
-          "name": "default_target_node_url",
+          "name": "operator_union_id",
           "type": "text"
-        },
-        {
-          "name": "是否回写",
-          "type": "checkbox"
-        },
-        {
-          "name": "Lang",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "en",
-            "fr",
-            "es",
-            "ja",
-            "zh",
-            "de",
-            "it",
-            "uk",
-            "br"
-          ]
-        },
-        {
-          "name": "安规",
-          "type": "formula",
-          "detail": {
-            "expression": "IFS(CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"CN\"),\"中规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"US\"),\"美规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"JP\"),\"日规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"EU\"),\"欧规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"pt-BR\"),\"巴西规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"AU\"),\"澳规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"KR\"),\"韩规\",TRUE,\"\")"
-          }
         },
         {
           "name": "是否允许参数缺失",
           "type": "checkbox"
         },
         {
-          "name": "项目代码",
-          "type": "lookup",
-          "detail": {
-            "aggregate": "unique",
-            "from": "02_主数据_Document_key",
-            "select": "fldrubZQJt",
-            "where": {
-              "conditions": [],
-              "logic": "and"
-            }
-          }
-        },
-        {
-          "name": "钉钉上传节点",
+          "name": "Remarks",
           "type": "text"
         },
         {
-          "name": "Produst_phase",
+          "name": "Document_ID_check",
+          "type": "formula",
+          "detail": {
+            "expression": "IF(FIND(\"__\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1])>0,\"ERROR: Document_ID 含双下划线\",IF(AND(bitable::$table[tblbnRHjpJeCVTtj].$field[fldY30O2zc]=\"Publish\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]!=\"\"),\"ERROR: Publish 不应带语言后缀\",IF(AND(bitable::$table[tblbnRHjpJeCVTtj].$field[fldY30O2zc]=\"Build Draft Package\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]!=\"\",FIND(\"_\"&bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]&\"_\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1])=0),\"ERROR: 单语 Draft 的 Document_ID 必须包含 Lang\",\"OK\")))"
+          }
+        },
+        {
+          "name": "Initial_result",
           "type": "select",
           "multiple": false,
           "options": [
-            "EVT2",
-            "DVT"
+            "不允许重复创建"
           ]
+        },
+        {
+          "name": "Build_family_check",
+          "type": "formula",
+          "detail": {
+            "expression": "IF(AND(bitable::$table[tblbnRHjpJeCVTtj].$field[fldY30O2zc]=\"Publish\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]!=\"\"),\"ERROR: Publish 时 Lang 必须为空\",IF(bitable::$table[tblbnRHjpJeCVTtj].$field[fldSmhEIeH]=\"\",\"ERROR: 当前组合没有映射到 Build_family\",\"OK\"))"
+          }
+        },
+        {
+          "name": "default_target_node_url",
+          "type": "text"
         },
         {
           "name": "data_sync",
@@ -196,8 +138,66 @@
           }
         },
         {
-          "name": "idml_file",
+          "name": "Lang",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "en",
+            "fr",
+            "es",
+            "ja",
+            "zh",
+            "de",
+            "it",
+            "uk",
+            "br"
+          ]
+        },
+        {
+          "name": "Produst_phase",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "EVT2",
+            "DVT"
+          ]
+        },
+        {
+          "name": "开始构建时间",
+          "type": "datetime"
+        },
+        {
+          "name": "PR_url",
           "type": "text"
+        },
+        {
+          "name": "Document directory",
+          "type": "text"
+        },
+        {
+          "name": "Workflow_action",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "Build Draft Package",
+            "Publish",
+            "Start Review"
+          ]
+        },
+        {
+          "name": "Task_id",
+          "type": "formula",
+          "detail": {
+            "expression": "CONCATENATE(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"_\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldY30O2zc])"
+          }
+        },
+        {
+          "name": "HTML_link",
+          "type": "text"
+        },
+        {
+          "name": "是否进入Review",
+          "type": "checkbox"
         },
         {
           "name": "Version",
@@ -224,52 +224,62 @@
           ]
         },
         {
-          "name": "Remarks",
+          "name": "项目代码",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "unique",
+            "from": "02_主数据_Document_key",
+            "select": "fldrubZQJt",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "安规",
+          "type": "formula",
+          "detail": {
+            "expression": "IFS(CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"CN\"),\"中规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"US\"),\"美规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"JP\"),\"日规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"EU\"),\"欧规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"pt-BR\"),\"巴西规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"AU\"),\"澳规\",CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"KR\"),\"韩规\",TRUE,\"\")"
+          }
+        },
+        {
+          "name": "Document link_dd",
           "type": "text"
         },
         {
-          "name": "Document_ID_check",
-          "type": "formula",
-          "detail": {
-            "expression": "IF(FIND(\"__\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1])>0,\"ERROR: Document_ID 含双下划线\",IF(AND(bitable::$table[tblbnRHjpJeCVTtj].$field[fldY30O2zc]=\"Publish\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]!=\"\"),\"ERROR: Publish 不应带语言后缀\",IF(AND(bitable::$table[tblbnRHjpJeCVTtj].$field[fldY30O2zc]=\"Build Draft Package\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]!=\"\",FIND(\"_\"&bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]&\"_\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1])=0),\"ERROR: 单语 Draft 的 Document_ID 必须包含 Lang\",\"OK\")))"
-          }
-        },
-        {
-          "name": "Git_ref_check",
-          "type": "formula",
-          "detail": {
-            "expression": "IF(AND(OR(bitable::$table[tblbnRHjpJeCVTtj].$field[fldvon3psj]=\"Y\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldn7bxVyN]=TRUE),bitable::$table[tblbnRHjpJeCVTtj].$field[fldpZuALrU]=\"\"),\"ERROR: 需要构建但 Git_ref 为空\",\"OK\")"
-          }
-        },
-        {
-          "name": "Build_family_check",
-          "type": "formula",
-          "detail": {
-            "expression": "IF(AND(bitable::$table[tblbnRHjpJeCVTtj].$field[fldY30O2zc]=\"Publish\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]!=\"\"),\"ERROR: Publish 时 Lang 必须为空\",IF(bitable::$table[tblbnRHjpJeCVTtj].$field[fldSmhEIeH]=\"\",\"ERROR: 当前组合没有映射到 Build_family\",\"OK\"))"
-          }
-        },
-        {
-          "name": "operator_union_id",
-          "type": "text"
-        },
-        {
-          "name": "是否进入Review",
+          "name": "是否上传钉钉",
           "type": "checkbox"
         },
         {
-          "name": "Initial_result",
+          "name": "钉钉上传节点",
+          "type": "text"
+        },
+        {
+          "name": "飞书云文档",
+          "type": "text"
+        },
+        {
+          "name": "Doc_phase",
           "type": "select",
           "multiple": false,
           "options": [
-            "不允许重复创建"
+            "Draft",
+            "Publish"
           ]
         },
         {
-          "name": "Task_id",
-          "type": "formula",
-          "detail": {
-            "expression": "CONCATENATE(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"_\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldY30O2zc])"
-          }
+          "name": "是否触发文档构建",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "Y",
+            "已构建"
+          ]
+        },
+        {
+          "name": "是否强制刷新数据",
+          "type": "checkbox"
         },
         {
           "name": "构建结果",
@@ -285,27 +295,6 @@
           ]
         },
         {
-          "name": "基线文档",
-          "type": "text"
-        },
-        {
-          "name": "HTML_link",
-          "type": "text"
-        },
-        {
-          "name": "任务描述",
-          "type": "text"
-        },
-        {
-          "name": "是否触发文档构建",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "Y",
-            "已构建"
-          ]
-        },
-        {
           "name": "Document_Key",
           "type": "link",
           "detail": {
@@ -315,17 +304,33 @@
           }
         },
         {
-          "name": "Workflow_action",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "Build Draft Package",
-            "Publish",
-            "Start Review"
-          ]
+          "name": "Build_family",
+          "type": "formula",
+          "detail": {
+            "expression": "IF(OR(CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"pt-BR\"),CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"Brazil\"),CONTAINTEXT(bitable::$table[tblbnRHjpJeCVTtj].$field[fldmBJknI1],\"_BR\")),\"pt-br\",IF(bitable::$table[tblbnRHjpJeCVTtj].$field[fldY30O2zc]=\"Publish\",SWITCH(bitable::$table[tblbnRHjpJeCVTtj].$field[fldWhUiTmR],\"US\",\"us-merged\",\"JP\",\"jp-ja\",\"CN\",\"cn-zh\",\"EU\",\"eu-merged\",\"AU\",\"au-en\",\"KR\",\"kr-ko\",\"\"),IF(bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO].COUNTA()=0,SWITCH(bitable::$table[tblbnRHjpJeCVTtj].$field[fldWhUiTmR],\"US\",\"us-merged\",\"JP\",\"jp-ja\",\"CN\",\"cn-zh\",\"EU\",\"eu-merged\",\"AU\",\"au-en\",\"KR\",\"kr-ko\",\"\"),SWITCH(bitable::$table[tblbnRHjpJeCVTtj].$field[fldWhUiTmR]&\"_\"&LOWER(bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]),\"US_en\",\"us-en\",\"US_fr\",\"us-fr\",\"US_es\",\"us-es\",\"JP_ja\",\"jp-ja\",\"CN_zh\",\"cn-zh\",\"EU_en\",\"eu-en\",\"EU_fr\",\"eu-fr\",\"EU_es\",\"eu-es\",\"EU_de\",\"eu-de\",\"EU_it\",\"eu-it\",\"EU_uk\",\"eu-uk\",\"AU_en\",\"au-en\",\"KR_ko\",\"kr-ko\",\"\"))))"
+          }
         },
         {
-          "name": "Document link_dd",
+          "name": "idml_file",
+          "type": "text"
+        },
+        {
+          "name": "RTD_link",
+          "type": "text"
+        },
+        {
+          "name": "是否立即构建",
+          "type": "checkbox"
+        },
+        {
+          "name": "Git_ref_check",
+          "type": "formula",
+          "detail": {
+            "expression": "IF(AND(OR(bitable::$table[tblbnRHjpJeCVTtj].$field[fldvon3psj]=\"Y\",bitable::$table[tblbnRHjpJeCVTtj].$field[fldn7bxVyN]=TRUE),bitable::$table[tblbnRHjpJeCVTtj].$field[fldpZuALrU]=\"\"),\"ERROR: 需要构建但 Git_ref 为空\",\"OK\")"
+          }
+        },
+        {
+          "name": "基线文档",
           "type": "text"
         },
         {
@@ -333,24 +338,19 @@
           "type": "text"
         },
         {
-          "name": "开始构建时间",
-          "type": "datetime"
+          "name": "是否回写",
+          "type": "checkbox"
         },
         {
-          "name": "Document directory",
+          "name": "任务描述",
           "type": "text"
         },
         {
-          "name": "飞书云文档",
-          "type": "text"
-        },
-        {
-          "name": "PR_url",
-          "type": "text"
-        },
-        {
-          "name": "RTD_link",
-          "type": "text"
+          "name": "Document_ID",
+          "type": "formula",
+          "detail": {
+            "expression": "IF(ISBLANK(bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO]), IF(ISBLANK(bitable::$table[tblbnRHjpJeCVTtj].$field[fldePoRXDw]), bitable::$table[tblbnRHjpJeCVTtj].$field[fldXDCS3AS], bitable::$table[tblbnRHjpJeCVTtj].$field[fldXDCS3AS] & \"_\" & bitable::$table[tblbnRHjpJeCVTtj].$field[fldePoRXDw]), bitable::$table[tblbnRHjpJeCVTtj].$field[fldXDCS3AS] & \"_\" & bitable::$table[tblbnRHjpJeCVTtj].$field[fldsXOe2EO] & \"_\" & bitable::$table[tblbnRHjpJeCVTtj].$field[fldePoRXDw])"
+          }
         }
       ]
     },
@@ -358,100 +358,12 @@
       "name": "03_内容源_规格参数明细",
       "fields": [
         {
-          "name": "Document_key_link",
-          "type": "link",
-          "detail": {
-            "bidirectional": false,
-            "description": "基于配置选择\n",
-            "link_table": "tbltnkDIdwiDOP7d"
-          }
-        },
-        {
-          "name": "Row_label_es",
+          "name": "Value_es",
           "type": "text"
         },
         {
-          "name": "document_key",
-          "type": "formula",
-          "detail": {
-            "description": "供工具链调用\n",
-            "expression": "bitable::$table[tblPUFJqt2uGGvTT].$field[fld8fUvmPp]"
-          }
-        },
-        {
-          "name": "Value_fr",
-          "type": "text"
-        },
-        {
-          "name": "Param_ko",
-          "type": "text"
-        },
-        {
-          "name": "Param_es",
-          "type": "text"
-        },
-        {
-          "name": "Value_footnote_refs",
-          "type": "text"
-        },
-        {
-          "name": "多语言复核",
-          "type": "checkbox"
-        },
-        {
-          "name": "Is_Latest",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "TRUE",
-            "False"
-          ]
-        },
-        {
-          "name": "Value_de",
-          "type": "text"
-        },
-        {
-          "name": "Row_label_source",
-          "type": "text"
-        },
-        {
-          "name": "Row_key_link",
-          "type": "link",
-          "detail": {
-            "bidirectional": false,
-            "link_table": "tbl8yQfXYe3KKyAM"
-          }
-        },
-        {
-          "name": "No.",
+          "name": "Section_order",
           "type": "number"
-        },
-        {
-          "name": "Row_key",
-          "type": "lookup",
-          "detail": {
-            "aggregate": "unique",
-            "from": "02_主数据_参数名",
-            "select": "fld4S3e8vu",
-            "where": {
-              "conditions": [],
-              "logic": "and"
-            }
-          }
-        },
-        {
-          "name": "Row_label_fr",
-          "type": "text"
-        },
-        {
-          "name": "Version",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "1.0",
-            "1.1"
-          ]
         },
         {
           "name": "region",
@@ -467,12 +379,59 @@
           }
         },
         {
-          "name": "Param_fr",
+          "name": "Row_label_it",
           "type": "text"
         },
         {
-          "name": "Param_uk",
+          "name": "Slot_key",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "unique",
+            "from": "02_主数据_Slot",
+            "select": "fldbUepeiu",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "Row_label_footnote_refs",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tblVusBZ8Fi56AWN"
+          }
+        },
+        {
+          "name": "Value_it",
           "type": "text"
+        },
+        {
+          "name": "No.",
+          "type": "number"
+        },
+        {
+          "name": "Value_footnote_refs",
+          "type": "text"
+        },
+        {
+          "name": "Row_label_br",
+          "type": "text"
+        },
+        {
+          "name": "Param_source",
+          "type": "text"
+        },
+        {
+          "name": "Source_lang",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "en",
+            "ja",
+            "zh"
+          ]
         },
         {
           "name": "Slot_key_link",
@@ -483,8 +442,144 @@
           }
         },
         {
+          "name": "Param_it",
+          "type": "text"
+        },
+        {
+          "name": "Line_order",
+          "type": "number"
+        },
+        {
           "name": "Value_br",
           "type": "text"
+        },
+        {
+          "name": "Param_fr",
+          "type": "text"
+        },
+        {
+          "name": "Param_ko",
+          "type": "text"
+        },
+        {
+          "name": "Version",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "1.0",
+            "1.1"
+          ]
+        },
+        {
+          "name": "Value_uk",
+          "type": "text"
+        },
+        {
+          "name": "Value_ko",
+          "type": "text"
+        },
+        {
+          "name": "Page",
+          "type": "select",
+          "multiple": true,
+          "options": [
+            "specifications",
+            "storage",
+            "Product overview",
+            "operation_guide",
+            "ups_mode"
+          ]
+        },
+        {
+          "name": "Is_Latest",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "TRUE",
+            "False"
+          ]
+        },
+        {
+          "name": "Param_de",
+          "type": "text"
+        },
+        {
+          "name": "Param_es",
+          "type": "text"
+        },
+        {
+          "name": "Row_order",
+          "type": "number"
+        },
+        {
+          "name": "参数填写",
+          "type": "checkbox"
+        },
+        {
+          "name": "Row_label_source",
+          "type": "text"
+        },
+        {
+          "name": "document_key",
+          "type": "formula",
+          "detail": {
+            "description": "供工具链调用\n",
+            "expression": "bitable::$table[tblPUFJqt2uGGvTT].$field[fld8fUvmPp]"
+          }
+        },
+        {
+          "name": "Row_label_de",
+          "type": "text"
+        },
+        {
+          "name": "Document_key_link",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "description": "基于配置选择\n",
+            "link_table": "tbltnkDIdwiDOP7d"
+          }
+        },
+        {
+          "name": "Row_label_fr",
+          "type": "text"
+        },
+        {
+          "name": "Row_key",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "unique",
+            "from": "02_主数据_参数名",
+            "select": "fld4S3e8vu",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "Row_label_ko",
+          "type": "text"
+        },
+        {
+          "name": "Row_key_link",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tbl8yQfXYe3KKyAM"
+          }
+        },
+        {
+          "name": "Value_de",
+          "type": "text"
+        },
+        {
+          "name": "Param_uk",
+          "type": "text"
+        },
+        {
+          "name": "多语言复核",
+          "type": "checkbox"
         },
         {
           "name": "Section",
@@ -512,10 +607,6 @@
             "value",
             "text"
           ]
-        },
-        {
-          "name": "Section_order",
-          "type": "number"
         },
         {
           "name": "source_row_key",
@@ -533,25 +624,67 @@
           }
         },
         {
-          "name": "Row_order",
-          "type": "number"
-        },
-        {
-          "name": "Source_lang",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "en",
-            "ja",
-            "zh"
-          ]
+          "name": "Value_fr",
+          "type": "text"
         },
         {
           "name": "Row_label_uk",
           "type": "text"
         },
         {
-          "name": "Row_label_br",
+          "name": "Value_source",
+          "type": "text"
+        },
+        {
+          "name": "Row_label_es",
+          "type": "text"
+        },
+        {
+          "name": "Param_br",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "03_内容源_页面占位参数",
+      "fields": [
+        {
+          "name": "Param_source",
+          "type": "text"
+        },
+        {
+          "name": "document_key",
+          "type": "formula",
+          "detail": {
+            "expression": "bitable::$table[tblEhqJVXiyKtnwq].$field[fldpxxxbOs]"
+          }
+        },
+        {
+          "name": "参数填写",
+          "type": "checkbox"
+        },
+        {
+          "name": "Value_footnote_refs",
+          "type": "text"
+        },
+        {
+          "name": "Param_ko",
+          "type": "text"
+        },
+        {
+          "name": "Param_footnote_refs",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tblVusBZ8Fi56AWN"
+          }
+        },
+        {
+          "name": "Value_es",
+          "type": "text"
+        },
+        {
+          "name": "Value_source",
           "type": "text"
         },
         {
@@ -559,7 +692,60 @@
           "type": "text"
         },
         {
-          "name": "Value_it",
+          "name": "Value_de",
+          "type": "text"
+        },
+        {
+          "name": "spec_value_link",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tblPUFJqt2uGGvTT"
+          }
+        },
+        {
+          "name": "Value_br",
+          "type": "text"
+        },
+        {
+          "name": "Row_key",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "unique",
+            "from": "02_主数据_参数名",
+            "select": "fld4S3e8vu",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "Row_label_es",
+          "type": "text"
+        },
+        {
+          "name": "Section_order",
+          "type": "number"
+        },
+        {
+          "name": "Row_label_it",
+          "type": "text"
+        },
+        {
+          "name": "Line_order",
+          "type": "number"
+        },
+        {
+          "name": "No.",
+          "type": "number"
+        },
+        {
+          "name": "Value_fr",
+          "type": "text"
+        },
+        {
+          "name": "Row_label_source",
           "type": "text"
         },
         {
@@ -576,7 +762,48 @@
           }
         },
         {
-          "name": "Value_uk",
+          "name": "Document_key_link",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tbltnkDIdwiDOP7d"
+          }
+        },
+        {
+          "name": "Param_es",
+          "type": "text"
+        },
+        {
+          "name": "多语言复核",
+          "type": "checkbox"
+        },
+        {
+          "name": "Row_key_link",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tbl8yQfXYe3KKyAM"
+          }
+        },
+        {
+          "name": "Is_Latest",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "TRUE",
+            "False"
+          ]
+        },
+        {
+          "name": "Row_label_uk",
+          "type": "text"
+        },
+        {
+          "name": "Param_de",
+          "type": "text"
+        },
+        {
+          "name": "Param_uk",
           "type": "text"
         },
         {
@@ -588,7 +815,64 @@
           }
         },
         {
+          "name": "Row_label_fr",
+          "type": "text"
+        },
+        {
+          "name": "region",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "unique",
+            "from": "02_主数据_Document_key",
+            "select": "fldpLHJGy7",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "Row_order",
+          "type": "number"
+        },
+        {
+          "name": "Slot_key_link",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tblS7qyV1DTZkoNq"
+          }
+        },
+        {
+          "name": "Row_label_de",
+          "type": "text"
+        },
+        {
+          "name": "字段 1",
+          "type": "text"
+        },
+        {
+          "name": "source_row_key",
+          "type": "formula",
+          "detail": {
+            "expression": "CONCATENATE(bitable::$table[tblEhqJVXiyKtnwq].$field[fldCuvgmyd],\"__v\",bitable::$table[tblEhqJVXiyKtnwq].$field[fldGcD0eEA],\"__\",SUBSTITUTE(bitable::$table[tblEhqJVXiyKtnwq].$field[fld8pPuYNR],\" \",\"_\"),\"__s\",RIGHT(CONCATENATE(\"00\",bitable::$table[tblEhqJVXiyKtnwq].$field[fldq7n2C1e]),2),\"__r\",RIGHT(CONCATENATE(\"00\",bitable::$table[tblEhqJVXiyKtnwq].$field[fldAJYtBVg]),2),\"__\",bitable::$table[tblEhqJVXiyKtnwq].$field[fldrrGUreF],\"__\",IF(ISBLANK(bitable::$table[tblEhqJVXiyKtnwq].$field[fld8xTERnq]),\"main\",SUBSTITUTE(bitable::$table[tblEhqJVXiyKtnwq].$field[fld8xTERnq],\" \",\"_\")),\"__l\",RIGHT(CONCATENATE(\"00\",bitable::$table[tblEhqJVXiyKtnwq].$field[fldyJiFEPG]),2))"
+          }
+        },
+        {
           "name": "Param_it",
+          "type": "text"
+        },
+        {
+          "name": "Version",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "1.0",
+            "1.1"
+          ]
+        },
+        {
+          "name": "Value_ko",
           "type": "text"
         },
         {
@@ -596,65 +880,14 @@
           "type": "text"
         },
         {
-          "name": "Value_ko",
-          "type": "text"
-        },
-        {
-          "name": "Param_source",
-          "type": "text"
-        },
-        {
-          "name": "Row_label_de",
-          "type": "text"
-        },
-        {
-          "name": "Row_label_it",
-          "type": "text"
-        },
-        {
-          "name": "Value_es",
-          "type": "text"
-        },
-        {
-          "name": "参数填写",
-          "type": "checkbox"
-        },
-        {
-          "name": "Param_de",
-          "type": "text"
-        },
-        {
-          "name": "Value_source",
-          "type": "text"
-        },
-        {
-          "name": "Line_order",
-          "type": "number"
-        },
-        {
-          "name": "Page",
+          "name": "Source_lang",
           "type": "select",
-          "multiple": true,
+          "multiple": false,
           "options": [
-            "specifications",
-            "storage",
-            "Product overview",
-            "operation_guide",
-            "ups_mode"
+            "en",
+            "ja",
+            "zh"
           ]
-        }
-      ]
-    },
-    {
-      "name": "03_内容源_页面占位参数",
-      "fields": [
-        {
-          "name": "Param_it",
-          "type": "text"
-        },
-        {
-          "name": "Value_footnote_refs",
-          "type": "text"
         },
         {
           "name": "Section",
@@ -684,131 +917,12 @@
           ]
         },
         {
-          "name": "Document_key_link",
-          "type": "link",
-          "detail": {
-            "bidirectional": false,
-            "link_table": "tbltnkDIdwiDOP7d"
-          }
-        },
-        {
-          "name": "Param_de",
-          "type": "text"
-        },
-        {
-          "name": "Row_label_de",
-          "type": "text"
-        },
-        {
-          "name": "Value_uk",
-          "type": "text"
-        },
-        {
           "name": "Value_it",
           "type": "text"
         },
         {
-          "name": "多语言复核",
-          "type": "checkbox"
-        },
-        {
-          "name": "Param_footnote_refs",
-          "type": "link",
-          "detail": {
-            "bidirectional": false,
-            "link_table": "tblVusBZ8Fi56AWN"
-          }
-        },
-        {
-          "name": "Row_label_source",
+          "name": "Param_fr",
           "type": "text"
-        },
-        {
-          "name": "Row_label_fr",
-          "type": "text"
-        },
-        {
-          "name": "Row_label_it",
-          "type": "text"
-        },
-        {
-          "name": "Slot_key_link",
-          "type": "link",
-          "detail": {
-            "bidirectional": false,
-            "link_table": "tblS7qyV1DTZkoNq"
-          }
-        },
-        {
-          "name": "字段 1",
-          "type": "text"
-        },
-        {
-          "name": "document_key",
-          "type": "formula",
-          "detail": {
-            "expression": "bitable::$table[tblEhqJVXiyKtnwq].$field[fldpxxxbOs]"
-          }
-        },
-        {
-          "name": "region",
-          "type": "lookup",
-          "detail": {
-            "aggregate": "unique",
-            "from": "02_主数据_Document_key",
-            "select": "fldpLHJGy7",
-            "where": {
-              "conditions": [],
-              "logic": "and"
-            }
-          }
-        },
-        {
-          "name": "Version",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "1.0",
-            "1.1"
-          ]
-        },
-        {
-          "name": "spec_value_link",
-          "type": "link",
-          "detail": {
-            "bidirectional": false,
-            "link_table": "tblPUFJqt2uGGvTT"
-          }
-        },
-        {
-          "name": "Value_de",
-          "type": "text"
-        },
-        {
-          "name": "Row_label_es",
-          "type": "text"
-        },
-        {
-          "name": "Slot_key",
-          "type": "lookup",
-          "detail": {
-            "aggregate": "unique",
-            "from": "02_主数据_Slot",
-            "select": "fldbUepeiu",
-            "where": {
-              "conditions": [],
-              "logic": "and"
-            }
-          }
-        },
-        {
-          "name": "Is_Latest",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "TRUE",
-            "False"
-          ]
         },
         {
           "name": "Page",
@@ -821,35 +935,6 @@
             "operation_guide",
             "ups_mode"
           ]
-        },
-        {
-          "name": "Section_order",
-          "type": "number"
-        },
-        {
-          "name": "Source_lang",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "en",
-            "ja",
-            "zh"
-          ]
-        },
-        {
-          "name": "source_row_key",
-          "type": "formula",
-          "detail": {
-            "expression": "CONCATENATE(bitable::$table[tblEhqJVXiyKtnwq].$field[fldCuvgmyd],\"__v\",bitable::$table[tblEhqJVXiyKtnwq].$field[fldGcD0eEA],\"__\",SUBSTITUTE(bitable::$table[tblEhqJVXiyKtnwq].$field[fld8pPuYNR],\" \",\"_\"),\"__s\",RIGHT(CONCATENATE(\"00\",bitable::$table[tblEhqJVXiyKtnwq].$field[fldq7n2C1e]),2),\"__r\",RIGHT(CONCATENATE(\"00\",bitable::$table[tblEhqJVXiyKtnwq].$field[fldAJYtBVg]),2),\"__\",bitable::$table[tblEhqJVXiyKtnwq].$field[fldrrGUreF],\"__\",IF(ISBLANK(bitable::$table[tblEhqJVXiyKtnwq].$field[fld8xTERnq]),\"main\",SUBSTITUTE(bitable::$table[tblEhqJVXiyKtnwq].$field[fld8xTERnq],\" \",\"_\")),\"__l\",RIGHT(CONCATENATE(\"00\",bitable::$table[tblEhqJVXiyKtnwq].$field[fldyJiFEPG]),2))"
-          }
-        },
-        {
-          "name": "Value_ko",
-          "type": "text"
-        },
-        {
-          "name": "Line_order",
-          "type": "number"
         },
         {
           "name": "Value_de_ref",
@@ -865,97 +950,12 @@
           }
         },
         {
-          "name": "No.",
-          "type": "number"
-        },
-        {
           "name": "Row_label_br",
           "type": "text"
         },
         {
-          "name": "Param_fr",
+          "name": "Value_uk",
           "type": "text"
-        },
-        {
-          "name": "Param_source",
-          "type": "text"
-        },
-        {
-          "name": "Param_ko",
-          "type": "text"
-        },
-        {
-          "name": "Param_br",
-          "type": "text"
-        },
-        {
-          "name": "Row_label_ko",
-          "type": "text"
-        },
-        {
-          "name": "Value_fr",
-          "type": "text"
-        },
-        {
-          "name": "参数填写",
-          "type": "checkbox"
-        },
-        {
-          "name": "Param_es",
-          "type": "text"
-        },
-        {
-          "name": "Value_br",
-          "type": "text"
-        },
-        {
-          "name": "Param_uk",
-          "type": "text"
-        },
-        {
-          "name": "Value_source",
-          "type": "text"
-        },
-        {
-          "name": "Row_order",
-          "type": "number"
-        },
-        {
-          "name": "Row_key",
-          "type": "lookup",
-          "detail": {
-            "aggregate": "unique",
-            "from": "02_主数据_参数名",
-            "select": "fld4S3e8vu",
-            "where": {
-              "conditions": [],
-              "logic": "and"
-            }
-          }
-        },
-        {
-          "name": "Value_es",
-          "type": "text"
-        },
-        {
-          "name": "Row_label_uk",
-          "type": "text"
-        },
-        {
-          "name": "Row_key_link",
-          "type": "link",
-          "detail": {
-            "bidirectional": false,
-            "link_table": "tbl8yQfXYe3KKyAM"
-          }
-        },
-        {
-          "name": "Row_label_footnote_refs",
-          "type": "link",
-          "detail": {
-            "bidirectional": false,
-            "link_table": "tblVusBZ8Fi56AWN"
-          }
         }
       ]
     },
@@ -967,15 +967,11 @@
           "type": "text"
         },
         {
-          "name": "Model",
-          "type": "text"
-        },
-        {
-          "name": "Source_lang",
-          "type": "text"
-        },
-        {
           "name": "Version",
+          "type": "text"
+        },
+        {
+          "name": "source_text",
           "type": "text"
         },
         {
@@ -987,6 +983,10 @@
           "type": "text"
         },
         {
+          "name": "copy_type",
+          "type": "text"
+        },
+        {
           "name": "section_order",
           "type": "number"
         },
@@ -995,15 +995,15 @@
           "type": "text"
         },
         {
-          "name": "source_text",
-          "type": "text"
-        },
-        {
           "name": "Market",
           "type": "text"
         },
         {
-          "name": "copy_type",
+          "name": "Model",
+          "type": "text"
+        },
+        {
+          "name": "Source_lang",
           "type": "text"
         }
       ]
@@ -1012,7 +1012,92 @@
       "name": "03_内容源_Symbols",
       "fields": [
         {
-          "name": "text_jp",
+          "name": "text_uk",
+          "type": "text"
+        },
+        {
+          "name": "block_type",
+          "type": "text"
+        },
+        {
+          "name": "notes",
+          "type": "text"
+        },
+        {
+          "name": "text_ko",
+          "type": "text"
+        },
+        {
+          "name": "text_it",
+          "type": "text"
+        },
+        {
+          "name": "Model",
+          "type": "select",
+          "multiple": true,
+          "options": [
+            "JE-1000F",
+            "JE-2000E",
+            "JE-2000F",
+            "JE-1500D",
+            "JE-1800B",
+            "JE-900B",
+            "JE-1000H",
+            "JE-1000J"
+          ]
+        },
+        {
+          "name": "text_en",
+          "type": "text"
+        },
+        {
+          "name": "label_it",
+          "type": "text"
+        },
+        {
+          "name": "label_en",
+          "type": "text"
+        },
+        {
+          "name": "Is_Latest",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "TRUE",
+            "Outdated",
+            "False"
+          ]
+        },
+        {
+          "name": "aliases_ko",
+          "type": "text"
+        },
+        {
+          "name": "label_pt-BR",
+          "type": "text"
+        },
+        {
+          "name": "aliases_uk",
+          "type": "text"
+        },
+        {
+          "name": "aliases_pt-BR",
+          "type": "text"
+        },
+        {
+          "name": "label_jp",
+          "type": "text"
+        },
+        {
+          "name": "aliases_de",
+          "type": "text"
+        },
+        {
+          "name": "aliases_en",
+          "type": "text"
+        },
+        {
+          "name": "aliases_es",
           "type": "text"
         },
         {
@@ -1029,15 +1114,140 @@
           ]
         },
         {
-          "name": "Figure",
-          "type": "attachment"
+          "name": "aliases_fr",
+          "type": "text"
+        },
+        {
+          "name": "label_uk",
+          "type": "text"
+        },
+        {
+          "name": "text_zh",
+          "type": "text"
+        },
+        {
+          "name": "label_fr",
+          "type": "text"
+        },
+        {
+          "name": "text_fr",
+          "type": "text"
+        },
+        {
+          "name": "label_de",
+          "type": "text"
+        },
+        {
+          "name": "text_es",
+          "type": "text"
+        },
+        {
+          "name": "order",
+          "type": "number"
+        },
+        {
+          "name": "symbol_key",
+          "type": "text"
+        },
+        {
+          "name": "text_pt-BR",
+          "type": "text"
+        },
+        {
+          "name": "text_de",
+          "type": "text"
+        },
+        {
+          "name": "aliases_it",
+          "type": "text"
+        },
+        {
+          "name": "aliases_zh",
+          "type": "text"
+        },
+        {
+          "name": "aliases_jp",
+          "type": "text"
+        },
+        {
+          "name": "label_zh",
+          "type": "text"
+        },
+        {
+          "name": "image_path",
+          "type": "text"
         },
         {
           "name": "label_es",
           "type": "text"
         },
         {
-          "name": "label_fr",
+          "name": "Figure",
+          "type": "attachment"
+        },
+        {
+          "name": "label_ko",
+          "type": "text"
+        },
+        {
+          "name": "text_jp",
+          "type": "text"
+        },
+        {
+          "name": "Source_lang",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "03_内容源_LCD icons",
+      "fields": [
+        {
+          "name": "figure",
+          "type": "attachment"
+        },
+        {
+          "name": "icon_desc_en",
+          "type": "text"
+        },
+        {
+          "name": "icon_jp",
+          "type": "text"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "icon_desc_ko",
+          "type": "text"
+        },
+        {
+          "name": "Version",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "V1.0"
+          ]
+        },
+        {
+          "name": "icon_desc_it",
+          "type": "text"
+        },
+        {
+          "name": "icon_ko",
+          "type": "text"
+        },
+        {
+          "name": "icon_ukr",
+          "type": "text"
+        },
+        {
+          "name": "icon_desc_ukr",
+          "type": "text"
+        },
+        {
+          "name": "icon_en",
           "type": "text"
         },
         {
@@ -1050,162 +1260,17 @@
             "JE-2000F",
             "JE-1500D",
             "JE-1800B",
-            "JE-900B"
+            "JE-900B",
+            "JE-1000J",
+            "JE-1000H"
           ]
         },
         {
-          "name": "text_en",
+          "name": "icon_desc_es",
           "type": "text"
         },
-        {
-          "name": "block_type",
-          "type": "text"
-        },
-        {
-          "name": "text_ko",
-          "type": "text"
-        },
-        {
-          "name": "image_path",
-          "type": "text"
-        },
-        {
-          "name": "text_es",
-          "type": "text"
-        },
-        {
-          "name": "order",
-          "type": "number"
-        },
-        {
-          "name": "label_uk",
-          "type": "text"
-        },
-        {
-          "name": "text_uk",
-          "type": "text"
-        },
-        {
-          "name": "Is_Latest",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "TRUE",
-            "Outdated",
-            "False"
-          ]
-        },
-        {
-          "name": "label_de",
-          "type": "text"
-        },
-        {
-          "name": "aliases_zh",
-          "type": "text"
-        },
-        {
-          "name": "label_zh",
-          "type": "text"
-        },
-        {
-          "name": "aliases_en",
-          "type": "text"
-        },
-        {
-          "name": "text_pt-BR",
-          "type": "text"
-        },
-        {
-          "name": "aliases_fr",
-          "type": "text"
-        },
-        {
-          "name": "label_ko",
-          "type": "text"
-        },
-        {
-          "name": "text_de",
-          "type": "text"
-        },
-        {
-          "name": "label_en",
-          "type": "text"
-        },
-        {
-          "name": "aliases_ko",
-          "type": "text"
-        },
-        {
-          "name": "notes",
-          "type": "text"
-        },
-        {
-          "name": "text_zh",
-          "type": "text"
-        },
-        {
-          "name": "aliases_uk",
-          "type": "text"
-        },
-        {
-          "name": "label_pt-BR",
-          "type": "text"
-        },
-        {
-          "name": "Source_lang",
-          "type": "text"
-        },
-        {
-          "name": "aliases_jp",
-          "type": "text"
-        },
-        {
-          "name": "aliases_pt-BR",
-          "type": "text"
-        },
-        {
-          "name": "text_fr",
-          "type": "text"
-        },
-        {
-          "name": "symbol_key",
-          "type": "text"
-        },
-        {
-          "name": "text_it",
-          "type": "text"
-        },
-        {
-          "name": "aliases_es",
-          "type": "text"
-        },
-        {
-          "name": "aliases_it",
-          "type": "text"
-        },
-        {
-          "name": "aliases_de",
-          "type": "text"
-        },
-        {
-          "name": "label_it",
-          "type": "text"
-        },
-        {
-          "name": "label_jp",
-          "type": "text"
-        }
-      ]
-    },
-    {
-      "name": "03_内容源_LCD icons",
-      "fields": [
         {
           "name": "icon_desc_pt-BR",
-          "type": "text"
-        },
-        {
-          "name": "icon_desc_zh",
           "type": "text"
         },
         {
@@ -1218,27 +1283,40 @@
           ]
         },
         {
-          "name": "icon_pt-BR",
+          "name": "icon_desc_zh",
           "type": "text"
         },
         {
-          "name": "Version",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "V1.0"
-          ]
-        },
-        {
-          "name": "icon_desc_es",
+          "name": "icon_it",
           "type": "text"
         },
         {
-          "name": "icon_en",
+          "name": "icon_zh",
           "type": "text"
         },
         {
           "name": "文本 15",
+          "type": "text"
+        },
+        {
+          "name": "Is_latest",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "TRUE",
+            "FALSE"
+          ]
+        },
+        {
+          "name": "icon_de",
+          "type": "text"
+        },
+        {
+          "name": "icon_desc_de",
+          "type": "text"
+        },
+        {
+          "name": "icon_desc_jp",
           "type": "text"
         },
         {
@@ -1253,36 +1331,7 @@
           ]
         },
         {
-          "name": "备注",
-          "type": "text"
-        },
-        {
-          "name": "icon_ko",
-          "type": "text"
-        },
-        {
-          "name": "Model",
-          "type": "select",
-          "multiple": true,
-          "options": [
-            "JE-1000F",
-            "JE-2000E",
-            "JE-2000F",
-            "JE-1500D",
-            "JE-1800B",
-            "JE-900B"
-          ]
-        },
-        {
-          "name": "icon_jp",
-          "type": "text"
-        },
-        {
-          "name": "No.",
-          "type": "number"
-        },
-        {
-          "name": "icon_desc_jp",
+          "name": "icon_fr",
           "type": "text"
         },
         {
@@ -1290,60 +1339,15 @@
           "type": "text"
         },
         {
+          "name": "No.",
+          "type": "number"
+        },
+        {
+          "name": "icon_pt-BR",
+          "type": "text"
+        },
+        {
           "name": "icon_es",
-          "type": "text"
-        },
-        {
-          "name": "icon_ukr",
-          "type": "text"
-        },
-        {
-          "name": "figure",
-          "type": "attachment"
-        },
-        {
-          "name": "icon_zh",
-          "type": "text"
-        },
-        {
-          "name": "icon_desc_it",
-          "type": "text"
-        },
-        {
-          "name": "icon_desc_ko",
-          "type": "text"
-        },
-        {
-          "name": "icon_de",
-          "type": "text"
-        },
-        {
-          "name": "icon_desc_en",
-          "type": "text"
-        },
-        {
-          "name": "icon_desc_de",
-          "type": "text"
-        },
-        {
-          "name": "Is_latest",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "TRUE",
-            "FALSE"
-          ]
-        },
-        {
-          "name": "icon_it",
-          "type": "text"
-        },
-        {
-          "name": "icon_fr",
-          "type": "text"
-        },
-        {
-          "name": "icon_desc_ukr",
           "type": "text"
         }
       ]
@@ -1352,11 +1356,31 @@
       "name": "03_内容源_TROUBLESHOOTING",
       "fields": [
         {
-          "name": "corrective_measures_es",
+          "name": "corrective_measures_it",
           "type": "text"
         },
         {
-          "name": "corrective_measures_it",
+          "name": "corrective_measures_pt-BR",
+          "type": "text"
+        },
+        {
+          "name": "corrective_measures_en",
+          "type": "text"
+        },
+        {
+          "name": "corrective_measures_jp",
+          "type": "text"
+        },
+        {
+          "name": "corrective_measures_br",
+          "type": "text"
+        },
+        {
+          "name": "render_preview_en",
+          "type": "text"
+        },
+        {
+          "name": "No.",
           "type": "text"
         },
         {
@@ -1372,35 +1396,7 @@
           "type": "text"
         },
         {
-          "name": "corrective_measures_jp",
-          "type": "text"
-        },
-        {
-          "name": "render_preview_en",
-          "type": "text"
-        },
-        {
-          "name": "corrective_measures_ko",
-          "type": "text"
-        },
-        {
-          "name": "corrective_measures_br",
-          "type": "text"
-        },
-        {
-          "name": "No.",
-          "type": "text"
-        },
-        {
-          "name": "corrective_measures_de",
-          "type": "text"
-        },
-        {
           "name": "corrective_measures_ukr",
-          "type": "text"
-        },
-        {
-          "name": "corrective_measures_zh",
           "type": "text"
         },
         {
@@ -1408,15 +1404,15 @@
           "type": "text"
         },
         {
-          "name": "corrective_measures_en",
-          "type": "text"
-        },
-        {
-          "name": "Region",
-          "type": "text"
-        },
-        {
           "name": "error_code",
+          "type": "text"
+        },
+        {
+          "name": "corrective_measures_zh",
+          "type": "text"
+        },
+        {
+          "name": "corrective_measures_es",
           "type": "text"
         },
         {
@@ -1428,7 +1424,15 @@
           ]
         },
         {
-          "name": "corrective_measures_pt-BR",
+          "name": "Region",
+          "type": "text"
+        },
+        {
+          "name": "corrective_measures_de",
+          "type": "text"
+        },
+        {
+          "name": "corrective_measures_ko",
           "type": "text"
         }
       ]
@@ -1436,15 +1440,6 @@
     {
       "name": "03_内容源_Variable_Defaults",
       "fields": [
-        {
-          "name": "is_default",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "False",
-            "True"
-          ]
-        },
         {
           "name": "Variable_key",
           "type": "text"
@@ -1474,6 +1469,15 @@
             "AC1/2",
             "DC/USB"
           ]
+        },
+        {
+          "name": "is_default",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "False",
+            "True"
+          ]
         }
       ]
     },
@@ -1481,44 +1485,16 @@
       "name": "03_内容源_规格页Footnotes",
       "fields": [
         {
-          "name": "Text_de",
+          "name": "Footnote_id",
           "type": "text"
-        },
-        {
-          "name": "Text_es",
-          "type": "text"
-        },
-        {
-          "name": "Page",
-          "type": "text"
-        },
-        {
-          "name": "type",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "Footnote"
-          ]
-        },
-        {
-          "name": "Text_uk",
-          "type": "text"
-        },
-        {
-          "name": "Footnote_order",
-          "type": "number"
         },
         {
           "name": "Text_en",
           "type": "text"
         },
         {
-          "name": "Text_it",
-          "type": "text"
-        },
-        {
-          "name": "Text_zh",
-          "type": "text"
+          "name": "Footnote_order",
+          "type": "number"
         },
         {
           "name": "Enabled",
@@ -1529,15 +1505,7 @@
           ]
         },
         {
-          "name": "Is_Latest",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "TRUE"
-          ]
-        },
-        {
-          "name": "Footnote_id",
+          "name": "Text_it",
           "type": "text"
         },
         {
@@ -1578,6 +1546,30 @@
           "type": "text"
         },
         {
+          "name": "Text_uk",
+          "type": "text"
+        },
+        {
+          "name": "Text_es",
+          "type": "text"
+        },
+        {
+          "name": "Page",
+          "type": "text"
+        },
+        {
+          "name": "Is_Latest",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "TRUE"
+          ]
+        },
+        {
+          "name": "Text_zh",
+          "type": "text"
+        },
+        {
           "name": "Source_lang",
           "type": "select",
           "multiple": false,
@@ -1585,6 +1577,18 @@
             "en",
             "ja",
             "zh"
+          ]
+        },
+        {
+          "name": "Text_de",
+          "type": "text"
+        },
+        {
+          "name": "type",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "Footnote"
           ]
         }
       ]
@@ -1593,15 +1597,11 @@
       "name": "03_内容源_规格页notes",
       "fields": [
         {
-          "name": "Note_id",
+          "name": "Text_it",
           "type": "text"
         },
         {
-          "name": "Text_uk",
-          "type": "text"
-        },
-        {
-          "name": "Text_ja",
+          "name": "Text_es",
           "type": "text"
         },
         {
@@ -1615,17 +1615,36 @@
           ]
         },
         {
-          "name": "Model",
+          "name": "Type",
           "type": "select",
-          "multiple": true,
+          "multiple": false,
           "options": [
-            "JE-1000F",
-            "JE-1500D",
-            "JE-2000E",
-            "JE-2000F",
-            "JE-900B",
-            "JE-1800B"
+            "Note"
           ]
+        },
+        {
+          "name": "Text_pt-BR",
+          "type": "text"
+        },
+        {
+          "name": "Is_Latest",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "TRUE"
+          ]
+        },
+        {
+          "name": "Page",
+          "type": "text"
+        },
+        {
+          "name": "Text_fr",
+          "type": "text"
+        },
+        {
+          "name": "Text_de",
+          "type": "text"
         },
         {
           "name": "Text_en",
@@ -1644,35 +1663,28 @@
           ]
         },
         {
-          "name": "Text_fr",
-          "type": "text"
+          "name": "Note_order",
+          "type": "number"
         },
         {
-          "name": "Type",
+          "name": "Model",
           "type": "select",
-          "multiple": false,
+          "multiple": true,
           "options": [
-            "Note"
+            "JE-1000F",
+            "JE-1500D",
+            "JE-2000E",
+            "JE-2000F",
+            "JE-900B",
+            "JE-1800B"
           ]
         },
         {
-          "name": "Text_de",
+          "name": "Text_uk",
           "type": "text"
         },
         {
-          "name": "Text_zh",
-          "type": "text"
-        },
-        {
-          "name": "Text_it",
-          "type": "text"
-        },
-        {
-          "name": "Page",
-          "type": "text"
-        },
-        {
-          "name": "Text_es",
+          "name": "Text_ja",
           "type": "text"
         },
         {
@@ -1684,20 +1696,12 @@
           ]
         },
         {
-          "name": "Text_pt-BR",
+          "name": "Note_id",
           "type": "text"
         },
         {
-          "name": "Is_Latest",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "TRUE"
-          ]
-        },
-        {
-          "name": "Note_order",
-          "type": "number"
+          "name": "Text_zh",
+          "type": "text"
         }
       ]
     },
@@ -1705,40 +1709,19 @@
       "name": "02_主数据_产品信息表",
       "fields": [
         {
+          "name": "产品简称",
+          "type": "text"
+        },
+        {
           "name": "品类",
           "type": "text"
         },
         {
-          "name": "商品名称_zh",
+          "name": "商品名称_en",
           "type": "text"
-        },
-        {
-          "name": "最后更新时间",
-          "type": "updated_at"
-        },
-        {
-          "name": "备注",
-          "type": "text"
-        },
-        {
-          "name": "是否支持加电包",
-          "type": "select",
-          "multiple": false,
-          "options": [
-            "Y",
-            "N"
-          ]
         },
         {
           "name": "Model",
-          "type": "text"
-        },
-        {
-          "name": "商品名称_jp",
-          "type": "text"
-        },
-        {
-          "name": "产品简称",
           "type": "text"
         },
         {
@@ -1751,11 +1734,36 @@
           }
         },
         {
-          "name": "文本 8",
+          "name": "商品名称_jp",
           "type": "text"
         },
         {
-          "name": "商品名称_en",
+          "name": "商品名称_zh",
+          "type": "text"
+        },
+        {
+          "name": "商品名称_kr",
+          "type": "text"
+        },
+        {
+          "name": "最后更新时间",
+          "type": "updated_at"
+        },
+        {
+          "name": "是否支持加电包",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "Y",
+            "N"
+          ]
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "文本 8",
           "type": "text"
         }
       ]
@@ -1764,7 +1772,11 @@
       "name": "02_主数据_项目信息",
       "fields": [
         {
-          "name": "项目经理",
+          "name": "包材设计师",
+          "type": "text"
+        },
+        {
+          "name": "系统工程师",
           "type": "text"
         },
         {
@@ -1772,7 +1784,19 @@
           "type": "text"
         },
         {
+          "name": "项目经理",
+          "type": "text"
+        },
+        {
+          "name": "项目代码",
+          "type": "text"
+        },
+        {
           "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "文档分类",
           "type": "text"
         },
         {
@@ -1783,22 +1807,6 @@
             "bidirectional_link_field_id": "fldJNrAmCm",
             "link_table": "tbl9SuJR2W1P2Rsa"
           }
-        },
-        {
-          "name": "包材设计师",
-          "type": "text"
-        },
-        {
-          "name": "文档分类",
-          "type": "text"
-        },
-        {
-          "name": "系统工程师",
-          "type": "text"
-        },
-        {
-          "name": "项目代码",
-          "type": "text"
         }
       ]
     },
@@ -1806,23 +1814,63 @@
       "name": "02_主数据_Document_key",
       "fields": [
         {
-          "name": "应急快充模式",
-          "type": "checkbox"
-        },
-        {
           "name": "静音充电",
           "type": "checkbox"
-        },
-        {
-          "name": "电芯/循环寿命",
-          "type": "text"
         },
         {
           "name": "容量",
           "type": "text"
         },
         {
-          "name": "LED照明灯",
+          "name": "电芯/循环寿命",
+          "type": "text"
+        },
+        {
+          "name": "UPS功能",
+          "type": "checkbox"
+        },
+        {
+          "name": "Documents",
+          "type": "link",
+          "detail": {
+            "bidirectional": true,
+            "bidirectional_link_field_id": "fldXDCS3AS",
+            "link_table": "tblbnRHjpJeCVTtj"
+          }
+        },
+        {
+          "name": "Document_key",
+          "type": "formula",
+          "detail": {
+            "expression": "CONCATENATE(bitable::$table[tbltnkDIdwiDOP7d].$field[fldLhUYmo2],\"_\",bitable::$table[tbltnkDIdwiDOP7d].$field[fldpLHJGy7])"
+          }
+        },
+        {
+          "name": "产品名称",
+          "type": "text"
+        },
+        {
+          "name": "额定输出",
+          "type": "text"
+        },
+        {
+          "name": "Region",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tblvBsr8qGPjXWdA"
+          }
+        },
+        {
+          "name": "Model",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tbl9SuJR2W1P2Rsa"
+          }
+        },
+        {
+          "name": "应急快充模式",
           "type": "checkbox"
         },
         {
@@ -1839,35 +1887,27 @@
           }
         },
         {
-          "name": "自发自用模式",
+          "name": "TOU/计划充电",
           "type": "checkbox"
         },
         {
-          "name": "Document_key",
-          "type": "formula",
-          "detail": {
-            "expression": "CONCATENATE(bitable::$table[tbltnkDIdwiDOP7d].$field[fldLhUYmo2],\"_\",bitable::$table[tbltnkDIdwiDOP7d].$field[fldpLHJGy7])"
-          }
+          "name": "并机/扩展",
+          "type": "checkbox"
         },
         {
-          "name": "Region",
-          "type": "link",
-          "detail": {
-            "bidirectional": false,
-            "link_table": "tblvBsr8qGPjXWdA"
-          }
+          "name": "加电包扩容",
+          "type": "checkbox"
         },
         {
-          "name": "Documents",
-          "type": "link",
-          "detail": {
-            "bidirectional": true,
-            "bidirectional_link_field_id": "fldXDCS3AS",
-            "link_table": "tblbnRHjpJeCVTtj"
-          }
+          "name": "AC/DC输出记忆恢复",
+          "type": "checkbox"
         },
         {
-          "name": "TOU/计划充电",
+          "name": "LED照明灯",
+          "type": "checkbox"
+        },
+        {
+          "name": "自发自用模式",
           "type": "checkbox"
         },
         {
@@ -1875,40 +1915,8 @@
           "type": "text"
         },
         {
-          "name": "并机/扩展",
-          "type": "checkbox"
-        },
-        {
           "name": "其他特色功能",
           "type": "text"
-        },
-        {
-          "name": "额定输出",
-          "type": "text"
-        },
-        {
-          "name": "UPS功能",
-          "type": "checkbox"
-        },
-        {
-          "name": "产品名称",
-          "type": "text"
-        },
-        {
-          "name": "AC/DC输出记忆恢复",
-          "type": "checkbox"
-        },
-        {
-          "name": "Model",
-          "type": "link",
-          "detail": {
-            "bidirectional": false,
-            "link_table": "tbl9SuJR2W1P2Rsa"
-          }
-        },
-        {
-          "name": "加电包扩容",
-          "type": "checkbox"
         }
       ]
     },
@@ -1916,15 +1924,15 @@
       "name": "02_主数据_Slot",
       "fields": [
         {
-          "name": "Slot_label_source",
-          "type": "text"
-        },
-        {
           "name": "Slot_key",
           "type": "text"
         },
         {
           "name": "Remark",
+          "type": "text"
+        },
+        {
+          "name": "Slot_label_source",
           "type": "text"
         }
       ]
@@ -1950,6 +1958,14 @@
       "name": "02_主数据_语言",
       "fields": [
         {
+          "name": "缩写",
+          "type": "text"
+        },
+        {
+          "name": "语言",
+          "type": "text"
+        },
+        {
           "name": "区域法规",
           "type": "link",
           "detail": {
@@ -1957,20 +1973,29 @@
             "bidirectional_link_field_id": "fldmZVWUAZ",
             "link_table": "tblvBsr8qGPjXWdA"
           }
-        },
-        {
-          "name": "缩写",
-          "type": "text"
-        },
-        {
-          "name": "语言",
-          "type": "text"
         }
       ]
     },
     {
       "name": "02_主数据_区域法规",
       "fields": [
+        {
+          "name": "对应语言",
+          "type": "lookup",
+          "detail": {
+            "aggregate": "raw_value",
+            "from": "02_主数据_语言",
+            "select": "fldXLQzVaV",
+            "where": {
+              "conditions": [],
+              "logic": "and"
+            }
+          }
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
         {
           "name": "Region",
           "type": "text"
@@ -2002,29 +2027,16 @@
             "eu-merged",
             "au-en"
           ]
-        },
-        {
-          "name": "对应语言",
-          "type": "lookup",
-          "detail": {
-            "aggregate": "raw_value",
-            "from": "02_主数据_语言",
-            "select": "fldXLQzVaV",
-            "where": {
-              "conditions": [],
-              "logic": "and"
-            }
-          }
-        },
-        {
-          "name": "备注",
-          "type": "text"
         }
       ]
     },
     {
       "name": "03_内容源_Variable_Lang_Overrides",
       "fields": [
+        {
+          "name": "Variable_key",
+          "type": "text"
+        },
         {
           "name": "lang",
           "type": "text"
@@ -2036,10 +2048,6 @@
         {
           "name": "Value",
           "type": "text"
-        },
-        {
-          "name": "Variable_key",
-          "type": "text"
         }
       ]
     },
@@ -2047,15 +2055,11 @@
       "name": "规格书字段映射规则",
       "fields": [
         {
-          "name": "默认值",
-          "type": "text"
-        },
-        {
           "name": "备注",
           "type": "text"
         },
         {
-          "name": "取值规则",
+          "name": "章节",
           "type": "text"
         },
         {
@@ -2063,16 +2067,8 @@
           "type": "number"
         },
         {
-          "name": "行标签",
-          "type": "text"
-        },
-        {
           "name": "manual_facing",
           "type": "checkbox"
-        },
-        {
-          "name": "Row_key",
-          "type": "text"
         },
         {
           "name": "规格书字段",
@@ -2083,7 +2079,19 @@
           "type": "text"
         },
         {
-          "name": "章节",
+          "name": "取值规则",
+          "type": "text"
+        },
+        {
+          "name": "行标签",
+          "type": "text"
+        },
+        {
+          "name": "Row_key",
+          "type": "text"
+        },
+        {
+          "name": "默认值",
           "type": "text"
         }
       ]
@@ -2091,6 +2099,18 @@
     {
       "name": "能力→章节映射规则",
       "fields": [
+        {
+          "name": "required_when_true",
+          "type": "checkbox"
+        },
+        {
+          "name": "forbidden_when_false",
+          "type": "checkbox"
+        },
+        {
+          "name": "notes",
+          "type": "text"
+        },
         {
           "name": "capability",
           "type": "text"
@@ -2111,17 +2131,421 @@
         {
           "name": "match_regex",
           "type": "text"
-        },
+        }
+      ]
+    },
+    {
+      "name": "04_资产源文件",
+      "fields": [
         {
-          "name": "required_when_true",
-          "type": "checkbox"
-        },
-        {
-          "name": "forbidden_when_false",
-          "type": "checkbox"
+          "name": "document_revision",
+          "type": "text"
         },
         {
           "name": "notes",
+          "type": "text"
+        },
+        {
+          "name": "registry_revision",
+          "type": "text"
+        },
+        {
+          "name": "created_at",
+          "type": "created_at"
+        },
+        {
+          "name": "manifest_file",
+          "type": "attachment"
+        },
+        {
+          "name": "source_file",
+          "type": "attachment"
+        },
+        {
+          "name": "updated_at",
+          "type": "updated_at"
+        },
+        {
+          "name": "asset_package",
+          "type": "attachment"
+        },
+        {
+          "name": "source_scope_model",
+          "type": "text"
+        },
+        {
+          "name": "source_key",
+          "type": "text"
+        },
+        {
+          "name": "source_kind",
+          "type": "text"
+        },
+        {
+          "name": "source_scope_region",
+          "type": "text"
+        },
+        {
+          "name": "archive_status",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "待校验",
+            "已归档",
+            "隔离"
+          ]
+        },
+        {
+          "name": "page_count",
+          "type": "number"
+        },
+        {
+          "name": "page_height_mm",
+          "type": "number"
+        },
+        {
+          "name": "source_sha256",
+          "type": "text"
+        },
+        {
+          "name": "package_sha256",
+          "type": "text"
+        },
+        {
+          "name": "source_format",
+          "type": "text"
+        },
+        {
+          "name": "page_width_mm",
+          "type": "number"
+        },
+        {
+          "name": "source_scope_lang",
+          "type": "text"
+        },
+        {
+          "name": "manifest_sha256",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "04_资产定义",
+      "fields": [
+        {
+          "name": "status",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "✅成品",
+            "🔧临时替代",
+            "❌缺失",
+            "⛔隔离"
+          ]
+        },
+        {
+          "name": "model_scope",
+          "type": "text"
+        },
+        {
+          "name": "created_at",
+          "type": "created_at"
+        },
+        {
+          "name": "category",
+          "type": "text"
+        },
+        {
+          "name": "source_record",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tblsXlZx61Ff5pQC"
+          }
+        },
+        {
+          "name": "language_dimension",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "中立",
+            "按语言"
+          ]
+        },
+        {
+          "name": "updated_at",
+          "type": "updated_at"
+        },
+        {
+          "name": "recipe_revision",
+          "type": "text"
+        },
+        {
+          "name": "gate_status",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "approved",
+            "temporary",
+            "missing",
+            "quarantine",
+            "archive"
+          ]
+        },
+        {
+          "name": "asset_key",
+          "type": "text"
+        },
+        {
+          "name": "language_variants",
+          "type": "text"
+        },
+        {
+          "name": "notes",
+          "type": "text"
+        },
+        {
+          "name": "text_policy",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "textless",
+            "numeric-only",
+            "fixed-product-markings",
+            "localized-full-page"
+          ]
+        },
+        {
+          "name": "build_eligible",
+          "type": "checkbox"
+        },
+        {
+          "name": "region_scope",
+          "type": "text"
+        },
+        {
+          "name": "textless_pending",
+          "type": "checkbox"
+        },
+        {
+          "name": "source_key",
+          "type": "text"
+        },
+        {
+          "name": "source_crop",
+          "type": "text"
+        },
+        {
+          "name": "visual_review_required",
+          "type": "checkbox"
+        },
+        {
+          "name": "generator_allowed",
+          "type": "checkbox"
+        },
+        {
+          "name": "source_page",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "04_资产导出物",
+      "fields": [
+        {
+          "name": "size_bytes",
+          "type": "number"
+        },
+        {
+          "name": "zip_member_path",
+          "type": "text"
+        },
+        {
+          "name": "artifact_kind",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "archive-page",
+            "preview",
+            "semantic-export"
+          ]
+        },
+        {
+          "name": "updated_at",
+          "type": "updated_at"
+        },
+        {
+          "name": "format",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "pdf",
+            "png",
+            "jpg",
+            "jpeg",
+            "svg"
+          ]
+        },
+        {
+          "name": "artifact_path",
+          "type": "text"
+        },
+        {
+          "name": "source_record",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tblsXlZx61Ff5pQC"
+          }
+        },
+        {
+          "name": "text_policy",
+          "type": "text"
+        },
+        {
+          "name": "notes",
+          "type": "text"
+        },
+        {
+          "name": "package_sha256",
+          "type": "text"
+        },
+        {
+          "name": "created_at",
+          "type": "created_at"
+        },
+        {
+          "name": "gate_status",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "approved",
+            "archive",
+            "quarantine"
+          ]
+        },
+        {
+          "name": "repo_path",
+          "type": "text"
+        },
+        {
+          "name": "locale",
+          "type": "text"
+        },
+        {
+          "name": "asset_record",
+          "type": "link",
+          "detail": {
+            "bidirectional": false,
+            "link_table": "tblWilXeN5FXPraC"
+          }
+        },
+        {
+          "name": "asset_key",
+          "type": "text"
+        },
+        {
+          "name": "visual_review_required",
+          "type": "checkbox"
+        },
+        {
+          "name": "intake_run_id",
+          "type": "text"
+        },
+        {
+          "name": "content_sha256",
+          "type": "text"
+        },
+        {
+          "name": "export_key",
+          "type": "text"
+        },
+        {
+          "name": "source_page",
+          "type": "number"
+        },
+        {
+          "name": "expected_sha256",
+          "type": "text"
+        },
+        {
+          "name": "export_file",
+          "type": "attachment"
+        },
+        {
+          "name": "source_key",
+          "type": "text"
+        },
+        {
+          "name": "build_eligible",
+          "type": "checkbox"
+        }
+      ]
+    },
+    {
+      "name": "05_内容源_插图资产表",
+      "fields": [
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "语言变体",
+          "type": "text"
+        },
+        {
+          "name": "适用机型",
+          "type": "text"
+        },
+        {
+          "name": "状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "✅成品",
+            "🔧临时替代",
+            "❌缺失"
+          ]
+        },
+        {
+          "name": "待无字化",
+          "type": "checkbox"
+        },
+        {
+          "name": ".ai源",
+          "type": "attachment"
+        },
+        {
+          "name": "内容哈希",
+          "type": "text"
+        },
+        {
+          "name": "类别",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "插图",
+            "图标",
+            "整页PDF",
+            "标记",
+            "照片"
+          ]
+        },
+        {
+          "name": "asset_key",
+          "type": "text"
+        },
+        {
+          "name": "语言维度",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "中立",
+            "按语言"
+          ]
+        },
+        {
+          "name": "导出物路径",
           "type": "text"
         }
       ]
