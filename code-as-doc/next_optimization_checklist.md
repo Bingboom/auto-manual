@@ -993,6 +993,19 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     `演练-K4内容恢复-20260717` was moved to the Feishu recycle bin on
     2026-07-20 after its exact token and owner were rechecked; an exact-name
     search then returned no result.
+    **Exit-propagation fix landed 2026-07-20:** both export steps now declare
+    `shell: bash` explicitly (GitHub's DEFAULT run shell is `bash -e {0}`
+    without pipefail; the explicit form is `bash --noprofile --norc -eo
+    pipefail {0}`) — verified by local simulation of both shells (0 vs 1).
+    Review of the false-green run also found it had executed the
+    "Close tracking issue on recovery" step, so a false green would silence
+    an already-open sentinel too. Remaining to close K4: operator checks the
+    CI secrets/base binding + bot permissions (the local 07-17 drill read all
+    tables as `user`; CI's `bot` could not see 3 business tables and the TM
+    base at all — the exporter's step-summary output names the exact missing
+    tables on each run, which is the diagnostic), then one complete 21 + 2
+    artifact. Until then nightly runs are EXPECTED to fail red and open the
+    sentinel — that is correct behavior, not noise.
   - Original note: the I5 drill proved schema restore works (86s from repo
     artifacts) but covers structure only — table CONTENT had no point-in-time
     backup; a destructive Bitable edit was unrecoverable. Read-only export, no
