@@ -22,6 +22,7 @@ from tools.asset_usage import (
 )
 from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
 from tools.gen_index_bundle_paths import read_included_page_paths
+from tools.idml.asset_contracts import requirements_for_page
 
 _INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$", re.MULTILINE)
 _LATEX_LANGUAGE_RE = re.compile(r"\\HBApplyLang\{([^{}]+)\}")
@@ -340,6 +341,42 @@ def finalize_materialized_bundle(
         )
         if rewritten != text:
             rst_path.write_text(rewritten, encoding="utf-8")
+
+    for rst_path, rst_language in rst_entries:
+        for requirement in requirements_for_page(
+            rst_path,
+            model=bundle.model,
+            region=bundle.region,
+            language=rst_language,
+        ):
+            frozen = usage.resolve_reference(
+                requirement.asset_uri,
+                model=bundle.model,
+                region=bundle.region,
+                language=rst_language,
+                format_name=requirement.format_name,
+            )
+            if frozen is None:  # pragma: no cover - contract values are semantic URIs
+                raise AssetRegistryError(
+                    f"IDML asset contract is not semantic: {requirement.asset_uri!r}"
+                )
+            staged = usage.stage(
+                frozen,
+                bundle_dir=bundle_dir,
+                docs_dir=docs_dir,
+            )
+            usage.record(
+                frozen,
+                staged_path=staged,
+                reference_path=rst_path,
+                bundle_dir=bundle_dir,
+                model=bundle.model,
+                region=bundle.region,
+                original_value=requirement.asset_uri,
+                consumer=requirement.consumer,
+                reference_kind=requirement.reference_kind,
+                emit_rewrite=False,
+            )
 
     page_paths = tuple(
         _within(path, bundle_dir, label="bundle page")

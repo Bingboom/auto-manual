@@ -11,7 +11,12 @@ golden byte-comparison test at every phase).
 tools/export_idml.py          façade + CLI: main()'s page-composition state machine,
                               IdmlWriter (state: params/geometry + stories/spreads sinks;
                               every method is a thin delegate), full re-export surface
+tools/bundle_asset_manifest.py
+                              fail-closed renderer boundary for semantic bundle assets:
+                              schema/target/consumer/format/path/hash validation
 tools/idml/
+  asset_contracts.py          target/page-scoped native-IDML asset requirements shared
+                              by bundle finalization and component promotion
   design_handoff.py          Phase 5 package writer: production copy, source
                               trace, missing-assets report, checklist, feedback
   export_paths.py             shared production / flow output path helpers
@@ -40,14 +45,17 @@ tools/idml/
   package.py                  zip contract (mimetype first + STORED), designmap wiring,
                               linked spread chain, height estimation
   components/                 the component registry — REGISTRY: kind -> renderer
-    base.py                   RenderContext (geometry/params/asset roots; the seam for a
-                              future Design_Asset_Registry) + shared figure paragraph
+    base.py                   RenderContext (geometry/params/target/asset roots; resolves
+                              semantic assets only through the finalized usage manifest)
+                              + shared figure paragraph
     callout.py                safetywarning / warninglead / tailwarnbox / warnbox / notice
     inbox.py fcc.py lcdmode.py
     oppanel.py                editable operation artwork overlays and special Energy
                               Saving / LED panels with top-layer text frames
     key_combinations.py       native four-row Key Combination grid, linked icons, and
                               independently movable copy frames
+    reference_figure.py       approved Charging/App linked-art composites with generated
+                              crops and unlocked top-layer caption/control stories
     prose_table.py            the extractor's ("table", json) block
     prose_image.py            the extractor's ("image", ref) block
   primitives.py               XML building blocks: psr/<Br/> semantics, bold runs, glyph

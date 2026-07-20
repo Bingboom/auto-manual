@@ -90,6 +90,9 @@ def write_flow_outputs(*, root: Path, model: str, region: str, lang: str,
         root=root,
         bundle_root=bundle_root,
         data_root=data_root,
+        model=model,
+        region=region,
+        language=lang,
     )
     writer.add_markdown_story(artifacts.markdown.read_text(encoding="utf-8"))
     writer.write(idml_path)
@@ -119,12 +122,17 @@ def load_style_map(root: Path) -> dict[str, str]:
 
 class _FlowIdmlWriter:
     def __init__(self, *, params: dict[str, tuple[str, str]], style_map: dict[str, str],
-                 root: Path, bundle_root: Path, data_root: Path) -> None:
+                 root: Path, bundle_root: Path, data_root: Path,
+                 model: str | None = None, region: str | None = None,
+                 language: str | None = None) -> None:
         self.params = params
         self.style_map = style_map
         self.root = root
         self.bundle_root = bundle_root
         self.data_root = data_root
+        self.model = model
+        self.region = region
+        self.language = language
         self.page_w = _params.param_pt(params, "page_paperwidth", 368.79)
         self.page_h = _params.param_pt(params, "page_paperheight", 524.69)
         self.m_l = _params.param_pt(params, "page_margin_left", 28.35)
@@ -230,6 +238,9 @@ class _FlowIdmlWriter:
             root=self.root,
             bundle_root=self.bundle_root,
             data_root=self.data_root,
+            model=self.model,
+            region=self.region,
+            language=self.language,
             add_story=self._add_story_parts,
         )
 

@@ -2,10 +2,16 @@
 from __future__ import annotations
 
 import json
+import re
 from collections.abc import Collection
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
+
+from .asset_contracts import (
+    APP_PAIRING_PANEL_ASSET_URI,
+    is_je1000f_us_en_app_reference_plan_page,
+)
 
 Block = tuple[str, str]
 EmitProse = Callable[[str, str, list[Block], int], None]
@@ -96,6 +102,14 @@ class ProseFlowBuffer:
             (
                 stem,
                 align_app_second_page(blocks, page_plan, stem),
+                columns,
+            )
+            for stem, blocks, columns in items
+        ]
+        items = [
+            (
+                stem,
+                promote_reference_figures(blocks, page_plan, stem),
                 columns,
             )
             for stem, blocks, columns in items
@@ -264,30 +278,30 @@ def align_charging_car_page(blocks: list[Block], page_plan: dict | None,
     image_indices = [index for index, block in enumerate(aligned) if block[0] == "image"]
     if len(image_indices) >= 2:
         split_at = image_indices[1]
-        if split_at == 0 or aligned[split_at - 1] != ("layout", "page_break"):
-            aligned.insert(split_at, ("layout", "page_break"))
+        marker = ("layout", "page_break:14.4")
+        if split_at == 0 or aligned[split_at - 1] != marker:
+            aligned.insert(split_at, marker)
     return aligned
 
 
 def align_app_second_page(blocks: list[Block], page_plan: dict | None,
                           stem: str) -> list[Block]:
-    """Start approved two-page App compositions at the post-pairing note.
+    """Start the approved English App composition at the post-pairing note.
 
-    The carrier is structural and language-independent: the first notice
-    after the governed ``add_device`` illustration begins page two.  Existing
-    source markers (currently present in ES) remain authoritative.
+    The measured 15.1 pt continuation offset belongs to the English source
+    page only.  FR and ES have different copy shapes and retain their existing
+    ordinary page-break behavior.
     """
     from .latex_page_plan import planned_span
     if (
-        "12_app" not in stem
-        or (page_plan or {}).get("plan_source") != "approved-reference"
+        not is_je1000f_us_en_app_reference_plan_page(page_plan, stem)
         or planned_span(page_plan, [stem], 1) < 2
-        or ("layout", "page_break") in blocks
     ):
         return blocks
     device_image = next((
         index for index, (kind, payload) in enumerate(blocks)
-        if kind == "image" and Path(payload).name == "add_device.png"
+        if kind == "image"
+        and Path(payload).stem.casefold().startswith("add_device")
     ), None)
     if device_image is None:
         return blocks
@@ -299,7 +313,16 @@ def align_app_second_page(blocks: list[Block], page_plan: dict | None,
     if notice_index is None:
         return blocks
     aligned = list(blocks)
-    aligned.insert(notice_index, ("layout", "page_break"))
+    marker = ("layout", "page_break:15.1")
+    existing_break = next((
+        index for index in range(device_image + 1, notice_index)
+        if aligned[index][0] == "layout"
+        and aligned[index][1].startswith("page_break")
+    ), None)
+    if existing_break is None:
+        aligned.insert(notice_index, marker)
+    else:
+        aligned[existing_break] = marker
     return aligned
 
 
@@ -309,6 +332,216 @@ def _component_kind(payload: str) -> str:
     except (TypeError, json.JSONDecodeError):
         return ""
     return str(spec.get("kind") or "") if isinstance(spec, dict) else ""
+
+
+def _referencefigure_block(layout: str, image: str, **values: object) -> Block:
+    spec = {
+        "kind": "referencefigure",
+        "layout": layout,
+        "image": image,
+        **values,
+    }
+    return "component", json.dumps(spec, ensure_ascii=False)
+
+
+def _step_number(text: str) -> str:
+    import re
+
+    match = re.match(r"\s*(\d+(?:\.\d+)*)\b", text)
+    return match.group(1) if match else ""
+
+
+def promote_reference_figures(
+    blocks: list[Block],
+    page_plan: dict | None,
+    stem: str,
+) -> list[Block]:
+    """Promote governed art plus adjacent copy into editable composites.
+
+    Routing uses the approved plan, source-page role, asset basename, and
+    neighbouring block shape.  It never matches translated headings or copy.
+    """
+    if (page_plan or {}).get("plan_source") != "approved-reference":
+        return blocks
+    is_charging = re.fullmatch(
+        r"(?:p\d+_)?08_charging_methods",
+        stem.casefold(),
+    ) is not None
+    is_app = is_je1000f_us_en_app_reference_plan_page(page_plan, stem)
+    if not is_charging and not is_app:
+        return blocks
+
+    aligned = list(blocks)
+    if is_app:
+        # Physical page 21 uses three differently sized callout panels, all
+        # inset 10.943 pt from the ordinary story frame.  Apply them by
+        # structural notice order so localization never affects routing.
+        notice_layouts = (
+            {
+                "panel_height": 44.737,
+                "body_size": 5.8,
+                "body_leading": 5.997,
+                "pad_tb": 3.1,
+                "label_size": 10.0,
+                "label_leading": 10.8,
+                "body_inset": 3.917,
+                "paragraph_space_after": 2.0,
+                "unbulleted_first": True,
+            },
+            {
+                "panel_height": 16.221,
+                "body_size": 6.0,
+                "body_leading": 6.0,
+                "pad_tb": 1.5,
+                "label_size": 10.0,
+                "label_leading": 10.8,
+                "body_inset": 5.683,
+                "unbulleted_first": True,
+            },
+            {
+                "panel_height": 24.869,
+                "body_size": 5.8,
+                "body_leading": 5.997,
+                "pad_tb": 2.2,
+                "label_size": 9.0,
+                "label_leading": 9.8,
+                "body_inset": 5.42,
+            },
+        )
+        notice_ordinal = 0
+        for block_index, (block_kind, block_payload) in enumerate(aligned):
+            if block_kind != "component" or _component_kind(block_payload) != "notice":
+                continue
+            try:
+                notice_spec = json.loads(block_payload)
+            except (TypeError, json.JSONDecodeError):
+                continue
+            if notice_ordinal >= len(notice_layouts):
+                break
+            notice_spec.update({
+                "body_width": 300.516,
+                "inline_x_offset": 10.943,
+                "plate_left": 1.418,
+                "label_width": 48.939,
+                **notice_layouts[notice_ordinal],
+            })
+            aligned[block_index] = (
+                "component", json.dumps(notice_spec, ensure_ascii=False),
+            )
+            notice_ordinal += 1
+    index = 0
+    while index < len(aligned):
+        kind, payload = aligned[index]
+        if kind != "image":
+            index += 1
+            continue
+        asset_stem = Path(payload).stem.casefold()
+
+        if (
+            is_charging
+            and asset_stem == "ac_wall"
+            and index > 0
+            and aligned[index - 1][0] == "body"
+        ):
+            caption = aligned[index - 1][1]
+            aligned[index - 1:index + 1] = [
+                _referencefigure_block(
+                    "charging_ac", payload, caption=caption,
+                )
+            ]
+            continue
+
+        if (
+            is_charging
+            and asset_stem == "car_charge"
+            and index + 1 < len(aligned)
+            and aligned[index + 1][0] == "body"
+        ):
+            labels = [
+                line.strip()
+                for line in aligned[index + 1][1].splitlines()
+                if line.strip()
+            ]
+            aligned[index:index + 2] = [
+                _referencefigure_block(
+                    "charging_car",
+                    payload,
+                    vehicle=labels[0] if labels else "",
+                    note=" ".join(labels[1:]),
+                )
+            ]
+            index += 1
+            continue
+
+        if (
+            is_app
+            and asset_stem == "download"
+            and index + 1 < len(aligned)
+            and aligned[index + 1][0] == "body"
+        ):
+            aligned[index:index + 2] = [
+                _referencefigure_block(
+                    "app_download", payload, copy=aligned[index + 1][1],
+                )
+            ]
+            index += 1
+            continue
+
+        if (
+            is_app
+            and asset_stem.startswith("add_device")
+            and index + 1 < len(aligned)
+            and aligned[index + 1][0] == "body"
+        ):
+            prior_steps = [
+                _step_number(text)
+                for prior_kind, text in aligned[:index]
+                if prior_kind == "body" and _step_number(text)
+            ][-2:]
+            labels = [
+                line.strip()
+                for line in aligned[index + 1][1].splitlines()
+                if line.strip()
+            ]
+            if stem == "12_app_setup_placeholder" and labels:
+                labels[0] = "Main Power Button"
+                if len(labels) >= 3:
+                    labels[2] = labels[2].replace("DC / USB", "DC/USB")
+            aligned[index:index + 2] = [
+                _referencefigure_block(
+                    "app_add_device",
+                    payload,
+                    labels=labels,
+                    step_labels=prior_steps,
+                    control_image=APP_PAIRING_PANEL_ASSET_URI,
+                )
+            ]
+            index += 1
+            continue
+
+        if (
+            is_app
+            and asset_stem.startswith("connect_result")
+            and index + 1 < len(aligned)
+            and aligned[index + 1][0] == "body"
+        ):
+            prior_steps = [
+                _step_number(text)
+                for prior_kind, text in aligned[:index]
+                if prior_kind == "body" and _step_number(text)
+            ][-3:]
+            aligned[index:index + 2] = [
+                _referencefigure_block(
+                    "app_connect_result",
+                    payload,
+                    step_labels=prior_steps,
+                    reference_note=aligned[index + 1][1],
+                )
+            ]
+            index += 1
+            continue
+        index += 1
+    return aligned
 
 
 def _apply_single_page_fr_ups_callout_widths(

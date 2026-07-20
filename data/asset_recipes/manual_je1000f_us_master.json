@@ -247,6 +247,24 @@
       "risk_tags": []
     },
     {
+      "asset_key": "controls/je1000f_us/network_pairing_panel",
+      "page": 39,
+      "build_eligible": true,
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [39.6334, 393.0494, 340.0014, 459.0664]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/app_control_panel.pdf", "expected_sha256": "fec08a271db60cec03babd848273dd7775b8d70934f54a39395293e99f54e66a"},
+        {"format": "png", "path": "docs/renderers/latex/assets/app_control_panel.png", "scale": 4, "expected_sha256": "2b9bc2598d7a272629311ecc2f494091c31f15ee2ebb4d59bda5f6e8ee5c9f49"}
+      ],
+      "gate": {"status": "approved", "reasons": ["localized labels are removed while the model-specific device panel and leader geometry remain editable-overlay-ready"]},
+      "risk_tags": ["model-specific"]
+    },
+    {
       "asset_key": "app/je1000f_us/english_ui/add_device_home",
       "page": 39,
       "build_eligible": false,
@@ -380,14 +398,14 @@
       "risk_tags": []
     },
     {
-      "asset_key": "overview/front_controls",
+      "asset_key": "overview/je1000f_us/front_controls",
       "page": 8,
       "build_eligible": true,
-      "scope": {"models": ["ALL"], "regions": ["ALL"], "locales": ["und"]},
+      "scope": {"models": ["JE-1000F"], "regions": ["US"], "locales": ["und"]},
       "text_policy": "fixed-product-markings",
       "visual_review_required": false,
       "transforms": [
-        {"op": "crop", "bbox_pt": [28, 98, 345, 254]},
+        {"op": "crop", "bbox_pt": [28, 98, 345, 283]},
         {"op": "redact_text", "images": "preserve", "graphics": "remove_if_touched", "fill": null},
         {"op": "whiteout", "bbox_pt": [267.5, 158, 344.5, 198]},
         {"op": "whiteout", "bbox_pt": [245.5, 163.5, 248.8, 172.5]},
@@ -395,15 +413,15 @@
         {"op": "whiteout", "bbox_pt": [176, 187, 181, 196.2]},
         {"op": "whiteout", "bbox_pt": [211.5, 215, 217.5, 223]},
         {"op": "whiteout", "bbox_pt": [211.5, 226, 217.5, 249]},
-        {"op": "whiteout", "bbox_pt": [211.5, 251.8, 217.5, 253.9]}
+        {"op": "whiteout", "bbox_pt": [211.5, 251.8, 217.5, 253.9]},
+        {"op": "whiteout", "bbox_pt": [245.5, 255, 345, 283]}
       ],
       "outputs": [
-        {"format": "pdf", "path": "docs/renderers/latex/assets/front_controls.pdf", "expected_sha256": "5f1c26c9ad0a8e44fcc16216811b713794a28cdb0df01fdb1d6f92d6dbc58643"},
-        {"format": "png", "path": "docs/renderers/latex/assets/front_controls.png", "scale": 4, "expected_sha256": "aee24aca0d86464f590be397c08cb5b621b96b99cfddafeac6d86cf1c8700f56"},
-        {"format": "png", "path": "docs/templates/word_template/common_assets/overview/front_controls.png", "scale": 4, "expected_sha256": "aee24aca0d86464f590be397c08cb5b621b96b99cfddafeac6d86cf1c8700f56"}
+        {"format": "pdf", "path": "docs/renderers/latex/assets/front_controls.pdf", "expected_sha256": "1bf4293ff4f73239eb7193636f14bf1b2c4bc013c6ee90a9baa21bdf9b69a148"},
+        {"format": "png", "path": "docs/renderers/latex/assets/front_controls.png", "scale": 4, "expected_sha256": "513b2cd6bc8ccfc614d68269247f858305a556fd2b6b4ba7e602e1f70be150d3"}
       ],
       "gate": {"status": "approved", "reasons": ["localized callout copy and leader lines are removed; immutable product markings preserved; reviewed against source page render"]},
-      "risk_tags": []
+      "risk_tags": ["model-specific", "region-specific"]
     },
     {
       "asset_key": "operation/led_light",

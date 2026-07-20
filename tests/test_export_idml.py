@@ -1087,10 +1087,10 @@ class ExportIdmlTests(unittest.TestCase):
 
         aligned = align_charging_car_page(blocks, plan, "08_charging_methods")
 
-        self.assertEqual(("layout", "page_break"), aligned[3])
+        self.assertEqual(("layout", "page_break:14.4"), aligned[3])
         self.assertEqual(("image", "solar-adapter.png"), aligned[4])
         car_index = aligned.index(("h2", "Car"))
-        self.assertNotEqual(("layout", "page_break"), aligned[car_index - 1])
+        self.assertNotEqual(("layout", "page_break:14.4"), aligned[car_index - 1])
 
     def test_approved_charging_tail_moves_car_notice_to_storage_composition(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer
@@ -1172,10 +1172,12 @@ class ExportIdmlTests(unittest.TestCase):
             "component",
             json.dumps({"kind": "notice", "label": "Localized note"}),
         )
-        for stem, image_ref, existing_break in (
-            ("12_app_setup_placeholder", "_assets/app/add_device.png", False),
-            ("p34_12_app_setup_placeholder", "_assets/app/add_device.png", False),
-            ("p50_12_app_setup_placeholder", "add_device.png", True),
+        for stem, image_ref in (
+            ("12_app_setup_placeholder", "_assets/app/add_device.png"),
+            (
+                "12_app_setup_placeholder",
+                "_assets/app/je1000f_us/add_device_je1000f_us.png",
+            ),
         ):
             with self.subTest(stem=stem):
                 blocks = [
@@ -1186,16 +1188,22 @@ class ExportIdmlTests(unittest.TestCase):
                     ("image", image_ref),
                     ("body", "Localized 2.3 Bluetooth copy"),
                 ]
-                if existing_break:
-                    blocks.append(("layout", "page_break"))
                 blocks.extend([notice, ("body", "Localized 2.4 copy")])
                 flow = ProseFlowBuffer()
                 flow.add(stem, blocks)
                 emitted = []
                 plan = {
                     "plan_source": "approved-reference",
+                    "approved_contract": {
+                        "target": {
+                            "model": "JE-1000F",
+                            "region": "US",
+                            "languages": ["en", "fr", "es"],
+                        },
+                    },
                     "pages": [{
                         "source_path": f"page/{stem}.rst",
+                        "language": "en",
                         "composition_id": f"{stem}-composition",
                         "planned_page_count": 2,
                     }],
@@ -1207,9 +1215,229 @@ class ExportIdmlTests(unittest.TestCase):
                     plan,
                 )
 
-                self.assertEqual(1, emitted.count(("layout", "page_break")))
-                notice_index = emitted.index(notice)
-                self.assertEqual(("layout", "page_break"), emitted[notice_index - 1])
+                breaks = [
+                    block for block in emitted
+                    if block[0] == "layout" and block[1].startswith("page_break")
+                ]
+                self.assertEqual([("layout", "page_break:15.1")], breaks)
+                notice_index = next(
+                    index for index, (kind, payload) in enumerate(emitted)
+                    if kind == "component"
+                    and json.loads(payload).get("kind") == "notice"
+                )
+                self.assertEqual(
+                    ("layout", "page_break:15.1"), emitted[notice_index - 1],
+                )
+                notice_spec = json.loads(emitted[notice_index][1])
+                self.assertEqual(300.516, notice_spec["body_width"])
+                self.assertEqual(10.943, notice_spec["inline_x_offset"])
+                self.assertEqual(44.737, notice_spec["panel_height"])
+
+    def test_localized_app_flows_keep_their_existing_breaks_and_blocks(self) -> None:
+        from tools.idml.prose_flow import (
+            align_app_second_page,
+            promote_reference_figures,
+        )
+
+        notice = (
+            "component",
+            json.dumps({"kind": "notice", "label": "Localized note"}),
+        )
+        for stem, language, existing_break in (
+            ("p34_12_app_setup_placeholder", "fr", False),
+            ("p50_12_app_setup_placeholder", "es", True),
+            ("12_app_setup_placeholder", "fr", False),
+            ("12_app_setup_placeholder", "es", True),
+        ):
+            with self.subTest(stem=stem, language=language):
+                blocks = [
+                    ("h1", "Localized app title"),
+                    ("h2", "Localized download heading"),
+                    ("image", "download.png"),
+                    ("body", "Localized download copy part one."),
+                    ("body", "Localized download copy part two."),
+                    ("h2", "Localized add-device heading"),
+                    ("image", "add_device.png"),
+                    ("body", "Localized 2.3 Bluetooth copy"),
+                ]
+                if existing_break:
+                    blocks.append(("layout", "page_break"))
+                blocks.extend([notice, ("body", "Localized 2.4 copy")])
+                plan = {
+                    "plan_source": "approved-reference",
+                    "approved_contract": {
+                        "target": {
+                            "model": "JE-1000F",
+                            "region": "US",
+                            "languages": ["en", "fr", "es"],
+                        },
+                    },
+                    "pages": [{
+                        "source_path": f"page/{stem}.rst",
+                        "language": language,
+                        "composition_id": f"{stem}-composition",
+                        "planned_page_count": 2,
+                    }],
+                }
+
+                self.assertEqual(
+                    blocks,
+                    align_app_second_page(blocks, plan, stem),
+                )
+                self.assertEqual(
+                    blocks,
+                    promote_reference_figures(blocks, plan, stem),
+                )
+
+    def test_approved_reference_figures_absorb_only_adjacent_figure_copy(self) -> None:
+        from tools.idml.prose_flow import promote_reference_figures
+
+        plan = {"plan_source": "approved-reference", "pages": []}
+        charging = [
+            ("h2", "Localized AC heading"),
+            ("body", "Localized AC caption"),
+            ("image", "_assets/charging/ac_wall.png"),
+            ("h2", "Localized car heading"),
+            ("image", "renderers/latex/assets/car_charge.png"),
+            ("body", "Localized vehicle\nLocalized cable note"),
+        ]
+
+        promoted = promote_reference_figures(
+            charging, plan, "08_charging_methods",
+        )
+
+        specs = [
+            json.loads(payload)
+            for kind, payload in promoted
+            if kind == "component"
+        ]
+        self.assertEqual(["charging_ac", "charging_car"], [
+            spec["layout"] for spec in specs
+        ])
+        self.assertEqual("Localized AC caption", specs[0]["caption"])
+        self.assertEqual("Localized vehicle", specs[1]["vehicle"])
+        self.assertEqual("Localized cable note", specs[1]["note"])
+        self.assertNotIn(("body", "Localized AC caption"), promoted)
+        self.assertNotIn(
+            ("body", "Localized vehicle\nLocalized cable note"), promoted,
+        )
+
+        self.assertEqual(
+            charging,
+            promote_reference_figures(
+                charging,
+                {"plan_source": "measured-latex", "pages": []},
+                "08_charging_methods",
+            ),
+        )
+
+    def test_charging_reference_promotion_requires_canonical_page_stem(self) -> None:
+        from tools.idml.prose_flow import promote_reference_figures
+
+        blocks = [
+            ("body", "AC caption"),
+            ("image", "_assets/charging/ac_wall.png"),
+        ]
+        plan = {"plan_source": "approved-reference", "pages": []}
+
+        for stem in ("08_charging_methods", "p29_08_charging_methods", "p45_08_charging_methods"):
+            with self.subTest(stem=stem):
+                promoted = promote_reference_figures(blocks, plan, stem)
+                self.assertEqual("component", promoted[0][0])
+                self.assertEqual("charging_ac", json.loads(promoted[0][1])["layout"])
+
+        for stem in ("charging", "battery_charging", "08_charging_methods_notes"):
+            with self.subTest(stem=stem):
+                self.assertEqual(blocks, promote_reference_figures(blocks, plan, stem))
+
+    def test_approved_app_figures_keep_step_numbers_and_movable_labels(self) -> None:
+        from tools.idml.prose_flow import promote_reference_figures
+
+        blocks = [
+            ("h2", "Localized download"),
+            ("image", "_assets/app/download.png"),
+            ("body", "First sentence. Second sentence. Final sentence."),
+            ("h2", "Localized add device"),
+            ("body", "2.1 Localized first step"),
+            ("body", "2.2 Localized second step"),
+            ("image", "_assets/app/add_device_je1000f_us.png"),
+            ("body", "Power\nAC\nDC / USB"),
+            ("body", "2.3 Localized third step"),
+            (
+                "component",
+                json.dumps({"kind": "notice", "label": "NOTE", "texts": ["One"]}),
+            ),
+            ("body", "2.4 Localized fourth step"),
+            (
+                "component",
+                json.dumps({"kind": "notice", "label": "NOTE", "texts": ["Two"]}),
+            ),
+            ("body", "2.5 Localized fifth step"),
+            ("image", "_assets/app/connect_result_je1000f_us.png"),
+            ("body", "Localized reference-only note."),
+            (
+                "component",
+                json.dumps({"kind": "notice", "label": "CAUTION", "texts": ["Three"]}),
+            ),
+        ]
+
+        promoted = promote_reference_figures(
+            blocks,
+            {
+                "plan_source": "approved-reference",
+                "approved_contract": {
+                    "target": {
+                        "model": "JE-1000F",
+                        "region": "US",
+                        "languages": ["en", "fr", "es"],
+                    },
+                },
+                "pages": [{
+                    "source_path": "page/12_app_setup_placeholder.rst",
+                    "language": "en",
+                }],
+            },
+            "12_app_setup_placeholder",
+        )
+
+        specs = [
+            json.loads(payload)
+            for kind, payload in promoted
+            if kind == "component"
+            and json.loads(payload).get("kind") == "referencefigure"
+        ]
+        self.assertEqual(
+            ["app_download", "app_add_device", "app_connect_result"], [
+            spec["layout"] for spec in specs
+            ],
+        )
+        self.assertEqual(["2.1", "2.2"], specs[1]["step_labels"])
+        self.assertEqual(
+            ["Main Power Button", "AC", "DC/USB"], specs[1]["labels"],
+        )
+        self.assertEqual(
+            "asset:controls/je1000f_us/network_pairing_panel",
+            specs[1]["control_image"],
+        )
+        self.assertEqual(["2.3", "2.4", "2.5"], specs[2]["step_labels"])
+        self.assertEqual(
+            "Localized reference-only note.", specs[2]["reference_note"],
+        )
+        notice_specs = [
+            json.loads(payload)
+            for kind, payload in promoted
+            if kind == "component"
+            and json.loads(payload).get("kind") == "notice"
+        ]
+        self.assertEqual([44.737, 16.221, 24.869], [
+            spec["panel_height"] for spec in notice_specs
+        ])
+        self.assertEqual([5.8, 6.0, 5.8], [
+            spec["body_size"] for spec in notice_specs
+        ])
+        self.assertEqual(2.0, notice_specs[0]["paragraph_space_after"])
+        self.assertTrue(notice_specs[0]["unbulleted_first"])
+        self.assertTrue(notice_specs[1]["unbulleted_first"])
 
     def test_page_break_layout_does_not_enable_two_columns(self) -> None:
         from tools.idml.ir_projection import project_pages

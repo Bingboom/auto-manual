@@ -10,6 +10,7 @@ through the registry (no forked logic).
 from __future__ import annotations
 
 import unittest
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +35,12 @@ MINIMAL_SPECS: dict[str, dict] = {
     "warrantysection": {"kind": "warrantysection", "title": "Limited Warranty",
                         "index": 1, "blocks": [{"kind": "body", "text": "Copy."}]},
     "emphasispill": {"kind": "emphasispill", "texts": ["Charge before first use."]},
+    "referencefigure": {
+        "kind": "referencefigure",
+        "layout": "charging_ac",
+        "image": "",
+        "caption": "Editable caption.",
+    },
 }
 
 
@@ -294,7 +301,7 @@ class ComponentRegistryTests(unittest.TestCase):
         body_story = story_map["st_anchor_notice_body_notice_wrap"]
         self.assertIn('FontStyle="Bold"', label_story)
         self.assertIn('BaselineShift="2.63"', label_story)
-        self.assertIn('Leading="7.83"', body_story)
+        self.assertIn('<Leading type="unit">7.83</Leading>', body_story)
         self.assertIn('BaselineShift="0.9"', body_story)
         self.assertIn('PointSize="4.8"', body_story)
         self.assertIn('LeftIndent="3.4" FirstLineIndent="-3.4"', body_story)
@@ -325,9 +332,89 @@ class ComponentRegistryTests(unittest.TestCase):
 
         xml, _height = render(spec, ctx, tid="notice_natural_width", terminal=True)
 
-        self.assertIn('PointSize="6.5" Leading="7.83"', xml)
+        self.assertIn('PointSize="6.5"', xml)
+        self.assertIn('<Leading type="unit">7.83</Leading>', xml)
         self.assertIn('HorizontalScale="100"', xml)
         self.assertNotIn('HorizontalScale="106.9"', xml)
+
+    def test_notice_symbol_fallback_keeps_valid_character_attributes(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        stories: list[tuple[str, str, list[str]]] = []
+
+        def add_story(story_id: str, title: str, parts: list[str]) -> str:
+            stories.append((story_id, title, parts))
+            return story_id
+
+        base = _ctx()
+        ctx = RenderContext(
+            params=base.params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            add_story=add_story,
+        )
+
+        render(
+            {
+                "kind": "notice",
+                "label": "DANGER",
+                "texts": ["Indoor only.\n※ Keep away from rain."],
+            },
+            ctx,
+            tid="notice_symbol",
+            terminal=True,
+        )
+
+        body = next(
+            "".join(parts)
+            for story_id, _title, parts in stories
+            if story_id == "st_anchor_notice_body_notice_symbol"
+        )
+        ET.fromstring(f"<root>{body}</root>")
+        self.assertIn("※", body)
+
+    def test_notice_reference_geometry_overrides_width_height_and_inline_offset(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        stories: list[tuple[str, str, list[str]]] = []
+
+        def add_story(story_id: str, title: str, parts: list[str]) -> str:
+            stories.append((story_id, title, parts))
+            return story_id
+
+        base = _ctx()
+        ctx = RenderContext(
+            params=base.params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            add_story=add_story,
+        )
+        spec = {
+            "kind": "notice",
+            "label": "NOTE",
+            "body_width": 300.516,
+            "panel_height": 24.869,
+            "inline_x_offset": 10.943,
+            "list": True,
+            "texts": ["One", "Two"],
+            "paragraph_space_after": 2.0,
+            "unbulleted_first": True,
+        }
+
+        xml, height = render(spec, ctx, tid="reference_notice", terminal=True)
+
+        self.assertIn('ItemTransform="1 0 0 1 10.943 0"', xml)
+        self.assertIn('Anchor="294.416 -24.869"', xml)
+        self.assertAlmostEqual(31.669, height, places=3)
+        self.assertEqual(2, len(stories))
+        self.assertIn('SpaceAfter="2"', "".join(stories[1][2]))
+        self.assertEqual(1, "".join(stories[1][2]).count("<Content>•</Content>"))
 
     def test_lcd_mode_states_are_true_vertical_rowspans(self) -> None:
         from tools.idml.components import render

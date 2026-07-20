@@ -15,6 +15,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
+try:
+    from tools.bundle_asset_manifest import is_asset_uri, resolve_manifest_asset
+except ModuleNotFoundError:  # direct tools/export_idml.py execution
+    from bundle_asset_manifest import is_asset_uri, resolve_manifest_asset  # type: ignore
+
 from ..primitives import art_frame_size, resolve_bundle_image
 from ..style_names import paragraph_style_ref
 
@@ -38,6 +43,8 @@ class RenderContext:
     root: Path
     bundle_root: Path
     data_root: Path | None = None
+    model: str | None = None
+    region: str | None = None
     language: str | None = None
     # Approved flowing pages may move their whole host frame to match the
     # reference trim geometry. Components subtract that origin shift from
@@ -56,11 +63,29 @@ class RenderContext:
     def art_frame_size(self, img: Path, max_w: float = 120.0) -> tuple[float, float]:
         return art_frame_size(img, max_w, page_w=self.page_w, m_l=self.m_l, m_r=self.m_r)
 
-    def resolve_bundle_image(self, ref: str) -> Path | None:
+    def resolve_bundle_image(
+        self,
+        ref: str,
+        *,
+        format_name: str | None = None,
+        consumer: str | None = None,
+        reference_kind: str | None = None,
+    ) -> Path | None:
         # Flow IDML can carry images emitted from the phase2 data snapshot as
         # well as images copied into the prepared RST bundle.  Keep the
         # lookup contract in the render context so individual components do
         # not need to know which source plane supplied an asset.
+        if is_asset_uri(ref):
+            return resolve_manifest_asset(
+                self.bundle_root,
+                ref,
+                format_name=format_name,
+                consumer=consumer,
+                reference_kind=reference_kind,
+                model=self.model,
+                region=self.region,
+                language=self.language,
+            )
         roots = [self.bundle_root]
         if self.data_root is not None:
             roots.append(self.data_root)

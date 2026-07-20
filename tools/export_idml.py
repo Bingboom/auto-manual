@@ -131,7 +131,12 @@ def main() -> int:
     sections: list[dict] = []
     lcd_rows: list[dict] = []
     trouble_rows: list[tuple[str, str]] = []
-    w = IdmlWriter(params)
+    w = IdmlWriter(
+        params,
+        model=args.model,
+        region=args.region,
+        language=args.lang,
+    )
     symbol_cache: dict[str, tuple[list[tuple[str, str]], list[dict]]] = {}
     def symbol_rows_for(lang: str) -> tuple[list[tuple[str, str]], list[dict]]:
         lang = normalize_lang(lang)

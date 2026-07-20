@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from . import ir_projection
+from .asset_contracts import is_je1000f_us_en_app_reference_plan_page
 from .params import param_pt
 from .prose_flow import operation_final_frame_x_offset, operation_language
 
@@ -32,6 +33,14 @@ class ReferenceStoryEmitter:
             (self.page_plan or {}).get("plan_source") == "approved-reference"
             and "operation_guide" in title
             and operation_lang is not None
+        )
+        is_charging_methods = (
+            (self.page_plan or {}).get("plan_source") == "approved-reference"
+            and "charging_methods" in title
+        )
+        is_app = is_je1000f_us_en_app_reference_plan_page(
+            self.page_plan,
+            title,
         )
         final_frame_x_offset = (
             operation_final_frame_x_offset(operation_lang)
@@ -97,7 +106,13 @@ class ReferenceStoryEmitter:
             bottom_extra=bottom_extra,
             last_frame_x_offset=final_frame_x_offset,
             first_top_offset=(
-                master_offsets.get(first_h1, 13.81)
-                if first_kind == "h1" else 0.0
+                23.8
+                if is_charging_methods
+                else 15.06
+                if is_app
+                else (
+                    master_offsets.get(first_h1, 13.81)
+                    if first_kind == "h1" else 0.0
+                )
             ))
         return page_cursor + pages

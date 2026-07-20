@@ -10,6 +10,29 @@ from tools.idml.reference_story_flow import ReferenceStoryEmitter
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def _approved_app_plan(
+    *,
+    model: str = "JE-1000F",
+    region: str = "US",
+    language: str = "en",
+    stem: str = "12_app_setup_placeholder",
+) -> dict:
+    return {
+        "plan_source": "approved-reference",
+        "approved_contract": {
+            "target": {
+                "model": model,
+                "region": region,
+                "languages": [language],
+            },
+        },
+        "pages": [{
+            "source_path": f"page/{stem}.rst",
+            "language": language,
+        }],
+    }
+
+
 class _RecordingWriter:
     def __init__(self) -> None:
         self.params: dict[str, tuple[str, str]] = {}
@@ -180,6 +203,120 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
         )
 
         self.assertEqual(0.0, writer.spread_chain_options[0]["bottom_extra"])
+
+    def test_approved_charging_methods_chain_uses_reference_top_offset(self) -> None:
+        writer = _RecordingWriter()
+        toc = _RecordingToc()
+        emitter = ReferenceStoryEmitter(
+            writer,
+            toc,
+            ROOT,
+            {"plan_source": "approved-reference"},
+        )
+
+        emitter.emit(
+            "st_08_charging_methods",
+            "08_charging_methods",
+            [("h2", "Localized charging heading")],
+            page_cursor=14,
+        )
+
+        self.assertEqual(23.8, writer.spread_chain_options[0]["first_top_offset"])
+
+    def test_app_chain_uses_reference_top_offset(self) -> None:
+        for language in ("en", "en-US", "en_US"):
+            with self.subTest(language=language):
+                writer = _RecordingWriter()
+                toc = _RecordingToc()
+                emitter = ReferenceStoryEmitter(
+                    writer,
+                    toc,
+                    ROOT,
+                    _approved_app_plan(language=language),
+                )
+
+                emitter.emit(
+                    "st_12_app_setup",
+                    "12_app_setup_placeholder",
+                    [("h1", "Localized app heading"), ("h2", "Download")],
+                    page_cursor=19,
+                )
+
+                self.assertEqual(
+                    15.06,
+                    writer.spread_chain_options[0]["first_top_offset"],
+                )
+
+    def test_app_chain_reference_offset_fails_closed_for_other_targets(self) -> None:
+        cases = (
+            ("wrong model", _approved_app_plan(model="OTHER")),
+            ("wrong region", _approved_app_plan(region="EU")),
+            ("French", _approved_app_plan(language="fr")),
+            ("Spanish", _approved_app_plan(language="es")),
+            ("missing metadata", {"plan_source": "approved-reference"}),
+            (
+                "missing language",
+                {
+                    **_approved_app_plan(),
+                    "pages": [{
+                        "source_path": "page/12_app_setup_placeholder.rst",
+                    }],
+                },
+            ),
+        )
+        for label, plan in cases:
+            with self.subTest(label=label):
+                writer = _RecordingWriter()
+                emitter = ReferenceStoryEmitter(
+                    writer,
+                    _RecordingToc(),
+                    ROOT,
+                    plan,
+                )
+
+                emitter.emit(
+                    "st_12_app_setup",
+                    "12_app_setup_placeholder",
+                    [("h1", "Localized app heading"), ("h2", "Download")],
+                    page_cursor=19,
+                )
+
+                self.assertEqual(
+                    13.81,
+                    writer.spread_chain_options[0]["first_top_offset"],
+                )
+
+    def test_noncanonical_app_chains_keep_their_existing_top_offsets(self) -> None:
+        for title, h1, expected in (
+            ("p34_12_app_setup_placeholder", "APP SETUP", 13.13),
+            ("p50_12_app_setup_placeholder", "Localized app heading", 13.81),
+        ):
+            with self.subTest(title=title):
+                writer = _RecordingWriter()
+                toc = _RecordingToc()
+                emitter = ReferenceStoryEmitter(
+                    writer,
+                    toc,
+                    ROOT,
+                    _approved_app_plan(
+                        language=(
+                            "fr" if title.startswith("p34_") else "es"
+                        ),
+                        stem=title,
+                    ),
+                )
+
+                emitter.emit(
+                    f"st_{title}",
+                    title,
+                    [("h1", h1), ("h2", "Download")],
+                    page_cursor=19,
+                )
+
+                self.assertEqual(
+                    expected,
+                    writer.spread_chain_options[0]["first_top_offset"],
+                )
 
 
 if __name__ == "__main__":

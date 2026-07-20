@@ -21,8 +21,18 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class IdmlWriter:
-    def __init__(self, params: dict[str, tuple[str, str]]):
+    def __init__(
+        self,
+        params: dict[str, tuple[str, str]],
+        *,
+        model: str | None = None,
+        region: str | None = None,
+        language: str | None = None,
+    ):
         self.params = params
+        self.model = model
+        self.region = region
+        self.language = language
         self.page_w = param_pt(params, "page_paperwidth", 368.79)
         self.page_h = param_pt(params, "page_paperheight", 524.69)
         self.m_l = param_pt(params, "page_margin_left", 28.35)
@@ -142,7 +152,8 @@ class IdmlWriter:
     ) -> "_components.RenderContext":
         return _components.RenderContext(
             params=self.params, page_w=self.page_w, m_l=self.m_l, m_r=self.m_r,
-            root=ROOT, bundle_root=bundle_root, language=language,
+            root=ROOT, bundle_root=bundle_root, model=self.model, region=self.region,
+            language=language or self.language,
             inline_origin_shift=inline_origin_shift,
             add_story=self._add_story_parts)
 

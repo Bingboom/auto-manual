@@ -3,7 +3,7 @@
 <Story Self="st_anchor_notice_body_st_05_operation_guide_cmp4" Label="hb:self=st_anchor_notice_body_st_05_operation_guide_cmp4" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="NOTE notice body">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Callout Body">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="6.5" Leading="7.83" FontStyle="Medium" HorizontalScale="106.9" BaselineShift="0.9"><Content>The AC output turns off automatically after 12 hours without load. Rated power* values are measured at 25°C.</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="6.5" FontStyle="Medium" HorizontalScale="106.9" BaselineShift="0.9"><Properties><Leading type="unit">7.83</Leading></Properties><Content>The AC output turns off automatically after 12 hours without load. Rated power* values are measured at 25°C.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>
