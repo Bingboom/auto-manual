@@ -26,7 +26,7 @@
   },
   "source_identity": {
     "manual_ir_schema_version": "manual-ir/v1",
-    "manual_content_sha256": "5373cf4bf10f8dd1ca5521cd84803bf014071977d6284e7d6ff35d0e63ae89ea",
+    "manual_content_sha256": "e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3",
     "snapshot_sha256": "a3e77b847bdf372665b25a15bf441455fc5e4def5c3dd58ba3aa852b61e11203",
     "style_contract_sha256": "83411e87ec9bbb45085fae5fbd9a590cef3f1acd776e568db807b78cfac57df6",
     "layout_params_sha256": "4927215c0aca45ce6294dc75ef43628f1d02979add3141f6a3d90bda267685b9"
@@ -122,7 +122,7 @@
     },
     {
       "source_ref": "page/03_product_overview_placeholder.rst",
-      "source_sha256": "4d9a68467216dfb070099afa7223e12959a67d625ced3b315c3aedc2bad019c3",
+      "source_sha256": "739c16db317204849c30ae7c14fa0ffe3a65ff855ab76e9050c009b914c3bfe0",
       "language": "en",
       "composition_id": "en_overview",
       "start_page": 7,
@@ -255,7 +255,7 @@
     },
     {
       "source_ref": "page/p24_03_product_overview_placeholder.rst",
-      "source_sha256": "f03aad57b1819f855008d7f905ff766221eb1fe069af16a8228fb65d61969709",
+      "source_sha256": "a5ccb872300523bab9a77e799f4f420040119aef7eee95ab5edfdf2936c1349b",
       "language": "fr",
       "composition_id": "fr_overview",
       "start_page": 25,
@@ -388,7 +388,7 @@
     },
     {
       "source_ref": "page/p40_03_product_overview_placeholder.rst",
-      "source_sha256": "13e82fa08ff6ca5755ece2e4fb57d8a49bfc83813e46ccdb04468a52efc57fb8",
+      "source_sha256": "8408be4bb2f48dbd8c2d547df22bfce53466e25d5ea547a4a29a74b8edafa70b",
       "language": "es",
       "composition_id": "es_overview",
       "start_page": 43,

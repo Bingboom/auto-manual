@@ -79,6 +79,31 @@ creates semantic Markdown plus an editable continuous-story IDML, style map,
 source trace, and asset manifest for a designer-owned template workflow. Both
 are generated outputs, never new content sources.
 
+In production IDML operation panels, Prerequisite, standby, On, and Off are
+separate unlocked text frames placed above the linked illustration. Designers
+may select, edit, and move each frame for alignment without editing the image;
+copy corrections still belong in the source and must be rebuilt, apart from
+the explicitly approved target-scoped reference-label normalization described
+below. Energy Saving
+also exposes its two grey-box paragraphs, On/Off, 3s, and action instruction as
+top-layer frames. LED exposes its grey-box lead, 1/2/3, SOS, and three step
+instructions separately; their linked art and native shape underlays remain
+below the text. LCD SCREEN likewise exposes two state, six action, and six
+description frames above its left-side illustration and grid. KEY COMBINATION
+uses linked button/clock graphics while every header, caption, plus sign,
+duration, operation, and function remains a separate movable text frame across
+English, French, and Spanish.
+
+Approved Charging figures use the same top-layer rule for AC and vehicle
+captions. The exact App reference composition currently applies only to the
+English App Setup source: Store/QR and result-screen crops remain linked art,
+while step numbers, pairing-panel labels, and notes are separate movable text
+frames. For JE-1000F/US/en only, the replica normalizes the reference labels
+`POWER Button` to `Main Power Button` and `DC / USB` to `DC/USB` without
+changing the source/IR hash; the result remains unlocked and editable in the
+top layer. French and Spanish App pages keep their existing localized flow
+until they receive a separate approval.
+
 For the approved-PDF replica of `JE-1000F / US / en+fr+es` (方案 2), production
 mode must resolve the
 [`reference layout registry`](../docs/renderers/contracts/reference_layout_registry.json)
@@ -113,6 +138,15 @@ not a renderer fallback. Missing, ambiguous, quarantined, stale, or
 hash-mismatched assets block assembly. Keep `asset_usage_manifest.json`,
 `asset_registry_snapshot.csv`, and `bundle_manifest.json`; a `legacy-path`
 entry alone does not prove that an asset is governed.
+The US front-panel extension is the
+`overview/je1000f_us/front_controls` override behind the shared
+`overview/front_controls` key. It resolves only for JE-1000F/US; the common
+Word-template PNG remains the base asset for other targets.
+The grey pairing panel is the approved
+`controls/je1000f_us/network_pairing_panel` recipe export. Because the reviewed
+App promotion binds the complete recipe SHA, changing that recipe requires a
+new reviewer decision and a passing `asset-check --json`; operators must not
+patch the hash alone.
 
 The provisioned design Mac runs `tools/indesign_finalize.py` to create the INDD
 and PDF, with zero overset/missing-font/bad-link findings and PDF/X-4 using
@@ -148,6 +182,10 @@ that folder are also packed into the zip's `Document fonts/`.
 The checklist opens the versioned IDML at the zip root. Package link failures
 are reported in `missing_assets_report.md`; unresolved semantic source/flow
 references remain available separately in `source_asset_resolution_report.md`.
+Before handoff, extract the final delivery ZIP, confirm its package link report
+has zero missing assets and that the generated reference crops plus pairing
+panel are under `Links/`, then run native InDesign finalization on that exact
+root IDML. A valid ZIP or structural IDML check is not native preflight.
 
 When a queue row carries `Git_ref`, the worker uses the current `origin/main`
 for build code and overlays `docs/_review/` from that review ref. This keeps

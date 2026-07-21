@@ -222,7 +222,7 @@ class BundleAssetUsage:
                 raise AssetRegistryError("asset override root is not a directory")
             self.override_root = resolved_override_root
         self._staged_overrides: dict[Path, _FrozenOverride] = {}
-        self._entries: dict[tuple[str, str, str], _UsageEntry] = {}
+        self._entries: dict[tuple[str, ...], _UsageEntry] = {}
         self._rewrite_events: list[dict[str, object]] = []
 
     def _check_compat_scope(
@@ -571,10 +571,26 @@ class BundleAssetUsage:
         region: str | None = None,
         original_value: str | None = None,
         rendered_value: str | None = None,
+        consumer: str = "bundle",
+        reference_kind: str | None = None,
+        emit_rewrite: bool = True,
     ) -> None:
-        """Record one registry URI consumer, retaining draft-call compatibility."""
+        """Record one registry-backed consumer, retaining draft-call compatibility.
+
+        Ordinary RST references use the default ``bundle`` / ``registry-uri``
+        values and emit reversible rewrite provenance.  Native renderer
+        contracts can name their real consumer/reference kind and suppress a
+        rewrite event because no RST token was rewritten.
+        """
 
         self._check_compat_scope(model=model, region=region, language=None)
+        consumer = consumer.strip()
+        if not consumer:
+            raise AssetRegistryError("asset consumer must be non-empty")
+        if reference_kind is not None:
+            reference_kind = reference_kind.strip()
+            if not reference_kind:
+                raise AssetRegistryError("asset reference kind must be non-empty")
         frozen = asset if isinstance(asset, FrozenAssetReference) else next(
             (
                 resolved
@@ -603,15 +619,23 @@ class BundleAssetUsage:
             raise AssetRegistryError(f"staged registry asset was modified: {staged_relative}")
 
         resolution = frozen.resolution
-        reference_kind = "review-override" if explicit_override is not None else "registry-uri"
+        if reference_kind is None:
+            reference_kind = (
+                "review-override" if explicit_override is not None else "registry-uri"
+            )
+        elif explicit_override is not None:
+            reference_kind = f"{reference_kind}-review-override"
         consumed_sha256 = _sha256(consumed_content)
-        key = (reference_kind, resolution.asset_key, staged_relative)
+        # Preserve the historical manifest ordering by reference kind/key/path;
+        # consumer distinguishes otherwise identical rows without reshuffling
+        # legacy and registry entries.
+        key = (reference_kind, resolution.asset_key, staged_relative, consumer)
         entry = self._entries.get(key)
         if entry is None:
             entry = _UsageEntry(
                 row={
                     "asset_key": resolution.asset_key,
-                    "consumer": "bundle",
+                    "consumer": consumer,
                     "declared_hash": (
                         None if explicit_override is not None else resolution.declared_hash
                     ),
@@ -642,21 +666,22 @@ class BundleAssetUsage:
             )
             self._entries[key] = entry
         entry.references.add(reference_relative)
-        self._rewrite_events.append(
-            {
-                "asset_key": resolution.asset_key,
-                "original_value": original_value or f"asset:{resolution.asset_key}",
-                "reference_kind": reference_kind,
-                "reference_path": reference_relative,
-                "rendered_value": _rendered_relative(
-                    staged_relative=staged_relative,
-                    reference_relative=reference_relative,
-                )
-                if rendered_value is None
-                else rendered_value,
-                "staged_path": staged_relative,
-            }
-        )
+        if emit_rewrite:
+            self._rewrite_events.append(
+                {
+                    "asset_key": resolution.asset_key,
+                    "original_value": original_value or f"asset:{resolution.asset_key}",
+                    "reference_kind": reference_kind,
+                    "reference_path": reference_relative,
+                    "rendered_value": _rendered_relative(
+                        staged_relative=staged_relative,
+                        reference_relative=reference_relative,
+                    )
+                    if rendered_value is None
+                    else rendered_value,
+                    "staged_path": staged_relative,
+                }
+            )
 
     def record_legacy(
         self,

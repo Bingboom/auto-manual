@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-07-16
+Updated: 2026-07-20
 
 Auto-Manual turns structured content (Feishu/Lark Base CSV snapshots plus shared RST templates) into target-specific manual bundles and release outputs across the active US, EU, JP, and CN config families.
 The current maintained smoke-check baseline is `JE-1000F` across US and JP.
@@ -138,6 +138,34 @@ under the frozen basename; an unresolved or ambiguous asset now fails the IDML
 export instead of producing a silent missing-link placeholder.
 Fixed composite pages remain componentized, while ordinary operation,
 charging, storage, and troubleshooting prose uses normal linked frame chains.
+Operation-panel callouts are native top-layer objects: Prerequisite, standby,
+On, and Off copy each has its own unlocked text frame above the linked artwork.
+The Energy Saving and LED cards use the same contract for their grey-box copy,
+On/Off, 3s, step numbers, SOS label, and individual instructions; the linked
+artwork and native shape underlays stay below those frames. An InDesign
+operator can therefore edit or reposition every label without altering the
+source image. The LCD SCREEN card uses the same positioned-object contract for
+its left illustration and 14 state/action/description frames. KEY COMBINATION
+reconstructs each row from linked button and clock assets, native grid shapes,
+and independently movable captions, plus signs, durations, operations, and
+functions; the structural 3-column/4-combination shape works identically for
+English, French, and Spanish headings.
+For approved-reference pages, Product Overview uses two governed linked art
+frames, native knockout-backed leader paths, and source-authored labels emitted
+last as unlocked text frames. Its `overview/front_controls` semantic reference
+selects the `overview/je1000f_us/front_controls` override only for JE-1000F/US;
+the shared common-assets PNG remains unchanged for every other target.
+Charging figures and the canonical English App
+Setup source (`12_app_setup_placeholder`) use `referencefigure` composites:
+artwork, generated Store/QR/screen crops, and the governed
+`controls/je1000f_us/network_pairing_panel` panel remain below separate movable
+captions, step numbers, control labels, and notes. The approved JE-1000F/US/en
+replica applies a target-scoped reference-label normalization (`POWER Button`
+to `Main Power Button`, and `DC / USB` to `DC/USB`) without changing the
+source/IR hash; the normalized copy is still emitted as unlocked top-layer
+frames. French and Spanish App pages retain their normal flow until separately
+approved.
+
 Rounded data tables remain
 editable: the IDML groups a rounded background with a square content frame so
 InDesign does not inset the first/last cells at curved corners. Formal body
@@ -159,6 +187,10 @@ Publish handoffs are portable ZIPs, not bare build-machine IDML files. The
 versioned IDML sits at the ZIP root with links rewritten to `file:Links/...`.
 Its `missing_assets_report.md` describes package-time link portability, while
 `source_asset_resolution_report.md` keeps separate source/flow diagnostics.
+Generated reference-figure crops and the pairing-panel PDF are linked
+resources: they must be present under `Links/`, and release acceptance runs
+native finalization on the exact packaged root IDML, not only the raw
+build-machine IDML.
 
 ### Approved-PDF native InDesign replica (方案 2)
 

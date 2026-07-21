@@ -24,6 +24,7 @@ from .lcdmode import render_lcdmode
 from .notice import render_notice
 from .prose_image import render_image_block
 from .prose_table import body_data_table_kind, render_table_block
+from .reference_figure import render_referencefigure
 
 from .langbadge import render_langtag
 from .oppanel import render_oppanel
@@ -49,6 +50,7 @@ REGISTRY: dict[str, ComponentRenderer] = {
     "fcc": render_fcc,
     "emphasispill": render_emphasispill,
     "lcdmode": render_lcdmode,
+    "referencefigure": render_referencefigure,
 }
 
 

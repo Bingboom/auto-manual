@@ -275,7 +275,7 @@ class TestAssetRecipe(unittest.TestCase):
         recipe = load_recipe(OFFICIAL_RECIPE)
 
         self.assertEqual(59, len(recipe.page_catalog))
-        self.assertEqual(24, len(recipe.assets))
+        self.assertEqual(25, len(recipe.assets))
         self.assertEqual(
             {21, 22, 39, 40, 57, 58, 59},
             {row.page for row in recipe.page_catalog if row.gate.status == "quarantine"},
@@ -297,6 +297,8 @@ class TestAssetRecipe(unittest.TestCase):
             "operation/je1000f_us/ups_mode": 15,
             "charging/je1000f_us/solar_adapter": 17,
             "charging/je1000f_us/car_charge": 17,
+            "controls/je1000f_us/network_pairing_panel": 39,
+            "overview/je1000f_us/front_controls": 8,
         }
         for asset_key, page in expected_pages.items():
             with self.subTest(asset_key=asset_key):

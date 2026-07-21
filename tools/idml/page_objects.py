@@ -540,13 +540,19 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
                                     stroke_weight: float = 0.75,
                                     radius: float = 6.8,
                                     content_inset: float = 0.0,
-                                    corner_fills: dict[str, str] | None = None) -> str:
+                                    corner_fills: dict[str, str] | None = None,
+                                    group_underlay: str = "",
+                                    group_overlay: str = "",
+                                    group_x_offset: float = 0.0,
+                                    content_bottom_bleed: float = 0.0) -> str:
     """Rounded background plus square content frame in one anchored group.
 
     A table directly inside a rounded text-frame is inset by InDesign at
     the curved top corners.  Separating the rounded rectangle from the
     square text-frame preserves the exact table measure while keeping the
-    whole object editable and movable as one inline group.
+    whole object editable and movable as one inline group.  Composite panels
+    may additionally place native shapes or linked art below the content frame
+    and independent editable text frames above the rounded outline.
     """
     from .primitives import path_geometry
     from .style_names import paragraph_style_ref as _psr_ref
@@ -581,7 +587,8 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
         'ItemTransform="1 0 0 1 0 0">\n'
         + path_geometry(
             content_inset, -height + content_inset,
-            width - content_inset, -content_inset,
+            width - content_inset,
+            -content_inset + max(0.0, content_bottom_bleed),
         )
         + '    <TextFramePreference TextColumnCount="1" '
         'VerticalJustification="TopAlign" AutoSizingType="Off">'
@@ -619,8 +626,9 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
     )
     group = (
         f'<Group Self="grp_{sid}" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-        'ItemTransform="1 0 0 1 -0.37 0">\n'
-        + background + frame + masks + outline + '</Group>'
+        f'ItemTransform="1 0 0 1 {-0.37 + group_x_offset:g} 0">\n'
+        + background + group_underlay + frame + masks + outline
+        + group_overlay + '</Group>'
     )
     style_ref = _psr_ref("HB Figure")
     return (

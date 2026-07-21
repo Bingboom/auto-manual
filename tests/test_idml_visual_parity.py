@@ -398,9 +398,16 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertNotIn('Self="tbl_autoc3_0"', auto_story)
         self.assertIn('FillColor="Color/HB Header K08"', auto_story)
         self.assertIn('FillColor="Color/HB Bg K05"', auto_story)
-        self.assertIn('MinimumHeight="11.9055"', auto_story)
+        self.assertIn(
+            'SingleRowHeight="11.49" MinimumHeight="11.49" AutoGrow="false"',
+            auto_story,
+        )
         self.assertIn('<Group Self="grp_st_anchor_data_tbl_auto"', auto_xml)
-        self.assertIn('SingleColumnWidth="158.057"', auto_story)
+        self.assertIn('SingleColumnWidth="157.52"', auto_story)
+        self.assertIn('ItemTransform="1 0 0 1 -0.37 0"', auto_xml)
+        self.assertIn('LeftIndent="0"', auto_xml)
+        self.assertIn('FirstLineIndent="-6.82"', auto_xml)
+        self.assertIn('SpaceBefore="6.62"', auto_xml)
         indent = table_text_indent(writer.params)
         self.assertIn(f'LeftInset="{indent:g}"', auto_story)
         self.assertNotIn('LeftInset="0"', auto_story)

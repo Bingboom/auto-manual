@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import unittest
 from pathlib import Path
 
@@ -7,6 +8,29 @@ from tools.idml.reference_story_flow import ReferenceStoryEmitter
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _approved_app_plan(
+    *,
+    model: str = "JE-1000F",
+    region: str = "US",
+    language: str = "en",
+    stem: str = "12_app_setup_placeholder",
+) -> dict:
+    return {
+        "plan_source": "approved-reference",
+        "approved_contract": {
+            "target": {
+                "model": model,
+                "region": region,
+                "languages": [language],
+            },
+        },
+        "pages": [{
+            "source_path": f"page/{stem}.rst",
+            "language": language,
+        }],
+    }
 
 
 class _RecordingWriter:
@@ -18,8 +42,10 @@ class _RecordingWriter:
         self.m_b = 23.0
         self.page_h = 500.0
         self.spread_chains: list[tuple[str, int, int, int]] = []
+        self.spread_chain_options: list[dict[str, float]] = []
         self.chain_frames: list[tuple[str, int]] = []
         self.story_frames: list[tuple[str, list[tuple[int, float, float]]]] = []
+        self.prose_story_options: list[dict[str, float]] = []
 
     def add_prose_story(
         self,
@@ -27,7 +53,9 @@ class _RecordingWriter:
         _title: str,
         _blocks: list[tuple[str, str]],
         _bundle_root: Path,
+        **kwargs: float,
     ) -> tuple[str, float]:
+        self.prose_story_options.append(kwargs)
         return sid, 1.0
 
     def pages_for_height(self, _height: float) -> int:
@@ -40,9 +68,10 @@ class _RecordingWriter:
         page_cursor: int,
         *,
         columns: int,
-        **_kwargs: float,
+        **kwargs: float,
     ) -> None:
         self.spread_chains.append((sid, pages, page_cursor, columns))
+        self.spread_chain_options.append(kwargs)
         self.chain_frames.extend(
             (sid, page_cursor + offset) for offset in range(pages)
         )
@@ -122,6 +151,208 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
         self.assertEqual(1, len(writer.story_frames[0][1]))
         self.assertEqual(1, writer.story_frames[0][1][0][0])
         self.assertEqual([], toc.noted_pages)
+
+    def test_operation_chain_extends_below_the_ordinary_body_margin(self) -> None:
+        writer = _RecordingWriter()
+        toc = _RecordingToc()
+        emitter = ReferenceStoryEmitter(
+            writer,
+            toc,
+            ROOT,
+            {"plan_source": "approved-reference"},
+        )
+        key_rows = [
+            ["Buttons", "Operation", "Function"],
+            ["Power + AC", "Press 3s", "Enable"],
+        ]
+
+        emitter.emit(
+            "st_operation",
+            "05_operation_guide_placeholder",
+            [
+                ("h1", "OPERATIONS"),
+                ("table", json.dumps(key_rows)),
+            ],
+            page_cursor=7,
+        )
+
+        self.assertEqual(18.0, writer.spread_chain_options[0]["bottom_extra"])
+
+        self.assertEqual(
+            -6.82,
+            writer.spread_chain_options[0]["last_frame_x_offset"],
+        )
+        self.assertEqual(
+            {"inline_origin_shift": -6.82},
+            writer.prose_story_options[0],
+        )
+
+    def test_unapproved_operation_chain_keeps_the_standard_bottom(self) -> None:
+        writer = _RecordingWriter()
+        toc = _RecordingToc()
+        emitter = ReferenceStoryEmitter(writer, toc, ROOT)
+        key_rows = [
+            ["Buttons", "Operation", "Function"],
+            ["Power + AC", "Press 3s", "Enable"],
+        ]
+
+        emitter.emit(
+            "st_operation",
+            "05_operation_guide_placeholder",
+            [("table", json.dumps(key_rows))],
+            page_cursor=7,
+        )
+
+        self.assertEqual(0.0, writer.spread_chain_options[0]["bottom_extra"])
+
+    def test_approved_charging_methods_chain_uses_reference_top_offset(self) -> None:
+        writer = _RecordingWriter()
+        toc = _RecordingToc()
+        emitter = ReferenceStoryEmitter(
+            writer,
+            toc,
+            ROOT,
+            {"plan_source": "approved-reference"},
+        )
+
+        emitter.emit(
+            "st_08_charging_methods",
+            "08_charging_methods",
+            [("h2", "Localized charging heading")],
+            page_cursor=14,
+        )
+
+        self.assertEqual(23.8, writer.spread_chain_options[0]["first_top_offset"])
+        self.assertEqual(18.0, writer.spread_chain_options[0]["bottom_extra"])
+
+        writer = _RecordingWriter()
+        emitter = ReferenceStoryEmitter(
+            writer,
+            _RecordingToc(),
+            ROOT,
+            {"plan_source": "approved-reference"},
+        )
+        emitter.emit(
+            "st_p29_08_charging_methods",
+            "p29_08_charging_methods",
+            [("h2", "Localized charging heading")],
+            page_cursor=28,
+        )
+        self.assertEqual(54.0, writer.spread_chain_options[0]["bottom_extra"])
+
+    def test_approved_charging_intro_chain_gets_dense_final_frame_allowance(self) -> None:
+        writer = _RecordingWriter()
+        toc = _RecordingToc()
+        emitter = ReferenceStoryEmitter(
+            writer,
+            toc,
+            ROOT,
+            {"plan_source": "approved-reference"},
+        )
+
+        emitter.emit(
+            "st_flow_06_ups_mode_charging",
+            "06_ups_mode + charging",
+            [("h1", "UPS MODE"), ("body", "Charging via AC wall outlet")],
+            page_cursor=13,
+        )
+
+        self.assertEqual(18.0, writer.spread_chain_options[0]["bottom_extra"])
+
+    def test_app_chain_uses_reference_top_offset(self) -> None:
+        for language in ("en", "en-US", "en_US"):
+            with self.subTest(language=language):
+                writer = _RecordingWriter()
+                toc = _RecordingToc()
+                emitter = ReferenceStoryEmitter(
+                    writer,
+                    toc,
+                    ROOT,
+                    _approved_app_plan(language=language),
+                )
+
+                emitter.emit(
+                    "st_12_app_setup",
+                    "12_app_setup_placeholder",
+                    [("h1", "Localized app heading"), ("h2", "Download")],
+                    page_cursor=19,
+                )
+
+                self.assertEqual(
+                    15.06,
+                    writer.spread_chain_options[0]["first_top_offset"],
+                )
+
+    def test_app_chain_reference_offset_fails_closed_for_other_targets(self) -> None:
+        cases = (
+            ("wrong model", _approved_app_plan(model="OTHER")),
+            ("wrong region", _approved_app_plan(region="EU")),
+            ("French", _approved_app_plan(language="fr")),
+            ("Spanish", _approved_app_plan(language="es")),
+            ("missing metadata", {"plan_source": "approved-reference"}),
+            (
+                "missing language",
+                {
+                    **_approved_app_plan(),
+                    "pages": [{
+                        "source_path": "page/12_app_setup_placeholder.rst",
+                    }],
+                },
+            ),
+        )
+        for label, plan in cases:
+            with self.subTest(label=label):
+                writer = _RecordingWriter()
+                emitter = ReferenceStoryEmitter(
+                    writer,
+                    _RecordingToc(),
+                    ROOT,
+                    plan,
+                )
+
+                emitter.emit(
+                    "st_12_app_setup",
+                    "12_app_setup_placeholder",
+                    [("h1", "Localized app heading"), ("h2", "Download")],
+                    page_cursor=19,
+                )
+
+                self.assertEqual(
+                    13.81,
+                    writer.spread_chain_options[0]["first_top_offset"],
+                )
+
+    def test_noncanonical_app_chains_keep_their_existing_top_offsets(self) -> None:
+        for title, h1, expected in (
+            ("p34_12_app_setup_placeholder", "APP SETUP", 13.13),
+            ("p50_12_app_setup_placeholder", "Localized app heading", 13.81),
+        ):
+            with self.subTest(title=title):
+                writer = _RecordingWriter()
+                toc = _RecordingToc()
+                emitter = ReferenceStoryEmitter(
+                    writer,
+                    toc,
+                    ROOT,
+                    _approved_app_plan(
+                        language=(
+                            "fr" if title.startswith("p34_") else "es"
+                        ),
+                        stem=title,
+                    ),
+                )
+
+                emitter.emit(
+                    f"st_{title}",
+                    title,
+                    [("h1", h1), ("h2", "Download")],
+                    page_cursor=19,
+                )
+
+                self.assertEqual(
+                    expected,
+                    writer.spread_chain_options[0]["first_top_offset"],
+                )
 
 
 if __name__ == "__main__":

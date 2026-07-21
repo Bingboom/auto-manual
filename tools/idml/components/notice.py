@@ -2,10 +2,12 @@
 from __future__ import annotations
 
 import math
+import re
 import unicodedata
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from .. import page_objects as _po
+from ..character_metrics import with_character_metrics
 from ..params import param_pt
 from ..primitives import cell, component_table, path_geometry, psr, wrap_table_paragraph
 from .base import RenderContext, figure_paragraph
@@ -71,21 +73,29 @@ def source_notice_label(spec: dict) -> str:
 def _typed(xml: str, size: float, leading: float, weight: str | None = None,
            *, horizontal_scale: float | None = None,
            baseline_shift: float | None = None) -> str:
-    attrs = f'PointSize="{size:g}" Leading="{leading:g}"'
-    if weight:
-        attrs += f' FontStyle="{weight}"'
-    if horizontal_scale is not None:
-        attrs += f' HorizontalScale="{horizontal_scale * 100:g}"'
-    if baseline_shift is not None:
-        attrs += f' BaselineShift="{baseline_shift:g}"'
-    return xml.replace(
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" ' + attrs,
-    )
+    xml = with_character_metrics(xml, point_size=size, leading=leading)
+
+    def apply_style(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        attrs: list[str] = []
+        # Symbol fallback runs already carry the only valid face for their
+        # fallback font.  Preserve it instead of emitting duplicate
+        # FontStyle attributes that make the IDML XML invalid.
+        if weight and " FontStyle=" not in tag:
+            attrs.append(f'FontStyle="{weight}"')
+        if horizontal_scale is not None and " HorizontalScale=" not in tag:
+            attrs.append(f'HorizontalScale="{horizontal_scale * 100:g}"')
+        if baseline_shift is not None and " BaselineShift=" not in tag:
+            attrs.append(f'BaselineShift="{baseline_shift:g}"')
+        return tag[:-1] + (" " + " ".join(attrs) if attrs else "") + ">"
+
+    return re.sub(r"<CharacterStyleRange\b[^>]*>", apply_style, xml)
 
 
 def _body_xml(spec: dict, size: float, leading: float,
-              horizontal_scale: float, baseline_shift: float) -> str:
+              horizontal_scale: float, baseline_shift: float,
+              paragraph_space_after: float = 0.0,
+              unbulleted_first: bool = False) -> str:
     texts = spec.get("texts", [])
     if not spec.get("list"):
         return _typed(
@@ -107,29 +117,41 @@ def _body_xml(spec: dict, size: float, leading: float,
             horizontal_scale=horizontal_scale,
             baseline_shift=baseline_shift,
         )
-        paragraph = paragraph.replace(
-            "<ParagraphStyleRange ",
-            '<ParagraphStyleRange LeftIndent="3.4" FirstLineIndent="-3.4" ',
-            1,
-        )
+        has_bullet = not (unbulleted_first and index == 0)
+        if has_bullet:
+            paragraph = paragraph.replace(
+                "<ParagraphStyleRange ",
+                '<ParagraphStyleRange LeftIndent="3.4" FirstLineIndent="-3.4" ',
+                1,
+            )
+        if paragraph_space_after and index < len(items) - 1:
+            paragraph = paragraph.replace(
+                "<ParagraphStyleRange ",
+                f'<ParagraphStyleRange SpaceAfter="{paragraph_space_after:g}" ',
+                1,
+            )
         bullet = (
             '<CharacterStyleRange '
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'PointSize="4.8" Leading="{leading:g}" '
-            f'BaselineShift="{baseline_shift:g}"><Content>•</Content>'
+            f'PointSize="4.8" BaselineShift="{baseline_shift:g}">'
+            f'<Properties><Leading type="unit">{leading:g}</Leading></Properties>'
+            '<Content>•</Content>'
             '</CharacterStyleRange>'
             '<CharacterStyleRange '
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'PointSize="{size:g}" Leading="{leading:g}" FontStyle="Medium" '
+            f'PointSize="{size:g}" FontStyle="Medium" '
             f'HorizontalScale="{horizontal_scale * 100:g}" '
-            f'BaselineShift="{baseline_shift:g}"><Content> </Content>'
+            f'BaselineShift="{baseline_shift:g}">'
+            f'<Properties><Leading type="unit">{leading:g}</Leading></Properties>'
+            '<Content> </Content>'
             '</CharacterStyleRange>'
         )
-        paragraph = paragraph.replace(
-            "\n    <CharacterStyleRange",
-            "\n    " + bullet + "\n    <CharacterStyleRange",
-            1,
-        )
+        if has_bullet:
+            paragraph = paragraph.replace(
+                "\n    <CharacterStyleRange",
+                "\n    " + bullet + "\n    <CharacterStyleRange",
+                1,
+            )
         paragraphs.append(paragraph)
     return "".join(paragraphs)
 
@@ -255,7 +277,8 @@ def notice_box_layout(params: dict, body_width: float, label: str,
 
 def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
                     label: str, label_psr: str, body_psr: str,
-                    layout: NoticeBoxLayout) -> tuple[str, float]:
+                    layout: NoticeBoxLayout,
+                    inline_x_offset: float = 0.0) -> tuple[str, float]:
     # A four-item anchored group mirrors the LaTeX tcolorbox directly:
     # rounded grey shell, rounded white plate, centred label frame, and
     # the body frame.  A rounded frame nested in a table cell leaves an
@@ -357,7 +380,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
     group = (
         f'<Group Self="grp_notice_{tid}" '
         'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-        'ItemTransform="1 0 0 1 0 0">\n'
+        f'ItemTransform="1 0 0 1 {inline_x_offset:g} 0">\n'
         + outer + plate + label_frame + body_frame + '</Group>'
     )
     tail = '<Content></Content>' + ('' if terminal else '<Br/>')
@@ -376,7 +399,9 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
 def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
                   span_columns: bool = True,
                   measure_w: float | None = None) -> tuple[str, float]:
-    body_w = measure_w or ctx.text_measure
+    body_w = float(spec.get("body_width") or measure_w or ctx.text_measure)
+    if body_w <= 0:
+        raise ValueError("notice body_width must be greater than zero")
     label = source_notice_label(spec)
     texts = spec.get("texts", [])
     layout = notice_box_layout(
@@ -388,6 +413,28 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         is_list=bool(spec.get("list")),
         body_horizontal_scale_override=spec.get("body_horizontal_scale"),
     )
+    plate_left = float(spec.get("plate_left", layout.plate_left))
+    label_width = float(spec.get("label_width", layout.label_width))
+    if plate_left < 0 or label_width <= plate_left:
+        raise ValueError("notice label geometry is invalid")
+    layout = replace(
+        layout,
+        label_width=label_width,
+        plate_left=plate_left,
+        plate_width=label_width - plate_left,
+        body_inset=float(spec.get("body_inset", layout.body_inset)),
+        right_inset=float(spec.get("right_inset", layout.right_inset)),
+        pad_tb=float(spec.get("pad_tb", layout.pad_tb)),
+        label_size=float(spec.get("label_size", layout.label_size)),
+        label_leading=float(spec.get("label_leading", layout.label_leading)),
+        body_size=float(spec.get("body_size", layout.body_size)),
+        body_leading=float(spec.get("body_leading", layout.body_leading)),
+    )
+    if spec.get("panel_height") is not None:
+        panel_height = float(spec["panel_height"])
+        if panel_height <= 0:
+            raise ValueError("notice panel_height must be greater than zero")
+        layout = replace(layout, panel_height=panel_height)
     label_psr = _typed(
         psr("HB Callout Label", label, terminal=True),
         layout.label_size,
@@ -401,11 +448,15 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         layout.body_leading,
         layout.body_horizontal_scale,
         layout.body_baseline_shift,
+        float(spec.get("paragraph_space_after") or 0.0),
+        bool(spec.get("unbulleted_first")),
     )
     if ctx.add_story is not None:
         return _rounded_notice(
             ctx, tid=tid, terminal=terminal, label=label, label_psr=label_psr,
-            body_psr=body_psr, layout=layout)
+            body_psr=body_psr, layout=layout,
+            inline_x_offset=float(spec.get("inline_x_offset") or 0.0),
+        )
     cols = [layout.label_width, body_w - layout.label_width]
     cells = [
         cell(f"{tid}c0", "0:0", label_psr, fill="Color/Paper", stroke=False,

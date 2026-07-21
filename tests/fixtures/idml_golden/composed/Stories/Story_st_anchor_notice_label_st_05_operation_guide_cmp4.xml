@@ -3,7 +3,7 @@
 <Story Self="st_anchor_notice_label_st_05_operation_guide_cmp4" Label="hb:self=st_anchor_notice_label_st_05_operation_guide_cmp4" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="NOTE notice label plate">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Callout Label">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="8" Leading="9" FontStyle="Bold" BaselineShift="2.63"><Content>NOTE</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="8" FontStyle="Bold" BaselineShift="2.63"><Properties><Leading type="unit">9</Leading></Properties><Content>NOTE</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

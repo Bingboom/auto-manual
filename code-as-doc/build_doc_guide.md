@@ -669,7 +669,7 @@ The approved contract freezes these identities:
 | Reference SHA-256 | `e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2` |
 | Page contract | 58 pages, `368.787 × 524.692 pt`, tolerance `0.02 pt` |
 | Print contract | PDF/X-4, Output Intent `Japan Color 2001 Coated`, Output Condition `JC200103` |
-| Manual content SHA-256 | `e0c3b53cdafb6d6bff8b2f8f9caa4cc4a47b0e5fc7f3edf171c189de9c13f52f` |
+| Manual content SHA-256 | `e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3` |
 | Snapshot SHA-256 | `a3e77b847bdf372665b25a15bf441455fc5e4def5c3dd58ba3aa852b61e11203` |
 | Style-contract SHA-256 | `83411e87ec9bbb45085fae5fbd9a590cef3f1acd776e568db807b78cfac57df6` |
 | Layout-params SHA-256 | `4927215c0aca45ce6294dc75ef43628f1d02979add3141f6a3d90bda267685b9` |
@@ -723,14 +723,76 @@ preference:
   `product_overview-*.pdf` or `back_cover-en.pdf` must not be used as final
   printed content. A contract-approved finished-art front cover may remain.
 
+`controls/je1000f_us/network_pairing_panel` is an ordinary approved recipe
+export, not a reviewed App-promotion output. It shares the official source
+recipe with `je1000f-us-app-ui-v1`; adding or changing that recipe therefore
+changes the recipe SHA bound by the promotion contract. The promoted App
+outputs remain eligible only after a fresh reviewer decision updates that
+binding and `python build.py asset-check --json` passes. Never refresh the hash
+without the matching review decision.
+
+The extended US front-panel crop is registered as
+`overview/je1000f_us/front_controls`, an override of the shared
+`overview/front_controls` semantic key. Its PDF/PNG stay under
+`docs/renderers/latex/assets` and resolve only for JE-1000F/US. Do not replace
+the common Word-template PNG with this US outlet drawing; non-US and future
+model targets must continue to receive the shared base asset unless they own a
+separate scoped override.
+
 The production gate also rejects skipped raw content. Fixed composite pages
 use explicit component frames, while ordinary operation, UPS/charging,
 storage, and troubleshooting content flows through linked story chains. The
-source-authored TOC folios and back-cover copy come from the IR; InDesign must
+operation-panel renderer keeps the illustration at the bottom of its group,
+then emits editable shape underlays, followed by separate unlocked text frames
+for Prerequisite, standby, On, and Off. The text frames are therefore topmost
+and may be moved or edited independently during final-mile InDesign alignment;
+the Energy Saving paragraph after POWER remains full-width prose outside the
+panel. Energy Saving then groups its two source guidance paragraphs into the
+panel's grey header and exposes On/Off, 3s, and the localized action as separate
+top-layer frames. LED groups its source lead into the grey header and exposes
+1/2/3, SOS, and each of the three localized instructions separately. These
+special layouts are detected from governed image identity plus neighbouring IR
+structure, not localized English headings; the original Energy Saving PNG with
+baked copy is not eligible for this overlay path. LCD SCREEN composes the
+governed LCD illustration and a six-row native grid inside one rounded frame;
+its two state, six action, and six description frames are emitted last and stay
+independently movable. KEY COMBINATION is detected from its language-neutral
+three-column, four-combination source shape. Button and clock assets plus grid
+underlays are linked/drawn first; localized headers, button captions, plus
+signs, durations, operations, and functions are separate top-layer frames.
+Approved-reference operation pages additionally apply locale-measured Auto
+Resume, LCD SCREEN, and KEY COMBINATION geometry, localized flow gaps, and a
+per-language translation of the final story frame. Components compensate that
+host-frame translation with a non-negative first-line indent; keep the two
+responsibilities separate because InDesign clamps or ignores equivalent
+negative offsets on nested inline groups. Non-approved targets retain the
+generic component fallbacks.
+
+Approved-reference `referencefigure` promotion routes only by approved-plan
+role, canonical source stem, asset basename, and adjacent IR shape; localized
+headings are never routing keys. Charging-method compositions promote the AC
+caption and the car `Vehicle`/cable note into independent top-layer stories.
+The exact App composition is currently limited to the canonical English
+`12_app_setup_placeholder`: Download splits Store and QR into linked build-only
+crops with two copy frames; Add Device places the approved pairing-panel export
+below independent 2.1/2.2 and POWER/AC/DC/USB frames; Connect Result crops the
+three screens and emits 2.3/2.4/2.5 plus the reference note separately.
+To match the approved JE-1000F/US/en reference without changing the frozen
+source/IR hash, this exact composition normalizes only the visible reference
+labels `POWER Button` to `Main Power Button` and `DC / USB` to `DC/USB`.
+Those normalized strings remain unlocked top-layer text frames; this is a
+target-scoped reference-layout contract, not a general content rewrite.
+`p34_12_app_setup_placeholder` and `p50_12_app_setup_placeholder` retain their
+ordinary localized flow. Every graphic, shape, and leader extension is emitted
+before the unlocked text frames.
+
+Source-authored TOC folios and back-cover copy come from the IR; InDesign must
 not recompute or hardcode them. Content, translation, specification, legal,
 table-structure, or asset-identity defects are corrected in the
 Feishu/source-table/template/review/TM or asset-governance layer and then
-rebuilt. INDD is never a second content source.
+rebuilt. The narrow approved App reference-label normalization above changes
+presentation only and does not authorize other renderer-side copy edits. INDD
+is never a second content source.
 
 Review bundles may retain an older opaque attachment hash after a live snapshot
 refresh. The build resolves a unique current file by stable semantic identity,
@@ -860,6 +922,13 @@ uploaded to the knowledge base, and its link is written to the queue row's
 `idml_file` field. The bare `.idml` is no longer uploaded: its image links are
 absolute build-machine paths that die with the build worktree, so only the
 packaged zip is a usable designer deliverable.
+
+For approved reference figures, the package-time link set must include every
+referenced file under `_generated/idml_reference_assets/` plus the pairing-panel
+PDF, and `missing_assets_report.md` must report zero missing links. For release
+acceptance, extract the final ZIP and run `indesign_finalize.py` against its
+versioned root IDML. `check_idml`, ZIP integrity, or preflight of an earlier raw
+IDML does not prove the delivered `Links/` package.
 
 For queue rows with `Git_ref`, the build worktree is based on the current
 `origin/main`; only the review content under `docs/_review/` is overlaid from

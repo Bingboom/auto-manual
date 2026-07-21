@@ -28,9 +28,9 @@ class TestAssetRegistry(unittest.TestCase):
     def test_real_registry_exports_have_matching_hashes(self) -> None:
         report = check_registry(self.records, repo_root=ROOT)
 
-        self.assertEqual(79, report.records)
+        self.assertEqual(81, report.records)
         self.assertEqual((), report.errors)
-        self.assertEqual(70, report.status_counts[APPROVED_STATUS])
+        self.assertEqual(72, report.status_counts[APPROVED_STATUS])
         self.assertEqual(3, report.status_counts[QUARANTINED_STATUS])
 
     def test_real_registry_has_explicit_region_scopes(self) -> None:
@@ -42,6 +42,16 @@ class TestAssetRegistry(unittest.TestCase):
         self.assertEqual(("JP",), by_key["mark/jp_certifications"].region_scope)
         self.assertEqual(("KR",), by_key["kr/image_placeholders"].region_scope)
         self.assertEqual(("ALL",), by_key["operation/ac_output"].region_scope)
+        self.assertEqual(
+            ("JE-1000F",),
+            by_key["controls/je1000f_us/network_pairing_panel"].model_scope,
+        )
+        self.assertEqual(
+            ("US",),
+            by_key["controls/je1000f_us/network_pairing_panel"].region_scope,
+        )
+        self.assertEqual(("ALL",), by_key["overview/front_controls"].model_scope)
+        self.assertEqual(("ALL",), by_key["overview/front_controls"].region_scope)
         for asset_key in (
             "app/add_device",
             "app/connect_result",
@@ -62,6 +72,7 @@ class TestAssetRegistry(unittest.TestCase):
             ("operation/je1000f_us/ups_mode", "operation/ups_mode"),
             ("charging/je1000f_us/solar_adapter", "charging/solar_adapter"),
             ("charging/je1000f_us/car_charge", "charging/car_charge"),
+            ("overview/je1000f_us/front_controls", "overview/front_controls"),
         ):
             with self.subTest(asset_key=asset_key):
                 self.assertEqual(("JE-1000F",), by_key[asset_key].model_scope)
@@ -97,6 +108,36 @@ class TestAssetRegistry(unittest.TestCase):
         self.assertEqual(
             "docs/templates/word_template/common_assets/operation/energy_saving.png",
             jp_resolution.path,
+        )
+
+        us_overview = resolve_asset(
+            self.records,
+            repo_root=ROOT,
+            asset_key="overview/front_controls",
+            format_name="png",
+            language="en",
+            model="JE-1000F",
+            region="US",
+        )
+        self.assertEqual("overview/je1000f_us/front_controls", us_overview.asset_key)
+        self.assertEqual(
+            "docs/renderers/latex/assets/front_controls.png",
+            us_overview.path,
+        )
+
+        jp_overview = resolve_asset(
+            self.records,
+            repo_root=ROOT,
+            asset_key="overview/front_controls",
+            format_name="png",
+            language="ja",
+            model="JE-1000F",
+            region="JP",
+        )
+        self.assertEqual("overview/front_controls", jp_overview.asset_key)
+        self.assertEqual(
+            "docs/templates/word_template/common_assets/overview/front_controls.png",
+            jp_overview.path,
         )
 
     def test_resolve_v2_vector_projection(self) -> None:
@@ -356,7 +397,7 @@ class TestAssetRegistry(unittest.TestCase):
         records = load_registry(source)  # type: ignore[arg-type]
 
         self.assertEqual(1, source.calls)
-        self.assertEqual(79, len(records))
+        self.assertEqual(81, len(records))
 
     def test_temporary_asset_is_not_importable_by_default(self) -> None:
         with self.assertRaisesRegex(AssetRegistryError, "only ✅成品"):

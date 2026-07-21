@@ -5,29 +5,110 @@ split for the rest.
 """
 from __future__ import annotations
 
+from dataclasses import dataclass
 import re
 
+from ..character_metrics import with_character_metrics
 from ..params import param_pt
-from ..primitives import cell, component_table, psr, spec_table, wrap_table_paragraph
+from ..primitives import (
+    cell,
+    component_table,
+    psr,
+    spec_table,
+    wrap_table_paragraph,
+)
 from ..table_borders import suppress_outer_edges_xml
 from .base import RenderContext
+from .key_combinations import (
+    is_key_combinations_rows,
+    render_key_combinations,
+)
 from .rounded_table import rounded_table_panel, table_text_indent
+
+
+@dataclass(frozen=True)
+class _AutoResumeGeometry:
+    """Measured geometry for one localized production-master table."""
+
+    row_heights: tuple[float, ...]
+    column_widths: tuple[float, float]
+    cell_insets: tuple[tuple[float, float], tuple[float, float]]
+    first_line_indent: float
+    space_before: float
+
+
+_AUTO_RESUME_WIDTH = 311.02
+_AUTO_RESUME_LEADING = 5.0
+_AUTO_RESUME_COMPACT_THRESHOLD = 55
+_AUTO_RESUME_FRAME_SLACK = 0.5
+_AUTO_RESUME_HEADERS = {
+    "auto resume conditions": "en",
+    "conditions de reprise automatique": "fr",
+    "condiciones de reanudación automática": "es",
+}
+_AUTO_RESUME_GEOMETRY = {
+    "en": _AutoResumeGeometry(
+        row_heights=(12.50, 11.49, 11.48, 10.01, 10.75),
+        column_widths=(157.52, 152.00),
+        cell_insets=((5.2, 2.4), (5.2, 2.4)),
+        first_line_indent=-6.82,
+        space_before=6.62,
+    ),
+    "fr": _AutoResumeGeometry(
+        row_heights=(12.50, 14.45, 11.49, 10.01, 10.75),
+        column_widths=(147.78, 161.74),
+        cell_insets=((2.8, 2.4), (2.4, 2.4)),
+        first_line_indent=-2.57,
+        space_before=8.04,
+    ),
+    "es": _AutoResumeGeometry(
+        row_heights=(12.50, 10.85, 11.48, 10.01, 10.75),
+        column_widths=(147.78, 161.74),
+        cell_insets=((2.8, 2.4), (2.4, 2.4)),
+        first_line_indent=-5.49,
+        space_before=9.26,
+    ),
+}
+
+
+def _plain_cell(value: object) -> str:
+    """Normalize table copy for governed-header matching."""
+    return " ".join(str(value).replace("**", "").split())
+
+
+def auto_resume_language(raw_rows: list[list]) -> str | None:
+    """Return the locale encoded by an approved Auto Resume header."""
+    if (
+        not raw_rows
+        or not raw_rows[0]
+        or max((len(row) for row in raw_rows), default=0) != 2
+    ):
+        return None
+    return _AUTO_RESUME_HEADERS.get(_plain_cell(raw_rows[0][0]).casefold())
 
 
 def body_data_table_kind(raw_rows: list[list]) -> str | None:
     """Classify the two source-driven body tables that share group layout."""
     if not raw_rows:
         return None
-    n_cols = max(len(row) for row in raw_rows)
-    first_cell = str(raw_rows[0][0]).replace("**", "").strip()
-    if n_cols == 2 and first_cell == "Auto Resume Conditions":
+    if auto_resume_language(raw_rows) is not None:
         return "auto_resume"
-    if (
-        n_cols == 3
-        and first_cell == "Buttons"
-        and [str(cell).strip() for cell in raw_rows[0][1:3]]
-        == ["Operation", "Function"]
-    ):
+    if is_key_combinations_rows(raw_rows):
+        return "key_combinations"
+    # Preserve the generic-table fallback used by shortened/unit-test inputs
+    # with a governed localized header. A production-shaped five-row table is
+    # never allowed through this header-only path: it must pass the semantic
+    # button-pair check above before fixed Key assets can be selected.
+    header = tuple(
+        _plain_cell(cell).casefold()
+        for cell in raw_rows[0][:3]
+    )
+    localized_key_headers = {
+        ("buttons", "operation", "function"),
+        ("boutons", "utilisation", "fonction"),
+        ("botones", "operación", "función"),
+    }
+    if len(raw_rows) != 5 and header in localized_key_headers:
         return "key_combinations"
     return None
 
@@ -192,21 +273,39 @@ def _troubleshooting_table(raw_rows: list[list], ctx: RenderContext, tid: str) -
     )
 
 
-def _body_data_table(raw_rows: list[list], ctx: RenderContext, tid: str,
-                     kind: str) -> tuple[str, float]:
+def _body_data_table(
+    raw_rows: list[list],
+    ctx: RenderContext,
+    tid: str,
+    kind: str,
+    *,
+    panel_width: float | None = None,
+    row_heights: tuple[float, ...] | None = None,
+    column_widths: tuple[float, ...] | None = None,
+    cell_insets: tuple[tuple[float, float], ...] | None = None,
+) -> tuple[str, float]:
     """Mirror the shared LaTeX Auto Resume / Key Combination table tokens."""
     # The table shell owns the full body measure.  The requested one-character
     # inset belongs to the cells (``comp_table_text_indent``), never to the
     # heading/description/table group as a whole.
-    body_w = ctx.text_measure - 1.5
+    body_w = (panel_width or ctx.text_measure) - 1.5
     # LaTeX's m-columns add tabcolsep around the declared percentage.
     # These optical additions place the visible dividers at the same x
     # coordinates instead of treating the bare percentages as full cells.
     first_optical = 2.76
     if kind == "auto_resume":
-        left = float(ctx.params.get("comp_auto_resume_left_ratio", ("0.5", ""))[0])
-        first_w = body_w * left + first_optical
-        cols = [first_w, body_w - first_w]
+        if column_widths is not None:
+            if len(column_widths) != 2:
+                raise ValueError("Auto Resume column geometry must have two widths")
+            if abs(sum(column_widths) - body_w) > 0.01:
+                raise ValueError("Auto Resume column geometry does not match panel width")
+            cols = list(column_widths)
+        else:
+            left = float(
+                ctx.params.get("comp_auto_resume_left_ratio", ("0.5", ""))[0]
+            )
+            first_w = body_w * left + first_optical
+            cols = [first_w, body_w - first_w]
     else:
         left = float(ctx.params.get("comp_key_table_left_ratio", ("0.41", ""))[0])
         middle = float(ctx.params.get("comp_key_table_middle_ratio", ("0.29", ""))[0])
@@ -225,6 +324,8 @@ def _body_data_table(raw_rows: list[list], ctx: RenderContext, tid: str,
     rule = param_pt(ctx.params, "comp_table_inner_rule", 0.2)
     cells: list[str] = []
     n_cols = len(cols)
+    if cell_insets is not None and len(cell_insets) != n_cols:
+        raise ValueError("Auto Resume cell inset geometry does not match columns")
     for ri, row in enumerate(raw_rows):
         for ci in range(n_cols):
             text = str(row[ci]) if ci < len(row) else ""
@@ -241,12 +342,36 @@ def _body_data_table(raw_rows: list[list], ctx: RenderContext, tid: str,
                 else "Color/HB Bg K05" if ci == 0
                 else None
             )
+            paragraph = psr(
+                "HB Data Header" if ri == 0 else "HB Data Body",
+                text,
+                terminal=True,
+            )
+            if kind == "auto_resume" and ri > 0:
+                # The production master uses tight 5pt leading in this one
+                # fixed-height table. Long right-column copy uses 5.5pt at
+                # every body-row position so FR protection and ES timer copy
+                # remain on one line instead of growing into the next row.
+                point_size = (
+                    5.5
+                    if ci == 1
+                    and len(_plain_cell(text)) >= _AUTO_RESUME_COMPACT_THRESHOLD
+                    else 6.0
+                )
+                paragraph = with_character_metrics(
+                    paragraph,
+                    point_size=point_size,
+                    leading=_AUTO_RESUME_LEADING,
+                )
+            left_inset, right_inset = (
+                cell_insets[ci]
+                if cell_insets is not None else (text_indent, pad)
+            )
             cell_xml = cell(
                 f"{tid}c{ri}_{ci}", f"{ci}:{ri}",
-                psr("HB Data Header" if ri == 0 else "HB Data Body",
-                    text, terminal=True),
+                paragraph,
                 fill=fill, top=0, bottom=0,
-                left=text_indent, right=pad,
+                left=left_inset, right=right_inset,
                 edge_weight=rule, edge_color="Color/HB Brand Dark",
                 valign="CenterAlign",
             )
@@ -255,16 +380,22 @@ def _body_data_table(raw_rows: list[list], ctx: RenderContext, tid: str,
             cells.append(cell_xml)
     table = component_table(tid, cols, cells, n_rows=len(raw_rows), role="data")
     table = suppress_outer_edges_xml(table, n_cols)
-    for ri in range(len(raw_rows)):
-        minimum = header_h if ri == 0 else row_h
+    if row_heights is not None and len(row_heights) != len(raw_rows):
+        raise ValueError("Auto Resume row geometry does not match source rows")
+    applied_heights = row_heights or tuple(
+        header_h if ri == 0 else row_h
+        for ri in range(len(raw_rows))
+    )
+    for ri, minimum in enumerate(applied_heights):
+        auto_grow = not (kind == "auto_resume" and row_heights is not None)
         table = re.sub(
             rf'(<Row Self="{re.escape(tid)}r{ri}" Name="{ri}")/?>',
             rf'\1 SingleRowHeight="{minimum:g}" MinimumHeight="{minimum:g}" '
-            'AutoGrow="true"/>',
+            f'AutoGrow="{str(auto_grow).lower()}"/>',
             table,
             count=1,
         )
-    return table, header_h + row_h * (len(raw_rows) - 1) + 3.0
+    return table, sum(applied_heights) + (0.0 if row_heights else 3.0)
 
 
 def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
@@ -279,6 +410,35 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
     body_kind = body_data_table_kind(raw_rows)
     is_auto_resume = body_kind == "auto_resume"
     is_key_combinations = body_kind == "key_combinations"
+    auto_language = auto_resume_language(raw_rows) if is_auto_resume else None
+    auto_geometry = _AUTO_RESUME_GEOMETRY.get(auto_language or "")
+    if auto_geometry is not None and len(raw_rows) != len(auto_geometry.row_heights):
+        auto_geometry = None
+    data_table_before = param_pt(ctx.params, "comp_data_table_before", 3.4)
+    data_table_after = param_pt(ctx.params, "comp_data_table_after", 3.4)
+    auto_space_before = (
+        auto_geometry.space_before
+        if auto_geometry is not None else data_table_before
+    )
+    if (
+        is_key_combinations
+        and ctx.add_story is not None
+        and is_key_combinations_rows(raw_rows)
+    ):
+        xml, framed_h = render_key_combinations(
+            raw_rows,
+            ctx,
+            tid=tid,
+            terminal=terminal,
+        )
+        if xml:
+            after = param_pt(ctx.params, "comp_data_table_after", 3.4)
+            xml = xml.replace(
+                "<ParagraphStyleRange ",
+                f'<ParagraphStyleRange SpaceAfter="{after:g}" ',
+                1,
+            )
+            return xml, framed_h + after
     if is_overview:
         table = _overview_table(raw_rows, ctx, tid)
     elif is_troubleshooting:
@@ -287,6 +447,22 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
         table, framed_h = _body_data_table(
             raw_rows, ctx, tid,
             "auto_resume" if is_auto_resume else "key_combinations",
+            panel_width=(
+                min(_AUTO_RESUME_WIDTH, ctx.text_measure)
+                if auto_geometry is not None else None
+            ),
+            row_heights=(
+                auto_geometry.row_heights
+                if auto_geometry is not None else None
+            ),
+            column_widths=(
+                auto_geometry.column_widths
+                if auto_geometry is not None else None
+            ),
+            cell_insets=(
+                auto_geometry.cell_insets
+                if auto_geometry is not None else None
+            ),
         )
     elif n_cols <= 2:
         rows2 = [(r[0], r[1] if len(r) > 1 else "") for r in raw_rows]
@@ -310,13 +486,18 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
         table = component_table(tid, cols, cells, n_rows=len(raw_rows),
                                 role="data")
     if (is_auto_resume or is_key_combinations) and ctx.add_story is not None:
+        table_width = (
+            min(_AUTO_RESUME_WIDTH, ctx.text_measure)
+            if auto_geometry is not None else ctx.text_measure
+        )
+        table_before = auto_space_before if is_auto_resume else data_table_before
         xml = rounded_table_panel(
             ctx.add_story,
             ctx.params,
             sid=f"st_anchor_data_{tid}",
             title="body data table",
             table_xml=table,
-            width=ctx.text_measure,
+            width=table_width,
             height=framed_h,
             n_cols=n_cols,
             terminal=terminal,
@@ -330,9 +511,28 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
                 ),
                 "bottom_right": "Color/Paper",
             },
-            space_before=param_pt(ctx.params, "comp_data_table_before", 3.4),
-            space_after=param_pt(ctx.params, "comp_data_table_after", 3.4),
+            # InDesign ignores the nested inline Group transform. The host
+            # paragraph below owns the measured first-line offset instead.
+            left_indent=0.0,
+            space_before=table_before,
+            space_after=(
+                max(0.0, data_table_after - _AUTO_RESUME_FRAME_SLACK)
+                if is_auto_resume else data_table_after
+            ),
+            content_bottom_bleed=(
+                _AUTO_RESUME_FRAME_SLACK if is_auto_resume else 0.0
+            ),
         )
+        if auto_geometry is not None:
+            paragraph_indent = (
+                auto_geometry.first_line_indent - ctx.inline_origin_shift
+            )
+            xml = xml.replace(
+                "<ParagraphStyleRange ",
+                '<ParagraphStyleRange LeftIndent="0" '
+                f'FirstLineIndent="{paragraph_indent:g}" ',
+                1,
+            )
     elif is_troubleshooting and ctx.add_story is not None:
         xml = rounded_table_panel(
             ctx.add_story,
@@ -372,6 +572,8 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             '<ParagraphStyleRange SpaceBefore="9.74" ',
             1,
         )
-    if is_auto_resume or is_key_combinations:
+    if is_auto_resume:
+        return xml, framed_h + auto_space_before + data_table_after
+    if is_key_combinations:
         return xml, framed_h + 2 * param_pt(ctx.params, "comp_data_table_before", 3.4)
     return xml, 11.0 * (len(raw_rows) + 1)
