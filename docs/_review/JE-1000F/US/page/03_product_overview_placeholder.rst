@@ -8,7 +8,7 @@ PRODUCT OVERVIEW
 FRONT VIEW
 -------------------------------------
 
-.. image:: asset:overview/front_controls
+.. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
    :alt: FRONT VIEW
    :width: 420px
 
@@ -50,7 +50,7 @@ FRONT VIEW
 RIGHT SIDE VIEW
 ------------------------------------------
 
-.. image:: asset:overview/right_side_ports
+.. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
    :alt: RIGHT SIDE VIEW
    :width: 420px
 

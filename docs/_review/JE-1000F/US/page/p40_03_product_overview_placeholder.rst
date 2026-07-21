@@ -8,7 +8,7 @@ DESCRIPCIÓN GENERAL DEL PRODUCTO
 VISTA FRONTAL
 -------------
 
-.. image:: asset:overview/front_controls
+.. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
    :alt: Diagrama de vista frontal.
    :width: 420px
 
@@ -50,7 +50,7 @@ VISTA FRONTAL
 VISTA LATERAL DERECHA
 ---------------------
 
-.. image:: asset:overview/right_side_ports
+.. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
    :alt: Diagrama de vista lateral derecha.
    :width: 420px
 

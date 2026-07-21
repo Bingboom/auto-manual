@@ -8,7 +8,7 @@ APERÇU DU PRODUIT
 VUE DE FACE
 -----------
 
-.. image:: asset:overview/front_controls
+.. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
    :alt: Schéma de la vue de face.
    :width: 420px
 
@@ -50,7 +50,7 @@ VUE DE FACE
 VUE LATÉRALE DROITE
 -------------------
 
-.. image:: asset:overview/right_side_ports
+.. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
    :alt: Schéma de la vue latérale droite.
    :width: 420px
 
