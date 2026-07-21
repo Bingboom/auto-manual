@@ -650,7 +650,14 @@ def _move_car_notice_to_storage(
     if not notice_indices:
         return items
     notice_index = notice_indices[-1]
-    if not any(kind == "image" for kind, _payload in method_blocks[last_h2:notice_index]):
+    if not any(
+        kind == "image"
+        or (
+            kind == "component"
+            and _component_kind(payload) == "referencefigure"
+        )
+        for kind, payload in method_blocks[last_h2:notice_index]
+    ):
         return items
     notice = method_blocks[notice_index]
     items[methods_index] = (

@@ -38,6 +38,11 @@ class ReferenceStoryEmitter:
             (self.page_plan or {}).get("plan_source") == "approved-reference"
             and "charging_methods" in title
         )
+        is_charging_intro = (
+            (self.page_plan or {}).get("plan_source") == "approved-reference"
+            and "charging" in title.casefold()
+            and "charging_methods" not in title.casefold()
+        )
         is_app = is_je1000f_us_en_app_reference_plan_page(
             self.page_plan,
             title,
@@ -99,6 +104,20 @@ class ReferenceStoryEmitter:
                 "comp_warranty_page_extra_height",
                 17.0,
             )
+        elif is_charging_methods or is_charging_intro:
+            # The approved charging compositions end on a dense final frame.
+            # Reuse the contracted 18 pt deep-frame allowance used by the
+            # adjacent editable operation composition so InDesign does not
+            # mark the final charging paragraph overset.
+            bottom_extra = param_pt(
+                writer.params,
+                "comp_operation_page_extra_height",
+                18.0,
+            )
+            if title.casefold().startswith("p29_08_"):
+                # The approved French charging page carries the longest
+                # localized copy in the final frame.
+                bottom_extra += 36.0
         else:
             bottom_extra = 0.0
         writer.add_spread_chain(

@@ -177,6 +177,7 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
         )
 
         self.assertEqual(18.0, writer.spread_chain_options[0]["bottom_extra"])
+
         self.assertEqual(
             -6.82,
             writer.spread_chain_options[0]["last_frame_x_offset"],
@@ -222,6 +223,41 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
         )
 
         self.assertEqual(23.8, writer.spread_chain_options[0]["first_top_offset"])
+        self.assertEqual(18.0, writer.spread_chain_options[0]["bottom_extra"])
+
+        writer = _RecordingWriter()
+        emitter = ReferenceStoryEmitter(
+            writer,
+            _RecordingToc(),
+            ROOT,
+            {"plan_source": "approved-reference"},
+        )
+        emitter.emit(
+            "st_p29_08_charging_methods",
+            "p29_08_charging_methods",
+            [("h2", "Localized charging heading")],
+            page_cursor=28,
+        )
+        self.assertEqual(54.0, writer.spread_chain_options[0]["bottom_extra"])
+
+    def test_approved_charging_intro_chain_gets_dense_final_frame_allowance(self) -> None:
+        writer = _RecordingWriter()
+        toc = _RecordingToc()
+        emitter = ReferenceStoryEmitter(
+            writer,
+            toc,
+            ROOT,
+            {"plan_source": "approved-reference"},
+        )
+
+        emitter.emit(
+            "st_flow_06_ups_mode_charging",
+            "06_ups_mode + charging",
+            [("h1", "UPS MODE"), ("body", "Charging via AC wall outlet")],
+            page_cursor=13,
+        )
+
+        self.assertEqual(18.0, writer.spread_chain_options[0]["bottom_extra"])
 
     def test_app_chain_uses_reference_top_offset(self) -> None:
         for language in ("en", "en-US", "en_US"):

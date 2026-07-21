@@ -669,7 +669,7 @@ The approved contract freezes these identities:
 | Reference SHA-256 | `e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2` |
 | Page contract | 58 pages, `368.787 × 524.692 pt`, tolerance `0.02 pt` |
 | Print contract | PDF/X-4, Output Intent `Japan Color 2001 Coated`, Output Condition `JC200103` |
-| Manual content SHA-256 | `5373cf4bf10f8dd1ca5521cd84803bf014071977d6284e7d6ff35d0e63ae89ea` |
+| Manual content SHA-256 | `e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3` |
 | Snapshot SHA-256 | `a3e77b847bdf372665b25a15bf441455fc5e4def5c3dd58ba3aa852b61e11203` |
 | Style-contract SHA-256 | `83411e87ec9bbb45085fae5fbd9a590cef3f1acd776e568db807b78cfac57df6` |
 | Layout-params SHA-256 | `4927215c0aca45ce6294dc75ef43628f1d02979add3141f6a3d90bda267685b9` |

@@ -1165,6 +1165,50 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn(car_notice, emitted[0][1])
         self.assertNotIn(car_notice, emitted[1][1])
 
+    def test_approved_charging_tail_moves_after_car_reference_figure_promotion(self) -> None:
+        from tools.idml.prose_flow import _move_car_notice_to_storage
+
+        car_notice = (
+            "component",
+            json.dumps({"kind": "notice", "label": "ATTENTION", "texts": ["x"]}),
+        )
+        car_figure = (
+            "component",
+            json.dumps({"kind": "referencefigure", "layout": "charging_car"}),
+        )
+        items = [
+            ("p29_08_charging_methods", [
+                ("h2", "Solar"),
+                ("component", json.dumps({"kind": "referencefigure", "layout": "charging_car"})),
+                ("h2", "Car"),
+                car_figure,
+                car_notice,
+            ], 1),
+            ("p30_09_storage_and_maintenance", [("h1", "Storage")], 1),
+        ]
+
+        emitted = _move_car_notice_to_storage(
+            items,
+            {
+                "plan_source": "approved-reference",
+                "pages": [
+                    {
+                        "source_path": "page/p29_08_charging_methods.rst",
+                        "composition_id": "methods",
+                        "planned_page_count": 2,
+                    },
+                    {
+                        "source_path": "page/p30_09_storage_and_maintenance.rst",
+                        "composition_id": "storage",
+                        "planned_page_count": 1,
+                    },
+                ],
+            },
+        )
+
+        self.assertNotIn(car_notice, emitted[0][1])
+        self.assertEqual(car_notice, emitted[1][1][0])
+
     def test_approved_app_flow_starts_second_page_at_first_post_device_notice(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer
 
