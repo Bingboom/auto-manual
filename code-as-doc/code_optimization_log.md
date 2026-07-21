@@ -1,6 +1,6 @@
 ﻿# Code Optimization Log
 
-Updated: 2026-07-17
+Updated: 2026-07-21
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -834,3 +834,22 @@ What was verified:
 Why it mattered:
 
 - the first operational follow-up caught two ways a checklist can overstate readiness: a green CI status with an incomplete recovery point, and a version match without a rendered deliverable. The checklist now remains open until the observable exit criteria are actually present.
+
+## 53. 2026-07-21: Publish Repaired Repo-Wide + Milestone K Tier 1 Closed
+
+What changed (the JE-1000F_US 1.6 publish campaign — 11 runs, 5 real gates, 10 green-gated PRs):
+
+- **Publish had been silently broken for every target since #675 (07-17)** — `check` never exercised the LaTeX asset-copy or IDML paths, so CI stayed green while the publish leg was dead. The first real publish surfaced five independent gates, fixed in sequence:
+  1. env: the capability-gate table id (`FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` → `02_主数据_Document_key`) was newer than the local env files;
+  2. asset three-source basename conflicts → the **target-override precedence trilogy** ([#690](https://github.com/Bingboom/auto-manual/pull/690)/[#691](https://github.com/Bingboom/auto-manual/pull/691)/[#694](https://github.com/Bingboom/auto-manual/pull/694)): registry-declared overrides (`renderers/latex/assets`) win the flat latex namespace **by bytes, in either arrival order**; unknown-provenance and generic-vs-generic conflicts still hard-fail. One wrong turn owned and reverted ([#688](https://github.com/Bingboom/auto-manual/pull/688)→[#689](https://github.com/Bingboom/auto-manual/pull/689)): writing a US-specific override into the global shared slot — the registry hash gates caught it exactly as designed, and merges have been exit-code-green-gated since;
+  3. the approved reference contract was un-satisfiable after a partial refresh (3/55 identity fields) → temporarily unregistered ([#693](https://github.com/Bingboom/auto-manual/pull/693)), complete re-baseline owed by the replica line;
+  4. review-branch overview pages still carried the 1.5-era grid → 1.6 params zipped into the old grid produced malformed tables → propagated main's balanced grid ([#695](https://github.com/Bingboom/auto-manual/pull/695); branch CI cannot resolve `asset:` URIs, so legacy image paths were kept);
+  5. page parity 63-vs-61 proved compositional (LaTeX packs preface+safety and gives the TOC no page; the writer anchors them discretely) → the equality gate now binds **only approved reference plans**, fallback prints an explicit NOTE ([#696](https://github.com/Bingboom/auto-manual/pull/696)).
+- **Acceptance semantics corrected: known-good = known-BASELINE.** Overset ⊞ is a designed designer-workflow item (the delivery's own checklist documents drag-to-reveal); no overset=0 package has ever existed. The second-host runbook now accepts on report parity against the shipped baseline — which retroactively re-explains the 1.5 "failure" (the real defect was a fonts-less package; its 2 oversets were by design).
+- **K7 closed / Tier 1 fully closed:** `ArriettyMac-mini` finalized the 1.6 handoff zip end-to-end; the report matched the main-Mac baseline item-for-item (63 pages, 546 stories, 11 identical overset ids, fonts/links clean, PDF/X-4 + Japan Color 2001 Coated pass, pin=match; JSON diff zero after path fields) ⇒ hosts equivalent ([#697](https://github.com/Bingboom/auto-manual/pull/697)). The one delivery leg outside CI now has a version pin, a drilled second host, and a baseline-parity acceptance contract.
+
+Why it mattered:
+
+- The campaign was the discovery engine at full throttle: one business deliverable (a verification package) surfaced and fixed a repo-wide publish outage, hardened the asset-override design to its declared semantics, exposed the incomplete contract re-baseline, and corrected a wrong acceptance criterion — none of which any planning exercise had found.
+- Standing follow-up (owned by the replica line): the complete approved-contract re-baseline for 1.6-class content (then re-register #693, strict parity returns via #696, and the 11 fallback oversets resolve under approved frame geometry).
+
