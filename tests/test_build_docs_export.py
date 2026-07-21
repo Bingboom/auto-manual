@@ -84,6 +84,78 @@ class TestBuildDocsExport(unittest.TestCase):
 
             self.assertEqual(b"sphinx bytes", (latex_out_dir / "cover.pdf").read_bytes())
 
+    def test_target_scoped_override_wins_over_shared_copy(self) -> None:
+        """Registry target overrides (renderers/latex/assets) replace the shared
+        common_assets copy of the SAME basename — the 2026-07-20 live case
+        (charging/je1000f_us/car_charge over charging/car_charge)."""
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle_dir = root / "bundle"
+            latex_out_dir = root / "latex"
+            shared = (
+                bundle_dir / "_assets" / "templates" / "word_template"
+                / "common_assets" / "charging" / "car_charge.png"
+            )
+            override = bundle_dir / "renderers" / "latex" / "assets" / "car_charge.png"
+            shared.parent.mkdir(parents=True)
+            override.parent.mkdir(parents=True)
+            latex_out_dir.mkdir()
+            shared.write_bytes(b"shared burned-text bytes")
+            override.write_bytes(b"target-scoped override bytes")
+            messages: list[str] = []
+
+            _copy_attachment_images_for_latex(bundle_dir, latex_out_dir, messages.append)
+
+            self.assertEqual(
+                b"target-scoped override bytes",
+                (latex_out_dir / "car_charge.png").read_bytes(),
+            )
+            self.assertTrue(
+                any("target-scoped override" in message for message in messages),
+                messages,
+            )
+
+    def test_two_generic_roots_with_different_bytes_still_collide(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle_dir = root / "bundle"
+            latex_out_dir = root / "latex"
+            attachment = bundle_dir / "_repo_assets" / "page" / "_attachments" / "icon.png"
+            shared = (
+                bundle_dir / "_assets" / "templates" / "word_template"
+                / "common_assets" / "symbols" / "icon.png"
+            )
+            attachment.parent.mkdir(parents=True)
+            shared.parent.mkdir(parents=True)
+            latex_out_dir.mkdir()
+            attachment.write_bytes(b"attachment bytes")
+            shared.write_bytes(b"different shared bytes")
+
+            with self.assertRaisesRegex(RuntimeError, "LaTeX asset basename collision"):
+                _copy_attachment_images_for_latex(bundle_dir, latex_out_dir, lambda _message: None)
+
+    def test_override_identical_to_shared_copies_once_without_notice(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle_dir = root / "bundle"
+            latex_out_dir = root / "latex"
+            shared = (
+                bundle_dir / "_assets" / "templates" / "word_template"
+                / "common_assets" / "overview" / "front_controls.png"
+            )
+            override = bundle_dir / "renderers" / "latex" / "assets" / "front_controls.png"
+            shared.parent.mkdir(parents=True)
+            override.parent.mkdir(parents=True)
+            latex_out_dir.mkdir()
+            shared.write_bytes(b"same bytes")
+            override.write_bytes(b"same bytes")
+            messages: list[str] = []
+
+            _copy_attachment_images_for_latex(bundle_dir, latex_out_dir, messages.append)
+
+            self.assertEqual(b"same bytes", (latex_out_dir / "front_controls.png").read_bytes())
+            self.assertFalse(any("override" in message for message in messages), messages)
+
 
 if __name__ == "__main__":
     unittest.main()
