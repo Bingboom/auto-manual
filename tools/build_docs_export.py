@@ -45,16 +45,24 @@ def _copy_attachment_images_for_latex(
     if dynamic_latex_assets.is_dir():
         image_roots.append(dynamic_latex_assets)
     copied = 0
-    # basename -> src for files THIS sweep wrote from the generic roots
-    # (attachments / common_assets). The registry declares target-scoped
-    # overrides homed under renderers/latex/assets whose basenames MATCH the
-    # shared asset they override (e.g. charging/je1000f_us/car_charge over
-    # charging/car_charge, 2026-07-20 first live case) — for those, the
-    # override wins the flat latex dir by design. A same-basename conflict
-    # against a file Sphinx itself copied (present before this sweep), or
-    # between two generic roots, is still a hard error: those are real
-    # collisions, not declared overrides.
-    generic_written: dict[str, Path] = {}
+    # The registry declares target-scoped overrides homed under
+    # renderers/latex/assets whose basenames MATCH the shared asset they
+    # override (charging/je1000f_us/car_charge over charging/car_charge,
+    # 2026-07-20 first live case) — for those, the override wins the flat
+    # latex dir by design. "The shared asset" is identified by BYTES, not by
+    # who copied it: Sphinx pre-copies the common_assets image whenever a
+    # page references it via ``.. image::`` (the run-5 finding), so a
+    # pre-existing dst whose bytes equal a generic root's same-basename file
+    # is the same override scenario. Anything else — Sphinx-copied bytes that
+    # match no generic source, or two generic roots disagreeing — is a real
+    # collision and still raises.
+    generic_sources: dict[str, bytes] = {}
+    for root in image_roots:
+        if root == dynamic_latex_assets:
+            continue
+        for src in sorted(root.rglob("*")):
+            if src.is_file() and src.suffix.lower() in (".png", ".jpg", ".jpeg", ".pdf"):
+                generic_sources.setdefault(src.name, src.read_bytes())
     for root in image_roots:
         is_override_root = root == dynamic_latex_assets
         for src in sorted(root.rglob("*")):
@@ -69,10 +77,10 @@ def _copy_attachment_images_for_latex(
                     )
                 if dst.read_bytes() == content:
                     continue
-                if is_override_root and src.name in generic_written:
+                if is_override_root and dst.read_bytes() == generic_sources.get(src.name):
                     printer(
                         f"[build] target-scoped override: {src.name} from renderers/latex/assets "
-                        f"replaces the shared copy ({generic_written[src.name]})"
+                        "replaces the shared copy"
                     )
                     dst.write_bytes(content)
                     continue
@@ -80,8 +88,6 @@ def _copy_attachment_images_for_latex(
                     f"LaTeX asset basename collision for {src.name}: {src} -> {dst}"
                 )
             dst.write_bytes(content)
-            if not is_override_root:
-                generic_written[src.name] = src
             copied += 1
     if copied:
         printer(f"[build] Copied {copied} attachment/asset image(s) into latex dir")

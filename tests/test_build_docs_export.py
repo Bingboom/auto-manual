@@ -157,5 +157,62 @@ class TestBuildDocsExport(unittest.TestCase):
             self.assertFalse(any("override" in message for message in messages), messages)
 
 
+    def test_override_wins_over_sphinx_precopied_shared_asset(self) -> None:
+        """Run-5 live finding: Sphinx pre-copies the shared common_assets image
+        into the latex dir whenever a page references it via ``.. image::``.
+        When the pre-existing dst's BYTES equal the generic root's
+        same-basename file, it is the same shared asset — the target-scoped
+        override still wins."""
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle_dir = root / "bundle"
+            latex_out_dir = root / "latex"
+            shared = (
+                bundle_dir / "_assets" / "templates" / "word_template"
+                / "common_assets" / "charging" / "car_charge.png"
+            )
+            override = bundle_dir / "renderers" / "latex" / "assets" / "car_charge.png"
+            shared.parent.mkdir(parents=True)
+            override.parent.mkdir(parents=True)
+            latex_out_dir.mkdir()
+            shared.write_bytes(b"shared burned-text bytes")
+            override.write_bytes(b"target-scoped override bytes")
+            # Sphinx already copied the shared image before the sweep runs
+            (latex_out_dir / "car_charge.png").write_bytes(b"shared burned-text bytes")
+            messages: list[str] = []
+
+            _copy_attachment_images_for_latex(bundle_dir, latex_out_dir, messages.append)
+
+            self.assertEqual(
+                b"target-scoped override bytes",
+                (latex_out_dir / "car_charge.png").read_bytes(),
+            )
+            self.assertTrue(
+                any("target-scoped override" in message for message in messages),
+                messages,
+            )
+
+    def test_sphinx_precopied_unknown_bytes_still_collide_with_override(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle_dir = root / "bundle"
+            latex_out_dir = root / "latex"
+            shared = (
+                bundle_dir / "_assets" / "templates" / "word_template"
+                / "common_assets" / "charging" / "car_charge.png"
+            )
+            override = bundle_dir / "renderers" / "latex" / "assets" / "car_charge.png"
+            shared.parent.mkdir(parents=True)
+            override.parent.mkdir(parents=True)
+            latex_out_dir.mkdir()
+            shared.write_bytes(b"shared bytes")
+            override.write_bytes(b"override bytes")
+            # pre-existing dst matches NEITHER the shared source nor the override
+            (latex_out_dir / "car_charge.png").write_bytes(b"mystery bytes")
+
+            with self.assertRaisesRegex(RuntimeError, "LaTeX asset basename collision"):
+                _copy_attachment_images_for_latex(bundle_dir, latex_out_dir, lambda _m: None)
+
+
 if __name__ == "__main__":
     unittest.main()
