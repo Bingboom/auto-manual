@@ -45,19 +45,43 @@ def _copy_attachment_images_for_latex(
     if dynamic_latex_assets.is_dir():
         image_roots.append(dynamic_latex_assets)
     copied = 0
+    # basename -> src for files THIS sweep wrote from the generic roots
+    # (attachments / common_assets). The registry declares target-scoped
+    # overrides homed under renderers/latex/assets whose basenames MATCH the
+    # shared asset they override (e.g. charging/je1000f_us/car_charge over
+    # charging/car_charge, 2026-07-20 first live case) — for those, the
+    # override wins the flat latex dir by design. A same-basename conflict
+    # against a file Sphinx itself copied (present before this sweep), or
+    # between two generic roots, is still a hard error: those are real
+    # collisions, not declared overrides.
+    generic_written: dict[str, Path] = {}
     for root in image_roots:
+        is_override_root = root == dynamic_latex_assets
         for src in sorted(root.rglob("*")):
             if not src.is_file() or src.suffix.lower() not in (".png", ".jpg", ".jpeg", ".pdf"):
                 continue
             dst = latex_out_dir / src.name
             content = src.read_bytes()
             if dst.exists() or dst.is_symlink():
-                if dst.is_symlink() or not dst.is_file() or dst.read_bytes() != content:
+                if dst.is_symlink() or not dst.is_file():
                     raise AssetRegistryError(
                         f"LaTeX asset basename collision for {src.name}: {src} -> {dst}"
                     )
-                continue
+                if dst.read_bytes() == content:
+                    continue
+                if is_override_root and src.name in generic_written:
+                    printer(
+                        f"[build] target-scoped override: {src.name} from renderers/latex/assets "
+                        f"replaces the shared copy ({generic_written[src.name]})"
+                    )
+                    dst.write_bytes(content)
+                    continue
+                raise AssetRegistryError(
+                    f"LaTeX asset basename collision for {src.name}: {src} -> {dst}"
+                )
             dst.write_bytes(content)
+            if not is_override_root:
+                generic_written[src.name] = src
             copied += 1
     if copied:
         printer(f"[build] Copied {copied} attachment/asset image(s) into latex dir")
