@@ -10,7 +10,7 @@ from typing import Callable
 
 from .asset_contracts import (
     APP_PAIRING_PANEL_ASSET_URI,
-    is_je1000f_us_en_app_reference_plan_page,
+    is_je1000f_us_app_reference_plan_page,
 )
 
 Block = tuple[str, str]
@@ -286,15 +286,17 @@ def align_charging_car_page(blocks: list[Block], page_plan: dict | None,
 
 def align_app_second_page(blocks: list[Block], page_plan: dict | None,
                           stem: str) -> list[Block]:
-    """Start the approved English App composition at the post-pairing note.
+    """Start every approved localized App composition at the post-pairing note.
 
-    The measured 15.1 pt continuation offset belongs to the English source
-    page only.  FR and ES have different copy shapes and retain their existing
-    ordinary page-break behavior.
+    English, French, and Spanish share the same physical reference split:
+    page one ends after the pairing step and page two starts at its note.  The
+    copy itself remains localized and editable; only the page boundary is
+    governed here so longer translations cannot pull the note back onto the
+    first page.
     """
     from .latex_page_plan import planned_span
     if (
-        not is_je1000f_us_en_app_reference_plan_page(page_plan, stem)
+        not is_je1000f_us_app_reference_plan_page(page_plan, stem)
         or planned_span(page_plan, [stem], 1) < 2
     ):
         return blocks
@@ -367,7 +369,7 @@ def promote_reference_figures(
         r"(?:p\d+_)?08_charging_methods",
         stem.casefold(),
     ) is not None
-    is_app = is_je1000f_us_en_app_reference_plan_page(page_plan, stem)
+    is_app = is_je1000f_us_app_reference_plan_page(page_plan, stem)
     if not is_charging and not is_app:
         return blocks
 

@@ -1277,7 +1277,7 @@ class ExportIdmlTests(unittest.TestCase):
                 self.assertEqual(10.943, notice_spec["inline_x_offset"])
                 self.assertEqual(44.737, notice_spec["panel_height"])
 
-    def test_localized_app_flows_keep_their_existing_breaks_and_blocks(self) -> None:
+    def test_localized_app_flows_use_the_approved_english_page_split(self) -> None:
         from tools.idml.prose_flow import (
             align_app_second_page,
             promote_reference_figures,
@@ -1324,13 +1324,17 @@ class ExportIdmlTests(unittest.TestCase):
                     }],
                 }
 
+                aligned = align_app_second_page(blocks, plan, stem)
+                self.assertIn(("layout", "page_break:15.1"), aligned)
+                promoted = promote_reference_figures(aligned, plan, stem)
+                layouts = [
+                    json.loads(payload)["layout"]
+                    for kind, payload in promoted
+                    if kind == "component"
+                    and json.loads(payload).get("kind") == "referencefigure"
+                ]
                 self.assertEqual(
-                    blocks,
-                    align_app_second_page(blocks, plan, stem),
-                )
-                self.assertEqual(
-                    blocks,
-                    promote_reference_figures(blocks, plan, stem),
+                    ["app_download", "app_add_device"], layouts,
                 )
 
     def test_approved_reference_figures_absorb_only_adjacent_figure_copy(self) -> None:
@@ -1482,6 +1486,61 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(2.0, notice_specs[0]["paragraph_space_after"])
         self.assertTrue(notice_specs[0]["unbulleted_first"])
         self.assertTrue(notice_specs[1]["unbulleted_first"])
+
+    def test_approved_localized_app_figures_keep_localized_top_layer_labels(self) -> None:
+        from tools.idml.prose_flow import promote_reference_figures
+
+        blocks = [
+            ("image", "_assets/app/download.png"),
+            ("body", "Recherchez Jackery. Scannez le code QR."),
+            ("body", "2.1 Ajouter un appareil"),
+            ("body", "2.2 Allumer l'appareil"),
+            ("image", "_assets/app/add_device_je1000f_us.png"),
+            ("body", "Bouton d'alimentation principal\n"
+                      "Bouton d'alimentation CA\n"
+                      "Bouton d'alimentation CC/USB"),
+            ("body", "2.3 Connexion Bluetooth"),
+        ]
+        plan = {
+            "plan_source": "approved-reference",
+            "approved_contract": {
+                "target": {
+                    "model": "JE-1000F",
+                    "region": "US",
+                    "languages": ["en", "fr", "es"],
+                },
+            },
+            "pages": [{
+                "source_path": "page/p34_12_app_setup_placeholder.rst",
+                "language": "fr",
+                "planned_page_count": 2,
+            }],
+        }
+        promoted = promote_reference_figures(
+            blocks, plan, "p34_12_app_setup_placeholder",
+        )
+        specs = [
+            json.loads(payload)
+            for kind, payload in promoted
+            if kind == "component"
+            and json.loads(payload).get("kind") == "referencefigure"
+        ]
+        self.assertEqual(
+            ["app_download", "app_add_device"],
+            [spec["layout"] for spec in specs],
+        )
+        self.assertEqual(
+            [
+                "Bouton d'alimentation principal",
+                "Bouton d'alimentation CA",
+                "Bouton d'alimentation CC/USB",
+            ],
+            specs[1]["labels"],
+        )
+        self.assertEqual(
+            "asset:controls/je1000f_us/network_pairing_panel",
+            specs[1]["control_image"],
+        )
 
     def test_page_break_layout_does_not_enable_two_columns(self) -> None:
         from tools.idml.ir_projection import project_pages
