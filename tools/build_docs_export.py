@@ -53,16 +53,19 @@ def _copy_attachment_images_for_latex(
     # who copied it: Sphinx pre-copies the common_assets image whenever a
     # page references it via ``.. image::`` (the run-5 finding), so a
     # pre-existing dst whose bytes equal a generic root's same-basename file
-    # is the same override scenario. Anything else — Sphinx-copied bytes that
-    # match no generic source, or two generic roots disagreeing — is a real
+    # is the same override scenario. The rule is symmetric in arrival order
+    # (run-8 finding: pages that reference the asset through its semantic key
+    # make Sphinx materialize the OVERRIDE bytes first — the shared generic
+    # copy must then yield, not raise). Anything else — Sphinx-copied bytes
+    # matching neither side, or two generic roots disagreeing — is a real
     # collision and still raises.
     generic_sources: dict[str, bytes] = {}
+    override_sources: dict[str, bytes] = {}
     for root in image_roots:
-        if root == dynamic_latex_assets:
-            continue
+        target = override_sources if root == dynamic_latex_assets else generic_sources
         for src in sorted(root.rglob("*")):
             if src.is_file() and src.suffix.lower() in (".png", ".jpg", ".jpeg", ".pdf"):
-                generic_sources.setdefault(src.name, src.read_bytes())
+                target.setdefault(src.name, src.read_bytes())
     for root in image_roots:
         is_override_root = root == dynamic_latex_assets
         for src in sorted(root.rglob("*")):
@@ -83,6 +86,12 @@ def _copy_attachment_images_for_latex(
                         "replaces the shared copy"
                     )
                     dst.write_bytes(content)
+                    continue
+                if not is_override_root and dst.read_bytes() == override_sources.get(src.name):
+                    printer(
+                        f"[build] shared copy of {src.name} skipped: the latex dir already "
+                        "carries the target-scoped override"
+                    )
                     continue
                 raise AssetRegistryError(
                     f"LaTeX asset basename collision for {src.name}: {src} -> {dst}"

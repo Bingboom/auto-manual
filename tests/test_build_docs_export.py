@@ -213,6 +213,39 @@ class TestBuildDocsExport(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "LaTeX asset basename collision"):
                 _copy_attachment_images_for_latex(bundle_dir, latex_out_dir, lambda _m: None)
 
+    def test_generic_yields_when_dst_already_carries_the_override(self) -> None:
+        """Run-8 live finding: pages referencing the asset through its semantic
+        key make Sphinx materialize the OVERRIDE bytes into the latex dir
+        first; the shared generic copy must then yield, not raise."""
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle_dir = root / "bundle"
+            latex_out_dir = root / "latex"
+            shared = (
+                bundle_dir / "_assets" / "templates" / "word_template"
+                / "common_assets" / "overview" / "front_controls.png"
+            )
+            override = bundle_dir / "renderers" / "latex" / "assets" / "front_controls.png"
+            shared.parent.mkdir(parents=True)
+            override.parent.mkdir(parents=True)
+            latex_out_dir.mkdir()
+            shared.write_bytes(b"shared base image")
+            override.write_bytes(b"US three-socket override")
+            # Sphinx already materialized the override via the semantic key
+            (latex_out_dir / "front_controls.png").write_bytes(b"US three-socket override")
+            messages: list[str] = []
+
+            _copy_attachment_images_for_latex(bundle_dir, latex_out_dir, messages.append)
+
+            self.assertEqual(
+                b"US three-socket override",
+                (latex_out_dir / "front_controls.png").read_bytes(),
+            )
+            self.assertTrue(
+                any("already" in message and "override" in message for message in messages),
+                messages,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
