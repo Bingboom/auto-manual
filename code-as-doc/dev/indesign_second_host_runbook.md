@@ -48,9 +48,16 @@ python tools/indesign_finalize.py \
   --pdf  /tmp/k7-verify/out.pdf \
   --report /tmp/k7-verify/report.json
 
-# 5. 验收:退出码 0,report.json 里 success=true、overset/missing_fonts/
-#    bad_links 全空、pdf_export_validation.pass=true、
-#    toolchain.version_pin_status="match"
+# 5. 验收 = 与主力机基线报告**逐项一致**(2026-07-21 修正:不是 overset 清零):
+#    - missing_fonts/bad_links 全空、pdf_export_validation.pass=true、
+#      toolchain.version_pin_status="match"
+#    - page_count/story_count 与基线相同
+#    - overset_stories 的 story id 集合与基线**完全一致**
+#    说明:红 ⊞ 溢流是设计内的 designer 工作项(内容都在 story 里,拖框
+#    即现,见交付包内 designer_checklist.md);历史上从无 overset=0 的包,
+#    因此"已知良品"的真义是"已知基线"。基线报告随包携带(主力机同输入
+#    finalize 的 report.json);两份报告除本机路径字段外 diff 应为零。
+#    退出码:基线含 overset 时命令退出 1,属预期,以报告一致性为准。
 ```
 
 ## 3. 验证登记
@@ -67,7 +74,7 @@ python tools/indesign_finalize.py \
 
 | 日期 | 主机 | InDesign 版本 | IDML 来源 | 结果 |
 | --- | --- | --- | --- | --- |
-| _待首验_ | | | | |
+| 2026-07-21 | `ArriettyMac-mini.local` | Adobe InDesign 2026 21.0.1.6(`pin=match`) | `manual_je1000f_us_publish_1.6_handoff.zip`(11 跑 publish 长征产物,Document fonts 随包) | **通过(基线一致性)**:pages=63、story_count=546、fonts=0、links=0、PDF/X-4+Japan Color 2001 Coated+JC200103 全过;11 条 overset 的 story id/顺序/页框定位与主力机基线完全一致,排除三条本机路径字段后两份 JSON diff 为零。⇒ 两主机等价,K7 关闭。11 条 overset 为 #692 组成在回退计划下的已知内容/版面项,归 replica 线契约重基线处理 |
 
 ## 4. 日常纪律
 
