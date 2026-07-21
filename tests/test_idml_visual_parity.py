@@ -473,6 +473,29 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn('TopEdgeStrokeWeight="0.25"', table_story)
         self.assertIn('TopEdgeStrokeColor="Color/HB Brand Dark"', table_story)
 
+    def test_localized_troubleshooting_headers_use_shared_rounded_component(self) -> None:
+        for header in ("Code d'erreur", "Código de fallo", "Código de error"):
+            writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+            ctx = RenderContext(
+                params=writer.params,
+                page_w=writer.page_w,
+                m_l=writer.m_l,
+                m_r=writer.m_r,
+                root=ROOT,
+                bundle_root=ROOT / "docs",
+                add_story=writer._add_story_parts,
+            )
+            render_table_block(
+                [[header, "Mesures correctives"], ["F0", "Redémarrer le produit."]],
+                ctx,
+                tid="tbl_localized_trouble",
+                terminal=True,
+            )
+            self.assertIn(
+                'st_anchor_trouble_tbl_localized_trouble',
+                dict(writer.stories),
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -403,10 +403,16 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
     n_cols = max(len(r) for r in raw_rows)
     first_cell = str(raw_rows[0][0]).replace("**", "").strip() if raw_rows else ""
     is_overview = first_cell in {"POWER Button", "Total Output", "Handle"}
-    is_troubleshooting = (
-        n_cols == 2 and bool(raw_rows)
-        and str(raw_rows[0][0]).strip().casefold() == "error code"
-    )
+    # Troubleshooting is a shared visual component across EN/FR/ES. Detect
+    # the semantic header in every governed language so localized pages do
+    # not silently fall back to the legacy square table.
+    trouble_headers = {
+        "error code", "code d'erreur", "code d’erreur",
+        "código de fallo", "codigo de fallo",
+        "código de error", "codigo de error",
+    }
+    trouble_header = str(raw_rows[0][0]).strip().casefold() if raw_rows else ""
+    is_troubleshooting = n_cols == 2 and trouble_header in trouble_headers
     body_kind = body_data_table_kind(raw_rows)
     is_auto_resume = body_kind == "auto_resume"
     is_key_combinations = body_kind == "key_combinations"
