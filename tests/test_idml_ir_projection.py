@@ -165,7 +165,10 @@ class IdmlIRProjectionTests(unittest.TestCase):
         self.assertIn("www.example.com", package_xml)
 
     def test_reference_page_count_gate_rejects_silent_export_drift(self) -> None:
-        plan = {"physical_page_count": 60}
+        # parity is a hard gate only under an APPROVED plan (2026-07-21 scope
+        # change; the measured fallback case lives in
+        # ReferencePageCountGateScopeTests)
+        plan = {"physical_page_count": 60, "plan_source": "approved-reference"}
 
         self.assertEqual(
             [],
@@ -179,6 +182,32 @@ class IdmlIRProjectionTests(unittest.TestCase):
             [],
             ir_projection.reference_page_count_issues(None, 52),
         )
+
+
+class ReferencePageCountGateScopeTests(unittest.TestCase):
+    """2026-07-21: exact physical parity binds only APPROVED plans; the
+    measured LaTeX fallback compares two composition engines and must not
+    hard-fail (writer 63 vs latex 61 at 100% source match, live case)."""
+
+    def test_fallback_plan_mismatch_is_not_an_issue(self) -> None:
+        plan = {"physical_page_count": 61}
+        self.assertEqual(
+            [], ir_projection.reference_page_count_issues(plan, 63))
+
+    def test_approved_plan_mismatch_still_fails(self) -> None:
+        plan = {"physical_page_count": 61, "plan_source": "approved-reference"}
+        issues = ir_projection.reference_page_count_issues(plan, 63)
+        self.assertEqual(1, len(issues))
+        self.assertIn("61", issues[0])
+
+    def test_approved_plan_match_passes(self) -> None:
+        plan = {"physical_page_count": 63, "plan_source": "approved-reference"}
+        self.assertEqual(
+            [], ir_projection.reference_page_count_issues(plan, 63))
+
+    def test_none_plan_passes(self) -> None:
+        self.assertEqual(
+            [], ir_projection.reference_page_count_issues(None, 63))
 
 
 if __name__ == "__main__":

@@ -364,8 +364,20 @@ def reference_page_count_issues(
     plan: dict[str, Any] | None,
     emitted_page_count: int,
 ) -> list[str]:
-    """Reject a package whose physical pages drift from its effective plan."""
+    """Reject a package whose physical pages drift from its APPROVED plan.
+
+    Exact physical-page parity is only meaningful under an approved reference
+    plan, where a human mapped the IDML page-by-page to the frozen PDF. The
+    measured LaTeX fallback compares two different composition engines:
+    LaTeX packs preface+safety on one page and gives the TOC no standalone
+    page, while the IDML writer anchors them discretely — equality there was
+    a pre-#692 coincidence, not a contract (2026-07-21 live finding: writer
+    63 vs LaTeX 61 with a 100% source match rate). Under the fallback the
+    drift is reported as a note by the caller, not an error.
+    """
     if plan is None:
+        return []
+    if plan.get("plan_source") != "approved-reference":
         return []
     expected = int(plan.get("physical_page_count") or 0)
     if emitted_page_count == expected:
@@ -384,4 +396,11 @@ def report_reference_page_count_issues(
     issues = reference_page_count_issues(plan, emitted_page_count)
     for issue in issues:
         print(f"[export-idml] PAGE PLAN FAIL: {issue}")
+    if not issues and plan is not None and plan.get("plan_source") != "approved-reference":
+        expected = int(plan.get("physical_page_count") or 0)
+        if expected and emitted_page_count != expected:
+            print(
+                f"[export-idml] PAGE PLAN NOTE (fallback): emitted {emitted_page_count} pages, "
+                f"measured LaTeX has {expected}; parity is enforced only under an approved reference plan"
+            )
     return bool(issues)
