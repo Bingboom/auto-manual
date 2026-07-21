@@ -1,17 +1,4 @@
 {
   "schema_version": "approved-reference-layout-registry/v1",
-  "plans": [
-    {
-      "target": {
-        "model": "JE-1000F",
-        "region": "US",
-        "languages": [
-          "en",
-          "fr",
-          "es"
-        ]
-      },
-      "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json"
-    }
-  ]
+  "plans": []
 }
