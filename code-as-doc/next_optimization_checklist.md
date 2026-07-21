@@ -1069,10 +1069,25 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     - the Issue closes when a subsequent run of the same record succeeds
     - writeback-failure (build succeeded, Bitable write failed) alerts too — it is the silent-divergence case
 
-- [ ] PR K7: InDesign finalize — version lock + second host (T7)
-  - Status: `in_progress` (code/doc legs merged; remaining = the operator's
-    one-time second-host verification run, tracked in the runbook §3 table and
-    the ONBOARDING §3 register row)
+- [x] PR K7: InDesign finalize — version lock + second host (T7)
+  - Status: `done`
+  - Completed: `2026-07-21` (code/doc legs merged 2026-07-17; version
+    preflight on the second host 2026-07-20; end-to-end verification
+    2026-07-21)
+  - Closing verification: `ArriettyMac-mini.local` finalized the
+    JE-1000F_US 1.6 handoff zip end-to-end; report matched the main-Mac
+    baseline item-for-item (pages=63, story_count=546, fonts=0, links=0,
+    PDF/X-4 + Japan Color 2001 Coated + JC200103 pass, pin=match, and the
+    11 overset story ids/order/frame positions identical; JSON diff zero
+    after excluding local path fields) ⇒ hosts equivalent. Acceptance
+    semantics corrected in the runbook (2026-07-21): known-good means
+    known-BASELINE — overset ⊞ is a designed designer-workflow item
+    (content present, drag to reveal; no overset=0 package has ever
+    existed), so the criterion is baseline parity, not an empty overset
+    list. The 11 oversets belong to the #692 composition-under-fallback
+    issue, owned by the replica line's complete contract re-baseline
+    (#693/#696 standing follow-up). **Tier 1 (K4/K5/K7/K1) is now fully
+    closed.**
   - Note (2026-07-17 delivery): version pin committed at
     `tools/idml/indesign_version_pin.json` (seeded live from the operator Mac:
     `Adobe InDesign 2026 21.0.1.6`); `tools/indesign_finalize.py` now checks
