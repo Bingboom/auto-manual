@@ -414,7 +414,7 @@ Rules:
 - Keep region-family differences explicit where they are real: spec data, certification text, unit conventions, and `meaning_of_symbols` stay family-specific.
 - When design needs to review layout or page effect, share a review handoff workspace built from `_review`, not the raw `.rst`.
 - when that workspace is packaged for review sharing, let GitHub Actions build the package first and keep it as an artifact; Vercel is reserved for the latest publish HTML only
-- Read the Docs is reserved for the generated public manual catalog built from [`.readthedocs.yaml`](../.readthedocs.yaml), currently indexing `JE-1000F / US`, `JE-1000F / EU`, and `JE-1000F / JP`; it does not replace review-preview packaging or the Vercel latest-publish flow
+- Read the Docs is reserved for the generated public manual catalog built from [`.readthedocs.yaml`](../.readthedocs.yaml); it renders each committed `docs/_review/<model>/<region>` bundle via `--source review-asis` (currently indexing `JE-1000F / US`; a target joins the catalog once its review bundle is committed on `main`) and does not replace review-preview packaging or the Vercel latest-publish flow
 - designers should start from the workspace root, then pick a family, model, and language before opening the rendered manual or family diff page
 - the workspace root now keeps the primary review actions plus a compact document-identity card with product name, manual title, model, region, and language
 - the packaged preview now also includes model-scoped `downloads/<family>/<model>/<lang>/review-manual.docx`, `downloads/<family>/<model>/change-report.xlsx`, the raw diff CSV files, and `generated/workspace.json`
