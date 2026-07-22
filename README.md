@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-07-20
+Updated: 2026-07-22
 
 Auto-Manual turns structured content (Feishu/Lark Base CSV snapshots plus shared RST templates) into target-specific manual bundles and release outputs across the active US, EU, JP, and CN config families.
 The current maintained smoke-check baseline is `JE-1000F` across US and JP.
@@ -332,6 +332,20 @@ Rule:
 - before review starts, seed the draft from templates and data
 - after review starts, edit `_review`
 - do not use `_build` as the long-lived editing surface
+
+Read the Docs is a presentation-only projection of that same committed review
+content. [`.readthedocs.yaml`](.readthedocs.yaml) explicitly enables the `web`
+presentation profile; ordinary CLI/queue builds keep the default `document`
+profile, so DOCX and formal Markdown output do not change. The web profile
+opens at `00_preface` (`IMPORTANT`) instead of rendering `cover*`, `00_toc*`, or
+`99_back_cover*`. Targets listed in
+[`web_manual.json`](docs/renderers/contracts/web_manual.json) (currently
+`JE-1000F / US`) render Product Overview and operation figures from the RST
+image plus its table / line-block copy as searchable HTML labels with SVG
+leaders: desktop uses an overlay layout, while narrow screens fall back to the
+image followed by a label list. Other targets keep ordinary same-source HTML
+until their figure geometry is contracted. A new RTD target still requires its
+`docs/_review/<model>/<region>/` bundle to be committed first.
 
 The current user workflow and source-of-truth rules are maintained in [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md).
 

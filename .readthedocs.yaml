@@ -20,6 +20,6 @@ build:
         # Catalog scope = targets whose review bundle is committed on main
         # (currently JE-1000F/US). Add a target back only after its
         # docs/_review/<model>/<region> bundle lands on main.
-        - python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --no-clean --skip-root-index
+        - AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --no-clean --skip-root-index
         - python tools/readthedocs_source.py --build-root docs/_build --output-dir docs/_build/rtd --title "Auto Manual Library"
         - python -m sphinx -b html docs/_build/rtd "$READTHEDOCS_OUTPUT/html"

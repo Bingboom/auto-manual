@@ -4,10 +4,12 @@ import struct
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 
 from tools.word_bundle import derive_word_title, render_safety_word_html, render_spec_word_html, resolve_reference_doc
 from tools.word_bundle_html import (
     _build_word_only_tags,
+    build_word_bundle_html,
     _convert_rst_fragment_to_html,
     _inject_img_dimensions,
     _rewrite_word_friendly_fragment,
@@ -49,6 +51,68 @@ class TestWordBundle(unittest.TestCase):
 
             self.assertIn('width="40"', out)
             self.assertIn('height="31"', out)
+
+    def test_web_profile_starts_at_important_and_omits_print_only_pages(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            page_dir = root / "page"
+            page_dir.mkdir()
+            page_specs = (
+                ("cover-en.rst", "PRINT COVER\n===========\n"),
+                ("00_preface.rst", "**IMPORTANT**\n\nWeb landing copy.\n"),
+                ("00_toc.rst", "PRINT TABLE OF CONTENTS\n=======================\n"),
+                ("01_safety.rst", "SAFETY\n======\n\nSafety copy.\n"),
+                ("99_back_cover.rst", "PRINT BACK COVER\n================\n"),
+            )
+            page_paths: list[Path] = []
+            for name, text in page_specs:
+                path = page_dir / name
+                path.write_text(text, encoding="utf-8")
+                page_paths.append(path)
+            bundle = SimpleNamespace(
+                title="Demo",
+                reference_doc=None,
+                model="MODEL",
+                region="US",
+                lang="en",
+                page_paths=tuple(page_paths),
+            )
+
+            web_html, _reference, web_metas = build_word_bundle_html(
+                {},
+                "MODEL",
+                "US",
+                materialized_bundle=bundle,
+                output_dir=root / "web",
+                presentation_profile="web",
+            )
+            document_html, _reference, document_metas = build_word_bundle_html(
+                {},
+                "MODEL",
+                "US",
+                materialized_bundle=bundle,
+                output_dir=root / "document",
+            )
+
+            web_text = web_html.read_text(encoding="utf-8")
+            self.assertIn("IMPORTANT", web_text)
+            self.assertIn("Web landing copy.", web_text)
+            self.assertIn("SAFETY", web_text)
+            self.assertNotIn("PRINT COVER", web_text)
+            self.assertNotIn("PRINT TABLE OF CONTENTS", web_text)
+            self.assertNotIn("PRINT BACK COVER", web_text)
+            self.assertNotIn('<div class="manual-page-break"></div>', web_text)
+            self.assertEqual(
+                ["00_preface.rst", "01_safety.rst"],
+                [meta.source_path.name for meta in web_metas],
+            )
+
+            document_text = document_html.read_text(encoding="utf-8")
+            self.assertIn("PRINT COVER", document_text)
+            self.assertIn("PRINT TABLE OF CONTENTS", document_text)
+            self.assertIn("PRINT BACK COVER", document_text)
+            self.assertIn('<div class="manual-page-break"></div>', document_text)
+            self.assertEqual(5, len(document_metas))
 
     def test_resolve_reference_doc_supports_glob(self) -> None:
         with tempfile.TemporaryDirectory() as td:

@@ -800,7 +800,10 @@ PR preview note:
 
 RTD catalog behavior:
 
-- RTD installs the system `pandoc` package and builds the selected public runtime Markdown targets from `configs/config.us.yaml`, `configs/config.eu.yaml`, and `configs/config.ja.yaml`
+- RTD installs the system `pandoc` package and builds selected public targets from committed [`docs/_review/<model>/<region>/`](../docs/_review) bundles. To add a target, commit that review bundle on `main` first, then add its explicit build command to [`.readthedocs.yaml`](../.readthedocs.yaml).
+- only `.readthedocs.yaml` enables `AUTO_MANUAL_PRESENTATION_PROFILE=web`. Normal `build.py md`, queue Markdown, and DOCX exports keep the default `document` profile and their existing document structure.
+- the web profile skips `cover*`, `00_toc*`, and `99_back_cover*` and opens the manual directly at the `IMPORTANT` content in `00_preface`; the catalog links to that manual entry rather than making readers pass through a nested target index
+- For targets listed in [`web_manual.json`](../docs/renderers/contracts/web_manual.json) (currently `JE-1000F / US`), Product Overview and supported operation figures stay same-source: the image comes from the RST image reference, and visible labels/steps come from its table or adjacent `line-block`. RTD presents them as searchable HTML callouts with SVG leaders on desktop, then falls back to the image plus a readable label list on narrow screens; translations are not copied into web-only markup. Unlisted targets retain ordinary source HTML until their own geometry is validated and added to the contract.
 - the RTD config first materializes target-scoped `md` directories without rewriting the repo-root [`docs/index.rst`](../docs/index.rst), then assembles [`docs/_build/rtd/`](../docs/_build) as the homepage catalog and renders that source with Sphinx
 - RTD is not the release authority for formal Publish outputs; queue-driven Publish and Vercel latest-publish remain the release-facing path
 
