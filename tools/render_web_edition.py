@@ -40,11 +40,31 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--title", default=None, help="Manual title (default: from sidecar or model/region)")
     parser.add_argument(
+        "--keep-cover",
+        action="store_true",
+        help="Include the print cover page (page 1); by default the web edition omits it",
+    )
+    parser.add_argument(
+        "--skip-pages",
+        default=None,
+        help="Comma-separated 1-based page numbers to omit (overrides the default cover skip and any sidecar skip_pages)",
+    )
+    parser.add_argument(
         "--strict",
         action="store_true",
         help="Fail (exit 1) instead of skipping when no committed PDF is found",
     )
     return parser.parse_args(argv)
+
+
+def _resolve_skip_pages(args: argparse.Namespace, sidecar: dict) -> frozenset[int]:
+    if args.skip_pages is not None:
+        return frozenset(int(p) for p in args.skip_pages.split(",") if p.strip())
+    sidecar_skip = sidecar.get("skip_pages")
+    if isinstance(sidecar_skip, list):
+        return frozenset(int(p) for p in sidecar_skip)
+    # Default: a web catalog entry does not need the print cover (page 1).
+    return frozenset() if args.keep_cover else frozenset({1})
 
 
 def _find_pdf(web_edition_dir: Path) -> Path | None:
@@ -88,8 +108,11 @@ def main(argv: list[str] | None = None) -> int:
     sidecar = _load_sidecar(pdf_path)
     title = args.title or sidecar.get("title") or f"{args.model} / {args.region}"
     provenance = sidecar.get("provenance") if isinstance(sidecar.get("provenance"), dict) else {}
+    skip_pages = _resolve_skip_pages(args, sidecar)
 
-    render_web_edition_from_pdf(pdf_path, out_dir=args.out, title=title, provenance=provenance)
+    render_web_edition_from_pdf(
+        pdf_path, out_dir=args.out, title=title, provenance=provenance, skip_pages=skip_pages
+    )
     return 0
 
 

@@ -79,9 +79,15 @@ def render_web_edition_from_pdf(
     title: str,
     provenance: dict | None = None,
     zoom: float = DEFAULT_RENDER_ZOOM,
+    skip_pages: frozenset[int] | set[int] = frozenset(),
     log: Callable[[str], None] = print,
 ) -> WebEdition:
-    """Rasterize ``pdf_path`` into a page-card web reading flow under ``out_dir``."""
+    """Rasterize ``pdf_path`` into a page-card web reading flow under ``out_dir``.
+
+    ``skip_pages`` is a set of 1-based source page numbers to omit (e.g. the
+    print cover, which a web catalog entry does not need). Kept pages are
+    renumbered sequentially for the reading flow.
+    """
     try:
         import fitz  # PyMuPDF, pinned in requirements.lock
     except ImportError as exc:  # pragma: no cover - environment guard
@@ -90,34 +96,38 @@ def render_web_edition_from_pdf(
         ) from exc
 
     provenance = provenance or {}
+    skip_pages = frozenset(skip_pages)
     out_dir.mkdir(parents=True, exist_ok=True)
     assets_dir = out_dir / "assets"
     assets_dir.mkdir(parents=True, exist_ok=True)
 
-    # Keep the original PDF beside the rasters so the toolbar can offer it.
+    # Keep the original (full) PDF beside the rasters so the toolbar can offer it.
     pdf_copy = assets_dir / pdf_path.name
     shutil.copy2(pdf_path, pdf_copy)
 
     matrix = fitz.Matrix(zoom, zoom)
     cards: list[str] = []
     with fitz.open(pdf_path) as document:
-        total = document.page_count
-        for number, page in enumerate(document, start=1):
+        source_total = document.page_count
+        kept = [n for n in range(1, source_total + 1) if n not in skip_pages]
+        total = len(kept)
+        for position, source_number in enumerate(kept, start=1):
+            page = document[source_number - 1]
             pixmap = page.get_pixmap(matrix=matrix, alpha=False)
-            name = f"page_{number:03d}.png"
+            name = f"page_{position:03d}.png"
             pixmap.save(assets_dir / name)
             text = page.get_text().strip()
             text_layer = (
                 f'<div class="we-page-text" aria-hidden="false">{_esc(text)}</div>' if text else ""
             )
-            loading = "eager" if number == 1 else "lazy"
+            loading = "eager" if position == 1 else "lazy"
             cards.append(
                 '<section class="we-sheet">'
                 '<div class="we-page">'
-                f'<img src="assets/{name}" alt="Page {number} of {total}" '
+                f'<img src="assets/{name}" alt="Page {position} of {total}" '
                 f'width="{pixmap.width}" height="{pixmap.height}" loading="{loading}"/>'
                 f"{text_layer}</div>"
-                f'<div class="we-page-num">{number} / {total}</div>'
+                f'<div class="we-page-num">{position} / {total}</div>'
                 "</section>"
             )
 
@@ -139,6 +149,8 @@ def render_web_edition_from_pdf(
         "title": title,
         "page_count": total,
         "asset_count": total,
+        "source_page_count": source_total,
+        "skipped_pages": sorted(skip_pages),
         "pdf": pdf_path.name,
         "render_zoom": zoom,
         "provenance": provenance,
@@ -147,7 +159,8 @@ def render_web_edition_from_pdf(
     manifest_path = out_dir / "manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    log(f"[web-edition] {title}: rasterized {total} page(s) from {pdf_path.name} -> {out_dir}")
+    skipped_note = f" (skipped {sorted(skip_pages)})" if skip_pages else ""
+    log(f"[web-edition] {title}: rasterized {total}/{source_total} page(s) from {pdf_path.name}{skipped_note} -> {out_dir}")
     return WebEdition(
         out_dir=out_dir,
         body_path=body_path,

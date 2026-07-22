@@ -72,6 +72,26 @@ class WebEditionFromPdfTests(unittest.TestCase):
         self.assertEqual(2, manifest["page_count"])
         self.assertIn("render_zoom", manifest)
 
+    def test_skip_cover_omits_page_and_renumbers(self) -> None:
+        tmp = TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name)
+        pdf = root / "manual_sample.pdf"
+        _make_pdf(pdf, pages=4, text="Page")
+        out_dir = root / "webedition"
+        edition = render_web_edition_from_pdf(
+            pdf, out_dir=out_dir, title="Sample", skip_pages={1}, log=lambda _m: None
+        )
+        body = (out_dir / "body.html").read_text(encoding="utf-8")
+        manifest = json.loads((out_dir / "manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(3, edition.page_count)  # 4 source pages minus the cover
+        self.assertEqual(3, len(list((out_dir / "assets").glob("page_*.png"))))
+        self.assertIn("1 / 3", body)  # kept pages renumbered from 1
+        self.assertEqual(4, manifest["source_page_count"])
+        self.assertEqual([1], manifest["skipped_pages"])
+        # the downloadable original PDF still has all pages
+        self.assertTrue((out_dir / "assets" / "manual_sample.pdf").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()
