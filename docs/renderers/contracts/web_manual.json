@@ -1,0 +1,185 @@
+{
+  "schema_version": "web-manual-presentation/v1",
+  "profiles": {
+    "document": {
+      "description": "Complete paginated manual for DOCX and ordinary Markdown exports."
+    },
+    "web": {
+      "entry_source_pattern": "00_preface*",
+      "excluded_source_patterns": [
+        "cover*",
+        "00_toc*",
+        "99_back_cover*"
+      ]
+    }
+  },
+  "figure_targets": [
+    {
+      "model": "JE-1000F",
+      "region": "US"
+    }
+  ],
+  "product_overview": {
+    "source_patterns": [
+      "*03_product_overview_placeholder"
+    ],
+    "views": [
+      {
+        "id": "front",
+        "image_key": "overview/front_controls",
+        "aspect_ratio": 1.668421,
+        "callouts": [
+          {
+            "id": "power",
+            "rect": [1.104, 4.326, 34.069, 7.368],
+            "align": "left",
+            "leader": [[1.101, 8.518], [41.169, 8.518], [41.169, 33.378]]
+          },
+          {
+            "id": "lcd",
+            "rect": [76.341, 4.379, 22.471, 7.368],
+            "align": "right",
+            "leader": [[99.005, 8.519], [51.04, 8.519], [51.04, 33.506]]
+          },
+          {
+            "id": "dc12",
+            "rect": [1.104, 16.805, 34.069, 13.684],
+            "align": "left",
+            "leader": [[1.101, 25.722], [35.787, 25.722], [35.787, 35.193]]
+          },
+          {
+            "id": "led_button",
+            "rect": [75.71, 16.516, 23.115, 8.947],
+            "align": "right",
+            "leader": [[99.006, 21.853], [59.042, 21.853], [59.042, 32.851]]
+          },
+          {
+            "id": "usb_c_30",
+            "rect": [1.104, 32.247, 34.069, 12.632],
+            "align": "left",
+            "leader": [[1.101, 43.854], [29.645, 43.854], [29.645, 49.175], [34.437, 49.175]]
+          },
+          {
+            "id": "led",
+            "rect": [78.233, 32.116, 21.068, 7.368],
+            "align": "right",
+            "leader": [[99.389, 36.855], [66.946, 36.855]]
+          },
+          {
+            "id": "usb_c_100",
+            "rect": [1.104, 45.989, 34.069, 20.526],
+            "align": "left",
+            "leader": [[1.486, 57.141], [33.346, 57.141], [33.346, 53.33], [34.353, 53.33]]
+          },
+          {
+            "id": "ac_power",
+            "rect": [74.448, 43.389, 24.244, 13.158],
+            "align": "right",
+            "leader": [[98.843, 47.914], [46.994, 47.914], [46.994, 52.076]]
+          },
+          {
+            "id": "usb_a",
+            "rect": [1.104, 67.9, 34.069, 17.895],
+            "align": "left",
+            "leader": [[1.124, 78.5], [35.787, 78.5], [35.787, 61.68]]
+          },
+          {
+            "id": "ac_output",
+            "rect": [77.603, 56.453, 21.09, 14.737],
+            "align": "right",
+            "leader": [[99.006, 69.051], [62.833, 69.051], [62.833, 60.586]]
+          },
+          {
+            "id": "dc_usb",
+            "rect": [1.104, 89.437, 34.069, 9.474],
+            "align": "left",
+            "leader": [[1.226, 95.303], [40.866, 95.303], [40.866, 57.434]]
+          },
+          {
+            "id": "total",
+            "rect": [73.817, 84.974, 24.875, 15.263],
+            "align": "right",
+            "leader": [[99.389, 94.297], [68.813, 94.297]]
+          }
+        ],
+        "decorative_leaders": [
+          [[58.644, 60.581], [58.644, 85.435]]
+        ]
+      },
+      {
+        "id": "right",
+        "image_key": "overview/right_side_ports",
+        "aspect_ratio": 2.006369,
+        "callouts": [
+          {
+            "id": "handle",
+            "rect": [1.429, 3.35, 34.921, 8.917],
+            "align": "left",
+            "leader": [[1.416, 9.834], [55.045, 9.834], [55.045, 18.308]]
+          },
+          {
+            "id": "dc_input",
+            "rect": [1.641, 22.045, 28.571, 25.478],
+            "align": "left",
+            "leader": [[1.416, 41.989], [43.752, 41.989]]
+          },
+          {
+            "id": "ac_input",
+            "rect": [77.46, 29.745, 20.984, 17.834],
+            "align": "right",
+            "leader": [[98.813, 40.483], [56.874, 40.483]]
+          }
+        ],
+        "decorative_leaders": []
+      }
+    ]
+  },
+  "operations": {
+    "source_patterns": [
+      "*05_operation_guide_placeholder"
+    ],
+    "figures": [
+      {
+        "id": "main-power",
+        "image_key": "operation/main_power",
+        "layout": "status-right",
+        "step_ids": ["on", "off"],
+        "steps_rect": [74.5, 18.0, 19.0, 31.0],
+        "capture_prerequisite": false
+      },
+      {
+        "id": "ac-output",
+        "image_key": "operation/ac_output",
+        "layout": "status-right",
+        "step_ids": ["on", "off"],
+        "steps_rect": [78.0, 21.0, 19.5, 28.0],
+        "prerequisite_rect": [1.5, 1.5, 45.0, 8.5],
+        "capture_prerequisite": true
+      },
+      {
+        "id": "dc-usb-output",
+        "image_key": "operation/dc_usb_output",
+        "layout": "status-right",
+        "step_ids": ["on", "off"],
+        "steps_rect": [79.0, 16.0, 19.0, 26.0],
+        "prerequisite_rect": [1.5, 1.5, 46.0, 8.5],
+        "capture_prerequisite": true
+      },
+      {
+        "id": "energy-saving",
+        "image_key": "operation/energy_saving",
+        "layout": "footer-overlay",
+        "step_ids": ["toggle"],
+        "steps_rect": [55.0, 75.0, 40.0, 18.0],
+        "capture_prerequisite": false
+      },
+      {
+        "id": "led-light",
+        "image_key": "operation/led_light",
+        "layout": "footer-panel",
+        "step_ids": ["light", "sos", "off"],
+        "capture_prerequisite": false
+      }
+    ]
+  }
+}

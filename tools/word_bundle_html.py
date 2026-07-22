@@ -28,6 +28,14 @@ from tools.word_bundle_html_rewrite import (
     _extract_spec_word_data,
     _rewrite_word_friendly_fragment,
 )
+from tools.web_presentation import (
+    DOCUMENT_PRESENTATION_PROFILE,
+    WEB_PRESENTATION_PROFILE,
+    is_web_entry_page,
+    normalize_presentation_profile,
+    should_include_web_page,
+    transform_web_fragment,
+)
 
 _RST_HEADING_CHARS = set("=-~^\"`:+*#")
 _LANG_TOKEN_RE = re.compile(r"(?:^|[_-])(en|fr|es|de|it|ja|zh)(?:$|[_-])")
@@ -244,13 +252,20 @@ def _convert_rst_fragment_to_html(
     bundle_dir: Path,
     *,
     active_tags: set[str] | None = None,
+    presentation_profile: str = DOCUMENT_PRESENTATION_PROFILE,
 ) -> str:
+    profile = normalize_presentation_profile(presentation_profile)
     source_name = source_path.name.lower()
     fragment_lang = _infer_fragment_lang(source_path)
     if source_name.startswith("safety_"):
         raw_html = _extract_raw_html_blocks(rst_text, active_tags=active_tags)
         if raw_html:
             rewritten_fragment = _rewrite_word_friendly_fragment(raw_html, lang=fragment_lang)
+            if profile == WEB_PRESENTATION_PROFILE:
+                rewritten_fragment = transform_web_fragment(
+                    rewritten_fragment,
+                    source_path=source_path,
+                )
             return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
     published_fragment = _publish_rst_fragment_to_html(rst_text, source_path, active_tags=active_tags)
@@ -261,6 +276,11 @@ def _convert_rst_fragment_to_html(
             published_fragment = render_spec_word_html(spec_data)
 
     rewritten_fragment = _rewrite_word_friendly_fragment(published_fragment, lang=fragment_lang)
+    if profile == WEB_PRESENTATION_PROFILE:
+        rewritten_fragment = transform_web_fragment(
+            rewritten_fragment,
+            source_path=source_path,
+        )
     return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
 
@@ -271,7 +291,9 @@ def build_word_bundle_html(
     *,
     materialized_bundle: MaterializedBundle | None = None,
     output_dir: Path | None = None,
+    presentation_profile: str = DOCUMENT_PRESENTATION_PROFILE,
 ) -> tuple[Path, Path | None, tuple[WordBundlePageMeta, ...]]:
+    profile = normalize_presentation_profile(presentation_profile)
     materialized = materialized_bundle or materialize_bundle(cfg, model, region)
     title = materialized.title
     reference_doc = materialized.reference_doc
@@ -283,9 +305,18 @@ def build_word_bundle_html(
 
     body_parts: list[str] = []
     page_metas: list[WordBundlePageMeta] = []
+    page_paths = list(materialized.page_paths)
+    if profile == WEB_PRESENTATION_PROFILE:
+        page_paths = [path for path in page_paths if should_include_web_page(path)]
+        if page_paths and not is_web_entry_page(page_paths[0]):
+            raise RuntimeError(
+                "web manual must begin with the governed preface/IMPORTANT page; "
+                f"got {page_paths[0]}"
+            )
+
     previous_was_cover = False
-    for idx, rst_path in enumerate(materialized.page_paths):
-        if idx > 0 and not previous_was_cover:
+    for idx, rst_path in enumerate(page_paths):
+        if profile == DOCUMENT_PRESENTATION_PROFILE and idx > 0 and not previous_was_cover:
             body_parts.append(_render_page_break_html())
         rst_text = rst_path.read_text(encoding="utf-8")
         html_fragment = _convert_rst_fragment_to_html(
@@ -293,6 +324,7 @@ def build_word_bundle_html(
             rst_path,
             bundle_output_dir,
             active_tags=active_tags,
+            presentation_profile=profile,
         )
         body_parts.append(html_fragment or "<div></div>")
         page_metas.append(

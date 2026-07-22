@@ -1,0 +1,193 @@
+.hb-annotated-figure,
+.hb-operation-figure {
+  margin: 1.25rem 0 2rem;
+  max-width: 100%;
+}
+
+.hb-annotated-stage,
+.hb-operation-stage {
+  background: var(--color-background-primary, #fff);
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.hb-annotated-stage {
+  aspect-ratio: var(--hb-aspect-ratio);
+}
+
+.hb-annotated-art,
+.hb-operation-art {
+  display: block;
+  height: auto !important;
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.hb-annotated-art {
+  inset: 0;
+  position: absolute;
+}
+
+.hb-leader-layer {
+  height: 100%;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.hb-leader,
+.hb-leader-decoration {
+  fill: none;
+  stroke: #4b4b4b;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 0.32;
+  vector-effect: non-scaling-stroke;
+}
+
+.hb-figure-callout {
+  background: color-mix(in srgb, var(--color-background-primary, #fff) 94%, transparent);
+  color: var(--color-foreground-primary, #2f2f2f);
+  font-size: clamp(0.58rem, 1.22vw, 0.9rem);
+  left: var(--hb-x);
+  line-height: 1.08;
+  min-height: var(--hb-height);
+  overflow-wrap: anywhere;
+  padding: 0.08rem 0.14rem;
+  position: absolute;
+  text-align: var(--hb-align);
+  top: var(--hb-y);
+  width: var(--hb-width);
+  z-index: 2;
+}
+
+.hb-figure-callout p {
+  margin: 0;
+}
+
+.hb-figure-callout strong {
+  display: block;
+  font-size: 1.08em;
+}
+
+.hb-operation-stage {
+  border: 1px solid var(--color-background-border, #dedede);
+  border-radius: 0.55rem;
+}
+
+.hb-operation-prerequisite,
+.hb-operation-steps {
+  background: color-mix(in srgb, var(--color-background-primary, #fff) 93%, transparent);
+  color: var(--color-foreground-primary, #2f2f2f);
+  font-size: clamp(0.68rem, 1.25vw, 0.95rem);
+  line-height: 1.22;
+  padding: 0.35rem 0.5rem;
+  z-index: 2;
+}
+
+.hb-operation-prerequisite {
+  border-radius: 999px;
+  left: var(--hb-x);
+  overflow: hidden;
+  position: absolute;
+  top: var(--hb-y);
+  width: var(--hb-width);
+}
+
+.hb-operation-prerequisite p,
+.hb-operation-steps .line {
+  margin: 0;
+}
+
+.hb-operation-step + .hb-operation-step {
+  margin-top: 0.18rem;
+}
+
+.hb-operation-layout-status-right .hb-operation-steps,
+.hb-operation-layout-footer-overlay .hb-operation-steps {
+  left: var(--hb-x);
+  min-height: var(--hb-height);
+  position: absolute;
+  top: var(--hb-y);
+  width: var(--hb-width);
+}
+
+.hb-operation-layout-status-right .hb-operation-step .line:first-child {
+  font-weight: 700;
+}
+
+.hb-operation-layout-footer-panel .hb-operation-steps {
+  background: var(--color-background-secondary, #f2f2f2);
+  border-top: 1px solid var(--color-background-border, #dedede);
+  display: grid;
+  gap: 0.35rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  position: relative;
+}
+
+@media (max-width: 760px) {
+  .hb-annotated-stage,
+  .hb-operation-stage {
+    aspect-ratio: auto;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: visible;
+  }
+
+  .hb-annotated-art,
+  .hb-operation-art {
+    grid-column: 1 / -1;
+    position: relative;
+  }
+
+  .hb-leader-layer {
+    display: none;
+  }
+
+  .hb-figure-callout,
+  .hb-operation-prerequisite,
+  .hb-operation-steps,
+  .hb-operation-layout-status-right .hb-operation-steps,
+  .hb-operation-layout-footer-overlay .hb-operation-steps {
+    background: var(--color-background-secondary, #f2f2f2);
+    border-left: 3px solid var(--color-brand-primary, #3d3d3d);
+    border-radius: 0.2rem;
+    font-size: 0.88rem;
+    grid-column: auto;
+    left: auto;
+    min-height: 0;
+    position: relative;
+    text-align: left;
+    top: auto;
+    width: auto;
+  }
+
+  .hb-operation-prerequisite,
+  .hb-operation-steps {
+    grid-column: 1 / -1;
+  }
+
+  .hb-operation-layout-footer-panel .hb-operation-steps {
+    display: block;
+  }
+}
+
+@media (max-width: 520px) {
+  .hb-annotated-stage,
+  .hb-operation-stage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hb-figure-callout,
+  .hb-operation-prerequisite,
+  .hb-operation-steps {
+    grid-column: 1;
+  }
+}

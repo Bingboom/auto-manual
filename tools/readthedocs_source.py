@@ -10,8 +10,16 @@ from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
 
-ROOT = Path(__file__).resolve().parents[1]
+
+ROOT = bootstrap_repo_root(__file__, parent_count=1)
+
+from tools.web_presentation import WEB_STYLESHEET_NAME, copy_web_stylesheet  # noqa: E402
+
 _FILE_URI_RE = re.compile(r"file:///[^\s\"')<>]+")
 _HTML_IMG_SRC_RE = re.compile(r"(<img\b[^>]*?\bsrc=)([\"'])([^\"']+)(\2)", re.IGNORECASE)
 
@@ -57,6 +65,31 @@ def _manual_label(source_dir: Path, build_root: Path) -> str:
     context = " / ".join(part for part in relative.parts if part != "md")
     title = _first_heading(source_dir / "index.md")
     return f"{context} - {title}" if context else title
+
+
+def _first_toctree_target(index_path: Path) -> str:
+    in_toctree = False
+    for raw_line in index_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not in_toctree:
+            if line.startswith("```{toctree}"):
+                in_toctree = True
+            continue
+        if line == "```":
+            break
+        if not line or line.startswith(":"):
+            continue
+        target = line
+        titled_target = re.fullmatch(r".+<([^<>]+)>", target)
+        if titled_target:
+            target = titled_target.group(1).strip()
+        target_path = Path(target)
+        if target_path.is_absolute() or ".." in target_path.parts:
+            raise RuntimeError(f"unsafe manual landing target in {index_path}: {target}")
+        if target_path.suffix == ".md":
+            target_path = target_path.with_suffix("")
+        return target_path.as_posix()
+    raise RuntimeError(f"generated manual index has no toctree landing target: {index_path}")
 
 
 def _local_path_from_file_uri(raw_uri: str) -> Path:
@@ -181,6 +214,7 @@ def _write_conf_py(*, output_dir: Path, title: str) -> None:
                 'master_doc = "index"',
                 'html_theme = "furo"',
                 'html_static_path = ["_static"]',
+                f'html_css_files = ["{WEB_STYLESHEET_NAME}"]',
                 'exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]',
                 "myst_heading_anchors = 3",
                 'suppress_warnings = ["myst.header", "toc.not_included"]',
@@ -231,10 +265,18 @@ def assemble_rtd_source(*, build_root: Path, output_dir: Path, title: str) -> li
         shutil.rmtree(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     output_dir.joinpath("_static", "manual-assets").mkdir(parents=True, exist_ok=True)
+    copy_web_stylesheet(output_dir)
 
     manuals: list[RtdManual] = []
     for source_dir in source_dirs:
         relative = source_dir.resolve(strict=False).relative_to(build_root)
+        landing_target = _first_toctree_target(source_dir / "index.md")
+        landing_source = source_dir / f"{landing_target}.md"
+        if not landing_source.is_file():
+            raise RuntimeError(
+                f"manual landing target does not exist: {landing_source} "
+                f"(declared by {source_dir / 'index.md'})"
+            )
         destination_dir = output_dir / relative
         shutil.copytree(source_dir, destination_dir, ignore=shutil.ignore_patterns("conf.py", "_build"))
         _rewrite_markdown_file_uris(source_dir=source_dir, destination_dir=destination_dir)
@@ -245,7 +287,7 @@ def assemble_rtd_source(*, build_root: Path, output_dir: Path, title: str) -> li
                 source_dir=source_dir,
                 destination_dir=destination_dir,
                 label=_manual_label(source_dir, build_root),
-                toctree_ref=(relative / "index").as_posix(),
+                toctree_ref=(relative / landing_target).as_posix(),
             )
         )
 
