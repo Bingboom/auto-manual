@@ -155,26 +155,26 @@ def _row_layout(ref: str, image_w: float, image_h: float) -> tuple[float, ...]:
     scale = image_w / 294.9
     if "main_power" in stem:
         return (
-            image_w * 0.797,
+            image_w * 0.775,
             -image_h + image_h * 0.02,
-            image_w * 0.203,
+            image_w * 0.225,
             26.1 * scale,
             22.0 * scale,
         )
     if "dc_usb" in stem or "dc-usb" in stem:
         return (
-            image_w * 0.895,
+            image_w * 0.815,
             -image_h + image_h * 0.165,
-            image_w * 0.105,
+            image_w * 0.185,
             20.6 * scale,
             19.5 * scale,
         )
     # AC artwork and the generic prerequisite layout share the same reserved
     # upper-right bracket zone.
     return (
-        image_w * 0.875,
+        image_w * 0.845,
         -image_h + image_h * 0.23,
-        image_w * 0.125,
+        image_w * 0.155,
         23.1 * scale,
         20.5 * scale,
     )
@@ -637,7 +637,15 @@ def _render_led_light_panel(
 
     shapes = [_panel_bounds(tid, width, height)]
     ref = str(spec.get("image") or "").strip()
-    asset = ctx.resolve_bundle_image(ref) if ref else None
+    # The reference LED art includes the complete product/LIGHT-button
+    # illustration. Keep the source copy and all step labels as editable
+    # top-layer frames, but use the complete governed illustration as the
+    # background when the staged bundle contains it.
+    asset = (
+        ctx.resolve_bundle_image("operation/led_light_complete.png")
+        if ref and "led_light" in Path(ref).stem.lower()
+        else ctx.resolve_bundle_image(ref)
+    ) if ref else None
     if asset is not None and asset.exists():
         art_w, art_h = ctx.art_frame_size(asset, max_w=width * 0.568)
         shapes.append(_positioned_image(
