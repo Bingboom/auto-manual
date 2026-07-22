@@ -96,16 +96,16 @@ class ReadTheDocsSourceTests(unittest.TestCase):
                 build_root=build_root, output_dir=output_dir, title="Manual Library"
             )
             self.assertEqual(1, len(manuals))
-            self.assertEqual("JE-1000F/US/md/indesign_web", manuals[0].web_edition_ref)
+            self.assertEqual("JE-1000F/US/md/print_edition", manuals[0].web_edition_ref)
 
             index_text = output_dir.joinpath("index.md").read_text(encoding="utf-8")
-            primary = index_text.index("InDesign edition")
+            primary = index_text.index("print edition")
             secondary = index_text.index("HTML edition")
             self.assertLess(primary, secondary)
-            self.assertIn("](JE-1000F/US/md/indesign_web.md)", index_text)
+            self.assertIn("](JE-1000F/US/md/print_edition.md)", index_text)
             self.assertIn("  - [", index_text)  # secondary is indented
 
-            viewer = output_dir.joinpath("JE-1000F", "US", "md", "indesign_web.md").read_text(encoding="utf-8")
+            viewer = output_dir.joinpath("JE-1000F", "US", "md", "print_edition.md").read_text(encoding="utf-8")
             self.assertIn("```{raw} html", viewer)
             self.assertIn('class="we-doc"', viewer)
             # image ref rewritten from assets/ to the _static web-edition location
@@ -126,8 +126,8 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIsNone(manuals[0].web_edition_ref)
             index_text = output_dir.joinpath("index.md").read_text(encoding="utf-8")
             self.assertIn("- [JE-1000F / US - US Manual](JE-1000F/US/md/index.md)", index_text)
-            self.assertNotIn("InDesign edition", index_text)
-            self.assertFalse(output_dir.joinpath("JE-1000F", "US", "md", "indesign_web.md").exists())
+            self.assertNotIn("print edition", index_text)
+            self.assertFalse(output_dir.joinpath("JE-1000F", "US", "md", "print_edition.md").exists())
             self.assertFalse(output_dir.joinpath("_static", "web-edition").exists())
 
     def test_assemble_rtd_source_should_require_output_inside_build_root(self) -> None:

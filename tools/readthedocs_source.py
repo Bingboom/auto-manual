@@ -15,14 +15,17 @@ ROOT = Path(__file__).resolve().parents[1]
 _FILE_URI_RE = re.compile(r"file:///[^\s\"')<>]+")
 _HTML_IMG_SRC_RE = re.compile(r"(<img\b[^>]*?\bsrc=)([\"'])([^\"']+)(\2)", re.IGNORECASE)
 
-# InDesign same-source web edition: tools/render_web_edition.py writes a
+# Same-source print web edition: tools/render_web_edition.py writes a
 # per-target ``webedition/`` dir (body.html + assets/ + manifest.json) beside
-# the generated ``md/`` manual. When present it becomes the primary catalog
-# entry; when absent the catalog is byte-identical to the HTML-only assembly.
+# the generated ``md/`` manual, by rasterizing the committed layout-contract
+# PDF. When present it becomes the primary catalog entry; when absent the
+# catalog is byte-identical to the HTML-only assembly.
 _WEB_EDITION_DIRNAME = "webedition"
-_WEB_EDITION_DOC = "indesign_web"
+_WEB_EDITION_DOC = "print_edition"
 _WEB_EDITION_STATIC = "web-edition"
-_WEB_EDITION_SRC_RE = re.compile(r'(\bsrc=")assets/')
+# The fragment references page rasters and the downloadable PDF as ``assets/``;
+# rewrite both src= (images) and href= (the PDF link) to the _static location.
+_WEB_EDITION_SRC_RE = re.compile(r'(\b(?:src|href)=")assets/')
 
 
 @dataclass(frozen=True)
@@ -269,8 +272,8 @@ def _write_index_md(*, output_dir: Path, title: str, manuals: list[RtdManual]) -
     for manual in manuals:
         if manual.web_edition_ref:
             lines.append(
-                f"- **[{manual.label} — InDesign edition]({manual.web_edition_ref}.md)**"
-                " — print-layout web edition, same source as the InDesign delivery"
+                f"- **[{manual.label} — print edition]({manual.web_edition_ref}.md)**"
+                " — print-layout pages, same source as the formal delivery"
             )
             lines.append(f"  - [{manual.label} — HTML edition]({manual.toctree_ref}.md)")
         else:
@@ -329,7 +332,7 @@ def main(argv: list[str] | None = None) -> int:
     output_dir = _resolve_repo_path(args.output_dir) if args.output_dir else build_root / "rtd"
     manuals = assemble_rtd_source(build_root=build_root, output_dir=output_dir, title=args.title)
     web_editions = sum(1 for manual in manuals if manual.web_edition_ref)
-    print(f"[rtd] Assembled {len(manuals)} manual(s) into {output_dir} ({web_editions} InDesign web edition(s))")
+    print(f"[rtd] Assembled {len(manuals)} manual(s) into {output_dir} ({web_editions} print web edition(s))")
     return 0
 
 

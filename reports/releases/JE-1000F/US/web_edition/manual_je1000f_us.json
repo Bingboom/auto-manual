@@ -1,0 +1,11 @@
+{
+  "title": "Jackery Explorer 1000 User Manual",
+  "provenance": {
+    "version": "1.6",
+    "source": "same-source LaTeX render (build.py pdf --pdf-mode latex --source review-asis)",
+    "built": "2026-07-22"
+  },
+  "pdf_sha256": "0110a3c5453e04e1e0b1285af38036efb50e357e9e7509bc2b91facb3fe48c61",
+  "page_count": 62,
+  "refresh": "Rebuild with: python build.py pdf --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --pdf-mode latex --no-clean --skip-root-index ; then copy docs/_build/JE-1000F/US/pdf/manual_je1000f_us.pdf here and update pdf_sha256/page_count. Keep content in sync with the committed review bundle."
+}

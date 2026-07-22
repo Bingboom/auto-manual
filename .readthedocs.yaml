@@ -21,10 +21,11 @@ build:
         # (currently JE-1000F/US). Add a target back only after its
         # docs/_review/<model>/<region> bundle lands on main.
         - python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --no-clean --skip-root-index
-        # InDesign same-source web edition: render the manual IR (the same
-        # source the IDML export consumes) into a print-layout page-card web
-        # document. Best-effort — if the IR cannot be built it logs and skips,
+        # Same-source print web edition: rasterize the committed layout-contract
+        # PDF (reports/releases/<model>/<region>/web_edition/*.pdf, built at
+        # publish time where XeLaTeX exists) into a print-layout page-card web
+        # document. Best-effort — if no committed PDF is found it logs and skips,
         # leaving the HTML-only catalog entry, so the build stays green.
-        - python tools/render_web_edition.py --config configs/config.us.yaml --model JE-1000F --region US --bundle-root docs/_build/JE-1000F/US/rst --data-root tests/fixtures/phase2 --out docs/_build/JE-1000F/US/webedition
+        - python tools/render_web_edition.py --model JE-1000F --region US --out docs/_build/JE-1000F/US/webedition
         - python tools/readthedocs_source.py --build-root docs/_build --output-dir docs/_build/rtd --title "Auto Manual Library"
         - python -m sphinx -b html docs/_build/rtd "$READTHEDOCS_OUTPUT/html"
