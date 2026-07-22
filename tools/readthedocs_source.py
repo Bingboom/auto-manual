@@ -15,6 +15,15 @@ ROOT = Path(__file__).resolve().parents[1]
 _FILE_URI_RE = re.compile(r"file:///[^\s\"')<>]+")
 _HTML_IMG_SRC_RE = re.compile(r"(<img\b[^>]*?\bsrc=)([\"'])([^\"']+)(\2)", re.IGNORECASE)
 
+# InDesign same-source web edition: tools/render_web_edition.py writes a
+# per-target ``webedition/`` dir (body.html + assets/ + manifest.json) beside
+# the generated ``md/`` manual. When present it becomes the primary catalog
+# entry; when absent the catalog is byte-identical to the HTML-only assembly.
+_WEB_EDITION_DIRNAME = "webedition"
+_WEB_EDITION_DOC = "indesign_web"
+_WEB_EDITION_STATIC = "web-edition"
+_WEB_EDITION_SRC_RE = re.compile(r'(\bsrc=")assets/')
+
 
 @dataclass(frozen=True)
 class RtdManual:
@@ -22,6 +31,7 @@ class RtdManual:
     destination_dir: Path
     label: str
     toctree_ref: str
+    web_edition_ref: str | None = None
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -210,9 +220,61 @@ def _write_conf_py(*, output_dir: Path, title: str) -> None:
     )
 
 
+def _graft_web_edition(
+    *,
+    source_dir: Path,
+    output_dir: Path,
+    destination_dir: Path,
+    manual_relative: Path,
+) -> str | None:
+    """Graft a pre-rendered ``webedition/`` into the assembled tree.
+
+    Reads ``<target>/webedition/{body.html,manifest.json,assets/}`` beside the
+    ``md/`` manual, copies its assets under ``_static/web-edition/<target>/``,
+    rewrites the fragment's ``assets/`` refs to that stable location, and writes
+    an orphan ``indesign_web.md`` viewer page. Returns the viewer's toctree ref,
+    or None when no web edition was rendered for this target.
+    """
+    web_dir = source_dir.parent / _WEB_EDITION_DIRNAME
+    body_path = web_dir / "body.html"
+    if not body_path.is_file():
+        return None
+
+    target_relative = manual_relative.parent  # <model>/<region>
+    static_root = output_dir / "_static" / _WEB_EDITION_STATIC / target_relative
+    assets_src = web_dir / "assets"
+    if assets_src.is_dir():
+        assets_dst = static_root / "assets"
+        if assets_dst.exists():
+            shutil.rmtree(assets_dst)
+        assets_dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(assets_src, assets_dst)
+
+    static_rel = (Path("_static") / _WEB_EDITION_STATIC / target_relative).as_posix()
+    viewer_parent = manual_relative.as_posix()
+    prefix = posixpath.relpath(static_rel, start=viewer_parent)
+    body = body_path.read_text(encoding="utf-8")
+    body = _WEB_EDITION_SRC_RE.sub(rf'\1{prefix}/assets/', body)
+
+    page_path = destination_dir / f"{_WEB_EDITION_DOC}.md"
+    if page_path.exists():
+        print(f"[rtd] warning: {page_path} already exists; skipping web edition graft")
+        return None
+    page_path.write_text("```{raw} html\n" + body + "\n```\n", encoding="utf-8")
+    return (manual_relative / _WEB_EDITION_DOC).as_posix()
+
+
 def _write_index_md(*, output_dir: Path, title: str, manuals: list[RtdManual]) -> None:
     lines = [f"# {title}", ""]
-    lines.extend(f"- [{manual.label}]({manual.toctree_ref}.md)" for manual in manuals)
+    for manual in manuals:
+        if manual.web_edition_ref:
+            lines.append(
+                f"- **[{manual.label} — InDesign edition]({manual.web_edition_ref}.md)**"
+                " — print-layout web edition, same source as the InDesign delivery"
+            )
+            lines.append(f"  - [{manual.label} — HTML edition]({manual.toctree_ref}.md)")
+        else:
+            lines.append(f"- [{manual.label}]({manual.toctree_ref}.md)")
     lines.append("")
     output_dir.joinpath("index.md").write_text("\n".join(lines), encoding="utf-8")
 
@@ -240,12 +302,19 @@ def assemble_rtd_source(*, build_root: Path, output_dir: Path, title: str) -> li
         _rewrite_markdown_file_uris(source_dir=source_dir, destination_dir=destination_dir)
         _copy_manual_assets_to_static(output_dir=output_dir, destination_dir=destination_dir, manual_relative=relative)
         _rewrite_markdown_asset_sources(output_dir=output_dir, destination_dir=destination_dir, manual_relative=relative)
+        web_edition_ref = _graft_web_edition(
+            source_dir=source_dir,
+            output_dir=output_dir,
+            destination_dir=destination_dir,
+            manual_relative=relative,
+        )
         manuals.append(
             RtdManual(
                 source_dir=source_dir,
                 destination_dir=destination_dir,
                 label=_manual_label(source_dir, build_root),
                 toctree_ref=(relative / "index").as_posix(),
+                web_edition_ref=web_edition_ref,
             )
         )
 
@@ -259,7 +328,8 @@ def main(argv: list[str] | None = None) -> int:
     build_root = _resolve_repo_path(args.build_root)
     output_dir = _resolve_repo_path(args.output_dir) if args.output_dir else build_root / "rtd"
     manuals = assemble_rtd_source(build_root=build_root, output_dir=output_dir, title=args.title)
-    print(f"[rtd] Assembled {len(manuals)} manual(s) into {output_dir}")
+    web_editions = sum(1 for manual in manuals if manual.web_edition_ref)
+    print(f"[rtd] Assembled {len(manuals)} manual(s) into {output_dir} ({web_editions} InDesign web edition(s))")
     return 0
 
 
