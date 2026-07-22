@@ -150,6 +150,14 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             energy_panel_height=operation_energy_panel_height,
             baseline_panel_height=text_measure * 0.545 + 2.0,
         )
+        if (
+            "operation_guide" in title
+            and kind == "body"
+            and next_block[0] == "h2"
+        ):
+            # The approved operation reference leaves one clear line between
+            # the POWER/standby tail and the following section heading.
+            operation_attrs, operation_spacing = 'SpaceAfter="7.5"', 7.5
         if kind == "warrantynote":
             note_scale = param_pt(
                 writer.params,
