@@ -12,8 +12,14 @@ build:
       - python -m pip install -r requirements.lock
     build:
       html:
-        - python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source runtime --no-clean --skip-root-index
-        - python build.py md --config configs/config.eu.yaml --model JE-1000F --region EU --source runtime --no-clean --skip-root-index
-        - python build.py md --config configs/config.ja.yaml --model JE-1000F --region JP --source runtime --no-clean --skip-root-index
+        # RTD builds from a bare clone: no Feishu credentials and no local
+        # data/phase2 snapshot, so `--source runtime` cannot resolve
+        # Spec_Master identity here. Render the committed review bundle
+        # as-is instead, with the tracked fixture snapshot supplying the
+        # frozen attachments and capability plan.
+        # Catalog scope = targets whose review bundle is committed on main
+        # (currently JE-1000F/US). Add a target back only after its
+        # docs/_review/<model>/<region> bundle lands on main.
+        - python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --no-clean --skip-root-index
         - python tools/readthedocs_source.py --build-root docs/_build --output-dir docs/_build/rtd --title "Auto Manual Library"
         - python -m sphinx -b html docs/_build/rtd "$READTHEDOCS_OUTPUT/html"
