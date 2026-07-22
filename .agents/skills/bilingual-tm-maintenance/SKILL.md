@@ -69,7 +69,7 @@ Use a conservative match:
 
 ## Korean Number Formatting Rule
 
-When maintaining the Korean (`ko`) target, apply thousands separators to ordinary numeric values: use an ASCII comma every three digits from the right, such as `1,000`, `1,024 Wh`, `1,800 W`, and `3,600 W`. Preserve decimal notation, units, signs, and the established spacing around units.
+When maintaining the Korean (`ko`) target, apply thousands separators to ordinary numeric values: use an ASCII comma every three digits from the right, such as `1,000`, `1,024`, `1,800`, and `3,600`. In Korean target text, do not leave a space between a numeric value and its unit or counter: use `1,024Wh`, `1,800W`, `10.8kg`, `230V`, `60Hz`, `3개`, and `2시간`. Preserve decimal notation and signs while attaching the unit directly to the number.
 
 Do not insert separators into name-like or identifier-like digit strings, including model and product names, part numbers, error codes, serial/SKU/firmware identifiers, URLs, and dates or years. Examples that remain unchanged are `JE-1000H`, `Explorer 1000 Plus`, `Jackery Battery Pack 2000`, `F0`, and `2026`. In mixed text, normalize only eligible numeric quantities; never alter the digits inside an exempt identifier.
 
