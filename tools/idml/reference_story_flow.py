@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from . import ir_projection
-from .asset_contracts import is_je1000f_us_en_app_reference_plan_page
+from .asset_contracts import is_je1000f_us_app_reference_plan_page
 from .params import param_pt
 from .prose_flow import operation_final_frame_x_offset, operation_language
 
@@ -43,7 +43,7 @@ class ReferenceStoryEmitter:
             and "charging" in title.casefold()
             and "charging_methods" not in title.casefold()
         )
-        is_app = is_je1000f_us_en_app_reference_plan_page(
+        is_app = is_je1000f_us_app_reference_plan_page(
             self.page_plan,
             title,
         )

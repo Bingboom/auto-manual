@@ -9,7 +9,7 @@ Si aparece alguno de los siguientes códigos de fallo, siga las acciones correct
 
 .. list-table::
    :class: longtable
-   :header-rows: 0
+   :header-rows: 1
    :widths: 14 86
 
    * - Código de fallo
@@ -42,4 +42,3 @@ Si aparece alguno de los siguientes códigos de fallo, siga las acciones correct
      - Retire la carga conectada a los puertos USB del producto. Espere hasta que la falla desaparezca.
    * - FE
      - Contacte con atención al cliente de Jackery.
-

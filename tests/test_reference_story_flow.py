@@ -285,11 +285,11 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
 
     def test_app_chain_reference_offset_fails_closed_for_other_targets(self) -> None:
         cases = (
-            ("wrong model", _approved_app_plan(model="OTHER")),
-            ("wrong region", _approved_app_plan(region="EU")),
-            ("French", _approved_app_plan(language="fr")),
-            ("Spanish", _approved_app_plan(language="es")),
-            ("missing metadata", {"plan_source": "approved-reference"}),
+            ("wrong model", _approved_app_plan(model="OTHER"), 13.81),
+            ("wrong region", _approved_app_plan(region="EU"), 13.81),
+            ("French", _approved_app_plan(language="fr"), 15.06),
+            ("Spanish", _approved_app_plan(language="es"), 15.06),
+            ("missing metadata", {"plan_source": "approved-reference"}, 13.81),
             (
                 "missing language",
                 {
@@ -298,9 +298,10 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
                         "source_path": "page/12_app_setup_placeholder.rst",
                     }],
                 },
+                13.81,
             ),
         )
-        for label, plan in cases:
+        for label, plan, expected in cases:
             with self.subTest(label=label):
                 writer = _RecordingWriter()
                 emitter = ReferenceStoryEmitter(
@@ -317,15 +318,12 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
                     page_cursor=19,
                 )
 
-                self.assertEqual(
-                    13.81,
-                    writer.spread_chain_options[0]["first_top_offset"],
-                )
+                self.assertEqual(expected, writer.spread_chain_options[0]["first_top_offset"])
 
-    def test_noncanonical_app_chains_keep_their_existing_top_offsets(self) -> None:
+    def test_localized_app_chains_use_the_approved_top_offset(self) -> None:
         for title, h1, expected in (
-            ("p34_12_app_setup_placeholder", "APP SETUP", 13.13),
-            ("p50_12_app_setup_placeholder", "Localized app heading", 13.81),
+            ("p34_12_app_setup_placeholder", "APP SETUP", 15.06),
+            ("p50_12_app_setup_placeholder", "Localized app heading", 15.06),
         ):
             with self.subTest(title=title):
                 writer = _RecordingWriter()

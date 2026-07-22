@@ -104,9 +104,9 @@ def _write_idml(path: Path, uris: list[str]) -> None:
 
 
 class IdmlAssetManifestPipelineTests(unittest.TestCase):
-    def test_exact_app_reference_page_predicate_fails_closed(self) -> None:
+    def test_app_reference_page_predicate_fails_closed(self) -> None:
         page = Path("page/12_app_setup_placeholder.rst")
-        for language in ("en", "en-US", "en_US"):
+        for language in ("en", "en-US", "en_US", "fr", "es"):
             with self.subTest(language=language):
                 self.assertTrue(is_je1000f_us_en_app_reference_page(
                     page,
@@ -116,11 +116,9 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
                 ))
 
         excluded = (
-            (page, "JE-1000F", "US", "fr"),
-            (page, "JE-1000F", "US", "es"),
             (page, "JE-1000F", "EU", "en"),
             (page, "OTHER", "US", "en"),
-            (Path("page/p34_12_app_setup_placeholder.rst"), "JE-1000F", "US", "en"),
+            (Path("page/p34_12_app_setup_placeholder.rst"), "JE-1000F", "US", "de"),
             (page, None, "US", "en"),
         )
         for page_path, model, region, language in excluded:
@@ -137,11 +135,18 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
                     language=language,
                 ))
 
-    def test_requirement_is_limited_to_canonical_english_us_app_page(self) -> None:
-        for language in ("en", "en-US", "en_US"):
+    def test_requirement_covers_the_three_approved_us_app_languages(self) -> None:
+        for language in ("en", "en-US", "en_US", "fr", "es"):
             with self.subTest(language=language):
+                page = Path(
+                    "page/p34_12_app_setup_placeholder.rst"
+                    if language == "fr" else
+                    "page/p50_12_app_setup_placeholder.rst"
+                    if language == "es" else
+                    "page/12_app_setup_placeholder.rst"
+                )
                 matched = requirements_for_page(
-                    Path("page/12_app_setup_placeholder.rst"),
+                    page,
                     model="JE-1000F",
                     region="US",
                     language=language,
@@ -152,8 +157,7 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
                 )
 
         excluded = (
-            (Path("page/p34_12_app_setup_placeholder.rst"), "JE-1000F", "US", "en"),
-            (Path("page/12_app_setup_placeholder.rst"), "JE-1000F", "US", "fr"),
+            (Path("page/p34_12_app_setup_placeholder.rst"), "JE-1000F", "US", "de"),
             (Path("page/12_app_setup_placeholder.rst"), "JE-1000F", "EU", "en"),
             (Path("page/12_app_setup_placeholder.rst"), "OTHER", "US", "en"),
         )
@@ -181,8 +185,8 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
             ("JE-1000F", "US", "en", True),
             ("JE-1000F", "US", "en-US", True),
             ("JE-1000F", "US", "en_US", True),
-            ("JE-1000F", "US", "fr", False),
-            ("JE-1000F", "US", "es", False),
+            ("JE-1000F", "US", "fr", True),
+            ("JE-1000F", "US", "es", True),
             ("JE-1000F", "EU", "en", False),
             ("OTHER", "US", "en", False),
         )

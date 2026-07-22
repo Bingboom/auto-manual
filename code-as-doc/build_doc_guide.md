@@ -772,19 +772,21 @@ Approved-reference `referencefigure` promotion routes only by approved-plan
 role, canonical source stem, asset basename, and adjacent IR shape; localized
 headings are never routing keys. Charging-method compositions promote the AC
 caption and the car `Vehicle`/cable note into independent top-layer stories.
-The exact App composition is currently limited to the canonical English
-`12_app_setup_placeholder`: Download splits Store and QR into linked build-only
-crops with two copy frames; Add Device places the approved pairing-panel export
-below independent 2.1/2.2 and POWER/AC/DC/USB frames; Connect Result crops the
-three screens and emits 2.3/2.4/2.5 plus the reference note separately.
+The exact App composition applies to the approved English, French, and Spanish
+`12_app_setup_placeholder` pages (including their physical-page-prefixed
+stems): Download splits Store and QR into linked build-only crops with two copy
+frames; Add Device places the approved pairing-panel export below independent
+2.1/2.2 and POWER/AC/DC/USB frames; Connect Result crops the three screens and
+emits 2.3/2.4/2.5 plus the reference note separately.
 To match the approved JE-1000F/US/en reference without changing the frozen
 source/IR hash, this exact composition normalizes only the visible reference
 labels `POWER Button` to `Main Power Button` and `DC / USB` to `DC/USB`.
 Those normalized strings remain unlocked top-layer text frames; this is a
 target-scoped reference-layout contract, not a general content rewrite.
 `p34_12_app_setup_placeholder` and `p50_12_app_setup_placeholder` retain their
-ordinary localized flow. Every graphic, shape, and leader extension is emitted
-before the unlocked text frames.
+localized copy and labels but use the same approved page split and component
+geometry. Every graphic, shape, and leader extension is emitted before the
+unlocked text frames.
 
 Source-authored TOC folios and back-cover copy come from the IR; InDesign must
 not recompute or hardcode them. Content, translation, specification, legal,

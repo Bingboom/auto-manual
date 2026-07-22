@@ -155,16 +155,17 @@ frames, native knockout-backed leader paths, and source-authored labels emitted
 last as unlocked text frames. Its `overview/front_controls` semantic reference
 selects the `overview/je1000f_us/front_controls` override only for JE-1000F/US;
 the shared common-assets PNG remains unchanged for every other target.
-Charging figures and the canonical English App
-Setup source (`12_app_setup_placeholder`) use `referencefigure` composites:
+Charging figures and the approved English, French, and Spanish App
+Setup sources (`12_app_setup_placeholder` and their physical-page-prefixed
+siblings) use `referencefigure` composites:
 artwork, generated Store/QR/screen crops, and the governed
 `controls/je1000f_us/network_pairing_panel` panel remain below separate movable
 captions, step numbers, control labels, and notes. The approved JE-1000F/US/en
 replica applies a target-scoped reference-label normalization (`POWER Button`
 to `Main Power Button`, and `DC / USB` to `DC/USB`) without changing the
 source/IR hash; the normalized copy is still emitted as unlocked top-layer
-frames. French and Spanish App pages retain their normal flow until separately
-approved.
+frames. French and Spanish use the same page split and editable geometry while
+retaining their localized copy and labels.
 
 Rounded data tables remain
 editable: the IDML groups a rounded background with a square content frame so

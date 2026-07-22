@@ -5,7 +5,7 @@ Si aparece alguno de los siguientes códigos de fallo, siga las acciones correct
 
 .. list-table::
    :class: longtable
-   :header-rows: 0
+   :header-rows: 1
    :widths: 14 86
 
    * - Código de fallo

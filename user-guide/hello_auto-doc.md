@@ -95,14 +95,14 @@ duration, operation, and function remains a separate movable text frame across
 English, French, and Spanish.
 
 Approved Charging figures use the same top-layer rule for AC and vehicle
-captions. The exact App reference composition currently applies only to the
-English App Setup source: Store/QR and result-screen crops remain linked art,
-while step numbers, pairing-panel labels, and notes are separate movable text
-frames. For JE-1000F/US/en only, the replica normalizes the reference labels
+captions. The exact App reference composition applies to the English, French,
+and Spanish App Setup sources: Store/QR and result-screen crops remain linked
+art, while step numbers, pairing-panel labels, and notes are separate movable
+text frames. For JE-1000F/US/en only, the replica normalizes the reference labels
 `POWER Button` to `Main Power Button` and `DC / USB` to `DC/USB` without
 changing the source/IR hash; the result remains unlocked and editable in the
-top layer. French and Spanish App pages keep their existing localized flow
-until they receive a separate approval.
+top layer. French and Spanish keep their localized copy and labels while using
+the same approved page split and component geometry.
 
 For the approved-PDF replica of `JE-1000F / US / en+fr+es` (方案 2), production
 mode must resolve the
