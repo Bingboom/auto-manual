@@ -40,6 +40,7 @@ def operation_story_rhythm_for_next_block(
     next_block: tuple[str, str],
     page_language: str | None,
     *,
+    title: str | None = None,
     intro_lines: int | None,
     energy_panel_height: float | None,
     baseline_panel_height: float,
@@ -58,4 +59,7 @@ def operation_story_rhythm_for_next_block(
     if heading == "key" and page_language in _KEY_HEADING_BEFORE:
         before = _KEY_HEADING_BEFORE[page_language]
         return f'SpaceBefore="{before:g}"', before
+    if title and "operation_guide" in title and kind == "body" and next_block[0] == "h2":
+        # Keep one clear line between the POWER/standby tail and next heading.
+        return 'SpaceAfter="7.5"', 7.5
     return attrs, spacing
