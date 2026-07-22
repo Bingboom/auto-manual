@@ -1134,6 +1134,15 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     "Python >= 3.9"; ONBOARDING §8 "构建环境未锁定" line corrected.
     Deliberate cut: the standalone ruff/mypy tool installs in CI stay
     unpinned (lint toolchain, not build deps).
+    RTD first-build confirmation (2026-07-21, operator screenshot of RTD
+    project `ht-doc` on the Hello-Docs mirror, build #33636549): the install
+    step runs `python -m pip install -r requirements.lock` and passes (22s)
+    — the K1-owned leg works on RTD. That build still failed downstream in
+    `build.py md --source runtime` (bare clone has no phase2 snapshot), a
+    pre-existing RTD-integration gap unrelated to K1, fixed separately by
+    switching `.readthedocs.yaml` to `--source review-asis
+    --data-root tests/fixtures/phase2` scoped to review bundles committed
+    on main (currently JE-1000F/US).
   - Original note: touches `.github/workflows/**` → operator-gated. The lock
     exists (Milestone I3) but no workflow installs from it, so CI drifts from
     the pinned snapshot silently.

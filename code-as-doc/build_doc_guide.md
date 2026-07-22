@@ -567,10 +567,12 @@ Vercel note:
 
 Read the Docs note:
 
-- [`.readthedocs.yaml`](../.readthedocs.yaml) is the RTD catalog path for the current generated public manuals: `JE-1000F / US`, `JE-1000F / EU`, and `JE-1000F / JP`
-- RTD installs the system `pandoc` package, runs `python build.py md` for each catalog target, then runs [`../tools/readthedocs_source.py`](../tools/readthedocs_source.py) to assemble [`../docs/_build/rtd/`](../docs/_build) with one link-only root `index.md` that lists the generated manual entries and mirrors each manual's image assets under Sphinx `_static/manual-assets/`
+- [`.readthedocs.yaml`](../.readthedocs.yaml) is the RTD catalog path for the generated public manuals; the catalog scope is every target whose review bundle is committed on `main` (currently `JE-1000F / US`)
+- RTD builds from a bare clone with no Feishu credentials and no local `data/phase2` snapshot, so each catalog target is rendered with `python build.py md --source review-asis --data-root tests/fixtures/phase2`: the committed [`docs/_review/<model>/<region>/`](../docs/_review) bundle supplies the content and the tracked fixture snapshot supplies the frozen attachments and capability plan (`--source runtime` cannot resolve Spec_Master identity there and must not be used in `.readthedocs.yaml`)
+- to add a target to the catalog, first land its `docs/_review/<model>/<region>` bundle on `main`, then add its `build.py md` line to `.readthedocs.yaml`
+- RTD installs the system `pandoc` package, then runs [`../tools/readthedocs_source.py`](../tools/readthedocs_source.py) to assemble [`../docs/_build/rtd/`](../docs/_build) with one link-only root `index.md` that lists the generated manual entries and mirrors each manual's image assets under Sphinx `_static/manual-assets/`
 - do not point RTD at the repo-root [`../docs/`](../docs) tree for this flow; `docs/_build/rtd/` is the generated Sphinx source for the catalog, and each target-scoped `md` directory remains the generated MyST source for one manual
-- RTD does not publish `_review`, queue-driven Publish HTML, or Word / PDF artifacts; keep Vercel and release outputs as the formal publish path
+- RTD does not publish queue-driven Publish HTML or Word / PDF artifacts; keep Vercel and release outputs as the formal publish path
 
 ### 3.7 Publish a Final Word Release
 
