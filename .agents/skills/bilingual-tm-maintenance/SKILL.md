@@ -67,6 +67,14 @@ Use a conservative match:
 - Target text missing from the provided target-language source: do not write it.
 - Target text present but visibly dirty, such as stray letters, mojibake, or broken spacing: write an audit log as `review suggested`; fix only when the user asks for correction or the source evidence is unambiguous.
 
+## Korean Number Formatting Rule
+
+When maintaining the Korean (`ko`) target, apply thousands separators to ordinary numeric values: use an ASCII comma every three digits from the right, such as `1,000`, `1,024 Wh`, `1,800 W`, and `3,600 W`. Preserve decimal notation, units, signs, and the established spacing around units.
+
+Do not insert separators into name-like or identifier-like digit strings, including model and product names, part numbers, error codes, serial/SKU/firmware identifiers, URLs, and dates or years. Examples that remain unchanged are `JE-1000H`, `Explorer 1000 Plus`, `Jackery Battery Pack 2000`, `F0`, and `2026`. In mixed text, normalize only eligible numeric quantities; never alter the digits inside an exempt identifier.
+
+This is a Korean target-format normalization rule, not permission to invent a translation. Apply it when the bilingual source clearly identifies the same numeric value and the user has requested Korean corpus normalization. If an existing target differs in a way that could change the value or identifier, preserve it and classify the row as `review suggested` instead of silently rewriting it. Do not retroactively rewrite existing rows unless the user explicitly requests a corpus-wide cleanup.
+
 ## Log Rules
 
 Use short, ASCII log lines to avoid Windows encoding issues in log fields.
