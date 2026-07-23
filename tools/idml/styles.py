@@ -50,6 +50,13 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         *app_paragraph_styles(p),
         ("HB Preface Body", sz("idml_preface_body_font_size", 7.2), sz("idml_preface_body_font_leading", 8.6), "Regular", "preface_body"),
         ("HB Safety Lead", sz("type_safety_lead_font_size", 8.0), sz("type_safety_lead_font_leading", 9.6), "Bold", "safety_lead"),
+        (
+            "HB Safety Instruction",
+            sz("idml_safety_instruction_font_size", 8.0),
+            sz("idml_safety_instruction_font_leading", 9.6),
+            param_text(p, "idml_safety_instruction_font_style", "Bold"),
+            "warning_lead",
+        ),
         ("HB Warning Lead Label", sz("type_warning_lead_label_font_size", 10.0), sz("type_warning_lead_label_font_leading", 10.6), "Bold", "warning_lead"),
         ("HB Warning Lead Body", sz("type_warning_lead_body_font_size", 6.5), sz("type_warning_lead_body_font_leading", 7.2), "Bold", "warning_lead"),
         ("HB FCC Text", 5.6, 6.15, "Regular", ""),

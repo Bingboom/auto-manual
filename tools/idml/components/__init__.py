@@ -12,6 +12,7 @@ from __future__ import annotations
 
 from .base import ComponentRenderer, RenderContext, figure_paragraph
 from .callout import (
+    render_safetyinstruction,
     render_safetywarning,
     render_tailwarnbox,
     render_warnbox,
@@ -37,7 +38,7 @@ from .warranty import (
 REGISTRY: dict[str, ComponentRenderer] = {
     "inbox": render_inbox,
     "safetywarning": render_safetywarning,
-    "safetyinstruction": render_safetywarning,
+    "safetyinstruction": render_safetyinstruction,
     "warninglead": render_warninglead,
     "tailwarnbox": render_tailwarnbox,
     "warnbox": render_warnbox,

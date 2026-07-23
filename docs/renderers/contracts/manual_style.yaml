@@ -97,9 +97,9 @@ styles:
   HB-SAFETY-INSTRUCTION:
     role: Safety instruction lockup
     semantic_source_kinds: [safety_instruction]
-    token_refs: [comp_warning_box_arc, comp_warning_box_rule, type_warning_text_font_size, type_warning_text_font_leading]
+    token_refs: [comp_warning_box_arc, comp_warning_box_rule, idml_safety_instruction_font_size, idml_safety_instruction_font_leading, idml_safety_instruction_font_style, idml_safety_instruction_icon_width, idml_safety_instruction_lockup_width, idml_safety_instruction_text_inset]
     latex: {owner: components_safety.tex, entrypoints: [HBSafetyInstruction]}
-    indesign: {renderer: safety_instruction, object_style: HB Rounded Panel}
+    indesign: {renderer: safetyinstruction, paragraph_style: HB Safety Instruction, object_style: HB Rounded Panel}
     status: aligned
 
   HB-SAFETY-WARNING:

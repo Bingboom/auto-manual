@@ -195,6 +195,13 @@
       <Leading type="unit">9.6</Leading>
     </Properties>
   </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Safety Instruction" Name="HB Safety Instruction" PointSize="8" FillColor="Color/HB Brand Dark" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">9.6</Leading>
+    </Properties>
+  </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/HB Warning Lead Label" Name="HB Warning Lead Label" PointSize="10" FillColor="Color/HB Brand Dark" Hyphenation="false" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>

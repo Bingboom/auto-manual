@@ -493,6 +493,12 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("warning_triangle", xml)
         self.assertIn(paragraph_style_ref("HB Title L3"), xml)
         self.assertNotIn(">WARNING<", xml)
+        instruction_xml, _ = w._render_component("t", 5, {
+            "kind": "safetyinstruction", "texts": ["KEEP THIS INSTRUCTION"]},
+            bundle, True)
+        self.assertIn("warning_triangle_dark.svg", instruction_xml)
+        self.assertIn(paragraph_style_ref("HB Safety Instruction"), instruction_xml)
+        self.assertNotIn(paragraph_style_ref("HB Title L3"), instruction_xml)
         xml, _ = w._render_component("t", 5, {
             "kind": "warninglead", "label": "WARNING", "texts": ["lead"]},
             bundle, True, span_columns=False, measure_w=150.0)
