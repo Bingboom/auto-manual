@@ -465,6 +465,20 @@ comp_inbox_label_gap,2.0,mm,Inbox image-to-label gap
 comp_inbox_after,2.5,mm,Space after inbox cards
 type_inbox_label_font_size,6.5,pt,Inbox label font size
 type_inbox_label_font_leading,7.2,pt,Inbox label leading
+idml_fcc_inbox_overflow_title_y,245,pt,IDML inbox heading top on symbol-overflow pages
+lang_es_idml_fcc_inbox_overflow_title_y,263.5,pt,Spanish IDML inbox heading top on symbol-overflow pages
+idml_inbox_overflow_card_y,273,pt,IDML inbox card top on symbol-overflow pages
+lang_es_idml_inbox_overflow_card_y,288,pt,Spanish IDML inbox card top on symbol-overflow pages
+idml_inbox_overflow_card_height,172.5,pt,IDML inbox card height on symbol-overflow pages
+lang_es_idml_inbox_overflow_card_height,160.8,pt,Spanish IDML inbox card height on symbol-overflow pages
+idml_inbox_overflow_image_1_width,72,pt,IDML product image width on symbol-overflow pages
+lang_es_idml_inbox_overflow_image_1_width,72,pt,Spanish product image width on symbol-overflow pages
+idml_inbox_overflow_image_2_width,60,pt,IDML cable image width on symbol-overflow pages
+lang_es_idml_inbox_overflow_image_2_width,40,pt,Spanish cable image width on symbol-overflow pages
+idml_inbox_overflow_image_3_width,58,pt,IDML document image width on symbol-overflow pages
+lang_es_idml_inbox_overflow_image_3_width,38,pt,Spanish document image width on symbol-overflow pages
+idml_inbox_overflow_tip_y,458,pt,IDML tip-strip top on symbol-overflow pages
+lang_es_idml_inbox_overflow_tip_y,454,pt,Spanish IDML tip-strip top on symbol-overflow pages
 comp_tip_arc,1.73,mm,Tip strip corner radius
 comp_callout_rule,1.2,pt,Warning caution note and tip outer border width
 comp_callout_label_inset,0.44,mm,White label panel inset inside the gray callout shell

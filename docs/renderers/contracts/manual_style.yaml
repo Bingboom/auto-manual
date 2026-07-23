@@ -299,7 +299,7 @@ styles:
   HB-SPECIAL-INBOX:
     role: What's In The Box cards
     semantic_source_kinds: [inbox]
-    token_refs: [comp_inbox_card_arc, comp_inbox_card_width, comp_inbox_card_height, comp_inbox_image_width, comp_inbox_image_height, comp_inbox_label_gap, type_inbox_label_font_size]
+    token_refs: [comp_inbox_card_arc, comp_inbox_card_width, comp_inbox_card_height, comp_inbox_image_width, comp_inbox_image_height, comp_inbox_label_gap, type_inbox_label_font_size, idml_fcc_inbox_overflow_title_y, lang_es_idml_fcc_inbox_overflow_title_y, idml_inbox_overflow_card_y, lang_es_idml_inbox_overflow_card_y, idml_inbox_overflow_card_height, lang_es_idml_inbox_overflow_card_height, idml_inbox_overflow_image_1_width, lang_es_idml_inbox_overflow_image_1_width, idml_inbox_overflow_image_2_width, lang_es_idml_inbox_overflow_image_2_width, idml_inbox_overflow_image_3_width, lang_es_idml_inbox_overflow_image_3_width, idml_inbox_overflow_tip_y, lang_es_idml_inbox_overflow_tip_y]
     latex: {owner: components_special_pages.tex, entrypoints: [HBInBoxThree]}
     indesign: {renderer: inbox, paragraph_style: Item List Text, object_style: HB Inbox Card, table_style: 无表头表格}
     status: partial

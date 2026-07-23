@@ -2132,6 +2132,64 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_left"])
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_right"])
 
+    def test_spanish_symbol_overflow_uses_shared_inbox_layout_profile(self) -> None:
+        import xml.etree.ElementTree as ET
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        w.add_fcc_inbox_page(
+            "st_fcc_es_layout",
+            [("component", json.dumps({
+                "kind": "fcc",
+                "texts": ["Aviso izquierdo.", "Aviso derecho."],
+            }))],
+            [
+                ("h1", "CONTENIDO DE LA CAJA"),
+                ("component", json.dumps({
+                    "kind": "inbox",
+                    "items": [{"img": "", "label": "Documentos"}],
+                })),
+                ("component", json.dumps({
+                    "kind": "notice",
+                    "label": "CONSEJOS",
+                    "texts": ["Texto de ayuda."],
+                })),
+            ],
+            ROOT,
+            42,
+            symbol_overflow=([{"figure": "", "text": "Explosivo"}], []),
+            lang="es",
+        )
+        root = ET.fromstring(dict(w.spreads)["sp_42"])
+
+        def bounds(self_id: str) -> tuple[float, float, float, float]:
+            node = next(
+                item for item in root.iter()
+                if item.attrib.get("Self") == self_id
+            )
+            points = []
+            for item in node.iter("PathPointType"):
+                for key in ("Anchor", "LeftDirection", "RightDirection"):
+                    points.append(tuple(
+                        float(value) for value in item.attrib[key].split()
+                    ))
+            xs = [point[0] for point in points]
+            ys = [point[1] for point in points]
+            return (
+                min(xs) + w.page_w / 2.0,
+                min(ys) + w.page_h / 2.0,
+                max(xs) + w.page_w / 2.0,
+                max(ys) + w.page_h / 2.0,
+            )
+
+        title = bounds("tf_st_fcc_es_layout_title")
+        card = bounds("bg_st_fcc_es_layout_card_1")
+        tip = bounds("bg_st_fcc_es_layout_tip_strip")
+        self.assertAlmostEqual(263.5 - 1.96, title[1], places=3)
+        self.assertAlmostEqual(288.0, card[1], places=3)
+        self.assertAlmostEqual(160.8, card[3] - card[1], places=3)
+        self.assertAlmostEqual(454.0, tip[1], places=3)
+
     def test_fcc_long_left_copy_wraps_beside_mark_as_native_stories(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
