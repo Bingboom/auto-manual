@@ -76,6 +76,7 @@ class IdmlIRProjectionTests(unittest.TestCase):
                                 "source_no": "27",
                                 "display_no": "22",
                                 "number_row_span": 2,
+                                "typography_role": "dense",
                             },
                         ],
                     },
@@ -108,6 +109,7 @@ class IdmlIRProjectionTests(unittest.TestCase):
         self.assertEqual(["㉑", "㉒"], [row["no"] for row in lcd.rows])
         self.assertEqual(["22", "27"], [row["source_no"] for row in lcd.rows])
         self.assertEqual("2", lcd.rows[1]["number_row_span"])
+        self.assertEqual("dense", lcd.rows[1]["typography_role"])
 
     def test_projected_pages_preserve_source_order_and_layout_markers(self) -> None:
         pages = ir_projection.project_pages(self.ir, BUNDLE)

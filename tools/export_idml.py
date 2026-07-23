@@ -263,7 +263,8 @@ def main() -> int:
             toc.note(title, page_cursor, lang)
             sid = w.add_lcd_story(rows, data_root, lang=lang, title=title)
             segment_count = w.lcd_segment_counts.get(lang, 1)
-            _package.add_lcd_story_frames(w, sid, page_cursor, segment_count)
+            _package.add_lcd_story_frames(
+                w, sid, page_cursor, segment_count, lang=lang)
             page_cursor += segment_count
         elif kind == "trouble":
             rows = list(_ir_projection.trouble_rows(manual_ir, lang))

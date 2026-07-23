@@ -4,6 +4,89 @@ from __future__ import annotations
 from .params import param_pt
 
 
+def _language(lang: str) -> str:
+    return (lang or "en").strip().casefold().replace("_", "-").split("-", 1)[0]
+
+
+def _profile_pt(
+    writer,
+    *,
+    language: str,
+    segment: str,
+    role: str,
+    metric: str,
+    fallback_key: str,
+    fallback: float,
+) -> float:
+    """Resolve a locale/segment/role LCD token from most to least specific."""
+    keys = (
+        f"lang_{language}_idml_lcd_{segment}_{role}_{metric}",
+        f"lang_{language}_idml_lcd_{segment}_{metric}",
+        f"idml_lcd_{segment}_{role}_{metric}",
+        f"idml_lcd_{segment}_{metric}",
+        fallback_key,
+    )
+    for key in keys:
+        if key in writer.params:
+            return param_pt(writer.params, key, fallback)
+    return fallback
+
+
+def typography_tokens(
+    writer,
+    lang: str,
+    row: dict[str, str],
+    *,
+    segment_index: int,
+) -> tuple[float, float, float, float]:
+    """Return label/body size and leading for one editable LCD row.
+
+    The approved reference contract assigns semantic density roles; layout
+    tokens own the actual locale-specific metrics. This keeps source text and
+    source identifiers unchanged while avoiding renderer-local row numbers.
+    """
+    language = _language(lang)
+    segment = "first" if segment_index == 0 else "continuation"
+    role = row.get("typography_role", "default").strip() or "default"
+    label_size = _profile_pt(
+        writer,
+        language=language,
+        segment=segment,
+        role=role,
+        metric="label_font_size",
+        fallback_key="type_lcd_label_font_size",
+        fallback=6.2,
+    )
+    label_leading = _profile_pt(
+        writer,
+        language=language,
+        segment=segment,
+        role=role,
+        metric="label_font_leading",
+        fallback_key="type_lcd_label_font_leading",
+        fallback=6.8,
+    )
+    body_size = _profile_pt(
+        writer,
+        language=language,
+        segment=segment,
+        role=role,
+        metric="body_font_size",
+        fallback_key="type_lcd_body_font_size",
+        fallback=5.2,
+    )
+    body_leading = _profile_pt(
+        writer,
+        language=language,
+        segment=segment,
+        role=role,
+        metric="body_font_leading",
+        fallback_key="type_lcd_body_font_leading",
+        fallback=5.8,
+    )
+    return label_size, label_leading, body_size, body_leading
+
+
 def layout_tokens(
     writer,
     body_w: float,
@@ -42,12 +125,17 @@ def layout_tokens(
 
 
 def typed_paragraph(writer, style: str, text: str,
-                    size_key: str, leading_key: str, *,
+                    size_key: str | None = None,
+                    leading_key: str | None = None, *,
+                    point_size: float | None = None,
+                    leading: float | None = None,
                     bold: bool = False,
                     font: str | None = None) -> str:
     """Apply shared typed LCD tokens without replacing the template style."""
-    point_size = param_pt(writer.params, size_key, 5.2)
-    leading = param_pt(writer.params, leading_key, 5.8)
+    if point_size is None:
+        point_size = param_pt(writer.params, size_key or "", 5.2)
+    if leading is None:
+        leading = param_pt(writer.params, leading_key or "", 5.8)
     font_style = ' FontStyle="Bold"' if bold else ""
     paragraph = writer._psr(style, text, terminal=True).replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',

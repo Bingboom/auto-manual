@@ -95,6 +95,10 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
         )
         cells: list[str] = []
         for local_ri, row in enumerate(segment):
+            label_size, label_leading, body_size, body_leading = (
+                _lcd.typography_tokens(
+                    writer, lang, row, segment_index=segment_index)
+            )
             fig = (ROOT / row["figure"]) if row["figure"] else None
             image = (
                 writer._image_cell_content(
@@ -117,11 +121,11 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                 (image_paragraph, 1),
                 (_lcd.typed_paragraph(
                     writer, "HB Spec Label", row["name"],
-                    "type_lcd_label_font_size", "type_lcd_label_font_leading",
+                    point_size=label_size, leading=label_leading,
                     bold=True), 2),
                 (_lcd.typed_paragraph(
                     writer, "HB Spec Value", row["desc"],
-                    "type_lcd_body_font_size", "type_lcd_body_font_leading"), 3),
+                    point_size=body_size, leading=body_leading), 3),
             )
             for content, ci in cell_defs:
                 if ci == 0 and row.get("suppress_number") == "true":

@@ -2410,20 +2410,21 @@ class ExportIdmlTests(unittest.TestCase):
 
         label_cell = story.split('Self="tbl_lcdc0_2"', 1)[1].split("</Cell>", 1)[0]
         self.assertIn('FontStyle="Bold"', label_cell)
-        self.assertIn('PointSize="6.2" Leading="6.8"', label_cell)
+        self.assertIn('PointSize="7" Leading="8.4"', label_cell)
         self.assertIn('LeftInset="5.2"', label_cell)
         description_cell = story.split('Self="tbl_lcdc0_3"', 1)[1].split(
             "</Cell>", 1
         )[0]
+        self.assertIn('PointSize="5.5" Leading="5.8"', description_cell)
         self.assertIn('LeftInset="5.2"', description_cell)
         number_cell = story.split('Self="tbl_lcdc0_0"', 1)[1].split("</Cell>", 1)[0]
         self.assertIn('PointSize="9" Leading="9.4"', number_cell)
-        self.assertIn('TopInset="1.6" BottomInset="1.6"', number_cell)
+        self.assertIn('TopInset="1.62" BottomInset="1.62"', number_cell)
         continuation_cell = story.split(
             'Self="tbl_lcd_cont_enc7_0"', 1
         )[1].split("</Cell>", 1)[0]
         self.assertIn(
-            'TopInset="1.2" BottomInset="1.2"', continuation_cell)
+            'TopInset="2.14" BottomInset="2.14"', continuation_cell)
         self.assertIn(
             '<AppliedFont type="string">Apple SD Gothic Neo</AppliedFont>',
             number_cell,
@@ -2449,6 +2450,27 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("st_anchor_lcd_table_en_1", stories)
         self.assertNotIn("st_anchor_lcd_table_en_2", stories)
         self.assertNotIn('<ParagraphStyleRange LeftIndent="5.2"', stories["st_lcd"])
+
+    def test_lcd_locale_default_precedes_foreign_generic_density_role(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicador {index}",
+                "desc": f"Descripción {index}",
+                "typography_role": "battery_saving" if index == 8 else "default",
+            }
+            for index in range(1, 9)
+        ]
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT, lang="es")
+        continuation = dict(w.stories)["st_anchor_lcd_table_es_1"]
+        description_cell = continuation.split(
+            'Self="tbl_lcd_cont_esc7_3"', 1
+        )[1].split("</Cell>", 1)[0]
+        self.assertIn('PointSize="5.5" Leading="6"', description_cell)
+        self.assertNotIn('PointSize="5.8"', description_cell)
 
     def test_lcd_high_circled_numbers_use_a_font_that_covers_them(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

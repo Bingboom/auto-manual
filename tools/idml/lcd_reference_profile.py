@@ -9,6 +9,7 @@ or hard-coding a model-specific exception in the shared table renderer.
 from __future__ import annotations
 
 from collections.abc import Sequence
+import re
 from typing import Any
 
 
@@ -46,6 +47,14 @@ def validate_lcd_reference_profile(profile: Any) -> list[str]:
         suppress = entry.get("suppress_number", False)
         if not isinstance(suppress, bool):
             issues.append(f"{prefix}.suppress_number must be boolean")
+        typography_role = entry.get("typography_role")
+        if typography_role is not None and (
+            not isinstance(typography_role, str)
+            or re.fullmatch(r"[a-z][a-z0-9_]*", typography_role) is None
+        ):
+            issues.append(
+                f"{prefix}.typography_role must be a lowercase token"
+            )
     return issues
 
 
@@ -87,5 +96,8 @@ def apply_lcd_reference_profile(
         rendered["no"] = str(entry["display_no"]).strip()
         rendered["number_row_span"] = str(entry.get("number_row_span", 1))
         rendered["suppress_number"] = "true" if entry.get("suppress_number") else "false"
+        rendered["typography_role"] = str(
+            entry.get("typography_role") or "default"
+        )
         result.append(rendered)
     return tuple(result)

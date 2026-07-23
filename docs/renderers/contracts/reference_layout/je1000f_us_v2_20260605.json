@@ -28,8 +28,8 @@
     "manual_ir_schema_version": "manual-ir/v1",
     "manual_content_sha256": "e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3",
     "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
-    "style_contract_sha256": "55a7e6d59d63c5cd2519479b55f28a1bcca6a2fb17261768a07b38c86fafee09",
-    "layout_params_sha256": "74a2bb03ae64e21eb02744a72cccf0cd52b2086ce67554a42b7b5557b99e98e7"
+    "style_contract_sha256": "74dc503bbb470f4f61a3bc39c756197439d7b9148beb6409256af94b0a4e3419",
+    "layout_params_sha256": "f37a30bf6a784cd7e1eb3b8ef268500f0c6a5e644d6a1eb716aaee5d770935ae"
   },
   "approval": {
     "status": "approved",
@@ -79,11 +79,13 @@
           },
           {
             "source_no": "6",
-            "display_no": "6"
+            "display_no": "6",
+            "typography_role": "dense"
           },
           {
             "source_no": "7",
-            "display_no": "7"
+            "display_no": "7",
+            "typography_role": "dense"
           },
           {
             "source_no": "8",
@@ -115,11 +117,13 @@
           },
           {
             "source_no": "15",
-            "display_no": "15"
+            "display_no": "15",
+            "typography_role": "battery_saving"
           },
           {
             "source_no": "16",
-            "display_no": "16"
+            "display_no": "16",
+            "typography_role": "charging_limit"
           },
           {
             "source_no": "17",
@@ -127,7 +131,8 @@
           },
           {
             "source_no": "19",
-            "display_no": "18"
+            "display_no": "18",
+            "typography_role": "low_battery"
           },
           {
             "source_no": "18",
@@ -135,21 +140,25 @@
           },
           {
             "source_no": "20",
-            "display_no": "20"
+            "display_no": "20",
+            "typography_role": "timer"
           },
           {
             "source_no": "22",
-            "display_no": "21"
+            "display_no": "21",
+            "typography_role": "energy_saving"
           },
           {
             "source_no": "23",
             "display_no": "22",
-            "number_row_span": 2
+            "number_row_span": 2,
+            "typography_role": "temperature"
           },
           {
             "source_no": "24",
             "display_no": "22",
-            "suppress_number": true
+            "suppress_number": true,
+            "typography_role": "temperature"
           },
           {
             "source_no": "25",

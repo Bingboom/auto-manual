@@ -81,12 +81,17 @@ def add_lcd_story_frames(
     story_id: str,
     start_page: int,
     segment_count: int,
+    lang: str = "en",
 ) -> None:
     """Place one complete rounded LCD table segment on each page."""
     bottom = writer.page_h - writer.m_b + param_pt(
         writer.params, "idml_lcd_frame_bottom_extra", 18.0)
+    language = lang.strip().casefold().replace("_", "-").split("-", 1)[0]
     continuation_top = param_pt(
-        writer.params, "idml_lcd_continuation_page_top", writer.m_t)
+        writer.params,
+        f"lang_{language}_idml_lcd_continuation_page_top",
+        param_pt(writer.params, "idml_lcd_continuation_page_top", writer.m_t),
+    )
     add_story_frames(writer, story_id, [
         (start_page + offset, 27.33 if offset == 0 else continuation_top, bottom)
         for offset in range(segment_count)
