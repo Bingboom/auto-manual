@@ -1745,6 +1745,45 @@ class ExportIdmlTests(unittest.TestCase):
             'HorizontalScale="98"', stories["st_safety_en_section2"],
         )
 
+    def test_approved_dense_safety_page_uses_semantic_column_split(self) -> None:
+        import json
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params, strict_component_assets=True)
+        first_lists = [("list", f"• item {index}") for index in range(1, 7)]
+        blocks = [
+            ("h1", "INFORMATIONS DE SÉCURITÉ IMPORTANTES"),
+            ("component", json.dumps({
+                "kind": "safetyinstruction", "texts": ["INSTRUCTIONS"],
+            })),
+            ("layout", "twocol_start"),
+            ("component", json.dumps({
+                "kind": "warninglead", "label": "AVERTISSEMENT",
+                "texts": ["Respectez les précautions."],
+            })),
+            *first_lists,
+            ("layout", "twocol_end"),
+            ("h2", "INSTRUCTIONS D'UTILISATION"),
+            ("layout", "twocol_start"),
+            ("safetylead", "CONSERVEZ CES INSTRUCTIONS"),
+            ("list", "• second section"),
+            ("layout", "twocol_end"),
+        ]
+
+        w.add_safety_page("st_safety_fr", "safety_fr", blocks, ROOT, 21)
+
+        stories = dict(w.stories)
+        left = stories["st_safety_fr_section1_left"]
+        right = stories["st_safety_fr_section1_right"]
+        self.assertIn("• item 5", left)
+        self.assertNotIn("• item 6", left)
+        self.assertIn("• item 6", right)
+        spread = dict(w.spreads)["sp_21"]
+        self.assertIn("tf_st_safety_fr_section1_left", spread)
+        self.assertIn("tf_st_safety_fr_section1_right", spread)
+        self.assertNotIn('Self="tf_st_safety_fr_section1" ', spread)
+        self.assertEqual(spread.count("<TextFrame "), 6)
+
     def test_safety_symbols_page_combines_tail_maintenance_and_symbols(self) -> None:
         import json
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

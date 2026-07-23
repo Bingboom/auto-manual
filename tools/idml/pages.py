@@ -4,7 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from .page_objects import frame_with_background, h1_bar_h_pt, heading_bar_opts, heading_text, with_rounded_outer
-from .params import IDPKG, param_pt
+from .params import IDPKG, component_param_pt, param_pt
 from .symbols_page import (
     ROOT as ROOT,
     SUBBAR_H,
@@ -144,6 +144,36 @@ def _safety_section_story(writer, sid: str, title: str,
             previous_kind = kind
     return writer._add_story_parts(sid, title, parts)
 
+
+def _safety_language(sid: str) -> str:
+    folded = sid.casefold()
+    return next((lang for lang in ("en", "fr", "es") if f"_{lang}" in folded), "en")
+
+
+def _split_safety_section_at_list(
+    blocks: list[tuple[str, str]], left_list_items: int,
+) -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
+    seen = 0
+    for index, (kind, _text) in enumerate(blocks):
+        if kind != "list":
+            continue
+        if seen == left_list_items:
+            return blocks[:index], blocks[index:]
+        seen += 1
+    raise ValueError(
+        "approved safety-page split exceeds the available first-section list items"
+    )
+
+
+def _approved_safety_param(writer, key: str, default: float) -> float:
+    return component_param_pt(
+        writer.params,
+        key,
+        default,
+        strict=writer.strict_component_assets,
+        owner="safety-page",
+    )
+
 def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path, page_index: int) -> str:
     """V2.0 US safety page 01: fixed component regions, not one flow."""
@@ -181,37 +211,112 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     writer._add_story_parts(
         bar_sid, f"{title} subbar",
         [heading_text(writer, subbar, level=2)])
-    section_sids = []
+    language = _safety_language(sid)
+    dense_reference = writer.strict_component_assets and language in {"fr", "es"}
+    section_sids: list[tuple[str, str | None]] = []
     for idx, section in enumerate(sections[:2]):
         sec_sid = f"{sid}_section{idx + 1}"
-        writer._safety_section_story(sec_sid, f"{title} section {idx + 1}",
-                                   section, bundle_root)
-        section_sids.append(sec_sid)
+        if idx == 0 and dense_reference:
+            split_key = f"lang_{language}_idml_safety_first_section_left_list_items"
+            base_left_count = _approved_safety_param(
+                writer, "idml_safety_first_section_left_list_items", 5.0,
+            )
+            left_count = round(
+                _approved_safety_param(writer, split_key, base_left_count)
+            )
+            left_blocks, right_blocks = _split_safety_section_at_list(
+                section, left_count,
+            )
+            left_sid = f"{sec_sid}_left"
+            right_sid = f"{sec_sid}_right"
+            writer._safety_section_story(
+                left_sid, f"{title} section {idx + 1} left",
+                left_blocks, bundle_root,
+            )
+            writer._safety_section_story(
+                right_sid, f"{title} section {idx + 1} right",
+                right_blocks, bundle_root,
+            )
+            section_sids.append((left_sid, right_sid))
+        else:
+            writer._safety_section_story(
+                sec_sid, f"{title} section {idx + 1}", section, bundle_root,
+            )
+            section_sids.append((sec_sid, None))
 
     spread_id = f"sp_{page_index}"
     page_no = page_index + 1
     body_x = writer.m_l
     body_w = writer.page_w - writer.m_l - writer.m_r
     column_gap = param_pt(writer.params, "comp_twocol_sep", 6.24)
+    warning_top = _approved_safety_param(writer, "idml_safety_warning_top", 55.5)
+    warning_height = _approved_safety_param(
+        writer, "idml_safety_warning_height", 31.5,
+    )
+    if dense_reference:
+        warning_top = _approved_safety_param(
+            writer, f"lang_{language}_idml_safety_warning_top", warning_top,
+        )
+        warning_height = _approved_safety_param(
+            writer, f"lang_{language}_idml_safety_warning_height", warning_height,
+        )
     frames = []
     for frame_id, story_id, rect, opts in (
         ("title", title_sid, (body_x, 27.92, body_w, h1_bar_h_pt(writer)),
          {**heading_bar_opts(1, (1.5, 0, 1, 0)),
           "text_rect": (body_x + 6.0, 26.0, body_w - 12.0, h1_bar_h_pt(writer))}),
-        ("warning", warning_sid, (body_x, 55.5, body_w, 31.5),
+        ("warning", warning_sid, (body_x, warning_top, body_w, warning_height),
          with_rounded_outer({"inset": (0, 0, 0, 0)})),
-        ("section1", section_sids[0] if section_sids else "", (body_x, 95.77, body_w, 162.0),
+        ("section1", section_sids[0][0] if section_sids else "", (body_x, 95.77, body_w, 162.0),
          {"columns": 2, "gutter": column_gap,
           "balance_columns": True, "inset": (0, 0, 0, 0)}),
         ("subbar", bar_sid, (body_x, 263.0, body_w, SUBBAR_H),
          {**heading_bar_opts(2, (0.5, 0, 0.5, 0)),
           "text_rect": (body_x + 6.0, 263.0, body_w - 12.0, SUBBAR_H)}),
-        ("section2", section_sids[1] if len(section_sids) > 1 else "",
+        ("section2", section_sids[1][0] if len(section_sids) > 1 else "",
          (body_x, 281.88, body_w, 209.12),
          {"columns": 2, "gutter": column_gap,
           "balance_columns": True, "inset": (0, 0, 0, 0)}),
     ):
         if not story_id:
+            continue
+        if frame_id == "section1" and dense_reference:
+            base_gap = _approved_safety_param(
+                writer, "idml_safety_first_section_column_gap", 13.4,
+            )
+            dense_gap = _approved_safety_param(
+                writer, f"lang_{language}_idml_safety_first_section_column_gap",
+                base_gap,
+            )
+            base_left_top = _approved_safety_param(
+                writer, "idml_safety_first_section_left_top", 95.77,
+            )
+            left_top = _approved_safety_param(
+                writer, f"lang_{language}_idml_safety_first_section_left_top",
+                base_left_top,
+            )
+            base_right_top = _approved_safety_param(
+                writer, "idml_safety_first_section_right_top", base_left_top,
+            )
+            right_top = _approved_safety_param(
+                writer, f"lang_{language}_idml_safety_first_section_right_top",
+                base_right_top,
+            )
+            bottom = _approved_safety_param(
+                writer, "idml_safety_first_section_bottom", 257.77,
+            )
+            column_w = (body_w - dense_gap) / 2.0
+            frames.append(frame_with_background(
+                writer, sid, "section1_left", story_id,
+                (body_x, left_top, column_w, bottom - left_top),
+                {"inset": (0, 0, 0, 0)},
+            ))
+            frames.append(frame_with_background(
+                writer, sid, "section1_right", section_sids[0][1] or "",
+                (body_x + column_w + dense_gap, right_top,
+                 column_w, bottom - right_top),
+                {"inset": (0, 0, 0, 0)},
+            ))
             continue
         frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
 

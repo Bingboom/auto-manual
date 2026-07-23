@@ -72,6 +72,25 @@ idml_safety_instruction_icon_height,17.4,pt,InDesign safety-instruction dark tri
 idml_safety_instruction_icon_left_inset,7.5,pt,InDesign safety-instruction icon left inset
 idml_safety_instruction_lockup_width,31.0,pt,InDesign safety-instruction icon column width
 idml_safety_instruction_text_inset,4.0,pt,InDesign safety-instruction text cell inset
+idml_safety_warning_top,55.5,pt,InDesign safety-instruction outer frame top
+idml_safety_warning_height,31.5,pt,InDesign safety-instruction outer frame height
+idml_safety_first_section_bottom,263.0,pt,InDesign safety first-section frame bottom at the subheading edge
+idml_safety_first_section_left_list_items,5,int,Base list items kept in the first safety column
+idml_safety_first_section_column_gap,13.4,pt,Base safety first-section column gap
+idml_safety_first_section_left_top,95.77,pt,Base safety first-section left frame top
+idml_safety_first_section_right_top,95.77,pt,Base safety first-section right frame top
+lang_fr_idml_safety_warning_top,55.5,pt,FR safety-instruction outer frame top
+lang_fr_idml_safety_warning_height,31.5,pt,FR safety-instruction outer frame height
+lang_fr_idml_safety_first_section_left_list_items,5,int,FR list items kept in the first safety column
+lang_fr_idml_safety_first_section_column_gap,13.4,pt,FR safety first-section column gap
+lang_fr_idml_safety_first_section_left_top,90.5,pt,FR safety first-section left frame top
+lang_fr_idml_safety_first_section_right_top,87.8,pt,FR safety first-section right frame top
+lang_es_idml_safety_warning_top,51.7,pt,ES safety-instruction outer frame top
+lang_es_idml_safety_warning_height,31.5,pt,ES safety-instruction outer frame height
+lang_es_idml_safety_first_section_left_list_items,5,int,ES list items kept in the first safety column
+lang_es_idml_safety_first_section_column_gap,3.0,pt,ES safety first-section column gap
+lang_es_idml_safety_first_section_left_top,85.8,pt,ES safety first-section left frame top
+lang_es_idml_safety_first_section_right_top,83.8,pt,ES safety first-section right frame top
 ,,,
 ,,,==================== COMPONENTS ====================
 comp_h1_pill_arc,2.0,mm,H1 bar bottom corner radius (master ~5.8pt; sharp top + rounded south)
