@@ -259,6 +259,50 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
 
         self.assertEqual(18.0, writer.spread_chain_options[0]["bottom_extra"])
 
+    def test_approved_ups_composition_uses_localized_top_offset_and_language(self) -> None:
+        expected_offsets = {"en": 20.86, "fr": 12.65, "es": 15.22}
+        for language, expected in expected_offsets.items():
+            with self.subTest(language=language):
+                writer = _RecordingWriter()
+                writer.params[f"lang_{language}_idml_ups_page_top_offset"] = (
+                    str(expected), "pt",
+                )
+                plan = {
+                    "plan_source": "approved-reference",
+                    "pages": [
+                        {
+                            "source_path": "page/06_ups_mode.rst",
+                            "composition_id": "ups_charging",
+                            "language": language,
+                            "planned_page_count": 1,
+                        },
+                        {
+                            "source_path": "page/charging.rst",
+                            "composition_id": "ups_charging",
+                            "language": language,
+                            "planned_page_count": 1,
+                        },
+                    ],
+                }
+                emitter = ReferenceStoryEmitter(
+                    writer, _RecordingToc(), ROOT, plan,
+                )
+                emitter.emit(
+                    "st_ups_charging",
+                    "06_ups_mode + charging",
+                    [("h1", "Localized UPS"), ("body", "Charging")],
+                    page_cursor=13,
+                )
+
+                self.assertEqual(
+                    expected,
+                    writer.spread_chain_options[0]["first_top_offset"],
+                )
+                self.assertEqual(
+                    {"inline_origin_shift": 0.0, "language": language},
+                    writer.prose_story_options[0],
+                )
+
     def test_troubleshooting_chain_uses_component_frame_depth_allowance(self) -> None:
         writer = _RecordingWriter()
         writer.params["comp_trouble_page_extra_height"] = ("32", "pt")

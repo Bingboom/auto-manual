@@ -13,11 +13,18 @@
       <Leading type="unit">14.4</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/Heading2" Name="Heading2" PointSize="8.6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/Heading2" Name="Heading2" PointSize="8" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
-      <FontStyle type="string">Heavy</FontStyle>
+      <FontStyle type="string">Bold</FontStyle>
       <Leading type="unit">9.4</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Operation Row Label" Name="HB Operation Row Label" PointSize="10" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">11</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/Heading3" Name="Heading3" PointSize="7" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
@@ -69,11 +76,11 @@
       <Leading type="unit">7.83</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/HB Emphasis Pill" Name="HB Emphasis Pill" PointSize="7" FillColor="Color/Paper" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/HB Emphasis Pill" Name="HB Emphasis Pill" PointSize="6.6" FillColor="Color/Paper" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
-      <Leading type="unit">8.2</Leading>
+      <Leading type="unit">7.4</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/Step" Name="Step" PointSize="6.5" FillColor="Color/Paper" ParagraphShadingOn="true" ParagraphShadingColor="Color/HB Brand Dark" ParagraphShadingTint="100" ParagraphShadingWidth="TextWidth" ParagraphShadingTopOrigin="AscentTopOrigin" ParagraphShadingBottomOrigin="DescentBottomOrigin" ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3" SpaceBefore="7" SpaceAfter="6" Justification="CenterAlign">
@@ -107,8 +114,71 @@
   <ParagraphStyle Self="ParagraphStyle/段落样式" Name="段落样式" PointSize="6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
-      <FontStyle type="string">Medium</FontStyle>
+      <FontStyle type="string">Regular</FontStyle>
       <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB App H2 Download" Name="HB App H2 Download" PointSize="10" FillColor="Color/HB Brand Dark" SpaceAfter="8.5" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">11</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB App H2" Name="HB App H2" PointSize="10" FillColor="Color/HB Brand Dark" SpaceAfter="3.5" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">11</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB App Body Primary" Name="HB App Body Primary" PointSize="7" FillColor="Color/HB Brand Dark" LeftIndent="14.2" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">9</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB App Body Tail" Name="HB App Body Tail" PointSize="6.6" FillColor="Color/HB Brand Dark" LeftIndent="14.2" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.5</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB App Body Result" Name="HB App Body Result" PointSize="6.8" FillColor="Color/HB Brand Dark" LeftIndent="11.2" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.8</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB App Body Section" Name="HB App Body Section" PointSize="6.6" FillColor="Color/HB Brand Dark" LeftIndent="13.2" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.5</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB App H3" Name="HB App H3" PointSize="7" FillColor="Color/HB Brand Dark" LeftIndent="13.5" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">8</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB App List" Name="HB App List" PointSize="7" FillColor="Color/HB Brand Dark" LeftIndent="19.2" FirstLineIndent="-5.7" RightIndent="0" SpaceAfter="0.7" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">8</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB App Notes" Name="HB App Notes" PointSize="7" FillColor="Color/HB Brand Dark" LeftIndent="13.5" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">8</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/HB Preface Body" Name="HB Preface Body" PointSize="7" FillColor="Color/HB Brand Dark" SpaceAfter="2" Hyphenation="false" Justification="LeftAlign">
@@ -216,7 +286,7 @@
       <Leading type="unit">8.8</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/HB Warranty List" Name="HB Warranty List" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="8.8" FirstLineIndent="-5.0" RightIndent="0" SpaceAfter="0.7" Hyphenation="false" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/HB Warranty List" Name="HB Warranty List" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="5.67" FirstLineIndent="-5.67" RightIndent="0" SpaceAfter="0.7" Hyphenation="false" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Regular</FontStyle>
@@ -291,6 +361,20 @@
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
       <Leading type="unit">8</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Symbol Header" Name="HB Symbol Header" PointSize="8" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Bold</FontStyle>
+      <Leading type="unit">8.8</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Symbol Body" Name="HB Symbol Body" PointSize="5.6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">6.5</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/HB TOC Title" Name="HB TOC Title" PointSize="22.25" FillColor="Color/HB Brand Dark" Justification="LeftAlign">

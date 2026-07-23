@@ -76,7 +76,7 @@ class IdmlVisualParityTests(unittest.TestCase):
             for name, size, leading, weight, _kind in para_styles(writer.params)
         }
         self.assertEqual((6.6, 7.0, "Heavy"), styles["HB Data Header"])
-        self.assertEqual((8.6, 9.4, "Heavy"), styles["HB Title L2"])
+        self.assertEqual((8.0, 9.4, "Bold"), styles["HB Title L2"])
         self.assertEqual((8.0, 8.0, "Bold"), styles["HB Data Code"])
         self.assertEqual((8.0, 9.6, "Bold"), styles["HB Spec Section"])
         self.assertEqual((6.0, 6.6, "Medium"), styles["HB Spec Label"])

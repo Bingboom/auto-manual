@@ -155,6 +155,63 @@ class ComponentRegistryTests(unittest.TestCase):
         )
         self.assertEqual((8.0, 8.8, "Bold"), styles["HB Symbol Header"])
         self.assertEqual((5.6, 6.5, "Regular"), styles["HB Symbol Body"])
+        self.assertEqual((6.6, 7.4, "Bold"), styles["HB Emphasis Pill"])
+
+    def test_ups_notice_roles_use_editable_reference_typography(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        expected_rhythm = {
+            "en": (6.0, 13.0, 15.9),
+            "fr": (6.0, 18.5, 22.5),
+            "es": (8.0, 2.5, 14.5),
+        }
+        for language, (leading, before, after) in expected_rhythm.items():
+            with self.subTest(language=language):
+                stories = []
+
+                def add_story(sid, title, parts):
+                    stories.append((sid, title, parts))
+                    return sid
+
+                xml, _height = render(
+                    {
+                        "kind": "notice",
+                        "layout_role": "ups_caution",
+                        "label": "CAUTION",
+                        "texts": ["First item", "Second item"],
+                        "list": True,
+                    },
+                    RenderContext(
+                        params=params,
+                        page_w=368.79,
+                        m_l=28.35,
+                        m_r=28.35,
+                        root=ROOT,
+                        bundle_root=ROOT,
+                        language=language,
+                        add_story=add_story,
+                    ),
+                    tid=f"ups_notice_{language}",
+                    terminal=True,
+                )
+                body = next(
+                    "".join(parts)
+                    for sid, _title, parts in stories
+                    if "body" in sid
+                )
+                self.assertIn('PointSize="5.5" FontStyle="Regular"', body)
+                self.assertIn(f'<Leading type="unit">{leading:g}</Leading>', body)
+                self.assertIn(
+                    f'SpaceBefore="{before:g}" SpaceAfter="{after:g}"',
+                    xml,
+                )
+                self.assertIn(
+                    f'<Leading type="unit">{leading:g}</Leading>'
+                    '</Properties><Br/>',
+                    body,
+                )
 
     def test_reference_warranty_typography_separates_body_and_list_rhythm(self) -> None:
         from tools.export_idml import load_layout_params
@@ -173,6 +230,11 @@ class ComponentRegistryTests(unittest.TestCase):
             'Self="ParagraphStyle/HB Warranty Note"', 1,
         )[1].split("</ParagraphStyle>", 1)[0]
         self.assertIn('Hyphenation="false"', note_style)
+        list_style = styles_xml(params).split(
+            'Self="ParagraphStyle/HB Warranty List"', 1,
+        )[1].split("</ParagraphStyle>", 1)[0]
+        self.assertIn('LeftIndent="5.67"', list_style)
+        self.assertIn('FirstLineIndent="-5.67"', list_style)
 
     def test_localized_warranty_note_uses_reviewed_reference_width(self) -> None:
         from tools.export_idml import IdmlWriter, load_layout_params
@@ -226,6 +288,45 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertGreater(heights["es"], heights["fr"])
         self.assertIn('HorizontalScale="96"', xml_by_language["fr"])
         self.assertIn('HorizontalScale="100"', xml_by_language["en"])
+
+    def test_spanish_warranty_body_uses_reference_glyph_width(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
+        render(
+            {
+                "kind": "warrantysection",
+                "title": "Exclusiones",
+                "index": 5,
+                "blocks": [
+                    {"kind": "body", "text": "La garantía no se aplica."},
+                    {"kind": "list", "text": "• Elemento de exclusión."},
+                ],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="es",
+                add_story=add_story,
+            ),
+            tid="warranty_es_width",
+            terminal=True,
+        )
+        body = next(
+            "".join(parts) for sid, _title, parts in stories if "body" in sid
+        )
+        self.assertIn('HorizontalScale="98.6"', body)
 
     def test_warranty_body_spacing_drives_story_and_panel_height(self) -> None:
         from tools.export_idml import load_layout_params

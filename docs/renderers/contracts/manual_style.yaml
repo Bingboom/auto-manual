@@ -88,7 +88,7 @@ styles:
     role: Warning caution note and tip strips
     semantic_source_kinds: [callout_strip]
     variants: [warning, caution, note, tip]
-    token_refs: [comp_callout_rule, comp_callout_label_inset, comp_callout_body_inset, comp_callout_bullet_indent, comp_callout_bullet_width, type_callout_bullet_font_size]
+    token_refs: [comp_callout_rule, comp_callout_label_inset, comp_callout_body_inset, comp_callout_bullet_indent, comp_callout_bullet_width, type_callout_bullet_font_size, idml_ups_caution_body_font_size, idml_ups_caution_body_font_leading, lang_es_idml_ups_caution_body_font_leading, idml_ups_caution_body_font_style, idml_ups_caution_pad_tb, idml_ups_caution_paragraph_after, idml_ups_caution_space_before, lang_en_idml_ups_caution_space_before, lang_fr_idml_ups_caution_space_before, lang_es_idml_ups_caution_space_before, idml_ups_caution_space_after, lang_fr_idml_ups_caution_space_after, lang_es_idml_ups_caution_space_after, idml_charging_note_body_font_size, idml_charging_note_body_font_leading, idml_charging_note_body_font_style, idml_charging_note_pad_tb, idml_charging_note_paragraph_after, idml_charging_note_space_before, idml_charging_note_space_after]
     latex: {owner: components_base.tex, entrypoints: [HBWarningBlock, HBCautionBlock, HBNoteBlock, HBTipBlock]}
     indesign: {renderer: callout_strip, paragraph_style: Caution, object_style: HB Rounded Panel, table_style: Notice表格}
     status: partial
@@ -132,7 +132,7 @@ styles:
   HB-TABLE-SPEC:
     role: Specification section tables
     semantic_source_kinds: [table_spec]
-    token_refs: [comp_table_outer_arc, comp_table_outer_rule, comp_spec_table_left_ratio, comp_spec_table_tabcolsep, comp_spec_table_row_stretch, type_spec_label_font_size, type_spec_value_font_size]
+    token_refs: [comp_table_outer_arc, comp_table_outer_rule, comp_spec_table_left_ratio, idml_spec_table_left_ratio, lang_es_idml_spec_table_left_ratio, comp_spec_table_tabcolsep, comp_spec_table_row_stretch, type_spec_label_font_size, type_spec_value_font_size, idml_spec_section_1_space_before, idml_spec_section_2_space_before, idml_spec_section_3_space_before, idml_spec_section_4_space_before, idml_spec_table_1_space_before, idml_spec_table_2_space_before, idml_spec_table_3_space_before, idml_spec_table_4_space_before, lang_fr_idml_spec_section_1_space_before, lang_fr_idml_spec_section_2_space_before, lang_fr_idml_spec_section_3_space_before, lang_fr_idml_spec_section_4_space_before, lang_es_idml_spec_section_1_space_before, lang_es_idml_spec_section_2_space_before, lang_es_idml_spec_section_3_space_before, lang_es_idml_spec_section_4_space_before, lang_fr_idml_spec_table_1_space_before, lang_fr_idml_spec_table_2_space_before, lang_fr_idml_spec_table_3_space_before, lang_fr_idml_spec_table_4_space_before, lang_es_idml_spec_table_1_space_before, lang_es_idml_spec_table_2_space_before, lang_es_idml_spec_table_3_space_before, lang_es_idml_spec_table_4_space_before]
     latex: {owner: components_spec.tex, entrypoints: [spectable]}
     indesign: {renderer: spec_table, table_style: 竖型表格, object_style: HB Rounded Table Outer}
     status: partial
@@ -232,6 +232,7 @@ styles:
     role: App setup primitives
     semantic_source_kinds: [app_step, app_asset, app_notice, overview_control_labels]
     token_refs: [type_body_font_size, type_body_font_leading, comp_note_arc, idml_app_control_label_font_size, idml_app_control_label_font_leading, idml_app_control_label_min_height, idml_app_connect_step_font_size, idml_app_connect_step_font_leading, idml_app_connect_note_font_size, idml_app_connect_note_font_leading, idml_app_connect_note_width, idml_app_text_frame_safety, idml_app_notice_text_frame_safety]
+    layout_token_refs: [idml_app_h2_font_size, idml_app_h2_font_leading, idml_app_download_h2_space_after, idml_app_h2_space_after, idml_app_primary_body_font_size, idml_app_primary_body_font_leading, idml_app_tail_body_font_size, idml_app_tail_body_font_leading, idml_app_result_body_font_size, idml_app_result_body_font_leading, idml_app_section_body_font_size, idml_app_section_body_font_leading, idml_app_notes_font_size, idml_app_notes_font_leading, idml_app_primary_body_left_indent, idml_app_tail_body_left_indent, idml_app_result_body_left_indent, idml_app_section_body_left_indent, idml_app_notes_left_indent, idml_app_list_left_indent, idml_app_list_first_line_indent, idml_app_add_device_space_before, idml_app_add_device_space_after, idml_app_connect_result_space_before, idml_app_page_extra_height]
     latex: {owner: components_special_pages.tex, entrypoints: [HBAppStep, HBAppAsset, HBAppNotice]}
     indesign: {renderer: referencefigure, related_renderers: [notice], paragraph_styles: [HB Body, HB Callout Label, HB Callout Body], object_style: HB Rounded Panel, text_layer: native_movable_frames}
     status: aligned
@@ -240,7 +241,7 @@ styles:
   HB-WARRANTY-LEAD:
     role: Warranty lead panel
     semantic_source_kinds: [warranty_lead]
-    token_refs: [comp_warranty_lead_arc, comp_warranty_lead_pad_lr, comp_warranty_lead_pad_tb, comp_warranty_lead_after, type_warranty_lead_font_size, type_warranty_lead_font_leading]
+    token_refs: [comp_warranty_lead_arc, comp_warranty_lead_pad_lr, comp_warranty_lead_pad_tb, comp_warranty_lead_after, type_warranty_lead_font_size, type_warranty_lead_font_leading, idml_warranty_lead_before, idml_warranty_lead_height, lang_en_idml_warranty_lead_before, lang_fr_idml_warranty_lead_before, lang_es_idml_warranty_lead_before, lang_en_idml_warranty_lead_height, lang_fr_idml_warranty_lead_height, lang_es_idml_warranty_lead_height]
     latex: {owner: components_warranty.tex, entrypoints: [HBWarrantyLead]}
     indesign: {renderer: warranty_lead, object_style: HB Rounded Panel}
     status: partial
@@ -249,7 +250,8 @@ styles:
   HB-WARRANTY-SECTION:
     role: Warranty section panel
     semantic_source_kinds: [warranty_section]
-    token_refs: [comp_warranty_section_arc, comp_warranty_section_rule, comp_warranty_section_pad_lr, comp_warranty_section_pad_top, comp_warranty_section_pad_bottom, type_warranty_title_font_size, type_warranty_body_font_size]
+    fit_token_refs: [idml_warranty_body_horizontal_scale, lang_es_idml_warranty_body_horizontal_scale, idml_warranty_list_left_indent, idml_warranty_list_first_line_indent, idml_warranty_exclusions_body_bottom_inset]
+    token_refs: [comp_warranty_section_arc, comp_warranty_section_rule, comp_warranty_section_pad_lr, comp_warranty_section_pad_top, comp_warranty_section_pad_bottom, type_warranty_title_font_size, type_warranty_body_font_size, idml_warranty_panel_height_adjust_1, lang_en_idml_warranty_panel_height_adjust_1, lang_fr_idml_warranty_panel_height_adjust_1, lang_es_idml_warranty_panel_height_adjust_1, lang_en_idml_warranty_panel_height_adjust_2, lang_fr_idml_warranty_panel_height_adjust_2, lang_es_idml_warranty_panel_height_adjust_2, lang_en_idml_warranty_panel_height_adjust_3, lang_fr_idml_warranty_panel_height_adjust_3, lang_es_idml_warranty_panel_height_adjust_3, lang_en_idml_warranty_panel_height_adjust_4, lang_fr_idml_warranty_panel_height_adjust_4, lang_es_idml_warranty_panel_height_adjust_4, lang_en_idml_warranty_panel_height_adjust_5, lang_fr_idml_warranty_panel_height_adjust_5, lang_es_idml_warranty_panel_height_adjust_5, lang_en_idml_warranty_panel_height_adjust_6, lang_fr_idml_warranty_panel_height_adjust_6, lang_es_idml_warranty_panel_height_adjust_6, lang_en_idml_warranty_section_1_before, lang_fr_idml_warranty_section_1_before, lang_es_idml_warranty_section_1_before, lang_en_idml_warranty_section_2_before, lang_fr_idml_warranty_section_2_before, lang_es_idml_warranty_section_2_before, lang_en_idml_warranty_section_3_before, lang_fr_idml_warranty_section_3_before, lang_es_idml_warranty_section_3_before, lang_en_idml_warranty_section_4_before, lang_fr_idml_warranty_section_4_before, lang_es_idml_warranty_section_4_before, lang_en_idml_warranty_section_5_before, lang_fr_idml_warranty_section_5_before, lang_es_idml_warranty_section_5_before, lang_en_idml_warranty_section_6_before, lang_fr_idml_warranty_section_6_before, lang_es_idml_warranty_section_6_before]
     latex: {owner: components_warranty.tex, entrypoints: [HBWarrantySection]}
     indesign: {renderer: warranty_section, object_style: HB Rounded Panel}
     status: partial

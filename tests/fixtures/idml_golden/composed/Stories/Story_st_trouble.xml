@@ -34,8 +34,8 @@
     <Row Self="tbl_troubler8" Name="8" SingleRowHeight="10.3"/>
     <Row Self="tbl_troubler9" Name="9" SingleRowHeight="10.3"/>
     <Row Self="tbl_troubler10" Name="10" SingleRowHeight="10.3"/>
-    <Column Self="tbl_troublecol0" Name="0" SingleColumnWidth="98.3098"/>
-    <Column Self="tbl_troublecol1" Name="1" SingleColumnWidth="213.785"/>
+    <Column Self="tbl_troublecol0" Name="0" SingleColumnWidth="94.2525"/>
+    <Column Self="tbl_troublecol1" Name="1" SingleColumnWidth="217.842"/>
     <Cell Self="tbl_troublec0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>F0</Content></CharacterStyleRange>

@@ -89,6 +89,29 @@ class ReferenceArtGeometryTests(unittest.TestCase):
                 self.assertAlmostEqual(ctx.text_measure, _image_width(xml or ""), places=3)
                 self.assertGreater(height, 70.0)
 
+    def test_ups_art_uses_localized_reference_gap(self) -> None:
+        params = {
+            "idml_ups_image_space_before": ("5.2", "pt"),
+            "lang_fr_idml_ups_image_space_before": ("3.2", "pt"),
+        }
+        base = _ctx()
+        ctx = RenderContext(
+            params=params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            language="fr",
+        )
+        xml, _height = render_image_block(
+            (ROOT / "docs/renderers/latex/assets/op_ups_mode.png").as_posix(),
+            ctx,
+            rect_id="ups_fr",
+            terminal=False,
+        )
+        self.assertIn('SpaceBefore="3.2"', xml or "")
+
     def test_app_art_uses_role_specific_measure_widths(self) -> None:
         base = _ctx()
         app_root = ROOT / "docs/templates/word_template/common_assets/app"

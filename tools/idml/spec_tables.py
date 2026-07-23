@@ -23,7 +23,10 @@ def spec_table_xml(
 ) -> str:
     table_style = table_style_ref(role)
     language_key = (language or "").strip().casefold().replace("_", "-").split("-", 1)[0]
-    default_left_ratio = params.get("comp_spec_table_left_ratio", ("0.315", ""))
+    default_left_ratio = params.get(
+        "idml_spec_table_left_ratio",
+        params.get("comp_spec_table_left_ratio", ("0.315", "")),
+    )
     left_ratio = float(params.get(
         f"lang_{language_key}_idml_spec_table_left_ratio",
         default_left_ratio,

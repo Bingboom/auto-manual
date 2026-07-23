@@ -20,7 +20,7 @@ def render_emphasispill(
     if not text:
         return "", 0.0
     body_w = measure_w or ctx.text_measure
-    size = param_pt(ctx.params, "type_warranty_lead_font_size", 7.0)
+    size = param_pt(ctx.params, "idml_charging_emphasis_font_size", 6.6)
     height = max(14.2, param_pt(ctx.params, "comp_subbar_height", 13.89))
     width_factor = 0.50 if len(text) > 55 else 0.44
     width = min(body_w, max(96.0, len(text) * size * width_factor + 16.0))

@@ -159,7 +159,7 @@ class ProseFlowBuffer:
                 blocks[split_at:] + target_blocks,
                 target_columns,
             )
-        items = _apply_single_page_fr_ups_callout_widths(items, entries)
+        items = _apply_single_page_ups_callout_roles(items, entries)
         return _move_car_notice_to_storage(items, page_plan)
 
     @staticmethod
@@ -593,9 +593,21 @@ def promote_reference_figures(
             and index + 1 < len(aligned)
             and aligned[index + 1][0] == "body"
         ):
-            aligned[index:index + 2] = [
+            body_end = index + 1
+            while (
+                body_end < len(aligned)
+                and aligned[body_end][0] == "body"
+                and not _step_number(aligned[body_end][1])
+            ):
+                body_end += 1
+            copy = " ".join(
+                value.strip()
+                for block_kind, value in aligned[index + 1:body_end]
+                if block_kind == "body" and value.strip()
+            )
+            aligned[index:body_end] = [
                 _referencefigure_block(
-                    "app_download", payload, copy=aligned[index + 1][1],
+                    "app_download", payload, copy=copy,
                 )
             ]
             index += 1
@@ -660,20 +672,53 @@ def promote_reference_figures(
             index += 1
             continue
         index += 1
+    if is_app:
+        h2_ordinal = 0
+        for block_index, (block_kind, block_payload) in enumerate(aligned):
+            if block_kind == "h2":
+                h2_ordinal += 1
+                aligned[block_index] = (
+                    "h2_app_download" if h2_ordinal == 1 else "h2_app",
+                    block_payload,
+                )
+                continue
+            if block_kind == "h3":
+                aligned[block_index] = ("h3_app", block_payload)
+                continue
+            if block_kind in {"list", "sublist"}:
+                aligned[block_index] = ("list_app", block_payload)
+                continue
+            if block_kind != "body":
+                continue
+            step = _step_number(block_payload)
+            if step in {"2.1", "2.2"}:
+                role = "body_app_primary"
+            elif step == "2.3":
+                role = "body_app_tail"
+            elif step in {"2.4", "2.5"}:
+                role = "body_app_result"
+            elif h2_ordinal == 3:
+                role = "body_app_section"
+            elif h2_ordinal >= 4:
+                role = "body_app_notes"
+            else:
+                continue
+            aligned[block_index] = (role, block_payload)
     return aligned
 
 
-def _apply_single_page_fr_ups_callout_widths(
+def _apply_single_page_ups_callout_roles(
     items: list[tuple[str, list[Block], int]],
     entries: dict[str, dict],
 ) -> list[tuple[str, list[Block], int]]:
-    """Use natural glyph width for the approved one-page FR UPS composition.
+    """Bind approved single-page UPS callouts to shared semantic roles.
 
-    The governed callout type remains at its contracted point size and
-    leading.  Only the legacy 106.9% horizontal expansion is neutralized for
-    this dense, single-page French UPS + charging composition.  The source
-    and approved plan provide all routing metadata, so EN/ES and unapproved
-    flows retain their existing layout.
+    The template uses a compact CAUTION and NOTE treatment on the combined
+    UPS + charging page.  Bind those two panels by structural order inside
+    the approved composition, then let the notice renderer resolve all
+    typography and rhythm from the shared token registry.  French also
+    neutralizes the legacy 106.9% horizontal expansion.  No visible wording
+    participates in routing.
     """
     grouped: dict[object, list[int]] = {}
     for index, (stem, _blocks, _columns) in enumerate(items):
@@ -681,7 +726,7 @@ def _apply_single_page_fr_ups_callout_widths(
         if composition is not None:
             grouped.setdefault(composition, []).append(index)
 
-    target_indices: set[int] = set()
+    target_groups: list[tuple[list[int], str]] = []
     for indices in grouped.values():
         group_entries = [entries.get(items[index][0], {}) for index in indices]
         languages = {
@@ -699,36 +744,54 @@ def _apply_single_page_fr_ups_callout_widths(
             for stem in stems
         )
         if (
-            languages == {"fr"}
+            len(languages) == 1
+            and next(iter(languages), "") in {"en", "fr", "es"}
             and page_counts == {1}
             and has_ups
             and has_charging_intro
         ):
-            target_indices.update(indices)
+            target_groups.append((indices, next(iter(languages))))
 
     adjusted = list(items)
-    for index in target_indices:
-        stem, blocks, columns = adjusted[index]
-        next_blocks: list[Block] = []
-        for kind, payload in blocks:
-            if kind != "component":
+    roles = ("ups_caution", "charging_note")
+    for indices, language in target_groups:
+        notice_ordinal = 0
+        for index in indices:
+            stem, blocks, columns = adjusted[index]
+            next_blocks: list[Block] = []
+            for kind, payload in blocks:
+                if kind != "component":
+                    next_blocks.append((kind, payload))
+                    continue
+                try:
+                    spec = json.loads(payload)
+                except (TypeError, json.JSONDecodeError):
+                    next_blocks.append((kind, payload))
+                    continue
+                if (
+                    isinstance(spec, dict)
+                    and spec.get("kind") == "notice"
+                    and spec.get("list")
+                    and notice_ordinal < len(roles)
+                ):
+                    spec["layout_role"] = roles[notice_ordinal]
+                    if language == "fr":
+                        spec["body_horizontal_scale"] = 1.0
+                    notice_ordinal += 1
+                    payload = json.dumps(spec, ensure_ascii=False)
                 next_blocks.append((kind, payload))
-                continue
-            try:
-                spec = json.loads(payload)
-            except (TypeError, json.JSONDecodeError):
-                next_blocks.append((kind, payload))
-                continue
-            if (
-                isinstance(spec, dict)
-                and spec.get("kind") == "notice"
-                and spec.get("list")
-            ):
-                spec["body_horizontal_scale"] = 1.0
-                payload = json.dumps(spec, ensure_ascii=False)
-            next_blocks.append((kind, payload))
-        adjusted[index] = (stem, next_blocks, columns)
+            adjusted[index] = (stem, next_blocks, columns)
     return adjusted
+
+
+def composition_language(page_plan: dict | None, title: str) -> str | None:
+    """Return one governed language shared by every stem in a composition."""
+    languages = {
+        language
+        for stem in (part.strip() for part in title.split(" + "))
+        if (language := _planned_page_language(page_plan, stem)) is not None
+    }
+    return next(iter(languages)) if len(languages) == 1 else None
 
 
 def _move_car_notice_to_storage(

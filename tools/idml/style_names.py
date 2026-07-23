@@ -21,6 +21,15 @@ PARAGRAPH_STYLE_NAME_MAP = {
     # designer template \u8bf4\u660e\u4e66\u6a21\u677f.idml has no \u6b63\u6587 style; its body family is
     # \u6bb5\u843d\u6837\u5f0f / \u6bb5\u843d\u6837\u5f0f2 / \u6bb5\u843d\u6837\u5f0f-\u52a0\u7c97 \u2014 point HB Body at the real one.
     "HB Body": "\u6bb5\u843d\u6837\u5f0f",
+    "HB App H2 Download": "HB App H2 Download",
+    "HB App H2": "HB App H2",
+    "HB App Body Primary": "HB App Body Primary",
+    "HB App Body Tail": "HB App Body Tail",
+    "HB App Body Result": "HB App Body Result",
+    "HB App Body Section": "HB App Body Section",
+    "HB App H3": "HB App H3",
+    "HB App List": "HB App List",
+    "HB App Notes": "HB App Notes",
     "HB List": "Item List",
     "HB Spec Section": "TableHeading",
     "HB Spec Label": "\u6bb5\u843d\u6837\u5f0f-\u52a0\u7c97",

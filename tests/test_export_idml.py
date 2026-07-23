@@ -1104,10 +1104,10 @@ class ExportIdmlTests(unittest.TestCase):
             story,
         )
 
-    def test_fr_single_page_ups_callouts_use_natural_glyph_width_only(self) -> None:
+    def test_single_page_ups_callouts_bind_shared_roles_and_fr_width(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer
 
-        def rendered_scales(language: str) -> list[float | None]:
+        def rendered_specs(language: str) -> list[dict]:
             flow = ProseFlowBuffer()
             notice = (
                 "component",
@@ -1144,14 +1144,23 @@ class ExportIdmlTests(unittest.TestCase):
                 plan,
             )
             return [
-                json.loads(payload).get("body_horizontal_scale")
+                json.loads(payload)
                 for kind, payload in emitted
                 if kind == "component"
             ]
 
-        self.assertEqual([1.0, 1.0], rendered_scales("fr"))
-        self.assertEqual([None, None], rendered_scales("en"))
-        self.assertEqual([None, None], rendered_scales("es"))
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                specs = rendered_specs(language)
+                self.assertEqual(
+                    ["ups_caution", "charging_note"],
+                    [spec.get("layout_role") for spec in specs],
+                )
+                expected_scale = [1.0, 1.0] if language == "fr" else [None, None]
+                self.assertEqual(
+                    expected_scale,
+                    [spec.get("body_horizontal_scale") for spec in specs],
+                )
 
     def test_approved_charging_methods_start_second_solar_figure_on_second_page(self) -> None:
         from tools.idml.prose_flow import align_charging_car_page
@@ -1526,7 +1535,7 @@ class ExportIdmlTests(unittest.TestCase):
             },
             specs[1]["labels_by_role"],
         )
-        self.assertIn(("body", "2.3 Localized third step"), promoted)
+        self.assertIn(("body_app_tail", "2.3 Localized third step"), promoted)
         self.assertEqual(
             "asset:controls/je1000f_us/network_pairing_panel",
             specs[1]["control_image"],
@@ -1595,7 +1604,7 @@ class ExportIdmlTests(unittest.TestCase):
             "asset:controls/je1000f_us/network_pairing_panel",
             specs[1]["control_image"],
         )
-        self.assertIn(("body", "2.3 Connexion Bluetooth"), promoted)
+        self.assertIn(("body_app_tail", "2.3 Connexion Bluetooth"), promoted)
 
     def test_page_break_layout_does_not_enable_two_columns(self) -> None:
         from tools.idml.ir_projection import project_pages

@@ -198,7 +198,10 @@ def render_warrantylead(
         ctx, "idml_warranty_lead_horizontal_scale", 100.0,
     )
     lines = _wrapped_lines(text, width - 2 * pad_lr, size)
-    height = lines * leading + 2 * pad_tb
+    natural_height = lines * leading + 2 * pad_tb
+    height = _language_param(
+        ctx, "idml_warranty_lead_height", natural_height,
+    )
     content = psr("HB Warranty Lead", text, terminal=True).replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
@@ -231,7 +234,7 @@ def render_warrantylead(
         valign="CenterAlign",
         auto_height=False,
     )
-    before = param_pt(ctx.params, "idml_warranty_lead_before", 1.98)
+    before = _language_param(ctx, "idml_warranty_lead_before", 1.98)
     after = param_pt(ctx.params, "comp_warranty_lead_after", 2.83)
     xml = xml.replace(
         "<ParagraphStyleRange ",
@@ -253,6 +256,12 @@ def _section_body(
     list_leading = param_pt(ctx.params, "type_warranty_body_font_leading", 7.2)
     body_after = param_pt(ctx.params, "idml_warranty_paragraph_after", 2.83)
     list_after = param_pt(ctx.params, "idml_warranty_list_after", 1.0)
+    horizontal_scale = _language_param(
+        ctx, "idml_warranty_body_horizontal_scale", 100.0,
+    )
+    list_indent = param_pt(
+        ctx.params, "idml_warranty_list_left_indent", 5.67,
+    )
     parts: list[str] = []
     height = 0.0
     for block_index, block in enumerate(blocks):
@@ -271,6 +280,11 @@ def _section_body(
         leading = list_leading if is_list else body_leading
         paragraph_after = list_after if is_list else body_after
         paragraph = psr(style, text, terminal=terminal)
+        paragraph = paragraph.replace(
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            f'HorizontalScale="{horizontal_scale:g}"',
+        )
         if not terminal:
             paragraph = paragraph.replace(
                 "<ParagraphStyleRange ",
@@ -278,8 +292,12 @@ def _section_body(
                 1,
             )
         parts.append(paragraph)
-        available = width - (9.0 if kind in {"list", "sublist"} else 0.0)
-        height += _wrapped_lines(text, available, body_size) * leading
+        available = width - (
+            list_indent if kind in {"list", "sublist"} else 0.0
+        )
+        height += _wrapped_lines(
+            text, available, body_size * horizontal_scale / 100.0,
+        ) * leading
         if not terminal:
             height += paragraph_after
     return parts, height
@@ -321,7 +339,15 @@ def render_warrantysection(
         _language_param(ctx, trim_key, param_pt(ctx.params, trim_key, 0.0))
         if trim_key else 0.0
     )
-    panel_h = max(22.0, pad_top + body_height + pad_bottom - trim)
+    panel_adjust = _language_param(
+        ctx,
+        f"idml_warranty_panel_height_adjust_{index}",
+        0.0,
+    )
+    panel_h = max(
+        22.0,
+        pad_top + body_height + pad_bottom - trim + panel_adjust,
+    )
     title_size = param_pt(ctx.params, "idml_warranty_title_font_size", 8.0)
     title_leading = param_pt(ctx.params, "type_warranty_title_font_leading", 8.8)
     title_pad_lr = param_pt(ctx.params, "comp_warranty_title_pad_lr", 5.1)
@@ -395,7 +421,12 @@ def render_warrantysection(
         pad_lr,
         -panel_h + pad_top,
         width - pad_lr,
-        -max(0.0, pad_bottom - trim),
+        -(
+            _language_param(
+                ctx, "idml_warranty_exclusions_body_bottom_inset", 0.0,
+            )
+            if index == 5 else max(0.0, pad_bottom - trim)
+        ),
     )
     group = (
         f'<Group Self="grp_warranty_{tid}" '
@@ -407,13 +438,17 @@ def render_warrantysection(
         group,
         tail='<Content></Content>' + ('' if terminal else '<Br/>'),
     )
-    before_key = (
+    before_default_key = (
         "comp_warranty_first_section_before" if index == 1
         else "idml_warranty_period_section_before" if index == 2
         else "idml_warranty_final_section_before" if index == 6
         else "idml_warranty_section_before"
     )
-    before = param_pt(ctx.params, before_key, 4.25)
+    before = _language_param(
+        ctx,
+        f"idml_warranty_section_{index}_before",
+        param_pt(ctx.params, before_default_key, 4.25),
+    )
     after = param_pt(ctx.params, "comp_warranty_section_after", 1.13)
     host = host.replace(
         "<ParagraphStyleRange ",

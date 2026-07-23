@@ -232,15 +232,23 @@ def add_spec_story(writer, sections: list[dict],
     # rounded-table geometry.  Keeping this language-neutral also prevents a
     # translated page from silently falling back to the legacy square table.
     reference_table_heights = (98.41, 49.06, 94.89, 27.11)
-    english_section_before = (7.89, 9.56, 10.54, 14.41)
-    english_table_before = (3.79, 2.47, 4.75, 3.30)
+    default_section_before = (7.89, 9.56, 10.54, 14.41)
+    default_table_before = (3.79, 2.47, 4.75, 3.30)
     for si, section in enumerate(sections):
         section_title = writer._psr(
             "HB Spec Section", "\u25cf " + section["title"])
-        section_before = (
-            english_section_before[si]
-            if lang == "en" and si < len(english_section_before)
-            else 8.87 if si == 0 else 13.47 if si == 3 else 10.07
+        section_default = (
+            default_section_before[si]
+            if si < len(default_section_before) else 10.07
+        )
+        section_before = param_pt(
+            writer.params,
+            f"lang_{lang}_idml_spec_section_{si + 1}_space_before",
+            param_pt(
+                writer.params,
+                f"idml_spec_section_{si + 1}_space_before",
+                section_default,
+            ),
         )
         section_title = section_title.replace(
             "<ParagraphStyleRange ",
@@ -290,9 +298,19 @@ def add_spec_story(writer, sections: list[dict],
                 stroke_weight=0.75,
                 radius=6.8,
             )
+            table_default = default_table_before[si]
+            table_before = param_pt(
+                writer.params,
+                f"lang_{lang}_idml_spec_table_{si + 1}_space_before",
+                param_pt(
+                    writer.params,
+                    f"idml_spec_table_{si + 1}_space_before",
+                    table_default,
+                ),
+            )
             panel = panel.replace(
                 "<ParagraphStyleRange ",
-                f'<ParagraphStyleRange SpaceBefore="{english_table_before[si]:g}" ',
+                f'<ParagraphStyleRange SpaceBefore="{table_before:g}" ',
                 1,
             )
             parts.append(panel)

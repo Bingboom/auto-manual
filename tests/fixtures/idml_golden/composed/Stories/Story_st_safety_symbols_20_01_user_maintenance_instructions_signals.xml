@@ -5,20 +5,20 @@
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tbl" AppliedTableStyle="TableStyle/正文表格" BodyRowCount="5" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
-    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr0" Name="0"/>
-    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr1" Name="1"/>
-    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr2" Name="2"/>
-    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr3" Name="3"/>
-    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr4" Name="4"/>
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr0" Name="0" SingleRowHeight="17.3" MinimumHeight="17.3" AutoGrow="false"/>
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr1" Name="1" SingleRowHeight="25.42" MinimumHeight="25.42" AutoGrow="false"/>
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr2" Name="2" SingleRowHeight="25.42" MinimumHeight="25.42" AutoGrow="false"/>
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr3" Name="3" SingleRowHeight="25.42" MinimumHeight="25.42" AutoGrow="false"/>
+    <Row Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblr4" Name="4" SingleRowHeight="25.42" MinimumHeight="25.42" AutoGrow="false"/>
     <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblcol0" Name="0" SingleColumnWidth="74.9027"/>
     <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblcol1" Name="1" SingleColumnWidth="237.192"/>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" FillColor="Color/HB Bg K05" TopInset="3" BottomInset="3" LeftInset="6" RightInset="4" TopEdgeStrokeWeight="0" LeftEdgeStrokeWeight="0">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Symbol Header">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Symbol</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="7" RightInset="5" TopEdgeStrokeWeight="0" RightEdgeStrokeWeight="0">
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Symbol Header">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Meaning</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>

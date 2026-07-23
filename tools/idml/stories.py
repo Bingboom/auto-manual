@@ -13,11 +13,9 @@ from .story_rhythm import (
     operation_key_visual_raise,
     operation_story_rhythm_for_next_block,
 )
-
-# Coarse story-chain estimates include paragraph gaps; they are deliberately
-# independent from visible paragraph styles and their golden output.
-_EST_SIZE = {"h1": 9.0, "h2": 8.6, "h3": 7.0, "label": 6.8}
-_EST_LEADING = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}
+from .story_estimates import paragraph_estimate
+from .story_parts import add_story_parts as _add_story_parts
+from .story_parts import add_text_story
 
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path, *,
@@ -107,7 +105,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             continue
         if kind == "image":
             xml_part, h = _components.render_image_block(
-                text, writer._render_context(bundle_root),
+                text,
+                writer._render_context(bundle_root, language=page_language),
                 rect_id=f"{sid}_im{img_n + 1}", terminal=terminal)
             if xml_part is None:
                 continue
@@ -143,8 +142,11 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         style = writer._PROSE_STYLE.get(semantic_kind, "HB Body")
         if is_preface and kind == "body":
             style = "HB Preface Body"
-        text = "\u25cf " + text if semantic_kind == "h2" else text
-        span_columns = has_twocol_layout and not in_twocol and semantic_kind in {"h1", "h2"}
+        is_h2 = semantic_kind == "h2" or semantic_kind.startswith("h2_app")
+        text = "\u25cf " + text if is_h2 else text
+        span_columns = has_twocol_layout and not in_twocol and (
+            semantic_kind == "h1" or is_h2
+        )
         paragraph = writer._psr(
             style, text, terminal=terminal, span_columns=span_columns)
         operation_attrs, operation_spacing = operation_story_rhythm_for_next_block(
@@ -154,9 +156,9 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             energy_panel_height=operation_energy_panel_height,
             baseline_panel_height=text_measure * 0.545 + 2.0,
             params=writer.params,
-            first_operation_h2=(semantic_kind == "h2" and not operation_h2_seen),
+            first_operation_h2=(is_h2 and not operation_h2_seen),
         )
-        if semantic_kind == "h2":
+        if is_h2:
             operation_h2_seen = True
         if kind == "warrantynote":
             note_scale = param_pt(
@@ -213,28 +215,15 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 shift=key_visual_raise,
             )
         parts.append(paragraph)
-        # width-aware: chars/line ~ frame_width / (0.52 * font size)
-        size = _EST_SIZE.get(semantic_kind, 6.2)
-        leading = _EST_LEADING.get(semantic_kind, 7.5)
-        if is_preface and kind == "body":
-            size = param_pt(writer.params, "idml_preface_body_font_size", 7.2)
-            leading = param_pt(writer.params, "idml_preface_body_font_leading", 8.6)
-        elif kind == "body_operation_energy_intro":
-            leading = 8.1
         measure = column_measure if in_twocol else text_measure
-        per_line = max(20, int(measure / (0.52 * size)))
-        lines = sum(max(1, (len(seg) + per_line - 1) // per_line)
-                    for seg in text.split("\n"))
-        paragraph_spacing = 0.0
-        if is_preface and kind == "body":
-            paragraph_spacing = param_pt(
-                writer.params, "idml_preface_paragraph_space_after", 2.0,
-            ) * len(text.split("\n"))
-        if operation_spacing is not None:
-            paragraph_spacing = operation_spacing
+        paragraph_height, lines = paragraph_estimate(
+            writer.params, semantic_kind, kind, text, measure,
+            is_preface=is_preface,
+            operation_spacing=operation_spacing,
+        )
         if kind == "body_operation_energy_intro":
             operation_intro_lines = lines
-        est += leading * lines + paragraph_spacing
+        est += paragraph_height
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
@@ -244,23 +233,3 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     )
     writer.stories.append((sid, xml))
     return sid, est
-
-def add_text_story(writer, sid: str, title: str, blocks: list[tuple[str, str]]) -> str:
-    parts = [
-        writer._psr(style, text, terminal=(i == len(blocks) - 1))
-        for i, (style, text) in enumerate(blocks)
-    ]
-    return writer._add_story_parts(sid, title, parts)
-
-def _add_story_parts(writer, sid: str, title: str, parts: list[str]) -> str:
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
-        '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
-        + "".join(parts) +
-        '</Story>\n'
-        '</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
-    return sid

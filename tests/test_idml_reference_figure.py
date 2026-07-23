@@ -465,7 +465,8 @@ class EditableReferenceFigureTests(unittest.TestCase):
             self.assertTrue(crop.is_file())
             with Image.open(crop) as image:
                 self.assertEqual((1046, 587), image.size)
-            self.assertAlmostEqual(166.0, height, places=3)
+            self.assertAlmostEqual(178.0, height, places=3)
+            self.assertIn('SpaceBefore="12"', xml)
             self.assertEqual(4, xml.count("<TextFrame "))
             self.assertEqual(4, xml.count('LockPosition="false" PinPosition="false"'))
             self.assertLess(xml.index("connectimg"), xml.index("<TextFrame "))

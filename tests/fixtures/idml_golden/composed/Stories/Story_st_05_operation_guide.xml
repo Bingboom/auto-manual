@@ -20,7 +20,7 @@
     <TextFramePreference TextColumnCount="1" VerticalJustification="CenterAlign"><Properties><InsetSpacing type="list"><ListItem type="unit">1.5</ListItem><ListItem type="unit">1</ListItem><ListItem type="unit">1</ListItem><ListItem type="unit">1</ListItem></InsetSpacing></Properties></TextFramePreference>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </TextFrame><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading2">
+  <ParagraphStyleRange SpaceBefore="7.5" AppliedParagraphStyle="ParagraphStyle/Heading2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>●</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content> BUTTONS &amp; KEY COMBINATIONS</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
@@ -83,7 +83,7 @@
   </Table>
     <Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange SpaceAfter="1.8" AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Group Self="grp_notice_st_05_operation_guide_cmp4" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0">
+  <ParagraphStyleRange SpaceBefore="0" SpaceAfter="1.8" AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Group Self="grp_notice_st_05_operation_guide_cmp4" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0">
 <Rectangle Self="bg_notice_st_05_operation_guide_cmp4" Label="hb:self=bg_notice_st_05_operation_guide_cmp4" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Panel" FillColor="Color/HB Bg K05" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>

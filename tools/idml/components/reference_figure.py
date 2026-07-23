@@ -229,6 +229,7 @@ def _figure_group(
     terminal: bool,
     height: float,
     x_offset: float = 0.0,
+    space_before: float = 0.0,
     space_after: float = 0.0,
 ) -> tuple[str, float]:
     group = (
@@ -240,13 +241,14 @@ def _figure_group(
     )
     tail = "<Content></Content>" + ("" if terminal else "<Br/>")
     xml = figure_paragraph(group, tail=tail)
-    if space_after:
+    if space_before or space_after:
         xml = xml.replace(
             "<ParagraphStyleRange ",
-            f'<ParagraphStyleRange SpaceAfter="{space_after:g}" ',
+            f'<ParagraphStyleRange SpaceBefore="{space_before:g}" '
+            f'SpaceAfter="{space_after:g}" ',
             1,
         )
-    return xml, height + space_after
+    return xml, space_before + height + space_after
 
 
 def _resolved_image(spec: dict, ctx: RenderContext) -> Path | None:
@@ -712,7 +714,20 @@ def _app_add_device(
         tid=tid,
         terminal=terminal,
         height=total_h,
-        space_after=2.0,
+        space_before=component_param_pt(
+            ctx.params,
+            "idml_app_add_device_space_before",
+            8.0,
+            strict=ctx.strict_component_assets,
+            owner="app_add_device",
+        ),
+        space_after=component_param_pt(
+            ctx.params,
+            "idml_app_add_device_space_after",
+            3.5,
+            strict=ctx.strict_component_assets,
+            owner="app_add_device",
+        ),
     )
 
 
@@ -804,6 +819,13 @@ def _app_connect_result(
         tid=tid,
         terminal=terminal,
         height=total_h,
+        space_before=component_param_pt(
+            ctx.params,
+            "idml_app_connect_result_space_before",
+            12.0,
+            strict=ctx.strict_component_assets,
+            owner="app_connect_result",
+        ),
     )
 
 
