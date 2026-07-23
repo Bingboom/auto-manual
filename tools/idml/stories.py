@@ -26,7 +26,8 @@ _EST_LEADING = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}
 
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path, *,
-                    inline_origin_shift: float = 0.0) -> tuple[str, float]:
+                    inline_origin_shift: float = 0.0,
+                    language: str | None = None) -> tuple[str, float]:
     """Story from extracted prose blocks; returns (sid, est_height_pt)."""
     parts: list[str] = []
     est = 0.0
@@ -40,7 +41,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     operation_energy_panel_height: float | None = None
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
     first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
-    page_language = {
+    page_language = language or {
         "WARRANTY": "en",
         "GARANTIE": "fr",
         "GARANTÍA": "es",

@@ -9,8 +9,10 @@ from pathlib import Path
 from typing import Any
 
 from tools.manual_ir import ManualIR
+from tools.render_contract import LAYOUT_PARAMS_HASH_ALGORITHM
 from tools.utils.path_utils import PathSegments, Paths
 
+from .control_labels import validate_app_control_label_contract
 from .latex_page_plan import SCHEMA_VERSION as LEGACY_PLAN_SCHEMA_VERSION
 
 
@@ -56,6 +58,122 @@ def _valid_digest(value: Any) -> bool:
     return isinstance(value, str) and _DIGEST.fullmatch(value) is not None
 
 
+def _same_model_region(
+    target: Any,
+    expected_target: dict[str, Any],
+) -> bool:
+    """Return whether a registry/contract target belongs to one stable family."""
+    return (
+        isinstance(target, dict)
+        and target.get("model") == expected_target["model"]
+        and target.get("region") == expected_target["region"]
+    )
+
+
+def _declared_languages(ir: ManualIR) -> list[str]:
+    raw = ir.metadata.get("declared_languages")
+    if not isinstance(raw, list):
+        return []
+    return [str(value).strip().lower() for value in raw if str(value).strip()]
+
+
+def _family_contract_is_declared(
+    ir: ManualIR,
+    target: Any,
+) -> bool:
+    """Return whether a non-exact family contract was explicitly requested.
+
+    Exact target matches always activate.  For a language-mismatched family,
+    only a production bundle's frozen manifest declaration may activate the
+    fail-closed drift guard.  This keeps small single-language exporter
+    fixtures ordinary while still rejecting a production bundle that silently
+    drops or reorders one of its declared languages.
+    """
+    return (
+        isinstance(target, dict)
+        and bool(_declared_languages(ir))
+        and target.get("languages") == _declared_languages(ir)
+    )
+
+
+def _unregistered_approved_contracts(
+    *,
+    root: Path,
+    contracts_dir: Path,
+    registry_path: Path,
+    expected_target: dict[str, Any],
+    ir: ManualIR,
+) -> list[Path]:
+    """Find approved contracts for one model/region family not activated here.
+
+    Removing a registry row must not silently demote an approved replica to the
+    fuzzy LaTeX fallback. Language membership and order are deliberately not
+    part of candidate discovery: once a model/region has an approved contract,
+    language drift must reach validation as an error instead of making that
+    contract invisible. Unrelated contract JSON and draft plans remain inert.
+    """
+    plans_dir = contracts_dir / PathSegments.REFERENCE_LAYOUT_DIR
+    if not plans_dir.is_dir():
+        return []
+    root = root.resolve()
+    registry_path = registry_path.resolve()
+    matches: list[Path] = []
+    for candidate in sorted(plans_dir.rglob("*.json")):
+        resolved = candidate.resolve()
+        if resolved == registry_path:
+            continue
+        try:
+            payload = json.loads(candidate.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise ReferenceLayoutPlanError(
+                f"cannot read approved reference layout candidate {candidate}: {exc}"
+            ) from exc
+        if not isinstance(payload, dict):
+            raise ReferenceLayoutPlanError(
+                "approved reference layout candidate must contain a JSON "
+                f"object: {candidate}"
+            )
+        approval = payload.get("approval")
+        if (
+            payload.get("schema_version") == SCHEMA_VERSION
+            and _same_model_region(payload.get("target"), expected_target)
+            and (
+                payload.get("target") == expected_target
+                or _family_contract_is_declared(ir, payload.get("target"))
+            )
+            and isinstance(approval, dict)
+            and approval.get("status") == "approved"
+        ):
+            matches.append(resolved.relative_to(root))
+    return matches
+
+
+def _fail_if_approved_contract_is_unregistered(
+    *,
+    root: Path,
+    contracts_dir: Path,
+    registry_path: Path,
+    expected_target: dict[str, Any],
+    ir: ManualIR,
+) -> None:
+    matches = _unregistered_approved_contracts(
+        root=root,
+        contracts_dir=contracts_dir,
+        registry_path=registry_path,
+        expected_target=expected_target,
+        ir=ir,
+    )
+    if not matches:
+        return
+    paths = ", ".join(path.as_posix() for path in matches)
+    raise ReferenceLayoutPlanError(
+        "approved reference layout plan exists for "
+        f"{expected_target['model']}/{expected_target['region']} but is not "
+        "registered for the current target "
+        f"languages {expected_target['languages']!r}: {paths}"
+    )
+
+
 def validate_approved_reference_plan(
     payload: dict[str, Any],
     ir: ManualIR,
@@ -98,6 +216,11 @@ def validate_approved_reference_plan(
     ):
         if not _valid_digest(source_identity.get(field)):
             issues.append(f"source_identity.{field} must be a lowercase SHA-256")
+    if ir.metadata.get("layout_params_hash_algorithm") != LAYOUT_PARAMS_HASH_ALGORITHM:
+        issues.append(
+            "manual IR metadata.layout_params_hash_algorithm must be "
+            f"{LAYOUT_PARAMS_HASH_ALGORITHM!r}"
+        )
 
     reference = payload.get("reference_pdf")
     if not isinstance(reference, dict):
@@ -198,6 +321,11 @@ def validate_approved_reference_plan(
                 "idml_contract.forbidden_visible_whole_page_links "
                 "must contain file names only"
             )
+        issues.extend(validate_app_control_label_contract(
+            idml_contract,
+            ir,
+            expected_target["languages"],
+        ))
 
     plan_pages = payload.get("pages")
     if not isinstance(plan_pages, list):
@@ -380,17 +508,29 @@ def load_approved_reference_plan(
     root: Path,
     ir: ManualIR,
 ) -> dict[str, Any] | None:
-    """Return the matching approved plan, or None for an unregistered target.
+    """Return the matching approved plan, or None for an ordinary target.
 
-    Registry presence alone does not activate a target.  Once one exact target
-    entry matches, however, a missing or invalid contract is a hard failure and
-    the caller must not fall back to fuzzy LaTeX mapping.
+    A registry match activates the plan.  An approved on-disk plan for the
+    target also activates a fail-closed guard: omitting its registry row is an
+    error, not permission to fall back to fuzzy LaTeX mapping.  Only targets
+    with neither binding may return ``None``.
     """
-    registry_path = (
-        Paths(root=root).renderer_contracts_dir
-        / PathSegments.REFERENCE_LAYOUT_REGISTRY_JSON
-    )
+    root = root.resolve()
+    contracts_dir = Paths(root=root).renderer_contracts_dir
+    registry_path = contracts_dir / PathSegments.REFERENCE_LAYOUT_REGISTRY_JSON
+    expected_target = {
+        "model": ir.model,
+        "region": ir.region,
+        "languages": _languages(ir),
+    }
     if not registry_path.is_file():
+        _fail_if_approved_contract_is_unregistered(
+            root=root,
+            contracts_dir=contracts_dir,
+            registry_path=registry_path,
+            expected_target=expected_target,
+            ir=ir,
+        )
         return None
     registry = _read_json(registry_path, "approved reference layout registry")
     if registry.get("schema_version") != REGISTRY_SCHEMA_VERSION:
@@ -400,16 +540,38 @@ def load_approved_reference_plan(
     entries = registry.get("plans")
     if not isinstance(entries, list):
         raise ReferenceLayoutPlanError("registry plans must be a list")
-    expected_target = {
-        "model": ir.model,
-        "region": ir.region,
-        "languages": _languages(ir),
-    }
-    matches = [
+    family_matches = [
         entry for entry in entries
-        if isinstance(entry, dict) and entry.get("target") == expected_target
+        if isinstance(entry, dict)
+        and _same_model_region(entry.get("target"), expected_target)
+    ]
+    matches = [
+        entry for entry in family_matches
+        if entry.get("target") == expected_target
     ]
     if not matches:
+        declared_family_matches = [
+            entry for entry in family_matches
+            if _family_contract_is_declared(ir, entry.get("target"))
+        ]
+        if declared_family_matches:
+            registered_languages = [
+                (entry.get("target") or {}).get("languages")
+                for entry in declared_family_matches
+            ]
+            raise ReferenceLayoutPlanError(
+                "registered approved reference layout target mismatch for "
+                f"{ir.model}/{ir.region}: current languages "
+                f"{expected_target['languages']!r} do not match registered "
+                f"languages {registered_languages!r}"
+            )
+        _fail_if_approved_contract_is_unregistered(
+            root=root,
+            contracts_dir=contracts_dir,
+            registry_path=registry_path,
+            expected_target=expected_target,
+            ir=ir,
+        )
         return None
     if len(matches) != 1:
         raise ReferenceLayoutPlanError(
@@ -421,7 +583,6 @@ def load_approved_reference_plan(
     relative_path = Path(raw_path)
     if relative_path.is_absolute() or ".." in relative_path.parts:
         raise ReferenceLayoutPlanError("approved plan path must stay repo-relative")
-    root = root.resolve()
     plan_path = (root / relative_path).resolve()
     if not plan_path.is_relative_to(root):
         raise ReferenceLayoutPlanError("approved plan path escapes the repository")

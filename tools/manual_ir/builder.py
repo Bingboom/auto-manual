@@ -5,9 +5,17 @@ import json
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 from tools.idml_rst_extract import bundle_page_order, extract_page
 from tools.idml.page_identity import page_language
-from tools.render_contract import contract_sha256, load_render_contract
+from tools.render_contract import (
+    LAYOUT_PARAMS_HASH_ALGORITHM,
+    contract_sha256,
+    layout_tokens_sha256,
+    load_layout_tokens,
+    load_render_contract,
+)
 from tools.utils.path_utils import Paths
 
 from .hashing import file_sha256, ordered_files_sha256, value_sha256
@@ -50,6 +58,50 @@ def _snapshot_sha256(data_root: Path | None) -> str | None:
     if manifest.is_file():
         return file_sha256(manifest)
     return None
+
+
+def _declared_languages(root: Path, bundle_root: Path) -> list[str]:
+    """Snapshot the prepared bundle's manifest-declared language contract.
+
+    Small direct-export fixtures intentionally have no bundle manifest.  A
+    production bundle does, and its source page manifest is the authority for
+    the complete language set even if a generated include is accidentally
+    missing.  Keeping this declaration in the IR lets approved-layout
+    activation distinguish an incomplete production target from an ordinary
+    single-language fixture without consulting mutable source files later.
+    """
+    bundle_manifest = bundle_root / "bundle_manifest.json"
+    if not bundle_manifest.is_file():
+        return []
+    try:
+        bundle_payload = json.loads(bundle_manifest.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    manifest_ref = bundle_payload.get("page_manifest")
+    if not isinstance(manifest_ref, str) or not manifest_ref.strip():
+        return []
+    manifest_path = (root / manifest_ref).resolve()
+    try:
+        manifest_path.relative_to(root.resolve())
+        manifest_payload = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError, yaml.YAMLError):
+        return []
+    pages = manifest_payload.get("pages") if isinstance(manifest_payload, dict) else None
+    if not isinstance(pages, list):
+        return []
+    languages: list[str] = []
+    for page in pages:
+        if not isinstance(page, dict):
+            continue
+        raw_values = page.get("langs", page.get("lang"))
+        if raw_values is None:
+            continue
+        values = raw_values if isinstance(raw_values, list) else [raw_values]
+        for value in values:
+            language = str(value).strip().lower()
+            if language and "{" not in language and language not in languages:
+                languages.append(language)
+    return languages
 
 
 def build_manual_ir(
@@ -134,7 +186,7 @@ def build_manual_ir(
         bundle_root=bundle_root.as_posix(),
         bundle_sha256=bundle_sha,
         snapshot_sha256=_snapshot_sha256(data_root),
-        layout_params_sha256=file_sha256(layout_params_csv),
+        layout_params_sha256=layout_tokens_sha256(load_layout_tokens(layout_params_csv)),
         style_contract_sha256=contract_sha256(contract),
         content_sha256=content_sha,
         pages=tuple(pages),
@@ -143,5 +195,7 @@ def build_manual_ir(
             "page_count": len(pages),
             "block_count": sum(len(page.blocks) for page in pages),
             "skipped_raw": sum(page.skipped_raw for page in pages),
+            "declared_languages": _declared_languages(root, bundle_root),
+            "layout_params_hash_algorithm": LAYOUT_PARAMS_HASH_ALGORITHM,
         },
     )

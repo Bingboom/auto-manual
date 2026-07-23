@@ -433,11 +433,11 @@
 % Minimum space required for key-combination heading and table
 \expandafter\def\csname HBcomp_key_section_needspace\endcsname{54mm}
 
-% Key-combination table first column ratio
-\expandafter\def\csname HBcomp_key_table_left_ratio\endcsname{0.41}
+% Key-combination table first column ratio shared by LaTeX and IDML
+\expandafter\def\csname HBcomp_key_table_left_ratio\endcsname{0.4131245579}
 
-% Key-combination table middle column ratio
-\expandafter\def\csname HBcomp_key_table_middle_ratio\endcsname{0.29}
+% Key-combination table middle column ratio shared by LaTeX and IDML
+\expandafter\def\csname HBcomp_key_table_middle_ratio\endcsname{0.2916211176}
 
 % Key-combination table body row minimum height
 \expandafter\def\csname HBcomp_key_table_row_height\endcsname{11.6mm}
@@ -446,7 +446,10 @@
 \expandafter\def\csname HBcomp_lcd_continuation_panel_height\endcsname{465pt}
 
 % LCD rows in an English continuation segment
-\expandafter\def\csname HBcomp_lcd_continuation_segment_rows\endcsname{18}
+\expandafter\def\csname HBcomp_lcd_continuation_segment_rows\endcsname{19}
+
+% LCD continuation cell top/bottom padding
+\expandafter\def\csname HBcomp_lcd_continuation_vertical_padding\endcsname{1.2pt}
 
 % LCD first rounded table segment height
 \expandafter\def\csname HBcomp_lcd_first_panel_height\endcsname{286pt}
@@ -455,6 +458,8 @@
 \expandafter\def\csname HBcomp_lcd_first_segment_rows\endcsname{7}
 
 % LCD English first-segment cell top/bottom padding
+\expandafter\def\csname HBcomp_lcd_first_vertical_padding\endcsname{1.6pt}
+
 % LCD rounded table grey-band width through the label column
 \expandafter\def\csname HBcomp_lcd_grey_width_ratio\endcsname{0.41}
 
@@ -462,10 +467,10 @@
 \expandafter\def\csname HBcomp_lcd_icon_col_width\endcsname{11.0mm}
 
 % LCD icon maximum height
-\expandafter\def\csname HBcomp_lcd_icon_height\endcsname{6.6mm}
+\expandafter\def\csname HBcomp_lcd_icon_height\endcsname{5.6mm}
 
 % LCD icon maximum width
-\expandafter\def\csname HBcomp_lcd_icon_width\endcsname{6.6mm}
+\expandafter\def\csname HBcomp_lcd_icon_width\endcsname{5.6mm}
 
 % LCD name-column width
 \expandafter\def\csname HBcomp_lcd_label_col_width\endcsname{0.24\linewidth}
@@ -489,10 +494,13 @@
 \expandafter\def\csname HBcomp_lcd_table_tabcolsep\endcsname{1.4pt}
 
 % LCD rows in a translated continuation segment
-\expandafter\def\csname HBcomp_lcd_translated_continuation_segment_rows\endcsname{16}
+\expandafter\def\csname HBcomp_lcd_translated_continuation_segment_rows\endcsname{19}
 
 % LCD rows in a translated first rounded table segment
-\expandafter\def\csname HBcomp_lcd_translated_first_segment_rows\endcsname{6}
+\expandafter\def\csname HBcomp_lcd_translated_first_segment_rows\endcsname{7}
+
+% LCD translated first-segment cell top/bottom padding
+\expandafter\def\csname HBcomp_lcd_translated_first_vertical_padding\endcsname{0.7pt}
 
 % Space after lead line
 \expandafter\def\csname HBcomp_lead_after\endcsname{2.40mm}
@@ -862,11 +870,104 @@
 
 % ===== OTHER =====
 
+% IDML App screenshot reference-note leading
+\expandafter\def\csname HBidml_app_connect_note_font_leading\endcsname{6.5pt}
+
+% IDML App screenshot reference-note size
+\expandafter\def\csname HBidml_app_connect_note_font_size\endcsname{5.8pt}
+
+% IDML App screenshot reference-note editable frame width
+\expandafter\def\csname HBidml_app_connect_note_width\endcsname{174.0pt}
+
+% IDML App screenshot step-label leading
+\expandafter\def\csname HBidml_app_connect_step_font_leading\endcsname{6.2pt}
+
+% IDML App screenshot step-label size
+\expandafter\def\csname HBidml_app_connect_step_font_size\endcsname{5.5pt}
+
+% IDML App control overlay label leading shared by all languages
+\expandafter\def\csname HBidml_app_control_label_font_leading\endcsname{5.8pt}
+
+% IDML App control overlay label size shared by all languages
+\expandafter\def\csname HBidml_app_control_label_font_size\endcsname{5.0pt}
+
+% IDML App control overlay minimum editable frame height
+\expandafter\def\csname HBidml_app_control_label_min_height\endcsname{7.2pt}
+
+% IDML App notice editable text-frame import allowance
+\expandafter\def\csname HBidml_app_notice_text_frame_safety\endcsname{1.6pt}
+
+% IDML App editable text-frame vertical fit allowance
+\expandafter\def\csname HBidml_app_text_frame_safety\endcsname{0.8pt}
+
 % InDesign callout body baseline correction
 \expandafter\def\csname HBidml_callout_body_baseline_shift\endcsname{0.9pt}
 
 % InDesign callout label baseline correction
 \expandafter\def\csname HBidml_callout_label_baseline_shift\endcsname{2.63pt}
+
+% IDML editable Key-combinations button art size
+\expandafter\def\csname HBidml_key_button_size\endcsname{22.08pt}
+
+% IDML editable Key-combinations button caption leading
+\expandafter\def\csname HBidml_key_caption_font_leading\endcsname{5.8pt}
+
+% IDML editable Key-combinations button caption size
+\expandafter\def\csname HBidml_key_caption_font_size\endcsname{5.1pt}
+
+% IDML editable Key-combinations clock art size
+\expandafter\def\csname HBidml_key_clock_size\endcsname{10.45pt}
+
+% IDML editable Key-combinations duration leading
+\expandafter\def\csname HBidml_key_duration_font_leading\endcsname{7.6pt}
+
+% IDML editable Key-combinations duration size
+\expandafter\def\csname HBidml_key_duration_font_size\endcsname{7.0pt}
+
+% IDML editable Key-combinations function copy leading
+\expandafter\def\csname HBidml_key_function_font_leading\endcsname{8.5pt}
+
+% IDML editable Key-combinations function copy size
+\expandafter\def\csname HBidml_key_function_font_size\endcsname{6.0pt}
+
+% IDML editable Key-combinations header leading
+\expandafter\def\csname HBidml_key_header_font_leading\endcsname{7.2pt}
+
+% IDML editable Key-combinations header height
+\expandafter\def\csname HBidml_key_header_height\endcsname{14.71pt}
+
+% IDML editable Key-combinations internal grid rule
+\expandafter\def\csname HBidml_key_inner_rule\endcsname{0.5pt}
+
+% IDML editable Key-combinations operation copy leading
+\expandafter\def\csname HBidml_key_operation_font_leading\endcsname{6.4pt}
+
+% IDML editable Key-combinations operation copy size
+\expandafter\def\csname HBidml_key_operation_font_size\endcsname{5.35pt}
+
+% IDML editable Key-combinations outer corner radius
+\expandafter\def\csname HBidml_key_outer_radius\endcsname{8.0pt}
+
+% IDML editable Key-combinations outer rule
+\expandafter\def\csname HBidml_key_outer_rule\endcsname{0.566pt}
+
+% IDML editable Key-combinations governed EN panel height
+\expandafter\def\csname HBidml_key_panel_height\endcsname{152.92pt}
+
+% IDML editable Key-combinations governed EN host-line offset
+\expandafter\def\csname HBidml_key_panel_left_indent\endcsname{-4.34pt}
+
+% IDML editable Key-combinations governed EN leading gap
+\expandafter\def\csname HBidml_key_panel_space_before\endcsname{10.62pt}
+
+% IDML editable Key-combinations panel width
+\expandafter\def\csname HBidml_key_panel_width\endcsname{311.02pt}
+
+% IDML editable Key-combinations plus-sign leading
+\expandafter\def\csname HBidml_key_plus_font_leading\endcsname{12.0pt}
+
+% IDML editable Key-combinations plus-sign size
+\expandafter\def\csname HBidml_key_plus_font_size\endcsname{12.0pt}
 
 % InDesign first-level list hanging indent
 \expandafter\def\csname HBidml_list_first_line_indent\endcsname{-6.25pt}
@@ -878,34 +979,58 @@
 \expandafter\def\csname HBidml_list_left_indent\endcsname{3.70pt}
 
 % IDML preface body leading
-\expandafter\def\csname HBidml_preface_body_font_leading\endcsname{8.6pt}
+\expandafter\def\csname HBidml_preface_body_font_leading\endcsname{10.003pt}
 
 % IDML preface body font size
-\expandafter\def\csname HBidml_preface_body_font_size\endcsname{7.2pt}
+\expandafter\def\csname HBidml_preface_body_font_size\endcsname{7.0pt}
+
+% IDML preface header to body gap
+\expandafter\def\csname HBidml_preface_header_space_after\endcsname{5.56pt}
+
+% IDML default gap before language badge
+\expandafter\def\csname HBidml_preface_header_space_before\endcsname{0.0pt}
 
 % IDML preface text bottom margin
 \expandafter\def\csname HBidml_preface_margin_bottom\endcsname{13.0mm}
 
 % IDML preface text left margin
-\expandafter\def\csname HBidml_preface_margin_left\endcsname{12.5mm}
+\expandafter\def\csname HBidml_preface_margin_left\endcsname{35.882pt}
 
 % IDML preface text right margin
-\expandafter\def\csname HBidml_preface_margin_right\endcsname{12.5mm}
+\expandafter\def\csname HBidml_preface_margin_right\endcsname{24.453pt}
 
 % IDML preface text top margin
-\expandafter\def\csname HBidml_preface_margin_top\endcsname{19.0mm}
+\expandafter\def\csname HBidml_preface_margin_top\endcsname{52.986pt}
+
+% IDML preface body paragraph spacing measured from reference
+\expandafter\def\csname HBidml_preface_paragraph_space_after\endcsname{2.0pt}
+
+% IDML preface tag optical baseline shift
+\expandafter\def\csname HBidml_preface_tag_baseline_shift\endcsname{-0.227pt}
 
 % IDML preface language tag font size
-\expandafter\def\csname HBidml_preface_tag_font_size\endcsname{6.0pt}
+\expandafter\def\csname HBidml_preface_tag_font_size\endcsname{8.668pt}
 
 % IDML preface language tag height
-\expandafter\def\csname HBidml_preface_tag_height\endcsname{2.9mm}
+\expandafter\def\csname HBidml_preface_tag_height\endcsname{9.7pt}
+
+% IDML preface tag optical left inset
+\expandafter\def\csname HBidml_preface_tag_left_inset\endcsname{1.795pt}
+
+% IDML preface tag cell top and bottom inset
+\expandafter\def\csname HBidml_preface_tag_vertical_inset\endcsname{0.966pt}
 
 % IDML preface language tag width
-\expandafter\def\csname HBidml_preface_tag_width\endcsname{4.6mm}
+\expandafter\def\csname HBidml_preface_tag_width\endcsname{14.709pt}
+
+% IDML preface title optical baseline shift
+\expandafter\def\csname HBidml_preface_title_baseline_shift\endcsname{-0.839pt}
 
 % IDML preface title font size
 \expandafter\def\csname HBidml_preface_title_font_size\endcsname{8.0pt}
+
+% IDML preface title optical left inset
+\expandafter\def\csname HBidml_preface_title_left_inset\endcsname{6.828pt}
 
 % InDesign space after safety lead paragraph
 \expandafter\def\csname HBidml_safety_lead_space_after\endcsname{4.2pt}
@@ -916,6 +1041,9 @@
 % InDesign FR and ES safety-list horizontal metric correction
 \expandafter\def\csname HBidml_safety_list_horizontal_scale_dense\endcsname{0.90}
 
+% Default InDesign specification left-column ratio
+\expandafter\def\csname HBidml_spec_table_left_ratio\endcsname{0.315}
+
 % InDesign nested list hanging indent
 \expandafter\def\csname HBidml_sublist_first_line_indent\endcsname{-6.04pt}
 
@@ -925,8 +1053,26 @@
 % InDesign nested list continuation indent
 \expandafter\def\csname HBidml_sublist_left_indent\endcsname{9.58pt}
 
+% InDesign warranty panel body leading measured from reference
+\expandafter\def\csname HBidml_warranty_body_font_leading\endcsname{6.0pt}
+
+% InDesign optical gap before the interpretation-rights panel
+\expandafter\def\csname HBidml_warranty_final_section_before\endcsname{1.0pt}
+
 % InDesign warranty lead gap after the anchored H1 host
 \expandafter\def\csname HBidml_warranty_lead_before\endcsname{0.7mm}
+
+% Default InDesign warranty lead horizontal scale percent
+\expandafter\def\csname HBidml_warranty_lead_horizontal_scale\endcsname{100}
+
+% Default InDesign warranty lead vertical padding
+\expandafter\def\csname HBidml_warranty_lead_pad_tb\endcsname{5.0pt}
+
+% InDesign warranty list item spacing measured from reference
+\expandafter\def\csname HBidml_warranty_list_after\endcsname{1.0pt}
+
+% InDesign warranty legal-note horizontal scale percent
+\expandafter\def\csname HBidml_warranty_note_horizontal_scale\endcsname{100}
 
 % InDesign exclusions panel whitespace correction
 \expandafter\def\csname HBidml_warranty_panel_trim_exclusions\endcsname{8.0pt}
@@ -937,14 +1083,32 @@
 % InDesign warranty period panel whitespace correction
 \expandafter\def\csname HBidml_warranty_panel_trim_period\endcsname{0.0pt}
 
+% InDesign warranty body paragraph spacing measured from reference
+\expandafter\def\csname HBidml_warranty_paragraph_after\endcsname{2.83pt}
+
 % InDesign optical gap before warranty period panel
 \expandafter\def\csname HBidml_warranty_period_section_before\endcsname{3.0pt}
 
 % InDesign optical gap before ordinary warranty panels
 \expandafter\def\csname HBidml_warranty_section_before\endcsname{1.0pt}
 
+% InDesign warranty panel title size measured from reference
+\expandafter\def\csname HBidml_warranty_title_font_size\endcsname{8.0pt}
+
 % InDesign black-circled numeral optical size
 \expandafter\def\csname HBidml_warranty_year_glyph_size\endcsname{24pt}
+
+% InDesign warranty period left-column ratio
+\expandafter\def\csname HBidml_warranty_year_left_ratio\endcsname{0.64}
+
+% EN InDesign warranty lead horizontal scale percent
+\expandafter\def\csname HBlang_en_idml_warranty_lead_horizontal_scale\endcsname{100}
+
+% EN InDesign warranty lead vertical padding
+\expandafter\def\csname HBlang_en_idml_warranty_lead_pad_tb\endcsname{7.0pt}
+
+% EN first warranty panel measured trim
+\expandafter\def\csname HBlang_en_idml_warranty_panel_trim_first\endcsname{9.42pt}
 
 % ES: space after H1 pill
 \expandafter\def\csname HBlang_es_comp_h1_pill_after\endcsname{-1.4mm}
@@ -987,6 +1151,36 @@
 
 % ES: space before warning box
 \expandafter\def\csname HBlang_es_comp_warning_box_before\endcsname{0.6mm}
+
+% ES: approved editable Key-combinations panel height
+\expandafter\def\csname HBlang_es_idml_key_panel_height\endcsname{166.70pt}
+
+% ES: approved editable Key-combinations host-line offset
+\expandafter\def\csname HBlang_es_idml_key_panel_left_indent\endcsname{-2.83pt}
+
+% ES: approved editable Key-combinations leading gap
+\expandafter\def\csname HBlang_es_idml_key_panel_space_before\endcsname{4.14pt}
+
+% ES preface badge-to-body gap measured from reference
+\expandafter\def\csname HBlang_es_idml_preface_header_space_after\endcsname{2.65pt}
+
+% ES preface gap before language badge measured from reference
+\expandafter\def\csname HBlang_es_idml_preface_header_space_before\endcsname{13.69pt}
+
+% ES InDesign specification left-column ratio measured from reference
+\expandafter\def\csname HBlang_es_idml_spec_table_left_ratio\endcsname{0.375}
+
+% ES InDesign warranty lead horizontal scale percent
+\expandafter\def\csname HBlang_es_idml_warranty_lead_horizontal_scale\endcsname{100}
+
+% ES InDesign warranty lead vertical padding
+\expandafter\def\csname HBlang_es_idml_warranty_lead_pad_tb\endcsname{5.0pt}
+
+% ES warranty note width measured from reference
+\expandafter\def\csname HBlang_es_idml_warranty_note_horizontal_scale\endcsname{94}
+
+% ES first warranty panel measured trim
+\expandafter\def\csname HBlang_es_idml_warranty_panel_trim_first\endcsname{3.44pt}
 
 % ES tighter list leading
 \expandafter\def\csname HBlang_es_type_list_font_leading\endcsname{7.2pt}
@@ -1050,6 +1244,33 @@
 
 % FR: space before warning box
 \expandafter\def\csname HBlang_fr_comp_warning_box_before\endcsname{0.6mm}
+
+% FR: approved editable Key-combinations panel height
+\expandafter\def\csname HBlang_fr_idml_key_panel_height\endcsname{167.06pt}
+
+% FR: approved editable Key-combinations host-line offset
+\expandafter\def\csname HBlang_fr_idml_key_panel_left_indent\endcsname{-1.42pt}
+
+% FR: approved editable Key-combinations leading gap
+\expandafter\def\csname HBlang_fr_idml_key_panel_space_before\endcsname{3.53pt}
+
+% FR preface badge-to-body gap measured from reference
+\expandafter\def\csname HBlang_fr_idml_preface_header_space_after\endcsname{1.62pt}
+
+% FR preface gap before language badge measured from reference
+\expandafter\def\csname HBlang_fr_idml_preface_header_space_before\endcsname{11.73pt}
+
+% FR InDesign warranty lead horizontal scale percent
+\expandafter\def\csname HBlang_fr_idml_warranty_lead_horizontal_scale\endcsname{96}
+
+% FR InDesign warranty lead vertical padding
+\expandafter\def\csname HBlang_fr_idml_warranty_lead_pad_tb\endcsname{3.0pt}
+
+% FR warranty note width measured from reference
+\expandafter\def\csname HBlang_fr_idml_warranty_note_horizontal_scale\endcsname{94}
+
+% FR first warranty panel measured trim
+\expandafter\def\csname HBlang_fr_idml_warranty_panel_trim_first\endcsname{5.09pt}
 
 % FR tighter list leading
 \expandafter\def\csname HBlang_fr_type_list_font_leading\endcsname{7.2pt}

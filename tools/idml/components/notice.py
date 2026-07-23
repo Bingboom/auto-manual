@@ -8,7 +8,7 @@ from dataclasses import dataclass, replace
 
 from .. import page_objects as _po
 from ..character_metrics import with_character_metrics
-from ..params import param_pt
+from ..params import component_param_pt, param_pt
 from ..primitives import cell, component_table, path_geometry, psr, wrap_table_paragraph
 from .base import RenderContext, figure_paragraph
 
@@ -275,6 +275,85 @@ def notice_box_layout(params: dict, body_width: float, label: str,
     )
 
 
+def _remeasure_notice_layout(
+    layout: NoticeBoxLayout,
+    *,
+    params: dict,
+    spec: dict,
+    label: str,
+    texts: list,
+    text_frame_safety: float = 0.0,
+) -> NoticeBoxLayout:
+    """Fit label/body after every reference geometry/type override is known."""
+    label_available = layout.plate_width - 1.0
+    if label_available <= 0:
+        raise ValueError("notice label frame has no usable width")
+    estimated_label_width = _gilroy_width(label, layout.label_size) * 1.03
+    label_size = layout.label_size
+    label_leading = layout.label_leading
+    if estimated_label_width > label_available:
+        scale = label_available / estimated_label_width
+        label_size = max(1.0, layout.label_size * scale)
+        label_leading = max(
+            label_size + 0.8,
+            layout.label_leading * scale,
+        )
+
+    body_frame_width = layout.body_width - (
+        layout.plate_left
+        + layout.plate_width
+        + layout.body_inset
+        + layout.right_inset
+    )
+    hanging_indent = 3.4 if spec.get("list") else 0.0
+    available = body_frame_width - hanging_indent
+    if available <= 0:
+        raise ValueError("notice body frame has no usable width")
+    lines = sum(
+        _wrapped_lines(
+            str(text),
+            available,
+            layout.body_size * layout.body_horizontal_scale,
+        )
+        for text in texts
+    ) or 1
+    nonempty_items = [text for text in texts if str(text).strip()]
+    paragraph_space = (
+        float(spec.get("paragraph_space_after") or 0.0)
+        * max(0, len(nonempty_items) - 1)
+        if spec.get("list")
+        else 0.0
+    )
+    natural_body_height = (
+        layout.body_leading * lines
+        + paragraph_space
+        + 2 * layout.pad_tb
+        + 1.0
+        + text_frame_safety
+    )
+    label_height = label_leading + 2 * layout.plate_left + 1.0
+    requested_height = float(spec.get("panel_height") or 0.0)
+    if requested_height < 0:
+        raise ValueError("notice panel_height must be greater than zero")
+    variant_height = (
+        param_pt(params, "comp_tip_height", 41.67)
+        if str(spec.get("variant", "")) == "tip"
+        else 0.0
+    )
+    return replace(
+        layout,
+        label_size=label_size,
+        label_leading=label_leading,
+        lines=lines,
+        panel_height=max(
+            requested_height,
+            variant_height,
+            natural_body_height,
+            label_height,
+        ),
+    )
+
+
 def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
                     label: str, label_psr: str, body_psr: str,
                     layout: NoticeBoxLayout,
@@ -300,14 +379,15 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
         f"{label} notice body",
         [body_psr],
     )
-    anchor = (
+    def anchor(*, pin: bool) -> str:
+        return (
         '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
-        'SpineRelative="false" LockPosition="false" PinPosition="true" '
+        f'SpineRelative="false" LockPosition="false" PinPosition="{str(pin).lower()}" '
         'AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" '
         'HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" '
         'VerticalReferencePoint="LineBaseline" AnchorXoffset="0" '
         'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
-    )
+        )
     outer = (
         f'<Rectangle Self="bg_notice_{tid}" ContentType="Unassigned" '
         'AppliedObjectStyle="ObjectStyle/HB Rounded Panel" '
@@ -320,7 +400,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
             0.0,
             layout.arc,
         )
-        + anchor
+        + anchor(pin=True)
         + '</Rectangle>\n'
     )
     plate = (
@@ -335,7 +415,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
             -plate_left,
             max(0.0, layout.arc - plate_left / 2.0),
         )
-        + anchor
+        + anchor(pin=True)
         + '</Rectangle>\n'
     )
 
@@ -357,7 +437,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
             'VerticalJustification="CenterAlign" AutoSizingType="Off">'
             f'<Properties><InsetSpacing type="list">{inset_xml}'
             '</InsetSpacing></Properties></TextFramePreference>\n'
-            + anchor
+            + anchor(pin=False)
             + '</TextFrame>\n'
         )
 
@@ -430,11 +510,24 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         body_size=float(spec.get("body_size", layout.body_size)),
         body_leading=float(spec.get("body_leading", layout.body_leading)),
     )
-    if spec.get("panel_height") is not None:
-        panel_height = float(spec["panel_height"])
-        if panel_height <= 0:
-            raise ValueError("notice panel_height must be greater than zero")
-        layout = replace(layout, panel_height=panel_height)
+    layout = _remeasure_notice_layout(
+        layout,
+        params=ctx.params,
+        spec=spec,
+        label=label,
+        texts=texts,
+        text_frame_safety=(
+            component_param_pt(
+                ctx.params,
+                "idml_app_notice_text_frame_safety",
+                1.6,
+                strict=ctx.strict_component_assets,
+                owner="App notice",
+            )
+            if spec.get("app_text_frame_safety")
+            else 0.0
+        ),
+    )
     label_psr = _typed(
         psr("HB Callout Label", label, terminal=True),
         layout.label_size,

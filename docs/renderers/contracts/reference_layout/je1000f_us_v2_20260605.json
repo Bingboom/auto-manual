@@ -27,9 +27,9 @@
   "source_identity": {
     "manual_ir_schema_version": "manual-ir/v1",
     "manual_content_sha256": "e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3",
-    "snapshot_sha256": "a3e77b847bdf372665b25a15bf441455fc5e4def5c3dd58ba3aa852b61e11203",
-    "style_contract_sha256": "83411e87ec9bbb45085fae5fbd9a590cef3f1acd776e568db807b78cfac57df6",
-    "layout_params_sha256": "4927215c0aca45ce6294dc75ef43628f1d02979add3141f6a3d90bda267685b9"
+    "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
+    "style_contract_sha256": "908b5c04d1cd56fa412a4654c27e65d624e81f768af86a202ecbc1e9f9b7b187",
+    "layout_params_sha256": "48048a82d0bd3092fccd685e6249e1bdb1ec6127457cc6412db34d2362618b67"
   },
   "approval": {
     "status": "approved",
@@ -53,7 +53,49 @@
       "product_overview-fr.pdf",
       "product_overview-es.pdf",
       "back_cover-en.pdf"
-    ]
+    ],
+    "editable_components": {
+      "app_add_device": {
+        "control_labels": {
+          "en": {
+            "base_labels_by_role": {
+              "main_power": "POWER Button",
+              "dc_usb": "DC / USB Power Button",
+              "ac": "AC Power Button"
+            },
+            "render_labels_by_role": {
+              "main_power": "Main Power Button",
+              "dc_usb": "DC/USB Power Button",
+              "ac": "AC Power Button"
+            }
+          },
+          "fr": {
+            "base_labels_by_role": {
+              "main_power": "Bouton d'alimentation",
+              "dc_usb": "Bouton d’alimentation CC / USB",
+              "ac": "Bouton Power CA"
+            },
+            "render_labels_by_role": {
+              "main_power": "Bouton POWER",
+              "dc_usb": "Bouton d’alimentation CC/USB",
+              "ac": "Bouton d’alimentation CA"
+            }
+          },
+          "es": {
+            "base_labels_by_role": {
+              "main_power": "Botón de encendido",
+              "dc_usb": "Botón de energía CC / USB",
+              "ac": "Botón Power CA"
+            },
+            "render_labels_by_role": {
+              "main_power": "Botón de encendido principal",
+              "dc_usb": "Botón de energía CC/USB",
+              "ac": "Botón de energía CA"
+            }
+          }
+        }
+      }
+    }
   },
   "pages": [
     {
@@ -449,7 +491,7 @@
     },
     {
       "source_ref": "page/troubleshooting_es.rst",
-      "source_sha256": "f4024c2eaf4d7b4eac024a2a4286da671284ca7e699374c9297cbe780926f83e",
+      "source_sha256": "f139f254de6670e32f790937ad5108fb950b13f80549c8a7b45cfddb56b66bc7",
       "language": "es",
       "composition_id": "es_storage_troubleshooting",
       "start_page": 53,

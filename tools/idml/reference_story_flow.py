@@ -28,7 +28,7 @@ class ReferenceStoryEmitter:
         """Emit one editable prose story and return the next page cursor."""
         writer = self.writer
         self.toc.latch(title)
-        operation_lang = operation_language(blocks)
+        operation_lang = operation_language(blocks, self.page_plan, title)
         is_operation = (
             (self.page_plan or {}).get("plan_source") == "approved-reference"
             and "operation_guide" in title
@@ -51,12 +51,17 @@ class ReferenceStoryEmitter:
             operation_final_frame_x_offset(operation_lang)
             if is_operation else 0.0
         )
+        prose_options: dict[str, float | str] = {
+            "inline_origin_shift": final_frame_x_offset,
+        }
+        if operation_lang is not None:
+            prose_options["language"] = operation_lang
         _, estimate = writer.add_prose_story(
             sid,
             title,
             blocks,
             self.bundle_root,
-            inline_origin_shift=final_frame_x_offset,
+            **prose_options,
         )
         if title == "00_preface":
             preface_left = param_pt(

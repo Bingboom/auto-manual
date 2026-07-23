@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from tools.idml.params import load_layout_params
 from tools.manual_ir import build_manual_ir, read_manual_ir, validate_manual_ir, write_manual_ir
 from tools.utils.path_utils import Paths, manual_ir_dir_of
 
@@ -15,7 +16,12 @@ DATA = ROOT / "tests" / "fixtures" / "phase2"
 
 
 class ManualIRTests(unittest.TestCase):
-    def _build(self, bundle: Path = BUNDLE):
+    def _build(
+        self,
+        bundle: Path = BUNDLE,
+        *,
+        layout_params_csv: Path | None = None,
+    ):
         return build_manual_ir(
             root=ROOT,
             bundle_root=bundle,
@@ -24,6 +30,7 @@ class ManualIRTests(unittest.TestCase):
             lang="en",
             source="review",
             data_root=DATA,
+            layout_params_csv=layout_params_csv,
         )
 
     def test_build_is_deterministic_and_valid(self) -> None:
@@ -35,6 +42,10 @@ class ManualIRTests(unittest.TestCase):
         self.assertGreater(first.metadata["block_count"], 20)
         self.assertRegex(first.content_sha256, r"^[0-9a-f]{64}$")
         self.assertRegex(first.bundle_sha256, r"^[0-9a-f]{64}$")
+        self.assertEqual(
+            "ordered-layout-tokens/v1",
+            first.metadata["layout_params_hash_algorithm"],
+        )
 
     def test_ids_and_source_refs_are_unique_and_stable(self) -> None:
         ir = self._build()
@@ -54,6 +65,23 @@ class ManualIRTests(unittest.TestCase):
             loaded = read_manual_ir(path)
         self.assertEqual(ir, loaded)
         self.assertEqual([], validate_manual_ir(loaded))
+
+    def test_bundle_manifest_freezes_declared_language_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "bundle"
+            for source in BUNDLE.rglob("*"):
+                if source.is_file():
+                    target = bundle / source.relative_to(BUNDLE)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(source.read_bytes())
+            (bundle / "bundle_manifest.json").write_text(
+                json.dumps({"page_manifest": "docs/manifests/manual_us.yaml"}),
+                encoding="utf-8",
+            )
+
+            ir = self._build(bundle)
+
+        self.assertEqual(["en", "fr", "es"], ir.metadata["declared_languages"])
 
     def test_content_mutation_is_detected(self) -> None:
         ir = self._build()
@@ -80,6 +108,72 @@ class ManualIRTests(unittest.TestCase):
             after = self._build(copy)
         self.assertNotEqual(before.bundle_sha256, after.bundle_sha256)
         self.assertNotEqual(before.content_sha256, after.content_sha256)
+
+    def test_layout_params_hash_uses_ordered_csv_semantics(self) -> None:
+        rows = [
+            "key,value,unit,comment",
+            "page_width,130.10,mm,Paper width",
+            "body_leading,7.2,pt,Body leading",
+        ]
+        with tempfile.TemporaryDirectory() as td:
+            csv_path = Path(td) / "layout_params.csv"
+
+            csv_path.write_bytes(("\n".join(rows) + "\n").encode("utf-8"))
+            lf = self._build(layout_params_csv=csv_path)
+
+            csv_path.write_bytes(("\r\n".join(rows) + "\r\n").encode("utf-8"))
+            crlf = self._build(layout_params_csv=csv_path)
+
+            csv_path.write_bytes(
+                (rows[0] + "\r\n" + rows[1] + "\n" + rows[2] + "\r").encode("utf-8")
+            )
+            mixed = self._build(layout_params_csv=csv_path)
+
+            bom_rows = [
+                rows[0],
+                ",,,ignored section label",
+                "page_width,130.10,MM,Changed comment",
+                "",
+                "body_leading,7.2,PT,Another changed comment",
+            ]
+            csv_path.write_bytes(
+                b"\xef\xbb\xbf" + ("\r\n".join(bom_rows) + "\r\n").encode("utf-8")
+            )
+            bom = self._build(layout_params_csv=csv_path)
+            idml_params = load_layout_params(csv_path)
+
+            changed_rows = [*rows]
+            changed_rows[1] = "page_width,130.20,mm,Paper width"
+            csv_path.write_text("\n".join(changed_rows) + "\n", encoding="utf-8")
+            changed_value = self._build(layout_params_csv=csv_path)
+
+            reordered_rows = [rows[0], rows[2], rows[1]]
+            csv_path.write_text("\n".join(reordered_rows) + "\n", encoding="utf-8")
+            reordered = self._build(layout_params_csv=csv_path)
+
+        self.assertEqual(lf.layout_params_sha256, crlf.layout_params_sha256)
+        self.assertEqual(lf.layout_params_sha256, mixed.layout_params_sha256)
+        self.assertEqual(lf.layout_params_sha256, bom.layout_params_sha256)
+        self.assertEqual(
+            {"page_width": ("130.10", "mm"), "body_leading": ("7.2", "pt")},
+            idml_params,
+        )
+        self.assertNotEqual(lf.layout_params_sha256, changed_value.layout_params_sha256)
+        self.assertNotEqual(lf.layout_params_sha256, reordered.layout_params_sha256)
+
+    def test_layout_params_duplicate_key_fails_for_ir_and_idml(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            csv_path = Path(td) / "layout_params.csv"
+            csv_path.write_text(
+                "key,value,unit,comment\n"
+                "page_width,,mm,Missing value\n"
+                "page_width,130.20,mm,Duplicate\n",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "duplicate layout token: page_width"):
+                self._build(layout_params_csv=csv_path)
+            with self.assertRaisesRegex(ValueError, "duplicate layout token: page_width"):
+                load_layout_params(csv_path)
 
     def test_path_helper_places_ir_beside_the_prepared_bundle(self) -> None:
         expected = BUNDLE.parent / "ir" / "manual.ir.json"

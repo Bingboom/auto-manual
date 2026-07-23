@@ -146,10 +146,43 @@ comp_data_table_after,1.2,mm,Space after body data tables
 comp_data_table_header_height,5.2,mm,Body data table header minimum height
 comp_data_table_row_height,4.2,mm,Body data table ordinary row minimum height
 comp_auto_resume_left_ratio,0.50,ratio,Auto-resume table left column ratio
-comp_key_table_left_ratio,0.41,ratio,Key-combination table first column ratio
-comp_key_table_middle_ratio,0.29,ratio,Key-combination table middle column ratio
+comp_key_table_left_ratio,0.4131245579,ratio,Key-combination table first column ratio shared by LaTeX and IDML
+comp_key_table_middle_ratio,0.2916211176,ratio,Key-combination table middle column ratio shared by LaTeX and IDML
 comp_key_table_row_height,11.6,mm,Key-combination table body row minimum height
 comp_key_section_needspace,54,mm,Minimum space required for key-combination heading and table
+idml_key_panel_width,311.02,pt,IDML editable Key-combinations panel width
+idml_key_header_height,14.71,pt,IDML editable Key-combinations header height
+idml_key_panel_height,152.92,pt,IDML editable Key-combinations governed EN panel height
+idml_key_panel_left_indent,-4.34,pt,IDML editable Key-combinations governed EN host-line offset
+idml_key_panel_space_before,10.62,pt,IDML editable Key-combinations governed EN leading gap
+idml_key_inner_rule,0.5,pt,IDML editable Key-combinations internal grid rule
+idml_key_outer_rule,0.566,pt,IDML editable Key-combinations outer rule
+idml_key_outer_radius,8.0,pt,IDML editable Key-combinations outer corner radius
+idml_key_button_size,22.08,pt,IDML editable Key-combinations button art size
+idml_key_clock_size,10.45,pt,IDML editable Key-combinations clock art size
+idml_key_header_font_leading,7.2,pt,IDML editable Key-combinations header leading
+idml_key_caption_font_size,5.1,pt,IDML editable Key-combinations button caption size
+idml_key_caption_font_leading,5.8,pt,IDML editable Key-combinations button caption leading
+idml_key_plus_font_size,12.0,pt,IDML editable Key-combinations plus-sign size
+idml_key_plus_font_leading,12.0,pt,IDML editable Key-combinations plus-sign leading
+idml_key_duration_font_size,7.0,pt,IDML editable Key-combinations duration size
+idml_key_duration_font_leading,7.6,pt,IDML editable Key-combinations duration leading
+idml_key_operation_font_size,5.35,pt,IDML editable Key-combinations operation copy size
+idml_key_operation_font_leading,6.4,pt,IDML editable Key-combinations operation copy leading
+idml_key_function_font_size,6.0,pt,IDML editable Key-combinations function copy size
+idml_key_function_font_leading,8.5,pt,IDML editable Key-combinations function copy leading
+,,,
+,,,------ IDML APP EDITABLE COMPOSITES ------
+idml_app_control_label_font_size,5.0,pt,IDML App control overlay label size shared by all languages
+idml_app_control_label_font_leading,5.8,pt,IDML App control overlay label leading shared by all languages
+idml_app_control_label_min_height,7.2,pt,IDML App control overlay minimum editable frame height
+idml_app_connect_step_font_size,5.5,pt,IDML App screenshot step-label size
+idml_app_connect_step_font_leading,6.2,pt,IDML App screenshot step-label leading
+idml_app_connect_note_font_size,5.8,pt,IDML App screenshot reference-note size
+idml_app_connect_note_font_leading,6.5,pt,IDML App screenshot reference-note leading
+idml_app_connect_note_width,174.0,pt,IDML App screenshot reference-note editable frame width
+idml_app_text_frame_safety,0.8,pt,IDML App editable text-frame vertical fit allowance
+idml_app_notice_text_frame_safety,1.6,pt,IDML App notice editable text-frame import allowance
 comp_trouble_left_ratio,0.11,ratio,Troubleshooting error-code column ratio before cell padding
 comp_trouble_step_indent,3.4,mm,Troubleshooting numbered-step hanging indent
 comp_trouble_steps_pad_tb,1.0,mm,Troubleshooting numbered-step cell top/bottom padding
@@ -421,6 +454,9 @@ lang_fr_type_spec_value_font_size,5.9,pt,FR: tighter spec value font size
 lang_fr_type_spec_value_font_leading,6.1,pt,FR: tighter spec value leading
 lang_fr_type_spec_note_font_size,5.6,pt,FR: tighter note font size
 lang_fr_type_spec_note_font_leading,6.3,pt,FR: tighter note leading
+lang_fr_idml_key_panel_height,167.06,pt,FR: approved editable Key-combinations panel height
+lang_fr_idml_key_panel_left_indent,-1.42,pt,FR: approved editable Key-combinations host-line offset
+lang_fr_idml_key_panel_space_before,3.53,pt,FR: approved editable Key-combinations leading gap
 
 ,,,------ ES (Spanish tighter layout to fit one page) ------
 lang_es_comp_h1_pill_after,-1.4,mm,ES: space after H1 pill
@@ -444,3 +480,6 @@ lang_es_type_spec_value_font_size,5.9,pt,ES: tighter spec value font size
 lang_es_type_spec_value_font_leading,6.1,pt,ES: tighter spec value leading
 lang_es_type_spec_note_font_size,5.6,pt,ES: tighter note font size
 lang_es_type_spec_note_font_leading,6.3,pt,ES: tighter note leading
+lang_es_idml_key_panel_height,166.70,pt,ES: approved editable Key-combinations panel height
+lang_es_idml_key_panel_left_indent,-2.83,pt,ES: approved editable Key-combinations host-line offset
+lang_es_idml_key_panel_space_before,4.14,pt,ES: approved editable Key-combinations leading gap

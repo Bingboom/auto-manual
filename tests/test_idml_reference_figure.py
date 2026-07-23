@@ -12,24 +12,54 @@ from tools.idml.components.reference_figure import (
     _download_copy,
     render_referencefigure,
 )
+from tools.idml.params import load_layout_params
 
 
 ROOT = Path(__file__).resolve().parents[1]
+APP_STYLE_TOKENS = (
+    "idml_app_control_label_font_size",
+    "idml_app_control_label_font_leading",
+    "idml_app_control_label_min_height",
+    "idml_app_connect_step_font_size",
+    "idml_app_connect_step_font_leading",
+    "idml_app_connect_note_font_size",
+    "idml_app_connect_note_font_leading",
+    "idml_app_connect_note_width",
+    "idml_app_text_frame_safety",
+)
 
 
 class EditableReferenceFigureTests(unittest.TestCase):
-    def _context(self, bundle: Path, stories: list[tuple[str, str]]) -> RenderContext:
+    def _context(
+        self,
+        bundle: Path,
+        stories: list[tuple[str, str]],
+        *,
+        params: dict[str, tuple[str, str]] | None = None,
+        language: str | None = None,
+        strict_component_assets: bool = False,
+    ) -> RenderContext:
         def add_story(story_id: str, _title: str, parts: list[str]) -> str:
             stories.append((story_id, "".join(parts)))
             return story_id
 
         return RenderContext(
-            params={},
+            params=(
+                params
+                if params is not None
+                else load_layout_params(ROOT / "data" / "layout_params.csv")
+                if strict_component_assets
+                else {}
+            ),
             page_w=368.79,
             m_l=28.35,
             m_r=28.35,
             root=ROOT,
             bundle_root=bundle,
+            model="JE-1000F",
+            region="US",
+            language=language,
+            strict_component_assets=strict_component_assets,
             add_story=add_story,
         )
 
@@ -130,7 +160,11 @@ class EditableReferenceFigureTests(unittest.TestCase):
                     "image": "add_device.png",
                     "control_image": "front_controls.pdf",
                     "step_labels": ["2.1", "2.2"],
-                    "labels": ["POWER Button", "AC Power Button", "DC / USB"],
+                    "labels_by_role": {
+                        "main_power": "POWER Button",
+                        "dc_usb": "DC / USB",
+                        "ac": "AC Power Button",
+                    },
                 },
                 self._context(bundle, stories),
                 tid="app",
@@ -150,9 +184,260 @@ class EditableReferenceFigureTests(unittest.TestCase):
             self.assertIn('Anchor="23.161 -47.5"', xml)
             self.assertIn('Anchor="75.097 -40.3"', xml)
             self.assertIn('Anchor="22.681 -30.099"', xml)
-            self.assertIn('Anchor="84.523 -22.899"', xml)
-            self.assertIn('Anchor="251.395 -29.001"', xml)
-            self.assertIn('Anchor="298.381 -21.801"', xml)
+            self.assertIn('Anchor="100.5 -22.899"', xml)
+            self.assertIn('Anchor="248.268 -29.001"', xml)
+            self.assertIn('Anchor="310 -21.801"', xml)
+
+    def test_app_control_roles_are_bound_to_visual_slots_not_source_order(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            self._png(bundle / "add_device.png", (680, 601))
+            (bundle / "front_controls.pdf").write_bytes(b"placeholder")
+            stories: list[tuple[str, str]] = []
+
+            render_referencefigure(
+                {
+                    "kind": "referencefigure",
+                    "layout": "app_add_device",
+                    "image": "add_device.png",
+                    "control_image": "front_controls.pdf",
+                    "step_labels": ["2.1", "2.2"],
+                    "labels_by_role": {
+                        # Deliberately not visual order. The role keys, not
+                        # mapping insertion order or localized words, govern.
+                        "ac": "Bouton d’alimentation CA",
+                        "main_power": "Bouton POWER",
+                        "dc_usb": "Bouton d’alimentation CC/USB",
+                    },
+                },
+                self._context(bundle, stories, language="fr"),
+                tid="app_roles",
+                terminal=True,
+            )
+
+            story_map = dict(stories)
+            self.assertIn(
+                "Bouton POWER",
+                story_map["st_anchor_referencefigure_app_label_0_app_roles"],
+            )
+            self.assertIn(
+                "Bouton d’alimentation CC/USB",
+                story_map["st_anchor_referencefigure_app_label_1_app_roles"],
+            )
+            self.assertIn(
+                "Bouton d’alimentation CA",
+                story_map["st_anchor_referencefigure_app_label_2_app_roles"],
+            )
+
+    def test_approved_app_requires_all_explicit_control_roles(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            self._png(bundle / "add_device.png", (680, 601))
+            (bundle / "front_controls.pdf").write_bytes(b"placeholder")
+
+            with self.assertRaisesRegex(
+                ValueError,
+                "approved app_add_device requires labels_by_role",
+            ):
+                render_referencefigure(
+                    {
+                        "kind": "referencefigure",
+                        "layout": "app_add_device",
+                        "image": "add_device.png",
+                        "control_image": "front_controls.pdf",
+                        "labels": ["POWER", "AC", "DC / USB"],
+                    },
+                    self._context(
+                        bundle,
+                        [],
+                        language="fr",
+                        strict_component_assets=True,
+                    ),
+                    tid="app_missing_roles",
+                    terminal=True,
+                )
+
+    def test_approved_app_style_requires_every_numeric_token(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            self._png(bundle / "add_device.png", (680, 601))
+            (bundle / "front_controls.pdf").write_bytes(b"placeholder")
+            spec = {
+                "kind": "referencefigure",
+                "layout": "app_add_device",
+                "image": "add_device.png",
+                "control_image": "front_controls.pdf",
+                "labels_by_role": {
+                    "main_power": "Main Power Button",
+                    "dc_usb": "DC/USB Power Button",
+                    "ac": "AC Power Button",
+                },
+            }
+            for token in APP_STYLE_TOKENS:
+                for mutation in ("missing", "invalid"):
+                    with self.subTest(token=token, mutation=mutation):
+                        params = load_layout_params(
+                            ROOT / "data" / "layout_params.csv"
+                        )
+                        if mutation == "missing":
+                            del params[token]
+                            message = "missing required layout token"
+                        else:
+                            params[token] = ("not-a-number", "pt")
+                            message = "non-numeric layout token"
+                        with self.assertRaisesRegex(
+                            ValueError,
+                            rf"{message}: {token}",
+                        ):
+                            render_referencefigure(
+                                spec,
+                                self._context(
+                                    bundle,
+                                    [],
+                                    params=params,
+                                    strict_component_assets=True,
+                                ),
+                                tid=f"app_style_{mutation}",
+                                terminal=True,
+                            )
+
+    def test_approved_reference_figure_missing_primary_image_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+
+            with self.assertRaisesRegex(
+                FileNotFoundError,
+                "approved referencefigure image is unavailable",
+            ):
+                render_referencefigure(
+                    {
+                        "kind": "referencefigure",
+                        "layout": "app_add_device",
+                        "image": "missing-add-device.png",
+                    },
+                    self._context(
+                        bundle,
+                        [],
+                        strict_component_assets=True,
+                    ),
+                    tid="app_missing_primary",
+                    terminal=True,
+                )
+
+    def test_approved_app_missing_control_art_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            self._png(bundle / "add_device.png", (680, 601))
+
+            with self.assertRaisesRegex(
+                FileNotFoundError,
+                "approved app_add_device control_image is unavailable",
+            ):
+                render_referencefigure(
+                    {
+                        "kind": "referencefigure",
+                        "layout": "app_add_device",
+                        "image": "add_device.png",
+                        "control_image": "missing-controls.pdf",
+                        "labels_by_role": {
+                            "main_power": "Main",
+                            "dc_usb": "DC/USB",
+                            "ac": "AC",
+                        },
+                    },
+                    self._context(
+                        bundle,
+                        [],
+                        strict_component_assets=True,
+                    ),
+                    tid="app_missing_controls",
+                    terminal=True,
+                )
+
+    def test_app_figure_style_tokens_control_type_and_safe_frame_geometry(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            self._png(bundle / "add_device.png", (680, 601))
+            (bundle / "front_controls.pdf").write_bytes(b"placeholder")
+            stories: list[tuple[str, str]] = []
+            params = {
+                "idml_app_control_label_font_size": ("4.7", "pt"),
+                "idml_app_control_label_font_leading": ("5.6", "pt"),
+                "idml_app_control_label_min_height": ("8.0", "pt"),
+                "idml_app_connect_step_font_size": ("5.1", "pt"),
+                "idml_app_connect_step_font_leading": ("5.9", "pt"),
+                "idml_app_text_frame_safety": ("1.1", "pt"),
+            }
+
+            xml, _height = render_referencefigure(
+                {
+                    "kind": "referencefigure",
+                    "layout": "app_add_device",
+                    "image": "add_device.png",
+                    "control_image": "front_controls.pdf",
+                    "step_labels": ["2.1", "2.2"],
+                    "labels_by_role": {
+                        "main_power": "A deliberately long main power label",
+                        "dc_usb": "DC / USB",
+                        "ac": "AC",
+                    },
+                },
+                self._context(bundle, stories, params=params),
+                tid="app_tokens",
+                terminal=True,
+            )
+
+            story_map = dict(stories)
+            self.assertIn(
+                'PointSize="4.7"',
+                story_map["st_anchor_referencefigure_app_label_0_app_tokens"],
+            )
+            self.assertIn(
+                '<Leading type="unit">5.6</Leading>',
+                story_map["st_anchor_referencefigure_app_label_0_app_tokens"],
+            )
+            self.assertIn(
+                'PointSize="5.1"',
+                story_map["st_anchor_referencefigure_app_step_0_app_tokens"],
+            )
+            self.assertIn('AutoSizingType="HeightOnly"', xml)
+            self.assertNotIn('Anchor="23.161 -47.5"', xml)
+
+    def test_app_connect_note_uses_shared_width_and_type_tokens(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            self._png(bundle / "connect_result.png", (1046, 651))
+            stories: list[tuple[str, str]] = []
+            params = {
+                "idml_app_connect_note_font_size": ("5.4", "pt"),
+                "idml_app_connect_note_font_leading": ("6.1", "pt"),
+                "idml_app_connect_note_width": ("190", "pt"),
+                "idml_app_text_frame_safety": ("1.0", "pt"),
+            }
+
+            xml, _height = render_referencefigure(
+                {
+                    "kind": "referencefigure",
+                    "layout": "app_connect_result",
+                    "image": "connect_result.png",
+                    "step_labels": ["2.3", "2.4", "2.5"],
+                    "reference_note": (
+                        "Las capturas de pantalla anteriores sirven solo de referencia."
+                    ),
+                },
+                self._context(bundle, stories, params=params, language="es"),
+                tid="connect_tokens",
+                terminal=True,
+            )
+
+            story_map = dict(stories)
+            note = story_map[
+                "st_anchor_referencefigure_connect_note_connect_tokens"
+            ]
+            self.assertIn('PointSize="5.4"', note)
+            self.assertIn('<Leading type="unit">6.1</Leading>', note)
+            self.assertIn('Anchor="215.934 0"', xml)
+            self.assertIn('AutoSizingType="HeightOnly"', xml)
 
     def test_app_connect_result_is_cropped_and_captioned_with_top_frames(self) -> None:
         with tempfile.TemporaryDirectory() as td:

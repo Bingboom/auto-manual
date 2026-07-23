@@ -419,8 +419,8 @@ class IdmlVisualParityTests(unittest.TestCase):
         render_table_block(key_rows, ctx, tid="tbl_key", terminal=True)
         key_story = dict(writer.stories)["st_anchor_data_tbl_key"]
         self.assertIn('MinimumHeight="32.8819"', key_story)
-        self.assertIn('SingleColumnWidth="130.104"', key_story)
-        self.assertIn('SingleColumnWidth="95.2224"', key_story)
+        self.assertIn('SingleColumnWidth="131.074"', key_story)
+        self.assertIn('SingleColumnWidth="95.7259"', key_story)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Header"', key_story)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Body"', key_story)
         self.assertIn(f'LeftInset="{indent:g}"', key_story)

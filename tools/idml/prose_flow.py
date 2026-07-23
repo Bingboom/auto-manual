@@ -12,6 +12,10 @@ from .asset_contracts import (
     APP_PAIRING_PANEL_ASSET_URI,
     is_je1000f_us_app_reference_plan_page,
 )
+from .control_labels import (
+    approved_app_control_labels,
+    matches_base_label_block,
+)
 
 Block = tuple[str, str]
 EmitProse = Callable[[str, str, list[Block], int], None]
@@ -176,14 +180,46 @@ def idml_page_estimator(writer_cls, params, bundle_root) -> EstimatePages:
     return estimate
 
 
-def operation_language(blocks: list[Block]) -> str | None:
-    """Infer EN/FR/ES from the governed key-combination table headers.
+def _language_code(value: object) -> str:
+    """Normalize an IETF/underscore locale to its primary language subtag."""
+    normalized = str(value or "").strip().lower().replace("_", "-")
+    return normalized.split("-", 1)[0]
 
-    The approved operation pages carry one structurally identical table in
-    each language.  Reading its three localized headers avoids page-number or
-    translated-section-title routing while giving layout components the
-    language needed for measured vertical rhythm.
+
+def _planned_page_language(
+    page_plan: dict | None,
+    stem: str | None,
+) -> str | None:
+    """Return approved page metadata language for an exact source stem."""
+    if (
+        (page_plan or {}).get("plan_source") != "approved-reference"
+        or not stem
+    ):
+        return None
+    target_stem = Path(stem).stem
+    for entry in (page_plan or {}).get("pages", []):
+        source_path = entry.get("source_path")
+        if not source_path or Path(str(source_path)).stem != target_stem:
+            continue
+        language = _language_code(entry.get("language"))
+        return language if language in {"en", "fr", "es"} else None
+    return None
+
+
+def operation_language(
+    blocks: list[Block],
+    page_plan: dict | None = None,
+    stem: str | None = None,
+) -> str | None:
+    """Resolve EN/FR/ES from page metadata, then legacy table headers.
+
+    Approved page-plan metadata is the authoritative locale contract and does
+    not change when an editor revises visible table headings. Header inference
+    remains as a compatibility fallback for unapproved and older call sites.
     """
+    planned = _planned_page_language(page_plan, stem)
+    if planned is not None:
+        return planned
     headers = {
         ("buttons", "operation", "function"): "en",
         ("boutons", "utilisation", "fonction"): "fr",
@@ -242,7 +278,7 @@ def align_operation_tail(blocks: list[Block], page_plan: dict | None,
     h2_indices = [index for index, block in enumerate(aligned) if block[0] == "h2"]
     if (page_plan or {}).get("plan_source") == "approved-reference":
         # Reference pages: POWER+AC | DC/USB | Energy+LED | Resume+LCD+Keys.
-        language = operation_language(blocks) or "en"
+        language = operation_language(blocks, page_plan, stem) or "en"
         resume_top_gap = {"en": 15.7, "fr": 8.1, "es": 9.3}[language]
         for ordinal in reversed((3, 4, 6)):
             if len(h2_indices) >= ordinal:
@@ -423,6 +459,7 @@ def promote_reference_figures(
             notice_spec.update({
                 "body_width": 300.516,
                 "inline_x_offset": 10.943,
+                "app_text_frame_safety": True,
                 "plate_left": 1.418,
                 "label_width": 48.939,
                 **notice_layouts[notice_ordinal],
@@ -489,31 +526,36 @@ def promote_reference_figures(
             index += 1
             continue
 
-        if (
-            is_app
-            and asset_stem.startswith("add_device")
-            and index + 1 < len(aligned)
-            and aligned[index + 1][0] == "body"
-        ):
+        if is_app and asset_stem.startswith("add_device"):
             prior_steps = [
                 _step_number(text)
                 for prior_kind, text in aligned[:index]
                 if prior_kind == "body" and _step_number(text)
             ][-2:]
-            labels = [
-                line.strip()
-                for line in aligned[index + 1][1].splitlines()
-                if line.strip()
-            ]
-            if stem == "12_app_setup_placeholder" and labels:
-                labels[0] = "Main Power Button"
-                if len(labels) >= 3:
-                    labels[2] = labels[2].replace("DC / USB", "DC/USB")
-            aligned[index:index + 2] = [
+            language = _planned_page_language(page_plan, stem)
+            if language is None:
+                raise ValueError(
+                    f"approved App figure {stem} has no governed page language"
+                )
+            base_labels, render_labels = approved_app_control_labels(
+                page_plan,
+                language,
+            )
+            consume = 1
+            if (
+                index + 1 < len(aligned)
+                and aligned[index + 1][0] == "body"
+                and matches_base_label_block(
+                    aligned[index + 1][1],
+                    base_labels,
+                )
+            ):
+                consume += 1
+            aligned[index:index + consume] = [
                 _referencefigure_block(
                     "app_add_device",
                     payload,
-                    labels=labels,
+                    labels_by_role=render_labels,
                     step_labels=prior_steps,
                     control_image=APP_PAIRING_PANEL_ASSET_URI,
                 )

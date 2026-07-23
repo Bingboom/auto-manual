@@ -26,6 +26,25 @@ from tools.idml import export_paths as idml_export_paths  # noqa: E402
 from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
 
 FIXTURE_DATA_ROOT = ROOT / "tests" / "fixtures" / "phase2"
+APPROVED_LAYOUT_CONTRACT = (
+    ROOT / "docs" / "renderers" / "contracts" / "reference_layout"
+    / "je1000f_us_v2_20260605.json"
+)
+
+
+def _approved_app_plan(source_path: str, language: str) -> dict[str, object]:
+    return {
+        "plan_source": "approved-reference",
+        "approved_contract": json.loads(
+            APPROVED_LAYOUT_CONTRACT.read_text(encoding="utf-8")
+        ),
+        "pages": [{
+            "source_path": source_path,
+            "language": language,
+            "composition_id": f"{Path(source_path).stem}-composition",
+            "planned_page_count": 2,
+        }],
+    }
 
 
 class ExportIdmlTests(unittest.TestCase):
@@ -1236,22 +1255,7 @@ class ExportIdmlTests(unittest.TestCase):
                 flow = ProseFlowBuffer()
                 flow.add(stem, blocks)
                 emitted = []
-                plan = {
-                    "plan_source": "approved-reference",
-                    "approved_contract": {
-                        "target": {
-                            "model": "JE-1000F",
-                            "region": "US",
-                            "languages": ["en", "fr", "es"],
-                        },
-                    },
-                    "pages": [{
-                        "source_path": f"page/{stem}.rst",
-                        "language": "en",
-                        "composition_id": f"{stem}-composition",
-                        "planned_page_count": 2,
-                    }],
-                }
+                plan = _approved_app_plan(f"page/{stem}.rst", "en")
 
                 flow.flush(
                     lambda _sid, _title, out, _columns: emitted.extend(out),
@@ -1307,22 +1311,10 @@ class ExportIdmlTests(unittest.TestCase):
                 if existing_break:
                     blocks.append(("layout", "page_break"))
                 blocks.extend([notice, ("body", "Localized 2.4 copy")])
-                plan = {
-                    "plan_source": "approved-reference",
-                    "approved_contract": {
-                        "target": {
-                            "model": "JE-1000F",
-                            "region": "US",
-                            "languages": ["en", "fr", "es"],
-                        },
-                    },
-                    "pages": [{
-                        "source_path": f"page/{stem}.rst",
-                        "language": language,
-                        "composition_id": f"{stem}-composition",
-                        "planned_page_count": 2,
-                    }],
-                }
+                plan = _approved_app_plan(
+                    f"page/{stem}.rst",
+                    language,
+                )
 
                 aligned = align_app_second_page(blocks, plan, stem)
                 self.assertIn(("layout", "page_break:15.1"), aligned)
@@ -1335,6 +1327,10 @@ class ExportIdmlTests(unittest.TestCase):
                 ]
                 self.assertEqual(
                     ["app_download", "app_add_device"], layouts,
+                )
+                self.assertIn(
+                    ("body", "Localized 2.3 Bluetooth copy"),
+                    promoted,
                 )
 
     def test_approved_reference_figures_absorb_only_adjacent_figure_copy(self) -> None:
@@ -1409,7 +1405,10 @@ class ExportIdmlTests(unittest.TestCase):
             ("body", "2.1 Localized first step"),
             ("body", "2.2 Localized second step"),
             ("image", "_assets/app/add_device_je1000f_us.png"),
-            ("body", "Power\nAC\nDC / USB"),
+            (
+                "body",
+                "POWER Button\nAC Power Button\nDC / USB Power Button",
+            ),
             ("body", "2.3 Localized third step"),
             (
                 "component",
@@ -1431,20 +1430,10 @@ class ExportIdmlTests(unittest.TestCase):
 
         promoted = promote_reference_figures(
             blocks,
-            {
-                "plan_source": "approved-reference",
-                "approved_contract": {
-                    "target": {
-                        "model": "JE-1000F",
-                        "region": "US",
-                        "languages": ["en", "fr", "es"],
-                    },
-                },
-                "pages": [{
-                    "source_path": "page/12_app_setup_placeholder.rst",
-                    "language": "en",
-                }],
-            },
+            _approved_app_plan(
+                "page/12_app_setup_placeholder.rst",
+                "en",
+            ),
             "12_app_setup_placeholder",
         )
 
@@ -1461,8 +1450,14 @@ class ExportIdmlTests(unittest.TestCase):
         )
         self.assertEqual(["2.1", "2.2"], specs[1]["step_labels"])
         self.assertEqual(
-            ["Main Power Button", "AC", "DC/USB"], specs[1]["labels"],
+            {
+                "main_power": "Main Power Button",
+                "dc_usb": "DC/USB Power Button",
+                "ac": "AC Power Button",
+            },
+            specs[1]["labels_by_role"],
         )
+        self.assertIn(("body", "2.3 Localized third step"), promoted)
         self.assertEqual(
             "asset:controls/je1000f_us/network_pairing_panel",
             specs[1]["control_image"],
@@ -1484,6 +1479,7 @@ class ExportIdmlTests(unittest.TestCase):
             spec["body_size"] for spec in notice_specs
         ])
         self.assertEqual(2.0, notice_specs[0]["paragraph_space_after"])
+        self.assertTrue(all(spec["app_text_frame_safety"] for spec in notice_specs))
         self.assertTrue(notice_specs[0]["unbulleted_first"])
         self.assertTrue(notice_specs[1]["unbulleted_first"])
 
@@ -1496,26 +1492,15 @@ class ExportIdmlTests(unittest.TestCase):
             ("body", "2.1 Ajouter un appareil"),
             ("body", "2.2 Allumer l'appareil"),
             ("image", "_assets/app/add_device_je1000f_us.png"),
-            ("body", "Bouton d'alimentation principal\n"
-                      "Bouton d'alimentation CA\n"
-                      "Bouton d'alimentation CC/USB"),
+            ("body", "Bouton d'alimentation\n"
+                      "Bouton Power CA\n"
+                      "Bouton d’alimentation CC / USB"),
             ("body", "2.3 Connexion Bluetooth"),
         ]
-        plan = {
-            "plan_source": "approved-reference",
-            "approved_contract": {
-                "target": {
-                    "model": "JE-1000F",
-                    "region": "US",
-                    "languages": ["en", "fr", "es"],
-                },
-            },
-            "pages": [{
-                "source_path": "page/p34_12_app_setup_placeholder.rst",
-                "language": "fr",
-                "planned_page_count": 2,
-            }],
-        }
+        plan = _approved_app_plan(
+            "page/p34_12_app_setup_placeholder.rst",
+            "fr",
+        )
         promoted = promote_reference_figures(
             blocks, plan, "p34_12_app_setup_placeholder",
         )
@@ -1530,17 +1515,18 @@ class ExportIdmlTests(unittest.TestCase):
             [spec["layout"] for spec in specs],
         )
         self.assertEqual(
-            [
-                "Bouton d'alimentation principal",
-                "Bouton d'alimentation CA",
-                "Bouton d'alimentation CC/USB",
-            ],
-            specs[1]["labels"],
+            {
+                "main_power": "Bouton POWER",
+                "dc_usb": "Bouton d’alimentation CC/USB",
+                "ac": "Bouton d’alimentation CA",
+            },
+            specs[1]["labels_by_role"],
         )
         self.assertEqual(
             "asset:controls/je1000f_us/network_pairing_panel",
             specs[1]["control_image"],
         )
+        self.assertIn(("body", "2.3 Connexion Bluetooth"), promoted)
 
     def test_page_break_layout_does_not_enable_two_columns(self) -> None:
         from tools.idml.ir_projection import project_pages

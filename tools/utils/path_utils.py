@@ -55,6 +55,7 @@ class PathSegments:
     MANUAL_STYLE_CONTRACT = "manual_style.yaml"
     MANUAL_IR_JSON = "manual.ir.json"
     LATEX_PAGE_PLAN_JSON = "latex_page_plan.json"
+    REFERENCE_LAYOUT_DIR = "reference_layout"
     REFERENCE_LAYOUT_REGISTRY_JSON = "reference_layout_registry.json"
     REFERENCE_LAYOUT_PLAN_JSON = "reference_layout_plan.json"
 

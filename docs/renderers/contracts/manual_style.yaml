@@ -186,20 +186,20 @@ styles:
   HB-TABLE-KEY-COMBINATIONS:
     role: Key combinations table
     semantic_source_kinds: [table_key_combinations]
-    token_refs: [comp_key_table_left_ratio, comp_key_table_middle_ratio, comp_key_table_row_height, comp_key_section_needspace, type_data_table_font_size]
+    token_refs: [comp_key_table_left_ratio, comp_key_table_middle_ratio, comp_key_table_row_height, comp_key_section_needspace, idml_key_panel_width, idml_key_header_height, idml_key_panel_height, idml_key_panel_left_indent, idml_key_panel_space_before, idml_key_inner_rule, idml_key_outer_rule, idml_key_outer_radius, idml_key_button_size, idml_key_clock_size, idml_key_header_font_leading, idml_key_caption_font_size, idml_key_caption_font_leading, idml_key_plus_font_size, idml_key_plus_font_leading, idml_key_duration_font_size, idml_key_duration_font_leading, idml_key_operation_font_size, idml_key_operation_font_leading, idml_key_function_font_size, idml_key_function_font_leading, type_data_table_header_font_size, lang_fr_idml_key_panel_height, lang_fr_idml_key_panel_left_indent, lang_fr_idml_key_panel_space_before, lang_es_idml_key_panel_height, lang_es_idml_key_panel_left_indent, lang_es_idml_key_panel_space_before]
     latex: {owner: components_data_tables.tex, entrypoints: [HBKeyCombinationTable]}
-    indesign: {renderer: data_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: partial
-    debt: [Production IDML has no explicit key-combinations table role.]
+    indesign: {renderer: key_combinations, paragraph_styles: [HB Data Header, HB Data Body], object_style: HB Rounded Table Outer, text_layer: native_movable_frames}
+    status: aligned
+    debt: []
 
   HB-TABLE-TROUBLESHOOTING:
     role: Troubleshooting table
     semantic_source_kinds: [table_troubleshooting]
-    token_refs: [comp_trouble_left_ratio, comp_trouble_step_indent, comp_trouble_steps_pad_tb, comp_trouble_section_needspace, type_trouble_code_font_size, type_data_table_font_size]
+    token_refs: [comp_trouble_left_ratio, comp_trouble_step_indent, comp_trouble_steps_pad_tb, comp_trouble_section_needspace, comp_data_table_header_height, comp_data_table_row_height, comp_table_outer_arc, type_trouble_code_font_size, type_trouble_code_font_leading, type_data_table_font_size, type_data_table_font_leading, type_data_table_header_font_size, type_data_table_header_font_leading]
     latex: {owner: components_data_tables.tex, entrypoints: [HBTroubleshootingTable]}
-    indesign: {renderer: trouble_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
+    indesign: {renderer: components.prose_table.TroubleshootingTableStyle, table_style: 正文表格, object_style: HB Rounded Table Outer, sizing: native_locale_baseline_plus_localized_wrap_growth, auto_sizing: off}
     status: partial
-    debt: [IDML table layout does not yet consume all troubleshooting tokens.]
+    debt: [IDML retains production-master row minima, optical cell offsets, 0.25pt inner rule, 0.57pt outer rule, 240pt English floor, and import allowance as renderer calibration; comp_trouble_step_indent and comp_trouble_section_needspace remain LaTeX-only.]
 
   HB-SPECIAL-FCC:
     role: FCC panel
@@ -224,18 +224,18 @@ styles:
     semantic_source_kinds: [overview]
     token_refs: [page_paperwidth, page_paperheight]
     latex: {owner: components_special_pages.tex, entrypoints: [HBOverviewPanel]}
-    indesign: {renderer: placed_art, object_style: HB Placed Art}
+    indesign: {renderer: page_overview, paragraph_style: HB Body, text_layer: native_movable_frames}
     status: partial
-    debt: [Overview is placed finished art and its component tokens still include LaTeX fallbacks.]
+    debt: [Overview labels are editable but its target-specific absolute geometry is not yet tokenized.]
 
   HB-SPECIAL-APP:
     role: App setup primitives
-    semantic_source_kinds: [app_step, app_asset, app_notice]
-    token_refs: [type_body_font_size, type_body_font_leading, comp_note_arc]
+    semantic_source_kinds: [app_step, app_asset, app_notice, overview_control_labels]
+    token_refs: [type_body_font_size, type_body_font_leading, comp_note_arc, idml_app_control_label_font_size, idml_app_control_label_font_leading, idml_app_control_label_min_height, idml_app_connect_step_font_size, idml_app_connect_step_font_leading, idml_app_connect_note_font_size, idml_app_connect_note_font_leading, idml_app_connect_note_width, idml_app_text_frame_safety, idml_app_notice_text_frame_safety]
     latex: {owner: components_special_pages.tex, entrypoints: [HBAppStep, HBAppAsset, HBAppNotice]}
-    indesign: {renderer: app, paragraph_style: 段落样式, object_style: HB Rounded Panel}
-    status: partial
-    debt: [Production IDML has no explicit app primitive renderer family.]
+    indesign: {renderer: referencefigure, related_renderers: [notice], paragraph_styles: [HB Body, HB Callout Label, HB Callout Body], object_style: HB Rounded Panel, text_layer: native_movable_frames}
+    status: aligned
+    debt: []
 
   HB-WARRANTY-LEAD:
     role: Warranty lead panel

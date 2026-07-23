@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+from copy import deepcopy
 import re
 import unittest
 from pathlib import Path
 
+from tools.csv_to_tex_params import fmt_value
 from tools.render_contract import (
     contract_sha256,
     effective_final_mile,
@@ -45,6 +47,41 @@ class RenderContractTests(unittest.TestCase):
 
     def test_contract_has_no_schema_or_token_errors(self) -> None:
         self.assertEqual([], validate_render_contract(self.contract, self.tokens))
+
+    def test_plural_indesign_paragraph_styles_are_validated(self) -> None:
+        plural_only = deepcopy(self.contract)
+        indesign = plural_only["styles"]["HB-TABLE-KEY-COMBINATIONS"]["indesign"]
+        indesign.pop("object_style")
+        self.assertFalse(any(
+            "HB-TABLE-KEY-COMBINATIONS: at least one InDesign style binding"
+            in issue
+            for issue in validate_render_contract(plural_only, self.tokens)
+        ))
+
+        indesign["paragraph_styles"] = ["HB Data Header", ""]
+        issues = validate_render_contract(plural_only, self.tokens)
+        self.assertTrue(any(
+            "HB-TABLE-KEY-COMBINATIONS: indesign paragraph_styles must be a "
+            "non-empty list of non-empty strings" in issue
+            for issue in issues
+        ))
+
+    def test_generated_latex_params_match_the_layout_token_source(self) -> None:
+        prefix = r"\expandafter\def\csname HB"
+        separator = r"\endcsname{"
+        actual: dict[str, str] = {}
+        for line in PATHS.params_tex.read_text(encoding="utf-8").splitlines():
+            if not line.startswith(prefix) or separator not in line or not line.endswith("}"):
+                continue
+            key, value = line[len(prefix):].split(separator, 1)
+            self.assertNotIn(key, actual)
+            actual[key] = value[:-1]
+
+        expected = {
+            key: fmt_value(token.value, token.unit)
+            for key, token in self.tokens.items()
+        }
+        self.assertEqual(expected, actual)
 
     def test_every_style_forbids_indesign_content_edits(self) -> None:
         for style_id, style in self.contract["styles"].items():

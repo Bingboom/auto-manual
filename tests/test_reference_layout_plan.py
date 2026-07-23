@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from dataclasses import replace
 import json
 from pathlib import Path
 import tempfile
@@ -48,6 +49,7 @@ def _manual_ir() -> ManualIR:
         style_contract_sha256="4" * 64,
         content_sha256="1" * 64,
         pages=pages,
+        metadata={"layout_params_hash_algorithm": "ordered-layout-tokens/v1"},
     )
 
 
@@ -159,6 +161,88 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
             [page["planned_page_count"] for page in plan["pages"]],
         )
         self.assertRegex(plan["approved_plan_sha256"], r"^[0-9a-f]{64}$")
+
+    def test_committed_je1000f_contract_keeps_58_page_component_binding(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        path = (
+            root / "docs" / "renderers" / "contracts" / "reference_layout"
+            / "je1000f_us_v2_20260605.json"
+        )
+        contract = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(
+            "e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3",
+            contract["source_identity"]["manual_content_sha256"],
+        )
+        pages = contract["pages"]
+        self.assertEqual(52, len(pages))
+        self.assertEqual(52, len({page["source_ref"] for page in pages}))
+        self.assertEqual(1, min(page["start_page"] for page in pages))
+        self.assertEqual(
+            58,
+            max(page["start_page"] + page["page_count"] - 1 for page in pages),
+        )
+        covered = {
+            physical
+            for page in pages
+            for physical in range(
+                page["start_page"],
+                page["start_page"] + page["page_count"],
+            )
+        }
+        self.assertEqual(set(range(1, 59)), covered)
+        control_labels = contract["idml_contract"]["editable_components"][
+            "app_add_device"
+        ]["control_labels"]
+        expected = {
+            "en": {
+                "base_labels_by_role": {
+                    "main_power": "POWER Button",
+                    "dc_usb": "DC / USB Power Button",
+                    "ac": "AC Power Button",
+                },
+                "render_labels_by_role": {
+                    "main_power": "Main Power Button",
+                    "dc_usb": "DC/USB Power Button",
+                    "ac": "AC Power Button",
+                },
+            },
+            "fr": {
+                "base_labels_by_role": {
+                    "main_power": "Bouton d'alimentation",
+                    "dc_usb": "Bouton d’alimentation CC / USB",
+                    "ac": "Bouton Power CA",
+                },
+                "render_labels_by_role": {
+                    "main_power": "Bouton POWER",
+                    "dc_usb": "Bouton d’alimentation CC/USB",
+                    "ac": "Bouton d’alimentation CA",
+                },
+            },
+            "es": {
+                "base_labels_by_role": {
+                    "main_power": "Botón de encendido",
+                    "dc_usb": "Botón de energía CC / USB",
+                    "ac": "Botón Power CA",
+                },
+                "render_labels_by_role": {
+                    "main_power": "Botón de encendido principal",
+                    "dc_usb": "Botón de energía CC/USB",
+                    "ac": "Botón de energía CA",
+                },
+            },
+        }
+        self.assertEqual(expected, control_labels)
+
+    def test_legacy_layout_hash_algorithm_is_rejected(self) -> None:
+        legacy_ir = replace(self.ir, metadata={})
+
+        issues = validate_approved_reference_plan(self.payload, legacy_ir)
+
+        self.assertIn(
+            "manual IR metadata.layout_params_hash_algorithm must be "
+            "'ordered-layout-tokens/v1'",
+            issues,
+        )
 
     def test_rejects_target_and_ir_identity_mismatches(self) -> None:
         cases = (
@@ -320,6 +404,122 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
 
             self.assertIsNone(load_approved_reference_plan(root=root, ir=self.ir))
 
+    def test_empty_registry_rejects_corrupt_plan_candidate(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_empty_registry(root)
+            corrupt = (
+                Paths(root=root).renderer_contracts_dir
+                / PathSegments.REFERENCE_LAYOUT_DIR
+                / "corrupt.json"
+            )
+            corrupt.parent.mkdir(parents=True, exist_ok=True)
+            corrupt.write_text("{not-json", encoding="utf-8")
+            with self.assertRaisesRegex(
+                ReferenceLayoutPlanError,
+                "cannot read approved reference layout candidate",
+            ):
+                load_approved_reference_plan(root=root, ir=self.ir)
+
+    def test_missing_registry_and_no_approved_contract_returns_none(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertIsNone(
+                load_approved_reference_plan(root=Path(tmp), ir=self.ir)
+            )
+
+    def test_missing_registry_with_matching_approved_plan_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            plan_path = self._write_plan(root, self.payload)
+
+            with self.assertRaisesRegex(
+                ReferenceLayoutPlanError,
+                "approved reference layout plan exists.*but is not registered",
+            ) as caught:
+                load_approved_reference_plan(root=root, ir=self.ir)
+
+            self.assertIn(plan_path.as_posix(), str(caught.exception))
+
+    def test_empty_registry_with_matching_approved_plan_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_empty_registry(root)
+            self._write_plan(root, self.payload)
+
+            with self.assertRaisesRegex(
+                ReferenceLayoutPlanError,
+                "approved reference layout plan exists.*but is not registered",
+            ):
+                load_approved_reference_plan(root=root, ir=self.ir)
+
+    def test_registry_same_family_language_drift_fails_closed(self) -> None:
+        pages = list(self.ir.pages)
+        pages[1] = replace(pages[1], language="fr")
+        multilingual_ir = replace(
+            self.ir,
+            pages=tuple(pages),
+            metadata={**self.ir.metadata, "declared_languages": ["fr", "en"]},
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            target = self._target()
+            target["languages"] = ["fr", "en"]
+            self._write_registry(root, target=target, plan_path="missing.json")
+            with self.assertRaisesRegex(ReferenceLayoutPlanError, "target mismatch"):
+                load_approved_reference_plan(root=root, ir=multilingual_ir)
+
+    def test_unregistered_same_family_language_drift_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_empty_registry(root)
+            payload = deepcopy(self.payload)
+            payload["target"]["languages"] = ["fr"]  # type: ignore[index]
+            self._write_plan(root, payload)
+            with self.assertRaisesRegex(ReferenceLayoutPlanError, "not registered"):
+                load_approved_reference_plan(
+                    root=root,
+                    ir=replace(
+                        self.ir,
+                        metadata={**self.ir.metadata, "declared_languages": ["fr"]},
+                    ),
+                )
+
+    def test_same_family_registry_does_not_activate_ordinary_fixture(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_registry(
+                root,
+                target={"model": self.ir.model, "region": self.ir.region,
+                        "languages": ["en", "fr", "es"]},
+                plan_path="missing.json",
+            )
+
+            self.assertIsNone(load_approved_reference_plan(root=root, ir=self.ir))
+
+    def test_empty_registry_ignores_draft_and_other_target_plans(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self._write_empty_registry(root)
+            draft = deepcopy(self.payload)
+            draft["approval"]["status"] = "draft"  # type: ignore[index]
+            self._write_plan(root, draft, name="draft.json")
+            other = deepcopy(self.payload)
+            other["target"]["model"] = "OTHER"  # type: ignore[index]
+            self._write_plan(root, other, name="other.json")
+
+            self.assertIsNone(load_approved_reference_plan(root=root, ir=self.ir))
+
+    def test_registry_exact_target_loads_approved_plan(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            plan_path = self._write_plan(root, self.payload)
+            self._write_registry(
+                root, target=self._target(), plan_path=plan_path.as_posix(),
+            )
+            plan = load_approved_reference_plan(root=root, ir=self.ir)
+            self.assertIsNotNone(plan)
+            self.assertEqual("approved-reference", plan["plan_source"])
+
     def test_registry_matching_target_with_missing_plan_fails_closed(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -368,6 +568,34 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
             }),
             encoding="utf-8",
         )
+
+    @staticmethod
+    def _write_empty_registry(root: Path) -> None:
+        registry_path = (
+            Paths(root=root).renderer_contracts_dir
+            / PathSegments.REFERENCE_LAYOUT_REGISTRY_JSON
+        )
+        registry_path.parent.mkdir(parents=True, exist_ok=True)
+        registry_path.write_text(
+            json.dumps({
+                "schema_version": "approved-reference-layout-registry/v1",
+                "plans": [],
+            }),
+            encoding="utf-8",
+        )
+
+    @staticmethod
+    def _write_plan(
+        root: Path,
+        payload: dict[str, object],
+        *,
+        name: str = "model-1-us.json",
+    ) -> Path:
+        relative = Path("docs/renderers/contracts/reference_layout") / name
+        path = root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload), encoding="utf-8")
+        return relative
 
 
 if __name__ == "__main__":

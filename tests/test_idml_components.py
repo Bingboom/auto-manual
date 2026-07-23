@@ -410,11 +410,155 @@ class ComponentRegistryTests(unittest.TestCase):
         xml, height = render(spec, ctx, tid="reference_notice", terminal=True)
 
         self.assertIn('ItemTransform="1 0 0 1 10.943 0"', xml)
-        self.assertIn('Anchor="294.416 -24.869"', xml)
-        self.assertAlmostEqual(31.669, height, places=3)
+        # The governed height is a minimum. Final type/width overrides are
+        # remeasured so localized copy can grow instead of oversetting.
+        self.assertIn('Anchor="294.416 -25.46"', xml)
+        self.assertAlmostEqual(32.26, height, places=2)
         self.assertEqual(2, len(stories))
         self.assertIn('SpaceAfter="2"', "".join(stories[1][2]))
         self.assertEqual(1, "".join(stories[1][2]).count("<Content>•</Content>"))
+        self.assertEqual(2, xml.count('LockPosition="false" PinPosition="false"'))
+
+    def test_notice_remeasures_french_app_overrides_after_final_style(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        stories: list[tuple[str, str, list[str]]] = []
+
+        def add_story(story_id: str, title: str, parts: list[str]) -> str:
+            stories.append((story_id, title, parts))
+            return story_id
+
+        base = _ctx()
+        ctx = RenderContext(
+            params=base.params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            language="fr",
+            add_story=add_story,
+        )
+        spec = {
+            "kind": "notice",
+            "label": "REMARQUE",
+            "app_text_frame_safety": True,
+            "body_width": 300.516,
+            "panel_height": 44.737,
+            "inline_x_offset": 10.943,
+            "plate_left": 1.418,
+            "label_width": 48.939,
+            "body_size": 5.8,
+            "body_leading": 5.997,
+            "pad_tb": 3.1,
+            "label_size": 10.0,
+            "label_leading": 10.8,
+            "body_inset": 3.917,
+            "paragraph_space_after": 2.0,
+            "unbulleted_first": True,
+            "list": True,
+            "texts": [
+                (
+                    "Si le message «l'appareil a été associé» s'affiche pendant "
+                    "l'appairage, vous pouvez suivre l'une de ces deux étapes "
+                    "pour procéder à la connexion."
+                ),
+                (
+                    "Le propriétaire de l'appareil peut partager ce dernier "
+                    "avec d'autres utilisateurs dans l'application."
+                ),
+                (
+                    "Maintenez le bouton d'alimentation et le bouton "
+                    "d’alimentation CC / USB enfoncés pendant 3 secondes pour "
+                    "réinitialiser le Wi-Fi et le Bluetooth de l'appareil et "
+                    "l'associer de nouveau."
+                ),
+            ],
+        }
+
+        xml, height = render(spec, ctx, tid="notice_fr_app", terminal=True)
+
+        self.assertIn('Anchor="294.416 -54.779"', xml)
+        self.assertAlmostEqual(61.58, height, places=2)
+        story_map = {
+            story_id: "".join(parts)
+            for story_id, _title, parts in stories
+        }
+        label_story = story_map["st_anchor_notice_label_notice_fr_app"]
+        self.assertNotIn('PointSize="10"', label_story)
+        self.assertIn("REMARQUE", label_story)
+        self.assertEqual(2, xml.count('LockPosition="false" PinPosition="false"'))
+
+    def test_approved_app_notice_requires_text_frame_safety_token(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        base = _ctx()
+        ctx = RenderContext(
+            params={},
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            strict_component_assets=True,
+            add_story=lambda story_id, _title, _parts: story_id,
+        )
+        with self.assertRaisesRegex(
+            ValueError,
+            "idml_app_notice_text_frame_safety",
+        ):
+            render(
+                {
+                    "kind": "notice",
+                    "label": "NOTE",
+                    "texts": ["Copy."],
+                    "app_text_frame_safety": True,
+                },
+                ctx,
+                tid="strict_app_notice",
+                terminal=True,
+            )
+
+    def test_notice_remeasures_long_french_caution_above_requested_height(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        base = _ctx()
+        ctx = RenderContext(
+            params=base.params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            add_story=lambda story_id, _title, _parts: story_id,
+        )
+        spec = {
+            "kind": "notice",
+            "label": "ATTENTION",
+            "body_width": 300.516,
+            "panel_height": 24.869,
+            "plate_left": 1.418,
+            "label_width": 48.939,
+            "body_size": 5.8,
+            "body_leading": 5.997,
+            "pad_tb": 2.2,
+            "label_size": 9.0,
+            "label_leading": 9.8,
+            "body_inset": 5.42,
+            "texts": [
+                (
+                    "L'application Jackery ne peut se connecter qu'à une seule "
+                    "station d'énergie à la fois via Bluetooth. Revenir à la "
+                    "liste des appareils déconnecte automatiquement le Bluetooth. "
+                    "Touchez à nouveau la station d'énergie dans la liste pour "
+                    "vous reconnecter automatiquement."
+                ),
+            ],
+        }
+
+        xml, _height = render(spec, ctx, tid="notice_fr_caution", terminal=True)
+
+        self.assertIn('Anchor="294.416 -29.388"', xml)
 
     def test_lcd_mode_states_are_true_vertical_rowspans(self) -> None:
         from tools.idml.components import render
