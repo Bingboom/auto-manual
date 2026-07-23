@@ -52,16 +52,19 @@ def render_safetyinstruction(
     icon = ""
     if icon_asset.exists():
         icon_w = param_pt(ctx.params, "idml_safety_instruction_icon_width", 20.0)
-        iw, ih = ctx.art_frame_size(icon_asset, max_w=icon_w)
-        icon = figure_paragraph(image_cell_content(f"{tid}wi", icon_asset, iw, ih))
+        icon_h = param_pt(ctx.params, "idml_safety_instruction_icon_height", 17.4)
+        icon = figure_paragraph(
+            image_cell_content(f"{tid}wi", icon_asset, icon_w, icon_h),
+        )
     lockup_w = param_pt(ctx.params, "idml_safety_instruction_lockup_width", 31.0)
+    icon_left = param_pt(ctx.params, "idml_safety_instruction_icon_left_inset", 7.5)
     text_inset = param_pt(ctx.params, "idml_safety_instruction_text_inset", 4.0)
     body = "\n".join(str(text) for text in spec.get("texts", []) if text)
     cols = [lockup_w, max(24.0, body_w - lockup_w)]
     cells = [
         cell(
             f"{tid}c0", "0:0", icon, stroke=False,
-            top=2.0, bottom=2.0, left=4.0, right=3.0,
+            top=2.0, bottom=2.0, left=icon_left, right=3.0,
             valign="CenterAlign",
         ),
         cell(

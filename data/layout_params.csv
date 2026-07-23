@@ -68,6 +68,8 @@ idml_safety_instruction_font_size,8.0,pt,InDesign safety-instruction text size
 idml_safety_instruction_font_leading,9.6,pt,InDesign safety-instruction text leading
 idml_safety_instruction_font_style,Bold,none,InDesign safety-instruction text weight
 idml_safety_instruction_icon_width,20.0,pt,InDesign safety-instruction dark triangle width
+idml_safety_instruction_icon_height,17.4,pt,InDesign safety-instruction dark triangle height
+idml_safety_instruction_icon_left_inset,7.5,pt,InDesign safety-instruction icon left inset
 idml_safety_instruction_lockup_width,31.0,pt,InDesign safety-instruction icon column width
 idml_safety_instruction_text_inset,4.0,pt,InDesign safety-instruction text cell inset
 ,,,
