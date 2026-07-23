@@ -188,7 +188,11 @@ plus 19-row continuation); its 5.6 mm maximum icon box and segment-specific
 vertical padding follow the `Jackery Explorer 1000 User Manual V2.0` layout.
 On the composed Meaning of Symbols page, the symbol/meaning tables use a
 light-grey first column, and native finalization tightens each rounded shell to
-its own InDesign row height so no empty band remains below the final row.
+its own InDesign row height so no empty band remains below the final row. The
+signal badges are fixed-size native nested tables: their white warning symbol
+stays a governed linked asset while the localized label remains editable text.
+The icon frame, icon column, and two-table gap are IDML layout tokens rather
+than page-specific constants.
 NOTE/TIP/CAUTION/WARNING labels are source-owned display text: the LaTeX and
 IDML renderers preserve the RST/IR value verbatim and fail when it is missing;
 they never singularize, pluralize, translate, or invent a fallback label.

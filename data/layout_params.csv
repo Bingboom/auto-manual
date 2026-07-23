@@ -454,6 +454,12 @@ idml_symbols_second_tail_gap,6.8,pt,IDML English gap before maintenance band
 idml_symbols_maintenance_body_height,21.5,pt,IDML English maintenance body frame height
 idml_symbols_maintenance_body_gap,0.0,pt,IDML English maintenance body gap before Symbols title
 idml_symbols_signal_gap_after,4.1,pt,IDML English gap between signal and icon tables
+idml_symbols_signal_icon_width,7.5,pt,IDML editable signal-badge warning icon width
+idml_symbols_signal_icon_height,7.0,pt,IDML editable signal-badge warning icon height
+idml_symbols_icon_width,21.0,pt,IDML symbol icon frame width
+idml_symbols_icon_height,21.0,pt,IDML symbol icon frame height
+idml_symbols_icon_col_width,39.685,pt,IDML symbol-grid icon column width
+idml_symbols_column_gap,5.0,pt,IDML gap between the two symbol tables
 lang_en_idml_symbols_page_top,27.7,pt,Approved English Symbols page top
 lang_en_idml_symbols_first_tail_height,34.5,pt,Approved English first safety-tail height
 lang_en_idml_symbols_first_tail_gap,4.4,pt,Approved English first safety-tail gap

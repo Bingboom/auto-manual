@@ -140,7 +140,7 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
                        span_columns: bool = True,
                        measure_w: float | None = None) -> tuple[str, float]:
     body_w = measure_w or ctx.text_measure
-    warning_icon_asset = _warning_icon_asset(ctx)
+    warning_icon_asset = _safety_instruction_icon_asset(ctx)
     label = spec.get("label", "")
     texts = spec.get("texts", [])
     icon = ""

@@ -87,37 +87,77 @@ class SafetySymbolsPageStyle:
         )
 
 
-def _localized_signal_label_bar(label: str) -> str:
+def _localized_signal_label_bar(writer, tid: str, label: str) -> str:
     style_ref = paragraph_style_ref("HB Notice Side Label")
-    return (
-        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}" '
-        'ParagraphShadingOn="true" '
-        'ParagraphShadingColor="Color/HB Brand Dark" '
-        'ParagraphShadingTint="100" '
-        'ParagraphShadingWidth="ColumnWidth" '
-        'ParagraphShadingTopOrigin="AscentTopOrigin" '
-        'ParagraphShadingBottomOrigin="DescentBottomOrigin" '
-        'ParagraphShadingTopOffset="2" ParagraphShadingBottomOffset="2" '
-        'ParagraphShadingLeftOffset="3" ParagraphShadingRightOffset="3">\n'
-        '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'FillColor="Color/Paper"><Content>{escape(label)}</Content></CharacterStyleRange>\n'
-        '  </ParagraphStyleRange>\n'
+    badge_w = component_param_pt(
+        writer.params,
+        "comp_symbol_signal_width",
+        60.94,
+        strict=writer.strict_component_assets,
+        owner="symbol signal badge",
     )
+    badge_h = component_param_pt(
+        writer.params,
+        "comp_symbol_signal_height",
+        15.3,
+        strict=writer.strict_component_assets,
+        owner="symbol signal badge",
+    )
+    asset = (
+        ROOT / "docs" / "templates" / "word_template" / "common_assets"
+        / "symbols" / "warning_triangle_white.svg"
+    )
+    icon = ""
+    if asset.exists():
+        icon_w = component_param_pt(
+            writer.params,
+            "idml_symbols_signal_icon_width",
+            7.5,
+            strict=writer.strict_component_assets,
+            owner="symbol signal badge",
+        )
+        icon_h = component_param_pt(
+            writer.params,
+            "idml_symbols_signal_icon_height",
+            7.0,
+            strict=writer.strict_component_assets,
+            owner="symbol signal badge",
+        )
+        icon = writer._image_cell_content(f"{tid}icon", asset, icon_w, icon_h)
+    elif writer.strict_component_assets:
+        raise FileNotFoundError(f"symbol signal badge asset missing: {asset}")
+    content = (
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
+        '    <CharacterStyleRange '
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'FillColor="Color/Paper">{icon}<Content> {escape(label)}</Content>'
+        '</CharacterStyleRange>\n  </ParagraphStyleRange>\n'
+    )
+    badge_cell = writer._cell(
+        f"{tid}c0",
+        "0:0",
+        content,
+        fill="Color/HB Brand Dark",
+        stroke=False,
+        top=0,
+        bottom=0,
+        left=3,
+        right=2,
+        valign="CenterAlign",
+    )
+    badge = writer._component_table(
+        f"{tid}tbl",
+        [badge_w],
+        [badge_cell],
+        outer_stroke=False,
+        row_heights=[badge_h],
+    )
+    return writer._wrap_table_paragraph(badge, True, span_columns=False)
 
 
 def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> str:
-    asset_name = f"{label.lower()}_bar.png"
-    asset = (
-        ROOT / "docs" / "templates" / "word_template" / "common_assets"
-        / "symbols" / asset_name
-    )
-    if asset.exists():
-        style_ref = paragraph_style_ref("HB Figure")
-        return (f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
-                '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-                + writer._image_cell_content(tid, asset, 61.2, 16.2)
-                + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
-    return _localized_signal_label_bar(label)
+    del bundle_root
+    return _localized_signal_label_bar(writer, tid, label)
 
 
 def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
@@ -128,7 +168,14 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
     rows = [(copy["symbol"], copy["meaning"], True)] + [
         (label, text, False) for label, text in signals
     ]
-    cols = [width * 0.24, width * 0.76]
+    left_col = component_param_pt(
+        writer.params,
+        "comp_symbol_signal_col_width",
+        width * 0.24,
+        strict=writer.strict_component_assets,
+        owner="symbol signal table",
+    )
+    cols = [left_col, width - left_col]
     cells = []
     for ri, (left, right, header) in enumerate(rows):
         if header:
@@ -139,7 +186,10 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
             right_xml = writer._psr("HB Spec Value", right, terminal=True)
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
                                   fill="Color/HB Bg K05",
-                                  top=3, bottom=3, left=6, right=4))
+                                  top=3, bottom=3,
+                                  left=6 if header else 7.6,
+                                  right=4,
+                                  valign=None if header else "CenterAlign"))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                   top=3, bottom=3, left=7, right=5))
     table = writer._component_table(
@@ -175,7 +225,46 @@ def _symbols_icon_table(
     rows = (header if include_header else []) + [
         {**row, "header": False} for row in icons
     ]
-    cols = [width * 0.27, width * 0.73]
+    left_col = component_param_pt(
+        writer.params,
+        "idml_symbols_icon_col_width",
+        component_param_pt(
+            writer.params,
+            "comp_symbol_icon_col_width",
+            width * 0.27,
+            strict=False,
+            owner="symbol icon table fallback",
+        ),
+        strict=writer.strict_component_assets,
+        owner="symbol icon table",
+    )
+    cols = [left_col, width - left_col]
+    icon_w = component_param_pt(
+        writer.params,
+        "idml_symbols_icon_width",
+        component_param_pt(
+            writer.params,
+            "comp_symbol_icon_width",
+            18.0,
+            strict=False,
+            owner="symbol icon table fallback",
+        ),
+        strict=writer.strict_component_assets,
+        owner="symbol icon table",
+    )
+    icon_h = component_param_pt(
+        writer.params,
+        "idml_symbols_icon_height",
+        component_param_pt(
+            writer.params,
+            "comp_symbol_icon_height",
+            18.0,
+            strict=False,
+            owner="symbol icon table fallback",
+        ),
+        strict=writer.strict_component_assets,
+        owner="symbol icon table",
+    )
     cells = []
     for ri, row in enumerate(rows):
         if row.get("header"):
@@ -185,7 +274,9 @@ def _symbols_icon_table(
             fig = (ROOT / row["figure"]) if row.get("figure") else None
             icon = ""
             if fig and fig.exists():
-                icon = writer._image_cell_content(f"{tid}img{ri}", fig, 18.0, 18.0)
+                icon = writer._image_cell_content(
+                    f"{tid}img{ri}", fig, icon_w, icon_h,
+                )
             figure_style_ref = paragraph_style_ref("HB Figure")
             left_xml = (
                 f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style_ref}">'
@@ -201,7 +292,8 @@ def _symbols_icon_table(
                 )
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
                                   fill="Color/HB Bg K05",
-                                  top=2, bottom=2, left=4, right=4))
+                                  top=2, bottom=2, left=4,
+                                  right=2 if row.get("header") else 4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                   top=2, bottom=2, left=5, right=4))
     table = writer._component_table(
@@ -287,7 +379,19 @@ def add_safety_symbols_page(
 
     body_x = writer.m_l
     body_w = writer.page_w - writer.m_l - writer.m_r
-    icon_gap = 6.0
+    icon_gap = component_param_pt(
+        writer.params,
+        "idml_symbols_column_gap",
+        component_param_pt(
+            writer.params,
+            "comp_symbol_column_gap",
+            6.0,
+            strict=False,
+            owner="symbol icon tables fallback",
+        ),
+        strict=writer.strict_component_assets,
+        owner="symbol icon tables",
+    )
     icon_table_w = (body_w - icon_gap) / 2.0
     left_icons, right_icons, overflow_left, overflow_right = template_symbol_split(
         icons,

@@ -124,6 +124,11 @@ tools/reference_layout_rebind.py
   mixed governed/native heights fail before export. The generic component-table
   primitive emits those rows as editable fixed-height rows, while locale placement
   continues to resolve through base plus `lang_*` layout tokens.
+- **Maintenance/symbols ownership**: `tools/idml/symbols_page.py` owns the
+  combined three-language composition. Safety tails bind the approved dark
+  triangle; signal badges are fixed-size nested native tables with a governed
+  white icon and editable text; icon frame, icon column, and table-gap geometry
+  resolve from symbol layout tokens. Source copy remains outside this renderer.
 - **Key Combinations style ownership**: `KeyCombinationStyle.from_context()`
   resolves the base grid, asset, and type measurements from shared layout
   tokens. Governed French/Spanish height, indent, and leading-gap differences

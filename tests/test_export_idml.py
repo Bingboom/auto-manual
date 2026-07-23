@@ -1845,6 +1845,10 @@ class ExportIdmlTests(unittest.TestCase):
             stories["st_safety_symbols_tail_warning"],
         )
         self.assertIn(">DANGER<", stories["st_safety_symbols_tail_danger"])
+        self.assertIn(
+            "warning_triangle_dark.svg",
+            stories["st_safety_symbols_tail_warning"],
+        )
         self.assertIn("st_safety_symbols_signals", stories)
         self.assertIn("st_safety_symbols_icons_left", stories)
         self.assertIn("st_safety_symbols_icons_right", stories)
@@ -1856,6 +1860,12 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("USER MAINTENANCE", stories["st_safety_symbols_maintenance_title"])
         self.assertIn("Icon 0", stories["st_safety_symbols_icons_left"])
         self.assertIn("Icon 7", stories["st_safety_symbols_icons_right"])
+        self.assertEqual(
+            stories["st_safety_symbols_signals"].count(
+                "warning_triangle_white.svg",
+            ),
+            len(signals),
+        )
         self.assertIn(
             'TopEdgeStrokeWeight="0"',
             stories["st_safety_symbols_signals"],
@@ -1883,6 +1893,38 @@ class ExportIdmlTests(unittest.TestCase):
             stories["st_safety_symbols_icons_right"],
         )
 
+    def test_safety_symbols_icon_frames_use_component_size_tokens(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params["idml_symbols_icon_width"] = ("10", "pt")
+        params["idml_symbols_icon_height"] = ("11", "pt")
+        params["idml_symbols_icon_col_width"] = ("33", "pt")
+        params["comp_symbol_signal_col_width"] = ("44", "pt")
+        params["idml_symbols_column_gap"] = ("5", "pt")
+        w = IdmlWriter(params)
+        icon = {
+            "figure": (
+                "docs/templates/word_template/common_assets/symbols/"
+                "warning_triangle.png"
+            ),
+            "text": "Warning icon",
+        }
+        w.add_safety_symbols_page(
+            "st_safety_symbols_token_icon",
+            [],
+            [("h1", "USER MAINTENANCE"), ("body", "Body.")],
+            [("WARNING", "Hazardous practice.")],
+            [icon],
+            ROOT,
+            4,
+            "en",
+        )
+
+        story = dict(w.stories)["st_safety_symbols_token_icon_icons_left"]
+        self.assertIn('Anchor="10 -11"', story)
+        self.assertIn('SingleColumnWidth="33"', story)
+        signal_story = dict(w.stories)["st_safety_symbols_token_icon_signals"]
+        self.assertIn('SingleColumnWidth="44"', signal_story)
+
     def test_safety_symbols_page_uses_localized_symbol_copy(self) -> None:
         import json
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -1908,7 +1950,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Signification", stories["st_safety_symbols_fr_icons_left"])
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_signals"])
         self.assertIn(
-            'ParagraphShadingColor="Color/HB Brand Dark"',
+            'FillColor="Color/HB Brand Dark"',
             stories["st_safety_symbols_fr_signals"],
         )
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_tail_avertissement"])

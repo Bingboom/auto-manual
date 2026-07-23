@@ -79,6 +79,13 @@ creates semantic Markdown plus an editable continuous-story IDML, style map,
 source trace, and asset manifest for a designer-owned template workflow. Both
 are generated outputs, never new content sources.
 
+The production Meaning of Symbols page also remains editable. Its WARNING,
+CAUTION, NOTE, and TIP badges use a linked white warning icon plus ordinary
+InDesign label text, rather than a flattened language-specific badge image.
+The safety-tail panels use the approved dark triangle, and the symbol-grid
+icon size and columns come from shared layout tokens, so English, French, and
+Spanish follow the same component definition.
+
 In production IDML operation panels, Prerequisite, standby, On, and Off are
 separate unlocked text frames placed above the linked illustration. Designers
 may select, edit, and move each frame for alignment without editing the image;
