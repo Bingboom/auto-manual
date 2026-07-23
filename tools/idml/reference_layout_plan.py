@@ -14,6 +14,7 @@ from tools.utils.path_utils import PathSegments, Paths
 
 from .control_labels import validate_app_control_label_contract
 from .latex_page_plan import SCHEMA_VERSION as LEGACY_PLAN_SCHEMA_VERSION
+from .lcd_reference_profile import validate_lcd_reference_profile
 
 
 SCHEMA_VERSION = "approved-reference-layout-plan/v1"
@@ -326,6 +327,15 @@ def validate_approved_reference_plan(
             ir,
             expected_target["languages"],
         ))
+        lcd_profile = (
+            (idml_contract.get("editable_components") or {})
+            .get("lcd_icon_table")
+        )
+        if lcd_profile is not None:
+            issues.extend(
+                "idml_contract.editable_components.lcd_icon_table." + issue
+                for issue in validate_lcd_reference_profile(lcd_profile)
+            )
 
     plan_pages = payload.get("pages")
     if not isinstance(plan_pages, list):

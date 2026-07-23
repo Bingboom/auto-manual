@@ -159,11 +159,11 @@ styles:
   HB-TABLE-LCD-ICON:
     role: LCD icon table
     semantic_source_kinds: [table_lcd_icon]
-    token_refs: [comp_lcd_table_row_stretch, comp_lcd_no_col_width, comp_lcd_icon_width, comp_lcd_icon_height, comp_lcd_icon_col_width, comp_lcd_table_tabcolsep, type_lcd_label_font_size, type_lcd_body_font_size]
+    token_refs: [comp_lcd_table_row_stretch, comp_lcd_no_col_width, comp_lcd_icon_width, comp_lcd_icon_height, comp_lcd_icon_col_width, comp_lcd_table_tabcolsep, idml_lcd_table_width_adjust, idml_lcd_first_no_col_width, idml_lcd_first_icon_col_width, idml_lcd_first_label_col_width, idml_lcd_continuation_no_col_width, idml_lcd_continuation_icon_col_width, idml_lcd_continuation_label_col_width, idml_lcd_first_vertical_padding, idml_lcd_translated_first_vertical_padding, idml_lcd_continuation_vertical_padding, lang_fr_idml_lcd_continuation_vertical_padding, lang_es_idml_lcd_continuation_vertical_padding, idml_lcd_first_left_indent, idml_lcd_continuation_left_indent, idml_lcd_continuation_page_top, idml_lcd_first_panel_height, lang_fr_idml_lcd_first_panel_height, lang_es_idml_lcd_first_panel_height, idml_lcd_continuation_panel_height, idml_lcd_frame_bottom_extra, idml_lcd_hero_max_height, idml_lcd_hero_horizontal_scale, idml_lcd_hero_space_before, lang_fr_idml_lcd_hero_max_height, lang_fr_idml_lcd_hero_horizontal_scale, lang_fr_idml_lcd_hero_space_before, lang_es_idml_lcd_hero_max_height, lang_es_idml_lcd_hero_horizontal_scale, lang_es_idml_lcd_hero_space_before, type_lcd_label_font_size, type_lcd_body_font_size]
     latex: {owner: components_lcd.tex, entrypoints: [HBLcdIconTable]}
     indesign: {renderer: lcd_icon_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
     status: partial
-    debt: [Physical span follows the LaTeX page plan; row breaks inside that span remain InDesign-native.]
+    debt: [Physical span follows the LaTeX page plan; row heights inside that span remain InDesign-native.]
 
   HB-TABLE-LCD-MODE:
     role: LCD mode table

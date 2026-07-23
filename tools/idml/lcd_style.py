@@ -4,18 +4,34 @@ from __future__ import annotations
 from .params import param_pt
 
 
-def layout_tokens(writer, body_w: float) -> tuple[tuple[float, ...], float, float]:
-    """Resolve LCD column, icon, and cell-padding tokens."""
-    no_w = param_pt(writer.params, "comp_lcd_no_col_width", body_w * 0.08)
-    icon_w = param_pt(writer.params, "comp_lcd_icon_col_width", body_w * 0.12)
-    raw_label_ratio = writer.params.get(
-        "comp_lcd_label_col_width", ("0.24", "ratio")
-    )[0].replace("\\linewidth", "")
-    try:
-        label_ratio = float(raw_label_ratio)
-    except ValueError:
-        label_ratio = 0.24
-    label_w = body_w * label_ratio
+def layout_tokens(
+    writer,
+    body_w: float,
+    *,
+    segment_index: int = 0,
+) -> tuple[tuple[float, ...], float, float]:
+    """Resolve segment-aware LCD column, icon, and cell-padding tokens."""
+    prefix = "idml_lcd_first" if segment_index == 0 else "idml_lcd_continuation"
+    no_w = param_pt(
+        writer.params,
+        f"{prefix}_no_col_width",
+        param_pt(writer.params, "comp_lcd_no_col_width", body_w * 0.08),
+    )
+    icon_w = param_pt(
+        writer.params,
+        f"{prefix}_icon_col_width",
+        param_pt(writer.params, "comp_lcd_icon_col_width", body_w * 0.12),
+    )
+    label_w = param_pt(writer.params, f"{prefix}_label_col_width", 0.0)
+    if label_w <= 0:
+        raw_label_ratio = writer.params.get(
+            "comp_lcd_label_col_width", ("0.24", "ratio")
+        )[0].replace("\\linewidth", "")
+        try:
+            label_ratio = float(raw_label_ratio)
+        except ValueError:
+            label_ratio = 0.24
+        label_w = body_w * label_ratio
     columns = (no_w, icon_w, label_w, body_w - no_w - icon_w - label_w)
     icon_pt = min(
         param_pt(writer.params, "comp_lcd_icon_width", 24.0),

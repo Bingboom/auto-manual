@@ -252,7 +252,8 @@ def main() -> int:
             chain(sid, w.estimate_spec_height(secs) + 10.0 * len(notes))
         elif kind == "lcd":
             data = _ir_projection.lcd_page_data(
-                manual_ir, lang, root=ROOT, data_root=data_root)
+                manual_ir, lang, root=ROOT, data_root=data_root,
+                reference_plan=page_plan)
             if data is None:
                 return
             rows = list(data.rows)

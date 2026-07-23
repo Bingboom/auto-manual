@@ -28,8 +28,8 @@
     "manual_ir_schema_version": "manual-ir/v1",
     "manual_content_sha256": "e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3",
     "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
-    "style_contract_sha256": "f54425ea321ca67ee7910a31aba15f5b4b7f4e766c6def2c9bd1f6fde0c20148",
-    "layout_params_sha256": "14bcde8f2616d43ebd41605d0aadf4c1f6e5a3bf1cc12fee217308257b35f891"
+    "style_contract_sha256": "55a7e6d59d63c5cd2519479b55f28a1bcca6a2fb17261768a07b38c86fafee09",
+    "layout_params_sha256": "74a2bb03ae64e21eb02744a72cccf0cd52b2086ce67554a42b7b5557b99e98e7"
   },
   "approval": {
     "status": "approved",
@@ -55,6 +55,116 @@
       "back_cover-en.pdf"
     ],
     "editable_components": {
+      "lcd_icon_table": {
+        "row_presentation": [
+          {
+            "source_no": "1",
+            "display_no": "1"
+          },
+          {
+            "source_no": "2",
+            "display_no": "2"
+          },
+          {
+            "source_no": "3",
+            "display_no": "3"
+          },
+          {
+            "source_no": "4",
+            "display_no": "4"
+          },
+          {
+            "source_no": "5",
+            "display_no": "5"
+          },
+          {
+            "source_no": "6",
+            "display_no": "6"
+          },
+          {
+            "source_no": "7",
+            "display_no": "7"
+          },
+          {
+            "source_no": "8",
+            "display_no": "8"
+          },
+          {
+            "source_no": "9",
+            "display_no": "9"
+          },
+          {
+            "source_no": "10",
+            "display_no": "10"
+          },
+          {
+            "source_no": "11",
+            "display_no": "11"
+          },
+          {
+            "source_no": "12",
+            "display_no": "12"
+          },
+          {
+            "source_no": "13",
+            "display_no": "13"
+          },
+          {
+            "source_no": "14",
+            "display_no": "14"
+          },
+          {
+            "source_no": "15",
+            "display_no": "15"
+          },
+          {
+            "source_no": "16",
+            "display_no": "16"
+          },
+          {
+            "source_no": "17",
+            "display_no": "17"
+          },
+          {
+            "source_no": "19",
+            "display_no": "18"
+          },
+          {
+            "source_no": "18",
+            "display_no": "19"
+          },
+          {
+            "source_no": "20",
+            "display_no": "20"
+          },
+          {
+            "source_no": "22",
+            "display_no": "21"
+          },
+          {
+            "source_no": "23",
+            "display_no": "22",
+            "number_row_span": 2
+          },
+          {
+            "source_no": "24",
+            "display_no": "22",
+            "suppress_number": true
+          },
+          {
+            "source_no": "25",
+            "display_no": "23"
+          },
+          {
+            "source_no": "26",
+            "display_no": "24"
+          },
+          {
+            "source_no": "27",
+            "display_no": "25"
+          }
+        ]
+      },
       "app_add_device": {
         "control_labels": {
           "en": {

@@ -23,6 +23,7 @@ from .latex_page_plan import (
     write_page_plan,
 )
 from .data_components import parse_data_component
+from .lcd_reference_profile import apply_lcd_reference_profile
 from .reference_layout_plan import load_approved_reference_plan
 
 
@@ -197,6 +198,7 @@ def asset_resolution_issues(ir: ManualIR, *, root: Path, data_root: Path) -> lis
 
 def lcd_page_data(
     ir: ManualIR, lang: str, *, root: Path, data_root: Path,
+    reference_plan: dict[str, Any] | None = None,
 ) -> LcdPageData | None:
     page = _matching_page(ir, "lcd_icons_", lang)
     payload = next((payload for payload in _data_payloads(page)
@@ -207,17 +209,30 @@ def lcd_page_data(
     for index, source in enumerate(payload["rows"], start=1):
         row = {key: str(source.get(key) or "") for key in ("no", "figure", "name", "desc")}
         source_number = row["no"].strip()
+        row["source_no"] = source_number or str(index)
+        row["no"] = source_number or str(index)
+        row["figure"] = _asset_path(root, data_root, "lcd_icons", row["figure"])
+        rows.append(row)
+
+    profile = (
+        ((reference_plan or {}).get("idml_contract") or {})
+        .get("editable_components", {})
+        .get("lcd_icon_table")
+    )
+    if profile is not None:
+        rows = list(apply_lcd_reference_profile(rows, profile))
+
+    for index, row in enumerate(rows, start=1):
+        display_number = row["no"].strip()
         try:
-            numeric_number = float(source_number)
+            numeric_number = float(display_number)
             row["no"] = (
                 _circled(int(numeric_number))
                 if numeric_number.is_integer() and numeric_number > 0
-                else source_number
+                else display_number
             )
         except ValueError:
-            row["no"] = source_number or _circled(index)
-        row["figure"] = _asset_path(root, data_root, "lcd_icons", row["figure"])
-        rows.append(row)
+            row["no"] = display_number or _circled(index)
     return LcdPageData(_heading(page, "LCD DISPLAY"), tuple(rows))
 
 
