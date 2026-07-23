@@ -40,6 +40,17 @@ def param_pt(params: dict[str, tuple[str, str]], key: str, default: float) -> fl
     return v  # pt / em treated as pt at this level
 
 
+def param_text(
+    params: dict[str, tuple[str, str]],
+    key: str,
+    default: str,
+) -> str:
+    """Resolve one non-numeric IDML style token from the shared parameter map."""
+    value, _unit = params.get(key, ("", ""))
+    normalized = str(value).strip()
+    return normalized or default
+
+
 def component_param_pt(
     params: dict[str, tuple[str, str]],
     key: str,

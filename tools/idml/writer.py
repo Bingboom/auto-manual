@@ -268,9 +268,17 @@ class IdmlWriter:
 
     def _symbols_signal_table(self, tid: str,
                               signals: list[tuple[str, str]], width: float,
-                              bundle_root: Path, lang: str = "en") -> str:
+                              bundle_root: Path, lang: str = "en", *,
+                              row_heights: list[float] | None = None) -> str:
         return _pages._symbols_signal_table(
-            self, tid, signals, width, bundle_root, lang)
+            self,
+            tid,
+            signals,
+            width,
+            bundle_root,
+            lang,
+            row_heights=row_heights,
+        )
 
     def _symbols_icon_table(
         self,

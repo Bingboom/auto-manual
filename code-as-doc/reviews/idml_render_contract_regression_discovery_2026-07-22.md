@@ -119,7 +119,13 @@ artifact.
    height; an invisible host-frame allowance contains the complete anchored
    group instead of relying on a finalizer to hide overflow. English retains
    the 240 pt floor while longer translations grow.
-8. Rebind the approved contract to the current frozen review IR, restore its
+8. Shared InDesign typography now has explicit reference-calibration tokens:
+   native body copy uses 6 pt Gilroy Regular, while level-two operation titles
+   use 8 pt Gilroy Bold. The previous `HB Body=Medium` and
+   `HB Title L2=8.6 pt Heavy` choices came from the LaTeX approximation, not
+   the approved editable PDF; a native InDesign A/B export improved every
+   affected page with no page regression and preserved zero overset.
+9. Rebind the approved contract to the current frozen review IR, restore its
    exact registry entry, then verify on the cheap-to-expensive ladder and
    finalize the emitted IDML in Adobe InDesign 2026 `21.0.1.6`.
 

@@ -8,7 +8,11 @@ from . import components as _components, page_objects as _po, prose_flow as _flo
 from .data_stories import add_lcd_story, add_spec_story, add_symbols_story, add_trouble_story
 from .params import IDPKG, param_pt
 from .primitives import _ATTR_ENTITIES
-from .story_rhythm import operation_story_rhythm_for_next_block
+from .character_metrics import with_character_baseline_shift
+from .story_rhythm import (
+    operation_key_visual_raise,
+    operation_story_rhythm_for_next_block,
+)
 
 # Coarse story-chain estimates include paragraph gaps; they are deliberately
 # independent from visible paragraph styles and their golden output.
@@ -31,6 +35,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     next_trouble_h1_language: str | None = None
     operation_intro_lines: int | None = None
     operation_energy_panel_height: float | None = None
+    operation_h2_seen = False
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
     first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
     page_language = language or {
@@ -148,7 +153,11 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             intro_lines=operation_intro_lines,
             energy_panel_height=operation_energy_panel_height,
             baseline_panel_height=text_measure * 0.545 + 2.0,
+            params=writer.params,
+            first_operation_h2=(semantic_kind == "h2" and not operation_h2_seen),
         )
+        if semantic_kind == "h2":
+            operation_h2_seen = True
         if kind == "warrantynote":
             note_scale = param_pt(
                 writer.params,
@@ -191,6 +200,17 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 "<ParagraphStyleRange ",
                 f"<ParagraphStyleRange {operation_attrs} ",
                 1,
+            )
+        key_visual_raise = operation_key_visual_raise(
+            kind,
+            next_block,
+            page_language,
+            writer.params,
+        )
+        if key_visual_raise:
+            paragraph = with_character_baseline_shift(
+                paragraph,
+                shift=key_visual_raise,
             )
         parts.append(paragraph)
         # width-aware: chars/line ~ frame_width / (0.52 * font size)

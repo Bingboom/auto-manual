@@ -224,6 +224,13 @@ class EditableKeyCombinationTests(unittest.TestCase):
                 self.assertTrue(is_key_combinations_rows(rows))
                 self.assertEqual("key_combinations", body_data_table_kind(rows))
 
+    def test_governed_key_panel_uses_locale_visual_raise(self) -> None:
+        expected = {"en": "36.68", "fr": "16.94", "es": "4.18"}
+        for language, shift in expected.items():
+            with self.subTest(language=language):
+                xml, _height, _stories = self._render(language)
+                self.assertIn(f'BaselineShift="{shift}"', xml)
+
     def test_arbitrary_three_column_table_does_not_match(self) -> None:
         rows = [
             ["One", "Two", "Three"],

@@ -13,7 +13,7 @@
 |---|---|---|---|---|---|
 | **H1 章节条**(IMPORTANT SAFETY INFORMATION / MEANING OF SYMBOLS / WHAT'S IN THE BOX / PRODUCT OVERVIEW / LCD DISPLAY / OPERATIONS / UPS / CHARGING / TROUBLESHOOTING / SPECIFICATIONS / WARRANTY / APP SETUP) | 312×20.1pt,BrandDark,**上方直角、下方圆角 r≈5.8** | `\HBTitleLevelOne`:tcolorbox `sharp corners=north, rounded corners=south` | `comp_h1_pill_arc`(0.8mm)、`comp_h1_pill_pad_lr/tb`、`comp_h1_pill_width`、`type_h1_font_size/leading` | composed 页:`page_objects.capsule_xml(bottom_only=True)` + `heading_text(level=1)`(=HB Capsule Text @12.4pt);流式页:`page_objects.h1_pill_paragraph`(锚定框,同几何);半径统一走 `page_objects.h1_arc_pt`(读同一 CSV 键) | ✅ 已统一:`comp_h1_pill_arc`=2.0mm≈5.67pt(模板实测 5.8),LaTeX 与 IDML 同键单源 |
 | **子节胶囊 subbar**(OPERATING INSTRUCTIONS / USER MAINTENANCE INSTRUCTIONS) | 313×13.9pt,**全圆(stadium,r=h/2)** | subbar 盒(components_safety.tex) | `comp_subbar_arc`(2.45mm=半高)、`comp_subbar_pad_*` | `capsule_xml(bottom_only=False)`(stadium:r=半高) + `heading_text(level=2)`，文字框 `VerticalJustification=CenterAlign` | ✅ 已统一:`\safetysubbar`=BrandDark 全圆 tcolorbox + `\HBTypeSubbar` 白字；文字光学中心残差≤0.33pt |
-| **H2 行内标题**(● POWER ON/OFF 等) | 无底色,`●` + Heavy 大写 | `\HBTitleLevelTwo` + `●` 前缀 | `type_title_l2_font_*` | `stories.add_prose_story` h2 分支(`● ` 前缀,HB Title L2 / Gilroy Heavy) | ✅ 字重、字号和纵向节奏一致 |
+| **H2 行内标题**(● POWER ON/OFF 等) | 无底色,`●` + 8pt Bold 大写 | `\HBTitleLevelTwo` + `●` 前缀 | LaTeX:`type_title_l2_font_*`;IDML 参考校准:`idml_title_l2_font_size/style` | `stories.add_prose_story` h2 分支(`● ` 前缀,HB Title L2) | △ IDML 依批准 PDF 量测收敛为 8pt Bold,不再复用 LaTeX 的 8.6pt Heavy 近似值 |
 | **spec 小节头**(● GENERAL INFO) | 无底色 `●`+粗体 | `\specsectiontitle` | `spec_titles.csv` 本地化 | `add_spec_story`(HB Spec Section + `●`) | ✅ 一致 |
 | **TOC 大标题**(TABLE OF CONTENTS) | **纯深色大字,无底条** | 目录页模板 | — | `page_toc` 标题(无填充框 + 深色大字) | 曾误做成深色圆角条,已改回 |
 | **TOC 语言条**(EN English … 01-18) | 311.81×15.852pt,**圆角矩形 r=4.753pt**(左侧保留 6.346pt 直边),白字,右侧页码区间 | — | — | `page_toc` 专用量测几何 + `capsule_xml(corner_radius=4.753)` | 不属于 subbar 全圆族；生产 PDF 矢量坐标逐点校准 ✅ |
@@ -42,7 +42,7 @@
 | H1 条高 | `type_h1_font_leading + 2×comp_h1_pill_pad_tb + 1.45`(tcolorbox 盒模型修正) | 14.8pt 两线一致 | IDML 走 `page_objects.h1_bar_h_pt` |
 | subbar 盒字 | `type_subbar_font_size/leading`(6.6/7.2) | 6.6pt Medium 两线一致 | \HBTypeSubbar 实渲染 Gilroy-Medium(SemiBold 字体缺→回退) |
 | subbar 条高 | 常量 13.9(模板/发布 PDF 双实测) | 13.9pt 两线一致 | `pages.SUBBAR_H` |
-| 正文/lead-in | `type_body_font_size/leading`(6.2/7.5) | 6.2pt Medium 两线一致 | \HBTypeBody=HBFontMedium;IDML HB Body 字重已改 Medium;安全页 lead-in 曾误映射 HB Title L2(8.6 Bold)已修 |
+| 正文/lead-in | 字号/行距继续读 `type_body_font_size/leading`;IDML 字重读 `idml_body_font_style` | 批准 PDF 的原生正文为 6.0pt Regular | IDML 不再把 LaTeX `HBFontMedium` 的渲染选择当成 InDesign 模板字重合同;量测实验覆盖的页面全部改善且无回退 |
 | 列表 | `type_list_font_size/leading`(5.4/6.4) | 5.4pt Regular 两线一致 | notice 内的列表另由提示框组件做 3.4pt 悬挂缩进 |
 | 故障表表头/错误码/措施正文 | `type_data_table_header_font_size`(6.6) / `type_trouble_code_font_size`(8.0) / `type_trouble_body_font_size`(5.5) | 6.6pt Bold / 8.0pt Bold / 5.5pt Regular；故障表表头的 Bold 是组件局部合同，不改动其他数据表的 Heavy 表头 | 内线 0.25pt、外框 0.57pt，均使用品牌深灰 |
 | 规格分组/左列标签 | `type_spec_section_font_size`(8.0) / `type_spec_label_font_size`(6.0) | 8.0pt Bold / 6.0pt Medium，与生产原稿一致 | 内线 0.50pt、外框 0.75pt，均使用品牌深灰 |

@@ -909,6 +909,9 @@
 % IDML App editable text-frame vertical fit allowance
 \expandafter\def\csname HBidml_app_text_frame_safety\endcsname{0.8pt}
 
+% InDesign body weight measured from the approved editable PDF reference
+\expandafter\def\csname HBidml_body_font_style\endcsname{Regular}
+
 % InDesign callout body baseline correction
 \expandafter\def\csname HBidml_callout_body_baseline_shift\endcsname{0.9pt}
 
@@ -978,6 +981,9 @@
 % IDML editable Key-combinations plus-sign size
 \expandafter\def\csname HBidml_key_plus_font_size\endcsname{12.0pt}
 
+% IDML Key heading and panel non-flowing visual raise for approved EN composition
+\expandafter\def\csname HBidml_key_visual_raise\endcsname{36.68pt}
+
 % InDesign first-level list hanging indent
 \expandafter\def\csname HBidml_list_first_line_indent\endcsname{-6.25pt}
 
@@ -986,6 +992,18 @@
 
 % InDesign first-level list continuation indent
 \expandafter\def\csname HBidml_list_left_indent\endcsname{3.70pt}
+
+% Base gap before the first operation subsection
+\expandafter\def\csname HBidml_operation_first_h2_space_before\endcsname{7.5pt}
+
+% Base gap from first operation explanation to second subsection
+\expandafter\def\csname HBidml_operation_inter_section_space_after\endcsname{48.2pt}
+
+% IDML editable operation row label base leading
+\expandafter\def\csname HBidml_operation_row_label_font_leading\endcsname{11.0pt}
+
+% IDML editable operation row label base size
+\expandafter\def\csname HBidml_operation_row_label_font_size\endcsname{10.0pt}
 
 % IDML preface body leading
 \expandafter\def\csname HBidml_preface_body_font_leading\endcsname{10.003pt}
@@ -1062,6 +1080,60 @@
 % InDesign nested list continuation indent
 \expandafter\def\csname HBidml_sublist_left_indent\endcsname{9.58pt}
 
+% IDML Symbols table header leading
+\expandafter\def\csname HBidml_symbol_header_font_leading\endcsname{8.8pt}
+
+% IDML Symbols table header size measured from approved PDF
+\expandafter\def\csname HBidml_symbol_header_font_size\endcsname{8.0pt}
+
+% IDML English gap after first safety-tail panel
+\expandafter\def\csname HBidml_symbols_first_tail_gap\endcsname{4.4pt}
+
+% IDML English first safety-tail panel height
+\expandafter\def\csname HBidml_symbols_first_tail_height\endcsname{34.5pt}
+
+% IDML Symbols icon-table header fixed height
+\expandafter\def\csname HBidml_symbols_icon_header_height\endcsname{15.0pt}
+
+% IDML Symbols rounded final icon row height
+\expandafter\def\csname HBidml_symbols_icon_last_row_height\endcsname{32.2pt}
+
+% IDML English long disposal-symbol final row height
+\expandafter\def\csname HBidml_symbols_icon_long_last_row_height\endcsname{64.9pt}
+
+% IDML Symbols ordinary icon row fixed height
+\expandafter\def\csname HBidml_symbols_icon_row_height\endcsname{30.7pt}
+
+% IDML English maintenance body gap before Symbols title
+\expandafter\def\csname HBidml_symbols_maintenance_body_gap\endcsname{0.0pt}
+
+% IDML English maintenance body frame height
+\expandafter\def\csname HBidml_symbols_maintenance_body_height\endcsname{21.5pt}
+
+% IDML English Symbols combined-page top
+\expandafter\def\csname HBidml_symbols_page_top\endcsname{27.7pt}
+
+% IDML English gap before maintenance band
+\expandafter\def\csname HBidml_symbols_second_tail_gap\endcsname{6.8pt}
+
+% IDML English second safety-tail panel height
+\expandafter\def\csname HBidml_symbols_second_tail_height\endcsname{28.5pt}
+
+% IDML English gap between signal and icon tables
+\expandafter\def\csname HBidml_symbols_signal_gap_after\endcsname{4.1pt}
+
+% IDML Symbols signal table header fixed height
+\expandafter\def\csname HBidml_symbols_signal_header_height\endcsname{17.3pt}
+
+% IDML Symbols signal row fixed height
+\expandafter\def\csname HBidml_symbols_signal_row_height\endcsname{25.42pt}
+
+% InDesign level-two title size measured from the approved editable PDF reference
+\expandafter\def\csname HBidml_title_l2_font_size\endcsname{8.0pt}
+
+% InDesign level-two title weight measured from the approved editable PDF reference
+\expandafter\def\csname HBidml_title_l2_font_style\endcsname{Bold}
+
 % Default approved storage-to-troubleshooting heading rhythm
 \expandafter\def\csname HBidml_trouble_heading_space_before\endcsname{48.70pt}
 
@@ -1118,6 +1190,42 @@
 
 % InDesign warranty period left-column ratio
 \expandafter\def\csname HBidml_warranty_year_left_ratio\endcsname{0.64}
+
+% English first operation subsection offset
+\expandafter\def\csname HBlang_en_idml_operation_first_h2_space_before\endcsname{7.5pt}
+
+% English operation inter-section rhythm
+\expandafter\def\csname HBlang_en_idml_operation_inter_section_space_after\endcsname{48.2pt}
+
+% English operation row label leading
+\expandafter\def\csname HBlang_en_idml_operation_row_label_font_leading\endcsname{11.0pt}
+
+% English operation row label size measured from approved PDF
+\expandafter\def\csname HBlang_en_idml_operation_row_label_font_size\endcsname{10.0pt}
+
+% Approved English first safety-tail gap
+\expandafter\def\csname HBlang_en_idml_symbols_first_tail_gap\endcsname{4.4pt}
+
+% Approved English first safety-tail height
+\expandafter\def\csname HBlang_en_idml_symbols_first_tail_height\endcsname{34.5pt}
+
+% Approved English maintenance body gap
+\expandafter\def\csname HBlang_en_idml_symbols_maintenance_body_gap\endcsname{0.0pt}
+
+% Approved English maintenance body height
+\expandafter\def\csname HBlang_en_idml_symbols_maintenance_body_height\endcsname{21.5pt}
+
+% Approved English Symbols page top
+\expandafter\def\csname HBlang_en_idml_symbols_page_top\endcsname{27.7pt}
+
+% Approved English second safety-tail gap
+\expandafter\def\csname HBlang_en_idml_symbols_second_tail_gap\endcsname{6.8pt}
+
+% Approved English second safety-tail height
+\expandafter\def\csname HBlang_en_idml_symbols_second_tail_height\endcsname{28.5pt}
+
+% Approved English signal table trailing gap
+\expandafter\def\csname HBlang_en_idml_symbols_signal_gap_after\endcsname{4.1pt}
 
 % Approved EN storage-to-troubleshooting heading rhythm
 \expandafter\def\csname HBlang_en_idml_trouble_heading_space_before\endcsname{48.70pt}
@@ -1185,6 +1293,21 @@
 % ES: approved editable Key-combinations leading gap
 \expandafter\def\csname HBlang_es_idml_key_panel_space_before\endcsname{4.14pt}
 
+% Spanish Key heading and panel visual raise after operation rhythm compensation
+\expandafter\def\csname HBlang_es_idml_key_visual_raise\endcsname{4.18pt}
+
+% Spanish first operation subsection offset
+\expandafter\def\csname HBlang_es_idml_operation_first_h2_space_before\endcsname{8.5pt}
+
+% Spanish operation inter-section rhythm
+\expandafter\def\csname HBlang_es_idml_operation_inter_section_space_after\endcsname{39.1pt}
+
+% Spanish operation row label leading
+\expandafter\def\csname HBlang_es_idml_operation_row_label_font_leading\endcsname{10.0pt}
+
+% Spanish operation row label size measured from approved PDF
+\expandafter\def\csname HBlang_es_idml_operation_row_label_font_size\endcsname{9.0pt}
+
 % ES preface badge-to-body gap measured from reference
 \expandafter\def\csname HBlang_es_idml_preface_header_space_after\endcsname{2.65pt}
 
@@ -1193,6 +1316,30 @@
 
 % ES InDesign specification left-column ratio measured from reference
 \expandafter\def\csname HBlang_es_idml_spec_table_left_ratio\endcsname{0.375}
+
+% Approved Spanish first safety-tail gap
+\expandafter\def\csname HBlang_es_idml_symbols_first_tail_gap\endcsname{4.2pt}
+
+% Approved Spanish first safety-tail height
+\expandafter\def\csname HBlang_es_idml_symbols_first_tail_height\endcsname{47.1pt}
+
+% Approved Spanish maintenance body gap
+\expandafter\def\csname HBlang_es_idml_symbols_maintenance_body_gap\endcsname{8.0pt}
+
+% Approved Spanish maintenance body height
+\expandafter\def\csname HBlang_es_idml_symbols_maintenance_body_height\endcsname{39.6pt}
+
+% Approved Spanish Symbols page top
+\expandafter\def\csname HBlang_es_idml_symbols_page_top\endcsname{26.2pt}
+
+% Approved Spanish second safety-tail gap
+\expandafter\def\csname HBlang_es_idml_symbols_second_tail_gap\endcsname{11.4pt}
+
+% Approved Spanish second safety-tail height
+\expandafter\def\csname HBlang_es_idml_symbols_second_tail_height\endcsname{47.2pt}
+
+% Approved Spanish signal table trailing gap
+\expandafter\def\csname HBlang_es_idml_symbols_signal_gap_after\endcsname{9.8pt}
 
 % Approved ES storage-to-troubleshooting heading rhythm
 \expandafter\def\csname HBlang_es_idml_trouble_heading_space_before\endcsname{15.74pt}
@@ -1284,11 +1431,50 @@
 % FR: approved editable Key-combinations leading gap
 \expandafter\def\csname HBlang_fr_idml_key_panel_space_before\endcsname{3.53pt}
 
+% French Key heading and panel visual raise after operation rhythm compensation
+\expandafter\def\csname HBlang_fr_idml_key_visual_raise\endcsname{16.94pt}
+
+% French first operation subsection offset
+\expandafter\def\csname HBlang_fr_idml_operation_first_h2_space_before\endcsname{9.8pt}
+
+% French operation inter-section rhythm
+\expandafter\def\csname HBlang_fr_idml_operation_inter_section_space_after\endcsname{37.6pt}
+
+% French operation row label leading
+\expandafter\def\csname HBlang_fr_idml_operation_row_label_font_leading\endcsname{11.0pt}
+
+% French operation row label size measured from approved PDF
+\expandafter\def\csname HBlang_fr_idml_operation_row_label_font_size\endcsname{10.0pt}
+
 % FR preface badge-to-body gap measured from reference
 \expandafter\def\csname HBlang_fr_idml_preface_header_space_after\endcsname{1.62pt}
 
 % FR preface gap before language badge measured from reference
 \expandafter\def\csname HBlang_fr_idml_preface_header_space_before\endcsname{11.73pt}
+
+% Approved French first safety-tail gap
+\expandafter\def\csname HBlang_fr_idml_symbols_first_tail_gap\endcsname{5.6pt}
+
+% Approved French first safety-tail height
+\expandafter\def\csname HBlang_fr_idml_symbols_first_tail_height\endcsname{47.1pt}
+
+% Approved French maintenance body gap
+\expandafter\def\csname HBlang_fr_idml_symbols_maintenance_body_gap\endcsname{8.0pt}
+
+% Approved French maintenance body height
+\expandafter\def\csname HBlang_fr_idml_symbols_maintenance_body_height\endcsname{45.6pt}
+
+% Approved French Symbols page top
+\expandafter\def\csname HBlang_fr_idml_symbols_page_top\endcsname{27.5pt}
+
+% Approved French second safety-tail gap
+\expandafter\def\csname HBlang_fr_idml_symbols_second_tail_gap\endcsname{10.4pt}
+
+% Approved French second safety-tail height
+\expandafter\def\csname HBlang_fr_idml_symbols_second_tail_height\endcsname{38.5pt}
+
+% Approved French signal table trailing gap
+\expandafter\def\csname HBlang_fr_idml_symbols_signal_gap_after\endcsname{10.7pt}
 
 % Approved FR storage-to-troubleshooting heading rhythm
 \expandafter\def\csname HBlang_fr_idml_trouble_heading_space_before\endcsname{16.66pt}

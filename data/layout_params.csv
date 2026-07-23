@@ -155,6 +155,7 @@ idml_key_header_height,14.71,pt,IDML editable Key-combinations header height
 idml_key_panel_height,152.92,pt,IDML editable Key-combinations governed EN panel height
 idml_key_panel_left_indent,-4.34,pt,IDML editable Key-combinations governed EN host-line offset
 idml_key_panel_space_before,10.62,pt,IDML editable Key-combinations governed EN leading gap
+idml_key_visual_raise,36.68,pt,IDML Key heading and panel non-flowing visual raise for approved EN composition
 idml_key_inner_rule,0.5,pt,IDML editable Key-combinations internal grid rule
 idml_key_outer_rule,0.566,pt,IDML editable Key-combinations outer rule
 idml_key_outer_radius,8.0,pt,IDML editable Key-combinations outer corner radius
@@ -171,6 +172,26 @@ idml_key_operation_font_size,5.35,pt,IDML editable Key-combinations operation co
 idml_key_operation_font_leading,6.4,pt,IDML editable Key-combinations operation copy leading
 idml_key_function_font_size,6.0,pt,IDML editable Key-combinations function copy size
 idml_key_function_font_leading,8.5,pt,IDML editable Key-combinations function copy leading
+,,,
+,,,------ IDML OPERATION PANEL TYPOGRAPHY AND RHYTHM ------
+idml_operation_row_label_font_size,10.0,pt,IDML editable operation row label base size
+idml_operation_row_label_font_leading,11.0,pt,IDML editable operation row label base leading
+lang_en_idml_operation_row_label_font_size,10.0,pt,English operation row label size measured from approved PDF
+lang_en_idml_operation_row_label_font_leading,11.0,pt,English operation row label leading
+lang_fr_idml_operation_row_label_font_size,10.0,pt,French operation row label size measured from approved PDF
+lang_fr_idml_operation_row_label_font_leading,11.0,pt,French operation row label leading
+lang_es_idml_operation_row_label_font_size,9.0,pt,Spanish operation row label size measured from approved PDF
+lang_es_idml_operation_row_label_font_leading,10.0,pt,Spanish operation row label leading
+idml_operation_first_h2_space_before,7.5,pt,Base gap before the first operation subsection
+lang_en_idml_operation_first_h2_space_before,7.5,pt,English first operation subsection offset
+lang_fr_idml_operation_first_h2_space_before,9.8,pt,French first operation subsection offset
+lang_es_idml_operation_first_h2_space_before,8.5,pt,Spanish first operation subsection offset
+idml_operation_inter_section_space_after,48.2,pt,Base gap from first operation explanation to second subsection
+lang_en_idml_operation_inter_section_space_after,48.2,pt,English operation inter-section rhythm
+lang_fr_idml_operation_inter_section_space_after,37.6,pt,French operation inter-section rhythm
+lang_es_idml_operation_inter_section_space_after,39.1,pt,Spanish operation inter-section rhythm
+lang_fr_idml_key_visual_raise,16.94,pt,French Key heading and panel visual raise after operation rhythm compensation
+lang_es_idml_key_visual_raise,4.18,pt,Spanish Key heading and panel visual raise after operation rhythm compensation
 ,,,
 ,,,------ IDML APP EDITABLE COMPOSITES ------
 idml_app_control_label_font_size,5.0,pt,IDML App control overlay label size shared by all languages
@@ -248,6 +269,46 @@ type_symbol_header_font_size,6.5,pt,Symbol table header font size
 type_symbol_header_font_leading,7.2,pt,Symbol table header leading
 type_symbol_body_font_size,5.6,pt,Symbol table body font size
 type_symbol_body_font_leading,6.5,pt,Symbol table body leading
+idml_symbol_header_font_size,8.0,pt,IDML Symbols table header size measured from approved PDF
+idml_symbol_header_font_leading,8.8,pt,IDML Symbols table header leading
+idml_symbols_signal_header_height,17.3,pt,IDML Symbols signal table header fixed height
+idml_symbols_signal_row_height,25.42,pt,IDML Symbols signal row fixed height
+idml_symbols_icon_header_height,15.0,pt,IDML Symbols icon-table header fixed height
+idml_symbols_icon_row_height,30.7,pt,IDML Symbols ordinary icon row fixed height
+idml_symbols_icon_last_row_height,32.2,pt,IDML Symbols rounded final icon row height
+idml_symbols_icon_long_last_row_height,64.9,pt,IDML English long disposal-symbol final row height
+idml_symbols_page_top,27.7,pt,IDML English Symbols combined-page top
+idml_symbols_first_tail_height,34.5,pt,IDML English first safety-tail panel height
+idml_symbols_first_tail_gap,4.4,pt,IDML English gap after first safety-tail panel
+idml_symbols_second_tail_height,28.5,pt,IDML English second safety-tail panel height
+idml_symbols_second_tail_gap,6.8,pt,IDML English gap before maintenance band
+idml_symbols_maintenance_body_height,21.5,pt,IDML English maintenance body frame height
+idml_symbols_maintenance_body_gap,0.0,pt,IDML English maintenance body gap before Symbols title
+idml_symbols_signal_gap_after,4.1,pt,IDML English gap between signal and icon tables
+lang_en_idml_symbols_page_top,27.7,pt,Approved English Symbols page top
+lang_en_idml_symbols_first_tail_height,34.5,pt,Approved English first safety-tail height
+lang_en_idml_symbols_first_tail_gap,4.4,pt,Approved English first safety-tail gap
+lang_en_idml_symbols_second_tail_height,28.5,pt,Approved English second safety-tail height
+lang_en_idml_symbols_second_tail_gap,6.8,pt,Approved English second safety-tail gap
+lang_en_idml_symbols_maintenance_body_height,21.5,pt,Approved English maintenance body height
+lang_en_idml_symbols_maintenance_body_gap,0.0,pt,Approved English maintenance body gap
+lang_en_idml_symbols_signal_gap_after,4.1,pt,Approved English signal table trailing gap
+lang_fr_idml_symbols_page_top,27.5,pt,Approved French Symbols page top
+lang_fr_idml_symbols_first_tail_height,47.1,pt,Approved French first safety-tail height
+lang_fr_idml_symbols_first_tail_gap,5.6,pt,Approved French first safety-tail gap
+lang_fr_idml_symbols_second_tail_height,38.5,pt,Approved French second safety-tail height
+lang_fr_idml_symbols_second_tail_gap,10.4,pt,Approved French second safety-tail gap
+lang_fr_idml_symbols_maintenance_body_height,45.6,pt,Approved French maintenance body height
+lang_fr_idml_symbols_maintenance_body_gap,8.0,pt,Approved French maintenance body gap
+lang_fr_idml_symbols_signal_gap_after,10.7,pt,Approved French signal table trailing gap
+lang_es_idml_symbols_page_top,26.2,pt,Approved Spanish Symbols page top
+lang_es_idml_symbols_first_tail_height,47.1,pt,Approved Spanish first safety-tail height
+lang_es_idml_symbols_first_tail_gap,4.2,pt,Approved Spanish first safety-tail gap
+lang_es_idml_symbols_second_tail_height,47.2,pt,Approved Spanish second safety-tail height
+lang_es_idml_symbols_second_tail_gap,11.4,pt,Approved Spanish second safety-tail gap
+lang_es_idml_symbols_maintenance_body_height,39.6,pt,Approved Spanish maintenance body height
+lang_es_idml_symbols_maintenance_body_gap,8.0,pt,Approved Spanish maintenance body gap
+lang_es_idml_symbols_signal_gap_after,9.8,pt,Approved Spanish signal table trailing gap
 ,,,
 ,,,------ FCC / INBOX / CALLOUT STRIPS ------
 comp_fcc_arc,2.4,mm,FCC panel corner radius
@@ -280,6 +341,9 @@ comp_tip_pad_lr,1.15,mm,Tip strip horizontal padding
 comp_tip_label_baseline_shift,-0.57,pt,Tip label baseline offset from panel centre
 idml_callout_label_baseline_shift,2.63,pt,InDesign callout label baseline correction
 idml_callout_body_baseline_shift,0.9,pt,InDesign callout body baseline correction
+idml_body_font_style,Regular,none,InDesign body weight measured from the approved editable PDF reference
+idml_title_l2_font_size,8.0,pt,InDesign level-two title size measured from the approved editable PDF reference
+idml_title_l2_font_style,Bold,none,InDesign level-two title weight measured from the approved editable PDF reference
 idml_list_left_indent,3.70,pt,InDesign first-level list continuation indent
 idml_list_first_line_indent,-6.25,pt,InDesign first-level list hanging indent
 idml_list_font_leading,7.2,pt,InDesign list leading correction for production font metrics

@@ -14,6 +14,7 @@ import re
 import unicodedata
 
 from .. import page_objects
+from ..character_metrics import with_character_baseline_shift
 from ..params import component_param_pt
 from ..primitives import psr
 from .base import RenderContext
@@ -39,6 +40,7 @@ KEY_STYLE_BASE_TOKENS = (
     "idml_key_panel_height",
     "idml_key_panel_left_indent",
     "idml_key_panel_space_before",
+    "idml_key_visual_raise",
     "idml_key_inner_rule",
     "idml_key_outer_rule",
     "idml_key_outer_radius",
@@ -61,6 +63,7 @@ KEY_STYLE_LOCALE_TOKENS = (
     "idml_key_panel_height",
     "idml_key_panel_left_indent",
     "idml_key_panel_space_before",
+    "idml_key_visual_raise",
 )
 
 
@@ -75,6 +78,7 @@ class KeyCombinationStyle:
     governed_panel_height: float | None
     left_indent: float
     space_before: float
+    visual_raise: float
     inner_rule: float
     outer_rule: float
     radius: float
@@ -127,6 +131,7 @@ class KeyCombinationStyle:
             "idml_key_outer_rule": self.outer_rule,
             "idml_key_outer_radius": self.radius,
             "idml_key_panel_space_before": self.space_before,
+            "idml_key_visual_raise": self.visual_raise,
         }.items():
             if not isfinite(value) or value < 0:
                 raise ValueError(
@@ -196,6 +201,10 @@ class KeyCombinationStyle:
                 localized("idml_key_panel_space_before", 10.62)
                 if governed
                 else token("comp_data_table_before", 3.4)
+            ),
+            visual_raise=(
+                localized("idml_key_visual_raise", 36.68)
+                if governed else 0.0
             ),
             inner_rule=token("idml_key_inner_rule", 0.5),
             outer_rule=token("idml_key_outer_rule", 0.566),
@@ -658,6 +667,8 @@ def render_key_combinations(
         f'SpaceBefore="{space_before:g}" ',
         1,
     )
+    if style.visual_raise:
+        xml = with_character_baseline_shift(xml, shift=style.visual_raise)
     # The caller adds only the common trailing table gap. This estimate owns
     # the locale-specific leading gap together with the panel itself.
     return xml, height + space_before

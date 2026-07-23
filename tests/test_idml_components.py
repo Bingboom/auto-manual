@@ -137,6 +137,25 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertEqual((8.668, 8.668, "Bold"), styles["HB Preface Tag"])
         self.assertEqual((7.0, 10.003, "Regular"), styles["HB Preface Body"])
 
+    def test_reference_body_and_l2_typography_use_idml_calibration_tokens(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.styles import para_styles
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        styles = {
+            name: (size, leading, weight)
+            for name, size, leading, weight, _ in para_styles(params)
+        }
+
+        self.assertEqual((6.0, 7.2, "Regular"), styles["HB Body"])
+        self.assertEqual((8.0, 9.4, "Bold"), styles["HB Title L2"])
+        self.assertEqual(
+            (10.0, 11.0, "Bold"),
+            styles["HB Operation Row Label"],
+        )
+        self.assertEqual((8.0, 8.8, "Bold"), styles["HB Symbol Header"])
+        self.assertEqual((5.6, 6.5, "Regular"), styles["HB Symbol Body"])
+
     def test_reference_warranty_typography_separates_body_and_list_rhythm(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.styles import para_styles, styles_xml

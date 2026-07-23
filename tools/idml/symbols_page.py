@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from dataclasses import dataclass
 from xml.sax.saxutils import escape
 
 from .layout_est import est_table_height, template_symbol_split
@@ -13,11 +14,77 @@ from .page_objects import (
     heading_text,
     with_rounded_outer,
 )
-from .params import IDPKG
+from .params import IDPKG, component_param_pt
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
 SUBBAR_H = 13.9  # master/publish-PDF measured capsule height
+
+
+@dataclass(frozen=True)
+class SafetySymbolsPageStyle:
+    """Token-driven vertical contract for the combined maintenance page."""
+
+    page_top: float
+    first_tail_height: float
+    first_tail_gap: float
+    second_tail_height: float
+    second_tail_gap: float
+    maintenance_body_height: float
+    maintenance_body_gap: float
+    signal_header_height: float
+    signal_row_height: float
+    signal_gap_after: float
+    icon_header_height: float
+    icon_row_height: float
+    icon_last_row_height: float
+    icon_long_last_row_height: float
+
+    @classmethod
+    def from_writer(cls, writer, language: str) -> "SafetySymbolsPageStyle":
+        normalized = language.split("-", 1)[0]
+
+        def token(key: str, default: float) -> float:
+            return component_param_pt(
+                writer.params,
+                key,
+                default,
+                strict=writer.strict_component_assets,
+                owner="safety symbols page",
+            )
+
+        def localized(key: str, default: float) -> float:
+            base = token(key, default)
+            if normalized not in {"en", "fr", "es"}:
+                return base
+            return token(f"lang_{normalized}_{key}", base)
+
+        return cls(
+            page_top=localized("idml_symbols_page_top", 27.7),
+            first_tail_height=localized("idml_symbols_first_tail_height", 34.5),
+            first_tail_gap=localized("idml_symbols_first_tail_gap", 4.4),
+            second_tail_height=localized("idml_symbols_second_tail_height", 28.5),
+            second_tail_gap=localized("idml_symbols_second_tail_gap", 6.8),
+            maintenance_body_height=localized(
+                "idml_symbols_maintenance_body_height", 21.5,
+            ),
+            maintenance_body_gap=localized(
+                "idml_symbols_maintenance_body_gap", 0.0,
+            ),
+            signal_header_height=token(
+                "idml_symbols_signal_header_height", 17.3,
+            ),
+            signal_row_height=token("idml_symbols_signal_row_height", 25.42),
+            signal_gap_after=localized("idml_symbols_signal_gap_after", 4.1),
+            icon_header_height=token("idml_symbols_icon_header_height", 15.0),
+            icon_row_height=token("idml_symbols_icon_row_height", 30.7),
+            icon_last_row_height=token(
+                "idml_symbols_icon_last_row_height", 32.2,
+            ),
+            icon_long_last_row_height=token(
+                "idml_symbols_icon_long_last_row_height", 64.9,
+            ),
+        )
 
 
 def _localized_signal_label_bar(label: str) -> str:
@@ -55,7 +122,8 @@ def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> str:
 
 def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                           width: float, bundle_root: Path,
-                          lang: str = "en") -> str:
+                          lang: str = "en", *,
+                          row_heights: list[float] | None = None) -> str:
     copy = symbol_copy(lang)
     rows = [(copy["symbol"], copy["meaning"], True)] + [
         (label, text, False) for label, text in signals
@@ -64,8 +132,8 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
     cells = []
     for ri, (left, right, header) in enumerate(rows):
         if header:
-            left_xml = writer._psr("HB Spec Label", left, terminal=True)
-            right_xml = writer._psr("HB Spec Label", right, terminal=True)
+            left_xml = writer._psr("HB Symbol Header", left, terminal=True)
+            right_xml = writer._psr("HB Symbol Header", right, terminal=True)
         else:
             left_xml = writer._symbol_signal_bar(f"{tid}sig{ri}", left, bundle_root)
             right_xml = writer._psr("HB Spec Value", right, terminal=True)
@@ -74,8 +142,22 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                                   top=3, bottom=3, left=6, right=4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                   top=3, bottom=3, left=7, right=5))
-    return writer._component_table(
+    table = writer._component_table(
         tid, cols, cells, n_rows=len(rows), role="data", outer_stroke=False)
+    if row_heights is not None:
+        if len(row_heights) != len(rows):
+            raise ValueError("symbol signal row heights must match rendered rows")
+        for row_index, height in enumerate(row_heights):
+            before = f'<Row Self="{tid}r{row_index}" Name="{row_index}"/>'
+            after = (
+                f'<Row Self="{tid}r{row_index}" Name="{row_index}" '
+                f'SingleRowHeight="{height:g}" MinimumHeight="{height:g}" '
+                'AutoGrow="false"/>'
+            )
+            if before not in table:
+                raise ValueError(f"symbol signal row anchor missing: {tid}r{row_index}")
+            table = table.replace(before, after, 1)
+    return table
 
 
 def _symbols_icon_table(
@@ -97,8 +179,8 @@ def _symbols_icon_table(
     cells = []
     for ri, row in enumerate(rows):
         if row.get("header"):
-            left_xml = writer._psr("HB Spec Label", copy["symbol"], terminal=True)
-            right_xml = writer._psr("HB Spec Label", row["text"], terminal=True)
+            left_xml = writer._psr("HB Symbol Header", copy["symbol"], terminal=True)
+            right_xml = writer._psr("HB Symbol Header", row["text"], terminal=True)
         else:
             fig = (ROOT / row["figure"]) if row.get("figure") else None
             icon = ""
@@ -109,7 +191,7 @@ def _symbols_icon_table(
                 f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style_ref}">'
                 '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                 + icon + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
-            right_xml = writer._psr("HB Spec Value", row["text"], terminal=True)
+            right_xml = writer._psr("HB Symbol Body", row["text"], terminal=True)
             if lang in {"fr", "es"}:
                 right_xml = right_xml.replace(
                     'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
@@ -167,6 +249,7 @@ def add_safety_symbols_page(
     """V2.0 page 02: safety tail + maintenance + symbols on one page."""
     import json as _json
     copy = symbol_copy(lang)
+    style = SafetySymbolsPageStyle.from_writer(writer, lang)
     tail_stories: list[tuple[str, float]] = []
     for bi, (kind, text) in enumerate(tail_blocks):
         if kind != "component":
@@ -214,21 +297,52 @@ def add_safety_symbols_page(
     writer._table_story(
         signal_sid, "Signal words",
         writer._symbols_signal_table(
-            f"{sid}_sig_tbl", signals, body_w, bundle_root, lang))
+            f"{sid}_sig_tbl",
+            signals,
+            body_w,
+            bundle_root,
+            lang,
+            row_heights=[style.signal_header_height]
+            + [style.signal_row_height] * len(signals),
+        ))
+    left_row_heights = (
+        [style.icon_header_height]
+        + [style.icon_row_height] * max(0, len(left_icons) - 1)
+        + ([style.icon_last_row_height] if left_icons else [])
+    )
+    right_row_heights = (
+        [style.icon_header_height]
+        + [style.icon_row_height] * max(0, len(right_icons) - 1)
+        + ([
+            style.icon_long_last_row_height
+            if lang == "en" else style.icon_last_row_height
+        ] if right_icons else [])
+    )
     left_sid = f"{sid}_icons_left"
     writer._table_story(
         left_sid, "Symbol icons left",
-        writer._symbols_icon_table(f"{sid}_icons_l_tbl", left_icons, icon_table_w, lang))
+        writer._symbols_icon_table(
+            f"{sid}_icons_l_tbl",
+            left_icons,
+            icon_table_w,
+            lang,
+            row_heights=left_row_heights,
+        ))
     right_sid = f"{sid}_icons_right"
     writer._table_story(
         right_sid, "Symbol icons right",
         writer._symbols_icon_table(
-            f"{sid}_icons_r_tbl", right_icons, icon_table_w, lang))
+            f"{sid}_icons_r_tbl",
+            right_icons,
+            icon_table_w,
+            lang,
+            row_heights=right_row_heights,
+        ))
 
     # Flow the frames from a cursor using coarse content-height estimates
     # instead of fixed rects (fixed heights hid taller content as overset);
     # the icon tables then take whatever remains down to the bottom margin.
-    y = 27.5
+    y = style.page_top
     frame_specs: list[tuple[str, str, tuple[float, float, float, float], dict]] = []
 
     def _place(fid: str, story: str, h: float, opts: dict, gap: float = 6.0) -> None:
@@ -236,35 +350,48 @@ def add_safety_symbols_page(
         frame_specs.append((fid, story, (body_x, y, body_w, h), opts))
         y += h + gap
 
-    for ti, (t_sid, t_h) in enumerate(tail_stories):
-        target_h = 34.5 if ti == 0 else 28.0
-        tail_h = (target_h if lang == "en" else
-                  min(max(target_h, t_h + 3.0), target_h + 6.0) + 3.0)
-        _place(f"tail_{ti}", t_sid, tail_h,
-               with_rounded_outer({
-                   "inset": (0, 0, 0, 0),
-                   "valign": "CenterAlign",
-               }), gap=4.0)
-    maint_h = (25.0 if lang == "en" else
-               est_table_height([maint_text], body_w, 24.0) - 16.0)
+    tail_geometry = (
+        (style.first_tail_height, style.first_tail_gap),
+        (style.second_tail_height, style.second_tail_gap),
+    )
+    for ti, ((t_sid, _estimated_height), (tail_h, tail_gap)) in enumerate(
+        zip(tail_stories, tail_geometry, strict=False)
+    ):
+        _place(
+            f"tail_{ti}",
+            t_sid,
+            tail_h,
+            with_rounded_outer({
+                "inset": (0, 0, 0, 0),
+                "valign": "CenterAlign",
+            }),
+            gap=tail_gap,
+        )
     _place("maint_title", maint_title_sid, SUBBAR_H,
            heading_bar_opts(2, (0.5, 5, 0.5, 6)), gap=3.5)
-    _place("maint_body", maint_body_sid, maint_h, {"inset": (0, 0, 0, 0)},
-           gap=0.4 if lang == "en" else 8.0)
+    _place(
+        "maint_body",
+        maint_body_sid,
+        style.maintenance_body_height,
+        {"inset": (0, 0, 0, 0)},
+        gap=style.maintenance_body_gap,
+    )
     _place("symbols_title", symbols_title_sid, h1_bar_h_pt(writer),
            heading_bar_opts(1, (1.5, 5, 1, 6)), gap=9.0)
-    signal_row_h = 26.0 if lang == "en" else 18.0
-    signals_h = est_table_height(
-        [t for _, t in signals], body_w * 0.76, signal_row_h)
+    signals_h = style.signal_header_height + style.signal_row_height * len(signals)
     _place("signals", signal_sid, signals_h,
-           with_rounded_outer({"inset": (0, 0, 0, 0)}), gap=6.5)
+           with_rounded_outer({"inset": (0, 0, 0, 0)}),
+           gap=style.signal_gap_after)
     bottom = writer.page_h - 2.0
-    icons_h = 3.0 + max(60.0, min(
-        max(est_table_height([r.get("text", "") for r in left_icons],
-                             icon_table_w * 0.73, 24.0),
-            est_table_height([r.get("text", "") for r in right_icons],
-                             icon_table_w * 0.73, 24.0)),
-        bottom - y))
+    if lang in {"en", "fr", "es"}:
+        icons_h = 3.0 + max(sum(left_row_heights), sum(right_row_heights))
+    else:
+        icons_h = 3.0 + max(60.0, min(
+            max(est_table_height([r.get("text", "") for r in left_icons],
+                                 icon_table_w * 0.73, 24.0),
+                est_table_height([r.get("text", "") for r in right_icons],
+                                 icon_table_w * 0.73, 24.0)),
+            bottom - y))
     frame_specs.append(("icons_left", left_sid, (body_x, y, icon_table_w, icons_h),
                         with_rounded_outer({"inset": (0, 0, 0, 0)})))
     frame_specs.append(("icons_right", right_sid,

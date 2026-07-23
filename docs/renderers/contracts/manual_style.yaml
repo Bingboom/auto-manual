@@ -16,7 +16,7 @@ styles:
   HB-TYPE-BODY:
     role: Body paragraph
     semantic_source_kinds: [paragraph]
-    token_refs: [type_body_font_size, type_body_font_leading, page_parskip, type_body_color]
+    token_refs: [type_body_font_size, type_body_font_leading, page_parskip, type_body_color, idml_body_font_style]
     latex: {owner: type_system.tex, entrypoints: [HBTypeBaseStart, HBTypeBody]}
     indesign: {renderer: paragraph, paragraph_style: 段落样式}
     status: aligned
@@ -42,9 +42,9 @@ styles:
   HB-TITLE-L2:
     role: Dot-led level-two heading
     semantic_source_kinds: [heading_2]
-    token_refs: [type_title_l2_font_size, type_title_l2_font_leading, comp_title_l2_before, comp_title_l2_after, comp_title_l2_bullet_radius, comp_title_l2_gap, comp_title_l2_needspace]
+    token_refs: [type_title_l2_font_size, type_title_l2_font_leading, comp_title_l2_before, comp_title_l2_after, comp_title_l2_bullet_radius, comp_title_l2_gap, comp_title_l2_needspace, idml_title_l2_font_size, idml_title_l2_font_style, idml_operation_row_label_font_size, idml_operation_row_label_font_leading, lang_en_idml_operation_row_label_font_size, lang_en_idml_operation_row_label_font_leading, lang_fr_idml_operation_row_label_font_size, lang_fr_idml_operation_row_label_font_leading, lang_es_idml_operation_row_label_font_size, lang_es_idml_operation_row_label_font_leading, idml_operation_first_h2_space_before, lang_en_idml_operation_first_h2_space_before, lang_fr_idml_operation_first_h2_space_before, lang_es_idml_operation_first_h2_space_before, idml_operation_inter_section_space_after, lang_en_idml_operation_inter_section_space_after, lang_fr_idml_operation_inter_section_space_after, lang_es_idml_operation_inter_section_space_after]
     latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelTwo]}
-    indesign: {renderer: heading, paragraph_style: Heading2}
+    indesign: {renderer: heading, paragraph_styles: [Heading2, HB Operation Row Label]}
     status: partial
     debt: [IDML does not yet enforce the shared keep-with-next policy.]
 
@@ -141,7 +141,7 @@ styles:
   HB-TABLE-SYMBOL-SIGNAL:
     role: Signal-word table
     semantic_source_kinds: [table_symbol_signal]
-    token_refs: [comp_symbol_signal_col_width, comp_symbol_table_tabcolsep, comp_symbol_signal_width, comp_symbol_signal_height, type_symbol_signal_font_size, type_symbol_body_font_size]
+    token_refs: [comp_symbol_signal_col_width, comp_symbol_table_tabcolsep, comp_symbol_signal_width, comp_symbol_signal_height, type_symbol_signal_font_size, type_symbol_body_font_size, idml_symbol_header_font_size, idml_symbol_header_font_leading, idml_symbols_signal_header_height, idml_symbols_signal_row_height, idml_symbols_page_top, idml_symbols_first_tail_height, idml_symbols_first_tail_gap, idml_symbols_second_tail_height, idml_symbols_second_tail_gap, idml_symbols_maintenance_body_height, idml_symbols_maintenance_body_gap, idml_symbols_signal_gap_after, lang_en_idml_symbols_page_top, lang_en_idml_symbols_first_tail_height, lang_en_idml_symbols_first_tail_gap, lang_en_idml_symbols_second_tail_height, lang_en_idml_symbols_second_tail_gap, lang_en_idml_symbols_maintenance_body_height, lang_en_idml_symbols_maintenance_body_gap, lang_en_idml_symbols_signal_gap_after, lang_fr_idml_symbols_page_top, lang_fr_idml_symbols_first_tail_height, lang_fr_idml_symbols_first_tail_gap, lang_fr_idml_symbols_second_tail_height, lang_fr_idml_symbols_second_tail_gap, lang_fr_idml_symbols_maintenance_body_height, lang_fr_idml_symbols_maintenance_body_gap, lang_fr_idml_symbols_signal_gap_after, lang_es_idml_symbols_page_top, lang_es_idml_symbols_first_tail_height, lang_es_idml_symbols_first_tail_gap, lang_es_idml_symbols_second_tail_height, lang_es_idml_symbols_second_tail_gap, lang_es_idml_symbols_maintenance_body_height, lang_es_idml_symbols_maintenance_body_gap, lang_es_idml_symbols_signal_gap_after]
     latex: {owner: components_symbols.tex, entrypoints: [HBSymbolTable]}
     indesign: {renderer: symbol_signal_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
     status: partial
@@ -150,7 +150,7 @@ styles:
   HB-TABLE-SYMBOL-ICON:
     role: Symbol icon tables
     semantic_source_kinds: [table_symbol_icon]
-    token_refs: [comp_symbol_icon_width, comp_symbol_icon_height, comp_symbol_icon_col_width, comp_symbol_column_gap, comp_symbol_table_tabcolsep, type_symbol_header_font_size, type_symbol_body_font_size]
+    token_refs: [comp_symbol_icon_width, comp_symbol_icon_height, comp_symbol_icon_col_width, comp_symbol_column_gap, comp_symbol_table_tabcolsep, type_symbol_header_font_size, type_symbol_body_font_size, idml_symbol_header_font_size, idml_symbol_header_font_leading, idml_symbols_icon_header_height, idml_symbols_icon_row_height, idml_symbols_icon_last_row_height, idml_symbols_icon_long_last_row_height]
     latex: {owner: components_symbols.tex, entrypoints: [HBSymbolTwoColumnTables]}
     indesign: {renderer: symbol_icon_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
     status: partial
@@ -186,7 +186,7 @@ styles:
   HB-TABLE-KEY-COMBINATIONS:
     role: Key combinations table
     semantic_source_kinds: [table_key_combinations]
-    token_refs: [comp_key_table_left_ratio, comp_key_table_middle_ratio, comp_key_table_row_height, comp_key_section_needspace, idml_key_panel_width, idml_key_header_height, idml_key_panel_height, idml_key_panel_left_indent, idml_key_panel_space_before, idml_key_inner_rule, idml_key_outer_rule, idml_key_outer_radius, idml_key_button_size, idml_key_clock_size, idml_key_header_font_leading, idml_key_caption_font_size, idml_key_caption_font_leading, idml_key_plus_font_size, idml_key_plus_font_leading, idml_key_duration_font_size, idml_key_duration_font_leading, idml_key_operation_font_size, idml_key_operation_font_leading, idml_key_function_font_size, idml_key_function_font_leading, type_data_table_header_font_size, lang_fr_idml_key_panel_height, lang_fr_idml_key_panel_left_indent, lang_fr_idml_key_panel_space_before, lang_es_idml_key_panel_height, lang_es_idml_key_panel_left_indent, lang_es_idml_key_panel_space_before]
+    token_refs: [comp_key_table_left_ratio, comp_key_table_middle_ratio, comp_key_table_row_height, comp_key_section_needspace, idml_key_panel_width, idml_key_header_height, idml_key_panel_height, idml_key_panel_left_indent, idml_key_panel_space_before, idml_key_visual_raise, idml_key_inner_rule, idml_key_outer_rule, idml_key_outer_radius, idml_key_button_size, idml_key_clock_size, idml_key_header_font_leading, idml_key_caption_font_size, idml_key_caption_font_leading, idml_key_plus_font_size, idml_key_plus_font_leading, idml_key_duration_font_size, idml_key_duration_font_leading, idml_key_operation_font_size, idml_key_operation_font_leading, idml_key_function_font_size, idml_key_function_font_leading, type_data_table_header_font_size, lang_fr_idml_key_panel_height, lang_fr_idml_key_panel_left_indent, lang_fr_idml_key_panel_space_before, lang_fr_idml_key_visual_raise, lang_es_idml_key_panel_height, lang_es_idml_key_panel_left_indent, lang_es_idml_key_panel_space_before, lang_es_idml_key_visual_raise]
     latex: {owner: components_data_tables.tex, entrypoints: [HBKeyCombinationTable]}
     indesign: {renderer: key_combinations, paragraph_styles: [HB Data Header, HB Data Body], object_style: HB Rounded Table Outer, text_layer: native_movable_frames}
     status: aligned

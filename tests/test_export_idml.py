@@ -649,6 +649,54 @@ class ExportIdmlTests(unittest.TestCase):
             story,
         )
 
+    def test_operation_first_page_rhythm_uses_locale_tokens(self) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({
+            "lang_fr_idml_operation_first_h2_space_before": ("9.8", "pt"),
+            "lang_fr_idml_operation_inter_section_space_after": ("37.6", "pt"),
+        })
+        writer.add_prose_story(
+            "st_operation_first_page",
+            "05_operation_guide_placeholder",
+            [
+                ("h1", "FONCTIONNEMENT"),
+                ("h2", "MARCHE/ARRÊT"),
+                ("body", "First operation explanation."),
+                ("h2", "SORTIE CA MARCHE/ARRÊT"),
+            ],
+            ROOT,
+            language="fr",
+        )
+        story = dict(writer.stories)["st_operation_first_page"]
+        self.assertIn('SpaceBefore="9.8"', story)
+        self.assertIn('SpaceAfter="37.6"', story)
+
+    def test_operation_key_heading_compensates_first_page_depth(self) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({
+            "lang_fr_idml_operation_first_h2_space_before": ("9.8", "pt"),
+            "lang_fr_idml_operation_inter_section_space_after": ("37.6", "pt"),
+        })
+        writer.add_prose_story(
+            "st_operation_key_compensation",
+            "05_operation_guide_placeholder",
+            [
+                ("h1", "FONCTIONNEMENT"),
+                ("h2", "MARCHE/ARRÊT"),
+                ("body", "First operation explanation."),
+                ("h2", "SORTIE CA MARCHE/ARRÊT"),
+                ("h2", "FONCTIONNEMENT DES BOUTONS"),
+                ("table", '[["Boutons", "Utilisation", "Fonction"]]'),
+            ],
+            ROOT,
+            language="fr",
+        )
+        story = dict(writer.stories)["st_operation_key_compensation"]
+        self.assertIn('SpaceBefore="-19"', story)
+        self.assertIn('BaselineShift="36.68"', story)
+
     def test_operation_led_gap_returns_space_consumed_by_localized_copy(self) -> None:
         from tools.idml.oppanel import operation_story_rhythm
 
@@ -1744,6 +1792,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("st_safety_symbols_signals", stories)
         self.assertIn("st_safety_symbols_icons_left", stories)
         self.assertIn("st_safety_symbols_icons_right", stories)
+        self.assertIn('SingleRowHeight="17.3"', stories["st_safety_symbols_signals"])
+        self.assertIn('SingleRowHeight="25.42"', stories["st_safety_symbols_signals"])
+        self.assertIn('SingleRowHeight="15"', stories["st_safety_symbols_icons_left"])
+        self.assertIn('SingleRowHeight="30.7"', stories["st_safety_symbols_icons_left"])
         self.assertIn("MEANING OF SYMBOLS", stories["st_safety_symbols_symbols_title"])
         self.assertIn("USER MAINTENANCE", stories["st_safety_symbols_maintenance_title"])
         self.assertIn("Icon 0", stories["st_safety_symbols_icons_left"])

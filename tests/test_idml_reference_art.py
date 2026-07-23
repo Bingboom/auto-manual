@@ -231,6 +231,10 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         self.assertNotIn("<Table", panel)
         self.assertIn("st_anchor_oppanel_row_0_editable_operation", stories)
         self.assertIn("st_anchor_oppanel_row_1_editable_operation", stories)
+        self.assertIn(
+            'AppliedParagraphStyle="ParagraphStyle/HB Operation Row Label"',
+            stories["st_anchor_oppanel_row_0_editable_operation"],
+        )
 
     def test_energy_saving_panel_copy_is_editable_and_topmost(self) -> None:
         stories = {}
