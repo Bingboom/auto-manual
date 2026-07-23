@@ -73,10 +73,13 @@ class TroubleshootingTableStyle:
     panel_min_height: float = 240.0
     import_safety: float = 4.0
     glyph_width_ratio: float = 0.50
-    left_optical_width: float = 11.36
+    left_optical_width: float = 4.0
     inner_rule: float = 0.25
     outer_rule: float = 0.57
     space_before: float = 9.74
+    table_space_before_by_language: tuple[float, float, float] = (
+        8.74, 6.70, 7.75,
+    )
 
     @classmethod
     def from_context(cls, ctx: RenderContext) -> TroubleshootingTableStyle:
@@ -104,10 +107,10 @@ class TroubleshootingTableStyle:
                 "TroubleshootingTableStyle comp_trouble_left_ratio must be "
                 "less than 1"
             )
-        return cls(
+        style = cls(
             left_ratio=left_ratio,
-            body_size=token("type_data_table_font_size", 5.9),
-            body_leading=token("type_data_table_font_leading", 6.7),
+            body_size=token("type_trouble_body_font_size", 5.5),
+            body_leading=token("type_trouble_body_font_leading", 6.0),
             header_size=token("type_data_table_header_font_size", 6.6),
             header_leading=token("type_data_table_header_font_leading", 7.0),
             code_size=token("type_trouble_code_font_size", 8.0),
@@ -120,7 +123,18 @@ class TroubleshootingTableStyle:
             row_minima=_TROUBLESHOOTING_BASE_ROW_MINIMA,
             steps_pad_tb=token("comp_trouble_steps_pad_tb", 2.83465),
             outer_radius=token("comp_table_outer_arc", 6.8),
+            left_optical_width=token("idml_trouble_left_optical_width", 4.0),
+            table_space_before_by_language=(
+                token("lang_en_idml_trouble_table_space_before", 8.74),
+                token("lang_fr_idml_trouble_table_space_before", 6.70),
+                token("lang_es_idml_trouble_table_space_before", 7.75),
+            ),
         )
+        return style
+
+    def table_space_before(self, language: str) -> float:
+        index = {"en": 0, "fr": 1, "es": 2}.get(language, 0)
+        return self.table_space_before_by_language[index]
 
     def minimum_for_row(self, row_index: int) -> float:
         if row_index < len(self.row_minima):
@@ -143,28 +157,30 @@ _TROUBLESHOOTING_BASE_ROW_MINIMA = (
 )
 _TROUBLESHOOTING_LOCALE_CALIBRATIONS = {
     "en": _TroubleshootingLocaleCalibration(
-        native_row_heights=_TROUBLESHOOTING_BASE_ROW_MINIMA,
-        left_line_baseline=(1,) * 12,
+        native_row_heights=(
+            14.77, 11.97, 11.97, 11.97, 11.43, 12.51,
+            11.97, 62.03, 38.67, 15.15, 19.74, 15.61,
+        ),
+        left_line_baseline=(2,) + (1,) * 11,
         right_line_baseline=(1, 1, 1, 1, 1, 1, 1, 8, 4, 1, 2, 1),
     ),
     "fr": _TroubleshootingLocaleCalibration(
         native_row_heights=(
-            23.01, 11.80, 12.37, 11.79, 11.99, 14.715,
-            23.89, 57.61, 31.96, 17.41, 18.43, 11.97,
+            14.53, 11.97, 11.96, 11.97, 11.97, 11.97,
+            11.97, 72.30, 39.34, 17.22, 16.67, 24.22,
         ),
         left_line_baseline=(2,) + (1,) * 11,
         right_line_baseline=(1, 1, 1, 1, 1, 2, 2, 9, 4, 1, 2, 1),
     ),
     "es": _TroubleshootingLocaleCalibration(
         native_row_heights=(
-            23.01, 11.80, 12.37, 11.79, 11.99, 11.87,
-            23.89, 64.305, 31.96, 17.41, 18.43, 11.97,
+            14.68, 11.97, 11.97, 11.97, 11.97, 11.97,
+            11.96, 71.83, 42.36, 16.89, 22.11, 16.52,
         ),
         left_line_baseline=(2,) + (1,) * 11,
         right_line_baseline=(1, 1, 1, 1, 1, 1, 2, 9, 5, 1, 2, 1),
     ),
 }
-
 
 _AUTO_RESUME_WIDTH = 311.02
 _AUTO_RESUME_LEADING = 5.0
@@ -215,8 +231,8 @@ def _troubleshooting_cell_geometry(
     """Return the shared top/bottom/left/right/vertical cell contract."""
     is_steps = step_count > 0
     if row_index == 0:
-        top = 6.4 if column_index == 0 else 3.0
-        bottom = 4.0 if column_index == 0 else 2.0
+        top = 0.8 if column_index == 0 else 1.5
+        bottom = 0.5 if column_index == 0 else 1.5
         valign = "CenterAlign"
     elif column_index == 0 and is_steps:
         top = 12.7 if step_count >= 5 else 7.6
@@ -430,11 +446,14 @@ def _troubleshooting_table(
     inner hairlines all have their own shared layout tokens.
     """
     body_w = ctx.text_measure - (1.13 if ctx.add_story is not None else 0.0)
-    # TeX's m-column width is followed by the inter-column tab padding;
-    # the visible divider therefore sits 2.64 pt to the right of the bare
-    # ratio.  Carry that optical width into the IDML column itself.
+    # The reference divider is four points to the right of the bare ratio.
+    # Keep that optical allowance distinct from cell padding so the visible
+    # code column stays aligned in every language.
     left_w = body_w * style.left_ratio + style.left_optical_width
     cols = [left_w, body_w - left_w]
+    header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
+    language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
+    calibration = _TROUBLESHOOTING_LOCALE_CALIBRATIONS[language]
 
     cells: list[str] = []
     for ri, row in enumerate(raw_rows):
@@ -455,6 +474,12 @@ def _troubleshooting_table(
         ):
             content = psr(paragraph_style, text, terminal=True)
             if ri == 0:
+                content = content.replace(
+                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                    'FontStyle="Bold"',
+                    1,
+                )
                 baseline = 1.31 if ci == 0 else 0.57
                 content = content.replace(
                     'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
@@ -474,6 +499,12 @@ def _troubleshooting_table(
                     "<ParagraphStyleRange ",
                     '<ParagraphStyleRange RightIndent="8.51" ',
                     1,
+                )
+            else:
+                content = with_character_metrics(
+                    content,
+                    point_size=style.body_size,
+                    leading=style.body_leading,
                 )
             top, bottom, left_inset, right_inset, valign = (
                 _troubleshooting_cell_geometry(
@@ -499,7 +530,7 @@ def _troubleshooting_table(
     rows = "\n".join(
         f'    <Row Self="{tid}r{ri}" Name="{ri}" '
         f'SingleRowHeight="{style.header_single_height if ri == 0 else style.body_single_height:g}" '
-        f'MinimumHeight="{style.minimum_for_row(ri):g}" '
+        f'MinimumHeight="{calibration.native_row_heights[ri] if ri < len(calibration.native_row_heights) else style.minimum_for_row(ri):g}" '
         'AutoGrow="true"/>'
         for ri in range(len(raw_rows))
     )
@@ -832,12 +863,15 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             raise RuntimeError("troubleshooting style was not resolved")
         # LaTeX's HBDataTableFrame has a dedicated before gap.  Keep it on
         # the host paragraph so page-flow and table geometry remain separate.
+        header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
+        language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
+        table_space_before = troubleshooting_style.table_space_before(language)
         xml = xml.replace(
             "<ParagraphStyleRange ",
-            f'<ParagraphStyleRange SpaceBefore="{troubleshooting_style.space_before:g}" ',
+            f'<ParagraphStyleRange SpaceBefore="{table_space_before:g}" ',
             1,
         )
-        troubleshooting_estimate = framed_h + troubleshooting_style.space_before
+        troubleshooting_estimate = framed_h + table_space_before
     if is_auto_resume:
         return xml, framed_h + auto_space_before + data_table_after
     if is_key_combinations:

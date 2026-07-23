@@ -938,6 +938,27 @@ class ExportIdmlTests(unittest.TestCase):
 
         self.assertEqual(aligned[-2], ("layout", "table_next_page"))
 
+    def test_approved_troubleshooting_heading_uses_semantic_locale_marker(self) -> None:
+        from tools.idml.prose_flow import align_troubleshooting_heading
+
+        rows = [
+            ["Code d'erreur", "Mesures correctives"],
+            ["FE", "Contacter le service à la clientèle de Jackery."],
+        ]
+        blocks = [
+            ("h1", "DÉPANNAGE"),
+            ("body", "Localized introduction"),
+            ("table", json.dumps(rows, ensure_ascii=False)),
+        ]
+
+        aligned = align_troubleshooting_heading(blocks, "fr")
+
+        self.assertEqual(
+            ("layout", "trouble_h1_before:fr"),
+            aligned[0],
+        )
+        self.assertEqual(blocks, aligned[1:])
+
     def test_four_page_operation_flow_keeps_final_h2_on_last_page(self) -> None:
         from tools.idml.prose_flow import align_operation_tail
 

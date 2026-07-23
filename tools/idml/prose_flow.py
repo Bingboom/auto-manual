@@ -118,6 +118,17 @@ class ProseFlowBuffer:
             )
             for stem, blocks, columns in items
         ]
+        items = [
+            (
+                stem,
+                align_troubleshooting_heading(
+                    blocks,
+                    _planned_page_language(page_plan, stem),
+                ),
+                columns,
+            )
+            for stem, blocks, columns in items
+        ]
         for index in range(len(items)):
             stem, blocks, columns = items[index]
             rule = entries.get(stem, {}).get("flow_split")
@@ -266,6 +277,70 @@ def align_trouble_table(blocks: list[Block], page_plan: dict | None,
     if table_index is not None:
         aligned.insert(table_index, ("layout", "table_next_page"))
     return aligned
+
+
+def align_troubleshooting_heading(
+    blocks: list[Block],
+    language: str | None,
+) -> list[Block]:
+    """Apply the approved locale rhythm before a troubleshooting section.
+
+    The storage copy immediately before the shared table has different depth
+    in EN, FR, and ES.  A semantic layout marker keeps that reviewed spacing
+    out of translated headings and lets the story renderer consume the same
+    component token for all three languages.
+    """
+    if language not in {"en", "fr", "es"}:
+        return blocks
+    header = ""
+    for kind, payload in blocks:
+        if kind != "table":
+            continue
+        try:
+            rows = json.loads(payload) if isinstance(payload, str) else payload
+        except (TypeError, json.JSONDecodeError):
+            continue
+        if isinstance(rows, list) and rows and rows[0]:
+            header = str(rows[0][0]).strip().casefold()
+            break
+    trouble_headers = {
+        "error code", "code d'erreur", "code d’erreur",
+        "código de fallo", "codigo de fallo",
+        "código de error", "codigo de error",
+    }
+    if header not in trouble_headers:
+        return blocks
+    aligned = list(blocks)
+    heading_index = next((
+        index for index, (kind, _payload) in enumerate(aligned)
+        if kind == "h1"
+    ), None)
+    if heading_index is not None:
+        aligned.insert(
+            heading_index,
+            ("layout", f"trouble_h1_before:{language}"),
+        )
+    return aligned
+
+
+def apply_troubleshooting_h1_rhythm(
+    xml: str,
+    params: dict[str, tuple[str, str]],
+    language: str,
+) -> str:
+    """Apply the locale token carried by a semantic troubleshooting marker."""
+    from .params import param_pt
+
+    before = param_pt(
+        params,
+        f"lang_{language}_idml_trouble_heading_space_before",
+        0.0,
+    )
+    return xml.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange SpaceBefore="{before:g}" ',
+        1,
+    )
 
 
 def align_operation_tail(blocks: list[Block], page_plan: dict | None,

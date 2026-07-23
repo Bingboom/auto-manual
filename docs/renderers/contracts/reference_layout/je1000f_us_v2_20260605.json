@@ -28,8 +28,8 @@
     "manual_ir_schema_version": "manual-ir/v1",
     "manual_content_sha256": "e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3",
     "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
-    "style_contract_sha256": "908b5c04d1cd56fa412a4654c27e65d624e81f768af86a202ecbc1e9f9b7b187",
-    "layout_params_sha256": "48048a82d0bd3092fccd685e6249e1bdb1ec6127457cc6412db34d2362618b67"
+    "style_contract_sha256": "6682e261925420d2e6fd179be26f330c67053d34727c87dbb7aeb2d97b1af387",
+    "layout_params_sha256": "e353358e8ad3b599eb5abc609d3b2c74344693e17daea8deb8201481882a32e6"
   },
   "approval": {
     "status": "approved",

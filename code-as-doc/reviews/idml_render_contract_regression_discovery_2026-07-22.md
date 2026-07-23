@@ -112,10 +112,13 @@ artifact.
    frames are emitted above artwork. Missing approved roles, variants, assets,
    or style tokens fail the build instead of falling back to guessed copy.
 7. Troubleshooting uses one `TroubleshootingTableStyle` and a deterministic
-   localized row-wrap estimate derived from the existing table type tokens,
-   column measure, insets, and row minima. Its editable panel remains fixed at
-   the computed content-safe height instead of relying on a finalizer to hide
-   overflow; English retains the 240 pt floor while longer translations grow.
+   localized row-wrap estimate derived from measured EN/FR/ES row baselines,
+   a 5.5 pt Regular corrective-measure style, a component-local Bold header,
+   the governed code-column optical width, and locale heading/table rhythm
+   tokens. Its editable panel remains fixed at the computed content-safe
+   height; an invisible host-frame allowance contains the complete anchored
+   group instead of relying on a finalizer to hide overflow. English retains
+   the 240 pt floor while longer translations grow.
 8. Rebind the approved contract to the current frozen review IR, restore its
    exact registry entry, then verify on the cheap-to-expensive ladder and
    finalize the emitted IDML in Adobe InDesign 2026 `21.0.1.6`.

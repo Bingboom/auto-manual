@@ -5,22 +5,13 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from . import components as _components, page_objects as _po, prose_flow as _flow
-from .data_stories import (
-    add_lcd_story,
-    add_spec_story,
-    add_symbols_story,
-    add_trouble_story,
-)
+from .data_stories import add_lcd_story, add_spec_story, add_symbols_story, add_trouble_story
 from .params import IDPKG, param_pt
 from .primitives import _ATTR_ENTITIES
 from .story_rhythm import operation_story_rhythm_for_next_block
 
-# Height-ESTIMATION constants for sizing the linked spread chain. These are
-# deliberately NOT the paragraph-style sizes/leadings from styles.para_styles
-# (the leadings here include inter-paragraph spacing, and estimation is
-# intentionally coarse: an underestimate surfaces as InDesign overset — one
-# drag — while an overestimate leaves trailing blank pages). Do not "unify"
-# them with the style table without regenerating the golden deliberately.
+# Coarse story-chain estimates include paragraph gaps; they are deliberately
+# independent from visible paragraph styles and their golden output.
 _EST_SIZE = {"h1": 9.0, "h2": 8.6, "h3": 7.0, "label": 6.8}
 _EST_LEADING = {"h1": 16.0, "h2": 12.0, "h3": 9.0, "label": 12.0}
 
@@ -37,6 +28,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     last_idx = content_indices[-1] if content_indices else -1
     in_twocol = False
     next_h1_page_top: float | None = None
+    next_trouble_h1_language: str | None = None
     operation_intro_lines: int | None = None
     operation_energy_panel_height: float | None = None
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
@@ -71,6 +63,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 parts.append(_flow.start_next_page(page_break))
             elif text.startswith("next_h1_page_top:"):
                 next_h1_page_top = float(text.split(":", 1)[1])
+            elif text.startswith("trouble_h1_before:"):
+                next_trouble_h1_language = text.split(":", 1)[1]
             continue
         terminal = bi == last_idx
         if kind == "component":
@@ -118,6 +112,11 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             continue
         if kind == "h1":
             h1_xml = _po.h1_pill_paragraph(writer, text, text_measure)
+            if next_trouble_h1_language is not None:
+                h1_xml = _flow.apply_troubleshooting_h1_rhythm(
+                    h1_xml, writer.params, next_trouble_h1_language,
+                )
+                next_trouble_h1_language = None
             if next_h1_page_top is not None:
                 offset = max(0.0, next_h1_page_top - writer.m_t)
                 h1_xml = h1_xml.replace(

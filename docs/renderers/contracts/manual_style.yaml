@@ -195,7 +195,7 @@ styles:
   HB-TABLE-TROUBLESHOOTING:
     role: Troubleshooting table
     semantic_source_kinds: [table_troubleshooting]
-    token_refs: [comp_trouble_left_ratio, comp_trouble_step_indent, comp_trouble_steps_pad_tb, comp_trouble_section_needspace, comp_data_table_header_height, comp_data_table_row_height, comp_table_outer_arc, type_trouble_code_font_size, type_trouble_code_font_leading, type_data_table_font_size, type_data_table_font_leading, type_data_table_header_font_size, type_data_table_header_font_leading]
+    token_refs: [comp_trouble_left_ratio, comp_trouble_step_indent, comp_trouble_steps_pad_tb, comp_trouble_section_needspace, comp_trouble_page_extra_height, lang_en_idml_trouble_heading_space_before, lang_fr_idml_trouble_heading_space_before, lang_es_idml_trouble_heading_space_before, lang_en_idml_trouble_table_space_before, lang_fr_idml_trouble_table_space_before, lang_es_idml_trouble_table_space_before, idml_trouble_left_optical_width, comp_data_table_header_height, comp_data_table_row_height, comp_table_outer_arc, type_trouble_code_font_size, type_trouble_code_font_leading, type_trouble_body_font_size, type_trouble_body_font_leading, type_data_table_header_font_size, type_data_table_header_font_leading]
     latex: {owner: components_data_tables.tex, entrypoints: [HBTroubleshootingTable]}
     indesign: {renderer: components.prose_table.TroubleshootingTableStyle, table_style: 正文表格, object_style: HB Rounded Table Outer, sizing: native_locale_baseline_plus_localized_wrap_growth, auto_sizing: off}
     status: partial

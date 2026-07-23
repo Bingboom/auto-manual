@@ -259,6 +259,25 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
 
         self.assertEqual(18.0, writer.spread_chain_options[0]["bottom_extra"])
 
+    def test_troubleshooting_chain_uses_component_frame_depth_allowance(self) -> None:
+        writer = _RecordingWriter()
+        writer.params["comp_trouble_page_extra_height"] = ("32", "pt")
+        emitter = ReferenceStoryEmitter(
+            writer,
+            _RecordingToc(),
+            ROOT,
+            {"plan_source": "approved-reference"},
+        )
+
+        emitter.emit(
+            "st_flow_storage_troubleshooting",
+            "09_storage_and_maintenance + troubleshooting_en",
+            [("h1", "TROUBLESHOOTING")],
+            page_cursor=16,
+        )
+
+        self.assertEqual(32.0, writer.spread_chain_options[0]["bottom_extra"])
+
     def test_app_chain_uses_reference_top_offset(self) -> None:
         for language in ("en", "en-US", "en_US"):
             with self.subTest(language=language):

@@ -47,6 +47,11 @@ class ReferenceStoryEmitter:
             self.page_plan,
             title,
         )
+        is_storage_troubleshooting = (
+            (self.page_plan or {}).get("plan_source") == "approved-reference"
+            and "storage_and_maintenance" in title
+            and "troubleshooting" in title
+        )
         final_frame_x_offset = (
             operation_final_frame_x_offset(operation_lang)
             if is_operation else 0.0
@@ -102,6 +107,16 @@ class ReferenceStoryEmitter:
                 writer.params,
                 "comp_operation_page_extra_height",
                 18.0,
+            )
+        elif is_storage_troubleshooting:
+            # The governed troubleshooting panel reaches the reference's
+            # lower trim rhythm. Keep its complete editable anchored group in
+            # the story with an invisible frame-depth allowance; never shrink
+            # localized rows or rely on the finalizer to hide overflow.
+            bottom_extra = param_pt(
+                writer.params,
+                "comp_trouble_page_extra_height",
+                32.0,
             )
         elif first_h1 == "WARRANTY":
             bottom_extra = param_pt(

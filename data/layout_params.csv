@@ -187,6 +187,18 @@ comp_trouble_left_ratio,0.11,ratio,Troubleshooting error-code column ratio befor
 comp_trouble_step_indent,3.4,mm,Troubleshooting numbered-step hanging indent
 comp_trouble_steps_pad_tb,1.0,mm,Troubleshooting numbered-step cell top/bottom padding
 comp_trouble_section_needspace,102,mm,Minimum space required for troubleshooting heading and table
+comp_trouble_page_extra_height,32.0,pt,Invisible approved troubleshooting host-frame depth allowance
+idml_trouble_heading_space_before,48.70,pt,Default approved storage-to-troubleshooting heading rhythm
+lang_en_idml_trouble_heading_space_before,48.70,pt,Approved EN storage-to-troubleshooting heading rhythm
+lang_fr_idml_trouble_heading_space_before,16.66,pt,Approved FR storage-to-troubleshooting heading rhythm
+lang_es_idml_trouble_heading_space_before,15.74,pt,Approved ES storage-to-troubleshooting heading rhythm
+idml_trouble_table_space_before,8.74,pt,Default approved troubleshooting heading-to-table rhythm
+lang_en_idml_trouble_table_space_before,8.74,pt,Approved EN troubleshooting heading-to-table rhythm
+lang_fr_idml_trouble_table_space_before,6.70,pt,Approved FR troubleshooting heading-to-table rhythm
+lang_es_idml_trouble_table_space_before,7.75,pt,Approved ES troubleshooting heading-to-table rhythm
+idml_trouble_left_optical_width,4.0,pt,Troubleshooting code-column optical allowance after the shared ratio
+type_trouble_body_font_size,5.5,pt,Troubleshooting corrective-measure font size
+type_trouble_body_font_leading,6.0,pt,Troubleshooting corrective-measure leading
 type_data_table_font_size,5.9,pt,Body data table font size
 type_data_table_font_leading,6.7,pt,Body data table leading
 type_data_table_header_font_size,6.6,pt,Body data table header font size

@@ -468,8 +468,10 @@ class IdmlVisualParityTests(unittest.TestCase):
         render_table_block(rows, ctx, tid="tbl_test_trouble", terminal=True)
 
         table_story = dict(writer.stories)["st_anchor_trouble_tbl_test_trouble"]
-        self.assertIn('MinimumHeight="57.61" AutoGrow="true"', table_story)
-        self.assertIn('MinimumHeight="31.96" AutoGrow="true"', table_story)
+        self.assertIn('MinimumHeight="62.03" AutoGrow="true"', table_story)
+        self.assertIn('MinimumHeight="38.67" AutoGrow="true"', table_story)
+        self.assertIn('PointSize="5.5"', table_story)
+        self.assertIn('FontStyle="Bold"', table_story)
         self.assertIn('TopEdgeStrokeWeight="0.25"', table_story)
         self.assertIn('TopEdgeStrokeColor="Color/HB Brand Dark"', table_story)
 

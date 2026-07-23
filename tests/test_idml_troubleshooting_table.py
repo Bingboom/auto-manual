@@ -149,8 +149,8 @@ class TroubleshootingTableContractTests(unittest.TestCase):
 
     def test_full_french_and_spanish_tables_budget_localized_row_growth(self) -> None:
         cases = (
-            ("fr", FR_ROWS, 250.945, 260.685),
-            ("es", ES_ROWS, 254.795, 264.535),
+            ("fr", FR_ROWS, 260.09, 266.79),
+            ("es", ES_ROWS, 260.2, 267.95),
         )
         for language, rows, panel_height, estimated_height in cases:
             with self.subTest(language=language):
@@ -164,20 +164,24 @@ class TroubleshootingTableContractTests(unittest.TestCase):
                 self.assertIn(f'Anchor="0 -{panel_height:g}"', xml)
                 self.assertAlmostEqual(estimated_height, height, places=2)
 
-    def test_english_table_keeps_the_approved_240_point_floor(self) -> None:
+    def test_english_table_keeps_the_approved_measured_row_contract(self) -> None:
         xml, story, height = self._render(EN_ROWS, suffix="en")
 
         self.assertIn("<Content>FE</Content>", story)
         self.assertIn('Anchor="0 -240"', xml)
-        self.assertAlmostEqual(249.74, height, places=2)
+        self.assertAlmostEqual(248.74, height, places=2)
 
     def test_approved_table_fails_closed_for_every_required_style_token(self) -> None:
         required_tokens = (
             "comp_data_table_header_height",
             "comp_data_table_row_height",
             "comp_trouble_left_ratio",
-            "type_data_table_font_size",
-            "type_data_table_font_leading",
+            "idml_trouble_left_optical_width",
+            "lang_en_idml_trouble_table_space_before",
+            "lang_fr_idml_trouble_table_space_before",
+            "lang_es_idml_trouble_table_space_before",
+            "type_trouble_body_font_size",
+            "type_trouble_body_font_leading",
             "type_data_table_header_font_size",
             "type_data_table_header_font_leading",
             "type_trouble_code_font_size",
@@ -205,7 +209,7 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         cases = (
             ("comp_trouble_left_ratio", "0", "finite and positive"),
             ("comp_trouble_left_ratio", "1", "must be less than 1"),
-            ("type_data_table_font_size", "nan", "finite and positive"),
+            ("type_trouble_body_font_size", "nan", "finite and positive"),
         )
         for token, value, message in cases:
             with self.subTest(token=token, value=value):
