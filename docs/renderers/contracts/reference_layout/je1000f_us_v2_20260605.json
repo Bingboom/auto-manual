@@ -28,8 +28,8 @@
     "manual_ir_schema_version": "manual-ir/v1",
     "manual_content_sha256": "e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3",
     "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
-    "style_contract_sha256": "0eb22ac18e3f04984140799084e07d113c1b1e47b5342221ff608e339f3b48e4",
-    "layout_params_sha256": "d5844d956f147ae30ba0eca475aefdd52b91984df35c580c165b8c03d3a057e0"
+    "style_contract_sha256": "ef9452ab06dc5567063b334f56139e3b9536b83360e51d9a6721aa27d1ae03c8",
+    "layout_params_sha256": "befaabcafa71417b8c1bb4b13b00f5dedc5f1d30cc5800f6545a430c219926f7"
   },
   "approval": {
     "status": "approved",
@@ -89,88 +89,183 @@
           },
           {
             "source_no": "8",
-            "display_no": "8"
+            "display_no": "8",
+            "row_height_pt_by_language": {
+              "en": 23.042,
+              "fr": 17.97,
+              "es": 16.792
+            }
           },
           {
             "source_no": "9",
-            "display_no": "9"
+            "display_no": "9",
+            "row_height_pt_by_language": {
+              "en": 21.347,
+              "fr": 19.228,
+              "es": 19.228
+            }
           },
           {
             "source_no": "10",
-            "display_no": "10"
+            "display_no": "10",
+            "row_height_pt_by_language": {
+              "en": 20.166,
+              "fr": 17.998,
+              "es": 17.998
+            }
           },
           {
             "source_no": "11",
-            "display_no": "11"
+            "display_no": "11",
+            "row_height_pt_by_language": {
+              "en": 17.995,
+              "fr": 18.212,
+              "es": 18.212
+            }
           },
           {
             "source_no": "12",
-            "display_no": "12"
+            "display_no": "12",
+            "row_height_pt_by_language": {
+              "en": 18.232,
+              "fr": 19.208,
+              "es": 19.208
+            }
           },
           {
             "source_no": "13",
-            "display_no": "13"
+            "display_no": "13",
+            "row_height_pt_by_language": {
+              "en": 17.985,
+              "fr": 17.626,
+              "es": 17.626
+            }
           },
           {
             "source_no": "14",
-            "display_no": "14"
+            "display_no": "14",
+            "row_height_pt_by_language": {
+              "en": 17.784,
+              "fr": 17.948,
+              "es": 17.948
+            }
           },
           {
             "source_no": "15",
             "display_no": "15",
-            "typography_role": "battery_saving"
+            "typography_role": "battery_saving",
+            "row_height_pt_by_language": {
+              "en": 48.778,
+              "fr": 60.996,
+              "es": 61.496
+            }
           },
           {
             "source_no": "16",
             "display_no": "16",
-            "typography_role": "charging_limit"
+            "typography_role": "charging_limit",
+            "row_height_pt_by_language": {
+              "en": 22.579,
+              "fr": 23.039,
+              "es": 35.178
+            }
           },
           {
             "source_no": "17",
-            "display_no": "17"
+            "display_no": "17",
+            "row_height_pt_by_language": {
+              "en": 23.728,
+              "fr": 25.128,
+              "es": 25.366
+            }
           },
           {
             "source_no": "19",
             "display_no": "18",
-            "typography_role": "low_battery"
+            "typography_role": "low_battery",
+            "row_height_pt_by_language": {
+              "en": 26.447,
+              "fr": 25.931,
+              "es": 26.712
+            }
           },
           {
             "source_no": "18",
-            "display_no": "19"
+            "display_no": "19",
+            "row_height_pt_by_language": {
+              "en": 19.135,
+              "fr": 20.828,
+              "es": 18.667
+            }
           },
           {
             "source_no": "20",
             "display_no": "20",
-            "typography_role": "timer"
+            "typography_role": "timer",
+            "row_height_pt_by_language": {
+              "en": 28.825,
+              "fr": 40.278,
+              "es": 27.716
+            }
           },
           {
             "source_no": "22",
             "display_no": "21",
-            "typography_role": "energy_saving"
+            "typography_role": "energy_saving",
+            "row_height_pt_by_language": {
+              "en": 33.078,
+              "fr": 37.75,
+              "es": 40.384
+            }
           },
           {
             "source_no": "23",
             "display_no": "22",
             "number_row_span": 2,
-            "typography_role": "temperature"
+            "typography_role": "temperature",
+            "row_height_pt_by_language": {
+              "en": 24.838,
+              "fr": 25.966,
+              "es": 25.575
+            }
           },
           {
             "source_no": "24",
             "display_no": "22",
             "suppress_number": true,
-            "typography_role": "temperature"
+            "typography_role": "temperature",
+            "row_height_pt_by_language": {
+              "en": 25.135,
+              "fr": 26.0,
+              "es": 26.0
+            }
           },
           {
             "source_no": "25",
-            "display_no": "23"
+            "display_no": "23",
+            "row_height_pt_by_language": {
+              "en": 28.347,
+              "fr": 17.789,
+              "es": 17.789
+            }
           },
           {
             "source_no": "26",
-            "display_no": "24"
+            "display_no": "24",
+            "row_height_pt_by_language": {
+              "en": 27.098,
+              "fr": 19.43,
+              "es": 19.43
+            }
           },
           {
             "source_no": "27",
-            "display_no": "25"
+            "display_no": "25",
+            "row_height_pt_by_language": {
+              "en": 23.094,
+              "fr": 16.306,
+              "es": 16.306
+            }
           }
         ]
       },

@@ -220,7 +220,7 @@ def lcd_page_data(
         .get("lcd_icon_table")
     )
     if profile is not None:
-        rows = list(apply_lcd_reference_profile(rows, profile))
+        rows = list(apply_lcd_reference_profile(rows, profile, language=lang))
 
     for index, row in enumerate(rows, start=1):
         display_number = row["no"].strip()

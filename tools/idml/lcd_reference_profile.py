@@ -9,6 +9,7 @@ or hard-coding a model-specific exception in the shared table renderer.
 from __future__ import annotations
 
 from collections.abc import Sequence
+import math
 import re
 from typing import Any
 
@@ -55,12 +56,40 @@ def validate_lcd_reference_profile(profile: Any) -> list[str]:
             issues.append(
                 f"{prefix}.typography_role must be a lowercase token"
             )
+        heights = entry.get("row_height_pt_by_language")
+        if heights is not None:
+            if not isinstance(heights, dict) or not heights:
+                issues.append(
+                    f"{prefix}.row_height_pt_by_language must be a non-empty object"
+                )
+            else:
+                for language, height in heights.items():
+                    height_prefix = (
+                        f"{prefix}.row_height_pt_by_language.{language}"
+                    )
+                    if not isinstance(language, str) or re.fullmatch(
+                        r"[a-z][a-z0-9-]*", language
+                    ) is None:
+                        issues.append(
+                            f"{prefix}.row_height_pt_by_language has an invalid language key"
+                        )
+                    if (
+                        isinstance(height, bool)
+                        or not isinstance(height, (int, float))
+                        or not math.isfinite(float(height))
+                        or float(height) <= 0
+                    ):
+                        issues.append(
+                            f"{height_prefix} must be a positive finite number"
+                        )
     return issues
 
 
 def apply_lcd_reference_profile(
     rows: Sequence[dict[str, str]],
     profile: dict[str, Any],
+    *,
+    language: str | None = None,
 ) -> tuple[dict[str, str], ...]:
     """Apply an exact, fail-closed approved presentation to source rows."""
     issues = validate_lcd_reference_profile(profile)
@@ -99,5 +128,20 @@ def apply_lcd_reference_profile(
         rendered["typography_role"] = str(
             entry.get("typography_role") or "default"
         )
+        heights = entry.get("row_height_pt_by_language")
+        if heights is not None:
+            normalized_language = (
+                (language or "").strip().casefold().replace("_", "-").split("-", 1)[0]
+            )
+            if not normalized_language:
+                raise LcdReferenceProfileError(
+                    f"LCD row {source_no} requires a language for governed height"
+                )
+            if normalized_language not in heights:
+                raise LcdReferenceProfileError(
+                    f"LCD row {source_no} has no governed height for "
+                    f"language {normalized_language}"
+                )
+            rendered["row_height_pt"] = f"{float(heights[normalized_language]):g}"
         result.append(rendered)
     return tuple(result)

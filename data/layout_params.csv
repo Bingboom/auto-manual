@@ -348,8 +348,13 @@ lang_fr_idml_lcd_continuation_vertical_padding,1.4,pt,French IDML LCD continuati
 lang_es_idml_lcd_continuation_vertical_padding,1.45,pt,Spanish IDML LCD continuation cell top and bottom padding
 idml_lcd_first_left_indent,0.5,pt,IDML LCD first-segment optical left offset
 idml_lcd_continuation_left_indent,-2.1,pt,IDML LCD continuation optical left offset
+lang_en_idml_lcd_continuation_left_indent,-2.421,pt,English IDML LCD continuation optical left offset
+lang_fr_idml_lcd_continuation_left_indent,-2.906,pt,French IDML LCD continuation optical left offset
+lang_es_idml_lcd_continuation_left_indent,-4.887,pt,Spanish IDML LCD continuation optical left offset
 idml_lcd_continuation_page_top,27.7,pt,IDML LCD continuation top coordinate
 lang_en_idml_lcd_continuation_page_top,28.7,pt,English IDML LCD continuation top coordinate
+lang_fr_idml_lcd_continuation_page_top,27.662,pt,French IDML LCD continuation top coordinate
+lang_es_idml_lcd_continuation_page_top,27.9,pt,Spanish IDML LCD continuation top coordinate
 idml_lcd_first_panel_height,286,pt,IDML English LCD first-segment import allowance
 lang_fr_idml_lcd_first_panel_height,304,pt,French IDML LCD first-segment import allowance
 lang_es_idml_lcd_first_panel_height,304,pt,Spanish IDML LCD first-segment import allowance

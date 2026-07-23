@@ -71,12 +71,25 @@ class IdmlIRProjectionTests(unittest.TestCase):
                 "editable_components": {
                     "lcd_icon_table": {
                         "row_presentation": [
-                            {"source_no": "22", "display_no": "21"},
+                            {
+                                "source_no": "22",
+                                "display_no": "21",
+                                "row_height_pt_by_language": {
+                                    "en": 33.078,
+                                    "fr": 37.75,
+                                    "es": 40.384,
+                                },
+                            },
                             {
                                 "source_no": "27",
                                 "display_no": "22",
                                 "number_row_span": 2,
                                 "typography_role": "dense",
+                                "row_height_pt_by_language": {
+                                    "en": 23.094,
+                                    "fr": 16.306,
+                                    "es": 16.306,
+                                },
                             },
                         ],
                     },
@@ -110,6 +123,8 @@ class IdmlIRProjectionTests(unittest.TestCase):
         self.assertEqual(["22", "27"], [row["source_no"] for row in lcd.rows])
         self.assertEqual("2", lcd.rows[1]["number_row_span"])
         self.assertEqual("dense", lcd.rows[1]["typography_role"])
+        self.assertEqual("33.078", lcd.rows[0]["row_height_pt"])
+        self.assertEqual("23.094", lcd.rows[1]["row_height_pt"])
 
     def test_projected_pages_preserve_source_order_and_layout_markers(self) -> None:
         pages = ir_projection.project_pages(self.ir, BUNDLE)

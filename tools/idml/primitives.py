@@ -245,8 +245,10 @@ def cell(cid: str, name: str, content: str, *, fill: str | None = None,
 
 def component_table(tid: str, cols: list[float], cells: list[str],
                     n_rows: int = 1, role: str | None = None, *,
-                    outer_stroke: bool = True) -> str:
-    return component_table_xml(tid, cols, cells, n_rows, role=role, outer_stroke=outer_stroke)
+                    outer_stroke: bool = True,
+                    row_heights: list[float] | None = None) -> str:
+    return component_table_xml(tid, cols, cells, n_rows, role=role,
+                               outer_stroke=outer_stroke, row_heights=row_heights)
 
 
 def wrap_table_paragraph(table: str, terminal: bool,

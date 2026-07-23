@@ -40,6 +40,8 @@ tools/idml/
                               approved files missing from the registry fail closed
   reference_layout_rebind.py  complete Manual-IR identity/page-binding refresh with
                               unchanged-composition validation and atomic replacement
+  lcd_reference_profile.py    fail-closed approved LCD row order, display numbering,
+                              typography roles, and locale-selected fixed row geometry
   story_rhythm.py             localized operation H2 spacing derived from the LCD/Key
                               object that immediately follows the heading
   fcc_fallback.py             localized FCC prose -> fcc component fallback when the
@@ -116,6 +118,12 @@ tools/reference_layout_rebind.py
 - **Layout-token identity**: Manual IR hashes the ordered parsed
   `key`/`value`/`unit` rows from `layout_params.csv`; raw EOLs, blank rows, and
   the comment column are non-semantic, while token/order changes remain bound.
+- **LCD approved geometry**: the exact-target profile maps stable LCD source
+  numbers to display order, semantic typography roles, and optional positive
+  `row_height_pt_by_language` values. A governed segment must supply every row;
+  mixed governed/native heights fail before export. The generic component-table
+  primitive emits those rows as editable fixed-height rows, while locale placement
+  continues to resolve through base plus `lang_*` layout tokens.
 - **Key Combinations style ownership**: `KeyCombinationStyle.from_context()`
   resolves the base grid, asset, and type measurements from shared layout
   tokens. Governed French/Spanish height, indent, and leading-gap differences

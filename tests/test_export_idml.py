@@ -2577,6 +2577,49 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('PointSize="5.5" Leading="6"', description_cell)
         self.assertNotIn('PointSize="5.8"', description_cell)
 
+    def test_lcd_governed_continuation_rows_emit_fixed_editable_heights(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        figure = (
+            "tests/fixtures/phase2/_attachments/lcd_icons/"
+            "8_AC_Power_Indicator_EXtsboEbfoAmFvxKJAFcHjhrnVc.png"
+        )
+        rows = [
+            {
+                "no": str(index),
+                "figure": figure if index == 8 else "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+                **({"row_height_pt": "17.25"} if index == 8 else {}),
+            }
+            for index in range(1, 9)
+        ]
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
+        self.assertIn(
+            'SingleRowHeight="17.25" MinimumHeight="17.25" '
+            'AutoGrow="false"',
+            continuation,
+        )
+        self.assertIn('Anchor="0 -9.97"', continuation)
+
+    def test_lcd_governed_segment_rejects_partial_height_profile(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+                **({"row_height_pt": "17.25"} if index == 8 else {}),
+            }
+            for index in range(1, 10)
+        ]
+
+        with self.assertRaisesRegex(ValueError, "mixes governed"):
+            IdmlWriter(params).add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
     def test_lcd_high_circled_numbers_use_a_font_that_covers_them(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         for number in ("㉑", "㉗"):

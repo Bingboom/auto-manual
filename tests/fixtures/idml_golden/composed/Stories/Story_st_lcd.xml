@@ -133,7 +133,7 @@
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </Rectangle>
 </Group><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
-  <ParagraphStyleRange LeftIndent="-2.1" StartParagraph="NextPage" AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Group Self="grp_st_anchor_lcd_table_en_1" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 -0.37 0">
+  <ParagraphStyleRange LeftIndent="-2.421" StartParagraph="NextPage" AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Group Self="grp_st_anchor_lcd_table_en_1" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 -0.37 0">
   <Rectangle Self="bg_group_st_anchor_lcd_table_en_1" Label="hb:self=bg_group_st_anchor_lcd_table_en_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>

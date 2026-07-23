@@ -99,10 +99,17 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                 _lcd.typography_tokens(
                     writer, lang, row, segment_index=segment_index)
             )
+            row_icon_pt = icon_pt
+            governed_height = str(row.get("row_height_pt") or "").strip()
+            if governed_height:
+                row_icon_pt = min(
+                    icon_pt,
+                    max(4.0, float(governed_height) - 2 * vertical_pad - 3.0),
+                )
             fig = (ROOT / row["figure"]) if row["figure"] else None
             image = (
                 writer._image_cell_content(
-                    f"{tid}img{global_ri}", fig, icon_pt, icon_pt)
+                    f"{tid}img{global_ri}", fig, row_icon_pt, row_icon_pt)
                 if fig and fig.exists() else ""
             )
             image_paragraph = _components.figure_paragraph(
@@ -142,8 +149,26 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                         'RowSpan="1"', f'RowSpan="{row_span}"', 1)
                 cells.append(cell_xml)
             global_ri += 1
+        governed_heights = [
+            str(row.get("row_height_pt") or "").strip() for row in segment
+        ]
+        row_heights: list[float] | None = None
+        if any(governed_heights):
+            if not all(governed_heights):
+                raise ValueError(
+                    "LCD segment mixes governed and InDesign-native row heights"
+                )
+            row_heights = [float(height) for height in governed_heights]
+            if any(height <= 0 for height in row_heights):
+                raise ValueError("LCD governed row heights must be positive")
         table = writer._component_table(
-            tid, list(cols), cells, n_rows=len(segment), role="data")
+            tid,
+            list(cols),
+            cells,
+            n_rows=len(segment),
+            role="data",
+            row_heights=row_heights,
+        )
         for column in range(3):
             table = _tb.fill_column_xml(table, column, "Color/HB Bg K05")
         if segment_index == 0:
@@ -194,12 +219,18 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             },
             start_next_page=segment_index > 0,
         )
-        left_indent = param_pt(
-            writer.params,
-            "idml_lcd_first_left_indent"
-            if segment_index == 0 else "idml_lcd_continuation_left_indent",
-            0.0,
-        )
+        if segment_index == 0:
+            left_indent = param_pt(
+                writer.params, "idml_lcd_first_left_indent", 0.0,
+            )
+        else:
+            left_indent = param_pt(
+                writer.params,
+                f"lang_{lang}_idml_lcd_continuation_left_indent",
+                param_pt(
+                    writer.params, "idml_lcd_continuation_left_indent", 0.0,
+                ),
+            )
         if left_indent:
             panel = panel.replace(
                 "<ParagraphStyleRange ",

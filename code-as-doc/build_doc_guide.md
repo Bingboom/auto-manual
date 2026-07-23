@@ -856,8 +856,12 @@ stages it under the frozen basename, and rejects missing or ambiguous matches;
 it does not silently emit a broken InDesign link. Rounded native tables remain
 editable: a rounded background and a square table frame are grouped, and only
 cell text receives the shared one-character inset. The finalizer fits LCD and
-Meaning of Symbols shells to their composed native row heights. The 26-row LCD
-table stays at 7 rows plus 19 rows per language with a 5.6 mm maximum icon box.
+Meaning of Symbols shells to their composed row heights. The 26-row LCD table
+stays at 7 rows plus 19 rows per language with a 5.6 mm maximum icon box. An
+approved LCD presentation profile may select positive fixed row heights by
+language and stable source number; the renderer rejects a partially governed
+segment instead of mixing those values with InDesign-native growth. Targets
+without that optional geometry retain native editable auto-growing rows.
 WARNING, CAUTION, NOTE, and TIP labels remain source-owned and are emitted
 verbatim; a missing label stops export.
 

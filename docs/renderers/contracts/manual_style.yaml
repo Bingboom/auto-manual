@@ -182,8 +182,13 @@ styles:
       - lang_es_idml_lcd_continuation_vertical_padding
       - idml_lcd_first_left_indent
       - idml_lcd_continuation_left_indent
+      - lang_en_idml_lcd_continuation_left_indent
+      - lang_fr_idml_lcd_continuation_left_indent
+      - lang_es_idml_lcd_continuation_left_indent
       - idml_lcd_continuation_page_top
       - lang_en_idml_lcd_continuation_page_top
+      - lang_fr_idml_lcd_continuation_page_top
+      - lang_es_idml_lcd_continuation_page_top
       - idml_lcd_first_panel_height
       - lang_fr_idml_lcd_first_panel_height
       - lang_es_idml_lcd_first_panel_height
@@ -248,8 +253,8 @@ styles:
       - lang_fr_idml_lcd_continuation_temperature_body_font_leading
     latex: {owner: components_lcd.tex, entrypoints: [HBLcdIconTable]}
     indesign: {renderer: lcd_icon_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: partial
-    debt: [Physical span follows the LaTeX page plan; row heights inside that span remain InDesign-native.]
+    status: aligned
+    debt: [The approved reference profile owns model-specific row-height geometry; shared typography and placement remain token-driven.]
 
   HB-TABLE-LCD-MODE:
     role: LCD mode table
