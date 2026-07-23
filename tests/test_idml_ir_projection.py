@@ -65,6 +65,67 @@ class IdmlIRProjectionTests(unittest.TestCase):
         assert lcd is not None
         self.assertEqual(["㉒", "㉗"], [row["no"] for row in lcd.rows])
 
+    def test_lcd_projection_applies_approved_presentation_without_mutating_source(self) -> None:
+        plan = {
+            "idml_contract": {
+                "editable_components": {
+                    "lcd_icon_table": {
+                        "row_presentation": [
+                            {
+                                "source_no": "22",
+                                "display_no": "21",
+                                "row_height_pt_by_language": {
+                                    "en": 33.078,
+                                    "fr": 37.75,
+                                    "es": 40.384,
+                                },
+                            },
+                            {
+                                "source_no": "27",
+                                "display_no": "22",
+                                "number_row_span": 2,
+                                "typography_role": "dense",
+                                "row_height_pt_by_language": {
+                                    "en": 23.094,
+                                    "fr": 16.306,
+                                    "es": 16.306,
+                                },
+                            },
+                        ],
+                    },
+                },
+            },
+        }
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "rst"
+            page_dir = bundle / "page"
+            page_dir.mkdir(parents=True)
+            (bundle / "index.rst").write_text(
+                ".. include:: page/lcd_icons_en.rst\n", encoding="utf-8")
+            (page_dir / "lcd_icons_en.rst").write_text(
+                "LCD DISPLAY\n===========\n\n"
+                ".. raw:: latex\n\n"
+                "   \\begin{HBLcdIconTable}\n"
+                "   \\HBLcdIconRow{27}{}{Remaining Discharge Time}{Last.}\n"
+                "   \\HBLcdIconRow{22}{}{Energy Saving Mode}{First.}\n"
+                "   \\end{HBLcdIconTable}\n",
+                encoding="utf-8",
+            )
+            ir = build_manual_ir(
+                root=ROOT, bundle_root=bundle, model="JE-1000F", region="US",
+                lang="en", source="test", data_root=DATA)
+            lcd = ir_projection.lcd_page_data(
+                ir, "en", root=ROOT, data_root=DATA, reference_plan=plan)
+
+        self.assertIsNotNone(lcd)
+        assert lcd is not None
+        self.assertEqual(["㉑", "㉒"], [row["no"] for row in lcd.rows])
+        self.assertEqual(["22", "27"], [row["source_no"] for row in lcd.rows])
+        self.assertEqual("2", lcd.rows[1]["number_row_span"])
+        self.assertEqual("dense", lcd.rows[1]["typography_role"])
+        self.assertEqual("33.078", lcd.rows[0]["row_height_pt"])
+        self.assertEqual("23.094", lcd.rows[1]["row_height_pt"])
+
     def test_projected_pages_preserve_source_order_and_layout_markers(self) -> None:
         pages = ir_projection.project_pages(self.ir, BUNDLE)
         self.assertEqual(10, len(pages))

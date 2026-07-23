@@ -110,7 +110,7 @@ Meaning:
 - Every prepared bundle freezes `asset_usage_manifest.json`, `asset_registry_snapshot.csv`, and a finalized `bundle_manifest.json`. The usage manifest distinguishes `registry-uri`, explicit `review-override`, and `legacy-path` references; the bundle manifest hashes the final RST include closure, configuration, staged support trees, and the two asset sidecars into `bundle_sha256`. Review seeding restores semantic `asset:` references from rewrite provenance so a review round does not silently downgrade asset identity.
 - Shared templates under `docs/templates/` are bulk-migrated: every `common_assets` image directive and raw-HTML `src` uses `asset:<asset_key>` and is therefore registry status/scope/hash gated at bundle prepare. Path-based references remain compatible (recorded as `legacy-path`) but are reserved for sources that have no registry key yet — new template references should use the registry identity. Release manifests do not yet carry this asset lineage; `bundle_manifest.json` is the current bundle-level provenance surface.
 - Target-specific exports do not replace a shared registry key. They use a unique `asset_key` plus `override_for=<shared asset_key>` and a narrow model/region/language scope. A shared template keeps the stable base URI; the frozen registry resolver selects exactly one matching override or falls back to the shared row, and rejects ambiguous override matches.
-- `build.py idml` prepares only RST when the exact model/region/language target is present in the approved reference-layout registry; its production exporter consumes that hash-bound physical plan directly. Targets without an approved entry retain the historical LaTeX-PDF preparation used for fuzzy page matching.
+- `build.py idml` prepares only RST when the exact model/region/language target is present in the approved reference-layout registry; its production exporter consumes that hash-bound physical plan directly. A matching approved contract on disk without its registry entry is a hard error, not permission to use fuzzy page matching. The historical LaTeX-PDF fallback remains available only when the target has no approved contract.
 - `sync-review`: refresh review files affected by CSV data changes
 - `process-review-start-queue`: Start Review bridge; it consumes `sync.phase2.review_init` rows where `是否进入Review` is checked and `Workflow_action` maps to `Start Review`, resolves the review target from `Document_Key` alone, uses `Build_family` / `Lang` only as optional config-routing hints, groups only the rows whose resolved config enables `build.queue_by_document_key`, syncs the latest phase2 snapshot, always reseeds `docs/_review` from the latest `origin/main` template/data state, force-updates the routed review branch when it already exists, creates or reuses the PR, then writes back the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state to every pending row in that group
 - Start Review eligibility is the conjunction of `Document_Key` being a non-empty `<MODEL>_<REGION>` value, `是否进入Review` being checked, and `Workflow_action` mapping to `Start Review`
@@ -665,6 +665,13 @@ The design and implementation rationale is recorded in
 the module boundary remains documented in
 [`dev/idml_module_map.md`](dev/idml_module_map.md).
 
+Contract selection is fail-closed before identity validation: if an approved
+contract on disk exactly matches the Manual IR target but its registry row is
+absent, production IDML stops and names the orphaned contract. Removing a row
+must never turn an approved target into an ordinary measured-LaTeX target.
+Fallback is valid only when neither the registry nor the contract directory
+contains an approved contract for the exact model, region, and language list.
+
 The approved contract freezes these identities:
 
 | Contract item | Approved value |
@@ -675,9 +682,9 @@ The approved contract freezes these identities:
 | Page contract | 58 pages, `368.787 × 524.692 pt`, tolerance `0.02 pt` |
 | Print contract | PDF/X-4, Output Intent `Japan Color 2001 Coated`, Output Condition `JC200103` |
 | Manual content SHA-256 | `e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3` |
-| Snapshot SHA-256 | `a3e77b847bdf372665b25a15bf441455fc5e4def5c3dd58ba3aa852b61e11203` |
-| Style-contract SHA-256 | `83411e87ec9bbb45085fae5fbd9a590cef3f1acd776e568db807b78cfac57df6` |
-| Layout-params SHA-256 | `4927215c0aca45ce6294dc75ef43628f1d02979add3141f6a3d90bda267685b9` |
+| Snapshot SHA-256 | `7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5` |
+| Style-contract SHA-256 | `32a0167cb7915c0bcdeec1e4a4938b4fc023a65b0257bee8cc21cd546c082712` |
+| Layout-params SHA-256 | `92498016e185dd6949171c4a5c435ac5ac76d53e9b535fe567ab59fe2270c139` |
 
 The 52 plan rows bind every IR source reference, by composition, to this
 physical structure:
@@ -695,6 +702,42 @@ missing plan, any of the bound source/hash identities drifting, incomplete
 52-source coverage, non-monotonic/out-of-bounds composition pages, or a final
 page-count/geometry mismatch stops the build. It must never partially use this
 plan and then silently fall back to the fuzzy PDF mapper.
+
+If source identity changes but the reviewed 58-page composition remains valid,
+refresh it with the dedicated all-or-nothing rebind command. Run the dry-run
+first:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json>
+```
+
+The dry-run builds a complete candidate from the validated Manual IR. It
+requires the semantic content hash, `source_ref` order, page languages, and
+physical composition map to remain unchanged; it refreshes the IR schema,
+snapshot, style-contract and layout-parameter identities plus every page's
+`source_sha256`, and writes nothing. After reviewing the summary, apply the same
+validated candidate atomically and inspect the Git diff:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --write
+```
+
+The tool preserves file mode and uses an atomic replace only after full plan
+validation. It is not a composition editor: a source-order or page-map change
+requires a new layout review and approval. Never hand-edit a subset of hashes
+or remove the registry entry to unblock a build.
+
+`layout_params_sha256` is derived from the ordered parsed `key`, `value`, and
+`unit` rows, not the raw CSV bytes. LF/CRLF changes, blank rows, and changes to
+the comment column therefore do not invalidate an approved plan; changing a
+token value/unit or reordering semantic rows does. This keeps the hash strict
+about renderer behavior without treating formatting-only CSV edits as layout
+drift.
 
 Build from the frozen review and phase2 snapshot:
 
@@ -762,9 +805,13 @@ baked copy is not eligible for this overlay path. LCD SCREEN composes the
 governed LCD illustration and a six-row native grid inside one rounded frame;
 its two state, six action, and six description frames are emitted last and stay
 independently movable. KEY COMBINATION is detected from its language-neutral
-three-column, four-combination source shape. Button and clock assets plus grid
-underlays are linked/drawn first; localized headers, button captions, plus
-signs, durations, operations, and functions are separate top-layer frames.
+three-column, four-combination source shape. `KeyCombinationStyle.from_context()`
+resolves a single base geometry/type token family from `data/layout_params.csv`;
+the governed French and Spanish height/indent/gap differences are locale
+overrides, not renderer forks or per-page literals. Button and clock assets
+plus grid underlays are linked/drawn first; localized headers, button captions,
+plus signs, durations, operations, and functions are separate top-layer frames
+emitted last, so each remains independently editable and movable.
 Approved-reference operation pages additionally apply locale-measured Auto
 Resume, LCD SCREEN, and KEY COMBINATION geometry, localized flow gaps, and a
 per-language translation of the final story frame. Components compensate that
@@ -783,21 +830,23 @@ stems): Download splits Store and QR into linked build-only crops with two copy
 frames; Add Device places the approved pairing-panel export below independent
 2.1/2.2 and POWER/AC/DC/USB frames; Connect Result crops the three screens and
 emits 2.3/2.4/2.5 plus the reference note separately.
-To match the approved JE-1000F/US/en reference without changing the frozen
-source/IR hash, this exact composition normalizes only the visible reference
-labels `POWER Button` to `Main Power Button` and `DC / USB` to `DC/USB`.
-Those normalized strings remain unlocked top-layer text frames; this is a
-target-scoped reference-layout contract, not a general content rewrite.
-`p34_12_app_setup_placeholder` and `p50_12_app_setup_placeholder` retain their
-localized copy and labels but use the same approved page split and component
-geometry. Every graphic, shape, and leader extension is emitted before the
-unlocked text frames.
+The three Product Overview tables are the semantic source for Add Device
+labels. Stable row/column slots resolve `main_power`, `dc_usb`, and `ac` by
+language; the approved plan stores both that exact base snapshot and the
+reviewed App display variant. The promotion step removes an adjacent label
+block only when its three lines exactly match the base set, so unrelated copy
+and Spanish step 2.3 cannot be consumed as overlay labels. Display variants do
+not change the frozen source/IR content hash and are not a general content-edit
+escape hatch. `AppFigureStyle` owns all nine shared overlay/fit tokens, and an
+approved build fails when a required source role, variant, asset, or token is
+missing or invalid. Every graphic, shape, and leader extension is emitted
+before the unlocked text frames.
 
 Source-authored TOC folios and back-cover copy come from the IR; InDesign must
 not recompute or hardcode them. Content, translation, specification, legal,
 table-structure, or asset-identity defects are corrected in the
 Feishu/source-table/template/review/TM or asset-governance layer and then
-rebuilt. The narrow approved App reference-label normalization above changes
+rebuilt. The narrow approved App display-variant binding above changes
 presentation only and does not authorize other renderer-side copy edits. INDD
 is never a second content source.
 
@@ -807,8 +856,17 @@ stages it under the frozen basename, and rejects missing or ambiguous matches;
 it does not silently emit a broken InDesign link. Rounded native tables remain
 editable: a rounded background and a square table frame are grouped, and only
 cell text receives the shared one-character inset. The finalizer fits LCD and
-Meaning of Symbols shells to their composed native row heights. The 26-row LCD
-table stays at 7 rows plus 19 rows per language with a 5.6 mm maximum icon box.
+Meaning of Symbols shells to their composed row heights. The 26-row LCD table
+stays at 7 rows plus 19 rows per language with a 5.6 mm maximum icon box. An
+approved LCD presentation profile may select positive fixed row heights by
+language and stable source number; the renderer rejects a partially governed
+segment instead of mixing those values with InDesign-native growth. Targets
+without that optional geometry retain native editable auto-growing rows.
+On the combined maintenance/symbols page, the safety-tail panels use the
+approved dark warning asset. Signal badges are one-cell native tables with a
+linked white warning symbol and editable localized text; symbol icon size,
+icon-column width, and the gap between the two native tables resolve from the
+IDML symbol tokens in `data/layout_params.csv`.
 WARNING, CAUTION, NOTE, and TIP labels remain source-owned and are emitted
 verbatim; a missing label stops export.
 

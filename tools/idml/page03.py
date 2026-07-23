@@ -17,7 +17,7 @@ from .page_objects import (
     page_rectangle_xml,
     with_rounded_outer,
 )
-from .params import IDPKG
+from .params import IDPKG, param_pt
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -299,15 +299,30 @@ def _symbol_continuation_objects(
 
 
 def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
-                   bundle_root: Path) -> tuple[list[str], list[str]]:
+                   bundle_root: Path, *, lang: str = "en",
+                   overflow_profile: bool = False) -> tuple[list[str], list[str]]:
     if not inbox_spec:
         return [], []
     items = inbox_spec.get("items", [])[:3]
+    language = lang.strip().casefold().replace("_", "-").split("-", 1)[0]
+    profile = "overflow_" if overflow_profile else ""
+    def metric(name: str, fallback: float) -> float:
+        base_key = f"idml_inbox_{profile}{name}"
+        return param_pt(
+            writer.params,
+            f"lang_{language}_{base_key}",
+            param_pt(writer.params, base_key, fallback),
+        )
+
     card_w = 99.5
-    card_h = 172.5
-    card_y = 273.0
+    card_h = metric("card_height", 172.5)
+    card_y = metric("card_y", 273.0)
     card_xs = (BODY_X, 132.5, 238.0)
-    image_ws = (72.0, 60.0, 58.0)
+    image_ws = (
+        metric("image_1_width", 72.0),
+        metric("image_2_width", 60.0),
+        metric("image_3_width", 58.0),
+    )
     story_ids: list[str] = []
     frames: list[str] = []
     for idx, item in enumerate(items):
@@ -357,14 +372,15 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             sid,
             f"card_{idx + 1}",
             card_sid,
-            (x + 8.0, card_y + 36.0, card_w - 16.0, 128.0),
+            (x + 8.0, card_y + 36.0, card_w - 16.0, card_h - 44.5),
             {"inset": (0, 0, 0, 0), "valign": "CenterAlign"},
         ))
     return story_ids, frames
 
 
 def _tip_objects(writer, sid: str,
-                 tip_spec: dict | None) -> tuple[list[str], list[str]]:
+                 tip_spec: dict | None, *, lang: str = "en",
+                 overflow_profile: bool = False) -> tuple[list[str], list[str]]:
     if not tip_spec:
         return [], []
     label = source_notice_label(tip_spec)
@@ -377,7 +393,15 @@ def _tip_objects(writer, sid: str,
         texts,
         variant=str(tip_spec.get("variant", "")),
     )
-    tip_rect = (BODY_X, 458.0, BODY_W, layout.panel_height)
+    language = lang.strip().casefold().replace("_", "-").split("-", 1)[0]
+    profile = "overflow_" if overflow_profile else ""
+    base_key = f"idml_inbox_{profile}tip_y"
+    tip_y = param_pt(
+        writer.params,
+        f"lang_{language}_{base_key}",
+        param_pt(writer.params, base_key, 458.0),
+    )
+    tip_rect = (BODY_X, tip_y, BODY_W, layout.panel_height)
     plate_rect = (
         BODY_X + layout.plate_left,
         tip_rect[1] + layout.plate_left,
@@ -492,8 +516,29 @@ def add_fcc_inbox_page(
         panel_h=fcc_h,
         lang=lang,
     )
-    _, card_frames = _inbox_objects(writer, sid, inbox_spec, bundle_root)
-    _, tip_frames = _tip_objects(writer, sid, tip_spec)
+    _, card_frames = _inbox_objects(
+        writer,
+        sid,
+        inbox_spec,
+        bundle_root,
+        lang=lang,
+        overflow_profile=has_symbol_overflow,
+    )
+    _, tip_frames = _tip_objects(
+        writer,
+        sid,
+        tip_spec,
+        lang=lang,
+        overflow_profile=has_symbol_overflow,
+    )
+    title_y = 245.0
+    if has_symbol_overflow:
+        language = lang.strip().casefold().replace("_", "-").split("-", 1)[0]
+        title_y = param_pt(
+            writer.params,
+            f"lang_{language}_idml_fcc_inbox_overflow_title_y",
+            param_pt(writer.params, "idml_fcc_inbox_overflow_title_y", title_y),
+        )
 
     frames = [
         *symbol_frames,
@@ -503,9 +548,14 @@ def add_fcc_inbox_page(
             sid,
             "title",
             title_sid,
-            (BODY_X, 245.0, BODY_W, H1_BAR_H),
+            (BODY_X, title_y, BODY_W, H1_BAR_H),
             {**heading_bar_opts(1, (1.5, 5, 1, 6)),
-             "text_rect": (BODY_X + 6.4, 243.04, BODY_W - 12.8, H1_BAR_H)},
+             "text_rect": (
+                 BODY_X + 6.4,
+                 title_y - 1.96,
+                 BODY_W - 12.8,
+                 H1_BAR_H,
+             )},
         ),
         *card_frames,
         *tip_frames,

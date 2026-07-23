@@ -20,8 +20,8 @@
     <TextFramePreference TextColumnCount="1" VerticalJustification="CenterAlign"><Properties><InsetSpacing type="list"><ListItem type="unit">1.5</ListItem><ListItem type="unit">1</ListItem><ListItem type="unit">1</ListItem><ListItem type="unit">1</ListItem></InsetSpacing></Properties></TextFramePreference>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </TextFrame><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure" Justification="CenterAlign" SpaceBefore="5.72" SpaceAfter="3.37"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="lcd_hero" Label="hb:self=lcd_hero" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" StrokeColor="Swatch/None" StrokeWeight="0"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -159" LeftDirection="0 -159" RightDirection="0 -159"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="269 0" LeftDirection="269 0" RightDirection="269 0"/><PathPointType Anchor="269 -159" LeftDirection="269 -159" RightDirection="269 -159"/></PathPointArray></GeometryPathType></PathGeometry></Properties><AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/><Image Self="lcd_hero_img" ItemTransform="1 0 0 1 0 0"><Link Self="lcd_hero_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/lcd/lcd_map.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Group Self="grp_st_anchor_lcd_table_en_0" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 -0.37 0">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure" Justification="CenterAlign" SpaceBefore="3.82" SpaceAfter="3.37"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="lcd_hero" Label="hb:self=lcd_hero" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" StrokeColor="Swatch/None" StrokeWeight="0"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -159" LeftDirection="0 -159" RightDirection="0 -159"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="269 0" LeftDirection="269 0" RightDirection="269 0"/><PathPointType Anchor="269 -159" LeftDirection="269 -159" RightDirection="269 -159"/></PathPointArray></GeometryPathType></PathGeometry></Properties><AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/><Image Self="lcd_hero_img" ItemTransform="1 0 0 1 0 0"><Link Self="lcd_hero_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/lcd/lcd_map.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange LeftIndent="0.5" AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Group Self="grp_st_anchor_lcd_table_en_0" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 -0.37 0">
   <Rectangle Self="bg_group_st_anchor_lcd_table_en_0" Label="hb:self=bg_group_st_anchor_lcd_table_en_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
@@ -30,10 +30,10 @@
             <PathPointType Anchor="-0.37 -279.197" LeftDirection="-0.37 -282.954" RightDirection="-0.37 -279.197"/>
             <PathPointType Anchor="-0.37 -6.80315" LeftDirection="-0.37 -6.80315" RightDirection="-0.37 -3.04587"/>
             <PathPointType Anchor="6.43315 0" LeftDirection="2.67587 0" RightDirection="6.43315 0"/>
-            <PathPointType Anchor="304.921 0" LeftDirection="304.921 0" RightDirection="308.679 0"/>
-            <PathPointType Anchor="311.724 -6.80315" LeftDirection="311.724 -3.04587" RightDirection="311.724 -6.80315"/>
-            <PathPointType Anchor="311.724 -279.197" LeftDirection="311.724 -279.197" RightDirection="311.724 -282.954"/>
-            <PathPointType Anchor="304.921 -286" LeftDirection="308.679 -286" RightDirection="304.921 -286"/>
+            <PathPointType Anchor="305.321 0" LeftDirection="305.321 0" RightDirection="309.079 0"/>
+            <PathPointType Anchor="312.124 -6.80315" LeftDirection="312.124 -3.04587" RightDirection="312.124 -6.80315"/>
+            <PathPointType Anchor="312.124 -279.197" LeftDirection="312.124 -279.197" RightDirection="312.124 -282.954"/>
+            <PathPointType Anchor="305.321 -286" LeftDirection="309.079 -286" RightDirection="305.321 -286"/>
             <PathPointType Anchor="6.43315 -286" LeftDirection="6.43315 -286" RightDirection="2.67587 -286"/>
           </PathPointArray>
         </GeometryPathType>
@@ -48,8 +48,8 @@
           <PathPointArray>
             <PathPointType Anchor="0 -286" LeftDirection="0 -286" RightDirection="0 -286"/>
             <PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/>
-            <PathPointType Anchor="312.094 0" LeftDirection="312.094 0" RightDirection="312.094 0"/>
-            <PathPointType Anchor="312.094 -286" LeftDirection="312.094 -286" RightDirection="312.094 -286"/>
+            <PathPointType Anchor="312.494 0" LeftDirection="312.494 0" RightDirection="312.494 0"/>
+            <PathPointType Anchor="312.494 -286" LeftDirection="312.494 -286" RightDirection="312.494 -286"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -76,9 +76,9 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="311.724 -286" LeftDirection="311.724 -286" RightDirection="311.724 -286"/>
-            <PathPointType Anchor="311.724 -279.197" LeftDirection="311.724 -279.197" RightDirection="311.724 -282.954"/>
-            <PathPointType Anchor="304.921 -286" LeftDirection="308.679 -286" RightDirection="304.921 -286"/>
+            <PathPointType Anchor="312.124 -286" LeftDirection="312.124 -286" RightDirection="312.124 -286"/>
+            <PathPointType Anchor="312.124 -279.197" LeftDirection="312.124 -279.197" RightDirection="312.124 -282.954"/>
+            <PathPointType Anchor="305.321 -286" LeftDirection="309.079 -286" RightDirection="305.321 -286"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -104,9 +104,9 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="311.724 0" LeftDirection="311.724 0" RightDirection="311.724 0"/>
-            <PathPointType Anchor="304.921 0" LeftDirection="304.921 0" RightDirection="308.679 0"/>
-            <PathPointType Anchor="311.724 -6.80315" LeftDirection="311.724 -3.04587" RightDirection="311.724 -6.80315"/>
+            <PathPointType Anchor="312.124 0" LeftDirection="312.124 0" RightDirection="312.124 0"/>
+            <PathPointType Anchor="305.321 0" LeftDirection="305.321 0" RightDirection="309.079 0"/>
+            <PathPointType Anchor="312.124 -6.80315" LeftDirection="312.124 -3.04587" RightDirection="312.124 -6.80315"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -121,10 +121,10 @@
             <PathPointType Anchor="-0.37 -279.197" LeftDirection="-0.37 -282.954" RightDirection="-0.37 -279.197"/>
             <PathPointType Anchor="-0.37 -6.80315" LeftDirection="-0.37 -6.80315" RightDirection="-0.37 -3.04587"/>
             <PathPointType Anchor="6.43315 0" LeftDirection="2.67587 0" RightDirection="6.43315 0"/>
-            <PathPointType Anchor="304.921 0" LeftDirection="304.921 0" RightDirection="308.679 0"/>
-            <PathPointType Anchor="311.724 -6.80315" LeftDirection="311.724 -3.04587" RightDirection="311.724 -6.80315"/>
-            <PathPointType Anchor="311.724 -279.197" LeftDirection="311.724 -279.197" RightDirection="311.724 -282.954"/>
-            <PathPointType Anchor="304.921 -286" LeftDirection="308.679 -286" RightDirection="304.921 -286"/>
+            <PathPointType Anchor="305.321 0" LeftDirection="305.321 0" RightDirection="309.079 0"/>
+            <PathPointType Anchor="312.124 -6.80315" LeftDirection="312.124 -3.04587" RightDirection="312.124 -6.80315"/>
+            <PathPointType Anchor="312.124 -279.197" LeftDirection="312.124 -279.197" RightDirection="312.124 -282.954"/>
+            <PathPointType Anchor="305.321 -286" LeftDirection="309.079 -286" RightDirection="305.321 -286"/>
             <PathPointType Anchor="6.43315 -286" LeftDirection="6.43315 -286" RightDirection="2.67587 -286"/>
           </PathPointArray>
         </GeometryPathType>
@@ -133,20 +133,20 @@
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </Rectangle>
 </Group><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
-  <ParagraphStyleRange StartParagraph="NextPage" AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Group Self="grp_st_anchor_lcd_table_en_1" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 -0.37 0">
+  <ParagraphStyleRange LeftIndent="-2.421" StartParagraph="NextPage" AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Group Self="grp_st_anchor_lcd_table_en_1" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 -0.37 0">
   <Rectangle Self="bg_group_st_anchor_lcd_table_en_1" Label="hb:self=bg_group_st_anchor_lcd_table_en_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-0.37 -458.197" LeftDirection="-0.37 -461.954" RightDirection="-0.37 -458.197"/>
+            <PathPointType Anchor="-0.37 -473.197" LeftDirection="-0.37 -476.954" RightDirection="-0.37 -473.197"/>
             <PathPointType Anchor="-0.37 -6.80315" LeftDirection="-0.37 -6.80315" RightDirection="-0.37 -3.04587"/>
             <PathPointType Anchor="6.43315 0" LeftDirection="2.67587 0" RightDirection="6.43315 0"/>
-            <PathPointType Anchor="304.921 0" LeftDirection="304.921 0" RightDirection="308.679 0"/>
-            <PathPointType Anchor="311.724 -6.80315" LeftDirection="311.724 -3.04587" RightDirection="311.724 -6.80315"/>
-            <PathPointType Anchor="311.724 -458.197" LeftDirection="311.724 -458.197" RightDirection="311.724 -461.954"/>
-            <PathPointType Anchor="304.921 -465" LeftDirection="308.679 -465" RightDirection="304.921 -465"/>
-            <PathPointType Anchor="6.43315 -465" LeftDirection="6.43315 -465" RightDirection="2.67587 -465"/>
+            <PathPointType Anchor="305.321 0" LeftDirection="305.321 0" RightDirection="309.079 0"/>
+            <PathPointType Anchor="312.124 -6.80315" LeftDirection="312.124 -3.04587" RightDirection="312.124 -6.80315"/>
+            <PathPointType Anchor="312.124 -473.197" LeftDirection="312.124 -473.197" RightDirection="312.124 -476.954"/>
+            <PathPointType Anchor="305.321 -480" LeftDirection="309.079 -480" RightDirection="305.321 -480"/>
+            <PathPointType Anchor="6.43315 -480" LeftDirection="6.43315 -480" RightDirection="2.67587 -480"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -158,10 +158,10 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="0 -465" LeftDirection="0 -465" RightDirection="0 -465"/>
+            <PathPointType Anchor="0 -480" LeftDirection="0 -480" RightDirection="0 -480"/>
             <PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/>
-            <PathPointType Anchor="312.094 0" LeftDirection="312.094 0" RightDirection="312.094 0"/>
-            <PathPointType Anchor="312.094 -465" LeftDirection="312.094 -465" RightDirection="312.094 -465"/>
+            <PathPointType Anchor="312.494 0" LeftDirection="312.494 0" RightDirection="312.494 0"/>
+            <PathPointType Anchor="312.494 -480" LeftDirection="312.494 -480" RightDirection="312.494 -480"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -174,9 +174,9 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-0.37 -465" LeftDirection="-0.37 -465" RightDirection="-0.37 -465"/>
-            <PathPointType Anchor="6.43315 -465" LeftDirection="6.43315 -465" RightDirection="2.67587 -465"/>
-            <PathPointType Anchor="-0.37 -458.197" LeftDirection="-0.37 -461.954" RightDirection="-0.37 -458.197"/>
+            <PathPointType Anchor="-0.37 -480" LeftDirection="-0.37 -480" RightDirection="-0.37 -480"/>
+            <PathPointType Anchor="6.43315 -480" LeftDirection="6.43315 -480" RightDirection="2.67587 -480"/>
+            <PathPointType Anchor="-0.37 -473.197" LeftDirection="-0.37 -476.954" RightDirection="-0.37 -473.197"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -188,9 +188,9 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="311.724 -465" LeftDirection="311.724 -465" RightDirection="311.724 -465"/>
-            <PathPointType Anchor="311.724 -458.197" LeftDirection="311.724 -458.197" RightDirection="311.724 -461.954"/>
-            <PathPointType Anchor="304.921 -465" LeftDirection="308.679 -465" RightDirection="304.921 -465"/>
+            <PathPointType Anchor="312.124 -480" LeftDirection="312.124 -480" RightDirection="312.124 -480"/>
+            <PathPointType Anchor="312.124 -473.197" LeftDirection="312.124 -473.197" RightDirection="312.124 -476.954"/>
+            <PathPointType Anchor="305.321 -480" LeftDirection="309.079 -480" RightDirection="305.321 -480"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -216,9 +216,9 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="311.724 0" LeftDirection="311.724 0" RightDirection="311.724 0"/>
-            <PathPointType Anchor="304.921 0" LeftDirection="304.921 0" RightDirection="308.679 0"/>
-            <PathPointType Anchor="311.724 -6.80315" LeftDirection="311.724 -3.04587" RightDirection="311.724 -6.80315"/>
+            <PathPointType Anchor="312.124 0" LeftDirection="312.124 0" RightDirection="312.124 0"/>
+            <PathPointType Anchor="305.321 0" LeftDirection="305.321 0" RightDirection="309.079 0"/>
+            <PathPointType Anchor="312.124 -6.80315" LeftDirection="312.124 -3.04587" RightDirection="312.124 -6.80315"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -230,14 +230,14 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-0.37 -458.197" LeftDirection="-0.37 -461.954" RightDirection="-0.37 -458.197"/>
+            <PathPointType Anchor="-0.37 -473.197" LeftDirection="-0.37 -476.954" RightDirection="-0.37 -473.197"/>
             <PathPointType Anchor="-0.37 -6.80315" LeftDirection="-0.37 -6.80315" RightDirection="-0.37 -3.04587"/>
             <PathPointType Anchor="6.43315 0" LeftDirection="2.67587 0" RightDirection="6.43315 0"/>
-            <PathPointType Anchor="304.921 0" LeftDirection="304.921 0" RightDirection="308.679 0"/>
-            <PathPointType Anchor="311.724 -6.80315" LeftDirection="311.724 -3.04587" RightDirection="311.724 -6.80315"/>
-            <PathPointType Anchor="311.724 -458.197" LeftDirection="311.724 -458.197" RightDirection="311.724 -461.954"/>
-            <PathPointType Anchor="304.921 -465" LeftDirection="308.679 -465" RightDirection="304.921 -465"/>
-            <PathPointType Anchor="6.43315 -465" LeftDirection="6.43315 -465" RightDirection="2.67587 -465"/>
+            <PathPointType Anchor="305.321 0" LeftDirection="305.321 0" RightDirection="309.079 0"/>
+            <PathPointType Anchor="312.124 -6.80315" LeftDirection="312.124 -3.04587" RightDirection="312.124 -6.80315"/>
+            <PathPointType Anchor="312.124 -473.197" LeftDirection="312.124 -473.197" RightDirection="312.124 -476.954"/>
+            <PathPointType Anchor="305.321 -480" LeftDirection="309.079 -480" RightDirection="305.321 -480"/>
+            <PathPointType Anchor="6.43315 -480" LeftDirection="6.43315 -480" RightDirection="2.67587 -480"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>

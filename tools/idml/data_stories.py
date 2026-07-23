@@ -24,11 +24,10 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                   lang: str = "en", title: str = "LCD DISPLAY") -> str:
     """LCD icon table: circled-no / icon image / name / description."""
     sid = "st_lcd" if lang == "en" else f"st_lcd_{lang}"
-    body_w = writer.page_w - writer.m_l - writer.m_r
-    cols, icon_pt, pad = _lcd.layout_tokens(writer, body_w)
-    if lang == "en":
-        icon_pt = min(icon_pt, 23.0)
-        cols = (cols[0] + 7.04, cols[1], cols[2], cols[3] - 7.04)
+    body_w = (
+        writer.page_w - writer.m_l - writer.m_r
+        + param_pt(writer.params, "idml_lcd_table_width_adjust", 0.0)
+    )
     is_english = lang.strip().casefold().replace("_", "-").startswith("en")
     first_limit = int(float(writer.params.get(
         "comp_lcd_first_segment_rows" if is_english
@@ -51,15 +50,44 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
     table_panels: list[str] = []
     global_ri = 0
     for segment_index, segment in enumerate(segments):
+        cols, icon_pt, pad = _lcd.layout_tokens(
+            writer, body_w, segment_index=segment_index)
+        if lang == "en":
+            icon_pt = min(icon_pt, 23.0)
         if segment_index > 0:
             vertical_pad = param_pt(
-                writer.params, "comp_lcd_continuation_vertical_padding", 1.2)
+                writer.params,
+                f"lang_{lang}_idml_lcd_continuation_vertical_padding",
+                param_pt(
+                    writer.params,
+                    "idml_lcd_continuation_vertical_padding",
+                    param_pt(
+                        writer.params,
+                        "comp_lcd_continuation_vertical_padding",
+                        1.2,
+                    ),
+                ),
+            )
         elif is_english:
             vertical_pad = param_pt(
-                writer.params, "comp_lcd_first_vertical_padding", 1.6)
+                writer.params,
+                "idml_lcd_first_vertical_padding",
+                param_pt(writer.params, "comp_lcd_first_vertical_padding", 1.6),
+            )
         else:
             vertical_pad = param_pt(
-                writer.params, "comp_lcd_translated_first_vertical_padding", 0.7)
+                writer.params,
+                f"lang_{lang}_idml_lcd_translated_first_vertical_padding",
+                param_pt(
+                    writer.params,
+                    "idml_lcd_translated_first_vertical_padding",
+                    param_pt(
+                        writer.params,
+                        "comp_lcd_translated_first_vertical_padding",
+                        0.7,
+                    ),
+                ),
+            )
         tid = (
             "tbl_lcd" if segment_index == 0 and lang == "en"
             else f"tbl_lcd_{lang}" if segment_index == 0
@@ -67,10 +95,21 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
         )
         cells: list[str] = []
         for local_ri, row in enumerate(segment):
+            label_size, label_leading, body_size, body_leading = (
+                _lcd.typography_tokens(
+                    writer, lang, row, segment_index=segment_index)
+            )
+            row_icon_pt = icon_pt
+            governed_height = str(row.get("row_height_pt") or "").strip()
+            if governed_height:
+                row_icon_pt = min(
+                    icon_pt,
+                    max(4.0, float(governed_height) - 2 * vertical_pad - 3.0),
+                )
             fig = (ROOT / row["figure"]) if row["figure"] else None
             image = (
                 writer._image_cell_content(
-                    f"{tid}img{global_ri}", fig, icon_pt, icon_pt)
+                    f"{tid}img{global_ri}", fig, row_icon_pt, row_icon_pt)
                 if fig and fig.exists() else ""
             )
             image_paragraph = _components.figure_paragraph(
@@ -89,30 +128,66 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                 (image_paragraph, 1),
                 (_lcd.typed_paragraph(
                     writer, "HB Spec Label", row["name"],
-                    "type_lcd_label_font_size", "type_lcd_label_font_leading",
+                    point_size=label_size, leading=label_leading,
                     bold=True), 2),
                 (_lcd.typed_paragraph(
                     writer, "HB Spec Value", row["desc"],
-                    "type_lcd_body_font_size", "type_lcd_body_font_leading"), 3),
+                    point_size=body_size, leading=body_leading), 3),
             )
             for content, ci in cell_defs:
-                cells.append(writer._cell(
+                if ci == 0 and row.get("suppress_number") == "true":
+                    continue
+                row_span = int(row.get("number_row_span", "1")) if ci == 0 else 1
+                cell_xml = writer._cell(
                     f"{tid}c{global_ri}_{ci}", f"{ci}:{local_ri}", content,
                     top=vertical_pad, bottom=vertical_pad,
                     left=text_indent if ci >= 2 else pad,
                     right=pad,
-                    valign="CenterAlign"))
+                    valign="CenterAlign")
+                if row_span > 1:
+                    cell_xml = cell_xml.replace(
+                        'RowSpan="1"', f'RowSpan="{row_span}"', 1)
+                cells.append(cell_xml)
             global_ri += 1
+        governed_heights = [
+            str(row.get("row_height_pt") or "").strip() for row in segment
+        ]
+        row_heights: list[float] | None = None
+        if any(governed_heights):
+            if not all(governed_heights):
+                raise ValueError(
+                    "LCD segment mixes governed and InDesign-native row heights"
+                )
+            row_heights = [float(height) for height in governed_heights]
+            if any(height <= 0 for height in row_heights):
+                raise ValueError("LCD governed row heights must be positive")
         table = writer._component_table(
-            tid, list(cols), cells, n_rows=len(segment), role="data")
+            tid,
+            list(cols),
+            cells,
+            n_rows=len(segment),
+            role="data",
+            row_heights=row_heights,
+        )
         for column in range(3):
             table = _tb.fill_column_xml(table, column, "Color/HB Bg K05")
-        panel_height = param_pt(
-            writer.params,
-            "comp_lcd_first_panel_height"
-            if segment_index == 0 else "comp_lcd_continuation_panel_height",
-            286.0 if segment_index == 0 else 465.0,
-        )
+        if segment_index == 0:
+            panel_height = param_pt(
+                writer.params,
+                f"lang_{lang}_idml_lcd_first_panel_height",
+                param_pt(
+                    writer.params,
+                    "idml_lcd_first_panel_height",
+                    param_pt(writer.params, "comp_lcd_first_panel_height", 286.0),
+                ),
+            )
+        else:
+            panel_height = param_pt(
+                writer.params,
+                "idml_lcd_continuation_panel_height",
+                param_pt(
+                    writer.params, "comp_lcd_continuation_panel_height", 465.0),
+            )
         segment_limit = first_limit if segment_index == 0 else continuation_limit
         if segment_index > 0 and len(segment) < segment_limit:
             panel_height = min(
@@ -124,7 +199,7 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                     + param_pt(writer.params, "comp_lcd_partial_panel_extra", 4.0),
                 ),
             )
-        table_panels.append(rounded_table_panel(
+        panel = rounded_table_panel(
             writer._add_story_parts,
             writer.params,
             sid=f"st_anchor_lcd_table_{lang}_{segment_index}",
@@ -143,11 +218,30 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                 "bottom_right": "Color/Paper",
             },
             start_next_page=segment_index > 0,
-        ))
+        )
+        if segment_index == 0:
+            left_indent = param_pt(
+                writer.params, "idml_lcd_first_left_indent", 0.0,
+            )
+        else:
+            left_indent = param_pt(
+                writer.params,
+                f"lang_{lang}_idml_lcd_continuation_left_indent",
+                param_pt(
+                    writer.params, "idml_lcd_continuation_left_indent", 0.0,
+                ),
+            )
+        if left_indent:
+            panel = panel.replace(
+                "<ParagraphStyleRange ",
+                f'<ParagraphStyleRange LeftIndent="{left_indent:g}" ',
+                1,
+            )
+        table_panels.append(panel)
     parts = [
         _po.h1_pill_paragraph(
             writer, title, writer.page_w - writer.m_l - writer.m_r),
-        _po.lcd_hero_paragraph(writer),
+        _po.lcd_hero_paragraph(writer, lang),
         *table_panels,
     ]
     return writer._add_story_parts(sid, title, parts)
@@ -232,15 +326,23 @@ def add_spec_story(writer, sections: list[dict],
     # rounded-table geometry.  Keeping this language-neutral also prevents a
     # translated page from silently falling back to the legacy square table.
     reference_table_heights = (98.41, 49.06, 94.89, 27.11)
-    english_section_before = (7.89, 9.56, 10.54, 14.41)
-    english_table_before = (3.79, 2.47, 4.75, 3.30)
+    default_section_before = (7.89, 9.56, 10.54, 14.41)
+    default_table_before = (3.79, 2.47, 4.75, 3.30)
     for si, section in enumerate(sections):
         section_title = writer._psr(
             "HB Spec Section", "\u25cf " + section["title"])
-        section_before = (
-            english_section_before[si]
-            if lang == "en" and si < len(english_section_before)
-            else 8.87 if si == 0 else 13.47 if si == 3 else 10.07
+        section_default = (
+            default_section_before[si]
+            if si < len(default_section_before) else 10.07
+        )
+        section_before = param_pt(
+            writer.params,
+            f"lang_{lang}_idml_spec_section_{si + 1}_space_before",
+            param_pt(
+                writer.params,
+                f"idml_spec_section_{si + 1}_space_before",
+                section_default,
+            ),
         )
         section_title = section_title.replace(
             "<ParagraphStyleRange ",
@@ -290,9 +392,19 @@ def add_spec_story(writer, sections: list[dict],
                 stroke_weight=0.75,
                 radius=6.8,
             )
+            table_default = default_table_before[si]
+            table_before = param_pt(
+                writer.params,
+                f"lang_{lang}_idml_spec_table_{si + 1}_space_before",
+                param_pt(
+                    writer.params,
+                    f"idml_spec_table_{si + 1}_space_before",
+                    table_default,
+                ),
+            )
             panel = panel.replace(
                 "<ParagraphStyleRange ",
-                f'<ParagraphStyleRange SpaceBefore="{english_table_before[si]:g}" ',
+                f'<ParagraphStyleRange SpaceBefore="{table_before:g}" ',
                 1,
             )
             parts.append(panel)

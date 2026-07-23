@@ -6,8 +6,11 @@ InDesign operator can move or edit copy without repainting the illustration.
 """
 from __future__ import annotations
 
+import math
 import os
 import tempfile
+import unicodedata
+from dataclasses import dataclass
 from pathlib import Path
 
 try:
@@ -22,6 +25,7 @@ from ..primitives import (
     psr,
     wrap_table_paragraph,
 )
+from ..params import component_param_pt
 from .base import RenderContext, figure_paragraph
 from .oppanel import (
     _editable_text_frame,
@@ -30,6 +34,175 @@ from .oppanel import (
     _shape,
     _sized_psr,
 )
+
+
+_APP_CONTROL_ROLES = ("main_power", "dc_usb", "ac")
+
+
+@dataclass(frozen=True)
+class AppFigureStyle:
+    """Shared editable type/fit contract for every App reference composite."""
+
+    control_label_size: float
+    control_label_leading: float
+    control_label_min_height: float
+    connect_step_size: float
+    connect_step_leading: float
+    connect_note_size: float
+    connect_note_leading: float
+    connect_note_width: float
+    text_frame_safety: float
+
+    def __post_init__(self) -> None:
+        for name, value in vars(self).items():
+            if not math.isfinite(value) or value <= 0:
+                raise ValueError(
+                    f"AppFigureStyle {name} must be finite and greater than zero"
+                )
+
+    @classmethod
+    def from_context(cls, ctx: RenderContext) -> AppFigureStyle:
+        def token(key: str, default: float) -> float:
+            return component_param_pt(
+                ctx.params, key, default,
+                strict=ctx.strict_component_assets,
+                owner="AppFigureStyle",
+            )
+
+        return cls(
+            control_label_size=token(
+                "idml_app_control_label_font_size", 5.0,
+            ),
+            control_label_leading=token(
+                "idml_app_control_label_font_leading", 5.8,
+            ),
+            control_label_min_height=token(
+                "idml_app_control_label_min_height", 7.2,
+            ),
+            connect_step_size=token(
+                "idml_app_connect_step_font_size", 5.5,
+            ),
+            connect_step_leading=token(
+                "idml_app_connect_step_font_leading", 6.2,
+            ),
+            connect_note_size=token(
+                "idml_app_connect_note_font_size", 5.8,
+            ),
+            connect_note_leading=token(
+                "idml_app_connect_note_font_leading", 6.5,
+            ),
+            connect_note_width=token(
+                "idml_app_connect_note_width", 174.0,
+            ),
+            text_frame_safety=token("idml_app_text_frame_safety", 0.8),
+        )
+
+
+def _estimated_text_width(text: str, size: float) -> float:
+    """Conservative portable width estimate for compact App overlay copy."""
+    width = 0.0
+    for char in text:
+        if char.isspace():
+            ratio = 0.26
+        elif unicodedata.combining(char):
+            ratio = 0.0
+        elif unicodedata.east_asian_width(char) in {"W", "F"}:
+            ratio = 1.0
+        elif char.isupper():
+            ratio = 0.62
+        elif char.islower() or char.isdigit():
+            ratio = 0.50
+        else:
+            ratio = 0.34
+        width += ratio * size
+    return width
+
+
+def _wrapped_line_count(text: str, width: float, size: float) -> int:
+    words = text.split()
+    if not words:
+        return 1
+    lines = 1
+    used = 0.0
+    space = _estimated_text_width(" ", size)
+    for word in words:
+        word_width = _estimated_text_width(word, size)
+        if used and used + space + word_width <= width:
+            used += space + word_width
+        elif used:
+            lines += max(1, math.ceil(word_width / width))
+            used = word_width % width
+        else:
+            extra = max(1, math.ceil(word_width / width))
+            lines += extra - 1
+            used = word_width % width
+    return lines
+
+
+def _frame_height(
+    text: str,
+    width: float,
+    *,
+    size: float,
+    leading: float,
+    minimum: float,
+    safety: float,
+) -> float:
+    return max(
+        minimum,
+        _wrapped_line_count(text, width, size) * leading + safety,
+    )
+
+
+def _legacy_control_role(label: str) -> str:
+    """Classify legacy array labels only for ungoverned compatibility calls."""
+    import re
+
+    folded = unicodedata.normalize("NFKD", label.casefold())
+    tokens = set(re.findall(
+        r"[a-z0-9]+",
+        "".join(char for char in folded if not unicodedata.combining(char)),
+    ))
+    if "usb" in tokens and tokens & {"dc", "cc"}:
+        return "dc_usb"
+    if tokens & {"ac", "ca"}:
+        return "ac"
+    return "main_power"
+
+
+def _control_labels_by_role(spec: dict, ctx: RenderContext) -> dict[str, str]:
+    explicit = spec.get("labels_by_role")
+    if explicit is not None:
+        if not isinstance(explicit, dict):
+            raise ValueError("app_add_device labels_by_role must be a mapping")
+        labels = {
+            role: str(explicit.get(role) or "").strip()
+            for role in _APP_CONTROL_ROLES
+        }
+        missing = [role for role, value in labels.items() if not value]
+        if missing:
+            raise ValueError(
+                "app_add_device labels_by_role missing required roles: "
+                + ", ".join(missing)
+            )
+        return labels
+
+    if ctx.strict_component_assets:
+        raise ValueError(
+            "approved app_add_device requires labels_by_role with "
+            "main_power, dc_usb, and ac"
+        )
+
+    labels: dict[str, str] = {}
+    for value in spec.get("labels", []):
+        text = str(value).strip()
+        if not text:
+            continue
+        role = _legacy_control_role(text)
+        if role in labels:
+            return {}
+        labels[role] = text
+    return labels
 
 
 def _fallback(spec: dict, *, tid: str, terminal: bool) -> tuple[str, float]:
@@ -56,6 +229,7 @@ def _figure_group(
     terminal: bool,
     height: float,
     x_offset: float = 0.0,
+    space_before: float = 0.0,
     space_after: float = 0.0,
 ) -> tuple[str, float]:
     group = (
@@ -67,18 +241,28 @@ def _figure_group(
     )
     tail = "<Content></Content>" + ("" if terminal else "<Br/>")
     xml = figure_paragraph(group, tail=tail)
-    if space_after:
+    if space_before or space_after:
         xml = xml.replace(
             "<ParagraphStyleRange ",
-            f'<ParagraphStyleRange SpaceAfter="{space_after:g}" ',
+            f'<ParagraphStyleRange SpaceBefore="{space_before:g}" '
+            f'SpaceAfter="{space_after:g}" ',
             1,
         )
-    return xml, height + space_after
+    return xml, space_before + height + space_after
 
 
 def _resolved_image(spec: dict, ctx: RenderContext) -> Path | None:
     ref = str(spec.get("image") or "").strip()
-    return ctx.resolve_bundle_image(ref) if ref else None
+    if not ref:
+        if ctx.strict_component_assets:
+            raise ValueError("approved referencefigure requires an image reference")
+        return None
+    asset = ctx.resolve_bundle_image(ref)
+    if ctx.strict_component_assets and (asset is None or not asset.exists()):
+        raise FileNotFoundError(
+            f"approved referencefigure image is unavailable: {ref}"
+        )
+    return asset
 
 
 def _derived_crop(
@@ -388,6 +572,7 @@ def _app_add_device(
     if asset is None or not asset.exists():
         return _fallback(spec, tid=tid, terminal=terminal)
     del measure_w
+    style = AppFigureStyle.from_context(ctx)
     # Absolute geometry measured from physical page 20 of the approved
     # reference.  The host story begins at x=28.347 pt.
     phone_w, phone_h = 170.974, 150.925
@@ -412,7 +597,9 @@ def _app_add_device(
             frame_id=f"tf_referencefigure_app_step_{index}_{tid}",
             title=f"{tid} App step {index + 1}",
             parts=[_sized_psr(
-                "HB Body", step_labels[index], size=5.5, leading=6.2,
+                "HB Body", step_labels[index],
+                size=style.connect_step_size,
+                leading=style.connect_step_leading,
                 terminal=True, justification="CenterAlign",
             )],
             left=caption_centers[index] - 35.0,
@@ -436,6 +623,10 @@ def _app_add_device(
         fill="Color/HB Bg K05",
     )]
     control_ref = str(spec.get("control_image") or "").strip()
+    if ctx.strict_component_assets and not control_ref:
+        raise ValueError(
+            "approved app_add_device requires a control_image reference"
+        )
     control_asset = (
         ctx.resolve_bundle_image(
             control_ref,
@@ -446,6 +637,13 @@ def _app_add_device(
         if control_ref
         else None
     )
+    if (
+        ctx.strict_component_assets
+        and (control_asset is None or not control_asset.exists())
+    ):
+        raise FileNotFoundError(
+            f"approved app_add_device control_image is unavailable: {control_ref}"
+        )
     if control_asset is not None and control_asset.exists():
         graphics.append(_positioned_image(
             f"{tid}controls", control_asset, panel_w, panel_h,
@@ -463,7 +661,7 @@ def _app_add_device(
         ),
         _inline_path(
             f"referencefigure_app_rule_dc_extension_{tid}",
-            ((87.983, -22.786), (108.0, -22.786)),
+            ((102.5, -22.786), (108.0, -22.786)),
         ),
         _inline_path(
             f"referencefigure_app_rule_ac_extension_{tid}",
@@ -471,39 +669,65 @@ def _app_add_device(
         ),
     ])
 
-    labels = [str(value).strip() for value in spec.get("labels", [])]
-    labels.extend(["", "", ""])
-    # Source order is Power, AC, DC/USB; visual order is Power, DC/USB, AC.
+    labels = _control_labels_by_role(spec, ctx)
+    # Roles are explicit in source/IR. Localized array order never controls
+    # placement: the fixed visual slots are main power, DC/USB, then AC.
     label_specs = (
-        (labels[0], 23.161, -47.5, 75.097, -40.3, "LeftAlign"),
-        (labels[2], 22.681, -30.099, 84.523, -22.899, "LeftAlign"),
-        (labels[1], 251.395, -29.001, 298.381, -21.801, "RightAlign"),
+        ("main_power", 23.161, 75.097, -40.3, "LeftAlign"),
+        ("dc_usb", 22.681, 100.5, -22.899, "LeftAlign"),
+        ("ac", 248.268, 310.0, -21.801, "RightAlign"),
     )
-    label_frames = [
-        _editable_text_frame(
+    label_frames = []
+    for index, (role, left, right, bottom, align) in enumerate(label_specs):
+        text = labels.get(role, "")
+        if not text:
+            continue
+        height = _frame_height(
+            text,
+            right - left,
+            size=style.control_label_size,
+            leading=style.control_label_leading,
+            minimum=style.control_label_min_height,
+            safety=style.text_frame_safety,
+        )
+        label_frames.append(_editable_text_frame(
             ctx,
             story_id=f"st_anchor_referencefigure_app_label_{index}_{tid}",
             frame_id=f"tf_referencefigure_app_label_{index}_{tid}",
             title=f"{tid} App control label {index + 1}",
             parts=[_sized_psr(
-                "HB Body", text, size=6.0, leading=6.8, terminal=True,
+                "HB Body", text,
+                size=style.control_label_size,
+                leading=style.control_label_leading,
+                terminal=True,
                 justification=align,
             )],
             left=left,
-            top=top,
+            top=bottom - height,
             right=right,
             bottom=bottom,
             valign="CenterAlign",
-        )
-        for index, (text, left, top, right, bottom, align) in enumerate(label_specs)
-        if text
-    ]
+            auto_height=True,
+        ))
     return _figure_group(
         phone + "".join(graphics) + "".join(step_frames) + "".join(label_frames),
         tid=tid,
         terminal=terminal,
         height=total_h,
-        space_after=2.0,
+        space_before=component_param_pt(
+            ctx.params,
+            "idml_app_add_device_space_before",
+            8.0,
+            strict=ctx.strict_component_assets,
+            owner="app_add_device",
+        ),
+        space_after=component_param_pt(
+            ctx.params,
+            "idml_app_add_device_space_after",
+            3.5,
+            strict=ctx.strict_component_assets,
+            owner="app_add_device",
+        ),
     )
 
 
@@ -519,6 +743,7 @@ def _app_connect_result(
     if asset is None or not asset.exists():
         return _fallback(spec, tid=tid, terminal=terminal)
     del measure_w
+    style = AppFigureStyle.from_context(ctx)
     cropped = _derived_crop(
         ctx, asset, name="screens", box=(0, 0, 1046, 587),
     )
@@ -547,8 +772,8 @@ def _app_connect_result(
             parts=[_sized_psr(
                 "HB Body",
                 step_labels[index],
-                size=5.5,
-                leading=6.2,
+                size=style.connect_step_size,
+                leading=style.connect_step_leading,
                 terminal=True,
                 justification="CenterAlign",
             )],
@@ -562,25 +787,45 @@ def _app_connect_result(
         if step_labels[index]
     ]
     reference_note = str(spec.get("reference_note") or "").strip()
+    note_left = 25.934
+    note_height = _frame_height(
+        reference_note,
+        style.connect_note_width,
+        size=style.connect_note_size,
+        leading=style.connect_note_leading,
+        minimum=style.connect_note_leading + style.text_frame_safety,
+        safety=style.text_frame_safety,
+    )
     note_frame = _editable_text_frame(
         ctx,
         story_id=f"st_anchor_referencefigure_connect_note_{tid}",
         frame_id=f"tf_referencefigure_connect_note_{tid}",
         title=f"{tid} App result reference note",
         parts=[_sized_psr(
-            "HB Body", reference_note, size=5.8, leading=6.5, terminal=True,
+            "HB Body", reference_note,
+            size=style.connect_note_size,
+            leading=style.connect_note_leading,
+            terminal=True,
         )],
-        left=25.934,
-        top=-8.6,
-        right=180.0,
+        left=note_left,
+        top=-note_height,
+        right=note_left + style.connect_note_width,
         bottom=0.0,
         valign="CenterAlign",
+        auto_height=True,
     )
     return _figure_group(
         image + "".join(step_frames) + note_frame,
         tid=tid,
         terminal=terminal,
         height=total_h,
+        space_before=component_param_pt(
+            ctx.params,
+            "idml_app_connect_result_space_before",
+            12.0,
+            strict=ctx.strict_component_assets,
+            owner="app_connect_result",
+        ),
     )
 
 
@@ -613,4 +858,4 @@ def render_referencefigure(
     )
 
 
-__all__ = ["render_referencefigure"]
+__all__ = ["AppFigureStyle", "render_referencefigure"]

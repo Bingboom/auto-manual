@@ -79,11 +79,18 @@ creates semantic Markdown plus an editable continuous-story IDML, style map,
 source trace, and asset manifest for a designer-owned template workflow. Both
 are generated outputs, never new content sources.
 
+The production Meaning of Symbols page also remains editable. Its WARNING,
+CAUTION, NOTE, and TIP badges use a linked white warning icon plus ordinary
+InDesign label text, rather than a flattened language-specific badge image.
+The safety-tail panels use the approved dark triangle, and the symbol-grid
+icon size and columns come from shared layout tokens, so English, French, and
+Spanish follow the same component definition.
+
 In production IDML operation panels, Prerequisite, standby, On, and Off are
 separate unlocked text frames placed above the linked illustration. Designers
 may select, edit, and move each frame for alignment without editing the image;
 copy corrections still belong in the source and must be rebuilt, apart from
-the explicitly approved target-scoped reference-label normalization described
+the explicitly approved target-scoped App display-variant binding described
 below. Energy Saving
 also exposes its two grey-box paragraphs, On/Off, 3s, and action instruction as
 top-layer frames. LED exposes its grey-box lead, 1/2/3, SOS, and three step
@@ -92,17 +99,24 @@ below the text. LCD SCREEN likewise exposes two state, six action, and six
 description frames above its left-side illustration and grid. KEY COMBINATION
 uses linked button/clock graphics while every header, caption, plus sign,
 duration, operation, and function remains a separate movable text frame across
-English, French, and Spanish.
+English, French, and Spanish. One shared layout-token style owns its geometry
+and typography; only the governed French/Spanish height, indent, and gap values
+are locale overrides. The renderer emits all of those text frames last so they
+stay above the artwork and remain individually editable.
 
 Approved Charging figures use the same top-layer rule for AC and vehicle
 captions. The exact App reference composition applies to the English, French,
 and Spanish App Setup sources: Store/QR and result-screen crops remain linked
 art, while step numbers, pairing-panel labels, and notes are separate movable
-text frames. For JE-1000F/US/en only, the replica normalizes the reference labels
-`POWER Button` to `Main Power Button` and `DC / USB` to `DC/USB` without
-changing the source/IR hash; the result remains unlocked and editable in the
-top layer. French and Spanish keep their localized copy and labels while using
-the same approved page split and component geometry.
+text frames. Pairing-panel labels come from the Product Overview's stable
+`main_power`, `dc_usb`, and `ac` slots, then use the reviewed per-language App
+display variants stored in the approved plan; they are not guessed from the
+next paragraph. Only an exact duplicate three-line label block is removed, so
+Spanish step 2.3 remains ordinary editable prose. The shared `AppFigureStyle`
+owns overlay sizing for all three languages, and approved builds fail when a
+required source role, display variant, asset, or style token is missing. These
+presentation variants do not change the source/IR content hash; every label
+remains unlocked and editable in the top layer.
 
 For the approved-PDF replica of `JE-1000F / US / en+fr+es` (方案 2), production
 mode must resolve the
@@ -117,6 +131,31 @@ matter 1–3, English 4–21, French 22–39, Spanish 40–57, and back cover 58
 52 source references are bound by composition across all 58 pages. Missing or
 mismatched plan identity, source/hash drift, or page-count drift is a hard
 failure; the build must not silently use fuzzy PDF matching.
+The same rule applies if the contract file is still approved but its registry
+entry is missing: the build stops and names the orphaned contract. Only a target
+with no approved contract may use measured-LaTeX fallback pagination.
+
+When a source refresh changes the Manual IR identity without changing the
+approved 58-page composition, use the rebind command instead of editing one hash
+or removing the registry entry. It is a dry-run unless `--write` is present:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json>
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --write
+```
+
+The command validates that semantic content, source order, page languages, and
+physical composition remain unchanged. It refreshes only the mutable
+non-content identities and every page's source digest, then atomically replaces
+the plan. Review the dry-run summary and Git diff before building.
+The layout-parameter identity follows ordered `key`/`value`/`unit` semantics;
+line-ending, blank-row, and comment-column edits do not create contract drift,
+but a real token value, unit, or order change does.
 
 The role boundary is strict:
 

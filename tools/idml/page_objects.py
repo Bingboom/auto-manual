@@ -1,6 +1,8 @@
 """Spread-level object helpers for composed IDML pages."""
 from __future__ import annotations
 
+from .params import param_pt
+
 CAPSULE_OBJECT_STYLE = "ObjectStyle/HB Capsule Heading"
 ROUNDED_TABLE_OBJECT_STYLE = "ObjectStyle/HB Rounded Table Outer"
 PANEL_OBJECT_STYLE = "ObjectStyle/HB Rounded Panel"
@@ -374,7 +376,7 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     return "".join(parts)
 
 
-def lcd_hero_paragraph(writer) -> str:
+def lcd_hero_paragraph(writer, lang: str = "en") -> str:
     """The master's annotated LCD line-art above the icon table
     (finished art cropped from the V2.0 PDF; numbers only, so one asset
     serves every language). Empty string when the asset is absent."""
@@ -393,15 +395,38 @@ def lcd_hero_paragraph(writer) -> str:
     # The template reserves ~159pt for the hero slot; a taller-aspect asset
     # (the vector v2 is 1.69:1 vs the old crop's 1.97:1) must shrink-to-fit
     # or it pushes the downstream prose chain into overset.
-    hero_max_h = 159.0
+    language = (lang or "en").strip().casefold().replace("_", "-").split("-", 1)[0]
+    hero_max_h = param_pt(
+        writer.params,
+        f"lang_{language}_idml_lcd_hero_max_height",
+        param_pt(writer.params, "idml_lcd_hero_max_height", 159.0),
+    )
     if height > hero_max_h:
         width, height = width * hero_max_h / height, hero_max_h
+    horizontal_scale = float(writer.params.get(
+        f"lang_{language}_idml_lcd_hero_horizontal_scale",
+        writer.params.get("idml_lcd_hero_horizontal_scale", ("1", "ratio")),
+    )[0])
+    width *= horizontal_scale
+    space_before = param_pt(
+        writer.params,
+        f"lang_{language}_idml_lcd_hero_space_before",
+        param_pt(writer.params, "idml_lcd_hero_space_before", 5.72),
+    )
+    image_xml = writer._image_cell_content("lcd_hero", hero, width, height)
+    if horizontal_scale != 1.0:
+        image_xml = image_xml.replace(
+            '<Image Self="lcd_hero_img" ItemTransform="1 0 0 1 0 0">',
+            f'<Image Self="lcd_hero_img" ItemTransform="{horizontal_scale:g} 0 0 1 0 0">',
+            1,
+        )
     style = paragraph_style_ref("HB Figure")
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}" '
-        'Justification="CenterAlign" SpaceBefore="5.72" SpaceAfter="3.37">'
+        f'Justification="CenterAlign" SpaceBefore="{space_before:g}" '
+        'SpaceAfter="3.37">'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-        + writer._image_cell_content("lcd_hero", hero, width, height)
+        + image_xml
         + "<Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>\n"
     )
 

@@ -19,6 +19,7 @@ from ..primitives import (
     wrap_table_paragraph,
 )
 from ..page_objects import rounded_path_geometry
+from ..params import component_param_pt
 from .base import RenderContext, figure_paragraph
 
 
@@ -197,6 +198,35 @@ def _row_text_layers(
         width = max(width, image_w * 0.16)
         left = image_w - width
     frames = []
+    language = (ctx.language or "en").strip().lower().replace("_", "-").split("-", 1)[0]
+    base_label_size = component_param_pt(
+        ctx.params,
+        "idml_operation_row_label_font_size",
+        10.0,
+        strict=ctx.strict_component_assets,
+        owner="operation row label",
+    )
+    base_label_leading = component_param_pt(
+        ctx.params,
+        "idml_operation_row_label_font_leading",
+        11.0,
+        strict=ctx.strict_component_assets,
+        owner="operation row label",
+    )
+    label_size = component_param_pt(
+        ctx.params,
+        f"lang_{language}_idml_operation_row_label_font_size",
+        base_label_size,
+        strict=ctx.strict_component_assets and language in {"en", "fr", "es"},
+        owner="localized operation row label",
+    )
+    label_leading = component_param_pt(
+        ctx.params,
+        f"lang_{language}_idml_operation_row_label_font_leading",
+        base_label_leading,
+        strict=ctx.strict_component_assets and language in {"en", "fr", "es"},
+        owner="localized operation row label",
+    )
     for index, (label, instruction) in enumerate(rows):
         top = first_top + index * gap
         frames.append(_editable_text_frame(
@@ -205,7 +235,13 @@ def _row_text_layers(
             frame_id=f"tf_oppanel_row_{index}_{tid}",
             title=f"{tid} operation row {index + 1}",
             parts=[
-                psr("HB Title L2", label),
+                _sized_psr(
+                    "HB Operation Row Label",
+                    label,
+                    size=label_size,
+                    leading=label_leading,
+                    terminal=False,
+                ),
                 psr("HB Body", instruction, terminal=True),
             ],
             left=left,

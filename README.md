@@ -148,8 +148,12 @@ source image. The LCD SCREEN card uses the same positioned-object contract for
 its left illustration and 14 state/action/description frames. KEY COMBINATION
 reconstructs each row from linked button and clock assets, native grid shapes,
 and independently movable captions, plus signs, durations, operations, and
-functions; the structural 3-column/4-combination shape works identically for
-English, French, and Spanish headings.
+functions. Its renderer resolves one shared base style from
+[`data/layout_params.csv`](data/layout_params.csv), then applies only the
+governed French/Spanish locale overrides; page code does not carry duplicate
+geometry or type literals. The structural 3-column/4-combination shape is
+shared by English, French, and Spanish, and every text frame is emitted last so
+it stays editable and movable above the art.
 For approved-reference pages, Product Overview uses two governed linked art
 frames, native knockout-backed leader paths, and source-authored labels emitted
 last as unlocked text frames. Its `overview/front_controls` semantic reference
@@ -161,11 +165,16 @@ siblings) use `referencefigure` composites:
 artwork, generated Store/QR/screen crops, and the governed
 `controls/je1000f_us/network_pairing_panel` panel remain below separate movable
 captions, step numbers, control labels, and notes. The approved JE-1000F/US/en
-replica applies a target-scoped reference-label normalization (`POWER Button`
-to `Main Power Button`, and `DC / USB` to `DC/USB`) without changing the
-source/IR hash; the normalized copy is still emitted as unlocked top-layer
-frames. French and Spanish use the same page split and editable geometry while
-retaining their localized copy and labels.
+replica does not infer those labels from neighbouring App prose. Product
+Overview supplies one exact localized base label for each stable semantic role
+(`main_power`, `dc_usb`, and `ac`), and the approved layout contract binds that
+base snapshot to the reviewed App display variant in all three languages. Only
+an adjacent three-line block that exactly matches the base-label set is removed
+as a duplicate; ordinary prose such as Spanish step 2.3 stays in the story.
+`AppFigureStyle` resolves the nine shared overlay/fit tokens from
+[`data/layout_params.csv`](data/layout_params.csv). An approved build fails on
+a missing role, variant, asset, or style token; the resulting labels are still
+unlocked top-layer frames and do not change the source/IR content hash.
 
 Rounded data tables remain
 editable: the IDML groups a rounded background with a square content frame so
@@ -179,7 +188,11 @@ plus 19-row continuation); its 5.6 mm maximum icon box and segment-specific
 vertical padding follow the `Jackery Explorer 1000 User Manual V2.0` layout.
 On the composed Meaning of Symbols page, the symbol/meaning tables use a
 light-grey first column, and native finalization tightens each rounded shell to
-its own InDesign row height so no empty band remains below the final row.
+its own InDesign row height so no empty band remains below the final row. The
+signal badges are fixed-size native nested tables: their white warning symbol
+stays a governed linked asset while the localized label remains editable text.
+The icon frame, icon column, and two-table gap are IDML layout tokens rather
+than page-specific constants.
 NOTE/TIP/CAUTION/WARNING labels are source-owned display text: the LaTeX and
 IDML renderers preserve the RST/IR value verbatim and fail when it is missing;
 they never singularize, pluralize, translate, or invent a fallback label.
@@ -207,6 +220,33 @@ for English/French/Spanish, and one back cover. The plan binds all 52 IR source
 references to compositions covering physical pages 1–58. A missing or
 mismatched plan, source/hash drift, or page-count drift is a hard failure; this
 approval path must not silently fall back to fuzzy PDF matching.
+An approved on-disk contract for the exact target is also fail-closed when its
+registry entry is missing: removing a registry row is not a way to demote an
+approved replica to the measured-LaTeX fallback. That fallback is available
+only when no approved contract exists for the target.
+
+When the frozen Manual IR changes without changing the approved physical
+composition, rebind the mutable non-content identity fields and every page
+source digest as one validated operation. The command requires the semantic
+content hash, source order, page languages, and physical composition to remain
+unchanged. It is dry-run by default; inspect its summary and the diff before
+applying `--write`:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json>
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --write
+```
+
+The write is atomic and refuses source-order or physical-composition changes;
+do not patch individual hashes or deregister the contract to bypass validation.
+The Manual IR layout-parameter identity hashes the ordered parsed
+`key`/`value`/`unit` semantics, so line endings, blank rows, and comment-column
+edits do not create false drift, while token values, units, or order still do.
 
 Text, headings, tables, callouts, Product Overview, and the back cover must
 remain native InDesign objects/stories. Illustrations are linked, approved

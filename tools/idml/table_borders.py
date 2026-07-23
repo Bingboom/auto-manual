@@ -63,12 +63,23 @@ def suppress_inner_vertical_edges_xml(table_xml: str, n_cols: int) -> str:
 
 def component_table_xml(tid: str, cols: list[float], cells: list[str],
                         n_rows: int = 1, role: str | None = None, *,
-                        outer_stroke: bool = True) -> str:
+                        outer_stroke: bool = True,
+                        row_heights: list[float] | None = None) -> str:
     table_style = table_style_ref(role)
     if not outer_stroke:
         cells = suppress_outer_cell_edges(cells, n_rows, len(cols))
-    row_els = "\n".join(f'    <Row Self="{tid}r{ri}" Name="{ri}"/>'
-                         for ri in range(n_rows))
+    if row_heights is not None and len(row_heights) != n_rows:
+        raise ValueError("row_heights must contain exactly one value per row")
+    row_els = "\n".join(
+        (
+            f'    <Row Self="{tid}r{ri}" Name="{ri}"/>'
+            if row_heights is None else
+            f'    <Row Self="{tid}r{ri}" Name="{ri}" '
+            f'SingleRowHeight="{row_heights[ri]:g}" '
+            f'MinimumHeight="{row_heights[ri]:g}" AutoGrow="false"/>'
+        )
+        for ri in range(n_rows)
+    )
     col_els = "\n".join(
         f'    <Column Self="{tid}col{ci}" Name="{ci}" SingleColumnWidth="{wd:g}"/>'
         for ci, wd in enumerate(cols))

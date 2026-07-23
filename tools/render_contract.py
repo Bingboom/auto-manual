@@ -32,6 +32,7 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 PATHS = Paths(root=ROOT)
 SUPPORTED_UNITS = frozenset({"", "none", "null", "pt", "mm", "em", "ex", "ratio", "int", "cmyk"})
 SUPPORTED_STATUSES = frozenset({"aligned", "partial"})
+LAYOUT_PARAMS_HASH_ALGORITHM = "ordered-layout-tokens/v1"
 
 
 @dataclass(frozen=True)
@@ -44,6 +45,7 @@ class LayoutToken:
 
 def load_layout_tokens(csv_path: Path) -> dict[str, LayoutToken]:
     tokens: dict[str, LayoutToken] = {}
+    seen_keys: set[str] = set()
     with csv_path.open(encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
         if not reader.fieldnames or not {"key", "value"}.issubset(reader.fieldnames):
@@ -51,10 +53,13 @@ def load_layout_tokens(csv_path: Path) -> dict[str, LayoutToken]:
         for row in reader:
             key = (row.get("key") or "").strip()
             value = (row.get("value") or "").strip()
-            if not key or not value:
+            if not key:
                 continue
-            if key in tokens:
+            if key in seen_keys:
                 raise ValueError(f"duplicate layout token: {key}")
+            seen_keys.add(key)
+            if not value:
+                continue
             unit = (row.get("unit") or "").strip().lower()
             if unit not in SUPPORTED_UNITS:
                 raise ValueError(f"unsupported layout token unit {unit!r} for {key}")
@@ -65,6 +70,16 @@ def load_layout_tokens(csv_path: Path) -> dict[str, LayoutToken]:
                 comment=(row.get("comment") or "").strip(),
             )
     return tokens
+
+
+def layout_tokens_sha256(tokens: dict[str, LayoutToken]) -> str:
+    """Hash ordered key/value/unit semantics, excluding CSV presentation details."""
+    payload = [
+        {"key": token.key, "value": token.value, "unit": token.unit}
+        for token in tokens.values()
+    ]
+    encoded = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
 
 
 def resolve_layout_tokens(tokens: dict[str, LayoutToken], lang: str | None = None) -> dict[str, LayoutToken]:
@@ -148,7 +163,30 @@ def validate_render_contract(
         indesign = style.get("indesign") or {}
         if not indesign.get("renderer"):
             issues.append(f"{prefix}: indesign renderer is required")
-        if not any(indesign.get(key) for key in ("paragraph_style", "object_style", "table_style")):
+        paragraph_styles = indesign.get("paragraph_styles")
+        has_paragraph_styles = False
+        if paragraph_styles is not None:
+            if (
+                not isinstance(paragraph_styles, list)
+                or not paragraph_styles
+                or not all(
+                    isinstance(value, str) and value.strip()
+                    for value in paragraph_styles
+                )
+            ):
+                issues.append(
+                    f"{prefix}: indesign paragraph_styles must be a non-empty "
+                    "list of non-empty strings"
+                )
+            else:
+                has_paragraph_styles = True
+        if not (
+            has_paragraph_styles
+            or any(
+                indesign.get(key)
+                for key in ("paragraph_style", "object_style", "table_style")
+            )
+        ):
             issues.append(f"{prefix}: at least one InDesign style binding is required")
         final_mile = effective_final_mile(contract, style)
         if final_mile.get("content_editable") is not False:

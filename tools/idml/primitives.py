@@ -1,10 +1,4 @@
-"""IDML XML building blocks (componentization P1).
-
-Pure functions extracted verbatim from IdmlWriter — every string literal
-here is load-bearing for InDesign (designer-reported traps are kept in the
-comments next to the code that dodges them). Page geometry arrives as
-explicit arguments so components/stories can be built without the writer.
-"""
+"""Load-bearing IDML XML primitives with explicit page geometry."""
 from __future__ import annotations
 
 import re
@@ -12,6 +6,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from .spec_tables import spec_table_xml
+from .app_text_styles import APP_PROSE_STYLE
 from .style_names import paragraph_style_ref
 from .table_borders import component_table_xml
 
@@ -38,6 +33,7 @@ PROSE_STYLE = {
     "warrantynote": "HB Warranty Note",
     "list": "HB List",
     "sublist": "HB Sublist",
+    **APP_PROSE_STYLE,
 }
 def clean_text(text: str) -> str:
     from .text_clean import strip_rst_inline
@@ -249,8 +245,10 @@ def cell(cid: str, name: str, content: str, *, fill: str | None = None,
 
 def component_table(tid: str, cols: list[float], cells: list[str],
                     n_rows: int = 1, role: str | None = None, *,
-                    outer_stroke: bool = True) -> str:
-    return component_table_xml(tid, cols, cells, n_rows, role=role, outer_stroke=outer_stroke)
+                    outer_stroke: bool = True,
+                    row_heights: list[float] | None = None) -> str:
+    return component_table_xml(tid, cols, cells, n_rows, role=role,
+                               outer_stroke=outer_stroke, row_heights=row_heights)
 
 
 def wrap_table_paragraph(table: str, terminal: bool,

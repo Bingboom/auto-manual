@@ -42,3 +42,29 @@ def with_character_metrics(
         )
 
     return pattern.sub(rewrite, xml)
+
+
+def with_character_baseline_shift(xml: str, *, shift: float) -> str:
+    """Apply one visual baseline shift to every content-bearing run.
+
+    This keeps symbol-fallback runs and ordinary text together. It is also
+    safe for an inline anchored group whose carrier range contains an empty
+    ``Content`` node after the group object.
+    """
+    pattern = re.compile(
+        r'<CharacterStyleRange (?P<attrs>[^>]*)>'
+        r'(?P<body>.*?)</CharacterStyleRange>',
+        re.S,
+    )
+
+    def rewrite(match: re.Match[str]) -> str:
+        body = match.group("body")
+        if "<Content>" not in body:
+            return match.group(0)
+        attrs = re.sub(r'\s+BaselineShift="[^"]*"', "", match.group("attrs"))
+        return (
+            f'<CharacterStyleRange {attrs} BaselineShift="{shift:g}">'
+            f"{body}</CharacterStyleRange>"
+        )
+
+    return pattern.sub(rewrite, xml)

@@ -28,9 +28,9 @@ class TestAssetRegistry(unittest.TestCase):
     def test_real_registry_exports_have_matching_hashes(self) -> None:
         report = check_registry(self.records, repo_root=ROOT)
 
-        self.assertEqual(81, report.records)
+        self.assertEqual(82, report.records)
         self.assertEqual((), report.errors)
-        self.assertEqual(72, report.status_counts[APPROVED_STATUS])
+        self.assertEqual(73, report.status_counts[APPROVED_STATUS])
         self.assertEqual(3, report.status_counts[QUARANTINED_STATUS])
 
     def test_real_registry_has_explicit_region_scopes(self) -> None:
@@ -397,7 +397,7 @@ class TestAssetRegistry(unittest.TestCase):
         records = load_registry(source)  # type: ignore[arg-type]
 
         self.assertEqual(1, source.calls)
-        self.assertEqual(81, len(records))
+        self.assertEqual(82, len(records))
 
     def test_temporary_asset_is_not_importable_by_default(self) -> None:
         with self.assertRaisesRegex(AssetRegistryError, "only ✅成品"):

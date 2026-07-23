@@ -83,6 +83,32 @@ def default_bundle_root(model: str, region: str, lang: str) -> Path:
 def default_output_path(model: str, region: str, lang: str, bundle_root: Path) -> Path:
     return _export_paths.default_output_path(ROOT, model, region, lang, bundle_root)
 
+
+def _new_production_writer(
+    params: dict[str, tuple[str, str]],
+    *,
+    model: str,
+    region: str,
+    language: str,
+    page_plan: dict | None,
+) -> IdmlWriter:
+    """Create the production writer with page-plan asset strictness.
+
+    Approved reference composition is a hard rendering contract: falling back
+    from a governed component to a generic table would produce a valid IDML
+    package with the wrong design. Other production plans keep the historical
+    permissive behavior.
+    """
+    return IdmlWriter(
+        params,
+        model=model,
+        region=region,
+        language=language,
+        strict_component_assets=(
+            (page_plan or {}).get("plan_source") == "approved-reference"
+        ),
+    )
+
 # ---------------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------------
@@ -131,11 +157,12 @@ def main() -> int:
     sections: list[dict] = []
     lcd_rows: list[dict] = []
     trouble_rows: list[tuple[str, str]] = []
-    w = IdmlWriter(
+    w = _new_production_writer(
         params,
         model=args.model,
         region=args.region,
         language=args.lang,
+        page_plan=page_plan,
     )
     symbol_cache: dict[str, tuple[list[tuple[str, str]], list[dict]]] = {}
     def symbol_rows_for(lang: str) -> tuple[list[tuple[str, str]], list[dict]]:
@@ -225,7 +252,8 @@ def main() -> int:
             chain(sid, w.estimate_spec_height(secs) + 10.0 * len(notes))
         elif kind == "lcd":
             data = _ir_projection.lcd_page_data(
-                manual_ir, lang, root=ROOT, data_root=data_root)
+                manual_ir, lang, root=ROOT, data_root=data_root,
+                reference_plan=page_plan)
             if data is None:
                 return
             rows = list(data.rows)
@@ -235,7 +263,8 @@ def main() -> int:
             toc.note(title, page_cursor, lang)
             sid = w.add_lcd_story(rows, data_root, lang=lang, title=title)
             segment_count = w.lcd_segment_counts.get(lang, 1)
-            _package.add_lcd_story_frames(w, sid, page_cursor, segment_count)
+            _package.add_lcd_story_frames(
+                w, sid, page_cursor, segment_count, lang=lang)
             page_cursor += segment_count
         elif kind == "trouble":
             rows = list(_ir_projection.trouble_rows(manual_ir, lang))

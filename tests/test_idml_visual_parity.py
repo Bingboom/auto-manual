@@ -76,7 +76,7 @@ class IdmlVisualParityTests(unittest.TestCase):
             for name, size, leading, weight, _kind in para_styles(writer.params)
         }
         self.assertEqual((6.6, 7.0, "Heavy"), styles["HB Data Header"])
-        self.assertEqual((8.6, 9.4, "Heavy"), styles["HB Title L2"])
+        self.assertEqual((8.0, 9.4, "Bold"), styles["HB Title L2"])
         self.assertEqual((8.0, 8.0, "Bold"), styles["HB Data Code"])
         self.assertEqual((8.0, 9.6, "Bold"), styles["HB Spec Section"])
         self.assertEqual((6.0, 6.6, "Medium"), styles["HB Spec Label"])
@@ -419,8 +419,8 @@ class IdmlVisualParityTests(unittest.TestCase):
         render_table_block(key_rows, ctx, tid="tbl_key", terminal=True)
         key_story = dict(writer.stories)["st_anchor_data_tbl_key"]
         self.assertIn('MinimumHeight="32.8819"', key_story)
-        self.assertIn('SingleColumnWidth="130.104"', key_story)
-        self.assertIn('SingleColumnWidth="95.2224"', key_story)
+        self.assertIn('SingleColumnWidth="131.074"', key_story)
+        self.assertIn('SingleColumnWidth="95.7259"', key_story)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Header"', key_story)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Data Body"', key_story)
         self.assertIn(f'LeftInset="{indent:g}"', key_story)
@@ -468,8 +468,10 @@ class IdmlVisualParityTests(unittest.TestCase):
         render_table_block(rows, ctx, tid="tbl_test_trouble", terminal=True)
 
         table_story = dict(writer.stories)["st_anchor_trouble_tbl_test_trouble"]
-        self.assertIn('MinimumHeight="57.61" AutoGrow="true"', table_story)
-        self.assertIn('MinimumHeight="31.96" AutoGrow="true"', table_story)
+        self.assertIn('MinimumHeight="62.03" AutoGrow="true"', table_story)
+        self.assertIn('MinimumHeight="38.67" AutoGrow="true"', table_story)
+        self.assertIn('PointSize="5.5"', table_story)
+        self.assertIn('FontStyle="Bold"', table_story)
         self.assertIn('TopEdgeStrokeWeight="0.25"', table_story)
         self.assertIn('TopEdgeStrokeColor="Color/HB Brand Dark"', table_story)
 

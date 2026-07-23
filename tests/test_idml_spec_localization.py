@@ -134,10 +134,34 @@ class IdmlSpecLocalizationTests(unittest.TestCase):
         self.assertIsNotNone(width_match)
         body_width = writer.page_w - writer.m_l - writer.m_r - 1.13
         self.assertAlmostEqual(
-            body_width * 0.375 + 2.3,
+            body_width * 0.362 + 2.3,
             float(width_match.group(1)),
             places=3,
         )
+
+    def test_localized_spec_rhythm_is_token_driven(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        sections = [
+            {"title": f"SECTION {index}", "rows": [("Label", "Value")]}
+            for index in range(1, 5)
+        ]
+        expected = {
+            "fr": ((5.18, 11.05, 9.4, 15.26), (4.56, 3.24, 5.52, 4.07)),
+            "es": ((5.18, 7.05, 10.03, 11.99), (4.56, 3.24, 5.52, 4.07)),
+        }
+        for language, (section_values, table_values) in expected.items():
+            with self.subTest(language=language):
+                writer = IdmlWriter(params)
+                sid = writer.add_spec_story(sections, lang=language)
+                story = dict(writer.stories)[sid]
+                for value in section_values:
+                    self.assertIn(f'SpaceBefore="{value:g}"', story)
+                for value in table_values:
+                    # The host rhythm lives in the parent spec story.
+                    self.assertIn(
+                        f'SpaceBefore="{value:g}"',
+                        story,
+                    )
 
 
 if __name__ == "__main__":

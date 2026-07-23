@@ -4,6 +4,7 @@ resolve in the bundle, so the story skips it without consuming an id.
 """
 from __future__ import annotations
 
+from ..params import param_pt
 from ..primitives import image_cell_content
 from ..style_names import paragraph_style_ref
 from .base import RenderContext
@@ -58,6 +59,21 @@ def render_image_block(ref: str, ctx: RenderContext, *, rect_id: str,
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         + rect + ("<Content></Content>" if terminal else "<Br/>")
         + "</CharacterStyleRange></ParagraphStyleRange>\n")
+    if any(
+        path.endswith(("/operation/ups_mode.png", "/assets/op_ups_mode.png"))
+        for path in (ref.replace("\\", "/"), img.as_posix())
+    ):
+        language = (ctx.language or "en").split("-", 1)[0]
+        space_before = param_pt(
+            ctx.params,
+            f"lang_{language}_idml_ups_image_space_before",
+            param_pt(ctx.params, "idml_ups_image_space_before", 5.2),
+        )
+        xml = xml.replace(
+            "<ParagraphStyleRange ",
+            f'<ParagraphStyleRange SpaceBefore="{space_before:g}" ',
+            1,
+        )
     if ref.endswith("front_product.jpg"):
         xml = xml.replace(
             "<ParagraphStyleRange ",

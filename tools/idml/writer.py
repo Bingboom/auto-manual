@@ -28,11 +28,13 @@ class IdmlWriter:
         model: str | None = None,
         region: str | None = None,
         language: str | None = None,
+        strict_component_assets: bool = False,
     ):
         self.params = params
         self.model = model
         self.region = region
         self.language = language
+        self.strict_component_assets = strict_component_assets
         self.page_w = param_pt(params, "page_paperwidth", 368.79)
         self.page_h = param_pt(params, "page_paperheight", 524.69)
         self.m_l = param_pt(params, "page_margin_left", 28.35)
@@ -155,12 +157,14 @@ class IdmlWriter:
             root=ROOT, bundle_root=bundle_root, model=self.model, region=self.region,
             language=language or self.language,
             inline_origin_shift=inline_origin_shift,
+            strict_component_assets=self.strict_component_assets,
             add_story=self._add_story_parts)
 
     def add_prose_story(self, sid: str, title: str,
                         blocks: list[tuple[str, str]],
                         bundle_root: Path, *,
-                        inline_origin_shift: float = 0.0) -> tuple[str, float]:
+                        inline_origin_shift: float = 0.0,
+                        language: str | None = None) -> tuple[str, float]:
         return _stories.add_prose_story(
             self,
             sid,
@@ -168,6 +172,7 @@ class IdmlWriter:
             blocks,
             bundle_root,
             inline_origin_shift=inline_origin_shift,
+            language=language,
         )
 
     def add_lcd_story(self, rows: list[dict], data_root: Path, **kw) -> str:
@@ -263,9 +268,17 @@ class IdmlWriter:
 
     def _symbols_signal_table(self, tid: str,
                               signals: list[tuple[str, str]], width: float,
-                              bundle_root: Path, lang: str = "en") -> str:
+                              bundle_root: Path, lang: str = "en", *,
+                              row_heights: list[float] | None = None) -> str:
         return _pages._symbols_signal_table(
-            self, tid, signals, width, bundle_root, lang)
+            self,
+            tid,
+            signals,
+            width,
+            bundle_root,
+            lang,
+            row_heights=row_heights,
+        )
 
     def _symbols_icon_table(
         self,

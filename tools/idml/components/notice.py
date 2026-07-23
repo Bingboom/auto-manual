@@ -8,7 +8,7 @@ from dataclasses import dataclass, replace
 
 from .. import page_objects as _po
 from ..character_metrics import with_character_metrics
-from ..params import param_pt
+from ..params import component_param_pt, param_pt, param_text
 from ..primitives import cell, component_table, path_geometry, psr, wrap_table_paragraph
 from .base import RenderContext, figure_paragraph
 
@@ -74,6 +74,33 @@ def _typed(xml: str, size: float, leading: float, weight: str | None = None,
            *, horizontal_scale: float | None = None,
            baseline_shift: float | None = None) -> str:
     xml = with_character_metrics(xml, point_size=size, leading=leading)
+    # A paragraph-ending Br run participates in InDesign's line leading.  If
+    # it keeps the base HB Callout Body metrics (7.83 pt), a role-calibrated
+    # 6 pt list silently expands on import and can overset despite a correct
+    # text measurement.  Keep the break run on the same explicit metrics as
+    # its visible text; the generic helper intentionally leaves such runs
+    # alone for other component families.
+    break_pattern = re.compile(
+        r'<CharacterStyleRange (?P<attrs>[^>]*)>'
+        r'(?P<body>(?:(?!</CharacterStyleRange>).)*<Br/>'
+        r'(?:(?!</CharacterStyleRange>).)*)</CharacterStyleRange>',
+        re.S,
+    )
+
+    def apply_break_metrics(match: re.Match[str]) -> str:
+        attrs = re.sub(r'\s+PointSize="[^"]*"', "", match.group("attrs"))
+        body = match.group("body")
+        leading_xml = f'<Leading type="unit">{leading:g}</Leading>'
+        if "<Properties>" in body:
+            body = body.replace("<Properties>", "<Properties>" + leading_xml, 1)
+        else:
+            body = f"<Properties>{leading_xml}</Properties>" + body
+        return (
+            f'<CharacterStyleRange {attrs} PointSize="{size:g}">'
+            f"{body}</CharacterStyleRange>"
+        )
+
+    xml = break_pattern.sub(apply_break_metrics, xml)
 
     def apply_style(match: re.Match[str]) -> str:
         tag = match.group(0)
@@ -95,14 +122,15 @@ def _typed(xml: str, size: float, leading: float, weight: str | None = None,
 def _body_xml(spec: dict, size: float, leading: float,
               horizontal_scale: float, baseline_shift: float,
               paragraph_space_after: float = 0.0,
-              unbulleted_first: bool = False) -> str:
+              unbulleted_first: bool = False,
+              font_style: str = "Medium") -> str:
     texts = spec.get("texts", [])
     if not spec.get("list"):
         return _typed(
             psr("HB Callout Body", "\n".join(texts), terminal=True),
             size,
             leading,
-            "Medium",
+            font_style,
             horizontal_scale=horizontal_scale,
             baseline_shift=baseline_shift,
         )
@@ -113,7 +141,7 @@ def _body_xml(spec: dict, size: float, leading: float,
             psr("HB Callout Body", item, terminal=index == len(items) - 1),
             size,
             leading,
-            "Medium",
+            font_style,
             horizontal_scale=horizontal_scale,
             baseline_shift=baseline_shift,
         )
@@ -139,7 +167,7 @@ def _body_xml(spec: dict, size: float, leading: float,
             '</CharacterStyleRange>'
             '<CharacterStyleRange '
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'PointSize="{size:g}" FontStyle="Medium" '
+            f'PointSize="{size:g}" FontStyle="{font_style}" '
             f'HorizontalScale="{horizontal_scale * 100:g}" '
             f'BaselineShift="{baseline_shift:g}">'
             f'<Properties><Leading type="unit">{leading:g}</Leading></Properties>'
@@ -275,10 +303,91 @@ def notice_box_layout(params: dict, body_width: float, label: str,
     )
 
 
+def _remeasure_notice_layout(
+    layout: NoticeBoxLayout,
+    *,
+    params: dict,
+    spec: dict,
+    label: str,
+    texts: list,
+    text_frame_safety: float = 0.0,
+) -> NoticeBoxLayout:
+    """Fit label/body after every reference geometry/type override is known."""
+    label_available = layout.plate_width - 1.0
+    if label_available <= 0:
+        raise ValueError("notice label frame has no usable width")
+    estimated_label_width = _gilroy_width(label, layout.label_size) * 1.03
+    label_size = layout.label_size
+    label_leading = layout.label_leading
+    if estimated_label_width > label_available:
+        scale = label_available / estimated_label_width
+        label_size = max(1.0, layout.label_size * scale)
+        label_leading = max(
+            label_size + 0.8,
+            layout.label_leading * scale,
+        )
+
+    body_frame_width = layout.body_width - (
+        layout.plate_left
+        + layout.plate_width
+        + layout.body_inset
+        + layout.right_inset
+    )
+    hanging_indent = 3.4 if spec.get("list") else 0.0
+    available = body_frame_width - hanging_indent
+    if available <= 0:
+        raise ValueError("notice body frame has no usable width")
+    lines = sum(
+        _wrapped_lines(
+            str(text),
+            available,
+            layout.body_size * layout.body_horizontal_scale,
+        )
+        for text in texts
+    ) or 1
+    nonempty_items = [text for text in texts if str(text).strip()]
+    paragraph_space = (
+        float(spec.get("paragraph_space_after") or 0.0)
+        * max(0, len(nonempty_items) - 1)
+        if spec.get("list")
+        else 0.0
+    )
+    natural_body_height = (
+        layout.body_leading * lines
+        + paragraph_space
+        + 2 * layout.pad_tb
+        + 1.0
+        + text_frame_safety
+    )
+    label_height = label_leading + 2 * layout.plate_left + 1.0
+    requested_height = float(spec.get("panel_height") or 0.0)
+    if requested_height < 0:
+        raise ValueError("notice panel_height must be greater than zero")
+    variant_height = (
+        param_pt(params, "comp_tip_height", 41.67)
+        if str(spec.get("variant", "")) == "tip"
+        else 0.0
+    )
+    return replace(
+        layout,
+        label_size=label_size,
+        label_leading=label_leading,
+        lines=lines,
+        panel_height=max(
+            requested_height,
+            variant_height,
+            natural_body_height,
+            label_height,
+        ),
+    )
+
+
 def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
                     label: str, label_psr: str, body_psr: str,
                     layout: NoticeBoxLayout,
-                    inline_x_offset: float = 0.0) -> tuple[str, float]:
+                    inline_x_offset: float = 0.0,
+                    space_before: float = 0.0,
+                    space_after: float = 1.8) -> tuple[str, float]:
     # A four-item anchored group mirrors the LaTeX tcolorbox directly:
     # rounded grey shell, rounded white plate, centred label frame, and
     # the body frame.  A rounded frame nested in a table cell leaves an
@@ -300,14 +409,15 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
         f"{label} notice body",
         [body_psr],
     )
-    anchor = (
+    def anchor(*, pin: bool) -> str:
+        return (
         '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
-        'SpineRelative="false" LockPosition="false" PinPosition="true" '
+        f'SpineRelative="false" LockPosition="false" PinPosition="{str(pin).lower()}" '
         'AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" '
         'HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" '
         'VerticalReferencePoint="LineBaseline" AnchorXoffset="0" '
         'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
-    )
+        )
     outer = (
         f'<Rectangle Self="bg_notice_{tid}" ContentType="Unassigned" '
         'AppliedObjectStyle="ObjectStyle/HB Rounded Panel" '
@@ -320,7 +430,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
             0.0,
             layout.arc,
         )
-        + anchor
+        + anchor(pin=True)
         + '</Rectangle>\n'
     )
     plate = (
@@ -335,7 +445,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
             -plate_left,
             max(0.0, layout.arc - plate_left / 2.0),
         )
-        + anchor
+        + anchor(pin=True)
         + '</Rectangle>\n'
     )
 
@@ -357,7 +467,7 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
             'VerticalJustification="CenterAlign" AutoSizingType="Off">'
             f'<Properties><InsetSpacing type="list">{inset_xml}'
             '</InsetSpacing></Properties></TextFramePreference>\n'
-            + anchor
+            + anchor(pin=False)
             + '</TextFrame>\n'
         )
 
@@ -389,7 +499,8 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
     # callout; LaTeX keeps 2.68 pt before ENERGY SAVING MODE.
     xml = xml.replace(
         "<ParagraphStyleRange ",
-        '<ParagraphStyleRange SpaceAfter="1.8" ',
+        f'<ParagraphStyleRange SpaceBefore="{space_before:g}" '
+        f'SpaceAfter="{space_after:g}" ',
         1,
     )
     gap = param_pt(ctx.params, "comp_data_table_before", 3.4)
@@ -430,11 +541,58 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         body_size=float(spec.get("body_size", layout.body_size)),
         body_leading=float(spec.get("body_leading", layout.body_leading)),
     )
-    if spec.get("panel_height") is not None:
-        panel_height = float(spec["panel_height"])
-        if panel_height <= 0:
-            raise ValueError("notice panel_height must be greater than zero")
-        layout = replace(layout, panel_height=panel_height)
+    layout_role = str(spec.get("layout_role") or "").strip()
+    language = (ctx.language or "en").split("-", 1)[0]
+
+    def role_pt(suffix: str, default: float) -> float:
+        key = f"idml_{layout_role}_{suffix}"
+        return param_pt(
+            ctx.params,
+            f"lang_{language}_{key}",
+            param_pt(ctx.params, key, default),
+        )
+
+    def role_text(suffix: str, default: str) -> str:
+        key = f"idml_{layout_role}_{suffix}"
+        return param_text(
+            ctx.params,
+            f"lang_{language}_{key}",
+            param_text(ctx.params, key, default),
+        )
+
+    body_font_style = str(spec.get("body_font_style") or "Medium")
+    paragraph_space_after = float(spec.get("paragraph_space_after") or 0.0)
+    notice_space_before = float(spec.get("space_before") or 0.0)
+    notice_space_after = float(spec.get("space_after") or 1.8)
+    if layout_role in {"ups_caution", "charging_note"}:
+        layout = replace(
+            layout,
+            body_size=role_pt("body_font_size", layout.body_size),
+            body_leading=role_pt("body_font_leading", layout.body_leading),
+            pad_tb=role_pt("pad_tb", layout.pad_tb),
+        )
+        body_font_style = role_text("body_font_style", "Regular")
+        paragraph_space_after = role_pt("paragraph_after", 1.0)
+        notice_space_before = role_pt("space_before", notice_space_before)
+        notice_space_after = role_pt("space_after", notice_space_after)
+    layout = _remeasure_notice_layout(
+        layout,
+        params=ctx.params,
+        spec={**spec, "paragraph_space_after": paragraph_space_after},
+        label=label,
+        texts=texts,
+        text_frame_safety=(
+            component_param_pt(
+                ctx.params,
+                "idml_app_notice_text_frame_safety",
+                1.6,
+                strict=ctx.strict_component_assets,
+                owner="App notice",
+            )
+            if spec.get("app_text_frame_safety")
+            else 0.0
+        ),
+    )
     label_psr = _typed(
         psr("HB Callout Label", label, terminal=True),
         layout.label_size,
@@ -448,14 +606,17 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         layout.body_leading,
         layout.body_horizontal_scale,
         layout.body_baseline_shift,
-        float(spec.get("paragraph_space_after") or 0.0),
+        paragraph_space_after,
         bool(spec.get("unbulleted_first")),
+        body_font_style,
     )
     if ctx.add_story is not None:
         return _rounded_notice(
             ctx, tid=tid, terminal=terminal, label=label, label_psr=label_psr,
             body_psr=body_psr, layout=layout,
             inline_x_offset=float(spec.get("inline_x_offset") or 0.0),
+            space_before=notice_space_before,
+            space_after=notice_space_after,
         )
     cols = [layout.label_width, body_w - layout.label_width]
     cells = [

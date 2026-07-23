@@ -26,6 +26,25 @@ from tools.idml import export_paths as idml_export_paths  # noqa: E402
 from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
 
 FIXTURE_DATA_ROOT = ROOT / "tests" / "fixtures" / "phase2"
+APPROVED_LAYOUT_CONTRACT = (
+    ROOT / "docs" / "renderers" / "contracts" / "reference_layout"
+    / "je1000f_us_v2_20260605.json"
+)
+
+
+def _approved_app_plan(source_path: str, language: str) -> dict[str, object]:
+    return {
+        "plan_source": "approved-reference",
+        "approved_contract": json.loads(
+            APPROVED_LAYOUT_CONTRACT.read_text(encoding="utf-8")
+        ),
+        "pages": [{
+            "source_path": source_path,
+            "language": language,
+            "composition_id": f"{Path(source_path).stem}-composition",
+            "planned_page_count": 2,
+        }],
+    }
 
 
 class ExportIdmlTests(unittest.TestCase):
@@ -474,6 +493,14 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("warning_triangle", xml)
         self.assertIn(paragraph_style_ref("HB Title L3"), xml)
         self.assertNotIn(">WARNING<", xml)
+        instruction_xml, _ = w._render_component("t", 5, {
+            "kind": "safetyinstruction", "texts": ["KEEP THIS INSTRUCTION"]},
+            bundle, True)
+        self.assertIn("warning_triangle_dark.svg", instruction_xml)
+        self.assertIn(paragraph_style_ref("HB Safety Instruction"), instruction_xml)
+        self.assertNotIn(paragraph_style_ref("HB Title L3"), instruction_xml)
+        self.assertIn('Anchor="20 -17.4"', instruction_xml)
+        self.assertIn('LeftInset="7.5"', instruction_xml)
         xml, _ = w._render_component("t", 5, {
             "kind": "warninglead", "label": "WARNING", "texts": ["lead"]},
             bundle, True, span_columns=False, measure_w=150.0)
@@ -629,6 +656,54 @@ class ExportIdmlTests(unittest.TestCase):
             'SpanColumnType="SpanColumns"',
             story,
         )
+
+    def test_operation_first_page_rhythm_uses_locale_tokens(self) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({
+            "lang_fr_idml_operation_first_h2_space_before": ("9.8", "pt"),
+            "lang_fr_idml_operation_inter_section_space_after": ("37.6", "pt"),
+        })
+        writer.add_prose_story(
+            "st_operation_first_page",
+            "05_operation_guide_placeholder",
+            [
+                ("h1", "FONCTIONNEMENT"),
+                ("h2", "MARCHE/ARRÊT"),
+                ("body", "First operation explanation."),
+                ("h2", "SORTIE CA MARCHE/ARRÊT"),
+            ],
+            ROOT,
+            language="fr",
+        )
+        story = dict(writer.stories)["st_operation_first_page"]
+        self.assertIn('SpaceBefore="9.8"', story)
+        self.assertIn('SpaceAfter="37.6"', story)
+
+    def test_operation_key_heading_compensates_first_page_depth(self) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({
+            "lang_fr_idml_operation_first_h2_space_before": ("9.8", "pt"),
+            "lang_fr_idml_operation_inter_section_space_after": ("37.6", "pt"),
+        })
+        writer.add_prose_story(
+            "st_operation_key_compensation",
+            "05_operation_guide_placeholder",
+            [
+                ("h1", "FONCTIONNEMENT"),
+                ("h2", "MARCHE/ARRÊT"),
+                ("body", "First operation explanation."),
+                ("h2", "SORTIE CA MARCHE/ARRÊT"),
+                ("h2", "FONCTIONNEMENT DES BOUTONS"),
+                ("table", '[["Boutons", "Utilisation", "Fonction"]]'),
+            ],
+            ROOT,
+            language="fr",
+        )
+        story = dict(writer.stories)["st_operation_key_compensation"]
+        self.assertIn('SpaceBefore="-19"', story)
+        self.assertIn('BaselineShift="36.68"', story)
 
     def test_operation_led_gap_returns_space_consumed_by_localized_copy(self) -> None:
         from tools.idml.oppanel import operation_story_rhythm
@@ -919,6 +994,27 @@ class ExportIdmlTests(unittest.TestCase):
 
         self.assertEqual(aligned[-2], ("layout", "table_next_page"))
 
+    def test_approved_troubleshooting_heading_uses_semantic_locale_marker(self) -> None:
+        from tools.idml.prose_flow import align_troubleshooting_heading
+
+        rows = [
+            ["Code d'erreur", "Mesures correctives"],
+            ["FE", "Contacter le service à la clientèle de Jackery."],
+        ]
+        blocks = [
+            ("h1", "DÉPANNAGE"),
+            ("body", "Localized introduction"),
+            ("table", json.dumps(rows, ensure_ascii=False)),
+        ]
+
+        aligned = align_troubleshooting_heading(blocks, "fr")
+
+        self.assertEqual(
+            ("layout", "trouble_h1_before:fr"),
+            aligned[0],
+        )
+        self.assertEqual(blocks, aligned[1:])
+
     def test_four_page_operation_flow_keeps_final_h2_on_last_page(self) -> None:
         from tools.idml.prose_flow import align_operation_tail
 
@@ -1016,10 +1112,10 @@ class ExportIdmlTests(unittest.TestCase):
             story,
         )
 
-    def test_fr_single_page_ups_callouts_use_natural_glyph_width_only(self) -> None:
+    def test_single_page_ups_callouts_bind_shared_roles_and_fr_width(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer
 
-        def rendered_scales(language: str) -> list[float | None]:
+        def rendered_specs(language: str) -> list[dict]:
             flow = ProseFlowBuffer()
             notice = (
                 "component",
@@ -1056,14 +1152,23 @@ class ExportIdmlTests(unittest.TestCase):
                 plan,
             )
             return [
-                json.loads(payload).get("body_horizontal_scale")
+                json.loads(payload)
                 for kind, payload in emitted
                 if kind == "component"
             ]
 
-        self.assertEqual([1.0, 1.0], rendered_scales("fr"))
-        self.assertEqual([None, None], rendered_scales("en"))
-        self.assertEqual([None, None], rendered_scales("es"))
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                specs = rendered_specs(language)
+                self.assertEqual(
+                    ["ups_caution", "charging_note"],
+                    [spec.get("layout_role") for spec in specs],
+                )
+                expected_scale = [1.0, 1.0] if language == "fr" else [None, None]
+                self.assertEqual(
+                    expected_scale,
+                    [spec.get("body_horizontal_scale") for spec in specs],
+                )
 
     def test_approved_charging_methods_start_second_solar_figure_on_second_page(self) -> None:
         from tools.idml.prose_flow import align_charging_car_page
@@ -1236,22 +1341,7 @@ class ExportIdmlTests(unittest.TestCase):
                 flow = ProseFlowBuffer()
                 flow.add(stem, blocks)
                 emitted = []
-                plan = {
-                    "plan_source": "approved-reference",
-                    "approved_contract": {
-                        "target": {
-                            "model": "JE-1000F",
-                            "region": "US",
-                            "languages": ["en", "fr", "es"],
-                        },
-                    },
-                    "pages": [{
-                        "source_path": f"page/{stem}.rst",
-                        "language": "en",
-                        "composition_id": f"{stem}-composition",
-                        "planned_page_count": 2,
-                    }],
-                }
+                plan = _approved_app_plan(f"page/{stem}.rst", "en")
 
                 flow.flush(
                     lambda _sid, _title, out, _columns: emitted.extend(out),
@@ -1307,22 +1397,10 @@ class ExportIdmlTests(unittest.TestCase):
                 if existing_break:
                     blocks.append(("layout", "page_break"))
                 blocks.extend([notice, ("body", "Localized 2.4 copy")])
-                plan = {
-                    "plan_source": "approved-reference",
-                    "approved_contract": {
-                        "target": {
-                            "model": "JE-1000F",
-                            "region": "US",
-                            "languages": ["en", "fr", "es"],
-                        },
-                    },
-                    "pages": [{
-                        "source_path": f"page/{stem}.rst",
-                        "language": language,
-                        "composition_id": f"{stem}-composition",
-                        "planned_page_count": 2,
-                    }],
-                }
+                plan = _approved_app_plan(
+                    f"page/{stem}.rst",
+                    language,
+                )
 
                 aligned = align_app_second_page(blocks, plan, stem)
                 self.assertIn(("layout", "page_break:15.1"), aligned)
@@ -1335,6 +1413,10 @@ class ExportIdmlTests(unittest.TestCase):
                 ]
                 self.assertEqual(
                     ["app_download", "app_add_device"], layouts,
+                )
+                self.assertIn(
+                    ("body", "Localized 2.3 Bluetooth copy"),
+                    promoted,
                 )
 
     def test_approved_reference_figures_absorb_only_adjacent_figure_copy(self) -> None:
@@ -1409,7 +1491,10 @@ class ExportIdmlTests(unittest.TestCase):
             ("body", "2.1 Localized first step"),
             ("body", "2.2 Localized second step"),
             ("image", "_assets/app/add_device_je1000f_us.png"),
-            ("body", "Power\nAC\nDC / USB"),
+            (
+                "body",
+                "POWER Button\nAC Power Button\nDC / USB Power Button",
+            ),
             ("body", "2.3 Localized third step"),
             (
                 "component",
@@ -1431,20 +1516,10 @@ class ExportIdmlTests(unittest.TestCase):
 
         promoted = promote_reference_figures(
             blocks,
-            {
-                "plan_source": "approved-reference",
-                "approved_contract": {
-                    "target": {
-                        "model": "JE-1000F",
-                        "region": "US",
-                        "languages": ["en", "fr", "es"],
-                    },
-                },
-                "pages": [{
-                    "source_path": "page/12_app_setup_placeholder.rst",
-                    "language": "en",
-                }],
-            },
+            _approved_app_plan(
+                "page/12_app_setup_placeholder.rst",
+                "en",
+            ),
             "12_app_setup_placeholder",
         )
 
@@ -1461,8 +1536,14 @@ class ExportIdmlTests(unittest.TestCase):
         )
         self.assertEqual(["2.1", "2.2"], specs[1]["step_labels"])
         self.assertEqual(
-            ["Main Power Button", "AC", "DC/USB"], specs[1]["labels"],
+            {
+                "main_power": "Main Power Button",
+                "dc_usb": "DC/USB Power Button",
+                "ac": "AC Power Button",
+            },
+            specs[1]["labels_by_role"],
         )
+        self.assertIn(("body_app_tail", "2.3 Localized third step"), promoted)
         self.assertEqual(
             "asset:controls/je1000f_us/network_pairing_panel",
             specs[1]["control_image"],
@@ -1484,6 +1565,7 @@ class ExportIdmlTests(unittest.TestCase):
             spec["body_size"] for spec in notice_specs
         ])
         self.assertEqual(2.0, notice_specs[0]["paragraph_space_after"])
+        self.assertTrue(all(spec["app_text_frame_safety"] for spec in notice_specs))
         self.assertTrue(notice_specs[0]["unbulleted_first"])
         self.assertTrue(notice_specs[1]["unbulleted_first"])
 
@@ -1496,26 +1578,15 @@ class ExportIdmlTests(unittest.TestCase):
             ("body", "2.1 Ajouter un appareil"),
             ("body", "2.2 Allumer l'appareil"),
             ("image", "_assets/app/add_device_je1000f_us.png"),
-            ("body", "Bouton d'alimentation principal\n"
-                      "Bouton d'alimentation CA\n"
-                      "Bouton d'alimentation CC/USB"),
+            ("body", "Bouton d'alimentation\n"
+                      "Bouton Power CA\n"
+                      "Bouton d’alimentation CC / USB"),
             ("body", "2.3 Connexion Bluetooth"),
         ]
-        plan = {
-            "plan_source": "approved-reference",
-            "approved_contract": {
-                "target": {
-                    "model": "JE-1000F",
-                    "region": "US",
-                    "languages": ["en", "fr", "es"],
-                },
-            },
-            "pages": [{
-                "source_path": "page/p34_12_app_setup_placeholder.rst",
-                "language": "fr",
-                "planned_page_count": 2,
-            }],
-        }
+        plan = _approved_app_plan(
+            "page/p34_12_app_setup_placeholder.rst",
+            "fr",
+        )
         promoted = promote_reference_figures(
             blocks, plan, "p34_12_app_setup_placeholder",
         )
@@ -1530,17 +1601,18 @@ class ExportIdmlTests(unittest.TestCase):
             [spec["layout"] for spec in specs],
         )
         self.assertEqual(
-            [
-                "Bouton d'alimentation principal",
-                "Bouton d'alimentation CA",
-                "Bouton d'alimentation CC/USB",
-            ],
-            specs[1]["labels"],
+            {
+                "main_power": "Bouton POWER",
+                "dc_usb": "Bouton d’alimentation CC/USB",
+                "ac": "Bouton d’alimentation CA",
+            },
+            specs[1]["labels_by_role"],
         )
         self.assertEqual(
             "asset:controls/je1000f_us/network_pairing_panel",
             specs[1]["control_image"],
         )
+        self.assertIn(("body_app_tail", "2.3 Connexion Bluetooth"), promoted)
 
     def test_page_break_layout_does_not_enable_two_columns(self) -> None:
         from tools.idml.ir_projection import project_pages
@@ -1673,6 +1745,45 @@ class ExportIdmlTests(unittest.TestCase):
             'HorizontalScale="98"', stories["st_safety_en_section2"],
         )
 
+    def test_approved_dense_safety_page_uses_semantic_column_split(self) -> None:
+        import json
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params, strict_component_assets=True)
+        first_lists = [("list", f"• item {index}") for index in range(1, 7)]
+        blocks = [
+            ("h1", "INFORMATIONS DE SÉCURITÉ IMPORTANTES"),
+            ("component", json.dumps({
+                "kind": "safetyinstruction", "texts": ["INSTRUCTIONS"],
+            })),
+            ("layout", "twocol_start"),
+            ("component", json.dumps({
+                "kind": "warninglead", "label": "AVERTISSEMENT",
+                "texts": ["Respectez les précautions."],
+            })),
+            *first_lists,
+            ("layout", "twocol_end"),
+            ("h2", "INSTRUCTIONS D'UTILISATION"),
+            ("layout", "twocol_start"),
+            ("safetylead", "CONSERVEZ CES INSTRUCTIONS"),
+            ("list", "• second section"),
+            ("layout", "twocol_end"),
+        ]
+
+        w.add_safety_page("st_safety_fr", "safety_fr", blocks, ROOT, 21)
+
+        stories = dict(w.stories)
+        left = stories["st_safety_fr_section1_left"]
+        right = stories["st_safety_fr_section1_right"]
+        self.assertIn("• item 5", left)
+        self.assertNotIn("• item 6", left)
+        self.assertIn("• item 6", right)
+        spread = dict(w.spreads)["sp_21"]
+        self.assertIn("tf_st_safety_fr_section1_left", spread)
+        self.assertIn("tf_st_safety_fr_section1_right", spread)
+        self.assertNotIn('Self="tf_st_safety_fr_section1" ', spread)
+        self.assertEqual(spread.count("<TextFrame "), 6)
+
     def test_safety_symbols_page_combines_tail_maintenance_and_symbols(self) -> None:
         import json
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -1734,13 +1845,27 @@ class ExportIdmlTests(unittest.TestCase):
             stories["st_safety_symbols_tail_warning"],
         )
         self.assertIn(">DANGER<", stories["st_safety_symbols_tail_danger"])
+        self.assertIn(
+            "warning_triangle_dark.svg",
+            stories["st_safety_symbols_tail_warning"],
+        )
         self.assertIn("st_safety_symbols_signals", stories)
         self.assertIn("st_safety_symbols_icons_left", stories)
         self.assertIn("st_safety_symbols_icons_right", stories)
+        self.assertIn('SingleRowHeight="17.3"', stories["st_safety_symbols_signals"])
+        self.assertIn('SingleRowHeight="25.42"', stories["st_safety_symbols_signals"])
+        self.assertIn('SingleRowHeight="15"', stories["st_safety_symbols_icons_left"])
+        self.assertIn('SingleRowHeight="30.7"', stories["st_safety_symbols_icons_left"])
         self.assertIn("MEANING OF SYMBOLS", stories["st_safety_symbols_symbols_title"])
         self.assertIn("USER MAINTENANCE", stories["st_safety_symbols_maintenance_title"])
         self.assertIn("Icon 0", stories["st_safety_symbols_icons_left"])
         self.assertIn("Icon 7", stories["st_safety_symbols_icons_right"])
+        self.assertEqual(
+            stories["st_safety_symbols_signals"].count(
+                "warning_triangle_white.svg",
+            ),
+            len(signals),
+        )
         self.assertIn(
             'TopEdgeStrokeWeight="0"',
             stories["st_safety_symbols_signals"],
@@ -1768,6 +1893,38 @@ class ExportIdmlTests(unittest.TestCase):
             stories["st_safety_symbols_icons_right"],
         )
 
+    def test_safety_symbols_icon_frames_use_component_size_tokens(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params["idml_symbols_icon_width"] = ("10", "pt")
+        params["idml_symbols_icon_height"] = ("11", "pt")
+        params["idml_symbols_icon_col_width"] = ("33", "pt")
+        params["comp_symbol_signal_col_width"] = ("44", "pt")
+        params["idml_symbols_column_gap"] = ("5", "pt")
+        w = IdmlWriter(params)
+        icon = {
+            "figure": (
+                "docs/templates/word_template/common_assets/symbols/"
+                "warning_triangle.png"
+            ),
+            "text": "Warning icon",
+        }
+        w.add_safety_symbols_page(
+            "st_safety_symbols_token_icon",
+            [],
+            [("h1", "USER MAINTENANCE"), ("body", "Body.")],
+            [("WARNING", "Hazardous practice.")],
+            [icon],
+            ROOT,
+            4,
+            "en",
+        )
+
+        story = dict(w.stories)["st_safety_symbols_token_icon_icons_left"]
+        self.assertIn('Anchor="10 -11"', story)
+        self.assertIn('SingleColumnWidth="33"', story)
+        signal_story = dict(w.stories)["st_safety_symbols_token_icon_signals"]
+        self.assertIn('SingleColumnWidth="44"', signal_story)
+
     def test_safety_symbols_page_uses_localized_symbol_copy(self) -> None:
         import json
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -1793,7 +1950,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Signification", stories["st_safety_symbols_fr_icons_left"])
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_signals"])
         self.assertIn(
-            'ParagraphShadingColor="Color/HB Brand Dark"',
+            'FillColor="Color/HB Brand Dark"',
             stories["st_safety_symbols_fr_signals"],
         )
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_tail_avertissement"])
@@ -2063,6 +2220,64 @@ class ExportIdmlTests(unittest.TestCase):
         )
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_left"])
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_right"])
+
+    def test_spanish_symbol_overflow_uses_shared_inbox_layout_profile(self) -> None:
+        import xml.etree.ElementTree as ET
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        w.add_fcc_inbox_page(
+            "st_fcc_es_layout",
+            [("component", json.dumps({
+                "kind": "fcc",
+                "texts": ["Aviso izquierdo.", "Aviso derecho."],
+            }))],
+            [
+                ("h1", "CONTENIDO DE LA CAJA"),
+                ("component", json.dumps({
+                    "kind": "inbox",
+                    "items": [{"img": "", "label": "Documentos"}],
+                })),
+                ("component", json.dumps({
+                    "kind": "notice",
+                    "label": "CONSEJOS",
+                    "texts": ["Texto de ayuda."],
+                })),
+            ],
+            ROOT,
+            42,
+            symbol_overflow=([{"figure": "", "text": "Explosivo"}], []),
+            lang="es",
+        )
+        root = ET.fromstring(dict(w.spreads)["sp_42"])
+
+        def bounds(self_id: str) -> tuple[float, float, float, float]:
+            node = next(
+                item for item in root.iter()
+                if item.attrib.get("Self") == self_id
+            )
+            points = []
+            for item in node.iter("PathPointType"):
+                for key in ("Anchor", "LeftDirection", "RightDirection"):
+                    points.append(tuple(
+                        float(value) for value in item.attrib[key].split()
+                    ))
+            xs = [point[0] for point in points]
+            ys = [point[1] for point in points]
+            return (
+                min(xs) + w.page_w / 2.0,
+                min(ys) + w.page_h / 2.0,
+                max(xs) + w.page_w / 2.0,
+                max(ys) + w.page_h / 2.0,
+            )
+
+        title = bounds("tf_st_fcc_es_layout_title")
+        card = bounds("bg_st_fcc_es_layout_card_1")
+        tip = bounds("bg_st_fcc_es_layout_tip_strip")
+        self.assertAlmostEqual(263.5 - 1.96, title[1], places=3)
+        self.assertAlmostEqual(288.0, card[1], places=3)
+        self.assertAlmostEqual(160.8, card[3] - card[1], places=3)
+        self.assertAlmostEqual(454.0, tip[1], places=3)
 
     def test_fcc_long_left_copy_wraps_beside_mark_as_native_stories(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -2342,20 +2557,21 @@ class ExportIdmlTests(unittest.TestCase):
 
         label_cell = story.split('Self="tbl_lcdc0_2"', 1)[1].split("</Cell>", 1)[0]
         self.assertIn('FontStyle="Bold"', label_cell)
-        self.assertIn('PointSize="6.2" Leading="6.8"', label_cell)
+        self.assertIn('PointSize="7" Leading="8.4"', label_cell)
         self.assertIn('LeftInset="5.2"', label_cell)
         description_cell = story.split('Self="tbl_lcdc0_3"', 1)[1].split(
             "</Cell>", 1
         )[0]
+        self.assertIn('PointSize="5.5" Leading="5.8"', description_cell)
         self.assertIn('LeftInset="5.2"', description_cell)
         number_cell = story.split('Self="tbl_lcdc0_0"', 1)[1].split("</Cell>", 1)[0]
         self.assertIn('PointSize="9" Leading="9.4"', number_cell)
-        self.assertIn('TopInset="1.6" BottomInset="1.6"', number_cell)
+        self.assertIn('TopInset="1.62" BottomInset="1.62"', number_cell)
         continuation_cell = story.split(
             'Self="tbl_lcd_cont_enc7_0"', 1
         )[1].split("</Cell>", 1)[0]
         self.assertIn(
-            'TopInset="1.2" BottomInset="1.2"', continuation_cell)
+            'TopInset="2.14" BottomInset="2.14"', continuation_cell)
         self.assertIn(
             '<AppliedFont type="string">Apple SD Gothic Neo</AppliedFont>',
             number_cell,
@@ -2381,6 +2597,70 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("st_anchor_lcd_table_en_1", stories)
         self.assertNotIn("st_anchor_lcd_table_en_2", stories)
         self.assertNotIn('<ParagraphStyleRange LeftIndent="5.2"', stories["st_lcd"])
+
+    def test_lcd_locale_default_precedes_foreign_generic_density_role(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicador {index}",
+                "desc": f"Descripción {index}",
+                "typography_role": "battery_saving" if index == 8 else "default",
+            }
+            for index in range(1, 9)
+        ]
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT, lang="es")
+        continuation = dict(w.stories)["st_anchor_lcd_table_es_1"]
+        description_cell = continuation.split(
+            'Self="tbl_lcd_cont_esc7_3"', 1
+        )[1].split("</Cell>", 1)[0]
+        self.assertIn('PointSize="5.5" Leading="6"', description_cell)
+        self.assertNotIn('PointSize="5.8"', description_cell)
+
+    def test_lcd_governed_continuation_rows_emit_fixed_editable_heights(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        figure = (
+            "tests/fixtures/phase2/_attachments/lcd_icons/"
+            "8_AC_Power_Indicator_EXtsboEbfoAmFvxKJAFcHjhrnVc.png"
+        )
+        rows = [
+            {
+                "no": str(index),
+                "figure": figure if index == 8 else "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+                **({"row_height_pt": "17.25"} if index == 8 else {}),
+            }
+            for index in range(1, 9)
+        ]
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
+        self.assertIn(
+            'SingleRowHeight="17.25" MinimumHeight="17.25" '
+            'AutoGrow="false"',
+            continuation,
+        )
+        self.assertIn('Anchor="0 -9.97"', continuation)
+
+    def test_lcd_governed_segment_rejects_partial_height_profile(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+                **({"row_height_pt": "17.25"} if index == 8 else {}),
+            }
+            for index in range(1, 10)
+        ]
+
+        with self.assertRaisesRegex(ValueError, "mixes governed"):
+            IdmlWriter(params).add_lcd_story(rows, FIXTURE_DATA_ROOT)
 
     def test_lcd_high_circled_numbers_use_a_font_that_covers_them(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

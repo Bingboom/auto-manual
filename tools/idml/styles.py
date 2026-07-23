@@ -1,13 +1,8 @@
-"""IDML resource parts: paragraph styles, colors, fonts, preferences (P1).
-
-Verbatim moves from IdmlWriter — the emitted XML strings carry
-designer-reported InDesign contracts (Paragraph*-prefixed shading, Auto
-leading for figure paragraphs, DOMVersion 15.0) and must not be
-"normalized".
-"""
+"""Load-bearing IDML paragraph styles, colors, fonts, and preferences."""
 from __future__ import annotations
 
-from .params import IDPKG, param_pt
+from .params import IDPKG, param_pt, param_text
+from .app_text_styles import paragraph_attrs as app_paragraph_attrs, paragraph_styles as app_paragraph_styles
 from .style_resources import fonts_xml, graphic_xml, preferences_xml
 from .style_names import paragraph_style_name, paragraph_style_ref
 
@@ -18,7 +13,20 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
     def sz(key, d): return param_pt(p, key, d)
     return [
         ("HB H1", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", ""),
-        ("HB Title L2", sz("type_title_l2_font_size", 8.6), sz("type_title_l2_font_leading", 9.4), "Heavy", ""),
+        (
+            "HB Title L2",
+            sz("idml_title_l2_font_size", sz("type_title_l2_font_size", 8.6)),
+            sz("type_title_l2_font_leading", 9.4),
+            param_text(p, "idml_title_l2_font_style", "Heavy"),
+            "",
+        ),
+        (
+            "HB Operation Row Label",
+            sz("idml_operation_row_label_font_size", 10.0),
+            sz("idml_operation_row_label_font_leading", 11.0),
+            "Bold",
+            "",
+        ),
         ("HB Title L3", sz("type_title_l3_font_size", 7.0), sz("type_title_l3_font_leading", 8.0), "Medium", ""),
         ("HB Notice Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "label"),
         ("HB Notice Side Label", sz("type_notice_label_font_size", 6.8), sz("type_notice_label_font_leading", 7.4), "Bold", "center"),
@@ -26,14 +34,22 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Preface Title", sz("idml_preface_title_font_size", 8.0), sz("idml_preface_title_font_size", 8.0), "Bold", "preface_title"),
         ("HB Callout Label", sz("type_tip_label_font_size", 8.0), sz("type_tip_label_font_leading", 9.0), "Bold", "center"),
         ("HB Callout Body", sz("type_tip_body_font_size", 6.5), sz("type_tip_body_font_leading", 7.83), "Medium", ""),
-        ("HB Emphasis Pill", sz("type_warranty_lead_font_size", 7.0), sz("type_warranty_lead_font_leading", 8.2), "Bold", "emphasis"),
+        ("HB Emphasis Pill", sz("idml_charging_emphasis_font_size", 6.6), sz("idml_charging_emphasis_font_leading", 7.4), "Bold", "emphasis"),
         ("HB Card Number", sz("type_inbox_label_font_size", 6.5), sz("type_inbox_label_font_leading", 7.0), "Bold", "card_number"),
         ("HB InBox Label", sz("type_inbox_label_font_size", 6.3), sz("type_inbox_label_font_leading", 7.0), "Bold", "center"),
         ("HB Capsule Text", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", "capsule_text"),
         ("HB Figure", sz("type_body_font_size", 6.2), 0.0, "Regular", "figure"),
-        ("HB Body", sz("type_body_font_size", 6.2), sz("type_body_font_leading", 7.5), "Medium", ""),  # \HBTypeBody is HBFontMedium
+        (
+            "HB Body",
+            sz("type_body_font_size", 6.2),
+            sz("type_body_font_leading", 7.5),
+            param_text(p, "idml_body_font_style", "Medium"),
+            "",
+        ),
+        *app_paragraph_styles(p),
         ("HB Preface Body", sz("idml_preface_body_font_size", 7.2), sz("idml_preface_body_font_leading", 8.6), "Regular", "preface_body"),
         ("HB Safety Lead", sz("type_safety_lead_font_size", 8.0), sz("type_safety_lead_font_leading", 9.6), "Bold", "safety_lead"),
+        ("HB Safety Instruction", sz("idml_safety_instruction_font_size", 8.0), sz("idml_safety_instruction_font_leading", 9.6), param_text(p, "idml_safety_instruction_font_style", "Bold"), "warning_lead"),
         ("HB Warning Lead Label", sz("type_warning_lead_label_font_size", 10.0), sz("type_warning_lead_label_font_leading", 10.6), "Bold", "warning_lead"),
         ("HB Warning Lead Body", sz("type_warning_lead_body_font_size", 6.5), sz("type_warning_lead_body_font_leading", 7.2), "Bold", "warning_lead"),
         ("HB FCC Text", 5.6, 6.15, "Regular", ""),
@@ -58,6 +74,8 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Data Header Center", sz("type_data_table_header_font_size", 6.6), sz("type_data_table_header_font_leading", 7.0), "Heavy", "center"),
         ("HB Data Body", sz("type_data_table_font_size", 5.9), sz("type_data_table_font_leading", 6.7), "Regular", ""),
         ("HB Data Code", sz("type_trouble_code_font_size", 8.0), sz("type_trouble_code_font_leading", 8.0), "Bold", "center"),
+        ("HB Symbol Header", sz("idml_symbol_header_font_size", 8.0), sz("idml_symbol_header_font_leading", 8.8), "Bold", ""),
+        ("HB Symbol Body", sz("type_symbol_body_font_size", 5.6), sz("type_symbol_body_font_leading", 6.5), "Regular", ""),
         ("HB TOC Title", 22.25, 26.0, "Bold", "toc_title"),
         ("HB TOC Bar", 10.0, 10.0, "Heavy", "toc_bar"),
         ("HB TOC Range", 9.0, 10.0, "Bold", "toc_range"),
@@ -151,9 +169,12 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
             paragraph_attrs = 'Hyphenation="false" '
         elif kind == "warranty_list":
             paragraph_attrs = (
-                'LeftIndent="8.8" FirstLineIndent="-5.0" RightIndent="0" '
+                f'LeftIndent="{param_pt(params, "idml_warranty_list_left_indent", 5.67):g}" '
+                f'FirstLineIndent="{param_pt(params, "idml_warranty_list_first_line_indent", -5.67):g}" '
+                'RightIndent="0" '
                 'SpaceAfter="0.7" Hyphenation="false" '
             )
+        paragraph_attrs = app_paragraph_attrs(name, kind, params) or paragraph_attrs
         styles.append(
             f'  <ParagraphStyle Self="{self_id}" Name="{template_name}" '
             f'PointSize="{size:g}" FillColor="{fill}" {shading}'

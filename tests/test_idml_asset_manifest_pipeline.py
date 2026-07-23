@@ -192,6 +192,12 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
         )
         for model, region, language, expected in cases:
             with self.subTest(model=model, region=region, language=language):
+                role_labels = {
+                    "main_power": "Power",
+                    "ac": "AC",
+                    "dc_usb": "DC / USB",
+                }
+                language_code = language.lower().replace("_", "-").split("-", 1)[0]
                 requirements = requirements_for_page(
                     page,
                     model=model,
@@ -205,6 +211,18 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
                             "model": model,
                             "region": region,
                             "languages": [language],
+                        },
+                        "idml_contract": {
+                            "editable_components": {
+                                "app_add_device": {
+                                    "control_labels": {
+                                        language_code: {
+                                            "base_labels_by_role": role_labels,
+                                            "render_labels_by_role": role_labels,
+                                        },
+                                    },
+                                },
+                            },
                         },
                     },
                     "pages": [{

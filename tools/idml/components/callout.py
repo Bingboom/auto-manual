@@ -10,6 +10,7 @@ from ..primitives import (
     psr,
     wrap_table_paragraph,
 )
+from ..params import param_pt
 from .base import RenderContext, figure_paragraph
 from .warning_lead import rounded_warninglead
 
@@ -19,6 +20,62 @@ def _warning_icon_asset(ctx: RenderContext) -> Path:
         ctx.root / "docs" / "templates" / "word_template" / "common_assets"
         / "symbols" / "warning_triangle.png"
     )
+
+
+def _safety_instruction_icon_asset(ctx: RenderContext) -> Path:
+    return (
+        ctx.root / "docs" / "templates" / "word_template" / "common_assets"
+        / "symbols" / "warning_triangle_dark.svg"
+    )
+
+
+def render_safetyinstruction(
+    spec: dict,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    terminal: bool,
+    span_columns: bool = True,
+    measure_w: float | None = None,
+) -> tuple[str, float]:
+    """Render the compact top-of-page safety instruction lockup.
+
+    This is deliberately distinct from ``safetywarning``: the approved
+    instruction uses a solid dark triangle and heavy display copy, while a
+    standard warning uses the outlined symbol plus warning prose typography.
+    Keeping the semantic roles separate mirrors ``HBSafetyInstruction`` in
+    the LaTeX renderer and prevents one component tune from regressing the
+    other.
+    """
+    body_w = measure_w or ctx.text_measure
+    icon_asset = _safety_instruction_icon_asset(ctx)
+    icon = ""
+    if icon_asset.exists():
+        icon_w = param_pt(ctx.params, "idml_safety_instruction_icon_width", 20.0)
+        icon_h = param_pt(ctx.params, "idml_safety_instruction_icon_height", 17.4)
+        icon = figure_paragraph(
+            image_cell_content(f"{tid}wi", icon_asset, icon_w, icon_h),
+        )
+    lockup_w = param_pt(ctx.params, "idml_safety_instruction_lockup_width", 31.0)
+    icon_left = param_pt(ctx.params, "idml_safety_instruction_icon_left_inset", 7.5)
+    text_inset = param_pt(ctx.params, "idml_safety_instruction_text_inset", 4.0)
+    body = "\n".join(str(text) for text in spec.get("texts", []) if text)
+    cols = [lockup_w, max(24.0, body_w - lockup_w)]
+    cells = [
+        cell(
+            f"{tid}c0", "0:0", icon, stroke=False,
+            top=2.0, bottom=2.0, left=icon_left, right=3.0,
+            valign="CenterAlign",
+        ),
+        cell(
+            f"{tid}c1", "1:0",
+            psr("HB Safety Instruction", body, terminal=True),
+            stroke=False, top=2.0, bottom=2.0,
+            left=text_inset, right=text_inset, valign="CenterAlign",
+        ),
+    ]
+    table = component_table(tid, cols, cells, role="warning")
+    return wrap_table_paragraph(table, terminal, span_columns), 28.0
 
 
 def render_safetywarning(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
@@ -83,7 +140,7 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
                        span_columns: bool = True,
                        measure_w: float | None = None) -> tuple[str, float]:
     body_w = measure_w or ctx.text_measure
-    warning_icon_asset = _warning_icon_asset(ctx)
+    warning_icon_asset = _safety_instruction_icon_asset(ctx)
     label = spec.get("label", "")
     texts = spec.get("texts", [])
     icon = ""

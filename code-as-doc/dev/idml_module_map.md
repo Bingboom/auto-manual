@@ -34,6 +34,14 @@ tools/idml/
                               one linked story until a hard layout boundary
   reference_story_flow.py     approved-reference page ordering plus per-language
                               operation host-frame placement
+  control_labels.py           Product Overview language+role label index, approved
+                              App display-variant binding, and exact duplicate guard
+  reference_layout_plan.py    registry lookup + approved-plan validation; exact-target
+                              approved files missing from the registry fail closed
+  reference_layout_rebind.py  complete Manual-IR identity/page-binding refresh with
+                              unchanged-composition validation and atomic replacement
+  lcd_reference_profile.py    fail-closed approved LCD row order, display numbering,
+                              typography roles, and locale-selected fixed row geometry
   story_rhythm.py             localized operation H2 spacing derived from the LCD/Key
                               object that immediately follows the heading
   fcc_fallback.py             localized FCC prose -> fcc component fallback when the
@@ -52,11 +60,14 @@ tools/idml/
     inbox.py fcc.py lcdmode.py
     oppanel.py                editable operation artwork overlays and special Energy
                               Saving / LED panels with top-layer text frames
-    key_combinations.py       native four-row Key Combination grid, linked icons, and
+    key_combinations.py       token-driven KeyCombinationStyle, native four-row grid,
+                              linked icons, FR/ES locale overrides, and top-layer
                               independently movable copy frames
     reference_figure.py       approved Charging/App linked-art composites with generated
                               crops and unlocked top-layer caption/control stories
-    prose_table.py            the extractor's ("table", json) block
+    prose_table.py            the extractor's ("table", json) block; owns
+                              TroubleshootingTableStyle, native locale row-height
+                              baselines, and content-safe fixed-panel estimation
     prose_image.py            the extractor's ("image", ref) block
   primitives.py               XML building blocks: psr/<Br/> semantics, bold runs, glyph
                               fallbacks, cells, tables, image frames, path geometry
@@ -75,6 +86,9 @@ tools/idml_rst_extract.py     prepared-bundle RST -> block stream; owns componen
                               test-enforced)
 tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by the
                               extractor
+tools/reference_layout_rebind.py
+                              dry-run-by-default maintainer CLI for the atomic approved-
+                              contract source rebind; never edits composition geometry
 ```
 
 ## Contracts to know before touching anything
@@ -90,6 +104,51 @@ tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by 
 - **Adding a component**: one module under `components/` + one REGISTRY entry
   (+ extractor emission if it has a source form) + a golden regeneration if it
   changes shipped output. No writer surgery.
+- **Approved-plan activation**: a registry match activates and validates its
+  contract. An exact-target approved contract that exists on disk but is absent
+  from the registry is an error, not an ordinary-target fallback. Fuzzy
+  measured-LaTeX mapping is available only when no approved contract exists.
+- **Approved-plan source rebind**: use
+  `tools/reference_layout_rebind.py --plan ... --manual-ir ...` as a dry-run,
+  then repeat with `--write`. It requires unchanged semantic content,
+  `source_ref` order, page languages, and physical composition; refreshes the
+  mutable non-content identities plus every page source digest; validates the
+  full candidate; and atomically replaces the file. It is not a plan-layout
+  editor.
+- **Layout-token identity**: Manual IR hashes the ordered parsed
+  `key`/`value`/`unit` rows from `layout_params.csv`; raw EOLs, blank rows, and
+  the comment column are non-semantic, while token/order changes remain bound.
+- **LCD approved geometry**: the exact-target profile maps stable LCD source
+  numbers to display order, semantic typography roles, and optional positive
+  `row_height_pt_by_language` values. A governed segment must supply every row;
+  mixed governed/native heights fail before export. The generic component-table
+  primitive emits those rows as editable fixed-height rows, while locale placement
+  continues to resolve through base plus `lang_*` layout tokens.
+- **Maintenance/symbols ownership**: `tools/idml/symbols_page.py` owns the
+  combined three-language composition. Safety tails bind the approved dark
+  triangle; signal badges are fixed-size nested native tables with a governed
+  white icon and editable text; icon frame, icon column, and table-gap geometry
+  resolve from symbol layout tokens. Source copy remains outside this renderer.
+- **Key Combinations style ownership**: `KeyCombinationStyle.from_context()`
+  resolves the base grid, asset, and type measurements from shared layout
+  tokens. Governed French/Spanish height, indent, and leading-gap differences
+  are locale token overrides. Shapes/assets are emitted first and independent
+  text frames last, preserving the editable top layer for all three languages.
+- **Troubleshooting style ownership**: `TroubleshootingTableStyle.from_context()`
+  resolves the shared table type, row, ratio, step-padding, and corner tokens.
+  Approved EN/FR/ES native row-height baselines cover shaping that deterministic
+  IDML generation cannot query from InDesign (including the two-line FR/ES code
+  header); measured wrapping adds growth when localized copy exceeds that
+  baseline. The rounded group stays fixed and editable with `AutoSizingType=Off`.
+  The production-master 0.25pt inner rule, 0.57pt outer rule, row minima, optical
+  offsets, 240pt English floor, and import allowance remain explicit renderer
+  calibration and must be revalidated by native preflight when changed.
+- **App control-label ownership**: Product Overview table slots are indexed by
+  language and semantic role (`main_power`, `dc_usb`, `ac`). The approved plan
+  binds those base labels to reviewed App display variants; only an exact
+  three-line base-label duplicate is consumed. `AppFigureStyle` owns the shared
+  overlay tokens, and approved contexts fail on missing source roles, variants,
+  assets, or tokens instead of guessing from adjacent prose.
 - **Template style names**: RST/LaTeX extraction may keep semantic `HB ...`
   names, but emitted IDML paragraph style refs and `Resources/Styles.xml`
   names must go through `tools/idml/style_names.py` so generated stories match
@@ -130,5 +189,7 @@ tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by 
   writes the production IDML, the flow artifacts, and the design handoff package
   in one run
 - `python tools/export_idml.py …` (direct CLI; `--check <file.idml>` validates)
+- `python tools/reference_layout_rebind.py --plan <approved.json> --manual-ir
+  <manual.ir.json> [--write]` (complete source rebind; dry-run by default)
 - Tests: `python -m unittest tests.test_export_idml tests.test_export_idml_golden
   tests.test_export_idml_cli tests.test_idml_components tests.test_idml_package_layout`

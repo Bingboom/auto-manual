@@ -13,7 +13,11 @@ from pathlib import Path
 from . import ir_projection
 from .asset_contracts import is_je1000f_us_app_reference_plan_page
 from .params import param_pt
-from .prose_flow import operation_final_frame_x_offset, operation_language
+from .prose_flow import (
+    composition_language,
+    operation_final_frame_x_offset,
+    operation_language,
+)
 
 
 @dataclass
@@ -28,7 +32,8 @@ class ReferenceStoryEmitter:
         """Emit one editable prose story and return the next page cursor."""
         writer = self.writer
         self.toc.latch(title)
-        operation_lang = operation_language(blocks)
+        operation_lang = operation_language(blocks, self.page_plan, title)
+        composition_lang = composition_language(self.page_plan, title)
         is_operation = (
             (self.page_plan or {}).get("plan_source") == "approved-reference"
             and "operation_guide" in title
@@ -47,16 +52,27 @@ class ReferenceStoryEmitter:
             self.page_plan,
             title,
         )
+        is_storage_troubleshooting = (
+            (self.page_plan or {}).get("plan_source") == "approved-reference"
+            and "storage_and_maintenance" in title
+            and "troubleshooting" in title
+        )
         final_frame_x_offset = (
             operation_final_frame_x_offset(operation_lang)
             if is_operation else 0.0
         )
+        prose_options: dict[str, float | str] = {
+            "inline_origin_shift": final_frame_x_offset,
+        }
+        story_language = operation_lang or composition_lang
+        if story_language is not None:
+            prose_options["language"] = story_language
         _, estimate = writer.add_prose_story(
             sid,
             title,
             blocks,
             self.bundle_root,
-            inline_origin_shift=final_frame_x_offset,
+            **prose_options,
         )
         if title == "00_preface":
             preface_left = param_pt(
@@ -86,6 +102,12 @@ class ReferenceStoryEmitter:
         self.toc.note_h1s(blocks, page_cursor, pages)
         first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
         first_kind = next((kind for kind, _ in blocks if kind != "layout"), "")
+        is_ups_charging = (
+            (self.page_plan or {}).get("plan_source") == "approved-reference"
+            and "ups_mode" in title.casefold()
+            and "charging" in title.casefold()
+            and composition_lang in {"en", "fr", "es"}
+        )
         master_offsets = {"WARRANTY": 12.30, "APP SETUP": 13.13}
         if is_operation:
             # The approved EN/FR/ES fourth operation pages deliberately carry
@@ -98,11 +120,30 @@ class ReferenceStoryEmitter:
                 "comp_operation_page_extra_height",
                 18.0,
             )
+        elif is_storage_troubleshooting:
+            # The governed troubleshooting panel reaches the reference's
+            # lower trim rhythm. Keep its complete editable anchored group in
+            # the story with an invisible frame-depth allowance; never shrink
+            # localized rows or rely on the finalizer to hide overflow.
+            bottom_extra = param_pt(
+                writer.params,
+                "comp_trouble_page_extra_height",
+                32.0,
+            )
         elif first_h1 == "WARRANTY":
             bottom_extra = param_pt(
                 writer.params,
                 "comp_warranty_page_extra_height",
                 17.0,
+            )
+        elif is_app:
+            # Localized App notes remain fully editable at reference sizes.
+            # The extra frame depth is outside the visible page and prevents
+            # longer French/Spanish copy from becoming native story overset.
+            bottom_extra = param_pt(
+                writer.params,
+                "idml_app_page_extra_height",
+                48.0,
             )
         elif is_charging_methods or is_charging_intro:
             # The approved charging compositions end on a dense final frame.
@@ -127,6 +168,12 @@ class ReferenceStoryEmitter:
             first_top_offset=(
                 23.8
                 if is_charging_methods
+                else param_pt(
+                    writer.params,
+                    f"lang_{composition_lang}_idml_ups_page_top_offset",
+                    13.81,
+                )
+                if is_ups_charging
                 else 15.06
                 if is_app
                 else (

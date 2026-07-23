@@ -7,8 +7,8 @@
   <Table Self="tbl_spec_en1" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="2" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0" SpaceBefore="0" SpaceAfter="0">
     <Row Self="tbl_spec_en1r0" Name="0" SingleRowHeight="10.3"/>
     <Row Self="tbl_spec_en1r1" Name="1" SingleRowHeight="10.3"/>
-    <Column Self="tbl_spec_en1col0" Name="0" SingleColumnWidth="100.254"/>
-    <Column Self="tbl_spec_en1col1" Name="1" SingleColumnWidth="210.711"/>
+    <Column Self="tbl_spec_en1col0" Name="0" SingleColumnWidth="96.2113"/>
+    <Column Self="tbl_spec_en1col1" Name="1" SingleColumnWidth="214.753"/>
     <Cell Self="tbl_spec_en1c0_0" Name="0:0" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="6.4275" BottomInset="6.4275" LeftInset="5.85" RightInset="3">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="-0.08"><Content>1 × AC Input</Content></CharacterStyleRange>

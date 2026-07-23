@@ -57,6 +57,7 @@ symbols/tip_bar,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_templ
 symbols/unplug,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:4400c34e2e70,文字负载普查待做（无字化排期）
 symbols/warning_bar,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:698e38efcac9,文字负载普查待做（无字化排期）
 symbols/warning_triangle,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:24e567ffad05,文字负载普查待做（无字化排期）
+symbols/warning_triangle_dark,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,svg:e1746d6937db,与 LaTeX HBSafetyInstruction 同源的深色实心警告三角形
 symbols/warning_triangle_white,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,svg:5e5fc8a41e7c,文字负载普查待做（无字化排期）
 symbols/weee,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:e9fc75301b8a,文字负载普查待做（无字化排期）
 symbols/weee2,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:236891c20611,文字负载普查待做（无字化排期）

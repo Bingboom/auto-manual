@@ -6,8 +6,12 @@ side stays aligned with the PDF renderer's parameter source.
 """
 from __future__ import annotations
 
-import csv
 from pathlib import Path
+
+try:
+    from tools.render_contract import load_layout_tokens
+except ModuleNotFoundError:  # direct tools/export_idml.py execution
+    from render_contract import load_layout_tokens  # type: ignore
 
 MIMETYPE = "application/vnd.adobe.indesign-idml-package"
 IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
@@ -17,14 +21,10 @@ MM_TO_PT = 72.0 / 25.4
 
 def load_layout_params(csv_path: Path) -> dict[str, tuple[str, str]]:
     """key -> (value, unit)"""
-    out: dict[str, tuple[str, str]] = {}
-    with csv_path.open(encoding="utf-8") as fh:
-        for row in csv.DictReader(fh):
-            key = (row.get("key") or "").strip()
-            if not key:
-                continue
-            out[key] = ((row.get("value") or "").strip(), (row.get("unit") or "").strip())
-    return out
+    return {
+        key: (token.value, token.unit)
+        for key, token in load_layout_tokens(csv_path).items()
+    }
 
 
 def param_pt(params: dict[str, tuple[str, str]], key: str, default: float) -> float:
@@ -38,6 +38,41 @@ def param_pt(params: dict[str, tuple[str, str]], key: str, default: float) -> fl
     if unit == "mm":
         return v * MM_TO_PT
     return v  # pt / em treated as pt at this level
+
+
+def param_text(
+    params: dict[str, tuple[str, str]],
+    key: str,
+    default: str,
+) -> str:
+    """Resolve one non-numeric IDML style token from the shared parameter map."""
+    value, _unit = params.get(key, ("", ""))
+    normalized = str(value).strip()
+    return normalized or default
+
+
+def component_param_pt(
+    params: dict[str, tuple[str, str]],
+    key: str,
+    default: float,
+    *,
+    strict: bool,
+    owner: str,
+) -> float:
+    """Resolve one component token, failing closed for approved contracts."""
+    if strict:
+        raw = params.get(key)
+        if raw is None or not str(raw[0]).strip():
+            raise ValueError(
+                f"approved {owner} style is missing required layout token: {key}"
+            )
+        try:
+            float(raw[0])
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                f"approved {owner} style has a non-numeric layout token: {key}"
+            ) from exc
+    return param_pt(params, key, default)
 
 
 def brand_cmyk(params: dict[str, tuple[str, str]], key: str, default: str) -> tuple[float, float, float, float]:
