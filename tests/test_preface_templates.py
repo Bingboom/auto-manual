@@ -23,6 +23,35 @@ class PrefaceTemplateTests(unittest.TestCase):
         self.assertIn("FR IMPORTANT", text)
         self.assertIn("ES IMPORTANTE", text)
 
+    def test_au_preface_should_use_english_only_component(self) -> None:
+        template = (
+            ROOT
+            / "docs"
+            / "templates"
+            / "page_shared"
+            / "en"
+            / "00_preface_single_language.rst"
+        )
+        manifest_text = (
+            ROOT / "docs" / "manifests" / "manual_au-en.yaml"
+        ).read_text(encoding="utf-8")
+
+        self.assertTrue(template.is_file())
+        text = template.read_text(encoding="utf-8")
+        self.assertIn(r"\HBLangTagLine{EN}{IMPORTANT}", text)
+        self.assertNotIn(r"\HBLangTagLine{FR}", text)
+        self.assertNotIn(r"\HBLangTagLine{ES}", text)
+        self.assertNotIn("FR IMPORTANT", text)
+        self.assertNotIn("ES IMPORTANTE", text)
+        self.assertIn(
+            "templates/page_shared/en/00_preface_single_language.rst",
+            manifest_text,
+        )
+        self.assertNotIn(
+            "file: templates/page_shared/en/00_preface.rst",
+            manifest_text,
+        )
+
     def test_us_review_preface_should_keep_latex_page_component_contract(self) -> None:
         text = (ROOT / "docs" / "_review" / "JE-1000F" / "US" / "page" / "00_preface.rst").read_text(
             encoding="utf-8"
