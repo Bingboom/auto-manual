@@ -8,7 +8,7 @@ description: >-
 
 inputs:
   job-status:
-    description: "Pass the calling job's status: ${{ job.status }}"
+    description: "The calling job's status; pass job.status from the workflow job (values: success, failure, cancelled)."
     required: true
   label:
     description: Sentinel label identifying this workflow's issues
