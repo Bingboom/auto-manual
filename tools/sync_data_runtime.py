@@ -311,6 +311,16 @@ def _cached_attachment_path(target_path: Path, file_token: str) -> Path | None:
     return candidates[0] if candidates else None
 
 
+def _logical_attachment_path(path: Path) -> str:
+    # CSV cells carry the LOGICAL attachment location, not the physical export
+    # root: snapshots are materialized under arbitrary roots (the queue workers
+    # use .tmp/review-start/phase2), and a physical path baked into the snapshot
+    # is unresolvable for downstream consumers built from a different tree. The
+    # asset pipeline's contract is data/phase2/_attachments/<category>/<name>;
+    # bundle staging resolves that against whichever data root is active.
+    return f"data/phase2/_attachments/{path.parent.name}/{path.name}"
+
+
 def _materialized_attachment_display_path(
     *,
     label: str,
@@ -324,15 +334,15 @@ def _materialized_attachment_display_path(
     file_token = _attachment_file_token(item)
     cached_path = _cached_attachment_path(target_path, file_token)
     if dry_run:
-        return _display_path(cached_path or target_path, repo_root=repo_root)
+        return _logical_attachment_path(cached_path or target_path)
 
     if cached_path == target_path:
-        return _display_path(target_path, repo_root=repo_root)
+        return _logical_attachment_path(target_path)
 
     downloader = _drive_file_downloader(source)
     if downloader is None:
         if cached_path is not None:
-            return _display_path(cached_path, repo_root=repo_root)
+            return _logical_attachment_path(cached_path)
         raise RuntimeError(missing_downloader_message)
 
     try:
@@ -351,7 +361,7 @@ def _materialized_attachment_display_path(
                 f"Using cached attachment {cached_display_path}.",
                 file=sys.stderr,
             )
-            return cached_display_path
+            return _logical_attachment_path(cached_path)
 
         print(
             f"[sync-data] WARNING: Failed to download {label} attachment "
@@ -361,7 +371,7 @@ def _materialized_attachment_display_path(
         )
         return ""
 
-    return _display_path(target_path, repo_root=repo_root)
+    return _logical_attachment_path(target_path)
 
 
 def _lcd_icon_attachment_path(
