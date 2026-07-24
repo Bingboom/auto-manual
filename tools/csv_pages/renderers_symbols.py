@@ -361,12 +361,27 @@ def _append_image_cell(
         lines.append(f"       **{rst_escape(label)}**")
 
 
+def _canonical_attachment_path(path_value: str) -> str:
+    # Synced CSVs store the attachment path anchored at the PHYSICAL export
+    # root (an absolute path; e.g. .tmp/review-start/phase2 for queue workers).
+    # RST is a deterministic content surface and the asset pipeline's contract
+    # is the LOGICAL location, so normalize anything under an ``_attachments``
+    # tree to data/phase2/_attachments/...; bundle staging then resolves it
+    # against the active data root wherever that physically lives.
+    normalized = path_value.replace("\\", "/")
+    marker = "_attachments/"
+    index = normalized.rfind(marker)
+    if index < 0:
+        return path_value
+    return f"data/phase2/{marker}{normalized[index + len(marker):]}"
+
+
 def _figure_image_path(value: str) -> str:
     raw = (value or "").strip()
     if not raw:
         return ""
     if not raw.startswith(("{", "[")):
-        return raw
+        return _canonical_attachment_path(raw)
     try:
         payload = json.loads(raw)
     except json.JSONDecodeError:
@@ -378,7 +393,7 @@ def _figure_image_path(value: str) -> str:
         for key in ("path", "local_path", "relative_path", "file_path"):
             path_value = str(item.get(key) or "").strip()
             if path_value:
-                return path_value
+                return _canonical_attachment_path(path_value)
         file_token = str(item.get("file_token") or item.get("token") or "").strip()
         if file_token:
             name = str(item.get("name") or item.get("file_name") or "").strip()

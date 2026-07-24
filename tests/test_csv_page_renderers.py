@@ -2054,5 +2054,54 @@ class TestCsvPageRenderers(unittest.TestCase):
                 [section["title"] for section in data["sections"]],
             )
 
+
+class TestFigureAttachmentPathNormalization(unittest.TestCase):
+    """Synced CSVs store physical export-root paths; RST must carry the
+    canonical data/phase2/_attachments/... form so bundle staging can resolve
+    it against whichever data root is active (queue workers use
+    .tmp/review-start/phase2, not the repo snapshot)."""
+
+    def test_symbols_figure_path_normalizes_absolute_export_root(self) -> None:
+        from tools.csv_pages.renderers_symbols import _figure_image_path
+
+        self.assertEqual(
+            "data/phase2/_attachments/symbols/1_warning_tok16chars0000.png",
+            _figure_image_path(
+                "/home/runner/work/x/x/.tmp/review-start/phase2/_attachments/symbols/1_warning_tok16chars0000.png"
+            ),
+        )
+
+    def test_symbols_figure_path_keeps_canonical_form(self) -> None:
+        from tools.csv_pages.renderers_symbols import _figure_image_path
+
+        canonical = "data/phase2/_attachments/symbols/2_caution_tok16chars0000.png"
+        self.assertEqual(canonical, _figure_image_path(canonical))
+
+    def test_symbols_figure_path_leaves_non_attachment_values_alone(self) -> None:
+        from tools.csv_pages.renderers_symbols import _figure_image_path
+
+        self.assertEqual("_assets/foo/bar.png", _figure_image_path("_assets/foo/bar.png"))
+
+    def test_lcd_figure_path_normalizes_absolute_export_root(self) -> None:
+        from tools.csv_pages.renderers_lcd_icons import _figure_image_path
+
+        self.assertEqual(
+            "data/phase2/_attachments/lcd_icons/1_Wi-Fi_tok16chars0000.png",
+            _figure_image_path(
+                "/tmp/anywhere/phase2/_attachments/lcd_icons/1_Wi-Fi_tok16chars0000.png"
+            ),
+        )
+
+    def test_lcd_figure_path_normalizes_json_payload_path(self) -> None:
+        from tools.csv_pages.renderers_lcd_icons import _figure_image_path
+
+        self.assertEqual(
+            "data/phase2/_attachments/lcd_icons/2_Bluetooth_tok16chars0000.png",
+            _figure_image_path(
+                '{"path": "/srv/data/phase2/_attachments/lcd_icons/2_Bluetooth_tok16chars0000.png"}'
+            ),
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
