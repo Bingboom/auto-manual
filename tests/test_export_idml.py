@@ -2623,7 +2623,7 @@ class ExportIdmlTests(unittest.TestCase):
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         figure = (
             "tests/fixtures/phase2/_attachments/lcd_icons/"
-            "8_AC_Power_Indicator_EXtsboEbfoAmFvxKJAFcHjhrnVc.png"
+            "8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png"
         )
         rows = [
             {
