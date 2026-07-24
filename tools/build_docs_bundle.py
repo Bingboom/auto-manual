@@ -149,28 +149,39 @@ def prepare_manual_bundle(
                 f"model='{model or ''}', region='{region or ''}'. "
                 "Run 'python build.py review ...' first."
             )
-    if review_applied:
-        active_data_root = resolve_active_data_root(
-            cfg,
-            repo_root=repo_root,
-            data_root=data_root,
-            model=model,
-            region=region,
+    # Stage synced bitable attachments (lcd_icons / symbols) for EVERY bundle,
+    # not only review overlays: runtime materialization also writes
+    # data/phase2/_attachments/... references into the csv pages, and when the
+    # ACTIVE data root is not the repo snapshot (e.g. the queue workers'
+    # .tmp/review-start/phase2) those references resolve nowhere in the build
+    # tree, so the asset finalizer hard-fails (bundle asset reference not
+    # found). Staging copies the files from the active data root into the
+    # bundle's _repo_assets and rewrites the references to bundle-relative
+    # paths, which the finalizer accepts wherever the data root lives.
+    active_data_root = resolve_active_data_root(
+        cfg,
+        repo_root=repo_root,
+        data_root=data_root,
+        model=model,
+        region=region,
+    )
+    alias_report = stage_bundle_attachment_aliases(
+        bundle.bundle_dir,
+        active_data_root,
+    )
+    if alias_report.missing:
+        raise RuntimeError(
+            ("Review bundle" if review_applied else "Bundle")
+            + " has unresolved attachment(s): "
+            + ", ".join(alias_report.missing)
         )
-        alias_report = stage_bundle_attachment_aliases(
-            bundle.bundle_dir,
-            active_data_root,
+    if alias_report.aliases:
+        printer(
+            f"[build] Staged {alias_report.aliases} frozen attachment alias(es) "
+            f"across {alias_report.rewritten_files} "
+            + ("review" if review_applied else "bundle")
+            + " file(s)"
         )
-        if alias_report.missing:
-            raise RuntimeError(
-                "Review bundle has unresolved attachment(s): "
-                + ", ".join(alias_report.missing)
-            )
-        if alias_report.aliases:
-            printer(
-                f"[build] Staged {alias_report.aliases} frozen attachment alias(es) "
-                f"across {alias_report.rewritten_files} review file(s)"
-            )
     bundle = finalize_materialized_bundle(
         bundle,
         cfg=cfg,
