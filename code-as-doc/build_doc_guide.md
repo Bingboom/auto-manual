@@ -277,6 +277,8 @@ Page-stack note:
 
 - shared config families may resolve their page stack through `paths.page_manifest`
 - keep manifest-driven page order changes under [`docs/manifests/`](../docs/manifests)
+- keep merged-language and single-language preface components separate: `manual_au-en.yaml` uses the English-only `page_shared/en/00_preface_single_language.rst`; the merged US preface remains the trilingual `page_shared/en/00_preface.rst`
+- do not point a single-language manifest at a preface containing language-tagged blocks outside `build.languages`; the language-parity gate rejects that bundle
 
 Pass target differences through:
 
