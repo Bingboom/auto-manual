@@ -524,6 +524,7 @@ Important:
 - `python build.py review --refresh-review` intentionally replaces an existing review bundle from template/data.
 - `python build.py sync-review` is the safe path after snapshot data changes during review.
 - review builds now auto-run the same parameter sync before `check`, `html`, `word`, `pdf`, and `publish`, so parameter lines stay current without overwriting the rest of the review prose.
+- a target review manifest may declare exact `page/*.rst` or `generated/*.rst` files in `sync_preserve_paths`; those paths remain byte-stable during automatic or manual `sync-review`, and each skip is written to `last_sync_preserved_files`. Remove the declaration before intentionally refreshing that page.
 - when a single-language build targets a merged review branch and only `docs/_review/<model>/US/` or `docs/_review/<model>/EU/` exists, that auto sync falls back to the merged review root instead of silently skipping the refresh, then remaps the shared-family review pages onto the requested single-language page order before export.
 - if you intentionally want one review page replaced from runtime, keep using `sync-review --page-file <file>`; if you need the whole review bundle replaced, use `review --refresh-review`.
 - single-language US English review targets still use `docs/_review/<model>/US/en/`, Brazil Portuguese review targets use `docs/_review/<model>/pt-BR/pt-BR/`, and single-language EU review targets still use `docs/_review/<model>/EU/<lang>/`, but the merged `configs/config.us.yaml` / `configs/config.eu.yaml` queue/review flows use the shared roots `docs/_review/<model>/US/` and `docs/_review/<model>/EU/`.
@@ -856,6 +857,7 @@ RTD catalog behavior:
 - first refreshes the runtime bundle from template/data
 - then updates only data-driven review files by default
 - does not replace ordinary review prose pages unless you explicitly name them with `--page-file`
+- skips exact target-local paths declared by the review bundle's `manifest.json` `sync_preserve_paths`, including paths explicitly named with `--page-file`; only relative `.rst` files under `page/` or `generated/` are accepted
 - data-driven means:
   - all generated CSV pages
   - all materialized `spec_*` / `safety_*` pages

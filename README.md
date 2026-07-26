@@ -368,6 +368,11 @@ Use different surfaces for different stages:
 - target-specific review edits after review starts: [`docs/_review/`](docs/_review)
 - generated runtime and export outputs: [`docs/_build/`](docs/_build)
 
+A review bundle may protect exact frozen RST files from automatic parameter
+sync with `sync_preserve_paths` in its own `manifest.json`. The declaration is
+target-local, accepts only relative `.rst` paths under `page/` or `generated/`,
+and should be used only when approved review copy must remain byte-stable.
+
 Rule:
 
 - before review starts, seed the draft from templates and data

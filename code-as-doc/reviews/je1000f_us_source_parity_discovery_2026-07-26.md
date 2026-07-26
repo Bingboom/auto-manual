@@ -147,6 +147,44 @@ For this PR, the safe read-only equivalent is to prepare an isolated
 `review-asis` staging bundle and invoke `tools/check_docs.py` directly against
 that staging root. That check passed. Fixing the CLI boundary is out of scope.
 
+## Target-scoped sync preservation plan
+
+The PR check exposed a second, narrower problem: the automatic
+`sync-review --sync-scope params` pass re-merges placeholder-bearing lines in
+the shared US safety templates. A placeholder and its surrounding raw HTML can
+share one physical RST line, so refreshing the placeholder also restores the
+generic template wording around it and loses the reference-faithful frozen
+copy.
+
+The approved fix is target-scoped and data-driven:
+
+1. Teach review sync to honor an exact `sync_preserve_paths` list stored in a
+   review bundle's own `manifest.json`.
+2. Declare the three frozen safety pages in the committed
+   `JE-1000F / US` review manifest. No other target receives the declaration.
+3. Skip a protected destination before copy or parameter merge, and record the
+   skipped paths in sync metadata so the behavior is observable.
+4. Add regression coverage proving the protected safety raw HTML remains
+   byte-for-byte unchanged while an undeclared sibling target still syncs.
+5. Document that removing the manifest declaration (or deliberately reseeding
+   the review bundle) is required before those pages can be refreshed.
+
+Safety nets:
+
+- protected paths must be relative `.rst` files under `page/` or `generated/`;
+  invalid or escaping declarations fail closed;
+- shared US templates and phase-2 source tables remain unchanged;
+- ordinary parameter synchronization remains unchanged for all undeclared
+  targets and paths.
+
+Non-goals:
+
+- no model-name branch in Python;
+- no new prose override directory;
+- no change to `review --refresh-review`, which remains the deliberate full
+  reseed path;
+- no attempt to solve the two native InDesign oversets in this sync fix.
+
 ## Validation ladder
 
 1. RST/source parity ledger: no unexplained textual deltas.
