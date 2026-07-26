@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "evidence_status": "reference-selected",
+  "evidence_status": "ai-master-selected",
   "decision": {
-    "status": "frozen-reference-approved",
-    "selected_asset_key": "qr/back_cover_reference_candidate",
-    "reason": "The operator named the frozen V2.0 PDF as the one-to-one layout authority for PR2. Its page-58 QR-only asset is therefore approved for JE-1000F US; the conflicting design-master candidate remains quarantined."
+    "status": "operator-approved-ai-source",
+    "selected_asset_key": "qr/back_cover_ai_candidate",
+    "reason": "The operator requires every image asset in the JE-1000F US package to originate from the supplied AI master. The AI page-59 QR-only export is therefore selected for JE-1000F US; the reference-PDF crop remains quarantined and may be used only for visual geometry comparison."
   },
   "candidates": [
     {

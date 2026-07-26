@@ -238,7 +238,7 @@ class TestAssetRegistry(unittest.TestCase):
     def test_quarantined_asset_cannot_resolve_or_publish(self) -> None:
         for asset_key, language in (
             ("page/back_cover", "en"),
-            ("qr/back_cover_ai_candidate", None),
+            ("qr/back_cover_reference_candidate", None),
         ):
             with self.subTest(asset_key=asset_key):
                 with self.assertRaisesRegex(AssetRegistryError, QUARANTINED_STATUS):
@@ -255,7 +255,7 @@ class TestAssetRegistry(unittest.TestCase):
 
         for asset_key in (
             "page/back_cover",
-            "qr/back_cover_ai_candidate",
+            "qr/back_cover_reference_candidate",
         ):
             report = check_registry(
                 self.records,
@@ -268,16 +268,16 @@ class TestAssetRegistry(unittest.TestCase):
                 tuple(issue.code for issue in report.errors),
             )
 
-        reference_qr = resolve_asset(
+        ai_qr = resolve_asset(
             self.records,
             repo_root=ROOT,
-            asset_key="qr/back_cover_reference_candidate",
+            asset_key="qr/back_cover_ai_candidate",
             format_name="pdf",
             model="JE-1000F",
             region="US",
         )
         self.assertEqual(
-            "back_cover_qr_reference_candidate.pdf", Path(reference_qr.path).name,
+            "back_cover_qr_ai_candidate.pdf", Path(ai_qr.path).name,
         )
 
     def test_resolve_fails_closed_when_export_hash_does_not_match(self) -> None:

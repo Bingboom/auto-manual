@@ -56,7 +56,7 @@
     ],
     "editable_components": {
       "back_cover": {
-        "qr_asset": "docs/renderers/latex/assets/back_cover_qr_reference_candidate.pdf",
+        "qr_asset": "docs/renderers/latex/assets/back_cover_qr_ai_candidate.pdf",
         "display_address": "5310 Bunche Dr., Fremont, CA 94538-8301",
         "phone_suffix": "(US)",
         "contact_lines": "hello@jackery.com\nwww.jackery.com",

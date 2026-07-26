@@ -18,10 +18,11 @@ The reference PDF is SHA-256
   present outer panel height is close to the reference and must be re-measured
   after the icon change before any height adjustment.
 - The editable back cover has only a narrow contact bar and no QR. Two
-  hash-bound QR-only candidates exist. Because this PR's named visual authority
-  is the frozen reference PDF, the reference candidate (page 58, decoded payload
-  `160102000161`) is the target-local selection; the conflicting AI-master
-  candidate stays quarantined.
+  hash-bound QR-only candidates exist. The reference PDF governs geometry only;
+  the operator requires every image asset to originate from the supplied AI
+  master. The AI page-59 candidate (decoded payload `160102000404`) is therefore
+  the target-local runtime selection, while the reference-PDF crop stays
+  quarantined.
 - The three What's in the Box cards use shared fixed widths, dark K40/0.75 pt
   rules, and artwork widths that are visibly larger than the reference. These
   need governed reference-layout metrics, not source-copy changes.
@@ -42,7 +43,7 @@ The reference PDF is SHA-256
 1. Add a validated `icon_size_pt_by_language` LCD reference-profile token,
    project it into each target row, cap icon frames in the native table, and add
    fail-closed tests.
-2. Promote only the frozen-reference QR candidate for JE-1000F US and compose
+2. Promote only the AI-master QR candidate for JE-1000F US and compose
    the back cover from editable company/contact stories plus governed icon,
    divider, QR, and frame geometry.
 3. Add target-scoped reference metrics for inbox artwork widths and card rule
@@ -72,10 +73,10 @@ Production edits begin only after this plan is committed to the branch diff.
   unchanged.
 - The inbox cards retain editable labels and semantic artwork. Cable/document
   artwork is reduced to 40/38 pt and the card outline uses the light K10 rule.
-- The frozen-reference page-58 QR (`160102000161`) is promoted only for
-  JE-1000F US. The editable back cover now carries the reference geometry,
-  contact copy, divider, native line icons, and QR; the conflicting AI-master QR
-  remains quarantined.
+- The supplied AI master page-59 QR (`160102000404`) is promoted only for
+  JE-1000F US. The editable back cover carries the reference geometry, contact
+  copy, divider, native line icons, and AI-derived QR; the reference-PDF crop
+  remains quarantined and is not a build input.
 - Native InDesign finalization passed with 58 pages, 0 overset stories, 0
   missing fonts, and 0 bad links. The previous Spanish operation/warranty
   oversets do not reproduce in the final contract-bound build.

@@ -198,7 +198,7 @@ class ExportIdmlTests(unittest.TestCase):
 
         spread = writer.spreads[0][1]
         stories = "".join(xml for _, xml in writer.stories)
-        self.assertIn("back_cover_qr_reference_candidate.pdf", spread)
+        self.assertIn("back_cover_qr_ai_candidate.pdf", spread)
         self.assertIn('Self="rc_st_back_cover_qr"', spread)
         self.assertIn('Self="gl_st_back_cover_divider"', spread)
         self.assertIn("JACKERY INC.", stories)
