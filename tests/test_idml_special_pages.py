@@ -66,7 +66,7 @@ class IdmlSpecialPageTests(unittest.TestCase):
         self.assertIn("<Content>EN</Content>", stories)
         self.assertIn('Story Self="st_toc_bar_label_0"', stories)
         self.assertIn(
-            'FontStyle="Medium" HorizontalScale="101.194"'
+            'FontStyle="Bold" HorizontalScale="101.194"'
             "><Content>English</Content>",
             stories,
         )

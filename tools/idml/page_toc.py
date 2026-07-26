@@ -57,6 +57,115 @@ _LEFT_ENTRY_WIDTH = (151.461, 151.461, 151.346)
 _RIGHT_ENTRY_X = 189.261
 _RIGHT_ENTRY_WIDTH = (154.676, 154.790, 154.905)
 
+# Reference artwork applies small per-entry horizontal metric adjustments.
+# Keeping these on live CharacterStyleRange text reproduces the measured word
+# widths without outlining or converting the TOC to artwork.
+_ENTRY_HORIZONTAL_SCALE = {
+    "IMPORTANT SAFETY INFORMATION": 100.843,
+    "MEANING OF SYMBOLS": 100.359,
+    "WHAT'S IN THE BOX": 100.939,
+    "PRODUCT OVERVIEW": 100.622,
+    "LCD DISPLAY": 102.331,
+    "OPERATIONS": 105.244,
+    "UNINTERRUPTIBLE POWER SUPPLY (UPS)": 100.934,
+    "CHARGING": 100.117,
+    "STORAGE": 102.046,
+    "TROUBLESHOOTING": 100.572,
+    "SPECIFICATIONS": 101.136,
+    "WARRANTY": 100.757,
+    "APP SETUP": 100.101,
+    "INFORMATIONS DE SÉCURITÉ IMPORTANTES": 100.732,
+    "SIGNIFICATION DES SYMBOLES": 100.693,
+    "CONTENU DE LA BOÎTE": 99.858,
+    "APERÇU DU PRODUIT": 100.195,
+    "AFFICHAGE LCD": 101.067,
+    "FONCTIONNEMENT": 100.126,
+    "ALIMENTATION SANS INTERRUPTION (ASI)": 100.919,
+    "CHARGE": 100.151,
+    "STOCKAGE": 101.562,
+    "DÉPANNAGE": 101.686,
+    "SPÉCIFICATIONS": 101.136,
+    "GARANTIE": 100.538,
+    "CONFIGURATION DE L'APPLICATION": 101.423,
+    "INFORMACIÓN IMPORTANTE DE SEGURIDAD": 100.693,
+    "SIGNIFICADO DE LOS SÍMBOLOS": 101.130,
+    "CONTENIDO DE LA CAJA": 100.141,
+    "DESCRIPCIÓN GENERAL DEL PRODUCTO": 100.404,
+    "PANTALLA LCD": 102.267,
+    "OPERACIONES": 100.418,
+    "FUENTE DE ALIMENTACIÓN ININTERRUMPIDA (UPS)": 99.332,
+    "CARGANDO": 100.699,
+    "ALMACENAMIENTO": 100.783,
+    "RESOLUCIÓN DE PROBLEMAS": 100.305,
+    "ESPECIFICACIONES": 100.587,
+    "GARANTÍA": 100.525,
+    "CONFIGURACIÓN DE LA APLICACIÓN": 100.336,
+}
+
+# Physical-page coordinates measured from the supplied V2.0 reference.  Each
+# tuple is (x1, y, x2, stroke_weight, dash, gap).  The leader remains a native
+# editable InDesign GraphicLine; only its page geometry comes from the PDF
+# comparison.  No reference artwork is placed or rasterized.
+_REFERENCE_LEADERS = (
+    (
+        (
+            (136.501, 94.494, 167.975, 0.250, 0.976, 0.976),
+            (101.973, 107.966, 167.975, 0.250, 0.976, 0.976),
+            (92.306, 122.470, 167.975, 0.250, 0.976, 0.976),
+            (100.326, 136.433, 167.975, 0.250, 0.976, 0.976),
+            (76.474, 150.396, 167.975, 0.250, 0.976, 0.976),
+            (74.253, 164.359, 167.975, 0.250, 0.976, 0.976),
+            (152.238, 177.851, 167.975, 0.250, 0.976, 0.976),
+        ),
+        (
+            (227.654, 94.494, 327.652, 0.289, 1.127, 1.127),
+            (225.587, 107.966, 328.553, 0.250, 0.976, 0.976),
+            (253.809, 122.073, 328.553, 0.250, 0.976, 0.976),
+            (241.809, 136.036, 328.553, 0.250, 0.976, 0.976),
+            (226.698, 150.719, 328.553, 0.250, 0.976, 0.976),
+            (224.698, 164.097, 328.553, 0.250, 0.976, 0.976),
+        ),
+    ),
+    (
+        (
+            (162.083, 234.412, 168.092, 0.250, 0.976, 0.976),
+            (126.853, 248.375, 168.092, 0.250, 0.976, 0.976),
+            (100.295, 262.338, 168.092, 0.250, 0.976, 0.976),
+            (96.835, 276.301, 168.092, 0.250, 0.976, 0.976),
+            (80.829, 290.264, 168.092, 0.250, 0.976, 0.976),
+            (89.612, 304.227, 168.092, 0.250, 0.976, 0.976),
+            (154.476, 317.840, 168.092, 0.250, 0.976, 0.976),
+        ),
+        (
+            (221.331, 234.412, 328.669, 0.250, 0.976, 0.976),
+            (228.698, 248.375, 328.669, 0.250, 0.976, 0.976),
+            (230.698, 262.275, 328.669, 0.250, 0.976, 0.976),
+            (244.390, 276.238, 328.669, 0.250, 0.976, 0.976),
+            (224.213, 290.826, 328.669, 0.250, 0.976, 0.976),
+            (300.557, 304.393, 328.669, 0.250, 0.976, 0.976),
+        ),
+    ),
+    (
+        (
+            (163.809, 383.635, 166.641, 0.250, 0.976, 0.976),
+            (128.852, 397.598, 166.641, 0.250, 0.976, 0.976),
+            (107.056, 411.561, 166.641, 0.250, 0.976, 0.976),
+            (152.890, 425.524, 166.641, 0.250, 0.976, 0.976),
+            (77.279, 439.487, 166.641, 0.250, 0.976, 0.976),
+            (77.279, 453.450, 166.641, 0.250, 0.976, 0.976),
+            (165.586, 467.729, 166.641, 0.250, 0.976, 0.976),
+        ),
+        (
+            (228.253, 384.039, 328.669, 0.250, 0.976, 0.976),
+            (249.390, 398.127, 328.669, 0.250, 0.976, 0.976),
+            (279.166, 412.214, 328.669, 0.250, 0.976, 0.976),
+            (249.390, 426.302, 328.669, 0.250, 0.976, 0.976),
+            (222.890, 440.265, 328.669, 0.250, 0.976, 0.976),
+            (302.168, 454.186, 328.669, 0.250, 0.976, 0.976),
+        ),
+    ),
+)
+
 
 @dataclass
 class TocCollector:
@@ -111,20 +220,21 @@ def _entry_psr(title: str, folio: int | str, col_w: float) -> str:
     available = col_w - 8.0
     point_size = min(6.5, available / max(1.0, len(title) * 0.56))
     point_size = max(5.4, point_size)
-    leader = (
+    horizontal_scale = _ENTRY_HORIZONTAL_SCALE.get(title, 100.693)
+    right_tab = (
         '<Properties><TabList type="list"><ListItem type="record">'
         '<Alignment type="enumeration">RightAlign</Alignment>'
         '<AlignmentCharacter type="string">.</AlignmentCharacter>'
-        '<Leader type="string">. </Leader>'
+        '<Leader type="string"></Leader>'
         f'<Position type="unit">{col_w - 2:.1f}</Position>'
         "</ListItem></TabList></Properties>"
     )
     safe = title.replace("&", "&amp;").replace("<", "&lt;")
     return (
-        f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">{leader}'
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">{right_tab}'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
         f'PointSize="{point_size:.3f}" FontStyle="Medium" '
-        'HorizontalScale="100.693">'
+        f'HorizontalScale="{horizontal_scale:g}">'
         f"<Content>{safe}</Content>"
         '</CharacterStyleRange>'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
@@ -134,6 +244,34 @@ def _entry_psr(title: str, folio: int | str, col_w: float) -> str:
         'PointSize="7" FontStyle="Regular" BaselineShift="0.20">'
         f"<Content>{str(folio).zfill(2)}</Content><Br/>"
         "</CharacterStyleRange></ParagraphStyleRange>\n"
+    )
+
+
+def _leader_xml(
+    writer, leader_id: str,
+    metric: tuple[float, float, float, float, float, float],
+) -> str:
+    x1, y, x2, weight, dash, gap = metric
+    page_x = writer.page_w / 2.0
+    page_y = writer.page_h / 2.0
+    return (
+        f'  <GraphicLine Self="{leader_id}" ContentType="Unassigned" '
+        'AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Swatch/None" '
+        'StrokeColor="Color/HB Brand Dark" '
+        f'StrokeWeight="{weight:g}" StrokeType="StrokeStyle/$ID/Dashed" '
+        f'StrokeDashAndGap="{dash:g} {gap:g}" '
+        'StrokeCornerAdjustment="DashesAndGaps" EndCap="ButtEndCap" '
+        'ItemTransform="1 0 0 1 0 0">'
+        '<Properties><PathGeometry><GeometryPathType PathOpen="true">'
+        '<PathPointArray>'
+        f'<PathPointType Anchor="{x1 - page_x:g} {y - page_y:g}" '
+        f'LeftDirection="{x1 - page_x:g} {y - page_y:g}" '
+        f'RightDirection="{x1 - page_x:g} {y - page_y:g}"/>'
+        f'<PathPointType Anchor="{x2 - page_x:g} {y - page_y:g}" '
+        f'LeftDirection="{x2 - page_x:g} {y - page_y:g}" '
+        f'RightDirection="{x2 - page_x:g} {y - page_y:g}"/>'
+        '</PathPointArray></GeometryPathType></PathGeometry></Properties>'
+        '</GraphicLine>\n'
     )
 
 
@@ -152,7 +290,7 @@ def _bar_label_psr(label: str, horizontal_scale: float) -> str:
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'PointSize="7" FontStyle="Medium" HorizontalScale="{horizontal_scale:g}">'
+        f'PointSize="7" FontStyle="Bold" HorizontalScale="{horizontal_scale:g}">'
         f'<Content>{escape(label)}</Content></CharacterStyleRange>'
         '</ParagraphStyleRange>\n'
     )
@@ -261,6 +399,14 @@ def finalize(
                 _LEFT_ENTRY_WIDTH[si] if ci == 0
                 else _RIGHT_ENTRY_WIDTH[si]
             )
+            if si < len(_REFERENCE_LEADERS) and ci < len(_REFERENCE_LEADERS[si]):
+                leader_metrics = _REFERENCE_LEADERS[si][ci]
+                for ri, _ in enumerate(chunk[:len(leader_metrics)]):
+                    frames.append(_leader_xml(
+                        writer,
+                        f"gl_toc_leader_{si}_{ci}_{ri}",
+                        leader_metrics[ri],
+                    ))
             xml = "".join(_entry_psr(t, folio, entry_w) for t, folio in chunk)
             sid = add_story_parts(f"st_toc_seg{si}_c{ci}", f"TOC {si}/{ci}", [xml])
             frames.append(writer._frame_xml(

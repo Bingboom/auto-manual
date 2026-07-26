@@ -25,6 +25,7 @@ def graphic_xml(params: dict[str, tuple[str, str]]) -> str:
         '  <Color Self="Color/Black" Model="Process" Space="CMYK" ColorValue="0 0 0 100" Name="Black"/>\n'
         '  <Color Self="Color/Paper" Model="Process" Space="CMYK" ColorValue="0 0 0 0" Name="Paper"/>\n'
         + "\n".join(colors) + "\n"
+        '  <StrokeStyle Self="StrokeStyle/$ID/Dashed" Name="$ID/Dashed"/>\n'
         '  <Swatch Self="Swatch/None" Name="None"/>\n'
         '</idPkg:Graphic>\n'
     )

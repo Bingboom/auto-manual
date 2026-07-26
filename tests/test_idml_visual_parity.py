@@ -181,16 +181,26 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn("ParagraphStyle/HB TOC Title", stories["st_toc_title"])
         self.assertIn("ParagraphStyle/HB TOC Bar", stories["st_toc_bar_0"])
         self.assertIn(
-            'PointSize="7" FontStyle="Medium"',
+            'PointSize="7" FontStyle="Bold"',
             stories["st_toc_bar_label_0"],
         )
         self.assertIn("ParagraphStyle/HB TOC Entry", stories["st_toc_seg0_c0"])
         self.assertIn('FontStyle="Medium"', stories["st_toc_seg0_c0"])
+        self.assertIn('HorizontalScale="105.244"', stories["st_toc_seg0_c0"])
         self.assertIn('PointSize="7" FontStyle="Regular"', stories["st_toc_seg0_c0"])
+        self.assertIn(
+            '<Leader type="string"></Leader>', stories["st_toc_seg0_c0"],
+        )
+        self.assertNotIn('<Leader type="string">. ', stories["st_toc_seg0_c0"])
+        self.assertNotIn('<Content>. </Content>', stories["st_toc_seg0_c0"])
         self.assertNotIn("HB Big Numeral", stories["st_toc_title"])
         self.assertNotIn("HB Spec Label", stories["st_toc_seg0_c0"])
 
         toc_xml = dict(writer.spreads)["sp_toc"]
+        self.assertIn('Self="gl_toc_leader_0_0_0"', toc_xml)
+        self.assertIn('StrokeType="StrokeStyle/$ID/Dashed"', toc_xml)
+        self.assertIn('StrokeDashAndGap="0.976 0.976"', toc_xml)
+        self.assertIn('StrokeWeight="0.25"', toc_xml)
         bar = toc_xml.split('Self="bg_toc_bar_0"', 1)[1].split(
             "</Rectangle>", 1,
         )[0]
@@ -203,6 +213,27 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertAlmostEqual(15.852, max(y for _, y in anchors) - min(y for _, y in anchors), places=3)
         self.assertAlmostEqual(4.753, left_ys[0] - min(y for _, y in anchors), places=3)
         self.assertAlmostEqual(6.346, left_ys[1] - left_ys[0], places=3)
+
+    def test_toc_splice_does_not_modify_the_cover_spread(self) -> None:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        cover = '<Spread Self="sp_0"><Page Self="sp_0_pg" Name="1"/></Spread>'
+        writer.spreads = [
+            ("sp_0", cover),
+            ("sp_1", '<Spread Self="sp_1"/>'),
+            ("sp_2", '<Spread Self="sp_2"><Page Self="sp_2_pg" Name="3"/></Spread>'),
+            ("sp_3", '<Spread Self="sp_3"><Page Self="sp_3_pg" Name="4"/></Spread>'),
+        ]
+        source = {
+            "languages": [{
+                "code": "EN", "label": "English", "page_range": "01-01",
+                "entries": [{"title": "SAFETY", "folio": "01"}],
+            }],
+        }
+        self.assertTrue(page_toc.finalize(
+            writer, page_toc.TocCollector(), writer._add_story_parts,
+            writer._psr, source=source,
+        ))
+        self.assertEqual(("sp_0", cover), writer.spreads[0])
 
     def test_stale_attachment_hash_resolves_by_unique_semantic_identity(self) -> None:
         with tempfile.TemporaryDirectory() as td:
