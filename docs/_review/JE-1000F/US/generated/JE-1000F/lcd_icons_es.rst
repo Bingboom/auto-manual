@@ -100,8 +100,8 @@ PANTALLA LCD
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png
              :alt: Indicador de Carga desde Vehículo
              :width: 42px
-        - Indicador de Carga desde Vehículo
-        - El producto se carga a través de la entrada CC (DC8020) utilizando CC 12V (carga desde el vehículo).
+        - Indicador de Carga desde Coche
+        - El producto se carga a través de la entrada CC (DC8020) utilizando CC 12V (carga desde el coche).
       * - 14
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png
              :alt: Indicador de Carga Solar
@@ -116,6 +116,7 @@ PANTALLA LCD
         - | **Encendido:** el modo de ahorro de batería está activado. Se aplican límites de carga y descarga para ayudar a prolongar la vida útil de la batería.
           | **Apagado:** el modo de ahorro de batería está desactivado.
           | Activar/desactivar esta función en la App Jackery. Cuando el dispositivo se apaga, se retiene la configuración.
+          | Esta función no está disponible cuando el producto está conectado a paquetes de baterías.
           | Cuando esta función está habilitada, el producto ocasionalmente realiza un ciclo completo de carga-descarga para calibrar el SOC.
       * - 16
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png
@@ -150,9 +151,9 @@ PANTALLA LCD
              :alt: Temporizador de descarga
              :width: 42px
         - Temporizador de descarga
-        - | **Encendido:** se ha configurado un temporizador de descarga.
-          | **Apagado:** no se ha configurado un temporizador de descarga.
-          | Activar/desactivar esta función en la App Jackery. Cuando el dispositivo esté apagado, este ajuste no se conservará.
+        - | **Activado:** se ha configurado un temporizador de descarga.
+          | **Desactivado:** no se ha configurado un temporizador de descarga.
+          | Activar/desactivar esta función en la App Jackery. Cuando el dispositivo se apaga, no se retiene la configuración.
       * - 22
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png
              :alt: Modo de Ahorro de Energía
@@ -213,14 +214,14 @@ PANTALLA LCD
       \HBLcdIconRow{10}{10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png}{Potencia de Entrada}{Muestra la potencia de entrada en vatios.}
       \HBLcdIconRow{11}{11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png}{Tiempo de Carga Restante}{Muestra el tiempo de carga restante.}
       \HBLcdIconRow{12}{12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png}{Indicador de Carga desde Toma de Corriente CA}{El producto se carga a través de la entrada CA utilizando energía de la red eléctrica.}
-      \HBLcdIconRow{13}{13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png}{Indicador de Carga desde Vehículo}{El producto se carga a través de la entrada CC (DC8020) utilizando CC 12V (carga desde el vehículo).}
+      \HBLcdIconRow{13}{13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png}{Indicador de Carga desde Coche}{El producto se carga a través de la entrada CC (DC8020) utilizando CC 12V (carga desde el coche).}
       \HBLcdIconRow{14}{14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png}{Indicador de Carga Solar}{El producto se carga a través de la entrada CC (DC8020) utilizando paneles solares.}
-      \HBLcdIconRow{15}{15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png}{Modo de Ahorro de Batería}{\textbf{Encendido:} el modo de ahorro de batería está activado. Se aplican límites de carga y descarga para ayudar a prolongar la vida útil de la batería. \newline \textbf{Apagado:} el modo de ahorro de batería está desactivado. \newline Activar/desactivar esta función en la App Jackery. Cuando el dispositivo se apaga, se retiene la configuración. \newline Cuando esta función está habilitada, el producto ocasionalmente realiza un ciclo completo de carga-descarga para calibrar el SOC.}
+      \HBLcdIconRow{15}{15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png}{Modo de Ahorro de Batería}{\textbf{Encendido:} el modo de ahorro de batería está activado. Se aplican límites de carga y descarga para ayudar a prolongar la vida útil de la batería. \newline \textbf{Apagado:} el modo de ahorro de batería está desactivado. \newline Activar/desactivar esta función en la App Jackery. Cuando el dispositivo se apaga, se retiene la configuración. \newline Esta función no está disponible cuando el producto está conectado a paquetes de baterías. \newline Cuando esta función está habilitada, el producto ocasionalmente realiza un ciclo completo de carga-descarga para calibrar el SOC.}
       \HBLcdIconRow{16}{16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png}{Límite de potencia de carga}{\textbf{Encendido:} El límite de potencia de carga está activado en la aplicación Jackery. \newline \textbf{Apagado:} El límite de potencia de carga está desactivado en la aplicación Jackery. \newline Cuando el dispositivo se apaga, se retiene la configuración.}
       \HBLcdIconRow{17}{17_Battery_Power_Indicator_WqL2b7JZio7HnGxsWaOctZ7inkh.png}{Indicador de Potencia de la Batería}{Cuando el producto se está cargando, el círculo naranja alrededor del porcentaje de batería se ilumina secuencialmente. Cuando está cargando otros dispositivos, el círculo naranja permanece encendido.}
       \HBLcdIconRow{18}{18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png}{Porcentaje de Batería Restante}{Muestra el porcentaje de batería restante.}
       \HBLcdIconRow{19}{19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png}{Indicador de Batería Baja}{\textbf{Encendido:} el nivel de la batería está por debajo del 20 \%. \newline \textbf{Parpadeo:} el nivel de la batería está por debajo del 5 \%. \newline \textbf{Apagado:} el nivel de la batería no está por debajo del 20 \% o el producto se está cargando.}
-      \HBLcdIconRow{20}{20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png}{Temporizador de descarga}{\textbf{Encendido:} se ha configurado un temporizador de descarga. \newline \textbf{Apagado:} no se ha configurado un temporizador de descarga. \newline Activar/desactivar esta función en la App Jackery. Cuando el dispositivo esté apagado, este ajuste no se conservará.}
+      \HBLcdIconRow{20}{20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png}{Temporizador de descarga}{\textbf{Activado:} se ha configurado un temporizador de descarga. \newline \textbf{Desactivado:} no se ha configurado un temporizador de descarga. \newline Activar/desactivar esta función en la App Jackery. Cuando el dispositivo se apaga, no se retiene la configuración.}
       \HBLcdIconRow{22}{22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png}{Modo de Ahorro de Energía}{Cuando las salidas CA o CC se encienden presionando los botones de encendido CA o CC/USB: \newline \textbf{Encendido:} Modo de ahorro de energía activado. \newline \textbf{Apagado:} Modo de ahorro de energía desactivado. \newline Cuando el dispositivo se apaga, se retiene la configuración.}
       \HBLcdIconRow{23}{23_High_Temperature_Indicator_HbD7betDOoeilexZaaQcqOknnMd.png}{Indicador de Alta Temperatura}{Se activó la protección por alta temperatura. El producto puede dejar de funcionar hasta que su temperatura vuelva al rango normal de operación.}
       \HBLcdIconRow{24}{24_Low_Temperature_Indicator_PkYSbqrsooorJhxkTOfcUutJnKu.png}{Indicador de Baja Temperatura}{Se activó la protección por baja temperatura. El producto puede dejar de funcionar hasta que su temperatura vuelva al rango normal de operación.}
@@ -228,4 +229,3 @@ PANTALLA LCD
       \HBLcdIconRow{26}{26_Output_Power_MRflbp7C7oqGbdxeWO1cl79XnBc.png}{Potencia de Salida}{Muestra la potencia de salida en vatios.}
       \HBLcdIconRow{27}{27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png}{Tiempo de Descarga Restante}{Muestra el tiempo de descarga restante.}
       \end{HBLcdIconTable}
-

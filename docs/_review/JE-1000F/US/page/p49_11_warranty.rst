@@ -7,7 +7,7 @@ GARANTÍA
 
 **Solo ofrecemos nuestra garantía a clientes que compren en el sitio web oficial de Jackery, plataformas de terceros con la marca Jackery o distribuidores autorizados locales.**
 
-\*El período de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.
+\* El periodo de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.
 
 Garantía limitada
 -----------------
@@ -23,9 +23,9 @@ Período de garantía
    :header-rows: 0
    :widths: 50 50
 
-   * - **3 AÑOS Garantía estándar**
+   * - **3 AÑOS Garantía Estándar**
 
-       El período de garantía estándar de Jackery Explorer 1000 es de 36 meses. En cada caso, el período de garantía se mide a partir de la fecha de compra por parte del comprador consumidor original. Para establecer la fecha de inicio del período de garantía, se necesita el recibo de venta de la primera compra del consumidor u otra prueba documental razonable.
+       El periodo de garantía estándar de Jackery Explorer 1000 es de 36 meses. En cada caso, el período de garantía se mide a partir de la fecha de compra por parte del comprador consumidor original. Para establecer la fecha de inicio del período de garantía, se necesita el recibo de venta de la primera compra del consumidor u otra prueba documental razonable.
 
      - **2 AÑOS Garantía extendida**
 
@@ -36,7 +36,7 @@ Período de garantía
    Reparación o sustitución
    ------------------------
 
-   Jackery reparará o sustituirá (a cargo de Jackery) cualquier producto Jackery que no funcione, durante el período de garantía aplicable, debido a defectos de acabado o de material. Un producto de sustitución asume la garantía restante del producto original.
+   Jackery reparará o sustituirá (a cargo de Jackery) cualquier producto Jackery que no funcione durante el periodo de garantía aplicable debido a defectos en la mano de obra o el material. El producto reparado o reemplazado asumirá el periodo restante de la garantía desde la fecha original de compra.
 
 .. only:: region_eu
 

@@ -20,16 +20,16 @@ Alternatively, scan the QR code below to download and install the App.
 
 2.1 Click the **Add device** button to add your device.
 
-2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode, tap the "**Icon Flashed**" button, and allow the App to connect to nearby devices and open Bluetooth permissions.
+2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the "**Icon Flashed**" button and allow the App to connect to nearby devices and open Bluetooth permissions.
 
 .. image:: _assets/templates/word_template/common_assets/app/je1000f_us/add_device_je1000f_us.png
    :alt: App add device step placeholder.
    :width: 320px
 
 
-| POWER Button
+| Main Power Button
+| DC/USB Power Button
 | AC Power Button
-| DC / USB Power Button
 
 
 | 2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.
@@ -42,7 +42,7 @@ Alternatively, scan the QR code below to download and install the App.
      - If "**the device has been bound**" is prompted during the binding process, the following two ways can be used for connection:
 
        - The device owner will share this device with other users through the App.
-       - Press and hold POWER button + DC / USB power button for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
+       - Press and hold the POWER button and DC/USB power button for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device.
 
 | 2.4 After the device is successfully connected, enter your Wi-Fi password and tap the **OK** button.
 
@@ -79,19 +79,19 @@ Click the **Settings** icon in the upper right corner of the main interface of t
 4. Notes
 --------
 
-4.1 To turn on Wi-Fi and Bluetooth
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 To turn on Wi-Fi & Bluetooth
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and Bluetooth icons on the screen light up.
-- Hold DC / USB power button + AC power button at the same time until the Wi-Fi and Bluetooth icons on the screen light up.
+- Hold the DC/USB power button and the AC power button at the same time until the Wi-Fi and Bluetooth icons on the screen light up.
 
 4.2 To turn off Wi-Fi and Bluetooth
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| Hold DC / USB power button + AC power button at the same time until the Wi-Fi and Bluetooth icons on the screen are off.
+| Hold the DC/USB power button and the AC power button at the same time until the Wi-Fi and Bluetooth icons on the screen are off.
 
 
 4.3 To reset Wi-Fi and Bluetooth
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Hold POWER button + DC / USB power button at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.
+Hold the POWER button and DC/USB power button at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound.

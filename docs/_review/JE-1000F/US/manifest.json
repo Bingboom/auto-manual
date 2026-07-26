@@ -93,6 +93,11 @@
     "05_operation_guide",
     "12_app_setup"
   ],
+  "sync_preserve_paths": [
+    "page/safety_en.rst",
+    "page/safety_es.rst",
+    "page/safety_fr.rst"
+  ],
   "snippet_ids": [],
   "spec_master": {
     "path": "/home/runner/work/auto-manual/auto-manual/.tmp/review-start/phase2/Spec_Master.csv",

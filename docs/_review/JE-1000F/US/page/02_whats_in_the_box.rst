@@ -7,7 +7,7 @@
    .. raw:: latex
 
       \section{WHAT'S IN THE BOX}
-      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{AC Charging Cable}{manual_icon1.png}{Documents}
+      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{AC Charging Cable}{manual_icon1.png}{Doucuments}
       \HBTipBlock{TIP}{The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.}
       \HBPageBreak
 
@@ -43,7 +43,7 @@
              :alt: User manual image placeholder.
              :width: 120px
 
-          Documents
+          Doucuments
 
 .. only:: not latex and region_eu
 

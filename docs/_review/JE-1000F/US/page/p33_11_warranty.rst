@@ -25,7 +25,7 @@ Période de garantie
 
    * - **3 ANS Garantie standard**
 
-       La période de garantie standard de Jackery Explorer 1000 est de 36 mois. Dans tous les cas, la période de garantie commence à compter de la date d'achat par l'acheteur et consommateur d'origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d'établir la date de début de la période de garantie.
+       La période de garantie standard du Jackery Explorer 1000 est de 36 mois. Dans tous les cas, la période de garantie commence à compter de la date d'achat par l'acheteur et consommateur d'origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d'établir la date de début de la période de garantie.
 
      - **2 ANS Garantie prolongée**
 
@@ -36,7 +36,7 @@ Période de garantie
    Réparation ou remplacement
    --------------------------
 
-   Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui ne fonctionne pas pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé/remplacé bénéficie de la garantie restante à compter de la date d'achat initiale.
+   Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéficie de la garantie restante de la date d'achat d'origine.
 
 .. only:: region_eu
 
@@ -45,7 +45,7 @@ Période de garantie
 
    Jackery remplacera (aux frais de Jackery) tout produit Jackery qui ne fonctionne pas pendant la période de garantie applicable en raison d’un défaut de fabrication ou de matériau. Un produit de remplacement bénéficie de la garantie restante du produit d’origine.
 
-Limitée à l'acheteur et consommateur d'origine
+Limité à l'acheteur consommateur d'origine
 ----------------------------------------------
 
 La garantie d'un produit Jackery est limitée à l'acheteur et consommateur d'origine, elle ne peut pas être transférée à un autre propriétaire.

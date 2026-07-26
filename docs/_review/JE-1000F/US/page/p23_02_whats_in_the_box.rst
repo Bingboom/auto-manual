@@ -7,8 +7,8 @@
    .. raw:: latex
 
       \section{CONTENU DE LA BOÎTE}
-      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Câble de charge CA}{manual_icon1.png}{Documents}
-      \HBTipBlock{CONSEILS}{Le câble de chargement pour voiture n'est pas inclus, mais peut être acheté séparément sur notre site Web. Pour obtenir de l'aide, veuillez contacter le service client Jackery.}
+      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Câble de charge CA}{manual_icon1.png}{Doucuments}
+      \HBTipBlock{CONSEILS}{Le câble de chargement pour voiture n'est pas inclus, mais peut être acheté séparément sur notre site Web. Pour obtenir de l'aide, veuillez contacter le service à la clientèle de Jackery.}
       \HBPageBreak
 
 .. only:: latex and region_eu
@@ -17,7 +17,7 @@
 
       \section{CONTENU DE LA BOÎTE}
       \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Câble de charge CA}{manual_icon1.png}{Manuel d’utilisation}
-      \HBTipBlock{CONSEILS}{Le câble de chargement pour voiture n'est pas inclus, mais peut être acheté séparément sur notre site Web. Pour obtenir de l'aide, veuillez contacter le service client Jackery.}
+      \HBTipBlock{CONSEILS}{Le câble de chargement pour voiture n'est pas inclus, mais peut être acheté séparément sur notre site Web. Pour obtenir de l'aide, veuillez contacter le service à la clientèle de Jackery.}
 
 .. only:: not latex and region_us
 
@@ -43,7 +43,7 @@
              :alt: Image des documents.
              :width: 120px
 
-          Documents
+          Doucuments
 
 .. only:: not latex and region_eu
 
@@ -79,4 +79,4 @@
 
       * - **CONSEILS**
         - Le câble de chargement pour voiture n'est pas inclus, mais peut être acheté séparément sur notre site Web.
-          Pour obtenir de l'aide, veuillez contacter le service client Jackery.
+          Pour obtenir de l'aide, veuillez contacter le service à la clientèle de Jackery.

@@ -447,6 +447,100 @@ class TestReviewSupport(unittest.TestCase):
             self.assertEqual("params", manifest["last_sync_scope"])
             self.assertIn("page/02_whats_in_the_box.rst", manifest["last_sync_files"])
 
+    def test_sync_review_paths_should_preserve_declared_target_page_only(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
+            protected_review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+            sibling_review_dir = docs_dir / "_review" / "JE-2000F" / "US"
+            template_path = docs_dir / "templates" / "page_us-en" / "safety_en.rst"
+            relative_path = Path("page") / "safety_en.rst"
+
+            (runtime_dir / "page").mkdir(parents=True)
+            template_path.parent.mkdir(parents=True)
+            template_path.write_text(
+                '<div>Press the |MAIN_POWER_BUTTON_LABEL| to turn them off.</div>\n',
+                encoding="utf-8",
+            )
+            (runtime_dir / relative_path).write_text(
+                '<div>Press the POWER button to turn them off.</div>\n',
+                encoding="utf-8",
+            )
+
+            for review_dir, manifest in (
+                (protected_review_dir, {"sync_preserve_paths": [relative_path.as_posix()]}),
+                (sibling_review_dir, {}),
+            ):
+                (review_dir / "page").mkdir(parents=True)
+                (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+                (review_dir / "manifest.json").write_text(
+                    json.dumps(manifest) + "\n",
+                    encoding="utf-8",
+                )
+                (review_dir / relative_path).write_text(
+                    '<div>Press the power button to turn it off.</div>\n',
+                    encoding="utf-8",
+                )
+
+            plan = (
+                SyncPlanEntry(
+                    relative_path=relative_path,
+                    mode="merge_params",
+                    template_path=template_path,
+                ),
+            )
+            protected_copied = sync_review_paths(
+                runtime_bundle_dir=runtime_dir,
+                review_dir=protected_review_dir,
+                scope="params",
+                plan=plan,
+            )
+            sibling_copied = sync_review_paths(
+                runtime_bundle_dir=runtime_dir,
+                review_dir=sibling_review_dir,
+                scope="params",
+                plan=plan,
+            )
+
+            self.assertEqual((), protected_copied)
+            self.assertEqual(
+                '<div>Press the power button to turn it off.</div>\n',
+                (protected_review_dir / relative_path).read_text(encoding="utf-8"),
+            )
+            protected_manifest = json.loads((protected_review_dir / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual([], protected_manifest["last_sync_files"])
+            self.assertEqual([relative_path.as_posix()], protected_manifest["last_sync_preserved_files"])
+
+            self.assertEqual(1, len(sibling_copied))
+            self.assertEqual(
+                '<div>Press the POWER button to turn them off.</div>\n',
+                (sibling_review_dir / relative_path).read_text(encoding="utf-8"),
+            )
+            sibling_manifest = json.loads((sibling_review_dir / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual([relative_path.as_posix()], sibling_manifest["last_sync_files"])
+            self.assertEqual([], sibling_manifest["last_sync_preserved_files"])
+
+    def test_sync_review_paths_should_reject_escaping_preserve_path(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+            (runtime_dir / "page").mkdir(parents=True)
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text(
+                '{"sync_preserve_paths": ["../templates/safety_en.rst"]}\n',
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(RuntimeError, "only accepts relative .rst paths"):
+                sync_review_paths(
+                    runtime_bundle_dir=runtime_dir,
+                    review_dir=review_dir,
+                    scope="params",
+                    plan=(),
+                )
+
     def test_sync_review_paths_should_merge_placeholder_values_from_shifted_runtime_lines(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_dir = Path(td) / "docs"

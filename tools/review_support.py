@@ -20,6 +20,7 @@ from tools.utils.path_utils import Paths, review_dir_of
 ROOT = Path(__file__).resolve().parents[1]
 PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
 REVIEW_DUPLICATE_PREFIX_RE = re.compile(r"^p\d+_")
+SYNC_PRESERVE_PATHS_KEY = "sync_preserve_paths"
 
 
 @dataclass(frozen=True)
@@ -104,6 +105,33 @@ def _review_manifest(review_dir: Path) -> dict[str, object]:
     except json.JSONDecodeError:
         return {}
     return raw if isinstance(raw, dict) else {}
+
+
+def _sync_preserve_paths(manifest: dict[str, object]) -> frozenset[Path]:
+    raw_paths = manifest.get(SYNC_PRESERVE_PATHS_KEY)
+    if raw_paths is None:
+        return frozenset()
+    if not isinstance(raw_paths, list):
+        raise RuntimeError(f"Review manifest field '{SYNC_PRESERVE_PATHS_KEY}' must be a list")
+
+    preserve_paths: set[Path] = set()
+    for raw_path in raw_paths:
+        if not isinstance(raw_path, str) or not raw_path.strip():
+            raise RuntimeError(f"Review manifest field '{SYNC_PRESERVE_PATHS_KEY}' contains an invalid path")
+        relative_path = Path(raw_path.strip())
+        if (
+            relative_path.is_absolute()
+            or ".." in relative_path.parts
+            or len(relative_path.parts) < 2
+            or relative_path.parts[0] not in {"page", "generated"}
+            or relative_path.suffix.lower() != ".rst"
+        ):
+            raise RuntimeError(
+                f"Review manifest field '{SYNC_PRESERVE_PATHS_KEY}' only accepts relative .rst paths "
+                f"under page/ or generated/: {raw_path}"
+            )
+        preserve_paths.add(relative_path)
+    return frozenset(preserve_paths)
 
 
 def _resolve_repo_path(value: object) -> Path | None:
@@ -658,8 +686,16 @@ def sync_review_paths(
 
     sync_plan = plan or tuple(SyncPlanEntry(relative_path=relative_path) for relative_path in relative_paths)
 
+    manifest_path = review_dir / "manifest.json"
+    manifest = _review_manifest(review_dir)
+    preserve_paths = _sync_preserve_paths(manifest)
+
     copied: list[Path] = []
+    preserved: list[Path] = []
     for entry in sync_plan:
+        if entry.relative_path in preserve_paths:
+            preserved.append(review_dir / entry.relative_path)
+            continue
         src_relative_path = entry.source_relative_path or entry.relative_path
         src_path = runtime_bundle_dir / src_relative_path
         dst_path = review_dir / entry.relative_path
@@ -688,17 +724,10 @@ def sync_review_paths(
             continue
         raise RuntimeError(f"Unsupported sync mode: {entry.mode}")
 
-    manifest_path = review_dir / "manifest.json"
-    manifest: dict[str, object] = {}
-    if manifest_path.exists():
-        try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            manifest = {}
-
     manifest["last_synced_at"] = datetime.now(timezone.utc).isoformat()
     manifest["last_sync_scope"] = scope
     manifest["last_sync_files"] = [path.relative_to(review_dir).as_posix() for path in copied]
+    manifest["last_sync_preserved_files"] = [path.relative_to(review_dir).as_posix() for path in preserved]
     manifest["page_files"] = [path.relative_to(review_dir).as_posix() for path in _iter_rst_files(review_dir / "page")]
     manifest["generated_files"] = [
         path.relative_to(review_dir).as_posix() for path in _iter_rst_files(review_dir / "generated")
