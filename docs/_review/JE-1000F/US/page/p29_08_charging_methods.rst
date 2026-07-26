@@ -2,7 +2,7 @@
 
    \HBApplyLang{fr}
 
-CHARGEMENT PAR PANNEAUX SOLAIRES (Vendu séparément)
+CHARGEMENT PAR PANNEAUX SOLAIRES (VENDU SÉPARÉMENT)
 ---------------------------------------------------
 
 Le Jackery Explorer 1000 dispose de deux ports d’entrée DC8020 et est compatible avec les panneaux solaires de Jackery.
@@ -36,9 +36,9 @@ Si un seul port d’entrée DC8020 doit être connecté à deux panneaux solaire
        - Ne chargez pas le produit à la fois avec un chargeur de voiture et un panneau solaire simultanément. Cela pourrait faire sauter le fusible de la voiture ou entraîner un échec de la charge.
 
 
-Il est recommandé d’utiliser le panneau solaire Jackery pour charger le Jackery Explorer 1000. Assurez-vous que la tension en circuit ouvert (V\ :sub:`oc`) du panneau solaire se situe dans la plage de tension d’entrée CC de Jackery Explorer 1000 (16V–60V). Jackery décline toute responsabilité pour tout dommage ou toute perte résultant de l’utilisation de panneaux solaires tiers.
+Il est recommandé d’utiliser le panneau solaire Jackery pour charger le Explorer 1000. Assurez-vous que la tension en circuit ouvert (V\ :sub:`oc`) du panneau solaire se situe dans la plage de tension d’entrée CC du Jackery Explorer 1000 (16V–60V). Jackery décline toute responsabilité pour tout dommage ou toute perte résultant de l’utilisation de panneaux solaires tiers.
 
-CHARGEMENT PAR PRISE DE VOITURE (Vendu séparément)
+CHARGEMENT PAR PRISE DE VOITURE (VENDU SÉPARÉMENT)
 --------------------------------------------------
 
 Ce produit peut être chargé à l'aide d'un chargeur de voiture 12 V. Assurez-vous que le chargeur de voiture est correctement connecté à la prise 12 V du véhicule (allume-cigare).

@@ -2,17 +2,17 @@
 
    \HBApplyLang{es}
 
-CARGA MEDIANTE PANELES SOLARES (SE VENDEN POR SEPARADO)
+CARGA MEDIANTE PANELES SOLARES (SE VENDE POR SEPARADO)
 -------------------------------------------------------
 
-Jackery Explorer 1000 cuenta con dos puertos de entrada DC8020 y es compatible con los paneles solares de Jackery.
+El Jackery Explorer 1000 cuenta con dos puertos de entrada DC8020 y es compatible con los paneles solares de la Jackery.
 
 .. image:: asset:charging/solar_direct
    :alt: Diagrama de conexión para carga solar 1.
    :width: 360px
 
 
-Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 al mismo tiempo, consulte la figura siguiente para la carga mediante el conector de panel solar (se vende por separado y no se incluye de serie).
+Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 al mismo tiempo, consulte la figura a continuación para la carga mediante el conector de panel solar (se vende por separado, no incluido de serie).
 
 .. image:: asset:charging/solar_adapter
    :alt: Diagrama de conexión para carga solar 2.
@@ -24,33 +24,33 @@ Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 a
    :widths: 12 88
 
    * - **PRECAUCIÓN**
-     - Un puerto de entrada DC8020 puede conectarse como máximo a dos paneles solares.
+     - Un puerto de entrada DC8020 puede conectarse a un máximo de dos paneles solares.
 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
 
    * - **PRECAUCIÓN**
-     - Asegúrese de que el voltaje de entrada para ambos puertos de entrada de CC sea el mismo. De lo contrario, podría dañar el producto. Por ejemplo:
+     - Asegúrese de que el voltaje de entrada para ambos puertos de entrada CC sea el mismo. De lo contrario, podría dañar el producto. Por ejemplo:
 
        - Utilizar paneles solares Jackery del mismo modelo y la misma cantidad de paneles al conectar paneles solares a ambos puertos de entrada DC8020.
-       - No cargue el producto utilizando simultáneamente un cargador de vehículo y un panel solar. Esto puede fundir el fusible del vehículo o provocar un fallo de carga.
+       - No cargue el producto utilizando simultáneamente un cargador de automóvil y un panel solar. Hacerlo podría quemar el fusible del automóvil o resultar en un fallo de carga.
 
 
 
-Se recomienda usar el panel solar Jackery para cargar el Jackery Explorer 1000. Asegúrese de que el voltaje en circuito abierto (V\ :sub:`oc`) del panel solar se sitúe dentro del rango de entrada de CC de Jackery Explorer 1000 (16V-60V). Jackery no se hace responsable de pérdidas causadas por el uso de paneles solares de otras marcas.
+Se recomienda usar el panel solar Jackery para cargar el Jackery Explorer 1000. Asegúrese de que el voltaje en circuito abierto (V\ :sub:`oc`) del rango de entrada CC (16 V-60 V) del Jackery Explorer 1000. Jackery no se hace responsable de ningún daño o pérdida resultante del uso de paneles solares de terceros.
 
-CARGA CON UN CARGADOR PARA VEHÍCULO (SE VENDE POR SEPARADO)
+CARGA CON UN CARGADOR DE EN EL VEHÍCULO (SE VENDE POR SEPARADO)
 -----------------------------------------------------------
 
-Este producto puede cargarse usando un cargador para vehículo de 12 V. Asegúrese de que el cargador de vehículo y el encendedor de vehículo ofrezcan una buena conexión.
+Este producto puede cargarse usando un cargador para auto de 12V. Asegúrese de que el cargador de coche y el encendedor de coche ofrecen una buena conexión.
 
 .. image:: asset:charging/car_charge
    :alt: Diagrama de carga en vehículo.
    :width: 360px
 
 | Vehículo
-| ※El cable de carga para vehículo se vende por separado.
+| ※ El cable de carga para auto se vende por separado.
 
 
 .. list-table::
@@ -60,5 +60,5 @@ Este producto puede cargarse usando un cargador para vehículo de 12 V. Asegúre
    * - **PRECAUCIÓN**
      -
        - Por favor, encienda el vehículo antes de cargar su estación de energía.
-       - Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de vehículo para evitar un funcionamiento no conforme. La empresa no se responsabilizará por ninguna pérdida causada por un funcionamiento no conforme.
+       - Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de coche para evitar que se queme debido a una mala conexión. La empresa no se responsabiliza por pérdidas causadas por un uso incorrecto.
        - La carga en vehículo solo es aplicable a vehículos con 12 V CC, no a 24 V CC. Por favor, no cargue este producto en vehículos de 24 V para evitar lesiones personales y daños materiales.

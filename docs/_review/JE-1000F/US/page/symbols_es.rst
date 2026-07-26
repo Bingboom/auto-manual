@@ -9,7 +9,7 @@ SIGNIFICADO DE LOS SÍMBOLOS
 
    .. raw:: latex
 
-      \HBSymbolTable{Símbolo}{Significado}{%
+      \HBSymbolTable{Símbolo}{Significados}{%
       \HBSymbolSignalRow{warning_triangle.png}{ADVERTENCIA}{Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.}
       \HBSymbolSignalRow{warning_triangle.png}{PRECAUCIÓN}{Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.}
       \HBSymbolSignalRow{mandatory.png}{NOTA}{Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.}
@@ -47,14 +47,14 @@ SIGNIFICADO DE LOS SÍMBOLOS
 
    .. raw:: latex
 
-      \HBSymbolTwoColumnTablesSplit{Símbolo}{Significado}{%
-      \HBSymbolIconRow{1_warning_triangle_IfHObDBCDowRHbxLvCzci3wen7c.png}{Símbolos de advertencia y precaución. Alertan a las personas sobre información que debe leerse para evitar posibles peligros o riesgos.}
+      \HBSymbolTwoColumnTablesSplit{Símbolo}{Significados}{%
+      \HBSymbolIconRow{1_warning_triangle_IfHObDBCDowRHbxLvCzci3wen7c.png}{Precaución! El incumplimiento de los mensajes de advertencia puede provocar lesiones.}
       \HBSymbolIconRow{2_read_manual_P0fEbfBNKoRiCoxkAm7cq3ymndh.png}{Lea el manual del operador}
       \HBSymbolIconRow{3_electric_shock_Ctr7btZp2oBcCqxDmHbcrFPEnFd.png}{Riesgo de descarga eléctrica}
       \HBSymbolIconRow{4_battery_charging_N9ppbBQWdoPM5bxEammcGFItnpd.png}{Carga de batería}
       }{%
       \HBSymbolIconRow{7_do_not_dismantle_TTrGbm6PdoAFBwx16nXcZOaFnZf.png}{No desarme el producto.}
-      \HBSymbolIconRow{8_no_open_flame_GOQabZgNNoj1goxlyjHcA0w7n7b.png}{Mantenga el producto alejado del fuego.}
+      \HBSymbolIconRow{8_no_open_flame_GOQabZgNNoj1goxlyjHcA0w7n7b.png}{No fumar ni hacer llamas abiertas}
       \HBSymbolIconRow{9_keep_away_from_children_AjeEb4GIgoPNpdxkXhFcIeaDnTM.png}{No se permiten niños}
       \HBSymbolIconRow{10_li_ion_Nkm5benPWobav4xNt0ecDB2nn6D.png}{Este símbolo indica que el producto contiene una batería de iones de litio (Li-ion), la cual debe desecharse o reciclarse de forma adecuada.}
       }{%
@@ -78,7 +78,7 @@ SIGNIFICADO DE LOS SÍMBOLOS
       * - .. image:: _repo_assets/data/phase2/_attachments/symbols/1_warning_triangle_IfHObDBCDowRHbxLvCzci3wen7c.png
              :alt: warning_triangle
              :width: 40px
-        - Símbolos de advertencia y precaución. Alertan a las personas sobre información que debe leerse para evitar posibles peligros o riesgos.
+        - Precaución! El incumplimiento de los mensajes de advertencia puede provocar lesiones.
         - .. image:: _repo_assets/data/phase2/_attachments/symbols/7_do_not_dismantle_TTrGbm6PdoAFBwx16nXcZOaFnZf.png
              :alt: do_not_dismantle
              :width: 40px
@@ -90,7 +90,7 @@ SIGNIFICADO DE LOS SÍMBOLOS
         - .. image:: _repo_assets/data/phase2/_attachments/symbols/8_no_open_flame_GOQabZgNNoj1goxlyjHcA0w7n7b.png
              :alt: no_open_flame
              :width: 40px
-        - Mantenga el producto alejado del fuego.
+        - No fumar ni hacer llamas abiertas
       * - .. image:: _repo_assets/data/phase2/_attachments/symbols/3_electric_shock_Ctr7btZp2oBcCqxDmHbcrFPEnFd.png
              :alt: electric_shock
              :width: 40px
@@ -122,4 +122,3 @@ SIGNIFICADO DE LOS SÍMBOLOS
         - Objeto pesado
         -
         -
-

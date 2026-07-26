@@ -35,7 +35,7 @@ LCD DISPLAY
         - Quiet Charging Mode
         - | **On:** The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down.
           | **Off:** Quiet Charging Mode is disabled.
-          | Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
+          | Enable/disable this feature in the Jackery app. The setting is retained when the device is powered off.
       * - 4
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png
              :alt: Charging Plan
@@ -121,8 +121,8 @@ LCD DISPLAY
              :alt: Charging Power Limit
              :width: 42px
         - Charging Power Limit
-        - | **On:** Charging Power limit is enabled in the Jackery App.
-          | **Off:** Charging Power limit is disabled in the Jackery App.
+        - | **On:** Charging Power limit is enabled in the Jackery app.
+          | **Off:** Charging Power limit is disabled in the Jackery app.
           | The setting is retained when the device is powered off.
       * - 17
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_WqL2b7JZio7HnGxsWaOctZ7inkh.png
@@ -143,7 +143,7 @@ LCD DISPLAY
         - Low Battery Indicator
         - | **On:** The battery level is below 20%.
           | **Blink:** The battery level is below 5%.
-          | **Off:** The battery level is not below 20% or the product is charging.
+          | **Off:** The battery level is above 20% or the product is charging.
       * - 20
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png
              :alt: Discharge Timer
@@ -160,7 +160,6 @@ LCD DISPLAY
         - | When the AC or DC output is turned on by pressing the AC or DC/USB power button:
           | **On:** Energy Saving Mode is enabled.
           | **Off:** Energy Saving Mode is disabled.
-          | The setting is retained when the device is powered off.
       * - 23
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_HbD7betDOoeilexZaaQcqOknnMd.png
              :alt: High Temperature Indicator
@@ -200,7 +199,7 @@ LCD DISPLAY
       \begin{HBLcdIconTable}
       \HBLcdIconRow{1}{1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png}{Wi-Fi}{\textbf{On:} Wi-Fi connected. \newline \textbf{Blink:} Ready to connect to Wi-Fi. \newline \textbf{Off:} Wi-Fi disconnected.}
       \HBLcdIconRow{2}{2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png}{Bluetooth}{\textbf{On:} Bluetooth connected. \newline \textbf{Blink:} Ready to connect to Bluetooth. \newline \textbf{Off:} Bluetooth disconnected.}
-      \HBLcdIconRow{3}{3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png}{Quiet Charging Mode}{\textbf{On:} The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down. \newline \textbf{Off:} Quiet Charging Mode is disabled. \newline Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.}
+      \HBLcdIconRow{3}{3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png}{Quiet Charging Mode}{\textbf{On:} The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down. \newline \textbf{Off:} Quiet Charging Mode is disabled. \newline Enable/disable this feature in the Jackery app. The setting is retained when the device is powered off.}
       \HBLcdIconRow{4}{4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png}{Charging Plan}{Customizes the charging time of the Jackery Explorer 1000. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs. \newline Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.}
       \HBLcdIconRow{5}{5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png}{Self-powered Mode}{Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs. The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power. \newline Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.}
       \HBLcdIconRow{6}{6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png}{TOU Mode}{\textbf{On:} TOU mode is enabled (default backup SOC: 60\%). During peak periods, the product prioritizes discharging the battery to reduce peak electricity costs when the stored energy exceeds the backup SOC. During off peak periods, the product charges the battery from the grid to achieve peak shaving and valley filling. \newline \textbf{Off:} TOU mode is disabled. The product does not follow the TOU (time of use) strategy and operates according to the default power supply and charging logic. \newline Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.}
@@ -216,16 +215,15 @@ LCD DISPLAY
       \HBLcdIconRow{13}{13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png}{Car Charging Indicator}{The product is charged via the DC Input (DC8020) using DC 12V (car charging).}
       \HBLcdIconRow{14}{14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png}{Solar Charging Indicator}{The product is charged via the DC Input (DC8020) using solar panel(s).}
       \HBLcdIconRow{15}{15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png}{Battery Saving Mode}{\textbf{On:} Battery Saving Mode is enabled. Charge and discharge limits are applied to help extend battery lifespan. \newline \textbf{Off:} Battery Saving Mode is disabled. \newline Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off. \newline When this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC.}
-      \HBLcdIconRow{16}{16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png}{Charging Power Limit}{\textbf{On:} Charging Power limit is enabled in the Jackery App. \newline \textbf{Off:} Charging Power limit is disabled in the Jackery App. \newline The setting is retained when the device is powered off.}
+      \HBLcdIconRow{16}{16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png}{Charging Power Limit}{\textbf{On:} Charging Power limit is enabled in the Jackery app. \newline \textbf{Off:} Charging Power limit is disabled in the Jackery app. \newline The setting is retained when the device is powered off.}
       \HBLcdIconRow{17}{17_Battery_Power_Indicator_WqL2b7JZio7HnGxsWaOctZ7inkh.png}{Battery Power Indicator}{When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.}
       \HBLcdIconRow{18}{18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png}{Remaining Battery Percentage}{Displays the remaining battery percentage.}
-      \HBLcdIconRow{19}{19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png}{Low Battery Indicator}{\textbf{On:} The battery level is below 20\%. \newline \textbf{Blink:} The battery level is below 5\%. \newline \textbf{Off:} The battery level is not below 20\% or the product is charging.}
+      \HBLcdIconRow{19}{19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png}{Low Battery Indicator}{\textbf{On:} The battery level is below 20\%. \newline \textbf{Blink:} The battery level is below 5\%. \newline \textbf{Off:} The battery level is above 20\% or the product is charging.}
       \HBLcdIconRow{20}{20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png}{Discharge Timer}{\textbf{On:} A discharge timer is set. \newline \textbf{Off:} No discharge timer is set. \newline Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.}
-      \HBLcdIconRow{22}{22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png}{Energy Saving Mode}{When the AC or DC output is turned on by pressing the AC or DC/USB power button: \newline \textbf{On:} Energy Saving Mode is enabled. \newline \textbf{Off:} Energy Saving Mode is disabled. \newline The setting is retained when the device is powered off.}
+      \HBLcdIconRow{22}{22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png}{Energy Saving Mode}{When the AC or DC output is turned on by pressing the AC or DC/USB power button: \newline \textbf{On:} Energy Saving Mode is enabled. \newline \textbf{Off:} Energy Saving Mode is disabled.}
       \HBLcdIconRow{23}{23_High_Temperature_Indicator_HbD7betDOoeilexZaaQcqOknnMd.png}{High Temperature Indicator}{High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.}
       \HBLcdIconRow{24}{24_Low_Temperature_Indicator_PkYSbqrsooorJhxkTOfcUutJnKu.png}{Low Temperature Indicator}{Low temperature protection is triggered. \newline The product may stop functioning until its temperature returns to the normal operating range.}
       \HBLcdIconRow{25}{25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png}{Fault code}{A product error has occurred. Please refer to the Troubleshooting section for details.}
       \HBLcdIconRow{26}{26_Output_Power_MRflbp7C7oqGbdxeWO1cl79XnBc.png}{Output Power}{Displays the output power in watts.}
       \HBLcdIconRow{27}{27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png}{Remaining Discharge Time}{Displays the remaining discharging time.}
       \end{HBLcdIconTable}
-
