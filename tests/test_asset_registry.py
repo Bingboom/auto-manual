@@ -30,8 +30,8 @@ class TestAssetRegistry(unittest.TestCase):
 
         self.assertEqual(82, report.records)
         self.assertEqual((), report.errors)
-        self.assertEqual(73, report.status_counts[APPROVED_STATUS])
-        self.assertEqual(3, report.status_counts[QUARANTINED_STATUS])
+        self.assertEqual(74, report.status_counts[APPROVED_STATUS])
+        self.assertEqual(2, report.status_counts[QUARANTINED_STATUS])
 
     def test_real_registry_has_explicit_region_scopes(self) -> None:
         by_key = {record.asset_key: record for record in self.records}
@@ -239,7 +239,6 @@ class TestAssetRegistry(unittest.TestCase):
         for asset_key, language in (
             ("page/back_cover", "en"),
             ("qr/back_cover_ai_candidate", None),
-            ("qr/back_cover_reference_candidate", None),
         ):
             with self.subTest(asset_key=asset_key):
                 with self.assertRaisesRegex(AssetRegistryError, QUARANTINED_STATUS):
@@ -257,7 +256,6 @@ class TestAssetRegistry(unittest.TestCase):
         for asset_key in (
             "page/back_cover",
             "qr/back_cover_ai_candidate",
-            "qr/back_cover_reference_candidate",
         ):
             report = check_registry(
                 self.records,
@@ -269,6 +267,18 @@ class TestAssetRegistry(unittest.TestCase):
                 ("non_approved_status",),
                 tuple(issue.code for issue in report.errors),
             )
+
+        reference_qr = resolve_asset(
+            self.records,
+            repo_root=ROOT,
+            asset_key="qr/back_cover_reference_candidate",
+            format_name="pdf",
+            model="JE-1000F",
+            region="US",
+        )
+        self.assertEqual(
+            "back_cover_qr_reference_candidate.pdf", Path(reference_qr.path).name,
+        )
 
     def test_resolve_fails_closed_when_export_hash_does_not_match(self) -> None:
         record = AssetRecord(

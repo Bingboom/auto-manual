@@ -361,6 +361,11 @@ def main() -> int:
                 page_cursor,
                 symbol_overflow=pending_symbol_overflow,
                 lang=lang,
+                reference_profile=(
+                    (((page_plan or {}).get("idml_contract") or {})
+                     .get("editable_components", {}))
+                    .get("inbox_cards")
+                ),
             )
             pending_fcc_blocks = []
             pending_fcc_title = ""
@@ -436,7 +441,8 @@ def main() -> int:
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind, args.lang)
     if _placed.add_preferred_back_cover_page(
-            w, args.region, args.lang, ROOT / "docs", page_cursor, _ir_projection.back_cover_data(manual_ir)):
+            w, args.region, args.lang, ROOT / "docs", page_cursor,
+            _ir_projection.back_cover_data(manual_ir), reference_plan=page_plan):
         page_cursor += 1
     _toc.finalize(w, toc, w._add_story_parts, w._psr,
                   source=_ir_projection.toc_page_data(manual_ir, bundle_root))

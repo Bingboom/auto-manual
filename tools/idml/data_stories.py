@@ -100,6 +100,9 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                     writer, lang, row, segment_index=segment_index)
             )
             row_icon_pt = icon_pt
+            governed_icon_size = str(row.get("icon_size_pt") or "").strip()
+            if governed_icon_size:
+                row_icon_pt = min(row_icon_pt, max(4.0, float(governed_icon_size)))
             governed_height = str(row.get("row_height_pt") or "").strip()
             if governed_height:
                 row_icon_pt = min(

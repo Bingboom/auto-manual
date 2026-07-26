@@ -55,7 +55,47 @@
       "back_cover-en.pdf"
     ],
     "editable_components": {
+      "back_cover": {
+        "qr_asset": "docs/renderers/latex/assets/back_cover_qr_reference_candidate.pdf",
+        "display_address": "5310 Bunche Dr., Fremont, CA 94538-8301",
+        "phone_suffix": "(US)",
+        "contact_lines": "hello@jackery.com\nwww.jackery.com",
+        "company_x": 28.096,
+        "company_y": 427.7,
+        "bar_x": 28.8,
+        "bar_y": 461.2,
+        "bar_width": 272.2,
+        "bar_height": 36.8,
+        "bar_stroke_weight": 0.35,
+        "bar_corner_radius": 5.5,
+        "phone_x": 60.298,
+        "phone_y": 468.6,
+        "phone_width": 137.0,
+        "phone_height": 21.0,
+        "divider_x": 199.5,
+        "lines_x": 224.691,
+        "lines_y": 467.7,
+        "lines_width": 69.0,
+        "lines_height": 23.0,
+        "qr_x": 305.6,
+        "qr_y": 460.4,
+        "qr_size": 37.2
+      },
+      "inbox_cards": {
+        "image_width_pt_by_language": {
+          "en": [72.0, 40.0, 38.0],
+          "fr": [72.0, 40.0, 38.0],
+          "es": [72.0, 40.0, 38.0]
+        },
+        "stroke_color": "Color/HB Border K10",
+        "stroke_weight": 0.75
+      },
       "lcd_icon_table": {
+        "icon_size_pt_by_language": {
+          "en": 14.2,
+          "fr": 14.2,
+          "es": 14.2
+        },
         "row_presentation": [
           {
             "source_no": "1",

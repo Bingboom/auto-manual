@@ -1,9 +1,10 @@
 {
   "schema_version": 1,
-  "evidence_status": "quarantine",
+  "evidence_status": "reference-selected",
   "decision": {
-    "status": "unresolved-source-mismatch",
-    "reason": "The governed design master and the frozen visual reference contain different QR payloads. Neither candidate is approved or build-eligible until the authoritative printed payload is selected."
+    "status": "frozen-reference-approved",
+    "selected_asset_key": "qr/back_cover_reference_candidate",
+    "reason": "The operator named the frozen V2.0 PDF as the one-to-one layout authority for PR2. Its page-58 QR-only asset is therefore approved for JE-1000F US; the conflicting design-master candidate remains quarantined."
   },
   "candidates": [
     {

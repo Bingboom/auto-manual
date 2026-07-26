@@ -23,11 +23,15 @@ class BackCoverQrCandidateTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
 
-    def test_two_sources_have_explicit_conflicting_payloads(self) -> None:
-        self.assertEqual("quarantine", self.evidence["evidence_status"])
+    def test_two_sources_have_explicit_conflicting_payloads_and_selection(self) -> None:
+        self.assertEqual("reference-selected", self.evidence["evidence_status"])
         self.assertEqual(
-            "unresolved-source-mismatch",
+            "frozen-reference-approved",
             self.evidence["decision"]["status"],
+        )
+        self.assertEqual(
+            "qr/back_cover_reference_candidate",
+            self.evidence["decision"]["selected_asset_key"],
         )
         candidates = self.evidence["candidates"]
         self.assertEqual(2, len(candidates))

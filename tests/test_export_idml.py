@@ -23,6 +23,7 @@ from tools.export_idml import (  # noqa: E402
     split_safety_first_page,
 )
 from tools.idml import export_paths as idml_export_paths  # noqa: E402
+from tools.idml import page_placed  # noqa: E402
 from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
 
 FIXTURE_DATA_ROOT = ROOT / "tests" / "fixtures" / "phase2"
@@ -172,6 +173,39 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("<Table ", story)
         self.assertIn("LinkResourceURI=", story)
         self.assertIn("Wi-Fi", story)
+
+    def test_reference_back_cover_is_editable_and_places_selected_qr(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params, model="JE-1000F", region="US", language="en")
+        contract = json.loads(APPROVED_LAYOUT_CONTRACT.read_text(encoding="utf-8"))
+        copy = {
+            "company": "JACKERY INC.",
+            "address": "5310 Bunche Dr., Fremont, CA 94538-8301",
+            "phone": "1-888-502-2236 (US)",
+            "email": "hello@jackery.com",
+            "web": "www.jackery.com",
+        }
+
+        self.assertTrue(page_placed.add_preferred_back_cover_page(
+            writer,
+            "US",
+            "en",
+            ROOT / "docs",
+            0,
+            copy,
+            reference_plan={"idml_contract": contract["idml_contract"]},
+        ))
+
+        spread = writer.spreads[0][1]
+        stories = "".join(xml for _, xml in writer.stories)
+        self.assertIn("back_cover_qr_reference_candidate.pdf", spread)
+        self.assertIn('Self="rc_st_back_cover_qr"', spread)
+        self.assertIn('Self="gl_st_back_cover_divider"', spread)
+        self.assertIn("JACKERY INC.", stories)
+        self.assertIn("1-888-502-2236", stories)
+        self.assertIn("(US)", stories)
+        self.assertIn("hello@jackery.com", stories)
+        self.assertIn("www.jackery.com", stories)
 
     def test_trouble_rows_match_model_all_and_region_lists(self) -> None:
         rows = load_trouble_rows(FIXTURE_DATA_ROOT, "JE-1000F", "US")
