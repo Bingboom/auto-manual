@@ -21,9 +21,15 @@ class PrefaceParityTests(unittest.TestCase):
         self.assertIn(
             'Name="HB Preface Body" PointSize="7.2" '
             'FillColor="Color/HB Brand Dark" SpaceAfter="2" '
-            'Hyphenation="false"',
+            'Hyphenation="false" Composer="HL Single"',
             styles_xml(writer.params),
         )
+
+    def test_preface_uses_greedy_single_line_composition_only(self) -> None:
+        xml = styles_xml(IdmlWriter({}).params)
+        preface = xml.split('Name="HB Preface Body"', 1)[1].split(">", 1)[0]
+        self.assertIn('Composer="HL Single"', preface)
+        self.assertEqual(1, xml.count('Composer="HL Single"'))
 
     def test_preface_language_badge_uses_scoped_reference_gaps(self) -> None:
         writer = IdmlWriter({

@@ -163,7 +163,7 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
             # collapses the three language blocks relative to the reference.
             paragraph_attrs = (
                 f'SpaceAfter="{param_pt(params, "idml_preface_paragraph_space_after", 2.0):g}" '
-                'Hyphenation="false" '
+                'Hyphenation="false" Composer="HL Single" '
             )
         elif kind == "warranty_note":
             paragraph_attrs = 'Hyphenation="false" '

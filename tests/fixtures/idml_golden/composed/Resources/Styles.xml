@@ -181,7 +181,7 @@
       <Leading type="unit">8</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/HB Preface Body" Name="HB Preface Body" PointSize="7" FillColor="Color/HB Brand Dark" SpaceAfter="2" Hyphenation="false" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/HB Preface Body" Name="HB Preface Body" PointSize="7" FillColor="Color/HB Brand Dark" SpaceAfter="2" Hyphenation="false" Composer="HL Single" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Regular</FontStyle>
