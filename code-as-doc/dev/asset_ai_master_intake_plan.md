@@ -112,8 +112,15 @@ IDML 仍需显式收口到 bundle root，不能提前宣称已完成统一消费
 发布门只检查本次实际使用的资产；临时、缺失、隔离或哈希不匹配资产阻断发布。
 release manifest 记录 asset key、格式、内容 SHA、源修订、快照和 intake run ID。
 
-当前状态：尚未接入；资产血缘目前只存在于 prepared bundle sidecar，不在 release
-manifest 中。
+当前状态：已接入。release manifest 新增 `assets` 段（`tools/release_asset_lineage.py`）
+记录 bundle 指纹、注册表快照哈希，以及本次实际消费的每个注册表资产（格式、内容 SHA、
+状态、解析来源）；release CSV 增四列扁平标量。`publish` 在最后一次 prepare 之后、写
+manifest 之前加门：本次用到临时、缺失、隔离资产或没有冻结血缘一律阻断。二维码资产在
+`asset-check`（已是 CI 作业）里与印刷 URL 清单交叉核对。
+
+尚未接入：InDesign 包（INDD + IDML + Links/ + 字体清单 + parity 报告）并入发布产物。
+另外发布门当前不拦 `legacy-path` 图片——真实 bundle 仍有 50 处来自数据生成页，拦截
+会堵死所有发布，因此只把数量记进 manifest 供后续棘轮下压。
 
 ## 5. 验证梯子
 

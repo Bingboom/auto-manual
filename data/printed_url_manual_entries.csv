@@ -1,2 +1,2 @@
-target,kind,source_note
-back_cover QR（目标待扫码确认后替换本行）,qr,docs/renderers/latex/assets/back_cover-en.pdf 右下角
+target,kind,asset_key,source_note
+160102000404,qr,qr/back_cover_ai_candidate,"AI 母版 p59 二维码；解码为文档物料号 16-0102-000404，不是网址，因此不参与存活巡检。冻结参考 PDF p58 的旧候选解码为 160102000161，已隔离。"

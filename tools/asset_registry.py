@@ -490,6 +490,12 @@ def check_registry(
                 )
             )
 
+    if not selected_keys:
+        from tools.printed_url_inventory import crosscheck_qr_targets
+
+        for code, key, message in crosscheck_qr_targets(all_records, repo_root=repo_root):
+            errors.append(AssetIssue(code, key, message))
+
     for record in selected_records:
         status_counts[record.status] += 1
         if record.asset_key in PROMOTED_ASSET_KEYS:

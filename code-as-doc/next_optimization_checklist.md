@@ -939,12 +939,32 @@ language-neutral (the LCD-hero precedent).
     register → sync) is documented; optional ExtendScript batch export
     (the indesign_finalize.jsx precedent) evaluated.
 - [ ] PR J3: Publish full assembly (P3)
-  - Status: `pending`
-  - Done when: the release bundle includes the InDesign package (INDD +
-    IDML + Links/ + font manifest + parity report; delivery.py reused);
-    the release manifest gains an `assets` section (key + hash + status +
-    .ai pointer — the I3 toolchain-provenance pattern); QR asset targets
-    cross-check the printed-URL inventory (I4).
+  - Status: `in progress` — publish lineage, the publish gate and the QR
+    cross-check landed; the InDesign package leg is still open.
+  - Done: the release manifest gained an `assets` section
+    (`tools/release_asset_lineage.py`, the I3 provenance shape) recording the
+    bundle fingerprint, the registry-snapshot hash, and every registry-backed
+    asset the build actually consumed with its format, content SHA, status and
+    resolution source; the release CSV gained four flattened columns. `publish`
+    gained a gate between the last prepare and the manifest that refuses a
+    bundle which consumed a `🔧临时替代`, `❌缺失` or `⛔隔离` asset, or that
+    carries no frozen lineage at all. QR assets cross-check the printed-URL
+    inventory inside `asset-check` (already a CI job): an approved `二维码` row
+    must declare what it encodes in `data/printed_url_manual_entries.csv`, a
+    non-shippable one may not be a live printed target, and a printed target
+    may not point at an unregistered asset.
+  - Evidence: a real `publish` for JE-1000F/US passes the gate with 20 registry
+    assets and bundle `9f7ede5431b9`, and the manifest carries the same numbers.
+    The gate deliberately does **not** block `legacy-path` images — the real
+    bundle still consumes 50 of them from data-generated pages, so blocking
+    would stop every publish instead of surfacing debt; the count is recorded in
+    the manifest so it can be ratcheted down later. The back-cover QR was
+    decoded independently rather than trusted from its 备注: the approved AI
+    candidate encodes `160102000404` (the master's own document number, not a
+    URL), while the quarantined frozen reference encodes the older
+    `160102000161`.
+  - Done when: the release bundle also includes the InDesign package (INDD +
+    IDML + Links/ + font manifest + parity report; delivery.py reused).
 
 ## 6i. Milestone K: Enterprise Ops Hardening + Platform Consolidation
 

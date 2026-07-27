@@ -868,3 +868,17 @@ Why it mattered:
 
 - Milestone J's P1 is now closed on evidence rather than assertion. The other two acceptance conditions were re-verified live instead of assumed: all 183 template image/figure directives resolve through `asset:`, and resolution rejects an unregistered key, the `⛔隔离` back cover, and the `🔧临时替代` warning lockup, while `--publish` additionally refuses the `--allow-temporary` escape hatch.
 - The overlay design came from checking before building: the Base holds 10 definitions while the registry holds 82 rows, so the obvious full-replace mirror would have deleted 72 repo-native census rows, and syncing `备注` would have overwritten the human maintenance history with intake rationale. A live dry run confirms the merge is a byte-identical no-op today (82 in / 82 out, 10 managed), and that a simulated Base edit propagates while the repo-owned columns survive.
+
+## 55. 2026-07-27: Publish Asset Lineage and Gate (Milestone J P3, partial)
+
+What changed:
+
+- `tools/release_asset_lineage.py` lifts the prepared bundle's frozen asset record into the release manifest as an `assets` section (the I3 provenance shape): bundle fingerprint, registry-snapshot hash, and every registry-backed asset the build actually consumed with its format, content SHA, status and resolution source. The release CSV gained four flattened scalar columns.
+- `publish` gained a gate between the last prepare and the release manifest. It refuses a bundle that consumed a `🔧临时替代`, `❌缺失` or `⛔隔离` asset, or that carries no frozen lineage at all — a print run cannot be corrected afterwards, so the failure has to happen before any artifact is released. Position matters and is asserted in the build-script test: the word stage cleans and re-prepares, so an earlier read would inspect a stale bundle.
+- QR assets now cross-check the printed-URL inventory inside `asset-check`, which is already a CI job. An approved `二维码` asset must declare what it encodes in `data/printed_url_manual_entries.csv` (which gained an `asset_key` column), a quarantined or temporary candidate may not be registered as a live printed target, and a printed target may not point at an unregistered asset.
+- `build.py`'s guardrail pin moved 750 → 761 with the reason recorded at the pin: a new injected entrypoint needs an import, a seven-line resolver and a call site, and the bundle-path resolution was pushed down into `tools/` first to keep that the irreducible minimum.
+
+Why it mattered:
+
+- A shipped PDF can now be traced to the bytes of every illustration inside it and to the registry state those bytes were approved under, instead of that provenance living only in a bundle sidecar that no release record points at.
+- Two decisions came from checking the real bundle rather than the plan. The gate does **not** block `legacy-path` images: the JE-1000F US bundle still consumes 50 of them from data-generated pages, so the plan's literal wording would have blocked every publish; the count is recorded in the manifest so the debt is visible and can be ratcheted down. And the back-cover QR was decoded independently instead of trusted from its 备注 — the approved AI candidate encodes `160102000404`, the master's own document number rather than a URL, while the quarantined frozen reference encodes the older `160102000161`. That is why the cross-check asserts a declared payload rather than URL liveness.
