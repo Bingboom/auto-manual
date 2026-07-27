@@ -28,8 +28,8 @@
     "manual_ir_schema_version": "manual-ir/v1",
     "manual_content_sha256": "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
     "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
-    "style_contract_sha256": "c7d31f22726d97bd04e82fd6fc59e5510bdaac7b0d37b4b86a9e6f8df3aec3b6",
-    "layout_params_sha256": "d30b7be0e2ae74b26df19ef664f9d2468c5f9aa2981c60de8b06fe5086515c00"
+    "style_contract_sha256": "41c67cdeea2d9ae9fec5a80ee62197d48cc97ba7525dd9a2afbdd606d28daee8",
+    "layout_params_sha256": "d4a964843da65fb8b6560ee8a3f6d9f4bd733bf0adc777485aa12eaf2e25c5c8"
   },
   "approval": {
     "status": "approved",
@@ -83,9 +83,21 @@
       },
       "inbox_cards": {
         "image_width_pt_by_language": {
-          "en": [72.0, 40.0, 38.0],
-          "fr": [72.0, 40.0, 38.0],
-          "es": [72.0, 40.0, 38.0]
+          "en": [
+            72.0,
+            40.0,
+            38.0
+          ],
+          "fr": [
+            72.0,
+            40.0,
+            38.0
+          ],
+          "es": [
+            72.0,
+            40.0,
+            38.0
+          ]
         },
         "stroke_color": "Color/HB Border K10",
         "stroke_weight": 0.75

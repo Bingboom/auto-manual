@@ -33,7 +33,7 @@ styles:
   HB-TITLE-L1:
     role: Level-one section band
     semantic_source_kinds: [heading_1]
-    token_refs: [type_h1_font_size, type_h1_font_leading, type_h1_force_upper, comp_h1_pill_arc, comp_h1_pill_height, comp_h1_pill_pad_lr, comp_h1_pill_pad_tb, comp_h1_pill_after]
+    token_refs: [type_h1_font_size, type_h1_font_leading, type_h1_force_upper, comp_h1_pill_arc, comp_h1_pill_height, comp_h1_pill_pad_lr, comp_h1_pill_pad_tb, comp_h1_pill_after, idml_warranty_h1_width_adjust, idml_warranty_h1_left_indent]
     latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelOne]}
     indesign: {renderer: heading_band, paragraph_style: Heading1, object_style: HB Capsule Heading}
     status: partial
@@ -332,7 +332,7 @@ styles:
   HB-WARRANTY-LEAD:
     role: Warranty lead panel
     semantic_source_kinds: [warranty_lead]
-    token_refs: [comp_warranty_lead_arc, comp_warranty_lead_pad_lr, comp_warranty_lead_pad_tb, comp_warranty_lead_after, type_warranty_lead_font_size, type_warranty_lead_font_leading, idml_warranty_lead_before, idml_warranty_lead_height, lang_en_idml_warranty_lead_before, lang_fr_idml_warranty_lead_before, lang_es_idml_warranty_lead_before, lang_en_idml_warranty_lead_height, lang_fr_idml_warranty_lead_height, lang_es_idml_warranty_lead_height]
+    token_refs: [comp_warranty_lead_arc, comp_warranty_lead_pad_lr, comp_warranty_lead_pad_tb, comp_warranty_lead_after, type_warranty_lead_font_size, type_warranty_lead_font_leading, idml_warranty_lead_before, idml_warranty_lead_height, idml_warranty_panel_width_adjust, idml_warranty_lead_left_indent, lang_en_idml_warranty_lead_before, lang_fr_idml_warranty_lead_before, lang_es_idml_warranty_lead_before, lang_en_idml_warranty_lead_height, lang_fr_idml_warranty_lead_height, lang_es_idml_warranty_lead_height, lang_en_idml_warranty_lead_pad_tb, lang_fr_idml_warranty_lead_pad_tb, lang_es_idml_warranty_lead_pad_tb]
     latex: {owner: components_warranty.tex, entrypoints: [HBWarrantyLead]}
     indesign: {renderer: warranty_lead, object_style: HB Rounded Panel}
     status: partial
@@ -341,7 +341,7 @@ styles:
   HB-WARRANTY-SECTION:
     role: Warranty section panel
     semantic_source_kinds: [warranty_section]
-    fit_token_refs: [idml_warranty_body_horizontal_scale, lang_es_idml_warranty_body_horizontal_scale, idml_warranty_list_left_indent, idml_warranty_list_first_line_indent, idml_warranty_exclusions_body_bottom_inset]
+    fit_token_refs: [idml_warranty_body_horizontal_scale, lang_es_idml_warranty_body_horizontal_scale, idml_warranty_list_left_indent, idml_warranty_list_first_line_indent, idml_warranty_exclusions_body_bottom_inset, idml_warranty_panel_width_adjust, lang_en_idml_warranty_frame_x_offset, lang_fr_idml_warranty_frame_x_offset, lang_es_idml_warranty_frame_x_offset]
     token_refs: [comp_warranty_section_arc, comp_warranty_section_rule, comp_warranty_section_pad_lr, comp_warranty_section_pad_top, comp_warranty_section_pad_bottom, type_warranty_title_font_size, type_warranty_body_font_size, idml_warranty_panel_height_adjust_1, lang_en_idml_warranty_panel_height_adjust_1, lang_fr_idml_warranty_panel_height_adjust_1, lang_es_idml_warranty_panel_height_adjust_1, lang_en_idml_warranty_panel_height_adjust_2, lang_fr_idml_warranty_panel_height_adjust_2, lang_es_idml_warranty_panel_height_adjust_2, lang_en_idml_warranty_panel_height_adjust_3, lang_fr_idml_warranty_panel_height_adjust_3, lang_es_idml_warranty_panel_height_adjust_3, lang_en_idml_warranty_panel_height_adjust_4, lang_fr_idml_warranty_panel_height_adjust_4, lang_es_idml_warranty_panel_height_adjust_4, lang_en_idml_warranty_panel_height_adjust_5, lang_fr_idml_warranty_panel_height_adjust_5, lang_es_idml_warranty_panel_height_adjust_5, lang_en_idml_warranty_panel_height_adjust_6, lang_fr_idml_warranty_panel_height_adjust_6, lang_es_idml_warranty_panel_height_adjust_6, lang_en_idml_warranty_section_1_before, lang_fr_idml_warranty_section_1_before, lang_es_idml_warranty_section_1_before, lang_en_idml_warranty_section_2_before, lang_fr_idml_warranty_section_2_before, lang_es_idml_warranty_section_2_before, lang_en_idml_warranty_section_3_before, lang_fr_idml_warranty_section_3_before, lang_es_idml_warranty_section_3_before, lang_en_idml_warranty_section_4_before, lang_fr_idml_warranty_section_4_before, lang_es_idml_warranty_section_4_before, lang_en_idml_warranty_section_5_before, lang_fr_idml_warranty_section_5_before, lang_es_idml_warranty_section_5_before, lang_en_idml_warranty_section_6_before, lang_fr_idml_warranty_section_6_before, lang_es_idml_warranty_section_6_before]
     latex: {owner: components_warranty.tex, entrypoints: [HBWarrantySection]}
     indesign: {renderer: warranty_section, object_style: HB Rounded Panel}

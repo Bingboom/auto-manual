@@ -39,6 +39,15 @@ def _wrapped_lines(text: str, width: float, size: float) -> int:
     return max(1, math.ceil(len(plain) / chars))
 
 
+def _panel_width(ctx: RenderContext, width: float) -> float:
+    """Return the approved locale-width correction for warranty shells."""
+    return width + _language_param(
+        ctx,
+        "idml_warranty_panel_width_adjust",
+        0.0,
+    )
+
+
 def _anchor() -> str:
     return (
         '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
@@ -182,7 +191,7 @@ def render_warrantylead(
     span_columns: bool = True,
     measure_w: float | None = None,
 ) -> tuple[str, float]:
-    width = measure_w or ctx.text_measure
+    width = _panel_width(ctx, measure_w or ctx.text_measure)
     text = " ".join(
         _plain_strong(str(value)) for value in spec.get("texts", []) if value
     )
@@ -238,7 +247,9 @@ def render_warrantylead(
     after = param_pt(ctx.params, "comp_warranty_lead_after", 2.83)
     xml = xml.replace(
         "<ParagraphStyleRange ",
-        f'<ParagraphStyleRange SpaceBefore="{before:g}" SpaceAfter="{after:g}" ',
+        '<ParagraphStyleRange '
+        f'LeftIndent="{_language_param(ctx, "idml_warranty_lead_left_indent", 0.0):g}" '
+        f'SpaceBefore="{before:g}" SpaceAfter="{after:g}" ',
         1,
     )
     return xml, before + height + after
@@ -312,7 +323,7 @@ def render_warrantysection(
     span_columns: bool = True,
     measure_w: float | None = None,
 ) -> tuple[str, float]:
-    width = measure_w or ctx.text_measure
+    width = _panel_width(ctx, measure_w or ctx.text_measure)
     title = str(spec.get("title", "")).strip()
     index = int(spec.get("index", 0) or 0)
     blocks = list(spec.get("blocks", []))

@@ -225,6 +225,53 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
                     writer.spread_chain_options[0]["bottom_extra"],
                 )
 
+    def test_all_approved_warranty_locales_use_governed_frame_geometry(
+        self,
+    ) -> None:
+        cases = {
+            "en": ("11_warranty", "WARRANTY", -0.32),
+            "fr": ("p33_11_warranty", "GARANTIE", -2.02),
+            "es": ("p49_11_warranty", "GARANTÍA", -2.02),
+        }
+        for language, (title, heading, expected_x) in cases.items():
+            with self.subTest(language=language):
+                writer = _RecordingWriter()
+                writer.params["comp_warranty_page_extra_height"] = (
+                    "17.01", "pt",
+                )
+                writer.params[
+                    f"lang_{language}_idml_warranty_frame_x_offset"
+                ] = (str(expected_x), "pt")
+                emitter = ReferenceStoryEmitter(
+                    writer,
+                    _RecordingToc(),
+                    ROOT,
+                    {
+                        "plan_source": "approved-reference",
+                        "pages": [{
+                            "source_path": f"page/{title}.rst",
+                            "composition_id": f"{language}_warranty",
+                            "language": language,
+                        }],
+                    },
+                )
+
+                emitter.emit(
+                    f"st_{title}",
+                    title,
+                    [("h1", heading)],
+                    page_cursor=18,
+                )
+
+                self.assertEqual(
+                    17.01,
+                    writer.spread_chain_options[0]["bottom_extra"],
+                )
+                self.assertEqual(
+                    expected_x,
+                    writer.spread_chain_options[0]["last_frame_x_offset"],
+                )
+
     def test_unapproved_operation_chain_keeps_the_standard_bottom(self) -> None:
         writer = _RecordingWriter()
         toc = _RecordingToc()
