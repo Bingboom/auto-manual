@@ -205,6 +205,20 @@ does not claim the current IDML/INDD/PDF has already passed. Copyable commands
 are in the
 [`Approved-PDF native InDesign replica` section](../code-as-doc/build_doc_guide.md#approved-pdf-native-indesign-replica-option-2).
 
+Write the finalize and parity artifacts **next to the production IDML**, in
+`docs/_build/<model>/<region>[/<lang>]/idml/` — `<stem>.indd`,
+`<stem>_indesign.pdf`, `finalize_report.json` and `parity_report.json`. That is
+the only location `release-manifest` looks in, so artifacts left in a scratch
+directory are simply not recorded. (The second-host verification run in
+[`indesign_second_host_runbook.md`](../code-as-doc/dev/indesign_second_host_runbook.md)
+is the deliberate exception: it writes to a temp dir precisely because it must
+not touch the repo.) The manifest's `indesign_package` section then records the
+IDML, INDD, InDesign PDF, handoff zip and both reports with sha256, plus the
+preflight numbers and the parity verdict; `complete` is true only when the
+IDML, INDD, InDesign PDF, handoff zip and finalize report are all present. An
+automated publish with no finalize run records what exists and marks the rest
+absent rather than failing.
+
 Use `python3 build.py idml --idml-mode both ...` when design also needs the
 paired flow handoff folder: it keeps the production IDML and adds
 `production/manual.production.idml`, the flow folder,

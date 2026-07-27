@@ -495,6 +495,7 @@ def write_publish_release_metadata(
     word_output_path: Path,
     pdf_output_path: Path,
     md_output_path: Path | None = None,
+    handoff_package_path: Path | None = None,
     html_dir: Path,
     document_link_url: str,
     queue_record_ids: tuple[str, ...] = (),
@@ -525,6 +526,12 @@ def write_publish_release_metadata(
         "word_output_path": repo_relative(word_output_path),
         "pdf_output_path": repo_relative(pdf_output_path),
         "md_output_path": repo_relative(md_output_path) if md_output_path is not None else "",
+        # The InDesign handoff package (IDML + Links/ + font manifest) is
+        # already staged next to these outputs; name it so the release
+        # record points at the print deliverable, not only the PDF.
+        "handoff_package_path": (
+            repo_relative(handoff_package_path) if handoff_package_path is not None else ""
+        ),
         "html_dir": repo_relative(html_dir),
         "html_index": repo_relative(html_dir / "index.html"),
         "document_link_url": document_link_url.strip(),
