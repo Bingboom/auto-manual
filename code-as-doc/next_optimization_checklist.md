@@ -982,27 +982,35 @@ language-neutral (the LCD-hero precedent).
   - Done when: an operator finalize run for JE-1000F/US is captured end to end
     (`complete=true` with `parity.accepted=true`) — currently blocked, see the
     reference-layout drift note below.
-- [ ] Open finding (2026-07-27): production IDML cannot be built from a clean
-  checkout — **operator decision required, do not self-resolve**
+- [ ] Open finding (2026-07-27, half resolved): production IDML still cannot be
+  built from a clean checkout — the remaining half needs an **operator decision**
   - `python build.py idml --idml-mode production --model JE-1000F --region US`
     fails the same-source contract with
     `source_identity.snapshot_sha256 does not match the current manual IR;
     source_identity.layout_params_sha256 does not match the current manual IR`.
-  - The layout half is repo-only and reproducible: the committed
-    `data/layout_params.csv` (checked both as the working-tree file and as the
-    git blob, so this is not line-ending noise) hashes through
-    `layout_tokens_sha256` to `b174d541…`, while
-    `docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json`
-    pins `046f6f5a…`. Both files were last changed in the *same* commit (#720),
-    so they were expected to agree.
+  - **The layout half is fixed.** Root cause reproduced exactly: #720 refreshed
+    `layout_params_sha256` and then took one more correction to
+    `data/layout_params.csv` (`lang_en_idml_ups_caution_space_after`
+    9.9pt -> 15.9pt) without recomputing it — reverting only that value in the
+    committed CSV reproduces the pinned `046f6f5a…`. The pin agreed in #715 and
+    #718, so it was a #720 regression, not a standing condition. The pin now
+    describes the committed file, and `tools/check_reference_layout_pins.py`
+    (its own CI job) fails on this class of drift from now on. **Still owed: the
+    approved reference layout has not been re-validated against 15.9pt by a
+    parity run** — that needs an operator finalize + `idml_pdf_parity.py` pass.
   - The snapshot half is not reproducible by design: `snapshot_sha256` binds the
     contract to one phase2 snapshot, and `data/phase2/` is untracked apart from
     `page_registry.csv`, so no clean checkout can reconstruct it without the
     operator's local snapshot.
-  - No CI job builds production IDML, so neither half is caught automatically.
-  - `tools/reference_layout_rebind.py --plan … --manual-ir … --write` is the
-    intended repair, but the contract carries an `approval` block; re-pinning an
-    approved reference layout is an approval decision, not a maintenance fix.
+  - No CI job builds production IDML, which is why nothing caught this for three
+    merges; #720's own post-merge run was additionally cancelled by the merges
+    that followed it. The new pin guard covers the repo-derived pins; the
+    snapshot pins remain unverifiable from a checkout by design.
+  - The snapshot half is what still blocks the build; the error is now only
+    `source_identity.snapshot_sha256 does not match the current manual IR`.
+    `tools/reference_layout_rebind.py --plan … --manual-ir … --write` is the
+    intended repair, but the contract carries an `approval` block, so rebinding
+    it against a freshly synced snapshot is an approval decision.
   - JP is blocked separately and for a different reason:
     `page-0002-01_meaning_of_symbols: skipped_raw=1`.
 
