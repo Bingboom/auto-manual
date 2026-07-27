@@ -29,7 +29,7 @@
     "manual_content_sha256": "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
     "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
     "style_contract_sha256": "c7d31f22726d97bd04e82fd6fc59e5510bdaac7b0d37b4b86a9e6f8df3aec3b6",
-    "layout_params_sha256": "b174d541929016e5d6b7cb08693afd1a5ee32f2595f05cf6cead4888272dac6e"
+    "layout_params_sha256": "d30b7be0e2ae74b26df19ef664f9d2468c5f9aa2981c60de8b06fe5086515c00"
   },
   "approval": {
     "status": "approved",

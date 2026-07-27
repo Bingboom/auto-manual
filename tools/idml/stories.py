@@ -30,7 +30,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     last_idx = content_indices[-1] if content_indices else -1
     in_twocol = False
     next_h1_page_top: float | None = None
-    next_trouble_h1_language: str | None = None
+    next_trouble_h1_language, next_storage_h1_language = None, None
     operation_intro_lines: int | None = None
     operation_energy_panel_height: float | None = None
     operation_h2_seen = False
@@ -68,6 +68,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 next_h1_page_top = float(text.split(":", 1)[1])
             elif text.startswith("trouble_h1_before:"):
                 next_trouble_h1_language = text.split(":", 1)[1]
+            elif text.startswith("storage_h1:"):
+                next_storage_h1_language = text.split(":", 1)[1]
             continue
         terminal = bi == last_idx
         if kind == "component":
@@ -116,6 +118,9 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             continue
         if kind == "h1":
             h1_xml = _po.h1_pill_paragraph(writer, text, text_measure)
+            if next_storage_h1_language is not None:
+                h1_xml = _flow.apply_storage_h1_rhythm(h1_xml, writer.params, next_storage_h1_language)
+                next_storage_h1_language = None
             if next_trouble_h1_language is not None:
                 h1_xml = _flow.apply_troubleshooting_h1_rhythm(
                     h1_xml, writer.params, next_trouble_h1_language,

@@ -96,6 +96,20 @@ class ExportIdmlTests(unittest.TestCase):
                 self.assertIn("<PathGeometry>", xml)
                 self.assertNotIn("GeometricBounds", xml.split("<TextFrame", 1)[-1])
 
+    def test_folio_frames_alternate_outer_edges_and_move_down(self) -> None:
+        from tools.idml.page_folio import folio_frame_bounds
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        odd = folio_frame_bounds(writer, 1)
+        even = folio_frame_bounds(writer, 2)
+
+        self.assertAlmostEqual(odd[0], -writer.page_w / 2 + writer.m_l)
+        self.assertAlmostEqual(odd[2] - odd[0], 24.0)
+        self.assertAlmostEqual(even[2], writer.page_w / 2 - writer.m_r)
+        self.assertAlmostEqual(even[2] - even[0], 24.0)
+        self.assertAlmostEqual(odd[3], writer.page_h / 2 - 11.0)
+
     def test_last_spread_frame_can_shift_without_changing_earlier_frames(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         writer = IdmlWriter(params)
@@ -1101,6 +1115,55 @@ class ExportIdmlTests(unittest.TestCase):
             aligned[0],
         )
         self.assertEqual(blocks, aligned[1:])
+
+    def test_approved_storage_heading_uses_semantic_locale_marker(self) -> None:
+        from tools.idml.prose_flow import align_storage_heading
+
+        blocks = [
+            ("component", '{"kind":"notice","role":"caution"}'),
+            ("h1", "STOCKAGE ET ENTRETIEN"),
+            ("body", "Localized storage copy"),
+        ]
+
+        aligned = align_storage_heading(
+            blocks, "fr", "p30_09_storage_and_maintenance",
+        )
+
+        self.assertEqual(
+            ("layout", "storage_h1:fr"),
+            aligned[1],
+        )
+        self.assertEqual(blocks[0], aligned[0])
+        self.assertEqual(blocks[1:], aligned[2:])
+
+    def test_storage_h1_rhythm_is_locale_scoped(self) -> None:
+        from tools.idml.prose_flow import apply_storage_h1_rhythm
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        source = (
+            '<ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Figure">'
+            '<TextFrame FillColor="Color/HB Brand Dark">'
+            '<AnchoredObjectSetting AnchorYoffset="0"/></TextFrame>'
+        )
+
+        en = apply_storage_h1_rhythm(source, params, "en")
+        es = apply_storage_h1_rhythm(source, params, "es")
+
+        self.assertIn('SpaceBefore="8.84"', en)
+        self.assertIn('SpaceAfter="4.05"', en)
+        self.assertIn('FillColor="Swatch/None"', en)
+        self.assertIn('SpaceBefore="-5.05"', es)
+        self.assertIn('SpaceAfter="3.34"', es)
+        self.assertIn('FillColor="Color/HB Brand Dark"', es)
+
+    def test_storage_first_frame_offset_is_locale_scoped(self) -> None:
+        from tools.idml.reference_story_flow import storage_first_top_offset
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+
+        self.assertAlmostEqual(storage_first_top_offset(params, "en"), 16.87)
+        self.assertAlmostEqual(storage_first_top_offset(params, "fr"), 11.80)
+        self.assertAlmostEqual(storage_first_top_offset(params, "es"), 11.82)
 
     def test_four_page_operation_flow_keeps_final_h2_on_last_page(self) -> None:
         from tools.idml.prose_flow import align_operation_tail
@@ -2834,6 +2897,32 @@ class ExportIdmlTests(unittest.TestCase):
             marker, body = notes[0].split(" ", 1)
             self.assertIn(f"<Content>{marker}</Content>", story)
             self.assertIn(body[:20].replace("&", "&amp;"), story)
+
+    def test_spec_story_uses_independent_native_section_marker(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
+        writer = IdmlWriter(params)
+        writer.add_spec_story(sections, [], lang="fr")
+
+        story = dict(writer.stories)["st_spec_fr"]
+        marker_range = story.split("<Content>●</Content>", 1)[0].rsplit(
+            "<CharacterStyleRange ", 1,
+        )[1]
+        self.assertIn('PointSize="13.2"', marker_range)
+        self.assertIn('HorizontalScale="68"', marker_range)
+        self.assertIn('BaselineShift="-1.1"', marker_range)
+        self.assertNotIn("● GENERAL", story)
+
+    def test_localized_spec_notes_have_approved_spacing(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
+        notes = ["※ Première note", "※ Deuxième note"]
+        writer = IdmlWriter(params)
+        writer.add_spec_story(sections, notes, lang="fr")
+
+        story = dict(writer.stories)["st_spec_fr"]
+        self.assertIn('SpaceBefore="8.09"', story)
+        self.assertIn('SpaceBefore="5.07"', story)
 
     def test_dom_version_supports_paragraph_shading(self) -> None:
         # paragraph shading is CC2015+; a DOMVersion 8.0 doc is parsed with

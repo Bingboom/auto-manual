@@ -149,8 +149,8 @@ class TroubleshootingTableContractTests(unittest.TestCase):
 
     def test_full_french_and_spanish_tables_budget_localized_row_growth(self) -> None:
         cases = (
-            ("fr", FR_ROWS, 260.09, 266.79),
-            ("es", ES_ROWS, 260.2, 267.95),
+            ("fr", FR_ROWS, 256.09, 262.79),
+            ("es", ES_ROWS, 256.2, 263.95),
         )
         for language, rows, panel_height, estimated_height in cases:
             with self.subTest(language=language):
@@ -168,8 +168,8 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         xml, story, height = self._render(EN_ROWS, suffix="en")
 
         self.assertIn("<Content>FE</Content>", story)
-        self.assertIn('Anchor="0 -240"', xml)
-        self.assertAlmostEqual(248.74, height, places=2)
+        self.assertIn('Anchor="0 -237.79"', xml)
+        self.assertAlmostEqual(246.53, height, places=2)
 
     def test_approved_table_fails_closed_for_every_required_style_token(self) -> None:
         required_tokens = (

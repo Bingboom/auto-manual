@@ -121,6 +121,18 @@ class ProseFlowBuffer:
         items = [
             (
                 stem,
+                align_storage_heading(
+                    blocks,
+                    _planned_page_language(page_plan, stem),
+                    stem,
+                ),
+                columns,
+            )
+            for stem, blocks, columns in items
+        ]
+        items = [
+            (
+                stem,
                 align_troubleshooting_heading(
                     blocks,
                     _planned_page_language(page_plan, stem),
@@ -341,6 +353,61 @@ def align_troubleshooting_heading(
             ("layout", f"trouble_h1_before:{language}"),
         )
     return aligned
+
+
+def align_storage_heading(
+    blocks: list[Block],
+    language: str | None,
+    stem: str | None,
+) -> list[Block]:
+    """Mark the approved storage H1 without changing localized source copy."""
+    if (
+        language not in {"en", "fr", "es"}
+        or not stem
+        or "storage_and_maintenance" not in Path(stem).stem.casefold()
+    ):
+        return blocks
+    aligned = list(blocks)
+    heading_index = next((
+        index for index, (kind, _payload) in enumerate(aligned)
+        if kind == "h1"
+    ), None)
+    if heading_index is not None:
+        aligned.insert(heading_index, ("layout", f"storage_h1:{language}"))
+    return aligned
+
+
+def apply_storage_h1_rhythm(
+    xml: str,
+    params: dict[str, tuple[str, str]],
+    language: str,
+) -> str:
+    """Apply locale-owned storage heading rhythm and plate visibility."""
+    from .params import param_pt
+
+    before = param_pt(
+        params,
+        f"lang_{language}_idml_storage_heading_space_before",
+        param_pt(params, "idml_storage_heading_space_before", 0.0),
+    )
+    after = param_pt(
+        params,
+        f"lang_{language}_idml_storage_heading_space_after",
+        param_pt(params, "idml_storage_heading_space_after", 3.34),
+    )
+    xml = xml.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange SpaceBefore="{before:g}" '
+        f'SpaceAfter="{after:g}" ',
+        1,
+    )
+    if language in {"en", "fr"}:
+        xml = xml.replace(
+            'FillColor="Color/HB Brand Dark"',
+            'FillColor="Swatch/None"',
+            1,
+        )
+    return xml
 
 
 def apply_troubleshooting_h1_rhythm(

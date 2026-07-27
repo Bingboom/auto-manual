@@ -336,6 +336,12 @@ def add_spec_story(writer, sections: list[dict],
     for si, section in enumerate(sections):
         section_title = writer._psr(
             "HB Spec Section", "\u25cf " + section["title"])
+        section_title = section_title.replace(
+            'FontStyle="Regular"',
+            'FontStyle="Regular" PointSize="13.2" '
+            'HorizontalScale="68" BaselineShift="-1.1"',
+            1,
+        )
         section_default = (
             default_section_before[si]
             if si < len(default_section_before) else 10.07
@@ -357,9 +363,11 @@ def add_spec_story(writer, sections: list[dict],
         )
         if lang == "en":
             section_title = section_title.replace(
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+                '><Content> ',
                 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                'BaselineShift="0.78"',
+                'BaselineShift="0.78"><Content> ',
+                1,
             )
         parts.append(section_title)
         table = _tb.fill_column_xml(
@@ -435,6 +443,16 @@ def add_spec_story(writer, sections: list[dict],
                 '<ParagraphStyleRange LeftIndent="-2.15" '
                 'FirstLineIndent="-2.15" '
                 f'SpaceBefore="{10.34 if ai == 0 else 4.57:g}" ',
+                1,
+            )
+        elif lang in {"fr", "es"}:
+            note_before = {
+                "fr": (8.09, 5.07),
+                "es": (5.65, 10.17),
+            }[lang][min(ai, 1)]
+            note_xml = note_xml.replace(
+                "<ParagraphStyleRange ",
+                f'<ParagraphStyleRange SpaceBefore="{note_before:g}" ',
                 1,
             )
         parts.append(note_xml)
