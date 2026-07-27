@@ -939,6 +939,59 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(("h2", "AC WALL"), emitted[1][1][0])
         self.assertIn(("h2", "SOLAR"), emitted[1][1])
 
+    def test_approved_charging_tail_is_promoted_after_flow_split(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("charging", [
+            ("h1", "CHARGING"),
+            ("body", "Charging intro"),
+            ("h2", "AC WALL"),
+            ("body", "Editable AC caption"),
+            ("image", "_assets/charging/ac_wall.png"),
+        ])
+        flow.add("08_charging_methods", [
+            ("h2", "SOLAR"),
+            ("image", "_assets/charging/solar_direct.png"),
+        ])
+        emitted: list[tuple[str, list[tuple[str, str]]]] = []
+        plan = {
+            "plan_source": "approved-reference",
+            "pages": [
+                {
+                    "source_path": "page/charging.rst",
+                    "composition_id": "ups-charging",
+                    "flow_split": {
+                        "at_kind": "h2",
+                        "occurrence": 1,
+                        "tail_composition_id": "charging-methods",
+                    },
+                },
+                {
+                    "source_path": "page/08_charging_methods.rst",
+                    "composition_id": "charging-methods",
+                },
+            ],
+        }
+
+        flow.flush(
+            lambda _sid, title, blocks, _columns: emitted.append((title, blocks)),
+            lambda stem: stem,
+            plan,
+        )
+
+        methods = emitted[1][1]
+        figures = [
+            json.loads(payload)
+            for kind, payload in methods
+            if kind == "component"
+            and json.loads(payload).get("kind") == "referencefigure"
+        ]
+        self.assertEqual(["charging_ac"], [item["layout"] for item in figures])
+        self.assertEqual("Editable AC caption", figures[0]["caption"])
+        self.assertNotIn(("body", "Editable AC caption"), methods)
+        self.assertIn(("image", "_assets/charging/solar_direct.png"), methods)
+
     def test_prose_flow_can_ignore_reference_starts_for_natural_layout(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer
 
@@ -1462,6 +1515,7 @@ class ExportIdmlTests(unittest.TestCase):
             ("body", "Localized AC caption"),
             ("image", "_assets/charging/ac_wall.png"),
             ("h2", "Localized car heading"),
+            ("body", "Localized car description"),
             ("image", "renderers/latex/assets/car_charge.png"),
             ("body", "Localized vehicle\nLocalized cable note"),
         ]
@@ -1485,6 +1539,23 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertNotIn(
             ("body", "Localized vehicle\nLocalized cable note"), promoted,
         )
+        self.assertIn(
+            ("h2_charging_car", "Localized car heading"), promoted,
+        )
+
+        french_ac = [
+            ("h2", "Localized French AC heading"),
+            ("image", "_assets/charging/ac_wall.png"),
+            ("body", "Localized French AC caption"),
+            ("component", json.dumps({"kind": "notice", "label": "ATTENTION"})),
+        ]
+        french_promoted = promote_reference_figures(
+            french_ac, plan, "p29_08_charging_methods",
+        )
+        french_spec = json.loads(french_promoted[1][1])
+        self.assertEqual("charging_ac", french_spec["layout"])
+        self.assertEqual("Localized French AC caption", french_spec["caption"])
+        self.assertEqual("component", french_promoted[2][0])
 
         self.assertEqual(
             charging,

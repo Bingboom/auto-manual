@@ -171,7 +171,15 @@ class ReferenceStoryEmitter:
             bottom_extra=bottom_extra,
             last_frame_x_offset=final_frame_x_offset,
             first_top_offset=(
-                23.8
+                param_pt(
+                    writer.params,
+                    f"lang_{composition_lang}_idml_charging_methods_page_top_offset",
+                    param_pt(
+                        writer.params,
+                        "idml_charging_methods_page_top_offset",
+                        23.8,
+                    ),
+                )
                 if is_charging_methods
                 else param_pt(
                     writer.params,

@@ -136,7 +136,10 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         next_block = blocks[bi + 1] if bi + 1 < len(blocks) else ("", "")
         operation_h2 = kind in {"h2_operation_energy", "h2_operation_led"}
         overview_h2 = kind in {"h2_overview_front", "h2_overview_right"}
-        semantic_kind = "h2" if overview_h2 or operation_h2 else kind
+        charging_car_h2 = kind == "h2_charging_car"
+        semantic_kind = (
+            "h2" if overview_h2 or operation_h2 or charging_car_h2 else kind
+        )
         if kind == "body_operation_energy_intro":
             semantic_kind = "body"
         style = writer._PROSE_STYLE.get(semantic_kind, "HB Body")
@@ -197,6 +200,10 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             )
             paragraph = _po.vertical_spacer_paragraph(
                 f"spacer_{sid}_overview_right", 0.0) + paragraph
+        elif kind == "h2_charging_car":
+            paragraph = _flow.apply_charging_car_heading_rhythm(
+                paragraph, writer.params, page_language,
+            )
         if operation_attrs is not None:
             paragraph = paragraph.replace(
                 "<ParagraphStyleRange ",

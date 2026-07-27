@@ -159,6 +159,26 @@ class ProseFlowBuffer:
                 blocks[split_at:] + target_blocks,
                 target_columns,
             )
+        # The approved JE-1000F US charging split moves the AC body/image tail
+        # from `charging` into the canonical methods composition.  It cannot be
+        # recognized by the earlier stem-scoped promotion pass, so promote the
+        # completed methods items once more after every split is settled.
+        # Existing referencefigure components are already inert here, which
+        # keeps the original car composite single-promoted; App stems never
+        # enter this targeted pass.
+        items = [
+            (
+                stem,
+                promote_reference_figures(blocks, page_plan, stem),
+                columns,
+            )
+            if re.fullmatch(
+                r"(?:p\d+_)?08_charging_methods",
+                stem.casefold(),
+            ) is not None
+            else (stem, blocks, columns)
+            for stem, blocks, columns in items
+        ]
         items = _apply_single_page_ups_callout_roles(items, entries)
         return _move_car_notice_to_storage(items, page_plan)
 
@@ -335,6 +355,26 @@ def apply_troubleshooting_h1_rhythm(
         params,
         f"lang_{language}_idml_trouble_heading_space_before",
         0.0,
+    )
+    return xml.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange SpaceBefore="{before:g}" ',
+        1,
+    )
+
+
+def apply_charging_car_heading_rhythm(
+    xml: str,
+    params: dict[str, tuple[str, str]],
+    language: str | None,
+) -> str:
+    """Apply the measured locale gap before the charging car subsection."""
+    from .params import param_pt
+
+    before = param_pt(
+        params,
+        f"lang_{language}_idml_charging_car_heading_space_before",
+        param_pt(params, "idml_charging_car_heading_space_before", 0.0),
     )
     return xml.replace(
         "<ParagraphStyleRange ",
@@ -551,14 +591,18 @@ def promote_reference_figures(
             continue
         asset_stem = Path(payload).stem.casefold()
 
-        if (
-            is_charging
-            and asset_stem == "ac_wall"
-            and index > 0
-            and aligned[index - 1][0] == "body"
-        ):
-            caption = aligned[index - 1][1]
-            aligned[index - 1:index + 1] = [
+        if is_charging and asset_stem == "ac_wall":
+            caption_index = None
+            if index > 0 and aligned[index - 1][0] == "body":
+                caption_index = index - 1
+            elif index + 1 < len(aligned) and aligned[index + 1][0] == "body":
+                caption_index = index + 1
+            if caption_index is None:
+                index += 1
+                continue
+            caption = aligned[caption_index][1]
+            start, end = sorted((index, caption_index))
+            aligned[start:end + 1] = [
                 _referencefigure_block(
                     "charging_ac", payload, caption=caption,
                 )
@@ -571,6 +615,19 @@ def promote_reference_figures(
             and index + 1 < len(aligned)
             and aligned[index + 1][0] == "body"
         ):
+            heading_index = index - 2
+            if (
+                heading_index >= 0
+                and aligned[index - 1][0] == "body"
+                and aligned[heading_index][0] in {"h2", "body"}
+            ):
+                # The frozen ES derivative carries the RST underline inside a
+                # body block.  Restore the structurally equivalent heading at
+                # render time without changing the reviewed source text.
+                heading = re.sub(
+                    r"\s+-{10,}\s*$", "", aligned[heading_index][1],
+                ).rstrip()
+                aligned[heading_index] = ("h2_charging_car", heading)
             labels = [
                 line.strip()
                 for line in aligned[index + 1][1].splitlines()
