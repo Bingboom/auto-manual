@@ -299,6 +299,56 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('HorizontalScale="96"', xml_by_language["fr"])
         self.assertIn('HorizontalScale="100"', xml_by_language["en"])
 
+    def test_warranty_lead_uses_approved_shell_width_and_host_inset(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
+        xml, _height = render(
+            {
+                "kind": "warrantylead",
+                "texts": ["A short purchase-channel warranty lead."],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.787,
+                m_l=28.3465,
+                m_r=28.3465,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="es",
+                add_story=add_story,
+            ),
+            tid="warranty_lead_shell",
+            terminal=True,
+        )
+
+        self.assertIn('LeftIndent="0.45"', xml)
+        self.assertIn('Anchor="310.684', xml)
+
+    def test_warranty_h1_uses_approved_width_and_host_inset(self) -> None:
+        from tools.export_idml import IdmlWriter, load_layout_params
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        writer.add_prose_story(
+            "st_warranty_h1",
+            "p49_11_warranty",
+            [("h1", "GARANTÍA")],
+            ROOT,
+            language="es",
+        )
+
+        story = dict(writer.stories)["st_warranty_h1"]
+        self.assertIn('LeftIndent="0.87"', story)
+        self.assertIn('Anchor="311.914', story)
+
     def test_spanish_warranty_body_uses_reference_glyph_width(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.components import RenderContext, render

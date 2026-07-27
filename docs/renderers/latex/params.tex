@@ -1593,6 +1593,15 @@
 % InDesign optical gap before the interpretation-rights panel
 \expandafter\def\csname HBidml_warranty_final_section_before\endcsname{1.0pt}
 
+% Default warranty host-frame horizontal correction
+\expandafter\def\csname HBidml_warranty_frame_x_offset\endcsname{0.0pt}
+
+% Warranty H1 inset relative to the shifted story host
+\expandafter\def\csname HBidml_warranty_h1_left_indent\endcsname{0.87pt}
+
+% Warranty H1 width correction measured from approved PDF
+\expandafter\def\csname HBidml_warranty_h1_width_adjust\endcsname{-0.18pt}
+
 % InDesign warranty lead gap after the anchored H1 host
 \expandafter\def\csname HBidml_warranty_lead_before\endcsname{0.7mm}
 
@@ -1601,6 +1610,9 @@
 
 % Default InDesign warranty lead horizontal scale percent
 \expandafter\def\csname HBidml_warranty_lead_horizontal_scale\endcsname{100}
+
+% Warranty lead inset relative to the shifted story host
+\expandafter\def\csname HBidml_warranty_lead_left_indent\endcsname{0.45pt}
 
 % Default InDesign warranty lead vertical padding
 \expandafter\def\csname HBidml_warranty_lead_pad_tb\endcsname{5.0pt}
@@ -1616,6 +1628,9 @@
 
 % InDesign warranty legal-note horizontal scale percent
 \expandafter\def\csname HBidml_warranty_note_horizontal_scale\endcsname{100}
+
+% Default warranty story top offset
+\expandafter\def\csname HBidml_warranty_page_top_offset\endcsname{13.81pt}
 
 % Default first warranty panel height correction
 \expandafter\def\csname HBidml_warranty_panel_height_adjust_1\endcsname{7.84pt}
@@ -1643,6 +1658,9 @@
 
 % InDesign warranty period panel whitespace correction
 \expandafter\def\csname HBidml_warranty_panel_trim_period\endcsname{0.0pt}
+
+% Warranty panel width correction measured from approved PDF
+\expandafter\def\csname HBidml_warranty_panel_width_adjust\endcsname{-1.41pt}
 
 % InDesign warranty body paragraph spacing measured from reference
 \expandafter\def\csname HBidml_warranty_paragraph_after\endcsname{2.83pt}
@@ -1773,8 +1791,11 @@
 % English UPS composition host-frame top offset measured from approved PDF
 \expandafter\def\csname HBlang_en_idml_ups_page_top_offset\endcsname{20.86pt}
 
-% English H1-to-warranty-lead rhythm
-\expandafter\def\csname HBlang_en_idml_warranty_lead_before\endcsname{6.59pt}
+% English warranty host-frame horizontal correction
+\expandafter\def\csname HBlang_en_idml_warranty_frame_x_offset\endcsname{-0.32pt}
+
+% English H1-to-warranty-lead rhythm after the localized H1 offset
+\expandafter\def\csname HBlang_en_idml_warranty_lead_before\endcsname{4.67pt}
 
 % English warranty lead panel height measured from approved PDF
 \expandafter\def\csname HBlang_en_idml_warranty_lead_height\endcsname{30.04pt}
@@ -1784,6 +1805,9 @@
 
 % EN InDesign warranty lead vertical padding
 \expandafter\def\csname HBlang_en_idml_warranty_lead_pad_tb\endcsname{7.0pt}
+
+% English warranty story top offset measured from approved PDF
+\expandafter\def\csname HBlang_en_idml_warranty_page_top_offset\endcsname{14.22pt}
 
 % English first warranty panel height correction
 \expandafter\def\csname HBlang_en_idml_warranty_panel_height_adjust_1\endcsname{7.84pt}
@@ -1800,8 +1824,8 @@
 % English exclusions panel height correction
 \expandafter\def\csname HBlang_en_idml_warranty_panel_height_adjust_5\endcsname{5.95pt}
 
-% English interpretation panel height correction
-\expandafter\def\csname HBlang_en_idml_warranty_panel_height_adjust_6\endcsname{5.50pt}
+% English interpretation panel height correction measured from approved PDF
+\expandafter\def\csname HBlang_en_idml_warranty_panel_height_adjust_6\endcsname{7.32pt}
 
 % EN first warranty panel measured trim
 \expandafter\def\csname HBlang_en_idml_warranty_panel_trim_first\endcsname{9.42pt}
@@ -2115,6 +2139,9 @@
 % Spanish warranty body width measured from reference PDF glyph bounds
 \expandafter\def\csname HBlang_es_idml_warranty_body_horizontal_scale\endcsname{98.6}
 
+% Spanish warranty host-frame horizontal correction
+\expandafter\def\csname HBlang_es_idml_warranty_frame_x_offset\endcsname{-2.02pt}
+
 % Spanish H1-to-warranty-lead rhythm
 \expandafter\def\csname HBlang_es_idml_warranty_lead_before\endcsname{5.61pt}
 
@@ -2130,14 +2157,17 @@
 % ES warranty note width measured from reference
 \expandafter\def\csname HBlang_es_idml_warranty_note_horizontal_scale\endcsname{94}
 
+% Spanish warranty story top offset measured from approved PDF
+\expandafter\def\csname HBlang_es_idml_warranty_page_top_offset\endcsname{13.81pt}
+
 % Spanish first warranty panel height correction
 \expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_1\endcsname{7.84pt}
 
 % Spanish warranty period panel height correction
 \expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_2\endcsname{-0.43pt}
 
-% Spanish repair panel height correction
-\expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_3\endcsname{6.16pt}
+% Spanish repair panel height correction measured from approved PDF
+\expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_3\endcsname{0.15pt}
 
 % Spanish original-buyer panel height correction
 \expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_4\endcsname{3.05pt}
@@ -2478,20 +2508,26 @@
 % French UPS composition host-frame top offset measured from approved PDF
 \expandafter\def\csname HBlang_fr_idml_ups_page_top_offset\endcsname{12.65pt}
 
+% French warranty host-frame horizontal correction
+\expandafter\def\csname HBlang_fr_idml_warranty_frame_x_offset\endcsname{-2.02pt}
+
 % French H1-to-warranty-lead rhythm
 \expandafter\def\csname HBlang_fr_idml_warranty_lead_before\endcsname{5.64pt}
 
-% French warranty lead panel height including native InDesign line metrics
-\expandafter\def\csname HBlang_fr_idml_warranty_lead_height\endcsname{22.41pt}
+% French warranty lead panel height measured from approved PDF
+\expandafter\def\csname HBlang_fr_idml_warranty_lead_height\endcsname{22.01pt}
 
 % FR InDesign warranty lead horizontal scale percent
 \expandafter\def\csname HBlang_fr_idml_warranty_lead_horizontal_scale\endcsname{96}
 
-% FR InDesign warranty lead vertical padding
-\expandafter\def\csname HBlang_fr_idml_warranty_lead_pad_tb\endcsname{3.0pt}
+% FR InDesign warranty lead vertical padding with native two-line fit allowance
+\expandafter\def\csname HBlang_fr_idml_warranty_lead_pad_tb\endcsname{2.5pt}
 
 % FR warranty note width measured from reference
 \expandafter\def\csname HBlang_fr_idml_warranty_note_horizontal_scale\endcsname{94}
+
+% French warranty story top offset measured from approved PDF
+\expandafter\def\csname HBlang_fr_idml_warranty_page_top_offset\endcsname{13.81pt}
 
 % French first warranty panel height correction
 \expandafter\def\csname HBlang_fr_idml_warranty_panel_height_adjust_1\endcsname{7.84pt}

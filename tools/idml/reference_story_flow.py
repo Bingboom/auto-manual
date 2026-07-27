@@ -70,9 +70,22 @@ class ReferenceStoryEmitter:
             and "storage_and_maintenance" in title
             and "troubleshooting" in title
         )
+        is_warranty = (
+            (self.page_plan or {}).get("plan_source") == "approved-reference"
+            and "warranty" in title.casefold()
+            and composition_lang in {"en", "fr", "es"}
+        )
+        warranty_frame_x_offset = (
+            param_pt(
+                writer.params,
+                f"lang_{composition_lang}_idml_warranty_frame_x_offset",
+                0.0,
+            )
+            if is_warranty else 0.0
+        )
         final_frame_x_offset = (
             operation_final_frame_x_offset(operation_lang)
-            if is_operation else 0.0
+            if is_operation else warranty_frame_x_offset
         )
         prose_options: dict[str, float | str] = {
             "inline_origin_shift": final_frame_x_offset,
@@ -148,11 +161,16 @@ class ReferenceStoryEmitter:
                 "comp_trouble_page_extra_height",
                 32.0,
             )
-        elif first_h1 == "WARRANTY":
-            bottom_extra = param_pt(
+        elif is_warranty:
+            shared_warranty_extra = param_pt(
                 writer.params,
                 "comp_warranty_page_extra_height",
                 17.0,
+            )
+            bottom_extra = param_pt(
+                writer.params,
+                f"lang_{composition_lang}_comp_warranty_page_extra_height",
+                shared_warranty_extra,
             )
         elif is_app:
             # Localized App notes remain fully editable at reference sizes.
@@ -204,6 +222,12 @@ class ReferenceStoryEmitter:
                 if is_app
                 else storage_first_top_offset(writer.params, composition_lang)
                 if is_storage_troubleshooting
+                else param_pt(
+                    writer.params,
+                    f"lang_{composition_lang}_idml_warranty_page_top_offset",
+                    master_offsets.get(first_h1, 13.81),
+                )
+                if is_warranty
                 else (
                     master_offsets.get(first_h1, 13.81)
                     if first_kind == "h1" else 0.0

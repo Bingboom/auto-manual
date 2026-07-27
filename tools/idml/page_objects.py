@@ -510,6 +510,21 @@ def h1_pill_paragraph(writer, text: str, width: float,
     # fits the measure, floor 7pt (the LaTeX box wraps instead; a capped
     # shrink keeps the IDML bar single-line like the master).
     from .params import param_pt
+    warranty_language = {
+        "WARRANTY": "en", "GARANTIE": "fr", "GARANTÍA": "es",
+    }.get(text)
+    paragraph_left_indent = 0.0
+    if warranty_language:
+        width += param_pt(
+            writer.params,
+            f"lang_{warranty_language}_idml_warranty_h1_width_adjust",
+            param_pt(writer.params, "idml_warranty_h1_width_adjust", 0.0),
+        )
+        paragraph_left_indent = param_pt(
+            writer.params,
+            f"lang_{warranty_language}_idml_warranty_h1_left_indent",
+            param_pt(writer.params, "idml_warranty_h1_left_indent", 0.0),
+        )
     size = param_pt(writer.params, "type_h1_font_size", 9.0)
     avail = width - 11.0  # left/right insets
     est_w = len(text) * size * 0.62
@@ -532,8 +547,13 @@ def h1_pill_paragraph(writer, text: str, width: float,
         sid, text, [title_xml])
     from .style_names import paragraph_style_ref as _psr_ref
     figure_style = _psr_ref("HB Figure")
+    host_indent = (
+        f' LeftIndent="{paragraph_left_indent:g}"'
+        if paragraph_left_indent else ""
+    )
     return (
-        f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style}">'
+        f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style}"'
+        f'{host_indent}>'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         + anchored_rounded_frame_xml(sid, width, height,
                                      fill="Color/HB Brand Dark",

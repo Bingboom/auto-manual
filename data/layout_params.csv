@@ -712,14 +712,14 @@ comp_warranty_page_after_h1,4.0,mm,Warranty page gap after H1
 idml_warranty_lead_before,0.7,mm,InDesign warranty lead gap after the anchored H1 host
 idml_warranty_lead_height,30.04,pt,Default governed warranty lead panel height
 lang_en_idml_warranty_lead_height,30.04,pt,English warranty lead panel height measured from approved PDF
-lang_fr_idml_warranty_lead_height,22.41,pt,French warranty lead panel height including native InDesign line metrics
+lang_fr_idml_warranty_lead_height,22.01,pt,French warranty lead panel height measured from approved PDF
 lang_es_idml_warranty_lead_height,26.39,pt,Spanish warranty lead panel height measured from approved PDF
-lang_en_idml_warranty_lead_before,6.59,pt,English H1-to-warranty-lead rhythm
+lang_en_idml_warranty_lead_before,4.67,pt,English H1-to-warranty-lead rhythm after the localized H1 offset
 lang_fr_idml_warranty_lead_before,5.64,pt,French H1-to-warranty-lead rhythm
 lang_es_idml_warranty_lead_before,5.61,pt,Spanish H1-to-warranty-lead rhythm
 idml_warranty_lead_pad_tb,5.0,pt,Default InDesign warranty lead vertical padding
 lang_en_idml_warranty_lead_pad_tb,7.0,pt,EN InDesign warranty lead vertical padding
-lang_fr_idml_warranty_lead_pad_tb,3.0,pt,FR InDesign warranty lead vertical padding
+lang_fr_idml_warranty_lead_pad_tb,2.5,pt,FR InDesign warranty lead vertical padding with native two-line fit allowance
 lang_es_idml_warranty_lead_pad_tb,5.0,pt,ES InDesign warranty lead vertical padding
 idml_warranty_lead_horizontal_scale,100,int,Default InDesign warranty lead horizontal scale percent
 lang_en_idml_warranty_lead_horizontal_scale,100,int,EN InDesign warranty lead horizontal scale percent
@@ -761,14 +761,14 @@ lang_fr_idml_warranty_panel_height_adjust_2,2.74,pt,French warranty period panel
 lang_es_idml_warranty_panel_height_adjust_2,-0.43,pt,Spanish warranty period panel height correction
 lang_en_idml_warranty_panel_height_adjust_3,7.29,pt,English repair panel height correction
 lang_fr_idml_warranty_panel_height_adjust_3,8.25,pt,French repair panel height correction
-lang_es_idml_warranty_panel_height_adjust_3,6.16,pt,Spanish repair panel height correction
+lang_es_idml_warranty_panel_height_adjust_3,0.15,pt,Spanish repair panel height correction measured from approved PDF
 lang_en_idml_warranty_panel_height_adjust_4,6.81,pt,English original-buyer panel height correction
 lang_fr_idml_warranty_panel_height_adjust_4,3.05,pt,French original-buyer panel height correction
 lang_es_idml_warranty_panel_height_adjust_4,3.05,pt,Spanish original-buyer panel height correction
 lang_en_idml_warranty_panel_height_adjust_5,5.95,pt,English exclusions panel height correction
 lang_fr_idml_warranty_panel_height_adjust_5,-7.17,pt,French exclusions panel height correction
 lang_es_idml_warranty_panel_height_adjust_5,-4.29,pt,Spanish exclusions panel height correction
-lang_en_idml_warranty_panel_height_adjust_6,5.50,pt,English interpretation panel height correction
+lang_en_idml_warranty_panel_height_adjust_6,7.32,pt,English interpretation panel height correction measured from approved PDF
 lang_fr_idml_warranty_panel_height_adjust_6,-0.42,pt,French interpretation panel height correction
 lang_es_idml_warranty_panel_height_adjust_6,0.92,pt,Spanish interpretation panel height correction
 idml_warranty_section_1_before,4.16,pt,Default lead-to-limited-warranty rhythm
@@ -796,6 +796,18 @@ lang_en_idml_warranty_section_6_before,3.43,pt,English exclusions-to-interpretat
 lang_fr_idml_warranty_section_6_before,4.60,pt,French exclusions-to-interpretation rhythm
 lang_es_idml_warranty_section_6_before,5.17,pt,Spanish exclusions-to-interpretation rhythm
 comp_warranty_page_extra_height,6.0,mm,Warranty page local extra body height
+idml_warranty_frame_x_offset,0.0,pt,Default warranty host-frame horizontal correction
+lang_en_idml_warranty_frame_x_offset,-0.32,pt,English warranty host-frame horizontal correction
+lang_fr_idml_warranty_frame_x_offset,-2.02,pt,French warranty host-frame horizontal correction
+lang_es_idml_warranty_frame_x_offset,-2.02,pt,Spanish warranty host-frame horizontal correction
+idml_warranty_page_top_offset,13.81,pt,Default warranty story top offset
+lang_en_idml_warranty_page_top_offset,14.22,pt,English warranty story top offset measured from approved PDF
+lang_fr_idml_warranty_page_top_offset,13.81,pt,French warranty story top offset measured from approved PDF
+lang_es_idml_warranty_page_top_offset,13.81,pt,Spanish warranty story top offset measured from approved PDF
+idml_warranty_panel_width_adjust,-1.41,pt,Warranty panel width correction measured from approved PDF
+idml_warranty_lead_left_indent,0.45,pt,Warranty lead inset relative to the shifted story host
+idml_warranty_h1_width_adjust,-0.18,pt,Warranty H1 width correction measured from approved PDF
+idml_warranty_h1_left_indent,0.87,pt,Warranty H1 inset relative to the shifted story host
 comp_warranty_lead_arc,3.2,mm,Warranty lead box corner radius
 comp_warranty_lead_pad_lr,3.6,mm,Warranty lead horizontal padding
 comp_warranty_lead_pad_tb,2.7,mm,Warranty lead vertical padding
