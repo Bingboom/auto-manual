@@ -219,25 +219,28 @@ def _symbols_icon_table(
     *,
     include_header: bool = True,
     row_heights: list[float] | None = None,
+    icon_col_width: float | None = None,
 ) -> str:
     copy = symbol_copy(lang)
     header = [{"figure": "", "text": copy["meaning"], "header": True}]
     rows = (header if include_header else []) + [
         {**row, "header": False} for row in icons
     ]
-    left_col = component_param_pt(
-        writer.params,
-        "idml_symbols_icon_col_width",
-        component_param_pt(
+    left_col = icon_col_width
+    if left_col is None:
+        left_col = component_param_pt(
             writer.params,
-            "comp_symbol_icon_col_width",
-            width * 0.27,
-            strict=False,
-            owner="symbol icon table fallback",
-        ),
-        strict=writer.strict_component_assets,
-        owner="symbol icon table",
-    )
+            "idml_symbols_icon_col_width",
+            component_param_pt(
+                writer.params,
+                "comp_symbol_icon_col_width",
+                width * 0.27,
+                strict=False,
+                owner="symbol icon table fallback",
+            ),
+            strict=writer.strict_component_assets,
+            owner="symbol icon table",
+        )
     cols = [left_col, width - left_col]
     icon_w = component_param_pt(
         writer.params,
@@ -277,6 +280,18 @@ def _symbols_icon_table(
                 icon = writer._image_cell_content(
                     f"{tid}img{ri}", fig, icon_w, icon_h,
                 )
+                image_anchor = (
+                    f'<Image Self="{tid}img{ri}_img" '
+                    'ItemTransform="1 0 0 1 0 0">'
+                )
+                icon = icon.replace(
+                    image_anchor,
+                    image_anchor
+                    + '<TransparencySetting><BlendingSetting '
+                    'BlendMode="Darken" Opacity="100"/>'
+                    '</TransparencySetting>',
+                    1,
+                )
             figure_style_ref = paragraph_style_ref("HB Figure")
             left_xml = (
                 f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style_ref}">'
@@ -292,7 +307,9 @@ def _symbols_icon_table(
                 )
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
                                   fill="Color/HB Bg K05",
-                                  top=2, bottom=2, left=4,
+                                  top=2 if row.get("header") else 0,
+                                  bottom=2 if row.get("header") else 0,
+                                  left=4,
                                   right=2 if row.get("header") else 4))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
                                   top=2, bottom=2, left=5, right=4))
@@ -352,6 +369,7 @@ def add_safety_symbols_page(
                 "kind": "tailwarnbox",
                 "label": spec.get("label") or copy["warning"],
                 "texts": spec.get("texts", []),
+                "language": lang,
             }
         tail_sid = f"{sid}_tail_{spec.get('label', bi).lower()}"
         xml_part, tail_h = writer._render_component(
@@ -392,7 +410,34 @@ def add_safety_symbols_page(
         strict=writer.strict_component_assets,
         owner="symbol icon tables",
     )
-    icon_table_w = (body_w - icon_gap) / 2.0
+    icon_table_trim = component_param_pt(
+        writer.params,
+        "idml_symbols_icon_table_width_trim",
+        0.0,
+        strict=writer.strict_component_assets,
+        owner="symbol icon tables",
+    )
+    icon_table_w = (body_w - icon_gap) / 2.0 - icon_table_trim
+    left_icon_col = component_param_pt(
+        writer.params,
+        "idml_symbols_icon_left_col_width",
+        component_param_pt(
+            writer.params,
+            "idml_symbols_icon_col_width",
+            39.685,
+            strict=False,
+            owner="symbol icon left column fallback",
+        ),
+        strict=writer.strict_component_assets,
+        owner="symbol icon left column",
+    )
+    right_icon_col = component_param_pt(
+        writer.params,
+        "idml_symbols_icon_right_col_width",
+        left_icon_col,
+        strict=writer.strict_component_assets,
+        owner="symbol icon right column",
+    )
     left_icons, right_icons, overflow_left, overflow_right = template_symbol_split(
         icons,
         dense=dense and lang in {"fr", "es"},
@@ -431,6 +476,7 @@ def add_safety_symbols_page(
             icon_table_w,
             lang,
             row_heights=left_row_heights,
+            icon_col_width=left_icon_col,
         ))
     right_sid = f"{sid}_icons_right"
     writer._table_story(
@@ -441,6 +487,7 @@ def add_safety_symbols_page(
             icon_table_w,
             lang,
             row_heights=right_row_heights,
+            icon_col_width=right_icon_col,
         ))
 
     # Flow the frames from a cursor using coarse content-height estimates

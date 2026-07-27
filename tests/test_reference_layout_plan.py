@@ -170,7 +170,7 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
         )
         contract = json.loads(path.read_text(encoding="utf-8"))
         self.assertEqual(
-            "e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3",
+            "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
             contract["source_identity"]["manual_content_sha256"],
         )
         pages = contract["pages"]

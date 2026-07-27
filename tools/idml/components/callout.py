@@ -149,6 +149,7 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
         icon = figure_paragraph(image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih),
                                 tail="<Content></Content>")
     body = " ".join(t.strip() for t in texts if str(t).strip())
+    body_style = "HB Safety Tail Body EN" if spec.get("language") == "en" else "HB Safety Tail Body"
     label_psr = psr("HB Safety Tail Label", label, terminal=True).replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
@@ -164,7 +165,7 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
              stroke=False, top=0, bottom=0, left=3, right=3,
              valign="CenterAlign"),
         cell(f"{tid}c2", "2:0",
-             psr("HB Safety Tail Body", body, terminal=True),
+             psr(body_style, body, terminal=True),
              stroke=False, top=0, bottom=0, left=3, right=4,
              valign="CenterAlign"),
     ]

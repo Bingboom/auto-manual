@@ -13,13 +13,7 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
     def sz(key, d): return param_pt(p, key, d)
     return [
         ("HB H1", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", ""),
-        (
-            "HB Title L2",
-            sz("idml_title_l2_font_size", sz("type_title_l2_font_size", 8.6)),
-            sz("type_title_l2_font_leading", 9.4),
-            param_text(p, "idml_title_l2_font_style", "Heavy"),
-            "",
-        ),
+        ("HB Title L2", sz("idml_title_l2_font_size", sz("type_title_l2_font_size", 8.6)), sz("type_title_l2_font_leading", 9.4), param_text(p, "idml_title_l2_font_style", "Heavy"), ""),
         (
             "HB Operation Row Label",
             sz("idml_operation_row_label_font_size", 10.0),
@@ -55,10 +49,15 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB FCC Text", 5.6, 6.15, "Regular", ""),
         ("HB Safety Tail Label", 9.85, 10.2, "Bold", ""),
         ("HB Safety Tail Body", 5.6, 6.2, "Regular", ""),
+        ("HB Safety Tail Body EN", 5.6, 6.2, param_text(p, "idml_safety_tail_body_font_style", "Bold"), ""),
         ("HB Maintenance Body", 6.0, 7.5, "Regular", ""),
         ("HB List", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "list"),
         ("HB Safety List", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "list"),
         ("HB Safety Sublist", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "sublist"),
+        ("HB Safety List FR", sz("type_list_font_size", 5.4), sz("lang_fr_idml_safety_list_leading", 7.0), "Regular", "list"),
+        ("HB Safety Sublist FR", sz("type_list_font_size", 5.4), sz("lang_fr_idml_safety_list_leading", 7.0), "Regular", "sublist"),
+        ("HB Safety List ES", sz("type_list_font_size", 5.4), sz("lang_es_idml_safety_list_leading", 6.5), "Regular", "list"),
+        ("HB Safety Sublist ES", sz("type_list_font_size", 5.4), sz("lang_es_idml_safety_list_leading", 6.5), "Regular", "sublist"),
         ("HB Warranty Lead", sz("type_warranty_lead_font_size", 7.0), sz("type_warranty_lead_font_leading", 8.2), "Bold", ""),
         ("HB Warranty Note", sz("type_warranty_body_font_size", 6.0), sz("type_warranty_body_font_leading", 7.2), "Regular", "warranty_note"),
         ("HB Warranty Body", sz("type_warranty_body_font_size", 6.0), sz("idml_warranty_body_font_leading", 6.0), "Regular", ""),

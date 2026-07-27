@@ -291,6 +291,7 @@ class IdmlWriter:
         *,
         include_header: bool = True,
         row_heights: list[float] | None = None,
+        icon_col_width: float | None = None,
     ) -> str:
         return _pages._symbols_icon_table(
             self,
@@ -300,6 +301,7 @@ class IdmlWriter:
             lang,
             include_header=include_header,
             row_heights=row_heights,
+            icon_col_width=icon_col_width,
         )
 
     def _table_story(self, sid: str, title: str, table: str) -> str:
