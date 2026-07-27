@@ -410,11 +410,66 @@ def _charging_car(
     image_w, image_h = ctx.art_frame_size(asset, max_w=width)
     vehicle = str(spec.get("vehicle") or "").strip()
     note = str(spec.get("note") or "").strip()
+    shared_space_before = component_param_pt(
+        ctx.params,
+        "idml_charging_car_figure_space_before",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="charging_car",
+    )
+    space_before = component_param_pt(
+        ctx.params,
+        f"lang_{ctx.language}_idml_charging_car_figure_space_before",
+        shared_space_before,
+        strict=ctx.strict_component_assets,
+        owner="charging_car",
+    )
+    panel_height = max(
+        image_h,
+        component_param_pt(
+            ctx.params,
+            "idml_charging_car_panel_height",
+            image_h,
+            strict=ctx.strict_component_assets,
+            owner="charging_car",
+        ),
+    )
     note_left = image_w * 0.55
-    note_top = -image_h + 5.0
+    note_top = -panel_height + 5.0
+    panel_bg = _shape(
+        shape_id=f"referencefigure_car_panel_bg_{tid}",
+        left=0.0,
+        top=-panel_height,
+        right=image_w,
+        bottom=0.0,
+        radius=7.0,
+        fill="Color/HB Bg K05",
+    )
     image = _positioned_image(
         f"{tid}img", asset, image_w, image_h, left=0.0, bottom=0.0,
     )
+    # The governed AI crop already has rounded top corners.  Once it is
+    # bottom-aligned inside the taller reference panel, cover only those two
+    # former corner cut-outs so the added top breathing room stays continuous.
+    image_top = -image_h
+    corner_masks = "".join((
+        _shape(
+            shape_id=f"referencefigure_car_corner_left_{tid}",
+            left=0.0,
+            top=image_top,
+            right=7.0,
+            bottom=image_top + 7.0,
+            fill="Color/HB Bg K05",
+        ),
+        _shape(
+            shape_id=f"referencefigure_car_corner_right_{tid}",
+            left=image_w - 7.0,
+            top=image_top,
+            right=image_w,
+            bottom=image_top + 7.0,
+            fill="Color/HB Bg K05",
+        ),
+    ))
     note_bg = _shape(
         shape_id=f"referencefigure_car_note_bg_{tid}",
         left=note_left,
@@ -449,16 +504,17 @@ def _charging_car(
             "HB Body", vehicle, size=6.2, leading=7.2, terminal=True,
         )],
         left=image_w * 0.64,
-        top=-image_h + 41.0,
+        top=-panel_height + 41.0,
         right=image_w * 0.82,
-        bottom=-image_h + 53.0,
+        bottom=-panel_height + 53.0,
         valign="CenterAlign",
     )
     return _figure_group(
-        image + note_bg + note_frame + vehicle_frame,
+        panel_bg + image + corner_masks + note_bg + note_frame + vehicle_frame,
         tid=tid,
         terminal=terminal,
-        height=image_h,
+        height=panel_height,
+        space_before=space_before,
         space_after=2.0,
     )
 

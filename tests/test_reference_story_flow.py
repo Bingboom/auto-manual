@@ -278,6 +278,45 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
         )
         self.assertEqual(54.0, writer.spread_chain_options[0]["bottom_extra"])
 
+    def test_localized_charging_methods_use_measured_top_offsets(self) -> None:
+        for stem, language, expected in (
+            ("08_charging_methods", "en", 23.8),
+            ("p29_08_charging_methods", "fr", 15.3),
+            ("p45_08_charging_methods", "es", 11.8),
+        ):
+            with self.subTest(language=language):
+                writer = _RecordingWriter()
+                writer.params.update({
+                    "idml_charging_methods_page_top_offset": ("23.8", "pt"),
+                    f"lang_{language}_idml_charging_methods_page_top_offset": (
+                        str(expected), "pt",
+                    ),
+                })
+                emitter = ReferenceStoryEmitter(
+                    writer,
+                    _RecordingToc(),
+                    ROOT,
+                    {
+                        "plan_source": "approved-reference",
+                        "pages": [{
+                            "source_path": f"page/{stem}.rst",
+                            "composition_id": f"{language}_charging_methods",
+                            "language": language,
+                        }],
+                    },
+                )
+
+                emitter.emit(
+                    f"st_{stem}", stem,
+                    [("h2", "Localized charging heading")],
+                    page_cursor=14,
+                )
+
+                self.assertEqual(
+                    expected,
+                    writer.spread_chain_options[0]["first_top_offset"],
+                )
+
     def test_approved_charging_intro_chain_gets_dense_final_frame_allowance(self) -> None:
         writer = _RecordingWriter()
         toc = _RecordingToc()

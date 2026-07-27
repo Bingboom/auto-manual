@@ -118,6 +118,7 @@ class EditableReferenceFigureTests(unittest.TestCase):
 
             self.assertGreater(height, 100.0)
             self.assertIn("grp_referencefigure_car", xml)
+            self.assertIn("referencefigure_car_panel_bg_car", xml)
             self.assertIn("referencefigure_car_note_bg_car", xml)
             self.assertIn("tf_referencefigure_car_note_car", xml)
             self.assertIn("tf_referencefigure_car_vehicle_car", xml)
@@ -125,6 +126,33 @@ class EditableReferenceFigureTests(unittest.TestCase):
             self.assertIn('LockPosition="false" PinPosition="false"', xml)
             self.assertEqual(2, len(stories))
             self.assertIn("Vehicle", stories[1][1])
+
+    def test_charging_car_uses_localized_figure_spacing_token(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            self._png(bundle / "car_charge.png", (1256, 462))
+            params = load_layout_params(ROOT / "data" / "layout_params.csv")
+
+            _xml, height = render_referencefigure(
+                {
+                    "kind": "referencefigure",
+                    "layout": "charging_car",
+                    "image": "car_charge.png",
+                    "vehicle": "Vehicle",
+                    "note": "Note",
+                },
+                self._context(
+                    bundle,
+                    [],
+                    params=params,
+                    language="en",
+                    strict_component_assets=True,
+                ),
+                tid="car_spacing",
+                terminal=True,
+            )
+
+            self.assertAlmostEqual(151.0, height, places=1)
 
     def test_nonterminal_figure_ends_its_story_paragraph(self) -> None:
         with tempfile.TemporaryDirectory() as td:

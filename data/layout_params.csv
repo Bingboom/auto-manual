@@ -247,6 +247,7 @@ lang_en_idml_ups_caution_space_before,13.0,pt,English UPS body-to-CAUTION rhythm
 lang_fr_idml_ups_caution_space_before,18.5,pt,French UPS body-to-CAUTION rhythm
 lang_es_idml_ups_caution_space_before,2.5,pt,Spanish UPS body-to-CAUTION rhythm
 idml_ups_caution_space_after,15.9,pt,Default UPS CAUTION-to-CHARGING rhythm
+lang_en_idml_ups_caution_space_after,9.9,pt,English UPS CAUTION-to-CHARGING rhythm measured from approved PDF
 lang_fr_idml_ups_caution_space_after,22.5,pt,French UPS CAUTION-to-CHARGING rhythm
 lang_es_idml_ups_caution_space_after,14.5,pt,Spanish UPS CAUTION-to-CHARGING rhythm
 idml_charging_note_body_font_size,5.0,pt,Charging NOTE editable body size measured from approved PDF
@@ -258,6 +259,19 @@ idml_charging_note_space_before,0.0,pt,Charging NOTE leading rhythm
 idml_charging_note_space_after,1.8,pt,Charging NOTE trailing rhythm
 idml_charging_emphasis_font_size,6.6,pt,Pre-charge editable emphasis size measured from approved PDF
 idml_charging_emphasis_font_leading,7.4,pt,Pre-charge editable emphasis leading
+idml_charging_methods_page_top_offset,23.8,pt,Default charging-methods first-frame top offset
+lang_en_idml_charging_methods_page_top_offset,23.8,pt,English charging-methods first-frame top offset
+lang_fr_idml_charging_methods_page_top_offset,15.3,pt,French charging-methods first-frame top offset measured from approved PDF
+lang_es_idml_charging_methods_page_top_offset,11.8,pt,Spanish charging-methods first-frame top offset measured from approved PDF
+idml_charging_car_heading_space_before,0.0,pt,Default charging-methods rhythm before the car section heading
+lang_en_idml_charging_car_heading_space_before,36.5,pt,English car-section heading position measured from approved PDF
+lang_fr_idml_charging_car_heading_space_before,6.5,pt,French car-section heading position measured from approved PDF
+lang_es_idml_charging_car_heading_space_before,26.0,pt,Spanish car-section heading position measured from approved PDF
+idml_charging_car_figure_space_before,0.0,pt,Default car heading/body to editable AI figure rhythm
+lang_en_idml_charging_car_figure_space_before,15.0,pt,English car figure position measured from approved PDF
+lang_fr_idml_charging_car_figure_space_before,13.5,pt,French car figure position measured from approved PDF
+lang_es_idml_charging_car_figure_space_before,7.0,pt,Spanish car figure position measured from approved PDF
+idml_charging_car_panel_height,134.0,pt,Governed car panel height with bottom-aligned AI-derived artwork
 ,,,
 ,,,------ IDML APP EDITABLE COMPOSITES ------
 idml_app_control_label_font_size,5.0,pt,IDML App control overlay label size shared by all languages
