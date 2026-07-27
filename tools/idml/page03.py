@@ -300,11 +300,13 @@ def _symbol_continuation_objects(
 
 def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
                    bundle_root: Path, *, lang: str = "en",
-                   overflow_profile: bool = False) -> tuple[list[str], list[str]]:
+                   overflow_profile: bool = False,
+                   reference_profile: dict | None = None) -> tuple[list[str], list[str]]:
     if not inbox_spec:
         return [], []
     items = inbox_spec.get("items", [])[:3]
     language = lang.strip().casefold().replace("_", "-").split("-", 1)[0]
+    reference_profile = reference_profile or {}
     profile = "overflow_" if overflow_profile else ""
     def metric(name: str, fallback: float) -> float:
         base_key = f"idml_inbox_{profile}{name}"
@@ -318,7 +320,20 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
     card_h = metric("card_height", 172.5)
     card_y = metric("card_y", 273.0)
     card_xs = (BODY_X, 132.5, 238.0)
-    image_ws = (
+    governed_widths = (
+        (reference_profile.get("image_width_pt_by_language") or {})
+        .get(language)
+    )
+    if governed_widths is not None and (
+        not isinstance(governed_widths, list)
+        or len(governed_widths) != 3
+        or any(isinstance(value, bool) or not isinstance(value, (int, float))
+               or float(value) <= 0 for value in governed_widths)
+    ):
+        raise ValueError(
+            f"inbox image widths must contain three positive numbers for {language}"
+        )
+    image_ws = tuple(float(value) for value in governed_widths) if governed_widths else (
         metric("image_1_width", 72.0),
         metric("image_2_width", 60.0),
         metric("image_3_width", 58.0),
@@ -332,8 +347,9 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             f"bg_{sid}_card_{idx + 1}",
             (x, card_y, card_w, card_h),
             fill="Color/Paper",
-            stroke_color="Color/HB Line K40",
-            stroke_weight=0.75,
+            stroke_color=str(reference_profile.get(
+                "stroke_color", "Color/HB Line K40")),
+            stroke_weight=float(reference_profile.get("stroke_weight", 0.75)),
             object_style=CARD_OBJECT_STYLE,
         ))
         badge_rect = (
@@ -482,6 +498,7 @@ def add_fcc_inbox_page(
     *,
     symbol_overflow: tuple[list[dict], list[dict]] | None = None,
     lang: str = "en",
+    reference_profile: dict | None = None,
 ) -> str:
     """V2.0 page 03: FCC panel, inbox card trio, and tip strip."""
     inbox_title = next((text.strip() for kind, text in inbox_blocks
@@ -523,6 +540,7 @@ def add_fcc_inbox_page(
         bundle_root,
         lang=lang,
         overflow_profile=has_symbol_overflow,
+        reference_profile=reference_profile,
     )
     _, tip_frames = _tip_objects(
         writer,

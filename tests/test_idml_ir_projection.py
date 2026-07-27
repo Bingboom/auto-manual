@@ -70,6 +70,11 @@ class IdmlIRProjectionTests(unittest.TestCase):
             "idml_contract": {
                 "editable_components": {
                     "lcd_icon_table": {
+                        "icon_size_pt_by_language": {
+                            "en": 14.2,
+                            "fr": 13.8,
+                            "es": 13.8,
+                        },
                         "row_presentation": [
                             {
                                 "source_no": "22",
@@ -125,6 +130,7 @@ class IdmlIRProjectionTests(unittest.TestCase):
         self.assertEqual("dense", lcd.rows[1]["typography_role"])
         self.assertEqual("33.078", lcd.rows[0]["row_height_pt"])
         self.assertEqual("23.094", lcd.rows[1]["row_height_pt"])
+        self.assertEqual(["14.2", "14.2"], [row["icon_size_pt"] for row in lcd.rows])
 
     def test_projected_pages_preserve_source_order_and_layout_markers(self) -> None:
         pages = ir_projection.project_pages(self.ir, BUNDLE)

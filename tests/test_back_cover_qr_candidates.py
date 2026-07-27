@@ -23,14 +23,26 @@ class BackCoverQrCandidateTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
 
-    def test_two_sources_have_explicit_conflicting_payloads(self) -> None:
-        self.assertEqual("quarantine", self.evidence["evidence_status"])
+    def test_two_sources_have_explicit_conflicting_payloads_and_selection(self) -> None:
+        self.assertEqual("ai-master-selected", self.evidence["evidence_status"])
         self.assertEqual(
-            "unresolved-source-mismatch",
+            "operator-approved-ai-source",
             self.evidence["decision"]["status"],
+        )
+        self.assertEqual(
+            "qr/back_cover_ai_candidate",
+            self.evidence["decision"]["selected_asset_key"],
         )
         candidates = self.evidence["candidates"]
         self.assertEqual(2, len(candidates))
+        selected = {
+            candidate["asset_key"]: candidate for candidate in candidates
+        }[self.evidence["decision"]["selected_asset_key"]]
+        self.assertEqual("design-master", selected["source_kind"])
+        self.assertEqual(
+            "source/manual_je1000f_us_master",
+            selected["source_key"],
+        )
         self.assertEqual(
             {"160102000404", "160102000161"},
             {candidate["decoded_payload"] for candidate in candidates},

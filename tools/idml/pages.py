@@ -357,6 +357,7 @@ def add_fcc_inbox_page(
     *,
     symbol_overflow: tuple[list[dict], list[dict]] | None = None,
     lang: str = "en",
+    reference_profile: dict | None = None,
 ) -> str:
     from .page03 import add_fcc_inbox_page as _add_fcc_inbox_page
 
@@ -369,4 +370,5 @@ def add_fcc_inbox_page(
         page_index,
         symbol_overflow=symbol_overflow,
         lang=lang,
+        reference_profile=reference_profile,
     )

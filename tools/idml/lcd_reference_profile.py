@@ -26,6 +26,29 @@ def validate_lcd_reference_profile(profile: Any) -> list[str]:
     if not isinstance(presentation, list) or not presentation:
         return ["row_presentation must be a non-empty list"]
     issues: list[str] = []
+    icon_sizes = profile.get("icon_size_pt_by_language")
+    if icon_sizes is not None:
+        if not isinstance(icon_sizes, dict) or not icon_sizes:
+            issues.append(
+                "icon_size_pt_by_language must be a non-empty object"
+            )
+        else:
+            for language, size in icon_sizes.items():
+                if not isinstance(language, str) or re.fullmatch(
+                    r"[a-z][a-z0-9-]*", language
+                ) is None:
+                    issues.append(
+                        "icon_size_pt_by_language has an invalid language key"
+                    )
+                if (
+                    isinstance(size, bool)
+                    or not isinstance(size, (int, float))
+                    or not math.isfinite(float(size))
+                    or float(size) <= 0
+                ):
+                    issues.append(
+                        f"icon_size_pt_by_language.{language} must be a positive finite number"
+                    )
     seen: set[str] = set()
     for index, entry in enumerate(presentation):
         prefix = f"row_presentation[{index}]"
@@ -118,6 +141,21 @@ def apply_lcd_reference_profile(
             details.append(f"unknown configured rows: {unknown}")
         raise LcdReferenceProfileError("; ".join(details))
 
+    normalized_language = (
+        (language or "").strip().casefold().replace("_", "-").split("-", 1)[0]
+    )
+    icon_sizes = profile.get("icon_size_pt_by_language")
+    if icon_sizes is not None:
+        if not normalized_language:
+            raise LcdReferenceProfileError(
+                "LCD icon size profile requires a language"
+            )
+        if normalized_language not in icon_sizes:
+            raise LcdReferenceProfileError(
+                "LCD icon size profile has no governed size for "
+                f"language {normalized_language}"
+            )
+
     result: list[dict[str, str]] = []
     for entry in presentation:
         source_no = str(entry["source_no"]).strip()
@@ -128,11 +166,10 @@ def apply_lcd_reference_profile(
         rendered["typography_role"] = str(
             entry.get("typography_role") or "default"
         )
+        if icon_sizes is not None:
+            rendered["icon_size_pt"] = f"{float(icon_sizes[normalized_language]):g}"
         heights = entry.get("row_height_pt_by_language")
         if heights is not None:
-            normalized_language = (
-                (language or "").strip().casefold().replace("_", "-").split("-", 1)[0]
-            )
             if not normalized_language:
                 raise LcdReferenceProfileError(
                     f"LCD row {source_no} requires a language for governed height"

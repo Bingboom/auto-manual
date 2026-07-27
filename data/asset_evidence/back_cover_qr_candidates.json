@@ -1,9 +1,10 @@
 {
   "schema_version": 1,
-  "evidence_status": "quarantine",
+  "evidence_status": "ai-master-selected",
   "decision": {
-    "status": "unresolved-source-mismatch",
-    "reason": "The governed design master and the frozen visual reference contain different QR payloads. Neither candidate is approved or build-eligible until the authoritative printed payload is selected."
+    "status": "operator-approved-ai-source",
+    "selected_asset_key": "qr/back_cover_ai_candidate",
+    "reason": "The operator requires every image asset in the JE-1000F US package to originate from the supplied AI master. The AI page-59 QR-only export is therefore selected for JE-1000F US; the reference-PDF crop remains quarantined and may be used only for visual geometry comparison."
   },
   "candidates": [
     {

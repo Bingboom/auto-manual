@@ -130,10 +130,7 @@ class TestAppUiReviewedPromotion(unittest.TestCase):
                         region="US",
                     )
 
-        for asset_key in (
-            "qr/back_cover_ai_candidate",
-            "qr/back_cover_reference_candidate",
-        ):
+        for asset_key in ("qr/back_cover_reference_candidate",):
             with self.subTest(asset_key=asset_key):
                 self.assertEqual(QUARANTINED_STATUS, self.by_key[asset_key].status)
                 with self.assertRaisesRegex(AssetRegistryError, QUARANTINED_STATUS):
@@ -146,6 +143,18 @@ class TestAppUiReviewedPromotion(unittest.TestCase):
                         region="US",
                         allow_temporary=True,
                     )
+
+        ai_qr = resolve_asset(
+            self.records,
+            repo_root=ROOT,
+            asset_key="qr/back_cover_ai_candidate",
+            format_name="png",
+            model="JE-1000F",
+            region="US",
+        )
+        self.assertEqual(
+            "back_cover_qr_ai_candidate.png", Path(ai_qr.path).name,
+        )
 
     def test_legacy_shared_app_composites_remain_byte_identical(self) -> None:
         self.assertEqual(

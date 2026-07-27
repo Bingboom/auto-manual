@@ -250,6 +250,7 @@ class IdmlWriter:
         *,
         symbol_overflow: tuple[list[dict], list[dict]] | None = None,
         lang: str = "en",
+        reference_profile: dict | None = None,
     ) -> str:
         return _pages.add_fcc_inbox_page(
             self,
@@ -260,6 +261,7 @@ class IdmlWriter:
             page_index,
             symbol_overflow=symbol_overflow,
             lang=lang,
+            reference_profile=reference_profile,
         )
 
     def _symbol_signal_bar(self, tid: str, label: str,
