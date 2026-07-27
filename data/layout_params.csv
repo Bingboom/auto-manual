@@ -247,7 +247,7 @@ lang_en_idml_ups_caution_space_before,13.0,pt,English UPS body-to-CAUTION rhythm
 lang_fr_idml_ups_caution_space_before,18.5,pt,French UPS body-to-CAUTION rhythm
 lang_es_idml_ups_caution_space_before,2.5,pt,Spanish UPS body-to-CAUTION rhythm
 idml_ups_caution_space_after,15.9,pt,Default UPS CAUTION-to-CHARGING rhythm
-lang_en_idml_ups_caution_space_after,9.9,pt,English UPS CAUTION-to-CHARGING rhythm measured from approved PDF
+lang_en_idml_ups_caution_space_after,15.9,pt,English UPS CAUTION-to-CHARGING rhythm measured from approved PDF
 lang_fr_idml_ups_caution_space_after,22.5,pt,French UPS CAUTION-to-CHARGING rhythm
 lang_es_idml_ups_caution_space_after,14.5,pt,Spanish UPS CAUTION-to-CHARGING rhythm
 idml_charging_note_body_font_size,5.0,pt,Charging NOTE editable body size measured from approved PDF
