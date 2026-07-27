@@ -1006,8 +1006,18 @@ language-neutral (the LCD-hero precedent).
     merges; #720's own post-merge run was additionally cancelled by the merges
     that followed it. The new pin guard covers the repo-derived pins; the
     snapshot pins remain unverifiable from a checkout by design.
+  - **Step-by-step procedure:
+    [`dev/reference_layout_rebind_parity_runbook.md`](dev/reference_layout_rebind_parity_runbook.md)**
+    — copy-pasteable, with the release gate on `page_bindings=0` and the
+    verification status of each step stated.
   - The snapshot half is what still blocks the build; the error is now only
     `source_identity.snapshot_sha256 does not match the current manual IR`.
+    Note the chicken-and-egg the runbook resolves: rebinding needs a
+    `manual.ir.json`, which the production export writes — but the production
+    export is what the gate refuses. `--idml-mode flow` produces the IR without
+    passing through that gate (verified 2026-07-27). A dry-run of the rebind
+    reports `page_bindings=0 composition_map=unchanged`, so it moves the data
+    snapshot identity only and touches none of the 52 page bindings.
     `tools/reference_layout_rebind.py --plan … --manual-ir … --write` is the
     intended repair, but the contract carries an `approval` block, so rebinding
     it against a freshly synced snapshot is an approval decision.
