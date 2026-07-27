@@ -228,6 +228,29 @@ class TransformTest(unittest.TestCase):
         self.assertEqual("h2_operation_energy", out[1][0])
         self.assertEqual("energy_saving", json.loads(out[3][1])["layout"])
 
+    def test_energy_panel_accepts_one_combined_guidance_paragraph(self) -> None:
+        guidance = (
+            "Para desactivar el modo, mantenga pulsados ambos botones. "
+            "Al alimentar dispositivos de baja potencia, desactive el modo."
+        )
+        blocks = [
+            ("h2", "MODO DE AHORRO DE ENERGÍA"),
+            ("body", "Introductory copy."),
+            ("body", guidance),
+            ("image", "renderers/latex/assets/op_energy_saving.png"),
+            ("body", "Mantenga pulsados ambos botones durante 3 segundos."),
+        ]
+
+        out = transform(blocks)
+
+        self.assertEqual(
+            ["h2_operation_energy", "body_operation_energy_intro", "component"],
+            [kind for kind, _payload in out],
+        )
+        spec = json.loads(out[2][1])
+        self.assertEqual("energy_saving", spec["layout"])
+        self.assertEqual([guidance], spec["guidance"])
+
     def test_localized_led_sections_become_editable_panels(self) -> None:
         cases = (
             (
@@ -298,7 +321,6 @@ class TransformTest(unittest.TestCase):
             [
                 ("h2", "ENERGY SAVING MODE"),
                 ("body", "Introductory copy."),
-                ("body", "Only one guidance paragraph."),
                 ("image", "renderers/latex/assets/op_energy_saving.png"),
                 ("body", "Press and hold both buttons for 3 seconds."),
             ],

@@ -225,7 +225,7 @@ class EditableKeyCombinationTests(unittest.TestCase):
                 self.assertEqual("key_combinations", body_data_table_kind(rows))
 
     def test_governed_key_panel_uses_locale_visual_raise(self) -> None:
-        expected = {"en": "36.68", "fr": "16.94", "es": "4.18"}
+        expected = {"en": "36.68", "fr": "16.94", "es": "12"}
         for language, shift in expected.items():
             with self.subTest(language=language):
                 xml, _height, _stories = self._render(language)

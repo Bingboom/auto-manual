@@ -91,27 +91,36 @@ def _special_operation_panel(
     stem = _image_stem(ref)
 
     if stem in _ENERGY_SAVING_ART:
-        # h2, intro, disable guidance, low-power guidance, image, action.
-        if (
-            len(out) < 4
-            or [item[0] for item in out[-4:]] != ["h2", "body", "body", "body"]
-            or blocks[index + 1][0] != "body"
-        ):
+        # h2, intro, then one combined or two separate guidance paragraphs,
+        # followed by image + action. Spanish review copy combines its
+        # disable/low-power guidance in one paragraph while EN/FR keep two.
+        trailing_kinds = [item[0] for item in out[-4:]]
+        if trailing_kinds == ["h2", "body", "body", "body"]:
+            heading_index = len(out) - 4
+        elif [item[0] for item in out[-3:]] == ["h2", "body", "body"]:
+            heading_index = len(out) - 3
+        else:
+            heading_index = -1
+        if heading_index < 0 or blocks[index + 1][0] != "body":
             return None
-        out[-4] = ("h2_operation_energy", out[-4][1])
-        out[-3] = ("body_operation_energy_intro", out[-3][1])
-        guidance = [out[-2][1], out[-1][1]]
+        out[heading_index] = (
+            "h2_operation_energy", out[heading_index][1],
+        )
+        out[heading_index + 1] = (
+            "body_operation_energy_intro", out[heading_index + 1][1],
+        )
+        guidance = [payload for _kind, payload in out[heading_index + 2:]]
         # The approved operation composition starts the Energy + LED page
         # 10.5pt lower than the ordinary continuation-frame top.  Upgrade the
         # governed page break immediately before this localized section; the
         # story renderer turns the suffix into paragraph space after the
         # forced break.  Matching the structural page boundary keeps this
         # language-neutral and avoids title-text contracts.
-        for position in range(len(out) - 5, -1, -1):
+        for position in range(heading_index - 1, -1, -1):
             if out[position] == ("layout", "page_break"):
                 out[position] = ("layout", "page_break:10.5")
                 break
-        del out[-2:]
+        del out[heading_index + 2:]
         action = blocks[index + 1][1].strip()
         return (
             "component",
