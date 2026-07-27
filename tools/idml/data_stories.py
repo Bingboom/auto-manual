@@ -51,7 +51,7 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
     global_ri = 0
     for segment_index, segment in enumerate(segments):
         cols, icon_pt, pad = _lcd.layout_tokens(
-            writer, body_w, segment_index=segment_index)
+            writer, body_w, segment_index=segment_index, lang=lang)
         if lang == "en":
             icon_pt = min(icon_pt, 23.0)
         if segment_index > 0:
@@ -224,7 +224,9 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
         )
         if segment_index == 0:
             left_indent = param_pt(
-                writer.params, "idml_lcd_first_left_indent", 0.0,
+                writer.params,
+                f"lang_{lang}_idml_lcd_first_left_indent",
+                param_pt(writer.params, "idml_lcd_first_left_indent", 0.0),
             )
         else:
             left_indent = param_pt(

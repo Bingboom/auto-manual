@@ -33,13 +33,15 @@ def _story(writer, sid: str, title: str, parts: list[str]) -> str:
 
 
 def _image_paragraph(writer, tid: str, image: Path, max_w: float, *,
-                     center: bool = True) -> str:
+                     center: bool = True,
+                     space_after: float = 0.0) -> str:
     width, height = writer._art_frame_size(image, max_w=max_w)
     figure_style = paragraph_style_ref("HB Figure")
     justification = ' Justification="CenterAlign"' if center else ""
+    spacing = f' SpaceAfter="{space_after:g}"' if space_after else ""
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style}"'
-        f'{justification}>\n'
+        f'{justification}{spacing}>\n'
         '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         + writer._image_cell_content(tid, image, width, height)
         + '<Content></Content><Br/></CharacterStyleRange>\n'
@@ -108,11 +110,17 @@ def _fcc_text_frame_geometry(lang: str) -> tuple[float, float, float]:
 
 
 def _card_story(writer, sid: str, item: dict, bundle_root: Path,
-                max_image_w: float) -> str:
+                max_image_w: float, *, image_space_after: float = 0.0) -> str:
     parts: list[str] = []
     image = writer._resolve_bundle_image(bundle_root, item.get("img", ""))
     if image is not None:
-        parts.append(_image_paragraph(writer, f"{sid}_img", image, max_image_w))
+        parts.append(_image_paragraph(
+            writer,
+            f"{sid}_img",
+            image,
+            max_image_w,
+            space_after=image_space_after,
+        ))
     parts.append(writer._psr("HB InBox Label", item.get("label", ""), terminal=True))
     return _story(writer, sid, "Inbox card", parts)
 
@@ -338,6 +346,14 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
         metric("image_2_width", 60.0),
         metric("image_3_width", 58.0),
     )
+    image_space_after = tuple(
+        metric(f"card_{index}_image_space_after", fallback)
+        for index, fallback in enumerate((12.6, 10.2, 19.2), start=1)
+    )
+    content_y_offsets = tuple(
+        metric(f"card_{index}_content_y_offset", fallback)
+        for index, fallback in enumerate((-3.9, -7.5, -8.4), start=1)
+    )
     story_ids: list[str] = []
     frames: list[str] = []
     for idx, item in enumerate(items):
@@ -381,14 +397,26 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
         ))
 
         card_sid = f"{sid}_card_{idx + 1}"
-        _card_story(writer, card_sid, item, bundle_root, image_ws[idx])
+        _card_story(
+            writer,
+            card_sid,
+            item,
+            bundle_root,
+            image_ws[idx],
+            image_space_after=image_space_after[idx],
+        )
         story_ids.append(card_sid)
         frames.append(frame_with_background(
             writer,
             sid,
             f"card_{idx + 1}",
             card_sid,
-            (x + 8.0, card_y + 36.0, card_w - 16.0, card_h - 44.5),
+            (
+                x + 8.0,
+                card_y + 36.0 + content_y_offsets[idx],
+                card_w - 16.0,
+                card_h - 44.5,
+            ),
             {"inset": (0, 0, 0, 0), "valign": "CenterAlign"},
         ))
     return story_ids, frames

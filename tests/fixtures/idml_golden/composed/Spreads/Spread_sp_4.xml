@@ -154,10 +154,10 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-149.894 46.6535" LeftDirection="-149.894 46.6535" RightDirection="-149.894 46.6535"/>
-            <PathPointType Anchor="-149.894 174.654" LeftDirection="-149.894 174.654" RightDirection="-149.894 174.654"/>
-            <PathPointType Anchor="-66.3937 174.654" LeftDirection="-66.3937 174.654" RightDirection="-66.3937 174.654"/>
-            <PathPointType Anchor="-66.3937 46.6535" LeftDirection="-66.3937 46.6535" RightDirection="-66.3937 46.6535"/>
+            <PathPointType Anchor="-149.894 42.7535" LeftDirection="-149.894 42.7535" RightDirection="-149.894 42.7535"/>
+            <PathPointType Anchor="-149.894 170.754" LeftDirection="-149.894 170.754" RightDirection="-149.894 170.754"/>
+            <PathPointType Anchor="-66.3937 170.754" LeftDirection="-66.3937 170.754" RightDirection="-66.3937 170.754"/>
+            <PathPointType Anchor="-66.3937 42.7535" LeftDirection="-66.3937 42.7535" RightDirection="-66.3937 42.7535"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -220,10 +220,10 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-43.8937 46.6535" LeftDirection="-43.8937 46.6535" RightDirection="-43.8937 46.6535"/>
-            <PathPointType Anchor="-43.8937 174.654" LeftDirection="-43.8937 174.654" RightDirection="-43.8937 174.654"/>
-            <PathPointType Anchor="39.6063 174.654" LeftDirection="39.6063 174.654" RightDirection="39.6063 174.654"/>
-            <PathPointType Anchor="39.6063 46.6535" LeftDirection="39.6063 46.6535" RightDirection="39.6063 46.6535"/>
+            <PathPointType Anchor="-43.8937 39.1535" LeftDirection="-43.8937 39.1535" RightDirection="-43.8937 39.1535"/>
+            <PathPointType Anchor="-43.8937 167.154" LeftDirection="-43.8937 167.154" RightDirection="-43.8937 167.154"/>
+            <PathPointType Anchor="39.6063 167.154" LeftDirection="39.6063 167.154" RightDirection="39.6063 167.154"/>
+            <PathPointType Anchor="39.6063 39.1535" LeftDirection="39.6063 39.1535" RightDirection="39.6063 39.1535"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -286,10 +286,10 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="61.6063 46.6535" LeftDirection="61.6063 46.6535" RightDirection="61.6063 46.6535"/>
-            <PathPointType Anchor="61.6063 174.654" LeftDirection="61.6063 174.654" RightDirection="61.6063 174.654"/>
-            <PathPointType Anchor="145.106 174.654" LeftDirection="145.106 174.654" RightDirection="145.106 174.654"/>
-            <PathPointType Anchor="145.106 46.6535" LeftDirection="145.106 46.6535" RightDirection="145.106 46.6535"/>
+            <PathPointType Anchor="61.6063 38.2535" LeftDirection="61.6063 38.2535" RightDirection="61.6063 38.2535"/>
+            <PathPointType Anchor="61.6063 166.254" LeftDirection="61.6063 166.254" RightDirection="61.6063 166.254"/>
+            <PathPointType Anchor="145.106 166.254" LeftDirection="145.106 166.254" RightDirection="145.106 166.254"/>
+            <PathPointType Anchor="145.106 38.2535" LeftDirection="145.106 38.2535" RightDirection="145.106 38.2535"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>

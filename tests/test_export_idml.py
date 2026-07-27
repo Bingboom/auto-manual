@@ -2182,6 +2182,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("tf_st_fcc_inbox_card_1", spread)
         self.assertIn("tf_st_fcc_inbox_card_2", spread)
         self.assertIn("tf_st_fcc_inbox_card_3", spread)
+        card_1_frame = spread.split(
+            'Self="tf_st_fcc_inbox_card_1"', 1
+        )[1].split("</TextFrame>", 1)[0]
+        self.assertIn('Anchor="-149.894 42.7535"', card_1_frame)
         badge_frame = spread.split('Self="tf_st_fcc_inbox_badge_1"', 1)[1].split(
             "</TextFrame>", 1,
         )[0]
@@ -2199,6 +2203,9 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("FCC right copy.", stories["st_fcc_inbox_fcc_right"])
         self.assertIn("WHAT'S IN THE BOX", stories["st_fcc_inbox_title"])
         self.assertIn("AC Charging Cable", stories["st_fcc_inbox_card_2"])
+        self.assertEqual(("12.6", "pt"), params["idml_inbox_card_1_image_space_after"])
+        self.assertEqual(("10.2", "pt"), params["idml_inbox_card_2_image_space_after"])
+        self.assertEqual(("19.2", "pt"), params["idml_inbox_card_3_image_space_after"])
         self.assertIn(
             'PointSize="10.912" FontStyle="Medium" BaselineShift="0.45"',
             stories["st_fcc_inbox_badge_1"],
@@ -2612,11 +2619,13 @@ class ExportIdmlTests(unittest.TestCase):
         label_cell = story.split('Self="tbl_lcdc0_2"', 1)[1].split("</Cell>", 1)[0]
         self.assertIn('FontStyle="Bold"', label_cell)
         self.assertIn('PointSize="7" Leading="8.4"', label_cell)
+        self.assertIn('Hyphenation="false"', label_cell)
         self.assertIn('LeftInset="5.2"', label_cell)
         description_cell = story.split('Self="tbl_lcdc0_3"', 1)[1].split(
             "</Cell>", 1
         )[0]
         self.assertIn('PointSize="5.5" Leading="5.8"', description_cell)
+        self.assertIn('Hyphenation="false"', description_cell)
         self.assertIn('LeftInset="5.2"', description_cell)
         number_cell = story.split('Self="tbl_lcdc0_0"', 1)[1].split("</Cell>", 1)[0]
         self.assertIn('PointSize="9" Leading="9.4"', number_cell)

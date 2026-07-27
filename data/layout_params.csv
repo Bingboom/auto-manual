@@ -339,10 +339,14 @@ comp_lcd_partial_row_height,27,pt,LCD short final-segment row height allowance
 comp_lcd_partial_panel_extra,4,pt,LCD short final-segment shell allowance
 comp_lcd_partial_panel_min_height,30,pt,LCD short final-segment minimum shell height
 idml_lcd_table_width_adjust,0.4,pt,IDML LCD table width adjustment against the approved master
-idml_lcd_first_no_col_width,20.2,pt,IDML LCD first-segment number column width
+idml_lcd_first_no_col_width,19.2,pt,IDML LCD first-segment number column width
+lang_fr_idml_lcd_first_no_col_width,20.2,pt,French IDML LCD first-segment number column width
+lang_es_idml_lcd_first_no_col_width,20.2,pt,Spanish IDML LCD first-segment number column width
 idml_lcd_first_icon_col_width,33.6,pt,IDML LCD first-segment icon column width
 idml_lcd_first_label_col_width,82.6,pt,IDML LCD first-segment label column width
-idml_lcd_continuation_no_col_width,19.2,pt,IDML LCD continuation number column width
+idml_lcd_continuation_no_col_width,18.6,pt,IDML LCD continuation number column width
+lang_fr_idml_lcd_continuation_no_col_width,19.2,pt,French IDML LCD continuation number column width
+lang_es_idml_lcd_continuation_no_col_width,19.2,pt,Spanish IDML LCD continuation number column width
 idml_lcd_continuation_icon_col_width,38.4,pt,IDML LCD continuation icon column width
 idml_lcd_continuation_label_col_width,73.0,pt,IDML LCD continuation label column width
 idml_lcd_first_vertical_padding,1.62,pt,IDML LCD first-segment cell top and bottom padding
@@ -353,10 +357,12 @@ idml_lcd_continuation_vertical_padding,2.14,pt,IDML English LCD continuation cel
 lang_fr_idml_lcd_continuation_vertical_padding,1.4,pt,French IDML LCD continuation cell top and bottom padding
 lang_es_idml_lcd_continuation_vertical_padding,1.45,pt,Spanish IDML LCD continuation cell top and bottom padding
 idml_lcd_first_left_indent,0.5,pt,IDML LCD first-segment optical left offset
+lang_fr_idml_lcd_first_left_indent,0.5,pt,French IDML LCD first-segment optical left offset
+lang_es_idml_lcd_first_left_indent,0.5,pt,Spanish IDML LCD first-segment optical left offset
 idml_lcd_continuation_left_indent,-2.1,pt,IDML LCD continuation optical left offset
 lang_en_idml_lcd_continuation_left_indent,-2.421,pt,English IDML LCD continuation optical left offset
 lang_fr_idml_lcd_continuation_left_indent,-2.906,pt,French IDML LCD continuation optical left offset
-lang_es_idml_lcd_continuation_left_indent,-4.887,pt,Spanish IDML LCD continuation optical left offset
+lang_es_idml_lcd_continuation_left_indent,-7.887,pt,Spanish IDML LCD continuation optical left offset
 idml_lcd_continuation_page_top,27.7,pt,IDML LCD continuation top coordinate
 lang_en_idml_lcd_continuation_page_top,28.7,pt,English IDML LCD continuation top coordinate
 lang_fr_idml_lcd_continuation_page_top,27.662,pt,French IDML LCD continuation top coordinate
@@ -368,6 +374,7 @@ idml_lcd_continuation_panel_height,480,pt,IDML LCD continuation import allowance
 idml_lcd_frame_bottom_extra,36,pt,IDML LCD linked-frame import allowance below the body margin
 idml_lcd_hero_max_height,159,pt,IDML English LCD overview art height
 idml_lcd_hero_horizontal_scale,1,ratio,IDML English LCD overview art horizontal scale
+lang_en_idml_lcd_hero_horizontal_offset,-3,pt,English IDML LCD overview art optical offset
 idml_lcd_hero_space_before,3.82,pt,IDML English LCD overview art space before
 lang_fr_idml_lcd_hero_max_height,145,pt,French IDML LCD overview art height
 lang_fr_idml_lcd_hero_horizontal_scale,1.10,ratio,French IDML LCD overview art horizontal scale
@@ -526,6 +533,12 @@ idml_inbox_overflow_image_3_width,58,pt,IDML document image width on symbol-over
 lang_es_idml_inbox_overflow_image_3_width,38,pt,Spanish document image width on symbol-overflow pages
 idml_inbox_overflow_tip_y,458,pt,IDML tip-strip top on symbol-overflow pages
 lang_es_idml_inbox_overflow_tip_y,454,pt,Spanish IDML tip-strip top on symbol-overflow pages
+idml_inbox_card_1_image_space_after,12.6,pt,IDML product image-to-label spacing
+idml_inbox_card_2_image_space_after,10.2,pt,IDML cable image-to-label spacing
+idml_inbox_card_3_image_space_after,19.2,pt,IDML documents image-to-label spacing
+idml_inbox_card_1_content_y_offset,-3.9,pt,IDML product card optical content offset
+idml_inbox_card_2_content_y_offset,-7.5,pt,IDML cable card optical content offset
+idml_inbox_card_3_content_y_offset,-8.4,pt,IDML documents card optical content offset
 comp_tip_arc,1.73,mm,Tip strip corner radius
 comp_callout_rule,1.2,pt,Warning caution note and tip outer border width
 comp_callout_label_inset,0.44,mm,White label panel inset inside the gray callout shell

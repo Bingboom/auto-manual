@@ -413,6 +413,11 @@ def lcd_hero_paragraph(writer, lang: str = "en") -> str:
         f"lang_{language}_idml_lcd_hero_space_before",
         param_pt(writer.params, "idml_lcd_hero_space_before", 5.72),
     )
+    horizontal_offset = param_pt(
+        writer.params,
+        f"lang_{language}_idml_lcd_hero_horizontal_offset",
+        param_pt(writer.params, "idml_lcd_hero_horizontal_offset", 0.0),
+    )
     image_xml = writer._image_cell_content("lcd_hero", hero, width, height)
     if horizontal_scale != 1.0:
         image_xml = image_xml.replace(
@@ -421,10 +426,14 @@ def lcd_hero_paragraph(writer, lang: str = "en") -> str:
             1,
         )
     style = paragraph_style_ref("HB Figure")
+    paragraph_offsets = (
+        f' LeftIndent="{horizontal_offset:g}" RightIndent="{-horizontal_offset:g}"'
+        if horizontal_offset else ""
+    )
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}" '
         f'Justification="CenterAlign" SpaceBefore="{space_before:g}" '
-        'SpaceAfter="3.37">'
+        f'SpaceAfter="3.37"{paragraph_offsets}>'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         + image_xml
         + "<Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>\n"
