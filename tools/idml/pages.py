@@ -71,12 +71,21 @@ def _safety_section_story(writer, sid: str, title: str,
     last_idx = content_indices[-1] if content_indices else -1
     previous_kind = ""
     dense_language = any(marker in sid.casefold() for marker in ("_fr_", "_es_"))
+    language = _safety_language(sid)
+    right_section = sid.endswith("_right")
     scale_key = (
         "idml_safety_list_horizontal_scale_dense"
         if dense_language else "idml_safety_list_horizontal_scale"
     )
+    localized_scale_key = f"lang_{language}_{scale_key}"
     horizontal_scale = 100.0 * float(
-        writer.params.get(scale_key, ("0.90" if dense_language else "0.98", "ratio"))[0]
+        writer.params.get(
+            localized_scale_key,
+            writer.params.get(
+                scale_key,
+                ("0.90" if dense_language else "0.98", "ratio"),
+            ),
+        )[0]
     )
     for bi, (kind, text) in enumerate(blocks):
         terminal = bi == last_idx
@@ -92,13 +101,42 @@ def _safety_section_story(writer, sid: str, title: str,
         elif kind == "safetylead":
             parts.append(writer._psr("HB Safety Lead", text, terminal=terminal))
         elif kind == "list":
-            list_xml = writer._psr("HB Safety List", text, terminal=terminal)
+            list_style = (
+                f"HB Safety List {language.upper()}"
+                if language in {"fr", "es"}
+                else "HB Safety List"
+            )
+            list_xml = writer._psr(list_style, text, terminal=terminal)
+            list_left_indent = param_pt(
+                writer.params,
+                (
+                    f"lang_{language}_idml_safety_right_list_left_indent"
+                    if right_section
+                    else f"lang_{language}_idml_safety_list_left_indent"
+                ),
+                param_pt(writer.params, "idml_list_left_indent", 3.7),
+            )
+            list_first_line_indent = param_pt(
+                writer.params,
+                (
+                    f"lang_{language}_idml_safety_right_list_first_line_indent"
+                    if right_section
+                    else f"lang_{language}_idml_safety_list_first_line_indent"
+                ),
+                param_pt(writer.params, "idml_list_first_line_indent", -6.25),
+            )
+            list_space_after = param_pt(
+                writer.params,
+                f"lang_{language}_idml_safety_list_space_after",
+                param_pt(writer.params, "comp_list_itemsep", 2.07),
+            )
             list_xml = list_xml.replace(
                 "<ParagraphStyleRange ",
                 (
                     '<ParagraphStyleRange '
-                    f'LeftIndent="{param_pt(writer.params, "idml_list_left_indent", 3.7):g}" '
-                    f'FirstLineIndent="{param_pt(writer.params, "idml_list_first_line_indent", -6.25):g}" '
+                    f'LeftIndent="{list_left_indent:g}" '
+                    f'FirstLineIndent="{list_first_line_indent:g}" '
+                    f'SpaceAfter="{list_space_after:g}" '
                     'RightIndent="0" Hyphenation="false" '
                 ),
                 1,
@@ -110,8 +148,18 @@ def _safety_section_story(writer, sid: str, title: str,
             )
             parts.append(list_xml)
         elif kind == "sublist":
-            sublist_xml = writer._psr(
-                "HB Safety Sublist", text, terminal=terminal,
+            if dense_language and text.startswith("–"):
+                text = "•" + text[1:]
+            sublist_style = (
+                f"HB Safety Sublist {language.upper()}"
+                if language in {"fr", "es"}
+                else "HB Safety Sublist"
+            )
+            sublist_xml = writer._psr(sublist_style, text, terminal=terminal)
+            sublist_space_after = param_pt(
+                writer.params,
+                f"lang_{language}_idml_safety_list_space_after",
+                param_pt(writer.params, "comp_sublist_itemsep", 2.0),
             )
             sublist_xml = sublist_xml.replace(
                 "<ParagraphStyleRange ",
@@ -119,6 +167,7 @@ def _safety_section_story(writer, sid: str, title: str,
                     '<ParagraphStyleRange '
                     f'LeftIndent="{param_pt(writer.params, "idml_sublist_left_indent", 9.58):g}" '
                     f'FirstLineIndent="{param_pt(writer.params, "idml_sublist_first_line_indent", -6.04):g}" '
+                    f'SpaceAfter="{sublist_space_after:g}" '
                     'RightIndent="0" Hyphenation="false" '
                 ),
                 1,
@@ -253,12 +302,23 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     warning_height = _approved_safety_param(
         writer, "idml_safety_warning_height", 31.5,
     )
+    second_section_top = _approved_safety_param(
+        writer, "idml_safety_second_section_top", 281.88,
+    )
+    second_section_height = _approved_safety_param(
+        writer, "idml_safety_second_section_height", 209.12,
+    )
     if dense_reference:
         warning_top = _approved_safety_param(
             writer, f"lang_{language}_idml_safety_warning_top", warning_top,
         )
         warning_height = _approved_safety_param(
             writer, f"lang_{language}_idml_safety_warning_height", warning_height,
+        )
+        second_section_height = _approved_safety_param(
+            writer,
+            f"lang_{language}_idml_safety_second_section_height",
+            second_section_height,
         )
     frames = []
     for frame_id, story_id, rect, opts in (
@@ -274,7 +334,7 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
          {**heading_bar_opts(2, (0.5, 0, 0.5, 0)),
           "text_rect": (body_x + 6.0, 263.0, body_w - 12.0, SUBBAR_H)}),
         ("section2", section_sids[1][0] if len(section_sids) > 1 else "",
-         (body_x, 281.88, body_w, 209.12),
+         (body_x, second_section_top, body_w, second_section_height),
          {"columns": 2, "gutter": column_gap,
           "balance_columns": True, "inset": (0, 0, 0, 0)}),
     ):
@@ -304,6 +364,11 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             )
             bottom = _approved_safety_param(
                 writer, "idml_safety_first_section_bottom", 257.77,
+            )
+            bottom = _approved_safety_param(
+                writer,
+                f"lang_{language}_idml_safety_first_section_bottom",
+                bottom,
             )
             column_w = (body_w - dense_gap) / 2.0
             frames.append(frame_with_background(

@@ -26,16 +26,16 @@
   },
   "source_identity": {
     "manual_ir_schema_version": "manual-ir/v1",
-    "manual_content_sha256": "e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3",
+    "manual_content_sha256": "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
     "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
-    "style_contract_sha256": "0d6b27cbf06623dbac7b7847c363a91045325d3269f1d5df98ed81afb6483b36",
-    "layout_params_sha256": "d2c784ef0481ff7a6c732dcf7c877991b7506cb970531ba3d6e33f625fdeab30"
+    "style_contract_sha256": "c7d31f22726d97bd04e82fd6fc59e5510bdaac7b0d37b4b86a9e6f8df3aec3b6",
+    "layout_params_sha256": "9c651d44e28aaa69303eb8beb693dc41de3119f02fb3974cee06ca7e249cd496"
   },
   "approval": {
     "status": "approved",
     "approved_by": "唐夏冰",
-    "approved_at": "2026-07-16T00:00:00-07:00",
-    "method": "page-by-page-visual-map"
+    "approved_at": "2026-07-26T00:00:00-07:00",
+    "method": "operator-approved frozen-review parity continuation"
   },
   "render_contract": {
     "dpi": 300,
@@ -378,7 +378,7 @@
     },
     {
       "source_ref": "page/safety_en.rst",
-      "source_sha256": "44b2129309cd052657be9b89a45c6297c93a61be51c0c97185edb4a781b1df19",
+      "source_sha256": "60693137a405213d4ff6aac0605ed88e583be7da4e0513d545af2f5bc18a57f0",
       "language": "en",
       "composition_id": "en_safety",
       "start_page": 4,
@@ -410,7 +410,7 @@
     },
     {
       "source_ref": "page/02_whats_in_the_box.rst",
-      "source_sha256": "08b7c4f657f1b8d26ec1ff665412edc20e92add54e60dbb38037185e3fb41915",
+      "source_sha256": "df57ce87c0b3f68b5eaa9add7b0a31aa0fb7e187366ccfcb18bba389de4cca93",
       "language": "en",
       "composition_id": "en_fcc_inbox",
       "start_page": 6,
@@ -426,7 +426,7 @@
     },
     {
       "source_ref": "page/lcd_icons_en.rst",
-      "source_sha256": "abb59feb69bb6efc31f7305fc25cf07fbbf603a033a7bf921737e6e322566c89",
+      "source_sha256": "b6e37a9e8c24dad60fa514a5c53bc11727a448744ca5dbe64708d0799958197c",
       "language": "en",
       "composition_id": "en_lcd",
       "start_page": 8,
@@ -434,7 +434,7 @@
     },
     {
       "source_ref": "page/05_operation_guide_placeholder.rst",
-      "source_sha256": "52af4f432f465ad9f7048c01f18254eb0ae1f18cdcc7f1343f9691d4f37d830a",
+      "source_sha256": "c0a54fee24f270e8e22b9002c8f34fd98dd20e943dbf44752348907733e25b09",
       "language": "en",
       "composition_id": "en_operation",
       "start_page": 10,
@@ -442,7 +442,7 @@
     },
     {
       "source_ref": "page/06_ups_mode.rst",
-      "source_sha256": "01c3984cd335ec147735ad1b35ef0075788c1051015530992e9e5291388d2fd0",
+      "source_sha256": "739f5acc0e7a8fe7ce53a51ec6b8d78f982d2c6e5c0a7701f41709b5c3d48be9",
       "language": "en",
       "composition_id": "en_ups_charging",
       "start_page": 14,
@@ -450,7 +450,7 @@
     },
     {
       "source_ref": "page/charging.rst",
-      "source_sha256": "4986762fdd6d7e88bcd170bc876c714012c6661ccf5ce1ac2e2d3bf0041477e4",
+      "source_sha256": "54c31bbe1148ba459ea54c29662df03888a801be6289c233760151c76caf909c",
       "language": "en",
       "composition_id": "en_ups_charging",
       "start_page": 14,
@@ -463,7 +463,7 @@
     },
     {
       "source_ref": "page/08_charging_methods.rst",
-      "source_sha256": "e35746dff29e35dc91bfaab384cfd49508527be84fadf982967bf2b4ef5ab281",
+      "source_sha256": "527a72f81654053ab4e0c77aa3a6ad4f083191926f77b720083afd495460b9b4",
       "language": "en",
       "composition_id": "en_charging_methods",
       "start_page": 15,
@@ -479,7 +479,7 @@
     },
     {
       "source_ref": "page/troubleshooting_en.rst",
-      "source_sha256": "c4e01d369e76ca74dd6988ac53d047d0227e08cf1b18d90f3cffcc763fe21e3b",
+      "source_sha256": "0117b2cbeee5d44736b1200b24d7d17b47d7d4aa8453245d883522d5f8db701e",
       "language": "en",
       "composition_id": "en_storage_troubleshooting",
       "start_page": 17,
@@ -487,7 +487,7 @@
     },
     {
       "source_ref": "page/spec_en.rst",
-      "source_sha256": "395e40227cda70a176e6f2c4af306bb4d368adcded5cb70be39ceafc82ce898d",
+      "source_sha256": "bf1cca3aa0fd254584748e8142f36c42287a91df808b77631bdb3cafb680a536",
       "language": "en",
       "composition_id": "en_spec",
       "start_page": 18,
@@ -495,7 +495,7 @@
     },
     {
       "source_ref": "page/11_warranty.rst",
-      "source_sha256": "2836887fb6a9facd99e578727bf9692770961eed1b73569eacabf0a2a5252746",
+      "source_sha256": "a6e3a2fcdcf822dbe5738005ee914ff743c8f8af3fb737b3a08df6bd5356b5cb",
       "language": "en",
       "composition_id": "en_warranty",
       "start_page": 19,
@@ -503,7 +503,7 @@
     },
     {
       "source_ref": "page/12_app_setup_placeholder.rst",
-      "source_sha256": "dc99e124a9089b7d3361f9cfa5f651a44ff11b53567833515d9cc57e4fe08c4c",
+      "source_sha256": "0bad2ba72a58d64240e19acccb942822630c33c4dddefe14d2256bacb51f8e79",
       "language": "en",
       "composition_id": "en_app",
       "start_page": 20,
@@ -511,7 +511,7 @@
     },
     {
       "source_ref": "page/safety_fr.rst",
-      "source_sha256": "2853d4e79431d37ec597c631c3f1073c204f8fc0b8c943a5ab24c9263a0b6c10",
+      "source_sha256": "39b82ae4013d449724746fcef6ea8c22c4f6d51996f703848e8dbe3e18d2b49d",
       "language": "fr",
       "composition_id": "fr_safety",
       "start_page": 22,
@@ -519,7 +519,7 @@
     },
     {
       "source_ref": "page/p20_01_user_maintenance_instructions.rst",
-      "source_sha256": "49273d4ec089b9a8dea2442af876f32a18146cc7d996baa1fb26a353c66419c3",
+      "source_sha256": "c62a7260c944a5a94a3f1e90a490b238a47cd42d14f6278cd6dd8c0bd0ed995f",
       "language": "fr",
       "composition_id": "fr_maintenance_symbols",
       "start_page": 23,
@@ -527,7 +527,7 @@
     },
     {
       "source_ref": "page/symbols_fr.rst",
-      "source_sha256": "c56b50b84b17c92942e74a709eaf0f5598b6678ee27877ad61ac05e82f9dc57b",
+      "source_sha256": "758ac23e29028d05d6cb6dbf9eb318dfa921cf92dd243d4e716d1b3b998fc12c",
       "language": "fr",
       "composition_id": "fr_maintenance_symbols",
       "start_page": 23,
@@ -543,7 +543,7 @@
     },
     {
       "source_ref": "page/p23_02_whats_in_the_box.rst",
-      "source_sha256": "1b84b7987050921c807ddcd4093467656ddf0e712e2287e20081dda5adb050e5",
+      "source_sha256": "82bb30513ef3a8d187e2385f30765e4938013d214d0cb526b4e5932a258a9ef7",
       "language": "fr",
       "composition_id": "fr_fcc_inbox",
       "start_page": 24,
@@ -559,7 +559,7 @@
     },
     {
       "source_ref": "page/lcd_icons_fr.rst",
-      "source_sha256": "96fd9944c7fdd6d287b9359d695cc643b28e4fd31e9457e658c923e37aa9407d",
+      "source_sha256": "a5402eb9983884d3b5f34263637fb78479385ac51080b43a7e8ddf351d026efa",
       "language": "fr",
       "composition_id": "fr_lcd",
       "start_page": 26,
@@ -567,7 +567,7 @@
     },
     {
       "source_ref": "page/p26_05_operation_guide_placeholder.rst",
-      "source_sha256": "2e522aae2e0086e2826d73ba451b5aa9019280ecdac90d2f784e1a3ea304def0",
+      "source_sha256": "ad3712b1c57afd969465d7c5f40bd259ec3683c1bd0288e152ba9c36f936e3f1",
       "language": "fr",
       "composition_id": "fr_operation",
       "start_page": 28,
@@ -575,7 +575,7 @@
     },
     {
       "source_ref": "page/p27_06_ups_mode.rst",
-      "source_sha256": "b4414cab03835d9e0292e12c537a659ae302271909d808248f1ef87df091a468",
+      "source_sha256": "8a9c2c61f71bd3ce7a1a540e374cff7b74fa69bd88e2da00f2b46f38679e9ed0",
       "language": "fr",
       "composition_id": "fr_ups_charging",
       "start_page": 32,
@@ -583,7 +583,7 @@
     },
     {
       "source_ref": "page/p28_charging.rst",
-      "source_sha256": "657e641a6e982aa2ac2bce0d746f15caebb7852170dd23d9084294f9e8690e13",
+      "source_sha256": "deb0301cdc7218e1f0d3d77e9463e675417916c1b3d06bc6d9433e4126d6ab46",
       "language": "fr",
       "composition_id": "fr_ups_charging",
       "start_page": 32,
@@ -596,7 +596,7 @@
     },
     {
       "source_ref": "page/p29_08_charging_methods.rst",
-      "source_sha256": "bb4295a210c7075b03047ebc28f32dd7ae95afc0fb5611bcee0647048ad4ec0e",
+      "source_sha256": "c1dcea213312935ab0d05f3dcbfd0ea4af600bc77e423a7ba21ae4ef8c2da25b",
       "language": "fr",
       "composition_id": "fr_charging_methods",
       "start_page": 33,
@@ -612,7 +612,7 @@
     },
     {
       "source_ref": "page/troubleshooting_fr.rst",
-      "source_sha256": "1ae2e53892f881adf47a5ab9d5be956f237ee568dd074041b5e28c0ea2c4e8cc",
+      "source_sha256": "6e9540251c944c6f78ce1d62f48c2e2e73963f7b3035ed06965e0f37756c6985",
       "language": "fr",
       "composition_id": "fr_storage_troubleshooting",
       "start_page": 35,
@@ -620,7 +620,7 @@
     },
     {
       "source_ref": "page/spec_fr.rst",
-      "source_sha256": "a594b685d409b4ae95fb7a62220036b627ad616e0012896fcec46ae411c76889",
+      "source_sha256": "f9fbe49f99dee61b8a6f323a988f528451a2358c7c65719e2e45001ec05fac95",
       "language": "fr",
       "composition_id": "fr_spec",
       "start_page": 36,
@@ -628,7 +628,7 @@
     },
     {
       "source_ref": "page/p33_11_warranty.rst",
-      "source_sha256": "d5db60fc3f4305eec1fc37191f2cd1bef785023e0d73dbfa885461a2ef0e7fad",
+      "source_sha256": "2453b74a0c605ba7a1354c3faa70f6d5996b7d1bed2bebbb4de5df0fc96f6e5e",
       "language": "fr",
       "composition_id": "fr_warranty",
       "start_page": 37,
@@ -636,7 +636,7 @@
     },
     {
       "source_ref": "page/p34_12_app_setup_placeholder.rst",
-      "source_sha256": "ffccfa2ab424bdee35b0dee9b23d359d885496f73fffefb26501096929b92dda",
+      "source_sha256": "9ba81a77671d2a0d15ea5cdcab505124dac25f090ea68b6b8cd628b7106b8d14",
       "language": "fr",
       "composition_id": "fr_app",
       "start_page": 38,
@@ -644,7 +644,7 @@
     },
     {
       "source_ref": "page/safety_es.rst",
-      "source_sha256": "9033c89693e6357ea1a6c9b2292bf252f87ad28b2e7f3478812b235cae351e2b",
+      "source_sha256": "32d88a8ffb357abd4a99cc560302552f7bfe4b4d720700020fcbd98090313c39",
       "language": "es",
       "composition_id": "es_safety",
       "start_page": 40,
@@ -652,7 +652,7 @@
     },
     {
       "source_ref": "page/p36_01_user_maintenance_instructions.rst",
-      "source_sha256": "4c6b6a09a1b6392fe0d055bfe4341c1a3b2ca9e4bc3f34adff52dacedb789113",
+      "source_sha256": "155fb56bb6c592f1919e80516b65e737908bf12286e41898d9a8b3e98b1676f8",
       "language": "es",
       "composition_id": "es_maintenance_symbols",
       "start_page": 41,
@@ -660,7 +660,7 @@
     },
     {
       "source_ref": "page/symbols_es.rst",
-      "source_sha256": "01550e9313b7bf8616f1639a158d7b80e39d931f30eb3d085aaacef2f40182be",
+      "source_sha256": "d3f51fd3d85965b6eab1b54b228ea234e27fb808092fcf13756aee0983a080c4",
       "language": "es",
       "composition_id": "es_maintenance_symbols",
       "start_page": 41,
@@ -676,7 +676,7 @@
     },
     {
       "source_ref": "page/p39_02_whats_in_the_box.rst",
-      "source_sha256": "062ae448ce51d59113c9a5324d322412d061c64f95832f6c90f56e4ae8a4b65d",
+      "source_sha256": "cb5a8e1addd16714f33f48ce79dbfe71ec5552e14b2664224a5d75a1a7cd5fcb",
       "language": "es",
       "composition_id": "es_fcc_inbox",
       "start_page": 42,
@@ -692,7 +692,7 @@
     },
     {
       "source_ref": "page/lcd_icons_es.rst",
-      "source_sha256": "08a8f35e1964871beeac30d90ed2f3af56b695c583d899b05a4cbe70c812aafa",
+      "source_sha256": "f522a3bd118bc309ad5c10288177168b8cfe11a87339b7e5330265ffbe1e1419",
       "language": "es",
       "composition_id": "es_lcd",
       "start_page": 44,
@@ -700,7 +700,7 @@
     },
     {
       "source_ref": "page/p42_05_operation_guide_placeholder.rst",
-      "source_sha256": "48a41f5dadc7f7507c199971f930b85d9819f7dadb41f580db93f96f51ee25a2",
+      "source_sha256": "cec018f7c46c67427bcc168b77a0f601abddf5fa005792be72243fb6369dd557",
       "language": "es",
       "composition_id": "es_operation",
       "start_page": 46,
@@ -708,7 +708,7 @@
     },
     {
       "source_ref": "page/p43_06_ups_mode.rst",
-      "source_sha256": "45c3d8189d6494ea7c36e9fe4cd54f31523fbcd89bc450289b6be2574131f3a1",
+      "source_sha256": "a9933649fbe3f663388c61ca3cc83ff4cffe6921bce80662ec14bbacd133dbc3",
       "language": "es",
       "composition_id": "es_ups_charging",
       "start_page": 50,
@@ -716,7 +716,7 @@
     },
     {
       "source_ref": "page/p44_charging.rst",
-      "source_sha256": "e5b2e56cbf3b1414d37325eb12faeeec18b7fefefd13108fdcfa6ec82565e8c2",
+      "source_sha256": "13ec04ba3d02f763b5b5ce49a186ef7d2e134db6b631a1cf6bafd5b9f52b7245",
       "language": "es",
       "composition_id": "es_ups_charging",
       "start_page": 50,
@@ -729,7 +729,7 @@
     },
     {
       "source_ref": "page/p45_08_charging_methods.rst",
-      "source_sha256": "32ee465cbe4288dc079926609cb81af1327e30fa812f8701b42ae9145e2c5921",
+      "source_sha256": "001bb54a0f954791ddfaa9289b02e64b7ee946a85f70175eb66ddfe82e4550dd",
       "language": "es",
       "composition_id": "es_charging_methods",
       "start_page": 51,
@@ -737,7 +737,7 @@
     },
     {
       "source_ref": "page/p46_09_storage_and_maintenance.rst",
-      "source_sha256": "cd5fd2e2aac310cdd62761dc09cc12b4a9308a8d6dea677ac5b34ad830b9c66a",
+      "source_sha256": "d99f2d38ae2c1fecb1f8d670dc3c6ca21182538628e221447e4022aa548ac1c1",
       "language": "es",
       "composition_id": "es_storage_troubleshooting",
       "start_page": 53,
@@ -745,7 +745,7 @@
     },
     {
       "source_ref": "page/troubleshooting_es.rst",
-      "source_sha256": "f139f254de6670e32f790937ad5108fb950b13f80549c8a7b45cfddb56b66bc7",
+      "source_sha256": "95f306c2d8bfb270228de504ff599b44550fdaf9bf552a638cbbf6478ccf8206",
       "language": "es",
       "composition_id": "es_storage_troubleshooting",
       "start_page": 53,
@@ -753,7 +753,7 @@
     },
     {
       "source_ref": "page/spec_es.rst",
-      "source_sha256": "d0d359545fc69a80ce88b4856441406164077593b7050382183106c9769f9afb",
+      "source_sha256": "2fc9ddad7a502ee793cdf0158c176dfd57ec5dc0bad544b84c90e1151753158a",
       "language": "es",
       "composition_id": "es_spec",
       "start_page": 54,
@@ -761,7 +761,7 @@
     },
     {
       "source_ref": "page/p49_11_warranty.rst",
-      "source_sha256": "1c854ce1d2b83f2e2b18346763171a7d911365556995893a927ced848aa96b09",
+      "source_sha256": "0f604772dda504910ee4b2140e18b82d9f1d7e62896d1c8a9dd6bafcee4ae5a2",
       "language": "es",
       "composition_id": "es_warranty",
       "start_page": 55,
@@ -769,7 +769,7 @@
     },
     {
       "source_ref": "page/p50_12_app_setup_placeholder.rst",
-      "source_sha256": "c1f19a4e43252c9e8e787060669aa202fa0a3c797376770d908362432706dd52",
+      "source_sha256": "36883964340d5ae41a2adf5a0a8dba29bbc83f8917eb7857b117d58cba8cf73d",
       "language": "es",
       "composition_id": "es_app",
       "start_page": 56,
@@ -777,7 +777,7 @@
     },
     {
       "source_ref": "page/99_back_cover.rst",
-      "source_sha256": "f04b58f1862c117eb794820322b9ff7cabb1d1a015199993b449720b95845a98",
+      "source_sha256": "6587f5767834ec5d2420d5ac066b288447e1696ae8551bafb089c56e2f0ddbe6",
       "language": "cover",
       "composition_id": "back_cover",
       "start_page": 58,

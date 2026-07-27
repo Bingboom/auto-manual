@@ -1771,10 +1771,9 @@ class ExportIdmlTests(unittest.TestCase):
             paragraph_style_ref("HB Safety Sublist"),
             stories["st_safety_en_section2"],
         )
-        self.assertIn(
-            'LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0"',
-            stories["st_safety_en_section2"],
-        )
+        self.assertIn('LeftIndent="3.7"', stories["st_safety_en_section2"])
+        self.assertIn('FirstLineIndent="-6.25"', stories["st_safety_en_section2"])
+        self.assertIn('RightIndent="0"', stories["st_safety_en_section2"])
         self.assertIn(
             'HorizontalScale="98"', stories["st_safety_en_section2"],
         )
@@ -1817,6 +1816,14 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("tf_st_safety_fr_section1_right", spread)
         self.assertNotIn('Self="tf_st_safety_fr_section1" ', spread)
         self.assertEqual(spread.count("<TextFrame "), 6)
+        self.assertIn('HorizontalScale="98.8"', left)
+        self.assertIn('HorizontalScale="98.8"', right)
+        self.assertIn('LeftIndent="7.22"', left)
+        self.assertIn('FirstLineIndent="-6.67"', left)
+        self.assertIn('LeftIndent="5.67"', right)
+        self.assertIn('FirstLineIndent="-6.67"', right)
+        self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Safety List FR"', left)
+        self.assertIn('SpaceAfter="2"', left)
 
     def test_safety_symbols_page_combines_tail_maintenance_and_symbols(self) -> None:
         import json
@@ -1875,6 +1882,10 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("st_safety_symbols_tail_danger", stories)
         self.assertIn(">WARNING<", stories["st_safety_symbols_tail_warning"])
         self.assertIn(
+            'AppliedParagraphStyle="ParagraphStyle/HB Safety Tail Body EN"',
+            stories["st_safety_symbols_tail_warning"],
+        )
+        self.assertIn(
             'BaselineShift="0.68"',
             stories["st_safety_symbols_tail_warning"],
         )
@@ -1932,6 +1943,8 @@ class ExportIdmlTests(unittest.TestCase):
         params["idml_symbols_icon_width"] = ("10", "pt")
         params["idml_symbols_icon_height"] = ("11", "pt")
         params["idml_symbols_icon_col_width"] = ("33", "pt")
+        params["idml_symbols_icon_left_col_width"] = ("33", "pt")
+        params["idml_symbols_icon_right_col_width"] = ("31", "pt")
         params["comp_symbol_signal_col_width"] = ("44", "pt")
         params["idml_symbols_column_gap"] = ("5", "pt")
         w = IdmlWriter(params)
@@ -1955,7 +1968,10 @@ class ExportIdmlTests(unittest.TestCase):
 
         story = dict(w.stories)["st_safety_symbols_token_icon_icons_left"]
         self.assertIn('Anchor="10 -11"', story)
+        self.assertIn('BlendMode="Darken"', story)
         self.assertIn('SingleColumnWidth="33"', story)
+        right_story = dict(w.stories)["st_safety_symbols_token_icon_icons_right"]
+        self.assertIn('SingleColumnWidth="31"', right_story)
         signal_story = dict(w.stories)["st_safety_symbols_token_icon_signals"]
         self.assertIn('SingleColumnWidth="44"', signal_story)
 
@@ -1994,6 +2010,10 @@ class ExportIdmlTests(unittest.TestCase):
             stories["st_safety_symbols_fr_signals"],
         )
         self.assertIn("Icône localisée", stories["st_safety_symbols_fr_icons_left"])
+        self.assertIn(
+            'HorizontalScale="96"',
+            stories["st_safety_symbols_fr_icons_left"],
+        )
 
     def test_safety_symbols_page_uses_template_icon_split(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

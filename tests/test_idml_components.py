@@ -153,7 +153,7 @@ class ComponentRegistryTests(unittest.TestCase):
             (10.0, 11.0, "Bold"),
             styles["HB Operation Row Label"],
         )
-        self.assertEqual((8.0, 8.8, "Bold"), styles["HB Symbol Header"])
+        self.assertEqual((6.5, 7.2, "Bold"), styles["HB Symbol Header"])
         self.assertEqual((5.6, 6.5, "Regular"), styles["HB Symbol Body"])
         self.assertEqual((6.6, 7.4, "Bold"), styles["HB Emphasis Pill"])
 

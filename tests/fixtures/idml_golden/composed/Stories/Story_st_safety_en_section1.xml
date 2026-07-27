@@ -71,13 +71,13 @@
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
 </TextFrame>
 </Group><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
-  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" SpaceAfter="2.07" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>• Read all the instructions before using the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" SpaceAfter="2.07" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>• Do not allow children to play on the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" SpaceAfter="2.07" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>• Stop using the product immediately if it has been physically damaged or modified.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>

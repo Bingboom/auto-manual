@@ -1305,7 +1305,7 @@
 % IDML preface title optical left inset
 \expandafter\def\csname HBidml_preface_title_left_inset\endcsname{6.828pt}
 
-% InDesign safety first-section frame bottom at the subheading edge
+% InDesign safety first-section text-frame bottom behind the subheading
 \expandafter\def\csname HBidml_safety_first_section_bottom\endcsname{263.0pt}
 
 % Base safety first-section column gap
@@ -1347,11 +1347,38 @@
 % InDesign space after safety lead paragraph
 \expandafter\def\csname HBidml_safety_lead_space_after\endcsname{4.2pt}
 
-% InDesign safety-list horizontal metric correction
+% Base InDesign safety-list hanging indent
+\expandafter\def\csname HBidml_safety_list_first_line_indent\endcsname{-6.25pt}
+
+% InDesign English safety-list horizontal metric correction
 \expandafter\def\csname HBidml_safety_list_horizontal_scale\endcsname{0.98}
 
 % InDesign FR and ES safety-list horizontal metric correction
-\expandafter\def\csname HBidml_safety_list_horizontal_scale_dense\endcsname{0.90}
+\expandafter\def\csname HBidml_safety_list_horizontal_scale_dense\endcsname{1.007}
+
+% Base InDesign safety-list leading
+\expandafter\def\csname HBidml_safety_list_leading\endcsname{7.2pt}
+
+% Base InDesign safety-list continuation indent
+\expandafter\def\csname HBidml_safety_list_left_indent\endcsname{3.70pt}
+
+% Base InDesign safety-list item gap
+\expandafter\def\csname HBidml_safety_list_space_after\endcsname{2.07pt}
+
+% Base InDesign right safety-list hanging indent
+\expandafter\def\csname HBidml_safety_right_list_first_line_indent\endcsname{-6.25pt}
+
+% Base InDesign right safety-list continuation indent
+\expandafter\def\csname HBidml_safety_right_list_left_indent\endcsname{3.70pt}
+
+% InDesign safety second-section frame height
+\expandafter\def\csname HBidml_safety_second_section_height\endcsname{209.12pt}
+
+% InDesign safety second-section frame top
+\expandafter\def\csname HBidml_safety_second_section_top\endcsname{281.88pt}
+
+% InDesign safety-tail body weight
+\expandafter\def\csname HBidml_safety_tail_body_font_style\endcsname{Bold}
 
 % InDesign safety-instruction outer frame height
 \expandafter\def\csname HBidml_safety_warning_height\endcsname{31.5pt}
@@ -1396,13 +1423,13 @@
 \expandafter\def\csname HBidml_sublist_left_indent\endcsname{9.58pt}
 
 % IDML Symbols table header leading
-\expandafter\def\csname HBidml_symbol_header_font_leading\endcsname{8.8pt}
+\expandafter\def\csname HBidml_symbol_header_font_leading\endcsname{7.2pt}
 
 % IDML Symbols table header size measured from approved PDF
-\expandafter\def\csname HBidml_symbol_header_font_size\endcsname{8.0pt}
+\expandafter\def\csname HBidml_symbol_header_font_size\endcsname{6.5pt}
 
 % IDML gap between the two symbol tables
-\expandafter\def\csname HBidml_symbols_column_gap\endcsname{5.0pt}
+\expandafter\def\csname HBidml_symbols_column_gap\endcsname{5.8pt}
 
 % IDML English gap after first safety-tail panel
 \expandafter\def\csname HBidml_symbols_first_tail_gap\endcsname{4.4pt}
@@ -1417,19 +1444,28 @@
 \expandafter\def\csname HBidml_symbols_icon_header_height\endcsname{15.0pt}
 
 % IDML symbol icon frame height
-\expandafter\def\csname HBidml_symbols_icon_height\endcsname{21.0pt}
+\expandafter\def\csname HBidml_symbols_icon_height\endcsname{26.0pt}
 
 % IDML Symbols rounded final icon row height
 \expandafter\def\csname HBidml_symbols_icon_last_row_height\endcsname{32.2pt}
 
+% IDML left symbol-grid icon column width
+\expandafter\def\csname HBidml_symbols_icon_left_col_width\endcsname{39.685pt}
+
 % IDML English long disposal-symbol final row height
 \expandafter\def\csname HBidml_symbols_icon_long_last_row_height\endcsname{64.9pt}
+
+% IDML right symbol-grid icon column width
+\expandafter\def\csname HBidml_symbols_icon_right_col_width\endcsname{36.4pt}
 
 % IDML Symbols ordinary icon row fixed height
 \expandafter\def\csname HBidml_symbols_icon_row_height\endcsname{30.7pt}
 
+% IDML trim applied to each symbol-grid table width
+\expandafter\def\csname HBidml_symbols_icon_table_width_trim\endcsname{1.2pt}
+
 % IDML symbol icon frame width
-\expandafter\def\csname HBidml_symbols_icon_width\endcsname{21.0pt}
+\expandafter\def\csname HBidml_symbols_icon_width\endcsname{26.0pt}
 
 % IDML English maintenance body gap before Symbols title
 \expandafter\def\csname HBidml_symbols_maintenance_body_gap\endcsname{0.0pt}
@@ -1619,6 +1655,18 @@
 
 % English operation row label size measured from approved PDF
 \expandafter\def\csname HBlang_en_idml_operation_row_label_font_size\endcsname{10.0pt}
+
+% English safety-list hanging indent
+\expandafter\def\csname HBlang_en_idml_safety_list_first_line_indent\endcsname{-6.25pt}
+
+% English safety-list leading
+\expandafter\def\csname HBlang_en_idml_safety_list_leading\endcsname{7.2pt}
+
+% English safety-list continuation indent
+\expandafter\def\csname HBlang_en_idml_safety_list_left_indent\endcsname{3.70pt}
+
+% English safety-list item gap
+\expandafter\def\csname HBlang_en_idml_safety_list_space_after\endcsname{2.07pt}
 
 % Approved English first safety-tail gap
 \expandafter\def\csname HBlang_en_idml_symbols_first_tail_gap\endcsname{4.4pt}
@@ -1851,17 +1899,44 @@
 % ES preface gap before language badge measured from reference
 \expandafter\def\csname HBlang_es_idml_preface_header_space_before\endcsname{13.69pt}
 
+% ES safety first-section text-frame bottom
+\expandafter\def\csname HBlang_es_idml_safety_first_section_bottom\endcsname{263.0pt}
+
 % ES safety first-section column gap
-\expandafter\def\csname HBlang_es_idml_safety_first_section_column_gap\endcsname{3.0pt}
+\expandafter\def\csname HBlang_es_idml_safety_first_section_column_gap\endcsname{1.38pt}
 
 % ES list items kept in the first safety column
 \expandafter\def\csname HBlang_es_idml_safety_first_section_left_list_items\endcsname{5}
 
 % ES safety first-section left frame top
-\expandafter\def\csname HBlang_es_idml_safety_first_section_left_top\endcsname{85.8pt}
+\expandafter\def\csname HBlang_es_idml_safety_first_section_left_top\endcsname{88.4pt}
 
 % ES safety first-section right frame top
-\expandafter\def\csname HBlang_es_idml_safety_first_section_right_top\endcsname{83.8pt}
+\expandafter\def\csname HBlang_es_idml_safety_first_section_right_top\endcsname{84.02pt}
+
+% Spanish safety-list hanging indent
+\expandafter\def\csname HBlang_es_idml_safety_list_first_line_indent\endcsname{-6.67pt}
+
+% Spanish safety-list horizontal metric correction
+\expandafter\def\csname HBlang_es_idml_safety_list_horizontal_scale_dense\endcsname{1.007}
+
+% Spanish safety-list leading
+\expandafter\def\csname HBlang_es_idml_safety_list_leading\endcsname{6.5pt}
+
+% Spanish safety-list continuation indent
+\expandafter\def\csname HBlang_es_idml_safety_list_left_indent\endcsname{7.22pt}
+
+% Spanish safety-list item gap
+\expandafter\def\csname HBlang_es_idml_safety_list_space_after\endcsname{1.5pt}
+
+% Spanish right-column hanging indent
+\expandafter\def\csname HBlang_es_idml_safety_right_list_first_line_indent\endcsname{-6.67pt}
+
+% Spanish right-column continuation indent
+\expandafter\def\csname HBlang_es_idml_safety_right_list_left_indent\endcsname{5.67pt}
+
+% ES safety second-section frame height
+\expandafter\def\csname HBlang_es_idml_safety_second_section_height\endcsname{209.12pt}
 
 % ES safety-instruction outer frame height
 \expandafter\def\csname HBlang_es_idml_safety_warning_height\endcsname{31.5pt}
@@ -2169,17 +2244,44 @@
 % FR preface gap before language badge measured from reference
 \expandafter\def\csname HBlang_fr_idml_preface_header_space_before\endcsname{11.73pt}
 
+% FR safety first-section text-frame bottom
+\expandafter\def\csname HBlang_fr_idml_safety_first_section_bottom\endcsname{265.0pt}
+
 % FR safety first-section column gap
-\expandafter\def\csname HBlang_fr_idml_safety_first_section_column_gap\endcsname{13.4pt}
+\expandafter\def\csname HBlang_fr_idml_safety_first_section_column_gap\endcsname{12.47pt}
 
 % FR list items kept in the first safety column
 \expandafter\def\csname HBlang_fr_idml_safety_first_section_left_list_items\endcsname{5}
 
 % FR safety first-section left frame top
-\expandafter\def\csname HBlang_fr_idml_safety_first_section_left_top\endcsname{90.5pt}
+\expandafter\def\csname HBlang_fr_idml_safety_first_section_left_top\endcsname{93.05pt}
 
 % FR safety first-section right frame top
-\expandafter\def\csname HBlang_fr_idml_safety_first_section_right_top\endcsname{87.8pt}
+\expandafter\def\csname HBlang_fr_idml_safety_first_section_right_top\endcsname{88.63pt}
+
+% French safety-list hanging indent
+\expandafter\def\csname HBlang_fr_idml_safety_list_first_line_indent\endcsname{-6.67pt}
+
+% French safety-list horizontal metric correction
+\expandafter\def\csname HBlang_fr_idml_safety_list_horizontal_scale_dense\endcsname{0.988}
+
+% French safety-list leading
+\expandafter\def\csname HBlang_fr_idml_safety_list_leading\endcsname{7.0pt}
+
+% French safety-list continuation indent
+\expandafter\def\csname HBlang_fr_idml_safety_list_left_indent\endcsname{7.22pt}
+
+% French safety-list item gap
+\expandafter\def\csname HBlang_fr_idml_safety_list_space_after\endcsname{2.0pt}
+
+% French right-column hanging indent
+\expandafter\def\csname HBlang_fr_idml_safety_right_list_first_line_indent\endcsname{-6.67pt}
+
+% French right-column continuation indent
+\expandafter\def\csname HBlang_fr_idml_safety_right_list_left_indent\endcsname{5.67pt}
+
+% FR safety second-section frame height
+\expandafter\def\csname HBlang_fr_idml_safety_second_section_height\endcsname{221.0pt}
 
 % FR safety-instruction outer frame height
 \expandafter\def\csname HBlang_fr_idml_safety_warning_height\endcsname{31.5pt}
