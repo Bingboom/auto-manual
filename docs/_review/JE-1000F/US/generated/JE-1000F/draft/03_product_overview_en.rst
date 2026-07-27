@@ -50,7 +50,7 @@ FRONT VIEW
 RIGHT SIDE VIEW
 ------------------------------------------
 
-.. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
+.. image:: asset:overview/right_side_ports
    :alt: RIGHT SIDE VIEW
    :width: 420px
 

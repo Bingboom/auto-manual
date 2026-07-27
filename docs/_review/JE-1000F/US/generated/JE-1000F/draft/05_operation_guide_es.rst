@@ -8,7 +8,7 @@ OPERACIONES
 ENCENDIDO/APAGADO
 -----------------
 
-.. image:: renderers/latex/assets/op_main_power.png
+.. image:: asset:operation/main_power
    :alt: Operación de encendido/apagado.
    :width: 360px
 
@@ -28,7 +28,7 @@ ENCENDER/APAGAR SALIDA CA
 
 **Requisito previo:** el producto está encendido.
 
-.. image:: renderers/latex/assets/op_ac_output.png
+.. image:: asset:operation/ac_output
    :alt: Operación de salida de CA.
    :width: 360px
 
@@ -44,7 +44,7 @@ ENCENDER/APAGAR SALIDA CC 12V/USB
 
 **Requisito previo:** el producto está encendido.
 
-.. image:: renderers/latex/assets/op_dc_usb_output.png
+.. image:: asset:operation/dc_usb_output
    :alt: Operación de salida de CC y USB.
    :width: 360px
 
@@ -102,7 +102,7 @@ ENCENDER/APAGAR LUZ LED
 
 La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga presionado el botón de luz LED para apagarla.
 
-.. image:: _assets/templates/word_template/common_assets/operation/led_light.png
+.. image:: asset:operation/led_light
    :alt: Operación de la luz LED.
    :width: 360px
 
