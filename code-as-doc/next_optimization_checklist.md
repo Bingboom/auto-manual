@@ -963,8 +963,48 @@ language-neutral (the LCD-hero precedent).
     candidate encodes `160102000404` (the master's own document number, not a
     URL), while the quarantined frozen reference encodes the older
     `160102000161`.
-  - Done when: the release bundle also includes the InDesign package (INDD +
-    IDML + Links/ + font manifest + parity report; delivery.py reused).
+  - Also done: the release manifest gained an `indesign_package` section
+    (`tools/release_indesign_package.py`, same collector shape) recording the
+    IDML, INDD, InDesign PDF, delivery handoff zip (which already carries
+    `Links/` and the font manifest from `tools/idml/delivery.py`) and both the
+    finalize and parity reports with sha256, plus the preflight numbers and the
+    parity verdict; the release CSV gained six columns. Finalize and parity
+    artifacts now have a canonical home beside the production IDML in
+    `docs/_build/<model>/<region>[/<lang>]/idml/`, documented in the ops guide.
+    `publish_meta.json` gained `handoff_package_path`: the queue already copied
+    the handoff zip into the release version directory, but nothing pointed at
+    it. Every part is optional — InDesign finalize and parity run on an
+    operator Mac, not in CI, so an unattended publish records what exists and
+    marks the rest absent instead of failing.
+  - Verified against a real build directory (`auto-manual-codex`): the collector
+    picks up the 741 KB production IDML and the 3.2 MB `1.7_handoff.zip`, hashes
+    both, and reports `complete=false` for the absent INDD and preflight.
+  - Done when: an operator finalize run for JE-1000F/US is captured end to end
+    (`complete=true` with `parity.accepted=true`) — currently blocked, see the
+    reference-layout drift note below.
+- [ ] Open finding (2026-07-27): production IDML cannot be built from a clean
+  checkout — **operator decision required, do not self-resolve**
+  - `python build.py idml --idml-mode production --model JE-1000F --region US`
+    fails the same-source contract with
+    `source_identity.snapshot_sha256 does not match the current manual IR;
+    source_identity.layout_params_sha256 does not match the current manual IR`.
+  - The layout half is repo-only and reproducible: the committed
+    `data/layout_params.csv` (checked both as the working-tree file and as the
+    git blob, so this is not line-ending noise) hashes through
+    `layout_tokens_sha256` to `b174d541…`, while
+    `docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json`
+    pins `046f6f5a…`. Both files were last changed in the *same* commit (#720),
+    so they were expected to agree.
+  - The snapshot half is not reproducible by design: `snapshot_sha256` binds the
+    contract to one phase2 snapshot, and `data/phase2/` is untracked apart from
+    `page_registry.csv`, so no clean checkout can reconstruct it without the
+    operator's local snapshot.
+  - No CI job builds production IDML, so neither half is caught automatically.
+  - `tools/reference_layout_rebind.py --plan … --manual-ir … --write` is the
+    intended repair, but the contract carries an `approval` block; re-pinning an
+    approved reference layout is an approval decision, not a maintenance fix.
+  - JP is blocked separately and for a different reason:
+    `page-0002-01_meaning_of_symbols: skipped_raw=1`.
 
 ## 6i. Milestone K: Enterprise Ops Hardening + Platform Consolidation
 

@@ -345,6 +345,7 @@ def process_queue_record_group(
                 word_output_path=word_output_path,
                 pdf_output_path=pdf_output_path or artifact_output_path,
                 md_output_path=md_output_path,
+                handoff_package_path=artifact_output_path,
                 html_dir=latest_html_dir,
                 document_link_url=document_link_url,
                 queue_record_ids=tuple(group_record.record_id for group_record in group),

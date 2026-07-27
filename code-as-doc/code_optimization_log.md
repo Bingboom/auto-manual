@@ -882,3 +882,18 @@ Why it mattered:
 
 - A shipped PDF can now be traced to the bytes of every illustration inside it and to the registry state those bytes were approved under, instead of that provenance living only in a bundle sidecar that no release record points at.
 - Two decisions came from checking the real bundle rather than the plan. The gate does **not** block `legacy-path` images: the JE-1000F US bundle still consumes 50 of them from data-generated pages, so the plan's literal wording would have blocked every publish; the count is recorded in the manifest so the debt is visible and can be ratcheted down. And the back-cover QR was decoded independently instead of trusted from its 备注 — the approved AI candidate encodes `160102000404`, the master's own document number rather than a URL, while the quarantined frozen reference encodes the older `160102000161`. That is why the cross-check asserts a declared payload rather than URL liveness.
+
+## 56. 2026-07-27: InDesign Package in the Release Record (Milestone J P3)
+
+What changed:
+
+- `tools/release_indesign_package.py` records the print deliverable into the release manifest as an `indesign_package` section: the production IDML, the INDD, the InDesign PDF, the delivery handoff zip (which already carries `Links/` and the font manifest from `tools/idml/delivery.py`), and both the finalize and parity reports — each with sha256 — plus the preflight numbers (pages, overset, missing fonts, bad links, PDF/X verdict, InDesign build) and the parity verdict. Six flattened columns join the release CSV.
+- Finalize and parity artifacts gained a canonical home beside the production IDML in `docs/_build/<model>/<region>[/<lang>]/idml/`. They previously had none: `indesign_finalize.py` writes wherever the operator points it, and the only documented example wrote to `/tmp`.
+- `publish_meta.json` gained `handoff_package_path`. The queue publish worker already copied the handoff zip into the release version directory, but no release record named it — the print deliverable was being staged and then forgotten.
+
+Why it mattered:
+
+- A release record that names only the PDF cannot answer "what do we send the printer". Now it names the InDesign document, the IDML it came from, the packaged links and fonts, and whether that document passed preflight — all hash-verifiable.
+- Optionality is the design, not a shortcut: InDesign finalize and the parity check run on an operator's Mac and never in CI, so a collector that demanded them would fail every unattended publish. The record states what was found and what was not, and `complete` is true only when the full set is present — the same shape `collect_asset_lineage` established.
+- Verified against a real build directory rather than fixtures alone: the collector picks up a 741 KB production IDML and a 3.2 MB `1.7_handoff.zip`, hashes both, and correctly reports `complete=false` for the absent INDD and preflight.
+- The work surfaced a blocker that is now registered rather than papered over: production IDML cannot be built from a clean checkout, because the committed `data/layout_params.csv` and the approved reference-layout contract disagree (`b174d541…` vs the pinned `046f6f5a…`) even though both were last changed in the same commit, and because `snapshot_sha256` binds the contract to an untracked phase2 snapshot. No CI job builds production IDML, so neither half was caught. The repair tool exists (`reference_layout_rebind.py`), but re-pinning a contract that carries an `approval` block is an operator decision.

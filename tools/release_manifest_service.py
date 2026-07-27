@@ -19,6 +19,8 @@ from tools.release_contract import release_manifests_dir_for_target
 from tools.review_bundle import resolve_docs_dir
 from tools.review_support import review_dir_for_target
 from tools.release_asset_lineage import collect_asset_lineage
+from tools.release_indesign_package import collect_indesign_package
+from tools.release_indesign_package import csv_columns as indesign_csv_columns
 from tools.release_asset_lineage import csv_columns as asset_csv_columns
 from tools.toolchain_provenance import collect_toolchain
 from tools.utils.path_utils import docs_build_dir_of
@@ -66,6 +68,7 @@ def build_release_manifest(
     releases_root: Path | None = None,
     toolchain: dict[str, object] | None = None,
     assets: dict[str, object] | None = None,
+    indesign_package: dict[str, object] | None = None,
 ) -> tuple[Path, Path]:
     cfg = load_config(config_path)
     docs_dir = resolve_docs_dir(cfg)
@@ -157,11 +160,21 @@ def build_release_manifest(
         else collect_asset_lineage(bundle_dir=runtime_bundle_dir)
     )
 
+    # InDesign package (Milestone J P3): the print deliverable is the INDD,
+    # the IDML, its Links and fonts, and the preflight verdict — recorded here
+    # so a release names the package instead of only the PDF. Every part is
+    # optional: finalize and parity run on an operator Mac, not in CI.
+    indesign_record = (
+        indesign_package if indesign_package is not None
+        else collect_indesign_package(idml_dir=build_root / "idml")
+    )
+
     manifest = {
         "git_sha": git_sha,
         "built_at": built_at_value.isoformat(),
         "toolchain": toolchain_record,
         "assets": asset_record,
+        "indesign_package": indesign_record,
         "config_path": repo_relative(config_path, repo_root=repo_root),
         "model": model,
         "region": region,
@@ -187,6 +200,7 @@ def build_release_manifest(
         "toolchain_xelatex": str(toolchain_record.get("xelatex") or ""),
         "toolchain_pandoc": str(toolchain_record.get("pandoc") or ""),
         **asset_csv_columns(asset_record),
+        **indesign_csv_columns(indesign_record),
         "config_path": manifest["config_path"] or "",
         "model": model,
         "region": region,
