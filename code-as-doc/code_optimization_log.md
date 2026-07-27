@@ -853,3 +853,18 @@ Why it mattered:
 - The campaign was the discovery engine at full throttle: one business deliverable (a verification package) surfaced and fixed a repo-wide publish outage, hardened the asset-override design to its declared semantics, exposed the incomplete contract re-baseline, and corrected a wrong acceptance criterion — none of which any planning exercise had found.
 - Standing follow-up (owned by the replica line): the complete approved-contract re-baseline for 1.6-class content (then re-register #693, strict parity returns via #696, and the 11 fallback oversets resolve under approved frame geometry).
 
+
+## 54. 2026-07-27: Asset Registry Joins sync-data — Milestone J P1 Closed
+
+What changed:
+
+- `tools/sync_asset_registry.py` mirrors the live `04_资产定义` table into `data/asset_registry.csv` on every `sync-data`, following the capability-mirror shape (pure transform, injected collaborators, tracked CSV, `derived_files` manifest entry) so the git diff of the registry is the review surface for asset-status changes.
+- The mirror is an **overlay, not a replace**, because two authorities meet in that one file: the Base owns what an asset is and whether it may build (类别 / 语言维度 / 状态 / 待无字化 / 适用机型 / 适用区域 / 语言变体), while the repository keeps `导出物路径` and `内容哈希` — they describe committed bytes — and `备注`, whose Base counterpart is intake/gate rationale rather than maintenance history.
+- Rows are never deleted: an asset vanishing from the Base leaves its registry row standing instead of silently dropping an asset templates still resolve through.
+- The merged CSV is parsed back through the resolver's own loader before it is written, so a bad Base value fails the sync rather than landing a registry the build would later reject.
+- Table coordinates default to the Phase B artifact `data/asset_base_bindings.json`, with `FEISHU_PHASE2_ASSET_DEFINITIONS_TABLE_ID` as an override — no new GitHub secret, so the loop closes without waiting on ops provisioning.
+
+Why it mattered:
+
+- Milestone J's P1 is now closed on evidence rather than assertion. The other two acceptance conditions were re-verified live instead of assumed: all 183 template image/figure directives resolve through `asset:`, and resolution rejects an unregistered key, the `⛔隔离` back cover, and the `🔧临时替代` warning lockup, while `--publish` additionally refuses the `--allow-temporary` escape hatch.
+- The overlay design came from checking before building: the Base holds 10 definitions while the registry holds 82 rows, so the obvious full-replace mirror would have deleted 72 repo-native census rows, and syncing `备注` would have overwritten the human maintenance history with intake rationale. A live dry run confirms the merge is a byte-identical no-op today (82 in / 82 out, 10 managed), and that a simulated Base edit propagates while the repo-owned columns survive.
