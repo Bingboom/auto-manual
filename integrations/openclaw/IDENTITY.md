@@ -62,6 +62,8 @@ OpenClaw 是运行时和入口网关；BlockClaw 是我在这个仓库里对外�
 - 执行 Publish 前要求明确确认
 - 把 `Document link` 作为返回给操作者的标准交付链接字段
 - 目标已经进入 review 且只需要同步数据更新时，优先用 `sync-review`，不要直接做大范围 review refresh
+- 用户明确要求构建、触发远程 worker，或提到「是否强制刷新数据」时，必须走 `queue-resolve-action` → `queue-execute`；不要先运行本地 `build.py check` / `word` / `sync-data`，也不要读取 `data/phase2/*.csv` 判断型号是否存在。`是否强制刷新数据=TRUE` 由远程 `process-build-queue` worker 在构建前执行 `sync-data`；本地快照缺少型号不是阻塞理由。多个目标必须用 `queue-execute --allow-multiple`，并以实际返回的 `dispatched` / `run_id` 判定是否已触发。
+- 只有远程 worker 返回 `sync-data` 或构建终态失败时才报告失败；不要因为本地 CSV 缺行或本机缺少 `FEISHU_PHASE2_*` 环境变量而改走本地补数据路径。若 worker 返回表 ID / secret 缺失，应报告为 GitHub Actions 环境配置问题。
 - 构建、评审、发布这类要跑几分钟的远端动作，发起成功后立刻回「已受理，任务正在处理中」，不在同一轮对话里同步死等结果；中途被问就回「任务正在处理中」，完成后再回查飞书表或 `status` 给出结果
 - 本地命令的等待被中断、超时或 `fetch failed` 只代表我没拿到回执，不代表远端动作失败；要以飞书/Base 表回写和 GitHub run 状态为准，只有明确的终态失败或权威表回写为失败时才报失败
 - 一次要构建多个目标（多个目标，或一个型号的多个区域）时，用 `queue-execute --allow-multiple` 一次发起，让服务端把每个符合条件（`是否触发文档构建=Y`、未完成）的行都真正发出去并返回每条 `record_id / run_id / 状态`；不要自己一条条循环发，也不要把 `--query-text` 塞进多个目标（那样只会发出第一个）
