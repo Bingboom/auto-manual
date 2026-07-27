@@ -7,7 +7,7 @@
       \HBTipBlock{TIP}{The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.}
       \HBPageBreak
 
-.. only:: latex and region_eu
+.. only:: latex and (region_eu or region_au)
 
    .. raw:: latex
 
@@ -41,7 +41,7 @@
 
           Documents
 
-.. only:: not latex and region_eu
+.. only:: not latex and (region_eu or region_au)
 
    .. raw:: html
 

@@ -482,6 +482,30 @@ TROUBLESHOOTING
         self.assertIn("Keep html block.", html)
         self.assertNotIn("Drop model mismatch.", html)
 
+    def test_au_whats_in_the_box_should_render_the_eu_layout(self) -> None:
+        page = (
+            Path(__file__).resolve().parents[1]
+            / "docs"
+            / "templates"
+            / "page_shared"
+            / "en"
+            / "02_whats_in_the_box.rst"
+        )
+        rst = page.read_text(encoding="utf-8")
+
+        with tempfile.TemporaryDirectory() as td:
+            html = _convert_rst_fragment_to_html(
+                rst,
+                page,
+                Path(td),
+                active_tags=_build_word_only_tags(model="JE-1000H", region="AU", lang="en"),
+            )
+
+        self.assertIn("WHAT'S IN THE BOX", html)
+        self.assertIn("AC Charging Cable", html)
+        self.assertIn("User Manual", html)
+        self.assertIn("The car charging cable is not included", html)
+
     def test_convert_rst_fragment_to_html_should_keep_heading_after_only_block(self) -> None:
         rst = """
 WARRANTY
