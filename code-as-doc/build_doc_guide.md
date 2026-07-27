@@ -291,7 +291,7 @@ Pass target differences through:
 Mirror repository sync rule:
 
 - [`../.github/workflows/sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) runs only in `Bingboom/auto-manual` on `main` pushes or manual dispatches from `main`
-- the workflow copies the source tree into `Bingboom/Hello-Docs` and commits the content change there; it does not copy repository Secrets or Variables
+- the workflow imports the exact source Git tree into `Bingboom/Hello-Docs` and creates a mirror commit from that tree, so checkout attributes cannot rewrite blobs such as mixed-line-ending CSV files; it does not copy repository Secrets or Variables
 - configure `HELLO_DOCS_SYNC_TOKEN` in the source repo with write access to `Bingboom/Hello-Docs` contents and workflows, because the mirrored tree includes `.github/workflows/**`
 - keep code changes in `Bingboom/auto-manual`; keep the alternate Feishu Base IDs, Feishu app credentials, OpenClaw credentials, and queue/runtime toggles as GitHub Secrets / Variables in `Bingboom/Hello-Docs`
 - set the mirror repo variable `FEISHU_BUILD_QUEUE_PAUSED=true` until the alternate Feishu credentials and table/view bindings are present; Feishu runtime workflows such as `feishu-build-queue.yml`, `feishu-draft-build-queue.yml`, `feishu-start-review.yml`, and `cred-health-check.yml` skip only in `Bingboom/Hello-Docs` while this mirror variable is true, so a same-named variable in `Bingboom/auto-manual` does not change the source repo behavior
