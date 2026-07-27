@@ -187,6 +187,44 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
             writer.prose_story_options[0],
         )
 
+    def test_operation_chain_uses_only_its_language_specific_bottom_override(
+        self,
+    ) -> None:
+        for language, expected in (("en", 18.0), ("fr", 18.0), ("es", 46.0)):
+            with self.subTest(language=language):
+                writer = _RecordingWriter()
+                writer.params["comp_operation_page_extra_height"] = (
+                    "18", "pt",
+                )
+                writer.params["lang_es_comp_operation_page_extra_height"] = (
+                    "46", "pt",
+                )
+                title = f"05_operation_guide_{language}"
+                emitter = ReferenceStoryEmitter(
+                    writer,
+                    _RecordingToc(),
+                    ROOT,
+                    {
+                        "plan_source": "approved-reference",
+                        "pages": [{
+                            "source_path": f"page/{title}.rst",
+                            "language": language,
+                        }],
+                    },
+                )
+
+                emitter.emit(
+                    f"st_{title}",
+                    title,
+                    [("h1", "Localized operation heading")],
+                    page_cursor=7,
+                )
+
+                self.assertEqual(
+                    expected,
+                    writer.spread_chain_options[0]["bottom_extra"],
+                )
+
     def test_unapproved_operation_chain_keeps_the_standard_bottom(self) -> None:
         writer = _RecordingWriter()
         toc = _RecordingToc()

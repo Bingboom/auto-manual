@@ -115,10 +115,15 @@ class ReferenceStoryEmitter:
             # extra frame depth is invisible, but keeps that anchored panel
             # inside the linked story instead of turning the final paragraph
             # into native InDesign overset.
-            bottom_extra = param_pt(
+            shared_operation_extra = param_pt(
                 writer.params,
                 "comp_operation_page_extra_height",
                 18.0,
+            )
+            bottom_extra = param_pt(
+                writer.params,
+                f"lang_{operation_lang}_comp_operation_page_extra_height",
+                shared_operation_extra,
             )
         elif is_storage_troubleshooting:
             # The governed troubleshooting panel reaches the reference's

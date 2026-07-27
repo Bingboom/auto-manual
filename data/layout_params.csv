@@ -220,11 +220,12 @@ lang_en_idml_operation_first_h2_space_before,7.5,pt,English first operation subs
 lang_fr_idml_operation_first_h2_space_before,9.8,pt,French first operation subsection offset
 lang_es_idml_operation_first_h2_space_before,8.5,pt,Spanish first operation subsection offset
 idml_operation_inter_section_space_after,48.2,pt,Base gap from first operation explanation to second subsection
+comp_operation_page_extra_height,18,pt,Invisible approved operation final-frame depth allowance
 lang_en_idml_operation_inter_section_space_after,48.2,pt,English operation inter-section rhythm
 lang_fr_idml_operation_inter_section_space_after,37.6,pt,French operation inter-section rhythm
 lang_es_idml_operation_inter_section_space_after,39.1,pt,Spanish operation inter-section rhythm
 lang_fr_idml_key_visual_raise,16.94,pt,French Key heading and panel visual raise after operation rhythm compensation
-lang_es_idml_key_visual_raise,4.18,pt,Spanish Key heading and panel visual raise after operation rhythm compensation
+lang_es_idml_key_visual_raise,12.00,pt,Spanish Key heading and panel visual raise after operation rhythm compensation
 ,,,
 ,,,------ IDML UPS + CHARGING EDITABLE COMPOSITION ------
 idml_ups_page_top_offset,13.81,pt,Default UPS composition host-frame top offset
@@ -876,6 +877,7 @@ lang_es_type_spec_value_font_size,5.9,pt,ES: tighter spec value font size
 lang_es_type_spec_value_font_leading,6.1,pt,ES: tighter spec value leading
 lang_es_type_spec_note_font_size,5.6,pt,ES: tighter note font size
 lang_es_type_spec_note_font_leading,6.3,pt,ES: tighter note leading
+lang_es_comp_operation_page_extra_height,46,pt,ES: deeper final operation story frame for editable Key panel
 lang_es_idml_key_panel_height,166.70,pt,ES: approved editable Key-combinations panel height
 lang_es_idml_key_panel_left_indent,-2.83,pt,ES: approved editable Key-combinations host-line offset
 lang_es_idml_key_panel_space_before,4.14,pt,ES: approved editable Key-combinations leading gap
