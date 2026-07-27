@@ -173,6 +173,14 @@ class ProductOverviewPageTests(unittest.TestCase):
             ("total_connector", ((213.902, 213.103), (213.902, 260.327))),
             _LEADER_PATHS[-1],
         )
+        self.assertEqual(
+            (31.5, 106.22, 108.0, 14.0, "LeftAlign"),
+            _FRONT_RECTS[0],
+        )
+        self.assertEqual(
+            (274.0, 381.70, 66.099, 28.0, "RightAlign"),
+            _RIGHT_RECTS[-1],
+        )
 
 
 if __name__ == "__main__":

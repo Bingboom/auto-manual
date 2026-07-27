@@ -10,6 +10,26 @@ from tools.idml.lcd_reference_profile import (
 
 
 class LcdReferenceProfileTests(unittest.TestCase):
+    def test_approved_je1000f_us_profile_keeps_compact_icons_and_inbox_art(self) -> None:
+        import json
+        from pathlib import Path
+
+        root = Path(__file__).resolve().parents[1]
+        contract = json.loads((
+            root
+            / "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json"
+        ).read_text(encoding="utf-8"))
+        editable = contract["idml_contract"]["editable_components"]
+
+        self.assertEqual(
+            {"en": 13.0, "fr": 13.0, "es": 13.0},
+            editable["lcd_icon_table"]["icon_size_pt_by_language"],
+        )
+        self.assertEqual(
+            [72.0, 40.0, 38.0],
+            editable["inbox_cards"]["image_width_pt_by_language"]["en"],
+        )
+
     def test_validator_accepts_language_governed_icon_size(self) -> None:
         profile = {
             "icon_size_pt_by_language": {"en": 14.2, "fr": 14.2},

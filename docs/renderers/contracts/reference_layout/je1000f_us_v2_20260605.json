@@ -29,7 +29,7 @@
     "manual_content_sha256": "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
     "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
     "style_contract_sha256": "c7d31f22726d97bd04e82fd6fc59e5510bdaac7b0d37b4b86a9e6f8df3aec3b6",
-    "layout_params_sha256": "9c651d44e28aaa69303eb8beb693dc41de3119f02fb3974cee06ca7e249cd496"
+    "layout_params_sha256": "2d48d891e7b47bf1ccb2c18d7857396d4a284832282b3b073a748de696b8bf7b"
   },
   "approval": {
     "status": "approved",
@@ -92,9 +92,9 @@
       },
       "lcd_icon_table": {
         "icon_size_pt_by_language": {
-          "en": 14.2,
-          "fr": 14.2,
-          "es": 14.2
+          "en": 13.0,
+          "fr": 13.0,
+          "es": 13.0
         },
         "row_presentation": [
           {

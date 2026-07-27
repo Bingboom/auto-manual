@@ -92,20 +92,34 @@ def layout_tokens(
     body_w: float,
     *,
     segment_index: int = 0,
+    lang: str = "en",
 ) -> tuple[tuple[float, ...], float, float]:
     """Resolve segment-aware LCD column, icon, and cell-padding tokens."""
     prefix = "idml_lcd_first" if segment_index == 0 else "idml_lcd_continuation"
+    language = _language(lang)
     no_w = param_pt(
         writer.params,
-        f"{prefix}_no_col_width",
-        param_pt(writer.params, "comp_lcd_no_col_width", body_w * 0.08),
+        f"lang_{language}_{prefix}_no_col_width",
+        param_pt(
+            writer.params,
+            f"{prefix}_no_col_width",
+            param_pt(writer.params, "comp_lcd_no_col_width", body_w * 0.08),
+        ),
     )
     icon_w = param_pt(
         writer.params,
-        f"{prefix}_icon_col_width",
-        param_pt(writer.params, "comp_lcd_icon_col_width", body_w * 0.12),
+        f"lang_{language}_{prefix}_icon_col_width",
+        param_pt(
+            writer.params,
+            f"{prefix}_icon_col_width",
+            param_pt(writer.params, "comp_lcd_icon_col_width", body_w * 0.12),
+        ),
     )
-    label_w = param_pt(writer.params, f"{prefix}_label_col_width", 0.0)
+    label_w = param_pt(
+        writer.params,
+        f"lang_{language}_{prefix}_label_col_width",
+        param_pt(writer.params, f"{prefix}_label_col_width", 0.0),
+    )
     if label_w <= 0:
         raw_label_ratio = writer.params.get(
             "comp_lcd_label_col_width", ("0.24", "ratio")
@@ -138,6 +152,10 @@ def typed_paragraph(writer, style: str, text: str,
         leading = param_pt(writer.params, leading_key or "", 5.8)
     font_style = ' FontStyle="Bold"' if bold else ""
     paragraph = writer._psr(style, text, terminal=True).replace(
+        "<ParagraphStyleRange ",
+        '<ParagraphStyleRange Hyphenation="false" ',
+        1,
+    ).replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
         f'PointSize="{point_size:g}" Leading="{leading:g}"{font_style}', 1)
