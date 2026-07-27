@@ -185,13 +185,15 @@ def add_back_cover_page(
     company_sid = writer._add_story_parts(
         f"{sid}_company", "Back cover company",
         [sized_psr("HB Title L2", copy["company"], 12.0, 14.5,
-                   bold=True, terminal=False),
-         sized_psr(
-             "HB Body",
-             str(profile.get("display_address") or copy["address"]),
-             8.0,
-             10.0,
-         )])
+                   bold=True)])
+    address_sid = writer._add_story_parts(
+        f"{sid}_address", "Back cover address",
+        [sized_psr(
+            "HB Body",
+            str(profile.get("display_address") or copy["address"]),
+            8.0,
+            10.0,
+        )])
     phone_match = re.fullmatch(r"\s*(.*?)\s*(\(US\))\s*", copy["phone"])
     phone_number = phone_match.group(1) if phone_match else copy["phone"]
     phone_suffix = str(
@@ -225,7 +227,15 @@ def add_back_cover_page(
             corner_radius=float(profile.get("bar_corner_radius", 5.5)),
         ),
         writer._frame_xml(f"tf_{sid}_company", company_sid,
-                          *writer._page_rect(body_x, company_y, body_w, 30.0),
+                          *writer._page_rect(body_x, company_y, body_w, 16.0),
+                          inset=(0, 0, 0, 0)),
+        writer._frame_xml(f"tf_{sid}_address", address_sid,
+                          *writer._page_rect(
+                              body_x,
+                              float(profile.get("address_y", company_y + 15.7)),
+                              body_w,
+                              12.0,
+                          ),
                           inset=(0, 0, 0, 0)),
         writer._frame_xml(f"tf_{sid}_phone", phone_sid,
                           *writer._page_rect(
@@ -348,7 +358,23 @@ def add_back_cover_page(
         qr_x = float(profile.get("qr_x", bar_x + bar_w + 5.0))
         qr_y = float(profile.get("qr_y", bar_y))
         qr_size = float(profile.get("qr_size", bar_h))
-        x1, y1, x2, y2 = writer._page_rect(qr_x, qr_y, qr_size, qr_size)
+        qr_art_size = float(profile.get("qr_art_size", qr_size))
+        if qr_art_size <= 0 or qr_art_size > qr_size:
+            raise ValueError("back-cover QR art size must be within its outer frame")
+        frames.append(_po.page_rectangle_xml(
+            writer,
+            f"bg_{sid}_qr",
+            (qr_x, qr_y, qr_size, qr_size),
+            fill="Color/Paper",
+            stroke_color="Color/HB Line K40",
+            stroke_weight=float(profile.get("qr_stroke_weight", 0.35)),
+            corner_radius=float(profile.get("qr_corner_radius", 5.5)),
+        ))
+        qr_art_x = qr_x + (qr_size - qr_art_size) / 2.0
+        qr_art_y = qr_y + (qr_size - qr_art_size) / 2.0
+        x1, y1, x2, y2 = writer._page_rect(
+            qr_art_x, qr_art_y, qr_art_size, qr_art_size,
+        )
         frames.append(
             f'  <Rectangle Self="rc_{sid}_qr" ContentType="GraphicType" '
             'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
