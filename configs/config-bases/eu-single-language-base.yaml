@@ -68,6 +68,11 @@ sync:
         view_id_env: FEISHU_TRANSLATION_MEMORY_VIEW_ID
     model_capabilities:
       table_id_env: FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID
+    asset_registry:
+      # Table coordinates default to data/asset_base_bindings.json; set
+      # this env only for a tenant whose asset tables live elsewhere.
+      table_id_env: FEISHU_PHASE2_ASSET_DEFINITIONS_TABLE_ID
+      view_id_env: FEISHU_PHASE2_ASSET_DEFINITIONS_VIEW_ID
     document_link:
       table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
       view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID

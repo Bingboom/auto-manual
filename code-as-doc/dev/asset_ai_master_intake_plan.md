@@ -102,8 +102,10 @@ PDF 和 IDML 从同一解析结果消费，不允许各渲染器自行猜路径�
 
 当前状态：prepared bundle 的 HTML/Word/PDF/Markdown 核心已经接入 post-review
 finalizer，并输出 `asset_usage_manifest.json`、`asset_registry_snapshot.csv` 和
-`bundle_sha256`。存量模板尚未批量迁移到 `asset:`；IDML 仍需显式收口到 bundle root，
-不能提前宣称已完成统一消费。
+`bundle_sha256`。存量模板已批量迁移，183 条 image/figure 指令全部走 `asset:`；
+注册表镜像已并入 `sync-data`（[`tools/sync_asset_registry.py`](../../tools/sync_asset_registry.py)，
+叠加式：Base 管构建事实，仓库留导出物路径/哈希与维护备注，且不删行）。
+IDML 仍需显式收口到 bundle root，不能提前宣称已完成统一消费。
 
 ### Phase D：发布血缘
 

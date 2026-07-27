@@ -900,17 +900,30 @@ language-neutral (the LCD-hero precedent).
     **63 成品 / 3 临时替代 / 4 缺失 / 1 隔离** (the missing list IS the
     design-side request list); repo mirror `data/asset_registry.csv`;
     naming contract `<asset_key>[-<lang>].{pdf,png}`; ops guide §4.9.
-- [ ] PR J1: Asset resolver + publish gate (P1)
-  - Status: `in progress` — `build.py asset-check` validates registry exports,
-    and final bundle assembly now resolves semantic `asset:` references after
-    review overlay with target/status gates, frozen usage/registry sidecars,
-    review round-trip provenance, and legacy-path accounting. Current templates
-    are not yet bulk-migrated, and the registry mirror is not yet synced from
-    the new Base tables.
-  - Done when: current templates resolve assets through the registry (missing
-    asset → check error instead of silent placeholder); semantic bundle
-    consumption always refuses `🔧临时替代`, `❌缺失`, and `⛔隔离` rows;
-    registry mirror joins sync-data (the capability-gate integration pattern).
+- [x] PR J1: Asset resolver + publish gate (P1; done 2026-07-27)
+  - Status: `done` — `build.py asset-check` validates registry exports, final
+    bundle assembly resolves semantic `asset:` references after review overlay
+    with target/status gates, and all 183 template image/figure directives now
+    resolve through `asset:`. Resolution refuses every non-`✅成品` row
+    (verified live: an unregistered key, the `⛔隔离` back cover, and the
+    `🔧临时替代` warning lockup are all rejected), and `--publish` additionally
+    refuses the `--allow-temporary` escape hatch.
+  - The registry mirror joined `sync-data` via `tools/sync_asset_registry.py`
+    (the capability-mirror pattern: pure transform + injected deps + tracked
+    CSV + `derived_files` manifest entry). It is an **overlay, not a replace**:
+    the Feishu `04_资产定义` table owns what an asset is and whether it may
+    build (类别 / 语言维度 / 状态 / 待无字化 / 适用机型 / 适用区域 / 语言变体),
+    while the repo keeps `导出物路径` and `内容哈希` (they describe committed
+    bytes) plus `备注` (maintenance history; the Base's own notes are intake
+    rationale, a different record). Rows are never deleted — a vanished Base
+    row must not drop a registry row templates still resolve through — and the
+    merged CSV is parsed back through the resolver's own loader before it is
+    written, so bad Base data fails the sync instead of landing a registry the
+    build would reject. Table coordinates come from the frozen
+    `data/asset_base_bindings.json`, so no new GitHub secret is required.
+    Live dry run against the Base: 10 managed rows, 82 in / 82 out,
+    byte-identical, and a simulated Base edit propagates while the repo-owned
+    columns survive.
 - [ ] PR J2: .ai sources into the pipeline (P2)
   - Status: `in progress` — deterministic `asset-intake` now freezes and splits
     the JE-1000F US PDF-compatible `.ai` master into verified archive/previews,
