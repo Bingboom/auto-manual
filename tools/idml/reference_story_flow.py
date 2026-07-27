@@ -20,6 +20,19 @@ from .prose_flow import (
 )
 
 
+def storage_first_top_offset(
+    params: dict[str, tuple[str, str]], language: str | None,
+) -> float:
+    """Return the approved car-notice continuation offset on storage pages."""
+    if language not in {"en", "fr", "es"}:
+        return 0.0
+    return param_pt(
+        params,
+        f"lang_{language}_idml_storage_page_top_offset",
+        param_pt(params, "idml_storage_page_top_offset", 0.0),
+    )
+
+
 @dataclass
 class ReferenceStoryEmitter:
     writer: object
@@ -189,6 +202,8 @@ class ReferenceStoryEmitter:
                 if is_ups_charging
                 else 15.06
                 if is_app
+                else storage_first_top_offset(writer.params, composition_lang)
+                if is_storage_troubleshooting
                 else (
                     master_offsets.get(first_h1, 13.81)
                     if first_kind == "h1" else 0.0

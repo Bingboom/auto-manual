@@ -52,6 +52,16 @@ def _ctx():
 
 
 class ComponentRegistryTests(unittest.TestCase):
+    def test_troubleshooting_optical_baselines_are_locale_and_row_scoped(self) -> None:
+        from tools.idml.components.prose_table import troubleshooting_baseline_shift
+
+        self.assertAlmostEqual(troubleshooting_baseline_shift("en", 7, 0), -10.99)
+        self.assertAlmostEqual(troubleshooting_baseline_shift("fr", 7, 0), -15.98)
+        self.assertAlmostEqual(troubleshooting_baseline_shift("es", 8, 0), -7.88)
+        self.assertAlmostEqual(troubleshooting_baseline_shift("en", 7, 1), 5.28)
+        self.assertAlmostEqual(troubleshooting_baseline_shift("fr", 8, 1), 2.98)
+        self.assertEqual(troubleshooting_baseline_shift("en", 5, 1), 0.0)
+
     def test_every_extractor_kind_has_a_renderer(self) -> None:
         from tools.idml.components import REGISTRY
         from tools.idml_rst_extract import EMITTED_COMPONENT_KINDS

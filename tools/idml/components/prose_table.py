@@ -9,7 +9,7 @@ from dataclasses import dataclass
 import math
 import re
 
-from ..character_metrics import with_character_metrics
+from ..character_metrics import with_character_baseline_shift, with_character_metrics
 from ..params import component_param_pt, param_pt
 from ..primitives import (
     cell,
@@ -70,8 +70,8 @@ class TroubleshootingTableStyle:
     row_minima: tuple[float, ...]
     steps_pad_tb: float
     outer_radius: float
-    panel_min_height: float = 240.0
-    import_safety: float = 4.0
+    panel_min_height: float = 237.79
+    import_safety: float = 0.0
     glyph_width_ratio: float = 0.50
     left_optical_width: float = 4.0
     inner_rule: float = 0.25
@@ -181,6 +181,41 @@ _TROUBLESHOOTING_LOCALE_CALIBRATIONS = {
         right_line_baseline=(1, 1, 1, 1, 1, 1, 2, 9, 5, 1, 2, 1),
     ),
 }
+
+_TROUBLESHOOTING_CODE_BASELINE_SHIFT = {
+    "en": (
+        0.54, 0.54, 0.54, 0.54, 0.54, -0.46,
+        -10.99, -6.57, -1.61, -2.12, -0.82,
+    ),
+    "fr": (
+        0.77, 0.77, 0.77, 0.77, 0.77, -0.23,
+        -15.98, -5.21, -2.65, -1.24, -4.79,
+    ),
+    "es": (
+        0.75, 0.75, 0.75, 0.75, 0.75, -0.25,
+        -16.00, -7.88, -1.32, -3.30, -1.05,
+    ),
+}
+_TROUBLESHOOTING_BODY_BASELINE_SHIFT = {
+    "en": {7: 5.28, 8: 3.65},
+    "fr": {7: 9.49, 8: 2.98},
+    "es": {7: 2.15, 8: 5.89},
+}
+
+
+def troubleshooting_baseline_shift(
+    language: str, row_index: int, column_index: int,
+) -> float:
+    """Return reviewed optical baseline placement for one body-table cell."""
+    if row_index <= 0:
+        return 0.0
+    if column_index == 0:
+        shifts = _TROUBLESHOOTING_CODE_BASELINE_SHIFT.get(language, ())
+        body_index = row_index - 1
+        return shifts[body_index] if body_index < len(shifts) else 1.3
+    return _TROUBLESHOOTING_BODY_BASELINE_SHIFT.get(language, {}).get(
+        row_index, 0.0,
+    )
 
 _AUTO_RESUME_WIDTH = 311.02
 _AUTO_RESUME_LEADING = 5.0
@@ -488,7 +523,9 @@ def _troubleshooting_table(
                     1,
                 )
             elif ci == 0:
-                code_baseline = -0.45 if ri == 9 else 0.3 if ri == 6 else 1.3
+                code_baseline = troubleshooting_baseline_shift(
+                    language, ri, ci,
+                )
                 content = content.replace(
                     'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
                     'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
@@ -505,6 +542,17 @@ def _troubleshooting_table(
                     content,
                     point_size=style.body_size,
                     leading=style.body_leading,
+                )
+                body_shift = troubleshooting_baseline_shift(language, ri, ci)
+                if body_shift:
+                    content = with_character_baseline_shift(
+                        content, shift=body_shift,
+                    )
+            if ri == 0 and ci == 0 and language == "en":
+                content = content.replace(
+                    'FontStyle="Bold"',
+                    'FontStyle="Bold" HorizontalScale="92"',
+                    1,
                 )
             top, bottom, left_inset, right_inset, valign = (
                 _troubleshooting_cell_geometry(

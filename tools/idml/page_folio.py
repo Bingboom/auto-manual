@@ -15,6 +15,18 @@ def _skip(xml: str) -> bool:
     return "rc_st_placed_" in xml or "st_back_cover" in xml
 
 
+def folio_frame_bounds(writer, folio: int) -> tuple[float, float, float, float]:
+    """Return the approved alternating outer-corner folio frame geometry."""
+    y2 = writer.page_h / 2 - 11.0
+    if folio % 2:
+        x1 = -writer.page_w / 2 + writer.m_l
+        x2 = x1 + 24.0
+    else:
+        x2 = writer.page_w / 2 - writer.m_r
+        x1 = x2 - 24.0
+    return x1, y2 - 10.0, x2, y2
+
+
 def apply(writer, add_story_parts, psr) -> int:
     """Append a folio frame to each numbered content spread."""
     applied = 0
@@ -25,11 +37,10 @@ def apply(writer, add_story_parts, psr) -> int:
         story_sid = add_story_parts(
             f"st_folio_{slot}", f"Folio {folio}",
             [psr("HB Spec Note", f"{folio:02d}", terminal=True)])
-        x2 = writer.page_w / 2 - writer.m_r
-        y2 = writer.page_h / 2 - 14.0
+        x1, y1, x2, y2 = folio_frame_bounds(writer, folio)
         frame = writer._frame_xml(
             f"tf_folio_{slot}", story_sid,
-            x2 - 24.0, y2 - 10.0, x2, y2, inset=(0, 0, 0, 0))
+            x1, y1, x2, y2, inset=(0, 0, 0, 0))
         assert xml.rstrip().endswith("</idPkg:Spread>")
         xml = xml.replace("</Spread>\n</idPkg:Spread>",
                           frame + "</Spread>\n</idPkg:Spread>")
