@@ -87,3 +87,59 @@ class TestCheck(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class _Record:
+    """Minimal stand-in for AssetRecord's cross-check surface."""
+
+    def __init__(self, asset_key: str, category: str, status: str) -> None:
+        self.asset_key = asset_key
+        self.category = category
+        self.status = status
+
+
+def _with_entries(root: Path, rows: str) -> None:
+    (root / "data" / "printed_url_manual_entries.csv").write_text(
+        "target,kind,asset_key,source_note\n" + rows, encoding="utf-8")
+
+
+class TestQrCrossCheck(unittest.TestCase):
+    def test_registered_approved_qr_is_consistent(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _repo(tmp)
+            _with_entries(root, "160102000404,qr,qr/back_cover,AI master p59\n")
+            issues = printed_url_inventory.crosscheck_qr_targets(
+                [_Record("qr/back_cover", "二维码", "✅成品")], repo_root=root)
+        self.assertEqual(issues, ())
+
+    def test_approved_qr_without_a_printed_target_is_an_error(self) -> None:
+        """A QR's payload cannot be proofread off the page; it must be recorded."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _repo(tmp)
+            _with_entries(root, "")
+            issues = printed_url_inventory.crosscheck_qr_targets(
+                [_Record("qr/back_cover", "二维码", "✅成品")], repo_root=root)
+        self.assertEqual([code for code, _, _ in issues], ["qr_target_unregistered"])
+
+    def test_quarantined_qr_may_not_be_a_printed_target(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _repo(tmp)
+            _with_entries(root, "160102000161,qr,qr/frozen_reference,old revision\n")
+            issues = printed_url_inventory.crosscheck_qr_targets(
+                [_Record("qr/frozen_reference", "二维码", "⛔隔离")], repo_root=root)
+        self.assertEqual([code for code, _, _ in issues], ["qr_target_not_shippable"])
+
+    def test_printed_target_pointing_at_an_unregistered_asset_is_an_error(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _repo(tmp)
+            _with_entries(root, "160102000404,qr,qr/does_not_exist,stale pointer\n")
+            issues = printed_url_inventory.crosscheck_qr_targets([], repo_root=root)
+        self.assertEqual([code for code, _, _ in issues], ["qr_target_unknown_asset"])
+
+    def test_non_qr_assets_are_ignored(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _repo(tmp)
+            _with_entries(root, "")
+            issues = printed_url_inventory.crosscheck_qr_targets(
+                [_Record("hero/lcd_display", "插图", "✅成品")], repo_root=root)
+        self.assertEqual(issues, ())

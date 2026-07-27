@@ -84,6 +84,7 @@ from tools.build_publish import (
     run_diff_report_with_paths as _run_diff_report_with_paths_impl,
     run_publish as _run_publish_impl,
 )
+from tools.release_asset_lineage import publish_asset_gate_for_target as _asset_gate_impl
 from tools.build_runtime import (
     clean_build_artifacts as _clean_build_artifacts_impl,
     collect_legacy_docs_output_dirs as _collect_legacy_docs_output_dirs_impl,
@@ -687,6 +688,15 @@ def _resolve_diff_report_targets(args: argparse.Namespace) -> list[tuple[str | N
     )
 
 
+def _publish_asset_gate(args: argparse.Namespace) -> None:
+    """Refuse to release a bundle that consumed a non-approved asset."""
+    _asset_gate_impl(
+        docs_dir=resolve_docs_dir(resolve_path_from_root(args.config)),
+        docs_build_dir=staging_docs_build_dir(args),
+        target=_publish_target_components(args),
+    )
+
+
 def run_publish(args: argparse.Namespace) -> None:
     return _run_publish_impl(
         args,
@@ -697,6 +707,7 @@ def run_publish(args: argparse.Namespace) -> None:
         run_checked=run_checked,
         build_docs_command=build_docs_command,
         release_manifest_command=release_manifest_command,
+        run_asset_gate=_publish_asset_gate,
     )
 
 

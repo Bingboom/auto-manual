@@ -901,7 +901,13 @@ class TestBuildScript(unittest.TestCase):
         original_validate = build_cli.run_validate
         original_run_checked = build_cli.run_checked
         original_review_sync_targets = build_cli._review_sync_target_args
+        original_asset_gate = build_cli._publish_asset_gate
+        gate_at: list[int] = []
         try:
+            # The real gate reads a prepared bundle; these tests stub the
+            # subprocesses, so record only when it runs relative to the
+            # commands already issued.
+            build_cli._publish_asset_gate = lambda parsed_args: gate_at.append(len(seen))  # type: ignore[assignment]
             build_cli.run_validate = lambda *args, **kwargs: None  # type: ignore[assignment]
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
             build_cli._review_sync_target_args = lambda parsed_args: [parsed_args]  # type: ignore[assignment]
@@ -910,6 +916,7 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_validate = original_validate  # type: ignore[assignment]
             build_cli.run_checked = original_run_checked  # type: ignore[assignment]
             build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
+            build_cli._publish_asset_gate = original_asset_gate  # type: ignore[assignment]
 
         self.assertEqual(9, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
@@ -954,6 +961,11 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("JE-1000F", seen[8])
         self.assertIn("--region", seen[8])
         self.assertIn("JP", seen[8])
+
+        # The asset gate runs after the last prepare and before the manifest,
+        # so a non-approved asset stops the release instead of being recorded
+        # in its lineage.
+        self.assertEqual([8], gate_at)
 
     def test_release_manifest_command_should_require_explicit_target(self) -> None:
         args = build_cli.parse_args(["release-manifest"])
@@ -1008,7 +1020,13 @@ class TestBuildScript(unittest.TestCase):
         original_run_checked = build_cli.run_checked
         original_load_config = build_cli.load_config
         original_review_sync_targets = build_cli._review_sync_target_args
+        original_asset_gate = build_cli._publish_asset_gate
+        gate_at: list[int] = []
         try:
+            # The real gate reads a prepared bundle; these tests stub the
+            # subprocesses, so record only when it runs relative to the
+            # commands already issued.
+            build_cli._publish_asset_gate = lambda parsed_args: gate_at.append(len(seen))  # type: ignore[assignment]
             build_cli.run_validate = lambda *args, **kwargs: None  # type: ignore[assignment]
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
             build_cli._review_sync_target_args = lambda parsed_args: [parsed_args]  # type: ignore[assignment]
@@ -1024,6 +1042,7 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_checked = original_run_checked  # type: ignore[assignment]
             build_cli.load_config = original_load_config  # type: ignore[assignment]
             build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
+            build_cli._publish_asset_gate = original_asset_gate  # type: ignore[assignment]
 
         self.assertEqual(9, len(seen))
         self.assertEqual(str(build_cli.ROOT / "tools" / "diff_report.py"), seen[4][1])
@@ -1039,7 +1058,13 @@ class TestBuildScript(unittest.TestCase):
         original_validate = build_cli.run_validate
         original_run_checked = build_cli.run_checked
         original_review_sync_targets = build_cli._review_sync_target_args
+        original_asset_gate = build_cli._publish_asset_gate
+        gate_at: list[int] = []
         try:
+            # The real gate reads a prepared bundle; these tests stub the
+            # subprocesses, so record only when it runs relative to the
+            # commands already issued.
+            build_cli._publish_asset_gate = lambda parsed_args: gate_at.append(len(seen))  # type: ignore[assignment]
             build_cli.run_validate = lambda *argv, **kwargs: None  # type: ignore[assignment]
             build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
             build_cli._review_sync_target_args = lambda parsed_args: [parsed_args]  # type: ignore[assignment]
@@ -1048,6 +1073,7 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_validate = original_validate  # type: ignore[assignment]
             build_cli.run_checked = original_run_checked  # type: ignore[assignment]
             build_cli._review_sync_target_args = original_review_sync_targets  # type: ignore[assignment]
+            build_cli._publish_asset_gate = original_asset_gate  # type: ignore[assignment]
 
         self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), seen[0])
         self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), seen[2])

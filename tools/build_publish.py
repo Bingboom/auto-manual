@@ -70,6 +70,7 @@ def run_publish(
     run_checked: Callable[[list[str]], None],
     build_docs_command: Callable[..., list[str]],
     release_manifest_command: Callable[[argparse.Namespace], list[str]],
+    run_asset_gate: Callable[[argparse.Namespace], None] | None = None,
 ) -> None:
     tracked_root = publish_tracked_root(args)
     report_dir = publish_report_dir(args)
@@ -79,4 +80,10 @@ def run_publish(
     # Keep the freshly generated DOCX in place so publish can stage both DOCX and PDF.
     run_checked(build_docs_command(args, action_override="pdf", source_override="review", no_clean_override=True))
     run_checked(build_docs_command(args, action_override="md", source_override="review", no_clean_override=True))
+    if run_asset_gate is not None:
+        # After the last prepare (the word stage cleans and re-prepares, so an
+        # earlier read would inspect a stale bundle) and before the manifest is
+        # written: a temporary, missing or quarantined asset must stop the
+        # release rather than be recorded in its lineage.
+        run_asset_gate(args)
     run_checked(release_manifest_command(args))

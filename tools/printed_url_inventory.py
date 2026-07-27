@@ -94,8 +94,64 @@ def load_manual_entries(repo_root: Path) -> dict[str, dict]:
             "kind": (row.get("kind") or "manual").strip() or "manual",
             "occurrences": 1,
             "sources": {(row.get("source_note") or "manual entry").strip()},
+            "asset_key": (row.get("asset_key") or "").strip(),
         }
     return out
+
+
+QR_CATEGORY = "二维码"
+
+
+def crosscheck_qr_targets(records, *, repo_root: Path) -> tuple[tuple[str, str, str], ...]:
+    """Every shippable QR asset must declare what it actually encodes.
+
+    A QR is the one printed element whose payload cannot be read off the
+    page during review, so the registry alone cannot say whether the right
+    thing ships. Pairing each approved QR asset with a manual inventory
+    entry makes the payload a tracked fact, and keeps a quarantined or
+    stand-in candidate from being registered as a live printed target.
+
+    Returns (code, asset_key, message) triples; empty means consistent.
+    """
+    entries = load_manual_entries(repo_root)
+    registered: dict[str, str] = {}
+    for target, entry in entries.items():
+        asset_key = entry.get("asset_key")
+        if asset_key:
+            registered[asset_key] = target
+
+    issues: list[tuple[str, str, str]] = []
+    approved: set[str] = set()
+    for record in records:
+        if getattr(record, "category", "") != QR_CATEGORY:
+            continue
+        shippable = record.status == "✅成品"
+        if shippable:
+            approved.add(record.asset_key)
+            if record.asset_key not in registered:
+                issues.append((
+                    "qr_target_unregistered",
+                    record.asset_key,
+                    "approved QR asset has no printed-target entry in "
+                    f"{MANUAL_ENTRIES_CSV.as_posix()}; record what it encodes",
+                ))
+        elif record.asset_key in registered:
+            issues.append((
+                "qr_target_not_shippable",
+                record.asset_key,
+                f"{record.status} QR asset is registered as the printed target "
+                f"{registered[record.asset_key]!r}",
+            ))
+
+    known = {record.asset_key for record in records}
+    for asset_key, target in sorted(registered.items()):
+        if asset_key not in known:
+            issues.append((
+                "qr_target_unknown_asset",
+                asset_key,
+                f"printed target {target!r} points at an unregistered asset",
+            ))
+    return tuple(issues)
 
 
 def build_inventory_rows(repo_root: Path) -> list[dict[str, str]]:

@@ -13,7 +13,10 @@ from pathlib import Path
 # needs to grow past its threshold, raise the threshold in the same PR and
 # explain why in the PR description.
 HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
-    "build.py": 750,
+    # +11: the publish asset gate needs one injected entrypoint wrapper
+    # (import + 7-line resolver + call site). Bundle-path resolution lives in
+    # tools/release_asset_lineage.py, so this is the irreducible minimum.
+    "build.py": 761,
     "tools/build_docs.py": 860,
     "tools/process_build_queue.py": 650,
     "tools/validate_spec_master_runtime.py": 880,
