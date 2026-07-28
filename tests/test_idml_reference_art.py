@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 from tools.idml.components import RenderContext
-from tools.idml.components.oppanel import _prereq_overlay, render_oppanel
+from tools.idml.components.oppanel import _prereq_overlay, _row_layout, render_oppanel
 from tools.idml.components.prose_image import render_image_block
 
 
@@ -62,6 +62,19 @@ def _item_bounds(xml: str, item_id: str, tag: str = "TextFrame") -> tuple[float,
 
 
 class ReferenceArtGeometryTests(unittest.TestCase):
+    def test_operation_row_overlays_use_role_specific_alignment(self) -> None:
+        image_w = 294.9
+        image_h = 160.0
+        power = _row_layout("op_main_power.png", image_w, image_h)
+        dc_usb = _row_layout("op_dc_usb_output.png", image_w, image_h)
+        ac = _row_layout("op_ac_output.png", image_w, image_h)
+
+        self.assertAlmostEqual(image_w * 0.765, power[0])
+        self.assertAlmostEqual(-image_h + image_h * 0.035, power[1])
+        self.assertAlmostEqual(image_w * 0.235, power[2])
+        self.assertAlmostEqual(ac[0], dc_usb[0])
+        self.assertAlmostEqual(ac[2], dc_usb[2])
+
     def test_operation_and_charging_art_use_the_full_text_measure(self) -> None:
         ctx = _ctx()
         refs = (

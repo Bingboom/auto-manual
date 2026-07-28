@@ -156,17 +156,17 @@ def _row_layout(ref: str, image_w: float, image_h: float) -> tuple[float, ...]:
     scale = image_w / 294.9
     if "main_power" in stem:
         return (
-            image_w * 0.775,
-            -image_h + image_h * 0.02,
-            image_w * 0.225,
+            image_w * 0.765,
+            -image_h + image_h * 0.035,
+            image_w * 0.235,
             26.1 * scale,
             22.0 * scale,
         )
     if "dc_usb" in stem or "dc-usb" in stem:
         return (
-            image_w * 0.815,
+            image_w * 0.845,
             -image_h + image_h * 0.165,
-            image_w * 0.185,
+            image_w * 0.155,
             20.6 * scale,
             19.5 * scale,
         )
