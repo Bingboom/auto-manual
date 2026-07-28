@@ -21,7 +21,7 @@ in_the_box/manual_icon1,,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/wo
 lcd/lcd_map,,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/lcd,,png:f82efe218bc0,无字矢量 v2 已换装（源=source/manual_je1000f_us_master p9 LCD DISPLAY）；IDML 高度上限已按新版纵横比校准
 operation/ac_output,,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:cda41198c395,v2-png:43a46a51a987",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p10 下面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流（本图纵横比 1.43 是原溢流元凶），InDesign 实测 60页/0溢流
 operation/dc_usb_output,,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,"v2-pdf:c166a9467c81,v2-png:c46c92d6ee99",无字矢量 v2 已提取（源=source/manual_je1000f_us_master p11 面板，纯文字剥离，残留:空括号线/时钟/空灰pill 待精修）；IDML 已换装（commit 4cce22a1，随 PR#662）：common_assets PNG=v2 渲染（替换错机型烧字旧图），render_oppanel 加 0.25×版心高度预算防溢流，InDesign 实测 60页/0溢流
-operation/energy_saving,,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:848b99847403,文字负载普查待做（无字化排期）
+operation/energy_saving,,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:9dd943d30630,无字矢量 v2 已刷入共享行（源=source/manual_je1000f_us_master p13，替换带轮错机型+烧英文旧图）；机身为 JE-1000F——非 JE-1000F 机型线定版时按机型加 override 换图（同 main_power 三图先例）
 operation/je1000f_us/energy_saving,operation/energy_saving,插图,中立,✅成品,FALSE,JE-1000F,US,docs/renderers/latex/assets,,"op_energy_saving.pdf:fb0d5a068637fa7be040eea33a408ab975c7d7cc169e615ff00dd47393450e48,op_energy_saving.png:9dd943d3063031c0795ff8c4b2b6aac266bfb2bff78e2250e445f27352c23a07",源=source/manual_je1000f_us_master p13；JE-1000F/US 专用主机+POWER/AC 按键图；与冻结 PDF p12 同源匹配
 operation/energy_saving_12h,,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,"png:6337b8a4f8b1,svg:cf537ed8c012",文字负载普查待做（无字化排期）
 operation/frequency_switch,,插图,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/operation,,png:7388be9e5077,文字负载普查待做（无字化排期）
@@ -77,7 +77,6 @@ button/dc_usb,,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets
 button/led,,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pdf:b20f5428f8ac,png:2b271050dc4c",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
 icon/clock_3s,,图标,中立,✅成品,FALSE,ALL,ALL,docs/renderers/latex/assets,,"pdf:7cf574aa7dfc,png:8d4996ff9894",源=source/manual_je1000f_us_master p13 KEY COMBINATIONS 矢量裁剪（无手版）
 mark/jp_certifications,,标记,按语言,❌缺失,FALSE,JE-1000F_JP,JP,,,,日规認証标志组（規格页認証：后接图）
-kr/image_placeholders,,插图,按语言,❌缺失,FALSE,JE-1000F_KR,KR,,,,KR 线 8 处图片资产占位（存量回写轮遗留）
 illustration/cjk_operation_set,,插图,中立,❌缺失,FALSE,ALL,ALL,,,,操作插图带 CJK 待换（操作者定为最后处理）
 feishu/lcd_icons_attachments,,图标,中立,✅成品,FALSE,ALL,ALL,data/phase2/_attachments,,sync 时物化，哈希随快照,LCD 图标表附件列——sync-data 自动物化，token 身份由 attachment_identity 解决
 feishu/symbols_attachments,,图标,中立,✅成品,FALSE,ALL,ALL,data/phase2/_attachments,,sync 时物化，哈希随快照,符号表附件列——同上，已在管道内

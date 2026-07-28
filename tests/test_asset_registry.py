@@ -28,7 +28,7 @@ class TestAssetRegistry(unittest.TestCase):
     def test_real_registry_exports_have_matching_hashes(self) -> None:
         report = check_registry(self.records, repo_root=ROOT)
 
-        self.assertEqual(82, report.records)
+        self.assertEqual(81, report.records)
         self.assertEqual((), report.errors)
         self.assertEqual(74, report.status_counts[APPROVED_STATUS])
         self.assertEqual(2, report.status_counts[QUARANTINED_STATUS])
@@ -40,7 +40,9 @@ class TestAssetRegistry(unittest.TestCase):
         for asset_key in ("page/cover", "page/product_overview", "page/back_cover", "mark/fcc"):
             self.assertEqual(("US",), by_key[asset_key].region_scope)
         self.assertEqual(("JP",), by_key["mark/jp_certifications"].region_scope)
-        self.assertEqual(("KR",), by_key["kr/image_placeholders"].region_scope)
+        # kr/image_placeholders was closed out 2026-07-28: every semantic key
+        # the KR pages reference now resolves from master-extracted exports.
+        self.assertNotIn("kr/image_placeholders", by_key)
         self.assertEqual(("ALL",), by_key["operation/ac_output"].region_scope)
         self.assertEqual(
             ("JE-1000F",),
@@ -407,7 +409,7 @@ class TestAssetRegistry(unittest.TestCase):
         records = load_registry(source)  # type: ignore[arg-type]
 
         self.assertEqual(1, source.calls)
-        self.assertEqual(82, len(records))
+        self.assertEqual(81, len(records))
 
     def test_temporary_asset_is_not_importable_by_default(self) -> None:
         with self.assertRaisesRegex(AssetRegistryError, "only ✅成品"):
