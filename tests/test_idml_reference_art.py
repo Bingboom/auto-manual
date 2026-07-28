@@ -312,6 +312,12 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         self.assertLess(max(rectangles), min(text_frames))
         self.assertEqual(5, panel.count(
             'LockPosition="false" PinPosition="false"'))
+        mode_bounds = _item_bounds(
+            panel,
+            "tf_oppanel_energy_mode_editable_energy",
+        )
+        self.assertAlmostEqual(-28.5, mode_bounds[1])
+        self.assertAlmostEqual(-15.0, mode_bounds[3])
         self.assertIn("op_energy_saving.png", panel)
         self.assertNotIn("common_assets/operation/energy_saving.png", panel)
         self.assertNotIn("<Table", panel)

@@ -532,6 +532,7 @@ def _render_energy_saving_panel(
     # inside the card.  Shift On/Off by the same delta so it remains above the
     # action when French wraps to three lines.
     action_delta = action_height - 14.0 + 2.0
+    mode_vertical_shift = 3.0
 
     copy_width = width - 28.0
     leading = 7.5
@@ -606,9 +607,9 @@ def _render_energy_saving_panel(
                 terminal=True,
             )],
             left=width * 0.68,
-            top=-29.5 - action_delta,
+            top=-29.5 - action_delta + mode_vertical_shift,
             right=width * 0.86,
-            bottom=-16.0 - action_delta,
+            bottom=-16.0 - action_delta + mode_vertical_shift,
             auto_height=True,
         ),
         _editable_text_frame(
