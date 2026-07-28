@@ -939,3 +939,17 @@ Why it mattered:
 
 - The publish gate built in #722 governed 20 of 70 consumed assets; the other 50 could ship a quarantined or wrong image with no gate in the way. Now every image in the bundle is either registry-resolved, explicitly review-overridden, or attributed to a status-gated collection — and a single status flip in the Feishu asset table stops the affected column from printing.
 - The classification is fail-open to visible debt by design: an attachment tree with no collection row stays `legacy-path` rather than being silently attributed, so the zero is honest and a future unmanaged tree re-raises the count instead of hiding under it.
+
+
+## 59. 2026-07-28: The Design-Side Request List Audited Down to One Item
+
+What changed:
+
+- Closed out `kr/image_placeholders`: the operator challenged the standing "design side owes us images" list against the delivered master `.ai`, and a key-by-key resolution audit proved the KR pages' 8 semantic references all resolve for the KR target from master-extracted exports — the placeholder row was a fossil from the KR backport round, predating the harvest. Row deleted; the registry test now pins its absence.
+- Refreshed the shared `operation/energy_saving` export: the committed common-assets PNG was a wheeled non-JE-1000F model with burned-in English — every line resolving through the shared row (KR, EU, JP, CN templates all reference the key) printed a wrong-model figure. The textless v2 extracted from the master (p13) is now the shared bytes, hash updated in the same change so `asset-check` proves consistency. The US line is unaffected — it already resolves through its `je1000f_us` override to the same art.
+- The shared-row note records the fleet caveat: the body drawn is a JE-1000F, so a non-JE-1000F line finalizing for print adds a model override (the `main_power` trio set this precedent in the #662 swap) rather than editing the shared bytes back.
+
+Why it mattered:
+
+- "向设计侧要图" was carrying three items on momentum; after the audit only `mark/jp_certifications` genuinely needs external input — and even that is "provide the JP manual's .ai if one exists" before it is "ask a designer to draw". `illustration/cjk_operation_set` remains registered but is now understood as engineering work (switch CN/JP lines to the textless assets), not design work.
+- The KR line's image needs were satisfied by an asset harvest that happened after the debt was registered — nobody had re-checked the debt against the new supply. Standing request lists rot in exactly this way; the fix was one resolution loop, not new assets.
