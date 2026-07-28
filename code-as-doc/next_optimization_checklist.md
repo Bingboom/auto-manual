@@ -958,7 +958,15 @@ language-neutral (the LCD-hero precedent).
     The gate deliberately does **not** block `legacy-path` images — the real
     bundle still consumes 50 of them from data-generated pages, so blocking
     would stop every publish instead of surfacing debt; the count is recorded in
-    the manifest so it can be ratcheted down later. The back-cover QR was
+    the manifest so it can be ratcheted down later. **Ratcheted to zero on
+    2026-07-27:** #726/#730 keyed the review overlay's 13 path references
+    (two of which were stale shared images superseded by target overrides —
+    operator-reviewed before flipping), and the finalizer now attributes the
+    37 synced Feishu attachment images to their `feishu/*_attachments`
+    collection rows as `feishu-attachment` manifest entries (per-file bytes
+    recorded, collection status gates publish, RST keeps path references
+    because file identity is the Feishu token). JE-1000F/US:
+    `legacy_path_count=0`, `registry_asset_count=59`. The back-cover QR was
     decoded independently rather than trusted from its 备注: the approved AI
     candidate encodes `160102000404` (the master's own document number, not a
     URL), while the quarantined frozen reference encodes the older

@@ -926,3 +926,16 @@ Why it mattered:
 - The publish gate landed in #722 covering only registry-resolved assets; the JE-1000F/US bundle still consumed 50 `legacy-path` images it could not see. The committed keying alone brings it to 41; the first sync cycle after merge restores the raw-LaTeX/raw-HTML references from template provenance as well, and the verified steady state is 37 — all of them Feishu attachment images (LCD icons + symbols), which are a different problem: their identity is the Feishu file token, so they need collection-level ownership (`feishu/*_attachments` rows exist already), not per-file keys.
 - The first attempt was hand-keying `docs/_review` alone — and verification caught it being silently reverted: `check --source review` runs sync-review, which copied the finalized bundle back over the hand edits. The mechanism fix plus the keying together survive the full cycle (verified: `[sync-review] restored 45 semantic asset reference(s)`, review still carries `asset:` after check, manifest legacy count 50→37, registry-backed 20→22).
 - Working-tree hygiene finding, recorded for the next window: sync-review also refreshes generated review pages' prose from templates/data (V2.0 wording like `DC 12V/USB OUTPUT`), so a `check --source review` run dirties `docs/_review` with legitimate-but-unrelated refreshes. Keep those out of unrelated commits.
+
+
+## 58. 2026-07-27: Legacy-Path Blind Spot Ratcheted to Zero (JE-1000F/US)
+
+What changed:
+
+- The bundle finalizer attributes synced Feishu attachment images (`_repo_assets/data/phase2/_attachments/<category>/…`) to their registry collection rows (`feishu/lcd_icons_attachments`, `feishu/symbols_attachments`) as `feishu-attachment` manifest entries instead of `legacy-path`/`legacy-unmanaged`. Each row still records the exact bytes that shipped; the collection row's registry status now gates publish for the whole column; the RST keeps its path reference because the file identity is a Feishu token that changes on re-upload — these images are deliberately never keyed per file. No matching collection row (or a scope miss) falls back to legacy-path, so no attribution is ever invented.
+- Together with #726 (mechanical keying of 9 overlay paths + the sync-review laundering fix) and #730 (the two operator-reviewed image flips), the JE-1000F/US publish-gate blind spot went 50 → 0: `legacy_path_count=0`, `registry_asset_count=59`, verified with a full review-source build.
+
+Why it mattered:
+
+- The publish gate built in #722 governed 20 of 70 consumed assets; the other 50 could ship a quarantined or wrong image with no gate in the way. Now every image in the bundle is either registry-resolved, explicitly review-overridden, or attributed to a status-gated collection — and a single status flip in the Feishu asset table stops the affected column from printing.
+- The classification is fail-open to visible debt by design: an attachment tree with no collection row stays `legacy-path` rather than being silently attributed, so the zero is honest and a future unmanaged tree re-raises the count instead of hiding under it.
