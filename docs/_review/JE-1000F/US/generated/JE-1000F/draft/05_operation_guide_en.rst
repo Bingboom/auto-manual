@@ -85,7 +85,7 @@ To disable the energy saving mode, press and hold both the AC power button and t
 
 When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
-.. image:: _assets/templates/word_template/common_assets/operation/energy_saving.png
+.. image:: asset:operation/energy_saving
    :alt: Energy saving mode key operation placeholder.
    :width: 320px
 

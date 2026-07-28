@@ -84,7 +84,7 @@ Para evitar el consumo innecesario de batería por olvidar apagar la salida, el 
 
 Para desactivar el modo de ahorro de energía, mantenga presionados simultáneamente el botón de alimentación de CA y el botón POWER principal durante más de 3 segundos. Una vez desactivado el modo de ahorro de energía, el icono dejará de mostrarse en la pantalla LCD y el producto no apagará automáticamente la salida de CA o CC/USB. Al alimentar dispositivos de baja potencia (CA ≤ 25 W o CC/USB ≤ 2 W), desactive el modo de ahorro de energía para evitar que la salida se apague automáticamente durante el funcionamiento.
 
-.. image:: _assets/templates/word_template/common_assets/operation/energy_saving.png
+.. image:: asset:operation/energy_saving
    :alt: Operación del modo de ahorro de energía.
    :width: 320px
 
