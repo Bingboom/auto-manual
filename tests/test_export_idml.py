@@ -1998,9 +1998,9 @@ class ExportIdmlTests(unittest.TestCase):
         stories = dict(w.stories)
         left = stories["st_safety_fr_section1_left"]
         right = stories["st_safety_fr_section1_right"]
-        self.assertIn("• item 5", left)
-        self.assertNotIn("• item 6", left)
-        self.assertIn("• item 6", right)
+        self.assertIn("<Content>item 5</Content>", left)
+        self.assertNotIn("<Content>item 6</Content>", left)
+        self.assertIn("<Content>item 6</Content>", right)
         spread = dict(w.spreads)["sp_21"]
         self.assertIn("tf_st_safety_fr_section1_left", spread)
         self.assertIn("tf_st_safety_fr_section1_right", spread)
@@ -2014,6 +2014,47 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('FirstLineIndent="-6.67"', right)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Safety List FR"', left)
         self.assertIn('SpaceAfter="2"', left)
+
+    def test_safety_lists_use_fixed_marker_tabs_in_all_us_languages(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        expected = {
+            "en": ("HB Safety List", "3.7", "98"),
+            "fr": ("HB Safety List FR", "7.22", "98.8"),
+            "es": ("HB Safety List ES", "7.22", "100.7"),
+        }
+        for lang, (style, tab_position, horizontal_scale) in expected.items():
+            with self.subTest(lang=lang):
+                writer = IdmlWriter(params)
+                sid = f"st_safety_{lang}_section1_left"
+                writer._safety_section_story(
+                    sid,
+                    sid,
+                    [
+                        ("list", "• Item with a wrapped continuation line."),
+                        ("sublist", "– Nested item with a wrapped continuation line."),
+                    ],
+                    ROOT,
+                )
+                story = dict(writer.stories)[sid]
+                self.assertIn(
+                    f'AppliedParagraphStyle="ParagraphStyle/{style}"', story,
+                )
+                self.assertIn(
+                    f'<Position type="unit">{tab_position}</Position>', story,
+                )
+                self.assertIn(
+                    f'<Content>•</Content></CharacterStyleRange>', story,
+                )
+                self.assertIn('<Content>\t</Content>', story)
+                self.assertNotIn("• Item with", story)
+                self.assertIn(
+                    f'HorizontalScale="{horizontal_scale}"', story,
+                )
+
+                sublist_marker = (
+                    '<Content>–</Content></CharacterStyleRange>'
+                )
+                self.assertIn(sublist_marker, story)
 
     def test_safety_symbols_page_combines_tail_maintenance_and_symbols(self) -> None:
         import json

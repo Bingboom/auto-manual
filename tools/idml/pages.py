@@ -1,6 +1,7 @@
 """Absolute-positioned composed-page assemblers for the IDML exporter."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from .page_objects import frame_with_background, h1_bar_h_pt, heading_bar_opts, heading_text, with_rounded_outer
@@ -106,7 +107,6 @@ def _safety_section_story(writer, sid: str, title: str,
                 if language in {"fr", "es"}
                 else "HB Safety List"
             )
-            list_xml = writer._psr(list_style, text, terminal=terminal)
             list_left_indent = param_pt(
                 writer.params,
                 (
@@ -130,47 +130,44 @@ def _safety_section_story(writer, sid: str, title: str,
                 f"lang_{language}_idml_safety_list_space_after",
                 param_pt(writer.params, "comp_list_itemsep", 2.07),
             )
-            list_xml = list_xml.replace(
-                "<ParagraphStyleRange ",
-                (
-                    '<ParagraphStyleRange '
-                    f'LeftIndent="{list_left_indent:g}" '
-                    f'FirstLineIndent="{list_first_line_indent:g}" '
-                    f'SpaceAfter="{list_space_after:g}" '
-                    'RightIndent="0" Hyphenation="false" '
-                ),
-                1,
-            )
-            list_xml = list_xml.replace(
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                f'HorizontalScale="{horizontal_scale:g}"',
+            list_xml = _safety_list_xml(
+                writer,
+                style=list_style,
+                text=text,
+                terminal=terminal,
+                left_indent=list_left_indent,
+                first_line_indent=list_first_line_indent,
+                space_after=list_space_after,
+                horizontal_scale=horizontal_scale,
+                default_marker="•",
             )
             parts.append(list_xml)
         elif kind == "sublist":
-            if dense_language and text.startswith("–"):
-                text = "•" + text[1:]
             sublist_style = (
                 f"HB Safety Sublist {language.upper()}"
                 if language in {"fr", "es"}
                 else "HB Safety Sublist"
             )
-            sublist_xml = writer._psr(sublist_style, text, terminal=terminal)
             sublist_space_after = param_pt(
                 writer.params,
                 f"lang_{language}_idml_safety_list_space_after",
                 param_pt(writer.params, "comp_sublist_itemsep", 2.0),
             )
-            sublist_xml = sublist_xml.replace(
-                "<ParagraphStyleRange ",
-                (
-                    '<ParagraphStyleRange '
-                    f'LeftIndent="{param_pt(writer.params, "idml_sublist_left_indent", 9.58):g}" '
-                    f'FirstLineIndent="{param_pt(writer.params, "idml_sublist_first_line_indent", -6.04):g}" '
-                    f'SpaceAfter="{sublist_space_after:g}" '
-                    'RightIndent="0" Hyphenation="false" '
+            sublist_left_indent = param_pt(
+                writer.params, "idml_sublist_left_indent", 9.58,
+            )
+            sublist_xml = _safety_list_xml(
+                writer,
+                style=sublist_style,
+                text=text,
+                terminal=terminal,
+                left_indent=sublist_left_indent,
+                first_line_indent=param_pt(
+                    writer.params, "idml_sublist_first_line_indent", -6.04,
                 ),
-                1,
+                space_after=sublist_space_after,
+                horizontal_scale=horizontal_scale,
+                default_marker="–",
             )
             if previous_kind != "sublist":
                 first_gap = param_pt(
@@ -181,17 +178,73 @@ def _safety_section_story(writer, sid: str, title: str,
                     f'<ParagraphStyleRange SpaceBefore="{first_gap:g}" ',
                     1,
                 )
-            sublist_xml = sublist_xml.replace(
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                f'HorizontalScale="{horizontal_scale:g}"',
-            )
             parts.append(sublist_xml)
         elif kind in {"h1", "h2", "h3"}:
             parts.append(writer._psr(writer._PROSE_STYLE[kind], text, terminal=terminal))
         if kind != "layout":
             previous_kind = kind
     return writer._add_story_parts(sid, title, parts)
+
+
+def _safety_list_xml(
+    writer,
+    *,
+    style: str,
+    text: str,
+    terminal: bool,
+    left_indent: float,
+    first_line_indent: float,
+    space_after: float,
+    horizontal_scale: float,
+    default_marker: str,
+) -> str:
+    """Render a safety-list marker separately from its tab-aligned prose."""
+    marker_match = re.match(r"^\s*([•◦–-])(?:\s+|$)", text)
+    marker = marker_match.group(1) if marker_match else default_marker
+    list_text = text[marker_match.end():] if marker_match else text.lstrip()
+    paragraph = writer._psr(style, list_text, terminal=terminal)
+    paragraph = paragraph.replace(
+        "<ParagraphStyleRange ",
+        (
+            '<ParagraphStyleRange '
+            f'LeftIndent="{left_indent:g}" '
+            f'FirstLineIndent="{first_line_indent:g}" '
+            f'SpaceAfter="{space_after:g}" '
+            'RightIndent="0" Hyphenation="false" '
+        ),
+        1,
+    )
+    paragraph = paragraph.replace(
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'HorizontalScale="{horizontal_scale:g}"',
+    )
+    tab_properties = (
+        '<Properties><TabList type="list"><ListItem type="record">'
+        '<Alignment type="enumeration">LeftAlign</Alignment>'
+        '<AlignmentCharacter type="string"></AlignmentCharacter>'
+        '<Leader type="string"></Leader>'
+        f'<Position type="unit">{left_indent:g}</Position>'
+        '</ListItem></TabList></Properties>'
+    )
+    marker_xml = (
+        '<CharacterStyleRange '
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'HorizontalScale="{horizontal_scale:g}">'
+        f'<Content>{marker}</Content>'
+        '</CharacterStyleRange>'
+    )
+    tab_xml = (
+        '<CharacterStyleRange '
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        '<Content>\t</Content>'
+        '</CharacterStyleRange>'
+    )
+    return paragraph.replace(
+        "\n    <CharacterStyleRange",
+        f"\n    {tab_properties}\n    {marker_xml}\n    {tab_xml}\n    <CharacterStyleRange",
+        1,
+    )
 
 
 def _safety_language(sid: str) -> str:
