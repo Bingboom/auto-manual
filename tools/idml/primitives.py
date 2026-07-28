@@ -7,6 +7,7 @@ from xml.sax.saxutils import escape
 
 from .spec_tables import spec_table_xml
 from .app_text_styles import APP_PROSE_STYLE
+from .inline_text import character_ranges
 from .style_names import paragraph_style_ref
 from .table_borders import component_table_xml
 
@@ -14,20 +15,6 @@ from .table_borders import component_table_xml
 _ATTR_ENTITIES = {'"': "&quot;"}
 # Compatibility hook; semantic symbols stay intact and use font fallbacks.
 GLYPH_FALLBACKS: tuple[tuple[str, str], ...] = ()
-DIRECT_CURRENT_SYMBOL_FONT = "Apple Symbols"
-GENERAL_SYMBOL_FONT = "Arial Unicode MS"
-SYMBOL_FONT_FALLBACK_STYLE = "Regular"
-SYMBOL_FONT_FALLBACKS = {
-    "⎓": DIRECT_CURRENT_SYMBOL_FONT,
-    "※": GENERAL_SYMBOL_FONT,
-    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾●"},
-    **{ch: "Apple SD Gothic Neo" for ch in "㉑㉒㉓㉔㉕㉖㉗"},
-}
-SPEC_SUPERSCRIPT_MARKERS = frozenset(
-    "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
-)
-
-
 PROSE_STYLE = {
     "h1": "HB H1",
     "h2": "HB Title L2",
@@ -65,104 +52,6 @@ def bold_runs(line: str) -> list[tuple[str, bool]]:
     return runs
 
 
-def _character_runs(seg: str) -> list[tuple[str, str | None]]:
-    """Split a run by the explicit font fallback it needs."""
-    runs: list[tuple[str, str | None]] = []
-    buf: list[str] = []
-    current_font = SYMBOL_FONT_FALLBACKS.get(seg[0]) if seg else None
-    for ch in seg:
-        font = SYMBOL_FONT_FALLBACKS.get(ch)
-        if font != current_font:
-            runs.append(("".join(buf), current_font))
-            buf = []
-            current_font = font
-        buf.append(ch)
-    if buf:
-        runs.append(("".join(buf), current_font))
-    return runs
-
-
-def _character_style_range(
-    seg: str,
-    *,
-    bold: bool,
-    fallback_font: str | None,
-    superscript_marker: bool = False,
-    inner_xml: str | None = None,
-) -> str:
-    attrs = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
-    properties = ""
-    if fallback_font:
-        attrs += f' FontStyle="{SYMBOL_FONT_FALLBACK_STYLE}"'
-        properties = (
-            "<Properties>"
-            f'<AppliedFont type="string">{escape(fallback_font)}</AppliedFont>'
-            "</Properties>"
-        )
-    elif bold:
-        attrs += ' FontStyle="Bold"'
-    if superscript_marker and seg and all(
-        character in SPEC_SUPERSCRIPT_MARKERS for character in seg
-    ):
-        # Match the shared spec-marker treatment used by the PDF renderer:
-        # markers are smaller and raised, while the surrounding copy keeps
-        # the native table/note style.
-        attrs += ' PointSize="5.2" BaselineShift="2.4"'
-    content = (
-        inner_xml
-        if inner_xml is not None
-        else f"<Content>{escape(seg)}</Content>"
-    )
-    return f'<CharacterStyleRange {attrs}>{properties}{content}</CharacterStyleRange>'
-
-
-def _character_runs_with_inline_replacements(
-    seg: str,
-    *,
-    bold: bool,
-    fallback_font: str | None,
-    superscript_marker: bool,
-    replacements: dict[str, str],
-) -> list[str]:
-    """Split one character run around governed inline objects.
-
-    Inline assets are still children of a CharacterStyleRange, which is the
-    IDML representation InDesign uses for an anchored inline graphic. Keeping
-    the split here lets normal text, bold runs, and font fallbacks continue to
-    use the same paragraph serializer.
-    """
-    out: list[str] = []
-    cursor = 0
-    while cursor < len(seg):
-        matches = [
-            (seg.find(marker, cursor), marker, replacement)
-            for marker, replacement in replacements.items()
-            if seg.find(marker, cursor) >= 0
-        ]
-        if not matches:
-            if cursor < len(seg):
-                out.append(_character_style_range(
-                    seg[cursor:],
-                    bold=bold,
-                    fallback_font=fallback_font,
-                    superscript_marker=superscript_marker,
-                ))
-            break
-        start, marker, replacement = min(matches, key=lambda item: item[0])
-        if start > cursor:
-            out.append(_character_style_range(
-                seg[cursor:start],
-                bold=bold,
-                fallback_font=fallback_font,
-                superscript_marker=superscript_marker,
-            ))
-        out.append(_character_style_range(
-            "", bold=False, fallback_font=None, inner_xml=replacement,
-        ))
-        cursor = start + len(marker)
-    return out
-
-
 def psr(style: str, text: str, *, terminal: bool = False,
         span_columns: bool = False,
         superscript_markers: bool = False,
@@ -181,25 +70,13 @@ def psr(style: str, text: str, *, terminal: bool = False,
     for line in lines:
         runs = bold_runs(line)
         line_parts: list[str] = []
-        for seg, bold in runs:
-            for piece, fallback_font in _character_runs(seg):
-                if replacements and not fallback_font:
-                    line_parts.extend(
-                        _character_runs_with_inline_replacements(
-                            piece,
-                            bold=bold,
-                            fallback_font=fallback_font,
-                            superscript_marker=superscript_markers,
-                            replacements=replacements,
-                        )
-                    )
-                else:
-                    line_parts.append(_character_style_range(
-                        piece,
-                        bold=bold,
-                        fallback_font=fallback_font,
-                        superscript_marker=superscript_markers,
-                    ))
+        for segment, bold in runs:
+            line_parts.extend(character_ranges(
+                segment,
+                bold=bold,
+                superscript_markers=superscript_markers,
+                replacements=replacements,
+            ))
         line_xmls.append("".join(line_parts) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
              '<Content></Content></CharacterStyleRange>')
     br = ('<CharacterStyleRange AppliedCharacterStyle='
