@@ -2,123 +2,118 @@
 
    \HBApplyLang{fr}
 
-SIGNIFICATION DES SYMBOLES
-==========================
+|
 
-.. only:: latex
+.. list-table::
+   :header-rows: 0
+   :widths: 18 82
 
-   .. raw:: latex
+   * - **AVERTISSEMENT**
+     - Cet appareil est destiné à un usage intérieur uniquement (veuillez placer cet appareil dans un environnement intérieur similaire lors de son utilisation à l'extérieur, par exemple dans des VR résidentiels, des tentes, des chalets, etc.).
 
-      \HBSymbolTable{Symbole}{Signification}{%
-      \HBSymbolSignalRow{warning_triangle.png}{AVERTISSEMENT}{Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.}
-      \HBSymbolSignalRow{warning_triangle.png}{ATTENTION}{Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.}
-      \HBSymbolSignalRow{mandatory.png}{REMARQUE}{Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.}
-      \HBSymbolSignalRow{mandatory.png}{CONSEILS}{Complémente les informations importantes ou les conseils d'utilisation dans le texte.}
-      }
+       ※ Cet appareil n'est pas étanche ni résistant à la poussière. Éloignez-le de la pluie et des environnements humides pendant son utilisation.
 
-.. only:: not latex
+INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR
+------------------------------------------
 
-   .. list-table::
-      :class: longtable
-      :header-rows: 1
-      :widths: 22 78
+Au cours du cycle de vie des produits de stockage d'énergie, un certain degré de dégradation de la capacité et de l'énergie est attendu. À mesure que le nombre de cycles de charge et de décharge augmente et que la durée de stockage s'allonge, cette dégradation s'intensifie progressivement. Il s'agit d'un phénomène normal conforme au vieillissement naturel des cellules de batterie.
 
-      * - Symbole
-        - Signification
-      * - .. raw:: html
+.. raw:: latex
 
-             <span class="hb-warning-lockup" style="display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"><span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span><span>AVERTISSEMENT</span></span>
-        - Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.
-      * - .. raw:: html
+   \section{SIGNIFICATION DES SYMBOLES}
 
-             <span class="hb-warning-lockup" style="display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"><span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span><span>ATTENTION</span></span>
-        - Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.
-      * - .. raw:: html
+.. raw:: html
 
-             <span class="hb-warning-lockup" style="display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"><span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span><span>REMARQUE</span></span>
-        - Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.
-      * - .. raw:: html
+   <h1>SIGNIFICATION DES SYMBOLES</h1>
 
-             <span class="hb-warning-lockup" style="display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"><span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span><span>CONSEILS</span></span>
-        - Complémente les informations importantes ou les conseils d'utilisation dans le texte.
+.. list-table::
+   :header-rows: 1
+   :widths: 22 78
+
+   * - Symbole
+     - Signification
+   * - .. image:: _assets/templates/word_template/common_assets/symbols/warning_triangle.png
+          :alt: Symbole d'avertissement.
+          :width: 40px
+
+       **AVERTISSEMENT**
+     - Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.
+   * - .. image:: _assets/templates/word_template/common_assets/symbols/warning_triangle.png
+          :alt: Symbole de mise en garde.
+          :width: 40px
+
+       **ATTENTION**
+     - Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.
+   * - .. image:: _assets/templates/word_template/common_assets/symbols/mandatory.png
+          :alt: Symbole de remarque.
+          :width: 40px
+
+       **REMARQUE**
+     - Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une dégradation des performances ou des résultats inattendus.
+   * - .. image:: _assets/templates/word_template/common_assets/symbols/mandatory.png
+          :alt: Symbole de conseil.
+          :width: 40px
+
+       **CONSEILS**
+     - Complète les informations importantes ou les conseils d'utilisation du texte.
 
 
-.. only:: latex
+.. list-table::
+   :header-rows: 0
+   :widths: 12 38 12 38
 
-   .. raw:: latex
+   * - **Symbole**
+     - **Signification**
+     - **Symbole**
+     - **Signification**
+   * - .. image:: _assets/templates/word_template/common_assets/symbols/warning_triangle.png
+          :alt: Warning symbol.
+          :width: 40px
+     - Mise en garde. Le non-respect des messages d'avertissement peut entraîner des blessures.
+     - .. image:: _assets/templates/word_template/common_assets/symbols/do_not_dismantle.png
+          :alt: Do not dismantle symbol.
+          :width: 40px
+     - Ne démontez pas le produit.
+   * - .. image:: _assets/templates/word_template/common_assets/symbols/read_manual_operator.png
+          :alt: Read manual symbol.
+          :width: 40px
+     - Lisez le manuel d'utilisation avant toute opération.
+     - .. image:: _assets/templates/word_template/common_assets/symbols/no_open_flame.png
+          :alt: No open flame symbol.
+          :width: 40px
+     - Ne pas fumer ni utiliser de flamme nue.
+   * - .. image:: _assets/templates/word_template/common_assets/symbols/electric_shock.png
+          :alt: Electric shock symbol.
+          :width: 40px
+     - Risque de choc électrique.
+     - .. image:: _assets/templates/word_template/common_assets/symbols/keep_away_from_children.png
+          :alt: Keep away from children symbol.
+          :width: 40px
+     - Les enfants ne sont pas admis.
+   * - .. image:: _assets/templates/word_template/common_assets/symbols/battery_charging.png
+          :alt: Battery charging symbol.
+          :width: 40px
+     - Chargement de la batterie.
+     - .. image:: _assets/templates/word_template/common_assets/symbols/li_ion.png
+          :alt: Li-ion battery symbol.
+          :width: 40px
+     - Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.
+   * - .. image:: _assets/templates/word_template/common_assets/symbols/explosive_material.png
+          :alt: Explosive material symbol.
+          :width: 40px
+     - Matière explosive.
+     - .. image:: _assets/templates/word_template/common_assets/symbols/weee.png
+          :alt: WEEE disposal symbol.
+          :width: 40px
+     - Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères et qu'il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l'environnement. Pour plus d'informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.
+   * - .. image:: _assets/templates/word_template/common_assets/symbols/heavy_object.png
+          :alt: Heavy object symbol.
+          :width: 40px
+     - Objet lourd.
+     - .. image:: _assets/templates/word_template/common_assets/symbols/weee2.png
+          :alt: Battery disposal symbol.
+          :width: 40px
+     - Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères.
+       En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses.
+       Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.
 
-      \HBSymbolTwoColumnTablesSplit{Symbole}{Signification}{%
-      \HBSymbolIconRow{1_warning_triangle_IfHObDBCDowRHbxLvCzci3wen7c.png}{Mise en garde! Le non-respect des messages d'avertissement peut entraîner des blessures.}
-      \HBSymbolIconRow{2_read_manual_P0fEbfBNKoRiCoxkAm7cq3ymndh.png}{Lire le manuel de l'opérateur}
-      \HBSymbolIconRow{3_electric_shock_Ctr7btZp2oBcCqxDmHbcrFPEnFd.png}{Risque de choc électrique}
-      \HBSymbolIconRow{4_battery_charging_N9ppbBQWdoPM5bxEammcGFItnpd.png}{Chargement de la batterie}
-      }{%
-      \HBSymbolIconRow{7_do_not_dismantle_TTrGbm6PdoAFBwx16nXcZOaFnZf.png}{Ne démontez pas le produit.}
-      \HBSymbolIconRow{8_no_open_flame_GOQabZgNNoj1goxlyjHcA0w7n7b.png}{Ne pas fumer ni utiliser de flamme nue}
-      \HBSymbolIconRow{9_keep_away_from_children_AjeEb4GIgoPNpdxkXhFcIeaDnTM.png}{Les enfants ne sont pas admis}
-      \HBSymbolIconRow{10_li_ion_Nkm5benPWobav4xNt0ecDB2nn6D.png}{Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.}
-      }{%
-      \HBSymbolIconRow{5_explosive_material_F4J3bCXAeoUk7sxrOg2ch60anHf.png}{Matière explosive}
-      \HBSymbolIconRow{6_heavy_object_M31Fbb3XeoQ0ClxmK2Lc9I5snYi.png}{Objet lourd}
-      }{%
-      \HBSymbolIconRow{11_weee_Wx7PbvwWCoznaCxrZ9Pc1KsXnSc.png}{Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié. \newline Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.}
-      }
-
-.. only:: not latex
-
-   .. list-table::
-      :class: longtable
-      :header-rows: 0
-      :widths: 12 38 12 38
-
-      * - **Symbole**
-        - **Signification**
-        - **Symbole**
-        - **Signification**
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/1_warning_triangle_IfHObDBCDowRHbxLvCzci3wen7c.png
-             :alt: warning_triangle
-             :width: 40px
-        - Mise en garde! Le non-respect des messages d'avertissement peut entraîner des blessures.
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/7_do_not_dismantle_TTrGbm6PdoAFBwx16nXcZOaFnZf.png
-             :alt: do_not_dismantle
-             :width: 40px
-        - Ne démontez pas le produit.
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/2_read_manual_P0fEbfBNKoRiCoxkAm7cq3ymndh.png
-             :alt: read_manual
-             :width: 40px
-        - Lire le manuel de l'opérateur
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/8_no_open_flame_GOQabZgNNoj1goxlyjHcA0w7n7b.png
-             :alt: no_open_flame
-             :width: 40px
-        - Ne pas fumer ni utiliser de flamme nue
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/3_electric_shock_Ctr7btZp2oBcCqxDmHbcrFPEnFd.png
-             :alt: electric_shock
-             :width: 40px
-        - Risque de choc électrique
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/9_keep_away_from_children_AjeEb4GIgoPNpdxkXhFcIeaDnTM.png
-             :alt: keep_away_from_children
-             :width: 40px
-        - Les enfants ne sont pas admis
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/4_battery_charging_N9ppbBQWdoPM5bxEammcGFItnpd.png
-             :alt: battery_charging
-             :width: 40px
-        - Chargement de la batterie
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/10_li_ion_Nkm5benPWobav4xNt0ecDB2nn6D.png
-             :alt: li_ion
-             :width: 40px
-        - Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/5_explosive_material_F4J3bCXAeoUk7sxrOg2ch60anHf.png
-             :alt: explosive_material
-             :width: 40px
-        - Matière explosive
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/11_weee_Wx7PbvwWCoznaCxrZ9Pc1KsXnSc.png
-             :alt: weee
-             :width: 40px
-        - Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié.
-          Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/6_heavy_object_M31Fbb3XeoQ0ClxmK2Lc9I5snYi.png
-             :alt: heavy_object
-             :width: 40px
-        - Objet lourd
-        -
-        -

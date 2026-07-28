@@ -9,49 +9,18 @@
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{multicol}
-\usepackage{needspace}
 
 % ==================================================
 % WARNING LOCKUP
 % ==================================================
 
-\providecommand{\HBWarningTriangleDark}{%
-  \begin{tikzpicture}[x=1mm,y=1mm,baseline=-0.5mm]
-    \fill[BrandDark,rounded corners=0.8mm] (0,0) -- (4.6,8.0) -- (9.2,0) -- cycle;
-    \node[white,font=\HBFontHeavy\fontsize{8.5pt}{8.5pt}\selectfont] at (4.6,2.8) {!};
-  \end{tikzpicture}%
-}
-
-\providecommand{\HBWarningTriangleWhite}{%
-  \begin{tikzpicture}[x=1mm,y=1mm,baseline=-0.5mm]
-    \fill[white,rounded corners=0.8mm] (0,0) -- (4.6,8.0) -- (9.2,0) -- cycle;
-    \node[BrandDark,font=\HBFontHeavy\fontsize{8.5pt}{8.5pt}\selectfont] at (4.6,2.8) {!};
-  \end{tikzpicture}%
-}
-
-% The lead card uses the larger production-master lockup.  It is separate
-% from the compact white triangle used by other safety components.
-\providecommand{\HBWarningTriangleWhiteLead}{%
-  \begin{tikzpicture}[x=1mm,y=1mm,baseline=-0.5mm]
-    \fill[white,rounded corners=0.9mm]
-      (0,0) -- (5.2,\csname HBcomp_warning_lead_icon_height\endcsname)
-      -- (\csname HBcomp_warning_lead_icon_width\endcsname,0) -- cycle;
-    \node[BrandDark,font=\HBFontHeavy\fontsize{9.5pt}{9.5pt}\selectfont]
-      at (5.2,3.15) {!};
-  \end{tikzpicture}%
-}
-
-\newsavebox{\HBSignalWordBox}
-\providecommand{\HBSignalLockup}[1]{%
-  \sbox{\HBSignalWordBox}{\HBFontHeavy\fontsize{10pt}{10.6pt}\selectfont #1}%
-  \begin{tabular}{@{}m{9.5mm}@{\hspace{1.2mm}}m{\dimexpr\csname HBcomp_lockup_width\endcsname-10.7mm\relax}@{}}%
-    \centering\HBWarningTriangleDark &
-    {\ifdim\wd\HBSignalWordBox>\dimexpr\csname HBcomp_lockup_width\endcsname-10.7mm\relax
-       \resizebox{\dimexpr\csname HBcomp_lockup_width\endcsname-10.7mm\relax}{!}{\usebox{\HBSignalWordBox}}%
-     \else
-       \usebox{\HBSignalWordBox}%
-     \fi}\tabularnewline
-  \end{tabular}%
+\providecommand{\warninglockup}{}
+\renewcommand{\warninglockup}{%
+  \includegraphics[
+    height=\csname HBcomp_lockup_height\endcsname,
+    viewport=79 22 2125 549,
+    clip
+  ]{warning_lockup.png}%
 }
 
 % ==================================================
@@ -79,111 +48,20 @@
 % WARNING LAYOUT（结构层，不控制排版）
 % ==================================================
 
-\providecommand{\HBSafetyInstruction}[1]{%
-  \begin{safetywarningbox}%
-    \noindent
-    \begin{tabularx}{\linewidth}{@{}m{12mm}@{\hspace{2.4mm}}>{\RaggedRight\arraybackslash}X@{}}%
-      \centering\HBWarningTriangleDark
-      &
-      {\HBFontHeavy\fontsize{8pt}{9.6pt}\selectfont #1}%
-    \end{tabularx}%
-  \end{safetywarningbox}%
-}
-
-\providecommand{\HBLocalizedWarningLabel}{WARNING}
 \providecommand{\safetywarning}[1]{}
 \renewcommand{\safetywarning}[1]{%
   \begin{safetywarningbox}%
     \noindent
-    \begin{tabularx}{\linewidth}{@{}m{\csname HBcomp_lockup_width\endcsname}%
+    \begin{tabular}{@{}m{\csname HBcomp_lockup_width\endcsname}%
                     @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
-                    >{\RaggedRight\arraybackslash}X@{}}%
-      \centering\HBSignalLockup{\HBLocalizedWarningLabel}
+                    m{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}@{}}%
+      \centering\warninglockup
       &
-      {\HBTypeWarningTextStart #1}%
-    \end{tabularx}%
-  \end{safetywarningbox}%
-}
-
-% ==================================================
-% LEAD WARNING BOX (V2.0 master p4): large plain triangle icon on the
-% left, bold "WARNING" heading + lead sentence stacked on the right.
-% Signature: \HBWarningLeadBlock{heading}{lead sentence}
-% ==================================================
-
-\providecommand{\HBWarningLeadBlock}[2]{%
-  % Column-safe: sized off \linewidth (not \textwidth) so the block can
-  % sit inside safetytwocol's left column, matching the V2.0 master p4.
-  \par\noindent
-  \begin{tcolorbox}[
-    enhanced,
-    bicolor,
-    sidebyside,
-    sidebyside align=center,
-    sidebyside gap=0mm,
-    lefthand width=\csname HBcomp_warning_lead_dark_width\endcsname,
-    colback=BrandDark,
-    colbacklower=white,
-    colframe=BrandDark,
-    boxsep=0mm,
-    arc=\csname HBcomp_warning_box_arc\endcsname,
-    boxrule=\csname HBcomp_warning_box_rule\endcsname,
-    left=0mm,
-    right=0mm,
-    leftupper=0mm,
-    rightupper=0.9mm,
-    leftlower=0mm,
-    rightlower=0mm,
-    top=0mm,
-    bottom=0mm,
-    height=\csname HBcomp_warning_lead_height\endcsname,
-    width=\dimexpr\linewidth-\csname HBcomp_warning_lead_width_trim\endcsname\relax,
-    valign=center,
-    before skip=0mm,
-    after skip=\csname HBcomp_warning_box_after\endcsname,
-  ]
-    \centering\raisebox{0.39mm}{\HBWarningTriangleWhiteLead}
-    \tcblower
-    \hspace*{\csname HBcomp_warning_lead_text_left_pad\endcsname}%
-    \begin{minipage}[c]{\dimexpr\linewidth
-      -\csname HBcomp_warning_lead_text_left_pad\endcsname
-      -\csname HBcomp_warning_lead_right_pad\endcsname\relax}%
-      \noindent
-      {\HBFontBold\color{\csname HBtype_body_color\endcsname}%
-       \fontsize{\csname HBtype_warning_lead_label_font_size\endcsname}
-                {\csname HBtype_warning_lead_label_font_leading\endcsname}\selectfont #1}%
-      \par\vspace{1.0mm}%
-      {\HBFontBold
-       \fontsize{\csname HBtype_warning_lead_body_font_size\endcsname}
-                {\csname HBtype_warning_lead_body_font_leading\endcsname}\selectfont
-       \RaggedRight #2}%
-    \end{minipage}%
-  \end{tcolorbox}%
-  \par
-}
-
-% ==================================================
-% DANGER BOX
-% Same box + lockup layout as \safetywarning so WARNING/DANGER blocks
-% render as one visual family (archive HomePower 2000 Plus V2 p5).
-% Signature mirrors \HBNoticeBlock so templates can swap 1:1:
-%   \HBDangerBlock{label}{primary text}{secondary text}
-% #1 (label) is currently unused — the warning lockup image stands in
-% until a dedicated DANGER lockup asset ships.
-% ==================================================
-
-\providecommand{\HBDangerBlock}[3]{%
-  \begin{safetywarningbox}%
-    \noindent
-    \begin{tabularx}{\linewidth}{@{}m{\csname HBcomp_lockup_width\endcsname}%
-                    @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
-                    >{\RaggedRight\arraybackslash}X@{}}%
-      \centering\HBSignalLockup{#1}
-      &
-      {\HBTypeWarningTextStart
-       #2%
-       \HBIfBlankTF{#3}{}{\par #3}}%
-    \end{tabularx}%
+      \parbox[c]{\dimexpr\textwidth-\csname HBcomp_lockup_width\endcsname-\csname HBcomp_lockup_gap\endcsname\relax}{%
+        \HBTypeWarningTextStart
+        \HBtightlines{\csname HBtype_warning_text_font_leading\endcsname}{#1}%
+      }%
+    \end{tabular}%
   \end{safetywarningbox}%
 }
 
@@ -191,34 +69,24 @@
 % SUBBAR
 % ==================================================
 
-\expandafter\providecommand\csname HBcomp_subbar_needspace\endcsname{18mm}
 \providecommand{\safetysubbar}[1]{}
-% Master parity: the subbar is a full-round dark capsule (stadium), the
-% H2-family counterpart of the sharp-top/rounded-south H1 bar
-% (tools/idml/STYLE_MAP.md 标题族).
 \renewcommand{\safetysubbar}[1]{%
-  \par\Needspace{\csname HBcomp_subbar_needspace\endcsname}%
-  \noindent
   \begin{tcolorbox}[
-    enhanced,
     colback=BrandDark,
     colframe=BrandDark,
     arc=\csname HBcomp_subbar_arc\endcsname,
-    boxrule=0pt,
-    boxsep=0mm,
     left=\csname HBcomp_subbar_pad_lr\endcsname,
     right=\csname HBcomp_subbar_pad_lr\endcsname,
     top=\csname HBcomp_subbar_pad_tb\endcsname,
     bottom=\csname HBcomp_subbar_pad_tb\endcsname,
-    height=\csname HBcomp_subbar_height\endcsname,
-    valign=center,
-    width=\csname HBcomp_subbar_width\endcsname\textwidth,
-    before skip=0mm,
-    after skip=\csname HBcomp_subbar_after\endcsname
+    boxrule=0pt,
+    width=\csname HBcomp_subbar_width\endcsname\textwidth
   ]
     \HBTypeSubbar{#1}
-  \end{tcolorbox}%
-  \par
+  \end{tcolorbox}
+  \par\noindent
+  \vspace*{\csname HBcomp_subbar_after\endcsname}%
+  \vspace*{-\csname HBcomp_subbar_tighten\endcsname}%
 }
 
 % ==================================================
@@ -227,37 +95,14 @@
 
 \setlength{\columnsep}{\csname HBcomp_twocol_sep\endcsname}
 
-% Spacing is declared, not cancelled: \multicolsep (multicol's own 12pt
-% glue before/after the columns — the actual source the old negative
-% comp_twocol_tighten was fighting, not "Sphinx glue") is zeroed inside
-% the environment group, and comp_twocol_before / comp_twocol_after state
-% the intended gaps directly (typography_gap/2026-07-03 #11).
 \newenvironment{safetytwocol}{%
   \par\noindent
-  \setlength{\multicolsep}{0pt}%
-  \vspace*{\csname HBcomp_twocol_before\endcsname}%
+  \vspace*{-\csname HBcomp_twocol_tighten\endcsname}%
   \begin{multicols}{2}
     \HBTypeListStart
-    \RaggedRight
-    \hyphenpenalty=10000\relax
-    \exhyphenpenalty=10000\relax
 }{%
   \end{multicols}
-  \par\vspace*{\csname HBcomp_twocol_after\endcsname}
-}
-
-% ==================================================
-% SINGLE COLUMN
-% ==================================================
-
-\newenvironment{safetysinglecol}{%
-  \par\noindent
-  \begingroup
-    \HBTypeListStart
-}{%
   \par
-  \endgroup
-  \vspace*{\csname HBcomp_twocol_after\endcsname}
 }
 
 % ==================================================
@@ -267,7 +112,7 @@
 \providecommand{\safetylead}[1]{}
 \renewcommand{\safetylead}[1]{%
   \par\noindent
-  \HBTypeSafetyLead{#1}
+  \HBTypeBody{#1}
   \par\vspace{\csname HBcomp_lead_after\endcsname}%
 }
 
@@ -296,10 +141,8 @@
 
 % Capture defaults once so language switching can safely reset.
 \HBStoreBaseFromKey{comp_h1_pill_after}%
-\HBStoreBaseFromKey{comp_title_l2_before}%
-\HBStoreBaseFromKey{comp_title_l2_after}%
 \HBStoreBaseFromKey{comp_subbar_after}%
-\HBStoreBaseFromKey{comp_twocol_before}%
+\HBStoreBaseFromKey{comp_twocol_tighten}%
 \HBStoreBaseFromKey{comp_lead_after}%
 \HBStoreBaseFromKey{comp_warning_box_before}%
 \HBStoreBaseFromKey{comp_warning_box_after}%
@@ -319,26 +162,11 @@
 
 \providecommand{\HBApplyLang}[1]{%
   \def\HB@lang{#1}%
-  \renewcommand{\HBLocalizedWarningLabel}{WARNING}%
-  \renewcommand{\HBSignalWordFontSize}{\csname HBtype_symbol_signal_font_size\endcsname}%
-  \renewcommand{\HBSignalWordLeading}{\csname HBtype_symbol_signal_font_leading\endcsname}%
-  \ifstrequal{#1}{fr}{%
-    \renewcommand{\HBLocalizedWarningLabel}{AVERTISSEMENT}%
-    \renewcommand{\HBSignalWordFontSize}{6.2pt}%
-    \renewcommand{\HBSignalWordLeading}{6.8pt}%
-  }{}%
-  \ifstrequal{#1}{es}{%
-    \renewcommand{\HBLocalizedWarningLabel}{ADVERTENCIA}%
-    \renewcommand{\HBSignalWordFontSize}{5.6pt}%
-    \renewcommand{\HBSignalWordLeading}{6.2pt}%
-  }{}%
 
   % ===== Reset to base layer defaults first =====
   \HBOverrideFromKey{comp_h1_pill_after}{base_comp_h1_pill_after}%
-  \HBOverrideFromKey{comp_title_l2_before}{base_comp_title_l2_before}%
-  \HBOverrideFromKey{comp_title_l2_after}{base_comp_title_l2_after}%
   \HBOverrideFromKey{comp_subbar_after}{base_comp_subbar_after}%
-  \HBOverrideFromKey{comp_twocol_before}{base_comp_twocol_before}%
+  \HBOverrideFromKey{comp_twocol_tighten}{base_comp_twocol_tighten}%
   \HBOverrideFromKey{comp_lead_after}{base_comp_lead_after}%
   \HBOverrideFromKey{comp_warning_box_before}{base_comp_warning_box_before}%
   \HBOverrideFromKey{comp_warning_box_after}{base_comp_warning_box_after}%
@@ -358,10 +186,8 @@
 
   % ===== Component layer =====
   \HBOverrideFromKey{comp_h1_pill_after}{lang_\HB@lang_comp_h1_pill_after}%
-  \HBOverrideFromKey{comp_title_l2_before}{lang_\HB@lang_comp_title_l2_before}%
-  \HBOverrideFromKey{comp_title_l2_after}{lang_\HB@lang_comp_title_l2_after}%
   \HBOverrideFromKey{comp_subbar_after}{lang_\HB@lang_comp_subbar_after}%
-  \HBOverrideFromKey{comp_twocol_before}{lang_\HB@lang_comp_twocol_before}%
+  \HBOverrideFromKey{comp_twocol_tighten}{lang_\HB@lang_comp_twocol_tighten}%
   \HBOverrideFromKey{comp_lead_after}{lang_\HB@lang_comp_lead_after}%
   \HBOverrideFromKey{comp_warning_box_before}{lang_\HB@lang_comp_warning_box_before}%
   \HBOverrideFromKey{comp_warning_box_after}{lang_\HB@lang_comp_warning_box_after}%

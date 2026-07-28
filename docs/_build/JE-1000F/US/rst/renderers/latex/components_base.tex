@@ -4,42 +4,7 @@
 % Parameter access: \csname HB<key>\endcsname
 % ==================================================
 
-\usepackage{array}
 \usepackage{colortbl}
-\usepackage{graphicx}
-\usepackage{needspace}
-
-% ------------------------------
-% Raw LaTeX component helpers
-% ------------------------------
-\makeatletter
-
-\providecommand{\HBIfBlankTF}[3]{%
-  \edef\HB@blanktest{\detokenize{#1}}%
-  \ifx\HB@blanktest\@empty
-    #2%
-  \else
-    #3%
-  \fi
-}
-
-\providecommand{\HBImagePlaceholder}[2]{%
-  \makebox[#1][c]{\rule{0pt}{#2}}%
-}
-
-\providecommand{\HBImageOrPlaceholder}[3]{%
-  \HBIfBlankTF{#3}{%
-    \HBImagePlaceholder{#1}{#2}%
-  }{%
-    \IfFileExists{#3}{%
-      \includegraphics[width=#1,height=#2,keepaspectratio]{#3}%
-    }{%
-      \HBImagePlaceholder{#1}{#2}%
-    }%
-  }%
-}
-
-\makeatother
 
 % ------------------------------
 % List base (enumitem)
@@ -52,19 +17,6 @@
   parsep=\csname HBcomp_list_parsep\endcsname,
   partopsep=\csname HBcomp_list_partopsep\endcsname,
   label=\raisebox{\csname HBcomp_list_bullet_raise\endcsname}{\csname HBcomp_list_bullet_symbol\endcsname}
-}
-
-% Nested manual items are a distinct dash-led level in the production
-% master.  Keep the hierarchy semantic so Sphinx, LaTeX, and IDML can all
-% preserve it instead of flattening child items into parent prose.
-\setlist[itemize,2]{
-  leftmargin=\csname HBcomp_sublist_leftmargin\endcsname,
-  labelsep=\csname HBcomp_sublist_labelsep\endcsname,
-  itemsep=\csname HBcomp_sublist_itemsep\endcsname,
-  topsep=\csname HBcomp_sublist_topsep\endcsname,
-  parsep=0pt,
-  partopsep=0pt,
-  label=\csname HBcomp_sublist_bullet_symbol\endcsname
 }
 
 % ------------------------------
@@ -90,20 +42,12 @@
 \expandafter\providecommand\csname HBcomp_spec_table_tabcolsep\endcsname{3.2pt}
 \expandafter\providecommand\csname HBcomp_spec_table_row_stretch\endcsname{1.10}
 
-% Left-column tint is parameterized; the V2.0 JE-1000F master
-% (2026-06-05) draws spec/LCD tables WITHOUT a tinted left column, so
-% the default is 0 (white). Set comp_spec_table_left_tint in
-% layout_params.csv to restore a tint for older-style targets.
-\expandafter\providecommand\csname HBcomp_spec_table_left_tint\endcsname{0}
-\colorlet{HBSharedTableLeftBg}{black!\csname HBcomp_spec_table_left_tint\endcsname}
-% Table header row tint (Symbol/Meaning header bars in the V2.0 master)
-\colorlet{HBTableHeadBg}{black!8}
+\colorlet{HBSharedTableLeftBg}{black!14}
 \colorlet{HBSharedTableFrameColor}{black}
 
 \providecommand{\HBsharedXcolumn}[1]{m{#1}}
 \providecommand{\HBsharedTableLeftRatio}{0.33}
 \providecommand{\HBsharedTableTabcolsep}{3.2pt}
-\expandafter\providecommand\csname HBcomp_table_text_indent\endcsname{5.2pt}
 
 \providecommand{\HBSetSharedTableGeometry}[2]{%
   \def\HBsharedTableLeftRatio{#1}%
@@ -119,7 +63,6 @@
   boxrule=\csname HBcomp_table_outer_rule\endcsname,
   boxsep=0mm,
   left=0mm,right=0mm,top=0mm,bottom=0mm,
-  before skip=0mm,after skip=0mm,
   overlay unbroken={
     \begin{tcbclipinterior}
       \fill[HBSharedTableLeftBg]
@@ -163,164 +106,64 @@
 }
 
 % ------------------------------
-% Notice / note / tip / caution blocks for raw LaTeX renderers
-% Signature: \HBNoticeBlock[kind]{label}{primary text}{secondary text}
-% Supported kind values: notice, note, tip, caution.
+% Shared H1 section title
+% - all rst top-level headings ("=") should pass this style path
 % ------------------------------
-\expandafter\providecommand\csname HBcomp_notice_before\endcsname{0.8mm}
-\expandafter\providecommand\csname HBcomp_notice_after\endcsname{0.8mm}
-\expandafter\providecommand\csname HBcomp_notice_pad_lr\endcsname{1.4mm}
-\expandafter\providecommand\csname HBcomp_notice_pad_tb\endcsname{0.8mm}
-\expandafter\providecommand\csname HBcomp_notice_arc\endcsname{0.9mm}
-\expandafter\providecommand\csname HBcomp_notice_rule\endcsname{0.35pt}
-\expandafter\providecommand\csname HBcomp_notice_label_width\endcsname{0.18\linewidth}
-\expandafter\providecommand\csname HBcomp_notice_label_gap\endcsname{1.2mm}
-\expandafter\providecommand\csname HBtype_notice_label_font_size\endcsname{6.8pt}
-\expandafter\providecommand\csname HBtype_notice_label_font_leading\endcsname{7.4pt}
-\expandafter\providecommand\csname HBtype_notice_body_font_size\endcsname{6.6pt}
-\expandafter\providecommand\csname HBtype_notice_body_font_leading\endcsname{7.4pt}
+\providecommand{\hbsectiontitle}[1]{#1}
 
-\colorlet{HBNoticeBgnotice}{BgK05}
-\colorlet{HBNoticeFramenotice}{LineK40}
-\colorlet{HBNoticeLabelnotice}{TextK90}
-\colorlet{HBNoticeBgnote}{BgK05}
-\colorlet{HBNoticeFramenote}{LineK40}
-\colorlet{HBNoticeLabelnote}{TextK90}
-\colorlet{HBNoticeBgtip}{AccentBlue!7}
-\colorlet{HBNoticeFrametip}{AccentBlue!60!black}
-\colorlet{HBNoticeLabeltip}{AccentBlue!60!black}
-\colorlet{HBNoticeBgcaution}{white}
-\colorlet{HBNoticeFramecaution}{BrandDark}
-\colorlet{HBNoticeLabelcaution}{BrandDark}
+\renewcommand{\hbsectiontitle}[1]{%
+  \par\noindent
+  \hspace*{-\leftskip}%
+  \begin{tcolorbox}[
+    colback=BrandDark,
+    colframe=BrandDark,
+    arc=\csname HBcomp_h1_pill_arc\endcsname,
+    rounded corners=south,
+    sharp corners=north,
+    boxrule=0pt,
+    left=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    right=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    top=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    bottom=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    width=\csname HBcomp_h1_pill_width\endcsname\textwidth,
+    before skip=0mm,
+    after skip=\csname HBcomp_h1_pill_after\endcsname
+  ]
+    \HBTypeHOne{#1}
+  \end{tcolorbox}%
+  \par\noindent
+}
+
+% Apply shared H1 styling to all section-level headings generated from rst.
+\titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
+\titlespacing*{\section}{0pt}{0pt}{\csname HBsection_after_fix\endcsname}
+\setcounter{secnumdepth}{0}
+
+% ------------------------------
+% Rubric style (subsubsection*)
+% - spacing: COMPONENT
+% - font: TYPE SYSTEM
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_subsection_before\endcsname{1.2mm}
+\expandafter\providecommand\csname HBcomp_subsection_after\endcsname{0.8mm}
+\expandafter\providecommand\csname HBtype_subsection_font_size\endcsname{10.8pt}
+\expandafter\providecommand\csname HBtype_subsection_font_leading\endcsname{11.8pt}
 
 \makeatletter
-\providecommand{\HBNoticeColor}[2]{%
-  \ifcsname color@HBNotice#1#2\endcsname
-    HBNotice#1#2%
-  \else
-    HBNotice#1note%
-  \fi
-}
+\renewcommand\subsection{\@startsection{subsection}{2}{0pt}%
+  {\csname HBcomp_subsection_before\endcsname}%
+  {\csname HBcomp_subsection_after\endcsname}%
+  {\bfseries
+   \fontsize{\csname HBtype_subsection_font_size\endcsname}
+            {\csname HBtype_subsection_font_leading\endcsname}
+   \color{\csname HBtype_body_color\endcsname}
+   \selectfont}}%
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{0pt}%
+  {\csname HBcomp_rubric_before\endcsname}%
+  {\csname HBcomp_rubric_after\endcsname}%
+  {\bfseries
+   \fontsize{\csname HBtype_rubric_font_size\endcsname}
+            {\csname HBtype_rubric_font_leading\endcsname}
+   \color{\csname HBtype_rubric_color\endcsname}
+   \selectfont\color{black}}}
 \makeatother
-
-\providecommand{\HBTypeNoticeLabel}[2]{%
-  {\HBFontSemiBold
-   \color{\HBNoticeColor{Label}{#1}}%
-   \fontsize{\csname HBtype_notice_label_font_size\endcsname}
-            {\csname HBtype_notice_label_font_leading\endcsname}\selectfont
-   \RaggedRight #2}%
-}
-
-\providecommand{\HBTypeNoticeBody}[1]{%
-  {\HBFontRegular
-   \color{\csname HBtype_body_color\endcsname}%
-   \fontsize{\csname HBtype_notice_body_font_size\endcsname}
-            {\csname HBtype_notice_body_font_leading\endcsname}\selectfont
-   \RaggedRight #1}%
-}
-
-\newcommand{\HBNoticeBlock}[4][notice]{%
-  \par\noindent
-  \begin{tcolorbox}[
-    enhanced,
-    breakable,
-    colback=\HBNoticeColor{Bg}{#1},
-    colframe=\HBNoticeColor{Frame}{#1},
-    arc=\csname HBcomp_notice_arc\endcsname,
-    boxrule=\csname HBcomp_notice_rule\endcsname,
-    boxsep=0mm,
-    left=\csname HBcomp_notice_pad_lr\endcsname,
-    right=\csname HBcomp_notice_pad_lr\endcsname,
-    top=\csname HBcomp_notice_pad_tb\endcsname,
-    bottom=\csname HBcomp_notice_pad_tb\endcsname,
-    before skip=\csname HBcomp_notice_before\endcsname,
-    after skip=\csname HBcomp_notice_after\endcsname
-  ]%
-    \HBTypeNoticeLabel{#1}{#2}%
-    \par\vspace{0.25mm}%
-    \HBTypeNoticeBody{#3}%
-    \HBIfBlankTF{#4}{}{%
-      \par\vspace{0.35mm}%
-      \HBTypeNoticeBody{#4}%
-    }%
-  \end{tcolorbox}%
-}
-
-% Four inline notice variants share one visual component. The source table
-% supplies content; this component owns the rounded panel, split, and type.
-\providecommand{\HBCalloutBlock}[4]{%
-  \par\noindent
-  \begin{tcolorbox}[
-    enhanced,
-    colback=BgK05,
-    colframe=BgK05,
-    arc=\csname HBcomp_tip_arc\endcsname,
-    boxrule=\csname HBcomp_callout_rule\endcsname,
-    boxsep=0mm,
-    leftupper=0mm,rightupper=0mm,
-    leftlower=0mm,
-    rightlower=\csname HBcomp_tip_pad_lr\endcsname,
-    top=\csname HBcomp_caution_pad_tb\endcsname,
-    bottom=\csname HBcomp_caution_pad_tb\endcsname,
-    height from={#4} to {\textheight},
-    valign=center,
-    valign lower=center,
-    sidebyside,
-    sidebyside align=center,
-    sidebyside gap=\csname HBcomp_callout_body_inset\endcsname,
-    lefthand width=#3,
-    before skip=1.2mm,
-    after skip=1.2mm,
-    underlay={
-      \fill[white]
-        ([xshift=\csname HBcomp_callout_label_inset\endcsname,
-          yshift=\csname HBcomp_callout_label_inset\endcsname]frame.south west)
-        rectangle
-        ([xshift=#3,
-          yshift=-\csname HBcomp_callout_label_inset\endcsname]frame.north west);
-      \node[anchor=base,inner sep=0pt] at
-        ([xshift=\dimexpr(#3+\csname HBcomp_callout_label_inset\endcsname)/2\relax,
-          yshift=\csname HBcomp_tip_label_baseline_shift\endcsname]frame.west)
-        {\HBFontBold
-         \fontsize{\csname HBtype_tip_label_font_size\endcsname}
-                  {\csname HBtype_tip_label_font_leading\endcsname}\selectfont
-         #1};
-    }
-  ]%
-    \begin{minipage}[c]{\linewidth}%
-      \mbox{}%
-    \end{minipage}%
-    \tcblower
-    \HBFontMedium
-    \addfontfeatures{FakeStretch=\csname HBtype_tip_body_horizontal_scale\endcsname}%
-    \fontsize{\csname HBtype_tip_body_font_size\endcsname}
-             {\csname HBtype_tip_body_font_leading\endcsname}\selectfont
-    \setlength{\parskip}{0pt}%
-    \RaggedRight #2\par
-  \end{tcolorbox}%
-  \par
-}
-\providecommand{\HBCalloutBullet}[1]{%
-  \par\noindent
-  \hangindent=\dimexpr\csname HBcomp_callout_bullet_indent\endcsname
-    +\csname HBcomp_callout_bullet_width\endcsname\relax
-  \hangafter=1
-  \hspace*{\csname HBcomp_callout_bullet_indent\endcsname}%
-  \makebox[\csname HBcomp_callout_bullet_width\endcsname][l]{%
-    \fontsize{\csname HBtype_callout_bullet_font_size\endcsname}
-             {\csname HBtype_callout_bullet_font_size\endcsname}\selectfont\textbullet}%
-  #1\par
-}
-\providecommand{\HBWarningBlock}[2]{%
-  \HBCalloutBlock{#1}{#2}{\csname HBcomp_caution_label_width\endcsname}{0pt}%
-}
-\providecommand{\HBCautionBlock}[2]{%
-  \HBCalloutBlock{#1}{#2}{\csname HBcomp_caution_label_width\endcsname}{0pt}%
-}
-\providecommand{\HBNoteBlock}[2]{%
-  \HBCalloutBlock{#1}{#2}{\csname HBcomp_tip_label_width\endcsname}{0pt}%
-}
-\providecommand{\HBTipBlock}[2]{%
-  \HBCalloutBlock{#1}{#2}{\csname HBcomp_tip_label_width\endcsname}%
-    {\csname HBcomp_tip_height\endcsname}%
-}

@@ -52,6 +52,9 @@
 % Paragraph skip
 \expandafter\def\csname HBpage_parskip\endcsname{0pt}
 
+% Negative spacing after section to cancel Sphinx glue
+\expandafter\def\csname HBsection_after_fix\endcsname{-2mm}
+
 % ===== BRAND =====
 
 % Accent blue
@@ -78,217 +81,73 @@
 \expandafter\def\csname HBtype_body_color\endcsname{TextGray}
 
 % Body/lead leading (MUST NOT affect list/warning)
-\expandafter\def\csname HBtype_body_font_leading\endcsname{7.2pt}
+\expandafter\def\csname HBtype_body_font_leading\endcsname{7.4pt}
 
 % Body/lead font size
-\expandafter\def\csname HBtype_body_font_size\endcsname{6.0pt}
+\expandafter\def\csname HBtype_body_font_size\endcsname{7.2pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_body_force_upper\endcsname{0}
 
-% Callout bullet glyph size
-\expandafter\def\csname HBtype_callout_bullet_font_size\endcsname{4.8pt}
-
-% Body data table leading
-\expandafter\def\csname HBtype_data_table_font_leading\endcsname{6.7pt}
-
-% Body data table font size
-\expandafter\def\csname HBtype_data_table_font_size\endcsname{5.9pt}
-
-% Body data table header leading
-\expandafter\def\csname HBtype_data_table_header_font_leading\endcsname{7.0pt}
-
-% Body data table header font size
-\expandafter\def\csname HBtype_data_table_header_font_size\endcsname{6.6pt}
-
-% FCC body leading
-\expandafter\def\csname HBtype_fcc_font_leading\endcsname{6.5pt}
-
-% FCC body font size
-\expandafter\def\csname HBtype_fcc_font_size\endcsname{5.6pt}
-
 % H1 leading
-\expandafter\def\csname HBtype_h1_font_leading\endcsname{14.4pt}
+\expandafter\def\csname HBtype_h1_font_leading\endcsname{10.8pt}
 
 % H1 font size
-\expandafter\def\csname HBtype_h1_font_size\endcsname{12.0pt}
+\expandafter\def\csname HBtype_h1_font_size\endcsname{12pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_h1_force_upper\endcsname{1}
-
-% Inbox label leading
-\expandafter\def\csname HBtype_inbox_label_font_leading\endcsname{7.2pt}
-
-% Inbox label font size
-\expandafter\def\csname HBtype_inbox_label_font_size\endcsname{6.5pt}
-
-% LCD description leading
-\expandafter\def\csname HBtype_lcd_body_font_leading\endcsname{5.8pt}
-
-% LCD description font size
-\expandafter\def\csname HBtype_lcd_body_font_size\endcsname{5.2pt}
-
-% LCD name-column leading
-\expandafter\def\csname HBtype_lcd_label_font_leading\endcsname{6.8pt}
-
-% LCD name-column font size
-\expandafter\def\csname HBtype_lcd_label_font_size\endcsname{6.2pt}
-
-% LCD row-number leading
-\expandafter\def\csname HBtype_lcd_no_font_leading\endcsname{9.4pt}
-
-% LCD row-number font size
-\expandafter\def\csname HBtype_lcd_no_font_size\endcsname{9.0pt}
 
 % List text color name
 \expandafter\def\csname HBtype_list_color\endcsname{TextGray}
 
 % List leading (independent from body)
-\expandafter\def\csname HBtype_list_font_leading\endcsname{7.0pt}
+\expandafter\def\csname HBtype_list_font_leading\endcsname{8pt}
 
 % List font size
-\expandafter\def\csname HBtype_list_font_size\endcsname{6.0pt}
-
-% Preface body leading
-\expandafter\def\csname HBtype_preface_body_font_leading\endcsname{7.2pt}
-
-% Preface body font size
-\expandafter\def\csname HBtype_preface_body_font_size\endcsname{6.0pt}
-
-% Preface language tag font size
-\expandafter\def\csname HBtype_preface_tag_font_size\endcsname{6.0pt}
-
-% Preface title font size
-\expandafter\def\csname HBtype_preface_title_font_size\endcsname{8.0pt}
+\expandafter\def\csname HBtype_list_font_size\endcsname{6pt}
 
 % Rubric text color name
 \expandafter\def\csname HBtype_rubric_color\endcsname{TextK90}
 
 % Rubric leading
-\expandafter\def\csname HBtype_rubric_font_leading\endcsname{9.4pt}
+\expandafter\def\csname HBtype_rubric_font_leading\endcsname{12pt}
 
 % Rubric font size
-\expandafter\def\csname HBtype_rubric_font_size\endcsname{8.6pt}
-
-% Safety section lead leading
-\expandafter\def\csname HBtype_safety_lead_font_leading\endcsname{9.6pt}
-
-% Safety section lead font size
-\expandafter\def\csname HBtype_safety_lead_font_size\endcsname{8.0pt}
+\expandafter\def\csname HBtype_rubric_font_size\endcsname{15pt}
 
 % Spec left-cell label leading
-\expandafter\def\csname HBtype_spec_label_font_leading\endcsname{6.6pt}
+\expandafter\def\csname HBtype_spec_label_font_leading\endcsname{6.4pt}
 
-% Spec left-cell label font size (archive: 6.0)
-\expandafter\def\csname HBtype_spec_label_font_size\endcsname{6.0pt}
+% Spec left-cell label font size
+\expandafter\def\csname HBtype_spec_label_font_size\endcsname{6.2pt}
 
 % Spec note/footnote leading
-\expandafter\def\csname HBtype_spec_note_font_leading\endcsname{6.0pt}
+\expandafter\def\csname HBtype_spec_note_font_leading\endcsname{6.7pt}
 
 % Spec note/footnote font size
-\expandafter\def\csname HBtype_spec_note_font_size\endcsname{5.4pt}
+\expandafter\def\csname HBtype_spec_note_font_size\endcsname{5.9pt}
 
 % Spec section title leading
 \expandafter\def\csname HBtype_spec_section_font_leading\endcsname{9.6pt}
 
 % Spec section title font size
-\expandafter\def\csname HBtype_spec_section_font_size\endcsname{8.0pt}
+\expandafter\def\csname HBtype_spec_section_font_size\endcsname{8.8pt}
 
 % Spec right-cell value leading
-\expandafter\def\csname HBtype_spec_value_font_leading\endcsname{6.6pt}
+\expandafter\def\csname HBtype_spec_value_font_leading\endcsname{6.4pt}
 
-% Spec right-cell value font size (archive: 6.0)
-\expandafter\def\csname HBtype_spec_value_font_size\endcsname{6.0pt}
+% Spec right-cell value font size
+\expandafter\def\csname HBtype_spec_value_font_size\endcsname{6.2pt}
 
 % Subbar leading
-\expandafter\def\csname HBtype_subbar_font_leading\endcsname{9.6pt}
+\expandafter\def\csname HBtype_subbar_font_leading\endcsname{8.4pt}
 
 % Subbar font size
-\expandafter\def\csname HBtype_subbar_font_size\endcsname{8.0pt}
+\expandafter\def\csname HBtype_subbar_font_size\endcsname{8.2pt}
 
 % 0 keep case / 1 uppercase
 \expandafter\def\csname HBtype_subbar_force_upper\endcsname{1}
-
-% Symbol table body leading
-\expandafter\def\csname HBtype_symbol_body_font_leading\endcsname{6.5pt}
-
-% Symbol table body font size
-\expandafter\def\csname HBtype_symbol_body_font_size\endcsname{5.6pt}
-
-% Symbol table header leading
-\expandafter\def\csname HBtype_symbol_header_font_leading\endcsname{7.2pt}
-
-% Symbol table header font size
-\expandafter\def\csname HBtype_symbol_header_font_size\endcsname{6.5pt}
-
-% Signal word leading
-\expandafter\def\csname HBtype_symbol_signal_font_leading\endcsname{10.5pt}
-
-% Signal word font size
-\expandafter\def\csname HBtype_symbol_signal_font_size\endcsname{9.9pt}
-
-% Tip body leading
-\expandafter\def\csname HBtype_tip_body_font_leading\endcsname{7.83pt}
-
-% Tip body font size
-\expandafter\def\csname HBtype_tip_body_font_size\endcsname{6.5pt}
-
-% Tip body horizontal scale for production CFF metric parity
-\expandafter\def\csname HBtype_tip_body_horizontal_scale\endcsname{1.069}
-
-% Tip label leading
-\expandafter\def\csname HBtype_tip_label_font_leading\endcsname{9.0pt}
-
-% Tip label font size
-\expandafter\def\csname HBtype_tip_label_font_size\endcsname{8.0pt}
-
-% Level 2 title color
-\expandafter\def\csname HBtype_title_l2_color\endcsname{TextGray}
-
-% Level 2 title leading
-\expandafter\def\csname HBtype_title_l2_font_leading\endcsname{9.4pt}
-
-% Level 2 title font size
-\expandafter\def\csname HBtype_title_l2_font_size\endcsname{8.6pt}
-
-% Level 2 title uppercase
-\expandafter\def\csname HBtype_title_l2_force_upper\endcsname{1}
-
-% Level 3 title color
-\expandafter\def\csname HBtype_title_l3_color\endcsname{TextGray}
-
-% Level 3 title leading
-\expandafter\def\csname HBtype_title_l3_font_leading\endcsname{8.0pt}
-
-% Level 3 title font size
-\expandafter\def\csname HBtype_title_l3_font_size\endcsname{7.0pt}
-
-% Level 3 title uppercase
-\expandafter\def\csname HBtype_title_l3_force_upper\endcsname{0}
-
-% Troubleshooting corrective-measure leading
-\expandafter\def\csname HBtype_trouble_body_font_leading\endcsname{6.0pt}
-
-% Troubleshooting corrective-measure font size
-\expandafter\def\csname HBtype_trouble_body_font_size\endcsname{5.5pt}
-
-% Troubleshooting error-code leading
-\expandafter\def\csname HBtype_trouble_code_font_leading\endcsname{8.0pt}
-
-% Troubleshooting error-code font size
-\expandafter\def\csname HBtype_trouble_code_font_size\endcsname{8.0pt}
-
-% Warning lead card body leading
-\expandafter\def\csname HBtype_warning_lead_body_font_leading\endcsname{7.2pt}
-
-% Warning lead card body font size
-\expandafter\def\csname HBtype_warning_lead_body_font_size\endcsname{6.5pt}
-
-% Warning lead card label leading
-\expandafter\def\csname HBtype_warning_lead_label_font_leading\endcsname{10.6pt}
-
-% Warning lead card label font size
-\expandafter\def\csname HBtype_warning_lead_label_font_size\endcsname{10.0pt}
 
 % Warning right text alignment (ragged|justified)
 \expandafter\def\csname HBtype_warning_text_align\endcsname{justified}
@@ -297,219 +156,33 @@
 \expandafter\def\csname HBtype_warning_text_color\endcsname{TextGray}
 
 % Warning right text leading
-\expandafter\def\csname HBtype_warning_text_font_leading\endcsname{6.2pt}
+\expandafter\def\csname HBtype_warning_text_font_leading\endcsname{10pt}
 
 % Warning right text font size
-\expandafter\def\csname HBtype_warning_text_font_size\endcsname{5.6pt}
+\expandafter\def\csname HBtype_warning_text_font_size\endcsname{7.8pt}
 
-% 0 keep case / 1 uppercase (body prose keeps case; the lead-in safety sentence is uppercase in the source)
-\expandafter\def\csname HBtype_warning_text_force_upper\endcsname{0}
-
-% Warranty panel body leading
-\expandafter\def\csname HBtype_warranty_body_font_leading\endcsname{7.2pt}
-
-% Warranty panel body font size
-\expandafter\def\csname HBtype_warranty_body_font_size\endcsname{6.0pt}
-
-% Warranty lead leading
-\expandafter\def\csname HBtype_warranty_lead_font_leading\endcsname{8.2pt}
-
-% Warranty lead font size
-\expandafter\def\csname HBtype_warranty_lead_font_size\endcsname{7.0pt}
-
-% Warranty panel title leading
-\expandafter\def\csname HBtype_warranty_title_font_leading\endcsname{8.8pt}
-
-% Warranty panel title font size
-\expandafter\def\csname HBtype_warranty_title_font_size\endcsname{8.2pt}
-
-% Warranty year badge numeral size
-\expandafter\def\csname HBtype_warranty_year_number_font_size\endcsname{21pt}
-
-% Warranty year subtitle size
-\expandafter\def\csname HBtype_warranty_year_subtitle_font_size\endcsname{7.2pt}
-
-% Warranty year unit size
-\expandafter\def\csname HBtype_warranty_year_unit_font_size\endcsname{12pt}
+% 0 keep case / 1 uppercase
+\expandafter\def\csname HBtype_warning_text_force_upper\endcsname{1}
 
 % ===== COMPONENTS =====
 
-% Auto-resume table left column ratio
-\expandafter\def\csname HBcomp_auto_resume_left_ratio\endcsname{0.50}
+% Space after H1 pill
+\expandafter\def\csname HBcomp_h1_pill_after\endcsname{1.5mm}
 
-% Callout body inset from the label panel
-\expandafter\def\csname HBcomp_callout_body_inset\endcsname{1.5mm}
-
-% Callout bullet inset from the body start
-\expandafter\def\csname HBcomp_callout_bullet_indent\endcsname{0.9mm}
-
-% Callout bullet hanging-indent width
-\expandafter\def\csname HBcomp_callout_bullet_width\endcsname{1.2mm}
-
-% White label panel inset inside the gray callout shell
-\expandafter\def\csname HBcomp_callout_label_inset\endcsname{0.44mm}
-
-% Warning caution note and tip outer border width
-\expandafter\def\csname HBcomp_callout_rule\endcsname{1.2pt}
-
-% Caution strip label panel width
-\expandafter\def\csname HBcomp_caution_label_width\endcsname{18.5mm}
-
-% Caution strip horizontal padding
-\expandafter\def\csname HBcomp_caution_pad_lr\endcsname{2.2mm}
-
-% Caution strip vertical padding
-\expandafter\def\csname HBcomp_caution_pad_tb\endcsname{1.2mm}
-
-% Space after body data tables
-\expandafter\def\csname HBcomp_data_table_after\endcsname{1.2mm}
-
-% Space before body data tables
-\expandafter\def\csname HBcomp_data_table_before\endcsname{1.2mm}
-
-% Body data table header minimum height
-\expandafter\def\csname HBcomp_data_table_header_height\endcsname{5.2mm}
-
-% Body data table ordinary row minimum height
-\expandafter\def\csname HBcomp_data_table_row_height\endcsname{4.2mm}
-
-% Body data table row stretch independent of spec tables
-\expandafter\def\csname HBcomp_data_table_row_stretch\endcsname{1.0}
-
-% Body data table cell horizontal padding
-\expandafter\def\csname HBcomp_data_table_tabcolsep\endcsname{2.4pt}
-
-% FCC panel corner radius
-\expandafter\def\csname HBcomp_fcc_arc\endcsname{2.4mm}
-
-% FCC text column gap
-\expandafter\def\csname HBcomp_fcc_column_gap\endcsname{2.6mm}
-
-% FCC panel height
-\expandafter\def\csname HBcomp_fcc_height\endcsname{45.9mm}
-
-% FCC mark width
-\expandafter\def\csname HBcomp_fcc_mark_width\endcsname{14.0mm}
-
-% FCC panel horizontal padding
-\expandafter\def\csname HBcomp_fcc_pad_lr\endcsname{2.2mm}
-
-% FCC panel vertical padding
-\expandafter\def\csname HBcomp_fcc_pad_tb\endcsname{2.2mm}
-
-% Space after H1 pill (offsets paragraph glue to match the 2.5 mm visual gap)
-\expandafter\def\csname HBcomp_h1_pill_after\endcsname{-1.2mm}
-
-% H1 bar bottom corner radius (master ~5.8pt; sharp top + rounded south)
-\expandafter\def\csname HBcomp_h1_pill_arc\endcsname{2.0mm}
-
-% H1 bar fixed height
-\expandafter\def\csname HBcomp_h1_pill_height\endcsname{7.1mm}
+% H1 pill corner radius
+\expandafter\def\csname HBcomp_h1_pill_arc\endcsname{1.8mm}
 
 % H1 pill left/right padding
-\expandafter\def\csname HBcomp_h1_pill_pad_lr\endcsname{2.2mm}
+\expandafter\def\csname HBcomp_h1_pill_pad_lr\endcsname{1.2mm}
 
 % H1 pill top/bottom padding
-\expandafter\def\csname HBcomp_h1_pill_pad_tb\endcsname{1.0mm}
+\expandafter\def\csname HBcomp_h1_pill_pad_tb\endcsname{0.9mm}
 
 % H1 pill width ratio of \textwidth
 \expandafter\def\csname HBcomp_h1_pill_width\endcsname{1}
 
-% Space after inbox cards
-\expandafter\def\csname HBcomp_inbox_after\endcsname{2.5mm}
-
-% Inbox card corner radius
-\expandafter\def\csname HBcomp_inbox_card_arc\endcsname{2.4mm}
-
-% Inbox card height
-\expandafter\def\csname HBcomp_inbox_card_height\endcsname{60.6mm}
-
-% Inbox card width ratio
-\expandafter\def\csname HBcomp_inbox_card_width\endcsname{0.316}
-
-% Inbox image reserved height
-\expandafter\def\csname HBcomp_inbox_image_height\endcsname{31mm}
-
-% Inbox image maximum width
-\expandafter\def\csname HBcomp_inbox_image_width\endcsname{26mm}
-
-% Inbox image-to-label gap
-\expandafter\def\csname HBcomp_inbox_label_gap\endcsname{2.0mm}
-
-% Minimum space required for key-combination heading and table
-\expandafter\def\csname HBcomp_key_section_needspace\endcsname{54mm}
-
-% Key-combination table first column ratio shared by LaTeX and IDML
-\expandafter\def\csname HBcomp_key_table_left_ratio\endcsname{0.4131245579}
-
-% Key-combination table middle column ratio shared by LaTeX and IDML
-\expandafter\def\csname HBcomp_key_table_middle_ratio\endcsname{0.2916211176}
-
-% Key-combination table body row minimum height
-\expandafter\def\csname HBcomp_key_table_row_height\endcsname{11.6mm}
-
-% LCD continuation rounded table segment height
-\expandafter\def\csname HBcomp_lcd_continuation_panel_height\endcsname{465pt}
-
-% LCD rows in an English continuation segment
-\expandafter\def\csname HBcomp_lcd_continuation_segment_rows\endcsname{19}
-
-% LCD continuation cell top/bottom padding
-\expandafter\def\csname HBcomp_lcd_continuation_vertical_padding\endcsname{1.2pt}
-
-% LCD first rounded table segment height
-\expandafter\def\csname HBcomp_lcd_first_panel_height\endcsname{286pt}
-
-% LCD rows in the first rounded table segment
-\expandafter\def\csname HBcomp_lcd_first_segment_rows\endcsname{7}
-
-% LCD English first-segment cell top/bottom padding
-\expandafter\def\csname HBcomp_lcd_first_vertical_padding\endcsname{1.6pt}
-
-% LCD rounded table grey-band width through the label column
-\expandafter\def\csname HBcomp_lcd_grey_width_ratio\endcsname{0.41}
-
-% LCD icon column width
-\expandafter\def\csname HBcomp_lcd_icon_col_width\endcsname{11.0mm}
-
-% LCD icon maximum height
-\expandafter\def\csname HBcomp_lcd_icon_height\endcsname{5.6mm}
-
-% LCD icon maximum width
-\expandafter\def\csname HBcomp_lcd_icon_width\endcsname{5.6mm}
-
-% LCD name-column width
-\expandafter\def\csname HBcomp_lcd_label_col_width\endcsname{0.24\linewidth}
-
-% LCD row-number column width
-\expandafter\def\csname HBcomp_lcd_no_col_width\endcsname{4.8mm}
-
-% LCD short final-segment shell allowance
-\expandafter\def\csname HBcomp_lcd_partial_panel_extra\endcsname{4pt}
-
-% LCD short final-segment minimum shell height
-\expandafter\def\csname HBcomp_lcd_partial_panel_min_height\endcsname{30pt}
-
-% LCD short final-segment row height allowance
-\expandafter\def\csname HBcomp_lcd_partial_row_height\endcsname{27pt}
-
-% LCD icon table row stretch
-\expandafter\def\csname HBcomp_lcd_table_row_stretch\endcsname{0.82}
-
-% LCD table cell padding
-\expandafter\def\csname HBcomp_lcd_table_tabcolsep\endcsname{1.4pt}
-
-% LCD rows in a translated continuation segment
-\expandafter\def\csname HBcomp_lcd_translated_continuation_segment_rows\endcsname{19}
-
-% LCD rows in a translated first rounded table segment
-\expandafter\def\csname HBcomp_lcd_translated_first_segment_rows\endcsname{7}
-
-% LCD translated first-segment cell top/bottom padding
-\expandafter\def\csname HBcomp_lcd_translated_first_vertical_padding\endcsname{0.7pt}
-
 % Space after lead line
-\expandafter\def\csname HBcomp_lead_after\endcsname{2.40mm}
+\expandafter\def\csname HBcomp_lead_after\endcsname{1mm}
 
 % Bullet raise offset (optical baseline align)
 \expandafter\def\csname HBcomp_list_bullet_raise\endcsname{-0.12ex}
@@ -518,13 +191,13 @@
 \expandafter\def\csname HBcomp_list_bullet_symbol\endcsname{\small\textbullet}
 
 % itemize itemsep
-\expandafter\def\csname HBcomp_list_itemsep\endcsname{0.73mm}
+\expandafter\def\csname HBcomp_list_itemsep\endcsname{0.5mm}
 
 % itemize labelsep
-\expandafter\def\csname HBcomp_list_labelsep\endcsname{0.35em}
+\expandafter\def\csname HBcomp_list_labelsep\endcsname{0.45em}
 
-% itemize hanging left margin
-\expandafter\def\csname HBcomp_list_leftmargin\endcsname{0.62em}
+% itemize leftmargin
+\expandafter\def\csname HBcomp_list_leftmargin\endcsname{1.0em}
 
 % itemize parsep
 \expandafter\def\csname HBcomp_list_parsep\endcsname{0mm}
@@ -536,16 +209,16 @@
 \expandafter\def\csname HBcomp_list_topsep\endcsname{0mm}
 
 % Gap between lockup and warning text
-\expandafter\def\csname HBcomp_lockup_gap\endcsname{2.0mm}
+\expandafter\def\csname HBcomp_lockup_gap\endcsname{7mm}
 
-% Signal icon height
-\expandafter\def\csname HBcomp_lockup_height\endcsname{8.0mm}
+% warning_lockup.png height
+\expandafter\def\csname HBcomp_lockup_height\endcsname{7mm}
 
 % Reserved (viewport macro is fragile; keep for future trim-based cropping)
 \expandafter\def\csname HBcomp_lockup_viewport\endcsname{79 70 2125 549}
 
-% Width reserved for signal icon and label
-\expandafter\def\csname HBcomp_lockup_width\endcsname{24.5mm}
+% Width reserved for lockup column
+\expandafter\def\csname HBcomp_lockup_width\endcsname{30mm}
 
 % Note box corner radius
 \expandafter\def\csname HBcomp_note_arc\endcsname{2.4mm}
@@ -556,35 +229,23 @@
 % Note top/bottom padding
 \expandafter\def\csname HBcomp_note_pad_tb\endcsname{0.5mm}
 
-% Invisible approved operation final-frame depth allowance
-\expandafter\def\csname HBcomp_operation_page_extra_height\endcsname{18pt}
-
-% Gap between language notice blocks
-\expandafter\def\csname HBcomp_preface_block_gap\endcsname{3.2mm}
-
 % Rubric space after
 \expandafter\def\csname HBcomp_rubric_after\endcsname{12mm}
 
 % Rubric space before
 \expandafter\def\csname HBcomp_rubric_before\endcsname{0mm}
 
-% Spec environmental section extra space before
-\expandafter\def\csname HBcomp_spec_environment_extra_before\endcsname{1.2mm}
-
-% Spec first section title space after H1
-\expandafter\def\csname HBcomp_spec_first_section_before\endcsname{1.3mm}
-
 % Spec footnotes block space before
 \expandafter\def\csname HBcomp_spec_footnotes_before\endcsname{1.2mm}
 
 % Spec notes block space before
-\expandafter\def\csname HBcomp_spec_notes_before\endcsname{4.2mm}
+\expandafter\def\csname HBcomp_spec_notes_before\endcsname{0.8mm}
 
-% Spec section title space after
-\expandafter\def\csname HBcomp_spec_section_after\endcsname{2.0mm}
+% Spec section title space after (tightened to one-third)
+\expandafter\def\csname HBcomp_spec_section_after\endcsname{0.13mm}
 
-% Spec section title space before (reference dedicated-page rhythm)
-\expandafter\def\csname HBcomp_spec_section_before\endcsname{4.3mm}
+% Spec section title space before (larger gap from previous table)
+\expandafter\def\csname HBcomp_spec_section_before\endcsname{1.1mm}
 
 % Spec section bullet to title gap
 \expandafter\def\csname HBcomp_spec_section_bullet_gap\endcsname{0.36em}
@@ -595,1270 +256,85 @@
 % Spec section bullet symbol (scaled 1.67x
 \expandafter\def\csname HBcomp_spec_section_bullet_symbol\endcsname{\scalebox{1.67}{\textbullet}}
 
-% Spec table left column ratio of textwidth (archive: 0.315)
-\expandafter\def\csname HBcomp_spec_table_left_ratio\endcsname{0.315}
+% Spec table left column ratio of textwidth
+\expandafter\def\csname HBcomp_spec_table_left_ratio\endcsname{0.33}
 
-% Spec table left-column tint percent black
-\expandafter\def\csname HBcomp_spec_table_left_tint\endcsname{5}
-
-% Spec multiline row strut depth
-\expandafter\def\csname HBcomp_spec_table_multiline_depth\endcsname{4.5pt}
-
-% Spec multiline row minimum height
-\expandafter\def\csname HBcomp_spec_table_multiline_min_height\endcsname{15.0pt}
-
-% Spec table row vertical stretch (reference single-row height)
-\expandafter\def\csname HBcomp_spec_table_row_stretch\endcsname{1.90}
+% Spec table row vertical stretch (flatter)
+\expandafter\def\csname HBcomp_spec_table_row_stretch\endcsname{0.84}
 
 % Spec table cell horizontal padding
-\expandafter\def\csname HBcomp_spec_table_tabcolsep\endcsname{2.6pt}
+\expandafter\def\csname HBcomp_spec_table_tabcolsep\endcsname{3.2pt}
 
-% Spec footnote-marker row extra height
-\expandafter\def\csname HBcomp_spec_table_tall_row_extra\endcsname{2.1pt}
+% Space after subbar
+\expandafter\def\csname HBcomp_subbar_after\endcsname{1mm}
 
-% Safety subbar compensation before the following RST column block
-\expandafter\def\csname HBcomp_subbar_after\endcsname{-1.35mm}
-
-% Subbar capsule corner radius (half the 13.9pt bar: full-round stadium)
-\expandafter\def\csname HBcomp_subbar_arc\endcsname{2.45mm}
-
-% Subbar fixed height
-\expandafter\def\csname HBcomp_subbar_height\endcsname{4.9mm}
-
-% Minimum room to keep a subbar with the content that follows
-\expandafter\def\csname HBcomp_subbar_needspace\endcsname{18mm}
+% Subbar corner radius
+\expandafter\def\csname HBcomp_subbar_arc\endcsname{2.3mm}
 
 % Subbar left/right padding
-\expandafter\def\csname HBcomp_subbar_pad_lr\endcsname{2.2mm}
+\expandafter\def\csname HBcomp_subbar_pad_lr\endcsname{0.8mm}
 
 % Subbar top/bottom padding
-\expandafter\def\csname HBcomp_subbar_pad_tb\endcsname{0.75mm}
+\expandafter\def\csname HBcomp_subbar_pad_tb\endcsname{0.4mm}
+
+% Extra negative vspace after subbar to cancel Sphinx glue (store POSITIVE number)
+\expandafter\def\csname HBcomp_subbar_tighten\endcsname{9mm}
 
 % Subbar width ratio of \textwidth
 \expandafter\def\csname HBcomp_subbar_width\endcsname{1}
-
-% Nested item dash symbol
-\expandafter\def\csname HBcomp_sublist_bullet_symbol\endcsname{\textendash}
-
-% Nested item vertical gap
-\expandafter\def\csname HBcomp_sublist_itemsep\endcsname{2.0pt}
-
-% Nested item label gap
-\expandafter\def\csname HBcomp_sublist_labelsep\endcsname{2.1pt}
-
-% Nested item left margin
-\expandafter\def\csname HBcomp_sublist_leftmargin\endcsname{6.7pt}
-
-% Nested item top gap
-\expandafter\def\csname HBcomp_sublist_topsep\endcsname{0.9pt}
-
-% Gap between the two symbol tables
-\expandafter\def\csname HBcomp_symbol_column_gap\endcsname{2.6mm}
-
-% Symbol-grid icon column width
-\expandafter\def\csname HBcomp_symbol_icon_col_width\endcsname{14.0mm}
-
-% Symbol icon maximum height
-\expandafter\def\csname HBcomp_symbol_icon_height\endcsname{8.5mm}
-
-% Symbol icon maximum width
-\expandafter\def\csname HBcomp_symbol_icon_width\endcsname{8.5mm}
-
-% Signal-word table first column width
-\expandafter\def\csname HBcomp_symbol_signal_col_width\endcsname{26.4mm}
-
-% Signal word swatch height
-\expandafter\def\csname HBcomp_symbol_signal_height\endcsname{5.4mm}
-
-% Signal word swatch width
-\expandafter\def\csname HBcomp_symbol_signal_width\endcsname{21.5mm}
-
-% Symbols table row stretch
-\expandafter\def\csname HBcomp_symbol_table_row_stretch\endcsname{1.0}
-
-% Symbol table cell padding
-\expandafter\def\csname HBcomp_symbol_table_tabcolsep\endcsname{2.2pt}
 
 % Table inner rule width
 \expandafter\def\csname HBcomp_table_inner_rule\endcsname{0.2pt}
 
 % Table outer corner radius
-\expandafter\def\csname HBcomp_table_outer_arc\endcsname{2.4mm}
+\expandafter\def\csname HBcomp_table_outer_arc\endcsname{2mm}
 
-% Table outer rule width (archive 1500 Ultra: 0.75pt)
-\expandafter\def\csname HBcomp_table_outer_rule\endcsname{0.75pt}
+% Table outer rule width
+\expandafter\def\csname HBcomp_table_outer_rule\endcsname{0.4pt}
 
 % Table tabcolsep
-\expandafter\def\csname HBcomp_table_tabcolsep\endcsname{2.4pt}
+\expandafter\def\csname HBcomp_table_tabcolsep\endcsname{3.5pt}
 
-% One body-character leading inset shared by rounded table text cells
-\expandafter\def\csname HBcomp_table_text_indent\endcsname{5.2pt}
-
-% Tip strip corner radius
-\expandafter\def\csname HBcomp_tip_arc\endcsname{1.73mm}
-
-% Tip strip height
-\expandafter\def\csname HBcomp_tip_height\endcsname{14.7mm}
-
-% Tip label baseline offset from panel centre
-\expandafter\def\csname HBcomp_tip_label_baseline_shift\endcsname{-0.57pt}
-
-% Tip strip label panel width
-\expandafter\def\csname HBcomp_tip_label_width\endcsname{18.5mm}
-
-% Tip strip horizontal padding
-\expandafter\def\csname HBcomp_tip_pad_lr\endcsname{1.15mm}
-
-% Level 2 title space after
-\expandafter\def\csname HBcomp_title_l2_after\endcsname{1.4mm}
-
-% Level 2 title space before
-\expandafter\def\csname HBcomp_title_l2_before\endcsname{1.2mm}
-
-% Level 2 title bullet radius
-\expandafter\def\csname HBcomp_title_l2_bullet_radius\endcsname{0.75mm}
-
-% Level 2 title bullet-to-text gap
-\expandafter\def\csname HBcomp_title_l2_gap\endcsname{1.4mm}
-
-% Minimum room to keep a level 2 title with following content
-\expandafter\def\csname HBcomp_title_l2_needspace\endcsname{10mm}
-
-% Level 3 title space after
-\expandafter\def\csname HBcomp_title_l3_after\endcsname{0.6mm}
-
-% Level 3 title space before
-\expandafter\def\csname HBcomp_title_l3_before\endcsname{0.8mm}
-
-% Level 3 title bullet radius
-\expandafter\def\csname HBcomp_title_l3_bullet_radius\endcsname{0.28mm}
-
-% Level 3 title bullet-to-text gap
-\expandafter\def\csname HBcomp_title_l3_gap\endcsname{0.9mm}
-
-% Minimum room to keep a level 3 title with following content
-\expandafter\def\csname HBcomp_title_l3_needspace\endcsname{8mm}
-
-% Troubleshooting error-code column ratio before cell padding
-\expandafter\def\csname HBcomp_trouble_left_ratio\endcsname{0.11}
-
-% Invisible approved troubleshooting host-frame depth allowance
-\expandafter\def\csname HBcomp_trouble_page_extra_height\endcsname{32.0pt}
-
-% Minimum space required for troubleshooting heading and table
-\expandafter\def\csname HBcomp_trouble_section_needspace\endcsname{102mm}
-
-% Troubleshooting numbered-step hanging indent
-\expandafter\def\csname HBcomp_trouble_step_indent\endcsname{3.4mm}
-
-% Troubleshooting numbered-step cell top/bottom padding
-\expandafter\def\csname HBcomp_trouble_steps_pad_tb\endcsname{1.0mm}
-
-% Space after two-column block (declared; replaces the zeroed trailing \multicolsep)
-\expandafter\def\csname HBcomp_twocol_after\endcsname{1.8mm}
-
-% Space before two-column block (declared; \multicolsep is zeroed inside safetytwocol)
-\expandafter\def\csname HBcomp_twocol_before\endcsname{2.35mm}
+% Space after two-column block
+\expandafter\def\csname HBcomp_twocol_after\endcsname{-5mm}
 
 % Space between two columns
-\expandafter\def\csname HBcomp_twocol_sep\endcsname{2.2mm}
+\expandafter\def\csname HBcomp_twocol_sep\endcsname{4mm}
+
+% Negative vspace before two-column list to cancel Sphinx glue (store POSITIVE number)
+\expandafter\def\csname HBcomp_twocol_tighten\endcsname{5mm}
 
 % Space after warning box
-\expandafter\def\csname HBcomp_warning_box_after\endcsname{1.4mm}
+\expandafter\def\csname HBcomp_warning_box_after\endcsname{2mm}
 
 % Warning box corner radius
 \expandafter\def\csname HBcomp_warning_box_arc\endcsname{2.0mm}
 
 % Space before warning box
-\expandafter\def\csname HBcomp_warning_box_before\endcsname{0.5mm}
+\expandafter\def\csname HBcomp_warning_box_before\endcsname{0.8mm}
 
 % Warning box left/right padding
-\expandafter\def\csname HBcomp_warning_box_pad_lr\endcsname{2.2mm}
+\expandafter\def\csname HBcomp_warning_box_pad_lr\endcsname{1mm}
 
 % Warning box top/bottom padding
-\expandafter\def\csname HBcomp_warning_box_pad_tb\endcsname{0.3mm}
+\expandafter\def\csname HBcomp_warning_box_pad_tb\endcsname{0mm}
 
 % Warning box border width
-\expandafter\def\csname HBcomp_warning_box_rule\endcsname{0.75pt}
+\expandafter\def\csname HBcomp_warning_box_rule\endcsname{0.8pt}
 
 % Warning box inner boxsep
-\expandafter\def\csname HBcomp_warning_box_sep\endcsname{0.6mm}
+\expandafter\def\csname HBcomp_warning_box_sep\endcsname{1mm}
 
 % Warning box width ratio of \textwidth
 \expandafter\def\csname HBcomp_warning_box_width\endcsname{1}
 
-% Safety lead card dark icon pane width
-\expandafter\def\csname HBcomp_warning_lead_dark_width\endcsname{14.6mm}
-
-% Safety lead card fixed height
-\expandafter\def\csname HBcomp_warning_lead_height\endcsname{14.0mm}
-
-% Safety lead card warning icon height
-\expandafter\def\csname HBcomp_warning_lead_icon_height\endcsname{9.25mm}
-
-% Safety lead card warning icon width
-\expandafter\def\csname HBcomp_warning_lead_icon_width\endcsname{10.4mm}
-
-% Safety lead card right text inset
-\expandafter\def\csname HBcomp_warning_lead_right_pad\endcsname{1.8mm}
-
-% Safety lead card left text inset
-\expandafter\def\csname HBcomp_warning_lead_text_left_pad\endcsname{1.75mm}
-
-% Safety lead card trim from the active column width
-\expandafter\def\csname HBcomp_warning_lead_width_trim\endcsname{0.75mm}
-
-% Warranty exclusions bottom padding
-\expandafter\def\csname HBcomp_warranty_exclusions_pad_bottom\endcsname{5.8mm}
-
-% Warranty final-section space before
-\expandafter\def\csname HBcomp_warranty_final_section_before\endcsname{2.9mm}
-
-% Warranty first-section space before
-\expandafter\def\csname HBcomp_warranty_first_section_before\endcsname{2.5mm}
-
-% Warranty lead space after
-\expandafter\def\csname HBcomp_warranty_lead_after\endcsname{1.0mm}
-
-% Warranty lead box corner radius
-\expandafter\def\csname HBcomp_warranty_lead_arc\endcsname{3.2mm}
-
-% Warranty lead horizontal padding
-\expandafter\def\csname HBcomp_warranty_lead_pad_lr\endcsname{3.6mm}
-
-% Warranty lead vertical padding
-\expandafter\def\csname HBcomp_warranty_lead_pad_tb\endcsname{2.7mm}
-
-% Warranty page gap after H1
-\expandafter\def\csname HBcomp_warranty_page_after_h1\endcsname{4.0mm}
-
-% Warranty page local extra body height
-\expandafter\def\csname HBcomp_warranty_page_extra_height\endcsname{6.0mm}
-
-% Warranty period-section space before
-\expandafter\def\csname HBcomp_warranty_period_section_before\endcsname{2.6mm}
-
-% Warranty section space after
-\expandafter\def\csname HBcomp_warranty_section_after\endcsname{0.4mm}
-
-% Warranty section frame corner radius
-\expandafter\def\csname HBcomp_warranty_section_arc\endcsname{2.4mm}
-
-% Warranty later-section space before
-\expandafter\def\csname HBcomp_warranty_section_before\endcsname{1.5mm}
-
-% Warranty section bottom padding
-\expandafter\def\csname HBcomp_warranty_section_pad_bottom\endcsname{1.8mm}
-
-% Warranty section horizontal padding
-\expandafter\def\csname HBcomp_warranty_section_pad_lr\endcsname{3.2mm}
-
-% Warranty section top padding
-\expandafter\def\csname HBcomp_warranty_section_pad_top\endcsname{3.2mm}
-
-% Warranty section frame rule
-\expandafter\def\csname HBcomp_warranty_section_rule\endcsname{0.9pt}
-
-% Warranty section title corner radius
-\expandafter\def\csname HBcomp_warranty_title_arc\endcsname{1.7mm}
-
-% Warranty section title left inset
-\expandafter\def\csname HBcomp_warranty_title_inset\endcsname{3.0mm}
-
-% Warranty section title horizontal padding
-\expandafter\def\csname HBcomp_warranty_title_pad_lr\endcsname{1.8mm}
-
-% Warranty section title vertical padding
-\expandafter\def\csname HBcomp_warranty_title_pad_tb\endcsname{0.7mm}
-
-% Warranty year numeral badge diameter
-\expandafter\def\csname HBcomp_warranty_year_badge_size\endcsname{8.4mm}
-
-% Warranty year columns gap
-\expandafter\def\csname HBcomp_warranty_year_column_gap\endcsname{0.8mm}
-
-% Warranty year left column ratio
-\expandafter\def\csname HBcomp_warranty_year_left_ratio\endcsname{0.59}
-
 % ===== OTHER =====
 
-% App pairing-composite-to-step-2.3 rhythm
-\expandafter\def\csname HBidml_app_add_device_space_after\endcsname{3.5pt}
-
-% App instructions-to-pairing-composite rhythm
-\expandafter\def\csname HBidml_app_add_device_space_before\endcsname{8.0pt}
-
-% IDML App screenshot reference-note leading
-\expandafter\def\csname HBidml_app_connect_note_font_leading\endcsname{6.5pt}
-
-% IDML App screenshot reference-note size
-\expandafter\def\csname HBidml_app_connect_note_font_size\endcsname{5.8pt}
-
-% IDML App screenshot reference-note editable frame width
-\expandafter\def\csname HBidml_app_connect_note_width\endcsname{174.0pt}
-
-% App step-2.5-to-result-composite rhythm
-\expandafter\def\csname HBidml_app_connect_result_space_before\endcsname{12.0pt}
-
-% IDML App screenshot step-label leading
-\expandafter\def\csname HBidml_app_connect_step_font_leading\endcsname{6.2pt}
-
-% IDML App screenshot step-label size
-\expandafter\def\csname HBidml_app_connect_step_font_size\endcsname{5.5pt}
-
-% IDML App control overlay label leading shared by all languages
-\expandafter\def\csname HBidml_app_control_label_font_leading\endcsname{5.8pt}
-
-% IDML App control overlay label size shared by all languages
-\expandafter\def\csname HBidml_app_control_label_font_size\endcsname{5.0pt}
-
-% IDML App control overlay minimum editable frame height
-\expandafter\def\csname HBidml_app_control_label_min_height\endcsname{7.2pt}
-
-% App first heading to download-composite rhythm
-\expandafter\def\csname HBidml_app_download_h2_space_after\endcsname{8.5pt}
-
-% App section-heading leading measured from approved PDF
-\expandafter\def\csname HBidml_app_h2_font_leading\endcsname{11.0pt}
-
-% App section-heading size measured from approved PDF
-\expandafter\def\csname HBidml_app_h2_font_size\endcsname{10.0pt}
-
-% App section heading to following copy rhythm
-\expandafter\def\csname HBidml_app_h2_space_after\endcsname{3.5pt}
-
-% App notes list bullet hanging indent
-\expandafter\def\csname HBidml_app_list_first_line_indent\endcsname{-5.7pt}
-
-% App notes list body inset
-\expandafter\def\csname HBidml_app_list_left_indent\endcsname{19.2pt}
-
-% App notes body and list leading measured from approved PDF
-\expandafter\def\csname HBidml_app_notes_font_leading\endcsname{8.0pt}
-
-% App notes body and list size measured from approved PDF
-\expandafter\def\csname HBidml_app_notes_font_size\endcsname{7.0pt}
-
-% App notes heading and body left inset
-\expandafter\def\csname HBidml_app_notes_left_indent\endcsname{13.5pt}
-
-% IDML App notice editable text-frame import allowance
-\expandafter\def\csname HBidml_app_notice_text_frame_safety\endcsname{1.6pt}
-
-% Invisible final-frame depth allowance for localized editable App copy
-\expandafter\def\csname HBidml_app_page_extra_height\endcsname{48.0pt}
-
-% App pairing-step body leading measured from approved PDF
-\expandafter\def\csname HBidml_app_primary_body_font_leading\endcsname{9.0pt}
-
-% App pairing-step body size measured from approved PDF
-\expandafter\def\csname HBidml_app_primary_body_font_size\endcsname{7.0pt}
-
-% App pairing-step body left inset measured from approved PDF
-\expandafter\def\csname HBidml_app_primary_body_left_indent\endcsname{14.2pt}
-
-% App second-page connection-step leading
-\expandafter\def\csname HBidml_app_result_body_font_leading\endcsname{7.8pt}
-
-% App second-page connection-step size measured from approved PDF
-\expandafter\def\csname HBidml_app_result_body_font_size\endcsname{6.6pt}
-
-% App second-page connection-step left inset
-\expandafter\def\csname HBidml_app_result_body_left_indent\endcsname{11.2pt}
-
-% App unbind section body leading
-\expandafter\def\csname HBidml_app_section_body_font_leading\endcsname{7.5pt}
-
-% App unbind section body size measured from approved PDF
-\expandafter\def\csname HBidml_app_section_body_font_size\endcsname{6.6pt}
-
-% App unbind body left inset
-\expandafter\def\csname HBidml_app_section_body_left_indent\endcsname{13.2pt}
-
-% App first-page trailing step leading
-\expandafter\def\csname HBidml_app_tail_body_font_leading\endcsname{7.5pt}
-
-% App first-page trailing step size measured from approved PDF
-\expandafter\def\csname HBidml_app_tail_body_font_size\endcsname{6.6pt}
-
-% App first-page trailing step left inset
-\expandafter\def\csname HBidml_app_tail_body_left_indent\endcsname{14.2pt}
-
-% IDML App editable text-frame vertical fit allowance
-\expandafter\def\csname HBidml_app_text_frame_safety\endcsname{0.8pt}
-
-% InDesign body weight measured from the approved editable PDF reference
-\expandafter\def\csname HBidml_body_font_style\endcsname{Regular}
-
-% InDesign callout body baseline correction
-\expandafter\def\csname HBidml_callout_body_baseline_shift\endcsname{0.9pt}
-
-% InDesign callout label baseline correction
-\expandafter\def\csname HBidml_callout_label_baseline_shift\endcsname{2.63pt}
-
-% Default car heading/body to editable AI figure rhythm
-\expandafter\def\csname HBidml_charging_car_figure_space_before\endcsname{0.0pt}
-
-% Default charging-methods rhythm before the car section heading
-\expandafter\def\csname HBidml_charging_car_heading_space_before\endcsname{0.0pt}
-
-% Governed car panel height with bottom-aligned AI-derived artwork
-\expandafter\def\csname HBidml_charging_car_panel_height\endcsname{134.0pt}
-
-% Pre-charge editable emphasis leading
-\expandafter\def\csname HBidml_charging_emphasis_font_leading\endcsname{7.4pt}
-
-% Pre-charge editable emphasis size measured from approved PDF
-\expandafter\def\csname HBidml_charging_emphasis_font_size\endcsname{6.6pt}
-
-% Default charging-methods first-frame top offset
-\expandafter\def\csname HBidml_charging_methods_page_top_offset\endcsname{23.8pt}
-
-% Charging NOTE editable body leading
-\expandafter\def\csname HBidml_charging_note_body_font_leading\endcsname{6.0pt}
-
-% Charging NOTE editable body size measured from approved PDF
-\expandafter\def\csname HBidml_charging_note_body_font_size\endcsname{5.0pt}
-
-% Charging NOTE editable body face
-\expandafter\def\csname HBidml_charging_note_body_font_style\endcsname{Regular}
-
-% Charging NOTE panel vertical inset
-\expandafter\def\csname HBidml_charging_note_pad_tb\endcsname{2.0pt}
-
-% Charging NOTE list-item rhythm
-\expandafter\def\csname HBidml_charging_note_paragraph_after\endcsname{1.0pt}
-
-% Charging NOTE trailing rhythm
-\expandafter\def\csname HBidml_charging_note_space_after\endcsname{1.8pt}
-
-% Charging NOTE leading rhythm
-\expandafter\def\csname HBidml_charging_note_space_before\endcsname{0.0pt}
-
-% IDML inbox heading top on symbol-overflow pages
-\expandafter\def\csname HBidml_fcc_inbox_overflow_title_y\endcsname{245pt}
-
-% IDML product card optical content offset
-\expandafter\def\csname HBidml_inbox_card_1_content_y_offset\endcsname{-3.9pt}
-
-% IDML product image-to-label spacing
-\expandafter\def\csname HBidml_inbox_card_1_image_space_after\endcsname{12.6pt}
-
-% IDML cable card optical content offset
-\expandafter\def\csname HBidml_inbox_card_2_content_y_offset\endcsname{-7.5pt}
-
-% IDML cable image-to-label spacing
-\expandafter\def\csname HBidml_inbox_card_2_image_space_after\endcsname{10.2pt}
-
-% IDML documents card optical content offset
-\expandafter\def\csname HBidml_inbox_card_3_content_y_offset\endcsname{-8.4pt}
-
-% IDML documents image-to-label spacing
-\expandafter\def\csname HBidml_inbox_card_3_image_space_after\endcsname{19.2pt}
-
-% IDML inbox card height on symbol-overflow pages
-\expandafter\def\csname HBidml_inbox_overflow_card_height\endcsname{172.5pt}
-
-% IDML inbox card top on symbol-overflow pages
-\expandafter\def\csname HBidml_inbox_overflow_card_y\endcsname{273pt}
-
-% IDML product image width on symbol-overflow pages
-\expandafter\def\csname HBidml_inbox_overflow_image_1_width\endcsname{72pt}
-
-% IDML cable image width on symbol-overflow pages
-\expandafter\def\csname HBidml_inbox_overflow_image_2_width\endcsname{60pt}
-
-% IDML document image width on symbol-overflow pages
-\expandafter\def\csname HBidml_inbox_overflow_image_3_width\endcsname{58pt}
-
-% IDML tip-strip top on symbol-overflow pages
-\expandafter\def\csname HBidml_inbox_overflow_tip_y\endcsname{458pt}
-
-% IDML editable Key-combinations button art size
-\expandafter\def\csname HBidml_key_button_size\endcsname{22.08pt}
-
-% IDML editable Key-combinations button caption leading
-\expandafter\def\csname HBidml_key_caption_font_leading\endcsname{5.8pt}
-
-% IDML editable Key-combinations button caption size
-\expandafter\def\csname HBidml_key_caption_font_size\endcsname{5.1pt}
-
-% IDML editable Key-combinations one-character clock inset and duration gap
-\expandafter\def\csname HBidml_key_clock_gap\endcsname{3.0pt}
-
-% IDML editable Key-combinations clock art size
-\expandafter\def\csname HBidml_key_clock_size\endcsname{10.45pt}
-
-% IDML editable Key-combinations duration leading
-\expandafter\def\csname HBidml_key_duration_font_leading\endcsname{7.6pt}
-
-% IDML editable Key-combinations duration size
-\expandafter\def\csname HBidml_key_duration_font_size\endcsname{7.0pt}
-
-% IDML editable Key-combinations function copy leading
-\expandafter\def\csname HBidml_key_function_font_leading\endcsname{8.5pt}
-
-% IDML editable Key-combinations function copy size
-\expandafter\def\csname HBidml_key_function_font_size\endcsname{6.0pt}
-
-% IDML editable Key-combinations header leading
-\expandafter\def\csname HBidml_key_header_font_leading\endcsname{7.2pt}
-
-% IDML editable Key-combinations header height
-\expandafter\def\csname HBidml_key_header_height\endcsname{14.71pt}
-
-% IDML editable Key-combinations internal grid rule
-\expandafter\def\csname HBidml_key_inner_rule\endcsname{0.5pt}
-
-% IDML editable Key-combinations operation copy leading
-\expandafter\def\csname HBidml_key_operation_font_leading\endcsname{6.4pt}
-
-% IDML editable Key-combinations operation copy size
-\expandafter\def\csname HBidml_key_operation_font_size\endcsname{5.35pt}
-
-% IDML editable Key-combinations outer corner radius
-\expandafter\def\csname HBidml_key_outer_radius\endcsname{8.0pt}
-
-% IDML editable Key-combinations outer rule
-\expandafter\def\csname HBidml_key_outer_rule\endcsname{0.566pt}
-
-% IDML editable Key-combinations governed EN panel height
-\expandafter\def\csname HBidml_key_panel_height\endcsname{152.92pt}
-
-% IDML editable Key-combinations governed EN host-line offset
-\expandafter\def\csname HBidml_key_panel_left_indent\endcsname{-4.34pt}
-
-% IDML editable Key-combinations governed EN leading gap
-\expandafter\def\csname HBidml_key_panel_space_before\endcsname{10.62pt}
-
-% IDML editable Key-combinations panel width
-\expandafter\def\csname HBidml_key_panel_width\endcsname{311.02pt}
-
-% IDML editable Key-combinations plus-sign leading
-\expandafter\def\csname HBidml_key_plus_font_leading\endcsname{12.0pt}
-
-% IDML editable Key-combinations plus-sign size
-\expandafter\def\csname HBidml_key_plus_font_size\endcsname{12.0pt}
-
-% IDML Key heading and panel non-flowing visual raise for approved EN composition
-\expandafter\def\csname HBidml_key_visual_raise\endcsname{36.68pt}
-
-% English battery-saving LCD body leading
-\expandafter\def\csname HBidml_lcd_continuation_battery_saving_body_font_leading\endcsname{6.5pt}
-
-% English battery-saving LCD body font size
-\expandafter\def\csname HBidml_lcd_continuation_battery_saving_body_font_size\endcsname{5.8pt}
-
-% English and French IDML LCD continuation body leading
-\expandafter\def\csname HBidml_lcd_continuation_body_font_leading\endcsname{7.0pt}
-
-% English and French IDML LCD continuation body font size
-\expandafter\def\csname HBidml_lcd_continuation_body_font_size\endcsname{6.0pt}
-
-% English charging-limit LCD body leading
-\expandafter\def\csname HBidml_lcd_continuation_charging_limit_body_font_leading\endcsname{6.5pt}
-
-% English charging-limit LCD body font size
-\expandafter\def\csname HBidml_lcd_continuation_charging_limit_body_font_size\endcsname{5.5pt}
-
-% English energy-saving LCD body leading
-\expandafter\def\csname HBidml_lcd_continuation_energy_saving_body_font_leading\endcsname{7.0pt}
-
-% English energy-saving LCD body font size
-\expandafter\def\csname HBidml_lcd_continuation_energy_saving_body_font_size\endcsname{6.0pt}
-
-% IDML LCD continuation icon column width
-\expandafter\def\csname HBidml_lcd_continuation_icon_col_width\endcsname{38.4pt}
-
-% IDML LCD continuation label column width
-\expandafter\def\csname HBidml_lcd_continuation_label_col_width\endcsname{73.0pt}
-
-% English IDML LCD continuation label leading
-\expandafter\def\csname HBidml_lcd_continuation_label_font_leading\endcsname{8.4pt}
-
-% IDML LCD continuation label font size
-\expandafter\def\csname HBidml_lcd_continuation_label_font_size\endcsname{7.0pt}
-
-% IDML LCD continuation optical left offset
-\expandafter\def\csname HBidml_lcd_continuation_left_indent\endcsname{-2.1pt}
-
-% English low-battery LCD body leading
-\expandafter\def\csname HBidml_lcd_continuation_low_battery_body_font_leading\endcsname{7.0pt}
-
-% English low-battery LCD body font size
-\expandafter\def\csname HBidml_lcd_continuation_low_battery_body_font_size\endcsname{6.0pt}
-
-% IDML LCD continuation number column width
-\expandafter\def\csname HBidml_lcd_continuation_no_col_width\endcsname{18.6pt}
-
-% IDML LCD continuation top coordinate
-\expandafter\def\csname HBidml_lcd_continuation_page_top\endcsname{27.7pt}
-
-% IDML LCD continuation import allowance before native fitting
-\expandafter\def\csname HBidml_lcd_continuation_panel_height\endcsname{480pt}
-
-% English temperature LCD body leading
-\expandafter\def\csname HBidml_lcd_continuation_temperature_body_font_leading\endcsname{7.0pt}
-
-% English temperature LCD body font size
-\expandafter\def\csname HBidml_lcd_continuation_temperature_body_font_size\endcsname{6.0pt}
-
-% English discharge-timer LCD body leading
-\expandafter\def\csname HBidml_lcd_continuation_timer_body_font_leading\endcsname{6.5pt}
-
-% English discharge-timer LCD body font size
-\expandafter\def\csname HBidml_lcd_continuation_timer_body_font_size\endcsname{5.8pt}
-
-% IDML English LCD continuation cell top and bottom padding
-\expandafter\def\csname HBidml_lcd_continuation_vertical_padding\endcsname{2.14pt}
-
-% English IDML LCD first-segment body leading
-\expandafter\def\csname HBidml_lcd_first_body_font_leading\endcsname{5.8pt}
-
-% English IDML LCD first-segment body font size
-\expandafter\def\csname HBidml_lcd_first_body_font_size\endcsname{5.5pt}
-
-% English dense LCD first-segment body leading
-\expandafter\def\csname HBidml_lcd_first_dense_body_font_leading\endcsname{5.8pt}
-
-% English dense LCD first-segment body font size
-\expandafter\def\csname HBidml_lcd_first_dense_body_font_size\endcsname{5.5pt}
-
-% IDML LCD first-segment icon column width
-\expandafter\def\csname HBidml_lcd_first_icon_col_width\endcsname{33.6pt}
-
-% IDML LCD first-segment label column width
-\expandafter\def\csname HBidml_lcd_first_label_col_width\endcsname{82.6pt}
-
-% English IDML LCD first-segment label leading
-\expandafter\def\csname HBidml_lcd_first_label_font_leading\endcsname{8.4pt}
-
-% IDML LCD first-segment label font size
-\expandafter\def\csname HBidml_lcd_first_label_font_size\endcsname{7.0pt}
-
-% IDML LCD first-segment optical left offset
-\expandafter\def\csname HBidml_lcd_first_left_indent\endcsname{0.5pt}
-
-% IDML LCD first-segment number column width
-\expandafter\def\csname HBidml_lcd_first_no_col_width\endcsname{19.2pt}
-
-% IDML English LCD first-segment import allowance
-\expandafter\def\csname HBidml_lcd_first_panel_height\endcsname{286pt}
-
-% IDML LCD first-segment cell top and bottom padding
-\expandafter\def\csname HBidml_lcd_first_vertical_padding\endcsname{1.62pt}
-
-% IDML LCD linked-frame import allowance below the body margin
-\expandafter\def\csname HBidml_lcd_frame_bottom_extra\endcsname{36pt}
-
-% IDML English LCD overview art horizontal scale
-\expandafter\def\csname HBidml_lcd_hero_horizontal_scale\endcsname{1}
-
-% IDML English LCD overview art height
-\expandafter\def\csname HBidml_lcd_hero_max_height\endcsname{159pt}
-
-% IDML English LCD overview art space before
-\expandafter\def\csname HBidml_lcd_hero_space_before\endcsname{3.82pt}
-
-% IDML LCD table width adjustment against the approved master
-\expandafter\def\csname HBidml_lcd_table_width_adjust\endcsname{0.4pt}
-
-% IDML translated LCD first-segment cell top and bottom padding
-\expandafter\def\csname HBidml_lcd_translated_first_vertical_padding\endcsname{1.4pt}
-
-% InDesign first-level list hanging indent
-\expandafter\def\csname HBidml_list_first_line_indent\endcsname{-6.25pt}
-
-% InDesign list leading correction for production font metrics
-\expandafter\def\csname HBidml_list_font_leading\endcsname{7.2pt}
-
-% InDesign first-level list continuation indent
-\expandafter\def\csname HBidml_list_left_indent\endcsname{3.70pt}
-
-% Base gap before the first operation subsection
-\expandafter\def\csname HBidml_operation_first_h2_space_before\endcsname{7.5pt}
-
-% Base gap from first operation explanation to second subsection
-\expandafter\def\csname HBidml_operation_inter_section_space_after\endcsname{48.2pt}
-
-% IDML editable operation row label base leading
-\expandafter\def\csname HBidml_operation_row_label_font_leading\endcsname{11.0pt}
-
-% IDML editable operation row label base size
-\expandafter\def\csname HBidml_operation_row_label_font_size\endcsname{10.0pt}
-
-% IDML preface body leading
-\expandafter\def\csname HBidml_preface_body_font_leading\endcsname{10.003pt}
-
-% IDML preface body font size
-\expandafter\def\csname HBidml_preface_body_font_size\endcsname{7.0pt}
-
-% IDML preface header to body gap
-\expandafter\def\csname HBidml_preface_header_space_after\endcsname{5.56pt}
-
-% IDML default gap before language badge
-\expandafter\def\csname HBidml_preface_header_space_before\endcsname{0.0pt}
-
-% IDML preface text bottom margin
-\expandafter\def\csname HBidml_preface_margin_bottom\endcsname{13.0mm}
-
-% IDML preface text left margin
-\expandafter\def\csname HBidml_preface_margin_left\endcsname{35.882pt}
-
-% IDML preface text right margin
-\expandafter\def\csname HBidml_preface_margin_right\endcsname{24.453pt}
-
-% IDML preface text top margin
-\expandafter\def\csname HBidml_preface_margin_top\endcsname{52.986pt}
-
-% IDML preface body paragraph spacing measured from reference
-\expandafter\def\csname HBidml_preface_paragraph_space_after\endcsname{2.0pt}
-
-% IDML preface tag optical baseline shift
-\expandafter\def\csname HBidml_preface_tag_baseline_shift\endcsname{-0.227pt}
-
-% IDML preface language tag font size
-\expandafter\def\csname HBidml_preface_tag_font_size\endcsname{8.668pt}
-
-% IDML preface language tag height
-\expandafter\def\csname HBidml_preface_tag_height\endcsname{9.7pt}
-
-% IDML preface tag optical left inset
-\expandafter\def\csname HBidml_preface_tag_left_inset\endcsname{1.795pt}
-
-% IDML preface tag cell top and bottom inset
-\expandafter\def\csname HBidml_preface_tag_vertical_inset\endcsname{0.966pt}
-
-% IDML preface language tag width
-\expandafter\def\csname HBidml_preface_tag_width\endcsname{14.709pt}
-
-% IDML preface title optical baseline shift
-\expandafter\def\csname HBidml_preface_title_baseline_shift\endcsname{-0.839pt}
-
-% IDML preface title font size
-\expandafter\def\csname HBidml_preface_title_font_size\endcsname{8.0pt}
-
-% IDML preface title optical left inset
-\expandafter\def\csname HBidml_preface_title_left_inset\endcsname{6.828pt}
-
-% InDesign safety first-section text-frame bottom behind the subheading
-\expandafter\def\csname HBidml_safety_first_section_bottom\endcsname{263.0pt}
-
-% Base safety first-section column gap
-\expandafter\def\csname HBidml_safety_first_section_column_gap\endcsname{13.4pt}
-
-% Base list items kept in the first safety column
-\expandafter\def\csname HBidml_safety_first_section_left_list_items\endcsname{5}
-
-% Base safety first-section left frame top
-\expandafter\def\csname HBidml_safety_first_section_left_top\endcsname{95.77pt}
-
-% Base safety first-section right frame top
-\expandafter\def\csname HBidml_safety_first_section_right_top\endcsname{95.77pt}
-
-% InDesign safety-instruction text leading
-\expandafter\def\csname HBidml_safety_instruction_font_leading\endcsname{9.6pt}
-
-% InDesign safety-instruction text size
-\expandafter\def\csname HBidml_safety_instruction_font_size\endcsname{8.0pt}
-
-% InDesign safety-instruction text weight
-\expandafter\def\csname HBidml_safety_instruction_font_style\endcsname{Bold}
-
-% InDesign safety-instruction dark triangle height
-\expandafter\def\csname HBidml_safety_instruction_icon_height\endcsname{17.4pt}
-
-% InDesign safety-instruction icon left inset
-\expandafter\def\csname HBidml_safety_instruction_icon_left_inset\endcsname{7.5pt}
-
-% InDesign safety-instruction dark triangle width
-\expandafter\def\csname HBidml_safety_instruction_icon_width\endcsname{20.0pt}
-
-% InDesign safety-instruction icon column width
-\expandafter\def\csname HBidml_safety_instruction_lockup_width\endcsname{31.0pt}
-
-% InDesign safety-instruction text cell inset
-\expandafter\def\csname HBidml_safety_instruction_text_inset\endcsname{4.0pt}
-
-% InDesign space after safety lead paragraph
-\expandafter\def\csname HBidml_safety_lead_space_after\endcsname{4.2pt}
-
-% Base InDesign safety-list hanging indent
-\expandafter\def\csname HBidml_safety_list_first_line_indent\endcsname{-6.25pt}
-
-% InDesign English safety-list horizontal metric correction
-\expandafter\def\csname HBidml_safety_list_horizontal_scale\endcsname{0.98}
-
-% InDesign FR and ES safety-list horizontal metric correction
-\expandafter\def\csname HBidml_safety_list_horizontal_scale_dense\endcsname{1.007}
-
-% Base InDesign safety-list leading
-\expandafter\def\csname HBidml_safety_list_leading\endcsname{7.2pt}
-
-% Base InDesign safety-list continuation indent
-\expandafter\def\csname HBidml_safety_list_left_indent\endcsname{3.70pt}
-
-% Base InDesign safety-list item gap
-\expandafter\def\csname HBidml_safety_list_space_after\endcsname{2.07pt}
-
-% Base InDesign right safety-list hanging indent
-\expandafter\def\csname HBidml_safety_right_list_first_line_indent\endcsname{-6.25pt}
-
-% Base InDesign right safety-list continuation indent
-\expandafter\def\csname HBidml_safety_right_list_left_indent\endcsname{3.70pt}
-
-% InDesign safety second-section frame height
-\expandafter\def\csname HBidml_safety_second_section_height\endcsname{209.12pt}
-
-% InDesign safety second-section frame top
-\expandafter\def\csname HBidml_safety_second_section_top\endcsname{281.88pt}
-
-% InDesign safety-tail body weight
-\expandafter\def\csname HBidml_safety_tail_body_font_style\endcsname{Bold}
-
-% InDesign safety-instruction outer frame height
-\expandafter\def\csname HBidml_safety_warning_height\endcsname{31.5pt}
-
-% InDesign safety-instruction outer frame top
-\expandafter\def\csname HBidml_safety_warning_top\endcsname{55.5pt}
-
-% Default first specification section rhythm
-\expandafter\def\csname HBidml_spec_section_1_space_before\endcsname{7.89pt}
-
-% Default second specification section rhythm
-\expandafter\def\csname HBidml_spec_section_2_space_before\endcsname{9.56pt}
-
-% Default third specification section rhythm
-\expandafter\def\csname HBidml_spec_section_3_space_before\endcsname{10.54pt}
-
-% Default fourth specification section rhythm
-\expandafter\def\csname HBidml_spec_section_4_space_before\endcsname{14.41pt}
-
-% Default first specification heading-to-table rhythm
-\expandafter\def\csname HBidml_spec_table_1_space_before\endcsname{3.79pt}
-
-% Default second specification heading-to-table rhythm
-\expandafter\def\csname HBidml_spec_table_2_space_before\endcsname{2.47pt}
-
-% Default third specification heading-to-table rhythm
-\expandafter\def\csname HBidml_spec_table_3_space_before\endcsname{4.75pt}
-
-% Default fourth specification heading-to-table rhythm
-\expandafter\def\csname HBidml_spec_table_4_space_before\endcsname{3.30pt}
-
-% Default InDesign specification left-column ratio measured from reference
-\expandafter\def\csname HBidml_spec_table_left_ratio\endcsname{0.302}
-
-% Default storage heading-to-body rhythm
-\expandafter\def\csname HBidml_storage_heading_space_after\endcsname{3.34pt}
-
-% Default continuation-to-storage heading rhythm
-\expandafter\def\csname HBidml_storage_heading_space_before\endcsname{0.0pt}
-
-% Default car-notice continuation top offset on storage page
-\expandafter\def\csname HBidml_storage_page_top_offset\endcsname{0.0pt}
-
-% InDesign nested list hanging indent
-\expandafter\def\csname HBidml_sublist_first_line_indent\endcsname{-6.04pt}
-
-% InDesign space before the first nested item
-\expandafter\def\csname HBidml_sublist_first_space_before\endcsname{0.45pt}
-
-% InDesign nested list continuation indent
-\expandafter\def\csname HBidml_sublist_left_indent\endcsname{9.58pt}
-
-% IDML Symbols table header leading
-\expandafter\def\csname HBidml_symbol_header_font_leading\endcsname{7.2pt}
-
-% IDML Symbols table header size measured from approved PDF
-\expandafter\def\csname HBidml_symbol_header_font_size\endcsname{6.5pt}
-
-% IDML gap between the two symbol tables
-\expandafter\def\csname HBidml_symbols_column_gap\endcsname{5.8pt}
-
-% IDML English gap after first safety-tail panel
-\expandafter\def\csname HBidml_symbols_first_tail_gap\endcsname{4.4pt}
-
-% IDML English first safety-tail panel height
-\expandafter\def\csname HBidml_symbols_first_tail_height\endcsname{34.5pt}
-
-% IDML symbol-grid icon column width
-\expandafter\def\csname HBidml_symbols_icon_col_width\endcsname{39.685pt}
-
-% IDML Symbols icon-table header fixed height
-\expandafter\def\csname HBidml_symbols_icon_header_height\endcsname{15.0pt}
-
-% IDML symbol icon frame height
-\expandafter\def\csname HBidml_symbols_icon_height\endcsname{26.0pt}
-
-% IDML Symbols rounded final icon row height
-\expandafter\def\csname HBidml_symbols_icon_last_row_height\endcsname{32.2pt}
-
-% IDML left symbol-grid icon column width
-\expandafter\def\csname HBidml_symbols_icon_left_col_width\endcsname{39.685pt}
-
-% IDML English long disposal-symbol final row height
-\expandafter\def\csname HBidml_symbols_icon_long_last_row_height\endcsname{64.9pt}
-
-% IDML right symbol-grid icon column width
-\expandafter\def\csname HBidml_symbols_icon_right_col_width\endcsname{36.4pt}
-
-% IDML Symbols ordinary icon row fixed height
-\expandafter\def\csname HBidml_symbols_icon_row_height\endcsname{30.7pt}
-
-% IDML trim applied to each symbol-grid table width
-\expandafter\def\csname HBidml_symbols_icon_table_width_trim\endcsname{1.2pt}
-
-% IDML symbol icon frame width
-\expandafter\def\csname HBidml_symbols_icon_width\endcsname{26.0pt}
-
-% IDML English maintenance body gap before Symbols title
-\expandafter\def\csname HBidml_symbols_maintenance_body_gap\endcsname{0.0pt}
-
-% IDML English maintenance body frame height
-\expandafter\def\csname HBidml_symbols_maintenance_body_height\endcsname{21.5pt}
-
-% IDML English Symbols combined-page top
-\expandafter\def\csname HBidml_symbols_page_top\endcsname{27.7pt}
-
-% IDML English gap before maintenance band
-\expandafter\def\csname HBidml_symbols_second_tail_gap\endcsname{6.8pt}
-
-% IDML English second safety-tail panel height
-\expandafter\def\csname HBidml_symbols_second_tail_height\endcsname{28.5pt}
-
-% IDML English gap between signal and icon tables
-\expandafter\def\csname HBidml_symbols_signal_gap_after\endcsname{4.1pt}
-
-% IDML Symbols signal table header fixed height
-\expandafter\def\csname HBidml_symbols_signal_header_height\endcsname{17.3pt}
-
-% IDML editable signal-badge warning icon height
-\expandafter\def\csname HBidml_symbols_signal_icon_height\endcsname{7.0pt}
-
-% IDML editable signal-badge warning icon width
-\expandafter\def\csname HBidml_symbols_signal_icon_width\endcsname{7.5pt}
-
-% IDML Symbols signal row fixed height
-\expandafter\def\csname HBidml_symbols_signal_row_height\endcsname{25.42pt}
-
-% InDesign level-two title size measured from the approved editable PDF reference
-\expandafter\def\csname HBidml_title_l2_font_size\endcsname{8.0pt}
-
-% InDesign level-two title weight measured from the approved editable PDF reference
-\expandafter\def\csname HBidml_title_l2_font_style\endcsname{Bold}
-
-% Default approved storage-to-troubleshooting heading rhythm
-\expandafter\def\csname HBidml_trouble_heading_space_before\endcsname{48.70pt}
-
-% Troubleshooting code-column optical allowance after the shared ratio
-\expandafter\def\csname HBidml_trouble_left_optical_width\endcsname{4.0pt}
-
-% Default approved troubleshooting heading-to-table rhythm
-\expandafter\def\csname HBidml_trouble_table_space_before\endcsname{8.74pt}
-
-% UPS CAUTION editable body leading
-\expandafter\def\csname HBidml_ups_caution_body_font_leading\endcsname{6.0pt}
-
-% UPS CAUTION editable body size measured from approved PDF
-\expandafter\def\csname HBidml_ups_caution_body_font_size\endcsname{5.5pt}
-
-% UPS CAUTION editable body face
-\expandafter\def\csname HBidml_ups_caution_body_font_style\endcsname{Regular}
-
-% UPS CAUTION panel vertical inset
-\expandafter\def\csname HBidml_ups_caution_pad_tb\endcsname{3.0pt}
-
-% UPS CAUTION list-item rhythm
-\expandafter\def\csname HBidml_ups_caution_paragraph_after\endcsname{1.0pt}
-
-% Default UPS CAUTION-to-CHARGING rhythm
-\expandafter\def\csname HBidml_ups_caution_space_after\endcsname{15.9pt}
-
-% Default UPS body-to-CAUTION rhythm
-\expandafter\def\csname HBidml_ups_caution_space_before\endcsname{13.0pt}
-
-% Default UPS hero gap after introductory copy
-\expandafter\def\csname HBidml_ups_image_space_before\endcsname{5.2pt}
-
-% Default UPS composition host-frame top offset
-\expandafter\def\csname HBidml_ups_page_top_offset\endcsname{13.81pt}
-
-% InDesign warranty panel body leading measured from reference
-\expandafter\def\csname HBidml_warranty_body_font_leading\endcsname{6.0pt}
-
-% Default InDesign warranty body horizontal scale percent
-\expandafter\def\csname HBidml_warranty_body_horizontal_scale\endcsname{100}
-
-% Exclusions body frame bottom inset; visual whitespace comes from the final baseline
-\expandafter\def\csname HBidml_warranty_exclusions_body_bottom_inset\endcsname{0.0pt}
-
-% InDesign optical gap before the interpretation-rights panel
-\expandafter\def\csname HBidml_warranty_final_section_before\endcsname{1.0pt}
-
-% Default warranty host-frame horizontal correction
-\expandafter\def\csname HBidml_warranty_frame_x_offset\endcsname{0.0pt}
-
-% Warranty H1 inset relative to the shifted story host
-\expandafter\def\csname HBidml_warranty_h1_left_indent\endcsname{0.87pt}
-
-% Warranty H1 width correction measured from approved PDF
-\expandafter\def\csname HBidml_warranty_h1_width_adjust\endcsname{-0.18pt}
-
-% InDesign warranty lead gap after the anchored H1 host
-\expandafter\def\csname HBidml_warranty_lead_before\endcsname{0.7mm}
-
-% Default governed warranty lead panel height
-\expandafter\def\csname HBidml_warranty_lead_height\endcsname{30.04pt}
-
-% Default InDesign warranty lead horizontal scale percent
-\expandafter\def\csname HBidml_warranty_lead_horizontal_scale\endcsname{100}
-
-% Warranty lead inset relative to the shifted story host
-\expandafter\def\csname HBidml_warranty_lead_left_indent\endcsname{0.45pt}
-
-% Default InDesign warranty lead vertical padding
-\expandafter\def\csname HBidml_warranty_lead_pad_tb\endcsname{5.0pt}
-
-% InDesign warranty list item spacing measured from reference
-\expandafter\def\csname HBidml_warranty_list_after\endcsname{1.0pt}
-
-% Warranty list bullet hanging indent measured from reference PDF
-\expandafter\def\csname HBidml_warranty_list_first_line_indent\endcsname{-5.67pt}
-
-% Warranty list body indent measured from reference PDF
-\expandafter\def\csname HBidml_warranty_list_left_indent\endcsname{5.67pt}
-
-% InDesign warranty legal-note horizontal scale percent
-\expandafter\def\csname HBidml_warranty_note_horizontal_scale\endcsname{100}
-
-% Default warranty story top offset
-\expandafter\def\csname HBidml_warranty_page_top_offset\endcsname{13.81pt}
-
-% Default first warranty panel height correction
-\expandafter\def\csname HBidml_warranty_panel_height_adjust_1\endcsname{7.84pt}
-
-% Default warranty period panel height correction
-\expandafter\def\csname HBidml_warranty_panel_height_adjust_2\endcsname{5.57pt}
-
-% Default warranty repair panel height correction
-\expandafter\def\csname HBidml_warranty_panel_height_adjust_3\endcsname{7.29pt}
-
-% Default warranty buyer panel height correction
-\expandafter\def\csname HBidml_warranty_panel_height_adjust_4\endcsname{6.81pt}
-
-% Default warranty exclusions panel height correction
-\expandafter\def\csname HBidml_warranty_panel_height_adjust_5\endcsname{5.95pt}
-
-% Default warranty interpretation panel height correction
-\expandafter\def\csname HBidml_warranty_panel_height_adjust_6\endcsname{5.50pt}
-
-% InDesign exclusions panel whitespace correction
-\expandafter\def\csname HBidml_warranty_panel_trim_exclusions\endcsname{8.0pt}
-
-% InDesign first warranty panel whitespace correction
-\expandafter\def\csname HBidml_warranty_panel_trim_first\endcsname{10.0pt}
-
-% InDesign warranty period panel whitespace correction
-\expandafter\def\csname HBidml_warranty_panel_trim_period\endcsname{0.0pt}
-
-% Warranty panel width correction measured from approved PDF
-\expandafter\def\csname HBidml_warranty_panel_width_adjust\endcsname{-1.41pt}
-
-% InDesign warranty body paragraph spacing measured from reference
-\expandafter\def\csname HBidml_warranty_paragraph_after\endcsname{2.83pt}
-
-% InDesign optical gap before warranty period panel
-\expandafter\def\csname HBidml_warranty_period_section_before\endcsname{3.0pt}
-
-% Default lead-to-limited-warranty rhythm
-\expandafter\def\csname HBidml_warranty_section_1_before\endcsname{4.16pt}
-
-% Default limited-to-period rhythm
-\expandafter\def\csname HBidml_warranty_section_2_before\endcsname{3.49pt}
-
-% Default period-to-repair rhythm
-\expandafter\def\csname HBidml_warranty_section_3_before\endcsname{2.26pt}
-
-% Default repair-to-buyer rhythm
-\expandafter\def\csname HBidml_warranty_section_4_before\endcsname{2.02pt}
-
-% Default buyer-to-exclusions rhythm
-\expandafter\def\csname HBidml_warranty_section_5_before\endcsname{2.02pt}
-
-% Default exclusions-to-interpretation rhythm
-\expandafter\def\csname HBidml_warranty_section_6_before\endcsname{3.43pt}
-
-% InDesign optical gap before ordinary warranty panels
-\expandafter\def\csname HBidml_warranty_section_before\endcsname{1.0pt}
-
-% InDesign warranty panel title size measured from reference
-\expandafter\def\csname HBidml_warranty_title_font_size\endcsname{8.0pt}
-
-% InDesign black-circled numeral optical size
-\expandafter\def\csname HBidml_warranty_year_glyph_size\endcsname{24pt}
-
-% InDesign warranty period left-column ratio
-\expandafter\def\csname HBidml_warranty_year_left_ratio\endcsname{0.64}
-
-% English car figure position measured from approved PDF
-\expandafter\def\csname HBlang_en_idml_charging_car_figure_space_before\endcsname{15.0pt}
-
-% English car-section heading position measured from approved PDF
-\expandafter\def\csname HBlang_en_idml_charging_car_heading_space_before\endcsname{36.5pt}
-
-% English charging-methods first-frame top offset
-\expandafter\def\csname HBlang_en_idml_charging_methods_page_top_offset\endcsname{23.8pt}
-
-% English IDML LCD continuation optical left offset
-\expandafter\def\csname HBlang_en_idml_lcd_continuation_left_indent\endcsname{-2.421pt}
-
-% English IDML LCD continuation top coordinate
-\expandafter\def\csname HBlang_en_idml_lcd_continuation_page_top\endcsname{28.7pt}
-
-% English IDML LCD overview art optical offset
-\expandafter\def\csname HBlang_en_idml_lcd_hero_horizontal_offset\endcsname{-3pt}
-
-% English first operation subsection offset
-\expandafter\def\csname HBlang_en_idml_operation_first_h2_space_before\endcsname{7.5pt}
-
-% English operation inter-section rhythm
-\expandafter\def\csname HBlang_en_idml_operation_inter_section_space_after\endcsname{48.2pt}
-
-% English operation row label leading
-\expandafter\def\csname HBlang_en_idml_operation_row_label_font_leading\endcsname{11.0pt}
-
-% English operation row label size measured from approved PDF
-\expandafter\def\csname HBlang_en_idml_operation_row_label_font_size\endcsname{10.0pt}
-
-% English safety-list hanging indent
-\expandafter\def\csname HBlang_en_idml_safety_list_first_line_indent\endcsname{-6.25pt}
-
-% English safety-list leading
-\expandafter\def\csname HBlang_en_idml_safety_list_leading\endcsname{7.2pt}
-
-% English safety-list continuation indent
-\expandafter\def\csname HBlang_en_idml_safety_list_left_indent\endcsname{3.70pt}
-
-% English safety-list item gap
-\expandafter\def\csname HBlang_en_idml_safety_list_space_after\endcsname{2.07pt}
-
-% Approved EN storage heading-to-body rhythm
-\expandafter\def\csname HBlang_en_idml_storage_heading_space_after\endcsname{4.05pt}
-
-% Approved EN continuation-to-storage heading rhythm
-\expandafter\def\csname HBlang_en_idml_storage_heading_space_before\endcsname{8.84pt}
-
-% Approved EN car-notice continuation top offset on storage page
-\expandafter\def\csname HBlang_en_idml_storage_page_top_offset\endcsname{16.87pt}
-
-% Approved English first safety-tail gap
-\expandafter\def\csname HBlang_en_idml_symbols_first_tail_gap\endcsname{4.4pt}
-
-% Approved English first safety-tail height
-\expandafter\def\csname HBlang_en_idml_symbols_first_tail_height\endcsname{34.5pt}
-
-% Approved English maintenance body gap
-\expandafter\def\csname HBlang_en_idml_symbols_maintenance_body_gap\endcsname{0.0pt}
-
-% Approved English maintenance body height
-\expandafter\def\csname HBlang_en_idml_symbols_maintenance_body_height\endcsname{21.5pt}
-
-% Approved English Symbols page top
-\expandafter\def\csname HBlang_en_idml_symbols_page_top\endcsname{27.7pt}
-
-% Approved English second safety-tail gap
-\expandafter\def\csname HBlang_en_idml_symbols_second_tail_gap\endcsname{6.8pt}
-
-% Approved English second safety-tail height
-\expandafter\def\csname HBlang_en_idml_symbols_second_tail_height\endcsname{28.5pt}
-
-% Approved English signal table trailing gap
-\expandafter\def\csname HBlang_en_idml_symbols_signal_gap_after\endcsname{4.1pt}
-
-% Approved EN storage-to-troubleshooting heading rhythm
-\expandafter\def\csname HBlang_en_idml_trouble_heading_space_before\endcsname{18.94pt}
-
-% Approved EN troubleshooting heading-to-table rhythm
-\expandafter\def\csname HBlang_en_idml_trouble_table_space_before\endcsname{8.74pt}
-
-% English UPS CAUTION-to-CHARGING rhythm measured from approved PDF
-\expandafter\def\csname HBlang_en_idml_ups_caution_space_after\endcsname{15.9pt}
-
-% English UPS body-to-CAUTION rhythm
-\expandafter\def\csname HBlang_en_idml_ups_caution_space_before\endcsname{13.0pt}
-
-% English UPS hero gap measured from approved PDF
-\expandafter\def\csname HBlang_en_idml_ups_image_space_before\endcsname{5.2pt}
-
-% English UPS composition host-frame top offset measured from approved PDF
-\expandafter\def\csname HBlang_en_idml_ups_page_top_offset\endcsname{20.86pt}
-
-% English warranty host-frame horizontal correction
-\expandafter\def\csname HBlang_en_idml_warranty_frame_x_offset\endcsname{-0.32pt}
-
-% English H1-to-warranty-lead rhythm after the localized H1 offset
-\expandafter\def\csname HBlang_en_idml_warranty_lead_before\endcsname{4.67pt}
-
-% English warranty lead panel height measured from approved PDF
-\expandafter\def\csname HBlang_en_idml_warranty_lead_height\endcsname{30.04pt}
-
-% EN InDesign warranty lead horizontal scale percent
-\expandafter\def\csname HBlang_en_idml_warranty_lead_horizontal_scale\endcsname{100}
-
-% EN InDesign warranty lead vertical padding
-\expandafter\def\csname HBlang_en_idml_warranty_lead_pad_tb\endcsname{7.0pt}
-
-% English warranty story top offset measured from approved PDF
-\expandafter\def\csname HBlang_en_idml_warranty_page_top_offset\endcsname{14.22pt}
-
-% English first warranty panel height correction
-\expandafter\def\csname HBlang_en_idml_warranty_panel_height_adjust_1\endcsname{7.84pt}
-
-% English warranty period panel height correction
-\expandafter\def\csname HBlang_en_idml_warranty_panel_height_adjust_2\endcsname{5.57pt}
-
-% English repair panel height correction
-\expandafter\def\csname HBlang_en_idml_warranty_panel_height_adjust_3\endcsname{7.29pt}
-
-% English original-buyer panel height correction
-\expandafter\def\csname HBlang_en_idml_warranty_panel_height_adjust_4\endcsname{6.81pt}
-
-% English exclusions panel height correction
-\expandafter\def\csname HBlang_en_idml_warranty_panel_height_adjust_5\endcsname{5.95pt}
-
-% English interpretation panel height correction measured from approved PDF
-\expandafter\def\csname HBlang_en_idml_warranty_panel_height_adjust_6\endcsname{7.32pt}
-
-% EN first warranty panel measured trim
-\expandafter\def\csname HBlang_en_idml_warranty_panel_trim_first\endcsname{9.42pt}
-
-% English lead-to-limited-warranty rhythm
-\expandafter\def\csname HBlang_en_idml_warranty_section_1_before\endcsname{4.16pt}
-
-% English limited-to-period rhythm
-\expandafter\def\csname HBlang_en_idml_warranty_section_2_before\endcsname{3.49pt}
-
-% English period-to-repair rhythm
-\expandafter\def\csname HBlang_en_idml_warranty_section_3_before\endcsname{2.26pt}
-
-% English repair-to-buyer rhythm
-\expandafter\def\csname HBlang_en_idml_warranty_section_4_before\endcsname{2.02pt}
-
-% English buyer-to-exclusions rhythm
-\expandafter\def\csname HBlang_en_idml_warranty_section_5_before\endcsname{2.02pt}
-
-% English exclusions-to-interpretation rhythm
-\expandafter\def\csname HBlang_en_idml_warranty_section_6_before\endcsname{3.43pt}
-
 % ES: space after H1 pill
-\expandafter\def\csname HBlang_es_comp_h1_pill_after\endcsname{-1.4mm}
+\expandafter\def\csname HBlang_es_comp_h1_pill_after\endcsname{0.6mm}
 
 % ES: space after lead line
 \expandafter\def\csname HBlang_es_comp_lead_after\endcsname{0.5mm}
-
-% ES: deeper final operation story frame for editable Key panel
-\expandafter\def\csname HBlang_es_comp_operation_page_extra_height\endcsname{46pt}
 
 % ES: tighter space before footnotes
 \expandafter\def\csname HBlang_es_comp_spec_footnotes_before\endcsname{0.9mm}
@@ -1881,326 +357,14 @@
 % ES: space after subbar
 \expandafter\def\csname HBlang_es_comp_subbar_after\endcsname{2mm}
 
-% ES: level 2 title space after
-\expandafter\def\csname HBlang_es_comp_title_l2_after\endcsname{1.0mm}
-
-% ES: level 2 title space before
-\expandafter\def\csname HBlang_es_comp_title_l2_before\endcsname{0.8mm}
-
-% ES: space before two-column block (tighter)
-\expandafter\def\csname HBlang_es_comp_twocol_before\endcsname{-1.8mm}
+% ES: extra tighten before two-column block
+\expandafter\def\csname HBlang_es_comp_twocol_tighten\endcsname{6mm}
 
 % ES: space after warning box
 \expandafter\def\csname HBlang_es_comp_warning_box_after\endcsname{2mm}
 
 % ES: space before warning box
 \expandafter\def\csname HBlang_es_comp_warning_box_before\endcsname{0.6mm}
-
-% Spanish car figure position measured from approved PDF
-\expandafter\def\csname HBlang_es_idml_charging_car_figure_space_before\endcsname{7.0pt}
-
-% Spanish car-section heading position measured from approved PDF
-\expandafter\def\csname HBlang_es_idml_charging_car_heading_space_before\endcsname{26.0pt}
-
-% Spanish charging-methods first-frame top offset measured from approved PDF
-\expandafter\def\csname HBlang_es_idml_charging_methods_page_top_offset\endcsname{11.8pt}
-
-% Spanish IDML inbox heading top on symbol-overflow pages
-\expandafter\def\csname HBlang_es_idml_fcc_inbox_overflow_title_y\endcsname{263.5pt}
-
-% Spanish IDML inbox card height on symbol-overflow pages
-\expandafter\def\csname HBlang_es_idml_inbox_overflow_card_height\endcsname{160.8pt}
-
-% Spanish IDML inbox card top on symbol-overflow pages
-\expandafter\def\csname HBlang_es_idml_inbox_overflow_card_y\endcsname{288pt}
-
-% Spanish product image width on symbol-overflow pages
-\expandafter\def\csname HBlang_es_idml_inbox_overflow_image_1_width\endcsname{72pt}
-
-% Spanish cable image width on symbol-overflow pages
-\expandafter\def\csname HBlang_es_idml_inbox_overflow_image_2_width\endcsname{40pt}
-
-% Spanish document image width on symbol-overflow pages
-\expandafter\def\csname HBlang_es_idml_inbox_overflow_image_3_width\endcsname{38pt}
-
-% Spanish IDML tip-strip top on symbol-overflow pages
-\expandafter\def\csname HBlang_es_idml_inbox_overflow_tip_y\endcsname{454pt}
-
-% ES: approved editable Key-combinations panel height
-\expandafter\def\csname HBlang_es_idml_key_panel_height\endcsname{166.70pt}
-
-% ES: approved editable Key-combinations host-line offset
-\expandafter\def\csname HBlang_es_idml_key_panel_left_indent\endcsname{-2.83pt}
-
-% ES: approved editable Key-combinations leading gap
-\expandafter\def\csname HBlang_es_idml_key_panel_space_before\endcsname{4.14pt}
-
-% Spanish Key heading and panel visual raise after operation rhythm compensation
-\expandafter\def\csname HBlang_es_idml_key_visual_raise\endcsname{12.00pt}
-
-% Spanish IDML LCD continuation body leading
-\expandafter\def\csname HBlang_es_idml_lcd_continuation_body_font_leading\endcsname{6.0pt}
-
-% Spanish IDML LCD continuation body font size
-\expandafter\def\csname HBlang_es_idml_lcd_continuation_body_font_size\endcsname{5.5pt}
-
-% Spanish IDML LCD continuation label leading
-\expandafter\def\csname HBlang_es_idml_lcd_continuation_label_font_leading\endcsname{7.0pt}
-
-% Spanish IDML LCD continuation optical left offset
-\expandafter\def\csname HBlang_es_idml_lcd_continuation_left_indent\endcsname{-7.887pt}
-
-% Spanish IDML LCD continuation number column width
-\expandafter\def\csname HBlang_es_idml_lcd_continuation_no_col_width\endcsname{19.2pt}
-
-% Spanish IDML LCD continuation top coordinate
-\expandafter\def\csname HBlang_es_idml_lcd_continuation_page_top\endcsname{27.9pt}
-
-% Spanish IDML LCD continuation cell top and bottom padding
-\expandafter\def\csname HBlang_es_idml_lcd_continuation_vertical_padding\endcsname{1.45pt}
-
-% Spanish IDML LCD first-segment body leading
-\expandafter\def\csname HBlang_es_idml_lcd_first_body_font_leading\endcsname{6.5pt}
-
-% Spanish IDML LCD first-segment body font size
-\expandafter\def\csname HBlang_es_idml_lcd_first_body_font_size\endcsname{5.5pt}
-
-% Spanish dense LCD first-segment body leading
-\expandafter\def\csname HBlang_es_idml_lcd_first_dense_body_font_leading\endcsname{5.95pt}
-
-% Spanish dense LCD first-segment body font size
-\expandafter\def\csname HBlang_es_idml_lcd_first_dense_body_font_size\endcsname{5.0pt}
-
-% Spanish IDML LCD first-segment label leading
-\expandafter\def\csname HBlang_es_idml_lcd_first_label_font_leading\endcsname{7.0pt}
-
-% Spanish IDML LCD first-segment optical left offset
-\expandafter\def\csname HBlang_es_idml_lcd_first_left_indent\endcsname{0.5pt}
-
-% Spanish IDML LCD first-segment number column width
-\expandafter\def\csname HBlang_es_idml_lcd_first_no_col_width\endcsname{20.2pt}
-
-% Spanish IDML LCD first-segment import allowance
-\expandafter\def\csname HBlang_es_idml_lcd_first_panel_height\endcsname{304pt}
-
-% Spanish IDML LCD overview art horizontal scale
-\expandafter\def\csname HBlang_es_idml_lcd_hero_horizontal_scale\endcsname{1.15}
-
-% Spanish IDML LCD overview art height
-\expandafter\def\csname HBlang_es_idml_lcd_hero_max_height\endcsname{144pt}
-
-% Spanish IDML LCD overview art space before
-\expandafter\def\csname HBlang_es_idml_lcd_hero_space_before\endcsname{1.7pt}
-
-% Spanish IDML LCD first-segment cell top and bottom padding
-\expandafter\def\csname HBlang_es_idml_lcd_translated_first_vertical_padding\endcsname{1.33pt}
-
-% Spanish first operation subsection offset
-\expandafter\def\csname HBlang_es_idml_operation_first_h2_space_before\endcsname{8.5pt}
-
-% Spanish operation inter-section rhythm
-\expandafter\def\csname HBlang_es_idml_operation_inter_section_space_after\endcsname{39.1pt}
-
-% Spanish operation row label leading
-\expandafter\def\csname HBlang_es_idml_operation_row_label_font_leading\endcsname{10.0pt}
-
-% Spanish operation row label size measured from approved PDF
-\expandafter\def\csname HBlang_es_idml_operation_row_label_font_size\endcsname{9.0pt}
-
-% ES preface badge-to-body gap measured from reference
-\expandafter\def\csname HBlang_es_idml_preface_header_space_after\endcsname{2.65pt}
-
-% ES preface gap before language badge measured from reference
-\expandafter\def\csname HBlang_es_idml_preface_header_space_before\endcsname{13.69pt}
-
-% ES safety first-section text-frame bottom
-\expandafter\def\csname HBlang_es_idml_safety_first_section_bottom\endcsname{263.0pt}
-
-% ES safety first-section column gap
-\expandafter\def\csname HBlang_es_idml_safety_first_section_column_gap\endcsname{1.38pt}
-
-% ES list items kept in the first safety column
-\expandafter\def\csname HBlang_es_idml_safety_first_section_left_list_items\endcsname{5}
-
-% ES safety first-section left frame top
-\expandafter\def\csname HBlang_es_idml_safety_first_section_left_top\endcsname{88.4pt}
-
-% ES safety first-section right frame top
-\expandafter\def\csname HBlang_es_idml_safety_first_section_right_top\endcsname{84.02pt}
-
-% Spanish safety-list hanging indent
-\expandafter\def\csname HBlang_es_idml_safety_list_first_line_indent\endcsname{-6.67pt}
-
-% Spanish safety-list horizontal metric correction
-\expandafter\def\csname HBlang_es_idml_safety_list_horizontal_scale_dense\endcsname{1.007}
-
-% Spanish safety-list leading
-\expandafter\def\csname HBlang_es_idml_safety_list_leading\endcsname{6.5pt}
-
-% Spanish safety-list continuation indent
-\expandafter\def\csname HBlang_es_idml_safety_list_left_indent\endcsname{7.22pt}
-
-% Spanish safety-list item gap
-\expandafter\def\csname HBlang_es_idml_safety_list_space_after\endcsname{1.5pt}
-
-% Spanish right-column hanging indent
-\expandafter\def\csname HBlang_es_idml_safety_right_list_first_line_indent\endcsname{-6.67pt}
-
-% Spanish right-column continuation indent
-\expandafter\def\csname HBlang_es_idml_safety_right_list_left_indent\endcsname{5.67pt}
-
-% ES safety second-section frame height
-\expandafter\def\csname HBlang_es_idml_safety_second_section_height\endcsname{209.12pt}
-
-% ES safety-instruction outer frame height
-\expandafter\def\csname HBlang_es_idml_safety_warning_height\endcsname{31.5pt}
-
-% ES safety-instruction outer frame top
-\expandafter\def\csname HBlang_es_idml_safety_warning_top\endcsname{51.7pt}
-
-% Spanish first specification section rhythm
-\expandafter\def\csname HBlang_es_idml_spec_section_1_space_before\endcsname{5.18pt}
-
-% Spanish second specification section rhythm
-\expandafter\def\csname HBlang_es_idml_spec_section_2_space_before\endcsname{7.05pt}
-
-% Spanish third specification section rhythm
-\expandafter\def\csname HBlang_es_idml_spec_section_3_space_before\endcsname{10.03pt}
-
-% Spanish fourth specification section rhythm
-\expandafter\def\csname HBlang_es_idml_spec_section_4_space_before\endcsname{11.99pt}
-
-% Spanish first specification heading-to-table rhythm
-\expandafter\def\csname HBlang_es_idml_spec_table_1_space_before\endcsname{4.56pt}
-
-% Spanish second specification heading-to-table rhythm
-\expandafter\def\csname HBlang_es_idml_spec_table_2_space_before\endcsname{3.24pt}
-
-% Spanish third specification heading-to-table rhythm
-\expandafter\def\csname HBlang_es_idml_spec_table_3_space_before\endcsname{5.52pt}
-
-% Spanish fourth specification heading-to-table rhythm
-\expandafter\def\csname HBlang_es_idml_spec_table_4_space_before\endcsname{4.07pt}
-
-% ES InDesign specification left-column ratio measured from reference
-\expandafter\def\csname HBlang_es_idml_spec_table_left_ratio\endcsname{0.362}
-
-% Approved ES storage heading-to-body rhythm
-\expandafter\def\csname HBlang_es_idml_storage_heading_space_after\endcsname{3.34pt}
-
-% Approved ES continuation-to-storage heading rhythm
-\expandafter\def\csname HBlang_es_idml_storage_heading_space_before\endcsname{-5.05pt}
-
-% Approved ES car-notice continuation top offset on storage page
-\expandafter\def\csname HBlang_es_idml_storage_page_top_offset\endcsname{11.82pt}
-
-% Approved Spanish first safety-tail gap
-\expandafter\def\csname HBlang_es_idml_symbols_first_tail_gap\endcsname{4.2pt}
-
-% Approved Spanish first safety-tail height
-\expandafter\def\csname HBlang_es_idml_symbols_first_tail_height\endcsname{47.1pt}
-
-% Approved Spanish maintenance body gap
-\expandafter\def\csname HBlang_es_idml_symbols_maintenance_body_gap\endcsname{8.0pt}
-
-% Approved Spanish maintenance body height
-\expandafter\def\csname HBlang_es_idml_symbols_maintenance_body_height\endcsname{39.6pt}
-
-% Approved Spanish Symbols page top
-\expandafter\def\csname HBlang_es_idml_symbols_page_top\endcsname{26.2pt}
-
-% Approved Spanish second safety-tail gap
-\expandafter\def\csname HBlang_es_idml_symbols_second_tail_gap\endcsname{11.4pt}
-
-% Approved Spanish second safety-tail height
-\expandafter\def\csname HBlang_es_idml_symbols_second_tail_height\endcsname{47.2pt}
-
-% Approved Spanish signal table trailing gap
-\expandafter\def\csname HBlang_es_idml_symbols_signal_gap_after\endcsname{9.8pt}
-
-% Approved ES storage-to-troubleshooting heading rhythm
-\expandafter\def\csname HBlang_es_idml_trouble_heading_space_before\endcsname{0.58pt}
-
-% Approved ES troubleshooting heading-to-table rhythm
-\expandafter\def\csname HBlang_es_idml_trouble_table_space_before\endcsname{7.75pt}
-
-% Spanish UPS CAUTION localized leading
-\expandafter\def\csname HBlang_es_idml_ups_caution_body_font_leading\endcsname{8.0pt}
-
-% Spanish UPS CAUTION-to-CHARGING rhythm
-\expandafter\def\csname HBlang_es_idml_ups_caution_space_after\endcsname{14.5pt}
-
-% Spanish UPS body-to-CAUTION rhythm
-\expandafter\def\csname HBlang_es_idml_ups_caution_space_before\endcsname{2.5pt}
-
-% Spanish UPS hero gap measured from approved PDF
-\expandafter\def\csname HBlang_es_idml_ups_image_space_before\endcsname{4.6pt}
-
-% Spanish UPS composition host-frame top offset measured from approved PDF
-\expandafter\def\csname HBlang_es_idml_ups_page_top_offset\endcsname{15.22pt}
-
-% Spanish warranty body width measured from reference PDF glyph bounds
-\expandafter\def\csname HBlang_es_idml_warranty_body_horizontal_scale\endcsname{98.6}
-
-% Spanish warranty host-frame horizontal correction
-\expandafter\def\csname HBlang_es_idml_warranty_frame_x_offset\endcsname{-2.02pt}
-
-% Spanish H1-to-warranty-lead rhythm
-\expandafter\def\csname HBlang_es_idml_warranty_lead_before\endcsname{5.61pt}
-
-% Spanish warranty lead panel height measured from approved PDF
-\expandafter\def\csname HBlang_es_idml_warranty_lead_height\endcsname{26.39pt}
-
-% ES InDesign warranty lead horizontal scale percent
-\expandafter\def\csname HBlang_es_idml_warranty_lead_horizontal_scale\endcsname{100}
-
-% ES InDesign warranty lead vertical padding
-\expandafter\def\csname HBlang_es_idml_warranty_lead_pad_tb\endcsname{5.0pt}
-
-% ES warranty note width measured from reference
-\expandafter\def\csname HBlang_es_idml_warranty_note_horizontal_scale\endcsname{94}
-
-% Spanish warranty story top offset measured from approved PDF
-\expandafter\def\csname HBlang_es_idml_warranty_page_top_offset\endcsname{13.81pt}
-
-% Spanish first warranty panel height correction
-\expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_1\endcsname{7.84pt}
-
-% Spanish warranty period panel height correction
-\expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_2\endcsname{-0.43pt}
-
-% Spanish repair panel height correction measured from approved PDF
-\expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_3\endcsname{0.15pt}
-
-% Spanish original-buyer panel height correction
-\expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_4\endcsname{3.05pt}
-
-% Spanish exclusions panel height correction
-\expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_5\endcsname{-4.29pt}
-
-% Spanish interpretation panel height correction
-\expandafter\def\csname HBlang_es_idml_warranty_panel_height_adjust_6\endcsname{0.92pt}
-
-% ES first warranty panel measured trim
-\expandafter\def\csname HBlang_es_idml_warranty_panel_trim_first\endcsname{3.44pt}
-
-% Spanish lead-to-limited-warranty rhythm
-\expandafter\def\csname HBlang_es_idml_warranty_section_1_before\endcsname{5.48pt}
-
-% Spanish limited-to-period rhythm
-\expandafter\def\csname HBlang_es_idml_warranty_section_2_before\endcsname{3.17pt}
-
-% Spanish period-to-repair rhythm
-\expandafter\def\csname HBlang_es_idml_warranty_section_3_before\endcsname{2.88pt}
-
-% Spanish repair-to-buyer rhythm
-\expandafter\def\csname HBlang_es_idml_warranty_section_4_before\endcsname{3.72pt}
-
-% Spanish buyer-to-exclusions rhythm
-\expandafter\def\csname HBlang_es_idml_warranty_section_5_before\endcsname{4.12pt}
-
-% Spanish exclusions-to-interpretation rhythm
-\expandafter\def\csname HBlang_es_idml_warranty_section_6_before\endcsname{5.17pt}
 
 % ES tighter list leading
 \expandafter\def\csname HBlang_es_type_list_font_leading\endcsname{7.2pt}
@@ -2224,13 +388,10 @@
 \expandafter\def\csname HBlang_es_type_spec_value_font_size\endcsname{5.9pt}
 
 % FR: space after H1 pill
-\expandafter\def\csname HBlang_fr_comp_h1_pill_after\endcsname{-1.4mm}
+\expandafter\def\csname HBlang_fr_comp_h1_pill_after\endcsname{0.6mm}
 
 % FR: space after lead line
 \expandafter\def\csname HBlang_fr_comp_lead_after\endcsname{0.5mm}
-
-% FR: deeper final operation story frame for editable Key panel
-\expandafter\def\csname HBlang_fr_comp_operation_page_extra_height\endcsname{46pt}
 
 % FR: tighter space before footnotes
 \expandafter\def\csname HBlang_fr_comp_spec_footnotes_before\endcsname{0.9mm}
@@ -2253,326 +414,14 @@
 % FR: space after subbar
 \expandafter\def\csname HBlang_fr_comp_subbar_after\endcsname{2mm}
 
-% FR: level 2 title space after
-\expandafter\def\csname HBlang_fr_comp_title_l2_after\endcsname{1.0mm}
-
-% FR: level 2 title space before
-\expandafter\def\csname HBlang_fr_comp_title_l2_before\endcsname{0.8mm}
-
-% FR: space before two-column block (tighter)
-\expandafter\def\csname HBlang_fr_comp_twocol_before\endcsname{-1.8mm}
+% FR: extra tighten before two-column block
+\expandafter\def\csname HBlang_fr_comp_twocol_tighten\endcsname{6mm}
 
 % FR: space after warning box
 \expandafter\def\csname HBlang_fr_comp_warning_box_after\endcsname{2mm}
 
 % FR: space before warning box
 \expandafter\def\csname HBlang_fr_comp_warning_box_before\endcsname{0.6mm}
-
-% French car figure position measured from approved PDF
-\expandafter\def\csname HBlang_fr_idml_charging_car_figure_space_before\endcsname{13.5pt}
-
-% French car-section heading position measured from approved PDF
-\expandafter\def\csname HBlang_fr_idml_charging_car_heading_space_before\endcsname{6.5pt}
-
-% French charging-methods first-frame top offset measured from approved PDF
-\expandafter\def\csname HBlang_fr_idml_charging_methods_page_top_offset\endcsname{15.3pt}
-
-% FR: approved editable Key-combinations panel height
-\expandafter\def\csname HBlang_fr_idml_key_panel_height\endcsname{167.06pt}
-
-% FR: approved editable Key-combinations host-line offset
-\expandafter\def\csname HBlang_fr_idml_key_panel_left_indent\endcsname{-1.42pt}
-
-% FR: approved editable Key-combinations leading gap
-\expandafter\def\csname HBlang_fr_idml_key_panel_space_before\endcsname{3.53pt}
-
-% French Key heading and panel visual raise after operation rhythm compensation
-\expandafter\def\csname HBlang_fr_idml_key_visual_raise\endcsname{16.94pt}
-
-% French battery-saving LCD body leading
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_battery_saving_body_font_leading\endcsname{6.43pt}
-
-% French battery-saving LCD body font size
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_battery_saving_body_font_size\endcsname{5.43pt}
-
-% French charging-limit LCD body leading
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_charging_limit_body_font_leading\endcsname{5.57pt}
-
-% French charging-limit LCD body font size
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_charging_limit_body_font_size\endcsname{4.7pt}
-
-% French energy-saving LCD body leading
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_energy_saving_body_font_leading\endcsname{6.5pt}
-
-% French energy-saving LCD body font size
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_energy_saving_body_font_size\endcsname{5.5pt}
-
-% French IDML LCD continuation label leading
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_label_font_leading\endcsname{7.5pt}
-
-% French IDML LCD continuation optical left offset
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_left_indent\endcsname{-2.906pt}
-
-% French low-battery LCD body leading
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_low_battery_body_font_leading\endcsname{6.5pt}
-
-% French low-battery LCD body font size
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_low_battery_body_font_size\endcsname{5.5pt}
-
-% French IDML LCD continuation number column width
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_no_col_width\endcsname{19.2pt}
-
-% French IDML LCD continuation top coordinate
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_page_top\endcsname{27.662pt}
-
-% French temperature LCD body leading
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_temperature_body_font_leading\endcsname{7.0pt}
-
-% French temperature LCD body font size
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_temperature_body_font_size\endcsname{5.8pt}
-
-% French discharge-timer LCD body leading
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_timer_body_font_leading\endcsname{6.5pt}
-
-% French discharge-timer LCD body font size
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_timer_body_font_size\endcsname{5.5pt}
-
-% French IDML LCD continuation cell top and bottom padding
-\expandafter\def\csname HBlang_fr_idml_lcd_continuation_vertical_padding\endcsname{1.4pt}
-
-% French IDML LCD first-segment body leading
-\expandafter\def\csname HBlang_fr_idml_lcd_first_body_font_leading\endcsname{6.5pt}
-
-% French IDML LCD first-segment body font size
-\expandafter\def\csname HBlang_fr_idml_lcd_first_body_font_size\endcsname{5.5pt}
-
-% French dense LCD first-segment body leading
-\expandafter\def\csname HBlang_fr_idml_lcd_first_dense_body_font_leading\endcsname{5.95pt}
-
-% French dense LCD first-segment body font size
-\expandafter\def\csname HBlang_fr_idml_lcd_first_dense_body_font_size\endcsname{5.0pt}
-
-% French IDML LCD first-segment label leading
-\expandafter\def\csname HBlang_fr_idml_lcd_first_label_font_leading\endcsname{7.5pt}
-
-% French IDML LCD first-segment optical left offset
-\expandafter\def\csname HBlang_fr_idml_lcd_first_left_indent\endcsname{0.5pt}
-
-% French IDML LCD first-segment number column width
-\expandafter\def\csname HBlang_fr_idml_lcd_first_no_col_width\endcsname{20.2pt}
-
-% French IDML LCD first-segment import allowance
-\expandafter\def\csname HBlang_fr_idml_lcd_first_panel_height\endcsname{304pt}
-
-% French IDML LCD overview art horizontal scale
-\expandafter\def\csname HBlang_fr_idml_lcd_hero_horizontal_scale\endcsname{1.10}
-
-% French IDML LCD overview art height
-\expandafter\def\csname HBlang_fr_idml_lcd_hero_max_height\endcsname{145pt}
-
-% French IDML LCD overview art space before
-\expandafter\def\csname HBlang_fr_idml_lcd_hero_space_before\endcsname{2.3pt}
-
-% French IDML LCD first-segment cell top and bottom padding
-\expandafter\def\csname HBlang_fr_idml_lcd_translated_first_vertical_padding\endcsname{1.13pt}
-
-% French first operation subsection offset
-\expandafter\def\csname HBlang_fr_idml_operation_first_h2_space_before\endcsname{9.8pt}
-
-% French operation inter-section rhythm
-\expandafter\def\csname HBlang_fr_idml_operation_inter_section_space_after\endcsname{37.6pt}
-
-% French operation row label leading
-\expandafter\def\csname HBlang_fr_idml_operation_row_label_font_leading\endcsname{11.0pt}
-
-% French operation row label size measured from approved PDF
-\expandafter\def\csname HBlang_fr_idml_operation_row_label_font_size\endcsname{10.0pt}
-
-% FR preface badge-to-body gap measured from reference
-\expandafter\def\csname HBlang_fr_idml_preface_header_space_after\endcsname{1.62pt}
-
-% FR preface gap before language badge measured from reference
-\expandafter\def\csname HBlang_fr_idml_preface_header_space_before\endcsname{11.73pt}
-
-% FR safety first-section text-frame bottom
-\expandafter\def\csname HBlang_fr_idml_safety_first_section_bottom\endcsname{265.0pt}
-
-% FR safety first-section column gap
-\expandafter\def\csname HBlang_fr_idml_safety_first_section_column_gap\endcsname{12.47pt}
-
-% FR list items kept in the first safety column
-\expandafter\def\csname HBlang_fr_idml_safety_first_section_left_list_items\endcsname{5}
-
-% FR safety first-section left frame top
-\expandafter\def\csname HBlang_fr_idml_safety_first_section_left_top\endcsname{93.05pt}
-
-% FR safety first-section right frame top
-\expandafter\def\csname HBlang_fr_idml_safety_first_section_right_top\endcsname{88.63pt}
-
-% French safety-list hanging indent
-\expandafter\def\csname HBlang_fr_idml_safety_list_first_line_indent\endcsname{-6.67pt}
-
-% French safety-list horizontal metric correction
-\expandafter\def\csname HBlang_fr_idml_safety_list_horizontal_scale_dense\endcsname{0.988}
-
-% French safety-list leading
-\expandafter\def\csname HBlang_fr_idml_safety_list_leading\endcsname{7.0pt}
-
-% French safety-list continuation indent
-\expandafter\def\csname HBlang_fr_idml_safety_list_left_indent\endcsname{7.22pt}
-
-% French safety-list item gap
-\expandafter\def\csname HBlang_fr_idml_safety_list_space_after\endcsname{2.0pt}
-
-% French right-column hanging indent
-\expandafter\def\csname HBlang_fr_idml_safety_right_list_first_line_indent\endcsname{-6.67pt}
-
-% French right-column continuation indent
-\expandafter\def\csname HBlang_fr_idml_safety_right_list_left_indent\endcsname{5.67pt}
-
-% FR safety second-section frame height
-\expandafter\def\csname HBlang_fr_idml_safety_second_section_height\endcsname{221.0pt}
-
-% FR safety-instruction outer frame height
-\expandafter\def\csname HBlang_fr_idml_safety_warning_height\endcsname{31.5pt}
-
-% FR safety-instruction outer frame top
-\expandafter\def\csname HBlang_fr_idml_safety_warning_top\endcsname{55.5pt}
-
-% French first specification section rhythm
-\expandafter\def\csname HBlang_fr_idml_spec_section_1_space_before\endcsname{5.18pt}
-
-% French second specification section rhythm
-\expandafter\def\csname HBlang_fr_idml_spec_section_2_space_before\endcsname{11.05pt}
-
-% French third specification section rhythm
-\expandafter\def\csname HBlang_fr_idml_spec_section_3_space_before\endcsname{9.40pt}
-
-% French fourth specification section rhythm
-\expandafter\def\csname HBlang_fr_idml_spec_section_4_space_before\endcsname{15.26pt}
-
-% French first specification heading-to-table rhythm
-\expandafter\def\csname HBlang_fr_idml_spec_table_1_space_before\endcsname{4.56pt}
-
-% French second specification heading-to-table rhythm
-\expandafter\def\csname HBlang_fr_idml_spec_table_2_space_before\endcsname{3.24pt}
-
-% French third specification heading-to-table rhythm
-\expandafter\def\csname HBlang_fr_idml_spec_table_3_space_before\endcsname{5.52pt}
-
-% French fourth specification heading-to-table rhythm
-\expandafter\def\csname HBlang_fr_idml_spec_table_4_space_before\endcsname{4.07pt}
-
-% Approved FR storage heading-to-body rhythm
-\expandafter\def\csname HBlang_fr_idml_storage_heading_space_after\endcsname{3.34pt}
-
-% Approved FR continuation-to-storage heading rhythm
-\expandafter\def\csname HBlang_fr_idml_storage_heading_space_before\endcsname{-3.37pt}
-
-% Approved FR car-notice continuation top offset on storage page
-\expandafter\def\csname HBlang_fr_idml_storage_page_top_offset\endcsname{11.80pt}
-
-% Approved French first safety-tail gap
-\expandafter\def\csname HBlang_fr_idml_symbols_first_tail_gap\endcsname{5.6pt}
-
-% Approved French first safety-tail height
-\expandafter\def\csname HBlang_fr_idml_symbols_first_tail_height\endcsname{47.1pt}
-
-% Approved French maintenance body gap
-\expandafter\def\csname HBlang_fr_idml_symbols_maintenance_body_gap\endcsname{8.0pt}
-
-% Approved French maintenance body height
-\expandafter\def\csname HBlang_fr_idml_symbols_maintenance_body_height\endcsname{45.6pt}
-
-% Approved French Symbols page top
-\expandafter\def\csname HBlang_fr_idml_symbols_page_top\endcsname{27.5pt}
-
-% Approved French second safety-tail gap
-\expandafter\def\csname HBlang_fr_idml_symbols_second_tail_gap\endcsname{10.4pt}
-
-% Approved French second safety-tail height
-\expandafter\def\csname HBlang_fr_idml_symbols_second_tail_height\endcsname{38.5pt}
-
-% Approved French signal table trailing gap
-\expandafter\def\csname HBlang_fr_idml_symbols_signal_gap_after\endcsname{10.7pt}
-
-% Approved FR storage-to-troubleshooting heading rhythm
-\expandafter\def\csname HBlang_fr_idml_trouble_heading_space_before\endcsname{1.52pt}
-
-% Approved FR troubleshooting heading-to-table rhythm
-\expandafter\def\csname HBlang_fr_idml_trouble_table_space_before\endcsname{6.70pt}
-
-% French UPS CAUTION-to-CHARGING rhythm
-\expandafter\def\csname HBlang_fr_idml_ups_caution_space_after\endcsname{22.5pt}
-
-% French UPS body-to-CAUTION rhythm
-\expandafter\def\csname HBlang_fr_idml_ups_caution_space_before\endcsname{18.5pt}
-
-% French UPS hero gap measured from approved PDF
-\expandafter\def\csname HBlang_fr_idml_ups_image_space_before\endcsname{3.2pt}
-
-% French UPS composition host-frame top offset measured from approved PDF
-\expandafter\def\csname HBlang_fr_idml_ups_page_top_offset\endcsname{12.65pt}
-
-% French warranty host-frame horizontal correction
-\expandafter\def\csname HBlang_fr_idml_warranty_frame_x_offset\endcsname{-2.02pt}
-
-% French H1-to-warranty-lead rhythm
-\expandafter\def\csname HBlang_fr_idml_warranty_lead_before\endcsname{5.64pt}
-
-% French warranty lead panel height measured from approved PDF
-\expandafter\def\csname HBlang_fr_idml_warranty_lead_height\endcsname{22.01pt}
-
-% FR InDesign warranty lead horizontal scale percent
-\expandafter\def\csname HBlang_fr_idml_warranty_lead_horizontal_scale\endcsname{96}
-
-% FR InDesign warranty lead vertical padding with native two-line fit allowance
-\expandafter\def\csname HBlang_fr_idml_warranty_lead_pad_tb\endcsname{2.5pt}
-
-% FR warranty note width measured from reference
-\expandafter\def\csname HBlang_fr_idml_warranty_note_horizontal_scale\endcsname{94}
-
-% French warranty story top offset measured from approved PDF
-\expandafter\def\csname HBlang_fr_idml_warranty_page_top_offset\endcsname{13.81pt}
-
-% French first warranty panel height correction
-\expandafter\def\csname HBlang_fr_idml_warranty_panel_height_adjust_1\endcsname{7.84pt}
-
-% French warranty period panel height correction
-\expandafter\def\csname HBlang_fr_idml_warranty_panel_height_adjust_2\endcsname{2.74pt}
-
-% French repair panel height correction
-\expandafter\def\csname HBlang_fr_idml_warranty_panel_height_adjust_3\endcsname{8.25pt}
-
-% French original-buyer panel height correction
-\expandafter\def\csname HBlang_fr_idml_warranty_panel_height_adjust_4\endcsname{3.05pt}
-
-% French exclusions panel height correction
-\expandafter\def\csname HBlang_fr_idml_warranty_panel_height_adjust_5\endcsname{-7.17pt}
-
-% French interpretation panel height correction
-\expandafter\def\csname HBlang_fr_idml_warranty_panel_height_adjust_6\endcsname{-0.42pt}
-
-% FR first warranty panel measured trim
-\expandafter\def\csname HBlang_fr_idml_warranty_panel_trim_first\endcsname{5.09pt}
-
-% French lead-to-limited-warranty rhythm
-\expandafter\def\csname HBlang_fr_idml_warranty_section_1_before\endcsname{9.86pt}
-
-% French limited-to-period rhythm
-\expandafter\def\csname HBlang_fr_idml_warranty_section_2_before\endcsname{4.82pt}
-
-% French period-to-repair rhythm
-\expandafter\def\csname HBlang_fr_idml_warranty_section_3_before\endcsname{5.59pt}
-
-% French repair-to-buyer rhythm
-\expandafter\def\csname HBlang_fr_idml_warranty_section_4_before\endcsname{5.30pt}
-
-% French buyer-to-exclusions rhythm
-\expandafter\def\csname HBlang_fr_idml_warranty_section_5_before\endcsname{5.36pt}
-
-% French exclusions-to-interpretation rhythm
-\expandafter\def\csname HBlang_fr_idml_warranty_section_6_before\endcsname{4.60pt}
 
 % FR tighter list leading
 \expandafter\def\csname HBlang_fr_type_list_font_leading\endcsname{7.2pt}
@@ -2594,18 +443,3 @@
 
 % FR: tighter spec value font size
 \expandafter\def\csname HBlang_fr_type_spec_value_font_size\endcsname{5.9pt}
-
-% Demerits for two consecutive hyphenated lines
-\expandafter\def\csname HBtext_doublehyphendemerits\endcsname{10000}
-
-% Extra stretch pass to even out word spacing
-\expandafter\def\csname HBtext_emergencystretch\endcsname{1.0em}
-
-% Demerits for hyphen on the second-to-last line
-\expandafter\def\csname HBtext_finalhyphendemerits\endcsname{8000}
-
-% Hyphenation penalty (higher = fewer hyphens; TeX default 50)
-\expandafter\def\csname HBtext_hyphenpenalty\endcsname{800}
-
-% Justification tolerance before hyphenating (TeX default 200)
-\expandafter\def\csname HBtext_tolerance\endcsname{1500}

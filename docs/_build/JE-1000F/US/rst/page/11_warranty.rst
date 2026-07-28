@@ -7,7 +7,7 @@ WARRANTY
 
 **This warranty applies only to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.**
 
-\*Warranty period and details may vary according to local laws, regulations, and authorized dealers.
+*Warranty period and details may vary according to local laws, regulations, and authorized dealers.*
 
 Limited Warranty
 ----------------
@@ -37,20 +37,11 @@ Warranty Period
 
        To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty period.
 
-.. only:: region_us
+Repair or replacement
+---------------------
 
-   Repair or replacement
-   ---------------------
-
-   Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or materials.
-   The repaired/replaced product assumes the remaining warranty of the original date of purchase.
-
-.. only:: region_eu
-
-   Exchange
-   --------
-
-   Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. A replacement product assumes the remaining warranty of the original product.
+Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or materials.
+The repaired/replaced product assumes the remaining warranty of the original date of purchase.
 
 Limited to Original Consumer Buyer
 ----------------------------------
@@ -62,12 +53,12 @@ Exclusions
 
 Jackery's warranty does not apply to:
 
-- Any product that has been misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.
+- Any product that has beenMisused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.
 - Attempted repair by anyone other than an authorized facility.
 - Any product purchased through an online auction house.
-- ackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.
+- Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.
 
 Interpretation Rights
 ---------------------
 
-Jackery reserves the right to final interpretation of the above after-sales policy.
+Jackery reserves the right to the final interpretation of the above after-sales policy.

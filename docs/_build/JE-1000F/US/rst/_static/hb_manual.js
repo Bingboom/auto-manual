@@ -25,13 +25,8 @@
     return Boolean(prefaceLanguageForLabel(children[0].textContent || ""));
   }
 
-  function manualContentRoot() {
-    return document.querySelector("#furo-main-content")
-      || document.querySelector('.body[role="main"]');
-  }
-
   function initPrefaceLayout() {
-    const main = manualContentRoot();
+    const main = document.querySelector("#furo-main-content");
     if (!main || main.querySelector(".hb-preface")) {
       return;
     }
@@ -138,7 +133,7 @@
   }
 
   function initManualSidebar(manualMode) {
-    const main = manualContentRoot();
+    const main = document.querySelector("#furo-main-content");
     const sidebarTree = document.querySelector(".sidebar-tree");
     const sidebarDrawer = document.querySelector(".sidebar-drawer");
     if (!main || !sidebarTree || !sidebarDrawer) {
