@@ -41,11 +41,11 @@
       <Leading type="unit">7.4</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/黑底段落-文本" Name="黑底段落-文本" PointSize="6.8" FillColor="Color/HB Brand Dark" Justification="CenterAlign">
+  <ParagraphStyle Self="ParagraphStyle/黑底段落-文本" Name="黑底段落-文本" PointSize="9.9" FillColor="Color/HB Brand Dark" Justification="CenterAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
-      <Leading type="unit">7.4</Leading>
+      <Leading type="unit">10.5</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/HB Preface Tag" Name="HB Preface Tag" PointSize="8.668" FillColor="Color/Paper" Justification="LeftAlign">
