@@ -25,7 +25,7 @@ use the returned field IDs. Do not rely on guessed field names when writing.
 
 ## Language Field Pattern
 
-The source field is usually `en`. The target field is the requested language field, such as `fr`, `es`, `de`, `it`, `uk`, `jp`, `ko`, or `pt-BR`. (Both tables use `ko` for Korean and `uk` for Ukrainian as of the 2026-06-01 column standardization; Japanese stays `jp` to match the phase2 build convention.)
+The source field is usually `en`. The target field is the requested language field, such as `fr`, `es`, `de`, `it`, `uk`, `jp`, `ko`, `zh`, `zh-TW`, or `pt-BR`. The Chinese Taiwan workflow uses `zh` as the Simplified Chinese source field and `zh-TW` as the Taiwan Traditional Chinese target field. (Both tables use `ko` for Korean and `uk` for Ukrainian as of the 2026-06-01 column standardization; Japanese stays `jp` to match the phase2 build convention.)
 
 For the target language, also locate:
 

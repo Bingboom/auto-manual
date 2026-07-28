@@ -6,6 +6,9 @@ _LANGUAGE_ALIASES = {
     "br": "pt-BR",
     "pt-br": "pt-BR",
     "pt_br": "pt-BR",
+    "zh-tw": "zh-TW",
+    "zh_tw": "zh-TW",
+    "zh-hant": "zh-TW",
 }
 
 _REGION_ALIASES = {

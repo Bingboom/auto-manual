@@ -6,7 +6,7 @@ description: Query Feishu/Lark Base phase2 multilingual snapshot content as tran
 # Bitable Translation Memory
 
 Use this skill when the task is "translate with repo terminology", not generic free translation.
-The preferred source is the dedicated Feishu sentence-pair table `Translation_Memory`, and the repo `data/phase2` snapshot is the fallback context layer.
+The preferred source is the dedicated Feishu sentence-pair table `Translation_Memory`, and the repo `data/phase2` snapshot is the fallback context layer. For Taiwan Traditional Chinese, use `zh` as the Simplified Chinese source field and `zh-TW` as the target field.
 
 ## Skill boundary in this repo
 
@@ -28,6 +28,7 @@ The script resolves each table **by name** inside whichever Base is active, so m
 1. Query the live table first, routing by scope:
    - Term: `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "<term>" --scope term --source-lang en --target-lang <target-lang> --limit 8`
    - Sentence: `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "<phrase>" --scope sentence --source-lang en --target-lang <target-lang> --limit 8`
+   - Chinese Taiwan sentence: pass `--source-lang zh --target-lang zh-TW`.
 2. For OpenClaw prompt construction, prefer prompt output:
    `python3 .agents/skills/bitable-translation-memory/scripts/query_live_translation_memory.py --query-text "<paragraph>" --scope sentence --source-lang en --target-lang <target-lang> --format prompt`
    The script auto-splits multi-sentence input unless `--no-split` is passed.
