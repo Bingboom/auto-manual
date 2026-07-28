@@ -404,9 +404,17 @@ def _transform(value: Any, location: str) -> TransformSpec:
             graphics=data["graphics"],
             fill=None,
         )
+    if op == "drop_leader_strokes":
+        # Structural op: the leaders are found by their halo/line stroke pair at
+        # extraction time, so the recipe carries no coordinates to go stale.
+        _keys(data, location=location, required={"op"}, optional={"note"})
+        if "note" in data:
+            _string(data["note"], f"{location}.note")
+        return TransformSpec(op=op)
     raise _fail(
         f"{location}.op",
-        "must be crop, redact_text, redact_text_region, or whiteout",
+        "must be crop, drop_leader_strokes, redact_text, redact_text_region, "
+        "or whiteout",
     )
 
 
