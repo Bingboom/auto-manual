@@ -8,6 +8,10 @@ import math
 from pathlib import Path, PurePosixPath
 from typing import Any, BinaryIO
 
+from tools.asset_pipeline.leaders import (
+    find_leader_geometries,
+    suppress_leader_strokes,
+)
 from tools.asset_pipeline.models import (
     ArtifactRecord,
     ArtifactValidationError,
@@ -294,6 +298,17 @@ def _prepare_asset_source(
                 graphics=graphics,
                 text=fitz.PDF_REDACT_TEXT_REMOVE,
             )
+        elif transform.op == "drop_leader_strokes":
+            # The leaders sit above the artwork and carry a white halo, so a
+            # whiteout can only punch a hole. Suppressing their own strokes
+            # lets the grille and panel divider underneath render intact.
+            leaders = find_leader_geometries(fitz, page, tuple(asset.crop_bbox))
+            suppressed = suppress_leader_strokes(fitz, source, page, leaders)
+            if suppressed != len(leaders) * 2:
+                raise ArtifactValidationError(
+                    f"asset {asset.asset_key!r} expected {len(leaders) * 2} leader "
+                    f"strokes, suppressed {suppressed}"
+                )
         elif transform.op == "whiteout":
             if transform.bbox_pt is None:
                 raise ArtifactValidationError(f"asset {asset.asset_key!r} has invalid whiteout")

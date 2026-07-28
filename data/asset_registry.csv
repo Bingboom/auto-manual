@@ -59,7 +59,7 @@ symbols/warning_bar,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_t
 symbols/warning_triangle,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:24e567ffad05,文字负载普查待做（无字化排期）
 symbols/warning_triangle_dark,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,svg:e1746d6937db,与 LaTeX HBSafetyInstruction 同源的深色实心警告三角形
 symbols/warning_triangle_white,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,svg:5e5fc8a41e7c,文字负载普查待做（无字化排期）
-symbols/weee,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:e9fc75301b8a,文字负载普查待做（无字化排期）
+symbols/weee,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:7e4de290ea13,文字负载普查待做（无字化排期）
 symbols/weee2,,图标,中立,✅成品,FALSE,ALL,ALL,docs/templates/word_template/common_assets/symbols,,png:236891c20611,文字负载普查待做（无字化排期）
 page/cover,,整页PDF,按语言,✅成品,FALSE,JE-1000F,US,docs/renderers/latex/assets,en,cover-en.pdf:c58c706ad9b8,单文件命名 -en；是否需 es/fr 变体待确认
 page/product_overview,,整页PDF,按语言,✅成品,FALSE,JE-1000F,US,docs/renderers/latex/assets,"en,es,fr","product_overview-en.pdf:bb3ca33f3a54,product_overview-es.pdf:2d7cb459cb17,product_overview-fr.pdf:14e89c01d450",模板物理页提取（#639）

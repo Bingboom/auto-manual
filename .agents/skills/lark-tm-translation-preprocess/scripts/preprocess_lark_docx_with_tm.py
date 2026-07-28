@@ -59,6 +59,9 @@ LANGUAGE_ALIASES = {
     "ukrainian": "uk",
     "zh": "zh",
     "zh-cn": "zh",
+    "zh-tw": "zh-tw",
+    "zh-hant": "zh-tw",
+    "traditional chinese": "zh-tw",
 }
 
 LANGUAGE_LABELS = {
@@ -72,6 +75,7 @@ LANGUAGE_LABELS = {
     "pt-br": "Português (Brasil)",
     "uk": "Українська",
     "zh": "中文",
+    "zh-tw": "中文（台灣繁體）",
 }
 
 IMPORTANT_LABELS = {
@@ -85,12 +89,14 @@ IMPORTANT_LABELS = {
     "pt-br": "IMPORTANTE",
     "uk": "ВАЖЛИВО",
     "zh": "重要",
+    "zh-tw": "重要",
 }
 
 FONT_BY_LANG = {
     "ja": "Yu Gothic",
     "ko": "Malgun Gothic",
     "zh": "Microsoft YaHei",
+    "zh-tw": "Microsoft JhengHei",
 }
 
 COLOR_HEX = {
@@ -518,7 +524,7 @@ def looks_like_language_heading(text: str) -> bool:
     normalized = base_norm(text)
     return bool(
         re.match(
-            r"^(fr|es|de|it|uk|ja|jp|ko|kr|pt|pt-br|zh|cn)\s+"
+            r"^(fr|es|de|it|uk|ja|jp|ko|kr|pt|pt-br|zh|zh-cn|zh-tw|zh-hant|cn)\s+"
             r"(important|importante|wichtig|важливо|重要|중요)",
             normalized,
         )
@@ -922,8 +928,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Preprocess a Lark/Feishu DOCX with live Translation_Memory matches.")
     parser.add_argument("--url", help="Feishu/Lark file, docx, doc, or wiki URL")
     parser.add_argument("--input-docx", help="Local DOCX path for dry-run/testing")
-    parser.add_argument("--source-lang", required=True, help="Source language code, e.g. en/fr/es/de/it/ko/ja/zh/pt-BR")
-    parser.add_argument("--target-lang", required=True, help="Target language code, e.g. fr/es/de/it/ko/ja/zh/pt-BR")
+    parser.add_argument("--source-lang", required=True, help="Source language code, e.g. en/fr/es/de/it/ko/ja/zh/zh-TW/pt-BR")
+    parser.add_argument("--target-lang", required=True, help="Target language code, e.g. fr/es/de/it/ko/ja/zh/zh-TW/pt-BR")
     parser.add_argument("--output-name", help="Output DOCX file name; defaults to source name with target lang marker")
     parser.add_argument("--work-dir", default=None, help="Working directory; defaults to a timestamped /tmp folder")
     parser.add_argument("--highlight-color", default="yellow", help="Highlight color name or RRGGBB hex; default yellow")

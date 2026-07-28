@@ -18,11 +18,13 @@ from pathlib import Path
 from typing import Iterator, overload
 
 from tools.asset_registry import (
+    NEUTRAL_LANGUAGE_DIMENSION,
     REGISTRY_RELATIVE_PATH,
     AssetRecord,
     AssetRegistryError,
     AssetResolution,
     NoMatchingAssetExportError,
+    _scope_matches,
     load_registry_bytes,
     resolve_asset,
 )
@@ -683,6 +685,35 @@ class BundleAssetUsage:
                 }
             )
 
+    def _attachment_collection_record(self, staged_relative: str) -> AssetRecord | None:
+        """The registry collection row governing one synced Feishu attachment.
+
+        Attachment images cannot be keyed individually — their file identity
+        is a Feishu file token that changes on re-upload — so the registry
+        holds one row per attachment column (``feishu/<category>_attachments``)
+        and this maps a staged ``…/_attachments/<category>/<file>`` path onto
+        it. No matching row (or a scope miss) falls back to legacy-path, which
+        keeps the debt visible instead of inventing an attribution.
+        """
+        parts = staged_relative.split("/")
+        try:
+            index = parts.index("_attachments")
+        except ValueError:
+            return None
+        if len(parts) < index + 3:  # need <category>/<file> below the marker
+            return None
+        asset_key = f"feishu/{parts[index + 1]}_attachments"
+        record = next(
+            (item for item in self._records if item.asset_key == asset_key), None
+        )
+        if record is None:
+            return None
+        if not _scope_matches(record.model_scope, self.target.model):
+            return None
+        if not _scope_matches(record.region_scope, self.target.region):
+            return None
+        return record
+
     def record_legacy(
         self,
         *,
@@ -694,7 +725,8 @@ class BundleAssetUsage:
         original_value: str | None = None,
         rendered_value: str | None = None,
     ) -> None:
-        """Record a legacy path so unmanaged images remain visible in the manifest."""
+        """Record a path-based image: attachment collections by their registry
+        row, anything else as visible legacy debt."""
 
         docs_root, bundle_root = self._trusted_roots(docs_dir=docs_dir, bundle_dir=bundle_dir)
         frozen = self._freeze_legacy(
@@ -712,6 +744,57 @@ class BundleAssetUsage:
             raise AssetRegistryError(f"staged legacy asset was modified: {staged_relative}")
 
         format_name = frozen.source_path.suffix.lower().lstrip(".") or None
+        collection = self._attachment_collection_record(staged_relative)
+        if collection is not None:
+            # Registry-governed at the collection level: the row's status gates
+            # publish for every file in the column, while each manifest row
+            # still records the exact bytes that shipped.
+            key = ("feishu-attachment", collection.asset_key, staged_relative)
+            entry = self._entries.get(key)
+            if entry is None:
+                entry = _UsageEntry(
+                    row={
+                        "asset_key": collection.asset_key,
+                        "consumer": "bundle",
+                        "declared_hash": None,
+                        "format": format_name,
+                        "language": (
+                            None
+                            if collection.language_dimension == NEUTRAL_LANGUAGE_DIMENSION
+                            else self.target.language
+                        ),
+                        "model": self.target.model,
+                        "reference_kind": "feishu-attachment",
+                        "region": self.target.region,
+                        "registry_status": collection.status,
+                        "sha256": frozen.sha256,
+                        "source": "feishu-attachment",
+                        "source_path": frozen.source_relative,
+                        "staged_path": staged_relative,
+                        "status": collection.status,
+                    },
+                    staged_path=staged_path,
+                    expected_sha256=frozen.sha256,
+                )
+                self._entries[key] = entry
+            entry.references.add(reference_relative)
+            self._rewrite_events.append(
+                {
+                    "asset_key": collection.asset_key,
+                    "original_value": original_value,
+                    "reference_kind": "feishu-attachment",
+                    "reference_path": reference_relative,
+                    "rendered_value": _rendered_relative(
+                        staged_relative=staged_relative,
+                        reference_relative=reference_relative,
+                    )
+                    if rendered_value is None
+                    else rendered_value,
+                    "staged_path": staged_relative,
+                }
+            )
+            return
+
         key = ("legacy-path", frozen.source_relative, staged_relative)
         entry = self._entries.get(key)
         if entry is None:
