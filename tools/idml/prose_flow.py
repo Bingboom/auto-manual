@@ -382,7 +382,7 @@ def apply_storage_h1_rhythm(
     params: dict[str, tuple[str, str]],
     language: str,
 ) -> str:
-    """Apply locale-owned storage heading rhythm and plate visibility."""
+    """Apply locale-owned storage heading rhythm while keeping the plate visible."""
     from .params import param_pt
 
     before = param_pt(
@@ -401,12 +401,6 @@ def apply_storage_h1_rhythm(
         f'SpaceAfter="{after:g}" ',
         1,
     )
-    if language in {"en", "fr"}:
-        xml = xml.replace(
-            'FillColor="Color/HB Brand Dark"',
-            'FillColor="Swatch/None"',
-            1,
-        )
     return xml
 
 

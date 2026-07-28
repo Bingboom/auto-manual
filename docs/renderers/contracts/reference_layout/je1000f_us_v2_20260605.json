@@ -27,9 +27,9 @@
   "source_identity": {
     "manual_ir_schema_version": "manual-ir/v1",
     "manual_content_sha256": "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
-    "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
+    "snapshot_sha256": "be9bff032d33ef3963d4949ceba39b4327bc27fbdb38fd3481cb1ffa535448f2",
     "style_contract_sha256": "41c67cdeea2d9ae9fec5a80ee62197d48cc97ba7525dd9a2afbdd606d28daee8",
-    "layout_params_sha256": "a94c4a91a6c40ecf4ce0c44c4839506e3c4eed0b4f9f0325f7ff829938e9ed5a"
+    "layout_params_sha256": "e82bdd7b9ba14b192d4d13a2b24ece3934d309ac38f015b5acf363a7b8400f3b"
   },
   "approval": {
     "status": "approved",
@@ -89,17 +89,17 @@
         "image_width_pt_by_language": {
           "en": [
             72.0,
-            40.0,
+            36.0,
             38.0
           ],
           "fr": [
             72.0,
-            40.0,
+            36.0,
             38.0
           ],
           "es": [
             72.0,
-            40.0,
+            36.0,
             38.0
           ]
         },

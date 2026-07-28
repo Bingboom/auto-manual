@@ -19,6 +19,26 @@ from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
 SUBBAR_H = 13.9  # master/publish-PDF measured capsule height
+SYMBOL_ICON_ART_SCALE = 0.9
+
+
+def _symbol_icon_asset(figure: str | None) -> Path | None:
+    """Resolve a symbol image, correcting the known WEEE source crop.
+
+    The phase2 ``11_weee_*`` attachment contains the same artwork on a
+    shifted, over-tall canvas.  That canvas makes proportional fitting shrink
+    and offset the symbol inside the editable cell.  The shared template asset
+    uses the stable geometry with the artwork restored to the same dark tone
+    as the other symbol assets.
+    """
+    if not figure:
+        return None
+    source = Path(figure)
+    if source.name.casefold().startswith("11_weee_"):
+        canonical = ROOT / "docs" / "templates" / "word_template" / "common_assets" / "symbols" / "weee.png"
+        if canonical.is_file():
+            return canonical
+    return source
 
 
 @dataclass(frozen=True)
@@ -189,9 +209,10 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                                   top=3, bottom=3,
                                   left=6 if header else 7.6,
                                   right=4,
-                                  valign=None if header else "CenterAlign"))
+                                  valign="CenterAlign"))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
-                                  top=3, bottom=3, left=7, right=5))
+                                  top=3, bottom=3, left=7, right=5,
+                                  valign="CenterAlign"))
     table = writer._component_table(
         tid, cols, cells, n_rows=len(rows), role="data", outer_stroke=False)
     if row_heights is not None:
@@ -268,13 +289,15 @@ def _symbols_icon_table(
         strict=writer.strict_component_assets,
         owner="symbol icon table",
     )
+    icon_w *= SYMBOL_ICON_ART_SCALE
+    icon_h *= SYMBOL_ICON_ART_SCALE
     cells = []
     for ri, row in enumerate(rows):
         if row.get("header"):
             left_xml = writer._psr("HB Symbol Header", copy["symbol"], terminal=True)
             right_xml = writer._psr("HB Symbol Header", row["text"], terminal=True)
         else:
-            fig = (ROOT / row["figure"]) if row.get("figure") else None
+            fig = _symbol_icon_asset(row.get("figure"))
             icon = ""
             if fig and fig.exists():
                 icon = writer._image_cell_content(
@@ -310,9 +333,11 @@ def _symbols_icon_table(
                                   top=2 if row.get("header") else 0,
                                   bottom=2 if row.get("header") else 0,
                                   left=4,
-                                  right=2 if row.get("header") else 4))
+                                  right=2 if row.get("header") else 4,
+                                  valign="CenterAlign"))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
-                                  top=2, bottom=2, left=5, right=4))
+                                  top=2, bottom=2, left=5, right=4,
+                                  valign="CenterAlign"))
     table = writer._component_table(
         tid, cols, cells, n_rows=len(rows), role="data", outer_stroke=False)
     if row_heights is not None:
@@ -467,6 +492,16 @@ def add_safety_symbols_page(
             if lang == "en" else style.icon_last_row_height
         ] if right_icons else [])
     )
+    # Both editable tables share one rounded shell height.  The English
+    # right table has the long disposal row, so the shorter left table needs
+    # the same remaining height on its final (otherwise blank) row; otherwise
+    # its K05 fill stops short of the shell's bottom edge.
+    if left_row_heights and right_row_heights:
+        shell_height = max(sum(left_row_heights), sum(right_row_heights))
+        if sum(left_row_heights) < shell_height:
+            left_row_heights[-1] += shell_height - sum(left_row_heights)
+        if sum(right_row_heights) < shell_height:
+            right_row_heights[-1] += shell_height - sum(right_row_heights)
     left_sid = f"{sid}_icons_left"
     writer._table_story(
         left_sid, "Symbol icons left",
@@ -531,11 +566,17 @@ def add_safety_symbols_page(
            heading_bar_opts(1, (1.5, 5, 1, 6)), gap=9.0)
     signals_h = style.signal_header_height + style.signal_row_height * len(signals)
     _place("signals", signal_sid, signals_h,
-           with_rounded_outer({"inset": (0, 0, 0, 0)}),
+           with_rounded_outer({
+               "inset": (0, 0, 0, 0),
+               "rounded_outer_masks": True,
+           }),
            gap=style.signal_gap_after)
     bottom = writer.page_h - 2.0
     if lang in {"en", "fr", "es"}:
-        icons_h = 3.0 + max(sum(left_row_heights), sum(right_row_heights))
+        # The governed rows already include the table's full vertical
+        # measure.  Adding an import allowance here leaves an unfilled band
+        # below the last icon row before the rounded shell's bottom arc.
+        icons_h = max(sum(left_row_heights), sum(right_row_heights))
     else:
         icons_h = 3.0 + max(60.0, min(
             max(est_table_height([r.get("text", "") for r in left_icons],
@@ -544,10 +585,16 @@ def add_safety_symbols_page(
                                  icon_table_w * 0.73, 24.0)),
             bottom - y))
     frame_specs.append(("icons_left", left_sid, (body_x, y, icon_table_w, icons_h),
-                        with_rounded_outer({"inset": (0, 0, 0, 0)})))
+                        with_rounded_outer({
+                            "inset": (0, 0, 0, 0),
+                            "rounded_outer_masks": True,
+                        })))
     frame_specs.append(("icons_right", right_sid,
                         (body_x + icon_table_w + icon_gap, y, icon_table_w, icons_h),
-                        with_rounded_outer({"inset": (0, 0, 0, 0)})))
+                        with_rounded_outer({
+                            "inset": (0, 0, 0, 0),
+                            "rounded_outer_masks": True,
+                        })))
 
     spread_id = f"sp_{page_index}"
     page_no = page_index + 1

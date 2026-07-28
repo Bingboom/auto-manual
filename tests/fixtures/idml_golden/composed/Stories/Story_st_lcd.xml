@@ -27,14 +27,14 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-0.37 -279.197" LeftDirection="-0.37 -282.954" RightDirection="-0.37 -279.197"/>
+            <PathPointType Anchor="-0.37 -273.974" LeftDirection="-0.37 -277.731" RightDirection="-0.37 -273.974"/>
             <PathPointType Anchor="-0.37 -6.80315" LeftDirection="-0.37 -6.80315" RightDirection="-0.37 -3.04587"/>
             <PathPointType Anchor="6.43315 0" LeftDirection="2.67587 0" RightDirection="6.43315 0"/>
             <PathPointType Anchor="305.321 0" LeftDirection="305.321 0" RightDirection="309.079 0"/>
             <PathPointType Anchor="312.124 -6.80315" LeftDirection="312.124 -3.04587" RightDirection="312.124 -6.80315"/>
-            <PathPointType Anchor="312.124 -279.197" LeftDirection="312.124 -279.197" RightDirection="312.124 -282.954"/>
-            <PathPointType Anchor="305.321 -286" LeftDirection="309.079 -286" RightDirection="305.321 -286"/>
-            <PathPointType Anchor="6.43315 -286" LeftDirection="6.43315 -286" RightDirection="2.67587 -286"/>
+            <PathPointType Anchor="312.124 -273.974" LeftDirection="312.124 -273.974" RightDirection="312.124 -277.731"/>
+            <PathPointType Anchor="305.321 -280.777" LeftDirection="309.079 -280.777" RightDirection="305.321 -280.777"/>
+            <PathPointType Anchor="6.43315 -280.777" LeftDirection="6.43315 -280.777" RightDirection="2.67587 -280.777"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -46,10 +46,10 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="0 -286" LeftDirection="0 -286" RightDirection="0 -286"/>
+            <PathPointType Anchor="0 -280.777" LeftDirection="0 -280.777" RightDirection="0 -280.777"/>
             <PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/>
             <PathPointType Anchor="312.494 0" LeftDirection="312.494 0" RightDirection="312.494 0"/>
-            <PathPointType Anchor="312.494 -286" LeftDirection="312.494 -286" RightDirection="312.494 -286"/>
+            <PathPointType Anchor="312.494 -280.777" LeftDirection="312.494 -280.777" RightDirection="312.494 -280.777"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -57,14 +57,14 @@
     <TextFramePreference TextColumnCount="1" VerticalJustification="TopAlign" AutoSizingType="Off"><Properties><InsetSpacing type="list"><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem></InsetSpacing></Properties></TextFramePreference>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </TextFrame>
-  <Rectangle Self="mask_top_left_group_st_anchor_lcd_table_en_0" Label="hb:self=mask_top_left_group_st_anchor_lcd_table_en_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/HB Bg K05" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="mask_top_left_group_st_anchor_lcd_table_en_0" Label="hb:self=mask_top_left_group_st_anchor_lcd_table_en_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-0.37 -286" LeftDirection="-0.37 -286" RightDirection="-0.37 -286"/>
-            <PathPointType Anchor="6.43315 -286" LeftDirection="6.43315 -286" RightDirection="2.67587 -286"/>
-            <PathPointType Anchor="-0.37 -279.197" LeftDirection="-0.37 -282.954" RightDirection="-0.37 -279.197"/>
+            <PathPointType Anchor="-0.37 -280.777" LeftDirection="-0.37 -280.777" RightDirection="-0.37 -280.777"/>
+            <PathPointType Anchor="6.43315 -280.777" LeftDirection="6.43315 -280.777" RightDirection="2.67587 -280.777"/>
+            <PathPointType Anchor="-0.37 -273.974" LeftDirection="-0.37 -277.731" RightDirection="-0.37 -273.974"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -76,16 +76,16 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="312.124 -286" LeftDirection="312.124 -286" RightDirection="312.124 -286"/>
-            <PathPointType Anchor="312.124 -279.197" LeftDirection="312.124 -279.197" RightDirection="312.124 -282.954"/>
-            <PathPointType Anchor="305.321 -286" LeftDirection="309.079 -286" RightDirection="305.321 -286"/>
+            <PathPointType Anchor="312.124 -280.777" LeftDirection="312.124 -280.777" RightDirection="312.124 -280.777"/>
+            <PathPointType Anchor="312.124 -273.974" LeftDirection="312.124 -273.974" RightDirection="312.124 -277.731"/>
+            <PathPointType Anchor="305.321 -280.777" LeftDirection="309.079 -280.777" RightDirection="305.321 -280.777"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
     </Properties>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </Rectangle>
-  <Rectangle Self="mask_bottom_left_group_st_anchor_lcd_table_en_0" Label="hb:self=mask_bottom_left_group_st_anchor_lcd_table_en_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/HB Bg K05" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="mask_bottom_left_group_st_anchor_lcd_table_en_0" Label="hb:self=mask_bottom_left_group_st_anchor_lcd_table_en_0" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -118,14 +118,14 @@
       <PathGeometry>
         <GeometryPathType PathOpen="false">
           <PathPointArray>
-            <PathPointType Anchor="-0.37 -279.197" LeftDirection="-0.37 -282.954" RightDirection="-0.37 -279.197"/>
+            <PathPointType Anchor="-0.37 -273.974" LeftDirection="-0.37 -277.731" RightDirection="-0.37 -273.974"/>
             <PathPointType Anchor="-0.37 -6.80315" LeftDirection="-0.37 -6.80315" RightDirection="-0.37 -3.04587"/>
             <PathPointType Anchor="6.43315 0" LeftDirection="2.67587 0" RightDirection="6.43315 0"/>
             <PathPointType Anchor="305.321 0" LeftDirection="305.321 0" RightDirection="309.079 0"/>
             <PathPointType Anchor="312.124 -6.80315" LeftDirection="312.124 -3.04587" RightDirection="312.124 -6.80315"/>
-            <PathPointType Anchor="312.124 -279.197" LeftDirection="312.124 -279.197" RightDirection="312.124 -282.954"/>
-            <PathPointType Anchor="305.321 -286" LeftDirection="309.079 -286" RightDirection="305.321 -286"/>
-            <PathPointType Anchor="6.43315 -286" LeftDirection="6.43315 -286" RightDirection="2.67587 -286"/>
+            <PathPointType Anchor="312.124 -273.974" LeftDirection="312.124 -273.974" RightDirection="312.124 -277.731"/>
+            <PathPointType Anchor="305.321 -280.777" LeftDirection="309.079 -280.777" RightDirection="305.321 -280.777"/>
+            <PathPointType Anchor="6.43315 -280.777" LeftDirection="6.43315 -280.777" RightDirection="2.67587 -280.777"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -169,7 +169,7 @@
     <TextFramePreference TextColumnCount="1" VerticalJustification="TopAlign" AutoSizingType="Off"><Properties><InsetSpacing type="list"><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem></InsetSpacing></Properties></TextFramePreference>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </TextFrame>
-  <Rectangle Self="mask_top_left_group_st_anchor_lcd_table_en_1" Label="hb:self=mask_top_left_group_st_anchor_lcd_table_en_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/HB Bg K05" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="mask_top_left_group_st_anchor_lcd_table_en_1" Label="hb:self=mask_top_left_group_st_anchor_lcd_table_en_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -197,7 +197,7 @@
     </Properties>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </Rectangle>
-  <Rectangle Self="mask_bottom_left_group_st_anchor_lcd_table_en_1" Label="hb:self=mask_bottom_left_group_st_anchor_lcd_table_en_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/HB Bg K05" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <Rectangle Self="mask_bottom_left_group_st_anchor_lcd_table_en_1" Label="hb:self=mask_bottom_left_group_st_anchor_lcd_table_en_1" ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" FillColor="Color/Paper" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">

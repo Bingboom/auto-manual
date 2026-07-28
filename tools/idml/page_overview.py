@@ -19,6 +19,12 @@ _ATTR = {'"': "&quot;"}
 Block = tuple[str, object]
 
 _LABEL = re.compile(r"^\*\*(.+?)\*\*\s*(.*)$", re.S)
+_VEHICLE_LINE_START = re.compile(
+    r"\s+(?=(?:Car|Coche|Vehículo|Véhicule|Voiture|Auto|Veículo)\s*:)",
+    re.IGNORECASE,
+)
+_VALUE_VOLTAGE_SPACE = re.compile(r"(?<=\d) (?=V\b)")
+_EMPTY_CELL_MARKER_SUFFIX = re.compile(r"\s+-\s*$")
 
 
 def _rows(value: object) -> list[list[str]]:
@@ -47,6 +53,21 @@ def _label_value(value: str) -> tuple[str, str]:
     return match.group(1).strip(), match.group(2).strip()
 
 
+def _break_vehicle_spec(value: str) -> str:
+    """Keep the vehicle-input specification on its own visual line."""
+    return _VEHICLE_LINE_START.sub("\n", value)
+
+
+def _keep_voltage_pair(value: str) -> str:
+    """Prevent a voltage number and its ``V`` unit from splitting apart."""
+    return _VALUE_VOLTAGE_SPACE.sub("\u00a0", value)
+
+
+def _strip_empty_cell_marker(value: str) -> str:
+    """Drop the RST empty-cell marker leaked by the legacy table parser."""
+    return _EMPTY_CELL_MARKER_SUFFIX.sub("", value)
+
+
 def _typed_paragraph(writer, text: str, *, size: float, leading: float,
                      bold: bool, align: str, terminal: bool) -> str:
     source = f"**{text}**" if bold else text
@@ -72,6 +93,7 @@ def _typed_paragraph(writer, text: str, *, size: float, leading: float,
 
 def _label_story(writer, sid: str, label: str, value: str, *,
                  align: str) -> str:
+    value = _keep_voltage_pair(value)
     parts = [
         _typed_paragraph(
             writer, label, size=7.0, leading=7.9, bold=True,
@@ -175,7 +197,7 @@ def _front_cells(blocks: list[Block]) -> list[tuple[str, str]]:
     primary = tables[0] if tables else []
     total = tables[1] if len(tables) > 1 else []
     at = lambda row, col: (  # noqa: E731 - compact structural lookup
-        _label_value(primary[row][col])
+        _label_value(_strip_empty_cell_marker(primary[row][col]))
         if row < len(primary) and col < len(primary[row]) and primary[row][col]
         else ("", "")
     )
@@ -215,29 +237,37 @@ def _right_cells(blocks: list[Block]) -> list[tuple[str, str]]:
     # semantic source order is invariant: Handle, AC Input, DC Input.  The
     # visual page places DC on the lower left and AC on the lower right.
     cells.extend([("", "")] * max(0, 3 - len(cells)))
-    return [cells[0], cells[2], cells[1]]
+    handle, dc_input, ac_input = cells[0], cells[2], cells[1]
+    dc_input = (dc_input[0], _break_vehicle_spec(dc_input[1]))
+    return [handle, dc_input, ac_input]
 
 
-# label frame positions are keyed by source-table semantics, not localized copy.
+# Label frame positions are keyed by source-table semantics, not localized copy.
+# Keep left-side copy inside the white label lane; the wider legacy frames let
+# long port specifications run over the linked product artwork.  The front
+# art's opaque product body starts at about x=110 pt, so a 76 pt label lane
+# leaves a small, intentional gap from the left edge of the artwork.
+_FRONT_LEFT_LABEL_WIDTH = 76.0
+_RIGHT_LEFT_LABEL_WIDTH = 87.0
 _FRONT_RECTS = (
-    (31.5, 106.22, 108.0, 14.0, "LeftAlign"),
+    (31.5, 106.22, _FRONT_LEFT_LABEL_WIDTH, 14.0, "LeftAlign"),
     (270.0, 106.32, 71.232, 14.0, "RightAlign"),
-    (31.5, 129.93, 108.0, 26.0, "LeftAlign"),
+    (31.5, 129.93, _FRONT_LEFT_LABEL_WIDTH, 26.0, "LeftAlign"),
     (268.0, 129.38, 73.273, 17.0, "RightAlign"),
-    (31.5, 159.27, 108.0, 24.0, "LeftAlign"),
+    (31.5, 159.27, _FRONT_LEFT_LABEL_WIDTH, 24.0, "LeftAlign"),
     (276.0, 159.02, 66.786, 14.0, "RightAlign"),
-    (31.5, 185.38, 108.0, 39.0, "LeftAlign"),
+    (31.5, 185.38, _FRONT_LEFT_LABEL_WIDTH, 39.0, "LeftAlign"),
     (264.0, 180.44, 76.854, 25.0, "RightAlign"),
-    (31.5, 227.01, 108.0, 34.0, "LeftAlign"),
+    (31.5, 227.01, _FRONT_LEFT_LABEL_WIDTH, 34.0, "LeftAlign"),
     (274.0, 205.26, 66.854, 28.0, "RightAlign"),
-    (31.5, 267.93, 108.0, 18.0, "LeftAlign"),
-    (262.0, 259.45, 78.854, 29.0, "RightAlign"),
+    (31.5, 267.93, _FRONT_LEFT_LABEL_WIDTH, 18.0, "LeftAlign"),
+    (246.0, 259.45, 94.854, 29.0, "RightAlign"),
 )
 
 _RIGHT_RECTS = (
-    (34.5, 340.26, 110.0, 14.0, "LeftAlign"),
-    (35.17, 369.61, 90.0, 40.0, "LeftAlign"),
-    (274.0, 381.70, 66.099, 28.0, "RightAlign"),
+    (34.5, 340.26, _RIGHT_LEFT_LABEL_WIDTH, 14.0, "LeftAlign"),
+    (35.17, 369.61, _RIGHT_LEFT_LABEL_WIDTH, 40.0, "LeftAlign"),
+    (262.0, 381.70, 78.099, 28.0, "RightAlign"),
 )
 
 
@@ -275,6 +305,14 @@ _LEADER_PATHS = (
     ("ac_input", ((341.261, 398.558), (209.153, 398.558))),
     ("total_connector", ((213.902, 213.103), (213.902, 260.327))),
 )
+
+# The target-specific front-view art intentionally knocks out this vertical
+# connector line so the editable leader can bridge the body and the detached
+# three-socket graphic.  At the standard leader weight it rasterizes too
+# lightly in InDesign, leaving the base art looking incomplete.
+_LEADER_STROKE_WEIGHTS = {
+    "total_connector": 0.60,
+}
 
 
 def _label_frames(writer, sid: str,
@@ -366,7 +404,7 @@ def add_product_overview_page(
             f"leader_{sid}_{name}",
             points,
             color="Color/HB Brand Dark",
-            weight=0.30,
+            weight=_LEADER_STROKE_WEIGHTS.get(name, 0.30),
         )
         for name, points in _LEADER_PATHS
     ]

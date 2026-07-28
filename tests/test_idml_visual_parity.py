@@ -91,7 +91,7 @@ class IdmlVisualParityTests(unittest.TestCase):
             places=5,
         )
 
-    def test_body_table_group_uses_full_measure_and_corner_fills_reach_outline(self) -> None:
+    def test_body_table_group_uses_panel_fill_for_corner_masks(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
         ctx = RenderContext(
             params=writer.params,
@@ -116,13 +116,13 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn(
             'Self="mask_top_left_group_st_anchor_data_auto_indent" '
             'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-            'FillColor="Color/HB Header K08"',
+            'FillColor="Color/Paper"',
             xml,
         )
         self.assertIn(
             'Self="mask_bottom_left_group_st_anchor_data_auto_indent" '
             'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-            'FillColor="Color/HB Bg K05"',
+            'FillColor="Color/Paper"',
             xml,
         )
 
@@ -403,6 +403,12 @@ class IdmlVisualParityTests(unittest.TestCase):
         story = dict(writer.stories)["st_anchor_shared_table"]
         self.assertIn('LeftEdgeStrokeWeight="0"', story)
         self.assertIn('RightEdgeStrokeWeight="0"', story)
+        for corner in ("top_left", "top_right", "bottom_left", "bottom_right"):
+            mask = xml.split(
+                f'Self="mask_{corner}_group_st_anchor_shared_table"',
+                1,
+            )[1].split(">", 1)[0]
+            self.assertIn('FillColor="Color/Paper"', mask)
 
     def test_operation_data_tables_share_latex_table_tokens(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

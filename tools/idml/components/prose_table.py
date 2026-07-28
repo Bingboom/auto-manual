@@ -842,14 +842,6 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             terminal=terminal,
             fill="Color/Paper",
             stroke="Color/HB Brand Dark",
-            corner_fills={
-                "top_left": "Color/HB Header K08",
-                "top_right": "Color/HB Header K08",
-                "bottom_left": (
-                    "Color/HB Bg K05" if is_auto_resume else "Color/Paper"
-                ),
-                "bottom_right": "Color/Paper",
-            },
             # InDesign ignores the nested inline Group transform. The host
             # paragraph below owns the measured first-line offset instead.
             left_indent=0.0,

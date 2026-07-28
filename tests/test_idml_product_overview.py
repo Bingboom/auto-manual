@@ -79,7 +79,8 @@ class ProductOverviewPageTests(unittest.TestCase):
                 self.assertEqual(expected_leading, leading.text)
             self.assertEqual(32, spread.count("<GraphicLine "))
             self.assertEqual(16, spread.count('StrokeWeight="1.82"'))
-            self.assertEqual(16, spread.count('StrokeWeight="0.3"'))
+            self.assertEqual(15, spread.count('StrokeWeight="0.3"'))
+            self.assertEqual(1, spread.count('StrokeWeight="0.6"'))
             self.assertIn("leader_st_overview_en_total_connector", spread)
             self.assertIn("leader_st_overview_en_dc_input", spread)
             self.assertIn("leader_st_overview_en_ac_input", spread)
@@ -140,6 +141,38 @@ class ProductOverviewPageTests(unittest.TestCase):
                     ],
                 )
 
+        dc_cells = _right_cells([("table", [
+            ["**Handle**", "**AC Input** 100 V"],
+            ["", "**DC Input** PV: 16-60 V⎓12 A max. Car: 11-16 V⎓8 A max."],
+        ])])
+        self.assertEqual(
+            "PV: 16-60 V⎓12 A max.\nCar: 11-16 V⎓8 A max.",
+            dc_cells[1][1],
+        )
+
+        from tools.idml.page_overview import _keep_voltage_pair
+
+        self.assertEqual(
+            "5\u00a0V⎓3 A, 9\u00a0V⎓3 A, 12\u00a0V⎓2.5 A",
+            _keep_voltage_pair("5 V⎓3 A, 9 V⎓3 A, 12 V⎓2.5 A"),
+        )
+
+        legacy_empty_cell_marker = _front_cells([
+            ("table", [
+                ["**Power**", "**LCD**"],
+                ["**DC 12 V**", "**LED button**"],
+                ["**DC / USB**", "**LED**"],
+                ["**USB-C 30 W**", "**AC button**"],
+                ["**USB-C 100 W**", "**AC Output**"],
+                ["**USB-A 18 W Output** 18 W max., 9–12 V⎓1.5 A -"],
+            ]),
+            ("table", [["**Total Output**"]]),
+        ])
+        self.assertEqual(
+            "18 W max., 9–12 V⎓1.5 A",
+            legacy_empty_cell_marker[8][1],
+        )
+
     def test_overview_rejects_missing_governed_art(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
@@ -174,12 +207,21 @@ class ProductOverviewPageTests(unittest.TestCase):
             _LEADER_PATHS[-1],
         )
         self.assertEqual(
-            (31.5, 106.22, 108.0, 14.0, "LeftAlign"),
+            ("usb_a", ((31.564, 247.150), (141.445, 247.150),
+                       (141.445, 215.192))),
+            _LEADER_PATHS[6],
+        )
+        self.assertEqual(
+            (31.5, 106.22, 76.0, 14.0, "LeftAlign"),
             _FRONT_RECTS[0],
         )
         self.assertEqual(
-            (274.0, 381.70, 66.099, 28.0, "RightAlign"),
+            (262.0, 381.70, 78.099, 28.0, "RightAlign"),
             _RIGHT_RECTS[-1],
+        )
+        self.assertEqual(
+            (246.0, 259.45, 94.854, 29.0, "RightAlign"),
+            _FRONT_RECTS[-1],
         )
 
 

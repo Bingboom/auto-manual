@@ -267,10 +267,13 @@ class EditableKeyCombinationTests(unittest.TestCase):
                 duration = _item_bounds(
                     xml, f"tf_key_duration_0_key_{language}",
                 )
-                # The clock is one governed character-space inside column two,
-                # followed by the same character-space before 3s/1s.
-                self.assertAlmostEqual(131.49, clock_x, places=2)
-                self.assertAlmostEqual(144.94, duration[0], places=2)
+                operation_header = _item_bounds(
+                    xml, f"tf_key_header_1_key_{language}",
+                )
+                # The clock shares the Operation header's left text edge;
+                # the duration follows it by the governed clock gap.
+                self.assertAlmostEqual(operation_header[0], clock_x, places=2)
+                self.assertAlmostEqual(148.44, duration[0], places=2)
 
     def test_arbitrary_three_column_table_does_not_match(self) -> None:
         rows = [

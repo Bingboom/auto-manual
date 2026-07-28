@@ -360,6 +360,7 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     capsule_bg = bool(opts.pop("capsule_bg", False))
     h1_bar_bg = bool(opts.pop("h1_bar_bg", False))
     rounded_outer = bool(opts.pop("rounded_outer", False))
+    rounded_outer_masks = bool(opts.pop("rounded_outer_masks", False))
     text_rect = opts.pop("text_rect", rect)
     x1, y1, x2, y2 = writer._page_rect(*rect)
     tx1, ty1, tx2, ty2 = writer._page_rect(*text_rect)
@@ -373,6 +374,37 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
         parts.append(rounded_outer_xml(writer, f"bg_{sid}_{frame_id}", rect))
     parts.append(writer._frame_xml(
         f"tf_{sid}_{frame_id}", story_id, tx1, ty1, tx2, ty2, **opts))
+    if rounded_outer and rounded_outer_masks:
+        # InDesign keeps editable table cells square even when the separate
+        # outer shell is rounded.  K05 icon-column fills can therefore show
+        # through the four shell corners unless the outside-of-arc regions
+        # are covered after the text frame.  Redraw only the outline last so
+        # the mask never weakens the visible border.
+        for corner in (
+            "top_left", "top_right", "bottom_left", "bottom_right",
+        ):
+            parts.append(
+                f'  <Rectangle Self="mask_{corner}_{sid}_{frame_id}" '
+                'ContentType="Unassigned" '
+                'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+                'FillColor="Color/Paper" StrokeColor="Swatch/None" '
+                'StrokeWeight="0" ItemTransform="1 0 0 1 0 0">\n'
+                + rounded_corner_mask_geometry(
+                    x1, y1, x2, y2, 5.5, corner)
+                + '  </Rectangle>\n'
+            )
+        parts.append(
+            rectangle_xml(
+                f"outline_{sid}_{frame_id}",
+                x1, y1, x2, y2,
+                fill="Swatch/None",
+                stroke_color="Color/HB Line K40",
+                stroke_weight=0.75,
+                rounded=True,
+                corner_radius=5.5,
+                object_style=ROUNDED_TABLE_OBJECT_STYLE,
+            )
+        )
     return "".join(parts)
 
 

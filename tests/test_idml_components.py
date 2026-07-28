@@ -818,13 +818,13 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn(
             'Self="mask_top_left_group_st_anchor_lcdmode_lcd_corners" '
             'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-            'FillColor="Color/HB Bg K05"',
+            'FillColor="Color/Paper"',
             host,
         )
         self.assertIn(
             'Self="mask_bottom_left_group_st_anchor_lcdmode_lcd_corners" '
             'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-            'FillColor="Color/HB Bg K05"',
+            'FillColor="Color/Paper"',
             host,
         )
 
