@@ -8,7 +8,7 @@ DESCRIPCIÓN GENERAL DEL PRODUCTO
 VISTA FRONTAL
 -------------
 
-.. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
+.. image:: _assets/templates/word_template/common_assets/overview/front_controls.png
    :alt: Diagrama de vista frontal.
    :width: 420px
 
@@ -16,28 +16,28 @@ VISTA FRONTAL
    :header-rows: 0
    :widths: 50 50
 
-   * - **Botón de encendido principal**
-     - **Asa**
-   * - **Puerto DC 12V**
-
-       12 V⎓10 A Máx
+   * - **Botón de encendido**
      - **LCD**
-   * - **Botón de energía CC/USB**
+   * - **Puerto CC 12 V**
+
+       12 V⎓10 A máx.
      - **Botón de luz LED**
-   * - **Salida USB-C 30W**
-
-       30W Máx,5 V⎓3 A,9 V⎓3 A,12 V⎓2,5 A,15 V⎓2 A,20 V⎓1,5 A
+   * - **Botón de energía CC / USB**
      - **Luz LED**
-   * - **Salida USB-C 100W**
+   * - **Salida USB-C 30 W**
 
-       100 W Máx,5 V⎓3 A,9 V⎓3 A,12 V⎓3 A,15 V⎓3 A,20 V⎓5 A
-     - **Botón de energía CA**
-   * - **Salida USB-A 18W**
+       30 W máx.,5 V⎓3 A,9 V⎓3 A,12 V⎓2,5 A,15 V⎓2 A,20 V⎓1,5 A
+     - **Botón Power CA**
+   * - **Salida USB-C 100 W**
 
-       18 W Máx,5-6 V⎓3 A,6-9 V⎓2 A,9-12 V⎓1,5 A
+       100 W máx.,5 V⎓3 A,9 V⎓3 A,12 V⎓3 A,15 V⎓3 A,20 V⎓5 A
      - **Salidas de CA**
 
-       120 V~ 60 Hz,12,5 A Máx,1500 W nominales
+       120 V~ 60 Hz,12,5 A máx.,1500 W nominales
+   * - **Salida USB-A 18 W**
+
+       18 W máx.,5-6 V⎓3 A,6-9 V⎓2 A,9-12 V⎓1,5 A
+     -
 
 .. list-table::
    :header-rows: 0
@@ -58,11 +58,12 @@ VISTA LATERAL DERECHA
    :header-rows: 0
    :widths: 100
 
+   * - **Asa**
    * - **Entrada de CA**
 
-       100 V-120 V~ 60 Hz,15 A Máx
+       100 V-120 V~ 60 Hz,15 A máx.
    * - **Entrada de CC (2 × Puertos DC8020)**
 
-       Auto: 11-16 V⎓8 A Máx,Doble a 8A Máx
+       Coche: 11-16 V⎓8 A máx., Doble a 8 A máx.
 
-       PV: 16-60 V⎓12 A Máx,Doble a 21 A Máx / 400 W Máx
+       PV: 16-60 V⎓12 A máx., Doble a 21 A máx. / 400 W máx.

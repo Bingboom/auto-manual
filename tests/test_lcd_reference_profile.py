@@ -26,7 +26,7 @@ class LcdReferenceProfileTests(unittest.TestCase):
             editable["lcd_icon_table"]["icon_size_pt_by_language"],
         )
         self.assertEqual(
-            [72.0, 40.0, 38.0],
+            [72.0, 36.0, 38.0],
             editable["inbox_cards"]["image_width_pt_by_language"]["en"],
         )
 

@@ -1,0 +1,204 @@
+% ==================================================
+% components_warranty.tex
+% Dedicated warranty page components
+% ==================================================
+
+\expandafter\providecommand\csname HBcomp_warranty_page_after_h1\endcsname{4.0mm}
+\expandafter\providecommand\csname HBcomp_warranty_page_extra_height\endcsname{6.0mm}
+\expandafter\providecommand\csname HBcomp_warranty_lead_arc\endcsname{3.2mm}
+\expandafter\providecommand\csname HBcomp_warranty_lead_pad_lr\endcsname{3.6mm}
+\expandafter\providecommand\csname HBcomp_warranty_lead_pad_tb\endcsname{2.7mm}
+\expandafter\providecommand\csname HBcomp_warranty_lead_after\endcsname{1.0mm}
+\expandafter\providecommand\csname HBcomp_warranty_section_arc\endcsname{2.4mm}
+\expandafter\providecommand\csname HBcomp_warranty_section_rule\endcsname{0.9pt}
+\expandafter\providecommand\csname HBcomp_warranty_section_pad_lr\endcsname{3.2mm}
+\expandafter\providecommand\csname HBcomp_warranty_section_pad_top\endcsname{3.2mm}
+\expandafter\providecommand\csname HBcomp_warranty_section_pad_bottom\endcsname{1.8mm}
+\expandafter\providecommand\csname HBcomp_warranty_exclusions_pad_bottom\endcsname{5.8mm}
+\expandafter\providecommand\csname HBcomp_warranty_section_before\endcsname{1.5mm}
+\expandafter\providecommand\csname HBcomp_warranty_first_section_before\endcsname{2.5mm}
+\expandafter\providecommand\csname HBcomp_warranty_period_section_before\endcsname{2.6mm}
+\expandafter\providecommand\csname HBcomp_warranty_final_section_before\endcsname{2.9mm}
+\expandafter\providecommand\csname HBcomp_warranty_section_after\endcsname{0.4mm}
+\expandafter\providecommand\csname HBcomp_warranty_title_arc\endcsname{1.7mm}
+\expandafter\providecommand\csname HBcomp_warranty_title_pad_lr\endcsname{1.8mm}
+\expandafter\providecommand\csname HBcomp_warranty_title_pad_tb\endcsname{0.7mm}
+\expandafter\providecommand\csname HBcomp_warranty_title_inset\endcsname{3.0mm}
+\expandafter\providecommand\csname HBcomp_warranty_year_badge_size\endcsname{8.4mm}
+\expandafter\providecommand\csname HBcomp_warranty_year_column_gap\endcsname{0.8mm}
+\expandafter\providecommand\csname HBcomp_warranty_year_left_ratio\endcsname{0.59}
+\expandafter\providecommand\csname HBtype_warranty_lead_font_size\endcsname{7.0pt}
+\expandafter\providecommand\csname HBtype_warranty_lead_font_leading\endcsname{8.2pt}
+\expandafter\providecommand\csname HBtype_warranty_body_font_size\endcsname{6.0pt}
+\expandafter\providecommand\csname HBtype_warranty_body_font_leading\endcsname{7.2pt}
+\expandafter\providecommand\csname HBtype_warranty_title_font_size\endcsname{8.2pt}
+\expandafter\providecommand\csname HBtype_warranty_title_font_leading\endcsname{8.8pt}
+\expandafter\providecommand\csname HBtype_warranty_year_number_font_size\endcsname{21pt}
+\expandafter\providecommand\csname HBtype_warranty_year_unit_font_size\endcsname{12pt}
+\expandafter\providecommand\csname HBtype_warranty_year_subtitle_font_size\endcsname{7.2pt}
+
+\providecommand{\HBWarrantyBodyStart}{%
+  \HBFontRegular
+  \color{TextK90}%
+  \fontsize{\csname HBtype_warranty_body_font_size\endcsname}
+           {\csname HBtype_warranty_body_font_leading\endcsname}\selectfont
+  \RaggedRight
+}
+
+\providecommand{\HBWarrantyPageStart}[1]{%
+  \clearpage
+  \enlargethispage{\csname HBcomp_warranty_page_extra_height\endcsname}%
+  \begingroup
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0.9mm}%
+  \HBTitleLevelOne{#1}%
+  \vspace{\csname HBcomp_warranty_page_after_h1\endcsname}%
+}
+
+\providecommand{\HBWarrantyPageEnd}{%
+  \par\endgroup
+  \clearpage
+}
+
+\providecommand{\HBWarrantySectionSpacing}[1]{%
+  \ifnum#1=1\relax
+    \vspace{\csname HBcomp_warranty_first_section_before\endcsname}%
+  \else\ifnum#1=2\relax
+    \vspace{\csname HBcomp_warranty_period_section_before\endcsname}%
+  \else\ifnum#1=6\relax
+    \vspace{\csname HBcomp_warranty_final_section_before\endcsname}%
+  \else
+    \vspace{\csname HBcomp_warranty_section_before\endcsname}%
+  \fi\fi\fi
+}
+
+\newenvironment{HBWarrantyLead}{%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=BgK05,
+    colframe=BgK05,
+    arc=\csname HBcomp_warranty_lead_arc\endcsname,
+    boxrule=0pt,
+    boxsep=0mm,
+    left=\csname HBcomp_warranty_lead_pad_lr\endcsname,
+    right=\csname HBcomp_warranty_lead_pad_lr\endcsname,
+    top=\csname HBcomp_warranty_lead_pad_tb\endcsname,
+    bottom=\csname HBcomp_warranty_lead_pad_tb\endcsname,
+    before skip=0mm,
+    after skip=\csname HBcomp_warranty_lead_after\endcsname,
+  ]%
+  \HBFontSemiBold
+  \fontsize{\csname HBtype_warranty_lead_font_size\endcsname}
+           {\csname HBtype_warranty_lead_font_leading\endcsname}\selectfont
+  \color{TextK90}\RaggedRight
+  \setlength{\parskip}{0pt}%
+}{%
+  \end{tcolorbox}%
+}
+
+\newtcolorbox{HBWarrantySectionBox}[2]{
+  enhanced,
+  colback=white,
+  colframe=BgK05,
+  arc=\csname HBcomp_warranty_section_arc\endcsname,
+  boxrule=\csname HBcomp_warranty_section_rule\endcsname,
+  boxsep=0mm,
+  left=\csname HBcomp_warranty_section_pad_lr\endcsname,
+  right=\csname HBcomp_warranty_section_pad_lr\endcsname,
+  top=\csname HBcomp_warranty_section_pad_top\endcsname,
+  bottom=#2,
+  before skip=0mm,
+  after skip=\csname HBcomp_warranty_section_after\endcsname,
+  title={#1},
+  attach boxed title to top left={
+    xshift=\csname HBcomp_warranty_title_inset\endcsname,
+    yshift*=-\tcboxedtitleheight/2,
+  },
+  boxed title style={
+    colback=BrandDark,
+    colframe=BrandDark,
+    arc=\csname HBcomp_warranty_title_arc\endcsname,
+    boxrule=0pt,
+    boxsep=0mm,
+    left=\csname HBcomp_warranty_title_pad_lr\endcsname,
+    right=\csname HBcomp_warranty_title_pad_lr\endcsname,
+    top=\csname HBcomp_warranty_title_pad_tb\endcsname,
+    bottom=\csname HBcomp_warranty_title_pad_tb\endcsname,
+  },
+  fonttitle=\color{white}\HBFontSemiBold
+    \fontsize{\csname HBtype_warranty_title_font_size\endcsname}
+             {\csname HBtype_warranty_title_font_leading\endcsname}\selectfont,
+  before upper={%
+    \HBWarrantyBodyStart
+    \setlength{\parskip}{0.8mm}%
+    \setlist[itemize]{leftmargin=3.1mm,labelsep=1.0mm,itemsep=0.25mm,topsep=0.6mm,parsep=0pt}%
+  },
+}
+
+\newenvironment{HBWarrantySection}[2]{%
+  \par
+  \HBWarrantySectionSpacing{#2}%
+  \ifnum#2=5\relax
+    \begin{HBWarrantySectionBox}{#1}{\csname HBcomp_warranty_exclusions_pad_bottom\endcsname}%
+  \else
+    \begin{HBWarrantySectionBox}{#1}{\csname HBcomp_warranty_section_pad_bottom\endcsname}%
+  \fi
+}{%
+  \end{HBWarrantySectionBox}%
+}
+
+\newenvironment{HBWarrantyYears}{%
+  \par\noindent
+}{%
+  \par
+}
+
+\providecommand{\HBWarrantyYearBadge}[1]{%
+  \tikz[baseline=(HBWarrantyNumber.base)]{%
+    \node[
+      circle,
+      fill=BrandDark,
+      text=white,
+      inner sep=0pt,
+      minimum size=\csname HBcomp_warranty_year_badge_size\endcsname,
+      font=\HBFontHeavy
+        \fontsize{\csname HBtype_warranty_year_number_font_size\endcsname}
+                 {\csname HBtype_warranty_year_number_font_size\endcsname}\selectfont,
+    ] (HBWarrantyNumber) {#1};%
+  }%
+}
+
+\providecommand{\HBWarrantyYearHeading}[3]{%
+  \noindent
+  \HBWarrantyYearBadge{#1}%
+  \hspace{1.4mm}%
+  \begin{minipage}[c]{\dimexpr\linewidth
+    -\csname HBcomp_warranty_year_badge_size\endcsname-1.4mm\relax}
+    {\HBFontHeavy
+     \fontsize{\csname HBtype_warranty_year_unit_font_size\endcsname}
+              {\csname HBtype_warranty_year_unit_font_size\endcsname}\selectfont
+     #2\par}%
+    \vspace{0.15mm}%
+    {\HBFontSemiBold
+     \fontsize{\csname HBtype_warranty_year_subtitle_font_size\endcsname}
+              {\csname HBtype_warranty_year_subtitle_font_size\endcsname}\selectfont
+     #3\par}%
+  \end{minipage}%
+  \par\vspace{0.8mm}%
+}
+
+\newenvironment{HBWarrantyYearColumn}[4]{%
+  \ifnum#1=1\relax
+    \begin{minipage}[t]{\csname HBcomp_warranty_year_left_ratio\endcsname\linewidth}%
+  \else
+    \begin{minipage}[t]{\dimexpr
+      \linewidth
+      -\csname HBcomp_warranty_year_left_ratio\endcsname\linewidth
+      -\csname HBcomp_warranty_year_column_gap\endcsname\relax}%
+  \fi
+  \HBWarrantyYearHeading{#2}{#3}{#4}%
+  \HBWarrantyBodyStart
+  \setlength{\parskip}{0pt}%
+}{%
+  \end{minipage}%
+}

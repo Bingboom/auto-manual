@@ -2,38 +2,81 @@
 
    \HBApplyLang{en}
 
-.. raw:: latex
+.. only:: latex and region_us
 
-   \section{WHAT'S IN THE BOX}
+   .. raw:: latex
 
-.. raw:: html
+      \section{WHAT'S IN THE BOX}
+      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{AC Charging Cable}{manual_icon1.png}{Doucuments}
+      \HBTipBlock{TIP}{The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.}
+      \HBPageBreak
 
-   <h1>WHAT'S IN THE BOX</h1>
+.. only:: latex and region_eu
 
-.. list-table::
-   :header-rows: 0
-   :widths: 33 33 34
+   .. raw:: latex
 
-   * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
-          :alt: Power station image placeholder.
-          :width: 120px
+      \section{WHAT'S IN THE BOX}
+      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{AC Charging Cable}{manual_icon1.png}{User Manual}
+      \HBTipBlock{TIP}{The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.}
 
-       **Jackery Explorer 1000**
-     - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging_cable.png
-          :alt: AC charging cable image placeholder.
-          :width: 120px
+.. only:: not latex and region_us
 
-       **AC Charging Cable**
-     - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon1.png
-          :alt: User manual image placeholder.
-          :width: 120px
+   .. raw:: html
 
-       Documents
+      <h1>WHAT'S IN THE BOX</h1>
 
-.. list-table::
-   :header-rows: 0
-   :widths: 10 90
+   .. list-table::
+      :header-rows: 0
+      :widths: 33 33 34
 
-   * - **TIPS**
-     - The car charging cable is not included but is available for purchase separately on our website.
-       For assistance, please contact Jackery customer service.
+      * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
+             :alt: Power station image placeholder.
+             :width: 120px
+
+          **Jackery Explorer 1000**
+        - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+             :alt: AC charging cable image placeholder.
+             :width: 120px
+
+          **AC Charging Cable**
+        - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon1.png
+             :alt: User manual image placeholder.
+             :width: 120px
+
+          Doucuments
+
+.. only:: not latex and region_eu
+
+   .. raw:: html
+
+      <h1>WHAT'S IN THE BOX</h1>
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 33 33 34
+
+      * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
+             :alt: Power station image placeholder.
+             :width: 120px
+
+          **Jackery Explorer 1000**
+        - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging_cable.png
+             :alt: AC charging cable image placeholder.
+             :width: 120px
+
+          **AC Charging Cable**
+        - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon1.png
+             :alt: User manual image placeholder.
+             :width: 120px
+
+          User Manual
+
+.. only:: not latex
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 10 90
+
+      * - **TIP**
+        - The car charging cable is not included but is available for purchase separately on our website.
+          For assistance, please contact Jackery customer service.

@@ -6,66 +6,60 @@
 
    .. raw:: latex
 
-      \section{ESPECIFICACIONES}
+      \HBSpecPageStart \section{ESPECIFICACIONES}
 
 .. raw:: latex
 
    \specsectiontitle{INFORMACIÓN GENERAL}
    \begin{spectable}
-   \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{Nombre del producto} & \HBTypeSpecValue{Jackery Explorer 1000} \\
+   \HBTypeSpecLabel{Nombre del producto} & \HBTypeSpecValue{Jackery Explorer 1000} \tabularnewline
    \hline
-   \HBTypeSpecLabel{N° de modelo} & \HBTypeSpecValue{JE-1000F / JE-1000F-SG} \\
+   \HBTypeSpecLabel{Nº de modelo} & \HBTypeSpecValue{JE-1000F/JE-1000F-SG} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Capacidad} & \HBTypeSpecValue{1024 Wh (20Ah/51.2V DC)} \\
+   \HBTypeSpecLabel{Capacidad} & \HBTypeSpecValue{1024 Wh (20Ah/51.2V⎓)} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Química Celular} & \HBTypeSpecValue{LiFePO₄} \\
+   \HBTypeSpecLabel{Química de las celdas} & \HBTypeSpecValue{LiFePO4} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Peso} & \HBTypeSpecValue{Aproximadamente 23,4 libras / 10,6 kg} \\
+   \HBTypeSpecLabel{Peso} & \HBTypeSpecValue{Aproximadamente 23,4 libras/10,6 kg} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Dimensiones} & \HBTypeSpecValue{12.4 x 7.9 x 9.3 pulgadas / 31.4 x 20.1 x 23.6 cm} \\
+   \HBTypeSpecLabel{Dimensiones} & \HBTypeSpecValue{12,4 × 7,9 × 9,2 pulgadas / 31,4 × 20,1 × 23,4 cm} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Ciclo de vida} & \HBTypeSpecValue{6000 ciclos hasta 70 \% o más de capacidad} \\
-   \end{tabularx}
+   \HBTypeSpecLabel{Vida útil en ciclos} & \HBTypeSpecValue{6000 ciclos de carga hasta 70 \% + de capacidad} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
 
    \specsectiontitle{PUERTOS DE ENTRADA}
    \begin{spectable}
-   \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{1 × Entrada CA} & \HBTypeSpecValue{Modo de carga: 100V-120V\textasciitilde{}60Hz,15A máx. \newline Modo de derivación\HBSpecMarkerOne{}: 100V-120V\textasciitilde{}60Hz,12A máx.} \\
+   \HBTypeSpecLabel{1 × Entrada CA} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{Modo de carga: 100-120V\textasciitilde{}60Hz, 15A máx. \newline Modo de derivación\HBSpecMarkerOne{} : 100-120V\textasciitilde{}60Hz, 12A máx.} \HBSpecTallRowBreak
    \hline
-   \HBTypeSpecLabel{2 × Puertos DC8020} & \HBTypeSpecValue{11V-16V⎓8A máx.,doble a 8A máx. \newline 16V-60V⎓12A,doble a 21A / 400W máx.} \\
-   \end{tabularx}
+   \HBTypeSpecLabel{2 × Puertos DC8020} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{11-16V⎓8A máx., Doble a 8A máx. \newline 16-60V⎓12A máx., Doble a 21A/400W máx.} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
 
    \specsectiontitle{PUERTOS DE SALIDA}
    \begin{spectable}
-   \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{3 × Salidas CA} & \HBTypeSpecValue{120V\textasciitilde{}60Hz,18,3A máx.,1500W nominales por puerto,1500W en total,pico de sobretensión de 3000W (14°F a 113°F / -10°C a 45°C) \newline 120V\textasciitilde{}60Hz,13,3A (-4°F a 14°F / -20°C a -10°C)} \\
+   \HBTypeSpecLabel{3 × Salidas CA} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{120V\textasciitilde{}60Hz, 12,5A Máx, 1500W nominales por puerto, 1500W en total, pico de sobretensión de 3000W} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Salida de CA en modo derivación\HBSpecMarkerOne{}} & \HBTypeSpecValue{100V-120V\textasciitilde{}60Hz,12A máx.} \\
+   \HBTypeSpecLabel{Salida de CA del Modo bypass\HBSpecMarkerOne{}} & \HBTypeSpecValue{100V-120V\textasciitilde{}60Hz, 12A máx.} \HBSpecTallRowBreak
    \hline
-   \HBTypeSpecLabel{2 × Salidas USB-C} & \HBTypeSpecValue{30W máx.,5V⎓3A,9V⎓3A,12V⎓2.5A,15V⎓2A,20V⎓1.5A \newline 100W máx.,5V⎓3A,9V⎓3A,12V⎓3A,15V⎓3A,20V⎓5A (14°F a 113°F / -10°C a 45°C) \newline Salida USB-C 100W desactivada (-4°F a 14°F / -20°C a -10°C)} \\
+   \HBTypeSpecLabel{Salida USB-C 30W} & \HBTypeSpecValue{30W máx., 5V⎓3A, 9V⎓3A, 12V⎓2,5A, 15V⎓2A, 20V⎓1,5A} \tabularnewline
    \hline
-   \HBTypeSpecLabel{1 × Salida USB-A} & \HBTypeSpecValue{18W máx.,5-6V⎓3A,6-9V⎓2A,9-12V⎓1.5A} \\
+   \HBTypeSpecLabel{Salida USB-C 100W} & \HBTypeSpecValue{100W máx., 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A} \tabularnewline
    \hline
-   \HBTypeSpecLabel{1 × Puerto DC 12V} & \HBTypeSpecValue{12V⎓10A máx.} \\
-   \end{tabularx}
+   \HBTypeSpecLabel{1 × Salida USB-A} & \HBTypeSpecValue{18W máx., 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A} \tabularnewline
+   \hline
+   \HBTypeSpecLabel{1× Puerto DC 12V} & \HBTypeSpecValue{12V⎓10A máx.} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
 
    \specsectiontitle{TEMPERATURA DE FUNCIONAMIENTO}
    \begin{spectable}
-   \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}m{\csname HBcomp_spec_table_left_ratio\endcsname\linewidth}|>{\raggedright\arraybackslash}X@{}}
-   \HBTypeSpecLabel{Temperatura de carga} & \HBTypeSpecValue{-4°F a 113°F / -20°C a 45°C} \\
+   \HBTypeSpecLabel{Temperatura de carga} & \HBTypeSpecValue{14°F a 113°F /da -10°C a 45°C} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Temperatura de descarga} & \HBTypeSpecValue{-4°F a 113°F / -20°C a 45°C} \\
-   \end{tabularx}
+   \HBTypeSpecLabel{Temperatura de descarga} & \HBTypeSpecValue{14°F a 113°F /da -10°C a 45°C} \tabularnewline
    \end{spectable}
 
 
@@ -86,6 +80,10 @@
    \HBTypeSpecNote{\HBSpecMarkerOne{} El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.}\par
    }
 
+.. raw:: latex
+
+   \HBSpecPageEnd
+
 
 
 
@@ -105,28 +103,28 @@
             <td class="hb-spec-value">Jackery Explorer 1000</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">N° de modelo</th>
-            <td class="hb-spec-value">JE-1000F / JE-1000F-SG</td>
+            <th scope="row" class="hb-spec-label">Nº de modelo</th>
+            <td class="hb-spec-value">JE-1000F/JE-1000F-SG</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Capacidad</th>
-            <td class="hb-spec-value">1024 Wh (20Ah/51.2V DC)</td>
+            <td class="hb-spec-value">1024 Wh (20Ah/51.2V⎓)</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">Química Celular</th>
-            <td class="hb-spec-value">LiFePO₄</td>
+            <th scope="row" class="hb-spec-label">Química de las celdas</th>
+            <td class="hb-spec-value">LiFePO4</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Peso</th>
-            <td class="hb-spec-value">Aproximadamente 23,4 libras / 10,6 kg</td>
+            <td class="hb-spec-value">Aproximadamente 23,4 libras/10,6 kg</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Dimensiones</th>
-            <td class="hb-spec-value">12.4 x 7.9 x 9.3 pulgadas / 31.4 x 20.1 x 23.6 cm</td>
+            <td class="hb-spec-value">12,4 × 7,9 × 9,2 pulgadas / 31,4 × 20,1 × 23,4 cm</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">Ciclo de vida</th>
-            <td class="hb-spec-value">6000 ciclos hasta 70 % o más de capacidad</td>
+            <th scope="row" class="hb-spec-label">Vida útil en ciclos</th>
+            <td class="hb-spec-value">6000 ciclos de carga hasta 70 % + de capacidad</td>
           </tr>
         </tbody>
       </table>
@@ -138,11 +136,11 @@
         <tbody>
           <tr>
             <th scope="row" class="hb-spec-label">1 × Entrada CA</th>
-            <td class="hb-spec-value">Modo de carga: 100V-120V~60Hz,15A máx.<br/>Modo de derivación①: 100V-120V~60Hz,12A máx.</td>
+            <td class="hb-spec-value">Modo de carga: 100-120V~60Hz, 15A máx.<br/>Modo de derivación① : 100-120V~60Hz, 12A máx.</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">2 × Puertos DC8020</th>
-            <td class="hb-spec-value">11V-16V⎓8A máx.,doble a 8A máx.<br/>16V-60V⎓12A,doble a 21A / 400W máx.</td>
+            <td class="hb-spec-value">11-16V⎓8A máx., Doble a 8A máx.<br/>16-60V⎓12A máx., Doble a 21A/400W máx.</td>
           </tr>
         </tbody>
       </table>
@@ -154,22 +152,22 @@
         <tbody>
           <tr>
             <th scope="row" class="hb-spec-label">3 × Salidas CA</th>
-            <td class="hb-spec-value">120V~60Hz,18,3A máx.,1500W nominales por puerto,1500W en total,pico de sobretensión de 3000W (14°F a 113°F / -10°C a 45°C)<br/>120V~60Hz,13,3A (-4°F a 14°F / -20°C a -10°C)</td>
+            <td class="hb-spec-value">120V~60Hz, 12,5A Máx, 1500W nominales por puerto, 1500W en total, pico de sobretensión de 3000W</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">Salida de CA en modo derivación①</th>
-            <td class="hb-spec-value">100V-120V~60Hz,12A máx.</td>
+            <th scope="row" class="hb-spec-label">Salida de CA del Modo bypass①</th>
+            <td class="hb-spec-value">100V-120V~60Hz, 12A máx.</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">2 × Salidas USB-C</th>
-            <td class="hb-spec-value">30W máx.,5V⎓3A,9V⎓3A,12V⎓2.5A,15V⎓2A,20V⎓1.5A<br/>100W máx.,5V⎓3A,9V⎓3A,12V⎓3A,15V⎓3A,20V⎓5A (14°F a 113°F / -10°C a 45°C)<br/>Salida USB-C 100W desactivada (-4°F a 14°F / -20°C a -10°C)</td>
+            <td class="hb-spec-value">30W máx., 5V⎓3A, 9V⎓3A, 12V⎓2,5A, 15V⎓2A, 20V⎓1,5A<br/>100W máx., 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">1 × Salida USB-A</th>
-            <td class="hb-spec-value">18W máx.,5-6V⎓3A,6-9V⎓2A,9-12V⎓1.5A</td>
+            <td class="hb-spec-value">18W máx., 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">1 × Puerto DC 12V</th>
+            <th scope="row" class="hb-spec-label">1× Puerto DC 12V</th>
             <td class="hb-spec-value">12V⎓10A máx.</td>
           </tr>
         </tbody>
@@ -182,11 +180,11 @@
         <tbody>
           <tr>
             <th scope="row" class="hb-spec-label">Temperatura de carga</th>
-            <td class="hb-spec-value">-4°F a 113°F / -20°C a 45°C</td>
+            <td class="hb-spec-value">14°F a 113°F /da -10°C a 45°C</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Temperatura de descarga</th>
-            <td class="hb-spec-value">-4°F a 113°F / -20°C a 45°C</td>
+            <td class="hb-spec-value">14°F a 113°F /da -10°C a 45°C</td>
           </tr>
         </tbody>
       </table>

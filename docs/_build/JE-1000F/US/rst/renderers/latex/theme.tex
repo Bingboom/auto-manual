@@ -5,6 +5,7 @@
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage{tabularx}
 \usepackage{tikz}
 \usepackage{ragged2e}
@@ -21,8 +22,14 @@
 \input{layout_templates.tex}
 
 \input{components_base.tex}
+\input{components_headings.tex}
+\input{components_special_pages.tex}
+\input{components_symbols.tex}
+\input{components_lcd.tex}
 \input{components_safety.tex}
 \input{components_spec.tex}
+\input{components_data_tables.tex}
+\input{components_warranty.tex}
 
 \input{page_fit.tex}
 
@@ -30,3 +37,5 @@
 \setlength{\parindent}{\csname HBpage_parindent\endcsname}
 \setlength{\parskip}{\csname HBpage_parskip\endcsname}
 
+% Apply the compact manual body type after fonts.tex is injected.
+\AtBeginDocument{\HBTypeBaseStart}

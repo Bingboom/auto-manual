@@ -1,0 +1,42 @@
+.. raw:: latex
+
+   \HBApplyLang{fr}
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \HBFccBlock{Cet appareil est conforme à la partie 15 des règles de la FCC. Son fonctionnement est soumis aux deux conditions suivantes : (1) cet appareil ne doit pas causer d'interférences nuisibles, et (2) cet appareil doit accepter toute interférence reçue, y compris les interférences pouvant entraîner un fonctionnement indésirable. \par\textbf{REMARQUE :} Cet équipement a été testé et déclaré conforme aux limites concernant les appareils numériques de classe B, conformément à la partie 15 du règlement de la FCC. \par Ces limites sont conçues pour offrir une protection raisonnable contre les interférences dangereuses dans le cadre d'une installation résidentielle. Cet équipement génère, utilise et émet des ondes radios qui peuvent, si cet équipement n'est pas installé et utilisé conformément aux instructions, perturber les communications radios. Toutefois, il n'y a aucune garantie qu'aucune interférence ne se produise lors d'une installation particulière.}{Si cet équipement trouble la réception de la radio ou de la télévision, ce qui peut être déterminé en éteignant et en allumant cet équipement, l'utilisateur est encouragé à tenter de corriger ces interférences en essayant une ou plusieurs des mesures suivantes : \par\textbullet~Réorientez ou déplacez l'antenne de réception. \par\textbullet~Éloignez l'équipement du récepteur. \par\textbullet~Connectez l'équipement à une prise d'un autre circuit que celui auquel le récepteur est connecté. \par\textbullet~Consultez le revendeur ou bien demandez de l'aide à un technicien de radio/télévision expérimenté. \par\textbf{MODIFICATION :} Tout changement ou modification non expressément approuvé par le titulaire de cet appareil pourrait annuler l'autorisation de l'utilisateur à utiliser l'appareil.}
+
+      \iffalse
+
+.. raw:: latex
+
+   \section{FCC}
+
+.. raw:: html
+
+   <h1>FCC</h1>
+
+| Cet appareil est conforme à la partie 15 du règlement de la FCC. Le fonctionnement dépend des deux conditions suivantes :
+| (1) Cet appareil ne doit pas provoquer d'interférences dangereuses, et 
+| (2) Cet appareil doit accepter toute interférence reçue, y compris les interférences pouvant provoquer un fonctionnement non désiré.
+
+**REMARQUE :** Cet équipement a été testé et déclaré conforme aux limites concernant les appareils numériques de classe B, conformément à la partie 15 du règlement de la FCC. 
+| Ces limites sont conçues pour offrir une protection raisonnable contre les interférences dangereuses dans le cadre d'une installation résidentielle. Cet équipement génère, utilise et émet des ondes radios qui peuvent, si cet équipement n'est pas installé et utilisé conformément aux instructions, perturber les communications radios. Toutefois, il n'y a aucune garantie qu'aucune interférence ne se produise lors d'une installation particulière. 
+| Si cet équipement trouble la réception de la radio ou de la télévision, ce qui peut être déterminé en éteignant et en allumant cet équipement, l'utilisateur est encouragé à tenter de corriger ces interférences en essayant une ou plusieurs des mesures suivantes :
+
+- Réorientez ou déplacez l'antenne de réception.
+- Éloignez l'équipement du récepteur.
+- Connectez l'équipement à une prise d'un autre circuit que celui auquel le récepteur est connecté.
+- Consultez le revendeur ou bien demandez de l'aide à un technicien de radio/télévision expérimenté.
+
+**MODIFICATION :**
+
+Tout changement ou modification non expressément approuvé par le titulaire de cet appareil pourrait annuler l'autorisation de l'utilisateur à utiliser l'appareil.
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \fi

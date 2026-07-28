@@ -1,0 +1,220 @@
+% ==================================================
+% components_symbols.tex
+% Symbol and signal-word table components
+% ==================================================
+
+% ------------------------------
+% Compact symbol table for raw LaTeX renderers
+% Signatures:
+%   \HBSymbolTable{symbol header}{meaning header}{row macro calls}
+%   \HBSymbolSignalRow{image path or basename}{optional label}{description}
+%   \HBSymbolIconRow{image path or basename}{description}
+% ------------------------------
+\expandafter\providecommand\csname HBcomp_symbol_icon_width\endcsname{8.5mm}
+\expandafter\providecommand\csname HBcomp_symbol_icon_height\endcsname{8.5mm}
+% Signal pill geometry measured from the archived 1500 Ultra manual
+% (MEANING OF SYMBOLS p5): all four kinds (WARNING/CAUTION/NOTE/TIP)
+% share one pill of 61.2x15.4pt with the content centered both ways.
+\expandafter\providecommand\csname HBcomp_symbol_signal_width\endcsname{21.5mm}
+\expandafter\providecommand\csname HBcomp_symbol_signal_height\endcsname{5.4mm}
+\expandafter\providecommand\csname HBcomp_symbol_signal_tri_base\endcsname{3.6}
+\expandafter\providecommand\csname HBcomp_symbol_signal_tri_height\endcsname{3.2}
+\expandafter\providecommand\csname HBcomp_symbol_signal_gap\endcsname{1.1mm}
+\expandafter\providecommand\csname HBtype_symbol_signal_font_size\endcsname{9.9pt}
+\expandafter\providecommand\csname HBtype_symbol_signal_font_leading\endcsname{10.5pt}
+\providecommand{\HBSignalWordFontSize}{\csname HBtype_symbol_signal_font_size\endcsname}
+\providecommand{\HBSignalWordLeading}{\csname HBtype_symbol_signal_font_leading\endcsname}
+\expandafter\providecommand\csname HBcomp_symbol_icon_col_width\endcsname{14mm}
+\expandafter\providecommand\csname HBcomp_symbol_signal_col_width\endcsname{26.4mm}
+\expandafter\providecommand\csname HBcomp_symbol_column_gap\endcsname{2.6mm}
+\expandafter\providecommand\csname HBcomp_symbol_table_tabcolsep\endcsname{2.2pt}
+\expandafter\providecommand\csname HBcomp_symbol_table_row_stretch\endcsname{0.86}
+\expandafter\providecommand\csname HBtype_symbol_header_font_size\endcsname{6.4pt}
+\expandafter\providecommand\csname HBtype_symbol_header_font_leading\endcsname{7.0pt}
+\expandafter\providecommand\csname HBtype_symbol_label_font_size\endcsname{6.4pt}
+\expandafter\providecommand\csname HBtype_symbol_label_font_leading\endcsname{7.0pt}
+\expandafter\providecommand\csname HBtype_symbol_body_font_size\endcsname{6.2pt}
+\expandafter\providecommand\csname HBtype_symbol_body_font_leading\endcsname{7.0pt}
+
+\providecommand{\HBTypeSymbolHeader}[1]{%
+  {\HBFontSemiBold
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_symbol_header_font_size\endcsname}
+            {\csname HBtype_symbol_header_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\providecommand{\HBTypeSymbolLabel}[1]{%
+  {\HBFontSemiBold
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_symbol_label_font_size\endcsname}
+            {\csname HBtype_symbol_label_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\providecommand{\HBTypeSymbolText}[1]{%
+  {\HBFontRegular
+   \color{\csname HBtype_body_color\endcsname}%
+   \fontsize{\csname HBtype_symbol_body_font_size\endcsname}
+            {\csname HBtype_symbol_body_font_leading\endcsname}\selectfont
+   \RaggedRight #1}%
+}
+
+\newtcolorbox{hbsymboltableframe}{
+  enhanced,
+  clip upper,
+  colback=white,
+  colframe=HBSharedTableFrameColor,
+  arc=\csname HBcomp_table_outer_arc\endcsname,
+  boxrule=\csname HBcomp_table_outer_rule\endcsname,
+  boxsep=0mm,
+  left=0mm,right=0mm,top=0mm,bottom=0mm,
+}
+
+% Full-width signal-word table. The rounded frame owns only the outer stroke;
+% the tabular owns the internal grid.
+\newcommand{\HBSymbolTable}[3]{%
+  \begingroup
+  \arrayrulecolor{HBSharedTableFrameColor}
+  \arrayrulewidth=\dimexpr\csname HBcomp_table_outer_rule\endcsname/2\relax
+  \ifdim\arrayrulewidth<0.2pt\arrayrulewidth=0.2pt\fi
+  \setlength{\tabcolsep}{\csname HBcomp_symbol_table_tabcolsep\endcsname}
+  \renewcommand{\arraystretch}{\csname HBcomp_symbol_table_row_stretch\endcsname}
+  \begin{hbsymboltableframe}
+  \begin{tabular}{@{}|
+    >{\centering\arraybackslash}m{\csname HBcomp_symbol_signal_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
+      -\csname HBcomp_symbol_signal_col_width\endcsname
+      -4\tabcolsep-3\arrayrulewidth\relax}|@{}}
+    \hline
+    \rowcolor{HBTableHeadBg}
+    \HBTypeSymbolHeader{#1} & \HBTypeSymbolHeader{#2}\tabularnewline
+    \hline
+    #3%
+  \end{tabular}
+  \end{hbsymboltableframe}
+  \endgroup
+  \par
+}
+
+% Independent left/right icon tables. Keeping the outer frames separate is
+% what lets the V2.0 layout use six rows on the left and five on the right
+% without a fake shared grid or a continuation page.
+\newcommand{\HBSymbolMiniTable}[3]{%
+  \begin{hbsymboltableframe}
+  \begingroup
+  \arrayrulecolor{HBSharedTableFrameColor}%
+  \arrayrulewidth=0.35pt
+  \setlength{\tabcolsep}{\csname HBcomp_symbol_table_tabcolsep\endcsname}%
+  \renewcommand{\arraystretch}{\csname HBcomp_symbol_table_row_stretch\endcsname}%
+  \begin{tabular}{@{}|
+    >{\centering\arraybackslash}m{\csname HBcomp_symbol_icon_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
+      -\csname HBcomp_symbol_icon_col_width\endcsname
+      -4\tabcolsep-3\arrayrulewidth\relax}|@{}}
+    \hline
+    \rowcolor{HBTableHeadBg}
+    \HBTypeSymbolHeader{#1} & \HBTypeSymbolHeader{#2}\tabularnewline
+    \hline
+    #3%
+  \end{tabular}
+  \endgroup
+  \end{hbsymboltableframe}%
+}
+
+\newcommand{\HBSymbolMiniTableContinuation}[1]{%
+  \begin{hbsymboltableframe}
+  \begingroup
+  \arrayrulecolor{HBSharedTableFrameColor}%
+  \arrayrulewidth=0.35pt
+  \setlength{\tabcolsep}{\csname HBcomp_symbol_table_tabcolsep\endcsname}%
+  \renewcommand{\arraystretch}{\csname HBcomp_symbol_table_row_stretch\endcsname}%
+  \begin{tabular}{@{}|
+    >{\centering\arraybackslash}m{\csname HBcomp_symbol_icon_col_width\endcsname}|
+    >{\RaggedRight\arraybackslash}m{\dimexpr\linewidth
+      -\csname HBcomp_symbol_icon_col_width\endcsname
+      -4\tabcolsep-3\arrayrulewidth\relax}|@{}}
+    \hline
+    #1%
+  \end{tabular}
+  \endgroup
+  \end{hbsymboltableframe}%
+}
+
+\newcommand{\HBSymbolTwoColumnTables}[4]{%
+  \par\noindent
+  \begin{minipage}[t]{\dimexpr(\linewidth-\csname HBcomp_symbol_column_gap\endcsname)/2\relax}
+    \HBSymbolMiniTable{#1}{#2}{#3}%
+  \end{minipage}%
+  \hspace{\csname HBcomp_symbol_column_gap\endcsname}%
+  \begin{minipage}[t]{\dimexpr(\linewidth-\csname HBcomp_symbol_column_gap\endcsname)/2\relax}
+    \HBSymbolMiniTable{#1}{#2}{#4}%
+  \end{minipage}%
+  \par
+}
+
+% Localized copy can require the reference master's controlled 4+remainder
+% split. Both columns preserve source order and continue on the same next page.
+\newcommand{\HBSymbolTwoColumnTablesSplit}[6]{%
+  \HBSymbolTwoColumnTables{#1}{#2}{#3}{#4}%
+  \HBPageBreak
+  \par\noindent
+  \begin{minipage}[t]{\dimexpr(\linewidth-\csname HBcomp_symbol_column_gap\endcsname)/2\relax}
+    \HBSymbolMiniTableContinuation{#5}%
+  \end{minipage}%
+  \hspace{\csname HBcomp_symbol_column_gap\endcsname}%
+  \begin{minipage}[t]{\dimexpr(\linewidth-\csname HBcomp_symbol_column_gap\endcsname)/2\relax}
+    \HBSymbolMiniTableContinuation{#6}%
+  \end{minipage}%
+  \par
+}
+
+\providecommand{\HBSymbolSignalRow}[3]{%
+  \begin{minipage}[c]{\csname HBcomp_symbol_icon_col_width\endcsname}
+    \centering
+    \HBIfBlankTF{#2}{%
+      \HBImageOrPlaceholder
+        {\csname HBcomp_symbol_signal_width\endcsname}
+        {\csname HBcomp_symbol_signal_height\endcsname}
+        {#1}%
+    }{%
+      % Compact pill, content centered both ways (was a baseline-rule
+      % hack that grew a tall flush slab with bottom-aligned content).
+      \begingroup
+      \setlength{\fboxsep}{0pt}%
+      \colorbox{BrandDark}{%
+        \parbox[c][\csname HBcomp_symbol_signal_height\endcsname][c]%
+               {\csname HBcomp_symbol_signal_width\endcsname}{%
+          \centering
+          \raisebox{-0.55mm}{%
+            \begin{tikzpicture}[x=1mm,y=1mm]
+              \fill[white] (0,0)
+                -- (\csname HBcomp_symbol_signal_tri_base\endcsname/2,\csname HBcomp_symbol_signal_tri_height\endcsname)
+                -- (\csname HBcomp_symbol_signal_tri_base\endcsname,0) -- cycle;
+              \node[BrandDark,font=\fontsize{4pt}{4pt}\selectfont\bfseries]
+                at (\csname HBcomp_symbol_signal_tri_base\endcsname/2,1.05) {!};
+            \end{tikzpicture}%
+          }%
+          \hspace{\csname HBcomp_symbol_signal_gap\endcsname}%
+          {\color{white}\HBFontHeavy
+           \fontsize{\HBSignalWordFontSize}
+                    {\HBSignalWordLeading}\selectfont #2}%
+        }%
+      }%
+      \endgroup
+    }%
+  \end{minipage}
+  &
+  \HBTypeSymbolText{#3}%
+  \tabularnewline\hline
+}
+
+\providecommand{\HBSymbolIconRow}[2]{%
+  \HBImageOrPlaceholder
+    {\csname HBcomp_symbol_icon_width\endcsname}
+    {\csname HBcomp_symbol_icon_height\endcsname}
+    {#1}%
+  &
+  \HBTypeSymbolText{#2}%
+  \tabularnewline\hline
+}

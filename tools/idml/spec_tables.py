@@ -77,7 +77,12 @@ def spec_table_xml(
         for ci, (text, style) in enumerate(
             ((label, label_style), (value, "HB Spec Value"))
         ):
-            content = paragraph_xml(style, text, terminal=True)
+            content = paragraph_xml(
+                style,
+                text,
+                terminal=True,
+                superscript_markers=True,
+            )
             if visual_parity:
                 if "\n" in value:
                     baseline = -1.43 if ci == 0 else 0.08

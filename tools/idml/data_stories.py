@@ -202,6 +202,12 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                     + param_pt(writer.params, "comp_lcd_partial_panel_extra", 4.0),
                 ),
             )
+        # Approved continuation rows already carry the native InDesign row
+        # heights.  Use their sum for the source shell as well; otherwise the
+        # import allowance leaves a rectangular grey tail below the table
+        # until the optional InDesign finalizer runs.
+        if row_heights is not None and len(segment) >= segment_limit:
+            panel_height = sum(row_heights)
         panel = rounded_table_panel(
             writer._add_story_parts,
             writer.params,
@@ -214,12 +220,6 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             terminal=segment_index == len(segments) - 1,
             fill="Color/Paper",
             stroke="Color/HB Brand Dark",
-            corner_fills={
-                "top_left": "Color/HB Bg K05",
-                "bottom_left": "Color/HB Bg K05",
-                "top_right": "Color/Paper",
-                "bottom_right": "Color/Paper",
-            },
             start_next_page=segment_index > 0,
         )
         if segment_index == 0:
@@ -436,6 +436,7 @@ def add_spec_story(writer, sections: list[dict],
         note_xml = writer._psr(
             "HB Spec Note", note,
             terminal=(ai == len(annotations) - 1),
+            superscript_markers=True,
         )
         if lang == "en":
             note_xml = note_xml.replace(

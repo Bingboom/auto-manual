@@ -1,0 +1,131 @@
+% ==================================================
+% components_headings.tex
+% Shared level-1/2/3 heading components and RST title bindings
+% ==================================================
+
+\expandafter\providecommand\csname HBcomp_title_l2_before\endcsname{1.2mm}
+\expandafter\providecommand\csname HBcomp_title_l2_after\endcsname{1.4mm}
+\expandafter\providecommand\csname HBcomp_title_l2_bullet_radius\endcsname{0.75mm}
+\expandafter\providecommand\csname HBcomp_title_l2_gap\endcsname{1.4mm}
+\expandafter\providecommand\csname HBcomp_title_l2_needspace\endcsname{10mm}
+\expandafter\providecommand\csname HBcomp_title_l3_before\endcsname{0.8mm}
+\expandafter\providecommand\csname HBcomp_title_l3_after\endcsname{0.6mm}
+\expandafter\providecommand\csname HBcomp_title_l3_bullet_radius\endcsname{0.28mm}
+\expandafter\providecommand\csname HBcomp_title_l3_gap\endcsname{0.9mm}
+\expandafter\providecommand\csname HBcomp_title_l3_needspace\endcsname{8mm}
+
+\providecommand{\HBTitleLevelTwoMarker}{%
+  \tikz[baseline=-0.45ex]{%
+    \fill[\csname HBtype_title_l2_color\endcsname]
+      (0,0) circle[radius=\csname HBcomp_title_l2_bullet_radius\endcsname];%
+  }%
+}
+
+\providecommand{\HBTitleLevelTwo}[1]{%
+  \noindent
+  \begingroup
+    \HBTitleLevelTwoMarker
+    \hspace{\csname HBcomp_title_l2_gap\endcsname}%
+    \HBTypeTitleLevelTwo{#1}%
+    \par
+  \endgroup
+}
+
+\providecommand{\HBTitleLevelTwoBlock}[1]{%
+  \par\vspace{\csname HBcomp_title_l2_before\endcsname}%
+  \Needspace{\csname HBcomp_title_l2_needspace\endcsname}%
+  \HBTitleLevelTwo{#1}%
+  \vspace{\csname HBcomp_title_l2_after\endcsname}%
+}
+
+\providecommand{\HBLevelTwoTitle}[1]{%
+  \HBTitleLevelTwoBlock{#1}%
+}
+
+\providecommand{\HBTitleLevelThreeMarker}{%
+  \tikz[baseline=-0.45ex]{%
+    \fill[\csname HBtype_title_l3_color\endcsname]
+      (0,0) circle[radius=\csname HBcomp_title_l3_bullet_radius\endcsname];%
+  }%
+}
+
+\providecommand{\HBTitleLevelThree}[1]{%
+  \noindent
+  \begingroup
+    \HBTitleLevelThreeMarker
+    \hspace{\csname HBcomp_title_l3_gap\endcsname}%
+    \HBTypeTitleLevelThree{#1}%
+    \par
+  \endgroup
+}
+
+\providecommand{\HBTitleLevelThreeBlock}[1]{%
+  \par\vspace{\csname HBcomp_title_l3_before\endcsname}%
+  \Needspace{\csname HBcomp_title_l3_needspace\endcsname}%
+  \HBTitleLevelThree{#1}%
+  \vspace{\csname HBcomp_title_l3_after\endcsname}%
+}
+
+% ------------------------------
+% Shared level-1 section title
+% - all rst top-level headings ("=") should pass this style path
+% ------------------------------
+\providecommand{\HBTitleLevelOne}[1]{#1}
+
+\renewcommand{\HBTitleLevelOne}[1]{%
+  \par\noindent
+  \hspace*{-\leftskip}%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=BrandDark,
+    colframe=BrandDark,
+    arc=\csname HBcomp_h1_pill_arc\endcsname,
+    rounded corners=south,
+    sharp corners=north,
+    boxrule=0pt,
+    boxsep=0mm,
+    left=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    right=\csname HBcomp_h1_pill_pad_lr\endcsname,
+    top=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    bottom=\csname HBcomp_h1_pill_pad_tb\endcsname,
+    height=\csname HBcomp_h1_pill_height\endcsname,
+    valign=center,
+    width=\csname HBcomp_h1_pill_width\endcsname\textwidth,
+    before skip=0.6mm,
+    after skip=\csname HBcomp_h1_pill_after\endcsname
+  ]
+    \HBTypeTitleLevelOne{#1}
+  \end{tcolorbox}%
+  \par\noindent
+}
+
+\providecommand{\hbsectiontitle}[1]{%
+  \HBTitleLevelOne{#1}%
+}
+
+% Apply shared H1 styling to all section-level headings generated from rst.
+% titlesec afterskip stays 0: the space after the title block is owned by a
+% single parameter, comp_h1_pill_after (the tcolorbox after skip inside
+% \HBTitleLevelOne). The old split — pill after 0.8mm plus a hidden
+% section_after_fix of -2mm here — made the net H1 spacing impossible to
+% reason about from either place (typography_gap/2026-07-03 #11).
+\titleformat{\section}{\normalfont}{}{0pt}{\hbsectiontitle}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+\setcounter{secnumdepth}{0}
+
+% ------------------------------
+% Shared level-2/level-3 title styles.
+% L2 backs RST subsection titles and component-local major groups.
+% L3 backs lower-level RST titles.
+% ------------------------------
+\titleformat{\subsection}{\normalfont}{}{0pt}{\HBTitleLevelTwo}
+\titlespacing*{\subsection}
+  {0pt}
+  {\csname HBcomp_title_l2_before\endcsname}
+  {\csname HBcomp_title_l2_after\endcsname}
+
+\titleformat{\subsubsection}{\normalfont}{}{0pt}{\HBTitleLevelThree}
+\titlespacing*{\subsubsection}
+  {0pt}
+  {\csname HBcomp_title_l3_before\endcsname}
+  {\csname HBcomp_title_l3_after\endcsname}

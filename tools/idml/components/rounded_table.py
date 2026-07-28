@@ -34,14 +34,18 @@ def rounded_table_panel(
     stroke: str = "Color/HB Line K40",
     stroke_weight: float | None = None,
     radius: float | None = None,
-    corner_fills: dict[str, str] | None = None,
     left_indent: float = 0.0,
     space_before: float = 0.0,
     space_after: float = 0.0,
     start_next_page: bool = False,
     content_bottom_bleed: float = 0.0,
 ) -> str:
-    """Wrap one table segment in the canonical editable rounded shell."""
+    """Wrap one table segment in the canonical editable rounded shell.
+
+    Corner masks inherit the shell ``fill``.  Cell fills belong to the
+    editable table and must never be reused for the outer arc, or they bleed
+    through the rounded corners in InDesign.
+    """
     table_xml = suppress_outer_edges_xml(table_xml, n_cols)
     inner = wrap_table_paragraph(table_xml, True, span_columns=False)
     xml = page_objects.anchored_panel_group_paragraph(
@@ -65,7 +69,6 @@ def rounded_table_panel(
             else param_pt(params, "comp_table_outer_arc", 6.8)
         ),
         content_inset=0.0,
-        corner_fills=corner_fills,
         # Inline groups use their own text-frame reference point; paragraph
         # LeftIndent is preserved in IDML but ignored by InDesign for these
         # objects. Apply the measured optical offset to the group transform.

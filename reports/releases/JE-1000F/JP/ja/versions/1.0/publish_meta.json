@@ -1,0 +1,19 @@
+{
+  "model": "JE-1000F",
+  "region": "JP",
+  "lang": "ja",
+  "version": "1.0",
+  "git_ref": "",
+  "doc_phase": "publish",
+  "built_at": "2026-07-27T19:55:32-07:00",
+  "word_output_path": "/private/var/folders/47/nh9jbvqs2pqd85f9fcx8w55h0000gn/T/tmpp21fkqe3/docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx",
+  "pdf_output_path": "/private/var/folders/47/nh9jbvqs2pqd85f9fcx8w55h0000gn/T/tmpp21fkqe3/docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx",
+  "md_output_path": "",
+  "handoff_package_path": "/private/var/folders/47/nh9jbvqs2pqd85f9fcx8w55h0000gn/T/tmpp21fkqe3/docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx",
+  "html_dir": "reports/releases/JE-1000F/JP/ja/latest/html",
+  "html_index": "reports/releases/JE-1000F/JP/ja/latest/html/index.html",
+  "document_link_url": "https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
+  "queue_record_ids": [
+    "rec_jp"
+  ]
+}

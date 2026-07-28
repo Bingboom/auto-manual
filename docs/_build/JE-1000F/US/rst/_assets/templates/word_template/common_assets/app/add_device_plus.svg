@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="title">
+  <title>Add device icon</title>
+  <circle cx="12" cy="12" r="11" fill="#f2f2f2" stroke="#d9d9d9"/>
+  <path d="M12 7.5v9M7.5 12h9" fill="none" stroke="#767676" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -516,6 +516,9 @@ def render_key_combinations(
                     first_w * 0.730 - button_size / 2.0)
     plus_center = first_w * 0.484
     clock_size = style.clock_size * scale
+    # Keep the clock on the same left text edge as the Operation header.  The
+    # duration remains separated from the icon by the governed clock gap.
+    clock_left = first_w + scaled(6.5)
     for index, (row_top, row_h, assets) in enumerate(
         zip(row_tops, row_heights, button_assets)
     ):
@@ -534,7 +537,7 @@ def render_key_combinations(
             clock_asset,
             clock_size,
             clock_size,
-            left=first_w + scaled(style.clock_gap),
+            left=clock_left,
             bottom=row_top + scaled(4.0) + clock_size,
         ))
 
@@ -613,10 +616,7 @@ def render_key_combinations(
                 leading=scaled(style.duration_leading),
                 terminal=True,
             )],
-            left=(
-                first_w + scaled(style.clock_gap) + clock_size
-                + scaled(style.clock_gap)
-            ),
+            left=clock_left + clock_size + scaled(style.clock_gap),
             top=row_top + scaled(3.0),
             right=first_w + scaled(31.0),
             bottom=row_top + scaled(15.0),

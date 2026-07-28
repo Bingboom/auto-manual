@@ -3,41 +3,41 @@
    \HBApplyLang{en}
 
 PRODUCT OVERVIEW
-================
+=====================================
 
 FRONT VIEW
-----------
+-------------------------------------
 
-.. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
-   :alt: Front view diagram placeholder.
+.. image:: _assets/templates/word_template/common_assets/overview/front_controls.png
+   :alt: FRONT VIEW
    :width: 420px
 
 .. list-table::
    :header-rows: 0
    :widths: 50 50
 
-   * - **Main POWER Button**
-     - **Handle**
-   * - **DC 12V Port**
-
-       12V/10A Max
+   * - **POWER Button**
      - **LCD**
-   * - **DC/USB Power Button**
+   * - **DC 12 V Port**
+
+       12 V / 10 A max.
      - **LED Light Button**
-   * - **USB-C 30W Output**
-
-       30W Max, 5V/3A, 9V/3A, 12V/2.5A, 15V/2A, 20V/1.5A
+   * - **DC / USB Power Button**
      - **LED Light**
-   * - **USB-C 100W Output**
+   * - **USB-C 30 W Output**
 
-       100W Max, 5V/3A, 9V/3A, 12V/3A, 15V/3A, 20V/5A
+       30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2.5 A, 15 V⎓2 A, 20 V⎓1.5 A
      - **AC Power Button**
-   * - **USB-A 18W Output**
+   * - **USB-C 100 W Output**
 
-       18W Max, 5-6V/3A, 6-9V/2A, 9-12V/1.5A
+       100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A
      - **AC Output**
 
-       120V~60Hz, 12.5A, 1500W Rated
+       120 V~ 60 Hz, 12.5 A max., 1500 W Rated
+   * - **USB-A 18 W Output**
+
+       18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1.5 A
+     -
 
 .. list-table::
    :header-rows: 0
@@ -45,13 +45,13 @@ FRONT VIEW
 
    * - **Total Output**
 
-       1500W Rated, 3000W Surge Peak
+       1500 W Rated, 3000 W Surge Peak
 
 RIGHT SIDE VIEW
----------------
+------------------------------------------
 
 .. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
-   :alt: Right side view diagram placeholder.
+   :alt: RIGHT SIDE VIEW
    :width: 420px
 
 .. list-table::
@@ -61,10 +61,10 @@ RIGHT SIDE VIEW
    * - **Handle**
      - **AC Input**
 
-       100V-120V~60 Hz, 15A Max
+       100 V-120 V~ 60 Hz, 15 A max.
    * -
      - **DC Input (2×DC8020 Ports)**
 
-       PV: 16-60V⎓12A Max, Double to 21A / 400W Max
+       PV: 16-60 V⎓12 A max., Double to 21 A / 400 W max.
 
-       Car: 11-16V⎓8A Max, Double to 8A Max
+       Car: 11-16 V⎓8 A max., Double to 8 A max.

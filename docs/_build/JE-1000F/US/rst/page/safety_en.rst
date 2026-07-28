@@ -14,7 +14,7 @@
 
    .. raw:: latex
 
-      \safetywarning{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
+      \HBSafetyInstruction{INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS}
 
    .. raw:: latex
 
@@ -23,7 +23,7 @@
 
    .. raw:: latex
 
-      \safetylead{Always follow these basic precautions when using this product.}
+      \HBWarningLeadBlock{WARNING}{Always follow these basic precautions when using this product.}
 
 
    - Read all the instructions before using the product.
@@ -60,14 +60,14 @@
 
    - Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance.
    - Do not charge the battery in extremely hot or cold environments and strictly adhere to the product's specified operating temperature ranges:
-     - Charging temperature: -4°F to 113°F (-20°C to 45°C)
-     - Discharging temperature: -4°F to 113°F (-20°C to 45°C)
+     - Charging temperature: 14°F to 113°F (-10°C to 45°C)
+     - Discharging temperature: 14°F to 113°F (-10°C to 45°C)
    - To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.
      - Charging in damp or poorly ventilated spaces may cause safety hazards.
      - Water can cause short circuits or damage to the charger, leading to safety risks.
    - Unplug the power cord from a power outlet during a storm.
-   - Immediately turn off the product by pressing the POWER button if it has fallen, been dropped, or exposed to vibrations.
-   - Ensure the device(s) are powered off before connecting them to the product.
+   - Immediately turn off the product by pressing the power button if it has fallen, been dropped, or exposed to vibrations.
+   - Ensure the device(s) are powered off before connecting it to the product.
    - Do not charge the product using a damaged or broken charging cord or plug.
    - Do not use the product to charge any device with a damaged or broken cable or plug.
    - Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage.
@@ -75,13 +75,22 @@
    - DO NOT place the unit upside down or on its side during use or storage.
    - DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility.
    - DO NOT use the product's accessories with other devices or equipment.
-   - Solar charge time depends on weather conditions. Place your solar panel where it will get as much direct sunlight as possible.
+   - Solar charge time depends on weather conditions, place your solar panel where it will get as much direct sunlight as possible.
+   - GROUNDING INSTRUCTION-This product must be grounded. If it should malfunction or breakdown, grounding provides a path of least resistance for electric current to reduce the risk of electric shock. This product is equipped with a cord having an equipment grounding conductor and a grounding plug. The plug must be plugged into an outlet that is properly installed and grounded in accordance with all local codes and ordinances.
 
 
 
    .. raw:: latex
 
       \end{safetytwocol}
+
+   .. raw:: latex
+
+      \safetywarning{Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product – if it will not fit the outlet, have a proper outlet installed by a qualified electrician.}
+
+   .. raw:: latex
+
+      \HBDangerBlock{DANGER}{This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.).}{※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.}
 
 
 .. only:: html
@@ -93,7 +102,7 @@
 
         <div class="hb-warning-box">
           <div class="hb-warning-row">
-            <div class="hb-warning-lockup">⚠️</div>
+            <div class="hb-warning-lockup">WARNING</div>
             <div class="hb-warning-text">INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS</div>
           </div>
         </div>
@@ -107,6 +116,11 @@
 
         <div class="hb-two-col">
           <p class="hb-lead">SAVE THESE INSTRUCTIONS</p>
-          <ul class="hb-list"><li>Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance.</li><li>Do not charge the battery in extremely hot or cold environments and strictly adhere to the product&#x27;s specified operating temperature ranges:<ul class="hb-sublist"><li>Charging temperature: -4°F to 113°F (-20°C to 45°C)</li><li>Discharging temperature: -4°F to 113°F (-20°C to 45°C)</li></ul></li><li>To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.<ul class="hb-sublist"><li>Charging in damp or poorly ventilated spaces may cause safety hazards.</li><li>Water can cause short circuits or damage to the charger, leading to safety risks.</li></ul></li><li>Unplug the power cord from a power outlet during a storm.</li><li>Immediately turn off the product by pressing the POWER button if it has fallen, been dropped, or exposed to vibrations.</li><li>Ensure the device(s) are powered off before connecting them to the product.</li><li>Do not charge the product using a damaged or broken charging cord or plug.</li><li>Do not use the product to charge any device with a damaged or broken cable or plug.</li><li>Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage.</li><li>Ensure the product is properly secured when transporting it in a moving vehicle.</li><li>DO NOT place the unit upside down or on its side during use or storage.</li><li>DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility.</li><li>DO NOT use the product&#x27;s accessories with other devices or equipment.</li><li>Solar charge time depends on weather conditions. Place your solar panel where it will get as much direct sunlight as possible.</li></ul>
+          <ul class="hb-list"><li>Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance.</li><li>Do not charge the battery in extremely hot or cold environments and strictly adhere to the product&#x27;s specified operating temperature ranges:<ul class="hb-sublist"><li>Charging temperature: 14°F to 113°F (-10°C to 45°C)</li><li>Discharging temperature: 14°F to 113°F (-10°C to 45°C)</li></ul></li><li>To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.<ul class="hb-sublist"><li>Charging in damp or poorly ventilated spaces may cause safety hazards.</li><li>Water can cause short circuits or damage to the charger, leading to safety risks.</li></ul></li><li>Unplug the power cord from a power outlet during a storm.</li><li>Immediately turn off the product by pressing the power button if it has fallen, been dropped, or exposed to vibrations.</li><li>Ensure the device(s) are powered off before connecting it to the product.</li><li>Do not charge the product using a damaged or broken charging cord or plug.</li><li>Do not use the product to charge any device with a damaged or broken cable or plug.</li><li>Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage.</li><li>Ensure the product is properly secured when transporting it in a moving vehicle.</li><li>DO NOT place the unit upside down or on its side during use or storage.</li><li>DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility.</li><li>DO NOT use the product&#x27;s accessories with other devices or equipment.</li><li>Solar charge time depends on weather conditions, place your solar panel where it will get as much direct sunlight as possible.</li><li>GROUNDING INSTRUCTION-This product must be grounded. If it should malfunction or breakdown, grounding provides a path of least resistance for electric current to reduce the risk of electric shock. This product is equipped with a cord having an equipment grounding conductor and a grounding plug. The plug must be plugged into an outlet that is properly installed and grounded in accordance with all local codes and ordinances.</li></ul>
         </div>
+
+        <p><strong>WARNING</strong></p>
+        <p class="hb-lead">Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product – if it will not fit the outlet, have a proper outlet installed by a qualified electrician.</p>
+        <p><strong>DANGER</strong></p>
+        <p class="hb-lead">This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g. Home RVs, tents, cabins, etc.).<br>※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use.</p>
       </div>

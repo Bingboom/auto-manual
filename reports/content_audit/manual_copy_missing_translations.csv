@@ -1,1 +1,3 @@
 copy_key,source_lang,target_lang,source_text
+symbols.signal.danger.label,en,ko,DANGER
+symbols.signal.tips.label,en,ko,TIP
