@@ -126,6 +126,37 @@ class PublishBlockerTest(unittest.TestCase):
         self.assertEqual(len(publish_blockers(None)), 1)
 
 
+def _attachment(status="✅成品"):
+    return {
+        "asset_key": "feishu/lcd_icons_attachments",
+        "format": "png",
+        "sha256": "d" * 64,
+        "status": status,
+        "source": "feishu-attachment",
+        "staged_path": "_repo_assets/data/phase2/_attachments/lcd_icons/1_Wi-Fi_tok.png",
+        "reference_kind": "feishu-attachment",
+    }
+
+
+class AttachmentCollectionTest(unittest.TestCase):
+    def test_attachment_rows_count_as_registry_assets(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            lineage = collect_asset_lineage(
+                bundle_dir=_bundle(tmp, assets=[_attachment(), _approved()]))
+        self.assertEqual(lineage["registry_asset_count"], 2)
+        self.assertEqual(lineage["legacy_path_count"], 0)
+        self.assertEqual(publish_blockers(lineage), ())
+
+    def test_quarantined_attachment_collection_blocks_publish(self):
+        """One Feishu status flip must stop the whole column from printing."""
+        with tempfile.TemporaryDirectory() as tmp:
+            lineage = collect_asset_lineage(
+                bundle_dir=_bundle(tmp, assets=[_attachment(status="⛔隔离")]))
+        blockers = publish_blockers(lineage)
+        self.assertEqual(len(blockers), 1)
+        self.assertIn("feishu/lcd_icons_attachments", blockers[0])
+
+
 class GateTest(unittest.TestCase):
     def test_gate_passes_and_reports(self):
         lines: list[str] = []

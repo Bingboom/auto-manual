@@ -78,7 +78,7 @@ Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le b
 
 Lors de l'alimentation d'appareils à faible puissance (CA ≤ 25 W ou CC/USB ≤ 2 W), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant le fonctionnement.
 
-.. image:: _assets/templates/word_template/common_assets/operation/energy_saving.png
+.. image:: asset:operation/energy_saving
    :alt: Fonction du mode d'économie d'énergie.
    :width: 320px
 

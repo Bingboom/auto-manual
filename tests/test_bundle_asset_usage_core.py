@@ -390,6 +390,79 @@ class TestBundleAssetUsageCore(unittest.TestCase):
             )
             self.assertNotIn(str(root), first_bytes.decode("utf-8"))
 
+    def _record_attachment(self, root: Path, usage, *, category: str = "lcd_icons"):
+        bundle = root / "bundle"
+        (root / "docs").mkdir(exist_ok=True)
+        attachment = (
+            bundle / "_repo_assets" / "data" / "phase2" / "_attachments"
+            / category / "1_Wi-Fi_tok123.png"
+        )
+        attachment.parent.mkdir(parents=True, exist_ok=True)
+        attachment.write_bytes(b"icon-bytes")
+        staged = usage.stage(attachment, bundle_dir=bundle, docs_dir=root / "docs")
+        usage.record_legacy(
+            source_path=attachment,
+            staged_path=staged,
+            reference_path=bundle / "generated" / "lcd_icons_en.rst",
+            bundle_dir=bundle,
+            docs_dir=root / "docs",
+        )
+        manifest, snapshot = self._output_paths(bundle)
+        usage.write(
+            usage_manifest_path=manifest,
+            registry_snapshot_path=snapshot,
+            bundle_dir=bundle,
+        )
+        return json.loads(manifest.read_text(encoding="utf-8"))
+
+    def test_attachment_images_attribute_to_their_collection_row(self) -> None:
+        """A synced Feishu attachment is governed by its collection registry row."""
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            self._write_registry(root, [{
+                "asset_key": "feishu/lcd_icons_attachments",
+                "类别": "图标",
+                "导出物路径": "data/phase2/_attachments",
+                "内容哈希": "",
+            }])
+            payload = self._record_attachment(root, self._usage(root))
+        (row,) = payload["assets"]
+        self.assertEqual("feishu/lcd_icons_attachments", row["asset_key"])
+        self.assertEqual("feishu-attachment", row["reference_kind"])
+        self.assertEqual("feishu-attachment", row["source"])
+        self.assertEqual("✅成品", row["status"])
+        self.assertEqual("✅成品", row["registry_status"])
+        self.assertIsNone(row["language"])  # 中立 collection serves every language
+        self.assertEqual(hashlib.sha256(b"icon-bytes").hexdigest(), row["sha256"])
+        (event,) = payload["rewrites"]
+        self.assertEqual("feishu-attachment", event["reference_kind"])
+        self.assertEqual("feishu/lcd_icons_attachments", event["asset_key"])
+
+    def test_attachment_without_collection_row_stays_legacy(self) -> None:
+        """No registry attribution may be invented: the debt stays visible."""
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            self._write_registry(root, [])
+            payload = self._record_attachment(root, self._usage(root))
+        (row,) = payload["assets"]
+        self.assertIsNone(row["asset_key"])
+        self.assertEqual("legacy-path", row["reference_kind"])
+        self.assertEqual("legacy-unmanaged", row["status"])
+
+    def test_attachment_collection_scope_miss_stays_legacy(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            self._write_registry(root, [{
+                "asset_key": "feishu/lcd_icons_attachments",
+                "导出物路径": "data/phase2/_attachments",
+                "内容哈希": "",
+                "适用机型": "JE-9999",
+            }])
+            payload = self._record_attachment(root, self._usage(root, model="M1"))
+        (row,) = payload["assets"]
+        self.assertEqual("legacy-path", row["reference_kind"])
+
+
 
 if __name__ == "__main__":
     unittest.main()

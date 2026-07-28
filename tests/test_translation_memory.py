@@ -14,6 +14,7 @@ from tools.translation_memory import (
     _row_matches,
     build_translation_memory_payload,
     collect_translation_memory_entries,
+    normalize_language,
     query_translation_memory_entries,
     render_translation_prompt_context,
     render_translation_memory_payload,
@@ -82,6 +83,11 @@ def _write_phase2_fixture(root: Path) -> Path:
 
 
 class TestTranslationMemory(unittest.TestCase):
+    def test_normalize_language_should_support_taiwan_traditional_chinese(self) -> None:
+        self.assertEqual("zh-tw", normalize_language("zh-TW"))
+        self.assertEqual("zh-tw", normalize_language("zh-Hant"))
+        self.assertEqual("zh", normalize_language("zh-CN"))
+
     def test_collect_translation_memory_entries_should_build_entries_from_phase2_snapshot(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

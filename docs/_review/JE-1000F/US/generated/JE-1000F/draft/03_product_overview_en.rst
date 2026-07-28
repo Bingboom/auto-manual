@@ -8,7 +8,7 @@ PRODUCT OVERVIEW
 FRONT VIEW
 -------------------------------------
 
-.. image:: _assets/templates/word_template/common_assets/overview/front_controls.png
+.. image:: asset:overview/front_controls
    :alt: FRONT VIEW
    :width: 420px
 

@@ -1,0 +1,873 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_je1000f_us_master",
+    "expected_sha256": "ee1fd9367021c99b3a16e14dc8aa702929c71ac4c98c7132816da05d90ce06ed",
+    "expected_page_count": 59
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 59
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {
+        "1": 0.25
+      }
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "engineering_overview",
+      "role": "engineering_overview",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "engineering imposition overview; never a build page"
+        ]
+      },
+      "risk_tags": [
+        "engineering-overview"
+      ]
+    },
+    {
+      "page": 2,
+      "page_key": "cover_front",
+      "role": "cover_front",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "frontmatter_important",
+      "role": "frontmatter",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "frontmatter_toc",
+      "role": "frontmatter",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "en_01",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "en_02",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "en_03",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "en_04",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "en_05",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "en_06",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "en_07",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "en_08",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "en_09",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "en_10",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "en_11",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "en_12",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "en_13",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "en_14",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 19,
+      "page_key": "en_15",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 20,
+      "page_key": "en_16",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 21,
+      "page_key": "en_17_app",
+      "role": "app_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "contains app UI, QR, or model-specific screenshots requiring visual review"
+        ]
+      },
+      "risk_tags": [
+        "app-ui",
+        "qr",
+        "screenshot"
+      ]
+    },
+    {
+      "page": 22,
+      "page_key": "en_18_app",
+      "role": "app_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "contains app UI, QR, or model-specific screenshots requiring visual review"
+        ]
+      },
+      "risk_tags": [
+        "app-ui",
+        "qr",
+        "screenshot"
+      ]
+    },
+    {
+      "page": 23,
+      "page_key": "fr_01",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 24,
+      "page_key": "fr_02",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 25,
+      "page_key": "fr_03",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 26,
+      "page_key": "fr_04",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 27,
+      "page_key": "fr_05",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 28,
+      "page_key": "fr_06",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 29,
+      "page_key": "fr_07",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 30,
+      "page_key": "fr_08",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 31,
+      "page_key": "fr_09",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 32,
+      "page_key": "fr_10",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 33,
+      "page_key": "fr_11",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 34,
+      "page_key": "fr_12",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 35,
+      "page_key": "fr_13",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 36,
+      "page_key": "fr_14",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 37,
+      "page_key": "fr_15",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 38,
+      "page_key": "fr_16",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 39,
+      "page_key": "fr_17_app",
+      "role": "app_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "contains localized app UI, QR, or model-specific screenshots requiring visual review"
+        ]
+      },
+      "risk_tags": [
+        "app-ui",
+        "qr",
+        "screenshot",
+        "localized-ui"
+      ]
+    },
+    {
+      "page": 40,
+      "page_key": "fr_18_app",
+      "role": "app_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "contains localized app UI, QR, or model-specific screenshots requiring visual review"
+        ]
+      },
+      "risk_tags": [
+        "app-ui",
+        "qr",
+        "screenshot",
+        "localized-ui"
+      ]
+    },
+    {
+      "page": 41,
+      "page_key": "es_01",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 42,
+      "page_key": "es_02",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 43,
+      "page_key": "es_03",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 44,
+      "page_key": "es_04",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 45,
+      "page_key": "es_05",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 46,
+      "page_key": "es_06",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 47,
+      "page_key": "es_07",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 48,
+      "page_key": "es_08",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 49,
+      "page_key": "es_09",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 50,
+      "page_key": "es_10",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 51,
+      "page_key": "es_11",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 52,
+      "page_key": "es_12",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 53,
+      "page_key": "es_13",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 54,
+      "page_key": "es_14",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 55,
+      "page_key": "es_15",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 56,
+      "page_key": "es_16",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 57,
+      "page_key": "es_17_app",
+      "role": "app_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "contains localized app UI, QR, or model-specific screenshots requiring visual review"
+        ]
+      },
+      "risk_tags": [
+        "app-ui",
+        "qr",
+        "screenshot",
+        "localized-ui"
+      ]
+    },
+    {
+      "page": 58,
+      "page_key": "es_18_app",
+      "role": "app_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "contains localized app UI, QR, or model-specific screenshots requiring visual review"
+        ]
+      },
+      "risk_tags": [
+        "app-ui",
+        "qr",
+        "screenshot",
+        "localized-ui"
+      ]
+    },
+    {
+      "page": 59,
+      "page_key": "cover_back",
+      "role": "cover_back",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "contains a printed QR target and regional legal/contact content requiring verification"
+        ]
+      },
+      "risk_tags": [
+        "qr",
+        "external-link",
+        "localized-text",
+        "legal-text",
+        "regional-content"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "overview/je1000f_us/front_controls",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            98,
+            345,
+            283
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        },
+        {
+          "op": "drop_leader_strokes",
+          "note": "callout leaders removed as objects; the halo they carried had erased the grille/divider that whiteout blocks then punched through"
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/front_controls.pdf",
+          "expected_sha256": "9ca40734a1304971db5c71fbda90a508386cc0a523ba9eafcf4be474b92fa05a"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/front_controls.png",
+          "scale": 4,
+          "expected_sha256": "8cb417c0ade250d65f8ea1317c5d85cf86bc2b76f478306a6d2f5cddf13e9028"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "localized callout copy and leader lines are removed; immutable product markings preserved; reviewed against source page render"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    }
+  ]
+}

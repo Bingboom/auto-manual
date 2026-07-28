@@ -8,7 +8,7 @@ DESCRIPCIÓN GENERAL DEL PRODUCTO
 VISTA FRONTAL
 -------------
 
-.. image:: _assets/templates/word_template/common_assets/overview/front_controls.png
+.. image:: asset:overview/front_controls
    :alt: Diagrama de vista frontal.
    :width: 420px
 

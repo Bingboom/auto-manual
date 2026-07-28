@@ -45,7 +45,7 @@ Always identify or ask for:
 - `source-lang`: the language currently present in the source document.
 - `target-lang`: the language to preprocess into.
 
-The script accepts common codes and aliases: `en`, `fr`, `es`, `de`, `it`, `uk`, `ja`/`jp`, `ko`/`kr`, `pt-BR`, `zh`/`cn`.
+The script accepts common codes and aliases: `en`, `fr`, `es`, `de`, `it`, `uk`, `ja`/`jp`, `ko`/`kr`, `pt-BR`, `zh`/`cn`, and `zh-TW`/`zh-Hant` for Taiwan Traditional Chinese. For this pair, use `zh` as the Simplified Chinese source and `zh-TW` as the target.
 
 Do not hardcode English or Korean. Any source/target combination is valid if both columns exist in live `Translation_Memory` and the target cell is non-empty for a matched row.
 

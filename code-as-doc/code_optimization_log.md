@@ -926,3 +926,45 @@ Why it mattered:
 - The publish gate landed in #722 covering only registry-resolved assets; the JE-1000F/US bundle still consumed 50 `legacy-path` images it could not see. The committed keying alone brings it to 41; the first sync cycle after merge restores the raw-LaTeX/raw-HTML references from template provenance as well, and the verified steady state is 37 — all of them Feishu attachment images (LCD icons + symbols), which are a different problem: their identity is the Feishu file token, so they need collection-level ownership (`feishu/*_attachments` rows exist already), not per-file keys.
 - The first attempt was hand-keying `docs/_review` alone — and verification caught it being silently reverted: `check --source review` runs sync-review, which copied the finalized bundle back over the hand edits. The mechanism fix plus the keying together survive the full cycle (verified: `[sync-review] restored 45 semantic asset reference(s)`, review still carries `asset:` after check, manifest legacy count 50→37, registry-backed 20→22).
 - Working-tree hygiene finding, recorded for the next window: sync-review also refreshes generated review pages' prose from templates/data (V2.0 wording like `DC 12V/USB OUTPUT`), so a `check --source review` run dirties `docs/_review` with legitimate-but-unrelated refreshes. Keep those out of unrelated commits.
+
+
+## 58. 2026-07-27: Legacy-Path Blind Spot Ratcheted to Zero (JE-1000F/US)
+
+What changed:
+
+- The bundle finalizer attributes synced Feishu attachment images (`_repo_assets/data/phase2/_attachments/<category>/…`) to their registry collection rows (`feishu/lcd_icons_attachments`, `feishu/symbols_attachments`) as `feishu-attachment` manifest entries instead of `legacy-path`/`legacy-unmanaged`. Each row still records the exact bytes that shipped; the collection row's registry status now gates publish for the whole column; the RST keeps its path reference because the file identity is a Feishu token that changes on re-upload — these images are deliberately never keyed per file. No matching collection row (or a scope miss) falls back to legacy-path, so no attribution is ever invented.
+- Together with #726 (mechanical keying of 9 overlay paths + the sync-review laundering fix) and #730 (the two operator-reviewed image flips), the JE-1000F/US publish-gate blind spot went 50 → 0: `legacy_path_count=0`, `registry_asset_count=59`, verified with a full review-source build.
+
+Why it mattered:
+
+- The publish gate built in #722 governed 20 of 70 consumed assets; the other 50 could ship a quarantined or wrong image with no gate in the way. Now every image in the bundle is either registry-resolved, explicitly review-overridden, or attributed to a status-gated collection — and a single status flip in the Feishu asset table stops the affected column from printing.
+- The classification is fail-open to visible debt by design: an attachment tree with no collection row stays `legacy-path` rather than being silently attributed, so the zero is honest and a future unmanaged tree re-raises the count instead of hiding under it.
+
+
+## 59. 2026-07-28: The Design-Side Request List Audited Down to One Item
+
+What changed:
+
+- Closed out `kr/image_placeholders`: the operator challenged the standing "design side owes us images" list against the delivered master `.ai`, and a key-by-key resolution audit proved the KR pages' 8 semantic references all resolve for the KR target from master-extracted exports — the placeholder row was a fossil from the KR backport round, predating the harvest. Row deleted; the registry test now pins its absence.
+- Refreshed the shared `operation/energy_saving` export: the committed common-assets PNG was a wheeled non-JE-1000F model with burned-in English — every line resolving through the shared row (KR, EU, JP, CN templates all reference the key) printed a wrong-model figure. The textless v2 extracted from the master (p13) is now the shared bytes, hash updated in the same change so `asset-check` proves consistency. The US line is unaffected — it already resolves through its `je1000f_us` override to the same art.
+- The shared-row note records the fleet caveat: the body drawn is a JE-1000F, so a non-JE-1000F line finalizing for print adds a model override (the `main_power` trio set this precedent in the #662 swap) rather than editing the shared bytes back.
+
+Why it mattered:
+
+- "向设计侧要图" was carrying three items on momentum; after the audit only `mark/jp_certifications` genuinely needs external input — and even that is "provide the JP manual's .ai if one exists" before it is "ask a designer to draw". `illustration/cjk_operation_set` remains registered but is now understood as engineering work (switch CN/JP lines to the textless assets), not design work.
+- The KR line's image needs were satisfied by an asset harvest that happened after the debt was registered — nobody had re-checked the debt against the new supply. Standing request lists rot in exactly this way; the fix was one resolution loop, not new assets.
+
+## 60. 2026-07-28: The Front-Controls Base Map Stops Punching Holes In Itself
+
+What changed:
+
+- `tools/asset_pipeline/leaders.py` + the `drop_leader_strokes` recipe op remove callout leaders as **objects** instead of painting over them. The leaders sit *above* the device artwork and each carries a wide white halo under a thin dark line; that halo is what erases the vent grille and the panel divider wherever a leader crosses them, so a `whiteout` can only ever punch a hole. Turning each leader's paint operator into `n` (end path, paint nothing) lets the artwork underneath render intact — the geometry bytes are not touched.
+- `overview/je1000f_us/front_controls` moved to the new op and its 8 `whiteout` blocks (up to 77x40pt) are gone. Re-exported, registry hashes and note updated.
+- The corrected asset lives in its own recipe, `data/asset_recipes/manual_je1000f_us_front_controls.json`, because the master recipe's SHA-256 is pinned immutably by the reviewed App-UI promotion (`EXPECTED_RECIPE_SHA256`, decided 2026-07-20). The master recipe and the promotion are byte-unchanged; a test asserts both that the split recipe uses the structural op and that the master still matches the frozen pin.
+
+Why it mattered:
+
+- The operator spotted the artifact by eye ("这一块白 那一块白的") on a shipped base map. The diagnosis had to explain *why* three separate patch-style attempts all failed: text-only redaction leaves every leader in frame; per-leader white corridors still cut the device outline where a leader crosses it; and layer toggling does nothing because all page art is on one OCG. Flattened erasure cannot restore what a halo hid — only removing the halo can.
+- Two detection traps are now pinned by tests rather than rediscovered: a perfectly horizontal or vertical line has a **zero-area** bounding box, so `fitz.Rect.intersects` reports False and every single-segment leader goes missing (this cost a full round — 10 of 13 leaders found, 3 left standing); and the content stream stores local coordinates under `cm`, so the walker must track the CTM before comparing geometry in page space.
+- The op is deliberately structural — it finds leaders by their halo/line stroke-width pair and axis alignment — so no coordinates are baked into a recipe where they could rot. It refuses to run silently: extraction fails unless it suppresses exactly two strokes per detected leader.
+- Scope was cut on evidence, not ambition: the same op made `operation/main_power` and `overview/right_side_ports` **worse** (their leaders are not halo/line pairs, and removing their whiteouts exposed artwork the blocks had been hiding), so both keep their existing recipe. Only the asset the operator reported is changed.
