@@ -953,3 +953,18 @@ Why it mattered:
 
 - "向设计侧要图" was carrying three items on momentum; after the audit only `mark/jp_certifications` genuinely needs external input — and even that is "provide the JP manual's .ai if one exists" before it is "ask a designer to draw". `illustration/cjk_operation_set` remains registered but is now understood as engineering work (switch CN/JP lines to the textless assets), not design work.
 - The KR line's image needs were satisfied by an asset harvest that happened after the debt was registered — nobody had re-checked the debt against the new supply. Standing request lists rot in exactly this way; the fix was one resolution loop, not new assets.
+
+## 60. 2026-07-28: The Front-Controls Base Map Stops Punching Holes In Itself
+
+What changed:
+
+- `tools/asset_pipeline/leaders.py` + the `drop_leader_strokes` recipe op remove callout leaders as **objects** instead of painting over them. The leaders sit *above* the device artwork and each carries a wide white halo under a thin dark line; that halo is what erases the vent grille and the panel divider wherever a leader crosses them, so a `whiteout` can only ever punch a hole. Turning each leader's paint operator into `n` (end path, paint nothing) lets the artwork underneath render intact — the geometry bytes are not touched.
+- `overview/je1000f_us/front_controls` moved to the new op and its 8 `whiteout` blocks (up to 77x40pt) are gone. Re-exported, registry hashes and note updated.
+- The corrected asset lives in its own recipe, `data/asset_recipes/manual_je1000f_us_front_controls.json`, because the master recipe's SHA-256 is pinned immutably by the reviewed App-UI promotion (`EXPECTED_RECIPE_SHA256`, decided 2026-07-20). The master recipe and the promotion are byte-unchanged; a test asserts both that the split recipe uses the structural op and that the master still matches the frozen pin.
+
+Why it mattered:
+
+- The operator spotted the artifact by eye ("这一块白 那一块白的") on a shipped base map. The diagnosis had to explain *why* three separate patch-style attempts all failed: text-only redaction leaves every leader in frame; per-leader white corridors still cut the device outline where a leader crosses it; and layer toggling does nothing because all page art is on one OCG. Flattened erasure cannot restore what a halo hid — only removing the halo can.
+- Two detection traps are now pinned by tests rather than rediscovered: a perfectly horizontal or vertical line has a **zero-area** bounding box, so `fitz.Rect.intersects` reports False and every single-segment leader goes missing (this cost a full round — 10 of 13 leaders found, 3 left standing); and the content stream stores local coordinates under `cm`, so the walker must track the CTM before comparing geometry in page space.
+- The op is deliberately structural — it finds leaders by their halo/line stroke-width pair and axis alignment — so no coordinates are baked into a recipe where they could rot. It refuses to run silently: extraction fails unless it suppresses exactly two strokes per detected leader.
+- Scope was cut on evidence, not ambition: the same op made `operation/main_power` and `overview/right_side_ports` **worse** (their leaders are not halo/line pairs, and removing their whiteouts exposed artwork the blocks had been hiding), so both keep their existing recipe. Only the asset the operator reported is changed.
