@@ -416,6 +416,7 @@ Use the document that owns the topic:
 - current OpenClaw integration package: [`integrations/openclaw/README.md`](integrations/openclaw/README.md)
 - repo-local translation memory skill for OpenClaw-assisted multilingual work: [`.agents/skills/bitable-translation-memory/SKILL.md`](.agents/skills/bitable-translation-memory/SKILL.md)
 - repo-local Feishu DOCX preprocessing skill for TM-backed source/target language conversion: [`.agents/skills/lark-tm-translation-preprocess/SKILL.md`](.agents/skills/lark-tm-translation-preprocess/SKILL.md)
+- Taiwan Traditional Chinese TM lookups use `zh` as the Simplified Chinese source field and `zh-TW` as the target field.
 - repo-local TM-first manual rewrite skill for structured Markdown/manual translation work: [`.agents/skills/manual-rewrite-with-tm/SKILL.md`](.agents/skills/manual-rewrite-with-tm/SKILL.md)
 - future canonical content model: [`code-as-doc/architecture/Content_Data_Model.md`](code-as-doc/architecture/Content_Data_Model.md)
 - long-term strategy and stable architecture boundaries: [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
