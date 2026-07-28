@@ -44,6 +44,7 @@ def _style_range(
     fallback_font: str | None,
     superscript_marker: bool = False,
     inner_xml: str | None = None,
+    position: str | None = None,
 ) -> str:
     attrs = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
     properties = ""
@@ -56,12 +57,25 @@ def _style_range(
         )
     elif bold:
         attrs += ' FontStyle="Bold"'
+    if position:
+        attrs += f' Position="{position}"'
     if superscript_marker and segment and all(
         character in SPEC_SUPERSCRIPT_MARKERS for character in segment
     ):
         attrs += ' PointSize="5.2" BaselineShift="2.4"'
     content = inner_xml if inner_xml is not None else f"<Content>{escape(segment)}</Content>"
     return f'<CharacterStyleRange {attrs}>{properties}{content}</CharacterStyleRange>'
+
+
+def inline_role_range(segment: str, *, role: str, bold: bool = False) -> str:
+    """Serialize an RST sub/sup role as an editable InDesign text position."""
+    position = "Subscript" if role == "sub" else "Superscript"
+    return _style_range(
+        segment,
+        bold=bold,
+        fallback_font=None,
+        position=position,
+    )
 
 
 def _ranges_with_replacements(

@@ -2056,6 +2056,22 @@ class ExportIdmlTests(unittest.TestCase):
                 )
                 self.assertIn(sublist_marker, story)
 
+    def test_rst_subscript_is_preserved_as_editable_idml_text(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        for language, sentence in {
+            "en": r"open-circuit voltage (V\ :sub:`oc`)",
+            "fr": r"tension en circuit ouvert (V\ :sub:`oc`)",
+            "es": r"voltaje en circuito abierto (V\ :sub:`oc`)",
+        }.items():
+            with self.subTest(language=language):
+                xml = writer._psr("HB Body", sentence, terminal=True)
+                self.assertIn('(V</Content>', xml)
+                self.assertIn(
+                    'Position="Subscript"><Content>oc</Content>', xml,
+                )
+                self.assertNotIn('<Content>Voc</Content>', xml)
+
     def test_safety_symbols_page_combines_tail_maintenance_and_symbols(self) -> None:
         import json
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
