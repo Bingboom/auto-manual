@@ -402,6 +402,33 @@ class TestSyncRestoresSemanticAssetUris(unittest.TestCase):
             self.assertEqual(0, restored)
             self.assertEqual(original, page.read_text(encoding="utf-8"))
 
+    def test_feishu_attachment_rows_are_left_alone(self) -> None:
+        """Attachment attribution is manifest-side only; RST paths stay paths."""
+        from tools.asset_rewrites import restore_registry_asset_uris
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            token = "_repo_assets/data/phase2/_attachments/lcd_icons/1_Wi-Fi_tok.png"
+            bundle = self._runtime_bundle(root, rewrites=[{
+                "asset_key": "feishu/lcd_icons_attachments",
+                "original_value": token,
+                "rendered_value": token,
+                "reference_kind": "feishu-attachment",
+                "reference_path": "generated/JE-1000F/lcd_icons_en.rst",
+                "ordinal": 1,
+            }])
+            review = root / "review"
+            page = review / "generated" / "JE-1000F" / "lcd_icons_en.rst"
+            page.parent.mkdir(parents=True)
+            original = f".. image:: {token}\n"
+            page.write_text(original, encoding="utf-8")
+
+            restored = restore_registry_asset_uris(
+                source_bundle_dir=bundle, target_bundle_dir=review, strict=False)
+
+            self.assertEqual(0, restored)
+            self.assertEqual(original, page.read_text(encoding="utf-8"))
+
     def test_partial_sync_is_tolerated_without_strict(self) -> None:
         """sync copies a planned subset; uncopied references must not fail."""
         from tools.asset_rewrites import restore_registry_asset_uris

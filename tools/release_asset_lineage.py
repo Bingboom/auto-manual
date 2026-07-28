@@ -10,12 +10,14 @@ carried at the time.
 
 The publish gate reads the same record. It blocks on a **used** asset that is
 not ``✅成品`` — a temporary stand-in, a missing/debt row, or a quarantined
-one must never reach print, where nothing can be corrected afterwards. It
-deliberately does not block on ``legacy-path`` images: those are references
-that never entered the registry (today they come from data-generated pages),
-so blocking would stop every publish rather than surface the debt. They are
-counted into the manifest instead, which keeps the number visible in release
-lineage and lets it be ratcheted down later.
+one must never reach print, where nothing can be corrected afterwards. That
+includes Feishu attachment images, which the finalizer attributes to their
+``feishu/*_attachments`` collection rows, so one status flip in the registry
+stops the whole column. It deliberately does not block on ``legacy-path``
+images — references with no registry attribution at all — because blocking
+would stop every publish rather than surface the debt; their count is
+recorded in the manifest instead so it can be ratcheted down (JE-1000F/US
+reached zero on 2026-07-27).
 """
 from __future__ import annotations
 
