@@ -146,7 +146,7 @@
       <Leading type="unit">7.5</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/HB App Body Result" Name="HB App Body Result" PointSize="6.8" FillColor="Color/HB Brand Dark" LeftIndent="11.2" Hyphenation="false" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/HB App Body Result" Name="HB App Body Result" PointSize="6.6" FillColor="Color/HB Brand Dark" LeftIndent="11.2" Hyphenation="false" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Regular</FontStyle>

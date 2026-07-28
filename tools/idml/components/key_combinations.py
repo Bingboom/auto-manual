@@ -46,6 +46,7 @@ KEY_STYLE_BASE_TOKENS = (
     "idml_key_outer_radius",
     "idml_key_button_size",
     "idml_key_clock_size",
+    "idml_key_clock_gap",
     "type_data_table_header_font_size",
     "idml_key_header_font_leading",
     "idml_key_caption_font_size",
@@ -84,6 +85,7 @@ class KeyCombinationStyle:
     radius: float
     button_size: float
     clock_size: float
+    clock_gap: float
     header_size: float
     header_leading: float
     caption_size: float
@@ -132,6 +134,7 @@ class KeyCombinationStyle:
             "idml_key_outer_radius": self.radius,
             "idml_key_panel_space_before": self.space_before,
             "idml_key_visual_raise": self.visual_raise,
+            "idml_key_clock_gap": self.clock_gap,
         }.items():
             if not isfinite(value) or value < 0:
                 raise ValueError(
@@ -211,6 +214,7 @@ class KeyCombinationStyle:
             radius=token("idml_key_outer_radius", 8.0),
             button_size=token("idml_key_button_size", 22.08),
             clock_size=token("idml_key_clock_size", 10.45),
+            clock_gap=token("idml_key_clock_gap", 3.0),
             header_size=token("type_data_table_header_font_size", 6.6),
             header_leading=token("idml_key_header_font_leading", 7.2),
             caption_size=token("idml_key_caption_font_size", 5.1),
@@ -265,7 +269,15 @@ def _button_kind(text: object) -> str | None:
         for kind, rules in _GOVERNED_BUTTON_TOKEN_RULES.items()
         if any(rule <= tokens for rule in rules)
     ]
-    return matches[0] if len(matches) == 1 else None
+    if len(matches) == 1:
+        return matches[0]
+    if not matches and "power" in tokens:
+        # The frozen JE-1000F US EN/FR review copy predates the explicit
+        # ``main``/``principal`` qualifier used by the newer shared fixture.
+        # A bare POWER label is still unambiguous here: AC, DC/USB and LED
+        # roles are recognized above before this governed fallback applies.
+        return "main_power"
+    return None
 
 
 def _language_code(language: str | None) -> str:
@@ -522,7 +534,7 @@ def render_key_combinations(
             clock_asset,
             clock_size,
             clock_size,
-            left=first_w + scaled(0.93),
+            left=first_w + scaled(style.clock_gap),
             bottom=row_top + scaled(4.0) + clock_size,
         ))
 
@@ -601,7 +613,10 @@ def render_key_combinations(
                 leading=scaled(style.duration_leading),
                 terminal=True,
             )],
-            left=first_w + scaled(12.4),
+            left=(
+                first_w + scaled(style.clock_gap) + clock_size
+                + scaled(style.clock_gap)
+            ),
             top=row_top + scaled(3.0),
             right=first_w + scaled(31.0),
             bottom=row_top + scaled(15.0),

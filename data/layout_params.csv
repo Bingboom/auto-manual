@@ -194,6 +194,7 @@ idml_key_outer_rule,0.566,pt,IDML editable Key-combinations outer rule
 idml_key_outer_radius,8.0,pt,IDML editable Key-combinations outer corner radius
 idml_key_button_size,22.08,pt,IDML editable Key-combinations button art size
 idml_key_clock_size,10.45,pt,IDML editable Key-combinations clock art size
+idml_key_clock_gap,3.0,pt,IDML editable Key-combinations one-character clock inset and duration gap
 idml_key_header_font_leading,7.2,pt,IDML editable Key-combinations header leading
 idml_key_caption_font_size,5.1,pt,IDML editable Key-combinations button caption size
 idml_key_caption_font_leading,5.8,pt,IDML editable Key-combinations button caption leading
@@ -292,7 +293,7 @@ idml_app_primary_body_font_size,7.0,pt,App pairing-step body size measured from 
 idml_app_primary_body_font_leading,9.0,pt,App pairing-step body leading measured from approved PDF
 idml_app_tail_body_font_size,6.6,pt,App first-page trailing step size measured from approved PDF
 idml_app_tail_body_font_leading,7.5,pt,App first-page trailing step leading
-idml_app_result_body_font_size,6.8,pt,App second-page connection-step size measured from approved PDF
+idml_app_result_body_font_size,6.6,pt,App second-page connection-step size measured from approved PDF
 idml_app_result_body_font_leading,7.8,pt,App second-page connection-step leading
 idml_app_section_body_font_size,6.6,pt,App unbind section body size measured from approved PDF
 idml_app_section_body_font_leading,7.5,pt,App unbind section body leading
@@ -892,6 +893,7 @@ lang_fr_type_spec_note_font_leading,6.3,pt,FR: tighter note leading
 lang_fr_idml_key_panel_height,167.06,pt,FR: approved editable Key-combinations panel height
 lang_fr_idml_key_panel_left_indent,-1.42,pt,FR: approved editable Key-combinations host-line offset
 lang_fr_idml_key_panel_space_before,3.53,pt,FR: approved editable Key-combinations leading gap
+lang_fr_comp_operation_page_extra_height,46,pt,FR: deeper final operation story frame for editable Key panel
 
 ,,,------ ES (Spanish tighter layout to fit one page) ------
 lang_es_comp_h1_pill_after,-1.4,mm,ES: space after H1 pill

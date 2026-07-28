@@ -756,9 +756,13 @@ def promote_reference_figures(
             if (
                 index + 1 < len(aligned)
                 and aligned[index + 1][0] == "body"
-                and matches_base_label_block(
-                    aligned[index + 1][1],
-                    base_labels,
+                and (
+                    matches_base_label_block(
+                        aligned[index + 1][1], base_labels,
+                    )
+                    or matches_base_label_block(
+                        aligned[index + 1][1], render_labels,
+                    )
                 )
             ):
                 consume += 1

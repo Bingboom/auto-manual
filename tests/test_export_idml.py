@@ -213,7 +213,9 @@ class ExportIdmlTests(unittest.TestCase):
         spread = writer.spreads[0][1]
         stories = "".join(xml for _, xml in writer.stories)
         self.assertIn("back_cover_qr_ai_candidate.pdf", spread)
+        self.assertIn('Self="bg_st_back_cover_qr"', spread)
         self.assertIn('Self="rc_st_back_cover_qr"', spread)
+        self.assertIn('Self="tf_st_back_cover_address"', spread)
         self.assertIn('Self="gl_st_back_cover_divider"', spread)
         self.assertIn("JACKERY INC.", stories)
         self.assertIn("1-888-502-2236", stories)
@@ -1781,6 +1783,55 @@ class ExportIdmlTests(unittest.TestCase):
             specs[1]["control_image"],
         )
         self.assertIn(("body_app_tail", "2.3 Connexion Bluetooth"), promoted)
+
+    def test_app_figure_consumes_frozen_render_label_duplicates(self) -> None:
+        from tools.idml.prose_flow import promote_reference_figures
+
+        cases = (
+            (
+                "12_app_setup_placeholder",
+                "en",
+                "Main Power Button\nDC/USB Power Button\nAC Power Button",
+            ),
+            (
+                "p34_12_app_setup_placeholder",
+                "fr",
+                "Bouton POWER\nBouton d’alimentation CC/USB\n"
+                "Bouton d’alimentation CA",
+            ),
+        )
+        for stem, language, duplicate in cases:
+            with self.subTest(language=language):
+                blocks = [
+                    ("body", "2.1 First step"),
+                    ("body", "2.2 Second step"),
+                    (
+                        "image",
+                        "_assets/app/je1000f_us/"
+                        "add_device_je1000f_us.png",
+                    ),
+                    ("body", duplicate),
+                    ("body", "2.3 Third step"),
+                ]
+                promoted = promote_reference_figures(
+                    blocks,
+                    _approved_app_plan(
+                        f"page/{stem}.rst", language,
+                    ),
+                    stem,
+                )
+                self.assertNotIn(("body", duplicate), promoted)
+                self.assertNotIn(("body_app_tail", duplicate), promoted)
+                spec = next(
+                    json.loads(payload)
+                    for kind, payload in promoted
+                    if kind == "component"
+                    and json.loads(payload).get("layout") == "app_add_device"
+                )
+                self.assertEqual(
+                    {line for line in duplicate.splitlines()},
+                    set(spec["labels_by_role"].values()),
+                )
 
     def test_page_break_layout_does_not_enable_two_columns(self) -> None:
         from tools.idml.ir_projection import project_pages

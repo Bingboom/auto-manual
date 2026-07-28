@@ -589,7 +589,7 @@ def _app_download(
         )],
         left=20.109,
         top=-26.75,
-        right=141.587,
+        right=150.0,
         bottom=0.0,
         auto_height=True,
     )
@@ -627,7 +627,7 @@ def _app_add_device(
     asset = _resolved_image(spec, ctx)
     if asset is None or not asset.exists():
         return _fallback(spec, tid=tid, terminal=terminal)
-    del measure_w
+    width = measure_w or ctx.text_measure
     style = AppFigureStyle.from_context(ctx)
     # Absolute geometry measured from physical page 20 of the approved
     # reference.  The host story begins at x=28.347 pt.
@@ -636,6 +636,13 @@ def _app_add_device(
     panel_gap = 17.1
     phone_bottom = -(panel_h + panel_gap)
     total_h = phone_h + panel_h + panel_gap
+    bounds = _shape(
+        shape_id=f"referencefigure_app_bounds_{tid}",
+        left=0.0,
+        top=-total_h,
+        right=width,
+        bottom=0.0,
+    )
     phone_left = 66.974
     phone = _positioned_image(
         f"{tid}img", asset, phone_w, phone_h,
@@ -766,7 +773,8 @@ def _app_add_device(
             auto_height=True,
         ))
     return _figure_group(
-        phone + "".join(graphics) + "".join(step_frames) + "".join(label_frames),
+        bounds + phone + "".join(graphics) + "".join(step_frames)
+        + "".join(label_frames),
         tid=tid,
         terminal=terminal,
         height=total_h,
@@ -798,7 +806,7 @@ def _app_connect_result(
     asset = _resolved_image(spec, ctx)
     if asset is None or not asset.exists():
         return _fallback(spec, tid=tid, terminal=terminal)
-    del measure_w
+    width = measure_w or ctx.text_measure
     style = AppFigureStyle.from_context(ctx)
     cropped = _derived_crop(
         ctx, asset, name="screens", box=(0, 0, 1046, 587),
@@ -807,6 +815,13 @@ def _app_connect_result(
     image_w, image_h = 262.624, 147.301
     caption_tail = 18.699
     total_h = image_h + caption_tail
+    bounds = _shape(
+        shape_id=f"referencefigure_connect_bounds_{tid}",
+        left=0.0,
+        top=-total_h,
+        right=width,
+        bottom=0.0,
+    )
     image = _positioned_image(
         f"{tid}img",
         cropped,
@@ -871,7 +886,7 @@ def _app_connect_result(
         auto_height=True,
     )
     return _figure_group(
-        image + "".join(step_frames) + note_frame,
+        bounds + image + "".join(step_frames) + note_frame,
         tid=tid,
         terminal=terminal,
         height=total_h,

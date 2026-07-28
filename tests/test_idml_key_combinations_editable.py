@@ -76,6 +76,17 @@ def _object_bounds(xml: str, item_id: str) -> tuple[float, float, float, float]:
     )
 
 
+def _item_translation(xml: str, item_id: str) -> tuple[float, float]:
+    match = re.search(
+        rf'<(?:TextFrame|Rectangle) Self="{re.escape(item_id)}"[^>]*'
+        r'ItemTransform="1 0 0 1 ([-0-9.]+) ([-0-9.]+)"',
+        xml,
+    )
+    if match is None:
+        raise AssertionError(f"rendered XML has no translated page item {item_id}")
+    return float(match.group(1)), float(match.group(2))
+
+
 def _rows(language: str) -> list[list[str]]:
     if language == "fr":
         return [
@@ -224,12 +235,42 @@ class EditableKeyCombinationTests(unittest.TestCase):
                 self.assertTrue(is_key_combinations_rows(rows))
                 self.assertEqual("key_combinations", body_data_table_kind(rows))
 
+    def test_frozen_review_short_main_power_labels_still_specialize(self) -> None:
+        english = _rows("en")
+        english[1][0] = "Power Button + AC Power Button"
+        english[2][0] = "Power Button + DC/USB Power Button"
+
+        french = _rows("fr")
+        french[1][0] = "Bouton POWER + Bouton d'alimentation CA"
+        french[2][0] = "Bouton POWER + Bouton d'alimentation **CC/USB**"
+        french[4][0] = "Bouton POWER + Bouton lumière LED"
+
+        for language, rows in (("en", english), ("fr", french)):
+            with self.subTest(language=language):
+                self.assertTrue(is_key_combinations_rows(rows))
+                self.assertEqual("key_combinations", body_data_table_kind(rows))
+
     def test_governed_key_panel_uses_locale_visual_raise(self) -> None:
         expected = {"en": "36.68", "fr": "16.94", "es": "12"}
         for language, shift in expected.items():
             with self.subTest(language=language):
                 xml, _height, _stories = self._render(language)
                 self.assertIn(f'BaselineShift="{shift}"', xml)
+
+    def test_clock_inline_gaps_are_shared_across_governed_languages(self) -> None:
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                xml, _height, _stories = self._render(language)
+                clock_x, _clock_y = _item_translation(
+                    xml, f"key_clock_0_key_{language}",
+                )
+                duration = _item_bounds(
+                    xml, f"tf_key_duration_0_key_{language}",
+                )
+                # The clock is one governed character-space inside column two,
+                # followed by the same character-space before 3s/1s.
+                self.assertAlmostEqual(131.49, clock_x, places=2)
+                self.assertAlmostEqual(144.94, duration[0], places=2)
 
     def test_arbitrary_three_column_table_does_not_match(self) -> None:
         rows = [

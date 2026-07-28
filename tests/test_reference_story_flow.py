@@ -190,13 +190,16 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
     def test_operation_chain_uses_only_its_language_specific_bottom_override(
         self,
     ) -> None:
-        for language, expected in (("en", 18.0), ("fr", 18.0), ("es", 46.0)):
+        for language, expected in (("en", 18.0), ("fr", 46.0), ("es", 46.0)):
             with self.subTest(language=language):
                 writer = _RecordingWriter()
                 writer.params["comp_operation_page_extra_height"] = (
                     "18", "pt",
                 )
                 writer.params["lang_es_comp_operation_page_extra_height"] = (
+                    "46", "pt",
+                )
+                writer.params["lang_fr_comp_operation_page_extra_height"] = (
                     "46", "pt",
                 )
                 title = f"05_operation_guide_{language}"

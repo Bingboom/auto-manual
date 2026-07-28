@@ -29,7 +29,7 @@
     "manual_content_sha256": "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
     "snapshot_sha256": "7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5",
     "style_contract_sha256": "41c67cdeea2d9ae9fec5a80ee62197d48cc97ba7525dd9a2afbdd606d28daee8",
-    "layout_params_sha256": "d4a964843da65fb8b6560ee8a3f6d9f4bd733bf0adc777485aa12eaf2e25c5c8"
+    "layout_params_sha256": "a94c4a91a6c40ecf4ce0c44c4839506e3c4eed0b4f9f0325f7ff829938e9ed5a"
   },
   "approval": {
     "status": "approved",
@@ -61,7 +61,8 @@
         "phone_suffix": "(US)",
         "contact_lines": "hello@jackery.com\nwww.jackery.com",
         "company_x": 28.096,
-        "company_y": 427.7,
+        "company_y": 430.5,
+        "address_y": 446.2,
         "bar_x": 28.8,
         "bar_y": 461.2,
         "bar_width": 272.2,
@@ -79,7 +80,10 @@
         "lines_height": 23.0,
         "qr_x": 305.6,
         "qr_y": 460.4,
-        "qr_size": 37.2
+        "qr_size": 37.2,
+        "qr_art_size": 30.0,
+        "qr_stroke_weight": 0.35,
+        "qr_corner_radius": 5.5
       },
       "inbox_cards": {
         "image_width_pt_by_language": {

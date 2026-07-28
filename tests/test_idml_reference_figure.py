@@ -200,6 +200,7 @@ class EditableReferenceFigureTests(unittest.TestCase):
             )
 
             self.assertGreater(height, 200.0)
+            self.assertIn("referencefigure_app_bounds_app", xml)
             self.assertIn("referencefigure_app_panel_bg_app", xml)
             self.assertIn("appcontrols", xml)
             self.assertEqual(5, xml.count("<TextFrame "))
@@ -495,6 +496,7 @@ class EditableReferenceFigureTests(unittest.TestCase):
                 self.assertEqual((1046, 587), image.size)
             self.assertAlmostEqual(178.0, height, places=3)
             self.assertIn('SpaceBefore="12"', xml)
+            self.assertIn("referencefigure_connect_bounds_connect", xml)
             self.assertEqual(4, xml.count("<TextFrame "))
             self.assertEqual(4, xml.count('LockPosition="false" PinPosition="false"'))
             self.assertLess(xml.index("connectimg"), xml.index("<TextFrame "))
