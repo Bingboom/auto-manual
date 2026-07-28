@@ -16,6 +16,7 @@ from pathlib import Path
 APP_PAIRING_PANEL_ASSET_URI = (
     "asset:controls/je1000f_us/network_pairing_panel"
 )
+APP_ADD_DEVICE_ICON_ASSET_URI = "asset:app/add_device_plus"
 
 
 @dataclass(frozen=True)
@@ -31,6 +32,10 @@ class IdmlAssetRequirement:
 _APP_PAIRING_PANEL = IdmlAssetRequirement(
     asset_uri=APP_PAIRING_PANEL_ASSET_URI,
     format_name="pdf",
+)
+_APP_ADD_DEVICE_ICON = IdmlAssetRequirement(
+    asset_uri=APP_ADD_DEVICE_ICON_ASSET_URI,
+    format_name="png",
 )
 
 
@@ -109,10 +114,10 @@ def requirements_for_page(
 ) -> tuple[IdmlAssetRequirement, ...]:
     """Return native-IDML dependencies for one finalized bundle page.
 
-    The pairing panel is part of the approved JE-1000F US physical page for
-    English, French, and Spanish.  Other targets and languages stay on their
-    ordinary renderer path and must not pull this product-specific asset into
-    unrelated bundles.
+    The pairing panel and the inline Add-device control icon are part of the
+    approved JE-1000F US physical page for English, French, and Spanish.
+    Other targets and languages stay on their ordinary renderer path and must
+    not pull these product-specific assets into unrelated bundles.
     """
 
     if is_je1000f_us_app_reference_page(
@@ -121,12 +126,13 @@ def requirements_for_page(
         region=region,
         language=language,
     ):
-        return (_APP_PAIRING_PANEL,)
+        return (_APP_PAIRING_PANEL, _APP_ADD_DEVICE_ICON)
     return ()
 
 
 __all__ = (
     "APP_PAIRING_PANEL_ASSET_URI",
+    "APP_ADD_DEVICE_ICON_ASSET_URI",
     "IdmlAssetRequirement",
     "is_je1000f_us_app_reference_page",
     "is_je1000f_us_app_reference_plan_page",

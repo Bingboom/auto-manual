@@ -5,6 +5,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from . import components as _components, page_objects as _po, prose_flow as _flow
+from .asset_contracts import APP_ADD_DEVICE_ICON_ASSET_URI
 from .data_stories import add_lcd_story, add_spec_story, add_symbols_story, add_trouble_story
 from .params import IDPKG, param_pt
 from .primitives import _ATTR_ENTITIES
@@ -16,6 +17,8 @@ from .story_rhythm import (
 from .story_estimates import paragraph_estimate
 from .story_parts import add_story_parts as _add_story_parts
 from .story_parts import add_text_story
+
+_APP_ADD_DEVICE_ICON_MARKER = "|ADD_DEVICE_ICON|"
 
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path, *,
@@ -152,11 +155,58 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             style = "HB Preface Body"
         is_h2 = semantic_kind == "h2" or semantic_kind.startswith("h2_app")
         text = "\u25cf " + text if is_h2 else text
+        if (
+            semantic_kind == "body_app_primary"
+            and "Click the **Add device** button" in text
+        ):
+            # The approved English reference uses the native plus control
+            # icon in this sentence. Keep the reviewed copy hash unchanged and
+            # make the IDML treatment at the semantic App-body boundary.
+            text = text.replace(
+                "Click the **Add device** button",
+                "Click the button |ADD_DEVICE_ICON|",
+                1,
+            )
         span_columns = has_twocol_layout and not in_twocol and (
             semantic_kind == "h1" or is_h2
         )
+        inline_replacements: dict[str, str] | None = None
+        if _APP_ADD_DEVICE_ICON_MARKER in text:
+            context = writer._render_context(
+                bundle_root,
+                language=page_language,
+            )
+            icon = context.resolve_bundle_image(
+                APP_ADD_DEVICE_ICON_ASSET_URI,
+                format_name="png",
+                consumer="idml-renderer",
+                reference_kind="idml-component-contract",
+            )
+            if icon is None or not icon.exists():
+                if writer.strict_component_assets:
+                    raise FileNotFoundError(
+                        "approved App step icon is unavailable: "
+                        f"{APP_ADD_DEVICE_ICON_ASSET_URI}"
+                    )
+            else:
+                icon_size = param_pt(
+                    writer.params, "idml_app_add_device_icon_size", 8.0,
+                )
+                inline_replacements = {
+                    _APP_ADD_DEVICE_ICON_MARKER: writer._image_cell_content(
+                        f"{sid}_app_add_device_icon_{bi}",
+                        icon,
+                        icon_size,
+                        icon_size,
+                    ),
+                }
         paragraph = writer._psr(
-            style, text, terminal=terminal, span_columns=span_columns)
+            style,
+            text,
+            terminal=terminal,
+            span_columns=span_columns,
+            inline_replacements=inline_replacements,
+        )
         operation_attrs, operation_spacing = operation_story_rhythm_for_next_block(
             kind, next_block, page_language,
             title=title,

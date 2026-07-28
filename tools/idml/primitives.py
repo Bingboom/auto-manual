@@ -23,6 +23,11 @@ SYMBOL_FONT_FALLBACKS = {
     **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾●"},
     **{ch: "Apple SD Gothic Neo" for ch in "㉑㉒㉓㉔㉕㉖㉗"},
 }
+SPEC_SUPERSCRIPT_MARKERS = frozenset(
+    "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
+)
+
+
 PROSE_STYLE = {
     "h1": "HB H1",
     "h2": "HB Title L2",
@@ -35,6 +40,8 @@ PROSE_STYLE = {
     "sublist": "HB Sublist",
     **APP_PROSE_STYLE,
 }
+
+
 def clean_text(text: str) -> str:
     from .text_clean import strip_rst_inline
     text = strip_rst_inline(text)
@@ -75,7 +82,14 @@ def _character_runs(seg: str) -> list[tuple[str, str | None]]:
     return runs
 
 
-def _character_style_range(seg: str, *, bold: bool, fallback_font: str | None) -> str:
+def _character_style_range(
+    seg: str,
+    *,
+    bold: bool,
+    fallback_font: str | None,
+    superscript_marker: bool = False,
+    inner_xml: str | None = None,
+) -> str:
     attrs = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
     properties = ""
     if fallback_font:
@@ -87,11 +101,72 @@ def _character_style_range(seg: str, *, bold: bool, fallback_font: str | None) -
         )
     elif bold:
         attrs += ' FontStyle="Bold"'
-    return f'<CharacterStyleRange {attrs}>{properties}<Content>{escape(seg)}</Content></CharacterStyleRange>'
+    if superscript_marker and seg and all(
+        character in SPEC_SUPERSCRIPT_MARKERS for character in seg
+    ):
+        # Match the shared spec-marker treatment used by the PDF renderer:
+        # markers are smaller and raised, while the surrounding copy keeps
+        # the native table/note style.
+        attrs += ' PointSize="5.2" BaselineShift="2.4"'
+    content = (
+        inner_xml
+        if inner_xml is not None
+        else f"<Content>{escape(seg)}</Content>"
+    )
+    return f'<CharacterStyleRange {attrs}>{properties}{content}</CharacterStyleRange>'
+
+
+def _character_runs_with_inline_replacements(
+    seg: str,
+    *,
+    bold: bool,
+    fallback_font: str | None,
+    superscript_marker: bool,
+    replacements: dict[str, str],
+) -> list[str]:
+    """Split one character run around governed inline objects.
+
+    Inline assets are still children of a CharacterStyleRange, which is the
+    IDML representation InDesign uses for an anchored inline graphic. Keeping
+    the split here lets normal text, bold runs, and font fallbacks continue to
+    use the same paragraph serializer.
+    """
+    out: list[str] = []
+    cursor = 0
+    while cursor < len(seg):
+        matches = [
+            (seg.find(marker, cursor), marker, replacement)
+            for marker, replacement in replacements.items()
+            if seg.find(marker, cursor) >= 0
+        ]
+        if not matches:
+            if cursor < len(seg):
+                out.append(_character_style_range(
+                    seg[cursor:],
+                    bold=bold,
+                    fallback_font=fallback_font,
+                    superscript_marker=superscript_marker,
+                ))
+            break
+        start, marker, replacement = min(matches, key=lambda item: item[0])
+        if start > cursor:
+            out.append(_character_style_range(
+                seg[cursor:start],
+                bold=bold,
+                fallback_font=fallback_font,
+                superscript_marker=superscript_marker,
+            ))
+        out.append(_character_style_range(
+            "", bold=False, fallback_font=None, inner_xml=replacement,
+        ))
+        cursor = start + len(marker)
+    return out
 
 
 def psr(style: str, text: str, *, terminal: bool = False,
-        span_columns: bool = False) -> str:
+        span_columns: bool = False,
+        superscript_markers: bool = False,
+        inline_replacements: dict[str, str] | None = None) -> str:
     """One ParagraphStyleRange.
 
     IDML paragraphs are delimited by explicit <Br/> characters in the
@@ -101,14 +176,31 @@ def psr(style: str, text: str, *, terminal: bool = False,
     therefore ends with <Br/> unless it is the story's last one.
     """
     lines = clean_text(text).split("\n")
+    replacements = inline_replacements or {}
     line_xmls = []
     for line in lines:
         runs = bold_runs(line)
-        line_xmls.append("".join(
-            _character_style_range(piece, bold=bold, fallback_font=fallback_font)
-            for seg, bold in runs
-            for piece, fallback_font in _character_runs(seg)
-        ) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        line_parts: list[str] = []
+        for seg, bold in runs:
+            for piece, fallback_font in _character_runs(seg):
+                if replacements and not fallback_font:
+                    line_parts.extend(
+                        _character_runs_with_inline_replacements(
+                            piece,
+                            bold=bold,
+                            fallback_font=fallback_font,
+                            superscript_marker=superscript_markers,
+                            replacements=replacements,
+                        )
+                    )
+                else:
+                    line_parts.append(_character_style_range(
+                        piece,
+                        bold=bold,
+                        fallback_font=fallback_font,
+                        superscript_marker=superscript_markers,
+                    ))
+        line_xmls.append("".join(line_parts) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
              '<Content></Content></CharacterStyleRange>')
     br = ('<CharacterStyleRange AppliedCharacterStyle='
           '"CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>')

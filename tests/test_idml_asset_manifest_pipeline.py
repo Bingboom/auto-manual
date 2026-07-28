@@ -16,6 +16,7 @@ from tools.bundle_asset_finalize import finalize_materialized_bundle
 from tools.bundle_asset_manifest import BundleAssetManifestError, resolve_manifest_asset
 from tools.gen_index_bundle_models import MaterializedBundle
 from tools.idml.asset_contracts import (
+    APP_ADD_DEVICE_ICON_ASSET_URI,
     APP_PAIRING_PANEL_ASSET_URI,
     is_je1000f_us_en_app_reference_page,
     requirements_for_page,
@@ -152,7 +153,7 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
                     language=language,
                 )
                 self.assertEqual(
-                    (APP_PAIRING_PANEL_ASSET_URI,),
+                    (APP_PAIRING_PANEL_ASSET_URI, APP_ADD_DEVICE_ICON_ASSET_URI),
                     tuple(row.asset_uri for row in matched),
                 )
 
@@ -279,13 +280,22 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
             asset = docs / "renderers" / "latex" / "assets" / "app_control_panel.pdf"
             asset.parent.mkdir(parents=True)
             asset.write_bytes(b"%PDF-1.4\nIDML pairing panel\n")
+            icon = (
+                docs / "templates" / "word_template" / "common_assets"
+                / "app" / "add_device_plus.png"
+            )
+            icon.parent.mkdir(parents=True)
+            icon.write_bytes(b"PNG add-device icon\n")
             registry = repo / "data" / "asset_registry.csv"
             registry.parent.mkdir(parents=True)
             registry.write_text(
                 _REGISTRY_HEADER
                 + "controls/je1000f_us/network_pairing_panel,,插图,中立,✅成品,"
                 + "FALSE,JE-1000F,US,docs/renderers/latex/assets,,"
-                + f"app_control_panel.pdf:{_sha256(asset)},fixture\n",
+                + f"app_control_panel.pdf:{_sha256(asset)},fixture\n"
+                + "app/add_device_plus,,插图,中立,✅成品,FALSE,ALL,ALL,"
+                + "docs/templates/word_template/common_assets/app,,"
+                + f"add_device_plus.png:{_sha256(icon)},fixture\n",
                 encoding="utf-8",
             )
             page = page_dir / "12_app_setup_placeholder.rst"
@@ -327,8 +337,11 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
                 finalized.asset_usage_manifest_path.read_text(encoding="utf-8")
             )
             self.assertEqual([], usage["rewrites"])
-            self.assertEqual(1, len(usage["assets"]))
-            row = usage["assets"][0]
+            self.assertEqual(2, len(usage["assets"]))
+            row = next(
+                row for row in usage["assets"]
+                if row["asset_key"] == "controls/je1000f_us/network_pairing_panel"
+            )
             self.assertEqual(
                 "controls/je1000f_us/network_pairing_panel",
                 row["asset_key"],

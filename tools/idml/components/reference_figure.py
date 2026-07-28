@@ -736,12 +736,12 @@ def _app_add_device(
     # Roles are explicit in source/IR. Localized array order never controls
     # placement: the fixed visual slots are main power, DC/USB, then AC.
     label_specs = (
-        ("main_power", 23.161, 75.097, -40.3, "LeftAlign"),
-        ("dc_usb", 22.681, 100.5, -22.899, "LeftAlign"),
-        ("ac", 248.268, 310.0, -21.801, "RightAlign"),
+        ("main_power", 23.161, 75.097, -40.118, "LeftAlign"),
+        ("dc_usb", 22.681, 100.5, -22.786, "LeftAlign"),
+        ("ac", 248.268, 310.0, -22.686, "RightAlign"),
     )
     label_frames = []
-    for index, (role, left, right, bottom, align) in enumerate(label_specs):
+    for index, (role, left, right, line_y, align) in enumerate(label_specs):
         text = labels.get(role, "")
         if not text:
             continue
@@ -753,6 +753,9 @@ def _app_add_device(
             minimum=style.control_label_min_height,
             safety=style.text_frame_safety,
         )
+        # The editable label is centered on the native leader line.  Using
+        # the line as the frame bottom placed the text one line-height above
+        # the reference artwork; the template centers the label on this axis.
         label_frames.append(_editable_text_frame(
             ctx,
             story_id=f"st_anchor_referencefigure_app_label_{index}_{tid}",
@@ -766,9 +769,9 @@ def _app_add_device(
                 justification=align,
             )],
             left=left,
-            top=bottom - height,
+            top=line_y - height / 2.0,
             right=right,
-            bottom=bottom,
+            bottom=line_y + height / 2.0,
             valign="CenterAlign",
             auto_height=True,
         ))

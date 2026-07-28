@@ -246,6 +246,35 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('LeftIndent="5.67"', list_style)
         self.assertIn('FirstLineIndent="-5.67"', list_style)
 
+    def test_warranty_year_subtitle_starts_at_year_unit(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        xml, _height = render(
+            {
+                "kind": "warrantyyears",
+                "items": [{
+                    "number": "3",
+                    "unit": "YEARS",
+                    "label": "Standard Warranty",
+                    "text": "Copy.",
+                }],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+            ),
+            tid="warranty_year_subtitle_alignment",
+            terminal=True,
+        )
+        self.assertIn('LeftIndent="23.811"', xml)
+        self.assertNotIn('LeftIndent="27.781"', xml)
+
     def test_localized_warranty_note_uses_reviewed_reference_width(self) -> None:
         from tools.export_idml import IdmlWriter, load_layout_params
 
@@ -387,6 +416,11 @@ class ComponentRegistryTests(unittest.TestCase):
             "".join(parts) for sid, _title, parts in stories if "body" in sid
         )
         self.assertIn('HorizontalScale="98.6"', body)
+        self.assertIn('<TabList type="list">', body)
+        self.assertIn('<Position type="unit">5.67</Position>', body)
+        self.assertIn('<Content>•</Content>', body)
+        self.assertIn('<Content>\t</Content>', body)
+        self.assertNotIn('<Content>• Elemento de exclusión.</Content>', body)
 
     def test_warranty_body_spacing_drives_story_and_panel_height(self) -> None:
         from tools.export_idml import load_layout_params
@@ -760,7 +794,7 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('FillColor="Color/HB Bg K05"', xml)
         self.assertEqual(7, xml.count('VerticalJustification="CenterAlign"'))
 
-    def test_lcd_mode_gray_state_fill_reaches_both_left_corners(self) -> None:
+    def test_lcd_mode_corner_masks_use_the_panel_fill(self) -> None:
         from tools.idml.components import RenderContext, render
 
         stories = []
@@ -784,13 +818,13 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn(
             'Self="mask_top_left_group_st_anchor_lcdmode_lcd_corners" '
             'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-            'FillColor="Color/HB Bg K05"',
+            'FillColor="Color/Paper"',
             host,
         )
         self.assertIn(
             'Self="mask_bottom_left_group_st_anchor_lcdmode_lcd_corners" '
             'ContentType="Unassigned" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-            'FillColor="Color/HB Bg K05"',
+            'FillColor="Color/Paper"',
             host,
         )
 
