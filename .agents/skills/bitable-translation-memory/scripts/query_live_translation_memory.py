@@ -36,7 +36,21 @@ DEFAULT_PAGE_SIZE = 200
 DEFAULT_MAX_RECORDS = 2000
 DEFAULT_CACHE_TTL_SECONDS = 900
 CACHE_SCHEMA_VERSION = 2
-LIVE_TM_LANGUAGE_FIELDS = {"en", "fr", "es", "de", "it", "uk", "jp", "ja", "ko", "kr", "pt-br", "zh"}
+LIVE_TM_LANGUAGE_FIELDS = {
+    "en",
+    "fr",
+    "es",
+    "de",
+    "it",
+    "uk",
+    "jp",
+    "ja",
+    "ko",
+    "kr",
+    "pt-br",
+    "zh",
+    "zh-tw",
+}
 
 # The canonical live-base binding (G4). --base-token overrides it explicitly.
 ENV_BASE_TOKEN_VAR = "FEISHU_TRANSLATION_MEMORY_BASE_TOKEN"

@@ -28,6 +28,11 @@ LANGUAGE_ALIASES = {
     "uk": "uk",
     "ukrainian": "uk",
     "zh": "zh",
+    "zh-cn": "zh",
+    "zh-tw": "zh-tw",
+    "zh_tw": "zh-tw",
+    "zh-hant": "zh-tw",
+    "traditional chinese": "zh-tw",
 }
 
 TABLE_ALIASES = {
