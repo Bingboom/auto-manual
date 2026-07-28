@@ -140,8 +140,10 @@ def _years_table(
         body = str(item.get("text", "")).strip()
         content = _year_heading(item, ctx)
         subtitle_xml = psr("HB Warranty Year Subtitle", subtitle)
-        subtitle_indent = (
-            param_pt(ctx.params, "comp_warranty_year_badge_size", 23.81) + 3.97
+        # The subtitle's first letter sits on the same vertical as the unit
+        # text (the ``Y`` in ``YEARS``), not after an additional optical gap.
+        subtitle_indent = param_pt(
+            ctx.params, "comp_warranty_year_badge_size", 23.81,
         )
         subtitle_xml = subtitle_xml.replace(
             "<ParagraphStyleRange ",
@@ -149,6 +151,8 @@ def _years_table(
             1,
         )
         content += subtitle_xml
+        # The reference returns the explanatory copy to the left edge of each
+        # column; only the subtitle carries the optical badge offset.
         content += psr("HB Warranty Body", body, terminal=True)
         cells.append(cell(
             f"{tid}c{index}", f"{index}:0", content,
@@ -290,7 +294,60 @@ def _section_body(
         style = "HB Warranty List" if is_list else "HB Warranty Body"
         leading = list_leading if is_list else body_leading
         paragraph_after = list_after if is_list else body_after
-        paragraph = psr(style, text, terminal=terminal)
+        list_marker = ""
+        list_text = text
+        if is_list:
+            marker_match = re.match(r"^\s*([•◦])(?:\s+|$)", text)
+            if marker_match:
+                list_marker = marker_match.group(1)
+                list_text = text[marker_match.end():]
+            else:
+                list_marker = "◦" if kind == "sublist" else "•"
+                list_text = text.lstrip()
+        paragraph = psr(
+            style,
+            list_text if is_list else text,
+            terminal=terminal,
+        )
+        if is_list:
+            first_line_indent = param_pt(
+                ctx.params, "idml_warranty_list_first_line_indent", -list_indent,
+            )
+            paragraph = paragraph.replace(
+                "<ParagraphStyleRange ",
+                f'<ParagraphStyleRange LeftIndent="{list_indent:g}" '
+                f'FirstLineIndent="{first_line_indent:g}" RightIndent="0" ',
+                1,
+            )
+            # Keep the bullet out of the prose run.  A literal ``• `` makes
+            # the continuation line depend on the font's bullet glyph width;
+            # the approved reference uses a fixed tab stop after the marker.
+            tab_properties = (
+                '<Properties><TabList type="list"><ListItem type="record">'
+                '<Alignment type="enumeration">LeftAlign</Alignment>'
+                '<AlignmentCharacter type="string"></AlignmentCharacter>'
+                '<Leader type="string"></Leader>'
+                f'<Position type="unit">{list_indent:g}</Position>'
+                '</ListItem></TabList></Properties>'
+            )
+            bullet_xml = (
+                '<CharacterStyleRange '
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                'PointSize="4.8">'
+                f'<Content>{list_marker}</Content>'
+                '</CharacterStyleRange>'
+            )
+            tab_xml = (
+                '<CharacterStyleRange '
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                '<Content>\t</Content>'
+                '</CharacterStyleRange>'
+            )
+            paragraph = paragraph.replace(
+                "\n    <CharacterStyleRange",
+                f"\n    {tab_properties}\n    {bullet_xml}\n    {tab_xml}\n    <CharacterStyleRange",
+                1,
+            )
         paragraph = paragraph.replace(
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
@@ -307,7 +364,9 @@ def _section_body(
             list_indent if kind in {"list", "sublist"} else 0.0
         )
         height += _wrapped_lines(
-            text, available, body_size * horizontal_scale / 100.0,
+            list_text if is_list else text,
+            available,
+            body_size * horizontal_scale / 100.0,
         ) * leading
         if not terminal:
             height += paragraph_after

@@ -73,8 +73,17 @@ class IdmlWriter:
 
     @classmethod
     def _psr(cls, style: str, text: str, *, terminal: bool = False,
-             span_columns: bool = False) -> str:
-        return _prim.psr(style, text, terminal=terminal, span_columns=span_columns)
+             span_columns: bool = False,
+             superscript_markers: bool = False,
+             inline_replacements: dict[str, str] | None = None) -> str:
+        return _prim.psr(
+            style,
+            text,
+            terminal=terminal,
+            span_columns=span_columns,
+            superscript_markers=superscript_markers,
+            inline_replacements=inline_replacements,
+        )
 
     @staticmethod
     def _bold_runs(line: str) -> list[tuple[str, bool]]:

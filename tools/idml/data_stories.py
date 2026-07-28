@@ -339,7 +339,7 @@ def add_spec_story(writer, sections: list[dict],
         section_title = section_title.replace(
             'FontStyle="Regular"',
             'FontStyle="Regular" PointSize="13.2" '
-            'HorizontalScale="68" BaselineShift="-1.1"',
+            'HorizontalScale="100" BaselineShift="0.78"',
             1,
         )
         section_default = (

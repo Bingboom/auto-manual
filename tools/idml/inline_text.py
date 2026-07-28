@@ -1,0 +1,130 @@
+"""Character-run serialization for editable IDML prose."""
+from __future__ import annotations
+
+from xml.sax.saxutils import escape
+
+DIRECT_CURRENT_SYMBOL_FONT = "Apple Symbols"
+GENERAL_SYMBOL_FONT = "Arial Unicode MS"
+SYMBOL_FONT_FALLBACK_STYLE = "Regular"
+SYMBOL_FONT_FALLBACKS = {
+    "⎓": DIRECT_CURRENT_SYMBOL_FONT,
+    "※": GENERAL_SYMBOL_FONT,
+    **{
+        ch: GENERAL_SYMBOL_FONT
+        for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾●"
+    },
+    **{ch: "Apple SD Gothic Neo" for ch in "㉑㉒㉓㉔㉕㉖㉗"},
+}
+SPEC_SUPERSCRIPT_MARKERS = frozenset(
+    "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
+)
+
+
+def _font_runs(segment: str) -> list[tuple[str, str | None]]:
+    """Split a text segment by the explicit fallback font it needs."""
+    runs: list[tuple[str, str | None]] = []
+    buffer: list[str] = []
+    current_font = SYMBOL_FONT_FALLBACKS.get(segment[0]) if segment else None
+    for character in segment:
+        font = SYMBOL_FONT_FALLBACKS.get(character)
+        if font != current_font:
+            runs.append(("".join(buffer), current_font))
+            buffer = []
+            current_font = font
+        buffer.append(character)
+    if buffer:
+        runs.append(("".join(buffer), current_font))
+    return runs
+
+
+def _style_range(
+    segment: str,
+    *,
+    bold: bool,
+    fallback_font: str | None,
+    superscript_marker: bool = False,
+    inner_xml: str | None = None,
+) -> str:
+    attrs = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+    properties = ""
+    if fallback_font:
+        attrs += f' FontStyle="{SYMBOL_FONT_FALLBACK_STYLE}"'
+        properties = (
+            "<Properties>"
+            f'<AppliedFont type="string">{escape(fallback_font)}</AppliedFont>'
+            "</Properties>"
+        )
+    elif bold:
+        attrs += ' FontStyle="Bold"'
+    if superscript_marker and segment and all(
+        character in SPEC_SUPERSCRIPT_MARKERS for character in segment
+    ):
+        attrs += ' PointSize="5.2" BaselineShift="2.4"'
+    content = inner_xml if inner_xml is not None else f"<Content>{escape(segment)}</Content>"
+    return f'<CharacterStyleRange {attrs}>{properties}{content}</CharacterStyleRange>'
+
+
+def _ranges_with_replacements(
+    segment: str,
+    *,
+    bold: bool,
+    superscript_marker: bool,
+    replacements: dict[str, str],
+) -> list[str]:
+    """Split one character run around governed anchored inline objects."""
+    output: list[str] = []
+    cursor = 0
+    while cursor < len(segment):
+        matches = [
+            (position, marker, replacement)
+            for marker, replacement in replacements.items()
+            if (position := segment.find(marker, cursor)) >= 0
+        ]
+        if not matches:
+            output.append(_style_range(
+                segment[cursor:],
+                bold=bold,
+                fallback_font=None,
+                superscript_marker=superscript_marker,
+            ))
+            break
+        start, marker, replacement = min(matches, key=lambda item: item[0])
+        if start > cursor:
+            output.append(_style_range(
+                segment[cursor:start],
+                bold=bold,
+                fallback_font=None,
+                superscript_marker=superscript_marker,
+            ))
+        output.append(_style_range(
+            "", bold=False, fallback_font=None, inner_xml=replacement,
+        ))
+        cursor = start + len(marker)
+    return output
+
+
+def character_ranges(
+    segment: str,
+    *,
+    bold: bool,
+    superscript_markers: bool,
+    replacements: dict[str, str],
+) -> list[str]:
+    """Serialize one bold/plain segment, preserving fallback-font boundaries."""
+    output: list[str] = []
+    for piece, fallback_font in _font_runs(segment):
+        if replacements and fallback_font is None:
+            output.extend(_ranges_with_replacements(
+                piece,
+                bold=bold,
+                superscript_marker=superscript_markers,
+                replacements=replacements,
+            ))
+        else:
+            output.append(_style_range(
+                piece,
+                bold=bold,
+                fallback_font=fallback_font,
+                superscript_marker=superscript_markers,
+            ))
+    return output

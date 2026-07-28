@@ -210,12 +210,12 @@ class EditableReferenceFigureTests(unittest.TestCase):
             )
             self.assertEqual(5, xml.count('LockPosition="false" PinPosition="false"'))
             self.assertEqual(5, len(stories))
-            self.assertIn('Anchor="23.161 -47.5"', xml)
-            self.assertIn('Anchor="75.097 -40.3"', xml)
-            self.assertIn('Anchor="22.681 -30.099"', xml)
-            self.assertIn('Anchor="100.5 -22.899"', xml)
-            self.assertIn('Anchor="248.268 -29.001"', xml)
-            self.assertIn('Anchor="310 -21.801"', xml)
+            self.assertIn('Anchor="23.161 -43.718"', xml)
+            self.assertIn('Anchor="75.097 -36.518"', xml)
+            self.assertIn('Anchor="22.681 -26.386"', xml)
+            self.assertIn('Anchor="100.5 -19.186"', xml)
+            self.assertIn('Anchor="248.268 -26.286"', xml)
+            self.assertIn('Anchor="310 -19.086"', xml)
 
     def test_app_control_roles_are_bound_to_visual_slots_not_source_order(self) -> None:
         with tempfile.TemporaryDirectory() as td:

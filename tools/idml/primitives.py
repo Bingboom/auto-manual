@@ -7,6 +7,7 @@ from xml.sax.saxutils import escape
 
 from .spec_tables import spec_table_xml
 from .app_text_styles import APP_PROSE_STYLE
+from .inline_text import character_ranges
 from .style_names import paragraph_style_ref
 from .table_borders import component_table_xml
 
@@ -14,15 +15,6 @@ from .table_borders import component_table_xml
 _ATTR_ENTITIES = {'"': "&quot;"}
 # Compatibility hook; semantic symbols stay intact and use font fallbacks.
 GLYPH_FALLBACKS: tuple[tuple[str, str], ...] = ()
-DIRECT_CURRENT_SYMBOL_FONT = "Apple Symbols"
-GENERAL_SYMBOL_FONT = "Arial Unicode MS"
-SYMBOL_FONT_FALLBACK_STYLE = "Regular"
-SYMBOL_FONT_FALLBACKS = {
-    "⎓": DIRECT_CURRENT_SYMBOL_FONT,
-    "※": GENERAL_SYMBOL_FONT,
-    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾●"},
-    **{ch: "Apple SD Gothic Neo" for ch in "㉑㉒㉓㉔㉕㉖㉗"},
-}
 PROSE_STYLE = {
     "h1": "HB H1",
     "h2": "HB Title L2",
@@ -35,6 +27,8 @@ PROSE_STYLE = {
     "sublist": "HB Sublist",
     **APP_PROSE_STYLE,
 }
+
+
 def clean_text(text: str) -> str:
     from .text_clean import strip_rst_inline
     text = strip_rst_inline(text)
@@ -58,40 +52,10 @@ def bold_runs(line: str) -> list[tuple[str, bool]]:
     return runs
 
 
-def _character_runs(seg: str) -> list[tuple[str, str | None]]:
-    """Split a run by the explicit font fallback it needs."""
-    runs: list[tuple[str, str | None]] = []
-    buf: list[str] = []
-    current_font = SYMBOL_FONT_FALLBACKS.get(seg[0]) if seg else None
-    for ch in seg:
-        font = SYMBOL_FONT_FALLBACKS.get(ch)
-        if font != current_font:
-            runs.append(("".join(buf), current_font))
-            buf = []
-            current_font = font
-        buf.append(ch)
-    if buf:
-        runs.append(("".join(buf), current_font))
-    return runs
-
-
-def _character_style_range(seg: str, *, bold: bool, fallback_font: str | None) -> str:
-    attrs = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
-    properties = ""
-    if fallback_font:
-        attrs += f' FontStyle="{SYMBOL_FONT_FALLBACK_STYLE}"'
-        properties = (
-            "<Properties>"
-            f'<AppliedFont type="string">{escape(fallback_font)}</AppliedFont>'
-            "</Properties>"
-        )
-    elif bold:
-        attrs += ' FontStyle="Bold"'
-    return f'<CharacterStyleRange {attrs}>{properties}<Content>{escape(seg)}</Content></CharacterStyleRange>'
-
-
 def psr(style: str, text: str, *, terminal: bool = False,
-        span_columns: bool = False) -> str:
+        span_columns: bool = False,
+        superscript_markers: bool = False,
+        inline_replacements: dict[str, str] | None = None) -> str:
     """One ParagraphStyleRange.
 
     IDML paragraphs are delimited by explicit <Br/> characters in the
@@ -101,14 +65,19 @@ def psr(style: str, text: str, *, terminal: bool = False,
     therefore ends with <Br/> unless it is the story's last one.
     """
     lines = clean_text(text).split("\n")
+    replacements = inline_replacements or {}
     line_xmls = []
     for line in lines:
         runs = bold_runs(line)
-        line_xmls.append("".join(
-            _character_style_range(piece, bold=bold, fallback_font=fallback_font)
-            for seg, bold in runs
-            for piece, fallback_font in _character_runs(seg)
-        ) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        line_parts: list[str] = []
+        for segment, bold in runs:
+            line_parts.extend(character_ranges(
+                segment,
+                bold=bold,
+                superscript_markers=superscript_markers,
+                replacements=replacements,
+            ))
+        line_xmls.append("".join(line_parts) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
              '<Content></Content></CharacterStyleRange>')
     br = ('<CharacterStyleRange AppliedCharacterStyle='
           '"CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>')

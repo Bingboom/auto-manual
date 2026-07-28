@@ -2960,8 +2960,8 @@ class ExportIdmlTests(unittest.TestCase):
             "<CharacterStyleRange ", 1,
         )[1]
         self.assertIn('PointSize="13.2"', marker_range)
-        self.assertIn('HorizontalScale="68"', marker_range)
-        self.assertIn('BaselineShift="-1.1"', marker_range)
+        self.assertIn('HorizontalScale="100"', marker_range)
+        self.assertIn('BaselineShift="0.78"', marker_range)
         self.assertNotIn("● GENERAL", story)
 
     def test_localized_spec_notes_have_approved_spacing(self) -> None:

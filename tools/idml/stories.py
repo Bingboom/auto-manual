@@ -8,6 +8,7 @@ from . import components as _components, page_objects as _po, prose_flow as _flo
 from .data_stories import add_lcd_story, add_spec_story, add_symbols_story, add_trouble_story
 from .params import IDPKG, param_pt
 from .primitives import _ATTR_ENTITIES
+from .prose_paragraph import build_text_paragraph
 from .character_metrics import with_character_baseline_shift
 from .story_rhythm import (
     operation_key_visual_raise,
@@ -139,24 +140,19 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             est += 24.0
             continue
         next_block = blocks[bi + 1] if bi + 1 < len(blocks) else ("", "")
-        operation_h2 = kind in {"h2_operation_energy", "h2_operation_led"}
-        overview_h2 = kind in {"h2_overview_front", "h2_overview_right"}
-        charging_car_h2 = kind == "h2_charging_car"
-        semantic_kind = (
-            "h2" if overview_h2 or operation_h2 or charging_car_h2 else kind
+        paragraph, semantic_kind, is_h2, text = build_text_paragraph(
+            writer,
+            kind=kind,
+            text=text,
+            terminal=terminal,
+            is_preface=is_preface,
+            has_twocol_layout=has_twocol_layout,
+            in_twocol=in_twocol,
+            bundle_root=bundle_root,
+            page_language=page_language,
+            story_id=sid,
+            block_index=bi,
         )
-        if kind == "body_operation_energy_intro":
-            semantic_kind = "body"
-        style = writer._PROSE_STYLE.get(semantic_kind, "HB Body")
-        if is_preface and kind == "body":
-            style = "HB Preface Body"
-        is_h2 = semantic_kind == "h2" or semantic_kind.startswith("h2_app")
-        text = "\u25cf " + text if is_h2 else text
-        span_columns = has_twocol_layout and not in_twocol and (
-            semantic_kind == "h1" or is_h2
-        )
-        paragraph = writer._psr(
-            style, text, terminal=terminal, span_columns=span_columns)
         operation_attrs, operation_spacing = operation_story_rhythm_for_next_block(
             kind, next_block, page_language,
             title=title,
