@@ -8,7 +8,7 @@ APP SETUP
 1. Download the App and log in
 ------------------------------
 
-.. image:: _assets/templates/word_template/common_assets/app/download.png
+.. image:: asset:app/download
    :alt: App download QR and marketplace placeholder.
    :width: 320px
 
@@ -22,7 +22,7 @@ Alternatively, scan the QR code below to download and install the App.
 
 2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the "**Icon Flashed**" button and allow the App to connect to nearby devices and open Bluetooth permissions.
 
-.. image:: _assets/templates/word_template/common_assets/app/je1000f_us/add_device_je1000f_us.png
+.. image:: asset:app/add_device
    :alt: App add device step placeholder.
    :width: 320px
 
@@ -56,7 +56,7 @@ Alternatively, scan the QR code below to download and install the App.
 
 | 2.5 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.
 
-.. image:: _assets/templates/word_template/common_assets/app/je1000f_us/connect_result_je1000f_us.png
+.. image:: asset:app/connect_result
    :alt: App setup result screen placeholder.
    :width: 360px
 

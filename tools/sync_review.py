@@ -15,6 +15,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
+from tools.asset_rewrites import restore_registry_asset_uris  # noqa: E402
 from tools.config_pages import CoverPdfPage, CsvPage, GeneratedPage, PdfInsertPage, RstIncludePage  # noqa: E402
 from tools.build_docs import build_root_for_target, load_config, resolve_build_targets  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target, plan_materialized_pages  # noqa: E402
@@ -291,6 +292,19 @@ def main(argv: list[str] | None = None) -> int:
                 scope=args.sync_scope,
                 plan=sync_plan,
             )
+            # The runtime bundle is finalized, so its RST carries staged file
+            # paths; copying them verbatim would launder every semantic
+            # `asset:` reference in docs/_review back into a bare path (the
+            # seeding path in review_bundle.py already restores them — this
+            # kept parity). Non-strict: sync copies a planned subset, and
+            # reviewer-edited lines that no longer match provenance stay put.
+            restored = restore_registry_asset_uris(
+                source_bundle_dir=runtime_bundle_dir,
+                target_bundle_dir=review_dir,
+                strict=False,
+            )
+            if restored:
+                print(f"[sync-review] restored {restored} semantic asset reference(s)")
             print(
                 "[sync-review] bundle: "
                 f"model='{target.model or ''}', region='{target.region or ''}', lang='{target.lang or ''}', "

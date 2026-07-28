@@ -8,7 +8,7 @@ OPERATIONS
 POWER ON/OFF
 ------------
 
-.. image:: renderers/latex/assets/op_main_power.png
+.. image:: asset:operation/main_power
    :alt: Power on/off operation placeholder.
    :width: 360px
 
@@ -25,7 +25,7 @@ AC OUTPUT ON/OFF
 
 **Prerequisite**: The product is powered on.
 
-.. image:: renderers/latex/assets/op_ac_output.png
+.. image:: asset:operation/ac_output
    :alt: AC output on/off operation placeholder.
    :width: 360px
 
@@ -41,7 +41,7 @@ DC/USB OUTPUT ON/OFF
 
 **Prerequisite**: The product is powered on.
 
-.. image:: renderers/latex/assets/op_dc_usb_output.png
+.. image:: asset:operation/dc_usb_output
    :alt: DC USB output on/off operation placeholder.
    :width: 360px
 
@@ -105,7 +105,7 @@ LED LIGHT ON/OFF
 
 The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED LIGHT button to turn off the light.
 
-.. image:: _assets/templates/word_template/common_assets/operation/led_light.png
+.. image:: asset:operation/led_light
    :alt: LED light mode operation placeholder.
    :width: 360px
 

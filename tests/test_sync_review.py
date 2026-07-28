@@ -322,3 +322,104 @@ class TestSyncReview(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSyncRestoresSemanticAssetUris(unittest.TestCase):
+    """The data-refresh path must not launder asset: URIs into bare paths.
+
+    review_bundle.py restores semantic URIs when seeding docs/_review from a
+    finalized runtime bundle; sync_review copies from the same finalized
+    bundle, so it needs the same restore step (wired in sync_review.main).
+    These tests pin the exact contract that wiring relies on.
+    """
+
+    @staticmethod
+    def _runtime_bundle(root: Path, *, rewrites) -> Path:
+        import json
+
+        bundle = root / "bundle"
+        bundle.mkdir(parents=True)
+        (bundle / "asset_usage_manifest.json").write_text(
+            json.dumps({"schema_version": 2, "assets": [], "rewrites": rewrites}),
+            encoding="utf-8",
+        )
+        return bundle
+
+    def test_copied_finalized_page_gets_its_asset_uri_back(self) -> None:
+        from tools.asset_rewrites import restore_registry_asset_uris
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle = self._runtime_bundle(root, rewrites=[{
+                "asset_key": "operation/main_power",
+                "original_value": "asset:operation/main_power",
+                "rendered_value": "renderers/latex/assets/op_main_power.png",
+                "reference_kind": "registry-uri",
+                "reference_path": "generated/JE-1000F/draft/05_operation_guide_en.rst",
+                "staged_path": "renderers/latex/assets/op_main_power.png",
+                "ordinal": 1,
+            }])
+            review = root / "review"
+            page = review / "generated" / "JE-1000F" / "draft" / "05_operation_guide_en.rst"
+            page.parent.mkdir(parents=True)
+            page.write_text(
+                ".. image:: renderers/latex/assets/op_main_power.png\n",
+                encoding="utf-8",
+            )
+
+            restored = restore_registry_asset_uris(
+                source_bundle_dir=bundle, target_bundle_dir=review, strict=False)
+
+            self.assertEqual(1, restored)
+            self.assertEqual(
+                ".. image:: asset:operation/main_power\n",
+                page.read_text(encoding="utf-8"),
+            )
+
+    def test_legacy_path_rows_are_left_alone(self) -> None:
+        """A bare path with no semantic provenance must stay a bare path."""
+        from tools.asset_rewrites import restore_registry_asset_uris
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle = self._runtime_bundle(root, rewrites=[{
+                "asset_key": None,
+                "original_value": "renderers/latex/assets/op_energy_saving.png",
+                "rendered_value": "renderers/latex/assets/op_energy_saving.png",
+                "reference_kind": "legacy-path",
+                "reference_path": "generated/JE-1000F/draft/05_operation_guide_en.rst",
+                "ordinal": 1,
+            }])
+            review = root / "review"
+            page = review / "generated" / "JE-1000F" / "draft" / "05_operation_guide_en.rst"
+            page.parent.mkdir(parents=True)
+            original = ".. image:: renderers/latex/assets/op_energy_saving.png\n"
+            page.write_text(original, encoding="utf-8")
+
+            restored = restore_registry_asset_uris(
+                source_bundle_dir=bundle, target_bundle_dir=review, strict=False)
+
+            self.assertEqual(0, restored)
+            self.assertEqual(original, page.read_text(encoding="utf-8"))
+
+    def test_partial_sync_is_tolerated_without_strict(self) -> None:
+        """sync copies a planned subset; uncopied references must not fail."""
+        from tools.asset_rewrites import restore_registry_asset_uris
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle = self._runtime_bundle(root, rewrites=[{
+                "asset_key": "app/download",
+                "original_value": "asset:app/download",
+                "rendered_value": "x/download.png",
+                "reference_kind": "registry-uri",
+                "reference_path": "generated/JE-1000F/draft/12_app_setup_en.rst",
+                "ordinal": 1,
+            }])
+            review = root / "review"
+            review.mkdir()
+
+            restored = restore_registry_asset_uris(
+                source_bundle_dir=bundle, target_bundle_dir=review, strict=False)
+
+            self.assertEqual(0, restored)

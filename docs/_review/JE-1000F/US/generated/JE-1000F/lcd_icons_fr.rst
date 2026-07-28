@@ -1,7 +1,7 @@
 AFFICHAGE LCD
 =============
 
-.. image:: _assets/templates/word_template/common_assets/lcd/lcd_map.png
+.. image:: asset:lcd/lcd_map
    :alt: AFFICHAGE LCD
    :width: 420px
 

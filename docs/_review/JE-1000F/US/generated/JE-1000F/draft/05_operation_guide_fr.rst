@@ -8,7 +8,7 @@ FONCTIONNEMENT
 MARCHE/ARRÊT
 ------------
 
-.. image:: renderers/latex/assets/op_main_power.png
+.. image:: asset:operation/main_power
    :alt: Fonction marche/arrêt.
    :width: 360px
 
@@ -24,7 +24,7 @@ SORTIE CA MARCHE/ARRÊT
 
 **Prérequis :** Le produit est allumé.
 
-.. image:: renderers/latex/assets/op_ac_output.png
+.. image:: asset:operation/ac_output
    :alt: Fonction de sortie CA.
    :width: 360px
 
@@ -38,7 +38,7 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
 
 **Prérequis :** Le produit est allumé.
 
-.. image:: renderers/latex/assets/op_dc_usb_output.png
+.. image:: asset:operation/dc_usb_output
    :alt: Fonction de sortie CC et USB.
    :width: 360px
 
@@ -97,7 +97,7 @@ LAMPE LED MARCHE/ARRÊT
 
 La lampe LED dispose de deux modes: mode éclairage et mode SOS. Dans n’importe quel mode, appuyez et maintenez sur le bouton pour éteindre la lumière.
 
-.. image:: _assets/templates/word_template/common_assets/operation/led_light.png
+.. image:: asset:operation/led_light
    :alt: Fonction de la lampe LED.
    :width: 360px
 
