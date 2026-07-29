@@ -5,7 +5,11 @@ from pathlib import Path
 from dataclasses import dataclass
 from xml.sax.saxutils import escape
 
-from .character_metrics import signal_label_metrics
+from .character_metrics import (
+    fit_symbol_body_metrics,
+    signal_label_metrics,
+    with_character_metrics,
+)
 from .layout_est import est_table_height, template_symbol_split
 from .loaders import symbol_copy
 from .page_objects import (
@@ -270,6 +274,7 @@ def _symbols_icon_table(
     include_header: bool = True,
     row_heights: list[float] | None = None,
     icon_col_width: float | None = None,
+    fit_body_to_row: bool = False,
 ) -> str:
     copy = symbol_copy(lang)
     header = [{"figure": "", "text": copy["meaning"], "header": True}]
@@ -351,12 +356,27 @@ def _symbols_icon_table(
                 + icon + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
             right_xml = writer._psr("HB Symbol Body", row["text"], terminal=True)
             if lang in {"fr", "es"}:
-                right_xml = right_xml.replace(
-                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                    'PointSize="5.6" Leading="6.15" HorizontalScale="96"',
-                    1,
-                )
+                if fit_body_to_row and row_heights is not None:
+                    size, leading, scale = fit_symbol_body_metrics(
+                        writer.params,
+                        lang,
+                        row["text"],
+                        width - left_col - 9.0,
+                        row_heights[ri],
+                    )
+                    right_xml = with_character_metrics(
+                        right_xml,
+                        point_size=size,
+                        leading=leading,
+                        horizontal_scale=scale,
+                    )
+                else:
+                    right_xml = right_xml.replace(
+                        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+                        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                        'PointSize="5.6" Leading="6.15" HorizontalScale="96"',
+                        1,
+                    )
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
                                   fill="Color/HB Bg K05",
                                   top=2 if row.get("header") else 0,

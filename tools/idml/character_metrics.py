@@ -58,6 +58,54 @@ def signal_label_metrics(
     return round(fitted_size, 3), round(fitted_leading, 3), round(horizontal_scale, 3)
 
 
+def fit_symbol_body_metrics(
+    params: dict[str, tuple[str, str]],
+    lang: str,
+    text: str,
+    available_width: float,
+    available_height: float,
+) -> tuple[float, float, float]:
+    """Fit localized continuation-symbol copy inside its fixed row."""
+    language = (lang or "en").strip().casefold().replace("_", "-").split("-", 1)[0]
+    base_size = param_pt(params, "type_symbol_body_font_size", 5.6)
+    base_leading = min(
+        param_pt(params, "type_symbol_body_font_leading", 6.5),
+        base_size * 1.1,
+    )
+    if language not in {"fr", "es"} or available_height <= 0:
+        return round(base_size, 3), round(base_leading, 3), 100.0
+
+    available = max(1.0, available_width)
+    scale = 96.0
+
+    def line_count(size: float) -> int:
+        # Gilroy's localized lowercase/diacritic mix is wider than the
+        # generic prose estimate; use a conservative body-cell measure so
+        # InDesign's native shaping does not turn the final line into
+        # overset content.
+        per_line = max(1, int(available / (0.60 * size * scale / 100.0)))
+        return sum(
+            max(1, (len(part) + per_line - 1) // per_line)
+            for part in str(text or "").split("\n")
+        )
+
+    # Keep the ordinary localized body size whenever it fits.  Otherwise
+    # reduce it in deterministic steps; this keeps long WEEE copy editable
+    # inside the approved continuation row instead of leaving it overset.
+    size = base_size
+    min_size = max(3.6, base_size * 0.7)
+    while size >= min_size:
+        leading = base_leading * size / max(0.01, base_size)
+        required = line_count(size) * leading + 8.0
+        if required <= available_height:
+            return round(size, 3), round(leading, 3), scale
+        size -= 0.1
+
+    size = min_size
+    leading = base_leading * size / max(0.01, base_size)
+    return round(size, 3), round(leading, 3), scale
+
+
 def fit_signal_label_xml(
     xml: str,
     params: dict[str, tuple[str, str]],

@@ -2624,6 +2624,34 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_left"])
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_right"])
 
+    def test_localized_symbol_continuation_fits_long_copy_inside_row(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        long_copy = (
+            "Este símbolo indica que el producto no debe desecharse con los "
+            "residuos domésticos. En su lugar, debe llevarse a un punto de "
+            "recogida designado para su correcto reciclaje.\n"
+            "El desecho y reciclaje adecuados ayudan a proteger el "
+            "medioambiente. Para más información, póngase en contacto con "
+            "el distribuidor del producto."
+        )
+        w.add_fcc_inbox_page(
+            "st_fcc_es_symbol_fit",
+            [],
+            [("h1", "CONTENIDO DE LA CAJA")],
+            ROOT,
+            23,
+            symbol_overflow=([{"figure": "", "text": "Explosivo"}], [
+                {"figure": "", "text": long_copy},
+            ]),
+            lang="es",
+        )
+        story = dict(w.stories)["st_fcc_es_symbol_fit_symbols_right"]
+        self.assertIn(long_copy.split("\n", 1)[0], story)
+        self.assertIn('PointSize="5.1"', story)
+        self.assertIn('HorizontalScale="96"', story)
+        self.assertIn('SingleRowHeight="68" MinimumHeight="68" AutoGrow="true"', story)
+
     def test_spanish_symbol_overflow_uses_shared_inbox_layout_profile(self) -> None:
         import xml.etree.ElementTree as ET
 

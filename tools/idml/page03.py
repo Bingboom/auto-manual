@@ -292,6 +292,7 @@ def _symbol_continuation_objects(
             lang,
             include_header=False,
             row_heights=[table_h / len(rows)] * len(rows),
+            fit_body_to_row=True,
         )
         writer._table_story(story_id, f"Symbol icons continuation {side}", table)
         story_ids.append(story_id)
