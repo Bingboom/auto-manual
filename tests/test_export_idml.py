@@ -3253,7 +3253,7 @@ class ExportIdmlTests(unittest.TestCase):
 
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
-            'Anchor="0 -327.75"', dict(w.stories)["st_lcd"])
+            'Anchor="0 -344.056"', dict(w.stories)["st_lcd"])
         self.assertNotIn('Anchor="0 -480"', dict(w.stories)["st_lcd"])
         self.assertIn('SingleRowHeight="17.25"', continuation)
 
@@ -3292,7 +3292,7 @@ class ExportIdmlTests(unittest.TestCase):
 
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
-            'Anchor="0 -327.75"', dict(w.stories)["st_lcd"])
+            'Anchor="0 -344.056"', dict(w.stories)["st_lcd"])
         self.assertNotIn('Anchor="0 -480"', dict(w.stories)["st_lcd"])
         self.assertIn('SingleRowHeight="17.25"', continuation)
 

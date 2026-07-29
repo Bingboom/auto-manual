@@ -400,6 +400,7 @@ idml_lcd_first_panel_height,280.777,pt,IDML English LCD first-segment shell heig
 lang_fr_idml_lcd_first_panel_height,304,pt,French IDML LCD first-segment import allowance
 lang_es_idml_lcd_first_panel_height,304,pt,Spanish IDML LCD first-segment import allowance
 idml_lcd_continuation_panel_height,480,pt,IDML LCD continuation import allowance before native fitting
+idml_lcd_continuation_bottom_gap,16.306,pt,IDML LCD continuation shell bottom safety gap below governed rows
 idml_lcd_frame_bottom_extra,36,pt,IDML LCD linked-frame import allowance below the body margin
 idml_lcd_hero_max_height,159,pt,IDML English LCD overview art height
 idml_lcd_hero_horizontal_scale,1,ratio,IDML English LCD overview art horizontal scale

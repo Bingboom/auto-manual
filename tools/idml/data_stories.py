@@ -250,10 +250,16 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                 ),
             )
         # Governed rows carry the compact starting heights.  Use their sum for
-        # the source shell; indesign_finalize.jsx grows it again after
+        # the source shell; keep the component's terminal bottom safety area
+        # outside the editable rows so the final content row never touches the
+        # rounded bottom arc. InDesign finalize may grow the table again after
         # AutoGrow recomposes a long row.
         if row_heights is not None:
-            panel_height = sum(row_heights)
+            panel_height = sum(row_heights) + param_pt(
+                writer.params,
+                "idml_lcd_continuation_bottom_gap",
+                0.0,
+            )
         panel = rounded_table_panel(
             writer._add_story_parts,
             writer.params,
