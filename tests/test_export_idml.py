@@ -3011,7 +3011,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('PointSize="5.5" Leading="6"', description_cell)
         self.assertNotIn('PointSize="5.8"', description_cell)
 
-    def test_lcd_governed_continuation_rows_preserve_fixed_height_budget(self) -> None:
+    def test_lcd_governed_continuation_rows_use_compact_auto_grow_minimum(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         figure = (
             "tests/fixtures/phase2/_attachments/lcd_icons/"
@@ -3033,7 +3033,7 @@ class ExportIdmlTests(unittest.TestCase):
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
             'SingleRowHeight="17.25" MinimumHeight="17.25" '
-            'AutoGrow="false"',
+            'AutoGrow="true"',
             continuation,
         )
         self.assertIn('Anchor="0 -9.17"', continuation)
@@ -3062,8 +3062,57 @@ class ExportIdmlTests(unittest.TestCase):
                 continuation = dict(writer.stories)[
                     f"st_anchor_lcd_table_{language}_1"
                 ]
-                self.assertEqual(19, continuation.count('AutoGrow="false"'))
-                self.assertNotIn('AutoGrow="true"', continuation)
+                self.assertEqual(19, continuation.count('AutoGrow="true"'))
+                self.assertNotIn('AutoGrow="false"', continuation)
+
+    def test_lcd_governed_rows_move_to_next_page_after_compaction(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": (
+                    "A deliberately long translated description that must "
+                    "move later rows to the next page. " * 20
+                    if index == 8 else f"Description {index}"
+                ),
+                **({"row_height_pt": "17.25"} if index >= 8 else {}),
+            }
+            for index in range(1, 27)
+        ]
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        stories = dict(w.stories)
+        self.assertGreater(w.lcd_segment_counts["en"], 2)
+        self.assertIn("st_anchor_lcd_table_en_2", stories)
+        self.assertIn('StartParagraph="NextPage"', stories["st_lcd"])
+        self.assertIn('AutoGrow="true"', stories["st_anchor_lcd_table_en_1"])
+
+    def test_lcd_single_oversized_governed_row_stays_growable(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": (
+                    "A single translated row that is larger than one nominal "
+                    "continuation page. " * 500
+                    if index == 8 else f"Description {index}"
+                ),
+                **({"row_height_pt": "17.25"} if index >= 8 else {}),
+            }
+            for index in range(1, 27)
+        ]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        stories = dict(writer.stories)
+        self.assertGreater(writer.lcd_segment_counts["en"], 2)
+        self.assertIn("st_anchor_lcd_table_en_2", stories)
+        self.assertIn('AutoGrow="true"', stories["st_anchor_lcd_table_en_2"])
 
     def test_lcd_first_shell_matches_approved_reference_table_height(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

@@ -862,8 +862,15 @@ it does not silently emit a broken InDesign link. Rounded native tables remain
 editable: a rounded background and a square table frame are grouped, and only
 cell text receives the shared one-character inset. The finalizer fits LCD and
 Meaning of Symbols shells to their composed row heights. The 26-row LCD table
-stays at 7 rows plus 19 rows per language with a 5.6 mm maximum icon box. An
-approved LCD presentation profile may select positive fixed row heights by
+normally stays at 7 rows plus 19 rows per language with a 5.6 mm maximum icon
+box. For governed LCD rows, the renderer first compacts short rows to a
+deterministic content minimum and gives the recovered height to rows that need
+more wrapped lines; each row is still emitted as an editable auto-growing row
+so InDesign can honor the actual installed font metrics. If the complete
+minimums still exceed the page budget, whole rows are moved to the next LCD
+segment rather than allowing an overset row to remain on the current page. A
+single indivisible row may grow beyond one segment's nominal budget. An
+approved LCD presentation profile may select positive starting heights by
 language and stable source number; the renderer rejects a partially governed
 segment instead of mixing those values with InDesign-native growth. Targets
 without that optional geometry retain native editable auto-growing rows.

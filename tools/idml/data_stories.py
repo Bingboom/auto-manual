@@ -39,13 +39,12 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
         else "comp_lcd_translated_continuation_segment_rows",
         ("19", "count"),
     )[0]))
-    segments = split_lcd_table_rows(
+    raw_segments = split_lcd_table_rows(
         rows,
         lang=lang,
         first_segment_rows=first_limit,
         continuation_segment_rows=continuation_limit,
     )
-    writer.lcd_segment_counts[lang] = len(segments)
     text_indent = table_text_indent(writer.params)
     governed_icon_line_reserve = component_param_pt(
         writer.params,
@@ -54,15 +53,9 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
         strict=writer.strict_component_assets,
         owner="LCD governed row icon fit",
     )
-    table_panels: list[str] = []
-    global_ri = 0
-    for segment_index, segment in enumerate(segments):
-        cols, icon_pt, pad = _lcd.layout_tokens(
-            writer, body_w, segment_index=segment_index, lang=lang)
-        if lang == "en":
-            icon_pt = min(icon_pt, 23.0)
+    def _vertical_pad(segment_index: int) -> float:
         if segment_index > 0:
-            vertical_pad = param_pt(
+            return param_pt(
                 writer.params,
                 f"lang_{lang}_idml_lcd_continuation_vertical_padding",
                 param_pt(
@@ -75,26 +68,68 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                     ),
                 ),
             )
-        elif is_english:
-            vertical_pad = param_pt(
+        if is_english:
+            return param_pt(
                 writer.params,
                 "idml_lcd_first_vertical_padding",
                 param_pt(writer.params, "comp_lcd_first_vertical_padding", 1.6),
             )
-        else:
-            vertical_pad = param_pt(
+        return param_pt(
+            writer.params,
+            f"lang_{lang}_idml_lcd_translated_first_vertical_padding",
+            param_pt(
                 writer.params,
-                f"lang_{lang}_idml_lcd_translated_first_vertical_padding",
+                "idml_lcd_translated_first_vertical_padding",
                 param_pt(
                     writer.params,
-                    "idml_lcd_translated_first_vertical_padding",
-                    param_pt(
-                        writer.params,
-                        "comp_lcd_translated_first_vertical_padding",
-                        0.7,
-                    ),
+                    "comp_lcd_translated_first_vertical_padding",
+                    0.7,
                 ),
+            ),
+        )
+
+    prepared_segments: list[tuple[list[dict], list[float] | None]] = []
+    for raw_index, raw_segment in enumerate(raw_segments):
+        governed_heights = [
+            str(row.get("row_height_pt") or "").strip() for row in raw_segment
+        ]
+        if not any(governed_heights):
+            prepared_segments.append((raw_segment, None))
+            continue
+        if not all(governed_heights):
+            raise ValueError(
+                "LCD segment mixes governed and InDesign-native row heights"
             )
+        base_heights = [float(height) for height in governed_heights]
+        raw_cols, _, raw_pad = _lcd.layout_tokens(
+            writer, body_w, segment_index=raw_index, lang=lang)
+        prepared_segments.extend(
+            (
+                chunk_rows,
+                chunk_heights,
+            )
+            for chunk_rows, chunk_heights in _lcd.split_governed_rows(
+                writer,
+                raw_segment,
+                base_heights,
+                raw_cols,
+                padding=raw_pad,
+                vertical_pad=_vertical_pad(raw_index),
+                text_indent=text_indent,
+                lang=lang,
+                segment_index=raw_index,
+                governed_icon_line_reserve=governed_icon_line_reserve,
+            )
+        )
+    writer.lcd_segment_counts[lang] = len(prepared_segments)
+    table_panels: list[str] = []
+    global_ri = 0
+    for segment_index, (segment, row_heights) in enumerate(prepared_segments):
+        cols, icon_pt, pad = _lcd.layout_tokens(
+            writer, body_w, segment_index=segment_index, lang=lang)
+        if lang == "en":
+            icon_pt = min(icon_pt, 23.0)
+        vertical_pad = _vertical_pad(segment_index)
         tid = (
             "tbl_lcd" if segment_index == 0 and lang == "en"
             else f"tbl_lcd_{lang}" if segment_index == 0
@@ -110,13 +145,15 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             governed_icon_size = str(row.get("icon_size_pt") or "").strip()
             if governed_icon_size:
                 row_icon_pt = min(row_icon_pt, max(4.0, float(governed_icon_size)))
-            governed_height = str(row.get("row_height_pt") or "").strip()
+            governed_height = (
+                f"{row_heights[local_ri]:g}"
+                if row_heights is not None
+                else str(row.get("row_height_pt") or "").strip()
+            )
             if governed_height:
-                # Governed LCD rows form one fixed-height table budget.  Fit
-                # the inline icon inside that budget, including the 0.6 pt
-                # baseline shift applied below; otherwise InDesign expands a
-                # visually sparse row and can push the final row past the
-                # rounded shell.
+                # Fit the inline icon inside the compact row minimum,
+                # including the 0.6 pt baseline shift applied below.  The
+                # table row remains AutoGrow-enabled for real font metrics.
                 row_icon_pt = min(
                     icon_pt,
                     max(
@@ -169,18 +206,6 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                         'RowSpan="1"', f'RowSpan="{row_span}"', 1)
                 cells.append(cell_xml)
             global_ri += 1
-        governed_heights = [
-            str(row.get("row_height_pt") or "").strip() for row in segment
-        ]
-        row_heights: list[float] | None = None
-        if any(governed_heights):
-            if not all(governed_heights):
-                raise ValueError(
-                    "LCD segment mixes governed and InDesign-native row heights"
-                )
-            row_heights = [float(height) for height in governed_heights]
-            if any(height <= 0 for height in row_heights):
-                raise ValueError("LCD governed row heights must be positive")
         table = writer._component_table(
             tid,
             list(cols),
@@ -188,10 +213,11 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             n_rows=len(segment),
             role="data",
             row_heights=row_heights,
-            # A complete governed height profile is the fixed budget for the
-            # rounded shell.  Allowing native row growth makes short rows
-            # expand and pushes the final row outside that fixed shell.
-            auto_grow_rows=False,
+            # The computed height is the compact starting minimum.  InDesign
+            # may grow a long row when its installed font metrics need one
+            # more line; indesign_finalize.jsx then grows the rounded shell
+            # to the recomposed table height.
+            auto_grow_rows=row_heights is not None,
         )
         for column in range(3):
             table = _tb.fill_column_xml(table, column, "Color/HB Bg K05")
@@ -213,7 +239,7 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                     writer.params, "comp_lcd_continuation_panel_height", 465.0),
             )
         segment_limit = first_limit if segment_index == 0 else continuation_limit
-        if segment_index > 0 and len(segment) < segment_limit:
+        if row_heights is None and segment_index > 0 and len(segment) < segment_limit:
             panel_height = min(
                 panel_height,
                 max(
@@ -223,11 +249,10 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                     + param_pt(writer.params, "comp_lcd_partial_panel_extra", 4.0),
                 ),
             )
-        # Approved continuation rows already carry the native InDesign row
-        # heights.  Use their sum for the source shell as well; otherwise the
-        # import allowance leaves a rectangular grey tail below the table
-        # until the optional InDesign finalizer runs.
-        if row_heights is not None and len(segment) >= segment_limit:
+        # Governed rows carry the compact starting heights.  Use their sum for
+        # the source shell; indesign_finalize.jsx grows it again after
+        # AutoGrow recomposes a long row.
+        if row_heights is not None:
             panel_height = sum(row_heights)
         panel = rounded_table_panel(
             writer._add_story_parts,
@@ -238,7 +263,7 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             width=body_w,
             height=panel_height,
             n_cols=4,
-            terminal=segment_index == len(segments) - 1,
+            terminal=segment_index == len(prepared_segments) - 1,
             fill="Color/Paper",
             stroke="Color/HB Brand Dark",
             start_next_page=segment_index > 0,
