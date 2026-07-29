@@ -274,8 +274,8 @@ class IdmlWriter:
         )
 
     def _symbol_signal_bar(self, tid: str, label: str,
-                           bundle_root: Path) -> str:
-        return _pages._symbol_signal_bar(self, tid, label, bundle_root)
+                           bundle_root: Path, lang: str = "en") -> str:
+        return _pages._symbol_signal_bar(self, tid, label, bundle_root, lang)
 
     def _symbols_signal_table(self, tid: str,
                               signals: list[tuple[str, str]], width: float,

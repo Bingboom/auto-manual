@@ -5,6 +5,7 @@ from pathlib import Path
 from dataclasses import dataclass
 from xml.sax.saxutils import escape
 
+from .character_metrics import signal_label_metrics
 from .layout_est import est_table_height, template_symbol_split
 from .loaders import symbol_copy
 from .page_objects import (
@@ -107,7 +108,9 @@ class SafetySymbolsPageStyle:
         )
 
 
-def _localized_signal_label_bar(writer, tid: str, label: str) -> str:
+def _localized_signal_label_bar(
+    writer, tid: str, label: str, lang: str = "en",
+) -> str:
     style_ref = paragraph_style_ref("HB Notice Side Label")
     badge_w = component_param_pt(
         writer.params,
@@ -146,13 +149,35 @@ def _localized_signal_label_bar(writer, tid: str, label: str) -> str:
         icon = writer._image_cell_content(f"{tid}icon", asset, icon_w, icon_h)
     elif writer.strict_component_assets:
         raise FileNotFoundError(f"symbol signal badge asset missing: {asset}")
-    content = (
-        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
-        '    <CharacterStyleRange '
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'FillColor="Color/Paper">{icon}<Content> {escape(label)}</Content>'
-        '</CharacterStyleRange>\n  </ParagraphStyleRange>\n'
-    )
+    language = (lang or "en").split("-", 1)[0].casefold()
+    if language in {"fr", "es"}:
+        label_size, label_leading, label_scale = signal_label_metrics(
+            writer.params,
+            language,
+            label,
+            badge_w - 3.0 - 2.0 - icon_w - 2.0,
+        )
+        content = (
+            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
+            '    <CharacterStyleRange '
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+            f'{icon}</CharacterStyleRange>\n'
+            '    <CharacterStyleRange '
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            'FillColor="Color/Paper" FontStyle="Bold" '
+            f'PointSize="{label_size:g}" HorizontalScale="{label_scale:g}">'
+            f'<Properties><Leading type="unit">{label_leading:g}</Leading></Properties>'
+            f'<Content> {escape(label)}</Content></CharacterStyleRange>\n'
+            '  </ParagraphStyleRange>\n'
+        )
+    else:
+        content = (
+            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
+            '    <CharacterStyleRange '
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            f'FillColor="Color/Paper">{icon}<Content> {escape(label)}</Content>'
+            '</CharacterStyleRange>\n  </ParagraphStyleRange>\n'
+        )
     badge_cell = writer._cell(
         f"{tid}c0",
         "0:0",
@@ -175,9 +200,11 @@ def _localized_signal_label_bar(writer, tid: str, label: str) -> str:
     return writer._wrap_table_paragraph(badge, True, span_columns=False)
 
 
-def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> str:
+def _symbol_signal_bar(
+    writer, tid: str, label: str, bundle_root: Path, lang: str = "en",
+) -> str:
     del bundle_root
-    return _localized_signal_label_bar(writer, tid, label)
+    return _localized_signal_label_bar(writer, tid, label, lang)
 
 
 def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
@@ -202,7 +229,9 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
             left_xml = writer._psr("HB Symbol Header", left, terminal=True)
             right_xml = writer._psr("HB Symbol Header", right, terminal=True)
         else:
-            left_xml = writer._symbol_signal_bar(f"{tid}sig{ri}", left, bundle_root)
+            left_xml = writer._symbol_signal_bar(
+                f"{tid}sig{ri}", left, bundle_root, lang,
+            )
             right_xml = writer._psr("HB Spec Value", right, terminal=True)
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
                                   fill="Color/HB Bg K05",

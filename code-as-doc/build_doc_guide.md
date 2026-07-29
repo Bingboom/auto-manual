@@ -876,7 +876,9 @@ segment instead of mixing those values with InDesign-native growth. Targets
 without that optional geometry retain native editable auto-growing rows.
 On the combined maintenance/symbols page, the safety-tail panels use the
 approved dark warning asset. Signal badges are one-cell native tables with a
-linked white warning symbol and editable localized text; symbol icon size,
+linked white warning symbol and editable localized text; French and Spanish
+signal labels use the compact reference density, then fit horizontally to the
+available badge width so long labels remain on one line. Symbol icon size,
 icon-column width, and the gap between the two native tables resolve from the
 IDML symbol tokens in `data/layout_params.csv`.
 WARNING, CAUTION, NOTE, and TIP labels remain source-owned and are emitted
