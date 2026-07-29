@@ -227,8 +227,44 @@ def _row_text_layers(
         strict=ctx.strict_component_assets and language in {"en", "fr", "es"},
         owner="localized operation row label",
     )
+    stem = Path(ref).stem.lower()
+    row_x_offset = 0.0
+    row_y_offsets = [0.0, 0.0]
+    if "main_power" in stem:
+        row_y_offsets = [
+            component_param_pt(
+                ctx.params,
+                "idml_operation_main_power_on_y_offset",
+                0.0,
+                strict=ctx.strict_component_assets,
+                owner="main-power On row position",
+            ),
+            component_param_pt(
+                ctx.params,
+                "idml_operation_main_power_off_y_offset",
+                0.0,
+                strict=ctx.strict_component_assets,
+                owner="main-power Off row position",
+            ),
+        ]
+    elif "dc_usb" in stem or "dc-usb" in stem:
+        row_x_offset = component_param_pt(
+            ctx.params,
+            "idml_operation_dc_usb_x_offset",
+            0.0,
+            strict=ctx.strict_component_assets,
+            owner="DC/USB operation-row position",
+        )
+    else:
+        row_y_offsets[1] = component_param_pt(
+            ctx.params,
+            "idml_operation_ac_output_off_y_offset",
+            0.0,
+            strict=ctx.strict_component_assets,
+            owner="AC-output Off row position",
+        )
     for index, (label, instruction) in enumerate(rows):
-        top = first_top + index * gap
+        top = first_top + index * gap + row_y_offsets[min(index, 1)]
         frames.append(_editable_text_frame(
             ctx,
             story_id=f"st_anchor_oppanel_row_{index}_{tid}",
@@ -244,9 +280,9 @@ def _row_text_layers(
                 ),
                 psr("HB Body", instruction, terminal=True),
             ],
-            left=left,
+            left=left + row_x_offset,
             top=top,
-            right=left + width,
+            right=left + row_x_offset + width,
             bottom=top + frame_h,
             auto_height=True,
         ))
@@ -464,6 +500,7 @@ def _special_panel_paragraph(
     terminal: bool,
     space_after: float = 0.0,
     anchor_x_offset: float = 0.0,
+    anchor_y_offset: float = 0.0,
 ) -> tuple[str, float]:
     """Wrap a measured editable group in the operation-panel outline."""
     from .. import page_objects as _po
@@ -495,6 +532,7 @@ def _special_panel_paragraph(
         valign="TopAlign",
         auto_height=False,
         anchor_x_offset=anchor_x_offset,
+        anchor_y_offset=anchor_y_offset,
     )
     if space_after:
         xml = xml.replace(
@@ -520,6 +558,84 @@ def _render_energy_saving_panel(
     action = str(spec.get("action") or "").strip()
     mode_label = str(spec.get("mode_label") or "On/Off").strip()
     duration = str(spec.get("duration") or "3s").strip()
+
+    mode_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_mode_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving On/Off position",
+    )
+    mode_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_mode_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving On/Off position",
+    )
+    duration_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_duration_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving duration position",
+    )
+    duration_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_duration_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving duration position",
+    )
+    clock_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_clock_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving clock position",
+    )
+    clock_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_clock_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving clock position",
+    )
+    guidance_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_guidance_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving guidance-panel position",
+    )
+    guidance_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_guidance_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving guidance-panel position",
+    )
+    action_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_action_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving action-copy position",
+    )
+    action_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_action_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving action-copy position",
+    )
+    panel_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_panel_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving whole-panel position",
+    )
 
     action_width = (width - 10.0) - width * 0.682
     action_leading = 6.0
@@ -560,10 +676,10 @@ def _render_energy_saving_panel(
         ))
     shapes.append(_shape(
         shape_id=f"oppanel_energy_guidance_bg_{tid}",
-        left=7.5,
-        top=grey_top,
-        right=width - 7.5,
-        bottom=grey_bottom,
+        left=7.5 + guidance_x_offset,
+        top=grey_top + guidance_y_offset,
+        right=width - 7.5 + guidance_x_offset,
+        bottom=grey_bottom + guidance_y_offset,
         radius=7.0,
         fill="Color/HB Bg K05",
     ))
@@ -572,12 +688,12 @@ def _render_energy_saving_panel(
     if clock is not None and clock.exists():
         shapes.append(_positioned_image(
             f"oppanel_energy_clock_{tid}", clock, 10.5, 10.5,
-            left=width * 0.601,
-            bottom=-12.0,
+            left=width * 0.601 + clock_x_offset,
+            bottom=-12.0 + clock_y_offset,
         ))
 
     text_layers: list[str] = []
-    text_top = grey_top + 4.8
+    text_top = grey_top + 4.8 + guidance_y_offset
     for index, text in enumerate(guidance[:2]):
         frame_height = guidance_heights[index]
         text_layers.append(_editable_text_frame(
@@ -588,9 +704,9 @@ def _render_energy_saving_panel(
             parts=[_sized_psr(
                 "HB Body", text, size=6.2, leading=leading, terminal=True,
             )],
-            left=14.0,
+            left=14.0 + guidance_x_offset,
             top=text_top,
-            right=width - 14.0,
+            right=width - 14.0 + guidance_x_offset,
             bottom=text_top + frame_height,
             auto_height=True,
         ))
@@ -606,10 +722,10 @@ def _render_energy_saving_panel(
                 "HB Title L2", mode_label, size=10.2, leading=11.2,
                 terminal=True,
             )],
-            left=width * 0.68,
-            top=-29.5 - action_delta + mode_vertical_shift,
-            right=width * 0.86,
-            bottom=-16.0 - action_delta + mode_vertical_shift,
+            left=width * 0.68 + mode_x_offset,
+            top=-29.5 - action_delta + mode_vertical_shift + mode_y_offset,
+            right=width * 0.86 + mode_x_offset,
+            bottom=-16.0 - action_delta + mode_vertical_shift + mode_y_offset,
             auto_height=True,
         ),
         _editable_text_frame(
@@ -620,10 +736,10 @@ def _render_energy_saving_panel(
             parts=[_sized_psr(
                 "HB Body", duration, size=7.2, leading=8.0, terminal=True,
             )],
-            left=width * 0.642,
-            top=-21.5,
-            right=width * 0.69,
-            bottom=-9.0,
+            left=width * 0.642 + duration_x_offset,
+            top=-21.5 + duration_y_offset,
+            right=width * 0.69 + duration_x_offset,
+            bottom=-9.0 + duration_y_offset,
             valign="CenterAlign",
         ),
         _editable_text_frame(
@@ -635,10 +751,10 @@ def _render_energy_saving_panel(
                 "HB Body", action, size=6.0, leading=action_leading,
                 terminal=True,
             )],
-            left=width * 0.682,
-            top=-6.0 - action_height,
-            right=width - 10.0,
-            bottom=-6.0,
+            left=width * 0.682 + action_x_offset,
+            top=-6.0 - action_height + action_y_offset,
+            right=width - 10.0 + action_x_offset,
+            bottom=-6.0 + action_y_offset,
         ),
     ])
     return _special_panel_paragraph(
@@ -650,6 +766,7 @@ def _render_energy_saving_panel(
         height=height,
         terminal=terminal,
         space_after=2.0,
+        anchor_y_offset=panel_y_offset,
     )
 
 

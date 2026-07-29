@@ -6,6 +6,7 @@ these as a plain "[EN] IMPORTANT" h2 before this component existed.
 """
 from __future__ import annotations
 
+from ..page_objects import anchored_panel_paragraph
 from ..params import param_pt
 from ..primitives import cell, component_table, psr, wrap_table_paragraph
 from .base import RenderContext
@@ -50,18 +51,48 @@ def render_langtag(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     tag_vertical_inset = param_pt(
         ctx.params, "idml_preface_tag_vertical_inset", 1.1,
     )
+    tag_height = param_pt(
+        ctx.params, "idml_preface_tag_height", 2.9 * 72.0 / 25.4,
+    )
+    tag_radius = param_pt(
+        ctx.params, "idml_preface_tag_corner_radius", 1.25,
+    )
     tag = _with_baseline_shift(
         psr("HB Preface Tag", lang, terminal=True), tag_shift,
     )
     heading = _with_baseline_shift(
         psr("HB Preface Title", title, terminal=True), title_shift,
     )
+    if ctx.add_story is not None:
+        tag = anchored_panel_paragraph(
+            ctx.add_story,
+            f"st_anchor_langbadge_{tid}",
+            f"{lang} preface language tag",
+            [tag],
+            tag_w,
+            tag_height,
+            terminal=True,
+            fill="Color/HB Brand Dark",
+            stroke=None,
+            radius=tag_radius,
+            inset=(tag_vertical_inset, tag_left, tag_vertical_inset, tag_left),
+            valign="CenterAlign",
+        )
+        tag_cell = cell(
+            f"{tid}c0", "0:0", tag,
+            stroke=False, top=0, bottom=0, left=0, right=0,
+            valign="CenterAlign",
+        )
+    else:
+        tag_cell = cell(
+            f"{tid}c0", "0:0", tag,
+            fill="Color/HB Brand Dark", stroke=False,
+            top=tag_vertical_inset, bottom=tag_vertical_inset,
+            left=tag_left, right=tag_left,
+            valign="CenterAlign",
+        )
     cells = [
-        cell(f"{tid}c0", "0:0", tag,
-             fill="Color/HB Brand Dark", stroke=False,
-             top=tag_vertical_inset, bottom=tag_vertical_inset,
-             left=tag_left, right=2,
-             valign="CenterAlign"),
+        tag_cell,
         cell(f"{tid}c1", "1:0", heading,
              stroke=False, top=0, bottom=0, left=title_left,
              right=0, valign="CenterAlign"),
@@ -77,8 +108,5 @@ def render_langtag(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         f'<ParagraphStyleRange SpaceBefore="{header_before:g}" '
         f'SpaceAfter="{body_gap:g}" ',
         1,
-    )
-    tag_height = param_pt(
-        ctx.params, "idml_preface_tag_height", 2.9 * 72.0 / 25.4,
     )
     return paragraph, header_before + tag_height + body_gap

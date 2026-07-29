@@ -66,8 +66,8 @@ def tail_label_metrics(
 ) -> tuple[float, float, float]:
     """Fit a safety-tail warning label without borrowing signal-table sizing."""
     language = (lang or "en").strip().casefold().replace("_", "-").split("-", 1)[0]
-    base_size = 9.85
-    base_leading = 10.2
+    base_size = param_pt(params, "idml_safety_tail_label_font_size", 9.85)
+    base_leading = param_pt(params, "idml_safety_tail_label_font_leading", 10.2)
     if language == "en":
         return base_size, base_leading, 100.0
 

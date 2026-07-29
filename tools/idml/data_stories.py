@@ -136,6 +136,46 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             else f"tbl_lcd_cont_{lang}"
         )
         cells: list[str] = []
+        terminal_fill = 0.0
+        if segment_index == 0:
+            terminal_fill = param_pt(
+                writer.params,
+                f"lang_{lang}_idml_lcd_first_terminal_fill",
+                param_pt(writer.params, "idml_lcd_first_terminal_fill", 0.0),
+            )
+        elif row_heights is not None:
+            # Every continuation frame is a complete page-owned table.  Its
+            # last row absorbs the exact remaining page depth so the rounded
+            # table closes on the linked-frame bottom instead of leaving a
+            # white strip below it.  The inline anchor has a small native
+            # baseline offset after IDML import; subtract it from the budget.
+            visual_bottom = writer.page_h - param_pt(
+                writer.params,
+                "idml_lcd_visual_bottom_gap",
+                0.850394,
+            )
+            continuation_top = param_pt(
+                writer.params,
+                f"lang_{lang}_idml_lcd_continuation_page_top",
+                param_pt(
+                    writer.params,
+                    "idml_lcd_continuation_page_top",
+                    writer.m_t,
+                ),
+            )
+            target_height = (
+                visual_bottom
+                - continuation_top
+                - param_pt(
+                    writer.params,
+                    "idml_lcd_inline_anchor_offset",
+                    0.375,
+                )
+            )
+            terminal_fill = max(0.0, target_height - sum(row_heights))
+        if row_heights is not None and terminal_fill:
+            row_heights = list(row_heights)
+            row_heights[-1] += terminal_fill
         for local_ri, row in enumerate(segment):
             label_size, label_leading, body_size, body_leading = (
                 _lcd.typography_tokens(
@@ -195,9 +235,16 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                 if ci == 0 and row.get("suppress_number") == "true":
                     continue
                 row_span = int(row.get("number_row_span", "1")) if ci == 0 else 1
+                terminal_inset = (
+                    terminal_fill / 2.0
+                    if row_heights is None
+                    and local_ri == len(segment) - 1
+                    else 0.0
+                )
                 cell_xml = writer._cell(
                     f"{tid}c{global_ri}_{ci}", f"{ci}:{local_ri}", content,
-                    top=vertical_pad, bottom=vertical_pad,
+                    top=vertical_pad + terminal_inset,
+                    bottom=vertical_pad + terminal_inset,
                     left=text_indent if ci >= 2 else pad,
                     right=pad,
                     valign="CenterAlign")
@@ -249,17 +296,15 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                     + param_pt(writer.params, "comp_lcd_partial_panel_extra", 4.0),
                 ),
             )
-        # Governed rows carry the compact starting heights.  Use their sum for
-        # the source shell; keep the component's terminal bottom safety area
-        # outside the editable rows so the final content row never touches the
-        # rounded bottom arc. InDesign finalize may grow the table again after
-        # AutoGrow recomposes a long row.
+        if row_heights is None and segment_index == 0:
+            panel_height += terminal_fill
+        # A complete governed table owns the full shell height: short rows keep
+        # their compact fixed budget and the final row must close directly
+        # against the rounded bottom border.  Never add a terminal spacer below
+        # the table. InDesign finalize may grow the shell together with the
+        # table if native font metrics make a real row taller.
         if row_heights is not None:
-            panel_height = sum(row_heights) + param_pt(
-                writer.params,
-                "idml_lcd_continuation_bottom_gap",
-                0.0,
-            )
+            panel_height = sum(row_heights)
         panel = rounded_table_panel(
             writer._add_story_parts,
             writer.params,

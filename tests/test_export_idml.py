@@ -2146,6 +2146,10 @@ class ExportIdmlTests(unittest.TestCase):
             'BaselineShift="0.68"',
             stories["st_safety_symbols_tail_warning"],
         )
+        self.assertIn(
+            'Anchor="25 -21.739"',
+            stories["st_safety_symbols_tail_warning"],
+        )
         self.assertIn(">DANGER<", stories["st_safety_symbols_tail_danger"])
         self.assertIn(
             "warning_triangle_dark.svg",
@@ -2163,6 +2167,11 @@ class ExportIdmlTests(unittest.TestCase):
             'Name="黑底段落-文本"', 1)[1].split("</ParagraphStyle>", 1)[0]
         self.assertIn('PointSize="9.9"', side_label)
         self.assertIn('Justification="CenterAlign"', side_label)
+        tail_label = w.styles_xml().split(
+            'Name="HB Safety Tail Label"', 1,
+        )[1].split("</ParagraphStyle>", 1)[0]
+        self.assertIn('PointSize="11.2"', tail_label)
+        self.assertIn('<Leading type="unit">11.6</Leading>', tail_label)
         self.assertIn('SingleRowHeight="17.3"', stories["st_safety_symbols_signals"])
         self.assertIn('SingleRowHeight="25.42"', stories["st_safety_symbols_signals"])
         self.assertIn('SingleRowHeight="15"', stories["st_safety_symbols_icons_left"])
@@ -3127,9 +3136,9 @@ class ExportIdmlTests(unittest.TestCase):
                 "figure": figure if index == 8 else "",
                 "name": f"Indicator {index}",
                 "desc": f"Description {index}",
-                **({"row_height_pt": "17.25"} if index == 8 else {}),
+                **({"row_height_pt": "17.25"} if index >= 8 else {}),
             }
-            for index in range(1, 9)
+            for index in range(1, 10)
         ]
         w = IdmlWriter(params)
         w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
@@ -3233,8 +3242,13 @@ class ExportIdmlTests(unittest.TestCase):
         w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
 
         story = dict(w.stories)["st_lcd"]
-        self.assertIn('Anchor="0 -280.777"', story)
+        self.assertIn('Anchor="0 -307.421"', story)
         self.assertNotIn('Anchor="0 -286"', story)
+        first_table = dict(w.stories)["st_anchor_lcd_table_en_0"]
+        self.assertIn(
+            'TopInset="14.942" BottomInset="14.942"',
+            first_table,
+        )
 
     def test_lcd_full_governed_continuation_shell_matches_row_height_sum(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3253,9 +3267,10 @@ class ExportIdmlTests(unittest.TestCase):
 
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
-            'Anchor="0 -344.056"', dict(w.stories)["st_lcd"])
+            'Anchor="0 -494.768"', dict(w.stories)["st_lcd"])
         self.assertNotIn('Anchor="0 -480"', dict(w.stories)["st_lcd"])
-        self.assertIn('SingleRowHeight="17.25"', continuation)
+        self.assertNotIn("idml_lcd_continuation_bottom_gap", params)
+        self.assertIn('SingleRowHeight="184.268"', continuation)
 
     def test_lcd_first_shell_matches_approved_reference_table_height(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3272,8 +3287,13 @@ class ExportIdmlTests(unittest.TestCase):
         w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
 
         story = dict(w.stories)["st_lcd"]
-        self.assertIn('Anchor="0 -280.777"', story)
+        self.assertIn('Anchor="0 -307.421"', story)
         self.assertNotIn('Anchor="0 -286"', story)
+        first_table = dict(w.stories)["st_anchor_lcd_table_en_0"]
+        self.assertIn(
+            'TopInset="14.942" BottomInset="14.942"',
+            first_table,
+        )
 
     def test_lcd_full_governed_continuation_shell_matches_row_height_sum(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3292,9 +3312,10 @@ class ExportIdmlTests(unittest.TestCase):
 
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
-            'Anchor="0 -344.056"', dict(w.stories)["st_lcd"])
+            'Anchor="0 -494.768"', dict(w.stories)["st_lcd"])
         self.assertNotIn('Anchor="0 -480"', dict(w.stories)["st_lcd"])
-        self.assertIn('SingleRowHeight="17.25"', continuation)
+        self.assertNotIn("idml_lcd_continuation_bottom_gap", params)
+        self.assertIn('SingleRowHeight="184.268"', continuation)
 
     def test_lcd_governed_segment_rejects_partial_height_profile(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

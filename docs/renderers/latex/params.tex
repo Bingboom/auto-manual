@@ -1155,9 +1155,6 @@
 % English and French IDML LCD continuation body font size
 \expandafter\def\csname HBidml_lcd_continuation_body_font_size\endcsname{6.0pt}
 
-% IDML LCD continuation shell bottom safety gap below governed rows
-\expandafter\def\csname HBidml_lcd_continuation_bottom_gap\endcsname{16.306pt}
-
 % English charging-limit LCD body leading
 \expandafter\def\csname HBidml_lcd_continuation_charging_limit_body_font_leading\endcsname{6.5pt}
 
@@ -1248,11 +1245,14 @@
 % IDML English LCD first-segment shell height aligned to the approved reference table
 \expandafter\def\csname HBidml_lcd_first_panel_height\endcsname{280.777pt}
 
+% English LCD first-page last row absorbs the measured remainder to the linked-frame bottom
+\expandafter\def\csname HBidml_lcd_first_terminal_fill\endcsname{26.644pt}
+
 % IDML LCD first-segment cell top and bottom padding
 \expandafter\def\csname HBidml_lcd_first_vertical_padding\endcsname{1.62pt}
 
-% IDML LCD linked-frame import allowance below the body margin
-\expandafter\def\csname HBidml_lcd_frame_bottom_extra\endcsname{36pt}
+% IDML LCD linked-frame depth allowance below the page for native inline recomposition
+\expandafter\def\csname HBidml_lcd_frame_bottom_extra\endcsname{72pt}
 
 % IDML governed LCD row icon line reserve
 \expandafter\def\csname HBidml_lcd_governed_icon_line_reserve\endcsname{3.8pt}
@@ -1266,11 +1266,17 @@
 % IDML English LCD overview art space before
 \expandafter\def\csname HBidml_lcd_hero_space_before\endcsname{3.82pt}
 
+% Native inline-anchor baseline offset removed from LCD full-page height budgets
+\expandafter\def\csname HBidml_lcd_inline_anchor_offset\endcsname{0.375pt}
+
 % IDML LCD table width adjustment against the approved master
 \expandafter\def\csname HBidml_lcd_table_width_adjust\endcsname{0.4pt}
 
 % IDML translated LCD first-segment cell top and bottom padding
 \expandafter\def\csname HBidml_lcd_translated_first_vertical_padding\endcsname{1.4pt}
+
+% LCD full-page table visual clearance above the physical page bottom
+\expandafter\def\csname HBidml_lcd_visual_bottom_gap\endcsname{0.850394pt}
 
 % InDesign first-level list hanging indent
 \expandafter\def\csname HBidml_list_first_line_indent\endcsname{-6.25pt}
@@ -1281,17 +1287,65 @@
 % InDesign first-level list continuation indent
 \expandafter\def\csname HBidml_list_left_indent\endcsname{3.70pt}
 
+% IDML AC-output Off row vertical offset measured from operator-adjusted INDD
+\expandafter\def\csname HBidml_operation_ac_output_off_y_offset\endcsname{-1.417323pt}
+
+% IDML DC-USB On and Off row horizontal offset measured from operator-adjusted INDD
+\expandafter\def\csname HBidml_operation_dc_usb_x_offset\endcsname{3.543307pt}
+
+% IDML Energy Saving action-copy horizontal compensation for native group placement
+\expandafter\def\csname HBidml_operation_energy_action_x_offset\endcsname{-10.2pt}
+
+% IDML Energy Saving action-copy vertical compensation for native group placement
+\expandafter\def\csname HBidml_operation_energy_action_y_offset\endcsname{8.0pt}
+
+% IDML Energy Saving clock horizontal offset measured from operator-adjusted INDD
+\expandafter\def\csname HBidml_operation_energy_clock_x_offset\endcsname{-8.917323pt}
+
+% IDML Energy Saving clock vertical offset measured from operator-adjusted INDD
+\expandafter\def\csname HBidml_operation_energy_clock_y_offset\endcsname{4.251969pt}
+
+% IDML Energy Saving duration horizontal offset measured from operator-adjusted INDD
+\expandafter\def\csname HBidml_operation_energy_duration_x_offset\endcsname{-9.625984pt}
+
+% IDML Energy Saving duration vertical offset measured from operator-adjusted INDD
+\expandafter\def\csname HBidml_operation_energy_duration_y_offset\endcsname{1.417323pt}
+
+% IDML Energy Saving guidance panel horizontal compensation without expanding the native group bounds
+\expandafter\def\csname HBidml_operation_energy_guidance_x_offset\endcsname{-7.5pt}
+
+% IDML Energy Saving guidance panel vertical compensation for native group placement
+\expandafter\def\csname HBidml_operation_energy_guidance_y_offset\endcsname{8.0pt}
+
+% IDML Energy Saving On-Off horizontal offset measured from operator-adjusted INDD
+\expandafter\def\csname HBidml_operation_energy_mode_x_offset\endcsname{-2.539370pt}
+
+% IDML Energy Saving On-Off vertical offset measured from operator-adjusted INDD
+\expandafter\def\csname HBidml_operation_energy_mode_y_offset\endcsname{3.543307pt}
+
+% IDML Energy Saving whole-panel optical raise preserving all internal relative positions
+\expandafter\def\csname HBidml_operation_energy_panel_y_offset\endcsname{-5.669291pt}
+
 % Base gap before the first operation subsection
 \expandafter\def\csname HBidml_operation_first_h2_space_before\endcsname{7.5pt}
 
 % Base gap from first operation explanation to second subsection
 \expandafter\def\csname HBidml_operation_inter_section_space_after\endcsname{48.2pt}
 
+% IDML main-power Off row vertical offset measured from operator-adjusted INDD
+\expandafter\def\csname HBidml_operation_main_power_off_y_offset\endcsname{2.125984pt}
+
+% IDML main-power On row vertical offset measured from operator-adjusted INDD
+\expandafter\def\csname HBidml_operation_main_power_on_y_offset\endcsname{7.086614pt}
+
 % IDML editable operation row label base leading
 \expandafter\def\csname HBidml_operation_row_label_font_leading\endcsname{11.0pt}
 
 % IDML editable operation row label base size
 \expandafter\def\csname HBidml_operation_row_label_font_size\endcsname{10.0pt}
+
+% IDML Product Overview visible text gap above its semantic leader line
+\expandafter\def\csname HBidml_overview_label_leader_gap\endcsname{1.2pt}
 
 % IDML preface body leading
 \expandafter\def\csname HBidml_preface_body_font_leading\endcsname{10.003pt}
@@ -1320,8 +1374,11 @@
 % IDML preface body paragraph spacing measured from reference
 \expandafter\def\csname HBidml_preface_paragraph_space_after\endcsname{2.0pt}
 
-% IDML preface tag optical baseline shift
-\expandafter\def\csname HBidml_preface_tag_baseline_shift\endcsname{-0.227pt}
+% IDML preface tag optical baseline shift for equal visual top and bottom padding
+\expandafter\def\csname HBidml_preface_tag_baseline_shift\endcsname{0.7pt}
+
+% IDML preface language tag corner radius
+\expandafter\def\csname HBidml_preface_tag_corner_radius\endcsname{1.25pt}
 
 % IDML preface language tag font size
 \expandafter\def\csname HBidml_preface_tag_font_size\endcsname{8.668pt}
@@ -1421,6 +1478,18 @@
 
 % InDesign safety-tail body weight
 \expandafter\def\csname HBidml_safety_tail_body_font_style\endcsname{Bold}
+
+% InDesign safety-tail warning icon height preserving the source SVG ratio
+\expandafter\def\csname HBidml_safety_tail_icon_height\endcsname{21.739pt}
+
+% InDesign safety-tail warning icon width
+\expandafter\def\csname HBidml_safety_tail_icon_width\endcsname{25.0pt}
+
+% InDesign safety-tail WARNING and DANGER label leading
+\expandafter\def\csname HBidml_safety_tail_label_font_leading\endcsname{11.6pt}
+
+% InDesign safety-tail WARNING and DANGER label font size
+\expandafter\def\csname HBidml_safety_tail_label_font_size\endcsname{11.2pt}
 
 % InDesign safety-instruction outer frame height
 \expandafter\def\csname HBidml_safety_warning_height\endcsname{31.5pt}
@@ -1989,6 +2058,9 @@
 % Spanish IDML LCD first-segment import allowance
 \expandafter\def\csname HBlang_es_idml_lcd_first_panel_height\endcsname{304pt}
 
+% Spanish LCD first-page last row absorbs the measured remainder to the linked-frame bottom
+\expandafter\def\csname HBlang_es_idml_lcd_first_terminal_fill\endcsname{20.541pt}
+
 % Spanish IDML LCD overview art horizontal scale
 \expandafter\def\csname HBlang_es_idml_lcd_hero_horizontal_scale\endcsname{1.15}
 
@@ -2369,6 +2441,9 @@
 
 % French IDML LCD first-segment import allowance
 \expandafter\def\csname HBlang_fr_idml_lcd_first_panel_height\endcsname{304pt}
+
+% French LCD first-page last row absorbs the measured remainder to the linked-frame bottom
+\expandafter\def\csname HBlang_fr_idml_lcd_first_terminal_fill\endcsname{18.941pt}
 
 % French IDML LCD overview art horizontal scale
 \expandafter\def\csname HBlang_fr_idml_lcd_hero_horizontal_scale\endcsname{1.10}

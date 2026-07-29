@@ -139,13 +139,56 @@ class ComponentRegistryTests(unittest.TestCase):
 
     def test_reference_preface_typography_is_loaded_from_layout_params(self) -> None:
         from tools.export_idml import load_layout_params
-        from tools.idml.styles import para_styles
+        from tools.idml.components import RenderContext, render
+        from tools.idml.styles import para_styles, styles_xml
 
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         styles = {name: (size, leading, weight) for name, size, leading, weight, _ in para_styles(params)}
 
         self.assertEqual((8.668, 8.668, "Bold"), styles["HB Preface Tag"])
         self.assertEqual((7.0, 10.003, "Regular"), styles["HB Preface Body"])
+        tag_style = styles_xml(params).split(
+            'Name="HB Preface Tag"', 1,
+        )[1].split("</ParagraphStyle>", 1)[0]
+        self.assertIn('Justification="CenterAlign"', tag_style)
+
+        xml, _ = render(
+            MINIMAL_SPECS["langtag"],
+            RenderContext(
+                params=params, page_w=368.79, m_l=28.35, m_r=28.35,
+                root=ROOT, bundle_root=ROOT / "does-not-exist",
+            ),
+            tid="preface_badge_reference", terminal=True,
+        )
+        self.assertIn('BaselineShift="0.7"', xml)
+        self.assertIn('TopInset="0.966" BottomInset="0.966"', xml)
+
+    def test_preface_language_badge_uses_native_rounded_frame_in_production(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories: dict[str, str] = {}
+
+        def add_story(sid: str, _title: str, parts: list[str]) -> str:
+            stories[sid] = "".join(parts)
+            return sid
+
+        xml, _ = render(
+            MINIMAL_SPECS["langtag"],
+            RenderContext(
+                params=params, page_w=368.79, m_l=28.35, m_r=28.35,
+                root=ROOT, bundle_root=ROOT / "does-not-exist",
+                add_story=add_story,
+            ),
+            tid="preface_badge_rounded", terminal=True,
+        )
+        self.assertIn(
+            'Self="tfp_st_anchor_langbadge_preface_badge_rounded"', xml,
+        )
+        self.assertIn('FillColor="Color/HB Brand Dark"', xml)
+        self.assertNotIn('FillColor="Color/HB Brand Dark" RowSpan=', xml)
+        self.assertIn('BaselineShift="0.7"', next(iter(stories.values())))
 
     def test_reference_body_and_l2_typography_use_idml_calibration_tokens(self) -> None:
         from tools.export_idml import load_layout_params

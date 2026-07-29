@@ -6,7 +6,12 @@ import unittest
 from pathlib import Path
 
 from tools.idml.components import RenderContext
-from tools.idml.components.oppanel import _prereq_overlay, _row_layout, render_oppanel
+from tools.idml.components.oppanel import (
+    _prereq_overlay,
+    _row_layout,
+    _row_text_layers,
+    render_oppanel,
+)
 from tools.idml.components.prose_image import render_image_block
 
 
@@ -61,6 +66,21 @@ def _item_bounds(xml: str, item_id: str, tag: str = "TextFrame") -> tuple[float,
     )
 
 
+def _item_translation(
+    xml: str,
+    item_id: str,
+    tag: str = "Rectangle",
+) -> tuple[float, float]:
+    item = _item_xml(xml, item_id, tag)
+    match = re.search(
+        r'ItemTransform="1 0 0 1 ([-0-9.]+) ([-0-9.]+)"',
+        item,
+    )
+    if match is None:
+        raise AssertionError(f"rendered {tag} {item_id} has no translation")
+    return float(match.group(1)), float(match.group(2))
+
+
 class ReferenceArtGeometryTests(unittest.TestCase):
     def test_operation_row_overlays_use_role_specific_alignment(self) -> None:
         image_w = 294.9
@@ -74,6 +94,64 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         self.assertAlmostEqual(image_w * 0.235, power[2])
         self.assertAlmostEqual(ac[0], dc_usb[0])
         self.assertAlmostEqual(ac[2], dc_usb[2])
+
+    def test_operation_rows_apply_operator_adjusted_role_offsets(self) -> None:
+        params = {
+            "idml_operation_main_power_on_y_offset": ("7.086614", "pt"),
+            "idml_operation_main_power_off_y_offset": ("2.125984", "pt"),
+            "idml_operation_ac_output_off_y_offset": ("-1.417323", "pt"),
+            "idml_operation_dc_usb_x_offset": ("3.543307", "pt"),
+        }
+        base = _ctx()
+        ctx = RenderContext(
+            params=params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            add_story=lambda story_id, _label, _parts: story_id,
+        )
+        image_w = 294.9
+        cases = (
+            ("main_power", "op_main_power.png", 115.282),
+            ("ac_output", "op_ac_output.png", 206.547),
+            ("dc_usb", "op_dc_usb_output.png", 170.521),
+        )
+        rendered = {}
+        for role, ref, image_h in cases:
+            rendered[role] = _row_text_layers(
+                ctx,
+                tid=role,
+                ref=ref,
+                rows=[("On", "Press once"), ("Off", "Press once")],
+                image_w=image_w,
+                image_h=image_h,
+            )
+
+        power_layout = _row_layout("op_main_power.png", image_w, 115.282)
+        power_on = _item_bounds(rendered["main_power"], "tf_oppanel_row_0_main_power")
+        power_off = _item_bounds(rendered["main_power"], "tf_oppanel_row_1_main_power")
+        self.assertAlmostEqual(power_layout[1] + 7.086614, power_on[1], places=3)
+        self.assertAlmostEqual(
+            power_layout[1] + power_layout[3] + 2.125984,
+            power_off[1],
+            places=3,
+        )
+
+        ac_layout = _row_layout("op_ac_output.png", image_w, 206.547)
+        ac_off = _item_bounds(rendered["ac_output"], "tf_oppanel_row_1_ac_output")
+        self.assertAlmostEqual(
+            ac_layout[1] + ac_layout[3] - 1.417323,
+            ac_off[1],
+            places=3,
+        )
+
+        dc_layout = _row_layout("op_dc_usb_output.png", image_w, 170.521)
+        for index in (0, 1):
+            dc_row = _item_bounds(
+                rendered["dc_usb"], f"tf_oppanel_row_{index}_dc_usb")
+            self.assertAlmostEqual(dc_layout[0] + 3.543307, dc_row[0], places=3)
 
     def test_operation_and_charging_art_use_the_full_text_measure(self) -> None:
         ctx = _ctx()
@@ -329,6 +407,100 @@ class ReferenceArtGeometryTests(unittest.TestCase):
             "st_anchor_oppanel_energy_action_editable_energy",
         }
         self.assertTrue(expected.issubset(stories))
+
+    def test_energy_controls_match_operator_adjusted_positions(self) -> None:
+        stories = {}
+
+        def add_story(story_id, _label, parts):
+            stories[story_id] = "".join(parts)
+            return story_id
+
+        base = _ctx()
+        ctx = RenderContext(
+            params={
+                "idml_operation_energy_mode_x_offset": ("-2.539370", "pt"),
+                "idml_operation_energy_mode_y_offset": ("3.543307", "pt"),
+                "idml_operation_energy_duration_x_offset": ("-9.625984", "pt"),
+                "idml_operation_energy_duration_y_offset": ("1.417323", "pt"),
+                "idml_operation_energy_clock_x_offset": ("-8.917323", "pt"),
+                "idml_operation_energy_clock_y_offset": ("4.251969", "pt"),
+                "idml_operation_energy_guidance_x_offset": ("-7.5", "pt"),
+                "idml_operation_energy_guidance_y_offset": ("8.0", "pt"),
+                "idml_operation_energy_action_x_offset": ("-10.2", "pt"),
+                "idml_operation_energy_action_y_offset": ("8.0", "pt"),
+                "idml_operation_energy_panel_y_offset": ("-5.669291", "pt"),
+            },
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=ROOT / "docs",
+            add_story=add_story,
+        )
+        render_oppanel(
+            {
+                "kind": "oppanel",
+                "layout": "energy_saving",
+                "image": "docs/renderers/latex/assets/op_energy_saving.png",
+                "guidance": ["Guidance one.", "Guidance two."],
+                "mode_label": "On/Off",
+                "duration": "3s",
+                "action": "Press and hold.",
+            },
+            ctx,
+            tid="adjusted_energy",
+            terminal=False,
+        )
+        host = render_oppanel(
+            {
+                "kind": "oppanel",
+                "layout": "energy_saving",
+                "image": "docs/renderers/latex/assets/op_energy_saving.png",
+                "guidance": ["Guidance one.", "Guidance two."],
+                "mode_label": "On/Off",
+                "duration": "3s",
+                "action": "Press and hold.",
+            },
+            ctx,
+            tid="adjusted_energy_host",
+            terminal=False,
+        )[0]
+        self.assertIn('AnchorYoffset="-5.66929"', host)
+        panel = stories["st_anchor_oppanel_adjusted_energy"]
+        mode = _item_bounds(panel, "tf_oppanel_energy_mode_adjusted_energy")
+        duration = _item_bounds(panel, "tf_oppanel_energy_duration_adjusted_energy")
+        guidance_bg = _item_bounds(
+            panel,
+            "oppanel_energy_guidance_bg_adjusted_energy",
+            tag="Rectangle",
+        )
+        guidance = _item_bounds(
+            panel,
+            "tf_oppanel_energy_guidance_0_adjusted_energy",
+        )
+        action = _item_bounds(
+            panel,
+            "tf_oppanel_energy_action_adjusted_energy",
+        )
+        clock = _item_translation(
+            panel,
+            "oppanel_energy_clock_adjusted_energy",
+            tag="Rectangle",
+        )
+        width = ctx.text_measure
+        self.assertAlmostEqual(width * 0.68 - 2.539370, mode[0], places=3)
+        self.assertAlmostEqual(-28.5 + 3.543307, mode[1], places=3)
+        self.assertAlmostEqual(width * 0.642 - 9.625984, duration[0], places=3)
+        self.assertAlmostEqual(-21.5 + 1.417323, duration[1], places=3)
+        self.assertAlmostEqual(width * 0.601 - 8.917323, clock[0], places=3)
+        self.assertAlmostEqual(-12.0 + 4.251969, clock[1], places=3)
+        grey_top = -max(width * 0.545, 159.0) + 8.0
+        self.assertAlmostEqual(7.5 - 7.5, guidance_bg[0], places=3)
+        self.assertAlmostEqual(grey_top + 8.0, guidance_bg[1], places=3)
+        self.assertAlmostEqual(14.0 - 7.5, guidance[0], places=3)
+        self.assertAlmostEqual(grey_top + 4.8 + 8.0, guidance[1], places=3)
+        self.assertAlmostEqual(width * 0.682 - 10.2, action[0], places=3)
+        self.assertAlmostEqual(-20.0 + 8.0, action[1], places=3)
 
     def test_french_energy_action_has_fixed_in_panel_geometry(self) -> None:
         stories = {}

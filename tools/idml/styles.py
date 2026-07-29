@@ -47,7 +47,13 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Warning Lead Label", sz("type_warning_lead_label_font_size", 10.0), sz("type_warning_lead_label_font_leading", 10.6), "Bold", "warning_lead"),
         ("HB Warning Lead Body", sz("type_warning_lead_body_font_size", 6.5), sz("type_warning_lead_body_font_leading", 7.2), "Bold", "warning_lead"),
         ("HB FCC Text", 5.6, 6.15, "Regular", ""),
-        ("HB Safety Tail Label", 9.85, 10.2, "Bold", ""),
+        (
+            "HB Safety Tail Label",
+            sz("idml_safety_tail_label_font_size", 9.85),
+            sz("idml_safety_tail_label_font_leading", 10.2),
+            "Bold",
+            "",
+        ),
         ("HB Safety Tail Body", 5.6, 6.2, "Regular", ""),
         ("HB Safety Tail Body EN", 5.6, 6.2, param_text(p, "idml_safety_tail_body_font_style", "Bold"), ""),
         ("HB Maintenance Body", 6.0, 7.5, "Regular", ""),
@@ -127,7 +133,7 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
         else:
             shading = ""
         justification = (
-            "CenterAlign" if kind in {"center", "card_number"}
+            "CenterAlign" if kind in {"center", "card_number", "preface_tag"}
             else "RightAlign" if kind == "toc_range"
             else "LeftAlign"
         )

@@ -146,7 +146,8 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
     texts = spec.get("texts", [])
     icon = ""
     if warning_icon_asset.exists():
-        iw, ih = ctx.art_frame_size(warning_icon_asset, max_w=22.0)
+        iw = param_pt(ctx.params, "idml_safety_tail_icon_width", 22.0)
+        ih = param_pt(ctx.params, "idml_safety_tail_icon_height", iw * 80.0 / 92.0)
         icon = figure_paragraph(image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih),
                                 tail="<Content></Content>")
     body = " ".join(t.strip() for t in texts if str(t).strip())

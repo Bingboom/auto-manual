@@ -210,6 +210,22 @@ idml_key_function_font_leading,8.5,pt,IDML editable Key-combinations function co
 ,,,------ IDML OPERATION PANEL TYPOGRAPHY AND RHYTHM ------
 idml_operation_row_label_font_size,10.0,pt,IDML editable operation row label base size
 idml_operation_row_label_font_leading,11.0,pt,IDML editable operation row label base leading
+idml_operation_main_power_on_y_offset,7.086614,pt,IDML main-power On row vertical offset measured from operator-adjusted INDD
+idml_operation_main_power_off_y_offset,2.125984,pt,IDML main-power Off row vertical offset measured from operator-adjusted INDD
+idml_operation_ac_output_off_y_offset,-1.417323,pt,IDML AC-output Off row vertical offset measured from operator-adjusted INDD
+idml_operation_dc_usb_x_offset,3.543307,pt,IDML DC-USB On and Off row horizontal offset measured from operator-adjusted INDD
+idml_operation_energy_mode_x_offset,-2.539370,pt,IDML Energy Saving On-Off horizontal offset measured from operator-adjusted INDD
+idml_operation_energy_mode_y_offset,3.543307,pt,IDML Energy Saving On-Off vertical offset measured from operator-adjusted INDD
+idml_operation_energy_duration_x_offset,-9.625984,pt,IDML Energy Saving duration horizontal offset measured from operator-adjusted INDD
+idml_operation_energy_duration_y_offset,1.417323,pt,IDML Energy Saving duration vertical offset measured from operator-adjusted INDD
+idml_operation_energy_clock_x_offset,-8.917323,pt,IDML Energy Saving clock horizontal offset measured from operator-adjusted INDD
+idml_operation_energy_clock_y_offset,4.251969,pt,IDML Energy Saving clock vertical offset measured from operator-adjusted INDD
+idml_operation_energy_guidance_x_offset,-7.5,pt,IDML Energy Saving guidance panel horizontal compensation without expanding the native group bounds
+idml_operation_energy_guidance_y_offset,8.0,pt,IDML Energy Saving guidance panel vertical compensation for native group placement
+idml_operation_energy_action_x_offset,-10.2,pt,IDML Energy Saving action-copy horizontal compensation for native group placement
+idml_operation_energy_action_y_offset,8.0,pt,IDML Energy Saving action-copy vertical compensation for native group placement
+idml_operation_energy_panel_y_offset,-5.669291,pt,IDML Energy Saving whole-panel optical raise preserving all internal relative positions
+idml_overview_label_leader_gap,1.2,pt,IDML Product Overview visible text gap above its semantic leader line
 lang_en_idml_operation_row_label_font_size,10.0,pt,English operation row label size measured from approved PDF
 lang_en_idml_operation_row_label_font_leading,11.0,pt,English operation row label leading
 lang_fr_idml_operation_row_label_font_size,10.0,pt,French operation row label size measured from approved PDF
@@ -399,9 +415,13 @@ lang_es_idml_lcd_continuation_page_top,27.9,pt,Spanish IDML LCD continuation top
 idml_lcd_first_panel_height,280.777,pt,IDML English LCD first-segment shell height aligned to the approved reference table
 lang_fr_idml_lcd_first_panel_height,304,pt,French IDML LCD first-segment import allowance
 lang_es_idml_lcd_first_panel_height,304,pt,Spanish IDML LCD first-segment import allowance
+idml_lcd_first_terminal_fill,26.644,pt,English LCD first-page last row absorbs the measured remainder to the linked-frame bottom
+lang_fr_idml_lcd_first_terminal_fill,18.941,pt,French LCD first-page last row absorbs the measured remainder to the linked-frame bottom
+lang_es_idml_lcd_first_terminal_fill,20.541,pt,Spanish LCD first-page last row absorbs the measured remainder to the linked-frame bottom
 idml_lcd_continuation_panel_height,480,pt,IDML LCD continuation import allowance before native fitting
-idml_lcd_continuation_bottom_gap,16.306,pt,IDML LCD continuation shell bottom safety gap below governed rows
-idml_lcd_frame_bottom_extra,36,pt,IDML LCD linked-frame import allowance below the body margin
+idml_lcd_inline_anchor_offset,0.375,pt,Native inline-anchor baseline offset removed from LCD full-page height budgets
+idml_lcd_visual_bottom_gap,0.850394,pt,LCD full-page table visual clearance above the physical page bottom
+idml_lcd_frame_bottom_extra,72,pt,IDML LCD linked-frame depth allowance below the page for native inline recomposition
 idml_lcd_hero_max_height,159,pt,IDML English LCD overview art height
 idml_lcd_hero_horizontal_scale,1,ratio,IDML English LCD overview art horizontal scale
 lang_en_idml_lcd_hero_horizontal_offset,-3,pt,English IDML LCD overview art optical offset
@@ -619,6 +639,10 @@ idml_sublist_first_line_indent,-6.04,pt,InDesign nested list hanging indent
 idml_sublist_first_space_before,0.45,pt,InDesign space before the first nested item
 idml_safety_lead_space_after,4.2,pt,InDesign space after safety lead paragraph
 idml_safety_tail_body_font_style,Bold,none,InDesign safety-tail body weight
+idml_safety_tail_label_font_size,11.2,pt,InDesign safety-tail WARNING and DANGER label font size
+idml_safety_tail_label_font_leading,11.6,pt,InDesign safety-tail WARNING and DANGER label leading
+idml_safety_tail_icon_width,25.0,pt,InDesign safety-tail warning icon width
+idml_safety_tail_icon_height,21.739,pt,InDesign safety-tail warning icon height preserving the source SVG ratio
 comp_caution_label_width,18.5,mm,Caution strip label panel width
 comp_caution_pad_lr,2.2,mm,Caution strip horizontal padding
 comp_caution_pad_tb,1.2,mm,Caution strip vertical padding
@@ -647,7 +671,8 @@ idml_preface_body_font_leading,10.003,pt,IDML preface body leading
 idml_preface_tag_vertical_inset,0.966,pt,IDML preface tag cell top and bottom inset
 idml_preface_tag_left_inset,1.795,pt,IDML preface tag optical left inset
 idml_preface_title_left_inset,6.828,pt,IDML preface title optical left inset
-idml_preface_tag_baseline_shift,-0.227,pt,IDML preface tag optical baseline shift
+idml_preface_tag_baseline_shift,0.7,pt,IDML preface tag optical baseline shift for equal visual top and bottom padding
+idml_preface_tag_corner_radius,1.25,pt,IDML preface language tag corner radius
 idml_preface_title_baseline_shift,-0.839,pt,IDML preface title optical baseline shift
 idml_preface_header_space_before,0.0,pt,IDML default gap before language badge
 idml_preface_header_space_after,5.56,pt,IDML preface header to body gap
