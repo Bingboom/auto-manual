@@ -24,7 +24,10 @@ from tools.export_idml import (  # noqa: E402
 )
 from tools.idml import export_paths as idml_export_paths  # noqa: E402
 from tools.idml import page_placed  # noqa: E402
-from tools.idml.character_metrics import signal_label_metrics  # noqa: E402
+from tools.idml.character_metrics import (  # noqa: E402
+    signal_label_metrics,
+    tail_label_metrics,
+)
 from tools.idml.symbols_page import SafetySymbolsPageStyle  # noqa: E402
 from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
 
@@ -2317,10 +2320,22 @@ class ExportIdmlTests(unittest.TestCase):
         )
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_tail_avertissement"])
         self.assertNotIn(">WARNING<", stories["st_safety_symbols_fr_tail_avertissement"])
+        fr_tail_size, _, fr_tail_scale = tail_label_metrics(
+            params, "fr", "AVERTISSEMENT", 52.0,
+        )
         self.assertIn(
-            'PointSize="5.6" HorizontalScale="100"',
+            f'PointSize="{fr_tail_size:g}" HorizontalScale="{fr_tail_scale:g}"',
             stories["st_safety_symbols_fr_tail_avertissement"],
         )
+        warning_size, warning_leading, warning_scale = tail_label_metrics(
+            params, "es", "ADVERTENCIA", 52.0,
+        )
+        danger_size, _, _ = tail_label_metrics(
+            params, "es", "PELIGRO", 52.0,
+        )
+        self.assertGreater(danger_size, warning_size)
+        self.assertEqual(100.0, warning_scale)
+        self.assertGreater(warning_leading, 0.0)
         size, leading, scale = signal_label_metrics(
             params, "fr", "AVERTISSEMENT", 30.0,
         )

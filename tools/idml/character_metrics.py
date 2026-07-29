@@ -58,6 +58,44 @@ def signal_label_metrics(
     return round(fitted_size, 3), round(fitted_leading, 3), round(horizontal_scale, 3)
 
 
+def tail_label_metrics(
+    params: dict[str, tuple[str, str]],
+    lang: str,
+    text: str,
+    available_width: float,
+) -> tuple[float, float, float]:
+    """Fit a safety-tail warning label without borrowing signal-table sizing."""
+    language = (lang or "en").strip().casefold().replace("_", "-").split("-", 1)[0]
+    base_size = 9.85
+    base_leading = 10.2
+    if language == "en":
+        return base_size, base_leading, 100.0
+
+    width = 0.0
+    for char in str(text or ""):
+        if char.isspace():
+            ratio = 0.25
+        elif char.isupper():
+            ratio = 0.63
+        elif char.islower():
+            ratio = 0.56
+        elif unicodedata.category(char).startswith("M"):
+            ratio = 0.0
+        elif char.isalpha():
+            ratio = 0.60
+        elif unicodedata.category(char).startswith("P"):
+            ratio = 0.30
+        else:
+            ratio = 0.55
+        width += ratio * base_size
+
+    available = max(1.0, available_width)
+    fitted_size = min(base_size, base_size * available / max(1.0, width))
+    fitted_size = max(5.6, fitted_size)
+    fitted_leading = base_leading * fitted_size / base_size
+    return round(fitted_size, 3), round(fitted_leading, 3), 100.0
+
+
 def fit_symbol_body_metrics(
     params: dict[str, tuple[str, str]],
     lang: str,
@@ -118,6 +156,25 @@ def fit_signal_label_xml(
     if language not in {"fr", "es"}:
         return xml
     size, leading, scale = signal_label_metrics(
+        params, language, text, available_width,
+    )
+    return with_character_metrics(
+        xml, point_size=size, leading=leading, horizontal_scale=scale,
+    )
+
+
+def fit_tail_label_xml(
+    xml: str,
+    params: dict[str, tuple[str, str]],
+    lang: str,
+    text: str,
+    available_width: float,
+) -> str:
+    """Apply per-language warning-box sizing while preserving English XML."""
+    language = (lang or "en").strip().casefold().replace("_", "-").split("-", 1)[0]
+    if language == "en":
+        return xml
+    size, leading, scale = tail_label_metrics(
         params, language, text, available_width,
     )
     return with_character_metrics(

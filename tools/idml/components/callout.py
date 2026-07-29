@@ -11,7 +11,7 @@ from ..primitives import (
     wrap_table_paragraph,
 )
 from ..params import param_pt
-from ..character_metrics import fit_signal_label_xml, with_character_baseline_shift
+from ..character_metrics import fit_tail_label_xml, with_character_baseline_shift
 from .base import RenderContext, figure_paragraph
 from .warning_lead import rounded_warninglead
 
@@ -153,7 +153,7 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
     body_style = "HB Safety Tail Body EN" if spec.get("language") == "en" else "HB Safety Tail Body"
     label_w = 58.0
     icon_w = 32.0
-    label_psr = fit_signal_label_xml(
+    label_psr = fit_tail_label_xml(
         psr("HB Safety Tail Label", label, terminal=True), ctx.params,
         str(spec.get("language") or "en"), label, label_w - 6.0)
     label_psr = with_character_baseline_shift(label_psr, shift=0.68)
