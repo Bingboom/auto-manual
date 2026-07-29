@@ -195,6 +195,9 @@ Normal merge rule:
 - use `Squash and merge`
 - delete the head branch after merge
 - do not keep the branch alive as a second working lane after merge
+- agents merge only under a live gate-on-green authorization — see
+  [`merge_authorizations.md`](merge_authorizations.md) for the registry and
+  the all-checks-green protocol (AGENTS.md §8.6 exception)
 
 ## 5. Repo-Specific Content Rules
 

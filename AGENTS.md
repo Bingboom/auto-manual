@@ -171,7 +171,7 @@ If any check fails, do not open the PR. Report which check failed and the last c
 1. Open the PR with `gh pr create --base main`. Title format: Conventional Commits (`feat(area): topic` etc.), ≤72 chars.
 2. Fill in every field of [`.github/pull_request_template.md`](.github/pull_request_template.md), including the validation block with the actual commands you ran.
 3. Tick the impact-surface and anti-debt boxes honestly. An empty Anti-Debt section is a signal you skipped the checklist, not that nothing was relevant.
-4. Do **not** self-merge. Wait for the operator (夏冰) to review. Do not run `gh pr merge` from the window.
+4. Do **not** self-merge. Wait for the operator (夏冰) to review. Do not run `gh pr merge` from the window. **Single exception — gate-on-green authorization:** when a live entry in [`code-as-doc/dev/merge_authorizations.md`](code-as-doc/dev/merge_authorizations.md) covers the PR, merge is allowed after that file's protocol passes (EVERY check green — non-required included, pending ≠ green — and no changes-requested review). A chat grant is recorded in that registry *before* being acted on; doubt about coverage means no coverage.
 5. After merge, delete the head branch (`gh pr` already does this when the repo has *Automatically delete head branches* on, which it does — see §8.8 of `git_branching_guide.md`). Do not keep it open as a second working lane.
 
 ### 8.7 Communication boundaries with the operator
