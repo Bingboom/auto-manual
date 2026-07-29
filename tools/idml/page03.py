@@ -302,7 +302,14 @@ def _symbol_continuation_objects(
             f"symbols_{side}",
             story_id,
             (x, table_y, table_w, table_h),
-            with_rounded_outer({"inset": (0, 0, 0, 0)}),
+            with_rounded_outer({
+                "inset": (0, 0, 0, 0),
+                # The icon column uses the K05 fill.  Without the shared
+                # corner masks, that editable cell fill leaks past the
+                # rounded shell at the continuation table's bottom-left
+                # corner (and the other three corners).
+                "rounded_outer_masks": True,
+            }),
         ))
     return story_ids, frames
 

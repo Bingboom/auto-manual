@@ -35,47 +35,47 @@
     <Column Self="st_05_operation_guide_t1col0" Name="0" SingleColumnWidth="93.6283"/>
     <Column Self="st_05_operation_guide_t1col1" Name="1" SingleColumnWidth="109.233"/>
     <Column Self="st_05_operation_guide_t1col2" Name="2" SingleColumnWidth="109.233"/>
-    <Cell Self="st_05_operation_guide_t1c0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+    <Cell Self="st_05_operation_guide_t1c0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Button</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="st_05_operation_guide_t1c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+    <Cell Self="st_05_operation_guide_t1c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Short Press</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="st_05_operation_guide_t1c0_2" Name="2:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+    <Cell Self="st_05_operation_guide_t1c0_2" Name="2:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Long Press</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="st_05_operation_guide_t1c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+    <Cell Self="st_05_operation_guide_t1c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>DISPLAY</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="st_05_operation_guide_t1c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+    <Cell Self="st_05_operation_guide_t1c1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Wake the LCD screen</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="st_05_operation_guide_t1c1_2" Name="2:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+    <Cell Self="st_05_operation_guide_t1c1_2" Name="2:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Power off the unit</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="st_05_operation_guide_t1c2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+    <Cell Self="st_05_operation_guide_t1c2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>AC</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="st_05_operation_guide_t1c2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+    <Cell Self="st_05_operation_guide_t1c2_1" Name="1:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Toggle AC output</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
-    <Cell Self="st_05_operation_guide_t1c2_2" Name="2:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+    <Cell Self="st_05_operation_guide_t1c2_2" Name="2:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Enable quiet charging</Content></CharacterStyleRange>
   </ParagraphStyleRange>

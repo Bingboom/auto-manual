@@ -125,7 +125,7 @@ class IdmlWriter:
               fill: str | None = None, stroke: bool = True,
               top: float = 3, bottom: float = 3,
               left: float = 4, right: float = 4,
-              valign: str | None = None) -> str:
+              valign: str | None = "CenterAlign") -> str:
         return _prim.cell(cid, name, content, fill=fill, stroke=stroke,
                           top=top, bottom=bottom, left=left, right=right,
                           valign=valign)

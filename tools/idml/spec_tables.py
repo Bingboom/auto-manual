@@ -120,7 +120,9 @@ def spec_table_xml(
                 f'    <Cell Self="{tid}c{ri}_{ci}" Name="{ci}:{ri}" '
                 'RowSpan="1" ColumnSpan="1" '
                 'AppliedCellStyle="CellStyle/$ID/[None]" '
-                + ('VerticalJustification="CenterAlign" ' if visual_parity else '')
+                # Keep the table contract independent of the visual-parity
+                # branch: every editable table cell is vertically centered.
+                + 'VerticalJustification="CenterAlign" '
                 + (
                     'LeftEdgeStrokeWeight="0.5" RightEdgeStrokeWeight="0.5" '
                     'TopEdgeStrokeWeight="0.5" BottomEdgeStrokeWeight="0.5" '

@@ -209,7 +209,11 @@ def cell(cid: str, name: str, content: str, *, fill: str | None = None,
          left: float = 4, right: float = 4,
          edge_weight: float | None = None,
          edge_color: str | None = None,
-         valign: str | None = None) -> str:
+         # Tables share one default vertical contract.  Individual layouts
+         # may still opt out explicitly (for example a deliberately
+         # top-aligned artwork cell), but ordinary editable table content is
+         # centered without every component having to repeat the attribute.
+         valign: str | None = "CenterAlign") -> str:
     # cell fill is FillColor in IDML; CellFillColor is silently ignored
     # (designer-reported: no gray FCC/notice panels)
     fill_attr = f'FillColor="{fill}" ' if fill else ""

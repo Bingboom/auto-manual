@@ -272,7 +272,7 @@ def _troubleshooting_cell_geometry(
     elif column_index == 0 and is_steps:
         top = 12.7 if step_count >= 5 else 7.6
         bottom = 2.95
-        valign = "TopAlign"
+        valign = "CenterAlign"
     else:
         top = (
             max(0.0, steps_pad_tb - 0.30465)
@@ -286,9 +286,7 @@ def _troubleshooting_cell_geometry(
             top = bottom = 1.5
         if row_index == 9:
             top = bottom = 2.35
-        valign = (
-            "TopAlign" if row_index in {6, 9, 10, 11} else "CenterAlign"
-        )
+        valign = "CenterAlign"
     left = (
         2.88 if row_index == 0 and column_index == 0
         else 1.5 if row_index > 0 and column_index == 0
@@ -455,7 +453,7 @@ def _overview_table(raw_rows: list[list], ctx: RenderContext, tid: str) -> str:
             valign = "CenterAlign"
             if first_cell == "Handle":
                 top = 2.68 if ri == 0 else 1.54
-                valign = "TopAlign"
+                valign = "CenterAlign"
             left_inset = 1.44 if first_cell == "Total Output" else 2.4
             cells.append(cell(
                 f"{tid}c{ri}_{ci}", f"{ci}:{ri}",

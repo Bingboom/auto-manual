@@ -2639,6 +2639,48 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_left"])
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_right"])
 
+    def test_symbol_continuation_masks_all_rounded_corners(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        overflow = (
+            [{"figure": "", "text": "Matière explosive"}],
+            [{"figure": "", "text": "Collecte séparée"}],
+        )
+
+        w.add_fcc_inbox_page(
+            "st_fcc_corner_masks",
+            [],
+            [("h1", "CONTENU DE LA BOÎTE")],
+            ROOT,
+            23,
+            symbol_overflow=overflow,
+            lang="fr",
+        )
+
+        spread = dict(w.spreads)["sp_23"]
+        for corner in ("top_left", "top_right", "bottom_left", "bottom_right"):
+            self.assertIn(
+                f'Self="mask_{corner}_st_fcc_corner_masks_symbols_left"',
+                spread,
+            )
+            self.assertIn(
+                f'Self="mask_{corner}_st_fcc_corner_masks_symbols_right"',
+                spread,
+            )
+        self.assertIn(
+            'Self="outline_st_fcc_corner_masks_symbols_left"', spread)
+
+    def test_component_table_cells_default_to_vertical_center(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+
+        centered = w._cell("centered", "0:0", "<Content>Copy</Content>")
+        top_aligned = w._cell(
+            "top", "0:0", "<Content>Copy</Content>", valign="TopAlign")
+
+        self.assertIn('VerticalJustification="CenterAlign"', centered)
+        self.assertIn('VerticalJustification="TopAlign"', top_aligned)
+
     def test_localized_symbol_continuation_fits_long_copy_inside_row(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)

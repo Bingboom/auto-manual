@@ -329,7 +329,7 @@ lang_fr_idml_storage_heading_space_after,3.34,pt,Approved FR storage heading-to-
 lang_es_idml_storage_heading_space_after,3.34,pt,Approved ES storage heading-to-body rhythm
 idml_trouble_heading_space_before,48.70,pt,Default approved storage-to-troubleshooting heading rhythm
 lang_en_idml_trouble_heading_space_before,18.94,pt,Approved EN storage-to-troubleshooting heading rhythm
-lang_fr_idml_trouble_heading_space_before,1.52,pt,Approved FR storage-to-troubleshooting heading rhythm
+lang_fr_idml_trouble_heading_space_before,0.0,pt,Approved FR storage-to-troubleshooting heading rhythm
 lang_es_idml_trouble_heading_space_before,0.58,pt,Approved ES storage-to-troubleshooting heading rhythm
 idml_trouble_table_space_before,8.74,pt,Default approved troubleshooting heading-to-table rhythm
 lang_en_idml_trouble_table_space_before,8.74,pt,Approved EN troubleshooting heading-to-table rhythm
