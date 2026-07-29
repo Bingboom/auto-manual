@@ -1,0 +1,4 @@
+interface:
+  display_name: "lark-cli Bitable Ops"
+  short_description: "Command shapes, field-type traps, coordinates, and the write-readback discipline for direct lark-cli Bitable work"
+  default_prompt: "Use $lark-cli-bitable-ops before touching a live Feishu table: check the three pre-write questions, compose payloads from the verified recipes, and read every write back (record_id + field + value) before reporting done."
