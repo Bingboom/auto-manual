@@ -8,6 +8,13 @@ Active hooks must be declared in `.claude/settings.json`; files in this director
 | --- | --- | --- | --- |
 | derived-surface-guard | `PostToolUse` / `Bash` | `derived_surface_guard.py` | After `build.py check\|sync-review\|publish`, warn (exit 2, stderr → agent) when tracked derived surfaces (`docs/_build`, `docs/index.rst`, `docs/_review`) got dirtied, so verification side-effects are restored instead of leaking into unrelated PRs (AGENTS.md §6). Silent (exit 0) otherwise; never blocks — the command already ran. |
 
+This hook only fires inside Claude Code. Its **git-layer counterpart** —
+`scripts/derived_surface_push_check.py`, wired into `.githooks/pre-push` (all
+three variants) — fires at push time for every agent and human (Codex
+included, wherever `core.hooksPath` is set per AGENTS.md §8.2), with
+`review/*` / `backport/*` exempt. Claude hook = warn at the moment of
+dirtying; git hook = advisory at the last gate before publication.
+
 ## Ownership
 
 - Hook scripts belong here under `.claude/hooks/`.

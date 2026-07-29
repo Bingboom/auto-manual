@@ -29,6 +29,15 @@ fi
   --base "origin/${AUTO_MANUAL_BASE_BRANCH:-main}" \
   --remote "${REVIEW_REMOTE:-hello-docs}" || true
 
+# Advisory (non-blocking): warn when outgoing commits touch tracked derived
+# surfaces (docs/_build, docs/index.rst, docs/_review) on a non-review branch —
+# verification side-effects from build.py check/sync-review must not leak into
+# PRs (AGENTS.md §6). Consumes the pre-push ref lines from stdin (no other step
+# reads them); review/*, backport/*, and the base branch are exempt.
+"${python_cmd}" "${repo_root}/scripts/derived_surface_push_check.py" \
+  --repo-root "${repo_root}" \
+  --base-branch "${AUTO_MANUAL_BASE_BRANCH:-main}" || true
+
 exec "${python_cmd}" "${repo_root}/scripts/git_branch_guard.py" \
   pre-push \
   --repo-root "${repo_root}" \
