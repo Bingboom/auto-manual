@@ -18,6 +18,7 @@ from .primitives import spec_table
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
+GOVERNED_LCD_ICON_LINE_RESERVE = 3.8
 
 
 def add_lcd_story(writer, rows: list[dict], data_root: Path,
@@ -105,9 +106,19 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                 row_icon_pt = min(row_icon_pt, max(4.0, float(governed_icon_size)))
             governed_height = str(row.get("row_height_pt") or "").strip()
             if governed_height:
+                # Governed LCD rows form one fixed-height table budget.  Fit
+                # the inline icon inside that budget, including the 0.6 pt
+                # baseline shift applied below; otherwise InDesign expands a
+                # visually sparse row and can push the final row past the
+                # rounded shell.
                 row_icon_pt = min(
                     icon_pt,
-                    max(4.0, float(governed_height) - 2 * vertical_pad - 3.0),
+                    max(
+                        4.0,
+                        float(governed_height)
+                        - 2 * vertical_pad
+                        - GOVERNED_LCD_ICON_LINE_RESERVE,
+                    ),
                 )
             fig = (ROOT / row["figure"]) if row["figure"] else None
             image = (
@@ -171,6 +182,10 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             n_rows=len(segment),
             role="data",
             row_heights=row_heights,
+            # A complete governed height profile is the fixed budget for the
+            # rounded shell.  Allowing native row growth makes short rows
+            # expand and pushes the final row outside that fixed shell.
+            auto_grow_rows=False,
         )
         for column in range(3):
             table = _tb.fill_column_xml(table, column, "Color/HB Bg K05")

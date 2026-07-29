@@ -223,7 +223,7 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
             after = (
                 f'<Row Self="{tid}r{row_index}" Name="{row_index}" '
                 f'SingleRowHeight="{height:g}" MinimumHeight="{height:g}" '
-                'AutoGrow="false"/>'
+                'AutoGrow="true"/>'
             )
             if before not in table:
                 raise ValueError(f"symbol signal row anchor missing: {tid}r{row_index}")
@@ -348,7 +348,7 @@ def _symbols_icon_table(
             after = (
                 f'<Row Self="{tid}r{ri}" Name="{ri}" '
                 f'SingleRowHeight="{height:g}" MinimumHeight="{height:g}" '
-                'AutoGrow="false"/>'
+                'AutoGrow="true"/>'
             )
             if before not in table:
                 raise ValueError(f"symbol table row anchor missing: {tid}r{ri}")

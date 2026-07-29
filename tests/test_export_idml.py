@@ -2595,11 +2595,11 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Objet lourd", stories["st_fcc_dense_symbols_left"])
         self.assertIn("Collecte séparée", stories["st_fcc_dense_symbols_right"])
         self.assertIn(
-            'SingleRowHeight="34" MinimumHeight="34" AutoGrow="false"',
+            'SingleRowHeight="34" MinimumHeight="34" AutoGrow="true"',
             stories["st_fcc_dense_symbols_left"],
         )
         self.assertIn(
-            'SingleRowHeight="68" MinimumHeight="68" AutoGrow="false"',
+            'SingleRowHeight="68" MinimumHeight="68" AutoGrow="true"',
             stories["st_fcc_dense_symbols_right"],
         )
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_left"])
@@ -3011,7 +3011,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('PointSize="5.5" Leading="6"', description_cell)
         self.assertNotIn('PointSize="5.8"', description_cell)
 
-    def test_lcd_governed_continuation_rows_emit_fixed_editable_heights(self) -> None:
+    def test_lcd_governed_continuation_rows_preserve_fixed_height_budget(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         figure = (
             "tests/fixtures/phase2/_attachments/lcd_icons/"
@@ -3036,7 +3036,33 @@ class ExportIdmlTests(unittest.TestCase):
             'AutoGrow="false"',
             continuation,
         )
-        self.assertIn('Anchor="0 -9.97"', continuation)
+        self.assertIn('Anchor="0 -9.17"', continuation)
+
+    def test_lcd_governed_height_budget_is_fixed_for_all_us_languages(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+                **({"row_height_pt": "17.25"} if index >= 8 else {}),
+            }
+            for index in range(1, 27)
+        ]
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                writer = IdmlWriter(params)
+                writer.add_lcd_story(
+                    rows,
+                    FIXTURE_DATA_ROOT,
+                    lang=language,
+                )
+                continuation = dict(writer.stories)[
+                    f"st_anchor_lcd_table_{language}_1"
+                ]
+                self.assertEqual(19, continuation.count('AutoGrow="false"'))
+                self.assertNotIn('AutoGrow="true"', continuation)
 
     def test_lcd_first_shell_matches_approved_reference_table_height(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
