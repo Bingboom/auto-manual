@@ -51,13 +51,56 @@ share the same spine: `data/phase2/source_record_index.json` sidecar, the
    operation-guide values, storage temps). Gate the candidate set against the same product's
    already-ingested sibling (`JE-2000E_US` for `JE-2000E_JP`, or the JP sibling for a new JP manual):
    missing logical rows = a real gap to fill before ingest.
-4. **Human confirmation.** The operator reviews the candidates (especially `needs_review`) in the
-   staging table and ticks a confirm field. Only confirmed rows are eligible to ingest.
+4. **Stage, then STOP for human confirmation (hard gate).** Writing the candidates into the
+   staging table is YOUR step, not the operator's: write every candidate (including
+   `needs_review`) into the 入库暂存表 (`tblIi0BEufjvGLIU`), with `状态` set from the engine
+   verdict (✅直通 / 🔧已变换 / ⚠️需确认), report the staged record count + a filtered view
+   back to the operator, and wait. Only rows the operator explicitly confirms (「确认」/
+   「入库」, per row or per batch — numbered picks count) are eligible to ingest. Jumping from
+   extraction straight to ingest without the staging write is the exact miss the operator has
+   had to catch by hand (2026-07-15).
 5. **Ingest into BOTH source tables (CREATE = clone a sibling):** `规格参数明细` (Page=specifications)
    + `页面占位参数` (Page≠specifications). See "Ingest by cloning" below.
 6. **Close + verify:** `python build.py sync-data --config <cfg> --sync-scope params`, then
    `python build.py check --config <cfg> --model <CANONICAL> --region <REGION>`, then a `rst`/`html`
    build to eyeball.
+
+## Hard gates (each QC'd in by the operator after a real miss)
+
+1. **Staging-write-first.** Candidates go into the staging table and get operator confirmation
+   BEFORE any source-table write — never extraction → ingest directly (workflow step 4).
+2. **Sibling reference = real structure.** `spec-extract` always runs with `--reference`, and the
+   sibling is chosen by target: single-language-English regions (AU-style) → the EU sibling's
+   confirmed English rows; JP → the JP sibling (phrasing + structure); KR → the KR sibling
+   (it carries the `_ko` localized columns). When the generic rule table (`规格书字段映射规则`)
+   and the real sibling diverge on Slot_key / Line_order / filler rows, the **sibling wins** —
+   align the staged rows to it (real divergences caught this way: usb_c slot 140w/LO1 in the
+   rules vs 100w/LO2 in EU reality; a dc_expansion_port filler row EU never had).
+3. **Value language = `Source_lang`.** From a Chinese spec sheet, manual/needs_review rows keep
+   the Chinese ONLY in 规格书原值 — 手册值 stays empty for the approver. English manual values
+   are written by copying the sibling's confirmed wording (EU `Value_source`), not by
+   transforming the Chinese; deviate only where the spec sheet genuinely differs, and mark
+   those ⚠️需确认 with the evidence.
+4. **Cloned residuals get an explicit list.** After clone-ingest, every value inherited from the
+   sibling that the spec sheet did not confirm (energy-saving/standby timings, …) is reported
+   as "inherited, unconfirmed" — cloned ≠ confirmed. Regional electrical rows
+   (ac_input / ac_output / bypass: voltage, frequency, rated current) are per-region facts —
+   verify each against the spec sheet, never trust the clone (a 50 Hz AU row cloned into a
+   60 Hz KR target is a printed defect). Close the batch by tidying the staging table
+   (fill 入库结果; only pending batches stay staged).
+5. **Localized value columns move together.** KR/JP/CN rows carry `Value_<lang>` /
+   `Row_label_<lang>` beside `Value_source`, and the localized manual renders the localized
+   column. ANY spec correction on such a target updates BOTH columns — localized formatting
+   included (정격, not "max", in Korean) — then the review branch is re-seeded (Start Review)
+   so the build picks the new values up. `Value_source` alone leaves the localized spec page
+   printing the old value (JE-1000H_KR, 2026-07-27).
+6. **Re-ingest and revisions are diffs, not rewrites.** Before ANY ingest, check whether the
+   target `document_key` already has rows (`record-list --filter-json` on BOTH source tables) —
+   a blind clone onto an existing target doubles the row set (JE-1800B_JP, 2026-07-06); if
+   found, delete all of that document_key's source rows and rebuild from the correct payload
+   (keep the Model / Document_key master-data records). The write path has no upsert: clean up
+   a half-failed run the same way. A revised spec sheet (rev A0 → A1) is diffed against the
+   ingested rows and applied incrementally — never re-cloned over live rows.
 
 ## Region & language (critical)
 
