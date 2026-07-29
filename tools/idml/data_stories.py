@@ -13,12 +13,11 @@ from . import page_objects as _po
 from . import table_borders as _tb
 from .components.rounded_table import rounded_table_panel, table_text_indent
 from .loaders import symbol_copy
-from .params import IDPKG, param_pt
+from .params import IDPKG, component_param_pt, param_pt
 from .primitives import spec_table
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
-GOVERNED_LCD_ICON_LINE_RESERVE = 3.8
 
 
 def add_lcd_story(writer, rows: list[dict], data_root: Path,
@@ -48,6 +47,13 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
     )
     writer.lcd_segment_counts[lang] = len(segments)
     text_indent = table_text_indent(writer.params)
+    governed_icon_line_reserve = component_param_pt(
+        writer.params,
+        "idml_lcd_governed_icon_line_reserve",
+        0.0,
+        strict=writer.strict_component_assets,
+        owner="LCD governed row icon fit",
+    )
     table_panels: list[str] = []
     global_ri = 0
     for segment_index, segment in enumerate(segments):
@@ -117,7 +123,7 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                         4.0,
                         float(governed_height)
                         - 2 * vertical_pad
-                        - GOVERNED_LCD_ICON_LINE_RESERVE,
+                        - governed_icon_line_reserve,
                     ),
                 )
             fig = (ROOT / row["figure"]) if row["figure"] else None

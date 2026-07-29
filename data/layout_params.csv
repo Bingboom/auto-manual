@@ -384,6 +384,7 @@ lang_es_idml_lcd_translated_first_vertical_padding,1.33,pt,Spanish IDML LCD firs
 idml_lcd_continuation_vertical_padding,2.14,pt,IDML English LCD continuation cell top and bottom padding
 lang_fr_idml_lcd_continuation_vertical_padding,1.4,pt,French IDML LCD continuation cell top and bottom padding
 lang_es_idml_lcd_continuation_vertical_padding,1.45,pt,Spanish IDML LCD continuation cell top and bottom padding
+idml_lcd_governed_icon_line_reserve,3.8,pt,IDML governed LCD row icon line reserve
 idml_lcd_first_left_indent,0.5,pt,IDML LCD first-segment optical left offset
 lang_fr_idml_lcd_first_left_indent,0.5,pt,French IDML LCD first-segment optical left offset
 lang_es_idml_lcd_first_left_indent,0.5,pt,Spanish IDML LCD first-segment optical left offset

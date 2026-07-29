@@ -3040,6 +3040,7 @@ class ExportIdmlTests(unittest.TestCase):
 
     def test_lcd_governed_height_budget_is_fixed_for_all_us_languages(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        self.assertEqual(("3.8", "pt"), params["idml_lcd_governed_icon_line_reserve"])
         rows = [
             {
                 "no": str(index),
