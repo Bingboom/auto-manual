@@ -8,7 +8,7 @@ used week-to-week, so a session doesn't re-derive them.
 
 ## 文档构建 base (business plane, tenant xcn57j1urbe6)
 
-- base/app_token: `LD3lb4G1ua4GOVs1vxAc9W2enje` — wiki node `BLYEwfMMFiS7wsk9MuvcOvdVnje`
+- BASE_TOKEN = `LD3lb4G1ua4GOVs1vxAc9W2enje` (the base/app_token) — wiki node `BLYEwfMMFiS7wsk9MuvcOvdVnje`
 
 | Table | table_id | Notes |
 | --- | --- | --- |
@@ -31,7 +31,7 @@ used week-to-week, so a session doesn't re-derive them.
 
 ## Translation_Memory (canonical write base = "B"/env base)
 
-- base token: `Ji1hb5ub1aUbewsTljGccvx5nhc`
+- BASE_TOKEN = `Ji1hb5ub1aUbewsTljGccvx5nhc`
   (wiki node `FRUywcjrPiMoPrkxnadcQhhenmb`, tenant xcn57j1urbe6)
 - 句对表 `tblqtvNbgjDwR4ya` (view `veweqW2fQv`) · 术语表 `tblzerRpOEuDIkKA`
   (view `vewChPXyP9`)
