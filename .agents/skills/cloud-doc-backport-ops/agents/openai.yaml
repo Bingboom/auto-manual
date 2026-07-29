@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cloud-Doc Backport Ops"
+  short_description: "Run a review cloud-doc backport round: dry-run, route deltas, apply, deletion sweep, rediff to zero, advance baseline"
+  default_prompt: "Use $cloud-doc-backport-ops to back-port this review cloud doc's edits: resolve its review branch, dry-run run-review-branch, route every delta (review page / F6 source table / template+propagation / debt), run the post-apply checklist including the deletion sweep, re-verify to deltas=0, and re-snapshot the baseline."
