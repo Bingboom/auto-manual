@@ -20,5 +20,18 @@
       "Read(./integrations/openclaw/**/node_modules/**)",
       "Read(./integrations/openclaw/**/runtime/**)"
     ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/derived_surface_guard.py\""
+          }
+        ]
+      }
+    ]
   }
 }
