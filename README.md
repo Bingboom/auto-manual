@@ -50,6 +50,15 @@ python build.py review --config configs/config.us-en.yaml --model JE-1000F --reg
 # Stage 1 CI observation lane reports existing FAIL rows without blocking.
 python tools/ci_check_targets.py --data-root tests/fixtures/phase2
 
+# Refresh one target's rows from a local phase2 mirror into the committed
+# fixture without touching unrelated document_key rows. Omit --write to
+# inspect the plan first; the command also refreshes manifest hashes.
+python tools/data_snapshot.py fixture-refresh \
+  --document-key JE-1000F_US \
+  --source-root data/phase2 \
+  --fixture-root tests/fixtures/phase2 \
+  --write
+
 # Check the asset control plane and resolve an approved import.
 python build.py asset-check --json
 python build.py asset-check --asset-key operation/ac_output --asset-format png --json
