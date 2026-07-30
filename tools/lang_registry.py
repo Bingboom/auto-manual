@@ -73,7 +73,9 @@ LANGUAGE_REGISTRY = (
     LanguageSpec(
         code="zh",
         aliases=("zh",),
-        column_suffixes=("zh",),
+        # ``cn`` is retained as a historical lookup candidate by the IDML
+        # loader; the current source-table schemas only contain ``zh``.
+        column_suffixes=("zh", "cn"),
         table_columns=(
             ("spec_footnotes", _columns("Text_zh")),
             ("spec_notes", _columns("Text_zh")),
@@ -92,7 +94,9 @@ LANGUAGE_REGISTRY = (
     LanguageSpec(
         code="ja",
         aliases=("ja", "jp"),
-        column_suffixes=("ja", "jp"),
+        # IDML tries the historical ``jp`` column before the newer ``ja``
+        # footnote spelling.  Table-specific columns below remain explicit.
+        column_suffixes=("jp", "ja"),
         table_columns=(
             ("spec_footnotes", _columns("Text_ja")),
             ("spec_notes", _columns("Text_ja")),
