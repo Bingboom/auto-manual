@@ -692,6 +692,16 @@ Exit criteria:
 - propagation lag (fix merged → all branches bumped) is measured and visible
 - reviewer-authored edits survive propagation or surface as explicit conflicts, never silent overwrites
 
+### Workstream W: Product-Line Scaling Execution (模版+数据 → InDesign)
+
+Status: active (operator-approved 2026-07-30, full six stages; gated items released per the plan's §5)
+
+PR-level breakdown: [`architecture/scaling_execution_plan.md`](architecture/scaling_execution_plan.md) §4 is the authoritative per-PR list (~76 S/M PRs across Stage 0–5); [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone L tracks stage-level progress.
+
+Capacity/trigger: the operator's product-line expansion decision (2026-07-30) is the roadmap-§5 business trigger — it fires K13's named trigger (next new-language/region onboarding) and supplies the Tier-3 "dedicated window" via overnight agent execution. The workstream reuses existing item numbers where they exist (K2, K8 incl. the snapshot file-lock, K13, K14, E1, I2's normalization prerequisite) and adds sensor/generator/scaffold/throughput slices around them. Ordering is safety-net-first (Stage 0 sensors + parity/golden locks), mechanical consolidation next, behavior changes last (Stage 5, each independently gated). Explicit non-goals keep K9/K10/K11/K12-full/K15-implementation, Deferred 1–5, and every fail-closed approval semantic untouched; concurrency work (Stage 4b) is sequenced behind a minimal atomic claim to avoid the double-claim trap.
+
+Exit criteria: the plan's §2 metrics on the dashboard — a new output language lands with zero Python edits (fake-lang proof), CI check coverage counted as PASS/(PASS+SKIP+FAIL) with a SKIP ratchet, contract recovery after a shared layout change = one command + one approval, hand-written artifact residue ratchets falling, and the next real product line onboarded in ≤2 operator-days.
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
