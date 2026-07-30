@@ -4,9 +4,12 @@
 from __future__ import annotations
 
 import json
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.utils.targets import format_tokenized
 
@@ -613,3 +616,27 @@ def resolve_phase2_manifest_path(
         model=model,
         region=region,
     )
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Expose snapshot maintenance utilities without changing build.py CLI."""
+    import argparse
+
+    parser = argparse.ArgumentParser(prog="data_snapshot")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+    subparsers.add_parser(
+        "fixture-refresh",
+        help="refresh one document_key in the committed phase2 fixture snapshot",
+        add_help=False,
+    )
+    args, remainder = parser.parse_known_args(argv)
+    if args.command == "fixture-refresh":
+        from tools.data_snapshot_fixture_refresh import main as fixture_refresh_main
+
+        return fixture_refresh_main(remainder)
+    parser.error(f"unsupported command: {args.command}")
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
