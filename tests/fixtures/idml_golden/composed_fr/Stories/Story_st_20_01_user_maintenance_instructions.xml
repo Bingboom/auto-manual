@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_20_01_user_maintenance_instructions" Label="hb:self=st_20_01_user_maintenance_instructions" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="20_01_user_maintenance_instructions">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式" SpanColumnType="SpanColumns">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
+  <Table Self="st_20_01_user_maintenance_instructions_cmp0" AppliedTableStyle="TableStyle/Warning表格" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+    <Row Self="st_20_01_user_maintenance_instructions_cmp0r0" Name="0"/>
+    <Column Self="st_20_01_user_maintenance_instructions_cmp0col0" Name="0" SingleColumnWidth="24"/>
+    <Column Self="st_20_01_user_maintenance_instructions_cmp0col1" Name="1" SingleColumnWidth="288.094"/>
+    <Cell Self="st_20_01_user_maintenance_instructions_cmp0c0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="st_20_01_user_maintenance_instructions_cmp0wi" Label="hb:self=st_20_01_user_maintenance_instructions_cmp0wi" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" StrokeColor="Swatch/None" StrokeWeight="0"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -15.8523" LeftDirection="0 -15.8523" RightDirection="0 -15.8523"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="18 0" LeftDirection="18 0" RightDirection="18 0"/><PathPointType Anchor="18 -15.8523" LeftDirection="18 -15.8523" RightDirection="18 -15.8523"/></PathPointArray></GeometryPathType></PathGeometry></Properties><AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/><Image Self="st_20_01_user_maintenance_instructions_cmp0wi_img" ItemTransform="1 0 0 1 0 0"><Link Self="st_20_01_user_maintenance_instructions_cmp0wi_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/symbols/warning_triangle.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Br/></CharacterStyleRange></ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_20_01_user_maintenance_instructions_cmp0c1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading3">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+  </Table>
+    <Br/></CharacterStyleRange>
+  </ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式" SpanColumnType="SpanColumns">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
+  <Table Self="st_20_01_user_maintenance_instructions_cmp1" AppliedTableStyle="TableStyle/Warning表格" BodyRowCount="1" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
+    <Row Self="st_20_01_user_maintenance_instructions_cmp1r0" Name="0"/>
+    <Column Self="st_20_01_user_maintenance_instructions_cmp1col0" Name="0" SingleColumnWidth="36"/>
+    <Column Self="st_20_01_user_maintenance_instructions_cmp1col1" Name="1" SingleColumnWidth="276.094"/>
+    <Cell Self="st_20_01_user_maintenance_instructions_cmp1c0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Rectangle Self="st_20_01_user_maintenance_instructions_cmp1wi" Label="hb:self=st_20_01_user_maintenance_instructions_cmp1wi" ContentType="GraphicType" AppliedObjectStyle="ObjectStyle/$ID/[None]" ItemTransform="1 0 0 1 0 0" StrokeColor="Swatch/None" StrokeWeight="0"><Properties><PathGeometry><GeometryPathType PathOpen="false"><PathPointArray><PathPointType Anchor="0 -24.6591" LeftDirection="0 -24.6591" RightDirection="0 -24.6591"/><PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/><PathPointType Anchor="28 0" LeftDirection="28 0" RightDirection="28 0"/><PathPointType Anchor="28 -24.6591" LeftDirection="28 -24.6591" RightDirection="28 -24.6591"/></PathPointArray></GeometryPathType></PathGeometry></Properties><AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/><Image Self="st_20_01_user_maintenance_instructions_cmp1wi_img" ItemTransform="1 0 0 1 0 0"><Link Self="st_20_01_user_maintenance_instructions_cmp1wi_lnk" LinkResourceURI="file://IDML-GOLDEN-ROOT/docs/templates/word_template/common_assets/symbols/warning_triangle.png"/></Image><FrameFittingOption FittingOnEmptyFrame="Proportionally"/></Rectangle><Br/></CharacterStyleRange></ParagraphStyleRange>
+    </Cell>
+    <Cell Self="st_20_01_user_maintenance_instructions_cmp1c1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Heading2">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>DANGER</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
+  </ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>This device is intended for indoor use only.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>※</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content> This device is not waterproof or dustproof. Keep away from rain and humid environments during use.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+    </Cell>
+  </Table>
+    <Br/></CharacterStyleRange>
+  </ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/Figure"><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><TextFrame Self="tfp_st_anchor_h1pill_8" Label="hb:self=tfp_st_anchor_h1pill_8" ParentStory="st_anchor_h1pill_8" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/HB Capsule Heading" FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="0 -20.126" LeftDirection="0 -20.126" RightDirection="0 -20.126"/>
+            <PathPointType Anchor="0 -5.66929" LeftDirection="0 -5.66929" RightDirection="0 -2.53823"/>
+            <PathPointType Anchor="5.66929 0" LeftDirection="2.53823 0" RightDirection="5.66929 0"/>
+            <PathPointType Anchor="306.425 0" LeftDirection="306.425 0" RightDirection="309.556 0"/>
+            <PathPointType Anchor="312.094 -5.66929" LeftDirection="312.094 -2.53823" RightDirection="312.094 -5.66929"/>
+            <PathPointType Anchor="312.094 -20.126" LeftDirection="312.094 -20.126" RightDirection="312.094 -20.126"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" VerticalJustification="CenterAlign"><Properties><InsetSpacing type="list"><ListItem type="unit">1.5</ListItem><ListItem type="unit">1</ListItem><ListItem type="unit">1</ListItem><ListItem type="unit">1</ListItem></InsetSpacing></Properties></TextFramePreference>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+  </TextFrame><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>During the lifecycle of energy storage products, always keep the unit dry and store it in a cool, ventilated place.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
+  </ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>Charge the battery to around 60% before long-term storage and recharge it at least once every three months.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+</Story>
+</idPkg:Story>

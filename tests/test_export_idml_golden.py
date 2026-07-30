@@ -23,6 +23,7 @@ then review the fixture diff like any other code change.
 """
 from __future__ import annotations
 
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -38,17 +39,20 @@ ROOT_URI = ROOT.resolve().as_uri()
 URI_PLACEHOLDER = "file://IDML-GOLDEN-ROOT"
 
 VARIANTS: dict[str, dict] = {
-    "composed": {"bundle_root": BUNDLE_FIXTURE},
+    "composed": {"bundle_root": BUNDLE_FIXTURE, "lang": "en"},
+    "composed_fr": {"bundle_root": BUNDLE_FIXTURE, "lang": "fr"},
 }
 
 
-def _build_package(bundle_root: Path, out_path: Path) -> subprocess.CompletedProcess:
+def _build_package(
+    bundle_root: Path, out_path: Path, *, lang: str,
+) -> subprocess.CompletedProcess:
     cmd = [
         sys.executable,
         str(ROOT / "tools" / "export_idml.py"),
         "--model", "JE-1000F",
         "--region", "US",
-        "--lang", "en",
+        "--lang", lang,
         "--data-root", str(DATA_FIXTURE),
         "--bundle-root", str(bundle_root),
         "--out", str(out_path),
@@ -86,13 +90,32 @@ def _write_golden(variant: str, parts: dict[str, bytes]) -> None:
         dest.write_bytes(data)
 
 
+def _bundle_for_variant(variant: str, temp_root: Path) -> tuple[Path, str]:
+    config = VARIANTS[variant]
+    lang = config["lang"]
+    source = Path(config["bundle_root"])
+    if lang == "en":
+        return source, lang
+
+    localized = temp_root / f"bundle_{lang}"
+    shutil.copytree(source, localized)
+    for page in localized.rglob("*.rst"):
+        text = page.read_text(encoding="utf-8")
+        page.write_text(
+            text.replace(r"\HBApplyLang{en}", rf"\HBApplyLang{{{lang}}}"),
+            encoding="utf-8",
+        )
+    return localized, lang
+
+
 class IdmlGoldenTests(unittest.TestCase):
     maxDiff = 2000
 
     def _build_and_normalize(self, variant: str) -> dict[str, bytes]:
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "golden.idml"
-            proc = _build_package(VARIANTS[variant]["bundle_root"], out)
+            bundle_root, lang = _bundle_for_variant(variant, Path(td))
+            proc = _build_package(bundle_root, out, lang=lang)
             self.assertEqual(
                 proc.returncode, 0,
                 f"exporter failed for {variant}:\n{proc.stdout}\n{proc.stderr}",
@@ -133,7 +156,8 @@ def _regenerate() -> int:
     for variant in VARIANTS:
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "golden.idml"
-            proc = _build_package(VARIANTS[variant]["bundle_root"], out)
+            bundle_root, lang = _bundle_for_variant(variant, Path(td))
+            proc = _build_package(bundle_root, out, lang=lang)
             if proc.returncode != 0:
                 print(proc.stdout)
                 print(proc.stderr, file=sys.stderr)
