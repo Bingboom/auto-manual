@@ -107,3 +107,6 @@ the apply techniques, and the decision checklist. Keep it open while you work.
   residuals remain, so it can gate "done".
 - `references/source-map.md` — content→source map, table keying, Feishu `lark-cli` read/write
   recipe, apply techniques, and the decision checklist. Read it before mapping changes.
+- `../cloud-doc-backport-ops/references/post-apply-checklist.md` — the shared mandatory
+  post-apply gate (deletion sweep, symmetric-term pairs, reviewer-typo normalization,
+  per-write readback). Run every item after each apply round, same as cloud-doc rounds.
