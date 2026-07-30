@@ -8,8 +8,9 @@ or to a regex inside a page (scope=section). Enforcement is data-driven
 per rule via required_when_true / forbidden_when_false so noisy rules
 can stay recorded but inert until their wording is unified.
 
-Targets without a capability row are skipped: absence of inventory data
-is not a defect, and legacy lines must keep passing check.
+Targets without a capability row are reported as a warning unless the
+target is listed in the explicit known-missing ledger; legacy lines can
+keep passing check through that ledger.
 """
 from __future__ import annotations
 
@@ -23,6 +24,7 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 CAPABILITIES_CSV = "model_capabilities.csv"
+KNOWN_MISSING_CSV = "capability_known_missing.csv"
 RULES_CSV = "capability_page_rules.csv"
 
 
@@ -32,16 +34,17 @@ def load_capabilities(data_dir: Path) -> dict[str, dict[str, bool]]:
     if not path.exists():
         return {}
     out: dict[str, dict[str, bool]] = {}
-    for row in csv.DictReader(path.open(encoding="utf-8")):
-        key = (row.get("Document_key") or "").strip()
-        if not key:
-            continue
-        out[key] = {
-            k: v.strip().upper() == "TRUE"
-            for k, v in row.items()
-            if k not in ("Document_key", "Project", None)
-            and isinstance(v, str)
-        }
+    with path.open(encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            key = (row.get("Document_key") or "").strip()
+            if not key:
+                continue
+            out[key] = {
+                k: v.strip().upper() == "TRUE"
+                for k, v in row.items()
+                if k not in ("Document_key", "Project", None)
+                and isinstance(v, str)
+            }
     return out
 
 
@@ -51,12 +54,26 @@ def load_rules(data_dir: Path) -> list[dict[str, str]]:
         return []
     # DictReader shunts overflow cells (an unquoted comma in notes) into a
     # None restkey with a list value — drop those instead of crashing.
-    return [
-        {k: (v or "").strip() for k, v in row.items()
-         if k is not None and isinstance(v, (str, type(None)))}
-        for row in csv.DictReader(path.open(encoding="utf-8"))
-        if (row.get("capability") or "").strip()
-    ]
+    with path.open(encoding="utf-8") as handle:
+        return [
+            {k: (v or "").strip() for k, v in row.items()
+             if k is not None and isinstance(v, (str, type(None)))}
+            for row in csv.DictReader(handle)
+            if (row.get("capability") or "").strip()
+        ]
+
+
+def load_known_missing(data_dir: Path) -> dict[str, str]:
+    """Return explicitly reviewed targets whose capability row is absent."""
+    path = data_dir / KNOWN_MISSING_CSV
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as handle:
+        return {
+            (row.get("Document_key") or "").strip(): (row.get("reason") or "").strip()
+            for row in csv.DictReader(handle)
+            if (row.get("Document_key") or "").strip()
+        }
 
 
 def _pages_matching(bundle_dir: Path, stem_pattern: str) -> list[Path]:
@@ -74,6 +91,16 @@ def collect_capability_issues(*, bundle_dir: Path, model: str, region: str,
                               data_dir: Path, issue_cls) -> list:
     caps = load_capabilities(data_dir).get(f"{model}_{region}")
     if caps is None:
+        target_key = f"{model}_{region}"
+        known_missing = load_known_missing(data_dir)
+        if target_key not in known_missing:
+            return [issue_cls(
+                code="CAPABILITY_ROW_MISSING",
+                message=(f"no capability row for {target_key}; add source data or an explicit "
+                         f"exemption to {KNOWN_MISSING_CSV}"),
+                model=model, region=region,
+                path=data_dir / KNOWN_MISSING_CSV,
+            )]
         return []
     issues: list = []
     for rule in load_rules(data_dir):

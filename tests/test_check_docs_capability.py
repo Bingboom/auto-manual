@@ -31,7 +31,8 @@ def _write(path: Path, text: str) -> None:
 
 class CapabilityCheckTests(unittest.TestCase):
     def _run(self, caps_row: str, rules: str, pages: dict[str, str],
-             model: str = "JE-1000F", region: str = "US") -> list[_Issue]:
+             model: str = "JE-1000F", region: str = "US",
+             known_missing: str = "") -> list[_Issue]:
         td = Path(tempfile.mkdtemp())
         data = td / "data"
         _write(data / "model_capabilities.csv",
@@ -39,6 +40,8 @@ class CapabilityCheckTests(unittest.TestCase):
         _write(data / "capability_page_rules.csv",
                "capability,scope,page_stem,match_regex,required_when_true,forbidden_when_false,notes\n"
                + rules + "\n")
+        if known_missing:
+            _write(data / "capability_known_missing.csv", "Document_key,reason\n" + known_missing + "\n")
         bundle = td / "bundle"
         for name, text in pages.items():
             _write(bundle / "page" / name, text)
@@ -84,11 +87,18 @@ class CapabilityCheckTests(unittest.TestCase):
             {"05_operation_guide.rst": "no lamp here"})
         self.assertEqual([i.code for i in issues], ["CAPABILITY_CONTENT_MISSING"])
 
-    def test_target_without_capability_row_is_skipped(self) -> None:
+    def test_target_without_capability_row_emits_warning(self) -> None:
         issues = self._run(
             "JE-9999X_US,HTE000,TRUE,TRUE",
             "UPS功能,page,06_ups_mode,,Y,Y,",
-            {})
+            {}, model="JE-1000F", region="US")
+        self.assertEqual([i.code for i in issues], ["CAPABILITY_ROW_MISSING"])
+
+    def test_known_missing_capability_row_is_exempt(self) -> None:
+        issues = self._run(
+            "JE-9999X_US,HTE000,TRUE,TRUE",
+            "UPS功能,page,06_ups_mode,,Y,Y,",
+            {}, known_missing="JE-1000F_US,legacy line")
         self.assertEqual(issues, [])
 
     def test_inert_rule_records_nothing(self) -> None:

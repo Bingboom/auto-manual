@@ -736,6 +736,13 @@ class TestCheckDocs(unittest.TestCase):
                 encoding="utf-8",
             )
 
+            data_dir = root / "data"
+            data_dir.mkdir()
+            (data_dir / "model_capabilities.csv").write_text(
+                "Document_key,Project\nJE-1000F_US,HTE153\n",
+                encoding="utf-8",
+            )
+
             issues = check_docs.collect_check_issues(
                 cfg_path=config_path,
                 model="JE-1000F",

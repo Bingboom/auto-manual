@@ -1,0 +1,2 @@
+Document_key,reason
+JE-2000E_CN,Capability inventory row is not yet mirrored for the existing CN line; keep the build fail-open until source ownership is confirmed.

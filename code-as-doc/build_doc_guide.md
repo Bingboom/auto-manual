@@ -1076,9 +1076,10 @@ with python tools/csv_to_tex_params.py.
 `build.py check` validates each target against the product capability matrix:
 
 - `data/model_capabilities.csv` — per-`Document_key` feature booleans, mirrored from the 文档构建表 checkboxes (说明书盘点 2026-07-06).
+- `data/capability_known_missing.csv` — reviewed `Document_key,reason` exemptions for targets whose capability row is not yet mirrored; unlisted missing rows surface as non-blocking `CAPABILITY_ROW_MISSING` warnings.
 - `data/capability_page_rules.csv` — capability -> chapter mapping. `scope=page` requires/forbids a bundle page stem; `scope=section` greps a regex inside matching pages. `required_when_true` / `forbidden_when_false` toggle enforcement per direction, so uncertain rules can be recorded without failing builds.
 
-Failure codes: `CAPABILITY_CONTENT_MISSING` (capability TRUE, chapter absent) and `CAPABILITY_CONTENT_UNEXPECTED` (capability FALSE, chapter present). Targets missing from the capabilities CSV are skipped — absence of inventory data is not a defect.
+Failure codes: `CAPABILITY_CONTENT_MISSING` (capability TRUE, chapter absent) and `CAPABILITY_CONTENT_UNEXPECTED` (capability FALSE, chapter present). `CAPABILITY_ROW_MISSING` is a warning-only inventory signal unless the target is listed in the known-missing ledger; missing capability rows continue to keep page selection fail-open.
 
 `check` also runs the language-tree parity gate (`tools/check_docs_lang_parity.py`, Milestone I1): `LANG_PARITY_FOREIGN_SHELL` (a ko/ja/zh/uk page carrying almost no target-script text — an untranslated shell), `LANG_PARITY_FOREIGN_LANG_BLOCK` (language-tagged blocks such as `**FR IMPORTANT**` or `\HBApplyLang{xx}` outside the family's languages), `LANG_PARITY_MISSING_LANG_PAGE` / `LANG_PARITY_FOREIGN_LANG_PAGE` (per-language generated page set incomplete, or a leftover page from another language line). Pre-existing findings are registered in `data/lang_parity_known_exceptions.csv` (model, region, code, page, note) so only NEW drift fails; delete a row once its content decision lands.
 
