@@ -289,7 +289,7 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('LeftIndent="5.67"', list_style)
         self.assertIn('FirstLineIndent="-5.67"', list_style)
 
-    def test_app_item_list_uses_shared_hanging_text_edge(self) -> None:
+    def test_app_item_list_bullet_aligns_with_notes_heading(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.styles import styles_xml
 
@@ -297,7 +297,11 @@ class ComponentRegistryTests(unittest.TestCase):
         app_list = styles_xml(params).split(
             'Self="ParagraphStyle/HB App List"', 1,
         )[1].split("</ParagraphStyle>", 1)[0]
-        self.assertIn('LeftIndent="13.5"', app_list)
+        app_h3 = styles_xml(params).split(
+            'Self="ParagraphStyle/HB App H3"', 1,
+        )[1].split("</ParagraphStyle>", 1)[0]
+        self.assertIn('LeftIndent="13.5"', app_h3)
+        self.assertIn('LeftIndent="19.2"', app_list)
         self.assertIn('FirstLineIndent="-5.7"', app_list)
 
     def test_warranty_year_subtitle_starts_at_year_unit(self) -> None:

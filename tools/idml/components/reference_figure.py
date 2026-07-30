@@ -46,6 +46,7 @@ class AppFigureStyle:
     control_label_size: float
     control_label_leading: float
     control_label_min_height: float
+    control_label_leader_gap: float
     connect_step_size: float
     connect_step_leading: float
     connect_note_size: float
@@ -78,6 +79,9 @@ class AppFigureStyle:
             ),
             control_label_min_height=token(
                 "idml_app_control_label_min_height", 7.2,
+            ),
+            control_label_leader_gap=token(
+                "idml_app_control_label_leader_gap", 1.2,
             ),
             connect_step_size=token(
                 "idml_app_connect_step_font_size", 5.5,
@@ -736,15 +740,25 @@ def _app_add_device(
     # Roles are explicit in source/IR. Localized array order never controls
     # placement: the fixed visual slots are main power, DC/USB, then AC.
     label_specs = (
-        ("main_power", 23.161, 75.097, -40.118, "LeftAlign"),
-        ("dc_usb", 22.681, 100.5, -22.786, "LeftAlign"),
-        ("ac", 248.268, 310.0, -22.686, "RightAlign"),
+        ("main_power", 23.161, 77.905, -40.118, "left"),
+        ("dc_usb", 22.681, 102.5, -22.786, "left"),
+        ("ac", 310.0, 248.268, -22.686, "right"),
     )
     label_frames = []
-    for index, (role, left, right, line_y, align) in enumerate(label_specs):
+    for index, (role, outer_edge, leader_edge, line_y, side) in enumerate(
+        label_specs
+    ):
         text = labels.get(role, "")
         if not text:
             continue
+        if side == "left":
+            left = outer_edge
+            right = leader_edge - style.control_label_leader_gap
+            align = "RightAlign"
+        else:
+            left = leader_edge + style.control_label_leader_gap
+            right = outer_edge
+            align = "LeftAlign"
         height = _frame_height(
             text,
             right - left,

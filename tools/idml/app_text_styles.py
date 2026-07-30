@@ -41,9 +41,17 @@ def paragraph_attrs(name: str, kind: str, params: dict[str, tuple[str, str]]) ->
     if kind == "app_h2":
         return f'SpaceAfter="{param_pt(params, "idml_app_h2_space_after", 3.5):g}" Hyphenation="false" '
     if kind == "app_list":
+        # The bullet shares the H3/notes left edge.  The negative first-line
+        # indent then derives the continuation edge, preserving a true
+        # hanging list while keeping the bullet aligned with 4.1/4.2/4.3.
+        bullet_left = param_pt(params, "idml_app_list_left_indent", 13.5)
+        first_line = param_pt(
+            params, "idml_app_list_first_line_indent", -5.7,
+        )
+        continuation_left = bullet_left - first_line
         return (
-            f'LeftIndent="{param_pt(params, "idml_app_list_left_indent", 19.2):g}" '
-            f'FirstLineIndent="{param_pt(params, "idml_app_list_first_line_indent", -5.7):g}" '
+            f'LeftIndent="{continuation_left:g}" '
+            f'FirstLineIndent="{first_line:g}" '
             'RightIndent="0" SpaceAfter="0.7" Hyphenation="false" '
         )
     indent_tokens = {

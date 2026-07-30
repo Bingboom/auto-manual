@@ -167,7 +167,7 @@
       <Leading type="unit">8</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/HB App List" Name="HB App List" PointSize="7" FillColor="Color/HB Brand Dark" LeftIndent="13.5" FirstLineIndent="-5.7" RightIndent="0" SpaceAfter="0.7" Hyphenation="false" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/HB App List" Name="HB App List" PointSize="7" FillColor="Color/HB Brand Dark" LeftIndent="19.2" FirstLineIndent="-5.7" RightIndent="0" SpaceAfter="0.7" Hyphenation="false" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Regular</FontStyle>

@@ -8,6 +8,7 @@ from xml.sax.saxutils import escape
 from .character_metrics import (
     fit_symbol_body_metrics,
     signal_label_metrics,
+    with_character_baseline_shift,
     with_character_metrics,
 )
 from .layout_est import est_table_height, template_symbol_split
@@ -130,6 +131,13 @@ def _localized_signal_label_bar(
         strict=writer.strict_component_assets,
         owner="symbol signal badge",
     )
+    badge_raise = component_param_pt(
+        writer.params,
+        "idml_symbols_signal_badge_baseline_shift",
+        1.5,
+        strict=writer.strict_component_assets,
+        owner="symbol signal badge vertical centering",
+    )
     asset = (
         ROOT / "docs" / "templates" / "word_template" / "common_assets"
         / "symbols" / "warning_triangle_white.svg"
@@ -201,7 +209,8 @@ def _localized_signal_label_bar(
         outer_stroke=False,
         row_heights=[badge_h],
     )
-    return writer._wrap_table_paragraph(badge, True, span_columns=False)
+    carrier = writer._wrap_table_paragraph(badge, True, span_columns=False)
+    return with_character_baseline_shift(carrier, shift=badge_raise)
 
 
 def _symbol_signal_bar(

@@ -660,11 +660,17 @@ def _body_data_table(
                 and not str(raw_rows[ri + 1][0]).strip()
                 else 1
             )
-            fill = (
-                "Color/HB Header K08" if ri == 0
-                else "Color/HB Bg K05" if ci == 0
-                else None
-            )
+            if kind == "auto_resume":
+                # The approved Auto Resume table is shaded by column, not by
+                # row: its complete condition column is K05 (header included)
+                # while the complete "Not Auto Resume" column stays white.
+                fill = "Color/HB Bg K05" if ci == 0 else None
+            else:
+                fill = (
+                    "Color/HB Header K08" if ri == 0
+                    else "Color/HB Bg K05" if ci == 0
+                    else None
+                )
             paragraph = psr(
                 "HB Data Header" if ri == 0 else "HB Data Body",
                 text,

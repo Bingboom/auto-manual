@@ -912,6 +912,9 @@
 % IDML App control overlay label size shared by all languages
 \expandafter\def\csname HBidml_app_control_label_font_size\endcsname{5.0pt}
 
+% IDML App control label-to-leader optical gap shared by both sides and all languages
+\expandafter\def\csname HBidml_app_control_label_leader_gap\endcsname{1.2pt}
+
 % IDML App control overlay minimum editable frame height
 \expandafter\def\csname HBidml_app_control_label_min_height\endcsname{7.2pt}
 
@@ -927,10 +930,10 @@
 % App section heading to following copy rhythm
 \expandafter\def\csname HBidml_app_h2_space_after\endcsname{3.5pt}
 
-% App notes list bullet hanging indent
+% App notes list hanging offset from aligned bullet to continuation text
 \expandafter\def\csname HBidml_app_list_first_line_indent\endcsname{-5.7pt}
 
-% App list continuation aligns with the shared notes text edge while the bullet hangs left
+% App list bullet edge aligned with the shared 4.x notes heading edge
 \expandafter\def\csname HBidml_app_list_left_indent\endcsname{13.5pt}
 
 % App notes body and list leading measured from approved PDF
@@ -1035,8 +1038,20 @@
 % Charging NOTE leading rhythm
 \expandafter\def\csname HBidml_charging_note_space_before\endcsname{0.0pt}
 
+% IDML FCC gap between distinct prose paragraphs
+\expandafter\def\csname HBidml_fcc_body_space_after\endcsname{1.0pt}
+
 % IDML inbox heading top on symbol-overflow pages
 \expandafter\def\csname HBidml_fcc_inbox_overflow_title_y\endcsname{245pt}
+
+% IDML FCC corrective-measure hanging indent
+\expandafter\def\csname HBidml_fcc_list_left_indent\endcsname{3.6pt}
+
+% IDML FCC corrective-measure list item gap
+\expandafter\def\csname HBidml_fcc_list_space_after\endcsname{0.0pt}
+
+% IDML FCC gap before the modification paragraph
+\expandafter\def\csname HBidml_fcc_modification_space_before\endcsname{1.8pt}
 
 % IDML product card optical content offset
 \expandafter\def\csname HBidml_inbox_card_1_content_y_offset\endcsname{-3.9pt}
@@ -1311,6 +1326,9 @@
 % IDML Energy Saving duration vertical offset measured from operator-adjusted INDD
 \expandafter\def\csname HBidml_operation_energy_duration_y_offset\endcsname{4.251969pt}
 
+% IDML Energy Saving optical gap between the two editable guidance paragraphs
+\expandafter\def\csname HBidml_operation_energy_guidance_gap\endcsname{-2.0pt}
+
 % IDML Energy Saving guidance panel horizontal compensation without expanding the native group bounds
 \expandafter\def\csname HBidml_operation_energy_guidance_x_offset\endcsname{-7.5pt}
 
@@ -1343,6 +1361,21 @@
 
 % Movable main-power clock vertical adjustment
 \expandafter\def\csname HBidml_operation_main_power_clock_y_offset\endcsname{0.0pt}
+
+% Editable main-power duration font leading
+\expandafter\def\csname HBidml_operation_main_power_duration_font_leading\endcsname{8.0pt}
+
+% Editable main-power duration font size
+\expandafter\def\csname HBidml_operation_main_power_duration_font_size\endcsname{7.2pt}
+
+% Gap between movable main-power clock and editable duration
+\expandafter\def\csname HBidml_operation_main_power_duration_gap\endcsname{1.3pt}
+
+% Editable main-power duration horizontal adjustment
+\expandafter\def\csname HBidml_operation_main_power_duration_x_offset\endcsname{0.0pt}
+
+% Editable main-power duration vertical adjustment
+\expandafter\def\csname HBidml_operation_main_power_duration_y_offset\endcsname{0.0pt}
 
 % IDML main-power Off row vertical offset measured from operator-adjusted INDD
 \expandafter\def\csname HBidml_operation_main_power_off_y_offset\endcsname{2.125984pt}
@@ -1616,6 +1649,9 @@
 
 % IDML English second safety-tail panel height
 \expandafter\def\csname HBidml_symbols_second_tail_height\endcsname{28.5pt}
+
+% IDML inline signal badge optical raise inside each signal row
+\expandafter\def\csname HBidml_symbols_signal_badge_baseline_shift\endcsname{1.5pt}
 
 % IDML English gap between signal and icon tables
 \expandafter\def\csname HBidml_symbols_signal_gap_after\endcsname{4.1pt}

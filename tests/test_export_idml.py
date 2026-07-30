@@ -1969,6 +1969,13 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r'Anchor="[-0-9.]+ [-0-9.]+"', title_bg)), 6)
         self.assertEqual(len(re.findall(r'Anchor="[-0-9.]+ [-0-9.]+"', subbar_bg)), 8)
         self.assertIn('Self="bg_st_safety_en_warning"', spread)
+        warning_frame = spread.split(
+            'Self="tf_st_safety_en_warning"', 1,
+        )[1].split("</TextFrame>", 1)[0]
+        self.assertIn(
+            'VerticalJustification="CenterAlign"',
+            warning_frame,
+        )
         self.assertIn(
             'AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer"',
             spread.split('Self="bg_st_safety_en_warning"', 1)[1].split(
@@ -2207,6 +2214,12 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(
             stories["st_safety_symbols_signals"].count(
                 "warning_triangle_white.svg",
+            ),
+            len(signals),
+        )
+        self.assertEqual(
+            stories["st_safety_symbols_signals"].count(
+                'BaselineShift="1.5"',
             ),
             len(signals),
         )
@@ -2849,10 +2862,66 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("This device complies", stories["st_fcc_wrapped_fcc_lead"])
         self.assertIn("(1) This device", stories["st_fcc_wrapped_fcc_lead"])
         self.assertNotIn("NOTE: Tested", stories["st_fcc_wrapped_fcc_lead"])
-        self.assertIn("NOTE: Tested", stories["st_fcc_wrapped_fcc_left"])
+        self.assertIn(
+            'FontStyle="Bold"><Content>NOTE:</Content>',
+            stories["st_fcc_wrapped_fcc_left"],
+        )
+        self.assertIn(
+            "Tested to the applicable limits.",
+            stories["st_fcc_wrapped_fcc_left"],
+        )
         self.assertNotIn("(1) This device", stories["st_fcc_wrapped_fcc_left"])
         self.assertNotIn("This device complies", stories["st_fcc_wrapped_fcc_left"])
         self.assertIn("fcc_mark.png", stories["st_fcc_wrapped_fcc_mark"])
+
+    def test_fcc_rhythm_and_strong_labels_are_shared_by_language(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        cases = {
+            "en": ("NOTE:", "MODIFICATION:"),
+            "fr": ("REMARQUE :", "MODIFICATION :"),
+            "es": ("NOTA:", "MODIFICACIÓN:"),
+        }
+        for page_index, (lang, labels) in enumerate(cases.items(), 3):
+            with self.subTest(lang=lang):
+                note_label, modification_label = labels
+                writer = IdmlWriter(params)
+                sid = f"st_fcc_rhythm_{lang}"
+                writer.add_fcc_inbox_page(
+                    sid,
+                    [("component", json.dumps({
+                        "kind": "fcc",
+                        "texts": [
+                            "Opening condition copy.\n"
+                            f"{note_label} Tested copy.\n"
+                            "Protection copy.",
+                            "Corrective measures intro.\n \n"
+                            "• First measure.\n \n"
+                            "• Second measure.\n \n"
+                            f"{modification_label} Change copy.",
+                        ],
+                    }))],
+                    [("h1", "WHAT'S IN THE BOX")],
+                    ROOT,
+                    page_index,
+                    lang=lang,
+                )
+                stories = dict(writer.stories)
+                left = stories[f"{sid}_fcc_left"]
+                right = stories[f"{sid}_fcc_right"]
+                self.assertIn(
+                    f'FontStyle="Bold"><Content>{note_label}</Content>',
+                    left,
+                )
+                self.assertIn('SpaceAfter="1"', left)
+                self.assertIn(
+                    f'FontStyle="Bold"><Content>{modification_label}</Content>',
+                    right,
+                )
+                self.assertIn('SpaceBefore="1.8"', right)
+                self.assertEqual(2, right.count('LeftIndent="3.6"'))
+                self.assertEqual(2, right.count('FirstLineIndent="-3.6"'))
+                self.assertEqual(2, right.count('SpaceAfter="0"'))
+                self.assertNotIn("<Content> </Content>", right)
 
     def test_fcc_localized_lead_frames_follow_reference_geometry(self) -> None:
         import xml.etree.ElementTree as ET

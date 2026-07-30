@@ -7,6 +7,7 @@ from pathlib import Path
 
 from tools.idml.components import RenderContext
 from tools.idml.components.oppanel import (
+    _operation_duration,
     _prereq_overlay,
     _row_layout,
     _row_text_layers,
@@ -197,6 +198,29 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         )
         self.assertIn("icon_clock_3s.png", clock)
         self.assertIn('PinPosition="false"', clock)
+        self.assertIn(
+            "tf_oppanel_main_power_duration_movable_clock",
+            panel,
+        )
+        self.assertIn(
+            ">3s<",
+            stories[
+                "st_anchor_oppanel_main_power_duration_movable_clock"
+            ],
+        )
+
+    def test_main_power_duration_is_language_neutral(self) -> None:
+        for instruction in (
+            "Press and hold for 3 seconds.",
+            "Maintenez le bouton enfoncé pendant 3 secondes.",
+            "Mantenga pulsado durante 3 segundos.",
+            "Press and hold for 3s.",
+        ):
+            with self.subTest(instruction=instruction):
+                self.assertEqual(
+                    "3s",
+                    _operation_duration([("Off", instruction)]),
+                )
 
     def test_operation_and_charging_art_use_the_full_text_measure(self) -> None:
         ctx = _ctx()
@@ -471,6 +495,7 @@ class ReferenceArtGeometryTests(unittest.TestCase):
                 "idml_operation_energy_clock_y_offset": ("4.251969", "pt"),
                 "idml_operation_energy_guidance_x_offset": ("-7.5", "pt"),
                 "idml_operation_energy_guidance_y_offset": ("8.0", "pt"),
+                "idml_operation_energy_guidance_gap": ("-2.0", "pt"),
                 "idml_operation_energy_action_x_offset": ("-10.2", "pt"),
                 "idml_operation_energy_action_y_offset": ("8.0", "pt"),
                 "idml_operation_energy_panel_y_offset": ("-5.669291", "pt"),
@@ -523,6 +548,10 @@ class ReferenceArtGeometryTests(unittest.TestCase):
             panel,
             "tf_oppanel_energy_guidance_0_adjusted_energy",
         )
+        second_guidance = _item_bounds(
+            panel,
+            "tf_oppanel_energy_guidance_1_adjusted_energy",
+        )
         action = _item_bounds(
             panel,
             "tf_oppanel_energy_action_adjusted_energy",
@@ -544,6 +573,11 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         self.assertAlmostEqual(grey_top + 8.0, guidance_bg[1], places=3)
         self.assertAlmostEqual(14.0 - 7.5, guidance[0], places=3)
         self.assertAlmostEqual(grey_top + 4.8 + 8.0, guidance[1], places=3)
+        self.assertAlmostEqual(
+            guidance[1] + 8.3 - 2.0,
+            second_guidance[1],
+            places=3,
+        )
         self.assertAlmostEqual(width * 0.682 - 10.2, action[0], places=3)
         self.assertAlmostEqual(-20.0 + 8.0, action[1], places=3)
 

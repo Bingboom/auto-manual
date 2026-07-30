@@ -433,8 +433,17 @@ class IdmlVisualParityTests(unittest.TestCase):
         auto_story = dict(writer.stories)["st_anchor_data_tbl_auto"]
         self.assertIn('RowSpan="2"', auto_story)
         self.assertNotIn('Self="tbl_autoc3_0"', auto_story)
-        self.assertIn('FillColor="Color/HB Header K08"', auto_story)
+        self.assertNotIn('FillColor="Color/Paper"', auto_story)
+        self.assertNotIn('FillColor="Color/HB Header K08"', auto_story)
         self.assertIn('FillColor="Color/HB Bg K05"', auto_story)
+        left_header = auto_story.split(
+            '<Cell Self="tbl_autoc0_0" ', 1,
+        )[1].split("</Cell>", 1)[0]
+        right_header = auto_story.split(
+            '<Cell Self="tbl_autoc0_1" ', 1,
+        )[1].split("</Cell>", 1)[0]
+        self.assertIn('FillColor="Color/HB Bg K05"', left_header)
+        self.assertNotIn("FillColor=", right_header)
         self.assertIn(
             'SingleRowHeight="11.49" MinimumHeight="11.49" AutoGrow="false"',
             auto_story,
@@ -455,6 +464,7 @@ class IdmlVisualParityTests(unittest.TestCase):
         ]
         render_table_block(key_rows, ctx, tid="tbl_key", terminal=True)
         key_story = dict(writer.stories)["st_anchor_data_tbl_key"]
+        self.assertIn('FillColor="Color/HB Header K08"', key_story)
         self.assertIn('MinimumHeight="32.8819"', key_story)
         self.assertIn('SingleColumnWidth="131.074"', key_story)
         self.assertIn('SingleColumnWidth="95.7259"', key_story)

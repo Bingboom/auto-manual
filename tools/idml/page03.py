@@ -1,6 +1,7 @@
 """V2.0 FCC + inbox composed page object rules."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -26,6 +27,10 @@ BODY_X = 26.5
 BODY_W = 311.0
 BADGE_DIAMETER = 13.785
 BADGE_Y_OFFSET = 22.431
+_FCC_LABEL_RE = re.compile(
+    r"^(NOTE|REMARQUE|NOTA|MODIFICATION|MODIFICACIÓN|MODIFICACION)\s*:",
+    re.IGNORECASE,
+)
 
 
 def _story(writer, sid: str, title: str, parts: list[str]) -> str:
@@ -62,13 +67,87 @@ def _badge_text(number: int) -> str:
     )
 
 
-def _fcc_text_story(writer, sid: str, title: str, text: str) -> str:
-    return _story(
-        writer,
-        sid,
-        title,
-        [writer._psr("HB FCC Text", text.strip(), terminal=True)],
+def _fcc_labelled_paragraph(text: str) -> tuple[str, str]:
+    """Restore strong FCC labels after the raw-LaTeX extractor flattens them."""
+    candidate = text.replace("**", "").strip()
+    match = _FCC_LABEL_RE.match(candidate)
+    if match is None:
+        return "", text.strip()
+    label = candidate[:match.end()].strip()
+    body = candidate[match.end():].strip()
+    kind = (
+        "modification"
+        if match.group(1).casefold().startswith("modific")
+        else "note"
     )
+    rebuilt = f"**{label}**"
+    if body:
+        rebuilt += f" {body}"
+    return kind, rebuilt
+
+
+def _fcc_text_paragraphs(text: str) -> list[tuple[str, str]]:
+    """Classify FCC copy while dropping extractor-only blank spacer lines."""
+    paragraphs: list[tuple[str, str]] = []
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        label_kind, line = _fcc_labelled_paragraph(line)
+        if label_kind:
+            kind = label_kind
+        elif line.startswith(("•", "·")) or line.startswith("- "):
+            kind = "list"
+        else:
+            kind = "body"
+        paragraphs.append((kind, line))
+    return paragraphs
+
+
+def _fcc_text_story(
+    writer,
+    sid: str,
+    title: str,
+    text: str,
+    *,
+    region: str,
+) -> str:
+    paragraphs = _fcc_text_paragraphs(text.strip())
+    paragraph_after = param_pt(
+        writer.params, "idml_fcc_body_space_after", 1.0)
+    list_after = param_pt(
+        writer.params, "idml_fcc_list_space_after", 0.0)
+    list_indent = param_pt(
+        writer.params, "idml_fcc_list_left_indent", 3.6)
+    modification_before = param_pt(
+        writer.params, "idml_fcc_modification_space_before", 1.8)
+    parts: list[str] = []
+    for index, (kind, paragraph) in enumerate(paragraphs):
+        next_kind = paragraphs[index + 1][0] if index + 1 < len(paragraphs) else ""
+        attrs = ['Hyphenation="false"']
+        if kind == "list":
+            attrs.extend([
+                f'LeftIndent="{list_indent:g}"',
+                f'FirstLineIndent="{-list_indent:g}"',
+                'RightIndent="0"',
+                f'SpaceAfter="{list_after:g}"',
+            ])
+        elif kind == "modification":
+            attrs.append(f'SpaceBefore="{modification_before:g}"')
+        elif region != "lead" and next_kind not in {"", "list"}:
+            attrs.append(f'SpaceAfter="{paragraph_after:g}"')
+        xml = writer._psr(
+            "HB FCC Text",
+            paragraph,
+            terminal=index == len(paragraphs) - 1,
+        )
+        xml = xml.replace(
+            "<ParagraphStyleRange ",
+            f'<ParagraphStyleRange {" ".join(attrs)} ',
+            1,
+        )
+        parts.append(xml)
+    return _story(writer, sid, title, parts)
 
 
 def _fcc_lead_and_body(text: str) -> tuple[str, str]:
@@ -193,11 +272,29 @@ def _fcc_objects(
     lead_text, left_text = _fcc_lead_and_body(texts[0])
     lead_sid = f"{sid}_fcc_lead"
     if lead_text:
-        _fcc_text_story(writer, lead_sid, "FCC notice lead", lead_text)
+        _fcc_text_story(
+            writer,
+            lead_sid,
+            "FCC notice lead",
+            lead_text,
+            region="lead",
+        )
     left_sid = f"{sid}_fcc_left"
     right_sid = f"{sid}_fcc_right"
-    _fcc_text_story(writer, left_sid, "FCC notice left", left_text)
-    _fcc_text_story(writer, right_sid, "FCC notice right", texts[1])
+    _fcc_text_story(
+        writer,
+        left_sid,
+        "FCC notice left",
+        left_text,
+        region="left",
+    )
+    _fcc_text_story(
+        writer,
+        right_sid,
+        "FCC notice right",
+        texts[1],
+        region="right",
+    )
     bg = page_rectangle_xml(
         writer,
         f"bg_{sid}_fcc_panel",

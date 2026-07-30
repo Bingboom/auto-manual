@@ -222,12 +222,18 @@ idml_operation_energy_clock_x_offset,-8.917323,pt,IDML Energy Saving clock horiz
 idml_operation_energy_clock_y_offset,7.086615,pt,IDML Energy Saving clock vertical offset measured from operator-adjusted INDD
 idml_operation_energy_guidance_x_offset,-7.5,pt,IDML Energy Saving guidance panel horizontal compensation without expanding the native group bounds
 idml_operation_energy_guidance_y_offset,8.0,pt,IDML Energy Saving guidance panel vertical compensation for native group placement
+idml_operation_energy_guidance_gap,-2.0,pt,IDML Energy Saving optical gap between the two editable guidance paragraphs
 idml_operation_energy_action_x_offset,-10.2,pt,IDML Energy Saving action-copy horizontal compensation for native group placement
 idml_operation_energy_action_y_offset,10.834646,pt,IDML Energy Saving action-copy vertical compensation for native group placement
 idml_operation_energy_panel_y_offset,-5.669291,pt,IDML Energy Saving whole-panel optical raise preserving all internal relative positions
 idml_operation_main_power_clock_size,10.5,pt,Movable main-power clock icon size after masking the baked artwork icon
 idml_operation_main_power_clock_x_offset,0.0,pt,Movable main-power clock horizontal adjustment
 idml_operation_main_power_clock_y_offset,0.0,pt,Movable main-power clock vertical adjustment
+idml_operation_main_power_duration_gap,1.3,pt,Gap between movable main-power clock and editable duration
+idml_operation_main_power_duration_x_offset,0.0,pt,Editable main-power duration horizontal adjustment
+idml_operation_main_power_duration_y_offset,0.0,pt,Editable main-power duration vertical adjustment
+idml_operation_main_power_duration_font_size,7.2,pt,Editable main-power duration font size
+idml_operation_main_power_duration_font_leading,8.0,pt,Editable main-power duration font leading
 idml_operation_row_right_edge_offset,6.5,pt,Operation row text frames extend to the outer panel right edge
 idml_overview_label_leader_gap,1.2,pt,IDML Product Overview visible text gap above its semantic leader line
 lang_en_idml_operation_row_label_font_size,10.0,pt,English operation row label size measured from approved PDF
@@ -299,6 +305,7 @@ idml_charging_car_panel_height,134.0,pt,Governed car panel height with bottom-al
 idml_app_control_label_font_size,5.0,pt,IDML App control overlay label size shared by all languages
 idml_app_control_label_font_leading,5.8,pt,IDML App control overlay label leading shared by all languages
 idml_app_control_label_min_height,7.2,pt,IDML App control overlay minimum editable frame height
+idml_app_control_label_leader_gap,1.2,pt,IDML App control label-to-leader optical gap shared by both sides and all languages
 idml_app_connect_step_font_size,5.5,pt,IDML App screenshot step-label size
 idml_app_connect_step_font_leading,6.2,pt,IDML App screenshot step-label leading
 idml_app_connect_note_font_size,5.8,pt,IDML App screenshot reference-note size
@@ -325,8 +332,8 @@ idml_app_tail_body_left_indent,14.2,pt,App first-page trailing step left inset
 idml_app_result_body_left_indent,11.2,pt,App second-page connection-step left inset
 idml_app_section_body_left_indent,13.2,pt,App unbind body left inset
 idml_app_notes_left_indent,13.5,pt,App notes heading and body left inset
-idml_app_list_left_indent,13.5,pt,App list continuation aligns with the shared notes text edge while the bullet hangs left
-idml_app_list_first_line_indent,-5.7,pt,App notes list bullet hanging indent
+idml_app_list_left_indent,13.5,pt,App list bullet edge aligned with the shared 4.x notes heading edge
+idml_app_list_first_line_indent,-5.7,pt,App notes list hanging offset from aligned bullet to continuation text
 idml_app_add_device_space_before,8.0,pt,App instructions-to-pairing-composite rhythm
 idml_app_add_device_space_after,3.5,pt,App pairing-composite-to-step-2.3 rhythm
 idml_app_connect_result_space_before,12.0,pt,App step-2.5-to-result-composite rhythm
@@ -528,6 +535,7 @@ idml_symbols_maintenance_body_gap,0.0,pt,IDML English maintenance body gap befor
 idml_symbols_signal_gap_after,4.1,pt,IDML English gap between signal and icon tables
 idml_symbols_signal_icon_width,7.5,pt,IDML editable signal-badge warning icon width
 idml_symbols_signal_icon_height,7.0,pt,IDML editable signal-badge warning icon height
+idml_symbols_signal_badge_baseline_shift,1.5,pt,IDML inline signal badge optical raise inside each signal row
 idml_symbols_icon_width,26.0,pt,IDML symbol icon frame width
 idml_symbols_icon_height,26.0,pt,IDML symbol icon frame height
 idml_symbols_icon_col_width,39.685,pt,IDML symbol-grid icon column width
@@ -569,6 +577,10 @@ comp_fcc_pad_lr,2.2,mm,FCC panel horizontal padding
 comp_fcc_pad_tb,2.2,mm,FCC panel vertical padding
 type_fcc_font_size,5.6,pt,FCC body font size
 type_fcc_font_leading,6.5,pt,FCC body leading
+idml_fcc_body_space_after,1.0,pt,IDML FCC gap between distinct prose paragraphs
+idml_fcc_list_space_after,0.0,pt,IDML FCC corrective-measure list item gap
+idml_fcc_list_left_indent,3.6,pt,IDML FCC corrective-measure hanging indent
+idml_fcc_modification_space_before,1.8,pt,IDML FCC gap before the modification paragraph
 comp_inbox_card_arc,2.4,mm,Inbox card corner radius
 comp_inbox_card_width,0.316,ratio,Inbox card width ratio
 comp_inbox_card_height,60.6,mm,Inbox card height

@@ -7,6 +7,7 @@ operator can select, move, and edit it during final-mile layout work.
 """
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from ..character_metrics import with_character_metrics
@@ -397,15 +398,29 @@ def _positioned_image(
     return xml
 
 
+def _operation_duration(rows: list[tuple[str, str]]) -> str:
+    """Return the compact duration token embedded in localized row copy."""
+    for _label, instruction in rows:
+        match = re.search(
+            r"\b(\d+)\s*(?:seconds?|secondes?|segundos?|s)\b",
+            instruction,
+            re.I,
+        )
+        if match is not None:
+            return f"{match.group(1)}s"
+    return ""
+
+
 def _main_power_clock_overlay(
     ctx: RenderContext,
     *,
     tid: str,
     ref: str,
+    rows: list[tuple[str, str]],
     image_w: float,
     image_h: float,
 ) -> str:
-    """Replace the baked POWER clock with an independently movable icon."""
+    """Replace the baked POWER clock and restore its editable duration."""
     if "main_power" not in Path(ref).stem.lower():
         return ""
     clock = ctx.resolve_bundle_image("icon_clock_3s.png")
@@ -433,6 +448,44 @@ def _main_power_clock_overlay(
         strict=ctx.strict_component_assets,
         owner="main-power movable clock",
     )
+    duration = _operation_duration(rows)
+    duration_gap = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_duration_gap",
+        1.3,
+        strict=ctx.strict_component_assets,
+        owner="main-power editable duration",
+    )
+    duration_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_duration_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="main-power editable duration",
+    )
+    duration_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_duration_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="main-power editable duration",
+    )
+    duration_size = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_duration_font_size",
+        7.2,
+        strict=ctx.strict_component_assets,
+        owner="main-power editable duration",
+    )
+    duration_leading = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_duration_font_leading",
+        8.0,
+        strict=ctx.strict_component_assets,
+        owner="main-power editable duration",
+    )
+    clock_left = image_w * 0.714 + x_offset
+    clock_bottom = -image_h * 0.46 + y_offset
     mask = _shape(
         shape_id=f"oppanel_main_power_clock_mask_{tid}",
         left=image_w * 0.762,
@@ -441,15 +494,38 @@ def _main_power_clock_overlay(
         bottom=-image_h * 0.45,
         fill="Color/Paper",
     )
-    return mask + _positioned_image(
+    clock_xml = _positioned_image(
         f"oppanel_main_power_clock_{tid}",
         clock,
         size,
         size,
-        left=image_w * 0.714 + x_offset,
-        bottom=-image_h * 0.46 + y_offset,
+        left=clock_left,
+        bottom=clock_bottom,
         pin=False,
     )
+    if not duration:
+        return mask + clock_xml
+    duration_left = clock_left + size + duration_gap + duration_x_offset
+    duration_top = clock_bottom - size + duration_y_offset
+    duration_xml = _editable_text_frame(
+        ctx,
+        story_id=f"st_anchor_oppanel_main_power_duration_{tid}",
+        frame_id=f"tf_oppanel_main_power_duration_{tid}",
+        title=f"{tid} main-power duration",
+        parts=[_sized_psr(
+            "HB Body",
+            duration,
+            size=duration_size,
+            leading=duration_leading,
+            terminal=True,
+        )],
+        left=duration_left,
+        top=duration_top,
+        right=duration_left + max(13.0, duration_size * 2.2),
+        bottom=clock_bottom + duration_y_offset,
+        valign="CenterAlign",
+    )
+    return mask + clock_xml + duration_xml
 
 
 def _shape(
@@ -723,13 +799,25 @@ def _render_energy_saving_panel(
 
     copy_width = width - 28.0
     leading = 7.5
+    guidance_gap = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_guidance_gap",
+        -2.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving guidance paragraph rhythm",
+    )
     guidance_heights = [
         _estimated_lines(text, copy_width) * leading + 0.8
         for text in guidance[:2]
     ]
     while len(guidance_heights) < 2:
         guidance_heights.append(leading + 0.8)
-    grey_height = max(49.0, 9.0 + sum(guidance_heights))
+    visible_guidance_count = min(2, len(guidance))
+    grey_height = max(
+        49.0,
+        9.0 + sum(guidance_heights[:visible_guidance_count])
+        + guidance_gap * max(0, visible_guidance_count - 1),
+    )
     height = max(width * 0.545, grey_height + 110.0)
     grey_top = -height + 8.0
     grey_bottom = grey_top + grey_height
@@ -782,6 +870,8 @@ def _render_energy_saving_panel(
             auto_height=True,
         ))
         text_top += frame_height
+        if index + 1 < min(2, len(guidance)):
+            text_top += guidance_gap
 
     text_layers.extend([
         _editable_text_frame(
@@ -1029,7 +1119,7 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
             ctx, tid=tid, text=tail, image_w=iw, image_h=ih,
         )
         main_power_clock = _main_power_clock_overlay(
-            ctx, tid=tid, ref=ref, image_w=iw, image_h=ih,
+            ctx, tid=tid, ref=ref, rows=rows, image_w=iw, image_h=ih,
         )
         row_text = _row_text_layers(
             ctx, tid=tid, ref=ref, rows=rows, image_w=iw, image_h=ih,

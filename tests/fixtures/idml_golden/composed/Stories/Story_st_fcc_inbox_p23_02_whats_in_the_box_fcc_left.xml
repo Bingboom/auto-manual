@@ -2,7 +2,7 @@
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
 <Story Self="st_fcc_inbox_p23_02_whats_in_the_box_fcc_left" Label="hb:self=st_fcc_inbox_p23_02_whats_in_the_box_fcc_left" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="FCC notice left">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
-  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB FCC Text">
+  <ParagraphStyleRange Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB FCC Text">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>This device complies with Part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) this device may not cause harmful interference, and (2) this device must accept any interference received.</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
