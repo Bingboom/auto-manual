@@ -468,6 +468,25 @@ class Matcher:
         return None, None
 
 
+def change_highlight_color(record: dict[str, object], exact_color: str, fuzzy_color: str) -> str:
+    """Pick the highlight fill for one replacement record.
+
+    Contract: exact TM hits keep the primary color; parameter/fuzzy hits (and
+    split-mode paragraphs containing any non-exact unit) get the fuzzy color so
+    a reviewer can see at a glance which text deserves a second look.
+    """
+    if fuzzy_color == exact_color:
+        return exact_color
+    if record.get("mode") == "full":
+        return exact_color if record.get("reason") == "exact" else fuzzy_color
+    if record.get("mode") == "split":
+        units = record.get("matched_units") or []
+        if units and all(unit.get("reason") == "exact" for unit in units):  # type: ignore[union-attr]
+            return exact_color
+        return fuzzy_color
+    return exact_color
+
+
 def para_text(p_el: etree._Element) -> str:
     return "".join(p_el.xpath(".//w:t/text()", namespaces=NS)).strip()
 
@@ -590,9 +609,11 @@ def preprocess_docx(
     source_lang: str,
     target_lang: str,
     highlight_color: str,
+    fuzzy_highlight_color: str | None = None,
     collapse_notice: bool,
     front_matter_end_text: str,
 ) -> dict[str, object]:
+    fuzzy_color = fuzzy_highlight_color or highlight_color
     temp_dir = Path(tempfile.mkdtemp(prefix="tm-docx-preprocess-"))
     try:
         with zipfile.ZipFile(input_docx) as zin:
@@ -624,9 +645,11 @@ def preprocess_docx(
             translated, record = matcher.translate(text)
             if not translated or translated == text:
                 continue
-            set_para_text(p_el, translated, highlight_color=highlight_color, target_lang=target_lang)
+            fill = change_highlight_color(record or {}, highlight_color, fuzzy_color)
+            set_para_text(p_el, translated, highlight_color=fill, target_lang=target_lang)
             if record:
                 record["target"] = translated  # keep written text for open-state verification
+                record["highlight_fill"] = fill
                 changes.append(record)
 
         document_path.write_bytes(etree.tostring(root, xml_declaration=True, encoding="UTF-8", standalone=True))
@@ -870,7 +893,13 @@ def count_yellow_runs(docx_path: Path, color: str) -> int:
     return len(root.xpath(f'.//w:rPr/w:shd[@w:fill="{color}"]', namespaces=NS))
 
 
-def verify_output(output_docx: Path, *, highlight_color: str, report: dict[str, object]) -> dict[str, object]:
+def verify_output(
+    output_docx: Path,
+    *,
+    highlight_color: str,
+    fuzzy_highlight_color: str | None = None,
+    report: dict[str, object],
+) -> dict[str, object]:
     """Open-state acceptance check on the FINAL packed file.
 
     Re-opens the archive we just wrote and confirms it is a coherent DOCX whose body
@@ -896,7 +925,11 @@ def verify_output(output_docx: Path, *, highlight_color: str, report: dict[str, 
             if doc_count >= 1:
                 root = etree.fromstring(zin.read("word/document.xml"))
                 body_text = "".join((t.text or "") for t in root.xpath(".//w:t", namespaces=NS))
-                highlighted_runs = len(root.xpath(f'.//w:rPr/w:shd[@w:fill="{highlight_color}"]', namespaces=NS))
+                fills = {highlight_color, fuzzy_highlight_color or highlight_color}
+                highlighted_runs = sum(
+                    len(root.xpath(f'.//w:rPr/w:shd[@w:fill="{fill}"]', namespaces=NS))
+                    for fill in fills
+                )
     except Exception as exc:  # noqa: BLE001
         return {"verified": False, "problems": [f"cannot reopen output docx: {exc}"],
                 "highlighted_runs": 0, "targets_checked": 0, "targets_found": 0}
@@ -933,6 +966,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--output-name", help="Output DOCX file name; defaults to source name with target lang marker")
     parser.add_argument("--work-dir", default=None, help="Working directory; defaults to a timestamped /tmp folder")
     parser.add_argument("--highlight-color", default="yellow", help="Highlight color name or RRGGBB hex; default yellow")
+    parser.add_argument(
+        "--fuzzy-highlight-color",
+        default=None,
+        help=(
+            "Highlight color for parameter/fuzzy (non-exact) matches; default = same as "
+            "--highlight-color. The operator's dual-color contract is yellow=exact, green=fuzzy."
+        ),
+    )
     parser.add_argument("--min-fuzzy-score", type=float, default=0.0, help="Extra fuzzy score floor; built-in safety floors still apply")
     parser.add_argument("--collapse-leading-multilingual-notice", action="store_true", help="Delete leading non-target IMPORTANT/IMPORTANTE language blocks")
     parser.add_argument("--front-matter-end-text", default="IMPORTANT SAFETY INFORMATION", help="First heading after leading multilingual notice")
@@ -966,6 +1007,7 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("source and target languages must differ")
 
     highlight_color = resolve_color(args.highlight_color)
+    fuzzy_highlight_color = resolve_color(args.fuzzy_highlight_color) if args.fuzzy_highlight_color else None
     work_dir = Path(args.work_dir).expanduser().resolve() if args.work_dir else Path(tempfile.gettempdir()) / f"lark-tm-preprocess-{int(time.time())}"
     work_dir.mkdir(parents=True, exist_ok=True)
 
@@ -985,13 +1027,19 @@ def main(argv: list[str] | None = None) -> int:
         source_lang=source_lang,
         target_lang=target_lang,
         highlight_color=highlight_color,
+        fuzzy_highlight_color=fuzzy_highlight_color,
         collapse_notice=args.collapse_leading_multilingual_notice,
         front_matter_end_text=args.front_matter_end_text,
     )
     # Open-state acceptance gate: re-open the packed file and confirm the translation
     # truly landed BEFORE uploading. Never upload / report success on a file whose
     # opened body is still the original — the exact failure this skill exists to prevent.
-    verification = verify_output(output_docx, highlight_color=highlight_color, report=report)
+    verification = verify_output(
+        output_docx,
+        highlight_color=highlight_color,
+        fuzzy_highlight_color=fuzzy_highlight_color,
+        report=report,
+    )
     verified = bool(verification["verified"])
 
     upload_payload = upload_same_path(args, output_docx, source_node, work_dir, output_name) if verified else None
@@ -1029,6 +1077,7 @@ def main(argv: list[str] | None = None) -> int:
         "hit_rate": report["hit_rate"],
         "hit_rate_ledger": hit_rate_ledger,
         "highlight_color": highlight_color,
+        "fuzzy_highlight_color": fuzzy_highlight_color,
         "highlighted_runs": verification["highlighted_runs"],
         "work_dir": str(work_dir),
         "output_docx": str(output_docx),
