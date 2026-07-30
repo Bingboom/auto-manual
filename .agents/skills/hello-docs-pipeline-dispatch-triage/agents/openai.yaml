@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hello-Docs Pipeline Dispatch & Triage"
+  short_description: "Dispatch/monitor/triage the mirror's build pipeline (Start Review / Draft / Publish / 重播种) with the hard code-goes-to-auto-manual routing rule"
+  default_prompt: "Use $hello-docs-pipeline-dispatch-triage to dispatch or repair this Hello-Docs pipeline run: pick the right workflow lane, monitor to settled, triage by failure signature, choose the correct retry rung, and route any code fix to auto-manual (never a mirror PR)."
