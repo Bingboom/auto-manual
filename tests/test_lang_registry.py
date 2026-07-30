@@ -53,7 +53,7 @@ class LanguageRegistryTest(unittest.TestCase):
     def test_table_schema_language_columns_match_registry(self) -> None:
         language_column_patterns = {
             "spec_master": re.compile(r"^(?:Row_label|Param|Value)_(?!source$|footnote_refs$).+$"),
-            "spec_footnotes": re.compile(r"^Text_.+$"),
+            "spec_footnotes": re.compile(r"^(?:Text_.+|pt-BR)$"),
             "spec_notes": re.compile(r"^Text_.+$"),
             "symbols_blocks": re.compile(r"^(?:label|aliases|text)_.+$"),
             "lcd_icons": re.compile(r"^(?:icon|icon_desc)_.+$"),
@@ -70,6 +70,7 @@ class LanguageRegistryTest(unittest.TestCase):
                 expected = lang_registry.table_language_columns(table_name)
                 self.assertEqual(set(actual), set(expected))
                 self.assertEqual(len(actual), len(expected))
+                self.assertEqual(actual, expected)
                 for spec in lang_registry.LANGUAGE_REGISTRY:
                     for column in spec.columns_for_table(table_name):
                         self.assertIn(column, TABLE_SCHEMAS[table_name].columns)

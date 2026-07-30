@@ -158,7 +158,9 @@ LANGUAGE_REGISTRY = (
         column_suffixes=("pt-BR", "br"),
         table_columns=(
             ("spec_master", _columns("Row_label_br", "Param_br", "Value_br")),
-            ("spec_footnotes", _columns("Text_pt-BR")),
+            # The bare ``pt-BR`` column is a historical phase2 field and must
+            # remain in the exported schema alongside the localized text.
+            ("spec_footnotes", _columns("Text_pt-BR", "pt-BR")),
             ("spec_notes", _columns("Text_pt-BR")),
             (
                 "symbols_blocks",
@@ -269,6 +271,37 @@ LANGUAGE_BY_ALIAS = {
     for alias in spec.aliases
 }
 
+# Source-table headers retain their historical order for snapshot and manifest
+# compatibility.  Keep that order in the registry so schema consumers do not
+# repeat language lists in their own TABLE_SCHEMAS definitions.
+TABLE_LANGUAGE_ORDER = {
+    "spec_master": ("fr", "es", "pt-BR", "de", "it", "uk", "ko"),
+    "spec_footnotes": (
+        "en", "fr", "es", "pt-BR", "ja", "zh", "de", "it", "uk",
+    ),
+    "spec_notes": (
+        "en", "fr", "es", "pt-BR", "ja", "zh", "de", "it", "uk",
+    ),
+    "symbols_blocks": (
+        "en", "fr", "es", "pt-BR", "de", "it", "uk", "ja", "zh", "ko",
+    ),
+    "lcd_icons": (
+        "en", "zh", "ja", "fr", "es", "pt-BR", "de", "it", "uk", "ko",
+    ),
+    "troubleshooting": (
+        "en", "fr", "es", "pt-BR", "de", "it", "uk", "ja", "zh", "ko",
+    ),
+}
+
+
+def _table_specs_in_schema_order(table_name: str) -> tuple[LanguageSpec, ...]:
+    """Return registered languages in the target table's legacy order."""
+
+    codes = TABLE_LANGUAGE_ORDER.get(table_name)
+    if codes is None:
+        return LANGUAGE_REGISTRY
+    return tuple(LANGUAGE_BY_CODE[code] for code in codes)
+
 
 def canonical_language(value: object) -> str | None:
     """Return the registry code for a canonical code or historical alias."""
@@ -285,9 +318,19 @@ def language_spec(value: object) -> LanguageSpec | None:
 
 
 def table_language_columns(table_name: str) -> tuple[str, ...]:
-    """Return all language-specific columns in registry order for a table."""
+    """Return all language-specific columns in schema order for a table."""
 
     columns: list[str] = []
-    for spec in LANGUAGE_REGISTRY:
+    for spec in _table_specs_in_schema_order(table_name):
         columns.extend(spec.columns_for_table(table_name))
+
+    if table_name == "lcd_icons":
+        icon_columns = [
+            column
+            for column in columns
+            if column.startswith("icon_") and not column.startswith("icon_desc_")
+        ]
+        description_columns = [column for column in columns if column.startswith("icon_desc_")]
+        return tuple((*icon_columns, *description_columns))
+
     return tuple(columns)
