@@ -94,6 +94,7 @@ def write_handoff_package(*, root: Path, model: str, region: str, lang: str,
 def _production_trace(*, root: Path, model: str, region: str, lang: str,
                       data_root: Path, bundle_root: Path, production_idml: Path,
                       asset_manifest: Path, build_command: list[str]) -> dict:
+    manual_ir = _manual_ir_path(production_idml)
     return {
         "manual_id": f"{model.replace('-', '')}_{region}_{lang.upper()}",
         "model": model,
@@ -110,12 +111,38 @@ def _production_trace(*, root: Path, model: str, region: str, lang: str,
         "idml_mode": "production",
         "bundle_root": _display_path(root, bundle_root),
         "production_idml": _display_path(root, production_idml),
-        "manual_ir": _display_path(root, production_idml.parent.parent / PathSegments.MANUAL_IR_JSON),
+        "manual_ir": _display_path(root, manual_ir) if manual_ir else None,
+        "skipped_raw_blocks": _skipped_raw_blocks(production_idml),
         "latex_page_plan": _display_path(
             root, production_idml.parent / PathSegments.LATEX_PAGE_PLAN_JSON),
         "reference_layout_plan": _display_path(
             root, production_idml.parent / PathSegments.REFERENCE_LAYOUT_PLAN_JSON),
     }
+
+
+def _skipped_raw_blocks(production_idml: Path) -> int | None:
+    """Read the report-only skipped-raw count from the production IR sidecar."""
+    candidate = _manual_ir_path(production_idml)
+    if candidate is None:
+        return None
+    try:
+        payload = json.loads(candidate.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    metadata = payload.get("metadata") or {}
+    if "skipped_raw" in metadata:
+        return int(metadata["skipped_raw"] or 0)
+    return sum(int(page.get("skipped_raw") or 0) for page in payload.get("pages") or [])
+
+
+def _manual_ir_path(production_idml: Path) -> Path | None:
+    for candidate in (
+        production_idml.parent / PathSegments.MANUAL_IR_JSON,
+        production_idml.parent.parent / PathSegments.MANUAL_IR_JSON,
+    ):
+        if candidate.is_file():
+            return candidate
+    return None
 
 
 def _missing_assets_report(manifest_path: Path) -> str:

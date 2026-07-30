@@ -23,6 +23,10 @@ class IdmlDesignHandoffTests(unittest.TestCase):
             flow_dir.mkdir(parents=True)
             production = idml_dir / "manual_je1000f_us_en.idml"
             production.write_text("idml", encoding="utf-8")
+            (idml_dir / "manual.ir.json").write_text(
+                json.dumps({"metadata": {"skipped_raw": 2}}),
+                encoding="utf-8",
+            )
             manifest = flow_dir / "manual.flow.asset_manifest.csv"
             manifest.write_text(
                 "\n".join([
@@ -61,6 +65,8 @@ class IdmlDesignHandoffTests(unittest.TestCase):
             trace = json.loads(outputs.production_trace.read_text(encoding="utf-8"))
             self.assertEqual("production", trace["idml_mode"])
             self.assertTrue(trace["production_idml"].endswith("manual.production.idml"))
+            self.assertEqual(2, trace["skipped_raw_blocks"])
+            self.assertTrue(trace["manual_ir"].endswith("idml/manual.ir.json"))
             report = outputs.missing_assets_report.read_text(encoding="utf-8")
             self.assertIn("Missing assets: 1", report)
             self.assertIn("missing.png", report)

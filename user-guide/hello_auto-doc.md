@@ -79,6 +79,10 @@ creates semantic Markdown plus an editable continuous-story IDML, style map,
 source trace, and asset manifest for a designer-owned template workflow. Both
 are generated outputs, never new content sources.
 
+The production handoff's `production/source_trace.json` also records the
+report-only `skipped_raw_blocks` count from `manual.ir.json`, so unprojected raw
+blocks are visible to reviewers without changing the current export gate.
+
 The production Meaning of Symbols page also remains editable. Its WARNING,
 CAUTION, NOTE, and TIP badges use a linked white warning icon plus ordinary
 InDesign label text, rather than a flattened language-specific badge image.
