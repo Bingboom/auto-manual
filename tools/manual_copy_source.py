@@ -8,6 +8,8 @@ import io
 import re
 from dataclasses import dataclass
 
+from tools import lang_registry
+
 MANUAL_COPY_SOURCE_FILE = "Manual_Copy_Source.csv"
 LOCALIZED_COPY_FILE = "Localized_Copy.csv"
 STATUS_WORDS_FILE = "Status_Words.csv"
@@ -32,7 +34,7 @@ MANUAL_COPY_SOURCE_COLUMNS = (
     "notes",
 )
 
-LOCALIZED_COPY_COLUMNS = (
+_LOCALIZED_COPY_BASE_COLUMNS = (
     "copy_key",
     "page_id",
     "copy_type",
@@ -41,73 +43,52 @@ LOCALIZED_COPY_COLUMNS = (
     "Source_lang",
     "Is_Latest",
     "Version",
-    "text_en",
-    "text_zh",
-    "text_ja",
-    "text_fr",
-    "text_es",
-    "text_pt-BR",
-    "text_de",
-    "text_it",
-    "text_uk",
-    "text_ko",
+)
+
+_LOCALIZED_COPY_TEXT_COLUMNS = tuple(
+    spec.localized_copy_column for spec in lang_registry.LANGUAGE_REGISTRY
+)
+LOCALIZED_COPY_COLUMNS = (
+    *_LOCALIZED_COPY_BASE_COLUMNS,
+    *_LOCALIZED_COPY_TEXT_COLUMNS,
     "notes",
 )
 
 TM_LANGUAGE_FIELDS = {
-    "en": "en",
-    "zh": "zh",
-    "ja": "jp",
-    "jp": "jp",
-    "fr": "fr",
-    "es": "es",
-    "pt-br": "pt-BR",
-    "pt_br": "pt-BR",
-    "br": "pt-BR",
-    "de": "de",
-    "it": "it",
-    "uk": "uk",
-    "ukr": "uk",
-    "ko": "ko",
+    alias.casefold(): spec.tm_column
+    for spec in lang_registry.LANGUAGE_REGISTRY
+    for alias in spec.aliases
 }
 
 LOCALIZED_COPY_TEXT_COLUMNS = {
-    "text_en": "en",
-    "text_zh": "zh",
-    "text_ja": "jp",
-    "text_fr": "fr",
-    "text_es": "es",
-    "text_pt-BR": "pt-BR",
-    "text_de": "de",
-    "text_it": "it",
-    "text_uk": "uk",
-    "text_ko": "ko",
+    spec.localized_copy_column: spec.tm_column
+    for spec in lang_registry.LANGUAGE_REGISTRY
 }
 
-STATUS_WORD_COLUMNS = ("en", "zh", "jp", "fr", "es", "pt-BR", "de", "it", "uk", "ko", STATUS_WORD_MARKER_FIELD)
-TRANSLATION_MEMORY_COLUMNS = (*STATUS_WORD_COLUMNS[:-1], MANUAL_COPY_TAG_FIELD, STATUS_WORD_MARKER_FIELD)
+_STATUS_WORD_TEXT_COLUMNS = tuple(
+    spec.status_word_column for spec in lang_registry.LANGUAGE_REGISTRY
+)
+STATUS_WORD_COLUMNS = (*_STATUS_WORD_TEXT_COLUMNS, STATUS_WORD_MARKER_FIELD)
+TRANSLATION_MEMORY_COLUMNS = (
+    *_STATUS_WORD_TEXT_COLUMNS,
+    MANUAL_COPY_TAG_FIELD,
+    STATUS_WORD_MARKER_FIELD,
+)
+
+_SPEC_TITLE_COLUMNS = tuple(
+    spec.spec_title_column
+    for spec in lang_registry.LANGUAGE_REGISTRY
+    if spec.spec_title_column is not None
+)
 SPEC_TITLE_COLUMNS = (
-    "title_en",
+    _SPEC_TITLE_COLUMNS[0],
     "section_order",
-    "title_zh",
-    "title_jp",
-    "title_fr",
-    "title_es",
-    "title_de",
-    "title_it",
-    "title_uk",
-    "title_ko",
+    *_SPEC_TITLE_COLUMNS[1:],
 )
 SPEC_TITLE_TEXT_COLUMNS = {
-    "title_en": "en",
-    "title_zh": "zh",
-    "title_jp": "jp",
-    "title_fr": "fr",
-    "title_es": "es",
-    "title_de": "de",
-    "title_it": "it",
-    "title_uk": "uk",
-    "title_ko": "ko",
+    spec.spec_title_column: spec.tm_column
+    for spec in lang_registry.LANGUAGE_REGISTRY
+    if spec.spec_title_column is not None
 }
 
 _TRUE_VALUES = {"1", "true", "yes", "y"}
