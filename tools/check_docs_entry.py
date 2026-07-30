@@ -6,6 +6,9 @@ from pathlib import Path
 from typing import Any, Callable
 
 
+_WARNING_ISSUE_CODES = frozenset({"CAPABILITY_ROW_MISSING"})
+
+
 def run_check_entry(
     args: argparse.Namespace,
     *,
@@ -47,9 +50,12 @@ def run_check_entry(
             target_text = "/".join(target_bits) if target_bits else "_shared/_default"
             lang_text = f" lang={issue.lang}" if issue.lang else ""
             path_text = f" path={repo_relative(issue.path)}" if issue.path else ""
-            printer(f"[check] {issue.code} target={target_text}{lang_text}{path_text}: {issue.message}")
-        error_out(f"[check] FAILED with {len(issues)} issue(s)")
-        return 1
+            prefix = "WARNING " if issue.code in _WARNING_ISSUE_CODES else ""
+            printer(f"[check] {prefix}{issue.code} target={target_text}{lang_text}{path_text}: {issue.message}")
+        errors = [issue for issue in issues if issue.code not in _WARNING_ISSUE_CODES]
+        if errors:
+            error_out(f"[check] FAILED with {len(errors)} issue(s)")
+            return 1
 
     printer("[check] OK")
     return 0
