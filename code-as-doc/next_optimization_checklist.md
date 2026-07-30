@@ -1492,6 +1492,36 @@ semantic change sitting in the tree while business work resumes.
     - a push/PR secret-scanning gate runs in CI; dependabot files version-bump PRs (grouped, low noise)
     - server-side branch protection settings are verified against `AGENTS.md` §8 and the verification is recorded
 
+## 6j. Milestone L: Product-Line Scaling Execution (Workstream W)
+
+Registered 2026-07-30, operator-approved same day (「按方案来 落PR 让codex开跑」).
+The **authoritative per-PR breakdown lives in
+[`architecture/scaling_execution_plan.md`](architecture/scaling_execution_plan.md) §4**
+(~76 S/M PRs with machine-verifiable done_when each) — this section tracks
+stage-level progress only, to keep the two files from drifting. Execution
+rules (validation ladder, golden-regenerate review exception, gate/stop
+behavior, nightly report format) are the plan's §3 and bind every PR.
+
+Entry rules: stages run in order; a stage's gated items wait for the
+operator picks listed in the plan's §5; behavior-preserving stages (0–4a)
+never require a gate to *start*. Reused item numbers (K2, K8 slices + the
+snapshot file-lock, K13, K14, E1, I2's normalization prerequisite) tick their
+original entries when the matching W-slice lands.
+
+- [ ] Stage 0: safety nets + silent-failure sensors (8 PRs, zero behavior)
+- [ ] Stage 1: CI/gate auto-scaling with product lines (7 PRs)
+- [ ] Stage 2: zero-code language onboarding = K13 (13 PRs; exit = fake-lang zero-Python proof)
+- [ ] Stage 3: clone-artifact generation, new region = one command (13 PRs)
+- [ ] Stage 4a: run throughput without concurrency-semantics change (18 PRs; incl. K8 all four Done-when items, E1 both slices)
+- [ ] Stage 4b: concurrency sub-stage (3 PRs; **gated** — minimal atomic claim BEFORE per-record concurrency keying)
+- [ ] Stage 5: behavior close-out + expansion pre-gates (14 PRs; strict flips, placeholder-ization template halves, CJK trio, K14, K15 design doc)
+
+Operator gate summary: the plan's §5 (workflow edits, `export_idml --model`,
+Feishu column list, promotion-contract carrier, F6 seeds, queue concurrency
+live test, strict flips, CJK/IDML line decision, K15 approval, and the three
+report-only items: K3 new-binary LFS routing evidence, bus-factor report,
+HTML_link alias semantics).
+
 ## 7. Deferred: Do Not Touch Yet
 
 - [ ] Deferred 1: large multi-target conditional-content redesign
