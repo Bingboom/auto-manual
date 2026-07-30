@@ -18,7 +18,15 @@ from .style_names import paragraph_style_ref
 
 # The template's language block headers; entries carry the language they
 # were assembled under (the page loop is strictly language-ordered).
-_LANG_HEADERS = {"en": "EN  English", "fr": "FR  Français", "es": "ES  Español"}
+_LANG_HEADERS = {
+    "en": "EN  English",
+    "fr": "FR  Français",
+    "es": "ES  Español",
+    "de": "DE  Deutsch",
+    "it": "IT  Italiano",
+    "uk": "UK  Українська",
+    "ko": "KO  한국어",
+}
 
 # Titles for pages that emit no prose h1 of their own.
 DATA_TITLES = {

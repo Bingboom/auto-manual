@@ -12,16 +12,18 @@ from tools.process_docs import build_review_preview_render
 from tools.utils import variable_resolver
 
 
-KNOWN_LONGTAIL_DRIFTS = (
+RESOLVED_LONGTAIL_DRIFTS = (
     {
         "surface": "idml.SYMBOL_COPY",
         "missing_languages": ("de", "it", "uk", "ko"),
         "reason": "IDML symbol-page copy currently has only en/fr/es packs.",
+        "status": "resolved",
     },
     {
         "surface": "display.language_labels",
         "missing_languages": ("de", "it", "uk", "ko"),
         "reason": "display maps currently cover only the original preview languages.",
+        "status": "resolved",
     },
 )
 
@@ -101,20 +103,19 @@ class LanguageLongTailParityTest(unittest.TestCase):
 
     def test_longtail_drift_ledger_is_explicit(self) -> None:
         registered = {spec.code for spec in lang_registry.LANGUAGE_REGISTRY}
-        self.assertTrue(KNOWN_LONGTAIL_DRIFTS)
-        for entry in KNOWN_LONGTAIL_DRIFTS:
+        self.assertTrue(RESOLVED_LONGTAIL_DRIFTS)
+        for entry in RESOLVED_LONGTAIL_DRIFTS:
             with self.subTest(surface=entry["surface"]):
                 self.assertTrue(entry["surface"])
                 self.assertTrue(entry["reason"])
+                self.assertEqual(entry["status"], "resolved")
                 self.assertTrue(set(entry["missing_languages"]) <= registered)
 
-    @unittest.expectedFailure
-    def test_known_ukr_alias_drift_in_check_docs_is_machine_recorded(self) -> None:
+    def test_ukr_alias_in_check_docs_is_closed(self) -> None:
         row = {"Value_source": "SOURCE", "Value_uk": "UK-VALUE"}
         self.assertEqual(_pick_spec_value(row, "ukr"), "UK-VALUE")
 
-    @unittest.expectedFailure
-    def test_known_longtail_symbol_copy_drift_is_machine_recorded(self) -> None:
+    def test_longtail_symbol_copy_registration_is_closed(self) -> None:
         missing = {
             language
             for language in ("de", "it", "uk", "ko")
@@ -122,8 +123,7 @@ class LanguageLongTailParityTest(unittest.TestCase):
         }
         self.assertFalse(missing, missing)
 
-    @unittest.expectedFailure
-    def test_known_longtail_display_drift_is_machine_recorded(self) -> None:
+    def test_longtail_display_registration_is_closed(self) -> None:
         maps = (
             build_docs.LANGUAGE_LABELS,
             build_docs_shared.LANGUAGE_LABELS,

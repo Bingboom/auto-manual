@@ -53,18 +53,18 @@ from tools.source_table_contract import (  # noqa: E402
 )
 
 REQUIRED_CSV_HEADERS: dict[str, tuple[str, ...]] = {
-    "spec_master": ("document_key", "Region", "Model", "Page", "Row_key"),
-    "spec_footnotes": ("Footnote_id", "Region", "Model", "Page", "Text_en", "Enabled"),
-    "spec_notes": ("Note_id", "Region", "Model", "Page", "Text_en", "Enabled"),
-    "spec_titles": ("title_en", "section_order"),
-    "symbols_blocks": ("symbol_key", "text_en", "block_type"),
-    "lcd_icons": ("No.", "Model", "icon_en", "icon_desc_en", "figure"),
-    "troubleshooting": ("No.", "Region", "Model", "error_code", "corrective_measures_en"),
+    "spec_master": ("document_key", "Region", "Model", "Page", "Row_key", "Row_label_ko", "Param_ko", "Value_ko"),
+    "spec_footnotes": ("Footnote_id", "Region", "Model", "Page", "Text_en", "Text_ko", "Enabled"),
+    "spec_notes": ("Note_id", "Region", "Model", "Page", "Text_en", "Text_ko", "Enabled"),
+    "spec_titles": ("title_en", "title_ko", "section_order"),
+    "symbols_blocks": ("symbol_key", "text_en", "text_ko", "block_type"),
+    "lcd_icons": ("No.", "Model", "icon_en", "icon_desc_en", "icon_ko", "icon_desc_ko", "figure"),
+    "troubleshooting": ("No.", "Region", "Model", "error_code", "corrective_measures_en", "corrective_measures_ko"),
     "variable_defaults": ("Variable_key", "Value", "is_default"),
     "variable_lang_overrides": ("Variable_key", "lang", "Value"),
     "manual_copy_source": ("copy_key", "page_id", "copy_type", "Is_Latest", "source_text"),
-    "localized_copy": ("copy_key", "page_id", "copy_type", "Is_Latest", "text_en"),
-    "status_words": ("en", "是否为 status word"),
+    "localized_copy": ("copy_key", "page_id", "copy_type", "Is_Latest", "text_en", "text_ko"),
+    "status_words": ("en", "ko", "是否为 status word"),
     "row_key_mapping": ("Row_label_source", "Line_order", "Row_key"),
 }
 

@@ -12,25 +12,19 @@ from pathlib import Path
 
 from .text_clean import VariableSubstituter, clean_cell
 
+_SYMBOL_COPY_KEYS = ("title", "symbol", "meaning", "warning")
+_SYMBOL_COPY_ROWS = (
+    ("en", "MEANING OF SYMBOLS", "Symbol", "Meaning", "WARNING"),
+    ("fr", "SIGNIFICATION DES SYMBOLES", "Symbole", "Signification", "AVERTISSEMENT"),
+    ("es", "SIGNIFICADO DE LOS SÍMBOLOS", "Símbolo", "Significado", "ADVERTENCIA"),
+    ("de", "BEDEUTUNG DER SYMBOLE", "Symbol", "Bedeutung", "WARNUNG"),
+    ("it", "SIGNIFICATO DEI SIMBOLI", "Simbolo", "Significato", "AVVERTENZA"),
+    ("uk", "ЗНАЧЕННЯ СИМВОЛІВ", "Символ", "Значення", "ПОПЕРЕДЖЕННЯ"),
+    ("ko", "기호의 의미", "기호", "의미", "경고"),
+)
 SYMBOL_COPY = {
-    "en": {
-        "title": "MEANING OF SYMBOLS",
-        "symbol": "Symbol",
-        "meaning": "Meaning",
-        "warning": "WARNING",
-    },
-    "fr": {
-        "title": "SIGNIFICATION DES SYMBOLES",
-        "symbol": "Symbole",
-        "meaning": "Signification",
-        "warning": "AVERTISSEMENT",
-    },
-    "es": {
-        "title": "SIGNIFICADO DE LOS SÍMBOLOS",
-        "symbol": "Símbolo",
-        "meaning": "Significado",
-        "warning": "ADVERTENCIA",
-    },
+    lang: dict(zip(_SYMBOL_COPY_KEYS, values))
+    for lang, *values in _SYMBOL_COPY_ROWS
 }
 
 

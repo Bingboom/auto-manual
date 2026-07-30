@@ -106,6 +106,9 @@
       "Row_label_uk",
       "Param_uk",
       "Value_uk",
+      "Row_label_ko",
+      "Param_ko",
+      "Value_ko",
       "Source_lang"
     ],
     "spec_footnotes": [
@@ -124,6 +127,7 @@
       "Text_de",
       "Text_it",
       "Text_uk",
+      "Text_ko",
       "Enabled"
     ],
     "spec_notes": [
@@ -142,6 +146,7 @@
       "Text_de",
       "Text_it",
       "Text_uk",
+      "Text_ko",
       "Enabled"
     ],
     "spec_titles": [
@@ -153,7 +158,8 @@
       "title_es",
       "title_de",
       "title_it",
-      "title_uk"
+      "title_uk",
+      "title_ko"
     ],
     "symbols_blocks": [
       "page_id",
@@ -166,6 +172,7 @@
       "text_de",
       "text_it",
       "text_uk",
+      "text_ko",
       "Is_Latest",
       "Market",
       "enabled",
@@ -192,6 +199,7 @@
       "corrective_measures_ukr",
       "corrective_measures_jp",
       "corrective_measures_zh",
+      "corrective_measures_ko",
       "render_preview_en"
     ],
     "row_key_mapping": [
@@ -207,6 +215,8 @@
       "Version",
       "icon_en",
       "icon_desc_en",
+      "icon_ko",
+      "icon_desc_ko",
       "figure"
     ],
     "variable_defaults": [
@@ -242,6 +252,7 @@
       "text_de",
       "text_it",
       "text_uk",
+      "text_ko",
       "notes"
     ],
     "manual_copy_source": [
@@ -266,6 +277,7 @@
       "de",
       "it",
       "uk",
+      "ko",
       "是否为 status word"
     ]
   },
