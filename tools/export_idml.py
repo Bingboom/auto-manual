@@ -115,7 +115,8 @@ def _new_production_writer(
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--model", default="JE-1000F")
+    ap.add_argument("--model",
+                    help="product model registered in the build target")
     ap.add_argument("--region", default="US")
     ap.add_argument("--lang", default="en")
     ap.add_argument("--data-root", default="data/phase2")
@@ -130,6 +131,8 @@ def main() -> int:
 
     if args.check:
         return _check.run_check_cli(args.check)
+    if not args.model:
+        ap.error("the following arguments are required: --model")
     data_root = (ROOT / args.data_root) if not Path(args.data_root).is_absolute() else Path(args.data_root)
     bundle_root = Path(args.bundle_root) if args.bundle_root else (
         default_bundle_root(args.model, args.region, args.lang))
