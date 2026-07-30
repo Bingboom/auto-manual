@@ -15,8 +15,20 @@ class TestSanitize(unittest.TestCase):
         )
         self.assertEqual(
             warning_ratchet.sanitize_line(raw),
-            "docs/_build/JE-1000F/US/rst/page/06_ups_mode.rst: WARNING: undefined label: 'foo'",
+            "docs/_build/{target}/rst/page/06_ups_mode.rst: WARNING: undefined label: 'foo'",
         )
+
+    def test_target_build_prefix_is_shared_across_model_region_and_language(self) -> None:
+        warning = "WARNING: undefined label: 'foo'"
+        us = "/tmp/docs/_build/JE-1000F/US/en/rst/page/06_ups_mode.rst:42: " + warning
+        jp = "/tmp/docs/_build/JE-1000F_JP/JP/ja/rst/page/06_ups_mode.rst:99: " + warning
+
+        self.assertEqual(warning_ratchet.sanitize_line(us), warning_ratchet.sanitize_line(jp))
+        self.assertEqual(
+            warning_ratchet.sanitize_line(us),
+            "docs/_build/{target}/rst/page/06_ups_mode.rst: WARNING: undefined label: 'foo'",
+        )
+        self.assertNotIn("JE-1000F", warning_ratchet.sanitize_line(us))
 
     def test_non_anchor_paths_fall_back_to_basename(self) -> None:
         raw = "/opt/hostedtoolcache/python/lib/site-packages/sphinx/foo.py:10: DeprecationWarning: x"
@@ -47,6 +59,27 @@ class TestCompare(unittest.TestCase):
 
 
 class TestCheckStream(unittest.TestCase):
+    def test_same_warning_from_different_targets_is_known_once(self) -> None:
+        warning = "WARNING: undefined label: 'foo'"
+        us = "/tmp/docs/_build/JE-1000F/US/en/rst/page/06_ups_mode.rst:42: " + warning
+        jp = "/tmp/docs/_build/JE-1000F_JP/JP/ja/rst/page/06_ups_mode.rst:99: " + warning
+        output: list[str] = []
+
+        with tempfile.TemporaryDirectory() as tmp:
+            baseline_dir = Path(tmp)
+            warning_ratchet.write_baseline(
+                baseline_dir, "sphinx-html", warning_ratchet.sanitize_log(us)
+            )
+            rc = warning_ratchet.check_stream(
+                stream="sphinx-html",
+                log_text=jp,
+                baseline_dir=baseline_dir,
+                printer=output.append,
+            )
+
+        self.assertEqual(rc, 0)
+        self.assertIn("0 new, 1 known, 0 stale", output[-1])
+
     def test_missing_baseline_is_its_own_failure(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             rc = warning_ratchet.check_stream(
