@@ -9,6 +9,36 @@ from tools.process_docs import vercel_build_review_preview
 
 
 class TestVercelBuildReviewPreview(unittest.TestCase):
+    def test_discover_default_preview_configs_should_match_current_defaults(self) -> None:
+        self.assertEqual(
+            {
+                "US": "configs/config.us.yaml",
+                "JP": "configs/config.ja.yaml",
+                "CN": "configs/config.zh.yaml",
+            },
+            vercel_build_review_preview.discover_default_preview_configs(),
+        )
+
+    def test_discover_default_preview_target_from_configs_should_resolve_first_family_target(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            configs_dir = Path(td)
+            (configs_dir / "config.us.yaml").write_text(
+                "build:\n  default_model: MODEL-US\n  default_region: US\n  languages: [en, fr]\n",
+                encoding="utf-8",
+            )
+            (configs_dir / "config.ja.yaml").write_text(
+                "build:\n  default_model: MODEL-JP\n  default_region: JP\n  languages: [ja]\n",
+                encoding="utf-8",
+            )
+            (configs_dir / "config.zh.yaml").write_text(
+                "build:\n  default_model: MODEL-CN\n  default_region: CN\n  languages: [zh]\n",
+                encoding="utf-8",
+            )
+
+            target = vercel_build_review_preview.discover_default_preview_target_from_configs(configs_dir)
+
+        self.assertEqual(("MODEL-US", "US"), target)
+
     def test_discover_default_preview_target_should_return_first_sorted_target(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             review_root = Path(td)
@@ -37,6 +67,27 @@ class TestVercelBuildReviewPreview(unittest.TestCase):
                 target = vercel_build_review_preview.resolve_preview_target(review_root)
 
         self.assertEqual(("JE-1000F", "US"), target)
+
+    def test_resolve_preview_target_should_fallback_to_config_scan(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            configs_dir = Path(td)
+            for filename, model, region, languages in (
+                ("config.us.yaml", "MODEL-US", "US", "en, fr"),
+                ("config.ja.yaml", "MODEL-JP", "JP", "ja"),
+                ("config.zh.yaml", "MODEL-CN", "CN", "zh"),
+            ):
+                (configs_dir / filename).write_text(
+                    f"build:\n  default_model: {model}\n  default_region: {region}\n  languages: [{languages}]\n",
+                    encoding="utf-8",
+                )
+
+            with mock.patch.dict("os.environ", {"PREVIEW_MODEL": "", "PREVIEW_REGION": ""}, clear=False):
+                target = vercel_build_review_preview.resolve_preview_target(
+                    Path(td) / "missing-review",
+                    configs_dir=configs_dir,
+                )
+
+        self.assertEqual(("MODEL-US", "US"), target)
 
     def test_default_preview_config_should_map_family_defaults(self) -> None:
         self.assertEqual("configs/config.us.yaml", vercel_build_review_preview.default_preview_config("US"))

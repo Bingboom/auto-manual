@@ -22,6 +22,7 @@ This repository is responsible for:
 - auditing the mirror readiness with [`scripts/audit_hello_docs_binding.sh`](scripts/audit_hello_docs_binding.sh), which checks repo variables, required secret names, optional Feishu IM / OpenClaw entries, and source/mirror tree parity without reading secret values
 - moving target-specific editing into [`docs/_review/`](docs/_review) once review starts
 - validating review/runtime bundles before release
+- deriving review-preview fallback targets from the registered `configs/config*.yaml` files when no review tree is available
 - exporting revision reports and release manifests
 - generating same-source design handoff outputs: production IDML is projected
   from the prepared bundle's deterministic manual IR and shared layout tokens;
