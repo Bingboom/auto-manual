@@ -75,6 +75,22 @@ def template_symbol_split(
     (the separate batteries/accumulators mark) is not part of this approved
     US reference composition.
     """
+    # Prepared RST carries only the rendered image basename.  Those basenames
+    # restart at 10/20/... in each visual column, so they cannot recover the
+    # canonical order (the second column's first row also looks like ``10_``).
+    # When semantic keys/order are available, use them.  Otherwise retain the
+    # component's group order: normal tables are left 1-6/right 7-11 and the
+    # dense split tables are left 1-4/right 7-10 followed by continuation
+    # rows 5-6/11.
+    has_semantic_order = any(
+        row.get("order") not in (None, "") or row.get("symbol_key")
+        for row in icons
+    )
+    if not has_semantic_order and len(icons) >= 11:
+        if dense:
+            return icons[:4], icons[4:8], icons[8:10], icons[10:11]
+        return icons[:6], icons[6:11], [], []
+
     indexed = [(_symbol_order(row, index), index, row)
                for index, row in enumerate(icons, start=1)]
     ordered = [row for order, _, row in sorted(indexed)

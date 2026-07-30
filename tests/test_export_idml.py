@@ -28,6 +28,7 @@ from tools.idml.character_metrics import (  # noqa: E402
     signal_label_metrics,
     tail_label_metrics,
 )
+from tools.idml.layout_est import template_symbol_split  # noqa: E402
 from tools.idml.symbols_page import SafetySymbolsPageStyle  # noqa: E402
 from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
 
@@ -2426,6 +2427,23 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Do not dismantle the product.", right)
         self.assertIn("Keep away from children.", right)
         self.assertNotIn("Batteries and accumulators", left + right)
+
+    def test_template_icon_split_keeps_rows_when_asset_numbers_restart_per_column(self) -> None:
+        icons = [
+            {"figure": f"{slot * 10}_icon_{index}.png", "text": str(index)}
+            for slot, index in [
+                (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6),
+                (1, 7), (2, 8), (3, 9), (4, 10), (5, 11),
+            ]
+        ]
+        left, right, overflow_left, overflow_right = template_symbol_split(icons)
+        self.assertEqual([row["text"] for row in left], [str(i) for i in range(1, 7)])
+        self.assertEqual([row["text"] for row in right], [str(i) for i in range(7, 12)])
+        self.assertEqual(overflow_left, [])
+        self.assertEqual(overflow_right, [])
+
+        dense = template_symbol_split(icons, dense=True)
+        self.assertEqual([len(rows) for rows in dense], [4, 4, 2, 1])
 
     def test_safety_symbols_weee_uses_canonical_cropped_asset(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
