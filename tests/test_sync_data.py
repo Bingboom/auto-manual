@@ -12,6 +12,7 @@ from unittest import mock
 
 from tools import sync_data
 from tools.source_record_index import SOURCE_RECORD_ID_KEY
+from tools.sync_schema_sensor import missing_schema_columns
 
 
 class _FakeSource:
@@ -28,6 +29,21 @@ class _FakeSource:
     ) -> list[dict[str, object]]:
         self.calls.append((base_token, table_id, view_id))
         return list(self.records_by_table[table_id])
+
+
+class _FakeSourceWithFieldNames(_FakeSource):
+    def __init__(
+        self,
+        records_by_table: dict[str, list[dict[str, object]]],
+        field_names_by_table: dict[str, set[str]],
+    ) -> None:
+        super().__init__(records_by_table)
+        self.field_names_by_table = field_names_by_table
+        self.field_name_calls: list[tuple[str, str]] = []
+
+    def field_names(self, *, base_token: str, table_id: str) -> frozenset[str]:
+        self.field_name_calls.append((base_token, table_id))
+        return frozenset(self.field_names_by_table[table_id])
 
 
 class _FakeSourceWithIds(_FakeSource):
@@ -396,6 +412,79 @@ class TestSyncData(unittest.TestCase):
         )
 
         self.assertEqual("Nota em portugues.", rows[0]["Text_pt-BR"])
+
+    def test_missing_column_sensor_should_exempt_pt_br_field_alias(self) -> None:
+        schema = sync_data.TABLE_SCHEMAS["spec_footnotes"]
+        source_fields = set(schema.columns)
+        source_fields.remove("Text_pt-BR")
+
+        self.assertEqual(
+            (),
+            missing_schema_columns("spec_footnotes", schema, source_fields),
+        )
+
+    def test_sync_should_report_missing_source_columns_in_manifest_and_cli(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            cfg = {
+                "paths": {
+                    "page_registry_csv": "fixtures/page_registry.csv",
+                },
+                "sync": {
+                    "phase2": {
+                        "provider": "lark_cli",
+                        "base_token_env": "BASE_TOKEN",
+                        "tables": {
+                            "spec_footnotes": {
+                                "table_id_env": "SPEC_FOOTNOTES_TABLE",
+                            },
+                        },
+                    }
+                },
+            }
+            config_path = root / "config.yaml"
+            config_path.write_text("sync: {}\n", encoding="utf-8")
+            _write_page_registry(root, "fixtures/page_registry.csv")
+
+            schema = sync_data.TABLE_SCHEMAS["spec_footnotes"]
+            source = _FakeSourceWithFieldNames(
+                {"tbl_footnotes": [{"fields": {"Footnote_id": "fn1"}}]},
+                {"tbl_footnotes": set(schema.columns) - {"Text_de"}},
+            )
+
+            with mock.patch.dict(
+                "os.environ",
+                {
+                    "BASE_TOKEN": "app_token",
+                    "SPEC_FOOTNOTES_TABLE": "tbl_footnotes",
+                },
+                clear=True,
+            ), mock.patch.object(sync_data, "ROOT", root):
+                result = sync_data.sync_phase2_snapshot(
+                    cfg=cfg,
+                    config_path=config_path,
+                    data_root="data/phase2",
+                    table_names=["spec_footnotes"],
+                    dry_run=False,
+                    source=source,
+                    built_at=datetime(2026, 7, 30, 9, 0, tzinfo=timezone.utc),
+                )
+
+            expected_warning = {
+                "code": "MISSING_COLUMNS",
+                "logical_name": "spec_footnotes",
+                "missing_columns": ["Text_de"],
+            }
+            self.assertEqual([expected_warning], result.manifest["warnings"])
+            manifest = json.loads(
+                (root / "data" / "phase2" / "snapshot_manifest.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual([expected_warning], manifest["warnings"])
+            self.assertIn(
+                "[sync-data] WARNING MISSING_COLUMNS: spec_footnotes missing_columns=Text_de",
+                sync_data.build_sync_run_output_lines(result),
+            )
+            self.assertEqual([("app_token", "tbl_footnotes")], source.field_name_calls)
 
     def test_collect_sync_preflight_errors_should_report_missing_cli_and_envs_together(self) -> None:
         cfg = {

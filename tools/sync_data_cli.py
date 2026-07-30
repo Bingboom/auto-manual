@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Protocol
+from typing import Any, Protocol
 
 
 class _TableSyncResultLike(Protocol):
@@ -24,6 +24,7 @@ class _SyncRunResultLike(Protocol):
     skipped_tables: tuple[str, ...]
     synced_tables: tuple[_TableSyncResultLike, ...]
     derived_files: tuple[_TableSyncResultLike, ...]
+    manifest: dict[str, Any]
 
 
 def build_sync_run_output_lines(result: _SyncRunResultLike) -> list[str]:
@@ -45,6 +46,19 @@ def build_sync_run_output_lines(result: _SyncRunResultLike) -> list[str]:
             f"old_sha={old_sha} new_sha={derived.sha256} path={derived.target_path}"
         )
     lines.append(f"[sync-data] manifest={result.manifest_path}")
+    for warning in result.manifest.get("warnings", ()):
+        if not isinstance(warning, dict):
+            continue
+        code = str(warning.get("code") or "WARNING").strip()
+        logical_name = str(warning.get("logical_name") or "").strip()
+        missing_columns = warning.get("missing_columns")
+        if isinstance(missing_columns, (list, tuple)):
+            missing_text = ",".join(str(column) for column in missing_columns)
+        else:
+            missing_text = str(missing_columns or "").strip()
+        lines.append(
+            f"[sync-data] WARNING {code}: {logical_name} missing_columns={missing_text}"
+        )
     if result.skipped_tables:
         lines.append(f"[sync-data] skipped_tables={','.join(result.skipped_tables)}")
     return lines
