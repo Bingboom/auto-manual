@@ -9,7 +9,11 @@ if "%BASE_BRANCH%"=="" set "BASE_BRANCH=main"
 
 pushd "%HOOK_DIR%\.." >nul 2>nul || exit /b 1
 
+REM Advisory (non-blocking) derived-surface warning runs before the guard in
+REM every python branch below; its exit code is deliberately ignored.
+
 if exist "%CD%\.venv\Scripts\python.exe" (
+    "%CD%\.venv\Scripts\python.exe" scripts\derived_surface_push_check.py --repo-root "%CD%" --base-branch "%BASE_BRANCH%"
     "%CD%\.venv\Scripts\python.exe" scripts\git_branch_guard.py pre-push --repo-root "%CD%" --remote "%REMOTE_NAME%" --base-branch "%BASE_BRANCH%"
     set "EXIT_CODE=%ERRORLEVEL%"
     popd >nul
@@ -17,6 +21,7 @@ if exist "%CD%\.venv\Scripts\python.exe" (
 )
 
 if exist "%CD%\.venv\bin\python" (
+    "%CD%\.venv\bin\python" scripts\derived_surface_push_check.py --repo-root "%CD%" --base-branch "%BASE_BRANCH%"
     "%CD%\.venv\bin\python" scripts\git_branch_guard.py pre-push --repo-root "%CD%" --remote "%REMOTE_NAME%" --base-branch "%BASE_BRANCH%"
     set "EXIT_CODE=%ERRORLEVEL%"
     popd >nul
@@ -24,6 +29,7 @@ if exist "%CD%\.venv\bin\python" (
 )
 
 if defined PYTHON (
+    "%PYTHON%" scripts\derived_surface_push_check.py --repo-root "%CD%" --base-branch "%BASE_BRANCH%"
     "%PYTHON%" scripts\git_branch_guard.py pre-push --repo-root "%CD%" --remote "%REMOTE_NAME%" --base-branch "%BASE_BRANCH%"
     set "EXIT_CODE=!ERRORLEVEL!"
     popd >nul
@@ -32,6 +38,7 @@ if defined PYTHON (
 
 where python >nul 2>nul
 if not errorlevel 1 (
+    python scripts\derived_surface_push_check.py --repo-root "%CD%" --base-branch "%BASE_BRANCH%"
     python scripts\git_branch_guard.py pre-push --repo-root "%CD%" --remote "%REMOTE_NAME%" --base-branch "%BASE_BRANCH%"
     set "EXIT_CODE=!ERRORLEVEL!"
     popd >nul
@@ -40,6 +47,7 @@ if not errorlevel 1 (
 
 where py >nul 2>nul
 if not errorlevel 1 (
+    py -3 scripts\derived_surface_push_check.py --repo-root "%CD%" --base-branch "%BASE_BRANCH%"
     py -3 scripts\git_branch_guard.py pre-push --repo-root "%CD%" --remote "%REMOTE_NAME%" --base-branch "%BASE_BRANCH%"
     set "EXIT_CODE=!ERRORLEVEL!"
     popd >nul
