@@ -46,7 +46,8 @@ python build.py review --config configs/config.us-en.yaml --model JE-1000F --reg
 
 # Run the same check gate for every config*.yaml target using the committed
 # deterministic fixture snapshot. Targets without a fixture document_key are
-# reported as explicit SKIP and protected by the tracked skip ratchet.
+# reported as explicit SKIP and protected by the tracked skip ratchet. The
+# Stage 1 CI observation lane reports existing FAIL rows without blocking.
 python tools/ci_check_targets.py --data-root tests/fixtures/phase2
 
 # Check the asset control plane and resolve an approved import.

@@ -225,7 +225,6 @@ jobs:
   check-all:
     # Stage 1 is an observation lane: existing check-en/check-jp remain the
     # required gates while this inventory establishes the target baseline.
-    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -242,7 +241,8 @@ jobs:
             --data-root tests/fixtures/phase2 \
             --skip-baseline .github/ci_check_targets_skip_baseline.json \
             --report "$RUNNER_TEMP/ci_check_targets.json" \
-            --staging-root "$RUNNER_TEMP/ci_check_targets_stage"
+            --staging-root "$RUNNER_TEMP/ci_check_targets_stage" \
+            --observation
 
   workflow-smoke:
     runs-on: ubuntu-latest

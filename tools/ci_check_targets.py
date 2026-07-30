@@ -250,6 +250,7 @@ def run_driver(
     skip_baseline: Path,
     report_path: Path | None = None,
     staging_root: Path | None = None,
+    fail_on_failures: bool = True,
     runner: Runner = _default_runner,
 ) -> tuple[int, dict[str, object]]:
     targets = discover_targets(configs_dir)
@@ -286,7 +287,7 @@ def run_driver(
             f"baseline={ratchet['baseline']}",
             file=sys.stderr,
         )
-    exit_code = 1 if counts["FAIL"] or not ratchet["passed"] else 0
+    exit_code = 1 if (fail_on_failures and counts["FAIL"]) or not ratchet["passed"] else 0
     return exit_code, report
 
 
@@ -298,6 +299,11 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--skip-baseline", default=".github/ci_check_targets_skip_baseline.json")
     parser.add_argument("--report", default=None, help="Optional JSON report path")
     parser.add_argument("--staging-root", default=None, help="Optional root for generated check outputs")
+    parser.add_argument(
+        "--observation",
+        action="store_true",
+        help="Report target FAIL rows without failing the observation lane; SKIP ratchet still fails",
+    )
     return parser.parse_args(argv)
 
 
@@ -311,6 +317,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         skip_baseline=(repo_root / args.skip_baseline).resolve(),
         report_path=(repo_root / args.report).resolve() if args.report else None,
         staging_root=(repo_root / args.staging_root).resolve() if args.staging_root else None,
+        fail_on_failures=not args.observation,
     )[0]
 
 

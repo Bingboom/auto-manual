@@ -123,6 +123,32 @@ class TestCiCheckTargets(unittest.TestCase):
             self.assertEqual(report, json.loads(report_path.read_text(encoding="utf-8")))
             self.assertEqual(0, load_skip_baseline(baseline))
 
+    def test_observation_lane_reports_failures_without_failing(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            configs = root / "configs"
+            shutil.copytree(ROOT / "configs", configs)
+            for config_path in configs.glob("config*.yaml"):
+                if config_path.name != "config.us-en.yaml":
+                    config_path.unlink()
+            data_root = root / "phase2"
+            data_root.mkdir()
+            shutil.copy2(ROOT / "tests/fixtures/phase2/Spec_Master.csv", data_root / "Spec_Master.csv")
+            baseline = root / "baseline.json"
+            baseline.write_text(json.dumps({"skip_count": 0}), encoding="utf-8")
+
+            exit_code, report = run_driver(
+                configs_dir=configs,
+                data_root=data_root,
+                repo_root=ROOT,
+                skip_baseline=baseline,
+                fail_on_failures=False,
+                runner=lambda command: CommandResult(7, stdout="observed failure"),
+            )
+
+            self.assertEqual(0, exit_code)
+            self.assertEqual(1, report["counts"]["FAIL"])
+
 
 if __name__ == "__main__":
     unittest.main()
