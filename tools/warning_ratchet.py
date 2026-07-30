@@ -41,17 +41,28 @@ _ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
 _PATH_TOKEN_RE = re.compile(r"(?:[A-Za-z]:)?[\w.+~-]*(?:[/\\][^\s:,'\"]+)+")
 _ANCHORS = ("docs/", "tools/", "data/", "tests/", "configs/")
 _LINE_NO_RE = re.compile(r":\d+(?=[:\s]|$)")
+_TARGET_BUILD_PATH_RE = re.compile(
+    r"^(?P<root>docs/_build/)(?:[^/]+/)+rst/(?P<tail>.*)$"
+)
 
 
 def _sanitize_path_token(token: str) -> str:
     normalized = token.replace("\\", "/")
     for anchor in _ANCHORS:
         if normalized.startswith(anchor):
-            return normalized
+            sanitized = normalized
+            break
         index = normalized.rfind("/" + anchor)
         if index != -1:
-            return normalized[index + 1 :]
-    return normalized.rsplit("/", 1)[-1]
+            sanitized = normalized[index + 1 :]
+            break
+    else:
+        sanitized = normalized.rsplit("/", 1)[-1]
+
+    target_match = _TARGET_BUILD_PATH_RE.match(sanitized)
+    if target_match:
+        return f"{target_match.group('root')}{{target}}/rst/{target_match.group('tail')}"
+    return sanitized
 
 
 def sanitize_line(line: str) -> str:
