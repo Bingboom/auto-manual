@@ -28,6 +28,16 @@ def _run(*argv: str) -> subprocess.CompletedProcess:
 
 
 class ExportIdmlCliSmokeTests(unittest.TestCase):
+    def test_model_is_required(self) -> None:
+        result = _run(
+            "--region", "US",
+            "--data-root", str(DATA_FIXTURE),
+            "--bundle-root", str(BUNDLE_FIXTURE),
+        )
+
+        self.assertEqual(2, result.returncode)
+        self.assertIn("the following arguments are required: --model", result.stderr)
+
     def test_mode_flow_writes_markdown_trace_manifest_and_notes(self) -> None:
         out_dir = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "idml" / "flow"
         shutil.rmtree(out_dir, ignore_errors=True)
