@@ -737,6 +737,11 @@ python3 tools/reference_layout_rebind.py \
   --write
 ```
 
+To inspect every registered plan in one dry-run summary, use
+`python3 tools/reference_layout_rebind.py --all-registered --manual-ir
+<manual.ir.json>`. Batch mode is intentionally read-only; `--write` must be
+paired with one explicit `--plan`.
+
 The tool preserves file mode and uses an atomic replace only after full plan
 validation. It is not a composition editor: a source-order or page-map change
 requires a new layout review and approval. Never hand-edit a subset of hashes

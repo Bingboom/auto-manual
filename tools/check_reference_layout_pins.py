@@ -40,7 +40,7 @@ from tools.render_contract import (  # noqa: E402
     load_layout_tokens,
     load_render_contract,
 )
-from tools.utils.path_utils import Paths  # noqa: E402
+from tools.utils.path_utils import PathSegments, Paths  # noqa: E402
 
 CONTRACTS_SUBDIR = ("docs", "renderers", "contracts", "reference_layout")
 
@@ -87,6 +87,32 @@ def collect_pin_drift(repo_root: Path) -> list[tuple[str, str, str, str]]:
     return drift
 
 
+def _fix_command(repo_root: Path, contract: str) -> str:
+    contract_path = repo_root / contract
+    try:
+        payload = json.loads(contract_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return (
+            "python tools/reference_layout_rebind.py "
+            f"--plan {contract} --manual-ir <manual.ir.json> --write"
+        )
+    target = payload.get("target") if isinstance(payload, dict) else None
+    model = str(target.get("model") or "").strip() if isinstance(target, dict) else ""
+    region = str(target.get("region") or "").strip() if isinstance(target, dict) else ""
+    languages = target.get("languages") if isinstance(target, dict) else None
+    if model and region and isinstance(languages, list) and languages:
+        ir_dir = Path(PathSegments.DOCS) / PathSegments.BUILD / model / region
+        if len(languages) == 1:
+            ir_dir /= str(languages[0]).strip().lower()
+        ir_path = (ir_dir / "idml" / PathSegments.MANUAL_IR_JSON).as_posix()
+    else:
+        ir_path = "<manual.ir.json>"
+    return (
+        "python tools/reference_layout_rebind.py "
+        f"--plan {contract} --manual-ir {ir_path} --write"
+    )
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="check_reference_layout_pins",
@@ -112,10 +138,12 @@ def main(argv: list[str] | None = None) -> int:
         print(f"[reference-pins]   recomputed: {actual}")
     print(
         "[reference-pins] the contract no longer describes the tracked inputs. "
-        "Refreshing an approved pin is an operator decision: rebind with "
-        "`python tools/reference_layout_rebind.py --plan <contract> "
-        "--manual-ir <manual.ir.json> --write`, then re-run the parity check."
+        "Refreshing an approved pin is an operator decision. Copy the fix "
+        "command below for each affected contract, then re-run the parity check."
     )
+    for contract in sorted({contract for contract, _name, _pinned, _actual in drift}):
+        print(f"[reference-pins] FIX {contract}")
+        print(f"[reference-pins]   {_fix_command(args.repo_root, contract)}")
     return 1
 
 

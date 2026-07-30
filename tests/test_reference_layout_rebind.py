@@ -229,6 +229,43 @@ class ReferenceLayoutRebindTests(unittest.TestCase):
             self.assertIn("composition_map=unchanged", output.getvalue())
             self.assertEqual(original, plan_path.read_text(encoding="utf-8"))
 
+    def test_cli_all_registered_runs_every_plan_as_dry_run(self) -> None:
+        ir = _manual_ir()
+        payload = _stale_payload()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            ir_path = root / "manual.ir.json"
+            write_manual_ir(ir, ir_path)
+            plan_paths = []
+            for name in ("first.json", "second.json"):
+                plan_path = root / name
+                plan_path.write_text(json.dumps(payload), encoding="utf-8")
+                plan_paths.append(plan_path)
+            registry_path = root / "registry.json"
+            registry_path.write_text(
+                json.dumps({"plans": [{"path": str(path)} for path in plan_paths]}),
+                encoding="utf-8",
+            )
+            output = io.StringIO()
+            with redirect_stdout(output):
+                exit_code = rebind_main([
+                    "--all-registered",
+                    "--registry", str(registry_path),
+                    "--manual-ir", str(ir_path),
+                ])
+
+        self.assertEqual(0, exit_code)
+        self.assertEqual(2, output.getvalue().count("DRY-RUN OK"))
+        self.assertIn("ALL-REGISTERED: plans=2 passed=2 failed=0 write=disabled", output.getvalue())
+
+    def test_cli_all_registered_rejects_write(self) -> None:
+        with self.assertRaises(SystemExit):
+            rebind_main([
+                "--all-registered",
+                "--manual-ir", "manual.ir.json",
+                "--write",
+            ])
+
 
 if __name__ == "__main__":
     unittest.main()

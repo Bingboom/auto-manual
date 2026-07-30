@@ -153,6 +153,11 @@ python3 tools/reference_layout_rebind.py \
   --write
 ```
 
+For a read-only summary of all registered contracts, run
+`python3 tools/reference_layout_rebind.py --all-registered --manual-ir
+<manual.ir.json>`. Batch mode never writes; keep `--write` limited to an
+explicit single-plan command after review.
+
 The command validates that semantic content, source order, page languages, and
 physical composition remain unchanged. It refreshes only the mutable
 non-content identities and every page's source digest, then atomically replaces

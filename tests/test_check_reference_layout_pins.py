@@ -4,10 +4,12 @@
 from __future__ import annotations
 
 import json
+import io
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+from contextlib import redirect_stdout
 from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +26,7 @@ def _repo(tmp: str, *, identity: dict) -> Path:
     (contracts / "je1000f_us_v2.json").write_text(
         json.dumps({
             "approval": {"status": "approved"},
+            "target": {"model": "JE-1000F", "region": "US", "languages": ["en", "fr", "es"]},
             "source_identity": identity,
         }),
         encoding="utf-8",
@@ -63,7 +66,15 @@ class PinDriftTest(unittest.TestCase):
             self.assertEqual(name, "layout_params_sha256")
             self.assertEqual(pinned, "layout-before-the-correction")
             self.assertEqual(actual, "layout-actual")
-            self.assertEqual(guard.main(["--repo-root", str(root)]), 1)
+            output = io.StringIO()
+            with redirect_stdout(output):
+                self.assertEqual(guard.main(["--repo-root", str(root)]), 1)
+            self.assertIn(
+                "python tools/reference_layout_rebind.py --plan "
+                "docs/renderers/contracts/reference_layout/je1000f_us_v2.json "
+                "--manual-ir docs/_build/JE-1000F/US/idml/manual.ir.json --write",
+                output.getvalue(),
+            )
 
     def test_stale_style_pin_is_reported_too(self):
         with tempfile.TemporaryDirectory() as tmp:
