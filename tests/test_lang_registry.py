@@ -100,6 +100,30 @@ class LanguageRegistryTest(unittest.TestCase):
         self.assertEqual(TM_LANGUAGE_FIELDS, expected_tm)
         self.assertEqual(LOCALIZED_COPY_TEXT_COLUMNS, expected_localized)
         self.assertEqual(
+            LOCALIZED_COPY_COLUMNS,
+            (
+                "copy_key",
+                "page_id",
+                "copy_type",
+                "Region",
+                "Model",
+                "Source_lang",
+                "Is_Latest",
+                "Version",
+                "text_en",
+                "text_zh",
+                "text_ja",
+                "text_fr",
+                "text_es",
+                "text_pt-BR",
+                "text_de",
+                "text_it",
+                "text_uk",
+                "text_ko",
+                "notes",
+            ),
+        )
+        self.assertEqual(
             {column for column in LOCALIZED_COPY_COLUMNS if column.startswith("text_")},
             set(expected_localized),
         )
