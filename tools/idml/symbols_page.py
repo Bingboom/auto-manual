@@ -5,6 +5,12 @@ from pathlib import Path
 from dataclasses import dataclass
 from xml.sax.saxutils import escape
 
+from .character_metrics import (
+    fit_symbol_body_metrics,
+    signal_label_metrics,
+    with_character_baseline_shift,
+    with_character_metrics,
+)
 from .layout_est import est_table_height, template_symbol_split
 from .loaders import symbol_copy
 from .page_objects import (
@@ -107,7 +113,9 @@ class SafetySymbolsPageStyle:
         )
 
 
-def _localized_signal_label_bar(writer, tid: str, label: str) -> str:
+def _localized_signal_label_bar(
+    writer, tid: str, label: str, lang: str = "en",
+) -> str:
     style_ref = paragraph_style_ref("HB Notice Side Label")
     badge_w = component_param_pt(
         writer.params,
@@ -122,6 +130,13 @@ def _localized_signal_label_bar(writer, tid: str, label: str) -> str:
         15.3,
         strict=writer.strict_component_assets,
         owner="symbol signal badge",
+    )
+    badge_raise = component_param_pt(
+        writer.params,
+        "idml_symbols_signal_badge_baseline_shift",
+        1.5,
+        strict=writer.strict_component_assets,
+        owner="symbol signal badge vertical centering",
     )
     asset = (
         ROOT / "docs" / "templates" / "word_template" / "common_assets"
@@ -146,13 +161,35 @@ def _localized_signal_label_bar(writer, tid: str, label: str) -> str:
         icon = writer._image_cell_content(f"{tid}icon", asset, icon_w, icon_h)
     elif writer.strict_component_assets:
         raise FileNotFoundError(f"symbol signal badge asset missing: {asset}")
-    content = (
-        f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
-        '    <CharacterStyleRange '
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'FillColor="Color/Paper">{icon}<Content> {escape(label)}</Content>'
-        '</CharacterStyleRange>\n  </ParagraphStyleRange>\n'
-    )
+    language = (lang or "en").split("-", 1)[0].casefold()
+    if language in {"fr", "es"}:
+        label_size, label_leading, label_scale = signal_label_metrics(
+            writer.params,
+            language,
+            label,
+            badge_w - 3.0 - 2.0 - icon_w - 2.0,
+        )
+        content = (
+            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
+            '    <CharacterStyleRange '
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+            f'{icon}</CharacterStyleRange>\n'
+            '    <CharacterStyleRange '
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            'FillColor="Color/Paper" FontStyle="Bold" '
+            f'PointSize="{label_size:g}" HorizontalScale="{label_scale:g}">'
+            f'<Properties><Leading type="unit">{label_leading:g}</Leading></Properties>'
+            f'<Content> {escape(label)}</Content></CharacterStyleRange>\n'
+            '  </ParagraphStyleRange>\n'
+        )
+    else:
+        content = (
+            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
+            '    <CharacterStyleRange '
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            f'FillColor="Color/Paper">{icon}<Content> {escape(label)}</Content>'
+            '</CharacterStyleRange>\n  </ParagraphStyleRange>\n'
+        )
     badge_cell = writer._cell(
         f"{tid}c0",
         "0:0",
@@ -172,12 +209,15 @@ def _localized_signal_label_bar(writer, tid: str, label: str) -> str:
         outer_stroke=False,
         row_heights=[badge_h],
     )
-    return writer._wrap_table_paragraph(badge, True, span_columns=False)
+    carrier = writer._wrap_table_paragraph(badge, True, span_columns=False)
+    return with_character_baseline_shift(carrier, shift=badge_raise)
 
 
-def _symbol_signal_bar(writer, tid: str, label: str, bundle_root: Path) -> str:
+def _symbol_signal_bar(
+    writer, tid: str, label: str, bundle_root: Path, lang: str = "en",
+) -> str:
     del bundle_root
-    return _localized_signal_label_bar(writer, tid, label)
+    return _localized_signal_label_bar(writer, tid, label, lang)
 
 
 def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
@@ -202,7 +242,9 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
             left_xml = writer._psr("HB Symbol Header", left, terminal=True)
             right_xml = writer._psr("HB Symbol Header", right, terminal=True)
         else:
-            left_xml = writer._symbol_signal_bar(f"{tid}sig{ri}", left, bundle_root)
+            left_xml = writer._symbol_signal_bar(
+                f"{tid}sig{ri}", left, bundle_root, lang,
+            )
             right_xml = writer._psr("HB Spec Value", right, terminal=True)
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
                                   fill="Color/HB Bg K05",
@@ -223,7 +265,7 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
             after = (
                 f'<Row Self="{tid}r{row_index}" Name="{row_index}" '
                 f'SingleRowHeight="{height:g}" MinimumHeight="{height:g}" '
-                'AutoGrow="false"/>'
+                'AutoGrow="true"/>'
             )
             if before not in table:
                 raise ValueError(f"symbol signal row anchor missing: {tid}r{row_index}")
@@ -241,6 +283,7 @@ def _symbols_icon_table(
     include_header: bool = True,
     row_heights: list[float] | None = None,
     icon_col_width: float | None = None,
+    fit_body_to_row: bool = False,
 ) -> str:
     copy = symbol_copy(lang)
     header = [{"figure": "", "text": copy["meaning"], "header": True}]
@@ -322,12 +365,27 @@ def _symbols_icon_table(
                 + icon + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
             right_xml = writer._psr("HB Symbol Body", row["text"], terminal=True)
             if lang in {"fr", "es"}:
-                right_xml = right_xml.replace(
-                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                    'PointSize="5.6" Leading="6.15" HorizontalScale="96"',
-                    1,
-                )
+                if fit_body_to_row and row_heights is not None:
+                    size, leading, scale = fit_symbol_body_metrics(
+                        writer.params,
+                        lang,
+                        row["text"],
+                        width - left_col - 9.0,
+                        row_heights[ri],
+                    )
+                    right_xml = with_character_metrics(
+                        right_xml,
+                        point_size=size,
+                        leading=leading,
+                        horizontal_scale=scale,
+                    )
+                else:
+                    right_xml = right_xml.replace(
+                        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+                        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                        'PointSize="5.6" Leading="6.15" HorizontalScale="96"',
+                        1,
+                    )
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
                                   fill="Color/HB Bg K05",
                                   top=2 if row.get("header") else 0,
@@ -348,7 +406,7 @@ def _symbols_icon_table(
             after = (
                 f'<Row Self="{tid}r{ri}" Name="{ri}" '
                 f'SingleRowHeight="{height:g}" MinimumHeight="{height:g}" '
-                'AutoGrow="false"/>'
+                'AutoGrow="true"/>'
             )
             if before not in table:
                 raise ValueError(f"symbol table row anchor missing: {tid}r{ri}")

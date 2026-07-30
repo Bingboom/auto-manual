@@ -24,6 +24,11 @@ from tools.export_idml import (  # noqa: E402
 )
 from tools.idml import export_paths as idml_export_paths  # noqa: E402
 from tools.idml import page_placed  # noqa: E402
+from tools.idml.character_metrics import (  # noqa: E402
+    signal_label_metrics,
+    tail_label_metrics,
+)
+from tools.idml.layout_est import template_symbol_split  # noqa: E402
 from tools.idml.symbols_page import SafetySymbolsPageStyle  # noqa: E402
 from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
 
@@ -730,6 +735,29 @@ class ExportIdmlTests(unittest.TestCase):
         story = dict(writer.stories)["st_operation_first_page"]
         self.assertIn('SpaceBefore="9.8"', story)
         self.assertIn('SpaceAfter="37.6"', story)
+
+    def test_operation_inter_section_body_moves_without_adding_story_depth(self) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({
+            "lang_fr_idml_operation_inter_section_space_after": ("37.6", "pt"),
+            "idml_operation_inter_section_body_space_before": ("5.669291", "pt"),
+        })
+        writer.add_prose_story(
+            "st_operation_inter_section",
+            "05_operation_guide_placeholder",
+            [
+                ("body_operation_inter_section", "Explanation below panel."),
+                ("h2", "SORTIE CA MARCHE/ARRÊT"),
+            ],
+            ROOT,
+            language="fr",
+        )
+        story = dict(writer.stories)["st_operation_inter_section"]
+        self.assertIn(
+            'SpaceBefore="5.66929" SpaceAfter="31.9307"',
+            story,
+        )
 
     def test_operation_key_heading_compensates_first_page_depth(self) -> None:
         from tools.idml.writer import IdmlWriter
@@ -1941,6 +1969,13 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r'Anchor="[-0-9.]+ [-0-9.]+"', title_bg)), 6)
         self.assertEqual(len(re.findall(r'Anchor="[-0-9.]+ [-0-9.]+"', subbar_bg)), 8)
         self.assertIn('Self="bg_st_safety_en_warning"', spread)
+        warning_frame = spread.split(
+            'Self="tf_st_safety_en_warning"', 1,
+        )[1].split("</TextFrame>", 1)[0]
+        self.assertIn(
+            'VerticalJustification="CenterAlign"',
+            warning_frame,
+        )
         self.assertIn(
             'AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer"',
             spread.split('Self="bg_st_safety_en_warning"', 1)[1].split(
@@ -1998,9 +2033,9 @@ class ExportIdmlTests(unittest.TestCase):
         stories = dict(w.stories)
         left = stories["st_safety_fr_section1_left"]
         right = stories["st_safety_fr_section1_right"]
-        self.assertIn("• item 5", left)
-        self.assertNotIn("• item 6", left)
-        self.assertIn("• item 6", right)
+        self.assertIn("<Content>item 5</Content>", left)
+        self.assertNotIn("<Content>item 6</Content>", left)
+        self.assertIn("<Content>item 6</Content>", right)
         spread = dict(w.spreads)["sp_21"]
         self.assertIn("tf_st_safety_fr_section1_left", spread)
         self.assertIn("tf_st_safety_fr_section1_right", spread)
@@ -2014,6 +2049,63 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('FirstLineIndent="-6.67"', right)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Safety List FR"', left)
         self.assertIn('SpaceAfter="2"', left)
+
+    def test_safety_lists_use_fixed_marker_tabs_in_all_us_languages(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        expected = {
+            "en": ("HB Safety List", "3.7", "98"),
+            "fr": ("HB Safety List FR", "7.22", "98.8"),
+            "es": ("HB Safety List ES", "7.22", "100.7"),
+        }
+        for lang, (style, tab_position, horizontal_scale) in expected.items():
+            with self.subTest(lang=lang):
+                writer = IdmlWriter(params)
+                sid = f"st_safety_{lang}_section1_left"
+                writer._safety_section_story(
+                    sid,
+                    sid,
+                    [
+                        ("list", "• Item with a wrapped continuation line."),
+                        ("sublist", "– Nested item with a wrapped continuation line."),
+                    ],
+                    ROOT,
+                )
+                story = dict(writer.stories)[sid]
+                self.assertIn(
+                    f'AppliedParagraphStyle="ParagraphStyle/{style}"', story,
+                )
+                self.assertIn(
+                    f'<Position type="unit">{tab_position}</Position>', story,
+                )
+                self.assertIn(
+                    f'<Content>•</Content></CharacterStyleRange>', story,
+                )
+                self.assertIn('<Content>\t</Content>', story)
+                self.assertNotIn("• Item with", story)
+                self.assertIn(
+                    f'HorizontalScale="{horizontal_scale}"', story,
+                )
+
+                sublist_marker = (
+                    '<Content>–</Content></CharacterStyleRange>'
+                )
+                self.assertIn(sublist_marker, story)
+
+    def test_rst_subscript_is_preserved_as_editable_idml_text(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        for language, sentence in {
+            "en": r"open-circuit voltage (V\ :sub:`oc`)",
+            "fr": r"tension en circuit ouvert (V\ :sub:`oc`)",
+            "es": r"voltaje en circuito abierto (V\ :sub:`oc`)",
+        }.items():
+            with self.subTest(language=language):
+                xml = writer._psr("HB Body", sentence, terminal=True)
+                self.assertIn('(V</Content>', xml)
+                self.assertIn(
+                    'Position="Subscript"><Content>oc</Content>', xml,
+                )
+                self.assertNotIn('<Content>Voc</Content>', xml)
 
     def test_safety_symbols_page_combines_tail_maintenance_and_symbols(self) -> None:
         import json
@@ -2085,6 +2177,10 @@ class ExportIdmlTests(unittest.TestCase):
             'BaselineShift="0.68"',
             stories["st_safety_symbols_tail_warning"],
         )
+        self.assertIn(
+            'Anchor="25 -21.739"',
+            stories["st_safety_symbols_tail_warning"],
+        )
         self.assertIn(">DANGER<", stories["st_safety_symbols_tail_danger"])
         self.assertIn(
             "warning_triangle_dark.svg",
@@ -2102,6 +2198,11 @@ class ExportIdmlTests(unittest.TestCase):
             'Name="黑底段落-文本"', 1)[1].split("</ParagraphStyle>", 1)[0]
         self.assertIn('PointSize="9.9"', side_label)
         self.assertIn('Justification="CenterAlign"', side_label)
+        tail_label = w.styles_xml().split(
+            'Name="HB Safety Tail Label"', 1,
+        )[1].split("</ParagraphStyle>", 1)[0]
+        self.assertIn('PointSize="11.2"', tail_label)
+        self.assertIn('<Leading type="unit">11.6</Leading>', tail_label)
         self.assertIn('SingleRowHeight="17.3"', stories["st_safety_symbols_signals"])
         self.assertIn('SingleRowHeight="25.42"', stories["st_safety_symbols_signals"])
         self.assertIn('SingleRowHeight="15"', stories["st_safety_symbols_icons_left"])
@@ -2113,6 +2214,12 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(
             stories["st_safety_symbols_signals"].count(
                 "warning_triangle_white.svg",
+            ),
+            len(signals),
+        )
+        self.assertEqual(
+            stories["st_safety_symbols_signals"].count(
+                'BaselineShift="1.5"',
             ),
             len(signals),
         )
@@ -2246,11 +2353,41 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Signification", stories["st_safety_symbols_fr_icons_left"])
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_signals"])
         self.assertIn(
+            'PointSize="5.6" HorizontalScale="100"',
+            stories["st_safety_symbols_fr_signals"],
+        )
+        self.assertIn(
+            '<Properties><Leading type="unit">5.939</Leading></Properties>',
+            stories["st_safety_symbols_fr_signals"],
+        )
+        self.assertIn(
             'FillColor="Color/HB Brand Dark"',
             stories["st_safety_symbols_fr_signals"],
         )
         self.assertIn("AVERTISSEMENT", stories["st_safety_symbols_fr_tail_avertissement"])
         self.assertNotIn(">WARNING<", stories["st_safety_symbols_fr_tail_avertissement"])
+        fr_tail_size, _, fr_tail_scale = tail_label_metrics(
+            params, "fr", "AVERTISSEMENT", 52.0,
+        )
+        self.assertIn(
+            f'PointSize="{fr_tail_size:g}" HorizontalScale="{fr_tail_scale:g}"',
+            stories["st_safety_symbols_fr_tail_avertissement"],
+        )
+        warning_size, warning_leading, warning_scale = tail_label_metrics(
+            params, "es", "ADVERTENCIA", 52.0,
+        )
+        danger_size, _, _ = tail_label_metrics(
+            params, "es", "PELIGRO", 52.0,
+        )
+        self.assertGreater(danger_size, warning_size)
+        self.assertEqual(100.0, warning_scale)
+        self.assertGreater(warning_leading, 0.0)
+        size, leading, scale = signal_label_metrics(
+            params, "fr", "AVERTISSEMENT", 30.0,
+        )
+        self.assertEqual(5.6, size)
+        self.assertEqual(5.939, leading)
+        self.assertLess(scale, 100.0)
         self.assertIn(
             "Pratiques dangereuses pouvant entraîner des blessures graves",
             stories["st_safety_symbols_fr_signals"],
@@ -2303,6 +2440,23 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Do not dismantle the product.", right)
         self.assertIn("Keep away from children.", right)
         self.assertNotIn("Batteries and accumulators", left + right)
+
+    def test_template_icon_split_keeps_rows_when_asset_numbers_restart_per_column(self) -> None:
+        icons = [
+            {"figure": f"{slot * 10}_icon_{index}.png", "text": str(index)}
+            for slot, index in [
+                (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6),
+                (1, 7), (2, 8), (3, 9), (4, 10), (5, 11),
+            ]
+        ]
+        left, right, overflow_left, overflow_right = template_symbol_split(icons)
+        self.assertEqual([row["text"] for row in left], [str(i) for i in range(1, 7)])
+        self.assertEqual([row["text"] for row in right], [str(i) for i in range(7, 12)])
+        self.assertEqual(overflow_left, [])
+        self.assertEqual(overflow_right, [])
+
+        dense = template_symbol_split(icons, dense=True)
+        self.assertEqual([len(rows) for rows in dense], [4, 4, 2, 1])
 
     def test_safety_symbols_weee_uses_canonical_cropped_asset(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -2538,15 +2692,85 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("Objet lourd", stories["st_fcc_dense_symbols_left"])
         self.assertIn("Collecte séparée", stories["st_fcc_dense_symbols_right"])
         self.assertIn(
-            'SingleRowHeight="34" MinimumHeight="34" AutoGrow="false"',
+            'SingleRowHeight="34" MinimumHeight="34" AutoGrow="true"',
             stories["st_fcc_dense_symbols_left"],
         )
         self.assertIn(
-            'SingleRowHeight="68" MinimumHeight="68" AutoGrow="false"',
+            'SingleRowHeight="68" MinimumHeight="68" AutoGrow="true"',
             stories["st_fcc_dense_symbols_right"],
         )
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_left"])
         self.assertNotIn("Signification", stories["st_fcc_dense_symbols_right"])
+
+    def test_symbol_continuation_masks_all_rounded_corners(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        overflow = (
+            [{"figure": "", "text": "Matière explosive"}],
+            [{"figure": "", "text": "Collecte séparée"}],
+        )
+
+        w.add_fcc_inbox_page(
+            "st_fcc_corner_masks",
+            [],
+            [("h1", "CONTENU DE LA BOÎTE")],
+            ROOT,
+            23,
+            symbol_overflow=overflow,
+            lang="fr",
+        )
+
+        spread = dict(w.spreads)["sp_23"]
+        for corner in ("top_left", "top_right", "bottom_left", "bottom_right"):
+            self.assertIn(
+                f'Self="mask_{corner}_st_fcc_corner_masks_symbols_left"',
+                spread,
+            )
+            self.assertIn(
+                f'Self="mask_{corner}_st_fcc_corner_masks_symbols_right"',
+                spread,
+            )
+        self.assertIn(
+            'Self="outline_st_fcc_corner_masks_symbols_left"', spread)
+
+    def test_component_table_cells_default_to_vertical_center(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+
+        centered = w._cell("centered", "0:0", "<Content>Copy</Content>")
+        top_aligned = w._cell(
+            "top", "0:0", "<Content>Copy</Content>", valign="TopAlign")
+
+        self.assertIn('VerticalJustification="CenterAlign"', centered)
+        self.assertIn('VerticalJustification="TopAlign"', top_aligned)
+
+    def test_localized_symbol_continuation_fits_long_copy_inside_row(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        long_copy = (
+            "Este símbolo indica que el producto no debe desecharse con los "
+            "residuos domésticos. En su lugar, debe llevarse a un punto de "
+            "recogida designado para su correcto reciclaje.\n"
+            "El desecho y reciclaje adecuados ayudan a proteger el "
+            "medioambiente. Para más información, póngase en contacto con "
+            "el distribuidor del producto."
+        )
+        w.add_fcc_inbox_page(
+            "st_fcc_es_symbol_fit",
+            [],
+            [("h1", "CONTENIDO DE LA CAJA")],
+            ROOT,
+            23,
+            symbol_overflow=([{"figure": "", "text": "Explosivo"}], [
+                {"figure": "", "text": long_copy},
+            ]),
+            lang="es",
+        )
+        story = dict(w.stories)["st_fcc_es_symbol_fit_symbols_right"]
+        self.assertIn(long_copy.split("\n", 1)[0], story)
+        self.assertIn('PointSize="5.1"', story)
+        self.assertIn('HorizontalScale="96"', story)
+        self.assertIn('SingleRowHeight="68" MinimumHeight="68" AutoGrow="true"', story)
 
     def test_spanish_symbol_overflow_uses_shared_inbox_layout_profile(self) -> None:
         import xml.etree.ElementTree as ET
@@ -2638,10 +2862,66 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("This device complies", stories["st_fcc_wrapped_fcc_lead"])
         self.assertIn("(1) This device", stories["st_fcc_wrapped_fcc_lead"])
         self.assertNotIn("NOTE: Tested", stories["st_fcc_wrapped_fcc_lead"])
-        self.assertIn("NOTE: Tested", stories["st_fcc_wrapped_fcc_left"])
+        self.assertIn(
+            'FontStyle="Bold"><Content>NOTE:</Content>',
+            stories["st_fcc_wrapped_fcc_left"],
+        )
+        self.assertIn(
+            "Tested to the applicable limits.",
+            stories["st_fcc_wrapped_fcc_left"],
+        )
         self.assertNotIn("(1) This device", stories["st_fcc_wrapped_fcc_left"])
         self.assertNotIn("This device complies", stories["st_fcc_wrapped_fcc_left"])
         self.assertIn("fcc_mark.png", stories["st_fcc_wrapped_fcc_mark"])
+
+    def test_fcc_rhythm_and_strong_labels_are_shared_by_language(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        cases = {
+            "en": ("NOTE:", "MODIFICATION:"),
+            "fr": ("REMARQUE :", "MODIFICATION :"),
+            "es": ("NOTA:", "MODIFICACIÓN:"),
+        }
+        for page_index, (lang, labels) in enumerate(cases.items(), 3):
+            with self.subTest(lang=lang):
+                note_label, modification_label = labels
+                writer = IdmlWriter(params)
+                sid = f"st_fcc_rhythm_{lang}"
+                writer.add_fcc_inbox_page(
+                    sid,
+                    [("component", json.dumps({
+                        "kind": "fcc",
+                        "texts": [
+                            "Opening condition copy.\n"
+                            f"{note_label} Tested copy.\n"
+                            "Protection copy.",
+                            "Corrective measures intro.\n \n"
+                            "• First measure.\n \n"
+                            "• Second measure.\n \n"
+                            f"{modification_label} Change copy.",
+                        ],
+                    }))],
+                    [("h1", "WHAT'S IN THE BOX")],
+                    ROOT,
+                    page_index,
+                    lang=lang,
+                )
+                stories = dict(writer.stories)
+                left = stories[f"{sid}_fcc_left"]
+                right = stories[f"{sid}_fcc_right"]
+                self.assertIn(
+                    f'FontStyle="Bold"><Content>{note_label}</Content>',
+                    left,
+                )
+                self.assertIn('SpaceAfter="1"', left)
+                self.assertIn(
+                    f'FontStyle="Bold"><Content>{modification_label}</Content>',
+                    right,
+                )
+                self.assertIn('SpaceBefore="1.8"', right)
+                self.assertEqual(2, right.count('LeftIndent="3.6"'))
+                self.assertEqual(2, right.count('FirstLineIndent="-3.6"'))
+                self.assertEqual(2, right.count('SpaceAfter="0"'))
+                self.assertNotIn("<Content> </Content>", right)
 
     def test_fcc_localized_lead_frames_follow_reference_geometry(self) -> None:
         import xml.etree.ElementTree as ET
@@ -2890,18 +3170,21 @@ class ExportIdmlTests(unittest.TestCase):
 
         label_cell = story.split('Self="tbl_lcdc0_2"', 1)[1].split("</Cell>", 1)[0]
         self.assertIn('FontStyle="Bold"', label_cell)
-        self.assertIn('PointSize="7" Leading="8.4"', label_cell)
+        self.assertIn('PointSize="7"', label_cell)
+        self.assertIn('<Leading type="unit">8.4</Leading>', label_cell)
         self.assertIn('Hyphenation="false"', label_cell)
         self.assertIn('LeftInset="5.2"', label_cell)
         description_cell = story.split('Self="tbl_lcdc0_3"', 1)[1].split(
             "</Cell>", 1
         )[0]
-        self.assertIn('PointSize="5.5" Leading="5.8"', description_cell)
+        self.assertIn('PointSize="5.5"', description_cell)
+        self.assertIn('<Leading type="unit">5.8</Leading>', description_cell)
         self.assertIn('Hyphenation="false"', description_cell)
         self.assertIn('LeftInset="5.2"', description_cell)
         number_cell = story.split('Self="tbl_lcdc0_0"', 1)[1].split("</Cell>", 1)[0]
-        self.assertIn('PointSize="9" Leading="9.4"', number_cell)
-        self.assertIn('TopInset="1.62" BottomInset="1.62"', number_cell)
+        self.assertIn('PointSize="9"', number_cell)
+        self.assertIn('<Leading type="unit">9.4</Leading>', number_cell)
+        self.assertIn('TopInset="0" BottomInset="0"', number_cell)
         continuation_cell = story.split(
             'Self="tbl_lcd_cont_enc7_0"', 1
         )[1].split("</Cell>", 1)[0]
@@ -2951,10 +3234,11 @@ class ExportIdmlTests(unittest.TestCase):
         description_cell = continuation.split(
             'Self="tbl_lcd_cont_esc7_3"', 1
         )[1].split("</Cell>", 1)[0]
-        self.assertIn('PointSize="5.5" Leading="6"', description_cell)
+        self.assertIn('PointSize="5.5"', description_cell)
+        self.assertIn('<Leading type="unit">6</Leading>', description_cell)
         self.assertNotIn('PointSize="5.8"', description_cell)
 
-    def test_lcd_governed_continuation_rows_emit_fixed_editable_heights(self) -> None:
+    def test_lcd_governed_continuation_rows_use_compact_auto_grow_minimum(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         figure = (
             "tests/fixtures/phase2/_attachments/lcd_icons/"
@@ -2966,9 +3250,9 @@ class ExportIdmlTests(unittest.TestCase):
                 "figure": figure if index == 8 else "",
                 "name": f"Indicator {index}",
                 "desc": f"Description {index}",
-                **({"row_height_pt": "17.25"} if index == 8 else {}),
+                **({"row_height_pt": "17.25"} if index >= 8 else {}),
             }
-            for index in range(1, 9)
+            for index in range(1, 10)
         ]
         w = IdmlWriter(params)
         w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
@@ -2976,10 +3260,110 @@ class ExportIdmlTests(unittest.TestCase):
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
             'SingleRowHeight="17.25" MinimumHeight="17.25" '
-            'AutoGrow="false"',
+            'AutoGrow="true"',
             continuation,
         )
-        self.assertIn('Anchor="0 -9.97"', continuation)
+        self.assertIn('Anchor="0 -9.17"', continuation)
+
+    def test_lcd_governed_height_budget_is_fixed_for_all_us_languages(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        self.assertEqual(("3.8", "pt"), params["idml_lcd_governed_icon_line_reserve"])
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+                **({"row_height_pt": "17.25"} if index >= 8 else {}),
+            }
+            for index in range(1, 27)
+        ]
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                writer = IdmlWriter(params)
+                writer.add_lcd_story(
+                    rows,
+                    FIXTURE_DATA_ROOT,
+                    lang=language,
+                )
+                continuation = dict(writer.stories)[
+                    f"st_anchor_lcd_table_{language}_1"
+                ]
+                self.assertEqual(19, continuation.count('AutoGrow="true"'))
+                self.assertNotIn('AutoGrow="false"', continuation)
+
+    def test_lcd_french_first_page_uses_reference_body_column_width(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [{
+            "no": "1",
+            "figure": "",
+            "name": "Mode Autonome",
+            "desc": "Description",
+            "row_height_pt": "22.96",
+        }]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT, lang="fr")
+
+        table = dict(writer.stories)["st_anchor_lcd_table_fr_0"]
+        self.assertIn('SingleColumnWidth="71"', table)
+        self.assertIn('SingleColumnWidth="187.694"', table)
+        body_cell = table.split('Self="tbl_lcd_frc0_3"', 1)[1].split(
+            "</Cell>", 1
+        )[0]
+        label_cell = table.split('Self="tbl_lcd_frc0_2"', 1)[1].split(
+            "</Cell>", 1
+        )[0]
+        self.assertIn('LeftInset="5.2"', body_cell)
+        self.assertIn('LeftInset="5.2"', label_cell)
+
+    def test_lcd_governed_rows_move_to_next_page_after_compaction(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": (
+                    "A deliberately long translated description that must "
+                    "move later rows to the next page. " * 20
+                    if index == 8 else f"Description {index}"
+                ),
+                **({"row_height_pt": "17.25"} if index >= 8 else {}),
+            }
+            for index in range(1, 27)
+        ]
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        stories = dict(w.stories)
+        self.assertGreater(w.lcd_segment_counts["en"], 2)
+        self.assertIn("st_anchor_lcd_table_en_2", stories)
+        self.assertIn('StartParagraph="NextPage"', stories["st_lcd"])
+        self.assertIn('AutoGrow="true"', stories["st_anchor_lcd_table_en_1"])
+
+    def test_lcd_single_oversized_governed_row_stays_growable(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": (
+                    "A single translated row that is larger than one nominal "
+                    "continuation page. " * 500
+                    if index == 8 else f"Description {index}"
+                ),
+                **({"row_height_pt": "17.25"} if index >= 8 else {}),
+            }
+            for index in range(1, 27)
+        ]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        stories = dict(writer.stories)
+        self.assertGreater(writer.lcd_segment_counts["en"], 2)
+        self.assertIn("st_anchor_lcd_table_en_2", stories)
+        self.assertIn('AutoGrow="true"', stories["st_anchor_lcd_table_en_2"])
 
     def test_lcd_first_shell_matches_approved_reference_table_height(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -2998,6 +3382,90 @@ class ExportIdmlTests(unittest.TestCase):
         story = dict(w.stories)["st_lcd"]
         self.assertIn('Anchor="0 -280.777"', story)
         self.assertNotIn('Anchor="0 -286"', story)
+        first_table = dict(w.stories)["st_anchor_lcd_table_en_0"]
+        self.assertIn(
+            'TopInset="13.322" BottomInset="13.322"',
+            first_table,
+        )
+
+    def test_lcd_governed_first_rows_fill_shell_without_overset_padding(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        heights = [19.95, 21.49, 40.13, 39.65, 45.51, 68.08, 45.63]
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+                "row_height_pt": str(height),
+            }
+            for index, height in enumerate(heights, start=1)
+        ]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        host = dict(writer.stories)["st_lcd"]
+        table = dict(writer.stories)["st_anchor_lcd_table_en_0"]
+        self.assertIn('Anchor="0 -280.777"', host)
+        self.assertEqual(7, table.count('AutoGrow="false"'))
+        self.assertNotIn('AutoGrow="true"', table)
+        self.assertIn(
+            'SingleRowHeight="45.967" MinimumHeight="45.967"',
+            table,
+        )
+        self.assertNotIn('TopInset="14.942"', table)
+
+    def test_lcd_multiline_cell_uses_native_safe_character_leading(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [{
+            "no": "1",
+            "figure": "",
+            "name": "Wi-Fi",
+            "desc": "On: connected.\nBlink: pairing.\nOff: disconnected.",
+            "row_height_pt": "19.95",
+        }]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        table = dict(writer.stories)["st_anchor_lcd_table_en_0"]
+        description = table.split('Self="tbl_lcdc0_3"', 1)[1].split(
+            "</Cell>", 1
+        )[0]
+        character_ranges = description.split("<CharacterStyleRange ")[1:]
+        self.assertEqual(5, len(character_ranges))
+        self.assertEqual(3, description.count('PointSize="5.5"'))
+        self.assertEqual(
+            3,
+            description.count('<Leading type="unit">5.8</Leading>'),
+        )
+        self.assertNotIn('Leading="5.8"', description)
+
+    def test_lcd_governed_french_first_page_keeps_all_seven_measured_rows(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        heights = [22.96, 21.75, 41.01, 42.24, 50.12, 69.79, 50.85]
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicateur {index}",
+                "desc": "Une description traduite volontairement longue. " * 30,
+                "row_height_pt": str(height),
+            }
+            for index, height in enumerate(heights, start=1)
+        ]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT, lang="fr")
+
+        stories = dict(writer.stories)
+        first_table = stories["st_anchor_lcd_table_fr_0"]
+        self.assertEqual(7, first_table.count('AutoGrow="false"'))
+        self.assertNotIn('AutoGrow="true"', first_table)
+        self.assertNotIn("st_anchor_lcd_table_fr_1", stories)
+        self.assertEqual(1, writer.lcd_segment_counts["fr"])
+        self.assertIn(
+            'SingleRowHeight="50.85" MinimumHeight="50.85"',
+            first_table,
+        )
 
     def test_lcd_full_governed_continuation_shell_matches_row_height_sum(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3016,9 +3484,55 @@ class ExportIdmlTests(unittest.TestCase):
 
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
-            'Anchor="0 -327.75"', dict(w.stories)["st_lcd"])
+            'Anchor="0 -467.634"', dict(w.stories)["st_lcd"])
         self.assertNotIn('Anchor="0 -480"', dict(w.stories)["st_lcd"])
-        self.assertIn('SingleRowHeight="17.25"', continuation)
+        self.assertNotIn("idml_lcd_continuation_bottom_gap", params)
+        self.assertIn('SingleRowHeight="157.134"', continuation)
+
+    def test_lcd_first_shell_matches_approved_reference_table_height(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+            }
+            for index in range(1, 8)
+        ]
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        story = dict(w.stories)["st_lcd"]
+        self.assertIn('Anchor="0 -280.777"', story)
+        self.assertNotIn('Anchor="0 -286"', story)
+        first_table = dict(w.stories)["st_anchor_lcd_table_en_0"]
+        self.assertIn(
+            'TopInset="13.322" BottomInset="13.322"',
+            first_table,
+        )
+
+    def test_lcd_full_governed_continuation_shell_matches_row_height_sum(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+                **({"row_height_pt": "17.25"} if index >= 8 else {}),
+            }
+            for index in range(1, 27)
+        ]
+        w = IdmlWriter(params)
+        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
+        self.assertIn(
+            'Anchor="0 -467.634"', dict(w.stories)["st_lcd"])
+        self.assertNotIn('Anchor="0 -480"', dict(w.stories)["st_lcd"])
+        self.assertNotIn("idml_lcd_continuation_bottom_gap", params)
+        self.assertIn('SingleRowHeight="157.134"', continuation)
 
     def test_lcd_governed_segment_rejects_partial_height_profile(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

@@ -158,7 +158,7 @@ def _years_table(
             f"{tid}c{index}", f"{index}:0", content,
             stroke=False, top=0, bottom=0,
             left=0, right=(gap if index < len(items) - 1 else 0),
-            valign="TopAlign",
+            valign="CenterAlign",
         ))
         lines = _wrapped_lines(body, col_w - 2.0, body_size)
         max_height = max(

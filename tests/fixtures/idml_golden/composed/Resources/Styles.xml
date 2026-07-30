@@ -48,7 +48,7 @@
       <Leading type="unit">10.5</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/HB Preface Tag" Name="HB Preface Tag" PointSize="8.668" FillColor="Color/Paper" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/HB Preface Tag" Name="HB Preface Tag" PointSize="8.668" FillColor="Color/Paper" Justification="CenterAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
@@ -223,11 +223,11 @@
       <Leading type="unit">6.15</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/HB Safety Tail Label" Name="HB Safety Tail Label" PointSize="9.85" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/HB Safety Tail Label" Name="HB Safety Tail Label" PointSize="11.2" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
-      <Leading type="unit">10.2</Leading>
+      <Leading type="unit">11.6</Leading>
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/HB Safety Tail Body" Name="HB Safety Tail Body" PointSize="5.6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">

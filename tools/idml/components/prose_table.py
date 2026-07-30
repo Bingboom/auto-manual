@@ -272,7 +272,7 @@ def _troubleshooting_cell_geometry(
     elif column_index == 0 and is_steps:
         top = 12.7 if step_count >= 5 else 7.6
         bottom = 2.95
-        valign = "TopAlign"
+        valign = "CenterAlign"
     else:
         top = (
             max(0.0, steps_pad_tb - 0.30465)
@@ -286,9 +286,7 @@ def _troubleshooting_cell_geometry(
             top = bottom = 1.5
         if row_index == 9:
             top = bottom = 2.35
-        valign = (
-            "TopAlign" if row_index in {6, 9, 10, 11} else "CenterAlign"
-        )
+        valign = "CenterAlign"
     left = (
         2.88 if row_index == 0 and column_index == 0
         else 1.5 if row_index > 0 and column_index == 0
@@ -455,7 +453,7 @@ def _overview_table(raw_rows: list[list], ctx: RenderContext, tid: str) -> str:
             valign = "CenterAlign"
             if first_cell == "Handle":
                 top = 2.68 if ri == 0 else 1.54
-                valign = "TopAlign"
+                valign = "CenterAlign"
             left_inset = 1.44 if first_cell == "Total Output" else 2.4
             cells.append(cell(
                 f"{tid}c{ri}_{ci}", f"{ci}:{ri}",
@@ -662,11 +660,17 @@ def _body_data_table(
                 and not str(raw_rows[ri + 1][0]).strip()
                 else 1
             )
-            fill = (
-                "Color/HB Header K08" if ri == 0
-                else "Color/HB Bg K05" if ci == 0
-                else None
-            )
+            if kind == "auto_resume":
+                # The approved Auto Resume table is shaded by column, not by
+                # row: its complete condition column is K05 (header included)
+                # while the complete "Not Auto Resume" column stays white.
+                fill = "Color/HB Bg K05" if ci == 0 else None
+            else:
+                fill = (
+                    "Color/HB Header K08" if ri == 0
+                    else "Color/HB Bg K05" if ci == 0
+                    else None
+                )
             paragraph = psr(
                 "HB Data Header" if ri == 0 else "HB Data Body",
                 text,

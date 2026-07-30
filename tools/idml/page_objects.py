@@ -481,7 +481,8 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
                                valign: str = "CenterAlign",
                                auto_height: bool = False,
                                bottom_only: bool = False,
-                               anchor_x_offset: float = 0.0) -> str:
+                               anchor_x_offset: float = 0.0,
+                               anchor_y_offset: float = 0.0) -> str:
     """An inline anchored text frame with a rounded filled path.
 
     Paragraph shading and table cells cannot round their corners; every
@@ -521,7 +522,7 @@ def anchored_rounded_frame_xml(sid: str, width: float, height: float, *,
         'HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" '
         'VerticalReferencePoint="LineBaseline" '
         f'AnchorXoffset="{anchor_x_offset:g}" '
-        'AnchorYoffset="0" AnchorSpaceAbove="0"/>\n'
+        f'AnchorYoffset="{anchor_y_offset:g}" AnchorSpaceAbove="0"/>\n'
         '  </TextFrame>'
     )
 

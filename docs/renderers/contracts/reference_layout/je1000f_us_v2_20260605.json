@@ -27,9 +27,9 @@
   "source_identity": {
     "manual_ir_schema_version": "manual-ir/v1",
     "manual_content_sha256": "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
-    "snapshot_sha256": "be9bff032d33ef3963d4949ceba39b4327bc27fbdb38fd3481cb1ffa535448f2",
+    "snapshot_sha256": "e62f4ad60473f82e977faff66878e87374321bb594a6c322df5c47bab0c67c5a",
     "style_contract_sha256": "41c67cdeea2d9ae9fec5a80ee62197d48cc97ba7525dd9a2afbdd606d28daee8",
-    "layout_params_sha256": "e82bdd7b9ba14b192d4d13a2b24ece3934d309ac38f015b5acf363a7b8400f3b"
+    "layout_params_sha256": "810c12153a167169da545ba5f19e03d618618058db6abca06b192353a704e188"
   },
   "approval": {
     "status": "approved",
@@ -115,33 +115,68 @@
         "row_presentation": [
           {
             "source_no": "1",
-            "display_no": "1"
+            "display_no": "1",
+            "row_height_pt_by_language": {
+              "en": 19.95,
+              "fr": 22.96,
+              "es": 22.54
+            }
           },
           {
             "source_no": "2",
-            "display_no": "2"
+            "display_no": "2",
+            "row_height_pt_by_language": {
+              "en": 21.49,
+              "fr": 21.75,
+              "es": 21.75
+            }
           },
           {
             "source_no": "3",
-            "display_no": "3"
+            "display_no": "3",
+            "row_height_pt_by_language": {
+              "en": 40.13,
+              "fr": 41.01,
+              "es": 42.86
+            }
           },
           {
             "source_no": "4",
-            "display_no": "4"
+            "display_no": "4",
+            "row_height_pt_by_language": {
+              "en": 39.65,
+              "fr": 42.24,
+              "es": 41.62
+            }
           },
           {
             "source_no": "5",
-            "display_no": "5"
+            "display_no": "5",
+            "row_height_pt_by_language": {
+              "en": 45.51,
+              "fr": 50.12,
+              "es": 54.95
+            }
           },
           {
             "source_no": "6",
             "display_no": "6",
-            "typography_role": "dense"
+            "typography_role": "dense",
+            "row_height_pt_by_language": {
+              "en": 68.08,
+              "fr": 69.79,
+              "es": 67.25
+            }
           },
           {
             "source_no": "7",
             "display_no": "7",
-            "typography_role": "dense"
+            "typography_role": "dense",
+            "row_height_pt_by_language": {
+              "en": 45.63,
+              "fr": 50.85,
+              "es": 50.95
+            }
           },
           {
             "source_no": "8",

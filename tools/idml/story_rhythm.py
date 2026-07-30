@@ -100,7 +100,12 @@ def operation_story_rhythm_for_next_block(
         )
         attrs = f'SpaceBefore="{before:g}"'
         return attrs, before
-    if title and "operation_guide" in title and kind == "body" and next_block[0] == "h2":
+    if (
+        title
+        and "operation_guide" in title
+        and kind in {"body", "body_operation_inter_section"}
+        and next_block[0] == "h2"
+    ):
         # The approved first operation page deliberately holds the second
         # panel near the foot. Locale-specific copy density changes the gap,
         # but the semantic body-to-heading relationship is shared.
@@ -113,6 +118,17 @@ def operation_story_rhythm_for_next_block(
                 48.2,
             ),
         )
+        if kind == "body_operation_inter_section":
+            before = param_pt(
+                rhythm_params,
+                "idml_operation_inter_section_body_space_before",
+                5.669291,
+            )
+            after = max(0.0, after - before)
+            return (
+                f'SpaceBefore="{before:g}" SpaceAfter="{after:g}"',
+                before + after,
+            )
         return f'SpaceAfter="{after:g}"', after
     return attrs, spacing
 

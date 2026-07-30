@@ -20,6 +20,7 @@ APP_STYLE_TOKENS = (
     "idml_app_control_label_font_size",
     "idml_app_control_label_font_leading",
     "idml_app_control_label_min_height",
+    "idml_app_control_label_leader_gap",
     "idml_app_connect_step_font_size",
     "idml_app_connect_step_font_leading",
     "idml_app_connect_note_font_size",
@@ -211,11 +212,24 @@ class EditableReferenceFigureTests(unittest.TestCase):
             self.assertEqual(5, xml.count('LockPosition="false" PinPosition="false"'))
             self.assertEqual(5, len(stories))
             self.assertIn('Anchor="23.161 -43.718"', xml)
-            self.assertIn('Anchor="75.097 -36.518"', xml)
+            self.assertIn('Anchor="76.705 -36.518"', xml)
             self.assertIn('Anchor="22.681 -26.386"', xml)
-            self.assertIn('Anchor="100.5 -19.186"', xml)
-            self.assertIn('Anchor="248.268 -26.286"', xml)
+            self.assertIn('Anchor="101.3 -19.186"', xml)
+            self.assertIn('Anchor="249.468 -26.286"', xml)
             self.assertIn('Anchor="310 -19.086"', xml)
+            story_map = dict(stories)
+            self.assertIn(
+                'Justification="RightAlign"',
+                story_map["st_anchor_referencefigure_app_label_0_app"],
+            )
+            self.assertIn(
+                'Justification="RightAlign"',
+                story_map["st_anchor_referencefigure_app_label_1_app"],
+            )
+            self.assertIn(
+                'Justification="LeftAlign"',
+                story_map["st_anchor_referencefigure_app_label_2_app"],
+            )
 
     def test_app_control_roles_are_bound_to_visual_slots_not_source_order(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -393,6 +407,7 @@ class EditableReferenceFigureTests(unittest.TestCase):
                 "idml_app_control_label_font_size": ("4.7", "pt"),
                 "idml_app_control_label_font_leading": ("5.6", "pt"),
                 "idml_app_control_label_min_height": ("8.0", "pt"),
+                "idml_app_control_label_leader_gap": ("0.9", "pt"),
                 "idml_app_connect_step_font_size": ("5.1", "pt"),
                 "idml_app_connect_step_font_leading": ("5.9", "pt"),
                 "idml_app_text_frame_safety": ("1.1", "pt"),
@@ -430,6 +445,8 @@ class EditableReferenceFigureTests(unittest.TestCase):
                 story_map["st_anchor_referencefigure_app_step_0_app_tokens"],
             )
             self.assertIn('AutoSizingType="HeightOnly"', xml)
+            self.assertIn('Anchor="77.005', xml)
+            self.assertIn('Anchor="249.168', xml)
             self.assertNotIn('Anchor="23.161 -47.5"', xml)
 
     def test_app_connect_note_uses_shared_width_and_type_tokens(self) -> None:

@@ -150,6 +150,24 @@ class AutoResumeGeometryTests(unittest.TestCase):
                     xml,
                 )
                 self.assertIn(f'SpaceBefore="{space_before:g}"', xml)
+                self.assertNotIn('FillColor="Color/Paper"', story)
+                self.assertNotIn('FillColor="Color/HB Header K08"', story)
+                left_header_start = story.index(
+                    f'<Cell Self="{tid}c0_0" '
+                )
+                left_header_end = story.index("</Cell>", left_header_start)
+                self.assertIn(
+                    'FillColor="Color/HB Bg K05"',
+                    story[left_header_start:left_header_end],
+                )
+                right_header_start = story.index(
+                    f'<Cell Self="{tid}c0_1" '
+                )
+                right_header_end = story.index("</Cell>", right_header_start)
+                self.assertNotIn(
+                    "FillColor=",
+                    story[right_header_start:right_header_end],
+                )
                 for row_height in row_heights:
                     self.assertIn(
                         f'SingleRowHeight="{row_height:g}" '

@@ -11,6 +11,7 @@ from ..primitives import (
     wrap_table_paragraph,
 )
 from ..params import param_pt
+from ..character_metrics import fit_tail_label_xml, with_character_baseline_shift
 from .base import RenderContext, figure_paragraph
 from .warning_lead import rounded_warninglead
 
@@ -43,9 +44,8 @@ def render_safetyinstruction(
     This is deliberately distinct from ``safetywarning``: the approved
     instruction uses a solid dark triangle and heavy display copy, while a
     standard warning uses the outlined symbol plus warning prose typography.
-    Keeping the semantic roles separate mirrors ``HBSafetyInstruction`` in
-    the LaTeX renderer and prevents one component tune from regressing the
-    other.
+    Keeping the roles separate mirrors ``HBSafetyInstruction`` in the LaTeX
+    renderer and prevents one component tune from regressing the other.
     """
     body_w = measure_w or ctx.text_measure
     icon_asset = _safety_instruction_icon_asset(ctx)
@@ -145,17 +145,18 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
     texts = spec.get("texts", [])
     icon = ""
     if warning_icon_asset.exists():
-        iw, ih = ctx.art_frame_size(warning_icon_asset, max_w=22.0)
+        iw = param_pt(ctx.params, "idml_safety_tail_icon_width", 22.0)
+        ih = param_pt(ctx.params, "idml_safety_tail_icon_height", iw * 80.0 / 92.0)
         icon = figure_paragraph(image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih),
                                 tail="<Content></Content>")
     body = " ".join(t.strip() for t in texts if str(t).strip())
     body_style = "HB Safety Tail Body EN" if spec.get("language") == "en" else "HB Safety Tail Body"
-    label_psr = psr("HB Safety Tail Label", label, terminal=True).replace(
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        'BaselineShift="0.68"', 1)
     label_w = 58.0
     icon_w = 32.0
+    label_psr = fit_tail_label_xml(
+        psr("HB Safety Tail Label", label, terminal=True), ctx.params,
+        str(spec.get("language") or "en"), label, label_w - 6.0)
+    label_psr = with_character_baseline_shift(label_psr, shift=0.68)
     cols = [icon_w, label_w, max(80.0, body_w - icon_w - label_w)]
     cells = [
         cell(f"{tid}c0", "0:0", icon,

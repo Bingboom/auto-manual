@@ -7,7 +7,7 @@ from xml.sax.saxutils import escape
 
 from .spec_tables import spec_table_xml
 from .app_text_styles import APP_PROSE_STYLE
-from .inline_text import character_ranges
+from .inline_text import character_ranges, inline_role_range
 from .style_names import paragraph_style_ref
 from .table_borders import component_table_xml
 
@@ -27,6 +27,8 @@ PROSE_STYLE = {
     "sublist": "HB Sublist",
     **APP_PROSE_STYLE,
 }
+_RST_INLINE_ROLE = re.compile(r"\\?\s*:(sub|sup):`([^`]*)`")
+_INLINE_ROLE_TOKEN = re.compile(r"(\ue000\d+\ue001)")
 
 
 def clean_text(text: str) -> str:
@@ -52,6 +54,19 @@ def bold_runs(line: str) -> list[tuple[str, bool]]:
     return runs
 
 
+def _encode_inline_roles(text: str) -> tuple[str, dict[str, tuple[str, str]]]:
+    """Protect RST sub/sup roles while the remaining inline markup is cleaned."""
+    roles: dict[str, tuple[str, str]] = {}
+
+    def replace(match: re.Match[str]) -> str:
+        token = f"\ue000{len(roles)}\ue001"
+        roles[token] = (match.group(1), clean_text(match.group(2)))
+        return token
+
+    encoded = _RST_INLINE_ROLE.sub(replace, text)
+    return clean_text(encoded), roles
+
+
 def psr(style: str, text: str, *, terminal: bool = False,
         span_columns: bool = False,
         superscript_markers: bool = False,
@@ -64,19 +79,31 @@ def psr(style: str, text: str, *, terminal: bool = False,
     ("SPECIFICATIONSGENERAL INFO", designer-reported). Every range
     therefore ends with <Br/> unless it is the story's last one.
     """
-    lines = clean_text(text).split("\n")
+    cleaned_text, inline_roles = _encode_inline_roles(text)
+    lines = cleaned_text.split("\n")
     replacements = inline_replacements or {}
     line_xmls = []
     for line in lines:
         runs = bold_runs(line)
         line_parts: list[str] = []
         for segment, bold in runs:
-            line_parts.extend(character_ranges(
-                segment,
-                bold=bold,
-                superscript_markers=superscript_markers,
-                replacements=replacements,
-            ))
+            for piece in _INLINE_ROLE_TOKEN.split(segment):
+                if not piece:
+                    continue
+                if piece in inline_roles:
+                    role, role_text = inline_roles[piece]
+                    line_parts.append(inline_role_range(
+                        role_text,
+                        role=role,
+                        bold=bold,
+                    ))
+                else:
+                    line_parts.extend(character_ranges(
+                        piece,
+                        bold=bold,
+                        superscript_markers=superscript_markers,
+                        replacements=replacements,
+                    ))
         line_xmls.append("".join(line_parts) or '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
              '<Content></Content></CharacterStyleRange>')
     br = ('<CharacterStyleRange AppliedCharacterStyle='
@@ -182,7 +209,11 @@ def cell(cid: str, name: str, content: str, *, fill: str | None = None,
          left: float = 4, right: float = 4,
          edge_weight: float | None = None,
          edge_color: str | None = None,
-         valign: str | None = None) -> str:
+         # Tables share one default vertical contract.  Individual layouts
+         # may still opt out explicitly (for example a deliberately
+         # top-aligned artwork cell), but ordinary editable table content is
+         # centered without every component having to repeat the attribute.
+         valign: str | None = "CenterAlign") -> str:
     # cell fill is FillColor in IDML; CellFillColor is silently ignored
     # (designer-reported: no gray FCC/notice panels)
     fill_attr = f'FillColor="{fill}" ' if fill else ""
@@ -215,9 +246,11 @@ def cell(cid: str, name: str, content: str, *, fill: str | None = None,
 def component_table(tid: str, cols: list[float], cells: list[str],
                     n_rows: int = 1, role: str | None = None, *,
                     outer_stroke: bool = True,
-                    row_heights: list[float] | None = None) -> str:
+                    row_heights: list[float] | None = None,
+                    auto_grow_rows: bool = False) -> str:
     return component_table_xml(tid, cols, cells, n_rows, role=role,
-                               outer_stroke=outer_stroke, row_heights=row_heights)
+                               outer_stroke=outer_stroke, row_heights=row_heights,
+                               auto_grow_rows=auto_grow_rows)
 
 
 def wrap_table_paragraph(table: str, terminal: bool,

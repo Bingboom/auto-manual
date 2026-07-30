@@ -13,7 +13,7 @@ from xml.sax.saxutils import escape
 
 from .character_metrics import with_character_metrics
 from .page_objects import frame_with_background, heading_bar_opts, heading_text
-from .params import IDPKG
+from .params import IDPKG, param_pt
 
 _ATTR = {'"': "&quot;"}
 Block = tuple[str, object]
@@ -264,11 +264,28 @@ _FRONT_RECTS = (
     (246.0, 259.45, 94.854, 29.0, "RightAlign"),
 )
 
+_FRONT_ROLES = (
+    "power",
+    "lcd",
+    "dc12",
+    "led_button",
+    "usb_c_30",
+    "led",
+    "usb_c_100",
+    "ac_power",
+    "usb_a",
+    "ac_output",
+    "dc_usb",
+    "total",
+)
+
 _RIGHT_RECTS = (
     (34.5, 340.26, _RIGHT_LEFT_LABEL_WIDTH, 14.0, "LeftAlign"),
     (35.17, 369.61, _RIGHT_LEFT_LABEL_WIDTH, 40.0, "LeftAlign"),
     (262.0, 381.70, 78.099, 28.0, "RightAlign"),
 )
+
+_RIGHT_ROLES = ("handle", "dc_input", "ac_input")
 
 
 _LEADER_PATHS = (
@@ -314,21 +331,51 @@ _LEADER_STROKE_WEIGHTS = {
     "total_connector": 0.60,
 }
 
+# These labels sit immediately above their horizontal leader.  Anchor their
+# text to the leader instead of assigning a locale-specific top coordinate:
+# a two-line French label then keeps the same visible gap as a one-line
+# English label, and neither can descend through the rule.
+_LABELS_ABOVE_LEADER = frozenset({
+    "dc_usb",
+    "ac_output",
+    "total",
+    "dc_input",
+    "ac_input",
+})
+_LEADER_Y_BY_ROLE = {
+    role: points[0][1]
+    for role, points in _LEADER_PATHS
+    if role in _LABELS_ABOVE_LEADER
+}
+
 
 def _label_frames(writer, sid: str,
                   cells: list[tuple[str, str]],
-                  rects: tuple[tuple[float, float, float, float, str], ...]) -> list[str]:
+                  rects: tuple[tuple[float, float, float, float, str], ...],
+                  roles: tuple[str, ...],
+                  *,
+                  leader_gap: float) -> list[str]:
     frames: list[str] = []
-    for index, ((label, value), (x, y, width, height, align)) in enumerate(
-        zip(cells, rects, strict=True)
+    for index, ((label, value), (x, y, width, height, align), role) in enumerate(
+        zip(cells, rects, roles, strict=True)
     ):
         if not label:
             continue
+        opts: dict[str, object] = {"inset": (0, 0, 0, 0)}
+        if role in _LABELS_ABOVE_LEADER:
+            # Encode the gap in native frame geometry.  InDesign discards the
+            # compact InsetSpacing attribute on these absolute text frames,
+            # while a frame bottom above the leader survives IDML import.
+            y = _LEADER_Y_BY_ROLE[role] - leader_gap - height
+            opts = {
+                "inset": (0, 0, 0, 0),
+                "valign": "BottomAlign",
+            }
         story_id = _label_story(
             writer, f"{sid}_label_{index + 1}", label, value, align=align)
         frames.append(frame_with_background(
             writer, sid, f"label_{index + 1}", story_id,
-            (x, y, width, height), {"inset": (0, 0, 0, 0)},
+            (x, y, width, height), opts,
         ))
     return frames
 
@@ -408,9 +455,28 @@ def add_product_overview_page(
         )
         for name, points in _LEADER_PATHS
     ]
+    leader_gap = param_pt(
+        writer.params,
+        "idml_overview_label_leader_gap",
+        1.2,
+    )
     label_frames = [
-        *_label_frames(writer, f"{sid}_front", _front_cells(front_blocks), _FRONT_RECTS),
-        *_label_frames(writer, f"{sid}_right", _right_cells(right_blocks), _RIGHT_RECTS),
+        *_label_frames(
+            writer,
+            f"{sid}_front",
+            _front_cells(front_blocks),
+            _FRONT_RECTS,
+            _FRONT_ROLES,
+            leader_gap=leader_gap,
+        ),
+        *_label_frames(
+            writer,
+            f"{sid}_right",
+            _right_cells(right_blocks),
+            _RIGHT_RECTS,
+            _RIGHT_ROLES,
+            leader_gap=leader_gap,
+        ),
     ]
     # All editable copy is emitted last and therefore opens above artwork and
     # both leader strokes in InDesign's stacking order.

@@ -29,6 +29,19 @@ class LcdReferenceProfileTests(unittest.TestCase):
             [72.0, 36.0, 38.0],
             editable["inbox_cards"]["image_width_pt_by_language"]["en"],
         )
+        first_rows = editable["lcd_icon_table"]["row_presentation"][:7]
+        self.assertAlmostEqual(
+            280.44,
+            sum(row["row_height_pt_by_language"]["en"] for row in first_rows),
+        )
+        self.assertAlmostEqual(
+            298.72,
+            sum(row["row_height_pt_by_language"]["fr"] for row in first_rows),
+        )
+        self.assertAlmostEqual(
+            301.92,
+            sum(row["row_height_pt_by_language"]["es"] for row in first_rows),
+        )
 
     def test_validator_accepts_language_governed_icon_size(self) -> None:
         profile = {

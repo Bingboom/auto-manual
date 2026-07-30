@@ -224,6 +224,55 @@ class ProductOverviewPageTests(unittest.TestCase):
             _FRONT_RECTS[-1],
         )
 
+    def test_multilingual_bottom_labels_hug_semantic_leaders(self) -> None:
+        from tools.idml.page_overview import (
+            _FRONT_RECTS,
+            _FRONT_ROLES,
+            _LEADER_Y_BY_ROLE,
+            _RIGHT_RECTS,
+            _RIGHT_ROLES,
+        )
+
+        role_rects = {
+            **dict(zip(_FRONT_ROLES, _FRONT_RECTS, strict=True)),
+            **dict(zip(_RIGHT_ROLES, _RIGHT_RECTS, strict=True)),
+        }
+        for role in ("dc_usb", "ac_output", "total", "dc_input", "ac_input"):
+            with self.subTest(role=role):
+                _x, _legacy_y, _width, height, _align = role_rects[role]
+                self.assertGreater(height, 0)
+                self.assertIn(role, _LEADER_Y_BY_ROLE)
+
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            (bundle / "front.png").write_bytes(b"front-art")
+            (bundle / "right.png").write_bytes(b"right-art")
+            blocks = [
+                ("h1", "APERÇU DU PRODUIT"),
+                ("h2", "VUE AVANT"),
+                ("image", "front.png"),
+                ("table", [
+                    ["**Bouton d'alimentation**", "**LCD**"],
+                    ["**Port 12 V CC**", "**Bouton lumière LED**"],
+                    ["**Bouton d'alimentation CC / USB**", "**Lumière LED**"],
+                    ["**Sortie USB-C 30 W**", "**Bouton Power CA**"],
+                    ["**Sortie USB-C 100 W**"],
+                    ["**Sortie USB-A 18 W**", "**Sortie CA** 120 V~"],
+                ]),
+                ("table", [["**Sortie totale** 1500 W nominal"]]),
+                ("h2", "VUE LATÉRALE DROITE"),
+                ("image", "right.png"),
+                ("table", [
+                    ["**Poignée**"],
+                    ["**Entrée CA** 100-120 V~", "**Entrée CC** PV et voiture"],
+                ]),
+            ]
+            writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+            add_product_overview_page(writer, "st_overview_fr", blocks, bundle, 6)
+            spread = writer.spreads[0][1]
+            self.assertEqual(5, spread.count('VerticalJustification="BottomAlign"'))
+            self.assertNotIn('InsetSpacing="0 0 1.2 0"', spread)
+
 
 if __name__ == "__main__":
     unittest.main()

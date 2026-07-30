@@ -210,6 +210,32 @@ idml_key_function_font_leading,8.5,pt,IDML editable Key-combinations function co
 ,,,------ IDML OPERATION PANEL TYPOGRAPHY AND RHYTHM ------
 idml_operation_row_label_font_size,10.0,pt,IDML editable operation row label base size
 idml_operation_row_label_font_leading,11.0,pt,IDML editable operation row label base leading
+idml_operation_main_power_on_y_offset,7.086614,pt,IDML main-power On row vertical offset measured from operator-adjusted INDD
+idml_operation_main_power_off_y_offset,2.125984,pt,IDML main-power Off row vertical offset measured from operator-adjusted INDD
+idml_operation_ac_output_off_y_offset,-1.417323,pt,IDML AC-output Off row vertical offset measured from operator-adjusted INDD
+idml_operation_dc_usb_x_offset,3.543307,pt,IDML DC-USB On and Off row horizontal offset measured from operator-adjusted INDD
+idml_operation_energy_mode_x_offset,-2.539370,pt,IDML Energy Saving On-Off horizontal offset measured from operator-adjusted INDD
+idml_operation_energy_mode_y_offset,10.629921,pt,IDML Energy Saving On-Off vertical offset measured from operator-adjusted INDD
+idml_operation_energy_duration_x_offset,-9.625984,pt,IDML Energy Saving duration horizontal offset measured from operator-adjusted INDD
+idml_operation_energy_duration_y_offset,4.251969,pt,IDML Energy Saving duration vertical offset measured from operator-adjusted INDD
+idml_operation_energy_clock_x_offset,-8.917323,pt,IDML Energy Saving clock horizontal offset measured from operator-adjusted INDD
+idml_operation_energy_clock_y_offset,7.086615,pt,IDML Energy Saving clock vertical offset measured from operator-adjusted INDD
+idml_operation_energy_guidance_x_offset,-7.5,pt,IDML Energy Saving guidance panel horizontal compensation without expanding the native group bounds
+idml_operation_energy_guidance_y_offset,8.0,pt,IDML Energy Saving guidance panel vertical compensation for native group placement
+idml_operation_energy_guidance_gap,-2.0,pt,IDML Energy Saving optical gap between the two editable guidance paragraphs
+idml_operation_energy_action_x_offset,-10.2,pt,IDML Energy Saving action-copy horizontal compensation for native group placement
+idml_operation_energy_action_y_offset,10.834646,pt,IDML Energy Saving action-copy vertical compensation for native group placement
+idml_operation_energy_panel_y_offset,-5.669291,pt,IDML Energy Saving whole-panel optical raise preserving all internal relative positions
+idml_operation_main_power_clock_size,10.5,pt,Movable main-power clock icon size after masking the baked artwork icon
+idml_operation_main_power_clock_x_offset,0.0,pt,Movable main-power clock horizontal adjustment
+idml_operation_main_power_clock_y_offset,0.0,pt,Movable main-power clock vertical adjustment
+idml_operation_main_power_duration_gap,1.3,pt,Gap between movable main-power clock and editable duration
+idml_operation_main_power_duration_x_offset,0.0,pt,Editable main-power duration horizontal adjustment
+idml_operation_main_power_duration_y_offset,0.0,pt,Editable main-power duration vertical adjustment
+idml_operation_main_power_duration_font_size,7.2,pt,Editable main-power duration font size
+idml_operation_main_power_duration_font_leading,8.0,pt,Editable main-power duration font leading
+idml_operation_row_right_edge_offset,6.5,pt,Operation row text frames extend to the outer panel right edge
+idml_overview_label_leader_gap,1.2,pt,IDML Product Overview visible text gap above its semantic leader line
 lang_en_idml_operation_row_label_font_size,10.0,pt,English operation row label size measured from approved PDF
 lang_en_idml_operation_row_label_font_leading,11.0,pt,English operation row label leading
 lang_fr_idml_operation_row_label_font_size,10.0,pt,French operation row label size measured from approved PDF
@@ -221,6 +247,7 @@ lang_en_idml_operation_first_h2_space_before,7.5,pt,English first operation subs
 lang_fr_idml_operation_first_h2_space_before,9.8,pt,French first operation subsection offset
 lang_es_idml_operation_first_h2_space_before,8.5,pt,Spanish first operation subsection offset
 idml_operation_inter_section_space_after,48.2,pt,Base gap from first operation explanation to second subsection
+idml_operation_inter_section_body_space_before,5.669291,pt,Gap below the main-power panel before its full-width explanation
 comp_operation_page_extra_height,18,pt,Invisible approved operation final-frame depth allowance
 lang_en_idml_operation_inter_section_space_after,48.2,pt,English operation inter-section rhythm
 lang_fr_idml_operation_inter_section_space_after,37.6,pt,French operation inter-section rhythm
@@ -278,6 +305,7 @@ idml_charging_car_panel_height,134.0,pt,Governed car panel height with bottom-al
 idml_app_control_label_font_size,5.0,pt,IDML App control overlay label size shared by all languages
 idml_app_control_label_font_leading,5.8,pt,IDML App control overlay label leading shared by all languages
 idml_app_control_label_min_height,7.2,pt,IDML App control overlay minimum editable frame height
+idml_app_control_label_leader_gap,1.2,pt,IDML App control label-to-leader optical gap shared by both sides and all languages
 idml_app_connect_step_font_size,5.5,pt,IDML App screenshot step-label size
 idml_app_connect_step_font_leading,6.2,pt,IDML App screenshot step-label leading
 idml_app_connect_note_font_size,5.8,pt,IDML App screenshot reference-note size
@@ -304,8 +332,8 @@ idml_app_tail_body_left_indent,14.2,pt,App first-page trailing step left inset
 idml_app_result_body_left_indent,11.2,pt,App second-page connection-step left inset
 idml_app_section_body_left_indent,13.2,pt,App unbind body left inset
 idml_app_notes_left_indent,13.5,pt,App notes heading and body left inset
-idml_app_list_left_indent,19.2,pt,App notes list body inset
-idml_app_list_first_line_indent,-5.7,pt,App notes list bullet hanging indent
+idml_app_list_left_indent,13.5,pt,App list bullet edge aligned with the shared 4.x notes heading edge
+idml_app_list_first_line_indent,-5.7,pt,App notes list hanging offset from aligned bullet to continuation text
 idml_app_add_device_space_before,8.0,pt,App instructions-to-pairing-composite rhythm
 idml_app_add_device_space_after,3.5,pt,App pairing-composite-to-step-2.3 rhythm
 idml_app_connect_result_space_before,12.0,pt,App step-2.5-to-result-composite rhythm
@@ -329,7 +357,7 @@ lang_fr_idml_storage_heading_space_after,3.34,pt,Approved FR storage heading-to-
 lang_es_idml_storage_heading_space_after,3.34,pt,Approved ES storage heading-to-body rhythm
 idml_trouble_heading_space_before,48.70,pt,Default approved storage-to-troubleshooting heading rhythm
 lang_en_idml_trouble_heading_space_before,18.94,pt,Approved EN storage-to-troubleshooting heading rhythm
-lang_fr_idml_trouble_heading_space_before,1.52,pt,Approved FR storage-to-troubleshooting heading rhythm
+lang_fr_idml_trouble_heading_space_before,0.0,pt,Approved FR storage-to-troubleshooting heading rhythm
 lang_es_idml_trouble_heading_space_before,0.58,pt,Approved ES storage-to-troubleshooting heading rhythm
 idml_trouble_table_space_before,8.74,pt,Default approved troubleshooting heading-to-table rhythm
 lang_en_idml_trouble_table_space_before,8.74,pt,Approved EN troubleshooting heading-to-table rhythm
@@ -372,18 +400,20 @@ lang_fr_idml_lcd_first_no_col_width,20.2,pt,French IDML LCD first-segment number
 lang_es_idml_lcd_first_no_col_width,20.2,pt,Spanish IDML LCD first-segment number column width
 idml_lcd_first_icon_col_width,33.6,pt,IDML LCD first-segment icon column width
 idml_lcd_first_label_col_width,82.6,pt,IDML LCD first-segment label column width
+lang_fr_idml_lcd_first_label_col_width,71.0,pt,French reference first-segment label column width; recovered width belongs to body copy
 idml_lcd_continuation_no_col_width,18.6,pt,IDML LCD continuation number column width
 lang_fr_idml_lcd_continuation_no_col_width,19.2,pt,French IDML LCD continuation number column width
 lang_es_idml_lcd_continuation_no_col_width,19.2,pt,Spanish IDML LCD continuation number column width
 idml_lcd_continuation_icon_col_width,38.4,pt,IDML LCD continuation icon column width
 idml_lcd_continuation_label_col_width,73.0,pt,IDML LCD continuation label column width
-idml_lcd_first_vertical_padding,1.62,pt,IDML LCD first-segment cell top and bottom padding
+idml_lcd_first_vertical_padding,0.0,pt,IDML LCD first-segment symmetric inset; fixed rows center content without capacity loss
 idml_lcd_translated_first_vertical_padding,1.4,pt,IDML translated LCD first-segment cell top and bottom padding
-lang_fr_idml_lcd_translated_first_vertical_padding,1.13,pt,French IDML LCD first-segment cell top and bottom padding
-lang_es_idml_lcd_translated_first_vertical_padding,1.33,pt,Spanish IDML LCD first-segment cell top and bottom padding
+lang_fr_idml_lcd_translated_first_vertical_padding,0.0,pt,French IDML LCD first-segment symmetric inset; fixed rows center content without capacity loss
+lang_es_idml_lcd_translated_first_vertical_padding,0.0,pt,Spanish IDML LCD first-segment symmetric inset; fixed rows center content without capacity loss
 idml_lcd_continuation_vertical_padding,2.14,pt,IDML English LCD continuation cell top and bottom padding
 lang_fr_idml_lcd_continuation_vertical_padding,1.4,pt,French IDML LCD continuation cell top and bottom padding
 lang_es_idml_lcd_continuation_vertical_padding,1.45,pt,Spanish IDML LCD continuation cell top and bottom padding
+idml_lcd_governed_icon_line_reserve,3.8,pt,IDML governed LCD row icon line reserve
 idml_lcd_first_left_indent,0.5,pt,IDML LCD first-segment optical left offset
 lang_fr_idml_lcd_first_left_indent,0.5,pt,French IDML LCD first-segment optical left offset
 lang_es_idml_lcd_first_left_indent,0.5,pt,Spanish IDML LCD first-segment optical left offset
@@ -396,10 +426,18 @@ lang_en_idml_lcd_continuation_page_top,28.7,pt,English IDML LCD continuation top
 lang_fr_idml_lcd_continuation_page_top,27.662,pt,French IDML LCD continuation top coordinate
 lang_es_idml_lcd_continuation_page_top,27.9,pt,Spanish IDML LCD continuation top coordinate
 idml_lcd_first_panel_height,280.777,pt,IDML English LCD first-segment shell height aligned to the approved reference table
-lang_fr_idml_lcd_first_panel_height,304,pt,French IDML LCD first-segment import allowance
-lang_es_idml_lcd_first_panel_height,304,pt,Spanish IDML LCD first-segment import allowance
+lang_fr_idml_lcd_first_panel_height,298.72,pt,French LCD first-segment shell height measured from the approved reference page
+lang_es_idml_lcd_first_panel_height,301.92,pt,Spanish LCD first-segment shell height measured from the approved reference page
+idml_lcd_first_terminal_fill,26.644,pt,English LCD first-page last row absorbs the measured remainder to the linked-frame bottom
+lang_fr_idml_lcd_first_terminal_fill,13.661,pt,French first-page last row fills only the approved table shell
+lang_es_idml_lcd_first_terminal_fill,18.461,pt,Spanish first-page last row fills only the approved table shell
 idml_lcd_continuation_panel_height,480,pt,IDML LCD continuation import allowance before native fitting
-idml_lcd_frame_bottom_extra,36,pt,IDML LCD linked-frame import allowance below the body margin
+idml_lcd_inline_anchor_offset,0.375,pt,Native inline-anchor baseline offset removed from LCD full-page height budgets
+idml_lcd_visual_bottom_gap,28.0,pt,LCD continuation table safety clearance above the physical page bottom
+lang_en_idml_lcd_visual_bottom_gap,27.984,pt,English LCD continuation bottom clearance preserving the approved governed row sum
+lang_fr_idml_lcd_visual_bottom_gap,29.024,pt,French LCD continuation bottom clearance preserving the approved governed row sum
+lang_es_idml_lcd_visual_bottom_gap,28.786,pt,Spanish LCD continuation bottom clearance preserving the approved governed row sum
+idml_lcd_frame_bottom_extra,72,pt,IDML LCD linked-frame depth allowance below the page for native inline recomposition
 idml_lcd_hero_max_height,159,pt,IDML English LCD overview art height
 idml_lcd_hero_horizontal_scale,1,ratio,IDML English LCD overview art horizontal scale
 lang_en_idml_lcd_hero_horizontal_offset,-3,pt,English IDML LCD overview art optical offset
@@ -497,6 +535,7 @@ idml_symbols_maintenance_body_gap,0.0,pt,IDML English maintenance body gap befor
 idml_symbols_signal_gap_after,4.1,pt,IDML English gap between signal and icon tables
 idml_symbols_signal_icon_width,7.5,pt,IDML editable signal-badge warning icon width
 idml_symbols_signal_icon_height,7.0,pt,IDML editable signal-badge warning icon height
+idml_symbols_signal_badge_baseline_shift,1.5,pt,IDML inline signal badge optical raise inside each signal row
 idml_symbols_icon_width,26.0,pt,IDML symbol icon frame width
 idml_symbols_icon_height,26.0,pt,IDML symbol icon frame height
 idml_symbols_icon_col_width,39.685,pt,IDML symbol-grid icon column width
@@ -538,6 +577,10 @@ comp_fcc_pad_lr,2.2,mm,FCC panel horizontal padding
 comp_fcc_pad_tb,2.2,mm,FCC panel vertical padding
 type_fcc_font_size,5.6,pt,FCC body font size
 type_fcc_font_leading,6.5,pt,FCC body leading
+idml_fcc_body_space_after,1.0,pt,IDML FCC gap between distinct prose paragraphs
+idml_fcc_list_space_after,0.0,pt,IDML FCC corrective-measure list item gap
+idml_fcc_list_left_indent,3.6,pt,IDML FCC corrective-measure hanging indent
+idml_fcc_modification_space_before,1.8,pt,IDML FCC gap before the modification paragraph
 comp_inbox_card_arc,2.4,mm,Inbox card corner radius
 comp_inbox_card_width,0.316,ratio,Inbox card width ratio
 comp_inbox_card_height,60.6,mm,Inbox card height
@@ -617,6 +660,10 @@ idml_sublist_first_line_indent,-6.04,pt,InDesign nested list hanging indent
 idml_sublist_first_space_before,0.45,pt,InDesign space before the first nested item
 idml_safety_lead_space_after,4.2,pt,InDesign space after safety lead paragraph
 idml_safety_tail_body_font_style,Bold,none,InDesign safety-tail body weight
+idml_safety_tail_label_font_size,11.2,pt,InDesign safety-tail WARNING and DANGER label font size
+idml_safety_tail_label_font_leading,11.6,pt,InDesign safety-tail WARNING and DANGER label leading
+idml_safety_tail_icon_width,25.0,pt,InDesign safety-tail warning icon width
+idml_safety_tail_icon_height,21.739,pt,InDesign safety-tail warning icon height preserving the source SVG ratio
 comp_caution_label_width,18.5,mm,Caution strip label panel width
 comp_caution_pad_lr,2.2,mm,Caution strip horizontal padding
 comp_caution_pad_tb,1.2,mm,Caution strip vertical padding
@@ -645,7 +692,8 @@ idml_preface_body_font_leading,10.003,pt,IDML preface body leading
 idml_preface_tag_vertical_inset,0.966,pt,IDML preface tag cell top and bottom inset
 idml_preface_tag_left_inset,1.795,pt,IDML preface tag optical left inset
 idml_preface_title_left_inset,6.828,pt,IDML preface title optical left inset
-idml_preface_tag_baseline_shift,-0.227,pt,IDML preface tag optical baseline shift
+idml_preface_tag_baseline_shift,0.7,pt,IDML preface tag optical baseline shift for equal visual top and bottom padding
+idml_preface_tag_corner_radius,1.25,pt,IDML preface language tag corner radius
 idml_preface_title_baseline_shift,-0.839,pt,IDML preface title optical baseline shift
 idml_preface_header_space_before,0.0,pt,IDML default gap before language badge
 idml_preface_header_space_after,5.56,pt,IDML preface header to body gap

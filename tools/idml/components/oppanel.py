@@ -7,6 +7,7 @@ operator can select, move, and edit it during final-mile layout work.
 """
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from ..character_metrics import with_character_metrics
@@ -156,17 +157,17 @@ def _row_layout(ref: str, image_w: float, image_h: float) -> tuple[float, ...]:
     scale = image_w / 294.9
     if "main_power" in stem:
         return (
-            image_w * 0.775,
-            -image_h + image_h * 0.02,
-            image_w * 0.225,
+            image_w * 0.765,
+            -image_h + image_h * 0.035,
+            image_w * 0.235,
             26.1 * scale,
             22.0 * scale,
         )
     if "dc_usb" in stem or "dc-usb" in stem:
         return (
-            image_w * 0.815,
+            image_w * 0.845,
             -image_h + image_h * 0.165,
-            image_w * 0.185,
+            image_w * 0.155,
             20.6 * scale,
             19.5 * scale,
         )
@@ -189,11 +190,20 @@ def _row_text_layers(
     rows: list[tuple[str, str]],
     image_w: float,
     image_h: float,
+    panel_w: float | None = None,
 ) -> str:
     """Create one independently movable top-layer frame per operation row."""
     if not rows or ctx.add_story is None:
         return ""
     left, first_top, width, gap, frame_h = _row_layout(ref, image_w, image_h)
+    panel_right = panel_w if panel_w is not None else image_w / 0.945
+    right_edge_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_row_right_edge_offset",
+        6.5,
+        strict=ctx.strict_component_assets,
+        owner="operation-row right edge",
+    )
     if max(len(label) for label, _instruction in rows) >= 8:
         width = max(width, image_w * 0.16)
         left = image_w - width
@@ -227,8 +237,44 @@ def _row_text_layers(
         strict=ctx.strict_component_assets and language in {"en", "fr", "es"},
         owner="localized operation row label",
     )
+    stem = Path(ref).stem.lower()
+    row_x_offset = 0.0
+    row_y_offsets = [0.0, 0.0]
+    if "main_power" in stem:
+        row_y_offsets = [
+            component_param_pt(
+                ctx.params,
+                "idml_operation_main_power_on_y_offset",
+                0.0,
+                strict=ctx.strict_component_assets,
+                owner="main-power On row position",
+            ),
+            component_param_pt(
+                ctx.params,
+                "idml_operation_main_power_off_y_offset",
+                0.0,
+                strict=ctx.strict_component_assets,
+                owner="main-power Off row position",
+            ),
+        ]
+    elif "dc_usb" in stem or "dc-usb" in stem:
+        row_x_offset = component_param_pt(
+            ctx.params,
+            "idml_operation_dc_usb_x_offset",
+            0.0,
+            strict=ctx.strict_component_assets,
+            owner="DC/USB operation-row position",
+        )
+    else:
+        row_y_offsets[1] = component_param_pt(
+            ctx.params,
+            "idml_operation_ac_output_off_y_offset",
+            0.0,
+            strict=ctx.strict_component_assets,
+            owner="AC-output Off row position",
+        )
     for index, (label, instruction) in enumerate(rows):
-        top = first_top + index * gap
+        top = first_top + index * gap + row_y_offsets[min(index, 1)]
         frames.append(_editable_text_frame(
             ctx,
             story_id=f"st_anchor_oppanel_row_{index}_{tid}",
@@ -244,9 +290,12 @@ def _row_text_layers(
                 ),
                 psr("HB Body", instruction, terminal=True),
             ],
-            left=left,
+            left=left + row_x_offset,
             top=top,
-            right=left + width,
+            right=max(
+                left + row_x_offset + width,
+                panel_right + right_edge_offset,
+            ),
             bottom=top + frame_h,
             auto_height=True,
         ))
@@ -335,14 +384,148 @@ def _positioned_image(
     *,
     left: float,
     bottom: float,
+    pin: bool = True,
 ) -> str:
     """Place one linked image inside a composed operation-panel group."""
     xml = image_cell_content(rect_id, asset, width, height)
-    return xml.replace(
+    xml = xml.replace(
         'ItemTransform="1 0 0 1 0 0"',
         f'ItemTransform="1 0 0 1 {left:g} {bottom:g}"',
         1,
     )
+    if not pin:
+        xml = xml.replace('PinPosition="true"', 'PinPosition="false"', 1)
+    return xml
+
+
+def _operation_duration(rows: list[tuple[str, str]]) -> str:
+    """Return the compact duration token embedded in localized row copy."""
+    for _label, instruction in rows:
+        match = re.search(
+            r"\b(\d+)\s*(?:seconds?|secondes?|segundos?|s)\b",
+            instruction,
+            re.I,
+        )
+        if match is not None:
+            return f"{match.group(1)}s"
+    return ""
+
+
+def _main_power_clock_overlay(
+    ctx: RenderContext,
+    *,
+    tid: str,
+    ref: str,
+    rows: list[tuple[str, str]],
+    image_w: float,
+    image_h: float,
+) -> str:
+    """Replace the baked POWER clock and restore its editable duration."""
+    if "main_power" not in Path(ref).stem.lower():
+        return ""
+    clock = ctx.resolve_bundle_image("icon_clock_3s.png")
+    if clock is None or not clock.exists():
+        return ""
+
+    size = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_clock_size",
+        10.5,
+        strict=ctx.strict_component_assets,
+        owner="main-power movable clock",
+    )
+    x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_clock_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="main-power movable clock",
+    )
+    y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_clock_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="main-power movable clock",
+    )
+    duration = _operation_duration(rows)
+    duration_gap = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_duration_gap",
+        1.3,
+        strict=ctx.strict_component_assets,
+        owner="main-power editable duration",
+    )
+    duration_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_duration_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="main-power editable duration",
+    )
+    duration_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_duration_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="main-power editable duration",
+    )
+    duration_size = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_duration_font_size",
+        7.2,
+        strict=ctx.strict_component_assets,
+        owner="main-power editable duration",
+    )
+    duration_leading = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_duration_font_leading",
+        8.0,
+        strict=ctx.strict_component_assets,
+        owner="main-power editable duration",
+    )
+    clock_left = image_w * 0.714 + x_offset
+    clock_bottom = -image_h * 0.46 + y_offset
+    mask = _shape(
+        shape_id=f"oppanel_main_power_clock_mask_{tid}",
+        left=image_w * 0.762,
+        top=-image_h * 0.58,
+        right=image_w * 0.810,
+        bottom=-image_h * 0.45,
+        fill="Color/Paper",
+    )
+    clock_xml = _positioned_image(
+        f"oppanel_main_power_clock_{tid}",
+        clock,
+        size,
+        size,
+        left=clock_left,
+        bottom=clock_bottom,
+        pin=False,
+    )
+    if not duration:
+        return mask + clock_xml
+    duration_left = clock_left + size + duration_gap + duration_x_offset
+    duration_top = clock_bottom - size + duration_y_offset
+    duration_xml = _editable_text_frame(
+        ctx,
+        story_id=f"st_anchor_oppanel_main_power_duration_{tid}",
+        frame_id=f"tf_oppanel_main_power_duration_{tid}",
+        title=f"{tid} main-power duration",
+        parts=[_sized_psr(
+            "HB Body",
+            duration,
+            size=duration_size,
+            leading=duration_leading,
+            terminal=True,
+        )],
+        left=duration_left,
+        top=duration_top,
+        right=duration_left + max(13.0, duration_size * 2.2),
+        bottom=clock_bottom + duration_y_offset,
+        valign="CenterAlign",
+    )
+    return mask + clock_xml + duration_xml
 
 
 def _shape(
@@ -464,6 +647,7 @@ def _special_panel_paragraph(
     terminal: bool,
     space_after: float = 0.0,
     anchor_x_offset: float = 0.0,
+    anchor_y_offset: float = 0.0,
 ) -> tuple[str, float]:
     """Wrap a measured editable group in the operation-panel outline."""
     from .. import page_objects as _po
@@ -495,6 +679,7 @@ def _special_panel_paragraph(
         valign="TopAlign",
         auto_height=False,
         anchor_x_offset=anchor_x_offset,
+        anchor_y_offset=anchor_y_offset,
     )
     if space_after:
         xml = xml.replace(
@@ -521,6 +706,84 @@ def _render_energy_saving_panel(
     mode_label = str(spec.get("mode_label") or "On/Off").strip()
     duration = str(spec.get("duration") or "3s").strip()
 
+    mode_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_mode_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving On/Off position",
+    )
+    mode_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_mode_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving On/Off position",
+    )
+    duration_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_duration_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving duration position",
+    )
+    duration_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_duration_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving duration position",
+    )
+    clock_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_clock_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving clock position",
+    )
+    clock_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_clock_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving clock position",
+    )
+    guidance_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_guidance_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving guidance-panel position",
+    )
+    guidance_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_guidance_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving guidance-panel position",
+    )
+    action_x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_action_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving action-copy position",
+    )
+    action_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_action_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving action-copy position",
+    )
+    panel_y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_panel_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving whole-panel position",
+    )
+
     action_width = (width - 10.0) - width * 0.682
     action_leading = 6.0
     action_lines = _estimated_lines(action, action_width, size=6.0)
@@ -532,16 +795,29 @@ def _render_energy_saving_panel(
     # inside the card.  Shift On/Off by the same delta so it remains above the
     # action when French wraps to three lines.
     action_delta = action_height - 14.0 + 2.0
+    mode_vertical_shift = 3.0
 
     copy_width = width - 28.0
     leading = 7.5
+    guidance_gap = component_param_pt(
+        ctx.params,
+        "idml_operation_energy_guidance_gap",
+        -2.0,
+        strict=ctx.strict_component_assets,
+        owner="Energy Saving guidance paragraph rhythm",
+    )
     guidance_heights = [
         _estimated_lines(text, copy_width) * leading + 0.8
         for text in guidance[:2]
     ]
     while len(guidance_heights) < 2:
         guidance_heights.append(leading + 0.8)
-    grey_height = max(49.0, 9.0 + sum(guidance_heights))
+    visible_guidance_count = min(2, len(guidance))
+    grey_height = max(
+        49.0,
+        9.0 + sum(guidance_heights[:visible_guidance_count])
+        + guidance_gap * max(0, visible_guidance_count - 1),
+    )
     height = max(width * 0.545, grey_height + 110.0)
     grey_top = -height + 8.0
     grey_bottom = grey_top + grey_height
@@ -559,10 +835,10 @@ def _render_energy_saving_panel(
         ))
     shapes.append(_shape(
         shape_id=f"oppanel_energy_guidance_bg_{tid}",
-        left=7.5,
-        top=grey_top,
-        right=width - 7.5,
-        bottom=grey_bottom,
+        left=7.5 + guidance_x_offset,
+        top=grey_top + guidance_y_offset,
+        right=width - 7.5 + guidance_x_offset,
+        bottom=grey_bottom + guidance_y_offset,
         radius=7.0,
         fill="Color/HB Bg K05",
     ))
@@ -571,12 +847,12 @@ def _render_energy_saving_panel(
     if clock is not None and clock.exists():
         shapes.append(_positioned_image(
             f"oppanel_energy_clock_{tid}", clock, 10.5, 10.5,
-            left=width * 0.601,
-            bottom=-12.0,
+            left=width * 0.601 + clock_x_offset,
+            bottom=-12.0 + clock_y_offset,
         ))
 
     text_layers: list[str] = []
-    text_top = grey_top + 4.8
+    text_top = grey_top + 4.8 + guidance_y_offset
     for index, text in enumerate(guidance[:2]):
         frame_height = guidance_heights[index]
         text_layers.append(_editable_text_frame(
@@ -587,13 +863,15 @@ def _render_energy_saving_panel(
             parts=[_sized_psr(
                 "HB Body", text, size=6.2, leading=leading, terminal=True,
             )],
-            left=14.0,
+            left=14.0 + guidance_x_offset,
             top=text_top,
-            right=width - 14.0,
+            right=width - 14.0 + guidance_x_offset,
             bottom=text_top + frame_height,
             auto_height=True,
         ))
         text_top += frame_height
+        if index + 1 < min(2, len(guidance)):
+            text_top += guidance_gap
 
     text_layers.extend([
         _editable_text_frame(
@@ -605,10 +883,10 @@ def _render_energy_saving_panel(
                 "HB Title L2", mode_label, size=10.2, leading=11.2,
                 terminal=True,
             )],
-            left=width * 0.68,
-            top=-29.5 - action_delta,
-            right=width * 0.86,
-            bottom=-16.0 - action_delta,
+            left=width * 0.68 + mode_x_offset,
+            top=-29.5 - action_delta + mode_vertical_shift + mode_y_offset,
+            right=width * 0.86 + mode_x_offset,
+            bottom=-16.0 - action_delta + mode_vertical_shift + mode_y_offset,
             auto_height=True,
         ),
         _editable_text_frame(
@@ -619,10 +897,10 @@ def _render_energy_saving_panel(
             parts=[_sized_psr(
                 "HB Body", duration, size=7.2, leading=8.0, terminal=True,
             )],
-            left=width * 0.642,
-            top=-21.5,
-            right=width * 0.69,
-            bottom=-9.0,
+            left=width * 0.642 + duration_x_offset,
+            top=-21.5 + duration_y_offset,
+            right=width * 0.69 + duration_x_offset,
+            bottom=-9.0 + duration_y_offset,
             valign="CenterAlign",
         ),
         _editable_text_frame(
@@ -634,10 +912,10 @@ def _render_energy_saving_panel(
                 "HB Body", action, size=6.0, leading=action_leading,
                 terminal=True,
             )],
-            left=width * 0.682,
-            top=-6.0 - action_height,
-            right=width - 10.0,
-            bottom=-6.0,
+            left=width * 0.682 + action_x_offset,
+            top=-6.0 - action_height + action_y_offset,
+            right=width - 10.0 + action_x_offset,
+            bottom=-6.0 + action_y_offset,
         ),
     ])
     return _special_panel_paragraph(
@@ -649,6 +927,7 @@ def _render_energy_saving_panel(
         height=height,
         terminal=terminal,
         space_after=2.0,
+        anchor_y_offset=panel_y_offset,
     )
 
 
@@ -839,10 +1118,17 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         tail_underlay, tail_text = _tail_overlay_parts(
             ctx, tid=tid, text=tail, image_w=iw, image_h=ih,
         )
-        row_text = _row_text_layers(
+        main_power_clock = _main_power_clock_overlay(
             ctx, tid=tid, ref=ref, rows=rows, image_w=iw, image_h=ih,
         )
-        overlay = prereq_underlay + tail_underlay + prereq_text + tail_text + row_text
+        row_text = _row_text_layers(
+            ctx, tid=tid, ref=ref, rows=rows, image_w=iw, image_h=ih,
+            panel_w=body_w,
+        )
+        overlay = (
+            prereq_underlay + tail_underlay + main_power_clock
+            + prereq_text + tail_text + row_text
+        )
         fallback = psr("HB Body", f"**{prereq}**") if prereq and not overlay else ""
         image_xml = image_cell_content(f"{tid}img", asset, iw, ih)
         if overlay:

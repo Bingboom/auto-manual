@@ -125,7 +125,7 @@ class IdmlWriter:
               fill: str | None = None, stroke: bool = True,
               top: float = 3, bottom: float = 3,
               left: float = 4, right: float = 4,
-              valign: str | None = None) -> str:
+              valign: str | None = "CenterAlign") -> str:
         return _prim.cell(cid, name, content, fill=fill, stroke=stroke,
                           top=top, bottom=bottom, left=left, right=right,
                           valign=valign)
@@ -274,8 +274,8 @@ class IdmlWriter:
         )
 
     def _symbol_signal_bar(self, tid: str, label: str,
-                           bundle_root: Path) -> str:
-        return _pages._symbol_signal_bar(self, tid, label, bundle_root)
+                           bundle_root: Path, lang: str = "en") -> str:
+        return _pages._symbol_signal_bar(self, tid, label, bundle_root, lang)
 
     def _symbols_signal_table(self, tid: str,
                               signals: list[tuple[str, str]], width: float,
@@ -301,6 +301,7 @@ class IdmlWriter:
         include_header: bool = True,
         row_heights: list[float] | None = None,
         icon_col_width: float | None = None,
+        fit_body_to_row: bool = False,
     ) -> str:
         return _pages._symbols_icon_table(
             self,
@@ -311,6 +312,7 @@ class IdmlWriter:
             include_header=include_header,
             row_heights=row_heights,
             icon_col_width=icon_col_width,
+            fit_body_to_row=fit_body_to_row,
         )
 
     def _table_story(self, sid: str, title: str, table: str) -> str:
