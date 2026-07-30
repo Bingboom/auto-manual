@@ -1,6 +1,6 @@
 ---
 name: lark-tm-translation-preprocess
-description: Preprocess Feishu/Lark DOCX or Wiki manual links with live Translation_Memory sentence pairs, configurable source and target languages, parameter-fuzzy matching, yellow-highlighted replacements, and upload back beside the source file. Use when a Feishu natural-language/OpenClaw request asks to "预处理", "翻译预处理", "用记忆库处理", "基于源语言结合语料库", "上传到原路径/同路径", or to turn a Lark/Feishu document link into a target-language TM-preprocessed DOCX for language pairs such as en→ko, en→fr, en→es, fr→en, etc.
+description: Preprocess Feishu/Lark DOCX or Wiki manual links with live Translation_Memory sentence pairs, configurable source and target languages, parameter-fuzzy matching, dual-color highlighted replacements (yellow=exact, green=parameter-fuzzy), and upload back beside the source file. Use when a Feishu natural-language/OpenClaw request asks to "预处理", "翻译预处理", "用记忆库处理", "基于源语言结合语料库", "上传到原路径/同路径", or to turn a Lark/Feishu document link into a target-language TM-preprocessed DOCX for language pairs such as en→ko, en→fr, en→es, fr→en, etc.
 ---
 
 # Lark TM Translation Preprocess
@@ -11,12 +11,39 @@ Use this skill for the repeatable Feishu/OpenClaw workflow:
 2. Download or export the source as `.docx`.
 3. Read live `Translation_Memory` sentence pairs.
 4. Replace only source text that has a safe exact, parameter-only, or high-confidence fuzzy match in the requested target language.
-5. Highlight every replacement with yellow by default.
+5. Highlight every replacement — **dual-color contract by default**: yellow =
+   exact TM hit, green = parameter/fuzzy hit (see Highlight colors).
 6. **Re-open the packed DOCX and verify the translation actually landed** (open-state gate — see Verification).
 7. Upload to the same Wiki parent path as the source — only when verification passed.
-8. Return the uploaded document link.
+8. Return the uploaded document link **plus the unmatched high-frequency list** (the corpus-backfill loop's input — see The backfill → re-run loop).
 
 This is a translation preprocessing pass, not a full free-translation pass. Unmatched source text stays unchanged unless the user explicitly asks for a human/LLM completion step after preprocessing.
+
+## Highlight colors (the operator's standing contract)
+
+- **Yellow = exact TM hit; green = parameter-fuzzy hit** (「带参数的地方 采用
+  模糊翻译 高亮绿色」, 2026-07-16). Pass `--fuzzy-highlight-color green` on
+  operator jobs unless told otherwise; without the flag everything stays the
+  single `--highlight-color` (old behavior). Split-mode paragraphs containing
+  any non-exact unit take the fuzzy color — a mixed paragraph deserves the
+  second-look color.
+- Each report change records its `highlight_fill`, so a recolor/audit pass
+  (`docx-highlight-changes`) can target match types after the fact.
+
+## The backfill → re-run loop (确认→入库→重跑)
+
+Preprocessing is one turn of a loop the operator drives:
+
+1. After a run, report the **unmatched high-frequency terms/sentences** (from
+   `report_json`'s unreplaced text) — that list is what the operator triages
+   for corpus backfill.
+2. Sentence-pair backfill itself is `bilingual-tm-maintenance` (the
+   「参考译→确认→入库」 short-instruction contract lives there).
+3. After a batch of ingests, proactively offer 「重跑」: re-run THIS skill on
+   the same document with the same parameters (「用回填后的语料重跑 1000 Plus
+   那份韩语翻译」, 2026-07-16) — freshly ingested pairs become yellow exact
+   hits on the re-run. Keep the previous run's URL/params at hand so 「重跑」
+   needs zero re-specification.
 
 > **Never hand-edit the `.docx` zip.** Always run the script below. It rebuilds the archive
 > cleanly (every part written exactly once, so a duplicate `word/document.xml` cannot
@@ -60,6 +87,7 @@ python3 .agents/skills/lark-tm-translation-preprocess/scripts/preprocess_lark_do
   --url "<Feishu or Lark URL>" \
   --source-lang en \
   --target-lang ko \
+  --fuzzy-highlight-color green \
   --collapse-leading-multilingual-notice \
   --json
 ```

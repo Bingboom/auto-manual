@@ -34,6 +34,29 @@ For the target language, also locate:
 
 Use exact field IDs from `+table-get` in write payloads.
 
+## The sentence-loop contract (参考译 → 确认 → 入库)
+
+The operator's highest-frequency interactive mode (15+ rounds in one sitting,
+2026-07-17). Fixed semantics:
+
+- **Input** = an English sentence plus, usually, a reference target sentence
+  (「参考这个韩语」, often from a sibling model's corpus). The translation
+  INHERITS the reference's style and every established 口径 (AC1/2,
+  전원 버튼, …) — it is corpus-consistent adaptation, not free translation.
+- **Echo before write**: present the final en/target pair; the operator's
+  bare 「入库」 / 「确认…入库」 (possibly with a last-second tweak baked in:
+  「去掉「사용 중인」，入库」) = execute the write NOW — pair + maintenance
+  log + read-back, no re-confirmation round-trip.
+- **Batch fills ride along**: when told, also fill the sibling row whose
+  target cell is empty for the same English (「顺带把它对应的 EN 行一起填上」).
+- **口径 decisions are durable**: a 「统一用 X」 in the loop applies to every
+  subsequent sentence in the batch and is worth flagging for terminology
+  registration — never silently revert to another variant mid-batch.
+- **Close the loop**: after a batch of ingests, proactively remind that the
+  pending pre-translation can be re-run (「用回填后的语料重跑…」) — the
+  re-run turns these pairs into yellow exact hits (see
+  `lark-tm-translation-preprocess`).
+
 ## Maintenance Workflow
 
 1. Parse the bilingual material into explicit source-target pairs.
