@@ -28,6 +28,11 @@ if ($pythonCommand.Count -gt 1) {
 }
 
 $baseBranch = if ($env:AUTO_MANUAL_BASE_BRANCH) { $env:AUTO_MANUAL_BASE_BRANCH } else { "main" }
+$derivedSurfaceArgs = @(
+    (Join-Path $repoRoot "scripts\derived_surface_push_check.py"),
+    "--repo-root", $repoRoot,
+    "--base-branch", $baseBranch
+)
 $guardArgs = @(
     (Join-Path $repoRoot "scripts\git_branch_guard.py"),
     "pre-push",
@@ -38,6 +43,8 @@ $guardArgs = @(
 
 Push-Location $repoRoot
 try {
+    # Advisory (non-blocking): derived-surface warning; reads pre-push stdin.
+    & $pythonBinary @pythonPrefix @derivedSurfaceArgs
     & $pythonBinary @pythonPrefix @guardArgs
     exit $LASTEXITCODE
 }
