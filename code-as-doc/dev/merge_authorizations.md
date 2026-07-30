@@ -48,7 +48,8 @@ partially green, never re-run checks blindly to "wash" a real failure.
 | --- | --- | --- | --- | --- |
 | MA-001 | 闭环报告工程 ①–⑦ 的 PR（2026-07-02 当日各线） | 「授予你全绿就合入PR的权利 直到闭环报告工程①–⑦完成为止」2026-07-02 | 工程①–⑦完成（当日达成） | 已失效 |
 | MA-002 | IDML 参考版式对齐（parity）线：`fix/idml-*`、`feat/idml-*` 分支，及提交题头 `fix(idml)`/`feat(idml)` 的对齐类 PR | 「授权你绿了自合」2026-07-10；2026-07-30 操作者确认仍生效 | 操作者撤销 | 生效 |
-| MA-003 | PR #738、#739、#740、#741、#742、#743（2026-07 月度回顾 P0 批次 + 本协议 PR） | 「全绿即合的授权给你 六个PR都合了」2026-07-30 | 六个 PR 全部合入即失效 | 生效 |
+| MA-003 | PR #738、#739、#740、#741、#742、#743（2026-07 月度回顾 P0 批次 + 本协议 PR） | 「全绿即合的授权给你 六个PR都合了」2026-07-30 | 六个 PR 全部合入即失效 | 已失效（2026-07-30 六 PR 全部合入） |
+| MA-004 | PR #744、#745、#746、#747（2026-07 回顾 P1 第一波，含本登记行所在的 #744） | 「合入吧」2026-07-30（指 P1 第一波四个全绿 PR） | 四个 PR 全部合入即失效 | 生效 |
 
-Note: MA-003 supersedes the earlier per-PR-review decision for #738–#742 —
+Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.
