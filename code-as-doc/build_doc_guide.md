@@ -540,6 +540,7 @@ Config note:
 
 - omit `--config` when `--region` is `US`, `JP`, or `CN` and you want the shared family default config
 - keep `--config configs/config.us-en.yaml` when you want the packaged workspace to open on the explicit US English single-language target by default
+- the Vercel review-preview fallback scans the registered `configs/config*.yaml` files for those family defaults and uses the first registered target only when neither environment variables nor a review-tree target is available
 
 Default packaged output:
 

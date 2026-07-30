@@ -844,6 +844,7 @@ PR preview note:
 
 - when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, GitHub review-preview switches the default landing target to `configs/config.zh.yaml` for `JE-2000E / CN` automatically, but the packaged workspace still includes every existing review model
 - when `--region` is `US`, `JP`, or `CN`, `python tools/process_docs/build_review_preview.py` can omit `--config` and fall back to the shared family default; keep `--config configs/config.us-en.yaml` when you want the packaged workspace to open on the explicit US English single-language target by default
+- the Vercel review-preview fallback derives those family configs and its first fallback target by scanning `configs/config*.yaml`; it is used only when `PREVIEW_MODEL` / `PREVIEW_REGION` and the review tree do not provide a target
 
 `publish` behavior:
 
