@@ -1,0 +1,4 @@
+interface:
+  display_name: "Asset Textless Extraction"
+  short_description: "Extract 无字化 illustration assets from a master: operator decision tree, scratchpad tuning, 12x verification, PIL confirmation, three-place hash sync"
+  default_prompt: "Use $asset-textless-extraction to make this illustration language-neutral: pick the transform operator from the drawing's structure, tune in a scratchpad, verify at 12x zoom, send the operator a PIL before/after pair, then close with the hash three-place sync and registry enrollment."
