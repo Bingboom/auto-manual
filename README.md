@@ -44,6 +44,11 @@ python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --reg
 python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
 python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
 
+# Run the same check gate for every config*.yaml target using the committed
+# deterministic fixture snapshot. Targets without a fixture document_key are
+# reported as explicit SKIP and protected by the tracked skip ratchet.
+python tools/ci_check_targets.py --data-root tests/fixtures/phase2
+
 # Check the asset control plane and resolve an approved import.
 python build.py asset-check --json
 python build.py asset-check --asset-key operation/ac_output --asset-format png --json
