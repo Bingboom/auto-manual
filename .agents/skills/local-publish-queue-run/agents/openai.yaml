@@ -1,0 +1,4 @@
+interface:
+  display_name: "Local Publish Queue Run"
+  short_description: "Run the Feishu build-queue publish locally as the CI bot: env assembly, queue-row ops, CI-identical invocation, three-part verification, handoff delivery"
+  default_prompt: "Use $local-publish-queue-run to run or repair a publish locally: assemble the bot env, align the local git plane, operate the queue row (Git_ref / re-trigger), run the CI-identical process-build-queue command, verify artifacts + wiki upload + row write-back, and package the handoff."
