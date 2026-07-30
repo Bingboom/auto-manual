@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
+from tools import lang_registry
 from tools.data_snapshot import LOCALIZED_COPY_FILE, STRUCTURED_DATA_DEFAULT_DIR, SYMBOLS_BLOCKS_FILE
 from tools.localized_copy import LocalizedCopyResolver
 from tools.utils.path_utils import repo_root
@@ -15,7 +16,11 @@ from tools.utils.spec_master import canonicalize_model_token
 from tools.utils.variable_resolver import parse_model_tokens
 
 _DEFAULT_LANG = "en"
-_SUPPORTED_LANGS = {"en", "zh", "ja", "jp", "fr", "es", "pt-br", "pt_br", "br", "de", "it", "uk", "ukr", "ko"}
+_SUPPORTED_LANGS = {
+    alias.casefold()
+    for spec in lang_registry.LANGUAGE_REGISTRY
+    for alias in spec.aliases
+}
 _SIGNAL_WORD_KEYS = {"warning", "danger", "caution", "note", "tips"}
 _SIGNAL_WORD_ALIASES = {"tip": "tips", "safety_warning": "warning", "symbols_notice": "danger"}
 _TRUE_VALUES = {"1", "true", "yes", "y"}
@@ -57,8 +62,8 @@ def _default_localized_copy_csv() -> Path:
 
 
 def _resolve_lang(lang: str | None) -> str:
-    normalized = (lang or "").strip().casefold()
-    return normalized if normalized in _SUPPORTED_LANGS else _DEFAULT_LANG
+    spec = lang_registry.language_spec(lang)
+    return spec.code if spec is not None else _DEFAULT_LANG
 
 
 def _resolve_key(key: str) -> str:
@@ -216,19 +221,10 @@ def _read_signal_rows(path: Path) -> list[dict[str, str]]:
 
 
 def _label_columns(lang: str) -> tuple[str, ...]:
-    raw = (lang or "").strip()
-    normalized = raw.casefold()
-    aliases = {
-        "ja": ("ja", "jp"),
-        "jp": ("jp", "ja"),
-        "pt-br": ("pt-BR", "br", "pt_br"),
-        "pt_br": ("pt_BR", "pt-BR", "br"),
-        "br": ("br", "pt-BR", "pt_br"),
-        "uk": ("uk", "ukr"),
-        "ukr": ("ukr", "uk"),
-    }.get(normalized, (raw, normalized))
+    spec = lang_registry.language_spec(lang) or lang_registry.language_spec(_DEFAULT_LANG)
+    assert spec is not None
     columns: list[str] = []
-    for token in aliases:
+    for token in spec.column_suffixes:
         if not token:
             continue
         for prefix in _LABEL_COLUMN_PREFIXES:

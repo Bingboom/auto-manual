@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
+from tools import lang_registry
 from tools.utils.spec_master import canonicalize_model_token
 from tools.utils.variable_resolver import parse_model_tokens
 
@@ -17,20 +18,9 @@ COPY_TOKEN_RE = re.compile(r"\{\{\s*copy:([A-Za-z0-9_.:-]+)\s*\}\}")
 
 _TRUE_VALUES = {"1", "true", "yes", "y"}
 _LANG_TEXT_COLUMNS = {
-    "en": "text_en",
-    "zh": "text_zh",
-    "ja": "text_ja",
-    "jp": "text_ja",
-    "fr": "text_fr",
-    "es": "text_es",
-    "pt-br": "text_pt-BR",
-    "pt_br": "text_pt-BR",
-    "br": "text_pt-BR",
-    "de": "text_de",
-    "it": "text_it",
-    "uk": "text_uk",
-    "ukr": "text_uk",
-    "ko": "text_ko",
+    alias.casefold(): spec.localized_copy_column
+    for spec in lang_registry.LANGUAGE_REGISTRY
+    for alias in spec.aliases
 }
 
 

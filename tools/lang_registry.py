@@ -1,9 +1,8 @@
 """Canonical language metadata shared by the language parity checks.
 
-This module is intentionally metadata-only in Stage 0.  Existing consumers
-still own their current constants and alias handling; the registry records the
-current contract so that a later consumer migration can be proven to be
-behaviour-preserving.
+Consumers derive their language constants and alias handling from this registry
+so a new language has one metadata insertion point and parity tests can prove
+the resulting surfaces remain aligned.
 """
 
 from __future__ import annotations
