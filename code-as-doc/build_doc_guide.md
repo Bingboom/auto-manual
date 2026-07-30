@@ -984,6 +984,12 @@ docs/_build/<model>/<region>/<lang>/idml/
   layout_feedback.md
 ```
 
+The production `source_trace.json` records `skipped_raw_blocks` from the
+production `manual.ir.json` sidecar. This is an observation field for finding
+raw blocks that were not projected into editable output; it does not add a new
+strict export gate. The skipped-raw strict policy remains a later, separately
+approved Stage 5 change.
+
 On the publish queue path (`Workflow_action = Publish`), the worker runs the
 idml step with `--idml-mode both` and then packages the export into one
 designer delivery zip via `tools/idml/delivery.py`:
