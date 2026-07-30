@@ -127,6 +127,7 @@ class ReferenceArtGeometryTests(unittest.TestCase):
                 rows=[("On", "Press once"), ("Off", "Press once")],
                 image_w=image_w,
                 image_h=image_h,
+                panel_w=312.09,
             )
 
         power_layout = _row_layout("op_main_power.png", image_w, 115.282)
@@ -152,6 +153,50 @@ class ReferenceArtGeometryTests(unittest.TestCase):
             dc_row = _item_bounds(
                 rendered["dc_usb"], f"tf_oppanel_row_{index}_dc_usb")
             self.assertAlmostEqual(dc_layout[0] + 3.543307, dc_row[0], places=3)
+            self.assertAlmostEqual(318.59, dc_row[2], places=3)
+
+    def test_main_power_baked_clock_is_replaced_by_a_movable_asset(self) -> None:
+        stories = {}
+
+        def add_story(story_id, _label, parts):
+            stories[story_id] = "".join(parts)
+            return story_id
+
+        base = _ctx()
+        ctx = RenderContext(
+            params={
+                "idml_operation_main_power_clock_size": ("10.5", "pt"),
+                "idml_operation_main_power_clock_x_offset": ("0", "pt"),
+                "idml_operation_main_power_clock_y_offset": ("0", "pt"),
+                "idml_operation_row_right_edge_offset": ("6.5", "pt"),
+            },
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=ROOT / "docs",
+            add_story=add_story,
+        )
+        render_oppanel(
+            {
+                "kind": "oppanel",
+                "image": "renderers/latex/assets/op_main_power.png",
+                "rows": [["On", "Press once"], ["Off", "Hold for 3 seconds"]],
+            },
+            ctx,
+            tid="movable_clock",
+            terminal=False,
+        )
+
+        panel = stories["st_anchor_oppanel_movable_clock"]
+        self.assertIn("oppanel_main_power_clock_mask_movable_clock", panel)
+        clock = _item_xml(
+            panel,
+            "oppanel_main_power_clock_movable_clock",
+            "Rectangle",
+        )
+        self.assertIn("icon_clock_3s.png", clock)
+        self.assertIn('PinPosition="false"', clock)
 
     def test_operation_and_charging_art_use_the_full_text_measure(self) -> None:
         ctx = _ctx()

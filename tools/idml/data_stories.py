@@ -103,24 +103,34 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
         base_heights = [float(height) for height in governed_heights]
         raw_cols, _, raw_pad = _lcd.layout_tokens(
             writer, body_w, segment_index=raw_index, lang=lang)
-        prepared_segments.extend(
-            (
-                chunk_rows,
-                chunk_heights,
+        if raw_index == 0:
+            # The approved reference contract measures every physical row on
+            # the first LCD page.  Preserve that exact distribution: a generic
+            # character-width estimator is intentionally conservative and can
+            # otherwise move the French terminal row onto a spurious third
+            # page even though the reviewed template proves that it fits.
+            # Continuation pages still use content-aware fitting/splitting
+            # because their rows may change independently of the template.
+            prepared_segments.append((raw_segment, base_heights))
+        else:
+            prepared_segments.extend(
+                (
+                    chunk_rows,
+                    chunk_heights,
+                )
+                for chunk_rows, chunk_heights in _lcd.split_governed_rows(
+                    writer,
+                    raw_segment,
+                    base_heights,
+                    raw_cols,
+                    padding=raw_pad,
+                    vertical_pad=_vertical_pad(raw_index),
+                    text_indent=text_indent,
+                    lang=lang,
+                    segment_index=raw_index,
+                    governed_icon_line_reserve=governed_icon_line_reserve,
+                )
             )
-            for chunk_rows, chunk_heights in _lcd.split_governed_rows(
-                writer,
-                raw_segment,
-                base_heights,
-                raw_cols,
-                padding=raw_pad,
-                vertical_pad=_vertical_pad(raw_index),
-                text_indent=text_indent,
-                lang=lang,
-                segment_index=raw_index,
-                governed_icon_line_reserve=governed_icon_line_reserve,
-            )
-        )
     writer.lcd_segment_counts[lang] = len(prepared_segments)
     table_panels: list[str] = []
     global_ri = 0
@@ -138,11 +148,34 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
         cells: list[str] = []
         terminal_fill = 0.0
         if segment_index == 0:
-            terminal_fill = param_pt(
-                writer.params,
-                f"lang_{lang}_idml_lcd_first_terminal_fill",
-                param_pt(writer.params, "idml_lcd_first_terminal_fill", 0.0),
-            )
+            if row_heights is not None:
+                first_panel_height = param_pt(
+                    writer.params,
+                    f"lang_{lang}_idml_lcd_first_panel_height",
+                    param_pt(
+                        writer.params,
+                        "idml_lcd_first_panel_height",
+                        param_pt(
+                            writer.params,
+                            "comp_lcd_first_panel_height",
+                            286.0,
+                        ),
+                    ),
+                )
+                terminal_fill = max(
+                    0.0,
+                    first_panel_height - sum(row_heights),
+                )
+            else:
+                terminal_fill = param_pt(
+                    writer.params,
+                    f"lang_{lang}_idml_lcd_first_terminal_fill",
+                    param_pt(
+                        writer.params,
+                        "idml_lcd_first_terminal_fill",
+                        0.0,
+                    ),
+                )
         elif row_heights is not None:
             # Every continuation frame is a complete page-owned table.  Its
             # last row absorbs the exact remaining page depth so the rounded
@@ -151,8 +184,12 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             # baseline offset after IDML import; subtract it from the budget.
             visual_bottom = writer.page_h - param_pt(
                 writer.params,
-                "idml_lcd_visual_bottom_gap",
-                0.850394,
+                f"lang_{lang}_idml_lcd_visual_bottom_gap",
+                param_pt(
+                    writer.params,
+                    "idml_lcd_visual_bottom_gap",
+                    writer.m_b,
+                ),
             )
             continuation_top = param_pt(
                 writer.params,
@@ -260,11 +297,13 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
             n_rows=len(segment),
             role="data",
             row_heights=row_heights,
-            # The computed height is the compact starting minimum.  InDesign
-            # may grow a long row when its installed font metrics need one
-            # more line; indesign_finalize.jsx then grows the rounded shell
-            # to the recomposed table height.
-            auto_grow_rows=row_heights is not None,
+            # Contract-measured first-page heights are exact physical rows,
+            # not lower bounds.  Letting InDesign AutoGrow those rows makes
+            # tiny native-metric differences accumulate until the indivisible
+            # terminal row is pushed out of the fixed shell.  Continuation
+            # rows remain content-aware minima and may still grow before the
+            # finalizer fits their shell.
+            auto_grow_rows=row_heights is not None and segment_index > 0,
         )
         for column in range(3):
             table = _tb.fill_column_xml(table, column, "Color/HB Bg K05")
@@ -296,8 +335,6 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                     + param_pt(writer.params, "comp_lcd_partial_panel_extra", 4.0),
                 ),
             )
-        if row_heights is None and segment_index == 0:
-            panel_height += terminal_fill
         # A complete governed table owns the full shell height: short rows keep
         # their compact fixed budget and the final row must close directly
         # against the rounded bottom border.  Never add a terminal spacer below

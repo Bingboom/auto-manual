@@ -735,6 +735,29 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('SpaceBefore="9.8"', story)
         self.assertIn('SpaceAfter="37.6"', story)
 
+    def test_operation_inter_section_body_moves_without_adding_story_depth(self) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({
+            "lang_fr_idml_operation_inter_section_space_after": ("37.6", "pt"),
+            "idml_operation_inter_section_body_space_before": ("5.669291", "pt"),
+        })
+        writer.add_prose_story(
+            "st_operation_inter_section",
+            "05_operation_guide_placeholder",
+            [
+                ("body_operation_inter_section", "Explanation below panel."),
+                ("h2", "SORTIE CA MARCHE/ARRÊT"),
+            ],
+            ROOT,
+            language="fr",
+        )
+        story = dict(writer.stories)["st_operation_inter_section"]
+        self.assertIn(
+            'SpaceBefore="5.66929" SpaceAfter="31.9307"',
+            story,
+        )
+
     def test_operation_key_heading_compensates_first_page_depth(self) -> None:
         from tools.idml.writer import IdmlWriter
 
@@ -3060,18 +3083,21 @@ class ExportIdmlTests(unittest.TestCase):
 
         label_cell = story.split('Self="tbl_lcdc0_2"', 1)[1].split("</Cell>", 1)[0]
         self.assertIn('FontStyle="Bold"', label_cell)
-        self.assertIn('PointSize="7" Leading="8.4"', label_cell)
+        self.assertIn('PointSize="7"', label_cell)
+        self.assertIn('<Leading type="unit">8.4</Leading>', label_cell)
         self.assertIn('Hyphenation="false"', label_cell)
         self.assertIn('LeftInset="5.2"', label_cell)
         description_cell = story.split('Self="tbl_lcdc0_3"', 1)[1].split(
             "</Cell>", 1
         )[0]
-        self.assertIn('PointSize="5.5" Leading="5.8"', description_cell)
+        self.assertIn('PointSize="5.5"', description_cell)
+        self.assertIn('<Leading type="unit">5.8</Leading>', description_cell)
         self.assertIn('Hyphenation="false"', description_cell)
         self.assertIn('LeftInset="5.2"', description_cell)
         number_cell = story.split('Self="tbl_lcdc0_0"', 1)[1].split("</Cell>", 1)[0]
-        self.assertIn('PointSize="9" Leading="9.4"', number_cell)
-        self.assertIn('TopInset="1.62" BottomInset="1.62"', number_cell)
+        self.assertIn('PointSize="9"', number_cell)
+        self.assertIn('<Leading type="unit">9.4</Leading>', number_cell)
+        self.assertIn('TopInset="0" BottomInset="0"', number_cell)
         continuation_cell = story.split(
             'Self="tbl_lcd_cont_enc7_0"', 1
         )[1].split("</Cell>", 1)[0]
@@ -3121,7 +3147,8 @@ class ExportIdmlTests(unittest.TestCase):
         description_cell = continuation.split(
             'Self="tbl_lcd_cont_esc7_3"', 1
         )[1].split("</Cell>", 1)[0]
-        self.assertIn('PointSize="5.5" Leading="6"', description_cell)
+        self.assertIn('PointSize="5.5"', description_cell)
+        self.assertIn('<Leading type="unit">6</Leading>', description_cell)
         self.assertNotIn('PointSize="5.8"', description_cell)
 
     def test_lcd_governed_continuation_rows_use_compact_auto_grow_minimum(self) -> None:
@@ -3177,6 +3204,30 @@ class ExportIdmlTests(unittest.TestCase):
                 ]
                 self.assertEqual(19, continuation.count('AutoGrow="true"'))
                 self.assertNotIn('AutoGrow="false"', continuation)
+
+    def test_lcd_french_first_page_uses_reference_body_column_width(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [{
+            "no": "1",
+            "figure": "",
+            "name": "Mode Autonome",
+            "desc": "Description",
+            "row_height_pt": "22.96",
+        }]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT, lang="fr")
+
+        table = dict(writer.stories)["st_anchor_lcd_table_fr_0"]
+        self.assertIn('SingleColumnWidth="71"', table)
+        self.assertIn('SingleColumnWidth="187.694"', table)
+        body_cell = table.split('Self="tbl_lcd_frc0_3"', 1)[1].split(
+            "</Cell>", 1
+        )[0]
+        label_cell = table.split('Self="tbl_lcd_frc0_2"', 1)[1].split(
+            "</Cell>", 1
+        )[0]
+        self.assertIn('LeftInset="5.2"', body_cell)
+        self.assertIn('LeftInset="5.2"', label_cell)
 
     def test_lcd_governed_rows_move_to_next_page_after_compaction(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3242,11 +3293,90 @@ class ExportIdmlTests(unittest.TestCase):
         w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
 
         story = dict(w.stories)["st_lcd"]
-        self.assertIn('Anchor="0 -307.421"', story)
+        self.assertIn('Anchor="0 -280.777"', story)
         self.assertNotIn('Anchor="0 -286"', story)
         first_table = dict(w.stories)["st_anchor_lcd_table_en_0"]
         self.assertIn(
-            'TopInset="14.942" BottomInset="14.942"',
+            'TopInset="13.322" BottomInset="13.322"',
+            first_table,
+        )
+
+    def test_lcd_governed_first_rows_fill_shell_without_overset_padding(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        heights = [19.95, 21.49, 40.13, 39.65, 45.51, 68.08, 45.63]
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+                "row_height_pt": str(height),
+            }
+            for index, height in enumerate(heights, start=1)
+        ]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        host = dict(writer.stories)["st_lcd"]
+        table = dict(writer.stories)["st_anchor_lcd_table_en_0"]
+        self.assertIn('Anchor="0 -280.777"', host)
+        self.assertEqual(7, table.count('AutoGrow="false"'))
+        self.assertNotIn('AutoGrow="true"', table)
+        self.assertIn(
+            'SingleRowHeight="45.967" MinimumHeight="45.967"',
+            table,
+        )
+        self.assertNotIn('TopInset="14.942"', table)
+
+    def test_lcd_multiline_cell_uses_native_safe_character_leading(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [{
+            "no": "1",
+            "figure": "",
+            "name": "Wi-Fi",
+            "desc": "On: connected.\nBlink: pairing.\nOff: disconnected.",
+            "row_height_pt": "19.95",
+        }]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        table = dict(writer.stories)["st_anchor_lcd_table_en_0"]
+        description = table.split('Self="tbl_lcdc0_3"', 1)[1].split(
+            "</Cell>", 1
+        )[0]
+        character_ranges = description.split("<CharacterStyleRange ")[1:]
+        self.assertEqual(5, len(character_ranges))
+        self.assertEqual(3, description.count('PointSize="5.5"'))
+        self.assertEqual(
+            3,
+            description.count('<Leading type="unit">5.8</Leading>'),
+        )
+        self.assertNotIn('Leading="5.8"', description)
+
+    def test_lcd_governed_french_first_page_keeps_all_seven_measured_rows(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        heights = [22.96, 21.75, 41.01, 42.24, 50.12, 69.79, 50.85]
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicateur {index}",
+                "desc": "Une description traduite volontairement longue. " * 30,
+                "row_height_pt": str(height),
+            }
+            for index, height in enumerate(heights, start=1)
+        ]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT, lang="fr")
+
+        stories = dict(writer.stories)
+        first_table = stories["st_anchor_lcd_table_fr_0"]
+        self.assertEqual(7, first_table.count('AutoGrow="false"'))
+        self.assertNotIn('AutoGrow="true"', first_table)
+        self.assertNotIn("st_anchor_lcd_table_fr_1", stories)
+        self.assertEqual(1, writer.lcd_segment_counts["fr"])
+        self.assertIn(
+            'SingleRowHeight="50.85" MinimumHeight="50.85"',
             first_table,
         )
 
@@ -3267,10 +3397,10 @@ class ExportIdmlTests(unittest.TestCase):
 
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
-            'Anchor="0 -494.768"', dict(w.stories)["st_lcd"])
+            'Anchor="0 -467.634"', dict(w.stories)["st_lcd"])
         self.assertNotIn('Anchor="0 -480"', dict(w.stories)["st_lcd"])
         self.assertNotIn("idml_lcd_continuation_bottom_gap", params)
-        self.assertIn('SingleRowHeight="184.268"', continuation)
+        self.assertIn('SingleRowHeight="157.134"', continuation)
 
     def test_lcd_first_shell_matches_approved_reference_table_height(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3287,11 +3417,11 @@ class ExportIdmlTests(unittest.TestCase):
         w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
 
         story = dict(w.stories)["st_lcd"]
-        self.assertIn('Anchor="0 -307.421"', story)
+        self.assertIn('Anchor="0 -280.777"', story)
         self.assertNotIn('Anchor="0 -286"', story)
         first_table = dict(w.stories)["st_anchor_lcd_table_en_0"]
         self.assertIn(
-            'TopInset="14.942" BottomInset="14.942"',
+            'TopInset="13.322" BottomInset="13.322"',
             first_table,
         )
 
@@ -3312,10 +3442,10 @@ class ExportIdmlTests(unittest.TestCase):
 
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
-            'Anchor="0 -494.768"', dict(w.stories)["st_lcd"])
+            'Anchor="0 -467.634"', dict(w.stories)["st_lcd"])
         self.assertNotIn('Anchor="0 -480"', dict(w.stories)["st_lcd"])
         self.assertNotIn("idml_lcd_continuation_bottom_gap", params)
-        self.assertIn('SingleRowHeight="184.268"', continuation)
+        self.assertIn('SingleRowHeight="157.134"', continuation)
 
     def test_lcd_governed_segment_rejects_partial_height_profile(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

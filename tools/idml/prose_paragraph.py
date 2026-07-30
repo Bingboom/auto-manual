@@ -36,7 +36,10 @@ def build_text_paragraph(
         "h2_operation_led",
         "h2_charging_car",
     } else kind
-    if kind == "body_operation_energy_intro":
+    if kind in {
+        "body_operation_energy_intro",
+        "body_operation_inter_section",
+    }:
         semantic_kind = "body"
     style = writer._PROSE_STYLE.get(semantic_kind, "HB Body")
     if is_preface and kind == "body":

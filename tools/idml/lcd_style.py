@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import math
 
+from .character_metrics import with_character_metrics
 from .params import param_pt
 
 
@@ -433,15 +434,21 @@ def typed_paragraph(writer, style: str, text: str,
         point_size = param_pt(writer.params, size_key or "", 5.2)
     if leading is None:
         leading = param_pt(writer.params, leading_key or "", 5.8)
-    font_style = ' FontStyle="Bold"' if bold else ""
     paragraph = writer._psr(style, text, terminal=True).replace(
         "<ParagraphStyleRange ",
         '<ParagraphStyleRange Hyphenation="false" ',
         1,
-    ).replace(
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'PointSize="{point_size:g}" Leading="{leading:g}"{font_style}', 1)
+    )
+    paragraph = with_character_metrics(
+        paragraph,
+        point_size=point_size,
+        leading=leading,
+    )
+    if bold:
+        paragraph = paragraph.replace(
+            "<CharacterStyleRange ",
+            '<CharacterStyleRange FontStyle="Bold" ',
+        )
     if font:
         paragraph = paragraph.replace(
             '<AppliedFont type="string">Arial Unicode MS</AppliedFont>',

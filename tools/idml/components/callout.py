@@ -44,9 +44,8 @@ def render_safetyinstruction(
     This is deliberately distinct from ``safetywarning``: the approved
     instruction uses a solid dark triangle and heavy display copy, while a
     standard warning uses the outlined symbol plus warning prose typography.
-    Keeping the semantic roles separate mirrors ``HBSafetyInstruction`` in
-    the LaTeX renderer and prevents one component tune from regressing the
-    other.
+    Keeping the roles separate mirrors ``HBSafetyInstruction`` in the LaTeX
+    renderer and prevents one component tune from regressing the other.
     """
     body_w = measure_w or ctx.text_measure
     icon_asset = _safety_instruction_icon_asset(ctx)

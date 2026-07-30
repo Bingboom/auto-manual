@@ -308,7 +308,12 @@ def transform(blocks: list[Block]) -> list[Block]:
                     {"kind": "oppanel", "image": text, "prereq": prereq,
                      "rows": rows, "tail": panel_tail}, ensure_ascii=False)))
                 if following_body:
-                    out.append(("body", following_body))
+                    following_kind = (
+                        "body_operation_inter_section"
+                        if _image_stem(text) == "op_main_power"
+                        else "body"
+                    )
+                    out.append((following_kind, following_body))
                 i += consumed
                 continue
         out.append((kind, text))

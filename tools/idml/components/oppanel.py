@@ -189,11 +189,20 @@ def _row_text_layers(
     rows: list[tuple[str, str]],
     image_w: float,
     image_h: float,
+    panel_w: float | None = None,
 ) -> str:
     """Create one independently movable top-layer frame per operation row."""
     if not rows or ctx.add_story is None:
         return ""
     left, first_top, width, gap, frame_h = _row_layout(ref, image_w, image_h)
+    panel_right = panel_w if panel_w is not None else image_w / 0.945
+    right_edge_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_row_right_edge_offset",
+        6.5,
+        strict=ctx.strict_component_assets,
+        owner="operation-row right edge",
+    )
     if max(len(label) for label, _instruction in rows) >= 8:
         width = max(width, image_w * 0.16)
         left = image_w - width
@@ -282,7 +291,10 @@ def _row_text_layers(
             ],
             left=left + row_x_offset,
             top=top,
-            right=left + row_x_offset + width,
+            right=max(
+                left + row_x_offset + width,
+                panel_right + right_edge_offset,
+            ),
             bottom=top + frame_h,
             auto_height=True,
         ))
@@ -371,13 +383,72 @@ def _positioned_image(
     *,
     left: float,
     bottom: float,
+    pin: bool = True,
 ) -> str:
     """Place one linked image inside a composed operation-panel group."""
     xml = image_cell_content(rect_id, asset, width, height)
-    return xml.replace(
+    xml = xml.replace(
         'ItemTransform="1 0 0 1 0 0"',
         f'ItemTransform="1 0 0 1 {left:g} {bottom:g}"',
         1,
+    )
+    if not pin:
+        xml = xml.replace('PinPosition="true"', 'PinPosition="false"', 1)
+    return xml
+
+
+def _main_power_clock_overlay(
+    ctx: RenderContext,
+    *,
+    tid: str,
+    ref: str,
+    image_w: float,
+    image_h: float,
+) -> str:
+    """Replace the baked POWER clock with an independently movable icon."""
+    if "main_power" not in Path(ref).stem.lower():
+        return ""
+    clock = ctx.resolve_bundle_image("icon_clock_3s.png")
+    if clock is None or not clock.exists():
+        return ""
+
+    size = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_clock_size",
+        10.5,
+        strict=ctx.strict_component_assets,
+        owner="main-power movable clock",
+    )
+    x_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_clock_x_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="main-power movable clock",
+    )
+    y_offset = component_param_pt(
+        ctx.params,
+        "idml_operation_main_power_clock_y_offset",
+        0.0,
+        strict=ctx.strict_component_assets,
+        owner="main-power movable clock",
+    )
+    mask = _shape(
+        shape_id=f"oppanel_main_power_clock_mask_{tid}",
+        left=image_w * 0.762,
+        top=-image_h * 0.58,
+        right=image_w * 0.810,
+        bottom=-image_h * 0.45,
+        fill="Color/Paper",
+    )
+    return mask + _positioned_image(
+        f"oppanel_main_power_clock_{tid}",
+        clock,
+        size,
+        size,
+        left=image_w * 0.714 + x_offset,
+        bottom=-image_h * 0.46 + y_offset,
+        pin=False,
     )
 
 
@@ -957,10 +1028,17 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         tail_underlay, tail_text = _tail_overlay_parts(
             ctx, tid=tid, text=tail, image_w=iw, image_h=ih,
         )
+        main_power_clock = _main_power_clock_overlay(
+            ctx, tid=tid, ref=ref, image_w=iw, image_h=ih,
+        )
         row_text = _row_text_layers(
             ctx, tid=tid, ref=ref, rows=rows, image_w=iw, image_h=ih,
+            panel_w=body_w,
         )
-        overlay = prereq_underlay + tail_underlay + prereq_text + tail_text + row_text
+        overlay = (
+            prereq_underlay + tail_underlay + main_power_clock
+            + prereq_text + tail_text + row_text
+        )
         fallback = psr("HB Body", f"**{prereq}**") if prereq and not overlay else ""
         image_xml = image_cell_content(f"{tid}img", asset, iw, ih)
         if overlay:
