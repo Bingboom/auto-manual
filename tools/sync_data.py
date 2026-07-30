@@ -291,6 +291,10 @@ class LarkCliSource:
         self._field_name_cache[cache_key] = field_name_map
         return field_name_map
 
+    def field_names(self, *, base_token: str, table_id: str) -> frozenset[str]:
+        """Return authoritative field names, reusing the field-list cache."""
+        return frozenset(self._field_name_map(base_token=base_token, table_id=table_id).values())
+
     def _run_record_list(
         self,
         *,
@@ -587,6 +591,7 @@ def _manifest_payload(
     derived_files: tuple[TableSyncResult, ...],
     built_at: datetime,
     dry_run: bool,
+    warnings: tuple[dict[str, Any], ...] = (),
 ) -> dict[str, Any]:
     return _manifest_payload_impl(
         export_root=export_root,
@@ -599,6 +604,7 @@ def _manifest_payload(
         derived_files=derived_files,
         built_at=built_at,
         dry_run=dry_run,
+        warnings=warnings,
         repo_root=ROOT,
     )
 

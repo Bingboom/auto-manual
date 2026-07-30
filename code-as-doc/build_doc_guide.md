@@ -93,6 +93,7 @@ Meaning:
 - if the Base keeps `Model` as a linked-record field, maintain a text `Model_key` column for variable defaults so exact model matching stays independent of Feishu record ids
 - `sync-data` normalizes `Spec_Master.csv Slot_key` back to plain slot tokens when the source table stores markdown-link wrappers for page-value placeholders
 - `sync-data` also resolves full field names through Base field metadata, so long headers are not dropped when `lark-cli` shortens them in record-list output
+- the same cached Base field metadata powers a non-blocking schema sensor: source columns missing from a phase2 schema are recorded as `MISSING_COLUMNS` warnings in `snapshot_manifest.json` and printed by `sync-data`; the historical `spec_footnotes` `pt-BR` alias is exempt, and CSV output / sync gates are unchanged
 - when `spec_master` is synced from the split source tables, `sync-data` reads `spec_footnotes` as needed and rewrites Feishu linked-record footnote refs in `Spec_Master.csv` to stable `Footnote_id` values
 - when one target references a `Footnote_id` that is missing only in its own region but exists as one unambiguous sibling-region row for the same model, validation and rendering now reuse that fallback definition instead of stopping the build immediately
 - `sync-data` does not repair bad `Is_Latest` flags; leave those source-table problems visible so `check` and publish validation can fail loudly

@@ -45,10 +45,10 @@ from tools.source_record_index import (
     index_json_text as source_record_index_json_text,
     record_count as source_record_index_count,
 )
+from tools.sync_schema_sensor import append_missing_columns_warning, append_missing_columns_warning_for_sources
 
-# Tables fetched with record ids: footnotes (link-ref mapping) plus the tables the
-# source_record_index sidecar indexes (F1). Other tables keep the id-free fetch so
-# observable sync behavior is unchanged for them.
+# Tables fetched with record ids: footnotes plus source_record_index tables (F1).
+# Other tables keep the id-free fetch so observable sync behavior is unchanged.
 _WITH_ID_LOGICAL_TABLES = frozenset({"spec_footnotes"}) | frozenset(
     _SOURCE_RECORD_INDEX_LOGICAL_TABLES
 )
@@ -177,6 +177,7 @@ def manifest_payload(
     built_at: datetime,
     dry_run: bool,
     repo_root: Path,
+    warnings: tuple[dict[str, Any], ...] = (),
 ) -> dict[str, Any]:
     def _result_entry(result: _TableSyncResultLike) -> dict[str, Any]:
         return {
@@ -189,7 +190,7 @@ def manifest_payload(
             "changed": result.changed,
         }
 
-    return {
+    payload: dict[str, Any] = {
         "provider": provider,
         "cli_bin": cli_bin,
         "generated_at": built_at.isoformat(),
@@ -201,6 +202,9 @@ def manifest_payload(
         "tables": [_result_entry(result) for result in synced_tables],
         "derived_files": [_result_entry(result) for result in derived_files],
     }
+    if warnings:
+        payload["warnings"] = list(warnings)
+    return payload
 
 
 def _record_source_with_ids(source: _RecordSourceLike) -> _RecordSourceWithIdsLike | None:
@@ -498,6 +502,7 @@ def sync_phase2_snapshot(
 
     table_results: list[Any] = []
     derived_results: list[Any] = []
+    warnings: list[dict[str, Any]] = []
     written_files: list[tuple[Path, str]] = []
     bindings_by_table: dict[str, _BindingLike] = {}
     raw_records_by_table: dict[str, list[dict[str, Any]]] = {}
@@ -517,6 +522,14 @@ def sync_phase2_snapshot(
         )
         if logical_name == "spec_master" and spec_rows_source_table_id and placeholders_source_table_id:
             base_token = deps.phase2_base_token(cfg)
+            append_missing_columns_warning_for_sources(
+                warnings,
+                logical_name=logical_name,
+                schema=deps.table_schemas[logical_name],
+                source=resolved_source,
+                base_token=base_token,
+                table_ids=(spec_rows_source_table_id, placeholders_source_table_id),
+            )
             # Fetch with record ids when the source supports it, so the
             # source_record_index sidecar can map Spec_Master rows to record ids
             # (F6). CSV output is unchanged because normalization consumes fields.
@@ -552,6 +565,14 @@ def sync_phase2_snapshot(
 
         binding = deps.resolve_table_binding(cfg, logical_name)
         bindings_by_table[logical_name] = binding
+        append_missing_columns_warning(
+            warnings,
+            logical_name=logical_name,
+            schema=binding.schema,
+            source=resolved_source,
+            base_token=binding.base_token,
+            table_id=binding.table_id,
+        )
         # Fetch with record ids only for tables that need them (footnotes ref
         # mapping + the source_record_index sidecar's indexed tables, F1). CSV
         # output is unchanged because normalization only consumes record fields.
@@ -624,6 +645,14 @@ def sync_phase2_snapshot(
     translation_memory_rows: list[dict[str, str]] | None = None
     if "manual_copy_source" in normalized_rows_by_table:
         tm_binding = translation_memory_binding or deps.resolve_table_binding(cfg, "translation_memory")
+        append_missing_columns_warning(
+            warnings,
+            logical_name="translation_memory",
+            schema=deps.table_schemas["translation_memory"],
+            source=resolved_source,
+            base_token=tm_binding.base_token,
+            table_id=tm_binding.table_id,
+        )
         tm_raw_records = resolved_source.fetch_records(
             base_token=tm_binding.base_token,
             table_id=tm_binding.table_id,
@@ -847,6 +876,7 @@ def sync_phase2_snapshot(
         built_at=run_at,
         dry_run=dry_run,
         repo_root=deps.repo_root,
+        warnings=tuple(warnings),
     )
 
     if not dry_run:

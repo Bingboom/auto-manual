@@ -431,6 +431,7 @@ Use the document that owns the topic:
 - [`docs/templates/page_zh/`](docs/templates/page_zh): shared zh prose-template family for the CN manual stack
 - `data/phase2/`: gitignored Feishu-synced CSV snapshot inputs for active build, review, and publish flows; only the repo-maintained [`data/phase2/page_registry.csv`](data/phase2/page_registry.csv) stays tracked because `sync-data` reads it as input
 - [`data/source_table_contracts/phase2_source_tables.json`](data/source_table_contracts/phase2_source_tables.json): repo-maintained source-table contract for phase2 keys, snapshot files, intake targets, writable fields, and source-record-index mapping; update it when online source-table structure changes. `tools/schema_drift.py` validates the contract against fixture/local snapshot headers in CI.
+- `sync-data` reuses authoritative Base field metadata to report missing phase2 source columns as non-blocking `MISSING_COLUMNS` warnings in `snapshot_manifest.json` and CLI output; the existing `spec_footnotes` `pt-BR` alias remains explicitly supported.
 - [`tests/fixtures/phase2/`](tests/fixtures/phase2): committed fixture snapshot used only by CI/tests, not by live authoring
 - [`docs/templates/`](docs/templates): shared seed templates
 - [`.agents/skills/bitable-translation-memory/`](.agents/skills/bitable-translation-memory): repo-local Codex skill for live sentence-pair lookup and terminology grounding
