@@ -10,6 +10,10 @@ LANGUAGE_LABELS = {
     "fr": "French",
     "ja": "Japanese",
     "zh": "Chinese",
+    "de": "German",
+    "it": "Italian",
+    "uk": "Ukrainian",
+    "ko": "Korean",
 }
 
 

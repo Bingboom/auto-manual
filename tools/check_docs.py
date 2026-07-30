@@ -179,6 +179,11 @@ def _pick_spec_value(row: dict[str, str], lang: str) -> str:
     raw_lang = (lang or "").strip()
     normalized_lang = raw_lang.casefold()
     normalized_source_lang = (source_lang or "").strip().casefold()
+    if normalized_lang == "ukr":
+        normalized_lang = "uk"
+        raw_lang = "uk"
+    if normalized_source_lang == "ukr":
+        normalized_source_lang = "uk"
     if normalized_lang in {"br", "pt-br", "pt_br"}:
         normalized_lang = "pt-br"
     if normalized_source_lang in {"br", "pt-br", "pt_br"}:

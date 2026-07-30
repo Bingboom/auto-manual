@@ -1,4 +1,4 @@
-No.,Model,Is_latest,Version,icon_en,icon_zh,icon_jp,icon_fr,icon_es,icon_pt-BR,icon_br,icon_de,icon_it,icon_ukr,icon_desc_en,icon_desc_zh,icon_desc_jp,icon_desc_fr,icon_desc_es,icon_desc_pt-BR,icon_desc_br,icon_desc_de,icon_desc_it,icon_desc_ukr,has_variables,variable_keys,figure,render_preview_en
+No.,Model,Is_latest,Version,icon_en,icon_zh,icon_jp,icon_fr,icon_es,icon_pt-BR,icon_br,icon_de,icon_it,icon_ukr,icon_desc_en,icon_desc_zh,icon_desc_jp,icon_desc_fr,icon_desc_es,icon_desc_pt-BR,icon_desc_br,icon_desc_de,icon_desc_it,icon_desc_ukr,has_variables,variable_keys,figure,render_preview_en,icon_ko,icon_desc_ko
 1,"JE-1000F, JE-2000E, JE-2000F, JE-1500D",TRUE,V1.0,Wi-Fi,Wi-Fi,Wi-Fi,Wi-Fi,Wi-Fi,Wi-Fi,,WLAN,Wi-Fi,Wi-Fi,"On: Wi-Fi connected.
 Blink: Ready to connect to Wi-Fi.
 Off: Wi-Fi disconnected.","点亮：Wi-Fi 已连接。 

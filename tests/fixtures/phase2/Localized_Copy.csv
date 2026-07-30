@@ -1,4 +1,4 @@
-copy_key,page_id,copy_type,Region,Model,Source_lang,Is_Latest,Version,text_en,text_zh,text_ja,text_fr,text_es,text_pt-BR,text_de,text_it,text_uk,notes
+copy_key,page_id,copy_type,Region,Model,Source_lang,Is_Latest,Version,text_en,text_zh,text_ja,text_fr,text_es,text_pt-BR,text_de,text_it,text_uk,notes,text_ko
 product_overview.front_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,FRONT VIEW,正视图,正面,VUE DE FACE,VISTA FRONTAL,VISTA FRONTAL,PRODUKTDARSTELLUNG,Aspetto del prodotto,ВИГЛЯД СПЕРЕДУ,
 product_overview.page_title,03_product_overview,page_title,ALL,ALL,en,TRUE,V1.0,PRODUCT OVERVIEW,产品外观,各部の名称,APERÇU DU PRODUIT,DESCRIPCIÓN GENERAL DEL PRODUCTO,VISÃO GERAL DO PRODUTO,PRODUKTÜBERSICHT,PANORAMICA DEL PRODOTTO,ОГЛЯД ПРОДУКТУ,
 product_overview.part.handle,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,Handle,把手,ハンドル,Poignée,Asa,Alça,Ausziehgriff,Maniglia,Handle,

@@ -152,6 +152,10 @@ LANGUAGE_LABELS = {
     "es": "Espanol",
     "fr": "Francais",
     "ja": "日本語",
+    "de": "German",
+    "it": "Italian",
+    "uk": "Ukrainian",
+    "ko": "Korean",
 }
 
 
