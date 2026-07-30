@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 import sys
 from typing import Sequence
@@ -17,16 +18,89 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.idml.reference_layout_plan import ReferenceLayoutPlanError  # noqa: E402
 from tools.idml.reference_layout_rebind import rebind_reference_layout_plan  # noqa: E402
-from tools.manual_ir import read_manual_ir  # noqa: E402
+from tools.manual_ir import ManualIR, read_manual_ir  # noqa: E402
+from tools.utils.path_utils import PathSegments  # noqa: E402
+
+
+REGISTRY_PATH = (
+    ROOT
+    / PathSegments.DOCS
+    / PathSegments.RENDERERS
+    / PathSegments.CONTRACTS
+    / PathSegments.REFERENCE_LAYOUT_REGISTRY_JSON
+)
+
+
+def _registered_plan_paths(registry_path: Path) -> list[Path]:
+    try:
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ReferenceLayoutPlanError(f"cannot read reference-layout registry {registry_path}: {exc}") from exc
+    entries = registry.get("plans") if isinstance(registry, dict) else None
+    if not isinstance(entries, list) or not entries:
+        raise ReferenceLayoutPlanError(f"reference-layout registry has no plans: {registry_path}")
+    paths: list[Path] = []
+    for index, entry in enumerate(entries):
+        raw_path = entry.get("path") if isinstance(entry, dict) else None
+        if not isinstance(raw_path, str) or not raw_path.strip():
+            raise ReferenceLayoutPlanError(f"reference-layout registry plan {index} has no path")
+        path = Path(raw_path)
+        if not path.is_absolute():
+            path = ROOT / path
+        paths.append(path.resolve())
+    return paths
+
+
+def _run_one(plan_path: Path, ir: ManualIR, *, write: bool = False) -> tuple[bool, str]:
+    try:
+        result = rebind_reference_layout_plan(plan_path, ir, write=write)
+    except (OSError, ValueError, ReferenceLayoutPlanError) as exc:
+        print(f"[reference-layout-rebind] ERROR: {plan_path} | {exc}")
+        return False, str(exc)
+
+    action = "WROTE" if result.wrote else "DRY-RUN OK"
+    changed_identity = ",".join(result.changed_identity_fields) or "none"
+    print(
+        f"[reference-layout-rebind] {action}: {result.plan_path} | "
+        f"source_identity={changed_identity} "
+        f"page_bindings={result.changed_page_bindings} "
+        "composition_map=unchanged validation=passed"
+    )
+    return True, ""
+
+
+def _run_all_registered(manual_ir: Path, registry_path: Path) -> int:
+    try:
+        ir = read_manual_ir(manual_ir.resolve())
+        plan_paths = _registered_plan_paths(registry_path.resolve())
+    except (OSError, ValueError, ReferenceLayoutPlanError) as exc:
+        print(f"[reference-layout-rebind] ERROR: {exc}", file=sys.stderr)
+        return 1
+
+    passed = 0
+    for plan_path in plan_paths:
+        ok, _ = _run_one(plan_path, ir)
+        passed += int(ok)
+    failed = len(plan_paths) - passed
+    print(
+        f"[reference-layout-rebind] ALL-REGISTERED: plans={len(plan_paths)} "
+        f"passed={passed} failed={failed} write=disabled"
+    )
+    return 0 if failed == 0 else 1
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
+    selection = parser.add_mutually_exclusive_group(required=True)
+    selection.add_argument(
         "--plan",
         type=Path,
-        required=True,
         help="approved reference-layout plan JSON to refresh",
+    )
+    selection.add_argument(
+        "--all-registered",
+        action="store_true",
+        help="dry-run every plan listed in the reference-layout registry",
     )
     parser.add_argument(
         "--manual-ir",
@@ -39,28 +113,28 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="atomically replace the plan after validation (default: dry-run)",
     )
+    parser.add_argument(
+        "--registry",
+        type=Path,
+        default=REGISTRY_PATH,
+        help="reference-layout registry JSON used by --all-registered",
+    )
     args = parser.parse_args(argv)
+
+    if args.all_registered:
+        if args.write:
+            parser.error("--all-registered is dry-run only; pass --plan explicitly before using --write")
+        return _run_all_registered(args.manual_ir, args.registry)
 
     try:
         ir = read_manual_ir(args.manual_ir.resolve())
-        result = rebind_reference_layout_plan(
-            args.plan,
-            ir,
-            write=args.write,
-        )
+        ok, _ = _run_one(args.plan, ir, write=args.write)
     except (OSError, ValueError, ReferenceLayoutPlanError) as exc:
         print(f"[reference-layout-rebind] ERROR: {exc}", file=sys.stderr)
         return 1
-
-    action = "WROTE" if result.wrote else "DRY-RUN OK"
-    changed_identity = ",".join(result.changed_identity_fields) or "none"
-    print(
-        f"[reference-layout-rebind] {action}: {result.plan_path} | "
-        f"source_identity={changed_identity} "
-        f"page_bindings={result.changed_page_bindings} "
-        "composition_map=unchanged validation=passed"
-    )
-    if not result.wrote:
+    if not ok:
+        return 1
+    if not args.write:
         print("[reference-layout-rebind] no files changed; pass --write to commit")
     return 0
 

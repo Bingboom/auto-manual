@@ -258,6 +258,11 @@ python3 tools/reference_layout_rebind.py \
   --write
 ```
 
+For a read-only sweep across every registered contract, use
+`--all-registered` with the current Manual IR. Batch mode always disables
+writes; apply a reviewed result one plan at a time with an explicit
+`--plan ... --write` command.
+
 The write is atomic and refuses source-order or physical-composition changes;
 do not patch individual hashes or deregister the contract to bypass validation.
 The Manual IR layout-parameter identity hashes the ordered parsed
