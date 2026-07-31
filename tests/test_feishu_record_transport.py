@@ -7,6 +7,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools.feishu_record_transport import run_lark_cli_json
+from tools.feishu_record_transport import LarkRetryPolicy, iter_lark_pages
 from tools.queue_lark_ops import run_lark_cli_json as run_queue_lark_cli_json
 from tools import bitable_schema, spec_master_rebuild
 
@@ -53,6 +54,59 @@ class FeishuRecordTransportTests(unittest.TestCase):
         failure.assert_called_once_with(
             ["/bin/lark-cli", "base", "+record-upsert"], "out", "", 2
         )
+
+    def test_retries_rate_limit_with_bounded_exponential_backoff(self) -> None:
+        processes = [
+            self._run(stdout=json.dumps({"code": 429, "retry_after": 3})),
+            self._run(stdout=json.dumps({"code": 429})),
+            self._run(stdout=json.dumps({"code": 0, "data": {"ok": True}})),
+        ]
+        with mock.patch("tools.feishu_record_transport.subprocess.run", side_effect=processes), mock.patch(
+            "tools.feishu_record_transport.time.sleep"
+        ) as sleep:
+            result = run_lark_cli_json(
+                cli_bin="lark-cli",
+                args=["base", "+record-list"],
+                repo_root=Path("/repo"),
+                resolved_cli_command_parts=lambda _: ["/bin/lark-cli"],
+                parse_json_payload=json.loads,
+                retry_policy=LarkRetryPolicy(max_retries=2, base_delay_seconds=1, max_delay_seconds=10),
+                sleep=sleep,
+            )
+
+        self.assertEqual(0, result["code"])
+        self.assertEqual([3, 2], [call.args[0] for call in sleep.call_args_list])
+
+    def test_page_iterator_owns_offset_and_empty_page_policy(self) -> None:
+        pages = {
+            0: {"data": ["a"], "has_more": True},
+            1: {"data": ["b"], "has_more": False},
+        }
+        seen: list[int] = []
+
+        def fetch(offset: int, _limit: int) -> dict:
+            seen.append(offset)
+            return pages[offset]
+
+        result = list(
+            iter_lark_pages(
+                fetch,
+                items_from_payload=lambda payload: payload["data"],
+                has_more_from_payload=lambda payload, _offset: payload["has_more"],
+            )
+        )
+
+        self.assertEqual([0, 1], seen)
+        self.assertEqual([["a"], ["b"]], [items for _payload, items in result])
+
+        with self.assertRaisesRegex(RuntimeError, "returned no items"):
+            list(
+                iter_lark_pages(
+                    lambda _offset, _limit: {"data": [], "has_more": True},
+                    items_from_payload=lambda payload: payload["data"],
+                    has_more_from_payload=lambda payload, _offset: payload["has_more"],
+                )
+            )
 
     def test_queue_runner_delegates_to_shared_transport(self) -> None:
         with mock.patch(

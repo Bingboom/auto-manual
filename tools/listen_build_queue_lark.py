@@ -84,27 +84,18 @@ def fetch_field_id_map(
     identity: str = "user",
     run_lark_cli_json: Callable[..., dict[str, Any]],
 ) -> dict[str, str]:
+    from tools.feishu_record_transport import iter_lark_pages
+
     result: dict[str, str] = {}
-    offset = 0
     limit = 200  # lark-cli >=1.0.69 caps --limit at 200
-    while True:
+
+    def fetch_page(offset: int, page_limit: int) -> dict[str, Any]:
         payload = run_lark_cli_json(
             cli_bin=cli_bin,
             args=[
-                "base",
-                "+field-list",
-                "--as",
-                identity,
-                "--base-token",
-                base_token,
-                "--table-id",
-                table_id,
-                "--format",
-                "json",
-                "--limit",
-                str(limit),
-                "--offset",
-                str(offset),
+                "base", "+field-list", "--as", identity,
+                "--base-token", base_token, "--table-id", table_id,
+                "--format", "json", "--limit", str(page_limit), "--offset", str(offset),
             ],
         )
         data = payload.get("data")
@@ -113,6 +104,22 @@ def fetch_field_id_map(
         items = data.get("items", [])
         if not isinstance(items, list):
             raise RuntimeError("Lark CLI field list response has invalid items payload")
+        return payload
+
+    def page_items(payload: dict[str, Any]) -> list[Any]:
+        return payload["data"]["items"]
+
+    def page_has_more(payload: dict[str, Any], offset: int) -> bool:
+        data = payload["data"]
+        total = int(data.get("total") or offset)
+        return offset < total
+
+    for _payload, items in iter_lark_pages(
+        fetch_page,
+        items_from_payload=page_items,
+        has_more_from_payload=page_has_more,
+        limit=limit,
+    ):
         for item in items:
             if not isinstance(item, dict):
                 continue
@@ -120,10 +127,6 @@ def fetch_field_id_map(
             field_name = str(item.get("field_name") or "").strip()
             if field_id and field_name:
                 result[field_name] = field_id
-        total = int(data.get("total") or len(result))
-        offset += len(items)
-        if not items or offset >= total:
-            break
     return result
 
 

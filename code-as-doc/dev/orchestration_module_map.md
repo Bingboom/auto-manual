@@ -220,7 +220,8 @@ Quality and release logic should follow concern-specific modules instead of drif
   - wiki destination reporting for a processing session
 - [`tools/feishu_record_transport.py`](../../tools/feishu_record_transport.py)
   - shared `lark-cli` JSON subprocess boundary for queue, build-listener, spec-master, and schema callers
-  - Feishu response validation plus the existing F6/F8 record transport adapters
+  - bounded 429 retry/backoff, shared pagination policy, and Feishu response validation
+  - existing F6/F8 record transport adapters
 - [`tools/spec_master_rebuild.py`](../../tools/spec_master_rebuild.py)
   - spec-master field/record orchestration
   - compatibility wrapper over the shared `lark-cli` base-command transport
