@@ -25,7 +25,6 @@ import argparse
 import csv
 import json
 import os
-import subprocess
 import sys
 from pathlib import Path
 
@@ -53,23 +52,39 @@ _IDENTITY: str = "bot"
 
 
 def _lark(args: list[str], lark_cli: str = "lark-cli") -> dict:
+    from tools.feishu_record_transport import run_lark_cli_json
+
     env = {**os.environ, "LARK_CLI_NO_PROXY": os.environ.get("LARK_CLI_NO_PROXY", "1")}
-    cmd = [lark_cli]
+    command_prefix = [lark_cli]
     if _PROFILE:
-        cmd += ["--profile", _PROFILE]
+        command_prefix += ["--profile", _PROFILE]
     a = list(args)
     if "--as" in a:  # callers pass a default "--as bot"; honor the run-level identity instead
         i = a.index("--as")
         del a[i:i + 2]
-    cmd += [*a, "--as", _IDENTITY]
-    proc = subprocess.run(cmd, capture_output=True, text=True, env=env)
-    # reads emit JSON on stdout; some writes (record-upsert) emit it on stderr -> try both
-    for text in (proc.stdout, (proc.stdout or "") + (proc.stderr or "")):
-        try:
-            return json.loads(text[text.index("{"):])
-        except ValueError:
-            continue
-    return {"ok": False, "_raw": ((proc.stdout or "") + (proc.stderr or ""))[:200]}
+    a += ["--as", _IDENTITY]
+
+    def parse_output(stdout: str, stderr: str) -> dict:
+        # Reads emit JSON on stdout; some writes emit it on stderr. Keep the
+        # historical stdout-then-combined fallback while centralizing execution.
+        for text in (stdout, stdout + stderr):
+            if not text:
+                continue
+            try:
+                return json.loads(text[text.index("{"):])
+            except ValueError:
+                continue
+        return {"ok": False, "_raw": (stdout + stderr)[:200]}
+
+    return run_lark_cli_json(
+        cli_bin=lark_cli,
+        args=a,
+        repo_root=ROOT,
+        resolved_cli_command_parts=lambda _cli: command_prefix,
+        parse_json_payload=parse_output,
+        parse_process_output=parse_output,
+        environment=env,
+    )
 
 
 def _norm_select(raw_type: str, multiple: bool) -> str:

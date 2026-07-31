@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import json
+import os
 import unittest
 from pathlib import Path
 from unittest import mock
 
 from tools.feishu_record_transport import run_lark_cli_json
 from tools.queue_lark_ops import run_lark_cli_json as run_queue_lark_cli_json
+from tools import bitable_schema, spec_master_rebuild
 
 
 class FeishuRecordTransportTests(unittest.TestCase):
@@ -79,6 +81,42 @@ class FeishuRecordTransportTests(unittest.TestCase):
                 "command_failure_message": mock.ANY,
             },
             run.call_args.kwargs,
+        )
+
+    def test_bitable_schema_keeps_profile_and_identity_routing_at_wrapper(self) -> None:
+        with mock.patch.object(bitable_schema, "_PROFILE", "prod"), mock.patch.object(
+            bitable_schema, "_IDENTITY", "user"
+        ), mock.patch(
+            "tools.feishu_record_transport.run_lark_cli_json", return_value={"code": 0}
+        ) as run:
+            result = bitable_schema._lark(["base", "+table-list"], "lark-cli")
+
+        self.assertEqual({"code": 0}, result)
+        self.assertEqual(
+            ["base", "+table-list", "--as", "user"],
+            run.call_args.kwargs["args"],
+        )
+        self.assertEqual(
+            ["lark-cli", "--profile", "prod"],
+            run.call_args.kwargs["resolved_cli_command_parts"]("ignored"),
+        )
+        self.assertEqual(
+            os.environ.get("LARK_CLI_NO_PROXY", "1"),
+            run.call_args.kwargs["environment"]["LARK_CLI_NO_PROXY"],
+        )
+
+    def test_spec_master_rebuild_delegates_base_command_to_shared_transport(self) -> None:
+        with mock.patch(
+            "tools.feishu_record_transport.run_lark_cli_json", return_value={"code": 0}
+        ) as run:
+            result = spec_master_rebuild._run_lark_base(
+                "lark-cli", ["+field-list", "--base-token", "secret"]
+            )
+
+        self.assertEqual({"code": 0}, result)
+        self.assertEqual(
+            ["base", "+field-list", "--base-token", "secret"],
+            run.call_args.kwargs["args"],
         )
 
 

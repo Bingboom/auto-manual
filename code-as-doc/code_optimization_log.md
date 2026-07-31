@@ -981,3 +981,16 @@ Why it mattered:
 
 - Queue runners no longer carry independent copies of the lowest-level `lark-cli` subprocess and response-validation mechanics, so the next K8 slices have one transport seam to extend without changing queue record semantics.
 - The first slice deliberately keeps retry policy and pagination unchanged; this is a behavior-preserving boundary move, not a new external-integration policy.
+
+## 62. 2026-07-31: Spec and Schema Callers Join the Feishu Transport (Workstream W / K8 slice 2)
+
+What changed:
+
+- Routed [`tools/spec_master_rebuild.py`](../tools/spec_master_rebuild.py)'s base commands through `feishu_record_transport`, preserving its temporary JSON payload cleanup, token redaction, and existing `_run_lark_base` seam.
+- Routed [`tools/bitable_schema.py`](../tools/bitable_schema.py)'s profile/identity-aware commands through the same transport, preserving its stdout/stderr response fallback and patchable `_lark` seam.
+- Added delegation tests for both callers. Retry/backoff, pagination, and snapshot locking remain separate slices; this PR does not change schema or source-record semantics.
+
+Why it mattered:
+
+- The queue, listener, spec-master, and schema workflows now share one lowest-level `lark-cli` subprocess and common response-validation boundary. Caller-specific routing and payload parsing remain at the wrappers where they belong.
+- Keeping the wrappers stable avoids breaking existing tests and operational scripts while making the remaining K8 policy changes a single transport-level change.

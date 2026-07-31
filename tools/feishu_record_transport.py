@@ -1,8 +1,8 @@
 """Shared lark-cli transport boundary for queue operations and F6 / F8.
 
-Queue and listener callers use :func:`run_lark_cli_json` for the subprocess and
-Feishu response boundary. F6 / F8 transports continue to wrap the proven
-`tools/sync_data.LarkCliSource` record primitives.
+Queue, listener, spec-master, and schema callers use :func:`run_lark_cli_json`
+for the subprocess and Feishu response boundary. F6 / F8 transports continue to
+wrap the proven `tools/sync_data.LarkCliSource` record primitives.
 
 Construct an F6 transport with a live `LarkCliSource`, e.g.::
 
@@ -22,17 +22,21 @@ from __future__ import annotations
 import json
 import subprocess
 from pathlib import Path
-from typing import Any, Callable, Protocol
+from typing import Any, Callable, Mapping, Protocol
 
 
-def _default_command_failure_message(cmd: list[str], stdout: str, stderr: str, returncode: int) -> str:
+def _default_command_failure_message(
+    cmd: list[str], stdout: str, stderr: str, returncode: int,
+    format_command: Callable[[list[str]], str] | None = None,
+) -> str:
     details = []
     if stdout:
         details.append(f"stdout={stdout.strip()}")
     if stderr:
         details.append(f"stderr={stderr.strip()}")
     suffix = "; " + "; ".join(details) if details else ""
-    return f"Lark CLI command failed with exit code {returncode}{suffix}"
+    command_text = format_command(cmd) if format_command is not None else " ".join(cmd)
+    return f"Lark CLI command failed with exit code {returncode}: {command_text}{suffix}"
 
 
 def run_lark_cli_json(
@@ -45,11 +49,14 @@ def run_lark_cli_json(
     format_command: Callable[[list[str]], str] | None = None,
     command_failure_message: Callable[[list[str], str, str, int], str] | None = None,
     on_command: Callable[[list[str]], None] | None = None,
+    environment: Mapping[str, str] | None = None,
+    parse_process_output: Callable[[str, str], dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Run one lark-cli JSON command for queue and listener callers.
 
-    Callers retain dependency injection for tests and command formatting, but the
-    subprocess execution and Feishu response validation live in this module.
+    Callers retain dependency injection for tests, command formatting, environment
+    routing, and dual-stream parsing, but subprocess execution and common Feishu
+    response validation live in this module.
     Retry/backoff and pagination remain separate K8 slices.
     """
     cmd = [*resolved_cli_command_parts(cli_bin), *args]
@@ -57,18 +64,28 @@ def run_lark_cli_json(
         on_command(cmd)
     elif format_command is not None:
         print(f"[build-queue] {format_command(cmd)}")
-    process = subprocess.run(
-        cmd,
-        cwd=str(repo_root),
-        check=False,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-    )
+    run_kwargs: dict[str, Any] = {
+        "cwd": str(repo_root),
+        "check": False,
+        "capture_output": True,
+        "text": True,
+        "encoding": "utf-8",
+    }
+    if environment is not None:
+        run_kwargs["env"] = dict(environment)
+    process = subprocess.run(cmd, **run_kwargs)
     if process.returncode:
-        failure = command_failure_message or _default_command_failure_message
-        raise RuntimeError(failure(cmd, process.stdout or "", process.stderr or "", process.returncode))
-    payload = parse_json_payload(process.stdout or process.stderr or "")
+        if command_failure_message is not None:
+            message = command_failure_message(cmd, process.stdout or "", process.stderr or "", process.returncode)
+        else:
+            message = _default_command_failure_message(
+                cmd, process.stdout or "", process.stderr or "", process.returncode, format_command
+            )
+        raise RuntimeError(message)
+    if parse_process_output is not None:
+        payload = parse_process_output(process.stdout or "", process.stderr or "")
+    else:
+        payload = parse_json_payload(process.stdout or process.stderr or "")
     code = payload.get("code")
     if code not in (None, 0):
         message = str(payload.get("msg") or payload.get("message") or "Lark CLI API request failed")
