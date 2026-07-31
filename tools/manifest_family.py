@@ -25,6 +25,7 @@ except ImportError as exc:  # pragma: no cover - dependency is in requirements
 
 
 SCHEMA_VERSION = "family-manifest-diff/v1"
+FAMILY_INDEX_SCHEMA_VERSION = "family-manifest-index/v1"
 
 
 class ManifestDiffError(ValueError):
@@ -244,6 +245,123 @@ def roundtrip_report(
     }
 
 
+def _resolve_root_path(raw: object, *, root: Path, label: str) -> Path:
+    if not isinstance(raw, str) or not raw.strip():
+        raise ManifestDiffError(f"{label} must be a non-empty path")
+    path = Path(raw.strip())
+    return path if path.is_absolute() else root / path
+
+
+def _load_json(path: Path) -> dict[str, Any]:
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except OSError as exc:
+        raise ManifestDiffError(f"cannot read diff {path}: {exc}") from exc
+    except json.JSONDecodeError as exc:
+        raise ManifestDiffError(f"invalid JSON in diff {path}: {exc}") from exc
+    if not isinstance(raw, dict):
+        raise ManifestDiffError(f"diff root must be a mapping: {path}")
+    return raw
+
+
+def _load_family_index(path: Path) -> dict[str, Any]:
+    try:
+        raw = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except OSError as exc:
+        raise ManifestDiffError(f"cannot read family index {path}: {exc}") from exc
+    except yaml.YAMLError as exc:
+        raise ManifestDiffError(f"invalid YAML in family index {path}: {exc}") from exc
+    if not isinstance(raw, dict) or raw.get("schema_version") != FAMILY_INDEX_SCHEMA_VERSION:
+        raise ManifestDiffError(
+            f"family index must use {FAMILY_INDEX_SCHEMA_VERSION}: {path}"
+        )
+    anchors = raw.get("anchors")
+    entries = raw.get("entries")
+    if not isinstance(anchors, list) or not all(isinstance(item, str) for item in anchors):
+        raise ManifestDiffError("family index anchors must be a list of paths")
+    if not isinstance(entries, list) or not all(isinstance(item, dict) for item in entries):
+        raise ManifestDiffError("family index entries must be a list of mappings")
+    return raw
+
+
+def fold_repository(
+    root: Path, index_path: Path, *, write: bool = False
+) -> dict[str, Any]:
+    """Validate all indexed manifests against their family diff carriers.
+
+    ``write`` only creates/refreshes JSON carrier files. It never edits a YAML
+    manifest. The generated target is always compared with the existing YAML
+    golden before the result is reported as a pass.
+    """
+
+    root = root.resolve()
+    index = _load_family_index(index_path)
+    anchors = {
+        _resolve_root_path(item, root=root, label="anchor")
+        for item in index["anchors"]
+    }
+    entries = index["entries"]
+    indexed_targets: set[Path] = set()
+    checks: list[dict[str, Any]] = []
+    errors: list[str] = []
+
+    for entry in entries:
+        try:
+            base_path = _resolve_root_path(entry.get("base"), root=root, label="entry.base")
+            target_path = _resolve_root_path(
+                entry.get("manifest"), root=root, label="entry.manifest"
+            )
+            diff_path = _resolve_root_path(entry.get("diff"), root=root, label="entry.diff")
+            if target_path in indexed_targets:
+                raise ManifestDiffError(f"duplicate indexed target: {target_path}")
+            indexed_targets.add(target_path)
+            base = load_manifest(base_path)
+            target = load_manifest(target_path)
+            if write:
+                diff = build_manifest_diff(base, target)
+                _write_json(diff, diff_path)
+            else:
+                diff = _load_json(diff_path)
+            rebuilt = apply_manifest_diff(base, diff)
+            identical = canonical_manifest_bytes(rebuilt) == canonical_manifest_bytes(target)
+            if not identical:
+                raise ManifestDiffError("rebuilt manifest differs from YAML golden")
+            checks.append(
+                {
+                    "family_id": entry.get("family_id"),
+                    "manifest": target_path.relative_to(root).as_posix(),
+                    "base": base_path.relative_to(root).as_posix(),
+                    "diff": diff_path.relative_to(root).as_posix(),
+                    "operation_count": len(diff.get("operations", [])),
+                    "byte_identical": identical,
+                }
+            )
+        except (ManifestDiffError, OSError, ValueError) as exc:
+            errors.append(str(exc))
+
+    manifest_glob = index.get("manifest_glob", "docs/manifests/*.yaml")
+    actual_manifests = {
+        path.resolve() for path in root.glob(str(manifest_glob)) if path.is_file()
+    }
+    expected_manifests = anchors | indexed_targets
+    for missing in sorted(expected_manifests - actual_manifests):
+        errors.append(f"indexed manifest is missing: {missing}")
+    for orphan in sorted(actual_manifests - expected_manifests):
+        errors.append(f"manifest is not in the family index: {orphan}")
+
+    return {
+        "schema_version": "family-manifest-fold/v1",
+        "index": index_path.resolve().relative_to(root).as_posix(),
+        "manifest_count": len(actual_manifests),
+        "anchor_count": len(anchors),
+        "folded_count": len(checks),
+        "checks": checks,
+        "errors": errors,
+        "passed": not errors and len(actual_manifests) == len(expected_manifests),
+        "write": write,
+    }
+
+
 def _write_json(payload: dict[str, Any], output: Path | None) -> None:
     text = json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     if output is None:
@@ -269,8 +387,28 @@ def main(argv: list[str] | None = None) -> int:
     roundtrip_parser.add_argument("--target", type=Path, required=True)
     roundtrip_parser.add_argument("--diff", type=Path)
 
+    fold_parser = subparsers.add_parser(
+        "fold", help="validate indexed manifests against family diff carriers"
+    )
+    fold_parser.add_argument("--root", type=Path, default=Path.cwd())
+    fold_parser.add_argument(
+        "--index", type=Path, default=Path("docs/manifests/family/index.yaml")
+    )
+    fold_parser.add_argument(
+        "--write",
+        action="store_true",
+        help="write deterministic diff carriers; YAML manifests remain untouched",
+    )
+
     args = parser.parse_args(argv)
     try:
+        if args.command == "fold":
+            root = args.root.resolve()
+            index = args.index if args.index.is_absolute() else root / args.index
+            report = fold_repository(root, index, write=args.write)
+            print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))
+            return 0 if report["passed"] else 1
+
         base = load_manifest(args.base)
         target = load_manifest(args.target)
         if args.command == "diff":

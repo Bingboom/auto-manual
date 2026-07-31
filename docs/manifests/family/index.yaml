@@ -1,0 +1,66 @@
+schema_version: family-manifest-index/v1
+manifest_glob: docs/manifests/*.yaml
+anchors:
+  - docs/manifests/manual_us-single-en.yaml
+  - docs/manifests/manual_eu-single-de.yaml
+entries:
+  - family_id: us-single
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_us-single-fr.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_us-single-fr.json
+  - family_id: us-single
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_us-single-es.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_us-single-es.json
+  - family_id: eu-single
+    base: docs/manifests/manual_eu-single-de.yaml
+    manifest: docs/manifests/manual_eu-single-es.yaml
+    diff: docs/manifests/family/diffs/manual_eu-single-de__manual_eu-single-es.json
+  - family_id: eu-single
+    base: docs/manifests/manual_eu-single-de.yaml
+    manifest: docs/manifests/manual_eu-single-fr.yaml
+    diff: docs/manifests/family/diffs/manual_eu-single-de__manual_eu-single-fr.json
+  - family_id: eu-single
+    base: docs/manifests/manual_eu-single-de.yaml
+    manifest: docs/manifests/manual_eu-single-it.yaml
+    diff: docs/manifests/family/diffs/manual_eu-single-de__manual_eu-single-it.json
+  - family_id: eu-single
+    base: docs/manifests/manual_eu-single-de.yaml
+    manifest: docs/manifests/manual_eu-single-uk.yaml
+    diff: docs/manifests/family/diffs/manual_eu-single-de__manual_eu-single-uk.json
+  - family_id: au-en
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_au-en.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_au-en.json
+  - family_id: eu-en
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_eu-en.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_eu-en.json
+  - family_id: eu-multilang
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_eu.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_eu.json
+  - family_id: jp
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_jp.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_jp.json
+  - family_id: kr
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_kr.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_kr.json
+  - family_id: pt-br
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_pt-br.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_pt-br.json
+  - family_id: us-en
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_us-en.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_us-en.json
+  - family_id: us-multilang
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_us.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_us.json
+  - family_id: zh
+    base: docs/manifests/manual_us-single-en.yaml
+    manifest: docs/manifests/manual_zh.yaml
+    diff: docs/manifests/family/diffs/manual_us-single-en__manual_zh.json

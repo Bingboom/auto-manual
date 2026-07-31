@@ -1,0 +1,132 @@
+{
+  "base_manifest_id": "manual_us_single_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_eu_en"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_shared/en/00_preface.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_eu-en/safety_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/en/01_user_maintenance_instructions.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "symbols",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_shared/en/02_whats_in_the_box.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "en"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/eu-en/03_product_overview.yaml",
+          "template": "templates/page_eu-en/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "lcd_icons",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "en"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/eu-en/05_operation_guide.yaml",
+          "template": "templates/page_eu-en/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "file": "templates/page_shared/en/06_ups_mode.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/en/charging.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/en/08_charging_methods.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/en/09_storage_and_maintenance.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "troubleshooting",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "spec",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_shared/en/11_warranty.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "en"
+          ],
+          "page": "12_app_setup",
+          "recipe": "templates/recipes/eu-shared-en/12_app_setup.yaml",
+          "template": "templates/page_shared/en/12_app_setup_placeholder.rst",
+          "type": "generated_page"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_eu_en"
+}
