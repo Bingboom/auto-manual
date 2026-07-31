@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from .. import page_objects as _po
+from ..line_metrics import estimated_text_width
 from ..params import param_pt
 from ..primitives import cell, component_table, psr, wrap_table_paragraph
 from .base import RenderContext
@@ -23,7 +24,17 @@ def render_emphasispill(
     size = param_pt(ctx.params, "idml_charging_emphasis_font_size", 6.6)
     height = max(14.2, param_pt(ctx.params, "comp_subbar_height", 13.89))
     width_factor = 0.50 if len(text) > 55 else 0.44
-    width = min(body_w, max(96.0, len(text) * size * width_factor + 16.0))
+    width = min(
+        body_w,
+        max(
+            96.0,
+            estimated_text_width(
+                text,
+                point_size=size,
+                narrow_width_ratio=width_factor,
+            ) + 16.0,
+        ),
+    )
     content = psr("HB Emphasis Pill", text, terminal=True)
     if ctx.add_story is None:
         table = component_table(

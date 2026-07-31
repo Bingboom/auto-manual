@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import json
-import math
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -15,6 +14,7 @@ from . import params as _params
 from . import primitives as _prim
 from . import styles as _styles
 from .font_family import PRIMARY_FONT_FAMILY_TOKEN
+from .line_metrics import estimated_line_count
 from .params import IDPKG
 from .primitives import _ATTR_ENTITIES
 
@@ -256,8 +256,12 @@ class _FlowIdmlWriter:
     def _estimate_text(self, style_key: str, text: str) -> float:
         size, leading = _style_metrics(style_key)
         width = max(80.0, self.page_w - self.m_l - self.m_r)
-        per_line = max(24, int(width / (0.52 * size)))
-        return max(1, math.ceil(max(1, len(text)) / per_line)) * leading
+        return estimated_line_count(
+            text,
+            width,
+            point_size=size,
+            minimum_narrow_chars=24,
+        ) * leading
 
     def _render_image_table(self, rows: list[list], *, tid: str,
                             terminal: bool) -> tuple[str, float]:
@@ -320,8 +324,12 @@ class _FlowIdmlWriter:
         total = 0.0
         for para in paragraphs:
             size, leading = _style_metrics(para.style_key)
-            chars_per_line = max(24, int(width / (0.52 * size)))
-            lines = max(1, math.ceil(max(1, len(para.text)) / chars_per_line))
+            lines = estimated_line_count(
+                para.text,
+                width,
+                point_size=size,
+                minimum_narrow_chars=24,
+            )
             total += lines * leading
         return max(_package.frame_height(self) * 0.6, total)
 

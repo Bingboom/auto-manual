@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import re
 
+from .line_metrics import estimated_text_width
 from .params import param_pt
 
 CAPSULE_OBJECT_STYLE = "ObjectStyle/HB Capsule Heading"
@@ -586,10 +587,14 @@ def h1_pill_paragraph(writer, text: str, width: float,
         )
     size = param_pt(writer.params, "type_h1_font_size", 9.0)
     avail = width - 11.0  # left/right insets
-    est_w = len(text) * size * 0.62
+    est_w = estimated_text_width(
+        text,
+        point_size=size,
+        narrow_width_ratio=0.62,
+    )
     point_size = None
-    if est_w > avail and len(text) > 0:
-        point_size = max(7.0, avail / (len(text) * 0.62))
+    if est_w > avail and est_w > 0:
+        point_size = max(7.0, size * avail / est_w)
     sid = f"st_anchor_h1pill_{len(writer.stories)}"
     title_xml = heading_text(writer, text, level=1, point_size=point_size)
     title_xml = title_xml.replace(

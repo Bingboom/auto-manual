@@ -1,6 +1,7 @@
 """FCC two-panel component (componentization P2)."""
 from __future__ import annotations
 
+from ..line_metrics import estimated_line_count
 from ..primitives import cell, component_table, image_cell_content, psr, wrap_table_paragraph
 from .base import RenderContext, figure_paragraph
 
@@ -27,6 +28,16 @@ def render_fcc(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
              fill="Color/HB Bg K05", stroke=False),
     ]
     table = component_table(tid, cols, cells, role="layout")
-    per_line = max(20, int(body_w / 2 / (0.52 * 6.2)))
-    lines = max((len(t) + per_line - 1) // per_line for t in texts) if texts else 1
+    lines = max(
+        (
+            estimated_line_count(
+                text,
+                body_w / 2,
+                point_size=6.2,
+                minimum_narrow_chars=20,
+            )
+            for text in texts
+        ),
+        default=1,
+    )
     return wrap_table_paragraph(table, terminal, span_columns), 7.5 * lines + 30

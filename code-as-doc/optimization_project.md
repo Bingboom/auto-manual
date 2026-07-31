@@ -774,6 +774,14 @@ bytes; EN/FR golden packages remain byte-identical, while JA/KO golden diffs
 are confined to localized Story XML. Layout parameters and approved reference
 contracts remain unchanged.
 
+Execution note: Stage 5 item 11 replaces duplicated Latin-only line estimates
+with the deterministic `tools/idml/line_metrics.py` contract. Existing narrow
+glyph ratios and integer capacities remain stable; East Asian Width `W`/`F`
+characters consume one em, combining marks consume zero width, and ambiguous
+characters stay narrow. EN/FR/JA/KO golden packages remain byte-identical,
+while direct story-budget tests prove equal-count CJK copy receives the larger
+allocation it needs.
+
 Exit criteria: the plan's §2 metrics on the dashboard — a new output language lands with zero Python edits (fake-lang proof), CI check coverage counted as PASS/(PASS+SKIP+FAIL) with a SKIP ratchet, contract recovery after a shared layout change = one command + one approval, hand-written artifact residue ratchets falling, and the next real product line onboarded in ≤2 operator-days.
 
 ## 8. Recommended Order

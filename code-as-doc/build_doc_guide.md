@@ -1162,7 +1162,12 @@ Unicode MS fallback, so the font resource and handoff manifest do not change
 for Latin-only targets. This token is intentionally outside
 `data/layout_params.csv`: changing it is a font-delivery decision, not a page
 geometry change, and does not by itself require a reference layout rebind.
-East-Asian-width-aware line fitting is governed separately.
+Line and coarse text-width budgeting is governed by
+`tools/idml/line_metrics.py`: the existing per-component narrow-glyph ratios
+remain stable, East Asian Width `W`/`F` characters consume one em, combining
+marks consume no width, and ambiguous-width characters remain narrow for
+cross-host determinism. The estimator does not load local font files and does
+not replace native InDesign finalize/parity checks.
 
 On the publish queue path (`Workflow_action = Publish`), the worker runs the
 idml step with `--idml-mode both` and then packages the export into one

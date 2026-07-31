@@ -106,6 +106,13 @@ Install that font before opening the handoff package. This font token is not a
 layout parameter, so it does not require a reference layout rebind when page
 geometry and content bindings are unchanged.
 
+The exporter also budgets Japanese, Korean, and Chinese wrapping by Unicode
+East Asian Width instead of treating every character as a 0.52-em Latin
+glyph. Fullwidth characters receive a full-em budget while ambiguous-width
+characters stay narrow so CI and the design Mac agree. This reduces late
+overset surprises, but it is still a deterministic estimate: the designer
+must complete native InDesign preflight and page parity before release.
+
 The production Meaning of Symbols page also remains editable. Its WARNING,
 CAUTION, NOTE, and TIP badges use a linked white warning icon plus ordinary
 InDesign label text, rather than a flattened language-specific badge image.

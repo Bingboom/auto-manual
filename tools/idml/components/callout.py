@@ -12,8 +12,18 @@ from ..primitives import (
 )
 from ..params import param_pt
 from ..character_metrics import fit_tail_label_xml, with_character_baseline_shift
+from ..line_metrics import estimated_line_count
 from .base import RenderContext, figure_paragraph
 from .warning_lead import rounded_warninglead
+
+
+def _line_total(texts: list[str], measure: float, size: float, minimum: int) -> int:
+    return sum(
+        estimated_line_count(
+            text, measure, point_size=size, minimum_narrow_chars=minimum,
+        )
+        for text in texts
+    ) or 1
 
 
 def _warning_icon_asset(ctx: RenderContext) -> Path:
@@ -39,14 +49,7 @@ def render_safetyinstruction(
     span_columns: bool = True,
     measure_w: float | None = None,
 ) -> tuple[str, float]:
-    """Render the compact top-of-page safety instruction lockup.
-
-    This is deliberately distinct from ``safetywarning``: the approved
-    instruction uses a solid dark triangle and heavy display copy, while a
-    standard warning uses the outlined symbol plus warning prose typography.
-    Keeping the roles separate mirrors ``HBSafetyInstruction`` in the LaTeX
-    renderer and prevents one component tune from regressing the other.
-    """
+    """Render the solid-icon safety lockup, distinct from safetywarning."""
     body_w = measure_w or ctx.text_measure
     icon_asset = _safety_instruction_icon_asset(ctx)
     icon = ""
@@ -131,8 +134,7 @@ def render_warninglead(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
              top=4, bottom=4, left=5, right=4),
     ]
     table = component_table(tid, cols, cells, role="warning")
-    per_line = max(12, int((body_w - icon_w) / (0.52 * 6.6)))
-    lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
+    lines = _line_total(texts, body_w - icon_w, 6.6, 12)
     return wrap_table_paragraph(table, terminal, span_columns), max(36.0, 7.4 * (lines + 1) + 10)
 
 
@@ -171,8 +173,7 @@ def render_tailwarnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bo
              valign="CenterAlign"),
     ]
     table = component_table(tid, cols, cells, role="warning")
-    per_line = max(20, int((body_w - icon_w - label_w) / (0.52 * 6.2)))
-    lines = max(1, (len(body) + per_line - 1) // per_line)
+    lines = _line_total([body], body_w - icon_w - label_w, 6.2, 20)
     return wrap_table_paragraph(table, terminal, span_columns), max(30.0, 7.5 * lines + 8)
 
 
@@ -195,6 +196,5 @@ def render_warnbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         cell(f"{tid}c1", "1:0", right),
     ]
     table = component_table(tid, cols, cells, role="warning")
-    per_line = max(20, int((body_w - 36.0) / (0.52 * 6.6)))
-    lines = sum(max(1, (len(t) + per_line - 1) // per_line) for t in texts) or 1
+    lines = _line_total(texts, body_w - 36.0, 6.6, 20)
     return wrap_table_paragraph(table, terminal, span_columns), max(34.0, 7.4 * (lines + 1) + 12)

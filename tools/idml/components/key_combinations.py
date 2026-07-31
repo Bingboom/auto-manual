@@ -8,7 +8,7 @@ and function remains movable and editable in InDesign.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from math import ceil, isfinite
+from math import isfinite
 from pathlib import Path
 import re
 import unicodedata
@@ -17,6 +17,7 @@ from ..language_contract import governed_languages
 from .. import page_objects
 from ..character_metrics import with_character_baseline_shift
 from ..params import component_param_pt
+from ..line_metrics import estimated_line_count
 from ..primitives import psr
 from .base import RenderContext
 from .oppanel import (
@@ -319,27 +320,13 @@ def _duration(text: object) -> str:
 
 def _line_count(text: str, width: float, *, size: float) -> int:
     """Conservative glyph-width estimate tuned to the compact 5-6pt copy."""
-    chars_per_line = max(12, int(width / (size * 0.48)))
-    legacy_estimate = max(1, (len(text) + chars_per_line - 1) // chars_per_line)
-    glyph_estimate = sum(
-        max(
-            1,
-            ceil(
-                sum(
-                    0.0
-                    if unicodedata.combining(char)
-                    else 1.0
-                    if unicodedata.east_asian_width(char) in {"W", "F"}
-                    else 0.48
-                    for char in line.strip()
-                )
-                * size
-                / max(1.0, width)
-            ),
-        )
-        for line in text.splitlines() or [""]
+    return estimated_line_count(
+        text,
+        width,
+        point_size=size,
+        narrow_width_ratio=0.48,
+        minimum_narrow_chars=12,
     )
-    return max(legacy_estimate, glyph_estimate)
 
 
 def _resolve_panel_assets(
