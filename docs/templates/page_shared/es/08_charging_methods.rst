@@ -1,14 +1,14 @@
 CARGA MEDIANTE PANELES SOLARES (SE VENDEN POR SEPARADO)
 -------------------------------------------------------
 
-|PRODUCT_NAME| cuenta con dos puertos de entrada DC8020 y es compatible con los paneles solares de Jackery.
+|PRODUCT_NAME| cuenta con dos puertos de entrada |DC_INPUT_CONNECTOR| y es compatible con los paneles solares de Jackery.
 
 .. image:: asset:charging/solar_direct
    :alt: Diagrama de conexión para carga solar 1.
    :width: 360px
 
 
-Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 al mismo tiempo, consulte la figura siguiente para la carga mediante el conector de panel solar (se vende por separado y no se incluye de serie).
+Si se necesita conectar dos paneles solares a un solo puerto de entrada |DC_INPUT_CONNECTOR| al mismo tiempo, consulte la figura siguiente para la carga mediante el conector de panel solar (se vende por separado y no se incluye de serie).
 
 .. image:: asset:charging/solar_adapter
    :alt: Diagrama de conexión para carga solar 2.
@@ -20,7 +20,7 @@ Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 a
    :widths: 12 88
 
    * - **PRECAUCIÓN**
-     - Un puerto de entrada DC8020 puede conectarse como máximo a dos paneles solares.
+     - Un puerto de entrada |DC_INPUT_CONNECTOR| puede conectarse como máximo a dos paneles solares.
 
 .. list-table::
    :header-rows: 0
@@ -29,7 +29,7 @@ Si se necesita conectar dos paneles solares a un solo puerto de entrada DC8020 a
    * - **PRECAUCIÓN**
      - Asegúrese de que el voltaje de entrada para ambos puertos de entrada de CC sea el mismo. De lo contrario, podría dañar el producto. Por ejemplo:
 
-       - Utilizar paneles solares Jackery del mismo modelo y la misma cantidad de paneles al conectar paneles solares a ambos puertos de entrada DC8020.
+       - Utilizar paneles solares Jackery del mismo modelo y la misma cantidad de paneles al conectar paneles solares a ambos puertos de entrada |DC_INPUT_CONNECTOR|.
        - No cargue el producto utilizando simultáneamente un cargador de vehículo y un panel solar. Esto puede fundir el fusible del vehículo o provocar un fallo de carga.
 
 

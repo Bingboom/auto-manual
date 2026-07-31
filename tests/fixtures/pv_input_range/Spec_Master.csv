@@ -1,3 +1,7 @@
 document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Line_order,Value_source,Model,Source_lang,Row_label_ko,Value_ko
 JE-1500D_pt-BR,pt-BR,TRUE,charging_methods,INPUT PORTS,2,3,pv_input_range,value,Faixa de entrada FV,1,16V-60V,JE-1500D,pt-BR,,
 JE-1000F_KR,KR,TRUE,charging_methods,INPUT PORTS,2,3,pv_input_range,value,PV 입력 범위,1,16V-60V,JE-1000F,ko,PV 입력 범위,16V-60V
+JE-1500D_pt-BR,pt-BR,TRUE,charging_methods,INPUT PORTS,2,4,dc_input_connector,value,Conector de entrada CC,1,DC8020,JE-1500D,pt-BR,,
+JE-1500D_pt-BR,pt-BR,TRUE,ups_mode,OUTPUT PORTS,3,2,ups_transfer_time,value,Tempo de transferência UPS,1,10 ms,JE-1500D,pt-BR,,
+JE-1000F_KR,KR,TRUE,charging_methods,INPUT PORTS,2,4,dc_input_connector,value,DC 입력 커넥터,1,DC8020,JE-1000F,ko,DC 입력 커넥터,DC8020
+JE-1000F_KR,KR,TRUE,ups_mode,OUTPUT PORTS,3,2,ups_transfer_time,value,UPS 전환 시간,1,10 ms,JE-1000F,ko,UPS 전환 시간,10 ms

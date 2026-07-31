@@ -1,13 +1,13 @@
 CHARGEMENT PAR PANNEAUX SOLAIRES (Vendu séparément)
 ---------------------------------------------------
 
-Le |PRODUCT_NAME| dispose de deux ports d’entrée DC8020 et est compatible avec les panneaux solaires de Jackery.
+Le |PRODUCT_NAME| dispose de deux ports d’entrée |DC_INPUT_CONNECTOR| et est compatible avec les panneaux solaires de Jackery.
 
 .. image:: asset:charging/solar_direct
    :alt: Schéma de connexion pour la charge solaire 1.
    :width: 360px
 
-Si un seul port d’entrée DC8020 doit être connecté à deux panneaux solaires simultanément, veuillez vous référer au schéma ci-dessous pour le branchement via le connecteur de panneau solaire (vendu séparément, non inclus en standard).
+Si un seul port d’entrée |DC_INPUT_CONNECTOR| doit être connecté à deux panneaux solaires simultanément, veuillez vous référer au schéma ci-dessous pour le branchement via le connecteur de panneau solaire (vendu séparément, non inclus en standard).
 
 
 .. image:: asset:charging/solar_adapter
@@ -19,7 +19,7 @@ Si un seul port d’entrée DC8020 doit être connecté à deux panneaux solaire
    :widths: 12 88
 
    * - **ATTENTION**
-     - Un port d’entrée DC8020 peut être connecté à un maximum de deux panneaux solaires.
+     - Un port d’entrée |DC_INPUT_CONNECTOR| peut être connecté à un maximum de deux panneaux solaires.
 
 .. list-table::
    :header-rows: 0
@@ -28,7 +28,7 @@ Si un seul port d’entrée DC8020 doit être connecté à deux panneaux solaire
    * - **ATTENTION**
      - Assurez-vous que la tension d’entrée pour les deux ports d’entrée CC est la même. Sinon, le produit pourrait être endommagé. Par exemple:
 
-       - Utiliser le même modèle de panneaux solaires Jackery et le même nombre de panneaux lors de la connexion des panneaux solaires aux deux ports d’entrée DC8020.
+       - Utiliser le même modèle de panneaux solaires Jackery et le même nombre de panneaux lors de la connexion des panneaux solaires aux deux ports d’entrée |DC_INPUT_CONNECTOR|.
        - Ne chargez pas le produit à la fois avec un chargeur de voiture et un panneau solaire simultanément. Cela pourrait faire sauter le fusible de la voiture ou entraîner un échec de la charge.
 
 

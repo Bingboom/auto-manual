@@ -1230,3 +1230,22 @@ Why it mattered:
   editable template copies.
 - Missing target data now fails closed. The repo slice writes no production
   Base row; F6 seed and diff-report evidence remain an explicit operator gate.
+
+## 75. 2026-07-31: Connector and UPS Timing Move to Page Values (Workstream W / Stage 5 item 5a)
+
+What changed:
+
+- Replaced four literal `DC8020` connector spans in each of eight shared
+  charging-method templates with `|DC_INPUT_CONNECTOR|`.
+- Replaced the positive UPS transfer time in each shared-language UPS template
+  with `|UPS_TRANSFER_TIME|`; the separate zero-millisecond incompatibility
+  cautions remain authored prose.
+- Added semantic fixture rows, charging/UPS page contracts, and sixteen
+  pre-migration SHA-256 characterization locks.
+
+Why it mattered:
+
+- Model-specific connector and transfer-time changes now have one structured
+  source per target instead of repeated prose edits across eight languages.
+- Missing target data fails closed while rendered RST remains byte-identical.
+  Production Base seed and diff-report evidence remain an F6 operator gate.

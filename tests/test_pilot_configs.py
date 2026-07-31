@@ -366,8 +366,13 @@ class TestPilotConfigs(unittest.TestCase):
         text = (ROOT / "docs" / "templates" / "page_shared" / "en" / "08_charging_methods.rst").read_text(
             encoding="utf-8"
         )
-        intro = "|PRODUCT_NAME| has two DC8020 input ports and is compatible with the Jackery solar panels."
-        adapter_intro = "If one DC8020 input port needs to connect two solar panels simultaneously"
+        intro = (
+            "|PRODUCT_NAME| has two |DC_INPUT_CONNECTOR| input ports and is compatible with the "
+            "Jackery solar panels."
+        )
+        adapter_intro = (
+            "If one |DC_INPUT_CONNECTOR| input port needs to connect two solar panels simultaneously"
+        )
 
         self.assertLess(text.index(intro), text.index("asset:charging/solar_direct"))
         self.assertLess(text.index("asset:charging/solar_direct"), text.index(adapter_intro))

@@ -1,0 +1,18 @@
+page_id: 06_ups_mode
+source_files:
+  - templates/page_shared/en/06_ups_mode.rst
+  - templates/page_shared/fr/06_ups_mode.rst
+  - templates/page_shared/es/06_ups_mode.rst
+  - templates/page_shared/pt-BR/06_ups_mode.rst
+  - templates/page_shared/de/06_ups_mode.rst
+  - templates/page_shared/it/06_ups_mode.rst
+  - templates/page_shared/uk/06_ups_mode.rst
+  - templates/page_shared/ko/06_ups_mode.rst
+required_placeholders:
+  default:
+    - UPS_TRANSFER_TIME
+required_page_values:
+  default:
+    - row_key: ups_transfer_time
+      pages: [ups_mode]
+      usage_type: page_value
