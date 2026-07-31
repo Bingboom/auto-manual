@@ -1105,3 +1105,24 @@ Why it mattered:
   the exact missing assembly decision.
 - The change adds no model/region/language predicate and does not alter existing
   content, geometry, composition, or golden IDML bytes.
+
+## 69. 2026-07-31: Release CSV Exposes Native Layout Signals (Workstream W / Stage 4a item 15)
+
+What changed:
+
+- Audited the roadmap item against current `main` and confirmed that PR #723
+  already records native page and overset counts in release JSON under
+  `indesign_package.preflight`; no duplicate top-level schema was added.
+- Added `indesign_preflight_page_count` and
+  `indesign_preflight_overset_stories` to the flat release CSV so dashboards
+  can consume the same two signals without decoding nested JSON.
+- Preserved an explicit empty overset list as `0`, while a legacy/partial
+  finalize report with no overset field now remains unknown (`null` in the
+  summary and blank in CSV) instead of looking clean.
+
+Why it mattered:
+
+- Release automation can trend page drift and overset counts directly from its
+  scalar carrier, while JSON and CSV still share one collector authority.
+- “No native evidence” is no longer conflated with “native preflight verified
+  zero oversets”; the change adds observability without adding a release gate.

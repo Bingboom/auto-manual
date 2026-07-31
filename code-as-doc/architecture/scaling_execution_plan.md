@@ -121,7 +121,7 @@
 12. [S] `feat(finalize): JSX batch loop` — 外层循环+try/catch 隔离；〔操作者验收〕设计机 2-doc 实测。
 13. [M] `refactor(idml): contract-driven app page ownership` — Done（机器）：批准契约的 `app_add_device.page_owners` 同时驱动隐藏资产冻结和排版；退役 `is_je1000f_us_*` 模式，guardrail 正则防再生。
 14. [M] `refactor(idml): explicit page-role table + assembly coverage WARNING` — Done（机器）：当前模板页由一个 target-neutral 语义表显式覆盖；未知页保持 prose fallback，同时稳定告警 source ref，现有 golden IDML 不变。
-15. [S] `feat(release): layout signals in release manifest`（overset 数/页数入 manifest——发布链版式信号从零到有）
+15. [S] `feat(release): layout signals in release manifest` — Done（机器）：#723 已把 native page/overset 数写入 `indesign_package.preflight`；本项补齐 release CSV/dashboard 两个数值列，并区分未报告与显式 `0`。
 16. [M] `feat(release): E1-PR1 freeze publish snapshot + manifest binding`
 17. [M] `feat(release): E1-PR2 rebuild equivalence end-to-end`
 18. [M] `feat(ci): nightly-render workflow` — doctor 循环+试点 IDML smoke（#720 类事故发现延迟上界→1 天）；〔操作者验收〕手触一轮。

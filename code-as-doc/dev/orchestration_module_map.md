@@ -163,6 +163,9 @@ Quality and release logic should follow concern-specific modules instead of drif
   - release-manifest CLI facade
 - [`tools/release_manifest_service.py`](../../tools/release_manifest_service.py)
   - release traceability assembly
+- [`tools/release_indesign_package.py`](../../tools/release_indesign_package.py)
+  - InDesign package lineage plus native preflight layout signals; JSON owns
+    the nested record and release CSV receives the flattened page/overset counts
 
 ## 5. Document Link Queue Modules
 

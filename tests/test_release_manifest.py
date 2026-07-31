@@ -1,5 +1,6 @@
 ﻿from __future__ import annotations
 
+import csv
 import hashlib
 import json
 import tempfile
@@ -22,11 +23,25 @@ class TestReleaseManifest(unittest.TestCase):
             (build_root / "word").mkdir(parents=True)
             (build_root / "pdf").mkdir(parents=True)
             (build_root / "md").mkdir(parents=True)
+            (build_root / "idml").mkdir(parents=True)
             (docs_dir / "_review" / "JE-1000F" / "US" / "en").mkdir(parents=True)
             (build_root / "html" / "index.html").write_text("html\n", encoding="utf-8")
             (build_root / "word" / "manual_je1000f_us.docx").write_text("docx\n", encoding="utf-8")
             (build_root / "pdf" / "manual_je1000f_us.pdf").write_text("pdf\n", encoding="utf-8")
             (build_root / "md" / "manual_je1000f_us.md").write_text("# Manual\n", encoding="utf-8")
+            (build_root / "idml" / "manual_je1000f_us.idml").write_text(
+                "idml\n", encoding="utf-8"
+            )
+            (build_root / "idml" / "finalize_report.json").write_text(
+                json.dumps({
+                    "success": True,
+                    "page_count": 42,
+                    "overset_stories": [],
+                    "missing_fonts": [],
+                    "bad_links": [],
+                }),
+                encoding="utf-8",
+            )
 
             data_dir = root / "data" / "phase2"
             data_dir.mkdir(parents=True)
@@ -108,6 +123,14 @@ class TestReleaseManifest(unittest.TestCase):
                 hashlib.sha256((build_root / "md" / "manual_je1000f_us.md").read_bytes()).hexdigest(),
                 manifest["md_output"]["sha256"],
             )
+            self.assertEqual(42, manifest["indesign_package"]["preflight"]["page_count"])
+            self.assertEqual(
+                0, manifest["indesign_package"]["preflight"]["overset_stories"]
+            )
+            with csv_path.open(encoding="utf-8", newline="") as handle:
+                csv_row = next(csv.DictReader(handle))
+            self.assertEqual("42", csv_row["indesign_preflight_page_count"])
+            self.assertEqual("0", csv_row["indesign_preflight_overset_stories"])
 
     def test_build_release_manifest_should_honor_data_root_override(self) -> None:
         with tempfile.TemporaryDirectory() as td:
