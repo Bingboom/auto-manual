@@ -56,7 +56,6 @@ tools/queue_query_languages.py	dict	br,de,en,es,fr,it,ja,ko,pt-BR,pt-br,pt_br,uk
 tools/queue_query_languages.py	set	br,pt-br,pt_br	85a253c63c8f0a0a
 tools/revision_ledger.py	set	de,en,es,fr,it,ja,ko,pt-BR,pt-br,uk,zh	d90ad7b20e43d616
 tools/schema_drift.py	tuple	en,ko	902ba9f273bd90da
-tools/target_defaults.py	dict	en,es,fr	4c6983ccbfbba78e
 tools/translation_memory.py	dict	de,en,es,fr,it,ja,jp,uk,zh	ea755d58a91a0340
 tools/translation_memory.py	dict	en,es,fr	d7f4dc91f6402a5c
 tools/translation_memory.py	dict	en,es,fr,ja	abdc53698c06d085
