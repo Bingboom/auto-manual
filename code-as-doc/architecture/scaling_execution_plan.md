@@ -140,7 +140,7 @@
 1. [S] `feat(idml): skipped_raw strict gate`（approved-reference 线超基线即败）
 2. [S] `feat(idml): unknown-language fail-closed in strict`
 3. [M] `feat(manifest): family-level capability annotations` — JP/KR/EU 吃到装配期选页;全 bundle 取证入 body。
-4. [M] `feat(templates): PV input range placeholder-ize (a:模板+fixtures)` — '16V-60V' 烧死在 8 语言拷贝里,安全电气参数;机器验收=fixtures 数据根构建逐字节不变;〔操作者步骤〕生产表 seed(F6)后 diff-report 取证。
+4. [x] [M] `feat(templates): PV input range placeholder-ize (a:模板+fixtures)` — '16V-60V' 烧死在 8 语言拷贝里,安全电气参数;机器验收=fixtures 数据根构建逐字节不变。Done：`pv_input_range/value` 语义行驱动 `PV_INPUT_RANGE`，8 语言解析后 SHA-256 与迁移前一致，US/EU 完整 fixture check 通过，pt-BR/KR 用专用最小 fixture 避免伪造全量覆盖；〔操作者步骤仍待 GATE〕生产表 seed(F6)后 diff-report 取证。
 5. [M] `feat(templates): DC8020/UPS-10ms placeholder-ize (a)` — 同模式。
 6. [x] [M] `refactor(copy): copy-key pilot 03_product_overview family`（us-es/fr/pt-br;eu 系 raw-LaTeX 页不动）
 7. [x] [M] `feat(review): structured propagation ledger --json` — 只读台账:每在途分支×每受影响文件,标 merge_params-safe/需人工;**不做自动应用**（`--from-ledger` 半自动消费移出本计划,列为 K15 设计交付后的操作者单独拍板项——批判环:预设计锁定风险）。Done：legacy 分支从 manifest 解目标；seed/current manifest 收窄影响面；占位行必须通过 reviewer 同行未改证明，否则明确 abstain。

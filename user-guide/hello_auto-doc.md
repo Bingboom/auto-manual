@@ -474,6 +474,7 @@ The manual system now has four layers, but they are used at different stages.
    - `Spec_Master.csv` now starts with `spec_row_key`; `document_key` is still the target dimension, but not the unique row key
    - `document_key` is a derived helper column and may use either `[Model]_[Region]` or `[Model]_[Region]_[Source_lang]`
    - `Line_order` is required for spec rebuilds: use `1` for one-line rows and `1`, `2`, `3`, ... for multi-line values
+   - the solar-panel input range in the eight shared-language charging-method pages comes from `页面占位参数`: use `Page=charging_methods`, `Row_key=pv_input_range`, `Slot_key=value`, and preserve the approved language-specific dash/spacing exactly; the template token is `|PV_INPUT_RANGE|`, and production rows require F6 approval plus a post-sync `diff-report`
    - `Row_label_en`, `Param_en`, and `Value_en` are no longer supported; rename them to `*_source`
    - `Row_label_footnote_refs`, `Param_footnote_refs`, and `Value_footnote_refs` store comma-separated `Footnote_id` values; do not handwrite `①②③` into visible spec text
    - `symbols_blocks.csv` uses `Market`, `Model`, and `Source_lang`; it does not use `Region`; use `Market=Global` when one symbols row is shared across markets

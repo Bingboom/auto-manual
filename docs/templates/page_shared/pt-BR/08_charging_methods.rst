@@ -29,7 +29,7 @@ O |PRODUCT_NAME| possui duas portas de entrada DC8020 e é compatível com os pa
        - Use o mesmo modelo de painéis solares da Jackery e o mesmo número de painéis ao conectar painéis solares a ambas as portas de entrada DC8020.
        - Não carregue o produto usando simultaneamente um carregador veicular e um painel solar. Isso pode queimar o fusível do carro ou resultar em falha no carregamento.
 
-Recomenda-se usar o painel solar Jackery para carregar o produto. Certifique-se de que a tensão de circuito aberto (V\ :sub:`oc`) do painel solar esteja dentro da faixa de entrada CC (16V-60V) do |PRODUCT_NAME|. A Jackery não se responsabiliza por quaisquer danos ou perdas resultantes do uso de painéis solares de outras marcas.
+Recomenda-se usar o painel solar Jackery para carregar o produto. Certifique-se de que a tensão de circuito aberto (V\ :sub:`oc`) do painel solar esteja dentro da faixa de entrada CC (|PV_INPUT_RANGE|) do |PRODUCT_NAME|. A Jackery não se responsabiliza por quaisquer danos ou perdas resultantes do uso de painéis solares de outras marcas.
 
 CARREGAMENTO COM CARREGADOR VEICULAR (VENDIDO SEPARADAMENTE)
 ------------------------------------------------------------
