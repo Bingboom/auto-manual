@@ -159,6 +159,9 @@ shared [`tools/lang_registry.py`](tools/lang_registry.py) registry. The
 `governed_languages()` helper is the single source for reference-bound layout
 overrides; registering a language does not implicitly opt it into an approved
 physical layout contract.
+The LaTeX `HBApplyLang` safety path uses the same registered warning labels
+for every language, so newly registered lines do not silently print an English
+notice label.
 Operation-panel callouts are native top-layer objects: Prerequisite, standby,
 On, and Off copy each has its own unlocked text frame above the linked artwork.
 The Energy Saving and LED cards use the same contract for their grey-box copy,
