@@ -1440,8 +1440,8 @@ semantic change sitting in the tree while business work resumes.
     - stale claims (worker died mid-run) expire and become re-claimable, with the expiry documented in the queue state model
     - the three queue workflows share an explicit concurrency contract, and the external-table contract doc gains the claim fields
 
-- [ ] PR K15: Review-branch propagation design doc (V — design gate only)
-  - Status: `deferred`
+- [x] PR K15: Review-branch propagation design doc (V — design gate only)
+  - Status: `done` (operator approved 2026-07-31)
   - Trigger: dedicated capacity for sustained design + review attention
     (roadmap Phase 2 entry: Workstream T exit criteria passed). Business pain
     accelerates it: when the dashboard shows template-fix propagation
@@ -1455,7 +1455,7 @@ semantic change sitting in the tree while business work resumes.
     `docs/_review` semantics conceptually, which is exactly why Deferred 5
     applies to the implementation and not to the design.
   - Target files:
-    - `architecture/Review_Branch_Propagation_Design.md` (new)
+    - [`architecture/Review_Branch_Propagation_Design.md`](architecture/Review_Branch_Propagation_Design.md)
   - Done when:
     - the design covers: per-target-derivative-only review branches, a pinned-but-advanceable shared-template reference, automated per-branch bump PRs showing the rendered diff, authored-edit protection (classify-or-abstain, reusing the `sync-review` merge_params discipline), and migration of the existing open branches
     - blast radius, failure modes, and the propagation-lag metric are specified

@@ -1272,3 +1272,26 @@ Why it mattered:
   the evidence and fixture limitations are recorded in
   [`tests/indesign_finalize_batch_acceptance_2026-07-31.md`](tests/indesign_finalize_batch_acceptance_2026-07-31.md),
   without claiming production parity or release approval.
+## 77. 2026-07-31: Review-Branch Propagation Design Approved (Workstream V / K15)
+
+What changed:
+
+- Recorded a live inventory of 15 open review branches/PRs: 14 already own only
+  `docs/_review/**` deltas, one carries four historical `_build` images, and the
+  fleet is 295–624 commits behind current `main`.
+- Drafted the K15 contract for derivative-only branch ownership, an exact
+  advanceable shared-source pin, reproducible three-way classification,
+  per-target bump PRs with rendered evidence, fail-visible migration, and a
+  propagation-lag ledger.
+- Recorded the operator's 2026-07-31 approval of the design boundaries. The
+  design still does not mutate a review branch, change a workflow, or authorize
+  propagation writers by itself; those remain bounded implementation slices.
+
+Why it mattered:
+
+- The design treats branch ancestry and the existing `merge_params` behavior as
+  insufficient proof, so scale-out cannot silently overwrite reviewer edits or
+  label an unreachable branch inventory clean.
+- Workstream V now has approved boundaries and bounded follow-on slices rather
+  than a one-shot rewrite; the one-family pilot can proceed after its registered
+  implementation prerequisites are present.
