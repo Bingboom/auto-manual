@@ -14,6 +14,7 @@ from . import package as _package
 from . import params as _params
 from . import primitives as _prim
 from . import styles as _styles
+from .font_family import PRIMARY_FONT_FAMILY_TOKEN
 from .params import IDPKG
 from .primitives import _ATTR_ENTITIES
 
@@ -648,6 +649,7 @@ def _style_metrics(style_key: str) -> tuple[float, float]:
 
 
 def _flow_style_entries(style_map: dict[str, str]) -> str:
+    primary_font_family = PRIMARY_FONT_FAMILY_TOKEN.name
     styles = []
     seen: set[str] = set()
     for key, name in style_map.items():
@@ -663,7 +665,7 @@ def _flow_style_entries(style_map: dict[str, str]) -> str:
             f'    <ParagraphStyle Self="{self_id}" Name="{name_attr}" '
             f'PointSize="{size:g}" FillColor="{fill}" Justification="LeftAlign">\n'
             '      <Properties>\n'
-            '        <AppliedFont type="string">Gilroy</AppliedFont>\n'
+            f'        <AppliedFont type="string">{primary_font_family}</AppliedFont>\n'
             f'        <FontStyle type="string">{weight}</FontStyle>\n'
             f'        <Leading type="unit">{leading:g}</Leading>\n'
             '      </Properties>\n'
