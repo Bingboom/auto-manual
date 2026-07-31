@@ -164,6 +164,21 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
         self.assertRegex(plan["approved_plan_sha256"], r"^[0-9a-f]{64}$")
         self.assertEqual(0, plan["idml_contract"]["max_skipped_raw"])
 
+    def test_approved_contract_rejects_unknown_page_language(self) -> None:
+        pages = (
+            replace(self.ir.pages[0], language="x-review"),
+            *self.ir.pages[1:],
+        )
+        ir = replace(self.ir, pages=pages)
+        payload = _approved_payload(ir)
+
+        issues = validate_approved_reference_plan(payload, ir)
+
+        self.assertIn(
+            "page-a: language is not registered: 'x-review'",
+            issues,
+        )
+
     def test_committed_je1000f_contract_keeps_58_page_component_binding(self) -> None:
         root = Path(__file__).resolve().parents[1]
         path = (

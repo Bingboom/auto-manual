@@ -1,11 +1,55 @@
 """Semantic and hash validation for a serialized manual IR."""
 from __future__ import annotations
 
+from tools.lang_registry import canonical_language
+
 from .hashing import value_sha256
 from .model import ManualIR, SCHEMA_VERSION
 
 
-def validate_manual_ir(ir: ManualIR, *, require_zero_skipped_raw: bool = False) -> list[str]:
+_NEUTRAL_PAGE_LANGUAGES = frozenset(("", "cover", "toc"))
+
+
+def unknown_language_issues(ir: ManualIR) -> list[str]:
+    """Return unregistered Manual IR language tokens with their source location."""
+
+    issues: list[str] = []
+    manual_language = str(ir.language or "").strip()
+    if (
+        manual_language not in _NEUTRAL_PAGE_LANGUAGES
+        and canonical_language(manual_language) is None
+    ):
+        issues.append(f"manual language is not registered: {manual_language!r}")
+
+    declared = ir.metadata.get("declared_languages")
+    if isinstance(declared, list):
+        for index, value in enumerate(declared):
+            language = str(value or "").strip()
+            if (
+                language not in _NEUTRAL_PAGE_LANGUAGES
+                and canonical_language(language) is None
+            ):
+                issues.append(
+                    "metadata.declared_languages"
+                    f"[{index}] is not registered: {language!r}"
+                )
+
+    for page in ir.pages:
+        language = str(page.language or "").strip()
+        if (
+            language not in _NEUTRAL_PAGE_LANGUAGES
+            and canonical_language(language) is None
+        ):
+            issues.append(f"{page.page_id}: language is not registered: {language!r}")
+    return issues
+
+
+def validate_manual_ir(
+    ir: ManualIR,
+    *,
+    require_zero_skipped_raw: bool = False,
+    require_known_languages: bool = False,
+) -> list[str]:
     issues: list[str] = []
     if ir.schema_version != SCHEMA_VERSION:
         issues.append(f"schema_version must be {SCHEMA_VERSION}")
@@ -42,4 +86,6 @@ def validate_manual_ir(ir: ManualIR, *, require_zero_skipped_raw: bool = False) 
     )
     if ir.asset_refs != expected_assets:
         issues.append("manual asset_refs do not match block asset refs")
+    if require_known_languages:
+        issues.extend(unknown_language_issues(ir))
     return issues

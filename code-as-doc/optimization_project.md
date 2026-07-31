@@ -722,6 +722,12 @@ freeze `idml_contract.max_skipped_raw` and fail above it; fallback targets keep
 the Stage 0 report-only sensor, while `manual-ir --strict` retains its explicit
 zero-tolerance diagnostic.
 
+Execution note: Stage 5 item 2 makes unknown languages fail closed only on
+strict surfaces. `manual-ir --strict` and approved-reference production check
+the Manual IR target, frozen manifest declaration, and every page against the
+shared registry. Ordinary/fallback export remains compatible, and registry
+aliases plus the neutral `cover`/`toc` page roles remain accepted.
+
 Execution note: Stage 5 item 4(a) migrates the solar-panel PV input range in
 the eight shared-language charging-method templates to the semantic
 `pv_input_range/value` page row and `PV_INPUT_RANGE` runtime placeholder. Page

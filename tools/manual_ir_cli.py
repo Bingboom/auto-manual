@@ -42,7 +42,11 @@ def main() -> int:
         layout_params_csv=args.layout_params,
         style_contract_path=args.style_contract,
     )
-    issues = validate_manual_ir(ir, require_zero_skipped_raw=args.strict)
+    issues = validate_manual_ir(
+        ir,
+        require_zero_skipped_raw=args.strict,
+        require_known_languages=args.strict,
+    )
     for issue in issues:
         print(f"[manual-ir] FAIL {issue}")
     out = args.out or Paths.manual_ir_json_for(bundle_root)

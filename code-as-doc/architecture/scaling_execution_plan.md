@@ -138,7 +138,7 @@
 〔GATE〕①strict 翻转清单逐项拍板（ratchet/skipped_raw/未知语言/capability 族级注解——先全 bundle 取证,TOU 三反转教训）②占位化的生产源表 seed 走 F6（模板+fixtures 先行,机器可验;生产 seed=操作者步骤）③copy-key 迁移的 Localized_Copy 覆盖取证④JP/KR/CN 是否走 IDML 生产线（决定 CJK 三件套执行与否）⑤K15 设计批准=Workstream O(many-target 扩张)解锁条件。
 
 1. [x] [S] `feat(idml): skipped_raw strict gate`（approved-reference 线超基线即败）— Done：批准版式在 `idml_contract.max_skipped_raw` 冻结可接受基线，生产导出超基线 fail-closed；无批准版式的目标继续只报告计数，`manual-ir --strict` 继续保持零容忍显式检查。
-2. [S] `feat(idml): unknown-language fail-closed in strict`
+2. [x] [S] `feat(idml): unknown-language fail-closed in strict` — Done：`manual-ir --strict` 与 approved-reference 生产线检查顶层、manifest 声明及逐页语言，未知 token 按来源定位后 fail-closed；普通/fallback 导出保持兼容，注册别名与 `cover`/`toc` 非正文角色不误伤。
 3. [M] `feat(manifest): family-level capability annotations` — JP/KR/EU 吃到装配期选页;全 bundle 取证入 body。
 4. [x] [M] `feat(templates): PV input range placeholder-ize (a:模板+fixtures)` — '16V-60V' 烧死在 8 语言拷贝里,安全电气参数;机器验收=fixtures 数据根构建逐字节不变。Done：`pv_input_range/value` 语义行驱动 `PV_INPUT_RANGE`，8 语言解析后 SHA-256 与迁移前一致，US/EU 完整 fixture check 通过，pt-BR/KR 用专用最小 fixture 避免伪造全量覆盖；〔操作者步骤仍待 GATE〕生产表 seed(F6)后 diff-report 取证。
 5. [x] [M] `feat(templates): DC8020/UPS-10ms placeholder-ize (a)` — 同模式。Done：`dc_input_connector/value` 与 `ups_transfer_time/value` 分别驱动 8 语种共享 charging/UPS 模板，16 份解析后 RST 与迁移前逐字节一致；`0 ms` 不兼容警示仍为 authored prose；〔操作者步骤仍待 GATE〕生产表 seed(F6)后 diff-report 取证。
