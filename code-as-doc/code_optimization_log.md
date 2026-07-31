@@ -1583,3 +1583,29 @@ Why it mattered:
 - Recovery now distinguishes the fastest routing rollback from artifact
   re-delivery and full historical rebuild, while preserving immutable source
   and snapshot contracts.
+
+## 91. 2026-07-31: Workstream W Engineering and F6 Seed Close Out
+
+What changed:
+
+- Audited the authoritative Stage 0–5 list and confirmed every registered
+  engineering slice is merged to `main`, including the accepted #814
+  design-Mac evidence and a successful manual Nightly Render dispatch.
+- Recorded the operator's release of the remaining Stage 4 and all Stage 5
+  gates, then executed the F6 production seed for `pv_input_range`,
+  `dc_input_connector`, and `ups_transfer_time`.
+- Preserved and verified the three concurrent US rows, created the 12 missing
+  EU/AU/KR/pt-BR rows, and verified all 15 rows after Feishu formula/lookup
+  recalculation. Each created row passed a 27-field projected readback.
+- Synchronized a fresh isolated phase2 snapshot, confirmed all 15 semantic
+  rows, ran the migration-range diff report, and checked the affected targets.
+
+Why it mattered:
+
+- The template migration is no longer waiting on production data: US, EU, and
+  AU pass `check`; KR's four capability-content gaps and JE-1500D pt-BR's five
+  source-content gaps pre-date this seed and remain separate target-readiness
+  work.
+- The roadmap now separates completed engineering from real-world evidence.
+  The first timed K14 rollback drill and the next real product-line ≤2-day KPI
+  remain operator-owned measurements instead of invented close-out results.

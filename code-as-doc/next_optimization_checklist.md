@@ -1514,13 +1514,24 @@ never require a gate to *start*. Reused item numbers (K2, K8 slices + the
 snapshot file-lock, K13, K14, E1, I2's normalization prerequisite) tick their
 original entries when the matching W-slice lands.
 
-- [ ] Stage 0: safety nets + silent-failure sensors (8 PRs, zero behavior)
-- [ ] Stage 1: CI/gate auto-scaling with product lines (7 PRs)
-- [ ] Stage 2: zero-code language onboarding = K13 (13 PRs; exit = fake-lang zero-Python proof)
-- [ ] Stage 3: clone-artifact generation, new region = one command (13 PRs)
-- [ ] Stage 4a: run throughput without concurrency-semantics change (18 PRs; incl. K8 all four Done-when items, E1 both slices)
+- [x] Stage 0: safety nets + silent-failure sensors (8 PRs, zero behavior)
+- [x] Stage 1: CI/gate auto-scaling with product lines (7 PRs)
+- [x] Stage 2: zero-code language onboarding = K13 (13 PRs; exit = fake-lang zero-Python proof)
+- [x] Stage 3: clone-artifact generation, new region = one command (13 PRs)
+- [x] Stage 4a: run throughput without concurrency-semantics change (18 PRs; incl. K8 all four Done-when items, E1 both slices)
 - [x] Stage 4b: concurrency sub-stage (3 PRs; verified claim lease, per-record workflow domains + Vercel mutex, and bounded selective artifacts complete)
-- [ ] Stage 5: behavior close-out + expansion pre-gates (14 PRs; strict flips, placeholder-ization template halves, CJK trio, K14, K15 design doc)
+- [x] Stage 5: behavior close-out + expansion pre-gates (14 PRs; strict flips, placeholder-ization template halves, CJK trio, K14, K15 design doc)
+
+Engineering close-out: all registered Stage 0–5 implementation slices are on
+`main` as of 2026-07-31. The operator released the remaining Stage 4 and Stage
+5 gates with 「814批准：Stage4全部放心；Stage5全量放行」. The F6 production seed
+for `pv_input_range`, `dc_input_connector`, and `ups_transfer_time` is complete
+for the current US/EU/AU/KR/pt-BR document keys; the exact readback and build
+evidence is recorded in
+[`reviews/workstream_w_closeout_2026-07-31.md`](reviews/workstream_w_closeout_2026-07-31.md).
+The first timed K14 rollback drill and the next real product-line ≤2
+operator-day measurement remain operator-owned field evidence, not unfinished
+engineering checkboxes.
 
 Operator gate summary: the plan's §5 (workflow edits, `export_idml --model`,
 Feishu column list, promotion-contract carrier, F6 seeds, queue concurrency

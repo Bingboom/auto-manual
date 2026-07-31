@@ -58,3 +58,13 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.
+
+## Gate decision addenda
+
+This table records releases of implementation gates. It does not create a new
+self-merge authorization; PR merge authority still comes from the registry
+above.
+
+| ID | 范围 | 操作者原话与日期 | 保留边界 | 状态 |
+| --- | --- | --- | --- | --- |
+| GD-001 | Workstream W 剩余 Stage 4 与全部 Stage 5 gate，包括 F6 production seed | 「814批准：Stage4全部放心；Stage5全量放行」2026-07-31 | K14 首次计时回滚演练、下一条真实产线 ≤2 操作者日只在真实现场事件后记录；不伪造结果 | 已执行；证据见 [`../reviews/workstream_w_closeout_2026-07-31.md`](../reviews/workstream_w_closeout_2026-07-31.md) |
