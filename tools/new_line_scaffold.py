@@ -5,8 +5,9 @@ The command has two deliberately separate surfaces:
 * the default plan is read-only and resolves the same config/manifest inputs
   as the normal build;
 * "--write" materializes only explicitly named config and manifest files,
-  refreshes the committed fixture through the existing target-scoped helper,
-  and runs the normal "build.py check" gate.
+  optionally creates a controlled review-override scaffold, refreshes the
+  committed fixture through the existing target-scoped helper, and runs the
+  normal "build.py check" gate.
 
 Neither path writes Feishu or "data/phase2". Production source-table writes
 remain the separately approved F6 operation described by the scaling plan.
@@ -43,8 +44,15 @@ from tools.utils.targets import (
 
 
 SCHEMA_VERSION = "new-line-scaffold/v1"
-WRITE_ROLES = ("config", "manifest", "template-source", "source-table")
+WRITE_ROLES = (
+    "config",
+    "manifest",
+    "template-source",
+    "asset-override",
+    "source-table",
+)
 BLOCKED_WRITE_ROLES = ("source-table",)
+ASSET_OVERRIDE_DIRS = ("_assets", "_static", "renderers")
 
 
 @dataclass(frozen=True)
@@ -77,6 +85,7 @@ class ScaffoldPlan:
 class ScaffoldWriteResult:
     config: str
     manifest: str
+    asset_override: dict[str, Any]
     fixture_refresh: dict[str, Any]
     auto_check: dict[str, Any]
 
@@ -253,6 +262,11 @@ def build_plan(
             "path": _relative(_docs_dir(cfg, root=root), root=root),
             "operation": "copy-or-localize",
         },
+        {
+            "role": "asset-override",
+            "path": "docs/_review/<MODEL>/<REGION>/overrides",
+            "operation": "optional-create",
+        },
         {"role": "source-table", "path": "data/phase2", "operation": "F6-gated"},
     )
 
@@ -353,6 +367,72 @@ def _write_yaml_mapping(path: Path, value: dict[str, Any]) -> None:
     )
 
 
+def _resolve_asset_override_root(raw_root: str | Path, *, root: Path) -> Path:
+    """Validate and resolve a review-only override root without writing it."""
+
+    override_root = _safe_output_path(raw_root, root=root, label="--asset-override-root")
+    review_root = (root / "docs" / "_review").resolve()
+    try:
+        review_relative = override_root.relative_to(review_root)
+    except ValueError as exc:
+        raise RuntimeError(
+            "--asset-override-root must stay under docs/_review/<MODEL>/<REGION>/overrides"
+        ) from exc
+    if review_relative.name != "overrides" or len(review_relative.parts) < 3:
+        raise RuntimeError(
+            "--asset-override-root must end at docs/_review/<MODEL>/<REGION>/overrides"
+        )
+    if override_root.exists() and not override_root.is_dir():
+        raise RuntimeError(f"asset override root is not a directory: {override_root}")
+    return override_root
+
+
+def _materialize_asset_override_scaffold(
+    raw_root: str | Path,
+    *,
+    root: Path,
+    force: bool,
+) -> dict[str, Any]:
+    """Create review-only override directories without touching user assets."""
+
+    override_root = _resolve_asset_override_root(raw_root, root=root)
+
+    override_root.mkdir(parents=True, exist_ok=True)
+    for directory in ASSET_OVERRIDE_DIRS:
+        (override_root / directory).mkdir(exist_ok=True)
+
+    readme = override_root / "README.md"
+    readme_text = (
+        "# Review asset overrides\n\n"
+        "This scaffold is target-local and review-only. Put replacement files "
+        "under one of the controlled directories below, preserving the bundle "
+        "relative path:\n\n"
+        "- `_assets/` — explicit asset replacements\n"
+        "- `_static/` — static resources\n"
+        "- `renderers/` — renderer-specific resources\n\n"
+        "The bundle finalizer remains fail-closed: an override must be staged "
+        "at the matching relative path and is recorded in the asset manifest.\n"
+    )
+    if readme.exists():
+        if readme.read_text(encoding="utf-8") != readme_text and not force:
+            raise RuntimeError(
+                f"asset override README already exists with different content: {readme}"
+            )
+        if force and readme.read_text(encoding="utf-8") != readme_text:
+            readme.write_text(readme_text, encoding="utf-8")
+    else:
+        readme.write_text(readme_text, encoding="utf-8")
+    return {
+        "status": "created",
+        "root": override_root.relative_to(root).as_posix(),
+        "directories": [
+            (override_root / directory).relative_to(root).as_posix()
+            for directory in ASSET_OVERRIDE_DIRS
+        ],
+        "readme": readme.relative_to(root).as_posix(),
+    }
+
+
 def materialize_scaffold(
     plan: ScaffoldPlan,
     *,
@@ -360,9 +440,10 @@ def materialize_scaffold(
     root: Path,
     output_config: Path,
     output_manifest: Path,
+    asset_override_root: str | Path | None = None,
     force: bool = False,
 ) -> ScaffoldWriteResult:
-    """Write an explicit config/manifest pair and nothing else."""
+    """Write an explicit config/manifest pair and optional review scaffold."""
 
     root = root.resolve()
     source_config = source_config.resolve()
@@ -376,6 +457,9 @@ def materialize_scaffold(
     if existing and not force:
         rendered = ", ".join(str(path) for path in existing)
         raise RuntimeError(f"scaffold output already exists; pass --force to replace: {rendered}")
+    if asset_override_root is not None:
+        # Validate all requested output surfaces before writing any of them.
+        _resolve_asset_override_root(asset_override_root, root=root)
 
     config = _load_yaml_mapping(source_config, label="source config")
     build = config.setdefault("build", {})
@@ -408,9 +492,19 @@ def materialize_scaffold(
 
     _write_yaml_mapping(output_config, config)
     _write_yaml_mapping(output_manifest, manifest)
+    override_result = (
+        _materialize_asset_override_scaffold(
+            asset_override_root,
+            root=root,
+            force=force,
+        )
+        if asset_override_root is not None
+        else {"status": "skipped", "reason": "--asset-override-root not provided"}
+    )
     return ScaffoldWriteResult(
         config=output_config.relative_to(root).as_posix(),
         manifest=output_manifest.relative_to(root).as_posix(),
+        asset_override=override_result,
         fixture_refresh={},
         auto_check={},
     )
@@ -529,6 +623,7 @@ def run_new_line(args: argparse.Namespace, *, repo_root: Path) -> None:
         root=repo_root,
         output_config=Path(output_config),
         output_manifest=Path(output_manifest),
+        asset_override_root=getattr(args, "asset_override_root", None),
         force=bool(getattr(args, "force", False)),
     )
     document_key = f"{plan.target['model']}_{plan.target['region']}"
@@ -552,6 +647,7 @@ def run_new_line(args: argparse.Namespace, *, repo_root: Path) -> None:
     result = ScaffoldWriteResult(
         config=result.config,
         manifest=result.manifest,
+        asset_override=result.asset_override,
         fixture_refresh=fixture_result,
         auto_check=check_result,
     )

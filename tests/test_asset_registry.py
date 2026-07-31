@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+import re
 from dataclasses import replace
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -14,6 +15,7 @@ from tools.asset_registry import (
     check_registry,
     load_registry,
     load_registry_bytes,
+    refresh_registry_csv,
     resolve_asset,
 )
 
@@ -32,6 +34,39 @@ class TestAssetRegistry(unittest.TestCase):
         self.assertEqual((), report.errors)
         self.assertEqual(74, report.status_counts[APPROVED_STATUS])
         self.assertEqual(2, report.status_counts[QUARANTINED_STATUS])
+
+    def test_refresh_recomputes_materialized_hashes_without_changing_registry_shape(self) -> None:
+        existing = (ROOT / "data" / "asset_registry.csv").read_text(encoding="utf-8")
+
+        first = re.search(r"png:[0-9a-f]{64}", existing)
+        self.assertIsNotNone(first)
+        assert first is not None
+        mutated = existing[: first.start()] + first.group(0)[:16] + existing[first.end() :]
+        changed_text, changed_report = refresh_registry_csv(
+            mutated,
+            repo_root=ROOT,
+            source=ROOT / "data" / "asset_registry.csv",
+        )
+        self.assertGreater(len(changed_report.updated), 0)
+        self.assertIn(first.group(0), changed_text)
+
+        refreshed, report = refresh_registry_csv(
+            existing,
+            repo_root=ROOT,
+            source=ROOT / "data" / "asset_registry.csv",
+        )
+
+        self.assertEqual(81, report.records)
+        self.assertEqual((), report.errors)
+        self.assertEqual((), report.updated)
+        self.assertGreater(len(report.unchanged), 0)
+        self.assertEqual(existing.count("\n"), refreshed.count("\n"))
+        refreshed_records = load_registry_bytes(refreshed.encode("utf-8"), source="refreshed")
+        self.assertEqual(len(self.records), len(refreshed_records))
+        for record in refreshed_records:
+            for label, digest in record.hashes:
+                if digest:
+                    self.assertEqual(64, len(digest), (record.asset_key, label))
 
     def test_real_registry_has_explicit_region_scopes(self) -> None:
         by_key = {record.asset_key: record for record in self.records}

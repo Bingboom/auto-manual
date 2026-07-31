@@ -14,8 +14,10 @@ import csv
 import hashlib
 import io
 import json
+import os
 import re
 import sys
+import tempfile
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Iterable
@@ -117,6 +119,140 @@ class AssetCheckReport:
     status_counts: dict[str, int]
     errors: tuple[AssetIssue, ...]
     warnings: tuple[AssetIssue, ...]
+
+
+@dataclass(frozen=True)
+class AssetRefreshReport:
+    """Machine-recomputed registry hash changes and safe skips."""
+
+    records: int
+    updated: tuple[str, ...]
+    unchanged: tuple[str, ...]
+    skipped: tuple[str, ...]
+    errors: tuple[AssetIssue, ...]
+
+
+def _registry_rows(data: str, *, source: str | Path) -> tuple[list[str], list[dict[str, str]]]:
+    reader = csv.DictReader(io.StringIO(data, newline=""))
+    fieldnames = list(reader.fieldnames or ())
+    missing_columns = [column for column in REQUIRED_COLUMNS if column not in fieldnames]
+    if missing_columns:
+        raise AssetRegistryError(
+            f"asset registry {source} is missing columns: {', '.join(missing_columns)}"
+        )
+    rows: list[dict[str, str]] = []
+    for raw in reader:
+        raw.pop(None, None)
+        rows.append({name: (raw.get(name) or "") for name in fieldnames})
+    return fieldnames, rows
+
+
+def refresh_registry_csv(
+    existing_text: str,
+    *,
+    repo_root: Path,
+    source: str | Path = REGISTRY_RELATIVE_PATH,
+    asset_keys: Iterable[str] | None = None,
+) -> tuple[str, AssetRefreshReport]:
+    """Recompute every materialized registry digest from the export bytes.
+
+    The operation is deliberately separate from the Feishu mirror: the Base
+    owns asset definitions, while the repository owns export bytes and their
+    hashes.  This function is dry-run friendly and never changes statuses,
+    scopes, paths, or notes.  Missing/unparseable artifacts are errors, so a
+    caller can refuse to write a partial refresh.
+    """
+
+    records = load_registry_bytes(existing_text.encode("utf-8"), source=source)
+    fieldnames, rows = _registry_rows(existing_text, source=source)
+    by_key = {record.asset_key: record for record in records}
+    selected = set(asset_keys or ())
+    errors: list[AssetIssue] = []
+    updated: list[str] = []
+    unchanged: list[str] = []
+    skipped: list[str] = []
+
+    for key in sorted(selected - set(by_key)):
+        errors.append(AssetIssue("unknown_asset", key, "asset key is not registered"))
+
+    for row in rows:
+        key = row["asset_key"].strip()
+        if selected and key not in selected:
+            continue
+        record = by_key[key]
+        if record.export_root is None or not record.hashes or record.status == MISSING_STATUS:
+            skipped.append(key)
+            continue
+
+        raw_hash_tokens = [token.strip() for token in row["内容哈希"].split(",") if token.strip()]
+        if any(
+            ":" not in token
+            or not HASH_DIGEST_RE.fullmatch(token.rsplit(":", 1)[1].strip())
+            for token in raw_hash_tokens
+        ):
+            errors.append(
+                AssetIssue(
+                    "invalid_hash_declaration",
+                    key,
+                    "内容哈希 contains a token without a valid label:digest pair",
+                )
+            )
+
+        artifacts = {
+            label: (path, expected)
+            for label, expected in record.hashes
+            if (path := _artifact_path(record, label, repo_root=repo_root, language=None))
+            is not None
+        }
+        refreshed_tokens: list[str] = []
+        row_errors: list[AssetIssue] = []
+        for label, _declared in record.hashes:
+            artifact = artifacts.get(label)
+            if artifact is None:
+                row_errors.append(
+                    AssetIssue(
+                        "missing_export",
+                        key,
+                        f"no materialized export matches registry hash label {label!r}",
+                    )
+                )
+                refreshed_tokens.append(f"{label}:{_declared}")
+                continue
+            path, _expected = artifact
+            if not path.is_file():
+                row_errors.append(
+                    AssetIssue(
+                        "missing_export",
+                        key,
+                        f"missing export: {path.relative_to(repo_root)}",
+                    )
+                )
+                refreshed_tokens.append(f"{label}:{_declared}")
+                continue
+            refreshed_tokens.append(f"{label}:{_sha256_digest(path)}")
+
+        errors.extend(row_errors)
+        refreshed_hashes = ",".join(refreshed_tokens)
+        if row["内容哈希"] == refreshed_hashes:
+            unchanged.append(key)
+        else:
+            updated.append(key)
+            row["内容哈希"] = refreshed_hashes
+
+    output = io.StringIO()
+    writer = csv.DictWriter(output, fieldnames=fieldnames, lineterminator="\n")
+    writer.writeheader()
+    writer.writerows(rows)
+    refreshed_text = output.getvalue()
+    # Keep the resolver as the final schema/override gate for generated CSV.
+    load_registry_bytes(refreshed_text.encode("utf-8"), source=source)
+    return refreshed_text, AssetRefreshReport(
+        records=len(rows),
+        updated=tuple(updated),
+        unchanged=tuple(unchanged),
+        skipped=tuple(skipped),
+        errors=tuple(errors),
+    )
 
 
 def _split_values(raw: str) -> tuple[str, ...]:
@@ -287,26 +423,41 @@ def _matching_artifacts(
         actual_format = _artifact_format(label)
         if format_name and actual_format != format_name.lower().lstrip("."):
             continue
-        filename = _artifact_filename(record, label, language)
-        if not filename:
+        path = _artifact_path(record, label, repo_root=repo_root, language=language)
+        if path is None:
             continue
-        path = repo_root / record.export_root / filename
-        # PR #662 records the source row's historical common-assets directory
-        # while its v2 vector projections live in docs/renderers/latex/assets.
-        # Keep that migration detail in the resolver until the registry row is
-        # updated to the final artifact root.
-        if label.startswith("v2-") and not path.is_file():
-            projected = (
-                repo_root
-                / PathSegments.DOCS
-                / PathSegments.RENDERERS
-                / PathSegments.LATEX
-                / PathSegments.ASSETS
-                / filename
-            )
-            path = projected if projected.is_file() else path
         matches.append((path, actual_format or "", digest))
     return matches
+
+
+def _artifact_path(
+    record: AssetRecord,
+    label: str,
+    *,
+    repo_root: Path,
+    language: str | None,
+) -> Path | None:
+    if record.export_root is None:
+        return None
+    filename = _artifact_filename(record, label, language)
+    if not filename:
+        return None
+    path = repo_root / record.export_root / filename
+    # PR #662 records the source row's historical common-assets directory
+    # while its v2 vector projections live in docs/renderers/latex/assets.
+    # Keep that migration detail in the resolver until the registry row is
+    # updated to the final artifact root.
+    if label.startswith("v2-") and not path.is_file():
+        projected = (
+            repo_root
+            / PathSegments.DOCS
+            / PathSegments.RENDERERS
+            / PathSegments.LATEX
+            / PathSegments.ASSETS
+            / filename
+        )
+        path = projected if projected.is_file() else path
+    return path
 
 
 def _scope_matches(scope_values: tuple[str, ...], requested: str | None) -> bool:
@@ -575,7 +726,88 @@ def _report_payload(report: AssetCheckReport) -> dict[str, object]:
     }
 
 
+def _refresh_report_payload(report: AssetRefreshReport) -> dict[str, object]:
+    return {
+        "records": report.records,
+        "updated": list(report.updated),
+        "unchanged": list(report.unchanged),
+        "skipped": list(report.skipped),
+        "errors": [asdict(issue) for issue in report.errors],
+    }
+
+
+def _atomic_replace_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_name: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            newline="",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            temporary_name = handle.name
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary_name, path)
+        temporary_name = None
+    finally:
+        if temporary_name is not None:
+            try:
+                os.unlink(temporary_name)
+            except FileNotFoundError:
+                pass
+
+
+def run_asset_registry_refresh(args: argparse.Namespace, *, repo_root: Path) -> None:
+    """Run the explicit ``asset-check --refresh`` registry maintenance pass."""
+
+    if getattr(args, "publish", False):
+        raise RuntimeError("asset registry refresh cannot combine with --publish")
+    registry_path = repo_root / REGISTRY_RELATIVE_PATH
+    existing_text = registry_path.read_text(encoding="utf-8")
+    keys = tuple(getattr(args, "asset_key", None) or ())
+    refreshed_text, report = refresh_registry_csv(
+        existing_text,
+        repo_root=repo_root,
+        source=registry_path,
+        asset_keys=keys,
+    )
+    if getattr(args, "write", False) and report.errors:
+        raise AssetRegistryError(
+            "asset registry refresh found errors; refusing to write: "
+            + "; ".join(issue.message for issue in report.errors)
+        )
+    if getattr(args, "write", False) and refreshed_text != existing_text:
+        _atomic_replace_text(registry_path, refreshed_text)
+
+    payload = _refresh_report_payload(report)
+    payload["mode"] = "write" if getattr(args, "write", False) else "dry-run"
+    payload["changed"] = refreshed_text != existing_text
+    payload["path"] = registry_path.relative_to(repo_root).as_posix()
+    if getattr(args, "json", False):
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+        return
+    print(
+        "asset registry refresh: "
+        f"mode={payload['mode']} records={report.records} "
+        f"updated={len(report.updated)} unchanged={len(report.unchanged)} "
+        f"skipped={len(report.skipped)} errors={len(report.errors)}"
+    )
+    for issue in report.errors:
+        print(f"[{issue.code}] {issue.asset_key or '-'}: {issue.message}")
+    if getattr(args, "write", False):
+        print(f"written={payload['changed']} path={payload['path']}")
+
+
 def run_asset_check(args: argparse.Namespace, *, repo_root: Path) -> None:
+    if getattr(args, "refresh", False):
+        run_asset_registry_refresh(args, repo_root=repo_root)
+        return
     registry_path = repo_root / REGISTRY_RELATIVE_PATH
     records = load_registry(registry_path)
     keys = tuple(getattr(args, "asset_key", None) or ())
