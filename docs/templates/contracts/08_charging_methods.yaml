@@ -11,8 +11,12 @@ source_files:
 required_placeholders:
   default:
     - PV_INPUT_RANGE
+    - DC_INPUT_CONNECTOR
 required_page_values:
   default:
     - row_key: pv_input_range
+      pages: [charging_methods]
+      usage_type: page_value
+    - row_key: dc_input_connector
       pages: [charging_methods]
       usage_type: page_value

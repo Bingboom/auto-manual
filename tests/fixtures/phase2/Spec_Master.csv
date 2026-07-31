@@ -374,3 +374,7 @@ JE-2000E_US,US,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,,,Storage Te
 JE-2000E_US,US,TRUE,ups_mode,OUTPUT PORTS,3,1,,text,UPS Bypass Output,,,,,12A (1440W),,,,,,JE-2000E,,12A (1440W),UPS Bypass Output,,,UPS Bypass Output,,,UPS Bypass Output,,,en
 JE-1000F_US,US,TRUE,charging_methods,INPUT PORTS,2,3,pv_input_range,value,PV Input Range,,1,,,16V-60V,,Plage d’entrée PV,,16V–60V,Intervalo de entrada FV,JE-1000F,,16V-60V,,,,,,,,,,en,,,
 JE-1000F_EU,EU,TRUE,charging_methods,INPUT PORTS,2,3,pv_input_range,value,PV Input Range,,1,,,16V-60V,,Plage d’entrée PV,,16V–60V,Intervalo de entrada FV,JE-1000F,,16V-60V,PV-Eingangsbereich,,16 V-60 V,Intervallo di ingresso FV,,16V-60V,Діапазон входу PV,,16-60 В,en,,,
+JE-1000F_US,US,TRUE,charging_methods,INPUT PORTS,2,4,dc_input_connector,value,DC Input Connector,,1,,,DC8020,,,,DC8020,,JE-1000F,,DC8020,,,,,,,,,,en,,,
+JE-1000F_EU,EU,TRUE,charging_methods,INPUT PORTS,2,4,dc_input_connector,value,DC Input Connector,,1,,,DC8020,,,,DC8020,,JE-1000F,,DC8020,,,DC8020,,,DC8020,,,DC8020,en,,,
+JE-1000F_US,US,TRUE,ups_mode,OUTPUT PORTS,3,2,ups_transfer_time,value,UPS Transfer Time,,1,,,10 ms,,,,10 ms,,JE-1000F,,10 ms,,,,,,,,,,en,,,
+JE-1000F_EU,EU,TRUE,ups_mode,OUTPUT PORTS,3,2,ups_transfer_time,value,UPS Transfer Time,,1,,,10 ms,,,,10 ms,,JE-1000F,,10 ms,,,10 ms,,,10 ms,,,10 мс,en,,,

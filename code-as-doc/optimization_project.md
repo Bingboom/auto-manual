@@ -709,6 +709,13 @@ contracts fail closed on missing data, and characterization tests prove
 byte-identical resolved RST. Production Base seed and diff-report evidence
 remain the operator-controlled F6 follow-up.
 
+Execution note: Stage 5 item 5(a) moves the repeated DC input connector and UPS
+transfer time into `dc_input_connector/value` and `ups_transfer_time/value`
+page rows. The eight shared languages retain byte-identical resolved charging
+and UPS templates, including Ukrainian unit spelling; the authored `0 ms`
+incompatibility cautions are deliberately unchanged. Production seed and
+diff-report evidence remain F6-gated.
+
 Execution note: Stage 5 item 6 migrates the seven Product Overview page,
 panel, and part labels in the US Spanish, French, and Brazilian Portuguese
 templates to the existing `product_overview.*` runtime copy keys. A

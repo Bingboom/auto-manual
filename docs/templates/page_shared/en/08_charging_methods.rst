@@ -1,13 +1,13 @@
 CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
 -------------------------------------------
 
-|PRODUCT_NAME| has two DC8020 input ports and is compatible with the Jackery solar panels.
+|PRODUCT_NAME| has two |DC_INPUT_CONNECTOR| input ports and is compatible with the Jackery solar panels.
 
 .. image:: asset:charging/solar_direct
    :alt: Solar charging connection diagram placeholder 1.
    :width: 360px
 
-If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).
+If one |DC_INPUT_CONNECTOR| input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).
 
 .. image:: asset:charging/solar_adapter
    :alt: Solar charging connection diagram placeholder 2.
@@ -18,7 +18,7 @@ If one DC8020 input port needs to connect two solar panels simultaneously, pleas
    :widths: 12 88
 
    * - **CAUTION**
-     - One DC8020 input port can be connected to at most two solar panels.
+     - One |DC_INPUT_CONNECTOR| input port can be connected to at most two solar panels.
 
 .. list-table::
    :header-rows: 0
@@ -27,7 +27,7 @@ If one DC8020 input port needs to connect two solar panels simultaneously, pleas
    * - **CAUTION**
      - Ensure that the input voltage for both DC input ports is the same. Failure to do so may damage the product. For example:
 
-       - Use the same model of Jackery solar panels and the same number of panels when connecting solar panels to both DC8020 Input ports.
+       - Use the same model of Jackery solar panels and the same number of panels when connecting solar panels to both |DC_INPUT_CONNECTOR| Input ports.
        - Do not charge the product using both a car charger and a solar panel simultaneously. Doing so may blow the car fuse or result in charging failure.
 
 It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (V\ :sub:`oc`) of the solar panel is within the DC input range (|PV_INPUT_RANGE|) of |PRODUCT_NAME|. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.

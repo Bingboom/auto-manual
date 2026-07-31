@@ -1,13 +1,13 @@
 RICARICA TRAMITE PANNELLI SOLARI (VENDUTI SEPARATAMENTE)
 --------------------------------------------------------
 
-|PRODUCT_NAME| dispone di due porte di ingresso DC8020 ed è compatibile con i pannelli solari Jackery.
+|PRODUCT_NAME| dispone di due porte di ingresso |DC_INPUT_CONNECTOR| ed è compatibile con i pannelli solari Jackery.
 
 .. image:: asset:charging/solar_direct
    :alt: Segnaposto diagramma di collegamento per la ricarica solare 1.
    :width: 360px
 
-Se una porta di ingresso DC8020 deve collegare contemporaneamente due pannelli solari, fare riferimento alla figura seguente per la ricarica tramite il connettore per pannelli solari (venduto separatamente, non incluso di serie).
+Se una porta di ingresso |DC_INPUT_CONNECTOR| deve collegare contemporaneamente due pannelli solari, fare riferimento alla figura seguente per la ricarica tramite il connettore per pannelli solari (venduto separatamente, non incluso di serie).
 
 .. image:: asset:charging/solar_adapter
    :alt: Segnaposto diagramma di collegamento per la ricarica solare 2.
@@ -18,7 +18,7 @@ Se una porta di ingresso DC8020 deve collegare contemporaneamente due pannelli s
    :widths: 12 88
 
    * - **ATTENZIONE**
-     - Una porta di ingresso DC8020 può essere collegata al massimo a due pannelli solari.
+     - Una porta di ingresso |DC_INPUT_CONNECTOR| può essere collegata al massimo a due pannelli solari.
 
 .. list-table::
    :header-rows: 0
@@ -27,7 +27,7 @@ Se una porta di ingresso DC8020 deve collegare contemporaneamente due pannelli s
    * - **ATTENZIONE**
      - Assicurarsi che la tensione di ingresso di entrambe le porte di ingresso CC sia la stessa. In caso contrario, il prodotto potrebbe danneggiarsi. Ad esempio:
 
-       - Utilizzare lo stesso modello di pannelli solari Jackery e lo stesso numero di pannelli quando si collegano pannelli solari a entrambe le porte di ingresso DC8020.
+       - Utilizzare lo stesso modello di pannelli solari Jackery e lo stesso numero di pannelli quando si collegano pannelli solari a entrambe le porte di ingresso |DC_INPUT_CONNECTOR|.
        - Non caricare il prodotto utilizzando contemporaneamente un caricatore per auto e un pannello solare. In caso contrario, il fusibile dell'auto potrebbe saltare oppure la ricarica potrebbe non riuscire.
 
 Si consiglia di utilizzare il pannello solare Jackery per caricare il prodotto. Assicurarsi che la tensione a circuito aperto (V\ :sub:`oc`) del pannello solare rientri nell'intervallo di ingresso CC (|PV_INPUT_RANGE|) di |PRODUCT_NAME|. Jackery non è responsabile di eventuali danni o perdite derivanti dall'uso di pannelli solari di terze parti.

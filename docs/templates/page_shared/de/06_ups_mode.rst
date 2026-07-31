@@ -6,7 +6,7 @@ UNTERBRECHUNGSFREIE STROMVERSORGUNG (UPS)
    :width: 360px
 
 | Eine unterbrechungsfreie Stromversorgung (UPS) ist ein kontinuierliches Stromversorgungssystem, das bei einem Ausfall der Netzstromversorgung automatisch Backup-Strom für angeschlossene Geräte bereitstellt.
-| Bei einem plötzlichen Ausfall der Netzstromversorgung schaltet |PRODUCT_NAME| innerhalb von 10 ms automatisch auf gespeicherte Energie um, damit Ihre Geräte weiterlaufen.
+| Bei einem plötzlichen Ausfall der Netzstromversorgung schaltet |PRODUCT_NAME| innerhalb von |UPS_TRANSFER_TIME| automatisch auf gespeicherte Energie um, damit Ihre Geräte weiterlaufen.
 | Im USV-Modus erreicht das Gerät vor Stromausfällen eine Spitzenleistung von |UPS_BYPASS_OUTPUT_TEXT|. Da im Bypass-Modus gleichzeitiges Laden und Entladen möglich ist,
 | liegt die tatsächliche Ausgangsleistung in diesem Modus unter der Nennleistung; bei Stromausfällen wird jedoch wieder die Nennleistung erreicht.
 

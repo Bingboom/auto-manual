@@ -31,12 +31,15 @@ class PvInputRangePlaceholderTests(unittest.TestCase):
         contract = next(item for item in contracts if item.page_id == "08_charging_methods")
 
         self.assertEqual(8, len(contract.source_files))
-        self.assertEqual(("PV_INPUT_RANGE",), contract.required_placeholders["default"])
+        self.assertEqual(
+            ("PV_INPUT_RANGE", "DC_INPUT_CONNECTOR"),
+            contract.required_placeholders["default"],
+        )
         selectors = required_page_values_for_lang(contract, "ko")
-        self.assertEqual(1, len(selectors))
-        self.assertEqual("pv_input_range", selectors[0].row_key)
-        self.assertEqual(("charging_methods",), selectors[0].pages)
-        self.assertEqual("page_value", selectors[0].usage_type)
+        self.assertEqual(2, len(selectors))
+        selector = next(item for item in selectors if item.row_key == "pv_input_range")
+        self.assertEqual(("charging_methods",), selector.pages)
+        self.assertEqual("page_value", selector.usage_type)
 
     def test_shared_templates_resolve_to_pre_migration_bytes(self) -> None:
         for lang, (spec_master, model, region, expected_sha256) in CASES.items():
@@ -52,12 +55,17 @@ class PvInputRangePlaceholderTests(unittest.TestCase):
 
                 self.assertIn("|PV_INPUT_RANGE|", source)
                 self.assertIn("PV_INPUT_RANGE", substitutions)
+                self.assertIn("DC_INPUT_CONNECTOR", substitutions)
                 rendered = apply_rst_substitutions(
                     source,
-                    {"PV_INPUT_RANGE": substitutions["PV_INPUT_RANGE"]},
+                    {
+                        "PV_INPUT_RANGE": substitutions["PV_INPUT_RANGE"],
+                        "DC_INPUT_CONNECTOR": substitutions["DC_INPUT_CONNECTOR"],
+                    },
                     {},
                 )
                 self.assertNotIn("|PV_INPUT_RANGE|", rendered)
+                self.assertNotIn("|DC_INPUT_CONNECTOR|", rendered)
                 self.assertEqual(
                     expected_sha256,
                     hashlib.sha256(rendered.encode("utf-8")).hexdigest(),
