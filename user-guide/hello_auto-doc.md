@@ -251,7 +251,12 @@ IDML, INDD, InDesign PDF, handoff zip and both reports with sha256, plus the
 preflight numbers and the parity verdict; `complete` is true only when the
 IDML, INDD, InDesign PDF, handoff zip and finalize report are all present. An
 automated publish with no finalize run records what exists and marks the rest
-absent rather than failing.
+absent rather than failing. The JSON keeps native page/overset counts under
+`indesign_package.preflight`; the CSV mirrors them in
+`indesign_preflight_page_count` and
+`indesign_preflight_overset_stories` for dashboards. Blank means “not reported”
+and `0` means a verified zero, so a partial legacy report cannot look clean by
+accident.
 
 Use `python3 build.py idml --idml-mode both ...` when design also needs the
 paired flow handoff folder: it keeps the production IDML and adds

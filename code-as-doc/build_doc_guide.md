@@ -1171,6 +1171,15 @@ Standalone release traceability:
 python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
 
+When `finalize_report.json` is present beside the production IDML, the release
+JSON records native `page_count` and the overset-story count under
+`indesign_package.preflight`. The release CSV flattens them as
+`indesign_preflight_page_count` and
+`indesign_preflight_overset_stories`. A blank value means native preflight did
+not report that signal; the string `0` means it explicitly reported no overset
+stories. Release-manifest generation remains non-blocking when native finalize
+has not run.
+
 Keep existing build artifacts:
 
 ```powershell

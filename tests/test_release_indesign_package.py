@@ -93,6 +93,17 @@ class CollectTest(unittest.TestCase):
         self.assertIsNotNone(record["finalize_report"])
         self.assertIsNone(record["preflight"])
 
+    def test_missing_overset_field_remains_unknown(self):
+        partial = dict(FINALIZE_PASS)
+        partial.pop("overset_stories")
+        with tempfile.TemporaryDirectory() as tmp:
+            record = collect_indesign_package(idml_dir=_idml_dir(
+                tmp, reports={"finalize_report.json": partial}))
+        self.assertIsNone(record["preflight"]["overset_stories"])
+        self.assertEqual(
+            "", csv_columns(record)["indesign_preflight_overset_stories"]
+        )
+
     def test_no_idml_dir_and_no_idml_file_yield_no_record(self):
         with tempfile.TemporaryDirectory() as tmp:
             self.assertIsNone(collect_indesign_package(idml_dir=Path(tmp) / "absent"))
@@ -114,6 +125,8 @@ class CsvColumnTest(unittest.TestCase):
         columns = csv_columns(record)
         self.assertEqual(columns["indesign_package_complete"], "TRUE")
         self.assertEqual(columns["indesign_preflight_success"], "TRUE")
+        self.assertEqual(columns["indesign_preflight_page_count"], "60")
+        self.assertEqual(columns["indesign_preflight_overset_stories"], "0")
         self.assertEqual(columns["indesign_parity_accepted"], "FALSE")
         self.assertEqual(len(columns["indesign_idml_sha256"]), 64)
 
@@ -128,6 +141,8 @@ class CsvColumnTest(unittest.TestCase):
             "indesign_indd_sha256",
             "indesign_package_complete",
             "indesign_parity_accepted",
+            "indesign_preflight_overset_stories",
+            "indesign_preflight_page_count",
             "indesign_preflight_success",
         ])
 

@@ -356,6 +356,11 @@ When a design host finalizes multiple targets, use
 intent, output condition, and PDF/X level explicitly; the aggregate report
 isolates per-job failures and inventories IDML directories whose
 `indesign_package.complete` is still `FALSE`.
+Release JSON keeps native page and overset counts under
+`indesign_package.preflight`; the flat release CSV exposes the same values as
+`indesign_preflight_page_count` and `indesign_preflight_overset_stories` for
+dashboarding. Blank means native preflight did not report the value, while
+`0` is an explicit verified count.
 
 Optional local content QC for the current snapshot:
 

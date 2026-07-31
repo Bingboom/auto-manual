@@ -58,6 +58,11 @@ def _first(idml_dir: Path, pattern: str) -> Path | None:
     return matches[0] if matches else None
 
 
+def _optional_list_count(report: dict[str, Any], key: str) -> int | None:
+    value = report.get(key)
+    return len(value) if isinstance(value, list) else None
+
+
 def _preflight_summary(report: dict[str, Any] | None) -> dict[str, Any] | None:
     """The four numbers a release signer actually reads, plus the verdict."""
     if report is None:
@@ -67,7 +72,7 @@ def _preflight_summary(report: dict[str, Any] | None) -> dict[str, Any] | None:
     return {
         "success": report.get("success"),
         "page_count": report.get("page_count"),
-        "overset_stories": len(report.get("overset_stories") or ()),
+        "overset_stories": _optional_list_count(report, "overset_stories"),
         "missing_fonts": len(report.get("missing_fonts") or ()),
         "bad_links": len(report.get("bad_links") or ()),
         "pdfx_validated": validation.get("pass"),
@@ -126,6 +131,10 @@ def csv_columns(record: dict[str, Any] | None) -> dict[str, str]:
         entry = package.get(key) or {}
         return str(entry.get("sha256") or "")
 
+    def _number(key: str) -> str:
+        value = preflight.get(key)
+        return "" if value is None else str(value)
+
     return {
         "indesign_package_complete": "TRUE" if package.get("complete") else "FALSE",
         "indesign_idml_sha256": _sha("idml"),
@@ -135,6 +144,8 @@ def csv_columns(record: dict[str, Any] | None) -> dict[str, str]:
             "" if preflight.get("success") is None
             else ("TRUE" if preflight.get("success") else "FALSE")
         ),
+        "indesign_preflight_page_count": _number("page_count"),
+        "indesign_preflight_overset_stories": _number("overset_stories"),
         "indesign_parity_accepted": (
             "" if parity.get("accepted") is None
             else ("TRUE" if parity.get("accepted") else "FALSE")
