@@ -1403,3 +1403,26 @@ Why it mattered:
 - Target-scoped overlay preserves the current-main toolchain and selected review
   content without cross-target contamination, which is required before safely
   exercising independent queue records concurrently.
+
+## 83. 2026-07-31: Queue Artifacts Are Selective and Time-Bounded (Workstream W / Stage 4b item 3)
+
+What changed:
+
+- Added an explicit retention window to every GitHub Actions artifact upload:
+  1 day for the Vercel deployment handoff, 7 days for Draft/Start Review/
+  preview/OpenClaw inspection artifacts, and 14 days for Publish release
+  artifacts. The phase2 content backup keeps its independent 90-day window.
+- Removed broad queue uploads of bare `docs/_build`, `docs/_review`, and
+  `reports/releases`. Draft now retains final Word/Markdown surfaces, Start
+  Review retains the review bundle components, and Publish retains only
+  version/latest/manifest release surfaces plus phase2 identity files.
+- Added a workflow policy test that fails when an upload omits retention or
+  when the queue artifact path contract broadens again.
+
+Why it mattered:
+
+- Generated RST trees, duplicate Vercel inputs, and timestamped release trees
+  no longer consume artifact quota for the platform default retention period.
+- Deployment still receives the exact static site it consumes, operators keep
+  the final delivery/diagnostic files needed for review, and restore retention
+  remains governed by the backup contract rather than the CI quota policy.

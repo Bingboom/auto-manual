@@ -468,6 +468,13 @@ storage. GitHub Actions supplies the second layer: Draft and Publish share a
 Vercel production build/deploy/writeback tail is serialized separately without
 forcing unrelated document builds back into one global queue.
 
+Queue workflow artifacts are intentionally bounded: the one-job Vercel handoff
+keeps only the generated static site for 1 day; Draft, Start Review, preview,
+and OpenClaw diagnostics keep their final/diagnostic surfaces for 7 days; and
+Publish release archives keep version/latest/manifest surfaces for 14 days.
+The 90-day phase2 content backup is a separate restore contract and is not
+shortened by this CI quota policy.
+
 When a queue row names `Git_ref`, the worker checks out the latest `origin/main`
 toolchain and overlays only `docs/_review/<model>/<region>` from that ref. It
 never replaces the whole `docs/_review` tree, so unrelated review targets cannot

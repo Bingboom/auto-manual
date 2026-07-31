@@ -210,9 +210,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: vercel-publish-candidate
-          path: |
-            reports/releases
-            site/publish-latest/dist
+          path: site/publish-latest/dist
+          retention-days: 1
           if-no-files-found: error
 
       - name: Upload built docs artifact
@@ -221,11 +220,13 @@ jobs:
         with:
           name: feishu-build-queue-output
           path: |
-            docs/_build
-            reports/releases
-            site/publish-latest/dist
+            reports/releases/**/versions/**
+            reports/releases/**/latest/**
+            reports/releases/**/manifests/*.json
+            reports/releases/**/manifests/*.csv
             data/phase2/snapshot_manifest.json
             data/phase2/row_key_mapping.csv
+          retention-days: 14
           if-no-files-found: ignore
 
       # Milestone K5: a failed queue run must alert on its own instead of
@@ -271,6 +272,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: vercel-publish-candidate
+          path: site/publish-latest/dist
 
       - name: Set up Vercel publish runtime
         if: ${{ needs.process-queue.result == 'success' && needs.process-queue.outputs.has_publish_site == 'true' }}
@@ -342,6 +344,7 @@ jobs:
         with:
           name: openclaw-run-metadata
           path: .tmp/openclaw/feishu-build-queue-run.json
+          retention-days: 7
           if-no-files-found: error
 
       - name: Vercel deployment failure sentinel
