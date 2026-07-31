@@ -3,8 +3,15 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from dataclasses import dataclass
 from pathlib import Path
+
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
+from tools import check_language_literal_ratchet
 
 
 # Thresholds are set ~25-100 lines above the current size of files that have
@@ -137,6 +144,10 @@ def main(argv: list[str] | None = None) -> int:
         for failure in failures:
             print(_render_failure(failure))
         return 1
+
+    language_literals = check_language_literal_ratchet.check_repository(args.repo_root.resolve())
+    if language_literals.exit_code:
+        return language_literals.exit_code
 
     print(
         f"[maintainability] Guardrails OK for {len(HOTSPOT_LINE_THRESHOLDS)} hotspot files."
