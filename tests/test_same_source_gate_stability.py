@@ -205,6 +205,32 @@ class PageSourceShaStabilityTest(unittest.TestCase):
             )
             self.assertNotEqual(_normalized_page_sha256(a), _normalized_page_sha256(b))
 
+    def test_bare_basename_in_latex_macro_is_normalized(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            a, b = Path(tmp) / "a.rst", Path(tmp) / "b.rst"
+            a.write_text(
+                "\\HBSymbolIconRow{1_warning_triangle_IfHObDBCDowRHbxLvCzci3wen7c.png}{Warning.}\n",
+                encoding="utf-8",
+            )
+            b.write_text(
+                "\\HBSymbolIconRow{1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png}{Warning.}\n",
+                encoding="utf-8",
+            )
+            self.assertEqual(
+                _normalized_page_sha256(a), _normalized_page_sha256(b),
+                "token rotation on bare basenames (LaTeX macro args) must normalize away",
+            )
+
+    def test_long_lowercase_name_word_is_not_treated_as_token(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            a, b = Path(tmp) / "a.rst", Path(tmp) / "b.rst"
+            a.write_text(".. image:: assets/label_internationalization.png\n", encoding="utf-8")
+            b.write_text(".. image:: assets/label_localization.png\n", encoding="utf-8")
+            self.assertNotEqual(
+                _normalized_page_sha256(a), _normalized_page_sha256(b),
+                "long all-lowercase name words are content, not volatile tokens",
+            )
+
     def test_attachment_ordinal_change_changes_page_sha(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             a = self._write_page(Path(tmp) / "a.rst", "OldTokenAAAABBBBCCCC")
