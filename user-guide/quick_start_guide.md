@@ -431,6 +431,11 @@ Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文
 它现在只是构建时使用的本地物化快照；只有你勾了 `是否强制刷新数据`，队列才会先把它刷新到最新。
 不是 Build Draft Package / Publish 的人工主编辑面。
 
+Publish 成功时，实际参与构建的这份快照会随版本归档到
+`reports/releases/<model>/<region>/<lang>/versions/<version>/snapshot/`。
+同一版本只能复用完全相同的快照；不要手改归档，也不要用后来同步的
+`data/phase2` 覆盖它。
+
 ### 本地自测先隔离生成物
 
 本地跑 `check`、`diff-report`、`release-manifest`、`publish` 或手动消费 queue 时，优先加：

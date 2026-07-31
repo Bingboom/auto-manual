@@ -428,7 +428,7 @@ The long-form prose assembly re-launch (Workstream N) stays out of this mileston
 gated on the same design.
 
 - [ ] PR E1: Freeze release snapshots (Workstream J)
-  - Status: `pending`
+  - Status: `in_progress` — E1-PR1 freeze/binding implemented; E1-PR2 rebuild-equivalence proof remains
   - Target files:
     - [`../tools/release_manifest.py`](../tools/release_manifest.py)
     - [`../tools/utils/path_utils.py`](../tools/utils/path_utils.py)
@@ -437,6 +437,7 @@ gated on the same design.
     - a timestamped snapshot (source revision, exported files, target matrix) is archived at release time
     - `release-manifest` binds to that frozen snapshot through `path_utils`, not a re-pulled live snapshot
     - rebuilding from the archived snapshot reproduces the release output
+  - E1-PR1 note (2026-07-31): versioned Publish archives exported data and attachments under the approved `versions/<version>/snapshot/` lifetime-retained path, writes an immutable identity, binds JSON/CSV manifests to it, and carries the archive out of temporary queue worktrees. Same-version rebinding and archive drift fail closed.
 
 - [ ] PR E2: QC closed-loop tail — sync-time `record_id` sidecar (Workstream I)
   - Status: `pending`

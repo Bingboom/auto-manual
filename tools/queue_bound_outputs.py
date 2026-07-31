@@ -244,6 +244,8 @@ def stage_publish_assets_to_host_repo(
     model: str,
     region: str,
     version: str,
+    built_release_snapshot_dir: Path,
+    built_release_manifests_dir: Path,
 ) -> tuple[Path, Path, Path, Path, Path]:
     return _stage_publish_assets_to_host_repo_impl(
         built_word_output_path=built_word_output_path,
@@ -255,6 +257,8 @@ def stage_publish_assets_to_host_repo(
         model=model,
         region=region,
         version=version,
+        built_release_snapshot_dir=built_release_snapshot_dir,
+        built_release_manifests_dir=built_release_manifests_dir,
         publish_release_version_dir_for_target=publish_release_version_dir_for_target,
         publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
         copy_tree=_copy_tree_impl,

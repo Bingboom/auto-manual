@@ -8,6 +8,21 @@ from tools import queue_outputs
 
 
 class QueueOutputsTests(unittest.TestCase):
+    def test_immutable_release_traceability_copy_should_refuse_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "source"
+            destination = root / "destination"
+            source.mkdir()
+            (source / "identity.json").write_text('{"sha": "a"}\n', encoding="utf-8")
+
+            queue_outputs.copy_immutable_tree(source, destination)
+            queue_outputs.copy_immutable_tree(source, destination)
+            (destination / "identity.json").write_text('{"sha": "b"}\n', encoding="utf-8")
+
+            with self.assertRaisesRegex(RuntimeError, "immutable"):
+                queue_outputs.copy_immutable_tree(source, destination)
+
     def test_stage_draft_md_output_should_copy_myst_sidecars(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

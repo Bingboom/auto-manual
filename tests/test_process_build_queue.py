@@ -34,6 +34,25 @@ def _write_minimal_production_idml(path: Path) -> None:
         zf.writestr("Stories/Story_s1.xml", story, compress_type=zipfile.ZIP_DEFLATED)
 
 
+def _write_release_traceability(
+    root: Path,
+    *,
+    model: str,
+    region: str,
+    lang: str,
+    version: str,
+) -> None:
+    release_root = root / "reports" / "releases" / model / region / lang
+    snapshot_dir = release_root / "versions" / version / "snapshot"
+    snapshot_dir.mkdir(parents=True, exist_ok=True)
+    (snapshot_dir / "snapshot_manifest.json").write_text("{}\n", encoding="utf-8")
+    (snapshot_dir / "release_snapshot_identity.json").write_text("{}\n", encoding="utf-8")
+    manifests_dir = release_root / "manifests"
+    manifests_dir.mkdir(parents=True, exist_ok=True)
+    (manifests_dir / "20260731T000000Z.json").write_text("{}\n", encoding="utf-8")
+    (manifests_dir / "20260731T000000Z.csv").write_text("model\n", encoding="utf-8")
+
+
 
 class TestProcessBuildQueue(unittest.TestCase):
     def test_config_path_in_repo_root_should_preserve_configs_dir(self) -> None:
@@ -795,6 +814,13 @@ class TestProcessBuildQueue(unittest.TestCase):
             )
             main_worktree_idml_path.parent.mkdir(parents=True, exist_ok=True)
             _write_minimal_production_idml(main_worktree_idml_path)
+            _write_release_traceability(
+                main_worktree,
+                model="JE-1000F",
+                region="US",
+                lang="en",
+                version="0.2",
+            )
             (root / "data" / "phase2").mkdir(parents=True, exist_ok=True)
             (root / "data" / "phase2" / "Spec_Master.csv").write_text("fresh-main-data\n", encoding="utf-8")
             (review_worktree / "docs" / "_review" / "JE-1000F" / "US").mkdir(parents=True, exist_ok=True)
@@ -852,6 +878,11 @@ class TestProcessBuildQueue(unittest.TestCase):
                     "fresh-main-data\n",
                     (main_worktree / "data" / "phase2" / "Spec_Master.csv").read_text(encoding="utf-8"),
                 )
+                host_release_root = root / "reports" / "releases" / "JE-1000F" / "US" / "en"
+                self.assertTrue(
+                    (host_release_root / "versions" / "0.2" / "snapshot" / "release_snapshot_identity.json").exists()
+                )
+                self.assertTrue((host_release_root / "manifests" / "20260731T000000Z.json").exists())
 
         self.assertEqual(
             root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.docx",
@@ -1075,6 +1106,13 @@ class TestProcessBuildQueue(unittest.TestCase):
             idml_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "idml" / "manual_je1000f_jp.idml"
             idml_path.parent.mkdir(parents=True, exist_ok=True)
             _write_minimal_production_idml(idml_path)
+            _write_release_traceability(
+                root,
+                model="JE-1000F",
+                region="JP",
+                lang="ja",
+                version="1.0",
+            )
 
             with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
                 process_build_queue,
@@ -1107,6 +1145,11 @@ class TestProcessBuildQueue(unittest.TestCase):
                 )
                 self.assertTrue(resolved_path.word_output_path.exists())
                 self.assertTrue(resolved_path.upload_output_path.exists())
+                host_release_root = root / "reports" / "releases" / "JE-1000F" / "JP" / "ja"
+                self.assertTrue(
+                    (host_release_root / "versions" / "1.0" / "snapshot" / "release_snapshot_identity.json").exists()
+                )
+                self.assertTrue((host_release_root / "manifests" / "20260731T000000Z.csv").exists())
 
         self.assertEqual(
             root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.docx",
@@ -1122,6 +1165,8 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
         self.assertEqual(3, len(commands))
         self.assertEqual("publish", commands[0][2])
+        self.assertIn("--version", commands[0])
+        self.assertEqual("1.0", commands[0][commands[0].index("--version") + 1])
         self.assertEqual("html", commands[1][2])
         self.assertEqual("idml", commands[2][2])
         # Regression: idml must not --clean away the earlier steps' outputs.

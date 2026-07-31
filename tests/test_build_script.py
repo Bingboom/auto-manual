@@ -981,6 +981,40 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
 
+    def test_release_manifest_command_should_forward_release_version(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "release-manifest",
+                "--model",
+                "JE-1000F",
+                "--region",
+                "JP",
+                "--version",
+                "1.2",
+            ]
+        )
+
+        cmd = build_cli.release_manifest_command(args)
+
+        self.assertEqual("1.2", cmd[cmd.index("--version") + 1])
+
+    def test_release_manifest_command_should_preserve_explicit_empty_version(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "release-manifest",
+                "--model",
+                "JE-1000F",
+                "--region",
+                "JP",
+                "--version",
+                "",
+            ]
+        )
+
+        cmd = build_cli.release_manifest_command(args)
+
+        self.assertEqual("", cmd[cmd.index("--version") + 1])
+
     def test_release_manifest_command_should_forward_staging_roots(self) -> None:
         args = build_cli.parse_args(
             ["release-manifest", "--model", "JE-1000F", "--region", "JP", "--staging-root", ".tmp/staging"]

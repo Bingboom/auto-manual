@@ -7,7 +7,12 @@ import sys
 from pathlib import Path
 from typing import Callable
 
+from tools.build_docs import load_config
 from tools.idml.delivery import build_delivery_package
+from tools.release_contract import (
+    release_manifests_dir_for_target,
+    release_snapshot_dir_for_target,
+)
 from tools.utils.path_utils import PathSegments, review_dir_of
 
 
@@ -227,16 +232,18 @@ def build_document_for_task(
                 cwd=effective_repo_root,
             )
         elif normalized_doc_phase == "publish":
+            publish_command = build_py_target_command(
+                repo_root=effective_repo_root,
+                action="publish",
+                config_path=effective_config_path,
+                model=model,
+                region=region,
+                lang=lang,
+                data_root=effective_data_root,
+            )
+            publish_command += ["--version", version]
             run_command(
-                build_py_target_command(
-                    repo_root=effective_repo_root,
-                    action="publish",
-                    config_path=effective_config_path,
-                    model=model,
-                    region=region,
-                    lang=lang,
-                    data_root=effective_data_root,
-                ),
+                publish_command,
                 cwd=effective_repo_root,
             )
             run_command(
@@ -393,6 +400,7 @@ def build_document_for_task(
             host_config_path = config_path_in_repo_root(config_path, repo_root=repo_root)
             if md_output_path is None:
                 raise RuntimeError("Markdown output was not created for publish")
+            release_cfg = load_config(effective_config_path)
             (
                 staged_word_output_path,
                 staged_pdf_output_path,
@@ -409,6 +417,21 @@ def build_document_for_task(
                 model=model,
                 region=region,
                 version=version,
+                built_release_snapshot_dir=release_snapshot_dir_for_target(
+                    repo_root=effective_repo_root,
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    version=version,
+                    cfg=release_cfg,
+                ),
+                built_release_manifests_dir=release_manifests_dir_for_target(
+                    repo_root=effective_repo_root,
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    cfg=release_cfg,
+                ),
             )
             # Upload the handoff zip (not the PDF/Word) to the knowledge base -> idml_file.
             return BuiltDocumentOutputs(

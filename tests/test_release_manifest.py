@@ -3,6 +3,7 @@
 import csv
 import hashlib
 import json
+import shutil
 import tempfile
 import unittest
 from datetime import datetime, timezone
@@ -13,6 +14,61 @@ from tools import release_manifest
 
 
 class TestReleaseManifest(unittest.TestCase):
+    def test_versioned_manifest_should_bind_to_frozen_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            build_root = docs_dir / "_build" / "JE-1000F" / "US" / "en"
+            for child in ("rst", "html", "word", "pdf", "md", "idml"):
+                (build_root / child).mkdir(parents=True, exist_ok=True)
+            (docs_dir / "_review" / "JE-1000F" / "US" / "en").mkdir(parents=True)
+            data_root = root / "data" / "phase2"
+            shutil.copytree(Path(__file__).parent / "fixtures" / "phase2", data_root)
+            config_path = root / "config.yaml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "build:",
+                        "  languages: [en]",
+                        "  include_lang_in_output_path: true",
+                        "paths:",
+                        f"  docs_dir: {docs_dir.as_posix()}",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            built_at = datetime(2026, 7, 31, 3, 4, tzinfo=timezone.utc)
+
+            with mock.patch.object(release_manifest, "ROOT", root), mock.patch.object(
+                release_manifest, "_read_git_sha", return_value="abc123"
+            ):
+                json_path, csv_path = release_manifest.build_release_manifest(
+                    config_path=config_path,
+                    model="JE-1000F",
+                    region="US",
+                    data_root=str(data_root),
+                    release_version="1.2",
+                    built_at=built_at,
+                )
+
+            manifest = json.loads(json_path.read_text(encoding="utf-8"))
+            snapshot_path = root / manifest["snapshot"]["path"]
+            self.assertEqual("1.2", manifest["release_version"])
+            self.assertEqual(
+                "reports/releases/JE-1000F/US/en/versions/1.2/snapshot",
+                manifest["snapshot"]["path"],
+            )
+            self.assertEqual(
+                "reports/releases/JE-1000F/US/en/versions/1.2/snapshot/Spec_Master.csv",
+                manifest["spec_master_csv"],
+            )
+            self.assertTrue((snapshot_path / "release_snapshot_identity.json").exists())
+            with csv_path.open(encoding="utf-8", newline="") as handle:
+                csv_row = next(csv.DictReader(handle))
+            self.assertEqual(manifest["snapshot"]["snapshot_sha256"], csv_row["snapshot_sha256"])
+            self.assertIn('"lang": "en"', csv_row["snapshot_target_matrix"])
+
     def test_build_release_manifest_should_write_json_and_csv(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

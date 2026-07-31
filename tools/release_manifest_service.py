@@ -15,7 +15,11 @@ from tools.build_docs import (
 )
 from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.gen_index_bundle import bundle_dir_for_target
-from tools.release_contract import release_manifests_dir_for_target
+from tools.release_contract import (
+    release_manifests_dir_for_target,
+    release_snapshot_dir_for_target,
+)
+from tools.release_snapshot import freeze_release_snapshot
 from tools.review_bundle import resolve_docs_dir
 from tools.review_support import review_dir_for_target
 from tools.release_asset_lineage import collect_asset_lineage
@@ -66,6 +70,7 @@ def build_release_manifest(
     built_at: datetime | None = None,
     docs_build_dir: Path | None = None,
     releases_root: Path | None = None,
+    release_version: str | None = None,
     toolchain: dict[str, object] | None = None,
     assets: dict[str, object] | None = None,
     indesign_package: dict[str, object] | None = None,
@@ -138,12 +143,48 @@ def build_release_manifest(
         model=model,
         region=region,
     )
+    snapshot_record: dict[str, object] | None = None
+    if release_version is not None:
+        frozen = freeze_release_snapshot(
+            cfg=cfg,
+            repo_root=repo_root,
+            data_root=data_root,
+            model=model,
+            region=region,
+            languages=langs,
+            snapshot_dir=release_snapshot_dir_for_target(
+                repo_root=repo_root,
+                config_path=config_path,
+                model=model,
+                region=region,
+                version=release_version,
+                cfg=cfg,
+                releases_root=releases_root,
+            ),
+            frozen_at=built_at_value,
+        )
+        snapshot_paths = resolve_data_snapshot_paths(
+            cfg,
+            repo_root=repo_root,
+            data_root=frozen.snapshot_dir,
+            model=model,
+            region=region,
+        )
+        snapshot_record = {
+            "path": repo_relative(frozen.snapshot_dir, repo_root=repo_root),
+            "identity_path": repo_relative(frozen.identity_path, repo_root=repo_root),
+            "snapshot_sha256": frozen.identity["snapshot_sha256"],
+            "frozen_at": frozen.identity["frozen_at"],
+            "source_revision": frozen.identity["source_revision"],
+            "target_matrix": frozen.identity["target_matrix"],
+        }
+
     product_name = resolve_product_name_for_build(
         cfg,
         model=model,
         region=region,
         lang=primary_lang,
-        data_root=data_root,
+        data_root=snapshot_paths.structured_data_dir,
         repo_root=repo_root,
     )
 
@@ -180,6 +221,8 @@ def build_release_manifest(
         "region": region,
         "build_languages": langs,
         "product_name": product_name,
+        "release_version": release_version or "",
+        "snapshot": snapshot_record,
         "spec_master_csv": repo_relative(snapshot_paths.spec_master_csv, repo_root=repo_root),
         "spec_footnotes_csv": repo_relative(snapshot_paths.spec_footnotes_csv, repo_root=repo_root),
         "spec_notes_csv": repo_relative(snapshot_paths.spec_notes_csv, repo_root=repo_root),
@@ -206,6 +249,21 @@ def build_release_manifest(
         "region": region,
         "build_languages": ",".join(langs),
         "product_name": product_name or "",
+        "release_version": release_version or "",
+        "snapshot_path": str((snapshot_record or {}).get("path") or ""),
+        "snapshot_identity_path": str((snapshot_record or {}).get("identity_path") or ""),
+        "snapshot_sha256": str((snapshot_record or {}).get("snapshot_sha256") or ""),
+        "snapshot_frozen_at": str((snapshot_record or {}).get("frozen_at") or ""),
+        "snapshot_source_revision": json.dumps(
+            (snapshot_record or {}).get("source_revision") or {},
+            ensure_ascii=False,
+            sort_keys=True,
+        ),
+        "snapshot_target_matrix": json.dumps(
+            (snapshot_record or {}).get("target_matrix") or [],
+            ensure_ascii=False,
+            sort_keys=True,
+        ),
         "spec_master_csv": manifest["spec_master_csv"] or "",
         "spec_footnotes_csv": manifest["spec_footnotes_csv"] or "",
         "spec_notes_csv": manifest["spec_notes_csv"] or "",

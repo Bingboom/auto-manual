@@ -44,6 +44,7 @@ def build_release_manifest(
     built_at: datetime | None = None,
     docs_build_dir: Path | None = None,
     releases_root: Path | None = None,
+    release_version: str | None = None,
     toolchain: dict[str, object] | None = None,
 ) -> tuple[Path, Path]:
     return _build_release_manifest(
@@ -56,6 +57,7 @@ def build_release_manifest(
         built_at=built_at,
         docs_build_dir=docs_build_dir,
         releases_root=releases_root,
+        release_version=release_version,
         toolchain=toolchain,
     )
 
@@ -68,6 +70,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--releases-root", default=None, help="Override reports/releases root used to write manifests")
     ap.add_argument("--model", required=True, help="Explicit release target model")
     ap.add_argument("--region", required=True, help="Explicit release target region")
+    ap.add_argument(
+        "--version",
+        default=None,
+        help="Freeze and bind the phase2 snapshot under this release version",
+    )
     return ap.parse_args(argv)
 
 
@@ -97,6 +104,7 @@ def main(argv: list[str] | None = None) -> int:
             data_root=args.data_root,
             docs_build_dir=docs_build_dir,
             releases_root=releases_root,
+            release_version=args.version,
         )
     except RuntimeError as exc:
         print(f"[release-manifest] ERROR: {exc}", file=sys.stderr)

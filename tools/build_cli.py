@@ -209,7 +209,11 @@ def parse_args(
         help="For queue-query, queue-resolve-action, process-build-queue, or message-control-dry-run: exact Build_family filter or hint",
     )
     ap.add_argument("--git-ref", default=None, help="For message-control-dry-run: explicit Git_ref hint")
-    ap.add_argument("--version", default=None, help="For message-control-dry-run: explicit version hint")
+    ap.add_argument(
+        "--version",
+        default=None,
+        help="Explicit version for message-control-dry-run or versioned publish/release snapshot binding",
+    )
     ap.add_argument("--confirmed", action="store_true", help="For message-control-dry-run: confirm publish intent")
     ap.add_argument(
         "--queue-scope",

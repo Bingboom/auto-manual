@@ -122,7 +122,7 @@
 13. [M] `refactor(idml): contract-driven app page ownership` — Done（机器）：批准契约的 `app_add_device.page_owners` 同时驱动隐藏资产冻结和排版；退役 `is_je1000f_us_*` 模式，guardrail 正则防再生。
 14. [M] `refactor(idml): explicit page-role table + assembly coverage WARNING` — Done（机器）：当前模板页由一个 target-neutral 语义表显式覆盖；未知页保持 prose fallback，同时稳定告警 source ref，现有 golden IDML 不变。
 15. [S] `feat(release): layout signals in release manifest` — Done（机器）：#723 已把 native page/overset 数写入 `indesign_package.preflight`；本项补齐 release CSV/dashboard 两个数值列，并区分未报告与显式 `0`。
-16. [M] `feat(release): E1-PR1 freeze publish snapshot + manifest binding`
+16. [x] [M] `feat(release): E1-PR1 freeze publish snapshot + manifest binding` — Done（机器）：versioned Publish 将实际 phase2 根（CSV + attachments）冻结到 `versions/<version>/snapshot/`，JSON/CSV manifest 绑定 identity；同版本异源重绑、归档漂移与临时 worktree 丢失均 fail-closed。
 17. [M] `feat(release): E1-PR2 rebuild equivalence end-to-end`
 18. [M] `feat(ci): nightly-render workflow` — doctor 循环+试点 IDML smoke（#720 类事故发现延迟上界→1 天）；〔操作者验收〕手触一轮。
 

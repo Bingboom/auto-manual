@@ -1295,3 +1295,24 @@ Why it mattered:
 - Workstream V now has approved boundaries and bounded follow-on slices rather
   than a one-shot rewrite; the one-family pilot can proceed after its registered
   implementation prerequisites are present.
+
+## 78. 2026-07-31: Versioned Publish Freezes Its Phase2 Snapshot (Workstream W / E1-PR1)
+
+What changed:
+
+- Added path-utils-backed release snapshot paths under
+  `reports/releases/<model>/<region>/<lang>/versions/<version>/snapshot/`.
+- Versioned `release-manifest` now copies the complete valid phase2 root,
+  including attachments, and records an immutable identity with the file
+  inventory/content hash, source-manifest revision, freeze time, and target
+  matrix. Its JSON/CSV paths resolve against the archive, not live data.
+- Queue Publish passes its version into the manifest step and stages both the
+  frozen snapshot and timestamped manifests out of the disposable build
+  worktree. Identical retries are idempotent; rebind or archive drift fails.
+
+Why it mattered:
+
+- A published version no longer loses its data inputs when the worker removes
+  its temporary worktree or when `data/phase2` is synchronized again.
+- This closes E1's archive/binding slice without overstating the remaining
+  end-to-end rebuild-equivalence proof, which stays in E1-PR2.
