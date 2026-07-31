@@ -72,6 +72,27 @@ class SyncTableRegistriesTest(unittest.TestCase):
             with self.subTest(table=logical_name):
                 self.assertEqual(TABLE_SCHEMAS[logical_name].file_name, file_name)
 
+    def test_required_file_and_header_registries_are_schema_derived(self) -> None:
+        self.assertEqual(
+            PHASE2_REQUIRED_TABLE_FILES,
+            {
+                logical_name: schema.file_name
+                for logical_name, schema in TABLE_SCHEMAS.items()
+                if logical_name in PHASE2_REQUIRED_TABLE_FILES
+            },
+        )
+        self.assertEqual(
+            {
+                logical_name: REQUIRED_CSV_HEADERS[logical_name]
+                for logical_name in PHASE2_REQUIRED_TABLE_FILES
+            },
+            {
+                logical_name: schema.required_headers
+                for logical_name, schema in TABLE_SCHEMAS.items()
+                if logical_name in PHASE2_REQUIRED_TABLE_FILES
+            },
+        )
+
     def test_source_contract_maps_required_source_files_exactly(self) -> None:
         snapshot_rows = [
             (

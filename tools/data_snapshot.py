@@ -12,6 +12,7 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.utils.targets import format_tokenized
+from tools.sync_data_models import TABLE_ORDER, TABLE_SCHEMAS
 
 STRUCTURED_DATA_DEFAULT_DIR = "data/phase2"
 LEGACY_STRUCTURED_DATA_DIR = "data/phase1"
@@ -34,15 +35,9 @@ LOCALIZED_COPY_FILE = "Localized_Copy.csv"
 STATUS_WORDS_FILE = "Status_Words.csv"
 
 PHASE2_REQUIRED_TABLE_FILES: dict[str, str] = {
-    "spec_master": SPEC_MASTER_FILE,
-    "spec_footnotes": SPEC_FOOTNOTES_FILE,
-    "spec_notes": SPEC_NOTES_FILE,
-    "symbols_blocks": SYMBOLS_BLOCKS_FILE,
-    "lcd_icons": LCD_ICONS_BLOCKS_FILE,
-    "troubleshooting": TROUBLESHOOTING_BLOCKS_FILE,
-    "variable_defaults": VARIABLE_DEFAULTS_FILE,
-    "variable_lang_overrides": VARIABLE_LANG_OVERRIDES_FILE,
-    "manual_copy_source": MANUAL_COPY_SOURCE_FILE,
+    logical_name: TABLE_SCHEMAS[logical_name].file_name
+    for logical_name in TABLE_ORDER
+    if logical_name in TABLE_SCHEMAS
 }
 PHASE2_REQUIRED_DERIVED_FILES: dict[str, str] = {
     "page_registry": PAGE_REGISTRY_FILE,
