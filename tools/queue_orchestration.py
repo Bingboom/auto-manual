@@ -3,6 +3,28 @@ from __future__ import annotations
 from typing import Any, Callable
 
 
+def sync_phase2_snapshot_once(
+    sync_phase2_snapshot_before_queue: Callable[..., None],
+    *,
+    memo: set[tuple[str, str]],
+    config_path: Any,
+    data_root: str | None,
+) -> None:
+    """Run one phase2 sync at most once for a queue invocation.
+
+    The queue worker may process several groups in one invocation.  A forced
+    refresh is a run-level operation, so repeat groups using the same config
+    and data root reuse the successful snapshot.  Failed syncs are not memoized
+    and remain retryable for a later group.
+    """
+
+    key = (str(config_path), str(data_root or ""))
+    if key in memo:
+        return
+    sync_phase2_snapshot_before_queue(config_path=config_path, data_root=data_root)
+    memo.add(key)
+
+
 def process_build_queue(
     *,
     cfg: dict[str, Any],
@@ -117,6 +139,16 @@ def process_build_queue(
 
     failures: list[str] = []
     processed = 0
+    phase2_sync_memo: set[tuple[str, str]] = set()
+
+    def sync_phase2_snapshot_for_group(*, config_path: Any, data_root: str | None) -> None:
+        sync_phase2_snapshot_once(
+            sync_phase2_snapshot_before_queue,
+            memo=phase2_sync_memo,
+            config_path=config_path,
+            data_root=data_root,
+        )
+
     for group in pending_state.pending_groups:
         result = process_queue_record_group(
             group=group,
@@ -145,7 +177,7 @@ def process_build_queue(
             queue_group_upload_dingtalk=queue_group_upload_dingtalk,
             resolve_config_path_for_task=resolve_config_path_for_task,
             resolve_queue_workflow_action=resolve_queue_workflow_action,
-            sync_phase2_snapshot_before_queue=sync_phase2_snapshot_before_queue,
+            sync_phase2_snapshot_before_queue=sync_phase2_snapshot_for_group,
             resolve_lark_wiki_destination=resolve_lark_wiki_destination,
             resolve_row_artifact_destination=resolve_row_artifact_destination,
             resolve_artifact_mirror_provider=resolve_artifact_mirror_provider,

@@ -414,6 +414,8 @@ the staged rollout in
 
 For the full review-first flow, queue-driven Draft/Publish workers, matrix runners, and every command flag, see [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For the editing-surface and source-of-truth rules, see [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) and [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md). For BlockClaw / Feishu IM behavior, including one-run batch document-link dispatch and read-only `发布文档管理` manual-index lookups, see [`integrations/openclaw/feishu-im-webhook-adapter/README.md`](integrations/openclaw/feishu-im-webhook-adapter/README.md). Explicit OpenClaw build requests must go through `queue-resolve-action` → `queue-execute`; the assistant must not preflight with local `check` or `data/phase2/*.csv`, because `是否强制刷新数据` is consumed by the remote queue worker. `queue-execute` adds an advisory target-bound asset preflight to Draft/Publish dispatch results; it never replaces the prepared-bundle lineage gate.
 
+Within one queue worker batch, a successful forced phase2 sync is reused for the same config/data-root pair; a failed sync is not memoized and remains retryable for a later group.
+
 Language display labels and queue-query aliases are derived from the shared
 `tools/lang_registry.py` registry. Add one registry row rather than creating
 per-surface language maps; `tests/test_fake_language_e2e.py` proves that a fake
