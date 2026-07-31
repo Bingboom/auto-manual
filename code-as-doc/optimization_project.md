@@ -642,7 +642,7 @@ Scope:
 
 - U1: one Feishu transport client — fold the duplicate `run_lark_cli_json` implementations (`queue_lark_ops`, `queue_bound_lark_ops`, `listen_build_queue*`, `spec_master_rebuild`, `bitable_schema`, sync/backport call sites) into a single module owning retry/backoff/rate-limit, and add file locking around `data/phase2/*.csv` snapshot writes
 - Execution note: Workstream W / Stage 4a has completed K8 slices 1–4, centralizing the queue, build-listener, spec-master, and schema command/response boundary plus bounded retry/backoff, pagination, and phase2 snapshot-write locking policy.
-- Execution note: Stage 4a items 10–15 now provide review-only reference-layout scaffolding, explicit failure-isolated finalize job manifests, a one-dispatch JSX batch loop per InDesign application group, approved-contract App page ownership, target-neutral page-role assembly coverage warnings, and native page/overset signals in both release JSON and CSV. Item 12's machine implementation is complete and its design-Mac two-document evidence is recorded; explicit operator acceptance remains pending in PR review.
+- Execution note: Stage 4a items 10–15 now provide review-only reference-layout scaffolding, explicit failure-isolated finalize job manifests, a one-dispatch JSX batch loop per InDesign application group, approved-contract App page ownership, target-neutral page-role assembly coverage warnings, and native page/overset signals in both release JSON and CSV. Item 12's design-Mac two-document evidence was accepted on 2026-07-31 and PR #814 is merged.
 - U2: package the flat `tools/` namespace along the proven `tools/idml/` pattern — `queue/`, `backport/`, `word/`, `intake/`, `sync/`, `checks/` — as behavior-preserving mechanical moves with guardrail entries updated per move
 - U3: extract target/config resolution (`load_config`, `resolve_build_targets`, `build_root_for_target`) out of the [`tools/build_docs.py`](../tools/build_docs.py) facade into `tools/utils/` so queue/check/release modules stop importing the build orchestrator
 - U4: structured logging baseline: introduce `logging` with levels in queue orchestration and build entry paths first, replacing prints incrementally
@@ -659,7 +659,9 @@ Exit criteria:
 
 ### Workstream V: Review-Branch Propagation Re-Architecture (Phase 2)
 
-Status: deferred (gated on a design doc, like Workstream N)
+Status: design approved 2026-07-31; bounded implementation slices registered
+
+Design: [`architecture/Review_Branch_Propagation_Design.md`](architecture/Review_Branch_Propagation_Design.md).
 
 PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone K (K15 = design gate only; implementation PRs are registered after design approval).
 

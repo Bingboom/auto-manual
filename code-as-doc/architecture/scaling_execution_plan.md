@@ -118,7 +118,7 @@
 9. [S] `feat(sync): phase2 snapshot write file-lock` — K8 原 Done-when 第 4 件（批判环补漏：并发 sync 竞态 10x 下无覆盖）。
 10. [M] `feat(idml): reference_layout_scaffold contract draft generator` — 52 页手抄哈希 → 只审 composition/approval；不接激活路径，fail-closed 兜底。
 11. [M] `feat(finalize): --jobs manifest Python side` — 清单校验/逐 job 报告聚合/单 job 失败隔离；**jobs 清单强制显式 preset 字段**（修 [PDF/X-4 Japan]/Japan Color 默认 ICC 坑——批判环漏配项）；附 `indesign_package.complete=FALSE` 扫描自动组批盘点。
-12. [S] `feat(finalize): JSX batch loop` — Machine implementation complete：同一 InDesign application 的 jobs 一次 dispatch，JSX 外层循环逐文档执行且 try/catch 隔离，仍产出独立 preflight；设计机 2-doc 执行证据见 [`../tests/indesign_finalize_batch_acceptance_2026-07-31.md`](../tests/indesign_finalize_batch_acceptance_2026-07-31.md)，〔操作者验收〕仍由 PR review 明确确认。
+12. [x] [S] `feat(finalize): JSX batch loop` — Done：同一 InDesign application 的 jobs 一次 dispatch，JSX 外层循环逐文档执行且 try/catch 隔离，仍产出独立 preflight；设计机 2-doc 执行证据见 [`../tests/indesign_finalize_batch_acceptance_2026-07-31.md`](../tests/indesign_finalize_batch_acceptance_2026-07-31.md)，操作者于 2026-07-31 验收，PR #814 已合入。
 13. [M] `refactor(idml): contract-driven app page ownership` — Done（机器）：批准契约的 `app_add_device.page_owners` 同时驱动隐藏资产冻结和排版；退役 `is_je1000f_us_*` 模式，guardrail 正则防再生。
 14. [M] `refactor(idml): explicit page-role table + assembly coverage WARNING` — Done（机器）：当前模板页由一个 target-neutral 语义表显式覆盖；未知页保持 prose fallback，同时稳定告警 source ref，现有 golden IDML 不变。
 15. [S] `feat(release): layout signals in release manifest` — Done（机器）：#723 已把 native page/overset 数写入 `indesign_package.preflight`；本项补齐 release CSV/dashboard 两个数值列，并区分未报告与显式 `0`。
@@ -150,7 +150,7 @@
 11. [M] `feat(idml): east_asian_width line estimates`（0.52 拉丁估宽改字符宽度类别;gated）
 12. [S] `test(idml): JP smoke export + check_idml record`（gated）
 13. [M] `feat(release): K14 release tag + rollback runbook`（deps: E1;演练计时归操作者）
-14. [M] `docs(arch): K15/V review-propagation design doc` — 纯文档,覆盖 checklist L1459-1462 五项;**批准即解锁 many-target 扩张**。
+14. [x] [M] `docs(arch): K15/V review-propagation design doc` — Done：覆盖 derivative-only ownership、advanceable pin、rendered bump PR、classify-or-abstain、legacy migration、failure/blast-radius/lag contract；操作者于 2026-07-31 批准，按设计拆分的 many-target 实施切片已解锁。
 
 ## 5. 操作者拍板点汇总（按时间序）
 
