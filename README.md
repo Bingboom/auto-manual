@@ -500,7 +500,7 @@ Use the document that owns the topic:
 - current maintainer command reference: [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
 - current JP / US family difference boundary: [`code-as-doc/manual_family_guide.md`](code-as-doc/manual_family_guide.md)
 - current Git branching and GitHub protection rules: [`code-as-doc/dev/git_branching_guide.md`](code-as-doc/dev/git_branching_guide.md)
-- current Vercel latest-publish HTML flow: [`code-as-doc/dev/vercel_review_preview_guide.md`](code-as-doc/dev/vercel_review_preview_guide.md)
+- current Vercel latest-publish HTML flow: [`code-as-doc/dev/vercel_review_preview_guide.md`](code-as-doc/dev/vercel_review_preview_guide.md) — latest publish targets are isolated under `dist/<model>/<region>/<lang>/` and linked from the root index; `--single-target` is the explicit legacy compatibility mode
 - current user workflow and editing rules: [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
 - happy-path example: [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md)
 - architecture doc index: [`code-as-doc/architecture/README.md`](code-as-doc/architecture/README.md)
