@@ -39,6 +39,17 @@ class TestWritePublishHtmlLink(unittest.TestCase):
 
         self.assertEqual(("rec_cli_1", "rec_cli_2"), resolved)
 
+    def test_target_publish_url_should_append_model_region_and_language_path(self) -> None:
+        meta_path = Path("reports/releases/JE-1000F/US/en/latest/publish_meta.json")
+        self.assertEqual(
+            "https://manual.example.com/JE-1000F/US/en/index.html",
+            write_publish_html_link.target_publish_url(
+                publish_url="https://manual.example.com/",
+                payload={"model": "JE-1000F", "region": "US", "lang": "en"},
+                meta_path=meta_path,
+            ),
+        )
+
     def test_persist_publish_url_should_update_latest_and_version_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -186,6 +197,60 @@ class TestWritePublishHtmlLink(unittest.TestCase):
             self.assertEqual(
                 {"HTML link": "https://manual.example.com/latest"},
                 source.upsert_record.call_args.kwargs["record"],
+            )
+
+    def test_write_publish_html_links_should_write_each_target_url(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            config_path = root / "config.us.yaml"
+            releases_root = root / "reports" / "releases"
+            rows = (
+                ("JE-1000F", "US", "en", "rec_us", "2026-04-24T12:00:00"),
+                ("JE-2000F", "JP", "ja", "rec_jp", "2026-04-24T11:00:00"),
+            )
+            for model, region, lang, record_id, built_at in rows:
+                meta_path = releases_root / model / region / lang / "latest" / "publish_meta.json"
+                meta_path.parent.mkdir(parents=True, exist_ok=True)
+                write_publish_html_link.write_json(
+                    meta_path,
+                    {
+                        "model": model,
+                        "region": region,
+                        "lang": lang,
+                        "built_at": built_at,
+                        "queue_record_ids": [record_id],
+                    },
+                )
+            config_path.write_text("sync:\n  phase2:\n    provider: lark_cli\n", encoding="utf-8")
+            binding = mock.Mock(base_token="base_123", table_id="tbl_123")
+            source = mock.Mock()
+
+            with mock.patch.object(write_publish_html_link, "load_config", return_value={"sync": {"phase2": {}}}), mock.patch.object(
+                write_publish_html_link, "collect_queue_preflight_errors", return_value=[]
+            ), mock.patch.object(write_publish_html_link, "resolve_document_link_binding", return_value=binding), mock.patch.object(
+                write_publish_html_link, "cli_bin", return_value="lark-cli"
+            ), mock.patch.object(
+                write_publish_html_link,
+                "fetch_field_id_map",
+                return_value={write_publish_html_link.HTML_LINK_FIELD: "fld_html"},
+            ), mock.patch.object(write_publish_html_link, "LarkCliSource", return_value=source), mock.patch.object(
+                write_publish_html_link, "phase2_identity", return_value="bot"
+            ):
+                written = write_publish_html_link.write_publish_html_links(
+                    config_path=config_path,
+                    publish_url="https://manual.example.com",
+                    releases_root=releases_root,
+                )
+
+            self.assertEqual(2, written)
+            calls = {call.kwargs["record_id"]: call.kwargs["record"] for call in source.upsert_record.call_args_list}
+            self.assertEqual(
+                {write_publish_html_link.HTML_LINK_FIELD: "https://manual.example.com/JE-1000F/US/en/index.html"},
+                calls["rec_us"],
+            )
+            self.assertEqual(
+                {write_publish_html_link.HTML_LINK_FIELD: "https://manual.example.com/JE-2000F/JP/ja/index.html"},
+                calls["rec_jp"],
             )
 
     def test_write_publish_html_link_should_skip_when_html_link_field_is_missing(self) -> None:
