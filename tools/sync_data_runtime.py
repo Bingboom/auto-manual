@@ -15,7 +15,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from types import SimpleNamespace
-from typing import Any, Callable, Mapping, Protocol
+from typing import Any, Callable, ContextManager, Mapping, Protocol
 
 from tools.spec_master_sources import (
     collect_footnote_record_id_refs,
@@ -133,6 +133,7 @@ class SyncRuntimeDeps:
     build_row_label_row_key_mapping_rows: Callable[..., list[dict[str, str]]]
     dict_rows_csv_text: Callable[..., str]
     write_atomic_text: Callable[..., None]
+    snapshot_write_lock: Callable[[Path], ContextManager[None]]
     table_sync_result_cls: Callable[..., Any]
     sync_run_result_cls: Callable[..., Any]
 
@@ -880,9 +881,10 @@ def sync_phase2_snapshot(
     )
 
     if not dry_run:
-        for target_path, csv_text in written_files:
-            deps.write_atomic_text(target_path, csv_text)
-        deps.write_atomic_text(manifest_path, json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
+        with deps.snapshot_write_lock(export_root):
+            for target_path, csv_text in written_files:
+                deps.write_atomic_text(target_path, csv_text)
+            deps.write_atomic_text(manifest_path, json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
 
     return deps.sync_run_result_cls(
         export_root=export_root,
