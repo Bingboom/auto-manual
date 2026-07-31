@@ -226,8 +226,12 @@ Quality and release logic should follow concern-specific modules instead of drif
   - post-sync pending-state reload
 - [`tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
   - per-group queue processing
+  - verified-claim acquisition before build/upload side effects
   - started/success/failure writeback orchestration
   - drive upload and wiki attach flow for one grouped build task
+- [`tools/queue_claims.py`](../../tools/queue_claims.py)
+  - bounded lease write across every row in a document group
+  - no-view readback and exact-token ownership verification before dispatch
 - [`tools/queue_dry_run.py`](../../tools/queue_dry_run.py)
   - dry-run preview payload assembly
   - grouped queue preview output formatting
@@ -236,7 +240,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - document-key vs record-id grouping strategy
 - [`tools/queue_session.py`](../../tools/queue_session.py)
   - queue-session bootstrap and preflight
-  - pending-record fetch/select/group state
+  - pending-record fetch/select/group state with active sibling-lease exclusion
   - wiki destination reporting for a processing session
 - [`tools/feishu_record_transport.py`](../../tools/feishu_record_transport.py)
   - shared `lark-cli` JSON subprocess boundary for queue, build-listener, spec-master, and schema callers
@@ -270,6 +274,7 @@ Quality and release logic should follow concern-specific modules instead of drif
     [`queue_state_model.md`](queue_state_model.md)
 - [`tools/queue_transitions.py`](../../tools/queue_transitions.py)
   - explicit queue transition payload model for running, success, failure, and writeback-failed states
+  - queue-claim parsing, expiry checks, and exact-token ownership checks
   - focused test target for queue writeback semantics before live Feishu/Lark transport is involved
 
 ## 6. Cloud-Doc Backport Modules
