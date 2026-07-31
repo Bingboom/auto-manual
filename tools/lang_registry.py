@@ -376,7 +376,21 @@ def _table_specs_in_schema_order(table_name: str) -> tuple[LanguageSpec, ...]:
     codes = TABLE_LANGUAGE_ORDER.get(table_name)
     if codes is None:
         return LANGUAGE_REGISTRY
-    return tuple(LANGUAGE_BY_CODE[code] for code in codes)
+    # Preserve the historical order for languages already shipped, then append
+    # any newly registered language automatically. A new registry row must not
+    # require a second edit to this compatibility-order table.
+    ordered_codes = (*codes, *(spec.code for spec in LANGUAGE_REGISTRY))
+    seen: set[str] = set()
+    ordered: list[LanguageSpec] = []
+    for code in ordered_codes:
+        if code in seen:
+            continue
+        spec = LANGUAGE_BY_CODE.get(code)
+        if spec is None:
+            continue
+        seen.add(code)
+        ordered.append(spec)
+    return tuple(ordered)
 
 
 def canonical_language(value: object) -> str | None:
