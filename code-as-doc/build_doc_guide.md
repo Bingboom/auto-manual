@@ -1155,6 +1155,15 @@ ordinary/fallback exports preserve their compatibility behavior. Language
 aliases are resolved only through `tools/lang_registry.py`, while non-content
 page roles `cover` and `toc` are exempt.
 
+Japanese, Korean, and Chinese characters in editable IDML are serialized as
+explicit character runs using `CJK_FONT_FAMILY_TOKEN` (the renderer token
+`idml_font_family_cjk`). The current family is the already-declared Arial
+Unicode MS fallback, so the font resource and handoff manifest do not change
+for Latin-only targets. This token is intentionally outside
+`data/layout_params.csv`: changing it is a font-delivery decision, not a page
+geometry change, and does not by itself require a reference layout rebind.
+East-Asian-width-aware line fitting is governed separately.
+
 On the publish queue path (`Workflow_action = Publish`), the worker runs the
 idml step with `--idml-mode both` and then packages the export into one
 designer delivery zip via `tools/idml/delivery.py`:

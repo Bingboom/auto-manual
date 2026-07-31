@@ -98,6 +98,14 @@ ordinary/fallback IDML keeps the existing permissive behavior. Add a language
 to the shared registry instead of relying on the English fallback. Registered
 aliases such as `jp` and `pt_br` are accepted.
 
+For Japanese, Korean, or Chinese editable text, the IDML exporter now writes
+explicit CJK font runs instead of letting those characters inherit Gilroy.
+The shared `idml_font_family_cjk` renderer token currently points to Arial
+Unicode MS, which is already listed in the designer package font manifest.
+Install that font before opening the handoff package. This font token is not a
+layout parameter, so it does not require a reference layout rebind when page
+geometry and content bindings are unchanged.
+
 The production Meaning of Symbols page also remains editable. Its WARNING,
 CAUTION, NOTE, and TIP badges use a linked white warning icon plus ordinary
 InDesign label text, rather than a flattened language-specific badge image.

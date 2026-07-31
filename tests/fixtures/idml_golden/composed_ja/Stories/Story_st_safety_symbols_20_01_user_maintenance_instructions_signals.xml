@@ -14,12 +14,12 @@
     <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblcol1" Name="1" SingleColumnWidth="237.26"/>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" FillColor="Color/HB Bg K05" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="6" RightInset="4" TopEdgeStrokeWeight="0" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Symbol Header">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>記号</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>記号</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="7" RightInset="5" TopEdgeStrokeWeight="0" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Symbol Header">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>意味</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>意味</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" FillColor="Color/HB Bg K05" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="7.6" RightInset="4" LeftEdgeStrokeWeight="0">
@@ -39,7 +39,7 @@
     </Cell>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc1_1" Name="1:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="7" RightInset="5" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>重傷、死亡、または物的損害につながるおそれのある危険な行為。</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>重傷、死亡、または物的損害につながるおそれのある危険な行為。</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_sig_tblc2_0" Name="0:2" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" FillColor="Color/HB Bg K05" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="7.6" RightInset="4" LeftEdgeStrokeWeight="0">

@@ -8,7 +8,7 @@ from pathlib import Path
 
 from tools.idml.delivery import _FONT_ROWS, _fonts_manifest
 from tools.idml.flow_idml import DEFAULT_STYLE_MAP, _flow_style_entries
-from tools.idml.font_family import PRIMARY_FONT_FAMILY_TOKEN
+from tools.idml.font_family import CJK_FONT_FAMILY_TOKEN, PRIMARY_FONT_FAMILY_TOKEN
 from tools.idml.params import load_layout_params
 from tools.idml.style_resources import fonts_xml
 from tools.idml.styles import styles_xml
@@ -55,6 +55,15 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
             fonts_xml(),
         )
         self.assertEqual(PRIMARY_FONT_FAMILY_TOKEN.delivery_row, _FONT_ROWS[0])
+
+    def test_cjk_token_drives_resources_and_delivery_without_byte_drift(self) -> None:
+        family = CJK_FONT_FAMILY_TOKEN.name
+        self.assertIn(
+            f'<FontFamily Self="{CJK_FONT_FAMILY_TOKEN.resource_id}" '
+            f'Name="{family}">',
+            fonts_xml(),
+        )
+        self.assertEqual(CJK_FONT_FAMILY_TOKEN.delivery_row, _FONT_ROWS[1])
 
     def test_authority_modules_do_not_repeat_primary_family_literal(self) -> None:
         for relative_path in (

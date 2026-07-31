@@ -71,3 +71,26 @@ PRIMARY_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
     ),
     delivery_license="commercial (Radomir Tinkov)",
 )
+
+
+# ``idml_font_family_cjk`` is a renderer token, not a layout-geometry
+# parameter.  Keep it out of layout_params.csv so enabling explicit CJK runs
+# does not invalidate an otherwise unchanged approved reference-layout plan.
+# Arial Unicode MS is already part of the historical IDML resource and
+# delivery contract; centralizing it here therefore keeps non-CJK package
+# bytes unchanged.
+CJK_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
+    resource_id="ff_arial_unicode_ms",
+    name="Arial Unicode MS",
+    faces=(
+        IdmlFontFace(
+            resource_id="ff_arial_unicode_ms_r",
+            name="Arial Unicode MS Regular",
+            postscript_name="ArialUnicodeMS",
+            style_name="Regular",
+            font_type="OpenTypeTT",
+        ),
+    ),
+    delivery_postscript_names="ArialUnicodeMS",
+    delivery_license="system font (symbol fallback)",
+)

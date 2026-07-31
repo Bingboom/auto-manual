@@ -27,7 +27,7 @@ from urllib.parse import unquote, urlparse
 from xml.sax.saxutils import escape, unescape
 
 from .check import check_idml
-from .font_family import PRIMARY_FONT_FAMILY_TOKEN
+from .font_family import CJK_FONT_FAMILY_TOKEN, PRIMARY_FONT_FAMILY_TOKEN
 
 _LINK_URI_RE = re.compile(r'LinkResourceURI="([^"]*)"')
 _ATTR_ENTITIES = {'"': "&quot;"}
@@ -39,7 +39,7 @@ _FONT_EXTENSIONS = {".otf", ".ttf", ".ttc"}
 # commercial license, the others are system fonts.
 _FONT_ROWS = (
     PRIMARY_FONT_FAMILY_TOKEN.delivery_row,
-    ("Arial Unicode MS", "ArialUnicodeMS", "system font (symbol fallback)"),
+    CJK_FONT_FAMILY_TOKEN.delivery_row,
     ("Apple Symbols", "AppleSymbols", "system font (symbol fallback)"),
     ("Apple SD Gothic Neo", "AppleSDGothicNeo-Regular", "macOS system font (circled-number fallback)"),
 )

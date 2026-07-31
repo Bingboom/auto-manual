@@ -42,6 +42,12 @@ flow 样式、`Fonts.xml` 与交付包字体清单共同消费它。符号及圈
 独立职责。当前 token 的值和既有生成字节不变，未写入 `layout_params.csv`，
 因此不会仅因内部收编而改变已批准的 reference-layout 身份。
 
+CJK 字符由渲染 token `font_family.CJK_FONT_FAMILY_TOKEN`
+（`idml_font_family_cjk`）生成显式可编辑 character run；当前值复用既有
+`Arial Unicode MS` 资源。符号精确映射优先于脚本范围，拉丁 run 继续继承主段落
+字体。该 token 不是几何参数，不写入 `layout_params.csv`，也不单独触发
+reference-layout rebind。字符宽度估算由独立的 East Asian Width 合同负责。
+
 | 元素 | 共用键 | 双线实测 | 备注 |
 |---|---|---|---|
 | H1 盒字 | `type_h1_font_size/leading`(9.0/10.8) | 9.0pt 两线一致 | 字重 LaTeX=Heavy、IDML=Bold(IDML 未注册 Gilroy-Heavy,近似) |
