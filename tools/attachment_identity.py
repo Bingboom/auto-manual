@@ -102,3 +102,56 @@ def stage_bundle_attachment_aliases(bundle_dir: Path, data_root: Path) -> Attach
         rewritten_files=rewritten_files,
         missing=tuple(sorted(missing)),
     )
+
+
+def frozen_attachment_names(text: str) -> dict[tuple[str, str, str], str]:
+    """Map (category, identity, extension) -> frozen basename found in ``text``.
+
+    Identities carried by more than one distinct basename are dropped —
+    preservation must never guess between two frozen candidates.
+    """
+    names: dict[tuple[str, str, str], str] = {}
+    ambiguous: set[tuple[str, str, str]] = set()
+    for match in _ATTACHMENT_REF_RE.finditer(text):
+        name = match.group("name")
+        identity, ext = semantic_attachment_key(name)
+        key = (match.group("category").casefold(), identity, ext)
+        if key in names and names[key] != name:
+            ambiguous.add(key)
+        names.setdefault(key, name)
+    for key in ambiguous:
+        names.pop(key, None)
+    return names
+
+
+def preserve_frozen_attachment_names(*, frozen_text: str, refreshed_text: str) -> tuple[str, int]:
+    """Rewrite refreshed attachment basenames back to their frozen names.
+
+    A re-synced page re-emits attachment references with the CURRENT Feishu
+    file token in the basename. Tokens rotate on every export, so copying the
+    refreshed text verbatim makes review pages byte-unstable across syncs —
+    which is exactly what breaks the same-source reference-layout gate on CI
+    (a pin made from any one sync can never match the next). When a refreshed
+    reference's semantic identity matches one already present in the frozen
+    page, keep the frozen basename; ``stage_bundle_attachment_aliases``
+    resolves it to the current file at build time. New identities keep their
+    refreshed name; ambiguous identities stay untouched (fail-open — the gate
+    still reports them rather than silently guessing).
+    """
+    frozen = frozen_attachment_names(frozen_text)
+    if not frozen:
+        return refreshed_text, 0
+    preserved = 0
+
+    def replace(match: re.Match[str]) -> str:
+        nonlocal preserved
+        name = match.group("name")
+        identity, ext = semantic_attachment_key(name)
+        key = (match.group("category").casefold(), identity, ext)
+        old = frozen.get(key)
+        if old is None or old == name:
+            return match.group("path")
+        preserved += 1
+        return match.group("path")[: -len(name)] + old
+
+    return _ATTACHMENT_REF_RE.sub(replace, refreshed_text), preserved

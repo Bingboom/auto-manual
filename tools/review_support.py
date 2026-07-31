@@ -12,6 +12,7 @@ import json
 from pathlib import Path
 import re
 
+from tools.attachment_identity import preserve_frozen_attachment_names
 from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
 from tools.safe_copy import assert_source_tree_no_symlinks, copy_regular_file_no_symlinks
 from tools.utils.path_utils import Paths, review_dir_of
@@ -700,17 +701,35 @@ def sync_review_paths(
         src_path = runtime_bundle_dir / src_relative_path
         dst_path = review_dir / entry.relative_path
         if entry.mode == "copy":
-            copied.append(
-                _rewrite_review_rst_asset_paths(
-                    _copy_relative_file(
-                        runtime_bundle_dir,
-                        review_dir,
-                        src_relative_path=src_relative_path,
-                        dst_relative_path=entry.relative_path,
-                    ),
-                    review_dir=review_dir,
-                )
+            # Review pages are a frozen byte surface: the refreshed runtime
+            # copy re-emits attachment basenames with the CURRENT Feishu file
+            # token, and tokens rotate on every export. Preserve the frozen
+            # basenames (same semantic identity) so a re-sync of identical
+            # data leaves the page bytes unchanged — otherwise every queue
+            # run breaks the same-source reference-layout pins.
+            frozen_text = (
+                dst_path.read_text(encoding="utf-8")
+                if dst_path.suffix == ".rst" and dst_path.is_file()
+                else None
             )
+            copied_path = _rewrite_review_rst_asset_paths(
+                _copy_relative_file(
+                    runtime_bundle_dir,
+                    review_dir,
+                    src_relative_path=src_relative_path,
+                    dst_relative_path=entry.relative_path,
+                ),
+                review_dir=review_dir,
+            )
+            if frozen_text is not None:
+                refreshed_text = copied_path.read_text(encoding="utf-8")
+                stable_text, preserved_names = preserve_frozen_attachment_names(
+                    frozen_text=frozen_text,
+                    refreshed_text=refreshed_text,
+                )
+                if preserved_names:
+                    copied_path.write_text(stable_text, encoding="utf-8")
+            copied.append(copied_path)
             continue
         if entry.mode == "merge_params":
             if entry.template_path is None:
