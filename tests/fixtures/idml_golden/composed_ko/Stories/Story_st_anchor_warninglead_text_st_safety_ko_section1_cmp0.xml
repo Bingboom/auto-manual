@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_anchor_warninglead_text_st_safety_ko_section1_cmp0" Label="hb:self=st_anchor_warninglead_text_st_safety_ko_section1_cmp0" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="경고 warning lead text">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange SpaceAfter="1.985" AppliedParagraphStyle="ParagraphStyle/HB Warning Lead Label">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>경고</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
+  </ParagraphStyleRange>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Warning Lead Body">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>이 제품을 사용할 때는 다음 기본 안전 수칙을 반드시 준수하십시오.</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+</Story>
+</idPkg:Story>
