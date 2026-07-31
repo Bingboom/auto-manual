@@ -42,6 +42,8 @@ The primary entrypoint is [`build.py`](build.py). A minimal US/EN smoke check:
 
 ```bash
 python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
+# Add --data-plane to fail early on an incomplete phase2 snapshot or missing target rows.
+python build.py doctor --data-plane --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
 python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
 python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
 

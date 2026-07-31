@@ -132,9 +132,13 @@ def _phase2_candidate_export_root(
     cfg: dict[str, Any],
     *,
     repo_root: Path,
+    data_root: str | Path | None = None,
     model: str | None = None,
     region: str | None = None,
 ) -> Path:
+    cli_root = _resolve_cli_data_root(repo_root, data_root=data_root)
+    if cli_root is not None:
+        return cli_root
     sync_cfg = _sync_phase2_cfg(cfg)
     configured_export_root = resolve_optional_repo_path(
         repo_root,
@@ -151,9 +155,13 @@ def _phase2_candidate_manifest_path(
     cfg: dict[str, Any],
     *,
     repo_root: Path,
+    data_root: str | Path | None = None,
     model: str | None = None,
     region: str | None = None,
 ) -> Path:
+    cli_root = _resolve_cli_data_root(repo_root, data_root=data_root)
+    if cli_root is not None:
+        return cli_root / SNAPSHOT_MANIFEST_FILE
     sync_cfg = _sync_phase2_cfg(cfg)
     configured = resolve_optional_repo_path(
         repo_root,
@@ -166,6 +174,7 @@ def _phase2_candidate_manifest_path(
     return _phase2_candidate_export_root(
         cfg,
         repo_root=repo_root,
+        data_root=data_root,
         model=model,
         region=region,
     ) / SNAPSHOT_MANIFEST_FILE
@@ -210,18 +219,21 @@ def inspect_phase2_snapshot(
     cfg: dict[str, Any],
     *,
     repo_root: Path,
+    data_root: str | Path | None = None,
     model: str | None = None,
     region: str | None = None,
 ) -> Phase2SnapshotStatus:
     export_root = _phase2_candidate_export_root(
         cfg,
         repo_root=repo_root,
+        data_root=data_root,
         model=model,
         region=region,
     )
     manifest_path = _phase2_candidate_manifest_path(
         cfg,
         repo_root=repo_root,
+        data_root=data_root,
         model=model,
         region=region,
     )
@@ -322,12 +334,14 @@ def phase2_snapshot_is_valid(
     cfg: dict[str, Any],
     *,
     repo_root: Path,
+    data_root: str | Path | None = None,
     model: str | None = None,
     region: str | None = None,
 ) -> bool:
     return inspect_phase2_snapshot(
         cfg,
         repo_root=repo_root,
+        data_root=data_root,
         model=model,
         region=region,
     ).valid
