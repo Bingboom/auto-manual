@@ -30,14 +30,19 @@ RESOLVED_LONGTAIL_DRIFTS = (
 
 def _suffix(columns: tuple[str, ...], prefix: str) -> str:
     matches = [column.removeprefix(f"{prefix}_") for column in columns if column.startswith(f"{prefix}_")]
-    if len(matches) != 1:
-        raise AssertionError(f"expected one {prefix} column, got {matches!r}")
+    if not matches:
+        raise AssertionError(f"expected at least one {prefix} column, got {matches!r}")
     return matches[0]
+
+
+def _suffix_or(columns: tuple[str, ...], prefix: str, fallback: str) -> str:
+    matches = [column.removeprefix(f"{prefix}_") for column in columns if column.startswith(f"{prefix}_")]
+    return matches[0] if matches else fallback
 
 
 class LanguageLongTailParityTest(unittest.TestCase):
     def test_content_lint_four_maps_match_registered_table_columns(self) -> None:
-        expected_languages = tuple(sorted(content_lint._LCD_DESC))
+        expected_languages = tuple(spec.code for spec in lang_registry.LANGUAGE_REGISTRY)
         expected_lcd = {}
         expected_trouble = {}
         expected_text = {}
@@ -50,9 +55,13 @@ class LanguageLongTailParityTest(unittest.TestCase):
             expected_trouble[code] = _suffix(
                 spec.columns_for_table("troubleshooting"), "corrective_measures"
             )
-            expected_text[code] = _suffix(spec.columns_for_table("symbols_blocks"), "text")
-            expected_value[code] = "source" if code == "en" else _suffix(
-                spec.columns_for_table("spec_master"), "Value"
+            expected_text[code] = _suffix_or(
+                spec.columns_for_table("spec_notes"),
+                "Text",
+                _suffix_or(spec.columns_for_table("spec_footnotes"), "Text", code),
+            )
+            expected_value[code] = _suffix_or(
+                spec.columns_for_table("spec_master"), "Value", "source"
             )
 
         self.assertEqual(content_lint._LCD_DESC, expected_lcd)

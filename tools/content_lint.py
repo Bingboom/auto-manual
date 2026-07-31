@@ -52,26 +52,22 @@ from typing import Any
 # what the build will bold (single source of truth — no parallel logic to drift).
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.csv_pages.renderers_lcd_icons import _match_status_prefix  # noqa: E402
+from tools.content_lint_languages import (  # noqa: E402
+    DEFAULT_LANGS,
+    SUPPORTED_LANGS,
+    _canonical_lang,
+    _finding_severity,
+    _LCD_DESC,
+    _status_word_column,
+    _TEXT,
+    _TROUBLE,
+    _VALUE,
+)
 from tools.source_record_index import resolve_findings  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
 
-# Non-English shipped EU languages.
-DEFAULT_LANGS = ("fr", "es", "de", "it", "uk")
 FINDING_SCHEMA_VERSION = "content-qc-finding/v1"
 REPORT_SCHEMA_VERSION = "content-qc-report/v1"
-
-# Per-file language→column-suffix maps (the snapshot is not uniform: uk vs ukr).
-_LCD_DESC = {"en": "en", "fr": "fr", "es": "es", "de": "de", "it": "it", "uk": "ukr"}
-_TROUBLE = {"en": "en", "fr": "fr", "es": "es", "de": "de", "it": "it", "uk": "ukr"}
-_TEXT = {"en": "en", "fr": "fr", "es": "es", "de": "de", "it": "it", "uk": "uk"}
-_VALUE = {"en": "source", "fr": "fr", "es": "es", "de": "de", "it": "it", "uk": "uk"}
-
-# Langs every per-file suffix map can resolve. A --langs value outside this set
-# would KeyError deep inside a check (the maps only carry en + the EU langs), so
-# main() rejects it up front with a clear message. A QC gate that can't lint a
-# language (e.g. ja) must say so, not crash like an infra failure or silently
-# skip it — add the language's column suffix to the maps above to support it.
-SUPPORTED_LANGS = tuple(sorted(set(_LCD_DESC) & set(_TROUBLE) & set(_TEXT) & set(_VALUE)))
 
 # English state words that should never survive into a localized column.
 _ENGLISH_RESIDUE = ("On:", "Off:", "Blinking", "Flashing")
@@ -101,10 +97,11 @@ def _lines(value: object) -> list[str]:
 
 def _status_labels(status_rows: list[dict[str, str]], lang: str) -> tuple[str, ...]:
     labels: list[str] = []
+    column = _status_word_column(lang)
     for row in status_rows:
         if not _truthy(row.get("是否为 status word")):
             continue
-        value = _t(row.get(lang))
+        value = _t(row.get(column))
         if value and value not in labels:
             labels.append(value)
     # Longest-first so a longer label wins over a shorter prefix (matches the renderer).
@@ -229,7 +226,8 @@ def check_status_word_consistency(root: Path, langs: tuple[str, ...]) -> list[di
     status = _read_csv(root / "Status_Words.csv")
     lcd = _read_csv(root / "lcd_icons_blocks.csv")
     findings: list[dict] = []
-    for lang in langs:
+    for requested_lang in langs:
+        lang = _canonical_lang(requested_lang)
         labels = _status_labels(status, lang)
         col = f"icon_desc_{_LCD_DESC[lang]}"
         for row in lcd:
@@ -245,6 +243,7 @@ def check_status_word_consistency(root: Path, langs: tuple[str, ...]) -> list[di
                             "version": _t(row.get("Version")),
                             "prefix": prefix,
                             "line": line[:64],
+                            "severity": _finding_severity(lang, "FAIL"),
                         }
                     )
     return findings
@@ -252,11 +251,12 @@ def check_status_word_consistency(root: Path, langs: tuple[str, ...]) -> list[di
 
 def _status_word_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
     lang = _t(raw.get("lang"))
-    field = f"icon_desc_{_LCD_DESC.get(lang, lang)}" if lang else None
+    canonical = _canonical_lang(lang)
+    field = f"icon_desc_{_LCD_DESC.get(canonical, canonical)}" if lang else None
     return _normalized_finding(
         run_id=run_id,
         rule="status_word_consistency",
-        severity="FAIL",
+        severity=_finding_severity(canonical, "FAIL"),
         table="lcd_icons_blocks",
         file="lcd_icons_blocks.csv",
         lang=lang or None,
@@ -295,7 +295,8 @@ def check_english_residue(root: Path, langs: tuple[str, ...]) -> list[dict]:
         rows = _read_csv(root / filename)
         if not rows:
             continue
-        for lang in langs:
+        for requested_lang in langs:
+            lang = _canonical_lang(requested_lang)
             col = pattern.format(s=suffix_map[lang])
             for row in rows:
                 value = _t(row.get(col))
@@ -312,6 +313,7 @@ def check_english_residue(root: Path, langs: tuple[str, ...]) -> list[dict]:
                                 "version": _t(row.get("Version")),
                                 "token": token,
                                 "text": value[:64],
+                                "severity": _finding_severity(lang, "FAIL"),
                             }
                         )
     return findings
@@ -320,13 +322,14 @@ def check_english_residue(root: Path, langs: tuple[str, ...]) -> list[dict]:
 def _english_residue_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
     file = _t(raw.get("file"))
     token = _t(raw.get("token"))
+    lang = _canonical_lang(raw.get("lang"))
     return _normalized_finding(
         run_id=run_id,
         rule="english_residue",
-        severity="FAIL",
+        severity=_finding_severity(lang, "FAIL"),
         table=_table_name(file),
         file=file,
-        lang=_t(raw.get("lang")) or None,
+        lang=lang or None,
         field=_t(raw.get("field")) or None,
         source_ref=_source_ref(
             kind=_table_name(file),
@@ -397,7 +400,7 @@ def _slot_key_collision_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]
 # --- [4] spec<->overview drift --------------------------------------------------
 def check_spec_overview_drift(root: Path, langs: tuple[str, ...]) -> list[dict]:
     rows = _read_csv(root / "Spec_Master.csv")
-    all_langs = ("en", *langs)
+    all_langs = tuple(dict.fromkeys(("en", *(_canonical_lang(lang) for lang in langs))))
     index: dict[tuple[str, str], dict[str, dict[str, set]]] = defaultdict(
         lambda: {"spec": defaultdict(set), "overview": defaultdict(set)}
     )
@@ -509,14 +512,16 @@ def _tm_duplicate_json(raw: dict[str, Any], run_id: str) -> dict[str, Any]:
 def _render(name: str, severity: str, findings: list, render_one) -> bool:
     """Print one check's result line + findings. Return True if it counts as a failure."""
     ok = not findings
-    mark = "PASS" if ok else (severity)
+    finding_severities = [item.get("severity", severity) for item in findings]
+    blocking = any(item_severity == "FAIL" for item_severity in finding_severities)
+    mark = "PASS" if ok else ("FAIL" if blocking else max(finding_severities, key=("INFO", "WARN", "FAIL").index))
     dots = "." * max(2, 34 - len(name))
     print(f"  [{name}] {dots} {mark}" + ("" if ok else f" ({len(findings)})"))
     for item in findings[:12]:
         print("        - " + render_one(item))
     if len(findings) > 12:
         print(f"        … +{len(findings) - 12} more")
-    return (not ok) and severity == "FAIL"
+    return blocking
 
 
 def _check_specs(root: Path, langs: tuple[str, ...]) -> list[CheckSpec]:
@@ -742,7 +747,13 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(raw_argv)
 
     root = Path(args.data_root)
-    langs = tuple(part.strip() for part in args.langs.split(",") if part.strip())
+    langs = tuple(
+        dict.fromkeys(
+            _canonical_lang(part.strip())
+            for part in args.langs.split(",")
+            if part.strip()
+        )
+    )
     unsupported = [lang for lang in langs if lang not in SUPPORTED_LANGS]
     if unsupported:
         print(

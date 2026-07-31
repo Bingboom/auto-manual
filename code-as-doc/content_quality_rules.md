@@ -37,12 +37,17 @@ Two standing disciplines make the loop close:
 ## 2. The lint
 
 ```bash
-python tools/content_lint.py --data-root data/phase2 [--langs fr,es,de,it,uk]
+python tools/content_lint.py --data-root data/phase2 [--langs fr,es,de,it,uk,ja,ko,zh]
 ```
 
 It runs against the **exported snapshot** (`data/phase2/*.csv`) — the same inputs
-the build consumes — so it is deterministic and CI-friendly. `FAIL`-level findings
-set exit code `1`; `WARN`-level findings are surfaced but do not fail the gate.
+the build consumes — so it is deterministic and CI-friendly. Language columns and
+historical aliases are resolved from `tools/lang_registry.py`, so adding a
+registered language does not require another content-lint map. `FAIL`-level
+findings set exit code `1`; `WARN`-level findings are surfaced but do not fail the
+gate. The `ja`/`ko`/`zh` long-tail is included in the default report with
+`INFO`-severity findings until its source-table population is complete, so those
+observations do not block delivery.
 Use `--json` when another tool or report writer needs the machine-readable
 `content-qc-report/v1` output. JSON findings include a best-effort `source_ref`
 from snapshot keys; `record_id` remains `null` until a later exact resolver lands.
