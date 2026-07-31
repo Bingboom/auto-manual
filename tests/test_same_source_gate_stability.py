@@ -22,7 +22,7 @@ from tools.attachment_identity import (
     frozen_attachment_names,
     preserve_frozen_attachment_names,
 )
-from tools.manual_ir.builder import _snapshot_sha256
+from tools.manual_ir.builder import _normalized_page_sha256, _snapshot_sha256
 
 
 FROZEN = """\
@@ -171,6 +171,53 @@ class SnapshotIdentityStabilityTest(unittest.TestCase):
             root = Path(tmp)
             (root / "snapshot_manifest.json").write_text("{\"provider\": \"x\"}", encoding="utf-8")
             self.assertIsNotNone(_snapshot_sha256(root))
+
+
+class PageSourceShaStabilityTest(unittest.TestCase):
+    """The per-page source_sha256 feeds the reference-layout contract pins."""
+
+    @staticmethod
+    def _write_page(path: Path, token: str) -> Path:
+        path.write_text(
+            ".. figure:: _assets/../_attachments/symbols/01_warning_"
+            f"{token}.png\n\n   Warning symbol.\n",
+            encoding="utf-8",
+        )
+        return path
+
+    def test_attachment_token_rotation_keeps_page_sha_stable(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            a = self._write_page(Path(tmp) / "a.rst", "OldTokenAAAABBBBCCCC")
+            b = self._write_page(Path(tmp) / "b.rst", "NewTokenDDDDEEEEFFFF")
+            self.assertEqual(
+                _normalized_page_sha256(a), _normalized_page_sha256(b),
+                "attachment-token rotation must not change a page's pinned source_sha256",
+            )
+
+    def test_page_content_change_changes_page_sha(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            a = self._write_page(Path(tmp) / "a.rst", "OldTokenAAAABBBBCCCC")
+            b = Path(tmp) / "b.rst"
+            b.write_text(
+                ".. figure:: _assets/../_attachments/symbols/01_warning_"
+                "OldTokenAAAABBBBCCCC.png\n\n   DIFFERENT caption.\n",
+                encoding="utf-8",
+            )
+            self.assertNotEqual(_normalized_page_sha256(a), _normalized_page_sha256(b))
+
+    def test_attachment_ordinal_change_changes_page_sha(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            a = self._write_page(Path(tmp) / "a.rst", "OldTokenAAAABBBBCCCC")
+            b = Path(tmp) / "b.rst"
+            b.write_text(
+                ".. figure:: _assets/../_attachments/symbols/02_warning_"
+                "OldTokenAAAABBBBCCCC.png\n\n   Warning symbol.\n",
+                encoding="utf-8",
+            )
+            self.assertNotEqual(
+                _normalized_page_sha256(a), _normalized_page_sha256(b),
+                "only the volatile token is normalized away; ordinal moves stay visible",
+            )
 
 
 if __name__ == "__main__":

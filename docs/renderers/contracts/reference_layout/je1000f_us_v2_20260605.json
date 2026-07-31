@@ -27,7 +27,7 @@
   "source_identity": {
     "manual_ir_schema_version": "manual-ir/v1",
     "manual_content_sha256": "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
-    "snapshot_sha256": "81a2877d38881b0f26db4164d0bab0c88635323ba66389bd0afe715d4bd9bbb3",
+    "snapshot_sha256": "ea1a014a29de33720222fce82104ca6ed6e5de17fc1515fd0e490ed8beb9dd2a",
     "style_contract_sha256": "41c67cdeea2d9ae9fec5a80ee62197d48cc97ba7525dd9a2afbdd606d28daee8",
     "layout_params_sha256": "810c12153a167169da545ba5f19e03d618618058db6abca06b192353a704e188"
   },
@@ -450,7 +450,7 @@
     },
     {
       "source_ref": "page/symbols_en.rst",
-      "source_sha256": "5b50299d7a183c46d6b8baeaa09a6ddbff98e13e73cbf87c02f45ccfc4957817",
+      "source_sha256": "ec7f5f0dbd85d490ec6cc9a41fead29082cd781da25bcffddcd5c725f4a5a190",
       "language": "en",
       "composition_id": "en_maintenance_symbols",
       "start_page": 5,
@@ -482,7 +482,7 @@
     },
     {
       "source_ref": "page/lcd_icons_en.rst",
-      "source_sha256": "b6e37a9e8c24dad60fa514a5c53bc11727a448744ca5dbe64708d0799958197c",
+      "source_sha256": "55b91ba2fbb3cbe5c953944aaead7cfd6d9b0732fa0c6473f99af11c76dba80d",
       "language": "en",
       "composition_id": "en_lcd",
       "start_page": 8,
@@ -583,7 +583,7 @@
     },
     {
       "source_ref": "page/symbols_fr.rst",
-      "source_sha256": "758ac23e29028d05d6cb6dbf9eb318dfa921cf92dd243d4e716d1b3b998fc12c",
+      "source_sha256": "836072fef38cfe947b878bbcd2ad66ffdad9d23c26a964595a7c5f6a1396973c",
       "language": "fr",
       "composition_id": "fr_maintenance_symbols",
       "start_page": 23,
@@ -615,7 +615,7 @@
     },
     {
       "source_ref": "page/lcd_icons_fr.rst",
-      "source_sha256": "a5402eb9983884d3b5f34263637fb78479385ac51080b43a7e8ddf351d026efa",
+      "source_sha256": "9321f839533e1450794b8087143a434ad394763ae0a21003593841713003bc3c",
       "language": "fr",
       "composition_id": "fr_lcd",
       "start_page": 26,
@@ -716,7 +716,7 @@
     },
     {
       "source_ref": "page/symbols_es.rst",
-      "source_sha256": "d3f51fd3d85965b6eab1b54b228ea234e27fb808092fcf13756aee0983a080c4",
+      "source_sha256": "c312242eafa1fff03b7e05c1fd51e180d00248c71401858046d8ae82e9f64b82",
       "language": "es",
       "composition_id": "es_maintenance_symbols",
       "start_page": 41,
@@ -748,7 +748,7 @@
     },
     {
       "source_ref": "page/lcd_icons_es.rst",
-      "source_sha256": "f522a3bd118bc309ad5c10288177168b8cfe11a87339b7e5330265ffbe1e1419",
+      "source_sha256": "eab0468220d47f8c2d33a539e00e398ccf5f3af5f918f5f3abbab00cf0fe6924",
       "language": "es",
       "composition_id": "es_lcd",
       "start_page": 44,

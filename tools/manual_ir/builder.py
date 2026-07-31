@@ -60,6 +60,12 @@ _ATTACHMENT_TOKEN_RE = re.compile(
 )
 
 
+def _token_normalized_sha256(text: str) -> str:
+    return hashlib.sha256(
+        _ATTACHMENT_TOKEN_RE.sub(r"\1\2", text).encode("utf-8")
+    ).hexdigest()
+
+
 def _normalized_table_sha256(path: Path) -> str:
     """Digest of one synced table with volatile attachment tokens stripped.
 
@@ -69,10 +75,20 @@ def _normalized_table_sha256(path: Path) -> str:
     the token (keep the semantic name and extension) before hashing so the
     identity tracks content, not export runs.
     """
-    text = path.read_text(encoding="utf-8", errors="replace")
-    return hashlib.sha256(
-        _ATTACHMENT_TOKEN_RE.sub(r"\1\2", text).encode("utf-8")
-    ).hexdigest()
+    return _token_normalized_sha256(path.read_text(encoding="utf-8", errors="replace"))
+
+
+def _normalized_page_sha256(path: Path) -> str:
+    """Digest of one bundle page with volatile attachment tokens stripped.
+
+    Finalized bundle pages embed staged attachment paths whose basenames end
+    in a Feishu file token, and tokens rotate on EVERY export — the same
+    volatility the snapshot identity already normalizes away. The per-page
+    ``source_sha256`` feeds the reference-layout contract pins, so hash the
+    token-normalized text: identical page content pins identically across
+    export runs, while any real content change still changes the digest.
+    """
+    return _token_normalized_sha256(path.read_text(encoding="utf-8", errors="replace"))
 
 
 def _snapshot_sha256(data_root: Path | None) -> str | None:
@@ -214,7 +230,7 @@ def build_manual_ir(
                 source_ref=f"page/{page.name}",
                 source_path=page.relative_to(bundle_root).as_posix(),
                 language=page_lang,
-                source_sha256=file_sha256(page),
+                source_sha256=_normalized_page_sha256(page),
                 skipped_raw=result.skipped_raw,
                 blocks=tuple(blocks),
             )
