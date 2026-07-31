@@ -41,6 +41,11 @@ class PathSegments:
 
     VERSION_TRACKING = "version_tracking"
     RELEASES = "releases"
+    VERSIONS = "versions"
+    MANIFESTS = "manifests"
+    LATEST = "latest"
+    SNAPSHOT = "snapshot"
+    RELEASE_SNAPSHOT_IDENTITY_JSON = "release_snapshot_identity.json"
     CONTENT_QC = "content_qc"
     CLOUD_DOC_BACKPORT = "cloud_doc_backport"
     SOURCE_INTAKE = "source_intake"
@@ -113,6 +118,26 @@ def version_tracking_of(base_root: Path) -> Path:
 
 def releases_of(base_root: Path) -> Path:
     return base_root / PathSegments.REPORTS / PathSegments.RELEASES
+
+
+def release_versions_of(release_root: Path) -> Path:
+    return release_root / PathSegments.VERSIONS
+
+
+def release_manifests_of(release_root: Path) -> Path:
+    return release_root / PathSegments.MANIFESTS
+
+
+def release_latest_of(release_root: Path) -> Path:
+    return release_root / PathSegments.LATEST
+
+
+def release_snapshot_of(version_dir: Path) -> Path:
+    return version_dir / PathSegments.SNAPSHOT
+
+
+def release_snapshot_identity_of(snapshot_dir: Path) -> Path:
+    return snapshot_dir / PathSegments.RELEASE_SNAPSHOT_IDENTITY_JSON
 
 
 def content_qc_reports_of(base_root: Path) -> Path:

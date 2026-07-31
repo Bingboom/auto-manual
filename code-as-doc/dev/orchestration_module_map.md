@@ -163,6 +163,8 @@ Quality and release logic should follow concern-specific modules instead of drif
   - release-manifest CLI facade
 - [`tools/release_manifest_service.py`](../../tools/release_manifest_service.py)
   - release traceability assembly
+- [`tools/release_snapshot.py`](../../tools/release_snapshot.py)
+  - immutable version-scoped phase2 snapshot freezing, identity inventory, and rebind/drift rejection
 - [`tools/release_indesign_package.py`](../../tools/release_indesign_package.py)
   - InDesign package lineage plus native preflight layout signals; JSON owns
     the nested record and release CSV receives the flattened page/overset counts
@@ -245,7 +247,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - bound CLI upload/node lookup helpers that still allow entrypoint-level patching
 - [`tools/queue_outputs.py`](../../tools/queue_outputs.py)
   - generic publish asset staging
-  - generic release/output path helpers
+  - immutable snapshot/manifest copy-out plus generic release/output path helpers
   - generic publish metadata assembly
 - [`tools/queue_bound_outputs.py`](../../tools/queue_bound_outputs.py)
   - repo-root-aware queue output adapters

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import shutil
 from datetime import datetime
@@ -7,7 +8,12 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.language_aliases import normalize_language
-from tools.utils.path_utils import PathSegments, docs_build_dir_of
+from tools.utils.path_utils import (
+    PathSegments,
+    docs_build_dir_of,
+    release_manifests_of,
+    release_snapshot_of,
+)
 
 
 def _stage_markdown_source_sidecars(*, built_md_output_path: Path, staged_md_output_path: Path) -> None:
@@ -373,6 +379,48 @@ def copy_tree(src: Path, dst: Path) -> None:
     shutil.copytree(src, dst)
 
 
+def _files_by_relative_path(root: Path) -> dict[str, str]:
+    files: dict[str, str] = {}
+    for path in sorted(root.rglob("*")):
+        if path.is_symlink():
+            raise RuntimeError(f"release traceability cannot stage symlink: {path}")
+        if path.is_file():
+            files[path.relative_to(root).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
+    return files
+
+
+def copy_immutable_tree(src: Path, dst: Path) -> None:
+    if not src.is_dir():
+        raise RuntimeError(f"release traceability directory was not created: {src}")
+    source_files = _files_by_relative_path(src)
+    if dst.exists():
+        if not dst.is_dir() or _files_by_relative_path(dst) != source_files:
+            raise RuntimeError(f"release traceability is immutable and destination differs: {dst}")
+        return
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(src, dst)
+    if _files_by_relative_path(dst) != source_files:
+        raise RuntimeError(f"release traceability copy verification failed: {dst}")
+
+
+def copy_immutable_files(src_dir: Path, dst_dir: Path) -> None:
+    if not src_dir.is_dir():
+        raise RuntimeError(f"release manifest directory was not created: {src_dir}")
+    source_files = [path for path in sorted(src_dir.iterdir()) if path.is_file()]
+    if not source_files:
+        raise RuntimeError(f"release manifest directory is empty: {src_dir}")
+    dst_dir.mkdir(parents=True, exist_ok=True)
+    for src in source_files:
+        dst = dst_dir / src.name
+        if dst.exists():
+            source_sha = hashlib.sha256(src.read_bytes()).digest()
+            destination_sha = hashlib.sha256(dst.read_bytes()).digest() if dst.is_file() else b""
+            if destination_sha != source_sha:
+                raise RuntimeError(f"release manifest is immutable and destination differs: {dst}")
+            continue
+        shutil.copy2(src, dst)
+
+
 def stage_draft_word_output_to_host_repo(
     *,
     built_word_output_path: Path,
@@ -444,6 +492,8 @@ def stage_publish_assets_to_host_repo(
     model: str,
     region: str,
     version: str,
+    built_release_snapshot_dir: Path,
+    built_release_manifests_dir: Path,
     publish_release_version_dir_for_target: Callable[..., Path],
     publish_release_latest_dir_for_target: Callable[..., Path],
     copy_tree: Callable[[Path, Path], None],
@@ -475,6 +525,14 @@ def stage_publish_assets_to_host_repo(
     shutil.copy2(built_idml_output_path, staged_idml_output_path)
     latest_html_dir = latest_dir / "html"
     copy_tree(built_html_dir, latest_html_dir)
+    copy_immutable_tree(
+        built_release_snapshot_dir,
+        release_snapshot_of(version_dir),
+    )
+    copy_immutable_files(
+        built_release_manifests_dir,
+        release_manifests_of(version_dir.parent.parent),
+    )
     return (
         staged_word_output_path,
         staged_pdf_output_path,

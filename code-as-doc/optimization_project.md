@@ -381,7 +381,7 @@ source-model dependencies clear; Tier 4 (P) is operational hardening.
 
 ### Workstream J: Release Snapshot Freezing And Traceability
 
-Status: next
+Status: active — E1-PR1 freezes and binds the publish snapshot; rebuild-equivalence proof remains E1-PR2
 
 Why now:
 
@@ -394,6 +394,13 @@ Scope:
 - bind `release-manifest` to that frozen snapshot, resolving the archive path through [`tools/utils/path_utils.py`](../tools/utils/path_utils.py)
 - record snapshot identity (timestamp + source revision + target matrix) in the manifest
 - keep `--data-root` rebuilds reproducible from the archived snapshot
+
+Progress (2026-07-31): versioned Publish now archives the complete manifest-backed
+phase2 root at `reports/releases/<model>/<region>/<lang>/versions/<version>/snapshot/`.
+The release manifest binds to its immutable identity (file inventory/content hash,
+source-manifest revision, freeze timestamp, target matrix); queue worktree output is
+copied back without permitting overwrite drift. End-to-end output equivalence from
+that archive remains the separate E1-PR2 acceptance slice.
 
 Exit criteria:
 

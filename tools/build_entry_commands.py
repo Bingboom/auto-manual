@@ -313,6 +313,8 @@ def release_manifest_command(
         cmd += ["--docs-build-dir", str(staged_docs)]
     if staged_releases is not None:
         cmd += ["--releases-root", str(staged_releases)]
+    if isinstance(args.version, str):
+        cmd += ["--version", args.version.strip()]
     return cmd
 
 

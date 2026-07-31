@@ -8,7 +8,14 @@ from pathlib import Path
 from typing import Any
 
 from tools.build_docs import load_config
-from tools.utils.path_utils import releases_of
+from tools.utils.path_utils import (
+    release_manifests_of,
+    release_latest_of,
+    release_snapshot_identity_of,
+    release_snapshot_of,
+    release_versions_of,
+    releases_of,
+)
 
 
 def normalize_release_token(value: str) -> str:
@@ -52,14 +59,15 @@ def release_latest_dir_for_target(
     cfg: dict[str, Any] | None = None,
     releases_root: Path | None = None,
 ) -> Path:
-    return release_root_for_target(
+    release_root = release_root_for_target(
         repo_root=repo_root,
         config_path=config_path,
         model=model,
         region=region,
         cfg=cfg,
         releases_root=releases_root,
-    ) / "latest"
+    )
+    return release_latest_of(release_root)
 
 
 def release_version_dir_for_target(
@@ -73,14 +81,60 @@ def release_version_dir_for_target(
     releases_root: Path | None = None,
 ) -> Path:
     version_token = normalize_release_token(version) or "unversioned"
-    return release_root_for_target(
+    release_root = release_root_for_target(
         repo_root=repo_root,
         config_path=config_path,
         model=model,
         region=region,
         cfg=cfg,
         releases_root=releases_root,
-    ) / "versions" / version_token
+    )
+    return release_versions_of(release_root) / version_token
+
+
+def release_snapshot_dir_for_target(
+    *,
+    repo_root: Path,
+    config_path: Path,
+    model: str,
+    region: str,
+    version: str,
+    cfg: dict[str, Any] | None = None,
+    releases_root: Path | None = None,
+) -> Path:
+    version_dir = release_version_dir_for_target(
+        repo_root=repo_root,
+        config_path=config_path,
+        model=model,
+        region=region,
+        version=version,
+        cfg=cfg,
+        releases_root=releases_root,
+    )
+    return release_snapshot_of(version_dir)
+
+
+def release_snapshot_identity_path_for_target(
+    *,
+    repo_root: Path,
+    config_path: Path,
+    model: str,
+    region: str,
+    version: str,
+    cfg: dict[str, Any] | None = None,
+    releases_root: Path | None = None,
+) -> Path:
+    return release_snapshot_identity_of(
+        release_snapshot_dir_for_target(
+            repo_root=repo_root,
+            config_path=config_path,
+            model=model,
+            region=region,
+            version=version,
+            cfg=cfg,
+            releases_root=releases_root,
+        )
+    )
 
 
 def release_manifests_dir_for_target(
@@ -92,11 +146,12 @@ def release_manifests_dir_for_target(
     cfg: dict[str, Any] | None = None,
     releases_root: Path | None = None,
 ) -> Path:
-    return release_root_for_target(
+    release_root = release_root_for_target(
         repo_root=repo_root,
         config_path=config_path,
         model=model,
         region=region,
         cfg=cfg,
         releases_root=releases_root,
-    ) / "manifests"
+    )
+    return release_manifests_of(release_root)
