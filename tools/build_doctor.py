@@ -180,6 +180,7 @@ def collect_doctor_findings(
     clean_targets_for_config: Callable[[Path], tuple[Path, Path]],
     which: Callable[[str], str | None] = shutil.which,
     collect_toolchain: Callable[[], dict[str, Any]] | None = None,
+    collect_data_plane_findings: Callable[..., list[tuple[str, str, str]]] | None = None,
 ) -> list[Any]:
     findings: list[Any] = []
     config_path = resolve_path_from_root(args.config)
@@ -246,6 +247,21 @@ def collect_doctor_findings(
 
     model, region = resolve_doctor_target(cfg, args)
     doctor_add(findings, "OK", "target", f"effective target model='{model or ''}' region='{region or ''}'")
+
+    if getattr(args, "data_plane", False):
+        if collect_data_plane_findings is None:
+            from tools.data_plane_doctor import collect_data_plane_findings as default_collect_data_plane_findings
+
+            collect_data_plane_findings = default_collect_data_plane_findings
+        for level, area, message in collect_data_plane_findings(
+            cfg=cfg,
+            cfg_path=config_path,
+            repo_root=config_path.parents[1],
+            model=model,
+            region=region,
+            data_root=getattr(args, "data_root", None),
+        ):
+            doctor_add(findings, level, area, message)
 
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}

@@ -813,6 +813,7 @@ Cross-platform entrypoint:
 
 ```powershell
 python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py doctor --data-plane --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
 python build.py rst
 python build.py review
 python build.py check

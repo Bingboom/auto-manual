@@ -81,6 +81,11 @@ def parse_args(
         ),
     )
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
+    ap.add_argument(
+        "--data-plane",
+        action="store_true",
+        help="For doctor: preflight one target's phase2 snapshot and required Spec_Master rows without writing",
+    )
     ap.add_argument("--pdf-mode", choices=("latex", "word"), default=None, help="Override PDF backend")
     ap.add_argument(
         "--idml-mode",
