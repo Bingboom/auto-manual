@@ -32,13 +32,13 @@ jobs:
           fi
 
       - name: Checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: source
           fetch-depth: 0
 
       - name: Checkout mirror
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.MIRROR_REPOSITORY }}
           ref: ${{ env.MIRROR_BRANCH }}

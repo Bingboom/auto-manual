@@ -35,7 +35,7 @@ jobs:
       PARITY_IGNORE_PREFIX: "99_"
       PARITY_IGNORE_TABLES: "QC_Report,数据表"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check configuration
         id: cfg
@@ -91,7 +91,7 @@ jobs:
 
       - name: Open / update drift issue
         if: ${{ steps.cfg.outputs.configured == 'true' && steps.parity.outputs.drift == 'true' }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require('fs');
@@ -131,7 +131,7 @@ jobs:
 
       - name: Resolve drift issue (parity green)
         if: ${{ steps.cfg.outputs.configured == 'true' && steps.parity.outputs.drift == 'false' }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const marker = "[schema-drift] prod Bitable structure lags dev";
