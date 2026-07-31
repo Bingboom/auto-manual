@@ -24,6 +24,7 @@ try:
     from tools.idml import loaders as _loaders
     from tools.idml import package as _package
     from tools.idml import page_identity as _page_identity
+    from tools.idml import page_roles as _page_roles
     from tools.idml import page_overview as _overview
     from tools.idml import page_placed as _placed
     from tools.idml import page_folio as _folio
@@ -45,6 +46,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import loaders as _loaders  # type: ignore
     from idml import package as _package  # type: ignore
     from idml import page_identity as _page_identity  # type: ignore
+    from idml import page_roles as _page_roles  # type: ignore
     from idml import page_overview as _overview  # type: ignore
     from idml import params as _params  # type: ignore
     from idml import prose_flow as _prose_flow  # type: ignore
@@ -192,8 +194,23 @@ def main() -> int:
             bottom_extra=bottom_extra, first_top_offset=13.81)
         page_cursor += pages
 
-    DATA_PAGES = {"spec": "spec_", "lcd": "lcd_icons_", "trouble": "troubleshooting_"}
+    data_roles = {
+        _page_roles.PageRole.SPEC: "spec",
+        _page_roles.PageRole.LCD: "lcd",
+        _page_roles.PageRole.TROUBLESHOOTING_DATA: "trouble",
+    }
     ordered = list(projected_by_path)
+    role_by_path = {
+        page: _page_roles.classify_page_role(page)
+        for page in ordered
+    }
+    coverage_assignments: list[tuple[Path, _page_roles.PageRole]] = []
+    for page in ordered:
+        try:
+            source_ref = page.relative_to(bundle_root)
+        except ValueError:
+            source_ref = Path(page.name)
+        coverage_assignments.append((source_ref, role_by_path[page]))
 
     emitted: set[str] = set()  # "spec:fr", "lcd:es", "trouble", "symbols"
     pending_prefix_blocks: list[tuple[str, str]] = []
@@ -205,7 +222,6 @@ def main() -> int:
     prose_flow = _prose_flow.ProseFlowBuffer()
     prose_estimator = _prose_flow.idml_page_estimator(IdmlWriter, params, bundle_root)
     def page_lang(page: Path) -> str: return _page_identity.page_language(page, args.lang)
-    page_stem_has = _page_identity.stem_has
     slug_stem = _page_identity.slug
     story_emitter = _reference_story_flow.ReferenceStoryEmitter(w, toc, bundle_root, page_plan)
     def emit_prose_story(sid: str, title: str, blocks: list[tuple[str, str]], columns: int = 1) -> None:
@@ -287,21 +303,21 @@ def main() -> int:
             chain(sid, 16.0 + 14.0 * len(sym_signals) + 26.0 * len(sym_icons))
 
     for page in ordered:
-        if page.name.startswith("symbols_") and "symbols" in emitted \
+        role = role_by_path[page]
+        if role is _page_roles.PageRole.SYMBOLS and "symbols" in emitted \
                 and not pending_prefix_blocks and not pending_fcc_blocks:
             continue
         toc.lang = page_lang(page)
         placed_asset = _placed.placed_asset_for(page.stem, toc.lang, ROOT / "docs")
         if placed_asset is not None:
             flush_prose_flow()
-            if "overview" in page.stem:
+            if role is _page_roles.PageRole.PRODUCT_OVERVIEW:
                 toc.note(_toc.OVERVIEW_TITLES.get(toc.lang, _toc.OVERVIEW_TITLES["en"]), page_cursor, toc.lang)
             _placed.add_placed_pdf_page(w, "st_placed_" + slug_stem(page.stem), placed_asset, page_cursor)
             page_cursor += 1
             prose_pages += 1
             continue
-        matched = next((k for k, prefix in DATA_PAGES.items()
-                        if page.name.startswith(prefix)), None)
+        matched = data_roles.get(role)
         if matched:
             if matched == "trouble":
                 res = projected_by_path[page]
@@ -318,7 +334,7 @@ def main() -> int:
         skipped_raw += res.skipped_raw
         blocks = _prose_flow.align_operation_tail(list(res.blocks), page_plan, page.stem)
         blocks = _prose_flow.align_charging_car_page(blocks, page_plan, page.stem)
-        if approved_reference and page_stem_has(page, "03_product_overview_placeholder"):
+        if approved_reference and role is _page_roles.PageRole.PRODUCT_OVERVIEW:
             flush_prose_flow()
             toc.note_h1s(blocks, page_cursor)
             _overview.add_product_overview_page(
@@ -331,7 +347,7 @@ def main() -> int:
             page_cursor += 1
             prose_pages += 1
             continue
-        if pending_prefix_blocks and "user_maintenance" in page.stem:
+        if pending_prefix_blocks and role is _page_roles.PageRole.MAINTENANCE:
             flush_prose_flow()
             lang = page_lang(page)
             sym_signals, sym_icons = symbol_rows_for(lang)
@@ -351,7 +367,7 @@ def main() -> int:
                 page_cursor += 1
                 prose_pages += 1
                 continue
-        if pending_fcc_blocks and page_stem_has(page, "02_whats_in_the_box"):
+        if pending_fcc_blocks and role is _page_roles.PageRole.INBOX:
             flush_prose_flow()
             sid = "st_fcc_inbox_" + slug_stem(page.stem)
             lang = page_lang(page)
@@ -377,14 +393,14 @@ def main() -> int:
             prose_pages += 1
             continue
         flush_pending_fcc()
-        if page_stem_has(page, "01_fcc"):
+        if role is _page_roles.PageRole.FCC:
             flush_prose_flow()
             flush_pending_prefix()
             if blocks:
                 pending_fcc_blocks = blocks
                 pending_fcc_title = page.stem
             continue
-        if page.name.startswith("symbols_"):
+        if role is _page_roles.PageRole.SYMBOLS:
             flush_prose_flow()
             if "symbols" in emitted:
                 continue
@@ -409,12 +425,15 @@ def main() -> int:
             pending_prefix_blocks = []
         if not blocks:
             continue
-        if _prose_flow.warranty_starts_new_flow(page_plan) and page_stem_has(page, "11_warranty"):
+        if (
+            _prose_flow.warranty_starts_new_flow(page_plan)
+            and role is _page_roles.PageRole.WARRANTY
+        ):
             flush_prose_flow()
             toc.stem_langs[page.stem] = page_lang(page)
             emit_prose_story("st_" + slug_stem(page.stem), page.stem, blocks)
             continue
-        if page.name.startswith("safety_") and res.twocol:
+        if role is _page_roles.PageRole.SAFETY and res.twocol:
             flush_prose_flow()
             blocks, pending_prefix_blocks = split_safety_first_page(blocks)
             sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
@@ -431,6 +450,10 @@ def main() -> int:
         else:
             toc.stem_langs[page.stem] = page_lang(page)
             prose_flow.add(page.stem, blocks)
+
+    coverage_warning = _page_roles.assembly_coverage_warning(coverage_assignments)
+    if coverage_warning:
+        print(coverage_warning)
 
     if pending_symbol_overflow and any(pending_symbol_overflow):
         print(

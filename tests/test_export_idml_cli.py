@@ -126,6 +126,7 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
             self.assertIn("[export-idml] OK:", build.stdout)
             self.assertIn("stories=", build.stdout)
             self.assertIn("skipped raw blocks=0", build.stdout)
+            self.assertNotIn("assembly coverage", build.stdout)
             self.assertTrue(out.is_file())
             manual_ir = read_manual_ir(Path(td) / "manual.ir.json")
             self.assertEqual([], validate_manual_ir(manual_ir))
@@ -174,6 +175,12 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 "--out", str(out),
             )
             self.assertEqual(build.returncode, 0, build.stdout + build.stderr)
+            self.assertIn(
+                "[export-idml] WARNING: assembly coverage used unclassified "
+                "prose fallback for 2 source page(s): "
+                "page/00_alpha.rst, page/01_beta.rst",
+                build.stdout,
+            )
 
             with zipfile.ZipFile(out) as zf:
                 names = zf.namelist()

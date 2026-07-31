@@ -79,6 +79,13 @@ creates semantic Markdown plus an editable continuous-story IDML, style map,
 source trace, and asset manifest for a designer-owned template workflow. Both
 are generated outputs, never new content sources.
 
+Production mode also checks assembly coverage. Current source pages are mapped
+to target-neutral semantic roles before composition. If the command prints an
+`assembly coverage` warning, the listed new or renamed page was preserved with
+the ordinary editable-prose fallback, but it has no reviewed assembly role yet.
+Update the shared role table and its regression test before release; do not add
+a model/region-specific filename exception.
+
 The production handoff's `production/source_trace.json` also records the
 report-only `skipped_raw_blocks` count from `manual.ir.json`, so unprojected raw
 blocks are visible to reviewers without changing the current export gate.
