@@ -45,6 +45,22 @@ class LanguageSpec:
         return ()
 
 
+@dataclass(frozen=True)
+class IdmlLanguagePack:
+    """Localized copy and display metadata consumed by the IDML exporter."""
+
+    code: str
+    toc_code: str
+    toc_label: str
+    overview_title: str
+    symbols_title: str
+    symbol_copy: tuple[str, str, str, str]
+
+    @property
+    def toc_header(self) -> str:
+        return f"{self.toc_code}  {self.toc_label}"
+
+
 def _columns(*items: str) -> tuple[str, ...]:
     return tuple(items)
 
@@ -271,6 +287,66 @@ LANGUAGE_BY_ALIAS = {
     for alias in spec.aliases
 }
 
+IDML_SYMBOL_COPY_KEYS = ("title", "symbol", "meaning", "warning")
+
+# IDML-only language packs belong beside the canonical language registry.  The
+# exporter must not carry a second, partially registered language table in its
+# loader or TOC modules.
+IDML_LANGUAGE_PACKS = {
+    code: IdmlLanguagePack(code, toc_code, toc_label, overview, symbols, copy)
+    for code, toc_code, toc_label, overview, symbols, copy in (
+        (
+            "en", "EN", "English", "PRODUCT OVERVIEW", "MEANING OF SYMBOLS",
+            ("MEANING OF SYMBOLS", "Symbol", "Meaning", "WARNING"),
+        ),
+        (
+            "zh", "ZH", "中文", "产品概览", "符号含义",
+            ("符号含义", "符号", "含义", "警告"),
+        ),
+        (
+            "ja", "JA", "日本語", "製品概要", "記号の意味",
+            ("記号の意味", "記号", "意味", "警告"),
+        ),
+        (
+            "fr", "FR", "Français", "APERÇU DU PRODUIT",
+            "SIGNIFICATION DES SYMBOLES",
+            ("SIGNIFICATION DES SYMBOLES", "Symbole", "Signification", "AVERTISSEMENT"),
+        ),
+        (
+            "es", "ES", "Español", "DESCRIPCIÓN GENERAL DEL PRODUCTO",
+            "SIGNIFICADO DE LOS SÍMBOLOS",
+            ("SIGNIFICADO DE LOS SÍMBOLOS", "Símbolo", "Significado", "ADVERTENCIA"),
+        ),
+        (
+            "pt-BR", "PT-BR", "Português (Brasil)", "VISÃO GERAL DO PRODUTO",
+            "SIGNIFICADO DOS SÍMBOLOS",
+            ("SIGNIFICADO DOS SÍMBOLOS", "Símbolo", "Significado", "ADVERTÊNCIA"),
+        ),
+        (
+            "de", "DE", "Deutsch", "PRODUKTÜBERSICHT", "BEDEUTUNG DER SYMBOLE",
+            ("BEDEUTUNG DER SYMBOLE", "Symbol", "Bedeutung", "WARNUNG"),
+        ),
+        (
+            "it", "IT", "Italiano", "PANORAMICA DEL PRODOTTO",
+            "SIGNIFICATO DEI SIMBOLI",
+            ("SIGNIFICATO DEI SIMBOLI", "Simbolo", "Significato", "AVVERTENZA"),
+        ),
+        (
+            "uk", "UK", "Українська", "ОГЛЯД ПРОДУКТУ", "ЗНАЧЕННЯ СИМВОЛІВ",
+            ("ЗНАЧЕННЯ СИМВОЛІВ", "Символ", "Значення", "ПОПЕРЕДЖЕННЯ"),
+        ),
+        (
+            "ko", "KO", "한국어", "제품 개요", "기호의 의미",
+            ("기호의 의미", "기호", "의미", "경고"),
+        ),
+    )
+}
+
+# Only languages with an approved reference-layout geometry receive governed
+# IDML spacing/placement overrides.  Registration of a new language does not
+# accidentally opt it into the production-master layout contract.
+_IDML_GOVERNED_LANGUAGE_CODES = frozenset(("en", "fr", "es"))
+
 # Source-table headers retain their historical order for snapshot and manifest
 # compatibility.  Keep that order in the registry so schema consumers do not
 # repeat language lists in their own TABLE_SCHEMAS definitions.
@@ -315,6 +391,23 @@ def language_spec(value: object) -> LanguageSpec | None:
 
     code = canonical_language(value)
     return LANGUAGE_BY_CODE.get(code) if code else None
+
+
+def idml_language_pack(value: object) -> IdmlLanguagePack | None:
+    """Resolve canonical language or alias to its IDML language pack."""
+
+    code = canonical_language(value)
+    return IDML_LANGUAGE_PACKS.get(code) if code else None
+
+
+def governed_languages() -> tuple[str, ...]:
+    """Return languages with an approved, reference-bound IDML layout."""
+
+    return tuple(
+        spec.code
+        for spec in LANGUAGE_REGISTRY
+        if spec.code in _IDML_GOVERNED_LANGUAGE_CODES
+    )
 
 
 def language_display_labels() -> dict[str, str]:

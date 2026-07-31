@@ -154,6 +154,11 @@ under the frozen basename; an unresolved or ambiguous asset now fails the IDML
 export instead of producing a silent missing-link placeholder.
 Fixed composite pages remain componentized, while ordinary operation,
 charging, storage, and troubleshooting prose uses normal linked frame chains.
+IDML language packs for symbol-page copy and TOC labels are generated from the
+shared [`tools/lang_registry.py`](tools/lang_registry.py) registry. The
+`governed_languages()` helper is the single source for reference-bound layout
+overrides; registering a language does not implicitly opt it into an approved
+physical layout contract.
 Operation-panel callouts are native top-layer objects: Prerequisite, standby,
 On, and Off copy each has its own unlocked text frame above the linked artwork.
 The Energy Saving and LED cards use the same contract for their grey-box copy,

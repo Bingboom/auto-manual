@@ -15,18 +15,21 @@ from xml.sax.saxutils import escape
 from .params import IDPKG
 from . import page_objects as _po
 from .style_names import paragraph_style_ref
+from .language_contract import IDML_LANGUAGE_PACKS, LANGUAGE_REGISTRY
 
 # The template's language block headers; entries carry the language they
 # were assembled under (the page loop is strictly language-ordered).
-_LANG_HEADERS = {
-    "en": "EN  English",
-    "fr": "FR  Français",
-    "es": "ES  Español",
-    "de": "DE  Deutsch",
-    "it": "IT  Italiano",
-    "uk": "UK  Українська",
-    "ko": "KO  한국어",
-}
+def _pack_map(attribute: str) -> dict[str, str]:
+    values: dict[str, str] = {}
+    for code, pack in IDML_LANGUAGE_PACKS.items():
+        value = getattr(pack, attribute)
+        values[code] = value
+        spec = next(spec for spec in LANGUAGE_REGISTRY if spec.code == code)
+        values.update({alias.casefold(): value for alias in spec.aliases})
+    return values
+
+
+_LANG_HEADERS = _pack_map("toc_header")
 
 # Titles for pages that emit no prose h1 of their own.
 DATA_TITLES = {
@@ -35,16 +38,8 @@ DATA_TITLES = {
     "trouble": "TROUBLESHOOTING",
     "symbols": "MEANING OF SYMBOLS",
 }
-OVERVIEW_TITLES = {
-    "en": "PRODUCT OVERVIEW",
-    "fr": "APERÇU DU PRODUIT",
-    "es": "DESCRIPCIÓN GENERAL DEL PRODUCTO",
-}
-SYMBOL_TITLES = {
-    "en": "MEANING OF SYMBOLS",
-    "fr": "SIGNIFICATION DES SYMBOLES",
-    "es": "SIGNIFICADO DE LOS SÍMBOLOS",
-}
+OVERVIEW_TITLES = _pack_map("overview_title")
+SYMBOL_TITLES = _pack_map("symbols_title")
 _TOC_SLOT = 2  # cover, preface, TOC, then the numbered content pages
 
 # Vector measurements from physical page 3 of the production PDF.  These

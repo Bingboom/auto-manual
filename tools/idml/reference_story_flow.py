@@ -10,6 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
+from .language_contract import governed_languages
 from . import ir_projection
 from .asset_contracts import is_je1000f_us_app_reference_plan_page
 from .params import param_pt
@@ -24,7 +25,7 @@ def storage_first_top_offset(
     params: dict[str, tuple[str, str]], language: str | None,
 ) -> float:
     """Return the approved car-notice continuation offset on storage pages."""
-    if language not in {"en", "fr", "es"}:
+    if language not in governed_languages():
         return 0.0
     return param_pt(
         params,
@@ -73,7 +74,7 @@ class ReferenceStoryEmitter:
         is_warranty = (
             (self.page_plan or {}).get("plan_source") == "approved-reference"
             and "warranty" in title.casefold()
-            and composition_lang in {"en", "fr", "es"}
+            and composition_lang in governed_languages()
         )
         warranty_frame_x_offset = (
             param_pt(
@@ -132,7 +133,7 @@ class ReferenceStoryEmitter:
             (self.page_plan or {}).get("plan_source") == "approved-reference"
             and "ups_mode" in title.casefold()
             and "charging" in title.casefold()
-            and composition_lang in {"en", "fr", "es"}
+            and composition_lang in governed_languages()
         )
         master_offsets = {"WARRANTY": 12.30, "APP SETUP": 13.13}
         if is_operation:

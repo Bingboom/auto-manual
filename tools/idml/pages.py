@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from .language_contract import governed_languages
 from .page_objects import frame_with_background, h1_bar_h_pt, heading_bar_opts, heading_text, with_rounded_outer
 from .params import IDPKG, component_param_pt, param_pt
 from .symbols_page import (
@@ -249,7 +250,7 @@ def _safety_list_xml(
 
 def _safety_language(sid: str) -> str:
     folded = sid.casefold()
-    return next((lang for lang in ("en", "fr", "es") if f"_{lang}" in folded), "en")
+    return next((lang for lang in governed_languages() if f"_{lang}" in folded), "en")
 
 
 def _split_safety_section_at_list(

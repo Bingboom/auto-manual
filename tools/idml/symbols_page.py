@@ -5,6 +5,7 @@ from pathlib import Path
 from dataclasses import dataclass
 from xml.sax.saxutils import escape
 
+from .language_contract import governed_languages
 from .character_metrics import (
     fit_symbol_body_metrics,
     signal_label_metrics,
@@ -81,7 +82,7 @@ class SafetySymbolsPageStyle:
 
         def localized(key: str, default: float) -> float:
             base = token(key, default)
-            if normalized not in {"en", "fr", "es"}:
+            if normalized not in governed_languages():
                 return base
             return token(f"lang_{normalized}_{key}", base)
 
@@ -630,7 +631,7 @@ def add_safety_symbols_page(
            }),
            gap=style.signal_gap_after)
     bottom = writer.page_h - 2.0
-    if lang in {"en", "fr", "es"}:
+    if lang in governed_languages():
         # The governed rows already include the table's full vertical
         # measure.  Adding an import allowance here leaves an unfilled band
         # below the last icon row before the rounded shell's bottom arc.

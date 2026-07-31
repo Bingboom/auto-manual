@@ -10,32 +10,33 @@ import csv
 import re
 from pathlib import Path
 
+from .language_contract import (
+    IDML_LANGUAGE_PACKS,
+    IDML_SYMBOL_COPY_KEYS,
+    canonical_language,
+)
 from .text_clean import VariableSubstituter, clean_cell
 
-_SYMBOL_COPY_KEYS = ("title", "symbol", "meaning", "warning")
-_SYMBOL_COPY_ROWS = (
-    ("en", "MEANING OF SYMBOLS", "Symbol", "Meaning", "WARNING"),
-    ("fr", "SIGNIFICATION DES SYMBOLES", "Symbole", "Signification", "AVERTISSEMENT"),
-    ("es", "SIGNIFICADO DE LOS SÍMBOLOS", "Símbolo", "Significado", "ADVERTENCIA"),
-    ("de", "BEDEUTUNG DER SYMBOLE", "Symbol", "Bedeutung", "WARNUNG"),
-    ("it", "SIGNIFICATO DEI SIMBOLI", "Simbolo", "Significato", "AVVERTENZA"),
-    ("uk", "ЗНАЧЕННЯ СИМВОЛІВ", "Символ", "Значення", "ПОПЕРЕДЖЕННЯ"),
-    ("ko", "기호의 의미", "기호", "의미", "경고"),
-)
+_SYMBOL_COPY_KEYS = IDML_SYMBOL_COPY_KEYS
 SYMBOL_COPY = {
-    lang: dict(zip(_SYMBOL_COPY_KEYS, values))
-    for lang, *values in _SYMBOL_COPY_ROWS
+    lang: dict(zip(_SYMBOL_COPY_KEYS, pack.symbol_copy))
+    for lang, pack in IDML_LANGUAGE_PACKS.items()
 }
 
 
 def normalize_lang(lang: str | None) -> str:
-    lang = (lang or "en").strip()
-    aliases = {"ja": "jp", "pt-br": "pt-BR", "pt_BR": "pt-BR"}
-    return aliases.get(lang, aliases.get(lang.lower(), lang.lower() or "en"))
+    token = str(lang or "en").strip()
+    canonical = canonical_language(token)
+    if canonical:
+        # ``jp`` remains the historical phase2 column suffix.  All other
+        # consumers use the canonical registry code directly.
+        return "jp" if canonical == "ja" else canonical
+    return token.lower() or "en"
 
 
 def symbol_copy(lang: str | None) -> dict[str, str]:
-    return SYMBOL_COPY.get(normalize_lang(lang), SYMBOL_COPY["en"])
+    canonical = canonical_language(lang)
+    return SYMBOL_COPY.get(canonical or normalize_lang(lang), SYMBOL_COPY["en"])
 
 
 # The snapshot's localized column suffixes are not uniform across tables

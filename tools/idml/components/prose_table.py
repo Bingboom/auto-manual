@@ -10,6 +10,7 @@ import math
 import re
 
 from ..character_metrics import with_character_baseline_shift, with_character_metrics
+from ..language_contract import governed_languages
 from ..params import component_param_pt, param_pt
 from ..primitives import (
     cell,
@@ -133,7 +134,8 @@ class TroubleshootingTableStyle:
         return style
 
     def table_space_before(self, language: str) -> float:
-        index = {"en": 0, "fr": 1, "es": 2}.get(language, 0)
+        governed = governed_languages()
+        index = governed.index(language) if language in governed else 0
         return self.table_space_before_by_language[index]
 
     def minimum_for_row(self, row_index: int) -> float:
