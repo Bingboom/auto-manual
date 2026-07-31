@@ -380,6 +380,11 @@ per-surface language maps; `tests/test_fake_language_e2e.py` proves that a fake
 consumer-specific Python edits. Reference-bound IDML languages remain a
 separate approval surface.
 
+For the current config-backed page-manifest inventory, run
+`python tools/manifest_lint.py --json`. It is intentionally report-only: it
+surfaces orphan manifests, invalid references, language-set drift, and missing
+manifest sources without changing build or approval behavior.
+
 The fixed US + JP release matrix runners — [`scripts/build_us_jp_manuals.py`](scripts/build_us_jp_manuals.py) and [`scripts/build_us_jp_manuals.ps1`](scripts/build_us_jp_manuals.ps1) — are documented in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For a US-only subset, pass `--languages en,es,fr` (or the subset you need) to the same runner.
 
 Do not treat this file as the full command reference.
