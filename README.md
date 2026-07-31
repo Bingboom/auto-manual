@@ -373,7 +373,12 @@ the staged rollout in
 
 For the full review-first flow, queue-driven Draft/Publish workers, matrix runners, and every command flag, see [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For the editing-surface and source-of-truth rules, see [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) and [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md). For BlockClaw / Feishu IM behavior, including batch document-link replies and read-only `发布文档管理` manual-index lookups, see [`integrations/openclaw/feishu-im-webhook-adapter/README.md`](integrations/openclaw/feishu-im-webhook-adapter/README.md). Explicit OpenClaw build requests must go through `queue-resolve-action` → `queue-execute`; the assistant must not preflight with local `check` or `data/phase2/*.csv`, because `是否强制刷新数据` is consumed by the remote queue worker.
 
-Language display labels and queue-query aliases are derived from the shared `tools/lang_registry.py` registry. Add a language or alias there instead of creating another per-surface language map.
+Language display labels and queue-query aliases are derived from the shared
+`tools/lang_registry.py` registry. Add one registry row rather than creating
+per-surface language maps; `tests/test_fake_language_e2e.py` proves that a fake
+`xx` row reaches the sync, copy, lint, query, and preview surfaces without
+consumer-specific Python edits. Reference-bound IDML languages remain a
+separate approval surface.
 
 The fixed US + JP release matrix runners — [`scripts/build_us_jp_manuals.py`](scripts/build_us_jp_manuals.py) and [`scripts/build_us_jp_manuals.ps1`](scripts/build_us_jp_manuals.ps1) — are documented in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For a US-only subset, pass `--languages en,es,fr` (or the subset you need) to the same runner.
 

@@ -69,25 +69,28 @@ Create:
 - `docs/templates/page_shared/<lang>/` ← clone `page_shared/en/`. These are the
   **to-be-translated source baseline** (English until translated).
 
-## 2. Register a NEW output language in code
+## 2. Register a NEW output language
 
-Only if the language is new to the repo. `renderers` resolve columns dynamically via
-`_lang_suffix_candidates(lang)` with an `_en` fallback (lcd/troubleshooting), so no
-renderer edits — but these enumerations DO need the language:
+Only the canonical language registry is a code-plane extension point. Add one
+`LanguageSpec` row to `tools/lang_registry.py`; the sync schemas, signal-word
+columns, localized-copy/TM fields, content-lint maps, CSV-page aliases, display
+labels, and queue-query aliases are derived from that row. The fake-language
+`xx` end-to-end proof in `tests/test_fake_language_e2e.py` locks this boundary:
+adding one registry row must not require another consumer map or a parallel
+golden-test edit.
 
-- `tools/signal_words.py` — add to `_SUPPORTED_LANGS`.
-- `tools/sync_data_models.py` — add the per-language columns to the `columns` tuples:
-  symbols_blocks (`label_<l>`,`aliases_<l>`,`text_<l>`), lcd_icons (`icon_<l>`,`icon_desc_<l>`),
-  troubleshooting (`corrective_measures_<l>`).
-- `tools/localized_copy.py` — `_LANG_TEXT_COLUMNS`: `"<l>": "text_<l>"`.
-- `tools/manual_copy_source.py` — `LOCALIZED_COPY_COLUMNS` (+`text_<l>`),
-  `LOCALIZED_COPY_TEXT_COLUMNS` (`text_<l>`→`<l>`), `TM_LANGUAGE_FIELDS` (`<l>`→`<l>`),
-  and `STATUS_WORD_COLUMNS` (+`<l>`).
-- `data/phase2/page_registry.csv` (**tracked**, not gitignored) — add `<l>` to the
-  `langs` of the symbols/lcd_icons/troubleshooting/spec rows. Miss this and the
-  csv-page builder returns `files=0` → `Missing source RST ... <page>_<l>.rst`.
-- Update hardcoded expectations in `tests/test_sync_data.py` and
-  `tests/test_manual_copy_source.py`.
+The remaining inputs are data/config, not per-consumer Python edits:
+
+- `data/phase2/page_registry.csv` (**tracked**, not gitignored) — add `<l>` to
+  the `langs` of the symbols/lcd_icons/troubleshooting/spec rows. Miss this and
+  the csv-page builder returns `files=0` → `Missing source RST ... <page>_<l>.rst`.
+- `configs/config.<region>-<lang>.yaml`, the family manifest, and the shared
+  language template directory provide the output target and source baseline.
+- The phase2 source tables need the corresponding localized columns and rows;
+  this is the approval-gated Feishu/source-table step, followed by `sync-data`.
+- A new language is not automatically an approved reference-bound IDML
+  language. IDML language packs, governed layout pins, and a reference-layout
+  approval are separate physical-layout work.
 
 ## 3. Feishu data (base = phase2 `LD3lb4G1ua4GOVs1vxAc9W2enje`)
 
