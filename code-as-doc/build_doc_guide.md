@@ -823,11 +823,13 @@ python3 tools/reference_layout_scaffold.py \
   --output <review/reference-layout-draft.json>
 ```
 
-The scaffold refreshes source identities and page digests while preserving the
-seed's physical composition map. The output is explicitly `approval.status=draft`
-and `production_eligible=false`; it is not added to the registry and cannot
-activate production IDML. Composition review and explicit approval must happen
-before a maintainer promotes a contract and registers it.
+The scaffold refreshes source identities, page digests, and the observed
+`idml_contract.max_skipped_raw` baseline while preserving the seed's physical
+composition map. The output is explicitly `approval.status=draft` and
+`production_eligible=false`; it is not added to the registry and cannot
+activate production IDML. Composition review, including that skipped-raw
+baseline, and explicit approval must happen before a maintainer promotes a
+contract and registers it.
 
 The tool preserves file mode and uses an atomic replace only after full plan
 validation. It is not a composition editor: a source-order or page-map change
@@ -1140,10 +1142,11 @@ docs/_build/<model>/<region>/<lang>/idml/
 ```
 
 The production `source_trace.json` records `skipped_raw_blocks` from the
-production `manual.ir.json` sidecar. This is an observation field for finding
-raw blocks that were not projected into editable output; it does not add a new
-strict export gate. The skipped-raw strict policy remains a later, separately
-approved Stage 5 change.
+production `manual.ir.json` sidecar. Ordinary targets without an approved
+reference plan keep this as an observation field. An approved-reference plan
+must freeze `idml_contract.max_skipped_raw`; production export fails closed
+when the current total exceeds that baseline. `manual_ir_cli.py --strict`
+remains the explicit zero-tolerance diagnostic independent of plan activation.
 
 On the publish queue path (`Workflow_action = Publish`), the worker runs the
 idml step with `--idml-mode both` and then packages the export into one

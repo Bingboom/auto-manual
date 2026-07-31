@@ -103,6 +103,7 @@ def _approved_payload(ir: ManualIR) -> dict[str, object]:
             "max_changed_pixel_ratio": 0.01,
         },
         "idml_contract": {
+            "max_skipped_raw": 0,
             "forbidden_visible_whole_page_links": ["flattened.pdf"],
         },
         "pages": [
@@ -161,6 +162,7 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
             [page["planned_page_count"] for page in plan["pages"]],
         )
         self.assertRegex(plan["approved_plan_sha256"], r"^[0-9a-f]{64}$")
+        self.assertEqual(0, plan["idml_contract"]["max_skipped_raw"])
 
     def test_committed_je1000f_contract_keeps_58_page_component_binding(self) -> None:
         root = Path(__file__).resolve().parents[1]
@@ -169,6 +171,7 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
             / "je1000f_us_v2_20260605.json"
         )
         contract = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(0, contract["idml_contract"]["max_skipped_raw"])
         self.assertEqual(
             "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
             contract["source_identity"]["manual_content_sha256"],
@@ -310,12 +313,53 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
     def test_rejects_whole_page_link_contract_paths(self) -> None:
         payload = deepcopy(self.payload)
         payload["idml_contract"] = {
+            "max_skipped_raw": 0,
             "forbidden_visible_whole_page_links": ["assets/flattened.pdf"],
         }
 
         issues = validate_approved_reference_plan(payload, self.ir)
 
         self.assertTrue(any("must contain file names only" in issue for issue in issues))
+
+    def test_rejects_missing_or_invalid_skipped_raw_baseline(self) -> None:
+        for value in (None, -1, 1.5, True):
+            with self.subTest(value=value):
+                payload = deepcopy(self.payload)
+                if value is None:
+                    del payload["idml_contract"]["max_skipped_raw"]  # type: ignore[index]
+                else:
+                    payload["idml_contract"]["max_skipped_raw"] = value  # type: ignore[index]
+
+                issues = validate_approved_reference_plan(payload, self.ir)
+
+                self.assertIn(
+                    "idml_contract.max_skipped_raw must be a non-negative integer",
+                    issues,
+                )
+
+    def test_rejects_skipped_raw_above_approved_baseline(self) -> None:
+        changed_page = replace(self.ir.pages[0], skipped_raw=2)
+        ir = replace(self.ir, pages=(changed_page, *self.ir.pages[1:]))
+        payload = deepcopy(self.payload)
+        payload["idml_contract"]["max_skipped_raw"] = 1  # type: ignore[index]
+
+        issues = validate_approved_reference_plan(payload, ir)
+
+        matching = [issue for issue in issues if "exceeds approved-reference" in issue]
+        self.assertEqual(1, len(matching))
+        self.assertIn("skipped_raw=2", matching[0])
+        self.assertIn("max_skipped_raw=1", matching[0])
+        self.assertIn(changed_page.page_id, matching[0])
+
+    def test_accepts_skipped_raw_at_approved_baseline(self) -> None:
+        changed_page = replace(self.ir.pages[0], skipped_raw=1)
+        ir = replace(self.ir, pages=(changed_page, *self.ir.pages[1:]))
+        payload = deepcopy(self.payload)
+        payload["idml_contract"]["max_skipped_raw"] = 1  # type: ignore[index]
+
+        issues = validate_approved_reference_plan(payload, ir)
+
+        self.assertFalse(any("exceeds approved-reference" in issue for issue in issues))
 
     def test_rejects_a_stale_source_page_hash(self) -> None:
         payload = deepcopy(self.payload)

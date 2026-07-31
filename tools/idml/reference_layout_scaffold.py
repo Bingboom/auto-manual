@@ -140,6 +140,12 @@ def _draft_candidate(seed: dict[str, Any], ir: ManualIR, *, seed_path: Path) -> 
     _validate_seed_shape(seed, ir)
     original_map = _composition_map(seed)
     candidate = deepcopy(seed)
+    idml_contract = candidate.get("idml_contract")
+    if not isinstance(idml_contract, dict):
+        raise ReferenceLayoutPlanError(
+            "reference layout scaffold requires seed idml_contract"
+        )
+    idml_contract["max_skipped_raw"] = sum(page.skipped_raw for page in ir.pages)
     candidate["source_identity"] = {
         "manual_ir_schema_version": ir.schema_version,
         "manual_content_sha256": ir.content_sha256,
