@@ -787,6 +787,23 @@ To inspect every registered plan in one dry-run summary, use
 <manual.ir.json>`. Batch mode is intentionally read-only; `--write` must be
 paired with one explicit `--plan`.
 
+When a refreshed Manual IR needs a new layout review, create a review-only
+draft from the existing composition seed instead of hand-editing the 52 page
+hashes:
+
+```bash
+python3 tools/reference_layout_scaffold.py \
+  --seed-plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --output <review/reference-layout-draft.json>
+```
+
+The scaffold refreshes source identities and page digests while preserving the
+seed's physical composition map. The output is explicitly `approval.status=draft`
+and `production_eligible=false`; it is not added to the registry and cannot
+activate production IDML. Composition review and explicit approval must happen
+before a maintainer promotes a contract and registers it.
+
 The tool preserves file mode and uses an atomic replace only after full plan
 validation. It is not a composition editor: a source-order or page-map change
 requires a new layout review and approval. Never hand-edit a subset of hashes
