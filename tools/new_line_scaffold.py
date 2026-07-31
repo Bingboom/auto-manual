@@ -1,15 +1,25 @@
-"""Plan-only scaffolding for onboarding an existing manual line.
+"""Scaffold an existing manual line without crossing the phase2 write gate.
 
-Stage 3 deliberately starts with a read-only plan. This module resolves the
-same config and manifest surfaces used by the normal build, but it never
-creates files and never talks to Feishu. The later write PR can consume this
-stable report without reimplementing target or page resolution.
+The command has two deliberately separate surfaces:
+
+* the default plan is read-only and resolves the same config/manifest inputs
+  as the normal build;
+* "--write" materializes only explicitly named config and manifest files,
+  refreshes the committed fixture through the existing target-scoped helper,
+  and runs the normal "build.py check" gate.
+
+Neither path writes Feishu or "data/phase2". Production source-table writes
+remain the separately approved F6 operation described by the scaling plan.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
+import subprocess
+import sys
+import tempfile
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
@@ -58,6 +68,17 @@ class ScaffoldPlan:
     write_policy: dict[str, Any]
     whitelist_diff: tuple[str, ...]
     validation: dict[str, Any]
+
+    def as_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class ScaffoldWriteResult:
+    config: str
+    manifest: str
+    fixture_refresh: dict[str, Any]
+    auto_check: dict[str, Any]
 
     def as_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -288,6 +309,191 @@ def render_plan(plan: ScaffoldPlan, *, as_json: bool) -> str:
     )
 
 
+def _safe_output_path(raw: str | Path, *, root: Path, label: str) -> Path:
+    path = Path(raw)
+    resolved = path.resolve() if path.is_absolute() else (root / path).resolve()
+    try:
+        resolved.relative_to(root.resolve())
+    except ValueError as exc:
+        raise RuntimeError(f"{label} must stay inside the repository: {resolved}") from exc
+
+    blocked = (
+        root / "data" / "phase2",
+        root / "tests" / "fixtures" / "phase2",
+        root / "docs" / "_build",
+    )
+    if any(resolved == candidate or candidate in resolved.parents for candidate in blocked):
+        raise RuntimeError(f"{label} is outside the controlled scaffold surface: {resolved}")
+    return resolved
+
+
+def _load_yaml_mapping(path: Path, *, label: str) -> dict[str, Any]:
+    try:
+        import yaml
+    except ImportError as exc:  # pragma: no cover - dependency is required by the repo
+        raise RuntimeError("PyYAML is required for new-line --write") from exc
+    try:
+        value = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    except (OSError, yaml.YAMLError) as exc:
+        raise RuntimeError(f"cannot read {label}: {path}") from exc
+    if not isinstance(value, dict):
+        raise RuntimeError(f"{label} must be a YAML mapping: {path}")
+    return value
+
+
+def _write_yaml_mapping(path: Path, value: dict[str, Any]) -> None:
+    try:
+        import yaml
+    except ImportError as exc:  # pragma: no cover - dependency is required by the repo
+        raise RuntimeError("PyYAML is required for new-line --write") from exc
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        yaml.safe_dump(value, allow_unicode=True, sort_keys=False, default_flow_style=False),
+        encoding="utf-8",
+    )
+
+
+def materialize_scaffold(
+    plan: ScaffoldPlan,
+    *,
+    source_config: Path,
+    root: Path,
+    output_config: Path,
+    output_manifest: Path,
+    force: bool = False,
+) -> ScaffoldWriteResult:
+    """Write an explicit config/manifest pair and nothing else."""
+
+    root = root.resolve()
+    source_config = source_config.resolve()
+    output_config = _safe_output_path(output_config, root=root, label="--output-config")
+    output_manifest = _safe_output_path(output_manifest, root=root, label="--output-manifest")
+    if output_config == source_config:
+        raise RuntimeError("--output-config must not overwrite --config")
+    if output_config == output_manifest:
+        raise RuntimeError("--output-config and --output-manifest must be different files")
+    existing = [path for path in (output_config, output_manifest) if path.exists()]
+    if existing and not force:
+        rendered = ", ".join(str(path) for path in existing)
+        raise RuntimeError(f"scaffold output already exists; pass --force to replace: {rendered}")
+
+    config = _load_yaml_mapping(source_config, label="source config")
+    build = config.setdefault("build", {})
+    if not isinstance(build, dict):
+        raise RuntimeError("source config build must be a mapping")
+    build["default_model"] = plan.target["model"]
+    build["default_region"] = plan.target["region"]
+    build["targets"] = [{"model": plan.target["model"], "region": plan.target["region"]}]
+
+    extends = config.get("extends")
+    if isinstance(extends, str) and extends.strip():
+        extends_path = (source_config.parent / extends.strip()).resolve()
+        try:
+            config["extends"] = os.path.relpath(extends_path, output_config.parent).replace(os.sep, "/")
+        except ValueError as exc:
+            raise RuntimeError(f"cannot relocate config extends path: {extends_path}") from exc
+
+    paths = config.setdefault("paths", {})
+    if not isinstance(paths, dict):
+        raise RuntimeError("source config paths must be a mapping")
+    paths["page_manifest"] = output_manifest.relative_to(root).as_posix()
+
+    manifest_source = Path(plan.manifest["path"])
+    if not manifest_source.is_absolute():
+        manifest_source = root / manifest_source
+    manifest = _load_yaml_mapping(manifest_source, label="source manifest")
+    manifest_id = output_manifest.stem
+    if manifest_id.startswith("manual_"):
+        manifest["manifest_id"] = manifest_id
+
+    _write_yaml_mapping(output_config, config)
+    _write_yaml_mapping(output_manifest, manifest)
+    return ScaffoldWriteResult(
+        config=output_config.relative_to(root).as_posix(),
+        manifest=output_manifest.relative_to(root).as_posix(),
+        fixture_refresh={},
+        auto_check={},
+    )
+
+
+def _refresh_fixture(
+    *,
+    root: Path,
+    document_key: str,
+    source_root: str | Path,
+    fixture_root: str | Path,
+) -> dict[str, Any]:
+    from tools.data_snapshot_fixture_refresh import refresh_fixture_by_document_key
+
+    source = Path(source_root)
+    fixture = Path(fixture_root)
+    if not source.is_absolute():
+        source = root / source
+    if not fixture.is_absolute():
+        fixture = root / fixture
+    result = refresh_fixture_by_document_key(
+        source_root=source,
+        fixture_root=fixture,
+        document_key=document_key,
+        write=True,
+    )
+    if not result.refreshed_files:
+        raise RuntimeError(
+            f"fixture-refresh found no source rows for {document_key}; "
+            "refusing to claim new-line coverage"
+        )
+    return result.as_dict()
+
+
+def _auto_check(
+    *,
+    root: Path,
+    config: Path,
+    model: str,
+    region: str,
+    data_root: str | Path,
+    staging_root: str | Path | None,
+) -> dict[str, Any]:
+    data_path = Path(data_root)
+    if not data_path.is_absolute():
+        data_path = root / data_path
+    command = [
+        sys.executable,
+        str(root / "build.py"),
+        "check",
+        "--config",
+        str(config),
+        "--model",
+        model,
+        "--region",
+        region,
+        "--source",
+        "runtime",
+        "--data-root",
+        str(data_path),
+    ]
+    temporary: tempfile.TemporaryDirectory[str] | None = None
+    if staging_root is None:
+        temporary = tempfile.TemporaryDirectory(prefix="auto-manual-new-line-check-")
+        check_staging = Path(temporary.name)
+    else:
+        check_staging = Path(staging_root)
+        if not check_staging.is_absolute():
+            check_staging = root / check_staging
+    command.extend(["--staging-root", str(check_staging)])
+    try:
+        completed = subprocess.run(command, cwd=root, text=True, capture_output=True, check=False)
+    finally:
+        if temporary is not None:
+            temporary.cleanup()
+    output = (completed.stdout or "").strip()
+    error = (completed.stderr or "").strip()
+    if completed.returncode:
+        detail = (output or error or "build.py check failed")[-2000:]
+        raise RuntimeError(f"new-line auto check failed (exit {completed.returncode}): {detail}")
+    return {"status": "passed", "returncode": completed.returncode, "command": command}
+
+
 def run_new_line(args: argparse.Namespace, *, repo_root: Path) -> None:
     config_path = Path(args.config)
     if not config_path.is_absolute():
@@ -298,16 +504,77 @@ def run_new_line(args: argparse.Namespace, *, repo_root: Path) -> None:
         model=getattr(args, "model", None),
         region=getattr(args, "region", None),
     )
+    if plan.whitelist_diff:
+        raise RuntimeError("new-line dry-run found references outside the approved scaffold surface")
+
+    if not getattr(args, "write", False):
+        output = getattr(args, "plan_output", None)
+        if output:
+            output_path = Path(output)
+            if not output_path.is_absolute():
+                output_path = repo_root / output_path
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(render_plan(plan, as_json=True) + "\n", encoding="utf-8")
+        print(render_plan(plan, as_json=bool(getattr(args, "json", False))))
+        return
+
+    output_config = getattr(args, "output_config", None)
+    output_manifest = getattr(args, "output_manifest", None)
+    if not output_config or not output_manifest:
+        raise RuntimeError("new-line --write requires --output-config and --output-manifest")
+
+    result = materialize_scaffold(
+        plan,
+        source_config=config_path,
+        root=repo_root,
+        output_config=Path(output_config),
+        output_manifest=Path(output_manifest),
+        force=bool(getattr(args, "force", False)),
+    )
+    document_key = f"{plan.target['model']}_{plan.target['region']}"
+    fixture_result = _refresh_fixture(
+        root=repo_root,
+        document_key=document_key,
+        source_root=getattr(args, "fixture_source_root", "data/phase2"),
+        fixture_root=getattr(args, "fixture_root", "tests/fixtures/phase2"),
+    )
+    check_result = {"status": "skipped", "reason": "--skip-auto-check"}
+    if not getattr(args, "skip_auto_check", False):
+        generated_config = repo_root / result.config
+        check_result = _auto_check(
+            root=repo_root,
+            config=generated_config,
+            model=plan.target["model"],
+            region=plan.target["region"],
+            data_root=getattr(args, "fixture_root", "tests/fixtures/phase2"),
+            staging_root=getattr(args, "staging_root", None),
+        )
+    result = ScaffoldWriteResult(
+        config=result.config,
+        manifest=result.manifest,
+        fixture_refresh=fixture_result,
+        auto_check=check_result,
+    )
+    report = plan.as_dict()
+    report["mode"] = "write"
+    report["write"] = result.as_dict()
     output = getattr(args, "plan_output", None)
     if output:
         output_path = Path(output)
         if not output_path.is_absolute():
             output_path = repo_root / output_path
         output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(render_plan(plan, as_json=True) + "\n", encoding="utf-8")
-    print(render_plan(plan, as_json=bool(getattr(args, "json", False))))
-    if plan.whitelist_diff:
-        raise RuntimeError("new-line dry-run found references outside the approved scaffold surface")
+        output_path.write_text(
+            json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+    if getattr(args, "json", False):
+        print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))
+    else:
+        print(render_plan(plan, as_json=False))
+        print(f"mode=write config={result.config} manifest={result.manifest}")
+        print(f"fixture_refresh={fixture_result['document_key']} files={len(fixture_result['refreshed_files'])}")
+        print(f"auto_check={check_result['status']}")
 
 
 def main(argv: list[str] | None = None) -> int:

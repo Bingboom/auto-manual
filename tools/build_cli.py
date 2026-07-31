@@ -264,7 +264,42 @@ def parse_args(
     ap.add_argument(
         "--plan-output",
         default=None,
-        help="For new-line: optional JSON plan path; new-line is always read-only in this stage",
+        help="For new-line: optional JSON plan/report path",
+    )
+    ap.add_argument(
+        "--write",
+        action="store_true",
+        help="For new-line: materialize an explicit config/manifest scaffold and run its gates",
+    )
+    ap.add_argument(
+        "--output-config",
+        default=None,
+        help="For new-line --write: destination config path inside the repository",
+    )
+    ap.add_argument(
+        "--output-manifest",
+        default=None,
+        help="For new-line --write: destination page-manifest path inside the repository",
+    )
+    ap.add_argument(
+        "--fixture-source-root",
+        default="data/phase2",
+        help="For new-line --write: source snapshot passed to fixture-refresh",
+    )
+    ap.add_argument(
+        "--fixture-root",
+        default="tests/fixtures/phase2",
+        help="For new-line --write: committed fixture snapshot and auto-check data root",
+    )
+    ap.add_argument(
+        "--skip-auto-check",
+        action="store_true",
+        help="For new-line --write: stop after fixture-refresh and skip build.py check",
+    )
+    ap.add_argument(
+        "--force",
+        action="store_true",
+        help="For new-line --write: allow replacing the two explicitly named scaffold files",
     )
     ap.add_argument(
         "--asset-key",

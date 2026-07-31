@@ -68,6 +68,18 @@ python build.py asset-check --asset-key operation/ac_output --asset-format png -
 # manifests, phase2 snapshots, or Feishu source tables.
 python build.py new-line --config configs/config.kr.yaml --dry-run --json
 
+# Materialize an explicit config/manifest scaffold, refresh only the committed
+# fixture snapshot, and run the normal check gate. Production phase2 writes
+# remain blocked.
+python build.py new-line \
+  --config configs/config.kr.yaml \
+  --model JE-1000F --region KR \
+  --write \
+  --output-config configs/config.kr.generated.yaml \
+  --output-manifest docs/manifests/manual_kr.generated.yaml \
+  --fixture-source-root data/phase2 \
+  --fixture-root tests/fixtures/phase2
+
 # Package one PDF-compatible Illustrator master without editing the source,
 # worktree, registry, or Feishu Base. The output directory must not exist.
 python build.py asset-intake \
