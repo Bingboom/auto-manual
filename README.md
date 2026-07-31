@@ -456,6 +456,14 @@ For the full review-first flow, queue-driven Draft/Publish workers, matrix runne
 
 Within one queue worker batch, a successful forced phase2 sync is reused for the same config/data-root pair; a failed sync is not memoized and remains retryable for a later group.
 
+Before sync or build work starts, the queue worker now writes a two-hour
+`claim_token` lease into `构建结果` and reads the row back outside the pending
+view. Only the worker whose token still owns every row in the group may
+continue; active leases are omitted from pending selection, while expired
+leases are reclaimable. Feishu record upsert has no compare-and-swap primitive,
+so this is a verified lease boundary rather than a claim of linearizable
+storage; shared workflow concurrency is the next protection layer.
+
 A versioned Publish now binds its DOCX, Markdown, and PDF bytes to the release
 Git commit and frozen phase2 snapshot. Verify that contract with
 `python build.py release-rebuild-verify --manifest <release-manifest.json>`.

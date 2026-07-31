@@ -12,6 +12,7 @@ from tools.queue_build_execution import (
     sync_phase2_snapshot_before_queue as _sync_phase2_snapshot_before_queue_impl,
 )
 from tools.queue_dry_run import print_dry_run_groups as _print_dry_run_groups_impl
+from tools.queue_claims import acquire_verified_queue_claim as _acquire_verified_queue_claim_impl
 from tools.queue_group_processing import process_queue_record_group as _process_queue_record_group_impl
 from tools.queue_cloud_doc_finalize import (
     finalize_cloud_doc as _finalize_cloud_doc_impl,
@@ -546,6 +547,9 @@ def build_started_fields(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
     data_sync_status: str = "",
+    claim_token: str = "",
+    claim_expires_at: datetime | None = None,
+    write_started_at: bool = True,
 ) -> dict[str, Any]:
     return _build_started_fields_impl(
         started_at=started_at,
@@ -556,9 +560,11 @@ def build_started_fields(
         normalize_workflow_action=module.normalize_workflow_action,
         normalize_doc_phase=module.normalize_doc_phase,
         workflow_action_label=module.workflow_action_label,
-        build_started_at_field=module.BUILD_STARTED_AT_FIELD,
+        build_started_at_field=module.BUILD_STARTED_AT_FIELD if write_started_at else "",
         result_field=module.RESULT_FIELD,
         running_prefix=module.RUNNING_PREFIX,
+        claim_token=claim_token,
+        claim_expires_at=claim_expires_at,
     )
 
 
@@ -675,6 +681,9 @@ def process_build_queue(
         sync_phase2_snapshot_before_queue=module.sync_phase2_snapshot_before_queue,
         resolve_and_report_wiki_destination=_resolve_and_report_wiki_destination_impl,
         process_queue_record_group=_process_queue_record_group_impl,
+        acquire_queue_claim=_acquire_verified_queue_claim_impl,
+        result_field=module.RESULT_FIELD,
+        queue_claim_ttl_seconds=module.QUEUE_CLAIM_TTL_SECONDS,
         build_started_at_field=module.BUILD_STARTED_AT_FIELD,
         force_phase2_refresh_field=module.FORCE_PHASE2_REFRESH_FIELD,
         data_sync_field=module.DATA_SYNC_FIELD,

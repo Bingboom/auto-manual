@@ -48,6 +48,7 @@ from tools.queue_contract import (  # noqa: E402
     LANG_FIELD as _QC_LANG_FIELD,
     LEGACY_TRIGGER_FIELDS as _QC_LEGACY_TRIGGER_FIELDS,
     OPERATOR_UNION_ID_FIELD as _QC_OPERATOR_UNION_ID_FIELD,
+    QUEUE_CLAIM_TTL_SECONDS as _QC_QUEUE_CLAIM_TTL_SECONDS,
     RESULT_FIELD as _QC_RESULT_FIELD,
     RUNNING_PREFIX as _QC_RUNNING_PREFIX,
     SUCCESS_PREFIX as _QC_SUCCESS_PREFIX,
@@ -222,6 +223,7 @@ FORCE_PHASE2_REFRESH_FIELD = _QC_FORCE_PHASE2_REFRESH_FIELD
 UPLOAD_DINGTALK_FIELD = _QC_UPLOAD_DINGTALK_FIELD
 IMMEDIATE_TRIGGER_FIELD = _QC_IMMEDIATE_TRIGGER_FIELD
 OPERATOR_UNION_ID_FIELD = _QC_OPERATOR_UNION_ID_FIELD
+QUEUE_CLAIM_TTL_SECONDS = _QC_QUEUE_CLAIM_TTL_SECONDS
 SUCCESS_PREFIX = _QC_SUCCESS_PREFIX
 RUNNING_PREFIX = _QC_RUNNING_PREFIX
 FAILED_PREFIX = _QC_FAILED_PREFIX
@@ -371,6 +373,9 @@ def build_started_fields(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
     data_sync_status: str = "",
+    claim_token: str = "",
+    claim_expires_at: datetime | None = None,
+    write_started_at: bool = True,
 ) -> dict[str, Any]:
     return _build_started_fields_service(
         _service_module(),
@@ -379,6 +384,9 @@ def build_started_fields(
         workflow_action=workflow_action,
         doc_phase=doc_phase,
         data_sync_status=data_sync_status,
+        claim_token=claim_token,
+        claim_expires_at=claim_expires_at,
+        write_started_at=write_started_at,
     )
 
 

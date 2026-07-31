@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable
+from uuid import uuid4
 
 from tools.queue_contract import BASELINE_DOC_FIELD
 from tools.queue_transitions import append_writeback_failed
@@ -32,6 +33,9 @@ def process_queue_record_group(
     cli_bin: str,
     identity: str,
     artifact_destination: Any,
+    acquire_queue_claim: Callable[..., Any],
+    result_field: str,
+    queue_claim_ttl_seconds: int,
     warn_legacy_record_doc_phase: Callable[[Any], None],
     validate_queue_record_group: Callable[[list[Any]], None],
     resolve_target_for_record: Callable[[Any], tuple[str, str]],
@@ -74,18 +78,53 @@ def process_queue_record_group(
     latest_feishu_cloud_doc_url: str | None = None
     group_key = queue_record_key(record)
     row_count = len(group)
+    data_sync_status = "skipped"
+    claim_attempted = False
+    claim_owned = False
     try:
         warn_legacy_record_doc_phase(record)
         validate_queue_record_group(group)
+        effective_doc_phase = resolve_queue_workflow_action(record)
+        force_phase2_refresh = queue_group_force_phase2_refresh(group)
+        started_at = datetime.now(timezone.utc)
+        claim_token = uuid4().hex
+        claim_expires_at = started_at + timedelta(seconds=queue_claim_ttl_seconds)
+        start_fields = build_started_fields(
+            started_at=started_at,
+            version=record.version,
+            workflow_action=effective_doc_phase,
+            doc_phase=queue_record_legacy_doc_phase(record),
+            data_sync_status="pending" if force_phase2_refresh else "skipped",
+            claim_token=claim_token,
+            claim_expires_at=claim_expires_at,
+            write_started_at=can_write_started_at,
+        )
+        claim_attempted = True
+        claim_attempt = acquire_queue_claim(
+            source=source,
+            base_token=binding.base_token,
+            table_id=binding.table_id,
+            records=group,
+            claim_fields=start_fields,
+            result_field=result_field,
+            claim_token=claim_token,
+        )
+        if not claim_attempt.acquired:
+            print(
+                f"[build-queue] Skipping {group_key} ({row_count} row(s)); {claim_attempt.reason}."
+            )
+            return QueueGroupProcessingResult(processed_rows=0)
+        claim_owned = True
+        print(
+            f"[build-queue] Acquired queue claim for {group_key} ({row_count} row(s)): "
+            f"expires_at={claim_expires_at.isoformat(timespec='seconds')}"
+        )
         model, region = resolve_target_for_record(record)
         group_lang = queue_group_lang(group)
         group_build_family = queue_group_build_family(group)
         dingtalk_target_node_url = queue_group_dingtalk_target_node_url(group)
         dingtalk_operator_union_id = queue_group_operator_union_id(group)
-        force_phase2_refresh = queue_group_force_phase2_refresh(group)
         upload_dingtalk = queue_group_upload_dingtalk(group)
-        data_sync_status = "skipped"
-        effective_doc_phase = resolve_queue_workflow_action(record)
         effective_artifact_destination = artifact_destination
         dingtalk_mirror_destination = None
         deferred_status_notes: tuple[str, ...] = ()
@@ -182,32 +221,6 @@ def process_queue_record_group(
                 data_sync_status = "failed"
                 raise
             data_sync_status = "refreshed"
-        started_at = datetime.now().astimezone()
-        if can_write_started_at:
-            start_fields = build_started_fields(
-                started_at=started_at,
-                version=record.version,
-                workflow_action=effective_doc_phase,
-                doc_phase=queue_record_legacy_doc_phase(record),
-                data_sync_status=data_sync_status,
-            )
-            for group_record in group:
-                try:
-                    source.upsert_record(
-                        base_token=binding.base_token,
-                        table_id=binding.table_id,
-                        record_id=group_record.record_id,
-                        record=start_fields,
-                    )
-                except Exception as exc:
-                    print(
-                        f"[build-queue] WARNING start-time writeback failed for {group_record.label}: {exc}",
-                        file=stderr,
-                    )
-            print(
-                "[build-queue] Marked start time for "
-                f"{group_key} ({row_count} row(s)): {started_at.isoformat(timespec='seconds')}"
-            )
         built_outputs = build_document_for_task(
             config_path=resolved_config_path,
             model=model,
@@ -362,6 +375,12 @@ def process_queue_record_group(
             f"{workflow_action_label(record.workflow_action or record.doc_phase) or 'Queue task'} "
             f"{group_key} ({row_count} row(s)): {message}"
         )
+        if claim_attempted and not claim_owned:
+            print(
+                f"[build-queue] ERROR queue claim failed for {group_key}: {message}",
+                file=stderr,
+            )
+            return QueueGroupProcessingResult(processed_rows=0, failure_message=failure_message)
         try:
             if latest_link_url:
                 print(

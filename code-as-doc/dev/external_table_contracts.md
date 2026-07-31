@@ -109,7 +109,7 @@ Writeback fields:
 | Field | Written when | Value expectation |
 | --- | --- | --- |
 | `开始构建时间` | running | epoch milliseconds |
-| `构建结果` | running/success/failure | string prefixed by `RUNNING`, `SUCCESS`, or `FAILED` |
+| `构建结果` | claim/running/success/failure | `RUNNING` includes `claim_token` and UTC `claim_expires_at`; final values are prefixed by `SUCCESS` or `FAILED` |
 | `Document directory` | success/failure with latest local artifact | absolute local path |
 | `Document link` | success/failure with latest remote artifact | Feishu Drive/Wiki or DingTalk URL |
 | `飞书云文档` | optional Markdown cloud-doc import | Feishu cloud document URL produced by `lark-cli drive +import --type docx` |
@@ -119,6 +119,12 @@ Writeback fields:
 | `是否触发文档构建` | success | `已构建` |
 | `是否立即构建` | success/failure | `false` |
 | `是否强制刷新数据` | success/failure | `false` |
+
+The RUNNING claim uses the existing `构建结果` field; it does not require a new
+Base column. Its lease duration is two hours. Queue reads ignore a valid active
+lease, while an expired or malformed legacy RUNNING value is eligible for a
+new claim. Claim verification refetches without the configured pending view so
+a view filter cannot hide the just-updated row.
 
 When `飞书云文档` exists, Draft and Publish rows must also produce Markdown and
 import it as a Feishu cloud document. Import failure is a queue failure; any

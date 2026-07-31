@@ -7,6 +7,7 @@ import tempfile
 import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
+from types import SimpleNamespace
 from unittest import mock
 
 from tools import process_build_queue
@@ -144,6 +145,9 @@ class TestExternalIntegrationContracts(unittest.TestCase):
                 cli_bin="lark",
                 identity="fake-identity",
                 artifact_destination=artifact_destination,
+                acquire_queue_claim=lambda **_: SimpleNamespace(acquired=True, reason=""),
+                result_field=process_build_queue.RESULT_FIELD,
+                queue_claim_ttl_seconds=process_build_queue.QUEUE_CLAIM_TTL_SECONDS,
                 warn_legacy_record_doc_phase=lambda _: None,
                 validate_queue_record_group=lambda _: None,
                 resolve_target_for_record=lambda item: process_build_queue.parse_document_key(item.document_key),

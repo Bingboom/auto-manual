@@ -54,6 +54,7 @@ from tools.queue_contract import (
     LEGACY_TRIGGER_FIELDS,
     OPERATOR_UNION_ID_ALIASES,
     OPERATOR_UNION_ID_FIELD,
+    RESULT_FIELD,
     TRIGGER_FIELD,
     TRIGGER_VALUES,
     UPLOAD_DINGTALK_FIELD,
@@ -61,6 +62,7 @@ from tools.queue_contract import (
     WORKFLOW_ACTION_FIELD,
     QueueRecord,
 )
+from tools.queue_transitions import has_active_queue_claim
 from tools.queue_grouping import group_pending_queue_records as _group_pending_queue_records_impl
 
 
@@ -102,6 +104,7 @@ def parse_queue_records(raw_records: list[dict[str, Any]]) -> list[QueueRecord]:
         upload_dingtalk_field=UPLOAD_DINGTALK_FIELD,
         operator_union_id_fields=(OPERATOR_UNION_ID_FIELD, *OPERATOR_UNION_ID_ALIASES),
         dingtalk_target_node_url_fields=(DINGTALK_TARGET_NODE_URL_FIELD, *DINGTALK_TARGET_NODE_URL_ALIASES),
+        result_field=RESULT_FIELD,
     )
 
 
@@ -159,6 +162,7 @@ def select_pending_queue_records(
     doc_phase: str | None = None,
     record_id: str | None = None,
     record_ids: tuple[str, ...] = (),
+    include_active_claims: bool = False,
 ) -> list[QueueRecord]:
     return _select_pending_queue_records_impl(
         raw_records,
@@ -172,6 +176,8 @@ def select_pending_queue_records(
         resolve_queue_workflow_action=resolve_queue_workflow_action,
         is_trigger_requested=is_trigger_requested,
         is_immediate_trigger_enabled=is_immediate_trigger_enabled,
+        has_active_queue_claim=has_active_queue_claim,
+        include_active_claims=include_active_claims,
     )
 
 
