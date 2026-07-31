@@ -230,6 +230,9 @@ For a multi-target design handoff, run
 PDF preset, output intent, output condition, and PDF/X level on every job.
 The batch writes an aggregate report, isolates one failed InDesign job from
 the others, and lists IDML directories whose InDesign package is incomplete.
+Jobs with the same `application` value are finalized sequentially inside one
+InDesign/ExtendScript invocation; each document still gets its own INDD, PDF,
+preflight report, close step, and failure result.
 
 Delivery requires all 52/52 source identities, all used asset hashes/scopes,
 58-page geometry, native-object/no-whole-page-shortcut checks, preflight, print

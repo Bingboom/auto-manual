@@ -355,7 +355,10 @@ When a design host finalizes multiple targets, use
 `indesign-finalize-jobs/v1` manifest requires each job's PDF preset, output
 intent, output condition, and PDF/X level explicitly; the aggregate report
 isolates per-job failures and inventories IDML directories whose
-`indesign_package.complete` is still `FALSE`.
+`indesign_package.complete` is still `FALSE`. Jobs naming the same InDesign
+application run inside one ExtendScript batch loop, so the host pays one
+AppleScript/InDesign dispatch per application group while every document still
+opens, closes, preflights, and reports independently.
 Release JSON keeps native page and overset counts under
 `indesign_package.preflight`; the flat release CSV exposes the same values as
 `indesign_preflight_page_count` and `indesign_preflight_overset_stories` for

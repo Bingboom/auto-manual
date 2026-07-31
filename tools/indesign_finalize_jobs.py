@@ -188,27 +188,23 @@ def run_jobs_manifest(
         return 2
 
     if runner is None:
-        from tools.indesign_finalize import run_finalize_job
+        from tools.indesign_finalize import run_finalize_jobs
 
-        def runner(job: dict[str, str], status: str, message: str) -> dict[str, Any]:
-            return run_finalize_job(
-                job,
-                application=job["application"],
-                pin_status=status,
-                pin_message=message,
-            )
-
-    for job in jobs:
-        try:
-            result = runner(job, pin_status, pin_message)
-        except Exception as exc:  # isolate one failed Mac job from the batch
-            result = {
-                "job_id": job["job_id"],
-                "success": False,
-                "error": f"{type(exc).__name__}: {exc}",
-            }
-        result.setdefault("job_id", job["job_id"])
-        aggregate["jobs"].append(result)
+        aggregate["jobs"] = run_finalize_jobs(
+            jobs, pin_status=pin_status, pin_message=pin_message,
+        )
+    else:
+        for job in jobs:
+            try:
+                result = runner(job, pin_status, pin_message)
+            except Exception as exc:  # injectable per-job path used by tests/callers
+                result = {
+                    "job_id": job["job_id"],
+                    "success": False,
+                    "error": f"{type(exc).__name__}: {exc}",
+                }
+            result.setdefault("job_id", job["job_id"])
+            aggregate["jobs"].append(result)
 
     after = scan_incomplete_packages(jobs)
     aggregate["package_scan_after"] = after

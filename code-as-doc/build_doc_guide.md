@@ -1048,8 +1048,12 @@ The batch validates the full manifest before opening InDesign, checks the
 version pin once, isolates each job's failure, and writes one aggregate JSON
 with per-job preflight summaries. It also scans each job's IDML directory
 before and after the run and groups `indesign_package.complete=FALSE` results
-for handoff follow-up. This is an orchestration/reporting layer only; the
-ExtendScript still finalizes one document at a time.
+for handoff follow-up. Jobs are grouped by their explicit `application` value.
+Each group is dispatched to InDesign once, then an ExtendScript outer loop
+finalizes the documents sequentially with a per-document try/catch and report.
+One document can therefore fail without preventing the remaining documents in
+that application group from running. Different InDesign application names use
+separate dispatches, and single-job mode remains unchanged.
 
 Compare that InDesign export to the supplied approved PDF, not to the newly
 built LaTeX PDF. `--latex-pdf` is retained as a legacy CLI flag name; its value

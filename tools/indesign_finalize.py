@@ -7,6 +7,7 @@ import json
 import re
 import subprocess
 import tempfile
+from collections import defaultdict
 from pathlib import Path
 
 try:
@@ -19,6 +20,7 @@ except ModuleNotFoundError:  # direct script execution
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 JSX = ROOT / "tools" / "idml" / "indesign_finalize.jsx"
+BATCH_JSX = ROOT / "tools" / "idml" / "indesign_finalize_batch.jsx"
 # Milestone K7: the committed InDesign version pin. The finalize leg is the one
 # delivery step outside CI, so version drift between hosts is invisible unless
 # checked here, at finalize time.
@@ -147,12 +149,30 @@ def _pdf_export_compliance(path: Path, job: dict[str, str]) -> dict[str, object]
     )
 
 
-def _run_jsx(job: dict[str, str], *, application: str) -> None:
+def _clear_outputs(job: dict[str, str]) -> None:
     for key in ("output_indd", "output_pdf", "report_json"):
         output = Path(job[key])
         output.parent.mkdir(parents=True, exist_ok=True)
         if output.exists():
             output.unlink()
+
+
+def _run_applescript(wrapper: Path, *, application: str, job_count: int) -> None:
+    script_timeout = 600 * max(1, job_count)
+    process_timeout = script_timeout + 60
+    apple_script = (
+        f"with timeout of {script_timeout} seconds\n"
+        f'tell application "{application}" to do script '
+        f'(POSIX file {json.dumps(str(wrapper))}) language javascript\n'
+        "end timeout"
+    )
+    subprocess.run(
+        ["osascript", "-e", apple_script], check=True, timeout=process_timeout,
+    )
+
+
+def _run_jsx(job: dict[str, str], *, application: str) -> None:
+    _clear_outputs(job)
     with tempfile.TemporaryDirectory(prefix="auto-manual-indesign-") as td:
         temp = Path(td)
         job_path = temp / "job.json"
@@ -163,39 +183,54 @@ def _run_jsx(job: dict[str, str], *, application: str) -> None:
             + JSX.read_text(encoding="utf-8"),
             encoding="utf-8",
         )
-        apple_script = (
-            "with timeout of 600 seconds\n"
-            f'tell application "{application}" to do script '
-            f'(POSIX file {json.dumps(str(wrapper))}) language javascript\n'
-            "end timeout"
+        _run_applescript(wrapper, application=application, job_count=1)
+
+
+def _run_jsx_jobs(jobs: list[dict[str, str]], *, application: str) -> None:
+    """Finalize one application-homogeneous job group in one InDesign script."""
+    if not jobs:
+        return
+    for job in jobs:
+        _clear_outputs(job)
+    with tempfile.TemporaryDirectory(prefix="auto-manual-indesign-batch-") as td:
+        temp = Path(td)
+        batch_jobs: list[dict[str, str]] = []
+        for index, job in enumerate(jobs):
+            job_path = temp / f"job-{index:04d}.json"
+            job_path.write_text(
+                json.dumps(job, ensure_ascii=False, indent=2), encoding="utf-8",
+            )
+            batch_jobs.append({
+                "job_id": job.get("job_id", ""),
+                "job_path": str(job_path),
+                "report_json": job["report_json"],
+            })
+        transport_report = temp / "batch-report.json"
+        wrapper = temp / "run-batch.jsx"
+        wrapper.write_text(
+            "var HB_BATCH_JOBS = " + json.dumps(batch_jobs, ensure_ascii=False) + ";\n"
+            "var HB_FINALIZE_SCRIPT_PATH = " + json.dumps(str(JSX)) + ";\n"
+            "var HB_BATCH_REPORT_PATH = " + json.dumps(str(transport_report)) + ";\n"
+            + BATCH_JSX.read_text(encoding="utf-8"),
+            encoding="utf-8",
         )
-        subprocess.run(["osascript", "-e", apple_script], check=True, timeout=660)
+        _run_applescript(wrapper, application=application, job_count=len(jobs))
+        if not transport_report.is_file():
+            raise RuntimeError("InDesign batch returned without a transport report")
 
 
-def run_finalize_job(
-    job: dict[str, str],
-    *,
-    application: str,
-    pin_status: str,
-    pin_message: str,
+def _collect_finalize_result(
+    job: dict[str, str], *, pin_status: str,
 ) -> dict[str, object]:
-    """Run one already validated finalize job and return a report summary.
-
-    Version-pin validation belongs to the caller because a batch should check
-    the host once and then isolate failures per job. The single-job CLI also
-    uses this function so both entrypoints retain the same preflight contract.
-    """
-    marker = "WARNING" if pin_status != "match" else "version-pin"
-    print(f"[indesign-finalize] {marker} {pin_status}: {pin_message}")
     job_id = job.get("job_id", "")
-    input_idml = job["input_idml"]
-    if not Path(input_idml).is_file():
-        error = f"IDML not found: {input_idml}"
-        print(f"[indesign-finalize] ERROR: {error}")
-        return {"job_id": job_id, "success": False, "exit_code": 1, "error": error}
-
-    _run_jsx(job, application=application)
     report_path = Path(job["report_json"])
+    if not report_path.is_file():
+        return {
+            "job_id": job_id,
+            "success": False,
+            "exit_code": 1,
+            "error": f"finalize report not found: {report_path}",
+        }
     report = json.loads(report_path.read_text(encoding="utf-8"))
     output_pdf = Path(job["output_pdf"])
     if output_pdf.is_file():
@@ -234,6 +269,86 @@ def run_finalize_job(
         "bad_links_count": bad_links,
         **({"error": report["error"]} if report.get("error") else {}),
     }
+
+
+def run_finalize_job(
+    job: dict[str, str],
+    *,
+    application: str,
+    pin_status: str,
+    pin_message: str,
+) -> dict[str, object]:
+    """Run one already validated finalize job and return a report summary.
+
+    Version-pin validation belongs to the caller because a batch should check
+    the host once and then isolate failures per job. The single-job CLI also
+    uses this function so both entrypoints retain the same preflight contract.
+    """
+    marker = "WARNING" if pin_status != "match" else "version-pin"
+    print(f"[indesign-finalize] {marker} {pin_status}: {pin_message}")
+    job_id = job.get("job_id", "")
+    input_idml = job["input_idml"]
+    if not Path(input_idml).is_file():
+        error = f"IDML not found: {input_idml}"
+        print(f"[indesign-finalize] ERROR: {error}")
+        return {"job_id": job_id, "success": False, "exit_code": 1, "error": error}
+
+    _run_jsx(job, application=application)
+    return _collect_finalize_result(job, pin_status=pin_status)
+
+
+def run_finalize_jobs(
+    jobs: list[dict[str, str]], *, pin_status: str, pin_message: str,
+) -> list[dict[str, object]]:
+    """Run each application group in one JSX loop and preserve manifest order."""
+    grouped: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for job in jobs:
+        grouped[job["application"]].append(job)
+
+    results: dict[str, dict[str, object]] = {}
+    for application, application_jobs in grouped.items():
+        marker = "WARNING" if pin_status != "match" else "version-pin"
+        print(
+            f"[indesign-finalize] {marker} {pin_status}: {pin_message}; "
+            f"application={application} jobs={len(application_jobs)}"
+        )
+        runnable: list[dict[str, str]] = []
+        for job in application_jobs:
+            if not Path(job["input_idml"]).is_file():
+                results[job["job_id"]] = {
+                    "job_id": job["job_id"],
+                    "success": False,
+                    "exit_code": 1,
+                    "error": f"IDML not found: {job['input_idml']}",
+                }
+            else:
+                runnable.append(job)
+        if not runnable:
+            continue
+        try:
+            _run_jsx_jobs(runnable, application=application)
+        except Exception as exc:
+            for job in runnable:
+                results[job["job_id"]] = {
+                    "job_id": job["job_id"],
+                    "success": False,
+                    "exit_code": 1,
+                    "error": f"{type(exc).__name__}: {exc}",
+                }
+            continue
+        for job in runnable:
+            try:
+                results[job["job_id"]] = _collect_finalize_result(
+                    job, pin_status=pin_status,
+                )
+            except Exception as exc:
+                results[job["job_id"]] = {
+                    "job_id": job["job_id"],
+                    "success": False,
+                    "exit_code": 1,
+                    "error": f"{type(exc).__name__}: {exc}",
+                }
+    return [results[job["job_id"]] for job in jobs]
 
 
 def main() -> int:
