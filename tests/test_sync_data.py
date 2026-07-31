@@ -3,6 +3,7 @@
 import csv
 import io
 import json
+import os
 import subprocess
 import tempfile
 import unittest
@@ -13,6 +14,7 @@ from unittest import mock
 from tools import sync_data
 from tools.source_record_index import SOURCE_RECORD_ID_KEY
 from tools.sync_schema_sensor import missing_schema_columns
+from tools.sync_data_records import phase2_snapshot_write_lock
 
 
 class _FakeSource:
@@ -102,6 +104,20 @@ def _write_page_registry(root: Path, relative_path: str = "data/phase2/page_regi
 
 
 class TestSyncData(unittest.TestCase):
+    def test_phase2_snapshot_write_lock_should_reject_a_second_posix_holder(self) -> None:
+        if os.name == "nt":
+            self.skipTest("POSIX flock assertion is not portable to Windows")
+        import fcntl
+
+        with tempfile.TemporaryDirectory() as td:
+            export_root = Path(td) / "data" / "phase2"
+            lock_path = export_root.parent / ".phase2.snapshot.lock"
+            with phase2_snapshot_write_lock(export_root):
+                self.assertTrue(lock_path.exists())
+                with lock_path.open("a+b") as second_handle:
+                    with self.assertRaises(BlockingIOError):
+                        fcntl.flock(second_handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+
     def test_phase2_table_schemas_should_include_eu_and_pt_br_columns(self) -> None:
         self.assertEqual(
             (

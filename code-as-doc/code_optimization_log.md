@@ -1008,3 +1008,16 @@ Why it mattered:
 
 - Feishu callers now have one bounded rate-limit policy and one pagination safety policy instead of independently reimplementing the two failure-prone mechanics.
 - The slice deliberately leaves snapshot write locking to the next K8 gate and does not change source-table or schema semantics.
+
+## 64. 2026-07-31: Phase2 Snapshot Writes Take One Cross-Process Lock (Workstream W / K8 slice 4)
+
+What changed:
+
+- Added a portable advisory lock in [`tools/sync_data_records.py`](../tools/sync_data_records.py), using a stable sibling lock file for each phase2 export root.
+- Wrapped the final batch of phase2 CSV, derived-file, and `snapshot_manifest.json` atomic replacements in [`tools/sync_data_runtime.py`](../tools/sync_data_runtime.py) with that lock.
+- Kept dry-run behavior unchanged and added a POSIX exclusivity test; the lock file is operational state, not a snapshot input.
+
+Why it mattered:
+
+- Concurrent sync workers can still fetch and prepare independently, but their final multi-file snapshot commits cannot interleave, so a reader observes one complete writer result rather than a mixed CSV/manifest set.
+- This closes the last K8 slice without changing source-table normalization, snapshot contents, or manifest semantics.

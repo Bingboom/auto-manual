@@ -64,6 +64,7 @@ from tools.sync_data_records import (  # noqa: E402
     _read_existing_mapping_rows,
     _sha256_file,
     _sha256_text,
+    phase2_snapshot_write_lock,
     _write_atomic_text,
     normalize_records,
 )
@@ -651,6 +652,7 @@ def sync_phase2_snapshot(
             build_row_label_row_key_mapping_rows=build_row_label_row_key_mapping_rows,
             dict_rows_csv_text=_dict_rows_csv_text,
             write_atomic_text=_write_atomic_text,
+            snapshot_write_lock=phase2_snapshot_write_lock,
             table_sync_result_cls=TableSyncResult,
             sync_run_result_cls=SyncRunResult,
         ),
