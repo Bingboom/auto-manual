@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import re
 
+from .line_metrics import estimated_line_count
+
 
 def balanced_icon_split(icons: list[dict], text_col_w: float,
                         min_row: float) -> tuple[list[dict], list[dict]]:
@@ -103,14 +105,16 @@ def template_symbol_split(
 
 
 def est_table_height(texts: list[str], text_col_w: float, min_row: float) -> float:
-    """Header row plus a wrap estimate per row (7.4pt/line, ~0.52em glyphs)."""
+    """Header row plus a Unicode-width-aware wrap estimate per row."""
     # Table body text is HB Spec Value (6.0pt / 6.6 leading).
-    per_line = max(16, int(text_col_w / (0.525 * 6.0)))
     height = 16.0
     for text in texts:
-        lines = sum(
-            max(1, (len(part) + per_line - 1) // per_line)
-            for part in str(text).split("\n")
+        lines = estimated_line_count(
+            text,
+            text_col_w,
+            point_size=6.0,
+            narrow_width_ratio=0.525,
+            minimum_narrow_chars=16,
         )
         height += max(min_row, 7.0 * lines + 5.0)
     return height

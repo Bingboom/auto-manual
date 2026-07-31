@@ -2,9 +2,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from math import ceil
-from unicodedata import east_asian_width
 
+from ..line_metrics import estimated_line_count
 from ..params import param_pt
 from ..primitives import cell, component_table, image_cell_content, psr, wrap_table_paragraph
 from .base import RenderContext, figure_paragraph
@@ -240,19 +239,10 @@ def _fallback_lcdmode(
 def _compact_lines(text: str, width: float, *, size: float) -> int:
     """Estimate wraps in the reference's deliberately narrow table cells."""
     shared_estimate = _estimated_lines(text, width, size=size)
-    compact_estimate = sum(
-        max(
-            1,
-            ceil(
-                sum(
-                    1.0 if east_asian_width(char) in {"W", "F"} else 0.52
-                    for char in line.strip()
-                )
-                * size
-                / max(1.0, width)
-            ),
-        )
-        for line in text.splitlines() or [""]
+    compact_estimate = estimated_line_count(
+        text,
+        width,
+        point_size=size,
     )
     return max(shared_estimate, compact_estimate)
 

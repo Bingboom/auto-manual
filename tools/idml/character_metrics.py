@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 import unicodedata
 
+from .line_metrics import estimated_line_count
 from .params import param_pt
 
 
@@ -121,10 +122,11 @@ def fit_symbol_body_metrics(
         # generic prose estimate; use a conservative body-cell measure so
         # InDesign's native shaping does not turn the final line into
         # overset content.
-        per_line = max(1, int(available / (0.60 * size * scale / 100.0)))
-        return sum(
-            max(1, (len(part) + per_line - 1) // per_line)
-            for part in str(text or "").split("\n")
+        return estimated_line_count(
+            text,
+            available,
+            point_size=size,
+            narrow_width_ratio=0.60 * scale / 100.0,
         )
 
     # Keep the ordinary localized body size whenever it fits.  Otherwise

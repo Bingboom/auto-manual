@@ -11,6 +11,7 @@ import re
 
 from ..character_metrics import with_character_baseline_shift, with_character_metrics
 from ..language_contract import governed_languages
+from ..line_metrics import east_asian_width_units
 from ..params import component_param_pt, param_pt
 from ..primitives import (
     cell,
@@ -316,10 +317,14 @@ def _troubleshooting_line_count(
         used = 0
         lines = 1
         for word in words:
-            required = len(word) + (1 if used else 0)
+            word_units = east_asian_width_units(
+                word,
+                narrow_width_ratio=glyph_width_ratio,
+            )
+            required = word_units + (1 if used else 0)
             if used and used + required > chars_per_line:
                 lines += 1
-                used = len(word)
+                used = word_units
             else:
                 used += required
         count += lines

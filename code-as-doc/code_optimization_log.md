@@ -1513,3 +1513,26 @@ Why it mattered:
 - The fallback family is now explicit, testable, and visible in each affected
   Story XML without conflating font delivery with page geometry. Approved
   reference-layout hashes therefore remain stable and do not need a rebind.
+
+## 88. 2026-07-31: IDML Height Budgets Understand East Asian Width (Workstream W / Stage 5 item 11)
+
+What changed:
+
+- Added one font-file-independent `line_metrics.py` contract for portable text
+  width and wrapped-line estimates.
+- Migrated generic story, flow, symbol-table, warning/FCC, operation/LCD,
+  key-combination, troubleshooting, H1, and emphasis estimates from duplicated
+  character-count arithmetic to that shared contract.
+- Preserved each consumer's existing narrow-glyph ratio and minimum capacity;
+  `W`/`F` characters now occupy one em, combining marks occupy zero width, and
+  ambiguous-width characters remain narrow.
+- Added direct Unicode-width and production-story budget tests. All four
+  EN/FR/JA/KO composed golden IDML packages remain byte-identical.
+
+Why it mattered:
+
+- CJK fallback runs made glyph selection explicit, but the surrounding frame
+  budgets still treated one ideograph like one average 0.52-em Latin glyph.
+- Future localized copy now reserves conservative space before InDesign opens,
+  without making build results depend on a workstation font installation or
+  disturbing existing approved Latin layouts.

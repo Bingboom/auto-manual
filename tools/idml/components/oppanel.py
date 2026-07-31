@@ -12,6 +12,7 @@ from pathlib import Path
 
 from ..language_contract import governed_languages
 from ..character_metrics import with_character_metrics
+from ..line_metrics import estimated_line_count, estimated_text_width
 from ..primitives import (
     cell,
     component_table,
@@ -93,8 +94,8 @@ def _prereq_overlay_parts(
     # The approved EN/FR prerequisite fits the measured one-line pill.  The
     # longer Spanish copy needs more of the otherwise empty top strip; widen
     # by glyph estimate instead of letting the fixed-height text frame overset.
-    if len(text) > 44:
-        estimated_w = len(text) * 6.2 * 0.52 + 10.0
+    estimated_w = estimated_text_width(text, point_size=6.2) + 10.0
+    if estimated_w > label_w:
         label_w = min(image_w * 0.62, max(label_w, estimated_w))
     label_h = 13.7
     left = 3.0
@@ -370,10 +371,11 @@ def _sized_psr(
 
 def _estimated_lines(text: str, width: float, *, size: float = 6.2) -> int:
     """Conservative localized-copy wrap estimate for fixed overlay slots."""
-    chars_per_line = max(18, int(width / (size * 0.52)))
-    return sum(
-        max(1, (len(line.strip()) + chars_per_line - 1) // chars_per_line)
-        for line in text.splitlines() or [""]
+    return estimated_line_count(
+        text,
+        width,
+        point_size=size,
+        minimum_narrow_chars=18,
     )
 
 

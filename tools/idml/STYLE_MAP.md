@@ -46,7 +46,8 @@ CJK 字符由渲染 token `font_family.CJK_FONT_FAMILY_TOKEN`
 （`idml_font_family_cjk`）生成显式可编辑 character run；当前值复用既有
 `Arial Unicode MS` 资源。符号精确映射优先于脚本范围，拉丁 run 继续继承主段落
 字体。该 token 不是几何参数，不写入 `layout_params.csv`，也不单独触发
-reference-layout rebind。字符宽度估算由独立的 East Asian Width 合同负责。
+reference-layout rebind。字符宽度估算统一走 `line_metrics.py`：W/F 字符按
+1em、组合字符按 0、A 类按窄字符处理；保留各组件既有拉丁平均宽度与最小行容量。
 
 | 元素 | 共用键 | 双线实测 | 备注 |
 |---|---|---|---|

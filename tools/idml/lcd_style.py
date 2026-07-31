@@ -1,10 +1,10 @@
 """Typed LCD layout-token helpers for the IDML renderer."""
 from __future__ import annotations
 
-import math
 import re
 
 from .character_metrics import with_character_metrics
+from .line_metrics import estimated_line_count
 from .params import param_pt
 
 
@@ -150,10 +150,11 @@ def _wrapped_line_count(text: str, width_pt: float, point_size: float) -> int:
     approach used by the writer's existing height estimator gives a
     deterministic lower bound while preserving explicit source line breaks.
     """
-    chars_per_line = max(1, int(width_pt / max(0.01, 0.50 * point_size)))
-    return sum(
-        max(1, math.ceil(len(source_line) / chars_per_line))
-        for source_line in str(text or "").splitlines() or [""]
+    return estimated_line_count(
+        text,
+        width_pt,
+        point_size=point_size,
+        narrow_width_ratio=0.50,
     )
 
 
