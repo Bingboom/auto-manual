@@ -1383,3 +1383,23 @@ Why it mattered:
 - The single mutable Vercel production project still has exactly one publisher
   at a time, and the verified Feishu claim lease remains the backstop for
   targeted-versus-batch overlap.
+
+## 82. 2026-07-31: Queue Review Overlay Is Target-Scoped (Workstream W / Stage 4b acceptance follow-up)
+
+What changed:
+
+- Queue builds now replace only `docs/_review/<model>/<region>` in the clean
+  `origin/main` build worktree instead of replacing the complete review tree.
+- Added a regression fixture where the selected review branch contains stale
+  content for a sibling region; the sibling on `main` must remain byte-for-byte
+  unchanged while the selected target is overlaid.
+- A review ref that lacks the selected target now fails with the exact missing
+  model/region in the error instead of accepting any unrelated `_review` tree.
+
+Why it mattered:
+
+- The Stage 4b live two-record acceptance run exposed a JP Publish failure when
+  unrelated US review drift made the versioned release worktree dirty.
+- Target-scoped overlay preserves the current-main toolchain and selected review
+  content without cross-target contamination, which is required before safely
+  exercising independent queue records concurrently.

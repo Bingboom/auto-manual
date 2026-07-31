@@ -875,9 +875,19 @@ class TestProcessBuildQueue(unittest.TestCase):
             )
             (root / "data" / "phase2").mkdir(parents=True, exist_ok=True)
             (root / "data" / "phase2" / "Spec_Master.csv").write_text("fresh-main-data\n", encoding="utf-8")
+            (main_worktree / "docs" / "_review" / "JE-1000F" / "JP").mkdir(parents=True, exist_ok=True)
+            (main_worktree / "docs" / "_review" / "JE-1000F" / "JP" / "marker.rst").write_text(
+                "main-jp-content\n",
+                encoding="utf-8",
+            )
             (review_worktree / "docs" / "_review" / "JE-1000F" / "US").mkdir(parents=True, exist_ok=True)
             (review_worktree / "docs" / "_review" / "JE-1000F" / "US" / "marker.rst").write_text(
                 "review-content\n",
+                encoding="utf-8",
+            )
+            (review_worktree / "docs" / "_review" / "JE-1000F" / "JP").mkdir(parents=True, exist_ok=True)
+            (review_worktree / "docs" / "_review" / "JE-1000F" / "JP" / "marker.rst").write_text(
+                "stale-review-jp-content\n",
                 encoding="utf-8",
             )
             (review_worktree / "data" / "phase2").mkdir(parents=True, exist_ok=True)
@@ -925,6 +935,10 @@ class TestProcessBuildQueue(unittest.TestCase):
                 self.assertEqual(
                     "review-content\n",
                     (main_worktree / "docs" / "_review" / "JE-1000F" / "US" / "marker.rst").read_text(encoding="utf-8"),
+                )
+                self.assertEqual(
+                    "main-jp-content\n",
+                    (main_worktree / "docs" / "_review" / "JE-1000F" / "JP" / "marker.rst").read_text(encoding="utf-8"),
                 )
                 self.assertEqual(
                     "fresh-main-data\n",

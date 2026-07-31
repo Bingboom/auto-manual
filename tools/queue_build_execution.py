@@ -170,12 +170,15 @@ def build_document_for_task(
         build_workspace = prepare_git_ref_worktree("main", prefer_local=False)
         review_ref = git_ref.strip()
         review_workspace = build_workspace if review_ref == "main" else prepare_git_ref_worktree(review_ref)
-        if not _replace_path(
-            review_dir_of(review_workspace / PathSegments.DOCS),
-            review_dir_of(build_workspace / PathSegments.DOCS),
-        ):
+        review_target_dir = review_dir_of(review_workspace / PathSegments.DOCS) / model / region
+        build_target_dir = review_dir_of(build_workspace / PathSegments.DOCS) / model / region
+        target_available = review_target_dir.exists()
+        if target_available and review_workspace != build_workspace:
+            target_available = _replace_path(review_target_dir, build_target_dir)
+        if not target_available:
             raise RuntimeError(
-                f"Git_ref {review_ref} does not contain docs/_review; queue builds must render review content from the review branch."
+                f"Git_ref {review_ref} does not contain review content for {model}/{region}; "
+                "queue builds must render the active target from the review branch."
             )
         if data_root:
             source_data_root, workspace_data_root = _worktree_data_root(
