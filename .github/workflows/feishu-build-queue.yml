@@ -25,6 +25,11 @@ on:
         description: Optional nonce used by OpenClaw to correlate the dispatched run
         required: false
         type: string
+      texlive_smoke_only:
+        description: Measure the XeLaTeX cache without consuming any queue row
+        required: false
+        default: false
+        type: boolean
 
 concurrency:
   group: feishu-build-queue
@@ -90,7 +95,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.repository.default_branch }}
+          ref: ${{ inputs.texlive_smoke_only && github.ref || github.event.repository.default_branch }}
           fetch-depth: 2
 
       - name: Validate required secrets
@@ -114,30 +119,71 @@ jobs:
       - name: Validate dispatch ref
         shell: bash
         run: |
-          if [ "${GITHUB_REF}" != "refs/heads/${{ github.event.repository.default_branch }}" ]; then
+          if [ "${{ inputs.texlive_smoke_only }}" != "true" ] && [ "${GITHUB_REF}" != "refs/heads/${{ github.event.repository.default_branch }}" ]; then
             echo "::error::Dispatch feishu-build-queue.yml on ${{ github.event.repository.default_branch }}. The actual Publish source is resolved from Document_link.Git_ref when present."
             exit 1
           fi
 
       - uses: ./.github/actions/feishu-common-setup
 
+      - name: Cache XeLaTeX apt archives
+        id: texlive-apt-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/texlive-apt-cache
+          key: texlive-apt-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.github/texlive-apt-packages.txt') }}
+
       - name: Install XeLaTeX runtime for publish PDF
+        id: install-texlive
         shell: bash
         run: |
+          started_at="$(date +%s)"
+          apt_cache="${RUNNER_TEMP}/texlive-apt-cache"
+          mkdir -p "${apt_cache}/partial"
+          mapfile -t texlive_packages < <(sed -e '/^[[:space:]]*#/d' -e '/^[[:space:]]*$/d' .github/texlive-apt-packages.txt)
+          if [ "${#texlive_packages[@]}" -eq 0 ]; then
+            echo "::error::.github/texlive-apt-packages.txt contains no packages"
+            exit 1
+          fi
           sudo apt-get update
           sudo apt-get install -y \
-            texlive-xetex \
-            texlive-fonts-recommended \
-            texlive-latex-extra \
-            texlive-lang-cjk \
-            fonts-dejavu-core \
-            fonts-freefont-otf \
-            fonts-noto-cjk \
-            fonts-noto-core \
-            fonts-noto-extra \
-            fonts-noto-mono
+            -o Dir::Cache::archives="${apt_cache}" \
+            -o APT::Keep-Downloaded-Packages=true \
+            "${texlive_packages[@]}"
+          elapsed_seconds="$(( $(date +%s) - started_at ))"
+          echo "elapsed-seconds=${elapsed_seconds}" >> "$GITHUB_OUTPUT"
+          xelatex --version | head -n 1
+
+      - name: Build deterministic XeLaTeX cache smoke PDF
+        id: texlive-smoke
+        if: ${{ inputs.texlive_smoke_only }}
+        shell: bash
+        env:
+          FORCE_SOURCE_DATE: "1"
+          SOURCE_DATE_EPOCH: "946684800"
+        run: |
+          mkdir -p "${RUNNER_TEMP}/texlive-smoke"
+          cp .github/texlive-cache-smoke.tex "${RUNNER_TEMP}/texlive-smoke/"
+          cd "${RUNNER_TEMP}/texlive-smoke"
+          xelatex -interaction=nonstopmode -halt-on-error texlive-cache-smoke.tex
+          pdf_sha256="$(sha256sum texlive-cache-smoke.pdf | cut -d' ' -f1)"
+          echo "pdf-sha256=${pdf_sha256}" >> "$GITHUB_OUTPUT"
+
+      - name: Report XeLaTeX cache timing
+        shell: bash
+        run: |
+          {
+            echo "### XeLaTeX runtime"
+            echo "- apt archive cache hit: ${{ steps.texlive-apt-cache.outputs.cache-hit || 'false' }}"
+            echo "- install duration: ${{ steps.install-texlive.outputs.elapsed-seconds }} seconds"
+            echo "- package-set key: $(sha256sum .github/texlive-apt-packages.txt | cut -d' ' -f1)"
+            if [ -n "${{ steps.texlive-smoke.outputs.pdf-sha256 }}" ]; then
+              echo "- deterministic smoke PDF sha256: ${{ steps.texlive-smoke.outputs.pdf-sha256 }}"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Process Feishu build queue
+        if: ${{ !inputs.texlive_smoke_only }}
         shell: bash
         run: |
           cmd=(python build.py process-build-queue --config configs/config.us.yaml --data-root data/phase2 --workflow-action publish)

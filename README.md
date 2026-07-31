@@ -455,6 +455,12 @@ For the full review-first flow, queue-driven Draft/Publish workers, matrix runne
 
 Within one queue worker batch, a successful forced phase2 sync is reused for the same config/data-root pair; a failed sync is not memoized and remains retryable for a later group.
 
+The remote Publish worker caches downloaded XeLaTeX/CJK apt archives using the
+package-set hash from [`.github/texlive-apt-packages.txt`](.github/texlive-apt-packages.txt).
+Its run summary reports cache hit/miss and install duration; dispatching with
+`texlive_smoke_only=true` measures that path without consuming a Feishu queue
+row.
+
 Language display labels and queue-query aliases are derived from the shared
 `tools/lang_registry.py` registry. Add one registry row rather than creating
 per-surface language maps; `tests/test_fake_language_e2e.py` proves that a fake

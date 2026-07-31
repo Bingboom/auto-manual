@@ -1149,6 +1149,14 @@ uploaded to the knowledge base, and its link is written to the queue row's
 absolute build-machine paths that die with the build worktree, so only the
 packaged zip is a usable designer deliverable.
 
+The remote Publish workflow reads its XeLaTeX/CJK apt package set from
+`.github/texlive-apt-packages.txt` and binds the apt-archive cache key to that
+file plus runner OS/architecture. Each run writes cache hit/miss and install
+duration to the Actions summary. For cache acceptance without touching
+`Document_link`, dispatch `feishu-build-queue.yml` with
+`texlive_smoke_only=true`; that path compiles a deterministic smoke PDF,
+reports its SHA-256, and skips `process-build-queue` entirely.
+
 For approved reference figures, the package-time link set must include every
 referenced file under `_generated/idml_reference_assets/` plus the pairing-panel
 PDF, and `missing_assets_report.md` must report zero missing links. For release

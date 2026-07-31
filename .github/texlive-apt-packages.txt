@@ -1,0 +1,12 @@
+# XeLaTeX runtime used by the remote Publish queue.
+# Keep one package per line: this file is also the cache-key authority.
+fonts-dejavu-core
+fonts-freefont-otf
+fonts-noto-cjk
+fonts-noto-core
+fonts-noto-extra
+fonts-noto-mono
+texlive-fonts-recommended
+texlive-lang-cjk
+texlive-latex-extra
+texlive-xetex

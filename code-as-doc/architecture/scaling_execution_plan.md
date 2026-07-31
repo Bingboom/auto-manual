@@ -107,7 +107,7 @@
 卸掉：每 run 4-8 分钟 TeX、web 版互踩、批量丢单、逐线契约仪式、finalize 逐份触发、型号特判复制；补冻结快照（E1）与 Feishu 传输单点（K8 全四件）。
 〔GATE〕①TeX/nightly 的 workflow 变更逐项批准②finalize JSX 需操作者设计机 2-doc 实测③E1 归档位置/保留策略确认④HTML_link 是生产别名还是唯一部署 URL 先实测确认（定 web 多 target 化紧迫度）。
 
-1. [S] `feat(ci): TeX apt package cache` — Done（机器）：yaml 解析+缓存逻辑单测；〔操作者验收〕冷暖时长对比与 pdf sha 对拍（XeLaTeX 时间戳未固定前不承诺字节等价——批判环修正,K2 原文是目标态）。
+1. [x] [S] `feat(ci): TeX apt package cache` — Done（机器）：Publish queue 的 XeLaTeX/CJK apt archives 以 runner OS/arch + 版本化包清单 hash 为 key；yaml 解析、执行顺序、缓存绑定与 smoke 隔离均有单测。`texlive_smoke_only` 不消费队列行，并输出冷暖时长、cache-hit 与确定性 PDF SHA 供操作者验收。
 2. [M] `feat(site): multi-target latest site + per-target HTML link writeback` — dist/<model>/<region>/<lang>/ 子路径+根索引；旧行为兼容开关。
 3. [S] `fix(queue): batch dispatch dedupe` — >1 行时改派发一次批量 run（消除 pending 槽静默丢单；比现状**更**串行，安全）。
 4. [S] `feat(queue): asset lineage pre-check at dispatch`（15-30 分钟构建后才被门拦 → 派发时预警;正式门不动）
