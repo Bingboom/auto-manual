@@ -91,7 +91,7 @@ jobs:
       DINGTALK_DOCS_COOKIE: ${{ secrets.DINGTALK_DOCS_COOKIE }}
       DINGTALK_DOCS_BX_V: ${{ secrets.DINGTALK_DOCS_BX_V }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.texlive_smoke_only && github.ref || github.event.repository.default_branch }}
           fetch-depth: 2
@@ -126,7 +126,7 @@ jobs:
 
       - name: Cache XeLaTeX apt archives
         id: texlive-apt-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ runner.temp }}/texlive-apt-cache
           key: texlive-apt-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.github/texlive-apt-packages.txt') }}
@@ -207,7 +207,7 @@ jobs:
 
       - name: Upload Vercel publish candidate
         if: ${{ steps.publish-site.outputs.has_publish_site == 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: vercel-publish-candidate
           path: site/publish-latest/dist
@@ -216,7 +216,7 @@ jobs:
 
       - name: Upload built docs artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: feishu-build-queue-output
           path: |
@@ -262,14 +262,14 @@ jobs:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.repository.default_branch }}
           fetch-depth: 2
 
       - name: Download Vercel publish candidate
         if: ${{ needs.process-queue.result == 'success' && needs.process-queue.outputs.has_publish_site == 'true' }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: vercel-publish-candidate
           path: site/publish-latest/dist
@@ -340,7 +340,7 @@ jobs:
 
       - name: Upload OpenClaw run metadata
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: openclaw-run-metadata
           path: .tmp/openclaw/feishu-build-queue-run.json
