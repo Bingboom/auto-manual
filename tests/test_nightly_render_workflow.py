@@ -23,6 +23,8 @@ class TestNightlyRenderWorkflow(unittest.TestCase):
         self.assertIn("tools/nightly_render.py", rendered)
         self.assertIn("configs/config.us-en.yaml", rendered)
         self.assertIn("JE-1000F", rendered)
+        self.assertIn("poppler-utils", rendered)
+        self.assertIn("Pilot detail", rendered)
         self.assertIn("production", (ROOT / "tools/nightly_render.py").read_text(encoding="utf-8"))
 
     def test_texlive_cache_precedes_install(self) -> None:
