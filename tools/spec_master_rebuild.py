@@ -142,30 +142,33 @@ SPEC_MASTER_VISIBLE_ORDER = (
 )
 
 def _run_lark_base(cli_bin: str, args: list[str], *, input_json: Any | None = None) -> dict[str, Any]:
-    command = [*shlex.split(cli_bin), "base", *args]
     payload_path: Path | None = None
     if input_json is not None:
         (ROOT / ".tmp").mkdir(parents=True, exist_ok=True)
         with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=str(ROOT / ".tmp"), delete=False, suffix=".json") as handle:
             payload_path = Path(handle.name)
             handle.write(json.dumps(input_json, ensure_ascii=False, separators=(",", ":")))
-        command += ["--json", "@" + payload_path.relative_to(ROOT).as_posix()]
     try:
-        proc = subprocess.run(
-            command,
-            cwd=str(ROOT),
-            check=True,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
+        command_args = ["base", *args] + (
+            ["--json", "@" + payload_path.relative_to(ROOT).as_posix()] if payload_path is not None else []
         )
-    except subprocess.CalledProcessError as exc:
-        details = "\n".join(part for part in (exc.stdout.strip(), exc.stderr.strip()) if part)
-        raise RuntimeError(f"lark-cli failed: {_format_command_for_log(command)}\n{details}") from exc
+        from tools.feishu_record_transport import run_lark_cli_json
+
+        return run_lark_cli_json(
+            cli_bin=cli_bin,
+            args=command_args,
+            repo_root=ROOT,
+            resolved_cli_command_parts=shlex.split,
+            parse_json_payload=_parse_lark_json_payload,
+            format_command=_format_command_for_log,
+        )
     finally:
         if payload_path is not None:
             payload_path.unlink(missing_ok=True)
-    text = proc.stdout.strip()
+
+
+def _parse_lark_json_payload(text: str) -> dict[str, Any]:
+    text = text.strip()
     try:
         payload = json.loads(text)
     except json.JSONDecodeError:
