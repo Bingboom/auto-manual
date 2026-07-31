@@ -1559,3 +1559,27 @@ Why it mattered:
 - The corrected smoke binds the JP config, Manual IR language, explicit CJK
   story runs, and structural package check into one reviewable acceptance
   record while keeping native InDesign preflight/parity as a separate gate.
+
+## 90. 2026-07-31: Release Tags Bind Frozen Manifests (Workstream W / Stage 5 item 13)
+
+What changed:
+
+- Versioned release JSON/CSV and queue publish metadata now carry a canonical
+  `manual-release/<model>/<region>/<languages>/<version>` tag.
+- Added a dry-run-first release-tag command. With explicit `--write --push` it
+  creates an annotated Git tag at the manifest's full commit and records the
+  manifest plus snapshot hashes in the annotation.
+- Existing local or remote tags are verified for commit and annotation
+  identity; lightweight tags, collisions, and manifest rebinds fail closed.
+- Added the operator runbook for Vercel deployment rollback, exact archived
+  Word/PDF re-delivery, and rebuild from the immutable manifest Git SHA and E1
+  snapshot. The drill table intentionally has no invented timing result.
+
+Why it mattered:
+
+- E1 made a release reproducible but still required a human to correlate a
+  version directory, timestamped manifest, commit, and deployment. The stable
+  tag gives that set one reviewable name without letting the build mutate Git.
+- Recovery now distinguishes the fastest routing rollback from artifact
+  re-delivery and full historical rebuild, while preserving immutable source
+  and snapshot contracts.

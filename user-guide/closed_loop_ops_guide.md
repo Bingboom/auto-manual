@@ -472,6 +472,98 @@ AC、DC/USB 等固定丝印不能被误记成“零文字”，也不能借该�
 两个主文件并固化原生画板命名后，再按 `indesign_finalize.jsx` 的模式评估独立、可重跑
 的 Illustrator 批量导出脚本。
 
+## 4.10 发布标记与回滚（K14）
+
+版本化 Publish 完成后，release manifest 会给出稳定标记，例如：
+
+```text
+manual-release/je-1000f/us/en-fr-es/0.8
+```
+
+标记由型号、区域、该整包的**全部语言**和版本组成；JSON/CSV manifest 与
+`publish_meta.json` 保存同一个值。构建阶段只有命名和绑定，**不会自动改 Git**。
+等设计验收、产物哈希和 E1 历史重建都通过后，再由操作者执行：
+
+```bash
+# 1. 空跑：显示将绑定的 tag / commit / manifest SHA，不改 Git
+python tools/release_tag.py --manifest <release-manifest.json>
+
+# 2. 创建本地 annotated tag，再核对一次
+python tools/release_tag.py --manifest <release-manifest.json> --write
+
+# 3. 推送；重复执行是幂等的
+python tools/release_tag.py --manifest <release-manifest.json> --write --push
+```
+
+tag 指向 manifest 的完整 `git_sha`；注释同时记录 manifest SHA-256 和 E1
+`snapshot_sha256`。同名 tag 已存在但 commit、注释或 manifest 字节不同，命令会
+fail-closed，不能删 tag 后强行重绑。先确认是不是版本号复用或拿错 manifest。
+
+### 4.10.1 回滚前判定
+
+1. 冻结当前事故证据：当前生产 URL、故障截图/时间、Vercel deployment URL、
+   Document_link 行和当前 release tag；不要先覆盖 `latest/`。
+2. 选择最后一个已验收 tag，找到对应 timestamped manifest 和
+   `versions/<version>/publish_meta.json`。
+3. 先读 manifest 的 `git_sha`、`snapshot.snapshot_sha256`、Word/PDF 哈希，运行：
+
+   ```bash
+   python build.py release-rebuild-verify --manifest <release-manifest.json>
+   python tools/release_tag.py --manifest <release-manifest.json>
+   ```
+
+   第一条验证 E1 快照+历史构建；第二条若 tag 已存在则验证 commit 和注释绑定。
+   任一失败都停止，不把“不确定的旧版本”重新交付。
+
+### 4.10.2 只回滚网页（最快恢复）
+
+如果 Word/PDF 正确、只有网页部署异常，不重建文档。先用 Vercel deployment
+历史确认目标 URL，再执行：
+
+```bash
+vercel inspect <known-good-deployment-url>
+vercel rollback <known-good-deployment-url>
+vercel rollback status
+```
+
+然后逐个检查 `publish_meta.json` 所列目标页面及 Document_link 的 `HTML_link`。
+Vercel Hobby 计划只能回到紧邻的上一个生产部署；Pro/Enterprise 才能指定更早的
+eligible production deployment。需要撤销 rollback 时用
+`vercel promote <deployment-url>`，不要靠一次新构建掩盖事故。命令语义以
+[Vercel 官方 rollback 文档](https://vercel.com/docs/cli/rollback)为准。
+
+### 4.10.3 重发旧 Word/PDF（不重建）
+
+如果需求只是“把已发布的旧文件再发一次”，从
+`reports/releases/<model>/<region>/<lang>/versions/<version>/` 取文件，**不要**
+从 `latest/` 或 `docs/_build/` 取。用 `shasum -a 256 <file>` 对照 manifest 中
+`word_output.sha256` / `pdf_output.sha256`；一致后原字节重发，并在交付记录写明
+release tag。不要把旧文件复制回模板、review 或 phase2 源目录。
+
+### 4.10.4 从旧 Git_ref/commit 重建
+
+`publish_meta.json.git_ref` 是评审分支线索，分支会移动；真正的重建权威是 tag
+指向的 immutable commit（旧 release 没 tag 时用 manifest `git_sha`）加 E1
+snapshot。标准入口仍是：
+
+```bash
+python build.py release-rebuild-verify --manifest <release-manifest.json>
+```
+
+它在 manifest 记录的 commit 建临时 detached worktree，用归档 snapshot 重跑
+Publish，并逐字节比较 DOCX/Markdown/PDF。原归档文件丢失而必须产出恢复副本时，
+先让该验证通过，再在同一 tag commit、同一 snapshot、同一 toolchain 下向独立
+`--staging-root` 重跑；恢复文件校验哈希后再交付，绝不覆盖原 version archive。
+
+### 4.10.5 操作者计时演练记录
+
+本次工程 PR 不代替真实演练，也不填写虚构耗时。操作者第一次用真实已发布手册
+完成演练后追加一行；只有这行有真实时间，K14 的运营门才闭合：
+
+| 日期 | release tag | 场景 | 网页恢复 | Word/PDF 重发 | 历史重建验证 | 结果/发现 |
+| --- | --- | --- | ---: | ---: | ---: | --- |
+| 待操作者演练 | — | — | — | — | — | 未执行 |
+
 ## 5. 首跑清单（一次性，做完划掉）
 
 - [ ] **命中率基线**：跑一次真实的 docx 预翻译，`tm_hit_rate stats` 出现

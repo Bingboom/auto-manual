@@ -493,6 +493,14 @@ checks out the recorded commit in a disposable worktree, republishes into an
 isolated staging root, and fails unless all three SHA-256 digests are identical.
 Its JSON evidence is written beside the versioned snapshot, never inside it.
 
+The same manifest now carries a deterministic annotated-tag name such as
+`manual-release/je-1000f/us/en-fr-es/0.8`. After rebuild verification and
+artifact review, run `python tools/release_tag.py --manifest <manifest.json>`
+as a dry-run, then repeat with `--write --push`. The tag points at the recorded
+full Git SHA and its annotation binds the exact manifest and snapshot hashes;
+an existing tag with different bytes fails closed. Recovery procedures live in
+[`user-guide/closed_loop_ops_guide.md`](user-guide/closed_loop_ops_guide.md#410-发布标记与回滚k14).
+
 The remote Publish worker caches downloaded XeLaTeX/CJK apt archives using the
 package-set hash from [`.github/texlive-apt-packages.txt`](.github/texlive-apt-packages.txt).
 Its run summary reports cache hit/miss and install duration; dispatching with

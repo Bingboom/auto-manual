@@ -661,6 +661,14 @@ Scope:
 - Execution note: Workstream W / Stage 4b is complete: items 1–3 provide a verified two-hour row lease, shared Draft/Publish Document_link record groups, a separate Start Review identity domain, a global Vercel production mutex, and selective GitHub artifact surfaces with explicit 1/7/14-day retention while preserving the independent 90-day phase2 backup. The independent-target build matrix remains the later U5 expansion.
 - U6: data-driven language onboarding: remove the hardcoded language enumerations in `signal_words.py` / `sync_data_models.py` / `localized_copy.py` / `manual_copy_source.py` and the paired golden-test edits, so a new language is data + config only
 - U7: release labeling (tags or release IDs) on top of the existing manifests, plus a written rollback/redeploy runbook
+- Execution note: Workstream W / Stage 5 item 13 completed U7's machine scope.
+  Versioned manifests and publish metadata now share a deterministic target,
+  language-set, and version tag. A dry-run-first command creates an annotated
+  Git tag whose message binds the release commit plus manifest/snapshot hashes,
+  and refuses any rebind. The operator guide covers Vercel routing rollback,
+  exact prior-artifact re-delivery, and E1 historical rebuild. Per the approved
+  gate, the first timed rollback drill is still performed and recorded by the
+  operator rather than fabricated by automation.
 
 Exit criteria:
 

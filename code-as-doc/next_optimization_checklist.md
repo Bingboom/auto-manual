@@ -1359,7 +1359,11 @@ jumps the queue. Until then it stays `deferred` and exerts no pressure.
     - [`../.agents/skills/new-region-line/SKILL.md`](../.agents/skills/new-region-line/SKILL.md) and its setup-map drop the code-registration step
 
 - [ ] PR K14: Release labeling + rollback runbook (U7)
-  - Status: `deferred`
+  - Status: `operator_drill_pending` — machine scope completed 2026-07-31:
+    versioned manifests and publish metadata carry a deterministic release tag,
+    `tools/release_tag.py` creates/verifies its annotated manifest binding, and
+    the three-path rollback runbook is live. The first real timed drill remains
+    operator-owned and this checkbox stays open until that result is recorded.
   - Trigger: the first real rollback need (a shipped manual must be reverted
     or re-delivered from a prior state), or the business asks for turnaround
     commitments. **Provisional Tier 2 placement** (not in the operator's

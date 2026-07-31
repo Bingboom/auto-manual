@@ -149,7 +149,7 @@
 10. [x] [M] `feat(idml): CJK fallback runs`（token idml_font_family_cjk;gated on ④）— Done：汉字、假名、谚文及 CJK 标点/全角字符生成显式可编辑字体 run，精确符号映射优先；token 复用既有 Arial Unicode MS 资源且不进入几何参数表，EN/FR golden 全部件逐字节不变，JA/KO 各仅 18 个本地化 Story 部件变化并通过 IDML 自检。
 11. [x] [M] `feat(idml): east_asian_width line estimates`（0.52 拉丁估宽改字符宽度类别;gated）— Done：通用 story/flow、符号表、warning/FCC、operation/LCD/key-combination 与故障表统一消费 `line_metrics.py`；W/F=1em、组合字符=0、A 类保持窄字符，拉丁容量及 EN/FR/JA/KO golden 包逐字节不变。
 12. [x] [S] `test(idml): JP smoke export + check_idml record`（gated）— Done：真实 `config.ja.yaml` runtime+fixture 路径暴露并修复单语 config 未向 exporter 透传 `ja` 的假绿；修后 Manual IR 顶层/声明均为 `ja`，JP CJK stories 存在，`check_idml` 零问题，完整命令与边界记录在 acceptance 文档。
-13. [M] `feat(release): K14 release tag + rollback runbook`（deps: E1;演练计时归操作者）
+13. [x] [M] `feat(release): K14 release tag + rollback runbook`（deps: E1;演练计时归操作者）— Done（机器）：versioned manifest/publish metadata 生成 target+全语言+version 唯一 tag；dry-run-first 工具创建带 manifest/snapshot 哈希绑定的 annotated tag，冲突 fail-closed；Vercel、历史 Word/PDF 与 Git SHA 重建回滚手册已落地。真实演练耗时表保留给操作者填写，不伪造。
 14. [x] [M] `docs(arch): K15/V review-propagation design doc` — Done：覆盖 derivative-only ownership、advanceable pin、rendered bump PR、classify-or-abstain、legacy migration、failure/blast-radius/lag contract；操作者于 2026-07-31 批准，按设计拆分的 many-target 实施切片已解锁。
 
 ## 5. 操作者拍板点汇总（按时间序）

@@ -166,6 +166,9 @@ Quality and release logic should follow concern-specific modules instead of drif
   - release-manifest CLI facade
 - [`tools/release_manifest_service.py`](../../tools/release_manifest_service.py)
   - release traceability assembly
+- [`tools/release_tag.py`](../../tools/release_tag.py)
+  - dry-run-first annotated release-tag creation and manifest/hash verification
+  - idempotent local/remote collision checks; no tag is created during build
 - [`tools/release_snapshot.py`](../../tools/release_snapshot.py)
   - immutable version-scoped phase2 snapshot freezing, identity inventory, historical verification, and rebind/drift rejection
 - [`tools/release_reproducibility.py`](../../tools/release_reproducibility.py)
