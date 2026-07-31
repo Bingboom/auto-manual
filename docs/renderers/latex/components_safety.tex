@@ -317,18 +317,32 @@
 \HBStoreBaseFromKey{type_spec_note_font_size}%
 \HBStoreBaseFromKey{type_spec_note_font_leading}%
 
+% Notice labels mirror the registered symbols_blocks language packs.  Keep the
+% dispatch here data-shaped: adding a language must not silently fall back to
+% English on the fixed-layout LaTeX path.
+\providecommand{\HBApplyLocalizedWarningLabel}[1]{%
+  \renewcommand{\HBLocalizedWarningLabel}{WARNING}%
+  \ifstrequal{#1}{zh}{\renewcommand{\HBLocalizedWarningLabel}{警告}}{}%
+  \ifstrequal{#1}{ja}{\renewcommand{\HBLocalizedWarningLabel}{警告}}{}%
+  \ifstrequal{#1}{fr}{\renewcommand{\HBLocalizedWarningLabel}{AVERTISSEMENT}}{}%
+  \ifstrequal{#1}{es}{\renewcommand{\HBLocalizedWarningLabel}{ADVERTENCIA}}{}%
+  \ifstrequal{#1}{pt-BR}{\renewcommand{\HBLocalizedWarningLabel}{ADVERTÊNCIA}}{}%
+  \ifstrequal{#1}{de}{\renewcommand{\HBLocalizedWarningLabel}{WARNUNG}}{}%
+  \ifstrequal{#1}{it}{\renewcommand{\HBLocalizedWarningLabel}{AVVERTENZA}}{}%
+  \ifstrequal{#1}{uk}{\renewcommand{\HBLocalizedWarningLabel}{ПОПЕРЕДЖЕННЯ}}{}%
+  \ifstrequal{#1}{ko}{\renewcommand{\HBLocalizedWarningLabel}{경고}}{}%
+}
+
 \providecommand{\HBApplyLang}[1]{%
   \def\HB@lang{#1}%
-  \renewcommand{\HBLocalizedWarningLabel}{WARNING}%
+  \HBApplyLocalizedWarningLabel{#1}%
   \renewcommand{\HBSignalWordFontSize}{\csname HBtype_symbol_signal_font_size\endcsname}%
   \renewcommand{\HBSignalWordLeading}{\csname HBtype_symbol_signal_font_leading\endcsname}%
   \ifstrequal{#1}{fr}{%
-    \renewcommand{\HBLocalizedWarningLabel}{AVERTISSEMENT}%
     \renewcommand{\HBSignalWordFontSize}{6.2pt}%
     \renewcommand{\HBSignalWordLeading}{6.8pt}%
   }{}%
   \ifstrequal{#1}{es}{%
-    \renewcommand{\HBLocalizedWarningLabel}{ADVERTENCIA}%
     \renewcommand{\HBSignalWordFontSize}{5.6pt}%
     \renewcommand{\HBSignalWordLeading}{6.2pt}%
   }{}%

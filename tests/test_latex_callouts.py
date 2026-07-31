@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 from pathlib import Path
-from types import SimpleNamespace
+import re
 import sys
+from types import SimpleNamespace
 import unittest
 
 from docutils import nodes
@@ -20,9 +21,33 @@ from hb_latex_callouts import (  # noqa: E402
     replace_notice_tables,
     visit_callout_item_latex,
 )
+from tools import lang_registry  # noqa: E402
 
 
 class LatexCalloutTests(unittest.TestCase):
+    def test_hb_apply_lang_has_a_warning_label_for_every_registered_language(self) -> None:
+        source = (LATEX_RENDERER / "components_safety.tex").read_text(encoding="utf-8")
+        for spec in lang_registry.LANGUAGE_REGISTRY:
+            with self.subTest(language=spec.code):
+                pack = lang_registry.idml_language_pack(spec.code)
+                self.assertIsNotNone(pack)
+                assert pack is not None
+                label = pack.symbol_copy[3]
+                if spec.code == "en":
+                    self.assertIn(
+                        r"\renewcommand{\HBLocalizedWarningLabel}{WARNING}",
+                        source,
+                    )
+                    continue
+                self.assertRegex(
+                    source,
+                    re.compile(
+                        rf"\\ifstrequal\{{#1\}}\{{{re.escape(spec.code)}\}}"
+                        rf"\{{\\renewcommand\{{\\HBLocalizedWarningLabel\}}"
+                        rf"\{{{re.escape(label)}\}}\}}\{{\}}%"
+                    ),
+                )
+
     def _transform(self, source: str, *, output_format: str = "latex") -> nodes.document:
         doctree = publish_doctree(source)
         app = SimpleNamespace(builder=SimpleNamespace(format=output_format))

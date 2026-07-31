@@ -682,6 +682,9 @@ not tables maintained by the individual IDML modules. Reference-bound spacing
 and placement overrides use the same registry's `governed_languages()` helper;
 adding a language pack alone does not claim that language has an approved
 physical layout.
+The fixed-layout LaTeX `HBApplyLang` dispatcher also covers the warning label
+for every registered language; its label values are parity-checked against the
+registry's symbol language pack.
 
 Contract selection is fail-closed before identity validation: if an approved
 contract on disk exactly matches the Manual IR target but its registry row is

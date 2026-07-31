@@ -93,6 +93,9 @@ The symbol-page copy and TOC language headers come from the shared language
 registry's IDML language packs. Reference-bound spacing overrides are limited
 to the registry's `governed_languages()` set, so adding translation metadata
 does not silently apply an unapproved physical layout.
+The LaTeX safety dispatcher uses the registered warning label for every
+language passed to `HBApplyLang`, including the long-tail languages, instead of
+silently retaining `WARNING`.
 
 In production IDML operation panels, Prerequisite, standby, On, and Off are
 separate unlocked text frames placed above the linked illustration. Designers
