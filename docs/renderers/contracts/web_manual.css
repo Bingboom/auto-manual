@@ -1,50 +1,1454 @@
-.hb-annotated-figure,
-.hb-operation-figure {
-  margin: 1.25rem 0 2rem;
+/*
+ * Responsive web projection of the approved IDML visual language.
+ *
+ * Gilroy is a commercial font and is intentionally not redistributed by the
+ * public RTD build. Browsers with Gilroy installed use it; every other client
+ * receives a stable, metric-compatible system fallback stack.
+ */
+
+:root {
+  --hb-brand-dark: #343031;
+  --hb-text: #343031;
+  --hb-text-muted: #666264;
+  --hb-line: #a7a5a6;
+  --hb-line-soft: #dedcdd;
+  --hb-paper: #ffffff;
+  --hb-surface: #f4f3f3;
+  --hb-surface-strong: #e9e7e8;
+  --hb-reading-width: 58rem;
+  --hb-copy-width: 52rem;
+  --hb-h1-radius: 0 0 0.62rem 0.62rem;
+  --hb-panel-radius: 0.62rem;
+  --hb-font-family: "Gilroy", "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+  --hb-shadow: 0 1rem 2.75rem rgba(52, 48, 49, 0.09);
+}
+
+body {
+  --font-stack: var(--hb-font-family);
+  --font-stack--headings: var(--hb-font-family);
+  --color-brand-primary: var(--hb-brand-dark);
+  --color-brand-content: var(--hb-brand-dark);
+  --color-brand-visited: #656061;
+}
+
+.sidebar-brand-text,
+.sidebar-tree,
+.toc-tree {
+  font-family: var(--hb-font-family);
+}
+
+.sidebar-brand-text {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.sidebar-tree .current-page > .reference,
+.toc-tree li.scroll-current > .reference {
+  color: var(--hb-brand-dark);
+  font-weight: 700;
+}
+
+.article-container {
+  width: 100%;
+}
+
+#furo-main-content {
+  box-sizing: border-box;
+  width: min(100%, var(--hb-reading-width));
+  margin: 1.5rem auto 4rem;
+  padding: clamp(1.25rem, 3vw, 2.6rem);
+  border: 1px solid var(--hb-line-soft);
+  border-radius: 0.22rem;
+  background: var(--hb-paper);
+  box-shadow: var(--hb-shadow);
+  color: var(--hb-text);
+  font-family: var(--hb-font-family);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.58;
+}
+
+#furo-main-content > p,
+#furo-main-content > ul,
+#furo-main-content > ol,
+#furo-main-content > blockquote,
+#furo-main-content > section > p,
+#furo-main-content > section > ul,
+#furo-main-content > section > ol,
+#furo-main-content > section > blockquote,
+#furo-main-content > section > section > p,
+#furo-main-content > section > section > ul,
+#furo-main-content > section > section > ol,
+#furo-main-content > section > section > blockquote {
+  max-width: var(--hb-copy-width);
+}
+
+#furo-main-content p {
+  margin: 0 0 0.82rem;
+}
+
+#furo-main-content sub {
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: sub;
+}
+
+#furo-main-content ul,
+#furo-main-content ol {
+  margin: 0 0 1.15rem;
+  padding-left: 1.35rem;
+}
+
+#furo-main-content li + li {
+  margin-top: 0.34rem;
+}
+
+#furo-main-content > section,
+#furo-main-content > section > section {
+  margin-top: 2.8rem;
+  scroll-margin-top: 1.5rem;
+}
+
+#furo-main-content > section:first-child {
+  margin-top: 0;
+}
+
+/* H1 mirrors the IDML 20.126 pt bar: sharp north corners, rounded south. */
+#furo-main-content h1,
+#furo-main-content .hb-h1-pill {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 0 0 1.25rem;
+  padding: 0.72rem 1rem 0.68rem;
+  border: 0;
+  border-radius: var(--hb-h1-radius);
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-family: var(--hb-font-family);
+  font-size: clamp(1.28rem, 2.5vw, 1.58rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.14;
+  text-transform: uppercase;
+}
+
+#furo-main-content h1::after {
+  display: none;
+}
+
+#furo-main-content h1 .headerlink {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* IDML level-two titles use a compact dark marker and heavy uppercase copy. */
+#furo-main-content h2:not(.hb-spec-section),
+#furo-main-content .hb-subbar {
+  display: flex;
+  align-items: center;
+  gap: 0.58rem;
+  max-width: var(--hb-reading-width);
+  margin: 1.3rem 0 0.72rem;
+  padding: 0;
+  border: 0;
+  color: var(--hb-text);
+  font-family: var(--hb-font-family);
+  font-size: clamp(1rem, 1.7vw, 1.12rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.22;
+  text-transform: uppercase;
+}
+
+#furo-main-content h2:not(.hb-spec-section)::before,
+#furo-main-content .hb-subbar::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+  background: var(--hb-brand-dark);
+}
+
+#furo-main-content h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.44rem;
+  margin: 1.1rem 0 0.62rem;
+  color: var(--hb-text);
+  font-family: var(--hb-font-family);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.28;
+}
+
+#furo-main-content h3::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 50%;
+  background: var(--hb-brand-dark);
+}
+
+#furo-main-content h2 .headerlink,
+#furo-main-content h3 .headerlink {
+  color: var(--hb-text-muted);
+}
+
+/* Furo highlights a hash-target heading; keep manual headings theme-owned. */
+#furo-main-content section:target,
+#furo-main-content section:target > h2:first-of-type,
+#furo-main-content section:target > h3:first-of-type,
+#furo-main-content span:target ~ h2:first-of-type,
+#furo-main-content span:target ~ h3:first-of-type {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#furo-main-content strong {
+  font-weight: 700;
+}
+
+#furo-main-content em {
+  color: var(--hb-text-muted);
+}
+
+#furo-main-content a:not(.headerlink) {
+  color: var(--hb-brand-dark);
+  text-decoration-color: var(--hb-line);
+  text-underline-offset: 0.18em;
+}
+
+/* Generic Sphinx and generated manual tables share the IDML panel language. */
+#furo-main-content .table-wrapper.docutils {
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1rem 0 1.65rem;
+  overflow-x: auto;
+  border: 1px solid var(--hb-line);
+  border-radius: var(--hb-panel-radius);
+  background: var(--hb-paper);
+}
+
+#furo-main-content table.docutils,
+#furo-main-content table.manual-table,
+#furo-main-content table.manual-spec-table,
+#furo-main-content table.hb-spec-table {
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  background: var(--hb-paper);
+  color: var(--hb-text);
+  font-size: 0.94rem;
+  line-height: 1.42;
+}
+
+#furo-main-content table.docutils th,
+#furo-main-content table.docutils td,
+#furo-main-content table.manual-table th,
+#furo-main-content table.manual-table td,
+#furo-main-content table.manual-spec-table th,
+#furo-main-content table.manual-spec-table td,
+#furo-main-content table.hb-spec-table th,
+#furo-main-content table.hb-spec-table td {
+  padding: 0.72rem 0.82rem !important;
+  vertical-align: top;
+  border: 0 !important;
+  border-top: 1px solid var(--hb-line-soft) !important;
+  border-left: 1px solid var(--hb-line-soft) !important;
+  background: var(--hb-paper);
+}
+
+#furo-main-content table.docutils tr:first-child > *,
+#furo-main-content table.manual-table tr:first-child > *,
+#furo-main-content table.manual-spec-table tr:first-child > *,
+#furo-main-content table.hb-spec-table tr:first-child > * {
+  border-top: 0 !important;
+}
+
+#furo-main-content table.docutils tr > *:first-child,
+#furo-main-content table.manual-table tr > *:first-child,
+#furo-main-content table.manual-spec-table tr > *:first-child,
+#furo-main-content table.hb-spec-table tr > *:first-child {
+  border-left: 0 !important;
+}
+
+#furo-main-content table.docutils th,
+#furo-main-content table.manual-table th,
+#furo-main-content table.manual-spec-table th,
+#furo-main-content table.hb-spec-table th,
+#furo-main-content .manual-spec-label,
+#furo-main-content .hb-spec-label {
+  background: var(--hb-surface) !important;
+  color: var(--hb-text);
+  font-weight: 600;
+  text-align: left;
+}
+
+#furo-main-content table p:last-child,
+#furo-main-content table ul:last-child,
+#furo-main-content table ol:last-child {
+  margin-bottom: 0;
+}
+
+/* Keep the signal names centered beside multi-line meaning copy in every locale. */
+#furo-main-content :is(
+    #meaning-of-symbols,
+    #signification-des-symboles,
+    #significado-de-los-simbolos
+  )
+  > .table-wrapper:first-of-type
+  table.docutils
+  tbody
+  > tr
+  > td:first-child {
+  vertical-align: middle !important;
+}
+
+/* The PDF uses two independent symbol tables; their rows must not share height. */
+.hb-symbol-pair-composition {
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1rem auto 2rem;
+}
+
+.hb-symbol-pair-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(0.72rem, 1.8vw, 1rem);
+}
+
+.hb-symbol-panel {
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+  border: 2px solid var(--hb-brand-dark);
+  border-radius: 0.92rem;
+  background: var(--hb-paper);
+}
+
+#furo-main-content table.hb-symbol-panel-table {
+  width: 100% !important;
+  height: 100%;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: var(--hb-paper);
+  color: var(--hb-text);
+  font-size: clamp(0.82rem, 1.35vw, 0.96rem);
+  line-height: 1.28;
+}
+
+#furo-main-content .hb-symbol-col-icon {
+  width: 26%;
+}
+
+#furo-main-content .hb-symbol-col-meaning {
+  width: 74%;
+}
+
+#furo-main-content table.hb-symbol-panel-table th,
+#furo-main-content table.hb-symbol-panel-table td {
+  box-sizing: border-box;
+  padding: clamp(0.62rem, 1.5vw, 0.9rem) clamp(0.55rem, 1.25vw, 0.78rem) !important;
+  border: 0 !important;
+  background: var(--hb-paper);
+  vertical-align: middle !important;
+}
+
+#furo-main-content table.hb-symbol-panel-table thead th {
+  padding-block: 0.68rem !important;
+  border-bottom: 1.5px solid var(--hb-brand-dark) !important;
+  font-size: clamp(0.94rem, 1.6vw, 1.12rem);
+  font-weight: 700;
+  line-height: 1.08;
+  text-align: left;
+}
+
+#furo-main-content table.hb-symbol-panel-table tr > * + * {
+  border-left: 1.5px solid var(--hb-brand-dark) !important;
+}
+
+#furo-main-content table.hb-symbol-panel-table tbody tr + tr > td {
+  border-top: 1.5px solid var(--hb-brand-dark) !important;
+}
+
+#furo-main-content .hb-symbol-icon,
+#furo-main-content .hb-symbol-icon-heading {
+  background: var(--hb-surface) !important;
+  text-align: center;
+}
+
+#furo-main-content .hb-symbol-meaning,
+#furo-main-content .hb-symbol-meaning-heading {
+  text-align: left;
+}
+
+#furo-main-content .hb-symbol-art {
+  display: block;
+  width: min(4.45rem, 90%) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: 5rem;
+  margin: 0 auto !important;
+  object-fit: contain;
+}
+
+#furo-main-content table.hb-symbol-panel-table p {
+  margin: 0;
+}
+
+/* Troubleshooting keeps the PDF's compact code column and complete dark grid. */
+.hb-troubleshooting-composition {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1rem auto 2rem;
+  overflow-x: auto;
+  border: 2px solid var(--hb-brand-dark);
+  border-radius: 0.92rem;
+  background: var(--hb-paper);
+  -webkit-overflow-scrolling: touch;
+}
+
+#furo-main-content table.hb-troubleshooting-table {
+  width: 100% !important;
+  min-width: 42rem;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: var(--hb-paper);
+  color: var(--hb-text);
+  font-size: 0.9rem;
+  line-height: 1.28;
+}
+
+#furo-main-content .hb-troubleshooting-col-code {
+  width: 14%;
+}
+
+#furo-main-content .hb-troubleshooting-col-measures {
+  width: 86%;
+}
+
+#furo-main-content table.hb-troubleshooting-table th,
+#furo-main-content table.hb-troubleshooting-table td {
+  box-sizing: border-box;
+  padding: 0.52rem 0.72rem !important;
+  border: 0 !important;
+  border-right: 1.25px solid var(--hb-brand-dark) !important;
+  border-bottom: 1.25px solid var(--hb-brand-dark) !important;
+  vertical-align: middle !important;
+  overflow-wrap: anywhere;
+}
+
+#furo-main-content table.hb-troubleshooting-table tr > *:last-child {
+  border-right: 0 !important;
+}
+
+#furo-main-content table.hb-troubleshooting-table tbody tr:last-child > td {
+  border-bottom: 0 !important;
+}
+
+#furo-main-content table.hb-troubleshooting-table .hb-troubleshooting-code {
+  padding-inline: 0.38rem !important;
+  background: var(--hb-surface) !important;
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.05;
+  text-align: center;
+}
+
+#furo-main-content table.hb-troubleshooting-table thead .hb-troubleshooting-code {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+#furo-main-content table.hb-troubleshooting-table .hb-troubleshooting-measures {
+  background: var(--hb-paper) !important;
+  text-align: left;
+}
+
+#furo-main-content table.hb-troubleshooting-table thead th {
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+#furo-main-content table.hb-troubleshooting-table p,
+#furo-main-content table.hb-troubleshooting-table .line-block {
+  margin: 0;
+}
+
+#furo-main-content table.hb-troubleshooting-table .line {
+  display: block;
+}
+
+#furo-main-content table.hb-troubleshooting-table .hb-troubleshooting-measures .line + .line {
+  margin-top: 0.25rem;
+}
+
+/* Specification groups stay searchable while using the PDF's two-column shell. */
+.hb-spec-table-composition {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 0.72rem auto 1.65rem;
+  overflow-x: auto;
+  border: 2px solid var(--hb-brand-dark);
+  border-radius: 0.92rem;
+  background: var(--hb-paper);
+  -webkit-overflow-scrolling: touch;
+}
+
+#furo-main-content table.hb-spec-table {
+  width: 100% !important;
+  min-width: 40rem;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: var(--hb-paper);
+  color: var(--hb-text);
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
+#furo-main-content .hb-spec-col-label {
+  width: 31%;
+}
+
+#furo-main-content .hb-spec-col-value {
+  width: 69%;
+}
+
+#furo-main-content table.hb-spec-table th,
+#furo-main-content table.hb-spec-table td {
+  box-sizing: border-box;
+  padding: 0.52rem 0.72rem !important;
+  border: 0 !important;
+  border-right: 1.25px solid var(--hb-brand-dark) !important;
+  border-bottom: 1.25px solid var(--hb-brand-dark) !important;
+  vertical-align: middle !important;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+#furo-main-content table.hb-spec-table tr > *:last-child {
+  border-right: 0 !important;
+}
+
+#furo-main-content table.hb-spec-table tbody tr:last-child > * {
+  border-bottom: 0 !important;
+}
+
+#furo-main-content table.hb-spec-table .hb-spec-label {
+  background: var(--hb-surface) !important;
+  color: var(--hb-text);
+  font-weight: 600;
+}
+
+#furo-main-content table.hb-spec-table .hb-spec-value {
+  background: var(--hb-paper) !important;
+  font-weight: 400;
+}
+
+#furo-main-content table.hb-spec-table p {
+  margin: 0;
+}
+
+#furo-main-content table.hb-spec-table .hb-spec-reference {
+  margin-left: 0.04em;
+  font-size: 0.62em;
+  line-height: 0;
+  vertical-align: super;
+}
+
+/* Warranty uses live responsive cards derived from the approved PDF hierarchy. */
+.hb-warranty-intro-composition {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 0.75rem auto 1.8rem;
+  color: var(--hb-text);
+}
+
+.hb-warranty-intro-panel {
+  box-sizing: border-box;
+  padding: 0.9rem 1.05rem;
+  border-radius: 0.88rem;
+  background: var(--hb-surface);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+#furo-main-content .hb-warranty-intro-panel p,
+#furo-main-content .hb-warranty-local-note p {
+  margin: 0;
+}
+
+.hb-warranty-local-note {
+  margin: 0.55rem 0.15rem 0;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+#furo-main-content section:has(> figure.hb-warranty-card),
+#furo-main-content section:has(> figure.hb-warranty-period-card) {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 2.15rem auto 1.55rem;
+  padding: 1.05rem 1rem 0.82rem;
+  border: 2px solid var(--hb-line-soft);
+  border-radius: 0.88rem;
+  background: var(--hb-paper);
+}
+
+#furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child,
+#furo-main-content section:has(> figure.hb-warranty-period-card) > h2:first-child {
+  position: absolute;
+  top: -0.86rem;
+  left: 1rem;
+  z-index: 1;
+  display: inline-flex;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  margin: 0;
+  padding: 0.34rem 0.72rem 0.3rem;
+  border: 0;
+  border-radius: 0.42rem;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: clamp(0.94rem, 1.6vw, 1.08rem);
+  font-weight: 700;
+  line-height: 1.08;
+  text-transform: none;
+}
+
+#furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child::before,
+#furo-main-content section:has(> figure.hb-warranty-period-card) > h2:first-child::before {
+  display: none;
+}
+
+#furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child .headerlink,
+#furo-main-content section:has(> figure.hb-warranty-period-card)
+  > h2:first-child
+  .headerlink {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.hb-warranty-card,
+.hb-warranty-period-card {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  color: var(--hb-text);
+  font-size: 0.9rem;
+  line-height: 1.34;
+}
+
+#furo-main-content .hb-warranty-card p,
+#furo-main-content .hb-warranty-period-copy p {
+  margin: 0 0 0.42rem;
+}
+
+#furo-main-content .hb-warranty-card p:last-child,
+#furo-main-content .hb-warranty-period-copy p:last-child {
+  margin-bottom: 0;
+}
+
+#furo-main-content .hb-warranty-card ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1.12rem;
+}
+
+#furo-main-content .hb-warranty-card li + li {
+  margin-top: 0.16rem;
+}
+
+.hb-warranty-period-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+  align-items: start;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.hb-warranty-period-item {
+  min-width: 0;
+}
+
+.hb-warranty-period-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.62rem;
+  margin-bottom: 0.48rem;
+}
+
+.hb-warranty-year-badge {
+  display: inline-grid;
+  box-sizing: border-box;
+  width: 3.45rem;
+  height: 3.45rem;
+  flex: 0 0 3.45rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: 2.55rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hb-warranty-period-title {
+  display: grid;
+  min-width: 0;
+  gap: 0.08rem;
+}
+
+.hb-warranty-years-unit,
+.hb-warranty-period-label {
+  display: block;
+  color: var(--hb-text);
+  line-height: 1.05;
+}
+
+.hb-warranty-years-unit {
+  font-size: clamp(1.18rem, 2.4vw, 1.52rem);
+  text-transform: uppercase;
+}
+
+.hb-warranty-period-label {
+  font-size: 0.92rem;
+}
+
+.hb-warranty-period-copy {
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+
+/* Every WARNING/DANGER/CAUTION/NOTE uses the same light IDML callout treatment. */
+#furo-main-content table.manual-callout-table {
+  width: 100% !important;
+  margin: 1rem 0 1.35rem !important;
+  overflow: hidden;
+  border: 2px solid var(--hb-line-soft) !important;
+  border-radius: 0.82rem;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  background: var(--hb-surface);
+  color: var(--hb-text);
+  table-layout: fixed !important;
+}
+
+#furo-main-content .manual-callout-label {
+  box-sizing: border-box;
+  width: clamp(7.5rem, 16%, 9.5rem) !important;
+  padding: 0.82rem 0.72rem !important;
+  border: 0 !important;
+  background: var(--hb-paper) !important;
+  color: var(--hb-text);
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle !important;
+}
+
+#furo-main-content .manual-callout-body {
+  box-sizing: border-box;
+  width: 84%;
+  padding: 0.82rem 0.92rem !important;
+  border: 0 !important;
+  background: var(--hb-surface) !important;
+  vertical-align: top !important;
+}
+
+#furo-main-content .manual-callout-label p,
+#furo-main-content .manual-callout-body p {
+  margin-bottom: 0;
+}
+
+.hb-fcc-composition {
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1.1rem auto 2.25rem;
+  padding: clamp(1.15rem, 2.5vw, 1.8rem);
+  overflow: hidden;
+  border-radius: 1rem;
+  background: var(--hb-surface);
+  color: var(--hb-text);
+}
+
+.hb-fcc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.2rem, 3vw, 2.2rem);
+}
+
+.hb-fcc-column {
+  min-width: 0;
+  font-size: 0.92rem;
+  line-height: 1.34;
+}
+
+.hb-fcc-opening {
+  display: grid;
+  grid-template-columns: clamp(5.8rem, 25%, 7.8rem) minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+}
+
+#furo-main-content .hb-fcc-mark {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+.hb-fcc-opening-copy .line-block,
+.hb-fcc-column p,
+.hb-fcc-column ul {
+  margin: 0 0 0.58rem;
+}
+
+.hb-fcc-opening-copy .line {
+  margin: 0;
+}
+
+.hb-fcc-column ul {
+  padding-left: 1.05rem;
+}
+
+.hb-fcc-column li + li {
+  margin-top: 0.18rem;
+}
+
+/* Preserve the searchable four-column LCD grid and explicit RST status lines. */
+.hb-lcd-table-composition {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1.1rem auto 2.25rem;
+  overflow-x: auto;
+  border: 2px solid var(--hb-line);
+  border-radius: 0.9rem;
+  background: var(--hb-paper);
+  -webkit-overflow-scrolling: touch;
+}
+
+#furo-main-content table.hb-lcd-icon-table {
+  width: 100% !important;
+  min-width: 42rem;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: var(--hb-paper);
+  font-size: 0.9rem;
+  line-height: 1.23;
+}
+
+#furo-main-content .hb-lcd-col-number {
+  width: 6%;
+}
+
+#furo-main-content .hb-lcd-col-icon {
+  width: 11%;
+}
+
+#furo-main-content .hb-lcd-col-name {
+  width: 27%;
+}
+
+#furo-main-content .hb-lcd-col-description {
+  width: 56%;
+}
+
+#furo-main-content table.hb-lcd-icon-table td {
+  box-sizing: border-box;
+  padding: 0.7rem 0.72rem !important;
+  border: 0 !important;
+  border-right: 1px solid var(--hb-line) !important;
+  border-bottom: 1px solid var(--hb-line) !important;
+  vertical-align: middle !important;
+  overflow-wrap: anywhere;
+}
+
+#furo-main-content table.hb-lcd-icon-table tr:last-child > td {
+  border-bottom: 0 !important;
+}
+
+#furo-main-content table.hb-lcd-icon-table td:last-child {
+  border-right: 0 !important;
+}
+
+#furo-main-content .hb-lcd-number,
+#furo-main-content .hb-lcd-icon,
+#furo-main-content .hb-lcd-name {
+  background: var(--hb-surface) !important;
+}
+
+#furo-main-content .hb-lcd-number,
+#furo-main-content .hb-lcd-icon {
+  text-align: center;
+}
+
+#furo-main-content table.hb-lcd-icon-table td.hb-lcd-number {
+  padding-inline: 0 !important;
+}
+
+#furo-main-content .hb-lcd-number p {
+  box-sizing: border-box;
+  display: inline-grid;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: 0;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+#furo-main-content .hb-lcd-name {
+  font-weight: 700;
+}
+
+#furo-main-content .hb-lcd-icon-art {
+  display: block;
+  width: 3rem !important;
   max-width: 100%;
+  height: 3rem !important;
+  margin: 0 auto !important;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+#furo-main-content .hb-lcd-description .line-block,
+#furo-main-content .hb-lcd-description p {
+  margin: 0;
+}
+
+#furo-main-content .hb-lcd-description .line {
+  display: block;
+}
+
+#furo-main-content .hb-lcd-description .line + .line {
+  margin-top: 0.12rem;
+}
+
+/* AC/DC auto-resume keeps the compact two-column grid from the approved template. */
+.hb-auto-resume-composition {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 0.85rem auto 1.65rem;
+  padding: 0;
+  overflow-x: auto;
+  border: 2px solid var(--hb-brand-dark);
+  border-radius: 1rem;
+  background: var(--hb-paper);
+  -webkit-overflow-scrolling: touch;
+}
+
+#furo-main-content table.hb-auto-resume-table {
+  width: 100% !important;
+  min-width: 42rem;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: var(--hb-paper);
+  color: var(--hb-text);
+  font-size: 0.91rem;
+  line-height: 1.18;
+}
+
+#furo-main-content .hb-auto-resume-col {
+  width: 50%;
+}
+
+#furo-main-content table.hb-auto-resume-table th,
+#furo-main-content table.hb-auto-resume-table td {
+  box-sizing: border-box;
+  padding: 0.46rem 0.72rem !important;
+  border: 0 !important;
+  border-right: 1px solid var(--hb-brand-dark) !important;
+  border-bottom: 1px solid var(--hb-brand-dark) !important;
+  vertical-align: middle !important;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+#furo-main-content table.hb-auto-resume-table .hb-auto-resume-left {
+  background: var(--hb-surface) !important;
+}
+
+#furo-main-content table.hb-auto-resume-table .hb-auto-resume-right {
+  background: var(--hb-paper) !important;
+}
+
+#furo-main-content table.hb-auto-resume-table th {
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+#furo-main-content table.hb-auto-resume-table tr > *:last-child {
+  border-right: 0 !important;
+}
+
+#furo-main-content table.hb-auto-resume-table tbody tr:last-child > td {
+  border-bottom: 0 !important;
+}
+
+#furo-main-content table.hb-auto-resume-table p {
+  margin: 0;
+}
+
+/* LCD screen mode keeps the PDF's illustration-plus-table composition as live HTML. */
+.hb-lcd-mode-composition {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.9fr) minmax(25rem, 1.1fr);
+  align-items: center;
+  gap: clamp(1rem, 2.4vw, 1.65rem);
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 0.85rem auto 1.5rem;
+  padding: clamp(0.9rem, 2vw, 1.3rem);
+  overflow: hidden;
+  border: 3px solid var(--hb-line-soft);
+  border-radius: 1.5rem;
+  background: var(--hb-paper);
+}
+
+.hb-lcd-mode-art-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+#furo-main-content .hb-lcd-mode-art {
+  display: block;
+  width: min(100%, 29rem) !important;
+  height: auto !important;
+  margin: 0 auto !important;
+}
+
+.hb-lcd-mode-table-panel {
+  min-width: 0;
+  overflow-x: auto;
+  border: 2px solid var(--hb-brand-dark);
+  border-radius: 0.78rem;
+  background: var(--hb-paper);
+  -webkit-overflow-scrolling: touch;
+}
+
+#furo-main-content table.hb-lcd-mode-table {
+  width: 100% !important;
+  min-width: 25rem;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  table-layout: fixed;
+  color: var(--hb-text);
+  font-size: 0.82rem;
+  line-height: 1.17;
+}
+
+#furo-main-content .hb-lcd-mode-col-state {
+  width: 28%;
+}
+
+#furo-main-content .hb-lcd-mode-col-action {
+  width: 20%;
+}
+
+#furo-main-content .hb-lcd-mode-col-copy {
+  width: 52%;
+}
+
+#furo-main-content table.hb-lcd-mode-table td {
+  box-sizing: border-box;
+  padding: 0.42rem 0.52rem !important;
+  border: 0 !important;
+  border-right: 1px solid var(--hb-brand-dark) !important;
+  border-bottom: 1px solid var(--hb-brand-dark) !important;
+  vertical-align: middle !important;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+#furo-main-content .hb-lcd-mode-state,
+#furo-main-content .hb-lcd-mode-action {
+  background: var(--hb-surface) !important;
+  font-weight: 700;
+}
+
+#furo-main-content .hb-lcd-mode-copy {
+  background: var(--hb-paper) !important;
+}
+
+#furo-main-content table.hb-lcd-mode-table tr > *:last-child {
+  border-right: 0 !important;
+}
+
+#furo-main-content table.hb-lcd-mode-table tr:last-child > td {
+  border-bottom: 0 !important;
+}
+
+#furo-main-content .manual-spec-note,
+#furo-main-content .manual-spec-footnote {
+  color: var(--hb-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Keep ordinary artwork proportional and visually grouped with its copy. */
+#furo-main-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Standalone RST artwork fills one shared content width; components own their geometry. */
+#furo-main-content section > img,
+#furo-main-content section > a.image-reference {
+  box-sizing: border-box;
+  display: block !important;
+  width: 100% !important;
+  max-width: var(--hb-reading-width) !important;
+  height: auto !important;
+  margin: 1.1rem auto 1.5rem !important;
+  object-fit: contain;
+}
+
+#furo-main-content section > a.image-reference > img {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-inline: auto;
+}
+
+.hb-inline-add-device-icon {
+  display: inline-grid;
+  box-sizing: border-box;
+  width: 1.42em;
+  height: 1.42em;
+  margin: 0 0.18em;
+  place-items: center;
+  border: 1px solid var(--hb-line);
+  border-radius: 50%;
+  background: var(--hb-surface);
+  color: var(--hb-text-muted);
+  font-family: Arial, sans-serif;
+  font-size: 0.82em;
+  font-weight: 400;
+  line-height: 1;
+  vertical-align: -0.14em;
+}
+
+#furo-main-content a.image-reference {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0.35rem 0 1.35rem;
+  padding: 0.7rem;
+  border: 1px solid var(--hb-line-soft);
+  border-radius: var(--hb-panel-radius);
+  background: var(--hb-paper);
+}
+
+.hb-inbox-composition {
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1.2rem 0 2rem;
+}
+
+.hb-inbox-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: clamp(0.55rem, 1.4vw, 0.9rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hb-inbox-card {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: clamp(20rem, 48vw, 24rem);
+  flex-direction: column;
+  align-items: center;
+  padding: 3.6rem clamp(0.55rem, 1.4vw, 1rem) 1.5rem;
+  overflow: hidden;
+  border: 2px solid var(--hb-line-soft);
+  border-radius: 0.82rem;
+  background: var(--hb-paper);
+  text-align: center;
+}
+
+#furo-main-content .hb-inbox-card + .hb-inbox-card {
+  margin-top: 0;
+}
+
+.hb-inbox-card::before {
+  content: attr(data-item-number);
+  position: absolute;
+  top: 1.55rem;
+  left: 50%;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  place-items: center;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#furo-main-content .hb-inbox-art {
+  display: block;
+  width: 90% !important;
+  max-width: 10.8rem !important;
+  height: clamp(8.75rem, 18vw, 10.5rem) !important;
+  margin: 1.6rem auto 1rem !important;
+  object-fit: contain;
+}
+
+.hb-inbox-label {
+  display: grid;
+  min-height: 3.4rem;
+  margin-top: auto;
+  place-items: center;
+  color: var(--hb-text);
+  font-size: clamp(0.82rem, 1.45vw, 0.96rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.hb-inbox-label p,
+.hb-inbox-tip p {
+  margin: 0;
+}
+
+.hb-inbox-tip {
+  display: grid;
+  grid-template-columns: clamp(6.8rem, 16%, 8rem) minmax(0, 1fr);
+  margin-top: 1rem;
+  overflow: hidden;
+  border: 2px solid var(--hb-line-soft);
+  border-radius: 0.82rem;
+  background: var(--hb-surface);
+  color: var(--hb-text);
+}
+
+.hb-inbox-tip-label {
+  display: grid;
+  min-height: 5rem;
+  padding: 0.8rem;
+  place-items: center;
+  background: var(--hb-paper);
+  font-weight: 700;
+  text-align: center;
+}
+
+.hb-inbox-tip-body {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  font-size: 0.94rem;
+  line-height: 1.3;
+}
+
+.hb-annotated-figure,
+.hb-operation-figure,
+.hb-reference-figure {
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1.35rem 0 2rem;
+}
+
+.hb-reference-figure {
+  position: relative;
+  margin-inline: auto;
+}
+
+.hb-reference-figure > .hb-composite-stage {
+  width: 100%;
+  margin-inline: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.hb-reference-figure .hb-composite-art {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  border-radius: var(--hb-panel-radius);
+  object-fit: contain;
+}
+
+/* Keep the authoritative RST image/labels available to assistive technology. */
+.hb-reference-semantic {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+.hb-app-download-composition {
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1rem auto 2rem;
+}
+
+.hb-app-download-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2.5rem, 9vw, 7rem);
+}
+
+.hb-app-download-column {
+  display: grid;
+  min-width: 0;
+  grid-template-rows: auto 1fr;
+}
+
+.hb-app-download-art-frame {
+  display: grid;
+  min-height: clamp(8rem, 18vw, 14rem);
+  place-items: center;
+}
+
+#furo-main-content .hb-app-download-art {
+  display: block;
+  height: auto !important;
+  margin: 0 auto !important;
+  object-fit: contain;
+}
+
+#furo-main-content .hb-app-download-art-store {
+  width: 60% !important;
+  max-width: 19rem !important;
+}
+
+#furo-main-content .hb-app-download-art-qr {
+  width: 44% !important;
+  max-width: 15rem !important;
+}
+
+.hb-app-download-copy {
+  min-width: 0;
+  color: var(--hb-text);
+  font-size: 0.98rem;
+  line-height: 1.35;
+}
+
+.hb-app-download-copy p {
+  margin: 0;
+}
+
+.hb-app-download-semantic {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
 }
 
 .hb-annotated-stage,
+.hb-composite-stage,
 .hb-operation-stage {
-  background: var(--color-background-primary, #fff);
-  isolation: isolate;
-  overflow: hidden;
   position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
   width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--hb-line);
+  border-radius: var(--hb-panel-radius);
+  background: var(--hb-paper);
 }
 
 .hb-annotated-stage {
   aspect-ratio: var(--hb-aspect-ratio);
 }
 
+.hb-composite-stage {
+  padding: clamp(0.38rem, 1vw, 0.72rem);
+}
+
+.hb-composite-art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hb-has-composite-art > .hb-annotated-stage,
+.hb-has-composite-art > .hb-operation-stage {
+  display: none;
+}
+
 .hb-annotated-art,
 .hb-operation-art {
   display: block;
+  width: 100% !important;
+  max-width: none !important;
   height: auto !important;
   margin: 0 !important;
-  max-width: none !important;
-  width: 100% !important;
 }
 
 .hb-annotated-art {
-  inset: 0;
   position: absolute;
+  inset: 0;
 }
 
 .hb-leader-layer {
-  height: 100%;
+  position: absolute;
   inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
   overflow: visible;
   pointer-events: none;
-  position: absolute;
-  width: 100%;
-  z-index: 1;
 }
 
 .hb-leader,
 .hb-leader-decoration {
   fill: none;
-  stroke: #4b4b4b;
+  stroke: var(--hb-text-muted);
   stroke-linecap: square;
   stroke-linejoin: miter;
   stroke-width: 0.32;
@@ -52,19 +1456,21 @@
 }
 
 .hb-figure-callout {
-  background: color-mix(in srgb, var(--color-background-primary, #fff) 94%, transparent);
-  color: var(--color-foreground-primary, #2f2f2f);
-  font-size: clamp(0.58rem, 1.22vw, 0.9rem);
-  left: var(--hb-x);
-  line-height: 1.08;
-  min-height: var(--hb-height);
-  overflow-wrap: anywhere;
-  padding: 0.08rem 0.14rem;
   position: absolute;
-  text-align: var(--hb-align);
   top: var(--hb-y);
-  width: var(--hb-width);
+  left: var(--hb-x);
   z-index: 2;
+  box-sizing: border-box;
+  width: var(--hb-width);
+  min-height: var(--hb-height);
+  padding: 0.1rem 0.18rem;
+  overflow-wrap: anywhere;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--hb-text);
+  font-family: var(--hb-font-family);
+  font-size: clamp(0.58rem, 1.22vw, 0.9rem);
+  line-height: 1.08;
+  text-align: var(--hb-align);
 }
 
 .hb-figure-callout p {
@@ -74,48 +1480,59 @@
 .hb-figure-callout strong {
   display: block;
   font-size: 1.08em;
-}
-
-.hb-operation-stage {
-  border: 1px solid var(--color-background-border, #dedede);
-  border-radius: 0.55rem;
+  font-weight: 700;
 }
 
 .hb-operation-prerequisite,
-.hb-operation-steps {
-  background: color-mix(in srgb, var(--color-background-primary, #fff) 93%, transparent);
-  color: var(--color-foreground-primary, #2f2f2f);
+.hb-operation-steps,
+.hb-operation-supporting-copy {
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 0.38rem 0.52rem;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--hb-text);
+  font-family: var(--hb-font-family);
   font-size: clamp(0.68rem, 1.25vw, 0.95rem);
   line-height: 1.22;
-  padding: 0.35rem 0.5rem;
-  z-index: 2;
 }
 
 .hb-operation-prerequisite {
-  border-radius: 999px;
-  left: var(--hb-x);
-  overflow: hidden;
   position: absolute;
   top: var(--hb-y);
+  left: var(--hb-x);
   width: var(--hb-width);
+  overflow: hidden;
+  border: 1px solid var(--hb-line-soft);
+  border-radius: 999px;
 }
 
 .hb-operation-prerequisite p,
-.hb-operation-steps .line {
+.hb-operation-steps .line,
+.hb-operation-supporting-copy .line {
   margin: 0;
 }
 
+.hb-operation-supporting-copy {
+  padding: 0.55rem 0.65rem;
+  background: var(--hb-surface);
+}
+
+.hb-operation-supporting-copy .line + .line {
+  margin-top: 0.28rem;
+}
+
 .hb-operation-step + .hb-operation-step {
-  margin-top: 0.18rem;
+  margin-top: 0.2rem;
 }
 
 .hb-operation-layout-status-right .hb-operation-steps,
 .hb-operation-layout-footer-overlay .hb-operation-steps {
-  left: var(--hb-x);
-  min-height: var(--hb-height);
   position: absolute;
   top: var(--hb-y);
+  left: var(--hb-x);
   width: var(--hb-width);
+  min-height: var(--hb-height);
+  border-radius: 0.28rem;
 }
 
 .hb-operation-layout-status-right .hb-operation-step .line:first-child {
@@ -123,28 +1540,206 @@
 }
 
 .hb-operation-layout-footer-panel .hb-operation-steps {
-  background: var(--color-background-secondary, #f2f2f2);
-  border-top: 1px solid var(--color-background-border, #dedede);
-  display: grid;
-  gap: 0.35rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  border-top: 1px solid var(--hb-line);
+  background: var(--hb-surface);
+}
+
+@media (min-width: 82rem) {
+  .content {
+    width: 58em;
+    padding-right: 2em;
+    padding-left: 2em;
+  }
+
+  .sidebar-drawer {
+    width: 15em;
+  }
 }
 
 @media (max-width: 760px) {
+  .page,
+  .main,
+  .content,
+  .article-container {
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .content {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    overflow-x: hidden;
+  }
+
+  #furo-main-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 2rem;
+    padding: 1.15rem 1rem 2.5rem;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+
+  #furo-main-content > section,
+  #furo-main-content > section > section {
+    margin-top: 2.2rem;
+  }
+
+  #furo-main-content h1,
+  #furo-main-content .hb-h1-pill {
+    padding: 0.68rem 0.78rem 0.64rem;
+    border-radius: 0 0 0.48rem 0.48rem;
+    font-size: clamp(1.12rem, 6vw, 1.34rem);
+  }
+
+  #furo-main-content h2:not(.hb-spec-section),
+  #furo-main-content .hb-subbar {
+    align-items: flex-start;
+    font-size: 1rem;
+  }
+
+  #furo-main-content h2:not(.hb-spec-section)::before,
+  #furo-main-content .hb-subbar::before {
+    margin-top: 0.22rem;
+  }
+
+  .hb-symbol-pair-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
+  }
+
+  #furo-main-content table.hb-symbol-panel-table {
+    font-size: 0.9rem;
+  }
+
+  #furo-main-content .hb-symbol-col-icon {
+    width: 24%;
+  }
+
+  #furo-main-content .hb-symbol-col-meaning {
+    width: 76%;
+  }
+
+  .hb-fcc-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.35rem;
+  }
+
+  .hb-fcc-composition {
+    padding: 1rem;
+    border-radius: 0.72rem;
+  }
+
+  #furo-main-content .table-wrapper.docutils {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .hb-lcd-mode-composition {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 0.72rem;
+    border-radius: 0.9rem;
+  }
+
+  #furo-main-content .hb-lcd-mode-art {
+    width: min(92%, 26rem) !important;
+  }
+
+  #furo-main-content table.hb-lcd-mode-table {
+    min-width: 34rem;
+  }
+
+  #furo-main-content section:has(> figure.hb-warranty-card),
+  #furo-main-content section:has(> figure.hb-warranty-period-card) {
+    margin-top: 2rem;
+    padding: 1.05rem 0.75rem 0.72rem;
+    border-radius: 0.7rem;
+  }
+
+  #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child,
+  #furo-main-content section:has(> figure.hb-warranty-period-card) > h2:first-child {
+    top: -0.78rem;
+    left: 0.72rem;
+    max-width: calc(100% - 1.44rem);
+    padding: 0.3rem 0.58rem 0.28rem;
+    font-size: 0.92rem;
+  }
+
+  .hb-warranty-intro-panel {
+    padding: 0.8rem 0.85rem;
+    border-radius: 0.7rem;
+    font-size: 0.94rem;
+  }
+
+  .hb-warranty-period-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.1rem;
+  }
+
+  .hb-warranty-period-item + .hb-warranty-period-item {
+    padding-top: 1rem;
+    border-top: 1px solid var(--hb-line-soft);
+  }
+
+  .hb-warranty-year-badge {
+    width: 3rem;
+    height: 3rem;
+    flex-basis: 3rem;
+    font-size: 2.18rem;
+  }
+
+  #furo-main-content table.docutils,
+  #furo-main-content table.manual-table,
+  #furo-main-content table.manual-spec-table,
+  #furo-main-content table.hb-spec-table {
+    min-width: 36rem;
+    font-size: 0.88rem;
+  }
+
+  #furo-main-content table.docutils th,
+  #furo-main-content table.docutils td,
+  #furo-main-content table.manual-table th,
+  #furo-main-content table.manual-table td,
+  #furo-main-content table.manual-spec-table th,
+  #furo-main-content table.manual-spec-table td,
+  #furo-main-content table.hb-spec-table th,
+  #furo-main-content table.hb-spec-table td {
+    padding: 0.58rem 0.65rem !important;
+  }
+
   .hb-annotated-stage,
   .hb-operation-stage {
-    aspect-ratio: auto;
     display: grid;
-    gap: 0.5rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
     overflow: visible;
+    aspect-ratio: auto;
+  }
+
+  .hb-annotated-figure.hb-has-composite-art > .hb-composite-stage {
+    display: none;
+  }
+
+  .hb-annotated-figure.hb-has-composite-art > .hb-annotated-stage {
+    display: grid;
   }
 
   .hb-annotated-art,
   .hb-operation-art {
-    grid-column: 1 / -1;
     position: relative;
+    grid-column: 1 / -1;
   }
 
   .hb-leader-layer {
@@ -153,23 +1748,27 @@
 
   .hb-figure-callout,
   .hb-operation-prerequisite,
+  .hb-operation-supporting-copy,
   .hb-operation-steps,
   .hb-operation-layout-status-right .hb-operation-steps,
   .hb-operation-layout-footer-overlay .hb-operation-steps {
-    background: var(--color-background-secondary, #f2f2f2);
-    border-left: 3px solid var(--color-brand-primary, #3d3d3d);
-    border-radius: 0.2rem;
-    font-size: 0.88rem;
-    grid-column: auto;
-    left: auto;
-    min-height: 0;
     position: relative;
-    text-align: left;
     top: auto;
+    left: auto;
+    grid-column: auto;
     width: auto;
+    min-height: 0;
+    padding: 0.55rem 0.65rem;
+    border: 0;
+    border-left: 3px solid var(--hb-brand-dark);
+    border-radius: 0.22rem;
+    background: var(--hb-surface);
+    font-size: 0.88rem;
+    text-align: left;
   }
 
   .hb-operation-prerequisite,
+  .hb-operation-supporting-copy,
   .hb-operation-steps {
     grid-column: 1 / -1;
   }
@@ -180,6 +1779,80 @@
 }
 
 @media (max-width: 520px) {
+  #furo-main-content table.manual-callout-table,
+  #furo-main-content table.manual-callout-table tbody,
+  #furo-main-content table.manual-callout-table tr,
+  #furo-main-content .manual-callout-label,
+  #furo-main-content .manual-callout-body {
+    display: block;
+    width: 100% !important;
+  }
+
+  #furo-main-content .manual-callout-label {
+    text-align: left;
+  }
+
+  .hb-inbox-grid {
+    gap: 0.42rem;
+  }
+
+  .hb-inbox-card {
+    min-height: clamp(15.5rem, 56vw, 21rem);
+    padding: 2.8rem 0.38rem 0.85rem;
+    border-radius: 0.58rem;
+  }
+
+  .hb-inbox-card::before {
+    top: 0.78rem;
+    width: 1.72rem;
+    height: 1.72rem;
+    font-size: 0.88rem;
+  }
+
+  #furo-main-content .hb-inbox-art {
+    width: 94% !important;
+    height: clamp(6.5rem, 24vw, 8.25rem) !important;
+    margin: 0.75rem auto 0.65rem !important;
+  }
+
+  .hb-inbox-label {
+    min-height: 2.8rem;
+    font-size: clamp(0.68rem, 3vw, 0.82rem);
+  }
+
+  .hb-inbox-tip {
+    grid-template-columns: 5.4rem minmax(0, 1fr);
+    border-radius: 0.58rem;
+  }
+
+  .hb-inbox-tip-label,
+  .hb-inbox-tip-body {
+    min-height: 0;
+    padding: 0.7rem 0.62rem;
+    font-size: 0.78rem;
+  }
+
+  .hb-app-download-grid {
+    gap: 1.2rem;
+  }
+
+  .hb-app-download-art-frame {
+    min-height: 7rem;
+  }
+
+  #furo-main-content .hb-app-download-art-store {
+    width: 78% !important;
+  }
+
+  #furo-main-content .hb-app-download-art-qr {
+    width: 60% !important;
+  }
+
+  .hb-app-download-copy {
+    font-size: 0.76rem;
+    line-height: 1.28;
+  }
+
   .hb-annotated-stage,
   .hb-operation-stage {
     grid-template-columns: minmax(0, 1fr);
@@ -189,5 +1862,23 @@
   .hb-operation-prerequisite,
   .hb-operation-steps {
     grid-column: 1;
+  }
+}
+
+@media print {
+  #furo-main-content {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+
+  #furo-main-content h1,
+  #furo-main-content h2,
+  #furo-main-content h3,
+  #furo-main-content table,
+  #furo-main-content figure {
+    break-inside: avoid;
   }
 }

@@ -57,6 +57,12 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/translation_memory.py": 790,
     "tools/source_record_index.py": 500,
     "tools/source_table_sync.py": 500,
+    # Web manual presentation surface — the public stylesheet stays a single
+    # RTD asset, while semantic component classes and the JSON contract keep
+    # ownership explicit. Pin both hotspots at their initial shipped size so
+    # follow-up work must extract/reuse components instead of growing them.
+    "tools/web_presentation.py": 2134,
+    "docs/renderers/contracts/web_manual.css": 1884,
     # IDML surface — pinned EXACTLY at current size (no headroom) during the
     # componentization plan (reports/idml_componentization/20260705-01): the
     # decomposition into tools/idml/ may only push the façade DOWN, never up.

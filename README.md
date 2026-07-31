@@ -579,14 +579,72 @@ content. [`.readthedocs.yaml`](.readthedocs.yaml) explicitly enables the `web`
 presentation profile; ordinary CLI/queue builds keep the default `document`
 profile, so DOCX and formal Markdown output do not change. The web profile
 opens at `00_preface` (`IMPORTANT`) instead of rendering `cover*`, `00_toc*`, or
-`99_back_cover*`. Targets listed in
+`99_back_cover*`; the merged-manual language inventory is omitted so `IMPORTANT`
+is the first visible web block. Targets listed in
 [`web_manual.json`](docs/renderers/contracts/web_manual.json) (currently
-`JE-1000F / US`) render Product Overview and operation figures from the RST
-image plus its table / line-block copy as searchable HTML labels with SVG
-leaders: desktop uses an overlay layout, while narrow screens fall back to the
-image followed by a label list. Other targets keep ordinary same-source HTML
-until their figure geometry is contracted. A new RTD target still requires its
-`docs/_review/<model>/<region>/` bundle to be committed first.
+`JE-1000F / US`) render both Product Overview views from locale-matched approved
+PDF artwork in English, French, and Spanish, while retaining the searchable HTML
+labels as the semantic fallback. The crops exclude the view headings so theme
+changes still control them. WHAT'S IN THE BOX is rebuilt from the source table as three numbered
+rounded cards plus the full-width TIP strip. The five operation panels use
+localized 2x crops of the approved PDF at every viewport width so their
+prerequisite pills, icons, numbering, and step layout stay visually intact; the
+original RST image and `line-block` copy remain in the hidden semantic layer.
+The car-charging connection panel and App add-device phone/button panel follow
+the same localized reference-figure rule. Their surrounding instructions,
+section headings, and the App's 2.3 step stay live HTML; headings are never baked
+into the crops. The App download asset is split into sharp store-badge and QR
+artwork; each is centered independently in its own column above live localized
+copy. App step 2.1 restores the small add-device plus as a crisp themeable inline
+control and removes the duplicate visible button wording; its localized meaning
+stays on the icon's `aria-label`. Reference panels remain centered, while every ordinary standalone RST
+image fills the same responsive content width and preserves its aspect ratio.
+FCC copy is composed as a live two-column card using the
+localized RST text and FCC mark, then reflows to one column on phones. The LCD
+signal-name cells in each localized MEANING OF SYMBOLS table are vertically
+centered beside their multi-line explanations. The following safety-symbol
+matrix remains searchable HTML but is split into the PDF's two independent
+rounded Symbol/Meaning panels, so long WEEE copy cannot stretch the left-hand
+Explosive material row. On desktop the two independent tables stretch to one
+shared outer height so their top and bottom borders align; phones stack the two
+panels without changing source content. The LCD
+icon page keeps its searchable four-column HTML table: status line-blocks remain
+separate lines, every cell has the PDF-derived grid, the first three columns use
+the light panel fill, compact number badges stay centered in the narrow first
+column, and narrow screens scroll the readable table horizontally.
+The LCD screen-mode panel remains live/searchable HTML but is recomposed as the
+template's rounded illustration-plus-table layout. The AC/DC Auto Resume matrix
+likewise uses the compact 50/50 grid, light left column, white right column, and
+true two-row Battery SOC span; both tables scroll inside their own frames on
+phones.
+The EN/FR/ES Troubleshooting tables also remain live HTML and use the PDF's
+14%/86% code/measures geometry, dark complete grid, light code column, and
+rounded frame; F6/F7 line-block actions remain separate searchable lines. The
+four Specifications groups use the same protected-table boundary with a
+31%/69% light-label/white-value split. Their source bullet glyph is removed
+before Pandoc so the responsive heading theme draws exactly one section marker;
+circled references such as `①` remain semantic superscripts inside table cells.
+The EN/FR/ES Warranty pages stay fully searchable HTML and use the PDF-derived
+card hierarchy: a light rounded purchase notice, six theme-controlled section
+headings as floating dark labels, five ordinary copy cards, and one responsive
+3-year/2-year card. The period columns use the localized source labels and an
+approximately 61%/39% desktop split, then stack on phones; the source 50/50
+table and inline widths do not enter the final HTML.
+Other targets keep ordinary same-source HTML until their figure presentation is
+contracted. A new RTD target still requires its
+`docs/_review/<model>/<region>/` bundle to be committed first. The shared
+[`web_manual.css`](docs/renderers/contracts/web_manual.css) projects the IDML
+visual language onto the responsive site: Gilroy-first typography with licensed
+font fallbacks, the brand-dark H1 bar, compact heading hierarchy, rounded tables
+and callouts, IDML-like spacing, and proportional artwork. It deliberately keeps
+continuous responsive flow instead of copying IDML's fixed pagination. In the
+web profile, semantic `manual-callout-table` blocks are protected before Pandoc
+and restored afterward, so WARNING, DANGER, CAUTION, and NOTE retain the same
+label/body classes, one shared light rounded treatment, an approximately 16%/84%
+split with aligned label boundaries across adjacent boxes, and no synthetic
+empty header. Semantic scientific subscripts such as `V<sub>oc</sub>` and
+specification superscripts such as `<sup>①</sup>` use the same checked protection
+boundary, so Pandoc cannot flatten them into visible Markdown notation.
 
 The current user workflow and source-of-truth rules are maintained in [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md).
 
