@@ -152,6 +152,11 @@ mostly `Spec_Master` / `Localized_Copy` — so F6 requests abstained
 Genuine duplicate keys still abstain (exact-or-abstain), so resolution is never a
 guess.
 
+The sidecar also exposes per-table `abstain_counts` for rows rejected because a
+live `record_id` or required business-key field was missing, plus the number of
+ambiguous primary keys. These counters are diagnostic only; the existing
+`records` and `ambiguous` maps remain the writeback contract.
+
 **Verify (live, env-gated):** run `sync-data` with the populated phase2 env, then
 check `source_record_index.json` has non-empty `Spec_Master` / `Manual_Copy_Source`
 `records`; F6 change requests for those tables resolve to a `record_id` instead of

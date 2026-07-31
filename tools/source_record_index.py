@@ -14,6 +14,10 @@ M2 and ``code-as-doc/architecture/Feishu_Cloud_Doc_Backport_Design.md`` R9):
 - **Exact-or-abstain.** A key that maps to zero rows resolves to ``unresolved``;
   a key that maps to more than one distinct ``record_id`` resolves to
   ``ambiguous``. The sidecar never guesses.
+- **Abstain diagnostics.** Each indexed table records counts for rows rejected
+  because their live id or required business key was missing, plus ambiguous
+  primary keys. The counts are additive metadata; consumers still use the
+  existing ``records`` / ``ambiguous`` maps.
 - **Optional derived file.** It is not in ``PHASE2_REQUIRED_DERIVED_FILES`` and a
   snapshot without it is still valid; consumers degrade to ``snapshot_only``.
 """
@@ -25,6 +29,11 @@ import re
 from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
+
+from tools.source_record_index_contract import (
+    registry_issues_from_namespace as _registry_issues_from_namespace,
+    validate_namespace as _validate_registry_namespace,
+)
 
 SIDECAR_FILENAME = "source_record_index.json"
 SCHEMA_VERSION = "source-record-index/v1"
@@ -150,6 +159,16 @@ TABLE_ROW_FILTERS: dict[str, Any] = {
 }
 
 
+def source_record_index_registry_issues() -> tuple[str, ...]:
+    """Return configuration drift in the source-record resolver registries."""
+    return _registry_issues_from_namespace(globals())
+
+
+def validate_source_record_index_registries() -> None:
+    """Fail closed when source-record index registries drift apart."""
+    _validate_registry_namespace(globals())
+
+
 def _join_key(values: list[str]) -> str:
     return _KEY_SEP.join(values)
 
@@ -192,19 +211,24 @@ def build_index(rows_by_table: dict[str, list[tuple[dict[str, Any], str]]]) -> d
     names as the emitted CSV.
     """
 
+    validate_source_record_index_registries()
     tables: dict[str, Any] = {}
     for table, key_fields in TABLE_KEY_FIELDS.items():
         pairs = rows_by_table.get(table) or []
         records: dict[str, str] = {}
         ambiguous: set[str] = set()
         rows_by_key: dict[str, list[tuple[str, dict[str, Any]]]] = {}
+        abstain_counts = {"missing_record_id": 0, "missing_required_key": 0}
         for row, record_id in pairs:
             rid = _clean(record_id)
             values = [_clean(row.get(field)) for field in key_fields]
-            if not rid or not _required_key_present(table, key_fields, values):
-                # Missing id or a missing REQUIRED key field -> cannot resolve
-                # safely: abstain. (An optional Slot_key may be empty; the row is
-                # still keyed by its required fields.)
+            if not rid:
+                abstain_counts["missing_record_id"] += 1
+                continue
+            if not _required_key_present(table, key_fields, values):
+                abstain_counts["missing_required_key"] += 1
+                # A missing REQUIRED key field cannot resolve safely. An optional
+                # Slot_key may be empty; the row is still keyed by its required fields.
                 continue
             key = _join_key(values)
             rows_by_key.setdefault(key, []).append((rid, row))
@@ -219,6 +243,10 @@ def build_index(rows_by_table: dict[str, list[tuple[dict[str, Any], str]]]) -> d
             "key_fields": list(key_fields),
             "records": records,
             "ambiguous": sorted(ambiguous),
+            "abstain_counts": {
+                **abstain_counts,
+                "ambiguous_key": len(ambiguous),
+            },
         }
         fallback = _build_fallback_records(table, ambiguous, rows_by_key)
         if fallback:
@@ -275,6 +303,7 @@ def collect_index_rows(
     then abstains on.
     """
 
+    validate_source_record_index_registries()
     out: dict[str, list[tuple[dict[str, Any], str]]] = {}
     for logical_name, index_table in INDEXED_LOGICAL_TABLES.items():
         normalized = normalized_rows_by_table.get(logical_name)
