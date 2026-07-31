@@ -6,7 +6,12 @@ from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from tools.new_line_scaffold import _auto_check, build_plan, materialize_scaffold
+from tools.new_line_scaffold import (
+    ASSET_OVERRIDE_DIRS,
+    _auto_check,
+    build_plan,
+    materialize_scaffold,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,6 +79,45 @@ class TestNewLineScaffold(unittest.TestCase):
                 output_config=ROOT / "data/phase2/generated.yaml",
                 output_manifest=ROOT / "docs/manifests/generated.yaml",
             )
+
+    def test_write_can_create_review_asset_override_scaffold(self) -> None:
+        plan = build_plan(ROOT / "configs/config.kr.yaml", root=ROOT)
+
+        review_root = ROOT / "docs" / "_review"
+        with TemporaryDirectory(dir=review_root) as tmp:
+            output_root = Path(tmp) / "JE-1000F" / "KR"
+            output_root.mkdir(parents=True)
+            override_root = output_root / "overrides"
+            result = materialize_scaffold(
+                plan,
+                source_config=ROOT / "configs/config.kr.yaml",
+                root=ROOT,
+                output_config=output_root / "config.yaml",
+                output_manifest=output_root / "manifest.yaml",
+                asset_override_root=override_root,
+            )
+
+            self.assertEqual("created", result.asset_override["status"])
+            for directory in ASSET_OVERRIDE_DIRS:
+                self.assertTrue((override_root / directory).is_dir())
+            self.assertTrue((override_root / "README.md").is_file())
+
+    def test_write_rejects_asset_override_outside_review_surface(self) -> None:
+        plan = build_plan(ROOT / "configs/config.kr.yaml", root=ROOT)
+
+        with TemporaryDirectory(dir=ROOT) as tmp:
+            output_root = Path(tmp)
+            with self.assertRaisesRegex(RuntimeError, "must stay under docs/_review"):
+                materialize_scaffold(
+                    plan,
+                    source_config=ROOT / "configs/config.kr.yaml",
+                    root=ROOT,
+                    output_config=output_root / "config.yaml",
+                    output_manifest=output_root / "manifest.yaml",
+                    asset_override_root=output_root / "overrides",
+                )
+            self.assertFalse((output_root / "config.yaml").exists())
+            self.assertFalse((output_root / "manifest.yaml").exists())
 
     def test_auto_check_uses_runtime_source_without_review_side_effects(self) -> None:
         completed = SimpleNamespace(returncode=0, stdout="", stderr="")

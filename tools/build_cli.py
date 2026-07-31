@@ -269,7 +269,7 @@ def parse_args(
     ap.add_argument(
         "--write",
         action="store_true",
-        help="For new-line: materialize an explicit config/manifest scaffold and run its gates",
+        help="For new-line: materialize the named scaffold; for asset-check --refresh: write recomputed hashes",
     )
     ap.add_argument(
         "--output-config",
@@ -299,7 +299,15 @@ def parse_args(
     ap.add_argument(
         "--force",
         action="store_true",
-        help="For new-line --write: allow replacing the two explicitly named scaffold files",
+        help="For new-line --write: allow replacing explicitly named scaffold files",
+    )
+    ap.add_argument(
+        "--asset-override-root",
+        default=None,
+        help=(
+            "For new-line --write: optional docs/_review/.../overrides root; "
+            "creates the controlled _assets, _static, and renderers scaffold"
+        ),
     )
     ap.add_argument(
         "--asset-key",
@@ -321,6 +329,11 @@ def parse_args(
         "--publish",
         action="store_true",
         help="For asset-check: require every selected asset to be ✅成品",
+    )
+    ap.add_argument(
+        "--refresh",
+        action="store_true",
+        help="For asset-check: recompute materialized registry hashes from export bytes",
     )
     ap.add_argument(
         "--asset-source-key",

@@ -63,6 +63,10 @@ python tools/data_snapshot.py fixture-refresh \
 # Check the asset control plane and resolve an approved import.
 python build.py asset-check --json
 python build.py asset-check --asset-key operation/ac_output --asset-format png --json
+# Recompute materialized export SHA-256 values without writing by default.
+python build.py asset-check --refresh --json
+# Apply the machine-generated hash refresh only after reviewing the diff.
+python build.py asset-check --refresh --write
 
 # Inspect the read-only new-line scaffold plan. This does not write configs,
 # manifests, phase2 snapshots, or Feishu source tables.
@@ -79,6 +83,15 @@ python build.py new-line \
   --output-manifest docs/manifests/manual_kr.generated.yaml \
   --fixture-source-root data/phase2 \
   --fixture-root tests/fixtures/phase2
+
+# Optional target-local review override scaffold.
+python build.py new-line \
+  --config configs/config.kr.yaml \
+  --model JE-1000F --region KR \
+  --write \
+  --output-config configs/config.kr.generated.yaml \
+  --output-manifest docs/manifests/manual_kr.generated.yaml \
+  --asset-override-root docs/_review/JE-1000F/KR/overrides
 
 # Package one PDF-compatible Illustrator master without editing the source,
 # worktree, registry, or Feishu Base. The output directory must not exist.

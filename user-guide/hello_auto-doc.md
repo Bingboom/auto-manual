@@ -526,7 +526,7 @@ Current flow:
 12. `python build.py review` seeds [`docs/_review/<model>/<region>/`](../docs/_review) from the runtime bundle when review starts; semantic asset identities are restored from the runtime rewrite provenance before review files are written
 13. `python build.py sync-review` refreshes parameter-driven review files from the runtime bundle without replacing the whole review bundle
 14. `python build.py check` runs config/layout validation, prepares the bundle, and scans for bundle issues
-15. `python build.py asset-check` validates the image-asset registry and resolves approved exports for renderer imports; `--allow-temporary` is diagnostic/operator inspection for `asset-check` only, while normal bundle assembly always rejects temporary, missing, and quarantined semantic assets; `--publish` is the stricter registry-wide status gate
+15. `python build.py asset-check` validates the image-asset registry and resolves approved exports for renderer imports; `--allow-temporary` is diagnostic/operator inspection for `asset-check` only, while normal bundle assembly always rejects temporary, missing, and quarantined semantic assets; `--publish` is the stricter registry-wide status gate; `--refresh` dry-runs a machine recomputation of materialized SHA-256 values and requires explicit `--write` for an atomic registry update, with missing/malformed exports failing closed
     - editable `.ai` deliveries stay out of Git; the maintainer follows [`closed_loop_ops_guide.md` §4.9.2](closed_loop_ops_guide.md#492-ai-交付与登记一页流程) for hash-first duplicate detection, upload to the dedicated Base asset-source table, and download verification; the legacy illustration table is not a fallback
     - sensitive App/QR candidates remain quarantined after extraction; a registry row may declare `source=reviewed-promotion:<promotion_id>` only when its contract under `data/asset_promotions/` still matches the reviewer decision, exact target scope, source AI/reference PDF/recipe/evidence identities, all candidate/output bytes, and deterministic composition by full SHA-256; any drift fails closed without a legacy-image fallback
 16. `python build.py asset-intake --asset-source-key <key> --asset-source-file <master.ai> --asset-recipe <recipe.json> --asset-output-root <new-dir>` freezes and verifies a PDF-compatible Illustrator source, then writes cleaned page archives/previews, recipe exports, `manifest.json`, `artifacts.csv`, and a deterministic ZIP into a new isolated directory
@@ -576,8 +576,9 @@ Important:
   identity, manifest pages, and template/recipe references, then reports
   `new-line-scaffold/v1`, `whitelist_diff`, and the F6-blocked
   `data/phase2` source surface. `--write` requires explicit
-  `--output-config` and `--output-manifest` paths, refreshes only the
-  committed fixture through `fixture-refresh`, and automatically runs the
+  `--output-config` and `--output-manifest` paths, optionally creates a
+  target-local review override scaffold with `--asset-override-root`,
+  refreshes only the committed fixture through `fixture-refresh`, and automatically runs the
   normal `build.py check` gate. It never writes production `data/phase2`
   or Feishu source tables; those remain a separately approved F6 operation.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
