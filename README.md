@@ -64,6 +64,10 @@ python tools/data_snapshot.py fixture-refresh \
 python build.py asset-check --json
 python build.py asset-check --asset-key operation/ac_output --asset-format png --json
 
+# Inspect the read-only new-line scaffold plan. This does not write configs,
+# manifests, phase2 snapshots, or Feishu source tables.
+python build.py new-line --config configs/config.kr.yaml --dry-run --json
+
 # Package one PDF-compatible Illustrator master without editing the source,
 # worktree, registry, or Feishu Base. The output directory must not exist.
 python build.py asset-intake \

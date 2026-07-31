@@ -43,6 +43,7 @@ from tools.build_entry_commands import (
     sync_review_command as _sync_review_command_impl,
 )
 from tools.asset_commands import run_asset_command as _run_asset_command_impl
+from tools.new_line_scaffold import run_new_line as _run_new_line_impl
 from tools.build_doctor import (
     check_word_com_available as _check_word_com_available_impl,
     collect_doctor_findings as _collect_doctor_findings_impl,
@@ -340,8 +341,6 @@ def run_translation_memory(args: argparse.Namespace) -> None:
         _emit_text(_payload_to_json_impl(payload))
         return
     _emit_text(_render_translation_memory_payload_impl(payload))
-
-
 def message_control_dry_run_command(args: argparse.Namespace) -> list[str]:
     return _message_control_dry_run_command_impl(
         args,
@@ -754,6 +753,7 @@ def main(argv: list[str] | None = None) -> int:
         clean_build_artifacts=clean_build_artifacts,
         maybe_sync_review_before_build=maybe_sync_review_before_build,
         run_asset_command=partial(_run_asset_command_impl, repo_root=ROOT),
+        run_new_line=partial(_run_new_line_impl, repo_root=ROOT),
     )
 
 

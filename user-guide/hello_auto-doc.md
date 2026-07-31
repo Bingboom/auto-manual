@@ -571,6 +571,12 @@ Important:
 - for that merged US flow, `Spec_Master.Source_lang` / `*_source` values are required, while CSV-driven non-source language columns may be blank because runtime lookup falls back to the source-language text automatically.
 - for the recommended new flow, sync Feishu/Lark into [`data/phase2/`](../data/phase2) first; once a valid snapshot exists, `rst`, `check`, `diff-report`, `release-manifest`, and `publish` default to it, while explicit `--data-root` still overrides the source root.
 - `build.py validate` checks config/layout even on a fresh clone without `data/phase2`; pass `--data-root tests/fixtures/phase2` when you want the full Spec_Master content validation without syncing live Feishu data.
+- `build.py new-line --config <config> --dry-run` is the Stage 3
+  read-only onboarding plan. It resolves the config inheritance chain, target
+  identity, manifest pages, and template/recipe references, then reports
+  `new-line-scaffold/v1`, `whitelist_diff`, and the F6-blocked
+  `data/phase2` source surface. It never writes source tables; the future
+  write flow is a separate approval-gated PR.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
 - `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> pdf -> md -> release-manifest` as one formal release command.
 - when `Document_link.Workflow_action = Publish` is consumed through the queue, keep `Document_link.Git_ref` pointed at the active review branch so the formal Publish PDF, the release-only DOCX, and the latest publish HTML are all built from that same branch instead of drifting back to `main`.

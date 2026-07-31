@@ -21,6 +21,7 @@ def parse_args(
             "doctor",
             "asset-check",
             "asset-intake",
+            "new-line",
             *build_actions,
             "idml",
             "review",
@@ -260,6 +261,11 @@ def parse_args(
         help="For translation-memory, queue-query, queue-resolve-action, or manual-index-query: maximum rows to return",
     )
     ap.add_argument("--json", action="store_true", help="Emit machine-readable JSON where supported")
+    ap.add_argument(
+        "--plan-output",
+        default=None,
+        help="For new-line: optional JSON plan path; new-line is always read-only in this stage",
+    )
     ap.add_argument(
         "--asset-key",
         action="append",

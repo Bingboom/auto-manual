@@ -16,6 +16,7 @@ class TestBuildDispatch(unittest.TestCase):
             "doctor",
             "asset-check",
             "asset-intake",
+            "new-line",
             "review",
             "check",
             "sync-review",
@@ -257,6 +258,7 @@ class TestBuildDispatch(unittest.TestCase):
             clean_build_artifacts=lambda config_path: calls.append(("clean", config_path)),
             maybe_sync_review_before_build=record_maybe_sync,
             run_asset_command=record_arg("asset-command"),
+            run_new_line=record_arg("new-line"),
         )
         return calls
 
