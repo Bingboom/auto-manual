@@ -151,44 +151,13 @@ _QUERY_TOKEN_RE = re.compile(r"[A-Za-z0-9_.-]+")
 _MODEL_TOKEN_RE = re.compile(r"^(?=.*\d)[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$")
 _REGION_TOKEN_RE = re.compile(r"^[A-Za-z]{2,3}(?:-[A-Za-z]{2,3})?$")
 _BUILD_FAMILY_TOKEN_RE = re.compile(r"^[a-z]{2,}(?:-[a-z][a-z0-9]*)+$")
-_LANG_CODES = {"en", "fr", "es", "ja", "jp", "zh", "cn", "de", "it", "pt", "br", "pt-br", "ko", "uk"}
-_LANG_ALIASES = {
-    "英语": "en",
-    "英文": "en",
-    "english": "en",
-    "法语": "fr",
-    "法文": "fr",
-    "french": "fr",
-    "西语": "es",
-    "西班牙语": "es",
-    "spanish": "es",
-    "德语": "de",
-    "德文": "de",
-    "german": "de",
-    "意语": "it",
-    "意大利语": "it",
-    "italian": "it",
-    "日语": "ja",
-    "日文": "ja",
-    "japanese": "ja",
-    "中文": "zh",
-    "汉语": "zh",
-    "chinese": "zh",
-    "葡语": "pt",
-    "葡萄牙语": "pt",
-    "portuguese": "pt-BR",
-    "brazilian portuguese": "pt-BR",
-    "pt-br": "pt-BR",
-    "pt_br": "pt-BR",
-    "br": "pt-BR",
-    "韩语": "ko",
-    "韩文": "ko",
-    "korean": "ko",
-    "乌克兰语": "uk",
-    "乌语": "uk",
-    "ukrainian": "uk",
-}
-_LANG_NAME_PATTERN = re.compile("|".join(re.escape(name) for name in sorted(_LANG_ALIASES, key=len, reverse=True)), re.IGNORECASE)
+from tools.queue_query_languages import (
+    LANG_ALIASES as _LANG_ALIASES,
+    LANG_CODES as _LANG_CODES,
+    LANG_NAME_PATTERN as _LANG_NAME_PATTERN,
+    SUPPORTED_LANGS as _SUPPORTED_LANGS,
+    canonical_query_lang as _canonical_query_lang,
+)
 _MARKET_ALIASES = {
     "欧规": "EU",
     "欧洲": "EU",
@@ -274,15 +243,10 @@ def _normalize_langs(value: Any) -> tuple[str, ...]:
         part = raw_part.strip().lower()
         if not part:
             continue
-        normalized = _LANG_ALIASES.get(part, part)
-        if normalized == "jp":
-            normalized = "ja"
-        if normalized == "cn":
-            normalized = "zh"
-        if normalized in {"pt", "br", "pt-br"}:
-            normalized = "pt-BR"
-        if (normalized in _LANG_CODES or normalized == "pt-BR") and normalized not in langs:
-            langs.append(normalized)
+        normalized = _canonical_query_lang(part)
+        if normalized in _SUPPORTED_LANGS or normalized == "zh-TW":
+            if normalized not in langs:
+                langs.append(normalized)
     return tuple(langs)
 
 
@@ -295,17 +259,17 @@ def _infer_langs(text: str) -> tuple[str, ...]:
             continue
         if after and re.match(r"[A-Za-z0-9_-]", after):
             continue
-        lang = _LANG_ALIASES.get(match.group(0).lower())
-        if lang and lang not in langs:
-            langs.append(lang)
+        lang = _canonical_query_lang(match.group(0))
+        if lang in _SUPPORTED_LANGS or lang == "zh-TW":
+            if lang not in langs:
+                langs.append(lang)
     tokens = {token.lower() for token in _query_tokens(text)}
     for token in tokens:
         if token in _LANG_CODES:
-            normalized = "ja" if token == "jp" else "zh" if token == "cn" else token
-            if normalized in {"pt", "br", "pt-br"}:
-                normalized = "pt-BR"
-            if normalized not in langs:
-                langs.append(normalized)
+            normalized = _canonical_query_lang(token)
+            if normalized in _SUPPORTED_LANGS or normalized == "zh-TW":
+                if normalized not in langs:
+                    langs.append(normalized)
     return tuple(langs)
 
 
@@ -370,7 +334,7 @@ def _row_task_id(row: QueueQueryRow) -> str:
 
 
 def _is_probable_lang_token(token: str) -> bool:
-    return token.strip().lower() in _LANG_CODES
+    return token.strip().casefold() in _LANG_CODES
 
 
 def _version_sort_key(version: str) -> tuple[int, tuple[int, ...], str]:
