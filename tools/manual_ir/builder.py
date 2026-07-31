@@ -1,7 +1,9 @@
 """Build a deterministic semantic IR from one prepared RST bundle."""
 from __future__ import annotations
 
+import hashlib
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -51,13 +53,65 @@ def _asset_refs(value: Any, *, parent_key: str = "") -> tuple[str, ...]:
     return tuple(dict.fromkeys(found))
 
 
+_ATTACHMENT_TOKEN_RE = re.compile(
+    r"(_attachments/[a-z_]+/[^\s,\"']*?)_[A-Za-z0-9]{16,}"
+    r"(\.(?:png|jpe?g|pdf|svg))",
+    re.IGNORECASE,
+)
+
+
+def _normalized_table_sha256(path: Path) -> str:
+    """Digest of one synced table with volatile attachment tokens stripped.
+
+    Synced CSVs embed attachment file paths whose basenames end in a Feishu
+    file token, and tokens rotate on EVERY export — so the raw bytes of e.g.
+    ``symbols_blocks.csv`` differ between two syncs of identical data. Strip
+    the token (keep the semantic name and extension) before hashing so the
+    identity tracks content, not export runs.
+    """
+    text = path.read_text(encoding="utf-8", errors="replace")
+    return hashlib.sha256(
+        _ATTACHMENT_TOKEN_RE.sub(r"\1\2", text).encode("utf-8")
+    ).hexdigest()
+
+
 def _snapshot_sha256(data_root: Path | None) -> str | None:
+    """Content identity of the phase2 snapshot, stable across re-syncs.
+
+    Two volatility sources used to make this pin structurally un-matchable on
+    CI (part of why the 1.6 publish had to bypass the same-source gate):
+    hashing the manifest FILE picked up ``generated_at``/tool metadata, and
+    the per-table digests picked up rotated attachment tokens embedded in the
+    CSVs. Hash the canonical set of token-normalized per-table digests
+    instead: identical data ⇒ identical identity, whenever and wherever the
+    sync ran; a real value change still changes the identity. Falls back to
+    the manifest file hash for legacy manifests without a tables list.
+    """
     if data_root is None:
         return None
     manifest = data_root / "snapshot_manifest.json"
-    if manifest.is_file():
+    if not manifest.is_file():
+        return None
+    try:
+        payload = json.loads(manifest.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
         return file_sha256(manifest)
-    return None
+    tables = payload.get("tables")
+    if not isinstance(tables, list) or not tables:
+        return file_sha256(manifest)
+    canonical: list[tuple[str, str, str]] = []
+    for entry in tables:
+        if not isinstance(entry, dict):
+            continue
+        logical_name = str(entry.get("logical_name"))
+        file_name = str(entry.get("file_name"))
+        table_path = data_root / file_name
+        if table_path.is_file():
+            digest = _normalized_table_sha256(table_path)
+        else:
+            digest = str(entry.get("sha256"))
+        canonical.append((logical_name, file_name, digest))
+    return value_sha256(sorted(canonical))
 
 
 def _declared_languages(root: Path, bundle_root: Path) -> list[str]:
