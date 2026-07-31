@@ -1282,6 +1282,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             self.assertEqual("US", payload["region"])
             self.assertEqual("en", payload["lang"])
             self.assertEqual("0.2", payload["version"])
+            self.assertEqual(
+                "manual-release/je-1000f/us/en/0.2",
+                payload["release_tag"],
+            )
             self.assertEqual("https://example.feishu.cn/wiki/token_123", payload["document_link_url"])
             self.assertEqual(
                 "reports/releases/JE-1000F/US/en/versions/0.2/manual_je1000f_us_en_publish_0.2.pdf",

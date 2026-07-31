@@ -23,6 +23,41 @@ def normalize_release_token(value: str) -> str:
     return token.strip("-")
 
 
+def _release_tag_component(value: str, *, field: str) -> str:
+    token = normalize_release_token(value).strip(".").lower()
+    while ".." in token:
+        token = token.replace("..", ".")
+    if token.endswith(".lock"):
+        token = f"{token}-release"
+    if not token:
+        raise RuntimeError(f"release tag requires a non-empty {field}")
+    return token
+
+
+def release_tag_for_target(
+    *,
+    model: str,
+    region: str,
+    languages: list[str] | tuple[str, ...],
+    version: str,
+) -> str:
+    language_token = "-".join(
+        _release_tag_component(language, field="language") for language in languages
+    )
+    if not language_token:
+        raise RuntimeError("release tag requires at least one language")
+    version_token = _release_tag_component(version or "unversioned", field="version")
+    return "/".join(
+        (
+            "manual-release",
+            _release_tag_component(model, field="model"),
+            _release_tag_component(region, field="region"),
+            language_token,
+            version_token,
+        )
+    )
+
+
 def _build_languages(cfg: dict[str, Any]) -> list[str]:
     build_cfg_raw = cfg.get("build", {})
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}

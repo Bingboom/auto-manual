@@ -57,6 +57,10 @@ class TestReleaseManifest(unittest.TestCase):
             snapshot_path = root / manifest["snapshot"]["path"]
             self.assertEqual("1.2", manifest["release_version"])
             self.assertEqual(
+                "manual-release/je-1000f/us/en/1.2",
+                manifest["release_tag"],
+            )
+            self.assertEqual(
                 "reports/releases/JE-1000F/US/en/versions/1.2/snapshot",
                 manifest["snapshot"]["path"],
             )
@@ -74,6 +78,7 @@ class TestReleaseManifest(unittest.TestCase):
             self.assertEqual(manifest["snapshot"]["snapshot_sha256"], csv_row["snapshot_sha256"])
             self.assertIn('"lang": "en"', csv_row["snapshot_target_matrix"])
             self.assertEqual("1785513828", csv_row["source_date_epoch"])
+            self.assertEqual(manifest["release_tag"], csv_row["release_tag"])
 
     def test_build_release_manifest_should_write_json_and_csv(self) -> None:
         with tempfile.TemporaryDirectory() as td:

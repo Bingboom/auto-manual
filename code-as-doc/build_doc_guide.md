@@ -228,6 +228,16 @@ Meaning:
   `rebuild_verification.json` report sits beside `snapshot/` in the version
   directory; snapshot drift, toolchain drift, missing provenance, or any output
   mismatch fails closed.
+- Every versioned release manifest and queue `publish_meta.json` carries the
+  same deterministic `release_tag`, formatted as
+  `manual-release/<model>/<region>/<all-build-languages>/<version>`. The build
+  does not mutate Git. After the release artifacts and rebuild evidence pass,
+  use `python tools/release_tag.py --manifest <manifest.json>` to preview the
+  binding, then `--write --push` to create the annotated tag. Its annotation
+  binds the full `git_sha`, manifest SHA-256, and frozen snapshot SHA-256;
+  retries are idempotent and any tag/manifest rebind fails closed. See the
+  operator rollback procedure in
+  [`../user-guide/closed_loop_ops_guide.md`](../user-guide/closed_loop_ops_guide.md#410-发布标记与回滚k14).
 - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1): Windows automation wrapper for `process-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars, runs with `--staging-root .tmp/staging`, forwards any extra queue args such as `--dry-run` or `--record-id`, and writes run logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
 - [`../scripts/process_build_queue_feishu.ps1`](../scripts/process_build_queue_feishu.ps1): one-click Windows wrapper that forces Feishu/wiki-only upload before calling the shared queue wrapper
 - the DingTalk AliDocs mirror-upload chain was retired on 2026-07-02: its one-click queue wrapper, browser-session upload CLI, and setup guide were removed, and `lark_drive` (Feishu/wiki) is the only artifact upload provider in operation; the queue-side `dingtalk_alidocs_session` provider code remains dormant pending a separate removal decision
