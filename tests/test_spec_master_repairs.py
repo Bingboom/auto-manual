@@ -11,9 +11,31 @@ from tools.utils.spec_master import (
     build_template_row_key_mapping_rows,
     repair_known_spec_master_values,
 )
+from tools.utils.spec_master_shared import _KNOWN_VALUE_REPAIRS, _load_known_value_repairs
 
 
 class TestSpecMasterRepairs(unittest.TestCase):
+    def test_known_value_repairs_are_loaded_from_tracked_csv(self) -> None:
+        self.assertEqual(
+            {
+                ("JE-2000F", "US", "tpl_front_dc12_port_spec", "Value_source"): "12V/10A Max",
+                ("JE-2000F", "JP", "tpl_main_power_button_label", "Value_source"): "メイン電源ボタン",
+            },
+            _KNOWN_VALUE_REPAIRS,
+        )
+
+    def test_known_value_repair_csv_rejects_duplicate_keys(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "repairs.csv"
+            path.write_text(
+                "Model,Region,Row_key,Column,Replacement\n"
+                "JE-2000F,US,key,Value_source,first\n"
+                "JE-2000F,US,key,Value_source,second\n",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "duplicate key"):
+                _load_known_value_repairs(path)
+
     def test_repair_known_spec_master_values_should_fix_targeted_rows(self) -> None:
         rows = [
             {
@@ -251,4 +273,3 @@ class TestSpecMasterRepairs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

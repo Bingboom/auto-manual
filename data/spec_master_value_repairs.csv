@@ -1,0 +1,3 @@
+Model,Region,Row_key,Column,Replacement
+JE-2000F,US,tpl_front_dc12_port_spec,Value_source,12V/10A Max
+JE-2000F,JP,tpl_main_power_button_label,Value_source,メイン電源ボタン

@@ -439,6 +439,8 @@ If you update any of these:
 - [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
 - [`data/phase2/troubleshooting_blocks.csv`](../data/phase2/troubleshooting_blocks.csv)
 
+The dormant known `Spec_Master` value repairs are tracked in [`../data/spec_master_value_repairs.csv`](../data/spec_master_value_repairs.csv). The repair pass reads this CSV and fails closed on a missing, malformed, or duplicate repair key; do not add target/value patches back into Python.
+
 Safety page note:
 
 - US safety intro pages are maintained directly in [`docs/templates/page_us-en/safety_en.rst`](../docs/templates/page_us-en/safety_en.rst), [`docs/templates/page_us-fr/safety_fr.rst`](../docs/templates/page_us-fr/safety_fr.rst), and [`docs/templates/page_us-es/safety_es.rst`](../docs/templates/page_us-es/safety_es.rst)

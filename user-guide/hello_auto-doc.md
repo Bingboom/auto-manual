@@ -307,6 +307,7 @@ The manual system now has four layers, but they are used at different stages.
    - [`data/phase2/Spec_Footnotes.csv`](../data/phase2/Spec_Footnotes.csv)
    - [`data/phase2/Spec_Notes.csv`](../data/phase2/Spec_Notes.csv)
    - [`data/phase2/spec_titles.csv`](../data/phase2/spec_titles.csv)
+   - [`data/spec_master_value_repairs.csv`](../data/spec_master_value_repairs.csv) — tracked dormant known-value repairs consumed by the spec repair pass
    - [`data/phase2/symbols_blocks.csv`](../data/phase2/symbols_blocks.csv)
    - [`data/phase2/lcd_icons_blocks.csv`](../data/phase2/lcd_icons_blocks.csv)
    - [`data/phase2/Manual_Copy_Source.csv`](../data/phase2/Manual_Copy_Source.csv)

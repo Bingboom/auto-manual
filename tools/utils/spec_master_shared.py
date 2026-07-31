@@ -369,10 +369,38 @@ _KNOWN_ROW_LABEL_REPAIRS: dict[str, str] = {
     "??????": "Rated Capacity",
     "棰濆畾瀹归噺": "Rated Capacity",
 }
-_KNOWN_VALUE_REPAIRS: dict[tuple[str, str, str, str], str] = {
-    ("JE-2000F", "US", "tpl_front_dc12_port_spec", "Value_source"): "12V/10A Max",
-    ("JE-2000F", "JP", "tpl_main_power_button_label", "Value_source"): "メイン電源ボタン",
-}
+_KNOWN_VALUE_REPAIR_FIELDS = ("Model", "Region", "Row_key", "Column", "Replacement")
+_KNOWN_VALUE_REPAIRS_PATH = (
+    Path(__file__).resolve().parents[2] / "data" / "spec_master_value_repairs.csv"
+)
+
+
+def _load_known_value_repairs(path: Path) -> dict[tuple[str, str, str, str], str]:
+    try:
+        with path.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            if tuple(reader.fieldnames or ()) != _KNOWN_VALUE_REPAIR_FIELDS:
+                raise ValueError(
+                    f"known value repair CSV columns must be {_KNOWN_VALUE_REPAIR_FIELDS}: {path}"
+                )
+            repairs: dict[tuple[str, str, str, str], str] = {}
+            for line_number, row in enumerate(reader, start=2):
+                if None in row:
+                    raise ValueError(f"known value repair CSV has extra columns at line {line_number}: {path}")
+                values = tuple((row.get(field) or "").strip() for field in _KNOWN_VALUE_REPAIR_FIELDS)
+                if any(not value for value in values):
+                    raise ValueError(f"known value repair CSV has an empty field at line {line_number}: {path}")
+                model, region, row_key, column, replacement = values
+                key = (model, region, row_key, column)
+                if key in repairs:
+                    raise ValueError(f"known value repair CSV has a duplicate key at line {line_number}: {path}")
+                repairs[key] = replacement
+            return repairs
+    except OSError as exc:
+        raise RuntimeError(f"cannot read tracked known value repairs: {path}") from exc
+
+
+_KNOWN_VALUE_REPAIRS = _load_known_value_repairs(_KNOWN_VALUE_REPAIRS_PATH)
 _SOURCE_COLUMN_NAMES: dict[str, tuple[str, ...]] = {
     "Row_label": ("Row_label_source", "row_label_source"),
     "Param": ("Param_source", "param_source"),
