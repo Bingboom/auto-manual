@@ -1361,3 +1361,25 @@ Why it mattered:
 - The contract records that Feishu upsert has no compare-and-swap primitive:
   this K12-min slice is a verified lease, while shared workflow concurrency and
   full stale-claim recovery remain separate follow-on work.
+
+## 81. 2026-07-31: Queue Workflows Share Record Domains and a Vercel Mutex (Workstream W / Stage 4b item 2)
+
+What changed:
+
+- Build Draft Package and Publish now share one GitHub Actions concurrency
+  domain per Document_link record; conservative batch dispatches share the
+  `batch` slot, while Start Review uses its own review-init record domain.
+- Publish processing and site staging remain record-scoped. The staged site is
+  handed to a separate job, where one global concurrency group serializes the
+  Vercel production build, deployment, and `HTML_link` writeback.
+- Added workflow-structure tests for the shared keys, non-cancelling policy,
+  run-scoped artifact handoff, independent TeX smoke slot, and global Vercel
+  mutex.
+
+Why it mattered:
+
+- Different document records no longer wait behind one repository-wide build
+  lock, while Draft and Publish cannot race on the same Document_link row.
+- The single mutable Vercel production project still has exactly one publisher
+  at a time, and the verified Feishu claim lease remains the backstop for
+  targeted-versus-batch overlap.

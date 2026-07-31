@@ -462,7 +462,11 @@ view. Only the worker whose token still owns every row in the group may
 continue; active leases are omitted from pending selection, while expired
 leases are reclaimable. Feishu record upsert has no compare-and-swap primitive,
 so this is a verified lease boundary rather than a claim of linearizable
-storage; shared workflow concurrency is the next protection layer.
+storage. GitHub Actions supplies the second layer: Draft and Publish share a
+`feishu-document-queue-<record_id>` concurrency domain (batch runs share the
+`batch` slot), Start Review uses its own review-init record domain, and the
+Vercel production build/deploy/writeback tail is serialized separately without
+forcing unrelated document builds back into one global queue.
 
 A versioned Publish now binds its DOCX, Markdown, and PDF bytes to the release
 Git commit and frozen phase2 snapshot. Verify that contract with

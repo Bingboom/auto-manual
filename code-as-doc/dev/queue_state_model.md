@@ -64,9 +64,22 @@ selection and expired leases are reclaimable.
 
 This K12-min contract is deliberately precise about its guarantee boundary:
 Feishu `record-upsert` has no compare-and-swap/revision precondition, so token
-write plus readback verification is not linearizable storage. Shared
-workflow-level concurrency is still required to close the delayed-write race;
-full stale-claim and cross-workflow recovery remains the later K12 scope.
+write plus readback verification is not linearizable storage. GitHub Actions
+therefore provides a second ownership boundary:
+
+- Build Draft Package and Publish jobs share
+  `feishu-document-queue-<Document_link record_id>`; batch dispatches share the
+  conservative `feishu-document-queue-batch` slot.
+- Start Review operates on review-init queue identity and uses
+  `feishu-review-init-queue-<record_id>` (or its `batch` slot).
+- Publish site candidates may be built independently, but the Vercel
+  production build/deploy/`HTML_link` writeback tail owns the global
+  `feishu-vercel-production` mutex.
+
+All groups use `cancel-in-progress: false`, so a newer dispatch waits instead
+of cancelling an owner that may still hold a live Feishu lease. The claim
+token remains the authoritative row-level guard when a targeted and batch run
+overlap or when a workflow is retried outside the same GitHub concurrency key.
 
 ## 4. Success
 

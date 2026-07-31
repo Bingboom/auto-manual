@@ -658,6 +658,7 @@ Scope:
 - U3: extract target/config resolution (`load_config`, `resolve_build_targets`, `build_root_for_target`) out of the [`tools/build_docs.py`](../tools/build_docs.py) facade into `tools/utils/` so queue/check/release modules stop importing the build orchestrator
 - U4: structured logging baseline: introduce `logging` with levels in queue orchestration and build entry paths first, replacing prints incrementally
 - U5: atomic queue claim (compare-and-swap or claim token + TTL on the queue row) plus a shared concurrency contract across the three queue workflows; then a parallel build matrix for independent targets
+- Execution note: Workstream W / Stage 4b items 1–2 now provide a verified two-hour row lease, shared Draft/Publish Document_link record groups, a separate Start Review identity domain, and a global Vercel production mutex. The independent-target build matrix remains the later U5 expansion.
 - U6: data-driven language onboarding: remove the hardcoded language enumerations in `signal_words.py` / `sync_data_models.py` / `localized_copy.py` / `manual_copy_source.py` and the paired golden-test edits, so a new language is data + config only
 - U7: release labeling (tags or release IDs) on top of the existing manifests, plus a written rollback/redeploy runbook
 

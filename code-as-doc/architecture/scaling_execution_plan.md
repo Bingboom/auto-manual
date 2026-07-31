@@ -131,7 +131,7 @@
 〔GATE〕队列语义变更整体拍板；合并前两条测试行实测（pending 槽/限流/Vercel）。
 
 1. [x] [M] `feat(queue): K12-min atomic claim token` — Done（机器）：`构建结果` 承载 2 小时 token lease；组内写入后绕过 pending view 全量回读，只有全部 token 匹配且未过期才进入 sync/build；active claim 不再入 pending，expired claim 可重领，双派发 fixture 锁定仅一个回读获胜。Feishu upsert 无 CAS，故文档明确这是 verified lease 而非线性化存储；跨 workflow 分键仍由下一项补齐，全量 K12 仍留 Tier3。
-2. [S] `feat(queue): per-record concurrency group + Vercel mutex`（deps: K12-min + multi-target site）
+2. [x] [S] `feat(queue): per-record concurrency group + Vercel mutex` — Done（机器）：Draft/Publish 共享 Document_link record 并发域，Start Review 使用独立 review-init 域；Publish 构建可按记录并行，Vercel production build/deploy/HTML_link 回写由独立全局 mutex 串行，所有组均禁止 cancel-in-progress。
 3. [S] `chore(ci): artifacts retention + selective upload`（manifests/<ts> 无界增长与全量上传——额度卡死有前科）
 
 ### Stage 5 — 行为收口与扩张前置门（14 PR;唯一集中出现行为变化的阶段,每项独立开关、先取证后收紧）
