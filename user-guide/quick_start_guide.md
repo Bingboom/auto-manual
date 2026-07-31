@@ -66,6 +66,7 @@ python3 tools/source_intake.py verify --candidates reports/source_intake/<run-id
 - `Document_ID`（可选；Start Review 不需要版本号）
 - `Build_family`（可选；填写时作为 config 路由提示）
 - `Lang`（可选）
+- 语言显示标签和 `queue-query` 的语言别名统一从 `tools/lang_registry.py` 读取；新增语言时只维护注册表及其 aliases，查询仍兼容既有中英文别名。
 - `Version`（可选）
 - `Review_status`
 - `是否进入Review`

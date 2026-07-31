@@ -544,6 +544,11 @@ class TestQueueQuery(unittest.TestCase):
         self.assertEqual("build-draft-package", inferred.query_workflow_action)
         self.assertTrue(inferred.allow_multiple)
 
+    def test_language_query_aliases_follow_registry(self) -> None:
+        for alias, expected in (("jp", "ja"), ("ukr", "uk"), ("cn", "zh"), ("pt_br", "pt-BR"), ("韩语", "ko")):
+            with self.subTest(alias=alias):
+                self.assertEqual((expected,), queue_query._normalize_langs(alias))
+
     def test_infer_queue_query_from_text_should_treat_model_copy_as_market_wildcard_batch(self) -> None:
         for query_text in [
             "构建JE-1000F说明书文案",

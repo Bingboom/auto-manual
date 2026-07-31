@@ -4,6 +4,8 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from tools import lang_registry
+
 VALID_FORMATS = {"html", "word", "pdf", "md"}
 VALID_PDF_MODES = {"latex", "word"}
 VALID_SOURCE_MODES = {"auto", "runtime", "review", "review-asis"}
@@ -22,16 +24,7 @@ _MANUAL_COVER_SECTION_RE = re.compile(
     r"<section class=\"manual-cover\">.*?</section>",
     re.IGNORECASE | re.DOTALL,
 )
-LANGUAGE_LABELS = {
-    "en": "English",
-    "es": "Espanol",
-    "fr": "Francais",
-    "ja": "Japanese",
-    "de": "German",
-    "it": "Italian",
-    "uk": "Ukrainian",
-    "ko": "Korean",
-}
+LANGUAGE_LABELS = lang_registry.language_display_labels()
 
 
 @dataclass(frozen=True)

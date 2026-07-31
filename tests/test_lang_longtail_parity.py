@@ -137,15 +137,12 @@ class LanguageLongTailParityTest(unittest.TestCase):
             build_docs.LANGUAGE_LABELS,
             build_docs_shared.LANGUAGE_LABELS,
             build_review_preview_render.LANGUAGE_LABELS,
-            _LANG_HEADERS,
         )
+        expected_labels = lang_registry.language_display_labels()
         for language_map in maps:
-            missing = {
-                language
-                for language in ("de", "it", "uk", "ko")
-                if language not in language_map
-            }
-            self.assertFalse(missing, language_map)
+            self.assertEqual(language_map, expected_labels)
+        for language in ("de", "it", "uk", "ko"):
+            self.assertIn(language, _LANG_HEADERS)
 
     def test_core_longtail_alias_sets_remain_closed(self) -> None:
         aliases = {

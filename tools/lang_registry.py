@@ -317,6 +317,16 @@ def language_spec(value: object) -> LanguageSpec | None:
     return LANGUAGE_BY_CODE.get(code) if code else None
 
 
+def language_display_labels() -> dict[str, str]:
+    """Return display labels keyed by every registered canonical/alias token."""
+
+    return {
+        alias.casefold(): spec.display_name
+        for spec in LANGUAGE_REGISTRY
+        for alias in spec.aliases
+    }
+
+
 def language_alias_candidates(value: object) -> tuple[str, ...]:
     """Return registered historical aliases in lookup precedence order."""
 

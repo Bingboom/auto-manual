@@ -20,6 +20,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.config_pages import CsvPage
+from tools import lang_registry
 from tools.build_docs_bundle import prepare_manual_bundle as _prepare_manual_bundle_impl
 from tools.build_docs_cli import parse_args as _parse_args_impl
 from tools.build_docs_entry import run_build as _run_build_impl
@@ -147,16 +148,7 @@ from tools.validate_config import validate as validate_cfg
 from tools.validate_layout_params import validate as validate_layout
 
 paths = get_paths()
-LANGUAGE_LABELS = {
-    "en": "English",
-    "es": "Espanol",
-    "fr": "Francais",
-    "ja": "日本語",
-    "de": "German",
-    "it": "Italian",
-    "uk": "Ukrainian",
-    "ko": "Korean",
-}
+LANGUAGE_LABELS = lang_registry.language_display_labels()
 
 
 load_config = load_config_mapping
