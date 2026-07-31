@@ -6,6 +6,7 @@ from __future__ import annotations
 import re
 
 from .renderers_common import apply_vars, rst_escape
+from .. import lang_registry
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens
 
@@ -14,17 +15,6 @@ PH_TROUBLESHOOTING_ROWS_RST = "{{ troubleshooting_rows_rst }}"
 
 _TRUE_VALUES = {"1", "true", "yes", "y"}
 _FALSE_VALUES = {"0", "false", "no", "n"}
-
-_LANG_SUFFIX = {
-    "ja": "jp",
-    "jp": "jp",
-    "uk": "ukr",
-    "ukr": "ukr",
-    "pt-br": "pt-BR",
-    "pt_br": "pt-BR",
-    "br": "pt-BR",
-}
-
 
 def _truthy(value: str, *, default: bool = True) -> bool:
     raw = (value or "").strip().casefold()
@@ -38,20 +28,30 @@ def _truthy(value: str, *, default: bool = True) -> bool:
 
 
 def _lang_suffix(lang: str) -> str:
-    raw = (lang or "").strip().casefold()
-    return _LANG_SUFFIX.get(raw, raw)
+    candidates = _lang_suffix_candidates(lang)
+    return candidates[0] if candidates else (lang or "").strip()
 
 
 def _lang_suffix_candidates(lang: str) -> list[str]:
-    suffix = _lang_suffix(lang)
-    candidates = [
-        suffix,
-        str(suffix).casefold(),
-        str(suffix).replace("-", "_"),
-        str(suffix).casefold().replace("-", "_"),
-    ]
-    if (lang or "").strip().casefold() in {"br", "pt-br", "pt_br"}:
-        candidates.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
+    spec = lang_registry.language_spec(lang)
+    if spec is not None:
+        suffixes = [
+            column.removeprefix("corrective_measures_")
+            for column in spec.columns_for_table("troubleshooting")
+            if column.startswith("corrective_measures_")
+        ]
+    else:
+        suffixes = [(lang or "").strip()]
+    candidates: list[str] = []
+    for suffix in suffixes:
+        candidates.extend(
+            [
+                suffix,
+                suffix.casefold(),
+                suffix.replace("-", "_"),
+                suffix.casefold().replace("-", "_"),
+            ]
+        )
     return list(dict.fromkeys(candidate for candidate in candidates if candidate))
 
 
@@ -96,11 +96,10 @@ def _matches_region(row: dict[str, str], *, target_region: str) -> bool:
         return True
     if not target_region:
         return True
-    target = target_region.casefold()
-    if target == "pt-br":
-        target_aliases = {"pt-br", "pt_br", "br"}
-    else:
-        target_aliases = {target}
+    target_aliases = {
+        alias.casefold()
+        for alias in lang_registry.language_alias_candidates(target_region)
+    }
     return any(token.casefold() in target_aliases for token in tokens)
 
 

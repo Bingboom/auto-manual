@@ -174,6 +174,17 @@ class LanguageRegistryTest(unittest.TestCase):
         self.assertIsNone(lang_registry.canonical_language("xx"))
         self.assertIsNone(lang_registry.language_spec("xx"))
 
+    def test_alias_candidates_are_registry_derived_and_rotated(self) -> None:
+        for spec in lang_registry.LANGUAGE_REGISTRY:
+            aliases = tuple(alias.casefold() for alias in spec.aliases)
+            for index, alias in enumerate(aliases):
+                with self.subTest(language=spec.code, alias=alias):
+                    self.assertEqual(
+                        lang_registry.language_alias_candidates(alias),
+                        aliases[index:] + aliases[:index],
+                    )
+        self.assertEqual(lang_registry.language_alias_candidates("xx"), ("xx",))
+
 
 if __name__ == "__main__":
     unittest.main()
