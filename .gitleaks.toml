@@ -24,6 +24,8 @@ regexes = [
   '''(?i)(document_key|row_key|symbol_key|copy_key|asset_key|business_key|page_key|source_key|record_key)\s*[=:]''',
   # bare 27/28-char Feishu-token fixture assignment (tests)
   '''(?i)^\s*token\s*=\s*"[A-Za-z0-9]{27,28}"''',
+  # Feishu table identifiers are resource IDs, not credentials.
+  '''(?i)DOCUMENT_KEY_TABLE_ID\s*[=:]''',
 ]
 paths = [
   # generated diff-report artifacts: links carry resource tokens by design
