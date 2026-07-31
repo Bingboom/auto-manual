@@ -31,6 +31,7 @@ pages:
   - type: rst_include
     lang: zh
     file: templates/page_zh/06_ups_mode.rst
+    capability: UPS功能
   - type: rst_include
     lang: zh
     file: templates/page_zh/charging.rst

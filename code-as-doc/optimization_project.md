@@ -728,6 +728,12 @@ the Manual IR target, frozen manifest declaration, and every page against the
 shared registry. Ordinary/fallback export remains compatible, and registry
 aliases plus the neutral `cover`/`toc` page roles remain accepted.
 
+Execution note: Stage 5 item 3 binds every current UPS page entry across all 17
+family manifests to `UPS功能`. JP, KR, EU, US, AU, pt-BR, and CN now share the
+same assembly-time capability selection path; a repository-wide contract test
+guards all 24 entries, while pre/post materialized-page hashes prove no current
+configured target changed its page stack.
+
 Execution note: Stage 5 item 4(a) migrates the solar-panel PV input range in
 the eight shared-language charging-method templates to the semantic
 `pv_input_range/value` page row and `PV_INPUT_RANGE` runtime placeholder. Page

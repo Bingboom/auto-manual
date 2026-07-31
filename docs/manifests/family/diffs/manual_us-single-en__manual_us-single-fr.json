@@ -59,6 +59,7 @@
           "type": "rst_include"
         },
         {
+          "capability": "UPS功能",
           "file": "templates/page_shared/fr/06_ups_mode.rst",
           "lang": "fr",
           "type": "rst_include"

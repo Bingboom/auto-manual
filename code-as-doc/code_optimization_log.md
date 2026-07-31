@@ -1468,3 +1468,24 @@ Why it mattered:
   could silently inherit English symbol copy or skip governed layout behavior.
 - Strict production now fails at the contract boundary, while exploratory and
   legacy fallback builds retain their existing compatibility path.
+
+## 86. 2026-07-31: Capability Selection Reaches Every Manual Family (Workstream W / Stage 5 item 3)
+
+What changed:
+
+- Added `capability: UPS功能` to every existing `06_ups_mode` page entry across
+  all 17 family manifests, covering 24 single-language and multilingual page
+  occurrences.
+- Refreshed the deterministic family diff carriers so both anchors plus all 15
+  folded manifests continue to reconstruct with canonical byte identity.
+- Added a repository-wide contract test that rejects a family manifest whose
+  UPS page is missing or misstates its capability annotation.
+
+Why it mattered:
+
+- Assembly-time capability selection was previously effective only for the US
+  multilingual manifest even though JP, KR, EU, and other families carried the
+  same semantic UPS page.
+- Every current configured target retains the exact same materialized page
+  sequence, while future models whose `UPS功能` value is false can now drop the
+  chapter consistently without a family-specific code path.

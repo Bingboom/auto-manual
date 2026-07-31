@@ -71,6 +71,7 @@
           "type": "generated_page"
         },
         {
+          "capability": "UPS功能",
           "file": "templates/page_shared/en/06_ups_mode.rst",
           "lang": "en",
           "type": "rst_include"
@@ -180,6 +181,7 @@
           "type": "generated_page"
         },
         {
+          "capability": "UPS功能",
           "file": "templates/page_shared/fr/06_ups_mode.rst",
           "lang": "fr",
           "type": "rst_include"
@@ -289,6 +291,7 @@
           "type": "generated_page"
         },
         {
+          "capability": "UPS功能",
           "file": "templates/page_shared/es/06_ups_mode.rst",
           "lang": "es",
           "type": "rst_include"
@@ -398,6 +401,7 @@
           "type": "generated_page"
         },
         {
+          "capability": "UPS功能",
           "file": "templates/page_shared/de/06_ups_mode.rst",
           "lang": "de",
           "type": "rst_include"
@@ -507,6 +511,7 @@
           "type": "generated_page"
         },
         {
+          "capability": "UPS功能",
           "file": "templates/page_shared/it/06_ups_mode.rst",
           "lang": "it",
           "type": "rst_include"
@@ -616,6 +621,7 @@
           "type": "generated_page"
         },
         {
+          "capability": "UPS功能",
           "file": "templates/page_shared/uk/06_ups_mode.rst",
           "lang": "uk",
           "type": "rst_include"

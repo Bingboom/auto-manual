@@ -518,6 +518,10 @@ It covers all 17 manifests as two anchors plus 15 carriers and leaves the
 existing YAML compatibility files untouched.
 The `Manifest Regenerate and Diff Guardrail` workflow runs this check on
 manifest/config changes and fails when a YAML golden drifts from its carrier.
+Every current `06_ups_mode` entry across the 17 family manifests declares
+`capability: UPS功能`; this keeps JP, KR, EU, US, AU, pt-BR, and CN on the same
+assembly-time page-selection contract instead of making capability filtering a
+US-only behavior.
 
 The fixed US + JP release matrix runners — [`scripts/build_us_jp_manuals.py`](scripts/build_us_jp_manuals.py) and [`scripts/build_us_jp_manuals.ps1`](scripts/build_us_jp_manuals.ps1) — are documented in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For a US-only subset, pass `--languages en,es,fr` (or the subset you need) to the same runner.
 
@@ -612,6 +616,7 @@ Use the document that owns the topic:
 - `sync-data` reuses authoritative Base field metadata to report missing phase2 source columns as non-blocking `MISSING_COLUMNS` warnings in `snapshot_manifest.json` and CLI output; the existing `spec_footnotes` `pt-BR` alias remains explicitly supported.
 - [`data/capability_known_missing.csv`](data/capability_known_missing.csv) is the reviewed ledger for targets whose capability row is not yet mirrored; `build.py check` reports unlisted gaps as non-blocking `CAPABILITY_ROW_MISSING` warnings while keeping capability page selection fail-open.
 - [`data/capability_page_rules.csv`](data/capability_page_rules.csv) is also the source of truth for the capability columns emitted by `sync-data`; adding a rule adds the mirror column without a second Python list.
+- Capability-governed pages must carry their `capability:` annotation in every family manifest that contains them. A repository-wide contract test currently locks all 24 `06_ups_mode` entries to `UPS功能`, including single-language and multilingual bundles.
 - Production IDML handoff `production/source_trace.json` records `skipped_raw_blocks` from `manual.ir.json`. Ordinary/fallback targets keep this report-only; an approved-reference target freezes `idml_contract.max_skipped_raw` in its layout plan and production export fails when the count exceeds that approved baseline.
 - Strict Manual IR validation and approved-reference production reject any top-level, manifest-declared, or page language that is absent from the shared language registry. Ordinary/fallback export remains permissive for compatibility; registered historical aliases such as `jp` and `pt_br` remain valid.
 - [`tests/fixtures/phase2/`](tests/fixtures/phase2): committed fixture snapshot used only by CI/tests, not by live authoring
