@@ -119,7 +119,7 @@
 10. [M] `feat(idml): reference_layout_scaffold contract draft generator` — 52 页手抄哈希 → 只审 composition/approval；不接激活路径，fail-closed 兜底。
 11. [M] `feat(finalize): --jobs manifest Python side` — 清单校验/逐 job 报告聚合/单 job 失败隔离；**jobs 清单强制显式 preset 字段**（修 [PDF/X-4 Japan]/Japan Color 默认 ICC 坑——批判环漏配项）；附 `indesign_package.complete=FALSE` 扫描自动组批盘点。
 12. [S] `feat(finalize): JSX batch loop` — 外层循环+try/catch 隔离；〔操作者验收〕设计机 2-doc 实测。
-13. [M] `refactor(idml): contract-driven app page ownership` — 退役 `is_je1000f_us_*` 模式;guardrail 正则防再生。
+13. [M] `refactor(idml): contract-driven app page ownership` — Done（机器）：批准契约的 `app_add_device.page_owners` 同时驱动隐藏资产冻结和排版；退役 `is_je1000f_us_*` 模式，guardrail 正则防再生。
 14. [M] `refactor(idml): explicit page-role table + assembly coverage WARNING`
 15. [S] `feat(release): layout signals in release manifest`（overset 数/页数入 manifest——发布链版式信号从零到有）
 16. [M] `feat(release): E1-PR1 freeze publish snapshot + manifest binding`

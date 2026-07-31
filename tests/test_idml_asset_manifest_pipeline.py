@@ -18,7 +18,8 @@ from tools.gen_index_bundle_models import MaterializedBundle
 from tools.idml.asset_contracts import (
     APP_ADD_DEVICE_ICON_ASSET_URI,
     APP_PAIRING_PANEL_ASSET_URI,
-    is_je1000f_us_en_app_reference_page,
+    APP_ADD_DEVICE_COMPONENT,
+    component_owns_page,
     requirements_for_page,
 )
 from tools.idml.components.base import RenderContext
@@ -33,6 +34,32 @@ _REGISTRY_HEADER = (
     "asset_key,override_for,类别,语言维度,状态,待无字化,适用机型,适用区域,"
     "导出物路径,语言变体,内容哈希,备注\n"
 )
+
+
+def _approved_app_contract(
+    *,
+    model: str = "JE-1000F",
+    region: str = "US",
+    language: str = "en",
+    source_ref: str = "page/12_app_setup_placeholder.rst",
+) -> dict[str, object]:
+    return {
+        "schema_version": "approved-reference-layout-plan/v1",
+        "target": {
+            "model": model,
+            "region": region,
+            "languages": [language],
+        },
+        "approval": {"status": "approved"},
+        "idml_contract": {
+            "editable_components": {
+                APP_ADD_DEVICE_COMPONENT: {
+                    "page_owners": [source_ref],
+                },
+            },
+        },
+        "pages": [{"source_ref": source_ref, "language": language}],
+    }
 
 
 def _sha256(path: Path) -> str:
@@ -105,52 +132,73 @@ def _write_idml(path: Path, uris: list[str]) -> None:
 
 
 class IdmlAssetManifestPipelineTests(unittest.TestCase):
-    def test_app_reference_page_predicate_fails_closed(self) -> None:
-        page = Path("page/12_app_setup_placeholder.rst")
-        for language in ("en", "en-US", "en_US", "fr", "es"):
-            with self.subTest(language=language):
-                self.assertTrue(is_je1000f_us_en_app_reference_page(
-                    page,
-                    model="JE-1000F",
-                    region="US",
-                    language=language,
-                ))
-
-        excluded = (
-            (page, "JE-1000F", "EU", "en"),
-            (page, "OTHER", "US", "en"),
-            (Path("page/p34_12_app_setup_placeholder.rst"), "JE-1000F", "US", "de"),
-            (page, None, "US", "en"),
+    def test_component_page_ownership_comes_only_from_approved_contract(self) -> None:
+        source_ref = "page/custom_connect_workflow.rst"
+        contract = _approved_app_contract(
+            model="FUTURE-42",
+            region="MARS",
+            language="zz",
+            source_ref=source_ref,
         )
-        for page_path, model, region, language in excluded:
-            with self.subTest(
-                page=page_path,
-                model=model,
-                region=region,
-                language=language,
-            ):
-                self.assertFalse(is_je1000f_us_en_app_reference_page(
-                    page_path,
-                    model=model,
-                    region=region,
+
+        self.assertTrue(component_owns_page(
+            Path(source_ref),
+            language="zz",
+            component=APP_ADD_DEVICE_COMPONENT,
+            approved_contract=contract,
+        ))
+        for page, language, candidate in (
+            (Path(source_ref), "en", contract),
+            (Path("page/other.rst"), "zz", contract),
+            (Path("../page/custom_connect_workflow.rst"), "zz", contract),
+            (Path(source_ref), "zz", None),
+            (
+                Path(source_ref),
+                "zz",
+                {**contract, "approval": {"status": "draft"}},
+            ),
+        ):
+            with self.subTest(page=page, language=language, candidate=candidate):
+                self.assertFalse(component_owns_page(
+                    page,
                     language=language,
+                    component=APP_ADD_DEVICE_COMPONENT,
+                    approved_contract=candidate,
                 ))
 
     def test_requirement_covers_the_three_approved_us_app_languages(self) -> None:
-        for language in ("en", "en-US", "en_US", "fr", "es"):
+        refs = {
+            "en": "page/12_app_setup_placeholder.rst",
+            "fr": "page/p34_12_app_setup_placeholder.rst",
+            "es": "page/p50_12_app_setup_placeholder.rst",
+        }
+        contract = {
+            "schema_version": "approved-reference-layout-plan/v1",
+            "target": {
+                "model": "JE-1000F",
+                "region": "US",
+                "languages": ["en", "fr", "es"],
+            },
+            "approval": {"status": "approved"},
+            "idml_contract": {
+                "editable_components": {
+                    APP_ADD_DEVICE_COMPONENT: {
+                        "page_owners": list(refs.values()),
+                    },
+                },
+            },
+            "pages": [
+                {"source_ref": source_ref, "language": language}
+                for language, source_ref in refs.items()
+            ],
+        }
+        for language in ("en", "fr", "es"):
             with self.subTest(language=language):
-                page = Path(
-                    "page/p34_12_app_setup_placeholder.rst"
-                    if language == "fr" else
-                    "page/p50_12_app_setup_placeholder.rst"
-                    if language == "es" else
-                    "page/12_app_setup_placeholder.rst"
-                )
+                page = Path(refs[language])
                 matched = requirements_for_page(
                     page,
-                    model="JE-1000F",
-                    region="US",
                     language=language,
+                    approved_contract=contract,
                 )
                 self.assertEqual(
                     (APP_PAIRING_PANEL_ASSET_URI, APP_ADD_DEVICE_ICON_ASSET_URI),
@@ -158,19 +206,17 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
                 )
 
         excluded = (
-            (Path("page/p34_12_app_setup_placeholder.rst"), "JE-1000F", "US", "de"),
-            (Path("page/12_app_setup_placeholder.rst"), "JE-1000F", "EU", "en"),
-            (Path("page/12_app_setup_placeholder.rst"), "OTHER", "US", "en"),
+            (Path(refs["fr"]), "de"),
+            (Path("page/other.rst"), "en"),
         )
-        for page, model, region, language in excluded:
-            with self.subTest(page=page, model=model, region=region, language=language):
+        for page, language in excluded:
+            with self.subTest(page=page, language=language):
                 self.assertEqual(
                     (),
                     requirements_for_page(
                         page,
-                        model=model,
-                        region=region,
                         language=language,
+                        approved_contract=contract,
                     ),
                 )
 
@@ -183,16 +229,16 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
             ("body", "Power\nAC\nDC / USB"),
         ]
         cases = (
-            ("JE-1000F", "US", "en", True),
-            ("JE-1000F", "US", "en-US", True),
-            ("JE-1000F", "US", "en_US", True),
-            ("JE-1000F", "US", "fr", True),
-            ("JE-1000F", "US", "es", True),
-            ("JE-1000F", "EU", "en", False),
-            ("OTHER", "US", "en", False),
+            ("en", _approved_app_contract(), True),
+            ("en-US", _approved_app_contract(), True),
+            ("en_US", _approved_app_contract(), True),
+            ("fr", _approved_app_contract(language="fr"), True),
+            ("es", _approved_app_contract(language="es"), True),
+            ("en", _approved_app_contract(source_ref="page/other.rst"), False),
+            ("en", None, False),
         )
-        for model, region, language, expected in cases:
-            with self.subTest(model=model, region=region, language=language):
+        for language, approved_contract, expected in cases:
+            with self.subTest(language=language, approved_contract=approved_contract):
                 role_labels = {
                     "main_power": "Power",
                     "ac": "AC",
@@ -201,31 +247,23 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
                 language_code = language.lower().replace("_", "-").split("-", 1)[0]
                 requirements = requirements_for_page(
                     page,
-                    model=model,
-                    region=region,
                     language=language,
+                    approved_contract=approved_contract,
                 )
+                plan_contract = json.loads(json.dumps(approved_contract))
+                if isinstance(plan_contract, dict):
+                    app = plan_contract["idml_contract"]["editable_components"][
+                        APP_ADD_DEVICE_COMPONENT
+                    ]
+                    app["control_labels"] = {
+                        language_code: {
+                            "base_labels_by_role": role_labels,
+                            "render_labels_by_role": role_labels,
+                        },
+                    }
                 plan = {
                     "plan_source": "approved-reference",
-                    "approved_contract": {
-                        "target": {
-                            "model": model,
-                            "region": region,
-                            "languages": [language],
-                        },
-                        "idml_contract": {
-                            "editable_components": {
-                                "app_add_device": {
-                                    "control_labels": {
-                                        language_code: {
-                                            "base_labels_by_role": role_labels,
-                                            "render_labels_by_role": role_labels,
-                                        },
-                                    },
-                                },
-                            },
-                        },
-                    },
+                    "approved_contract": plan_contract,
                     "pages": [{
                         "source_path": page.as_posix(),
                         "language": language,
@@ -257,7 +295,7 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
             {
                 "plan_source": "approved-reference",
                 "approved_contract": {
-                    "target": {"model": "JE-1000F", "region": "US"},
+                    "approval": {"status": "approved"},
                 },
                 "pages": [{"source_path": page.as_posix()}],
             },
@@ -296,6 +334,49 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
                 + "app/add_device_plus,,插图,中立,✅成品,FALSE,ALL,ALL,"
                 + "docs/templates/word_template/common_assets/app,,"
                 + f"add_device_plus.png:{_sha256(icon)},fixture\n",
+                encoding="utf-8",
+            )
+            contracts_dir = docs / "renderers" / "contracts"
+            plan_dir = contracts_dir / "reference_layout"
+            plan_dir.mkdir(parents=True)
+            target = {
+                "model": "JE-1000F",
+                "region": "US",
+                "languages": ["en", "fr", "es"],
+            }
+            approved_plan = _approved_app_contract()
+            approved_plan["target"] = target
+            approved_plan["idml_contract"]["editable_components"][  # type: ignore[index]
+                APP_ADD_DEVICE_COMPONENT
+            ]["page_owners"] = [  # type: ignore[index]
+                "page/12_app_setup_placeholder.rst",
+                "page/p34_12_app_setup_placeholder.rst",
+                "page/p50_12_app_setup_placeholder.rst",
+            ]
+            approved_plan["pages"] = [
+                {
+                    "source_ref": "page/12_app_setup_placeholder.rst",
+                    "language": "en",
+                },
+                {
+                    "source_ref": "page/p34_12_app_setup_placeholder.rst",
+                    "language": "fr",
+                },
+                {
+                    "source_ref": "page/p50_12_app_setup_placeholder.rst",
+                    "language": "es",
+                },
+            ]
+            plan_path = plan_dir / "fixture.json"
+            plan_path.write_text(json.dumps(approved_plan), encoding="utf-8")
+            (contracts_dir / "reference_layout_registry.json").write_text(
+                json.dumps({
+                    "schema_version": "approved-reference-layout-registry/v1",
+                    "plans": [{
+                        "target": target,
+                        "path": plan_path.relative_to(repo).as_posix(),
+                    }],
+                }),
                 encoding="utf-8",
             )
             page = page_dir / "12_app_setup_placeholder.rst"

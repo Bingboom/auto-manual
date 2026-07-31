@@ -907,6 +907,12 @@ stems): Download splits Store and QR into linked build-only crops with two copy
 frames; Add Device places the approved pairing-panel export below independent
 2.1/2.2 and POWER/AC/DC/USB frames; Connect Result crops the three screens and
 emits 2.3/2.4/2.5 plus the reference note separately.
+The source-page opt-in lives only in the approved contract at
+`idml_contract.editable_components.app_add_device.page_owners`. Bundle asset
+freezing and production composition consume that same list, including the
+contracted page language. Do not add a model/region-named `is_*_page` helper
+when onboarding another approved target; add its exact source refs to its own
+approved contract.
 The three Product Overview tables are the semantic source for Add Device
 labels. Stable row/column slots resolve `main_power`, `dc_usb`, and `ac` by
 language; the approved plan stores both that exact base snapshot and the

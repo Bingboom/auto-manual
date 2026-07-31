@@ -1060,3 +1060,26 @@ Why it mattered:
 - The single-job path still uses the same extracted runner and keeps its
   existing version-pin, PDF/X, and preflight behavior; the new layer is
   additive and does not alter the production IDML or approval contracts.
+
+## 67. 2026-07-31: App Page Ownership Moves Into the Approved Contract (Workstream W / Stage 4a item 13)
+
+What changed:
+
+- Added exact `page_owners` to the approved `app_add_device` component contract
+  and validate that list against the Manual IR pages that contain Add Device
+  art.
+- Replaced the JE-1000F/US-named page predicates with generic component-page
+  ownership helpers. Bundle asset freezing resolves the exact registered
+  contract; prose promotion, page splitting, and story placement consume the
+  same contract from the normalized approved plan.
+- Added a maintainability regex that rejects model/region-named IDML page
+  predicates, plus a synthetic future-target test proving that contract data
+  alone can opt in a differently named source page.
+
+Why it mattered:
+
+- A new approved product line no longer needs another `is_<model>_<region>_*`
+  branch to receive the App composition and its hidden assets.
+- Ownership now fails closed on draft contracts, missing owners, wrong source
+  refs, or mismatched page languages, while the existing 58-page composition,
+  asset identities, and geometry remain unchanged.

@@ -40,6 +40,36 @@ class TestCheckMaintainabilityGuardrails(unittest.TestCase):
                     thresholds={"tools/process_build_queue.py": 10},
                 )
 
+    def test_target_scoped_idml_page_predicate_guardrail(self) -> None:
+        with temp_test_root() as root:
+            write_lines(
+                root / "tools" / "idml" / "routing.py",
+                [
+                    "def page_owns_component():",
+                    "    return True",
+                    "def is_je1000f_us_app_reference_page():",
+                    "    return True",
+                ],
+            )
+
+            failures = guardrails.collect_target_scoped_idml_page_predicates(root)
+
+        self.assertEqual(1, len(failures))
+        self.assertEqual("tools/idml/routing.py", failures[0].path)
+        self.assertEqual(3, failures[0].line)
+        self.assertEqual(
+            "is_je1000f_us_app_reference_page",
+            failures[0].identifier,
+        )
+
+    def test_repository_has_no_target_scoped_idml_page_predicates(self) -> None:
+        self.assertEqual(
+            [],
+            guardrails.collect_target_scoped_idml_page_predicates(
+                guardrails._REPO_ROOT,
+            ),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

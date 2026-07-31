@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -85,6 +86,19 @@ class GuardrailFailure:
     max_lines: int
 
 
+@dataclass(frozen=True)
+class TargetScopedIdmlPagePredicate:
+    path: str
+    line: int
+    identifier: str
+
+
+_TARGET_SCOPED_IDML_PAGE_PREDICATE_RE = re.compile(
+    r"\b(is_[a-z][a-z0-9]*\d[a-z0-9]*_[a-z]{2}"
+    r"(?:_[a-z]{2})?_[a-z0-9_]*(?:page|owner)[a-z0-9_]*)\b"
+)
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Low-noise maintainability guardrails for known hotspot files."
@@ -128,6 +142,29 @@ def collect_hotspot_failures(
     return failures
 
 
+def collect_target_scoped_idml_page_predicates(
+    repo_root: Path,
+) -> list[TargetScopedIdmlPagePredicate]:
+    """Reject product/region-named page ownership branches in IDML code."""
+
+    idml_root = repo_root / "tools" / "idml"
+    if not idml_root.is_dir():
+        return []
+    failures: list[TargetScopedIdmlPagePredicate] = []
+    for path in sorted(idml_root.rglob("*.py")):
+        for line_number, line in enumerate(
+            path.read_text(encoding="utf-8", errors="ignore").splitlines(),
+            start=1,
+        ):
+            for match in _TARGET_SCOPED_IDML_PAGE_PREDICATE_RE.finditer(line):
+                failures.append(TargetScopedIdmlPagePredicate(
+                    path=path.relative_to(repo_root).as_posix(),
+                    line=line_number,
+                    identifier=match.group(1),
+                ))
+    return failures
+
+
 def _render_failure(failure: GuardrailFailure) -> str:
     over_by = failure.actual_lines - failure.max_lines
     return (
@@ -143,6 +180,18 @@ def main(argv: list[str] | None = None) -> int:
         print("[maintainability] Guardrail failures detected:")
         for failure in failures:
             print(_render_failure(failure))
+        return 1
+
+    target_predicates = collect_target_scoped_idml_page_predicates(
+        args.repo_root.resolve(),
+    )
+    if target_predicates:
+        print("[maintainability] Target-scoped IDML page predicates detected:")
+        for failure in target_predicates:
+            print(
+                f"[maintainability] {failure.path}:{failure.line}: "
+                f"{failure.identifier}"
+            )
         return 1
 
     language_literals = check_language_literal_ratchet.check_repository(args.repo_root.resolve())

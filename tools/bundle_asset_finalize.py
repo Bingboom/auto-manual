@@ -22,7 +22,11 @@ from tools.asset_usage import (
 )
 from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
 from tools.gen_index_bundle_paths import read_included_page_paths
-from tools.idml.asset_contracts import requirements_for_page
+from tools.idml.asset_contracts import (
+    IdmlAssetContractError,
+    load_registered_approved_contract,
+    requirements_for_page,
+)
 
 _INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$", re.MULTILINE)
 _LATEX_LANGUAGE_RE = re.compile(r"\\HBApplyLang\{([^{}]+)\}")
@@ -302,6 +306,15 @@ def finalize_materialized_bundle(
         strict=False,
     )
     configured_languages = _configured_languages(cfg)
+    try:
+        approved_contract = load_registered_approved_contract(
+            root=repo_root,
+            model=bundle.model,
+            region=bundle.region,
+            languages=configured_languages,
+        )
+    except IdmlAssetContractError as exc:
+        raise AssetRegistryError(f"IDML asset ownership contract is invalid: {exc}") from exc
     usage = BundleAssetUsage(
         target=AssetTarget(
             model=bundle.model,
@@ -344,10 +357,9 @@ def finalize_materialized_bundle(
 
     for rst_path, rst_language in rst_entries:
         for requirement in requirements_for_page(
-            rst_path,
-            model=bundle.model,
-            region=bundle.region,
+            rst_path.relative_to(bundle_dir),
             language=rst_language,
+            approved_contract=approved_contract,
         ):
             frozen = usage.resolve_reference(
                 requirement.asset_uri,

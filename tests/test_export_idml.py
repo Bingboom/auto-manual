@@ -1565,8 +1565,6 @@ class ExportIdmlTests(unittest.TestCase):
         for stem, language, existing_break in (
             ("p34_12_app_setup_placeholder", "fr", False),
             ("p50_12_app_setup_placeholder", "es", True),
-            ("12_app_setup_placeholder", "fr", False),
-            ("12_app_setup_placeholder", "es", True),
         ):
             with self.subTest(stem=stem, language=language):
                 blocks = [
@@ -1602,6 +1600,25 @@ class ExportIdmlTests(unittest.TestCase):
                 self.assertIn(
                     ("body", "Localized 2.3 Bluetooth copy"),
                     promoted,
+                )
+
+        for language in ("fr", "es"):
+            with self.subTest(unowned_language=language):
+                blocks = [
+                    ("image", "add_device.png"),
+                    ("component", json.dumps({"kind": "notice"})),
+                ]
+                plan = _approved_app_plan(
+                    "page/12_app_setup_placeholder.rst",
+                    language,
+                )
+                self.assertEqual(
+                    blocks,
+                    align_app_second_page(
+                        blocks,
+                        plan,
+                        "12_app_setup_placeholder",
+                    ),
                 )
 
     def test_approved_reference_figures_absorb_only_adjacent_figure_copy(self) -> None:

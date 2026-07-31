@@ -128,6 +128,11 @@ owns overlay sizing for all three languages, and approved builds fail when a
 required source role, display variant, asset, or style token is missing. These
 presentation variants do not change the source/IR content hash; every label
 remains unlocked and editable in the top layer.
+The same approved plan explicitly lists these source pages under
+`idml_contract.editable_components.app_add_device.page_owners`. That list
+drives both hidden App-asset packaging and production composition, so a page
+that is absent, belongs to another language, or comes from a draft contract
+cannot silently enter the reference layout.
 
 For the approved-PDF replica of `JE-1000F / US / en+fr+es` (方案 2), production
 mode must resolve the
