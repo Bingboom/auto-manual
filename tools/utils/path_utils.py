@@ -46,6 +46,7 @@ class PathSegments:
     LATEST = "latest"
     SNAPSHOT = "snapshot"
     RELEASE_SNAPSHOT_IDENTITY_JSON = "release_snapshot_identity.json"
+    RELEASE_REBUILD_VERIFICATION_JSON = "rebuild_verification.json"
     CONTENT_QC = "content_qc"
     CLOUD_DOC_BACKPORT = "cloud_doc_backport"
     SOURCE_INTAKE = "source_intake"
@@ -138,6 +139,10 @@ def release_snapshot_of(version_dir: Path) -> Path:
 
 def release_snapshot_identity_of(snapshot_dir: Path) -> Path:
     return snapshot_dir / PathSegments.RELEASE_SNAPSHOT_IDENTITY_JSON
+
+
+def release_rebuild_verification_of(version_dir: Path) -> Path:
+    return version_dir / PathSegments.RELEASE_REBUILD_VERIFICATION_JSON
 
 
 def content_qc_reports_of(base_root: Path) -> Path:

@@ -1,5 +1,6 @@
 ﻿from __future__ import annotations
 
+import hashlib
 import struct
 import tempfile
 import unittest
@@ -13,11 +14,38 @@ from tools.word_bundle_html import (
     _convert_rst_fragment_to_html,
     _inject_img_dimensions,
     _rewrite_word_friendly_fragment,
+    _stage_fragment_assets,
 )
 from tools.word_bundle_html_rewrite import _extract_spec_word_data
 
 
 class TestWordBundle(unittest.TestCase):
+    def test_stage_fragment_assets_should_bind_names_to_content_not_checkout_path(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            expected_digest = hashlib.sha256(b"same-image-bytes").hexdigest()[:12]
+            staged_names: list[str] = []
+            for checkout in (root / "checkout-a", root / "checkout-b"):
+                source_dir = checkout / "page"
+                source_dir.mkdir(parents=True)
+                source_path = source_dir / "manual.rst"
+                source_path.write_text("demo\n", encoding="utf-8")
+                (source_dir / "icon.png").write_bytes(b"same-image-bytes")
+                bundle_dir = checkout / "build"
+
+                rewritten = _stage_fragment_assets(
+                    '<img src="icon.png" />',
+                    source_path,
+                    bundle_dir,
+                )
+
+                staged = next((bundle_dir / "assets").iterdir())
+                staged_names.append(staged.name)
+                self.assertIn(staged.resolve().as_uri(), rewritten)
+
+            self.assertEqual(staged_names[0], staged_names[1])
+            self.assertEqual(f"icon_{expected_digest}.png", staged_names[0])
+
     def _write_alert_labels_symbols_blocks(self, root: Path) -> Path:
         path = root / "symbols_blocks.csv"
         path.write_text(

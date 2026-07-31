@@ -14,6 +14,7 @@ from tools.gen_index_bundle import MaterializedBundle
 from tools.word_bundle_common import paths
 from tools.word_bundle_docx_images import embed_external_docx_images as _embed_external_docx_images
 from tools.word_bundle_docx_pandoc import resolve_pandoc_binary
+from tools.word_bundle_docx_reproducible import normalize_docx_for_reproducibility
 from tools.word_bundle_docx_styles import (
     enforce_docx_outline_levels as _enforce_docx_outline_levels,
     remap_reference_doc_styles as _remap_reference_doc_styles,
@@ -226,4 +227,5 @@ def export_word_from_bundle(
     _embed_external_docx_images(out_path)
     _remap_reference_doc_styles(out_path, page_metas)
     _enforce_docx_outline_levels(out_path)
+    normalize_docx_for_reproducibility(out_path)
     return out_path

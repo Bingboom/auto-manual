@@ -203,7 +203,13 @@ def _stage_fragment_assets(fragment: str, source_path: Path, bundle_dir: Path) -
         key = str(resolved)
         staged_name = staged.get(key)
         if staged_name is None:
-            digest = hashlib.sha1(key.encode("utf-8")).hexdigest()[:10]
+            # The bundle may be materialized in a disposable worktree or an
+            # isolated staging root.  A path-derived suffix made the shipped
+            # Markdown (and the DOCX image descriptions generated from this
+            # HTML) change even when the source bytes were identical.  Bind
+            # the staged name to the asset content instead so the same frozen
+            # input has the same release representation everywhere.
+            digest = hashlib.sha256(resolved.read_bytes()).hexdigest()[:12]
             staged_name = f"{resolved.stem}_{digest}{resolved.suffix}"
             shutil.copy2(resolved, assets_dir / staged_name)
             staged[key] = staged_name

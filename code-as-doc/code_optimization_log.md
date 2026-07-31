@@ -1316,3 +1316,27 @@ Why it mattered:
   its temporary worktree or when `data/phase2` is synchronized again.
 - This closes E1's archive/binding slice without overstating the remaining
   end-to-end rebuild-equivalence proof, which stays in E1-PR2.
+
+## 79. 2026-07-31: Archived Releases Rebuild Byte-for-Byte (Workstream W / E1-PR2)
+
+What changed:
+
+- Versioned Publish now starts from a clean tracked worktree and derives
+  `SOURCE_DATE_EPOCH` from its full Git commit. Staged image names use content
+  hashes, while release DOCX files receive canonical metadata, image
+  descriptions, ZIP timestamps, and ZIP metadata.
+- Release manifests record the reproducibility policy, source epoch, and the
+  DOCX/Markdown/PDF byte-equivalence artifact set. Full Git SHA and immutable
+  snapshot bindings are mandatory for a versioned manifest.
+- Added `build.py release-rebuild-verify --manifest ...`: it checks the exact
+  toolchain and archived snapshot, republishes in an isolated detached worktree,
+  compares all three artifact hashes, and writes a version-sidecar verification
+  report without changing the snapshot.
+
+Why it mattered:
+
+- A release can now prove that the same repository commit plus its archived
+  phase2 input reproduces the shipped DOCX, Markdown, and PDF bytes instead of
+  merely naming those inputs.
+- Path, timestamp, toolchain, snapshot, and artifact drift all fail closed, so
+  Workstream J's traceability exit criteria are complete.

@@ -41,7 +41,7 @@ class TestReleaseManifest(unittest.TestCase):
             built_at = datetime(2026, 7, 31, 3, 4, tzinfo=timezone.utc)
 
             with mock.patch.object(release_manifest, "ROOT", root), mock.patch.object(
-                release_manifest, "_read_git_sha", return_value="abc123"
+                release_manifest, "_read_git_sha", return_value="a" * 40
             ):
                 json_path, csv_path = release_manifest.build_release_manifest(
                     config_path=config_path,
@@ -49,6 +49,7 @@ class TestReleaseManifest(unittest.TestCase):
                     region="US",
                     data_root=str(data_root),
                     release_version="1.2",
+                    source_date_epoch=1_785_513_828,
                     built_at=built_at,
                 )
 
@@ -64,10 +65,15 @@ class TestReleaseManifest(unittest.TestCase):
                 manifest["spec_master_csv"],
             )
             self.assertTrue((snapshot_path / "release_snapshot_identity.json").exists())
+            self.assertEqual(
+                1_785_513_828,
+                manifest["reproducibility"]["source_date_epoch"],
+            )
             with csv_path.open(encoding="utf-8", newline="") as handle:
                 csv_row = next(csv.DictReader(handle))
             self.assertEqual(manifest["snapshot"]["snapshot_sha256"], csv_row["snapshot_sha256"])
             self.assertIn('"lang": "en"', csv_row["snapshot_target_matrix"])
+            self.assertEqual("1785513828", csv_row["source_date_epoch"])
 
     def test_build_release_manifest_should_write_json_and_csv(self) -> None:
         with tempfile.TemporaryDirectory() as td:

@@ -41,6 +41,7 @@ def parse_args(
             "clean",
             "diff-report",
             "release-manifest",
+            "release-rebuild-verify",
             "preview",
             "fast",
             "message-control-dry-run",
@@ -141,6 +142,16 @@ def parse_args(
         "--report-dir",
         default=None,
         help="Output directory for diff-report CSV/HTML",
+    )
+    ap.add_argument(
+        "--manifest",
+        default=None,
+        help="Versioned release manifest JSON for release-rebuild-verify",
+    )
+    ap.add_argument(
+        "--report",
+        default=None,
+        help="Optional output JSON path for release-rebuild-verify",
     )
     ap.add_argument("--table", action="append", default=[], help="For sync-data or translation-memory: logical table id")
     ap.add_argument(

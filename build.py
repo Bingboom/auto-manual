@@ -37,6 +37,7 @@ from tools.build_entry_commands import (
     process_build_queue_command as _process_build_queue_command_impl,
     process_review_start_queue_command as _process_review_start_queue_command_impl,
     release_manifest_command as _release_manifest_command_impl,
+    release_rebuild_command as _release_rebuild_command_impl,
     review_bundle_command as _review_bundle_command_impl,
     spec_master_rebuild_command as _spec_master_rebuild_command_impl,
     sync_data_command as _sync_data_command_impl,
@@ -380,20 +381,6 @@ def run_queue_execute(args: argparse.Namespace) -> None:
         config_path=resolve_path_from_root(args.config),
         repo_root=ROOT,
     )
-def release_manifest_command(args: argparse.Namespace) -> list[str]:
-    return _release_manifest_command_impl(
-        args,
-        repo_root=ROOT,
-        require_explicit_target=lambda parsed_args, action_name: _require_explicit_target(
-            parsed_args,
-            action_name=action_name,
-        ),
-        resolve_path_from_root=resolve_path_from_root,
-        staging_docs_build_dir=staging_docs_build_dir,
-        staging_releases_root=staging_releases_root,
-    )
-
-
 def process_build_queue_command(args: argparse.Namespace) -> list[str]:
     return _process_build_queue_command_impl(
         args,
@@ -619,6 +606,17 @@ def _require_explicit_target(args: argparse.Namespace, *, action_name: str) -> t
     return _require_explicit_target_impl(model=args.model, region=args.region, action_name=action_name)
 
 
+release_manifest_command = partial(
+    _release_manifest_command_impl,
+    repo_root=ROOT,
+    require_explicit_target=_require_explicit_target,
+    resolve_path_from_root=resolve_path_from_root,
+    staging_docs_build_dir=staging_docs_build_dir,
+    staging_releases_root=staging_releases_root,
+)
+release_rebuild_command = partial(_release_rebuild_command_impl, repo_root=ROOT, resolve_path_from_root=resolve_path_from_root)
+
+
 def _publish_tracked_root(args: argparse.Namespace) -> Path:
     model, region, lang = _publish_target_components(args)
     if args.tracked_root is not None:
@@ -699,6 +697,7 @@ def _publish_asset_gate(args: argparse.Namespace) -> None:
 def run_publish(args: argparse.Namespace) -> None:
     return _run_publish_impl(
         args,
+        repo_root=ROOT,
         publish_tracked_root=_publish_tracked_root,
         publish_report_dir=_publish_report_dir,
         run_check=run_check,
@@ -750,6 +749,7 @@ def main(argv: list[str] | None = None) -> int:
         run_publish=run_publish,
         run_diff_report=run_diff_report,
         release_manifest_command=release_manifest_command,
+        release_rebuild_command=release_rebuild_command,
         clean_build_artifacts=clean_build_artifacts,
         maybe_sync_review_before_build=maybe_sync_review_before_build,
         run_asset_command=partial(_run_asset_command_impl, repo_root=ROOT),
