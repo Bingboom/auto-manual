@@ -121,6 +121,7 @@ def _idml_contract() -> dict[str, object]:
         "forbidden_visible_whole_page_links": ["flattened.pdf"],
         "editable_components": {
             "app_add_device": {
+                "page_owners": ["page/12_app_setup_placeholder.rst"],
                 "control_labels": {
                     language: {
                         "base_labels_by_role": deepcopy(BASE_LABELS[language]),
@@ -231,6 +232,23 @@ class ControlLabelContractTests(unittest.TestCase):
             "control_labels"
         ]["es"]["base_labels_by_role"]["main_power"] = "wrong"
         cases.append((base_drift, "does not match the Product Overview source slot"))
+
+        missing_owners = deepcopy(valid)
+        del missing_owners["editable_components"]["app_add_device"]["page_owners"]
+        cases.append((missing_owners, "page_owners must be a list"))
+
+        duplicate_owner = deepcopy(valid)
+        duplicate_owner["editable_components"]["app_add_device"]["page_owners"] = [
+            "page/12_app_setup_placeholder.rst",
+            "page/12_app_setup_placeholder.rst",
+        ]
+        cases.append((duplicate_owner, "page_owners must match App source pages"))
+
+        unknown_owner = deepcopy(valid)
+        unknown_owner["editable_components"]["app_add_device"]["page_owners"] = [
+            "page/not_the_app_page.rst",
+        ]
+        cases.append((unknown_owner, "page_owners must match App source pages"))
 
         for contract, message in cases:
             with self.subTest(message=message):

@@ -15,8 +15,10 @@ tools/bundle_asset_manifest.py
                               fail-closed renderer boundary for semantic bundle assets:
                               schema/target/consumer/format/path/hash validation
 tools/idml/
-  asset_contracts.py          target/page-scoped native-IDML asset requirements shared
-                              by bundle finalization and component promotion
+  asset_contracts.py          approved-contract component/page ownership plus hidden
+                              native-IDML asset requirements shared by bundle
+                              finalization and component promotion; no target-named
+                              page predicates
   design_handoff.py          Phase 5 package writer: production copy, source
                               trace, missing-assets report, checklist, feedback
   export_paths.py             shared production / flow output path helpers
@@ -160,6 +162,12 @@ tools/reference_layout_scaffold.py
   three-line base-label duplicate is consumed. `AppFigureStyle` owns the shared
   overlay tokens, and approved contexts fail on missing source roles, variants,
   assets, or tokens instead of guessing from adjacent prose.
+- **App page ownership**: the approved plan's
+  `editable_components.app_add_device.page_owners` list binds exact source refs
+  to the component. Bundle finalization resolves the exact registered target
+  contract before freezing hidden assets; prose promotion and story placement
+  consume the same contract after full Manual-IR validation. The maintenance
+  guardrail rejects target/model-named IDML page predicates.
 - **Template style names**: RST/LaTeX extraction may keep semantic `HB ...`
   names, but emitted IDML paragraph style refs and `Resources/Styles.xml`
   names must go through `tools/idml/style_names.py` so generated stories match

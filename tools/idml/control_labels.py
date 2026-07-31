@@ -40,15 +40,22 @@ def _is_overview_page(page: ManualPage) -> bool:
     return _OVERVIEW_STEM.fullmatch(Path(page.source_path).stem) is not None
 
 
-def manual_uses_app_add_device(ir: ManualIR) -> bool:
-    """Return whether this manual contains the governed App device figure."""
+def app_add_device_source_refs(ir: ManualIR) -> tuple[str, ...]:
+    """Return source refs containing the governed App device figure."""
+    refs: list[str] = []
     for page in ir.pages:
         for block in page.blocks:
             if block.kind != "image" or not isinstance(block.payload, str):
                 continue
             if Path(block.payload).stem.casefold().startswith("add_device"):
-                return True
-    return False
+                refs.append(page.source_ref)
+                break
+    return tuple(refs)
+
+
+def manual_uses_app_add_device(ir: ManualIR) -> bool:
+    """Return whether this manual contains the governed App device figure."""
+    return bool(app_add_device_source_refs(ir))
 
 
 def _first_table(page: ManualPage) -> list[list[Any]]:
@@ -190,6 +197,19 @@ def validate_app_control_label_contract(
 
     expected_languages = [language_code(item) for item in languages]
     issues: list[str] = []
+    page_owners = app.get("page_owners")
+    expected_owners = list(app_add_device_source_refs(ir))
+    if not isinstance(page_owners, list):
+        issues.append(
+            "idml_contract.editable_components.app_add_device.page_owners "
+            "must be a list"
+        )
+    elif page_owners != expected_owners:
+        issues.append(
+            "idml_contract.editable_components.app_add_device.page_owners "
+            "must match App source pages in Manual IR order; "
+            f"expected={expected_owners!r} actual={page_owners!r}"
+        )
     actual_languages = set(labels_contract)
     expected_set = set(expected_languages)
     if actual_languages != expected_set:
@@ -279,6 +299,7 @@ def matches_base_label_block(text: str, labels_by_role: dict[str, str]) -> bool:
 __all__ = [
     "CONTROL_LABEL_ROLES",
     "CONTROL_LABEL_SLOTS",
+    "app_add_device_source_refs",
     "approved_app_control_labels",
     "extract_overview_control_labels",
     "language_code",

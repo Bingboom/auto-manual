@@ -361,6 +361,11 @@
         ]
       },
       "app_add_device": {
+        "page_owners": [
+          "page/12_app_setup_placeholder.rst",
+          "page/p34_12_app_setup_placeholder.rst",
+          "page/p50_12_app_setup_placeholder.rst"
+        ],
         "control_labels": {
           "en": {
             "base_labels_by_role": {

@@ -230,7 +230,12 @@ siblings) use `referencefigure` composites:
 artwork, generated Store/QR/screen crops, and the governed
 `controls/je1000f_us/network_pairing_panel` panel remain below separate movable
 captions, step numbers, control labels, and notes. The approved JE-1000F/US/en
-replica does not infer those labels from neighbouring App prose. Product
+replica does not infer those labels from neighbouring App prose. Page
+ownership is likewise not inferred from a model/region Python predicate: the
+approved contract's `editable_components.app_add_device.page_owners` list is
+the single opt-in for both hidden-asset freezing and App composition. A new
+approved target can bind its own source refs without adding renderer code.
+Product
 Overview supplies one exact localized base label for each stable semantic role
 (`main_power`, `dc_usb`, and `ac`), and the approved layout contract binds that
 base snapshot to the reviewed App display variant in all three languages. Only

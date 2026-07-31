@@ -17,17 +17,27 @@ def _approved_app_plan(
     language: str = "en",
     stem: str = "12_app_setup_placeholder",
 ) -> dict:
+    source_ref = f"page/{stem}.rst"
     return {
         "plan_source": "approved-reference",
         "approved_contract": {
+            "schema_version": "approved-reference-layout-plan/v1",
             "target": {
                 "model": model,
                 "region": region,
                 "languages": [language],
             },
+            "approval": {"status": "approved"},
+            "idml_contract": {
+                "editable_components": {
+                    "app_add_device": {"page_owners": [source_ref]},
+                },
+            },
+            "pages": [{"source_ref": source_ref, "language": language}],
         },
         "pages": [{
-            "source_path": f"page/{stem}.rst",
+            "source_ref": source_ref,
+            "source_path": source_ref,
             "language": language,
         }],
     }
@@ -473,12 +483,19 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
                     writer.spread_chain_options[0]["first_top_offset"],
                 )
 
-    def test_app_chain_reference_offset_fails_closed_for_other_targets(self) -> None:
+    def test_app_chain_reference_offset_fails_closed_without_contract_ownership(self) -> None:
+        unowned = _approved_app_plan()
+        unowned["approved_contract"]["idml_contract"]["editable_components"][
+            "app_add_device"
+        ]["page_owners"] = ["page/other.rst"]
+        draft = _approved_app_plan()
+        draft["approved_contract"]["approval"] = {"status": "draft"}
         cases = (
-            ("wrong model", _approved_app_plan(model="OTHER"), 13.81),
-            ("wrong region", _approved_app_plan(region="EU"), 13.81),
+            ("future target", _approved_app_plan(model="OTHER", region="EU"), 15.06),
             ("French", _approved_app_plan(language="fr"), 15.06),
             ("Spanish", _approved_app_plan(language="es"), 15.06),
+            ("unowned page", unowned, 13.81),
+            ("draft contract", draft, 13.81),
             ("missing metadata", {"plan_source": "approved-reference"}, 13.81),
             (
                 "missing language",

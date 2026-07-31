@@ -193,6 +193,16 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
         control_labels = contract["idml_contract"]["editable_components"][
             "app_add_device"
         ]["control_labels"]
+        self.assertEqual(
+            [
+                "page/12_app_setup_placeholder.rst",
+                "page/p34_12_app_setup_placeholder.rst",
+                "page/p50_12_app_setup_placeholder.rst",
+            ],
+            contract["idml_contract"]["editable_components"][
+                "app_add_device"
+            ]["page_owners"],
+        )
         expected = {
             "en": {
                 "base_labels_by_role": {

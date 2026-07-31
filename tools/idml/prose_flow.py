@@ -10,8 +10,9 @@ from typing import Callable
 
 from .language_contract import governed_languages
 from .asset_contracts import (
+    APP_ADD_DEVICE_COMPONENT,
     APP_PAIRING_PANEL_ASSET_URI,
-    is_je1000f_us_app_reference_plan_page,
+    plan_page_owns_component,
 )
 from .control_labels import (
     approved_app_control_labels,
@@ -509,7 +510,11 @@ def align_app_second_page(blocks: list[Block], page_plan: dict | None,
     """
     from .latex_page_plan import planned_span
     if (
-        not is_je1000f_us_app_reference_plan_page(page_plan, stem)
+        not plan_page_owns_component(
+            page_plan,
+            stem,
+            component=APP_ADD_DEVICE_COMPONENT,
+        )
         or planned_span(page_plan, [stem], 1) < 2
     ):
         return blocks
@@ -582,7 +587,11 @@ def promote_reference_figures(
         r"(?:p\d+_)?08_charging_methods",
         stem.casefold(),
     ) is not None
-    is_app = is_je1000f_us_app_reference_plan_page(page_plan, stem)
+    is_app = plan_page_owns_component(
+        page_plan,
+        stem,
+        component=APP_ADD_DEVICE_COMPONENT,
+    )
     if not is_charging and not is_app:
         return blocks
 
