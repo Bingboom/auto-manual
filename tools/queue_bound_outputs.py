@@ -33,6 +33,7 @@ from tools.release_contract import (  # noqa: E402
     release_lang_for_config,
     release_latest_dir_for_target,
     release_root_for_target,
+    release_tag_for_target,
     release_version_dir_for_target,
 )
 from tools.sync_data import load_config  # noqa: E402
@@ -281,6 +282,13 @@ def write_publish_release_metadata(
     document_link_url: str,
     queue_record_ids: tuple[str, ...] = (),
 ) -> Path:
+    cfg = load_config(config_path)
+    release_tag = release_tag_for_target(
+        model=model,
+        region=region,
+        languages=_build_languages(cfg),
+        version=version,
+    )
     return _write_publish_release_metadata_impl(
         config_path=config_path,
         model=model,
@@ -295,6 +303,7 @@ def write_publish_release_metadata(
         html_dir=html_dir,
         document_link_url=document_link_url,
         queue_record_ids=queue_record_ids,
+        release_tag=release_tag,
         publish_release_version_dir_for_target=publish_release_version_dir_for_target,
         publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
         release_lang_for_config=release_lang_for_config,

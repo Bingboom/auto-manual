@@ -19,6 +19,7 @@ from tools.gen_index_bundle import bundle_dir_for_target
 from tools.release_contract import (
     release_manifests_dir_for_target,
     release_snapshot_dir_for_target,
+    release_tag_for_target,
 )
 from tools.release_snapshot import freeze_release_snapshot
 from tools.release_reproducibility import build_reproducibility_record
@@ -102,6 +103,16 @@ def build_release_manifest(
     build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
     langs = build_langs(cfg)
     primary_lang = langs[0]
+    release_tag = (
+        release_tag_for_target(
+            model=model,
+            region=region,
+            languages=langs,
+            version=release_version,
+        )
+        if release_version is not None
+        else ""
+    )
 
     word_output_name = render_build_template(
         str(build_cfg.get("word_output", "manual_demo.docx")),
@@ -231,6 +242,7 @@ def build_release_manifest(
         "build_languages": langs,
         "product_name": product_name,
         "release_version": release_version or "",
+        "release_tag": release_tag,
         "reproducibility": build_reproducibility_record(source_date_epoch),
         "snapshot": snapshot_record,
         "spec_master_csv": repo_relative(snapshot_paths.spec_master_csv, repo_root=repo_root),
@@ -260,6 +272,7 @@ def build_release_manifest(
         "build_languages": ",".join(langs),
         "product_name": product_name or "",
         "release_version": release_version or "",
+        "release_tag": release_tag,
         "reproducibility_schema_version": str(manifest["reproducibility"]["schema_version"]),
         "reproducibility_policy": str(manifest["reproducibility"]["policy"]),
         "source_date_epoch": str(
