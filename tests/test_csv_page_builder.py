@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from tools import lang_registry
 from tools.csv_pages.builder import BuildPaths, BuildSelector, CsvPageBuilder, PageSpec
 
 
@@ -44,6 +45,25 @@ class TestCsvPageBuilderNormalization(unittest.TestCase):
                 root / "docs" / "templates" / "page_zh" / "10_troubleshooting.rst",
                 builder._resolve_template(page, lang="zh"),
             )
+
+    def test_resolve_template_directory_uses_registry_for_all_aliases(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            builder = CsvPageBuilder(BuildPaths.from_root(Path(td)))
+            for spec in lang_registry.LANGUAGE_REGISTRY:
+                for alias in spec.aliases:
+                    with self.subTest(language=spec.code, alias=alias):
+                        self.assertEqual(spec.template_directory, builder._template_lang_dir(alias))
+
+    def test_localized_trailer_text_uses_registered_column_aliases(self) -> None:
+        row = {
+            "Text_ja": "Japanese",
+            "Text_pt-BR": "Portuguese",
+            "Text_ko": "Korean",
+        }
+
+        self.assertEqual("Japanese", CsvPageBuilder._localized_text_value(row, "jp"))
+        self.assertEqual("Portuguese", CsvPageBuilder._localized_text_value(row, "br"))
+        self.assertEqual("Korean", CsvPageBuilder._localized_text_value(row, "ko"))
 
     def test_spec_master_rows_can_be_detected(self) -> None:
         rows = [

@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from .renderers_common import _enabled, _scope_allows, apply_vars, latex_arg_escape, rst_escape
+from .. import lang_registry
 from ..localized_copy import LocalizedCopyResolver
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens
@@ -111,22 +112,24 @@ def _text_column_for_lang(row: dict[str, str], lang: str) -> str:
     raw = (lang or "").strip()
     normalized = raw.casefold()
     source_lang = (row.get("Source_lang") or row.get("source_lang") or "").strip()
-    aliases = {
-        "ja": ("ja", "jp"),
-        "jp": ("jp", "ja"),
-        "pt-br": ("pt-BR", "br", "pt_br"),
-        "pt_br": ("pt_BR", "pt-BR", "br"),
-        "br": ("br", "pt-BR", "pt_br"),
-        "uk": ("uk", "ukr"),
-        "ukr": ("ukr", "uk"),
-    }.get(normalized, (raw, normalized))
+    aliases = lang_registry.language_alias_candidates(raw) or (raw, normalized)
     candidates = [
-        *(f"text_{token}" for token in aliases if token),
+        variant
+        for token in aliases
+        for variant in (
+            f"text_{token}",
+            f"text_{token.casefold()}",
+            f"text_{token.replace('-', '_')}",
+            f"text_{token.casefold().replace('-', '_')}",
+        )
+        if token
+    ]
+    candidates.extend([
         f"text_{raw.replace('-', '_')}",
         f"text_{source_lang}",
         f"text_{source_lang.casefold()}",
         "text_en",
-    ]
+    ])
     for candidate in candidates:
         if candidate in row:
             return candidate

@@ -317,6 +317,22 @@ def language_spec(value: object) -> LanguageSpec | None:
     return LANGUAGE_BY_CODE.get(code) if code else None
 
 
+def language_alias_candidates(value: object) -> tuple[str, ...]:
+    """Return registered historical aliases in lookup precedence order."""
+
+    token = str(value or "").strip().casefold()
+    if not token:
+        return ()
+    spec = language_spec(value)
+    if spec is None:
+        return (token,)
+    aliases = tuple(alias.casefold() for alias in spec.aliases)
+    if token not in aliases:
+        return aliases
+    index = aliases.index(token)
+    return aliases[index:] + aliases[:index]
+
+
 def table_language_columns(table_name: str) -> tuple[str, ...]:
     """Return all language-specific columns in schema order for a table."""
 

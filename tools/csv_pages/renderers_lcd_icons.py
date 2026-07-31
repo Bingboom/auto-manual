@@ -10,6 +10,7 @@ import unicodedata
 from pathlib import Path
 
 from ..lcd_table_layout import split_lcd_table_rows
+from .. import lang_registry
 from .renderers_common import apply_vars, latex_arg_escape, rst_escape
 from ..localized_copy import LocalizedCopyResolver
 from ..utils.spec_master import canonicalize_model_token
@@ -24,16 +25,6 @@ _TRUE_VALUES = {"1", "true", "yes", "y"}
 _FALSE_VALUES = {"0", "false", "no", "n"}
 _STATUS_WORD_MARKER_FIELD = "是否为 status word"
 _STATUS_WORDS_FILE = "Status_Words.csv"
-
-_LANG_SUFFIX = {
-    "ja": "jp",
-    "jp": "jp",
-    "uk": "ukr",
-    "ukr": "ukr",
-    "pt-br": "pt-BR",
-    "pt_br": "pt-BR",
-    "br": "pt-BR",
-}
 
 def _read_csv(path: str) -> list[dict[str, str]]:
     raw = (path or "").strip()
@@ -60,20 +51,30 @@ def _truthy(value: object, *, default: bool = True) -> bool:
 
 
 def _lang_suffix(lang: str) -> str:
-    raw = (lang or "").strip().casefold()
-    return _LANG_SUFFIX.get(raw, raw)
+    candidates = _lang_suffix_candidates(lang)
+    return candidates[0] if candidates else (lang or "").strip()
 
 
 def _lang_suffix_candidates(lang: str) -> list[str]:
-    suffix = _lang_suffix(lang)
-    candidates = [
-        suffix,
-        str(suffix).casefold(),
-        str(suffix).replace("-", "_"),
-        str(suffix).casefold().replace("-", "_"),
-    ]
-    if (lang or "").strip().casefold() in {"br", "pt-br", "pt_br"}:
-        candidates.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
+    spec = lang_registry.language_spec(lang)
+    if spec is not None:
+        suffixes = [
+            column.removeprefix("icon_")
+            for column in spec.columns_for_table("lcd_icons")
+            if column.startswith("icon_") and not column.startswith("icon_desc_")
+        ]
+    else:
+        suffixes = [(lang or "").strip()]
+    candidates: list[str] = []
+    for suffix in suffixes:
+        candidates.extend(
+            [
+                suffix,
+                suffix.casefold(),
+                suffix.replace("-", "_"),
+                suffix.casefold().replace("-", "_"),
+            ]
+        )
     return list(dict.fromkeys(candidate for candidate in candidates if candidate))
 
 
@@ -313,13 +314,10 @@ def _status_words_csv_path(vars_map: dict[str, str]) -> Path | None:
 def _status_word_lang_candidates(lang: str) -> list[str]:
     raw = (lang or "").strip()
     normalized = raw.casefold().replace("_", "-")
+    spec = lang_registry.language_spec(raw)
     candidates = [raw, normalized]
-    if normalized in {"ja", "jp"}:
-        candidates.extend(["jp", "ja"])
-    if normalized in {"uk", "ukr"}:
-        candidates.extend(["uk", "ukr"])
-    if normalized in {"pt-br", "br"}:
-        candidates.extend(["pt-BR", "pt-br", "pt_BR", "br"])
+    if spec is not None:
+        candidates.extend([spec.status_word_column, *spec.aliases])
     return list(dict.fromkeys(candidate for candidate in candidates if candidate))
 
 

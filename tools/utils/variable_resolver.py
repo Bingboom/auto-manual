@@ -5,17 +5,16 @@ import re
 from collections.abc import Iterable, Mapping, Sequence
 from typing import Any
 
+from tools import lang_registry
+
 Row = Mapping[str, Any]
 
 _TRUE_VALUES = {"1", "true", "yes", "y"}
 _LANG_ALIASES = {
-    "ja": ("ja", "jp"),
-    "jp": ("jp", "ja"),
-    "uk": ("uk", "ukr"),
-    "ukr": ("ukr", "uk"),
-    "br": ("br", "pt-br", "pt_br"),
-    "pt-br": ("pt-br", "pt_br", "br"),
-    "pt_br": ("pt_br", "pt-br", "br"),
+    alias.casefold(): lang_registry.language_alias_candidates(alias)
+    for spec in lang_registry.LANGUAGE_REGISTRY
+    if len(spec.aliases) > 1
+    for alias in spec.aliases
 }
 _MODEL_SPLIT_RE = re.compile(r"[,;|]")
 
