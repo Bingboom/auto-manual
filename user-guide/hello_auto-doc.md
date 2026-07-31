@@ -92,6 +92,12 @@ this remains report-only. For an approved-reference target, the approved plan
 freezes `idml_contract.max_skipped_raw`, and production export stops if the
 current count exceeds that baseline.
 
+Strict Manual IR validation also stops on an unregistered build, manifest, or
+page language. Approved-reference production runs this check automatically;
+ordinary/fallback IDML keeps the existing permissive behavior. Add a language
+to the shared registry instead of relying on the English fallback. Registered
+aliases such as `jp` and `pt_br` are accepted.
+
 The production Meaning of Symbols page also remains editable. Its WARNING,
 CAUTION, NOTE, and TIP badges use a linked white warning icon plus ordinary
 InDesign label text, rather than a flattened language-specific badge image.

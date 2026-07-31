@@ -1147,6 +1147,12 @@ reference plan keep this as an observation field. An approved-reference plan
 must freeze `idml_contract.max_skipped_raw`; production export fails closed
 when the current total exceeds that baseline. `manual_ir_cli.py --strict`
 remains the explicit zero-tolerance diagnostic independent of plan activation.
+The same strict command also rejects unregistered Manual IR languages at the
+top-level target, frozen manifest declaration, or page level. Approved-reference
+production applies that language gate automatically before composition;
+ordinary/fallback exports preserve their compatibility behavior. Language
+aliases are resolved only through `tools/lang_registry.py`, while non-content
+page roles `cover` and `toc` are exempt.
 
 On the publish queue path (`Workflow_action = Publish`), the worker runs the
 idml step with `--idml-mode both` and then packages the export into one

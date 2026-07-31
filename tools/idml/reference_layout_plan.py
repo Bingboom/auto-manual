@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from tools.manual_ir import ManualIR
+from tools.manual_ir import ManualIR, unknown_language_issues
 from tools.render_contract import LAYOUT_PARAMS_HASH_ALGORITHM
 from tools.utils.path_utils import PathSegments, Paths
 
@@ -206,7 +206,7 @@ def validate_approved_reference_plan(
     ir: ManualIR,
 ) -> list[str]:
     """Return every reason an approved contract cannot govern this IR."""
-    issues: list[str] = []
+    issues = unknown_language_issues(ir)
     if payload.get("schema_version") != SCHEMA_VERSION:
         issues.append(f"schema_version must be {SCHEMA_VERSION}")
 

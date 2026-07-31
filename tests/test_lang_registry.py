@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import re
 import unittest
+from pathlib import Path
+
+import yaml
 
 from tools import lang_registry
 from tools import localized_copy, signal_words
@@ -17,6 +20,9 @@ from tools.manual_copy_source import (
     TRANSLATION_MEMORY_COLUMNS,
 )
 from tools.sync_data_models import TABLE_SCHEMAS
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class LanguageRegistryTest(unittest.TestCase):
@@ -173,6 +179,34 @@ class LanguageRegistryTest(unittest.TestCase):
                     self.assertIs(lang_registry.language_spec(alias), spec)
         self.assertIsNone(lang_registry.canonical_language("xx"))
         self.assertIsNone(lang_registry.language_spec("xx"))
+
+    def test_committed_bundle_languages_are_registered(self) -> None:
+        unknown: list[str] = []
+        for path in sorted((ROOT / "docs" / "manifests").glob("*.yaml")):
+            payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+            pages = payload.get("pages", []) if isinstance(payload, dict) else []
+            for page_index, page in enumerate(pages):
+                if not isinstance(page, dict):
+                    continue
+                raw = page.get("langs", page.get("lang"))
+                values = raw if isinstance(raw, list) else [raw]
+                for value in values:
+                    token = str(value or "").strip()
+                    if (
+                        token
+                        and "{" not in token
+                        and lang_registry.canonical_language(token) is None
+                    ):
+                        unknown.append(f"{path.name}:pages[{page_index}]={token!r}")
+
+        marker = re.compile(r"\\HBApplyLang\{([^}]+)\}")
+        for path in sorted((ROOT / "docs" / "templates").rglob("*.rst")):
+            for token in marker.findall(path.read_text(encoding="utf-8")):
+                token = token.strip()
+                if token and lang_registry.canonical_language(token) is None:
+                    unknown.append(f"{path.relative_to(ROOT)}={token!r}")
+
+        self.assertEqual([], unknown)
 
     def test_alias_candidates_are_registry_derived_and_rotated(self) -> None:
         for spec in lang_registry.LANGUAGE_REGISTRY:

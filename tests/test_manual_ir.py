@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import replace
 import json
 import tempfile
 import unittest
@@ -93,6 +94,46 @@ class ManualIRTests(unittest.TestCase):
             loaded = read_manual_ir(path)
         issues = validate_manual_ir(loaded)
         self.assertTrue(any("content hash mismatch" in issue for issue in issues))
+
+    def test_unknown_languages_are_permissive_until_strict_validation(self) -> None:
+        ir = self._build()
+        unknown_page = replace(ir.pages[0], language="x-review")
+        unknown = replace(
+            ir,
+            language="x-build",
+            pages=(unknown_page, *ir.pages[1:]),
+            metadata={**ir.metadata, "declared_languages": ["en", "x-manifest"]},
+        )
+
+        self.assertEqual([], validate_manual_ir(unknown))
+        self.assertEqual(
+            [
+                "manual language is not registered: 'x-build'",
+                "metadata.declared_languages[1] is not registered: 'x-manifest'",
+                f"{unknown_page.page_id}: language is not registered: 'x-review'",
+            ],
+            validate_manual_ir(unknown, require_known_languages=True),
+        )
+
+    def test_strict_language_validation_accepts_aliases_and_neutral_roles(self) -> None:
+        ir = self._build()
+        pages = (
+            replace(ir.pages[0], language="jp"),
+            replace(ir.pages[1], language="pt_br"),
+            replace(ir.pages[2], language="toc"),
+            *ir.pages[3:],
+        )
+        aliased = replace(
+            ir,
+            language="jp",
+            pages=pages,
+            metadata={**ir.metadata, "declared_languages": ["jp", "pt_br"]},
+        )
+
+        self.assertEqual(
+            [],
+            validate_manual_ir(aliased, require_known_languages=True),
+        )
 
     def test_bundle_hash_changes_when_source_changes(self) -> None:
         with tempfile.TemporaryDirectory() as td:

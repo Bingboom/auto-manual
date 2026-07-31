@@ -1448,3 +1448,23 @@ Why it mattered:
   represented in a reviewable contract.
 - Acceptance is now visible, target-bound, and hash-covered by the approved
   plan instead of being an undocumented exporter side effect.
+
+## 85. 2026-07-31: Strict IDML Rejects Unknown Languages (Workstream W / Stage 5 item 2)
+
+What changed:
+
+- Strict Manual IR validation now checks the top-level build language, frozen
+  manifest-declared languages, and every page language against the shared
+  language registry, reporting the exact source location for each unknown
+  token.
+- Approved-reference plan validation applies the same gate before production
+  composition. Ordinary/fallback export keeps its prior permissive behavior.
+- Registered historical aliases remain valid, and the non-content `cover` and
+  `toc` page roles are excluded from language registration checks.
+
+Why it mattered:
+
+- An unregistered page language previously reached localized IDML loaders and
+  could silently inherit English symbol copy or skip governed layout behavior.
+- Strict production now fails at the contract boundary, while exploratory and
+  legacy fallback builds retain their existing compatibility path.

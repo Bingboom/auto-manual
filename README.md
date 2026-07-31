@@ -613,6 +613,7 @@ Use the document that owns the topic:
 - [`data/capability_known_missing.csv`](data/capability_known_missing.csv) is the reviewed ledger for targets whose capability row is not yet mirrored; `build.py check` reports unlisted gaps as non-blocking `CAPABILITY_ROW_MISSING` warnings while keeping capability page selection fail-open.
 - [`data/capability_page_rules.csv`](data/capability_page_rules.csv) is also the source of truth for the capability columns emitted by `sync-data`; adding a rule adds the mirror column without a second Python list.
 - Production IDML handoff `production/source_trace.json` records `skipped_raw_blocks` from `manual.ir.json`. Ordinary/fallback targets keep this report-only; an approved-reference target freezes `idml_contract.max_skipped_raw` in its layout plan and production export fails when the count exceeds that approved baseline.
+- Strict Manual IR validation and approved-reference production reject any top-level, manifest-declared, or page language that is absent from the shared language registry. Ordinary/fallback export remains permissive for compatibility; registered historical aliases such as `jp` and `pt_br` remain valid.
 - [`tests/fixtures/phase2/`](tests/fixtures/phase2): committed fixture snapshot used only by CI/tests, not by live authoring
 - [`docs/templates/`](docs/templates): shared seed templates
 - [`.agents/skills/bitable-translation-memory/`](.agents/skills/bitable-translation-memory): repo-local Codex skill for live sentence-pair lookup and terminology grounding
