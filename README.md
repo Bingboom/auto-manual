@@ -385,6 +385,12 @@ For the current config-backed page-manifest inventory, run
 surfaces orphan manifests, invalid references, language-set drift, and missing
 manifest sources without changing build or approval behavior.
 
+For the staged family-manifest migration, use
+`python tools/manifest_family.py diff --base <base.yaml> --target <target.yaml>`
+to produce the deterministic `family-manifest-diff/v1` review carrier. The
+`roundtrip` subcommand applies that carrier in memory and checks canonical
+manifest bytes; it never edits a source manifest.
+
 The fixed US + JP release matrix runners — [`scripts/build_us_jp_manuals.py`](scripts/build_us_jp_manuals.py) and [`scripts/build_us_jp_manuals.ps1`](scripts/build_us_jp_manuals.ps1) — are documented in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For a US-only subset, pass `--languages en,es,fr` (or the subset you need) to the same runner.
 
 Do not treat this file as the full command reference.
