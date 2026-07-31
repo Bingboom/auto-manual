@@ -339,6 +339,13 @@ it does not claim that the current artifact has passed them. See the
 [`approved-replica plan`](code-as-doc/dev/idml_reference_replica_plan.md) and
 the [maintainer commands](code-as-doc/build_doc_guide.md#approved-pdf-native-indesign-replica-option-2).
 
+When a design host finalizes multiple targets, use
+`python tools/indesign_finalize.py --jobs <manifest.json>`. The
+`indesign-finalize-jobs/v1` manifest requires each job's PDF preset, output
+intent, output condition, and PDF/X level explicitly; the aggregate report
+isolates per-job failures and inventories IDML directories whose
+`indesign_package.complete` is still `FALSE`.
+
 Optional local content QC for the current snapshot:
 
 ```bash

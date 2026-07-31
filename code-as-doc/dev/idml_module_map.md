@@ -205,5 +205,9 @@ tools/reference_layout_scaffold.py
 - `python tools/reference_layout_scaffold.py --seed-plan <approved.json>
   --manual-ir <manual.ir.json> --output <draft.json>` (composition-preserving,
   non-activating draft)
+- `python tools/indesign_finalize.py --jobs <manifest.json>` (design-host batch
+  orchestration: explicit print contract per job, isolated finalize reports,
+  and incomplete InDesign-package inventory; the JSX still handles one
+  document at a time)
 - Tests: `python -m unittest tests.test_export_idml tests.test_export_idml_golden
   tests.test_export_idml_cli tests.test_idml_components tests.test_idml_package_layout`

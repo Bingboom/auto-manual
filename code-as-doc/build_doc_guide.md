@@ -986,6 +986,46 @@ python3 tools/indesign_finalize.py \
   --pdfx PDF/X-4
 ```
 
+For a design host processing more than one target, use an explicit
+`indesign-finalize-jobs/v1` manifest. Every job must declare its PDF preset,
+output intent, output condition, and PDF/X level; batch mode deliberately has
+no print-contract defaults, so a missing ICC or preset cannot silently inherit
+the wrong host setting:
+
+```json
+{
+  "schema_version": "indesign-finalize-jobs/v1",
+  "aggregate_report": "finalize.aggregate.json",
+  "jobs": [
+    {
+      "id": "je1000f-us-en",
+      "idml": "je1000f-us-en/manual_je1000f_us_en.idml",
+      "indd": "je1000f-us-en/manual_je1000f_us_en.indd",
+      "pdf": "je1000f-us-en/manual_je1000f_us_en_indesign.pdf",
+      "report": "je1000f-us-en/finalize_report.json",
+      "pdf_preset": "[PDF/X-4:2008 (Japan)]",
+      "output_intent": "Japan Color 2001 Coated",
+      "output_condition": "JC200103",
+      "pdfx": "PDF/X-4",
+      "application": "Adobe InDesign 2026"
+    }
+  ]
+}
+```
+
+Run it with:
+
+```bash
+python3 tools/indesign_finalize.py --jobs /path/to/finalize.jobs.json
+```
+
+The batch validates the full manifest before opening InDesign, checks the
+version pin once, isolates each job's failure, and writes one aggregate JSON
+with per-job preflight summaries. It also scans each job's IDML directory
+before and after the run and groups `indesign_package.complete=FALSE` results
+for handoff follow-up. This is an orchestration/reporting layer only; the
+ExtendScript still finalizes one document at a time.
+
 Compare that InDesign export to the supplied approved PDF, not to the newly
 built LaTeX PDF. `--latex-pdf` is retained as a legacy CLI flag name; its value
 for this workflow is the approved reference PDF:

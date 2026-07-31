@@ -172,8 +172,76 @@ def _run_jsx(job: dict[str, str], *, application: str) -> None:
         subprocess.run(["osascript", "-e", apple_script], check=True, timeout=660)
 
 
+def run_finalize_job(
+    job: dict[str, str],
+    *,
+    application: str,
+    pin_status: str,
+    pin_message: str,
+) -> dict[str, object]:
+    """Run one already validated finalize job and return a report summary.
+
+    Version-pin validation belongs to the caller because a batch should check
+    the host once and then isolate failures per job. The single-job CLI also
+    uses this function so both entrypoints retain the same preflight contract.
+    """
+    marker = "WARNING" if pin_status != "match" else "version-pin"
+    print(f"[indesign-finalize] {marker} {pin_status}: {pin_message}")
+    job_id = job.get("job_id", "")
+    input_idml = job["input_idml"]
+    if not Path(input_idml).is_file():
+        error = f"IDML not found: {input_idml}"
+        print(f"[indesign-finalize] ERROR: {error}")
+        return {"job_id": job_id, "success": False, "exit_code": 1, "error": error}
+
+    _run_jsx(job, application=application)
+    report_path = Path(job["report_json"])
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    output_pdf = Path(job["output_pdf"])
+    if output_pdf.is_file():
+        compliance = _pdf_export_compliance(output_pdf, job)
+        report["pdf_export_validation"] = compliance
+        report["success"] = bool(report.get("success")) and bool(compliance["pass"])
+        if not compliance["pass"] and not report.get("error"):
+            report["error"] = "exported PDF does not satisfy the PDF/X output contract"
+    report["toolchain"] = {
+        "indesign_actual": indesign_version(),
+        "version_pin_status": pin_status,
+    }
+    report_path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8",
+    )
+    success = bool(report.get("success"))
+    status = "OK" if success else "PREFLIGHT FAIL"
+    overset = len(report.get("overset_stories", []))
+    missing_fonts = len(report.get("missing_fonts", []))
+    bad_links = len(report.get("bad_links", []))
+    print(
+        f"[indesign-finalize] {status}: pages={report.get('page_count')} "
+        f"overset={overset} fonts={missing_fonts} links={bad_links} "
+        f"report={job['report_json']}"
+    )
+    if report.get("error"):
+        print(f"[indesign-finalize] ERROR: {report['error']}")
+    return {
+        "job_id": job_id,
+        "success": success,
+        "exit_code": 0 if success else 1,
+        "report_json": job["report_json"],
+        "page_count": report.get("page_count"),
+        "overset_count": overset,
+        "missing_fonts_count": missing_fonts,
+        "bad_links_count": bad_links,
+        **({"error": report["error"]} if report.get("error") else {}),
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--jobs", type=Path,
+                        help="run an isolated batch from an indesign-finalize-jobs/v1 manifest")
+    parser.add_argument("--aggregate-report", type=Path,
+                        help="override the batch aggregate report path")
     parser.add_argument("--idml")
     parser.add_argument("--indd")
     parser.add_argument("--pdf")
@@ -190,6 +258,23 @@ def main() -> int:
     parser.add_argument("--allow-version-mismatch", action="store_true",
                         help="proceed despite a pin mismatch; the mismatch is still recorded in the report")
     args = parser.parse_args()
+
+    if args.jobs:
+        if args.check_host or args.write_pin:
+            parser.error("--jobs cannot be combined with --check-host or --write-pin")
+        if any(getattr(args, key) for key in ("idml", "indd", "pdf", "report")):
+            parser.error("--jobs cannot be combined with single-job output arguments")
+        try:
+            from tools.indesign_finalize_jobs import run_jobs_manifest
+
+            return run_jobs_manifest(
+                args.jobs,
+                aggregate_report=args.aggregate_report,
+                allow_version_mismatch=args.allow_version_mismatch,
+            )
+        except ValueError as exc:
+            print(f"[indesign-finalize] ERROR: {exc}")
+            return 2
 
     if args.write_pin:
         try:
@@ -213,40 +298,14 @@ def main() -> int:
         print(f"[indesign-finalize] ERROR: {pin_message}")
         print("[indesign-finalize] refusing to run; pass --allow-version-mismatch to override (recorded).")
         return 2
-    marker = "WARNING" if pin_status != "match" else "version-pin"
-    print(f"[indesign-finalize] {marker} {pin_status}: {pin_message}")
-
     job = _job(args)
-    if not Path(job["input_idml"]).is_file():
-        print(f"[indesign-finalize] ERROR: IDML not found: {job['input_idml']}")
-        return 1
-    _run_jsx(job, application=args.application)
-    report_path = Path(job["report_json"])
-    report = json.loads(report_path.read_text(encoding="utf-8"))
-    output_pdf = Path(job["output_pdf"])
-    if output_pdf.is_file():
-        compliance = _pdf_export_compliance(output_pdf, job)
-        report["pdf_export_validation"] = compliance
-        report["success"] = bool(report.get("success")) and bool(compliance["pass"])
-        if not compliance["pass"] and not report.get("error"):
-            report["error"] = "exported PDF does not satisfy the PDF/X output contract"
-    report["toolchain"] = {
-        "indesign_actual": indesign_version(),
-        "version_pin_status": pin_status,
-    }
-    report_path.write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8",
+    result = run_finalize_job(
+        job,
+        application=args.application,
+        pin_status=pin_status,
+        pin_message=pin_message,
     )
-    status = "OK" if report.get("success") else "PREFLIGHT FAIL"
-    print(
-        f"[indesign-finalize] {status}: pages={report.get('page_count')} "
-        f"overset={len(report.get('overset_stories', []))} "
-        f"fonts={len(report.get('missing_fonts', []))} "
-        f"links={len(report.get('bad_links', []))} report={job['report_json']}"
-    )
-    if report.get("error"):
-        print(f"[indesign-finalize] ERROR: {report['error']}")
-    return 0 if report.get("success") else 1
+    return int(result["exit_code"])
 
 
 if __name__ == "__main__":

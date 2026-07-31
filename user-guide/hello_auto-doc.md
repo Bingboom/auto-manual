@@ -213,6 +213,12 @@ approved contract. All 58 pages are compared at 300 dpi as fixed
 RGB MAD `≤ 0.008`, changed-pixel ratio `≤ 0.040`, and changed-channel threshold
 `16`. Any failing page fails the run; averages cannot hide it.
 
+For a multi-target design handoff, run
+`python tools/indesign_finalize.py --jobs <manifest.json>` with one explicit
+PDF preset, output intent, output condition, and PDF/X level on every job.
+The batch writes an aggregate report, isolates one failed InDesign job from
+the others, and lists IDML directories whose InDesign package is incomplete.
+
 Delivery requires all 52/52 source identities, all used asset hashes/scopes,
 58-page geometry, native-object/no-whole-page-shortcut checks, preflight, print
 contract, and every page-level visual check to pass. The latest parity report

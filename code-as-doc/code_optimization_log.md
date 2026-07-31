@@ -1035,3 +1035,28 @@ Why it mattered:
 
 - A refreshed snapshot no longer requires hand-editing 52 hashes before a reviewer can inspect the actual composition/approval surface.
 - The production activation path remains unchanged and fail-closed: only an approved, registry-bound contract can govern IDML; a scaffold draft cannot silently become a fallback or production plan.
+
+## 66. 2026-07-31: InDesign Finalize Jobs Are Explicit and Failure-Isolated (Workstream W / Stage 4a item 11)
+
+What changed:
+
+- Added [`tools/indesign_finalize_jobs.py`](../tools/indesign_finalize_jobs.py)
+  and `python tools/indesign_finalize.py --jobs <manifest.json>` for batch
+  orchestration around the existing one-document ExtendScript.
+- The `indesign-finalize-jobs/v1` manifest requires every job to declare its
+  PDF preset, output intent, output condition, and PDF/X level. Batch mode
+  therefore cannot silently inherit a host's `[PDF/X-4:2008 (Japan)]` or ICC
+  default for a different print contract.
+- Each job is reported independently; one osascript/preflight failure does not
+  stop the remaining jobs. The aggregate report includes before/after scans of
+  the IDML directories and groups `indesign_package.complete=FALSE` entries for
+  handoff follow-up.
+
+Why it mattered:
+
+- Finalize was previously a one-shot command with no safe batch boundary, so a
+  failed design-host document required manual restart and gave no complete
+  inventory of unfinished packages.
+- The single-job path still uses the same extracted runner and keeps its
+  existing version-pin, PDF/X, and preflight behavior; the new layer is
+  additive and does not alter the production IDML or approval contracts.

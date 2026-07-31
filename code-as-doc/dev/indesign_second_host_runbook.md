@@ -60,6 +60,14 @@ python tools/indesign_finalize.py \
 #    退出码:基线含 overset 时命令退出 1,属预期,以报告一致性为准。
 ```
 
+For a multi-target handoff, replace the single-job command with
+`python tools/indesign_finalize.py --jobs <manifest.json>`. The manifest must
+declare `pdf_preset`, `output_intent`, `output_condition`, and `pdfx` on every
+job; do not rely on the single-job CLI defaults. The aggregate report records
+which jobs passed, which failed, and which IDML directories still have
+`indesign_package.complete=FALSE`, so one bad document does not hide the
+remaining handoff inventory.
+
 ## 3. 验证登记
 
 主机预检只证明版本锁可用，**不等于**跑通 finalize。预检可先登记，完整首验仍须
