@@ -968,3 +968,16 @@ Why it mattered:
 - Two detection traps are now pinned by tests rather than rediscovered: a perfectly horizontal or vertical line has a **zero-area** bounding box, so `fitz.Rect.intersects` reports False and every single-segment leader goes missing (this cost a full round — 10 of 13 leaders found, 3 left standing); and the content stream stores local coordinates under `cm`, so the walker must track the CTM before comparing geometry in page space.
 - The op is deliberately structural — it finds leaders by their halo/line stroke-width pair and axis alignment — so no coordinates are baked into a recipe where they could rot. It refuses to run silently: extraction fails unless it suppresses exactly two strokes per detected leader.
 - Scope was cut on evidence, not ambition: the same op made `operation/main_power` and `overview/right_side_ports` **worse** (their leaders are not halo/line pairs, and removing their whiteouts exposed artwork the blocks had been hiding), so both keep their existing recipe. Only the asset the operator reported is changed.
+
+## 61. 2026-07-31: Queue Runners Share the Feishu Record Transport Boundary (Workstream W / K8 slice 1)
+
+What changed:
+
+- Added the shared `run_lark_cli_json` boundary to [`tools/feishu_record_transport.py`](../tools/feishu_record_transport.py). It owns command execution, injected CLI resolution, JSON parsing, and Feishu API response validation for queue and build-listener callers.
+- Converted [`tools/queue_lark_ops.py`](../tools/queue_lark_ops.py) and [`tools/listen_build_queue_lark.py`](../tools/listen_build_queue_lark.py) into compatibility wrappers over that boundary, preserving their patchable entrypoint names and listener-specific output behavior.
+- Added focused transport and delegation tests. Retry/backoff, pagination, snapshot locking, and the remaining Feishu callers stay in their separately gated K8 slices.
+
+Why it mattered:
+
+- Queue runners no longer carry independent copies of the lowest-level `lark-cli` subprocess and response-validation mechanics, so the next K8 slices have one transport seam to extend without changing queue record semantics.
+- The first slice deliberately keeps retry policy and pagination unchanged; this is a behavior-preserving boundary move, not a new external-integration policy.

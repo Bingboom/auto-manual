@@ -18,26 +18,17 @@ def run_lark_cli_json(
     format_command: Callable[[list[str]], str],
     command_failure_message: Callable[[list[str], str, str, int], str],
 ) -> dict[str, Any]:
-    import subprocess
+    from tools.feishu_record_transport import run_lark_cli_json as run_transport_json
 
-    cmd = [*resolved_cli_command_parts(cli_bin), *args]
-    print(f"[build-queue] {format_command(cmd)}")
-    proc = subprocess.run(
-        cmd,
-        cwd=str(repo_root),
-        check=False,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
+    return run_transport_json(
+        cli_bin=cli_bin,
+        args=args,
+        repo_root=repo_root,
+        resolved_cli_command_parts=resolved_cli_command_parts,
+        parse_json_payload=parse_json_payload,
+        format_command=format_command,
+        command_failure_message=command_failure_message,
     )
-    if proc.returncode:
-        raise RuntimeError(command_failure_message(cmd, proc.stdout or "", proc.stderr or "", proc.returncode))
-    payload = parse_json_payload(proc.stdout or proc.stderr or "")
-    code = payload.get("code")
-    if code not in (None, 0):
-        message = str(payload.get("msg") or payload.get("message") or "Lark CLI API request failed")
-        raise RuntimeError(f"Lark CLI API request failed: {message}")
-    return payload
 
 
 def cli_relative_file_arg(*, repo_root: Path, path: Path) -> str:

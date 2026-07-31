@@ -218,8 +218,11 @@ Quality and release logic should follow concern-specific modules instead of drif
   - queue-session bootstrap and preflight
   - pending-record fetch/select/group state
   - wiki destination reporting for a processing session
+- [`tools/feishu_record_transport.py`](../../tools/feishu_record_transport.py)
+  - shared `lark-cli` JSON subprocess boundary for queue and build-listener callers
+  - Feishu response validation plus the existing F6/F8 record transport adapters
 - [`tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
-  - Lark/Drive/Wiki transport and remote I/O helpers
+  - Drive/Wiki remote I/O helpers and the compatibility wrapper for shared queue transport
 - [`tools/queue_bound_lark_ops.py`](../../tools/queue_bound_lark_ops.py)
   - repo-root-aware Lark transport adapters used by queue entrypoints
   - bound CLI upload/node lookup helpers that still allow entrypoint-level patching

@@ -1,27 +1,79 @@
-"""Live lark-cli transports for F6 / F8 (Milestone F activation enablers).
+"""Shared lark-cli transport boundary for queue operations and F6 / F8.
 
-These wrap the proven `tools/sync_data.LarkCliSource` record primitives — the only
-record verbs in-repo are `+record-upsert` and `+record-list` — so the operator can
-plug a real transport into the source-table-sync (F6) and QC_Report (F8) executors
-without re-writing lark-cli plumbing.
+Queue and listener callers use :func:`run_lark_cli_json` for the subprocess and
+Feishu response boundary. F6 / F8 transports continue to wrap the proven
+`tools/sync_data.LarkCliSource` record primitives.
 
-Construct with a live `LarkCliSource`, e.g.::
+Construct an F6 transport with a live `LarkCliSource`, e.g.::
 
     from tools.sync_data import LarkCliSource
     source = LarkCliSource(cli_bin="lark-cli", identity="bot")
     f6 = SourceTableLarkTransport(source=source, binding_for=lambda t: (BASE, TABLE_IDS[t]))
     apply_change_requests(reqs, approved_hashes=approved, transport=f6, write=True)
 
-All paths reuse `LarkCliSource` primitives: F6 `upsert`/`get` via `+record-upsert`
-/ `+record-list`; F8 `append_row` via `+record-batch-create` (`create_record`) and
-`list_finding_hashes` via `+record-list`. All verbs were verified live against the
-test base on 2026-06-19.
+F6 `upsert`/`get` use `+record-upsert` / `+record-list`; F8 `append_row` uses
+`+record-batch-create` (`create_record`) and `list_finding_hashes` uses
+`+record-list`. Retry/backoff, pagination, and snapshot locking remain separate
+K8 slices.
 """
 
 from __future__ import annotations
 
 import json
+import subprocess
+from pathlib import Path
 from typing import Any, Callable, Protocol
+
+
+def _default_command_failure_message(cmd: list[str], stdout: str, stderr: str, returncode: int) -> str:
+    details = []
+    if stdout:
+        details.append(f"stdout={stdout.strip()}")
+    if stderr:
+        details.append(f"stderr={stderr.strip()}")
+    suffix = "; " + "; ".join(details) if details else ""
+    return f"Lark CLI command failed with exit code {returncode}{suffix}"
+
+
+def run_lark_cli_json(
+    *,
+    cli_bin: str,
+    args: list[str],
+    repo_root: Path,
+    resolved_cli_command_parts: Callable[[str], list[str]],
+    parse_json_payload: Callable[[str], dict[str, Any]],
+    format_command: Callable[[list[str]], str] | None = None,
+    command_failure_message: Callable[[list[str], str, str, int], str] | None = None,
+    on_command: Callable[[list[str]], None] | None = None,
+) -> dict[str, Any]:
+    """Run one lark-cli JSON command for queue and listener callers.
+
+    Callers retain dependency injection for tests and command formatting, but the
+    subprocess execution and Feishu response validation live in this module.
+    Retry/backoff and pagination remain separate K8 slices.
+    """
+    cmd = [*resolved_cli_command_parts(cli_bin), *args]
+    if on_command is not None:
+        on_command(cmd)
+    elif format_command is not None:
+        print(f"[build-queue] {format_command(cmd)}")
+    process = subprocess.run(
+        cmd,
+        cwd=str(repo_root),
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if process.returncode:
+        failure = command_failure_message or _default_command_failure_message
+        raise RuntimeError(failure(cmd, process.stdout or "", process.stderr or "", process.returncode))
+    payload = parse_json_payload(process.stdout or process.stderr or "")
+    code = payload.get("code")
+    if code not in (None, 0):
+        message = str(payload.get("msg") or payload.get("message") or "Lark CLI API request failed")
+        raise RuntimeError(f"Lark CLI API request failed: {message}")
+    return payload
 
 
 def _as_cell(value: Any) -> str:
