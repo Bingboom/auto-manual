@@ -8,7 +8,7 @@ import unittest
 from datetime import datetime, timezone
 from pathlib import Path
 
-from tools.release_snapshot import freeze_release_snapshot
+from tools.release_snapshot import freeze_release_snapshot, verify_frozen_release_snapshot
 
 
 class ReleaseSnapshotTests(unittest.TestCase):
@@ -119,6 +119,36 @@ class ReleaseSnapshotTests(unittest.TestCase):
             )
 
             self.assertEqual(frozen.identity, json.loads(frozen.identity_path.read_text(encoding="utf-8")))
+
+    def test_verify_should_bind_manifest_identity_and_archived_bytes(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source = self._copy_fixture(root)
+            frozen = freeze_release_snapshot(
+                cfg={},
+                repo_root=root,
+                data_root=source,
+                model="M",
+                region="US",
+                languages=["en"],
+                snapshot_dir=root / "release" / "snapshot",
+            )
+            matrix = [{"model": "M", "region": "US", "lang": "en"}]
+
+            verified = verify_frozen_release_snapshot(
+                frozen.snapshot_dir,
+                expected_sha256=frozen.identity["snapshot_sha256"],
+                expected_target_matrix=matrix,
+            )
+            self.assertEqual(frozen.identity, verified)
+
+            (frozen.snapshot_dir / "Spec_Notes.csv").write_text("drift\n", encoding="utf-8")
+            with self.assertRaisesRegex(RuntimeError, "drifted"):
+                verify_frozen_release_snapshot(
+                    frozen.snapshot_dir,
+                    expected_sha256=frozen.identity["snapshot_sha256"],
+                    expected_target_matrix=matrix,
+                )
 
 
 if __name__ == "__main__":

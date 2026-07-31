@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-07-15
+Updated: 2026-07-31
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -65,7 +65,8 @@ Do not move new low-level implementation back into these files unless the behavi
   - tracked-root/report-dir helpers
   - diff-report command assembly
 - [`tools/build_publish.py`](../../tools/build_publish.py)
-  - publish orchestration over `check -> diff-report -> word -> release-manifest`
+  - deterministic publish orchestration over `check -> diff-report -> word -> pdf -> md -> release-manifest`
+  - versioned publish enters the Git-commit-derived reproducibility environment before any release work
 - [`tools/build_doctor.py`](../../tools/build_doctor.py)
   - environment and dependency diagnostics
   - doctor target/pdf/reference-doc resolution
@@ -136,6 +137,8 @@ Do not move new low-level implementation back into these files unless the behavi
   - pandoc version guardrails for reference-template DOCX exports
 - [`tools/word_bundle_docx_xml.py`](../../tools/word_bundle_docx_xml.py)
   - namespace-preserving XML serialization helpers for DOCX package rewrites
+- [`tools/word_bundle_docx_reproducible.py`](../../tools/word_bundle_docx_reproducible.py)
+  - release-only DOCX canonicalization for timestamps, local file URIs, ZIP metadata, and member ordering
 
 ## 4. Quality And Release Modules
 
@@ -164,7 +167,12 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/release_manifest_service.py`](../../tools/release_manifest_service.py)
   - release traceability assembly
 - [`tools/release_snapshot.py`](../../tools/release_snapshot.py)
-  - immutable version-scoped phase2 snapshot freezing, identity inventory, and rebind/drift rejection
+  - immutable version-scoped phase2 snapshot freezing, identity inventory, historical verification, and rebind/drift rejection
+- [`tools/release_reproducibility.py`](../../tools/release_reproducibility.py)
+  - clean tracked-tree gate, Git commit epoch resolution, deterministic release environment, and manifest contract record
+- [`tools/release_rebuild.py`](../../tools/release_rebuild.py)
+  - fail-closed historical rebuild from manifest Git SHA plus frozen snapshot
+  - isolated publish and byte-equivalence verification for DOCX, Markdown, and PDF
 - [`tools/release_indesign_package.py`](../../tools/release_indesign_package.py)
   - InDesign package lineage plus native preflight layout signals; JSON owns
     the nested record and release CSV receives the flattened page/overset counts

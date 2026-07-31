@@ -436,6 +436,17 @@ Publish 成功时，实际参与构建的这份快照会随版本归档到
 同一版本只能复用完全相同的快照；不要手改归档，也不要用后来同步的
 `data/phase2` 覆盖它。
 
+版本发布完成后，用清单做一次历史重建验收：
+
+```bash
+python build.py release-rebuild-verify \
+  --manifest reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json
+```
+
+该命令要求当前工具链与发布清单完全一致，并在临时 worktree 中用清单记录的
+Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 SHA-256
+一致；默认报告写到对应 `versions/<version>/rebuild_verification.json`。
+
 ### 本地自测先隔离生成物
 
 本地跑 `check`、`diff-report`、`release-manifest`、`publish` 或手动消费 queue 时，优先加：

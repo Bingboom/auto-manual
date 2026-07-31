@@ -81,6 +81,40 @@ def _same_binding(existing: dict[str, Any], candidate: dict[str, Any]) -> bool:
     )
 
 
+def verify_frozen_release_snapshot(
+    snapshot_dir: Path,
+    *,
+    expected_sha256: str,
+    expected_target_matrix: Iterable[dict[str, str]],
+) -> dict[str, Any]:
+    """Verify an archived phase2 snapshot without mutating it.
+
+    Historical rebuilds must fail closed when either the identity document or
+    any archived byte has drifted.  The manifest binding is checked separately
+    from the inventory so a copied identity file cannot bless different data.
+    """
+
+    identity_path = release_snapshot_identity_of(snapshot_dir)
+    if not snapshot_dir.is_dir() or not identity_path.is_file():
+        raise RuntimeError(f"release snapshot archive is incomplete: {snapshot_dir}")
+    identity = _read_json(identity_path)
+    target_matrix = list(expected_target_matrix)
+    if identity.get("snapshot_sha256") != expected_sha256:
+        raise RuntimeError(
+            "release snapshot identity does not match manifest binding: "
+            f"{snapshot_dir}"
+        )
+    if identity.get("target_matrix") != target_matrix:
+        raise RuntimeError(
+            "release snapshot target matrix does not match manifest binding: "
+            f"{snapshot_dir}"
+        )
+    archived_sha256 = _inventory_sha256(_inventory(snapshot_dir))
+    if archived_sha256 != expected_sha256:
+        raise RuntimeError(f"release snapshot archive has drifted: {snapshot_dir}")
+    return identity
+
+
 def freeze_release_snapshot(
     *,
     cfg: dict[str, Any],

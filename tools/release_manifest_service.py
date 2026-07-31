@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
@@ -20,6 +21,7 @@ from tools.release_contract import (
     release_snapshot_dir_for_target,
 )
 from tools.release_snapshot import freeze_release_snapshot
+from tools.release_reproducibility import build_reproducibility_record
 from tools.review_bundle import resolve_docs_dir
 from tools.review_support import review_dir_for_target
 from tools.release_asset_lineage import collect_asset_lineage
@@ -71,10 +73,17 @@ def build_release_manifest(
     docs_build_dir: Path | None = None,
     releases_root: Path | None = None,
     release_version: str | None = None,
+    source_date_epoch: int | None = None,
     toolchain: dict[str, object] | None = None,
     assets: dict[str, object] | None = None,
     indesign_package: dict[str, object] | None = None,
 ) -> tuple[Path, Path]:
+    if release_version is not None and source_date_epoch is None:
+        raise RuntimeError(
+            "versioned release manifest requires SOURCE_DATE_EPOCH from the publish Git commit"
+        )
+    if release_version is not None and not re.fullmatch(r"[0-9a-f]{40}", str(git_sha or "")):
+        raise RuntimeError("versioned release manifest requires a full Git commit SHA")
     cfg = load_config(config_path)
     docs_dir = resolve_docs_dir(cfg)
     output_lang = resolve_output_lang(cfg)
@@ -222,6 +231,7 @@ def build_release_manifest(
         "build_languages": langs,
         "product_name": product_name,
         "release_version": release_version or "",
+        "reproducibility": build_reproducibility_record(source_date_epoch),
         "snapshot": snapshot_record,
         "spec_master_csv": repo_relative(snapshot_paths.spec_master_csv, repo_root=repo_root),
         "spec_footnotes_csv": repo_relative(snapshot_paths.spec_footnotes_csv, repo_root=repo_root),
@@ -250,6 +260,13 @@ def build_release_manifest(
         "build_languages": ",".join(langs),
         "product_name": product_name or "",
         "release_version": release_version or "",
+        "reproducibility_schema_version": str(manifest["reproducibility"]["schema_version"]),
+        "reproducibility_policy": str(manifest["reproducibility"]["policy"]),
+        "source_date_epoch": str(
+            manifest["reproducibility"]["source_date_epoch"]
+            if manifest["reproducibility"]["source_date_epoch"] is not None
+            else ""
+        ),
         "snapshot_path": str((snapshot_record or {}).get("path") or ""),
         "snapshot_identity_path": str((snapshot_record or {}).get("identity_path") or ""),
         "snapshot_sha256": str((snapshot_record or {}).get("snapshot_sha256") or ""),

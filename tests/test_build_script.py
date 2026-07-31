@@ -439,6 +439,9 @@ class TestBuildScript(unittest.TestCase):
         message_listener_args = build_cli.parse_args(["listen-message-control", "--config", "configs/config.us.yaml"])
         publish_args = build_cli.parse_args(["publish", "--model", "JE-1000F", "--region", "JP"])
         release_args = build_cli.parse_args(["release-manifest", "--model", "JE-1000F", "--region", "JP"])
+        rebuild_args = build_cli.parse_args(
+            ["release-rebuild-verify", "--manifest", "reports/releases/manifest.json"]
+        )
         sync_args = build_cli.parse_args(["sync-review", "--sync-scope", "generated", "--page-file", "03_product_overview_placeholder.rst"])
         sync_data_args = build_cli.parse_args(["sync-data", "--table", "spec_master", "--dry-run"])
         spec_rebuild_args = build_cli.parse_args(
@@ -466,6 +469,8 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual("JE-1000F", publish_args.model)
         self.assertEqual("JP", publish_args.region)
         self.assertEqual("release-manifest", release_args.action)
+        self.assertEqual("release-rebuild-verify", rebuild_args.action)
+        self.assertEqual("reports/releases/manifest.json", rebuild_args.manifest)
         self.assertEqual("sync-review", sync_args.action)
         self.assertEqual("generated", sync_args.sync_scope)
         self.assertEqual(["03_product_overview_placeholder.rst"], sync_args.page_file)
@@ -895,6 +900,36 @@ class TestBuildScript(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "publish requires --model and --region"):
             build_cli.run_publish(args)
 
+    def test_versioned_publish_should_enter_clean_commit_environment(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "publish",
+                "--model",
+                "JE-1000F",
+                "--region",
+                "US",
+                "--version",
+                "1.0",
+            ]
+        )
+        run_checked = mock.Mock()
+        with mock.patch("tools.build_publish.deterministic_release_environment") as environment:
+            environment.return_value.__enter__.return_value = 1_785_513_828
+            build_cli._run_publish_impl(
+                args,
+                repo_root=build_cli.ROOT,
+                publish_tracked_root=lambda parsed_args: Path("/tracked"),
+                publish_report_dir=lambda parsed_args: Path("/reports"),
+                run_check=mock.Mock(),
+                run_diff_report_with_paths=mock.Mock(),
+                run_checked=run_checked,
+                build_docs_command=lambda *argv, **kwargs: ["build"],
+                release_manifest_command=lambda parsed_args: ["manifest"],
+            )
+
+        environment.assert_called_once_with(repo_root=build_cli.ROOT, require_clean=True)
+        self.assertEqual(4, run_checked.call_count)
+
     def test_publish_should_run_check_diff_report_and_word_from_review(self) -> None:
         args = build_cli.parse_args(["publish", "--config", "configs/config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])
         seen: list[list[str]] = []
@@ -1026,6 +1061,31 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "docs" / "_build"), cmd)
         self.assertIn("--releases-root", cmd)
         self.assertIn(str(build_cli.ROOT / ".tmp" / "staging" / "reports" / "releases"), cmd)
+
+    def test_release_rebuild_command_should_require_and_forward_manifest(self) -> None:
+        missing = build_cli.parse_args(["release-rebuild-verify"])
+        with self.assertRaisesRegex(RuntimeError, "requires --manifest"):
+            build_cli.release_rebuild_command(missing)
+
+        args = build_cli.parse_args(
+            [
+                "release-rebuild-verify",
+                "--manifest",
+                "reports/releases/manifest.json",
+                "--report",
+                "reports/releases/verification.json",
+            ]
+        )
+        cmd = build_cli.release_rebuild_command(args)
+
+        self.assertEqual(
+            str(build_cli.ROOT / "reports" / "releases" / "manifest.json"),
+            cmd[cmd.index("--manifest") + 1],
+        )
+        self.assertEqual(
+            str(build_cli.ROOT / "reports" / "releases" / "verification.json"),
+            cmd[cmd.index("--report") + 1],
+        )
 
     def test_release_manifest_command_should_redirect_outputs_into_staging_root(self) -> None:
         args = build_cli.parse_args(

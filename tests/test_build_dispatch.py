@@ -35,6 +35,7 @@ class TestBuildDispatch(unittest.TestCase):
             "publish",
             "diff-report",
             "release-manifest",
+            "release-rebuild-verify",
             "clean",
             "idml",
         }
@@ -95,6 +96,17 @@ class TestBuildDispatch(unittest.TestCase):
                 ("maybe-sync-review", "word", {}),
                 ("build-docs", "word", {}),
                 ("run-checked", ("build-docs",)),
+            ],
+            calls,
+        )
+
+    def test_dispatch_action_should_route_release_rebuild_verifier(self) -> None:
+        calls = self._dispatch("release-rebuild-verify")
+
+        self.assertEqual(
+            [
+                ("ensure", "release-rebuild-verify"),
+                ("run-checked", ("release-rebuild", "release-rebuild-verify")),
             ],
             calls,
         )
@@ -255,6 +267,7 @@ class TestBuildDispatch(unittest.TestCase):
             run_publish=record_arg("publish"),
             run_diff_report=record_arg("diff-report"),
             release_manifest_command=lambda parsed_args: ["release-manifest", parsed_args.action],
+            release_rebuild_command=lambda parsed_args: ["release-rebuild", parsed_args.action],
             clean_build_artifacts=lambda config_path: calls.append(("clean", config_path)),
             maybe_sync_review_before_build=record_maybe_sync,
             run_asset_command=record_arg("asset-command"),

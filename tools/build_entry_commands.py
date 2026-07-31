@@ -294,7 +294,7 @@ def release_manifest_command(
     staging_docs_build_dir: Callable[[argparse.Namespace], Path | None],
     staging_releases_root: Callable[[argparse.Namespace], Path | None],
 ) -> list[str]:
-    model, region = require_explicit_target(args, "release-manifest")
+    model, region = require_explicit_target(args, action_name="release-manifest")
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
@@ -315,6 +315,34 @@ def release_manifest_command(
         cmd += ["--releases-root", str(staged_releases)]
     if isinstance(args.version, str):
         cmd += ["--version", args.version.strip()]
+    return cmd
+
+
+def release_rebuild_command(
+    args: argparse.Namespace,
+    *,
+    repo_root: Path,
+    resolve_path_from_root: Callable[[str], Path],
+) -> list[str]:
+    raw_manifest = str(getattr(args, "manifest", None) or "").strip()
+    if not raw_manifest:
+        raise RuntimeError("release-rebuild-verify requires --manifest")
+    if any(
+        str(getattr(args, name, None) or "").strip()
+        for name in ("model", "region", "lang", "data_root", "version")
+    ):
+        raise RuntimeError(
+            "release-rebuild-verify resolves target, version, and snapshot from --manifest"
+        )
+    cmd = [
+        sys.executable,
+        str(repo_root / "tools" / "release_rebuild.py"),
+        "--manifest",
+        str(resolve_path_from_root(raw_manifest)),
+    ]
+    raw_report = str(getattr(args, "report", None) or "").strip()
+    if raw_report:
+        cmd += ["--report", str(resolve_path_from_root(raw_report))]
     return cmd
 
 

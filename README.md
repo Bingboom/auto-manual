@@ -455,6 +455,14 @@ For the full review-first flow, queue-driven Draft/Publish workers, matrix runne
 
 Within one queue worker batch, a successful forced phase2 sync is reused for the same config/data-root pair; a failed sync is not memoized and remains retryable for a later group.
 
+A versioned Publish now binds its DOCX, Markdown, and PDF bytes to the release
+Git commit and frozen phase2 snapshot. Verify that contract with
+`python build.py release-rebuild-verify --manifest <release-manifest.json>`.
+The verifier requires the recorded toolchain, validates the immutable snapshot,
+checks out the recorded commit in a disposable worktree, republishes into an
+isolated staging root, and fails unless all three SHA-256 digests are identical.
+Its JSON evidence is written beside the versioned snapshot, never inside it.
+
 The remote Publish worker caches downloaded XeLaTeX/CJK apt archives using the
 package-set hash from [`.github/texlive-apt-packages.txt`](.github/texlive-apt-packages.txt).
 Its run summary reports cache hit/miss and install duration; dispatching with

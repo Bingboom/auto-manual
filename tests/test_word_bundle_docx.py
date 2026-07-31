@@ -19,6 +19,7 @@ from tools.word_bundle_docx import (
     export_word_from_bundle,
 )
 from tools.word_bundle_docx_pandoc import ensure_supported_pandoc_for_reference_doc, resolve_pandoc_binary
+from tools.word_bundle_docx_reproducible import normalize_docx_for_reproducibility
 from tools.word_bundle_html import WordBundlePageMeta
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
@@ -66,7 +67,8 @@ class TestWordBundleDocx(unittest.TestCase):
                 patch("tools.word_bundle_docx._docx_is_valid", return_value=True), \
                 patch("tools.word_bundle_docx._embed_external_docx_images") as images_mock, \
                 patch("tools.word_bundle_docx._remap_reference_doc_styles") as styles_mock, \
-                patch("tools.word_bundle_docx._enforce_docx_outline_levels") as outline_mock:
+                patch("tools.word_bundle_docx._enforce_docx_outline_levels") as outline_mock, \
+                patch("tools.word_bundle_docx.normalize_docx_for_reproducibility") as normalize_mock:
                 result = export_word_from_bundle({}, "JE-1000F", "JP", str(out_path), output_dir=root)
 
             self.assertEqual(out_path, result)
@@ -75,6 +77,56 @@ class TestWordBundleDocx(unittest.TestCase):
             images_mock.assert_called_once_with(out_path)
             styles_mock.assert_called_once_with(out_path, ())
             outline_mock.assert_called_once_with(out_path)
+            normalize_mock.assert_called_once_with(out_path)
+
+    def test_normalize_docx_for_reproducibility_should_remove_time_and_path_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            outputs: list[Path] = []
+            for index, checkout_name in enumerate(("checkout-a", "checkout-b"), start=1):
+                docx_path = root / f"manual-{index}.docx"
+                file_uri = (root / checkout_name / "assets" / "icon_deadbeef.png").as_uri()
+                core_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties"
+ xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <dcterms:created xsi:type="dcterms:W3CDTF">2026-07-31T00:00:0{index}Z</dcterms:created>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-07-31T00:00:0{index}Z</dcterms:modified>
+</cp:coreProperties>
+"""
+                document_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<w:document xmlns:w="{_W_NS}" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+  <w:body><pic:cNvPr id="1" name="Picture" descr="{file_uri}"/></w:body>
+</w:document>
+"""
+                with zipfile.ZipFile(docx_path, "w") as bundle:
+                    first = zipfile.ZipInfo(
+                        "docProps/core.xml",
+                        date_time=(2026, 7, 31, 0, 0, index * 2),
+                    )
+                    first.compress_type = zipfile.ZIP_DEFLATED
+                    second = zipfile.ZipInfo(
+                        "word/document.xml",
+                        date_time=(2026, 7, 31, 0, 0, index * 2),
+                    )
+                    second.compress_type = zipfile.ZIP_DEFLATED
+                    bundle.writestr(first, core_xml)
+                    bundle.writestr(second, document_xml)
+
+                normalize_docx_for_reproducibility(
+                    docx_path,
+                    source_date_epoch=1_700_000_000,
+                )
+                outputs.append(docx_path)
+
+            self.assertEqual(outputs[0].read_bytes(), outputs[1].read_bytes())
+            with zipfile.ZipFile(outputs[0]) as bundle:
+                core = bundle.read("docProps/core.xml").decode("utf-8")
+                document = bundle.read("word/document.xml").decode("utf-8")
+                timestamps = {info.date_time for info in bundle.infolist()}
+            self.assertIn("2023-11-14T22:13:20Z", core)
+            self.assertNotIn("file://", document)
+            self.assertIn('descr="icon_deadbeef.png"', document)
+            self.assertEqual({(2023, 11, 14, 22, 13, 20)}, timestamps)
 
     def test_embed_external_docx_images_should_promote_internalized_links_to_embeds(self) -> None:
         with tempfile.TemporaryDirectory() as td:

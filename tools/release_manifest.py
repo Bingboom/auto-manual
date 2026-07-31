@@ -17,6 +17,9 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.release_manifest_service import build_release_manifest as _build_release_manifest  # noqa: E402
+from tools.release_reproducibility import (  # noqa: E402
+    source_date_epoch_from_environment,
+)
 
 
 def _read_git_sha() -> str | None:
@@ -45,6 +48,7 @@ def build_release_manifest(
     docs_build_dir: Path | None = None,
     releases_root: Path | None = None,
     release_version: str | None = None,
+    source_date_epoch: int | None = None,
     toolchain: dict[str, object] | None = None,
 ) -> tuple[Path, Path]:
     return _build_release_manifest(
@@ -58,6 +62,11 @@ def build_release_manifest(
         docs_build_dir=docs_build_dir,
         releases_root=releases_root,
         release_version=release_version,
+        source_date_epoch=(
+            source_date_epoch
+            if source_date_epoch is not None
+            else source_date_epoch_from_environment()
+        ),
         toolchain=toolchain,
     )
 
@@ -97,6 +106,8 @@ def main(argv: list[str] | None = None) -> int:
             releases_root = ROOT / releases_root
 
     try:
+        if args.version is not None:
+            source_date_epoch_from_environment(required=True)
         json_path, csv_path = build_release_manifest(
             config_path=config_path,
             model=args.model,

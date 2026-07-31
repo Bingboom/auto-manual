@@ -33,6 +33,7 @@ class DispatchContext:
     run_publish: Callable[[argparse.Namespace], None]
     run_diff_report: Callable[[argparse.Namespace], None]
     release_manifest_command: Callable[[argparse.Namespace], list[str]]
+    release_rebuild_command: Callable[[argparse.Namespace], list[str]]
     clean_build_artifacts: Callable[[Path], None]
     maybe_sync_review_before_build: Callable[..., None]
     run_asset_command: Callable[[argparse.Namespace], None] | None = None
@@ -181,6 +182,10 @@ def _dispatch_release_manifest_action(args: argparse.Namespace, context: Dispatc
     context.run_checked(context.release_manifest_command(args))
 
 
+def _dispatch_release_rebuild_action(args: argparse.Namespace, context: DispatchContext) -> None:
+    context.run_checked(context.release_rebuild_command(args))
+
+
 def _dispatch_clean_action(args: argparse.Namespace, context: DispatchContext) -> None:
     context.clean_build_artifacts(context.config_path)
 
@@ -258,6 +263,7 @@ ACTION_HANDLERS: dict[str, ActionHandler] = {
     "publish": _dispatch_publish_action,
     "diff-report": _dispatch_diff_report_action,
     "release-manifest": _dispatch_release_manifest_action,
+    "release-rebuild-verify": _dispatch_release_rebuild_action,
     "clean": _dispatch_clean_action,
 }
 
@@ -293,6 +299,7 @@ def dispatch_action(
     run_publish: Callable[[argparse.Namespace], None],
     run_diff_report: Callable[[argparse.Namespace], None],
     release_manifest_command: Callable[[argparse.Namespace], list[str]],
+    release_rebuild_command: Callable[[argparse.Namespace], list[str]],
     clean_build_artifacts: Callable[[Path], None],
     maybe_sync_review_before_build: Callable[[argparse.Namespace], None],
     run_asset_command: Callable[[argparse.Namespace], None] | None = None,
@@ -323,6 +330,7 @@ def dispatch_action(
         run_publish=run_publish,
         run_diff_report=run_diff_report,
         release_manifest_command=release_manifest_command,
+        release_rebuild_command=release_rebuild_command,
         clean_build_artifacts=clean_build_artifacts,
         maybe_sync_review_before_build=maybe_sync_review_before_build,
         run_asset_command=run_asset_command,

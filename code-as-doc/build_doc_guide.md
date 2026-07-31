@@ -216,6 +216,17 @@ Meaning:
 - for local verification, use [`../scripts/local_build.py`](../scripts/local_build.py), [`../scripts/local_build.ps1`](../scripts/local_build.ps1), or [`../scripts/local_build.sh`](../scripts/local_build.sh); they default `check`, `diff-report`, `release-manifest`, `publish`, and other staging-safe local actions to `.tmp/staging`
 - explicit `--staging-root <dir>` or `AUTO_MANUAL_STAGING_ROOT=<dir>` still redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under another isolated root when needed
 - Publish queue DOCX/PDF/Markdown outputs are staged under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), Markdown sidecars such as `assets/`, `conf.py`, and `index.md` are preserved when present, and each latest publish HTML snapshot is mirrored under [`../reports/releases/<model>/<region>/<lang>/latest/html/`](../reports/releases) for Vercel hosting. The same Publish freezes the exact manifest-backed phase2 root, including exported CSVs and attachments, under `versions/<version>/snapshot/`; `release_snapshot_identity.json` records its content hash, source-manifest revision, freeze time, file inventory, and target matrix. The archive is immutable for the lifetime of the release: an identical retry is idempotent, while an attempted same-version rebind or later archive drift fails. The deployed site is assembled under `dist/<model>/<region>/<lang>/` with a root target index; when `Document_link.HTML_link` exists, the remote publish worker writes each target's URL back to its queue row. Use `--single-target` on the site builder/writeback command only for legacy one-target hosting.
+- A versioned Publish must start from a clean tracked worktree. It derives
+  `SOURCE_DATE_EPOCH` from that commit, uses content-addressed staged assets,
+  and canonicalizes DOCX metadata/container timestamps so the release DOCX,
+  Markdown, and PDF have a byte-equivalence contract recorded in the manifest.
+  Run `python build.py release-rebuild-verify --manifest <manifest.json>` on the
+  recorded toolchain to validate it. The command verifies the archived snapshot,
+  creates a detached worktree at `git_sha`, republishes from the archive into a
+  temporary staging root, and compares all three SHA-256 values. The default
+  `rebuild_verification.json` report sits beside `snapshot/` in the version
+  directory; snapshot drift, toolchain drift, missing provenance, or any output
+  mismatch fails closed.
 - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1): Windows automation wrapper for `process-build-queue`; it restores the local Node/npm path plus the `FEISHU_PHASE2_*` user env vars, runs with `--staging-root .tmp/staging`, forwards any extra queue args such as `--dry-run` or `--record-id`, and writes run logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue)
 - [`../scripts/process_build_queue_feishu.ps1`](../scripts/process_build_queue_feishu.ps1): one-click Windows wrapper that forces Feishu/wiki-only upload before calling the shared queue wrapper
 - the DingTalk AliDocs mirror-upload chain was retired on 2026-07-02: its one-click queue wrapper, browser-session upload CLI, and setup guide were removed, and `lark_drive` (Feishu/wiki) is the only artifact upload provider in operation; the queue-side `dingtalk_alidocs_session` provider code remains dormant pending a separate removal decision

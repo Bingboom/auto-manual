@@ -381,7 +381,7 @@ source-model dependencies clear; Tier 4 (P) is operational hardening.
 
 ### Workstream J: Release Snapshot Freezing And Traceability
 
-Status: active — E1-PR1 freezes and binds the publish snapshot; rebuild-equivalence proof remains E1-PR2
+Status: complete — E1-PR1 freezes/binds the publish snapshot and E1-PR2 proves byte-equivalent rebuilds
 
 Why now:
 
@@ -399,8 +399,12 @@ Progress (2026-07-31): versioned Publish now archives the complete manifest-back
 phase2 root at `reports/releases/<model>/<region>/<lang>/versions/<version>/snapshot/`.
 The release manifest binds to its immutable identity (file inventory/content hash,
 source-manifest revision, freeze timestamp, target matrix); queue worktree output is
-copied back without permitting overwrite drift. End-to-end output equivalence from
-that archive remains the separate E1-PR2 acceptance slice.
+copied back without permitting overwrite drift. Publish derives deterministic time
+from the recorded Git commit, content-addresses staged assets, and canonicalizes the
+DOCX container. `release-rebuild-verify` validates the recorded toolchain and snapshot,
+replays Publish from the archived input in a detached worktree at `git_sha`, and proves
+byte-identical DOCX, Markdown, and PDF SHA-256 values. Its version-sidecar report is
+the E1-PR2 acceptance evidence.
 
 Exit criteria:
 
