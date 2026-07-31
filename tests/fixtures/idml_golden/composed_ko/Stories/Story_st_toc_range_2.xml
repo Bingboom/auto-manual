@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="15.0">
+<Story Self="st_toc_range_2" Label="hb:self=st_toc_range_2" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="TOC range 2">
+<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
+  <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB TOC Range">
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="99.697"><Content>37-54</Content></CharacterStyleRange>
+  </ParagraphStyleRange>
+</Story>
+</idPkg:Story>
