@@ -394,6 +394,19 @@ python tools/cloud_doc_backport.py run-review-branch --doc-name <doc name> --clo
 python tools/cloud_doc_backport.py run-review-branch --doc-name <doc name> --cloud-doc <url> --write --push
 ```
 
+Before propagating a shared-template or manifest change into active review
+branches, generate the read-only evidence ledger:
+
+```bash
+python tools/check_review_branch_sync.py --base origin/main --remote origin --json
+```
+
+The JSON emits one row per affected review branch and changed shared-source
+file. `merge_params_safe` means the branch seed, current source, and review
+derivative prove that only unedited placeholder-bearing lines would be
+replaced; every unresolved mapping or authored same-line edit is
+`needs_human`. The command never updates a review branch or applies a sync.
+
 The legacy `run-review` / `apply-review` diff against the `_review` RST *source*
 and are now **guarded**: a `--write` against an `.rst` baseline is refused and
 steered to `run-review-branch` (the RST-vs-rendered diff over-reports and corrupts

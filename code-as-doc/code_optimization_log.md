@@ -1126,3 +1126,28 @@ Why it mattered:
   scalar carrier, while JSON and CSV still share one collector authority.
 - “No native evidence” is no longer conflated with “native preflight verified
   zero oversets”; the change adds observability without adding a release gate.
+
+## 70. 2026-07-31: Review Propagation Gets a Read-Only Safety Ledger (Workstream W / Stage 5 item 7)
+
+What changed:
+
+- Extended [`tools/check_review_branch_sync.py`](../tools/check_review_branch_sync.py)
+  with `--json` and moved evidence collection/classification into
+  [`tools/review_propagation_ledger.py`](../tools/review_propagation_ledger.py).
+- The ledger reads the checked-in manifest from every live `review/*` branch,
+  including legacy `review/id-*` names, and emits one row per affected
+  branch/shared-source pair with seed SHA, target identity, mapped derivative,
+  and a reason-coded classification.
+- `merge_params_safe` now requires a narrow machine proof: source line
+  structure is stable, all changed lines retain the same placeholders, and the
+  review derivative still matches the seed template outside placeholder values.
+  Every unresolved or broader change becomes `needs_human`.
+
+Why it mattered:
+
+- The old advisory named branches from a region-name heuristic and could not
+  distinguish a safe parameter refresh from a reviewer-clobber risk.
+- A real 15-branch replay now keeps legacy targets visible, narrows direct
+  template impact through seed/current manifest references, and abstains rather
+  than inventing safety. The ledger remains report-only: no sync, branch write,
+  or PR creation was introduced before the K15 design gate is approved.
