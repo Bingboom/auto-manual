@@ -80,6 +80,7 @@
           "type": "generated_page"
         },
         {
+          "capability": "UPS功能",
           "file": "templates/page_shared/en/06_ups_mode.rst",
           "lang": "en",
           "type": "rst_include"

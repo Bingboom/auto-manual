@@ -6,6 +6,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -37,6 +39,47 @@ def _pages():
 
 
 class CapabilityPageFilterTests(unittest.TestCase):
+    def test_every_manifest_ups_page_is_capability_filtered(self) -> None:
+        manifests = sorted((ROOT / "docs" / "manifests").glob("*.yaml"))
+        annotated_pages: list[tuple[str, str]] = []
+        capability_data = _data_dir("TEST_US,test,FALSE,TRUE")
+
+        for manifest in manifests:
+            payload = yaml.safe_load(manifest.read_text(encoding="utf-8"))
+            ups_pages = [
+                page
+                for page in payload.get("pages", [])
+                if "06_ups_mode.rst" in str(page.get("file", ""))
+            ]
+            for page in ups_pages:
+                self.assertEqual(
+                    page.get("capability"),
+                    "UPS功能",
+                    f"{manifest.name}: {page.get('file')}",
+                )
+                annotated_pages.append((manifest.name, page["file"]))
+
+            declared_langs = sorted({
+                lang
+                for page in payload.get("pages", [])
+                for lang in ([page["lang"]] if page.get("lang") else page.get("langs", []))
+            })
+            parsed_pages, issues = parse_config_pages(
+                payload.get("pages", []),
+                default_languages=declared_langs,
+            )
+            self.assertFalse(issues, manifest.name)
+            kept, notes = filter_pages_by_capability(
+                parsed_pages,
+                model="TEST",
+                region="US",
+                data_dir=capability_data,
+            )
+            self.assertEqual(len(parsed_pages) - len(kept), len(ups_pages))
+            self.assertEqual(len(notes), len(ups_pages))
+
+        self.assertEqual(len(annotated_pages), 24)
+
     def test_false_capability_drops_the_page(self) -> None:
         kept, notes = filter_pages_by_capability(
             _pages(), model="JE-1000F", region="US",

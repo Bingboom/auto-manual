@@ -57,6 +57,7 @@
           "type": "generated_page"
         },
         {
+          "capability": "UPS功能",
           "file": "templates/page_jp/06_ups_mode.rst",
           "lang": "ja",
           "type": "rst_include"

@@ -39,6 +39,7 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_shared/en/06_ups_mode.rst
+    capability: UPS功能
   - type: rst_include
     lang: en
     file: templates/page_shared/en/charging.rst
@@ -105,6 +106,7 @@ pages:
   - type: rst_include
     lang: fr
     file: templates/page_shared/fr/06_ups_mode.rst
+    capability: UPS功能
   - type: rst_include
     lang: fr
     file: templates/page_shared/fr/charging.rst
@@ -171,6 +173,7 @@ pages:
   - type: rst_include
     lang: es
     file: templates/page_shared/es/06_ups_mode.rst
+    capability: UPS功能
   - type: rst_include
     lang: es
     file: templates/page_shared/es/charging.rst
@@ -237,6 +240,7 @@ pages:
   - type: rst_include
     lang: de
     file: templates/page_shared/de/06_ups_mode.rst
+    capability: UPS功能
   - type: rst_include
     lang: de
     file: templates/page_shared/de/charging.rst
@@ -303,6 +307,7 @@ pages:
   - type: rst_include
     lang: it
     file: templates/page_shared/it/06_ups_mode.rst
+    capability: UPS功能
   - type: rst_include
     lang: it
     file: templates/page_shared/it/charging.rst
@@ -369,6 +374,7 @@ pages:
   - type: rst_include
     lang: uk
     file: templates/page_shared/uk/06_ups_mode.rst
+    capability: UPS功能
   - type: rst_include
     lang: uk
     file: templates/page_shared/uk/charging.rst

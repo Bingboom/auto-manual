@@ -34,6 +34,7 @@ pages:
   - type: rst_include
     lang: pt-BR
     file: templates/page_shared/pt-BR/06_ups_mode.rst
+    capability: UPS功能
   - type: rst_include
     lang: pt-BR
     file: templates/page_shared/pt-BR/charging.rst
