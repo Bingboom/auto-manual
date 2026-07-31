@@ -1,10 +1,19 @@
 import unittest
+from unittest.mock import patch
 
 from tools.check_review_branch_sync import (
     build_report,
+    build_structured_ledger,
     region_of,
     scope_hits,
     token_matches_region,
+)
+from tools.review_propagation_ledger import (
+    MERGE_PARAMS_SAFE,
+    NEEDS_HUMAN,
+    ReviewBranchSnapshot,
+    classify_merge_params_change,
+    source_affects_review_branch,
 )
 
 
@@ -108,6 +117,153 @@ class BuildReportTests(unittest.TestCase):
         self.assertIn("sync-review", msg)
         self.assertIn("PLACEHOLDER", msg)
         self.assertIn("refresh-review", msg)
+
+
+class MergeParamsSafetyTests(unittest.TestCase):
+    def test_placeholder_only_change_is_safe_when_review_line_keeps_old_skeleton(self):
+        result = classify_merge_params_change(
+            old_template="Power: |POWER| W\n",
+            new_template="Rated power: |POWER| W\n",
+            review_text="Power: 1500 W\n",
+        )
+
+        self.assertEqual(result.classification, MERGE_PARAMS_SAFE)
+        self.assertEqual(result.reason_code, "placeholder_lines_unedited")
+
+    def test_authored_edit_on_placeholder_line_requires_human(self):
+        result = classify_merge_params_change(
+            old_template="Power: |POWER| W\n",
+            new_template="Rated power: |POWER| W\n",
+            review_text="Reviewer wording: 1500 W\n",
+        )
+
+        self.assertEqual(result.classification, NEEDS_HUMAN)
+        self.assertEqual(result.reason_code, "authored_placeholder_line")
+
+    def test_non_placeholder_change_requires_human(self):
+        result = classify_merge_params_change(
+            old_template="Heading\nPower: |POWER| W\n",
+            new_template="New heading\nPower: |POWER| W\n",
+            review_text="Heading\nPower: 1500 W\n",
+        )
+
+        self.assertEqual(result.classification, NEEDS_HUMAN)
+        self.assertEqual(result.reason_code, "non_parameter_change")
+
+
+class StructuredLedgerTests(unittest.TestCase):
+    def test_manifest_reference_excludes_unrelated_shared_language(self):
+        snapshot = ReviewBranchSnapshot(
+            branch="review/JE-1000F-JP",
+            region="JP",
+            seed_git_sha="seed-sha",
+            page_manifest="docs/manifests/manual_jp.yaml",
+        )
+        reads = {
+            ("seed-sha", "docs/manifests/manual_jp.yaml"):
+                "pages:\n  - file: templates/page_jp/06_ups_mode.rst\n",
+            ("HEAD", "docs/manifests/manual_jp.yaml"):
+                "pages:\n  - file: templates/page_jp/06_ups_mode.rst\n",
+        }
+        with patch(
+            "tools.review_propagation_ledger.git_text",
+            side_effect=lambda ref, path, _cwd: reads.get((ref, path)),
+        ):
+            affected = source_affects_review_branch(
+                source_path="docs/templates/page_shared/en/06_ups_mode.rst",
+                scope_matches=True,
+                snapshot=snapshot,
+                cwd=None,
+            )
+
+        self.assertFalse(affected)
+
+    def test_json_rows_use_manifest_metadata_instead_of_legacy_branch_name(self):
+        snapshot = ReviewBranchSnapshot(
+            branch="review/id-record-123",
+            branch_head="branch-head",
+            manifest_path="docs/_review/JE-1000F/US/manifest.json",
+            model="JE-1000F",
+            region="US",
+            lang=None,
+            seed_git_sha="seed-sha",
+            page_manifest="docs/manifests/manual_us.yaml",
+            page_files=("docs/_review/JE-1000F/US/page/03_product_overview_placeholder.rst",),
+        )
+        reads = {
+            ("seed-sha", "docs/manifests/manual_us.yaml"):
+                "pages:\n  - template: templates/page_us-en/03_product_overview_placeholder.rst\n",
+            ("HEAD", "docs/manifests/manual_us.yaml"):
+                "pages:\n  - template: templates/page_us-en/03_product_overview_placeholder.rst\n",
+            ("seed-sha", "docs/templates/page_us-en/03_product_overview_placeholder.rst"):
+                "Power: |POWER| W\n",
+            ("HEAD", "docs/templates/page_us-en/03_product_overview_placeholder.rst"):
+                "Rated power: |POWER| W\n",
+            (
+                "origin/review/id-record-123",
+                "docs/_review/JE-1000F/US/page/03_product_overview_placeholder.rst",
+            ): "Power: 1500 W\n",
+        }
+
+        with (
+            patch(
+                "tools.check_review_branch_sync.inspect_review_branch",
+                return_value=snapshot,
+            ),
+            patch(
+                "tools.review_propagation_ledger.git_text",
+                side_effect=lambda ref, path, _cwd: reads.get((ref, path)),
+            ),
+            patch(
+                "tools.check_review_branch_sync.git_sha",
+                return_value="head-sha",
+            ),
+        ):
+            payload = build_structured_ledger(
+                {"us-en": ["docs/templates/page_us-en/03_product_overview_placeholder.rst"]},
+                ["review/id-record-123"],
+                remote="origin",
+                cwd=None,
+            )
+
+        self.assertEqual(payload["schema_version"], 1)
+        self.assertEqual(payload["mode"], "read_only")
+        self.assertEqual(payload["summary"]["merge_params_safe"], 1)
+        self.assertEqual(len(payload["rows"]), 1)
+        row = payload["rows"][0]
+        self.assertEqual(row["review_branch"], "review/id-record-123")
+        self.assertEqual(row["model"], "JE-1000F")
+        self.assertEqual(row["region"], "US")
+        self.assertEqual(row["classification"], MERGE_PARAMS_SAFE)
+        self.assertEqual(
+            row["review_paths"],
+            ["docs/_review/JE-1000F/US/page/03_product_overview_placeholder.rst"],
+        )
+
+    def test_unresolved_branch_is_retained_as_needs_human(self):
+        snapshot = ReviewBranchSnapshot(
+            branch="review/id-unresolved",
+            error="review_manifest_missing",
+        )
+        with (
+            patch(
+                "tools.check_review_branch_sync.inspect_review_branch",
+                return_value=snapshot,
+            ),
+            patch("tools.check_review_branch_sync.git_sha", return_value="head-sha"),
+        ):
+            payload = build_structured_ledger(
+                {"*": ["docs/templates/snippets/shared.rst"]},
+                ["review/id-unresolved"],
+                remote="origin",
+                cwd=None,
+            )
+
+        self.assertEqual(len(payload["rows"]), 1)
+        self.assertIsNone(payload["rows"][0]["affected"])
+        self.assertEqual(payload["rows"][0]["classification"], NEEDS_HUMAN)
+        self.assertEqual(payload["rows"][0]["reason_code"], "review_manifest_missing")
+        self.assertEqual(payload["summary"]["unresolved"], 1)
 
 
 if __name__ == "__main__":

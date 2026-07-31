@@ -166,6 +166,13 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/release_indesign_package.py`](../../tools/release_indesign_package.py)
   - InDesign package lineage plus native preflight layout signals; JSON owns
     the nested record and release CSV receives the flattened page/overset counts
+- [`tools/check_review_branch_sync.py`](../../tools/check_review_branch_sync.py)
+  - advisory text entrypoint plus the read-only `--json` propagation ledger
+  - changed shared-source scope, live review-branch inventory, and strict exit semantics
+- [`tools/review_propagation_ledger.py`](../../tools/review_propagation_ledger.py)
+  - review-manifest target resolution, seed/current manifest applicability,
+    derivative mapping, and exact-or-abstain `merge_params` safety proof
+  - no branch mutation, sync, PR creation, or propagation apply surface
 
 ## 5. Document Link Queue Modules
 

@@ -138,6 +138,14 @@ Meaning:
 - Target-specific exports do not replace a shared registry key. They use a unique `asset_key` plus `override_for=<shared asset_key>` and a narrow model/region/language scope. A shared template keeps the stable base URI; the frozen registry resolver selects exactly one matching override or falls back to the shared row, and rejects ambiguous override matches.
 - `build.py idml` prepares only RST when the exact model/region/language target is present in the approved reference-layout registry; its production exporter consumes that hash-bound physical plan directly. A matching approved contract on disk without its registry entry is a hard error, not permission to use fuzzy page matching. The historical LaTeX-PDF fallback remains available only when the target has no approved contract.
 - `sync-review`: refresh review files affected by CSV data changes
+- `tools/check_review_branch_sync.py --base <ref> --remote origin --json`: emit
+  the read-only shared-source propagation ledger. It resolves targets from each
+  checked-in review `manifest.json` (including legacy `review/id-*` branches),
+  narrows template/recipe impact through the seed and current page manifests,
+  and marks each affected branch/source row `merge_params_safe` only when the
+  placeholder-line proof succeeds. Missing refs, ambiguous derivatives,
+  ordinary prose/layout changes, and authored edits on a replaceable line stay
+  visible as `needs_human`; this command has no apply mode.
 - `process-review-start-queue`: Start Review bridge; it consumes `sync.phase2.review_init` rows where `是否进入Review` is checked and `Workflow_action` maps to `Start Review`, resolves the review target from `Document_Key` alone, uses `Build_family` / `Lang` only as optional config-routing hints, groups only the rows whose resolved config enables `build.queue_by_document_key`, syncs the latest phase2 snapshot, always reseeds `docs/_review` from the latest `origin/main` template/data state, force-updates the routed review branch when it already exists, creates or reuses the PR, then writes back the same `Git_ref`, `PR_url`, `Review_status=InReview`, and cleared `是否进入Review` state to every pending row in that group
 - Start Review eligibility is the conjunction of `Document_Key` being a non-empty `<MODEL>_<REGION>` value, `是否进入Review` being checked, and `Workflow_action` mapping to `Start Review`
 - when `Document_Key` is a linked Base field, the API can expose only the linked record id, so chat-driven Start Review lookup should use `Task_id` as the stable selector and then verify `是否进入Review` plus `Workflow_action=Start Review`

@@ -952,6 +952,23 @@ RTD catalog behavior:
 - manual HTML preview also suppresses most default Furo sidebar / TOC chrome, stays in a continuous reading flow instead of browser-side fake pagination, regenerates a lightweight left outline from the manual headings, and renders generic headings, copy width, figure presentation, ordinary table spacing, and the multilingual preface notice in a restrained neutral manual-reader style while keeping dedicated component layouts such as `SPECIFICATIONS`, so the result feels like a manual reader instead of a documentation site
 - review-preview workspace manual pages now reuse the same manual HTML/CSS/JS treatment as the local build, including the generated heading sidebar and the same no-top-switcher layout
 
+Shared-source propagation audit (read-only):
+
+```powershell
+python tools/check_review_branch_sync.py --base origin/main --remote origin --json
+```
+
+- the ledger reads every live `review/*` branch manifest, so legacy
+  `review/id-*` names do not need to encode model or region
+- each row binds one affected branch to one changed shared-source file and is
+  either `merge_params_safe` or `needs_human`
+- `merge_params_safe` is a narrow proof: the change is confined to stable
+  placeholder-bearing lines and the reviewer has not edited text outside those
+  placeholders on the same line
+- unresolved branch refs/manifests, non-parameter files, structural changes,
+  ambiguous derivative mapping, and same-line reviewer edits abstain as
+  `needs_human`; the command never modifies or syncs a branch
+
 Equivalent lower-level examples:
 
 ```powershell

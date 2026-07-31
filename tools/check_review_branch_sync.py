@@ -21,10 +21,35 @@ change touches shared source AND open review branches exist.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import subprocess
 import sys
 from pathlib import Path
+
+try:
+    from tools.review_propagation_ledger import (
+        MERGE_PARAMS_SAFE,
+        NEEDS_HUMAN,
+        ReviewBranchSnapshot,
+        classify_source_for_branch,
+        fetch_review_branch_refs,
+        git_sha,
+        inspect_review_branch,
+        source_affects_review_branch,
+    )
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from tools.review_propagation_ledger import (
+        MERGE_PARAMS_SAFE,
+        NEEDS_HUMAN,
+        ReviewBranchSnapshot,
+        classify_source_for_branch,
+        fetch_review_branch_refs,
+        git_sha,
+        inspect_review_branch,
+        source_affects_review_branch,
+    )
 
 # Shared-source paths whose edits drift from in-review branch derivatives.
 # Shared source that drifts from in-review derivatives: ALL templates + manifests.
@@ -140,21 +165,119 @@ def build_report(hits: dict[str, list[str]], branches: list[str] | None) -> tupl
     return "\n".join(lines), affected
 
 
+def build_structured_ledger(
+    hits: dict[str, list[str]],
+    branches: list[str],
+    *,
+    remote: str,
+    cwd: Path | None,
+    remote_ref_ready: bool = True,
+) -> dict[str, object]:
+    """Build a fail-visible, read-only row per affected branch/source pair."""
+    rows: list[dict[str, object]] = []
+    for branch in branches:
+        snapshot = (
+            inspect_review_branch(branch, remote=remote, cwd=cwd)
+            if remote_ref_ready
+            else ReviewBranchSnapshot(branch=branch, error="review_ref_fetch_failed")
+        )
+        for token in sorted(hits):
+            for source_path in sorted(hits[token]):
+                scope_matches = token == _ALL_SCOPE or token_matches_region(token, snapshot.region)
+                affected = source_affects_review_branch(
+                    source_path=source_path,
+                    scope_matches=scope_matches,
+                    snapshot=snapshot,
+                    cwd=cwd,
+                )
+                if affected is False:
+                    continue
+                classified = classify_source_for_branch(
+                    source_path=source_path,
+                    snapshot=snapshot,
+                    remote=remote,
+                    cwd=cwd,
+                )
+                result = classified.result
+                rows.append(
+                    {
+                        "review_branch": branch,
+                        "branch_head": snapshot.branch_head,
+                        "manifest_path": snapshot.manifest_path,
+                        "model": snapshot.model,
+                        "region": snapshot.region,
+                        "lang": snapshot.lang,
+                        "seed_git_sha": snapshot.seed_git_sha,
+                        "page_manifest": snapshot.page_manifest,
+                        "source_path": source_path,
+                        "scope": token,
+                        "affected": affected,
+                        "classification": result.classification,
+                        "reason_code": result.reason_code,
+                        "reason": result.reason,
+                        "review_paths": list(classified.review_paths),
+                    }
+                )
+
+    safe_count = sum(row["classification"] == MERGE_PARAMS_SAFE for row in rows)
+    human_count = sum(row["classification"] == NEEDS_HUMAN for row in rows)
+    unresolved_count = sum(row["affected"] is None for row in rows)
+    return {
+        "schema_version": 1,
+        "mode": "read_only",
+        "remote": remote,
+        "head": git_sha("HEAD", cwd),
+        "summary": {
+            "review_branches": len(branches),
+            "shared_source_files": len({path for paths in hits.values() for path in paths}),
+            "rows": len(rows),
+            MERGE_PARAMS_SAFE: safe_count,
+            NEEDS_HUMAN: human_count,
+            "unresolved": unresolved_count,
+        },
+        "rows": rows,
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", default="origin/main", help="base ref to diff against")
-    parser.add_argument("--remote", default="hello-docs", help="remote hosting review/* branches")
+    parser.add_argument("--remote", default="origin", help="remote hosting review/* branches")
     parser.add_argument("--repo-root", default=".", help="repo root")
     parser.add_argument("--strict", action="store_true", help="exit 1 when affected branches exist")
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="emit a read-only branch-by-source propagation ledger as JSON",
+    )
     args = parser.parse_args(argv)
 
     cwd = Path(args.repo_root).resolve()
     hits = scope_hits(changed_files(args.base, cwd))
     if not hits:
-        print("[review-branch-sync] OK: no shared template/manifest edits.")
+        if args.json:
+            print(json.dumps(build_structured_ledger({}, [], remote=args.remote, cwd=cwd), indent=2))
+        else:
+            print("[review-branch-sync] OK: no shared template/manifest edits.")
         return 0
 
     branches = open_review_branches(args.remote, cwd)
+    if args.json:
+        branch_names = branches or []
+        remote_ref_ready = branches is not None and fetch_review_branch_refs(args.remote, cwd)
+        payload = build_structured_ledger(
+            hits,
+            branch_names,
+            remote=args.remote,
+            cwd=cwd,
+            remote_ref_ready=remote_ref_ready,
+        )
+        if branches is None:
+            payload["remote_error"] = "review_remote_unreachable"
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+        affected = branches is None or bool(payload["rows"])
+        return 1 if (args.strict and affected) else 0
+
     message, affected = build_report(hits, branches)
     print(message)
     return 1 if (args.strict and affected) else 0
