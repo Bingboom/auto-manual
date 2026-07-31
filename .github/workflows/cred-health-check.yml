@@ -47,6 +47,7 @@ jobs:
       FEISHU_PHASE2_MANUAL_COPY_SOURCE_VIEW_ID: ${{ secrets.FEISHU_PHASE2_MANUAL_COPY_SOURCE_VIEW_ID }}
       FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
       FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
+      FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID }}
       DINGTALK_CLIENT_ID: ${{ secrets.DINGTALK_CLIENT_ID }}
       DINGTALK_CLIENT_SECRET: ${{ secrets.DINGTALK_CLIENT_SECRET }}
       DINGTALK_CORP_ID: ${{ secrets.DINGTALK_CORP_ID }}
@@ -72,7 +73,7 @@ jobs:
             const body = [
               `Latest failure: ${runUrl}`,
               '',
-              'See the workflow run\\'s Job Summary for the probe table.',
+              "See the workflow run's Job Summary for the probe table.",
               '',
               'This issue will be closed automatically when the next scheduled or manual run succeeds.',
             ].join('\n');

@@ -117,10 +117,19 @@ def sync_capability_mirror(
     table_id = os.environ.get(table_id_env, "").strip() if table_id_env else ""
     view_id = os.environ.get(view_id_env, "").strip() if view_id_env else None
     if not base_token or not table_id:
+        # Name only what is actually missing: listing both sent a reader
+        # chasing the wrong variable when just the table id was unset
+        # (cred-health-check ran 17 days red on that misdirection).
+        missing = [
+            name for name, value in (
+                (base_token_env or "sync.phase2.base_token_env", base_token),
+                (table_id_env or "sync.phase2.model_capabilities.table_id_env", table_id),
+            ) if not value
+        ]
         raise RuntimeError(
             "sync.phase2.model_capabilities is configured but "
-            f"{base_token_env or 'base_token_env'} / {table_id_env or 'table_id_env'} "
-            "are not set in the environment"
+            f"{', '.join(missing)} "
+            f"{'is' if len(missing) == 1 else 'are'} not set in the environment"
         )
     records = source.fetch_records(
         base_token=base_token, table_id=table_id, view_id=view_id or None)
