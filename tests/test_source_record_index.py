@@ -25,6 +25,7 @@ from tools.source_record_index import (  # noqa: E402
     resolve_by_table,
     resolve_findings,
     resolve_row_record_ids,
+    source_record_index_registry_issues,
 )
 
 
@@ -49,6 +50,9 @@ def _lcd_finding(icon: str, model: str, version: str) -> dict[str, object]:
 
 
 class BuildIndexTests(unittest.TestCase):
+    def test_resolver_registries_are_closed(self) -> None:
+        self.assertEqual(source_record_index_registry_issues(), ())
+
     def test_exact_keys_map_to_record_ids(self) -> None:
         rows = {
             "lcd_icons_blocks": [
@@ -102,6 +106,24 @@ class BuildIndexTests(unittest.TestCase):
         }
         index = build_index(rows)
         self.assertEqual(record_count(index), 0)
+        self.assertEqual(
+            index["tables"]["lcd_icons_blocks"]["abstain_counts"],
+            {"missing_record_id": 1, "missing_required_key": 1, "ambiguous_key": 0},
+        )
+
+    def test_ambiguous_keys_are_visible_in_abstain_sensor(self) -> None:
+        index = build_index(
+            {
+                "lcd_icons_blocks": [
+                    (_lcd_row("battery", "JE-1000F", "0.7"), "recAAA"),
+                    (_lcd_row("battery", "JE-1000F", "0.7"), "recDUP"),
+                ]
+            }
+        )
+        self.assertEqual(
+            index["tables"]["lcd_icons_blocks"]["abstain_counts"],
+            {"missing_record_id": 0, "missing_required_key": 0, "ambiguous_key": 1},
+        )
 
 
 def _spec_row(doc: str, row_key: str, slot: str) -> dict:
