@@ -582,6 +582,14 @@ Important:
   refreshes only the committed fixture through `fixture-refresh`, and automatically runs the
   normal `build.py check` gate. It never writes production `data/phase2`
   or Feishu source tables; those remain a separately approved F6 operation.
+- `build.py new-line --seed-plan --config <config> --model <model> --region
+  <region>` is the zero-write F6 seed plan. It reports the target
+  `Document_key` row, page-placeholder clone candidates, and the local
+  source-table field-create helper. If multiple same-model source documents
+  exist, pass `--seed-source-document-key <key>`; otherwise the plan reports
+  `needs_input` instead of guessing. The command does not call Feishu or write
+  `data/phase2`; row/field creation still requires the separately approved F6
+  write path.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
 - `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> pdf -> md -> release-manifest` as one formal release command.
 - when `Document_link.Workflow_action = Publish` is consumed through the queue, keep `Document_link.Git_ref` pointed at the active review branch so the formal Publish PDF, the release-only DOCX, and the latest publish HTML are all built from that same branch instead of drifting back to `main`.
