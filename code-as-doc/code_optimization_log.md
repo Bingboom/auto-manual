@@ -994,3 +994,17 @@ Why it mattered:
 
 - The queue, listener, spec-master, and schema workflows now share one lowest-level `lark-cli` subprocess and common response-validation boundary. Caller-specific routing and payload parsing remain at the wrappers where they belong.
 - Keeping the wrappers stable avoids breaking existing tests and operational scripts while making the remaining K8 policy changes a single transport-level change.
+
+## 63. 2026-07-31: Feishu Transport Owns Rate-Limit Retry and Pagination Policy (Workstream W / K8 slice 3)
+
+What changed:
+
+- Added bounded exponential retry/backoff for rate-limited `lark-cli` responses, including bounded `retry_after` hints, to [`tools/feishu_record_transport.py`](../tools/feishu_record_transport.py).
+- Added one page iterator with a positive-limit check, offset advancement, and fail-closed empty-page handling when a response claims more data.
+- Routed field-list pagination in [`tools/listen_build_queue_lark.py`](../tools/listen_build_queue_lark.py) and record reads in [`tools/bitable_schema.py`](../tools/bitable_schema.py) through that iterator without changing identity, profile, schema, or record mapping semantics.
+- Added focused tests for retry timing, retry-after handling, offset ownership, and pagination behavior.
+
+Why it mattered:
+
+- Feishu callers now have one bounded rate-limit policy and one pagination safety policy instead of independently reimplementing the two failure-prone mechanics.
+- The slice deliberately leaves snapshot write locking to the next K8 gate and does not change source-table or schema semantics.

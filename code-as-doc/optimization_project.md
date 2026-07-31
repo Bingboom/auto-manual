@@ -641,7 +641,7 @@ Why now:
 Scope:
 
 - U1: one Feishu transport client — fold the duplicate `run_lark_cli_json` implementations (`queue_lark_ops`, `queue_bound_lark_ops`, `listen_build_queue*`, `spec_master_rebuild`, `bitable_schema`, sync/backport call sites) into a single module owning retry/backoff/rate-limit, and add file locking around `data/phase2/*.csv` snapshot writes
-- Execution note: Workstream W / Stage 4a has completed K8 slices 1–2, centralizing the queue, build-listener, spec-master, and schema command/response boundary while leaving retry, pagination, and snapshot-lock semantics to their separately gated slices.
+- Execution note: Workstream W / Stage 4a has completed K8 slices 1–3, centralizing the queue, build-listener, spec-master, and schema command/response boundary plus bounded retry/backoff and pagination policy; snapshot-write locking remains separately gated.
 - U2: package the flat `tools/` namespace along the proven `tools/idml/` pattern — `queue/`, `backport/`, `word/`, `intake/`, `sync/`, `checks/` — as behavior-preserving mechanical moves with guardrail entries updated per move
 - U3: extract target/config resolution (`load_config`, `resolve_build_targets`, `build_root_for_target`) out of the [`tools/build_docs.py`](../tools/build_docs.py) facade into `tools/utils/` so queue/check/release modules stop importing the build orchestrator
 - U4: structured logging baseline: introduce `logging` with levels in queue orchestration and build entry paths first, replacing prints incrementally

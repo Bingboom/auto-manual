@@ -35,6 +35,8 @@ except ImportError:  # pragma: no cover - direct execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
+from tools.feishu_record_transport import iter_lark_pages  # noqa: E402
+
 # Field types this tool can create in a target tenant. Anything else (link / formula /
 # lookup / button / auto_number ...) is recorded but flagged for manual setup, because
 # it references other tables/fields whose IDs differ per tenant.
@@ -355,16 +357,29 @@ def _read_records(base_token: str, tid: str, lark_cli: str) -> tuple[list[dict],
     id_name = _field_id_name_map(base_token, tid, lark_cli)
     rows: list[dict] = []
     rids: list[str] = []
-    offset = 0
     limit = 200
-    while True:
+    def fetch_page(offset: int, page_limit: int) -> dict[str, Any]:
         args = [
             "base", "+record-list", "--base-token", base_token, "--table-id", tid,
-            "--limit", str(limit), "--format", "json", "--as", "bot",
+            "--limit", str(page_limit), "--format", "json", "--as", "bot",
         ]
         if offset:
             args += ["--offset", str(offset)]
-        data = _lark(args, lark_cli).get("data", {}) or {}
+        return _lark(args, lark_cli)
+
+    def page_items(payload: dict[str, Any]) -> list[Any]:
+        return (payload.get("data") or {}).get("data") or []
+
+    def page_has_more(payload: dict[str, Any], _offset: int) -> bool:
+        return bool((payload.get("data") or {}).get("has_more"))
+
+    for payload, raw_rows in iter_lark_pages(
+        fetch_page,
+        items_from_payload=page_items,
+        has_more_from_payload=page_has_more,
+        limit=limit,
+    ):
+        data = payload.get("data", {}) or {}
         display = data.get("fields") or []
         field_ids = data.get("field_id_list") or []
         if field_ids:
@@ -376,14 +391,9 @@ def _read_records(base_token: str, tid: str, lark_cli: str) -> tuple[list[dict],
             ]
         else:
             col_names = display  # older CLI without field_id_list: display names as-is
-        page_rows = [dict(zip(col_names, row)) for row in (data.get("data") or [])]
+        page_rows = [dict(zip(col_names, row)) for row in raw_rows]
         rows.extend(page_rows)
         rids.extend(data.get("record_id_list") or [])
-        if not bool(data.get("has_more")):
-            break
-        if not page_rows:
-            raise RuntimeError(f"record-list signaled has_more but returned no rows for table {tid}")
-        offset += len(page_rows)
     return rows, rids
 
 
