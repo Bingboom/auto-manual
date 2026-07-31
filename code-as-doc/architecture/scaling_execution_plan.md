@@ -120,7 +120,7 @@
 11. [M] `feat(finalize): --jobs manifest Python side` — 清单校验/逐 job 报告聚合/单 job 失败隔离；**jobs 清单强制显式 preset 字段**（修 [PDF/X-4 Japan]/Japan Color 默认 ICC 坑——批判环漏配项）；附 `indesign_package.complete=FALSE` 扫描自动组批盘点。
 12. [S] `feat(finalize): JSX batch loop` — 外层循环+try/catch 隔离；〔操作者验收〕设计机 2-doc 实测。
 13. [M] `refactor(idml): contract-driven app page ownership` — Done（机器）：批准契约的 `app_add_device.page_owners` 同时驱动隐藏资产冻结和排版；退役 `is_je1000f_us_*` 模式，guardrail 正则防再生。
-14. [M] `refactor(idml): explicit page-role table + assembly coverage WARNING`
+14. [M] `refactor(idml): explicit page-role table + assembly coverage WARNING` — Done（机器）：当前模板页由一个 target-neutral 语义表显式覆盖；未知页保持 prose fallback，同时稳定告警 source ref，现有 golden IDML 不变。
 15. [S] `feat(release): layout signals in release manifest`（overset 数/页数入 manifest——发布链版式信号从零到有）
 16. [M] `feat(release): E1-PR1 freeze publish snapshot + manifest binding`
 17. [M] `feat(release): E1-PR2 rebuild equivalence end-to-end`

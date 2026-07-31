@@ -32,6 +32,9 @@ tools/idml/
   page_objects.py             spread-level visual objects for composed pages:
                               H1/H2 heading object-style opts and independent
                               rounded table/callout outline rectangles
+  page_roles.py               target-neutral semantic source-page role table;
+                              unknown pages keep prose fallback with one
+                              deterministic assembly-coverage warning
   prose_flow.py               ordinary-page flow buffering: adjacent prose pages share
                               one linked story until a hard layout boundary
   reference_story_flow.py     approved-reference page ordering plus per-language
@@ -168,6 +171,11 @@ tools/reference_layout_scaffold.py
   contract before freezing hidden assets; prose promotion and story placement
   consume the same contract after full Manual-IR validation. The maintenance
   guardrail rejects target/model-named IDML page predicates.
+- **Page assembly coverage**: `tools/idml/page_roles.py` classifies every source
+  page once before exporter routing. Current template pages are explicit;
+  unknown pages preserve the ordinary-prose fallback and emit one stable
+  warning naming their source refs. A new semantic family belongs in that
+  target-neutral table and its inventory test, never in a target-named branch.
 - **Template style names**: RST/LaTeX extraction may keep semantic `HB ...`
   names, but emitted IDML paragraph style refs and `Resources/Styles.xml`
   names must go through `tools/idml/style_names.py` so generated stories match

@@ -867,7 +867,16 @@ separate scoped override.
 The production gate also rejects skipped raw content. Fixed composite pages
 use explicit component frames, while ordinary operation, UPS/charging,
 storage, and troubleshooting content flows through linked story chains. The
-operation-panel renderer keeps the illustration at the bottom of its group,
+assembler classifies source pages once through
+[`tools/idml/page_roles.py`](../tools/idml/page_roles.py). Every current
+template page has an explicit semantic role. If export prints
+`[export-idml] WARNING: assembly coverage ...`, the named source page still
+uses the historical ordinary-prose fallback and the build remains usable, but
+its assembly intent has not been reviewed. Add a target-neutral semantic rule
+and regression test before treating that page as governed; do not suppress the
+warning with a model, region, language, or physical-page predicate.
+
+The operation-panel renderer keeps the illustration at the bottom of its group,
 then emits editable shape underlays, followed by separate unlocked text frames
 for Prerequisite, standby, On, and Off. The text frames are therefore topmost
 and may be moved or edited independently during final-mile InDesign alignment;

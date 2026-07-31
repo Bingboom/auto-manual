@@ -1083,3 +1083,25 @@ Why it mattered:
 - Ownership now fails closed on draft contracts, missing owners, wrong source
   refs, or mismatched page languages, while the existing 58-page composition,
   asset identities, and geometry remain unchanged.
+
+## 68. 2026-07-31: IDML Assembly Uses Explicit Page Roles (Workstream W / Stage 4a item 14)
+
+What changed:
+
+- Added [`tools/idml/page_roles.py`](../tools/idml/page_roles.py) as the single
+  target-neutral mapping from semantic source-page identity to production
+  assembly role.
+- Classified every projected page once in [`tools/export_idml.py`](../tools/export_idml.py)
+  and replaced its independent prefix, substring, and stem routing checks with
+  role comparisons.
+- Added inventory and CLI safety nets: every current template page must have an
+  explicit role, while an unknown page keeps the historical prose fallback and
+  emits one deterministic `assembly coverage` warning naming its source ref.
+
+Why it mattered:
+
+- A renamed or newly introduced special page can no longer silently look like
+  intentionally ordinary prose; the export remains reviewable and identifies
+  the exact missing assembly decision.
+- The change adds no model/region/language predicate and does not alter existing
+  content, geometry, composition, or golden IDML bytes.

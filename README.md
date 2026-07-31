@@ -195,6 +195,12 @@ under the frozen basename; an unresolved or ambiguous asset now fails the IDML
 export instead of producing a silent missing-link placeholder.
 Fixed composite pages remain componentized, while ordinary operation,
 charging, storage, and troubleshooting prose uses normal linked frame chains.
+Production assembly classifies every source page through the target-neutral
+role table in [`tools/idml/page_roles.py`](tools/idml/page_roles.py). All
+current template pages have an explicit role. A newly introduced page without
+one keeps the historical ordinary-prose fallback, but export prints an
+`assembly coverage` warning naming the source ref; onboard that semantic page
+in the shared role table instead of adding a model/region filename branch.
 IDML language packs for symbol-page copy and TOC labels are generated from the
 shared [`tools/lang_registry.py`](tools/lang_registry.py) registry. The
 `governed_languages()` helper is the single source for reference-bound layout
