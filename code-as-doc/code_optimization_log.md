@@ -1536,3 +1536,26 @@ Why it mattered:
 - Future localized copy now reserves conservative space before InDesign opens,
   without making build results depend on a workstation font installation or
   disturbing existing approved Latin layouts.
+
+## 89. 2026-07-31: JP Production IDML Carries Its Config Language (Workstream W / Stage 5 item 12)
+
+What changed:
+
+- Ran the JE-1000F/JP production-IDML path from `config.ja.yaml` against the
+  committed phase2 fixture and checked the emitted package structurally.
+- Rejected the initial smoke result after its Manual IR reported top-level
+  `language=en` despite the config declaring only `ja`.
+- Made `build.py idml` forward a single-language config's sole language to the
+  exporter when `--lang` is omitted. Explicit CLI language still wins, and
+  multilingual configs retain their previous default.
+- Added dispatch/config-resolution regressions and recorded the corrected JP
+  package evidence in `code-as-doc/tests/` without committing build outputs.
+
+Why it mattered:
+
+- `check_idml` correctly proves ZIP/XML structure, but it cannot prove that the
+  intended locale selected the exporter data paths. A package could therefore
+  look structurally healthy while silently using the English exporter default.
+- The corrected smoke binds the JP config, Manual IR language, explicit CJK
+  story runs, and structural package check into one reviewable acceptance
+  record while keeping native InDesign preflight/parity as a separate gate.

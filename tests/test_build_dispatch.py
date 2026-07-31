@@ -151,6 +151,56 @@ class TestBuildDispatch(unittest.TestCase):
         mode_index = calls[3][1].index("--mode")
         self.assertEqual("flow", calls[3][1][mode_index + 1])
 
+    def test_dispatch_idml_uses_single_configured_language(self) -> None:
+        with patch.object(
+            build_dispatch,
+            "_effective_idml_language",
+            return_value="ja",
+        ):
+            calls = self._dispatch("idml")
+
+        export_command = calls[3][1]
+        language_index = export_command.index("--lang")
+        self.assertEqual("ja", export_command[language_index + 1])
+
+    def test_effective_idml_language_preserves_multilingual_default(self) -> None:
+        with TemporaryDirectory() as tmp:
+            config = Path(tmp) / "config.yaml"
+            config.write_text(
+                "build:\n  languages: [en, fr, es]\n",
+                encoding="utf-8",
+            )
+
+            language = build_dispatch._effective_idml_language(
+                SimpleNamespace(lang=None),
+                config_path=config,
+            )
+
+        self.assertIsNone(language)
+
+    def test_effective_idml_language_prefers_explicit_selection(self) -> None:
+        language = build_dispatch._effective_idml_language(
+            SimpleNamespace(lang="fr"),
+            config_path=Path("missing-config.yaml"),
+        )
+
+        self.assertEqual("fr", language)
+
+    def test_effective_idml_language_reads_single_language_family(self) -> None:
+        with TemporaryDirectory() as tmp:
+            config = Path(tmp) / "config.yaml"
+            config.write_text(
+                "build:\n  languages: [ja]\n",
+                encoding="utf-8",
+            )
+
+            language = build_dispatch._effective_idml_language(
+                SimpleNamespace(lang=None),
+                config_path=config,
+            )
+
+        self.assertEqual("ja", language)
+
     def test_dispatch_idml_approved_target_skips_unrelated_latex_pdf(self) -> None:
         with patch.object(
             build_dispatch,

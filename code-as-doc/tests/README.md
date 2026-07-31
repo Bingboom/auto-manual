@@ -1,6 +1,6 @@
 # Tests Guide
 
-Updated: 2026-03-22
+Updated: 2026-07-31
 
 This file describes the current test entrypoints and recommended smoke checks.
 
@@ -42,6 +42,12 @@ python build.py check --config configs/config.ja.yaml --model JE-1000F --region 
 python build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP
 python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP
 ```
+
+### 2.3 JP production-IDML smoke
+
+The reproducible command, structural result, source identities, and acceptance
+boundary are recorded in
+[`jp_idml_smoke_acceptance_2026-07-31.md`](jp_idml_smoke_acceptance_2026-07-31.md).
 
 ## 3. Review-Specific Smoke Checks
 

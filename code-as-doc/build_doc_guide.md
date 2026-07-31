@@ -753,6 +753,12 @@ must never turn an approved target into an ordinary measured-LaTeX target.
 Fallback is valid only when neither the registry nor the contract directory
 contains an approved contract for the exact model, region, and language list.
 
+For a single-language config, `build.py idml` derives the exporter `--lang`
+from `build.languages` when the CLI flag is omitted. This is required for
+families such as JP and KR: passing only model/region must not let the low-level
+exporter's historical English default select localized data. Multilingual
+configs keep that historical default unless `--lang` is supplied explicitly.
+
 The approved contract freezes these identities:
 
 | Contract item | Approved value |

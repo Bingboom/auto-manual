@@ -181,6 +181,11 @@ flow:
 python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source review-asis
 ```
 
+When `--lang` is omitted, `build.py idml` forwards the sole language declared
+by a single-language family config (for example `ja` from `config.ja.yaml`) to
+the exporter. Multilingual configs retain the historical default unless the
+caller selects one language explicitly.
+
 Production/both mode builds the LaTeX reference PDF first, then emits
 `manual.ir.json`, `latex_page_plan.json`, and the production IDML from that
 same frozen bundle. Cover/front matter, Safety + Symbols, FCC + What's in the
