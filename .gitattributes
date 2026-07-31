@@ -10,6 +10,15 @@
 *.json text eol=lf
 *.csv text eol=crlf
 
+# Machine-written sync mirrors: sync-data writes LF, and a CRLF checkout makes
+# git report a phantom modification the moment the queue overlays the freshly
+# synced copy — which the versioned-publish clean-worktree check then rejects.
+# These files are read by code and edited in Feishu, never hand-edited as CSV,
+# so pin them to the writer's LF instead of the operator-facing CRLF default.
+data/phase2/page_registry.csv text eol=lf
+data/model_capabilities.csv text eol=lf
+data/asset_registry.csv text eol=lf
+
 *.ps1 text eol=crlf
 *.bat text eol=crlf
 *.cmd text eol=crlf
