@@ -83,6 +83,33 @@ def _target_has_approved_reference_plan(
     return any(isinstance(entry, dict) and entry.get("target") == target for entry in entries)
 
 
+def _effective_idml_language(
+    args: argparse.Namespace,
+    *,
+    config_path: Path,
+) -> str | None:
+    """Resolve the exporter language without changing multilingual defaults.
+
+    An explicit ``--lang`` always wins.  For a single-language family, the
+    config declaration is authoritative even when the CLI flag is omitted.
+    Multilingual families retain the exporter's historical default unless the
+    caller selects one language explicitly.
+    """
+
+    explicit = str(getattr(args, "lang", None) or "").strip()
+    if explicit:
+        return explicit
+
+    from tools.config_loader import load_config_mapping
+    from tools.utils.targets import resolve_build_languages
+
+    try:
+        languages = resolve_build_languages(load_config_mapping(config_path))
+    except (OSError, RuntimeError, ValueError):
+        return None
+    return languages[0] if len(languages) == 1 else None
+
+
 def _dispatch_validate_action(args: argparse.Namespace, context: DispatchContext) -> None:
     context.run_validate(
         context.config_path,
@@ -229,8 +256,9 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
         cmd += ["--model", args.model]
     if getattr(args, "region", None):
         cmd += ["--region", args.region]
-    if getattr(args, "lang", None):
-        cmd += ["--lang", args.lang]
+    language = _effective_idml_language(args, config_path=context.config_path)
+    if language:
+        cmd += ["--lang", language]
     if getattr(args, "data_root", None):
         cmd += ["--data-root", args.data_root]
     if mode:

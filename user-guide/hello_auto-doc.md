@@ -79,6 +79,11 @@ creates semantic Markdown plus an editable continuous-story IDML, style map,
 source trace, and asset manifest for a designer-owned template workflow. Both
 are generated outputs, never new content sources.
 
+For a single-language family such as `configs/config.ja.yaml`, you do not need
+to repeat `--lang ja`: `build.py idml` forwards the config's sole language to
+the exporter. On a multilingual family, add `--lang` when exporting only one
+language; otherwise the existing whole-family/default behavior is preserved.
+
 Production mode also checks assembly coverage. Current source pages are mapped
 to target-neutral semantic roles before composition. If the command prints an
 `assembly coverage` warning, the listed new or renamed page was preserved with

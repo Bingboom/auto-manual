@@ -782,6 +782,14 @@ characters stay narrow. EN/FR/JA/KO golden packages remain byte-identical,
 while direct story-budget tests prove equal-count CJK copy receives the larger
 allocation it needs.
 
+Execution note: Stage 5 item 12 ran the real JE-1000F/JP runtime-to-production
+IDML path against the committed phase2 fixture. The first run exposed a false
+green: `check_idml` passed while the Manual IR top-level language was `en`
+because `build.py idml` did not forward the sole `ja` language declared by the
+config. Single-language configs now supply that language automatically;
+multilingual defaults remain unchanged. The corrected JP export records
+`language=ja`, contains explicit CJK font stories, and passes `check_idml`.
+
 Exit criteria: the plan's §2 metrics on the dashboard — a new output language lands with zero Python edits (fake-lang proof), CI check coverage counted as PASS/(PASS+SKIP+FAIL) with a SKIP ratchet, contract recovery after a shared layout change = one command + one approval, hand-written artifact residue ratchets falling, and the next real product line onboarded in ≤2 operator-days.
 
 ## 8. Recommended Order
