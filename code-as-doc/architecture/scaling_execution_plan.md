@@ -140,8 +140,8 @@
 1. [x] [S] `feat(idml): skipped_raw strict gate`（approved-reference 线超基线即败）— Done：批准版式在 `idml_contract.max_skipped_raw` 冻结可接受基线，生产导出超基线 fail-closed；无批准版式的目标继续只报告计数，`manual-ir --strict` 继续保持零容忍显式检查。
 2. [x] [S] `feat(idml): unknown-language fail-closed in strict` — Done：`manual-ir --strict` 与 approved-reference 生产线检查顶层、manifest 声明及逐页语言，未知 token 按来源定位后 fail-closed；普通/fallback 导出保持兼容，注册别名与 `cover`/`toc` 非正文角色不误伤。
 3. [x] [M] `feat(manifest): family-level capability annotations` — Done：17 份 family manifests 的 24 个 `06_ups_mode` 入口统一声明 `capability: UPS功能`，JP/KR/EU 与 US 共用装配期选页；仓库级合同测试防止新增 family 漏标，所有当前 config 的 materialized-page 列表在改前/改后 SHA-256 完全一致，全 bundle 取证记录于 PR body。
-4. [x] [M] `feat(templates): PV input range placeholder-ize (a:模板+fixtures)` — '16V-60V' 烧死在 8 语言拷贝里,安全电气参数;机器验收=fixtures 数据根构建逐字节不变。Done：`pv_input_range/value` 语义行驱动 `PV_INPUT_RANGE`，8 语言解析后 SHA-256 与迁移前一致，US/EU 完整 fixture check 通过，pt-BR/KR 用专用最小 fixture 避免伪造全量覆盖；〔操作者步骤仍待 GATE〕生产表 seed(F6)后 diff-report 取证。
-5. [x] [M] `feat(templates): DC8020/UPS-10ms placeholder-ize (a)` — 同模式。Done：`dc_input_connector/value` 与 `ups_transfer_time/value` 分别驱动 8 语种共享 charging/UPS 模板，16 份解析后 RST 与迁移前逐字节一致；`0 ms` 不兼容警示仍为 authored prose；〔操作者步骤仍待 GATE〕生产表 seed(F6)后 diff-report 取证。
+4. [x] [M] `feat(templates): PV input range placeholder-ize (a:模板+fixtures)` — '16V-60V' 烧死在 8 语言拷贝里,安全电气参数;机器验收=fixtures 数据根构建逐字节不变。Done：`pv_input_range/value` 语义行驱动 `PV_INPUT_RANGE`，8 语言解析后 SHA-256 与迁移前一致，US/EU 完整 fixture check 通过，pt-BR/KR 用专用最小 fixture 避免伪造全量覆盖；操作者于 2026-07-31 放行 F6，当前 US/EU/AU/KR/pt-BR 生产行已 seed、回读、同步并完成 diff-report 取证。
+5. [x] [M] `feat(templates): DC8020/UPS-10ms placeholder-ize (a)` — 同模式。Done：`dc_input_connector/value` 与 `ups_transfer_time/value` 分别驱动 8 语种共享 charging/UPS 模板，16 份解析后 RST 与迁移前逐字节一致；`0 ms` 不兼容警示仍为 authored prose；同一 F6 批次已完成五个当前 document keys 的生产 seed、回读、同步与 diff-report 取证。
 6. [x] [M] `refactor(copy): copy-key pilot 03_product_overview family`（us-es/fr/pt-br;eu 系 raw-LaTeX 页不动）
 7. [x] [M] `feat(review): structured propagation ledger --json` — 只读台账:每在途分支×每受影响文件,标 merge_params-safe/需人工;**不做自动应用**（`--from-ledger` 半自动消费移出本计划,列为 K15 设计交付后的操作者单独拍板项——批判环:预设计锁定风险）。Done：legacy 分支从 manifest 解目标；seed/current manifest 收窄影响面；占位行必须通过 reviewer 同行未改证明，否则明确 abstain。
 8. [x] [S] `feat(idml): font family token`（styles.py:183 + style_resources + **delivery._FONT_ROWS 一并收编**;默认=现值零变化）
@@ -162,6 +162,8 @@
 6. Stage 4b 队列并发语义（K12-min+分键,两测试行实测）
 7. Stage 5 strict 翻转逐项;生产表占位 seed(F6);**CJK/IDML 产线决策**;K15 设计批准
 8. 呈报项（附证据,只呈报不执行）：K3 新二进制 LFS 路由（pack 已 147.7MiB,10x 扩张前最划算——批判环建议呈报而非默默排除）;bus-factor 组织呈报（roadmap:81 交付物）;HTML_link 别名语义实测
+
+Gate decision record (2026-07-31): 操作者以「814批准：Stage4全部放心；Stage5全量放行」放行剩余 Stage 4 与全部 Stage 5 gate，包括本节第 7 项 F6 production seed。执行证据见 [`../reviews/workstream_w_closeout_2026-07-31.md`](../reviews/workstream_w_closeout_2026-07-31.md)。该放行不等同于伪造现场结果：K14 首次计时回滚演练及“下一条真实产线 ≤2 操作者日”仍由操作者在真实事件发生后记录。
 
 ## 6. Non-goals（显式不做,含触发器）
 

@@ -718,7 +718,8 @@ Exit criteria:
 
 ### Workstream W: Product-Line Scaling Execution (模版+数据 → InDesign)
 
-Status: active (operator-approved 2026-07-30, full six stages; gated items released per the plan's §5)
+Status: done (engineering implementation completed 2026-07-31; field KPI and
+the first timed rollback drill remain operator-owned evidence)
 
 PR-level breakdown: [`architecture/scaling_execution_plan.md`](architecture/scaling_execution_plan.md) §4 is the authoritative per-PR list (~76 S/M PRs across Stage 0–5); [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone L tracks stage-level progress.
 
@@ -746,15 +747,16 @@ Execution note: Stage 5 item 4(a) migrates the solar-panel PV input range in
 the eight shared-language charging-method templates to the semantic
 `pv_input_range/value` page row and `PV_INPUT_RANGE` runtime placeholder. Page
 contracts fail closed on missing data, and characterization tests prove
-byte-identical resolved RST. Production Base seed and diff-report evidence
-remain the operator-controlled F6 follow-up.
+byte-identical resolved RST. The operator released F6 on 2026-07-31; the
+production Base rows for the current US/EU/AU/KR/pt-BR document keys were
+seeded, read back, synchronized, and covered by the migration diff report.
 
 Execution note: Stage 5 item 5(a) moves the repeated DC input connector and UPS
 transfer time into `dc_input_connector/value` and `ups_transfer_time/value`
 page rows. The eight shared languages retain byte-identical resolved charging
 and UPS templates, including Ukrainian unit spelling; the authored `0 ms`
-incompatibility cautions are deliberately unchanged. Production seed and
-diff-report evidence remain F6-gated.
+incompatibility cautions are deliberately unchanged. The same F6 execution
+seeded and verified both production rows for those five document keys.
 
 Execution note: Stage 5 item 6 migrates the seven Product Overview page,
 panel, and part labels in the US Spanish, French, and Brazilian Portuguese
@@ -797,6 +799,17 @@ because `build.py idml` did not forward the sole `ja` language declared by the
 config. Single-language configs now supply that language automatically;
 multilingual defaults remain unchanged. The corrected JP export records
 `language=ja`, contains explicit CJK font stories, and passes `check_idml`.
+
+Engineering close-out: all registered Stage 0–5 slices are merged to `main`.
+The durable gate decision, exact Feishu record IDs, post-sync checks, and
+diff-report scope are recorded in
+[`reviews/workstream_w_closeout_2026-07-31.md`](reviews/workstream_w_closeout_2026-07-31.md).
+The current production seed has 15 semantic rows across the five document
+keys. US, EU, and AU pass `check`; KR has only four pre-existing capability
+content gaps, and JE-1500D pt-BR has five pre-existing source-content gaps.
+Those are target-readiness debt, not failed F6 writes. The first timed K14
+rollback drill and the next real product-line onboarding measurement remain
+operator-owned field evidence and are not claimed as completed.
 
 Exit criteria: the plan's §2 metrics on the dashboard — a new output language lands with zero Python edits (fake-lang proof), CI check coverage counted as PASS/(PASS+SKIP+FAIL) with a SKIP ratchet, contract recovery after a shared layout change = one command + one approval, hand-written artifact residue ratchets falling, and the next real product line onboarded in ≤2 operator-days.
 
