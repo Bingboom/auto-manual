@@ -64,6 +64,7 @@ def load_pending_queue_state(
     immediate_only: bool,
     workflow_action: str | None,
     record_id: str | None,
+    record_ids: tuple[str, ...] = (),
     select_pending_queue_records: Callable[..., list[Any]],
     group_pending_queue_records: Callable[[list[Any]], list[list[Any]]],
     available_field_names: Callable[[list[dict[str, Any]]], set[str]],
@@ -84,6 +85,7 @@ def load_pending_queue_state(
         immediate_only=immediate_only,
         workflow_action=workflow_action,
         record_id=record_id,
+        record_ids=record_ids,
     )
     if not pending:
         return None

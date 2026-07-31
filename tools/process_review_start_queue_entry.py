@@ -11,6 +11,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--data-root", default=None, help="Override phase2 snapshot root for review seeding")
     ap.add_argument("--dry-run", action="store_true", help="List pending rows without creating branches or PRs")
     ap.add_argument("--record-id", default=None, help="Only consume one Review-init record_id")
+    ap.add_argument(
+        "--record-ids",
+        default="",
+        help="Only consume these comma-separated Review-init record_ids (batch worker input)",
+    )
     return ap.parse_args(argv)
 
 
@@ -40,4 +45,5 @@ def run_main(
         data_root=resolved_data_root,
         dry_run=args.dry_run,
         record_id=args.record_id,
+        record_ids=tuple(item.strip() for item in str(args.record_ids or "").split(",") if item.strip()),
     )

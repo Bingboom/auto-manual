@@ -222,6 +222,7 @@ def select_pending_queue_records(
     workflow_action: str | None,
     doc_phase: str | None,
     record_id: str | None,
+    record_ids: tuple[str, ...] = (),
     parse_queue_records: Callable[[list[dict[str, Any]]], list[Any]],
     normalize_cli_queue_action: Callable[..., str | None],
     resolve_queue_workflow_action: Callable[[Any], str | None],
@@ -234,6 +235,7 @@ def select_pending_queue_records(
     )
     selected: list[Any] = []
     targeted_record = None
+    targeted_record_ids = {item.strip() for item in record_ids if item.strip()}
     for record in parse_queue_records(raw_records):
         if record_id and record.record_id == record_id:
             targeted_record = record
@@ -242,6 +244,8 @@ def select_pending_queue_records(
         if immediate_only and not is_immediate_trigger_enabled(record.immediate_trigger_value):
             continue
         if record_id and record.record_id != record_id:
+            continue
+        if targeted_record_ids and record.record_id not in targeted_record_ids:
             continue
         try:
             resolved_action = resolve_queue_workflow_action(record)

@@ -141,8 +141,9 @@ def select_pending_review_start_records(
     raw_records: list[dict[str, Any]],
     *,
     record_id: str | None = None,
+    record_ids: tuple[str, ...] = (),
 ) -> list[ReviewStartRecord]:
-    return _select_pending_review_start_records_impl(raw_records, record_id=record_id)
+    return _select_pending_review_start_records_impl(raw_records, record_id=record_id, record_ids=record_ids)
 
 
 def _slug_branch_token(value: str) -> str:
@@ -510,6 +511,7 @@ def process_review_start_queue(
     data_root: str | None,
     dry_run: bool,
     record_id: str | None = None,
+    record_ids: tuple[str, ...] = (),
 ) -> int:
     return _process_review_start_queue_impl(
         cfg=cfg,
@@ -517,6 +519,7 @@ def process_review_start_queue(
         data_root=data_root,
         dry_run=dry_run,
         record_id=record_id,
+        record_ids=record_ids,
         deps=ReviewStartRuntimeDeps(
             root=ROOT,
             review_action_label=REVIEW_START_ACTION_LABEL,

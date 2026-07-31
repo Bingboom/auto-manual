@@ -78,17 +78,31 @@ export function createRepoControl(config) {
       }
       return runBuildJson(config, args);
     },
-    async executeResolvedAction({ actionName, queueScope, recordId, confirmPublish = false, noWait = false }) {
+    async executeResolvedAction({
+      actionName,
+      queueScope,
+      recordId,
+      recordIds = [],
+      allowMultiple = false,
+      confirmPublish = false,
+      noWait = false,
+    }) {
       const args = [
         "queue-execute",
         "--config",
         config.controlConfig,
         "--queue-scope",
         queueScope,
-        "--record-id",
-        recordId,
         "--json",
       ];
+      if (allowMultiple) {
+        args.push("--allow-multiple");
+        if (recordIds.length) {
+          args.push("--record-ids", recordIds.join(","));
+        }
+      } else {
+        args.splice(args.indexOf("--json"), 0, "--record-id", recordId);
+      }
       const workflowAction = workflowActionArg(actionName);
       if (workflowAction) {
         args.push("--query-workflow-action", workflowAction);

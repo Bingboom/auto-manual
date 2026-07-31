@@ -94,6 +94,13 @@ def select_queue_rows(args: argparse.Namespace, rows: list[QueueQueryRow]) -> tu
         limit=1000,
     )
     filtered = filter_queue_query_rows(selection_args, rows)
+    requested_record_ids = {
+        item.strip()
+        for item in str(getattr(args, "record_ids", "") or "").split(",")
+        if item.strip()
+    }
+    if requested_record_ids:
+        filtered = [row for row in filtered if row.record_id in requested_record_ids]
     if not filtered:
         request_text = str(getattr(args, "query_text", "") or "").strip()
         details = f" for request `{request_text}`" if request_text else ""
@@ -362,6 +369,54 @@ def _first_line(text: str) -> str:
     return str(text or "").strip().splitlines()[0] if str(text or "").strip() else ""
 
 
+def _dispatch_result(row: QueueQueryRow, *, accepted_at: str) -> dict[str, Any]:
+    return {
+        "record_id": row.record_id,
+        "document_id": row.document_id or row.document_key or "",
+        "workflow_action": row.workflow_action,
+        "git_ref": row.git_ref,
+        "dispatched": False,
+        "status": "skipped",
+        "reason": "",
+        "accepted_at": accepted_at,
+    }
+
+
+def _prepare_dispatch_row(
+    resolved_args: argparse.Namespace,
+    row: QueueQueryRow,
+    *,
+    accepted_at: str,
+) -> tuple[dict[str, Any], str | None]:
+    """Validate one row and return its result shell plus dispatch command."""
+    result = _dispatch_result(row, accepted_at=accepted_at)
+    if is_completed_start_review_row(row):
+        result["reason"] = f"already in review (review_status={row.review_status or '-'})"
+        result["review_status"] = row.review_status
+        return result, None
+    try:
+        ensure_build_trigger_requested(row)
+        ensure_publish_confirmation(resolved_args, row)
+        ensure_start_review_dispatchable(row)
+        return result, dispatch_command_for_row(row)
+    except RuntimeError as exc:
+        result["reason"] = _first_line(str(exc))
+        return result, None
+
+
+def _mark_dispatched(result: dict[str, Any], payload: dict[str, str], *, batch: bool = False) -> None:
+    result["dispatched"] = True
+    result["status"] = "dispatched"
+    if batch:
+        result["batch"] = True
+    if payload.get("run_id"):
+        result["run_id"] = payload["run_id"]
+    if payload.get("run"):
+        result["run_url"] = payload["run"]
+    if payload.get("accepted_at"):
+        result["accepted_at"] = payload["accepted_at"]
+
+
 def _dispatch_one_row(
     resolved_args: argparse.Namespace,
     row: QueueQueryRow,
@@ -377,27 +432,8 @@ def _dispatch_one_row(
     accepted dispatch is reported as `dispatched`, so the caller never has to
     infer "已进队" from the trigger flag.
     """
-    result: dict[str, Any] = {
-        "record_id": row.record_id,
-        "document_id": row.document_id or row.document_key or "",
-        "workflow_action": row.workflow_action,
-        "git_ref": row.git_ref,
-        "dispatched": False,
-        "status": "skipped",
-        "reason": "",
-        "accepted_at": accepted_at,
-    }
-    if is_completed_start_review_row(row):
-        result["reason"] = f"already in review (review_status={row.review_status or '-'})"
-        result["review_status"] = row.review_status
-        return result
-    try:
-        ensure_build_trigger_requested(row)
-        ensure_publish_confirmation(resolved_args, row)
-        ensure_start_review_dispatchable(row)
-        dispatch_command = dispatch_command_for_row(row)
-    except RuntimeError as exc:
-        result["reason"] = _first_line(str(exc))
+    result, dispatch_command = _prepare_dispatch_row(resolved_args, row, accepted_at=accepted_at)
+    if dispatch_command is None:
         return result
     try:
         if dispatch_command == "publish":
@@ -408,14 +444,7 @@ def _dispatch_one_row(
         result["status"] = "error"
         result["reason"] = _first_line(str(exc))
         return result
-    result["dispatched"] = True
-    result["status"] = "dispatched"
-    if payload.get("run_id"):
-        result["run_id"] = payload["run_id"]
-    if payload.get("run"):
-        result["run_url"] = payload["run"]
-    if payload.get("accepted_at"):
-        result["accepted_at"] = payload["accepted_at"]
+    _mark_dispatched(result, payload)
     return result
 
 
@@ -458,17 +487,48 @@ def run_queue_execute_batch(
     *,
     repo_root: Path,
 ) -> None:
-    """Dispatch every matching row in one call (no per-row completion wait).
+    """Dispatch matching rows through one batch workflow per queue action.
 
-    A batch never blocks on GitHub completion: it fires each eligible row and
-    returns one accurate per-record report. The operator re-queries status
-    afterwards (the lifecycle is accept-first).
+    Validation remains per-row so skipped/error records stay visible, but the
+    eligible rows for one action share one GitHub run. The worker receives no
+    single record id and therefore consumes the pending batch atomically at the
+    queue layer instead of occupying one workflow slot per language/target.
     """
     accepted_at = str(getattr(resolved_args, "fresh_since", "") or "").strip() or _now_iso()
-    results = [
-        _dispatch_one_row(resolved_args, row, repo_root=repo_root, accepted_at=accepted_at)
-        for row in rows
-    ]
+    results: list[dict[str, Any]] = []
+    dispatch_groups: dict[str, list[tuple[int, QueueQueryRow]]] = {}
+    for row in rows:
+        result, dispatch_command = _prepare_dispatch_row(resolved_args, row, accepted_at=accepted_at)
+        index = len(results)
+        results.append(result)
+        if dispatch_command:
+            dispatch_groups.setdefault(dispatch_command, []).append((index, row))
+
+    for dispatch_command, entries in dispatch_groups.items():
+        if len(entries) == 1:
+            index, row = entries[0]
+            results[index] = _dispatch_one_row(
+                resolved_args,
+                row,
+                repo_root=repo_root,
+                accepted_at=accepted_at,
+            )
+            continue
+        cli_args = ["dispatch", dispatch_command, "batch"]
+        cli_args.append(
+            "--record-ids=" + ",".join(row.record_id for _index, row in entries)
+        )
+        if dispatch_command == "publish":
+            cli_args.append("confirm")
+        try:
+            payload = _run_control_layer_cli(repo_root, *cli_args)
+        except RuntimeError as exc:
+            for index, _row in entries:
+                results[index]["status"] = "error"
+                results[index]["reason"] = _first_line(str(exc))
+            continue
+        for index, _row in entries:
+            _mark_dispatched(results[index], payload, batch=True)
     print(render_queue_execute_batch_result(results, as_json=bool(getattr(resolved_args, "json", False))))
 
 

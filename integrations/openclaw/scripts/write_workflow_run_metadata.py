@@ -22,6 +22,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--workflow-name", required=True, help="Display name of the GitHub workflow.")
     ap.add_argument("--workflow-file", required=True, help="Workflow file path inside the repository.")
     ap.add_argument("--queue-record-id", default="", help="Optional Feishu queue record id.")
+    ap.add_argument("--queue-record-ids", default="", help="Optional comma-separated Feishu queue record ids.")
     ap.add_argument("--trigger-source", default="", help="Optional trigger source label.")
     ap.add_argument("--openclaw-dispatch-nonce", default="", help="Optional OpenClaw dispatch nonce.")
     ap.add_argument("--publish-url", default="", help="Optional publish URL returned by the deploy step.")
@@ -116,6 +117,7 @@ def build_metadata(
     workflow_name: str,
     workflow_file: str,
     queue_record_id: str,
+    queue_record_ids: str = "",
     trigger_source: str,
     openclaw_dispatch_nonce: str,
     artifact_names: list[str],
@@ -139,6 +141,7 @@ def build_metadata(
         "workflow_name": workflow_name,
         "workflow_file": workflow_file,
         "queue_record_id": _clean_text(queue_record_id),
+        "queue_record_ids": [item.strip() for item in queue_record_ids.split(",") if item.strip()],
         "trigger_source": _clean_text(trigger_source),
         "openclaw_dispatch_nonce": _clean_text(openclaw_dispatch_nonce),
         "artifact_names": [name.strip() for name in artifact_names if name.strip()],
@@ -193,6 +196,7 @@ def main() -> int:
         workflow_name=args.workflow_name,
         workflow_file=args.workflow_file,
         queue_record_id=args.queue_record_id,
+        queue_record_ids=args.queue_record_ids,
         trigger_source=args.trigger_source,
         openclaw_dispatch_nonce=args.openclaw_dispatch_nonce,
         artifact_names=args.artifact_name,

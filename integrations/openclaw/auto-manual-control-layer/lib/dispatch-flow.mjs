@@ -38,12 +38,17 @@ function duplicateDispatchResult({ command, queueRecordId, run, tracked }) {
   };
 }
 
-export async function dispatchCommandFlow({ command, queueRecordId, github, stateStore, settings }) {
-  const activeRun = await github.findActiveRunForRecord({
-    workflowFile: command.workflowFile,
-    queueRecordId,
-    branch: settings.defaultBranch,
-  });
+export async function dispatchCommandFlow({ command, queueRecordId, queueRecordIds = [], batch = false, github, stateStore, settings }) {
+  const activeRun = batch
+    ? await github.findActiveBatchRun({
+        workflowFile: command.workflowFile,
+        branch: settings.defaultBranch,
+      })
+    : await github.findActiveRunForRecord({
+        workflowFile: command.workflowFile,
+        queueRecordId,
+        branch: settings.defaultBranch,
+      });
   if (activeRun) {
     return duplicateDispatchResult({
       command,
@@ -61,6 +66,7 @@ export async function dispatchCommandFlow({ command, queueRecordId, github, stat
     inputs: {
       trigger_source: "openclaw",
       queue_record_id: queueRecordId,
+      queue_record_ids: queueRecordIds.join(","),
       openclaw_dispatch_nonce: nonce,
     },
   });

@@ -257,7 +257,7 @@ def parse_args(
         "--allow-multiple",
         action="store_true",
         help="For queue-resolve-action or queue-execute: allow batch actions across every matching queue row "
-        "(queue-execute dispatches each eligible row in one call and reports a per-record result)",
+        "(queue-execute dispatches one worker run for each action and reports a per-record result)",
     )
     ap.add_argument(
         "--limit",
@@ -419,6 +419,11 @@ def parse_args(
         "--record-id",
         default=None,
         help="For process-build-queue or process-review-start-queue: only consume one table record_id",
+    )
+    ap.add_argument(
+        "--record-ids",
+        default=None,
+        help="For queue-execute or queue workers: comma-separated table record_ids for one batch run",
     )
     ap.add_argument(
         "--dry-run",

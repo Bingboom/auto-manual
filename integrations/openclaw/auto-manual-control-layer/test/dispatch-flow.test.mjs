@@ -66,6 +66,36 @@ test("draft dispatch sends queue_record_id and keeps the requested record in tra
   assert.match(result.text, /run_id: 321/);
 });
 
+test("batch draft dispatch sends no record id and tracks one batch run", async () => {
+  const dispatchCalls = [];
+  const github = {
+    async findActiveBatchRun() {
+      return null;
+    },
+    async dispatchWorkflow(payload) {
+      dispatchCalls.push(payload);
+    },
+    async findDispatchedRun() {
+      return { id: 322, html_url: "https://example.com/runs/322" };
+    },
+  };
+  const savedRecords = [];
+  const stateStore = { async saveRecord(record) { savedRecords.push(record); return record; } };
+  const result = await dispatchCommandFlow({
+    command: sharedDraftCommand,
+    queueRecordId: "",
+    batch: true,
+    github,
+    stateStore,
+    settings,
+  });
+  assert.equal(dispatchCalls.length, 1);
+  assert.equal(dispatchCalls[0].inputs.queue_record_id, "");
+  assert.equal(savedRecords[0].queueRecordId, "");
+  assert.match(result.text, /scope: batch/);
+  assert.match(result.text, /run_id: 322/);
+});
+
 test("start-review dispatch sends queue_record_id so the worker targets one row", async () => {
   const dispatchCalls = [];
   const savedRecords = [];

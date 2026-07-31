@@ -30,6 +30,15 @@ export function findActiveRunForRecord(runs, queueRecordId) {
   }) || null;
 }
 
+export function findActiveBatchRun(runs) {
+  return runs.find((run) => {
+    if (run.status === "completed") {
+      return false;
+    }
+    return runTitle(run).includes("/ batch /") || runTitle(run).endsWith("/ batch");
+  }) || null;
+}
+
 export function findRecentActiveRun(runs, { createdAfter }) {
   const createdAfterTime = createdAfter ? Date.parse(createdAfter) : 0;
   return runs.find((run) => {

@@ -143,10 +143,14 @@ def select_pending_review_start_records(
     raw_records: list[dict[str, Any]],
     *,
     record_id: str | None = None,
+    record_ids: tuple[str, ...] = (),
 ) -> list[ReviewStartRecord]:
     selected: list[ReviewStartRecord] = []
+    targeted_record_ids = {item.strip() for item in record_ids if item.strip()}
     for record in parse_review_start_records(raw_records):
         if record_id and record.record_id != record_id:
+            continue
+        if targeted_record_ids and record.record_id not in targeted_record_ids:
             continue
         if not is_checkbox_enabled(record.review_trigger_value):
             continue

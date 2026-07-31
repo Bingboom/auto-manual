@@ -158,6 +158,7 @@ def select_pending_queue_records(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
     record_id: str | None = None,
+    record_ids: tuple[str, ...] = (),
 ) -> list[QueueRecord]:
     return _select_pending_queue_records_impl(
         raw_records,
@@ -165,6 +166,7 @@ def select_pending_queue_records(
         workflow_action=workflow_action,
         doc_phase=doc_phase,
         record_id=record_id,
+        record_ids=record_ids,
         parse_queue_records=parse_queue_records,
         normalize_cli_queue_action=_normalize_cli_queue_action,
         resolve_queue_workflow_action=resolve_queue_workflow_action,

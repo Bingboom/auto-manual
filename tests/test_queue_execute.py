@@ -564,6 +564,47 @@ class TestQueueExecute(unittest.TestCase):
         self.assertFalse(by_id["rec_us"]["dispatched"])
         self.assertIn("是否触发文档构建", by_id["rec_us"]["reason"])
 
+    def test_run_queue_execute_batch_uses_one_batch_dispatch_for_multiple_rows(self) -> None:
+        rows = [
+            queue_query.QueueQueryRow(
+                **{**_draft_row("rec_en").__dict__, "document_id": "JE-1000F_EU_en_1.0", "build_trigger_requested": True}
+            ),
+            queue_query.QueueQueryRow(
+                **{**_draft_row("rec_fr").__dict__, "document_id": "JE-1000F_EU_fr_1.0", "build_trigger_requested": True}
+            ),
+        ]
+        dispatch_calls = []
+
+        def fake_cli(repo_root, *cli_args):
+            dispatch_calls.append(cli_args)
+            return {"run_id": "777", "run": "https://example.com/runs/777", "accepted_at": "t1"}
+
+        stdout = io.StringIO()
+        with mock.patch.object(queue_execute, "load_config", return_value={}), \
+            mock.patch.object(queue_execute, "collect_queue_query_rows", return_value=rows), \
+            mock.patch.object(queue_execute, "_run_control_layer_cli", side_effect=fake_cli), \
+            redirect_stdout(stdout):
+            queue_execute.run_queue_execute(
+                self._args(
+                    allow_multiple=True,
+                    json=True,
+                    queue_scope="document-link",
+                    query_workflow_action="build-draft-package",
+                    record_ids="rec_en,rec_fr",
+                ),
+                config_path=Path("config.us.yaml"),
+                repo_root=Path("."),
+            )
+
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(
+            [("dispatch", "build-draft", "batch", "--record-ids=rec_en,rec_fr")],
+            dispatch_calls,
+        )
+        self.assertEqual(2, payload["dispatched_count"])
+        self.assertEqual({"777"}, {row["run_id"] for row in payload["results"]})
+        self.assertTrue(all(row["batch"] for row in payload["results"]))
+
 
 if __name__ == "__main__":
     unittest.main()

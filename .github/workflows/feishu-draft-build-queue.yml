@@ -12,6 +12,10 @@ on:
         description: Optional Document_link record_id that triggered this run
         required: false
         type: string
+      queue_record_ids:
+        description: Optional comma-separated Document_link record_ids for one batch run
+        required: false
+        type: string
       openclaw_dispatch_nonce:
         description: Optional nonce used by OpenClaw to correlate the dispatched run
         required: false
@@ -94,6 +98,7 @@ jobs:
           echo "default_branch=${{ github.event.repository.default_branch }}"
           echo "trigger_source=${{ inputs.trigger_source || '' }}"
           echo "queue_record_id=${{ inputs.queue_record_id || '' }}"
+          echo "queue_record_ids=${{ inputs.queue_record_ids || '' }}"
           echo "openclaw_dispatch_nonce=${{ inputs.openclaw_dispatch_nonce || '' }}"
           echo "artifact_sink_provider=${AUTO_MANUAL_ARTIFACT_SINK_PROVIDER:-lark_drive}"
           echo "artifact_mirror_provider=${AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER:-none}"
@@ -115,6 +120,9 @@ jobs:
           if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
             cmd+=(--record-id "${{ inputs.queue_record_id }}")
           fi
+          if [ -n "${{ inputs.queue_record_ids || '' }}" ]; then
+            cmd+=(--record-ids "${{ inputs.queue_record_ids }}")
+          fi
           "${cmd[@]}"
 
       - name: Write OpenClaw run metadata
@@ -126,6 +134,7 @@ jobs:
             --workflow-name "Feishu Draft Build Queue" \
             --workflow-file ".github/workflows/feishu-draft-build-queue.yml" \
             --queue-record-id "${{ inputs.queue_record_id || '' }}" \
+            --queue-record-ids "${{ inputs.queue_record_ids || '' }}" \
             --trigger-source "${{ inputs.trigger_source || '' }}" \
             --openclaw-dispatch-nonce "${{ inputs.openclaw_dispatch_nonce || '' }}" \
             --artifact-name feishu-draft-build-queue-output \
