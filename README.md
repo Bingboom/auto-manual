@@ -482,6 +482,7 @@ When command behavior, workflow ownership, or architecture boundaries change:
 
 - update the owning document in the same change
 - keep `python tools/check_maintainability_guardrails.py` green when touching the guarded hotspot files
+- that guardrail also runs the reviewed language-literal ratchet; removing a hand-written language table entry is allowed, while adding one requires an explicit baseline diff
 - keep the PR checklist honest: if a helper boundary moves, update the module map in the same change
 - avoid restating the same rules in multiple docs
 - keep history in [`code-as-doc/code_optimization_log.md`](code-as-doc/code_optimization_log.md), not in the current guides
