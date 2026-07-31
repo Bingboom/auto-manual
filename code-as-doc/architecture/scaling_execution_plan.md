@@ -144,7 +144,7 @@
 5. [M] `feat(templates): DC8020/UPS-10ms placeholder-ize (a)` — 同模式。
 6. [M] `refactor(copy): copy-key pilot 03_product_overview family`（us-es/fr/pt-br;eu 系 raw-LaTeX 页不动）
 7. [x] [M] `feat(review): structured propagation ledger --json` — 只读台账:每在途分支×每受影响文件,标 merge_params-safe/需人工;**不做自动应用**（`--from-ledger` 半自动消费移出本计划,列为 K15 设计交付后的操作者单独拍板项——批判环:预设计锁定风险）。Done：legacy 分支从 manifest 解目标；seed/current manifest 收窄影响面；占位行必须通过 reviewer 同行未改证明，否则明确 abstain。
-8. [S] `feat(idml): font family token`（styles.py:183 + style_resources + **delivery._FONT_ROWS 一并收编**;默认=现值零变化）
+8. [x] [S] `feat(idml): font family token`（styles.py:183 + style_resources + **delivery._FONT_ROWS 一并收编**;默认=现值零变化）
 9. [S] `test(idml): ja/ko golden variants`（CJK 三件套的字节级前置安全网——批判环补漏）
 10. [M] `feat(idml): CJK fallback runs`（token idml_font_family_cjk;gated on ④）
 11. [M] `feat(idml): east_asian_width line estimates`（0.52 拉丁估宽改字符宽度类别;gated）

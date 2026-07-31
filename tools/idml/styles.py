@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from .params import IDPKG, param_pt, param_text
 from .app_text_styles import paragraph_attrs as app_paragraph_attrs, paragraph_styles as app_paragraph_styles
-from .style_resources import fonts_xml, graphic_xml, preferences_xml
+from .style_resources import PRIMARY_FONT_FAMILY_TOKEN, fonts_xml, graphic_xml, preferences_xml
 from .style_names import paragraph_style_name, paragraph_style_ref
 
 
@@ -180,7 +180,7 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
             f'PointSize="{size:g}" FillColor="{fill}" {shading}'
             f'{paragraph_attrs}Justification="{justification}">\n'
             f'    <Properties>\n'
-            f'      <AppliedFont type="string">Gilroy</AppliedFont>\n'
+            f'      <AppliedFont type="string">{PRIMARY_FONT_FAMILY_TOKEN.name}</AppliedFont>\n'
             f'      <FontStyle type="string">{weight}</FontStyle>\n'
             # fixed leading does not grow for inline anchored objects —
             # figure paragraphs need Auto so art doesn't shoot out the top

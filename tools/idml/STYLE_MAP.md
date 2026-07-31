@@ -37,6 +37,11 @@
 
 ## 字号/字重收敛(2026-07-11 参数收敛轮,fitz 双线实测)
 
+IDML 主字体族由 `font_family.PRIMARY_FONT_FAMILY_TOKEN` 单源定义；生产样式、
+flow 样式、`Fonts.xml` 与交付包字体清单共同消费它。符号及圈号 fallback 仍保持
+独立职责。当前 token 的值和既有生成字节不变，未写入 `layout_params.csv`，
+因此不会仅因内部收编而改变已批准的 reference-layout 身份。
+
 | 元素 | 共用键 | 双线实测 | 备注 |
 |---|---|---|---|
 | H1 盒字 | `type_h1_font_size/leading`(9.0/10.8) | 9.0pt 两线一致 | 字重 LaTeX=Heavy、IDML=Bold(IDML 未注册 Gilroy-Heavy,近似) |

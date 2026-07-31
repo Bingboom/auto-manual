@@ -1,6 +1,7 @@
 """IDML graphic, font, and document-preference resource parts."""
 from __future__ import annotations
 
+from .font_family import PRIMARY_FONT_FAMILY_TOKEN
 from .params import IDPKG, brand_cmyk
 
 
@@ -32,15 +33,19 @@ def graphic_xml(params: dict[str, tuple[str, str]]) -> str:
 
 
 def fonts_xml() -> str:
+    primary = PRIMARY_FONT_FAMILY_TOKEN
+    primary_faces = "\n".join(
+        f'    <Font Self="{face.resource_id}" FontFamily="{primary.name}" '
+        f'Name="{face.name}" PostScriptName="{face.postscript_name}" '
+        f'Status="Installed" FontStyleName="{face.style_name}" '
+        f'FontType="{face.font_type}"/>'
+        for face in primary.faces
+    )
     return (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Fonts xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        '  <FontFamily Self="ff_gilroy" Name="Gilroy">\n'
-        '    <Font Self="ff_gilroy_r" FontFamily="Gilroy" Name="Gilroy Regular" PostScriptName="Gilroy-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeCFF"/>\n'
-        '    <Font Self="ff_gilroy_m" FontFamily="Gilroy" Name="Gilroy Medium" PostScriptName="Gilroy-Medium" Status="Installed" FontStyleName="Medium" FontType="OpenTypeCFF"/>\n'
-        '    <Font Self="ff_gilroy_sb" FontFamily="Gilroy" Name="Gilroy Semibold" PostScriptName="Gilroy-SemiBold" Status="Installed" FontStyleName="Semibold" FontType="OpenTypeCFF"/>\n'
-        '    <Font Self="ff_gilroy_b" FontFamily="Gilroy" Name="Gilroy Bold" PostScriptName="Gilroy-Bold" Status="Installed" FontStyleName="Bold" FontType="OpenTypeCFF"/>\n'
-        '    <Font Self="ff_gilroy_h" FontFamily="Gilroy" Name="Gilroy Heavy" PostScriptName="Gilroy-Heavy" Status="Installed" FontStyleName="Heavy" FontType="OpenTypeCFF"/>\n'
+        f'  <FontFamily Self="{primary.resource_id}" Name="{primary.name}">\n'
+        + primary_faces + '\n'
         '  </FontFamily>\n'
         '  <FontFamily Self="ff_arial_unicode_ms" Name="Arial Unicode MS">\n'
         '    <Font Self="ff_arial_unicode_ms_r" FontFamily="Arial Unicode MS" Name="Arial Unicode MS Regular" PostScriptName="ArialUnicodeMS" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>\n'
