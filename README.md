@@ -121,8 +121,10 @@ Sensitive App/QR candidates stay quarantined after intake. A production asset ma
 use `source=reviewed-promotion:<promotion_id>` only through a narrow contract in
 [`data/asset_promotions/`](data/asset_promotions) that binds the reviewer, scope,
 source AI, frozen reference PDF, recipe/evidence, candidate bytes, output bytes,
-and composition with full SHA-256 values. Contract drift fails closed and never
-falls back to a same-named shared image.
+and composition with full SHA-256 values. The JSON file is the reviewed carrier;
+the transitional Python compatibility shadow is read in parallel and must match
+it exactly, including the carrier's own SHA-256. Contract drift fails closed and
+never falls back to a same-named shared image.
 The maintainer-side `.ai` handoff, duplicate check, attachment upload, and
 downloaded-hash verification are documented in the
 [`closed_loop_ops_guide`](user-guide/closed_loop_ops_guide.md#492-ai-交付与登记一页流程).

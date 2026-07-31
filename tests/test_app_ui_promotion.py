@@ -12,6 +12,7 @@ from tempfile import TemporaryDirectory
 from tools.app_ui_promotion import (
     CANDIDATE_ASSET_KEYS,
     PROMOTED_ASSET_KEYS,
+    PROMOTION_CONTRACT_SHA256,
     PROMOTION_ID,
     PROMOTION_RELATIVE_PATH,
     ReviewedPromotionError,
@@ -347,6 +348,22 @@ class TestAppUiReviewedPromotion(unittest.TestCase):
                             validate_reviewed_promotion(root, PROMOTION_ID)
                     finally:
                         path.write_bytes(original)
+
+    def test_contract_carrier_hash_is_immutable_even_for_json_equivalent_edits(self) -> None:
+        self.assertEqual(
+            PROMOTION_CONTRACT_SHA256,
+            _sha256(ROOT / PROMOTION_RELATIVE_PATH),
+        )
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            _copy_promotion_inputs(root)
+            contract_path = root / PROMOTION_RELATIVE_PATH
+            contract_path.write_text(
+                contract_path.read_text(encoding="utf-8") + "\n",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ReviewedPromotionError, "SHA-256"):
+                validate_reviewed_promotion(root, PROMOTION_ID)
 
     def test_registry_binding_must_match_the_reviewed_contract_exactly(self) -> None:
         record = self.by_key[PROMOTED_ASSET_KEYS[0]]
