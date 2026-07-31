@@ -1192,3 +1192,22 @@ Why it mattered:
 - The new snapshots are a truthful byte-level safety net for the gated CJK
   fallback work. This slice changes no exporter behavior, font selection,
   reference-layout contract, or production source data.
+
+## 73. 2026-07-31: Product Overview Chrome Consumes Localized Copy (Workstream W / Stage 5 item 6)
+
+What changed:
+
+- Replaced seven literal Product Overview page, panel, and part labels in the
+  US Spanish, French, and Brazilian Portuguese templates with the existing
+  `product_overview.*` runtime copy keys.
+- Added a characterization test that resolves the committed phase2 fixture and
+  locks every migrated template to its pre-migration SHA-256.
+- Recorded the migration boundary in the maintainer and operator guides; EU
+  raw-LaTeX pages and descriptive image-alt prose remain outside this pilot.
+
+Why it mattered:
+
+- The same localized chrome no longer has two independently editable sources.
+- Missing copy data still fails closed, while the byte-parity lock proves the
+  migration changes no rendered RST, page geometry, reference-layout contract,
+  production Base row, or asset.

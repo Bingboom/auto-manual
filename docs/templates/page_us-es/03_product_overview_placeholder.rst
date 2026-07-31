@@ -1,7 +1,7 @@
-DESCRIPCIÓN GENERAL DEL PRODUCTO
+{{ copy:product_overview.page_title }}
 ================================
 
-VISTA FRONTAL
+{{ copy:product_overview.front_view }}
 -------------
 
 .. image:: asset:overview/front_controls
@@ -13,13 +13,13 @@ VISTA FRONTAL
    :widths: 50 50
 
    * - **|MAIN_POWER_BUTTON_LABEL|**
-     - **LCD**
+     - **{{ copy:product_overview.part.lcd }}**
    * - **|FRONT_DC12_PORT_LABEL|**
 
        |FRONT_DC12_PORT_SPEC|
-     - **Botón de luz LED**
+     - **{{ copy:product_overview.part.led_light_button }}**
    * - **|DC_USB_POWER_BUTTON_LABEL|**
-     - **Luz LED**
+     - **{{ copy:product_overview.part.led_light }}**
    * - **|FRONT_USB_C_LOW_LABEL|**
 
        |FRONT_USB_C_LOW_SPEC|
@@ -43,7 +43,7 @@ VISTA FRONTAL
 
        |FRONT_TOTAL_OUTPUT_SPEC|
 
-VISTA LATERAL DERECHA
+{{ copy:product_overview.right_side_view }}
 ---------------------
 
 .. image:: asset:overview/right_side_ports
@@ -54,7 +54,7 @@ VISTA LATERAL DERECHA
    :header-rows: 0
    :widths: 100
 
-   * - **Asa**
+   * - **{{ copy:product_overview.part.handle }}**
    * - **|SIDE_AC_INPUT_LABEL|**
 
        |SIDE_AC_INPUT_SPEC|
