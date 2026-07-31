@@ -26,6 +26,7 @@ then review the fixture diff like any other code change.
 """
 from __future__ import annotations
 
+import re
 import shutil
 import subprocess
 import sys
@@ -277,7 +278,21 @@ def _bundle_for_variant(variant: str, temp_root: Path) -> tuple[Path, str]:
 
 def _contains_text(parts: dict[str, bytes], text: str) -> bool:
     encoded = text.encode("utf-8")
-    return any(encoded in data for data in parts.values())
+    if any(encoded in data for data in parts.values()):
+        return True
+    # Explicit font fallback runs legitimately split one visible phrase into
+    # adjacent Content elements (for example around an ASCII space in a CJK
+    # heading).  Sentinel validation follows the visible story text rather
+    # than requiring one unsplit XML node.
+    for data in parts.values():
+        if b"<Content>" not in data:
+            continue
+        visible = "".join(
+            re.findall(r"<Content>(.*?)</Content>", data.decode("utf-8"), re.S)
+        )
+        if text in visible:
+            return True
+    return False
 
 
 class IdmlGoldenTests(unittest.TestCase):

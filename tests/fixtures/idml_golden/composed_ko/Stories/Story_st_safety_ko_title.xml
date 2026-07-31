@@ -3,7 +3,7 @@
 <Story Self="st_safety_ko_title" Label="hb:self=st_safety_ko_title" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="safety_ko title">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/带底Heading2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="-1.5"><Content>중요 안전 정보</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="-1.5" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>중요</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="-1.5"><Content> </Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="-1.5" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>안전</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="-1.5"><Content> </Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="-1.5" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>정보</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

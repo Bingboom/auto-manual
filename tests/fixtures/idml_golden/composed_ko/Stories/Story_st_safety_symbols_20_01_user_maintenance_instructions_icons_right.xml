@@ -10,12 +10,12 @@
     <Column Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_r_tblcol1" Name="1" SingleColumnWidth="115.547"/>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_r_tblc0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" FillColor="Color/HB Bg K05" VerticalJustification="CenterAlign" TopInset="2" BottomInset="2" LeftInset="4" RightInset="2" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" LeftEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Symbol Header">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>기호</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>기호</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="st_safety_symbols_20_01_user_maintenance_instructions_icons_r_tblc0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="2" BottomInset="2" LeftInset="5" RightInset="4" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0" RightEdgeStrokeWeight="0">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/HB Symbol Header">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>의미</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>의미</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
   </Table>

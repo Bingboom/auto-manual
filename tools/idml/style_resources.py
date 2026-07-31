@@ -1,7 +1,7 @@
 """IDML graphic, font, and document-preference resource parts."""
 from __future__ import annotations
 
-from .font_family import PRIMARY_FONT_FAMILY_TOKEN
+from .font_family import CJK_FONT_FAMILY_TOKEN, PRIMARY_FONT_FAMILY_TOKEN
 from .params import IDPKG, brand_cmyk
 
 
@@ -34,6 +34,7 @@ def graphic_xml(params: dict[str, tuple[str, str]]) -> str:
 
 def fonts_xml() -> str:
     primary = PRIMARY_FONT_FAMILY_TOKEN
+    cjk = CJK_FONT_FAMILY_TOKEN
     primary_faces = "\n".join(
         f'    <Font Self="{face.resource_id}" FontFamily="{primary.name}" '
         f'Name="{face.name}" PostScriptName="{face.postscript_name}" '
@@ -41,14 +42,21 @@ def fonts_xml() -> str:
         f'FontType="{face.font_type}"/>'
         for face in primary.faces
     )
+    cjk_faces = "\n".join(
+        f'    <Font Self="{face.resource_id}" FontFamily="{cjk.name}" '
+        f'Name="{face.name}" PostScriptName="{face.postscript_name}" '
+        f'Status="Installed" FontStyleName="{face.style_name}" '
+        f'FontType="{face.font_type}"/>'
+        for face in cjk.faces
+    )
     return (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Fonts xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
         f'  <FontFamily Self="{primary.resource_id}" Name="{primary.name}">\n'
         + primary_faces + '\n'
         '  </FontFamily>\n'
-        '  <FontFamily Self="ff_arial_unicode_ms" Name="Arial Unicode MS">\n'
-        '    <Font Self="ff_arial_unicode_ms_r" FontFamily="Arial Unicode MS" Name="Arial Unicode MS Regular" PostScriptName="ArialUnicodeMS" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>\n'
+        f'  <FontFamily Self="{cjk.resource_id}" Name="{cjk.name}">\n'
+        + cjk_faces + '\n'
         '  </FontFamily>\n'
         '  <FontFamily Self="ff_apple_symbols" Name="Apple Symbols">\n'
         '    <Font Self="ff_apple_symbols_r" FontFamily="Apple Symbols" Name="Apple Symbols Regular" PostScriptName="AppleSymbols" Status="Installed" FontStyleName="Regular" FontType="TrueType"/>\n'

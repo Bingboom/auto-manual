@@ -1,6 +1,8 @@
 """Spread-level object helpers for composed IDML pages."""
 from __future__ import annotations
 
+import re
+
 from .params import param_pt
 
 CAPSULE_OBJECT_STYLE = "ObjectStyle/HB Capsule Heading"
@@ -59,22 +61,46 @@ def heading_text(writer, text: str, *, level: int,
         # Fixed/composed title frames need a slight downward optical shift;
         # flowed H1 hosts override it below because their inline line box has
         # different metrics.
-        xml = xml.replace(
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            'BaselineShift="-1.5"',
-            1,
+        marker = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+
+        def apply_baseline(match: re.Match[str]) -> str:
+            attrs = match.group("attrs")
+            if marker not in attrs or ' BaselineShift=' in f" {attrs}":
+                return match.group(0)
+            attrs = attrs.replace(
+                marker,
+                f'{marker} BaselineShift="-1.5"',
+                1,
+            )
+            return f"<CharacterStyleRange {attrs}>"
+
+        xml = re.sub(
+            r'<CharacterStyleRange (?P<attrs>[^>]*)>',
+            apply_baseline,
+            xml,
         )
     if point_size is None:
         return xml
-    override = f'PointSize="{point_size:g}"'
-    if font_style:
-        override += f' FontStyle="{font_style}"'
-    return xml.replace(
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        + override,
-        1,
+    marker = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+    point_size_attr = f'PointSize="{point_size:g}"'
+
+    def apply_override(match: re.Match[str]) -> str:
+        attrs = match.group("attrs")
+        if marker not in attrs:
+            return match.group(0)
+        override = point_size_attr
+        # Explicit fallback runs already select the only registered face of
+        # their family.  Preserve that style instead of emitting a duplicate
+        # FontStyle attribute beside the component heading override.
+        if font_style and ' FontStyle=' not in f" {attrs}":
+            override += f' FontStyle="{font_style}"'
+        attrs = attrs.replace(marker, f"{marker} {override}", 1)
+        return f"<CharacterStyleRange {attrs}>"
+
+    return re.sub(
+        r'<CharacterStyleRange (?P<attrs>[^>]*)>',
+        apply_override,
+        xml,
     )
 
 

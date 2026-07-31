@@ -146,7 +146,7 @@
 7. [x] [M] `feat(review): structured propagation ledger --json` — 只读台账:每在途分支×每受影响文件,标 merge_params-safe/需人工;**不做自动应用**（`--from-ledger` 半自动消费移出本计划,列为 K15 设计交付后的操作者单独拍板项——批判环:预设计锁定风险）。Done：legacy 分支从 manifest 解目标；seed/current manifest 收窄影响面；占位行必须通过 reviewer 同行未改证明，否则明确 abstain。
 8. [x] [S] `feat(idml): font family token`（styles.py:183 + style_resources + **delivery._FONT_ROWS 一并收编**;默认=现值零变化）
 9. [x] [S] `test(idml): ja/ko golden variants`（CJK 三件套的字节级前置安全网——批判环补漏）
-10. [M] `feat(idml): CJK fallback runs`（token idml_font_family_cjk;gated on ④）
+10. [x] [M] `feat(idml): CJK fallback runs`（token idml_font_family_cjk;gated on ④）— Done：汉字、假名、谚文及 CJK 标点/全角字符生成显式可编辑字体 run，精确符号映射优先；token 复用既有 Arial Unicode MS 资源且不进入几何参数表，EN/FR golden 全部件逐字节不变，JA/KO 各仅 18 个本地化 Story 部件变化并通过 IDML 自检。
 11. [M] `feat(idml): east_asian_width line estimates`（0.52 拉丁估宽改字符宽度类别;gated）
 12. [S] `test(idml): JP smoke export + check_idml record`（gated）
 13. [M] `feat(release): K14 release tag + rollback runbook`（deps: E1;演练计时归操作者）

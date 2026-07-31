@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import math
+import re
 
 from .character_metrics import with_character_metrics
 from .params import param_pt
@@ -445,9 +446,16 @@ def typed_paragraph(writer, style: str, text: str,
         leading=leading,
     )
     if bold:
-        paragraph = paragraph.replace(
-            "<CharacterStyleRange ",
-            '<CharacterStyleRange FontStyle="Bold" ',
+        def apply_bold(match: re.Match[str]) -> str:
+            attrs = match.group("attrs")
+            if ' FontStyle=' in f" {attrs}":
+                return match.group(0)
+            return f'<CharacterStyleRange FontStyle="Bold" {attrs}>'
+
+        paragraph = re.sub(
+            r'<CharacterStyleRange (?P<attrs>[^>]*)>',
+            apply_bold,
+            paragraph,
         )
     if font:
         paragraph = paragraph.replace(

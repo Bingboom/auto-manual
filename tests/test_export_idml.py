@@ -5,6 +5,7 @@ import sys
 import tempfile
 import threading
 import unittest
+import xml.etree.ElementTree as ET
 import zipfile
 from pathlib import Path
 
@@ -29,6 +30,8 @@ from tools.idml.character_metrics import (  # noqa: E402
     tail_label_metrics,
 )
 from tools.idml.layout_est import template_symbol_split  # noqa: E402
+from tools.idml.page_objects import heading_text  # noqa: E402
+from tools.idml.params import param_pt  # noqa: E402
 from tools.idml.symbols_page import SafetySymbolsPageStyle  # noqa: E402
 from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
 
@@ -158,6 +161,61 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("<Content>\u2393</Content>", psr)
         self.assertIn("<Properties><AppliedFont type=\"string\">Arial Unicode MS</AppliedFont></Properties>", psr)
         self.assertIn('FontStyle="Regular"', psr)
+
+    def test_cjk_text_uses_fallback_runs_without_changing_latin_text(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        psr = IdmlWriter(params)._psr(
+            "HB Body",
+            "Latin 日本語、한국어 Latin",
+            terminal=True,
+        )
+        fallback = (
+            '<Properties><AppliedFont type="string">Arial Unicode MS'
+            '</AppliedFont></Properties>'
+        )
+        self.assertEqual(1, psr.count(fallback))
+        self.assertIn("<Content>日本語、한국어</Content>", psr)
+        self.assertIn("<Content>Latin </Content>", psr)
+        self.assertIn("<Content> Latin</Content>", psr)
+
+    def test_cjk_inline_role_keeps_position_and_fallback_font(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        psr = IdmlWriter(params)._psr(
+            "HB Body",
+            r"Label :sup:`日本語`",
+            terminal=True,
+        )
+        self.assertIn('Position="Superscript"', psr)
+        self.assertIn(
+            '<AppliedFont type="string">Arial Unicode MS</AppliedFont>',
+            psr,
+        )
+        self.assertIn("<Content>日本語</Content>", psr)
+
+    def test_cjk_heading_metrics_apply_to_every_visible_run(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        xml = heading_text(
+            IdmlWriter(params),
+            "사용자 유지 관리",
+            level=2,
+        )
+        root = ET.fromstring(f"<root>{xml}</root>")
+        expected_size = f'{param_pt(params, "type_subbar_font_size", 6.6):g}'
+        visible_runs = [
+            run for run in root.iter("CharacterStyleRange")
+            if run.find("Content") is not None
+        ]
+        self.assertGreater(len(visible_runs), 1)
+        self.assertTrue(
+            all(run.attrib.get("PointSize") == expected_size for run in visible_runs)
+        )
+        cjk_runs = [
+            run for run in visible_runs if run.find("Properties") is not None
+        ]
+        self.assertTrue(cjk_runs)
+        self.assertTrue(
+            all(run.attrib.get("FontStyle") == "Regular" for run in cjk_runs)
+        )
 
     def test_fonts_xml_declares_symbol_fallback_font(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

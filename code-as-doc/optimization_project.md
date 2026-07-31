@@ -766,6 +766,14 @@ localized synthetic bundle content. Language sentinels prevent an English or
 wrong-language fixture from being accepted as a CJK baseline; no production
 renderer behavior or CJK font policy changed.
 
+Execution note: Stage 5 item 10 routes Han, Kana, Hangul, CJK punctuation, and
+fullwidth/halfwidth forms into explicit editable IDML character runs governed
+by `CJK_FONT_FAMILY_TOKEN` (`idml_font_family_cjk`). The token centralizes the
+existing Arial Unicode MS resource and delivery row without changing their
+bytes; EN/FR golden packages remain byte-identical, while JA/KO golden diffs
+are confined to localized Story XML. Layout parameters and approved reference
+contracts remain unchanged.
+
 Exit criteria: the plan's §2 metrics on the dashboard — a new output language lands with zero Python edits (fake-lang proof), CI check coverage counted as PASS/(PASS+SKIP+FAIL) with a SKIP ratchet, contract recovery after a shared layout change = one command + one approval, hand-written artifact residue ratchets falling, and the next real product line onboarded in ≤2 operator-days.
 
 ## 8. Recommended Order
