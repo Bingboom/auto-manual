@@ -123,8 +123,8 @@
 14. [M] `refactor(idml): explicit page-role table + assembly coverage WARNING` — Done（机器）：当前模板页由一个 target-neutral 语义表显式覆盖；未知页保持 prose fallback，同时稳定告警 source ref，现有 golden IDML 不变。
 15. [S] `feat(release): layout signals in release manifest` — Done（机器）：#723 已把 native page/overset 数写入 `indesign_package.preflight`；本项补齐 release CSV/dashboard 两个数值列，并区分未报告与显式 `0`。
 16. [x] [M] `feat(release): E1-PR1 freeze publish snapshot + manifest binding` — Done（机器）：versioned Publish 将实际 phase2 根（CSV + attachments）冻结到 `versions/<version>/snapshot/`，JSON/CSV manifest 绑定 identity；同版本异源重绑、归档漂移与临时 worktree 丢失均 fail-closed。
-17. [M] `feat(release): E1-PR2 rebuild equivalence end-to-end`
-18. [M] `feat(ci): nightly-render workflow` — doctor 循环+试点 IDML smoke（#720 类事故发现延迟上界→1 天）；〔操作者验收〕手触一轮。
+17. [x] [M] `feat(release): E1-PR2 rebuild equivalence end-to-end` — Done（机器）：versioned publish manifest 可在隔离历史 worktree 中仅依赖归档 snapshot 重建，DOCX/Markdown/PDF 逐字节等价；PR #820 已合入。
+18. [x] [M] `feat(ci): nightly-render workflow` — Done（机器）：每日/手动 workflow 从 config 注册表派生完整 doctor 循环，并以冻结 fixture 构建、结构校验 JE-1000F US English production IDML，JSON 报告保留逐目标结果与 IDML SHA-256，使 #720 类事故发现延迟上界降至 1 天；〔操作者验收〕合入后手触一轮。
 
 ### Stage 4b — 并发子阶段（操作者拍板后执行,3 PR）
 批判环最高级修正：**并发组分键必须晚于最小原子认领**，否则 record-run 与 batch-run 可双跑同一行（RUNNING 是软认领）。

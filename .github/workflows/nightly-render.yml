@@ -1,0 +1,95 @@
+name: Nightly Render
+
+on:
+  schedule:
+    - cron: "45 8 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nightly-render
+  cancel-in-progress: false
+
+jobs:
+  render-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache XeLaTeX apt archives
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/texlive-apt-cache
+          key: nightly-render-texlive-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.github/texlive-apt-packages.txt') }}
+
+      - name: Install render toolchain
+        shell: bash
+        run: |
+          PANDOC_VERSION=3.9.0.2
+          apt_cache="${RUNNER_TEMP}/texlive-apt-cache"
+          mkdir -p "${apt_cache}/partial"
+          mapfile -t texlive_packages < <(sed -e '/^[[:space:]]*#/d' -e '/^[[:space:]]*$/d' .github/texlive-apt-packages.txt)
+          if [ "${#texlive_packages[@]}" -eq 0 ]; then
+            echo "::error::.github/texlive-apt-packages.txt contains no packages"
+            exit 1
+          fi
+          sudo apt-get update
+          sudo apt-get install -y \
+            -o Dir::Cache::archives="${apt_cache}" \
+            -o APT::Keep-Downloaded-Packages=true \
+            curl "${texlive_packages[@]}"
+          sudo chown -R "$(id -u):$(id -g)" "${apt_cache}"
+          curl -sSfL \
+            "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb" \
+            -o "${RUNNER_TEMP}/pandoc.deb"
+          sudo dpkg -i "${RUNNER_TEMP}/pandoc.deb"
+          xelatex --version | head -n 1
+          pandoc --version | head -n 1
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.lock
+
+      - name: Run config doctors and production IDML pilot
+        run: |
+          python tools/nightly_render.py \
+            --configs-dir configs \
+            --data-root tests/fixtures/phase2 \
+            --report "${RUNNER_TEMP}/nightly-render.json" \
+            --pilot-config configs/config.us-en.yaml \
+            --pilot-model JE-1000F \
+            --pilot-region US \
+            --pilot-lang en
+
+      - name: Publish nightly summary
+        if: always()
+        shell: bash
+        run: |
+          report="${RUNNER_TEMP}/nightly-render.json"
+          if [ ! -f "${report}" ]; then
+            echo "Nightly render stopped before its report was written." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          python - "${report}" >> "$GITHUB_STEP_SUMMARY" <<'PY'
+          import json
+          import sys
+
+          payload = json.load(open(sys.argv[1], encoding="utf-8"))
+          counts = payload["doctor"]["counts"]
+          pilot = payload["pilot"]
+          print("### Nightly render")
+          print(f"- Config doctors: {counts['PASS']} passed, {counts['FAIL']} failed")
+          print(f"- Production IDML pilot: {pilot['status']}")
+          artifact = pilot.get("artifact")
+          if artifact:
+              print(f"- Artifact: `{artifact['path']}`")
+              print(f"- SHA-256: `{artifact['sha256']}`")
+          PY

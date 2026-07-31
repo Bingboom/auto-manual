@@ -1,6 +1,6 @@
 # Auto-Manual Tool
 
-Updated: 2026-07-22
+Updated: 2026-07-31
 
 Auto-Manual turns structured content (Feishu/Lark Base CSV snapshots plus shared RST templates) into target-specific manual bundles and release outputs across the active US, EU, JP, and CN config families.
 The current maintained smoke-check baseline is `JE-1000F` across US and JP.
@@ -23,6 +23,7 @@ This repository is responsible for:
 - moving target-specific editing into [`docs/_review/`](docs/_review) once review starts
 - validating review/runtime bundles before release
 - deriving review-preview fallback targets from the registered `configs/config*.yaml` files when no review tree is available
+- running a credential-free nightly render lane that doctors every registered config and builds one production IDML pilot from committed fixtures
 - exporting revision reports and release manifests
 - generating same-source design handoff outputs: production IDML is projected
   from the prepared bundle's deterministic manual IR and shared layout tokens;
