@@ -705,7 +705,13 @@ test("message handler dispatches all EU copy package requests without clarificat
         executed.push(payload);
         return {
           accepted_at: "2026-05-12T14:00:00.000Z",
-          run_id: String(executed.length),
+          dispatched_count: candidates.length,
+          results: candidates.map((candidate) => ({
+            record_id: candidate.record_id,
+            status: "dispatched",
+            run_id: "501",
+            accepted_at: "2026-05-12T14:00:00.000Z",
+          })),
         };
       },
     },
@@ -720,11 +726,9 @@ test("message handler dispatches all EU copy package requests without clarificat
   await result.backgroundTask();
 
   assert.equal(resolvedMessage, "构建JE-2000E_EU的所有欧规文案");
-  assert.equal(executed.length, 6);
-  assert.deepEqual(
-    executed.map((payload) => payload.recordId),
-    candidates.map((candidate) => candidate.record_id)
-  );
+  assert.equal(executed.length, 1);
+  assert.deepEqual(executed[0].recordIds, candidates.map((candidate) => candidate.record_id));
+  assert.equal(executed[0].allowMultiple, true);
   assert.equal(replies.length, 2);
   assert.match(replies[0].text, /Build Draft Package batch/);
   assert.match(replies[0].text, /matched_count: 6/);
@@ -896,6 +900,16 @@ test("message handler dispatches resolved batch rows without waiting for complet
       },
       async executeResolvedAction(payload) {
         executions.push(payload);
+        return {
+          matched_count: 2,
+          dispatched_count: 2,
+          skipped_count: 0,
+          error_count: 0,
+          results: [
+            { record_id: "rec_eu_en", status: "dispatched", run_id: "502" },
+            { record_id: "rec_eu_fr", status: "dispatched", run_id: "502" },
+          ],
+        };
       },
       async queryRow({ recordId }) {
         return {
@@ -919,11 +933,9 @@ test("message handler dispatches resolved batch rows without waiting for complet
   const result = await handler.handleHttpRequest(basePayload("输出JE-1000F的所有欧规说明书文案"));
   await result.backgroundTask();
 
-  assert.equal(executions.length, 2);
-  assert.deepEqual(
-    executions.map((payload) => [payload.recordId, payload.noWait]),
-    [["rec_eu_en", true], ["rec_eu_fr", true]]
-  );
+  assert.equal(executions.length, 1);
+  assert.deepEqual(executions[0].recordIds, ["rec_eu_en", "rec_eu_fr"]);
+  assert.equal(executions[0].allowMultiple, true);
   assert.equal(replies.length, 2);
   assert.match(replies[0].text, /matched_count: 2/);
   assert.match(replies[1].text, /批量任务已发起/);

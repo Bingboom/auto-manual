@@ -19,9 +19,9 @@ async function dispatchCommand(ctx, api, command) {
     return { text: renderMissingConfig(missing) };
   }
 
-  let queueRecordId;
+  let dispatchArgs;
   try {
-    queueRecordId = ensureDispatchArgs(command.commandName, ctx.args).queueRecordId;
+    dispatchArgs = ensureDispatchArgs(command.commandName, ctx.args);
   } catch (error) {
     return { text: error.message };
   }
@@ -30,7 +30,7 @@ async function dispatchCommand(ctx, api, command) {
   const stateStore = createStateStore(settings.stateFile);
   const result = await dispatchCommandFlow({
     command,
-    queueRecordId,
+    ...dispatchArgs,
     github,
     stateStore,
     settings,
@@ -40,7 +40,9 @@ async function dispatchCommand(ctx, api, command) {
       .split("\n")
       .find((line) => line.startsWith("run_id:"));
     const runId = runIdLine ? runIdLine.split(":")[1].trim() : "";
-    api.logger?.info?.(`Dispatched ${command.workflowFile} for ${queueRecordId} -> run ${runId}`);
+    api.logger?.info?.(
+      `Dispatched ${command.workflowFile} for ${dispatchArgs.batch ? "batch" : dispatchArgs.queueRecordId} -> run ${runId}`
+    );
   }
   return result;
 }

@@ -430,36 +430,47 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
       const candidates = Array.isArray(resolution.candidates) ? resolution.candidates : [];
       const rows = [];
       const failures = [];
-      const dispatchDelayMs = Math.max(Number(config?.batchDispatchDelayMs || 0), 0);
       const acceptedAt = nowIso();
       const requestId = randomUUID();
       await react(messageEvent.messageId, "accepted");
       await feishuClient.replyTextMessage(messageEvent.messageId, formatBatchAcceptedReply(resolution, localProfile));
-      for (const [index, candidate] of candidates.entries()) {
-        if (index > 0 && dispatchDelayMs > 0) {
-          await sleep(dispatchDelayMs);
-        }
-        try {
-          const executionResult = await repoControl.executeResolvedAction({
-            actionName: resolution.action_name,
-            queueScope: candidate.queue_scope || resolution.queue_scope,
-            recordId: candidate.record_id,
-            confirmPublish: false,
-            noWait: true,
-          });
+      try {
+        const executionResult = await repoControl.executeResolvedAction({
+          actionName: resolution.action_name,
+          queueScope: resolution.queue_scope,
+          recordIds: candidates.map((candidate) => candidate.record_id).filter(Boolean),
+          allowMultiple: true,
+          confirmPublish: false,
+          noWait: true,
+        });
+        const resultById = new Map(
+          (Array.isArray(executionResult?.results) ? executionResult.results : []).map((row) => [row.record_id, row])
+        );
+        for (const candidate of candidates) {
+          const rowResult = resultById.get(candidate.record_id);
+          if (!rowResult) {
+            failures.push({
+              record_id: candidate.record_id,
+              message: "Batch worker did not return a result for this queue row.",
+            });
+            continue;
+          }
+          if (rowResult.status === "error") {
+            failures.push({ record_id: candidate.record_id, message: rowResult.reason || "Batch dispatch failed." });
+            continue;
+          }
           rows.push({
             ...candidate,
-            ...executionResult,
+            ...rowResult,
             queue_scope: candidate.queue_scope || resolution.queue_scope,
             record_id: candidate.record_id,
-            accepted_at: executionResult?.accepted_at || acceptedAt,
+            accepted_at: rowResult.accepted_at || acceptedAt,
           });
-        } catch (error) {
-          logger.error?.("batch message execution failed", error);
-          failures.push({
-            record_id: candidate.record_id,
-            message: error?.message || String(error),
-          });
+        }
+      } catch (error) {
+        logger.error?.("batch message execution failed", error);
+        for (const candidate of candidates) {
+          failures.push({ record_id: candidate.record_id, message: error?.message || String(error) });
         }
       }
       await rememberConversationContext(messageEvent, {

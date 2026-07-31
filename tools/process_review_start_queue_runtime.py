@@ -102,6 +102,7 @@ def process_review_start_queue(
     data_root: str | None,
     dry_run: bool,
     record_id: str | None,
+    record_ids: tuple[str, ...] = (),
     deps: ReviewStartRuntimeDeps,
 ) -> int:
     _clear_failure_summary(root=deps.root, environ=deps.environ)
@@ -130,7 +131,7 @@ def process_review_start_queue(
         table_id=binding.table_id,
         view_id=binding.view_id,
     )
-    pending_records = deps.select_pending_records_fn(raw_records, record_id=record_id)
+    pending_records = deps.select_pending_records_fn(raw_records, record_id=record_id, record_ids=record_ids)
     if not pending_records:
         if record_id:
             existing_record = _find_record_by_id(deps.parse_records_fn(raw_records), record_id)

@@ -1,4 +1,4 @@
-import { findActiveRunForRecord, findRecentActiveRun, findRunByDispatch } from "./run-matching.mjs";
+import { findActiveBatchRun, findActiveRunForRecord, findRecentActiveRun, findRunByDispatch } from "./run-matching.mjs";
 import { isTransientError, withRetry } from "./transient.mjs";
 
 function sleep(ms) {
@@ -90,6 +90,10 @@ export function createGitHubClient(settings) {
     async findActiveRunForRecord({ workflowFile, queueRecordId, branch }) {
       const runs = await listWorkflowRuns(workflowFile, branch);
       return findActiveRunForRecord(runs, queueRecordId);
+    },
+    async findActiveBatchRun({ workflowFile, branch }) {
+      const runs = await listWorkflowRuns(workflowFile, branch);
+      return findActiveBatchRun(runs);
     },
     async findRecentActiveRun({ workflowFile, branch, createdAfter }) {
       const runs = await listWorkflowRuns(workflowFile, branch);

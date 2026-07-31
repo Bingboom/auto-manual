@@ -464,6 +464,7 @@ def process_build_queue(
     workflow_action: str | None = None,
     doc_phase: str | None = None,
     record_id: str | None = None,
+    record_ids: tuple[str, ...] = (),
 ) -> int:
     return _process_build_queue_service(
         _service_module(),
@@ -475,6 +476,7 @@ def process_build_queue(
         workflow_action=workflow_action,
         doc_phase=doc_phase,
         record_id=record_id,
+        record_ids=record_ids,
     )
 
 
@@ -496,6 +498,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Unsupported legacy filter; use --workflow-action and keep queue rows on Workflow_action only",
     )
     ap.add_argument("--record-id", default=None, help="Only consume one Document_link record_id")
+    ap.add_argument(
+        "--record-ids",
+        default="",
+        help="Only consume these comma-separated Document_link record_ids (batch worker input)",
+    )
     return ap.parse_args(argv)
 
 

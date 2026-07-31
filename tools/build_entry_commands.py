@@ -342,6 +342,8 @@ def process_build_queue_command(
         cmd += ["--workflow-action", "publish"]
     if isinstance(args.record_id, str) and args.record_id.strip():
         cmd += ["--record-id", args.record_id.strip()]
+    if isinstance(getattr(args, "record_ids", None), str) and args.record_ids.strip():
+        cmd += ["--record-ids", args.record_ids.strip()]
     if args.dry_run:
         cmd.append("--dry-run")
     return cmd
@@ -367,6 +369,8 @@ def process_review_start_queue_command(
     append_data_root_arg(cmd, args)
     if isinstance(args.record_id, str) and args.record_id.strip():
         cmd += ["--record-id", args.record_id.strip()]
+    if isinstance(getattr(args, "record_ids", None), str) and args.record_ids.strip():
+        cmd += ["--record-ids", args.record_ids.strip()]
     if args.dry_run:
         cmd.append("--dry-run")
     return cmd
