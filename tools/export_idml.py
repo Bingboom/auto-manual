@@ -156,6 +156,21 @@ def main() -> int:
         page_plan = _ir_projection.build_reference_page_plan(manual_ir, root=ROOT, bundle_root=bundle_root)
     except ValueError as exc:
         print(f"[export-idml] ERROR: same-source IDML preparation failed: {exc}")
+        # A pin mismatch on CI is undebuggable without the runner's actual
+        # bytes: park the prepared bundle pages under the repo-root build tree,
+        # which the queue workflows already upload as an artifact.
+        try:
+            import shutil as _shutil
+
+            debug_dir = (
+                ROOT / "docs" / "_build" / args.model / args.region / "same_source_debug"
+            )
+            if debug_dir.exists():
+                _shutil.rmtree(debug_dir)
+            _shutil.copytree(bundle_root / "page", debug_dir / "page")
+            print(f"[export-idml] DEBUG: prepared bundle pages copied to {debug_dir}")
+        except Exception as debug_exc:  # noqa: BLE001 - diagnostics must never mask the error
+            print(f"[export-idml] DEBUG: bundle dump failed: {debug_exc}")
         return 1
 
     projected_by_path = {page.path: page for page in _ir_projection.project_pages(manual_ir, bundle_root)}

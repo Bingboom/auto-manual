@@ -210,7 +210,10 @@ def validate_approved_reference_plan(
     }
     for field, expected in expected_identity.items():
         if source_identity.get(field) != expected:
-            issues.append(f"source_identity.{field} does not match the current manual IR")
+            issues.append(
+                f"source_identity.{field} does not match the current manual IR "
+                f"(pinned={str(source_identity.get(field))[:12]}, built={str(expected)[:12]})"
+            )
     for field in (
         "manual_content_sha256", "snapshot_sha256",
         "style_contract_sha256", "layout_params_sha256",
@@ -368,7 +371,13 @@ def validate_approved_reference_plan(
             if source_ref != source_page.source_ref:
                 issues.append(f"pages[{index}].source_ref is out of order")
             if entry.get("source_sha256") != source_page.source_sha256:
-                issues.append(f"{source_ref}: source_sha256 does not match")
+                # Emit both digests: a pin mismatch on CI cannot be debugged
+                # remotely without knowing what the runner actually built.
+                issues.append(
+                    f"{source_ref}: source_sha256 does not match "
+                    f"(pinned={str(entry.get('source_sha256'))[:12]}, "
+                    f"built={source_page.source_sha256[:12]})"
+                )
             if entry.get("language") != source_page.language:
                 issues.append(f"{source_ref}: language does not match")
         if not _valid_digest(entry.get("source_sha256")):
