@@ -9,6 +9,7 @@ from unittest.mock import patch
 from tests.test_helpers import temp_test_root
 
 from tools.indesign_finalize import (
+    BATCH_JSX,
     DEFAULT_OUTPUT_CONDITION,
     DEFAULT_OUTPUT_INTENT,
     DEFAULT_PDF_PRESET,
@@ -19,6 +20,7 @@ from tools.indesign_finalize import (
     _parse_pdf_export_compliance,
     check_version_pin,
     main,
+    run_finalize_jobs,
     write_version_pin,
 )
 
@@ -87,8 +89,66 @@ class InDesignFinalizeTests(unittest.TestCase):
     def test_runner_allows_synchronous_pdf_export_to_finish(self) -> None:
         runner = (JSX.parent.parent / "indesign_finalize.py").read_text(encoding="utf-8")
 
-        self.assertIn("with timeout of 600 seconds", runner)
-        self.assertIn("timeout=660", runner)
+        self.assertIn("script_timeout = 600 * max(1, job_count)", runner)
+        self.assertIn("process_timeout = script_timeout + 60", runner)
+        self.assertIn("timeout=process_timeout", runner)
+
+    def test_batch_driver_loops_and_isolates_each_document(self) -> None:
+        batch_jsx = BATCH_JSX.read_text(encoding="utf-8")
+
+        self.assertIn("for (var ji = 0; ji < HB_BATCH_JOBS.length", batch_jsx)
+        self.assertIn("try {", batch_jsx)
+        self.assertIn("catch (error)", batch_jsx)
+        self.assertIn("$.evalFile(File(HB_FINALIZE_SCRIPT_PATH))", batch_jsx)
+        self.assertIn("writeJson(HB_BATCH_REPORT_PATH, batch)", batch_jsx)
+
+    def test_batch_runner_groups_by_application_and_preserves_manifest_order(self) -> None:
+        jobs = [
+            {
+                "job_id": "first",
+                "application": "InDesign A",
+                "input_idml": "/tmp/first.idml",
+                "output_indd": "/tmp/first.indd",
+                "output_pdf": "/tmp/first.pdf",
+                "report_json": "/tmp/first.json",
+            },
+            {
+                "job_id": "second",
+                "application": "InDesign A",
+                "input_idml": "/tmp/second.idml",
+                "output_indd": "/tmp/second.indd",
+                "output_pdf": "/tmp/second.pdf",
+                "report_json": "/tmp/second.json",
+            },
+            {
+                "job_id": "third",
+                "application": "InDesign B",
+                "input_idml": "/tmp/third.idml",
+                "output_indd": "/tmp/third.indd",
+                "output_pdf": "/tmp/third.pdf",
+                "report_json": "/tmp/third.json",
+            },
+        ]
+        with patch("tools.indesign_finalize.Path.is_file", return_value=True), \
+             patch("tools.indesign_finalize._run_jsx_jobs") as run_batch, \
+             patch("tools.indesign_finalize._collect_finalize_result") as collect:
+            collect.side_effect = lambda job, **_: {
+                "job_id": job["job_id"], "success": True,
+            }
+            results = run_finalize_jobs(
+                jobs, pin_status="match", pin_message="pinned",
+            )
+
+        self.assertEqual([item["job_id"] for item in results], [
+            "first", "second", "third",
+        ])
+        self.assertEqual(run_batch.call_count, 2)
+        self.assertEqual(
+            [job["job_id"] for job in run_batch.call_args_list[0].args[0]],
+            ["first", "second"],
+        )
+        self.assertEqual(run_batch.call_args_list[0].kwargs["application"], "InDesign A")
+        self.assertEqual(run_batch.call_args_list[1].kwargs["application"], "InDesign B")
 
 
 class VersionPinTests(unittest.TestCase):

@@ -95,6 +95,32 @@ class BatchExecutionTests(unittest.TestCase):
         self.assertTrue(aggregate["jobs"][0]["success"])
         self.assertIn("simulated InDesign failure", aggregate["jobs"][1]["error"])
 
+    def test_default_batch_path_calls_one_jsx_batch_runner(self) -> None:
+        payload = {"schema_version": JOBS_SCHEMA_VERSION, "jobs": [_job("en"), _job("fr")]}
+        expected = [
+            {"job_id": "en", "success": True},
+            {"job_id": "fr", "success": False, "error": "overset"},
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest = Path(tmp) / "jobs.json"
+            report = Path(tmp) / "aggregate.json"
+            manifest.write_text(json.dumps(payload), encoding="utf-8")
+            with patch("tools.indesign_finalize_jobs.scan_incomplete_packages") as scan, \
+                 patch("tools.indesign_finalize.run_finalize_jobs", return_value=expected) as run:
+                scan.return_value = {"scanned": 2, "incomplete_count": 2}
+                exit_code = run_jobs_manifest(
+                    manifest,
+                    aggregate_report=report,
+                    version_checker=lambda: ("match", "pinned"),
+                )
+            aggregate = json.loads(report.read_text(encoding="utf-8"))
+
+        self.assertEqual(exit_code, 1)
+        self.assertEqual(aggregate["jobs"], expected)
+        run.assert_called_once()
+        normalized_jobs = run.call_args.args[0]
+        self.assertEqual([job["job_id"] for job in normalized_jobs], ["en", "fr"])
+
     def test_version_gate_prevents_runner_and_records_before_scan(self) -> None:
         payload = {"schema_version": JOBS_SCHEMA_VERSION, "jobs": [_job("en")]}
         with tempfile.TemporaryDirectory() as tmp:

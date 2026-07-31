@@ -1249,3 +1249,26 @@ Why it mattered:
   source per target instead of repeated prose edits across eight languages.
 - Missing target data fails closed while rendered RST remains byte-identical.
   Production Base seed and diff-report evidence remain an F6 operator gate.
+
+## 76. 2026-07-31: InDesign Finalize Uses a Native JSX Batch Loop (Workstream W / Stage 4a item 12)
+
+What changed:
+
+- Kept the existing `indesign-finalize-jobs/v1` manifest and explicit print
+  contract, but grouped jobs by their declared InDesign application.
+- Added one ExtendScript outer loop per application group. It invokes the
+  existing one-document finalizer sequentially, catches an unexpected failure
+  around each document, and writes a transport report without aborting later
+  jobs.
+- Preserved independent INDD/PDF/preflight outputs, Python-side PDF/X
+  validation, aggregate ordering, version-pin checks, and single-job behavior.
+
+Why it mattered:
+
+- Multi-target design-host runs no longer pay one AppleScript/InDesign dispatch
+  per document while one bad document still cannot hide or cancel its siblings.
+- CI now locks grouping, manifest-order preservation, and the JSX isolation
+  structure. A pinned design Mac also processed two documents in one dispatch;
+  the evidence and fixture limitations are recorded in
+  [`tests/indesign_finalize_batch_acceptance_2026-07-31.md`](tests/indesign_finalize_batch_acceptance_2026-07-31.md),
+  without claiming production parity or release approval.
