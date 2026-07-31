@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from tools.phase2_support import load_config
+from tools.queue_asset_preflight import preflight_asset_lineage
 from tools.queue_query import (
     QueueQueryRow,
     apply_inferred_queue_query,
@@ -17,6 +18,7 @@ from tools.queue_query import (
     filter_queue_query_rows,
     should_apply_latest_per_document_key,
 )
+from tools.review_branch_resolver import parse_document_id
 
 _CONTROL_LAYER_CLI = (
     "node",
@@ -263,12 +265,63 @@ def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def _asset_preflight_for_row(row: QueueQueryRow, *, repo_root: Path) -> dict[str, object] | None:
+    """Return an advisory asset projection for build/publish rows.
+
+    Start Review does not build a bundle, so it has no meaningful target asset
+    set yet. Any preflight implementation failure is converted to a warning
+    payload: dispatch must never become dependent on an advisory check.
+    """
+
+    if (row.normalized_workflow_action or "") not in {"draft", "publish"}:
+        return None
+    parsed = parse_document_id(row.document_id or row.document_key)
+    if parsed is None:
+        return {
+            "mode": "advisory",
+            "warnings": [
+                {
+                    "code": "target_unavailable",
+                    "asset_key": None,
+                    "message": (
+                        "queue row has no parseable Document_ID/Document_Key; "
+                        "formal bundle lineage remains authoritative"
+                    ),
+                }
+            ],
+        }
+    model, region, _version = parsed
+    try:
+        return preflight_asset_lineage(
+            repo_root=repo_root,
+            model=model,
+            region=region,
+            language=row.lang or None,
+            build_family=row.build_family,
+        ).to_dict()
+    except Exception as exc:  # advisory only; never block an accepted dispatch
+        return {
+            "mode": "advisory",
+            "model": model,
+            "region": region,
+            "language": row.lang or None,
+            "warnings": [
+                {
+                    "code": "preflight_internal_error",
+                    "asset_key": None,
+                    "message": f"asset preflight was unavailable: {exc}",
+                }
+            ],
+        }
+
+
 def render_queue_execute_result(
     row: QueueQueryRow,
     *,
     as_json: bool,
     dispatch_payload: dict[str, str] | None = None,
     accepted_at: str = "",
+    asset_preflight: dict[str, object] | None = None,
 ) -> str:
     dispatch_payload = dispatch_payload or {}
     if as_json:
@@ -295,6 +348,8 @@ def render_queue_execute_result(
             payload["pr_url"] = row.pr_url
         if row.review_status:
             payload["review_status"] = row.review_status
+        if asset_preflight is not None:
+            payload["asset_preflight"] = asset_preflight
         return json.dumps(payload, ensure_ascii=False, indent=2)
     lines = [
         f"record_id: {_null_text(row.record_id)}",
@@ -317,6 +372,21 @@ def render_queue_execute_result(
             f"freshness_status: {_null_text(row.freshness_status)}",
         ]
     )
+    if asset_preflight is not None:
+        warnings = asset_preflight.get("warnings", [])
+        warning_count = len(warnings) if isinstance(warnings, list) else 0
+        references = asset_preflight.get("references", [])
+        reference_count = len(references) if isinstance(references, list) else 0
+        lines.append(
+            f"asset_preflight: advisory references={reference_count} warnings={warning_count}"
+        )
+        if isinstance(warnings, list):
+            for warning in warnings:
+                if isinstance(warning, dict):
+                    lines.append(
+                        f"[asset-preflight] {warning.get('asset_key') or '-'}: "
+                        f"{warning.get('message') or warning.get('code') or 'warning'}"
+                    )
     return "\n".join(lines)
 
 
@@ -386,6 +456,7 @@ def _prepare_dispatch_row(
     resolved_args: argparse.Namespace,
     row: QueueQueryRow,
     *,
+    repo_root: Path,
     accepted_at: str,
 ) -> tuple[dict[str, Any], str | None]:
     """Validate one row and return its result shell plus dispatch command."""
@@ -398,7 +469,11 @@ def _prepare_dispatch_row(
         ensure_build_trigger_requested(row)
         ensure_publish_confirmation(resolved_args, row)
         ensure_start_review_dispatchable(row)
-        return result, dispatch_command_for_row(row)
+        dispatch_command = dispatch_command_for_row(row)
+        preflight = _asset_preflight_for_row(row, repo_root=repo_root)
+        if preflight is not None:
+            result["asset_preflight"] = preflight
+        return result, dispatch_command
     except RuntimeError as exc:
         result["reason"] = _first_line(str(exc))
         return result, None
@@ -432,7 +507,12 @@ def _dispatch_one_row(
     accepted dispatch is reported as `dispatched`, so the caller never has to
     infer "已进队" from the trigger flag.
     """
-    result, dispatch_command = _prepare_dispatch_row(resolved_args, row, accepted_at=accepted_at)
+    result, dispatch_command = _prepare_dispatch_row(
+        resolved_args,
+        row,
+        repo_root=repo_root,
+        accepted_at=accepted_at,
+    )
     if dispatch_command is None:
         return result
     try:
@@ -498,7 +578,12 @@ def run_queue_execute_batch(
     results: list[dict[str, Any]] = []
     dispatch_groups: dict[str, list[tuple[int, QueueQueryRow]]] = {}
     for row in rows:
-        result, dispatch_command = _prepare_dispatch_row(resolved_args, row, accepted_at=accepted_at)
+        result, dispatch_command = _prepare_dispatch_row(
+            resolved_args,
+            row,
+            repo_root=repo_root,
+            accepted_at=accepted_at,
+        )
         index = len(results)
         results.append(result)
         if dispatch_command:
@@ -550,6 +635,7 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
         print(render_queue_execute_result(row, as_json=bool(getattr(resolved_args, "json", False))))
         return
     ensure_start_review_dispatchable(row)
+    asset_preflight = _asset_preflight_for_row(row, repo_root=repo_root)
     accepted_at = str(getattr(resolved_args, "fresh_since", "") or "").strip() or _now_iso()
     if dispatch_command == "publish":
         dispatch_payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id, "confirm")
@@ -609,6 +695,7 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
             as_json=bool(getattr(resolved_args, "json", False)),
             dispatch_payload=dispatch_payload,
             accepted_at=accepted_at,
+            asset_preflight=asset_preflight,
         )
     )
 
