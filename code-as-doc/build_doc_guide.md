@@ -1179,9 +1179,11 @@ versioned root IDML. `check_idml`, ZIP integrity, or preflight of an earlier raw
 IDML does not prove the delivered `Links/` package.
 
 For queue rows with `Git_ref`, the build worktree is based on the current
-`origin/main`; only the review content under `docs/_review/` is overlaid from
-the row's review ref. This prevents a stale local `main` branch from silently
-running an older renderer during Publish.
+`origin/main`; only the active `docs/_review/<model>/<region>` target is
+overlaid from the row's review ref. The worker does not replace sibling target
+directories. This prevents both a stale local `main` branch from silently
+running an older renderer and unrelated review-branch drift from dirtying a
+versioned Publish worktree.
 
 The default flow style map lives at
 `docs/templates/idml_template/style_mapping/flow_style_map.json` and is copied

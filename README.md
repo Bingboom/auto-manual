@@ -468,6 +468,11 @@ storage. GitHub Actions supplies the second layer: Draft and Publish share a
 Vercel production build/deploy/writeback tail is serialized separately without
 forcing unrelated document builds back into one global queue.
 
+When a queue row names `Git_ref`, the worker checks out the latest `origin/main`
+toolchain and overlays only `docs/_review/<model>/<region>` from that ref. It
+never replaces the whole `docs/_review` tree, so unrelated review targets cannot
+make a versioned Publish worktree dirty or leak into another target's build.
+
 A versioned Publish now binds its DOCX, Markdown, and PDF bytes to the release
 Git commit and frozen phase2 snapshot. Verify that contract with
 `python build.py release-rebuild-verify --manifest <release-manifest.json>`.
