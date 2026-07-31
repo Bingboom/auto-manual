@@ -1515,7 +1515,7 @@ original entries when the matching W-slice lands.
 - [ ] Stage 2: zero-code language onboarding = K13 (13 PRs; exit = fake-lang zero-Python proof)
 - [ ] Stage 3: clone-artifact generation, new region = one command (13 PRs)
 - [ ] Stage 4a: run throughput without concurrency-semantics change (18 PRs; incl. K8 all four Done-when items, E1 both slices)
-- [ ] Stage 4b: concurrency sub-stage (3 PRs; **gated** — minimal atomic claim BEFORE per-record concurrency keying)
+- [x] Stage 4b: concurrency sub-stage (3 PRs; verified claim lease, per-record workflow domains + Vercel mutex, and bounded selective artifacts complete)
 - [ ] Stage 5: behavior close-out + expansion pre-gates (14 PRs; strict flips, placeholder-ization template halves, CJK trio, K14, K15 design doc)
 
 Operator gate summary: the plan's §5 (workflow edits, `export_idml --model`,

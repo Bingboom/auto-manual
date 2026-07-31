@@ -132,7 +132,7 @@
 
 1. [x] [M] `feat(queue): K12-min atomic claim token` — Done（机器）：`构建结果` 承载 2 小时 token lease；组内写入后绕过 pending view 全量回读，只有全部 token 匹配且未过期才进入 sync/build；active claim 不再入 pending，expired claim 可重领，双派发 fixture 锁定仅一个回读获胜。Feishu upsert 无 CAS，故文档明确这是 verified lease 而非线性化存储；跨 workflow 分键仍由下一项补齐，全量 K12 仍留 Tier3。
 2. [x] [S] `feat(queue): per-record concurrency group + Vercel mutex` — Done（机器）：Draft/Publish 共享 Document_link record 并发域，Start Review 使用独立 review-init 域；Publish 构建可按记录并行，Vercel production build/deploy/HTML_link 回写由独立全局 mutex 串行，所有组均禁止 cancel-in-progress。
-3. [S] `chore(ci): artifacts retention + selective upload`（manifests/<ts> 无界增长与全量上传——额度卡死有前科）
+3. [x] [S] `chore(ci): artifacts retention + selective upload` — Done（机器）：每个 `upload-artifact` 都有显式 retention；Vercel 候选仅含静态站点并保留 1 天，Draft/Review/诊断保留 7 天，Publish 仅含版本归档/latest/manifests/快照身份并保留 14 天；phase2 恢复备份继续独立保留 90 天。静态策略测试禁止队列重新上传裸 `docs/_build`、`docs/_review` 或 `reports/releases`。
 
 ### Stage 5 — 行为收口与扩张前置门（14 PR;唯一集中出现行为变化的阶段,每项独立开关、先取证后收紧）
 〔GATE〕①strict 翻转清单逐项拍板（ratchet/skipped_raw/未知语言/capability 族级注解——先全 bundle 取证,TOU 三反转教训）②占位化的生产源表 seed 走 F6（模板+fixtures 先行,机器可验;生产 seed=操作者步骤）③copy-key 迁移的 Localized_Copy 覆盖取证④JP/KR/CN 是否走 IDML 生产线（决定 CJK 三件套执行与否）⑤K15 设计批准=Workstream O(many-target 扩张)解锁条件。

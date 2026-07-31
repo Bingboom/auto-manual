@@ -114,3 +114,4 @@ jobs:
         with:
           name: review-preview-workspace
           path: site/review-preview/dist
+          retention-days: 7

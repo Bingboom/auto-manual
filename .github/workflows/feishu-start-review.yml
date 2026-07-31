@@ -223,10 +223,15 @@ jobs:
         with:
           name: feishu-start-review-output
           path: |
-            docs/_review
+            docs/_review/**/index.rst
+            docs/_review/**/manifest.json
+            docs/_review/**/generated/**
+            docs/_review/**/page/**
+            docs/_review/**/overrides/**
             .tmp/openclaw/review-start-output.log
             .tmp/review-start/phase2/snapshot_manifest.json
             .tmp/review-start/phase2/row_key_mapping.csv
+          retention-days: 7
           if-no-files-found: ignore
 
       - name: Upload OpenClaw run metadata
@@ -235,6 +240,7 @@ jobs:
         with:
           name: openclaw-run-metadata
           path: .tmp/openclaw/feishu-start-review-run.json
+          retention-days: 7
           if-no-files-found: error
 
       # Milestone K5: a failed review-start run must alert on its own instead

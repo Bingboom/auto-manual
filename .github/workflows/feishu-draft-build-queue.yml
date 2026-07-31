@@ -146,10 +146,11 @@ jobs:
         with:
           name: feishu-draft-build-queue-output
           path: |
-            docs/_build
-            docs/_review
+            docs/_build/**/word/*.docx
+            docs/_build/**/md/**
             data/phase2/snapshot_manifest.json
             data/phase2/row_key_mapping.csv
+          retention-days: 7
           if-no-files-found: ignore
 
       - name: Upload OpenClaw run metadata
@@ -158,6 +159,7 @@ jobs:
         with:
           name: openclaw-run-metadata
           path: .tmp/openclaw/feishu-draft-build-queue-run.json
+          retention-days: 7
           if-no-files-found: error
 
       # Milestone K5: a failed queue run must alert on its own instead of
