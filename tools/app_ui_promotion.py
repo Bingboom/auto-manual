@@ -25,6 +25,12 @@ PROMOTION_RELATIVE_PATH = (
     / "asset_promotions"
     / "je1000f_us_app_ui_v1.json"
 )
+# The JSON file is the reviewed contract carrier. Keep one immutable binding
+# for the carrier itself while the legacy Python shadow remains in dual-read
+# mode; this prevents semantically-irrelevant JSON edits from bypassing review.
+PROMOTION_CONTRACT_SHA256 = (
+    "c51ca6fc4177c3de37ce5cb7e46caae609d62f54b115122f061a3f9dcaf7e4b0"
+)
 RECIPE_RELATIVE_PATH = (
     Path(PathSegments.DATA)
     / "asset_recipes"
@@ -451,6 +457,65 @@ def _validate_output_bindings(payload: dict[str, Any], repo_root: Path) -> None:
             raise ReviewedPromotionError(f"output dimensions mismatch: {spec.asset_key}")
 
 
+def _legacy_contract_payload() -> dict[str, Any]:
+    """Return the compatibility shadow used during the JSON migration."""
+
+    return {
+        "schema_version": "reviewed-asset-promotion/v1",
+        "promotion_id": PROMOTION_ID,
+        "decision": {
+            "reviewer": EXPECTED_REVIEWER,
+            "decided_at": EXPECTED_DECIDED_AT,
+            "outcome": "approved",
+        },
+        "scope": EXPECTED_SCOPE,
+        "bindings": {
+            "source": EXPECTED_SOURCE,
+            "frozen_reference": EXPECTED_REFERENCE,
+            "recipe": {
+                "path": RECIPE_RELATIVE_PATH.as_posix(),
+                "sha256": EXPECTED_RECIPE_SHA256,
+            },
+            "evidence": {
+                "path": EVIDENCE_RELATIVE_PATH.as_posix(),
+                "sha256": EXPECTED_EVIDENCE_SHA256,
+            },
+        },
+        "candidate_asset_key_whitelist": list(CANDIDATE_ASSET_KEYS),
+        "promoted_asset_key_whitelist": list(PROMOTED_ASSET_KEYS),
+        "candidate_assets": [
+            {
+                "asset_key": spec.asset_key,
+                "path": spec.path.as_posix(),
+                "sha256": spec.sha256,
+                "dimensions_px": list(spec.dimensions_px),
+            }
+            for spec in CANDIDATES
+        ],
+        "promoted_outputs": [
+            {
+                "asset_key": spec.asset_key,
+                "path": spec.path.as_posix(),
+                "sha256": spec.sha256,
+                "dimensions_px": list(spec.dimensions_px),
+                "composition": {
+                    "canvas_px": list(spec.dimensions_px),
+                    "background": "#FFFFFF",
+                    "placements": [_placement_payload(item) for item in spec.placements],
+                },
+            }
+            for spec in PROMOTED_OUTPUTS
+        ],
+    }
+
+
+def _validate_json_legacy_parity(payload: dict[str, Any]) -> None:
+    if payload != _legacy_contract_payload():
+        raise ReviewedPromotionError(
+            "promotion JSON/legacy contract parity mismatch; review the JSON carrier"
+        )
+
+
 def _validate_registry_record(record: RegistryRecordLike) -> None:
     by_key = {spec.asset_key: spec for spec in PROMOTED_OUTPUTS}
     spec = by_key.get(record.asset_key)
@@ -500,6 +565,11 @@ def validate_reviewed_promotion(
     _validate_decision_and_bindings(payload, repo_root)
     _validate_candidate_bindings(payload, repo_root)
     _validate_output_bindings(payload, repo_root)
+    _validate_json_legacy_parity(payload)
+    if _sha256(contract_path) != PROMOTION_CONTRACT_SHA256:
+        raise ReviewedPromotionError(
+            "promotion contract SHA-256 does not match the reviewed carrier"
+        )
     if registry_record is not None:
         _validate_registry_record(registry_record)
     return PROMOTION_ID
@@ -509,6 +579,7 @@ __all__ = (
     "CANDIDATE_ASSET_KEYS",
     "PROMOTED_ASSET_KEYS",
     "PROMOTION_ID",
+    "PROMOTION_CONTRACT_SHA256",
     "PROMOTION_RELATIVE_PATH",
     "ReviewedPromotionError",
     "reviewed_app_uri_for_raw_latex",
