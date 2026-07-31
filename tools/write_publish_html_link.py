@@ -19,7 +19,11 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity  # noqa: E402
-from tools.process_docs.build_publish_latest_site import latest_publish_meta  # noqa: E402
+from tools.process_docs.build_publish_latest_site import (  # noqa: E402
+    latest_publish_meta,
+    latest_publish_metas,
+    target_site_path,
+)
 from tools.queue_bound_binding import collect_queue_preflight_errors, resolve_document_link_binding  # noqa: E402
 from tools.queue_bound_lark_ops import run_lark_cli_json  # noqa: E402
 from tools.queue_contract import HTML_LINK_FIELD  # noqa: E402
@@ -53,6 +57,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="append",
         default=[],
         help="Optional Document_link record_id override. Repeat to target multiple rows.",
+    )
+    ap.add_argument(
+        "--single-target",
+        action="store_true",
+        help="Keep the legacy behavior: write only the newest target and use the base publish URL.",
     )
     return ap.parse_args(argv)
 
@@ -199,22 +208,69 @@ def write_publish_html_link(
     releases_root: Path,
     explicit_record_ids: tuple[str, ...] = (),
 ) -> int:
+    return write_publish_html_links(
+        config_path=config_path,
+        publish_url=publish_url,
+        releases_root=releases_root,
+        explicit_record_ids=explicit_record_ids,
+        multi_target=False,
+    )
+
+
+def target_publish_url(*, publish_url: str, payload: dict[str, Any], meta_path: Path) -> str:
+    target_path = target_site_path(payload, meta_path=meta_path).as_posix()
+    return f"{publish_url.rstrip('/')}/{target_path}/index.html"
+
+
+def write_publish_html_links(
+    *,
+    config_path: Path,
+    publish_url: str,
+    releases_root: Path,
+    explicit_record_ids: tuple[str, ...] = (),
+    multi_target: bool = True,
+) -> int:
     publish_url = publish_url.strip()
     if not publish_url:
         print("[publish-html-link] Skipping writeback because publish_url is empty.")
         return 0
 
-    meta_path = latest_publish_meta(releases_root)
-    payload = read_json(meta_path)
-    written_meta = persist_publish_url(latest_meta_path=meta_path, payload=payload, publish_url=publish_url)
-    if written_meta:
-        print(
-            "[publish-html-link] Updated publish metadata: "
-            + ", ".join(display_path(path) for path in written_meta)
+    meta_paths = latest_publish_metas(releases_root) if multi_target else [latest_publish_meta(releases_root)]
+    target_rows: list[tuple[dict[str, Any], tuple[str, ...], str]] = []
+    for meta_path in meta_paths:
+        payload = read_json(meta_path)
+        if multi_target and explicit_record_ids:
+            known_ids = set(target_record_ids_from_publish_meta(payload))
+            if not known_ids.intersection(explicit_record_ids):
+                continue
+        target_url = publish_url if not multi_target else target_publish_url(
+            publish_url=publish_url,
+            payload=payload,
+            meta_path=meta_path,
         )
+        written_meta = persist_publish_url(
+            latest_meta_path=meta_path,
+            payload=payload,
+            publish_url=target_url,
+        )
+        if written_meta:
+            print(
+                "[publish-html-link] Updated publish metadata: "
+                + ", ".join(display_path(path) for path in written_meta)
+            )
+        record_ids = target_record_ids_from_publish_meta(
+            payload,
+            explicit_record_ids=explicit_record_ids,
+        )
+        if record_ids:
+            target_rows.append((payload, record_ids, target_url))
 
-    record_ids = target_record_ids_from_publish_meta(payload, explicit_record_ids=explicit_record_ids)
-    if not record_ids:
+    if multi_target and explicit_record_ids and not target_rows:
+        raise RuntimeError(
+            "No publish metadata matched the requested queue record ids: "
+            + ", ".join(explicit_record_ids)
+        )
+    if not target_rows:
         print("[publish-html-link] No queue record ids were recorded for the latest publish metadata; skipping HTML_link writeback.")
         return 0
 
@@ -236,12 +292,15 @@ def write_publish_html_link(
     )
     resolved_html_link_field = resolve_html_link_field_name(field_id_map)
     if resolved_html_link_field:
-        return write_html_link_records(
-            source=source,
-            binding=binding,
-            record_ids=record_ids,
-            field_name=resolved_html_link_field,
-            publish_url=publish_url,
+        return sum(
+            write_html_link_records(
+                source=source,
+                binding=binding,
+                record_ids=record_ids,
+                field_name=resolved_html_link_field,
+                publish_url=target_url,
+            )
+            for _payload, record_ids, target_url in target_rows
         )
 
     nearby_fields = link_like_field_names(field_id_map)
@@ -257,12 +316,15 @@ def write_publish_html_link(
     for fallback_field_name in _clean_texts(HTML_LINK_FIELD_ALIASES):
         attempted_fields.append(fallback_field_name)
         try:
-            return write_html_link_records(
-                source=source,
-                binding=binding,
-                record_ids=record_ids,
-                field_name=fallback_field_name,
-                publish_url=publish_url,
+            return sum(
+                write_html_link_records(
+                    source=source,
+                    binding=binding,
+                    record_ids=record_ids,
+                    field_name=fallback_field_name,
+                    publish_url=target_url,
+                )
+                for _payload, record_ids, target_url in target_rows
             )
         except Exception as exc:
             print(
@@ -282,11 +344,13 @@ def main(argv: list[str] | None = None) -> int:
     config_path = resolve_repo_path(args.config)
     releases_root = resolve_repo_path(args.releases_root)
     try:
-        written = write_publish_html_link(
+        writer = write_publish_html_link if args.single_target else write_publish_html_links
+        written = writer(
             config_path=config_path,
             publish_url=args.publish_url,
             releases_root=releases_root,
             explicit_record_ids=_clean_texts(tuple(args.record_id)),
+            **({} if args.single_target else {"multi_target": True}),
         )
     except Exception as exc:
         print(f"[publish-html-link] ERROR: {exc}", file=sys.stderr)
