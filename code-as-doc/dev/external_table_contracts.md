@@ -126,6 +126,14 @@ lease, while an expired or malformed legacy RUNNING value is eligible for a
 new claim. Claim verification refetches without the configured pending view so
 a view filter cannot hide the just-updated row.
 
+GitHub workflow concurrency complements that table lease without adding Base
+fields. Build Draft Package and Publish share a per-Document_link record group;
+their batch runs share one conservative batch group. Start Review uses its own
+review-init record group. The Vercel production build/deploy and `HTML_link`
+writeback run under one separate global mutex. Every group queues rather than
+cancels in-progress work, so workflow scheduling cannot invalidate a live row
+lease.
+
 When `飞书云文档` exists, Draft and Publish rows must also produce Markdown and
 import it as a Feishu cloud document. Import failure is a queue failure; any
 remote artifact link already obtained for `Document link` is preserved in the

@@ -1419,8 +1419,8 @@ semantic change sitting in the tree while business work resumes.
     - queue/check/sync-review/release importers stop importing `build_docs`; the facade re-exports for compatibility
     - importing a queue module no longer transitively imports the export stack (guarded by an import-time test, the Milestone A PR 1 pattern)
 
-- [ ] PR K12: Atomic queue claim + cross-workflow concurrency contract (U5)
-  - Status: `deferred`
+- [x] PR K12: Atomic queue claim + cross-workflow concurrency contract (U5)
+  - Status: `done` (Workstream W / Stage 4b items 1–2, 2026-07-31)
   - Trigger: dedicated capacity, or the concurrency assumption breaks (cron
     re-enabled, a second dispatcher appears, or a double-claim near-miss is
     observed). Semantic change to the queue contract — needs a protected
@@ -1430,7 +1430,8 @@ semantic change sitting in the tree while business work resumes.
     [`dev/queue_state_model.md`](dev/queue_state_model.md). Today the RUNNING
     write is a soft claim (no compare-and-swap) and the three queue workflows
     share no concurrency group — safe only because cron is disabled and
-    dispatch is single-operator. The parallel build matrix is a recorded
+    dispatch is single-operator. The verified lease and explicit workflow
+    concurrency domains now close this registered slice. The parallel build matrix is a recorded
     follow-up AFTER the claim lands, not part of this PR.
   - Target files:
     - [`../tools/queue_transitions.py`](../tools/queue_transitions.py)
