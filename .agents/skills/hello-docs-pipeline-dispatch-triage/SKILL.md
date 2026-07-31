@@ -74,6 +74,20 @@ branch tip / uploaded doc) — a green run is not the deliverable. Distinguish
 | Build green but content stale | The row rebuilt an old `Git_ref`; check the row's ref field vs the review branch tip |
 | Review-branch LaTeX-only crash in publish | De-templated review pages (raw tabular / SVG / prose outside macros) — fix on the review branch via backport sub-branch, not templates |
 | Mirror behaves unlike auto-manual | Check the last `sync-hello-docs.yml` run — the mirror is only as new as its last sync |
+| PR shows `no checks reported`; push / close-reopen / empty commits all trigger nothing | `gh pr view <n> --json mergeable` FIRST — `CONFLICTING` silently disables every PR-event workflow (see below) |
+
+### `mergeable=CONFLICTING` = silent CI no-op (either repo)
+
+When a PR conflicts with its base, GitHub cannot create the `refs/pull/N/merge`
+merge commit, so every `pull_request`-event workflow silently never starts:
+no failed run, no queued run, nothing for a push, close/reopen, or empty
+commit to re-trigger. Do not waste rungs on re-dispatch — check
+`gh pr view <n> --json mergeable` before anything else when a PR sits at
+`no checks reported`. Fix on the PR branch, not in the workflows: rebase onto
+`origin/main`, resolve the conflict, `git push --force-with-lease`; the moment
+`mergeable` recovers, checks fire on their own. Proven 2026-07-31 on
+auto-manual #816/#819 (`merge_authorizations.md` conflicted with a `main`
+squash-merge).
 
 Always end a triage with: root cause, which plane the fix belongs to, and the
 re-run evidence (run URL + verified artifact).
