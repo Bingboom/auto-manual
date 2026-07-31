@@ -200,6 +200,23 @@ Deliverables:
   geometry, coverage, and final package page count;
 - 58-page IDML, zero overset, zero missing fonts, zero bad links.
 
+Before approving a refreshed identity, use the review-only scaffold:
+
+```bash
+python3 tools/reference_layout_scaffold.py \
+  --seed-plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --output <reference-layout-draft.json>
+```
+
+The scaffold is deliberately outside the activation path. It copies the
+seed's 52 source bindings and physical composition map, refreshes the current
+Manual IR identity and per-source digests, and emits `approval.status=draft`
+with `production_eligible=false`. A changed source order, page language, or
+missing frozen snapshot aborts the command. The draft does not update the
+registry; after composition review, an operator must explicitly approve and
+register the resulting contract before production IDML can use it.
+
 ### Phase 3 - Governed asset closure
 
 Files:

@@ -1021,3 +1021,17 @@ Why it mattered:
 
 - Concurrent sync workers can still fetch and prepare independently, but their final multi-file snapshot commits cannot interleave, so a reader observes one complete writer result rather than a mixed CSV/manifest set.
 - This closes the last K8 slice without changing source-table normalization, snapshot contents, or manifest semantics.
+
+## 65. 2026-07-31: Reference Layout Identity Scaffold Stays Outside Activation (Workstream W / Stage 4a item 10)
+
+What changed:
+
+- Added [`tools/idml/reference_layout_scaffold.py`](../tools/idml/reference_layout_scaffold.py) and its named-output CLI [`tools/reference_layout_scaffold.py`](../tools/reference_layout_scaffold.py).
+- The scaffold copies an existing 52-source reference contract's physical composition map, refreshes Manual IR identity/per-page digests, and emits a review-only `reference-layout-scaffold/v1` draft.
+- Draft output is explicitly `approval.status=draft`, `production_eligible=false`, and is never written to the approved-plan registry.
+- Source-ref order, page-language drift, missing frozen snapshot identity, and invalid physical composition fail closed before output.
+
+Why it mattered:
+
+- A refreshed snapshot no longer requires hand-editing 52 hashes before a reviewer can inspect the actual composition/approval surface.
+- The production activation path remains unchanged and fail-closed: only an approved, registry-bound contract can govern IDML; a scaffold draft cannot silently become a fallback or production plan.

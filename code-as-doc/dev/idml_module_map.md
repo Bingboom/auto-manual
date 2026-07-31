@@ -40,6 +40,9 @@ tools/idml/
                               approved files missing from the registry fail closed
   reference_layout_rebind.py  complete Manual-IR identity/page-binding refresh with
                               unchanged-composition validation and atomic replacement
+  reference_layout_scaffold.py review-only draft generator: refreshes Manual-IR
+                              identities/digests while preserving the seed composition;
+                              draft output is never production-eligible or registered
   lcd_reference_profile.py    fail-closed approved LCD row order, display numbering,
                               typography roles, and locale-selected fixed row geometry
   story_rhythm.py             localized operation H2 spacing derived from the LCD/Key
@@ -89,6 +92,9 @@ tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by 
 tools/reference_layout_rebind.py
                               dry-run-by-default maintainer CLI for the atomic approved-
                               contract source rebind; never edits composition geometry
+tools/reference_layout_scaffold.py
+                              named-output-only CLI for non-activating composition-preserving
+                              reference-layout drafts; never edits the registry
 ```
 
 ## Contracts to know before touching anything
@@ -115,6 +121,11 @@ tools/reference_layout_rebind.py
   mutable non-content identities plus every page source digest; validates the
   full candidate; and atomically replaces the file. It is not a plan-layout
   editor.
+- **Reference-layout scaffold**: use
+  `tools/reference_layout_scaffold.py --seed-plan ... --manual-ir ...
+  --output ...` to create a review-only draft. It refreshes identities and
+  source digests while preserving the seed composition, never updates the
+  registry, and marks the result non-production-eligible.
 - **Layout-token identity**: Manual IR hashes the ordered parsed
   `key`/`value`/`unit` rows from `layout_params.csv`; raw EOLs, blank rows, and
   the comment column are non-semantic, while token/order changes remain bound.
@@ -191,5 +202,8 @@ tools/reference_layout_rebind.py
 - `python tools/export_idml.py …` (direct CLI; `--check <file.idml>` validates)
 - `python tools/reference_layout_rebind.py --plan <approved.json> --manual-ir
   <manual.ir.json> [--write]` (complete source rebind; dry-run by default)
+- `python tools/reference_layout_scaffold.py --seed-plan <approved.json>
+  --manual-ir <manual.ir.json> --output <draft.json>` (composition-preserving,
+  non-activating draft)
 - Tests: `python -m unittest tests.test_export_idml tests.test_export_idml_golden
   tests.test_export_idml_cli tests.test_idml_components tests.test_idml_package_layout`
