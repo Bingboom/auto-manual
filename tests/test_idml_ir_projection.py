@@ -39,6 +39,32 @@ class IdmlIRProjectionTests(unittest.TestCase):
         self.assertEqual(4, len(symbols.signals))
         self.assertEqual(11, len(ir_projection.trouble_rows(self.ir, "en")))
 
+    def test_same_source_ir_keeps_skipped_raw_report_only_before_plan_resolution(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "rst"
+            page_dir = bundle / "page"
+            page_dir.mkdir(parents=True)
+            (bundle / "index.rst").write_text(
+                ".. include:: page/prose.rst\n", encoding="utf-8"
+            )
+            (page_dir / "prose.rst").write_text(
+                "PROSE\n=====\n\n"
+                ".. raw:: latex\n\n"
+                "   \\UnsupportedRawBlock{value}\n",
+                encoding="utf-8",
+            )
+
+            ir = ir_projection.build_same_source_ir(
+                root=ROOT,
+                bundle_root=bundle,
+                model="UNAPPROVED-MODEL",
+                region="US",
+                lang="en",
+                data_root=DATA,
+            )
+
+        self.assertEqual(1, sum(page.skipped_raw for page in ir.pages))
+
     def test_lcd_projection_preserves_source_numbering_gaps(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             bundle = Path(td) / "rst"

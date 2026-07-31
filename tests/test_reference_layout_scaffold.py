@@ -63,6 +63,20 @@ class ReferenceLayoutScaffoldTests(unittest.TestCase):
             with self.assertRaisesRegex(ReferenceLayoutPlanError, "source_ref order"):
                 build_reference_layout_scaffold(seed_path, ir)
 
+    def test_draft_freezes_current_skipped_raw_as_review_baseline(self) -> None:
+        ir = _manual_ir()
+        changed_page = replace(ir.pages[0], skipped_raw=2)
+        ir = replace(ir, pages=(changed_page, *ir.pages[1:]))
+        seed = _approved_payload(ir)
+        seed["idml_contract"]["max_skipped_raw"] = 0  # type: ignore[index]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            seed_path = Path(tmp) / "seed.json"
+            seed_path.write_text(json.dumps(seed), encoding="utf-8")
+            draft = build_reference_layout_scaffold(seed_path, ir)
+
+        self.assertEqual(2, draft["idml_contract"]["max_skipped_raw"])
+
     def test_missing_snapshot_is_fail_closed(self) -> None:
         ir = _manual_ir()
         ir = replace(ir, snapshot_sha256=None)

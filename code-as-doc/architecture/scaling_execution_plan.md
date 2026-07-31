@@ -137,7 +137,7 @@
 ### Stage 5 — 行为收口与扩张前置门（14 PR;唯一集中出现行为变化的阶段,每项独立开关、先取证后收紧）
 〔GATE〕①strict 翻转清单逐项拍板（ratchet/skipped_raw/未知语言/capability 族级注解——先全 bundle 取证,TOU 三反转教训）②占位化的生产源表 seed 走 F6（模板+fixtures 先行,机器可验;生产 seed=操作者步骤）③copy-key 迁移的 Localized_Copy 覆盖取证④JP/KR/CN 是否走 IDML 生产线（决定 CJK 三件套执行与否）⑤K15 设计批准=Workstream O(many-target 扩张)解锁条件。
 
-1. [S] `feat(idml): skipped_raw strict gate`（approved-reference 线超基线即败）
+1. [x] [S] `feat(idml): skipped_raw strict gate`（approved-reference 线超基线即败）— Done：批准版式在 `idml_contract.max_skipped_raw` 冻结可接受基线，生产导出超基线 fail-closed；无批准版式的目标继续只报告计数，`manual-ir --strict` 继续保持零容忍显式检查。
 2. [S] `feat(idml): unknown-language fail-closed in strict`
 3. [M] `feat(manifest): family-level capability annotations` — JP/KR/EU 吃到装配期选页;全 bundle 取证入 body。
 4. [x] [M] `feat(templates): PV input range placeholder-ize (a:模板+fixtures)` — '16V-60V' 烧死在 8 语言拷贝里,安全电气参数;机器验收=fixtures 数据根构建逐字节不变。Done：`pv_input_range/value` 语义行驱动 `PV_INPUT_RANGE`，8 语言解析后 SHA-256 与迁移前一致，US/EU 完整 fixture check 通过，pt-BR/KR 用专用最小 fixture 避免伪造全量覆盖；〔操作者步骤仍待 GATE〕生产表 seed(F6)后 diff-report 取证。

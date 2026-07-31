@@ -314,11 +314,15 @@ def build_same_source_ir(
     *, root: Path, bundle_root: Path, model: str, region: str, lang: str,
     data_root: Path,
 ) -> ManualIR:
-    """Build and enforce the production IDML same-source contract."""
+    """Build and enforce the target-independent same-source contract.
+
+    Approved-reference-only acceptance gates run after the reference plan is
+    resolved, because their thresholds are part of that frozen plan.
+    """
     ir = build_manual_ir(
         root=root, bundle_root=bundle_root, model=model, region=region,
         lang=lang, source="prepared-bundle", data_root=data_root)
-    issues = validate_manual_ir(ir, require_zero_skipped_raw=True)
+    issues = validate_manual_ir(ir)
     issues.extend(same_source_issues(ir))
     issues.extend(asset_resolution_issues(ir, root=root, data_root=data_root))
     if issues:

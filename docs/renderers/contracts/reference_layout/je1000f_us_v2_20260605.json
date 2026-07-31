@@ -48,6 +48,7 @@
     "changed_channel_threshold": 16
   },
   "idml_contract": {
+    "max_skipped_raw": 0,
     "forbidden_visible_whole_page_links": [
       "product_overview-en.pdf",
       "product_overview-fr.pdf",

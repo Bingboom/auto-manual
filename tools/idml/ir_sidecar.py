@@ -44,7 +44,7 @@ def emit_manual_ir_sidecar(
 
 def write_manual_ir_sidecar(manual_ir: ManualIR, out_dir: Path) -> Path:
     """Write the exact IR object consumed by production IDML."""
-    issues = validate_manual_ir(manual_ir, require_zero_skipped_raw=True)
+    issues = validate_manual_ir(manual_ir)
     if issues:
         raise RuntimeError("manual IR validation failed: " + "; ".join(issues))
     ir_path = out_dir / PathSegments.MANUAL_IR_JSON

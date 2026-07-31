@@ -1426,3 +1426,25 @@ Why it mattered:
 - Deployment still receives the exact static site it consumes, operators keep
   the final delivery/diagnostic files needed for review, and restore retention
   remains governed by the backup contract rather than the CI quota policy.
+
+## 84. 2026-07-31: Skipped Raw Becomes an Approved Baseline (Workstream W / Stage 5 item 1)
+
+What changed:
+
+- Approved reference-layout plans now require a non-negative
+  `idml_contract.max_skipped_raw` baseline; the JE-1000F/US approved plan pins
+  the observed accepted value at zero.
+- Production resolves the page plan before applying the skipped-raw gate, then
+  rejects approved targets only when the current total exceeds that frozen
+  baseline. The error names every affected Manual IR page and count.
+- Ordinary/fallback targets retain the Stage 0 report-only sensor, while the
+  standalone `manual-ir --strict` command remains an explicit zero-tolerance
+  check.
+
+Why it mattered:
+
+- The previous production path rejected any skipped raw before loading the
+  approved plan, which was stricter than the operator-approved policy but not
+  represented in a reviewable contract.
+- Acceptance is now visible, target-bound, and hash-covered by the approved
+  plan instead of being an undocumented exporter side effect.

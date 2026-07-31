@@ -59,6 +59,32 @@ def _valid_digest(value: Any) -> bool:
     return isinstance(value, str) and _DIGEST.fullmatch(value) is not None
 
 
+def skipped_raw_contract_issues(
+    idml_contract: dict[str, Any],
+    ir: ManualIR,
+) -> list[str]:
+    """Return approved-baseline violations for unprojected raw blocks."""
+    max_skipped_raw = idml_contract.get("max_skipped_raw")
+    if (
+        isinstance(max_skipped_raw, bool)
+        or not isinstance(max_skipped_raw, int)
+        or max_skipped_raw < 0
+    ):
+        return ["idml_contract.max_skipped_raw must be a non-negative integer"]
+    actual = sum(page.skipped_raw for page in ir.pages)
+    if actual <= max_skipped_raw:
+        return []
+    affected = ", ".join(
+        f"{page.page_id}={page.skipped_raw}"
+        for page in ir.pages
+        if page.skipped_raw
+    )
+    return [
+        f"skipped_raw={actual} exceeds approved-reference baseline "
+        f"idml_contract.max_skipped_raw={max_skipped_raw}; pages: {affected}"
+    ]
+
+
 def _same_model_region(
     target: Any,
     expected_target: dict[str, Any],
@@ -309,6 +335,7 @@ def validate_approved_reference_plan(
     if not isinstance(idml_contract, dict):
         issues.append("idml_contract must be an object")
     else:
+        issues.extend(skipped_raw_contract_issues(idml_contract, ir))
         forbidden_links = idml_contract.get("forbidden_visible_whole_page_links")
         if not isinstance(forbidden_links, list) or not forbidden_links:
             issues.append(
