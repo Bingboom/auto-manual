@@ -162,8 +162,11 @@ def main() -> int:
         try:
             import shutil as _shutil
 
+            import os as _os
+
+            debug_root = Path(_os.environ.get("GITHUB_WORKSPACE") or ROOT)
             debug_dir = (
-                ROOT / "docs" / "_build" / args.model / args.region / "same_source_debug"
+                debug_root / "docs" / "_build" / args.model / args.region / "same_source_debug"
             )
             if debug_dir.exists():
                 _shutil.rmtree(debug_dir)
