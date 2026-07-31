@@ -63,6 +63,7 @@ class FeishuBuildQueueWorkflowTests(unittest.TestCase):
         self.assertIn('Dir::Cache::archives="${apt_cache}"', script)
         self.assertIn("APT::Keep-Downloaded-Packages=true", script)
         self.assertIn('"${texlive_packages[@]}"', script)
+        self.assertIn('sudo chown -R "$(id -u):$(id -g)" "${apt_cache}"', script)
 
     def test_workflow_records_cache_hit_and_install_duration(self) -> None:
         install_index, _ = _step_named("Install XeLaTeX runtime for publish PDF")

@@ -150,6 +150,10 @@ jobs:
             -o Dir::Cache::archives="${apt_cache}" \
             -o APT::Keep-Downloaded-Packages=true \
             "${texlive_packages[@]}"
+          # apt writes the archive lock/partial entries as root. Return the
+          # cache tree to the runner so actions/cache can archive it in the
+          # post step instead of finishing green with a failed-save warning.
+          sudo chown -R "$(id -u):$(id -g)" "${apt_cache}"
           elapsed_seconds="$(( $(date +%s) - started_at ))"
           echo "elapsed-seconds=${elapsed_seconds}" >> "$GITHUB_OUTPUT"
           xelatex --version | head -n 1
