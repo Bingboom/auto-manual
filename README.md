@@ -395,6 +395,8 @@ The staged fold index is checked with
 `python tools/manifest_family.py fold --root . --index docs/manifests/family/index.yaml`.
 It covers all 17 manifests as two anchors plus 15 carriers and leaves the
 existing YAML compatibility files untouched.
+The `Manifest Regenerate and Diff Guardrail` workflow runs this check on
+manifest/config changes and fails when a YAML golden drifts from its carrier.
 
 The fixed US + JP release matrix runners — [`scripts/build_us_jp_manuals.py`](scripts/build_us_jp_manuals.py) and [`scripts/build_us_jp_manuals.ps1`](scripts/build_us_jp_manuals.ps1) — are documented in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md). For a US-only subset, pass `--languages en,es,fr` (or the subset you need) to the same runner.
 

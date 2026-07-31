@@ -1,0 +1,35 @@
+name: Manifest Regenerate and Diff Guardrail
+
+on:
+  pull_request:
+    paths:
+      - "configs/**"
+      - "docs/manifests/**"
+      - "tools/manifest_family.py"
+      - "tools/manifest_lint.py"
+      - "tests/test_manifest_family.py"
+      - ".github/workflows/manifest-regenerate-diff.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  manifest-regenerate-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install manifest dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.lock
+      - name: Regenerate manifest carriers and fail on drift
+        run: >-
+          python tools/manifest_family.py fold
+          --root "$GITHUB_WORKSPACE"
+          --index docs/manifests/family/index.yaml
+      - name: Run report-only manifest inventory
+        run: python tools/manifest_lint.py --json
