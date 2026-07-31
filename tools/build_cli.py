@@ -272,6 +272,22 @@ def parse_args(
         help="For new-line: optional JSON plan/report path",
     )
     ap.add_argument(
+        "--seed-plan",
+        action="store_true",
+        help=(
+            "For new-line: emit a read-only F6 seed plan for the Document_key row, "
+            "page-placeholder clones, and source-table field creation"
+        ),
+    )
+    ap.add_argument(
+        "--seed-source-document-key",
+        default=None,
+        help=(
+            "For new-line --seed-plan: exact local source document key for "
+            "page-placeholder cloning; omit only when the source is unambiguous"
+        ),
+    )
+    ap.add_argument(
         "--write",
         action="store_true",
         help="For new-line: materialize the named scaffold; for asset-check --refresh: write recomputed hashes",

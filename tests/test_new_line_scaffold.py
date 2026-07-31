@@ -12,6 +12,7 @@ from tools.new_line_scaffold import (
     build_plan,
     materialize_scaffold,
 )
+from tools.new_line_seed_plan import build_seed_plan
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -135,6 +136,37 @@ class TestNewLineScaffold(unittest.TestCase):
         source_index = command.index("--source")
         self.assertEqual("runtime", command[source_index + 1])
         self.assertEqual("passed", result["status"])
+
+    def test_seed_plan_is_zero_write_and_lists_the_three_f6_steps(self) -> None:
+        scaffold = build_plan(ROOT / "configs/config.kr.yaml", root=ROOT)
+        seed = build_seed_plan(
+            scaffold,
+            root=ROOT,
+            data_root=ROOT / "tests/fixtures/phase2",
+            source_document_key="JE-1000F_CN",
+        )
+
+        self.assertEqual("new-line-seed-plan/v1", seed["schema_version"])
+        self.assertFalse(seed["write_policy"]["external_write"])
+        self.assertEqual("JE-1000F_KR", seed["target"]["document_key"])
+        self.assertEqual("02_主数据_Document_key", seed["document_key_row"]["table"])
+        self.assertEqual("selected", seed["placeholder_clone"]["status"])
+        self.assertGreater(seed["placeholder_clone"]["source_row_count"], 0)
+        self.assertEqual("plan-only", seed["field_create_helper"]["status"])
+        self.assertEqual("passed", seed["validation"]["status"])
+
+    def test_seed_plan_abstains_on_ambiguous_source_document(self) -> None:
+        scaffold = build_plan(ROOT / "configs/config.kr.yaml", root=ROOT)
+        seed = build_seed_plan(
+            scaffold,
+            root=ROOT,
+            data_root=ROOT / "tests/fixtures/phase2",
+        )
+
+        self.assertEqual("needs_input", seed["placeholder_clone"]["status"])
+        self.assertIsNone(seed["placeholder_clone"]["source_document_key"])
+        self.assertEqual("needs_input", seed["validation"]["status"])
+        self.assertFalse(seed["write_policy"]["external_write"])
 
 
 if __name__ == "__main__":

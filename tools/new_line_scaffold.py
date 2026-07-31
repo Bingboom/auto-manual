@@ -601,6 +601,30 @@ def run_new_line(args: argparse.Namespace, *, repo_root: Path) -> None:
     if plan.whitelist_diff:
         raise RuntimeError("new-line dry-run found references outside the approved scaffold surface")
 
+    if getattr(args, "seed_plan", False):
+        if getattr(args, "write", False):
+            raise RuntimeError("new-line --seed-plan is read-only and cannot be combined with --write")
+        from tools.new_line_seed_plan import build_seed_plan, render_seed_plan
+
+        seed_plan = build_seed_plan(
+            plan,
+            root=repo_root,
+            data_root=getattr(args, "data_root", None),
+            source_document_key=getattr(args, "seed_source_document_key", None),
+        )
+        output = getattr(args, "plan_output", None)
+        if output:
+            output_path = Path(output)
+            if not output_path.is_absolute():
+                output_path = repo_root / output_path
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(
+                json.dumps(seed_plan, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+        print(render_seed_plan(seed_plan, as_json=bool(getattr(args, "json", False))))
+        return
+
     if not getattr(args, "write", False):
         output = getattr(args, "plan_output", None)
         if output:

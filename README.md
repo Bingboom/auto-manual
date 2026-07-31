@@ -74,6 +74,14 @@ python build.py asset-check --refresh --write
 # manifests, phase2 snapshots, or Feishu source tables.
 python build.py new-line --config configs/config.kr.yaml --dry-run --json
 
+# Before an approved F6 write, inspect the zero-write source seed plan. Add
+# --seed-source-document-key when more than one same-model source is available.
+python build.py new-line \
+  --config configs/config.kr.yaml \
+  --model JE-1000F --region KR \
+  --seed-plan --data-root tests/fixtures/phase2 --json \
+  --seed-source-document-key JE-1000F_CN
+
 # Materialize an explicit config/manifest scaffold, refresh only the committed
 # fixture snapshot, and run the normal check gate. Production phase2 writes
 # remain blocked.
