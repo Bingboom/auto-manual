@@ -1211,3 +1211,22 @@ Why it mattered:
 - Missing copy data still fails closed, while the byte-parity lock proves the
   migration changes no rendered RST, page geometry, reference-layout contract,
   production Base row, or asset.
+
+## 74. 2026-07-31: PV Input Range Moves to Page-Value Data (Workstream W / Stage 5 item 4a)
+
+What changed:
+
+- Replaced the literal solar-panel input range in eight shared-language
+  charging-method templates with `|PV_INPUT_RANGE|`.
+- Added semantic fixture rows using `Page=charging_methods`,
+  `Row_key=pv_input_range`, and `Slot_key=value`; no legacy `tpl_*` binding was
+  introduced.
+- Added a page contract and an eight-language characterization test. Every
+  resolved template retains its pre-migration SHA-256.
+
+Why it mattered:
+
+- One safety-critical electrical parameter no longer has eight independently
+  editable template copies.
+- Missing target data now fails closed. The repo slice writes no production
+  Base row; F6 seed and diff-report evidence remain an explicit operator gate.

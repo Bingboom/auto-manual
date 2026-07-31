@@ -1,0 +1,3 @@
+document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Line_order,Value_source,Model,Source_lang,Row_label_ko,Value_ko
+JE-1500D_pt-BR,pt-BR,TRUE,charging_methods,INPUT PORTS,2,3,pv_input_range,value,Faixa de entrada FV,1,16V-60V,JE-1500D,pt-BR,,
+JE-1000F_KR,KR,TRUE,charging_methods,INPUT PORTS,2,3,pv_input_range,value,PV 입력 범위,1,16V-60V,JE-1000F,ko,PV 입력 범위,16V-60V

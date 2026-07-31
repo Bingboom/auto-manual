@@ -702,6 +702,13 @@ PR-level breakdown: [`architecture/scaling_execution_plan.md`](architecture/scal
 
 Capacity/trigger: the operator's product-line expansion decision (2026-07-30) is the roadmap-§5 business trigger — it fires K13's named trigger (next new-language/region onboarding) and supplies the Tier-3 "dedicated window" via overnight agent execution. The workstream reuses existing item numbers where they exist (K2, K8 incl. the snapshot file-lock, K13, K14, E1, I2's normalization prerequisite) and adds sensor/generator/scaffold/throughput slices around them. Ordering is safety-net-first (Stage 0 sensors + parity/golden locks), mechanical consolidation next, behavior changes last (Stage 5, each independently gated). Explicit non-goals keep K9/K10/K11/K12-full/K15-implementation, Deferred 1–5, and every fail-closed approval semantic untouched; concurrency work (Stage 4b) is sequenced behind a minimal atomic claim to avoid the double-claim trap.
 
+Execution note: Stage 5 item 4(a) migrates the solar-panel PV input range in
+the eight shared-language charging-method templates to the semantic
+`pv_input_range/value` page row and `PV_INPUT_RANGE` runtime placeholder. Page
+contracts fail closed on missing data, and characterization tests prove
+byte-identical resolved RST. Production Base seed and diff-report evidence
+remain the operator-controlled F6 follow-up.
+
 Execution note: Stage 5 item 6 migrates the seven Product Overview page,
 panel, and part labels in the US Spanish, French, and Brazilian Portuguese
 templates to the existing `product_overview.*` runtime copy keys. A

@@ -94,8 +94,8 @@
       "logical_name": "spec_master",
       "file_name": "Spec_Master.csv",
       "path": "tests/fixtures/phase2/Spec_Master.csv",
-      "row_count": 373,
-      "sha256": "2b2b8f48867b2d7eac5e6fab40b8fab85e6beff7a19db0c2b09f13a2517f0897",
+      "row_count": 375,
+      "sha256": "d0f0c5a81b52e7a00c9761c3cb8b7eec422b2c30228681d423d230d6c7e4663f",
       "previous_sha256": null,
       "changed": true
     }

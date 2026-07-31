@@ -1,0 +1,18 @@
+page_id: 08_charging_methods
+source_files:
+  - templates/page_shared/en/08_charging_methods.rst
+  - templates/page_shared/fr/08_charging_methods.rst
+  - templates/page_shared/es/08_charging_methods.rst
+  - templates/page_shared/pt-BR/08_charging_methods.rst
+  - templates/page_shared/de/08_charging_methods.rst
+  - templates/page_shared/it/08_charging_methods.rst
+  - templates/page_shared/uk/08_charging_methods.rst
+  - templates/page_shared/ko/08_charging_methods.rst
+required_placeholders:
+  default:
+    - PV_INPUT_RANGE
+required_page_values:
+  default:
+    - row_key: pv_input_range
+      pages: [charging_methods]
+      usage_type: page_value
