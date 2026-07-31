@@ -12,6 +12,8 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from .language_contract import governed_languages
+
 
 APP_PAIRING_PANEL_ASSET_URI = (
     "asset:controls/je1000f_us/network_pairing_panel"
@@ -61,7 +63,7 @@ def is_je1000f_us_app_reference_page(
     return (
         (model or "").strip().casefold() == "je-1000f"
         and (region or "").strip().casefold() == "us"
-        and language_key in {"en", "fr", "es"}
+        and language_key in governed_languages()
         and re.fullmatch(
             r"(?:p\d+_)?12_app_setup_placeholder",
             page_path.stem.casefold(),

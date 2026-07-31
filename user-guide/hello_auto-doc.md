@@ -89,6 +89,10 @@ InDesign label text, rather than a flattened language-specific badge image.
 The safety-tail panels use the approved dark triangle, and the symbol-grid
 icon size and columns come from shared layout tokens, so English, French, and
 Spanish follow the same component definition.
+The symbol-page copy and TOC language headers come from the shared language
+registry's IDML language packs. Reference-bound spacing overrides are limited
+to the registry's `governed_languages()` set, so adding translation metadata
+does not silently apply an unapproved physical layout.
 
 In production IDML operation panels, Prerequisite, standby, On, and Off are
 separate unlocked text frames placed above the linked illustration. Designers

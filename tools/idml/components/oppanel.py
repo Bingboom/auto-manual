@@ -10,6 +10,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from ..language_contract import governed_languages
 from ..character_metrics import with_character_metrics
 from ..primitives import (
     cell,
@@ -227,14 +228,14 @@ def _row_text_layers(
         ctx.params,
         f"lang_{language}_idml_operation_row_label_font_size",
         base_label_size,
-        strict=ctx.strict_component_assets and language in {"en", "fr", "es"},
+        strict=ctx.strict_component_assets and language in governed_languages(),
         owner="localized operation row label",
     )
     label_leading = component_param_pt(
         ctx.params,
         f"lang_{language}_idml_operation_row_label_font_leading",
         base_label_leading,
-        strict=ctx.strict_component_assets and language in {"en", "fr", "es"},
+        strict=ctx.strict_component_assets and language in governed_languages(),
         owner="localized operation row label",
     )
     stem = Path(ref).stem.lower()

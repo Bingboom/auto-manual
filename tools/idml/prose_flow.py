@@ -8,6 +8,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
 
+from .language_contract import governed_languages
 from .asset_contracts import (
     APP_PAIRING_PANEL_ASSET_URI,
     is_je1000f_us_app_reference_plan_page,
@@ -245,7 +246,7 @@ def _planned_page_language(
         if not source_path or Path(str(source_path)).stem != target_stem:
             continue
         language = _language_code(entry.get("language"))
-        return language if language in {"en", "fr", "es"} else None
+        return language if language in governed_languages() else None
     return None
 
 
@@ -322,7 +323,7 @@ def align_troubleshooting_heading(
     out of translated headings and lets the story renderer consume the same
     component token for all three languages.
     """
-    if language not in {"en", "fr", "es"}:
+    if language not in governed_languages():
         return blocks
     header = ""
     for kind, payload in blocks:
@@ -362,7 +363,7 @@ def align_storage_heading(
 ) -> list[Block]:
     """Mark the approved storage H1 without changing localized source copy."""
     if (
-        language not in {"en", "fr", "es"}
+        language not in governed_languages()
         or not stem
         or "storage_and_maintenance" not in Path(stem).stem.casefold()
     ):
@@ -867,7 +868,7 @@ def _apply_single_page_ups_callout_roles(
         )
         if (
             len(languages) == 1
-            and next(iter(languages), "") in {"en", "fr", "es"}
+            and next(iter(languages), "") in governed_languages()
             and page_counts == {1}
             and has_ups
             and has_charging_intro

@@ -13,6 +13,7 @@ from pathlib import Path
 import re
 import unicodedata
 
+from ..language_contract import governed_languages
 from .. import page_objects
 from ..character_metrics import with_character_baseline_shift
 from ..params import component_param_pt
@@ -182,7 +183,7 @@ class KeyCombinationStyle:
                 return base
             return token(f"lang_{language}_{key}", base)
 
-        governed = language in {"en", "fr", "es"}
+        governed = language in governed_languages()
         return cls(
             panel_width=token("idml_key_panel_width", 311.02),
             left_ratio=token(

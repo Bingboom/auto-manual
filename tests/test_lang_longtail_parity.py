@@ -125,12 +125,21 @@ class LanguageLongTailParityTest(unittest.TestCase):
         self.assertEqual(_pick_spec_value(row, "ukr"), "UK-VALUE")
 
     def test_longtail_symbol_copy_registration_is_closed(self) -> None:
-        missing = {
-            language
-            for language in ("de", "it", "uk", "ko")
-            if language not in loaders.SYMBOL_COPY
-        }
-        self.assertFalse(missing, missing)
+        registered = {spec.code for spec in lang_registry.LANGUAGE_REGISTRY}
+        self.assertEqual(set(loaders.SYMBOL_COPY), registered)
+        self.assertEqual(set(lang_registry.IDML_LANGUAGE_PACKS), registered)
+        for language in registered:
+            with self.subTest(language=language):
+                pack = lang_registry.idml_language_pack(language)
+                self.assertIsNotNone(pack)
+                assert pack is not None
+                self.assertEqual(
+                    loaders.SYMBOL_COPY[language],
+                    dict(zip(lang_registry.IDML_SYMBOL_COPY_KEYS, pack.symbol_copy)),
+                )
+
+    def test_idml_governed_languages_have_one_registry_source(self) -> None:
+        self.assertEqual(lang_registry.governed_languages(), ("en", "fr", "es"))
 
     def test_longtail_display_registration_is_closed(self) -> None:
         maps = (
@@ -141,8 +150,10 @@ class LanguageLongTailParityTest(unittest.TestCase):
         expected_labels = lang_registry.language_display_labels()
         for language_map in maps:
             self.assertEqual(language_map, expected_labels)
-        for language in ("de", "it", "uk", "ko"):
-            self.assertIn(language, _LANG_HEADERS)
+        for spec in lang_registry.LANGUAGE_REGISTRY:
+            with self.subTest(language=spec.code):
+                self.assertIn(spec.code, _LANG_HEADERS)
+                self.assertIn(spec.code, lang_registry.IDML_LANGUAGE_PACKS)
 
     def test_core_longtail_alias_sets_remain_closed(self) -> None:
         aliases = {

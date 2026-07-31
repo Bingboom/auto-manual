@@ -676,6 +676,13 @@ The design and implementation rationale is recorded in
 the module boundary remains documented in
 [`dev/idml_module_map.md`](dev/idml_module_map.md).
 
+IDML-localized symbol copy and table-of-contents language headers are language
+packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),
+not tables maintained by the individual IDML modules. Reference-bound spacing
+and placement overrides use the same registry's `governed_languages()` helper;
+adding a language pack alone does not claim that language has an approved
+physical layout.
+
 Contract selection is fail-closed before identity validation: if an approved
 contract on disk exactly matches the Manual IR target but its registry row is
 absent, production IDML stops and names the orphaned contract. Removing a row
