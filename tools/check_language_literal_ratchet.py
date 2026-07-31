@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import ast
 import hashlib
+import json
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -93,7 +94,24 @@ def _direct_string_literals(node: ast.AST) -> tuple[str, ...]:
 
 
 def _fingerprint(node: ast.AST) -> str:
-    dumped = ast.dump(node, annotate_fields=True, include_attributes=False)
+    def canonical(value: object) -> object:
+        if isinstance(value, ast.AST):
+            return {
+                "type": type(value).__name__,
+                "fields": {
+                    name: canonical(field)
+                    for name, field in ast.iter_fields(value)
+                },
+            }
+        if isinstance(value, list):
+            return [canonical(item) for item in value]
+        if isinstance(value, tuple):
+            return [canonical(item) for item in value]
+        return value
+
+    dumped = json.dumps(
+        canonical(node), ensure_ascii=True, sort_keys=True, separators=(",", ":")
+    )
     return hashlib.sha256(dumped.encode("utf-8")).hexdigest()[:16]
 
 

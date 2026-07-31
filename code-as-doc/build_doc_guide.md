@@ -1105,6 +1105,7 @@ with python tools/csv_to_tex_params.py.
 - `data/model_capabilities.csv` — per-`Document_key` feature booleans, mirrored from the 文档构建表 checkboxes (说明书盘点 2026-07-06).
 - `data/capability_known_missing.csv` — reviewed `Document_key,reason` exemptions for targets whose capability row is not yet mirrored; unlisted missing rows surface as non-blocking `CAPABILITY_ROW_MISSING` warnings.
 - `data/capability_page_rules.csv` — capability -> chapter mapping. `scope=page` requires/forbids a bundle page stem; `scope=section` greps a regex inside matching pages. `required_when_true` / `forbidden_when_false` toggle enforcement per direction, so uncertain rules can be recorded without failing builds.
+  The ordered `capability` values in this CSV are also the source for the `model_capabilities.csv` mirror header; do not add a capability to a second Python tuple.
 
 Failure codes: `CAPABILITY_CONTENT_MISSING` (capability TRUE, chapter absent) and `CAPABILITY_CONTENT_UNEXPECTED` (capability FALSE, chapter present). `CAPABILITY_ROW_MISSING` is a warning-only inventory signal unless the target is listed in the known-missing ledger; missing capability rows continue to keep page selection fail-open.
 

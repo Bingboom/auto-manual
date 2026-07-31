@@ -12,19 +12,29 @@ from __future__ import annotations
 
 import csv
 import io
+from pathlib import Path
 from typing import Any
 
-CAPABILITY_FIELDS: tuple[str, ...] = (
-    "AC/DC输出记忆恢复",
-    "加电包扩容",
-    "并机/扩展",
-    "UPS功能",
-    "LED照明灯",
-    "应急快充模式",
-    "静音充电",
-    "TOU/计划充电",
-    "自发自用模式",
-)
+from tools.check_docs_capability import load_rules
+
+
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+RULES_CSV = "capability_page_rules.csv"
+
+
+def load_capability_fields(data_dir: Path) -> tuple[str, ...]:
+    """Return capability columns in the reviewed rules-file order."""
+
+    fields = tuple(dict.fromkeys(rule["capability"] for rule in load_rules(data_dir)))
+    if not fields:
+        raise RuntimeError(
+            f"No capability fields found in {data_dir / RULES_CSV}; "
+            "the rules CSV is the source of truth for capability columns"
+        )
+    return fields
+
+
+CAPABILITY_FIELDS = load_capability_fields(_REPO_ROOT / "data")
 FIELDNAMES: tuple[str, ...] = ("Document_key", "Project", *CAPABILITY_FIELDS)
 
 
@@ -39,7 +49,11 @@ def _text(value: Any) -> str:
     return str(value).strip()
 
 
-def capabilities_csv_text(records: list[dict[str, Any]]) -> str:
+def capabilities_csv_text(
+    records: list[dict[str, Any]],
+    *,
+    capability_fields: tuple[str, ...] = CAPABILITY_FIELDS,
+) -> str:
     """Raw build-table records -> deterministic capability mirror CSV.
 
     Rows without a resolved Document_key (e.g. a target whose model link
@@ -53,10 +67,10 @@ def capabilities_csv_text(records: list[dict[str, Any]]) -> str:
         key = _text(fields.get("Document_key"))
         if not key or key.startswith("_"):
             continue
-        if all(fields.get(name) is None for name in CAPABILITY_FIELDS):
+        if all(fields.get(name) is None for name in capability_fields):
             continue
         row = {"Document_key": key, "Project": _text(fields.get("项目代码"))}
-        for name in CAPABILITY_FIELDS:
+        for name in capability_fields:
             row[name] = "TRUE" if fields.get(name) is True else "FALSE"
         rows.append(row)
     rows.sort(key=lambda r: (r["Document_key"], r["Project"]))
@@ -66,7 +80,8 @@ def capabilities_csv_text(records: list[dict[str, Any]]) -> str:
     rows = [r for r in rows
             if r["Document_key"] not in seen and not seen.add(r["Document_key"])]
     buf = io.StringIO()
-    writer = csv.DictWriter(buf, fieldnames=list(FIELDNAMES), lineterminator="\n")
+    fieldnames = ("Document_key", "Project", *capability_fields)
+    writer = csv.DictWriter(buf, fieldnames=list(fieldnames), lineterminator="\n")
     writer.writeheader()
     writer.writerows(rows)
     return buf.getvalue()
@@ -109,7 +124,8 @@ def sync_capability_mirror(
         )
     records = source.fetch_records(
         base_token=base_token, table_id=table_id, view_id=view_id or None)
-    csv_text = capabilities_csv_text(records)
+    capability_fields = load_capability_fields(Path(repo_root) / "data")
+    csv_text = capabilities_csv_text(records, capability_fields=capability_fields)
     target_path = repo_root / "data" / "model_capabilities.csv"
     sha256 = sha256_text(csv_text)
     previous_sha256 = sha256_file(target_path)
