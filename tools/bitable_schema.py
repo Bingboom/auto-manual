@@ -27,6 +27,7 @@ import json
 import os
 import sys
 from pathlib import Path
+from typing import Any
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root
