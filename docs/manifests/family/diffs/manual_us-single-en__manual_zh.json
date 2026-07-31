@@ -1,0 +1,113 @@
+{
+  "base_manifest_id": "manual_us_single_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_zh"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_zh/00_preface.rst",
+          "lang": "zh",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_zh/01_meaning_of_symbols.rst",
+          "lang": "zh",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_zh/02_whats_in_the_box.rst",
+          "lang": "zh",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "zh"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/zh/03_product_overview.yaml",
+          "template": "templates/page_zh/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "zh"
+          ],
+          "page": "lcd_icons",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "zh"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/zh/05_operation_guide.yaml",
+          "template": "templates/page_zh/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "file": "templates/page_zh/06_ups_mode.rst",
+          "lang": "zh",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_zh/charging.rst",
+          "lang": "zh",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_zh/08_charging_methods.rst",
+          "lang": "zh",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_zh/09_storage_and_maintenance.rst",
+          "lang": "zh",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "zh"
+          ],
+          "page": "troubleshooting",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "zh"
+          ],
+          "page": "spec",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "zh"
+          ],
+          "page": "12_app_setup",
+          "recipe": "templates/recipes/zh/12_app_setup.yaml",
+          "template": "templates/page_zh/12_app_setup_placeholder.rst",
+          "type": "generated_page"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_zh"
+}

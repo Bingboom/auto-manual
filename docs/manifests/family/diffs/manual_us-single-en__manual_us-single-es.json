@@ -1,0 +1,120 @@
+{
+  "base_manifest_id": "manual_us_single_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_us_single_es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_us-es/safety_es.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/es/01_user_maintenance_instructions.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "es"
+          ],
+          "page": "symbols",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_us-es/01_fcc.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/es/02_whats_in_the_box.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_us-es/03_product_overview_placeholder.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "es"
+          ],
+          "page": "lcd_icons",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_us-es/05_operation_guide_placeholder.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/es/06_ups_mode.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/es/charging.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/es/08_charging_methods.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/es/09_storage_and_maintenance.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "es"
+          ],
+          "page": "troubleshooting",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "es"
+          ],
+          "page": "spec",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_shared/es/11_warranty.rst",
+          "lang": "es",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "es"
+          ],
+          "page": "12_app_setup",
+          "recipe": "templates/recipes/us-es/12_app_setup.yaml",
+          "template": "templates/page_shared/es/12_app_setup_placeholder.rst",
+          "type": "generated_page"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_us_single_es"
+}

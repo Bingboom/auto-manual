@@ -1,0 +1,113 @@
+{
+  "base_manifest_id": "manual_us_single_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_jp"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_jp/cover_jp.rst",
+          "lang": "ja",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_jp/01_meaning_of_symbols.rst",
+          "lang": "ja",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_jp/02_whats_in_the_box.rst",
+          "lang": "ja",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "ja"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/jp/03_product_overview.yaml",
+          "template": "templates/page_jp/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "ja"
+          ],
+          "page": "lcd_icons",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "ja"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/jp/05_operation_guide.yaml",
+          "template": "templates/page_jp/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "file": "templates/page_jp/06_ups_mode.rst",
+          "lang": "ja",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_jp/charging.rst",
+          "lang": "ja",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_jp/08_charging_methods.rst",
+          "lang": "ja",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "ja"
+          ],
+          "page": "troubleshooting",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "ja"
+          ],
+          "page": "spec",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_jp/11_warranty.rst",
+          "lang": "ja",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "ja"
+          ],
+          "page": "12_app_setup",
+          "recipe": "templates/recipes/jp/12_app_setup.yaml",
+          "template": "templates/page_jp/12_app_setup_placeholder.rst",
+          "type": "generated_page"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_jp"
+}

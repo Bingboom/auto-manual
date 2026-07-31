@@ -38,3 +38,19 @@ language lines. This PR does not rewrite source manifests, change build
 assembly, or permit an external write. The subsequent manifest-folding PR
 will add generated checked-in carriers only after the pilot remains byte
 identical.
+
+## Fold index
+
+The tracked [`docs/manifests/family/index.yaml`](../../docs/manifests/family/index.yaml)
+records two compatibility anchors and 15 target/diff pairs. Run:
+
+```bash
+python tools/manifest_family.py fold \
+  --root . \
+  --index docs/manifests/family/index.yaml
+```
+
+The command checks that every `configs/config*.yaml`-backed manifest remains
+covered, applies each carrier in memory, and compares canonical bytes with the
+existing YAML golden. `--write` is an explicit carrier refresh operation; it
+does not edit YAML or invoke an external source-table write.

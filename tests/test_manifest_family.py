@@ -13,6 +13,7 @@ from tools.manifest_family import (
     apply_manifest_diff,
     build_manifest_diff,
     canonical_manifest_bytes,
+    fold_repository,
     load_manifest,
     main,
     roundtrip_report,
@@ -24,6 +25,17 @@ MANIFESTS = ROOT / "docs" / "manifests"
 
 
 class ManifestFamilyTests(unittest.TestCase):
+    def test_family_index_folds_all_17_manifest_goldens(self) -> None:
+        report = fold_repository(
+            ROOT,
+            MANIFESTS / "family" / "index.yaml",
+        )
+        self.assertTrue(report["passed"], report["errors"])
+        self.assertEqual(17, report["manifest_count"])
+        self.assertEqual(2, report["anchor_count"])
+        self.assertEqual(15, report["folded_count"])
+        self.assertTrue(all(item["byte_identical"] for item in report["checks"]))
+
     def test_two_us_single_language_pilot_lines_roundtrip_byte_identically(self) -> None:
         for target_name in ("manual_us-single-fr.yaml", "manual_us-single-es.yaml"):
             base = load_manifest(MANIFESTS / "manual_us-single-en.yaml")
