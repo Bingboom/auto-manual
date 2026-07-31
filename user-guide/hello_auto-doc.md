@@ -575,8 +575,11 @@ Important:
   read-only onboarding plan. It resolves the config inheritance chain, target
   identity, manifest pages, and template/recipe references, then reports
   `new-line-scaffold/v1`, `whitelist_diff`, and the F6-blocked
-  `data/phase2` source surface. It never writes source tables; the future
-  write flow is a separate approval-gated PR.
+  `data/phase2` source surface. `--write` requires explicit
+  `--output-config` and `--output-manifest` paths, refreshes only the
+  committed fixture through `fixture-refresh`, and automatically runs the
+  normal `build.py check` gate. It never writes production `data/phase2`
+  or Feishu source tables; those remain a separately approved F6 operation.
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
 - `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> pdf -> md -> release-manifest` as one formal release command.
 - when `Document_link.Workflow_action = Publish` is consumed through the queue, keep `Document_link.Git_ref` pointed at the active review branch so the formal Publish PDF, the release-only DOCX, and the latest publish HTML are all built from that same branch instead of drifting back to `main`.

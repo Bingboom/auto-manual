@@ -72,12 +72,17 @@ Local PDF font override:
 Meaning:
 
 - `validate`: validate config and [`data/layout_params.csv`](../data/layout_params.csv)
-- `new-line`: read-only Stage 3 scaffold plan. Resolve one existing config's
-  inheritance chain, target identity, page manifest, and template/recipe
-  references; print `new-line-scaffold/v1` with `whitelist_diff=0` for the
-  KR/AU replay calibration. This stage never writes configs, manifests,
-  `data/phase2`, or Feishu; use `--plan-output <path>` to retain the JSON
-  plan. The later `--write` flow is a separately gated change.
+- new-line: Stage 3 scaffold plan or controlled write. The default is
+  read-only: resolve one config's inheritance chain, target identity, page
+  manifest, and template/recipe references, then print
+  new-line-scaffold/v1 with whitelist_diff=0 for the KR/AU replay
+  calibration. --write requires explicit --output-config and
+  --output-manifest paths inside the repository, refreshes only the
+  committed fixture through fixture-refresh, and runs build.py check
+  against that fixture. It never writes data/phase2 or Feishu; production
+  source-table writes remain the separately approved F6 operation. Use
+  --skip-auto-check only when a caller will run the check as a separate
+  gate, and use --plan-output <path> to retain the JSON plan/report.
 - `sync-data`: use the local `lark-cli` login plus `sync.phase2.*` config/env bindings to write normalized CSV snapshots into [`../data/phase2/`](../data/phase2), using the CLI's `base` record listing flow under the hood; when `sync.phase2.spec_master_sources` is configured, `sync-data --table spec_master` reads the two split source tables instead of the legacy total table
 - `tools/content_lint.py --json --write-report`: local closed-loop QC observation step for the current phase2 snapshot. It writes `reports/content_qc/<run-id>/findings.json` and `report.md`, includes best-effort snapshot `source_ref` values, keeps `record_id` nullable, and does not write Feishu rows or add a `build.py` action yet. The default report covers the registered `ja`/`ko`/`zh` long-tail as `INFO`-only observations while the EU language findings retain the existing blocking `FAIL` behavior.
 - `tools/source_intake.py run`: MVP ingress for structured spec/manual Markdown or Feishu cloud-doc content. It parses pipe-style tables into reviewable candidates for `Spec_Master`, `Page_Placeholders_Source`, `Manual_Copy_Source`, `Spec_Footnotes`, and `Spec_Notes`; with `--data-root`, it compares against the current phase2 snapshot and emits `source-table-change-request/v1` only for existing-row updates that can later be approved and applied through the existing source-table writer. It does not create online rows, edit `data/phase2/*.csv`, or replace cloud-doc backport. Track rollout in [`dev/source_intake_mvp_checklist.md`](./dev/source_intake_mvp_checklist.md).
