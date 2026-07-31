@@ -28,6 +28,7 @@ class TableSchema:
     logical_name: str
     file_name: str
     columns: tuple[str, ...]
+    required_headers: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -109,6 +110,16 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "Value_footnote_refs",
             *lang_registry.table_language_columns("spec_master"),
         ),
+        required_headers=(
+            "document_key",
+            "Region",
+            "Model",
+            "Page",
+            "Row_key",
+            "Row_label_ko",
+            "Param_ko",
+            "Value_ko",
+        ),
     ),
     "spec_footnotes": TableSchema(
         logical_name="spec_footnotes",
@@ -125,6 +136,15 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             *lang_registry.table_language_columns("spec_footnotes"),
             "Enabled",
         ),
+        required_headers=(
+            "Footnote_id",
+            "Region",
+            "Model",
+            "Page",
+            "Text_en",
+            "Text_ko",
+            "Enabled",
+        ),
     ),
     "spec_notes": TableSchema(
         logical_name="spec_notes",
@@ -139,6 +159,15 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "Note_order",
             "Type",
             *lang_registry.table_language_columns("spec_notes"),
+            "Enabled",
+        ),
+        required_headers=(
+            "Note_id",
+            "Region",
+            "Model",
+            "Page",
+            "Text_en",
+            "Text_ko",
             "Enabled",
         ),
     ),
@@ -158,6 +187,7 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "Source_lang",
             "notes",
         ),
+        required_headers=("symbol_key", "text_en", "text_ko", "block_type"),
     ),
     "lcd_icons": TableSchema(
         logical_name="lcd_icons",
@@ -173,6 +203,15 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "figure",
             "render_preview_en",
         ),
+        required_headers=(
+            "No.",
+            "Model",
+            "icon_en",
+            "icon_desc_en",
+            "icon_ko",
+            "icon_desc_ko",
+            "figure",
+        ),
     ),
     "troubleshooting": TableSchema(
         logical_name="troubleshooting",
@@ -187,6 +226,14 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             *lang_registry.table_language_columns("troubleshooting"),
             "render_preview_en",
         ),
+        required_headers=(
+            "No.",
+            "Region",
+            "Model",
+            "error_code",
+            "corrective_measures_en",
+            "corrective_measures_ko",
+        ),
     ),
     "variable_defaults": TableSchema(
         logical_name="variable_defaults",
@@ -198,6 +245,7 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "Value",
             "is_default",
         ),
+        required_headers=("Variable_key", "Value", "is_default"),
     ),
     "variable_lang_overrides": TableSchema(
         logical_name="variable_lang_overrides",
@@ -210,11 +258,13 @@ TABLE_SCHEMAS: dict[str, TableSchema] = {
             "from_prefix",
             "to_prefix",
         ),
+        required_headers=("Variable_key", "lang", "Value"),
     ),
     "manual_copy_source": TableSchema(
         logical_name="manual_copy_source",
         file_name=MANUAL_COPY_SOURCE_FILE,
         columns=MANUAL_COPY_SOURCE_COLUMNS,
+        required_headers=("copy_key", "page_id", "copy_type", "Is_Latest", "source_text"),
     ),
     "translation_memory": TableSchema(
         logical_name="translation_memory",
