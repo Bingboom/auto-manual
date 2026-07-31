@@ -1,6 +1,6 @@
 import tempfile
 import unittest
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -27,6 +27,9 @@ from tools.queue_transitions import (
     build_failure_writeback_transition,
     build_running_transition,
     build_success_transition,
+    has_active_queue_claim,
+    parse_queue_claim,
+    queue_claim_is_owned,
 )
 
 
@@ -75,6 +78,28 @@ class QueueTransitionTests(unittest.TestCase):
         self.assertIn("data_sync=skipped", payload[RESULT_FIELD])
         self.assertNotIn(TRIGGER_FIELD, payload)
         self.assertNotIn(IMMEDIATE_TRIGGER_FIELD, payload)
+
+    def test_running_transition_claim_can_be_parsed_and_expires(self) -> None:
+        started_at = datetime(2026, 5, 8, 9, 10, 11, tzinfo=timezone.utc)
+        expires_at = started_at + timedelta(hours=2)
+
+        payload = build_running_transition(
+            fields=_fields(),
+            started_at=started_at,
+            claim_token="claim-123",
+            claim_expires_at=expires_at,
+            normalize_workflow_action=normalize_workflow_action,
+            normalize_doc_phase=normalize_doc_phase,
+            workflow_action_label=_label,
+        )
+
+        claim = parse_queue_claim(payload[RESULT_FIELD])
+        self.assertIsNotNone(claim)
+        self.assertEqual("claim-123", claim.token)
+        self.assertTrue(has_active_queue_claim(payload[RESULT_FIELD], now=started_at))
+        self.assertTrue(queue_claim_is_owned(payload[RESULT_FIELD], claim_token="claim-123", now=started_at))
+        self.assertFalse(queue_claim_is_owned(payload[RESULT_FIELD], claim_token="claim-other", now=started_at))
+        self.assertFalse(has_active_queue_claim(payload[RESULT_FIELD], now=expires_at))
 
     def test_success_transition_clears_triggers_and_writes_artifact(self) -> None:
         with tempfile.TemporaryDirectory() as td:

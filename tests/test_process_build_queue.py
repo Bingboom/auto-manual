@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import tempfile
 import unittest
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from unittest import mock
 
@@ -51,6 +51,25 @@ def _write_release_traceability(
     manifests_dir.mkdir(parents=True, exist_ok=True)
     (manifests_dir / "20260731T000000Z.json").write_text("{}\n", encoding="utf-8")
     (manifests_dir / "20260731T000000Z.csv").write_text("model\n", encoding="utf-8")
+
+
+def _apply_queue_upsert(
+    raw_records: list[dict[str, object]],
+    kwargs: dict[str, object],
+) -> None:
+    record_id = str(kwargs["record_id"])
+    update = kwargs["record"]
+    if not isinstance(update, dict):
+        raise AssertionError("queue test upsert payload must be a dict")
+    for raw_record in raw_records:
+        if raw_record.get("record_id") != record_id:
+            continue
+        fields = raw_record.setdefault("fields", {})
+        if not isinstance(fields, dict):
+            raise AssertionError("queue test record fields must be a dict")
+        fields.update(update)
+        return
+    raise AssertionError(f"queue test record not found: {record_id}")
 
 
 
@@ -253,6 +272,39 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(1, len(records))
         self.assertTrue(records[0].immediate_trigger_value)
         self.assertEqual("Draft", records[0].doc_phase)
+
+    def test_pending_queue_records_should_skip_active_claim_and_reclaim_expired_claim(self) -> None:
+        now = datetime.now().astimezone()
+
+        def raw_record(record_id: str, expires_at: datetime) -> dict[str, object]:
+            return {
+                "record_id": record_id,
+                "fields": {
+                    process_build_queue.DOCUMENT_ID_FIELD: "JE-1000F_US_en_1.0",
+                    process_build_queue.DOCUMENT_KEY_FIELD: "JE-1000F_US",
+                    process_build_queue.VERSION_FIELD: ["1.0"],
+                    process_build_queue.LANG_FIELD: ["en"],
+                    process_build_queue.WORKFLOW_ACTION_FIELD: ["Build Draft Package"],
+                    process_build_queue.TRIGGER_FIELD: ["Y"],
+                    process_build_queue.RESULT_FIELD: (
+                        "RUNNING | claim_token=claim-123 | "
+                        f"claim_expires_at={expires_at.isoformat(timespec='seconds')}"
+                    ),
+                },
+            }
+
+        records = process_build_queue.pending_queue_records(
+            [
+                raw_record("rec_active", now + timedelta(minutes=5)),
+                raw_record("rec_expired", now - timedelta(minutes=5)),
+            ]
+        )
+
+        self.assertEqual(["rec_expired"], [record.record_id for record in records])
+        self.assertEqual([], process_build_queue.select_pending_queue_records(
+            [raw_record("rec_active", now + timedelta(minutes=5))],
+            record_id="rec_active",
+        ))
 
     def test_pending_immediate_queue_records_should_keep_only_triggered_immediate_rows(self) -> None:
         records = process_build_queue.pending_immediate_queue_records(
@@ -1540,6 +1592,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
@@ -1677,6 +1730,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             def fake_import_markdown_to_cloud_doc(**kwargs: object) -> tuple[str, str]:
@@ -1833,6 +1887,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
@@ -1944,6 +1999,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
@@ -2063,6 +2119,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
             def upsert_record(self, **kwargs: object) -> dict[str, object]:
                 captured_upserts.append(kwargs)
+                _apply_queue_upsert(raw_records, kwargs)
                 return {"ok": True}
 
         with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
@@ -2103,7 +2160,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(1, exit_code)
         sync_mock.assert_not_called()
         build_document_mock.assert_not_called()
-        self.assertEqual(1, len(captured_upserts))
+        self.assertEqual(2, len(captured_upserts))
         failure_payload = captured_upserts[-1]["record"]
         self.assertIsInstance(failure_payload, dict)
         self.assertIn("Build Draft Package queue rows require Git_ref", failure_payload[process_build_queue.RESULT_FIELD])
@@ -2165,7 +2222,8 @@ class TestProcessBuildQueue(unittest.TestCase):
                 fetch_calls.append(kwargs)
                 return raw_records
 
-            def upsert_record(self, **_: object) -> dict[str, object]:
+            def upsert_record(self, **kwargs: object) -> dict[str, object]:
+                _apply_queue_upsert(raw_records, kwargs)
                 return {"ok": True}
 
         with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
@@ -2216,7 +2274,9 @@ class TestProcessBuildQueue(unittest.TestCase):
             config_path=Path("config.yaml"),
             data_root="data/phase2",
         )
-        self.assertEqual(1, len(fetch_calls))
+        self.assertEqual(2, len(fetch_calls))
+        self.assertEqual("vew_document_link", fetch_calls[0]["view_id"])
+        self.assertIsNone(fetch_calls[1]["view_id"])
         build_document_mock.assert_called_once()
         self.assertEqual("1.0", build_document_mock.call_args.kwargs["version"])
         self.assertEqual("codex/review-je-1000f-us-en", build_document_mock.call_args.kwargs["git_ref"])
@@ -2273,6 +2333,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
             def upsert_record(self, **kwargs: object) -> dict[str, object]:
                 captured_upserts.append(kwargs)
+                _apply_queue_upsert(raw_records, kwargs)
                 return {"ok": True}
 
         with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
@@ -2307,8 +2368,8 @@ class TestProcessBuildQueue(unittest.TestCase):
             config_path=Path("config.yaml"),
             data_root="data/phase2",
         )
-        self.assertEqual(1, len(captured_upserts))
-        failure_payload = captured_upserts[0]["record"]
+        self.assertEqual(2, len(captured_upserts))
+        failure_payload = captured_upserts[-1]["record"]
         self.assertEqual("failed", failure_payload[process_build_queue.DATA_SYNC_FIELD])
         self.assertFalse(failure_payload[process_build_queue.FORCE_PHASE2_REFRESH_FIELD])
         self.assertIn("data_sync=failed", failure_payload[process_build_queue.RESULT_FIELD])
@@ -2383,6 +2444,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
@@ -2662,6 +2724,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             def fake_publish_word_artifact(**kwargs: object) -> process_build_queue.ArtifactPublishResult:
@@ -2798,6 +2861,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             def fake_publish_word_artifact(**kwargs: object) -> process_build_queue.ArtifactPublishResult:
@@ -2936,6 +3000,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             def fake_publish_word_artifact(**kwargs: object) -> process_build_queue.ArtifactPublishResult:
@@ -3062,6 +3127,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             def fake_publish_word_artifact(**kwargs: object) -> process_build_queue.ArtifactPublishResult:
@@ -3176,6 +3242,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
@@ -3308,6 +3375,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             def fake_resolve_artifact_destination(**kwargs: object) -> object:
@@ -3443,6 +3511,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             def fake_resolve_artifact_destination(**kwargs: object) -> object:
@@ -3578,6 +3647,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             def fake_resolve_artifact_destination(**kwargs: object) -> object:
@@ -3716,6 +3786,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
                 def upsert_record(self, **kwargs: object) -> dict[str, object]:
                     captured_upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
             def fake_publish_word_artifact(**kwargs: object) -> process_build_queue.ArtifactPublishResult:

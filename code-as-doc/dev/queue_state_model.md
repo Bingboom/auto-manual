@@ -1,6 +1,6 @@
 # Queue State Model
 
-Updated: 2026-05-07
+Updated: 2026-07-31
 
 This file records the supported queue status model for `Document_link` build
 rows. It complements the field-level contract in
@@ -26,6 +26,7 @@ A build/publish row is pending when:
 - `Workflow_action` maps to `Build Draft Package` or `Publish`
 - `是否触发文档构建` is enabled with one of `1`, `true`, `y`, or `yes`
 - optional row filters such as `--record-id` still match the row
+- `构建结果` does not contain an unexpired RUNNING claim lease
 
 Important rules:
 
@@ -49,10 +50,23 @@ status lookups:
 - `version=<Version>` when available
 - `workflow_action=<normalized label>`
 - `started_at=<ISO timestamp>`
-- `data_sync=<refreshed|skipped|failed>` when known
+- `data_sync=<pending|skipped>` at claim time
+- `claim_token=<opaque worker token>`
+- `claim_expires_at=<UTC ISO timestamp>`
 
-Running writeback does not clear the trigger fields. The row should still be
-inspectable if the worker crashes after claiming the task.
+The worker writes the same token to every row in a group, then refetches the
+records with `view_id=None`. It may start sync/build work only when every row
+still carries that token and the two-hour lease is unexpired. A competing token
+causes a clean skip; a write or readback transport failure fails the run before
+build. Running writeback does not clear the trigger fields, so the row remains
+inspectable if the worker crashes. Active leases are excluded from pending
+selection and expired leases are reclaimable.
+
+This K12-min contract is deliberately precise about its guarantee boundary:
+Feishu `record-upsert` has no compare-and-swap/revision precondition, so token
+write plus readback verification is not linearizable storage. Shared
+workflow-level concurrency is still required to close the delayed-write race;
+full stale-claim and cross-workflow recovery remains the later K12 scope.
 
 ## 4. Success
 
@@ -104,6 +118,7 @@ Operationally:
 Current transition payload assembly lives in:
 
 - [`tools/queue_transitions.py`](../../tools/queue_transitions.py)
+- [`tools/queue_claims.py`](../../tools/queue_claims.py)
 - [`tools/queue_writeback.py`](../../tools/queue_writeback.py)
 - [`tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
 - [`tools/process_build_queue.py`](../../tools/process_build_queue.py)

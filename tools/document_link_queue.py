@@ -164,6 +164,7 @@ def parse_queue_records(
     upload_dingtalk_field: str,
     operator_union_id_fields: tuple[str, ...],
     dingtalk_target_node_url_fields: tuple[str, ...],
+    result_field: str,
 ) -> list[Any]:
     records: list[Any] = []
     for record in raw_records:
@@ -189,6 +190,7 @@ def parse_queue_records(
                 upload_dingtalk_value=fields.get(upload_dingtalk_field),
                 operator_union_id=scalar_text(field_value(fields, *operator_union_id_fields)),
                 dingtalk_target_node_url=scalar_text(field_value(fields, *dingtalk_target_node_url_fields)),
+                result_value=scalar_text(fields.get(result_field)),
             )
         )
     return records
@@ -228,6 +230,8 @@ def select_pending_queue_records(
     resolve_queue_workflow_action: Callable[[Any], str | None],
     is_trigger_requested: Callable[[Any], bool],
     is_immediate_trigger_enabled: Callable[[Any], bool],
+    has_active_queue_claim: Callable[[str], bool],
+    include_active_claims: bool = False,
 ) -> list[Any]:
     normalized_filter_doc_phase = normalize_cli_queue_action(
         workflow_action=workflow_action,
@@ -235,10 +239,14 @@ def select_pending_queue_records(
     )
     selected: list[Any] = []
     targeted_record = None
+    targeted_record_has_active_claim = False
     targeted_record_ids = {item.strip() for item in record_ids if item.strip()}
     for record in parse_queue_records(raw_records):
         if record_id and record.record_id == record_id:
             targeted_record = record
+            targeted_record_has_active_claim = has_active_queue_claim(record.result_value)
+        if has_active_queue_claim(record.result_value) and not include_active_claims:
+            continue
         if not is_trigger_requested(record.trigger_value):
             continue
         if immediate_only and not is_immediate_trigger_enabled(record.immediate_trigger_value):
@@ -259,7 +267,7 @@ def select_pending_queue_records(
             if resolved_action != normalized_filter_doc_phase:
                 continue
         selected.append(record)
-    if record_id and not selected and targeted_record is not None:
+    if record_id and not selected and targeted_record is not None and not targeted_record_has_active_claim:
         trigger_text = scalar_text(targeted_record.trigger_value).strip() or "<empty>"
         raise RuntimeError(
             "Targeted Document_link row is not pending because `是否触发文档构建` is not enabled. "

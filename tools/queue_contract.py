@@ -40,6 +40,7 @@ DATA_SYNC_FIELD = "data_sync"
 RUNNING_PREFIX = "RUNNING"
 SUCCESS_PREFIX = "SUCCESS"
 FAILED_PREFIX = "FAILED"
+QUEUE_CLAIM_TTL_SECONDS = 2 * 60 * 60
 TRIGGER_VALUES = {"1", "true", "y", "yes"}
 DONE_TRIGGER_VALUE = "\u5df2\u6784\u5efa"
 
@@ -73,6 +74,7 @@ class QueueRecord:
     dingtalk_target_node_url: str = ""
     operator_union_id: str = ""
     build_family: str = ""
+    result_value: str = ""
 
     @property
     def label(self) -> str:

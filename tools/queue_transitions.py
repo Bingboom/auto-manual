@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
@@ -24,6 +24,60 @@ class QueueTransitionFields:
     failed_prefix: str = "FAILED"
 
 
+@dataclass(frozen=True)
+class QueueClaim:
+    token: str
+    expires_at: datetime
+
+
+def _aware_utc(value: datetime) -> datetime:
+    if value.tzinfo is None:
+        return value.replace(tzinfo=timezone.utc)
+    return value.astimezone(timezone.utc)
+
+
+def parse_queue_claim(result_value: str) -> QueueClaim | None:
+    parts = [part.strip() for part in str(result_value or "").split("|")]
+    if not parts or parts[0] != "RUNNING":
+        return None
+    values: dict[str, str] = {}
+    for part in parts[1:]:
+        key, separator, value = part.partition("=")
+        if separator:
+            values[key.strip()] = value.strip()
+    token = values.get("claim_token", "")
+    expires_text = values.get("claim_expires_at", "")
+    if not token or not expires_text:
+        return None
+    try:
+        expires_at = datetime.fromisoformat(expires_text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return QueueClaim(token=token, expires_at=_aware_utc(expires_at))
+
+
+def has_active_queue_claim(result_value: str, *, now: datetime | None = None) -> bool:
+    claim = parse_queue_claim(result_value)
+    if claim is None:
+        return False
+    current = _aware_utc(now or datetime.now(timezone.utc))
+    return claim.expires_at > current
+
+
+def queue_claim_is_owned(
+    result_value: str,
+    *,
+    claim_token: str,
+    now: datetime | None = None,
+) -> bool:
+    claim = parse_queue_claim(result_value)
+    return bool(
+        claim
+        and claim.token == claim_token
+        and claim.expires_at > _aware_utc(now or datetime.now(timezone.utc))
+    )
+
+
 def format_queue_result(
     *,
     prefix: str,
@@ -35,6 +89,8 @@ def format_queue_result(
     data_sync_status: str = "",
     status_notes: tuple[str, ...] = (),
     message: str = "",
+    claim_token: str = "",
+    claim_expires_at: datetime | None = None,
 ) -> str:
     action_label = workflow_action_label(workflow_action) if workflow_action_label else None
     return " | ".join(
@@ -45,6 +101,12 @@ def format_queue_result(
             f"workflow_action={action_label}" if action_label else "",
             f"{timestamp_label}={timestamp.isoformat(timespec='seconds')}" if timestamp_label and timestamp else "",
             f"data_sync={data_sync_status}" if data_sync_status else "",
+            f"claim_token={claim_token}" if claim_token else "",
+            (
+                f"claim_expires_at={_aware_utc(claim_expires_at).isoformat(timespec='seconds')}"
+                if claim_expires_at
+                else ""
+            ),
             *[note.strip() for note in status_notes if note.strip()],
             message.strip(),
         )
@@ -63,11 +125,12 @@ def build_running_transition(
     normalize_workflow_action: Callable[[Any], str | None],
     normalize_doc_phase: Callable[[Any], str | None],
     workflow_action_label: Callable[[Any], str | None],
+    claim_token: str = "",
+    claim_expires_at: datetime | None = None,
 ) -> dict[str, Any]:
     normalized_workflow_action = normalize_workflow_action(workflow_action)
     normalized_doc_phase = normalize_doc_phase(doc_phase)
-    return {
-        fields.build_started_at_field: int(started_at.timestamp() * 1000),
+    payload = {
         fields.result_field: format_queue_result(
             prefix=fields.running_prefix,
             version=version,
@@ -76,8 +139,13 @@ def build_running_transition(
             timestamp_label="started_at",
             timestamp=started_at,
             data_sync_status=data_sync_status,
+            claim_token=claim_token,
+            claim_expires_at=claim_expires_at,
         ),
     }
+    if fields.build_started_at_field:
+        payload[fields.build_started_at_field] = int(started_at.timestamp() * 1000)
+    return payload
 
 
 def build_success_transition(

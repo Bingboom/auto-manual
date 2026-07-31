@@ -1340,3 +1340,24 @@ Why it mattered:
   merely naming those inputs.
 - Path, timestamp, toolchain, snapshot, and artifact drift all fail closed, so
   Workstream J's traceability exit criteria are complete.
+
+## 80. 2026-07-31: Queue Dispatch Uses a Verified Claim Lease (Workstream W / Stage 4b item 1)
+
+What changed:
+
+- Added a two-hour `claim_token` / `claim_expires_at` lease to the existing
+  `构建结果` RUNNING transition, without adding a live Base column.
+- Queue workers now write the claim across a row group, refetch outside the
+  pending view, and start sync/build only when every row still has the same
+  unexpired token. Active claims are skipped and expired claims are reclaimable.
+- Added overlapping-dispatch fixtures proving that only the latest verified
+  token proceeds, plus parsing, expiry, pending-selection, and group-writeback
+  coverage.
+
+Why it mattered:
+
+- A failed RUNNING writeback can no longer degrade into an unclaimed build, and
+  the common overlapping-dispatch race now has an explicit ownership gate.
+- The contract records that Feishu upsert has no compare-and-swap primitive:
+  this K12-min slice is a verified lease, while shared workflow concurrency and
+  full stale-claim recovery remain separate follow-on work.

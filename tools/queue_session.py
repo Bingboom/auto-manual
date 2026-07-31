@@ -4,6 +4,8 @@ import json
 from dataclasses import dataclass
 from typing import Any, Callable
 
+from tools.queue_transitions import has_active_queue_claim
+
 
 @dataclass(frozen=True)
 class QueueSessionBootstrap:
@@ -80,16 +82,37 @@ def load_pending_queue_state(
         table_id=binding.table_id,
         view_id=binding.view_id,
     )
+    all_candidates = select_pending_queue_records(
+        raw_records,
+        immediate_only=False,
+        workflow_action=None,
+        record_id=None,
+        record_ids=(),
+        include_active_claims=True,
+    )
+    blocked_record_ids = {
+        record.record_id
+        for group in group_pending_queue_records(all_candidates)
+        if any(has_active_queue_claim(getattr(record, "result_value", "")) for record in group)
+        for record in group
+    }
     pending = select_pending_queue_records(
         raw_records,
         immediate_only=immediate_only,
         workflow_action=workflow_action,
         record_id=record_id,
         record_ids=record_ids,
+        include_active_claims=True,
     )
     if not pending:
         return None
-    pending_groups = group_pending_queue_records(pending)
+    pending_groups = [
+        group
+        for group in group_pending_queue_records(pending)
+        if not any(record.record_id in blocked_record_ids for record in group)
+    ]
+    if not pending_groups:
+        return None
     field_names = available_field_names(raw_records)
     can_write_started_at = build_started_at_field in field_names
     return QueuePendingState(

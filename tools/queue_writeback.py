@@ -106,6 +106,8 @@ def build_started_fields(
     build_started_at_field: str,
     result_field: str,
     running_prefix: str,
+    claim_token: str = "",
+    claim_expires_at: datetime | None = None,
 ) -> dict[str, Any]:
     return build_running_transition(
         fields=QueueTransitionFields(
@@ -121,6 +123,8 @@ def build_started_fields(
         normalize_workflow_action=normalize_workflow_action,
         normalize_doc_phase=normalize_doc_phase,
         workflow_action_label=workflow_action_label,
+        claim_token=claim_token,
+        claim_expires_at=claim_expires_at,
     )
 
 
