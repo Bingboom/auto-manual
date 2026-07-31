@@ -86,6 +86,26 @@ class SyncMirrorTests(unittest.TestCase):
                 sha256_text=lambda t: "h", sha256_file=lambda p: "h",
                 result_cls=_Result)
 
+    def test_error_names_only_the_missing_variable(self) -> None:
+        # Naming both variables when only one was unset cost 17 days of red
+        # cred-health-check: the reader chased the base token while the
+        # table id was the actual gap.
+        import os
+        os.environ["MC_TEST_PRESENT_BASE"] = "tok"
+        os.environ.pop("MC_TEST_ABSENT_TABLE", None)
+        cfg = {"sync": {"phase2": {
+            "base_token_env": "MC_TEST_PRESENT_BASE",
+            "model_capabilities": {"table_id_env": "MC_TEST_ABSENT_TABLE"},
+        }}}
+        with self.assertRaises(RuntimeError) as ctx:
+            sync_capability_mirror(
+                cfg, source=None, repo_root=Path("/x"),
+                sha256_text=lambda t: "h", sha256_file=lambda p: "h",
+                result_cls=_Result)
+        message = str(ctx.exception)
+        self.assertIn("MC_TEST_ABSENT_TABLE is not set", message)
+        self.assertNotIn("MC_TEST_PRESENT_BASE", message)
+
     def test_fetch_and_result_shape(self) -> None:
         import os
         os.environ["MC_TEST_BASE"] = "base_tok"
