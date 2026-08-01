@@ -123,6 +123,10 @@ Do not move new low-level implementation back into these files unless the behavi
   - HTML postprocess handoff
 - [`tools/build_docs_html.py`](../../tools/build_docs_html.py)
   - manual HTML metadata and switcher helpers
+- [`tools/web_presentation.py`](../../tools/web_presentation.py)
+  - web-profile figure/table composition and Pandoc-safe semantic restoration
+- [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
+  - reusable reference-figure label validation and themeable caption construction
 - [`tools/build_docs_io.py`](../../tools/build_docs_io.py)
   - Sphinx, cleanup, Word/PDF I/O helpers
 - [`tools/build_docs_validation.py`](../../tools/build_docs_validation.py)
