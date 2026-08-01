@@ -1179,7 +1179,7 @@ body {
   margin: 1.2rem 0 2rem;
 }
 
-.hb-inbox-grid {
+#furo-main-content .hb-inbox-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: 1fr;

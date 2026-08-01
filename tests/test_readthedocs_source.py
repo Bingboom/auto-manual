@@ -82,7 +82,11 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             css_text = web_css.read_text(encoding="utf-8")
             self.assertIn(".hb-annotated-figure", css_text)
             self.assertIn(".hb-operation-figure", css_text)
-            self.assertIn(".hb-inbox-grid", css_text)
+            self.assertIn("#furo-main-content .hb-inbox-grid", css_text)
+            self.assertRegex(
+                css_text,
+                r"(?s)#furo-main-content \.hb-inbox-grid\s*\{[^}]*padding:\s*0;",
+            )
             self.assertIn(".hb-inbox-card::before", css_text)
             self.assertIn(".hb-reference-figure", css_text)
             self.assertIn(".hb-reference-semantic", css_text)
