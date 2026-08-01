@@ -192,6 +192,14 @@ class ReadTheDocsSourceTests(unittest.TestCase):
                 ".hb-annotated-figure.hb-has-composite-art > .hb-composite-stage",
                 narrow_css,
             )
+            self.assertRegex(
+                narrow_css,
+                r"\.hb-annotated-figure\.hb-has-composite-art > \.hb-composite-stage\s*\{\s*display: block;",
+            )
+            self.assertRegex(
+                narrow_css,
+                r"\.hb-annotated-figure\.hb-has-composite-art > \.hb-annotated-stage\s*\{\s*display: none;",
+            )
             self.assertIn(".hb-lcd-mode-composition", narrow_css)
             self.assertIn(".hb-symbol-pair-grid", narrow_css)
             self.assertIn(".hb-warranty-period-grid", narrow_css)

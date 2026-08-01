@@ -1750,11 +1750,11 @@ body {
   }
 
   .hb-annotated-figure.hb-has-composite-art > .hb-composite-stage {
-    display: none;
+    display: block;
   }
 
   .hb-annotated-figure.hb-has-composite-art > .hb-annotated-stage {
-    display: grid;
+    display: none;
   }
 
   .hb-annotated-art,

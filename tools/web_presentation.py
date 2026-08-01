@@ -19,6 +19,7 @@ from typing import Any
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 from tools.utils.path_utils import PathSegments, get_paths
+from tools.web_reference_components import append_reference_captions, prepare_reference_caption_data
 
 
 DOCUMENT_PRESENTATION_PROFILE = "document"
@@ -941,28 +942,12 @@ def _transform_reference_figure(
     source_path: Path,
 ) -> None:
     reference_id = str(spec["id"])
-    label_block: Tag | None = None
-    if "capture_following_lines" in spec:
-        label_block = _next_tag_sibling(image)
-        if not isinstance(label_block, Tag) or "line-block" not in label_block.get(
-            "class", []
-        ):
-            raise WebPresentationError(
-                f"{source_path}: reference figure {reference_id} must be followed by a line-block"
-            )
-        expected_lines = int(spec["capture_following_lines"])
-        label_lines = label_block.find_all(class_="line", recursive=False)
-        if len(label_lines) != expected_lines:
-            raise WebPresentationError(
-                f"{source_path}: reference figure {reference_id} has {len(label_lines)} "
-                f"governed label lines; expected exactly {expected_lines}"
-            )
-    elif not spec.get("caption_labels"):
-        raise WebPresentationError(
-            f"{source_path}: reference figure {reference_id} must declare captured labels "
-            "or caption labels"
-        )
-
+    label_block, caption_labels = prepare_reference_caption_data(
+        image=image,
+        spec=spec,
+        source_path=source_path,
+        error_type=WebPresentationError,
+    )
     composite_artwork = _composite_artwork_path(spec, source_path)
     if not composite_artwork:
         raise WebPresentationError(
@@ -990,30 +975,12 @@ def _transform_reference_figure(
         label_block["class"] = [*label_block.get("class", []), "hb-reference-labels"]
         semantic.append(label_block.extract())
     figure.append(_composite_stage(soup, composite_artwork))
-    caption_labels = [
-        str(value).strip()
-        for value in spec.get("caption_labels", [])
-        if str(value).strip()
-    ]
-    if caption_labels:
-        figure["class"] = [*figure.get("class", []), "hb-has-reference-captions"]
-        caption = soup.new_tag(
-            "figcaption",
-            attrs={
-                "class": "hb-reference-caption-grid",
-                "data-caption-layout": str(spec.get("caption_layout", "equal")),
-                "data-caption-count": str(len(caption_labels)),
-            },
-        )
-        for label in caption_labels:
-            caption.append(
-                soup.new_tag(
-                    "span",
-                    attrs={"class": "hb-reference-caption"},
-                )
-            )
-            caption.contents[-1].string = label
-        figure.append(caption)
+    append_reference_captions(
+        soup,
+        figure,
+        labels=caption_labels,
+        layout=str(spec.get("caption_layout", "equal")),
+    )
     figure.append(semantic)
 
 
