@@ -1365,9 +1365,9 @@ def _transform_fcc(
     _append_fcc_copy(soup, left, left_body_text)
     _append_fcc_copy(soup, right, right_body_text)
     right.append(bullets.extract())
+    _append_fcc_copy(soup, right, _fcc_normalized_copy(trailing))
     for paragraph in trailing:
-        right.append(paragraph.extract())
-
+        paragraph.decompose()
     for block in copy_blocks:
         block.decompose()
     grid.append(left)

@@ -777,6 +777,8 @@ body {
 }
 
 .hb-fcc-composition {
+  --hb-fcc-flow-gap: clamp(0.52rem, 0.9vw, 0.62rem);
+
   width: 100%;
   max-width: var(--hb-reading-width);
   margin: 1.1rem auto 2.25rem;
@@ -793,8 +795,11 @@ body {
   gap: clamp(1.2rem, 3vw, 2.2rem);
 }
 
-.hb-fcc-column {
+#furo-main-content .hb-fcc-column {
+  display: grid;
   min-width: 0;
+  align-content: start;
+  gap: var(--hb-fcc-flow-gap);
   font-size: 0.92rem;
   line-height: 1.34;
 }
@@ -813,22 +818,21 @@ body {
   margin: 0 !important;
 }
 
-.hb-fcc-opening-copy .line-block,
-.hb-fcc-column p,
-.hb-fcc-column ul {
-  margin: 0 0 0.58rem;
+#furo-main-content .hb-fcc-opening-copy .line-block,
+#furo-main-content .hb-fcc-column p,
+#furo-main-content .hb-fcc-column ul,
+#furo-main-content .hb-fcc-column li {
+  margin: 0 !important;
 }
 
 .hb-fcc-opening-copy .line {
   margin: 0;
 }
 
-.hb-fcc-column ul {
+#furo-main-content .hb-fcc-column ul {
+  display: grid;
+  gap: var(--hb-fcc-flow-gap);
   padding-left: 1.05rem;
-}
-
-.hb-fcc-column li + li {
-  margin-top: 0.18rem;
 }
 
 /* Preserve the searchable four-column LCD grid and explicit RST status lines. */

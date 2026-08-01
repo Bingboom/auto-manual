@@ -605,8 +605,8 @@ add-device plus as a crisp themeable inline control and removes the duplicate
 visible button wording; its localized meaning stays on the icon's `aria-label`.
 Reference panels remain centered, while every ordinary standalone RST
 image fills the same responsive content width and preserves its aspect ratio.
-FCC copy is composed as a live two-column card using the
-localized RST text and FCC mark, then reflows to one column on phones. The LCD
+FCC copy is composed as a live two-column card with a component-owned vertical
+rhythm, using the localized RST text and FCC mark, then reflows to one column on phones. The LCD
 signal-name cells in each localized MEANING OF SYMBOLS table are vertically
 centered beside their multi-line explanations. The following safety-symbol
 matrix remains searchable HTML but is split into the PDF's two independent

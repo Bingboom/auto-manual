@@ -565,6 +565,10 @@ class WebPresentationTests(unittest.TestCase):
                     right.get_text(" ", strip=True) if right else "",
                 )
                 self.assertEqual(4, len(right.select("li")) if right else 0)
+                self.assertEqual(
+                    2,
+                    len(right.find_all("p", recursive=False)) if right else 0,
+                )
                 heading = composition.find_previous("h1") if composition else None
                 self.assertEqual("FCC", heading.get_text(" ", strip=True) if heading else "")
 

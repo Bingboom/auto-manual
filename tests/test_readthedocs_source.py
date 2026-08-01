@@ -99,6 +99,14 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertNotIn("hb-app-add-device-live-label-main-power::after", css_text)
             self.assertIn(".hb-fcc-composition", css_text)
             self.assertIn(".hb-fcc-grid", css_text)
+            self.assertIn("--hb-fcc-flow-gap", css_text)
+            self.assertIn("#furo-main-content .hb-fcc-column", css_text)
+            self.assertIn("gap: var(--hb-fcc-flow-gap)", css_text)
+            fcc_margin_reset = css_text.split(
+                "#furo-main-content .hb-fcc-opening-copy .line-block,",
+                1,
+            )[1].split("}", 1)[0]
+            self.assertIn("margin: 0 !important;", fcc_margin_reset)
             self.assertIn(".hb-lcd-table-composition", css_text)
             self.assertIn("table.hb-lcd-icon-table", css_text)
             self.assertIn("padding-inline: 0 !important", css_text)
