@@ -23,6 +23,22 @@ remain operator-owned measurements.
   <https://github.com/Bingboom/auto-manual/actions/runs/30651069369>.
 - Stage 5 item 13 merged through PR #837; its 17 remote checks passed.
 
+The plan-order implementation map is complete. PR numbers are intentionally
+not always monotonic because gated items landed after their prerequisites:
+
+| stage | planned slices | merged PRs in plan order |
+| --- | ---: | --- |
+| Stage 0 | 8 | #749, #750, #751, #752, #753, #754, #755, #756 |
+| Stage 1 | 7 | #757, #758, #759, #760, #761, #762, #763 |
+| Stage 2 | 13 | #764, #765, #766, #767, #768, #769, #770, #771, #772, #773, #774, #775, #776 |
+| Stage 3 | 13 | #777, #778, #779, #780, #782, #783, #784, #785, #786, #787, #788, #789, #791 |
+| Stage 4a | 18 | #817, #792, #793, #794, #795, #796, #797, #798, #799, #800, #801, #814, #803, #804, #805, #818, #820, #821 |
+| Stage 4b | 3 | #826, #827, #830 |
+| Stage 5 | 14 | #831, #832, #833, #811, #812, #810, #807, #808, #809, #834, #835, #836, #837, #806 |
+
+That is 76 planned slices, all merged. Interleaved repair PRs are supporting
+fixes and are not used as substitutes for any numbered plan item.
+
 ## F6 production seed
 
 Table: the env-bound Feishu `页面占位参数` table. Direct links to document,
