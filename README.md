@@ -578,6 +578,22 @@ Read the Docs is a presentation-only projection of that same committed review
 content. [`.readthedocs.yaml`](.readthedocs.yaml) explicitly enables the `web`
 presentation profile; ordinary CLI/queue builds keep the default `document`
 profile, so DOCX and formal Markdown output do not change. The web profile
+resolves fixed PDF-like figure panels from the frozen
+[`web_composite_manifest.json`](tests/fixtures/phase2/web_composite_manifest.json),
+not from static paths in the presentation contract. The live intake/control
+plane is `04_资产定义` plus `04_资产导出物`: an approved buildable export must
+carry one `export_file`, `artifact_kind=web-composite`, a selected
+`web_locale` (`en` / `fr` / `es` / `shared`), the attachment SHA-256, and the
+matching source-fragment SHA-256. `sync-data` downloads those bytes into a
+content-addressed `_attachments/web_composites/` snapshot; bundle
+materialization verifies every hash, rewrites the selected files under
+`_assets/web_composites/`, and includes the manifest in `bundle_sha256`.
+Missing approval leaves the searchable HTML component visible; duplicate
+matches, missing attachments, hash drift, or stale source-fragment hashes fail
+closed. RTD consumes only the committed frozen snapshot and never contacts
+Feishu during its build.
+
+The web profile
 opens at `00_preface` (`IMPORTANT`) instead of rendering `cover*`, `00_toc*`, or
 `99_back_cover*`; the merged-manual language inventory is omitted so `IMPORTANT`
 is the first visible web block. Targets listed in

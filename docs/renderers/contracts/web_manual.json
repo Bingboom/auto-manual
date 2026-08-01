@@ -73,24 +73,25 @@
         "id": "front",
         "image_key": "overview/front_controls",
         "aspect_ratio": 1.668421,
-        "composite_artwork_overrides": [
+        "web_replace_key": "product-overview.front",
+        "composite_locales": [
           {
             "source_patterns": [
               "03_product_overview_placeholder"
             ],
-            "path": "docs/renderers/contracts/assets/product_overview_front_en.svg"
+            "locale": "en"
           },
           {
             "source_patterns": [
               "p24_03_product_overview_placeholder"
             ],
-            "path": "docs/renderers/contracts/assets/product_overview_front_fr.png"
+            "locale": "fr"
           },
           {
             "source_patterns": [
               "p40_03_product_overview_placeholder"
             ],
-            "path": "docs/renderers/contracts/assets/product_overview_front_es.png"
+            "locale": "es"
           }
         ],
         "callouts": [
@@ -175,24 +176,25 @@
         "id": "right",
         "image_key": "overview/right_side_ports",
         "aspect_ratio": 2.006369,
-        "composite_artwork_overrides": [
+        "web_replace_key": "product-overview.right",
+        "composite_locales": [
           {
             "source_patterns": [
               "03_product_overview_placeholder"
             ],
-            "path": "docs/renderers/contracts/assets/product_overview_right_en.svg"
+            "locale": "en"
           },
           {
             "source_patterns": [
               "p24_03_product_overview_placeholder"
             ],
-            "path": "docs/renderers/contracts/assets/product_overview_right_fr.png"
+            "locale": "fr"
           },
           {
             "source_patterns": [
               "p40_03_product_overview_placeholder"
             ],
-            "path": "docs/renderers/contracts/assets/product_overview_right_es.png"
+            "locale": "es"
           }
         ],
         "callouts": [
@@ -239,18 +241,19 @@
         "steps_rect": [74.5, 18.0, 19.0, 31.0],
         "capture_prerequisite": false,
         "capture_following_lines": 3,
-        "composite_artwork_overrides": [
+        "web_replace_key": "operation.main-power",
+        "composite_locales": [
           {
             "source_patterns": ["05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_main_power_en.png"
+            "locale": "en"
           },
           {
             "source_patterns": ["p26_05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_main_power_fr.png"
+            "locale": "fr"
           },
           {
             "source_patterns": ["p42_05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_main_power_es.png"
+            "locale": "es"
           }
         ]
       },
@@ -262,18 +265,19 @@
         "steps_rect": [78.0, 21.0, 19.5, 28.0],
         "prerequisite_rect": [1.5, 1.5, 45.0, 8.5],
         "capture_prerequisite": true,
-        "composite_artwork_overrides": [
+        "web_replace_key": "operation.ac-output",
+        "composite_locales": [
           {
             "source_patterns": ["05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_ac_output_en.png"
+            "locale": "en"
           },
           {
             "source_patterns": ["p26_05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_ac_output_fr.png"
+            "locale": "fr"
           },
           {
             "source_patterns": ["p42_05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_ac_output_es.png"
+            "locale": "es"
           }
         ]
       },
@@ -285,18 +289,19 @@
         "steps_rect": [79.0, 16.0, 19.0, 26.0],
         "prerequisite_rect": [1.5, 1.5, 46.0, 8.5],
         "capture_prerequisite": true,
-        "composite_artwork_overrides": [
+        "web_replace_key": "operation.dc-usb-output",
+        "composite_locales": [
           {
             "source_patterns": ["05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_dc_usb_output_en.png"
+            "locale": "en"
           },
           {
             "source_patterns": ["p26_05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_dc_usb_output_fr.png"
+            "locale": "fr"
           },
           {
             "source_patterns": ["p42_05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_dc_usb_output_es.png"
+            "locale": "es"
           }
         ]
       },
@@ -307,18 +312,19 @@
         "step_ids": ["toggle"],
         "steps_rect": [55.0, 75.0, 40.0, 18.0],
         "capture_prerequisite": false,
-        "composite_artwork_overrides": [
+        "web_replace_key": "operation.energy-saving",
+        "composite_locales": [
           {
             "source_patterns": ["05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_energy_saving_en.png"
+            "locale": "en"
           },
           {
             "source_patterns": ["p26_05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_energy_saving_fr.png"
+            "locale": "fr"
           },
           {
             "source_patterns": ["p42_05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_energy_saving_es.png"
+            "locale": "es"
           }
         ]
       },
@@ -328,18 +334,19 @@
         "layout": "footer-panel",
         "step_ids": ["light", "sos", "off"],
         "capture_prerequisite": true,
-        "composite_artwork_overrides": [
+        "web_replace_key": "operation.led-light",
+        "composite_locales": [
           {
             "source_patterns": ["05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_led_light_en.png"
+            "locale": "en"
           },
           {
             "source_patterns": ["p26_05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_led_light_fr.png"
+            "locale": "fr"
           },
           {
             "source_patterns": ["p42_05_operation_guide_placeholder"],
-            "path": "docs/renderers/contracts/assets/operation/operation_led_light_es.png"
+            "locale": "es"
           }
         ]
       }
@@ -370,18 +377,19 @@
         "source_patterns": ["*08_charging_methods"],
         "image_key": "charging/car_charge",
         "capture_following_lines": 2,
-        "composite_artwork_overrides": [
+        "web_replace_key": "reference.charging-car",
+        "composite_locales": [
           {
             "source_patterns": ["08_charging_methods"],
-            "path": "docs/renderers/contracts/assets/charging/charging_car_en.png"
+            "locale": "en"
           },
           {
             "source_patterns": ["p29_08_charging_methods"],
-            "path": "docs/renderers/contracts/assets/charging/charging_car_fr.png"
+            "locale": "fr"
           },
           {
             "source_patterns": ["p45_08_charging_methods"],
-            "path": "docs/renderers/contracts/assets/charging/charging_car_es.png"
+            "locale": "es"
           }
         ]
       },
@@ -402,7 +410,8 @@
         "source_patterns": ["*12_app_setup_placeholder"],
         "image_key": "app/connect_result",
         "captions_embedded": true,
-        "composite_artwork": "docs/renderers/contracts/assets/app/app_connect_result_steps.png",
+        "web_replace_key": "reference.app-connect-result",
+        "composite_locale": "shared",
         "asset_scope": "shared"
       }
     ]

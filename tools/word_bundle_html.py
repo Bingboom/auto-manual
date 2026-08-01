@@ -10,6 +10,11 @@ import shutil
 from pathlib import Path
 
 from tools.gen_index_bundle import MaterializedBundle, materialize_bundle
+from tools.utils.path_utils import web_composite_manifest_of
+from tools.web_composite_manifest import (
+    WebCompositeManifest,
+    load_optional_web_composite_manifest,
+)
 from tools.word_bundle_common import paths
 from tools.word_bundle_html_images import _IMG_SRC_RE, _inject_img_dimensions
 from tools.word_bundle_html_models import WordBundlePageMeta
@@ -259,6 +264,9 @@ def _convert_rst_fragment_to_html(
     *,
     active_tags: set[str] | None = None,
     presentation_profile: str = DOCUMENT_PRESENTATION_PROFILE,
+    composite_manifest: WebCompositeManifest | None = None,
+    model: str | None = None,
+    region: str | None = None,
 ) -> str:
     profile = normalize_presentation_profile(presentation_profile)
     source_name = source_path.name.lower()
@@ -271,6 +279,9 @@ def _convert_rst_fragment_to_html(
                 rewritten_fragment = transform_web_fragment(
                     rewritten_fragment,
                     source_path=source_path,
+                    composite_manifest=composite_manifest,
+                    model=model,
+                    region=region,
                 )
             return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
@@ -286,6 +297,9 @@ def _convert_rst_fragment_to_html(
         rewritten_fragment = transform_web_fragment(
             rewritten_fragment,
             source_path=source_path,
+            composite_manifest=composite_manifest,
+            model=model,
+            region=region,
         )
     return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
@@ -301,6 +315,14 @@ def build_word_bundle_html(
 ) -> tuple[Path, Path | None, tuple[WordBundlePageMeta, ...]]:
     profile = normalize_presentation_profile(presentation_profile)
     materialized = materialized_bundle or materialize_bundle(cfg, model, region)
+    materialized_bundle_dir = getattr(materialized, "bundle_dir", None)
+    composite_manifest = (
+        load_optional_web_composite_manifest(
+            web_composite_manifest_of(Path(materialized_bundle_dir))
+        )
+        if profile == WEB_PRESENTATION_PROFILE and materialized_bundle_dir is not None
+        else None
+    )
     title = materialized.title
     reference_doc = materialized.reference_doc
     active_tags = _build_word_only_tags(model=materialized.model, region=materialized.region, lang=materialized.lang)
@@ -331,6 +353,9 @@ def build_word_bundle_html(
             bundle_output_dir,
             active_tags=active_tags,
             presentation_profile=profile,
+            composite_manifest=composite_manifest,
+            model=materialized.model,
+            region=materialized.region,
         )
         body_parts.append(html_fragment or "<div></div>")
         page_metas.append(

@@ -26,6 +26,7 @@ from tools.config_pages import (
 )
 from tools.bundle_asset_finalize import finalize_materialized_bundle
 from tools.contract_assets import ContractAssetResolver
+from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.draft_engine import (
     GeneratedPageRender,
     render_generated_page,
@@ -99,7 +100,12 @@ from tools.gen_index_bundle_paths import (
 )
 from tools.page_manifest import resolve_config_pages_or_raise
 from tools.safe_copy import copy_regular_file_no_symlinks, copytree_replace_no_symlinks
-from tools.utils.path_utils import get_paths, word_common_assets_of  # noqa: E402
+from tools.utils.path_utils import (  # noqa: E402
+    get_paths,
+    web_composite_manifest_of,
+    word_common_assets_of,
+)
+from tools.web_composite_manifest import stage_web_composite_snapshot
 from tools.utils.targets import (
     resolve_output_lang,
 )
@@ -537,6 +543,20 @@ def materialize_bundle(
         recipe_ids=recipe_ids,
         snippet_ids=snippet_ids,
         materialized_bundle_cls=MaterializedBundle,
+    )
+    snapshot_root = resolve_data_snapshot_paths(
+        cfg,
+        repo_root=resolved_repo_root,
+        data_root=data_root,
+        model=context.target_model,
+        region=context.target_region,
+    ).structured_data_dir
+    stage_web_composite_snapshot(
+        source_manifest_path=web_composite_manifest_of(snapshot_root),
+        snapshot_root=snapshot_root,
+        bundle_root=bundle.bundle_dir,
+        model=context.target_model,
+        region=context.target_region,
     )
     if not finalize_assets:
         return bundle

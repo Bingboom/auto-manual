@@ -1330,8 +1330,8 @@ body {
   display: block;
 }
 
-/* Keep the authoritative RST image/labels available to assistive technology. */
-.hb-reference-semantic {
+/* Once approved art is present, retain the source figure for assistive technology. */
+.hb-reference-figure.hb-has-composite-art > .hb-reference-semantic {
   position: absolute !important;
   width: 1px !important;
   height: 1px !important;

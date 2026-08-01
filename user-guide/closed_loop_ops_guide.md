@@ -467,6 +467,38 @@ AC、DC/USB 等固定丝印不能被误记成“零文字”，也不能借该�
 导出索引为 59 archive-page / 59 preview / 24 semantic-export。导出 gate 为
 22 approved / 104 archive / 16 quarantine；`page/back_cover` 保持隔离且不可构建。
 
+### 4.9.3 Web 整块图文导出与冻结
+
+Web composite 是 `04_资产*` 链的受审导出类型，不是普通 RST 图片的第二套注册表。
+它只用于已经过 IDML/PDF 人工确认、必须在响应式网页中整块保持图文关系的 figure；
+章节标题、FCC、WHAT'S IN THE BOX、Symbols、LCD、表格、warning box 和 App
+add-device 的实时标签不做整块栅格化。
+
+写入合同：
+
+- `04_资产定义.web_replace_key` 是稳定组件键；定义必须有明确 model/region、语言
+  维度与变体，并处于 `approved + build_eligible`，且不再要求视觉复核。
+- `04_资产导出物` 一个物理文件一行，`artifact_kind=web-composite`；
+  `export_file` 必须恰好一个附件；`web_locale` 只能选择 `en`、`fr`、`es` 或
+  `shared`；`content_sha256` 对应附件原字节，`source_fragment_sha256` 对应当前
+  figure 与关联文字的规范化语义片段。
+- 按语言定义不得使用 `shared`；中立定义只能使用 `shared`。完全相同的
+  `web_replace_key + model + region + locale` 不得有两个可构建导出。
+
+审核后运行：
+
+```bash
+python build.py sync-data --config configs/config.us.yaml --data-root data/phase2
+AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md \
+  --config configs/config.us.yaml --model JE-1000F --region US
+```
+
+`sync-data` 原子下载并校验附件，生成 `web_composite_manifest.json`；bundle
+materialize 再次校验并把目标文件冻结到 `_assets/web_composites/`。无匹配记录时
+网页保留可搜索、可编辑的 semantic HTML；重复匹配、缺附件、文件 SHA 或源片段 SHA
+不一致都会硬失败。RTD 只读取经 PR 审核后提交到 `tests/fixtures/phase2` 的相同冻结
+manifest 与附件，不连接实时 Base。
+
 当前仍不引入 ExtendScript。PDF-compatible AI 走上述确定性 PDF 拆分；非 PDF-compatible
 文件、Illustrator 原生图层/画板语义和需要设计重绘的资产仍由设计工具处理。累计至少
 两个主文件并固化原生画板命名后，再按 `indesign_finalize.jsx` 的模式评估独立、可重跑

@@ -17,7 +17,12 @@ from typing import Any
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from tools.utils.path_utils import PathSegments, get_paths
+from tools.utils.path_utils import get_paths
+from tools.web_composite_manifest import WebCompositeManifest
+from tools.web_composite_presentation import (
+    WebCompositeContext,
+    supports_figure_contract,
+)
 from tools.web_reference_components import (
     append_reference_captions,
     prepare_reference_caption_data,
@@ -212,31 +217,6 @@ def _matches_source(source_path: Path, patterns: list[str]) -> bool:
     return any(fnmatch.fnmatch(stem, pattern.lower()) for pattern in patterns)
 
 
-def _source_target(source_path: Path) -> tuple[str, str] | None:
-    parts = list(source_path.parts)
-    normalized = [part.lower() for part in parts]
-    for marker in (PathSegments.REVIEW, PathSegments.BUILD):
-        try:
-            marker_index = normalized.index(marker.lower())
-        except ValueError:
-            continue
-        if marker_index + 2 < len(parts):
-            return parts[marker_index + 1], parts[marker_index + 2]
-    return None
-
-
-def _supports_figure_contract(source_path: Path, contract: dict[str, Any]) -> bool:
-    target = _source_target(source_path)
-    if target is None:
-        return False
-    model, region = target
-    return any(
-        model.casefold() == str(selector["model"]).casefold()
-        and region.casefold() == str(selector["region"]).casefold()
-        for selector in contract["figure_targets"]
-    )
-
-
 def _src_matches_key(src: str, image_key: str) -> bool:
     normalized_src = src.replace("\\", "/").lower()
     normalized_key = image_key.replace("\\", "/").lower()
@@ -360,36 +340,6 @@ def _leader_layer(soup: BeautifulSoup, view: dict[str, Any]) -> Tag:
     return svg
 
 
-def _composite_artwork_path(component: dict[str, Any], source_path: Path) -> str | None:
-    if shared_artwork := str(component.get("composite_artwork", "")).strip():
-        return shared_artwork
-    for override in component.get("composite_artwork_overrides", []):
-        if _matches_source(source_path, [str(value) for value in override["source_patterns"]]):
-            return str(override["path"])
-    return None
-
-
-def _composite_stage(soup: BeautifulSoup, artwork_path: str) -> Tag:
-    stage = soup.new_tag(
-        "div",
-        attrs={
-            "class": "hb-composite-stage",
-            "aria-hidden": "true",
-        },
-    )
-    image = soup.new_tag(
-        "img",
-        attrs={
-            "class": "hb-composite-art",
-            "src": artwork_path,
-            "alt": "",
-            "loading": "lazy",
-        },
-    )
-    stage.append(image)
-    return stage
-
-
 def _overview_figure(
     soup: BeautifulSoup,
     *,
@@ -397,6 +347,7 @@ def _overview_figure(
     image: Tag,
     view: dict[str, Any],
     source_path: Path,
+    composites: WebCompositeContext,
 ) -> Tag:
     markup = _front_callout_markup(section) if view["id"] == "front" else _right_callout_markup(section)
     required_ids = [str(item["id"]) for item in view["callouts"]]
@@ -443,10 +394,14 @@ def _overview_figure(
         )
         _append_markup(callout, markup[semantic_id])
         stage.append(callout)
-    composite_artwork = _composite_artwork_path(view, source_path)
-    if composite_artwork:
-        figure["class"] = [*figure.get("class", []), "hb-has-composite-art"]
-        figure.append(_composite_stage(soup, composite_artwork))
+    composites.append_semantic(
+        soup=soup,
+        figure=figure,
+        semantic=stage,
+        component=view,
+        source_path=source_path,
+        image_key=str(view["image_key"]),
+    )
     figure.append(stage)
     return figure
 
@@ -456,6 +411,7 @@ def _transform_product_overview(
     *,
     source_path: Path,
     contract: dict[str, Any],
+    composites: WebCompositeContext,
 ) -> None:
     overview = contract["product_overview"]
     transformed: list[str] = []
@@ -481,6 +437,7 @@ def _transform_product_overview(
             image=image,
             view=view,
             source_path=source_path,
+            composites=composites,
         )
         for table in list(section.find_all("table", recursive=False)):
             table.decompose()
@@ -591,6 +548,7 @@ def _transform_operation_figure(
     image: Tag,
     spec: dict[str, Any],
     source_path: Path,
+    composites: WebCompositeContext,
 ) -> None:
     operation_id = str(spec["id"])
     section = image.find_parent("section")
@@ -690,10 +648,14 @@ def _transform_operation_figure(
     stage.append(steps_overlay)
     if supporting_copy is not None:
         stage.append(supporting_copy)
-    composite_artwork = _composite_artwork_path(spec, source_path)
-    if composite_artwork:
-        figure["class"] = [*figure.get("class", []), "hb-has-composite-art"]
-        figure.append(_composite_stage(soup, composite_artwork))
+    composites.append_semantic(
+        soup=soup,
+        figure=figure,
+        semantic=stage,
+        component=spec,
+        source_path=source_path,
+        image_key=str(spec["image_key"]),
+    )
     figure.append(stage)
 
 
@@ -889,6 +851,7 @@ def _transform_operations(
     *,
     source_path: Path,
     contract: dict[str, Any],
+    composites: WebCompositeContext,
 ) -> None:
     operation_contract = contract["operations"]
     _transform_auto_resume_table(
@@ -921,6 +884,7 @@ def _transform_operations(
             image=image,
             spec=spec,
             source_path=source_path,
+            composites=composites,
         )
 
 
@@ -930,6 +894,7 @@ def _transform_reference_figure(
     image: Tag,
     spec: dict[str, Any],
     source_path: Path,
+    composites: WebCompositeContext,
 ) -> None:
     reference_id = str(spec["id"])
     if spec.get("presentation") == "shared-art-live-labels":
@@ -947,16 +912,10 @@ def _transform_reference_figure(
         source_path=source_path,
         error_type=WebPresentationError,
     )
-    composite_artwork = _composite_artwork_path(spec, source_path)
-    if not composite_artwork:
-        raise WebPresentationError(
-            f"{source_path}: reference figure {reference_id} has no composite artwork override"
-        )
-
     figure = soup.new_tag(
         "figure",
         attrs={
-            "class": ["hb-reference-figure", "hb-has-composite-art"],
+            "class": ["hb-reference-figure"],
             "data-reference-id": reference_id,
         },
     )
@@ -975,7 +934,15 @@ def _transform_reference_figure(
     if label_block is not None:
         label_block["class"] = [*label_block.get("class", []), "hb-reference-labels"]
         semantic.append(label_block.extract())
-    figure.append(_composite_stage(soup, composite_artwork))
+    composites.append_reference(
+        soup=soup,
+        figure=figure,
+        semantic=semantic,
+        component=spec,
+        source_path=source_path,
+        caption_labels=caption_labels,
+    )
+    image["class"] = [*image.get("class", []), "hb-composite-art"]
     append_reference_captions(
         soup,
         figure,
@@ -990,6 +957,7 @@ def _transform_reference_figures(
     *,
     source_path: Path,
     contract: dict[str, Any],
+    composites: WebCompositeContext,
 ) -> None:
     for spec in contract["reference_figures"]["figures"]:
         spec_patterns = [str(value) for value in spec["source_patterns"]]
@@ -1012,6 +980,7 @@ def _transform_reference_figures(
             image=image,
             spec=spec,
             source_path=source_path,
+            composites=composites,
         )
 
 
@@ -2007,6 +1976,9 @@ def transform_web_fragment(
     *,
     source_path: Path,
     contract: dict[str, Any] | None = None,
+    composite_manifest: WebCompositeManifest | None = None,
+    model: str | None = None,
+    region: str | None = None,
 ) -> str:
     """Apply web composition to governed figure pages; leave other pages byte-identical."""
     data = contract or load_web_manual_contract()
@@ -2068,16 +2040,27 @@ def transform_web_fragment(
         or is_app_inline_controls
     ):
         return html_fragment
-    if not _supports_figure_contract(source_path, data):
+    if not supports_figure_contract(source_path, data):
         return html_fragment
 
     soup = BeautifulSoup(html_fragment, "html.parser")
+    composites = WebCompositeContext(composite_manifest, model, region, WebPresentationError)
     if is_preface:
         _transform_preface(soup, source_path=source_path)
     if is_overview:
-        _transform_product_overview(soup, source_path=source_path, contract=data)
+        _transform_product_overview(
+            soup,
+            source_path=source_path,
+            contract=data,
+            composites=composites,
+        )
     if is_operations:
-        _transform_operations(soup, source_path=source_path, contract=data)
+        _transform_operations(
+            soup,
+            source_path=source_path,
+            contract=data,
+            composites=composites,
+        )
     if is_fcc:
         _transform_fcc(soup, source_path=source_path, contract=data)
     if is_lcd_icon_table:
@@ -2109,7 +2092,12 @@ def transform_web_fragment(
     if is_app_inline_controls:
         _transform_app_inline_controls(soup, source_path=source_path, contract=data)
     if is_reference_page:
-        _transform_reference_figures(soup, source_path=source_path, contract=data)
+        _transform_reference_figures(
+            soup,
+            source_path=source_path,
+            contract=data,
+            composites=composites,
+        )
     return str(soup)
 
 

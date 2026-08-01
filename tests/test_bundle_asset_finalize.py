@@ -194,6 +194,54 @@ class TestBundleAssetFinalize(unittest.TestCase):
                 manifest["page_file_records"],
             )
 
+    def test_web_composite_manifest_is_part_of_bundle_fingerprint(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo_root, docs_dir, bundle_dir = self._workspace(Path(td))
+            page_dir = bundle_dir / "page"
+            page_dir.mkdir()
+            page = page_dir / "final.rst"
+            page.write_text("Final\n=====\n", encoding="utf-8")
+            (bundle_dir / "index.rst").write_text(
+                "Manual\n======\n\n.. include:: page/final.rst\n",
+                encoding="utf-8",
+            )
+            web_manifest = bundle_dir / "web_composite_manifest.json"
+            web_manifest.write_text(
+                '{"schema_version":"web-composite-manifest/v1","entries":[]}\n',
+                encoding="utf-8",
+            )
+
+            first = self._finalize(
+                repo_root=repo_root,
+                docs_dir=docs_dir,
+                bundle_dir=bundle_dir,
+                stale_page=page,
+            )
+            first_payload = json.loads(first.manifest_path.read_text(encoding="utf-8"))
+            first_record = first_payload["web_composite_manifest"]
+            self.assertEqual("web_composite_manifest.json", first_record["path"])
+            self.assertEqual(
+                hashlib.sha256(web_manifest.read_bytes()).hexdigest(),
+                first_record["sha256"],
+            )
+
+            web_manifest.write_text(
+                '{"schema_version":"web-composite-manifest/v1","entries":[],"generated_at":"later"}\n',
+                encoding="utf-8",
+            )
+            second = self._finalize(
+                repo_root=repo_root,
+                docs_dir=docs_dir,
+                bundle_dir=bundle_dir,
+                stale_page=page,
+            )
+            second_payload = json.loads(second.manifest_path.read_text(encoding="utf-8"))
+
+            self.assertNotEqual(
+                first_payload["bundle_sha256"],
+                second_payload["bundle_sha256"],
+            )
+
     def test_nested_include_accounts_for_all_legacy_reference_forms(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo_root, docs_dir, bundle_dir = self._workspace(Path(td))

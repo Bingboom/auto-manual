@@ -3,11 +3,13 @@ from __future__ import annotations
 import re
 import tempfile
 import unittest
+from dataclasses import replace
 from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 from PIL import Image
 
+from tools.web_composite_manifest import load_web_composite_manifest
 from tools.web_presentation import (
     WebPresentationError,
     protect_web_callouts_for_pandoc,
@@ -27,18 +29,36 @@ _ANNOTATED_FIGURE_RE = re.compile(
 )
 ROOT = Path(__file__).resolve().parents[1]
 REVIEW_PAGES = ROOT / "docs" / "_review" / "JE-1000F" / "US" / "page"
+WEB_COMPOSITE_FIXTURE = ROOT / "tests" / "fixtures" / "phase2" / "web_composite_manifest.json"
 
 
-def _web_fragment(source_name: str) -> str:
+def _web_composite_fixture():
+    manifest = load_web_composite_manifest(WEB_COMPOSITE_FIXTURE)
+    return replace(
+        manifest,
+        entries=tuple(
+            replace(
+                entry,
+                path=str(ROOT / entry.path.removeprefix("repo://")),
+            )
+            for entry in manifest.entries
+        ),
+    )
+
+
+def _web_fragment(source_name: str, *, with_composites: bool = True) -> str:
     source_path = REVIEW_PAGES / source_name
     with tempfile.TemporaryDirectory() as td:
-        document_fragment = _convert_rst_fragment_to_html(
+        return _convert_rst_fragment_to_html(
             source_path.read_text(encoding="utf-8"),
             source_path,
             Path(td),
             active_tags={"region_us"},
+            presentation_profile="web",
+            composite_manifest=(_web_composite_fixture() if with_composites else None),
+            model="JE-1000F",
+            region="US",
         )
-    return transform_web_fragment(document_fragment, source_path=source_path)
 
 
 class WebPresentationTests(unittest.TestCase):
@@ -427,15 +447,73 @@ class WebPresentationTests(unittest.TestCase):
                     15,
                     len(soup.select(".hb-annotated-stage .hb-figure-callout")),
                 )
-                extension = "svg" if language == "en" else "png"
                 self.assertIn(
-                    f"product_overview_front_{language}.{extension}",
+                    f"product-overview.front_{language}_",
                     transformed_html,
                 )
                 self.assertIn(
-                    f"product_overview_right_{language}.{extension}",
+                    f"product-overview.right_{language}_",
                     transformed_html,
                 )
+
+    def test_missing_manifest_keeps_semantic_web_figures_visible(self) -> None:
+        overview = BeautifulSoup(
+            _web_fragment(
+                "03_product_overview_placeholder.rst",
+                with_composites=False,
+            ),
+            "html.parser",
+        )
+        figures = overview.select("figure.hb-annotated-figure")
+        self.assertEqual(2, len(figures))
+        self.assertTrue(all("hb-has-composite-art" not in figure.get("class", []) for figure in figures))
+        self.assertTrue(all(figure.select_one(".hb-annotated-stage") for figure in figures))
+        self.assertTrue(all(figure.get("data-web-replace-key") for figure in figures))
+
+        charging = BeautifulSoup(
+            _web_fragment("08_charging_methods.rst", with_composites=False),
+            "html.parser",
+        )
+        reference = charging.select_one(
+            'figure.hb-reference-figure[data-reference-id="charging-car"]'
+        )
+        self.assertIsNotNone(reference)
+        self.assertNotIn(
+            "hb-has-composite-art",
+            reference.get("class", []) if reference else [],
+        )
+        self.assertIsNotNone(
+            reference.select_one(".hb-reference-semantic") if reference else None
+        )
+
+    def test_source_fragment_hash_drift_blocks_stale_composite(self) -> None:
+        source_path = REVIEW_PAGES / "03_product_overview_placeholder.rst"
+        manifest = _web_composite_fixture()
+        manifest = replace(
+            manifest,
+            entries=tuple(
+                replace(entry, source_fragment_sha256="0" * 64)
+                if entry.web_replace_key == "product-overview.front"
+                and entry.locale == "en"
+                else entry
+                for entry in manifest.entries
+            ),
+        )
+
+        with tempfile.TemporaryDirectory() as td, self.assertRaisesRegex(
+            WebPresentationError,
+            "Web composite source changed",
+        ):
+            _convert_rst_fragment_to_html(
+                source_path.read_text(encoding="utf-8"),
+                source_path,
+                Path(td),
+                active_tags={"region_us"},
+                presentation_profile="web",
+                composite_manifest=manifest,
+                model="JE-1000F",
+                region="US",
+            )
 
     def test_operation_figure_keeps_prerequisite_image_and_steps_together(self) -> None:
         transformed = _web_fragment("05_operation_guide_placeholder.rst")
@@ -554,7 +632,7 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertIsNotNone(composition)
                 self.assertEqual(2, len(composition.select(".hb-fcc-column")))
                 self.assertIn(
-                    "fcc_mark.png",
+                    "fcc_mark_",
                     str(composition.select_one(".hb-fcc-mark").get("src", ""))
                     if composition
                     else "",
@@ -755,7 +833,7 @@ class WebPresentationTests(unittest.TestCase):
                     ) if figure else None
                     self.assertIsNotNone(composite)
                     self.assertIn(
-                        f"operation_{operation_id.replace('-', '_')}_{language}",
+                        f"operation.{operation_id}_{language}_",
                         str(composite.get("src", "")) if composite else "",
                     )
                     self.assertIsNotNone(
@@ -856,7 +934,7 @@ class WebPresentationTests(unittest.TestCase):
                 )
                 self.assertIsNotNone(figure)
                 self.assertIn(
-                    f"charging_car_{language}",
+                    f"reference.charging-car_{language}_",
                     str(figure.select_one(".hb-composite-art").get("src", ""))
                     if figure
                     else "",
@@ -916,8 +994,12 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertIsNotNone(phone_art)
                 self.assertIsNotNone(control_art)
                 artwork_by_locale[language] = (
-                    str(phone_art.get("src", "")) if phone_art else "",
-                    str(control_art.get("src", "")) if control_art else "",
+                    str(phone_art.get("src", "")).rsplit("/", 1)[-1]
+                    if phone_art
+                    else "",
+                    str(control_art.get("src", "")).rsplit("/", 1)[-1]
+                    if control_art
+                    else "",
                 )
                 self.assertIn("app_add_device_steps", artwork_by_locale[language][0])
                 self.assertIn("app_control_panel", artwork_by_locale[language][1])
@@ -972,7 +1054,7 @@ class WebPresentationTests(unittest.TestCase):
                 )
                 self.assertIsNotNone(figure)
                 self.assertIn(
-                    "app_connect_result_steps",
+                    "reference.app-connect-result_shared_",
                     str(figure.select_one(".hb-composite-art").get("src", ""))
                     if figure
                     else "",
@@ -1066,8 +1148,12 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertIsNotNone(store_art)
                 self.assertIsNotNone(qr_art)
                 artwork_by_locale[source_name] = (
-                    str(store_art.get("src", "")) if store_art else "",
-                    str(qr_art.get("src", "")) if qr_art else "",
+                    str(store_art.get("src", "")).rsplit("/", 1)[-1]
+                    if store_art
+                    else "",
+                    str(qr_art.get("src", "")).rsplit("/", 1)[-1]
+                    if qr_art
+                    else "",
                 )
                 self.assertNotEqual(*artwork_by_locale[source_name])
                 self.assertIsNotNone(composition.select_one(".hb-app-download-semantic-art"))
