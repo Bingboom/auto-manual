@@ -112,11 +112,11 @@ Fonction de reprise de Sortie CA et CC
 La fonction de reprise de la sortie CA/CC est désactivée par défaut. Activez cette fonction dans l’application afin que l’appareil mémorise l’état de sortie CA/CC et reprenne automatiquement les sorties CA et CC dans les conditions définies.
 
 +-----------------------------------------------------------------------+------------------------------------------------------------+
-| Conditions de reprise automatique                                     | Conditions sans reprise automatique                       |
+| Conditions de reprise automatique                                     | Conditions sans reprise automatique                        |
 +=======================================================================+============================================================+
 | Mise sous tension/redémarrage après arrêt ou redémarrage              | Sortie désactivée manuellement (bouton/App)                |
 +-----------------------------------------------------------------------+------------------------------------------------------------+
-| SOC de la batterie ≥ limite de décharge +10% après avoir atteint      | Sortie désactivée en mode économie d’énergie              |
+| SOC de la batterie ≥ limite de décharge +10% après avoir atteint      | Sortie désactivée en mode économie d’énergie               |
 | la limite                                                             +------------------------------------------------------------+
 |                                                                       | Sortie désactivée suite à un déclenchement de protection   |
 +-----------------------------------------------------------------------+------------------------------------------------------------+
