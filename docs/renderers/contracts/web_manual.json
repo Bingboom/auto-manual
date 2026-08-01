@@ -390,20 +390,12 @@
         "source_patterns": ["*12_app_setup_placeholder"],
         "image_key": "app/add_device",
         "capture_following_lines": 3,
-        "composite_artwork_overrides": [
-          {
-            "source_patterns": ["12_app_setup_placeholder"],
-            "path": "docs/renderers/contracts/assets/app/app_add_device_en.png"
-          },
-          {
-            "source_patterns": ["p34_12_app_setup_placeholder"],
-            "path": "docs/renderers/contracts/assets/app/app_add_device_fr.png"
-          },
-          {
-            "source_patterns": ["p50_12_app_setup_placeholder"],
-            "path": "docs/renderers/contracts/assets/app/app_add_device_es.png"
-          }
-        ]
+        "presentation": "shared-art-live-labels",
+        "caption_labels": ["2.1", "2.2"],
+        "caption_layout": "phone-pair",
+        "label_roles": ["main-power", "dc-usb", "ac-power"],
+        "control_artwork": "docs/templates/word_template/common_assets/overview/front_controls.png",
+        "asset_scope": "shared"
       },
       {
         "id": "app-connect-result",

@@ -72,3 +72,90 @@ def append_reference_captions(
         caption.append(item)
     figure["class"] = [*figure.get("class", []), "hb-has-reference-captions"]
     figure.append(caption)
+
+
+def transform_app_add_device(
+    soup: BeautifulSoup,
+    *,
+    image: Tag,
+    spec: dict[str, Any],
+    source_path: Path,
+    error_type: type[Exception],
+) -> None:
+    """Render shared App screenshots and device art with live localized labels."""
+    reference_id = str(spec["id"])
+    label_block, caption_labels = prepare_reference_caption_data(
+        image=image,
+        spec=spec,
+        source_path=source_path,
+        error_type=error_type,
+    )
+    if not isinstance(label_block, Tag):
+        raise error_type(f"{source_path}: {reference_id} requires live control labels")
+
+    roles = [str(value).strip() for value in spec.get("label_roles", [])]
+    lines = label_block.find_all(class_="line", recursive=False)
+    if len(roles) != len(lines) or not all(roles):
+        raise error_type(
+            f"{source_path}: {reference_id} label roles do not match its live labels"
+        )
+    control_artwork = str(spec.get("control_artwork", "")).strip()
+    if not control_artwork:
+        raise error_type(f"{source_path}: {reference_id} has no shared control artwork")
+
+    figure = soup.new_tag(
+        "figure",
+        attrs={
+            "class": "hb-app-add-device-composition",
+            "data-reference-id": reference_id,
+        },
+    )
+    for attribute in ("style", "width", "height"):
+        image.attrs.pop(attribute, None)
+    image["class"] = [*image.get("class", []), "hb-app-add-device-phone-art"]
+    image.replace_with(figure)
+
+    phone_stage = soup.new_tag("div", attrs={"class": "hb-app-add-device-phone-stage"})
+    phone_stage.append(image)
+    figure.append(phone_stage)
+    append_reference_captions(
+        soup,
+        figure,
+        labels=caption_labels,
+        layout=str(spec.get("caption_layout", "phone-pair")),
+    )
+
+    control_panel = soup.new_tag(
+        "div",
+        attrs={"class": "hb-app-add-device-control-panel"},
+    )
+    control_art = soup.new_tag(
+        "img",
+        attrs={
+            "class": "hb-app-add-device-control-art",
+            "src": control_artwork,
+            "alt": "",
+            "aria-hidden": "true",
+            "loading": "lazy",
+        },
+    )
+    control_panel.append(control_art)
+    for role, line in zip(roles, lines, strict=True):
+        line.extract()
+        line.name = "span"
+        line.attrs = {
+            "class": [
+                "hb-app-add-device-live-label",
+                f"hb-app-add-device-live-label-{role}",
+            ],
+        }
+        control_panel.append(line)
+    label_block.decompose()
+    figure.append(control_panel)
+
+
+__all__ = [
+    "append_reference_captions",
+    "prepare_reference_caption_data",
+    "transform_app_add_device",
+]

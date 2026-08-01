@@ -590,14 +590,16 @@ rounded cards plus the full-width TIP strip. The five operation panels use
 localized 2x crops of the approved PDF at every viewport width so their
 prerequisite pills, icons, numbering, and step layout stay visually intact; the
 original RST image and `line-block` copy remain in the hidden semantic layer.
-The car-charging connection panel and App add-device phone/button panel follow
-the same localized reference-figure rule. Their surrounding instructions,
-section headings, and the App's 2.3 step stay live HTML; headings are never baked
-into the crops. The App download asset is split into sharp store-badge and QR
-artwork; each is centered independently in its own column above live localized
-copy. App step 2.1 restores the small add-device plus as a crisp themeable inline
-control and removes the duplicate visible button wording; its localized meaning
-stays on the icon's `aria-label`. Reference panels remain centered, while every ordinary standalone RST
+The car-charging connection panel follows the localized reference-figure rule.
+App add-device instead uses one shared two-phone artwork plus one shared
+text-free device-control illustration; the three governed RST button labels are
+live HTML, with 2.1/2.2 supplied by the shared caption component. Its surrounding
+instructions, section heading, and 2.3 step also stay live HTML. The App download
+component uses distinct store-badge and QR images, each centered independently in
+its own column above live localized copy. App step 2.1 restores the small
+add-device plus as a crisp themeable inline control and removes the duplicate
+visible button wording; its localized meaning stays on the icon's `aria-label`.
+Reference panels remain centered, while every ordinary standalone RST
 image fills the same responsive content width and preserves its aspect ratio.
 FCC copy is composed as a live two-column card using the
 localized RST text and FCC mark, then reflows to one column on phones. The LCD

@@ -11,7 +11,6 @@ from __future__ import annotations
 import fnmatch
 import json
 import re
-import shutil
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -19,17 +18,21 @@ from typing import Any
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 from tools.utils.path_utils import PathSegments, get_paths
-from tools.web_reference_components import append_reference_captions, prepare_reference_caption_data
+from tools.web_reference_components import (
+    append_reference_captions,
+    prepare_reference_caption_data,
+    transform_app_add_device,
+)
+from tools.web_stylesheets import WEB_STYLESHEET_NAME, copy_web_stylesheet
 
 
 DOCUMENT_PRESENTATION_PROFILE = "document"
 WEB_PRESENTATION_PROFILE = "web"
 PRESENTATION_PROFILE_ENV = "AUTO_MANUAL_PRESENTATION_PROFILE"
 WEB_CONTRACT_NAME = "web_manual.json"
-WEB_STYLESHEET_NAME = "web_manual.css"
 _WEB_FIGURE_RE = re.compile(
     r'<figure\b(?=[^>]*\bclass=["\'][^"\']*\bhb-'
-    r'(?:(?:annotated|operation|reference)-figure|inbox-composition|app-download-composition|fcc-composition|lcd-table-composition|lcd-mode-composition|auto-resume-composition|symbol-pair-composition|troubleshooting-composition|spec-table-composition|warranty-intro-composition|warranty-card|warranty-period-card)\b)'
+    r'(?:(?:annotated|operation|reference)-figure|inbox-composition|app-(?:add-device|download)-composition|fcc-composition|lcd-table-composition|lcd-mode-composition|auto-resume-composition|symbol-pair-composition|troubleshooting-composition|spec-table-composition|warranty-intro-composition|warranty-card|warranty-period-card)\b)'
     r"[^>]*>.*?</figure>",
     re.IGNORECASE | re.DOTALL,
 )
@@ -70,10 +73,6 @@ def _contract_path() -> Path:
     return get_paths().renderer_contracts_dir / WEB_CONTRACT_NAME
 
 
-def _stylesheet_path() -> Path:
-    return get_paths().renderer_contracts_dir / WEB_STYLESHEET_NAME
-
-
 @lru_cache(maxsize=4)
 def _load_contract_cached(path_text: str) -> dict[str, Any]:
     path = Path(path_text)
@@ -89,17 +88,6 @@ def _load_contract_cached(path_text: str) -> dict[str, Any]:
 def load_web_manual_contract(path: Path | None = None) -> dict[str, Any]:
     contract_path = (path or _contract_path()).resolve(strict=False)
     return _load_contract_cached(str(contract_path))
-
-
-def copy_web_stylesheet(destination_dir: Path) -> Path:
-    source = _stylesheet_path()
-    if not source.is_file():
-        raise WebPresentationError(f"web manual stylesheet is missing: {source}")
-    static_dir = destination_dir / PathSegments.STATIC
-    static_dir.mkdir(parents=True, exist_ok=True)
-    destination = static_dir / WEB_STYLESHEET_NAME
-    shutil.copy2(source, destination)
-    return destination
 
 
 def protect_web_figures_for_pandoc(html_text: str) -> tuple[str, dict[str, str]]:
@@ -942,6 +930,15 @@ def _transform_reference_figure(
     source_path: Path,
 ) -> None:
     reference_id = str(spec["id"])
+    if spec.get("presentation") == "shared-art-live-labels":
+        transform_app_add_device(
+            soup,
+            image=image,
+            spec=spec,
+            source_path=source_path,
+            error_type=WebPresentationError,
+        )
+        return
     label_block, caption_labels = prepare_reference_caption_data(
         image=image,
         spec=spec,

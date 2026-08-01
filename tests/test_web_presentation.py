@@ -156,6 +156,21 @@ class WebPresentationTests(unittest.TestCase):
         self.assertIn('class="hb-app-download-composition"', restored)
         self.assertIn('class="hb-app-download-grid"', restored)
 
+    def test_pandoc_guard_restores_app_add_device_composition(self) -> None:
+        figure = (
+            '<figure class="hb-app-add-device-composition">'
+            '<img class="hb-app-add-device-phone-art" src="phones.png" />'
+            '<span class="hb-app-add-device-live-label">Main Power Button</span>'
+            "</figure>"
+        )
+        protected_html, placeholders = protect_web_figures_for_pandoc(figure)
+
+        self.assertNotIn("hb-app-add-device-live-label", protected_html)
+        token = next(iter(placeholders))
+        restored = restore_web_figures_after_pandoc(token, placeholders)
+        self.assertIn('class="hb-app-add-device-composition"', restored)
+        self.assertIn('class="hb-app-add-device-live-label"', restored)
+
     def test_pandoc_guard_restores_fcc_composition(self) -> None:
         figure = (
             '<figure class="hb-fcc-composition"><div class="hb-fcc-grid">'
@@ -867,37 +882,57 @@ class WebPresentationTests(unittest.TestCase):
                     else "",
                 )
 
-    def test_app_add_device_uses_localized_pdf_panel_without_swallowing_copy(self) -> None:
+    def test_app_add_device_uses_shared_art_with_live_localized_labels(self) -> None:
         localized = {
-            "en": ("12_app_setup_placeholder.rst", "Main Power Button"),
-            "fr": ("p34_12_app_setup_placeholder.rst", "Bouton POWER"),
-            "es": ("p50_12_app_setup_placeholder.rst", "Botón de encendido"),
+            "en": (
+                "12_app_setup_placeholder.rst",
+                ["Main Power Button", "DC/USB Power Button", "AC Power Button"],
+            ),
+            "fr": (
+                "p34_12_app_setup_placeholder.rst",
+                ["Bouton POWER", "Bouton d’alimentation CC/USB", "Bouton d’alimentation CA"],
+            ),
+            "es": (
+                "p50_12_app_setup_placeholder.rst",
+                ["Botón de encendido", "Botón de energía CC / USB", "Botón Power CA"],
+            ),
         }
+        artwork_by_locale: dict[str, tuple[str, str]] = {}
 
-        for language, (source_name, button_label) in localized.items():
+        for language, (source_name, expected_labels) in localized.items():
             with self.subTest(language=language):
                 soup = BeautifulSoup(_web_fragment(source_name), "html.parser")
                 figure = soup.select_one(
-                    'figure.hb-reference-figure[data-reference-id="app-add-device"]'
+                    'figure.hb-app-add-device-composition[data-reference-id="app-add-device"]'
                 )
                 self.assertIsNotNone(figure)
-                self.assertIn(
-                    f"app_add_device_{language}",
-                    str(figure.select_one(".hb-composite-art").get("src", ""))
-                    if figure
-                    else "",
+                phone_art = figure.select_one(".hb-app-add-device-phone-art") if figure else None
+                control_art = figure.select_one(".hb-app-add-device-control-art") if figure else None
+                self.assertIsNotNone(phone_art)
+                self.assertIsNotNone(control_art)
+                artwork_by_locale[language] = (
+                    str(phone_art.get("src", "")) if phone_art else "",
+                    str(control_art.get("src", "")) if control_art else "",
                 )
-                semantic = figure.select_one(".hb-reference-semantic") if figure else None
-                self.assertIn(
-                    button_label,
-                    semantic.get_text(" ", strip=True) if semantic else "",
+                self.assertEqual("asset:app/add_device", artwork_by_locale[language][0])
+                self.assertIn("front_controls", artwork_by_locale[language][1])
+                self.assertEqual(
+                    expected_labels,
+                    [
+                        label.get_text(" ", strip=True)
+                        for label in figure.select(".hb-app-add-device-live-label")
+                    ]
+                    if figure
+                    else [],
                 )
                 self.assertEqual(
-                    3,
-                    len(semantic.select(".hb-reference-labels > .line"))
-                    if semantic
-                    else 0,
+                    ["2.1", "2.2"],
+                    [item.get_text(strip=True) for item in figure.select(".hb-reference-caption")]
+                    if figure
+                    else [],
                 )
+                self.assertIsNone(figure.select_one(".hb-composite-art") if figure else None)
+                self.assertIsNone(figure.select_one(".hb-reference-semantic") if figure else None)
                 preceding_copy = figure.find_previous("p") if figure else None
                 self.assertTrue(
                     preceding_copy.get_text(" ", strip=True).startswith("2.2")
@@ -915,6 +950,8 @@ class WebPresentationTests(unittest.TestCase):
                     if following_copy
                     else False
                 )
+        self.assertEqual(artwork_by_locale["en"], artwork_by_locale["fr"])
+        self.assertEqual(artwork_by_locale["en"], artwork_by_locale["es"])
 
     def test_app_connect_result_uses_shared_step_caption_rule(self) -> None:
         localized = (
@@ -1013,14 +1050,23 @@ class WebPresentationTests(unittest.TestCase):
             ),
         }
 
+        artwork_by_locale: dict[str, tuple[str, str]] = {}
         for source_name, expected_columns in localized.items():
             with self.subTest(source=source_name):
                 soup = BeautifulSoup(_web_fragment(source_name), "html.parser")
                 composition = soup.select_one("figure.hb-app-download-composition")
                 self.assertIsNotNone(composition)
                 self.assertEqual(2, len(composition.select(".hb-app-download-column")))
-                self.assertIsNotNone(composition.select_one(".hb-app-download-art-store"))
-                self.assertIsNotNone(composition.select_one(".hb-app-download-art-qr"))
+                self.assertEqual(2, len(composition.select("img.hb-app-download-art")))
+                store_art = composition.select_one(".hb-app-download-art-store")
+                qr_art = composition.select_one(".hb-app-download-art-qr")
+                self.assertIsNotNone(store_art)
+                self.assertIsNotNone(qr_art)
+                artwork_by_locale[source_name] = (
+                    str(store_art.get("src", "")) if store_art else "",
+                    str(qr_art.get("src", "")) if qr_art else "",
+                )
+                self.assertNotEqual(*artwork_by_locale[source_name])
                 self.assertIsNotNone(composition.select_one(".hb-app-download-semantic-art"))
                 columns = composition.select(".hb-app-download-copy") if composition else []
                 self.assertEqual(2, len(columns))
@@ -1031,6 +1077,9 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertIsNotNone(heading)
                 section = composition.find_parent("section") if composition else None
                 self.assertEqual(0, len(section.find_all("p", recursive=False)) if section else -1)
+        paths = list(artwork_by_locale.values())
+        self.assertTrue(paths)
+        self.assertTrue(all(pair == paths[0] for pair in paths[1:]))
 
     def test_warranty_uses_live_pdf_derived_cards_across_locales(self) -> None:
         localized = {
