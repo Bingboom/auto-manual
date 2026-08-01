@@ -915,7 +915,8 @@ class WebPresentationTests(unittest.TestCase):
                     str(control_art.get("src", "")) if control_art else "",
                 )
                 self.assertEqual("asset:app/add_device", artwork_by_locale[language][0])
-                self.assertIn("front_controls", artwork_by_locale[language][1])
+                self.assertIn("app_control_panel", artwork_by_locale[language][1])
+                self.assertNotIn("front_controls", artwork_by_locale[language][1])
                 self.assertEqual(
                     expected_labels,
                     [

@@ -394,7 +394,7 @@
         "caption_labels": ["2.1", "2.2"],
         "caption_layout": "phone-pair",
         "label_roles": ["main-power", "dc-usb", "ac-power"],
-        "control_artwork": "docs/templates/word_template/common_assets/overview/front_controls.png",
+        "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
         "asset_scope": "shared"
       },
       {
