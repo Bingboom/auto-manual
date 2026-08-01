@@ -27,7 +27,7 @@
   "source_identity": {
     "manual_ir_schema_version": "manual-ir/v1",
     "manual_content_sha256": "031e4d2fcd7dce677ef632867ff71f32294e32587942205ef72665d4752a0be7",
-    "snapshot_sha256": "1f8c398921d09971c874c9dee5b54251605eb74617118a23f8c56fdfa96006fd",
+    "snapshot_sha256": "beeb56c3b25fb04ca1d28d3e908c4c8b3d87b9d3c58f23a8ca543ea41ede1a80",
     "style_contract_sha256": "41c67cdeea2d9ae9fec5a80ee62197d48cc97ba7525dd9a2afbdd606d28daee8",
     "layout_params_sha256": "810c12153a167169da545ba5f19e03d618618058db6abca06b192353a704e188"
   },
