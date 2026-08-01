@@ -1310,6 +1310,27 @@ body {
   object-fit: contain;
 }
 
+.hb-reference-caption-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--hb-caption-count, 1), minmax(0, 1fr));
+  gap: 0;
+  width: 100%;
+  margin: 0.18rem auto 0;
+  color: var(--hb-text-muted);
+  font-size: clamp(0.8rem, 1.15vw, 1rem);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.hb-reference-caption-grid[data-caption-layout="phone-triple"] {
+  grid-template-columns: repeat(3, 26%);
+  justify-content: space-between;
+}
+
+.hb-reference-caption {
+  display: block;
+}
+
 /* Keep the authoritative RST image/labels available to assistive technology. */
 .hb-reference-semantic {
   position: absolute !important;

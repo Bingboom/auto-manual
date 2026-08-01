@@ -404,6 +404,27 @@
             "path": "docs/renderers/contracts/assets/app/app_add_device_es.png"
           }
         ]
+      },
+      {
+        "id": "app-connect-result",
+        "source_patterns": ["*12_app_setup_placeholder"],
+        "image_key": "app/connect_result",
+        "caption_labels": ["2.3", "2.4", "2.5"],
+        "caption_layout": "phone-triple",
+        "composite_artwork_overrides": [
+          {
+            "source_patterns": ["12_app_setup_placeholder"],
+            "path": "docs/templates/word_template/common_assets/app/je1000f_us/connect_result_je1000f_us.png"
+          },
+          {
+            "source_patterns": ["p34_12_app_setup_placeholder"],
+            "path": "docs/templates/word_template/common_assets/app/je1000f_us/connect_result_je1000f_us.png"
+          },
+          {
+            "source_patterns": ["p50_12_app_setup_placeholder"],
+            "path": "docs/templates/word_template/common_assets/app/je1000f_us/connect_result_je1000f_us.png"
+          }
+        ]
       }
     ]
   }

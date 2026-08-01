@@ -916,6 +916,48 @@ class WebPresentationTests(unittest.TestCase):
                     else False
                 )
 
+    def test_app_connect_result_uses_shared_step_caption_rule(self) -> None:
+        localized = (
+            "12_app_setup_placeholder.rst",
+            "p34_12_app_setup_placeholder.rst",
+            "p50_12_app_setup_placeholder.rst",
+        )
+        for source_name in localized:
+            with self.subTest(source=source_name):
+                soup = BeautifulSoup(_web_fragment(source_name), "html.parser")
+                figure = soup.select_one(
+                    'figure.hb-reference-figure[data-reference-id="app-connect-result"]'
+                )
+                self.assertIsNotNone(figure)
+                self.assertIn(
+                    "connect_result_je1000f_us",
+                    str(figure.select_one(".hb-composite-art").get("src", ""))
+                    if figure
+                    else "",
+                )
+                captions = figure.select(".hb-reference-caption") if figure else []
+                self.assertEqual(["2.3", "2.4", "2.5"], [item.get_text(strip=True) for item in captions])
+                self.assertEqual(
+                    "phone-triple",
+                    figure.select_one("figcaption").get("data-caption-layout")
+                    if figure and figure.select_one("figcaption")
+                    else None,
+                )
+                semantic = figure.select_one(".hb-reference-semantic") if figure else None
+                self.assertIsNotNone(semantic)
+                semantic_alt = (
+                    semantic.select_one("img").get("alt", "")
+                    if semantic and semantic.select_one("img")
+                    else ""
+                )
+                self.assertTrue(semantic_alt)
+                following_copy = figure.find_next_sibling() if figure else None
+                self.assertTrue(
+                    following_copy.get_text(" ", strip=True)
+                    if isinstance(following_copy, Tag)
+                    else ""
+                )
+
     def test_app_add_device_renders_localized_inline_plus_control(self) -> None:
         localized = {
             "12_app_setup_placeholder.rst": (
