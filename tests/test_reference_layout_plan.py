@@ -187,8 +187,10 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
         )
         contract = json.loads(path.read_text(encoding="utf-8"))
         self.assertEqual(0, contract["idml_contract"]["max_skipped_raw"])
+        # Operator-approved content repin, 2026-08-01 (live Feishu copy fixes;
+        # composition map unchanged). Update only alongside a recorded approval.
         self.assertEqual(
-            "cc2ac59f3878788028f7acf61aa1fce535a3e2b80aaa87e8978e50b1db51fae7",
+            "f80212aab8b0c59cf53d4e226b06d2fcac69d4c0bac7cbafee0128e9ce79fba5",
             contract["source_identity"]["manual_content_sha256"],
         )
         pages = contract["pages"]

@@ -53,10 +53,15 @@ def _asset_refs(value: Any, *, parent_key: str = "") -> tuple[str, ...]:
     return tuple(dict.fromkeys(found))
 
 
+# Matches `<semantic_name>_<feishu-file-token>.<ext>` wherever the basename
+# appears — full `_attachments/...` paths in CSV cells and RST directives, and
+# bare basenames inside rendered LaTeX macro arguments alike. The token is a
+# single 16+ char alphanumeric run; the all-lowercase lookahead keeps long
+# English name words (e.g. `internationalization`) out of the match.
 _ATTACHMENT_TOKEN_RE = re.compile(
-    r"(_attachments/[a-z_]+/[^\s,\"']*?)_[A-Za-z0-9]{16,}"
-    r"(\.(?:png|jpe?g|pdf|svg))",
-    re.IGNORECASE,
+    r"([A-Za-z0-9_][A-Za-z0-9_.\-]*?)"
+    r"_(?![a-z]{16,}\.)[A-Za-z0-9]{16,}"
+    r"(\.(?:png|jpe?g|pdf|svg))"
 )
 
 
