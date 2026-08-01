@@ -572,6 +572,27 @@ def _render_placeholder_values(template_line: str, values: tuple[str, ...]) -> s
     return "".join(rendered_parts)
 
 
+_DIRECTIVE_LINE_RE = re.compile(r"^\s*\.\.( |$)")
+_OPTION_LINE_RE = re.compile(r"^\s*:[A-Za-z][\w-]*:")
+_GRID_BORDER_LINE_RE = re.compile(r"^\s*\+[-=+]+\+?\s*$")
+
+
+def _line_structure_class(line: str) -> str:
+    """Coarse RST structural class used to guard placeholder-line refreshes."""
+    stripped = line.strip()
+    if not stripped:
+        return "blank"
+    if _DIRECTIVE_LINE_RE.match(line):
+        return "directive"
+    if _OPTION_LINE_RE.match(line):
+        return "option"
+    if _GRID_BORDER_LINE_RE.match(line):
+        return "grid-border"
+    if stripped.startswith("|") and stripped.endswith("|") and stripped.count("|") >= 3:
+        return "grid-row"
+    return "content"
+
+
 def _merge_parameter_lines(
     *,
     template_path: Path,
@@ -606,6 +627,13 @@ def _merge_parameter_lines(
             continue
         review_idx = review_line_mapping.get(template_idx)
         if review_idx is None or review_idx >= len(merged_lines):
+            continue
+        # When the pages have diverged, the line mapping can land a template
+        # content line on top of an unrelated structural line — e.g. a
+        # `.. list-table::` directive — and blindly overwriting it splices the
+        # page into malformed RST. Prose refreshes onto prose stay allowed;
+        # replacements that would change the line's structural class are not.
+        if _line_structure_class(merged_lines[review_idx]) != _line_structure_class(template_line):
             continue
         merged_lines[review_idx] = _render_placeholder_values(template_line, runtime_values)
 

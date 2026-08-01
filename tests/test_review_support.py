@@ -646,6 +646,80 @@ class TestReviewSupport(unittest.TestCase):
                 (review_dir / "page" / "02_whats_in_the_box.rst").read_text(encoding="utf-8"),
             )
 
+    def test_sync_review_paths_should_skip_diverged_review_lines_instead_of_splicing(self) -> None:
+        # Regression: run 30680211845 — a template bullet carrying a newly
+        # parameterized token line-mapped onto the review page's second
+        # `.. list-table::` directive (the pages had diverged), and the blind
+        # overwrite spliced the two tables into malformed RST.
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US" / "en"
+            template_path = docs_dir / "templates" / "page_shared" / "es" / "08_charging_methods.rst"
+
+            (runtime_dir / "page").mkdir(parents=True)
+            (review_dir / "page").mkdir(parents=True)
+            template_path.parent.mkdir(parents=True)
+
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text("{}\n", encoding="utf-8")
+
+            template_path.write_text(
+                ".. list-table::\n"
+                "\n"
+                "   * - **PRECAUCIÓN**\n"
+                "     - Un puerto de entrada |DC_INPUT_CONNECTOR| puede conectarse como máximo a dos paneles.\n"
+                "\n"
+                "       - Utilizar paneles del mismo modelo en ambos puertos |DC_INPUT_CONNECTOR|.\n",
+                encoding="utf-8",
+            )
+            (runtime_dir / "page" / "p45.rst").write_text(
+                ".. list-table::\n"
+                "\n"
+                "   * - **PRECAUCIÓN**\n"
+                "     - Un puerto de entrada DC8020 puede conectarse como máximo a dos paneles.\n"
+                "\n"
+                "       - Utilizar paneles del mismo modelo en ambos puertos DC8020.\n",
+                encoding="utf-8",
+            )
+            # Reviewer-diverged page: different phrasing, and the second table
+            # directive sits where the template's bullet line maps to.
+            diverged = (
+                ".. list-table::\n"
+                "\n"
+                "   * - **PRECAUCIÓN**\n"
+                "     - Un puerto de entrada DC8020 puede conectarse a un máximo de dos paneles.\n"
+                "\n"
+                ".. list-table::\n"
+            )
+            (review_dir / "page" / "p45.rst").write_text(diverged, encoding="utf-8")
+
+            sync_review_paths(
+                runtime_bundle_dir=runtime_dir,
+                review_dir=review_dir,
+                scope="params",
+                plan=(
+                    SyncPlanEntry(
+                        relative_path=Path("page") / "p45.rst",
+                        mode="merge_params",
+                        template_path=template_path,
+                    ),
+                ),
+            )
+
+            merged = (review_dir / "page" / "p45.rst").read_text(encoding="utf-8")
+            merged_lines = merged.splitlines()
+            self.assertEqual(
+                ".. list-table::",
+                merged_lines[5],
+                "the second table directive must survive the refresh (no splice)",
+            )
+            self.assertEqual(
+                len(diverged.splitlines()),
+                len(merged_lines),
+                "the refresh must not add or drop lines",
+            )
+
     def test_sync_review_paths_should_rewrite_substitution_asset_paths(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

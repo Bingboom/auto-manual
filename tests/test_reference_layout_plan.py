@@ -190,7 +190,7 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
         # Operator-approved content repin, 2026-08-01 (live Feishu copy fixes;
         # composition map unchanged). Update only alongside a recorded approval.
         self.assertEqual(
-            "f80212aab8b0c59cf53d4e226b06d2fcac69d4c0bac7cbafee0128e9ce79fba5",
+            "031e4d2fcd7dce677ef632867ff71f32294e32587942205ef72665d4752a0be7",
             contract["source_identity"]["manual_content_sha256"],
         )
         pages = contract["pages"]

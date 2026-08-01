@@ -26,7 +26,7 @@
   },
   "source_identity": {
     "manual_ir_schema_version": "manual-ir/v1",
-    "manual_content_sha256": "f80212aab8b0c59cf53d4e226b06d2fcac69d4c0bac7cbafee0128e9ce79fba5",
+    "manual_content_sha256": "031e4d2fcd7dce677ef632867ff71f32294e32587942205ef72665d4752a0be7",
     "snapshot_sha256": "1f8c398921d09971c874c9dee5b54251605eb74617118a23f8c56fdfa96006fd",
     "style_contract_sha256": "41c67cdeea2d9ae9fec5a80ee62197d48cc97ba7525dd9a2afbdd606d28daee8",
     "layout_params_sha256": "810c12153a167169da545ba5f19e03d618618058db6abca06b192353a704e188"
@@ -34,8 +34,8 @@
   "approval": {
     "status": "approved",
     "approved_by": "唐夏冰",
-    "approved_at": "2026-07-31T11:06:31-07:00",
-    "method": "operator-approved content repin to live Feishu copy (chat decision 2026-08-01: 按现网内容重批契约); composition map unchanged from je1000f_us_v2_20260605 seed"
+    "approved_at": "2026-07-31T20:06:50-07:00",
+    "method": "operator-approved content repin to live Feishu copy (chat decision 2026-08-01: 按现网内容重批契约); includes the merge-splice guard and p26 grid repair; composition map unchanged"
   },
   "render_contract": {
     "dpi": 300,
@@ -560,7 +560,7 @@
     },
     {
       "source_ref": "page/12_app_setup_placeholder.rst",
-      "source_sha256": "0db05b7a6bd5de1673eb94c56f0242156871f20735b82e812f557ecfd5449418",
+      "source_sha256": "a3ae4f4feca86c43a94d79f4d5ff1f9da0268518e6a1e0164f17ec8248f7f1e0",
       "language": "en",
       "composition_id": "en_app",
       "start_page": 20,
@@ -624,7 +624,7 @@
     },
     {
       "source_ref": "page/p26_05_operation_guide_placeholder.rst",
-      "source_sha256": "6e888b902f39ef13826073f154e8cf23537fe5d77cf2c73035acfcdd12bd9914",
+      "source_sha256": "3b7160b6e9d4a6b8de13dc533ef963d702257366138d22044443f496a13fbbe5",
       "language": "fr",
       "composition_id": "fr_operation",
       "start_page": 28,
@@ -693,7 +693,7 @@
     },
     {
       "source_ref": "page/p34_12_app_setup_placeholder.rst",
-      "source_sha256": "11db9c5a6143aef0b04fdfcd14553284f9a110ad11b8cb9c20f424fa962abc58",
+      "source_sha256": "6a56e70869311057f490b930888bf290e1757b5e08cff479a9fd6a6ac02b02be",
       "language": "fr",
       "composition_id": "fr_app",
       "start_page": 38,
@@ -786,7 +786,7 @@
     },
     {
       "source_ref": "page/p45_08_charging_methods.rst",
-      "source_sha256": "1547b226e039fea1ef2af15c0d7a215520a14041ac386081bd9a73b869a5e48b",
+      "source_sha256": "c5c8ea005d51ebfb50295b2838b5aa81578317aa541b4be0ab25212629cd7fb2",
       "language": "es",
       "composition_id": "es_charging_methods",
       "start_page": 51,
