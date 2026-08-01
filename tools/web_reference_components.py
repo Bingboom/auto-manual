@@ -41,11 +41,8 @@ def prepare_reference_caption_data(
         for value in spec.get("caption_labels", [])
         if str(value).strip()
     ]
-    if label_block is None and not labels:
-        raise error_type(
-            f"{source_path}: reference figure {reference_id} must declare captured labels "
-            "or caption labels"
-        )
+    if label_block is None and not labels and not spec.get("captions_embedded"):
+        raise error_type(f"{source_path}: {reference_id} requires labels or embedded captions")
     return label_block, labels
 
 
@@ -84,7 +81,7 @@ def transform_app_add_device(
 ) -> None:
     """Render shared App screenshots and device art with live localized labels."""
     reference_id = str(spec["id"])
-    label_block, caption_labels = prepare_reference_caption_data(
+    label_block, _ = prepare_reference_caption_data(
         image=image,
         spec=spec,
         source_path=source_path,
@@ -102,28 +99,30 @@ def transform_app_add_device(
     control_artwork = str(spec.get("control_artwork", "")).strip()
     if not control_artwork:
         raise error_type(f"{source_path}: {reference_id} has no shared control artwork")
+    phone_artwork = str(spec.get("phone_artwork", "")).strip()
+    if not phone_artwork:
+        raise error_type(
+            f"{source_path}: {reference_id} embeds captions but has no approved phone artwork"
+        )
 
     figure = soup.new_tag(
         "figure",
         attrs={
             "class": "hb-app-add-device-composition",
             "data-reference-id": reference_id,
+            "data-step-captions": "embedded",
         },
     )
     for attribute in ("style", "width", "height"):
         image.attrs.pop(attribute, None)
+    if phone_artwork:
+        image["src"] = phone_artwork
     image["class"] = [*image.get("class", []), "hb-app-add-device-phone-art"]
     image.replace_with(figure)
 
     phone_stage = soup.new_tag("div", attrs={"class": "hb-app-add-device-phone-stage"})
     phone_stage.append(image)
     figure.append(phone_stage)
-    append_reference_captions(
-        soup,
-        figure,
-        labels=caption_labels,
-        layout=str(spec.get("caption_layout", "phone-pair")),
-    )
 
     control_panel = soup.new_tag(
         "div",

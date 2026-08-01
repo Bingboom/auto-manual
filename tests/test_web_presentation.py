@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
+from PIL import Image
 
 from tools.web_presentation import (
     WebPresentationError,
@@ -882,7 +883,7 @@ class WebPresentationTests(unittest.TestCase):
                     else "",
                 )
 
-    def test_app_add_device_uses_shared_art_with_live_localized_labels(self) -> None:
+    def test_app_add_device_embeds_steps_and_keeps_live_localized_labels(self) -> None:
         localized = {
             "en": (
                 "12_app_setup_placeholder.rst",
@@ -914,9 +915,13 @@ class WebPresentationTests(unittest.TestCase):
                     str(phone_art.get("src", "")) if phone_art else "",
                     str(control_art.get("src", "")) if control_art else "",
                 )
-                self.assertEqual("asset:app/add_device", artwork_by_locale[language][0])
+                self.assertIn("app_add_device_steps", artwork_by_locale[language][0])
                 self.assertIn("app_control_panel", artwork_by_locale[language][1])
                 self.assertNotIn("front_controls", artwork_by_locale[language][1])
+                self.assertEqual(
+                    "embedded",
+                    figure.get("data-step-captions") if figure else None,
+                )
                 self.assertEqual(
                     expected_labels,
                     [
@@ -926,12 +931,7 @@ class WebPresentationTests(unittest.TestCase):
                     if figure
                     else [],
                 )
-                self.assertEqual(
-                    ["2.1", "2.2"],
-                    [item.get_text(strip=True) for item in figure.select(".hb-reference-caption")]
-                    if figure
-                    else [],
-                )
+                self.assertEqual([], figure.select(".hb-reference-caption") if figure else [])
                 self.assertIsNone(figure.select_one(".hb-composite-art") if figure else None)
                 self.assertIsNone(figure.select_one(".hb-reference-semantic") if figure else None)
                 preceding_copy = figure.find_previous("p") if figure else None
@@ -954,7 +954,7 @@ class WebPresentationTests(unittest.TestCase):
         self.assertEqual(artwork_by_locale["en"], artwork_by_locale["fr"])
         self.assertEqual(artwork_by_locale["en"], artwork_by_locale["es"])
 
-    def test_app_connect_result_uses_shared_step_caption_rule(self) -> None:
+    def test_app_connect_result_embeds_shared_step_captions(self) -> None:
         localized = (
             "12_app_setup_placeholder.rst",
             "p34_12_app_setup_placeholder.rst",
@@ -968,19 +968,17 @@ class WebPresentationTests(unittest.TestCase):
                 )
                 self.assertIsNotNone(figure)
                 self.assertIn(
-                    "connect_result_je1000f_us",
+                    "app_connect_result_steps",
                     str(figure.select_one(".hb-composite-art").get("src", ""))
                     if figure
                     else "",
                 )
-                captions = figure.select(".hb-reference-caption") if figure else []
-                self.assertEqual(["2.3", "2.4", "2.5"], [item.get_text(strip=True) for item in captions])
                 self.assertEqual(
-                    "phone-triple",
-                    figure.select_one("figcaption").get("data-caption-layout")
-                    if figure and figure.select_one("figcaption")
-                    else None,
+                    "embedded",
+                    figure.get("data-step-captions") if figure else None,
                 )
+                self.assertEqual([], figure.select(".hb-reference-caption") if figure else [])
+                self.assertIsNone(figure.select_one("figcaption") if figure else None)
                 semantic = figure.select_one(".hb-reference-semantic") if figure else None
                 self.assertIsNotNone(semantic)
                 semantic_alt = (
@@ -1081,6 +1079,75 @@ class WebPresentationTests(unittest.TestCase):
         paths = list(artwork_by_locale.values())
         self.assertTrue(paths)
         self.assertTrue(all(pair == paths[0] for pair in paths[1:]))
+
+    def test_app_download_qr_asset_keeps_complete_bottom_border(self) -> None:
+        qr_path = (
+            ROOT
+            / "docs"
+            / "renderers"
+            / "contracts"
+            / "assets"
+            / "app"
+            / "app_download_qr.png"
+        )
+        with Image.open(qr_path) as source:
+            image = source.convert("L")
+
+        width, height = image.size
+        self.assertEqual(width, height)
+        self.assertGreaterEqual(width, 400)
+        bottom_border_dark_pixels = max(
+            sum(1 for x in range(width) if image.getpixel((x, y)) < 128)
+            for y in range(height - 50, height - 20)
+        )
+        self.assertGreater(bottom_border_dark_pixels, int(width * 0.7))
+
+    def test_app_step_artwork_contains_each_embedded_caption(self) -> None:
+        assets = {
+            "app_add_device_steps.png": (1200, 1200, 2),
+            "app_connect_result_steps.png": (2000, 1100, 3),
+        }
+        asset_root = (
+            ROOT / "docs" / "renderers" / "contracts" / "assets" / "app"
+        )
+        for filename, (min_width, min_height, column_count) in assets.items():
+            with self.subTest(asset=filename), Image.open(asset_root / filename) as source:
+                image = source.convert("L")
+                width, height = image.size
+                self.assertGreaterEqual(width, min_width)
+                self.assertGreaterEqual(height, min_height)
+                caption_band_top = int(height * 0.92)
+                column_width = width // column_count
+                for column in range(column_count):
+                    left = column * column_width
+                    right = width if column == column_count - 1 else left + column_width
+                    dark_pixels = sum(
+                        1
+                        for y in range(caption_band_top, height)
+                        for x in range(left, right)
+                        if image.getpixel((x, y)) < 128
+                    )
+                    self.assertGreater(dark_pixels, int(column_width * 0.25))
+
+    def test_app_control_artwork_keeps_complete_leader_lines(self) -> None:
+        control_path = ROOT / "docs" / "renderers" / "latex" / "assets" / "app_control_panel.png"
+        with Image.open(control_path) as source:
+            image = source.convert("L")
+
+        width, height = image.size
+        self.assertGreater(width / height, 4)
+        segments = (
+            (0.31, 0.43, 0.39, 100),
+            (0.31, 0.43, 0.65, 80),
+            (0.47, 0.74, 0.65, 250),
+        )
+        for left_ratio, right_ratio, y_ratio, minimum_dark_pixels in segments:
+            dark_pixels = sum(
+                1
+                for x in range(int(width * left_ratio), int(width * right_ratio))
+                if image.getpixel((x, int(height * y_ratio))) < 180
+            )
+            self.assertGreaterEqual(dark_pixels, minimum_dark_pixels)
 
     def test_warranty_uses_live_pdf_derived_cards_across_locales(self) -> None:
         localized = {

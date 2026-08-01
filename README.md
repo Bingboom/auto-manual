@@ -591,10 +591,14 @@ localized 2x crops of the approved PDF at every viewport width so their
 prerequisite pills, icons, numbering, and step layout stay visually intact; the
 original RST image and `line-block` copy remain in the hidden semantic layer.
 The car-charging connection panel follows the localized reference-figure rule.
-App add-device instead uses one shared two-phone artwork plus one shared
-text-free device-control illustration; the three governed RST button labels are
-live HTML, with 2.1/2.2 supplied by the shared caption component. Its surrounding
-instructions, section heading, and 2.3 step also stay live HTML. The App download
+App add-device instead uses one shared two-phone artwork with the PDF-positioned
+2.1/2.2 labels already embedded, plus one shared text-free device-control
+illustration; the three governed RST button labels remain live HTML. The shared
+three-phone result artwork likewise embeds 2.3/2.4/2.5, so responsive CSS never
+has to guess the caption baselines. The approved text-free control artwork owns
+the complete leader lines and grey panel; CSS only positions live labels over its
+reserved text zones and does not synthesize line fragments. Surrounding
+instructions and section headings stay live HTML. The App download
 component uses distinct store-badge and QR images, each centered independently in
 its own column above live localized copy. App step 2.1 restores the small
 add-device plus as a crisp themeable inline control and removes the duplicate

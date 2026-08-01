@@ -361,6 +361,8 @@ def _leader_layer(soup: BeautifulSoup, view: dict[str, Any]) -> Tag:
 
 
 def _composite_artwork_path(component: dict[str, Any], source_path: Path) -> str | None:
+    if shared_artwork := str(component.get("composite_artwork", "")).strip():
+        return shared_artwork
     for override in component.get("composite_artwork_overrides", []):
         if _matches_source(source_path, [str(value) for value in override["source_patterns"]]):
             return str(override["path"])
@@ -958,6 +960,8 @@ def _transform_reference_figure(
             "data-reference-id": reference_id,
         },
     )
+    if spec.get("captions_embedded"):
+        figure["data-step-captions"] = "embedded"
     semantic = soup.new_tag(
         "div",
         attrs={

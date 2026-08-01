@@ -1322,11 +1322,6 @@ body {
   text-align: center;
 }
 
-.hb-reference-caption-grid[data-caption-layout="phone-triple"] {
-  grid-template-columns: repeat(3, 26%);
-  justify-content: space-between;
-}
-
 .hb-reference-caption {
   display: block;
 }
