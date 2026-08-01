@@ -46,82 +46,82 @@
 卸掉：大改造无回归锁的风险 + 静默英文回退/静默跳过无传感器的排查成本。
 〔GATE〕capability 豁免清单是业务判断（diff 即清单，操作者 review 拍板）；fr golden `--regenerate` 的 fixture diff 需人审。
 
-1. [S] `test(idml): drop orphan data_only fixtures + fr golden variant` — 删无引用的 data_only fixtures（32 文件，grep 证据入 body）；golden VARIANTS 增 composed_fr。Done：golden 套件绿；`git grep data_only tools tests` 为空；fr 变体双跑 byte 相等。
-2. [S] `test(configs): auto-enumerate config shape coverage` — glob 全部 config，逐个 subTest 断言可加载/目标可解析。Done：subTest 数==config 文件数；坏 config 注入用例红。
-3. [M] `feat(lang): language registry + core parity locks` — 新增 `tools/lang_registry.py`（code/列后缀候选含历史别名/各列名/TM 列/显示名/模板目录/分隔符）；parity 测试锁核心消费面（sync_data_models 六表、manual_copy_source 五常量、localized_copy、signal_words）。零行为。Done：unittest 全绿；parity 显式清单覆盖。
-4. [S] `feat(lang): long-tail parity locks + drift ledger` — parity 扩展到 content_lint 四映射/idml loaders 后缀表/variable_resolver/check_docs/显示层；已知 ko/de/it/uk 漂移以 expectedFailure 机器化记录。Done：漂移清单=测试产物。
-5. [S] `test(sync): four parallel table registries consistency lock` — TABLE_SCHEMAS ↔ PHASE2_REQUIRED_* ↔ REQUIRED_CSV_HEADERS ↔ phase2_source_tables.json 闭合锁，缝隙显式豁免注明成因。
-6. [M] `feat(sync): missing_columns sensor` — sync-data 用已获取的 field-list 对 schema 求差，缺列写入 snapshot_manifest + WARNING（pt-BR 别名豁免）。Done：删 Text_ko 字段的 fake-source 用例。
-7. [S] `feat(check): capability fail-open visible + known-missing ledger` — 缺能力行从静默跳过改 WARN 级 CAPABILITY_ROW_MISSING + 豁免表。
-8. [S] `feat(idml): skipped_raw report field (no gate)` — 丢块计数进导出报告 sidecar；strict 门留 Stage 5（先取证后收紧）。
+1. [x] [S] `test(idml): drop orphan data_only fixtures + fr golden variant` — 删无引用的 data_only fixtures（32 文件，grep 证据入 body）；golden VARIANTS 增 composed_fr。Done：golden 套件绿；`git grep data_only tools tests` 为空；fr 变体双跑 byte 相等。
+2. [x] [S] `test(configs): auto-enumerate config shape coverage` — glob 全部 config，逐个 subTest 断言可加载/目标可解析。Done：subTest 数==config 文件数；坏 config 注入用例红。
+3. [x] [M] `feat(lang): language registry + core parity locks` — 新增 `tools/lang_registry.py`（code/列后缀候选含历史别名/各列名/TM 列/显示名/模板目录/分隔符）；parity 测试锁核心消费面（sync_data_models 六表、manual_copy_source 五常量、localized_copy、signal_words）。零行为。Done：unittest 全绿；parity 显式清单覆盖。
+4. [x] [S] `feat(lang): long-tail parity locks + drift ledger` — parity 扩展到 content_lint 四映射/idml loaders 后缀表/variable_resolver/check_docs/显示层；已知 ko/de/it/uk 漂移以 expectedFailure 机器化记录。Done：漂移清单=测试产物。
+5. [x] [S] `test(sync): four parallel table registries consistency lock` — TABLE_SCHEMAS ↔ PHASE2_REQUIRED_* ↔ REQUIRED_CSV_HEADERS ↔ phase2_source_tables.json 闭合锁，缝隙显式豁免注明成因。
+6. [x] [M] `feat(sync): missing_columns sensor` — sync-data 用已获取的 field-list 对 schema 求差，缺列写入 snapshot_manifest + WARNING（pt-BR 别名豁免）。Done：删 Text_ko 字段的 fake-source 用例。
+7. [x] [S] `feat(check): capability fail-open visible + known-missing ledger` — 缺能力行从静默跳过改 WARN 级 CAPABILITY_ROW_MISSING + 豁免表。
+8. [x] [S] `feat(idml): skipped_raw report field (no gate)` — 丢块计数进导出报告 sidecar；strict 门留 Stage 5（先取证后收紧）。
 
 ### Stage 1 — CI/门禁随产线自动扩展（7 PR）
 卸掉：新产线默认零 CI 覆盖 + 共享文件变更后的 N 次人工发现成本。
 〔GATE〕workflow 变更逐项批准（check-all job、review-preview 通配、artifacts 项在 Stage 4）；`export_idml --model` 改必填是公开 CLI 行为变更；strict 翻转时点仍归操作者（本阶段只做归一化前置）。
 
-1. [M] `feat(ci): ci_check_targets driver + check-all job` — 从 configs 派生目标清单循环 check（fixtures 数据根，缺 key 明确 SKIP），聚合 PASS/SKIP/FAIL；与现有两 job 并存观察。Done：configs 增一 yaml 清单自动+1；覆盖率按 §2 修正定义输出；SKIP 棘轮文件落盘。
-2. [M] `feat(ratchet): warning baselines target-prefix normalization` — sanitize_line 把 target 路径前缀换 `{target}` 令牌，重生成两份基线（diff 随 PR 评审）。strict(I2) 的硬前置。Done：US/JP 同模板 warning → known=1 new=0；基线无 JE-1000F 字面。
-3. [M] `feat(fixtures): data_snapshot fixture-refresh by document_key` — 一条命令把某 key 的行从本地镜像合并进 fixtures 并重算 manifest 哈希。Done：幂等/隔离/哈希复算三断言。
-4. [S] `chore(ci): review-preview paths glob` — 六个枚举改通配。Done：yaml 解析；〔操作者验收〕合并后测试 PR 验证触发。
-5. [S] `refactor(ci): derive review-preview/nightly fallback targets from configs scan` — 消灭 :79-86 的写死 fallback（补批判环挂空承诺）。Done：parity 单测（派生==现值）。
-6. [M] `feat(idml): rebind --all-registered + pins fix-command output` — 批量 dry-run 汇总表；--write 仍逐 plan 显式；pins check 失败附可复制修复命令。Done：双 fixture plan 用例。
-7. [S] `fix(idml): export_idml --model required` — 删 :118 的 JE-1000F 默认值（AGENTS.md 违例）。失败方向安全。
+1. [x] [M] `feat(ci): ci_check_targets driver + check-all job` — 从 configs 派生目标清单循环 check（fixtures 数据根，缺 key 明确 SKIP），聚合 PASS/SKIP/FAIL；与现有两 job 并存观察。Done：configs 增一 yaml 清单自动+1；覆盖率按 §2 修正定义输出；SKIP 棘轮文件落盘。
+2. [x] [M] `feat(ratchet): warning baselines target-prefix normalization` — sanitize_line 把 target 路径前缀换 `{target}` 令牌，重生成两份基线（diff 随 PR 评审）。strict(I2) 的硬前置。Done：US/JP 同模板 warning → known=1 new=0；基线无 JE-1000F 字面。
+3. [x] [M] `feat(fixtures): data_snapshot fixture-refresh by document_key` — 一条命令把某 key 的行从本地镜像合并进 fixtures 并重算 manifest 哈希。Done：幂等/隔离/哈希复算三断言。
+4. [x] [S] `chore(ci): review-preview paths glob` — 六个枚举改通配。Done：yaml 解析；〔操作者验收〕合并后测试 PR 验证触发。
+5. [x] [S] `refactor(ci): derive review-preview/nightly fallback targets from configs scan` — 消灭 :79-86 的写死 fallback（补批判环挂空承诺）。Done：parity 单测（派生==现值）。
+6. [x] [M] `feat(idml): rebind --all-registered + pins fix-command output` — 批量 dry-run 汇总表；--write 仍逐 plan 显式；pins check 失败附可复制修复命令。Done：双 fixture plan 用例。
+7. [x] [S] `fix(idml): export_idml --model required` — 删 :118 的 JE-1000F 默认值（AGENTS.md 违例）。失败方向安全。
 
 ### Stage 2 — 语言接入零代码化：K13 落地（13 PR）
 卸掉：新语言 ≈15 文件散点编辑的最大边际尖峰；顺带消灭 ko/de/it/uk 实锤漂移与 content_lint 对 ja/ko/zh 的 QC 盲区。全程 golden/parity 锁行为。
 〔GATE〕①正式认定 K13 触发器已击发（本计划即触发事件）②飞书内容表建列清单（Text_ko 等）批准后人工/lark-cli 执行——代码先行，missing_columns 传感器如实报告缺口③content_lint 扩 ja/ko/zh 仅报告不阻断，口径确认。
 
-1. [M] `fix(lang): close ko/de/it/uk registration drift` — 修四处实锤缺口；**含四处联动同步**：fixtures 表头、snapshot_manifest 哈希、phase2_source_tables.json、REQUIRED_CSV_HEADERS（Stage 0 一致性锁会打红的正是这些）。Done：expectedFailure 转正；全量 unittest 绿。
-2. [S] `refactor(lang): signal_words + localized_copy consume registry`
-3. [M] `refactor(lang): manual_copy_source five constants from registry` — 派生列序 golden 锁逐项相等。
-4. [M] `refactor(lang): sync_data_models TABLE_SCHEMAS language columns from registry` — Done：fixtures 各 CSV 表头 sha256 不变；sync dry-run manifest sha 不变。
-5. [S] `refactor(sync): derive PHASE2_REQUIRED_*/REQUIRED_CSV_HEADERS from TABLE_SCHEMAS` — 平行清单消减（不止传感器化）。
-6. [M] `refactor(lang): csv_pages/builder/variable_resolver alias consolidation` — page_jp/page_zh 目录特例入注册表字段。Done：RST bundle 逐字节 diff 为空。
-7. [S] `refactor(lang): content_lint maps from registry`（ja/ko/zh 进 QC 报告面）
-8. [M] `refactor(lang): display/query layer consolidation`（含 HTML 切换器补全语言标签）
-9. [M] `refactor(idml): SYMBOL_COPY/page_toc language packs + governed_languages() single point` — ≥13 处 `{"en","fr","es"}` 字面量归一；loaders.py 拉链回落。Done：en+fr golden 零字节差。
-10. [S] `feat(latex): HBApplyLang notice labels for all registered langs` — components_safety.tex:320-335 仅 fr/es 的硬编码宏标签数据化（批判环漏配项：拉丁新线印刷件会静默出英文告示标签）。Done：现有语言输出逐字节不变；新语言标签用例。
-11. [S] `feat(guardrail): language-literal grep ratchet`
-12. [S] `refactor(capability): CAPABILITY_FIELDS from rules CSV`（能力新增从三处降两处零代码）
-13. [S] `test(lang): fake-language 'xx' end-to-end zero-Python proof` — **K13 出口判据机器证明**；setup-map「代码注册」段同 PR 改写。
+1. [x] [M] `fix(lang): close ko/de/it/uk registration drift` — 修四处实锤缺口；**含四处联动同步**：fixtures 表头、snapshot_manifest 哈希、phase2_source_tables.json、REQUIRED_CSV_HEADERS（Stage 0 一致性锁会打红的正是这些）。Done：expectedFailure 转正；全量 unittest 绿。
+2. [x] [S] `refactor(lang): signal_words + localized_copy consume registry`
+3. [x] [M] `refactor(lang): manual_copy_source five constants from registry` — 派生列序 golden 锁逐项相等。
+4. [x] [M] `refactor(lang): sync_data_models TABLE_SCHEMAS language columns from registry` — Done：fixtures 各 CSV 表头 sha256 不变；sync dry-run manifest sha 不变。
+5. [x] [S] `refactor(sync): derive PHASE2_REQUIRED_*/REQUIRED_CSV_HEADERS from TABLE_SCHEMAS` — 平行清单消减（不止传感器化）。
+6. [x] [M] `refactor(lang): csv_pages/builder/variable_resolver alias consolidation` — page_jp/page_zh 目录特例入注册表字段。Done：RST bundle 逐字节 diff 为空。
+7. [x] [S] `refactor(lang): content_lint maps from registry`（ja/ko/zh 进 QC 报告面）
+8. [x] [M] `refactor(lang): display/query layer consolidation`（含 HTML 切换器补全语言标签）
+9. [x] [M] `refactor(idml): SYMBOL_COPY/page_toc language packs + governed_languages() single point` — ≥13 处 `{"en","fr","es"}` 字面量归一；loaders.py 拉链回落。Done：en+fr golden 零字节差。
+10. [x] [S] `feat(latex): HBApplyLang notice labels for all registered langs` — components_safety.tex:320-335 仅 fr/es 的硬编码宏标签数据化（批判环漏配项：拉丁新线印刷件会静默出英文告示标签）。Done：现有语言输出逐字节不变；新语言标签用例。
+11. [x] [S] `feat(guardrail): language-literal grep ratchet`
+12. [x] [S] `refactor(capability): CAPABILITY_FIELDS from rules CSV`（能力新增从三处降两处零代码）
+13. [x] [S] `test(lang): fake-language 'xx' end-to-end zero-Python proof` — **K13 出口判据机器证明**；setup-map「代码注册」段同 PR 改写。
 
 ### Stage 3 — 克隆产物生成化：新 region 一条命令（13 PR）
 卸掉：手工克隆 config/manifest/模板/资产行/登记点的克隆边际成本。
 〔GATE〕①new_line_seed 的 --write 触碰 phase2 源表（F6 面）：dry-run 计划批准后另 PR 放行②promotion 契约载体（Python 常量→JSON）变更确认③target_defaults 元组序无消费方依赖确认。
 
-1. [S] `feat(manifest): manifest-lint drift sentinel (report only)`
-2. [M] `feat(manifest): family-manifest diff format + 2-line pilot roundtrip` — 差分格式设计 + 2 条试点线 byte-identical 往返（批判环拆分：原单 PR 过大）。
-3. [M] `feat(manifest): fold remaining 15 manifests` — 全部 17 份 byte-identical golden。
-4. [S] `chore(ci): manifest regenerate-and-diff guardrail`（手改生成物即红）
-5. [M] `feat(scaffold): build.py new-line dry-run` — 对 KR/AU 两线重放校准，白名单外 diff 为空。
-6. [M] `feat(scaffold): new-line --write + auto check` — 强制串接 fixture-refresh（关联覆盖率棘轮）。
-7. [M] `feat(assets): asset_registry refresh + scaffold-override` — 哈希机器重算（终结手算 sha256）；v2- 垫片与 EXPORT_PREFIXES 收口备注入 body。
-8. [M] `refactor(assets): datafy reviewed-promotion contract (dual-read)` — fail-closed 语义不变，载体到 JSON。
-9. [S] `refactor(spec): _KNOWN_VALUE_REPAIRS to tracked CSV`（数据补丁出代码，防绕 F6）
-10. [M] `feat(doctor): new-line data-plane preflight` — 一条命令代替「靠 build 失败反推缺行」。
-11. [M] `feat(intake): new_line_seed dry-run plan` — doc-key 行/占位克隆/field-create 助手三件事的零写计划。
-12. [S] `refactor(targets): target_defaults from configs scan + parity lock`
-13. [S] `test(backport): source_record_index registries lock + abstain sensor` — 回写闭环 6 张代码内字典的一致性锁（批判环漏配项）。
+1. [x] [S] `feat(manifest): manifest-lint drift sentinel (report only)`
+2. [x] [M] `feat(manifest): family-manifest diff format + 2-line pilot roundtrip` — 差分格式设计 + 2 条试点线 byte-identical 往返（批判环拆分：原单 PR 过大）。
+3. [x] [M] `feat(manifest): fold remaining 15 manifests` — 全部 17 份 byte-identical golden。
+4. [x] [S] `chore(ci): manifest regenerate-and-diff guardrail`（手改生成物即红）
+5. [x] [M] `feat(scaffold): build.py new-line dry-run` — 对 KR/AU 两线重放校准，白名单外 diff 为空。
+6. [x] [M] `feat(scaffold): new-line --write + auto check` — 强制串接 fixture-refresh（关联覆盖率棘轮）。
+7. [x] [M] `feat(assets): asset_registry refresh + scaffold-override` — 哈希机器重算（终结手算 sha256）；v2- 垫片与 EXPORT_PREFIXES 收口备注入 body。
+8. [x] [M] `refactor(assets): datafy reviewed-promotion contract (dual-read)` — fail-closed 语义不变，载体到 JSON。
+9. [x] [S] `refactor(spec): _KNOWN_VALUE_REPAIRS to tracked CSV`（数据补丁出代码，防绕 F6）
+10. [x] [M] `feat(doctor): new-line data-plane preflight` — 一条命令代替「靠 build 失败反推缺行」。
+11. [x] [M] `feat(intake): new_line_seed dry-run plan` — doc-key 行/占位克隆/field-create 助手三件事的零写计划。
+12. [x] [S] `refactor(targets): target_defaults from configs scan + parity lock`
+13. [x] [S] `test(backport): source_record_index registries lock + abstain sensor` — 回写闭环 6 张代码内字典的一致性锁（批判环漏配项）。
 
 ### Stage 4a — 运行吞吐（无并发语义变化,18 PR）
 卸掉：每 run 4-8 分钟 TeX、web 版互踩、批量丢单、逐线契约仪式、finalize 逐份触发、型号特判复制；补冻结快照（E1）与 Feishu 传输单点（K8 全四件）。
 〔GATE〕①TeX/nightly 的 workflow 变更逐项批准②finalize JSX 需操作者设计机 2-doc 实测③E1 归档位置/保留策略确认④HTML_link 是生产别名还是唯一部署 URL 先实测确认（定 web 多 target 化紧迫度）。
 
 1. [x] [S] `feat(ci): TeX apt package cache` — Done（机器）：Publish queue 的 XeLaTeX/CJK apt archives 以 runner OS/arch + 版本化包清单 hash 为 key；yaml 解析、执行顺序、缓存绑定与 smoke 隔离均有单测。`texlive_smoke_only` 不消费队列行；冷/暖实跑为 153s/127s，PDF SHA 完全一致，证据见 [验收记录](../tests/texlive_cache_acceptance_2026-07-31.md)。本项仅关闭 apt archive cache，不虚报为 K2 的整树免安装目标。
-2. [M] `feat(site): multi-target latest site + per-target HTML link writeback` — dist/<model>/<region>/<lang>/ 子路径+根索引；旧行为兼容开关。
-3. [S] `fix(queue): batch dispatch dedupe` — >1 行时改派发一次批量 run（消除 pending 槽静默丢单；比现状**更**串行，安全）。
-4. [S] `feat(queue): asset lineage pre-check at dispatch`（15-30 分钟构建后才被门拦 → 派发时预警;正式门不动）
-5. [S] `feat(queue): run-level phase2 sync memo`（批量 run 内同 config 只同步一次）
-6. [M] `refactor(feishu): K8 slice-1 converge queue runners into feishu_record_transport`
-7. [S] `refactor(feishu): K8 slice-2 converge listen/spec_master_rebuild/bitable_schema`
-8. [S] `feat(feishu): K8 slice-3 429 retry/backoff + pagination single point`
-9. [S] `feat(sync): phase2 snapshot write file-lock` — K8 原 Done-when 第 4 件（批判环补漏：并发 sync 竞态 10x 下无覆盖）。
-10. [M] `feat(idml): reference_layout_scaffold contract draft generator` — 52 页手抄哈希 → 只审 composition/approval；不接激活路径，fail-closed 兜底。
-11. [M] `feat(finalize): --jobs manifest Python side` — 清单校验/逐 job 报告聚合/单 job 失败隔离；**jobs 清单强制显式 preset 字段**（修 [PDF/X-4 Japan]/Japan Color 默认 ICC 坑——批判环漏配项）；附 `indesign_package.complete=FALSE` 扫描自动组批盘点。
+2. [x] [M] `feat(site): multi-target latest site + per-target HTML link writeback` — dist/<model>/<region>/<lang>/ 子路径+根索引；旧行为兼容开关。
+3. [x] [S] `fix(queue): batch dispatch dedupe` — >1 行时改派发一次批量 run（消除 pending 槽静默丢单；比现状**更**串行，安全）。
+4. [x] [S] `feat(queue): asset lineage pre-check at dispatch`（15-30 分钟构建后才被门拦 → 派发时预警;正式门不动）
+5. [x] [S] `feat(queue): run-level phase2 sync memo`（批量 run 内同 config 只同步一次）
+6. [x] [M] `refactor(feishu): K8 slice-1 converge queue runners into feishu_record_transport`
+7. [x] [S] `refactor(feishu): K8 slice-2 converge listen/spec_master_rebuild/bitable_schema`
+8. [x] [S] `feat(feishu): K8 slice-3 429 retry/backoff + pagination single point`
+9. [x] [S] `feat(sync): phase2 snapshot write file-lock` — K8 原 Done-when 第 4 件（批判环补漏：并发 sync 竞态 10x 下无覆盖）。
+10. [x] [M] `feat(idml): reference_layout_scaffold contract draft generator` — 52 页手抄哈希 → 只审 composition/approval；不接激活路径，fail-closed 兜底。
+11. [x] [M] `feat(finalize): --jobs manifest Python side` — 清单校验/逐 job 报告聚合/单 job 失败隔离；**jobs 清单强制显式 preset 字段**（修 [PDF/X-4 Japan]/Japan Color 默认 ICC 坑——批判环漏配项）；附 `indesign_package.complete=FALSE` 扫描自动组批盘点。
 12. [x] [S] `feat(finalize): JSX batch loop` — Done：同一 InDesign application 的 jobs 一次 dispatch，JSX 外层循环逐文档执行且 try/catch 隔离，仍产出独立 preflight；设计机 2-doc 执行证据见 [`../tests/indesign_finalize_batch_acceptance_2026-07-31.md`](../tests/indesign_finalize_batch_acceptance_2026-07-31.md)，操作者于 2026-07-31 验收，PR #814 已合入。
-13. [M] `refactor(idml): contract-driven app page ownership` — Done（机器）：批准契约的 `app_add_device.page_owners` 同时驱动隐藏资产冻结和排版；退役 `is_je1000f_us_*` 模式，guardrail 正则防再生。
-14. [M] `refactor(idml): explicit page-role table + assembly coverage WARNING` — Done（机器）：当前模板页由一个 target-neutral 语义表显式覆盖；未知页保持 prose fallback，同时稳定告警 source ref，现有 golden IDML 不变。
-15. [S] `feat(release): layout signals in release manifest` — Done（机器）：#723 已把 native page/overset 数写入 `indesign_package.preflight`；本项补齐 release CSV/dashboard 两个数值列，并区分未报告与显式 `0`。
+13. [x] [M] `refactor(idml): contract-driven app page ownership` — Done（机器）：批准契约的 `app_add_device.page_owners` 同时驱动隐藏资产冻结和排版；退役 `is_je1000f_us_*` 模式，guardrail 正则防再生。
+14. [x] [M] `refactor(idml): explicit page-role table + assembly coverage WARNING` — Done（机器）：当前模板页由一个 target-neutral 语义表显式覆盖；未知页保持 prose fallback，同时稳定告警 source ref，现有 golden IDML 不变。
+15. [x] [S] `feat(release): layout signals in release manifest` — Done（机器）：#723 已把 native page/overset 数写入 `indesign_package.preflight`；本项补齐 release CSV/dashboard 两个数值列，并区分未报告与显式 `0`。
 16. [x] [M] `feat(release): E1-PR1 freeze publish snapshot + manifest binding` — Done（机器）：versioned Publish 将实际 phase2 根（CSV + attachments）冻结到 `versions/<version>/snapshot/`，JSON/CSV manifest 绑定 identity；同版本异源重绑、归档漂移与临时 worktree 丢失均 fail-closed。
 17. [x] [M] `feat(release): E1-PR2 rebuild equivalence end-to-end` — Done（机器）：versioned publish manifest 可在隔离历史 worktree 中仅依赖归档 snapshot 重建，DOCX/Markdown/PDF 逐字节等价；PR #820 已合入。
 18. [x] [M] `feat(ci): nightly-render workflow` — Done（机器）：每日/手动 workflow 从 config 注册表派生完整 doctor 循环，并以冻结 fixture 构建、结构校验 JE-1000F US English production IDML，JSON 报告保留逐目标结果与 IDML SHA-256，使 #720 类事故发现延迟上界降至 1 天；〔操作者验收〕合入后手触一轮。
