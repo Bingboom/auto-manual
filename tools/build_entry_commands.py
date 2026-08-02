@@ -11,7 +11,15 @@ def normalize_cli_build_queue_action(workflow_action: str | None = None, doc_pha
     legacy = (doc_phase or "").strip().lower()
     normalized_explicit = None
     if explicit:
-        normalized_explicit = "draft" if explicit == "build-draft-package" else "publish"
+        normalized_explicit = {
+            "build-draft-package": "draft",
+            "publish": "publish",
+            "web-publish": "web_publish",
+        }.get(explicit)
+        if normalized_explicit is None:
+            raise RuntimeError(
+                "--workflow-action must be build-draft-package, publish, or web-publish"
+            )
     if normalized_explicit:
         return normalized_explicit
     if legacy:
