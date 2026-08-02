@@ -73,7 +73,8 @@ therefore provides a second ownership boundary:
 - Start Review operates on review-init queue identity and uses
   `feishu-review-init-queue-<record_id>` (or its `batch` slot).
 - Web Publish owns the global `feishu-web-publish-branch` mutex for its complete
-  build, aggregate publish-branch update, and `HTML_link` writeback transaction.
+  build, aggregate publish-candidate update, PR maintenance, and `HTML_link`
+  writeback transaction.
 
 All groups use `cancel-in-progress: false`, so a newer dispatch waits instead
 of cancelling an owner that may still hold a live Feishu lease. The claim

@@ -57,7 +57,7 @@ class QueueWorkflowConcurrencyTests(unittest.TestCase):
         self.assertEqual("feishu-web-publish-branch", group)
         self.assertFalse(workflow["concurrency"]["cancel-in-progress"])
         steps = workflow["jobs"]["process-web-publish"]["steps"]
-        push_step = next(step for step in steps if step.get("name") == "Commit and push publish branch")
+        push_step = next(step for step in steps if step.get("name") == "Push publish candidate branch")
         self.assertIn("HEAD:refs/heads/publish", str(push_step["run"]))
         self.assertNotIn("--force", str(push_step["run"]))
 

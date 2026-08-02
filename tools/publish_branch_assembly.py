@@ -35,6 +35,34 @@ SCHEMA_VERSION = "auto-manual-web-publish-branch/v1"
 TARGET_SCHEMA_VERSION = "auto-manual-web-publish-target/v1"
 DEFAULT_MAX_FILE_SIZE_MB = 95
 _SAFE_SEGMENT_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*")
+_WEB_ONLY_TOP_LEVEL_NAMES = frozenset(
+    {
+        "publish_manifest.json",
+        "sources",
+        "web",
+    }
+)
+_FORBIDDEN_PRINT_ARTIFACT_SUFFIXES = frozenset(
+    {
+        ".7z",
+        ".ai",
+        ".aux",
+        ".cls",
+        ".doc",
+        ".docx",
+        ".eps",
+        ".idml",
+        ".indb",
+        ".indd",
+        ".ltx",
+        ".pdf",
+        ".psd",
+        ".rtf",
+        ".sty",
+        ".tex",
+        ".zip",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -331,6 +359,36 @@ def _enforce_file_size_limit(output_dir: Path, *, max_file_size_mb: int) -> None
         )
 
 
+def _enforce_web_only_tree(output_dir: Path) -> None:
+    unexpected_top_level = sorted(
+        path
+        for path in output_dir.iterdir()
+        if path.name not in _WEB_ONLY_TOP_LEVEL_NAMES
+    )
+    if unexpected_top_level:
+        details = ", ".join(path.relative_to(output_dir).as_posix() for path in unexpected_top_level)
+        raise RuntimeError(
+            "docs/publish may contain only Web source, Web assets, and the publish manifest; "
+            f"unexpected top-level paths: {details}"
+        )
+
+    forbidden = [
+        path
+        for path in sorted(output_dir.rglob("*"))
+        if path.is_file()
+        and any(
+            path.name.casefold().endswith(suffix)
+            for suffix in _FORBIDDEN_PRINT_ARTIFACT_SUFFIXES
+        )
+    ]
+    if forbidden:
+        details = ", ".join(path.relative_to(output_dir).as_posix() for path in forbidden)
+        raise RuntimeError(
+            "docs/publish cannot contain print/source artifacts such as IDML, LaTeX, PDF, "
+            f"DOCX, or archives: {details}"
+        )
+
+
 def assemble_web_publish_branch(
     *,
     repo_root: Path,
@@ -348,6 +406,7 @@ def assemble_web_publish_branch(
     ):
         stage_web_target(target=target, output_dir=output_dir)
     rebuild_web_source(output_dir=output_dir, title=title)
+    _enforce_web_only_tree(output_dir)
     manifest_path = _write_publish_manifest(output_dir)
     _enforce_file_size_limit(output_dir, max_file_size_mb=max_file_size_mb)
     return manifest_path

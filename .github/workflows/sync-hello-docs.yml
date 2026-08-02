@@ -55,11 +55,7 @@ jobs:
           source_tree="$(git -C source rev-parse HEAD^{tree})"
           mirror_parent="$(git -C mirror rev-parse HEAD)"
           mirror_tree="$(git -C mirror rev-parse HEAD^{tree})"
-
-          if [ "${source_tree}" = "${mirror_tree}" ]; then
-            echo "Mirror already matches ${SOURCE_REPOSITORY}@${SOURCE_SHA}."
-            exit 0
-          fi
+          publish_tree="$(git -C mirror rev-parse "${mirror_parent}:docs/publish" 2>/dev/null || true)"
 
           # Import the source objects instead of copying a checked-out tree. A
           # checkout followed by `git add` can apply the mirror's attributes
@@ -68,9 +64,31 @@ jobs:
           git -C source bundle create "${source_bundle}" HEAD
           git -C mirror fetch --quiet "${source_bundle}" HEAD
 
+          if git -C mirror cat-file -e "${source_tree}:docs/publish" 2>/dev/null; then
+            echo "::error::auto-manual must not own docs/publish; publish it through the Hello-Docs candidate PR."
+            exit 1
+          fi
+
+          # Hello-Docs main has two ownership domains: auto-manual owns the
+          # mirrored code tree; reviewed Web Publish PRs own docs/publish.
+          # Compose both object trees without checking out or re-adding files.
+          mirror_index="$(mktemp)"
+          rm -f "${mirror_index}"
+          GIT_INDEX_FILE="${mirror_index}" git -C mirror read-tree "${source_tree}"
+          if [ -n "${publish_tree}" ]; then
+            GIT_INDEX_FILE="${mirror_index}" git -C mirror read-tree \
+              --prefix=docs/publish/ "${publish_tree}"
+          fi
+          combined_tree="$(GIT_INDEX_FILE="${mirror_index}" git -C mirror write-tree)"
+
+          if [ "${combined_tree}" = "${mirror_tree}" ]; then
+            echo "Mirror code already matches ${SOURCE_REPOSITORY}@${SOURCE_SHA}; docs/publish is preserved."
+            exit 0
+          fi
+
           git -C mirror config user.name "github-actions[bot]"
           git -C mirror config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mirror_commit="$(git -C mirror commit-tree "${source_tree}" \
+          mirror_commit="$(git -C mirror commit-tree "${combined_tree}" \
             -p "${mirror_parent}" \
             -m "chore(mirror): sync auto-manual main" \
             -m "Source: ${SOURCE_REPOSITORY}@${SOURCE_SHA}" \
@@ -79,8 +97,8 @@ jobs:
           git -C mirror update-ref "refs/heads/${MIRROR_BRANCH}" "${mirror_commit}" "${mirror_parent}"
 
           mirror_tree="$(git -C mirror rev-parse "${mirror_commit}^{tree}")"
-          if [ "${source_tree}" != "${mirror_tree}" ]; then
-            echo "::error::Mirror tree ${mirror_tree} does not match source tree ${source_tree}."
+          if [ "${combined_tree}" != "${mirror_tree}" ]; then
+            echo "::error::Mirror tree ${mirror_tree} does not match composed tree ${combined_tree}."
             exit 1
           fi
 

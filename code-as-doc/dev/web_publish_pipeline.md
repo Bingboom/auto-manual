@@ -8,7 +8,7 @@ Read the Docs. Web delivery is intentionally separate from print delivery.
 | `Workflow_action` | Worker | Output authority |
 | --- | --- | --- |
 | `Publish` | `feishu-build-queue.yml` | IDML, LaTeX, PDF, DOCX, formal Markdown and release manifests |
-| `Web Publish` | `feishu-web-publish-queue.yml` | frozen MyST source under `Hello-Docs/publish:docs/publish/` and `HTML_link` |
+| `Web Publish` | `feishu-web-publish-queue.yml` | frozen MyST candidate under `Hello-Docs/publish:docs/publish/`, a scope-guarded PR into `main`, and `HTML_link` |
 
 `Publish` never deploys HTML. `Web Publish` never uploads or rewrites print
 artifacts. Both actions render reviewed content selected by
@@ -29,29 +29,48 @@ artifacts. Both actions render reviewed content selected by
    `docs/publish/sources/web/<model>/<region>/md/`, preserves other targets,
    rebuilds `docs/publish/web/`, and writes a SHA-256 inventory in
    `docs/publish/publish_manifest.json`.
-6. The workflow advances `Hello-Docs/publish` with an ordinary non-force push.
-   One global concurrency group serializes the complete build, branch update
+6. The workflow reconciles the generated `Hello-Docs/publish` candidate with
+   current `main`, then refuses to push if the PR diff contains any path outside
+   `docs/publish/**`. Review branches are build inputs only; they are never
+   merged into either candidate or production history.
+7. The workflow advances `publish` with an ordinary non-force push and creates
+   or updates the single `publish -> main` PR. A human merges that PR after
+   review; only the resulting `main` push is a production RTD trigger. One
+   global concurrency group serializes the complete build, branch update, PR,
    and writeback transaction.
-7. The deterministic RTD manual URL is written to `Document_link.HTML_link`.
+8. The deterministic RTD manual URL is written to `Document_link.HTML_link`.
    A seven-day workflow artifact retains the Web release evidence; the Git
    branch remains the durable snapshot.
 
 ## 3. Repository and hosting boundaries
 
 - Code changes land only in `Bingboom/auto-manual`, then
-  `sync-hello-docs.yml` mirrors `main` into `Bingboom/Hello-Docs/main`.
-- `Hello-Docs/publish` is a generated release branch. Operators do not edit it
-  by hand, and it is not the GitHub repository's development default branch.
-- The Read the Docs project uses `publish` as its default build branch and
-  builds `docs/publish/web/` through `.readthedocs.yaml`.
+  `sync-hello-docs.yml` mirrors the engineering tree into
+  `Bingboom/Hello-Docs/main` while preserving the business-owned
+  `docs/publish/**` subtree already merged there.
+- `Hello-Docs/publish` is a generated release-candidate branch. Operators do
+  not edit it by hand, and it is not the GitHub repository's development or
+  production branch.
+- The only release PR into `Hello-Docs/main` is `publish -> main`, and its diff
+  must contain only `docs/publish/**`. A whole `review/*` branch is never a
+  release PR and must never be merged into `main`.
+- `docs/publish/**` is a Web-only Git surface: it may contain only frozen Web
+  source/assets, the assembled Sphinx source, and `publish_manifest.json`.
+  The assembler rejects IDML, InDesign, LaTeX, PDF, DOCX, source-artwork, and
+  archive files before the candidate branch can be pushed. Print artifacts
+  remain under release storage and short-lived GitHub Actions artifacts.
+- The Read the Docs project uses `main` as its default build branch and builds
+  `docs/publish/web/` through `.readthedocs.yaml`.
 - RTD never receives Feishu credentials and never reads mutable attachments.
   It renders only the frozen, hash-inventoried Git snapshot.
 
 The first Web Publish creates `publish` from the current business-plane `main`.
-Later runs retain the existing target sources, refresh the tracked code/config
-tree to current `main`, replace only the newly published target, and append a
-normal commit. A non-fast-forward push fails instead of overwriting another
-publisher.
+Later runs retain the existing target sources, record current `main` as an
+ancestor, refresh the tracked code/config tree to current `main`, replace only
+the newly published target, and append normal commits. A non-fast-forward push
+fails instead of overwriting another publisher. The three-dot PR diff is checked
+before the push so branch-history drift cannot smuggle code or review files into
+the release PR.
 
 ## 4. Operator contract
 
@@ -71,12 +90,14 @@ For a composite figure plus its governed copy, the matching
 Success requires all three pieces of evidence:
 
 - the GitHub run is green;
-- `Hello-Docs/publish` contains the expected target and manifest hashes;
-- the RTD page opens and `HTML_link` points to that exact route.
+- `Hello-Docs/publish` contains the expected target and manifest hashes, and the
+  open `publish -> main` PR contains no path outside `docs/publish/**`;
+- after that PR is merged, `Hello-Docs/main` contains the same manifest and the
+  RTD page opens at the `HTML_link` route.
 
 ## 5. Rollback
 
 Do not force-push `publish`. Re-run Web Publish from the approved review ref and
-asset rows to append a corrected snapshot. For an urgent hosting rollback,
-revert the bad publish commit with a normal commit, verify the generated
-manifest, and let the publish-branch webhook rebuild RTD.
+asset rows to append a corrected candidate snapshot. For an urgent hosting
+rollback, prepare a `docs/publish/**`-only revert PR into `main`, verify the
+generated manifest, merge it, and let the `main` webhook rebuild RTD.

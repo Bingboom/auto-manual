@@ -21,9 +21,9 @@ on:
         required: false
         type: string
 
-# The publish branch is one shared mutable catalog. Serialize the complete
-# build/assembly/push/writeback transaction so two targets cannot race and
-# silently discard each other's frozen Web source.
+# The publish branch is one shared mutable candidate catalog. Serialize the
+# complete build/assembly/push/PR/writeback transaction so two targets cannot
+# race and silently discard each other's frozen Web source.
 concurrency:
   group: feishu-web-publish-branch
   cancel-in-progress: false
@@ -31,6 +31,7 @@ concurrency:
 permissions:
   contents: write
   issues: write
+  pull-requests: write
 
 jobs:
   process-web-publish:
@@ -68,6 +69,8 @@ jobs:
       FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
       FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
       AUTO_MANUAL_RTD_BASE_URL: ${{ vars.AUTO_MANUAL_RTD_BASE_URL || 'https://ht-doc.readthedocs.io/en/latest' }}
+      GH_TOKEN: ${{ github.token }}
+      PUBLISH_BASE_BRANCH: main
     steps:
       - uses: actions/checkout@v4
         with:
@@ -124,6 +127,7 @@ jobs:
           PUBLISH_WORKTREE: ${{ runner.temp }}/hello-docs-publish
           PRESERVED_PUBLISH_TREE: ${{ runner.temp }}/hello-docs-publish-existing
         run: |
+          git fetch origin "${PUBLISH_BASE_BRANCH}:refs/remotes/origin/${PUBLISH_BASE_BRANCH}"
           if git ls-remote --exit-code --heads origin publish >/dev/null 2>&1; then
             git fetch origin publish:refs/remotes/origin/publish
             git worktree add --detach "${PUBLISH_WORKTREE}" refs/remotes/origin/publish
@@ -131,13 +135,26 @@ jobs:
               mkdir -p "${PRESERVED_PUBLISH_TREE}"
               cp -a "${PUBLISH_WORKTREE}/docs/publish/." "${PRESERVED_PUBLISH_TREE}/"
             fi
-            git -C "${PUBLISH_WORKTREE}" read-tree --reset -u "${GITHUB_SHA}"
+            git -C "${PUBLISH_WORKTREE}" config user.name "github-actions[bot]"
+            git -C "${PUBLISH_WORKTREE}" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            if ! git -C "${PUBLISH_WORKTREE}" merge-base --is-ancestor \
+              "refs/remotes/origin/${PUBLISH_BASE_BRANCH}" HEAD; then
+              # Record the current production branch as an ancestor without
+              # merging its document tree. The next read-tree establishes the
+              # exact production code baseline; only docs/publish is restored.
+              git -C "${PUBLISH_WORKTREE}" merge --no-edit --no-ff -s ours \
+                "refs/remotes/origin/${PUBLISH_BASE_BRANCH}" \
+                -m "chore(publish): sync candidate base"
+            fi
+            git -C "${PUBLISH_WORKTREE}" read-tree --reset -u \
+              "refs/remotes/origin/${PUBLISH_BASE_BRANCH}"
             if [ -d "${PRESERVED_PUBLISH_TREE}" ]; then
               mkdir -p "${PUBLISH_WORKTREE}/docs/publish"
               cp -a "${PRESERVED_PUBLISH_TREE}/." "${PUBLISH_WORKTREE}/docs/publish/"
             fi
           else
-            git worktree add --detach "${PUBLISH_WORKTREE}" "${GITHUB_SHA}"
+            git worktree add --detach "${PUBLISH_WORKTREE}" \
+              "refs/remotes/origin/${PUBLISH_BASE_BRANCH}"
           fi
           echo "path=${PUBLISH_WORKTREE}" >> "$GITHUB_OUTPUT"
 
@@ -148,8 +165,8 @@ jobs:
             --releases-root reports/releases \
             --output-dir "${{ steps.publish-tree.outputs.path }}/docs/publish"
 
-      - name: Commit and push publish branch
-        id: publish-push
+      - name: Commit publish candidate
+        id: publish-commit
         shell: bash
         env:
           PUBLISH_WORKTREE: ${{ steps.publish-tree.outputs.path }}
@@ -158,14 +175,93 @@ jobs:
           git -C "${PUBLISH_WORKTREE}" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git -C "${PUBLISH_WORKTREE}" add -A
           if git -C "${PUBLISH_WORKTREE}" diff --cached --quiet; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "publish branch already contains this frozen Web snapshot."
+            echo "No new tree commit is required."
+          else
+            git -C "${PUBLISH_WORKTREE}" commit -m "chore(publish): refresh web documentation"
+          fi
+          echo "commit=$(git -C "${PUBLISH_WORKTREE}" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Validate publish PR scope
+        id: publish-scope
+        shell: bash
+        env:
+          PUBLISH_WORKTREE: ${{ steps.publish-tree.outputs.path }}
+        run: |
+          base_ref="refs/remotes/origin/${PUBLISH_BASE_BRANCH}"
+          if ! git -C "${PUBLISH_WORKTREE}" merge-base --is-ancestor "${base_ref}" HEAD; then
+            echo "::error::publish must contain ${PUBLISH_BASE_BRANCH} before PR scope validation."
+            exit 1
+          fi
+
+          changed_count=0
+          invalid=false
+          while IFS= read -r -d '' path; do
+            changed_count=$((changed_count + 1))
+            case "${path}" in
+              docs/publish/*) ;;
+              *)
+                echo "::error file=${path}::publish PR may change only docs/publish/**"
+                invalid=true
+                ;;
+            esac
+          done < <(git -C "${PUBLISH_WORKTREE}" diff --name-only --no-renames -z \
+            "${base_ref}...HEAD")
+
+          if [ "${invalid}" = "true" ]; then
+            exit 1
+          fi
+          if [ "${changed_count}" -gt 0 ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "changed_count=${changed_count}" >> "$GITHUB_OUTPUT"
+
+      - name: Push publish candidate branch
+        id: publish-push
+        shell: bash
+        env:
+          PUBLISH_WORKTREE: ${{ steps.publish-tree.outputs.path }}
+        run: |
+          remote_commit="$(git -C "${PUBLISH_WORKTREE}" rev-parse refs/remotes/origin/publish 2>/dev/null || true)"
+          local_commit="$(git -C "${PUBLISH_WORKTREE}" rev-parse HEAD)"
+          if [ "${local_commit}" = "${remote_commit}" ]; then
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            echo "publish candidate branch is already current."
             exit 0
           fi
-          git -C "${PUBLISH_WORKTREE}" commit -m "chore(publish): refresh web documentation"
           git -C "${PUBLISH_WORKTREE}" push origin HEAD:refs/heads/publish
-          echo "changed=true" >> "$GITHUB_OUTPUT"
-          echo "commit=$(git -C "${PUBLISH_WORKTREE}" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+          echo "commit=${local_commit}" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update publish PR
+        if: ${{ steps.publish-scope.outputs.has_changes == 'true' }}
+        shell: bash
+        run: |
+          pr_url="$(gh pr list \
+            --repo "${GITHUB_REPOSITORY}" \
+            --base "${PUBLISH_BASE_BRANCH}" \
+            --head publish \
+            --state open \
+            --json url \
+            --jq '.[0].url // empty')"
+          if [ -n "${pr_url}" ]; then
+            echo "Updated existing Web Publish PR: ${pr_url}"
+            exit 0
+          fi
+
+          gh pr create \
+            --repo "${GITHUB_REPOSITORY}" \
+            --base "${PUBLISH_BASE_BRANCH}" \
+            --head publish \
+            --title "chore(publish): refresh web documentation" \
+            --body-file - <<'EOF'
+          Automated Web Publish candidate.
+
+          - Only `docs/publish/**` may differ from `main`; the workflow fails before push on any other path.
+          - `review/*` branches are build inputs only and must never be merged into `main`.
+          - Merge this PR after review. The resulting `main` push is the only production trigger for Read the Docs.
+          EOF
 
       - name: Write RTD HTML_link back to Document_link
         shell: bash

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -27,6 +28,38 @@ def _path_lines(step: dict[str, object]) -> list[str]:
 
 
 class WorkflowArtifactPolicyTests(unittest.TestCase):
+    def test_print_release_outputs_are_ignored_but_web_sources_are_trackable(self) -> None:
+        generated_print_paths = [
+            f"reports/releases/JE-1000F/US/en/versions/2.0/manual.{suffix}"
+            for suffix in ("idml", "tex", "pdf", "docx", "zip")
+        ]
+        publish_leaks = [
+            f"docs/publish/web/JE-1000F/US/md/assets/manual.{suffix}"
+            for suffix in ("idml", "tex", "pdf", "docx", "zip")
+        ]
+        for path in generated_print_paths + publish_leaks:
+            with self.subTest(path=path):
+                ignored = subprocess.run(
+                    ["git", "check-ignore", "--no-index", "--quiet", "--", path],
+                    cwd=REPO_ROOT,
+                    check=False,
+                )
+                self.assertEqual(0, ignored.returncode)
+
+        web_source = subprocess.run(
+            [
+                "git",
+                "check-ignore",
+                "--no-index",
+                "--quiet",
+                "--",
+                "docs/publish/web/JE-1000F/US/md/manual.md",
+            ],
+            cwd=REPO_ROOT,
+            check=False,
+        )
+        self.assertEqual(1, web_source.returncode)
+
     def test_every_uploaded_artifact_has_an_explicit_retention_window(self) -> None:
         uploads = _upload_steps()
         self.assertTrue(uploads)

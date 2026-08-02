@@ -162,6 +162,52 @@ class PublishBranchAssemblyTests(unittest.TestCase):
             self.assertTrue(output_dir.joinpath("web", "JE-1000F", "US", "md").is_dir())
             self.assertTrue(output_dir.joinpath("web", "JE-1000F", "JP", "md").is_dir())
 
+    def test_assembly_should_reject_print_artifacts_inside_web_assets(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            lang_root = self._write_target(
+                root,
+                model="JE-1000F",
+                region="US",
+                lang="en",
+                version="2.0",
+                git_ref="review/JE-1000F-US",
+            )
+            assets = lang_root / "versions" / "2.0" / "web" / "md" / "assets"
+            (assets / "manual.idml").write_bytes(b"idml")
+            (assets / "layout.tex").write_text("print-only", encoding="utf-8")
+
+            with self.assertRaisesRegex(RuntimeError, "cannot contain print/source artifacts"):
+                publish_branch_assembly.assemble_web_publish_branch(
+                    repo_root=root,
+                    releases_root=root / "reports" / "releases",
+                    output_dir=root / "publish-worktree" / "docs" / "publish",
+                    title="Manual Library",
+                )
+
+    def test_assembly_should_reject_non_web_top_level_content(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            self._write_target(
+                root,
+                model="JE-1000F",
+                region="US",
+                lang="en",
+                version="2.0",
+                git_ref="review/JE-1000F-US",
+            )
+            output_dir = root / "publish-worktree" / "docs" / "publish"
+            (output_dir / "idml").mkdir(parents=True)
+            (output_dir / "idml" / "manual.idml").write_bytes(b"idml")
+
+            with self.assertRaisesRegex(RuntimeError, "unexpected top-level paths: idml"):
+                publish_branch_assembly.assemble_web_publish_branch(
+                    repo_root=root,
+                    releases_root=root / "reports" / "releases",
+                    output_dir=output_dir,
+                    title="Manual Library",
+                )
+
     def test_metadata_path_must_stay_inside_release_root(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

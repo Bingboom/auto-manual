@@ -130,8 +130,9 @@ GitHub workflow concurrency complements that table lease without adding Base
 fields. Build Draft Package and print Publish share a per-Document_link record
 group; their batch runs share one conservative batch group. Start Review uses
 its own review-init record group. Web Publish serializes its complete aggregate
-`Hello-Docs/publish` branch update and `HTML_link` writeback under one global
-mutex. Every group queues rather than cancels in-progress work, so workflow
+`Hello-Docs/publish` candidate update, `docs/publish/**`-only PR maintenance,
+and `HTML_link` writeback under one global mutex. Every group queues rather
+than cancels in-progress work, so workflow
 scheduling cannot invalidate a live row lease.
 
 When `飞书云文档` exists, Draft and Publish rows must also produce Markdown and
