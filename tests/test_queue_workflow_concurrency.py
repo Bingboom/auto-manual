@@ -58,7 +58,7 @@ class QueueWorkflowConcurrencyTests(unittest.TestCase):
         self.assertFalse(workflow["concurrency"]["cancel-in-progress"])
         steps = workflow["jobs"]["process-web-publish"]["steps"]
         push_step = next(step for step in steps if step.get("name") == "Commit and push publish branch")
-        self.assertIn("HEAD:publish", str(push_step["run"]))
+        self.assertIn("HEAD:refs/heads/publish", str(push_step["run"]))
         self.assertNotIn("--force", str(push_step["run"]))
 
     def test_texlive_smoke_does_not_enter_document_record_domain(self) -> None:
