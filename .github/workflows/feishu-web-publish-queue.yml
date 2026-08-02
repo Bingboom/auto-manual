@@ -68,7 +68,7 @@ jobs:
       FEISHU_PHASE2_MANUAL_COPY_SOURCE_VIEW_ID: ${{ secrets.FEISHU_PHASE2_MANUAL_COPY_SOURCE_VIEW_ID }}
       FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
       FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
-      AUTO_MANUAL_RTD_BASE_URL: ${{ vars.AUTO_MANUAL_RTD_BASE_URL || 'https://ht-doc.readthedocs.io/en/latest' }}
+      AUTO_MANUAL_RTD_BASE_URL: ${{ vars.AUTO_MANUAL_RTD_BASE_URL || 'https://ht-doc.readthedocs.io' }}
       GH_TOKEN: ${{ github.token }}
       PUBLISH_BASE_BRANCH: main
     steps:

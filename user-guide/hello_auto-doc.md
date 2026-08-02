@@ -960,7 +960,7 @@ PR preview note:
 - exports revision reports to [`reports/version_tracking/<model>/<region>/`](../reports/version_tracking) by default
 - writes a release manifest to [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases)
 - queue-driven `Workflow_action=Publish` stages the formal DOCX, PDF, and Markdown under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), uploads the PDF URL back to `Document link`, and optionally imports the Word `.docx` into `飞书云文档`; it does not build HTML
-- queue-driven `Workflow_action=Web Publish` forces live asset sync, renders web-profile MyST/HTML, advances the `Hello-Docs/publish:docs/publish/` candidate, opens or updates its `docs/publish/**`-only PR into `main`, and writes RTD `HTML_link`; it does not upload or overwrite IDML/PDF/DOCX outputs
+- queue-driven `Workflow_action=Web Publish` forces live asset sync, renders web-profile MyST/HTML, advances the `Hello-Docs/publish:docs/publish/` candidate, opens or updates its `docs/publish/**`-only PR into `main`, and writes the short root-level RTD alias (for example `https://ht-doc.readthedocs.io/manual_je1000f_us.html`) to `HTML_link`; it does not upload or overwrite IDML/PDF/DOCX outputs
 
 `preview` behavior:
 
@@ -986,7 +986,7 @@ RTD catalog behavior:
 - RTD also applies the shared IDML-derived responsive theme: brand-dark title bars, compact heading levels, rounded tables and warning/note groups, consistent spacing, and proportional images. A browser with licensed Gilroy installed uses it; other browsers use the declared system fallbacks. The site intentionally reflows on phones and does not claim the fixed page count or exact pagination of IDML/INDD.
 - The web export protects each semantic callout before Pandoc and restores it afterward. WARNING, DANGER, CAUTION, and NOTE therefore keep one shared class structure, one light rounded visual treatment, and the theme's approximately 16% label / 84% body desktop split; fixed table layout keeps the first-column boundary aligned even when localized labels have different lengths. Pandoc does not add a 50/50 `colgroup` or an empty header row. On phones the same component stacks vertically.
 - Scientific subscripts and specification superscripts are protected across the same Pandoc step, so source notation such as ``V\ :sub:`oc``` renders as semantic `V<sub>oc</sub>` and governed `①` references render as `<sup>①</sup>` in every language rather than showing literal inline Markdown notation.
-- Web Publish first materializes target-scoped `md` directories, then assembles `docs/publish/web/` as the homepage catalog without rewriting the repo-root [`docs/index.rst`](../docs/index.rst); a pre-push three-dot diff guard permits only `docs/publish/**` in the production PR
+- Web Publish first materializes target-scoped `md` directories, then assembles `docs/publish/web/` as the homepage catalog without rewriting the repo-root [`docs/index.rst`](../docs/index.rst). The assembler also writes one collision-checked root alias named from each manual stem; it forwards to the nested model/region page with a relative target and is the URL persisted in `HTML_link`. A pre-push three-dot diff guard permits only `docs/publish/**` in the production PR.
 - RTD is the responsive Web presentation surface; it is not the release authority for IDML, LaTeX, PDF, DOCX or formal print Markdown
 
 `fast` behavior:

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import argparse
+import html
+import json
 import posixpath
 import re
 import shutil
@@ -30,6 +32,7 @@ class RtdManual:
     destination_dir: Path
     label: str
     toctree_ref: str
+    short_alias: str
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -251,6 +254,50 @@ def _write_index_md(*, output_dir: Path, title: str, manuals: list[RtdManual]) -
     output_dir.joinpath("index.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def _write_short_aliases(*, output_dir: Path, manuals: list[RtdManual]) -> None:
+    """Create stable root-level entry points for published manuals.
+
+    The nested route remains the canonical Sphinx document location.  The
+    root alias is a generated, orphaned MyST page so RTD can expose concise
+    links without one dashboard redirect per model/region target.  Relative
+    targets keep the alias valid for both single-version and ``/en/latest``
+    deployments.
+    """
+
+    aliases: dict[str, RtdManual] = {}
+    for manual in manuals:
+        existing = aliases.get(manual.short_alias)
+        if existing is not None:
+            raise RuntimeError(
+                "duplicate RTD short alias "
+                f"{manual.short_alias}: {existing.source_dir} and {manual.source_dir}"
+            )
+        aliases[manual.short_alias] = manual
+
+    for alias, manual in aliases.items():
+        target_html = f"{manual.toctree_ref}.html"
+        target_md = f"{manual.toctree_ref}.md"
+        escaped_target = html.escape(target_html, quote=True)
+        output_dir.joinpath(f"{alias}.md").write_text(
+            "\n".join(
+                (
+                    "---",
+                    "orphan: true",
+                    "---",
+                    "",
+                    f"# {manual.label}",
+                    "",
+                    f'<meta http-equiv="refresh" content="0; url={escaped_target}">',
+                    f"<script>window.location.replace({json.dumps(target_html)});</script>",
+                    "",
+                    f"[Continue to the manual]({target_md})",
+                    "",
+                )
+            ),
+            encoding="utf-8",
+        )
+
+
 def assemble_rtd_source(*, build_root: Path, output_dir: Path, title: str) -> list[RtdManual]:
     build_root = build_root.resolve(strict=False)
     output_dir = output_dir.resolve(strict=False)
@@ -288,11 +335,13 @@ def assemble_rtd_source(*, build_root: Path, output_dir: Path, title: str) -> li
                 destination_dir=destination_dir,
                 label=_manual_label(source_dir, build_root),
                 toctree_ref=(relative / landing_target).as_posix(),
+                short_alias=Path(landing_target).name,
             )
         )
 
     _write_conf_py(output_dir=output_dir, title=title)
     _write_index_md(output_dir=output_dir, title=title, manuals=manuals)
+    _write_short_aliases(output_dir=output_dir, manuals=manuals)
     return manuals
 
 

@@ -415,7 +415,7 @@ Publish 的原料是：
 3. Web worker 强制拉取最新 phase2 和图文资产，按 web profile 执行 `check -> md -> html`
 4. workflow 把冻结 MyST 增量提交到 `Hello-Docs/publish:docs/publish/` 候选目录，范围门禁确认没有其它路径后自动创建或更新 `publish -> main` PR
 5. 审核并合入这个仅含 `docs/publish/**` 的 PR；不要合入 `review/*` 分支。`main` 的 push 才触发 Read the Docs 构建
-6. `HTML_link` 回写为目标 RTD 页面；成功验收还要确认 `main` 的 manifest、RTD 构建 commit 和线上页面
+6. `HTML_link` 回写为根级短地址（例如 `https://ht-doc.readthedocs.io/manual_je1000f_us.html`）；该入口由发布源自动生成并转向嵌套的 canonical 页面，不需要为每个型号手工创建 RTD Redirect。成功验收还要确认 `main` 的 manifest、RTD 构建 commit 和短地址线上页面
 
 ### 远端 GitHub worker 想支持 DingTalk 还要配什么
 

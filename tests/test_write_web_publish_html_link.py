@@ -13,9 +13,9 @@ from tools.write_web_publish_html_link import (
 
 
 class WriteWebPublishHtmlLinkTests(unittest.TestCase):
-    def test_target_url_should_match_readthedocs_manual_route(self) -> None:
+    def test_target_url_should_match_readthedocs_short_alias(self) -> None:
         url = target_rtd_url(
-            base_url="https://ht-doc.readthedocs.io/en/latest/",
+            base_url="https://ht-doc.readthedocs.io/",
             payload={
                 "model": "JE-1000F",
                 "region": "US",
@@ -23,7 +23,7 @@ class WriteWebPublishHtmlLinkTests(unittest.TestCase):
             },
         )
         self.assertEqual(
-            "https://ht-doc.readthedocs.io/en/latest/JE-1000F/US/md/manual_je1000f_us.html",
+            "https://ht-doc.readthedocs.io/manual_je1000f_us.html",
             url,
         )
 

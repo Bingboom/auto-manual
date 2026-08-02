@@ -75,6 +75,9 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         writeback = str(self.steps[writeback_index]["run"])
         self.assertIn("tools/write_web_publish_html_link.py", writeback)
         self.assertIn("AUTO_MANUAL_RTD_BASE_URL", writeback)
+        rtd_base_url = str(self.job["env"]["AUTO_MANUAL_RTD_BASE_URL"])
+        self.assertIn("https://ht-doc.readthedocs.io", rtd_base_url)
+        self.assertNotIn("/en/latest", rtd_base_url)
 
     def test_failure_sentinel_is_the_last_step(self) -> None:
         sentinel = self.steps[-1]
