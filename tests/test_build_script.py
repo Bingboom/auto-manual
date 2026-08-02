@@ -429,6 +429,23 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("publish", cmd)
         self.assertNotIn("--doc-phase", cmd)
 
+    def test_process_build_queue_command_should_preserve_web_publish_action(self) -> None:
+        args = build_cli.parse_args(
+            [
+                "process-build-queue",
+                "--workflow-action",
+                "web-publish",
+                "--record-id",
+                "rec_web",
+            ]
+        )
+
+        cmd = build_cli.process_build_queue_command(args)
+
+        action_index = cmd.index("--workflow-action")
+        self.assertEqual("web-publish", cmd[action_index + 1])
+        self.assertIn("rec_web", cmd)
+
     def test_parse_args_should_support_review_and_check_actions(self) -> None:
         review_args = build_cli.parse_args(["review"])
         check_args = build_cli.parse_args(["check", "--config", "configs/config.ja.yaml"])
