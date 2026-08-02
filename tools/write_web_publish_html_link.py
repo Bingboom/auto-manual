@@ -30,7 +30,7 @@ from tools.write_publish_html_link import (  # noqa: E402
 )
 
 
-DEFAULT_RTD_BASE_URL = "https://ht-doc.readthedocs.io/en/latest"
+DEFAULT_RTD_BASE_URL = "https://ht-doc.readthedocs.io"
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -72,7 +72,7 @@ def target_rtd_url(*, base_url: str, payload: dict[str, Any]) -> str:
     markdown_path = Path(str(payload.get("md_output_path") or "").strip())
     if not model or not region or not markdown_path.stem:
         raise RuntimeError("Web Publish metadata is missing model, region, or md_output_path")
-    return f"{base_url.rstrip('/')}/{model}/{region}/md/{markdown_path.stem}.html"
+    return f"{base_url.rstrip('/')}/{markdown_path.stem}.html"
 
 
 def persist_rtd_url(*, metadata_path: Path, payload: dict[str, Any], url: str) -> None:

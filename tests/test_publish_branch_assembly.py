@@ -108,6 +108,14 @@ class PublishBranchAssemblyTests(unittest.TestCase):
                 "web", "JE-1000F", "US", "md", "manual_je1000f_us_web_publish_2.0.md"
             ).read_text(encoding="utf-8")
             self.assertIn("../../../_static/manual-assets/JE-1000F/US/md/assets/demo.png", web_markdown)
+            short_alias = output_dir.joinpath(
+                "web", "manual_je1000f_us_web_publish_2.0.md"
+            ).read_text(encoding="utf-8")
+            self.assertIn("orphan: true", short_alias)
+            self.assertIn(
+                'url=JE-1000F/US/md/manual_je1000f_us_web_publish_2.0.html',
+                short_alias,
+            )
             self.assertFalse(output_dir.joinpath("releases").exists())
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
             self.assertEqual("auto-manual-web-publish-branch/v1", manifest["schema_version"])

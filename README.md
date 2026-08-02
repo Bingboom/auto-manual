@@ -591,7 +591,10 @@ closed. The worker commits the verified MyST bundle to the generated
 `Hello-Docs/publish:docs/publish/` candidate and opens a scope-guarded PR into
 `Hello-Docs/main`. Only `docs/publish/**` enters `main`; review branches never
 do. RTD consumes the merged `main` snapshot and never contacts Feishu during
-its build. See
+its build. The aggregate source also generates one collision-checked root
+alias per manual (for example `manual_je1000f_us.html`), and Web Publish writes
+that concise RTD URL to `HTML_link`; the nested model/region page remains the
+canonical Sphinx document. See
 [`web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md).
 
 The web profile

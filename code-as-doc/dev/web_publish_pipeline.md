@@ -38,9 +38,13 @@ artifacts. Both actions render reviewed content selected by
    review; only the resulting `main` push is a production RTD trigger. One
    global concurrency group serializes the complete build, branch update, PR,
    and writeback transaction.
-8. The deterministic RTD manual URL is written to `Document_link.HTML_link`.
-   A seven-day workflow artifact retains the Web release evidence; the Git
-   branch remains the durable snapshot.
+8. The assembler creates a collision-checked root alias named from the manual
+   stem (for example `/manual_je1000f_us.html`) that forwards to the canonical
+   nested Sphinx route. That concise deterministic URL is written to
+   `Document_link.HTML_link`. Relative forwarding keeps the generated alias
+   valid in both RTD single-version and `/en/latest` deployments. A seven-day
+   workflow artifact retains the Web release evidence; the Git branch remains
+   the durable snapshot.
 
 ## 3. Repository and hosting boundaries
 

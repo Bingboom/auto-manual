@@ -54,6 +54,11 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertNotIn(":hidden:", index_text)
             self.assertNotIn(":maxdepth:", index_text)
             self.assertNotIn(":caption: Manuals", index_text)
+            us_alias = output_dir.joinpath("manual_us.md").read_text(encoding="utf-8")
+            self.assertIn("orphan: true", us_alias)
+            self.assertIn('url=JE-1000F/US/md/manual_us.html', us_alias)
+            self.assertIn('window.location.replace("JE-1000F/US/md/manual_us.html")', us_alias)
+            self.assertTrue(output_dir.joinpath("manual_jp.md").is_file())
             self.assertTrue(output_dir.joinpath("JE-1000F", "US", "md", "manual_us.md").exists())
             self.assertTrue(output_dir.joinpath("JE-1000F", "US", "md", "assets", "demo.png").exists())
             self.assertTrue(
@@ -255,6 +260,26 @@ class ReadTheDocsSourceTests(unittest.TestCase):
                 readthedocs_source.assemble_rtd_source(
                     build_root=root / "docs" / "_build",
                     output_dir=root / "public",
+                    title="Manual Library",
+                )
+
+    def test_assemble_rtd_source_should_reject_duplicate_short_aliases(self) -> None:
+        with TemporaryDirectory() as td:
+            build_root = Path(td) / "docs" / "_build"
+            for region in ("US", "JP"):
+                source_dir = build_root / "JE-1000F" / region / "md"
+                source_dir.mkdir(parents=True)
+                source_dir.joinpath("conf.py").write_text("project = 'nested'\n", encoding="utf-8")
+                source_dir.joinpath("index.md").write_text(
+                    "# Manual\n\n```{toctree}\n\nmanual_shared\n```\n",
+                    encoding="utf-8",
+                )
+                source_dir.joinpath("manual_shared.md").write_text("# Manual\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(RuntimeError, "duplicate RTD short alias manual_shared"):
+                readthedocs_source.assemble_rtd_source(
+                    build_root=build_root,
+                    output_dir=build_root / "rtd",
                     title="Manual Library",
                 )
 
