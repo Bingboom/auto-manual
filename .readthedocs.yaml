@@ -12,14 +12,15 @@ build:
       - python -m pip install -r requirements.lock
     build:
       html:
-        # RTD builds from a bare clone: no Feishu credentials and no local
-        # data/phase2 snapshot, so `--source runtime` cannot resolve
-        # Spec_Master identity here. Render the committed review bundle
-        # as-is instead, with the tracked fixture snapshot supplying the
-        # frozen attachments and capability plan.
-        # Catalog scope = targets whose review bundle is committed on main
-        # (currently JE-1000F/US). Add a target back only after its
-        # docs/_review/<model>/<region> bundle lands on main.
-        - AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --no-clean --skip-root-index
-        - python tools/readthedocs_source.py --build-root docs/_build --output-dir docs/_build/rtd --title "Auto Manual Library"
-        - python -m sphinx -b html docs/_build/rtd "$READTHEDOCS_OUTPUT/html"
+        # The dedicated Hello-Docs/publish branch carries reviewed, frozen Web
+        # source under docs/publish/web. RTD renders that snapshot directly and
+        # never reads live Feishu data. Keep the review-bundle path as a
+        # temporary fallback until the first publish-branch snapshot exists.
+        - |
+          if [ -f docs/publish/web/conf.py ]; then
+            python -m sphinx -b html docs/publish/web "$READTHEDOCS_OUTPUT/html"
+          else
+            AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --no-clean --skip-root-index
+            python tools/readthedocs_source.py --build-root docs/_build --output-dir docs/_build/rtd --title "Auto Manual Library"
+            python -m sphinx -b html docs/_build/rtd "$READTHEDOCS_OUTPUT/html"
+          fi

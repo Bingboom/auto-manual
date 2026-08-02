@@ -355,7 +355,7 @@ def process_build_queue_command(
 ) -> list[str]:
     if (args.model or "").strip() or (args.region or "").strip():
         raise RuntimeError(
-            "process-build-queue does not accept --model or --region; Build Draft Package / Publish targets come from Document_link rows"
+            "process-build-queue does not accept --model or --region; Build Draft Package / Publish / Web Publish targets come from Document_link rows"
         )
     config_path = resolve_path_from_root(args.config)
     cmd = [
@@ -370,6 +370,8 @@ def process_build_queue_command(
         cmd += ["--workflow-action", "build-draft-package"]
     elif normalized_action == "publish":
         cmd += ["--workflow-action", "publish"]
+    elif normalized_action == "web_publish":
+        cmd += ["--workflow-action", "web-publish"]
     if isinstance(args.record_id, str) and args.record_id.strip():
         cmd += ["--record-id", args.record_id.strip()]
     if isinstance(getattr(args, "record_ids", None), str) and args.record_ids.strip():

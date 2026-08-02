@@ -41,29 +41,25 @@ class QueueWorkflowConcurrencyTests(unittest.TestCase):
         self.assertIn("'batch'", group)
         self.assertFalse(workflow["concurrency"]["cancel-in-progress"])
 
-    def test_publish_deploy_is_a_separate_global_vercel_mutex(self) -> None:
+    def test_print_publish_has_no_web_deploy_tail(self) -> None:
         workflow = _workflow("feishu-build-queue.yml")
         jobs = workflow["jobs"]
-        deploy = jobs["deploy-vercel"]
-
-        self.assertEqual("process-queue", deploy["needs"])
-        self.assertEqual("${{ always() }}", deploy["if"])
-        self.assertEqual("feishu-vercel-production", deploy["concurrency"]["group"])
-        self.assertFalse(deploy["concurrency"]["cancel-in-progress"])
-
+        self.assertNotIn("deploy-vercel", jobs)
         process_steps = jobs["process-queue"]["steps"]
-        deploy_steps = deploy["steps"]
         self.assertFalse(any("vercel deploy" in str(step.get("run", "")) for step in process_steps))
-        self.assertTrue(any("vercel deploy" in str(step.get("run", "")) for step in deploy_steps))
-        self.assertTrue(
-            any(step.get("name") == "Upload Vercel publish candidate" for step in process_steps)
-        )
-        self.assertTrue(
-            any(step.get("name") == "Download Vercel publish candidate" for step in deploy_steps)
-        )
-        self.assertEqual("Vercel deployment failure sentinel", deploy_steps[-1]["name"])
-        self.assertEqual("always()", deploy_steps[-1]["if"])
-        self.assertEqual("queue-failure-build-deploy", deploy_steps[-1]["with"]["label"])
+        self.assertFalse(any("publish HTML" in str(step.get("name", "")) for step in process_steps))
+        self.assertTrue(any(step.get("name") == "Write OpenClaw run metadata" for step in process_steps))
+
+    def test_web_publish_serializes_the_shared_publish_branch(self) -> None:
+        workflow = _workflow("feishu-web-publish-queue.yml")
+        group = str(workflow["concurrency"]["group"])
+
+        self.assertEqual("feishu-web-publish-branch", group)
+        self.assertFalse(workflow["concurrency"]["cancel-in-progress"])
+        steps = workflow["jobs"]["process-web-publish"]["steps"]
+        push_step = next(step for step in steps if step.get("name") == "Commit and push publish branch")
+        self.assertIn("HEAD:publish", str(push_step["run"]))
+        self.assertNotIn("--force", str(push_step["run"]))
 
     def test_texlive_smoke_does_not_enter_document_record_domain(self) -> None:
         workflow = _workflow("feishu-build-queue.yml")

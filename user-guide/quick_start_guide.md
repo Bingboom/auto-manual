@@ -176,13 +176,13 @@ App/QR 等敏感候选即使已拆图也继续保持隔离。只有 `data/asset_
 2. `04_资产导出物` 每个物理文件一行：`artifact_kind=web-composite`，在
    `export_file` 上传一张图片，选择 `web_locale`，填写 `content_sha256` 和
    `source_fragment_sha256`，审核通过后勾选 `build_eligible`。
-3. 运行 `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2`。
-4. 使用 `AUTO_MANUAL_PRESENTATION_PROFILE=web` 构建时，流水线会按
+3. 在 `Document_link` 选择 `Workflow_action=Web Publish`，保留已审核的 `Git_ref`，并触发独立 Web worker。
+4. Web worker 使用 HT-Docs bot 强制执行 `sync-data`，再按
    `web_replace_key + model + region + locale` 自动替换整块 figure 与关联文字；章节
    标题不进入图片。没有合格导出时保留可编辑 HTML，重复匹配或哈希漂移直接失败。
 
-Read the Docs 不在线读取飞书。线上审核后的 manifest 与附件必须先作为冻结快照
-进入 `tests/fixtures/phase2` 的 PR，RTD 才会消费这次更新。
+Read the Docs 不在线读取飞书。Web Publish 先把线上审核后的 manifest、附件与 MyST
+冻结到 `Hello-Docs/publish:docs/publish/`，RTD 只消费该 Git 快照。
 
 ## 2. Build Draft Package 和 Publish 的原料分别是什么
 
@@ -394,7 +394,7 @@ Publish 的原料是：
 1. workflow 可以由默认分支承载
 2. 执行 `process-build-queue --workflow-action publish`
 3. 只有当 `是否强制刷新数据 = 勾选` 时，队列才先执行一次 `sync-data`
-4. 如果 `Document_link.Git_ref` 有值，队列会先 fetch 这条分支，并在临时 worktree 中按这条分支执行 `build.py publish`（内部会跑 `check -> diff-report -> word -> pdf -> md -> release-manifest`）和 `build.py html --source review`
+4. 如果 `Document_link.Git_ref` 有值，队列会先 fetch 这条分支，并在临时 worktree 中按这条分支执行 `build.py publish`（内部会跑 `check -> diff-report -> word -> pdf -> md -> release-manifest`）
 5. 如果当前启用了 DingTalk mirror 且 `是否上传钉钉 = 勾选`，就同步 DingTalk；如果同时填了 `DingTalk_target_node_url`，优先同步到该行节点；否则退回全局默认 DingTalk 节点；未勾选则只保留 Feishu/wiki 上传；如果表里没有 `是否上传钉钉`，则按当前 worker 的全局模式决定是否同步
 6. 回写：
    - `开始构建时间`
@@ -404,7 +404,15 @@ Publish 的原料是：
    - `Document link（主交付 PDF 链接）`
    - `飞书云文档（字段存在时；由 Markdown 导入）`
    - `Document link_dd（仅启用 DingTalk mirror 且字段存在时；镜像同一份 Publish PDF）`
-7. 把最新 publish HTML 刷新到 Vercel；如果 `Document_link` 里有 `HTML_link` 字段，workflow 会把这次 deploy 返回的 Vercel URL 再回写到该字段。GitHub Actions summary 里的 URL 可能会被脱敏打星，原始链接以 `HTML_link`、`publish_meta.json` 和 `openclaw-run-metadata` 为准
+
+印刷 Publish 不再构建或部署网页。网页使用独立的
+[`feishu-web-publish-queue.yml`](../.github/workflows/feishu-web-publish-queue.yml)：
+
+1. 在同一条 `Document_link` 记录选择 `Workflow_action = Web Publish`，保留已审核的 `Git_ref`，并把构建触发改回 `Y`
+2. 在 `04_资产导出物` 确认所需 `export_file` 已选择语言、hash 正确且审核通过
+3. Web worker 强制拉取最新 phase2 和图文资产，按 web profile 执行 `check -> md -> html`
+4. workflow 把冻结 MyST 增量提交到 `Hello-Docs/publish:docs/publish/`，Read the Docs 自动构建
+5. `HTML_link` 回写为目标 RTD 页面；成功验收还要确认 publish 分支 manifest 和线上页面
 
 ### 远端 GitHub worker 想支持 DingTalk 还要配什么
 
@@ -540,7 +548,18 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
    - `是否强制刷新数据 = 只有这次确实要拉最新 phase2 时才勾`
-4. 等队列回写 `Document directory`（DOCX 留档路径）、`Document link`（PDF 链接）和可选的 `飞书云文档`；如果表里有 `HTML_link`，还会看到最新 Vercel HTML 链接，并确认 Vercel 最新页面已刷新
+4. 等队列回写 `Document directory`（DOCX 留档路径）、`Document link`（PDF 链接）和可选的 `飞书云文档`
+
+### 如果你要正式 Web Publish
+
+1. 确认当前 review / PR 分支和 `Git_ref` 已准备好
+2. 在 `04_资产导出物` 上传完整图文插图，选择 `web_locale`，填写两个 SHA-256，并完成 `approved + build_eligible` 审核门
+3. 在 `Document_link` 里设：
+   - `Workflow_action = Web Publish`
+   - `是否触发文档构建 = Y`
+   - `是否立即构建 = 勾选`
+4. 运行 `Feishu Web Publish Queue`；它会强制同步资产，所以不依赖 `是否强制刷新数据`
+5. 验收 `Hello-Docs/publish:docs/publish/publish_manifest.json`、RTD 页面和回写的 `HTML_link`
 
 ### 如果你要按方案 2 复刻获批 PDF 为原生 InDesign
 

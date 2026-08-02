@@ -1,0 +1,232 @@
+name: Feishu Web Publish Queue
+run-name: Feishu Web Publish Queue / ${{ inputs.queue_record_id != '' && inputs.queue_record_id || 'batch' }} / ${{ inputs.openclaw_dispatch_nonce != '' && inputs.openclaw_dispatch_nonce || github.run_id }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      trigger_source:
+        description: Optional source label for this queue run
+        required: false
+        type: string
+      queue_record_id:
+        description: Optional Document_link record_id that triggered this run
+        required: false
+        type: string
+      queue_record_ids:
+        description: Optional comma-separated Document_link record_ids for one batch run
+        required: false
+        type: string
+      openclaw_dispatch_nonce:
+        description: Optional nonce used by OpenClaw to correlate the dispatched run
+        required: false
+        type: string
+
+# The publish branch is one shared mutable catalog. Serialize the complete
+# build/assembly/push/writeback transaction so two targets cannot race and
+# silently discard each other's frozen Web source.
+concurrency:
+  group: feishu-web-publish-branch
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  process-web-publish:
+    if: ${{ github.repository != 'Bingboom/Hello-Docs' || vars.FEISHU_BUILD_QUEUE_PAUSED != 'true' }}
+    runs-on: ubuntu-latest
+    env:
+      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+      FEISHU_PHASE2_IDENTITY: bot
+      FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
+      FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_ROWS_SOURCE_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_ROWS_SOURCE_VIEW_ID }}
+      FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID: ${{ secrets.FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_TABLE_ID }}
+      FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_VIEW_ID: ${{ secrets.FEISHU_PHASE2_PAGE_PLACEHOLDERS_SOURCE_VIEW_ID }}
+      FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_FOOTNOTES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_FOOTNOTES_VIEW_ID }}
+      FEISHU_PHASE2_SPEC_NOTES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SPEC_NOTES_TABLE_ID }}
+      FEISHU_PHASE2_SPEC_NOTES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SPEC_NOTES_VIEW_ID }}
+      FEISHU_TRANSLATION_MEMORY_BASE_TOKEN: ${{ secrets.FEISHU_TRANSLATION_MEMORY_BASE_TOKEN }}
+      FEISHU_TRANSLATION_MEMORY_TABLE_ID: ${{ secrets.FEISHU_TRANSLATION_MEMORY_TABLE_ID }}
+      FEISHU_TRANSLATION_MEMORY_VIEW_ID: ${{ secrets.FEISHU_TRANSLATION_MEMORY_VIEW_ID }}
+      FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID: ${{ secrets.FEISHU_PHASE2_SYMBOLS_BLOCKS_TABLE_ID }}
+      FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID: ${{ secrets.FEISHU_PHASE2_SYMBOLS_BLOCKS_VIEW_ID }}
+      FEISHU_PHASE2_LCD_ICONS_TABLE_ID: ${{ secrets.FEISHU_PHASE2_LCD_ICONS_TABLE_ID }}
+      FEISHU_PHASE2_LCD_ICONS_VIEW_ID: ${{ secrets.FEISHU_PHASE2_LCD_ICONS_VIEW_ID }}
+      FEISHU_PHASE2_TROUBLESHOOTING_TABLE_ID: ${{ secrets.FEISHU_PHASE2_TROUBLESHOOTING_TABLE_ID }}
+      FEISHU_PHASE2_TROUBLESHOOTING_VIEW_ID: ${{ secrets.FEISHU_PHASE2_TROUBLESHOOTING_VIEW_ID }}
+      FEISHU_PHASE2_VARIABLE_DEFAULTS_TABLE_ID: ${{ secrets.FEISHU_PHASE2_VARIABLE_DEFAULTS_TABLE_ID }}
+      FEISHU_PHASE2_VARIABLE_DEFAULTS_VIEW_ID: ${{ secrets.FEISHU_PHASE2_VARIABLE_DEFAULTS_VIEW_ID }}
+      FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_TABLE_ID }}
+      FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_VIEW_ID: ${{ secrets.FEISHU_PHASE2_VARIABLE_LANG_OVERRIDES_VIEW_ID }}
+      FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID: ${{ secrets.FEISHU_PHASE2_MANUAL_COPY_SOURCE_TABLE_ID }}
+      FEISHU_PHASE2_MANUAL_COPY_SOURCE_VIEW_ID: ${{ secrets.FEISHU_PHASE2_MANUAL_COPY_SOURCE_VIEW_ID }}
+      FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
+      FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
+      AUTO_MANUAL_RTD_BASE_URL: ${{ vars.AUTO_MANUAL_RTD_BASE_URL || 'https://ht-doc.readthedocs.io/en/latest' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Validate execution plane
+        shell: bash
+        run: |
+          if [ "${GITHUB_REPOSITORY}" != "Bingboom/Hello-Docs" ]; then
+            echo "::error::Web Publish runs only on the Hello-Docs business-plane mirror."
+            exit 1
+          fi
+          if [ "${GITHUB_REF}" != "refs/heads/${{ github.event.repository.default_branch }}" ]; then
+            echo "::error::Dispatch feishu-web-publish-queue.yml on the Hello-Docs default branch. Document_link.Git_ref selects the reviewed content."
+            exit 1
+          fi
+
+      - name: Validate required secrets
+        shell: bash
+        run: |
+          bash scripts/validate_required_env.sh feishu-web-publish-queue
+
+      - name: Print trigger context
+        shell: bash
+        run: |
+          echo "event_name=${GITHUB_EVENT_NAME}"
+          echo "ref=${GITHUB_REF}"
+          echo "default_branch=${{ github.event.repository.default_branch }}"
+          echo "trigger_source=${{ inputs.trigger_source || '' }}"
+          echo "queue_record_id=${{ inputs.queue_record_id || '' }}"
+          echo "queue_record_ids=${{ inputs.queue_record_ids || '' }}"
+          echo "openclaw_dispatch_nonce=${{ inputs.openclaw_dispatch_nonce || '' }}"
+          echo "publish_branch=publish"
+
+      - uses: ./.github/actions/feishu-common-setup
+
+      - name: Process Feishu Web Publish queue
+        shell: bash
+        run: |
+          cmd=(python build.py process-build-queue --config configs/config.us.yaml --data-root data/phase2 --workflow-action web-publish)
+          if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
+            cmd+=(--record-id "${{ inputs.queue_record_id }}")
+          fi
+          if [ -n "${{ inputs.queue_record_ids || '' }}" ]; then
+            cmd+=(--record-ids "${{ inputs.queue_record_ids }}")
+          fi
+          "${cmd[@]}"
+
+      - name: Prepare publish branch worktree
+        id: publish-tree
+        shell: bash
+        env:
+          PUBLISH_WORKTREE: ${{ runner.temp }}/hello-docs-publish
+          PRESERVED_PUBLISH_TREE: ${{ runner.temp }}/hello-docs-publish-existing
+        run: |
+          if git ls-remote --exit-code --heads origin publish >/dev/null 2>&1; then
+            git fetch origin publish:refs/remotes/origin/publish
+            git worktree add --detach "${PUBLISH_WORKTREE}" refs/remotes/origin/publish
+            if [ -d "${PUBLISH_WORKTREE}/docs/publish" ]; then
+              mkdir -p "${PRESERVED_PUBLISH_TREE}"
+              cp -a "${PUBLISH_WORKTREE}/docs/publish/." "${PRESERVED_PUBLISH_TREE}/"
+            fi
+            git -C "${PUBLISH_WORKTREE}" read-tree --reset -u "${GITHUB_SHA}"
+            if [ -d "${PRESERVED_PUBLISH_TREE}" ]; then
+              mkdir -p "${PUBLISH_WORKTREE}/docs/publish"
+              cp -a "${PRESERVED_PUBLISH_TREE}/." "${PUBLISH_WORKTREE}/docs/publish/"
+            fi
+          else
+            git worktree add --detach "${PUBLISH_WORKTREE}" "${GITHUB_SHA}"
+          fi
+          echo "path=${PUBLISH_WORKTREE}" >> "$GITHUB_OUTPUT"
+
+      - name: Assemble frozen Web source under docs/publish
+        shell: bash
+        run: |
+          python tools/publish_branch_assembly.py \
+            --releases-root reports/releases \
+            --output-dir "${{ steps.publish-tree.outputs.path }}/docs/publish"
+
+      - name: Commit and push publish branch
+        id: publish-push
+        shell: bash
+        env:
+          PUBLISH_WORKTREE: ${{ steps.publish-tree.outputs.path }}
+        run: |
+          git -C "${PUBLISH_WORKTREE}" config user.name "github-actions[bot]"
+          git -C "${PUBLISH_WORKTREE}" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C "${PUBLISH_WORKTREE}" add -A
+          if git -C "${PUBLISH_WORKTREE}" diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "publish branch already contains this frozen Web snapshot."
+            exit 0
+          fi
+          git -C "${PUBLISH_WORKTREE}" commit -m "chore(publish): refresh web documentation"
+          git -C "${PUBLISH_WORKTREE}" push origin HEAD:publish
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "commit=$(git -C "${PUBLISH_WORKTREE}" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Write RTD HTML_link back to Document_link
+        shell: bash
+        run: |
+          cmd=(
+            python tools/write_web_publish_html_link.py
+            --config configs/config.us.yaml
+            --base-url "${AUTO_MANUAL_RTD_BASE_URL}"
+          )
+          if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
+            cmd+=(--record-id "${{ inputs.queue_record_id }}")
+          fi
+          "${cmd[@]}"
+
+      - name: Write OpenClaw run metadata
+        if: always()
+        shell: bash
+        run: |
+          python integrations/openclaw/scripts/write_workflow_run_metadata.py \
+            --output .tmp/openclaw/feishu-web-publish-queue-run.json \
+            --workflow-name "Feishu Web Publish Queue" \
+            --workflow-file ".github/workflows/feishu-web-publish-queue.yml" \
+            --queue-record-id "${{ inputs.queue_record_id || '' }}" \
+            --queue-record-ids "${{ inputs.queue_record_ids || '' }}" \
+            --trigger-source "${{ inputs.trigger_source || '' }}" \
+            --openclaw-dispatch-nonce "${{ inputs.openclaw_dispatch_nonce || '' }}" \
+            --artifact-name feishu-web-publish-queue-output \
+            --artifact-name openclaw-run-metadata
+
+      - name: Upload Web Publish verification artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: feishu-web-publish-queue-output
+          path: |
+            reports/releases/**/versions/**/web/**
+            reports/releases/**/latest/web/**
+            ${{ runner.temp }}/hello-docs-publish/docs/publish/publish_manifest.json
+            data/phase2/snapshot_manifest.json
+            data/phase2/row_key_mapping.csv
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Upload OpenClaw run metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openclaw-run-metadata
+          path: .tmp/openclaw/feishu-web-publish-queue-run.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Web Publish failure sentinel
+        if: always()
+        uses: ./.github/actions/queue-sentinel-issue
+        with:
+          job-status: ${{ job.status }}
+          label: queue-failure-web-publish
+          title: "Feishu Web Publish Queue failing: ${{ inputs.queue_record_id || 'batch' }}"
+          details: |
+            workflow: Feishu Web Publish Queue (web-publish)
+            record_id: ${{ inputs.queue_record_id || '(batch)' }}
+            trigger_source: ${{ inputs.trigger_source || '' }}
+            openclaw_dispatch_nonce: ${{ inputs.openclaw_dispatch_nonce || '' }}

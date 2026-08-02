@@ -89,7 +89,10 @@ def _publish_meta_sort_key(path: Path) -> tuple[float, str]:
 def latest_publish_metadata(releases_root: Path) -> tuple[Path, dict[str, object]] | None:
     if not releases_root.exists():
         return None
-    candidates = list(releases_root.glob("*/*/*/latest/publish_meta.json"))
+    candidates = [
+        *releases_root.glob("*/*/*/latest/publish_meta.json"),
+        *releases_root.glob("*/*/*/latest/web/publish_meta.json"),
+    ]
     if not candidates:
         return None
     candidates.sort(key=_publish_meta_sort_key, reverse=True)
@@ -166,6 +169,12 @@ def build_metadata(
     publish_meta_path, publish_meta_payload = publish_meta
     metadata["publish_metadata_path"] = repo_relative_or_absolute(publish_meta_path)
     metadata["publish_metadata"] = publish_meta_payload
+    if not metadata["publish_url"]:
+        metadata["publish_url"] = _clean_text(
+            publish_meta_payload.get("publish_url")
+            if isinstance(publish_meta_payload.get("publish_url"), str)
+            else ""
+        )
     document_link_url = publish_meta_payload.get("document_link_url")
     html_index = publish_meta_payload.get("html_index")
     word_output_path = publish_meta_payload.get("word_output_path")

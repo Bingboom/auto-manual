@@ -83,6 +83,7 @@ def process_build_queue(
     build_success_fields: Callable[..., Any],
     publish_release_latest_dir_for_target: Callable[..., Any],
     write_publish_release_metadata: Callable[..., Any],
+    write_web_publish_metadata: Callable[..., Any],
     build_failure_writeback_fields: Callable[..., Any],
     best_effort_queue_workflow_action: Callable[..., Any],
     resolve_queue_workflow_action: Callable[..., Any],
@@ -132,12 +133,16 @@ def process_build_queue(
         )
         return 0
 
-    artifact_destination = resolve_and_report_wiki_destination(
-        cfg=cfg,
-        cli_bin=session.cli_bin,
-        identity=session.identity,
-        binding=session.binding,
-        resolve_wiki_destination=resolve_wiki_destination,
+    artifact_destination = (
+        None
+        if session.normalized_cli_action == "web_publish"
+        else resolve_and_report_wiki_destination(
+            cfg=cfg,
+            cli_bin=session.cli_bin,
+            identity=session.identity,
+            binding=session.binding,
+            resolve_wiki_destination=resolve_wiki_destination,
+        )
     )
 
     failures: list[str] = []
@@ -198,6 +203,7 @@ def process_build_queue(
             queue_record_legacy_doc_phase=queue_record_legacy_doc_phase,
             publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
             write_publish_release_metadata=write_publish_release_metadata,
+            write_web_publish_metadata=write_web_publish_metadata,
             workflow_action_label=workflow_action_label,
             queue_record_key=queue_record_key,
             build_failure_writeback_fields=build_failure_writeback_fields,

@@ -259,7 +259,10 @@ def parse_args(
     ap.add_argument(
         "--query-workflow-action",
         default=None,
-        help="For queue-query or queue-resolve-action: start-review | build-draft-package | publish",
+        help=(
+            "For queue-query or queue-resolve-action: "
+            "start-review | build-draft-package | publish | web-publish"
+        ),
     )
     ap.add_argument("--git-ref-contains", default=None, help="For queue-query or queue-resolve-action: substring match against Git_ref")
     ap.add_argument("--result-contains", default=None, help="For queue-query or queue-resolve-action: substring match against 构建结果")
@@ -420,9 +423,12 @@ def parse_args(
     )
     ap.add_argument(
         "--workflow-action",
-        choices=("build-draft-package", "publish"),
+        choices=("build-draft-package", "publish", "web-publish"),
         default=None,
-        help="For process-build-queue: only consume one normalized Workflow_action (Build Draft Package or Publish)",
+        help=(
+            "For process-build-queue: only consume one normalized Workflow_action "
+            "(Build Draft Package, Publish, or Web Publish)"
+        ),
     )
     ap.add_argument(
         "--doc-phase",

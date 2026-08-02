@@ -84,7 +84,8 @@ Updated: 2026-07-15
 
 | 通道 | 方向 | 机制 | 频率 |
 | --- | --- | --- | --- |
-| **代码** | auto-manual → Hello-Docs | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) | 每次合入 main 自动，秒级 |
+| **代码** | auto-manual/main → Hello-Docs/main | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) | 每次合入 main 自动，秒级 |
+| **Web 发布快照** | Hello-Docs/main → Hello-Docs/publish | `feishu-web-publish-queue.yml` 组装 `docs/publish/` 并普通增量 push | 每次审核后的 Web Publish |
 | **表结构 + 引用数据** | 旧 base → 新 base | `python tools/bitable_schema.py promote`（只增不删、dry-run 默认）；每日 01:00 parity 哨兵盯滞后并开 `[schema-drift]` issue | 人工，有告警兜底 |
 | **翻译语料** | 不同步——**只有一份** | TM-B 是唯一写库（G4 收敛）；TM-A 只读归档，工具层已拆除对它的静默回退 | — |
 
@@ -93,7 +94,8 @@ Updated: 2026-07-15
 | 东西 | 跑在哪 | 对着哪组 base |
 | --- | --- | --- |
 | CI 验证（unittest/check/门禁） | auto-manual | fixtures（不碰活库） |
-| 队列 worker（构建/初稿/评审启动） | 两个仓库各自有 | 各自的 base（auto-manual→旧=legacy；Hello-Docs→新=业务） |
+| 队列 worker（构建/初稿/评审启动） | 两个仓库各自有；正式 Web Publish 只在 Hello-Docs/main 运行 | 各自的 base（auto-manual→旧=legacy；Hello-Docs→新=业务） |
+| Read the Docs | 监听 Hello-Docs/publish，构建 `docs/publish/web/` | 不访问飞书，只读冻结 Git 快照 |
 | schema-parity 哨兵 | 仅 auto-manual（工程面比对，锁源仓库是对的） | 读新旧两组 |
 | backport-reminder 哨兵 | 两个仓库都跑（各用各的 secrets；PR #525 修复守卫后生效） | 各自的 base |
 | OpenClaw / BlockClaw agent | 本机 `~/Documents/GitHub/Hello-Docs` checkout | 新 base（`~/.openclaw/.env`） |
@@ -110,6 +112,7 @@ Updated: 2026-07-15
 ## 5. 纪律（违反必出事故）
 
 1. **代码只改 auto-manual**。Hello-Docs 是镜像，改了会被下一次同步覆盖或产生分叉。
+   `Hello-Docs/publish` 例外地由 Web Publish workflow 自动写入发布快照，但人不在该分支改代码。
 2. **表结构只在旧 base 迭代，成熟后 promote**。直接改新 base 结构 = 绕过沙盒，
    parity 哨兵会把它当漂移报出来。
 3. **语料只写 TM-B**。`tm-apply --tm-binding` 只能指向 B。

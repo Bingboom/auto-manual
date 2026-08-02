@@ -42,8 +42,6 @@ jobs:
     concurrency:
       group: ${{ inputs.texlive_smoke_only && format('feishu-texlive-smoke-{0}', github.run_id) || format('feishu-document-queue-{0}', inputs.queue_record_id != '' && inputs.queue_record_id || 'batch') }}
       cancel-in-progress: false
-    outputs:
-      has_publish_site: ${{ steps.publish-site.outputs.has_publish_site }}
     env:
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
       FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
@@ -197,23 +195,6 @@ jobs:
           fi
           "${cmd[@]}"
 
-      - name: Build latest publish HTML site
-        id: publish-site
-        if: ${{ hashFiles('reports/releases/**/latest/publish_meta.json') != '' }}
-        shell: bash
-        run: |
-          python tools/process_docs/build_publish_latest_site.py
-          echo "has_publish_site=true" >> "$GITHUB_OUTPUT"
-
-      - name: Upload Vercel publish candidate
-        if: ${{ steps.publish-site.outputs.has_publish_site == 'true' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: vercel-publish-candidate
-          path: site/publish-latest/dist
-          retention-days: 1
-          if-no-files-found: error
-
       - name: Upload built docs artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -229,99 +210,6 @@ jobs:
           retention-days: 14
           if-no-files-found: ignore
 
-      # Milestone K5: a failed queue run must alert on its own instead of
-      # relying on whoever dispatched it to watch the run.
-      - name: Queue failure sentinel
-        if: always()
-        uses: ./.github/actions/queue-sentinel-issue
-        with:
-          job-status: ${{ job.status }}
-          label: queue-failure-build
-          title: "Feishu Build Queue failing: ${{ inputs.queue_record_id || 'batch' }}"
-          details: |
-            workflow: Feishu Build Queue (publish)
-            record_id: ${{ inputs.queue_record_id || '(batch)' }}
-            trigger_source: ${{ inputs.trigger_source || '' }}
-            openclaw_dispatch_nonce: ${{ inputs.openclaw_dispatch_nonce || '' }}
-
-  deploy-vercel:
-    needs: process-queue
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    concurrency:
-      group: feishu-vercel-production
-      cancel-in-progress: false
-    env:
-      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
-      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
-      FEISHU_PHASE2_IDENTITY: bot
-      FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
-      FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
-      FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.repository.default_branch }}
-          fetch-depth: 2
-
-      - name: Download Vercel publish candidate
-        if: ${{ needs.process-queue.result == 'success' && needs.process-queue.outputs.has_publish_site == 'true' }}
-        uses: actions/download-artifact@v4
-        with:
-          name: vercel-publish-candidate
-          path: site/publish-latest/dist
-
-      - name: Set up Vercel publish runtime
-        if: ${{ needs.process-queue.result == 'success' && needs.process-queue.outputs.has_publish_site == 'true' }}
-        uses: ./.github/actions/feishu-common-setup
-
-      - name: Install Vercel CLI
-        if: ${{ needs.process-queue.result == 'success' && needs.process-queue.outputs.has_publish_site == 'true' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' }}
-        run: npm install --global vercel@latest
-
-      - name: Pull Vercel production settings
-        if: ${{ needs.process-queue.result == 'success' && needs.process-queue.outputs.has_publish_site == 'true' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' }}
-        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
-
-      - name: Build Vercel production output
-        if: ${{ needs.process-queue.result == 'success' && needs.process-queue.outputs.has_publish_site == 'true' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' }}
-        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
-
-      - name: Deploy latest publish HTML to Vercel
-        id: deploy
-        if: ${{ needs.process-queue.result == 'success' && needs.process-queue.outputs.has_publish_site == 'true' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' && env.VERCEL_TOKEN != '' }}
-        shell: bash
-        run: |
-          publish_url="$(vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}")"
-          echo "publish_url=${publish_url}" >> "$GITHUB_OUTPUT"
-
-      - name: Publish Vercel summary
-        if: ${{ steps.deploy.outputs.publish_url != '' }}
-        run: |
-          {
-            echo "Latest publish HTML deployed successfully."
-            echo
-            echo "- GitHub Actions summaries and logs may mask the raw Vercel URL."
-            echo "- Use \`HTML_link\`, \`publish_meta.json\`, or the \`openclaw-run-metadata\` artifact for the unmasked deploy URL."
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Write publish HTML_link back to Document_link
-        if: ${{ steps.deploy.outputs.publish_url != '' }}
-        shell: bash
-        run: |
-          cmd=(
-            python tools/write_publish_html_link.py
-            --config configs/config.us.yaml
-            --publish-url "${{ steps.deploy.outputs.publish_url }}"
-          )
-          if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
-            cmd+=(--record-id "${{ inputs.queue_record_id }}")
-          fi
-          "${cmd[@]}"
-
       - name: Write OpenClaw run metadata
         if: always()
         shell: bash
@@ -334,7 +222,6 @@ jobs:
             --queue-record-ids "${{ inputs.queue_record_ids || '' }}" \
             --trigger-source "${{ inputs.trigger_source || '' }}" \
             --openclaw-dispatch-nonce "${{ inputs.openclaw_dispatch_nonce || '' }}" \
-            --publish-url "${{ steps.deploy.outputs.publish_url || '' }}" \
             --artifact-name feishu-build-queue-output \
             --artifact-name openclaw-run-metadata
 
@@ -347,15 +234,17 @@ jobs:
           retention-days: 7
           if-no-files-found: error
 
-      - name: Vercel deployment failure sentinel
+      # Milestone K5: a failed queue run must alert on its own instead of
+      # relying on whoever dispatched it to watch the run.
+      - name: Queue failure sentinel
         if: always()
         uses: ./.github/actions/queue-sentinel-issue
         with:
           job-status: ${{ job.status }}
-          label: queue-failure-build-deploy
-          title: "Feishu Build Queue Vercel deploy failing: ${{ inputs.queue_record_id || 'batch' }}"
+          label: queue-failure-build
+          title: "Feishu Build Queue failing: ${{ inputs.queue_record_id || 'batch' }}"
           details: |
-            workflow: Feishu Build Queue (Vercel deploy)
+            workflow: Feishu Build Queue (publish)
             record_id: ${{ inputs.queue_record_id || '(batch)' }}
             trigger_source: ${{ inputs.trigger_source || '' }}
             openclaw_dispatch_nonce: ${{ inputs.openclaw_dispatch_nonce || '' }}

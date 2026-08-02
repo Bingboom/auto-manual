@@ -71,11 +71,15 @@ _TASK_ACTION_LABELS = {
     "build draft package": "Build Draft Package",
     "draft": "Build Draft Package",
     "publish": "Publish",
+    "web-publish": "Web Publish",
+    "web_publish": "Web Publish",
+    "web publish": "Web Publish",
 }
 _ACTION_LABEL_TO_QUERY = {
     "start review": "start-review",
     "build draft package": "build-draft-package",
     "publish": "publish",
+    "web publish": "web-publish",
 }
 
 
@@ -297,7 +301,7 @@ def _workflow_action_for_task_label(label: str) -> str:
 
 
 def _infer_task_id_filters(text: str) -> tuple[str, str, str]:
-    for action_label in ("Build Draft Package", "Start Review", "Publish"):
+    for action_label in ("Build Draft Package", "Start Review", "Web Publish", "Publish"):
         pattern = re.compile(
             _TASK_DOCUMENT_ID_RE + r"[\s_:-]+" + _action_label_pattern(action_label),
             flags=re.IGNORECASE,
@@ -314,6 +318,7 @@ def _action_label_for_row(row: QueueQueryRow) -> str:
         "start_review": "Start Review",
         "draft": "Build Draft Package",
         "publish": "Publish",
+        "web_publish": "Web Publish",
     }
     if row.normalized_workflow_action in mapping:
         return mapping[row.normalized_workflow_action]
@@ -396,7 +401,7 @@ def should_apply_latest_per_document_key(args: argparse.Namespace) -> bool:
     normalized_action = _normalize_query_workflow_action(getattr(args, "query_workflow_action", None))
     if not getattr(args, "latest_per_document_key", False):
         return False
-    if getattr(args, "allow_multiple", False) and normalized_action in {"draft", "publish"}:
+    if getattr(args, "allow_multiple", False) and normalized_action in {"draft", "publish", "web_publish"}:
         return False
     return True
 
@@ -613,12 +618,15 @@ def _normalize_query_workflow_action(value: str | None) -> str | None:
         "build draft package": "draft",
         "draft": "draft",
         "publish": "publish",
+        "web-publish": "web_publish",
+        "web_publish": "web_publish",
+        "web publish": "web_publish",
     }
     normalized = aliases.get(text)
     if normalized:
         return normalized
     raise RuntimeError(
-        "--query-workflow-action must be one of: start-review, build-draft-package, publish"
+        "--query-workflow-action must be one of: start-review, build-draft-package, publish, web-publish"
     )
 
 
@@ -651,6 +659,9 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         queue_scope = "review-init" if task_workflow_action == "start-review" else "document-link"
     elif any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
         workflow_action = "build-draft-package"
+        queue_scope = "document-link"
+    elif "web publish" in normalized_text or "网页发布" in text:
+        workflow_action = "web-publish"
         queue_scope = "document-link"
     elif "publish" in normalized_text or "发布" in text:
         workflow_action = "publish"
@@ -693,7 +704,7 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     document_keys: tuple[str, ...] = ()
     if workflow_action == "start-review":
         batch_tokens = _infer_document_key_tokens(text)
-    elif workflow_action in ("build-draft-package", "publish"):
+    elif workflow_action in ("build-draft-package", "publish", "web-publish"):
         batch_tokens = _infer_document_id_tokens(text)
     else:
         batch_tokens = ()
@@ -951,7 +962,7 @@ def _effective_queue_query_limit(args: argparse.Namespace, normalized_action: st
     limit = max(int(getattr(args, "limit", _DEFAULT_QUEUE_QUERY_LIMIT) or _DEFAULT_QUEUE_QUERY_LIMIT), 1)
     if (
         getattr(args, "allow_multiple", False)
-        and normalized_action in {"draft", "publish", "start_review"}
+        and normalized_action in {"draft", "publish", "web_publish", "start_review"}
         and limit == _DEFAULT_QUEUE_QUERY_LIMIT
     ):
         return 1000
@@ -997,7 +1008,7 @@ def _matches_queue_query_row(
         return False
     if (
         getattr(args, "allow_multiple", False)
-        and normalized_action in {"draft", "publish"}
+        and normalized_action in {"draft", "publish", "web_publish"}
         and row.build_trigger_requested is not True
     ):
         return False

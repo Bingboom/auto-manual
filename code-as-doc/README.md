@@ -55,8 +55,10 @@ These files describe the repo behavior that should be maintained today.
   - repository architecture, maintainability, and Codex/Claude scaffolding audit
 - [`reviews/codex_scaffolding_implementation_plan.md`](reviews/codex_scaffolding_implementation_plan.md)
   - bounded Codex skill and directory-navigation migration plan
+- [`dev/web_publish_pipeline.md`](dev/web_publish_pipeline.md)
+  - current Web Publish, `Hello-Docs/publish`, and Read the Docs contract
 - [`dev/vercel_review_preview_guide.md`](dev/vercel_review_preview_guide.md)
-  - latest-publish / review-preview hosting rules
+  - legacy Vercel latest-publish implementation reference
 - [`tests/README.md`](tests/README.md)
   - current test and validation baseline
 
