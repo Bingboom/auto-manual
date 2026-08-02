@@ -163,7 +163,7 @@ jobs:
             exit 0
           fi
           git -C "${PUBLISH_WORKTREE}" commit -m "chore(publish): refresh web documentation"
-          git -C "${PUBLISH_WORKTREE}" push origin HEAD:publish
+          git -C "${PUBLISH_WORKTREE}" push origin HEAD:refs/heads/publish
           echo "changed=true" >> "$GITHUB_OUTPUT"
           echo "commit=$(git -C "${PUBLISH_WORKTREE}" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 

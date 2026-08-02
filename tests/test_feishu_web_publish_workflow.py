@@ -36,7 +36,7 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         self.assertIn("docs/publish", prepare)
         self.assertIn("tools/publish_branch_assembly.py", assemble)
         self.assertIn("--output-dir", assemble)
-        self.assertIn("HEAD:publish", push)
+        self.assertIn("HEAD:refs/heads/publish", push)
         self.assertNotIn("--force", push)
 
     def test_rtd_link_writeback_happens_after_the_branch_push(self) -> None:
