@@ -35,6 +35,7 @@ _TERMINAL_CONCLUSIONS = {
     "skipped",
 }
 _SUCCESS_CONCLUSIONS = {"success", "neutral", "skipped"}
+_PUBLISH_DISPATCH_COMMANDS = {"publish", "web-publish"}
 
 
 def _null_text(value: str) -> str:
@@ -519,7 +520,7 @@ def _dispatch_one_row(
     if dispatch_command is None:
         return result
     try:
-        if dispatch_command == "publish":
+        if dispatch_command in _PUBLISH_DISPATCH_COMMANDS:
             payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id, "confirm")
         else:
             payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id)
@@ -606,7 +607,7 @@ def run_queue_execute_batch(
         cli_args.append(
             "--record-ids=" + ",".join(row.record_id for _index, row in entries)
         )
-        if dispatch_command == "publish":
+        if dispatch_command in _PUBLISH_DISPATCH_COMMANDS:
             cli_args.append("confirm")
         try:
             payload = _run_control_layer_cli(repo_root, *cli_args)
@@ -640,7 +641,7 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
     ensure_start_review_dispatchable(row)
     asset_preflight = _asset_preflight_for_row(row, repo_root=repo_root)
     accepted_at = str(getattr(resolved_args, "fresh_since", "") or "").strip() or _now_iso()
-    if dispatch_command == "publish":
+    if dispatch_command in _PUBLISH_DISPATCH_COMMANDS:
         dispatch_payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id, "confirm")
     else:
         dispatch_payload = _run_control_layer_cli(repo_root, "dispatch", dispatch_command, row.record_id)

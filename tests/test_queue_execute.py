@@ -98,6 +98,16 @@ def _publish_row(record_id: str = "rec_publish") -> queue_query.QueueQueryRow:
     )
 
 
+def _web_publish_row(record_id: str = "rec_web") -> queue_query.QueueQueryRow:
+    return queue_query.QueueQueryRow(
+        **{
+            **_publish_row(record_id).__dict__,
+            "workflow_action": "Web Publish",
+            "normalized_workflow_action": "web_publish",
+        }
+    )
+
+
 def _completed_start_review_row(record_id: str = "rec_review") -> queue_query.QueueQueryRow:
     return queue_query.QueueQueryRow(
         queue_scope="review-init",
@@ -519,6 +529,53 @@ class TestQueueExecute(unittest.TestCase):
         self.assertTrue(result["dispatched"])
         self.assertEqual("501", result["run_id"])
 
+    def test_dispatch_one_row_confirms_web_publish(self) -> None:
+        with mock.patch.object(
+            queue_execute,
+            "_run_control_layer_cli",
+            return_value={"run_id": "502", "run": "https://example.com/runs/502", "accepted_at": "t1"},
+        ) as mock_cli:
+            result = queue_execute._dispatch_one_row(
+                self._args(confirm_publish=True),
+                _web_publish_row(),
+                repo_root=Path("."),
+                accepted_at="t0",
+            )
+
+        self.assertEqual(
+            ("dispatch", "web-publish", "rec_web", "confirm"),
+            mock_cli.call_args.args[1:],
+        )
+        self.assertEqual("dispatched", result["status"])
+
+    def test_run_queue_execute_confirms_single_web_publish(self) -> None:
+        row = _web_publish_row()
+        stdout = io.StringIO()
+        with mock.patch.object(queue_execute, "load_config", return_value={}), \
+            mock.patch.object(queue_execute, "collect_queue_query_rows", return_value=[row]), \
+            mock.patch.object(queue_execute, "_refresh_queue_row", return_value=row), \
+            mock.patch.object(
+                queue_execute,
+                "_run_control_layer_cli",
+                return_value={"run_id": "503", "run": "https://example.com/runs/503"},
+            ) as mock_cli, \
+            redirect_stdout(stdout):
+            queue_execute.run_queue_execute(
+                self._args(
+                    record_id="rec_web",
+                    queue_scope="document-link",
+                    confirm_publish=True,
+                    wait_for_completion=False,
+                    json=True,
+                ),
+                config_path=Path("config.us.yaml"),
+                repo_root=Path("."),
+            )
+
+        mock_cli.assert_called_once_with(
+            Path("."), "dispatch", "web-publish", "rec_web", "confirm"
+        )
+
     def test_run_queue_execute_batch_dispatches_triggered_and_skips_others(self) -> None:
         triggered = queue_query.QueueQueryRow(
             **{**_draft_row("rec_cn").__dict__, "document_id": "JE-1000F_CN_1.3", "build_family": "cn-zh", "build_trigger_requested": True}
@@ -604,6 +661,31 @@ class TestQueueExecute(unittest.TestCase):
         self.assertEqual(2, payload["dispatched_count"])
         self.assertEqual({"777"}, {row["run_id"] for row in payload["results"]})
         self.assertTrue(all(row["batch"] for row in payload["results"]))
+
+    def test_run_queue_execute_batch_confirms_web_publish(self) -> None:
+        rows = [_web_publish_row("rec_web_en"), _web_publish_row("rec_web_fr")]
+        stdout = io.StringIO()
+        with mock.patch.object(queue_execute, "_asset_preflight_for_row", return_value=None), \
+            mock.patch.object(
+                queue_execute,
+                "_run_control_layer_cli",
+                return_value={"run_id": "778", "run": "https://example.com/runs/778"},
+            ) as mock_cli, \
+            redirect_stdout(stdout):
+            queue_execute.run_queue_execute_batch(
+                self._args(confirm_publish=True, json=True),
+                rows,
+                repo_root=Path("."),
+            )
+
+        mock_cli.assert_called_once_with(
+            Path("."),
+            "dispatch",
+            "web-publish",
+            "batch",
+            "--record-ids=rec_web_en,rec_web_fr",
+            "confirm",
+        )
 
 
 if __name__ == "__main__":
