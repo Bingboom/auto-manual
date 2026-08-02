@@ -89,6 +89,17 @@ def fetch_field_id_map(
     result: dict[str, str] = {}
     limit = 200  # lark-cli >=1.0.69 caps --limit at 200
 
+    def field_items(payload: dict[str, Any]) -> list[Any]:
+        data = payload.get("data")
+        if not isinstance(data, dict):
+            raise RuntimeError("Lark CLI field list response is missing data payload")
+        items = data.get("items")
+        if items is None:
+            items = data.get("fields")
+        if not isinstance(items, list):
+            raise RuntimeError("Lark CLI field list response has invalid items/fields payload")
+        return items
+
     def fetch_page(offset: int, page_limit: int) -> dict[str, Any]:
         payload = run_lark_cli_json(
             cli_bin=cli_bin,
@@ -98,16 +109,11 @@ def fetch_field_id_map(
                 "--format", "json", "--limit", str(page_limit), "--offset", str(offset),
             ],
         )
-        data = payload.get("data")
-        if not isinstance(data, dict):
-            raise RuntimeError("Lark CLI field list response is missing data payload")
-        items = data.get("items", [])
-        if not isinstance(items, list):
-            raise RuntimeError("Lark CLI field list response has invalid items payload")
+        field_items(payload)
         return payload
 
     def page_items(payload: dict[str, Any]) -> list[Any]:
-        return payload["data"]["items"]
+        return field_items(payload)
 
     def page_has_more(payload: dict[str, Any], offset: int) -> bool:
         data = payload["data"]
@@ -123,8 +129,8 @@ def fetch_field_id_map(
         for item in items:
             if not isinstance(item, dict):
                 continue
-            field_id = str(item.get("field_id") or "").strip()
-            field_name = str(item.get("field_name") or "").strip()
+            field_id = str(item.get("field_id") or item.get("id") or "").strip()
+            field_name = str(item.get("field_name") or item.get("name") or "").strip()
             if field_id and field_name:
                 result[field_name] = field_id
     return result
