@@ -8,7 +8,7 @@ from tools.utils.path_utils import PathSegments, get_paths
 
 
 WEB_STYLESHEET_NAME = "web_manual.css"
-WEB_STYLESHEET_PARTS = (WEB_STYLESHEET_NAME, "web_app_components.css")
+WEB_STYLESHEET_PARTS = (WEB_STYLESHEET_NAME, "web_symbols_fcc_components.css", "web_app_components.css")
 
 
 def copy_web_stylesheet(destination_dir: Path) -> Path:

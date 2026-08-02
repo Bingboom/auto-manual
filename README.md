@@ -622,10 +622,15 @@ visible button wording; its localized meaning stays on the icon's `aria-label`.
 Reference panels remain centered, while every ordinary standalone RST
 image fills the same responsive content width and preserves its aspect ratio.
 FCC copy is composed as a live two-column card with a component-owned vertical
-rhythm, using the localized RST text and FCC mark, then reflows to one column on phones. The LCD
-signal-name cells in each localized MEANING OF SYMBOLS table are vertically
-centered beside their multi-line explanations. The following safety-symbol
-matrix remains searchable HTML but is split into the PDF's two independent
+rhythm, using the localized RST text and FCC mark, then reflows to one column on
+phones. Its H1 remains in the document outline and RTD navigation but is
+visually hidden, so the FCC content card is the only visible block. H1 bars,
+generic tables, governed table compositions, and the FCC card share one
+border-box component-band width contract. Each localized MEANING OF SYMBOLS
+signal legend is rebuilt as searchable HTML with the PDF's complete dark grid
+and dark warning badges; its four localized labels and explanations remain live
+text rather than artwork. The following safety-symbol matrix remains searchable
+HTML but is split into the PDF's two independent
 rounded Symbol/Meaning panels, so long WEEE copy cannot stretch the left-hand
 Explosive material row. On desktop the two independent tables stretch to one
 shared outer height so their top and bottom borders align; phones stack the two

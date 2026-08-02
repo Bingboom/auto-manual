@@ -237,6 +237,20 @@ class WebPresentationTests(unittest.TestCase):
         self.assertIn('class="hb-symbol-pair-composition"', restored)
         self.assertIn('class="hb-symbol-panel-table"', restored)
 
+    def test_pandoc_guard_restores_symbol_signal_composition(self) -> None:
+        figure = (
+            '<figure class="hb-symbol-signal-composition">'
+            '<table class="hb-symbol-signal-table"><tbody><tr>'
+            '<td><span class="hb-signal-badge">WARNING</span></td>'
+            '<td>Hazard copy</td></tr></tbody></table></figure>'
+        )
+
+        protected_html, placeholders = protect_web_figures_for_pandoc(figure)
+        self.assertNotIn("hb-symbol-signal-table", protected_html)
+        restored = restore_web_figures_after_pandoc(protected_html, placeholders)
+        self.assertIn('class="hb-symbol-signal-composition"', restored)
+        self.assertIn('class="hb-symbol-signal-table"', restored)
+
     def test_pandoc_guard_restores_governed_data_table_compositions(self) -> None:
         figures = (
             '<figure class="hb-troubleshooting-composition">'
@@ -649,6 +663,7 @@ class WebPresentationTests(unittest.TestCase):
                 )
                 heading = composition.find_previous("h1") if composition else None
                 self.assertEqual("FCC", heading.get_text(" ", strip=True) if heading else "")
+                self.assertIs(composition.previous_sibling, heading)
 
     def test_lcd_icons_use_searchable_four_column_pdf_grid(self) -> None:
         soup = BeautifulSoup(_web_fragment("lcd_icons_en.rst"), "html.parser")
@@ -803,6 +818,44 @@ class WebPresentationTests(unittest.TestCase):
                         for row in table.find_all("tr")
                     )
                 )
+
+    def test_meaning_symbols_use_semantic_signal_badges_across_locales(self) -> None:
+        localized_labels = {
+            "symbols_en.rst": ["WARNING", "CAUTION", "NOTE", "TIP"],
+            "symbols_fr.rst": ["AVERTISSEMENT", "ATTENTION", "REMARQUE", "CONSEILS"],
+            "symbols_es.rst": ["ADVERTENCIA", "PRECAUCIÓN", "NOTA", "CONSEJOS"],
+        }
+
+        for source_name, expected_labels in localized_labels.items():
+            with self.subTest(source=source_name):
+                soup = BeautifulSoup(_web_fragment(source_name), "html.parser")
+                composition = soup.select_one("figure.hb-symbol-signal-composition")
+                self.assertIsNotNone(composition)
+                table = (
+                    composition.select_one("table.hb-symbol-signal-table")
+                    if composition
+                    else None
+                )
+                self.assertIsNotNone(table)
+                self.assertEqual(2, len(table.select("colgroup > col")))
+                self.assertEqual(2, len(table.select("thead > tr > th")))
+                rows = table.select("tbody > tr") if table else []
+                self.assertEqual(4, len(rows))
+                self.assertEqual(
+                    expected_labels,
+                    [
+                        badge.select_one(".hb-signal-label").get_text(" ", strip=True)
+                        for badge in table.select(".hb-signal-badge")
+                    ],
+                )
+                self.assertTrue(
+                    all(
+                        badge.select_one(".hb-signal-icon").get("aria-hidden") == "true"
+                        for badge in table.select(".hb-signal-badge")
+                    )
+                )
+                self.assertIsNone(table.find("col", attrs={"style": re.compile("width:")}))
+                self.assertFalse(any(node.get("style") for node in table.find_all(True)))
 
     def test_operation_panels_use_localized_pdf_composites_with_semantic_fallback(self) -> None:
         localized_sources = {
