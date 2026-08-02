@@ -27,6 +27,7 @@ from tools.idml.asset_contracts import (
     load_registered_approved_contract,
     requirements_for_page,
 )
+from tools.utils.path_utils import web_composite_manifest_of
 
 _INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$", re.MULTILINE)
 _LATEX_LANGUAGE_RE = re.compile(r"\\HBApplyLang\{([^{}]+)\}")
@@ -434,6 +435,15 @@ def finalize_materialized_bundle(
         "path": registry_snapshot_path.relative_to(bundle_dir).as_posix(),
         "sha256": _sha256(registry_snapshot_path),
     }
+    web_composite_manifest_path = web_composite_manifest_of(bundle_dir)
+    web_composite_manifest_record = (
+        {
+            "path": web_composite_manifest_path.relative_to(bundle_dir).as_posix(),
+            "sha256": _sha256(web_composite_manifest_path),
+        }
+        if web_composite_manifest_path.is_file()
+        else None
+    )
     fingerprint_payload = {
         "asset_registry_snapshot": registry_snapshot_record,
         "asset_usage_manifest": asset_usage_record,
@@ -445,6 +455,7 @@ def finalize_materialized_bundle(
         "region": bundle.region,
         "rst_files": rst_records,
         "support_files": support_records,
+        "web_composite_manifest": web_composite_manifest_record,
     }
     bundle_sha256 = hashlib.sha256(
         json.dumps(
@@ -477,6 +488,7 @@ def finalize_materialized_bundle(
             "rst_file_records": rst_records,
             "schema_version": 2,
             "support_file_records": support_records,
+            "web_composite_manifest": web_composite_manifest_record,
         }
     )
     _atomic_json_write(manifest_path, manifest)

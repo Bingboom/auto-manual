@@ -3,9 +3,6 @@
 
 from __future__ import annotations
 
-from tools.sync_asset_registry import sync_asset_registry_mirror as _sync_asset_registry_mirror
-from tools.sync_model_capabilities import sync_capability_mirror as _sync_capability_mirror
-
 import csv
 import io
 import json
@@ -16,6 +13,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Any, Callable, ContextManager, Mapping, Protocol
+
+from tools.sync_data_derived import collect_derived_snapshot_writes
 
 from tools.spec_master_sources import (
     collect_footnote_record_id_refs,
@@ -700,29 +699,19 @@ def sync_phase2_snapshot(
             "Missing repo-maintained page registry CSV: "
             + _display_path(page_registry_source_path, repo_root=deps.repo_root)
         )
-    mc_result, mc_written = _sync_capability_mirror(
+    mirror_results, mirror_writes = collect_derived_snapshot_writes(
         cfg,
         source=resolved_source,
         repo_root=deps.repo_root,
+        export_root=export_root,
+        dry_run=dry_run,
+        generated_at=run_at.isoformat(),
         sha256_text=deps.sha256_text,
         sha256_file=deps.sha256_file,
         result_cls=deps.table_sync_result_cls,
     )
-    if mc_result is not None and mc_written is not None:
-        derived_results.append(mc_result)
-        written_files.append(mc_written)
-
-    ar_result, ar_written = _sync_asset_registry_mirror(
-        cfg,
-        source=resolved_source,
-        repo_root=deps.repo_root,
-        sha256_text=deps.sha256_text,
-        sha256_file=deps.sha256_file,
-        result_cls=deps.table_sync_result_cls,
-    )
-    if ar_result is not None and ar_written is not None:
-        derived_results.append(ar_result)
-        written_files.append(ar_written)
+    derived_results.extend(mirror_results)
+    written_files.extend(mirror_writes)
 
     page_registry_text = page_registry_source_path.read_text(encoding="utf-8")
     page_registry_sha256 = deps.sha256_text(page_registry_text)

@@ -1,0 +1,74 @@
+/* App components keep shared artwork separate from localized live copy. */
+
+.hb-app-add-device-composition {
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1.15rem auto 2rem;
+}
+
+.hb-app-add-device-phone-stage {
+  display: grid;
+  width: min(100%, 44rem);
+  margin-inline: auto;
+  place-items: center;
+}
+
+#furo-main-content .hb-app-add-device-phone-art {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  object-fit: contain;
+}
+
+.hb-app-add-device-control-panel {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 1.15rem;
+}
+
+#furo-main-content .hb-app-add-device-control-art {
+  display: block;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  object-fit: contain;
+}
+
+.hb-app-add-device-live-label {
+  position: absolute;
+  z-index: 1;
+  transform: translateY(-50%);
+  color: var(--hb-text);
+  font-size: clamp(0.6rem, 1.3vw, 1rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.hb-app-add-device-live-label-main-power {
+  top: 39%;
+  left: 4%;
+  width: 27%;
+}
+
+.hb-app-add-device-live-label-dc-usb {
+  top: 66%;
+  left: 4%;
+  width: 27%;
+}
+
+.hb-app-add-device-live-label-ac-power {
+  top: 66%;
+  right: 4%;
+  width: 20%;
+  text-align: left;
+}
+
+@media (max-width: 760px) {
+  .hb-app-add-device-live-label {
+    font-size: clamp(0.48rem, 2.05vw, 0.72rem);
+  }
+}

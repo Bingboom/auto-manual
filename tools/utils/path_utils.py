@@ -28,6 +28,8 @@ class PathSegments:
     BUILD = "_build"
     REVIEW = "_review"
     STATIC = "_static"
+    BUNDLE_ASSETS = "_assets"
+    ATTACHMENTS = "_attachments"
 
     RENDERERS = "renderers"
     TEMPLATES = "templates"
@@ -38,6 +40,7 @@ class PathSegments:
     RECIPES = "recipes"
     WORD_TEMPLATE = "word_template"
     COMMON_ASSETS = "common_assets"
+    WEB_COMPOSITES = "web_composites"
 
     VERSION_TRACKING = "version_tracking"
     RELEASES = "releases"
@@ -64,6 +67,7 @@ class PathSegments:
     REFERENCE_LAYOUT_DIR = "reference_layout"
     REFERENCE_LAYOUT_REGISTRY_JSON = "reference_layout_registry.json"
     REFERENCE_LAYOUT_PLAN_JSON = "reference_layout_plan.json"
+    WEB_COMPOSITE_MANIFEST_JSON = "web_composite_manifest.json"
 
     DEFAULT_CONFIG_US = "config.us.yaml"
     DEFAULT_CONFIG_JA = "config.ja.yaml"
@@ -110,6 +114,26 @@ def word_common_assets_of(docs_dir: Path) -> Path:
         / PathSegments.TEMPLATES
         / PathSegments.WORD_TEMPLATE
         / PathSegments.COMMON_ASSETS
+    )
+
+
+def web_composite_attachments_of(snapshot_root: Path) -> Path:
+    return (
+        snapshot_root
+        / PathSegments.ATTACHMENTS
+        / PathSegments.WEB_COMPOSITES
+    )
+
+
+def web_composite_manifest_of(root: Path) -> Path:
+    return root / PathSegments.WEB_COMPOSITE_MANIFEST_JSON
+
+
+def bundle_web_composite_assets_of(bundle_root: Path) -> Path:
+    return (
+        bundle_root
+        / PathSegments.BUNDLE_ASSETS
+        / PathSegments.WEB_COMPOSITES
     )
 
 

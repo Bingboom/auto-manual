@@ -170,6 +170,20 @@ App/QR 等敏感候选即使已拆图也继续保持隔离。只有 `data/asset_
 `asset:`。产品/区域专用导出物使用独立 key，并在注册表以
 `override_for=<共享 key>` 声明窄范围覆盖；不要缩窄或替换共享行。
 
+网页版整块图文插入是同三张表上的最后一层，不替换普通 `asset:` 图片链：
+
+1. `04_资产定义` 填稳定 `web_replace_key`，并完成 scope 与审核。
+2. `04_资产导出物` 每个物理文件一行：`artifact_kind=web-composite`，在
+   `export_file` 上传一张图片，选择 `web_locale`，填写 `content_sha256` 和
+   `source_fragment_sha256`，审核通过后勾选 `build_eligible`。
+3. 运行 `python build.py sync-data --config configs/config.us.yaml --data-root data/phase2`。
+4. 使用 `AUTO_MANUAL_PRESENTATION_PROFILE=web` 构建时，流水线会按
+   `web_replace_key + model + region + locale` 自动替换整块 figure 与关联文字；章节
+   标题不进入图片。没有合格导出时保留可编辑 HTML，重复匹配或哈希漂移直接失败。
+
+Read the Docs 不在线读取飞书。线上审核后的 manifest 与附件必须先作为冻结快照
+进入 `tests/fixtures/phase2` 的 PR，RTD 才会消费这次更新。
+
 ## 2. Build Draft Package 和 Publish 的原料分别是什么
 
 ### Build Draft Package

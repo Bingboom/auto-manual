@@ -21,8 +21,12 @@ from tools.web_presentation import (
     WEB_STYLESHEET_NAME,
     copy_web_stylesheet,
     normalize_presentation_profile,
+    protect_web_callouts_for_pandoc,
     protect_web_figures_for_pandoc,
+    protect_web_inline_controls_for_pandoc,
+    restore_web_callouts_after_pandoc,
     restore_web_figures_after_pandoc,
+    restore_web_inline_controls_after_pandoc,
 )
 
 
@@ -171,13 +175,21 @@ def export_markdown_from_bundle(
     markdown_writer = resolve_markdown_writer(pandoc_bin)
     markdown_reader = "html" if markdown_writer == "myst" else "html-native_divs-native_spans"
     pandoc_source = bundle_html
+    protected_callouts: dict[str, str] = {}
     protected_figures: dict[str, str] = {}
+    protected_inline_controls: dict[str, str] = {}
     temporary_input: tempfile.TemporaryDirectory[str] | None = None
     if presentation_profile == WEB_PRESENTATION_PROFILE:
         protected_html, protected_figures = protect_web_figures_for_pandoc(
             bundle_html.read_text(encoding="utf-8")
         )
-        if protected_figures:
+        protected_html, protected_callouts = protect_web_callouts_for_pandoc(
+            protected_html
+        )
+        protected_html, protected_inline_controls = protect_web_inline_controls_for_pandoc(
+            protected_html
+        )
+        if protected_figures or protected_callouts or protected_inline_controls:
             temporary_input = tempfile.TemporaryDirectory(
                 prefix="auto-manual-web-pandoc-",
                 dir=bundle_html.parent,
@@ -204,10 +216,18 @@ def export_markdown_from_bundle(
     finally:
         if temporary_input is not None:
             temporary_input.cleanup()
-    if protected_figures:
+    if protected_figures or protected_callouts or protected_inline_controls:
         markdown_text = out_path.read_text(encoding="utf-8")
+        markdown_text = restore_web_figures_after_pandoc(
+            markdown_text,
+            protected_figures,
+        )
+        markdown_text = restore_web_inline_controls_after_pandoc(
+            markdown_text,
+            protected_inline_controls,
+        )
         out_path.write_text(
-            restore_web_figures_after_pandoc(markdown_text, protected_figures),
+            restore_web_callouts_after_pandoc(markdown_text, protected_callouts),
             encoding="utf-8",
         )
     _rewrite_local_file_uris_to_relative(out_path)

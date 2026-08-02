@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -10,6 +11,132 @@ from tools import markdown_bundle
 
 
 class MarkdownBundleTests(unittest.TestCase):
+    def test_web_profile_restores_scientific_subscripts_after_pandoc(self) -> None:
+        with TemporaryDirectory() as td:
+            out_dir = Path(td) / "md"
+            out_dir.mkdir(parents=True)
+            localized_copy = (
+                "Open-circuit voltage V<sub>oc</sub>.",
+                "Tension en circuit ouvert V<sub>oc</sub>.",
+                "Tensión de circuito abierto V<sub>oc</sub>.",
+            )
+            bundle_html = out_dir / "manual_bundle.html"
+            bundle_html.write_text(
+                "<html><body>"
+                + "".join(f"<p>{sentence}</p>" for sentence in localized_copy)
+                + "</body></html>",
+                encoding="utf-8",
+            )
+            out_path = out_dir / "manual_demo.md"
+            bundle = SimpleNamespace(title="Demo Manual")
+
+            def fake_pandoc(cmd: list[str], **_: object) -> SimpleNamespace:
+                source = Path(cmd[1]).read_text(encoding="utf-8")
+                tokens = re.findall(r"AUTOMANUALWEBINLINE\d{4}PLACEHOLDER", source)
+                target = Path(cmd[cmd.index("-o") + 1])
+                target.write_text(
+                    "\n".join(f"Voltage V{token}." for token in tokens),
+                    encoding="utf-8",
+                )
+                return SimpleNamespace(stdout="")
+
+            with mock.patch.dict(
+                markdown_bundle.os.environ,
+                {"AUTO_MANUAL_PRESENTATION_PROFILE": "web"},
+                clear=True,
+            ), mock.patch.object(
+                markdown_bundle,
+                "build_word_bundle_html",
+                return_value=(bundle_html, None, ()),
+            ), mock.patch.object(
+                markdown_bundle,
+                "resolve_pandoc_binary",
+                return_value="pandoc",
+            ), mock.patch.object(
+                markdown_bundle,
+                "resolve_markdown_writer",
+                return_value="myst",
+            ), mock.patch.object(
+                markdown_bundle.subprocess,
+                "run",
+                side_effect=fake_pandoc,
+            ):
+                markdown_bundle.export_markdown_from_bundle(
+                    {},
+                    "MODEL",
+                    "US",
+                    str(out_path),
+                    materialized_bundle=bundle,
+                    output_dir=out_dir,
+                )
+
+            output = out_path.read_text(encoding="utf-8")
+            self.assertEqual(3, output.count("V<sub>oc</sub>"))
+            self.assertNotIn("V~oc~", output)
+
+    def test_web_profile_restores_callouts_without_pandoc_table_artifacts(self) -> None:
+        with TemporaryDirectory() as td:
+            out_dir = Path(td) / "md"
+            out_dir.mkdir(parents=True)
+            callouts = "".join(
+                (
+                    '<table class="manual-callout-table"><tbody><tr>'
+                    f'<td class="manual-callout-label">{label}</td>'
+                    '<td class="manual-callout-body"><p>Body</p></td>'
+                    "</tr></tbody></table>"
+                )
+                for label in ("WARNING", "DANGER", "CAUTION", "NOTE")
+            )
+            bundle_html = out_dir / "manual_bundle.html"
+            bundle_html.write_text(f"<html><body>{callouts}</body></html>", encoding="utf-8")
+            out_path = out_dir / "manual_demo.md"
+            bundle = SimpleNamespace(title="Demo Manual")
+
+            def fake_pandoc(cmd: list[str], **_: object) -> SimpleNamespace:
+                source = Path(cmd[1]).read_text(encoding="utf-8")
+                tokens = re.findall(r"AUTOMANUALWEBCALLOUT\d{4}PLACEHOLDER", source)
+                target = Path(cmd[cmd.index("-o") + 1])
+                target.write_text("\n\n".join(tokens), encoding="utf-8")
+                return SimpleNamespace(stdout="")
+
+            with mock.patch.dict(
+                markdown_bundle.os.environ,
+                {"AUTO_MANUAL_PRESENTATION_PROFILE": "web"},
+                clear=True,
+            ), mock.patch.object(
+                markdown_bundle,
+                "build_word_bundle_html",
+                return_value=(bundle_html, None, ()),
+            ), mock.patch.object(
+                markdown_bundle,
+                "resolve_pandoc_binary",
+                return_value="pandoc",
+            ), mock.patch.object(
+                markdown_bundle,
+                "resolve_markdown_writer",
+                return_value="myst",
+            ), mock.patch.object(
+                markdown_bundle.subprocess,
+                "run",
+                side_effect=fake_pandoc,
+            ):
+                markdown_bundle.export_markdown_from_bundle(
+                    {},
+                    "MODEL",
+                    "US",
+                    str(out_path),
+                    materialized_bundle=bundle,
+                    output_dir=out_dir,
+                )
+
+            output = out_path.read_text(encoding="utf-8")
+            self.assertEqual(4, output.count('class="manual-callout-table"'))
+            self.assertEqual(4, output.count('class="manual-callout-label"'))
+            self.assertEqual(4, output.count('class="manual-callout-body"'))
+            self.assertNotIn("|  |  |", output)
+            self.assertNotIn("<colgroup", output)
+            self.assertNotIn("<thead", output)
+
     def test_resolve_markdown_writer_should_prefer_native_myst(self) -> None:
         with mock.patch.object(
             markdown_bundle.subprocess,

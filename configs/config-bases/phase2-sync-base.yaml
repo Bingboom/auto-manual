@@ -50,6 +50,9 @@ sync:
       # this env only for a tenant whose asset tables live elsewhere.
       table_id_env: FEISHU_PHASE2_ASSET_DEFINITIONS_TABLE_ID
       view_id_env: FEISHU_PHASE2_ASSET_DEFINITIONS_VIEW_ID
+    # Definition/export coordinates also come from asset_base_bindings.json.
+    # Approved attachments are frozen into the selected phase2 snapshot.
+    web_composites: {}
     document_link:
       table_id_env: FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID
       view_id_env: FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID
