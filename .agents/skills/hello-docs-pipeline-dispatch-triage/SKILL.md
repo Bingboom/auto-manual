@@ -15,10 +15,18 @@ running the queue locally instead is `local-publish-queue-run`.
 
 **Code (tools/templates/configs/workflows) is NEVER PR'd to Hello-Docs.** It
 lands in auto-manual `main` and flows to the mirror automatically via
-`sync-hello-docs.yml` (push-triggered, exact-tree mirror). The ONLY legitimate
-PRs on the mirror are **data-plane derivatives**: `backport/...` sub-branches
-into a `review/*` branch (reviewer-edit recovery). Before opening ANY PR,
-state which plane it belongs to; when a fix spans both, the answer is always
+`sync-hello-docs.yml`. That sync preserves the business-owned
+`Hello-Docs/main:docs/publish/**` subtree instead of overwriting it.
+
+Legitimate mirror PRs are limited to two data-plane cases:
+
+1. `backport/...` sub-branches into a `review/*` branch for reviewer-edit
+   recovery;
+2. the generated `publish -> main` Web release PR, whose diff must contain only
+   `docs/publish/**`.
+
+Never merge a whole `review/*` branch into `main`. Before opening any other PR,
+state which plane it belongs to; when a code fix spans both, the answer remains
 "auto-manual, then let sync carry it" (「代码一律在 auto-manual 改,
 hello-docs 是镜像」).
 
@@ -29,6 +37,7 @@ hello-docs 是镜像」).
 | `feishu-start-review.yml` | Seeds/re-seeds a `review/<MODEL>-<REGION>` branch with the `docs/_review` RST tree — **no document output**. 重新播种 = this. Re-seed moves the branch tip: open backport sub-branches go DIRTY (reset onto new tip + replay). |
 | `feishu-draft-build-queue.yml` | Builds the draft package for queue rows (Workflow_action = Build Draft Package) — the review Word/cloud doc. |
 | `feishu-build-queue.yml` | Publish lane (Workflow_action = Publish): release artifacts, IDML handoff zip, row write-backs. |
+| `feishu-web-publish-queue.yml` | Web Publish lane: builds from the selected review ref, updates the generated `publish` candidate, enforces a `docs/publish/**`-only diff, and opens/updates `publish -> main`. It never merges the review branch. |
 | `feishu-schema-parity.yml` / `phase2-content-backup.yml` / `backport-reminder.yml` | Daily guards: schema parity alarm, nightly source-table backup, un-recovered-review sentinel. |
 
 Gating var: mirror runs respect `FEISHU_BUILD_QUEUE_PAUSED` (repo var).

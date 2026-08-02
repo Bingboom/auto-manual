@@ -182,7 +182,9 @@ App/QR 等敏感候选即使已拆图也继续保持隔离。只有 `data/asset_
    标题不进入图片。没有合格导出时保留可编辑 HTML，重复匹配或哈希漂移直接失败。
 
 Read the Docs 不在线读取飞书。Web Publish 先把线上审核后的 manifest、附件与 MyST
-冻结到 `Hello-Docs/publish:docs/publish/`，RTD 只消费该 Git 快照。
+冻结到 `Hello-Docs/publish:docs/publish/` 候选目录，自动创建或更新只包含
+`docs/publish/**` 的 `publish -> main` PR；人工审核合入后，RTD 只消费 `main` 快照。
+`review/*` 只提供构建内容，不能整分支合入 `main`。
 
 ## 2. Build Draft Package 和 Publish 的原料分别是什么
 
@@ -411,8 +413,9 @@ Publish 的原料是：
 1. 在同一条 `Document_link` 记录选择 `Workflow_action = Web Publish`，保留已审核的 `Git_ref`，并把构建触发改回 `Y`
 2. 在 `04_资产导出物` 确认所需 `export_file` 已选择语言、hash 正确且审核通过
 3. Web worker 强制拉取最新 phase2 和图文资产，按 web profile 执行 `check -> md -> html`
-4. workflow 把冻结 MyST 增量提交到 `Hello-Docs/publish:docs/publish/`，Read the Docs 自动构建
-5. `HTML_link` 回写为目标 RTD 页面；成功验收还要确认 publish 分支 manifest 和线上页面
+4. workflow 把冻结 MyST 增量提交到 `Hello-Docs/publish:docs/publish/` 候选目录，范围门禁确认没有其它路径后自动创建或更新 `publish -> main` PR
+5. 审核并合入这个仅含 `docs/publish/**` 的 PR；不要合入 `review/*` 分支。`main` 的 push 才触发 Read the Docs 构建
+6. `HTML_link` 回写为目标 RTD 页面；成功验收还要确认 `main` 的 manifest、RTD 构建 commit 和线上页面
 
 ### 远端 GitHub worker 想支持 DingTalk 还要配什么
 
@@ -559,7 +562,7 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
 4. 运行 `Feishu Web Publish Queue`；它会强制同步资产，所以不依赖 `是否强制刷新数据`
-5. 验收 `Hello-Docs/publish:docs/publish/publish_manifest.json`、RTD 页面和回写的 `HTML_link`
+5. 验收生成的 `publish -> main` PR 只含 `docs/publish/**`，审核合入后再确认 `Hello-Docs/main:docs/publish/publish_manifest.json`、RTD 页面和回写的 `HTML_link`
 
 ### 如果你要按方案 2 复刻获批 PDF 为原生 InDesign
 

@@ -470,7 +470,8 @@ so this is a verified lease boundary rather than a claim of linearizable
 storage. GitHub Actions supplies the second layer: Draft and print Publish share a
 `feishu-document-queue-<record_id>` concurrency domain (batch runs share the
 `batch` slot), Start Review uses its own review-init record domain, and Web
-Publish serializes the complete shared `Hello-Docs/publish` branch transaction.
+Publish serializes the complete shared `Hello-Docs/publish` candidate and
+`publish -> main` PR transaction.
 
 Queue workflow artifacts are intentionally bounded: Draft, Start Review, Web
 Publish verification, preview, and OpenClaw diagnostics keep their
@@ -586,9 +587,11 @@ materialization verifies every hash, rewrites the selected files under
 `_assets/web_composites/`, and includes the manifest in `bundle_sha256`.
 Missing approval leaves the searchable HTML component visible; duplicate
 matches, missing attachments, hash drift, or stale source-fragment hashes fail
-closed. The worker commits the verified MyST bundle to
-`Hello-Docs/publish:docs/publish/`; RTD consumes only that frozen snapshot and
-never contacts Feishu during its build. See
+closed. The worker commits the verified MyST bundle to the generated
+`Hello-Docs/publish:docs/publish/` candidate and opens a scope-guarded PR into
+`Hello-Docs/main`. Only `docs/publish/**` enters `main`; review branches never
+do. RTD consumes the merged `main` snapshot and never contacts Feishu during
+its build. See
 [`web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md).
 
 The web profile

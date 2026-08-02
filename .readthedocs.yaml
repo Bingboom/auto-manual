@@ -12,10 +12,10 @@ build:
       - python -m pip install -r requirements.lock
     build:
       html:
-        # The dedicated Hello-Docs/publish branch carries reviewed, frozen Web
-        # source under docs/publish/web. RTD renders that snapshot directly and
-        # never reads live Feishu data. Keep the review-bundle path as a
-        # temporary fallback until the first publish-branch snapshot exists.
+        # Hello-Docs/main carries reviewed, frozen Web source merged from the
+        # publish candidate branch under docs/publish/web. RTD renders only the
+        # main snapshot and never reads live Feishu data. Keep the review-bundle
+        # path as a bootstrap fallback until the first publish snapshot exists.
         - |
           if [ -f docs/publish/web/conf.py ]; then
             python -m sphinx -b html docs/publish/web "$READTHEDOCS_OUTPUT/html"
