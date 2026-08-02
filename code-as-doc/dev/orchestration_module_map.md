@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-07-31
+Updated: 2026-08-02
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -228,7 +228,7 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/queue_build_execution.py`](../../tools/queue_build_execution.py)
   - queue-triggered `build.py` command assembly
   - phase2 sync-before-build execution
-  - worktree-scoped draft/publish build orchestration
+  - worktree-scoped draft/print-publish/Web-Publish build orchestration
 - [`tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
   - top-level queue session flow
   - dry-run vs real-run branch control
@@ -237,7 +237,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - per-group queue processing
   - verified-claim acquisition before build/upload side effects
   - started/success/failure writeback orchestration
-  - drive upload and wiki attach flow for one grouped build task
+  - drive/wiki delivery for print tasks and frozen Web metadata handoff for Web Publish
 - [`tools/queue_claims.py`](../../tools/queue_claims.py)
   - bounded lease write across every row in a document group
   - no-view readback and exact-token ownership verification before dispatch
@@ -267,9 +267,9 @@ Quality and release logic should follow concern-specific modules instead of drif
   - repo-root-aware Lark transport adapters used by queue entrypoints
   - bound CLI upload/node lookup helpers that still allow entrypoint-level patching
 - [`tools/queue_outputs.py`](../../tools/queue_outputs.py)
-  - generic publish asset staging
+  - separate print-publish and Web-Publish asset staging
   - immutable snapshot/manifest copy-out plus generic release/output path helpers
-  - generic publish metadata assembly
+  - separate print-publish and Web-Publish metadata assembly
 - [`tools/queue_bound_outputs.py`](../../tools/queue_bound_outputs.py)
   - repo-root-aware queue output adapters
   - bound output/release helpers that keep `process_build_queue.ROOT` patchable
@@ -285,6 +285,12 @@ Quality and release logic should follow concern-specific modules instead of drif
   - explicit queue transition payload model for running, success, failure, and writeback-failed states
   - queue-claim parsing, expiry checks, and exact-token ownership checks
   - focused test target for queue writeback semantics before live Feishu/Lark transport is involved
+- [`tools/publish_branch_assembly.py`](../../tools/publish_branch_assembly.py)
+  - validates versioned Web Publish metadata and copies only the frozen MyST source
+  - preserves other published targets, rebuilds the aggregate Sphinx source, and writes the SHA-256 inventory
+- [`tools/write_web_publish_html_link.py`](../../tools/write_web_publish_html_link.py)
+  - derives deterministic Read the Docs routes from Web Publish metadata
+  - writes `HTML_link` only for the queue record ids bound to each frozen target
 
 ## 6. Cloud-Doc Backport Modules
 
