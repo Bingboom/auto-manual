@@ -1,0 +1,128 @@
+/* Searchable Symbols and FCC components layered over the shared Web manual theme. */
+
+.hb-symbol-signal-composition {
+  margin: 1rem auto 2rem;
+  overflow: hidden;
+  border: 2px solid var(--hb-brand-dark);
+  border-radius: 0.92rem;
+  background: var(--hb-paper);
+}
+
+#furo-main-content table.hb-symbol-signal-table {
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: var(--hb-paper);
+  color: var(--hb-text);
+  font-size: clamp(0.84rem, 1.35vw, 0.95rem);
+  line-height: 1.28;
+}
+
+#furo-main-content .hb-symbol-signal-col-label {
+  width: 24%;
+}
+
+#furo-main-content .hb-symbol-signal-col-meaning {
+  width: 76%;
+}
+
+#furo-main-content table.hb-symbol-signal-table th,
+#furo-main-content table.hb-symbol-signal-table td {
+  box-sizing: border-box;
+  padding: clamp(0.58rem, 1.45vw, 0.84rem) clamp(0.58rem, 1.35vw, 0.82rem) !important;
+  border: 0 !important;
+  border-right: 1.25px solid var(--hb-brand-dark) !important;
+  border-bottom: 1.25px solid var(--hb-brand-dark) !important;
+  vertical-align: middle !important;
+  text-align: left;
+}
+
+#furo-main-content table.hb-symbol-signal-table tr > *:last-child {
+  border-right: 0 !important;
+}
+
+#furo-main-content table.hb-symbol-signal-table tbody tr:last-child > td {
+  border-bottom: 0 !important;
+}
+
+#furo-main-content table.hb-symbol-signal-table thead th {
+  background: var(--hb-surface) !important;
+  font-size: clamp(0.94rem, 1.6vw, 1.08rem);
+  font-weight: 700;
+}
+
+#furo-main-content .hb-symbol-signal-label-cell,
+#furo-main-content .hb-symbol-signal-meaning-cell {
+  background: var(--hb-paper) !important;
+}
+
+#furo-main-content .hb-signal-badge {
+  display: flex;
+  box-sizing: border-box;
+  width: min(100%, 10.5rem);
+  min-height: 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+  margin: 0 auto;
+  padding: 0.34rem 0.48rem;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: clamp(0.75rem, 1.45vw, 0.94rem);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#furo-main-content .hb-signal-icon {
+  flex: 0 0 auto;
+  font-family: Arial, sans-serif;
+  font-size: 0.95em;
+  line-height: 1;
+}
+
+#furo-main-content .hb-signal-label {
+  min-width: 0;
+}
+
+#furo-main-content table.hb-symbol-signal-table p {
+  margin: 0;
+}
+
+/* Keep FCC in navigation and assistive technology without rendering an H1 bar. */
+#furo-main-content section:has(> figure.hb-fcc-composition) > h1:first-child {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 760px) {
+  #furo-main-content .hb-symbol-signal-col-label {
+    width: 42%;
+  }
+
+  #furo-main-content .hb-symbol-signal-col-meaning {
+    width: 58%;
+  }
+
+  #furo-main-content table.hb-symbol-signal-table th,
+  #furo-main-content table.hb-symbol-signal-table td {
+    padding: 0.52rem 0.42rem !important;
+  }
+
+  #furo-main-content .hb-signal-badge {
+    gap: 0.28rem;
+    padding-inline: 0.34rem;
+    font-size: clamp(0.66rem, 3.2vw, 0.78rem);
+  }
+}

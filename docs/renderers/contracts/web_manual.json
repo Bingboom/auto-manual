@@ -44,7 +44,8 @@
     "source_patterns": ["lcd_icons_*"]
   },
   "meaning_symbols": {
-    "source_patterns": ["symbols_*"]
+    "source_patterns": ["symbols_*"],
+    "signal_row_count": 4
   },
   "troubleshooting_table": {
     "source_patterns": ["troubleshooting_*"]

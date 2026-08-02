@@ -102,6 +102,15 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIn("--hb-fcc-flow-gap", css_text)
             self.assertIn("#furo-main-content .hb-fcc-column", css_text)
             self.assertIn("gap: var(--hb-fcc-flow-gap)", css_text)
+            self.assertIn(
+                "section:has(> figure.hb-fcc-composition) > h1:first-child",
+                css_text,
+            )
+            fcc_heading_css = css_text.split(
+                "#furo-main-content section:has(> figure.hb-fcc-composition) > h1:first-child",
+                1,
+            )[1].split("}", 1)[0]
+            self.assertIn("clip-path: inset(50%)", fcc_heading_css)
             fcc_margin_reset = css_text.split(
                 "#furo-main-content .hb-fcc-opening-copy .line-block,",
                 1,
@@ -117,6 +126,21 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIn(".hb-lcd-mode-composition", css_text)
             self.assertIn("table.hb-lcd-mode-table", css_text)
             self.assertIn(".hb-symbol-pair-composition", css_text)
+            self.assertIn(".hb-symbol-signal-composition", css_text)
+            self.assertIn("table.hb-symbol-signal-table", css_text)
+            self.assertIn(".hb-signal-badge", css_text)
+            self.assertIn(".hb-signal-icon", css_text)
+            self.assertIn("--hb-component-band-max", css_text)
+            component_band_css = css_text.split(
+                "/* All full-width manual components share one outer-width",
+                1,
+            )[1].split("/* H1 mirrors", 1)[0]
+            self.assertIn(".table-wrapper.docutils", component_band_css)
+            self.assertIn(".hb-symbol-signal-composition", component_band_css)
+            self.assertIn(".hb-fcc-composition", component_band_css)
+            self.assertIn("box-sizing: border-box", component_band_css)
+            self.assertIn("width: 100%", component_band_css)
+            self.assertIn("max-width: var(--hb-component-band-max)", component_band_css)
             self.assertIn(".hb-symbol-pair-grid", css_text)
             self.assertIn(".hb-symbol-panel", css_text)
             self.assertIn("table.hb-symbol-panel-table", css_text)
@@ -192,9 +216,9 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIn("#furo-main-content h1", css_text)
             self.assertIn("table.manual-callout-table", css_text)
             self.assertIn(".manual-callout-label", css_text)
-            self.assertIn("#meaning-of-symbols", css_text)
-            self.assertIn("#signification-des-symboles", css_text)
-            self.assertIn("#significado-de-los-simbolos", css_text)
+            self.assertNotIn("#meaning-of-symbols", css_text)
+            self.assertNotIn("#signification-des-symboles", css_text)
+            self.assertNotIn("#significado-de-los-simbolos", css_text)
             self.assertIn("table-layout: fixed !important", css_text)
             self.assertIn("width: clamp(7.5rem, 16%, 9.5rem)", css_text)
             self.assertIn("width: 84%", css_text)

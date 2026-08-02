@@ -28,6 +28,7 @@ from tools.web_reference_components import (
     prepare_reference_caption_data,
     transform_app_add_device,
 )
+from tools.web_symbol_components import transform_symbol_signal_table
 from tools.web_stylesheets import WEB_STYLESHEET_NAME, copy_web_stylesheet
 
 
@@ -37,7 +38,7 @@ PRESENTATION_PROFILE_ENV = "AUTO_MANUAL_PRESENTATION_PROFILE"
 WEB_CONTRACT_NAME = "web_manual.json"
 _WEB_FIGURE_RE = re.compile(
     r'<figure\b(?=[^>]*\bclass=["\'][^"\']*\bhb-'
-    r'(?:(?:annotated|operation|reference)-figure|inbox-composition|app-(?:add-device|download)-composition|fcc-composition|lcd-table-composition|lcd-mode-composition|auto-resume-composition|symbol-pair-composition|troubleshooting-composition|spec-table-composition|warranty-intro-composition|warranty-card|warranty-period-card)\b)'
+    r'(?:(?:annotated|operation|reference)-figure|inbox-composition|app-(?:add-device|download)-composition|fcc-composition|lcd-table-composition|lcd-mode-composition|auto-resume-composition|symbol-(?:signal|pair)-composition|troubleshooting-composition|spec-table-composition|warranty-intro-composition|warranty-card|warranty-period-card)\b)'
     r"[^>]*>.*?</figure>",
     re.IGNORECASE | re.DOTALL,
 )
@@ -2066,6 +2067,12 @@ def transform_web_fragment(
     if is_lcd_icon_table:
         _transform_lcd_icon_table(soup, source_path=source_path)
     if is_meaning_symbols:
+        transform_symbol_signal_table(
+            soup,
+            source_path=source_path,
+            expected_body_rows=int(meaning_symbols["signal_row_count"]),
+            error_type=WebPresentationError,
+        )
         _transform_meaning_symbols_table(soup, source_path=source_path)
     if is_troubleshooting_table:
         _transform_troubleshooting_table(soup, source_path=source_path)

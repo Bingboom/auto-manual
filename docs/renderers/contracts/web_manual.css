@@ -17,6 +17,7 @@
   --hb-surface-strong: #e9e7e8;
   --hb-reading-width: 58rem;
   --hb-copy-width: 52rem;
+  --hb-component-band-max: var(--hb-reading-width);
   --hb-h1-radius: 0 0 0.62rem 0.62rem;
   --hb-panel-radius: 0.62rem;
   --hb-font-family: "Gilroy", "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -113,12 +114,28 @@ body {
   margin-top: 0;
 }
 
+/* All full-width manual components share one outer-width and box-model contract. */
+#furo-main-content :is(
+    h1,
+    .hb-h1-pill,
+    .table-wrapper.docutils,
+    .hb-symbol-signal-composition,
+    .hb-symbol-pair-composition,
+    .hb-troubleshooting-composition,
+    .hb-spec-table-composition,
+    .hb-fcc-composition,
+    .hb-lcd-table-composition,
+    .hb-auto-resume-composition,
+    .hb-lcd-mode-composition
+  ) {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--hb-component-band-max);
+}
+
 /* H1 mirrors the IDML 20.126 pt bar: sharp north corners, rounded south. */
 #furo-main-content h1,
 #furo-main-content .hb-h1-pill {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: var(--hb-reading-width);
   margin: 0 0 1.25rem;
   padding: 0.72rem 1rem 0.68rem;
   border: 0;
@@ -222,8 +239,6 @@ body {
 
 /* Generic Sphinx and generated manual tables share the IDML panel language. */
 #furo-main-content .table-wrapper.docutils {
-  width: 100%;
-  max-width: var(--hb-reading-width);
   margin: 1rem 0 1.65rem;
   overflow-x: auto;
   border: 1px solid var(--hb-line);
@@ -294,24 +309,8 @@ body {
   margin-bottom: 0;
 }
 
-/* Keep the signal names centered beside multi-line meaning copy in every locale. */
-#furo-main-content :is(
-    #meaning-of-symbols,
-    #signification-des-symboles,
-    #significado-de-los-simbolos
-  )
-  > .table-wrapper:first-of-type
-  table.docutils
-  tbody
-  > tr
-  > td:first-child {
-  vertical-align: middle !important;
-}
-
 /* The PDF uses two independent symbol tables; their rows must not share height. */
 .hb-symbol-pair-composition {
-  width: 100%;
-  max-width: var(--hb-reading-width);
   margin: 1rem auto 2rem;
 }
 
@@ -779,9 +778,7 @@ body {
 .hb-fcc-composition {
   --hb-fcc-flow-gap: clamp(0.52rem, 0.9vw, 0.62rem);
 
-  width: 100%;
-  max-width: var(--hb-reading-width);
-  margin: 1.1rem auto 2.25rem;
+  margin: 0 auto 2.25rem;
   padding: clamp(1.15rem, 2.5vw, 1.8rem);
   overflow: hidden;
   border-radius: 1rem;
