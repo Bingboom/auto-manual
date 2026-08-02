@@ -80,3 +80,12 @@ mark/jp_certifications,,标记,按语言,❌缺失,FALSE,JE-1000F_JP,JP,,,,日�
 illustration/cjk_operation_set,,插图,中立,❌缺失,FALSE,ALL,ALL,,,,操作插图带 CJK 待换（操作者定为最后处理）
 feishu/lcd_icons_attachments,,图标,中立,✅成品,FALSE,ALL,ALL,data/phase2/_attachments,,sync 时物化，哈希随快照,LCD 图标表附件列——sync-data 自动物化，token 身份由 attachment_identity 解决
 feishu/symbols_attachments,,图标,中立,✅成品,FALSE,ALL,ALL,data/phase2/_attachments,,sync 时物化，哈希随快照,符号表附件列——同上，已在管道内
+web-composite/operation.ac-output,,图文混排,按语言,✅成品,FALSE,JE-1000F,US,,"en,fr,es",,
+web-composite/operation.dc-usb-output,,图文混排,按语言,✅成品,FALSE,JE-1000F,US,,"en,fr,es",,
+web-composite/operation.energy-saving,,图文混排,按语言,✅成品,FALSE,JE-1000F,US,,"en,fr,es",,
+web-composite/operation.led-light,,图文混排,按语言,✅成品,FALSE,JE-1000F,US,,"en,fr,es",,
+web-composite/operation.main-power,,图文混排,按语言,✅成品,FALSE,JE-1000F,US,,"en,fr,es",,
+web-composite/product-overview.front,,图文混排,按语言,✅成品,FALSE,JE-1000F,US,,"en,fr,es",,
+web-composite/product-overview.right,,图文混排,按语言,✅成品,FALSE,JE-1000F,US,,"en,fr,es",,
+web-composite/reference.app-connect-result,,图文混排,中立,✅成品,FALSE,JE-1000F,US,,shared,,
+web-composite/reference.charging-car,,图文混排,按语言,✅成品,FALSE,JE-1000F,US,,"en,fr,es",,

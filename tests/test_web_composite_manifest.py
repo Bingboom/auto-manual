@@ -57,6 +57,8 @@ class WebCompositeManifestTests(unittest.TestCase):
         self.assertEqual(25, len(manifest.entries))
         for entry in manifest.entries:
             with self.subTest(key=entry.web_replace_key, locale=entry.locale):
+                self.assertTrue(entry.definition_record_id)
+                self.assertTrue(entry.export_record_id)
                 self.assertTrue(entry.path.startswith("_attachments/web_composites/"))
                 self.assertNotIn("repo://", entry.path)
                 attachment = COMMITTED_FIXTURE_ROOT / entry.path

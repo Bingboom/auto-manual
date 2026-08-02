@@ -13,17 +13,17 @@ without putting the section heading inside the image.
 ReadTheDocs consumes the committed fixture snapshot; it never needs live Feishu
 credentials.
 
-## Discovery
+## Discovery Snapshot (Before Implementation)
 
 - The live business Base is `文档构建`
   (`LD3lb4G1ua4GOVs1vxAc9W2enje`, revision 39).
 - The new asset chain is limited to `04_资产源文件`, `04_资产定义`, and
   `04_资产导出物`. The legacy `05_内容源_插图资产表` remains history-only.
-- `04_资产导出物` currently has 142 records: 59 archive pages, 59 previews, and
-  24 semantic exports. No record currently has an `export_file` attachment.
-- `sync-data` mirrors only `04_资产定义` into `data/asset_registry.csv`; it does
+- `04_资产导出物` had 142 records: 59 archive pages, 59 previews, and
+  24 semantic exports. No record had an `export_file` attachment.
+- `sync-data` mirrored only `04_资产定义` into `data/asset_registry.csv`; it did
   not fetch `04_资产导出物.export_file`.
-- The Web renderer currently selects composite artwork from static paths in
+- The Web renderer selected composite artwork from static paths in
   `docs/renderers/contracts/web_manual.json`.
 - The current approved demo has nine logical Web composite components and 25
   physical files:
@@ -110,6 +110,24 @@ credentials.
 - Freeze only the Web composite manifest and attachments into the tracked RTD
   phase2 fixture.
 - Run the full repository validation ladder and update the existing Web PR.
+
+## Accepted Implementation Result
+
+- The business-plane Base was populated and read back through the HT-Docs bot.
+  On the maintained local Mac this is lark-cli profile `prod` with
+  `FEISHU_PHASE2_IDENTITY=bot`; `sync-data` uses the active lark-cli profile, so
+  operators must verify that profile before a live freeze and restore their
+  previous profile afterward.
+- Nine approved definition records and 25 approved export records now produce
+  eight English, eight French, eight Spanish, and one shared physical asset.
+  Every frozen fixture entry carries both its definition and export record ID.
+- A full live `sync-data` run downloaded all 25 files and verified every
+  `content_sha256`. The resulting Web build produced 27 composite display nodes:
+  24 locale-specific nodes plus the one shared App result asset reused once in
+  each language section.
+- The Read the Docs-equivalent Sphinx build consumed only the committed fixture,
+  published 25 unique content-addressed composite files, and completed without
+  contacting Feishu.
 
 ## Verification Ladder
 
