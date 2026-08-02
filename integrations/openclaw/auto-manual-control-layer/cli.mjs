@@ -23,7 +23,7 @@ function usage() {
   return [
     "Usage:",
     "  node cli.mjs dispatch <start-review|build-draft> <record_id|batch>",
-    "  node cli.mjs dispatch publish <record_id|batch> confirm",
+    "  node cli.mjs dispatch <publish|web-publish> <record_id|batch> confirm",
     "  node cli.mjs status [last|<run_id>]",
   ].join("\n");
 }
@@ -40,6 +40,8 @@ function commandByName(name) {
     "build-draft": "build-draft",
     "build_draft": "build-draft",
     "publish": "publish",
+    "web-publish": "web-publish",
+    "web_publish": "web-publish",
   };
   const commandName = aliases[normalized];
   return COMMAND_DEFINITIONS.find((command) => command.commandName === commandName) || null;

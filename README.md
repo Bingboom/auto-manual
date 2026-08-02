@@ -467,16 +467,15 @@ view. Only the worker whose token still owns every row in the group may
 continue; active leases are omitted from pending selection, while expired
 leases are reclaimable. Feishu record upsert has no compare-and-swap primitive,
 so this is a verified lease boundary rather than a claim of linearizable
-storage. GitHub Actions supplies the second layer: Draft and Publish share a
+storage. GitHub Actions supplies the second layer: Draft and print Publish share a
 `feishu-document-queue-<record_id>` concurrency domain (batch runs share the
-`batch` slot), Start Review uses its own review-init record domain, and the
-Vercel production build/deploy/writeback tail is serialized separately without
-forcing unrelated document builds back into one global queue.
+`batch` slot), Start Review uses its own review-init record domain, and Web
+Publish serializes the complete shared `Hello-Docs/publish` branch transaction.
 
-Queue workflow artifacts are intentionally bounded: the one-job Vercel handoff
-keeps only the generated static site for 1 day; Draft, Start Review, preview,
-and OpenClaw diagnostics keep their final/diagnostic surfaces for 7 days; and
-Publish release archives keep version/latest/manifest surfaces for 14 days.
+Queue workflow artifacts are intentionally bounded: Draft, Start Review, Web
+Publish verification, preview, and OpenClaw diagnostics keep their
+final/diagnostic surfaces for 7 days; print Publish release archives keep
+version/latest/manifest surfaces for 14 days.
 The 90-day phase2 content backup is a separate restore contract and is not
 shortened by this CI quota policy.
 
@@ -574,13 +573,10 @@ Rule:
 - after review starts, edit `_review`
 - do not use `_build` as the long-lived editing surface
 
-Read the Docs is a presentation-only projection of that same committed review
-content. [`.readthedocs.yaml`](.readthedocs.yaml) explicitly enables the `web`
-presentation profile; ordinary CLI/queue builds keep the default `document`
-profile, so DOCX and formal Markdown output do not change. The web profile
-resolves fixed PDF-like figure panels from the frozen
-[`web_composite_manifest.json`](tests/fixtures/phase2/web_composite_manifest.json),
-not from static paths in the presentation contract. The live intake/control
+Read the Docs is a presentation-only projection of reviewed content. The
+independent `Web Publish` action explicitly enables the `web` presentation
+profile; ordinary CLI/queue builds keep the default `document` profile, so IDML,
+DOCX, PDF and formal Markdown do not change. The live intake/control
 plane is `04_资产定义` plus `04_资产导出物`: an approved buildable export must
 carry one `export_file`, `artifact_kind=web-composite`, a selected
 `web_locale` (`en` / `fr` / `es` / `shared`), the attachment SHA-256, and the
@@ -590,8 +586,10 @@ materialization verifies every hash, rewrites the selected files under
 `_assets/web_composites/`, and includes the manifest in `bundle_sha256`.
 Missing approval leaves the searchable HTML component visible; duplicate
 matches, missing attachments, hash drift, or stale source-fragment hashes fail
-closed. RTD consumes only the committed frozen snapshot and never contacts
-Feishu during its build.
+closed. The worker commits the verified MyST bundle to
+`Hello-Docs/publish:docs/publish/`; RTD consumes only that frozen snapshot and
+never contacts Feishu during its build. See
+[`web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md).
 
 The web profile
 opens at `00_preface` (`IMPORTANT`) instead of rendering `cover*`, `00_toc*`, or
@@ -684,7 +682,8 @@ Use the document that owns the topic:
 - current maintainer command reference: [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
 - current JP / US family difference boundary: [`code-as-doc/manual_family_guide.md`](code-as-doc/manual_family_guide.md)
 - current Git branching and GitHub protection rules: [`code-as-doc/dev/git_branching_guide.md`](code-as-doc/dev/git_branching_guide.md)
-- current Vercel latest-publish HTML flow: [`code-as-doc/dev/vercel_review_preview_guide.md`](code-as-doc/dev/vercel_review_preview_guide.md) — latest publish targets are isolated under `dist/<model>/<region>/<lang>/` and linked from the root index; `--single-target` is the explicit legacy compatibility mode
+- current responsive Web Publish and Read the Docs flow: [`code-as-doc/dev/web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md)
+- legacy Vercel latest-publish implementation reference: [`code-as-doc/dev/vercel_review_preview_guide.md`](code-as-doc/dev/vercel_review_preview_guide.md)
 - current user workflow and editing rules: [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
 - happy-path example: [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md)
 - architecture doc index: [`code-as-doc/architecture/README.md`](code-as-doc/architecture/README.md)

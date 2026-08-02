@@ -4,7 +4,7 @@ set -euo pipefail
 preset="${1:-}"
 
 case "${preset}" in
-  feishu-build-queue|feishu-draft-build-queue)
+  feishu-build-queue|feishu-draft-build-queue|feishu-web-publish-queue)
     required=(
       FEISHU_APP_ID
       FEISHU_APP_SECRET
@@ -79,7 +79,7 @@ case "${preset}" in
     )
     ;;
   *)
-    printf 'Usage: %s <feishu-build-queue|feishu-draft-build-queue|feishu-start-review|phase2-content-backup>\n' "$0" >&2
+    printf 'Usage: %s <feishu-build-queue|feishu-draft-build-queue|feishu-web-publish-queue|feishu-start-review|phase2-content-backup>\n' "$0" >&2
     exit 2
     ;;
 esac

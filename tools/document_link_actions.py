@@ -6,6 +6,7 @@ from typing import Any
 
 DRAFT_PACKAGE_ACTION_LABEL = "Build Draft Package"
 PUBLISH_ACTION_LABEL = "Publish"
+WEB_PUBLISH_ACTION_LABEL = "Web Publish"
 
 
 def _scalar_text(value: Any) -> str:
@@ -50,14 +51,20 @@ def normalize_workflow_action(value: Any) -> str | None:
         return "draft"
     if text in {"publish", "published"}:
         return "publish"
-    raise RuntimeError("Workflow_action must map to Build Draft Package or Publish")
+    if text in {"web publish", "publish web", "web published", "web"}:
+        return "web_publish"
+    raise RuntimeError(
+        "Workflow_action must map to Build Draft Package, Publish, or Web Publish"
+    )
 
 
 def normalize_doc_phase(value: Any) -> str | None:
     try:
         return normalize_workflow_action(value)
     except RuntimeError as exc:
-        raise RuntimeError("Doc_phase must map to Build Draft Package or Publish") from exc
+        raise RuntimeError(
+            "Doc_phase must map to Build Draft Package or Publish"
+        ) from exc
 
 
 def workflow_action_uses_legacy_doc_phase(*, workflow_action: Any, doc_phase: Any) -> bool:
@@ -100,6 +107,8 @@ def workflow_action_label(value: Any) -> str | None:
         return DRAFT_PACKAGE_ACTION_LABEL
     if normalized_doc_phase == "publish":
         return PUBLISH_ACTION_LABEL
+    if normalized_doc_phase == "web_publish":
+        return WEB_PUBLISH_ACTION_LABEL
     return None
 
 

@@ -152,7 +152,7 @@ def build_success_transition(
     *,
     fields: QueueTransitionFields,
     version: str,
-    word_output_path: Path,
+    word_output_path: Path | None,
     document_link_url: str,
     built_at: datetime,
     document_link_dd_url: str = "",
@@ -173,11 +173,13 @@ def build_success_transition(
             data_sync_status=data_sync_status,
             status_notes=status_notes,
         ),
-        fields.document_directory_field: word_output_path.resolve(strict=False).as_posix(),
-        fields.document_link_field: document_link_url.strip(),
         fields.trigger_field: [fields.done_trigger_value],
         fields.immediate_trigger_field: False,
     }
+    if fields.document_directory_field and word_output_path is not None:
+        payload[fields.document_directory_field] = word_output_path.resolve(strict=False).as_posix()
+    if fields.document_link_field:
+        payload[fields.document_link_field] = document_link_url.strip()
     if fields.document_link_dd_field:
         payload[fields.document_link_dd_field] = document_link_dd_url.strip()
     if fields.feishu_cloud_doc_field:

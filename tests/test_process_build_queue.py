@@ -848,6 +848,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "md" / "manual_je1000f_us_en.md"
             )
             main_worktree_html_dir = main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "html"
+            main_worktree_latex_dir = main_worktree / "docs" / "_build" / "JE-1000F" / "US" / "en" / "latex"
             host_config_path.write_text("build: {}\n", encoding="utf-8")
             main_worktree_config_path.parent.mkdir(parents=True, exist_ok=True)
             main_worktree_config_path.write_text("build: {}\n", encoding="utf-8")
@@ -859,6 +860,8 @@ class TestProcessBuildQueue(unittest.TestCase):
             main_worktree_md_path.write_text("# Manual\n", encoding="utf-8")
             main_worktree_html_dir.mkdir(parents=True, exist_ok=True)
             (main_worktree_html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
+            main_worktree_latex_dir.mkdir(parents=True, exist_ok=True)
+            (main_worktree_latex_dir / "manual.tex").write_text("latex\n", encoding="utf-8")
             # The `build.py idml` step is mocked away (run_command is stubbed), so
             # fabricate the production IDML the publish glob will discover.
             main_worktree_idml_path = (
@@ -949,6 +952,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     (host_release_root / "versions" / "0.2" / "snapshot" / "release_snapshot_identity.json").exists()
                 )
                 self.assertTrue((host_release_root / "manifests" / "20260731T000000Z.json").exists())
+                self.assertTrue((host_release_root / "versions" / "0.2" / "latex" / "manual.tex").exists())
 
         self.assertEqual(
             root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.docx",
@@ -962,19 +966,17 @@ class TestProcessBuildQueue(unittest.TestCase):
             root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.md",
             resolved_path.md_output_path,
         )
-        self.assertEqual(3, len(commands))
+        self.assertEqual(2, len(commands))
         self.assertEqual("publish", commands[0][0][2])
         self.assertEqual(main_worktree, commands[0][1])
-        self.assertEqual("html", commands[1][0][2])
+        self.assertEqual("idml", commands[1][0][2])
         self.assertEqual(main_worktree, commands[1][1])
-        self.assertEqual("idml", commands[2][0][2])
-        # Regression: idml must not --clean away the word/pdf/md/html outputs
-        # built by the earlier publish/html steps.
-        self.assertIn("--no-clean", commands[2][0])
+        # Regression: idml must not --clean away the word/pdf/md outputs
+        # built by the earlier print Publish step.
+        self.assertIn("--no-clean", commands[1][0])
         # Publish exports dual-mode so the handoff zip can include flow outputs.
-        self.assertIn("--idml-mode", commands[2][0])
-        self.assertIn("both", commands[2][0])
-        self.assertEqual(main_worktree, commands[2][1])
+        self.assertIn("--idml-mode", commands[1][0])
+        self.assertIn("both", commands[1][0])
         self.assertEqual(
             [mock.call("main", prefer_local=False), mock.call("codex/review-us-en")],
             prepare_mock.call_args_list,
@@ -1158,6 +1160,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             pdf_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "pdf" / "manual_je1000f_jp.pdf"
             md_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "md" / "manual_je1000f_jp.md"
             html_dir = root / "docs" / "_build" / "JE-1000F" / "JP" / "html"
+            latex_dir = root / "docs" / "_build" / "JE-1000F" / "JP" / "latex"
             config_path.write_text("build:\n  languages: [ja]\n", encoding="utf-8")
             word_path.parent.mkdir(parents=True, exist_ok=True)
             word_path.write_bytes(b"docx")
@@ -1167,6 +1170,8 @@ class TestProcessBuildQueue(unittest.TestCase):
             md_path.write_text("# Manual\n", encoding="utf-8")
             html_dir.mkdir(parents=True, exist_ok=True)
             (html_dir / "index.html").write_text("<html>publish</html>\n", encoding="utf-8")
+            latex_dir.mkdir(parents=True, exist_ok=True)
+            (latex_dir / "manual.tex").write_text("latex\n", encoding="utf-8")
             # The `build.py idml` step is mocked away (run_command is stubbed), so
             # fabricate the production IDML the publish glob will discover.
             idml_path = root / "docs" / "_build" / "JE-1000F" / "JP" / "idml" / "manual_je1000f_jp.idml"
@@ -1216,6 +1221,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     (host_release_root / "versions" / "1.0" / "snapshot" / "release_snapshot_identity.json").exists()
                 )
                 self.assertTrue((host_release_root / "manifests" / "20260731T000000Z.csv").exists())
+                self.assertTrue((host_release_root / "versions" / "1.0" / "latex" / "manual.tex").exists())
 
         self.assertEqual(
             root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.docx",
@@ -1229,16 +1235,15 @@ class TestProcessBuildQueue(unittest.TestCase):
             root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.md",
             resolved_path.md_output_path,
         )
-        self.assertEqual(3, len(commands))
+        self.assertEqual(2, len(commands))
         self.assertEqual("publish", commands[0][2])
         self.assertIn("--version", commands[0])
         self.assertEqual("1.0", commands[0][commands[0].index("--version") + 1])
-        self.assertEqual("html", commands[1][2])
-        self.assertEqual("idml", commands[2][2])
+        self.assertEqual("idml", commands[1][2])
         # Regression: idml must not --clean away the earlier steps' outputs.
-        self.assertIn("--no-clean", commands[2])
-        self.assertIn("--idml-mode", commands[2])
-        self.assertIn("both", commands[2])
+        self.assertIn("--no-clean", commands[1])
+        self.assertIn("--idml-mode", commands[1])
+        self.assertIn("both", commands[1])
         self.assertIn("--data-root", commands[0])
 
     def test_write_publish_release_metadata_should_write_latest_and_version_metadata(self) -> None:
@@ -1250,8 +1255,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             pdf_output_path = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.pdf"
             md_output_path = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "manual_je1000f_us_en_publish_0.2.md"
             html_dir = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "latest" / "html"
+            latex_dir = root / "reports" / "releases" / "JE-1000F" / "US" / "en" / "versions" / "0.2" / "latex"
             word_output_path.parent.mkdir(parents=True, exist_ok=True)
             html_dir.mkdir(parents=True, exist_ok=True)
+            latex_dir.mkdir(parents=True, exist_ok=True)
             word_output_path.write_bytes(b"docx")
             pdf_output_path.write_bytes(b"pdf")
             md_output_path.write_text("# Manual\n", encoding="utf-8")
@@ -1268,6 +1275,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                     word_output_path=word_output_path,
                     pdf_output_path=pdf_output_path,
                     md_output_path=md_output_path,
+                    latex_dir=latex_dir,
                     html_dir=html_dir,
                     document_link_url="https://example.feishu.cn/wiki/token_123",
                     queue_record_ids=("rec_publish_1", "rec_publish_2"),
@@ -1298,6 +1306,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             self.assertEqual(
                 "reports/releases/JE-1000F/US/en/latest/html/index.html",
                 payload["html_index"],
+            )
+            self.assertEqual(
+                "reports/releases/JE-1000F/US/en/versions/0.2/latex",
+                payload["latex_dir"],
             )
             self.assertEqual(["rec_publish_1", "rec_publish_2"], payload["queue_record_ids"])
 

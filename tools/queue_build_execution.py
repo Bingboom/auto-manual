@@ -18,11 +18,12 @@ from tools.utils.path_utils import PathSegments, review_dir_of
 
 @dataclass(frozen=True)
 class BuiltDocumentOutputs:
-    word_output_path: Path
-    upload_output_path: Path
+    word_output_path: Path | None = None
+    upload_output_path: Path | None = None
     md_output_path: Path | None = None
     pdf_output_path: Path | None = None
     html_output_dir: Path | None = None
+    latex_output_dir: Path | None = None
 
 
 def build_py_target_command(
@@ -37,6 +38,7 @@ def build_py_target_command(
     source: str | None = None,
     no_clean: bool = False,
     idml_mode: str | None = None,
+    presentation_profile: str | None = None,
 ) -> list[str]:
     cmd = [
         sys.executable,
@@ -59,6 +61,8 @@ def build_py_target_command(
         cmd += ["--idml-mode", idml_mode]
     if data_root:
         cmd += ["--data-root", data_root]
+    if presentation_profile:
+        cmd = ["env", f"AUTO_MANUAL_PRESENTATION_PROFILE={presentation_profile}", *cmd]
     return cmd
 
 
@@ -154,6 +158,7 @@ def build_document_for_task(
     versioned_md_output_path: Callable[..., Path],
     resolve_html_output_dir_for_target: Callable[..., Path],
     stage_publish_assets_to_host_repo: Callable[..., tuple[Path, Path, Path, Path, Path]],
+    stage_web_publish_assets_to_host_repo: Callable[..., tuple[Path, Path]],
     stage_draft_word_output_to_host_repo: Callable[..., Path],
     stage_draft_md_output_to_host_repo: Callable[..., Path],
 ) -> BuiltDocumentOutputs:
@@ -249,20 +254,6 @@ def build_document_for_task(
                 publish_command,
                 cwd=effective_repo_root,
             )
-            run_command(
-                build_py_target_command(
-                    repo_root=effective_repo_root,
-                    action="html",
-                    config_path=effective_config_path,
-                    model=model,
-                    region=region,
-                    lang=lang,
-                    data_root=effective_data_root,
-                    source="review",
-                    no_clean=True,
-                ),
-                cwd=effective_repo_root,
-            )
             # IDML is the publish upload artifact (replaces the old Word/PDF upload).
             # --source review so it matches the reviewed content; --idml-mode both
             # also emits the flow outputs and handoff reports the delivery zip below
@@ -284,6 +275,23 @@ def build_document_for_task(
                 ),
                 cwd=effective_repo_root,
             )
+        elif normalized_doc_phase == "web_publish":
+            for action, no_clean in (("check", False), ("md", True), ("html", True)):
+                run_command(
+                    build_py_target_command(
+                        repo_root=effective_repo_root,
+                        action=action,
+                        config_path=effective_config_path,
+                        model=model,
+                        region=region,
+                        lang=lang,
+                        data_root=effective_data_root,
+                        source="review",
+                        no_clean=no_clean,
+                        presentation_profile="web",
+                    ),
+                    cwd=effective_repo_root,
+                )
         else:
             run_command(
                 build_py_target_command(
@@ -309,6 +317,37 @@ def build_document_for_task(
                     no_clean=True,
                 ),
                 cwd=effective_repo_root,
+            )
+
+        if normalized_doc_phase == "web_publish":
+            md_output_path = resolve_md_output_path_for_target(
+                config_path=effective_config_path,
+                model=model,
+                region=region,
+                lang=lang,
+            )
+            if not md_output_path.exists():
+                raise RuntimeError(f"Markdown output was not created for Web Publish: {md_output_path}")
+            html_output_dir = resolve_html_output_dir_for_target(
+                config_path=effective_config_path,
+                model=model,
+                region=region,
+                lang=lang,
+            )
+            if not html_output_dir.exists():
+                raise RuntimeError(f"HTML output was not created for Web Publish: {html_output_dir}")
+            host_config_path = config_path_in_repo_root(config_path, repo_root=repo_root)
+            staged_md_output_path, staged_html_output_dir = stage_web_publish_assets_to_host_repo(
+                built_md_output_path=md_output_path,
+                built_html_dir=html_output_dir,
+                host_config_path=host_config_path,
+                model=model,
+                region=region,
+                version=version,
+            )
+            return BuiltDocumentOutputs(
+                md_output_path=staged_md_output_path,
+                html_output_dir=staged_html_output_dir,
             )
 
         word_output_path = resolve_word_output_path_for_target(
@@ -365,14 +404,9 @@ def build_document_for_task(
                 versioned_pdf_path.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(pdf_output_path, versioned_pdf_path)
                 pdf_output_path = versioned_pdf_path
-            html_output_dir = resolve_html_output_dir_for_target(
-                config_path=effective_config_path,
-                model=model,
-                region=region,
-                lang=lang,
-            )
-            if not html_output_dir.exists():
-                raise RuntimeError(f"HTML output was not created for publish: {html_output_dir}")
+            latex_output_dir = pdf_output_path.parent.parent / PathSegments.LATEX
+            if not latex_output_dir.exists():
+                raise RuntimeError(f"LaTeX output was not created for publish: {latex_output_dir}")
             # Locate the production IDML the `idml` step just built: the direct
             # export at .../idml/manual_*.idml (parent dir "idml" excludes the
             # flow/ variant and the production/ handoff copy that --idml-mode
@@ -408,14 +442,14 @@ def build_document_for_task(
                 staged_word_output_path,
                 staged_pdf_output_path,
                 staged_md_output_path,
-                latest_html_dir,
+                staged_latex_output_dir,
                 staged_idml_output_path,
             ) = stage_publish_assets_to_host_repo(
                 built_word_output_path=word_output_path,
                 built_pdf_output_path=pdf_output_path,
                 built_md_output_path=md_output_path,
-                built_html_dir=html_output_dir,
                 built_idml_output_path=idml_output_path,
+                built_latex_dir=latex_output_dir,
                 host_config_path=host_config_path,
                 model=model,
                 region=region,
@@ -442,7 +476,7 @@ def build_document_for_task(
                 upload_output_path=staged_idml_output_path,
                 md_output_path=staged_md_output_path,
                 pdf_output_path=staged_pdf_output_path,
-                html_output_dir=latest_html_dir,
+                latex_output_dir=staged_latex_output_dir,
             )
         if effective_repo_root != repo_root:
             staged_word_output_path = stage_draft_word_output_to_host_repo(

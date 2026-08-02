@@ -26,6 +26,16 @@ test("ensureDispatchArgs requires explicit publish confirmation", () => {
     () => ensureDispatchArgs("publish", "recABC123"),
     /Publish requires explicit confirmation/
   );
+  assert.deepEqual(ensureDispatchArgs("web-publish", "recWEB123 confirm"), {
+    queueRecordId: "recWEB123",
+    queueRecordIds: [],
+    publishConfirmed: true,
+    batch: false,
+  });
+  assert.throws(
+    () => ensureDispatchArgs("web-publish", "recWEB123"),
+    /requires explicit confirmation/
+  );
 });
 
 test("ensureDispatchArgs keeps start-review on one record id only", () => {

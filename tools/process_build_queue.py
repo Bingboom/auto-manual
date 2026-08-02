@@ -70,6 +70,7 @@ from tools.document_link_queue import (  # noqa: E402
 from tools.document_link_actions import (  # noqa: E402
     DRAFT_PACKAGE_ACTION_LABEL,
     PUBLISH_ACTION_LABEL,
+    WEB_PUBLISH_ACTION_LABEL,
     best_effort_queue_workflow_action as _best_effort_queue_workflow_action,
     normalize_cli_queue_action as _normalize_cli_queue_action,
     normalize_doc_phase as _normalize_doc_phase,
@@ -131,10 +132,12 @@ from tools.queue_bound_outputs import (  # noqa: E402
     stage_draft_md_output_to_host_repo as _stage_draft_md_output_to_host_repo,
     stage_draft_word_output_to_host_repo as _stage_draft_word_output_to_host_repo,
     stage_publish_assets_to_host_repo as _stage_publish_assets_to_host_repo,
+    stage_web_publish_assets_to_host_repo as _stage_web_publish_assets_to_host_repo,
     versioned_md_output_path as _versioned_md_output_path,
     versioned_pdf_output_path as _versioned_pdf_output_path,
     versioned_word_output_path as _versioned_word_output_path,
     write_publish_release_metadata,
+    write_web_publish_metadata,
 )
 from tools.queue_bound_lark_ops import (  # noqa: E402
     cli_relative_file_arg as _cli_relative_file_arg,
@@ -273,6 +276,7 @@ def _build_py_target_command(
     source: str | None = None,
     no_clean: bool = False,
     idml_mode: str | None = None,
+    presentation_profile: str | None = None,
 ) -> list[str]:
     return _build_py_target_command_service(
         _service_module(),
@@ -286,6 +290,7 @@ def _build_py_target_command(
         source=source,
         no_clean=no_clean,
         idml_mode=idml_mode,
+        presentation_profile=presentation_profile,
     )
 
 
@@ -333,7 +338,7 @@ def build_document_for_task(
 def build_success_fields(
     *,
     version: str,
-    word_output_path: Path,
+    word_output_path: Path | None,
     document_link_url: str,
     built_at: datetime,
     document_link_dd_url: str = "",
@@ -346,6 +351,8 @@ def build_success_fields(
     write_data_sync: bool = True,
     write_document_link_dd: bool = False,
     write_feishu_cloud_doc: bool = False,
+    write_document_directory: bool = True,
+    write_document_link: bool = True,
 ) -> dict[str, Any]:
     return _build_success_fields_service(
         _service_module(),
@@ -363,6 +370,8 @@ def build_success_fields(
         write_data_sync=write_data_sync,
         write_document_link_dd=write_document_link_dd,
         write_feishu_cloud_doc=write_feishu_cloud_doc,
+        write_document_directory=write_document_directory,
+        write_document_link=write_document_link,
     )
 
 
@@ -489,15 +498,22 @@ def process_build_queue(
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Consume Document_link build tasks and write draft-package or publish results back to Feishu.")
+    ap = argparse.ArgumentParser(
+        description=(
+            "Consume Document_link build tasks and write Draft, Publish, or Web Publish results back to Feishu."
+        )
+    )
     ap.add_argument("--config", required=True, help="Config YAML path")
     ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
     ap.add_argument("--dry-run", action="store_true", help="List pending tasks without building or writing back")
     ap.add_argument(
         "--workflow-action",
-        choices=("build-draft-package", "draft", "publish"),
+        choices=("build-draft-package", "draft", "publish", "web-publish"),
         default=None,
-        help="Only consume queue rows for one normalized Workflow_action (Build Draft Package or Publish)",
+        help=(
+            "Only consume queue rows for one normalized Workflow_action "
+            "(Build Draft Package, Publish, or Web Publish)"
+        ),
     )
     ap.add_argument(
         "--doc-phase",

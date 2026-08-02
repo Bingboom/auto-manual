@@ -22,6 +22,8 @@ def normalize_queue_workflow_action(value: Any) -> str:
         return "draft"
     if text == "publish":
         return "publish"
+    if text in {"web publish", "web_publish", "web-publish"}:
+        return "web_publish"
     return text
 
 
@@ -70,12 +72,15 @@ def validate_family_config_request(
         )
 
     primary_lang = languages[0] if languages else ""
-    if normalized_action == "publish":
+    if normalized_action in {"publish", "web_publish"}:
         if normalized_lang:
-            raise RuntimeError("Publish queue rows must leave Lang blank")
+            raise RuntimeError(
+                f"{normalized_action.replace('_', ' ').title()} queue rows must leave Lang blank"
+            )
         if include_lang_in_output_path:
             raise RuntimeError(
-                "Publish queue rows must use a whole-book Build_family, not a single-language family"
+                f"{normalized_action.replace('_', ' ').title()} queue rows must use a whole-book "
+                "Build_family, not a single-language family"
             )
     if normalized_action == "draft" and normalized_lang:
         if not queue_by_document_key(cfg) and (len(languages) != 1 or language_key(primary_lang) != language_key(normalized_lang)):

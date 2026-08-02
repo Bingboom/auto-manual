@@ -114,7 +114,7 @@ Writeback fields:
 | `Document link` | success/failure with latest remote artifact | Feishu Drive/Wiki or DingTalk URL |
 | `飞书云文档` | optional Markdown cloud-doc import | Feishu cloud document URL produced by `lark-cli drive +import --type docx` |
 | `Document link_dd` | optional DingTalk writeback | DingTalk URL or empty string |
-| `HTML_link` | publish HTML deploy workflow | deployed Vercel URL when field exists |
+| `HTML_link` | successful `Web Publish` | deterministic Read the Docs manual URL |
 | `data_sync` | queue build attempt | `refreshed`, `skipped`, or `failed` |
 | `是否触发文档构建` | success | `已构建` |
 | `是否立即构建` | success/failure | `false` |
@@ -127,12 +127,12 @@ new claim. Claim verification refetches without the configured pending view so
 a view filter cannot hide the just-updated row.
 
 GitHub workflow concurrency complements that table lease without adding Base
-fields. Build Draft Package and Publish share a per-Document_link record group;
-their batch runs share one conservative batch group. Start Review uses its own
-review-init record group. The Vercel production build/deploy and `HTML_link`
-writeback run under one separate global mutex. Every group queues rather than
-cancels in-progress work, so workflow scheduling cannot invalidate a live row
-lease.
+fields. Build Draft Package and print Publish share a per-Document_link record
+group; their batch runs share one conservative batch group. Start Review uses
+its own review-init record group. Web Publish serializes its complete aggregate
+`Hello-Docs/publish` branch update and `HTML_link` writeback under one global
+mutex. Every group queues rather than cancels in-progress work, so workflow
+scheduling cannot invalidate a live row lease.
 
 When `飞书云文档` exists, Draft and Publish rows must also produce Markdown and
 import it as a Feishu cloud document. Import failure is a queue failure; any

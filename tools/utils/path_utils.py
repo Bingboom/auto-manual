@@ -41,6 +41,8 @@ class PathSegments:
     WORD_TEMPLATE = "word_template"
     COMMON_ASSETS = "common_assets"
     WEB_COMPOSITES = "web_composites"
+    PUBLISH = "publish"
+    WEB = "web"
 
     VERSION_TRACKING = "version_tracking"
     RELEASES = "releases"
@@ -68,6 +70,7 @@ class PathSegments:
     REFERENCE_LAYOUT_REGISTRY_JSON = "reference_layout_registry.json"
     REFERENCE_LAYOUT_PLAN_JSON = "reference_layout_plan.json"
     WEB_COMPOSITE_MANIFEST_JSON = "web_composite_manifest.json"
+    PUBLISH_META_JSON = "publish_meta.json"
 
     DEFAULT_CONFIG_US = "config.us.yaml"
     DEFAULT_CONFIG_JA = "config.ja.yaml"
@@ -143,6 +146,18 @@ def version_tracking_of(base_root: Path) -> Path:
 
 def releases_of(base_root: Path) -> Path:
     return base_root / PathSegments.REPORTS / PathSegments.RELEASES
+
+
+def docs_publish_of(docs_dir: Path) -> Path:
+    return docs_dir / PathSegments.PUBLISH
+
+
+def docs_publish_web_of(docs_dir: Path) -> Path:
+    return docs_publish_of(docs_dir) / PathSegments.WEB
+
+
+def web_publish_release_dir_of(release_dir: Path) -> Path:
+    return release_dir / PathSegments.WEB
 
 
 def release_versions_of(release_root: Path) -> Path:
@@ -301,6 +316,14 @@ class Paths:
     @property
     def releases_dir(self) -> Path:
         return releases_of(self.root)
+
+    @property
+    def docs_publish_dir(self) -> Path:
+        return docs_publish_of(self.docs_dir)
+
+    @property
+    def docs_publish_web_dir(self) -> Path:
+        return docs_publish_web_of(self.docs_dir)
 
     @property
     def content_qc_reports_dir(self) -> Path:

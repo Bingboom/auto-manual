@@ -239,6 +239,8 @@ def _versioned_release_output_path(
     suffix_parts: list[str] = []
     if normalized_doc_phase == "publish":
         suffix_parts.append("publish")
+    elif normalized_doc_phase == "web_publish":
+        suffix_parts.append("web_publish")
     if version_token:
         suffix_parts.append(version_token)
     if not suffix_parts:
@@ -486,8 +488,8 @@ def stage_publish_assets_to_host_repo(
     built_word_output_path: Path,
     built_pdf_output_path: Path,
     built_md_output_path: Path,
-    built_html_dir: Path,
     built_idml_output_path: Path,
+    built_latex_dir: Path,
     host_config_path: Path,
     model: str,
     region: str,
@@ -523,8 +525,8 @@ def stage_publish_assets_to_host_repo(
     )
     staged_idml_output_path = version_dir / built_idml_output_path.name
     shutil.copy2(built_idml_output_path, staged_idml_output_path)
-    latest_html_dir = latest_dir / "html"
-    copy_tree(built_html_dir, latest_html_dir)
+    staged_latex_dir = version_dir / PathSegments.LATEX
+    copy_tree(built_latex_dir, staged_latex_dir)
     copy_immutable_tree(
         built_release_snapshot_dir,
         release_snapshot_of(version_dir),
@@ -537,9 +539,44 @@ def stage_publish_assets_to_host_repo(
         staged_word_output_path,
         staged_pdf_output_path,
         staged_md_output_path,
-        latest_html_dir,
+        staged_latex_dir,
         staged_idml_output_path,
     )
+
+
+def stage_web_publish_assets_to_host_repo(
+    *,
+    built_md_output_path: Path,
+    built_html_dir: Path,
+    host_config_path: Path,
+    model: str,
+    region: str,
+    version: str,
+    publish_release_version_dir_for_target: Callable[..., Path],
+    copy_tree: Callable[[Path, Path], None],
+) -> tuple[Path, Path]:
+    version_dir = publish_release_version_dir_for_target(
+        config_path=host_config_path,
+        model=model,
+        region=region,
+        version=version,
+    )
+    web_dir = version_dir / PathSegments.WEB
+    if web_dir.exists():
+        if web_dir.is_symlink() or not web_dir.is_dir():
+            raise RuntimeError(f"Web Publish destination must be a real directory: {web_dir}")
+        shutil.rmtree(web_dir)
+    md_dir = web_dir / "md"
+    html_dir = web_dir / "html"
+    md_dir.mkdir(parents=True, exist_ok=True)
+    staged_md_output_path = md_dir / built_md_output_path.name
+    shutil.copy2(built_md_output_path, staged_md_output_path)
+    _stage_markdown_source_sidecars(
+        built_md_output_path=built_md_output_path,
+        staged_md_output_path=staged_md_output_path,
+    )
+    copy_tree(built_html_dir, html_dir)
+    return staged_md_output_path, html_dir
 
 
 def write_publish_release_metadata(
@@ -554,7 +591,8 @@ def write_publish_release_metadata(
     pdf_output_path: Path,
     md_output_path: Path | None = None,
     handoff_package_path: Path | None = None,
-    html_dir: Path,
+    latex_dir: Path | None = None,
+    html_dir: Path | None,
     document_link_url: str,
     queue_record_ids: tuple[str, ...] = (),
     release_tag: str = "",
@@ -592,11 +630,13 @@ def write_publish_release_metadata(
         "handoff_package_path": (
             repo_relative(handoff_package_path) if handoff_package_path is not None else ""
         ),
-        "html_dir": repo_relative(html_dir),
-        "html_index": repo_relative(html_dir / "index.html"),
+        "latex_dir": repo_relative(latex_dir) if latex_dir is not None else "",
         "document_link_url": document_link_url.strip(),
         "queue_record_ids": [record_id.strip() for record_id in queue_record_ids if record_id.strip()],
     }
+    if html_dir is not None:
+        payload["html_dir"] = repo_relative(html_dir)
+        payload["html_index"] = repo_relative(html_dir / "index.html")
     version_dir.mkdir(parents=True, exist_ok=True)
     latest_dir.mkdir(parents=True, exist_ok=True)
     version_meta_path = version_dir / "publish_meta.json"
@@ -605,3 +645,46 @@ def write_publish_release_metadata(
     version_meta_path.write_text(text, encoding="utf-8")
     latest_meta_path.write_text(text, encoding="utf-8")
     return latest_meta_path
+
+
+def write_web_publish_metadata(
+    *,
+    config_path: Path,
+    model: str,
+    region: str,
+    version: str,
+    git_ref: str,
+    built_at: datetime,
+    md_output_path: Path,
+    html_dir: Path,
+    queue_record_ids: tuple[str, ...] = (),
+    publish_release_latest_dir_for_target: Callable[..., Path],
+    release_lang_for_config: Callable[[Path], str | None],
+    repo_relative: Callable[[Path], str],
+) -> Path:
+    latest_dir = publish_release_latest_dir_for_target(
+        config_path=config_path,
+        model=model,
+        region=region,
+    )
+    payload = {
+        "schema_version": "auto-manual-web-publish/v1",
+        "model": model,
+        "region": region,
+        "lang": release_lang_for_config(config_path),
+        "version": version,
+        "git_ref": git_ref.strip(),
+        "workflow_action": "Web Publish",
+        "built_at": built_at.isoformat(timespec="seconds"),
+        "md_output_path": repo_relative(md_output_path),
+        "html_dir": repo_relative(html_dir),
+        "html_index": repo_relative(html_dir / "index.html"),
+        "queue_record_ids": [record_id.strip() for record_id in queue_record_ids if record_id.strip()],
+    }
+    metadata_path = latest_dir / PathSegments.WEB / PathSegments.PUBLISH_META_JSON
+    metadata_path.parent.mkdir(parents=True, exist_ok=True)
+    metadata_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    return metadata_path

@@ -1,12 +1,17 @@
 const RECORD_ID_PATTERN = /^rec[a-zA-Z0-9]+$/;
 const RUN_ID_PATTERN = /^\d+$/;
 const PUBLISH_CONFIRMATION_TOKENS = new Set(["confirm", "confirmed", "--confirm"]);
+const PUBLISH_COMMANDS = new Set(["publish", "web-publish"]);
 
 function dispatchUsageExample(commandName, { batch = false } = {}) {
   if (batch) {
-    return commandName === "publish" ? "/publish batch confirm" : `/${commandName || "build-draft"} batch`;
+    return PUBLISH_COMMANDS.has(commandName)
+      ? `/${commandName} batch confirm`
+      : `/${commandName || "build-draft"} batch`;
   }
-  return commandName === "publish" ? "/publish rec_xxx confirm" : `/${commandName || "build-draft"} rec_xxx`;
+  return PUBLISH_COMMANDS.has(commandName)
+    ? `/${commandName} rec_xxx confirm`
+    : `/${commandName || "build-draft"} rec_xxx`;
 }
 
 export function ensureRecordId(rawArgs) {
@@ -33,6 +38,7 @@ export function ensureStatusArg(rawArgs) {
 
 export function ensureDispatchArgs(commandName, rawArgs) {
   const normalizedCommand = String(commandName || "").trim().toLowerCase();
+  const publishLabel = normalizedCommand === "publish" ? "Publish" : "Web Publish";
   const tokens = String(rawArgs || "")
     .trim()
     .split(/\s+/)
@@ -71,12 +77,12 @@ export function ensureDispatchArgs(commandName, rawArgs) {
       queueRecordIds = [...new Set(rawIds)];
       continue;
     }
-    if (normalizedCommand === "publish" && PUBLISH_CONFIRMATION_TOKENS.has(token.toLowerCase())) {
+    if (PUBLISH_COMMANDS.has(normalizedCommand) && PUBLISH_CONFIRMATION_TOKENS.has(token.toLowerCase())) {
       publishConfirmed = true;
       continue;
     }
-    if (normalizedCommand === "publish") {
-      throw new Error("Publish requires `/publish rec_xxx confirm`.");
+    if (PUBLISH_COMMANDS.has(normalizedCommand)) {
+      throw new Error(`${publishLabel} requires \`/${normalizedCommand} rec_xxx confirm\`.`);
     }
     throw new Error("Provide one record id or the `batch` sentinel, for example `/build-draft rec_xxx` or `/build-draft batch`.");
   }
@@ -84,8 +90,10 @@ export function ensureDispatchArgs(commandName, rawArgs) {
   if (!queueRecordId && !batch) {
     throw new Error(`Provide one record id or the batch sentinel, for example \`${dispatchUsageExample(normalizedCommand)}\`.`);
   }
-  if (normalizedCommand === "publish" && !publishConfirmed) {
-    throw new Error("Publish requires explicit confirmation. Use `/publish rec_xxx confirm`.");
+  if (PUBLISH_COMMANDS.has(normalizedCommand) && !publishConfirmed) {
+    throw new Error(
+      `${publishLabel} requires explicit confirmation. Use \`/${normalizedCommand} rec_xxx confirm\`.`
+    );
   }
   return { queueRecordId, queueRecordIds, publishConfirmed, batch };
 }

@@ -17,4 +17,10 @@ export const COMMAND_DEFINITIONS = [
     workflowName: "Feishu Build Queue",
     description: "Dispatch the Publish worker on main for one Document_link record after explicit confirmation.",
   },
+  {
+    commandName: "web-publish",
+    workflowFile: "feishu-web-publish-queue.yml",
+    workflowName: "Feishu Web Publish Queue",
+    description: "Dispatch the Web Publish worker on main for one Document_link record after explicit confirmation.",
+  },
 ];

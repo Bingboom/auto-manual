@@ -71,20 +71,24 @@ class WorkflowArtifactPolicyTests(unittest.TestCase):
             _path_lines(publish),
         )
 
-        candidate = uploads["vercel-publish-candidate"]
-        self.assertEqual(1, candidate["with"]["retention-days"])
-        self.assertEqual(["site/publish-latest/dist"], _path_lines(candidate))
+        web_publish = uploads["feishu-web-publish-queue-output"]
+        self.assertEqual(7, web_publish["with"]["retention-days"])
+        self.assertEqual(
+            [
+                "reports/releases/**/versions/**/web/**",
+                "reports/releases/**/latest/web/**",
+                "${{ runner.temp }}/hello-docs-publish/docs/publish/publish_manifest.json",
+                "data/phase2/snapshot_manifest.json",
+                "data/phase2/row_key_mapping.csv",
+            ],
+            _path_lines(web_publish),
+        )
 
         publish_workflow = yaml.safe_load(
             (WORKFLOW_ROOT / "feishu-build-queue.yml").read_text(encoding="utf-8")
         )
-        download = next(
-            step
-            for step in publish_workflow["jobs"]["deploy-vercel"]["steps"]
-            if step.get("uses") == "actions/download-artifact@v4"
-        )
-        self.assertEqual("vercel-publish-candidate", download["with"]["name"])
-        self.assertEqual("site/publish-latest/dist", download["with"]["path"])
+        self.assertNotIn("deploy-vercel", publish_workflow["jobs"])
+        self.assertNotIn("vercel-publish-candidate", uploads)
 
     def test_backup_keeps_its_restore_window(self) -> None:
         backup_steps = [

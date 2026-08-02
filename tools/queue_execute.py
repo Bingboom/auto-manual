@@ -115,6 +115,7 @@ def dispatch_command_for_row(row: QueueQueryRow) -> str:
         "start_review": "start-review",
         "draft": "build-draft",
         "publish": "publish",
+        "web_publish": "web-publish",
     }
     command = mapping.get(row.normalized_workflow_action or "")
     if command:
@@ -159,22 +160,24 @@ def ensure_start_review_dispatchable(row: QueueQueryRow) -> None:
 
 
 def ensure_publish_confirmation(args: argparse.Namespace, row: QueueQueryRow) -> None:
-    if (row.normalized_workflow_action or "") != "publish":
+    if (row.normalized_workflow_action or "") not in {"publish", "web_publish"}:
         return
     if getattr(args, "confirm_publish", False):
         return
     raise RuntimeError(
-        "queue-execute resolved a Publish row. Re-run with `--confirm-publish` to dispatch the Publish worker."
+        "queue-execute resolved a Publish/Web Publish row. Re-run with `--confirm-publish` "
+        "to dispatch the publishing worker."
     )
 
 
 def ensure_build_trigger_requested(row: QueueQueryRow) -> None:
-    if (row.normalized_workflow_action or "") not in {"draft", "publish"}:
+    if (row.normalized_workflow_action or "") not in {"draft", "publish", "web_publish"}:
         return
     if row.build_trigger_requested is True:
         return
     raise RuntimeError(
-        "queue-execute resolved a Build Draft Package / Publish row, but `是否触发文档构建` is not enabled. "
+        "queue-execute resolved a Build Draft Package / Publish / Web Publish row, "
+        "but `是否触发文档构建` is not enabled. "
         f"record_id={row.record_id} document_id={row.document_id or '-'} workflow_action={row.workflow_action or '-'}"
     )
 
@@ -273,7 +276,7 @@ def _asset_preflight_for_row(row: QueueQueryRow, *, repo_root: Path) -> dict[str
     payload: dispatch must never become dependent on an advisory check.
     """
 
-    if (row.normalized_workflow_action or "") not in {"draft", "publish"}:
+    if (row.normalized_workflow_action or "") not in {"draft", "publish", "web_publish"}:
         return None
     parsed = parse_document_id(row.document_id or row.document_key)
     if parsed is None:

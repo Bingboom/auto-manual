@@ -417,6 +417,7 @@ def build_py_target_command(
     source: str | None = None,
     no_clean: bool = False,
     idml_mode: str | None = None,
+    presentation_profile: str | None = None,
 ) -> list[str]:
     return module._bound_build_py_target_command(
         repo_root=repo_root,
@@ -429,6 +430,7 @@ def build_py_target_command(
         source=source,
         no_clean=no_clean,
         idml_mode=idml_mode,
+        presentation_profile=presentation_profile,
     )
 
 
@@ -488,6 +490,7 @@ def build_document_for_task(
         versioned_md_output_path=module._versioned_md_output_path,
         resolve_html_output_dir_for_target=module.resolve_html_output_dir_for_target,
         stage_publish_assets_to_host_repo=module._stage_publish_assets_to_host_repo,
+        stage_web_publish_assets_to_host_repo=module._stage_web_publish_assets_to_host_repo,
         stage_draft_word_output_to_host_repo=module._stage_draft_word_output_to_host_repo,
         stage_draft_md_output_to_host_repo=module._stage_draft_md_output_to_host_repo,
     )
@@ -497,7 +500,7 @@ def build_success_fields(
     module: Any,
     *,
     version: str,
-    word_output_path: Path,
+    word_output_path: Path | None,
     document_link_url: str,
     built_at: datetime,
     document_link_dd_url: str = "",
@@ -510,6 +513,8 @@ def build_success_fields(
     write_data_sync: bool = True,
     write_document_link_dd: bool = False,
     write_feishu_cloud_doc: bool = False,
+    write_document_directory: bool = True,
+    write_document_link: bool = True,
 ) -> dict[str, Any]:
     return _build_success_fields_impl(
         version=version,
@@ -526,8 +531,8 @@ def build_success_fields(
         normalize_doc_phase=module.normalize_doc_phase,
         workflow_action_label=module.workflow_action_label,
         result_field=module.RESULT_FIELD,
-        document_directory_field=module.DOCUMENT_DIRECTORY_FIELD,
-        document_link_field=module.DOCUMENT_LINK_FIELD,
+        document_directory_field=module.DOCUMENT_DIRECTORY_FIELD if write_document_directory else "",
+        document_link_field=module.DOCUMENT_LINK_FIELD if write_document_link else "",
         document_link_dd_field=module.DOCUMENT_LINK_DD_FIELD if write_document_link_dd else "",
         feishu_cloud_doc_field=module.FEISHU_CLOUD_DOC_FIELD if write_feishu_cloud_doc else "",
         trigger_field=module.TRIGGER_FIELD,
@@ -721,6 +726,7 @@ def process_build_queue(
         build_success_fields=module.build_success_fields,
         publish_release_latest_dir_for_target=module._publish_release_latest_dir_for_target,
         write_publish_release_metadata=module.write_publish_release_metadata,
+        write_web_publish_metadata=module.write_web_publish_metadata,
         build_failure_writeback_fields=module.build_failure_writeback_fields,
         best_effort_queue_workflow_action=module.best_effort_queue_workflow_action,
         resolve_queue_workflow_action=module.resolve_queue_workflow_action,

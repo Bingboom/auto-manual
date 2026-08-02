@@ -72,9 +72,8 @@ therefore provides a second ownership boundary:
   conservative `feishu-document-queue-batch` slot.
 - Start Review operates on review-init queue identity and uses
   `feishu-review-init-queue-<record_id>` (or its `batch` slot).
-- Publish site candidates may be built independently, but the Vercel
-  production build/deploy/`HTML_link` writeback tail owns the global
-  `feishu-vercel-production` mutex.
+- Web Publish owns the global `feishu-web-publish-branch` mutex for its complete
+  build, aggregate publish-branch update, and `HTML_link` writeback transaction.
 
 All groups use `cancel-in-progress: false`, so a newer dispatch waits instead
 of cancelling an owner that may still hold a live Feishu lease. The claim

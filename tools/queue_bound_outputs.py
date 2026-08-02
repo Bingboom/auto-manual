@@ -23,10 +23,12 @@ from tools.queue_outputs import (  # noqa: E402
     stage_draft_md_output_to_host_repo as _stage_draft_md_output_to_host_repo_impl,
     stage_draft_word_output_to_host_repo as _stage_draft_word_output_to_host_repo_impl,
     stage_publish_assets_to_host_repo as _stage_publish_assets_to_host_repo_impl,
+    stage_web_publish_assets_to_host_repo as _stage_web_publish_assets_to_host_repo_impl,
     versioned_md_output_path as _versioned_md_output_path_impl,
     versioned_pdf_output_path as _versioned_pdf_output_path_impl,
     versioned_word_output_path as _versioned_word_output_path_impl,
     write_publish_release_metadata as _write_publish_release_metadata_impl,
+    write_web_publish_metadata as _write_web_publish_metadata_impl,
 )
 from tools.release_contract import (  # noqa: E402
     normalize_release_token,
@@ -239,8 +241,8 @@ def stage_publish_assets_to_host_repo(
     built_word_output_path: Path,
     built_pdf_output_path: Path,
     built_md_output_path: Path,
-    built_html_dir: Path,
     built_idml_output_path: Path,
+    built_latex_dir: Path,
     host_config_path: Path,
     model: str,
     region: str,
@@ -252,8 +254,8 @@ def stage_publish_assets_to_host_repo(
         built_word_output_path=built_word_output_path,
         built_pdf_output_path=built_pdf_output_path,
         built_md_output_path=built_md_output_path,
-        built_html_dir=built_html_dir,
         built_idml_output_path=built_idml_output_path,
+        built_latex_dir=built_latex_dir,
         host_config_path=host_config_path,
         model=model,
         region=region,
@@ -262,6 +264,27 @@ def stage_publish_assets_to_host_repo(
         built_release_manifests_dir=built_release_manifests_dir,
         publish_release_version_dir_for_target=publish_release_version_dir_for_target,
         publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
+        copy_tree=_copy_tree_impl,
+    )
+
+
+def stage_web_publish_assets_to_host_repo(
+    *,
+    built_md_output_path: Path,
+    built_html_dir: Path,
+    host_config_path: Path,
+    model: str,
+    region: str,
+    version: str,
+) -> tuple[Path, Path]:
+    return _stage_web_publish_assets_to_host_repo_impl(
+        built_md_output_path=built_md_output_path,
+        built_html_dir=built_html_dir,
+        host_config_path=host_config_path,
+        model=model,
+        region=region,
+        version=version,
+        publish_release_version_dir_for_target=publish_release_version_dir_for_target,
         copy_tree=_copy_tree_impl,
     )
 
@@ -278,7 +301,8 @@ def write_publish_release_metadata(
     pdf_output_path: Path,
     md_output_path: Path | None = None,
     handoff_package_path: Path | None = None,
-    html_dir: Path,
+    latex_dir: Path | None = None,
+    html_dir: Path | None,
     document_link_url: str,
     queue_record_ids: tuple[str, ...] = (),
 ) -> Path:
@@ -300,11 +324,40 @@ def write_publish_release_metadata(
         pdf_output_path=pdf_output_path,
         md_output_path=md_output_path,
         handoff_package_path=handoff_package_path,
+        latex_dir=latex_dir,
         html_dir=html_dir,
         document_link_url=document_link_url,
         queue_record_ids=queue_record_ids,
         release_tag=release_tag,
         publish_release_version_dir_for_target=publish_release_version_dir_for_target,
+        publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
+        release_lang_for_config=release_lang_for_config,
+        repo_relative=repo_relative,
+    )
+
+
+def write_web_publish_metadata(
+    *,
+    config_path: Path,
+    model: str,
+    region: str,
+    version: str,
+    git_ref: str,
+    built_at: Any,
+    md_output_path: Path,
+    html_dir: Path,
+    queue_record_ids: tuple[str, ...] = (),
+) -> Path:
+    return _write_web_publish_metadata_impl(
+        config_path=config_path,
+        model=model,
+        region=region,
+        version=version,
+        git_ref=git_ref,
+        built_at=built_at,
+        md_output_path=md_output_path,
+        html_dir=html_dir,
+        queue_record_ids=queue_record_ids,
         publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
         release_lang_for_config=release_lang_for_config,
         repo_relative=repo_relative,

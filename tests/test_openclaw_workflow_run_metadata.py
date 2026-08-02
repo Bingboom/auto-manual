@@ -135,3 +135,46 @@ class TestOpenClawWorkflowRunMetadata(unittest.TestCase):
             assert isinstance(failure_summary, dict)
             self.assertEqual("missing_spec_data", failure_summary["summary_code"])
             self.assertEqual("缺少 JE-1000F_CN 的规格数据，无法进入 review。", failure_summary["summary_message"])
+
+    def test_web_publish_metadata_supplies_the_rtd_url(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            releases_root = Path(tmpdir) / "reports" / "releases"
+            meta_path = (
+                releases_root
+                / "JE-1000F"
+                / "US"
+                / "en"
+                / "latest"
+                / "web"
+                / "publish_meta.json"
+            )
+            meta_path.parent.mkdir(parents=True, exist_ok=True)
+            meta_path.write_text(
+                (
+                    '{\n'
+                    '  "built_at": "2026-08-02T12:00:00+00:00",\n'
+                    '  "publish_url": "https://ht-doc.readthedocs.io/en/latest/JE-1000F/US/md/manual.html",\n'
+                    '  "html_index": "reports/releases/JE-1000F/US/en/versions/2.0/web/html/index.html"\n'
+                    '}\n'
+                ),
+                encoding="utf-8",
+            )
+
+            payload = build_metadata(
+                workflow_name="Feishu Web Publish Queue",
+                workflow_file=".github/workflows/feishu-web-publish-queue.yml",
+                queue_record_id="rec_web",
+                trigger_source="openclaw",
+                openclaw_dispatch_nonce="nonce-web",
+                artifact_names=["feishu-web-publish-queue-output"],
+                publish_url="",
+                failure_summary_path=None,
+                releases_root=releases_root,
+                env={},
+            )
+
+            self.assertEqual(
+                "https://ht-doc.readthedocs.io/en/latest/JE-1000F/US/md/manual.html",
+                payload["publish_url"],
+            )
+            self.assertTrue(str(payload["publish_metadata_path"]).endswith("latest/web/publish_meta.json"))

@@ -20,6 +20,10 @@ QUEUE_WORKFLOWS = {
     "feishu-build-queue.yml": ("queue-failure-build", "process-queue"),
     "feishu-draft-build-queue.yml": ("queue-failure-draft", "process-draft-queue"),
     "feishu-start-review.yml": ("queue-failure-start-review", "process-review-start"),
+    "feishu-web-publish-queue.yml": (
+        "queue-failure-web-publish",
+        "process-web-publish",
+    ),
 }
 
 

@@ -62,6 +62,7 @@ def process_queue_record_group(
     queue_record_legacy_doc_phase: Callable[[Any], str | None],
     publish_release_latest_dir_for_target: Callable[..., Path],
     write_publish_release_metadata: Callable[..., Path],
+    write_web_publish_metadata: Callable[..., Path] | None = None,
     workflow_action_label: Callable[[str | None], str | None],
     queue_record_key: Callable[[Any], str],
     build_failure_writeback_fields: Callable[..., dict[str, Any]],
@@ -72,6 +73,8 @@ def process_queue_record_group(
     word_output_path: Path | None = None
     pdf_output_path: Path | None = None
     md_output_path: Path | None = None
+    latex_output_dir: Path | None = None
+    html_output_dir: Path | None = None
     artifact_output_path: Path | None = None
     latest_link_url: str | None = None
     latest_document_link_dd_url: str | None = None
@@ -86,6 +89,7 @@ def process_queue_record_group(
         validate_queue_record_group(group)
         effective_doc_phase = resolve_queue_workflow_action(record)
         force_phase2_refresh = queue_group_force_phase2_refresh(group)
+        refresh_phase2 = force_phase2_refresh or effective_doc_phase == "web_publish"
         started_at = datetime.now(timezone.utc)
         claim_token = uuid4().hex
         claim_expires_at = started_at + timedelta(seconds=queue_claim_ttl_seconds)
@@ -94,7 +98,7 @@ def process_queue_record_group(
             version=record.version,
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
-            data_sync_status="pending" if force_phase2_refresh else "skipped",
+            data_sync_status="pending" if refresh_phase2 else "skipped",
             claim_token=claim_token,
             claim_expires_at=claim_expires_at,
             write_started_at=can_write_started_at,
@@ -129,7 +133,11 @@ def process_queue_record_group(
         dingtalk_mirror_destination = None
         deferred_status_notes: tuple[str, ...] = ()
         primary_provider = str(getattr(artifact_destination, "provider", "") or "lark_drive")
-        mirror_provider = resolve_artifact_mirror_provider(cfg=cfg)
+        mirror_provider = (
+            resolve_artifact_mirror_provider(cfg=cfg)
+            if effective_doc_phase != "web_publish"
+            else None
+        )
         if primary_provider == "dingtalk_alidocs_session" and has_upload_dingtalk_field:
             if upload_dingtalk:
                 if dingtalk_target_node_url:
@@ -193,7 +201,11 @@ def process_queue_record_group(
                         f"using Feishu/wiki only: {message}",
                         file=stderr,
                     )
-        if str(getattr(effective_artifact_destination, "provider", "") or "") == "dingtalk_alidocs_session":
+        if (
+            effective_doc_phase != "web_publish"
+            and str(getattr(effective_artifact_destination, "provider", "") or "")
+            == "dingtalk_alidocs_session"
+        ):
             ensure_dingtalk_session_ready(
                 cfg=cfg,
                 operator_union_id=dingtalk_operator_union_id,
@@ -204,11 +216,12 @@ def process_queue_record_group(
             build_family=group_build_family,
             workflow_action=effective_doc_phase,
         )
-        if effective_doc_phase == "draft" and not record.git_ref.strip():
+        if effective_doc_phase in {"draft", "web_publish"} and not record.git_ref.strip():
             raise RuntimeError(
-                "Build Draft Package queue rows require Git_ref so the worker can fetch the review branch"
+                f"{workflow_action_label(effective_doc_phase)} queue rows require Git_ref "
+                "so the worker can fetch the review branch"
             )
-        if force_phase2_refresh:
+        if refresh_phase2:
             print(
                 f"[build-queue] Syncing latest phase2 snapshot before {group_key} ({row_count} row(s))."
             )
@@ -239,6 +252,8 @@ def process_queue_record_group(
             word_output_path = built_outputs.word_output_path
             pdf_output_path = built_outputs.pdf_output_path
             md_output_path = built_outputs.md_output_path
+            latex_output_dir = built_outputs.latex_output_dir
+            html_output_dir = built_outputs.html_output_dir
             artifact_output_path = built_outputs.upload_output_path
         # Upload the built artifact to the knowledge base ONLY in publish: the IDML
         # file's link lands in the idml_file field. In review the deliverable is the
@@ -330,6 +345,8 @@ def process_queue_record_group(
             write_data_sync=can_write_data_sync,
             write_document_link_dd=can_write_document_link_dd,
             write_feishu_cloud_doc=can_write_feishu_cloud_doc,
+            write_document_directory=effective_doc_phase != "web_publish",
+            write_document_link=effective_doc_phase != "web_publish",
         )
         # Record the frozen baseline doc link alongside the editable one (success_fields
         # is a plain dict). Backport reads 基线文档 from the row to diff against.
@@ -343,11 +360,6 @@ def process_queue_record_group(
                 record=success_fields,
             )
         if effective_doc_phase == "publish":
-            latest_html_dir = publish_release_latest_dir_for_target(
-                config_path=resolved_config_path,
-                model=model,
-                region=region,
-            ) / "html"
             write_publish_release_metadata(
                 config_path=resolved_config_path,
                 model=model,
@@ -359,13 +371,32 @@ def process_queue_record_group(
                 pdf_output_path=pdf_output_path or artifact_output_path,
                 md_output_path=md_output_path,
                 handoff_package_path=artifact_output_path,
-                html_dir=latest_html_dir,
+                latex_dir=latex_output_dir,
+                html_dir=None,
                 document_link_url=document_link_url,
+                queue_record_ids=tuple(group_record.record_id for group_record in group),
+            )
+        elif effective_doc_phase == "web_publish":
+            if md_output_path is None or html_output_dir is None:
+                raise RuntimeError("Web Publish output is missing Markdown source or HTML verification output")
+            if write_web_publish_metadata is None:
+                raise RuntimeError("Web Publish metadata writer is not configured")
+            write_web_publish_metadata(
+                config_path=resolved_config_path,
+                model=model,
+                region=region,
+                version=record.version,
+                git_ref=record.git_ref,
+                built_at=built_at,
+                md_output_path=md_output_path,
+                html_dir=html_output_dir,
                 queue_record_ids=tuple(group_record.record_id for group_record in group),
             )
         print(
             f"[build-queue] {workflow_action_label(effective_doc_phase) or 'Updated'} "
-            f"{group_key} ({row_count} row(s)): {artifact_output_path} -> {document_link_url}"
+            f"{group_key} ({row_count} row(s)): "
+            f"{artifact_output_path or md_output_path}"
+            + (f" -> {document_link_url}" if document_link_url else "")
         )
         return QueueGroupProcessingResult(processed_rows=row_count)
     except Exception as exc:
