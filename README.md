@@ -729,7 +729,7 @@ Use the document that owns the topic:
 - [`.agents/skills/markdown-rst-template-intake/`](.agents/skills/markdown-rst-template-intake): repo-local Codex skill for mapping external Markdown manuals into the current RST template and recipe layout
 - [`docs/_review/`](docs/_review): target-specific review layer
 - [`docs/_build/`](docs/_build): runtime bundles and export outputs
-- [`reports/`](reports): revision reports and release manifests; queue Publish also freezes the exact phase2 input under `reports/releases/<model>/<region>/<lang>/versions/<version>/snapshot/`, retained with that release
+- [`reports/`](reports): revision reports and runtime release output; `reports/releases/` is Git-ignored, and queue Publish sends IDML/LaTeX/PDF/DOCX/ZIP deliverables to Feishu or short-lived GitHub Actions artifacts instead of committing them. Publish also freezes the exact phase2 input under `reports/releases/<model>/<region>/<lang>/versions/<version>/snapshot/` for the runtime release evidence
 - [`tests/`](tests): automated regression coverage
 
 ## 6. Maintenance Rule

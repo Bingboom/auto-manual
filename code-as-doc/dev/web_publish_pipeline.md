@@ -54,6 +54,11 @@ artifacts. Both actions render reviewed content selected by
 - The only release PR into `Hello-Docs/main` is `publish -> main`, and its diff
   must contain only `docs/publish/**`. A whole `review/*` branch is never a
   release PR and must never be merged into `main`.
+- `docs/publish/**` is a Web-only Git surface: it may contain only frozen Web
+  source/assets, the assembled Sphinx source, and `publish_manifest.json`.
+  The assembler rejects IDML, InDesign, LaTeX, PDF, DOCX, source-artwork, and
+  archive files before the candidate branch can be pushed. Print artifacts
+  remain under release storage and short-lived GitHub Actions artifacts.
 - The Read the Docs project uses `main` as its default build branch and builds
   `docs/publish/web/` through `.readthedocs.yaml`.
 - RTD never receives Feishu credentials and never reads mutable attachments.
