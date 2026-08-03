@@ -51,6 +51,9 @@ jobs:
       DINGTALK_CLIENT_ID: ${{ secrets.DINGTALK_CLIENT_ID }}
       DINGTALK_CLIENT_SECRET: ${{ secrets.DINGTALK_CLIENT_SECRET }}
       DINGTALK_CORP_ID: ${{ secrets.DINGTALK_CORP_ID }}
+      DINGTALK_DOCS_COOKIE: ${{ secrets.DINGTALK_DOCS_COOKIE }}
+      DINGTALK_DOCS_XSRF_TOKEN: ${{ secrets.DINGTALK_DOCS_XSRF_TOKEN }}
+      DINGTALK_DOCS_A_TOKEN: ${{ secrets.DINGTALK_DOCS_A_TOKEN }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:

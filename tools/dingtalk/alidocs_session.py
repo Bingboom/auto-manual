@@ -193,6 +193,7 @@ def _json_request(
     data = None
     headers = {
         "accept": "application/json, text/plain, */*",
+        "a-token": session.a_token,
         "bx-v": session.bx_version,
         "origin": session.origin,
         "referer": referer_url,
@@ -202,7 +203,6 @@ def _json_request(
     if json_body is not None:
         data = json.dumps(json_body, ensure_ascii=False).encode("utf-8")
         headers["content-type"] = "application/json"
-        headers["a-token"] = session.a_token
     req = request.Request(url=url, method=method.upper(), data=data, headers=headers)
     try:
         with request.urlopen(req, timeout=timeout_seconds) as resp:
@@ -254,6 +254,28 @@ def _require_success(payload: dict[str, Any], *, action: str) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise RuntimeError(f"AliDocs {action} response is missing data payload")
     return data
+
+
+def check_authenticated_session(
+    *,
+    session: AliDocsSessionConfig,
+    referer_url: str = f"{ALIDOCS_ORIGIN}/",
+    timeout_seconds: float = 30.0,
+) -> None:
+    """Verify the browser session with a lightweight read-only AliDocs request."""
+
+    payload = _json_request(
+        method="GET",
+        url=f"{ALIDOCS_ORIGIN}/portal/api/v1/mine/info",
+        session=session,
+        referer_url=referer_url,
+        timeout_seconds=timeout_seconds,
+    )
+    if payload.get("isSuccess") is not True:
+        raise RuntimeError(
+            "AliDocs authenticated session check did not succeed: "
+            f"{json.dumps(payload, ensure_ascii=False)}"
+        )
 
 
 def request_upload_ticket(

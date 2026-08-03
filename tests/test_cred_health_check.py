@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import os
 import unittest
+from unittest import mock
 
-from tools.cred_health_check import _failure_detail
+from tools.cred_health_check import _failure_detail, probe_dingtalk_docs_session
+from tools.dingtalk import alidocs_session
 
 
 class TestFailureDetail(unittest.TestCase):
@@ -34,6 +37,76 @@ class TestFailureDetail(unittest.TestCase):
     def test_detail_is_capped(self) -> None:
         detail = _failure_detail("error: " + "x" * 1000, "", 1)
         self.assertLessEqual(len(detail), 300)
+
+
+class TestDingTalkDocsSessionProbe(unittest.TestCase):
+    def test_missing_session_secret_is_skipped_and_names_missing_values(self) -> None:
+        with mock.patch.dict(os.environ, {}, clear=True):
+            result = probe_dingtalk_docs_session()
+
+        self.assertEqual("skipped", result.status)
+        self.assertIn("DINGTALK_DOCS_COOKIE", result.detail)
+        self.assertIn("DINGTALK_DOCS_XSRF_TOKEN", result.detail)
+        self.assertIn("DINGTALK_DOCS_A_TOKEN", result.detail)
+
+    def test_configured_session_runs_authenticated_read_only_probe(self) -> None:
+        values = {
+            "DINGTALK_DOCS_COOKIE": "cookie",
+            "DINGTALK_DOCS_XSRF_TOKEN": "xsrf",
+            "DINGTALK_DOCS_A_TOKEN": "a-token",
+        }
+        with mock.patch.dict(os.environ, values, clear=True), mock.patch(
+            "tools.dingtalk.alidocs_session.check_authenticated_session"
+        ) as check:
+            result = probe_dingtalk_docs_session()
+
+        self.assertEqual("ok", result.status)
+        check.assert_called_once()
+
+    def test_blank_session_secret_is_skipped_like_an_unset_one(self) -> None:
+        # GitHub Actions injects an empty string for a secret that is not configured.
+        values = {
+            "DINGTALK_DOCS_COOKIE": "",
+            "DINGTALK_DOCS_XSRF_TOKEN": "",
+            "DINGTALK_DOCS_A_TOKEN": "",
+        }
+        with mock.patch.dict(os.environ, values, clear=True):
+            result = probe_dingtalk_docs_session()
+
+        self.assertEqual("skipped", result.status)
+        self.assertIn("DINGTALK_DOCS_COOKIE", result.detail)
+
+    def test_expired_session_is_reported_as_failed_so_the_job_turns_red(self) -> None:
+        values = {
+            "DINGTALK_DOCS_COOKIE": "cookie",
+            "DINGTALK_DOCS_XSRF_TOKEN": "xsrf",
+            "DINGTALK_DOCS_A_TOKEN": "a-token",
+        }
+        with mock.patch.dict(os.environ, values, clear=True), mock.patch(
+            "tools.dingtalk.alidocs_session.check_authenticated_session",
+            side_effect=RuntimeError("AliDocs session rejected: login required"),
+        ):
+            result = probe_dingtalk_docs_session()
+
+        self.assertEqual("failed", result.status)
+        self.assertIn("login required", result.detail)
+        self.assertTrue(result.is_failure)
+
+
+class TestSessionCheckRejectsUnauthenticatedResponse(unittest.TestCase):
+    def test_non_success_payload_raises_so_the_probe_reports_failed(self) -> None:
+        session = alidocs_session.AliDocsSessionConfig(
+            a_token="token",
+            xsrf_token="xsrf",
+            cookie="cookie",
+        )
+        with mock.patch.object(
+            alidocs_session,
+            "_json_request",
+            return_value={"isSuccess": False, "code": "NOT_LOGIN"},
+        ):
+            with self.assertRaises(RuntimeError):
+                alidocs_session.check_authenticated_session(session=session)
 
 
 if __name__ == "__main__":

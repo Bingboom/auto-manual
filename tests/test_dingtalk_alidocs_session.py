@@ -4,11 +4,33 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from tools.dingtalk import alidocs_session
 
 
 class TestAliDocsSession(unittest.TestCase):
+    def test_authenticated_session_check_uses_read_only_mine_info_endpoint(self) -> None:
+        session = alidocs_session.AliDocsSessionConfig(
+            a_token="token",
+            xsrf_token="xsrf",
+            cookie="cookie",
+        )
+        with mock.patch.object(
+            alidocs_session,
+            "_json_request",
+            return_value={"isSuccess": True},
+        ) as request_mock:
+            alidocs_session.check_authenticated_session(session=session)
+
+        request_mock.assert_called_once_with(
+            method="GET",
+            url="https://alidocs.dingtalk.com/portal/api/v1/mine/info",
+            session=session,
+            referer_url="https://alidocs.dingtalk.com/",
+            timeout_seconds=30.0,
+        )
+
     def test_load_session_config_for_operator_union_id_should_read_registry_file(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             session_path = Path(td) / "union_123.json"
