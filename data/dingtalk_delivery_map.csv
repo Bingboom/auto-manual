@@ -1,12 +1,4 @@
-model,region,lang,project_code,safety_regulation,dingtalk_language,备注
-JE-1000F,US,en,HTE153,美加规,英语（美式）,
-JE-1000F,US,fr,HTE153,美加规,法语,
-JE-1000F,US,es,HTE153,美加规,西班牙语,
-JE-1000F,EU,en,HTE153,欧英规,英语（美式）,
-JE-1000F,EU,fr,HTE153,欧英规,法语,
-JE-1000F,EU,es,HTE153,欧英规,西班牙语,
-JE-1000F,EU,de,HTE153,欧英规,德语,
-JE-1000F,EU,it,HTE153,欧英规,意大利语,
-JE-1000F,AU,en,HTE153,澳规,英语（美式）,
-JE-1000F,JP,ja,HTE153,日规,日语,
-JE-1000F,KR,ko,HTE153,韩规,韩语,
+model,region,project_code,safety_regulation,dingtalk_languages,备注
+JE-1000F,US,HTE153,美加规,英语（美式）;法语;西班牙语,us-merged 整本交付
+JE-1000F,EU,HTE153,欧英规,英语（美式）;法语;西班牙语;德语;意大利语,eu-merged 整本交付；乌克兰语在钉钉暂无对应行
+JE-1000F,JP,HTE153,日规,日语,jp-ja 整本交付

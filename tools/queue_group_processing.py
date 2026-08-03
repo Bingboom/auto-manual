@@ -348,7 +348,6 @@ def process_queue_record_group(
             delivery_status_notes = drop_publish_delivery_outbox(
                 model=model,
                 region=region,
-                lang=group_lang,
                 version=record.version,
                 git_ref=record.git_ref,
                 workflow_action=effective_doc_phase,

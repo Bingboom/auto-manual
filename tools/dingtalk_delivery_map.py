@@ -1,21 +1,34 @@
 #!/usr/bin/env python3
-"""Resolve a repo build target to its DingTalk delivery-row identity.
+"""Resolve a published repo target to its DingTalk delivery identity.
 
-The DingTalk 「交付工作管理」 base identifies one manual deliverable by the
-triple (项目代码, 安规, 文案语言) — verified against live data on 2026-08-03:
-project HTE153 holds exactly 13 rows, one per 安规×语言 pair, all 文案状态
-=Current with no duplicates. 文案版本 is therefore a per-row attribute (the
-product stage that row currently sits at), not part of the row identity, so
-this module deliberately maps no version: the repo's own document version
-travels in the delivery manifest verbatim.
+Keyed on `(model, region)` — deliberately NOT on language. A publish queue row
+must leave `Lang` blank (`tools/queue_config_resolution.py` rejects a
+single-language family for publish), and the artifact it produces is one
+whole-book bundle covering every language of that region's family: US carries
+en/fr/es, EU carries en/fr/es/de/it/uk. One published deliverable therefore
+spans several of the base's per-language 文案 rows, so a per-language key could
+neither be populated nor would it describe the payload. The languages a bundle
+covers travel as data (`dingtalk_languages`), letting the delivery agent hit
+either the region-level 发布资料 row or the per-language 过程资料 rows without
+this repo having to encode that routing.
 
-Mapping direction is repo -> DingTalk and the table only covers targets the
-repo can actually build. Lookups are fail-closed: an unmapped target or a
-duplicate row raises instead of guessing, because a wrong 安规/语言 guess would
-write a deliverable onto the wrong product line's row.
+`文案版本` is likewise not mapped: verified against live data on 2026-08-03,
+project HTE153 holds one row per 安规×语言 with 文案版本 as a per-row product
+stage (`3.0 -DVT`, `4.0 PVT`, …), while repo versions are document revisions
+(`0.8`, `1.7`). The repo's version travels verbatim in the delivery manifest.
 
-DingTalk table ids and node paths are intentionally NOT recorded here. They
-belong to the delivery agent's own configuration; this repo owns only the
+Two failure modes, deliberately distinct:
+
+- `DeliveryTargetNotMapped` — this target simply is not part of DingTalk
+  delivery (AU/KR are single-language families that cannot publish today; CN
+  and pt-BR belong to other models). Callers treat it as *skipped*, because a
+  successful build of an undelivered target is not an error.
+- `RuntimeError` — the map itself is malformed (missing column, duplicate key,
+  blank field). That is fail-closed: a wrong 安规 would file a deliverable onto
+  another product line's row.
+
+DingTalk table ids and node paths are intentionally NOT recorded here; they
+belong to the delivery agent's own configuration. This repo owns only the
 stable business identifiers.
 """
 
@@ -37,39 +50,43 @@ DELIVERY_MAP_FILENAME = "dingtalk_delivery_map.csv"
 REQUIRED_COLUMNS = (
     "model",
     "region",
-    "lang",
     "project_code",
     "safety_regulation",
-    "dingtalk_language",
+    "dingtalk_languages",
 )
 
-_IDENTITY_COLUMNS = ("project_code", "safety_regulation", "dingtalk_language")
+# Semicolon, not comma: this column is a list inside one CSV cell, and a
+# half-width comma inside a field has bitten this repo's CSV contracts before.
+LANGUAGE_SEPARATOR = ";"
+
+
+class DeliveryTargetNotMapped(LookupError):
+    """Raised when a target has no DingTalk delivery row by design."""
 
 
 @dataclass(frozen=True)
 class DingTalkDeliveryTarget:
-    """One DingTalk delivery row identity for a repo (model, region, lang)."""
+    """DingTalk delivery identity for one published (model, region) bundle."""
 
     model: str
     region: str
-    lang: str
     project_code: str
     safety_regulation: str
-    dingtalk_language: str
+    dingtalk_languages: tuple[str, ...]
 
     @property
-    def repo_key(self) -> tuple[str, str, str]:
-        return (self.model, self.region, self.lang)
+    def repo_key(self) -> tuple[str, str]:
+        return (self.model, self.region)
 
     @property
-    def dingtalk_identity(self) -> tuple[str, str, str]:
-        return (self.project_code, self.safety_regulation, self.dingtalk_language)
+    def dingtalk_identity(self) -> tuple[str, str]:
+        return (self.project_code, self.safety_regulation)
 
-    def as_manifest_fields(self) -> dict[str, str]:
+    def as_manifest_fields(self) -> dict[str, object]:
         return {
             "project_code": self.project_code,
             "safety_regulation": self.safety_regulation,
-            "language": self.dingtalk_language,
+            "languages": list(self.dingtalk_languages),
         }
 
 
@@ -82,11 +99,28 @@ def _clean(value: object) -> str:
     return str(value or "").strip()
 
 
+def _parse_languages(raw: str, *, line_number: int, map_path: Path) -> tuple[str, ...]:
+    languages = tuple(
+        part.strip() for part in raw.split(LANGUAGE_SEPARATOR) if part.strip()
+    )
+    if not languages:
+        raise RuntimeError(
+            "DingTalk delivery map row lists no dingtalk_languages at line "
+            f"{line_number}: {map_path}"
+        )
+    if len(set(languages)) != len(languages):
+        raise RuntimeError(
+            "DingTalk delivery map row repeats a language at line "
+            f"{line_number}: {map_path}"
+        )
+    return languages
+
+
 def load_delivery_map(
     path: Path | None = None,
     *,
     root: Path | None = None,
-) -> dict[tuple[str, str, str], DingTalkDeliveryTarget]:
+) -> dict[tuple[str, str], DingTalkDeliveryTarget]:
     """Load the delivery map, rejecting malformed rows and duplicate keys."""
 
     map_path = path or default_delivery_map_path(root=root)
@@ -103,7 +137,7 @@ def load_delivery_map(
                 f"{', '.join(missing)}: {map_path}"
             )
 
-        targets: dict[tuple[str, str, str], DingTalkDeliveryTarget] = {}
+        targets: dict[tuple[str, str], DingTalkDeliveryTarget] = {}
         for line_number, raw_row in enumerate(reader, start=2):
             values = {column: _clean(raw_row.get(column)) for column in REQUIRED_COLUMNS}
             if not any(values.values()):
@@ -114,7 +148,17 @@ def load_delivery_map(
                     "DingTalk delivery map row has empty required field(s) "
                     f"{', '.join(blank)} at line {line_number}: {map_path}"
                 )
-            target = DingTalkDeliveryTarget(**values)
+            target = DingTalkDeliveryTarget(
+                model=values["model"],
+                region=values["region"],
+                project_code=values["project_code"],
+                safety_regulation=values["safety_regulation"],
+                dingtalk_languages=_parse_languages(
+                    values["dingtalk_languages"],
+                    line_number=line_number,
+                    map_path=map_path,
+                ),
+            )
             if target.repo_key in targets:
                 raise RuntimeError(
                     "DingTalk delivery map has a duplicate target "
@@ -127,28 +171,31 @@ def load_delivery_map(
     return targets
 
 
-def describe_target(model: str, region: str, lang: str) -> str:
-    return f"model={model} region={region} lang={lang}"
+def describe_target(model: str, region: str) -> str:
+    return f"model={model} region={region}"
 
 
 def resolve_delivery_target(
     *,
     model: str,
     region: str,
-    lang: str,
-    delivery_map: dict[tuple[str, str, str], DingTalkDeliveryTarget] | None = None,
+    delivery_map: dict[tuple[str, str], DingTalkDeliveryTarget] | None = None,
     path: Path | None = None,
     root: Path | None = None,
 ) -> DingTalkDeliveryTarget:
-    """Return the DingTalk row identity for one repo target, or raise."""
+    """Return the DingTalk identity for one published target.
+
+    Raises `DeliveryTargetNotMapped` when the target is not part of DingTalk
+    delivery, and `RuntimeError` when the map itself cannot be trusted.
+    """
 
     targets = delivery_map if delivery_map is not None else load_delivery_map(path, root=root)
-    key = (_clean(model), _clean(region), _clean(lang))
+    key = (_clean(model), _clean(region))
     target = targets.get(key)
     if target is None:
-        raise RuntimeError(
-            "DingTalk delivery map has no entry for "
-            f"{describe_target(*key)}; add a row to data/{DELIVERY_MAP_FILENAME} "
-            "after confirming the 安规 and 文案语言 values against the live base"
+        raise DeliveryTargetNotMapped(
+            f"no DingTalk delivery row is mapped for {describe_target(*key)}; "
+            f"add one to data/{DELIVERY_MAP_FILENAME} after confirming the 安规 "
+            "and 文案语言 values against the live base"
         )
     return target

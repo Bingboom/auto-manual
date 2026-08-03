@@ -238,6 +238,15 @@ Quality and release logic should follow concern-specific modules instead of drif
   - verified-claim acquisition before build/upload side effects
   - started/success/failure writeback orchestration
   - drive/wiki delivery for print tasks and frozen Web metadata handoff for Web Publish
+  - delivery-outbox side channel on publish (env-gated, `delivery_outbox=*` row notes)
+- [`tools/delivery_outbox.py`](../../tools/delivery_outbox.py)
+  - atomic outbox job assembly (`.partial` staging, verify, rename) for the DingTalk hand-off
+  - immutable `delivery_manifest.json` with per-file digests and a `delivery_key` idempotency handle
+  - the queue's single entry point `drop_publish_delivery_outbox` never raises: outcomes are row status notes
+  - `--manifest` CLI for verifying one dropped job by hand
+- [`tools/dingtalk_delivery_map.py`](../../tools/dingtalk_delivery_map.py)
+  - `(model, region)` to DingTalk 项目代码 / 安规 / 文案语言集合 lookup over `data/dingtalk_delivery_map.csv`
+  - `DeliveryTargetNotMapped` (skip) kept distinct from malformed-map `RuntimeError` (fail-closed)
 - [`tools/queue_claims.py`](../../tools/queue_claims.py)
   - bounded lease write across every row in a document group
   - no-view readback and exact-token ownership verification before dispatch
