@@ -8,14 +8,17 @@ queue row hours later. This script exercises each external dependency
 with a minimal read-only call and emits a status table to stdout plus
 $GITHUB_STEP_SUMMARY.
 
-Three probes:
+Four probes:
 1. Feishu / Lark CLI - shell out to `python build.py sync-data --dry-run`
    which authenticates the app token and validates table bindings before
    any real sync.
 2. DingTalk - call tools.dingtalk.auth.get_app_only_token() directly to
    hit the live OAuth2 token endpoint. Skipped (not failed) if the
    DingTalk env vars are not configured.
-3. GitHub - `gh auth status` confirms the bot token is still valid.
+3. DingTalk AliDocs session - call the existing browser-session constructor
+   and its lightweight authenticated read-only session check. Skipped (not
+   failed) if any of the three session secrets are not configured.
+4. GitHub - `gh auth status` confirms the bot token is still valid.
 
 Exits non-zero if any probe fails. The scheduled workflow uses that
 signal to open or update a tracking issue.
@@ -129,6 +132,37 @@ def probe_dingtalk() -> ProbeResult:
     )
 
 
+def probe_dingtalk_docs_session() -> ProbeResult:
+    required = (
+        "DINGTALK_DOCS_COOKIE",
+        "DINGTALK_DOCS_XSRF_TOKEN",
+        "DINGTALK_DOCS_A_TOKEN",
+    )
+    missing = [name for name in required if not os.environ.get(name)]
+    if missing:
+        return ProbeResult(
+            "DingTalk AliDocs session",
+            "skipped",
+            f"env not configured ({', '.join(missing)} unset)",
+        )
+    try:
+        sys.path.insert(0, str(REPO_ROOT))
+        from tools.dingtalk.alidocs_session import (
+            check_authenticated_session,
+            load_session_config_from_env,
+        )
+
+        session = load_session_config_from_env()
+        check_authenticated_session(session=session)
+    except Exception as exc:
+        return ProbeResult("DingTalk AliDocs session", "failed", f"read-only session check error: {exc}")
+    return ProbeResult(
+        "DingTalk AliDocs session",
+        "ok",
+        "authenticated read-only session check passed",
+    )
+
+
 def probe_github() -> ProbeResult:
     if not os.environ.get("GITHUB_TOKEN"):
         return ProbeResult("GitHub", "skipped", "GITHUB_TOKEN unset")
@@ -172,6 +206,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     probes: list[Callable[[], ProbeResult]] = [
         lambda: probe_feishu(args.config),
         probe_dingtalk,
+        probe_dingtalk_docs_session,
         probe_github,
     ]
     results = [probe() for probe in probes]
