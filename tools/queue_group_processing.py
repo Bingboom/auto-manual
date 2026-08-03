@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, Callable
 from uuid import uuid4
 
+from tools.delivery_outbox import drop_publish_delivery_outbox
 from tools.document_link_queue import scalar_text
 from tools.queue_contract import BASELINE_DOC_FIELD
 from tools.queue_transitions import (
@@ -338,6 +339,27 @@ def process_queue_record_group(
             latest_document_link_dd_url = document_link_dd_url or None
             artifact_status_notes = artifact_result.status_notes
         built_at = datetime.now().astimezone()
+        # Delivery outbox is an additive side channel: the DingTalk delivery agent
+        # consumes it out of band, so a drop failure must never fail a build whose
+        # artifact already reached the knowledge base. It stays visible through the
+        # row's status notes, same contract as dingtalk_sync=*.
+        delivery_status_notes: tuple[str, ...] = ()
+        if effective_doc_phase == "publish":
+            delivery_status_notes = drop_publish_delivery_outbox(
+                model=model,
+                region=region,
+                version=record.version,
+                git_ref=record.git_ref,
+                workflow_action=effective_doc_phase,
+                built_at=built_at,
+                queue_record_ids=tuple(group_record.record_id for group_record in group),
+                document_link_url=document_link_url,
+                artifact_output_path=artifact_output_path,
+                word_output_path=word_output_path,
+                pdf_output_path=pdf_output_path,
+                md_output_path=md_output_path,
+                stderr=stderr,
+            )
         feishu_cloud_doc_url = ""
         baseline_doc_url = ""
         cloud_doc_status_notes: tuple[str, ...] = ()
@@ -399,7 +421,12 @@ def process_queue_record_group(
             workflow_action=effective_doc_phase,
             doc_phase=queue_record_legacy_doc_phase(record),
             data_sync_status=data_sync_status,
-            status_notes=(*artifact_status_notes, *cloud_doc_status_notes, *deferred_status_notes),
+            status_notes=(
+                *artifact_status_notes,
+                *cloud_doc_status_notes,
+                *delivery_status_notes,
+                *deferred_status_notes,
+            ),
             clear_force_phase2_refresh=can_write_force_phase2_refresh,
             write_data_sync=can_write_data_sync,
             write_document_link_dd=can_write_document_link_dd,
