@@ -10,7 +10,10 @@ spans several of the base's per-language 文案 rows, so a per-language key coul
 neither be populated nor would it describe the payload. The languages a bundle
 covers travel as data (`dingtalk_languages`), letting the delivery agent hit
 either the region-level 发布资料 row or the per-language 过程资料 rows without
-this repo having to encode that routing.
+this repo having to encode that routing. That column lists the languages the
+model actually ships in that region, which is not always the whole family: the
+EU family carries Ukrainian templates, but JE-1000F does not ship Ukrainian, so
+its EU row lists five languages rather than six.
 
 `文案版本` is likewise not mapped: verified against live data on 2026-08-03,
 project HTE153 holds one row per 安规×语言 with 文案版本 as a per-row product
