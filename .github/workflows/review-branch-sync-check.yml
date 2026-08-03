@@ -1,0 +1,217 @@
+name: Review Branch Sync Check
+
+on:
+  schedule:
+    - cron: "30 2 * * *" # daily 02:30 UTC (offset from backport-reminder at 02:00)
+  workflow_dispatch:
+
+concurrency:
+  group: review-branch-sync-check
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  review-sync:
+    if: ${{ github.repository == 'Bingboom/auto-manual' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch all review branches
+        run: git fetch --prune --no-tags origin main '+refs/heads/review/*:refs/remotes/origin/review/*'
+
+      - name: Check review branch sync
+        id: sync
+        shell: bash
+        run: |
+          # set +e: the checker exits 1 on drift by design (--strict). Without this,
+          # errexit/pipefail aborts the step before drift is recorded and the sentinel
+          # issue would never be opened.
+          set +e
+          drift=false
+          review_refs="$(git for-each-ref --format='%(refname:short)' refs/remotes/origin/review/)"
+          : > review_sync_out.txt
+          rm -rf review_sync_json && mkdir -p review_sync_json
+          if [ -z "${review_refs}" ]; then
+            echo "[review-branch-sync] OK: no review branches found." | tee review_sync_out.txt
+          else
+            while IFS= read -r review_ref; do
+              [ -z "${review_ref}" ] && continue
+              echo "=== ${review_ref} ===" | tee -a review_sync_out.txt
+              slug="$(printf '%s' "${review_ref}" | tr '/' '_')"
+              python tools/check_review_branch_sync.py \
+                --base "${review_ref}" \
+                --remote origin \
+                --repo-root . \
+                --strict | tee -a review_sync_out.txt
+              rc=${PIPESTATUS[0]}
+              python tools/check_review_branch_sync.py \
+                --base "${review_ref}" \
+                --remote origin \
+                --repo-root . \
+                --json > "review_sync_json/${slug}.json"
+              if [ "${rc}" -ne 0 ]; then
+                drift=true
+              fi
+            done <<< "${review_refs}"
+          fi
+          echo "drift=${drift}" >> "${GITHUB_OUTPUT}"
+          {
+            echo "### Review branch sync check"
+            echo
+            echo '```'
+            cat review_sync_out.txt
+            echo '```'
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Summarize drift
+        id: digest
+        if: ${{ steps.sync.outputs.drift == 'true' }}
+        shell: bash
+        run: |
+          set -eo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          pairs: set[tuple[str, str]] = set()
+          per_branch: dict[str, set[str]] = {}
+          for path in sorted(Path("review_sync_json").glob("*.json")):
+              try:
+                  payload = json.loads(path.read_text(encoding="utf-8"))
+              except json.JSONDecodeError:
+                  pairs.add((path.stem, "unparsable-ledger"))
+                  per_branch.setdefault(path.stem, set()).add("unparsable-ledger")
+                  continue
+              for row in payload.get("rows", []):
+                  branch = str(row.get("review_branch") or path.stem)
+                  source = str(row.get("source_path") or "")
+                  pairs.add((branch, source))
+                  per_branch.setdefault(branch, set()).add(source)
+
+          digest = hashlib.sha256(
+              "\n".join(f"{branch}\t{source}" for branch, source in sorted(pairs)).encode("utf-8")
+          ).hexdigest()[:16]
+
+          lines = [
+              "Shared templates or manifests changed while one or more review branches still hold frozen derivatives.",
+              "Refresh the affected branch with `sync-review` (merge_params preserves authored edits) — not `--refresh-review`.",
+              "Then inspect any |PLACEHOLDER|-bearing line for authored edits it may overwrite.",
+              "",
+              f"Affected review branches: {len(per_branch)} | shared-source pairs: {len(pairs)}",
+              "",
+          ]
+          for branch in sorted(per_branch):
+              sources = sorted(per_branch[branch])
+              lines.append(f"- `{branch}` — {len(sources)} shared source path(s)")
+              for source in sources[:8]:
+                  lines.append(f"  - {source}")
+              if len(sources) > 8:
+                  lines.append(f"  - ...and {len(sources) - 8} more (full report in the run summary)")
+          body = "\n".join(lines)
+          # GitHub caps issue/comment bodies at 65536 characters; the full per-branch
+          # report stays in the run summary so the issue carries a bounded digest.
+          cap = 55000
+          if len(body) > cap:
+              body = body[:cap] + "\n\n...truncated - see the run summary for the full report."
+
+          Path("review_sync_issue_body.md").write_text(body, encoding="utf-8")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
+              handle.write(f"digest={digest}\n")
+          PY
+
+      - name: Open or update drift issue
+        id: drift_issue
+        if: ${{ steps.sync.outputs.drift == 'true' }}
+        uses: actions/github-script@v7
+        env:
+          DRIFT_DIGEST: ${{ steps.digest.outputs.digest }}
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '[review-sync-drift] shared source changed while review branches are open';
+            const digest = process.env.DRIFT_DIGEST || 'unknown';
+            const digestTag = `<!-- review-sync-digest: ${digest} -->`;
+            const summary = fs.readFileSync('review_sync_issue_body.md', 'utf8');
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [digestTag, '', summary, '', `Run: ${runUrl}`].join('\n');
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === marker && !issue.pull_request);
+            if (!existing) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: marker,
+                body,
+              });
+              core.setOutput('changed', 'true');
+              return;
+            }
+            // Drift against a review branch's fork point is a steady state: it clears
+            // only when the branch merges or is re-seeded. Alert on a CHANGED drift set
+            // and stay quiet (green) while the known set holds, so this sentinel does
+            // not turn every nightly run red.
+            if ((existing.body || '').includes(digestTag)) {
+              core.setOutput('changed', 'false');
+              core.info(`known drift set unchanged (digest ${digest}); issue #${existing.number} left as is`);
+              return;
+            }
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: existing.number,
+              body,
+            });
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: existing.number,
+              body: [`Drift set changed (digest ${digest}).`, '', summary, '', `Run: ${runUrl}`].join('\n'),
+            });
+            core.setOutput('changed', 'true');
+
+      - name: Resolve drift issue
+        if: ${{ steps.sync.outputs.drift == 'false' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const marker = '[review-sync-drift] shared source changed while review branches are open';
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === marker && !issue.pull_request);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body: `Resolved — no review branch drift detected. Run: ${runUrl}`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                state: 'closed',
+              });
+            }
+
+      - name: Fail when the drift set changed
+        if: ${{ steps.sync.outputs.drift == 'true' && steps.drift_issue.outputs.changed == 'true' }}
+        run: echo "::error::review branch sync drift set changed — see the [review-sync-drift] issue and run summary." && exit 1
