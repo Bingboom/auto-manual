@@ -69,11 +69,17 @@ jobs:
           for n in "${names[@]}"; do
             [ -n "$n" ] && ignore_args+=(--ignore-table "$n")
           done
+          # The two tenants intentionally use different names for these shared
+          # tables during the old-base -> business-base migration. Compare the
+          # existing target tables; do not propose duplicate tables in prod.
           python tools/bitable_schema.py parity \
             --source-base "$FEISHU_PHASE2_BASE_TOKEN" \
             --target-base "$FEISHU_PHASE2_PROD_BASE_TOKEN" \
             --ignore-table-prefix "$PARITY_IGNORE_PREFIX" \
             "${ignore_args[@]}" \
+            --table-alias "文档构建表=02_文档构建" \
+            --table-alias "数据入库表=01_数据入库" \
+            --ignore-field "文档构建表.Document link" \
             --fail-on missing | tee parity_out.txt
           rc=${PIPESTATUS[0]}
           {
@@ -100,12 +106,8 @@ jobs:
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = [
               "Prod tenant is **missing a table/field** that dev defines, so a mirrored-code build may break.",
-              "Promote the structure to prod, then re-run this workflow:",
-              "",
-              "```",
-              "python tools/bitable_schema.py apply --manifest bitable_schema/manifest.json \\",
-              "  --base-token <PROD_BASE_TOKEN> --profile prod --identity user --write --yes",
-              "```",
+              "Review the parity output and promote only the missing structure to the corresponding target table, then re-run this workflow.",
+              "The workflow aliases `文档构建表` → `02_文档构建` and `数据入库表` → `01_数据入库`; the retired `文档构建表.Document link` is ignored because prod uses `基线文档` and `飞书云文档` instead. Do not run the generic manifest apply for those aliased tables, or it may create duplicate old-named tables.",
               "",
               "See `code-as-doc/dev/bitable_schema_sync.md`.",
               "",

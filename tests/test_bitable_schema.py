@@ -227,6 +227,42 @@ class ParityTests(unittest.TestCase):
         self.assertFalse(res["in_parity"])
         self.assertEqual(res["missing_tables"], ["T1"])
 
+    def test_parity_accepts_intentional_table_rename(self):
+        fake = self._fake([{"id": "p1", "name": "Renamed"}], [
+            {"name": "Name", "type": "text"},
+            {"name": "St", "type": "select", "multiple": False, "options": [{"name": "a"}]},
+        ])
+        with mock.patch.object(bs, "_lark", side_effect=fake):
+            res = bs.parity("DEV", "PROD", None, "lark-cli", table_aliases={"T1": "Renamed"})
+        self.assertTrue(res["in_parity"])
+        self.assertEqual(res["missing_tables"], [])
+        self.assertNotIn("Renamed", res["extra_tables"])
+
+    def test_parity_reports_missing_alias_target_under_source_name(self):
+        with mock.patch.object(bs, "_lark", side_effect=self._fake([], [])):
+            res = bs.parity("DEV", "PROD", None, "lark-cli", table_aliases={"T1": "Renamed"})
+        self.assertFalse(res["in_parity"])
+        self.assertEqual(res["missing_tables"], ["T1"])
+
+    def test_parity_rejects_alias_source_not_in_source_base(self):
+        with mock.patch.object(bs, "_lark", side_effect=self._fake([], [])):
+            with self.assertRaisesRegex(ValueError, "source not found"):
+                bs.parity("DEV", "PROD", None, "lark-cli", table_aliases={"Unknown": "Renamed"})
+
+    def test_parity_ignores_explicitly_retired_field(self):
+        source = {"schema_version": "bitable-schema/v1", "tables": [{
+            "name": "T1",
+            "fields": [
+                {"name": "Name", "type": "text"},
+                {"name": "Retired", "type": "text"},
+            ],
+        }]}
+        fake = self._fake([{"id": "p1", "name": "T1"}], [{"name": "Name", "type": "text"}])
+        with mock.patch.object(bs, "export", return_value=source), mock.patch.object(bs, "_lark", side_effect=fake):
+            res = bs.parity("DEV", "PROD", None, "lark-cli", ignore_fields=["T1.Retired"])
+        self.assertTrue(res["in_parity"])
+        self.assertEqual(res["missing_fields"], [])
+
     def test_parity_flags_drift(self):
         fake = self._fake([{"id": "p1", "name": "T1"}],
                           [{"name": "Name", "type": "text"},

@@ -229,6 +229,8 @@ def parity(
     lark_cli: str,
     ignore_prefixes: "tuple[str, ...] | list[str] | None" = None,
     ignore_names: "set[str] | list[str] | None" = None,
+    table_aliases: "dict[str, str] | None" = None,
+    ignore_fields: "set[str] | list[str] | None" = None,
 ) -> dict:
     """Read-only structure diff between two tenants (e.g. dev vs prod).
 
@@ -239,25 +241,77 @@ def parity(
     ``ignore_prefixes`` / ``ignore_names`` drop SOURCE-only scratch tables (e.g. the dev
     tenant's ``99_*`` experiment/archive tables, ``QC_Report``) from the comparison so a
     prod-lag alert isn't permanently red over tables prod is correct NOT to have.
+
+    ``table_aliases`` maps an intentional source/target rename, for example
+    ``{"数据入库表": "01_数据入库"}``. The target table is compared in place; parity
+    must not propose creating a duplicate table merely because the two tenants use
+    different names during a staged migration.
+
+    ``ignore_fields`` contains exact ``SOURCE_TABLE.FIELD`` keys for fields that are
+    intentionally retired or replaced by a target-specific field design. This is
+    explicit and narrow: it does not suppress other missing fields in the table.
     """
     ignore_prefixes = tuple(ignore_prefixes or ())
     ignore_names = set(ignore_names or ())
+    ignore_fields = set(ignore_fields or ())
 
     def _ignored(name: str) -> bool:
         return name in ignore_names or any(name.startswith(p) for p in ignore_prefixes)
 
     src = export(source_base, table_filter, lark_cli)
     src["tables"] = [t for t in src["tables"] if not _ignored(t["name"])]
-    plan = apply(src, target_base, write=False, lark_cli=lark_cli)
-    src_names = {t["name"] for t in src["tables"]}
-    extra = sorted(n for n in (set(plan["target_tables"]) - src_names) if not _ignored(n)) if table_filter is None else []
+    src["tables"] = [
+        {
+            **table,
+            "fields": [
+                field for field in table.get("fields", [])
+                if f"{table['name']}.{field['name']}" not in ignore_fields
+            ],
+        }
+        for table in src["tables"]
+    ]
+    aliases = dict(table_aliases or {})
+    source_names = {t["name"] for t in src["tables"]}
+    unknown_aliases = sorted(set(aliases) - source_names)
+    if unknown_aliases:
+        raise ValueError("table alias source not found in source base: " + ", ".join(unknown_aliases))
+    aliased_names = [aliases.get(t["name"], t["name"]) for t in src["tables"]]
+    if len(aliased_names) != len(set(aliased_names)):
+        raise ValueError("table aliases map multiple source tables to the same target name")
+    source_by_target = {target: source for source, target in zip(
+        (t["name"] for t in src["tables"]), aliased_names
+    )}
+    aliased_src = {
+        **src,
+        "tables": [
+            {**table, "name": aliases.get(table["name"], table["name"])}
+            for table in src["tables"]
+        ],
+    }
+    plan = apply(aliased_src, target_base, write=False, lark_cli=lark_cli)
+
+    def _source_name(target_name: str) -> str:
+        return source_by_target.get(target_name, target_name)
+
+    missing_tables = [_source_name(name) for name in plan["create_tables"]]
+    missing_fields = [
+        {**field, "table": _source_name(field["table"])}
+        for field in plan["create_fields"]
+    ]
+    drift = [{**item, "table": _source_name(item["table"])} for item in plan["drift"]]
+    manual_complex = [
+        {**field, "table": _source_name(field["table"])}
+        for field in plan["manual_complex"]
+    ]
+    target_names_consumed = set(aliased_names)
+    extra = sorted(n for n in (set(plan["target_tables"]) - target_names_consumed) if not _ignored(n)) if table_filter is None else []
     return {
-        "missing_tables": plan["create_tables"],
-        "missing_fields": plan["create_fields"],
-        "drift": plan["drift"],
-        "manual_complex": plan["manual_complex"],
+        "missing_tables": missing_tables,
+        "missing_fields": missing_fields,
+        "drift": drift,
+        "manual_complex": manual_complex,
         "extra_tables": extra,
-        "in_parity": not (plan["create_tables"] or plan["create_fields"] or plan["drift"]),
+        "in_parity": not (missing_tables or missing_fields or drift),
     }
 
 
@@ -509,6 +563,19 @@ def _add_routing(sp: argparse.ArgumentParser) -> None:
     sp.add_argument("--identity", default="bot", choices=["bot", "user"], help="lark-cli token identity (default: bot; cross-tenant writes usually need 'user', the base owner's token)")
 
 
+def _parse_table_aliases(raw_aliases: list[str]) -> dict[str, str]:
+    aliases: dict[str, str] = {}
+    for raw in raw_aliases:
+        source, separator, target = raw.partition("=")
+        source, target = source.strip(), target.strip()
+        if not separator or not source or not target:
+            raise ValueError(f"invalid --table-alias {raw!r}; expected SOURCE=TARGET")
+        if source in aliases and aliases[source] != target:
+            raise ValueError(f"duplicate --table-alias source with different targets: {source}")
+        aliases[source] = target
+    return aliases
+
+
 def _parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Export / apply Feishu Bitable schema for dev->prod tenant parity.")
     sub = p.add_subparsers(dest="command", required=True)
@@ -536,6 +603,10 @@ def _parser() -> argparse.ArgumentParser:
                     help="drop SOURCE tables whose name starts with PREFIX (repeatable; e.g. dev scratch '99_')")
     pa.add_argument("--ignore-table", action="append", default=[], metavar="NAME",
                     help="drop a SOURCE table by exact name (repeatable; e.g. 'QC_Report')")
+    pa.add_argument("--table-alias", action="append", default=[], metavar="SOURCE=TARGET",
+                    help="compare a SOURCE table against an intentionally renamed TARGET table (repeatable)")
+    pa.add_argument("--ignore-field", action="append", default=[], metavar="TABLE.FIELD",
+                    help="ignore an explicitly retired/replaced SOURCE field (repeatable; exact TABLE.FIELD)")
     pa.add_argument("--fail-on", choices=["any", "missing"], default="any",
                     help="exit 1 on 'any' divergence (default) or only on 'missing' tables/fields "
                          "(drift still reported but not failed — for a prod-lag alert where dev may carry extra/dirty options)")
@@ -614,8 +685,14 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "parity":
         tables = [t.strip() for t in args.tables.split(",")] if args.tables else None
-        res = parity(args.source_base, args.target_base, tables, args.lark_cli,
-                     ignore_prefixes=args.ignore_table_prefix, ignore_names=args.ignore_table)
+        try:
+            aliases = _parse_table_aliases(args.table_alias)
+            res = parity(args.source_base, args.target_base, tables, args.lark_cli,
+                         ignore_prefixes=args.ignore_table_prefix, ignore_names=args.ignore_table,
+                         table_aliases=aliases, ignore_fields=args.ignore_field)
+        except ValueError as exc:
+            print(f"bitable-schema parity: {exc}", file=sys.stderr)
+            return 2
         missing = bool(res["missing_tables"] or res["missing_fields"])
         fail = (not res["in_parity"]) if args.fail_on == "any" else missing
         if res["in_parity"]:
