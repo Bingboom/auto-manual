@@ -116,6 +116,7 @@ class TestExternalIntegrationContracts(unittest.TestCase):
         stderr: io.StringIO | None = None,
         mirror_provider: str | None = None,
         mirror_error: str = "",
+        validate_queue_record_group: Callable[[object], None] | None = None,
     ) -> tuple[object, list[dict[str, object]], dict[str, object]]:
         stderr = stderr or io.StringIO()
         publish_calls: list[dict[str, object]] = []
@@ -188,7 +189,7 @@ class TestExternalIntegrationContracts(unittest.TestCase):
                 result_field=process_build_queue.RESULT_FIELD,
                 queue_claim_ttl_seconds=process_build_queue.QUEUE_CLAIM_TTL_SECONDS,
                 warn_legacy_record_doc_phase=lambda _: None,
-                validate_queue_record_group=lambda _: None,
+                validate_queue_record_group=validate_queue_record_group or (lambda _: None),
                 resolve_target_for_record=lambda item: process_build_queue.parse_document_key(item.document_key),
                 queue_group_lang=lambda items: items[0].lang,
                 queue_group_build_family=lambda items: items[0].build_family,
@@ -334,6 +335,65 @@ class TestExternalIntegrationContracts(unittest.TestCase):
         self.assertEqual(first.record_id, source.upserts[0]["record_id"])
         self.assertIn("SUCCESS", str(source.upserts[0]["record"]))
         self.assertFalse(any("FAILED" in str(upsert["record"]) for upsert in source.upserts))
+
+    def test_failure_before_claim_still_writes_failed_when_row_is_unclaimed(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            artifact_path = Path(td) / "manual.docx"
+            artifact_path.write_text("fake docx", encoding="utf-8")
+            source = FakeSource()
+            record = _queue_record("document_link_writeback_failure")
+            source.records[record.record_id] = {
+                "record_id": record.record_id,
+                "fields": {process_build_queue.RESULT_FIELD: ""},
+            }
+
+            def reject_group(_: object) -> None:
+                raise RuntimeError("queue group mixes versions")
+
+            result, _publish_calls, _captured = self._process_group(
+                record=record,
+                source=source,
+                artifact_output_path=artifact_path,
+                validate_queue_record_group=reject_group,
+            )
+
+        self.assertEqual(0, result.processed_rows)
+        self.assertIn("queue group mixes versions", result.failure_message)
+        self.assertNotIn("writeback_failed", result.failure_message)
+        self.assertEqual(1, len(source.upserts))
+        self.assertIn("FAILED", str(source.upserts[0]["record"]))
+
+    def test_failure_before_claim_abstains_when_another_runner_holds_the_row(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            artifact_path = Path(td) / "manual.docx"
+            artifact_path.write_text("fake docx", encoding="utf-8")
+            source = FakeSource()
+            record = _queue_record("document_link_writeback_failure")
+            source.records[record.record_id] = {
+                "record_id": record.record_id,
+                "fields": {
+                    process_build_queue.RESULT_FIELD: format_queue_result(
+                        prefix="RUNNING",
+                        claim_token="claim-other",
+                        claim_expires_at=datetime.now(timezone.utc) + timedelta(hours=2),
+                    )
+                },
+            }
+
+            def reject_group(_: object) -> None:
+                raise RuntimeError("queue group mixes versions")
+
+            result, _publish_calls, _captured = self._process_group(
+                record=record,
+                source=source,
+                artifact_output_path=artifact_path,
+                validate_queue_record_group=reject_group,
+            )
+
+        self.assertEqual(0, result.processed_rows)
+        self.assertIn("queue group mixes versions", result.failure_message)
+        self.assertIn("writeback_failed=row is claimed by another runner", result.failure_message)
+        self.assertEqual([], source.upserts)
 
     def test_completed_start_review_fixture_is_idempotent_for_openclaw_duplicate_dispatch(self) -> None:
         row = _queue_query_row("completed_start_review_inreview_git_ref")

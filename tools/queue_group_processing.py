@@ -8,7 +8,11 @@ from uuid import uuid4
 
 from tools.document_link_queue import scalar_text
 from tools.queue_contract import BASELINE_DOC_FIELD
-from tools.queue_transitions import append_writeback_failed, queue_claim_is_owned
+from tools.queue_transitions import (
+    append_writeback_failed,
+    has_active_queue_claim,
+    queue_claim_is_owned,
+)
 
 
 @dataclass(frozen=True)
@@ -27,7 +31,13 @@ def _write_terminal_queue_fields(
     result_field: str,
     claim_token: str,
 ) -> None:
-    """Write terminal fields only while this runner still owns each row's claim."""
+    """Write terminal fields only while no competing runner owns each row's claim.
+
+    A runner that acquired a claim must still hold it. A failure raised before the
+    claim was ever acquired (a malformed group rejected by group validation) carries
+    no token; that row keeps its FAILED writeback so the failure stays visible on the
+    row, but only while nobody else holds an active claim on it.
+    """
 
     for group_record in group:
         raw_records = source.fetch_records_with_ids(
@@ -45,9 +55,15 @@ def _write_terminal_queue_fields(
         )
         latest_fields = latest_record.get("fields", {}) if isinstance(latest_record, dict) else {}
         latest_result = scalar_text(latest_fields.get(result_field)) if isinstance(latest_fields, dict) else ""
-        if not queue_claim_is_owned(latest_result, claim_token=claim_token):
+        if claim_token:
+            if not queue_claim_is_owned(latest_result, claim_token=claim_token):
+                raise RuntimeError(
+                    "claim ownership lost before terminal writeback: "
+                    f"record_id={group_record.record_id}"
+                )
+        elif has_active_queue_claim(latest_result):
             raise RuntimeError(
-                "claim ownership lost before terminal writeback: "
+                "row is claimed by another runner; terminal writeback skipped: "
                 f"record_id={group_record.record_id}"
             )
         source.upsert_record(
