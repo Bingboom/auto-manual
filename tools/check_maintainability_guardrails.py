@@ -63,8 +63,20 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/web_presentation.py": 2134,
     "tools/web_reference_components.py": 161,
     "tools/web_stylesheets.py": 35,
+    # Registered 2026-08-03 at 469 lines with 31 lines of growth headroom.
+    "tools/sync_web_composites.py": 500,
+    # Registered 2026-08-03 at 434 lines with 31 lines of growth headroom.
+    "tools/publish_branch_assembly.py": 465,
+    # Registered 2026-08-03 at 347 lines with 33 lines of growth headroom.
+    "tools/web_composite_manifest.py": 380,
+    # Registered 2026-08-03 at 202 lines with 38 lines of growth headroom.
+    "tools/web_composite_presentation.py": 240,
+    # Registered 2026-08-03 at 139 lines with 41 lines of growth headroom.
+    "tools/web_symbol_components.py": 180,
     "docs/renderers/contracts/web_manual.css": 1905,
     "docs/renderers/contracts/web_app_components.css": 128,
+    # Registered 2026-08-03 at 128 lines with 32 lines of growth headroom.
+    "docs/renderers/contracts/web_symbols_fcc_components.css": 160,
     # IDML surface — pinned EXACTLY at current size (no headroom) during the
     # componentization plan (reports/idml_componentization/20260705-01): the
     # decomposition into tools/idml/ may only push the façade DOWN, never up.
