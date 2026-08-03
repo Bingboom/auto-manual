@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import shutil
+from datetime import datetime, timedelta, timezone
 from types import SimpleNamespace
 import tempfile
 import unittest
@@ -12,6 +13,17 @@ from tools.queue_outputs import stage_web_publish_assets_to_host_repo
 from tools.document_link_actions import normalize_workflow_action, workflow_action_label
 from tools.queue_contract import DocumentLinkBinding, QueueRecord
 from tools.queue_group_processing import process_queue_record_group
+from tools.queue_transitions import format_queue_result
+
+
+def _apply_queue_upsert(raw_records: list[dict[str, object]], kwargs: dict[str, object]) -> None:
+    record_id = str(kwargs["record_id"])
+    update = kwargs["record"]
+    for raw_record in raw_records:
+        if raw_record.get("record_id") == record_id and isinstance(update, dict):
+            fields = raw_record.setdefault("fields", {})
+            if isinstance(fields, dict):
+                fields.update(update)
 
 
 class WebPublishQueueTests(unittest.TestCase):
@@ -178,13 +190,36 @@ class WebPublishQueueTests(unittest.TestCase):
                 wiki_parent_token=None,
             )
             upserts: list[dict[str, object]] = []
+            raw_records: list[dict[str, object]] = [
+                {"record_id": "rec_web", "fields": {"构建结果": ""}},
+            ]
             sync_calls: list[dict[str, object]] = []
             success_calls: list[dict[str, object]] = []
             metadata_calls: list[dict[str, object]] = []
 
             class Source:
+                def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+                    return raw_records
+
                 def upsert_record(self, **kwargs: object) -> None:
                     upserts.append(kwargs)
+                    _apply_queue_upsert(raw_records, kwargs)
+
+            def fake_build_started_fields(**kwargs: object) -> dict[str, object]:
+                return {
+                    "构建结果": format_queue_result(
+                        prefix="RUNNING",
+                        claim_token=str(kwargs["claim_token"]),
+                        claim_expires_at=kwargs["claim_expires_at"],
+                    )
+                }
+
+            def fake_acquire_queue_claim(**kwargs: object) -> SimpleNamespace:
+                _apply_queue_upsert(
+                    raw_records,
+                    {"record_id": "rec_web", "record": kwargs["claim_fields"]},
+                )
+                return SimpleNamespace(acquired=True, reason="")
 
             def fake_success_fields(**kwargs: object) -> dict[str, object]:
                 success_calls.append(kwargs)
@@ -206,7 +241,7 @@ class WebPublishQueueTests(unittest.TestCase):
                 cli_bin="lark",
                 identity="bot",
                 artifact_destination=None,
-                acquire_queue_claim=lambda **_: SimpleNamespace(acquired=True, reason=""),
+                acquire_queue_claim=fake_acquire_queue_claim,
                 result_field="构建结果",
                 queue_claim_ttl_seconds=7200,
                 warn_legacy_record_doc_phase=lambda _: None,
@@ -230,7 +265,7 @@ class WebPublishQueueTests(unittest.TestCase):
                 ensure_dingtalk_session_ready=lambda **_: (_ for _ in ()).throw(
                     AssertionError("Web Publish must not open a DingTalk session")
                 ),
-                build_started_fields=lambda **_: {},
+                build_started_fields=fake_build_started_fields,
                 build_document_for_task=lambda **_: process_build_queue.BuiltDocumentOutputs(
                     md_output_path=md_path,
                     html_output_dir=html_dir,

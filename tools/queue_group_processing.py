@@ -6,14 +6,56 @@ from pathlib import Path
 from typing import Any, Callable
 from uuid import uuid4
 
+from tools.document_link_queue import scalar_text
 from tools.queue_contract import BASELINE_DOC_FIELD
-from tools.queue_transitions import append_writeback_failed
+from tools.queue_transitions import append_writeback_failed, queue_claim_is_owned
 
 
 @dataclass(frozen=True)
 class QueueGroupProcessingResult:
     processed_rows: int
     failure_message: str | None = None
+
+
+def _write_terminal_queue_fields(
+    *,
+    source: Any,
+    base_token: str,
+    table_id: str,
+    group: list[Any],
+    fields: dict[str, Any],
+    result_field: str,
+    claim_token: str,
+) -> None:
+    """Write terminal fields only while this runner still owns each row's claim."""
+
+    for group_record in group:
+        raw_records = source.fetch_records_with_ids(
+            base_token=base_token,
+            table_id=table_id,
+            view_id=None,
+        )
+        latest_record = next(
+            (
+                raw
+                for raw in raw_records
+                if isinstance(raw, dict) and str(raw.get("record_id") or "").strip() == group_record.record_id
+            ),
+            None,
+        )
+        latest_fields = latest_record.get("fields", {}) if isinstance(latest_record, dict) else {}
+        latest_result = scalar_text(latest_fields.get(result_field)) if isinstance(latest_fields, dict) else ""
+        if not queue_claim_is_owned(latest_result, claim_token=claim_token):
+            raise RuntimeError(
+                "claim ownership lost before terminal writeback: "
+                f"record_id={group_record.record_id}"
+            )
+        source.upsert_record(
+            base_token=base_token,
+            table_id=table_id,
+            record_id=group_record.record_id,
+            record=fields,
+        )
 
 
 def process_queue_record_group(
@@ -84,6 +126,7 @@ def process_queue_record_group(
     data_sync_status = "skipped"
     claim_attempted = False
     claim_owned = False
+    claim_token = ""
     try:
         warn_legacy_record_doc_phase(record)
         validate_queue_record_group(group)
@@ -352,13 +395,15 @@ def process_queue_record_group(
         # is a plain dict). Backport reads 基线文档 from the row to diff against.
         if can_write_feishu_cloud_doc and baseline_doc_url:
             success_fields[BASELINE_DOC_FIELD] = baseline_doc_url
-        for group_record in group:
-            source.upsert_record(
-                base_token=binding.base_token,
-                table_id=binding.table_id,
-                record_id=group_record.record_id,
-                record=success_fields,
-            )
+        _write_terminal_queue_fields(
+            source=source,
+            base_token=binding.base_token,
+            table_id=binding.table_id,
+            group=group,
+            fields=success_fields,
+            result_field=result_field,
+            claim_token=claim_token,
+        )
         if effective_doc_phase == "publish":
             write_publish_release_metadata(
                 config_path=resolved_config_path,
@@ -433,13 +478,15 @@ def process_queue_record_group(
                 write_document_link_dd=can_write_document_link_dd,
                 write_feishu_cloud_doc=can_write_feishu_cloud_doc,
             )
-            for group_record in group:
-                source.upsert_record(
-                    base_token=binding.base_token,
-                    table_id=binding.table_id,
-                    record_id=group_record.record_id,
-                    record=failure_fields,
-                )
+            _write_terminal_queue_fields(
+                source=source,
+                base_token=binding.base_token,
+                table_id=binding.table_id,
+                group=group,
+                fields=failure_fields,
+                result_field=result_field,
+                claim_token=claim_token,
+            )
         except Exception as writeback_exc:
             failure_message = append_writeback_failed(failure_message, writeback_exc)
             print(
