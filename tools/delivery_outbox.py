@@ -230,6 +230,100 @@ def write_delivery_outbox(
     )
 
 
+def publish_delivery_files(
+    *,
+    artifact_output_path: Path | None,
+    word_output_path: Path | None,
+    pdf_output_path: Path | None,
+    md_output_path: Path | None,
+) -> list[Path]:
+    """Pick the deliverable files for a publish drop, de-duplicated, order stable.
+
+    Directory outputs (latex/, html/) are intentionally excluded: the DingTalk
+    delivery rows carry a print PDF and its companion documents, and copying
+    whole render trees into every job would bloat the outbox without a consumer.
+    """
+
+    ordered = [pdf_output_path, artifact_output_path, word_output_path, md_output_path]
+    selected: list[Path] = []
+    seen: set[Path] = set()
+    for path in ordered:
+        if path is None or not path.is_file():
+            continue
+        resolved = path.resolve(strict=False)
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        selected.append(path)
+    return selected
+
+
+def drop_publish_delivery_outbox(
+    *,
+    model: str,
+    region: str,
+    lang: str,
+    version: str,
+    git_ref: str,
+    workflow_action: str,
+    built_at: datetime,
+    queue_record_ids: tuple[str, ...],
+    document_link_url: str,
+    artifact_output_path: Path | None,
+    word_output_path: Path | None,
+    pdf_output_path: Path | None,
+    md_output_path: Path | None,
+    stderr: Any = sys.stderr,
+    environ: dict[str, str] | os._Environ[str] | None = None,
+) -> tuple[str, ...]:
+    """Best-effort outbox drop for one published group; returns row status notes.
+
+    This is the queue's only entry point. It never raises: the artifact already
+    reached the knowledge base by this point, so a delivery-side problem must not
+    turn a good build into a failed row. Every outcome is reported as a status
+    note so the failure stays visible on the queue row instead of only in logs.
+    """
+
+    outbox_root = delivery_outbox_root(environ=environ)
+    if outbox_root is None:
+        return ()
+
+    try:
+        files = publish_delivery_files(
+            artifact_output_path=artifact_output_path,
+            word_output_path=word_output_path,
+            pdf_output_path=pdf_output_path,
+            md_output_path=md_output_path,
+        )
+        result = write_delivery_outbox(
+            outbox_root=outbox_root,
+            model=model,
+            region=region,
+            lang=lang,
+            version=version,
+            git_ref=git_ref,
+            workflow_action=workflow_action,
+            built_at=built_at,
+            queue_record_ids=queue_record_ids,
+            document_link_url=document_link_url,
+            files=files,
+        )
+    except Exception as exc:  # noqa: BLE001 - side channel must not fail the row
+        message = str(exc).strip() or exc.__class__.__name__
+        print(
+            f"[build-queue] WARNING delivery outbox drop failed for "
+            f"{model}/{region}/{lang}: {message}",
+            file=stderr,
+        )
+        return ("delivery_outbox=failed", f"delivery_outbox_error={message}")
+
+    print(
+        f"[build-queue] delivery outbox {result.job_dir.name}: "
+        f"{result.file_count} file(s) -> {result.job_dir}"
+    )
+    return ("delivery_outbox=ok", f"delivery_outbox_job={result.job_dir.name}")
+
+
 def verify_delivery_manifest(manifest_path: Path) -> dict[str, Any]:
     """Re-read a written manifest and check every declared file landed intact."""
 
