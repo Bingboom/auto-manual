@@ -2304,9 +2304,10 @@ class TestProcessBuildQueue(unittest.TestCase):
             config_path=Path("config.yaml"),
             data_root="data/phase2",
         )
-        self.assertEqual(2, len(fetch_calls))
+        self.assertEqual(3, len(fetch_calls))
         self.assertEqual("vew_document_link", fetch_calls[0]["view_id"])
         self.assertIsNone(fetch_calls[1]["view_id"])
+        self.assertIsNone(fetch_calls[2]["view_id"])
         build_document_mock.assert_called_once()
         self.assertEqual("1.0", build_document_mock.call_args.kwargs["version"])
         self.assertEqual("codex/review-je-1000f-us-en", build_document_mock.call_args.kwargs["git_ref"])

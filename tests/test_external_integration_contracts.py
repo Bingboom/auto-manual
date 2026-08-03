@@ -6,8 +6,11 @@ import json
 import tempfile
 import unittest
 from contextlib import redirect_stdout
+from datetime import datetime, timedelta, timezone
+from dataclasses import replace
 from pathlib import Path
 from types import SimpleNamespace
+from typing import Callable
 from unittest import mock
 
 from tools import process_build_queue
@@ -18,6 +21,7 @@ from tools import queue_resolve_action
 from tools.queue_artifact_sink import ArtifactDestination, ArtifactPublishResult
 from tools.queue_build_execution import BuiltDocumentOutputs
 from tools.queue_group_processing import process_queue_record_group
+from tools.queue_transitions import format_queue_result
 
 FIXTURE_ROOT = Path(__file__).parent / "fixtures" / "external_integrations"
 
@@ -43,11 +47,32 @@ class FakeSource:
     def __init__(self, upsert_error: BaseException | None = None) -> None:
         self.upsert_error = upsert_error
         self.upserts: list[dict[str, object]] = []
+        self.records: dict[str, dict[str, object]] = {}
+        self.fetch_callbacks: list[Callable[[], None] | None] = []
+
+    def install_claim(self, records: list[object], fields: dict[str, object]) -> None:
+        for record in records:
+            record_id = str(record.record_id)
+            self.records[record_id] = {
+                "record_id": record_id,
+                "fields": dict(fields),
+            }
+
+    def fetch_records_with_ids(self, **_: object) -> list[dict[str, object]]:
+        callback = self.fetch_callbacks.pop(0) if self.fetch_callbacks else None
+        if callback:
+            callback()
+        return list(self.records.values())
 
     def upsert_record(self, **kwargs: object) -> None:
         self.upserts.append(kwargs)
         if self.upsert_error is not None:
             raise self.upsert_error
+        record_id = str(kwargs["record_id"])
+        raw = self.records.setdefault(record_id, {"record_id": record_id, "fields": {}})
+        fields = raw.setdefault("fields", {})
+        if isinstance(fields, dict):
+            fields.update(kwargs["record"])
 
 
 class TestExternalIntegrationContracts(unittest.TestCase):
@@ -87,9 +112,11 @@ class TestExternalIntegrationContracts(unittest.TestCase):
         record: process_build_queue.QueueRecord,
         source: FakeSource,
         artifact_output_path: Path,
+        group: list[process_build_queue.QueueRecord] | None = None,
         stderr: io.StringIO | None = None,
         mirror_provider: str | None = None,
         mirror_error: str = "",
+        validate_queue_record_group: Callable[[object], None] | None = None,
     ) -> tuple[object, list[dict[str, object]], dict[str, object]]:
         stderr = stderr or io.StringIO()
         publish_calls: list[dict[str, object]] = []
@@ -128,9 +155,22 @@ class TestExternalIntegrationContracts(unittest.TestCase):
                 runtime_target=kwargs.get("target_node_url", ""),
             )
 
+        def fake_build_started_fields(**kwargs: object) -> dict[str, object]:
+            return {
+                process_build_queue.RESULT_FIELD: format_queue_result(
+                    prefix="RUNNING",
+                    claim_token=str(kwargs["claim_token"]),
+                    claim_expires_at=kwargs["claim_expires_at"],
+                )
+            }
+
+        def fake_acquire_queue_claim(**kwargs: object) -> SimpleNamespace:
+            source.install_claim(list(kwargs["records"]), dict(kwargs["claim_fields"]))
+            return SimpleNamespace(acquired=True, reason="")
+
         return (
             process_queue_record_group(
-                group=[record],
+                group=group or [record],
                 cfg={},
                 config_path=Path("config.us.yaml"),
                 source=source,
@@ -145,11 +185,11 @@ class TestExternalIntegrationContracts(unittest.TestCase):
                 cli_bin="lark",
                 identity="fake-identity",
                 artifact_destination=artifact_destination,
-                acquire_queue_claim=lambda **_: SimpleNamespace(acquired=True, reason=""),
+                acquire_queue_claim=fake_acquire_queue_claim,
                 result_field=process_build_queue.RESULT_FIELD,
                 queue_claim_ttl_seconds=process_build_queue.QUEUE_CLAIM_TTL_SECONDS,
                 warn_legacy_record_doc_phase=lambda _: None,
-                validate_queue_record_group=lambda _: None,
+                validate_queue_record_group=validate_queue_record_group or (lambda _: None),
                 resolve_target_for_record=lambda item: process_build_queue.parse_document_key(item.document_key),
                 queue_group_lang=lambda items: items[0].lang,
                 queue_group_build_family=lambda items: items[0].build_family,
@@ -165,7 +205,7 @@ class TestExternalIntegrationContracts(unittest.TestCase):
                 resolve_artifact_mirror_provider=lambda **_: mirror_provider,
                 resolve_dingtalk_mirror_destination=fake_resolve_dingtalk_mirror_destination,
                 ensure_dingtalk_session_ready=lambda **_: None,
-                build_started_fields=lambda **_: {},
+                build_started_fields=fake_build_started_fields,
                 build_document_for_task=lambda **_: BuiltDocumentOutputs(
                     word_output_path=artifact_output_path,
                     upload_output_path=artifact_output_path,
@@ -234,6 +274,126 @@ class TestExternalIntegrationContracts(unittest.TestCase):
         self.assertIn("Feishu upsert denied: no edit permission", result.failure_message)
         self.assertIn("writeback_failed=Feishu upsert denied: no edit permission", result.failure_message)
         self.assertGreaterEqual(len(source.upserts), 2)
+
+    def test_terminal_writeback_abstains_after_claim_is_reclaimed(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            artifact_path = Path(td) / "manual.docx"
+            artifact_path.write_text("fake docx", encoding="utf-8")
+            source = FakeSource()
+            record = _queue_record("document_link_writeback_failure")
+
+            def replace_claim() -> None:
+                source.records[record.record_id]["fields"] = {
+                    process_build_queue.RESULT_FIELD: format_queue_result(
+                        prefix="RUNNING",
+                        claim_token="claim-b",
+                        claim_expires_at=datetime.now(timezone.utc) + timedelta(hours=2),
+                    )
+                }
+
+            source.fetch_callbacks = [replace_claim]
+            result, _publish_calls, _captured = self._process_group(
+                record=record,
+                source=source,
+                artifact_output_path=artifact_path,
+            )
+
+        self.assertEqual(0, result.processed_rows)
+        self.assertIn("writeback_failed=claim ownership lost before terminal writeback", result.failure_message)
+        self.assertEqual([], source.upserts)
+
+    def test_multi_row_terminal_writeback_does_not_overwrite_rows_after_claim_loss(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            artifact_path = Path(td) / "manual.docx"
+            artifact_path.write_text("fake docx", encoding="utf-8")
+            source = FakeSource()
+            first = _queue_record("document_link_writeback_failure")
+            second = replace(first, record_id="rec_writeback_denied_2")
+
+            def replace_second_claim() -> None:
+                source.records[second.record_id]["fields"] = {
+                    process_build_queue.RESULT_FIELD: format_queue_result(
+                        prefix="RUNNING",
+                        claim_token="claim-b",
+                        claim_expires_at=datetime.now(timezone.utc) + timedelta(hours=2),
+                    )
+                }
+
+            # The first terminal read succeeds and its SUCCESS write removes its claim;
+            # the second terminal read observes a competing runner.
+            source.fetch_callbacks = [None, replace_second_claim]
+            result, _publish_calls, _captured = self._process_group(
+                record=first,
+                group=[first, second],
+                source=source,
+                artifact_output_path=artifact_path,
+            )
+
+        self.assertEqual(0, result.processed_rows)
+        self.assertIn("writeback_failed=claim ownership lost before terminal writeback", result.failure_message)
+        self.assertEqual(1, len(source.upserts))
+        self.assertEqual(first.record_id, source.upserts[0]["record_id"])
+        self.assertIn("SUCCESS", str(source.upserts[0]["record"]))
+        self.assertFalse(any("FAILED" in str(upsert["record"]) for upsert in source.upserts))
+
+    def test_failure_before_claim_still_writes_failed_when_row_is_unclaimed(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            artifact_path = Path(td) / "manual.docx"
+            artifact_path.write_text("fake docx", encoding="utf-8")
+            source = FakeSource()
+            record = _queue_record("document_link_writeback_failure")
+            source.records[record.record_id] = {
+                "record_id": record.record_id,
+                "fields": {process_build_queue.RESULT_FIELD: ""},
+            }
+
+            def reject_group(_: object) -> None:
+                raise RuntimeError("queue group mixes versions")
+
+            result, _publish_calls, _captured = self._process_group(
+                record=record,
+                source=source,
+                artifact_output_path=artifact_path,
+                validate_queue_record_group=reject_group,
+            )
+
+        self.assertEqual(0, result.processed_rows)
+        self.assertIn("queue group mixes versions", result.failure_message)
+        self.assertNotIn("writeback_failed", result.failure_message)
+        self.assertEqual(1, len(source.upserts))
+        self.assertIn("FAILED", str(source.upserts[0]["record"]))
+
+    def test_failure_before_claim_abstains_when_another_runner_holds_the_row(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            artifact_path = Path(td) / "manual.docx"
+            artifact_path.write_text("fake docx", encoding="utf-8")
+            source = FakeSource()
+            record = _queue_record("document_link_writeback_failure")
+            source.records[record.record_id] = {
+                "record_id": record.record_id,
+                "fields": {
+                    process_build_queue.RESULT_FIELD: format_queue_result(
+                        prefix="RUNNING",
+                        claim_token="claim-other",
+                        claim_expires_at=datetime.now(timezone.utc) + timedelta(hours=2),
+                    )
+                },
+            }
+
+            def reject_group(_: object) -> None:
+                raise RuntimeError("queue group mixes versions")
+
+            result, _publish_calls, _captured = self._process_group(
+                record=record,
+                source=source,
+                artifact_output_path=artifact_path,
+                validate_queue_record_group=reject_group,
+            )
+
+        self.assertEqual(0, result.processed_rows)
+        self.assertIn("queue group mixes versions", result.failure_message)
+        self.assertIn("writeback_failed=row is claimed by another runner", result.failure_message)
+        self.assertEqual([], source.upserts)
 
     def test_completed_start_review_fixture_is_idempotent_for_openclaw_duplicate_dispatch(self) -> None:
         row = _queue_query_row("completed_start_review_inreview_git_ref")
