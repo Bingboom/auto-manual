@@ -14,6 +14,12 @@ docs/generated/
 # Runtime release output is delivered through Feishu / GitHub Actions, not Git.
 /reports/releases/
 
+# Delivery outbox: the hand-off drop that the DingTalk delivery agent consumes
+# (tools/delivery_outbox.py, AUTO_MANUAL_DELIVERY_OUTBOX_ROOT). Runtime payloads
+# never belong in Git, and this pattern also covers the mirror checkout because
+# sync-hello-docs.yml carries this file into the mirror tree.
+/output/
+
 # Hello-Docs commits only Web source/assets below docs/publish. These patterns
 # are a staging backstop; publish_branch_assembly.py also rejects them before push.
 /docs/publish/**/*.idml
