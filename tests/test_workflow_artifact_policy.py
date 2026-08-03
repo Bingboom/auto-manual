@@ -6,6 +6,8 @@ from pathlib import Path
 
 import yaml
 
+from tests.test_helpers import step_uses_action
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW_ROOT = REPO_ROOT / ".github" / "workflows"
@@ -17,7 +19,10 @@ def _upload_steps() -> list[tuple[Path, dict[str, object]]]:
         workflow = yaml.safe_load(workflow_path.read_text(encoding="utf-8"))
         for job in workflow.get("jobs", {}).values():
             for step in job.get("steps", []):
-                if step.get("uses") == "actions/upload-artifact@v4":
+                # Match the action, not its version: a version-pinned matcher
+                # silently finds nothing after a dependabot bump, and every
+                # policy assertion below then collapses.
+                if step_uses_action(step, "actions/upload-artifact"):
                     uploads.append((workflow_path, step))
     return uploads
 
@@ -131,6 +136,34 @@ class WorkflowArtifactPolicyTests(unittest.TestCase):
         ]
         self.assertEqual(1, len(backup_steps))
         self.assertEqual(90, backup_steps[0]["with"]["retention-days"])
+
+
+class WorkflowStepMatchingTests(unittest.TestCase):
+    """Keep workflow guards version-agnostic.
+
+    A dependabot actions bump once turned four of these tests red purely
+    because the matcher compared the full ``uses`` string; the workflows were
+    correct. Matching must survive any version ref.
+    """
+
+    def test_action_matching_ignores_the_version_ref(self) -> None:
+        for ref in ("v4", "v7", "v7.0.1", "main", "a1b2c3d4e5f6"):
+            with self.subTest(ref=ref):
+                step = {"uses": f"actions/upload-artifact@{ref}"}
+                self.assertTrue(step_uses_action(step, "actions/upload-artifact"))
+
+    def test_action_matching_does_not_confuse_different_actions(self) -> None:
+        self.assertFalse(
+            step_uses_action({"uses": "actions/download-artifact@v4"}, "actions/upload-artifact")
+        )
+        self.assertFalse(step_uses_action({"run": "echo hi"}, "actions/upload-artifact"))
+
+    def test_every_upload_step_in_the_repo_is_discovered(self) -> None:
+        # Guards against a matcher that silently finds nothing: the repo does
+        # upload artifacts, so an empty result is a matcher bug, not a policy pass.
+        discovered = {path.name for path, _ in _upload_steps()}
+        self.assertIn("feishu-build-queue.yml", discovered)
+        self.assertIn("phase2-content-backup.yml", discovered)
 
 
 if __name__ == "__main__":

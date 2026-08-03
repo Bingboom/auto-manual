@@ -35,3 +35,26 @@ def write_text(path: Path, content: str) -> Path:
 
 def write_lines(path: Path, lines: Sequence[str]) -> Path:
     return write_text(path, "\n".join(lines) + "\n")
+
+
+def step_action_name(step: object) -> str | None:
+    """Return a workflow step's action without its version ref.
+
+    ``{"uses": "actions/cache@v6"}`` -> ``"actions/cache"``; ``None`` for a
+    ``run:`` step. Workflow guards assert policy (retention windows, step
+    order, which surfaces get uploaded), so they must match on the action
+    itself — pinning the version in the assertion turns every routine
+    dependabot bump red, and a version-pinned *matcher* is worse: it silently
+    stops finding the steps it was meant to police.
+    """
+    if not isinstance(step, dict):
+        return None
+    uses = step.get("uses")
+    if not isinstance(uses, str):
+        return None
+    return uses.split("@", 1)[0]
+
+
+def step_uses_action(step: object, action: str) -> bool:
+    """True when ``step`` uses ``action`` at any version ref or pinned sha."""
+    return step_action_name(step) == action
