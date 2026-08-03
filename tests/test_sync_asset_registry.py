@@ -175,11 +175,45 @@ class SyncMirrorTest(unittest.TestCase):
                 cfg, source=source, repo_root=ROOT,
                 sha256_text=lambda t: "new", sha256_file=lambda p: "old",
                 result_cls=_Result)
-        self.assertEqual(source.seen["base_token"], "basetok")
+        self.assertEqual(
+            source.seen["base_token"], "LD3lb4G1ua4GOVs1vxAc9W2enje"
+        )
         self.assertTrue(source.seen["table_id"].startswith("tbl"))
         self.assertEqual(result.logical_name, "asset_registry")
         self.assertTrue(result.changed)
         self.assertEqual(written[0], ROOT / "data" / "asset_registry.csv")
+
+    def test_explicit_asset_base_override_keeps_phase2_token(self):
+        cfg = {"sync": {"phase2": {
+            "base_token_env": "AR_TEST_BASE_TOKEN",
+            "asset_registry": {
+                "base_token_env": "AR_TEST_BASE_TOKEN",
+                "table_id_env": "AR_TEST_TABLE_ID",
+                "view_id_env": "AR_TEST_VIEW_ID",
+            },
+        }}}
+        source = _Source([])
+        with mock.patch.dict(
+            "os.environ",
+            {
+                "AR_TEST_BASE_TOKEN": "custom-base",
+                "AR_TEST_TABLE_ID": "custom-table",
+                "AR_TEST_VIEW_ID": "custom-view",
+            },
+            clear=False,
+        ):
+            sync_asset_registry_mirror(
+                cfg, source=source, repo_root=ROOT,
+                sha256_text=lambda t: "new", sha256_file=lambda p: "old",
+                result_cls=_Result)
+        self.assertEqual(
+            source.seen,
+            {
+                "base_token": "custom-base",
+                "table_id": "custom-table",
+                "view_id": "custom-view",
+            },
+        )
 
     def test_bad_base_row_fails_the_sync(self):
         """Validation runs through the resolver's own loader."""

@@ -144,7 +144,7 @@ def merge_registry_csv(
     )
 
 
-def _bindings_table(repo_root: Any) -> tuple[str, str | None]:
+def _bindings_table(repo_root: Any) -> tuple[str, str, str | None]:
     """Read the frozen table/view coordinates for the definition table."""
     bindings_path = repo_root / PathSegments.DATA / BINDINGS_FILE_NAME
     if not bindings_path.exists():
@@ -153,6 +153,8 @@ def _bindings_table(repo_root: Any) -> tuple[str, str | None]:
             f"{bindings_path} is missing and no table_id_env is set"
         )
     payload = json.loads(bindings_path.read_text(encoding="utf-8"))
+    base = payload.get("base") or {}
+    base_token = str(base.get("base_token") or "").strip()
     table = (payload.get("tables") or {}).get(DEFINITIONS_TABLE_KEY) or {}
     table_id = str(table.get("table_id") or "").strip()
     if not table_id:
@@ -160,7 +162,9 @@ def _bindings_table(repo_root: Any) -> tuple[str, str | None]:
             f"{bindings_path} has no {DEFINITIONS_TABLE_KEY}.table_id"
         )
     view_id = str(table.get("default_view_id") or "").strip() or None
-    return table_id, view_id
+    if not base_token:
+        raise RuntimeError(f"{bindings_path} has no base.base_token")
+    return base_token, table_id, view_id
 
 
 def sync_asset_registry_mirror(
@@ -187,9 +191,8 @@ def sync_asset_registry_mirror(
         raise RuntimeError("sync.phase2.asset_registry must be a mapping")
     # An empty block is "enabled with the frozen coordinates", not "absent" —
     # this mirror needs no per-table env of its own.
-    base_token_env = str(
-        registry_cfg.get("base_token_env") or phase2_cfg.get("base_token_env") or ""
-    ).strip()
+    explicit_base_token_env = str(registry_cfg.get("base_token_env") or "").strip()
+    base_token_env = (explicit_base_token_env or str(phase2_cfg.get("base_token_env") or "")).strip()
     base_token = os.environ.get(base_token_env, "").strip() if base_token_env else ""
     if not base_token:
         raise RuntimeError(
@@ -202,7 +205,13 @@ def sync_asset_registry_mirror(
     view_id = os.environ.get(view_id_env, "").strip() if view_id_env else ""
     if not table_id:
         # No secret required: Phase B froze these coordinates in the repo.
-        table_id, bound_view_id = _bindings_table(repo_root)
+        bound_base_token, table_id, bound_view_id = _bindings_table(repo_root)
+        # The frozen asset coordinates belong to the business Base, which is
+        # intentionally different from the phase2 source Base in the default
+        # engineering-plane config. Keep an explicit override for tenants that
+        # provide their own asset table coordinates.
+        if not explicit_base_token_env:
+            base_token = bound_base_token
         view_id = view_id or (bound_view_id or "")
 
     target_path = repo_root / PathSegments.DATA / "asset_registry.csv"

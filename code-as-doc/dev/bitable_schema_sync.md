@@ -195,6 +195,13 @@ prod):
 
 - `--ignore-table-prefix 99_` / `--ignore-table QC_Report --ignore-table 数据表` — drop
   dev-only scratch/experiment/archive tables from the comparison.
+- `--table-alias SOURCE=TARGET` — compare an intentionally renamed target table in
+  place. The current old engineering-base → business-base migration uses
+  `文档构建表=02_文档构建` and `数据入库表=01_数据入库`; this prevents the alert from
+  treating the planned rename as a missing table or suggesting a duplicate.
+- `--ignore-field TABLE.FIELD` — ignore one explicitly retired/replaced source field.
+  The workflow uses `文档构建表.Document link` because the business Base maintains
+  the replacement fields `基线文档` and `飞书云文档` instead.
 - `--fail-on missing` — exit non-zero only when **prod is missing a table/field** dev
   defines; drift (option/type divergence) is still printed but does not fail. (Default
   `--fail-on any` keeps the strict behavior.)
@@ -205,6 +212,11 @@ prod):
 runs this read-only parity **daily + on demand** from the dev repo (the dev bot reads
 both tenants), scoped as above. On a real prod lag it opens/updates a `[schema-drift]`
 GitHub issue; when parity goes green it auto-closes it.
+
+The workflow passes the two table aliases above because the old engineering Base and
+the new business Base are intentionally not name-identical. A green run means every
+source table/field has a corresponding target table/field after applying those
+documented aliases; it does not write or rename Feishu tables.
 
 Enable it by adding one repo secret: **`FEISHU_PHASE2_PROD_BASE_TOKEN`** (the prod tenant
 base token). `FEISHU_APP_ID` / `FEISHU_APP_SECRET` / `FEISHU_PHASE2_BASE_TOKEN` are
