@@ -55,7 +55,7 @@ partially green, never re-run checks blindly to "wash" a real failure.
 | MA-009 | same-source 门失配诊断 PR（fix/repin-je1000f-us-after-812，含本登记行） | 「合」2026-07-31 | 该 PR 合入即失效 | 已失效（2026-07-31 #815 已合入） |
 | MA-010 | 1.7 publish 解阻链的诊断/修复类 PR（含本登记行所在 PR），按批全绿即合；不越过 F6/契约审批语义 | 「授」2026-07-31 | JE-1000F_US 1.7 publish 成功交付即失效 | 已失效（2026-08-01 run 30683387378 交付 1.7，wiki XhhVw4nDNij5DckM00ocxnlCnlf） |
 | MA-011 | 队列/护栏加固批次 PR #856、#857、#858、#859（含本登记行所在 PR）——终态写回所有权、钉钉会话凭据探测、web 表面护栏登记、review 分支同步哨兵；验收发现由本窗口修复后按批全绿即合 | 「你直接优化 这4个pr 然后合入」2026-08-03 | 四个 PR 全部合入即失效 | 已失效（2026-08-03 #856/#857/#858/#859 全部合入） |
-| MA-012 | 钉钉交付对接切片 stacked PR #864、#866、#867（含本登记行所在 PR）——交付坐标映射表、outbox 写入器与 `/output/` ignore、队列接线与文档；按依赖序 #864 → #866 → #867 合入。不含语言门（EU 整本按型号裁语言）改动，那是下一批 | 「合入吧 语言门下一批做」2026-08-03 | 三个 PR 全部合入即失效 | 生效 |
+| MA-012 | 钉钉交付对接切片 stacked PR #864、#866、#867（含本登记行所在 PR）——交付坐标映射表、outbox 写入器与 `/output/` ignore、队列接线与文档；按依赖序 #864 → #866 → #867 合入。不含语言门（EU 整本按型号裁语言）改动，那是下一批 | 「合入吧 语言门下一批做」2026-08-03 | 三个 PR 全部合入即失效 | 已失效（2026-08-03 #864/#866/#867 全部合入） |
 | MA-006 | Workstream W 切片 PR（交付 scaling_execution_plan.md §4 条目、PR body 标注 Workstream W/Milestone L 的 PR），**按批全绿即合**；但计划 §5 的 gated 条目（workflow 变更、公开 CLI 行为、队列并发语义、strict 翻转、F6 seed 等）必须先有对应拍板记录才可合，本授权不越过任何 gate；stacked PR 按依赖序合 | 「W切片的PR授权也一并给你 按批全绿即合」2026-07-30 | Workstream W 收官或操作者撤销 | 已失效（最终逐项状态与证据收官变更合入时） |
 
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
