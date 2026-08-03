@@ -1,4 +1,4 @@
 model,region,project_code,safety_regulation,dingtalk_languages,备注
 JE-1000F,US,HTE153,美加规,英语（美式）;法语;西班牙语,us-merged 整本交付
-JE-1000F,EU,HTE153,欧英规,英语（美式）;法语;西班牙语;德语;意大利语,eu-merged 整本交付；乌克兰语在钉钉暂无对应行
+JE-1000F,EU,HTE153,欧英规,英语（美式）;法语;西班牙语;德语;意大利语,eu-merged 整本交付；JE-1000F 不含乌克兰语
 JE-1000F,JP,HTE153,日规,日语,jp-ja 整本交付
