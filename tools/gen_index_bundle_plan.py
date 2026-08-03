@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.asset_usage import parse_asset_uri
+from tools.utils.path_utils import Paths
 
 
 def base_file_name_for_plan(
@@ -89,7 +90,20 @@ def plan_materialized_pages(
     base_file_name_for_plan: Callable[..., str],
     ensure_unique_name: Callable[[str, set[str], int], str],
 ) -> list[Any]:
-    selected_langs = list(langs) if langs is not None else build_langs(cfg)
+    data_dir = Paths(root=root).data_dir
+    # The family config declares the union of its models' languages; narrow it
+    # to what this target actually ships before any page is planned, so the
+    # per-language pages of an unshipped language are never materialized.
+    from tools.model_languages import resolve_target_languages
+    scope = resolve_target_languages(
+        list(langs) if langs is not None else build_langs(cfg),
+        model=model,
+        region=region,
+        data_dir=data_dir,
+    )
+    selected_langs = list(scope.languages)
+    for note in scope.notes():
+        print(f"[bundle-plan] {note}")
     pages = resolve_config_pages_or_raise(
         cfg,
         default_languages=selected_langs,
@@ -101,7 +115,7 @@ def plan_materialized_pages(
 
     from tools.capability_pages import filter_pages_by_capability
     pages, dropped = filter_pages_by_capability(
-        pages, model=model, region=region, data_dir=root / "data")
+        pages, model=model, region=region, data_dir=data_dir)
     for note in dropped:
         print(f"[bundle-plan] {note}")
 

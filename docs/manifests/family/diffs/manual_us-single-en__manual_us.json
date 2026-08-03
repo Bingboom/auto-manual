@@ -17,6 +17,7 @@
         {
           "file": "templates/page_shared/en/00_preface.rst",
           "lang": "en",
+          "lang_blocks": true,
           "type": "rst_include"
         },
         {

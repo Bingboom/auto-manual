@@ -67,6 +67,38 @@ class TestConfigPages(unittest.TestCase):
         self.assertTrue(any("generated_page.engine invalid" in msg for msg in error_msgs))
         self.assertTrue(any("rst_include requires non-empty file" in msg for msg in error_msgs))
 
+    def test_rst_include_lang_blocks_defaults_off_and_parses(self) -> None:
+        pages, issues = parse_config_pages(
+            [
+                {"type": "rst_include", "file": "a.rst", "lang": "en"},
+                {"type": "rst_include", "file": "b.rst", "lang": "en",
+                 "lang_blocks": True},
+            ],
+            default_languages=["en"],
+        )
+        self.assertEqual([], issues)
+        self.assertFalse(pages[0].lang_blocks)
+        self.assertTrue(pages[1].lang_blocks)
+
+    def test_lang_blocks_must_be_boolean(self) -> None:
+        _pages, issues = parse_config_pages(
+            [{"type": "rst_include", "file": "a.rst", "lang": "en",
+              "lang_blocks": "yes"}],
+            default_languages=["en"],
+        )
+        self.assertTrue(any("lang_blocks must be a boolean" in i.msg
+                            for i in issues if i.level == "ERROR"))
+
+    def test_lang_blocks_is_rejected_on_other_page_types(self) -> None:
+        # A mis-annotated page must fail rather than silently trim nothing.
+        _pages, issues = parse_config_pages(
+            [{"type": "csv_page", "page": "spec", "source": "phase2",
+              "lang_blocks": True}],
+            default_languages=["en"],
+        )
+        self.assertTrue(any("only supported on rst_include" in i.msg
+                            for i in issues if i.level == "ERROR"))
+
     def test_parse_config_pages_or_raise_should_fail_fast_on_first_error(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "config.pages: pages\\[1\\]\\.type invalid"):
             parse_config_pages_or_raise(

@@ -5,6 +5,10 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_shared/en/00_preface.rst
+    # EN/FR/ES blocks in one page: trim to the languages this target ships.
+    # No-op for the trilingual us-merged family; the annotation travels with
+    # the template so a single-language reuse cannot inherit the extra blocks.
+    lang_blocks: true
 
   - type: rst_include
     lang: en

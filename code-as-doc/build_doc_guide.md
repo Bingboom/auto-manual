@@ -1324,6 +1324,61 @@ cannot silently bypass assembly-time filtering.
 
 `check` also runs the language-tree parity gate (`tools/check_docs_lang_parity.py`, Milestone I1): `LANG_PARITY_FOREIGN_SHELL` (a ko/ja/zh/uk page carrying almost no target-script text — an untranslated shell), `LANG_PARITY_FOREIGN_LANG_BLOCK` (language-tagged blocks such as `**FR IMPORTANT**` or `\HBApplyLang{xx}` outside the family's languages), `LANG_PARITY_MISSING_LANG_PAGE` / `LANG_PARITY_FOREIGN_LANG_PAGE` (per-language generated page set incomplete, or a leftover page from another language line). Pre-existing findings are registered in `data/lang_parity_known_exceptions.csv` (model, region, code, page, note) so only NEW drift fails; delete a row once its content decision lands.
 
+## 5.2 Language Scope Gate
+
+A family config's `build.languages` is the **union** across every model in that
+region, not one model's shipping list: `configs/config.eu.yaml` declares six
+languages because the EU line carries Ukrainian templates, while JE-1000F does
+not ship Ukrainian. `data/model_languages.csv` holds the per-model answer, keyed
+on the same `<MODEL>_<REGION>` document key the capability mirror uses:
+
+- `Document_key,Project,languages,notes` — `languages` is a `;`-separated list
+  of registry language codes (semicolon, because a half-width comma inside a
+  CSV field has bitten this repo's contracts before).
+- Resolution is an **intersection that preserves the family's declared order**,
+  so the family config stays the only place that decides ordering and the table
+  can only subtract.
+- Fail-open, like the capability gate: no row keeps every family language, and a
+  row that excludes *every* family language leaves the build unchanged and
+  fails `check` instead.
+
+`tools/model_languages.py` resolves the scope; `tools/gen_index_bundle_plan.py`
+applies it before any page is planned, so an unshipped language's pages —
+including its `csv_page` data pages (`spec_uk.rst`, `symbols_uk.rst`, …) — are
+never materialized. Structural problems in the table (missing column, duplicate
+key, blank cell, unregistered code) raise instead of parsing to a wrong set.
+
+Pages that carry several languages *inside one file* — the prefaces — cannot be
+handled by page selection. Those manifest entries opt in with `lang_blocks:
+true`, and `tools/language_block_trim.py` drops the out-of-scope blocks
+(`\HBLangTagLine{XX}` in `raw:: latex`, `**XX ...**` bold headers) while
+preserving page-structure macros such as `\HBPrefacePageBegin` /
+`\HBPrefacePageEnd`. The annotation is opt-in, never sniffed, because `**IT ...**`
+is legitimate bold prose elsewhere. When nothing is out of scope the page text
+is returned unchanged, so an untrimmed family keeps byte-identical output.
+Trimming the shared trilingual preface to `en` reproduces the hand-forked
+`00_preface_single_language.rst` byte-for-byte after the bundle's own
+empty-line-block normalisation — enforced by
+`tests/test_language_block_trim.py`.
+
+A trimmed target also overrides the `MANUAL_LANGUAGE_SCOPE` substitution with
+the label derived from its resolved languages, so a five-language EU book no
+longer prints "… / Ukrainian" on its preface. The derivation reproduces each
+whole-book family's configured literal exactly
+(`tests/test_model_languages.py`), and single-language derivative configs keep
+their configured literal because they are not trimmed.
+
+Failure codes (`tools/check_docs_language_scope.py`):
+`LANG_SCOPE_UNSHIPPED_LANGUAGE` (the scope row is disjoint from the family the
+config declares — e.g. `configs/config.eu-uk.yaml` pointed at a model that ships
+no Ukrainian) and `LANG_SCOPE_FOREIGN_SCRIPT` (a bundle page carries the script
+of a *dropped* language, catching leakage with neither a `_<lang>` page suffix
+nor a language tag). Only dropped languages are scanned, so an EU bundle's
+allowed CJK identity literal is not treated as drift. The scoped language set is
+also what the per-language contract, generated-page, identity and parity
+collectors see, so a model that ships five of six family languages no longer
+fails on the sixth's missing source data.
+
 Every Sphinx run also feeds the **warning ratchet** (`tools/warning_ratchet.py`, Milestone I2): the warning stream is written to `<out>/sphinx-warnings.log`, sanitized (paths, line numbers, ANSI, and target-specific `docs/_build/<model>/<region>[/<lang>]/rst/` prefixes), and diffed against the committed baseline `data/known_warnings/<stream>-known-warnings.txt`. A warning in the baseline is registered debt; a warning not in it is news. Enforcement is staged: the in-build hook reports by default and fails only with `AUTO_MANUAL_WARNING_RATCHET=strict` (set `off` to silence); the standalone CLI `check` is always strict (new warning → exit 1, missing baseline → exit 2). Seed or refresh a baseline with `python tools/warning_ratchet.py update --stream sphinx-html --log <warnings.log>` and review the diff like code. Flip the default to strict once a few queue rounds have stable baselines.
 
 ## 6. Diff Report

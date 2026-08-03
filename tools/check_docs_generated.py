@@ -746,7 +746,10 @@ def collect_generated_page_issues(
             )
         )
 
-        page_langs = list(page.langs) or langs
+        declared_langs = list(page.langs) or langs
+        # Same intersection the bundle plan applies: only the languages this
+        # target actually builds are its obligation.
+        page_langs = [lang for lang in declared_langs if lang in langs] if langs else declared_langs
         for lang in page_langs:
             issues.extend(
                 _binding_issues(

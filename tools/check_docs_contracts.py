@@ -112,7 +112,13 @@ def collect_page_contract_issues(
         if contract is None:
             continue
 
-        page_langs = [page.lang] if isinstance(page, rst_include_page_cls) and page.lang else list(page.langs) if isinstance(page, generated_page_cls) else langs
+        declared_langs = [page.lang] if isinstance(page, rst_include_page_cls) and page.lang else list(page.langs) if isinstance(page, generated_page_cls) else langs
+        # Intersect with the target's languages the way the bundle plan does
+        # (tools/gen_index_bundle_plan.py). A manifest page for a language this
+        # target does not build is not in its bundle, so its contract is not
+        # this target's obligation — otherwise a model that ships five of the
+        # family's six languages fails on the sixth's missing data.
+        page_langs = [lang for lang in declared_langs if lang in langs] if langs else declared_langs
         for lang in page_langs:
             if not contract_applies_to(contract, lang=lang, model=target.model, region=target.region):
                 continue
