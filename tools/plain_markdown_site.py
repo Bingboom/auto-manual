@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import posixpath
 import re
 import shutil
@@ -109,50 +110,134 @@ def _asset_index(staged_dir: Path) -> dict[str, Path]:
     return index
 
 
-def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
-    """Repoint image references whose path is missing but whose file is staged.
+_ASCII_ASSET_DIRNAME = "_md_assets"
+_MD_IMAGE_RE = re.compile(r'(!\[[^\]]*\]\(\s*)([^)"\'\s]+)')
+_HTML_IMAGE_RE = re.compile(r'(<img\b[^>]*?\bsrc=["\'])([^"\'>]+)')
 
-    Legacy and pipeline-exported Markdown often carries paths from wherever it
-    used to live (a published manual, for example, references
-    ``../../../_static/manual-assets/<model>/<region>/md/assets/x.png``). The
-    file itself is usually right there in the tree under a different route, so
-    resolve by basename instead of making every author run ``sed``. Only
-    unresolvable references are touched; correct relative paths are left alone.
+
+def _is_ascii_path(text: str) -> bool:
+    return text.isascii()
+
+
+def _ascii_asset_copy(staged_dir: Path, staged_target: Path) -> Path:
+    """Stage an ASCII-named copy of an asset and return its staged-relative path.
+
+    MyST percent-encodes image URIs, and Sphinx then looks for a file literally
+    named ``%E9%9D%A2%E6%9D%BF.png``, so a Markdown image whose path contains
+    non-ASCII characters never resolves — a legacy backlog with Chinese asset
+    names would silently render every such image broken. Give Sphinx an ASCII
+    path to chew on; the visible alt text is untouched.
+    """
+    source = staged_dir / staged_target
+    digest = hashlib.sha1(staged_target.as_posix().encode("utf-8")).hexdigest()[:8]
+    stem = re.sub(r"[^A-Za-z0-9._-]+", "-", source.stem).strip("-.") or "img"
+    destination_relative = Path(_ASCII_ASSET_DIRNAME) / f"{stem}-{digest}{source.suffix.lower()}"
+    destination = staged_dir / destination_relative
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    if not destination.exists():
+        shutil.copyfile(source, destination)
+    return destination_relative
+
+
+def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
+    """Make image references resolvable for legacy and exported Markdown.
+
+    Two fixes, both applied only to the staged copy:
+
+    * A reference that does not resolve is repointed by basename to the staged
+      file. Documents carry paths from wherever they used to live — a published
+      manual references
+      ``../../../_static/manual-assets/<model>/<region>/md/assets/x.png`` — and
+      the file is usually right there under another route.
+    * A Markdown image whose resolved path contains non-ASCII characters is
+      pointed at an ASCII-named staged copy, because MyST/Sphinx cannot resolve
+      percent-encoded paths (see ``_ascii_asset_copy``). Raw HTML ``<img>`` is
+      left alone: the browser resolves those, and the build copies files
+      verbatim.
     """
     index = _asset_index(staged_dir)
     if not index:
         return 0
-    pattern = re.compile(r'(!\[[^\]]*\]\(\s*|<img\b[^>]*?\bsrc=["\'])([^)"\'\s]+)')
     rewrites = 0
     for markdown_path in sorted(staged_dir.rglob("*.md")):
         relative = markdown_path.relative_to(staged_dir)
         if _skipped(relative):
             continue
+        start = relative.parent.as_posix() or "."
         text = markdown_path.read_text(encoding="utf-8")
 
-        def replace(match: re.Match[str]) -> str:
+        def resolve_target(ref: str) -> Path | None:
+            """Staged-relative path for a reference, or None to leave it alone."""
+            if "://" in ref or ref.startswith(("data:", "/", "#")):
+                return None
+            decoded = unquote(ref)
+            candidate = (markdown_path.parent / decoded).resolve(strict=False)
+            if candidate.is_file():
+                try:
+                    return candidate.relative_to(staged_dir.resolve(strict=False))
+                except ValueError:
+                    return None
+            return index.get(Path(decoded).name)
+
+        def replace_markdown(match: re.Match[str]) -> str:
+            nonlocal rewrites
+            prefix, ref = match.group(1), match.group(2)
+            target = resolve_target(ref)
+            if target is None:
+                return match.group(0)
+            if not _is_ascii_path(target.as_posix()):
+                target = _ascii_asset_copy(staged_dir, target)
+            repointed = posixpath.relpath(target.as_posix(), start=start)
+            if repointed == ref:
+                return match.group(0)
+            rewrites += 1
+            return f"{prefix}{repointed}"
+
+        def replace_html(match: re.Match[str]) -> str:
             nonlocal rewrites
             prefix, ref = match.group(1), match.group(2)
             if "://" in ref or ref.startswith(("data:", "/", "#")):
                 return match.group(0)
-            candidate = (markdown_path.parent / unquote(ref)).resolve(strict=False)
-            if candidate.is_file():
+            if (markdown_path.parent / unquote(ref)).resolve(strict=False).is_file():
                 return match.group(0)
-            staged_target = index.get(Path(unquote(ref)).name)
-            if staged_target is None:
+            target = index.get(Path(unquote(ref)).name)
+            if target is None:
                 return match.group(0)
-            repointed = posixpath.relpath(
-                staged_target.as_posix(), start=relative.parent.as_posix() or "."
-            )
             rewrites += 1
-            return f"{prefix}{repointed}"
+            return f"{prefix}{posixpath.relpath(target.as_posix(), start=start)}"
 
-        rewritten = pattern.sub(replace, text)
+        rewritten = _MD_IMAGE_RE.sub(replace_markdown, text)
+        rewritten = _HTML_IMAGE_RE.sub(replace_html, rewritten)
         if rewritten != text:
             markdown_path.write_text(rewritten, encoding="utf-8")
     if rewrites:
         log(f"[md-site] repointed {rewrites} image reference(s) to staged files")
     return rewrites
+
+
+def ensure_page_titles(staged_dir: Path, *, titles: dict[str, str] | None = None, log=print) -> int:
+    """Give every staged page a level-1 heading so the sidebar can link it.
+
+    Sphinx refuses to link a toctree entry with no title, which drops legacy
+    documents that simply start with body text. Prepend the manifest title (or
+    the filename) to the staged copy rather than asking anyone to edit hundreds
+    of originals.
+    """
+    titles = titles or {}
+    added = 0
+    for markdown_path in sorted(staged_dir.rglob("*.md")):
+        relative = markdown_path.relative_to(staged_dir)
+        if _skipped(relative) or relative.as_posix() == f"{_ROOT_DOC}.md":
+            continue
+        text = markdown_path.read_text(encoding="utf-8")
+        if any(line.strip().startswith("# ") for line in text.splitlines()):
+            continue
+        heading = titles.get(relative.as_posix()) or markdown_path.stem
+        markdown_path.write_text(f"# {heading}\n\n{text.lstrip()}", encoding="utf-8")
+        added += 1
+    if added:
+        log(f"[md-site] added a heading to {added} page(s) that had none")
+    return added
 
 
 def _toctree_block(pages: list[Path]) -> str:
@@ -360,8 +445,13 @@ def render_markdown_site(
         staged_dir.mkdir(parents=True, exist_ok=True)
 
         manifest_routes: list[Path] | None = None
+        route_titles: dict[str, str] = {}
         if entries:
             manifest_routes = stage_manifest(entries, staged_dir, title=resolved_title)
+            route_titles = {
+                route.as_posix(): entry.title
+                for entry, route in zip(entries, manifest_routes, strict=True)
+            }
         elif source is not None and source.is_file():
             shutil.copyfile(source, staged_dir / f"{_ROOT_DOC}.md")
             if assets_dir is not None:
@@ -378,6 +468,7 @@ def render_markdown_site(
             raise RuntimeError(f"no markdown files found under {manifest or source}")
         if normalize_images:
             normalize_image_refs(staged_dir, log=log)
+        ensure_page_titles(staged_dir, titles=route_titles, log=log)
         if manifest_routes is None:
             children = _write_root_index(staged_dir, title=resolved_title, pages=pages)
         else:
@@ -464,6 +555,54 @@ def read_manifest(manifest_path: Path, *, base_dir: Path | None = None) -> list[
     return sorted(entries, key=lambda entry: (entry.section, entry.order, entry.title))
 
 
+def _first_heading(markdown_path: Path) -> str:
+    for line in markdown_path.read_text(encoding="utf-8", errors="replace").splitlines():
+        stripped = line.strip()
+        if stripped.startswith("# "):
+            return stripped[2:].strip()
+    return markdown_path.stem
+
+
+def write_manifest_scaffold(source_dir: Path, manifest_path: Path, *, log=print) -> int:
+    """Scaffold a batch manifest CSV from an existing folder of Markdown.
+
+    Hand-writing an inventory for a large backlog is the real chore, so derive
+    a starting point: title from each document's first ``# `` heading, section
+    from its top-level subfolder, order from the alphabetical position inside
+    that section. The operator then edits titles/sections/order by hand — the
+    CSV is the editable layer, this only fills the blank page.
+    """
+    source_dir = source_dir.expanduser()
+    if not source_dir.is_dir():
+        raise RuntimeError(f"--init-manifest needs a folder as --source: {source_dir}")
+    manifest_path = manifest_path.expanduser()
+    pages = discover_markdown(source_dir)
+    if not pages:
+        raise RuntimeError(f"no markdown files found under {source_dir}")
+
+    rows: list[tuple[str, str, str, int]] = []
+    counters: dict[str, int] = {}
+    for page in pages:
+        section = page.parts[0] if len(page.parts) > 1 else ""
+        counters[section] = counters.get(section, 0) + 1
+        source_ref = posixpath.relpath(
+            (source_dir / page).resolve(strict=False).as_posix(),
+            start=manifest_path.parent.resolve(strict=False).as_posix(),
+        )
+        rows.append((source_ref, _first_heading(source_dir / page), section, counters[section]))
+
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    with manifest_path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(MANIFEST_COLUMNS)
+        writer.writerows(rows)
+    log(
+        f"[md-site] wrote {manifest_path} with {len(rows)} row(s); "
+        "edit title/section/order, then rebuild with --manifest"
+    )
+    return len(rows)
+
+
 def _slug(text: str) -> str:
     """Filesystem-safe route segment that keeps non-Latin words readable.
 
@@ -531,7 +670,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         type=Path,
         help=f"Batch CSV inventory with columns: {', '.join(MANIFEST_COLUMNS)} (only 'source' is required)",
     )
-    parser.add_argument("--output-dir", required=True, type=Path, help="Where to write the static site")
+    parser.add_argument(
+        "--init-manifest",
+        default=None,
+        type=Path,
+        help="Scaffold a manifest CSV from --source and exit (title from first heading, section from subfolder)",
+    )
+    parser.add_argument("--output-dir", type=Path, help="Where to write the static site")
     parser.add_argument("--title", default=None, help="Site title (default: source name)")
     parser.add_argument("--assets", default=None, type=Path, help="Single-file mode: folder of images to copy alongside")
     parser.add_argument("--work-dir", default=None, type=Path, help="Keep the staged Sphinx source here (for debugging)")
@@ -547,6 +692,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.init_manifest is not None:
+        if args.source is None:
+            raise RuntimeError("--init-manifest requires --source <folder>")
+        write_manifest_scaffold(args.source, args.init_manifest)
+        return 0
+    if args.output_dir is None:
+        raise RuntimeError("--output-dir is required (omit it only with --init-manifest)")
     render_markdown_site(
         source=args.source,
         manifest=args.manifest,

@@ -214,6 +214,71 @@ class PlainMarkdownSiteTests(unittest.TestCase):
             self.assertIn("https://example.com/pic.png", text)
             self.assertIn("![unknown](assets/nothere.png)", text)
 
+    def test_non_ascii_image_paths_get_an_ascii_staged_copy(self) -> None:
+        """MyST percent-encodes image URIs and Sphinx then cannot find the file.
+
+        A legacy backlog with Chinese asset names would render every such image
+        broken, so the staged copy must point at an ASCII path.
+        """
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "图片").mkdir()
+            (staged / "图片" / "面板.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+            (staged / "doc.md").write_text("# Doc\n\n![面板](图片/面板.png)\n", encoding="utf-8")
+            pms.normalize_image_refs(staged, log=lambda _m: None)
+            text = (staged / "doc.md").read_text(encoding="utf-8")
+            self.assertNotIn("图片/面板.png", text)
+            self.assertIn("_md_assets/", text)
+            self.assertTrue(any((staged / "_md_assets").glob("*.png")))
+            # the visible alt text is preserved
+            self.assertIn("![面板]", text)
+
+    def test_ascii_image_paths_are_left_untouched(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "img").mkdir()
+            (staged / "img" / "panel.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+            original = "# Doc\n\n![p](img/panel.png)\n"
+            (staged / "doc.md").write_text(original, encoding="utf-8")
+            rewrites = pms.normalize_image_refs(staged, log=lambda _m: None)
+            self.assertEqual(0, rewrites)
+            self.assertEqual(original, (staged / "doc.md").read_text(encoding="utf-8"))
+            self.assertFalse((staged / "_md_assets").exists())
+
+    def test_pages_without_a_heading_get_one(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "index.md").write_text("# Root\n", encoding="utf-8")
+            (staged / "legacy.md").write_text("Body text only, no heading.\n", encoding="utf-8")
+            (staged / "titled.md").write_text("# Has One\n\nBody.\n", encoding="utf-8")
+            added = pms.ensure_page_titles(
+                staged, titles={"legacy.md": "从清单来的标题"}, log=lambda _m: None
+            )
+            self.assertEqual(1, added)
+            self.assertTrue(
+                (staged / "legacy.md").read_text(encoding="utf-8").startswith("# 从清单来的标题")
+            )
+            self.assertEqual("# Has One\n\nBody.\n", (staged / "titled.md").read_text(encoding="utf-8"))
+            self.assertEqual("# Root\n", (staged / "index.md").read_text(encoding="utf-8"))
+
+    def test_init_manifest_scaffolds_from_a_folder(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "backlog"
+            (source / "产品手册").mkdir(parents=True)
+            (source / "内部流程").mkdir(parents=True)
+            (source / "产品手册" / "a.md").write_text("# 手册甲\n\nText.\n", encoding="utf-8")
+            (source / "产品手册" / "b.md").write_text("no heading here\n", encoding="utf-8")
+            (source / "内部流程" / "c.md").write_text("# 流程丙\n", encoding="utf-8")
+            manifest = source / "inventory.csv"
+            count = pms.write_manifest_scaffold(source, manifest, log=lambda _m: None)
+            self.assertEqual(3, count)
+            entries = pms.read_manifest(manifest)
+            self.assertEqual(
+                [("手册甲", "产品手册"), ("b", "产品手册"), ("流程丙", "内部流程")],
+                [(entry.title, entry.section) for entry in entries],
+            )
+
     def test_manifest_is_read_and_sorted_by_section_then_order(self) -> None:
         with TemporaryDirectory() as td:
             root = Path(td)
