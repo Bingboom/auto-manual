@@ -67,7 +67,7 @@
           ],
           "page": "05_operation_guide",
           "recipe": "templates/recipes/eu-en/05_operation_guide.yaml",
-          "template": "templates/page_eu-en/05_operation_guide_placeholder.rst",
+          "template": "templates/page_au-en/05_operation_guide_placeholder.rst",
           "type": "generated_page"
         },
         {

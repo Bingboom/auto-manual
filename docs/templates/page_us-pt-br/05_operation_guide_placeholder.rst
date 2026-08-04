@@ -106,22 +106,6 @@ A luz LED possui dois modos: modo de luz e modo SOS. Em qualquer modo, pressione
 | Pressione novamente para alternar para o modo SOS.
 | Pressione uma terceira vez para desligar a luz.
 
-FUNÇÃO DE RETOMADA DA SAÍDA CA E CC
------------------------------------
-
-A Função de Retomada da Saída CA/CC é desativada por padrão. Ative essa função no aplicativo para permitir que o dispositivo memorize o status da saída CA/CC e retome automaticamente as saídas CA e CC em condições definidas.
-
-+---------------------------------------------------------------+--------------------------------------------------+
-| Condições de retomada automática                              | Condições sem retomada automática                |
-+===============================================================+==================================================+
-| Ligar/reiniciar após desligamento ou reinicialização          | Saída desligada manualmente (botão/aplicativo)   |
-+---------------------------------------------------------------+--------------------------------------------------+
-| SOC da bateria ≥ limite de descarga +10% após atingir limite  | Saída desligada pelo Modo de Economia de Energia |
-+---------------------------------------------------------------+--------------------------------------------------+
-|                                                               | Saída desligada por proteção acionada            |
-+---------------------------------------------------------------+--------------------------------------------------+
-| Atualização OTA concluída                                     | Saída desligada por temporizador de descarga     |
-+---------------------------------------------------------------+--------------------------------------------------+
 
 TELA LCD
 --------
