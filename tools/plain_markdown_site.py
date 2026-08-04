@@ -21,12 +21,16 @@ stylesheet is taken from ``--stylesheet`` or a sibling ``style/web_manual.css``.
 from __future__ import annotations
 
 import argparse
+import csv
+import posixpath
+import re
 import shutil
 import subprocess
 import sys
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
+from urllib.parse import unquote
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
 # Running this file directly puts only tools/ on sys.path, so make the repo root
@@ -90,6 +94,65 @@ def _copy_tree(source_dir: Path, staged_dir: Path) -> None:
 
 def _has_toctree(markdown_path: Path) -> bool:
     return _TOCTREE_FENCE in markdown_path.read_text(encoding="utf-8")
+
+
+def _asset_index(staged_dir: Path) -> dict[str, Path]:
+    """Map every staged non-markdown file basename to its path (first wins)."""
+    index: dict[str, Path] = {}
+    for path in sorted(staged_dir.rglob("*")):
+        if not path.is_file() or path.suffix.lower() == ".md":
+            continue
+        relative = path.relative_to(staged_dir)
+        if _skipped(relative) or relative.parts[0] == _STATIC_DIRNAME:
+            continue
+        index.setdefault(path.name, relative)
+    return index
+
+
+def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
+    """Repoint image references whose path is missing but whose file is staged.
+
+    Legacy and pipeline-exported Markdown often carries paths from wherever it
+    used to live (a published manual, for example, references
+    ``../../../_static/manual-assets/<model>/<region>/md/assets/x.png``). The
+    file itself is usually right there in the tree under a different route, so
+    resolve by basename instead of making every author run ``sed``. Only
+    unresolvable references are touched; correct relative paths are left alone.
+    """
+    index = _asset_index(staged_dir)
+    if not index:
+        return 0
+    pattern = re.compile(r'(!\[[^\]]*\]\(\s*|<img\b[^>]*?\bsrc=["\'])([^)"\'\s]+)')
+    rewrites = 0
+    for markdown_path in sorted(staged_dir.rglob("*.md")):
+        relative = markdown_path.relative_to(staged_dir)
+        if _skipped(relative):
+            continue
+        text = markdown_path.read_text(encoding="utf-8")
+
+        def replace(match: re.Match[str]) -> str:
+            nonlocal rewrites
+            prefix, ref = match.group(1), match.group(2)
+            if "://" in ref or ref.startswith(("data:", "/", "#")):
+                return match.group(0)
+            candidate = (markdown_path.parent / unquote(ref)).resolve(strict=False)
+            if candidate.is_file():
+                return match.group(0)
+            staged_target = index.get(Path(unquote(ref)).name)
+            if staged_target is None:
+                return match.group(0)
+            repointed = posixpath.relpath(
+                staged_target.as_posix(), start=relative.parent.as_posix() or "."
+            )
+            rewrites += 1
+            return f"{prefix}{repointed}"
+
+        rewritten = pattern.sub(replace, text)
+        if rewritten != text:
+            markdown_path.write_text(rewritten, encoding="utf-8")
+    if rewrites:
+        log(f"[md-site] repointed {rewrites} image reference(s) to staged files")
+    return rewrites
 
 
 def _toctree_block(pages: list[Path]) -> str:
@@ -232,23 +295,36 @@ def _guard_output_dir(output_dir: Path) -> None:
 
 def render_markdown_site(
     *,
-    source: Path,
+    source: Path | None = None,
+    manifest: Path | None = None,
     output_dir: Path,
     title: str | None = None,
     assets_dir: Path | None = None,
     work_dir: Path | None = None,
     stylesheet: Path | None = None,
     strict: bool = False,
+    normalize_images: bool = True,
     log=print,
 ) -> MarkdownSite:
-    source = source.expanduser()
+    if (source is None) == (manifest is None):
+        raise RuntimeError("pass exactly one of source= or manifest=")
     output_dir = output_dir.expanduser()
-    if not source.exists():
-        raise RuntimeError(f"source not found: {source}")
     _guard_output_dir(output_dir)
 
-    resolved_title = (title or source.stem if source.is_file() else title or source.name).strip()
-    resolved_title = resolved_title or "Markdown Site"
+    entries: list[ManifestEntry] = []
+    if manifest is not None:
+        manifest = manifest.expanduser()
+        if not manifest.is_file():
+            raise RuntimeError(f"manifest not found: {manifest}")
+        entries = read_manifest(manifest)
+        resolved_title = (title or manifest.stem).strip() or "Markdown Site"
+    else:
+        assert source is not None
+        source = source.expanduser()
+        if not source.exists():
+            raise RuntimeError(f"source not found: {source}")
+        resolved_title = (title or source.stem if source.is_file() else title or source.name).strip()
+        resolved_title = resolved_title or "Markdown Site"
 
     with tempfile.TemporaryDirectory() as tmp:
         staged_dir = (work_dir.expanduser() if work_dir else Path(tmp) / "source")
@@ -256,7 +332,10 @@ def render_markdown_site(
             shutil.rmtree(staged_dir)
         staged_dir.mkdir(parents=True, exist_ok=True)
 
-        if source.is_file():
+        manifest_routes: list[Path] | None = None
+        if entries:
+            manifest_routes = stage_manifest(entries, staged_dir, title=resolved_title)
+        elif source is not None and source.is_file():
             shutil.copyfile(source, staged_dir / f"{_ROOT_DOC}.md")
             if assets_dir is not None:
                 assets_source = assets_dir.expanduser()
@@ -264,12 +343,18 @@ def render_markdown_site(
                     raise RuntimeError(f"assets directory not found: {assets_source}")
                 shutil.copytree(assets_source, staged_dir / assets_source.name, dirs_exist_ok=True)
         else:
+            assert source is not None
             _copy_tree(source, staged_dir)
 
         pages = discover_markdown(staged_dir)
         if not pages:
-            raise RuntimeError(f"no markdown files found under {source}")
-        children = _write_root_index(staged_dir, title=resolved_title, pages=pages)
+            raise RuntimeError(f"no markdown files found under {manifest or source}")
+        if normalize_images:
+            normalize_image_refs(staged_dir, log=log)
+        if manifest_routes is None:
+            children = _write_root_index(staged_dir, title=resolved_title, pages=pages)
+        else:
+            children = manifest_routes
         write_conf_py(staged_dir, title=resolved_title)
         stylesheet_path, origin = resolve_stylesheet(staged_dir, explicit=stylesheet)
 
@@ -286,7 +371,7 @@ def render_markdown_site(
             f"(style: {origin})"
         )
         return MarkdownSite(
-            source_dir=source,
+            source_dir=source if source is not None else manifest,
             output_dir=output_dir,
             page_count=page_count,
             stylesheet=stylesheet_path,
@@ -294,15 +379,142 @@ def render_markdown_site(
         )
 
 
+@dataclass(frozen=True)
+class ManifestEntry:
+    source: Path
+    title: str
+    section: str
+    order: int
+
+
+MANIFEST_COLUMNS = ("source", "title", "section", "order")
+
+
+def read_manifest(manifest_path: Path, *, base_dir: Path | None = None) -> list[ManifestEntry]:
+    """Read a batch manifest CSV: ``source`` required, ``title``/``section``/``order`` optional.
+
+    ``source`` is a markdown file path, relative to the manifest's own folder
+    unless absolute, so a manifest can travel with the documents it lists.
+    Rows whose source is blank or that start with ``#`` are ignored, which keeps
+    a hand-maintained inventory easy to comment out.
+    """
+    base = base_dir or manifest_path.parent
+    entries: list[ManifestEntry] = []
+    with manifest_path.open(newline="", encoding="utf-8-sig") as handle:
+        reader = csv.DictReader(handle)
+        if reader.fieldnames is None or "source" not in {
+            (name or "").strip().lower() for name in reader.fieldnames
+        }:
+            raise RuntimeError(
+                f"{manifest_path} needs a header row with a 'source' column "
+                f"(optional: {', '.join(MANIFEST_COLUMNS[1:])})"
+            )
+        for index, raw in enumerate(reader):
+            row = {(key or "").strip().lower(): (value or "").strip() for key, value in raw.items()}
+            source_text = row.get("source", "")
+            if not source_text or source_text.startswith("#"):
+                continue
+            source = Path(source_text).expanduser()
+            if not source.is_absolute():
+                source = base / source
+            if not source.is_file():
+                raise RuntimeError(f"{manifest_path}: source not found: {source}")
+            order_text = row.get("order", "")
+            try:
+                order = int(order_text) if order_text else index
+            except ValueError as exc:
+                raise RuntimeError(f"{manifest_path}: order must be an integer, got {order_text!r}") from exc
+            entries.append(
+                ManifestEntry(
+                    source=source,
+                    title=row.get("title", "") or source.stem,
+                    section=row.get("section", ""),
+                    order=order,
+                )
+            )
+    if not entries:
+        raise RuntimeError(f"{manifest_path} lists no usable sources")
+    return sorted(entries, key=lambda entry: (entry.section, entry.order, entry.title))
+
+
+def _slug(text: str) -> str:
+    """Filesystem-safe route segment that keeps non-Latin words readable.
+
+    CJK titles and sections must survive: stripping to ASCII collapses them to
+    one placeholder, which silently merges different sections into the same
+    route. ``\\w`` under re.UNICODE keeps letters/digits from any script.
+    """
+    slug = re.sub(r"\s+", "-", text.strip())
+    slug = re.sub(r"[^\w.-]+", "-", slug, flags=re.UNICODE)
+    slug = re.sub(r"-{2,}", "-", slug).strip("-.")
+    return slug.lower() or "page"
+
+
+def stage_manifest(entries: list[ManifestEntry], staged_dir: Path, *, title: str) -> list[Path]:
+    """Copy manifest sources into ``staged_dir``, grouped by section, and index them."""
+    used: set[str] = set()
+    routes: list[tuple[ManifestEntry, Path]] = []
+    for entry in entries:
+        parent = Path(_slug(entry.section)) if entry.section else Path()
+        stem = _slug(entry.title if entry.title != entry.source.stem else entry.source.stem)
+        route = parent / f"{stem}.md"
+        suffix = 2
+        while route.as_posix() in used:
+            route = parent / f"{stem}-{suffix}.md"
+            suffix += 1
+        used.add(route.as_posix())
+        destination = staged_dir / route
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(entry.source, destination)
+        # Bring each document's sibling folders (images and the like) along.
+        for sibling in sorted(entry.source.parent.iterdir()):
+            if sibling.is_dir() and not _is_skipped_dir(sibling):
+                shutil.copytree(sibling, destination.parent / sibling.name, dirs_exist_ok=True)
+        routes.append((entry, route))
+
+    lines = [f"# {title}", ""]
+    current_section = None
+    for entry, route in routes:
+        if entry.section != current_section:
+            current_section = entry.section
+            if current_section:
+                lines += [f"## {current_section}", ""]
+        lines.append(f"- [{entry.title}]({route.as_posix()})")
+    lines.append("")
+
+    grouped: dict[str, list[Path]] = {}
+    for entry, route in routes:
+        grouped.setdefault(entry.section, []).append(route)
+    for section, section_routes in grouped.items():
+        lines += [_TOCTREE_FENCE, ":maxdepth: 2", ":hidden:", ""]
+        if section:
+            lines.insert(len(lines) - 1, f":caption: {section}")
+        lines += [route.with_suffix("").as_posix() for route in section_routes]
+        lines += ["```", ""]
+    (staged_dir / f"{_ROOT_DOC}.md").write_text("\n".join(lines), encoding="utf-8")
+    return [route for _entry, route in routes]
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--source", required=True, type=Path, help="A .md file, or a folder of .md files")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--source", type=Path, help="A .md file, or a folder of .md files")
+    group.add_argument(
+        "--manifest",
+        type=Path,
+        help=f"Batch CSV inventory with columns: {', '.join(MANIFEST_COLUMNS)} (only 'source' is required)",
+    )
     parser.add_argument("--output-dir", required=True, type=Path, help="Where to write the static site")
     parser.add_argument("--title", default=None, help="Site title (default: source name)")
     parser.add_argument("--assets", default=None, type=Path, help="Single-file mode: folder of images to copy alongside")
     parser.add_argument("--work-dir", default=None, type=Path, help="Keep the staged Sphinx source here (for debugging)")
     parser.add_argument("--stylesheet", default=None, type=Path, help="Override the manual stylesheet")
     parser.add_argument("--strict", action="store_true", help="Treat Sphinx warnings as errors")
+    parser.add_argument(
+        "--keep-image-refs",
+        action="store_true",
+        help="Do not repoint image references that fail to resolve in the staged tree",
+    )
     return parser.parse_args(argv)
 
 
@@ -310,7 +522,9 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     render_markdown_site(
         source=args.source,
+        manifest=args.manifest,
         output_dir=args.output_dir,
+        normalize_images=not args.keep_image_refs,
         title=args.title,
         assets_dir=args.assets,
         work_dir=args.work_dir,

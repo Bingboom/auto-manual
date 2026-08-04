@@ -152,6 +152,111 @@ class PlainMarkdownSiteTests(unittest.TestCase):
                     source=source, output_dir=root / "site", log=lambda _m: None
                 )
 
+    def test_image_refs_are_repointed_to_staged_files(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "assets").mkdir()
+            (staged / "assets" / "pic.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+            (staged / "doc.md").write_text(
+                "# Doc\n\n"
+                "![stale](../../../_static/manual-assets/JE-1000F/US/md/assets/pic.png)\n\n"
+                '<img src="../../../_static/manual-assets/JE-1000F/US/md/assets/pic.png"/>\n\n'
+                "![ok](assets/pic.png)\n\n"
+                "![remote](https://example.com/pic.png)\n\n"
+                "![unknown](assets/nothere.png)\n",
+                encoding="utf-8",
+            )
+            rewrites = pms.normalize_image_refs(staged, log=lambda _m: None)
+            text = (staged / "doc.md").read_text(encoding="utf-8")
+            self.assertEqual(2, rewrites)
+            self.assertNotIn("manual-assets", text)
+            self.assertIn("![stale](assets/pic.png)", text)
+            self.assertIn('<img src="assets/pic.png"', text)
+            # untouched: already resolvable, remote, and genuinely missing
+            self.assertIn("![ok](assets/pic.png)", text)
+            self.assertIn("https://example.com/pic.png", text)
+            self.assertIn("![unknown](assets/nothere.png)", text)
+
+    def test_manifest_is_read_and_sorted_by_section_then_order(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            for name in ("a.md", "b.md", "c.md"):
+                (root / name).write_text(f"# {name}\n", encoding="utf-8")
+            manifest = root / "inventory.csv"
+            manifest.write_text(
+                "source,title,section,order\n"
+                "c.md,Third,Guides,2\n"
+                "a.md,First,Guides,1\n"
+                "b.md,Loose,,1\n"
+                "# skipped.md,Ignored,,9\n",
+                encoding="utf-8",
+            )
+            entries = pms.read_manifest(manifest)
+            self.assertEqual(["Loose", "First", "Third"], [entry.title for entry in entries])
+            self.assertEqual(["", "Guides", "Guides"], [entry.section for entry in entries])
+
+    def test_manifest_requires_a_source_column(self) -> None:
+        with TemporaryDirectory() as td:
+            manifest = Path(td) / "bad.csv"
+            manifest.write_text("path,title\nx.md,X\n", encoding="utf-8")
+            with self.assertRaises(RuntimeError) as ctx:
+                pms.read_manifest(manifest)
+            self.assertIn("source", str(ctx.exception))
+
+    def test_manifest_staging_keeps_non_latin_sections_distinct(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            source_dir = root / "src"
+            source_dir.mkdir()
+            for name in ("one.md", "two.md"):
+                (source_dir / name).write_text(f"# {name}\n", encoding="utf-8")
+            entries = [
+                pms.ManifestEntry(source=source_dir / "one.md", title="产品手册页", section="产品手册", order=1),
+                pms.ManifestEntry(source=source_dir / "two.md", title="现场笔记", section="内部资料", order=1),
+            ]
+            staged = root / "staged"
+            staged.mkdir()
+            routes = pms.stage_manifest(entries, staged, title="库")
+            route_texts = {route.as_posix() for route in routes}
+            self.assertEqual({"产品手册/产品手册页.md", "内部资料/现场笔记.md"}, route_texts)
+            index = (staged / "index.md").read_text(encoding="utf-8")
+            self.assertIn("## 产品手册", index)
+            self.assertIn("## 内部资料", index)
+            self.assertIn(":caption: 产品手册", index)
+
+    def test_render_from_manifest_builds_grouped_site(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            source_dir = root / "src"
+            source_dir.mkdir()
+            (source_dir / "assets").mkdir()
+            (source_dir / "assets" / "pic.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+            (source_dir / "guide.md").write_text("# Guide\n\n![p](assets/pic.png)\n", encoding="utf-8")
+            (source_dir / "note.md").write_text("# Note\n\nText.\n", encoding="utf-8")
+            manifest = root / "inventory.csv"
+            manifest.write_text(
+                "source,title,section,order\n"
+                "src/guide.md,Guide,Manuals,1\n"
+                "src/note.md,Note,Notes,1\n",
+                encoding="utf-8",
+            )
+            output = root / "site"
+            site = pms.render_markdown_site(
+                manifest=manifest, output_dir=output, title="Library", log=lambda _m: None
+            )
+            self.assertEqual(3, site.page_count)
+            self.assertTrue((output / "manuals" / "guide.html").is_file())
+            self.assertTrue((output / "notes" / "note.html").is_file())
+            index_html = (output / "index.html").read_text(encoding="utf-8")
+            self.assertIn("Manuals", index_html)
+            self.assertIn("Notes", index_html)
+
+    def test_source_and_manifest_are_mutually_exclusive(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            with self.assertRaises(RuntimeError):
+                pms.render_markdown_site(output_dir=root / "site", log=lambda _m: None)
+
     def test_pipeline_owned_output_dirs_are_refused(self) -> None:
         from tools.utils.path_utils import get_paths, releases_of, repo_root
 
