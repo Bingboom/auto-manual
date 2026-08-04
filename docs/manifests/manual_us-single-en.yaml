@@ -3,6 +3,9 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_shared/en/00_preface.rst
+    # Single-language line: trims the inherited FR/ES blocks that
+    # data/lang_parity_known_exceptions.csv used to carry as accepted debt.
+    lang_blocks: true
   - type: rst_include
     lang: en
     file: templates/page_us-en/safety_en.rst

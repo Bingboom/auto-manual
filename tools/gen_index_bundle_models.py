@@ -34,6 +34,12 @@ class MaterializedBundle:
     snippet_ids: tuple[str, ...] = ()
     asset_usage_manifest_path: Path | None = None
     asset_registry_snapshot_path: Path | None = None
+    # The target's resolved language scope, and the bundle page files whose
+    # manifest entry declared `lang_blocks`. A review overlay replaces those
+    # files with the committed derivative, so the caller re-applies the trim
+    # afterwards — see tools/build_docs_bundle.py.
+    languages: tuple[str, ...] = ()
+    lang_block_pages: tuple[tuple[str, str | None], ...] = ()
 
 
 def repo_relative(path: Path | None, *, repo_root: Path) -> str | None:

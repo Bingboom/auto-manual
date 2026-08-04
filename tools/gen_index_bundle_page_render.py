@@ -77,6 +77,7 @@ def materialize_planned_page(
     title: str,
     model: str | None,
     region: str | None,
+    langs: list[str] | tuple[str, ...] = (),
     draft_placeholders: bool = False,
     cover_pdf_page_cls: type[Any],
     pdf_insert_page_cls: type[Any],
@@ -102,6 +103,7 @@ def materialize_planned_page(
     strip_capability_sections: Callable[..., tuple[str, list[str]]],
     capability_data_dir: Path,
     capability_notes: list[str] | None = None,
+    trim_language_blocks: Callable[..., tuple[str, tuple[str, ...]]] | None = None,
 ) -> tuple[str, Any | None]:
     page = planned.page
 
@@ -218,6 +220,23 @@ def materialize_planned_page(
 
     if not isinstance(page, generated_page_cls):
         rst_text = source_path.read_text(encoding="utf-8")
+        # A `lang_blocks` page carries every family language inline; drop the
+        # blocks this target does not ship before anything else reads the text.
+        if (
+            trim_language_blocks is not None
+            and getattr(page, "lang_blocks", False)
+            and langs
+        ):
+            rst_text, dropped_langs = trim_language_blocks(
+                rst_text,
+                languages=list(langs),
+                page_lang=planned.lang,
+            )
+            for dropped_lang in dropped_langs:
+                print(
+                    f"[bundle-page] {source_path.name}: dropped '{dropped_lang}' "
+                    f"language block (target ships {list(langs)})"
+                )
         rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
     # Resolve section markers before asset rewriting so a dropped section
     # never stages its images, and before the empty-line normalizer so the

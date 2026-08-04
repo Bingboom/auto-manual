@@ -3,6 +3,8 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_shared/en/00_preface.rst
+    # Single-language line: trims the inherited FR/ES blocks.
+    lang_blocks: true
   - type: rst_include
     lang: en
     file: templates/page_eu-en/safety_en.rst

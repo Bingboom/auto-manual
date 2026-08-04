@@ -64,15 +64,33 @@ def resolve_bundle_materialization_context(
 ) -> BundleMaterializationContext:
     target_model = resolve_build_model(cfg, model)
     target_region = resolve_build_region(cfg, region)
-    configured_langs = tuple(build_langs(cfg))
+    from tools.model_languages import resolve_target_languages
+    from tools.utils.path_utils import Paths
+
+    # build.languages is the family union; data/model_languages.csv says which
+    # of those this model ships. Narrow here so the csv-page renderer, the
+    # substitutions and the page plan all see one language set.
+    language_scope = resolve_target_languages(
+        build_langs(cfg),
+        model=target_model,
+        region=target_region,
+        data_dir=Paths(root=repo_root).data_dir,
+    )
+    configured_langs = tuple(language_scope.languages)
     requested_lang = ""
     if (lang or "").strip():
         from tools.language_aliases import normalize_language
 
         requested_lang = normalize_language(lang, supported=configured_langs)
         if requested_lang not in configured_langs:
+            shipped = (
+                f"; {language_scope.document_key} ships "
+                f"{list(language_scope.languages)} per data/model_languages.csv"
+                if language_scope.is_trimmed else ""
+            )
             raise RuntimeError(
-                f"Requested lang {lang!r} is not declared in build.languages: {list(configured_langs)}"
+                f"Requested lang {lang!r} is not declared in build.languages: "
+                f"{list(configured_langs)}{shipped}"
             )
     resolved_langs = (requested_lang,) if requested_lang else configured_langs
     primary_lang = str(resolved_langs[0]) if resolved_langs else "en"
@@ -136,6 +154,15 @@ def resolve_bundle_materialization_context(
         **load_rst_substitutions(docs_dir / "conf_base.py"),
         **load_config_rst_substitutions(cfg),
     }
+    if language_scope.is_trimmed and "MANUAL_LANGUAGE_SCOPE" in base_substitutions:
+        # The family literal names every family language; a trimmed book must
+        # not advertise one it no longer contains. Only override where the
+        # family already declared the substitution.
+        from tools.model_languages import language_scope_label
+
+        base_substitutions["MANUAL_LANGUAGE_SCOPE"] = language_scope_label(
+            language_scope.languages
+        )
     title_substitutions = {
         **base_substitutions,
         **resolve_spec_master_substitutions(
@@ -263,6 +290,7 @@ def materialize_bundle_pages(
             title=context.title,
             model=context.target_model,
             region=context.target_region,
+            langs=list(context.build_langs),
             draft_placeholders=context.draft_placeholders,
         )
         target_path.parent.mkdir(parents=True, exist_ok=True)
@@ -355,4 +383,10 @@ def build_materialized_bundle_result(
         page_manifest_path=context.page_manifest_path,
         recipe_ids=tuple(dict.fromkeys(recipe_ids)),
         snippet_ids=tuple(dict.fromkeys(snippet_ids)),
+        languages=tuple(context.build_langs),
+        lang_block_pages=tuple(
+            (planned.file_name, planned.lang)
+            for planned in context.planned_pages
+            if getattr(planned.page, "lang_blocks", False)
+        ),
     )

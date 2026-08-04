@@ -63,6 +63,9 @@ class RstIncludePage:
     lang: str | None
     # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
     capability: str | None = None
+    # 多语整页:模板内含多个语言块(前言页),装配期按 model_languages.csv
+    # 解析出的语言集合裁掉块(False=整页按 lang 归属单一语言)
+    lang_blocks: bool = False
 
 
 ConfigPage: TypeAlias = CoverPdfPage | CsvPage | GeneratedPage | PdfInsertPage | RstIncludePage
@@ -103,6 +106,21 @@ def parse_config_pages(
                 "ERROR", f"pages[{idx}].capability must be a non-empty string"))
             continue
         capability = capability_raw.strip() if isinstance(capability_raw, str) else None
+
+        lang_blocks_raw = raw.get("lang_blocks")
+        if lang_blocks_raw is not None and not isinstance(lang_blocks_raw, bool):
+            issues.append(PageParseIssue(
+                "ERROR", f"pages[{idx}].lang_blocks must be a boolean"))
+            continue
+        # Reject the annotation on page types that cannot carry inline language
+        # blocks, so a mis-annotated manifest fails instead of silently
+        # trimming nothing.
+        if lang_blocks_raw is not None and page_type != "rst_include":
+            issues.append(PageParseIssue(
+                "ERROR",
+                f"pages[{idx}].lang_blocks is only supported on rst_include, "
+                f"not {page_type}"))
+            continue
 
         if page_type == "cover_pdf":
             file_name = raw.get("file")
@@ -270,6 +288,7 @@ def parse_config_pages(
                     file=file_name.strip(),
                     lang=lang,
                     capability=capability,
+                    lang_blocks=bool(lang_blocks_raw),
                 )
             )
             continue

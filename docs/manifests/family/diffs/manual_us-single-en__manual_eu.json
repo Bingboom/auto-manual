@@ -13,6 +13,7 @@
         {
           "file": "templates/page_eu/00_preface.rst",
           "lang": "en",
+          "lang_blocks": true,
           "type": "rst_include"
         },
         {
