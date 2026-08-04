@@ -1,5 +1,5 @@
 capability,scope,page_stem,match_regex,required_when_true,forbidden_when_false,notes
-AC/DC输出记忆恢复,section,05_operation_guide,Output Resume|Resume Function|记忆|記憶|恢复输出|출력[ 　]*재개,Y,N,2026-07-12 取证:操作页 AC/DC Output Resume Function 小节;true 侧开启;2026-08-03 补韩文(ko 作 'AC/DC 출력 재개 기능')
+AC/DC输出记忆恢复,section,05_operation_guide,Output Resume|Resume Function|恢复功能|记忆|記憶|復帰機能|恢复输出|reanudación de Salida|Fonction de reprise|Wiederaufnahmefunktion|ripristino delle uscite|відновлення виходів|출력[ 　]*재개|RETOMADA DA SAÍDA,Y,Y,2026-07-12 取证:操作页 AC/DC Output Resume Function 小节;true 侧开启;2026-08-03 补全十语写法并翻 forbidden_when_false=Y(按能力裁剪小节上线后 false 侧可强制);2026-08-03 补韩文(ko 作 'AC/DC 출력 재개 기능')
 加电包扩容,page,07_extra_battery,,Y,Y,"2026-07-12 三语骨架模板已建(07_extra_battery),true 侧开启;装配期由 manifest capability 注解选配"
 并机/扩展,page,07_parallel,,N,Y,"并机页模板待建;暂只拦""无能力却含页"""
 UPS功能,page,06_ups_mode,,Y,Y,UPS 能力决定 UPS 章节页的有无

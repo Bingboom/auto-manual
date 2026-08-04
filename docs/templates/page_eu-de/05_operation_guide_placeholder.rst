@@ -109,6 +109,8 @@ Die LED-Leuchte verfügt über zwei Modi: Lichtmodus und SOS-Modus. Halten Sie i
 | Drücken Sie sie erneut, um in den SOS-Modus zu wechseln.
 | Drücken Sie sie ein drittes Mal, um das Licht auszuschalten.
 
+.. hb-capability-begin: AC/DC输出记忆恢复
+
 Wiederaufnahmefunktion für AC- und DC-Ausgänge
 ----------------------------------------------
 
@@ -125,6 +127,9 @@ Die Wiederaufnahmefunktion für AC- und DC-Ausgänge ist standardmäßig deaktiv
 +-------------------------------------------------------------------+-------------------------------------------------------------+
 | OTA-Update abgeschlossen                                          | Durch Entlade-Timer gesteuerter Ausgang deaktiviert         |
 +-------------------------------------------------------------------+-------------------------------------------------------------+
+
+.. hb-capability-end:
+
 
 LCD-ANZEIGE
 -----------

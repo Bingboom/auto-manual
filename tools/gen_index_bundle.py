@@ -25,6 +25,7 @@ from tools.config_pages import (
     RstIncludePage,
 )
 from tools.bundle_asset_finalize import finalize_materialized_bundle
+from tools.capability_pages import strip_capability_sections
 from tools.contract_assets import ContractAssetResolver
 from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.draft_engine import (
@@ -101,6 +102,7 @@ from tools.gen_index_bundle_paths import (
 from tools.page_manifest import resolve_config_pages_or_raise
 from tools.safe_copy import copy_regular_file_no_symlinks, copytree_replace_no_symlinks
 from tools.utils.path_utils import (  # noqa: E402
+    Paths,
     get_paths,
     web_composite_manifest_of,
     word_common_assets_of,
@@ -438,6 +440,8 @@ def _materialize_planned_page(
         rewrite_rst_asset_paths=rewrite_rst_asset_paths,
         normalize_rst_empty_line_blocks=normalize_rst_empty_line_blocks,
         prepend_latex_lang=_prepend_latex_lang,
+        strip_capability_sections=strip_capability_sections,
+        capability_data_dir=Paths(root=repo_root).data_dir,
     )
 
 
