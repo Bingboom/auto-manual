@@ -715,6 +715,7 @@ Use the document that owns the topic:
 - [`.readthedocs.yaml`](.readthedocs.yaml): Read the Docs build config for the generated MyST manual catalog
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
 - [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
+- A manifest `generated_page` may declare `model_overrides.<MODEL>.recipe` and/or `.template` for a reviewed model-specific layout exception; models without that key continue to use the shared page paths.
 - [`docs/templates/page_zh/`](docs/templates/page_zh): shared zh prose-template family for the CN manual stack
 - `data/phase2/`: gitignored Feishu-synced CSV snapshot inputs for active build, review, and publish flows; only the repo-maintained [`data/phase2/page_registry.csv`](data/phase2/page_registry.csv) stays tracked because `sync-data` reads it as input
 - [`data/source_table_contracts/phase2_source_tables.json`](data/source_table_contracts/phase2_source_tables.json): repo-maintained source-table contract for phase2 keys, snapshot files, intake targets, writable fields, and source-record-index mapping; update it when online source-table structure changes. `tools/schema_drift.py` validates the contract against fixture/local snapshot headers in CI.

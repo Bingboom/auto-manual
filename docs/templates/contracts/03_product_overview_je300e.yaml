@@ -1,0 +1,32 @@
+page_id: 03_product_overview_je300e
+source_files:
+  - templates/page_eu-en/03_product_overview_je300e.rst
+  - templates/page_eu-fr/03_product_overview_je300e.rst
+  - templates/page_eu-es/03_product_overview_je300e.rst
+  - templates/page_eu-de/03_product_overview_je300e.rst
+  - templates/page_eu-it/03_product_overview_je300e.rst
+required_placeholders:
+  default:
+    - MAIN_POWER_BUTTON_LABEL
+    - FRONT_DC12_PORT_LABEL
+    - FRONT_DC12_PORT_SPEC
+    - DC_USB_POWER_BUTTON_LABEL
+    - FRONT_USB_C_HIGH_LABEL
+    - FRONT_USB_C_HIGH_SPEC
+    - AC_POWER_BUTTON_LABEL
+    - FRONT_USB_A_LABEL
+    - FRONT_USB_A_SPEC
+    - FRONT_AC_OUTPUT_LABEL
+    - FRONT_AC_OUTPUT_SPEC
+    - FRONT_TOTAL_OUTPUT_LABEL
+    - FRONT_TOTAL_OUTPUT_SPEC
+    - SIDE_DC_INPUT_LABEL
+    - SIDE_DC_INPUT_PV_SPEC
+    - SIDE_DC_INPUT_CAR_SPEC
+required_spec_keys:
+  default:
+    - product_name
+    - model_no
+allowed_languages: [en, fr, es, de, it]
+allowed_regions: [EU]
+allowed_models: [JE-300E]

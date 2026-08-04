@@ -53,6 +53,76 @@ class TestConfigPages(unittest.TestCase):
         self.assertEqual(("en", "fr"), pages[0].langs)
         self.assertEqual(("en", "fr"), pages[1].langs)
 
+    def test_generated_page_should_apply_model_recipe_and_template_override(self) -> None:
+        pages, issues = parse_config_pages(
+            [
+                {
+                    "type": "generated_page",
+                    "page": "03_product_overview",
+                    "engine": "draft_v1",
+                    "recipe": "templates/recipes/shared.yaml",
+                    "template": "templates/page/shared.rst",
+                    "model_overrides": {
+                        "JE-300E": {
+                            "recipe": "templates/recipes/je300e.yaml",
+                            "template": "templates/page/je300e.rst",
+                        }
+                    },
+                }
+            ],
+            default_languages=["en"],
+            model="JE-300E",
+        )
+
+        self.assertEqual([], issues)
+        self.assertEqual("templates/recipes/je300e.yaml", pages[0].recipe)
+        self.assertEqual("templates/page/je300e.rst", pages[0].template)
+
+    def test_generated_page_should_keep_shared_paths_for_other_models(self) -> None:
+        pages, issues = parse_config_pages(
+            [
+                {
+                    "type": "generated_page",
+                    "page": "03_product_overview",
+                    "engine": "draft_v1",
+                    "recipe": "templates/recipes/shared.yaml",
+                    "template": "templates/page/shared.rst",
+                    "model_overrides": {
+                        "JE-300E": {
+                            "recipe": "templates/recipes/je300e.yaml",
+                            "template": "templates/page/je300e.rst",
+                        }
+                    },
+                }
+            ],
+            default_languages=["en"],
+            model="JE-1000F",
+        )
+
+        self.assertEqual([], issues)
+        self.assertEqual("templates/recipes/shared.yaml", pages[0].recipe)
+        self.assertEqual("templates/page/shared.rst", pages[0].template)
+
+    def test_generated_page_should_reject_invalid_model_override(self) -> None:
+        _pages, issues = parse_config_pages(
+            [
+                {
+                    "type": "generated_page",
+                    "page": "03_product_overview",
+                    "engine": "draft_v1",
+                    "recipe": "shared.yaml",
+                    "template": "shared.rst",
+                    "model_overrides": {"JE-300E": {"unknown": "bad"}},
+                }
+            ],
+            default_languages=["en"],
+            model="JE-300E",
+        )
+
+        self.assertTrue(
+            any("has unsupported fields: unknown" in issue.msg for issue in issues)
+        )
+
     def test_parse_config_pages_should_report_invalid_fields(self) -> None:
         _pages, issues = parse_config_pages(
             [

@@ -24,6 +24,7 @@ class IdmlPageRoleTests(unittest.TestCase):
             "01_meaning_of_symbols.rst": PageRole.MEANING_OF_SYMBOLS,
             "02_whats_in_the_box.rst": PageRole.INBOX,
             "03_product_overview_placeholder.rst": PageRole.PRODUCT_OVERVIEW,
+            "03_product_overview_je300e.rst": PageRole.PRODUCT_OVERVIEW,
             "05_operation_guide_placeholder.rst": PageRole.OPERATION_GUIDE,
             "06_ups_mode.rst": PageRole.UPS_MODE,
             "07_extra_battery.rst": PageRole.EXTRA_BATTERY,

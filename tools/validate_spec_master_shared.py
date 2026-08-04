@@ -244,6 +244,8 @@ def _collect_target_selectors(
     for page in pages:
         if not isinstance(page, GeneratedPage):
             continue
+        if langs and not set(page.langs).intersection(langs):
+            continue
         recipe_path = resolve_config_path(docs_dir, page.recipe, target.model, target.region)
         if not recipe_path.exists():
             issues.append(
