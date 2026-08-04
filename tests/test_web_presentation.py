@@ -822,8 +822,8 @@ class WebPresentationTests(unittest.TestCase):
     def test_meaning_symbols_use_semantic_signal_badges_across_locales(self) -> None:
         localized_labels = {
             "symbols_en.rst": ["WARNING", "CAUTION", "NOTE", "TIP"],
-            "symbols_fr.rst": ["AVERTISSEMENT", "ATTENTION", "REMARQUE", "CONSEILS"],
-            "symbols_es.rst": ["ADVERTENCIA", "PRECAUCIÓN", "NOTA", "CONSEJOS"],
+            "symbols_fr.rst": ["AVERTISSEMENT", "ATTENTION", "REMARQUE", "CONSEIL"],
+            "symbols_es.rst": ["ADVERTENCIA", "PRECAUCIÓN", "NOTA", "CONSEJO"],
         }
 
         for source_name, expected_labels in localized_labels.items():
