@@ -245,6 +245,80 @@ class PlainMarkdownSiteTests(unittest.TestCase):
             self.assertEqual(original, (staged / "doc.md").read_text(encoding="utf-8"))
             self.assertFalse((staged / "_md_assets").exists())
 
+    def test_headerless_two_column_table_becomes_a_spec_composition(self) -> None:
+        """A pipe table cannot express what a spec block is; the upgrade must.
+
+        GFM forces a header row (rendering a phantom grey strip), cannot mark
+        the label column as <th>, and has no rowspan — exactly the three things
+        the stylesheet keys off.
+        """
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "spec.md").write_text(
+                "## INPUT PORTS\n\n"
+                "|                  |                            |\n"
+                "|------------------|----------------------------|\n"
+                "| 1 × AC Input     | Charge Mode: 15 A max.     |\n"
+                "|                  | Bypass Mode^(①): 12 A max. |\n"
+                "| 2 × DC8020 Ports | 8 A max.                   |\n",
+                encoding="utf-8",
+            )
+            upgraded = pms.upgrade_spec_tables(staged, log=lambda _m: None)
+            text = (staged / "spec.md").read_text(encoding="utf-8")
+        self.assertEqual(1, upgraded)
+        self.assertIn('class="hb-spec-table-composition"', text)
+        self.assertIn("hb-spec-table", text)
+        self.assertIn('<th class="manual-spec-label hb-spec-label" scope="row" rowspan="2">', text)
+        self.assertIn('<sup class="hb-spec-reference">①</sup>', text)
+        self.assertIn('aria-label="INPUT PORTS"', text)
+        self.assertNotIn("|------", text)  # the pipe table is gone
+        self.assertNotIn("<thead", text)  # and so is the phantom header
+
+    def test_table_with_a_real_header_is_left_alone(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            original = "# T\n\n| 参数 | 值 |\n|---|---|\n| 容量 | 1024Wh |\n"
+            (staged / "t.md").write_text(original, encoding="utf-8")
+            upgraded = pms.upgrade_spec_tables(staged, log=lambda _m: None)
+            self.assertEqual(0, upgraded)
+            self.assertEqual(original, (staged / "t.md").read_text(encoding="utf-8"))
+
+    def test_wide_and_icon_tables_do_not_become_spec_tables(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "wide.md").write_text(
+                "# W\n\n|   |   |   |\n|---|---|---|\n| a | b | c |\n", encoding="utf-8"
+            )
+            (staged / "icons.md").write_text(
+                "# I\n\n|   |   |\n|---|---|\n"
+                "| ![warn](a.png) | Warning meaning |\n"
+                "| ![note](b.png) | Note meaning |\n",
+                encoding="utf-8",
+            )
+            pms.upgrade_spec_tables(staged, log=lambda _m: None)
+            wide = (staged / "wide.md").read_text(encoding="utf-8")
+            icons = (staged / "icons.md").read_text(encoding="utf-8")
+        for text in (wide, icons):
+            self.assertIn('class="manual-table"', text)
+            self.assertNotIn("hb-spec-label", text)
+            self.assertNotIn("<thead", text)
+        self.assertIn("<img src=", icons)
+
+    def test_upgrade_can_be_disabled(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "src"
+            source.mkdir()
+            (source / "index.md").write_text(
+                "# T\n\n|   |   |\n|---|---|\n| L | V |\n", encoding="utf-8"
+            )
+            output = root / "site"
+            pms.render_markdown_site(
+                source=source, output_dir=output, upgrade_tables=False, log=lambda _m: None
+            )
+            html = (output / "index.html").read_text(encoding="utf-8")
+            self.assertNotIn("hb-spec-table", html)
+
     def test_pages_without_a_heading_get_one(self) -> None:
         with TemporaryDirectory() as td:
             staged = Path(td)

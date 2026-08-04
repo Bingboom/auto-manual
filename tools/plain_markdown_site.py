@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import html
 import posixpath
 import re
 import shutil
@@ -213,6 +214,183 @@ def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
     if rewrites:
         log(f"[md-site] repointed {rewrites} image reference(s) to staged files")
     return rewrites
+
+
+def _esc(value: object) -> str:
+    return html.escape(str(value), quote=True)
+
+
+_BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
+_ITALIC_RE = re.compile(r"(?<![\*\w])\*(?!\s)(.+?)(?<!\s)\*(?!\w)")
+_CODE_RE = re.compile(r"`([^`]+)`")
+
+
+def _inline(text: str) -> str:
+    """Escape a cell, then re-enable the inline Markdown a table cell may carry."""
+    escaped = _esc(text)
+    escaped = _CODE_RE.sub(r"<code>\1</code>", escaped)
+    escaped = _BOLD_RE.sub(r"<strong>\1</strong>", escaped)
+    return _ITALIC_RE.sub(r"<em>\1</em>", escaped)
+
+
+_TABLE_DELIMITER_RE = re.compile(r"^\|[\s:|-]+\|$")
+_SUPERSCRIPT_RE = re.compile(r"\^\(([^)]{1,12})\)")
+_MD_IMAGE_INLINE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)\)")
+
+
+def _split_row(line: str) -> list[str]:
+    body = line.strip()
+    body = body[1:] if body.startswith("|") else body
+    body = body[:-1] if body.endswith("|") else body
+    return [cell.strip().replace("\\|", "|") for cell in re.split(r"(?<!\\)\|", body)]
+
+
+def _cell_html(text: str) -> str:
+    """Inline Markdown a spec cell can carry, rendered as the manual does it."""
+    html_text = _inline(text)
+    html_text = _SUPERSCRIPT_RE.sub(r'<sup class="hb-spec-reference">\1</sup>', html_text)
+
+    def image(match: re.Match[str]) -> str:
+        alt, src = match.group(1), match.group(2)
+        return f'<img src="{src}" alt="{alt}"/>'
+
+    return _MD_IMAGE_INLINE_RE.sub(image, html_text)
+
+
+def _nearest_heading(lines: list[str], index: int) -> str:
+    for line in reversed(lines[:index]):
+        stripped = line.strip()
+        if stripped.startswith("#"):
+            return stripped.lstrip("#").strip()
+    return ""
+
+
+def _spec_table_html(rows: list[list[str]], *, aria_label: str) -> str:
+    """Render label/value rows as the manual's spec-table composition.
+
+    A GFM pipe table cannot express what this table actually is: it forces a
+    header row (so a headerless spec block renders an empty grey strip), it
+    cannot mark the label column as ``<th>``, and it has no rowspan, so one
+    label covering two values loses the join. The stylesheet keys off exactly
+    those three things, which is why an untouched pipe table looks nothing like
+    the published table. Emit the real structure instead.
+    """
+    body: list[str] = []
+    index = 0
+    while index < len(rows):
+        label, *values = rows[index]
+        span = 1
+        while index + span < len(rows) and not rows[index + span][0].strip():
+            span += 1
+        rowspan = f' rowspan="{span}"' if span > 1 else ""
+        value_html = "".join(
+            f'<td class="manual-spec-value hb-spec-value">{_cell_html(value)}</td>' for value in values
+        )
+        body.append(
+            f'<tr><th class="manual-spec-label hb-spec-label" scope="row"{rowspan}>'
+            f"{_cell_html(label)}</th>{value_html}</tr>"
+        )
+        for offset in range(1, span):
+            merged_values = "".join(
+                f'<td class="manual-spec-value hb-spec-value">{_cell_html(value)}</td>'
+                for value in rows[index + offset][1:]
+            )
+            body.append(f"<tr>{merged_values}</tr>")
+        index += span
+
+    label_attr = f' aria-label="{_esc(aria_label)}"' if aria_label else ""
+    return (
+        f'<figure{label_attr} class="hb-spec-table-composition">'
+        '<table class="manual-table manual-spec-table hb-spec-table">'
+        '<colgroup><col class="hb-spec-col-label"/><col class="hb-spec-col-value"/></colgroup>'
+        f'<tbody>{"".join(body)}</tbody></table></figure>'
+    )
+
+
+def _is_label_value(rows: list[list[str]]) -> bool:
+    """True when the first column reads as labels rather than artwork.
+
+    An icon-and-meaning table is also two headerless columns, but putting the
+    icon in a grey ``<th>`` label cell is not what it is; those stay a plain
+    manual table.
+    """
+    firsts = [row[0] for row in rows if row and row[0].strip()]
+    if not firsts:
+        return False
+    images = sum(1 for cell in firsts if cell.lstrip().startswith("!["))
+    return images * 2 <= len(firsts)
+
+
+def _plain_table_html(rows: list[list[str]], *, aria_label: str) -> str:
+    """A headerless table with more than two columns: drop the phantom header."""
+    body = "".join(
+        "<tr>" + "".join(f"<td>{_cell_html(cell)}</td>" for cell in row) + "</tr>" for row in rows
+    )
+    label_attr = f' aria-label="{_esc(aria_label)}"' if aria_label else ""
+    return f'<table class="manual-table"{label_attr}><tbody>{body}</tbody></table>'
+
+
+def upgrade_spec_tables(staged_dir: Path, *, log=print) -> int:
+    """Rewrite headerless pipe tables into the manual's real table markup.
+
+    Only tables whose header row is entirely empty are touched — those are the
+    ones a converter produced for a table that never had a header, and the only
+    ones that render the phantom grey strip. Tables with a genuine header are
+    left alone: the generic stylesheet already renders those correctly.
+    """
+    upgraded = 0
+    for markdown_path in sorted(staged_dir.rglob("*.md")):
+        relative = markdown_path.relative_to(staged_dir)
+        if _skipped(relative):
+            continue
+        lines = markdown_path.read_text(encoding="utf-8").splitlines()
+        out: list[str] = []
+        index = 0
+        changed = False
+        while index < len(lines):
+            line = lines[index]
+            is_table_start = (
+                line.strip().startswith("|")
+                and index + 1 < len(lines)
+                and _TABLE_DELIMITER_RE.match(lines[index + 1].strip())
+            )
+            if not is_table_start:
+                out.append(line)
+                index += 1
+                continue
+            header = _split_row(line)
+            if any(cell for cell in header):
+                out.append(line)
+                index += 1
+                continue
+            cursor = index + 2
+            rows: list[list[str]] = []
+            while cursor < len(lines) and lines[cursor].strip().startswith("|"):
+                row = _split_row(lines[cursor])
+                if row and any(cell for cell in row):
+                    rows.append(row)
+                cursor += 1
+            if not rows:
+                out.append(line)
+                index += 1
+                continue
+            aria_label = _nearest_heading(lines, index)
+            width = max(len(row) for row in rows)
+            rows = [row + [""] * (width - len(row)) for row in rows]
+            html_block = (
+                _spec_table_html(rows, aria_label=aria_label)
+                if width == 2 and _is_label_value(rows)
+                else _plain_table_html(rows, aria_label=aria_label)
+            )
+            out.extend(["", html_block, ""])
+            upgraded += 1
+            changed = True
+            index = cursor
+        if changed:
+            markdown_path.write_text("\n".join(out) + "\n", encoding="utf-8")
+    if upgraded:
+        log(f"[md-site] upgraded {upgraded} headerless table(s) to manual table markup")
+    return upgraded
 
 
 def ensure_page_titles(staged_dir: Path, *, titles: dict[str, str] | None = None, log=print) -> int:
@@ -416,6 +594,7 @@ def render_markdown_site(
     stylesheet: Path | None = None,
     strict: bool = False,
     normalize_images: bool = True,
+    upgrade_tables: bool = True,
     log=print,
 ) -> MarkdownSite:
     if (source is None) == (manifest is None):
@@ -468,6 +647,8 @@ def render_markdown_site(
             raise RuntimeError(f"no markdown files found under {manifest or source}")
         if normalize_images:
             normalize_image_refs(staged_dir, log=log)
+        if upgrade_tables:
+            upgrade_spec_tables(staged_dir, log=log)
         ensure_page_titles(staged_dir, titles=route_titles, log=log)
         if manifest_routes is None:
             children = _write_root_index(staged_dir, title=resolved_title, pages=pages)
@@ -687,6 +868,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="Do not repoint image references that fail to resolve in the staged tree",
     )
+    parser.add_argument(
+        "--keep-tables",
+        action="store_true",
+        help="Do not upgrade headerless pipe tables to the manual's table markup",
+    )
     return parser.parse_args(argv)
 
 
@@ -704,6 +890,7 @@ def main(argv: list[str] | None = None) -> int:
         manifest=args.manifest,
         output_dir=args.output_dir,
         normalize_images=not args.keep_image_refs,
+        upgrade_tables=not args.keep_tables,
         title=args.title,
         assets_dir=args.assets,
         work_dir=args.work_dir,
