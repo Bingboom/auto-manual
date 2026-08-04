@@ -31,6 +31,239 @@ class PlainMarkdownSiteStyleContractTests(unittest.TestCase):
         self.assertIn('html_css_files = ["web_manual.css"]', conf)
 
 
+class ManualComponentDirectiveTests(unittest.TestCase):
+    """The intermediate form must compile to the exact component markup.
+
+    Shape heuristics can only guess; a document converted to declared intent has
+    to render deterministically, which is the whole point of the intermediate.
+    """
+
+    INTERMEDIATE = """# Components
+
+```{callout} CAUTION
+High-power output port.
+
+- Ensure fire safety protection.
+- Use a 5A cable.
+```
+
+```{spec-table} INPUT PORTS
+1 × AC Input | Charge Mode: 15 A max.
+ | Bypass Mode^①^: 12 A max.
+2 × DC8020 Ports | 8 A max.
+```
+
+```{troubleshooting} TROUBLESHOOTING
+F0 | Restart the product.
+F6 | 1. Wait for the grid. / 2. Check the vents.
+```
+
+```{comparison} Auto Resume | Not Auto Resume
+Power-on restart | Manual output off
+```
+
+```{lcd-icons}
+1 | ![wifi](icons/wifi.png) | Wi-Fi | On: connected. / Off: disconnected.
+```
+
+```{symbols}
+![warn](icons/warn.png) | Read the manual before operation.
+![fire](icons/fire.png) | Keep away from fire.
+```
+"""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._tmp = TemporaryDirectory()
+        root = Path(cls._tmp.name)
+        source = root / "src"
+        (source / "icons").mkdir(parents=True)
+        for name in ("wifi.png", "warn.png", "fire.png"):
+            (source / "icons" / name).write_bytes(b"\x89PNG\r\n\x1a\n")
+        (source / "index.md").write_text(cls.INTERMEDIATE, encoding="utf-8")
+        output = root / "site"
+        pms.render_markdown_site(source=source, output_dir=output, log=lambda _m: None)
+        cls.html = (output / "index.html").read_text(encoding="utf-8")
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._tmp.cleanup()
+
+    def test_callout_renders_with_a_real_list_in_the_body(self) -> None:
+        self.assertIn("manual-callout-table", self.html)
+        self.assertIn("<strong>CAUTION</strong>", self.html)
+        body = self.html[self.html.index("manual-callout-body") :]
+        self.assertIn("<ul", body[:800])  # bullets a pipe table cannot express
+        self.assertIn("Use a 5A cable", self.html)
+
+    def test_spec_table_renders_label_column_rowspan_and_superscript(self) -> None:
+        self.assertIn('class="hb-spec-table-composition"', self.html)
+        self.assertIn('aria-label="INPUT PORTS"', self.html)
+        self.assertIn('<th class="manual-spec-label hb-spec-label" scope="row" rowspan="2">', self.html)
+        self.assertIn("<sup>①</sup>", self.html)
+
+    def test_troubleshooting_splits_steps_into_a_line_block(self) -> None:
+        self.assertIn('class="hb-troubleshooting-composition"', self.html)
+        self.assertIn("hb-troubleshooting-code", self.html)
+        self.assertIn('class="line-block"', self.html)
+        self.assertIn("Check the vents.", self.html)
+
+    def test_comparison_and_lcd_and_symbols_compositions(self) -> None:
+        self.assertIn("hb-auto-resume-composition", self.html)
+        self.assertIn("hb-auto-resume-left", self.html)
+        self.assertIn("hb-lcd-table-composition", self.html)
+        self.assertIn("hb-lcd-icon-art", self.html)
+        self.assertIn("hb-symbol-pair-composition", self.html)
+        self.assertIn("hb-symbol-art", self.html)
+
+    def test_blank_cells_merge_upward_in_every_multi_column_component(self) -> None:
+        """A blank cell means "merge with the cell above" — a pipe table cannot.
+
+        Left as a pipe table it renders an empty box, which is what the operator
+        saw in the AC/DC resume table.
+        """
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "src"
+            (source / "icons").mkdir(parents=True)
+            (source / "icons" / "lcd.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+            (source / "index.md").write_text(
+                "# Merging\n\n"
+                "```{comparison} Auto Resume | Not Auto Resume\n"
+                "Power-on restart | Manual output off\n"
+                "Battery SOC ≥ limit +10% | Energy Saving output off\n"
+                " | Protection-triggered output off\n"
+                "OTA upgrade completed | Discharge timer output off\n"
+                "```\n\n"
+                "```{lcd-mode} ![lcd](icons/lcd.png)\n"
+                "Shortly On | Turn on | Press once.\n"
+                " | Turn off | Press again.\n"
+                " | Auto-off | After 2 minutes.\n"
+                "Steady On | Turn on | Press twice.\n"
+                " | Turn off | Press once.\n"
+                "```\n\n"
+                "```{manual-table} KEY COMBINATIONS\n"
+                ":headers: Buttons | Operation | Function\n"
+                "\n"
+                "POWER + AC | Hold 3s | Energy Saving Mode\n"
+                " | Hold 1s | Wi-Fi reset\n"
+                "```\n",
+                encoding="utf-8",
+            )
+            output = root / "site"
+            pms.render_markdown_site(source=source, output_dir=output, log=lambda _m: None)
+            html = (output / "index.html").read_text(encoding="utf-8")
+
+            # the merged cell spans, and no empty cell is left behind
+            self.assertIn('rowspan="2"', html)
+            self.assertIn('hb-lcd-mode-state" rowspan="3"', html)
+            self.assertIn("hb-lcd-mode-art-panel", html)
+            self.assertIn("KEY COMBINATIONS", html)
+            self.assertIn('<th class="head">Operation</th>', html)
+            import re as _re
+
+            self.assertEqual([], _re.findall(r"<td[^>]*>\s*</td>", html))
+
+    def test_no_raw_html_leaks_as_escaped_text(self) -> None:
+        for leak in ("&lt;figure", "&lt;table", "&lt;div", "&lt;sup"):
+            self.assertNotIn(leak, self.html)
+
+
+class RemoteImageDownloadTests(unittest.TestCase):
+    """A cloud export references every image on the editor's CDN.
+
+    The HTE153 export has 57 of 57 images remote, so the site renders only while
+    that host is reachable and dies with the link. Served locally here so the
+    test does not depend on the internet.
+    """
+
+    PNG = b"\x89PNG\r\n\x1a\n" + b"\x00" * 32
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        import http.server
+        import threading
+
+        payload = cls.PNG
+
+        class Handler(http.server.BaseHTTPRequestHandler):
+            def do_GET(self) -> None:  # noqa: N802 - http.server API
+                if self.path.startswith("/img/"):
+                    self.send_response(200)
+                    self.send_header("Content-Type", "image/png")
+                    self.send_header("Content-Length", str(len(payload)))
+                    self.end_headers()
+                    self.wfile.write(payload)
+                else:
+                    self.send_error(404)
+
+            def log_message(self, *_args: object) -> None:
+                return
+
+        cls._server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        cls._thread = threading.Thread(target=cls._server.serve_forever, daemon=True)
+        cls._thread.start()
+        cls.base = f"http://127.0.0.1:{cls._server.server_address[1]}"
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._server.shutdown()
+        cls._server.server_close()
+
+    def test_remote_images_are_localized_and_deduplicated(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "doc.md").write_text(
+                f"# Doc\n\n"
+                f"![a]({self.base}/img/one.png)\n\n"
+                f"![again]({self.base}/img/one.png)\n\n"
+                f'<img src="{self.base}/img/two.png"/>\n\n'
+                f"![missing]({self.base}/nope/three.png)\n",
+                encoding="utf-8",
+            )
+            downloaded, failures = pms.download_remote_images(staged, log=lambda _m: None)
+            text = (staged / "doc.md").read_text(encoding="utf-8")
+            self.assertEqual(2, downloaded)  # the repeat URL is fetched once
+            self.assertEqual(1, len(failures))
+            self.assertIn("nope/three.png", failures[0])
+            files = sorted((staged / "_md_assets" / "remote").glob("*.png"))
+            self.assertEqual(2, len(files))
+            self.assertEqual(self.PNG, files[0].read_bytes())
+            self.assertIn("_md_assets/remote/one-", text)
+            self.assertIn("_md_assets/remote/two-", text)
+            # a failed fetch keeps the original URL rather than dropping artwork
+            self.assertIn(f"![missing]({self.base}/nope/three.png)", text)
+
+    def test_downloaded_images_reach_the_built_site(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "src"
+            source.mkdir()
+            (source / "index.md").write_text(
+                f"# Doc\n\n![a]({self.base}/img/one.png)\n", encoding="utf-8"
+            )
+            output = root / "site"
+            pms.render_markdown_site(
+                source=source, output_dir=output, download_images=True, log=lambda _m: None
+            )
+            html = (output / "index.html").read_text(encoding="utf-8")
+            self.assertNotIn("127.0.0.1", html)  # no remote reference survives
+            self.assertTrue(any(output.rglob("one-*.png")))
+
+    def test_download_is_opt_in(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "src"
+            source.mkdir()
+            (source / "index.md").write_text(
+                f"# Doc\n\n![a]({self.base}/img/one.png)\n", encoding="utf-8"
+            )
+            output = root / "site"
+            pms.render_markdown_site(source=source, output_dir=output, log=lambda _m: None)
+            html = (output / "index.html").read_text(encoding="utf-8")
+        self.assertIn("127.0.0.1", html)  # left remote unless asked
+
+
 class PlainMarkdownSiteTests(unittest.TestCase):
     def _source_tree(self, root: Path) -> None:
         (root / "guides").mkdir(parents=True)
@@ -266,13 +499,11 @@ class PlainMarkdownSiteTests(unittest.TestCase):
             upgraded = pms.upgrade_spec_tables(staged, log=lambda _m: None)
             text = (staged / "spec.md").read_text(encoding="utf-8")
         self.assertEqual(1, upgraded)
-        self.assertIn('class="hb-spec-table-composition"', text)
-        self.assertIn("hb-spec-table", text)
-        self.assertIn('<th class="manual-spec-label hb-spec-label" scope="row" rowspan="2">', text)
-        self.assertIn('<sup class="hb-spec-reference">①</sup>', text)
-        self.assertIn('aria-label="INPUT PORTS"', text)
+        self.assertIn("```{spec-table} INPUT PORTS", text)
+        self.assertIn("1 × AC Input | Charge Mode: 15 A max.", text)
+        # a blank label is how the intermediate expresses a spanning label
+        self.assertIn("\n | Bypass Mode", text)
         self.assertNotIn("|------", text)  # the pipe table is gone
-        self.assertNotIn("<thead", text)  # and so is the phantom header
 
     def test_signal_word_table_without_body_becomes_a_callout(self) -> None:
         """Cloud exports flatten callout boxes into a header-only two-column table.
@@ -292,9 +523,9 @@ class PlainMarkdownSiteTests(unittest.TestCase):
             upgraded = pms.upgrade_spec_tables(staged, log=lambda _m: None)
             text = (staged / "c.md").read_text(encoding="utf-8")
         self.assertEqual(3, upgraded)
-        self.assertEqual(3, text.count('class="manual-callout-table"'))
+        self.assertEqual(3, text.count("```{callout}"))
         for label in ("WARNING", "DANGER", "NOTE"):
-            self.assertIn(f"<strong>{label}</strong>", text)
+            self.assertIn(f"```{{callout}} {label}", text)
         self.assertIn("Do not open the enclosure.", text)
         self.assertNotIn("| ---", text)
 
@@ -309,10 +540,9 @@ class PlainMarkdownSiteTests(unittest.TestCase):
             )
             pms.upgrade_spec_tables(staged, log=lambda _m: None)
             text = (staged / "lcd.md").read_text(encoding="utf-8")
-        self.assertIn('class="manual-table"', text)
-        self.assertNotIn("<thead", text)
+        self.assertIn("```{lcd-icons}", text)
         self.assertIn("Wi-Fi", text)
-        self.assertIn("Bluetooth", text)  # the first row survived as data
+        self.assertIn("Bluetooth", text)  # the stolen header row survived as data
 
     def test_in_table_section_headings_split_into_one_composition_each(self) -> None:
         with TemporaryDirectory() as td:
@@ -328,11 +558,11 @@ class PlainMarkdownSiteTests(unittest.TestCase):
             )
             pms.upgrade_spec_tables(staged, log=lambda _m: None)
             text = (staged / "spec.md").read_text(encoding="utf-8")
-        self.assertEqual(2, text.count("hb-spec-table-composition"))
-        self.assertIn('aria-label="GENERAL INFO"', text)
-        self.assertIn('aria-label="INPUT PORTS"', text)
+        self.assertEqual(2, text.count("```{spec-table}"))
+        self.assertIn("```{spec-table} GENERAL INFO", text)
+        self.assertIn("```{spec-table} INPUT PORTS", text)
         self.assertIn("### INPUT PORTS", text)  # the heading is kept as a heading
-        self.assertIn('rowspan="2"', text)  # blank-label row merged
+        self.assertIn("\n | Bypass: 12 A max.", text)  # spanning label preserved
 
     def test_inline_superscript_and_subscript_are_rendered(self) -> None:
         with TemporaryDirectory() as td:
@@ -372,11 +602,11 @@ class PlainMarkdownSiteTests(unittest.TestCase):
             pms.upgrade_spec_tables(staged, log=lambda _m: None)
             wide = (staged / "wide.md").read_text(encoding="utf-8")
             icons = (staged / "icons.md").read_text(encoding="utf-8")
+        # neither becomes a spec table; unclassified shapes stay a pipe table
         for text in (wide, icons):
-            self.assertIn('class="manual-table"', text)
-            self.assertNotIn("hb-spec-label", text)
-            self.assertNotIn("<thead", text)
-        self.assertIn("<img src=", icons)
+            self.assertNotIn("```{spec-table}", text)
+            self.assertIn("md-site: unclassified table", text)
+        self.assertIn("![warn](a.png)", icons)  # artwork left as markdown
 
     def test_upgrade_can_be_disabled(self) -> None:
         with TemporaryDirectory() as td:

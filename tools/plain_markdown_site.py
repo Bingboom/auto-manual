@@ -112,6 +112,8 @@ def _asset_index(staged_dir: Path) -> dict[str, Path]:
 
 
 _ASCII_ASSET_DIRNAME = "_md_assets"
+_EXTENSION_DIRNAME = "_ext"
+_EXTENSION_MODULE = "manual_md_directives"
 _MD_IMAGE_RE = re.compile(r'(!\[[^\]]*\]\(\s*)([^)"\'\s]+)')
 _HTML_IMAGE_RE = re.compile(r'(<img\b[^>]*?\bsrc=["\'])([^"\'>]+)')
 
@@ -138,6 +140,96 @@ def _ascii_asset_copy(staged_dir: Path, staged_target: Path) -> Path:
     if not destination.exists():
         shutil.copyfile(source, destination)
     return destination_relative
+
+
+_REMOTE_DIRNAME = "remote"
+_IMAGE_SUFFIXES = {
+    "image/png": ".png",
+    "image/jpeg": ".jpg",
+    "image/jpg": ".jpg",
+    "image/gif": ".gif",
+    "image/webp": ".webp",
+    "image/svg+xml": ".svg",
+}
+MAX_REMOTE_IMAGE_BYTES = 25 * 1024 * 1024
+
+
+def download_remote_images(
+    staged_dir: Path, *, timeout: float = 20.0, log=print
+) -> tuple[int, list[str]]:
+    """Localize http(s) image references so the built site is self-contained.
+
+    Documents exported from a cloud editor reference every image on that
+    editor's CDN — the HTE153 export has 57 of 57 on one host — so the site only
+    renders while that host is reachable and dies with the link. Fetch each URL
+    once into the staged tree and repoint the reference. Failures are reported
+    and left as remote URLs rather than silently dropping artwork.
+    """
+    import urllib.error
+    import urllib.request
+
+    remote_dir = staged_dir / _ASCII_ASSET_DIRNAME / _REMOTE_DIRNAME
+    cache: dict[str, str] = {}
+    failures: list[str] = []
+    downloaded = 0
+
+    def fetch(url: str) -> str | None:
+        nonlocal downloaded
+        if url in cache:
+            return cache[url]
+        digest = hashlib.sha1(url.encode("utf-8")).hexdigest()[:12]
+        stem = re.sub(r"[^A-Za-z0-9._-]+", "-", Path(unquote(url).split("?")[0]).stem).strip("-.")
+        stem = (stem or "image")[:40]
+        request = urllib.request.Request(url, headers={"User-Agent": "plain-markdown-site/1.0"})
+        try:
+            with urllib.request.urlopen(request, timeout=timeout) as response:  # noqa: S310
+                declared = int(response.headers.get("Content-Length") or 0)
+                if declared > MAX_REMOTE_IMAGE_BYTES:
+                    raise ValueError(f"image is {declared} bytes, over the {MAX_REMOTE_IMAGE_BYTES} cap")
+                payload = response.read(MAX_REMOTE_IMAGE_BYTES + 1)
+                if len(payload) > MAX_REMOTE_IMAGE_BYTES:
+                    raise ValueError(f"image exceeds the {MAX_REMOTE_IMAGE_BYTES} byte cap")
+                content_type = (response.headers.get("Content-Type") or "").split(";")[0].strip()
+        except (urllib.error.URLError, ValueError, OSError, TimeoutError) as exc:
+            failures.append(f"{url} ({exc})")
+            cache[url] = ""
+            return None
+        suffix = Path(unquote(url).split("?")[0]).suffix.lower()
+        if suffix not in {value for value in _IMAGE_SUFFIXES.values()}:
+            suffix = _IMAGE_SUFFIXES.get(content_type, ".png")
+        remote_dir.mkdir(parents=True, exist_ok=True)
+        target = remote_dir / f"{stem}-{digest}{suffix}"
+        target.write_bytes(payload)
+        downloaded += 1
+        cache[url] = target.relative_to(staged_dir).as_posix()
+        return cache[url]
+
+    for markdown_path in sorted(staged_dir.rglob("*.md")):
+        relative = markdown_path.relative_to(staged_dir)
+        if _skipped(relative):
+            continue
+        start = relative.parent.as_posix() or "."
+        text = markdown_path.read_text(encoding="utf-8")
+
+        def replace(match: re.Match[str]) -> str:
+            prefix, url = match.group(1), match.group(2)
+            if not url.lower().startswith(("http://", "https://")):
+                return match.group(0)
+            staged = fetch(url)
+            if not staged:
+                return match.group(0)
+            return f"{prefix}{posixpath.relpath(staged, start=start)}"
+
+        rewritten = _MD_IMAGE_RE.sub(replace, text)
+        rewritten = _HTML_IMAGE_RE.sub(replace, rewritten)
+        if rewritten != text:
+            markdown_path.write_text(rewritten, encoding="utf-8")
+
+    if downloaded:
+        log(f"[md-site] downloaded {downloaded} remote image(s) into the site")
+    for failure in failures:
+        log(f"[md-site] warning: could not download {failure}")
+    return downloaded, failures
 
 
 def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
@@ -390,6 +482,104 @@ def _is_label_value(rows: list[list[str]]) -> bool:
     return images * 2 <= len(firsts)
 
 
+def _cell_to_markdown(cell: str) -> list[str]:
+    """A cell's content as markdown lines, recovering what the export flattened.
+
+    Cloud editors fake a paragraph break inside a cell with ``<br>`` plus literal
+    spaces, and a bullet list with ``*   `` — which markdown-it does not parse
+    inside a table cell, so it prints as literal asterisks. In a directive body
+    these become real blank lines and real list items.
+    """
+    text = re.sub(r"<br\s*/?>", "\n", cell)
+    lines: list[str] = []
+    for raw_line in text.split("\n"):
+        stripped = raw_line.strip().replace("\xa0", " ").strip()
+        if not stripped:
+            continue
+        bullet = re.match(r"^[*\u2022\u203b]\s+(.*)$", stripped)
+        ordered = re.match(r"^(\d+)[.)]\s+(.*)$", stripped)
+        if bullet:
+            lines += ["", f"- {bullet.group(1).strip()}"]
+        elif ordered:
+            lines += ["", f"{ordered.group(1)}. {ordered.group(2).strip()}"]
+        else:
+            lines += ["", stripped]
+    while lines and not lines[0]:
+        lines.pop(0)
+    return lines or [""]
+
+
+def _fence(name: str, argument: str, body: list[str]) -> list[str]:
+    head = f"```{{{name}}} {argument}".rstrip() if argument else f"```{{{name}}}"
+    return ["", head, *body, "```", ""]
+
+
+def _callout_directive(label: str, body: str) -> list[str]:
+    return _fence("callout", _bare(label).upper(), _cell_to_markdown(body))
+
+
+def _spec_directive(rows: list[list[str]], *, label: str) -> list[str]:
+    body = [" | ".join(cell.replace("|", "\\|") for cell in row).rstrip() for row in rows]
+    return _fence("spec-table", label, body)
+
+
+def _row_directive(name: str, rows: list[list[str]], *, label: str = "") -> list[str]:
+    body = [" | ".join(cell.replace("|", "\\|") for cell in row).rstrip() for row in rows]
+    return _fence(name, label, body)
+
+
+def _pipe_table(header: list[str], rows: list[list[str]], *, hint: str = "") -> list[str]:
+    """Keep an unclassified table as a pipe table, with a hint for the operator."""
+    width = max([len(header)] + [len(row) for row in rows]) if rows or header else 0
+    def line(cells: list[str]) -> str:
+        padded = cells + [""] * (width - len(cells))
+        return "| " + " | ".join(padded) + " |"
+    out = [""]
+    if hint:
+        out.append(f"<!-- md-site: unclassified table; consider {hint} -->")
+    out.append(line(header if any(header) else [""] * width))
+    out.append("|" + "|".join([" --- "] * width) + "|")
+    out += [line(row) for row in rows]
+    out.append("")
+    return out
+
+
+def _has_merge_gap(rows: list[list[str]]) -> bool:
+    """True when a later row leaves a cell blank, meaning it merges upward."""
+    return any(
+        not cell.strip()
+        for row in rows[1:]
+        for cell in row
+    )
+
+
+def _looks_like_lcd_mode(rows: list[list[str]]) -> bool:
+    """Screen art in the first cell, then a state/action/detail matrix."""
+    if len(rows) < 2 or len(rows[0]) < 4:
+        return False
+    if "![" not in rows[0][0]:
+        return False
+    if any("![" in row[0] for row in rows[1:]):
+        return False
+    return _has_merge_gap([row[1:] for row in rows])
+
+
+def _looks_like_lcd_rows(rows: list[list[str]]) -> bool:
+    """Index, icon, name, behaviour — the manual's LCD legend."""
+    scored = 0
+    for row in rows:
+        indexed = bool(_LEADING_NUMBER_RE.match(_bare(row[0]))) or not row[0].strip()
+        if indexed and "![" in row[1] and "![" not in row[2]:
+            scored += 1
+    return scored * 2 > len(rows)
+
+
+def _looks_like_symbol_pairs(rows: list[list[str]]) -> bool:
+    """Two side-by-side icon/meaning pairs in one four-column table."""
+    scored = sum(1 for row in rows if "![" in row[0] and "![" in row[2])
+    return scored * 2 > len(rows)
+
+
 def _plain_table_html(rows: list[list[str]], *, aria_label: str) -> str:
     """A headerless table with more than two columns: drop the phantom header."""
     body = "".join(
@@ -439,7 +629,7 @@ def upgrade_spec_tables(staged_dir: Path, *, log=print) -> int:
             # A two-column table with no body rows whose first cell is a signal
             # word is a callout box that a cloud export flattened into a table.
             if not rows and len(header) == 2 and _is_signal_word(header[0]):
-                out.extend(["", _callout_html(header[0], header[1]), ""])
+                out.extend(_callout_directive(header[0], header[1]))
                 upgraded += 1
                 changed = True
                 index = cursor
@@ -447,6 +637,25 @@ def upgrade_spec_tables(staged_dir: Path, *, log=print) -> int:
 
             header_is_data = _looks_like_data(header)
             if any(cell for cell in header) and not header_is_data:
+                # A real header is fine as a pipe table — unless a body cell is
+                # blank, which in the source convention means "merge with the
+                # cell above". A pipe table has no rowspan, so that blank
+                # renders as an empty box; the comparison component can express it.
+                if rows and _has_merge_gap(rows):
+                    if len(header) == 2:
+                        out.extend(_row_directive("comparison", rows, label=" | ".join(header)))
+                    else:
+                        body = [
+                            " | ".join(cell.replace("|", "\\|") for cell in row).rstrip()
+                            for row in rows
+                        ]
+                        out.extend(
+                            ["", "```{manual-table}", f":headers: {' | '.join(header)}", "", *body, "```", ""]
+                        )
+                    upgraded += 1
+                    changed = True
+                    index = cursor
+                    continue
                 out.append(line)
                 index += 1
                 continue
@@ -460,20 +669,36 @@ def upgrade_spec_tables(staged_dir: Path, *, log=print) -> int:
             width = max(len(row) for row in rows)
             rows = [row + [""] * (width - len(row)) for row in rows]
             blocks: list[str] = []
-            for section_title, section_rows in _section_split(rows):
-                if not section_rows:
-                    continue
-                label = section_title or aria_label
-                if section_title:
-                    blocks.append(f"### {section_title}")
-                blocks.append(
-                    _spec_table_html(section_rows, aria_label=label)
-                    if width == 2 and _is_label_value(section_rows)
-                    else _plain_table_html(section_rows, aria_label=label)
+            if width == 4 and _looks_like_lcd_mode(rows):
+                blocks += _fence(
+                    "lcd-mode", rows[0][0],
+                    [" | ".join(cell.replace("|", "\\|") for cell in row[1:]).rstrip() for row in rows],
                 )
-            out.append("")
-            for block in blocks:
-                out.extend([block, ""])
+            elif width == 4 and _looks_like_lcd_rows(rows):
+                blocks += _row_directive("lcd-icons", rows, label=aria_label)
+            elif width == 4 and _looks_like_symbol_pairs(rows):
+                blocks += _row_directive(
+                    "symbols", [pair for row in rows for pair in (row[:2], row[2:]) if any(pair)],
+                    label=aria_label,
+                )
+            else:
+                for section_title, section_rows in _section_split(rows):
+                    if not section_rows:
+                        continue
+                    label = section_title or aria_label
+                    if section_title:
+                        blocks += ["", f"### {section_title}"]
+                    if width == 2 and _is_label_value(section_rows):
+                        blocks += _spec_directive(section_rows, label=label)
+                    elif _has_merge_gap(section_rows):
+                        # blanks mean row spans, which a pipe table cannot express
+                        blocks += _row_directive("manual-table", section_rows, label=label)
+                    else:
+                        blocks += _pipe_table(
+                            [""] * width, section_rows,
+                            hint="{lcd-icons}, {symbols}, {troubleshooting} or {comparison}",
+                        )
+            out += blocks
             upgraded += 1
             changed = True
             index = cursor
@@ -566,6 +791,13 @@ def _write_root_index(staged_dir: Path, *, title: str, pages: list[Path]) -> lis
 
     children = [page for page in pages if page.as_posix() != f"{_ROOT_DOC}.md"]
 
+    # One document needs no landing page in front of it: promote it to the root
+    # so the site opens on the content instead of a page holding one link.
+    if len(children) == 1 and not index_path.is_file():
+        only = staged_dir / children[0]
+        only.replace(index_path)
+        return []
+
     if index_path.is_file():
         if children and not _has_toctree(index_path):
             existing = index_path.read_text(encoding="utf-8").rstrip("\n")
@@ -633,17 +865,44 @@ STYLE_CONF_LINES = (
 )
 
 
-def write_conf_py(staged_dir: Path, *, title: str) -> Path:
+def stage_component_extension(staged_dir: Path) -> bool:
+    """Copy the manual-component Sphinx extension into the staged tree.
+
+    The extension is what turns declared intent (``{callout}``, ``{spec-table}``
+    …) into the exact markup the stylesheet expects, so a document converted to
+    the intermediate form renders deterministically instead of relying on shape
+    heuristics. Absent (an incomplete bundle), the directives simply are not
+    available and Sphinx reports the unknown directive.
+    """
+    source = _SCRIPT_DIR / f"{_EXTENSION_MODULE}.py"
+    if not source.is_file():
+        return False
+    target_dir = staged_dir / _EXTENSION_DIRNAME
+    target_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source, target_dir / f"{_EXTENSION_MODULE}.py")
+    return True
+
+
+def write_conf_py(staged_dir: Path, *, title: str, components: bool = True) -> Path:
     conf_path = staged_dir / "conf.py"
     lines = [
         "# Generated by tools.plain_markdown_site. Do not hand-edit generated output.",
         "from pathlib import Path",
         "import shutil",
+        "import sys",
         "",
         f"project = {title!r}",
         "html_title = project",
         *STYLE_CONF_LINES,
-        'exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]',
+        'exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "_ext"]',
+        "",
+    ]
+    if components:
+        lines += [
+            f"sys.path.insert(0, str(Path(__file__).parent / {_EXTENSION_DIRNAME!r}))",
+            f"extensions.append({_EXTENSION_MODULE!r})",
+        ]
+    lines += [
         "",
         "",
         # Sphinx only tracks images it parses into image nodes, so anything
@@ -677,6 +936,29 @@ def write_conf_py(staged_dir: Path, *, title: str) -> Path:
 # --------------------------------------------------------------------------
 # build
 # --------------------------------------------------------------------------
+def _require_sphinx() -> None:
+    """Fail with something actionable when the renderer is not installed.
+
+    The default ``python3`` on macOS is 3.9 from the Command Line Tools, which
+    cannot even install the pinned Sphinx 8, so the raw CalledProcessError this
+    used to raise sent people to the wrong problem.
+    """
+    import importlib.util
+
+    missing = [name for name in ("sphinx", "myst_parser", "furo") if importlib.util.find_spec(name) is None]
+    if not missing:
+        return
+    raise RuntimeError(
+        "missing renderer package(s): "
+        + ", ".join(missing)
+        + f"\nThis interpreter is {sys.executable} (Python "
+        + ".".join(str(part) for part in sys.version_info[:3])
+        + ").\nEither run this script with an interpreter that has them "
+        "(the repo's .venv/bin/python does), or install into a Python 3.12+:\n"
+        '  python3.12 -m pip install "sphinx==8.2.3" "myst-parser==4.0.1" "furo==2025.12.19"'
+    )
+
+
 def _sphinx_cmd() -> list[str]:
     try:
         from tools.build_docs_sphinx import resolve_sphinx_build_cmd
@@ -715,7 +997,7 @@ def render_markdown_site(
     *,
     source: Path | None = None,
     manifest: Path | None = None,
-    output_dir: Path,
+    output_dir: Path | None = None,
     title: str | None = None,
     assets_dir: Path | None = None,
     work_dir: Path | None = None,
@@ -723,12 +1005,15 @@ def render_markdown_site(
     strict: bool = False,
     normalize_images: bool = True,
     upgrade_tables: bool = True,
+    download_images: bool = False,
+    intermediate_dir: Path | None = None,
     log=print,
 ) -> MarkdownSite:
     if (source is None) == (manifest is None):
         raise RuntimeError("pass exactly one of source= or manifest=")
-    output_dir = output_dir.expanduser()
-    _guard_output_dir(output_dir)
+    output_dir = output_dir.expanduser() if output_dir is not None else None
+    if output_dir is not None:
+        _guard_output_dir(output_dir)
 
     entries: list[ManifestEntry] = []
     if manifest is not None:
@@ -773,6 +1058,8 @@ def render_markdown_site(
         pages = discover_markdown(staged_dir)
         if not pages:
             raise RuntimeError(f"no markdown files found under {manifest or source}")
+        if download_images:
+            download_remote_images(staged_dir, log=log)
         if normalize_images:
             normalize_image_refs(staged_dir, log=log)
         if upgrade_tables:
@@ -783,9 +1070,33 @@ def render_markdown_site(
             children = _write_root_index(staged_dir, title=resolved_title, pages=pages)
         else:
             children = manifest_routes
-        write_conf_py(staged_dir, title=resolved_title)
+        components = stage_component_extension(staged_dir)
+        write_conf_py(staged_dir, title=resolved_title, components=components)
         stylesheet_path, origin = resolve_stylesheet(staged_dir, explicit=stylesheet)
 
+        if intermediate_dir is not None:
+            destination = intermediate_dir.expanduser()
+            _guard_output_dir(destination)
+            if destination.exists():
+                shutil.rmtree(destination)
+            shutil.copytree(
+                staged_dir, destination,
+                ignore=shutil.ignore_patterns("conf.py", _EXTENSION_DIRNAME, _STATIC_DIRNAME),
+            )
+            page_count = len(children) + 1
+            log(
+                f"[md-site] wrote the intermediate form of {page_count} page(s) to {destination}; "
+                "review it, then build from it with --source"
+            )
+            return MarkdownSite(
+                source_dir=source if source is not None else manifest,
+                output_dir=destination,
+                page_count=page_count,
+                stylesheet=stylesheet_path,
+                stylesheet_origin=origin,
+            )
+
+        _require_sphinx()
         cmd = _sphinx_cmd()
         if strict:
             cmd.append("-W")
@@ -987,6 +1298,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Scaffold a manifest CSV from --source and exit (title from first heading, section from subfolder)",
     )
     parser.add_argument("--output-dir", type=Path, help="Where to write the static site")
+    parser.add_argument(
+        "--to-intermediate",
+        default=None,
+        type=Path,
+        help=(
+            "Stage 2 of the pipeline: write the converted intermediate Markdown here "
+            "(component directives, assets alongside) instead of building. Review or "
+            "correct it, then render it with --source."
+        ),
+    )
     parser.add_argument("--title", default=None, help="Site title (default: source name)")
     parser.add_argument("--assets", default=None, type=Path, help="Single-file mode: folder of images to copy alongside")
     parser.add_argument("--work-dir", default=None, type=Path, help="Keep the staged Sphinx source here (for debugging)")
@@ -996,6 +1317,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--keep-image-refs",
         action="store_true",
         help="Do not repoint image references that fail to resolve in the staged tree",
+    )
+    parser.add_argument(
+        "--download-images",
+        action="store_true",
+        help="Fetch http(s) image references into the site so it is self-contained (network access)",
     )
     parser.add_argument(
         "--keep-tables",
@@ -1012,14 +1338,18 @@ def main(argv: list[str] | None = None) -> int:
             raise RuntimeError("--init-manifest requires --source <folder>")
         write_manifest_scaffold(args.source, args.init_manifest)
         return 0
-    if args.output_dir is None:
-        raise RuntimeError("--output-dir is required (omit it only with --init-manifest)")
+    if args.output_dir is None and args.to_intermediate is None:
+        raise RuntimeError(
+            "pass --output-dir to build a site, or --to-intermediate to write the converted Markdown"
+        )
     render_markdown_site(
         source=args.source,
         manifest=args.manifest,
         output_dir=args.output_dir,
         normalize_images=not args.keep_image_refs,
         upgrade_tables=not args.keep_tables,
+        download_images=args.download_images,
+        intermediate_dir=args.to_intermediate,
         title=args.title,
         assets_dir=args.assets,
         work_dir=args.work_dir,
