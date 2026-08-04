@@ -109,6 +109,8 @@ La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga 
 | Presiónelo nuevamente para cambiar al modo SOS.
 | Presiónelo una tercera vez para apagar la luz.
 
+.. hb-capability-begin: AC/DC输出记忆恢复
+
 Función de reanudación de Salida de CA y CC
 ----------------------------------------------
 
@@ -125,6 +127,9 @@ La función de reanudación de salida de CA/CC está desactivada de forma predet
 +------------------------------------------------------------------------+-----------------------------------------------------------+
 | Actualización OTA completada                                           | Apagado de salida activado por temporizador de descarga   |
 +------------------------------------------------------------------------+-----------------------------------------------------------+
+
+.. hb-capability-end:
+
 
 PANTALLA LCD
 ------------

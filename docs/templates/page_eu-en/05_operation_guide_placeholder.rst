@@ -110,6 +110,8 @@ The LED light has two modes: Light mode and SOS mode. In any mode, press and hol
 | Press it again to switch to SOS Mode.
 | Press it a third time to turn off the light.
 
+.. hb-capability-begin: AC/DC输出记忆恢复
+
 AC and DC Output Resume Function
 --------------------------------
 
@@ -126,6 +128,9 @@ The AC/DC Output Resume Function is disabled by default. Enable this function in
 +---------------------------------------------------------------+-----------------------------------------------+
 | OTA upgrade completed                                         | Discharge timer-triggered output off          |
 +---------------------------------------------------------------+-----------------------------------------------+
+
+.. hb-capability-end:
+
 
 LCD SCREEN
 ----------

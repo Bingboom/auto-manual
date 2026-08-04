@@ -99,6 +99,9 @@ def materialize_planned_page(
     rewrite_rst_asset_paths: Callable[..., str],
     normalize_rst_empty_line_blocks: Callable[[str], str],
     prepend_latex_lang: Callable[[str, str | None], str],
+    strip_capability_sections: Callable[..., tuple[str, list[str]]],
+    capability_data_dir: Path,
+    capability_notes: list[str] | None = None,
 ) -> tuple[str, Any | None]:
     page = planned.page
 
@@ -216,6 +219,18 @@ def materialize_planned_page(
     if not isinstance(page, generated_page_cls):
         rst_text = source_path.read_text(encoding="utf-8")
         rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
+    # Resolve section markers before asset rewriting so a dropped section
+    # never stages its images, and before the empty-line normalizer so the
+    # blank run the removed markers leave behind gets collapsed.
+    rst_text, section_notes = strip_capability_sections(
+        rst_text,
+        model=model,
+        region=region,
+        data_dir=capability_data_dir,
+        label=target_path.name,
+    )
+    if section_notes and capability_notes is not None:
+        capability_notes.extend(section_notes)
     rst_text = rewrite_rst_asset_paths(
         rst_text,
         source_path=source_path,
