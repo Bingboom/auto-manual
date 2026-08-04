@@ -152,6 +152,43 @@ class PlainMarkdownSiteTests(unittest.TestCase):
                     source=source, output_dir=root / "site", log=lambda _m: None
                 )
 
+    def test_raw_html_images_reach_the_output(self) -> None:
+        """Sphinx does not track images inside raw HTML; the conf hook must copy them.
+
+        Every pasted manual component and every pipeline-exported manual body
+        references its artwork from raw ``<img>`` tags, so without this the
+        pages render with broken images while the build still reports success.
+        """
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "src"
+            (source / "assets").mkdir(parents=True)
+            (source / "assets" / "art.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+            (source / "index.md").write_text(
+                "# Doc\n\n"
+                '<figure class="hb-symbol-panel">'
+                '<img class="hb-symbol-art" src="assets/art.png" alt="art"/>'
+                "</figure>\n",
+                encoding="utf-8",
+            )
+            output = root / "site"
+            pms.render_markdown_site(source=source, output_dir=output, log=lambda _m: None)
+            html = (output / "index.html").read_text(encoding="utf-8")
+            self.assertIn('src="assets/art.png"', html)
+            self.assertIn("hb-symbol-panel", html)  # raw HTML passed through
+            self.assertTrue(
+                (output / "assets" / "art.png").is_file(),
+                "raw-HTML image was not copied into the built site",
+            )
+
+    def test_conf_declares_the_asset_copy_hook(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            pms.write_conf_py(staged, title="Docs")
+            conf = (staged / "conf.py").read_text(encoding="utf-8")
+        self.assertIn("build-finished", conf)
+        self.assertIn("def setup(app)", conf)
+
     def test_image_refs_are_repointed_to_staged_files(self) -> None:
         with TemporaryDirectory() as td:
             staged = Path(td)
