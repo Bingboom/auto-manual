@@ -274,6 +274,80 @@ class PlainMarkdownSiteTests(unittest.TestCase):
         self.assertNotIn("|------", text)  # the pipe table is gone
         self.assertNotIn("<thead", text)  # and so is the phantom header
 
+    def test_signal_word_table_without_body_becomes_a_callout(self) -> None:
+        """Cloud exports flatten callout boxes into a header-only two-column table.
+
+        Rendered untouched they are a table with a heading row and no content,
+        which is how a real legacy manual ends up with 17 of them.
+        """
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "c.md").write_text(
+                "# Doc\n\n"
+                "| **WARNING** | Do not open the enclosure. |\n| --- | --- |\n\n"
+                "| ### DANGER | Indoor use only. |\n| --- | --- |\n\n"
+                "| NOTE | Mode resumes after power on. |\n| --- | --- |\n",
+                encoding="utf-8",
+            )
+            upgraded = pms.upgrade_spec_tables(staged, log=lambda _m: None)
+            text = (staged / "c.md").read_text(encoding="utf-8")
+        self.assertEqual(3, upgraded)
+        self.assertEqual(3, text.count('class="manual-callout-table"'))
+        for label in ("WARNING", "DANGER", "NOTE"):
+            self.assertIn(f"<strong>{label}</strong>", text)
+        self.assertIn("Do not open the enclosure.", text)
+        self.assertNotIn("| ---", text)
+
+    def test_header_row_holding_data_is_treated_as_a_body_row(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "lcd.md").write_text(
+                "# LCD\n\n"
+                "| ① | ![i](a.png) | Wi-Fi | Connected. |\n| --- | --- | --- | --- |\n"
+                "| ② | ![i](b.png) | Bluetooth | Paired. |\n",
+                encoding="utf-8",
+            )
+            pms.upgrade_spec_tables(staged, log=lambda _m: None)
+            text = (staged / "lcd.md").read_text(encoding="utf-8")
+        self.assertIn('class="manual-table"', text)
+        self.assertNotIn("<thead", text)
+        self.assertIn("Wi-Fi", text)
+        self.assertIn("Bluetooth", text)  # the first row survived as data
+
+    def test_in_table_section_headings_split_into_one_composition_each(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "spec.md").write_text(
+                "# SPECIFICATIONS\n\n"
+                "| ### GENERAL INFO |  |\n| --- | --- |\n"
+                "| Product Name | Explorer 1000 |\n"
+                "| ### INPUT PORTS |  |\n"
+                "| 1 × AC Input | 15 A max. |\n"
+                "|  | Bypass: 12 A max. |\n",
+                encoding="utf-8",
+            )
+            pms.upgrade_spec_tables(staged, log=lambda _m: None)
+            text = (staged / "spec.md").read_text(encoding="utf-8")
+        self.assertEqual(2, text.count("hb-spec-table-composition"))
+        self.assertIn('aria-label="GENERAL INFO"', text)
+        self.assertIn('aria-label="INPUT PORTS"', text)
+        self.assertIn("### INPUT PORTS", text)  # the heading is kept as a heading
+        self.assertIn('rowspan="2"', text)  # blank-label row merged
+
+    def test_inline_superscript_and_subscript_are_rendered(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            (staged / "s.md").write_text(
+                "# S\n\nBypass Mode^①^ and V~oc~ range.\n\n```\nkeep ^this^ and ~that~\n```\n",
+                encoding="utf-8",
+            )
+            converted = pms.normalize_inline_syntax(staged, log=lambda _m: None)
+            text = (staged / "s.md").read_text(encoding="utf-8")
+        self.assertEqual(2, converted)
+        self.assertIn("<sup>①</sup>", text)
+        self.assertIn("<sub>oc</sub>", text)
+        self.assertIn("keep ^this^ and ~that~", text)  # code fence untouched
+
     def test_table_with_a_real_header_is_left_alone(self) -> None:
         with TemporaryDirectory() as td:
             staged = Path(td)

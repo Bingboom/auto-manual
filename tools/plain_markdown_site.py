@@ -307,6 +307,75 @@ def _spec_table_html(rows: list[list[str]], *, aria_label: str) -> str:
     )
 
 
+SIGNAL_WORDS = frozenset(
+    {"WARNING", "CAUTION", "NOTE", "TIP", "DANGER", "IMPORTANT", "NOTICE", "ATTENTION"}
+)
+_MARKUP_STRIP_RE = re.compile(r"^[#*\s]+|[*\s]+$")
+_LEADING_NUMBER_RE = re.compile(r"^[①-⑳\d]{1,3}$")
+_SUP_RE = re.compile(r"\^([^\^\s][^\^]{0,24})\^")
+_SUB_RE = re.compile(r"~([^~\s][^~]{0,24})~")
+
+
+def _bare(cell: str) -> str:
+    """Cell text without heading marks, bold stars or surrounding space."""
+    return _MARKUP_STRIP_RE.sub("", cell).strip()
+
+
+def _is_signal_word(cell: str) -> bool:
+    return _bare(cell).upper() in SIGNAL_WORDS
+
+
+def _callout_html(label: str, body: str) -> str:
+    """The manual's callout box: a labelled cell beside the message."""
+    return (
+        '<table class="manual-callout-table"><tbody><tr>'
+        f'<td class="manual-callout-label"><p><strong>{_esc(_bare(label))}</strong></p></td>'
+        f'<td class="manual-callout-body"><p>{_cell_html(body)}</p></td>'
+        "</tr></tbody></table>"
+    )
+
+
+def _looks_like_data(header: list[str]) -> bool:
+    """True when the header row is really the first data row.
+
+    Cloud-editor exports put the delimiter after the first data row when the
+    source table had no header, so genuine content lands in ``<thead>`` and
+    renders as column headings — an icon, a circled index or an in-table
+    section heading sitting in a header slot is the giveaway.
+    """
+    first = header[0].strip() if header else ""
+    if "![" in "".join(header):
+        return True
+    if first.startswith("#"):
+        return True
+    return bool(_LEADING_NUMBER_RE.match(_bare(first)))
+
+
+def _section_split(rows: list[list[str]]) -> list[tuple[str, list[list[str]]]]:
+    """Split rows on in-table section headings (``### INPUT PORTS`` style).
+
+    The published manual renders one bordered composition per spec group, so a
+    single exported table carrying several ``###`` rows has to become several
+    compositions rather than one long grid.
+    """
+    groups: list[tuple[str, list[list[str]]]] = []
+    current_title = ""
+    current: list[list[str]] = []
+    for row in rows:
+        first = row[0].strip()
+        rest_empty = not any(cell.strip() for cell in row[1:])
+        if first.startswith("#") and rest_empty:
+            if current:
+                groups.append((current_title, current))
+            current_title = _bare(first)
+            current = []
+            continue
+        current.append(row)
+    if current:
+        groups.append((current_title, current))
+    return groups
+
+
 def _is_label_value(rows: list[list[str]]) -> bool:
     """True when the first column reads as labels rather than artwork.
 
@@ -359,10 +428,6 @@ def upgrade_spec_tables(staged_dir: Path, *, log=print) -> int:
                 index += 1
                 continue
             header = _split_row(line)
-            if any(cell for cell in header):
-                out.append(line)
-                index += 1
-                continue
             cursor = index + 2
             rows: list[list[str]] = []
             while cursor < len(lines) and lines[cursor].strip().startswith("|"):
@@ -370,6 +435,23 @@ def upgrade_spec_tables(staged_dir: Path, *, log=print) -> int:
                 if row and any(cell for cell in row):
                     rows.append(row)
                 cursor += 1
+
+            # A two-column table with no body rows whose first cell is a signal
+            # word is a callout box that a cloud export flattened into a table.
+            if not rows and len(header) == 2 and _is_signal_word(header[0]):
+                out.extend(["", _callout_html(header[0], header[1]), ""])
+                upgraded += 1
+                changed = True
+                index = cursor
+                continue
+
+            header_is_data = _looks_like_data(header)
+            if any(cell for cell in header) and not header_is_data:
+                out.append(line)
+                index += 1
+                continue
+            if header_is_data:
+                rows.insert(0, header)
             if not rows:
                 out.append(line)
                 index += 1
@@ -377,12 +459,21 @@ def upgrade_spec_tables(staged_dir: Path, *, log=print) -> int:
             aria_label = _nearest_heading(lines, index)
             width = max(len(row) for row in rows)
             rows = [row + [""] * (width - len(row)) for row in rows]
-            html_block = (
-                _spec_table_html(rows, aria_label=aria_label)
-                if width == 2 and _is_label_value(rows)
-                else _plain_table_html(rows, aria_label=aria_label)
-            )
-            out.extend(["", html_block, ""])
+            blocks: list[str] = []
+            for section_title, section_rows in _section_split(rows):
+                if not section_rows:
+                    continue
+                label = section_title or aria_label
+                if section_title:
+                    blocks.append(f"### {section_title}")
+                blocks.append(
+                    _spec_table_html(section_rows, aria_label=label)
+                    if width == 2 and _is_label_value(section_rows)
+                    else _plain_table_html(section_rows, aria_label=label)
+                )
+            out.append("")
+            for block in blocks:
+                out.extend([block, ""])
             upgraded += 1
             changed = True
             index = cursor
@@ -391,6 +482,43 @@ def upgrade_spec_tables(staged_dir: Path, *, log=print) -> int:
     if upgraded:
         log(f"[md-site] upgraded {upgraded} headerless table(s) to manual table markup")
     return upgraded
+
+
+def normalize_inline_syntax(staged_dir: Path, *, log=print) -> int:
+    """Render pandoc-style ``^sup^`` and ``~sub~`` that MyST leaves as literals.
+
+    Exported manuals carry footnote markers as ``Bypass Mode^①^`` and units as
+    ``V~oc~``. MyST enables neither extension, so both print their tildes and
+    carets verbatim. Convert to real ``<sup>``/``<sub>`` outside code, where the
+    characters must stay untouched.
+    """
+    converted = 0
+    for markdown_path in sorted(staged_dir.rglob("*.md")):
+        relative = markdown_path.relative_to(staged_dir)
+        if _skipped(relative):
+            continue
+        out: list[str] = []
+        in_fence = False
+        changed = False
+        for line in markdown_path.read_text(encoding="utf-8").splitlines():
+            if line.lstrip().startswith("```"):
+                in_fence = not in_fence
+                out.append(line)
+                continue
+            if in_fence or "`" in line:
+                out.append(line)
+                continue
+            rewritten, sup_count = _SUP_RE.subn(r"<sup>\1</sup>", line)
+            rewritten, sub_count = _SUB_RE.subn(r"<sub>\1</sub>", rewritten)
+            if sup_count or sub_count:
+                converted += sup_count + sub_count
+                changed = True
+            out.append(rewritten)
+        if changed:
+            markdown_path.write_text("\n".join(out) + "\n", encoding="utf-8")
+    if converted:
+        log(f"[md-site] converted {converted} superscript/subscript marker(s)")
+    return converted
 
 
 def ensure_page_titles(staged_dir: Path, *, titles: dict[str, str] | None = None, log=print) -> int:
@@ -648,6 +776,7 @@ def render_markdown_site(
         if normalize_images:
             normalize_image_refs(staged_dir, log=log)
         if upgrade_tables:
+            normalize_inline_syntax(staged_dir, log=log)
             upgrade_spec_tables(staged_dir, log=log)
         ensure_page_titles(staged_dir, titles=route_titles, log=log)
         if manifest_routes is None:
