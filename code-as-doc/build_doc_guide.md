@@ -355,6 +355,7 @@ Page-stack note:
 
 - shared config families may resolve their page stack through `paths.page_manifest`
 - keep manifest-driven page order changes under [`docs/manifests/`](../docs/manifests)
+- for a genuine model-only generated-page layout exception, keep the family manifest and declare `model_overrides.<MODEL>.recipe` / `template` on that `generated_page`; the default recipe/template remains the path for every other model
 - keep merged-language and single-language preface components separate: `manual_au-en.yaml` uses the English-only `page_shared/en/00_preface_single_language.rst`; the merged US preface remains the trilingual `page_shared/en/00_preface.rst`
 - do not point a single-language manifest at a preface containing language-tagged blocks outside `build.languages`; the language-parity gate rejects that bundle
 

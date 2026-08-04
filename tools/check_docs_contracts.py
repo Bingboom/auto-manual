@@ -88,6 +88,18 @@ def collect_page_contract_issues(
         region=target.region,
         error_prefix="config.pages",
     ).pages
+    # Contract checks must validate the same page stack that the bundle plan
+    # materializes. A capability-gated page that was dropped for this target
+    # is not part of the manual and therefore must not create false missing-
+    # placeholder or missing-page-value findings.
+    from tools.capability_pages import filter_pages_by_capability
+
+    pages, _dropped = filter_pages_by_capability(
+        pages,
+        model=target.model,
+        region=target.region,
+        data_dir=repo_root / "data",
+    )
     spec_master_csv = resolve_spec_master_csv_path(cfg, data_root=data_root)
     spec_rows = read_spec_master_rows(spec_master_csv)
     substitutions_by_lang: dict[str, dict[str, str]] = {}

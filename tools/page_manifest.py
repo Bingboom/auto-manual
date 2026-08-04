@@ -95,6 +95,7 @@ def resolve_config_pages(
     pages, issues = parse_config_pages(
         pages_raw,
         default_languages=default_languages,
+        model=model,
     )
     return ResolvedPageSource(
         pages=pages,
@@ -119,6 +120,7 @@ def resolve_config_pages_or_raise(
         pages = parse_config_pages_or_raise(
             cfg.get("pages"),
             default_languages=default_languages,
+            model=model,
             error_prefix=error_prefix,
         )
     else:
@@ -126,6 +128,7 @@ def resolve_config_pages_or_raise(
         pages = parse_config_pages_or_raise(
             pages_raw,
             default_languages=default_languages,
+            model=model,
             error_prefix=error_prefix,
         )
 

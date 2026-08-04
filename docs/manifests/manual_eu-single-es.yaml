@@ -19,6 +19,10 @@ pages:
     engine: draft_v1
     recipe: templates/recipes/eu-en/03_product_overview.yaml
     template: templates/page_eu-es/03_product_overview_placeholder.rst
+    model_overrides:
+      JE-300E:
+        recipe: templates/recipes/eu-en/03_product_overview_je300e.yaml
+        template: templates/page_eu-es/03_product_overview_je300e.rst
     langs: [es]
     include_dir: generated/{model}/draft
   - type: csv_page

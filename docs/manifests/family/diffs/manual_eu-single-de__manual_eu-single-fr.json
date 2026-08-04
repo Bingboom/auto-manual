@@ -48,6 +48,11 @@
     },
     {
       "op": "replace",
+      "path": "/pages/4/model_overrides/JE-300E/template",
+      "value": "templates/page_eu-fr/03_product_overview_je300e.rst"
+    },
+    {
+      "op": "replace",
       "path": "/pages/4/template",
       "value": "templates/page_eu-fr/03_product_overview_placeholder.rst"
     },
