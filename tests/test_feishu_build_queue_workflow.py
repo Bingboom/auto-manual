@@ -5,6 +5,8 @@ from pathlib import Path
 
 import yaml
 
+from tests.test_helpers import step_action_name
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "feishu-build-queue.yml"
@@ -32,7 +34,9 @@ class FeishuBuildQueueWorkflowTests(unittest.TestCase):
 
         self.assertLess(cache_index, install_index)
         self.assertLess(install_index, process_index)
-        self.assertEqual("actions/cache@v4", cache_step["uses"])
+        # The guard is "the cache step is actions/cache and runs before the
+        # install", not which version is pinned — dependabot owns the version.
+        self.assertEqual("actions/cache", step_action_name(cache_step))
         self.assertEqual("texlive-apt-cache", cache_step["id"])
         self.assertEqual("install-texlive", install_step["id"])
 
