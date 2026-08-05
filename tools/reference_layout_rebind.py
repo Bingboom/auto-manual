@@ -73,7 +73,7 @@ def _run_one(
     changed_identity = ",".join(result.changed_identity_fields) or "none"
     print(
         f"[reference-layout-rebind] {action}: {result.plan_path} | "
-        f"source_identity={changed_identity} "
+        f"identity={changed_identity} "
         f"page_bindings={result.changed_page_bindings} "
         f"content_reapproved={'yes' if result.content_reapproved else 'no'} "
         "composition_map=unchanged validation=passed"

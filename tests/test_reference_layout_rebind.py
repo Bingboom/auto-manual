@@ -36,6 +36,9 @@ def _composition_map(payload: dict[str, object]) -> list[tuple[object, ...]]:
 def _stale_payload() -> dict[str, object]:
     ir = _manual_ir()
     payload = deepcopy(_approved_payload(ir))
+    payload["idml_contract"]["allowed_unclassified_source_refs"] = [  # type: ignore[index]
+        page.source_ref for page in ir.pages
+    ]
     payload["source_identity"] = {
         "manual_ir_schema_version": "old-schema",
         "manual_content_sha256": ir.content_sha256,
@@ -134,7 +137,7 @@ class ReferenceLayoutRebindTests(unittest.TestCase):
             original = json.dumps(payload)
             plan_path.write_text(original, encoding="utf-8")
             with self.assertRaisesRegex(
-                ReferenceLayoutPlanError, "cannot change manual_content_sha256",
+                ReferenceLayoutPlanError, "cannot change content or assembly identity",
             ):
                 rebind_reference_layout_plan(plan_path, changed_ir, write=True)
             self.assertEqual(original, plan_path.read_text(encoding="utf-8"))
@@ -159,7 +162,10 @@ class ReferenceLayoutRebindTests(unittest.TestCase):
             )
 
         self.assertTrue(result.content_reapproved)
-        self.assertIn("manual_content_sha256", result.changed_identity_fields)
+        self.assertIn(
+            "content.manual_content_sha256",
+            result.changed_identity_fields,
+        )
         self.assertEqual(approval, result.candidate["approval"])
         self.assertEqual(_composition_map(payload), _composition_map(result.candidate))
         self.assertEqual(

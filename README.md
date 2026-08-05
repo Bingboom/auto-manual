@@ -309,17 +309,22 @@ for English/French/Spanish, and one back cover. The plan binds all 52 IR source
 references to compositions covering physical pages 1–58. A missing or
 mismatched plan, source/hash drift, or page-count drift is a hard failure; this
 approval path must not silently fall back to fuzzy PDF matching.
+Approved-plan v2 separates target content, semantic/physical assembly, style,
+and source provenance. Content, assembly, style, per-page digests, and the
+reference PDF remain hard gates. The repository-wide phase2 snapshot hash is
+retained under `identity.provenance` for audit, but unrelated snapshot drift
+does not invalidate an unchanged target manual. Approved v2 assembly also
+forbids `UNCLASSIFIED_PROSE` unless the exact source ref is listed as an
+explicit exception; the JE-1000F US contract has no such exceptions.
 An approved on-disk contract for the exact target is also fail-closed when its
 registry entry is missing: removing a registry row is not a way to demote an
 approved replica to the measured-LaTeX fallback. That fallback is available
 only when no approved contract exists for the target.
 
-When the frozen Manual IR changes without changing the approved physical
-composition, rebind the mutable non-content identity fields and every page
-source digest as one validated operation. The ordinary command requires the
-semantic content hash, source order, page languages, and physical composition
-to remain unchanged. It is dry-run by default; inspect its summary and the diff
-before applying `--write`:
+When the frozen Manual IR changes without changing approved content or
+semantic/physical assembly, rebind the mutable style/provenance identity fields
+and every page source digest as one validated operation. The command is dry-run
+by default; inspect its summary and the diff before applying `--write`:
 
 ```bash
 python3 tools/reference_layout_rebind.py \

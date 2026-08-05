@@ -4,17 +4,14 @@ Registered: 2026-07-27
 
 ## 0. 为什么有这份文件
 
-生产 IDML 目前**无法从干净检出构建**：
+批准 reference-layout plan v2 把身份拆成 `content`、`assembly`、`style` 和
+`provenance`。目标内容、语义/物理装配、样式与逐页 digest 是 production 硬门禁；
+全局 phase2 `snapshot_sha256` 只记录在 provenance，不再因为无关表刷新阻断一个
+内容完全相同的目标。因此，**只发生 snapshot 漂移时不需要重绑**。
 
-```
-[export-idml] ERROR: same-source IDML preparation failed:
-  source_identity.snapshot_sha256 does not match the current manual IR
-```
-
-`snapshot_sha256` 把已批准的参考版式契约绑在某一份 phase2 数据快照上，而
-`data/phase2/` 除 `page_registry.csv` 外都不入库，所以任何检出都复现不了它。
-解开它需要一次重绑，而重绑已批准契约是审批动作，不是维护动作——这份 runbook
-就是把那次操作写成可照抄、可验收的步骤。
+这份 runbook 现在用于两类需要证据的操作：style/layout/page digest 确实变化但
+批准内容和装配不变时的原子重绑，以及之后的 InDesign finalize + parity。若
+content 或 assembly identity 变化，普通重绑会拒绝，必须回到操作者批准路径。
 
 同时它补上另一笔欠账：#720 把
 `lang_en_idml_ups_caution_space_after` 从 9.9pt 改成 15.9pt，
@@ -46,16 +43,17 @@ shasum -a 256 ~/ref/"Jackery Explorer 1000 User Manual V2.0-2026-06-05.pdf"
 
 ## 2. 同步一份新的 phase2 快照
 
-`snapshot_sha256` 绑的就是它。
+这一步提供本次构建的实际源数据。其全局 hash 会进入 provenance，但只有当前
+target 实际投影出的内容和逐页 digest 参与批准激活。
 
 ```bash
 python build.py sync-data --config configs/config.us.yaml --data-root data/phase2
 ```
 
-## 3. 产出 manual.ir.json（用 flow 模式绕开门）
+## 3. 产出 manual.ir.json
 
-重绑需要 IR，而 IR 由生产导出写出——但生产导出正被那道门拦着。
-**flow 模式不经过 same-source 门，却同样写出 IR**，这是整条链的出口：
+普通 production 可以直接运行；仅在需要预先检查或重绑 style/provenance/page
+digest 时，可先用 flow 模式独立产出 IR：
 
 ```bash
 python build.py idml --config configs/config.us.yaml --model JE-1000F --region US \
@@ -72,15 +70,16 @@ python tools/reference_layout_rebind.py \
   --manual-ir docs/_build/JE-1000F/US/idml/flow/manual.ir.json
 ```
 
-**放行条件**（输出须为）：
+**放行条件**：
 
 ```
-source_identity=snapshot_sha256  page_bindings=0  composition_map=unchanged  validation=passed
+identity=<none-or-style/provenance fields>  page_bindings=0  composition_map=unchanged  validation=passed
 ```
 
-`page_bindings=0` 是这一步的安全闸：说明只有数据快照身份更新，**52 个页面的
-几何绑定一个都没动**。若 `page_bindings` 非 0 或 `composition_map` 变了，
-**停下**——那意味着版式真的变了，应走审批而不是重绑。
+`page_bindings=0` 与 `composition_map=unchanged` 是安全闸。普通 dry-run 还必须
+不包含 `content.manual_content_sha256` 或 `assembly.sha256`；若出现，**停下**，
+那意味着批准内容或装配真的变化，应走显式批准而不是普通重绑。仅
+`provenance.snapshot_sha256` 变化不影响 production，也不要求为了追平而写契约。
 
 确认后写入：
 
@@ -182,14 +181,15 @@ python tools/check_reference_layout_pins.py     # 必须 OK
 | 现象 | 含义 |
 | --- | --- |
 | 第 4 步 `page_bindings` 非 0 | 版式真的变了 → 停，走审批而非重绑 |
-| 第 5 步仍报 `snapshot_sha256` | 重绑用的 IR 与构建用的 `--data-root` 不是同一份快照 |
+| 第 5 步报 `identity.content` | 当前 target 的实际内容变了，走内容批准而非普通重绑 |
+| 第 5 步报 `identity.assembly` | source 顺序、语言、页面角色或 composition map 变了，走装配批准 |
+| 第 5 步报 `unclassified prose` | 批准 target 出现未登记页面角色；先补分类，禁止静默 prose fallback |
 | 第 5 步报 `layout_params_sha256` | 有人改了 `data/layout_params.csv` 未刷 pin；CI 的 `reference-layout-pins` 作业现在会当场拦截 |
 | 第 7 步某页不过 | 报告含逐页数值，那一页即该次几何改动的实际影响面 |
 
 ## 11. 本文的验证状态
 
-第 1–4 步（含 dry-run）已在 2026-07-27 实测：flow 模式确实产出
-`manual.ir.json`，dry-run 输出即上文放行条件那一行。**第 4 步的 `--write`
-及其之后未实测**——写入已批准契约是审批动作，故留给操作者。重绑前生产构建的
-唯一报错就是 `snapshot_sha256`，因此预期第 5 步通过；若报其他错误，请连原文
-一并反馈。
+2026-08-05 已用 52-source / 58-page 已批准 Manual IR 完成 v1→v2 原子迁移演练：
+`page_bindings=0`、`composition_map=unchanged`、validation passed；原批准
+snapshot hash 被保留为 provenance。v2 production 另需用一个不同 snapshot hash
+但相同 target 内容的实时构建证明 provenance 漂移不再阻断。

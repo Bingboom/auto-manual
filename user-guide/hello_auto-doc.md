@@ -180,15 +180,19 @@ That contract is bound to the 58-page
 and `368.787 × 524.692 pt` page geometry. The physical structure is front
 matter 1–3, English 4–21, French 22–39, Spanish 40–57, and back cover 58. Its
 52 source references are bound by composition across all 58 pages. Missing or
-mismatched plan identity, source/hash drift, or page-count drift is a hard
-failure; the build must not silently use fuzzy PDF matching.
+mismatched enforced content/assembly/style identity, source/hash drift,
+unclassified prose without an exact exception, or page-count drift is a hard
+failure; the build must not silently use fuzzy PDF matching. The v2 contract
+keeps the global phase2 snapshot hash as non-blocking provenance, so unrelated
+table refreshes do not invalidate an unchanged target manual.
 The same rule applies if the contract file is still approved but its registry
 entry is missing: the build stops and names the orphaned contract. Only a target
 with no approved contract may use measured-LaTeX fallback pagination.
 
-When a source refresh changes the Manual IR identity without changing the
-approved 58-page composition, use the rebind command instead of editing one hash
-or removing the registry entry. It is a dry-run unless `--write` is present:
+When a source refresh changes mutable style/provenance identity without changing
+the approved content or semantic/physical assembly, use the rebind command
+instead of editing one hash or removing the registry entry. It is a dry-run
+unless `--write` is present:
 
 ```bash
 python3 tools/reference_layout_rebind.py \

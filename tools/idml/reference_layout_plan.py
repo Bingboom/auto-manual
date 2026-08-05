@@ -15,9 +15,14 @@ from tools.utils.path_utils import PathSegments, Paths
 from .control_labels import validate_app_control_label_contract
 from .latex_page_plan import SCHEMA_VERSION as LEGACY_PLAN_SCHEMA_VERSION
 from .lcd_reference_profile import validate_lcd_reference_profile
+from .page_roles import PageRole, classify_page_role
 
 
-SCHEMA_VERSION = "approved-reference-layout-plan/v1"
+V1_SCHEMA_VERSION = "approved-reference-layout-plan/v1"
+V2_SCHEMA_VERSION = "approved-reference-layout-plan/v2"
+SCHEMA_VERSION = V2_SCHEMA_VERSION
+CURRENT_SCHEMA_VERSION = SCHEMA_VERSION
+SUPPORTED_SCHEMA_VERSIONS = frozenset({V1_SCHEMA_VERSION, V2_SCHEMA_VERSION})
 REGISTRY_SCHEMA_VERSION = "approved-reference-layout-registry/v1"
 _DIGEST = re.compile(r"[0-9a-f]{64}")
 _RFC3339 = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})")
@@ -162,7 +167,7 @@ def _unregistered_approved_contracts(
             )
         approval = payload.get("approval")
         if (
-            payload.get("schema_version") == SCHEMA_VERSION
+            payload.get("schema_version") in SUPPORTED_SCHEMA_VERSIONS
             and _same_model_region(payload.get("target"), expected_target)
             and (
                 payload.get("target") == expected_target
@@ -201,28 +206,66 @@ def _fail_if_approved_contract_is_unregistered(
     )
 
 
-def validate_approved_reference_plan(
+def _assembly_identity_payload(
+    payload: dict[str, Any],
+    ir: ManualIR,
+) -> dict[str, Any]:
+    """Return the approved semantic/physical assembly projection.
+
+    Content digests deliberately stay out of this scope. The assembly identity
+    answers a narrower question: will these ordered source pages use the same
+    semantic routers and the same approved physical compositions?
+    """
+    raw_pages = payload.get("pages")
+    plan_pages = raw_pages if isinstance(raw_pages, list) else []
+    pages: list[dict[str, Any]] = []
+    for ordinal, source_page in enumerate(ir.pages):
+        approved = (
+            plan_pages[ordinal]
+            if ordinal < len(plan_pages) and isinstance(plan_pages[ordinal], dict)
+            else {}
+        )
+        pages.append({
+            "ordinal": ordinal,
+            "source_ref": source_page.source_ref,
+            "language": source_page.language,
+            "page_role": classify_page_role(Path(source_page.source_ref)).value,
+            "composition_id": approved.get("composition_id"),
+            "start_page": approved.get("start_page"),
+            "page_count": approved.get("page_count"),
+            "flow_split": approved.get("flow_split"),
+        })
+    return {"pages": pages}
+
+
+def build_identity_scopes(
+    payload: dict[str, Any],
+    ir: ManualIR,
+) -> dict[str, dict[str, Any]]:
+    """Build the v2 identity scopes for one approved plan and Manual IR."""
+    return {
+        "content": {
+            "manual_ir_schema_version": ir.schema_version,
+            "manual_content_sha256": ir.content_sha256,
+        },
+        "assembly": {
+            "sha256": _canonical_sha256(_assembly_identity_payload(payload, ir)),
+        },
+        "style": {
+            "style_contract_sha256": ir.style_contract_sha256,
+            "layout_params_sha256": ir.layout_params_sha256,
+        },
+        "provenance": {
+            "snapshot_sha256": ir.snapshot_sha256,
+        },
+    }
+
+
+def _validate_v1_identity(
     payload: dict[str, Any],
     ir: ManualIR,
 ) -> list[str]:
-    """Return every reason an approved contract cannot govern this IR."""
-    issues = unknown_language_issues(ir)
-    if payload.get("schema_version") != SCHEMA_VERSION:
-        issues.append(f"schema_version must be {SCHEMA_VERSION}")
-
-    target = payload.get("target")
-    if not isinstance(target, dict):
-        issues.append("target must be an object")
-        target = {}
-    expected_target = {
-        "model": ir.model,
-        "region": ir.region,
-        "languages": _languages(ir),
-    }
-    for field, expected in expected_target.items():
-        if target.get(field) != expected:
-            issues.append(f"target.{field} must be {expected!r}")
-
+    issues: list[str] = []
     source_identity = payload.get("source_identity")
     if not isinstance(source_identity, dict):
         issues.append("source_identity must be an object")
@@ -238,7 +281,8 @@ def validate_approved_reference_plan(
         if source_identity.get(field) != expected:
             issues.append(
                 f"source_identity.{field} does not match the current manual IR "
-                f"(pinned={str(source_identity.get(field))[:12]}, built={str(expected)[:12]})"
+                f"(pinned={str(source_identity.get(field))[:12]}, "
+                f"built={str(expected)[:12]})"
             )
     for field in (
         "manual_content_sha256", "snapshot_sha256",
@@ -246,6 +290,118 @@ def validate_approved_reference_plan(
     ):
         if not _valid_digest(source_identity.get(field)):
             issues.append(f"source_identity.{field} must be a lowercase SHA-256")
+    return issues
+
+
+def _validate_v2_identity(
+    payload: dict[str, Any],
+    ir: ManualIR,
+) -> list[str]:
+    issues: list[str] = []
+    identity = payload.get("identity")
+    if not isinstance(identity, dict):
+        return ["identity must be an object"]
+    expected = build_identity_scopes(payload, ir)
+    enforced_fields = {
+        "content": ("manual_ir_schema_version", "manual_content_sha256"),
+        "assembly": ("sha256",),
+        "style": ("style_contract_sha256", "layout_params_sha256"),
+    }
+    for scope, fields in enforced_fields.items():
+        actual_scope = identity.get(scope)
+        if not isinstance(actual_scope, dict):
+            issues.append(f"identity.{scope} must be an object")
+            actual_scope = {}
+        for field in fields:
+            actual = actual_scope.get(field)
+            wanted = expected[scope][field]
+            if actual != wanted:
+                issues.append(
+                    f"identity.{scope}.{field} does not match the current manual IR "
+                    f"(pinned={str(actual)[:12]}, built={str(wanted)[:12]})"
+                )
+            if field != "manual_ir_schema_version" and not _valid_digest(actual):
+                issues.append(
+                    f"identity.{scope}.{field} must be a lowercase SHA-256"
+                )
+    provenance = identity.get("provenance")
+    if not isinstance(provenance, dict):
+        issues.append("identity.provenance must be an object")
+    elif not _valid_digest(provenance.get("snapshot_sha256")):
+        issues.append(
+            "identity.provenance.snapshot_sha256 must be a lowercase SHA-256"
+        )
+    # Provenance is intentionally not equality-gated. It records the approved
+    # source snapshot, while target content/page pins govern activation.
+    return issues
+
+
+def _unclassified_contract_issues(
+    idml_contract: dict[str, Any],
+    ir: ManualIR,
+) -> list[str]:
+    raw = idml_contract.get("allowed_unclassified_source_refs")
+    if not isinstance(raw, list) or any(
+        not isinstance(item, str) or not item.strip() for item in raw
+    ):
+        return [
+            "idml_contract.allowed_unclassified_source_refs must be a list "
+            "of non-empty source refs"
+        ]
+    if len(raw) != len(set(raw)):
+        return ["idml_contract.allowed_unclassified_source_refs must be unique"]
+    current = {page.source_ref for page in ir.pages}
+    issues = [
+        f"{source_ref}: unclassified prose exception is not a current source_ref"
+        for source_ref in raw
+        if source_ref not in current
+    ]
+    allowed = set(raw)
+    for page in ir.pages:
+        role = classify_page_role(Path(page.source_ref))
+        if role is PageRole.UNCLASSIFIED_PROSE and page.source_ref not in allowed:
+            issues.append(
+                f"{page.source_ref}: unclassified prose is forbidden by the "
+                "approved assembly contract"
+            )
+        elif role is not PageRole.UNCLASSIFIED_PROSE and page.source_ref in allowed:
+            issues.append(
+                f"{page.source_ref}: unclassified prose exception is stale; "
+                f"current role is {role.value}"
+            )
+    return issues
+
+
+def validate_approved_reference_plan(
+    payload: dict[str, Any],
+    ir: ManualIR,
+) -> list[str]:
+    """Return every reason an approved contract cannot govern this IR."""
+    issues = unknown_language_issues(ir)
+    schema_version = payload.get("schema_version")
+    if schema_version not in SUPPORTED_SCHEMA_VERSIONS:
+        issues.append(
+            "schema_version must be one of "
+            + ", ".join(sorted(SUPPORTED_SCHEMA_VERSIONS))
+        )
+
+    target = payload.get("target")
+    if not isinstance(target, dict):
+        issues.append("target must be an object")
+        target = {}
+    expected_target = {
+        "model": ir.model,
+        "region": ir.region,
+        "languages": _languages(ir),
+    }
+    for field, expected in expected_target.items():
+        if target.get(field) != expected:
+            issues.append(f"target.{field} must be {expected!r}")
+
+    if schema_version == V2_SCHEMA_VERSION:
+        issues.extend(_validate_v2_identity(payload, ir))
+    else:
+        issues.extend(_validate_v1_identity(payload, ir))
     if ir.metadata.get("layout_params_hash_algorithm") != LAYOUT_PARAMS_HASH_ALGORITHM:
         issues.append(
             "manual IR metadata.layout_params_hash_algorithm must be "
@@ -366,6 +522,8 @@ def validate_approved_reference_plan(
                 "idml_contract.editable_components.lcd_icon_table." + issue
                 for issue in validate_lcd_reference_profile(lcd_profile)
             )
+        if schema_version == V2_SCHEMA_VERSION:
+            issues.extend(_unclassified_contract_issues(idml_contract, ir))
 
     plan_pages = payload.get("pages")
     if not isinstance(plan_pages, list):
@@ -520,7 +678,7 @@ def normalize_approved_reference_plan(
     return {
         "schema_version": LEGACY_PLAN_SCHEMA_VERSION,
         "plan_source": "approved-reference",
-        "approved_plan_schema_version": SCHEMA_VERSION,
+        "approved_plan_schema_version": payload["schema_version"],
         "approved_plan_sha256": _canonical_sha256(payload),
         "approved_plan_path": source_path.as_posix(),
         "manual_content_sha256": ir.content_sha256,

@@ -1,5 +1,5 @@
 {
-  "schema_version": "approved-reference-layout-plan/v1",
+  "schema_version": "approved-reference-layout-plan/v2",
   "target": {
     "model": "JE-1000F",
     "region": "US",
@@ -23,13 +23,6 @@
     "pdfx": "PDF/X-4",
     "output_intent": "Japan Color 2001 Coated",
     "output_condition": "JC200103"
-  },
-  "source_identity": {
-    "manual_ir_schema_version": "manual-ir/v1",
-    "manual_content_sha256": "ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0",
-    "snapshot_sha256": "2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33",
-    "style_contract_sha256": "885b936fa2569bf018d495e5af0527f9928bbf79e2ae47c9eaaae3bee7f94da7",
-    "layout_params_sha256": "912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d"
   },
   "approval": {
     "status": "approved",
@@ -406,7 +399,8 @@
           }
         }
       }
-    }
+    },
+    "allowed_unclassified_source_refs": []
   },
   "pages": [
     {
@@ -840,5 +834,21 @@
       "start_page": 58,
       "page_count": 1
     }
-  ]
+  ],
+  "identity": {
+    "content": {
+      "manual_ir_schema_version": "manual-ir/v1",
+      "manual_content_sha256": "ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0"
+    },
+    "assembly": {
+      "sha256": "1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05"
+    },
+    "style": {
+      "style_contract_sha256": "885b936fa2569bf018d495e5af0527f9928bbf79e2ae47c9eaaae3bee7f94da7",
+      "layout_params_sha256": "912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d"
+    },
+    "provenance": {
+      "snapshot_sha256": "2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33"
+    }
+  }
 }

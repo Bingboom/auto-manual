@@ -784,7 +784,7 @@ families such as JP and KR: passing only model/region must not let the low-level
 exporter's historical English default select localized data. Multilingual
 configs keep that historical default unless `--lang` is supplied explicitly.
 
-The approved contract freezes these identities:
+The approved v2 contract separates enforced identity from provenance:
 
 | Contract item | Approved value |
 | --- | --- |
@@ -793,10 +793,11 @@ The approved contract freezes these identities:
 | Reference SHA-256 | `e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2` |
 | Page contract | 58 pages, `368.787 × 524.692 pt`, tolerance `0.02 pt` |
 | Print contract | PDF/X-4, Output Intent `Japan Color 2001 Coated`, Output Condition `JC200103` |
-| Manual content SHA-256 | `e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3` |
-| Snapshot SHA-256 | `7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5` |
-| Style-contract SHA-256 | `32a0167cb7915c0bcdeec1e4a4938b4fc023a65b0257bee8cc21cd546c082712` |
-| Layout-params SHA-256 | `92498016e185dd6949171c4a5c435ac5ac76d53e9b535fe567ab59fe2270c139` |
+| Content identity (enforced) | `ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0` |
+| Assembly identity (enforced) | `1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05` |
+| Style-contract identity (enforced) | `885b936fa2569bf018d495e5af0527f9928bbf79e2ae47c9eaaae3bee7f94da7` |
+| Layout-params identity (enforced) | `912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d` |
+| Snapshot provenance (not an activation gate) | `2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33` |
 
 The 52 plan rows bind every IR source reference, by composition, to this
 physical structure:
@@ -810,10 +811,12 @@ physical structure:
 | Back cover | 58 | 1 |
 
 The build is fail-closed for this approval path. Target/language mismatch,
-missing plan, any of the bound source/hash identities drifting, incomplete
-52-source coverage, non-monotonic/out-of-bounds composition pages, or a final
-page-count/geometry mismatch stops the build. It must never partially use this
-plan and then silently fall back to the fuzzy PDF mapper.
+missing plan, enforced content/assembly/style drift, per-page source drift,
+incomplete 52-source coverage, unclassified prose without an exact approved
+exception, non-monotonic/out-of-bounds composition pages, or a final
+page-count/geometry mismatch stops the build. Snapshot provenance drift alone
+does not. The build must never partially use this plan and then silently fall
+back to the fuzzy PDF mapper.
 
 If source identity changes but the reviewed 58-page composition remains valid,
 refresh it with the dedicated all-or-nothing rebind command. Run the dry-run
@@ -826,11 +829,12 @@ python3 tools/reference_layout_rebind.py \
 ```
 
 The dry-run builds a complete candidate from the validated Manual IR. The
-ordinary route requires the semantic content hash, `source_ref` order, page
-languages, and physical composition map to remain unchanged; it refreshes the
-IR schema, snapshot, style-contract and layout-parameter identities plus every
-page's `source_sha256`, and writes nothing. After reviewing the summary, apply
-the same validated candidate atomically and inspect the Git diff:
+ordinary route requires the semantic content hash, assembly hash, `source_ref`
+order, page languages, and physical composition map to remain unchanged; it
+refreshes style/provenance identities plus every page's `source_sha256`, and
+writes nothing. A v1 input is migrated atomically to v2 while preserving its
+approved snapshot as provenance. After reviewing the summary, apply the same
+validated candidate and inspect the Git diff:
 
 ```bash
 python3 tools/reference_layout_rebind.py \

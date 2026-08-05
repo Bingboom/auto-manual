@@ -56,12 +56,16 @@ python3 build.py idml \
 
 操作者已经批准“重新批准/重绑 content hash”。本轮先用最终 `manual.ir.json` 证明 source refs、语言映射、composition map、物理页数和 `skipped_raw` 不漂移，再通过 `tools/reference_layout_rebind.py --approve-content-change ... --write` 原子重绑。普通 rebind 仍默认拒绝 content hash 改变；显式批准要求批准人、RFC3339 时间和审查方法三项 metadata 齐全。
 
-最终 source identity：
+最终批准 identity 已迁移为 v2 分层结构：
 
-- content：`ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0`；
-- snapshot：`2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33`；
-- style contract：`885b936fa2569bf018d495e5af0527f9928bbf79e2ae47c9eaaae3bee7f94da7`；
-- layout params：`912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d`。
+- content（硬门禁）：`ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0`；
+- assembly（硬门禁）：`1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05`；
+- style contract（硬门禁）：`885b936fa2569bf018d495e5af0527f9928bbf79e2ae47c9eaaae3bee7f94da7`；
+- layout params（硬门禁）：`912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d`；
+- snapshot provenance（仅追溯）：`2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33`。
+
+v2 的 assembly hash 覆盖 source 顺序、语言、页面角色和 composition map；
+`allowed_unclassified_source_refs=[]`，因此批准装配不会静默退回普通 prose。
 
 批准记录为 `approved_by: 唐夏冰`、`approved_at: 2026-08-05T15:43:17Z`，method 明确记录了 52-source / 58-page parity 验证和 composition map unchanged。`tools/check_reference_layout_pins.py` 已通过。
 

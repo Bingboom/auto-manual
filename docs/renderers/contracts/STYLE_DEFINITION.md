@@ -351,7 +351,7 @@ Web 投影没有页的概念，这三条不参与。
 
 `aligned` 表示四个输出面消费同一语义合同，并不要求响应式 Web、固定页 PDF/IDML 和 Word 逐像素相同。允许的投影差异必须写在 token、渲染绑定或批准说明里，不能留作未登记的渲染器常量。
 
-`manual_style.yaml` 与 `data/layout_params.csv` 的语义哈希会写入批准 reference-layout plan。对已有批准合同的 target，production `build.py idml --source auto` 解析为冻结 `review-asis` 装配；未批准 target 继续走 runtime。普通 reference rebind 只允许非内容 identity 更新，默认拒绝 content hash 变化。只有在最终 Manual IR 的 source 顺序、语言映射、物理页数、`skipped_raw` 与 composition map 均通过核验后，才可由操作者使用显式 content-approval 路由重绑；reference PDF 与 composition map 不因样式销账而改变。
+`manual_style.yaml` 与 `data/layout_params.csv` 的语义哈希会写入批准 reference-layout plan 的 v2 `identity.style`。v2 把 identity 分为 `content`、`assembly`、`style`、`provenance`：前三者和逐页 source digest 是 production 硬门禁；全局 phase2 `snapshot_sha256` 只保留在 `provenance` 供追溯，不因无关表变化阻断当前 target。`assembly` 同时哈希 source 顺序、语言、页面角色和 composition map；批准装配出现 `UNCLASSIFIED_PROSE` 时默认失败，只有精确登记的 source-ref 例外可继续。对已有批准合同的 target，production `build.py idml --source auto` 解析为冻结 `review-asis` 装配；未批准 target 继续走 runtime。普通 reference rebind 只允许 style/provenance identity 更新，默认拒绝 content 或 assembly hash 变化。只有在最终 Manual IR 的 source 顺序、语言映射、物理页数、`skipped_raw` 与 composition map 均通过核验后，才可由操作者使用显式 content-approval 路由重绑；reference PDF 与 composition map 不因样式销账而改变。
 
 当前 JE-1000F / US 批准装配的验收结果为 52 个 source、58 个物理页、`skipped_raw=0`。具体 hash、批准 metadata 与测试记录见[样式契约欠账清算状态](../../../code-as-doc/dev/style_debt_execution_status.md)。
 

@@ -14,12 +14,13 @@ from typing import Any
 
 from tools.utils.path_utils import PathSegments, Paths
 
+from .reference_layout_plan import SUPPORTED_SCHEMA_VERSIONS
+
 
 APP_ADD_DEVICE_COMPONENT = "app_add_device"
 APP_PAIRING_PANEL_ASSET_URI = "asset:controls/je1000f_us/network_pairing_panel"
 APP_ADD_DEVICE_ICON_ASSET_URI = "asset:app/add_device_plus"
 
-_APPROVED_PLAN_SCHEMA = "approved-reference-layout-plan/v1"
 _REGISTRY_SCHEMA = "approved-reference-layout-registry/v1"
 
 
@@ -124,9 +125,10 @@ def load_registered_approved_contract(
             "approved reference layout registry path escapes the repository"
         ) from exc
     contract = _read_json(contract_path, "approved reference layout plan")
-    if contract.get("schema_version") != _APPROVED_PLAN_SCHEMA:
+    if contract.get("schema_version") not in SUPPORTED_SCHEMA_VERSIONS:
         raise IdmlAssetContractError(
-            f"approved plan schema_version must be {_APPROVED_PLAN_SCHEMA}"
+            "approved plan schema_version must be one of "
+            + ", ".join(sorted(SUPPORTED_SCHEMA_VERSIONS))
         )
     approval = contract.get("approval")
     if not isinstance(approval, dict) or approval.get("status") != "approved":
@@ -144,7 +146,7 @@ def _component_contract(
 ) -> dict[str, Any] | None:
     if not isinstance(approved_contract, dict):
         return None
-    if approved_contract.get("schema_version") != _APPROVED_PLAN_SCHEMA:
+    if approved_contract.get("schema_version") not in SUPPORTED_SCHEMA_VERSIONS:
         return None
     approval = approved_contract.get("approval")
     if not isinstance(approval, dict) or approval.get("status") != "approved":
