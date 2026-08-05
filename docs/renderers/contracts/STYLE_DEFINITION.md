@@ -393,4 +393,4 @@ Web 投影没有页的概念，这三条不参与。
 | `troubleshooting` 的 `:headers:` 不可用 | 代码读了 `options["headers"]` 但没注册该选项，写了报未知选项，不写则表头恒为 `Error Code` / `Corrective Measures` | 换 `manual-table` + `:headers:` |
 | `:class:` 被接受但忽略 | 八个指令都声明了该选项，八个 `run()` 都不读 | 改 CSS 或改指令实现 |
 
-各语义自身的偏差（IDML band 高度、列表语言密度、keep-with-next、质保识别启发式等）记在 `manual_style.yaml` 每条的 `debt` 字段里，本文各节已随条列出。
+各语义自身的偏差（IDML band 高度、列表语言密度、keep-with-next、质保识别启发式等）记在 `manual_style.yaml` 每条的 `debt` 字段里，本文各节已随条列出。按优先级排好的完整欠账清单见 [`STYLE_DEBT.md`](STYLE_DEBT.md)。
