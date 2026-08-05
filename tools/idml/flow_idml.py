@@ -492,7 +492,13 @@ def _parse_flow_fence(token: str, lines: list[str]) -> _FlowBlock | None:
                 text.append(line[2:].strip())
             elif line:
                 text.append(line)
-        aliases = {"danger": "warning", "important": "warning"}
+        # ``danger`` keeps its own variant: the notice component picks its table
+        # style by a fixed ``notice`` role, so carrying the real signal word
+        # costs nothing visually while keeping the highest safety level
+        # addressable downstream. Its lockup art still falls back to the warning
+        # one, exactly as LaTeX ``HBDangerBlock`` does, until dedicated DANGER
+        # art ships. ``important`` has no signal-word identity of its own.
+        aliases = {"important": "warning"}
         return _FlowBlock(
             "component",
             payload={

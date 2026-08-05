@@ -7,7 +7,36 @@ import zipfile
 from pathlib import Path
 
 from tools.idml.check import check_idml
-from tools.idml.flow_idml import write_flow_outputs
+from tools.idml.flow_idml import _parse_flow_fence, write_flow_outputs
+
+
+class IdmlFlowFenceVariantTests(unittest.TestCase):
+    """A signal word that names a distinct safety level must survive the flow."""
+
+    def test_danger_fence_keeps_its_own_variant(self) -> None:
+        block = _parse_flow_fence("danger", ["**DANGER**", "High voltage inside."])
+
+        self.assertIsNotNone(block)
+        assert block is not None
+        self.assertEqual("notice", block.payload["kind"])
+        self.assertEqual("danger", block.payload["variant"])
+        self.assertEqual("DANGER", block.payload["label"])
+
+    def test_important_fence_still_folds_into_warning(self) -> None:
+        block = _parse_flow_fence("important", ["**IMPORTANT**", "Read this first."])
+
+        self.assertIsNotNone(block)
+        assert block is not None
+        self.assertEqual("warning", block.payload["variant"])
+
+    def test_warning_and_caution_are_unchanged(self) -> None:
+        for token in ("warning", "caution", "note", "tip"):
+            with self.subTest(token=token):
+                block = _parse_flow_fence(token, [f"**{token.upper()}**", "Copy."])
+
+                self.assertIsNotNone(block)
+                assert block is not None
+                self.assertEqual(token, block.payload["variant"])
 
 
 class IdmlFlowIdmlTests(unittest.TestCase):
