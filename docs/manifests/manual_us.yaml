@@ -231,3 +231,13 @@ pages:
     template: templates/page_shared/es/12_app_setup_placeholder.rst
     langs: [es]
     include_dir: generated/{model}/draft
+
+  # 三语言合一的目录页（LaTeX raw，EN/FR/ES 各一个 LanguageBlock）。
+  - type: rst_include
+    lang: en
+    file: templates/page_shared/en/00_toc.rst
+
+  # 封底：单页，公司地址与联系方式，不分语言。
+  - type: rst_include
+    lang: en
+    file: templates/page_shared/en/99_back_cover.rst
