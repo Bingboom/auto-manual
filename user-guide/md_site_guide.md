@@ -18,7 +18,7 @@
 .venv/bin/python tools/plain_markdown_site.py --source <中间态目录> --output-dir <站点目录> --title "文档标题" --strict
 ```
 
-产出站点，`index.html` 就是效果。每个标记渲染成什么样（字号、颜色、间距、圆角，以及印刷侧对应的 LaTeX/IDML 样式）见 [`WEB_STYLE_DEFINITION.md`](../docs/renderers/contracts/WEB_STYLE_DEFINITION.md)。这一段没有猜测：指令由 [`tools/manual_md_directives.py`](../tools/manual_md_directives.py) 编译成契约组件标记。
+产出站点，`index.html` 就是效果。每个标记渲染成什么样（字号、颜色、间距、圆角，以及印刷侧对应的 LaTeX/IDML 样式）见 [`STYLE_DEFINITION.md`](../docs/renderers/contracts/STYLE_DEFINITION.md)。这一段没有猜测：指令由 [`tools/manual_md_directives.py`](../tools/manual_md_directives.py) 编译成契约组件标记。
 
 常用开关：`--download-images` 把远程图拉到本地（唯一联网的开关）；`--keep-tables` 不做表格升级；`--manifest inventory.csv` 批量（列 `source,title,section,order`）；`--strict` 警告即错误，出包时带着。
 
