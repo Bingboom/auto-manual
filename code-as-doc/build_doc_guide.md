@@ -825,12 +825,12 @@ python3 tools/reference_layout_rebind.py \
   --manual-ir <manual.ir.json>
 ```
 
-The dry-run builds a complete candidate from the validated Manual IR. It
-requires the semantic content hash, `source_ref` order, page languages, and
-physical composition map to remain unchanged; it refreshes the IR schema,
-snapshot, style-contract and layout-parameter identities plus every page's
-`source_sha256`, and writes nothing. After reviewing the summary, apply the same
-validated candidate atomically and inspect the Git diff:
+The dry-run builds a complete candidate from the validated Manual IR. The
+ordinary route requires the semantic content hash, `source_ref` order, page
+languages, and physical composition map to remain unchanged; it refreshes the
+IR schema, snapshot, style-contract and layout-parameter identities plus every
+page's `source_sha256`, and writes nothing. After reviewing the summary, apply
+the same validated candidate atomically and inspect the Git diff:
 
 ```bash
 python3 tools/reference_layout_rebind.py \
@@ -839,10 +839,32 @@ python3 tools/reference_layout_rebind.py \
   --write
 ```
 
+If the semantic content hash changed, the ordinary route remains fail-closed.
+First prove against the final Manual IR that `source_ref` order, page-language
+mapping, `skipped_raw` allowance, physical page count, and composition map are
+still the approved assembly. Record the operator's decision and evidence, then
+run the explicit content-approval route without `--write`:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --approve-content-change \
+  --approved-by "<operator>" \
+  --approved-at "<RFC3339>" \
+  --approval-method "<recorded review evidence>"
+```
+
+Only after reviewing that candidate should the operator repeat the same command
+with `--write`. All three approval values are mandatory and are persisted as
+contract metadata. This route can update `manual_content_sha256`; it cannot
+change source order, page languages, or the physical composition map.
+
 To inspect every registered plan in one dry-run summary, use
 `python3 tools/reference_layout_rebind.py --all-registered --manual-ir
-<manual.ir.json>`. Batch mode is intentionally read-only; `--write` must be
-paired with one explicit `--plan`.
+<manual.ir.json>`. Batch mode is intentionally read-only and cannot approve a
+content change; `--write` and content-approval metadata must be paired with one
+explicit `--plan`.
 
 When a refreshed Manual IR needs a new layout review, create a review-only
 draft from the existing composition seed instead of hand-editing the 52 page
@@ -875,7 +897,9 @@ token value/unit or reordering semantic rows does. This keeps the hash strict
 about renderer behavior without treating formatting-only CSV edits as layout
 drift.
 
-Build from the frozen review and phase2 snapshot:
+Build from the frozen review and phase2 snapshot. For this registered target,
+omitting `--source review-asis` is equivalent because `auto` selects the
+approved review assembly:
 
 ```bash
 python3 build.py idml \
@@ -1038,6 +1062,12 @@ and trace files under `docs/_build/<model>/<region>/<lang>/idml/flow/`:
 python3 build.py idml --model JE-1000F --region US --idml-mode flow
 python3 build.py idml --model JE-1000F --region US --idml-mode both
 ```
+
+When `--source auto` is used, a target with an approved reference-layout plan
+is assembled from its committed review bundle exactly as `review-asis`; this
+keeps the approved source order, including review-owned TOC/back-cover pages.
+An explicit source selection is never rewritten. Targets without an approved
+plan retain the runtime default and historical fallback pagination.
 
 The flow artifacts remain generated handoff files, not a new content source.
 Registered components become editable objects, images become linked frames,

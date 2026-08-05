@@ -205,10 +205,31 @@ For a read-only summary of all registered contracts, run
 <manual.ir.json>`. Batch mode never writes; keep `--write` limited to an
 explicit single-plan command after review.
 
-The command validates that semantic content, source order, page languages, and
-physical composition remain unchanged. It refreshes only the mutable
-non-content identities and every page's source digest, then atomically replaces
-the plan. Review the dry-run summary and Git diff before building.
+The ordinary command validates that semantic content, source order, page
+languages, and physical composition remain unchanged. It refreshes only the
+mutable non-content identities and every page's source digest, then atomically
+replaces the plan. Review the dry-run summary and Git diff before building.
+
+A content-hash change is still rejected unless an operator has first verified
+the final Manual IR's source-reference order, language mapping, `skipped_raw`
+allowance, physical page count, and composition map. After recording that
+decision, use the explicit approval route in dry-run mode first:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --approve-content-change \
+  --approved-by "<operator>" \
+  --approved-at "<RFC3339>" \
+  --approval-method "<recorded review evidence>"
+# Repeat the same command with --write only after reviewing the candidate.
+```
+
+The three approval fields are mandatory and are stored in the contract.
+`--all-registered` cannot approve content changes or write plans. Source order,
+languages, and physical composition remain immutable even on the approved
+content-change route.
 The layout-parameter identity follows ordered `key`/`value`/`unit` semantics;
 line-ending, blank-row, and comment-column edits do not create contract drift,
 but a real token value, unit, or order change does.
@@ -293,6 +314,12 @@ Use `python3 build.py idml --idml-mode both ...` when design also needs the
 paired flow handoff folder: it keeps the production IDML and adds
 `production/manual.production.idml`, the flow folder,
 `missing_assets_report.md`, `designer_checklist.md`, and `layout_feedback.md`.
+
+For reference-layout-registered targets, the IDML command's default
+`--source auto` resolves to the frozen `review-asis` bundle so production and
+flow use the approved page assembly. Explicit `runtime`, `review`, or
+`review-asis` remains unchanged; unregistered targets still default to
+runtime.
 
 Publish queue runs use `--idml-mode both` automatically and upload a single
 designer delivery zip (`manual_..._publish_<version>_handoff.zip`) instead of

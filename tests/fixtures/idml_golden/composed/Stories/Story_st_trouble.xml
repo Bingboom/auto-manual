@@ -23,17 +23,17 @@
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="tbl_trouble" AppliedTableStyle="TableStyle/正文表格" BodyRowCount="11" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0">
-    <Row Self="tbl_troubler0" Name="0" SingleRowHeight="10.3"/>
-    <Row Self="tbl_troubler1" Name="1" SingleRowHeight="10.3"/>
-    <Row Self="tbl_troubler2" Name="2" SingleRowHeight="10.3"/>
-    <Row Self="tbl_troubler3" Name="3" SingleRowHeight="10.3"/>
-    <Row Self="tbl_troubler4" Name="4" SingleRowHeight="10.3"/>
-    <Row Self="tbl_troubler5" Name="5" SingleRowHeight="10.3"/>
-    <Row Self="tbl_troubler6" Name="6" SingleRowHeight="10.3"/>
-    <Row Self="tbl_troubler7" Name="7" SingleRowHeight="10.3"/>
-    <Row Self="tbl_troubler8" Name="8" SingleRowHeight="10.3"/>
-    <Row Self="tbl_troubler9" Name="9" SingleRowHeight="10.3"/>
-    <Row Self="tbl_troubler10" Name="10" SingleRowHeight="10.3"/>
+    <Row Self="tbl_troubler0" Name="0" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_troubler1" Name="1" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_troubler2" Name="2" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_troubler3" Name="3" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_troubler4" Name="4" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_troubler5" Name="5" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_troubler6" Name="6" SingleRowHeight="15" MinimumHeight="15" AutoGrow="true"/>
+    <Row Self="tbl_troubler7" Name="7" SingleRowHeight="15" MinimumHeight="15" AutoGrow="true"/>
+    <Row Self="tbl_troubler8" Name="8" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_troubler9" Name="9" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_troubler10" Name="10" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
     <Column Self="tbl_troublecol0" Name="0" SingleColumnWidth="94.2525"/>
     <Column Self="tbl_troublecol1" Name="1" SingleColumnWidth="217.842"/>
     <Cell Self="tbl_troublec0_0" Name="0:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="2" BottomInset="2" LeftInset="3" RightInset="3">

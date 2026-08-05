@@ -12,9 +12,14 @@ from __future__ import annotations
 import ast
 import json
 import re
+import warnings
 from pathlib import Path
 
 Block = tuple[str, str]
+
+
+class WarrantyGroupingWarning(UserWarning):
+    """A recognized warranty-years block could not enter page grouping."""
 
 _LABELS = {
     "on", "off", "on/off", "marche", "arrêt", "arret", "marche/arrêt",
@@ -31,10 +36,18 @@ _BOLD = re.compile(r"\*\*([^*]+)\*\*")
 # "**FR IMPORTANT**" (first block may omit the language prefix).
 _FLAT_LANGTAG = re.compile(r"^\*\*(?:([A-Z]{2})\s+)?(IMPORTANT\w*)\*\*$")
 # Warranty-period cells: "**3 YEARS** **Standard Warranty** <copy>".
+# The shared semantic container is language-neutral, while the visible unit is
+# deliberately retained for editable IDML copy.  Keep the accepted unit set in
+# one place so every shared warranty language follows the same fail-closed path.
+_WARRANTY_UNIT = r"YEARS?|ANS|AÑOS|JAHRE|ANNI|РОКИ|년|ANOS"
 _WARRANTY_SPLIT_CELL = re.compile(
-    r"^\*\*(\d+)\s+(YEARS?|ANS|AÑOS)\*\*\s*\*\*([^*]+)\*\*\s*(.*)$", re.S)
+    rf"^\*\*(\d+)\s*({_WARRANTY_UNIT})\*\*\s*\*\*([^*]+)\*\*\s*(.+)$",
+    re.IGNORECASE | re.S,
+)
 _WARRANTY_COMBINED_CELL = re.compile(
-    r"^\*\*(\d+)\s+(YEARS?|ANS|AÑOS)\s+([^*]+)\*\*\s*(.*)$", re.S)
+    rf"^\*\*(\d+)\s*({_WARRANTY_UNIT})\s+([^*]+)\*\*\s*(.+)$",
+    re.IGNORECASE | re.S,
+)
 
 _ENERGY_SAVING_ART = {"op_energy_saving"}
 _LED_LIGHT_ART = {"led_light", "op_led_light"}
@@ -254,11 +267,110 @@ def _parse_warranty_cell(text: str) -> dict[str, str] | None:
     }
 
 
+def _explicit_warranty_section(
+    payload: dict,
+    *,
+    section_index: int,
+) -> Block:
+    roles = payload.get("roles")
+    blocks = payload.get("blocks")
+    if not isinstance(roles, list) or not isinstance(blocks, list):
+        raise ValueError("explicit warranty section requires roles and blocks")
+    title = ""
+    children: list[dict] = []
+    years_seen = False
+    for block in blocks:
+        if not isinstance(block, dict):
+            raise ValueError("explicit warranty section block must be an object")
+        kind = str(block.get("kind") or "")
+        text = str(block.get("payload") or "")
+        if kind == "h2" and not title:
+            title = text
+            continue
+        if kind == "table" and "warranty_years" in roles:
+            try:
+                rows = json.loads(text)
+            except (TypeError, json.JSONDecodeError) as exc:
+                raise ValueError(
+                    "explicit warranty-years table must contain valid rows"
+                ) from exc
+            if not rows or len(rows) != 1 or len(rows[0]) < 2:
+                raise ValueError(
+                    "explicit warranty-years table must contain one multi-cell row"
+                )
+            items = [_parse_warranty_cell(str(cell)) for cell in rows[0]]
+            if not all(item is not None for item in items):
+                raise ValueError(
+                    "explicit warranty-years cells must contain number, unit, "
+                    "label, and copy"
+                )
+            children.append({
+                "kind": "component",
+                "spec": {"kind": "warrantyyears", "items": items},
+            })
+            years_seen = True
+            continue
+        if kind == "component":
+            children.append({"kind": "component", "spec": json.loads(text)})
+        else:
+            children.append({"kind": kind, "text": text})
+    if not title:
+        raise ValueError("explicit warranty section requires an h2 title")
+    if "warranty_years" in roles and not years_seen:
+        raise ValueError("explicit warranty-years section requires a marked table")
+    return ("component", json.dumps({
+        "kind": "warrantysection",
+        "title": title,
+        "index": section_index,
+        "blocks": children,
+    }, ensure_ascii=False))
+
+
 def transform(blocks: list[Block]) -> list[Block]:
     out: list[Block] = []
     i = 0
+    explicit_warranty_note_pending = False
+    explicit_warranty_section_index = 0
     while i < len(blocks):
         kind, text = blocks[i]
+        if kind == "semantic":
+            try:
+                semantic = json.loads(text)
+            except (TypeError, json.JSONDecodeError) as exc:
+                raise ValueError("semantic block must contain valid JSON") from exc
+            semantic_kind = semantic.get("kind")
+            semantic_blocks = semantic.get("blocks")
+            if semantic_kind == "warranty_lead":
+                if not isinstance(semantic_blocks, list):
+                    raise ValueError("explicit warranty lead requires blocks")
+                texts = [
+                    str(block.get("payload") or "")
+                    for block in semantic_blocks
+                    if isinstance(block, dict) and block.get("kind") == "body"
+                ]
+                if not texts:
+                    raise ValueError("explicit warranty lead requires body copy")
+                out.append(("component", json.dumps({
+                    "kind": "warrantylead",
+                    "texts": texts,
+                }, ensure_ascii=False)))
+                explicit_warranty_note_pending = True
+                i += 1
+                continue
+            if semantic_kind == "warranty_section":
+                explicit_warranty_section_index += 1
+                out.append(_explicit_warranty_section(
+                    semantic,
+                    section_index=explicit_warranty_section_index,
+                ))
+                explicit_warranty_note_pending = False
+                i += 1
+                continue
+        if kind == "body" and explicit_warranty_note_pending:
+            out.append(("warrantynote", text))
+            explicit_warranty_note_pending = False
+            i += 1
+            continue
         if kind == "table":
             try:
                 rows = text if isinstance(text, list) else ast.literal_eval(text)
@@ -368,6 +480,21 @@ def _group_warranty_page(blocks: list[Block]) -> list[Block]:
         if isinstance(spec, dict) and spec.get("kind") == "warrantyyears":
             has_period_component = True
             break
+    if (
+        has_period_component
+        and (has_h1 or has_sections)
+        and not (has_h1 and has_sections)
+    ):
+        missing = [
+            marker
+            for marker, present in (("h1", has_h1), ("h2", has_sections))
+            if not present
+        ]
+        warnings.warn(
+            "warranty grouping skipped: missing " + ", ".join(missing),
+            WarrantyGroupingWarning,
+            stacklevel=2,
+        )
     if not (has_h1 and has_sections and has_period_component):
         return blocks
 

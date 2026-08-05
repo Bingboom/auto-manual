@@ -139,6 +139,34 @@ class ReferenceLayoutRebindTests(unittest.TestCase):
                 rebind_reference_layout_plan(plan_path, changed_ir, write=True)
             self.assertEqual(original, plan_path.read_text(encoding="utf-8"))
 
+    def test_operator_approved_content_change_preserves_composition(self) -> None:
+        payload = _stale_payload()
+        changed_ir = replace(_manual_ir(), content_sha256="9" * 64)
+        approval = {
+            "status": "approved",
+            "approved_by": "operator",
+            "approved_at": "2026-08-05T12:00:00Z",
+            "method": "reviewed content repin; composition map unchanged",
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            plan_path = Path(tmp) / "approved.json"
+            plan_path.write_text(json.dumps(payload), encoding="utf-8")
+
+            result = rebind_reference_layout_plan(
+                plan_path,
+                changed_ir,
+                content_approval=approval,
+            )
+
+        self.assertTrue(result.content_reapproved)
+        self.assertIn("manual_content_sha256", result.changed_identity_fields)
+        self.assertEqual(approval, result.candidate["approval"])
+        self.assertEqual(_composition_map(payload), _composition_map(result.candidate))
+        self.assertEqual(
+            [],
+            validate_approved_reference_plan(result.candidate, changed_ir),
+        )
+
     def test_rejects_legacy_layout_hash_algorithm_without_writing(self) -> None:
         payload = _stale_payload()
         legacy_ir = replace(_manual_ir(), metadata={})
@@ -264,6 +292,15 @@ class ReferenceLayoutRebindTests(unittest.TestCase):
                 "--all-registered",
                 "--manual-ir", "manual.ir.json",
                 "--write",
+            ])
+
+    def test_cli_content_reapproval_requires_complete_metadata(self) -> None:
+        with self.assertRaises(SystemExit):
+            rebind_main([
+                "--plan", "approved.json",
+                "--manual-ir", "manual.ir.json",
+                "--approve-content-change",
+                "--approved-by", "operator",
             ])
 
 

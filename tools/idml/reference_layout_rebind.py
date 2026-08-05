@@ -36,6 +36,7 @@ class ReferenceLayoutRebindResult:
     candidate: dict[str, Any]
     changed_identity_fields: tuple[str, ...]
     changed_page_bindings: int
+    content_reapproved: bool
     wrote: bool
 
 
@@ -101,6 +102,8 @@ def _composition_map(payload: dict[str, Any]) -> tuple[tuple[Any, ...], ...]:
 def build_rebound_reference_layout_plan(
     payload: dict[str, Any],
     ir: ManualIR,
+    *,
+    content_approval: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     """Return a fully validated binding refresh without changing layout.
 
@@ -128,11 +131,22 @@ def build_rebound_reference_layout_plan(
         raise ReferenceLayoutPlanError(
             "approved reference layout source_identity must be an object"
         )
-    if source_identity.get("manual_content_sha256") != ir.content_sha256:
+    content_changed = source_identity.get("manual_content_sha256") != ir.content_sha256
+    if content_changed and content_approval is None:
         raise ReferenceLayoutPlanError(
             "reference-layout rebind cannot change manual_content_sha256; "
             "content changes require a new layout review and approval"
         )
+    if content_approval is not None:
+        required = ("status", "approved_by", "approved_at", "method")
+        if content_approval.get("status") != "approved" or any(
+            not str(content_approval.get(key, "")).strip()
+            for key in required[1:]
+        ):
+            raise ReferenceLayoutPlanError(
+                "content reapproval requires approved status plus non-empty "
+                "approved_by, approved_at, and method"
+            )
 
     plan_pages = payload["pages"]
     for plan_page, source_page in zip(plan_pages, ir.pages, strict=True):
@@ -152,6 +166,8 @@ def build_rebound_reference_layout_plan(
         "style_contract_sha256": ir.style_contract_sha256,
         "layout_params_sha256": ir.layout_params_sha256,
     }
+    if content_changed:
+        candidate["approval"] = deepcopy(content_approval)
     candidate_pages = candidate["pages"]
     for candidate_page, source_page in zip(candidate_pages, ir.pages, strict=True):
         candidate_page["source_sha256"] = source_page.source_sha256
@@ -194,11 +210,16 @@ def rebind_reference_layout_plan(
     ir: ManualIR,
     *,
     write: bool = False,
+    content_approval: dict[str, str] | None = None,
 ) -> ReferenceLayoutRebindResult:
     """Validate a complete binding refresh and optionally commit it atomically."""
     plan_path = plan_path.resolve()
     payload = _read_payload(plan_path)
-    candidate = build_rebound_reference_layout_plan(payload, ir)
+    candidate = build_rebound_reference_layout_plan(
+        payload,
+        ir,
+        content_approval=content_approval,
+    )
 
     old_identity = payload.get("source_identity")
     if not isinstance(old_identity, dict):
@@ -224,6 +245,10 @@ def rebind_reference_layout_plan(
         candidate=candidate,
         changed_identity_fields=changed_identity_fields,
         changed_page_bindings=changed_page_bindings,
+        content_reapproved=(
+            old_identity.get("manual_content_sha256")
+            != new_identity.get("manual_content_sha256")
+        ),
         wrote=write,
     )
 

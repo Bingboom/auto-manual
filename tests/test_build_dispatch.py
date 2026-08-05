@@ -210,6 +210,17 @@ class TestBuildDispatch(unittest.TestCase):
             calls = self._dispatch("idml")
 
         self.assertEqual("rst", calls[1][2]["action_override"])
+        self.assertEqual("review-asis", calls[1][2]["source_override"])
+
+    def test_dispatch_idml_approved_target_preserves_explicit_runtime(self) -> None:
+        with patch.object(
+            build_dispatch,
+            "_target_has_approved_reference_plan",
+            return_value=True,
+        ):
+            calls = self._dispatch("idml", source="runtime")
+
+        self.assertEqual("runtime", calls[1][2]["source_override"])
 
     def test_approved_reference_target_requires_exact_model_region_languages(self) -> None:
         with TemporaryDirectory() as tmp:

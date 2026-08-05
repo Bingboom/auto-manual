@@ -1,74 +1,125 @@
 # 样式契约欠账清算 — 执行状态
 
-集成分支 `fix/idml-style-contract-debt`（基于 `origin/main` @ `aff00e32`）。计划见欠账清单（PR #874 分支上的 `docs/renderers/contracts/STYLE_DEBT.md`）：26 条债，其中 16 条排期修，10 条归口。
+集成分支 `fix/idml-style-contract-debt`（接力基线 `789ae3e4`）。原始权威清单来自提交 `1242be91` 的 `docs/renderers/contracts/STYLE_DEBT.md`：26 个记录项，其中 16 条进入本轮，10 条归口长期维护。
 
-**16 条里已销 1 条。** 剩 15 条中 11 条被参考版式 pin 硬阻塞，4 条可继续。
+**原始排期的 16 条已全部完成实现，并在 `manual_style.yaml` 中改为 `status: aligned`、`debt: []`。** 当前仍保留原清单中的十条长期项：9 条 `partial`，以及 `HB-TABLE-LCD-ICON` 的一条已批准参考档说明。31 条语义的正式四渲染器定义见 [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)；最终全量验证、production IDML 复建和 reference pin 重绑结果记录在本页第 7 节。
 
 ---
 
-## 1. 已完成
+## 1. 本轮完成范围
 
-| # | 内容 | 提交 / PR | 销债 |
-|---|---|---|---|
-| 1 | `danger` 保留自己的 notice variant | [#884](https://github.com/Bingboom/auto-manual/pull/884) → `c25fef27` | `HB-SAFETY-DANGER` |
-| — | phase2 sync 坐标落盘 | `ded45827` | 无（基础设施） |
-
-`HB-SAFETY-DANGER` 的剩余债已收窄为**缺 DANGER lockup 美术资产**——LaTeX `HBDangerBlock` 同样拿 warning lockup 顶着（`components_safety.tex:171` 注释写明），三处渲染行为一致，要走 asset intake，不是代码问题。
-
-## 2. 待确认（已开 PR，未合）
-
-| PR | 内容 | 卡在哪 |
+| 分组 | 已完成的语义 | 验收合同 |
 |---|---|---|
-| [#885](https://github.com/Bingboom/auto-manual/pull/885) | manifest 补回目录页与封底 | 需要操作者提供 8/1 那次的 bundle 装配方式 |
+| 显式语义 | `HB-SAFETY-DANGER`、`HB-WARRANTY-LEAD`、`HB-WARRANTY-SECTION`、`HB-WARRANTY-YEARS`、`HB-TABLE-AUTO-RESUME` | danger 保留独立 variant；Warranty 共享模板带显式 container 语义；Auto Resume 输出独立 table role |
+| 标题与列表 | `HB-TITLE-L1`、`HB-TITLE-L2`、`HB-TITLE-L3`、`HB-TYPE-LIST` | H1 使用共享高度；L2/L3 keep-with-next 由 needspace token 推导；FR/ES list/sublist 使用语言 typed style |
+| 表格与 callout | `HB-TABLE-TROUBLESHOOTING`、`HB-TABLE-SPEC`、`HB-CALLOUT-STRIP`、`HB-SAFETY-WARNING` | 行高、线宽、面板下限、bullet 悬挂结构、安全图标列均由共享 token 控制 |
+| Symbols 与 LCD Mode | `HB-TABLE-SYMBOL-SIGNAL`、`HB-TABLE-SYMBOL-ICON`、`HB-TABLE-LCD-MODE` | Symbols 页面可见常量进入 token；LCD Mode 的批准 EN/FR/ES 几何、动态语言几何和 fallback 全部走 `layout_params.csv` |
 
-`docs/manifests/manual_us.yaml`（以及其余 16 个 manifest）都不含 `00_toc.rst` / `99_back_cover.rst`，所以每次 US 构建都装出 50 页——**没有目录页、没有封底**。已批准参考版式钉的是 52 页。加回两页后页数对上（52/571 blocks），全量 unittest 绿，但 pin 的两个条件在当前 ordinal 规则下互斥：
+`HB-SAFETY-DANGER` 的美术资产边界不变：LaTeX 与 IDML 仍共用现有 warning lockup 资产；本轮修复的是语义降级，不伪造新的 DANGER 美术。
 
-| toc 位置 | 页数 | `pNN_` 前缀 | IR 里 toc 位置 |
-|---|---|---|---|
-| `00_preface` 之后 | 52 ✓ | p21（pin 要 p20）✗ | index 2 ✓ |
-| manifest 末尾（#885 当前形态） | 52 ✓ | p20 ✓ | index 50（pin 要 2）✗ |
+## 2. #885 结论：不能按当前方向合入
 
-根因：`tools/gen_index_bundle_plan.py:125` 的 `enumerate(pages, start=1)`，`pNN_` 前缀取 manifest 条目序号，toc 一占号后面重名页前缀全体 +1。
+| PR | 内容 | 当前结论 |
+|---|---|---|
+| [#885](https://github.com/Bingboom/auto-manual/pull/885) | 向共享 manifest 补回目录页与封底 | 不是批准版式的装配路径；`manifest-regenerate-diff` 与 `unit` 当前失败，不应直接合入 |
 
-## 3. 硬阻塞：11 条
+8/1 批准的 52 页结构已经保存在冻结 review derivative：`docs/_review/JE-1000F/US/index.rst`。它同时满足：
 
-`tools/check_reference_layout_pins.py` 校验两个 pin，任一漂移即红：
+- `00_toc.rst` 在前言之后；
+- 法语段仍从 `p20_...` 开始；
+- `99_back_cover.rst` 位于末尾。
+
+实际用批准装配路由复现：
+
+```bash
+python3 build.py idml \
+  --config configs/config.us.yaml \
+  --model JE-1000F \
+  --region US \
+  --source review-asis \
+  --idml-mode flow \
+  --no-clean
+```
+
+结果为 `pages=52`、`blocks=570`、`skipped_raw=0`；`manual.ir.json` 的 52 个页面 ordinal 与批准 reference plan 逐项一致。最终内容哈希为 `ced5ae20…`，并已通过显式 content-approval 路由重新批准；页面集合、ordinal、语言映射、物理 composition 和 reference PDF 均未改变。
+
+因此问题不是“向共享 manifest 补两页”，而是 production IDML 必须明确使用冻结 review source（或建立等价的批准装配路由）。#885 应关闭或按这个路由结论重做，不能把共享 manifest 当作 8/1 基线来源。
+
+## 3. reference pin 处理
+
+`tools/check_reference_layout_pins.py` 校验两个合同 pin，任一漂移即红：
 
 | pin | 来源 | 谁会碰 |
 |---|---|---|
 | `style_contract_sha256` | `docs/renderers/contracts/manual_style.yaml` | **每条债的销账**（改 `debt` / `status` 字段） |
-| `layout_params_sha256` | `data/layout_params.csv` | **P1/P2 的 token 化**（核心动作就是加 token） |
+| `layout_params_sha256` | `data/layout_params.csv` | P1/P2 token 化与 LCD Mode 专属几何 |
 
-重绑只有 `tools/reference_layout_rebind.py --manual-ir <manual.ir.json> --write` 一条路，而它**拒绝改变页面集合**（只刷 sha）。所以 §2 那个门不修好，这 11 条动不了：
+操作者已经批准“重新批准/重绑 content hash”。本轮先用最终 `manual.ir.json` 证明 source refs、语言映射、composition map、物理页数和 `skipped_raw` 不漂移，再通过 `tools/reference_layout_rebind.py --approve-content-change ... --write` 原子重绑。普通 rebind 仍默认拒绝 content hash 改变；显式批准要求批准人、RFC3339 时间和审查方法三项 metadata 齐全。
 
-- P1：`HB-TITLE-L2`、`HB-TITLE-L3`（keep-with-next）、`HB-TYPE-LIST`（语言密度级联）、`HB-TABLE-TROUBLESHOOTING`（六项校准常量 + yaml 逗号碎片合一）、`HB-TABLE-SPEC`（行高 token 化 + 三渲染器列宽哨兵）
-- P2：`HB-TITLE-L1`（band 高度）、`HB-CALLOUT-STRIP`（变体几何）、`HB-SAFETY-WARNING`（本地常量）、`HB-TABLE-SYMBOL-SIGNAL` + `-ICON`（页面合成器常量）
+最终 source identity：
 
-## 4. 可继续：4 条
+- content：`ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0`；
+- snapshot：`2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33`；
+- style contract：`885b936fa2569bf018d495e5af0527f9928bbf79e2ae47c9eaaae3bee7f94da7`；
+- layout params：`912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d`。
 
-不碰 `manual_style.yaml` 与 `data/layout_params.csv`，pin 门保持绿。销账动作留到门修好后统一补。
+批准记录为 `approved_by: 唐夏冰`、`approved_at: 2026-08-05T15:43:17Z`，method 明确记录了 52-source / 58-page parity 验证和 composition map unchanged。`tools/check_reference_layout_pins.py` 已通过。
 
-| 债 | 现场 | 做法 |
-|---|---|---|
-| `HB-WARRANTY-LEAD` / `-SECTION` / `-YEARS` | `tools/idml/oppanel.py::_group_warranty_page`（门是「有 h1 + 有 h2 + 有 warrantyyears 组件」，否则 `return blocks` **静默放弃**）；`_parse_warranty_cell` 靠正则认「数字+单位+标签+文本」 | 彻底改成读语义类型需要在共享模板加 `.. container::` 标记（`11_warranty.rst` 里目前只有 `list-table` 和 `only:: region_*`），影响所有型号 + LaTeX 侧，需操作者拍板。**可先做的半步**：把静默放弃改成可观测（warning + 落 trace），并加测试锁住当前识别 |
-| `HB-TABLE-AUTO-RESUME` | `tools/idml/components/` 无 auto_resume 角色，落到通用 data_table | 加显式角色，对齐 `table_auto_resume` IR kind，目标 golden 字节不变 |
+## 4. production 装配路由
 
-## 5. 归口不单修：10 条
+操作者选择“建立等价批准装配路由”。实现后的规则是：
 
-- 挂起 4 条，等对应版式真要动时顺势做：`HB-TABLE-LCD-MODE`、`HB-SPECIAL-FCC`、`HB-SPECIAL-INBOX`、`HB-SPECIAL-OVERVIEW`
-- 并入立项 6 条：样式借用三条（`HB-TYPE-LEAD` / `-FOOTER` / `-PAGE-NUMBER`）等动 `type_system` 时一并；页计划三条（`HB-PAGE-*`）归共享页计划立项
+- 已有批准 reference target 的 `build.py idml --source auto` 自动解析为 `review-asis`；
+- 显式 `--source runtime`、`review`、`review-asis` 保持调用者选择；
+- 没有批准 reference 的 target 继续使用 runtime；
+- `--source auto` 的行为已同步到 README 和操作指南，并有 dispatch 回归测试。
 
-## 6. 待操作者决策的三件事
+因此 production 不需要操作者每次手写 `--source review-asis`，同时不会把该规则扩散到未批准 target。
 
-1. **8/1 那次含目录页和封底的 bundle 怎么装的？** 决定 #885 怎么收（改 ordinal 语义 / scaffold 新 plan / 照原样复原）。不解决则 production IDML 构建一直红，11 条债一直冻。
-2. **质保三条要不要在共享模板加语义标记？** 决定第 4 节那三条是彻底修还是只加护栏。
-3. **`sync-data` 的 0 行覆盖要不要加护栏？** 见第 8 节。
+## 5. 继续归口的十条
 
-## 7. 环境要点（复现用）
+- 版式专题 3 条：`HB-SPECIAL-FCC`、`HB-SPECIAL-INBOX`、`HB-SPECIAL-OVERVIEW`；
+- 样式借用 3 条：`HB-TYPE-LEAD`、`HB-TYPE-FOOTER`、`HB-TYPE-PAGE-NUMBER`；
+- 共享页计划 3 条：`HB-PAGE-STANDARD`、`HB-PAGE-NO-FOOTER`、`HB-PAGE-COVER`；
+- 记录项 1 条：`HB-TABLE-LCD-ICON` 继续说明“批准 reference profile 拥有型号特定行高”，其 `status` 仍为 `aligned`，不是本轮缺陷。
 
-- 权威数据：`set -a && . scripts/phase2_sync.env.example && set +a`，再 `python build.py sync-data --config configs/config.us.yaml`。认证走 lark-cli 已登录 profile（本机 profile 名是 appId，不是 `prod`）。
-- **产出 manual IR 不必过 same-source 门**：`build.py idml --idml-mode flow` 会写 `docs/_build/<MODEL>/<REGION>/idml/flow/manual.ir.json`（production 路径下 IR 落盘在门之后，门失败就拿不到文件）。rebind 就用这个文件。
-- **IDML 构建会改动/删除 tracked 的 `docs/_build/**` 与 `docs/index.rst`**。跑完必须 `git checkout -- docs/_build docs/index.rst reports/`，否则脏改动会被夹带进提交。加 `--no-clean` 可少删一批。
+## 6. 明确非目标
+
+- 不修改或合入 PR #885；
+- 不修改 reference PDF 或 composition map；
+- 不处理上述十条长期项；
+- 不删除 `docs/_review`、phase2 附件或用户构建产物；
+- `sync-data` 0 行覆盖风险仍是独立 follow-up，不夹带进本分支。
+
+## 7. 最终验证与 production 复建
+
+验证梯全部通过：
+
+| 验证 | 结果 |
+|---|---|
+| `python3 -m ruff check build.py integrations tools tests scripts` | 通过 |
+| 直接改动覆盖的定向 unittest | 320 项通过，5 项跳过 |
+| `python3 -m unittest` | 2716 项通过，5 项跳过 |
+| `python3 tools/check_maintainability_guardrails.py` | 44 个热点全部通过；0 个新增语言常量 |
+| `python3 tools/check_doc_link_integrity.py` | 116 份 Markdown、1497 条链接、0 断链 |
+| `python3 tools/check_reference_layout_pins.py` | 1 份批准合同通过 |
+
+最终 production 入口使用 fixture snapshot 运行：
+
+```bash
+python3 build.py idml \
+  --config configs/config.us.yaml \
+  --model JE-1000F \
+  --region US \
+  --source auto \
+  --data-root tests/fixtures/phase2 \
+  --idml-mode both \
+  --no-clean
+```
+
+`auto` 实际解析为 `review-asis`；flow 与 production IDML 均成功。批准 page plan 为 physical `58`、matched `52/52`，最终 IR 为 `pages=52`、`blocks=570`、`skipped_raw=0`。HEAD 旧 plan 与重绑后 plan 的 source refs、语言、composition map、reference PDF 和 `idml_contract` 块逐项相同，当前 plan 的四个 source identity 与最终 IR 全部匹配。
+
+构建仍报告两个 Product Overview placeholder 使用 unclassified prose fallback（法语、西班牙语各一页）；这是非阻断分类警告，批准 page plan 仍为 52/52、没有 raw block 被跳过，也不属于本轮 16 条样式契约欠账。
 
 ## 8. 顺带发现的两个缺陷（未修）
 
@@ -81,4 +132,4 @@
 
 - **能力门裁掉 `07_extra_battery.rst` 是正确的。** manifest 里三条都带 `capability: 加电包扩容`，JE-1000F 该项为 FALSE，产品本身不支持加电包，手册从未有这一页。pin 里也没有它。
 - **`加电包扩容` / `并机/扩展` 两列全型号 FALSE 是权威事实，不是镜像漂移。** sync 下来的 `model_capabilities.csv` 与仓库那份 sha 完全一致（`cdf29b10…`，30 行）。
-- **参考版式 pin 不是过期。** `approval` 字段：`approved_by: 唐夏冰`、`approved_at: 2026-07-31`、`method: 按现网内容重批契约; includes the merge-splice guard and p26 grid repair`——即 8/1 那次 1.7 publish 的基线。问题在 manifest 缺页，不在 pin 陈旧。
+- **参考版式 pin 不是过期。** `approval` 字段：`approved_by: 唐夏冰`、`approved_at: 2026-07-31`、`method: 按现网内容重批契约; includes the merge-splice guard and p26 grid repair`——即 8/1 那次 1.7 publish 的基线。页面装配来自冻结 review derivative；当前剩余差异是 content hash，不是共享 manifest 缺页，也不是 pin 陈旧。

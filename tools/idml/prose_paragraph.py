@@ -42,6 +42,11 @@ def build_text_paragraph(
     }:
         semantic_kind = "body"
     style = writer._PROSE_STYLE.get(semantic_kind, "HB Body")
+    normalized_language = (page_language or "en").split("-", 1)[0].lower()
+    density_key = f"lang_{normalized_language}_type_list_font_leading"
+    if semantic_kind in {"list", "sublist"} and density_key in writer.params:
+        base = "HB List" if semantic_kind == "list" else "HB Sublist"
+        style = f"{base} {normalized_language.upper()}"
     if is_preface and kind == "body":
         style = "HB Preface Body"
     text = "\u25cf " + text if is_h2 else text

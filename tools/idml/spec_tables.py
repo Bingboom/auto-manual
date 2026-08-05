@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
+from .params import param_pt
 from .style_names import table_style_ref
 
 
@@ -137,9 +138,25 @@ def spec_table_xml(
                 + content
                 + '    </Cell>'
             )
+    row_height = param_pt(params, "idml_spec_table_row_height", 10.3)
+    multiline_height = param_pt(
+        params,
+        "comp_spec_table_multiline_min_height",
+        15.0,
+    )
     row_xml = "\n".join(
-        f'    <Row Self="{tid}r{ri}" Name="{ri}" SingleRowHeight="10.3"/>'
-        for ri in range(len(rows))
+        f'    <Row Self="{tid}r{ri}" Name="{ri}" '
+        f'SingleRowHeight="{height:g}" MinimumHeight="{height:g}" '
+        'AutoGrow="true"/>'
+        for ri, ((label, value), height) in enumerate(
+            (
+                row,
+                max(row_height, multiline_height)
+                if "\n" in row[0] or "\n" in row[1]
+                else row_height,
+            )
+            for row in rows
+        )
     )
     spacing = ' SpaceBefore="0" SpaceAfter="0"' if visual_parity else ""
     return (

@@ -50,7 +50,9 @@ class IdmlPageRoleTests(unittest.TestCase):
     def test_merged_physical_prefix_does_not_change_role(self) -> None:
         for name, expected in (
             ("p20_01_user_maintenance_instructions.rst", PageRole.MAINTENANCE),
+            ("p24_03_product_overview_placeholder.rst", PageRole.PRODUCT_OVERVIEW),
             ("p34_12_app_setup_placeholder.rst", PageRole.APP_SETUP),
+            ("p40_03_product_overview_placeholder.rst", PageRole.PRODUCT_OVERVIEW),
             ("p45_08_charging_methods.rst", PageRole.CHARGING_METHODS),
         ):
             with self.subTest(name=name):

@@ -183,6 +183,11 @@ flow:
 python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source review-asis
 ```
 
+For a target registered in the approved reference-layout registry, the default
+`--source auto` resolves to this same frozen `review-asis` assembly. An
+explicit `--source runtime`, `review`, or `review-asis` remains authoritative;
+unregistered IDML targets continue to default to runtime assembly.
+
 When `--lang` is omitted, `build.py idml` forwards the sole language declared
 by a single-language family config (for example `ja` from `config.ja.yaml`) to
 the exporter. Multilingual configs retain the historical default unless the
@@ -311,10 +316,10 @@ only when no approved contract exists for the target.
 
 When the frozen Manual IR changes without changing the approved physical
 composition, rebind the mutable non-content identity fields and every page
-source digest as one validated operation. The command requires the semantic
-content hash, source order, page languages, and physical composition to remain
-unchanged. It is dry-run by default; inspect its summary and the diff before
-applying `--write`:
+source digest as one validated operation. The ordinary command requires the
+semantic content hash, source order, page languages, and physical composition
+to remain unchanged. It is dry-run by default; inspect its summary and the diff
+before applying `--write`:
 
 ```bash
 python3 tools/reference_layout_rebind.py \
@@ -326,13 +331,32 @@ python3 tools/reference_layout_rebind.py \
   --write
 ```
 
+Content-hash changes remain fail-closed by default. Before approving one,
+verify the final Manual IR has the reviewed source-reference order and language
+mapping, `skipped_raw` allowance, physical page count, and composition map.
+Record the operator decision, then dry-run the explicit approval route and
+repeat it with `--write` only after reviewing the candidate:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --approve-content-change \
+  --approved-by "<operator>" \
+  --approved-at "<RFC3339>" \
+  --approval-method "<recorded review evidence>"
+# Repeat the same validated command with --write after review.
+```
+
 For a read-only sweep across every registered contract, use
 `--all-registered` with the current Manual IR. Batch mode always disables
 writes; apply a reviewed result one plan at a time with an explicit
 `--plan ... --write` command.
 
-The write is atomic and refuses source-order or physical-composition changes;
-do not patch individual hashes or deregister the contract to bypass validation.
+The write is atomic and always refuses source-order or physical-composition
+changes; do not patch individual hashes or deregister the contract to bypass
+validation. Content approval metadata is persisted in the contract and cannot
+be supplied to `--all-registered`.
 The Manual IR layout-parameter identity hashes the ordered parsed
 `key`/`value`/`unit` semantics, so line endings, blank rows, and comment-column
 edits do not create false drift, while token values, units, or order still do.

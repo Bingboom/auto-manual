@@ -123,7 +123,10 @@ def _body_xml(spec: dict, size: float, leading: float,
               horizontal_scale: float, baseline_shift: float,
               paragraph_space_after: float = 0.0,
               unbulleted_first: bool = False,
-              font_style: str = "Medium") -> str:
+              font_style: str = "Medium",
+              bullet_indent: float = 0.0,
+              bullet_width: float = 3.4,
+              bullet_size: float = 4.8) -> str:
     texts = spec.get("texts", [])
     if not spec.get("list"):
         return _typed(
@@ -147,9 +150,11 @@ def _body_xml(spec: dict, size: float, leading: float,
         )
         has_bullet = not (unbulleted_first and index == 0)
         if has_bullet:
+            continuation_indent = bullet_indent + bullet_width
             paragraph = paragraph.replace(
                 "<ParagraphStyleRange ",
-                '<ParagraphStyleRange LeftIndent="3.4" FirstLineIndent="-3.4" ',
+                f'<ParagraphStyleRange LeftIndent="{continuation_indent:g}" '
+                f'FirstLineIndent="{-bullet_width:g}" ',
                 1,
             )
         if paragraph_space_after and index < len(items) - 1:
@@ -161,7 +166,7 @@ def _body_xml(spec: dict, size: float, leading: float,
         bullet = (
             '<CharacterStyleRange '
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'PointSize="4.8" BaselineShift="{baseline_shift:g}">'
+            f'PointSize="{bullet_size:g}" BaselineShift="{baseline_shift:g}">'
             f'<Properties><Leading type="unit">{leading:g}</Leading></Properties>'
             '<Content>•</Content>'
             '</CharacterStyleRange>'
@@ -266,7 +271,11 @@ def notice_box_layout(params: dict, body_width: float, label: str,
     plate_width = label_width - plate_left
     body_frame_width = body_width - (
         plate_left + plate_width + body_inset + right_inset)
-    hanging_indent = 3.4 if is_list else 0.0
+    hanging_indent = (
+        param_pt(params, "comp_callout_bullet_indent", 2.55)
+        + param_pt(params, "comp_callout_bullet_width", 3.4)
+        if is_list else 0.0
+    )
     available = max(20.0, body_frame_width - hanging_indent)
     lines = sum(
         _wrapped_lines(
@@ -333,7 +342,11 @@ def _remeasure_notice_layout(
         + layout.body_inset
         + layout.right_inset
     )
-    hanging_indent = 3.4 if spec.get("list") else 0.0
+    hanging_indent = (
+        param_pt(params, "comp_callout_bullet_indent", 2.55)
+        + param_pt(params, "comp_callout_bullet_width", 3.4)
+        if spec.get("list") else 0.0
+    )
     available = body_frame_width - hanging_indent
     if available <= 0:
         raise ValueError("notice body frame has no usable width")
@@ -609,6 +622,9 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         paragraph_space_after,
         bool(spec.get("unbulleted_first")),
         body_font_style,
+        param_pt(ctx.params, "comp_callout_bullet_indent", 2.55),
+        param_pt(ctx.params, "comp_callout_bullet_width", 3.4),
+        param_pt(ctx.params, "type_callout_bullet_font_size", 4.8),
     )
     if ctx.add_story is not None:
         return _rounded_notice(

@@ -597,8 +597,9 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
    ```
 
    已在 reference-layout registry 注册的目标会直接使用批准的物理页合同，
-   入口只准备 RST，不再额外构建一份 LaTeX PDF；未注册目标才保留历史的
-   LaTeX 分页匹配回退。
+   `--source auto` 也会自动选择与上面相同的冻结 `review-asis` 装配；显式
+   source 参数不会被改写。入口只准备 RST，不再额外构建一份 LaTeX PDF；
+   未注册目标才默认 runtime 并保留历史的 LaTeX 分页匹配回退。
 
 3. 打开 `docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml`。
    `manual.ir.json` 是内容身份，`latex_page_plan.json` 只是同源 LaTeX

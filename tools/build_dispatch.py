@@ -236,14 +236,18 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
     # An approved target already has a hash-bound physical page plan, so building
     # a fresh LaTeX PDF would add an unrelated failure surface. Unregistered
     # production targets still build that PDF for the historical fuzzy plan.
-    _src = getattr(args, "source", None)
-    source_override = _src if _src in {"review", "review-asis", "runtime"} else "runtime"
     mode = getattr(args, "idml_mode", "production")
     repo_root = Path(__file__).resolve().parents[1]
     approved_target = _target_has_approved_reference_plan(
         args,
         config_path=context.config_path,
         repo_root=repo_root,
+    )
+    _src = getattr(args, "source", None)
+    source_override = (
+        _src
+        if _src in {"review", "review-asis", "runtime"}
+        else "review-asis" if approved_target else "runtime"
     )
     build_action = "rst" if mode == "flow" or approved_target else "pdf"
     build_args = argparse.Namespace(**vars(args))

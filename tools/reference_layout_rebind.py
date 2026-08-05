@@ -51,9 +51,20 @@ def _registered_plan_paths(registry_path: Path) -> list[Path]:
     return paths
 
 
-def _run_one(plan_path: Path, ir: ManualIR, *, write: bool = False) -> tuple[bool, str]:
+def _run_one(
+    plan_path: Path,
+    ir: ManualIR,
+    *,
+    write: bool = False,
+    content_approval: dict[str, str] | None = None,
+) -> tuple[bool, str]:
     try:
-        result = rebind_reference_layout_plan(plan_path, ir, write=write)
+        result = rebind_reference_layout_plan(
+            plan_path,
+            ir,
+            write=write,
+            content_approval=content_approval,
+        )
     except (OSError, ValueError, ReferenceLayoutPlanError) as exc:
         print(f"[reference-layout-rebind] ERROR: {plan_path} | {exc}")
         return False, str(exc)
@@ -64,6 +75,7 @@ def _run_one(plan_path: Path, ir: ManualIR, *, write: bool = False) -> tuple[boo
         f"[reference-layout-rebind] {action}: {result.plan_path} | "
         f"source_identity={changed_identity} "
         f"page_bindings={result.changed_page_bindings} "
+        f"content_reapproved={'yes' if result.content_reapproved else 'no'} "
         "composition_map=unchanged validation=passed"
     )
     return True, ""
@@ -114,6 +126,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="atomically replace the plan after validation (default: dry-run)",
     )
     parser.add_argument(
+        "--approve-content-change",
+        action="store_true",
+        help="allow an operator-reviewed manual_content_sha256 change",
+    )
+    parser.add_argument("--approved-by", help="content-change approver")
+    parser.add_argument("--approved-at", help="content approval RFC3339 timestamp")
+    parser.add_argument("--approval-method", help="recorded content review method")
+    parser.add_argument(
         "--registry",
         type=Path,
         default=REGISTRY_PATH,
@@ -121,14 +141,40 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
 
+    approval_values = (args.approved_by, args.approved_at, args.approval_method)
+    if args.approve_content_change:
+        if not all(value and value.strip() for value in approval_values):
+            parser.error(
+                "--approve-content-change requires --approved-by, "
+                "--approved-at, and --approval-method"
+            )
+        content_approval = {
+            "status": "approved",
+            "approved_by": args.approved_by.strip(),
+            "approved_at": args.approved_at.strip(),
+            "method": args.approval_method.strip(),
+        }
+    else:
+        if any(approval_values):
+            parser.error("approval metadata requires --approve-content-change")
+        content_approval = None
+
     if args.all_registered:
-        if args.write:
-            parser.error("--all-registered is dry-run only; pass --plan explicitly before using --write")
+        if args.write or content_approval is not None:
+            parser.error(
+                "--all-registered is ordinary dry-run only; pass --plan "
+                "explicitly before writing or approving content"
+            )
         return _run_all_registered(args.manual_ir, args.registry)
 
     try:
         ir = read_manual_ir(args.manual_ir.resolve())
-        ok, _ = _run_one(args.plan, ir, write=args.write)
+        ok, _ = _run_one(
+            args.plan,
+            ir,
+            write=args.write,
+            content_approval=content_approval,
+        )
     except (OSError, ValueError, ReferenceLayoutPlanError) as exc:
         print(f"[reference-layout-rebind] ERROR: {exc}", file=sys.stderr)
         return 1

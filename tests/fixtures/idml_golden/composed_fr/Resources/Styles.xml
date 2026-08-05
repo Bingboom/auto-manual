@@ -13,7 +13,7 @@
       <Leading type="unit">14.4</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/Heading2" Name="Heading2" PointSize="8" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/Heading2" Name="Heading2" PointSize="8" FillColor="Color/HB Brand Dark" KeepWithNext="3" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Bold</FontStyle>
@@ -27,7 +27,7 @@
       <Leading type="unit">11</Leading>
     </Properties>
   </ParagraphStyle>
-  <ParagraphStyle Self="ParagraphStyle/Heading3" Name="Heading3" PointSize="7" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+  <ParagraphStyle Self="ParagraphStyle/Heading3" Name="Heading3" PointSize="7" FillColor="Color/HB Brand Dark" KeepWithNext="3" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Medium</FontStyle>
@@ -252,6 +252,41 @@
     </Properties>
   </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/Item List" Name="Item List" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" SpaceAfter="2.06929" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Sublist" Name="HB Sublist" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="9.58" FirstLineIndent="-6.04" RightIndent="0" SpaceAfter="2" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB List FR" Name="HB List FR" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" SpaceAfter="2.06929" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Sublist FR" Name="HB Sublist FR" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="9.58" FirstLineIndent="-6.04" RightIndent="0" SpaceAfter="2" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB List ES" Name="HB List ES" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="3.7" FirstLineIndent="-6.25" RightIndent="0" SpaceAfter="2.06929" Hyphenation="false" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Sublist ES" Name="HB Sublist ES" PointSize="6" FillColor="Color/HB Brand Dark" LeftIndent="9.58" FirstLineIndent="-6.04" RightIndent="0" SpaceAfter="2" Hyphenation="false" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
       <FontStyle type="string">Regular</FontStyle>
