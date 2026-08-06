@@ -52,6 +52,8 @@ def _target_has_approved_reference_plan(
     """Return whether the exact CLI target is governed by an approved plan."""
 
     from tools.config_loader import load_config_mapping
+    from tools.model_languages import resolve_target_languages
+    from tools.utils.path_utils import PathSegments, Paths
 
     try:
         cfg = load_config_mapping(config_path)
@@ -63,15 +65,23 @@ def _target_has_approved_reference_plan(
         raw_languages = build.get("languages")
         if not isinstance(raw_languages, list):
             return False
-        languages = [str(language).strip() for language in raw_languages]
-        if not model or not region or any(not language for language in languages):
+        family_languages = [str(language).strip() for language in raw_languages]
+        if not model or not region or any(
+            not language for language in family_languages
+        ):
             return False
+        paths = Paths(root=repo_root)
+        languages = list(
+            resolve_target_languages(
+                family_languages,
+                model=model,
+                region=region,
+                data_dir=paths.data_dir,
+            ).languages
+        )
         registry_path = (
-            repo_root
-            / "docs"
-            / "renderers"
-            / "contracts"
-            / "reference_layout_registry.json"
+            paths.renderer_contracts_dir
+            / PathSegments.REFERENCE_LAYOUT_REGISTRY_JSON
         )
         registry = json.loads(registry_path.read_text(encoding="utf-8"))
     except (OSError, RuntimeError, ValueError, json.JSONDecodeError):

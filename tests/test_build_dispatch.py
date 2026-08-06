@@ -265,6 +265,47 @@ class TestBuildDispatch(unittest.TestCase):
                 )
             )
 
+    def test_approved_reference_target_uses_model_language_scope(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config = root / "configs" / "config.eu.yaml"
+            config.parent.mkdir(parents=True)
+            config.write_text(
+                "build:\n"
+                "  default_model: JE-1000F\n"
+                "  default_region: EU\n"
+                "  languages: [en, fr, es, de, it, uk]\n",
+                encoding="utf-8",
+            )
+            data_dir = root / "data"
+            data_dir.mkdir()
+            (data_dir / "model_languages.csv").write_text(
+                "Document_key,languages\n"
+                "JE-1000F_EU,en;fr;es;de;it\n",
+                encoding="utf-8",
+            )
+            registry = (
+                root
+                / "docs"
+                / "renderers"
+                / "contracts"
+                / "reference_layout_registry.json"
+            )
+            registry.parent.mkdir(parents=True)
+            registry.write_text(
+                '{"plans":[{"target":{"model":"JE-1000F","region":"EU",'
+                '"languages":["en","fr","es","de","it"]}}]}\n',
+                encoding="utf-8",
+            )
+
+            self.assertTrue(
+                build_dispatch._target_has_approved_reference_plan(
+                    SimpleNamespace(model="JE-1000F", region="EU"),
+                    config_path=config,
+                    repo_root=root,
+                )
+            )
+
     def test_dispatch_idml_preserves_review_asis_source(self) -> None:
         calls = self._dispatch("idml", source="review-asis")
 
