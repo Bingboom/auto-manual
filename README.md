@@ -1,9 +1,141 @@
 # Auto-Manual Tool
 
-Updated: 2026-07-31
+Updated: 2026-08-06
 
 Auto-Manual turns structured content (Feishu/Lark Base CSV snapshots plus shared RST templates) into target-specific manual bundles and release outputs across the active US, EU, JP, and CN config families.
 The current maintained smoke-check baseline is `JE-1000F` across US and JP.
+
+## Auto-Manual Roadmap
+
+The main path runs from governed content to frozen, reviewable, multi-format
+manuals. Teal stages belong to the engineering plane; violet stages cross into
+the Hello-Docs business publishing plane.
+
+![Auto-Manual workflow roadmap](docs/readme-assets/auto-manual-roadmap.svg)
+
+> New here? Follow the numbered path first. The quality gates at the bottom are
+> acceptance conditions, not optional cleanup steps.
+
+### 1. Govern Sources
+
+Start by naming the target: **model, region, language, and execution plane**.
+Then edit the surface that owns the information:
+
+| Information | Source of truth |
+| --- | --- |
+| Product facts, specifications, placeholders | Feishu phase2 source tables |
+| Reusable manual prose and page structure | [`docs/templates/`](docs/templates) |
+| Approved terminology and sentence pairs | TM-B `Translation_Memory` |
+| Production illustrations and derivatives | Feishu `04_资产*` tables plus the local asset registry |
+| Target-specific edits after review starts | [`docs/_review/`](docs/_review) |
+
+Do not treat [`docs/_build/`](docs/_build) as an authoring surface. Generated
+files are evidence and deliverables, not durable source.
+
+### 2. Freeze Inputs
+
+`sync-data` materializes the selected Feishu rows and attachments under the
+gitignored `data/phase2/` snapshot. The chosen config and `document_key` bind
+that snapshot to one target; manifests define the page stack, while asset and
+bundle manifests bind the exact bytes with hashes.
+
+Before continuing, confirm:
+
+- the config resolves the intended model, region, and language
+- the phase2 snapshot contains the target rows and required attachments
+- every production `asset:` reference resolves to an approved export
+- the prepared bundle records its input manifest and `bundle_sha256`
+
+Tests and CI use [`tests/fixtures/phase2/`](tests/fixtures/phase2), a committed,
+deterministic sample snapshot. They never depend on a live Feishu read.
+
+### 3. Build & Check
+
+[`build.py`](build.py) is the front door. A minimal US/EN path is:
+
+```bash
+python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py doctor --data-plane --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
+python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
+```
+
+`doctor` checks the environment and target, `check` runs the quality gates, and
+`review` creates the target review surface. Use the config-family commands from
+the detailed reference below for JP, multilingual, new-line, asset-intake, or
+matrix work.
+
+### 4. Review & Backport
+
+Once review starts, the frozen derivative under `docs/_review/<model>/<region>`
+owns target-specific edits. Prefer `sync-review` for safe data-driven refreshes;
+do not refresh or overwrite reviewed prose casually.
+
+Route feedback according to ownership:
+
+| Review finding | Destination |
+| --- | --- |
+| Target-only wording or layout adjustment | `docs/_review/...` |
+| Shared reusable prose | Template change, then propagate into active reviews |
+| Specification or placeholder value | Approval-gated Feishu source-table write |
+| Asset correction | Asset intake/promotion workflow and registry |
+
+For a review cloud document, use the branch-resolving backport path rather than
+guessing a local file:
+
+```bash
+python tools/cloud_doc_backport.py run-review-branch \
+  --doc-name <doc-name> --cloud-doc <url>
+```
+
+Dry-run first. Apply with `--write`; use `--push` only when the resulting draft
+PR should target the resolved review branch.
+
+### 5. Produce Outputs
+
+All formats consume the same prepared bundle. PDF is the fixed-format reference;
+DOCX supports editorial exchange; IDML is the editable design handoff; HTML is
+the responsive presentation; Markdown and ZIP support exchange and release.
+
+The output adapters may differ in pagination and composition, but they must not
+silently fork copy, specifications, legal text, terminology, or asset identity.
+For an editable InDesign handoff:
+
+```bash
+python build.py idml \
+  --config configs/config.us.yaml --model JE-1000F --region US \
+  --source review-asis
+```
+
+Generated files remain under `docs/_build/` or the release-report surfaces.
+Correct a defect at its owning source or review layer, then rebuild.
+
+### 6. Publish & Trace
+
+Publishing crosses from the engineering plane into the business plane:
+
+1. `auto-manual/main` syncs one-way into `Hello-Docs/main`.
+2. The business Web Publish queue assembles a frozen `docs/publish/` candidate.
+3. A scope-guarded `publish → main` PR carries only the reviewed Web snapshot.
+4. Read the Docs builds the merged Git snapshot without reading Feishu live.
+5. The worker writes the live URL and final status back to the originating row.
+
+Code changes belong in `auto-manual`; do not patch the Hello-Docs engineering
+tree directly. A publish is complete only when the source commit, generated
+artifacts, published URL, and Feishu readback all agree.
+
+## Quality Gates at Every Handoff
+
+- **Scope before mutation:** confirm model, region, language, repository, Base,
+  and record before writing.
+- **Hash and manifest integrity:** freeze the exact content, asset, and toolchain
+  inputs needed to reproduce a build.
+- **Visual and content review:** validate structure, copy, links, tables, assets,
+  and format-specific presentation.
+- **Live readback:** verify the resulting commit, artifact, URL, and Feishu field;
+  successful dispatch alone is not acceptance.
+
+## Detailed Reference
 
 **This README is a quickstart and a navigation map. The full command reference, every operational note (Phase 2 snapshot, review sync, Word/HTML/PDF/MD export, Vercel publish, Read the Docs catalog, Windows cleanup, Git workflow, queue routing) lives in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).**
 
@@ -11,7 +143,7 @@ The current maintained smoke-check baseline is `JE-1000F` across US and JP.
 
 **For AI agent windows (Claude Code / Codex):** Claude Code auto-loads [`CLAUDE.md`](CLAUDE.md), which inlines the shared rules in [`AGENTS.md`](AGENTS.md); Codex reads [`AGENTS.md`](AGENTS.md) and the nearest directory-level `AGENTS.md` directly. To start a task in a new window, run `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>` for a fresh branch off up-to-date `main` (the wrapper refuses a dirty tree). Multi-window concurrency rules are in [`AGENTS.md`](AGENTS.md) §8.
 
-## 1. Current Role
+### Repository Scope
 
 This repository is responsible for:
 
@@ -39,7 +171,7 @@ This repository is responsible for:
 This repository is not the place to define the long-term platform strategy.
 That boundary lives in [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md).
 
-## 2. Quickstart
+### Extended Command Reference
 
 The primary entrypoint is [`build.py`](build.py). A minimal US/EN smoke check:
 
@@ -295,7 +427,7 @@ resources: they must be present under `Links/`, and release acceptance runs
 native finalization on the exact packaged root IDML, not only the raw
 build-machine IDML.
 
-### Approved-PDF native InDesign replica (方案 2)
+#### Approved-PDF native InDesign replica (方案 2)
 
 The approved-replica path for `JE-1000F / US / en+fr+es` is governed by the
 [`reference layout registry`](docs/renderers/contracts/reference_layout_registry.json)
@@ -578,7 +710,7 @@ The fixed US + JP release matrix runners — [`scripts/build_us_jp_manuals.py`](
 Do not treat this file as the full command reference.
 The command semantics and output layout are maintained in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).
 
-## 3. Editing Surfaces
+### Editing Surfaces and Source Ownership
 
 Use different surfaces for different stages:
 
@@ -716,7 +848,7 @@ boundary, so Pandoc cannot flatten them into visible Markdown notation.
 
 The current user workflow and source-of-truth rules are maintained in [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md).
 
-## 4. Document Map
+### Document Map
 
 Use the document that owns the topic:
 
@@ -744,7 +876,7 @@ Use the document that owns the topic:
 - long-term strategy and stable architecture boundaries: [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
 - repo-level execution roadmap: [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md)
 
-## 5. Key Directories
+### Key Directories
 
 - [`build.py`](build.py): top-level CLI entrypoint
 - [`.readthedocs.yaml`](.readthedocs.yaml): Read the Docs build config for the generated MyST manual catalog
@@ -773,7 +905,7 @@ Use the document that owns the topic:
 - [`reports/`](reports): revision reports and runtime release output; `reports/releases/` is Git-ignored, and queue Publish sends IDML/LaTeX/PDF/DOCX/ZIP deliverables to Feishu or short-lived GitHub Actions artifacts instead of committing them. Publish also freezes the exact phase2 input under `reports/releases/<model>/<region>/<lang>/versions/<version>/snapshot/` for the runtime release evidence
 - [`tests/`](tests): automated regression coverage
 
-## 6. Maintenance Rule
+### Maintenance Rule
 
 When command behavior, workflow ownership, or architecture boundaries change:
 
