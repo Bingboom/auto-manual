@@ -183,6 +183,11 @@ flow:
 python build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source review-asis
 ```
 
+For a target registered in the approved reference-layout registry, the default
+`--source auto` resolves to this same frozen `review-asis` assembly. An
+explicit `--source runtime`, `review`, or `review-asis` remains authoritative;
+unregistered IDML targets continue to default to runtime assembly.
+
 When `--lang` is omitted, `build.py idml` forwards the sole language declared
 by a single-language family config (for example `ja` from `config.ja.yaml`) to
 the exporter. Multilingual configs retain the historical default unless the
@@ -304,17 +309,22 @@ for English/French/Spanish, and one back cover. The plan binds all 52 IR source
 references to compositions covering physical pages 1–58. A missing or
 mismatched plan, source/hash drift, or page-count drift is a hard failure; this
 approval path must not silently fall back to fuzzy PDF matching.
+Approved-plan v2 separates target content, semantic/physical assembly, style,
+and source provenance. Content, assembly, style, per-page digests, and the
+reference PDF remain hard gates. The repository-wide phase2 snapshot hash is
+retained under `identity.provenance` for audit, but unrelated snapshot drift
+does not invalidate an unchanged target manual. Approved v2 assembly also
+forbids `UNCLASSIFIED_PROSE` unless the exact source ref is listed as an
+explicit exception; the JE-1000F US contract has no such exceptions.
 An approved on-disk contract for the exact target is also fail-closed when its
 registry entry is missing: removing a registry row is not a way to demote an
 approved replica to the measured-LaTeX fallback. That fallback is available
 only when no approved contract exists for the target.
 
-When the frozen Manual IR changes without changing the approved physical
-composition, rebind the mutable non-content identity fields and every page
-source digest as one validated operation. The command requires the semantic
-content hash, source order, page languages, and physical composition to remain
-unchanged. It is dry-run by default; inspect its summary and the diff before
-applying `--write`:
+When the frozen Manual IR changes without changing approved content or
+semantic/physical assembly, rebind the mutable style/provenance identity fields
+and every page source digest as one validated operation. The command is dry-run
+by default; inspect its summary and the diff before applying `--write`:
 
 ```bash
 python3 tools/reference_layout_rebind.py \
@@ -326,13 +336,38 @@ python3 tools/reference_layout_rebind.py \
   --write
 ```
 
+Content or assembly identity changes remain fail-closed by default. This
+includes v1-to-v2 migration because a v1 approval contains no assembly pin and
+therefore cannot prove that the new semantic page-role projection was reviewed.
+Before approving one, verify the final Manual IR has the reviewed
+source-reference order and language mapping, `skipped_raw` allowance, physical
+page count, and composition map. Record the operator decision, then dry-run the
+explicit approval route and repeat it with `--write` only after reviewing the
+candidate. The legacy flag name is retained for CLI compatibility, but its
+approval metadata covers the reviewed content/assembly identity change:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --approve-content-change \
+  --approved-by "<operator>" \
+  --approved-at "<RFC3339>" \
+  --approval-method "<recorded review evidence>"
+# Repeat the same validated command with --write after review.
+```
+
 For a read-only sweep across every registered contract, use
 `--all-registered` with the current Manual IR. Batch mode always disables
 writes; apply a reviewed result one plan at a time with an explicit
 `--plan ... --write` command.
 
-The write is atomic and refuses source-order or physical-composition changes;
-do not patch individual hashes or deregister the contract to bypass validation.
+The write is atomic and always refuses source-order or physical-composition
+changes; do not patch individual hashes or deregister the contract to bypass
+validation. A v1 migration never auto-creates
+`allowed_unclassified_source_refs`; unclassified pages require a new reviewed
+layout decision instead of an implicit exception. Identity approval metadata is
+persisted in the contract and cannot be supplied to `--all-registered`.
 The Manual IR layout-parameter identity hashes the ordered parsed
 `key`/`value`/`unit` semantics, so line endings, blank rows, and comment-column
 edits do not create false drift, while token values, units, or order still do.
@@ -715,6 +750,7 @@ Use the document that owns the topic:
 - [`.readthedocs.yaml`](.readthedocs.yaml): Read the Docs build config for the generated MyST manual catalog
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
 - [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
+- A manifest `generated_page` may declare `model_overrides.<MODEL>.recipe` and/or `.template` for a reviewed model-specific layout exception; models without that key continue to use the shared page paths.
 - [`docs/templates/page_zh/`](docs/templates/page_zh): shared zh prose-template family for the CN manual stack
 - `data/phase2/`: gitignored Feishu-synced CSV snapshot inputs for active build, review, and publish flows; only the repo-maintained [`data/phase2/page_registry.csv`](data/phase2/page_registry.csv) stays tracked because `sync-data` reads it as input
 - [`data/source_table_contracts/phase2_source_tables.json`](data/source_table_contracts/phase2_source_tables.json): repo-maintained source-table contract for phase2 keys, snapshot files, intake targets, writable fields, and source-record-index mapping; update it when online source-table structure changes. `tools/schema_drift.py` validates the contract against fixture/local snapshot headers in CI.

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import unittest
+import warnings
 
 from tools.idml.oppanel import parse_rows, transform
 
@@ -426,6 +427,140 @@ class TransformTest(unittest.TestCase):
         section = json.loads(out[3][1])
         self.assertEqual("warrantysection", section["kind"])
         self.assertEqual("Limited Warranty", section["title"])
+
+    def test_warranty_years_without_h1_reports_grouping_diagnostic(self) -> None:
+        blocks = [
+            ("h2", "Warranty Period"),
+            ("table", str([[
+                "**3 YEARS** **Standard Warranty** Standard copy.",
+                "**2 YEARS** **Extended Warranty** Extended copy.",
+            ]])),
+        ]
+
+        with self.assertWarnsRegex(
+            UserWarning,
+            r"warranty grouping skipped: missing h1",
+        ):
+            out = transform(blocks)
+
+        self.assertEqual(["h2", "component"], [kind for kind, _ in out])
+        self.assertEqual("warrantyyears", json.loads(out[1][1])["kind"])
+
+    def test_warranty_years_without_h2_reports_grouping_diagnostic(self) -> None:
+        blocks = [
+            ("h1", "WARRANTY"),
+            ("table", str([[
+                "**3 YEARS** **Standard Warranty** Standard copy.",
+                "**2 YEARS** **Extended Warranty** Extended copy.",
+            ]])),
+        ]
+
+        with self.assertWarnsRegex(
+            UserWarning,
+            r"warranty grouping skipped: missing h2",
+        ):
+            out = transform(blocks)
+
+        self.assertEqual(["h1", "component"], [kind for kind, _ in out])
+        self.assertEqual("warrantyyears", json.loads(out[1][1])["kind"])
+
+    def test_explicit_warranty_semantics_do_not_depend_on_titles(self) -> None:
+        lead = json.dumps({
+            "kind": "warranty_lead",
+            "roles": ["warranty_lead"],
+            "blocks": [{"kind": "body", "payload": "**Changed lead copy.**"}],
+        })
+        section = json.dumps({
+            "kind": "warranty_section",
+            "roles": ["warranty_section", "warranty_years"],
+            "blocks": [
+                {"kind": "h2", "payload": "Completely renamed section"},
+                {"kind": "table", "payload": json.dumps([[
+                    "**3 YEARS Custom coverage** Changed copy.",
+                    "**2 YEARS Bonus coverage** Changed copy.",
+                ]])},
+            ],
+        })
+
+        out = transform([
+            ("h1", "RENAMED PAGE"),
+            ("semantic", lead),
+            ("body", "*Changed legal note."),
+            ("semantic", section),
+        ])
+
+        self.assertEqual(
+            ["h1", "component", "warrantynote", "component"],
+            [kind for kind, _ in out],
+        )
+        self.assertEqual("warrantylead", json.loads(out[1][1])["kind"])
+        section_spec = json.loads(out[3][1])
+        self.assertEqual("warrantysection", section_spec["kind"])
+        self.assertEqual("Completely renamed section", section_spec["title"])
+        self.assertEqual(
+            "warrantyyears",
+            section_spec["blocks"][0]["spec"]["kind"],
+        )
+
+    def test_explicit_warranty_years_fail_closed_when_table_is_malformed(self) -> None:
+        section = json.dumps({
+            "kind": "warranty_section",
+            "roles": ["warranty_section", "warranty_years"],
+            "blocks": [
+                {"kind": "h2", "payload": "Coverage"},
+                {"kind": "table", "payload": json.dumps([["unstructured"]])},
+            ],
+        })
+
+        with self.assertRaisesRegex(ValueError, "explicit warranty-years"):
+            transform([("semantic", section)])
+
+    def test_explicit_warranty_years_cover_every_shared_language_unit(self) -> None:
+        cases = (
+            ("YEARS", "Standard Warranty"),
+            ("ANS", "Garantie standard"),
+            ("AÑOS", "Garantía estándar"),
+            ("JAHRE", "Standardgarantie"),
+            ("ANNI", "Garanzia standard"),
+            ("РОКИ", "Стандартна гарантія"),
+            ("년", "표준 보증"),
+            ("ANOS", "Garantia padrão"),
+        )
+        for unit, label in cases:
+            with self.subTest(unit=unit):
+                separator = "" if unit == "년" else " "
+                section = json.dumps({
+                    "kind": "warranty_section",
+                    "roles": ["warranty_section", "warranty_years"],
+                    "blocks": [
+                        {"kind": "h2", "payload": "Coverage"},
+                        {"kind": "table", "payload": json.dumps([[
+                            f"**3{separator}{unit}** **{label}** Copy.",
+                            f"**2{separator}{unit}** **Extra** Copy.",
+                        ]])},
+                    ],
+                })
+
+                out = transform([("semantic", section)])
+
+                spec = json.loads(out[0][1])
+                item = spec["blocks"][0]["spec"]["items"][0]
+                self.assertEqual(unit, item["unit"])
+                self.assertEqual(label, item["label"])
+
+    def test_non_warranty_page_does_not_report_grouping_diagnostic(self) -> None:
+        blocks = [
+            ("h1", "ORDINARY PAGE"),
+            ("h2", "Section"),
+            ("body", "Copy."),
+        ]
+
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            out = transform(blocks)
+
+        self.assertEqual(blocks, out)
+        self.assertEqual([], caught)
 
     def test_localized_warranty_pages_group_by_structure(self) -> None:
         cases = (

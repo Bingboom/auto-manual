@@ -4,8 +4,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from ..line_metrics import estimated_line_count
-from ..params import param_pt
-from ..primitives import cell, component_table, image_cell_content, psr, wrap_table_paragraph
+from ..params import param_pt, param_text
+from ..primitives import (
+    cell,
+    component_table,
+    image_cell_content,
+    psr,
+    wrap_table_paragraph,
+)
 from .base import RenderContext, figure_paragraph
 from .oppanel import (
     _editable_text_frame,
@@ -19,11 +25,6 @@ from .oppanel import (
 from .rounded_table import rounded_table_panel, table_text_indent
 
 
-_REFERENCE_MEASURE = 312.09
-_REFERENCE_PANEL_WIDTH = 312.74
-_REFERENCE_ART_WIDTH = 117.60
-_REFERENCE_ART_HEIGHT = 85.90
-_REFERENCE_ART_VISIBLE_LEFT = 6.91
 _ART_SOURCE_WIDTH_PX = 536.0
 _ART_SOURCE_HEIGHT_PX = 404.0
 _ART_VISIBLE_BOUNDS_PX = (8.0, 37.0, 480.0, 383.0)
@@ -43,7 +44,7 @@ class _ReferenceGeometry:
     space_after: float
 
 
-_REFERENCE_GEOMETRY = {
+_COMPAT_REFERENCE_GEOMETRY = {
     "en": _ReferenceGeometry(
         panel_height=111.48,
         left_indent=-6.24,
@@ -77,18 +78,109 @@ _REFERENCE_GEOMETRY = {
 }
 
 
-def _reference_geometry(language: str | None) -> _ReferenceGeometry | None:
-    """Return measured geometry only for an explicitly governed locale."""
-    normalized = (language or "").strip().lower().replace("_", "-")
+def _param_vector(
+    ctx: RenderContext,
+    key: str,
+    default: tuple[float, ...],
+) -> tuple[float, ...]:
+    """Resolve one semicolon-delimited geometry vector from shared tokens."""
+    raw = param_text(ctx.params, key, ";".join(f"{value:g}" for value in default))
+    try:
+        values = tuple(float(value.strip()) for value in raw.split(";"))
+    except ValueError as exc:
+        raise ValueError(f"{key} must contain semicolon-delimited numbers") from exc
+    if len(values) != len(default):
+        raise ValueError(f"{key} must contain exactly {len(default)} values")
+    return values
+
+
+def _language_param(
+    ctx: RenderContext,
+    language: str,
+    key: str,
+    default: float,
+) -> float:
+    base = param_pt(ctx.params, key, default)
+    return param_pt(ctx.params, f"lang_{language}_{key}", base)
+
+
+def _reference_geometry(ctx: RenderContext) -> _ReferenceGeometry | None:
+    """Return token-driven geometry only for an explicitly governed locale."""
+    normalized = (ctx.language or "").strip().lower().replace("_", "-")
     if not normalized:
         return None
-    return _REFERENCE_GEOMETRY.get(normalized.split("-", 1)[0])
+    language = normalized.split("-", 1)[0]
+    default = _COMPAT_REFERENCE_GEOMETRY.get(language)
+    if default is None:
+        return None
+    prefix = f"lang_{language}_"
+    base_row_heights = _param_vector(
+        ctx,
+        "idml_lcd_mode_row_heights",
+        default.row_heights,
+    )
+    base_column_widths = _param_vector(
+        ctx,
+        "idml_lcd_mode_column_widths",
+        default.column_widths,
+    )
+    return _ReferenceGeometry(
+        panel_height=_language_param(
+            ctx,
+            language,
+            "idml_lcd_mode_panel_height",
+            default.panel_height,
+        ),
+        left_indent=_language_param(
+            ctx,
+            language,
+            "idml_lcd_mode_left_indent",
+            default.left_indent,
+        ),
+        row_heights=_param_vector(
+            ctx,
+            f"{prefix}idml_lcd_mode_row_heights",
+            base_row_heights,
+        ),  # type: ignore[arg-type]
+        column_widths=_param_vector(
+            ctx,
+            f"{prefix}idml_lcd_mode_column_widths",
+            base_column_widths,
+        ),  # type: ignore[arg-type]
+        table_top_margin=_language_param(
+            ctx,
+            language,
+            "idml_lcd_mode_table_top_margin",
+            default.table_top_margin,
+        ),
+        art_top_margin=_language_param(
+            ctx,
+            language,
+            "idml_lcd_mode_art_top_margin",
+            default.art_top_margin,
+        ),
+        space_before=_language_param(
+            ctx,
+            language,
+            "idml_lcd_mode_space_before",
+            default.space_before,
+        ),
+        space_after=_language_param(
+            ctx,
+            language,
+            "idml_lcd_mode_space_after",
+            default.space_after,
+        ),
+    )
 
 
 def _compensated_art_placement(
     *,
     scale: float,
     visible_top: float,
+    visible_width: float,
+    visible_height: float,
+    visible_left: float,
 ) -> tuple[float, float, float, float]:
     """Return the full PNG frame needed to place its visible art at reference size.
 
@@ -103,14 +195,14 @@ def _compensated_art_placement(
     )
     visible_width_px = visible_right_px - visible_left_px
     visible_height_px = visible_bottom_px - visible_top_px
-    x_scale = _REFERENCE_ART_WIDTH / visible_width_px
-    y_scale = _REFERENCE_ART_HEIGHT / visible_height_px
+    x_scale = visible_width / visible_width_px
+    y_scale = visible_height / visible_height_px
     point_scale = (x_scale * y_scale) ** 0.5 * scale
 
     frame_width = _ART_SOURCE_WIDTH_PX * point_scale
     frame_height = _ART_SOURCE_HEIGHT_PX * point_scale
     frame_left = (
-        _REFERENCE_ART_VISIBLE_LEFT * scale
+        visible_left * scale
         - visible_left_px * point_scale
     )
     frame_top = visible_top - visible_top_px * point_scale
@@ -137,15 +229,44 @@ def _fallback_lcdmode(
     art = ""
     img = ctx.resolve_bundle_image(img_ref) if img_ref else None
     if img is not None:
-        iw, ih = ctx.art_frame_size(img, max_w=110.0)
+        iw, ih = ctx.art_frame_size(
+            img,
+            max_w=param_pt(
+                ctx.params,
+                "idml_lcd_mode_fallback_art_max_width",
+                110.0,
+            ),
+        )
         art = figure_paragraph(image_cell_content(f"{tid}art", img, iw, ih))
 
-    inner_w = body_w - 1.5
+    inner_w = body_w - param_pt(
+        ctx.params,
+        "idml_lcd_mode_fallback_inner_width_trim",
+        1.5,
+    )
     state_w = param_pt(ctx.params, "comp_lcd_mode_state_col_width", 59.53)
     action_w = param_pt(ctx.params, "comp_lcd_mode_action_col_width", 42.52)
     cols = [state_w, action_w, inner_w - state_w - action_w]
-    rule = max(0.2, param_pt(ctx.params, "comp_table_outer_rule", 0.75) / 2.0)
+    rule = max(
+        param_pt(ctx.params, "idml_lcd_mode_fallback_rule_floor", 0.2),
+        param_pt(ctx.params, "comp_table_outer_rule", 0.75) / 2.0,
+    )
     text_indent = table_text_indent(ctx.params)
+    vertical_pad = param_pt(
+        ctx.params,
+        "idml_lcd_mode_fallback_cell_vertical_pad",
+        2.0,
+    )
+    label_right_pad = param_pt(
+        ctx.params,
+        "idml_lcd_mode_fallback_label_right_pad",
+        3.0,
+    )
+    description_right_pad = param_pt(
+        ctx.params,
+        "idml_lcd_mode_fallback_description_right_pad",
+        4.0,
+    )
     cells = []
     row_index = 0
     for group in groups:
@@ -157,10 +278,10 @@ def _fallback_lcdmode(
                     f"0:{row_index}",
                     psr("HB Spec Label", group.get("state", ""), terminal=True),
                     fill="Color/HB Bg K05",
-                    top=2,
-                    bottom=2,
+                    top=vertical_pad,
+                    bottom=vertical_pad,
                     left=text_indent,
-                    right=3,
+                    right=label_right_pad,
                     edge_weight=rule,
                     edge_color="Color/HB Line K40",
                     valign="CenterAlign",
@@ -171,10 +292,10 @@ def _fallback_lcdmode(
                     f"{tid}c{row_index}_1",
                     f"1:{row_index}",
                     psr("HB Spec Label", action, terminal=True),
-                    top=2,
-                    bottom=2,
+                    top=vertical_pad,
+                    bottom=vertical_pad,
                     left=text_indent,
-                    right=3,
+                    right=label_right_pad,
                     edge_weight=rule,
                     edge_color="Color/HB Line K40",
                     valign="CenterAlign",
@@ -185,10 +306,10 @@ def _fallback_lcdmode(
                     f"{tid}c{row_index}_2",
                     f"2:{row_index}",
                     psr("HB Spec Value", description, terminal=True),
-                    top=2,
-                    bottom=2,
+                    top=vertical_pad,
+                    bottom=vertical_pad,
                     left=text_indent,
-                    right=4,
+                    right=description_right_pad,
                     edge_weight=rule,
                     edge_color="Color/HB Line K40",
                     valign="CenterAlign",
@@ -215,9 +336,26 @@ def _fallback_lcdmode(
         )
         localized = any(ord(char) > 127 for char in table_text)
         if row_index >= 6 and localized:
-            framed_h = 87.9
+            framed_h = param_pt(
+                ctx.params,
+                "idml_lcd_mode_fallback_localized_height",
+                87.9,
+            )
         else:
-            framed_h = ((13.2 if row_index <= 3 else 10.5) * row_index + 1.5)
+            row_height = param_pt(
+                ctx.params,
+                (
+                    "idml_lcd_mode_fallback_short_row_height"
+                    if row_index <= 3
+                    else "idml_lcd_mode_fallback_long_row_height"
+                ),
+                13.2 if row_index <= 3 else 10.5,
+            )
+            framed_h = row_height * row_index + param_pt(
+                ctx.params,
+                "idml_lcd_mode_fallback_frame_padding",
+                1.5,
+            )
         table_xml = rounded_table_panel(
             ctx.add_story,
             ctx.params,
@@ -233,7 +371,15 @@ def _fallback_lcdmode(
         )
     else:
         table_xml = wrap_table_paragraph(table, terminal, span_columns)
-    return art + table_xml, 70.0 + 12.0 * row_index
+    return art + table_xml, param_pt(
+        ctx.params,
+        "idml_lcd_mode_fallback_estimated_base_height",
+        70.0,
+    ) + param_pt(
+        ctx.params,
+        "idml_lcd_mode_fallback_estimated_row_height",
+        12.0,
+    ) * row_index
 
 
 def _compact_lines(text: str, width: float, *, size: float) -> int:
@@ -257,12 +403,41 @@ def _editable_lcdmode_panel(
     asset,
 ) -> tuple[str, float]:
     """Compose the reference LCD art and its movable three-column copy."""
-    scale = min(1.0, max(0.65, body_w / _REFERENCE_MEASURE))
-    geometry = _reference_geometry(ctx.language)
-    panel_width = _REFERENCE_PANEL_WIDTH * scale
-    visible_art_height = _REFERENCE_ART_HEIGHT * scale
+    reference_measure = param_pt(
+        ctx.params,
+        "idml_lcd_mode_reference_measure",
+        312.09,
+    )
+    minimum_scale = param_pt(ctx.params, "idml_lcd_mode_minimum_scale", 0.65)
+    scale = min(1.0, max(minimum_scale, body_w / reference_measure))
+    geometry = _reference_geometry(ctx)
+    panel_width = param_pt(
+        ctx.params,
+        "idml_lcd_mode_panel_width",
+        312.74,
+    ) * scale
+    visible_art_width = param_pt(
+        ctx.params,
+        "idml_lcd_mode_art_visible_width",
+        117.60,
+    )
+    visible_art_target_height = param_pt(
+        ctx.params,
+        "idml_lcd_mode_art_visible_height",
+        85.90,
+    )
+    visible_art_height = visible_art_target_height * scale
+    visible_art_left = param_pt(
+        ctx.params,
+        "idml_lcd_mode_art_visible_left",
+        6.91,
+    )
 
-    table_left = 140.04 * scale
+    table_left = param_pt(
+        ctx.params,
+        "idml_lcd_mode_table_left",
+        140.04,
+    ) * scale
     if geometry is not None:
         state_w, action_w, description_w = (
             width * scale for width in geometry.column_widths
@@ -271,18 +446,26 @@ def _editable_lcdmode_panel(
         # Non-governed locales keep the editable side-by-side composition, but
         # size its columns from the portable component tokens and let copy grow
         # the rows below.  Never silently inherit EN's measured fixed geometry.
-        generic_table_width = panel_width - table_left - 6.0 * scale
+        generic_table_width = panel_width - table_left - param_pt(
+            ctx.params,
+            "idml_lcd_mode_table_right_allowance",
+            6.0,
+        ) * scale
         preferred_state = max(
-            12.0 * scale,
+            param_pt(ctx.params, "idml_lcd_mode_min_state_width", 12.0) * scale,
             param_pt(ctx.params, "comp_lcd_mode_state_col_width", 59.53) * scale,
         )
         preferred_action = max(
-            12.0 * scale,
+            param_pt(ctx.params, "idml_lcd_mode_min_action_width", 12.0) * scale,
             param_pt(ctx.params, "comp_lcd_mode_action_col_width", 42.52) * scale,
         )
-        minimum_description = 30.0 * scale
+        minimum_description = param_pt(
+            ctx.params,
+            "idml_lcd_mode_min_description_width",
+            30.0,
+        ) * scale
         available_labels = max(
-            24.0 * scale,
+            param_pt(ctx.params, "idml_lcd_mode_min_label_width", 24.0) * scale,
             generic_table_width - minimum_description,
         )
         preferred_labels = preferred_state + preferred_action
@@ -294,13 +477,32 @@ def _editable_lcdmode_panel(
     action_right = state_right + action_w
     table_right = action_right + description_w
 
-    state_size = 5.25
-    state_leading = 5.8
-    action_size = 5.0
-    action_leading = 6.0
-    description_size = 4.5
-    description_leading = 4.5
-    row_minima = (14.5 * scale, 9.5 * scale, 23.5 * scale)
+    state_size = param_pt(ctx.params, "idml_lcd_mode_state_font_size", 5.25)
+    state_leading = param_pt(ctx.params, "idml_lcd_mode_state_font_leading", 5.8)
+    action_size = param_pt(ctx.params, "idml_lcd_mode_action_font_size", 5.0)
+    action_leading = param_pt(
+        ctx.params,
+        "idml_lcd_mode_action_font_leading",
+        6.0,
+    )
+    description_size = param_pt(
+        ctx.params,
+        "idml_lcd_mode_description_font_size",
+        4.5,
+    )
+    description_leading = param_pt(
+        ctx.params,
+        "idml_lcd_mode_description_font_leading",
+        4.5,
+    )
+    row_minima = tuple(
+        value * scale
+        for value in _param_vector(
+            ctx,
+            "idml_lcd_mode_row_minima",
+            (14.5, 9.5, 23.5),
+        )
+    )
 
     groups: list[dict[str, object]] = []
     for raw_group in spec.get("groups", []):
@@ -338,18 +540,46 @@ def _editable_lcdmode_panel(
             for action_index, (action, description) in enumerate(actions):
                 action_lines = _compact_lines(
                     action,
-                    max(8.0, action_w - 5.0),
+                    max(
+                        param_pt(
+                            ctx.params,
+                            "idml_lcd_mode_min_action_copy_width",
+                            8.0,
+                        ),
+                        action_w - param_pt(
+                            ctx.params,
+                            "idml_lcd_mode_action_copy_width_allowance",
+                            5.0,
+                        ),
+                    ),
                     size=action_size,
                 )
                 description_lines = _compact_lines(
                     description,
-                    max(12.0, table_right - action_right - 6.0),
+                    max(
+                        param_pt(
+                            ctx.params,
+                            "idml_lcd_mode_min_description_copy_width",
+                            12.0,
+                        ),
+                        table_right
+                        - action_right
+                        - param_pt(
+                            ctx.params,
+                            "idml_lcd_mode_description_copy_width_allowance",
+                            6.0,
+                        ),
+                    ),
                     size=description_size,
                 )
                 copy_height = max(
                     action_lines * action_leading,
                     description_lines * description_leading,
-                ) + 3.0
+                ) + param_pt(
+                    ctx.params,
+                    "idml_lcd_mode_copy_height_padding",
+                    3.0,
+                )
                 minimum = row_minima[min(action_index, len(row_minima) - 1)]
                 heights.append(max(minimum, copy_height))
 
@@ -357,11 +587,26 @@ def _editable_lcdmode_panel(
             state_height = (
                 _compact_lines(
                     state,
-                    max(10.0, state_w - 9.0),
+                    max(
+                        param_pt(
+                            ctx.params,
+                            "idml_lcd_mode_min_state_copy_width",
+                            10.0,
+                        ),
+                        state_w - param_pt(
+                            ctx.params,
+                            "idml_lcd_mode_state_copy_width_allowance",
+                            9.0,
+                        ),
+                    ),
                     size=state_size,
                 )
                 * state_leading
-                + 4.0
+                + param_pt(
+                    ctx.params,
+                    "idml_lcd_mode_state_height_padding",
+                    4.0,
+                )
             )
             if heights and sum(heights) < state_height:
                 extra = (state_height - sum(heights)) / len(heights)
@@ -371,10 +616,20 @@ def _editable_lcdmode_panel(
         dynamic_table_height = sum(
             height for group in row_heights for height in group
         )
-        vertical_padding = 8.0 * scale
+        vertical_padding = param_pt(
+            ctx.params,
+            "idml_lcd_mode_dynamic_vertical_padding",
+            8.0,
+        ) * scale
         panel_height = max(
             dynamic_table_height + 2.0 * vertical_padding,
-            visible_art_height + 26.0 * scale,
+            visible_art_height
+            + param_pt(
+                ctx.params,
+                "idml_lcd_mode_dynamic_art_height_allowance",
+                26.0,
+            )
+            * scale,
         )
         table_top = -panel_height + (
             panel_height - dynamic_table_height
@@ -386,10 +641,42 @@ def _editable_lcdmode_panel(
     art_w, art_h, art_left, art_bottom = _compensated_art_placement(
         scale=scale,
         visible_top=art_top,
+        visible_width=visible_art_width,
+        visible_height=visible_art_target_height,
+        visible_left=visible_art_left,
     )
 
     dark = "Color/HB Brand Dark"
-    line_weight = 0.55 * scale
+    line_weight = param_pt(
+        ctx.params,
+        "idml_lcd_mode_inner_rule",
+        0.55,
+    ) * scale
+    outer_radius = param_pt(
+        ctx.params,
+        "idml_lcd_mode_outer_radius",
+        4.2,
+    ) * scale
+    outer_rule = param_pt(
+        ctx.params,
+        "idml_lcd_mode_outer_rule",
+        0.8,
+    ) * scale
+    state_inset = _param_vector(
+        ctx,
+        "idml_lcd_mode_state_inset",
+        (2.0, 5.0, 2.0, 4.0),
+    )
+    action_inset = _param_vector(
+        ctx,
+        "idml_lcd_mode_action_inset",
+        (1.5, 3.0, 1.5, 2.0),
+    )
+    description_inset = _param_vector(
+        ctx,
+        "idml_lcd_mode_description_inset",
+        (0.0, 3.5, 0.0, 2.5),
+    )
     shapes = [
         _panel_bounds(tid, panel_width, panel_height),
         _positioned_image(
@@ -406,10 +693,10 @@ def _editable_lcdmode_panel(
             top=table_top,
             right=table_right,
             bottom=table_bottom,
-            radius=4.2 * scale,
+            radius=outer_radius,
             fill="Color/Paper",
             stroke=dark,
-            stroke_weight=0.8 * scale,
+            stroke_weight=outer_rule,
         ),
     ]
     text_layers: list[str] = []
@@ -441,7 +728,7 @@ def _editable_lcdmode_panel(
             top=group_top,
             right=state_right,
             bottom=group_bottom,
-            inset=(2.0, 5.0, 2.0, 4.0),
+            inset=state_inset,  # type: ignore[arg-type]
             valign="CenterAlign",
         ))
 
@@ -477,7 +764,7 @@ def _editable_lcdmode_panel(
                     top=row_top,
                     right=action_right,
                     bottom=row_bottom,
-                    inset=(1.5, 3.0, 1.5, 2.0),
+                    inset=action_inset,  # type: ignore[arg-type]
                     valign="CenterAlign",
                 ),
                 _editable_text_frame(
@@ -509,7 +796,7 @@ def _editable_lcdmode_panel(
                     # measured row height.  Horizontal padding remains, while
                     # zero vertical inset avoids consuming one extra baseline
                     # in FR/ES fixed-height frames during native import.
-                    inset=(0.0, 3.5, 0.0, 2.5),
+                    inset=description_inset,  # type: ignore[arg-type]
                     valign="CenterAlign",
                 ),
             ])
@@ -562,9 +849,9 @@ def _editable_lcdmode_panel(
             top=table_top,
             right=table_right,
             bottom=table_bottom,
-            radius=4.2 * scale,
+            radius=outer_radius,
             stroke=dark,
-            stroke_weight=0.8 * scale,
+            stroke_weight=outer_rule,
         ),
     ])
 

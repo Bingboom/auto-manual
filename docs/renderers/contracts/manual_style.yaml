@@ -24,11 +24,11 @@ styles:
   HB-TYPE-LIST:
     role: Bulleted and numbered copy
     semantic_source_kinds: [list, list_item]
-    token_refs: [type_list_font_size, type_list_font_leading, comp_list_leftmargin, comp_list_labelsep, comp_list_itemsep, comp_list_topsep]
+    token_refs: [type_list_font_size, type_list_font_leading, lang_fr_type_list_font_leading, lang_es_type_list_font_leading, comp_list_leftmargin, comp_list_labelsep, comp_list_itemsep, comp_list_topsep, comp_sublist_leftmargin, comp_sublist_labelsep, comp_sublist_itemsep, comp_sublist_topsep]
     latex: {owner: components_base.tex, entrypoints: [HBTypeListStart]}
     indesign: {renderer: list, paragraph_style: Item List}
-    status: partial
-    debt: [IDML does not yet apply language-density list overrides through a typed cascade.]
+    status: aligned
+    debt: []
 
   HB-TITLE-L1:
     role: Level-one section band
@@ -36,8 +36,8 @@ styles:
     token_refs: [type_h1_font_size, type_h1_font_leading, type_h1_force_upper, comp_h1_pill_arc, comp_h1_pill_height, comp_h1_pill_pad_lr, comp_h1_pill_pad_tb, comp_h1_pill_after, idml_warranty_h1_width_adjust, idml_warranty_h1_left_indent]
     latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelOne]}
     indesign: {renderer: heading_band, paragraph_style: Heading1, object_style: HB Capsule Heading}
-    status: partial
-    debt: [IDML still derives band height independently instead of using comp_h1_pill_height.]
+    status: aligned
+    debt: []
 
   HB-TITLE-L2:
     role: Dot-led level-two heading
@@ -45,8 +45,8 @@ styles:
     token_refs: [type_title_l2_font_size, type_title_l2_font_leading, comp_title_l2_before, comp_title_l2_after, comp_title_l2_bullet_radius, comp_title_l2_gap, comp_title_l2_needspace, idml_title_l2_font_size, idml_title_l2_font_style, idml_operation_row_label_font_size, idml_operation_row_label_font_leading, lang_en_idml_operation_row_label_font_size, lang_en_idml_operation_row_label_font_leading, lang_fr_idml_operation_row_label_font_size, lang_fr_idml_operation_row_label_font_leading, lang_es_idml_operation_row_label_font_size, lang_es_idml_operation_row_label_font_leading, idml_operation_first_h2_space_before, lang_en_idml_operation_first_h2_space_before, lang_fr_idml_operation_first_h2_space_before, lang_es_idml_operation_first_h2_space_before, idml_operation_inter_section_space_after, lang_en_idml_operation_inter_section_space_after, lang_fr_idml_operation_inter_section_space_after, lang_es_idml_operation_inter_section_space_after]
     latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelTwo]}
     indesign: {renderer: heading, paragraph_styles: [Heading2, HB Operation Row Label]}
-    status: partial
-    debt: [IDML does not yet enforce the shared keep-with-next policy.]
+    status: aligned
+    debt: []
 
   HB-TITLE-L3:
     role: Compact level-three heading
@@ -54,8 +54,8 @@ styles:
     token_refs: [type_title_l3_font_size, type_title_l3_font_leading, comp_title_l3_before, comp_title_l3_after, comp_title_l3_bullet_radius, comp_title_l3_gap, comp_title_l3_needspace]
     latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelThree]}
     indesign: {renderer: heading, paragraph_style: Heading3}
-    status: partial
-    debt: [IDML does not yet enforce the shared keep-with-next policy.]
+    status: aligned
+    debt: []
 
   HB-TYPE-LEAD:
     role: Lead and rubric copy
@@ -91,8 +91,8 @@ styles:
     token_refs: [comp_callout_rule, comp_callout_label_inset, comp_callout_body_inset, comp_callout_bullet_indent, comp_callout_bullet_width, type_callout_bullet_font_size, idml_ups_caution_body_font_size, idml_ups_caution_body_font_leading, lang_es_idml_ups_caution_body_font_leading, idml_ups_caution_body_font_style, idml_ups_caution_pad_tb, idml_ups_caution_paragraph_after, idml_ups_caution_space_before, lang_en_idml_ups_caution_space_before, lang_fr_idml_ups_caution_space_before, lang_es_idml_ups_caution_space_before, idml_ups_caution_space_after, lang_fr_idml_ups_caution_space_after, lang_es_idml_ups_caution_space_after, idml_charging_note_body_font_size, idml_charging_note_body_font_leading, idml_charging_note_body_font_style, idml_charging_note_pad_tb, idml_charging_note_paragraph_after, idml_charging_note_space_before, idml_charging_note_space_after]
     latex: {owner: components_base.tex, entrypoints: [HBWarningBlock, HBCautionBlock, HBNoteBlock, HBTipBlock]}
     indesign: {renderer: callout_strip, paragraph_style: Caution, object_style: HB Rounded Panel, table_style: Notice表格}
-    status: partial
-    debt: [Variant geometry and typography are not yet completely token-driven in IDML.]
+    status: aligned
+    debt: []
 
   HB-SAFETY-INSTRUCTION:
     role: Safety instruction lockup
@@ -105,11 +105,11 @@ styles:
   HB-SAFETY-WARNING:
     role: Standard safety warning panel
     semantic_source_kinds: [safety_warning]
-    token_refs: [comp_warning_box_arc, comp_warning_box_rule, comp_warning_box_pad_lr, comp_warning_box_pad_tb, comp_warning_box_before, comp_warning_box_after, idml_safety_tail_body_font_style]
+    token_refs: [comp_warning_box_arc, comp_warning_box_rule, comp_warning_box_pad_lr, comp_warning_box_pad_tb, comp_warning_box_before, comp_warning_box_after, idml_safety_warning_icon_column_width, idml_safety_warning_icon_max_width, idml_safety_warning_panel_min_height, idml_safety_tail_body_font_style]
     latex: {owner: components_safety.tex, entrypoints: [safetywarningbox, safetywarning]}
     indesign: {renderer: safetywarning, object_style: HB Rounded Panel, table_style: Warning表格}
-    status: partial
-    debt: [IDML visible geometry still contains renderer-local constants.]
+    status: aligned
+    debt: []
 
   HB-SAFETY-LEAD:
     role: Large warning lead panel
@@ -126,35 +126,35 @@ styles:
     token_refs: [comp_warning_box_arc, comp_warning_box_rule, comp_lockup_height, type_warning_text_font_size, type_warning_text_font_leading]
     latex: {owner: components_safety.tex, entrypoints: [HBDangerBlock]}
     indesign: {renderer: danger, object_style: HB Rounded Panel}
-    status: partial
-    debt: [IDML currently degrades danger to the generic warnbox renderer.]
+    status: aligned
+    debt: []
 
   HB-TABLE-SPEC:
     role: Specification section tables
     semantic_source_kinds: [table_spec]
-    token_refs: [comp_table_outer_arc, comp_table_outer_rule, comp_spec_table_left_ratio, idml_spec_table_left_ratio, lang_es_idml_spec_table_left_ratio, comp_spec_table_tabcolsep, comp_spec_table_row_stretch, type_spec_label_font_size, type_spec_value_font_size, idml_spec_section_1_space_before, idml_spec_section_2_space_before, idml_spec_section_3_space_before, idml_spec_section_4_space_before, idml_spec_table_1_space_before, idml_spec_table_2_space_before, idml_spec_table_3_space_before, idml_spec_table_4_space_before, lang_fr_idml_spec_section_1_space_before, lang_fr_idml_spec_section_2_space_before, lang_fr_idml_spec_section_3_space_before, lang_fr_idml_spec_section_4_space_before, lang_es_idml_spec_section_1_space_before, lang_es_idml_spec_section_2_space_before, lang_es_idml_spec_section_3_space_before, lang_es_idml_spec_section_4_space_before, lang_fr_idml_spec_table_1_space_before, lang_fr_idml_spec_table_2_space_before, lang_fr_idml_spec_table_3_space_before, lang_fr_idml_spec_table_4_space_before, lang_es_idml_spec_table_1_space_before, lang_es_idml_spec_table_2_space_before, lang_es_idml_spec_table_3_space_before, lang_es_idml_spec_table_4_space_before]
+    token_refs: [comp_table_outer_arc, comp_table_outer_rule, comp_spec_table_left_ratio, idml_spec_table_left_ratio, lang_es_idml_spec_table_left_ratio, comp_spec_table_tabcolsep, comp_spec_table_row_stretch, comp_spec_table_multiline_min_height, idml_spec_table_row_height, type_spec_label_font_size, type_spec_value_font_size, idml_spec_section_1_space_before, idml_spec_section_2_space_before, idml_spec_section_3_space_before, idml_spec_section_4_space_before, idml_spec_table_1_space_before, idml_spec_table_2_space_before, idml_spec_table_3_space_before, idml_spec_table_4_space_before, lang_fr_idml_spec_section_1_space_before, lang_fr_idml_spec_section_2_space_before, lang_fr_idml_spec_section_3_space_before, lang_fr_idml_spec_section_4_space_before, lang_es_idml_spec_section_1_space_before, lang_es_idml_spec_section_2_space_before, lang_es_idml_spec_section_3_space_before, lang_es_idml_spec_section_4_space_before, lang_fr_idml_spec_table_1_space_before, lang_fr_idml_spec_table_2_space_before, lang_fr_idml_spec_table_3_space_before, lang_fr_idml_spec_table_4_space_before, lang_es_idml_spec_table_1_space_before, lang_es_idml_spec_table_2_space_before, lang_es_idml_spec_table_3_space_before, lang_es_idml_spec_table_4_space_before]
     latex: {owner: components_spec.tex, entrypoints: [spectable]}
     indesign: {renderer: spec_table, table_style: 竖型表格, object_style: HB Rounded Table Outer}
-    status: partial
-    debt: [IDML row heights and multiline behavior are not fully token-driven.]
+    status: aligned
+    debt: []
 
   HB-TABLE-SYMBOL-SIGNAL:
     role: Signal-word table
     semantic_source_kinds: [table_symbol_signal]
-    token_refs: [comp_symbol_signal_col_width, comp_symbol_table_tabcolsep, comp_symbol_signal_width, comp_symbol_signal_height, type_symbol_signal_font_size, type_symbol_body_font_size, idml_symbol_header_font_size, idml_symbol_header_font_leading, idml_symbols_signal_header_height, idml_symbols_signal_row_height, idml_symbols_signal_icon_width, idml_symbols_signal_icon_height, idml_symbols_page_top, idml_symbols_first_tail_height, idml_symbols_first_tail_gap, idml_symbols_second_tail_height, idml_symbols_second_tail_gap, idml_symbols_maintenance_body_height, idml_symbols_maintenance_body_gap, idml_symbols_signal_gap_after, lang_en_idml_symbols_page_top, lang_en_idml_symbols_first_tail_height, lang_en_idml_symbols_first_tail_gap, lang_en_idml_symbols_second_tail_height, lang_en_idml_symbols_second_tail_gap, lang_en_idml_symbols_maintenance_body_height, lang_en_idml_symbols_maintenance_body_gap, lang_en_idml_symbols_signal_gap_after, lang_fr_idml_symbols_page_top, lang_fr_idml_symbols_first_tail_height, lang_fr_idml_symbols_first_tail_gap, lang_fr_idml_symbols_second_tail_height, lang_fr_idml_symbols_second_tail_gap, lang_fr_idml_symbols_maintenance_body_height, lang_fr_idml_symbols_maintenance_body_gap, lang_fr_idml_symbols_signal_gap_after, lang_es_idml_symbols_page_top, lang_es_idml_symbols_first_tail_height, lang_es_idml_symbols_first_tail_gap, lang_es_idml_symbols_second_tail_height, lang_es_idml_symbols_second_tail_gap, lang_es_idml_symbols_maintenance_body_height, lang_es_idml_symbols_maintenance_body_gap, lang_es_idml_symbols_signal_gap_after]
+    token_refs: [comp_symbol_signal_col_width, comp_symbol_table_tabcolsep, comp_symbol_signal_width, comp_symbol_signal_height, comp_subbar_height, type_symbol_signal_font_size, type_symbol_body_font_size, idml_symbol_header_font_size, idml_symbol_header_font_leading, idml_symbols_signal_header_height, idml_symbols_signal_row_height, idml_symbols_signal_icon_width, idml_symbols_signal_icon_height, idml_symbols_page_top, idml_symbols_first_tail_height, idml_symbols_first_tail_gap, idml_symbols_second_tail_height, idml_symbols_second_tail_gap, idml_symbols_maintenance_body_height, idml_symbols_maintenance_body_gap, idml_symbols_maintenance_title_gap, idml_symbols_title_gap, idml_symbols_h1_optical_offset, idml_symbols_page_bottom_allowance, idml_symbols_signal_gap_after, lang_en_idml_symbols_page_top, lang_en_idml_symbols_first_tail_height, lang_en_idml_symbols_first_tail_gap, lang_en_idml_symbols_second_tail_height, lang_en_idml_symbols_second_tail_gap, lang_en_idml_symbols_maintenance_body_height, lang_en_idml_symbols_maintenance_body_gap, lang_en_idml_symbols_signal_gap_after, lang_fr_idml_symbols_page_top, lang_fr_idml_symbols_first_tail_height, lang_fr_idml_symbols_first_tail_gap, lang_fr_idml_symbols_second_tail_height, lang_fr_idml_symbols_second_tail_gap, lang_fr_idml_symbols_maintenance_body_height, lang_fr_idml_symbols_maintenance_body_gap, lang_fr_idml_symbols_signal_gap_after, lang_es_idml_symbols_page_top, lang_es_idml_symbols_first_tail_height, lang_es_idml_symbols_first_tail_gap, lang_es_idml_symbols_second_tail_height, lang_es_idml_symbols_second_tail_gap, lang_es_idml_symbols_maintenance_body_height, lang_es_idml_symbols_maintenance_body_gap, lang_es_idml_symbols_signal_gap_after]
     latex: {owner: components_symbols.tex, entrypoints: [HBSymbolTable]}
     indesign: {renderer: symbol_signal_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: partial
-    debt: [IDML page composition still owns visible constants.]
+    status: aligned
+    debt: []
 
   HB-TABLE-SYMBOL-ICON:
     role: Symbol icon tables
     semantic_source_kinds: [table_symbol_icon]
-    token_refs: [comp_symbol_icon_width, comp_symbol_icon_height, comp_symbol_icon_col_width, comp_symbol_column_gap, comp_symbol_table_tabcolsep, type_symbol_header_font_size, type_symbol_body_font_size, idml_symbol_header_font_size, idml_symbol_header_font_leading, idml_symbols_icon_header_height, idml_symbols_icon_row_height, idml_symbols_icon_last_row_height, idml_symbols_icon_long_last_row_height, idml_symbols_icon_width, idml_symbols_icon_height, idml_symbols_icon_col_width, idml_symbols_icon_left_col_width, idml_symbols_icon_right_col_width, idml_symbols_icon_table_width_trim, idml_symbols_column_gap]
+    token_refs: [comp_symbol_icon_width, comp_symbol_icon_height, comp_symbol_icon_col_width, comp_symbol_column_gap, comp_symbol_table_tabcolsep, type_symbol_header_font_size, type_symbol_body_font_size, idml_symbol_header_font_size, idml_symbol_header_font_leading, idml_symbols_icon_header_height, idml_symbols_icon_row_height, idml_symbols_icon_last_row_height, idml_symbols_icon_long_last_row_height, idml_symbols_icon_width, idml_symbols_icon_height, idml_symbols_icon_col_width, idml_symbols_icon_left_col_width, idml_symbols_icon_right_col_width, idml_symbols_icon_table_width_trim, idml_symbols_column_gap, idml_symbols_fallback_import_allowance, idml_symbols_fallback_min_height, idml_symbols_fallback_text_width_ratio, idml_symbols_fallback_row_height]
     latex: {owner: components_symbols.tex, entrypoints: [HBSymbolTwoColumnTables]}
     indesign: {renderer: symbol_icon_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: partial
-    debt: [IDML page composition still owns visible constants.]
+    status: aligned
+    debt: []
 
   HB-TABLE-LCD-ICON:
     role: LCD icon table
@@ -259,11 +259,96 @@ styles:
   HB-TABLE-LCD-MODE:
     role: LCD mode table
     semantic_source_kinds: [table_lcd_mode]
-    token_refs: [comp_table_outer_arc, comp_table_outer_rule, comp_data_table_tabcolsep, type_data_table_font_size, type_data_table_font_leading]
+    token_refs:
+      - comp_table_outer_arc
+      - comp_table_outer_rule
+      - comp_data_table_before
+      - comp_data_table_after
+      - comp_lcd_mode_state_col_width
+      - comp_lcd_mode_action_col_width
+      - idml_lcd_mode_reference_measure
+      - idml_lcd_mode_minimum_scale
+      - idml_lcd_mode_panel_width
+      - idml_lcd_mode_table_left
+      - idml_lcd_mode_table_right_allowance
+      - idml_lcd_mode_art_visible_width
+      - idml_lcd_mode_art_visible_height
+      - idml_lcd_mode_art_visible_left
+      - idml_lcd_mode_min_state_width
+      - idml_lcd_mode_min_action_width
+      - idml_lcd_mode_min_description_width
+      - idml_lcd_mode_min_label_width
+      - idml_lcd_mode_state_font_size
+      - idml_lcd_mode_state_font_leading
+      - idml_lcd_mode_action_font_size
+      - idml_lcd_mode_action_font_leading
+      - idml_lcd_mode_description_font_size
+      - idml_lcd_mode_description_font_leading
+      - idml_lcd_mode_row_minima
+      - idml_lcd_mode_min_action_copy_width
+      - idml_lcd_mode_action_copy_width_allowance
+      - idml_lcd_mode_min_description_copy_width
+      - idml_lcd_mode_description_copy_width_allowance
+      - idml_lcd_mode_copy_height_padding
+      - idml_lcd_mode_min_state_copy_width
+      - idml_lcd_mode_state_copy_width_allowance
+      - idml_lcd_mode_state_height_padding
+      - idml_lcd_mode_dynamic_vertical_padding
+      - idml_lcd_mode_dynamic_art_height_allowance
+      - idml_lcd_mode_inner_rule
+      - idml_lcd_mode_outer_radius
+      - idml_lcd_mode_outer_rule
+      - idml_lcd_mode_state_inset
+      - idml_lcd_mode_action_inset
+      - idml_lcd_mode_description_inset
+      - idml_lcd_mode_fallback_art_max_width
+      - idml_lcd_mode_fallback_inner_width_trim
+      - idml_lcd_mode_fallback_rule_floor
+      - idml_lcd_mode_fallback_cell_vertical_pad
+      - idml_lcd_mode_fallback_label_right_pad
+      - idml_lcd_mode_fallback_description_right_pad
+      - idml_lcd_mode_fallback_localized_height
+      - idml_lcd_mode_fallback_short_row_height
+      - idml_lcd_mode_fallback_long_row_height
+      - idml_lcd_mode_fallback_frame_padding
+      - idml_lcd_mode_fallback_estimated_base_height
+      - idml_lcd_mode_fallback_estimated_row_height
+      - idml_lcd_mode_panel_height
+      - idml_lcd_mode_left_indent
+      - idml_lcd_mode_row_heights
+      - idml_lcd_mode_column_widths
+      - idml_lcd_mode_table_top_margin
+      - idml_lcd_mode_art_top_margin
+      - idml_lcd_mode_space_before
+      - idml_lcd_mode_space_after
+      - lang_en_idml_lcd_mode_panel_height
+      - lang_en_idml_lcd_mode_left_indent
+      - lang_en_idml_lcd_mode_row_heights
+      - lang_en_idml_lcd_mode_column_widths
+      - lang_en_idml_lcd_mode_table_top_margin
+      - lang_en_idml_lcd_mode_art_top_margin
+      - lang_en_idml_lcd_mode_space_before
+      - lang_en_idml_lcd_mode_space_after
+      - lang_fr_idml_lcd_mode_panel_height
+      - lang_fr_idml_lcd_mode_left_indent
+      - lang_fr_idml_lcd_mode_row_heights
+      - lang_fr_idml_lcd_mode_column_widths
+      - lang_fr_idml_lcd_mode_table_top_margin
+      - lang_fr_idml_lcd_mode_art_top_margin
+      - lang_fr_idml_lcd_mode_space_before
+      - lang_fr_idml_lcd_mode_space_after
+      - lang_es_idml_lcd_mode_panel_height
+      - lang_es_idml_lcd_mode_left_indent
+      - lang_es_idml_lcd_mode_row_heights
+      - lang_es_idml_lcd_mode_column_widths
+      - lang_es_idml_lcd_mode_table_top_margin
+      - lang_es_idml_lcd_mode_art_top_margin
+      - lang_es_idml_lcd_mode_space_before
+      - lang_es_idml_lcd_mode_space_after
     latex: {owner: components_lcd.tex, entrypoints: [HBLcdModeTable]}
     indesign: {renderer: lcdmode, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: partial
-    debt: [LCD-mode-specific geometry still lives in renderer-local fallbacks.]
+    status: aligned
+    debt: []
 
   HB-TABLE-AUTO-RESUME:
     role: Auto Resume conditions table
@@ -271,8 +356,8 @@ styles:
     token_refs: [comp_auto_resume_left_ratio, comp_data_table_tabcolsep, comp_data_table_row_stretch, comp_data_table_header_height, comp_data_table_row_height, type_data_table_font_size]
     latex: {owner: components_data_tables.tex, entrypoints: [HBAutoResumeTable]}
     indesign: {renderer: data_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: partial
-    debt: [Production IDML has no explicit auto-resume table role.]
+    status: aligned
+    debt: []
 
   HB-TABLE-KEY-COMBINATIONS:
     role: Key combinations table
@@ -286,11 +371,11 @@ styles:
   HB-TABLE-TROUBLESHOOTING:
     role: Troubleshooting table
     semantic_source_kinds: [table_troubleshooting]
-    token_refs: [comp_trouble_left_ratio, comp_trouble_step_indent, comp_trouble_steps_pad_tb, comp_trouble_section_needspace, comp_trouble_page_extra_height, lang_en_idml_trouble_heading_space_before, lang_fr_idml_trouble_heading_space_before, lang_es_idml_trouble_heading_space_before, lang_en_idml_trouble_table_space_before, lang_fr_idml_trouble_table_space_before, lang_es_idml_trouble_table_space_before, idml_trouble_left_optical_width, comp_data_table_header_height, comp_data_table_row_height, comp_table_outer_arc, type_trouble_code_font_size, type_trouble_code_font_leading, type_trouble_body_font_size, type_trouble_body_font_leading, type_data_table_header_font_size, type_data_table_header_font_leading]
+    token_refs: [comp_trouble_left_ratio, comp_trouble_step_indent, comp_trouble_steps_pad_tb, comp_trouble_section_needspace, comp_trouble_page_extra_height, lang_en_idml_trouble_heading_space_before, lang_fr_idml_trouble_heading_space_before, lang_es_idml_trouble_heading_space_before, lang_en_idml_trouble_table_space_before, lang_fr_idml_trouble_table_space_before, lang_es_idml_trouble_table_space_before, idml_trouble_left_optical_width, idml_trouble_header_height_correction, idml_trouble_body_height_correction, idml_trouble_row_minima, lang_en_idml_trouble_row_minima, lang_fr_idml_trouble_row_minima, lang_es_idml_trouble_row_minima, idml_trouble_extra_row_min_height, idml_trouble_inner_rule, idml_trouble_outer_rule, idml_trouble_panel_min_height, idml_trouble_import_safety, idml_trouble_glyph_width_ratio, comp_data_table_header_height, comp_data_table_row_height, comp_table_outer_arc, type_trouble_code_font_size, type_trouble_code_font_leading, type_trouble_body_font_size, type_trouble_body_font_leading, type_data_table_header_font_size, type_data_table_header_font_leading]
     latex: {owner: components_data_tables.tex, entrypoints: [HBTroubleshootingTable]}
     indesign: {renderer: components.prose_table.TroubleshootingTableStyle, table_style: 正文表格, object_style: HB Rounded Table Outer, sizing: native_locale_baseline_plus_localized_wrap_growth, auto_sizing: off}
-    status: partial
-    debt: [IDML retains production-master row minima, optical cell offsets, 0.25pt inner rule, 0.57pt outer rule, 240pt English floor, and import allowance as renderer calibration; comp_trouble_step_indent and comp_trouble_section_needspace remain LaTeX-only.]
+    status: aligned
+    debt: []
 
   HB-SPECIAL-FCC:
     role: FCC panel
@@ -335,8 +420,8 @@ styles:
     token_refs: [comp_warranty_lead_arc, comp_warranty_lead_pad_lr, comp_warranty_lead_pad_tb, comp_warranty_lead_after, type_warranty_lead_font_size, type_warranty_lead_font_leading, idml_warranty_lead_before, idml_warranty_lead_height, idml_warranty_panel_width_adjust, idml_warranty_lead_left_indent, lang_en_idml_warranty_lead_before, lang_fr_idml_warranty_lead_before, lang_es_idml_warranty_lead_before, lang_en_idml_warranty_lead_height, lang_fr_idml_warranty_lead_height, lang_es_idml_warranty_lead_height, lang_en_idml_warranty_lead_pad_tb, lang_fr_idml_warranty_lead_pad_tb, lang_es_idml_warranty_lead_pad_tb]
     latex: {owner: components_warranty.tex, entrypoints: [HBWarrantyLead]}
     indesign: {renderer: warranty_lead, object_style: HB Rounded Panel}
-    status: partial
-    debt: [IDML currently recognizes only the warranty-years text pattern explicitly.]
+    status: aligned
+    debt: []
 
   HB-WARRANTY-SECTION:
     role: Warranty section panel
@@ -345,8 +430,8 @@ styles:
     token_refs: [comp_warranty_section_arc, comp_warranty_section_rule, comp_warranty_section_pad_lr, comp_warranty_section_pad_top, comp_warranty_section_pad_bottom, type_warranty_title_font_size, type_warranty_body_font_size, idml_warranty_panel_height_adjust_1, lang_en_idml_warranty_panel_height_adjust_1, lang_fr_idml_warranty_panel_height_adjust_1, lang_es_idml_warranty_panel_height_adjust_1, lang_en_idml_warranty_panel_height_adjust_2, lang_fr_idml_warranty_panel_height_adjust_2, lang_es_idml_warranty_panel_height_adjust_2, lang_en_idml_warranty_panel_height_adjust_3, lang_fr_idml_warranty_panel_height_adjust_3, lang_es_idml_warranty_panel_height_adjust_3, lang_en_idml_warranty_panel_height_adjust_4, lang_fr_idml_warranty_panel_height_adjust_4, lang_es_idml_warranty_panel_height_adjust_4, lang_en_idml_warranty_panel_height_adjust_5, lang_fr_idml_warranty_panel_height_adjust_5, lang_es_idml_warranty_panel_height_adjust_5, lang_en_idml_warranty_panel_height_adjust_6, lang_fr_idml_warranty_panel_height_adjust_6, lang_es_idml_warranty_panel_height_adjust_6, lang_en_idml_warranty_section_1_before, lang_fr_idml_warranty_section_1_before, lang_es_idml_warranty_section_1_before, lang_en_idml_warranty_section_2_before, lang_fr_idml_warranty_section_2_before, lang_es_idml_warranty_section_2_before, lang_en_idml_warranty_section_3_before, lang_fr_idml_warranty_section_3_before, lang_es_idml_warranty_section_3_before, lang_en_idml_warranty_section_4_before, lang_fr_idml_warranty_section_4_before, lang_es_idml_warranty_section_4_before, lang_en_idml_warranty_section_5_before, lang_fr_idml_warranty_section_5_before, lang_es_idml_warranty_section_5_before, lang_en_idml_warranty_section_6_before, lang_fr_idml_warranty_section_6_before, lang_es_idml_warranty_section_6_before]
     latex: {owner: components_warranty.tex, entrypoints: [HBWarrantySection]}
     indesign: {renderer: warranty_section, object_style: HB Rounded Panel}
-    status: partial
-    debt: [Production IDML has no explicit warranty-section component kind.]
+    status: aligned
+    debt: []
 
   HB-WARRANTY-YEARS:
     role: Warranty year cards
@@ -354,8 +439,8 @@ styles:
     token_refs: [comp_warranty_year_badge_size, comp_warranty_year_column_gap, comp_warranty_year_left_ratio, type_warranty_year_number_font_size, type_warranty_year_unit_font_size, type_warranty_year_subtitle_font_size]
     latex: {owner: components_warranty.tex, entrypoints: [HBWarrantyYears]}
     indesign: {renderer: warrantyyears, paragraph_style: HB Big Numeral, object_style: HB Rounded Panel}
-    status: partial
-    debt: [IDML recognition is currently based on prose-shape heuristics.]
+    status: aligned
+    debt: []
 
   HB-PAGE-STANDARD:
     role: Standard body page with footer

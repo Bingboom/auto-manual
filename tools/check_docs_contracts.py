@@ -88,6 +88,18 @@ def collect_page_contract_issues(
         region=target.region,
         error_prefix="config.pages",
     ).pages
+    # Contract checks must validate the same page stack that the bundle plan
+    # materializes. A capability-gated page that was dropped for this target
+    # is not part of the manual and therefore must not create false missing-
+    # placeholder or missing-page-value findings.
+    from tools.capability_pages import filter_pages_by_capability
+
+    pages, _dropped = filter_pages_by_capability(
+        pages,
+        model=target.model,
+        region=target.region,
+        data_dir=repo_root / "data",
+    )
     spec_master_csv = resolve_spec_master_csv_path(cfg, data_root=data_root)
     spec_rows = read_spec_master_rows(spec_master_csv)
     substitutions_by_lang: dict[str, dict[str, str]] = {}
@@ -112,7 +124,13 @@ def collect_page_contract_issues(
         if contract is None:
             continue
 
-        page_langs = [page.lang] if isinstance(page, rst_include_page_cls) and page.lang else list(page.langs) if isinstance(page, generated_page_cls) else langs
+        declared_langs = [page.lang] if isinstance(page, rst_include_page_cls) and page.lang else list(page.langs) if isinstance(page, generated_page_cls) else langs
+        # Intersect with the target's languages the way the bundle plan does
+        # (tools/gen_index_bundle_plan.py). A manifest page for a language this
+        # target does not build is not in its bundle, so its contract is not
+        # this target's obligation — otherwise a model that ships five of the
+        # family's six languages fails on the sixth's missing data.
+        page_langs = [lang for lang in declared_langs if lang in langs] if langs else declared_langs
         for lang in page_langs:
             if not contract_applies_to(contract, lang=lang, model=target.model, region=target.region):
                 continue

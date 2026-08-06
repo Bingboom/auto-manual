@@ -9,7 +9,6 @@ from .page_objects import frame_with_background, h1_bar_h_pt, heading_bar_opts, 
 from .params import IDPKG, component_param_pt, param_pt
 from .symbols_page import (
     ROOT as ROOT,
-    SUBBAR_H,
     _localized_signal_label_bar,
     _symbol_signal_bar,
     _symbols_icon_table,
@@ -362,6 +361,7 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     second_section_height = _approved_safety_param(
         writer, "idml_safety_second_section_height", 209.12,
     )
+    subbar_height = param_pt(writer.params, "comp_subbar_height", 13.9)
     if dense_reference:
         warning_top = _approved_safety_param(
             writer, f"lang_{language}_idml_safety_warning_top", warning_top,
@@ -387,9 +387,9 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         ("section1", section_sids[0][0] if section_sids else "", (body_x, 95.77, body_w, 162.0),
          {"columns": 2, "gutter": column_gap,
           "balance_columns": True, "inset": (0, 0, 0, 0)}),
-        ("subbar", bar_sid, (body_x, 263.0, body_w, SUBBAR_H),
+        ("subbar", bar_sid, (body_x, 263.0, body_w, subbar_height),
          {**heading_bar_opts(2, (0.5, 0, 0.5, 0)),
-          "text_rect": (body_x + 6.0, 263.0, body_w - 12.0, SUBBAR_H)}),
+          "text_rect": (body_x + 6.0, 263.0, body_w - 12.0, subbar_height)}),
         ("section2", section_sids[1][0] if len(section_sids) > 1 else "",
          (body_x, second_section_top, body_w, second_section_height),
          {"columns": 2, "gutter": column_gap,

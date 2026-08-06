@@ -355,6 +355,7 @@ Page-stack note:
 
 - shared config families may resolve their page stack through `paths.page_manifest`
 - keep manifest-driven page order changes under [`docs/manifests/`](../docs/manifests)
+- for a genuine model-only generated-page layout exception, keep the family manifest and declare `model_overrides.<MODEL>.recipe` / `template` on that `generated_page`; the default recipe/template remains the path for every other model
 - keep merged-language and single-language preface components separate: `manual_au-en.yaml` uses the English-only `page_shared/en/00_preface_single_language.rst`; the merged US preface remains the trilingual `page_shared/en/00_preface.rst`
 - do not point a single-language manifest at a preface containing language-tagged blocks outside `build.languages`; the language-parity gate rejects that bundle
 
@@ -785,7 +786,7 @@ families such as JP and KR: passing only model/region must not let the low-level
 exporter's historical English default select localized data. Multilingual
 configs keep that historical default unless `--lang` is supplied explicitly.
 
-The approved contract freezes these identities:
+The approved v2 contract separates enforced identity from provenance:
 
 | Contract item | Approved value |
 | --- | --- |
@@ -794,10 +795,11 @@ The approved contract freezes these identities:
 | Reference SHA-256 | `e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2` |
 | Page contract | 58 pages, `368.787 × 524.692 pt`, tolerance `0.02 pt` |
 | Print contract | PDF/X-4, Output Intent `Japan Color 2001 Coated`, Output Condition `JC200103` |
-| Manual content SHA-256 | `e38dad9c6e8d47ea2e1a3c5fe724786d22489861832beebd42cb5a4d953318b3` |
-| Snapshot SHA-256 | `7e5ebfa8713983d055210c00e22305e34f636a83d5c3bcab210bb39a5706f0c5` |
-| Style-contract SHA-256 | `32a0167cb7915c0bcdeec1e4a4938b4fc023a65b0257bee8cc21cd546c082712` |
-| Layout-params SHA-256 | `92498016e185dd6949171c4a5c435ac5ac76d53e9b535fe567ab59fe2270c139` |
+| Content identity (enforced) | `ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0` |
+| Assembly identity (enforced) | `1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05` |
+| Style-contract identity (enforced) | `885b936fa2569bf018d495e5af0527f9928bbf79e2ae47c9eaaae3bee7f94da7` |
+| Layout-params identity (enforced) | `912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d` |
+| Snapshot provenance (not an activation gate) | `2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33` |
 
 The 52 plan rows bind every IR source reference, by composition, to this
 physical structure:
@@ -811,10 +813,12 @@ physical structure:
 | Back cover | 58 | 1 |
 
 The build is fail-closed for this approval path. Target/language mismatch,
-missing plan, any of the bound source/hash identities drifting, incomplete
-52-source coverage, non-monotonic/out-of-bounds composition pages, or a final
-page-count/geometry mismatch stops the build. It must never partially use this
-plan and then silently fall back to the fuzzy PDF mapper.
+missing plan, enforced content/assembly/style drift, per-page source drift,
+incomplete 52-source coverage, unclassified prose without an exact approved
+exception, non-monotonic/out-of-bounds composition pages, or a final
+page-count/geometry mismatch stops the build. Snapshot provenance drift alone
+does not. The build must never partially use this plan and then silently fall
+back to the fuzzy PDF mapper.
 
 If source identity changes but the reviewed 58-page composition remains valid,
 refresh it with the dedicated all-or-nothing rebind command. Run the dry-run
@@ -826,12 +830,14 @@ python3 tools/reference_layout_rebind.py \
   --manual-ir <manual.ir.json>
 ```
 
-The dry-run builds a complete candidate from the validated Manual IR. It
-requires the semantic content hash, `source_ref` order, page languages, and
-physical composition map to remain unchanged; it refreshes the IR schema,
-snapshot, style-contract and layout-parameter identities plus every page's
-`source_sha256`, and writes nothing. After reviewing the summary, apply the same
-validated candidate atomically and inspect the Git diff:
+The dry-run builds a complete candidate from the validated Manual IR. For a v2
+input, the ordinary route requires the semantic content hash, assembly hash,
+`source_ref` order, page languages, and physical composition map to remain
+unchanged; it refreshes style/provenance identities plus every page's
+`source_sha256`, and writes nothing. A v1 input has no assembly pin, so it is
+never treated as an ordinary unchanged rebind: migration requires the explicit
+approval route below. After reviewing an ordinary v2 summary, apply the same
+validated candidate and inspect the Git diff:
 
 ```bash
 python3 tools/reference_layout_rebind.py \
@@ -840,10 +846,38 @@ python3 tools/reference_layout_rebind.py \
   --write
 ```
 
+If semantic content or assembly identity changed—or the input is v1—the
+ordinary route remains fail-closed. First prove against the final Manual IR that
+`source_ref` order, page-language mapping, `skipped_raw` allowance, physical
+page count, semantic page roles, and composition map are the reviewed assembly.
+Record the operator's decision and evidence, then run the explicit identity
+approval route without `--write`. The existing flag name remains for CLI
+compatibility:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --approve-content-change \
+  --approved-by "<operator>" \
+  --approved-at "<RFC3339>" \
+  --approval-method "<recorded review evidence>"
+```
+
+Only after reviewing that candidate should the operator repeat the same command
+with `--write`. All three approval values are mandatory and are persisted as
+contract metadata. This route can update `manual_content_sha256` and the
+assembly identity; it cannot change source order, page languages, or the
+physical composition map. v1 migration defaults
+`allowed_unclassified_source_refs` to an empty list and never manufactures
+exceptions: if validation reports unclassified prose, stop and perform a new
+reviewed layout approval.
+
 To inspect every registered plan in one dry-run summary, use
 `python3 tools/reference_layout_rebind.py --all-registered --manual-ir
-<manual.ir.json>`. Batch mode is intentionally read-only; `--write` must be
-paired with one explicit `--plan`.
+<manual.ir.json>`. Batch mode is intentionally read-only and cannot approve a
+content change; `--write` and content-approval metadata must be paired with one
+explicit `--plan`.
 
 When a refreshed Manual IR needs a new layout review, create a review-only
 draft from the existing composition seed instead of hand-editing the 52 page
@@ -876,7 +910,9 @@ token value/unit or reordering semantic rows does. This keeps the hash strict
 about renderer behavior without treating formatting-only CSV edits as layout
 drift.
 
-Build from the frozen review and phase2 snapshot:
+Build from the frozen review and phase2 snapshot. For this registered target,
+omitting `--source review-asis` is equivalent because `auto` selects the
+approved review assembly:
 
 ```bash
 python3 build.py idml \
@@ -1039,6 +1075,12 @@ and trace files under `docs/_build/<model>/<region>/<lang>/idml/flow/`:
 python3 build.py idml --model JE-1000F --region US --idml-mode flow
 python3 build.py idml --model JE-1000F --region US --idml-mode both
 ```
+
+When `--source auto` is used, a target with an approved reference-layout plan
+is assembled from its committed review bundle exactly as `review-asis`; this
+keeps the approved source order, including review-owned TOC/back-cover pages.
+An explicit source selection is never rewritten. Targets without an approved
+plan retain the runtime default and historical fallback pagination.
 
 The flow artifacts remain generated handoff files, not a new content source.
 Registered components become editable objects, images become linked frames,
@@ -1325,6 +1367,61 @@ UPS page entries, all bound to `UPS功能`; this is enforced by
 cannot silently bypass assembly-time filtering.
 
 `check` also runs the language-tree parity gate (`tools/check_docs_lang_parity.py`, Milestone I1): `LANG_PARITY_FOREIGN_SHELL` (a ko/ja/zh/uk page carrying almost no target-script text — an untranslated shell), `LANG_PARITY_FOREIGN_LANG_BLOCK` (language-tagged blocks such as `**FR IMPORTANT**` or `\HBApplyLang{xx}` outside the family's languages), `LANG_PARITY_MISSING_LANG_PAGE` / `LANG_PARITY_FOREIGN_LANG_PAGE` (per-language generated page set incomplete, or a leftover page from another language line). Pre-existing findings are registered in `data/lang_parity_known_exceptions.csv` (model, region, code, page, note) so only NEW drift fails; delete a row once its content decision lands.
+
+## 5.2 Language Scope Gate
+
+A family config's `build.languages` is the **union** across every model in that
+region, not one model's shipping list: `configs/config.eu.yaml` declares six
+languages because the EU line carries Ukrainian templates, while JE-1000F does
+not ship Ukrainian. `data/model_languages.csv` holds the per-model answer, keyed
+on the same `<MODEL>_<REGION>` document key the capability mirror uses:
+
+- `Document_key,Project,languages,notes` — `languages` is a `;`-separated list
+  of registry language codes (semicolon, because a half-width comma inside a
+  CSV field has bitten this repo's contracts before).
+- Resolution is an **intersection that preserves the family's declared order**,
+  so the family config stays the only place that decides ordering and the table
+  can only subtract.
+- Fail-open, like the capability gate: no row keeps every family language, and a
+  row that excludes *every* family language leaves the build unchanged and
+  fails `check` instead.
+
+`tools/model_languages.py` resolves the scope; `tools/gen_index_bundle_plan.py`
+applies it before any page is planned, so an unshipped language's pages —
+including its `csv_page` data pages (`spec_uk.rst`, `symbols_uk.rst`, …) — are
+never materialized. Structural problems in the table (missing column, duplicate
+key, blank cell, unregistered code) raise instead of parsing to a wrong set.
+
+Pages that carry several languages *inside one file* — the prefaces — cannot be
+handled by page selection. Those manifest entries opt in with `lang_blocks:
+true`, and `tools/language_block_trim.py` drops the out-of-scope blocks
+(`\HBLangTagLine{XX}` in `raw:: latex`, `**XX ...**` bold headers) while
+preserving page-structure macros such as `\HBPrefacePageBegin` /
+`\HBPrefacePageEnd`. The annotation is opt-in, never sniffed, because `**IT ...**`
+is legitimate bold prose elsewhere. When nothing is out of scope the page text
+is returned unchanged, so an untrimmed family keeps byte-identical output.
+Trimming the shared trilingual preface to `en` reproduces the hand-forked
+`00_preface_single_language.rst` byte-for-byte after the bundle's own
+empty-line-block normalisation — enforced by
+`tests/test_language_block_trim.py`.
+
+A trimmed target also overrides the `MANUAL_LANGUAGE_SCOPE` substitution with
+the label derived from its resolved languages, so a five-language EU book no
+longer prints "… / Ukrainian" on its preface. The derivation reproduces each
+whole-book family's configured literal exactly
+(`tests/test_model_languages.py`), and single-language derivative configs keep
+their configured literal because they are not trimmed.
+
+Failure codes (`tools/check_docs_language_scope.py`):
+`LANG_SCOPE_UNSHIPPED_LANGUAGE` (the scope row is disjoint from the family the
+config declares — e.g. `configs/config.eu-uk.yaml` pointed at a model that ships
+no Ukrainian) and `LANG_SCOPE_FOREIGN_SCRIPT` (a bundle page carries the script
+of a *dropped* language, catching leakage with neither a `_<lang>` page suffix
+nor a language tag). Only dropped languages are scanned, so an EU bundle's
+allowed CJK identity literal is not treated as drift. The scoped language set is
+also what the per-language contract, generated-page, identity and parity
+collectors see, so a model that ships five of six family languages no longer
+fails on the sixth's missing source data.
 
 Every Sphinx run also feeds the **warning ratchet** (`tools/warning_ratchet.py`, Milestone I2): the warning stream is written to `<out>/sphinx-warnings.log`, sanitized (paths, line numbers, ANSI, and target-specific `docs/_build/<model>/<region>[/<lang>]/rst/` prefixes), and diffed against the committed baseline `data/known_warnings/<stream>-known-warnings.txt`. A warning in the baseline is registered debt; a warning not in it is news. Enforcement is staged: the in-build hook reports by default and fails only with `AUTO_MANUAL_WARNING_RATCHET=strict` (set `off` to silence); the standalone CLI `check` is always strict (new warning → exit 1, missing baseline → exit 2). Seed or refresh a baseline with `python tools/warning_ratchet.py update --stream sphinx-html --log <warnings.log>` and review the diff like code. Flip the default to strict once a few queue rounds have stable baselines.
 

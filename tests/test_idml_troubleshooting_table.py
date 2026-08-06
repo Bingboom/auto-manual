@@ -177,6 +177,14 @@ class TroubleshootingTableContractTests(unittest.TestCase):
             "comp_data_table_row_height",
             "comp_trouble_left_ratio",
             "idml_trouble_left_optical_width",
+            "idml_trouble_header_height_correction",
+            "idml_trouble_body_height_correction",
+            "idml_trouble_extra_row_min_height",
+            "idml_trouble_inner_rule",
+            "idml_trouble_outer_rule",
+            "idml_trouble_panel_min_height",
+            "idml_trouble_import_safety",
+            "idml_trouble_glyph_width_ratio",
             "lang_en_idml_trouble_table_space_before",
             "lang_fr_idml_trouble_table_space_before",
             "lang_es_idml_trouble_table_space_before",
@@ -204,6 +212,48 @@ class TroubleshootingTableContractTests(unittest.TestCase):
                         params=params,
                         suffix=f"missing_{token}",
                     )
+
+    def test_approved_locales_require_their_row_minima_token(self) -> None:
+        for language, rows in (("en", EN_ROWS), ("fr", FR_ROWS), ("es", ES_ROWS)):
+            with self.subTest(language=language):
+                params = load_layout_params(ROOT / "data" / "layout_params.csv")
+                token = f"lang_{language}_idml_trouble_row_minima"
+                params.pop(token)
+
+                with self.assertRaisesRegex(ValueError, token):
+                    self._render(
+                        rows,
+                        strict=True,
+                        params=params,
+                        suffix=f"missing_minima_{language}",
+                    )
+
+    def test_visible_table_calibrations_are_resolved_from_layout_tokens(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params["idml_trouble_header_height_correction"] = ("4", "pt")
+        params["idml_trouble_body_height_correction"] = ("3", "pt")
+        params["lang_en_idml_trouble_row_minima"] = (
+            "20;11.80;12.37;11.79;11.99;11.87;23.89;57.61;31.96;17.41;18.43;11.97",
+            "none",
+        )
+        params["idml_trouble_inner_rule"] = ("0.4", "pt")
+        params["idml_trouble_outer_rule"] = ("0.8", "pt")
+        params["idml_trouble_panel_min_height"] = ("270", "pt")
+
+        xml, story, height = self._render(
+            EN_ROWS,
+            strict=True,
+            params=params,
+            suffix="tokenized",
+        )
+
+        self.assertIn('SingleRowHeight="18.7402"', story)
+        self.assertIn('SingleRowHeight="14.9055"', story)
+        self.assertIn('MinimumHeight="20"', story)
+        self.assertIn('LeftEdgeStrokeWeight="0.4"', story)
+        self.assertIn('StrokeWeight="0.8"', xml)
+        self.assertIn('Anchor="0 -270"', xml)
+        self.assertAlmostEqual(278.74, height, places=2)
 
     def test_invalid_geometry_tokens_fail_before_emitting_idml(self) -> None:
         cases = (

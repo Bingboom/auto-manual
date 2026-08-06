@@ -63,6 +63,9 @@ class RstIncludePage:
     lang: str | None
     # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
     capability: str | None = None
+    # 多语整页:模板内含多个语言块(前言页),装配期按 model_languages.csv
+    # 解析出的语言集合裁掉块(False=整页按 lang 归属单一语言)
+    lang_blocks: bool = False
 
 
 ConfigPage: TypeAlias = CoverPdfPage | CsvPage | GeneratedPage | PdfInsertPage | RstIncludePage
@@ -76,6 +79,7 @@ def parse_config_pages(
     pages_raw: Any,
     *,
     default_languages: list[str] | None = None,
+    model: str | None = None,
 ) -> tuple[list[ConfigPage], list[PageParseIssue]]:
     issues: list[PageParseIssue] = []
     parsed: list[ConfigPage] = []
@@ -103,6 +107,21 @@ def parse_config_pages(
                 "ERROR", f"pages[{idx}].capability must be a non-empty string"))
             continue
         capability = capability_raw.strip() if isinstance(capability_raw, str) else None
+
+        lang_blocks_raw = raw.get("lang_blocks")
+        if lang_blocks_raw is not None and not isinstance(lang_blocks_raw, bool):
+            issues.append(PageParseIssue(
+                "ERROR", f"pages[{idx}].lang_blocks must be a boolean"))
+            continue
+        # Reject the annotation on page types that cannot carry inline language
+        # blocks, so a mis-annotated manifest fails instead of silently
+        # trimming nothing.
+        if lang_blocks_raw is not None and page_type != "rst_include":
+            issues.append(PageParseIssue(
+                "ERROR",
+                f"pages[{idx}].lang_blocks is only supported on rst_include, "
+                f"not {page_type}"))
+            continue
 
         if page_type == "cover_pdf":
             file_name = raw.get("file")
@@ -166,12 +185,70 @@ def parse_config_pages(
                 )
                 continue
 
-            recipe = raw.get("recipe")
+            model_overrides_raw = raw.get("model_overrides", {})
+            if not isinstance(model_overrides_raw, dict):
+                issues.append(
+                    PageParseIssue(
+                        "ERROR",
+                        f"pages[{idx}] generated_page.model_overrides must be a mapping",
+                    )
+                )
+                continue
+            invalid_override = False
+            for override_model, override_raw in model_overrides_raw.items():
+                if not isinstance(override_model, str) or not override_model.strip():
+                    issues.append(
+                        PageParseIssue(
+                            "ERROR",
+                            f"pages[{idx}] generated_page.model_overrides keys must be non-empty strings",
+                        )
+                    )
+                    invalid_override = True
+                    continue
+                if not isinstance(override_raw, dict):
+                    issues.append(
+                        PageParseIssue(
+                            "ERROR",
+                            f"pages[{idx}] generated_page.model_overrides.{override_model} must be a mapping",
+                        )
+                    )
+                    invalid_override = True
+                    continue
+                unknown_keys = sorted(set(override_raw) - {"recipe", "template"})
+                if unknown_keys:
+                    issues.append(
+                        PageParseIssue(
+                            "ERROR",
+                            f"pages[{idx}] generated_page.model_overrides.{override_model} has unsupported fields: "
+                            + ", ".join(unknown_keys),
+                        )
+                    )
+                    invalid_override = True
+                for field_name in ("recipe", "template"):
+                    field_value = override_raw.get(field_name)
+                    if field_value is not None and (
+                        not isinstance(field_value, str) or not field_value.strip()
+                    ):
+                        issues.append(
+                            PageParseIssue(
+                                "ERROR",
+                                f"pages[{idx}] generated_page.model_overrides.{override_model}."
+                                f"{field_name} must be a non-empty string",
+                            )
+                        )
+                        invalid_override = True
+            if invalid_override:
+                continue
+
+            selected_override_raw = model_overrides_raw.get((model or "").strip(), {})
+            selected_override = selected_override_raw if isinstance(selected_override_raw, dict) else {}
+
+            recipe = selected_override.get("recipe", raw.get("recipe"))
             if not isinstance(recipe, str) or not recipe.strip():
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] generated_page requires recipe"))
                 continue
 
-            template = raw.get("template")
+            template = selected_override.get("template", raw.get("template"))
             if not isinstance(template, str) or not template.strip():
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] generated_page requires template"))
                 continue
@@ -270,6 +347,7 @@ def parse_config_pages(
                     file=file_name.strip(),
                     lang=lang,
                     capability=capability,
+                    lang_blocks=bool(lang_blocks_raw),
                 )
             )
             continue
@@ -281,9 +359,14 @@ def parse_config_pages_or_raise(
     pages_raw: Any,
     *,
     default_languages: list[str] | None = None,
+    model: str | None = None,
     error_prefix: str | None = None,
 ) -> list[ConfigPage]:
-    pages, issues = parse_config_pages(pages_raw, default_languages=default_languages)
+    pages, issues = parse_config_pages(
+        pages_raw,
+        default_languages=default_languages,
+        model=model,
+    )
     errors = [i for i in issues if i.level == "ERROR"]
     if not errors:
         return pages

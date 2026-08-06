@@ -63,6 +63,12 @@ LANG_NAME_PATTERN = re.compile(
 )
 
 
+# Feishu display names carry a regional qualifier: `英语（美式）`,
+# `葡萄牙语（巴西）`. The qualifier names a variant of the same repo language,
+# so strip it and retry rather than enumerating every spelling.
+_QUALIFIER_RE = re.compile(r"[（(][^）)]*[）)]\s*$")
+
+
 def canonical_query_lang(value: object) -> str:
     """Normalize a queue-query language token to a registered language code."""
     token = str(value or "").strip().casefold()
@@ -72,4 +78,8 @@ def canonical_query_lang(value: object) -> str:
         return spec.code
     if normalized in {"pt", "br", "pt-br", "pt_br"}:
         return "pt-BR"
+    if normalized == token:
+        base = _QUALIFIER_RE.sub("", token).strip()
+        if base and base != token:
+            return canonical_query_lang(base)
     return normalized

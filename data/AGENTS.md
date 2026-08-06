@@ -7,6 +7,8 @@
 - `layout_params.csv`: layout and rendering parameters.
 - `product_info.csv`: product metadata source.
 - `check.csv`: source check data.
+- `model_capabilities.csv`: per-target feature booleans; derived, refreshed by `sync-data`.
+- `model_languages.csv`: per-target language scope (which of the family's languages a model ships); hand-maintained.
 - `config/`: language density and related config data.
 - `phase2/`: local Feishu/Lark source-table mirror; gitignored in this checkout.
 
@@ -16,6 +18,8 @@
 - Treat `data/phase2/` as source-of-truth mirror data, not disposable build output.
 - Keep data edits aligned with templates and recipes when placeholders depend on them.
 - Do not invent model defaults in data migration or lookup behavior.
+- Never narrow a family config's `build.languages` to fix one model — that strips the language from every model in the region. Add or edit the `model_languages.csv` row instead.
+- `model_languages.csv` is hand-maintained; `model_capabilities.csv` is a `sync-data` mirror and hand edits there are overwritten.
 
 ## Validation
 

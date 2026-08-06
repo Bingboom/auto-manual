@@ -66,6 +66,8 @@ def collect_check_issues(
     collect_duplicate_render_text_issues: Callable[..., list[Any]],
     collect_capability_issues: Callable[..., list[Any]] | None = None,
     collect_lang_parity_issues: Callable[..., list[Any]] | None = None,
+    collect_language_scope_issues: Callable[..., list[Any]] | None = None,
+    resolve_target_languages: Callable[..., Any] | None = None,
 ) -> list[Any]:
     cfg = load_config(cfg_path)
     docs_dir = resolve_docs_dir(cfg)
@@ -91,7 +93,19 @@ def collect_check_issues(
             )
         )
     for target in targets:
-        target_langs = [target.lang] if (target.lang or "").strip() else langs
+        # `langs` is the family union; every per-language collector below must
+        # see what this model actually ships, or a language the bundle no
+        # longer contains is reported as a missing page / missing contract.
+        family_langs = list(langs)
+        if resolve_target_languages is not None:
+            family_langs = list(
+                resolve_target_languages(
+                    langs, model=target.model, region=target.region
+                ).languages
+            )
+        target_langs = (
+            [target.lang] if (target.lang or "").strip() else family_langs
+        )
         bundle_dir = bundle_dir_for_target(
             docs_dir=docs_dir,
             docs_build_dir=docs_build_dir,
@@ -165,6 +179,18 @@ def collect_check_issues(
                     bundle_dir=bundle_dir,
                     docs_dir=docs_dir,
                     langs=target_langs,
+                    model=target.model,
+                    region=target.region,
+                )
+            )
+        if collect_language_scope_issues is not None:
+            issues.extend(
+                collect_language_scope_issues(
+                    bundle_dir=bundle_dir,
+                    docs_dir=docs_dir,
+                    # The family union, not the narrowed set: this gate's job
+                    # is to judge the narrowing itself.
+                    family_langs=list(langs),
                     model=target.model,
                     region=target.region,
                 )

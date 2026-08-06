@@ -19,9 +19,10 @@ was cancelled by the merges that followed it.
 This check closes that gap cheaply. It never rebinds anything — re-pinning an
 approved contract is an operator decision — it only reports the drift.
 
-The other pins (``manual_content_sha256``, ``snapshot_sha256``) are derived
-from a phase2 data snapshot that is not tracked, so they cannot be verified
-from a checkout and are deliberately out of scope.
+The content pin and snapshot provenance are derived from target materialization
+and an untracked phase2 snapshot, so they cannot be verified from a checkout
+and are deliberately out of scope. Approved-plan v2 stores the two tracked
+pins under ``identity.style``; v1's flat ``source_identity`` remains readable.
 """
 from __future__ import annotations
 
@@ -75,6 +76,8 @@ def collect_pin_drift(repo_root: Path) -> list[tuple[str, str, str, str]]:
         except (OSError, ValueError) as exc:
             raise RuntimeError(f"{path}: unreadable reference-layout contract: {exc}")
         identity = payload.get("source_identity")
+        if payload.get("schema_version") == "approved-reference-layout-plan/v2":
+            identity = (payload.get("identity") or {}).get("style")
         if not isinstance(identity, dict):
             continue
         rel = path.relative_to(repo_root).as_posix()

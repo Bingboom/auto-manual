@@ -102,6 +102,8 @@ La lampe LED dispose de deux modes : mode éclairage et mode SOS. Dans n'importe
 | Appuyez de nouveau pour passer en mode SOS.
 | Appuyez une troisième fois pour éteindre la lampe.
 
+.. hb-capability-begin: AC/DC输出记忆恢复
+
 Fonction de reprise de Sortie CA et CC
 ---------------------------------------
 
@@ -118,6 +120,9 @@ La fonction de reprise de la sortie CA/CC est désactivée par défaut. Activez 
 +---------------------------------------------------------------------------+-------------------------------------------------------------+
 | Mise à niveau OTA terminée                                                | Sortie désactivée par le minuteur de décharge               |
 +---------------------------------------------------------------------------+-------------------------------------------------------------+
+
+.. hb-capability-end:
+
 
 AFFICHAGE LCD
 -------------

@@ -419,6 +419,35 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertTrue(tables)
         self.assertIn("Rated power*", [cell for row in tables[0] for cell in row])
 
+    def test_warranty_container_emits_explicit_semantic_block(self) -> None:
+        from tools.idml_rst_extract import extract_page
+
+        source = (
+            ".. container:: warranty-section warranty-years\n\n"
+            "   Renamed coverage period\n"
+            "   -----------------------\n\n"
+            "   .. list-table::\n"
+            "      :header-rows: 0\n\n"
+            "      * - **3 YEARS Custom plan** Copy.\n"
+            "        - **2 YEARS Extra plan** Copy.\n"
+        )
+        with tempfile.TemporaryDirectory() as td:
+            page = Path(td) / "warranty.rst"
+            page.write_text(source, encoding="utf-8")
+            result = extract_page(page, {"latex"})
+
+        self.assertEqual(["semantic"], [kind for kind, _ in result.blocks])
+        semantic = json.loads(result.blocks[0][1])
+        self.assertEqual("warranty_section", semantic["kind"])
+        self.assertEqual(
+            ["warranty_section", "warranty_years"],
+            semantic["roles"],
+        )
+        self.assertEqual(
+            ["h2", "table"],
+            [block["kind"] for block in semantic["blocks"]],
+        )
+
     def test_inline_image_anchors_hang_from_baseline(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
@@ -2402,6 +2431,35 @@ class ExportIdmlTests(unittest.TestCase):
             signal_story.count('VerticalJustification="CenterAlign"'),
         )
         self.assertIn('SingleColumnWidth="44"', signal_story)
+
+    def test_safety_symbols_composition_constants_are_layout_tokens(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        overrides = {
+            "idml_symbols_maintenance_title_gap": "4",
+            "idml_symbols_title_gap": "10",
+            "idml_symbols_h1_optical_offset": "2.5",
+            "idml_symbols_page_bottom_allowance": "3",
+            "idml_symbols_fallback_import_allowance": "4",
+            "idml_symbols_fallback_min_height": "61",
+            "idml_symbols_fallback_text_width_ratio": "0.7",
+            "idml_symbols_fallback_row_height": "25",
+        }
+        for key, value in overrides.items():
+            params[key] = (value, params[key][1])
+        params["comp_subbar_height"] = ("17", "pt")
+        writer = IdmlWriter(params)
+
+        style = SafetySymbolsPageStyle.from_writer(writer, "en")
+
+        self.assertEqual(17.0, style.subbar_height)
+        self.assertEqual(4.0, style.maintenance_title_gap)
+        self.assertEqual(10.0, style.symbols_title_gap)
+        self.assertEqual(2.5, style.h1_optical_offset)
+        self.assertEqual(3.0, style.page_bottom_allowance)
+        self.assertEqual(4.0, style.fallback_import_allowance)
+        self.assertEqual(61.0, style.fallback_min_height)
+        self.assertEqual(0.7, style.fallback_text_width_ratio)
+        self.assertEqual(25.0, style.fallback_row_height)
 
     def test_safety_symbols_page_uses_localized_symbol_copy(self) -> None:
         import json

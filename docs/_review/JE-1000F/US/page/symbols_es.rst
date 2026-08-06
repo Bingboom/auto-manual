@@ -13,7 +13,7 @@ SIGNIFICADO DE LOS SÍMBOLOS
       \HBSymbolSignalRow{warning_triangle.png}{ADVERTENCIA}{Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.}
       \HBSymbolSignalRow{warning_triangle.png}{PRECAUCIÓN}{Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.}
       \HBSymbolSignalRow{mandatory.png}{NOTA}{Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.}
-      \HBSymbolSignalRow{mandatory.png}{CONSEJOS}{Complementa la información importante o consejos de operación en el texto.}
+      \HBSymbolSignalRow{mandatory.png}{CONSEJO}{Complementa la información importante o consejos de operación en el texto.}
       }
 
 .. only:: not latex
@@ -39,7 +39,7 @@ SIGNIFICADO DE LOS SÍMBOLOS
         - Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.
       * - .. raw:: html
 
-             <span class="hb-warning-lockup" style="display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"><span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span><span>CONSEJOS</span></span>
+             <span class="hb-warning-lockup" style="display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"><span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span><span>CONSEJO</span></span>
         - Complementa la información importante o consejos de operación en el texto.
 
 

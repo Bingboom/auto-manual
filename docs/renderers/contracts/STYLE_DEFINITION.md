@@ -2,21 +2,70 @@
 
 一个语义在这套系统里有四处渲染：**Web**（`web_manual.css`）、**PDF**（LaTeX）、**IDML**（InDesign）、**Word**（`reference.docx`）。四者的绑定关系由 [`manual_style.yaml`](manual_style.yaml) 声明，共 31 条语义。本文把这 31 条逐条写定义，附录写组件的构造与新增方式。
 
+当前合同状态以 `manual_style.yaml` 为准：21 条为无债 `aligned`，`HB-TABLE-LCD-ICON` 为带批准参考档说明的 `aligned`，另有 9 条长期 `partial`。2026-08-05 完成的 16 条 IDML 样式契约欠账已经同步进本文；执行证据见[样式契约欠账清算状态](../../../code-as-doc/dev/style_debt_execution_status.md)。
+
 ## 0. 怎么读
 
 | 列 | 含义 |
 |---|---|
 | **语义 ID** | `manual_style.yaml` 里的契约名。改样式先找它，它绑着另外三处渲染 |
-| **源写法** | 作者在 md / RST 里怎么写。`原生` = 普通 Markdown；`` ```{x} `` = MyST 围栏指令；`流水线` = 只能由源表 + 模板产出，作者写不出来 |
+| **源写法** | 作者在 md / RST 里怎么写。`原生` = 普通 Markdown；`` ```{x} `` = MyST 围栏指令；`流水线` = 由生产流水线写入结构标识，不能靠普通正文直接表达（见下文） |
 | **Web** | 顶层 class（`web_manual.css` 的挂点） |
 | **PDF** | LaTeX 入口宏 @ 所属 `docs/renderers/latex/*.tex` |
 | **IDML** | InDesign 段落样式 / 表样式 / 对象样式 |
 | **Word** | `reference.docx` 的样式 ID，或"经 HTML 转换"（无独立样式）。Word 侧的表样式**按形状选，不按语义选**：单行且 ≥3 列走 `TableGrid`，其余走 `tableHeader` |
-| **状态** | `aligned` = 四处一致；`partial` = 有已记录的偏差，见各条的债 |
+| **状态** | `aligned` = 四处的语义和共享合同一致；`partial` = 有已记录的偏差，见各条的债。`aligned` 仍可保留已批准边界说明，不代表待修缺陷 |
 
 单位：Web 用 `rem`（1rem = 16px），`clamp(最小, 视口比例, 最大)` = 随视口缩放并夹住两端；PDF/IDML 用 pt/mm，值取自 [`data/layout_params.csv`](../../../data/layout_params.csv)；Word 的 `sz` 是半磅（34 = 17pt）。
 
 颜色变量：`--hb-brand-dark` `#343031`、`--hb-text` `#343031`、`--hb-text-muted` `#666264`、`--hb-line` `#a7a5a6`、`--hb-line-soft` `#dedcdd`、`--hb-paper` `#ffffff`、`--hb-surface` `#f4f3f3`。
+
+### 0.1 “流水线”的定义
+
+本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 组合成 prepared RST bundle，再由 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) 提取为 `manual-ir/v1`，最后投影到 Web、PDF、IDML 或 Word。它不是“根据文字长得像什么来猜组件”，也不是本 PR 新增的 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
+
+```text
+phase2 / 模板
+    → prepared RST bundle（数据已替换、语言与页面顺序已确定）
+    → RST extractor（识别结构标识）
+    → manual-ir/v1（有类型、有来源、有哈希）
+    → renderer projection（Web / PDF / IDML / Word）
+```
+
+“流水线”一栏表示：该语义由源表字段、模板宏、显式 RST 容器、页面清单或页面角色共同产生，普通作者不能只写一段同名文案就触发它。例如正文出现 `Warranty Period` 不会自动变成质保年限卡；模板必须显式写出 `warranty-section warranty-years`。
+
+### 0.2 流水线怎样加标识符
+
+标识分五层，彼此不能混用：
+
+| 层 | 标识示例 | 谁写入 / 负责什么 |
+|---|---|---|
+| 样式合同 ID | `HB-WARRANTY-SECTION`、`HB-TABLE-SYMBOL-SIGNAL` | [`manual_style.yaml`](manual_style.yaml) 声明稳定语义、token 与四端绑定；`HB-*` 通常不会原样写进正文 |
+| 源结构标识 | RST 标题、``.. container:: warranty-section``、`\\HBSymbolTable` | 模板或生成器写入 prepared RST；标识必须与本地化文案无关 |
+| IR 类型标识 | block `kind`，以及 `component` / `data` / `semantic` payload 里的 `kind`、`roles` | extractor 解析源结构后写入，供渲染器按类型路由 |
+| 装配角色 | `PageRole.WARRANTY`、`PageRole.SYMBOLS` | [`page_roles.py`](../../../tools/idml/page_roles.py) 根据 manifest 中的 `source_ref` / 稳定文件名决定页面由哪个 composer 接管 |
+| 输出标识 | Web `.hb-*` class、LaTeX `HB*` 宏、IDML paragraph/table/object style、Word style ID | 各 renderer 消费同一语义合同后生成；这是结果，不是源语义的判定依据 |
+
+具体写入规则如下：
+
+1. **原生结构直接类型化。** RST 一级标题、二级标题、列表和正文分别提取为 `h1`、`h2`、`list`、`body` block，再映射到 `heading_1`、`heading_2`、`list_item`、`paragraph` 等合同语义。
+2. **需要跨段或组合结构时，模板加显式容器。** 例如：
+
+   ```rst
+   .. container:: warranty-section warranty-years
+
+      Warranty Period
+      ---------------
+
+      .. list-table::
+   ```
+
+   [`semantic_containers.py`](../../../tools/idml/semantic_containers.py) 会把连字符规范成下划线，输出 `kind=warranty_section`、`roles=[warranty_section, warranty_years]`，并保留容器内的 typed blocks。后续 projector 生成 `warrantysection` / `warrantyyears` component，分别绑定 `HB-WARRANTY-SECTION` / `HB-WARRANTY-YEARS`。当前显式 semantic container 只支持质保语义；增加其他容器必须同时扩展 extractor、projector 和测试，不能只在模板里发明一个 class。
+3. **生成型组件用稳定 HB 宏或 `manual-ir` payload。** 规格、Symbols、LCD、FCC、开箱和安全内容由模板生成 `\\HB...` 宏，或在 ``.. raw:: manual-ir`` 中携带带 `kind` 的 JSON。extractor 不保留排版命令本身，而是转成 renderer-neutral 的 `data` / `component` block，例如 `symbol_signals`、`lcd_icons`、`spec_section`、`safetywarning`。
+4. **页面身份单独登记。** prepared bundle 的 manifest 决定 source 顺序和语言；稳定文件名 / `source_ref` 再映射为 `PageRole`。页面角色决定 physical composer，不能从页面标题翻译文本推断。批准装配中的 `UNCLASSIFIED_PROSE` 默认失败，只有精确登记的 source-ref 例外可放行。
+5. **IR 再分配可追踪 ID。** [`manual_ir/builder.py`](../../../tools/manual_ir/builder.py) 按最终页面顺序生成 `page-0001-<stem>`，按块顺序生成 `:block-0001`，同时保存 `source_ref`、`kind`、`payload`、内容哈希和资产引用。这些 `page_id` / `block_id` 是实例身份；`HB-*` 是样式语义身份，两者不能相互替代。
+
+因此，新增一个“流水线”语义不能只改 `manual_style.yaml`：必须同时有稳定源标识、extractor/IR 类型、renderer 路由、四端绑定和直接合同测试。未知 raw 块会计入 `skipped_raw`；production 要求其为 0。显式容器结构不合法时必须报错，不能静默退化成靠文案识别的普通段落。
 
 ---
 
@@ -27,10 +76,10 @@
 | 语义 | 语义 ID | 源写法 | Web | PDF | IDML | Word | 状态 |
 |---|---|---|---|---|---|---|---|
 | 正文段落 | `HB-TYPE-BODY` | 原生 | `p` | `HBTypeBody` @ `type_system` | 段落样式 | `BodyText` / `FirstParagraph` / `Compact` 归一 | aligned |
-| 列表 | `HB-TYPE-LIST` | 原生 `-` / `1.` | `ul` `ol` | `HBTypeListStart` @ `components_base` | `Item List` | 经 HTML 转换 | partial |
-| 一级标题 | `HB-TITLE-L1` | `# ` | `h1` / `.hb-h1-pill` | `HBTitleLevelOne` @ `components_headings` | `Heading1` + `HB Capsule Heading` | `dingding-heading1` | partial |
-| 二级标题 | `HB-TITLE-L2` | `## ` | `h2` / `.hb-subbar` | `HBTitleLevelTwo` | `Heading2`、`HB Operation Row Label` | `dingding-heading2` | partial |
-| 三级标题 | `HB-TITLE-L3` | `### ` | `h3` | `HBTitleLevelThree` | `Heading3` | `dingding-heading3` | partial |
+| 列表 | `HB-TYPE-LIST` | 原生 `-` / `1.` | `ul` `ol` | `HBTypeListStart` @ `components_base` | `Item List` | 经 HTML 转换 | aligned |
+| 一级标题 | `HB-TITLE-L1` | `# ` | `h1` / `.hb-h1-pill` | `HBTitleLevelOne` @ `components_headings` | `Heading1` + `HB Capsule Heading` | `dingding-heading1` | aligned |
+| 二级标题 | `HB-TITLE-L2` | `## ` | `h2` / `.hb-subbar` | `HBTitleLevelTwo` | `Heading2`、`HB Operation Row Label` | `dingding-heading2` | aligned |
+| 三级标题 | `HB-TITLE-L3` | `### ` | `h3` | `HBTitleLevelThree` | `Heading3` | `dingding-heading3` | aligned |
 | 前言 / 引题 | `HB-TYPE-LEAD` | 流水线 | — | `HBTypeWarningTextStart`、`HBTypeRubricStart` | `HB Lead` | 经 HTML 转换 | partial |
 | 页脚 | `HB-TYPE-FOOTER` | 流水线 | 不渲染 | `HBTypeFooter` | `HB Footer` | 页脚域 | partial |
 | 页码 | `HB-TYPE-PAGE-NUMBER` | 流水线 | 不渲染 | `HBTypePageNumber` | `HB Page Number` | 页脚域 | partial |
@@ -39,24 +88,24 @@
 
 | 语义 | 语义 ID | 源写法 | Web | PDF | IDML | Word | 状态 |
 |---|---|---|---|---|---|---|---|
-| 警示框 | `HB-CALLOUT-STRIP` | `` ```{callout} `` | `.manual-callout-table` | `HBWarningBlock` / `HBCautionBlock` / `HBNoteBlock` / `HBTipBlock` @ `components_base` | `Caution` + `HB Rounded Panel` + `Notice表格` | 经 HTML 转换（标签文字归一） | partial |
+| 警示框 | `HB-CALLOUT-STRIP` | `` ```{callout} `` | `.manual-callout-table` | `HBWarningBlock` / `HBCautionBlock` / `HBNoteBlock` / `HBTipBlock` @ `components_base` | `Caution` + `HB Rounded Panel` + `Notice表格` | 经 HTML 转换（标签文字归一） | aligned |
 | 安全指令 | `HB-SAFETY-INSTRUCTION` | 流水线 | 经 RST 组件 | `HBSafetyInstruction` @ `components_safety` | `HB Safety Instruction` + `HB Rounded Panel` | 保留 `safety_` 源前缀 | **aligned** |
-| 安全警告面板 | `HB-SAFETY-WARNING` | 流水线 | 经 RST 组件 | `safetywarningbox`、`safetywarning` | `HB Rounded Panel` + `Warning表格` | 同上 | partial |
+| 安全警告面板 | `HB-SAFETY-WARNING` | 流水线 | 经 RST 组件 | `safetywarningbox`、`safetywarning` | `HB Rounded Panel` + `Warning表格` | 同上 | aligned |
 | 大号警告引语 | `HB-SAFETY-LEAD` | 流水线 | 经 RST 组件 | `HBWarningLeadBlock` | `HB Rounded Panel` | 同上 | **aligned** |
-| 危险锁定块 | `HB-SAFETY-DANGER` | 流水线 | 经 RST 组件 | `HBDangerBlock` | `HB Rounded Panel` | 同上 | partial |
+| 危险锁定块 | `HB-SAFETY-DANGER` | 流水线 | 经 RST 组件 | `HBDangerBlock` | `HB Rounded Panel` | 同上 | aligned |
 
 ### 表格
 
 | 语义 | 语义 ID | 源写法 | Web | PDF | IDML | Word | 状态 |
 |---|---|---|---|---|---|---|---|
-| 竖式规格表 | `HB-TABLE-SPEC` | `` ```{spec-table} `` | `.hb-spec-table-composition` | `spectable` @ `components_spec` | `竖型表格` + `HB Rounded Table Outer` | 表样式 `tableHeader` + 33%/67% 列宽与黑色边框覆盖 | partial |
-| 信号词表 | `HB-TABLE-SYMBOL-SIGNAL` | 流水线 | `.hb-symbol-signal-composition` | `HBSymbolTable` @ `components_symbols` | `正文表格` + `HB Rounded Table Outer` | 经 HTML 转换 | partial |
-| 符号图标表 | `HB-TABLE-SYMBOL-ICON` | `` ```{symbols} `` | `.hb-symbol-pair-composition` | `HBSymbolTwoColumnTables` | 同上 | 经 HTML 转换 | partial |
+| 竖式规格表 | `HB-TABLE-SPEC` | `` ```{spec-table} `` | `.hb-spec-table-composition` | `spectable` @ `components_spec` | `竖型表格` + `HB Rounded Table Outer` | 表样式 `tableHeader` + 33%/67% 列宽与黑色边框覆盖 | aligned |
+| 信号词表 | `HB-TABLE-SYMBOL-SIGNAL` | 流水线 | `.hb-symbol-signal-composition` | `HBSymbolTable` @ `components_symbols` | `正文表格` + `HB Rounded Table Outer` | 经 HTML 转换 | aligned |
+| 符号图标表 | `HB-TABLE-SYMBOL-ICON` | `` ```{symbols} `` | `.hb-symbol-pair-composition` | `HBSymbolTwoColumnTables` | 同上 | 经 HTML 转换 | aligned |
 | LCD 图标表 | `HB-TABLE-LCD-ICON` | `` ```{lcd-icons} `` | `.hb-lcd-table-composition` | `HBLcdIconTable` @ `components_lcd` | 同上 | 经 HTML 转换 | **aligned** |
-| LCD 模式表 | `HB-TABLE-LCD-MODE` | `` ```{lcd-mode} `` | `.hb-lcd-mode-composition` | `HBLcdModeTable` | 同上 | 经 HTML 转换 | partial |
-| 自动恢复对比表 | `HB-TABLE-AUTO-RESUME` | `` ```{comparison} `` | `.hb-auto-resume-composition` | `HBAutoResumeTable` @ `components_data_tables` | 同上 | 经 HTML 转换 | partial |
+| LCD 模式表 | `HB-TABLE-LCD-MODE` | `` ```{lcd-mode} `` | `.hb-lcd-mode-composition` | `HBLcdModeTable` | 同上 | 经 HTML 转换 | aligned |
+| 自动恢复对比表 | `HB-TABLE-AUTO-RESUME` | `` ```{comparison} `` | `.hb-auto-resume-composition` | `HBAutoResumeTable` @ `components_data_tables` | 同上 | 经 HTML 转换 | aligned |
 | 按键组合表 | `HB-TABLE-KEY-COMBINATIONS` | 流水线 | `.manual-table` | `HBKeyCombinationTable` | `HB Data Header` / `HB Data Body`（可移动文本框） | 经 HTML 转换 | **aligned** |
-| 故障排查表 | `HB-TABLE-TROUBLESHOOTING` | `` ```{troubleshooting} `` | `.hb-troubleshooting-composition` | `HBTroubleshootingTable` | `正文表格` + `HB Rounded Table Outer`（关闭自动缩放） | 经 HTML 转换 | partial |
+| 故障排查表 | `HB-TABLE-TROUBLESHOOTING` | `` ```{troubleshooting} `` | `.hb-troubleshooting-composition` | `HBTroubleshootingTable` | `正文表格` + `HB Rounded Table Outer`（关闭自动缩放） | 经 HTML 转换 | aligned |
 | 通用表 | 无专属 ID | pipe 表 / `` ```{manual-table} `` | `.manual-table` | 走 `HB-TYPE-BODY` 排版 | `正文表格` | 表样式 `tableHeader`（单行且 ≥3 列时 `TableGrid`） | — |
 
 ### 专题版块
@@ -72,9 +121,9 @@
 
 | 语义 | 语义 ID | 源写法 | Web | PDF | IDML | Word | 状态 |
 |---|---|---|---|---|---|---|---|
-| 质保引语 | `HB-WARRANTY-LEAD` | 流水线 | `.hb-warranty-intro-composition` | `HBWarrantyLead` @ `components_warranty` | `HB Rounded Panel` | 经 HTML 转换 | partial |
-| 质保条款面板 | `HB-WARRANTY-SECTION` | 流水线 | `.hb-warranty-card` | `HBWarrantySection` | `HB Rounded Panel` | 经 HTML 转换 | partial |
-| 质保年限卡 | `HB-WARRANTY-YEARS` | 流水线 | `.hb-warranty-period-card` | `HBWarrantyYears` | `HB Big Numeral` + `HB Rounded Panel` | 经 HTML 转换 | partial |
+| 质保引语 | `HB-WARRANTY-LEAD` | 流水线 | `.hb-warranty-intro-composition` | `HBWarrantyLead` @ `components_warranty` | `HB Rounded Panel` | 经 HTML 转换 | aligned |
+| 质保条款面板 | `HB-WARRANTY-SECTION` | 流水线 | `.hb-warranty-card` | `HBWarrantySection` | `HB Rounded Panel` | 经 HTML 转换 | aligned |
+| 质保年限卡 | `HB-WARRANTY-YEARS` | 流水线 | `.hb-warranty-period-card` | `HBWarrantyYears` | `HB Big Numeral` + `HB Rounded Panel` | 经 HTML 转换 | aligned |
 | 标准页 | `HB-PAGE-STANDARD` | 模板 | 无分页 | `HBPageTemplateStandard` @ `layout_templates` | `HB Standard Page` | 节属性 | partial |
 | 无页脚页 | `HB-PAGE-NO-FOOTER` | 模板 | 无分页 | `HBPageTemplateNoFooter` | `HB No Footer Page` | 节属性 | partial |
 | 封面 / 封底 | `HB-PAGE-COVER` | 模板 | 不渲染 | `HBPageTemplateCover`、`HBBackCoverPage` | `HB Cover Page` | 不渲染 | partial |
@@ -95,7 +144,7 @@
 | 正文容器 | `#furo-main-content`：`width: min(100%, 58rem)`，内边距 `clamp(1.25rem, 3vw, 2.6rem)`，白纸卡片 + `0.22rem` 圆角 + 阴影 |
 | 字号 / 行高 | `1rem` / 1.58 |
 
-债（`HB-TYPE-LIST`）：IDML 尚未通过类型化级联应用按语言密度的列表覆盖。
+IDML 的 FR/ES 列表与子列表通过类型化样式消费语言密度 token；普通列表和嵌套列表的边距、标签间距及段间距均由 `type_list_*`、`lang_*_type_list_*`、`comp_list_*`、`comp_sublist_*` 控制。
 
 ### 2.2 一级标题
 
@@ -113,7 +162,7 @@
 
 PDF/IDML token：`type_h1_font_size` 12.0pt、`type_h1_font_leading` 14.4pt、`comp_h1_pill_arc` 2.0mm、`comp_h1_pill_height` 7.1mm。Word：`dingding-heading1`，`sz` 34（17pt），色 `343031`。
 
-债：IDML 的 band 高度仍自行推导，未走 `comp_h1_pill_height`。
+IDML 的 band 高度与 PDF 共用 `comp_h1_pill_height`；质保页的宽度和左缩进继续由明确登记的 `idml_warranty_h1_*` token 控制。
 
 ### 2.3 二级标题
 
@@ -131,7 +180,7 @@ PDF/IDML token：`type_h1_font_size` 12.0pt、`type_h1_font_leading` 14.4pt、`c
 
 token：`type_title_l2_font_size` 8.6pt、`comp_title_l2_bullet_radius` 0.75mm。Word：`dingding-heading2`，`sz` 28（14pt）。
 
-债：IDML 未强制共享的 keep-with-next 策略。
+IDML 的 `KeepWithNext` 由 `comp_title_l2_needspace` 推导；Operation Guide 的首标题和节间节奏使用已登记的语言 token，不再靠渲染器本地常量。
 
 ### 2.4 三级标题
 
@@ -146,7 +195,7 @@ token：`type_title_l2_font_size` 8.6pt、`comp_title_l2_bullet_radius` 0.75mm�
 
 token：`type_title_l3_font_size` 7.0pt、`comp_title_l3_bullet_radius` 0.28mm。Word：`dingding-heading3`，`sz` 22（11pt）。
 
-`myst_heading_anchors = 3`：只有前三级生成锚点，四级以下没有可引用的 id。
+IDML 的 `KeepWithNext` 由 `comp_title_l3_needspace` 推导。`myst_heading_anchors = 3`：只有前三级生成锚点，四级以下没有可引用的 id。
 
 ### 2.5 引语 / 页脚 / 页码
 
@@ -171,9 +220,11 @@ token：`type_title_l3_font_size` 7.0pt、`comp_title_l3_bullet_radius` 0.28mm�
 
 信号词：`WARNING` `CAUTION` `NOTE` `TIP` `DANGER` `IMPORTANT` `NOTICE` `ATTENTION`，自动转大写。正文按完整 Markdown 解析，可放列表。
 
+IDML callout 的悬挂 bullet 几何、bullet 字号、面板内距和语言节奏全部登记在 `manual_style.yaml` 的 `HB-CALLOUT-STRIP.token_refs`；标签文字仍由源 RST/IR 提供，渲染器不翻译或补造。
+
 ### 3.2 安全面板四类
 
-`HB-SAFETY-INSTRUCTION` / `-WARNING` / `-LEAD` / `-DANGER` 都是**流水线专属**：源自安全章节的结构化文本，作者无法用 md 写出。四者在 IDML 共用 `HB Rounded Panel` 对象样式，靠段落样式与表样式区分；Word 侧保留 `safety_` 源前缀以便回溯。`-INSTRUCTION` 和 `-LEAD` 是仅有的两个四处对齐（`aligned`）的安全语义。
+`HB-SAFETY-INSTRUCTION` / `-WARNING` / `-LEAD` / `-DANGER` 都是**流水线专属**：源自安全章节的结构化文本，作者无法用 md 写出。四者在 IDML 共用 `HB Rounded Panel` 对象样式，靠显式语义、段落样式与表样式区分；Word 侧保留 `safety_` 源前缀以便回溯。四类现在均为 `aligned`：`DANGER` 保留独立 variant，不再降级成普通 warning；`WARNING` 的图标列、图标上限和面板下限由 token 控制。现有 warning lockup 美术资产仍是共享资产边界，语义对齐不伪造新的 DANGER 美术。
 
 ---
 
@@ -212,9 +263,9 @@ pipe 表 / `` ```{manual-table} `` → `table.manual-table`
 
 合并：标签留空的行并入上一个标签（`rowspan`）。
 
-**同一列宽有三个独立取值**：Web 31% / PDF `comp_spec_table_left_ratio` 0.315 / Word 33%。改一处不同步另外两处。其余 token：`comp_table_outer_arc` 2.4mm、`comp_table_outer_rule` 0.75pt、`type_spec_label_font_size` 与 `type_spec_value_font_size` 均 6.0pt。
+**同一列宽有多组经合同登记的投影值**：Web 31% / PDF `comp_spec_table_left_ratio` 0.315 / Word 33%，IDML 默认 `idml_spec_table_left_ratio` 0.302，西语批准投影为 `lang_es_idml_spec_table_left_ratio` 0.362。它们分别服务响应式、固定版、Word 与批准语言版式，不应只改其中一处后假定其他渲染器自动同步。其余 token：`comp_table_outer_arc` 2.4mm、`comp_table_outer_rule` 0.75pt、`type_spec_label_font_size` 与 `type_spec_value_font_size` 均 6.0pt。
 
-债：IDML 行高与多行行为尚未完全 token 驱动。
+IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `comp_spec_table_multiline_min_height`，并输出 `MinimumHeight` / `AutoGrow`，不再由本地常量决定。
 
 ### 4.3 故障排查表
 
@@ -229,7 +280,7 @@ pipe 表 / `` ```{manual-table} `` → `table.manual-table`
 | 分隔线 | 右/下 `1.25px solid --hb-brand-dark` |
 | 多步措施 | ` / ` 分隔 → `.line-block` > `.line`，行距 `0.25rem` |
 
-表头固定 `Error Code` / `Corrective Measures`（见 [附录 B](#附录-b-已知缺陷)）。债：IDML 关闭自动缩放，按原生基线 + 本地化换行增量定尺。
+表头固定 `Error Code` / `Corrective Measures`（见 [附录 B](#附录-b-已知缺陷)）。IDML 关闭自动缩放；批准语言的行 minima、表头/正文高度修正、内外线宽、面板下限、导入安全余量和 portable glyph-width 估算全部由 `idml_trouble_*` / `lang_*_idml_trouble_*` token 控制。
 
 ### 4.4 LCD 图标表
 
@@ -243,7 +294,7 @@ pipe 表 / `` ```{manual-table} `` → `table.manual-table`
 | 分隔线 | 右/下 `1px solid --hb-line`（浅色，与规格表的深色不同） |
 | 说明列 | 支持 ` / ` 分步 |
 
-四处对齐（`aligned`），是表格类里唯一没有记债的。
+四处语义对齐（`aligned`）。批准 reference profile 可保留型号特定行高，这是一条已批准边界说明；共享排版、位置和表结构仍由 token 控制，不是待修缺陷。
 
 ### 4.5 LCD 模式表
 
@@ -258,12 +309,14 @@ pipe 表 / `` ```{manual-table} `` → `table.manual-table`
 | ≤760px | 转单列（图在上、表在下），圆角 `0.9rem` |
 | 列 | `状态 / 动作 / 说明`，每列独立向上合并 |
 
+IDML 侧的 EN/FR/ES 批准 panel/row/column/margin/spacing、参考 measure、panel 宽度和插图目标均为语言 token；其他语言按内容动态计算列宽与行高。字号、leading、inset、内外线和圆角也全部 token 化，portable fallback 只消费登记的 fallback token。传入空参数时保留兼容默认，不改变旧调用者。
+
 ### 4.6 符号表两类
 
-- `` ```{symbols} `` → `figure.hb-symbol-pair-composition`：`grid-template-columns: repeat(2, minmax(0,1fr))`，间距 `clamp(.72rem, 1.8vw, 1rem)`，窄屏转单列。面板表内边距 `clamp(.62rem,1.5vw,.9rem) clamp(.55rem,1.25vw,.78rem)`，格间线 `1.5px solid --hb-brand-dark`，表头下边框同宽。**两个面板行高互不影响**（PDF 用的就是两张独立表）。
+- `` ```{symbols} `` → `figure.hb-symbol-pair-composition`：`grid-template-columns: repeat(2, minmax(0,1fr))`，间距 `clamp(.72rem, 1.8vw, 1rem)`，窄屏转单列。面板表内边距 `clamp(.62rem,1.5vw,.9rem)` `clamp(.55rem,1.25vw,.78rem)`，格间线 `1.5px solid --hb-brand-dark`，表头下边框同宽。**两个面板行高互不影响**（PDF 用的就是两张独立表）。
 - 信号词表 `HB-TABLE-SYMBOL-SIGNAL` → `.hb-symbol-signal-composition`，流水线专属，md 写不出。
 
-两者的债相同：IDML 页面构成仍持有可见常量。
+IDML 的 subbar 高度、标题/维护区间距、H1 光学偏移、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。
 
 ### 4.7 对比表
 
@@ -276,6 +329,8 @@ pipe 表 / `` ```{manual-table} `` → `table.manual-table`
 | 内边距 | `0.46rem 0.72rem`，分隔线 `1px solid --hb-brand-dark` |
 | 左列底色 | `--hb-surface`；右列 `--hb-paper` |
 | 合并 | 每列独立向上合并 |
+
+IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对比语义可由 IR 到最终 IDML 单独审计。
 
 ### 4.8 按键组合表
 
@@ -308,7 +363,7 @@ pipe 表 / `` ```{manual-table} `` → `table.manual-table`
 | 条款面板 | `.hb-warranty-card` | 圆角面板，卡内首个 `h2` 有专门覆盖（不走 §2.3 的圆点条） |
 | 年限卡 | `.hb-warranty-period-card` > `.hb-warranty-period-grid` | 大号数字 + 单位 + 副标题；IDML 用 `HB Big Numeral` |
 
-token 以 `comp_warranty_*`、`type_warranty_*` 为前缀；语言相关的面板高度微调走 `lang_<xx>_idml_warranty_*`。债：IDML 没有显式的质保-section 组件类型，年限卡的识别仍基于文本形状启发式。
+token 以 `comp_warranty_*`、`type_warranty_*` 为前缀；语言相关的面板高度微调走 `lang_<xx>_idml_warranty_*`。共享 Warranty 模板通过 `container` 明确标记 `warranty_lead`、`warranty_section`、`warranty_years`，覆盖 en/fr/es/de/it/uk/ko/pt-BR。IDML 直接读取这些语义，不依赖标题措辞或年限文本形状；坏的 years 结构 fail-closed。冻结 review derivative 仍兼容旧启发式，避免历史批准稿失效。
 
 ---
 
@@ -336,6 +391,16 @@ Web 投影没有页的概念，这三条不参与。
 所有通栏组件共享一条外宽契约：`box-sizing: border-box; width: 100%; max-width: var(--hb-component-band-max)`（= 阅读宽 58rem），成员包括 `h1`、docutils 表格容器、符号 / 故障排查 / 规格 / FCC / LCD / 对比六类 composition。新增通栏组件必须加进这条 `:is()` 列表，否则宽度会和邻居差一截。
 
 字体：`Gilroy` 是商业授权，不随站分发；回退 `Avenir Next → Avenir → Segoe UI → Helvetica → Arial`，字形与印刷稿不完全一致。
+
+---
+
+## 9. 合同生效与批准版式
+
+`aligned` 表示四个输出面消费同一语义合同，并不要求响应式 Web、固定页 PDF/IDML 和 Word 逐像素相同。允许的投影差异必须写在 token、渲染绑定或批准说明里，不能留作未登记的渲染器常量。
+
+`manual_style.yaml` 与 `data/layout_params.csv` 的语义哈希会写入批准 reference-layout plan 的 v2 `identity.style`。v2 把 identity 分为 `content`、`assembly`、`style`、`provenance`：前三者和逐页 source digest 是 production 硬门禁；全局 phase2 `snapshot_sha256` 只保留在 `provenance` 供追溯，不因无关表变化阻断当前 target。`assembly` 同时哈希 source 顺序、语言、页面角色和 composition map；批准装配出现 `UNCLASSIFIED_PROSE` 时默认失败，只有精确登记的 source-ref 例外可继续。对已有批准合同的 target，production `build.py idml --source auto` 解析为冻结 `review-asis` 装配；未批准 target 继续走 runtime。普通 reference rebind 只允许 style/provenance identity 更新，默认拒绝 content 或 assembly hash 变化。只有在最终 Manual IR 的 source 顺序、语言映射、物理页数、`skipped_raw` 与 composition map 均通过核验后，才可由操作者使用显式 content-approval 路由重绑；reference PDF 与 composition map 不因样式销账而改变。
+
+当前 JE-1000F / US 批准装配的验收结果为 52 个 source、58 个物理页、`skipped_raw=0`。具体 hash、批准 metadata 与测试记录见[样式契约欠账清算状态](../../../code-as-doc/dev/style_debt_execution_status.md)。
 
 ---
 
@@ -369,23 +434,23 @@ Web 投影没有页的概念，这三条不参与。
 
 ### A.3 新增一个组件
 
-1. 在 `manual_style.yaml` 加语义条目：`role`、`semantic_source_kinds`、`token_refs`、四处渲染绑定、`status: partial` + `debt`。
-2. 在 `manual_md_directives.py` 写指令类（继承 `_ManualDirective`，`run()` 返回 `nodes.raw`），并注册进 `DIRECTIVES`。
+1. 在 `manual_style.yaml` 加语义条目：`role`、`semantic_source_kinds`、`token_refs`、四处渲染绑定，并诚实填写 `status`；只有 `partial` 或批准边界说明才写 `debt`。
+2. 如果组件面向 plain-Markdown 站点，在 [`manual_md_directives.py`](../../../tools/manual_md_directives.py) 写指令类（继承 `_ManualDirective`，`run()` 返回 `nodes.raw`），并注册进 `DIRECTIVES`。
 3. 在 `web_manual.css`（或两个分模块之一）加顶层 class 与 `col` 宽度；通栏组件记得加进 §8 那条 `:is()` 列表。
 4. 印刷侧补 LaTeX 入口宏与 IDML 渲染器，token 加进 `data/layout_params.csv`。
-5. `tests/test_plain_markdown_site.py` 补一条断言，锁住产出的标记形状。
+5. plain-Markdown 组件在 [`tests/test_plain_markdown_site.py`](../../../tests/test_plain_markdown_site.py) 补断言；IDML/PDF/Word 同时补各自的直接合同测试，锁住语义与 token 消费关系。
 
 三个样式模块的行数上限由 [`tools/check_maintainability_guardrails.py`](../../../tools/check_maintainability_guardrails.py) 看守（`web_manual.css` 1905 / `web_app_components.css` 128 / `web_symbols_fcc_components.css` 160），加样式超了要连同阈值一起调。
 
 ### A.4 改样式的顺序
 
-先在 `manual_style.yaml` 找语义 ID → 看它绑了哪些 token 和另外三处渲染 → 再动 CSS / tex / IDML。**只改 CSS 会让四处渲染悄悄分叉**，而分叉不会有任何报错——规格表列宽的 31% / 0.315 / 33% 就是已经发生过的例子。
+先在 `manual_style.yaml` 找语义 ID → 看它绑了哪些 token 和另外三处渲染 → 再动 CSS / tex / IDML。**只改 CSS 可能让四处渲染悄悄分叉**；规格表的 Web / PDF / IDML / Word 列宽是经登记的投影差异，新增差异也必须用同样方式进入合同并补测试。改 `manual_style.yaml` 或 `layout_params.csv` 后要重新生成 `params.tex`、运行合同测试和 reference pin gate；不能手改批准 hash 绕过验证。
 
 ---
 
 ## 附录 B 已知缺陷
 
-以下三条是实测确认的实现缺陷，不是用法问题：
+以下三条是 plain-Markdown 指令实现中实测确认的缺陷，不是当前 IDML 样式债，也不是用法问题：
 
 | 缺陷 | 表现 | 绕法 |
 |---|---|---|
@@ -393,4 +458,4 @@ Web 投影没有页的概念，这三条不参与。
 | `troubleshooting` 的 `:headers:` 不可用 | 代码读了 `options["headers"]` 但没注册该选项，写了报未知选项，不写则表头恒为 `Error Code` / `Corrective Measures` | 换 `manual-table` + `:headers:` |
 | `:class:` 被接受但忽略 | 八个指令都声明了该选项，八个 `run()` 都不读 | 改 CSS 或改指令实现 |
 
-各语义自身的偏差（IDML band 高度、列表语言密度、keep-with-next、质保识别启发式等）记在 `manual_style.yaml` 每条的 `debt` 字段里，本文各节已随条列出。按优先级排好的完整欠账清单见 [`STYLE_DEBT.md`](STYLE_DEBT.md)。
+当前剩余项以 `manual_style.yaml` 为唯一账本：`HB-TYPE-LEAD`、`HB-TYPE-FOOTER`、`HB-TYPE-PAGE-NUMBER`、`HB-SPECIAL-FCC`、`HB-SPECIAL-INBOX`、`HB-SPECIAL-OVERVIEW`、`HB-PAGE-STANDARD`、`HB-PAGE-NO-FOOTER`、`HB-PAGE-COVER` 为 9 条长期 `partial`；`HB-TABLE-LCD-ICON` 保留一条批准参考档说明。原始 16 条 IDML 合同债已全部销账，完整范围和验证结果见[样式契约欠账清算状态](../../../code-as-doc/dev/style_debt_execution_status.md)。

@@ -42,6 +42,10 @@
       "value": "uk"
     },
     {
+      "op": "remove",
+      "path": "/pages/4/model_overrides"
+    },
+    {
       "op": "replace",
       "path": "/pages/4/langs/0",
       "value": "uk"

@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from .params import IDPKG, param_pt, param_text
-from .app_text_styles import paragraph_attrs as app_paragraph_attrs, paragraph_styles as app_paragraph_styles
+from .app_text_styles import paragraph_styles as app_paragraph_styles
+from .paragraph_style_attrs import contract_paragraph_attrs
 from .style_resources import PRIMARY_FONT_FAMILY_TOKEN, fonts_xml, graphic_xml, preferences_xml
 from .style_names import paragraph_style_name, paragraph_style_ref
 
@@ -53,6 +54,11 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Safety Tail Body EN", 5.6, 6.2, param_text(p, "idml_safety_tail_body_font_style", "Bold"), ""),
         ("HB Maintenance Body", 6.0, 7.5, "Regular", ""),
         ("HB List", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "list"),
+        ("HB Sublist", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "sublist"),
+        ("HB List FR", sz("type_list_font_size", 5.4), sz("lang_fr_type_list_font_leading", sz("idml_list_font_leading", 7.2)), "Regular", "list"),
+        ("HB Sublist FR", sz("type_list_font_size", 5.4), sz("lang_fr_type_list_font_leading", sz("idml_list_font_leading", 7.2)), "Regular", "sublist"),
+        ("HB List ES", sz("type_list_font_size", 5.4), sz("lang_es_type_list_font_leading", sz("idml_list_font_leading", 7.2)), "Regular", "list"),
+        ("HB Sublist ES", sz("type_list_font_size", 5.4), sz("lang_es_type_list_font_leading", sz("idml_list_font_leading", 7.2)), "Regular", "sublist"),
         ("HB Safety List", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "list"),
         ("HB Safety Sublist", sz("type_list_font_size", 5.4), sz("idml_list_font_leading", 7.2), "Regular", "sublist"),
         ("HB Safety List FR", sz("type_list_font_size", 5.4), sz("lang_fr_idml_safety_list_leading", 7.0), "Regular", "list"),
@@ -132,49 +138,7 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
             else "RightAlign" if kind == "toc_range"
             else "LeftAlign"
         )
-        paragraph_attrs = ""
-        if kind == "list":
-            paragraph_attrs = (
-                f'LeftIndent="{param_pt(params, "idml_list_left_indent", 3.7):g}" '
-                f'FirstLineIndent="{param_pt(params, "idml_list_first_line_indent", -6.25):g}" '
-                'RightIndent="0" '
-                f'SpaceAfter="{param_pt(params, "comp_list_itemsep", 2.07):g}" '
-                'Hyphenation="false" '
-            )
-        elif kind == "sublist":
-            paragraph_attrs = (
-                f'LeftIndent="{param_pt(params, "idml_sublist_left_indent", 10.38):g}" '
-                f'FirstLineIndent="{param_pt(params, "idml_sublist_first_line_indent", -6.04):g}" '
-                'RightIndent="0" '
-                f'SpaceAfter="{param_pt(params, "comp_sublist_itemsep", 2.0):g}" '
-                'Hyphenation="false" '
-            )
-        elif kind == "safety_lead":
-            paragraph_attrs = (
-                f'SpaceAfter="{param_pt(params, "idml_safety_lead_space_after", 2.4):g}" '
-                'Hyphenation="false" '
-            )
-        elif kind == "warning_lead":
-            paragraph_attrs = 'Hyphenation="false" '
-        elif kind == "preface_body":
-            # The approved preface never hyphenates across the right margin.
-            # Leaving the InDesign default enabled changes the FR/ES line
-            # breaks (for example ``document`` -> ``docu-`` / ``ment``) and
-            # collapses the three language blocks relative to the reference.
-            paragraph_attrs = (
-                f'SpaceAfter="{param_pt(params, "idml_preface_paragraph_space_after", 2.0):g}" '
-                'Hyphenation="false" Composer="HL Single" '
-            )
-        elif kind == "warranty_note":
-            paragraph_attrs = 'Hyphenation="false" '
-        elif kind == "warranty_list":
-            paragraph_attrs = (
-                f'LeftIndent="{param_pt(params, "idml_warranty_list_left_indent", 5.67):g}" '
-                f'FirstLineIndent="{param_pt(params, "idml_warranty_list_first_line_indent", -5.67):g}" '
-                'RightIndent="0" '
-                'SpaceAfter="0.7" Hyphenation="false" '
-            )
-        paragraph_attrs = app_paragraph_attrs(name, kind, params) or paragraph_attrs
+        paragraph_attrs = contract_paragraph_attrs(name, kind, leading, params)
         styles.append(
             f'  <ParagraphStyle Self="{self_id}" Name="{template_name}" '
             f'PointSize="{size:g}" FillColor="{fill}" {shading}'

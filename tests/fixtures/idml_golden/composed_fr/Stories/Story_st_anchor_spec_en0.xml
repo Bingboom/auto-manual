@@ -5,13 +5,13 @@
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">
   <Table Self="tbl_spec_en0" AppliedTableStyle="TableStyle/竖型表格" BodyRowCount="7" ColumnCount="2" HeaderRowCount="0" FooterRowCount="0" SpaceBefore="0" SpaceAfter="0">
-    <Row Self="tbl_spec_en0r0" Name="0" SingleRowHeight="10.3"/>
-    <Row Self="tbl_spec_en0r1" Name="1" SingleRowHeight="10.3"/>
-    <Row Self="tbl_spec_en0r2" Name="2" SingleRowHeight="10.3"/>
-    <Row Self="tbl_spec_en0r3" Name="3" SingleRowHeight="10.3"/>
-    <Row Self="tbl_spec_en0r4" Name="4" SingleRowHeight="10.3"/>
-    <Row Self="tbl_spec_en0r5" Name="5" SingleRowHeight="10.3"/>
-    <Row Self="tbl_spec_en0r6" Name="6" SingleRowHeight="10.3"/>
+    <Row Self="tbl_spec_en0r0" Name="0" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_spec_en0r1" Name="1" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_spec_en0r2" Name="2" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_spec_en0r3" Name="3" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_spec_en0r4" Name="4" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_spec_en0r5" Name="5" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
+    <Row Self="tbl_spec_en0r6" Name="6" SingleRowHeight="10.3" MinimumHeight="10.3" AutoGrow="true"/>
     <Column Self="tbl_spec_en0col0" Name="0" SingleColumnWidth="96.2113"/>
     <Column Self="tbl_spec_en0col1" Name="1" SingleColumnWidth="214.753"/>
     <Cell Self="tbl_spec_en0c0_0" Name="0:0" FillColor="Color/HB Bg K05" FillTint="100" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" LeftEdgeStrokeWeight="0" RightEdgeStrokeWeight="0" TopEdgeStrokeWeight="0" BottomEdgeStrokeWeight="0.5" LeftEdgeStrokeColor="Color/HB Brand Dark" RightEdgeStrokeColor="Color/HB Brand Dark" TopEdgeStrokeColor="Color/HB Brand Dark" BottomEdgeStrokeColor="Color/HB Brand Dark" TopInset="4.58214" BottomInset="4.58214" LeftInset="5.85" RightInset="3">

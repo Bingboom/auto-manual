@@ -16,9 +16,12 @@ from typing import Any
 from tools.manual_ir import ManualIR
 from tools.render_contract import LAYOUT_PARAMS_HASH_ALGORITHM
 
+from .page_roles import PageRole, classify_page_role
 from .reference_layout_plan import (
+    CURRENT_SCHEMA_VERSION,
     ReferenceLayoutPlanError,
-    SCHEMA_VERSION,
+    SUPPORTED_SCHEMA_VERSIONS,
+    build_identity_scopes,
     validate_approved_reference_plan,
 )
 
@@ -79,9 +82,10 @@ def _languages(ir: ManualIR) -> list[str]:
 
 
 def _validate_seed_shape(seed: dict[str, Any], ir: ManualIR) -> None:
-    if seed.get("schema_version") != SCHEMA_VERSION:
+    if seed.get("schema_version") not in SUPPORTED_SCHEMA_VERSIONS:
         raise ReferenceLayoutPlanError(
-            f"reference layout seed schema_version must be {SCHEMA_VERSION}"
+            "reference layout seed schema_version must be one of "
+            + ", ".join(sorted(SUPPORTED_SCHEMA_VERSIONS))
         )
     target = seed.get("target")
     expected_target = {
@@ -146,13 +150,18 @@ def _draft_candidate(seed: dict[str, Any], ir: ManualIR, *, seed_path: Path) -> 
             "reference layout scaffold requires seed idml_contract"
         )
     idml_contract["max_skipped_raw"] = sum(page.skipped_raw for page in ir.pages)
-    candidate["source_identity"] = {
-        "manual_ir_schema_version": ir.schema_version,
-        "manual_content_sha256": ir.content_sha256,
-        "snapshot_sha256": ir.snapshot_sha256,
-        "style_contract_sha256": ir.style_contract_sha256,
-        "layout_params_sha256": ir.layout_params_sha256,
-    }
+    idml_contract.setdefault(
+        "allowed_unclassified_source_refs",
+        [
+            page.source_ref
+            for page in ir.pages
+            if classify_page_role(Path(page.source_ref))
+            is PageRole.UNCLASSIFIED_PROSE
+        ],
+    )
+    candidate["schema_version"] = CURRENT_SCHEMA_VERSION
+    candidate["identity"] = build_identity_scopes(candidate, ir)
+    candidate.pop("source_identity", None)
     for seed_page, ir_page in zip(candidate["pages"], ir.pages, strict=True):
         seed_page["source_sha256"] = ir_page.source_sha256
 
@@ -180,7 +189,7 @@ def _draft_candidate(seed: dict[str, Any], ir: ManualIR, *, seed_path: Path) -> 
         "status": "draft",
         "approved_by": None,
         "approved_at": None,
-        "method": "reference-layout-scaffold/v1; composition and approval review required",
+        "method": "reference-layout-scaffold/v2; composition and approval review required",
     }
     candidate["scaffold"] = {
         "schema_version": SCAFFOLD_SCHEMA_VERSION,
@@ -193,7 +202,7 @@ def _draft_candidate(seed: dict[str, Any], ir: ManualIR, *, seed_path: Path) -> 
         },
         "review_scope": {
             "composition_map": "copied-from-seed-and-preserved",
-            "source_identity": "refreshed-from-manual-ir",
+            "identity": "refreshed-from-manual-ir",
             "approval": "required",
         },
     }

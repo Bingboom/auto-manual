@@ -14,17 +14,20 @@ from tools.manual_ir import ManualIR
 from tools.render_contract import LAYOUT_PARAMS_HASH_ALGORITHM
 
 from .reference_layout_plan import (
+    V2_SCHEMA_VERSION,
     ReferenceLayoutPlanError,
+    build_identity_scopes,
     validate_approved_reference_plan,
 )
 
 
 _IDENTITY_FIELDS = (
-    "manual_ir_schema_version",
-    "manual_content_sha256",
-    "snapshot_sha256",
-    "style_contract_sha256",
-    "layout_params_sha256",
+    "content.manual_ir_schema_version",
+    "content.manual_content_sha256",
+    "assembly.sha256",
+    "style.style_contract_sha256",
+    "style.layout_params_sha256",
+    "provenance.snapshot_sha256",
 )
 
 
@@ -36,6 +39,7 @@ class ReferenceLayoutRebindResult:
     candidate: dict[str, Any]
     changed_identity_fields: tuple[str, ...]
     changed_page_bindings: int
+    content_reapproved: bool
     wrote: bool
 
 
@@ -98,16 +102,36 @@ def _composition_map(payload: dict[str, Any]) -> tuple[tuple[Any, ...], ...]:
     return tuple(mapping)
 
 
+def _identity_value(payload: dict[str, Any], dotted: str) -> Any:
+    if payload.get("schema_version") == V2_SCHEMA_VERSION:
+        value: Any = payload.get("identity")
+        for part in dotted.split("."):
+            value = value.get(part) if isinstance(value, dict) else None
+        return value
+    legacy = payload.get("source_identity")
+    if not isinstance(legacy, dict):
+        return None
+    return legacy.get({
+        "content.manual_ir_schema_version": "manual_ir_schema_version",
+        "content.manual_content_sha256": "manual_content_sha256",
+        "style.style_contract_sha256": "style_contract_sha256",
+        "style.layout_params_sha256": "layout_params_sha256",
+        "provenance.snapshot_sha256": "snapshot_sha256",
+    }.get(dotted, ""))
+
+
 def build_rebound_reference_layout_plan(
     payload: dict[str, Any],
     ir: ManualIR,
+    *,
+    content_approval: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     """Return a fully validated binding refresh without changing layout.
 
     Rebinding is intentionally narrower than approving a new plan. The manual's
-    semantic content, source-page order, page languages, and every physical
-    composition field must already match. Only non-content IR identity fields
-    and each page's raw source digest may change.
+    semantic content, assembly identity, source-page order, page languages,
+    and every physical composition field must already match. Only style and
+    provenance identity fields plus each page's raw source digest may change.
     """
     actual_hash_algorithm = ir.metadata.get("layout_params_hash_algorithm")
     if actual_hash_algorithm != LAYOUT_PARAMS_HASH_ALGORITHM:
@@ -123,16 +147,34 @@ def build_rebound_reference_layout_plan(
             f"contract={list(current_refs)!r} current={list(expected_refs)!r}"
         )
 
-    source_identity = payload.get("source_identity")
-    if not isinstance(source_identity, dict):
+    old_content = _identity_value(payload, "content.manual_content_sha256")
+    if old_content is None:
         raise ReferenceLayoutPlanError(
-            "approved reference layout source_identity must be an object"
+            "approved reference layout content identity is missing"
         )
-    if source_identity.get("manual_content_sha256") != ir.content_sha256:
+    content_changed = old_content != ir.content_sha256
+    expected_identity = build_identity_scopes(payload, ir)
+    old_assembly = _identity_value(payload, "assembly.sha256")
+    # A v1 plan has no assembly pin. Treat creating that identity as a reviewed
+    # migration, not as evidence that the assembly is unchanged: the legacy
+    # approval could not have covered the semantic page-role projection added
+    # by v2.
+    assembly_changed = old_assembly != expected_identity["assembly"]["sha256"]
+    if (content_changed or assembly_changed) and content_approval is None:
         raise ReferenceLayoutPlanError(
-            "reference-layout rebind cannot change manual_content_sha256; "
-            "content changes require a new layout review and approval"
+            "reference-layout rebind cannot change content or assembly identity; "
+            "those changes require a new layout review and approval"
         )
+    if content_approval is not None:
+        required = ("status", "approved_by", "approved_at", "method")
+        if content_approval.get("status") != "approved" or any(
+            not str(content_approval.get(key, "")).strip()
+            for key in required[1:]
+        ):
+            raise ReferenceLayoutPlanError(
+                "identity reapproval requires approved status plus non-empty "
+                "approved_by, approved_at, and method"
+            )
 
     plan_pages = payload["pages"]
     for plan_page, source_page in zip(plan_pages, ir.pages, strict=True):
@@ -145,13 +187,20 @@ def build_rebound_reference_layout_plan(
 
     original_composition_map = _composition_map(payload)
     candidate = deepcopy(payload)
-    candidate["source_identity"] = {
-        "manual_ir_schema_version": ir.schema_version,
-        "manual_content_sha256": ir.content_sha256,
-        "snapshot_sha256": ir.snapshot_sha256,
-        "style_contract_sha256": ir.style_contract_sha256,
-        "layout_params_sha256": ir.layout_params_sha256,
-    }
+    candidate["schema_version"] = V2_SCHEMA_VERSION
+    candidate["identity"] = build_identity_scopes(candidate, ir)
+    legacy_provenance = _identity_value(payload, "provenance.snapshot_sha256")
+    if payload.get("schema_version") != V2_SCHEMA_VERSION and legacy_provenance:
+        candidate["identity"]["provenance"]["snapshot_sha256"] = legacy_provenance
+    candidate.pop("source_identity", None)
+    idml_contract = candidate.get("idml_contract")
+    if isinstance(idml_contract, dict):
+        idml_contract.setdefault(
+            "allowed_unclassified_source_refs",
+            [],
+        )
+    if content_changed or assembly_changed:
+        candidate["approval"] = deepcopy(content_approval)
     candidate_pages = candidate["pages"]
     for candidate_page, source_page in zip(candidate_pages, ir.pages, strict=True):
         candidate_page["source_sha256"] = source_page.source_sha256
@@ -194,20 +243,21 @@ def rebind_reference_layout_plan(
     ir: ManualIR,
     *,
     write: bool = False,
+    content_approval: dict[str, str] | None = None,
 ) -> ReferenceLayoutRebindResult:
     """Validate a complete binding refresh and optionally commit it atomically."""
     plan_path = plan_path.resolve()
     payload = _read_payload(plan_path)
-    candidate = build_rebound_reference_layout_plan(payload, ir)
+    candidate = build_rebound_reference_layout_plan(
+        payload,
+        ir,
+        content_approval=content_approval,
+    )
 
-    old_identity = payload.get("source_identity")
-    if not isinstance(old_identity, dict):
-        old_identity = {}
-    new_identity = candidate["source_identity"]
     changed_identity_fields = tuple(
         field
         for field in _IDENTITY_FIELDS
-        if old_identity.get(field) != new_identity.get(field)
+        if _identity_value(payload, field) != _identity_value(candidate, field)
     )
     old_pages = payload["pages"]
     new_pages = candidate["pages"]
@@ -224,6 +274,10 @@ def rebind_reference_layout_plan(
         candidate=candidate,
         changed_identity_fields=changed_identity_fields,
         changed_page_bindings=changed_page_bindings,
+        content_reapproved=(
+            _identity_value(payload, "content.manual_content_sha256")
+            != _identity_value(candidate, "content.manual_content_sha256")
+        ),
         wrote=write,
     )
 

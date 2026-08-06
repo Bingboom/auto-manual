@@ -24,6 +24,7 @@ class IdmlPageRoleTests(unittest.TestCase):
             "01_meaning_of_symbols.rst": PageRole.MEANING_OF_SYMBOLS,
             "02_whats_in_the_box.rst": PageRole.INBOX,
             "03_product_overview_placeholder.rst": PageRole.PRODUCT_OVERVIEW,
+            "03_product_overview_je300e.rst": PageRole.PRODUCT_OVERVIEW,
             "05_operation_guide_placeholder.rst": PageRole.OPERATION_GUIDE,
             "06_ups_mode.rst": PageRole.UPS_MODE,
             "07_extra_battery.rst": PageRole.EXTRA_BATTERY,
@@ -49,7 +50,9 @@ class IdmlPageRoleTests(unittest.TestCase):
     def test_merged_physical_prefix_does_not_change_role(self) -> None:
         for name, expected in (
             ("p20_01_user_maintenance_instructions.rst", PageRole.MAINTENANCE),
+            ("p24_03_product_overview_placeholder.rst", PageRole.PRODUCT_OVERVIEW),
             ("p34_12_app_setup_placeholder.rst", PageRole.APP_SETUP),
+            ("p40_03_product_overview_placeholder.rst", PageRole.PRODUCT_OVERVIEW),
             ("p45_08_charging_methods.rst", PageRole.CHARGING_METHODS),
         ):
             with self.subTest(name=name):

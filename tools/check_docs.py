@@ -18,7 +18,7 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 from tools.config_pages import GeneratedPage, RstIncludePage  # noqa: E402
 from tools.contract_assets import ContractAssetResolver  # noqa: E402
 from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
-from tools.utils.path_utils import contracts_dir_of  # noqa: E402
+from tools.utils.path_utils import Paths, contracts_dir_of  # noqa: E402
 from tools.build_docs import (  # noqa: E402
     BuildTarget,
     load_config,
@@ -45,6 +45,10 @@ from tools.check_docs_entry import run_check_entry as _run_check_entry_impl  # n
 from tools.check_docs_capability import collect_capability_issues as _collect_capability_issues_impl  # noqa: E402
 from tools.check_docs_lang_parity import collect_lang_parity_issues as _collect_lang_parity_issues_impl  # noqa: E402
 from tools.check_docs_lang_parity import load_known_exceptions as _load_lang_parity_exceptions  # noqa: E402
+from tools.check_docs_language_scope import (  # noqa: E402
+    collect_language_scope_issues as _collect_language_scope_issues_impl,
+)
+from tools.model_languages import resolve_target_languages as _resolve_target_languages_impl  # noqa: E402
 from tools.check_docs_generated import collect_generated_page_issues as _collect_generated_page_issues_impl  # noqa: E402
 from tools.check_docs_identity import (  # noqa: E402
     collect_identity_drift_issues as _collect_identity_drift_issues_impl,
@@ -505,6 +509,13 @@ def collect_check_issues(
             issue_cls=CheckIssue,
             exceptions=_load_lang_parity_exceptions(
                 kw.pop("docs_dir").parent / "data"), **kw),
+        collect_language_scope_issues=lambda **kw: _collect_language_scope_issues_impl(
+            data_dir=Paths(root=ROOT).data_dir,
+            issue_cls=CheckIssue, **{k: v for k, v in kw.items() if k != "docs_dir"}),
+        resolve_target_languages=lambda langs, *, model, region: (
+            _resolve_target_languages_impl(
+                langs, model=model, region=region,
+                data_dir=Paths(root=ROOT).data_dir)),
     )
 
 

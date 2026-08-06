@@ -26,6 +26,7 @@ from tools.idml.page_objects import (
 )
 from tools.idml.params import param_pt
 from tools.idml.styles import para_styles
+from tools.idml.prose_paragraph import build_text_paragraph
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -90,6 +91,54 @@ class IdmlVisualParityTests(unittest.TestCase):
             h1_bar_h_pt(writer),
             places=5,
         )
+
+    def test_heading_styles_derive_keep_with_next_from_shared_needspace(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        styles = writer.styles_xml()
+        l2 = styles.split('Name="Heading2"', 1)[1].split(">", 1)[0]
+        l3 = styles.split('Name="Heading3"', 1)[1].split(">", 1)[0]
+
+        self.assertIn('KeepWithNext="3"', l2)
+        self.assertIn('KeepWithNext="3"', l3)
+
+        params["comp_title_l2_needspace"] = ("5", "pt")
+        smaller = IdmlWriter(params).styles_xml()
+        smaller_l2 = smaller.split('Name="Heading2"', 1)[1].split(">", 1)[0]
+        self.assertIn('KeepWithNext="1"', smaller_l2)
+
+    def test_prose_lists_select_language_density_styles(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params["lang_fr_type_list_font_leading"] = ("6.8", "pt")
+        params["lang_es_type_list_font_leading"] = ("6.6", "pt")
+        writer = IdmlWriter(params)
+        styles = {
+            name: leading
+            for name, _size, leading, _weight, _kind in para_styles(params)
+        }
+        self.assertEqual(6.8, styles["HB List FR"])
+        self.assertEqual(6.6, styles["HB Sublist ES"])
+
+        for language, semantic, expected in (
+            ("en", "list", "ParagraphStyle/Item List"),
+            ("fr", "list", "ParagraphStyle/HB List FR"),
+            ("es", "sublist", "ParagraphStyle/HB Sublist ES"),
+        ):
+            with self.subTest(language=language, semantic=semantic):
+                paragraph, *_ = build_text_paragraph(
+                    writer,
+                    kind=semantic,
+                    text="• Copy",
+                    terminal=True,
+                    is_preface=False,
+                    has_twocol_layout=False,
+                    in_twocol=False,
+                    bundle_root=ROOT,
+                    page_language=language,
+                    story_id="st_list",
+                    block_index=0,
+                )
+                self.assertIn(expected, paragraph)
 
     def test_body_table_group_uses_panel_fill_for_corner_masks(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

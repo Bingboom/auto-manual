@@ -3,6 +3,9 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_eu/00_preface.rst
+    # EN/FR/ES/DE/IT/UK blocks in one page: trim to the languages this model
+    # ships (data/model_languages.csv) instead of forking the template.
+    lang_blocks: true
   - type: rst_include
     lang: en
     file: templates/page_eu-en/safety_en.rst
@@ -22,6 +25,10 @@ pages:
     engine: draft_v1
     recipe: templates/recipes/eu-en/03_product_overview.yaml
     template: templates/page_eu-en/03_product_overview_placeholder.rst
+    model_overrides:
+      JE-300E:
+        recipe: templates/recipes/eu-en/03_product_overview_je300e.yaml
+        template: templates/page_eu-en/03_product_overview_je300e.rst
     langs: [en]
     include_dir: generated/{model}/draft
   - type: csv_page
@@ -89,6 +96,10 @@ pages:
     engine: draft_v1
     recipe: templates/recipes/eu-en/03_product_overview.yaml
     template: templates/page_eu-fr/03_product_overview_placeholder.rst
+    model_overrides:
+      JE-300E:
+        recipe: templates/recipes/eu-en/03_product_overview_je300e.yaml
+        template: templates/page_eu-fr/03_product_overview_je300e.rst
     langs: [fr]
     include_dir: generated/{model}/draft
   - type: csv_page
@@ -156,6 +167,10 @@ pages:
     engine: draft_v1
     recipe: templates/recipes/eu-en/03_product_overview.yaml
     template: templates/page_eu-es/03_product_overview_placeholder.rst
+    model_overrides:
+      JE-300E:
+        recipe: templates/recipes/eu-en/03_product_overview_je300e.yaml
+        template: templates/page_eu-es/03_product_overview_je300e.rst
     langs: [es]
     include_dir: generated/{model}/draft
   - type: csv_page
@@ -223,6 +238,10 @@ pages:
     engine: draft_v1
     recipe: templates/recipes/eu-en/03_product_overview.yaml
     template: templates/page_eu-de/03_product_overview_placeholder.rst
+    model_overrides:
+      JE-300E:
+        recipe: templates/recipes/eu-en/03_product_overview_je300e.yaml
+        template: templates/page_eu-de/03_product_overview_je300e.rst
     langs: [de]
     include_dir: generated/{model}/draft
   - type: csv_page
@@ -290,6 +309,10 @@ pages:
     engine: draft_v1
     recipe: templates/recipes/eu-en/03_product_overview.yaml
     template: templates/page_eu-it/03_product_overview_placeholder.rst
+    model_overrides:
+      JE-300E:
+        recipe: templates/recipes/eu-en/03_product_overview_je300e.yaml
+        template: templates/page_eu-it/03_product_overview_je300e.rst
     langs: [it]
     include_dir: generated/{model}/draft
   - type: csv_page

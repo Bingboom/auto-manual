@@ -180,15 +180,19 @@ That contract is bound to the 58-page
 and `368.787 × 524.692 pt` page geometry. The physical structure is front
 matter 1–3, English 4–21, French 22–39, Spanish 40–57, and back cover 58. Its
 52 source references are bound by composition across all 58 pages. Missing or
-mismatched plan identity, source/hash drift, or page-count drift is a hard
-failure; the build must not silently use fuzzy PDF matching.
+mismatched enforced content/assembly/style identity, source/hash drift,
+unclassified prose without an exact exception, or page-count drift is a hard
+failure; the build must not silently use fuzzy PDF matching. The v2 contract
+keeps the global phase2 snapshot hash as non-blocking provenance, so unrelated
+table refreshes do not invalidate an unchanged target manual.
 The same rule applies if the contract file is still approved but its registry
 entry is missing: the build stops and names the orphaned contract. Only a target
 with no approved contract may use measured-LaTeX fallback pagination.
 
-When a source refresh changes the Manual IR identity without changing the
-approved 58-page composition, use the rebind command instead of editing one hash
-or removing the registry entry. It is a dry-run unless `--write` is present:
+When a source refresh changes mutable style/provenance identity without changing
+the approved content or semantic/physical assembly, use the rebind command
+instead of editing one hash or removing the registry entry. It is a dry-run
+unless `--write` is present:
 
 ```bash
 python3 tools/reference_layout_rebind.py \
@@ -205,10 +209,37 @@ For a read-only summary of all registered contracts, run
 <manual.ir.json>`. Batch mode never writes; keep `--write` limited to an
 explicit single-plan command after review.
 
-The command validates that semantic content, source order, page languages, and
-physical composition remain unchanged. It refreshes only the mutable
-non-content identities and every page's source digest, then atomically replaces
-the plan. Review the dry-run summary and Git diff before building.
+For a v2 plan, the ordinary command validates that semantic content, assembly,
+source order, page languages, and physical composition remain unchanged. It
+refreshes only the mutable non-content identities and every page's source
+digest, then atomically replaces the plan. Review the dry-run summary and Git
+diff before building. A v1 plan has no assembly pin, so v1-to-v2 migration is
+an identity change and cannot use the ordinary route.
+
+A content/assembly change, including v1-to-v2 migration, is rejected unless an
+operator has first verified the final Manual IR's source-reference order,
+language mapping, `skipped_raw` allowance, semantic page roles, physical page
+count, and composition map. After recording that decision, use the explicit
+approval route in dry-run mode first. The existing flag name is retained for
+CLI compatibility:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --approve-content-change \
+  --approved-by "<operator>" \
+  --approved-at "<RFC3339>" \
+  --approval-method "<recorded review evidence>"
+# Repeat the same command with --write only after reviewing the candidate.
+```
+
+The three approval fields are mandatory and are stored in the contract.
+`--all-registered` cannot approve identity changes or write plans. Source order,
+languages, and physical composition remain immutable even on the approved
+identity-change route. v1 migration does not auto-populate
+`allowed_unclassified_source_refs`; unclassified pages require a separately
+reviewed layout decision.
 The layout-parameter identity follows ordered `key`/`value`/`unit` semantics;
 line-ending, blank-row, and comment-column edits do not create contract drift,
 but a real token value, unit, or order change does.
@@ -294,6 +325,12 @@ paired flow handoff folder: it keeps the production IDML and adds
 `production/manual.production.idml`, the flow folder,
 `missing_assets_report.md`, `designer_checklist.md`, and `layout_feedback.md`.
 
+For reference-layout-registered targets, the IDML command's default
+`--source auto` resolves to the frozen `review-asis` bundle so production and
+flow use the approved page assembly. Explicit `runtime`, `review`, or
+`review-asis` remains unchanged; unregistered targets still default to
+runtime.
+
 Publish queue runs use `--idml-mode both` automatically and upload a single
 designer delivery zip (`manual_..._publish_<version>_handoff.zip`) instead of
 the bare `.idml`: it bundles the production IDML with its image links
@@ -328,6 +365,11 @@ GitHub note:
 - `build.py check` also enforces capability -> chapter consistency: [`../data/model_capabilities.csv`](../data/model_capabilities.csv) mirrors the 文档构建表 feature checkboxes (refreshed by `sync-data` when `FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` is set — it is a tracked file like `page_registry.csv`, so the git diff is the review surface for capability changes; duplicate build-table rows collapse to one mirror row), and [`../data/capability_page_rules.csv`](../data/capability_page_rules.csv) maps each capability to a required/forbidden bundle page or in-page section regex. A target with `UPS功能=TRUE` must carry `06_ups_mode`; one with `加电包扩容=FALSE` must not carry an extra-battery page. Targets without a capability row emit a non-blocking `CAPABILITY_ROW_MISSING` warning unless listed in [`../data/capability_known_missing.csv`](../data/capability_known_missing.csv); capability page selection remains fail-open. Each rule's enforcement is toggled per direction in the rules CSV (`required_when_true` / `forbidden_when_false`), so noisy rules stay recorded but inert until their wording is unified. The Feishu 文档构建 base carries a mirror rules table for visibility; the repo CSVs are the consumed source.
 - `sync-data` derives the capability mirror header from the ordered `capability` values in `capability_page_rules.csv`, so a new rule does not require a separate Python registration list.
 - Manifest pages can carry a `capability:` key (the capability field name): at bundle-plan time the assembler keeps or drops the entry per target using the same capability mirror, so one family manifest declares the page superset and each model auto-selects its chapters. All 24 current `06_ups_mode` entries across the 17 family manifests—including JP, KR, EU, US, AU, pt-BR, and CN—declare `UPS功能`; `manual_us.yaml` additionally maps `07_extra_battery` to `加电包扩容`. Targets without a capability row keep every page. New family manifests must preserve these annotations and refresh the checked-in family diff carrier.
+- When one model needs a different placeholder-backed page layout but the family page order stays the same, that `generated_page` may use `model_overrides.<MODEL>.recipe` and/or `.template`. This is a narrow layout exception: other models still resolve the shared paths, and product/spec values remain in phase2 source tables.
+- **Languages are per model, not per family.** A family config's `build.languages` is the union across that region's models — `configs/config.eu.yaml` lists six because the EU line carries Ukrainian templates, while JE-1000F does not ship Ukrainian. [`../data/model_languages.csv`](../data/model_languages.csv) (`Document_key,Project,languages,notes`, languages `;`-separated) narrows the family list per `<MODEL>_<REGION>` at bundle-plan time, dropping that language's pages **and** its generated data pages (`spec_uk.rst`, `symbols_uk.rst`, …). Never delete a language from the family config to fix one model: the models that do ship it would lose it too. Resolution intersects while preserving the family's order, so the config still owns ordering. It is fail-open like the capability gate — no row keeps every family language — and it is a tracked CSV, so the git diff is the review surface.
+- Prefaces carry every family language *inside one file*, which page selection cannot narrow. Those manifest entries declare `lang_blocks: true` and the assembler drops the out-of-scope blocks (`**FR IMPORTANT**` headers, `\HBLangTagLine{XX}` in `raw:: latex`), keeping page-structure macros. The annotation is required, not inferred, because `**IT ...**` is ordinary bold text elsewhere. This replaces forking a template per language line (`00_preface_single_language.rst` was the hand-made version of exactly this trim). A trimmed target also gets a `MANUAL_LANGUAGE_SCOPE` derived from its real languages, so the cover line stops advertising a language the book no longer contains.
+- A committed `docs/_review` derivative is per `(model, region)` and shared by a region's merged and single-language configs, so it holds the merged book's languages. The trim runs again on the overlaid bundle copy — `docs/_review` itself is never rewritten, and the merged build is unaffected because all its languages are in scope.
+- New `check` codes: `LANG_SCOPE_UNSHIPPED_LANGUAGE` (a scope row disjoint from the family the config declares — today `configs/config.eu-uk.yaml` with its inherited JE-1000F/EU default target, which ships no Ukrainian) and `LANG_SCOPE_FOREIGN_SCRIPT` (a bundle page carrying a dropped language's script, which catches leakage that has neither a `_<lang>` filename suffix nor a language tag). The per-language contract / generated-page / identity / parity collectors all see the narrowed set, so a model shipping five of six family languages no longer fails on the sixth's missing source data.
 - `Review Preview Package` is the separate packaging path when you need to share rendered review HTML with design
 - that workflow now runs a lighter smoke packaging pass with `--skip-word` and verifies the packaged preview files before upload
 

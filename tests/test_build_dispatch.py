@@ -210,6 +210,17 @@ class TestBuildDispatch(unittest.TestCase):
             calls = self._dispatch("idml")
 
         self.assertEqual("rst", calls[1][2]["action_override"])
+        self.assertEqual("review-asis", calls[1][2]["source_override"])
+
+    def test_dispatch_idml_approved_target_preserves_explicit_runtime(self) -> None:
+        with patch.object(
+            build_dispatch,
+            "_target_has_approved_reference_plan",
+            return_value=True,
+        ):
+            calls = self._dispatch("idml", source="runtime")
+
+        self.assertEqual("runtime", calls[1][2]["source_override"])
 
     def test_approved_reference_target_requires_exact_model_region_languages(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -249,6 +260,47 @@ class TestBuildDispatch(unittest.TestCase):
             self.assertFalse(
                 build_dispatch._target_has_approved_reference_plan(
                     args,
+                    config_path=config,
+                    repo_root=root,
+                )
+            )
+
+    def test_approved_reference_target_uses_model_language_scope(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config = root / "configs" / "config.eu.yaml"
+            config.parent.mkdir(parents=True)
+            config.write_text(
+                "build:\n"
+                "  default_model: JE-1000F\n"
+                "  default_region: EU\n"
+                "  languages: [en, fr, es, de, it, uk]\n",
+                encoding="utf-8",
+            )
+            data_dir = root / "data"
+            data_dir.mkdir()
+            (data_dir / "model_languages.csv").write_text(
+                "Document_key,languages\n"
+                "JE-1000F_EU,en;fr;es;de;it\n",
+                encoding="utf-8",
+            )
+            registry = (
+                root
+                / "docs"
+                / "renderers"
+                / "contracts"
+                / "reference_layout_registry.json"
+            )
+            registry.parent.mkdir(parents=True)
+            registry.write_text(
+                '{"plans":[{"target":{"model":"JE-1000F","region":"EU",'
+                '"languages":["en","fr","es","de","it"]}}]}\n',
+                encoding="utf-8",
+            )
+
+            self.assertTrue(
+                build_dispatch._target_has_approved_reference_plan(
+                    SimpleNamespace(model="JE-1000F", region="EU"),
                     config_path=config,
                     repo_root=root,
                 )

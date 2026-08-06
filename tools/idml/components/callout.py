@@ -14,6 +14,7 @@ from ..params import param_pt
 from ..character_metrics import fit_tail_label_xml, with_character_baseline_shift
 from ..line_metrics import estimated_line_count
 from .base import RenderContext, figure_paragraph
+from .safety_warning_style import SafetyWarningStyle
 from .warning_lead import rounded_warninglead
 
 
@@ -81,25 +82,24 @@ def render_safetyinstruction(
     return wrap_table_paragraph(table, terminal, span_columns), 28.0
 
 
-def render_safetywarning(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
-                         span_columns: bool = True,
-                         measure_w: float | None = None) -> tuple[str, float]:
+def render_safetywarning(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool, span_columns: bool = True, measure_w: float | None = None) -> tuple[str, float]:
     body_w = measure_w or ctx.text_measure
     warning_icon_asset = _warning_icon_asset(ctx)
     texts = spec.get("texts", [])
     body = "\n".join(texts)
+    style = SafetyWarningStyle.from_params(ctx.params)
     icon = ""
     if warning_icon_asset.exists():
-        iw, ih = ctx.art_frame_size(warning_icon_asset, max_w=18.0)
+        iw, ih = ctx.art_frame_size(warning_icon_asset, max_w=style.icon_max_width)
         icon = figure_paragraph(image_cell_content(f"{tid}wi", warning_icon_asset, iw, ih))
-    cols = [24.0, max(24.0, body_w - 24.0)]
+    cols = [style.icon_column_width, max(style.icon_column_width, body_w - style.icon_column_width)]
     cells = [
         cell(f"{tid}c0", "0:0", icon, stroke=False),
         cell(f"{tid}c1", "1:0",
              psr("HB Title L3", body, terminal=True), stroke=False),
     ]
     table = component_table(tid, cols, cells, role="warning")
-    return wrap_table_paragraph(table, terminal, span_columns), 28.0
+    return wrap_table_paragraph(table, terminal, span_columns), style.panel_min_height
 
 
 def render_warninglead(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,

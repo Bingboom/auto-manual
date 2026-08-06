@@ -109,6 +109,8 @@ La luce LED ha due modalità: modalità luce e modalità SOS. In qualsiasi modal
 | Premilo di nuovo per passare alla modalità SOS.
 | Premilo una terza volta per spegnere la luce.
 
+.. hb-capability-begin: AC/DC输出记忆恢复
+
 Funzione di ripristino delle uscite CA e CC
 -------------------------------------------
 
@@ -125,6 +127,9 @@ La funzione di ripristino delle uscite CA e CC è disattivata per impostazione p
 +------------------------------------------------------------------------+------------------------------------------------------------------+
 | Aggiornamento OTA completato                                           | Spegnimento delle uscite attivato dal timer di scarica           |
 +------------------------------------------------------------------------+------------------------------------------------------------------+
+
+.. hb-capability-end:
+
 
 SCHERMO LCD
 -----------

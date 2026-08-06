@@ -13,6 +13,7 @@
         {
           "file": "templates/page_shared/en/00_preface.rst",
           "lang": "en",
+          "lang_blocks": true,
           "type": "rst_include"
         },
         {
@@ -45,6 +46,12 @@
           "langs": [
             "en"
           ],
+          "model_overrides": {
+            "JE-300E": {
+              "recipe": "templates/recipes/eu-en/03_product_overview_je300e.yaml",
+              "template": "templates/page_eu-en/03_product_overview_je300e.rst"
+            }
+          },
           "page": "03_product_overview",
           "recipe": "templates/recipes/eu-en/03_product_overview.yaml",
           "template": "templates/page_eu-en/03_product_overview_placeholder.rst",

@@ -65,6 +65,7 @@ def prepare_manual_bundle(
     docs_dir: Path,
     repo_root: Path,
     printer: Callable[[str], None] = print,
+    trim_bundle_language_blocks: Callable[..., list[tuple[str, tuple[str, ...]]]] | None = None,
 ) -> Any:
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type != "manual_bundle":
@@ -148,6 +149,20 @@ def prepare_manual_bundle(
                 "Review bundle not found for "
                 f"model='{model or ''}', region='{region or ''}'. "
                 "Run 'python build.py review ...' first."
+            )
+    # A committed review derivative is per (model, region) and shared by the
+    # region's merged and single-language configs, so it carries every language
+    # the merged book needs. Re-trim the overlaid copy against this target's
+    # language scope; docs/_review stays untouched.
+    if review_applied and trim_bundle_language_blocks is not None:
+        for file_name, dropped in trim_bundle_language_blocks(
+            bundle_dir=bundle.bundle_dir,
+            lang_block_pages=bundle.lang_block_pages,
+            languages=bundle.languages,
+        ):
+            printer(
+                f"[build] Review overlay {file_name}: dropped "
+                f"{list(dropped)} language block(s) not shipped by this target"
             )
     # Stage synced bitable attachments (lcd_icons / symbols) for EVERY bundle,
     # not only review overlays: runtime materialization also writes

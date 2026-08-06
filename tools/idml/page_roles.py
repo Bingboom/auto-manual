@@ -79,7 +79,7 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
     PageRoleRule(PageRole.INBOX, semantic_stems=("02_whats_in_the_box",)),
     PageRoleRule(
         PageRole.PRODUCT_OVERVIEW,
-        semantic_stems=("03_product_overview_placeholder",),
+        pattern=re.compile(r"(?:p\d+_)?03_product_overview(?:_.+)?"),
     ),
     PageRoleRule(
         PageRole.OPERATION_GUIDE,

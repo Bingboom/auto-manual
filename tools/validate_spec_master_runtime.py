@@ -619,7 +619,19 @@ def _collect_selector_issues(
 ) -> tuple[list[SpecMasterValidationIssue], list[dict[str, str]]]:
     issues: list[SpecMasterValidationIssue] = []
     matched_latest_rows: list[dict[str, str]] = []
-    target_langs = [target.lang] if (target.lang or "").strip() else langs
+    if (target.lang or "").strip():
+        target_langs = [target.lang]
+    else:
+        from tools.model_languages import resolve_target_languages
+
+        target_langs = list(
+            resolve_target_languages(
+                langs,
+                model=target.model,
+                region=target.region,
+                data_dir=ROOT / "data",
+            ).languages
+        )
     selectors, selector_issues = _collect_target_selectors(cfg, target=target, langs=target_langs)
     issues.extend(selector_issues)
 

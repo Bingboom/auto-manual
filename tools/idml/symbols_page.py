@@ -25,7 +25,6 @@ from .params import IDPKG, component_param_pt
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
-SUBBAR_H = 13.9  # master/publish-PDF measured capsule height
 SYMBOL_ICON_ART_SCALE = 0.9
 
 
@@ -66,6 +65,15 @@ class SafetySymbolsPageStyle:
     icon_row_height: float
     icon_last_row_height: float
     icon_long_last_row_height: float
+    subbar_height: float
+    maintenance_title_gap: float
+    symbols_title_gap: float
+    h1_optical_offset: float
+    page_bottom_allowance: float
+    fallback_import_allowance: float
+    fallback_min_height: float
+    fallback_text_width_ratio: float
+    fallback_row_height: float
 
     @classmethod
     def from_writer(cls, writer, language: str) -> "SafetySymbolsPageStyle":
@@ -110,6 +118,27 @@ class SafetySymbolsPageStyle:
             ),
             icon_long_last_row_height=token(
                 "idml_symbols_icon_long_last_row_height", 64.9,
+            ),
+            subbar_height=token("comp_subbar_height", 13.9),
+            maintenance_title_gap=token(
+                "idml_symbols_maintenance_title_gap", 3.5,
+            ),
+            symbols_title_gap=token("idml_symbols_title_gap", 9.0),
+            h1_optical_offset=token("idml_symbols_h1_optical_offset", 1.918),
+            page_bottom_allowance=token(
+                "idml_symbols_page_bottom_allowance", 2.0,
+            ),
+            fallback_import_allowance=token(
+                "idml_symbols_fallback_import_allowance", 3.0,
+            ),
+            fallback_min_height=token(
+                "idml_symbols_fallback_min_height", 60.0,
+            ),
+            fallback_text_width_ratio=token(
+                "idml_symbols_fallback_text_width_ratio", 0.73,
+            ),
+            fallback_row_height=token(
+                "idml_symbols_fallback_row_height", 24.0,
             ),
         )
 
@@ -612,8 +641,9 @@ def add_safety_symbols_page(
             }),
             gap=tail_gap,
         )
-    _place("maint_title", maint_title_sid, SUBBAR_H,
-           heading_bar_opts(2, (0.5, 5, 0.5, 6)), gap=3.5)
+    _place("maint_title", maint_title_sid, style.subbar_height,
+           heading_bar_opts(2, (0.5, 5, 0.5, 6)),
+           gap=style.maintenance_title_gap)
     _place(
         "maint_body",
         maint_body_sid,
@@ -622,7 +652,8 @@ def add_safety_symbols_page(
         gap=style.maintenance_body_gap,
     )
     _place("symbols_title", symbols_title_sid, h1_bar_h_pt(writer),
-           heading_bar_opts(1, (1.5, 5, 1, 6)), gap=9.0)
+           heading_bar_opts(1, (1.5, 5, 1, 6)),
+           gap=style.symbols_title_gap)
     signals_h = style.signal_header_height + style.signal_row_height * len(signals)
     _place("signals", signal_sid, signals_h,
            with_rounded_outer({
@@ -630,19 +661,25 @@ def add_safety_symbols_page(
                "rounded_outer_masks": True,
            }),
            gap=style.signal_gap_after)
-    bottom = writer.page_h - 2.0
+    bottom = writer.page_h - style.page_bottom_allowance
     if lang in governed_languages():
         # The governed rows already include the table's full vertical
         # measure.  Adding an import allowance here leaves an unfilled band
         # below the last icon row before the rounded shell's bottom arc.
         icons_h = max(sum(left_row_heights), sum(right_row_heights))
     else:
-        icons_h = 3.0 + max(60.0, min(
+        icons_h = style.fallback_import_allowance + max(
+            style.fallback_min_height,
+            min(
             max(est_table_height([r.get("text", "") for r in left_icons],
-                                 icon_table_w * 0.73, 24.0),
+                                 icon_table_w * style.fallback_text_width_ratio,
+                                 style.fallback_row_height),
                 est_table_height([r.get("text", "") for r in right_icons],
-                                 icon_table_w * 0.73, 24.0)),
-            bottom - y))
+                                 icon_table_w * style.fallback_text_width_ratio,
+                                 style.fallback_row_height)),
+                bottom - y,
+            ),
+        )
     frame_specs.append(("icons_left", left_sid, (body_x, y, icon_table_w, icons_h),
                         with_rounded_outer({
                             "inset": (0, 0, 0, 0),
@@ -670,7 +707,12 @@ def add_safety_symbols_page(
             # rectangles so the visible title is vertically centered without
             # shifting the already aligned signal table below.
             text_y = rect[1]
-            rect = (rect[0], rect[1] + 1.918, rect[2], rect[3])
+            rect = (
+                rect[0],
+                rect[1] + style.h1_optical_offset,
+                rect[2],
+                rect[3],
+            )
             opts = {**opts, "text_rect": (
                 rect[0] + 6.0, text_y, rect[2] - 12.0, rect[3])}
         frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))

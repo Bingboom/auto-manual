@@ -46,7 +46,9 @@ MIN_LATIN_CHARS_FOR_SHELL_CHECK = 200
 # terminology (USB-C, AC/DC, URLs) still land far above this.
 SHELL_TARGET_SCRIPT_RATIO = 0.05
 
-_SCRIPT_RANGES: dict[str, str] = {
+# Public: the language-scope gate counts the same scripts over the same
+# ranges, so a newly separable script has one definition point.
+SCRIPT_RANGES: dict[str, str] = {
     # Hangul syllables + jamo
     "ko": "가-힣ᄀ-ᇿ㄰-㆏",
     # Kana; kanji is added separately because it is shared with zh
@@ -122,7 +124,7 @@ def _prose_text(page_text: str) -> str:
 
 def _script_counts(text: str, lang: str) -> tuple[int, int]:
     """(latin_letters, target_script_chars) over prose text."""
-    ranges = _SCRIPT_RANGES.get(_normalize_lang(lang))
+    ranges = SCRIPT_RANGES.get(_normalize_lang(lang))
     latin = len(re.findall(r"[A-Za-z]", text))
     if not ranges:
         return latin, 0
@@ -200,7 +202,7 @@ def collect_lang_parity_issues(*, bundle_dir: Path, langs: list[str],
         if page_lang is None:
             continue
         normalized_page_lang = _normalize_lang(page_lang)
-        if normalized_page_lang not in _SCRIPT_RANGES:
+        if normalized_page_lang not in SCRIPT_RANGES:
             continue
         if normalized_page_lang not in family_langs:
             continue
