@@ -34,6 +34,26 @@ def _repo(tmp: str, *, identity: dict) -> Path:
     return root
 
 
+def _repo_v2(tmp: str, *, style: dict) -> Path:
+    root = Path(tmp)
+    contracts = root.joinpath(*guard.CONTRACTS_SUBDIR)
+    contracts.mkdir(parents=True)
+    (contracts / "je1000f_us_v2.json").write_text(
+        json.dumps({
+            "schema_version": "approved-reference-layout-plan/v2",
+            "approval": {"status": "approved"},
+            "target": {
+                "model": "JE-1000F",
+                "region": "US",
+                "languages": ["en", "fr", "es"],
+            },
+            "identity": {"style": style},
+        }),
+        encoding="utf-8",
+    )
+    return root
+
+
 class PinDriftTest(unittest.TestCase):
     def setUp(self):
         patches = (
@@ -79,6 +99,17 @@ class PinDriftTest(unittest.TestCase):
     def test_stale_style_pin_is_reported_too(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = _repo(tmp, identity={"style_contract_sha256": "stale"})
+            self.assertEqual(
+                [name for _c, name, _p, _a in guard.collect_pin_drift(root)],
+                ["style_contract_sha256"],
+            )
+
+    def test_v2_scoped_style_pins_are_checked(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _repo_v2(tmp, style={
+                "layout_params_sha256": "layout-actual",
+                "style_contract_sha256": "stale",
+            })
             self.assertEqual(
                 [name for _c, name, _p, _a in guard.collect_pin_drift(root)],
                 ["style_contract_sha256"],

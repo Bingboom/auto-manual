@@ -12,7 +12,7 @@ import re
 from ..character_metrics import with_character_baseline_shift, with_character_metrics
 from ..language_contract import governed_languages
 from ..line_metrics import east_asian_width_units
-from ..params import component_param_pt, param_pt
+from ..params import component_param_pt, param_pt, param_text
 from ..primitives import (
     cell,
     component_table,
@@ -72,19 +72,25 @@ class TroubleshootingTableStyle:
     row_minima: tuple[float, ...]
     steps_pad_tb: float
     outer_radius: float
-    panel_min_height: float = 237.79
-    import_safety: float = 0.0
-    glyph_width_ratio: float = 0.50
-    left_optical_width: float = 4.0
-    inner_rule: float = 0.25
-    outer_rule: float = 0.57
+    panel_min_height: float
+    import_safety: float
+    glyph_width_ratio: float
+    left_optical_width: float
+    inner_rule: float
+    outer_rule: float
+    extra_row_min_height: float
     space_before: float = 9.74
     table_space_before_by_language: tuple[float, float, float] = (
         8.74, 6.70, 7.75,
     )
 
     @classmethod
-    def from_context(cls, ctx: RenderContext) -> TroubleshootingTableStyle:
+    def from_context(
+        cls,
+        ctx: RenderContext,
+        *,
+        language: str | None = None,
+    ) -> TroubleshootingTableStyle:
         """Resolve shared type/row tokens once for rendering and estimation."""
         def token(key: str, default: float) -> float:
             value = component_param_pt(
@@ -100,6 +106,56 @@ class TroubleshootingTableStyle:
                     f"positive: {key}"
                 )
             return value
+
+        def nonnegative_token(key: str, default: float) -> float:
+            value = component_param_pt(
+                ctx.params,
+                key,
+                default,
+                strict=ctx.strict_component_assets,
+                owner="TroubleshootingTableStyle",
+            )
+            if not math.isfinite(value) or value < 0:
+                raise ValueError(
+                    "TroubleshootingTableStyle layout token must be finite and "
+                    f"nonnegative: {key}"
+                )
+            return value
+
+        language = (language or ctx.language or "en").split("-", 1)[0]
+        calibration = _TROUBLESHOOTING_LOCALE_CALIBRATIONS.get(
+            language,
+            _TROUBLESHOOTING_LOCALE_CALIBRATIONS["en"],
+        )
+        minima_key = (
+            f"lang_{language}_idml_trouble_row_minima"
+            if language in governed_languages()
+            else "idml_trouble_row_minima"
+        )
+        minima_raw = param_text(
+            ctx.params,
+            minima_key,
+            ";".join(str(value) for value in calibration.native_row_heights),
+        )
+        if ctx.strict_component_assets and minima_key not in ctx.params:
+            raise ValueError(
+                "approved TroubleshootingTableStyle style is missing required "
+                f"layout token: {minima_key}"
+            )
+        try:
+            row_minima = tuple(float(value.strip()) for value in minima_raw.split(";"))
+        except ValueError as exc:
+            raise ValueError(
+                "TroubleshootingTableStyle idml_trouble_row_minima must contain "
+                "semicolon-separated numbers"
+            ) from exc
+        if len(row_minima) != 12 or any(
+            not math.isfinite(value) or value <= 0 for value in row_minima
+        ):
+            raise ValueError(
+                "TroubleshootingTableStyle idml_trouble_row_minima must contain "
+                "twelve finite positive heights"
+            )
 
         header_h = token("comp_data_table_header_height", 14.74)
         row_h = token("comp_data_table_row_height", 11.91)
@@ -120,12 +176,22 @@ class TroubleshootingTableStyle:
             # InDesign's exported cell box is about 1.2 pt shorter than the
             # IDML SingleRowHeight at this scale. These corrections preserve
             # the established production-master row contract.
-            header_single_height=header_h + 3.43,
-            body_single_height=row_h + 2.79,
-            row_minima=_TROUBLESHOOTING_BASE_ROW_MINIMA,
+            header_single_height=header_h + token(
+                "idml_trouble_header_height_correction", 3.43,
+            ),
+            body_single_height=row_h + token(
+                "idml_trouble_body_height_correction", 2.79,
+            ),
+            row_minima=row_minima,
             steps_pad_tb=token("comp_trouble_steps_pad_tb", 2.83465),
             outer_radius=token("comp_table_outer_arc", 6.8),
+            panel_min_height=token("idml_trouble_panel_min_height", 237.79),
+            import_safety=nonnegative_token("idml_trouble_import_safety", 0.0),
+            glyph_width_ratio=token("idml_trouble_glyph_width_ratio", 0.50),
             left_optical_width=token("idml_trouble_left_optical_width", 4.0),
+            inner_rule=token("idml_trouble_inner_rule", 0.25),
+            outer_rule=token("idml_trouble_outer_rule", 0.57),
+            extra_row_min_height=token("idml_trouble_extra_row_min_height", 11.15),
             table_space_before_by_language=(
                 token("lang_en_idml_trouble_table_space_before", 8.74),
                 token("lang_fr_idml_trouble_table_space_before", 6.70),
@@ -142,7 +208,7 @@ class TroubleshootingTableStyle:
     def minimum_for_row(self, row_index: int) -> float:
         if row_index < len(self.row_minima):
             return self.row_minima[row_index]
-        return 11.15
+        return self.extra_row_min_height
 
 
 _TROUBLESHOOTING_HEADER_LANGUAGES = {
@@ -154,10 +220,6 @@ _TROUBLESHOOTING_HEADER_LANGUAGES = {
     "código de error": "es",
     "codigo de error": "es",
 }
-_TROUBLESHOOTING_BASE_ROW_MINIMA = (
-    14.77, 11.80, 12.37, 11.79, 11.99, 11.87,
-    23.89, 57.61, 31.96, 17.41, 18.43, 11.97,
-)
 _TROUBLESHOOTING_LOCALE_CALIBRATIONS = {
     "en": _TroubleshootingLocaleCalibration(
         native_row_heights=(
@@ -377,7 +439,7 @@ def _troubleshooting_frame_height(
             )
             measured_lines.append(lines)
         if row_index < len(calibration.native_row_heights):
-            native_height = calibration.native_row_heights[row_index]
+            native_height = style.minimum_for_row(row_index)
             left_baseline = calibration.left_line_baseline[row_index]
             right_baseline = calibration.right_line_baseline[row_index]
         else:
@@ -493,7 +555,6 @@ def _troubleshooting_table(
     cols = [left_w, body_w - left_w]
     header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
     language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
-    calibration = _TROUBLESHOOTING_LOCALE_CALIBRATIONS[language]
 
     cells: list[str] = []
     for ri, row in enumerate(raw_rows):
@@ -583,7 +644,7 @@ def _troubleshooting_table(
     rows = "\n".join(
         f'    <Row Self="{tid}r{ri}" Name="{ri}" '
         f'SingleRowHeight="{style.header_single_height if ri == 0 else style.body_single_height:g}" '
-        f'MinimumHeight="{calibration.native_row_heights[ri] if ri < len(calibration.native_row_heights) else style.minimum_for_row(ri):g}" '
+        f'MinimumHeight="{style.minimum_for_row(ri):g}" '
         'AutoGrow="true"/>'
         for ri in range(len(raw_rows))
     )
@@ -714,7 +775,13 @@ def _body_data_table(
             if rowspan > 1:
                 cell_xml = cell_xml.replace('RowSpan="1"', f'RowSpan="{rowspan}"', 1)
             cells.append(cell_xml)
-    table = component_table(tid, cols, cells, n_rows=len(raw_rows), role="data")
+    table = component_table(
+        tid,
+        cols,
+        cells,
+        n_rows=len(raw_rows),
+        role="auto_resume" if kind == "auto_resume" else "data",
+    )
     table = suppress_outer_edges_xml(table, n_cols)
     if row_heights is not None and len(row_heights) != len(raw_rows):
         raise ValueError("Auto Resume row geometry does not match source rows")
@@ -786,7 +853,13 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
     if is_overview:
         table = _overview_table(raw_rows, ctx, tid)
     elif is_troubleshooting:
-        troubleshooting_style = TroubleshootingTableStyle.from_context(ctx)
+        troubleshooting_style = TroubleshootingTableStyle.from_context(
+            ctx,
+            language=_TROUBLESHOOTING_HEADER_LANGUAGES.get(
+                trouble_header,
+                "en",
+            ),
+        )
         table, framed_h = _troubleshooting_table(
             raw_rows,
             ctx,

@@ -163,6 +163,30 @@ class IdmlSpecLocalizationTests(unittest.TestCase):
                         story,
                     )
 
+    def test_spec_row_minima_and_multiline_growth_are_token_driven(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params["idml_spec_table_row_height"] = ("12", "pt")
+        params["comp_spec_table_multiline_min_height"] = ("20", "pt")
+        writer = IdmlWriter(params)
+
+        writer.add_spec_story([{
+            "title": "GENERAL",
+            "rows": [
+                ("Single", "Value"),
+                ("Multiline", "First line\nSecond line"),
+            ],
+        }], lang="en")
+
+        table = dict(writer.stories)["st_anchor_spec_en0"]
+        self.assertIn(
+            'SingleRowHeight="12" MinimumHeight="12" AutoGrow="true"',
+            table,
+        )
+        self.assertIn(
+            'SingleRowHeight="20" MinimumHeight="20" AutoGrow="true"',
+            table,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

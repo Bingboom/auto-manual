@@ -11,12 +11,16 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import unquote, urlparse
 
-from tools.idml.reference_layout_plan import validate_approved_reference_plan
+from tools.idml.reference_layout_plan import (
+    SUPPORTED_SCHEMA_VERSIONS,
+    V2_SCHEMA_VERSION,
+    validate_approved_reference_plan,
+)
 from tools.manual_ir import ManualIR
 from tools.utils.path_utils import PathSegments
 
 
-APPROVED_PLAN_SCHEMA = "approved-reference-layout-plan/v1"
+APPROVED_PLAN_SCHEMA = V2_SCHEMA_VERSION
 
 
 def _sha256(path: Path) -> str:
@@ -112,9 +116,10 @@ def _read_reference_plan(
     if path is None:
         return None
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("schema_version") != APPROVED_PLAN_SCHEMA:
+    if payload.get("schema_version") not in SUPPORTED_SCHEMA_VERSIONS:
         raise ValueError(
-            f"reference plan schema must be {APPROVED_PLAN_SCHEMA}: {path}",
+            "reference plan schema must be one of "
+            f"{sorted(SUPPORTED_SCHEMA_VERSIONS)}: {path}",
         )
     issues = validate_approved_reference_plan(payload, manual_ir)
     if issues:
@@ -137,13 +142,25 @@ def _approved_contract_report(
             "pass": False,
         }
     expected_reference = plan["reference_pdf"]
-    expected_source = plan["source_identity"]
-    source_fields = {
-        "manual_content_sha256": "content_sha256",
-        "snapshot_sha256": "snapshot_sha256",
-        "style_contract_sha256": "style_contract_sha256",
-        "layout_params_sha256": "layout_params_sha256",
-    }
+    if plan.get("schema_version") == V2_SCHEMA_VERSION:
+        identity = plan["identity"]
+        expected_source = {
+            **identity["content"],
+            **identity["style"],
+        }
+        source_fields = {
+            "manual_content_sha256": "content_sha256",
+            "style_contract_sha256": "style_contract_sha256",
+            "layout_params_sha256": "layout_params_sha256",
+        }
+    else:
+        expected_source = plan["source_identity"]
+        source_fields = {
+            "manual_content_sha256": "content_sha256",
+            "snapshot_sha256": "snapshot_sha256",
+            "style_contract_sha256": "style_contract_sha256",
+            "layout_params_sha256": "layout_params_sha256",
+        }
     source_checks = {
         contract_key: {
             "expected": expected_source.get(contract_key),
@@ -170,7 +187,7 @@ def _approved_contract_report(
             "pass": expected_reference["page_count"] == reference["page_count"],
         },
     }
-    return {
+    report = {
         "enforced": True,
         "path": str(plan_path.resolve()) if plan_path else None,
         "sha256": _sha256(plan_path) if plan_path else None,
@@ -181,6 +198,21 @@ def _approved_contract_report(
         "pass": all(item["pass"] for item in source_checks.values())
         and all(item["pass"] for item in reference_checks.values()),
     }
+    if plan.get("schema_version") == V2_SCHEMA_VERSION:
+        provenance = plan["identity"]["provenance"]["snapshot_sha256"]
+        report["assembly_identity"] = {
+            "expected": plan["identity"]["assembly"]["sha256"],
+            "validated_by_plan_loader": True,
+            "pass": True,
+        }
+        report["provenance"] = {
+            "snapshot_sha256": {
+                "approved": provenance,
+                "current": manual_ir.get("snapshot_sha256"),
+                "enforced": False,
+            },
+        }
+    return report
 
 
 def _structure_report(

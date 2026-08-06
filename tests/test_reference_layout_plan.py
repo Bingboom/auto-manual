@@ -9,7 +9,7 @@ import unittest
 
 from tools.idml.reference_layout_plan import (
     ReferenceLayoutPlanError,
-    SCHEMA_VERSION,
+    V1_SCHEMA_VERSION,
     load_approved_reference_plan,
     normalize_approved_reference_plan,
     validate_approved_reference_plan,
@@ -61,7 +61,7 @@ def _approved_payload(ir: ManualIR) -> dict[str, object]:
         ("tail", 4, 2),
     )
     return {
-        "schema_version": SCHEMA_VERSION,
+        "schema_version": V1_SCHEMA_VERSION,
         "target": {
             "model": ir.model,
             "region": ir.region,
@@ -138,7 +138,7 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
 
         self.assertEqual("latex-page-plan/v1", plan["schema_version"])
         self.assertEqual("approved-reference", plan["plan_source"])
-        self.assertEqual(SCHEMA_VERSION, plan["approved_plan_schema_version"])
+        self.assertEqual(V1_SCHEMA_VERSION, plan["approved_plan_schema_version"])
         self.assertEqual(5, plan["physical_page_count"])
         self.assertEqual(4, plan["source_page_count"])
         self.assertEqual(4, plan["matched_source_pages"])
@@ -186,13 +186,22 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
             / "je1000f_us_v2_20260605.json"
         )
         contract = json.loads(path.read_text(encoding="utf-8"))
-        self.assertEqual(0, contract["idml_contract"]["max_skipped_raw"])
-        # Operator-approved content repin, 2026-08-01 (live Feishu copy fixes;
-        # composition map unchanged). Update only alongside a recorded approval.
         self.assertEqual(
-            "031e4d2fcd7dce677ef632867ff71f32294e32587942205ef72665d4752a0be7",
-            contract["source_identity"]["manual_content_sha256"],
+            "approved-reference-layout-plan/v2",
+            contract["schema_version"],
         )
+        self.assertEqual(0, contract["idml_contract"]["max_skipped_raw"])
+        self.assertEqual(
+            [],
+            contract["idml_contract"]["allowed_unclassified_source_refs"],
+        )
+        # Operator-approved content rebind, 2026-08-05; source order, language
+        # mapping, and the 58-page composition map were verified unchanged.
+        self.assertEqual(
+            "ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0",
+            contract["identity"]["content"]["manual_content_sha256"],
+        )
+        self.assertRegex(contract["identity"]["assembly"]["sha256"], r"^[0-9a-f]{64}$")
         pages = contract["pages"]
         self.assertEqual(52, len(pages))
         self.assertEqual(52, len({page["source_ref"] for page in pages}))

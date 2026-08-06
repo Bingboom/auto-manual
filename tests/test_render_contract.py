@@ -105,8 +105,26 @@ class RenderContractTests(unittest.TestCase):
 
     def test_strict_mode_exposes_remaining_renderer_debt(self) -> None:
         issues = validate_render_contract(self.contract, self.tokens, strict=True)
-        self.assertTrue(issues)
-        self.assertTrue(any("HB-TITLE-L1" in issue for issue in issues))
+        debt_styles = {
+            match.group(1)
+            for issue in issues
+            if (match := re.search(r"styles\.(HB-[A-Z0-9-]+):", issue))
+        }
+        self.assertEqual(
+            {
+                "HB-TYPE-LEAD",
+                "HB-TYPE-FOOTER",
+                "HB-TYPE-PAGE-NUMBER",
+                "HB-TABLE-LCD-ICON",
+                "HB-SPECIAL-FCC",
+                "HB-SPECIAL-INBOX",
+                "HB-SPECIAL-OVERVIEW",
+                "HB-PAGE-STANDARD",
+                "HB-PAGE-NO-FOOTER",
+                "HB-PAGE-COVER",
+            },
+            debt_styles,
+        )
 
 
 if __name__ == "__main__":

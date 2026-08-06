@@ -180,15 +180,19 @@ That contract is bound to the 58-page
 and `368.787 × 524.692 pt` page geometry. The physical structure is front
 matter 1–3, English 4–21, French 22–39, Spanish 40–57, and back cover 58. Its
 52 source references are bound by composition across all 58 pages. Missing or
-mismatched plan identity, source/hash drift, or page-count drift is a hard
-failure; the build must not silently use fuzzy PDF matching.
+mismatched enforced content/assembly/style identity, source/hash drift,
+unclassified prose without an exact exception, or page-count drift is a hard
+failure; the build must not silently use fuzzy PDF matching. The v2 contract
+keeps the global phase2 snapshot hash as non-blocking provenance, so unrelated
+table refreshes do not invalidate an unchanged target manual.
 The same rule applies if the contract file is still approved but its registry
 entry is missing: the build stops and names the orphaned contract. Only a target
 with no approved contract may use measured-LaTeX fallback pagination.
 
-When a source refresh changes the Manual IR identity without changing the
-approved 58-page composition, use the rebind command instead of editing one hash
-or removing the registry entry. It is a dry-run unless `--write` is present:
+When a source refresh changes mutable style/provenance identity without changing
+the approved content or semantic/physical assembly, use the rebind command
+instead of editing one hash or removing the registry entry. It is a dry-run
+unless `--write` is present:
 
 ```bash
 python3 tools/reference_layout_rebind.py \
@@ -205,10 +209,37 @@ For a read-only summary of all registered contracts, run
 <manual.ir.json>`. Batch mode never writes; keep `--write` limited to an
 explicit single-plan command after review.
 
-The command validates that semantic content, source order, page languages, and
-physical composition remain unchanged. It refreshes only the mutable
-non-content identities and every page's source digest, then atomically replaces
-the plan. Review the dry-run summary and Git diff before building.
+For a v2 plan, the ordinary command validates that semantic content, assembly,
+source order, page languages, and physical composition remain unchanged. It
+refreshes only the mutable non-content identities and every page's source
+digest, then atomically replaces the plan. Review the dry-run summary and Git
+diff before building. A v1 plan has no assembly pin, so v1-to-v2 migration is
+an identity change and cannot use the ordinary route.
+
+A content/assembly change, including v1-to-v2 migration, is rejected unless an
+operator has first verified the final Manual IR's source-reference order,
+language mapping, `skipped_raw` allowance, semantic page roles, physical page
+count, and composition map. After recording that decision, use the explicit
+approval route in dry-run mode first. The existing flag name is retained for
+CLI compatibility:
+
+```bash
+python3 tools/reference_layout_rebind.py \
+  --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
+  --manual-ir <manual.ir.json> \
+  --approve-content-change \
+  --approved-by "<operator>" \
+  --approved-at "<RFC3339>" \
+  --approval-method "<recorded review evidence>"
+# Repeat the same command with --write only after reviewing the candidate.
+```
+
+The three approval fields are mandatory and are stored in the contract.
+`--all-registered` cannot approve identity changes or write plans. Source order,
+languages, and physical composition remain immutable even on the approved
+identity-change route. v1 migration does not auto-populate
+`allowed_unclassified_source_refs`; unclassified pages require a separately
+reviewed layout decision.
 The layout-parameter identity follows ordered `key`/`value`/`unit` semantics;
 line-ending, blank-row, and comment-column edits do not create contract drift,
 but a real token value, unit, or order change does.
@@ -293,6 +324,12 @@ Use `python3 build.py idml --idml-mode both ...` when design also needs the
 paired flow handoff folder: it keeps the production IDML and adds
 `production/manual.production.idml`, the flow folder,
 `missing_assets_report.md`, `designer_checklist.md`, and `layout_feedback.md`.
+
+For reference-layout-registered targets, the IDML command's default
+`--source auto` resolves to the frozen `review-asis` bundle so production and
+flow use the approved page assembly. Explicit `runtime`, `review`, or
+`review-asis` remains unchanged; unregistered targets still default to
+runtime.
 
 Publish queue runs use `--idml-mode both` automatically and upload a single
 designer delivery zip (`manual_..._publish_<version>_handoff.zip`) instead of

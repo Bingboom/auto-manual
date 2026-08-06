@@ -22,41 +22,28 @@ from __future__ import annotations
 
 import json
 import re
-from dataclasses import dataclass, field
 from pathlib import Path
 
 try:
     from tools.idml.data_components import is_data_plumbing, parse_data_component
+    from tools.idml.extract_contract import Block, EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS
     from tools.idml.latex_conditionals import active_lines
     from tools.idml.notice_labels import notice_label_variant
+    from tools.idml.semantic_containers import append_semantic_container
     from tools.idml_rst_tables import (
         parse_grid_table as _parse_grid_table_impl,
         parse_list_table as _parse_list_table_impl,
     )
 except ModuleNotFoundError:  # direct tools/export_idml.py execution
     from idml.data_components import is_data_plumbing, parse_data_component  # type: ignore
+    from idml.extract_contract import Block, EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS  # type: ignore
     from idml.latex_conditionals import active_lines  # type: ignore
     from idml.notice_labels import notice_label_variant  # type: ignore
+    from idml.semantic_containers import append_semantic_container  # type: ignore
     from idml_rst_tables import (  # type: ignore
         parse_grid_table as _parse_grid_table_impl,
         parse_list_table as _parse_list_table_impl,
     )
-
-Block = tuple[str, str]
-EMITTED_COMPONENT_KINDS = ("langtag",
-    "fcc", "inbox", "lcdmode", "notice", "safetyinstruction", "safetywarning",
-    "warninglead", "warnbox")
-
-# JSON block payloads must be unescaped inside their values, not their envelope.
-_JSON_BLOCK_KINDS = frozenset({"component", "data", "table"})
-
-
-@dataclass
-class ExtractResult:
-    blocks: list[Block] = field(default_factory=list)
-    skipped_raw: int = 0
-    twocol: bool = False  # page contains a safetytwocol region
-
 
 # ---------------------------------------------------------------------------
 # brace-aware macro argument extraction
@@ -376,7 +363,7 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
         indent = len(line) - len(line.lstrip())
 
         # directives
-        m = re.match(r"\.\.\s+(only|raw|image|list-table)::\s*(.*)", stripped)
+        m = re.match(r"\.\.\s+(container|only|raw|image|list-table)::\s*(.*)", stripped)
         if m and indent == 0:
             directive, arg = m.group(1), m.group(2).strip()
             body, i2 = indented_body(i + 1, indent)
@@ -402,6 +389,8 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
                     result.skipped_raw += inner.skipped_raw
                     result.twocol = result.twocol or inner.twocol
                 # non-matching branches are the PDF-skipped side: drop
+            elif directive == "container":
+                append_semantic_container(result, arg, body, tags, _parse_text)
             elif directive == "image":
                 result.blocks.append(("image", arg))
             elif directive == "list-table":

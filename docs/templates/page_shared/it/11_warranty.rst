@@ -1,59 +1,73 @@
 GARANZIA
 ========
 
-**Forniamo la nostra garanzia solo ai clienti che acquistano dal sito web ufficiale di Jackery, dalle piattaforme di terze parti con marchio Jackery o dai rivenditori autorizzati locali.**
+.. container:: warranty-lead
+
+   **Forniamo la nostra garanzia solo ai clienti che acquistano dal sito web ufficiale di Jackery, dalle piattaforme di terze parti con marchio Jackery o dai rivenditori autorizzati locali.**
 
 \* Il periodo e i dettagli della garanzia possono variare in base alle leggi locali, ai regolamenti e ai rivenditori autorizzati.
 
-Garanzia limitata
------------------
+.. container:: warranty-section
 
-|LEGAL_COMPANY_NAME| garantisce all'acquirente originale che il prodotto Jackery sarà esente da difetti di fabbricazione e materiali in condizioni di normale utilizzo da parte dell' acquirente durante il periodo di garanzia applicabile identificato nella sezione "Periodo di garanzia" di seguito, fatte salve le esclusioni indicate di seguito.
+   Garanzia limitata
+   -----------------
 
-Questa dichiarazione di garanzia stabilisce l'obbligo di garanzia totale ed esclusivo di Jackery. Non ci assumeremo, né autorizzeremo alcuna persona ad assumersi per noi, qualsiasi altra responsabilità in relazione alla vendita dei nostri prodotti.
+   |LEGAL_COMPANY_NAME| garantisce all'acquirente originale che il prodotto Jackery sarà esente da difetti di fabbricazione e materiali in condizioni di normale utilizzo da parte dell' acquirente durante il periodo di garanzia applicabile identificato nella sezione "Periodo di garanzia" di seguito, fatte salve le esclusioni indicate di seguito.
 
-Periodo di garanzia
--------------------
+   Questa dichiarazione di garanzia stabilisce l'obbligo di garanzia totale ed esclusivo di Jackery. Non ci assumeremo, né autorizzeremo alcuna persona ad assumersi per noi, qualsiasi altra responsabilità in relazione alla vendita dei nostri prodotti.
 
-.. list-table::
-   :header-rows: 0
-   :widths: 50 50
+.. container:: warranty-section warranty-years
 
-   * - **3 ANNI**
+   Periodo di garanzia
+   -------------------
 
-       **Garanzia standard**
+   .. list-table::
+      :header-rows: 0
+      :widths: 50 50
 
-       Il periodo di garanzia standard per |PRODUCT_NAME| è di 36 mesi.
-       In ogni caso, il periodo di garanzia è misurato a partire dalla data di acquisto da parte dell'acquirente consumatore originario.
-       Per stabilire la data di inizio del periodo di garanzia è necessaria la ricevuta del primo acquisto da parte del consumatore, o altra prova documentale ragionevole.
+      * - **3 ANNI**
 
-     - **2 ANNI**
+          **Garanzia standard**
 
-       **Garanzia estesa**
+          Il periodo di garanzia standard per |PRODUCT_NAME| è di 36 mesi.
+          In ogni caso, il periodo di garanzia è misurato a partire dalla data di acquisto da parte dell'acquirente consumatore originario.
+          Per stabilire la data di inizio del periodo di garanzia è necessaria la ricevuta del primo acquisto da parte del consumatore, o altra prova documentale ragionevole.
 
-       Per attivare l'estensione della garanzia, è necessario registrare il prodotto online, oppure contattare il nostro servizio clienti all'indirizzo **|WARRANTY_EMAIL|** per estendere il periodo di garanzia standard.
+        - **2 ANNI**
 
-Sostituzione
-------------
+          **Garanzia estesa**
 
-Jackery sostituirà (a spese di Jackery) qualsiasi prodotto Jackery mal funzionante durante il periodo di garanzia applicabile a causa di difetti di fabbricazione o materiali. Un prodotto sostitutivo assume la garanzia residua del prodotto originale.
+          Per attivare l'estensione della garanzia, è necessario registrare il prodotto online, oppure contattare il nostro servizio clienti all'indirizzo **|WARRANTY_EMAIL|** per estendere il periodo di garanzia standard.
 
-Limitata all'acquirente consumatore originale
----------------------------------------------
+.. container:: warranty-section
 
-La garanzia sul prodotto Jackery è limitata all'acquirente originale e non è trasferibile a nessun proprietario successivo.
+   Sostituzione
+   ------------
 
-Esclusioni
-----------
+   Jackery sostituirà (a spese di Jackery) qualsiasi prodotto Jackery mal funzionante durante il periodo di garanzia applicabile a causa di difetti di fabbricazione o materiali. Un prodotto sostitutivo assume la garanzia residua del prodotto originale.
 
-La garanzia Jackery non si applica a:
+.. container:: warranty-section
 
-- Uso improprio, abuso, modifica, danneggiamento accidentale o utilizzo diverso dal normale uso da parte del consumatore, come autorizzato nella documentazione di questo prodotto Jackery.
-- Tentativi di riparazione effettuati da persone diverse da un centro autorizzato.
-- Qualsiasi prodotto acquistato tramite una casa d'aste online.
-- La garanzia di Jackery non si applica alla batteria, a meno che questa non venga caricata completamente dall'utente entro sette giorni dall'acquisto del prodotto, e successivamente almeno una volta ogni 6 mesi.
+   Limitata all'acquirente consumatore originale
+   ---------------------------------------------
 
-Diritti di interpretazione
--------------------------
+   La garanzia sul prodotto Jackery è limitata all'acquirente originale e non è trasferibile a nessun proprietario successivo.
 
-Jackery si riserva il diritto di interpretazione finale della politica post-vendita sopra riportata.
+.. container:: warranty-section
+
+   Esclusioni
+   ----------
+
+   La garanzia Jackery non si applica a:
+
+   - Uso improprio, abuso, modifica, danneggiamento accidentale o utilizzo diverso dal normale uso da parte del consumatore, come autorizzato nella documentazione di questo prodotto Jackery.
+   - Tentativi di riparazione effettuati da persone diverse da un centro autorizzato.
+   - Qualsiasi prodotto acquistato tramite una casa d'aste online.
+   - La garanzia di Jackery non si applica alla batteria, a meno che questa non venga caricata completamente dall'utente entro sette giorni dall'acquisto del prodotto, e successivamente almeno una volta ogni 6 mesi.
+
+.. container:: warranty-section
+
+   Diritti di interpretazione
+   -------------------------
+
+   Jackery si riserva il diritto di interpretazione finale della politica post-vendita sopra riportata.

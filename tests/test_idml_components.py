@@ -541,6 +541,34 @@ class ComponentRegistryTests(unittest.TestCase):
         )
         self.assertEqual(3, xml.count('VerticalJustification="CenterAlign"'))
 
+    def test_safety_warning_visible_geometry_uses_layout_tokens(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params["idml_safety_warning_icon_column_width"] = ("30", "pt")
+        params["idml_safety_warning_icon_max_width"] = ("12", "pt")
+        params["idml_safety_warning_panel_min_height"] = ("32", "pt")
+        ctx = RenderContext(
+            params=params,
+            page_w=368.79,
+            m_l=28.35,
+            m_r=28.35,
+            root=ROOT,
+            bundle_root=ROOT,
+        )
+
+        xml, height = render(
+            {"kind": "safetywarning", "texts": ["Risk of fire."]},
+            ctx,
+            tid="safety_warning_tokens",
+            terminal=True,
+        )
+
+        self.assertIn('SingleColumnWidth="30"', xml)
+        self.assertIn('Anchor="12 -10.5682"', xml)
+        self.assertEqual(32.0, height)
+
     def test_rounded_notice_reserves_rendered_height_and_rounded_label(self) -> None:
         from tools.idml.components import RenderContext, render
 
@@ -576,7 +604,10 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('<Leading type="unit">7.83</Leading>', body_story)
         self.assertIn('BaselineShift="0.9"', body_story)
         self.assertIn('PointSize="4.8"', body_story)
-        self.assertIn('LeftIndent="3.4" FirstLineIndent="-3.4"', body_story)
+        self.assertIn(
+            'LeftIndent="5.95" FirstLineIndent="-3.4"',
+            body_story,
+        )
         self.assertIn('<Group Self="grp_notice_notice_wrap"', _xml)
         self.assertIn('<Rectangle Self="plate_notice_notice_wrap"', _xml)
         self.assertNotIn('<Table ', _xml)
@@ -608,6 +639,49 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('<Leading type="unit">7.83</Leading>', xml)
         self.assertIn('HorizontalScale="100"', xml)
         self.assertNotIn('HorizontalScale="106.9"', xml)
+
+    def test_notice_list_geometry_uses_shared_bullet_tokens(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params["comp_callout_bullet_indent"] = ("2", "pt")
+        params["comp_callout_bullet_width"] = ("4", "pt")
+        params["type_callout_bullet_font_size"] = ("5", "pt")
+        stories: list[tuple[str, str, list[str]]] = []
+
+        def add_story(story_id: str, title: str, parts: list[str]) -> str:
+            stories.append((story_id, title, parts))
+            return story_id
+
+        ctx = RenderContext(
+            params=params,
+            page_w=368.79,
+            m_l=28.35,
+            m_r=28.35,
+            root=ROOT,
+            bundle_root=ROOT,
+            add_story=add_story,
+        )
+        render(
+            {
+                "kind": "notice",
+                "label": "NOTE",
+                "list": True,
+                "texts": ["First", "Second"],
+            },
+            ctx,
+            tid="notice_bullet_tokens",
+            terminal=True,
+        )
+
+        body = next(
+            "".join(parts)
+            for story_id, _title, parts in stories
+            if story_id == "st_anchor_notice_body_notice_bullet_tokens"
+        )
+        self.assertIn('LeftIndent="6" FirstLineIndent="-4"', body)
+        self.assertIn('PointSize="5"', body)
 
     def test_notice_symbol_fallback_keeps_valid_character_attributes(self) -> None:
         from tools.idml.components import RenderContext, render

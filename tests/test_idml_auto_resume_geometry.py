@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml.components.base import RenderContext
@@ -11,6 +12,7 @@ from tools.idml.components.prose_table import (
     render_table_block,
 )
 from tools.idml.params import param_pt
+from tools.idml.primitives import component_table
 from tools.idml.prose_flow import operation_final_frame_x_offset
 
 
@@ -129,16 +131,25 @@ class AutoResumeGeometryTests(unittest.TestCase):
                 rows = self._rows(headers, language)
                 tid = f"auto_{language}"
 
-                xml, height = render_table_block(
-                    rows,
-                    ctx,
-                    tid=tid,
-                    terminal=True,
-                )
+                with patch(
+                    "tools.idml.components.prose_table.component_table",
+                    wraps=component_table,
+                ) as table_spy:
+                    xml, height = render_table_block(
+                        rows,
+                        ctx,
+                        tid=tid,
+                        terminal=True,
+                    )
                 story = dict(writer.stories)[f"st_anchor_data_{tid}"]
 
                 self.assertEqual(language, auto_resume_language(rows))
                 self.assertEqual("auto_resume", body_data_table_kind(rows))
+                self.assertEqual("auto_resume", table_spy.call_args.kwargs["role"])
+                self.assertIn(
+                    'AppliedTableStyle="TableStyle/正文表格"',
+                    story,
+                )
                 self.assertIn('Anchor="310.65 0"', xml)
                 self.assertIn(
                     'ItemTransform="1 0 0 1 -0.37 0"',

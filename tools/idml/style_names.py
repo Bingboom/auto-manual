@@ -44,6 +44,7 @@ PARAGRAPH_STYLE_NAME_MAP = {
 TABLE_STYLE_NAME_MAP = {
     "spec": "\u7ad6\u578b\u8868\u683c",     # \u7ad6\u578b\u8868\u683c (vertical key/value)
     "data": "\u6b63\u6587\u8868\u683c",     # \u6b63\u6587\u8868\u683c (lcd/symbols/trouble/prose)
+    "auto_resume": "\u6b63\u6587\u8868\u683c",  # semantic role; same approved visual style
     "warning": "Warning\u8868\u683c",       # Warning\u8868\u683c
     "caution": "Caution\u8868\u683c",       # Caution\u8868\u683c
     "notice": "Notice\u8868\u683c",         # Notice\u8868\u683c

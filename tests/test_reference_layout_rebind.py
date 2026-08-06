@@ -13,6 +13,8 @@ from unittest.mock import patch
 from tests.test_reference_layout_plan import _approved_payload, _manual_ir
 from tools.idml.reference_layout_plan import (
     ReferenceLayoutPlanError,
+    V2_SCHEMA_VERSION,
+    build_identity_scopes,
     validate_approved_reference_plan,
 )
 from tools.idml.reference_layout_rebind import rebind_reference_layout_plan
@@ -33,9 +35,21 @@ def _composition_map(payload: dict[str, object]) -> list[tuple[object, ...]]:
     ]
 
 
-def _stale_payload() -> dict[str, object]:
+def _approval() -> dict[str, str]:
+    return {
+        "status": "approved",
+        "approved_by": "operator",
+        "approved_at": "2026-08-05T12:00:00Z",
+        "method": "reviewed identity repin; composition map unchanged",
+    }
+
+
+def _legacy_payload() -> dict[str, object]:
     ir = _manual_ir()
     payload = deepcopy(_approved_payload(ir))
+    payload["idml_contract"]["allowed_unclassified_source_refs"] = [  # type: ignore[index]
+        page.source_ref for page in ir.pages
+    ]
     payload["source_identity"] = {
         "manual_ir_schema_version": "old-schema",
         "manual_content_sha256": ir.content_sha256,
@@ -45,6 +59,19 @@ def _stale_payload() -> dict[str, object]:
     }
     for page in payload["pages"]:  # type: ignore[index,union-attr]
         page["source_sha256"] = "8" * 64
+    return payload
+
+
+def _stale_payload() -> dict[str, object]:
+    ir = _manual_ir()
+    payload = _legacy_payload()
+    payload["schema_version"] = V2_SCHEMA_VERSION
+    payload["identity"] = build_identity_scopes(payload, ir)
+    del payload["source_identity"]
+    payload["identity"]["content"]["manual_ir_schema_version"] = "old-schema"  # type: ignore[index]
+    payload["identity"]["style"]["style_contract_sha256"] = "7" * 64  # type: ignore[index]
+    payload["identity"]["style"]["layout_params_sha256"] = "7" * 64  # type: ignore[index]
+    payload["identity"]["provenance"]["snapshot_sha256"] = "7" * 64  # type: ignore[index]
     return payload
 
 
@@ -134,9 +161,94 @@ class ReferenceLayoutRebindTests(unittest.TestCase):
             original = json.dumps(payload)
             plan_path.write_text(original, encoding="utf-8")
             with self.assertRaisesRegex(
-                ReferenceLayoutPlanError, "cannot change manual_content_sha256",
+                ReferenceLayoutPlanError, "cannot change content or assembly identity",
             ):
                 rebind_reference_layout_plan(plan_path, changed_ir, write=True)
+            self.assertEqual(original, plan_path.read_text(encoding="utf-8"))
+
+    def test_operator_approved_content_change_preserves_composition(self) -> None:
+        payload = _stale_payload()
+        changed_ir = replace(_manual_ir(), content_sha256="9" * 64)
+        approval = _approval()
+        with tempfile.TemporaryDirectory() as tmp:
+            plan_path = Path(tmp) / "approved.json"
+            plan_path.write_text(json.dumps(payload), encoding="utf-8")
+
+            result = rebind_reference_layout_plan(
+                plan_path,
+                changed_ir,
+                content_approval=approval,
+            )
+
+        self.assertTrue(result.content_reapproved)
+        self.assertIn(
+            "content.manual_content_sha256",
+            result.changed_identity_fields,
+        )
+        self.assertEqual(approval, result.candidate["approval"])
+        self.assertEqual(_composition_map(payload), _composition_map(result.candidate))
+        self.assertEqual(
+            [],
+            validate_approved_reference_plan(result.candidate, changed_ir),
+        )
+
+    def test_v1_migration_requires_explicit_identity_approval(self) -> None:
+        ir = _manual_ir()
+        payload = _legacy_payload()
+        with tempfile.TemporaryDirectory() as tmp:
+            plan_path = Path(tmp) / "approved.json"
+            original = json.dumps(payload)
+            plan_path.write_text(original, encoding="utf-8")
+
+            with self.assertRaisesRegex(
+                ReferenceLayoutPlanError,
+                "cannot change content or assembly identity",
+            ):
+                rebind_reference_layout_plan(plan_path, ir, write=True)
+
+            self.assertEqual(original, plan_path.read_text(encoding="utf-8"))
+
+    def test_v1_migration_records_explicit_identity_approval(self) -> None:
+        ir = _manual_ir()
+        payload = _legacy_payload()
+        approval = _approval()
+        with tempfile.TemporaryDirectory() as tmp:
+            plan_path = Path(tmp) / "approved.json"
+            plan_path.write_text(json.dumps(payload), encoding="utf-8")
+
+            result = rebind_reference_layout_plan(
+                plan_path,
+                ir,
+                content_approval=approval,
+            )
+
+        self.assertEqual(V2_SCHEMA_VERSION, result.candidate["schema_version"])
+        self.assertIn("assembly.sha256", result.changed_identity_fields)
+        self.assertEqual(approval, result.candidate["approval"])
+        self.assertEqual(
+            payload["idml_contract"]["allowed_unclassified_source_refs"],  # type: ignore[index]
+            result.candidate["idml_contract"]["allowed_unclassified_source_refs"],  # type: ignore[index]
+        )
+
+    def test_v1_migration_does_not_auto_approve_unclassified_pages(self) -> None:
+        ir = _manual_ir()
+        payload = deepcopy(_approved_payload(ir))
+        with tempfile.TemporaryDirectory() as tmp:
+            plan_path = Path(tmp) / "approved.json"
+            original = json.dumps(payload)
+            plan_path.write_text(original, encoding="utf-8")
+
+            with self.assertRaisesRegex(
+                ReferenceLayoutPlanError,
+                "unclassified prose is forbidden",
+            ):
+                rebind_reference_layout_plan(
+                    plan_path,
+                    ir,
+                    write=True,
+                    content_approval=_approval(),
+                )
+
             self.assertEqual(original, plan_path.read_text(encoding="utf-8"))
 
     def test_rejects_legacy_layout_hash_algorithm_without_writing(self) -> None:
@@ -168,7 +280,12 @@ class ReferenceLayoutRebindTests(unittest.TestCase):
             with self.assertRaisesRegex(
                 ReferenceLayoutPlanError, "cannot change page language for page/c",
             ):
-                rebind_reference_layout_plan(plan_path, changed_ir, write=True)
+                rebind_reference_layout_plan(
+                    plan_path,
+                    changed_ir,
+                    write=True,
+                    content_approval=_approval(),
+                )
             self.assertEqual(original, plan_path.read_text(encoding="utf-8"))
 
     def test_rejects_invalid_physical_composition_map_without_writing(self) -> None:
@@ -185,7 +302,12 @@ class ReferenceLayoutRebindTests(unittest.TestCase):
                 ReferenceLayoutPlanError,
                 "rebound approved reference layout plan is invalid",
             ):
-                rebind_reference_layout_plan(plan_path, ir, write=True)
+                rebind_reference_layout_plan(
+                    plan_path,
+                    ir,
+                    write=True,
+                    content_approval=_approval(),
+                )
 
             self.assertEqual(original, plan_path.read_text(encoding="utf-8"))
 
@@ -264,6 +386,15 @@ class ReferenceLayoutRebindTests(unittest.TestCase):
                 "--all-registered",
                 "--manual-ir", "manual.ir.json",
                 "--write",
+            ])
+
+    def test_cli_content_reapproval_requires_complete_metadata(self) -> None:
+        with self.assertRaises(SystemExit):
+            rebind_main([
+                "--plan", "approved.json",
+                "--manual-ir", "manual.ir.json",
+                "--approve-content-change",
+                "--approved-by", "operator",
             ])
 
 

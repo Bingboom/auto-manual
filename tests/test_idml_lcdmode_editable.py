@@ -166,6 +166,7 @@ def _render(
     tid: str,
     *,
     language: str = "en",
+    params: dict[str, tuple[str, str]] | None = None,
 ) -> tuple[str, float, dict[str, str]]:
     stories: dict[str, str] = {}
 
@@ -174,7 +175,7 @@ def _render(
         return story_id
 
     ctx = RenderContext(
-        params={},
+        params=params or {},
         page_w=368.79,
         m_l=28.35,
         m_r=28.35,
@@ -492,6 +493,54 @@ class EditableLcdModeTests(unittest.TestCase):
                     art[1] + art_y + visible_top * y_scale + panel_height,
                     places=2,
                 )
+
+    def test_layout_tokens_directly_control_production_geometry(self) -> None:
+        params = {
+            "idml_lcd_mode_panel_width": ("300", "pt"),
+            "idml_lcd_mode_table_left": ("130", "pt"),
+            "idml_lcd_mode_state_font_size": ("6.25", "pt"),
+            "lang_en_idml_lcd_mode_panel_height": ("118", "pt"),
+            "lang_en_idml_lcd_mode_row_heights": (
+                "16;9;25;21;9;20",
+                "none",
+            ),
+            "lang_en_idml_lcd_mode_column_widths": ("40;30;80", "none"),
+            "lang_en_idml_lcd_mode_table_top_margin": ("12", "pt"),
+            "lang_en_idml_lcd_mode_space_before": ("2", "pt"),
+            "lang_en_idml_lcd_mode_space_after": ("3", "pt"),
+        }
+        tid = "lcd_token_override"
+        host, height, stories = _render(
+            EN_SPEC,
+            tid,
+            params=params,
+        )
+        panel = stories[f"st_anchor_oppanel_{tid}"]
+
+        outer = _item_bounds(host, f"tfp_st_anchor_oppanel_{tid}")
+        self.assertAlmostEqual(300.0, outer[2] - outer[0], places=2)
+        self.assertAlmostEqual(118.0, outer[3] - outer[1], places=2)
+        self.assertAlmostEqual(123.0, height, places=2)
+
+        table = _item_bounds(panel, f"lcdmode_table_bg_{tid}", "Rectangle")
+        self.assertAlmostEqual(130.0, table[0], places=2)
+        self.assertAlmostEqual(12.0, table[1] + 118.0, places=2)
+        self.assertAlmostEqual(150.0, table[2] - table[0], places=2)
+
+        state = _item_bounds(panel, f"tf_lcdmode_state_0_{tid}")
+        action = _item_bounds(panel, f"tf_lcdmode_action_0_0_{tid}")
+        description = _item_bounds(
+            panel,
+            f"tf_lcdmode_description_0_0_{tid}",
+        )
+        self.assertAlmostEqual(40.0, state[2] - state[0], places=2)
+        self.assertAlmostEqual(30.0, action[2] - action[0], places=2)
+        self.assertAlmostEqual(80.0, description[2] - description[0], places=2)
+        self.assertAlmostEqual(16.0, action[3] - action[1], places=2)
+        self.assertIn(
+            'PointSize="6.25"',
+            stories[f"st_anchor_lcdmode_state_0_{tid}"],
+        )
 
     def test_unsupported_language_uses_dynamic_geometry_with_story_writer(self) -> None:
         long_description = (

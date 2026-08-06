@@ -42,9 +42,10 @@ def _approved_app_contract(
     region: str = "US",
     language: str = "en",
     source_ref: str = "page/12_app_setup_placeholder.rst",
+    schema_version: str = "approved-reference-layout-plan/v1",
 ) -> dict[str, object]:
     return {
-        "schema_version": "approved-reference-layout-plan/v1",
+        "schema_version": schema_version,
         "target": {
             "model": model,
             "region": region,
@@ -146,6 +147,18 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
             language="zz",
             component=APP_ADD_DEVICE_COMPONENT,
             approved_contract=contract,
+        ))
+        self.assertTrue(component_owns_page(
+            Path(source_ref),
+            language="zz",
+            component=APP_ADD_DEVICE_COMPONENT,
+            approved_contract=_approved_app_contract(
+                model="FUTURE-42",
+                region="MARS",
+                language="zz",
+                source_ref=source_ref,
+                schema_version="approved-reference-layout-plan/v2",
+            ),
         ))
         for page, language, candidate in (
             (Path(source_ref), "en", contract),

@@ -54,7 +54,7 @@ reference-layout rebind。字符宽度估算统一走 `line_metrics.py`：W/F �
 | H1 盒字 | `type_h1_font_size/leading`(9.0/10.8) | 9.0pt 两线一致 | 字重 LaTeX=Heavy、IDML=Bold(IDML 未注册 Gilroy-Heavy,近似) |
 | H1 条高 | `type_h1_font_leading + 2×comp_h1_pill_pad_tb + 1.45`(tcolorbox 盒模型修正) | 14.8pt 两线一致 | IDML 走 `page_objects.h1_bar_h_pt` |
 | subbar 盒字 | `type_subbar_font_size/leading`(6.6/7.2) | 6.6pt Medium 两线一致 | \HBTypeSubbar 实渲染 Gilroy-Medium(SemiBold 字体缺→回退) |
-| subbar 条高 | 常量 13.9(模板/发布 PDF 双实测) | 13.9pt 两线一致 | `pages.SUBBAR_H` |
+| subbar 条高 | `comp_subbar_height`（模板/发布 PDF 双实测默认 13.9pt） | 两渲染器由同一 token 解析 | `SafetySymbolsPageStyle.subbar_height` / `pages.add_safety_page()` |
 | 正文/lead-in | 字号/行距继续读 `type_body_font_size/leading`;IDML 字重读 `idml_body_font_style` | 批准 PDF 的原生正文为 6.0pt Regular | IDML 不再把 LaTeX `HBFontMedium` 的渲染选择当成 InDesign 模板字重合同;量测实验覆盖的页面全部改善且无回退 |
 | 列表 | `type_list_font_size/leading`(5.4/6.4) | 5.4pt Regular 两线一致 | notice 内的列表另由提示框组件做 3.4pt 悬挂缩进 |
 | 故障表表头/错误码/措施正文 | `type_data_table_header_font_size`(6.6) / `type_trouble_code_font_size`(8.0) / `type_trouble_body_font_size`(5.5) | 6.6pt Bold / 8.0pt Bold / 5.5pt Regular；故障表表头的 Bold 是组件局部合同，不改动其他数据表的 Heavy 表头 | 内线 0.25pt、外框 0.57pt，均使用品牌深灰 |

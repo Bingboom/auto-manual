@@ -40,8 +40,14 @@ class ReferenceLayoutScaffoldTests(unittest.TestCase):
         self.assertEqual(SCAFFOLD_SCHEMA_VERSION, draft["scaffold"]["schema_version"])
         self.assertEqual("draft", draft["approval"]["status"])
         self.assertFalse(draft["scaffold"]["production_eligible"])
-        self.assertEqual(ir.snapshot_sha256, draft["source_identity"]["snapshot_sha256"])
-        self.assertEqual(ir.content_sha256, draft["source_identity"]["manual_content_sha256"])
+        self.assertEqual(
+            ir.snapshot_sha256,
+            draft["identity"]["provenance"]["snapshot_sha256"],
+        )
+        self.assertEqual(
+            ir.content_sha256,
+            draft["identity"]["content"]["manual_content_sha256"],
+        )
         self.assertEqual(
             original_map,
             [
