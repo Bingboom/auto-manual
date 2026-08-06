@@ -13,7 +13,6 @@ from typing import Any
 from tools.manual_ir import ManualIR
 from tools.render_contract import LAYOUT_PARAMS_HASH_ALGORITHM
 
-from .page_roles import PageRole, classify_page_role
 from .reference_layout_plan import (
     V2_SCHEMA_VERSION,
     ReferenceLayoutPlanError,
@@ -156,10 +155,11 @@ def build_rebound_reference_layout_plan(
     content_changed = old_content != ir.content_sha256
     expected_identity = build_identity_scopes(payload, ir)
     old_assembly = _identity_value(payload, "assembly.sha256")
-    assembly_changed = (
-        old_assembly is not None
-        and old_assembly != expected_identity["assembly"]["sha256"]
-    )
+    # A v1 plan has no assembly pin. Treat creating that identity as a reviewed
+    # migration, not as evidence that the assembly is unchanged: the legacy
+    # approval could not have covered the semantic page-role projection added
+    # by v2.
+    assembly_changed = old_assembly != expected_identity["assembly"]["sha256"]
     if (content_changed or assembly_changed) and content_approval is None:
         raise ReferenceLayoutPlanError(
             "reference-layout rebind cannot change content or assembly identity; "
@@ -172,7 +172,7 @@ def build_rebound_reference_layout_plan(
             for key in required[1:]
         ):
             raise ReferenceLayoutPlanError(
-                "content reapproval requires approved status plus non-empty "
+                "identity reapproval requires approved status plus non-empty "
                 "approved_by, approved_at, and method"
             )
 
@@ -195,17 +195,9 @@ def build_rebound_reference_layout_plan(
     candidate.pop("source_identity", None)
     idml_contract = candidate.get("idml_contract")
     if isinstance(idml_contract, dict):
-        migrated_exceptions = [
-            page.source_ref
-            for page in ir.pages
-            if classify_page_role(Path(page.source_ref))
-            is PageRole.UNCLASSIFIED_PROSE
-        ]
         idml_contract.setdefault(
             "allowed_unclassified_source_refs",
-            migrated_exceptions
-            if payload.get("schema_version") != V2_SCHEMA_VERSION
-            else [],
+            [],
         )
     if content_changed or assembly_changed:
         candidate["approval"] = deepcopy(content_approval)

@@ -80,6 +80,8 @@ identity=<none-or-style/provenance fields>  page_bindings=0  composition_map=unc
 不包含 `content.manual_content_sha256` 或 `assembly.sha256`；若出现，**停下**，
 那意味着批准内容或装配真的变化，应走显式批准而不是普通重绑。仅
 `provenance.snapshot_sha256` 变化不影响 production，也不要求为了追平而写契约。
+v1 契约没有 assembly pin，因此迁移到 v2 必然属于显式批准；迁移不会自动登记
+`allowed_unclassified_source_refs`，若出现 unclassified prose，必须重新审查版式。
 
 确认后写入：
 
@@ -189,7 +191,8 @@ python tools/check_reference_layout_pins.py     # 必须 OK
 
 ## 11. 本文的验证状态
 
-2026-08-05 已用 52-source / 58-page 已批准 Manual IR 完成 v1→v2 原子迁移演练：
-`page_bindings=0`、`composition_map=unchanged`、validation passed；原批准
-snapshot hash 被保留为 provenance。v2 production 另需用一个不同 snapshot hash
-但相同 target 内容的实时构建证明 provenance 漂移不再阻断。
+2026-08-05 已用 52-source / 58-page 已批准 Manual IR 和显式身份审批完成
+v1→v2 原子迁移演练：`page_bindings=0`、`composition_map=unchanged`、validation
+passed；原批准 snapshot hash 被保留为 provenance，且没有生成未分类页面例外。
+v2 production 另需用一个不同 snapshot hash 但相同 target 内容的实时构建证明
+provenance 漂移不再阻断。

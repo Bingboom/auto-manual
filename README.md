@@ -336,11 +336,15 @@ python3 tools/reference_layout_rebind.py \
   --write
 ```
 
-Content-hash changes remain fail-closed by default. Before approving one,
-verify the final Manual IR has the reviewed source-reference order and language
-mapping, `skipped_raw` allowance, physical page count, and composition map.
-Record the operator decision, then dry-run the explicit approval route and
-repeat it with `--write` only after reviewing the candidate:
+Content or assembly identity changes remain fail-closed by default. This
+includes v1-to-v2 migration because a v1 approval contains no assembly pin and
+therefore cannot prove that the new semantic page-role projection was reviewed.
+Before approving one, verify the final Manual IR has the reviewed
+source-reference order and language mapping, `skipped_raw` allowance, physical
+page count, and composition map. Record the operator decision, then dry-run the
+explicit approval route and repeat it with `--write` only after reviewing the
+candidate. The legacy flag name is retained for CLI compatibility, but its
+approval metadata covers the reviewed content/assembly identity change:
 
 ```bash
 python3 tools/reference_layout_rebind.py \
@@ -360,8 +364,10 @@ writes; apply a reviewed result one plan at a time with an explicit
 
 The write is atomic and always refuses source-order or physical-composition
 changes; do not patch individual hashes or deregister the contract to bypass
-validation. Content approval metadata is persisted in the contract and cannot
-be supplied to `--all-registered`.
+validation. A v1 migration never auto-creates
+`allowed_unclassified_source_refs`; unclassified pages require a new reviewed
+layout decision instead of an implicit exception. Identity approval metadata is
+persisted in the contract and cannot be supplied to `--all-registered`.
 The Manual IR layout-parameter identity hashes the ordered parsed
 `key`/`value`/`unit` semantics, so line endings, blank rows, and comment-column
 edits do not create false drift, while token values, units, or order still do.

@@ -209,15 +209,19 @@ For a read-only summary of all registered contracts, run
 <manual.ir.json>`. Batch mode never writes; keep `--write` limited to an
 explicit single-plan command after review.
 
-The ordinary command validates that semantic content, source order, page
-languages, and physical composition remain unchanged. It refreshes only the
-mutable non-content identities and every page's source digest, then atomically
-replaces the plan. Review the dry-run summary and Git diff before building.
+For a v2 plan, the ordinary command validates that semantic content, assembly,
+source order, page languages, and physical composition remain unchanged. It
+refreshes only the mutable non-content identities and every page's source
+digest, then atomically replaces the plan. Review the dry-run summary and Git
+diff before building. A v1 plan has no assembly pin, so v1-to-v2 migration is
+an identity change and cannot use the ordinary route.
 
-A content-hash change is still rejected unless an operator has first verified
-the final Manual IR's source-reference order, language mapping, `skipped_raw`
-allowance, physical page count, and composition map. After recording that
-decision, use the explicit approval route in dry-run mode first:
+A content/assembly change, including v1-to-v2 migration, is rejected unless an
+operator has first verified the final Manual IR's source-reference order,
+language mapping, `skipped_raw` allowance, semantic page roles, physical page
+count, and composition map. After recording that decision, use the explicit
+approval route in dry-run mode first. The existing flag name is retained for
+CLI compatibility:
 
 ```bash
 python3 tools/reference_layout_rebind.py \
@@ -231,9 +235,11 @@ python3 tools/reference_layout_rebind.py \
 ```
 
 The three approval fields are mandatory and are stored in the contract.
-`--all-registered` cannot approve content changes or write plans. Source order,
+`--all-registered` cannot approve identity changes or write plans. Source order,
 languages, and physical composition remain immutable even on the approved
-content-change route.
+identity-change route. v1 migration does not auto-populate
+`allowed_unclassified_source_refs`; unclassified pages require a separately
+reviewed layout decision.
 The layout-parameter identity follows ordered `key`/`value`/`unit` semantics;
 line-ending, blank-row, and comment-column edits do not create contract drift,
 but a real token value, unit, or order change does.

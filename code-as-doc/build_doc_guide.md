@@ -828,12 +828,13 @@ python3 tools/reference_layout_rebind.py \
   --manual-ir <manual.ir.json>
 ```
 
-The dry-run builds a complete candidate from the validated Manual IR. The
-ordinary route requires the semantic content hash, assembly hash, `source_ref`
-order, page languages, and physical composition map to remain unchanged; it
-refreshes style/provenance identities plus every page's `source_sha256`, and
-writes nothing. A v1 input is migrated atomically to v2 while preserving its
-approved snapshot as provenance. After reviewing the summary, apply the same
+The dry-run builds a complete candidate from the validated Manual IR. For a v2
+input, the ordinary route requires the semantic content hash, assembly hash,
+`source_ref` order, page languages, and physical composition map to remain
+unchanged; it refreshes style/provenance identities plus every page's
+`source_sha256`, and writes nothing. A v1 input has no assembly pin, so it is
+never treated as an ordinary unchanged rebind: migration requires the explicit
+approval route below. After reviewing an ordinary v2 summary, apply the same
 validated candidate and inspect the Git diff:
 
 ```bash
@@ -843,11 +844,13 @@ python3 tools/reference_layout_rebind.py \
   --write
 ```
 
-If the semantic content hash changed, the ordinary route remains fail-closed.
-First prove against the final Manual IR that `source_ref` order, page-language
-mapping, `skipped_raw` allowance, physical page count, and composition map are
-still the approved assembly. Record the operator's decision and evidence, then
-run the explicit content-approval route without `--write`:
+If semantic content or assembly identity changed—or the input is v1—the
+ordinary route remains fail-closed. First prove against the final Manual IR that
+`source_ref` order, page-language mapping, `skipped_raw` allowance, physical
+page count, semantic page roles, and composition map are the reviewed assembly.
+Record the operator's decision and evidence, then run the explicit identity
+approval route without `--write`. The existing flag name remains for CLI
+compatibility:
 
 ```bash
 python3 tools/reference_layout_rebind.py \
@@ -861,8 +864,12 @@ python3 tools/reference_layout_rebind.py \
 
 Only after reviewing that candidate should the operator repeat the same command
 with `--write`. All three approval values are mandatory and are persisted as
-contract metadata. This route can update `manual_content_sha256`; it cannot
-change source order, page languages, or the physical composition map.
+contract metadata. This route can update `manual_content_sha256` and the
+assembly identity; it cannot change source order, page languages, or the
+physical composition map. v1 migration defaults
+`allowed_unclassified_source_refs` to an empty list and never manufactures
+exceptions: if validation reports unclassified prose, stop and perform a new
+reviewed layout approval.
 
 To inspect every registered plan in one dry-run summary, use
 `python3 tools/reference_layout_rebind.py --all-registered --manual-ir

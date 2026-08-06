@@ -65,6 +65,8 @@ Acceptance:
 - reference PDF, page count, page order, languages, and composition fields are
   byte-for-byte unchanged apart from the identity-schema migration.
 - the migration records the existing snapshot digest as provenance.
+- migration requires explicit identity approval because v1 has no assembly
+  pin, and it never auto-approves unclassified-page exceptions.
 - operator-facing docs explain which changes require reapproval.
 
 ## Phase 5 — verification and delivery

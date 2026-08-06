@@ -128,11 +128,14 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--approve-content-change",
         action="store_true",
-        help="allow an operator-reviewed manual_content_sha256 change",
+        help=(
+            "allow an operator-reviewed content/assembly identity change, "
+            "including v1-to-v2 migration"
+        ),
     )
-    parser.add_argument("--approved-by", help="content-change approver")
-    parser.add_argument("--approved-at", help="content approval RFC3339 timestamp")
-    parser.add_argument("--approval-method", help="recorded content review method")
+    parser.add_argument("--approved-by", help="identity-change approver")
+    parser.add_argument("--approved-at", help="identity approval RFC3339 timestamp")
+    parser.add_argument("--approval-method", help="recorded identity review method")
     parser.add_argument(
         "--registry",
         type=Path,
