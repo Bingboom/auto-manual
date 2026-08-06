@@ -13,45 +13,43 @@ the Hello-Docs business publishing plane.
 
 ![Auto-Manual workflow roadmap](docs/readme-assets/auto-manual-roadmap.svg)
 
-> New here? Follow the numbered path first. The quality gates at the bottom are
-> acceptance conditions, not optional cleanup steps.
+> 第一次接触本项目时，请先沿编号主路径阅读。图底部的质量门禁是各阶段的
+> 验收条件，不是最后才做的可选清理项。
 
-### 1. Govern Sources
+### 1. 治理内容源
 
-Start by naming the target: **model, region, language, and execution plane**.
-Then edit the surface that owns the information:
+先明确目标的 **型号、区域、语言和执行平面**，再到真正拥有该信息的源头修改：
 
-| Information | Source of truth |
+| 信息类型 | 唯一事实源 |
 | --- | --- |
-| Product facts, specifications, placeholders | Feishu phase2 source tables |
-| Reusable manual prose and page structure | [`docs/templates/`](docs/templates) |
-| Approved terminology and sentence pairs | TM-B `Translation_Memory` |
-| Production illustrations and derivatives | Feishu `04_资产*` tables plus the local asset registry |
-| Target-specific edits after review starts | [`docs/_review/`](docs/_review) |
+| 产品信息、规格参数、页面占位值 | 飞书 phase2 源表 |
+| 可复用的说明书文案和页面结构 | [`docs/templates/`](docs/templates) |
+| 已确认的术语和句对 | TM-B `Translation_Memory` |
+| 正式插图及其导出物 | 飞书 `04_资产*` 表和本地资产注册表 |
+| 评审开始后的目标专属修改 | [`docs/_review/`](docs/_review) |
 
-Do not treat [`docs/_build/`](docs/_build) as an authoring surface. Generated
-files are evidence and deliverables, not durable source.
+不要把 [`docs/_build/`](docs/_build) 当作编辑源。生成文件是验证证据和交付物，
+不是长期维护的内容源。
 
-### 2. Freeze Inputs
+### 2. 冻结输入
 
-`sync-data` materializes the selected Feishu rows and attachments under the
-gitignored `data/phase2/` snapshot. The chosen config and `document_key` bind
-that snapshot to one target; manifests define the page stack, while asset and
-bundle manifests bind the exact bytes with hashes.
+`sync-data` 把选定的飞书记录和附件固化到 Git 忽略的 `data/phase2/` 快照中。
+配置文件和 `document_key` 将快照绑定到具体目标；页面清单定义页面组合，资产清单
+和构建包清单则通过哈希绑定实际使用的文件字节。
 
-Before continuing, confirm:
+进入下一阶段前，确认：
 
-- the config resolves the intended model, region, and language
-- the phase2 snapshot contains the target rows and required attachments
-- every production `asset:` reference resolves to an approved export
-- the prepared bundle records its input manifest and `bundle_sha256`
+- 配置解析出的型号、区域和语言与任务目标一致
+- phase2 快照包含目标记录和必需附件
+- 每个正式 `asset:` 引用都能解析到已批准的导出物
+- 准备好的构建包已记录输入清单和 `bundle_sha256`
 
-Tests and CI use [`tests/fixtures/phase2/`](tests/fixtures/phase2), a committed,
-deterministic sample snapshot. They never depend on a live Feishu read.
+测试和 CI 使用已提交、可复现的样例快照
+[`tests/fixtures/phase2/`](tests/fixtures/phase2)，不依赖实时读取飞书。
 
-### 3. Build & Check
+### 3. 构建与检查
 
-[`build.py`](build.py) is the front door. A minimal US/EN path is:
+[`build.py`](build.py) 是统一入口。最小 US/EN 验证路径如下：
 
 ```bash
 python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
@@ -60,46 +58,40 @@ python build.py check  --config configs/config.us-en.yaml --model JE-1000F --reg
 python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
 ```
 
-`doctor` checks the environment and target, `check` runs the quality gates, and
-`review` creates the target review surface. Use the config-family commands from
-the detailed reference below for JP, multilingual, new-line, asset-intake, or
-matrix work.
+`doctor` 检查环境和目标，`check` 执行质量门禁，`review` 创建目标评审面。
+JP、多语言、新产线、资产接入和矩阵构建等操作，请使用下方详细参考中的对应命令。
 
-### 4. Review & Backport
+### 4. 评审与回写
 
-Once review starts, the frozen derivative under `docs/_review/<model>/<region>`
-owns target-specific edits. Prefer `sync-review` for safe data-driven refreshes;
-do not refresh or overwrite reviewed prose casually.
+评审开始后，`docs/_review/<model>/<region>` 下的冻结派生稿负责承载目标专属修改。
+数据驱动的更新优先使用 `sync-review`，不要随意刷新或覆盖已经评审的文案。
 
-Route feedback according to ownership:
+按照内容归属将评审意见写回正确源头：
 
-| Review finding | Destination |
+| 评审发现 | 回写位置 |
 | --- | --- |
-| Target-only wording or layout adjustment | `docs/_review/...` |
-| Shared reusable prose | Template change, then propagate into active reviews |
-| Specification or placeholder value | Approval-gated Feishu source-table write |
-| Asset correction | Asset intake/promotion workflow and registry |
+| 仅当前目标使用的文案或版式调整 | `docs/_review/...` |
+| 多目标共用的可复用文案 | 修改模板，再同步到进行中的评审 |
+| 规格参数或页面占位值 | 通过审批门禁写入飞书源表 |
+| 插图或资产修正 | 资产接入/晋级流程及资产注册表 |
 
-For a review cloud document, use the branch-resolving backport path rather than
-guessing a local file:
+回写评审云文档时，使用能够解析评审分支的标准入口，不要猜测本地文件路径：
 
 ```bash
 python tools/cloud_doc_backport.py run-review-branch \
   --doc-name <doc-name> --cloud-doc <url>
 ```
 
-Dry-run first. Apply with `--write`; use `--push` only when the resulting draft
-PR should target the resolved review branch.
+先执行 dry-run。确认报告后使用 `--write` 应用；只有需要向已解析的评审分支创建
+草稿 PR 时才添加 `--push`。
 
-### 5. Produce Outputs
+### 5. 生成多格式输出
 
-All formats consume the same prepared bundle. PDF is the fixed-format reference;
-DOCX supports editorial exchange; IDML is the editable design handoff; HTML is
-the responsive presentation; Markdown and ZIP support exchange and release.
+所有格式都消费同一个准备完成的构建包。PDF 是固定版式参考，DOCX 用于编辑交换，
+IDML 是可编辑的设计交付，HTML 提供响应式展示，Markdown 和 ZIP 用于交换与发布。
 
-The output adapters may differ in pagination and composition, but they must not
-silently fork copy, specifications, legal text, terminology, or asset identity.
-For an editable InDesign handoff:
+各输出适配器可以采用不同的分页和排版方式，但不能私自分叉文案、规格、法务内容、
+术语或资产身份。生成可编辑的 InDesign 交付包时：
 
 ```bash
 python build.py idml \
@@ -107,35 +99,30 @@ python build.py idml \
   --source review-asis
 ```
 
-Generated files remain under `docs/_build/` or the release-report surfaces.
-Correct a defect at its owning source or review layer, then rebuild.
+生成文件保留在 `docs/_build/` 或发布报告目录中。发现问题时，应在对应的内容源或
+评审层修正，再重新构建。
 
-### 6. Publish & Trace
+### 6. 发布与追踪
 
-Publishing crosses from the engineering plane into the business plane:
+发布流程从工程面跨入业务面：
 
-1. `auto-manual/main` syncs one-way into `Hello-Docs/main`.
-2. The business Web Publish queue assembles a frozen `docs/publish/` candidate.
-3. A scope-guarded `publish → main` PR carries only the reviewed Web snapshot.
-4. Read the Docs builds the merged Git snapshot without reading Feishu live.
-5. The worker writes the live URL and final status back to the originating row.
+1. `auto-manual/main` 单向同步到 `Hello-Docs/main`。
+2. 业务面的 Web Publish 队列组装冻结的 `docs/publish/` 候选快照。
+3. 受范围门禁保护的 `publish → main` PR 只携带已评审的 Web 快照。
+4. Read the Docs 基于合入后的 Git 快照构建，不实时读取飞书。
+5. Worker 将在线 URL 和最终状态回写到原始记录。
 
-Code changes belong in `auto-manual`; do not patch the Hello-Docs engineering
-tree directly. A publish is complete only when the source commit, generated
-artifacts, published URL, and Feishu readback all agree.
+代码修改只发生在 `auto-manual`，不要直接修改 Hello-Docs 的工程树。只有源提交、
+生成产物、发布 URL 和飞书回读结果全部一致，发布才算完成。
 
-## Quality Gates at Every Handoff
+## 各交接点的质量门禁
 
-- **Scope before mutation:** confirm model, region, language, repository, Base,
-  and record before writing.
-- **Hash and manifest integrity:** freeze the exact content, asset, and toolchain
-  inputs needed to reproduce a build.
-- **Visual and content review:** validate structure, copy, links, tables, assets,
-  and format-specific presentation.
-- **Live readback:** verify the resulting commit, artifact, URL, and Feishu field;
-  successful dispatch alone is not acceptance.
+- **确认范围后再写入：** 写入前确认型号、区域、语言、仓库、Base 和目标记录。
+- **保证哈希和清单完整：** 冻结复现构建所需的准确内容、资产和工具链输入。
+- **完成视觉与内容评审：** 检查结构、文案、链接、表格、资产及各格式的专属呈现。
+- **回读实时状态：** 核对最终提交、产物、URL 和飞书字段；成功触发任务不等于验收通过。
 
-## Detailed Reference
+## 详细技术参考（英文）
 
 **This README is a quickstart and a navigation map. The full command reference, every operational note (Phase 2 snapshot, review sync, Word/HTML/PDF/MD export, Vercel publish, Read the Docs catalog, Windows cleanup, Git workflow, queue routing) lives in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).**
 
