@@ -958,9 +958,17 @@ the common Word-template PNG with this US outlet drawing; non-US and future
 model targets must continue to receive the shared base asset unless they own a
 separate scoped override.
 
-The production gate also rejects skipped raw content. Fixed composite pages
-use explicit component frames, while ordinary operation, UPS/charging,
-storage, and troubleshooting content flows through linked story chains. The
+For approved-reference pages, Product Overview composes two governed linked
+art frames with native knockout-backed leader paths; the source-authored part
+labels are emitted last as unlocked top-layer text frames, so an InDesign
+operator can move or edit every label without altering the linked artwork.
+
+The production gate also rejects skipped raw content. Cover/front matter,
+Safety + Symbols, FCC + What's in the Box, LCD DISPLAY, specifications,
+warranty, and the back cover are the explicit new-page anchors: each starts
+its own page as a fixed composite built from explicit component frames,
+while ordinary operation, UPS/charging, storage, and troubleshooting
+content flows through linked story chains. The
 assembler classifies source pages once through
 [`tools/idml/page_roles.py`](../tools/idml/page_roles.py). Every current
 template page has an explicit semantic role. If export prints
@@ -1041,10 +1049,14 @@ refresh. The build resolves a unique current file by stable semantic identity,
 stages it under the frozen basename, and rejects missing or ambiguous matches;
 it does not silently emit a broken InDesign link. Rounded native tables remain
 editable: a rounded background and a square table frame are grouped, and only
-cell text receives the shared one-character inset. The finalizer fits LCD and
+cell text receives the shared one-character inset. Formal body tables use the
+full text measure; the one-character inset belongs to cell text, not to the
+heading/table group. The finalizer fits LCD and
 Meaning of Symbols shells to their composed row heights. The 26-row LCD table
 normally stays at 7 rows plus 19 rows per language with a 5.6 mm maximum icon
-box. For governed LCD rows, the renderer first compacts short rows to a
+box; its segment-specific vertical padding follows the approved
+`Jackery Explorer 1000 User Manual V2.0` layout.
+For governed LCD rows, the renderer first compacts short rows to a
 deterministic content minimum and gives the recovered height to rows that need
 more wrapped lines; each row is still emitted as an editable auto-growing row
 so InDesign can honor the actual installed font metrics. If the complete
@@ -1056,7 +1068,8 @@ language and stable source number; the renderer rejects a partially governed
 segment instead of mixing those values with InDesign-native growth. Targets
 without that optional geometry retain native editable auto-growing rows.
 On the combined maintenance/symbols page, the safety-tail panels use the
-approved dark warning asset. Signal badges are one-cell native tables with a
+approved dark warning asset, and the symbol/meaning tables use a light-grey
+first column. Signal badges are one-cell native tables with a
 linked white warning symbol and editable localized text; French and Spanish
 signal labels use the compact reference density, then fit horizontally to the
 available badge width so long labels remain on one line. Symbol icon size,

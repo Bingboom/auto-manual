@@ -49,9 +49,10 @@ always name the environment that produced it.
 
 For fixed-layout PDF work, edit the shared LaTeX component or its
 data/layout_params.csv values instead of drawing borders directly in page
-RST. Titles, safety boxes, FCC panels, inbox cards, tip strips, symbol tables,
-and app notices are reusable objects; page RST supplies their text and image
-arguments. Body WARNING, CAUTION, NOTE, and TIP label/body tables are mapped
+RST. Titles (H1 bars), capsule subbars, safety boxes, FCC panels, inbox
+cards, tip strips, rounded table frames, symbol tables with controlled
+symbol continuations, app steps, and app notices are reusable objects; page
+RST supplies their text and image arguments. Body WARNING, CAUTION, NOTE, and TIP label/body tables are mapped
 to the same rounded callout family automatically for LaTeX PDF output.
 The visible label itself always comes from the page RST / source table. The
 renderer does not change `TIP` to `TIPS` (or create any other fallback word),
@@ -867,6 +868,7 @@ Troubleshooting content is generated from:
 - use `Region`, `Model`, and `Is_latest` to select active rows; blank placeholder records are ignored
 - keep page title, intro, table headers, widths, and header-row settings in each language's `10_troubleshooting.rst`
 - keep error-code rows and corrective-measure copy in the TROUBLESHOOTING Base table; the RST template exposes `{{ troubleshooting_rows_rst }}` where those rows are inserted
+- localized corrective text lives in per-language `corrective_measures_<lang>` columns; the current snapshot set is `corrective_measures_en/fr/es/pt-BR/br/de/it/ukr/jp/zh/ko`. A new output language adds its column in the Base table first, then reaches the snapshot through `sync-data`
 
 Spec content is generated from:
 
