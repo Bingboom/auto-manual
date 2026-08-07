@@ -1,21 +1,23 @@
-# Auto-Manual Tool
+# Auto-Manual
 
-Auto-Manual turns structured content — Feishu/Lark Base source tables plus
-shared RST templates — into target-specific manual bundles and release
-outputs (PDF, DOCX, IDML, Markdown, responsive web) across the config
-families registered under [`configs/`](configs) — US, EU, JP, CN, AU, KR,
-and pt-BR. The maintained smoke-check baseline is `JE-1000F` across US and
-JP.
+**一份源头，产出每个市场的说明书。**
+*One source of truth — every market's manual, in every format.*
 
-**This README is the workflow roadmap, a quickstart, and a navigation map —
-nothing more.** The full command reference and every operational note live
-in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).
+Auto-Manual 是说明书的自动化产线。产品数据、文案、术语和插图各自只维护一份，
+一次构建，同源产出印刷 PDF、可编辑 DOCX、InDesign 设计稿和响应式网页手册——
+七个市场家族，每一本都可评审、可追溯、可复现。
+
+- **改一处，处处生效** —— 规格与文案的修改从源表流向所有语言和格式，不再逐份手改
+- **同源多格式** —— 全部交付物出自同一个冻结构建包，文案、规格、法务内容永不分叉
+- **评审有闭环** —— 云文档评审意见按归属自动回流源头；每次发布绑定提交、快照和哈希，可逐字节重建
+
+> 这份 README 只承载三件事：工作流路线图、快速上手、导航地图。完整命令参考在
+> [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)。
 
 ## 工作流全景 Roadmap
 
-The main path runs from governed content to frozen, reviewable, multi-format
-manuals. Teal stages belong to the engineering plane; violet stages cross into
-the Hello-Docs business publishing plane.
+主路径：从受治理的内容源，到冻结、可评审、多格式的成品手册。图中青色阶段属于
+工程面（auto-manual），紫色阶段跨入业务发布面（Hello-Docs）。
 
 ![Auto-Manual workflow roadmap](docs/readme-assets/auto-manual-roadmap.svg)
 
@@ -62,9 +64,9 @@ the Hello-Docs business publishing plane.
 
 ### 3. 构建与检查
 
-[`build.py`](build.py) 是统一入口。最小 US/EN 验证路径如下
-（`config.us-en.yaml` 是 CI 同款的单语 US 配置；`config.us.yaml` 是
-en/fr/es 三语合订家族）：
+[`build.py`](build.py) 是统一入口，`JE-1000F`（US/JP）是长期维护的烟测基线。
+最小 US/EN 验证路径如下（`config.us-en.yaml` 是 CI 同款的单语 US 配置；
+`config.us.yaml` 是 en/fr/es 三语合订家族）：
 
 ```bash
 python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
@@ -256,7 +258,7 @@ Use the document that owns the topic:
 ## Key directories
 
 - [`build.py`](build.py): top-level CLI entrypoint
-- [`configs/`](configs): shared family configs (`config.us.yaml`, `config.ja.yaml`, …) with config-base inheritance
+- [`configs/`](configs): shared family configs with config-base inheritance, covering the US, EU, JP, CN, AU, KR, and pt-BR families
 - [`tools/`](tools): orchestration, rendering, validation, diff, and release helpers
 - [`scripts/`](scripts): branch wrappers, local-build helpers, and queue service scripts
 - [`docs/manifests/`](docs/manifests): page-stack manifests for manifest-driven manual families
