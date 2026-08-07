@@ -7,11 +7,144 @@ families registered under [`configs/`](configs) — US, EU, JP, CN, AU, KR,
 and pt-BR. The maintained smoke-check baseline is `JE-1000F` across US and
 JP.
 
-**This README is a quickstart and a navigation map, nothing more.** The full
-command reference and every operational note live in
-[`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).
+**This README is the workflow roadmap, a quickstart, and a navigation map —
+nothing more.** The full command reference and every operational note live
+in [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md).
 
-## 1. Recurring terms
+## 工作流全景 Roadmap
+
+The main path runs from governed content to frozen, reviewable, multi-format
+manuals. Teal stages belong to the engineering plane; violet stages cross into
+the Hello-Docs business publishing plane.
+
+![Auto-Manual workflow roadmap](docs/readme-assets/auto-manual-roadmap.svg)
+
+> 第一次接触本项目时，请先沿编号主路径阅读。图底部的质量门禁是各阶段的
+> 验收条件，不是最后才做的可选清理项。
+
+### 1. 治理内容源
+
+先明确目标的 **型号、区域、语言和执行平面**，再到真正拥有该信息的源头修改：
+
+| 信息类型 | 唯一事实源 |
+| --- | --- |
+| 产品信息、规格参数、页面占位值 | 飞书 phase2 源表（列语义见 [`hello_auto-doc.md`](user-guide/hello_auto-doc.md) 的 Source of Truth 节） |
+| 可复用的说明书文案和页面结构 | [`docs/templates/`](docs/templates) |
+| 已确认的术语和句对 | TM-B `Translation_Memory` |
+| 正式插图及其导出物 | 飞书 `04_资产*` 表和本地资产注册表 |
+| 评审开始后的目标专属修改 | [`docs/_review/`](docs/_review) |
+
+不要把 [`docs/_build/`](docs/_build) 当作编辑源。生成文件是验证证据和交付物，
+不是长期维护的内容源。三条阶段铁律：评审开始前，从模板和数据播种草稿；评审开始
+后，改 `_review`；永远不要把 `_build` 当源头。
+
+正式插图在页面 RST 中按语义身份引用已批准的注册表导出物，不写渲染器路径：
+
+```rst
+.. image:: asset:operation/ac_output
+```
+
+### 2. 冻结输入
+
+`sync-data` 把选定的飞书记录和附件固化到 Git 忽略的 `data/phase2/` 快照中。
+配置文件和 `document_key` 将快照绑定到具体目标；页面清单定义页面组合，资产清单
+和构建包清单则通过哈希绑定实际使用的文件字节。
+
+进入下一阶段前，确认：
+
+- 配置解析出的型号、区域和语言与任务目标一致
+- phase2 快照包含目标记录和必需附件
+- 每个正式 `asset:` 引用都能解析到已批准的导出物
+- 准备好的构建包已记录输入清单和 `bundle_sha256`
+
+测试和 CI 使用已提交、可复现的样例快照
+[`tests/fixtures/phase2/`](tests/fixtures/phase2)，不依赖实时读取飞书。
+
+### 3. 构建与检查
+
+[`build.py`](build.py) 是统一入口。最小 US/EN 验证路径如下
+（`config.us-en.yaml` 是 CI 同款的单语 US 配置；`config.us.yaml` 是
+en/fr/es 三语合订家族）：
+
+```bash
+python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py doctor --data-plane --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
+python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
+```
+
+`doctor` 检查环境和目标，`check` 执行质量门禁，`review` 创建目标评审面。
+JP、多语言、新产线、资产接入和矩阵构建等操作，见下方
+[按主题跳转](#topic-index) 与 [`build_doc_guide.md`](code-as-doc/build_doc_guide.md)。
+
+### 4. 评审与回写
+
+评审开始后，`docs/_review/<model>/<region>` 下的冻结派生稿负责承载目标专属修改。
+数据驱动的更新优先使用 `sync-review`，不要随意刷新或覆盖已经评审的文案；评审侧
+覆盖物只允许放在 `overrides/_assets/`、`overrides/_static/` 或
+`overrides/renderers/` 之下。
+
+按照内容归属将评审意见写回正确源头：
+
+| 评审发现 | 回写位置 |
+| --- | --- |
+| 仅当前目标使用的文案或版式调整 | `docs/_review/...` |
+| 多目标共用的可复用文案 | 修改模板，再同步到进行中的评审 |
+| 规格参数或页面占位值 | 通过审批门禁（F6）写入飞书源表 |
+| 插图或资产修正 | 资产接入/晋级流程及资产注册表 |
+
+回写评审云文档时，使用能够解析评审分支的标准入口，不要猜测本地文件路径：
+
+```bash
+python tools/cloud_doc_backport.py run-review-branch \
+  --doc-name <doc-name> --cloud-doc <url>
+```
+
+先执行 dry-run。确认报告后使用 `--write` 应用；只有需要向已解析的评审分支创建
+草稿 PR 时才添加 `--push`。
+
+### 5. 生成多格式输出
+
+所有格式都消费同一个准备完成的构建包。PDF 是固定版式参考，DOCX 用于编辑交换，
+IDML 是可编辑的设计交付，HTML 提供响应式展示，Markdown 和 ZIP 用于交换与发布。
+
+各输出适配器可以采用不同的分页和排版方式，但不能私自分叉文案、规格、法务内容、
+术语或资产身份。生成可编辑的 InDesign 交付包时：
+
+```bash
+python build.py idml \
+  --config configs/config.us.yaml --model JE-1000F --region US \
+  --source review-asis
+```
+
+生成文件保留在 `docs/_build/` 或发布报告目录中。发现问题时，应在对应的内容源或
+评审层修正，再重新构建。批准复刻目标的验收是逐页视觉比对：在最新 parity 报告
+显示 `accepted=true` 之前，不要交付 IDML/INDD/PDF。
+
+### 6. 发布与追踪
+
+发布流程从工程面跨入业务面：
+
+1. `auto-manual/main` 单向同步到 `Hello-Docs/main`。
+2. 业务面的 Web Publish 队列组装冻结的 `docs/publish/` 候选快照。
+3. 受范围门禁保护的 `publish → main` PR 只携带已评审的 Web 快照。
+4. Read the Docs 基于合入后的 Git 快照构建，不实时读取飞书。
+5. Worker 将在线 URL 和最终状态回写到原始记录。
+
+代码修改只发生在 `auto-manual`，不要直接修改 Hello-Docs 的工程树。只有源提交、
+生成产物、发布 URL 和飞书回读结果全部一致，发布才算完成。响应式 Web 输出是
+评审内容的纯展示投影：普通 CLI/队列构建保持默认 `document`（印刷）profile，
+IDML、DOCX、PDF 和正式 Markdown 不受影响，细节见
+[`web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md)。
+
+## 各交接点的质量门禁
+
+- **确认范围后再写入：** 写入前确认型号、区域、语言、仓库、Base 和目标记录。
+- **保证哈希和清单完整：** 冻结复现构建所需的准确内容、资产和工具链输入。
+- **完成视觉与内容评审：** 检查结构、文案、链接、表格、资产及各格式的专属呈现。
+- **回读实时状态：** 核对最终提交、产物、URL 和飞书字段；成功触发任务不等于验收通过。
+
+## Recurring terms
 
 Six internal terms the rest of the documentation uses without ceremony:
 
@@ -44,7 +177,7 @@ Six internal terms the rest of the documentation uses without ceremony:
   [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) before
   reasoning about which repo or Base an operation touches.
 
-## 2. Where to start
+## Where to start
 
 - **New maintainer** → [`ONBOARDING.md`](ONBOARDING.md): two-plane topology,
   what-runs-where, and the golden-path drill that certifies a hand-over.
@@ -64,31 +197,10 @@ Six internal terms the rest of the documentation uses without ceremony:
   [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
   — platform strategy is defined there, not in this repo's working docs.
 
-## 3. Quickstart
+## Topic index
 
-The primary entrypoint is [`build.py`](build.py). Minimal US/EN smoke check
-(`config.us-en.yaml` is the single-language US config that CI also uses;
-`config.us.yaml` is the merged en/fr/es US family):
-
-```bash
-python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
-python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
-python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
-```
-
-Add `--data-plane` to `doctor` to fail early on an incomplete phase2
-snapshot or missing target rows.
-
-The one authoring rule to carry into day one: in page RST, reference an
-approved image export from the asset registry by semantic identity instead
-of a renderer path:
-
-```rst
-.. image:: asset:operation/ac_output
-```
-
-That is the whole first hour. Everything else is topic-shaped — jump
-straight to the owning section of
+Everything beyond the roadmap's main path is topic-shaped — jump straight to
+the owning section of
 [`build_doc_guide.md`](code-as-doc/build_doc_guide.md):
 
 | Topic | Entry points |
@@ -105,51 +217,14 @@ straight to the owning section of
 | Manifest inventory and family-manifest fold | `tools/manifest_lint.py`, `tools/manifest_family.py` |
 | Fixed US + JP release matrix | `scripts/build_us_jp_manuals.py` (pass `--languages` for a subset) |
 
-Two navigation notes worth keeping in view:
+One standing rule: build requests arriving through OpenClaw (the Feishu-side
+dispatch agent) or Feishu IM go through the adapter's `queue-resolve-action`
+→ `queue-execute` and are consumed by the remote queue worker, which syncs
+its own fresh snapshot. A local `check` against `data/phase2/*.csv` is
+therefore not a valid preflight. Details:
+[`integrations/openclaw/feishu-im-webhook-adapter/README.md`](integrations/openclaw/feishu-im-webhook-adapter/README.md).
 
-- Replica acceptance is page-by-page visual parity against the approved
-  reference PDF — do not hand off the IDML/INDD/PDF until the latest parity
-  report says `accepted=true`. Workflow, thresholds, and maintainer commands:
-  [the replica section of `build_doc_guide.md`](code-as-doc/build_doc_guide.md#approved-pdf-native-indesign-replica-option-2)
-  and the
-  [approved-replica plan](code-as-doc/dev/idml_reference_replica_plan.md).
-- Build requests arriving through OpenClaw (the Feishu-side dispatch agent)
-  or Feishu IM go through the adapter's `queue-resolve-action` →
-  `queue-execute` and are consumed by the remote queue worker, which syncs
-  its own fresh snapshot. A local `check` against `data/phase2/*.csv` is
-  therefore not a valid preflight. Details:
-  [`integrations/openclaw/feishu-im-webhook-adapter/README.md`](integrations/openclaw/feishu-im-webhook-adapter/README.md).
-
-## 4. Editing surfaces
-
-Use different surfaces for different stages:
-
-- **Shared templates**: [`docs/templates/`](docs/templates) — reusable RST
-  pages, placeholder contracts, snippets, and recipes.
-- **Structured data**: the Feishu phase2 source tables are the authoring
-  surface; `data/phase2/` is only their gitignored local snapshot. Per-file
-  column semantics (`Spec_Master`, `Manual_Copy_Source`, `symbols_blocks`,
-  `troubleshooting_blocks`, …) are maintained in the Source of Truth
-  section (§2) of
-  [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md).
-  Production source-table writes go through F6.
-- **Target-specific review edits** (once review starts):
-  [`docs/_review/`](docs/_review); review overrides stay under
-  `overrides/_assets/`, `overrides/_static/`, or `overrides/renderers/`.
-- **Generated output only**: [`docs/_build/`](docs/_build) — never a
-  long-lived editing surface.
-
-Three rules, one per stage: before review starts, seed the draft from
-templates and data; after review starts, edit `_review`; never treat
-`_build` as source.
-
-The responsive web output (published to Read the Docs) is a
-presentation-only projection of reviewed content through the independent
-`Web Publish` action; ordinary CLI/queue builds keep the default `document`
-(print) profile, so IDML, DOCX, PDF, and formal Markdown do not change. See
-[`code-as-doc/dev/web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md).
-
-## 5. Document map
+## Document map
 
 Use the document that owns the topic:
 
@@ -178,7 +253,7 @@ Use the document that owns the topic:
 - long-term strategy and stable architecture boundaries: [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
 - repo-level execution roadmap: [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md)
 
-## 6. Key directories
+## Key directories
 
 - [`build.py`](build.py): top-level CLI entrypoint
 - [`configs/`](configs): shared family configs (`config.us.yaml`, `config.ja.yaml`, …) with config-base inheritance
@@ -196,17 +271,18 @@ Use the document that owns the topic:
 - [`integrations/`](integrations): OpenClaw and Feishu adapter packages
 - [`.readthedocs.yaml`](.readthedocs.yaml): Read the Docs build config for the generated MyST manual catalog
 
-## 7. Maintenance rules
+## Maintenance rules
 
 When command behavior, workflow ownership, or architecture boundaries change:
 
 - update the owning document in the same change, and avoid restating the
   same rules in multiple docs
-- **keep this README a map**: it changes only when an entry point, a
-  navigation pointer, or an editing-surface rule changes. Behavior and
-  contract details go to the owning document (`build_doc_guide.md`,
-  `hello_auto-doc.md`, `web_publish_pipeline.md`, …) with at most a one-line
-  pointer here. Treat a README beyond ~200 lines as documentation debt.
+- **keep this README a roadmap and a map**: it changes only when the stable
+  workflow topology, an entry point, a navigation pointer, or an
+  editing-surface rule changes. Behavior and contract details go to the
+  owning document (`build_doc_guide.md`, `hello_auto-doc.md`,
+  `web_publish_pipeline.md`, …) with at most a one-line pointer here. Treat
+  a README beyond ~350 lines as documentation debt.
 - keep `python tools/check_maintainability_guardrails.py` green when
   touching the guarded hotspot files, and keep the PR checklist honest: if a
   helper boundary moves, update the module map in the same change
