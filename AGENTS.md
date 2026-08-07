@@ -63,6 +63,7 @@ For current human workflows, read:
 
 - Update docs in the same change when behavior changes.
 - Minimum set: [`README.md`](README.md), [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md), [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
+- [`README.md`](README.md) is a quickstart + navigation map only. Touch it when an entry point, a navigation pointer, or an editing-surface rule changes; behavior and contract details go to the owning document, with at most a one-line pointer in the README. Treat a README beyond ~200 lines as documentation debt.
 - If a code change affects the current workflow, editing surface, environment setup, or release flow, update [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) in the same change.
 - If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) in the same change.
 - When a phase or workstream from [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md) is completed, add a matching maintenance record to [`code-as-doc/code_optimization_log.md`](code-as-doc/code_optimization_log.md).
