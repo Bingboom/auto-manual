@@ -1646,3 +1646,16 @@ Why it mattered:
   into actionable build failures, while approved responsive/fixed-page
   differences remain explicit constraints or target variants rather than fake
   debt.
+
+Acceptance evidence:
+
+- [#897](https://github.com/Bingboom/auto-manual/pull/897) passed 17/17 checks
+  with no review threads and merged as `c0581038`.
+- Post-merge auto-manual validation `31278050082` and mirror sync
+  `31278050083` succeeded. Hello-Docs commit `6cf73fff` records
+  `Source: Bingboom/auto-manual@c0581038` and passed mirror validation
+  `31278060351`.
+- Read the Docs build `33975687` succeeded for the exact Hello-Docs commit
+  `6cf73fff`; the
+  [published short URL](https://ht-doc.readthedocs.io/manual_je1000f_us.html)
+  returned HTTP 200.
