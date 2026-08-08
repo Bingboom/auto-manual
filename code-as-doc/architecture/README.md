@@ -26,7 +26,11 @@ Not every file here is equally current.
 - [`Review_Branch_Propagation_Design.md`](Review_Branch_Propagation_Design.md)
   - approved K15/Workstream V forward-propagation contract for pinned review derivatives, classify-or-abstain bump PRs, migration, and lag measurement; bounded implementation slices are now registered
 - [`HTML_PDF_Component_Convergence.md`](HTML_PDF_Component_Convergence.md)
-  - output-convergence notes for current rendering work
+  - stable cross-renderer ownership boundary only; the sole human style
+    specification is
+    [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md),
+    and active migration evidence lives in
+    [`style_component_contract_v2_plan.md`](../dev/style_component_contract_v2_plan.md)
 - [`MyST_Markdown_Feishu_Cloud_Doc_Publish_Plan.md`](MyST_Markdown_Feishu_Cloud_Doc_Publish_Plan.md)
   - target architecture for MyST Markdown publish output, Read the Docs hosting, and Feishu cloud document import
 
