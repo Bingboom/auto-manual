@@ -813,17 +813,59 @@ operator-owned field evidence and are not claimed as completed.
 
 Exit criteria: the plan's §2 metrics on the dashboard — a new output language lands with zero Python edits (fake-lang proof), CI check coverage counted as PASS/(PASS+SKIP+FAIL) with a SKIP ratchet, contract recovery after a shared layout change = one command + one approval, hand-written artifact residue ratchets falling, and the next real product line onboarded in ≤2 operator-days.
 
+### Workstream X: Four-Renderer Style Component Contract v2
+
+Status: active plan; implementation PRs start after PR #874 merges
+
+PR-level breakdown and the authoritative submitted/completed checklist:
+[`dev/style_component_contract_v2_plan.md`](dev/style_component_contract_v2_plan.md).
+
+Why now:
+
+- the approved Web composite manifest and frozen asset assembly contract are
+  established, so a renderer-neutral `ComponentSpec` can be extracted without
+  coupling responsive Web layout to InDesign XML or mutable asset paths;
+- the remaining nine `partial` style semantics cluster around shared page roles
+  and three special components, while Web/Word bindings are still outside the
+  machine-validated style schema;
+- completing the contract now prevents new models from copying JE-1000F/US
+  page-shape and coordinate rules into additional renderer-local patches.
+
+Scope:
+
+- upgrade the style contract to machine-check Web and Word alongside LaTeX and
+  IDML, with debt, platform constraints, and approved variants represented
+  separately;
+- introduce renderer-neutral ComponentSpec and PagePlan layers with independent
+  Web, LaTeX, IDML, and Word adapters;
+- migrate Callout, Spec Table, FCC, Inbox, and Product Overview in reversible
+  pilot PRs, then close compatibility and plain-Markdown debt;
+- preserve the existing Web composite manifest, approved reference layout,
+  responsive Web behavior, editable FCC/Inbox copy, and deliberately hybrid
+  long-form content model.
+
+Exit criteria:
+
+- all 31 style semantics have machine-validated four-renderer capabilities;
+- strict validation reports zero actionable style debt, while legitimate
+  constraints and approved target variants remain explicit and tested;
+- the approved JE-1000F/US content, assembly, reference PDF, and physical page
+  plan remain unchanged through pure migrations;
+- every PR row in the workstream ledger is marked complete with commit, PR,
+  merge, and verification evidence.
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
 1. Keep the current `check` + smoke-CI baseline green.
 2. Run the Milestone K Tier 1 set immediately and in parallel with everything else: K4 (source-table backup), K5 (queue-failure alerting), K7 (second InDesign host), K1 (lock CI deps) — the 2026-07-17 operator triage. Everything else in K waits for its named trigger or a dedicated window; the task list should read as "4 in flight", not "15 pending".
-3. Lock Stage 2 traceability and safe reverse-sync: finish the QC tail (Workstream I), enforce the backport layer-routing rules (Workstream Q), and freeze release snapshots (Workstream J).
-4. Take the safe first cut into prose: extend short-copy coverage (Workstream L) and make `page_registry` the single composition authority (Workstream M).
-5. Let Workstream U items fire on their tier rules: K8 (transport) when its sync-pain trigger fires; K9/K10/K12 only with dedicated capacity or a protected window — not as filler.
-6. Re-launch long-form prose assembly (Workstream N) only after the design in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md) is approved and the Feishu source model is stable.
-7. Scale online-first to more models (Workstream O) and consolidate the control plane (Workstream P) as those dependencies clear — but approve the Workstream V design doc before any many-target scale-out, because O multiplies exactly the review-branch propagation cost V removes.
+3. Execute Workstream X in its strict serial PR order. Do not parallelize style-contract, ComponentSpec, PagePlan, or target-geometry migrations; keep the approved Web asset manifest and reference layout frozen while each adapter proves parity.
+4. Lock Stage 2 traceability and safe reverse-sync: finish the QC tail (Workstream I), enforce the backport layer-routing rules (Workstream Q), and freeze release snapshots (Workstream J).
+5. Take the safe first cut into prose: extend short-copy coverage (Workstream L) and make `page_registry` the single composition authority (Workstream M).
+6. Let Workstream U items fire on their tier rules: K8 (transport) when its sync-pain trigger fires; K9/K10/K12 only with dedicated capacity or a protected window — not as filler.
+7. Re-launch long-form prose assembly (Workstream N) only after the design in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md) is approved and the Feishu source model is stable.
+8. Scale online-first to more models (Workstream O) and consolidate the control plane (Workstream P) as those dependencies clear — but approve the Workstream V design doc before any many-target scale-out, because O multiplies exactly the review-branch propagation cost V removes.
 
 
 ## 9. Success Criteria

@@ -79,6 +79,8 @@ Use these together; do not split operator guidance across older phase plans.
   - current repo roadmap and active workstreams
 - [`next_optimization_checklist.md`](next_optimization_checklist.md)
   - active optimization checklist
+- [`dev/style_component_contract_v2_plan.md`](dev/style_component_contract_v2_plan.md)
+  - serial PR plan and completion ledger for the four-renderer style/component contract v2 workstream
 
 ## 5. Historical Or Archived Docs
 
