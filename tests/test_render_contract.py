@@ -136,6 +136,7 @@ class RenderContractTests(unittest.TestCase):
                 PATHS.docs_dir / "_static" / "hb_manual.css",
                 PATHS.renderer_contracts_dir / "web_manual.css",
                 PATHS.renderer_contracts_dir / "web_fcc_components.css",
+                PATHS.renderer_contracts_dir / "web_inbox_components.css",
                 PATHS.renderer_contracts_dir / "web_app_components.css",
                 PATHS.renderer_contracts_dir / "web_symbols_fcc_components.css",
             )
@@ -202,7 +203,6 @@ class RenderContractTests(unittest.TestCase):
         }
         self.assertEqual(
             {
-                "HB-SPECIAL-INBOX",
                 "HB-SPECIAL-OVERVIEW",
             },
             debt_styles,

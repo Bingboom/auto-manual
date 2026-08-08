@@ -31,6 +31,7 @@ from tools.word_bundle_html_render import (
     render_spec_word_html,
     transform_word_fcc_html,
 )
+from tools.word_inbox_component import transform_word_inbox_html
 from tools.word_bundle_html_rewrite import (
     _extract_spec_word_data,
     _rewrite_word_friendly_fragment,
@@ -309,6 +310,12 @@ def _convert_rst_fragment_to_html(
             rewritten_fragment,
             source_path=source_path,
             config=load_web_manual_contract()["fcc"],
+        )
+        rewritten_fragment = transform_word_inbox_html(
+            rewritten_fragment,
+            source_path=source_path,
+            config=load_web_manual_contract()["in_the_box"],
+            language=fragment_lang or "und",
         )
     return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 

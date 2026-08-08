@@ -246,7 +246,7 @@ IDML notice payload 通过 `metadata.legacy_payload` 原样往返，避免纯迁
 | 语义 | 语义 ID | 源写法 | Web | PDF | IDML | Word | 状态 |
 |---|---|---|---|---|---|---|---|
 | FCC 面板 | `HB-SPECIAL-FCC` | 流水线 | `.hb-fcc-composition` | `HBFccBlock` @ `components_special_pages` | `HB Rounded Panel` + `无表头表格` | `.hb-fcc-word-table` 双栏活文本 | **aligned** |
-| 开箱清单卡 | `HB-SPECIAL-INBOX` | 流水线 | `.hb-inbox-composition` | `HBInBoxThree` | `Item List Text` + `HB Inbox Card` + `无表头表格` | 经 HTML 转换 | partial |
+| 开箱清单卡 | `HB-SPECIAL-INBOX` | 流水线 | `.hb-inbox-composition` | `HBInBoxThree` | `Item List Text` + `HB Inbox Card` + `无表头表格` | `.hb-inbox-word-table` 活图文卡 | **aligned** |
 | 产品概览 | `HB-SPECIAL-OVERVIEW` | 流水线 | `.hb-annotated-figure` | `HBOverviewPanel` | `HB Body`（可移动文本框） | 经 HTML 转换 | partial |
 | App 设置 | `HB-SPECIAL-APP` | 流水线 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | `HBAppStep`、`HBAppAsset`、`HBAppNotice` | `HB Body` / `HB Callout Label` / `HB Callout Body` + `HB Rounded Panel` | 经 HTML 转换 | **aligned** |
 
@@ -500,6 +500,8 @@ IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对
 | App 设置 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | 商店徽章 / QR / 双机图，标签是活文本不是烧进图片 |
 
 FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。旧 `kind=fcc` 双文本 payload 在 PR 9 前由兼容 facade 送入同一规范。
+
+开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec：它固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label，并把相邻 TIP 的 label/body 纳入同一实例。Web adapter 输出等宽三卡和响应式 tip；LaTeX adapter 继续投影 `HBInBoxThree` 六个实参；IDML adapter 保留批准的绝对坐标卡片 composer；Word adapter 输出三列活图片/活文本表格和 16/84 tip 表。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。旧 `kind=inbox` payload 和页面形状入口在 PR 9 前保留为兼容 facade。
 
 `web_manual.json` 里登记的目标（当前 `JE-1000F / US`）会把其中部分图替换为审批过的 PDF 派生图，标题与说明仍保持可搜索的活 HTML。
 
@@ -942,7 +944,7 @@ Model No.    | JE-1000F /JE-1000F-SG
         - …
 ```
 
-**L2/L3** 第 (3) 层按页名 `*02_whats_in_the_box` 认页，重组为 `.hb-inbox-composition > .hb-inbox-grid`：三张等宽圆角卡 + 1/2/3 角标 + 通栏 TIP 条（版面见 §5）。**md 无等价写法**（角标与卡片组版是流水线重组的产物）。
+**L2/L3** source projector 把 H1、三列图文表和紧随其后的 TIP 表组合为一个 `HB-SPECIAL-INBOX` ComponentSpec；Web adapter 再输出 `.hb-inbox-composition > .hb-inbox-grid`：三张等宽圆角卡 + 1/2/3 角标 + 通栏 TIP 条（版面见 §5）。按页名 `*02_whats_in_the_box` 识别的旧入口只作为 PR 9 前的兼容 facade。**md 无等价写法**（角标与卡片组版是流水线重组的产物）。
 
 ### 10.11 例外：模板自带双分支的页（安全页、FCC）
 

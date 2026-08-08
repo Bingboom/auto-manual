@@ -70,3 +70,31 @@ components:
       latex: {capability: rendered, key: hb_latex_fcc}
       idml: {capability: rendered, key: idml_fcc}
       word: {capability: rendered, key: word_fcc}
+
+  HB-SPECIAL-INBOX:
+    style_id: HB-SPECIAL-INBOX
+    source_kinds: [inbox]
+    variants: [three-card-responsive]
+    slots:
+      accessibility_label:
+        required: true
+        content_kinds: [inline_text]
+      cards:
+        required: true
+        content_kinds: [ordered_cards]
+      tip_label:
+        required: true
+        content_kinds: [inline_text]
+      tip_body:
+        required: true
+        content_kinds: [rich_text]
+    asset_roles:
+      card_1_art: {required: true, locale_policies: [shared]}
+      card_2_art: {required: true, locale_policies: [shared]}
+      card_3_art: {required: true, locale_policies: [shared]}
+    token_roles: [component.special.inbox]
+    adapters:
+      web: {capability: rendered, key: hb_inbox}
+      latex: {capability: rendered, key: hb_latex_inbox}
+      idml: {capability: rendered, key: idml_inbox}
+      word: {capability: rendered, key: word_inbox}

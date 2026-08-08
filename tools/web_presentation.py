@@ -29,6 +29,7 @@ from tools.web_composite_presentation import (
     supports_figure_contract,
 )
 from tools.web_fcc_component import transform_fcc
+from tools.web_inbox_component import transform_inbox
 from tools.web_reference_components import (
     append_reference_captions,
     prepare_reference_caption_data,
@@ -1143,81 +1144,13 @@ def _transform_app_inline_controls(
 
 
 def _transform_in_the_box(soup: BeautifulSoup, *, source_path: Path) -> None:
-    heading = soup.find("h1")
-    if not isinstance(heading, Tag):
-        raise WebPresentationError(f"{source_path}: in-the-box page is missing its H1")
-    inbox_table = _next_tag_sibling(heading)
-    if not isinstance(inbox_table, Tag) or inbox_table.name != "table":
-        raise WebPresentationError(f"{source_path}: in-the-box H1 must be followed by a table")
-    inbox_rows = _table_rows(inbox_table)
-    if len(inbox_rows) != 1 or len(inbox_rows[0]) != 3:
-        raise WebPresentationError(
-            f"{source_path}: in-the-box table must contain one row with three items"
-        )
-
-    tip_table = _next_tag_sibling(inbox_table)
-    if not isinstance(tip_table, Tag) or tip_table.name != "table":
-        raise WebPresentationError(f"{source_path}: in-the-box grid is missing its tip table")
-    tip_rows = _table_rows(tip_table)
-    if len(tip_rows) != 1 or len(tip_rows[0]) != 2:
-        raise WebPresentationError(
-            f"{source_path}: in-the-box tip must contain one label cell and one body cell"
-        )
-
-    composition = soup.new_tag(
-        "figure",
-        attrs={
-            "class": "hb-inbox-composition",
-            "aria-label": heading.get_text(" ", strip=True),
-        },
+    """Compatibility facade retained until the PR 9 cleanup."""
+    transform_inbox(
+        soup,
+        source_path=source_path,
+        language="und",
+        error_type=WebPresentationError,
     )
-    grid = soup.new_tag("ol", attrs={"class": "hb-inbox-grid"})
-    for index, cell in enumerate(inbox_rows[0], start=1):
-        image = cell.find("img")
-        if not isinstance(image, Tag):
-            raise WebPresentationError(
-                f"{source_path}: in-the-box item {index} is missing its image"
-            )
-        image.extract()
-        image["class"] = [*image.get("class", []), "hb-inbox-art"]
-        for attribute in ("style", "width", "height"):
-            image.attrs.pop(attribute, None)
-
-        card = soup.new_tag(
-            "li",
-            attrs={
-                "class": "hb-inbox-card",
-                "data-item-number": str(index),
-            },
-        )
-        label = soup.new_tag("div", attrs={"class": "hb-inbox-label"})
-        for child in list(cell.contents):
-            label.append(child.extract())
-        if not label.get_text(" ", strip=True):
-            raise WebPresentationError(
-                f"{source_path}: in-the-box item {index} is missing its label"
-            )
-        card.append(image)
-        card.append(label)
-        grid.append(card)
-
-    tip_label_cell, tip_body_cell = tip_rows[0]
-    tip = soup.new_tag("div", attrs={"class": "hb-inbox-tip", "role": "note"})
-    tip_label = soup.new_tag("div", attrs={"class": "hb-inbox-tip-label"})
-    tip_body = soup.new_tag("div", attrs={"class": "hb-inbox-tip-body"})
-    for child in list(tip_label_cell.contents):
-        tip_label.append(child.extract())
-    for child in list(tip_body_cell.contents):
-        tip_body.append(child.extract())
-    if not tip_label.get_text(" ", strip=True) or not tip_body.get_text(" ", strip=True):
-        raise WebPresentationError(f"{source_path}: in-the-box tip copy is incomplete")
-    tip.append(tip_label)
-    tip.append(tip_body)
-
-    inbox_table.replace_with(composition)
-    composition.append(grid)
-    composition.append(tip)
-    tip_table.decompose()
 
 
 def _transform_lcd_icon_table(

@@ -6,6 +6,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from .components.notice import notice_box_layout, source_notice_label
+from tools.component_specs.inbox_adapters import idml_inbox_payload_from_legacy
 from .fcc_fallback import component_spec, fcc_spec_from_blocks
 from .page_objects import (
     BADGE_OBJECT_STYLE,
@@ -418,9 +419,20 @@ def _symbol_continuation_objects(
 def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
                    bundle_root: Path, *, lang: str = "en",
                    overflow_profile: bool = False,
-                   reference_profile: dict | None = None) -> tuple[list[str], list[str]]:
+                   reference_profile: dict | None = None,
+                   accessibility_label: str = "What's in the Box",
+                   tip_label: str = "TIP",
+                   tip_body: str = "See the source-authored tip copy.") -> tuple[list[str], list[str]]:
     if not inbox_spec:
         return [], []
+    inbox_spec = idml_inbox_payload_from_legacy(
+        inbox_spec,
+        source_ref=f"idml:page03:{sid}",
+        language=lang,
+        accessibility_label=accessibility_label,
+        tip_label=tip_label,
+        tip_body=tip_body,
+    )
     items = inbox_spec.get("items", [])[:3]
     language = lang.strip().casefold().replace("_", "-").split("-", 1)[0]
     reference_profile = reference_profile or {}
@@ -678,6 +690,16 @@ def add_fcc_inbox_page(
         lang=lang,
         overflow_profile=has_symbol_overflow,
         reference_profile=reference_profile,
+        accessibility_label=inbox_title,
+        tip_label=(source_notice_label(tip_spec) if tip_spec else "TIP"),
+        tip_body=(
+            "\n".join(
+                str(value).strip()
+                for value in (tip_spec or {}).get("texts", [])
+                if str(value).strip()
+            )
+            or "See the source-authored tip copy."
+        ),
     )
     _, tip_frames = _tip_objects(
         writer,

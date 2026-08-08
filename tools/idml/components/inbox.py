@@ -1,6 +1,8 @@
 """WHAT'S IN THE BOX three-card component (componentization P2)."""
 from __future__ import annotations
 
+from tools.component_specs.inbox_adapters import idml_inbox_payload_from_legacy
+
 from ..primitives import cell, component_table, image_cell_content, psr, wrap_table_paragraph
 from .base import RenderContext, figure_paragraph
 
@@ -8,6 +10,11 @@ from .base import RenderContext, figure_paragraph
 def render_inbox(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
                  span_columns: bool = True,
                  measure_w: float | None = None) -> tuple[str, float]:
+    spec = idml_inbox_payload_from_legacy(
+        spec,
+        source_ref=f"idml:flow:{tid}",
+        language="und",
+    )
     body_w = measure_w or ctx.text_measure
     items = spec.get("items", [])[:3]
     cols = [body_w / 3.0] * 3
