@@ -27,13 +27,14 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 
 ### 0.1 哪个文件决定什么
 
-“一份文档”不等于把机器合同改写成散文。可持续维护依赖下面四层各守边界：
+“一份文档”不等于把机器合同改写成散文。可持续维护依赖下面六层各守边界：
 
 | 层 | 权威来源 | 决定什么 | 不应该放什么 |
 |---|---|---|---|
 | 人类规范 | **本文** | 视觉意图、四端对照、实现归属、修改与验证方法 | 构建快照、临时排期、一次性 hash |
 | 语义合同 | [`manual_style.yaml`](manual_style.yaml) | 31 个稳定 `HB-*` ID、四端 capability/binding、theme-token role、`conformance`、`constraints`、`approved_variants` | CSS 像素值、逐页坐标 |
 | 组件实例合同 | [`component_registry.yaml`](component_registry.yaml) + [`tools/component_specs/`](../../../tools/component_specs/) | 可跨 renderer 传递的 ComponentSpec 类型、variant、slot、asset role、token role 与 adapter key | CSS/TeX/XML/DOCX 几何实现、逐页坐标 |
+| 主题投影合同 | [`manual_theme.yaml`](manual_theme.yaml) | 稳定 `theme_id`、组件视觉角色及四端具体 binding | 单位值、目标/语言几何、页面实例坐标 |
 | 数值 token | [`data/layout_params.csv`](../../../data/layout_params.csv) | PDF/IDML 共用的字号、间距、线宽、圆角及语言覆盖 | 组件路由和可见文案 |
 | 渲染实现 | Web CSS、LaTeX 模块、IDML renderer、Word remapper | 把合同投影成目标格式 | 自创未登记语义或渲染器本地可见常量 |
 
@@ -50,6 +51,14 @@ component adapter、capability 和边界记录。本文仍是四端维护入口�
 `manual_style.yaml`：前者约束“一个具体组件实例带什么语义内容并调用哪个 adapter”，
 后者约束“这个语义样式在四端由谁实现、当前是否对齐”。两者以同一个 `HB-*` style ID、
 variant、capability 和 token role 做机器校验，不能各自维护一套组件分类。
+
+`manual_theme.yaml` 当前使用 `manual-theme/v1`。它把
+`component.callout`、`component.table.spec` 这类组件 token role 展开为
+`surface.brand`、`border.strong`、`type.table.label` 等语义角色，再绑定到
+CSS custom property、LaTeX/layout token、IDML style/token 和 Word property adapter。
+校验器要求每个角色有消费者、每个组件 token role 有投影、每个投影四端
+绑定完整。它不存储 `px` / `pt` / `mm` 数值或页面坐标；固定页单位仍以
+`layout_params.csv` 为权威，Web 数值仍由 CSS 自定义属性所有。
 
 ### 0.2 改动路由：先判断你改的是内容、语义还是外观
 
@@ -186,8 +195,10 @@ IDML adapter 生成/恢复 notice payload，Word adapter 生成 Word-friendly �
 坐标或对象样式复制成 CSS。旧入口在迁移窗口内作为 source adapter / facade 保留，旧
 IDML notice payload 通过 `metadata.legacy_payload` 原样往返，避免纯迁移改变几何。
 
-首个 pilot 是 `HB-CALLOUT-STRIP`。后续组件只有在自己的编号 PR 完成四端基线和 registry
-测试后才进入该注册表；不能因为代码里出现同名 class 就宣称已组件化。
+首个 pilot 是 `HB-CALLOUT-STRIP`；第二个是 `HB-TABLE-SPEC`，用结构化
+`section_title` / `rows` slot 验证了空标签 rowspan、多行值和圈号上标。后续组件
+只有在自己的编号 PR 完成四端基线和 registry 测试后才进入该注册表；不能因为
+代码里出现同名 class 就宣称已组件化。
 
 ---
 
@@ -753,7 +764,17 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
           …
 ```
 
-**L2** 链路第 (3) 层按页名 `spec_*` 认页，把每张 `hb-spec-table` 包进 `figure.hb-spec-table-composition` 外壳，并校验分节数与 ① 圈号脚注数（`web_manual.json` 的 `specifications.section_count` / `circled_reference_count`）——数不对整页报错。
+**L2** 源 adapter 先把每个分节投影为 `HB-TABLE-SPEC` ComponentSpec：
+`section_title` 保留本地化标题，`rows` 按 label group 记录 `label_rowspan`、值列表和
+圈号 reference。CSV/RST、MyST、IDML 和 Word 的旧入口是薄 facade，先经同一结构校验，
+再交给各自 adapter；多行值在 Web 中仍可是一个 `<br>` 单元格，Word 可投影为带
+rowspan 的多个物理行，因为物理标记不是共享合同。
+
+网页链路第 (3) 层按页名 `spec_*` 认页，把每张 `hb-spec-table` 包进
+`figure.hb-spec-table-composition` 外壳，并校验分节数与 ① 圈号脚注数
+（`web_manual.json` 的 `specifications.section_count` / `circled_reference_count`）——
+数不对整页报错。包装后还会从最终 DOM 反向校验一次 ComponentSpec，确保 Pandoc
+保护/恢复的是同一张结构表，不是近似的通用表。
 
 **L3**：`figure.hb-spec-table-composition > table.hb-spec-table`（外壳负责深色外框、圆角、横向滚动；内表只管格线），版面规则见 §4.2。**md 等价**：
 
@@ -947,6 +968,7 @@ Model No.    | JE-1000F /JE-1000F-SG
 | 层 | 内容 | 落在哪 |
 |---|---|---|
 | 语义 | 语义 ID、`semantic_source_kinds`、`theme_token_roles`、token refs、四端 capability/binding、`conformance` / `constraints` / `approved_variants` | [`manual_style.yaml`](manual_style.yaml) |
+| 主题角色 | 组件 token role 消费的 surface / border / radius / type / width 角色及四端 binding | [`manual_theme.yaml`](manual_theme.yaml) |
 | 源写法 | MyST 围栏指令，或 RST 模板 / 源表字段 | [`tools/manual_md_directives.py`](../../../tools/manual_md_directives.py)、`docs/templates/` |
 | 标记 | `figure.hb-*-composition` 外壳 + 表格/网格骨架 + 每列一个 `col.hb-*-col-*` | 指令的 `run()` 或流水线渲染器 |
 | 样式 | 顶层 class 上的规则；分列宽度写在 `col` class 上 | [`web_manual.css`](web_manual.css) 及两个分模块 |

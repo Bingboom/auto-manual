@@ -17,7 +17,11 @@ from typing import Any
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from tools.component_specs.web_source import validate_web_callout_html
+from tools.component_specs.web_source import (
+    superscript_circled_references,
+    validate_web_callout_html,
+    validate_web_spec_table_html,
+)
 from tools.utils.path_utils import get_paths
 from tools.web_composite_manifest import WebCompositeManifest
 from tools.web_composite_presentation import (
@@ -57,9 +61,6 @@ _WEB_INLINE_CONTROL_RE = re.compile(
     r")",
     re.IGNORECASE | re.DOTALL,
 )
-_CIRCLED_REFERENCE_RE = re.compile(r"[\u2460-\u2473]")
-
-
 class WebPresentationError(RuntimeError):
     """The source structure no longer satisfies the web presentation contract."""
 
@@ -1492,31 +1493,6 @@ def _transform_troubleshooting_table(
     composition.append(table)
 
 
-def _superscript_circled_references(soup: BeautifulSoup, cell: Tag) -> int:
-    replacements = 0
-    for text_node in list(cell.find_all(string=_CIRCLED_REFERENCE_RE)):
-        if text_node.find_parent("sup"):
-            continue
-        text = str(text_node)
-        fragments: list[NavigableString | Tag] = []
-        cursor = 0
-        for match in _CIRCLED_REFERENCE_RE.finditer(text):
-            if match.start() > cursor:
-                fragments.append(NavigableString(text[cursor : match.start()]))
-            reference = soup.new_tag(
-                "sup",
-                attrs={"class": "hb-spec-reference"},
-            )
-            reference.string = match.group(0)
-            fragments.append(reference)
-            replacements += 1
-            cursor = match.end()
-        if cursor < len(text):
-            fragments.append(NavigableString(text[cursor:]))
-        text_node.replace_with(*fragments)
-    return replacements
-
-
 def _transform_specification_tables(
     soup: BeautifulSoup,
     *,
@@ -1612,7 +1588,7 @@ def _transform_specification_tables(
             )
 
         for cell in table.select("th.hb-spec-label, td.hb-spec-value"):
-            observed_circled_references += _superscript_circled_references(soup, cell)
+            observed_circled_references += superscript_circled_references(soup, cell)
 
         composition = soup.new_tag(
             "figure",
@@ -1623,6 +1599,11 @@ def _transform_specification_tables(
         )
         table.replace_with(composition)
         composition.append(table)
+        validate_web_spec_table_html(
+            str(composition),
+            source_ref=f"{source_path}#{heading_text}",
+            error_type=WebPresentationError,
+        )
 
     if observed_circled_references != expected_circled_references:
         raise WebPresentationError(

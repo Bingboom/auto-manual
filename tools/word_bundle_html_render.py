@@ -6,6 +6,10 @@ from __future__ import annotations
 import html
 from html.parser import HTMLParser
 
+from tools.component_specs.spec_table import (
+    spec_table_component_spec,
+    word_spec_table_projection,
+)
 from tools.csv_pages.renderers import rst_escape
 
 
@@ -109,8 +113,16 @@ def render_spec_word_html(data: dict[str, object]) -> str:
         f"<h1>{html.escape(rst_escape(str(data['title_main'])))}</h1>",
     ]
 
-    for section in data["sections"]:
-        title = html.escape(rst_escape(str(section["title"]))).upper()
+    for section_index, section in enumerate(data["sections"]):
+        raw_title = str(section["title"])
+        spec = spec_table_component_spec(
+            section_title=raw_title,
+            rows=section["rows"],
+            source_ref=f"word:spec:{section_index}:{raw_title}",
+            language=str(data.get("language") or "und"),
+        )
+        projection = word_spec_table_projection(spec)
+        title = html.escape(rst_escape(str(projection["title"]))).upper()
         parts.append(
             '<h2 class="hb-spec-section">'
             '<span class="hb-spec-bullet" aria-hidden="true">&#9679;</span>'
@@ -119,8 +131,13 @@ def render_spec_word_html(data: dict[str, object]) -> str:
         )
         parts.append('<table class="manual-table manual-spec-table">')
         parts.append("<tbody>")
-        for left, right in section["rows"]:
-            right_lines = _split_spec_value_lines(str(right))
+        for group in projection["groups"]:
+            left = str(group["label"])
+            right_lines = [
+                line
+                for value in group["values"]
+                for line in _split_spec_value_lines(str(value["text"]))
+            ]
             if not right_lines:
                 right_lines = [""]
             if len(right_lines) == 1:
