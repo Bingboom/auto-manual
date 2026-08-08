@@ -70,13 +70,42 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 | **PDF** | LaTeX 入口宏 @ 所属 `docs/renderers/latex/*.tex` |
 | **IDML** | InDesign 段落样式 / 表样式 / 对象样式 |
 | **Word** | `reference.docx` 的样式 ID，或"经 HTML 转换"（无独立样式）。Word 侧的表样式**按形状选，不按语义选**：单行且 ≥3 列走 `TableGrid`，其余走 `tableHeader` |
-| **状态** | `aligned` = 四处的语义和共享合同一致；`partial` = 有已记录的偏差，见各条的债。`aligned` 仍可保留已批准边界说明，不代表待修缺陷 |
+| **状态** | `aligned` = 四处的语义和共享合同一致；`partial` = 仍有可修复的 conformance debt。constraint 和 approved variant 本身不构成 `partial`，见 §0.3 |
 
 单位：Web 用 `rem`（1rem = 16px），`clamp(最小, 视口比例, 最大)` = 随视口缩放并夹住两端；PDF/IDML 用 pt/mm，值取自 [`data/layout_params.csv`](../../../data/layout_params.csv)；Word 的 `sz` 是半磅（34 = 17pt）。
 
 颜色变量：`--hb-brand-dark` `#343031`、`--hb-text` `#343031`、`--hb-text-muted` `#666264`、`--hb-line` `#a7a5a6`、`--hb-line-soft` `#dedcdd`、`--hb-paper` `#ffffff`、`--hb-surface` `#f4f3f3`。
 
-### 0.3 “流水线”的定义
+### 0.3 欠账、约束与批准变体
+
+样式状态只描述共享语义是否按合同投影，不能把所有端间差异都叫“欠账”。统一使用
+下面三个互斥的分类：
+
+| 分类 | 定义 | 必备记录 | 对 `status` 的影响 |
+|---|---|---|---|
+| `debt` | 已承诺的共享语义在一个或多个适用输出面缺失、错误、未登记或缺少守护，且可以通过实现修复的 conformance gap | 原因、受影响输出面、owner、修复条件和测试证据 | 未销账时必须是 `partial` |
+| `constraint` | 共享语义合同有意接受的 renderer / platform 能力边界，例如响应式 Web 不分页、封面使用批准成品美术 | 原因、适用 renderer、scope、owner 和验证证据 | 本身不构成 `partial` |
+| `approved_variant` | 经评审并由测试或 reference 合同钉住的 target / model / region / language / renderer 几何或行为差异 | scope、批准理由、owner、参数或绑定来源、回归证据 | 本身不构成 `partial` |
+
+`aligned` 不等于四端逐像素相同；只要同一语义的所有适用投影都按合同工作，就可以
+同时带有 constraint 或 approved variant。只有仍存在可执行的 `debt` 才使用
+`partial`。不能为了把状态改绿，把可修复缺陷改名为平台约束；也不能把未评审的
+renderer-local 常量称为批准变体。
+
+生命周期固定为：
+
+1. 发现差异时先分类，不直接改 `status`；不确定时按 debt 候选处理。
+2. 在机器合同记录 scope、owner、原因和守护证据；schema v1 过渡期仍以
+   `status/debt` 为机器账本，constraint / approved variant 的独立字段由 schema v2
+   引入。
+3. debt 只有在实现、直接测试和适用的四端验证通过后才销账；constraint 和
+   approved variant 必须有边界测试或 reference pin，不能只留散文说明。
+4. 平台能力、目标范围或批准结论变化时重新评审：可修复的 constraint 可以重分类为
+   debt；不再需要的 variant 应删除其专属参数和守护。
+5. 修改分类时同步 `manual_style.yaml`、本文 §1/对应视觉章节和执行 ledger；一次性
+   hash、构建数量和 PR 证据只写执行 ledger。
+
+### 0.4 “流水线”的定义
 
 本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 组合成 prepared RST bundle，再由 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) 提取为 `manual-ir/v1`，最后投影到 Web、PDF、IDML 或 Word。它不是“根据文字长得像什么来猜组件”，也不是本 PR 新增的 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
 
@@ -90,7 +119,7 @@ phase2 / 模板
 
 “流水线”一栏表示：该语义由源表字段、模板宏、显式 RST 容器、页面清单或页面角色共同产生，普通作者不能只写一段同名文案就触发它。例如正文出现 `Warranty Period` 不会自动变成质保年限卡；模板必须显式写出 `warranty-section warranty-years`。
 
-### 0.4 流水线怎样加标识符
+### 0.5 流水线怎样加标识符
 
 标识分五层，彼此不能混用：
 
@@ -535,13 +564,14 @@ Word 若需要新增独立组件样式，应先进入 `manual_style.yaml` 与 §
 ## 9. 合同生效与批准版式
 
 `aligned` 表示各输出面按已登记的同一语义工作，并不要求响应式 Web、固定页
-PDF/IDML 和 Word 逐像素相同。`partial` 表示仍有明确边界或欠账。**当前状态只读
-`manual_style.yaml`，不要在本文再维护一份计数或清单。** §1 的状态列用于阅读，
-修改合同状态时必须在同一提交同步它。
+PDF/IDML 和 Word 逐像素相同。`partial` 只表示仍有 §0.3 定义的可修复 debt；
+constraint 或 approved variant 不会单独把语义降为 `partial`。**schema v1 期间当前
+状态仍只读 `manual_style.yaml` 的 `status/debt`，不要在本文再维护一份计数或
+清单。** §1 的状态列用于阅读，修改合同状态时必须在同一提交同步它。
 
 允许的投影差异必须满足至少一项：写进 token、写进 renderer binding、或写进批准
-reference-layout 的边界说明。未登记的 renderer-local 可见常量不是“平台差异”，
-而是样式债。
+reference-layout 的边界说明，并按 §0.3 登记为 constraint 或 approved variant。
+未登记的 renderer-local 可见常量不是“平台差异”，而是 debt。
 
 `manual_style.yaml` 与 `data/layout_params.csv` 的语义哈希会写入批准 reference-layout plan 的 v2 `identity.style`。v2 把 identity 分为 `content`、`assembly`、`style`、`provenance`：前三者和逐页 source digest 是 production 硬门禁；全局 phase2 `snapshot_sha256` 只保留在 `provenance` 供追溯，不因无关表变化阻断当前 target。`assembly` 同时哈希 source 顺序、语言、页面角色和 composition map；批准装配出现 `UNCLASSIFIED_PROSE` 时默认失败，只有精确登记的 source-ref 例外可继续。对已有批准合同的 target，production `build.py idml --source auto` 解析为冻结 `review-asis` 装配；未批准 target 继续走 runtime。普通 reference rebind 只允许 style/provenance identity 更新，默认拒绝 content 或 assembly hash 变化。只有在最终 Manual IR 的 source 顺序、语言映射、物理页数、`skipped_raw` 与 composition map 均通过核验后，才可由操作者使用显式 content-approval 路由重绑；reference PDF 与 composition map 不因样式销账而改变。
 
@@ -968,7 +998,8 @@ production RST 的用法问题：
 
 ### B.2 样式债与批准边界
 
-当前项只以 `manual_style.yaml` 的 `status/debt` 为账本；本文 §1 仅提供可读投影。
+分类定义和生命周期以 §0.3 为准。schema v1 过渡期当前项仍以
+`manual_style.yaml` 的 `status/debt` 为机器账本；本文 §1 仅提供可读投影。
 已经完成的清算范围、批准方法和验证结果属于
 [历史执行状态](../../../code-as-doc/dev/style_debt_execution_status.md)，不要把它们
 复制回来重新维护。

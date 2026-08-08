@@ -2,7 +2,7 @@
 
 Date: 2026-08-07
 
-Status: PR 0 submitted; awaiting merge
+Status: PR 0 complete; PR 1 submitted; awaiting merge
 
 Owner: renderer contract maintainers
 Canonical style definition: [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)
@@ -188,8 +188,8 @@ No two PRs in this workstream may edit the contract concurrently.
 
 | Step | Submitted | Complete | Branch | Commit | PR | Merged commit | Required evidence | Notes |
 |---|---|---|---|---|---|---|---|---|
-| PR 0 — baseline definition and this plan | [x] | [ ] | `feat/tools-plain-markdown-site` | `d1fff5c3` (PR head `18ce951d`) | [#874](https://github.com/Bingboom/auto-manual/pull/874) | — | local: 2771 passed, 5 skipped; links/pins green; Actions runs `31247667971` + `31247667955` 17/17 green | Submitted 2026-08-08; implementation PRs wait for merge |
-| PR 1 — document convergence and debt vocabulary | [ ] | [ ] | `docs/style-contract-v2-vocabulary` | — | — | — | docs links, contract tests, zero output change | — |
+| PR 0 — baseline definition and this plan | [x] | [x] | `feat/tools-plain-markdown-site` | `d1fff5c3` (final head `79263495`) | [#874](https://github.com/Bingboom/auto-manual/pull/874) | `ce41d77e` | PR 17/17 green: Actions `31247992063` + `31247992042`; merged-main validation `31248164455`; local links, contract tests, pins green | Submitted and merged 2026-08-08; post-merge main verified before PR 1 edits |
+| PR 1 — document convergence and debt vocabulary | [x] | [ ] | `docs/style-contract-v2-vocabulary` | `b0561ac6` | [#889](https://github.com/Bingboom/auto-manual/pull/889) | — | local docs links 1479/0 broken; render contract 9/9; Markdown-only diff | Submitted 2026-08-08; started from `ce41d77e`; awaiting merge |
 | PR 2 — style schema v2 and four-renderer bindings | [ ] | [ ] | `feat/style-contract-schema-v2` | — | — | — | schema tests, full unit, style-only pin rebind proof | — |
 | PR 3 — ComponentSpec core and Callout pilot | [ ] | [ ] | `refactor/renderers-component-spec-callout` | — | — | — | adapter parity, Web/LaTeX/IDML/Word callout comparison | — |
 | PR 4 — Spec Table and theme-token projection | [ ] | [ ] | `refactor/renderers-component-spec-table` | — | — | — | token projection, four-renderer spec-table comparison | — |

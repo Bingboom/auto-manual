@@ -1,5 +1,13 @@
 # 样式契约欠账清算 — 执行状态
 
+> **历史记录（冻结）。** 本页只保存 2026-08-05 完成的上一轮样式债清算、批准
+> reference-layout 与 production 复建证据，不再承担当前欠账或 PR 进度账本。当前
+> Workstream X 的范围、串行 PR 1–9、Submitted/Complete checklist 和最终验收统一
+> 维护在
+> [`style_component_contract_v2_plan.md`](style_component_contract_v2_plan.md)。
+> 新增组件、状态定义和四端视觉规则只更新
+> [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)。
+
 集成分支 `fix/idml-style-contract-debt`（接力基线 `789ae3e4`）。原始权威清单来自提交 `1242be91` 的 `docs/renderers/contracts/STYLE_DEBT.md`：26 个记录项，其中 16 条进入本轮，10 条归口长期维护。
 
 **原始排期的 16 条已全部完成实现，并在 `manual_style.yaml` 中改为 `status: aligned`、`debt: []`。** 当前仍保留原清单中的十条长期项：9 条 `partial`，以及 `HB-TABLE-LCD-ICON` 的一条已批准参考档说明。31 条语义的正式四渲染器定义见 [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)；最终全量验证、production IDML 复建和 reference pin 重绑结果记录在本页第 7 节。
