@@ -42,7 +42,7 @@ jobs:
       FEISHU_TRANSLATION_MEMORY_BASE_TOKEN: ${{ secrets.FEISHU_TRANSLATION_MEMORY_BASE_TOKEN }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: ./.github/actions/feishu-common-setup
 
@@ -78,7 +78,7 @@ jobs:
 
       - name: Upload dated backup artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: phase2-content-backup-${{ github.run_id }}
           path: backup_out/
@@ -87,7 +87,7 @@ jobs:
 
       - name: Open or update tracking issue on failure
         if: steps.export_business.outcome == 'failure' || steps.export_tm.outcome == 'failure'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const title = 'Phase2 content backup failing';
@@ -128,7 +128,7 @@ jobs:
 
       - name: Close tracking issue on recovery
         if: steps.export_business.outcome == 'success' && steps.export_tm.outcome == 'success'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const title = 'Phase2 content backup failing';
