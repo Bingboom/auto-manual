@@ -1,34 +1,31 @@
 """Render notice-shaped RST tables as reusable LaTeX callout components."""
 from __future__ import annotations
 
+from pathlib import Path
+import sys
+
 from docutils import nodes
 
+# Sphinx loads this extension from the prepared RST bundle, where the console
+# entrypoint does not put the repository root on sys.path. Resolve the owning
+# checkout explicitly so the renderer can consume the shared ComponentSpec
+# adapter in both source and generated-bundle locations.
+_REPO_ROOT = next(
+    (
+        parent
+        for parent in Path(__file__).resolve().parents
+        if (parent / "tools" / "component_specs").is_dir()
+    ),
+    None,
+)
+if _REPO_ROOT is None:  # pragma: no cover - invalid handoff/package boundary
+    raise RuntimeError("hb_latex_callouts requires the owning repository tools package")
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
 
-_VARIANTS_BY_LABEL = {
-    "WARNING": "warning",
-    "CAUTION": "caution",
-    "NOTE": "note",
-    "TIP": "tip",
-    "TIPS": "tip",
-    "AVERTISSEMENT": "warning",
-    "ATTENTION": "caution",
-    "REMARQUE": "note",
-    "CONSEIL": "tip",
-    "CONSEILS": "tip",
-    "ADVERTENCIA": "warning",
-    "PRECAUCIÓN": "caution",
-    "PRECAUCION": "caution",
-    "NOTA": "note",
-    "CONSEJO": "tip",
-    "CONSEJOS": "tip",
-}
-
-_MACRO_BY_VARIANT = {
-    "warning": "HBWarningBlock",
-    "caution": "HBCautionBlock",
-    "note": "HBNoteBlock",
-    "tip": "HBTipBlock",
-}
+from tools.component_specs.adapters import latex_callout_macro
+from tools.component_specs.callout import callout_component_spec, variant_for_label
+from tools.component_specs.model import ComponentSpec
 
 
 class HBCallout(nodes.General, nodes.Element):
@@ -87,11 +84,25 @@ def replace_notice_tables(app, doctree: nodes.document, _docname: str) -> None:
             continue
 
         label = _display_label(entries[0].astext())
-        variant = _VARIANTS_BY_LABEL.get(label.upper())
+        variant = variant_for_label(label)
         if variant is None:
             continue
 
-        callout = HBCallout(label=label, variant=variant)
+        language = str(
+            getattr(getattr(app, "config", None), "language", None) or "und"
+        )
+        spec = callout_component_spec(
+            label=label,
+            body=entries[1].astext(),
+            source_ref=f"{_docname}:{table.line or 0}",
+            language=language,
+            variant=variant,
+        )
+        callout = HBCallout(
+            label=label,
+            variant=variant,
+            component_spec=spec.to_dict(),
+        )
         for child in entries[1].children:
             if isinstance(child, nodes.paragraph):
                 _append_inline_children(callout, child)
@@ -103,7 +114,8 @@ def replace_notice_tables(app, doctree: nodes.document, _docname: str) -> None:
 
 
 def visit_callout_latex(translator, node: HBCallout) -> None:
-    macro = _MACRO_BY_VARIANT[node["variant"]]
+    spec = ComponentSpec.from_dict(node["component_spec"])
+    macro = latex_callout_macro(spec)
     translator.body.append(f"\n\\{macro}{{{translator.encode(node['label'])}}}{{%\n")
 
 

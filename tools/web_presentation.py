@@ -17,6 +17,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
+from tools.component_specs.web_source import validate_web_callout_html
 from tools.utils.path_utils import get_paths
 from tools.web_composite_manifest import WebCompositeManifest
 from tools.web_composite_presentation import (
@@ -141,7 +142,9 @@ def protect_web_callouts_for_pandoc(html_text: str) -> tuple[str, dict[str, str]
 
     def replace(match: re.Match[str]) -> str:
         token = f"AUTOMANUALWEBCALLOUT{len(protected) + 1:04d}PLACEHOLDER"
-        protected[token] = match.group(0)
+        callout_html = match.group(0)
+        validate_web_callout_html(callout_html, source_ref=f"pandoc:{token}", error_type=WebPresentationError)
+        protected[token] = callout_html
         return f"<p>{token}</p>"
 
     return _WEB_CALLOUT_TABLE_RE.sub(replace, html_text), protected
@@ -154,6 +157,7 @@ def restore_web_callouts_after_pandoc(
     """Restore each protected callout exactly once, failing closed on drift."""
     restored = markdown_text
     for token, callout_html in protected.items():
+        validate_web_callout_html(callout_html, source_ref=f"pandoc:{token}", error_type=WebPresentationError)
         occurrences = restored.count(token)
         if occurrences != 1:
             raise WebPresentationError(

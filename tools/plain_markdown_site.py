@@ -866,20 +866,50 @@ STYLE_CONF_LINES = (
 
 
 def stage_component_extension(staged_dir: Path) -> bool:
-    """Copy the manual-component Sphinx extension into the staged tree.
+    """Copy the manual-component extension and its typed contract runtime.
 
     The extension is what turns declared intent (``{callout}``, ``{spec-table}``
     …) into the exact markup the stylesheet expects, so a document converted to
     the intermediate form renders deterministically instead of relying on shape
-    heuristics. Absent (an incomplete bundle), the directives simply are not
-    available and Sphinx reports the unknown directive.
+    heuristics. The staged Sphinx process cannot assume the source checkout is on
+    ``sys.path``, so it receives the bounded ComponentSpec package, path helper,
+    and registry contract beside the extension. Absent (an incomplete bundle),
+    the directives simply are not available and Sphinx reports the unknown
+    directive.
     """
     source = _SCRIPT_DIR / f"{_EXTENSION_MODULE}.py"
-    if not source.is_file():
+    component_specs = _SCRIPT_DIR / "component_specs"
+    path_utils = _SCRIPT_DIR / "utils" / "path_utils.py"
+    registry = (
+        _MAYBE_REPO_ROOT
+        / "docs"
+        / "renderers"
+        / "contracts"
+        / "component_registry.yaml"
+    )
+    if not all(
+        path.is_file()
+        for path in (source, path_utils, registry, _SCRIPT_DIR / "__init__.py")
+    ) or not component_specs.is_dir():
         return False
     target_dir = staged_dir / _EXTENSION_DIRNAME
     target_dir.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(source, target_dir / f"{_EXTENSION_MODULE}.py")
+    staged_tools = target_dir / "tools"
+    staged_tools.mkdir()
+    shutil.copyfile(_SCRIPT_DIR / "__init__.py", staged_tools / "__init__.py")
+    shutil.copytree(
+        component_specs,
+        staged_tools / "component_specs",
+        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+    )
+    staged_utils = staged_tools / "utils"
+    staged_utils.mkdir()
+    shutil.copyfile(_SCRIPT_DIR / "utils" / "__init__.py", staged_utils / "__init__.py")
+    shutil.copyfile(path_utils, staged_utils / "path_utils.py")
+    staged_registry = target_dir / "docs" / "renderers" / "contracts"
+    staged_registry.mkdir(parents=True)
+    shutil.copyfile(registry, staged_registry / registry.name)
     return True
 
 

@@ -36,6 +36,9 @@ from docutils import nodes
 from docutils.parsers.rst import directives
 from sphinx.util.docutils import SphinxDirective
 
+from tools.component_specs.adapters import web_callout_classes
+from tools.component_specs.callout import callout_component_spec
+
 SIGNAL_WORDS = ("WARNING", "CAUTION", "NOTE", "TIP", "DANGER", "IMPORTANT", "NOTICE", "ATTENTION")
 _SUP_RE = re.compile(r"\^([^\^\s][^\^]{0,24})\^")
 _SUB_RE = re.compile(r"~([^~\s][^~]{0,24})~")
@@ -111,11 +114,19 @@ class CalloutDirective(_ManualDirective):
 
     def run(self) -> list[nodes.Node]:
         label = self.label.upper() or "NOTE"
+        language = str(getattr(self.env.config, "language", None) or "und")
+        spec = callout_component_spec(
+            label=label,
+            body="\n".join(self.content),
+            source_ref=f"{self.env.docname}:{self.lineno}",
+            language=language,
+        )
+        classes = web_callout_classes(spec)
         container = nodes.container()
         container += _raw(
-            '<table class="manual-callout-table"><tbody><tr>'
-            f'<td class="manual-callout-label"><p><strong>{_inline_html(label)}</strong></p></td>'
-            '<td class="manual-callout-body">'
+            f'<table class="{classes["table"]}"><tbody><tr>'
+            f'<td class="{classes["label"]}"><p><strong>{_inline_html(label)}</strong></p></td>'
+            f'<td class="{classes["body"]}">'
         )
         body = nodes.container()
         self.state.nested_parse(self.content, self.content_offset, body)

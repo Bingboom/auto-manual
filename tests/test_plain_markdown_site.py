@@ -30,6 +30,24 @@ class PlainMarkdownSiteStyleContractTests(unittest.TestCase):
         self.assertIn('html_theme = "furo"', conf)
         self.assertIn('html_css_files = ["web_manual.css"]', conf)
 
+    def test_component_extension_stages_shared_contract_runtime(self) -> None:
+        with TemporaryDirectory() as td:
+            staged = Path(td)
+            self.assertTrue(pms.stage_component_extension(staged))
+            extension = staged / "_ext"
+            self.assertTrue((extension / "manual_md_directives.py").is_file())
+            self.assertTrue((extension / "tools" / "component_specs" / "callout.py").is_file())
+            self.assertTrue((extension / "tools" / "utils" / "path_utils.py").is_file())
+            self.assertTrue(
+                (
+                    extension
+                    / "docs"
+                    / "renderers"
+                    / "contracts"
+                    / "component_registry.yaml"
+                ).is_file()
+            )
+
 
 class ManualComponentDirectiveTests(unittest.TestCase):
     """The intermediate form must compile to the exact component markup.

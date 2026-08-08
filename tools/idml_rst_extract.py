@@ -25,6 +25,7 @@ import re
 from pathlib import Path
 
 try:
+    from tools.component_specs.adapters import idml_notice_payload_from_legacy
     from tools.idml.data_components import is_data_plumbing, parse_data_component
     from tools.idml.extract_contract import Block, EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS
     from tools.idml.latex_conditionals import active_lines
@@ -35,6 +36,7 @@ try:
         parse_list_table as _parse_list_table_impl,
     )
 except ModuleNotFoundError:  # direct tools/export_idml.py execution
+    from component_specs.adapters import idml_notice_payload_from_legacy  # type: ignore
     from idml.data_components import is_data_plumbing, parse_data_component  # type: ignore
     from idml.extract_contract import Block, EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS  # type: ignore
     from idml.latex_conditionals import active_lines  # type: ignore
@@ -143,8 +145,11 @@ def _notice_from_list_table(rows: list[list[str]]) -> dict | None:
             texts.append(text)
     if not texts:
         return None
-    return {"kind": "notice", "label": label, "variant": variant,
-            "texts": texts, "list": list_like}
+    return idml_notice_payload_from_legacy(
+        {"kind": "notice", "label": label, "variant": variant,
+         "texts": texts, "list": list_like},
+        source_ref="rst:list-table",
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -268,13 +273,19 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
             if not label:
                 raise ValueError("notice label is required from source RST")
             result.blocks.append(("component", _json.dumps(
-                {"kind": "notice", "label": label,
-                 "variant": optional or "notice",
-                 "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
+                idml_notice_payload_from_legacy(
+                    {"kind": "notice", "label": label,
+                     "variant": optional or "notice",
+                     "texts": [a for a in args[1:] if a]},
+                    source_ref="rst:raw-latex:HBNoticeBlock",
+                ), ensure_ascii=False)))
         elif kind in {"note", "tip", "caution"} and args:
             result.blocks.append(("component", _json.dumps(
-                {"kind": "notice", "label": args[0], "variant": kind,
-                 "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
+                idml_notice_payload_from_legacy(
+                    {"kind": "notice", "label": args[0], "variant": kind,
+                     "texts": [a for a in args[1:] if a]},
+                    source_ref=f"rst:raw-latex:{macro[1:]}",
+                ), ensure_ascii=False)))
         elif kind == "bodies":
             result.blocks.extend([("h1", "FCC"), ("component", _json.dumps(
                 {"kind": "fcc", "texts": [a for a in args if a]}, ensure_ascii=False))])

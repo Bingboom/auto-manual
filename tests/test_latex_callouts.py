@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import re
+import subprocess
 import sys
 from types import SimpleNamespace
 import unittest
@@ -19,12 +20,32 @@ from hb_latex_callouts import (  # noqa: E402
     HBCallout,
     HBCalloutItem,
     replace_notice_tables,
+    visit_callout_latex,
     visit_callout_item_latex,
 )
 from tools import lang_registry  # noqa: E402
 
 
 class LatexCalloutTests(unittest.TestCase):
+    def test_extension_imports_from_sphinx_console_path(self) -> None:
+        completed = subprocess.run(
+            [
+                sys.executable,
+                "-I",
+                "-c",
+                (
+                    "import sys; "
+                    f"sys.path.insert(0, {str(LATEX_RENDERER)!r}); "
+                    "import hb_latex_callouts"
+                ),
+            ],
+            cwd=Path("/tmp"),
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+
     def test_hb_apply_lang_has_a_warning_label_for_every_registered_language(self) -> None:
         source = (LATEX_RENDERER / "components_safety.tex").read_text(encoding="utf-8")
         for spec in lang_registry.LANGUAGE_REGISTRY:
@@ -54,9 +75,10 @@ class LatexCalloutTests(unittest.TestCase):
         replace_notice_tables(app, doctree, "test")
         return doctree
 
-    def test_replaces_all_four_notice_variants_and_localized_labels(self) -> None:
+    def test_replaces_all_five_notice_variants_and_localized_labels(self) -> None:
         for label, variant in (
             ("WARNING", "warning"),
+            ("DANGER", "danger"),
             ("CAUTION", "caution"),
             ("NOTE", "note"),
             ("TIP", "tip"),
@@ -64,6 +86,7 @@ class LatexCalloutTests(unittest.TestCase):
             ("ATTENTION", "caution"),
             ("REMARQUE", "note"),
             ("CONSEJOS", "tip"),
+            ("PELIGRO", "danger"),
             ("PRECAUCIÓN", "caution"),
             ("NOTA", "note"),
         ):
@@ -80,6 +103,32 @@ class LatexCalloutTests(unittest.TestCase):
             self.assertEqual(1, len(callouts), label)
             self.assertEqual(variant, callouts[0]["variant"])
             self.assertEqual(label, callouts[0]["label"])
+
+    def test_all_five_variants_dispatch_through_component_adapter(self) -> None:
+        expected = {
+            "WARNING": "HBWarningBlock",
+            "DANGER": "HBWarningBlock",
+            "CAUTION": "HBCautionBlock",
+            "NOTE": "HBNoteBlock",
+            "TIP": "HBTipBlock",
+        }
+        for label, macro in expected.items():
+            with self.subTest(label=label):
+                doctree = self._transform(
+                    f""".. list-table::
+   :header-rows: 0
+
+   * - **{label}**
+     - Keep the product safe.
+"""
+                )
+                callout = next(iter(doctree.findall(HBCallout)))
+                translator = SimpleNamespace(body=[], encode=lambda value: value)
+                visit_callout_latex(translator, callout)
+                self.assertEqual(
+                    [f"\n\\{macro}{{{label}}}{{%\n"],
+                    translator.body,
+                )
 
     def test_flattens_nested_notice_lists_into_callout_items(self) -> None:
         doctree = self._transform(
