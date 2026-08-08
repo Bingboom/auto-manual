@@ -1,11 +1,9 @@
 """Four renderer adapters for the Inbox ComponentSpec."""
 from __future__ import annotations
 
-from collections.abc import Mapping
-from copy import deepcopy
 from typing import Any
 
-from tools.component_specs.inbox import inbox_semantic_projection, inbox_spec_from_legacy_payload
+from tools.component_specs.inbox import inbox_semantic_projection
 from tools.component_specs.model import ComponentSpec, ComponentSpecError
 from tools.component_specs.registry import adapter_binding
 
@@ -51,9 +49,6 @@ def latex_inbox_projection(spec: ComponentSpec) -> dict[str, Any]:
 
 def idml_inbox_payload(spec: ComponentSpec) -> dict[str, Any]:
     _projection(spec, "idml")
-    legacy = spec.metadata.get("legacy_payload")
-    if isinstance(legacy, Mapping):
-        return deepcopy(dict(legacy))
     projection = inbox_semantic_projection(spec)
     return {
         "kind": "inbox",
@@ -67,43 +62,6 @@ def idml_inbox_payload(spec: ComponentSpec) -> dict[str, Any]:
         ],
     }
 
-
-def idml_inbox_payload_from_legacy(
-    payload: Mapping[str, Any],
-    *,
-    source_ref: str,
-    language: str,
-    accessibility_label: str = "What's in the Box",
-    tip_label: str = "TIP",
-    tip_body: str = "See the source-authored tip copy.",
-) -> dict[str, Any]:
-    items = payload.get("items")
-    if (
-        not isinstance(items, list)
-        or len(items) != 3
-        or any(
-            not isinstance(item, Mapping)
-            or not str(item.get("img") or "").strip()
-            or not str(item.get("label") or "").strip()
-            for item in items
-        )
-    ):
-        # Historical unit fixtures exercise partial card lists. Production
-        # ComponentSpec is deliberately strict; keep this compatibility-only
-        # facade until PR 9 so unrelated fixed-page tests do not change shape.
-        return deepcopy(dict(payload))
-    return idml_inbox_payload(
-        inbox_spec_from_legacy_payload(
-            payload,
-            source_ref=source_ref,
-            language=language,
-            accessibility_label=accessibility_label,
-            tip_label=tip_label,
-            tip_body=tip_body,
-        )
-    )
-
-
 def word_inbox_projection(spec: ComponentSpec) -> dict[str, Any]:
     return {
         **_projection(spec, "word"),
@@ -115,7 +73,6 @@ def word_inbox_projection(spec: ComponentSpec) -> dict[str, Any]:
 
 __all__ = [
     "idml_inbox_payload",
-    "idml_inbox_payload_from_legacy",
     "latex_inbox_projection",
     "web_inbox_projection",
     "word_inbox_projection",

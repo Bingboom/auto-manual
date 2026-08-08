@@ -173,7 +173,7 @@ def _split_opening(text: str) -> tuple[list[str], str]:
     return opening, candidate[match.start() :].strip()
 
 
-def fcc_spec_from_legacy_payload(
+def fcc_spec_from_payload(
     payload: Mapping[str, Any],
     *,
     source_ref: str,
@@ -184,7 +184,7 @@ def fcc_spec_from_legacy_payload(
     theme: Mapping[str, Any] | None = None,
 ) -> ComponentSpec:
     if str(payload.get("kind") or "") != "fcc":
-        raise ComponentSpecError(f"{COMPONENT_ID}: legacy payload kind must be 'fcc'")
+        raise ComponentSpecError(f"{COMPONENT_ID}: payload kind must be 'fcc'")
     texts = [str(value) for value in payload.get("texts") or []]
     left_text, right_text = (texts + ["", ""])[:2]
     opening, left_body = _split_opening(left_text)
@@ -196,7 +196,6 @@ def fcc_spec_from_legacy_payload(
         source_ref=source_ref,
         language=language,
         mark_asset_ref=mark_asset_ref,
-        metadata={"legacy_payload": deepcopy(dict(payload))},
         registry=registry,
         theme=theme,
     )
@@ -234,5 +233,5 @@ __all__ = [
     "fcc_blocks_from_text",
     "fcc_component_spec",
     "fcc_semantic_projection",
-    "fcc_spec_from_legacy_payload",
+    "fcc_spec_from_payload",
 ]

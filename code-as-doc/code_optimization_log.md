@@ -1609,3 +1609,40 @@ Why it mattered:
 - The roadmap now separates completed engineering from real-world evidence.
   The first timed K14 rollback drill and the next real product-line ≤2-day KPI
   remain operator-owned measurements instead of invented close-out results.
+
+## 92. 2026-08-08: Four-Renderer Style Contract v2 Close Out (Workstream X)
+
+What changed:
+
+- Completed the serial style-contract program with 31 stable `HB-*` semantics,
+  machine-validated Web/LaTeX/IDML/Word capabilities, shared ComponentSpec and
+  PagePlan semantics, and zero actionable conformance debt under strict mode.
+- Removed the renderer-local FCC, Inbox, and Product Overview compatibility
+  facades after registry, import, and normalized-output coverage proved the
+  typed replacements. FCC/Inbox fixed-page payloads are now rebuilt from
+  semantic slots instead of being hidden and replayed through metadata; Product
+  Overview requires a versioned target instance.
+- Closed the plain-Markdown authoring gaps: escaped pipes use deterministic
+  odd/even backslash parsing, troubleshooting headers are a validated two-cell
+  option, callout variants are allowlisted, and arbitrary `:class:` values fail
+  closed instead of being ignored.
+- Fixed multi-page Word export without mutating its trace HTML. A bounded
+  Pandoc-only normalization removes `<main>` wrapper tags, preserves every
+  child/component in source order, and deletes the temporary input after DOCX
+  conversion.
+- Consolidated the current authoring and maintenance rules into
+  [`STYLE_DEFINITION.md`](../docs/renderers/contracts/STYLE_DEFINITION.md), with
+  operator behavior linked from the Markdown, build, and workflow guides. The
+  PR-by-PR evidence remains in
+  [`style_component_contract_v2_plan.md`](dev/style_component_contract_v2_plan.md)
+  rather than becoming a second style specification.
+
+Why it mattered:
+
+- A new renderer or product target can reuse shared component meaning without
+  copying CSS coordinates, IDML XML, TeX geometry, or DOCX properties across
+  adapters.
+- Typed authoring and strict contract gates turn previously silent visual drift
+  into actionable build failures, while approved responsive/fixed-page
+  differences remain explicit constraints or target variants rather than fake
+  debt.

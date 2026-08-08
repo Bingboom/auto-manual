@@ -1,14 +1,14 @@
 """Renderer-neutral component instances and adapter contracts."""
 
 from .callout import callout_component_spec, callout_spec_from_legacy_notice
-from .fcc import fcc_component_spec, fcc_spec_from_legacy_payload
+from .fcc import fcc_component_spec, fcc_spec_from_payload
 from .fcc_adapters import (
     idml_fcc_payload,
     latex_fcc_projection,
     web_fcc_projection,
     word_fcc_projection,
 )
-from .inbox import inbox_component_spec, inbox_spec_from_legacy_payload
+from .inbox import inbox_component_spec, inbox_spec_from_payload
 from .inbox_adapters import (
     idml_inbox_payload,
     latex_inbox_projection,
@@ -46,12 +46,12 @@ __all__ = [
     "callout_component_spec",
     "callout_spec_from_legacy_notice",
     "fcc_component_spec",
-    "fcc_spec_from_legacy_payload",
+    "fcc_spec_from_payload",
     "idml_fcc_payload",
     "idml_inbox_payload",
     "idml_overview_projection",
     "inbox_component_spec",
-    "inbox_spec_from_legacy_payload",
+    "inbox_spec_from_payload",
     "latex_fcc_projection",
     "latex_inbox_projection",
     "latex_overview_projection",

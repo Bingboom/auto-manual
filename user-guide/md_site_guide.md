@@ -34,9 +34,9 @@
 
 | 指令 | 参数 | 行格式 | 空格子合并 |
 |---|---|---|---|
-| `callout` | 信号词，自动转大写，默认 `NOTE` | 正文按**完整 Markdown** 解析 | — |
+| `callout` | 信号词，自动转大写，默认 `NOTE`；可选 `:variant:` | 正文按**完整 Markdown** 解析 | — |
 | `spec-table` | 分节名 | `标签 \| 值` | 标签留空 → 并入上一个标签（**只看第一列**） |
-| `troubleshooting` | 分节名 | `代码 \| 措施` | 不合并 |
+| `troubleshooting` | 分节名；可选 `:headers: 表头一 \| 表头二` | `代码 \| 措施` | 不合并 |
 | `lcd-icons` | 分节名 | `序号 \| 图 \| 名称 \| 说明`（固定 4 列） | 不合并 |
 | `symbols` | 分节名 | `图 \| 含义`，自动对半分左右两栏 | 不合并 |
 | `comparison` | `左表头 \| 右表头` | `左 \| 右`（固定 2 列） | 每列独立 |
@@ -44,6 +44,10 @@
 | `manual-table` | 分节名 | 任意列数，可选 `:headers: A \| B \| C` | 每列独立 |
 
 信号词：`WARNING` `CAUTION` `NOTE` `TIP` `DANGER` `IMPORTANT` `NOTICE` `ATTENTION`。
+
+`callout` 的 `:variant:` 是样式语义，不是任意 CSS class，只允许 `warning`、
+`danger`、`caution`、`note`、`tip`。通常可省略并由已登记的信号词推断；本地化或
+特殊标签无法推断时必须显式写一个允许值。
 
 `troubleshooting` 的措施列、`lcd-icons` 的说明列里用 ` / `（前后各一空格）分隔 → 渲染成竖排步骤。
 
@@ -72,11 +76,11 @@
 
 斜体、链接、行内代码、列表、裸 HTML 都不行——会原样打印，`< > & "` 还会被转义。需要这些就用 `callout`，或把内容留在指令外面的正文里。
 
-## 三个坑
+## 类型化 option 与严格校验
 
-- **单元格里的 `|` 转不了义。** 第一段会写成 `\|`，但第三段是直接 `split("|")`，不认转义：`A \| B | v` 被切成三格且残留反斜杠。正文里改用全角 `｜` 或 `/`；非要竖线就放 `callout`。
-- **`troubleshooting` 的表头改不了**，固定 `Error Code` / `Corrective Measures`（`:headers:` 只有 `manual-table` 支持，写在别处会报未知选项）。要自定义表头就换 `manual-table`。
-- **`:class:` 写了不生效**，8 个指令都声明了这个选项但渲染时忽略。
+- **单元格里的字面 `|` 写成 `\|`。** 解析器按连续反斜杠的奇偶数确定它是字面竖线还是列分隔，转换中间态和最终渲染使用同一规则。
+- **`troubleshooting` 表头可本地化。** 省略时仍为 `Error Code` / `Corrective Measures`；自定义时写 `:headers: Code | Corrective measures`，必须恰好两个非空格子。
+- **不接受任意 `:class:`。** 八个指令都使用类型化 option；未知 option、未知 callout variant 和格式错误的双表头会让 `--strict` 构建失败，而不是静默忽略。
 
 ## 排错
 
@@ -85,7 +89,8 @@
 | `Unknown directive type` | 用了别的解释器/没走本脚本；照上面的命令跑 |
 | 表格顶上有灰色空条 | 那是管道表格，说明这张表还没改成指令 |
 | 该合并的地方是空白框 | `spec-table` 只按第一列合并；要按其它列合并换 `manual-table` |
-| 单元格被切成两半 + 残留 `\` | 内容里有 `|`，见上一节 |
+| 单元格列数不对 | 字面 `|` 前没有使用 `\|`，或连续反斜杠的奇偶数写错，见上一节 |
+| `unknown option` / `unknown callout variant` | 使用了未登记的 `:class:`、option 或 variant；改成上面的类型化写法 |
 | 图片不显示 | 忘了 `--download-images`，或图片写在了非图片格 |
 
 看到中间态里这行注释，就是脚本没认出这张表，按提示改成对应指令后删掉它：

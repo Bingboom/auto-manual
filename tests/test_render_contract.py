@@ -26,6 +26,40 @@ from tools.utils.path_utils import Paths, renderer_contracts_of
 ROOT = Path(__file__).resolve().parents[1]
 PATHS = Paths(root=ROOT)
 
+EXPECTED_STYLE_SEMANTICS = {
+    "HB-CALLOUT-STRIP",
+    "HB-PAGE-COVER",
+    "HB-PAGE-NO-FOOTER",
+    "HB-PAGE-STANDARD",
+    "HB-SAFETY-DANGER",
+    "HB-SAFETY-INSTRUCTION",
+    "HB-SAFETY-LEAD",
+    "HB-SAFETY-WARNING",
+    "HB-SPECIAL-APP",
+    "HB-SPECIAL-FCC",
+    "HB-SPECIAL-INBOX",
+    "HB-SPECIAL-OVERVIEW",
+    "HB-TABLE-AUTO-RESUME",
+    "HB-TABLE-KEY-COMBINATIONS",
+    "HB-TABLE-LCD-ICON",
+    "HB-TABLE-LCD-MODE",
+    "HB-TABLE-SPEC",
+    "HB-TABLE-SYMBOL-ICON",
+    "HB-TABLE-SYMBOL-SIGNAL",
+    "HB-TABLE-TROUBLESHOOTING",
+    "HB-TITLE-L1",
+    "HB-TITLE-L2",
+    "HB-TITLE-L3",
+    "HB-TYPE-BODY",
+    "HB-TYPE-FOOTER",
+    "HB-TYPE-LEAD",
+    "HB-TYPE-LIST",
+    "HB-TYPE-PAGE-NUMBER",
+    "HB-WARRANTY-LEAD",
+    "HB-WARRANTY-SECTION",
+    "HB-WARRANTY-YEARS",
+}
+
 
 class RenderContractTests(unittest.TestCase):
     @classmethod
@@ -49,8 +83,20 @@ class RenderContractTests(unittest.TestCase):
             for value in re.findall(r"\| `([^`]+)` \|", definition)
             if value.startswith("HB-")
         }
-        self.assertEqual(31, len(documented_ids))
+        self.assertEqual(EXPECTED_STYLE_SEMANTICS, documented_ids)
         self.assertEqual(documented_ids, style_ids(self.contract))
+
+    def test_committed_contract_closes_all_actionable_style_debt(self) -> None:
+        self.assertEqual(EXPECTED_STYLE_SEMANTICS, style_ids(self.contract))
+        self.assertEqual([], validate_render_contract(self.contract, self.tokens, strict=True))
+        self.assertEqual(
+            {},
+            {
+                style_id: actionable_debt(self.contract, style)
+                for style_id, style in self.contract["styles"].items()
+                if actionable_debt(self.contract, style)
+            },
+        )
 
     def test_contract_has_no_schema_or_token_errors(self) -> None:
         self.assertEqual([], validate_render_contract(self.contract, self.tokens))

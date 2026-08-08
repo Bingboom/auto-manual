@@ -23,9 +23,9 @@ Authoring, in an ordinary ``.md`` file::
 A blank label continues the previous one, which is how a label spanning two
 values is expressed; ``ARG`` becomes the composition's ``aria-label``.
 
-Every directive body is parsed as Markdown, so inline emphasis, links and lists
-render normally — the defect that makes ``*`` bullets print as literal asterisks
-inside a pipe table simply does not arise here.
+Only a callout body is parsed as full Markdown, so its emphasis, links, and
+lists render normally. Table-like directives deliberately accept a small,
+escaped inline subset so their column and row-span semantics stay deterministic.
 """
 from __future__ import annotations
 
@@ -37,7 +37,7 @@ from docutils.parsers.rst import directives
 from sphinx.util.docutils import SphinxDirective
 
 from tools.component_specs.adapters import web_callout_classes
-from tools.component_specs.callout import callout_component_spec
+from tools.component_specs.callout import CALLOUT_VARIANTS, callout_component_spec
 from tools.component_specs.spec_table import (
     spec_table_component_spec,
     web_spec_table_projection,
@@ -51,7 +51,34 @@ _LINE_SPLIT = " / "
 
 
 def _cells(line: str) -> list[str]:
-    return [cell.strip() for cell in line.split("|")]
+    """Split a manual row while treating an odd ``\\`` run as pipe escape."""
+    cells: list[str] = []
+    current: list[str] = []
+    for character in line:
+        if character != "|":
+            current.append(character)
+            continue
+        slash_count = 0
+        while current and current[-1] == "\\":
+            current.pop()
+            slash_count += 1
+        current.extend("\\" for _ in range(slash_count // 2))
+        if slash_count % 2:
+            current.append("|")
+            continue
+        cells.append("".join(current).strip())
+        current = []
+    cells.append("".join(current).strip())
+    return cells
+
+
+def _troubleshooting_headers(value: str) -> tuple[str, str]:
+    headers = _cells(value)
+    if len(headers) != 2 or not all(headers):
+        raise ValueError(
+            "troubleshooting headers must contain two non-empty cells separated by |"
+        )
+    return headers[0], headers[1]
 
 
 def _inline_html(text: str) -> str:
@@ -95,7 +122,7 @@ class _ManualDirective(SphinxDirective):
     required_arguments = 0
     optional_arguments = 1
     final_argument_whitespace = True
-    option_spec: dict[str, Any] = {"class": directives.class_option}
+    option_spec: dict[str, Any] = {}
 
     @property
     def label(self) -> str:
@@ -116,14 +143,23 @@ class _ManualDirective(SphinxDirective):
 class CalloutDirective(_ManualDirective):
     """``{callout} LABEL`` — the manual's labelled notice box."""
 
+    option_spec = {"variant": directives.unchanged}
+
     def run(self) -> list[nodes.Node]:
         label = self.label.upper() or "NOTE"
+        declared_variant = str(self.options.get("variant") or "").strip().casefold()
+        if declared_variant and declared_variant not in CALLOUT_VARIANTS:
+            raise self.error(
+                f"unknown callout variant {declared_variant!r}; expected one of "
+                + ", ".join(sorted(CALLOUT_VARIANTS))
+            )
         language = str(getattr(self.env.config, "language", None) or "und")
         spec = callout_component_spec(
             label=label,
             body="\n".join(self.content),
             source_ref=f"{self.env.docname}:{self.lineno}",
             language=language,
+            variant=declared_variant or None,
         )
         classes = web_callout_classes(spec)
         container = nodes.container()
@@ -184,8 +220,13 @@ class SpecTableDirective(_ManualDirective):
 class TroubleshootingDirective(_ManualDirective):
     """``{troubleshooting}`` — fault code beside its corrective measures."""
 
+    option_spec = {"headers": _troubleshooting_headers}
+
     def run(self) -> list[nodes.Node]:
-        header = self.options.get("headers") or ["Error Code", "Corrective Measures"]
+        header = self.options.get("headers") or (
+            "Error Code",
+            "Corrective Measures",
+        )
         rows = "".join(
             f'<tr><td class="hb-troubleshooting-code">{_inline_html(row[0])}</td>'
             f'<td class="hb-troubleshooting-measures">{_line_block(row[1] if len(row) > 1 else "")}</td></tr>'

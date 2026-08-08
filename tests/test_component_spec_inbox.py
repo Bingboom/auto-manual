@@ -7,7 +7,7 @@ from tools.component_specs.inbox import (
     CARD_ASSET_ROLES,
     COMPONENT_ID,
     inbox_component_spec,
-    inbox_spec_from_legacy_payload,
+    inbox_spec_from_payload,
 )
 from tools.component_specs.inbox_adapters import (
     idml_inbox_payload,
@@ -118,13 +118,57 @@ class InboxComponentSpecTests(unittest.TestCase):
                 theme=self.theme,
             )
         with self.assertRaises(ComponentSpecError):
-            inbox_spec_from_legacy_payload(
+            inbox_spec_from_payload(
                 {"kind": "inbox", "items": [{"img": "", "label": "Missing image"}] * 3},
                 source_ref="page/inbox.rst",
                 language="en",
+                accessibility_label="Inbox",
+                tip_label="TIP",
+                tip_body="Body",
                 registry=self.registry,
                 theme=self.theme,
             )
+
+    def test_manual_ir_requires_source_authored_heading_and_tip(self) -> None:
+        page = ManualPage(
+            page_id="p",
+            source_ref="page/inbox.rst",
+            source_path="page/inbox.rst",
+            language="en",
+            source_sha256="a" * 64,
+            skipped_raw=0,
+            blocks=(
+                ManualBlock(
+                    "p:b1",
+                    "page/inbox.rst#block-1",
+                    "component",
+                    {
+                        "kind": "inbox",
+                        "items": [
+                            {"img": "one.png", "label": "One"},
+                            {"img": "two.png", "label": "Two"},
+                            {"img": "three.png", "label": "Three"},
+                        ],
+                    },
+                    "b" * 64,
+                ),
+            ),
+        )
+        ir = ManualIR(
+            model="JE-1000F",
+            region="US",
+            language="en",
+            source="fixture",
+            bundle_root="fixture",
+            bundle_sha256="c" * 64,
+            snapshot_sha256="d" * 64,
+            layout_params_sha256="e" * 64,
+            style_contract_sha256="f" * 64,
+            content_sha256="1" * 64,
+            pages=(page,),
+        )
+        with self.assertRaisesRegex(ComponentSpecError, "source-authored H1"):
+            project_manual_ir_components(ir)
 
     def test_manual_ir_combines_inbox_heading_cards_and_adjacent_tip(self) -> None:
         blocks = (

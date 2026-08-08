@@ -19,7 +19,6 @@ from tools.component_specs.overview_adapters import (
     word_overview_projection,
 )
 from tools.component_specs.overview_instance import (
-    legacy_web_overview_instance,
     load_overview_instance_registry,
     resolve_overview_instance,
     validate_overview_instance_registry,
@@ -261,52 +260,6 @@ class OverviewComponentSpecTests(unittest.TestCase):
         )
         right = spec.slot("views").content[1]
         self.assertEqual(["-"], right["callouts"][0]["body"])
-
-    def test_legacy_web_inline_config_projects_the_same_geometry(self) -> None:
-        legacy_views: list[dict[str, object]] = []
-        for view in self.instance["views"]:
-            legacy_views.append(
-                {
-                    "id": view["id"],
-                    "image_key": view["image_key"],
-                    "aspect_ratio": view["web"]["aspect_ratio"],
-                    "web_replace_key": view["web_replace_key"],
-                    "composite_locales": deepcopy(view["composite_locales"]),
-                    "callouts": [
-                        {"id": callout["id"], **deepcopy(callout["web"])}
-                        for callout in view["callouts"]
-                    ],
-                    "decorative_leaders": deepcopy(
-                        view["web"]["decorative_leaders"]
-                    ),
-                }
-            )
-        legacy = legacy_web_overview_instance(
-            {
-                "source_patterns": ["*03_product_overview_placeholder"],
-                "views": legacy_views,
-            },
-            model="JE-1000F",
-            region="US",
-        )
-        legacy_spec = overview_component_spec(
-            accessibility_label="PRODUCT OVERVIEW",
-            views=self._views(),
-            geometry_ref=str(legacy["instance_id"]),
-            source_ref="page/03_product_overview_placeholder.rst",
-            language="en",
-            registry=self.registry,
-            theme=self.theme,
-        )
-        projection = web_overview_projection(legacy_spec, legacy)
-        self.assertEqual(
-            self.instance["views"][0]["callouts"][0]["web"],
-            {
-                key: projection["views"][0]["callouts"][0][key]
-                for key in ("rect", "align", "leader")
-            },
-        )
-
 
 if __name__ == "__main__":
     unittest.main()

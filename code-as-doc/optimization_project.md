@@ -815,7 +815,8 @@ Exit criteria: the plan's §2 metrics on the dashboard — a new output language
 
 ### Workstream X: Four-Renderer Style Component Contract v2
 
-Status: active plan; implementation PRs start after PR #874 merges
+Status: complete through the serial PR 0–9 program; the authoritative merge
+and acceptance evidence remains in the linked ledger
 
 PR-level breakdown and the authoritative submitted/completed checklist:
 [`dev/style_component_contract_v2_plan.md`](dev/style_component_contract_v2_plan.md).

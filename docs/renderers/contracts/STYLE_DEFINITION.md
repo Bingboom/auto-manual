@@ -192,8 +192,10 @@ renderer 都不翻译、不补造文案。
 四端只共享上述语义和资产角色：Web adapter 生成响应式 class，LaTeX adapter 选择宏，
 IDML adapter 生成/恢复 notice payload，Word adapter 生成 Word-friendly 表结构。CSS
 尺寸、TeX 宏体、IDML XML/ObjectStyle 和 DOCX 属性仍分别归各 renderer；不能把 InDesign
-坐标或对象样式复制成 CSS。旧入口在迁移窗口内作为 source adapter / facade 保留，旧
-IDML notice payload 通过 `metadata.legacy_payload` 原样往返，避免纯迁移改变几何。
+坐标或对象样式复制成 CSS。历史 callout notice 仍可在兼容窗口内通过已登记的 source
+adapter 进入合同；FCC、Inbox、Overview 的 renderer-local facade 已关闭，IDML/LaTeX
+必须从 ComponentSpec 的语义 slot 与 asset role 重建自己的 payload，不能再把旧 payload
+藏进 `metadata` 原样往返。
 
 首个 pilot 是 `HB-CALLOUT-STRIP`；第二个是 `HB-TABLE-SPEC`，用结构化
 `section_title` / `rows` slot 验证了空标签 rowspan、多行值和圈号上标。后续组件
@@ -428,7 +430,8 @@ IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `c
 | 分隔线 | 右/下 `1.25px solid --hb-brand-dark` |
 | 多步措施 | ` / ` 分隔 → `.line-block` > `.line`，行距 `0.25rem` |
 
-表头固定 `Error Code` / `Corrective Measures`（见 [附录 B](#附录-b-已知缺陷)）。IDML 关闭自动缩放；批准语言的行 minima、表头/正文高度修正、内外线宽、面板下限、导入安全余量和 portable glyph-width 估算全部由 `idml_trouble_*` / `lang_*_idml_trouble_*` token 控制。
+表头默认 `Error Code` / `Corrective Measures`；plain-Markdown 可用类型化
+`:headers: A | B` 提供两个本地化表头（见 [附录 B](#附录-b-已知边界)）。IDML 关闭自动缩放；批准语言的行 minima、表头/正文高度修正、内外线宽、面板下限、导入安全余量和 portable glyph-width 估算全部由 `idml_trouble_*` / `lang_*_idml_trouble_*` token 控制。
 
 ### 4.4 LCD 图标表
 
@@ -499,11 +502,11 @@ IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对
 | 产品概览 | `.hb-annotated-figure` > `.hb-annotated-stage` + `.hb-leader-layer` | 带引线标注：标注位置靠逐图百分比坐标，是流水线独有的能力 |
 | App 设置 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | 商店徽章 / QR / 双机图，标签是活文本不是烧进图片 |
 
-FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。旧 `kind=fcc` 双文本 payload 在 PR 9 前由兼容 facade 送入同一规范。
+FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。源 payload 先类型化为 ComponentSpec；IDML/LaTeX 再从语义 block 重建自己的结构，不保留或回放旧双文本 payload。
 
-开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec：它固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label，并把相邻 TIP 的 label/body 纳入同一实例。Web adapter 输出等宽三卡和响应式 tip；LaTeX adapter 继续投影 `HBInBoxThree` 六个实参；IDML adapter 保留批准的绝对坐标卡片 composer；Word adapter 输出三列活图片/活文本表格和 16/84 tip 表。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。旧 `kind=inbox` payload 和页面形状入口在 PR 9 前保留为兼容 facade。
+开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec：它固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label，并把相邻 TIP 的 label/body 纳入同一实例。Web adapter 输出等宽三卡和响应式 tip；LaTeX adapter 继续投影 `HBInBoxThree` 六个实参；IDML adapter 保留批准的绝对坐标卡片 composer；Word adapter 输出三列活图片/活文本表格和 16/84 tip 表。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。source projector 必须显式提供源 H1、严格三卡以及相邻 TIP label/body；缺任一项即失败，不再保留 partial-list 或页面形状 fallback。
 
-产品概览的单一语义实例是 `HB-SPECIAL-OVERVIEW` ComponentSpec：它保存 H1 无障碍标签、`front` / `right` 两个有序视图、`front_art` / `right_art` 资产角色，以及 15 个稳定 callout 的 ID、可编辑 label/body 和源引用。JE-1000F/US 的百分比 Web 坐标、固定页 IDML 坐标、16 条引线顺序、composite locale/source mapping 与 `web_replace_key` 统一登记在版本化 [`overview_component_instances.json`](overview_component_instances.json)，不进入语义实例。Web adapter 支持 `annotated-live` 和 `approved-composite`：批准图匹配时显示完整图文资产，无匹配时保留完整可搜索 HTML/SVG fallback；LaTeX、IDML、Word 分别消费自己的 projection。旧 `web_manual.json.product_overview.views` 仅在 PR 9 前作为兼容输入。
+产品概览的单一语义实例是 `HB-SPECIAL-OVERVIEW` ComponentSpec：它保存 H1 无障碍标签、`front` / `right` 两个有序视图、`front_art` / `right_art` 资产角色，以及 15 个稳定 callout 的 ID、可编辑 label/body 和源引用。JE-1000F/US 的百分比 Web 坐标、固定页 IDML 坐标、16 条引线顺序、composite locale/source mapping 与 `web_replace_key` 统一登记在版本化 [`overview_component_instances.json`](overview_component_instances.json)，不进入语义实例。Web adapter 支持 `annotated-live` 和 `approved-composite`：批准图匹配时显示完整图文资产，无匹配时保留完整可搜索 HTML/SVG fallback；LaTeX、IDML、Word 分别消费自己的 projection。生产投影必须解析一个版本化 `instance_id`；旧 target-local 默认实例已删除，缺失或未知实例会失败。
 
 `web_manual.json` 里登记的目标（当前 `JE-1000F / US`）会把其中部分图替换为审批过的 PDF 派生图，标题与说明仍保持可搜索的活 HTML。
 
@@ -823,7 +826,7 @@ Model No.    | JE-1000F /JE-1000F-SG
 
 **L2** 第 (3) 层按页名 `troubleshooting_*` 认页，要求**恰好一张**「1 表头行 + 错误码序列 F0…FE」的两列表；找到后注入 `colgroup`（`hb-troubleshooting-col-code/measures`）、给格子打 `hb-troubleshooting-code/measures` class，再包 `figure` 外壳。
 
-**L3**：`figure.hb-troubleshooting-composition > table.hb-troubleshooting-table`，版面规则见 §4.3。**md 等价**：`` ```{troubleshooting} ``，行写 `F4 | 措施一 / 措施二`（` / ` 自动拆成分步行；表头固定，见附录 B）。
+**L3**：`figure.hb-troubleshooting-composition > table.hb-troubleshooting-table`，版面规则见 §4.3。**md 等价**：`` ```{troubleshooting} ``，行写 `F4 | 措施一 / 措施二`（` / ` 自动拆成分步行）；需要本地化表头时写 `:headers: Code | Corrective measures`，必须恰好两个非空格子。
 
 ### 10.7 LCD 图标表（`HB-TABLE-LCD-ICON`）
 
@@ -946,7 +949,7 @@ Model No.    | JE-1000F /JE-1000F-SG
         - …
 ```
 
-**L2/L3** source projector 把 H1、三列图文表和紧随其后的 TIP 表组合为一个 `HB-SPECIAL-INBOX` ComponentSpec；Web adapter 再输出 `.hb-inbox-composition > .hb-inbox-grid`：三张等宽圆角卡 + 1/2/3 角标 + 通栏 TIP 条（版面见 §5）。按页名 `*02_whats_in_the_box` 识别的旧入口只作为 PR 9 前的兼容 facade。**md 无等价写法**（角标与卡片组版是流水线重组的产物）。
+**L2/L3** source projector 把 H1、三列图文表和紧随其后的 TIP 表组合为一个 `HB-SPECIAL-INBOX` ComponentSpec；Web adapter 再输出 `.hb-inbox-composition > .hb-inbox-grid`：三张等宽圆角卡 + 1/2/3 角标 + 通栏 TIP 条（版面见 §5）。projector 以显式 H1、三卡和 TIP 合同 fail-closed，不再从不完整列表或页面邻接形状补造实例。**md 无等价写法**（角标与卡片组版是流水线重组的产物）。
 
 ### 10.11 例外：模板自带双分支的页（安全页、FCC）
 
@@ -995,12 +998,13 @@ Model No.    | JE-1000F /JE-1000F-SG
 
 ### A.2 围栏指令的构造契约
 
-八个指令共用基类 `_ManualDirective`（`has_content`、一个可选参数、`option_spec` 含 `class`）：
+八个指令共用基类 `_ManualDirective`（`has_content`、一个可选参数、默认不接受任意 option）：
 
 | 环节 | 约定 |
 |---|---|
 | 参数 | `self.label`。多数指令 → `aria-label`；`comparison` 拆成两个表头；`lcd-mode` 当作图片 |
-| 行解析 | `rows()`：按 `|` 分列并 `strip`，**空行直接丢弃** |
+| 行解析 | `rows()`：按未转义的 `|` 分列并 `strip`，奇数个连续反斜杠转义紧随其后的竖线（`\|` → 字面 `|`），偶数个反斜杠保留一半并仍把竖线作为分隔符；**空行直接丢弃** |
+| 类型化 option | `callout` 只接受 `:variant:`，值限 `warning` / `danger` / `caution` / `note` / `tip`；`troubleshooting` 接受恰好两个非空格子的 `:headers:`；`manual-table` 接受 `:headers:`。其它 option、任意 `:class:` 和未知 variant 均 fail-closed |
 | 行内子集 | `_inline_html()`：转义 `& < > "` 后只还原 `**粗体**`、`^上标^`、`~下标~`。`callout` 例外，走 `nested_parse` 完整 Markdown |
 | 图片格 | `_image_html()`：只在 `lcd-icons` 第 2 列、`symbols` 第 1 列、`lcd-mode` 参数位 |
 | 多步文本 | `_line_block()`：` / ` 分隔 → `.line-block` > `.line`；少于两段退化为 `<p>` |
@@ -1062,16 +1066,17 @@ reference gate。
 
 ## 附录 B 已知边界
 
-### B.1 plain-Markdown 指令限制
+### B.1 plain-Markdown 指令边界
 
-以下三条是 plain-Markdown 指令实现中实测确认的限制，不是 IDML 样式债，也不是
-production RST 的用法问题：
+plain-Markdown 的三处实现缺口已经关闭：单元格支持确定性的 `\|` 字面竖线，
+`troubleshooting` 支持类型化双表头，任意 `:class:` 不再被静默接受。当前合同如下：
 
-| 缺陷 | 表现 | 绕法 |
-|---|---|---|
-| 单元格里的竖线无法转义 | 转换阶段写成反斜杠加竖线，渲染阶段直接按竖线切分不认转义，结果多切一格且残留反斜杠 | 用全角 `｜` 或 `/`；必须用竖线就放 `callout` |
-| `troubleshooting` 的 `:headers:` 不可用 | 代码读了 `options["headers"]` 但没注册该选项，写了报未知选项，不写则表头恒为 `Error Code` / `Corrective Measures` | 换 `manual-table` + `:headers:` |
-| `:class:` 被接受但忽略 | 八个指令都声明了该选项，八个 `run()` 都不读 | 改 CSS 或改指令实现 |
+| 边界 | 行为 |
+|---|---|
+| 字面竖线 | 在单元格内写 `\|`；连续反斜杠按奇偶规则解析，避免先转换、后渲染得到不同列数 |
+| 故障排查表头 | 可省略并使用 `Error Code` / `Corrective Measures`，或写 `:headers: A | B`；不是两个非空格子即失败 |
+| callout variant | `:variant:` 只允许 `warning` / `danger` / `caution` / `note` / `tip`；可识别的源信号词也会映射到这五种语义 |
+| 任意 class / 未知 option | 不属于作者合同；strict build 直接失败。需要新视觉变体时先登记 ComponentSpec variant 和四端 adapter，不得临时注入 CSS class |
 
 ### B.2 样式债与批准边界
 

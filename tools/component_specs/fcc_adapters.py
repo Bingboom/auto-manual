@@ -7,7 +7,6 @@ from typing import Any
 
 from tools.component_specs.fcc import (
     fcc_semantic_projection,
-    fcc_spec_from_legacy_payload,
 )
 from tools.component_specs.model import ComponentSpec, ComponentSpecError
 from tools.component_specs.registry import adapter_binding
@@ -54,11 +53,7 @@ def _block_text(block: Mapping[str, Any]) -> list[str]:
     return [" ".join(value for value in (label, text) if value)]
 
 
-def _legacy_arguments(spec: ComponentSpec, renderer: str) -> list[str]:
-    legacy = spec.metadata.get("legacy_payload")
-    if isinstance(legacy, Mapping):
-        texts = [str(value) for value in legacy.get("texts") or []]
-        return (texts + ["", ""])[:2]
+def _payload_arguments(spec: ComponentSpec, renderer: str) -> list[str]:
     projection = _projection(spec, renderer)
     left_lines = [*projection["opening_copy"]]
     for block in projection["left_blocks"]:
@@ -73,32 +68,14 @@ def latex_fcc_projection(spec: ComponentSpec) -> dict[str, Any]:
     _require_adapter(spec, "latex")
     return {
         "macro": "HBFccBlock",
-        "arguments": _legacy_arguments(spec, "latex"),
+        "arguments": _payload_arguments(spec, "latex"),
         "mark_asset_role": spec.assets[0].role,
     }
 
 
 def idml_fcc_payload(spec: ComponentSpec) -> dict[str, Any]:
     _require_adapter(spec, "idml")
-    legacy = spec.metadata.get("legacy_payload")
-    if isinstance(legacy, Mapping):
-        return deepcopy(dict(legacy))
-    return {"kind": "fcc", "texts": _legacy_arguments(spec, "idml")}
-
-
-def idml_fcc_payload_from_legacy(
-    payload: Mapping[str, Any],
-    *,
-    source_ref: str,
-    language: str,
-) -> dict[str, Any]:
-    return idml_fcc_payload(
-        fcc_spec_from_legacy_payload(
-            payload,
-            source_ref=source_ref,
-            language=language,
-        )
-    )
+    return {"kind": "fcc", "texts": _payload_arguments(spec, "idml")}
 
 
 def word_fcc_projection(spec: ComponentSpec) -> dict[str, Any]:
@@ -112,7 +89,6 @@ def word_fcc_projection(spec: ComponentSpec) -> dict[str, Any]:
 
 __all__ = [
     "idml_fcc_payload",
-    "idml_fcc_payload_from_legacy",
     "latex_fcc_projection",
     "web_fcc_projection",
     "word_fcc_projection",
