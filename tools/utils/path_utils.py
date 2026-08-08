@@ -66,6 +66,7 @@ class PathSegments:
     MANUAL_STYLE_CONTRACT = "manual_style.yaml"
     MANUAL_THEME_CONTRACT = "manual_theme.yaml"
     COMPONENT_REGISTRY_CONTRACT = "component_registry.yaml"
+    OVERVIEW_COMPONENT_INSTANCES_JSON = "overview_component_instances.json"
     MANUAL_IR_JSON = "manual.ir.json"
     LATEX_PAGE_PLAN_JSON = "latex_page_plan.json"
     REFERENCE_LAYOUT_DIR = "reference_layout"
@@ -314,6 +315,13 @@ class Paths:
     @property
     def component_registry_contract(self) -> Path:
         return self.renderer_contracts_dir / PathSegments.COMPONENT_REGISTRY_CONTRACT
+
+    @property
+    def overview_component_instances_contract(self) -> Path:
+        return (
+            self.renderer_contracts_dir
+            / PathSegments.OVERVIEW_COMPONENT_INSTANCES_JSON
+        )
 
     @staticmethod
     def manual_ir_json_for(bundle_root: Path) -> Path:

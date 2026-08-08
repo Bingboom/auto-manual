@@ -20,7 +20,13 @@ RENDERERS = ("web", "latex", "idml", "word")
 CAPABILITIES = frozenset({"rendered", "projection-only", "not-applicable"})
 REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
     "web": frozenset(
-        {"manual_callout_table", "hb_spec_table", "hb_fcc", "hb_inbox"}
+        {
+            "manual_callout_table",
+            "hb_spec_table",
+            "hb_fcc",
+            "hb_inbox",
+            "hb_overview",
+        }
     ),
     "latex": frozenset(
         {
@@ -28,13 +34,26 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
             "hb_latex_spec_table",
             "hb_latex_fcc",
             "hb_latex_inbox",
+            "hb_latex_overview",
         }
     ),
     "idml": frozenset(
-        {"idml_notice", "idml_spec_table", "idml_fcc", "idml_inbox"}
+        {
+            "idml_notice",
+            "idml_spec_table",
+            "idml_fcc",
+            "idml_inbox",
+            "idml_overview",
+        }
     ),
     "word": frozenset(
-        {"word_manual_callout_table", "word_spec_table", "word_fcc", "word_inbox"}
+        {
+            "word_manual_callout_table",
+            "word_spec_table",
+            "word_fcc",
+            "word_inbox",
+            "word_overview",
+        }
     ),
 }
 LOCALE_POLICIES = frozenset({"exact", "shared"})

@@ -22,6 +22,10 @@ from tools.component_specs.web_source import (
     validate_web_callout_html,
     validate_web_spec_table_html,
 )
+from tools.component_specs.overview_instance import (
+    legacy_web_overview_instance,
+    resolve_overview_instance,
+)
 from tools.utils.path_utils import get_paths
 from tools.web_composite_manifest import WebCompositeManifest
 from tools.web_composite_presentation import (
@@ -30,6 +34,7 @@ from tools.web_composite_presentation import (
 )
 from tools.web_fcc_component import transform_fcc
 from tools.web_inbox_component import transform_inbox
+from tools.web_overview_component import transform_overview
 from tools.web_reference_components import (
     append_reference_captions,
     prepare_reference_caption_data,
@@ -240,178 +245,10 @@ def _table_rows(table: Tag) -> list[list[Tag]]:
     return rows
 
 
-def _cell_markup(cell: Tag | None) -> str:
-    if cell is None or not cell.get_text(" ", strip=True):
-        return ""
-    return cell.decode_contents().strip()
-
-
-def _front_callout_markup(section: Tag) -> dict[str, str]:
-    tables = section.find_all("table", recursive=False)
-    if len(tables) < 2:
-        return {}
-    primary = _table_rows(tables[0])
-    total_rows = _table_rows(tables[1])
-
-    def at(row: int, column: int) -> Tag | None:
-        if row >= len(primary) or column >= len(primary[row]):
-            return None
-        return primary[row][column]
-
-    left = [at(row, 0) for row in (0, 1, 3, 4, 5, 2)]
-    right = [
-        at(row, 1)
-        for row in range(len(primary))
-        if at(row, 1) is not None and _cell_markup(at(row, 1))
-    ]
-    right.extend([None] * max(0, 5 - len(right)))
-    result: dict[str, str] = {}
-    semantic_order = (
-        ("power", left[0]),
-        ("lcd", right[0]),
-        ("dc12", left[1]),
-        ("led_button", right[1]),
-        ("usb_c_30", left[2]),
-        ("led", right[2]),
-        ("usb_c_100", left[3]),
-        ("ac_power", right[3]),
-        ("usb_a", left[4]),
-        ("ac_output", right[4]),
-        ("dc_usb", left[5]),
-        ("total", total_rows[0][0] if total_rows and total_rows[0] else None),
-    )
-    for semantic_id, cell in semantic_order:
-        result[semantic_id] = _cell_markup(cell)
-    return result
-
-
-def _right_callout_markup(section: Tag) -> dict[str, str]:
-    table = section.find("table", recursive=False)
-    if not isinstance(table, Tag):
-        return {}
-    cells = [
-        cell
-        for row in _table_rows(table)
-        for cell in row
-        if _cell_markup(cell)
-    ]
-    if len(cells) < 3:
-        return {}
-    return {
-        "handle": _cell_markup(cells[0]),
-        "dc_input": _cell_markup(cells[2]),
-        "ac_input": _cell_markup(cells[1]),
-    }
-
-
 def _append_markup(target: Tag, markup: str) -> None:
     parsed = BeautifulSoup(markup, "html.parser")
     for child in list(parsed.contents):
         target.append(child.extract())
-
-
-def _points_text(points: list[list[float]]) -> str:
-    return " ".join(f"{float(x):g},{float(y):g}" for x, y in points)
-
-
-def _leader_layer(soup: BeautifulSoup, view: dict[str, Any]) -> Tag:
-    svg = soup.new_tag(
-        "svg",
-        attrs={
-            "class": "hb-leader-layer",
-            "viewBox": "0 0 100 100",
-            "preserveAspectRatio": "none",
-            "aria-hidden": "true",
-            "focusable": "false",
-        },
-    )
-    for callout in view["callouts"]:
-        polyline = soup.new_tag(
-            "polyline",
-            attrs={
-                "class": "hb-leader",
-                "data-callout-id": f"overview.{view['id']}.{callout['id']}",
-                "points": _points_text(callout["leader"]),
-            },
-        )
-        svg.append(polyline)
-    for index, points in enumerate(view.get("decorative_leaders", []), start=1):
-        polyline = soup.new_tag(
-            "polyline",
-            attrs={
-                "class": "hb-leader-decoration",
-                "data-decoration-id": f"overview.{view['id']}.decoration-{index}",
-                "points": _points_text(points),
-            },
-        )
-        svg.append(polyline)
-    return svg
-
-
-def _overview_figure(
-    soup: BeautifulSoup,
-    *,
-    section: Tag,
-    image: Tag,
-    view: dict[str, Any],
-    source_path: Path,
-    composites: WebCompositeContext,
-) -> Tag:
-    markup = _front_callout_markup(section) if view["id"] == "front" else _right_callout_markup(section)
-    required_ids = [str(item["id"]) for item in view["callouts"]]
-    missing = [semantic_id for semantic_id in required_ids if not markup.get(semantic_id)]
-    if missing:
-        raise WebPresentationError(
-            f"{source_path}: product overview {view['id']} is missing semantic callouts: "
-            + ", ".join(missing)
-        )
-
-    figure = soup.new_tag(
-        "figure",
-        attrs={
-            "class": "hb-annotated-figure",
-            "data-figure-id": f"product-overview-{view['id']}",
-        },
-    )
-    stage = soup.new_tag(
-        "div",
-        attrs={
-            "class": "hb-annotated-stage",
-            "style": f"--hb-aspect-ratio:{float(view['aspect_ratio']):g}",
-        },
-    )
-    image["class"] = [*image.get("class", []), "hb-annotated-art"]
-    image.replace_with(figure)
-    stage.append(image)
-    stage.append(_leader_layer(soup, view))
-
-    for item in view["callouts"]:
-        semantic_id = str(item["id"])
-        x, y, width, height = (float(value) for value in item["rect"])
-        align = str(item["align"])
-        callout = soup.new_tag(
-            "div",
-            attrs={
-                "class": ["hb-figure-callout", f"hb-align-{align}"],
-                "data-callout-id": f"overview.{view['id']}.{semantic_id}",
-                "style": (
-                    f"--hb-x:{x:g}%;--hb-y:{y:g}%;--hb-width:{width:g}%;"
-                    f"--hb-height:{height:g}%;--hb-align:{align}"
-                ),
-            },
-        )
-        _append_markup(callout, markup[semantic_id])
-        stage.append(callout)
-    composites.append_semantic(
-        soup=soup,
-        figure=figure,
-        semantic=stage,
-        component=view,
-        source_path=source_path,
-        image_key=str(view["image_key"]),
-    )
-    figure.append(stage)
-    return figure
 
 
 def _transform_product_overview(
@@ -422,36 +259,28 @@ def _transform_product_overview(
     composites: WebCompositeContext,
 ) -> None:
     overview = contract["product_overview"]
-    transformed: list[str] = []
-    for view in overview["views"]:
-        image = next(
-            (
-                candidate
-                for candidate in soup.find_all("img")
-                if _src_matches_key(str(candidate.get("src", "")), str(view["image_key"]))
-            ),
-            None,
-        )
-        if not isinstance(image, Tag):
-            raise WebPresentationError(
-                f"{source_path}: product overview is missing governed image {view['image_key']}"
+    try:
+        if isinstance(overview.get("views"), list):
+            instance = legacy_web_overview_instance(
+                overview,
+                model=composites.model,
+                region=composites.region,
             )
-        section = image.find_parent("section")
-        if not isinstance(section, Tag):
-            raise WebPresentationError(f"{source_path}: overview image is not contained by a section")
-        _overview_figure(
-            soup,
-            section=section,
-            image=image,
-            view=view,
-            source_path=source_path,
-            composites=composites,
-        )
-        for table in list(section.find_all("table", recursive=False)):
-            table.decompose()
-        transformed.append(str(view["id"]))
-    if len(transformed) != len(overview["views"]):
-        raise WebPresentationError(f"{source_path}: incomplete product overview transformation")
+        else:
+            instance = resolve_overview_instance(
+                model=composites.model,
+                region=composites.region,
+                instance_id=str(overview.get("instance_id") or "") or None,
+            )
+    except Exception as exc:
+        raise WebPresentationError(f"{source_path}: {exc}") from exc
+    transform_overview(
+        soup,
+        source_path=source_path,
+        instance=instance,
+        composites=composites,
+        error_type=WebPresentationError,
+    )
 
 
 def _next_tag_sibling(tag: Tag) -> Tag | None:

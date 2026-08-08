@@ -519,15 +519,17 @@ styles:
     theme_token_roles: [component.special.overview]
     web: {capability: rendered, selectors: [.hb-annotated-figure], component_adapter: web_presentation}
     word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [], component_adapter: word_bundle_html}
-    conformance:
-      state: partial
-      debt:
-        - reason: Overview labels and asset roles are not yet represented by one shared ComponentSpec, and target geometry is not fully registered.
-          owner: renderer-contract-maintainers
-          scope: [web, latex, idml, word]
-          evidence: [code-as-doc/dev/style_component_contract_v2_plan.md#pr-8-overview-componentspec-and-target-geometry]
+    conformance: {state: aligned, debt: []}
     constraints: []
-    approved_variants: []
+    approved_variants:
+      - reason: JE-1000F/US keeps responsive Web geometry and fixed-page IDML geometry in one versioned target instance while sharing the same semantic views, asset roles, and callout order.
+        owner: renderer-contract-maintainers
+        scope: [web, idml, JE-1000F, US]
+        evidence: [docs/renderers/contracts/overview_component_instances.json, docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json]
+      - reason: Web may show an approved locale-matched composite while retaining the complete editable annotated-live semantic fallback.
+        owner: renderer-contract-maintainers
+        scope: [web, JE-1000F, US, en, fr, es]
+        evidence: [tests/test_component_spec_overview.py, tests/test_web_presentation.py]
 
   HB-SPECIAL-APP:
     role: App setup primitives

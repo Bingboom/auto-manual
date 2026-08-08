@@ -73,6 +73,15 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/component_specs/inbox.py": 220,
     "tools/component_specs/inbox_adapters.py": 160,
     "tools/component_specs/inbox_html.py": 140,
+    # Overview semantics and target geometry are intentionally separate:
+    # source/HTML parsing, four adapters, and the versioned target validator
+    # may grow independently without rebuilding web_presentation.py.
+    "tools/component_specs/overview.py": 370,
+    "tools/component_specs/overview_adapters.py": 220,
+    "tools/component_specs/overview_html.py": 240,
+    "tools/component_specs/overview_instance.py": 430,
+    "tools/web_overview_component.py": 190,
+    "tools/idml/page_overview.py": 570,
     "tools/word_bundle_html_render.py": 330,
     "tools/word_inbox_component.py": 150,
     # Registered 2026-08-03 at 469 lines with 31 lines of growth headroom.
