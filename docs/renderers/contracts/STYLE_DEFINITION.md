@@ -33,6 +33,7 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 |---|---|---|---|
 | 人类规范 | **本文** | 视觉意图、四端对照、实现归属、修改与验证方法 | 构建快照、临时排期、一次性 hash |
 | 语义合同 | [`manual_style.yaml`](manual_style.yaml) | 31 个稳定 `HB-*` ID、四端 capability/binding、theme-token role、`conformance`、`constraints`、`approved_variants` | CSS 像素值、逐页坐标 |
+| 组件实例合同 | [`component_registry.yaml`](component_registry.yaml) + [`tools/component_specs/`](../../../tools/component_specs/) | 可跨 renderer 传递的 ComponentSpec 类型、variant、slot、asset role、token role 与 adapter key | CSS/TeX/XML/DOCX 几何实现、逐页坐标 |
 | 数值 token | [`data/layout_params.csv`](../../../data/layout_params.csv) | PDF/IDML 共用的字号、间距、线宽、圆角及语言覆盖 | 组件路由和可见文案 |
 | 渲染实现 | Web CSS、LaTeX 模块、IDML renderer、Word remapper | 把合同投影成目标格式 | 自创未登记语义或渲染器本地可见常量 |
 
@@ -44,6 +45,11 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 component adapter、capability 和边界记录。本文仍是四端维护入口和视觉意图来源；机器
 绑定以 YAML 为准，直接测试负责确认登记的 CSS selector、Word style 与 adapter 真实
 存在。公共 loader 在一个兼容窗口内仍可读取 schema v1，但新提交不得继续写 v1。
+
+`component_registry.yaml` 当前使用 `component-registry/v1`。它不取代
+`manual_style.yaml`：前者约束“一个具体组件实例带什么语义内容并调用哪个 adapter”，
+后者约束“这个语义样式在四端由谁实现、当前是否对齐”。两者以同一个 `HB-*` style ID、
+variant、capability 和 token role 做机器校验，不能各自维护一套组件分类。
 
 ### 0.2 改动路由：先判断你改的是内容、语义还是外观
 
@@ -153,6 +159,36 @@ phase2 / 模板
 
 因此，新增一个“流水线”语义不能只改 `manual_style.yaml`：必须同时有稳定源标识、extractor/IR 类型、renderer 路由、四端绑定和直接合同测试。未知 raw 块会计入 `skipped_raw`；production 要求其为 0。显式容器结构不合法时必须报错，不能静默退化成靠文案识别的普通段落。
 
+### 0.6 ComponentSpec：共享语义，不共享 renderer 几何
+
+当一个组合组件需要由 Web、PDF/LaTeX、IDML 和 Word 同时消费时，源 adapter 把已类型化
+的 RST / Markdown / Manual IR 结构投影为 `component-spec/v1`：
+
+```text
+schema_version
+component_id + variant
+source_ref + language
+slots[]  = role / content_kind / content
+assets[] = role / asset_ref / locale_policy
+token_roles[]
+metadata
+```
+
+[`component_registry.yaml`](component_registry.yaml) 是实例结构与 adapter key 的机器注册表；
+[`model.py`](../../../tools/component_specs/model.py) 和
+[`registry.py`](../../../tools/component_specs/registry.py) 对未知 component、variant、slot、
+asset role、renderer 或 adapter key fail-closed。可见标签仍由源提供，ComponentSpec 与
+renderer 都不翻译、不补造文案。
+
+四端只共享上述语义和资产角色：Web adapter 生成响应式 class，LaTeX adapter 选择宏，
+IDML adapter 生成/恢复 notice payload，Word adapter 生成 Word-friendly 表结构。CSS
+尺寸、TeX 宏体、IDML XML/ObjectStyle 和 DOCX 属性仍分别归各 renderer；不能把 InDesign
+坐标或对象样式复制成 CSS。旧入口在迁移窗口内作为 source adapter / facade 保留，旧
+IDML notice payload 通过 `metadata.legacy_payload` 原样往返，避免纯迁移改变几何。
+
+首个 pilot 是 `HB-CALLOUT-STRIP`。后续组件只有在自己的编号 PR 完成四端基线和 registry
+测试后才进入该注册表；不能因为代码里出现同名 class 就宣称已组件化。
+
 ---
 
 ## 1. 全量对照总表
@@ -174,7 +210,7 @@ phase2 / 模板
 
 | 语义 | 语义 ID | 源写法 | Web | PDF | IDML | Word | 状态 |
 |---|---|---|---|---|---|---|---|
-| 警示框 | `HB-CALLOUT-STRIP` | `` ```{callout} `` | `.manual-callout-table` | `HBWarningBlock` / `HBCautionBlock` / `HBNoteBlock` / `HBTipBlock` @ `components_base` | `Caution` + `HB Rounded Panel` + `Notice表格` | 经 HTML 转换（标签文字归一） | aligned |
+| 警示框 | `HB-CALLOUT-STRIP` | `` ```{callout} `` | `.manual-callout-table` | warning/danger → `HBWarningBlock`；其余 → `HBCautionBlock` / `HBNoteBlock` / `HBTipBlock` @ `components_base` | `Caution` + `HB Rounded Panel` + `Notice表格` | 经 HTML 转换（标签文字归一） | aligned |
 | 安全指令 | `HB-SAFETY-INSTRUCTION` | 流水线 | 经 RST 组件 | `HBSafetyInstruction` @ `components_safety` | `HB Safety Instruction` + `HB Rounded Panel` | 保留 `safety_` 源前缀 | **aligned** |
 | 安全警告面板 | `HB-SAFETY-WARNING` | 流水线 | 经 RST 组件 | `safetywarningbox`、`safetywarning` | `HB Rounded Panel` + `Warning表格` | 同上 | aligned |
 | 大号警告引语 | `HB-SAFETY-LEAD` | 流水线 | 经 RST 组件 | `HBWarningLeadBlock` | `HB Rounded Panel` | 同上 | **aligned** |
@@ -679,7 +715,7 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
        - Do not charge the product using both a car charger and a solar panel...
 ```
 
-**L2** 归一发生在链路第 (2) 层（[`word_bundle_html_rewrite.py`](../../../tools/word_bundle_html_rewrite.py)）：判定条件是**无表头 + 恰好一行 + 恰好两格 + 首格文本是 [`signal_words.py`](../../../tools/signal_words.py) 登记的信号词**，四项都满足才归一；差一项就按通用表处理。
+**L2** 归一发生在链路第 (2) 层（[`word_bundle_html_rewrite.py`](../../../tools/word_bundle_html_rewrite.py)）：判定条件是**无表头 + 恰好一行 + 恰好两格 + 首格文本是 [`signal_words.py`](../../../tools/signal_words.py) 登记的信号词**，四项都满足才归一；差一项就按通用表处理。类型化入口随后生成同一个 `HB-CALLOUT-STRIP` ComponentSpec；五种 variant 是 `warning`、`danger`、`caution`、`note`、`tip`，标签、正文、列表、语言和 source ref 保持为实例数据。Web、LaTeX、IDML、Word 各自通过注册的 adapter 消费它，不再各自维护一份 variant 映射。
 
 **L3 最终 Web 标记**：
 
@@ -690,7 +726,7 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
 </tr></tbody></table>
 ```
 
-版面规则见 §3.1。**md 等价**：`` ```{callout} CAUTION ``，正文按完整 Markdown 解析（[`manual_md_directives.py`](../../../tools/manual_md_directives.py) 直接产出上面这段标记）。
+版面规则见 §3.1。**md 等价**：`` ```{callout} CAUTION ``，正文按完整 Markdown 解析（[`manual_md_directives.py`](../../../tools/manual_md_directives.py) 先校验 ComponentSpec，再由 Web adapter 产出上面这段标记）。Pandoc 前后由 [`web_presentation.py`](../../../tools/web_presentation.py) 保护并原样恢复整张表；恢复前后会重新校验同一 component ID、variant 和 slot 内容，不能靠 Pandoc 重建一个近似表格。
 
 ### 10.5 竖式规格表（`HB-TABLE-SPEC`）
 

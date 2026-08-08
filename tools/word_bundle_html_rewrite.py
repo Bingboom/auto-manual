@@ -8,6 +8,8 @@ import re
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from tools.component_specs.adapters import word_callout_markup
+from tools.component_specs.callout import callout_component_spec, variant_for_label
 from tools.signal_words import SignalLabel, signal_label_entries
 _SAFETY_SUBLIST_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     (
@@ -62,6 +64,13 @@ def _alert_label_map(
         if normalized:
             labels.setdefault(normalized, entry)
     return labels
+
+
+def _alert_variant(label: str, alert_labels: dict[str, SignalLabel]) -> str | None:
+    entry = alert_labels.get(_normalize_alert_label_text(label))
+    if entry is not None:
+        return {"tips": "tip"}.get(entry.key, entry.key)
+    return variant_for_label(label)
 
 
 def _is_alert_label_text(
@@ -421,6 +430,8 @@ def _cell_body_nodes(cell: ET.Element) -> list[ET.Element]:
 def _rewrite_two_column_alert_table(
     element: ET.Element,
     alert_labels: dict[str, SignalLabel],
+    *,
+    language: str | None = None,
 ) -> ET.Element:
     if _html_tag_name(element) != "table":
         return element
@@ -446,15 +457,45 @@ def _rewrite_two_column_alert_table(
     if not body_nodes and not _normalize_inline_text("".join(cells[1].itertext())):
         return element
 
-    return _build_alert_table(label, body_nodes)
+    return _build_alert_table(
+        label,
+        body_nodes,
+        variant=_alert_variant(label, alert_labels),
+        language=language,
+    )
 
 
-def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
+def _build_alert_table(
+    label: str,
+    body_nodes: list[ET.Element],
+    *,
+    variant: str | None = None,
+    language: str | None = None,
+) -> ET.Element:
+    markup = {
+        "table_class": "manual-callout-table",
+        "table_style": "width:100%; border-collapse:collapse; margin:0 0 16px 0;",
+        "label_class": "manual-callout-label",
+        "label_style": "width:16%; border:1px solid #000; padding:6px 8px; vertical-align:top;",
+        "body_class": "manual-callout-body",
+        "body_style": "border:1px solid #000; padding:6px 8px; vertical-align:top;",
+    }
+    if label:
+        spec = callout_component_spec(
+            label=label,
+            body=" ".join(
+                _normalize_inline_text("".join(node.itertext())) for node in body_nodes
+            ),
+            source_ref=f"word:html:{_normalize_alert_label_text(label)}",
+            language=language or "und",
+            variant=variant,
+        )
+        markup = word_callout_markup(spec)
     table = ET.Element(
         "table",
         {
-            "class": "manual-callout-table",
-            "style": "width:100%; border-collapse:collapse; margin:0 0 16px 0;",
+            "class": markup["table_class"],
+            "style": markup["table_style"],
         },
     )
     tbody = ET.SubElement(table, "tbody")
@@ -465,8 +506,8 @@ def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
             row,
             "td",
             {
-                "class": "manual-callout-label",
-                "style": "width:16%; border:1px solid #000; padding:6px 8px; vertical-align:top;",
+                "class": markup["label_class"],
+                "style": markup["label_style"],
             },
         )
         label_p = ET.SubElement(label_cell, "p")
@@ -477,9 +518,9 @@ def _build_alert_table(label: str, body_nodes: list[ET.Element]) -> ET.Element:
         row,
         "td",
         {
-            "class": "manual-callout-body",
+            "class": markup["body_class"],
             **({"colspan": "2"} if not label else {}),
-            "style": "border:1px solid #000; padding:6px 8px; vertical-align:top;",
+            "style": markup["body_style"],
         },
     )
     if not body_nodes:
@@ -538,7 +579,11 @@ def _rewrite_word_friendly_children(
             )
         rewritten_child = _rewrite_known_safety_sublists(rewritten_child)
         rewritten_child = _rewrite_signal_word_banner_table(rewritten_child, alert_labels)
-        rewritten_child = _rewrite_two_column_alert_table(rewritten_child, alert_labels)
+        rewritten_child = _rewrite_two_column_alert_table(
+            rewritten_child,
+            alert_labels,
+            language=lang,
+        )
         rewritten_child = _rewrite_safety_two_col_layout(rewritten_child)
         normalized_children.append(rewritten_child)
 
@@ -560,7 +605,20 @@ def _rewrite_word_friendly_children(
 
         if child_tag == "div" and "hb-warning-box" in child_classes:
             label, body_nodes = _warning_box_table_parts(child, alert_labels)
-            rewritten.append(_build_alert_table(label, body_nodes))
+            rewritten.append(
+                _build_alert_table(
+                    label,
+                    body_nodes,
+                    # The source container carries warning semantics even when its
+                    # authored lockup is an icon-only glyph such as ``!``. Prefer
+                    # the source label map when it is textual, then retain the
+                    # container's explicit semantic variant as the fallback.
+                    variant=(_alert_variant(label, alert_labels) or "warning")
+                    if label
+                    else None,
+                    language=lang,
+                )
+            )
             index += 1
             continue
 
@@ -603,7 +661,14 @@ def _rewrite_word_friendly_children(
                 break
 
             if body_nodes:
-                rewritten.append(_build_alert_table(alert_label, body_nodes))
+                rewritten.append(
+                    _build_alert_table(
+                        alert_label,
+                        body_nodes,
+                        variant=_alert_variant(alert_label, alert_labels),
+                        language=lang,
+                    )
+                )
                 index = next_index
                 continue
 

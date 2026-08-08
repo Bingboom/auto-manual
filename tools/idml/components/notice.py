@@ -6,6 +6,9 @@ import re
 import unicodedata
 from dataclasses import dataclass, replace
 
+from tools.component_specs.adapters import idml_notice_payload
+from tools.component_specs.callout import callout_spec_from_legacy_notice
+
 from .. import page_objects as _po
 from ..character_metrics import with_character_metrics
 from ..params import component_param_pt, param_pt, param_text
@@ -523,6 +526,13 @@ def _rounded_notice(ctx: RenderContext, *, tid: str, terminal: bool,
 def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
                   span_columns: bool = True,
                   measure_w: float | None = None) -> tuple[str, float]:
+    source_notice_label(spec)
+    component_spec = callout_spec_from_legacy_notice(
+        spec,
+        source_ref=f"idml:notice:{tid}",
+        language=ctx.language or "und",
+    )
+    spec = idml_notice_payload(component_spec)
     body_w = float(spec.get("body_width") or measure_w or ctx.text_measure)
     if body_w <= 0:
         raise ValueError("notice body_width must be greater than zero")

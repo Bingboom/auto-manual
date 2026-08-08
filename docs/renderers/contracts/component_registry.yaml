@@ -1,0 +1,25 @@
+schema_version: component-registry/v1
+registry_id: hb-component-registry
+
+components:
+  HB-CALLOUT-STRIP:
+    style_id: HB-CALLOUT-STRIP
+    source_kinds: [callout_strip, notice]
+    variants: [warning, danger, caution, note, tip]
+    slots:
+      label:
+        required: true
+        content_kinds: [inline_text]
+      body:
+        required: true
+        content_kinds: [rich_text]
+      items:
+        required: false
+        content_kinds: [list_items]
+    asset_roles: {}
+    token_roles: [component.callout]
+    adapters:
+      web: {capability: rendered, key: manual_callout_table}
+      latex: {capability: rendered, key: hb_latex_callout}
+      idml: {capability: rendered, key: idml_notice}
+      word: {capability: projection-only, key: word_manual_callout_table}

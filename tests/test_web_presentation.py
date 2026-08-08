@@ -9,6 +9,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Tag
 from PIL import Image
 
+from tools.component_specs.web_source import validate_web_callout_html
 from tools.web_composite_manifest import load_web_composite_manifest
 from tools.web_presentation import (
     WebPresentationError,
@@ -81,7 +82,7 @@ class WebPresentationTests(unittest.TestCase):
                 '<td class="manual-callout-body"><p>Body</p></td>'
                 "</tr></tbody></table>"
             )
-            for label in ("WARNING", "DANGER", "CAUTION", "NOTE")
+            for label in ("WARNING", "DANGER", "CAUTION", "NOTE", "TIP")
         )
 
         protected_html, placeholders = protect_web_callouts_for_pandoc(
@@ -89,17 +90,30 @@ class WebPresentationTests(unittest.TestCase):
         )
 
         self.assertNotIn("manual-callout-table", protected_html)
-        self.assertEqual(4, len(placeholders))
+        self.assertEqual(5, len(placeholders))
+        before_specs = {
+            token: validate_web_callout_html(
+                callout_html,
+                source_ref=f"pandoc:{token}",
+            )
+            for token, callout_html in placeholders.items()
+        }
         pandoc_output = "# Safety\n\n" + "\n\n".join(placeholders) + "\n"
         restored = restore_web_callouts_after_pandoc(pandoc_output, placeholders)
         soup = BeautifulSoup(restored, "html.parser")
         tables = soup.select("table.manual-callout-table")
-        self.assertEqual(4, len(tables))
+        self.assertEqual(5, len(tables))
         self.assertEqual(
-            ["WARNING", "DANGER", "CAUTION", "NOTE"],
+            ["WARNING", "DANGER", "CAUTION", "NOTE", "TIP"],
             [table.select_one(".manual-callout-label").get_text(strip=True) for table in tables],
         )
         self.assertTrue(all(table.select_one(".manual-callout-body") for table in tables))
+        for token, table in zip(placeholders, tables, strict=True):
+            after_spec = validate_web_callout_html(
+                str(table),
+                source_ref=f"pandoc:{token}",
+            )
+            self.assertEqual(before_specs[token], after_spec)
         self.assertNotIn("<colgroup", restored)
         self.assertNotIn("<thead", restored)
 
