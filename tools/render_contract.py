@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Load and validate the renderer-neutral manual style contract.
 
-The contract does not render output. It binds the existing LaTeX public style
-surface to the InDesign/IDML surface and the shared layout-token source so
-cross-renderer drift is visible before a build reaches a designer.
+The contract does not render output.  It binds the Web, LaTeX, IDML, and Word
+projections plus the shared layout-token source so cross-renderer drift is
+visible before a build reaches a designer.
 """
 from __future__ import annotations
 
@@ -21,9 +21,14 @@ except ImportError as exc:  # pragma: no cover - environment/setup failure
     raise RuntimeError("PyYAML is required to load the manual style contract") from exc
 
 try:
+    from tools.render_contract_schema import (
+        effective_final_mile,
+        validate_v2_contract,
+    )
     from tools.script_bootstrap import bootstrap_repo_root
     from tools.utils.path_utils import Paths
 except ImportError:  # pragma: no cover - direct script execution fallback
+    from render_contract_schema import effective_final_mile, validate_v2_contract
     from script_bootstrap import bootstrap_repo_root
     from utils.path_utils import Paths
 
@@ -125,21 +130,18 @@ def style_ids(contract: dict[str, Any]) -> set[str]:
     return set(styles) if isinstance(styles, dict) else set()
 
 
-def effective_final_mile(contract: dict[str, Any], style: dict[str, Any]) -> dict[str, Any]:
-    defaults = ((contract.get("defaults") or {}).get("final_mile") or {})
-    local = style.get("final_mile") or {}
-    return {**defaults, **local}
-
-
 def validate_render_contract(
     contract: dict[str, Any],
     tokens: dict[str, LayoutToken],
     *,
     strict: bool = False,
 ) -> list[str]:
+    if contract.get("schema_version") == 2:
+        return validate_v2_contract(contract, tokens, strict=strict)
+
     issues: list[str] = []
     if contract.get("schema_version") != 1:
-        issues.append("schema_version must be 1")
+        issues.append("schema_version must be 1 or 2")
     styles = contract.get("styles")
     if not isinstance(styles, dict) or not styles:
         return issues + ["styles must be a non-empty mapping"]

@@ -32,7 +32,7 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 | 层 | 权威来源 | 决定什么 | 不应该放什么 |
 |---|---|---|---|
 | 人类规范 | **本文** | 视觉意图、四端对照、实现归属、修改与验证方法 | 构建快照、临时排期、一次性 hash |
-| 语义合同 | [`manual_style.yaml`](manual_style.yaml) | 31 个稳定 `HB-*` ID、源语义、LaTeX/IDML 绑定、token 引用、`status/debt` | CSS 像素值、逐页坐标 |
+| 语义合同 | [`manual_style.yaml`](manual_style.yaml) | 31 个稳定 `HB-*` ID、四端 capability/binding、theme-token role、`conformance`、`constraints`、`approved_variants` | CSS 像素值、逐页坐标 |
 | 数值 token | [`data/layout_params.csv`](../../../data/layout_params.csv) | PDF/IDML 共用的字号、间距、线宽、圆角及语言覆盖 | 组件路由和可见文案 |
 | 渲染实现 | Web CSS、LaTeX 模块、IDML renderer、Word remapper | 把合同投影成目标格式 | 自创未登记语义或渲染器本地可见常量 |
 
@@ -40,9 +40,10 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 更新本文。不能用“文档写了某个值”覆盖机器合同，也不能因为当前 CSS/IDML 恰好能
 渲染，就把未登记行为当成正式样式。
 
-`manual_style.yaml` schema v1 会机器校验 LaTeX、IDML 和 token 绑定；Web 与 Word
-绑定目前由本文和直接测试守护。本文因此仍是四端维护入口，但不能误称 schema v1
-已经机器声明了四端全部细节。
+`manual_style.yaml` 当前使用 schema v2，机器校验 LaTeX、IDML、Web、Word、token、
+component adapter、capability 和边界记录。本文仍是四端维护入口和视觉意图来源；机器
+绑定以 YAML 为准，直接测试负责确认登记的 CSS selector、Word style 与 adapter 真实
+存在。公共 loader 在一个兼容窗口内仍可读取 schema v1，但新提交不得继续写 v1。
 
 ### 0.2 改动路由：先判断你改的是内容、语义还是外观
 
@@ -81,7 +82,7 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 样式状态只描述共享语义是否按合同投影，不能把所有端间差异都叫“欠账”。统一使用
 下面三个互斥的分类：
 
-| 分类 | 定义 | 必备记录 | 对 `status` 的影响 |
+| 分类 | 定义 | 必备记录 | 对 `conformance.state` 的影响 |
 |---|---|---|---|
 | `debt` | 已承诺的共享语义在一个或多个适用输出面缺失、错误、未登记或缺少守护，且可以通过实现修复的 conformance gap | 原因、受影响输出面、owner、修复条件和测试证据 | 未销账时必须是 `partial` |
 | `constraint` | 共享语义合同有意接受的 renderer / platform 能力边界，例如响应式 Web 不分页、封面使用批准成品美术 | 原因、适用 renderer、scope、owner 和验证证据 | 本身不构成 `partial` |
@@ -94,10 +95,10 @@ renderer-local 常量称为批准变体。
 
 生命周期固定为：
 
-1. 发现差异时先分类，不直接改 `status`；不确定时按 debt 候选处理。
-2. 在机器合同记录 scope、owner、原因和守护证据；schema v1 过渡期仍以
-   `status/debt` 为机器账本，constraint / approved variant 的独立字段由 schema v2
-   引入。
+1. 发现差异时先分类，不直接改 `conformance.state`；不确定时按 debt 候选处理。
+2. 在机器合同的 `conformance.debt`、`constraints` 或 `approved_variants` 记录
+   `reason`、`owner`、`scope` 和 `evidence`。schema v2 的 strict 模式只报告
+   actionable debt，不把平台约束或批准变体误报为欠账。
 3. debt 只有在实现、直接测试和适用的四端验证通过后才销账；constraint 和
    approved variant 必须有边界测试或 reference pin，不能只留散文说明。
 4. 平台能力、目标范围或批准结论变化时重新评审：可修复的 constraint 可以重分类为
@@ -125,7 +126,7 @@ phase2 / 模板
 
 | 层 | 标识示例 | 谁写入 / 负责什么 |
 |---|---|---|
-| 样式合同 ID | `HB-WARRANTY-SECTION`、`HB-TABLE-SYMBOL-SIGNAL` | [`manual_style.yaml`](manual_style.yaml) 声明稳定语义、token 与 LaTeX/IDML 机器绑定；本文补齐 Web/Word 可读对照；`HB-*` 通常不会原样写进正文 |
+| 样式合同 ID | `HB-WARRANTY-SECTION`、`HB-TABLE-SYMBOL-SIGNAL` | [`manual_style.yaml`](manual_style.yaml) 声明稳定语义、theme-token role、token 与四端 capability/binding；本文解释可读对照；`HB-*` 通常不会原样写进正文 |
 | 源结构标识 | RST 标题、``.. container:: warranty-section``、`\\HBSymbolTable` | 模板或生成器写入 prepared RST；标识必须与本地化文案无关 |
 | IR 类型标识 | block `kind`，以及 `component` / `data` / `semantic` payload 里的 `kind`、`roles` | extractor 解析源结构后写入，供渲染器按类型路由 |
 | 装配角色 | `PageRole.WARRANTY`、`PageRole.SYMBOLS` | [`page_roles.py`](../../../tools/idml/page_roles.py) 根据 manifest 中的 `source_ref` / 稳定文件名决定页面由哪个 composer 接管 |
@@ -556,8 +557,8 @@ Word 复用结构语义，但不承诺 PDF/IDML 的固定页几何：
 - 文档标题来自配置的 `build.word_title`，不是正文中的第一个 H1；
 - `tools/word_bundle_docx_styles.py` 只做样式归一，不按英文标题匹配语义。
 
-Word 若需要新增独立组件样式，应先进入 `manual_style.yaml` 与 §1 的语义对照，不能
-只在 DOCX remapper 中增加一次性规则。
+Word 若需要新增独立组件样式，应先进入 `manual_style.yaml` 的 `word` binding 与 §1
+的语义对照，不能只在 DOCX remapper 中增加一次性规则。
 
 ---
 
@@ -565,9 +566,9 @@ Word 若需要新增独立组件样式，应先进入 `manual_style.yaml` 与 §
 
 `aligned` 表示各输出面按已登记的同一语义工作，并不要求响应式 Web、固定页
 PDF/IDML 和 Word 逐像素相同。`partial` 只表示仍有 §0.3 定义的可修复 debt；
-constraint 或 approved variant 不会单独把语义降为 `partial`。**schema v1 期间当前
-状态仍只读 `manual_style.yaml` 的 `status/debt`，不要在本文再维护一份计数或
-清单。** §1 的状态列用于阅读，修改合同状态时必须在同一提交同步它。
+constraint 或 approved variant 不会单独把语义降为 `partial`。**当前状态只读
+`manual_style.yaml` 的 `conformance.state` / `conformance.debt`；不要在本文再维护
+一份计数或清单。** §1 的状态列用于阅读，修改合同状态时必须在同一提交同步它。
 
 允许的投影差异必须满足至少一项：写进 token、写进 renderer binding、或写进批准
 reference-layout 的边界说明，并按 §0.3 登记为 constraint 或 approved variant。
@@ -909,7 +910,7 @@ Model No.    | JE-1000F /JE-1000F-SG
 
 | 层 | 内容 | 落在哪 |
 |---|---|---|
-| 语义 | 语义 ID、`semantic_source_kinds`、`token_refs`、LaTeX/IDML 机器绑定、`status` / `debt` | [`manual_style.yaml`](manual_style.yaml) |
+| 语义 | 语义 ID、`semantic_source_kinds`、`theme_token_roles`、token refs、四端 capability/binding、`conformance` / `constraints` / `approved_variants` | [`manual_style.yaml`](manual_style.yaml) |
 | 源写法 | MyST 围栏指令，或 RST 模板 / 源表字段 | [`tools/manual_md_directives.py`](../../../tools/manual_md_directives.py)、`docs/templates/` |
 | 标记 | `figure.hb-*-composition` 外壳 + 表格/网格骨架 + 每列一个 `col.hb-*-col-*` | 指令的 `run()` 或流水线渲染器 |
 | 样式 | 顶层 class 上的规则；分列宽度写在 `col` class 上 | [`web_manual.css`](web_manual.css) 及两个分模块 |
@@ -934,8 +935,9 @@ Model No.    | JE-1000F /JE-1000F-SG
 ### A.3 新增一个组件
 
 1. **定义稳定语义。** 在 `manual_style.yaml` 加 `role`、
-   `semantic_source_kinds`、`token_refs`、LaTeX/IDML binding，并诚实填写
-   `status/debt`。先有语义，再有渲染器。
+   `semantic_source_kinds`、`theme_token_roles`、token refs、四端 capability/binding，
+   并诚实填写 `conformance`、`constraints` 和 `approved_variants`。先有语义，再有
+   渲染器。
 2. **提供稳定源结构。** 在模板、生成器或源表 schema 中加与本地化文案无关的
    标识；同步扩展 extractor、Manual IR 类型与 projector。不能从英文标题反推。
 3. **实现四端投影。** Web 加顶层 composition/class，LaTeX 加稳定公共宏，IDML
@@ -956,8 +958,8 @@ Model No.    | JE-1000F /JE-1000F-SG
 
 ### A.4 改样式的顺序
 
-1. 在 `manual_style.yaml` 找语义 ID，确认 `semantic_source_kinds`、owner、token 和
-   当前 `status/debt`。
+1. 在 `manual_style.yaml` 找语义 ID，确认 `semantic_source_kinds`、四端 binding、
+   token 和当前 `conformance.debt` / 边界记录。
 2. 在 §1 和所属视觉章节确认四端投影；判断本次是共享值变化，还是有理由的
    renderer-specific 投影。
 3. 先改权威源：数值进 `layout_params.csv`，Web 响应式值进 CSS，结构语义进
@@ -998,8 +1000,9 @@ production RST 的用法问题：
 
 ### B.2 样式债与批准边界
 
-分类定义和生命周期以 §0.3 为准。schema v1 过渡期当前项仍以
-`manual_style.yaml` 的 `status/debt` 为机器账本；本文 §1 仅提供可读投影。
+分类定义和生命周期以 §0.3 为准。当前项以 `manual_style.yaml` schema v2 的
+`conformance.debt`、`constraints`、`approved_variants` 为机器账本；本文 §1 仅提供
+可读投影。
 已经完成的清算范围、批准方法和验证结果属于
 [历史执行状态](../../../code-as-doc/dev/style_debt_execution_status.md)，不要把它们
 复制回来重新维护。

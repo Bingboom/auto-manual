@@ -15,6 +15,11 @@ from tools.render_contract import (
     style_ids,
     validate_render_contract,
 )
+from tools.render_contract_schema import (
+    WEB_COMPONENT_ADAPTERS,
+    WORD_COMPONENT_ADAPTERS,
+    actionable_debt,
+)
 from tools.utils.path_utils import Paths, renderer_contracts_of
 
 
@@ -50,6 +55,26 @@ class RenderContractTests(unittest.TestCase):
     def test_contract_has_no_schema_or_token_errors(self) -> None:
         self.assertEqual([], validate_render_contract(self.contract, self.tokens))
 
+    def test_committed_contract_uses_schema_v2(self) -> None:
+        self.assertEqual(2, self.contract["schema_version"])
+
+    def test_v1_contract_remains_readable_during_compatibility_window(self) -> None:
+        legacy = {
+            "schema_version": 1,
+            "defaults": {"final_mile": {"content_editable": False}},
+            "styles": {
+                "HB-DEMO": {
+                    "semantic_source_kinds": ["paragraph"],
+                    "token_refs": ["type_body_font_size"],
+                    "latex": {"owner": "type_system.tex", "entrypoints": ["HBTypeBody"]},
+                    "indesign": {"renderer": "paragraph", "paragraph_style": "Body"},
+                    "status": "aligned",
+                    "debt": [],
+                }
+            },
+        }
+        self.assertEqual([], validate_render_contract(legacy, self.tokens))
+
     def test_plural_indesign_paragraph_styles_are_validated(self) -> None:
         plural_only = deepcopy(self.contract)
         indesign = plural_only["styles"]["HB-TABLE-KEY-COMBINATIONS"]["indesign"]
@@ -63,10 +88,72 @@ class RenderContractTests(unittest.TestCase):
         indesign["paragraph_styles"] = ["HB Data Header", ""]
         issues = validate_render_contract(plural_only, self.tokens)
         self.assertTrue(any(
-            "HB-TABLE-KEY-COMBINATIONS: indesign paragraph_styles must be a "
-            "non-empty list of non-empty strings" in issue
+            "HB-TABLE-KEY-COMBINATIONS.indesign.paragraph_styles must be a "
+            "list of non-empty strings" in issue
             for issue in issues
         ))
+
+    def test_v2_rejects_unknown_binding_keys(self) -> None:
+        malformed = deepcopy(self.contract)
+        style = malformed["styles"]["HB-TYPE-BODY"]
+        style["web"]["css_patch"] = ".page p"
+        style["word"]["style_id"] = "BodyText"
+        issues = validate_render_contract(malformed, self.tokens)
+        self.assertIn("styles.HB-TYPE-BODY.web: unsupported key 'css_patch'", issues)
+        self.assertIn("styles.HB-TYPE-BODY.word: unsupported key 'style_id'", issues)
+
+    def test_v2_rejects_malformed_boundary_records(self) -> None:
+        malformed = deepcopy(self.contract)
+        malformed["styles"]["HB-TYPE-BODY"]["constraints"] = [
+            {"reason": "Web is responsive", "scope": ["web"], "evidence": []}
+        ]
+        issues = validate_render_contract(malformed, self.tokens)
+        self.assertIn(
+            "styles.HB-TYPE-BODY.constraints[0].owner must be a non-empty string",
+            issues,
+        )
+        self.assertIn(
+            "styles.HB-TYPE-BODY.constraints[0].evidence must be a non-empty list "
+            "of non-empty strings",
+            issues,
+        )
+
+    def test_not_applicable_web_binding_cannot_expose_selectors(self) -> None:
+        malformed = deepcopy(self.contract)
+        web = malformed["styles"]["HB-PAGE-STANDARD"]["web"]
+        web["selectors"] = [".page"]
+        issues = validate_render_contract(malformed, self.tokens)
+        self.assertIn(
+            "styles.HB-PAGE-STANDARD.web: not-applicable capability cannot "
+            "declare selectors",
+            issues,
+        )
+
+    def test_renderer_adapter_and_binding_registries_are_complete(self) -> None:
+        css = "\n".join(
+            path.read_text(encoding="utf-8")
+            for path in (
+                PATHS.docs_dir / "_static" / "hb_manual.css",
+                PATHS.renderer_contracts_dir / "web_manual.css",
+                PATHS.renderer_contracts_dir / "web_app_components.css",
+                PATHS.renderer_contracts_dir / "web_symbols_fcc_components.css",
+            )
+        )
+        native_selectors = {"p", "ul", "ol", "h1", "h2", "h3"}
+        word_style_source = (ROOT / "tools" / "word_bundle_docx_styles.py").read_text(
+            encoding="utf-8"
+        )
+        for style_id, style in self.contract["styles"].items():
+            with self.subTest(style_id=style_id):
+                web = style["web"]
+                self.assertIn(web["component_adapter"], WEB_COMPONENT_ADAPTERS)
+                for selector in web["selectors"]:
+                    if selector not in native_selectors:
+                        self.assertIn(selector, css)
+                word = style["word"]
+                self.assertIn(word["component_adapter"], WORD_COMPONENT_ADAPTERS)
+                for style_name in word["paragraph_styles"] + word["table_styles"]:
+                    self.assertIn(f'"{style_name}"', word_style_source)
 
     def test_generated_latex_params_match_the_layout_token_source(self) -> None:
         prefix = r"\expandafter\def\csname HB"
@@ -105,7 +192,7 @@ class RenderContractTests(unittest.TestCase):
         self.assertEqual(base["comp_h1_pill_after"].value, self.tokens["comp_h1_pill_after"].value)
         self.assertNotIn("lang_fr_comp_h1_pill_after", french)
 
-    def test_strict_mode_exposes_remaining_renderer_debt(self) -> None:
+    def test_strict_mode_reports_only_actionable_debt(self) -> None:
         issues = validate_render_contract(self.contract, self.tokens, strict=True)
         debt_styles = {
             match.group(1)
@@ -117,7 +204,6 @@ class RenderContractTests(unittest.TestCase):
                 "HB-TYPE-LEAD",
                 "HB-TYPE-FOOTER",
                 "HB-TYPE-PAGE-NUMBER",
-                "HB-TABLE-LCD-ICON",
                 "HB-SPECIAL-FCC",
                 "HB-SPECIAL-INBOX",
                 "HB-SPECIAL-OVERVIEW",
@@ -127,6 +213,28 @@ class RenderContractTests(unittest.TestCase):
             },
             debt_styles,
         )
+        self.assertEqual(
+            debt_styles,
+            {
+                style_id
+                for style_id, style in self.contract["styles"].items()
+                if actionable_debt(self.contract, style)
+            },
+        )
+
+    def test_constraints_and_approved_variants_do_not_fail_strict_mode(self) -> None:
+        bounded = deepcopy(self.contract)
+        style = bounded["styles"]["HB-TYPE-BODY"]
+        record = {
+            "reason": "Reviewed projection difference",
+            "owner": "renderer-contract-maintainers",
+            "scope": ["web"],
+            "evidence": ["tests.test_render_contract"],
+        }
+        style["constraints"] = [deepcopy(record)]
+        style["approved_variants"] = [deepcopy(record)]
+        issues = validate_render_contract(bounded, self.tokens, strict=True)
+        self.assertFalse(any("styles.HB-TYPE-BODY:" in issue for issue in issues))
 
 
 if __name__ == "__main__":
