@@ -11,3 +11,7 @@ from pathlib import Path
 class WordBundlePageMeta:
     source_path: Path
     anchor_text: str
+    page_role: str = "standard"
+    footer_policy: str = "show"
+    folio_policy: str = "show"
+    page_plan_capability: str = "projection-only"

@@ -1,18 +1,18 @@
-"""Folio (page-number) footers for the composed IDML manual.
+"""PagePlan-driven folio frames for the composed IDML manual.
 
-The master prints a small folio at the bottom outer corner of every
-numbered content page; the cover, preface, TOC and back cover carry
-none, and the placed finished-art pages (product overview) already
-include theirs inside the artwork. Applied as a post-pass after the TOC
-splice so the numbering matches what the TOC printed.
+The shared semantic PagePlan owns suppression and numbering.  This post-pass
+does not inspect localized titles, story IDs, links, or spread XML.
 """
 from __future__ import annotations
 
-_FIRST_CONTENT_SLOT = 3  # cover, preface, TOC precede the folio'd pages
+from typing import Any
 
-
-def _skip(xml: str) -> bool:
-    return "rc_st_placed_" in xml or "st_back_cover" in xml
+from tools.page_plan import (
+    FolioPolicy,
+    PagePlan,
+    idml_page_binding,
+    legacy_folio_page_plan,
+)
 
 
 def folio_frame_bounds(writer, folio: int) -> tuple[float, float, float, float]:
@@ -27,16 +27,55 @@ def folio_frame_bounds(writer, folio: int) -> tuple[float, float, float, float]:
     return x1, y2 - 10.0, x2, y2
 
 
-def apply(writer, add_story_parts, psr) -> int:
-    """Append a folio frame to each numbered content spread."""
+def _resolve_page_plan(
+    raw_plan: dict[str, Any] | None,
+    *,
+    physical_page_count: int,
+    has_back_cover: bool,
+) -> PagePlan:
+    renderer_plan = (raw_plan or {}).get("renderer_page_plan")
+    if isinstance(renderer_plan, dict):
+        plan = PagePlan.from_dict(renderer_plan)
+        if plan.physical_page_count != physical_page_count:
+            raise ValueError(
+                "renderer PagePlan physical count does not match IDML spreads "
+                f"({plan.physical_page_count} != {physical_page_count})"
+            )
+        return plan
+    return legacy_folio_page_plan(
+        physical_page_count,
+        has_back_cover=has_back_cover,
+    )
+
+
+def apply(
+    writer,
+    add_story_parts,
+    psr,
+    *,
+    page_plan: dict[str, Any] | None = None,
+    has_back_cover: bool = False,
+) -> int:
+    """Append folios selected entirely by semantic PagePlan roles."""
     applied = 0
+    plan = _resolve_page_plan(
+        page_plan,
+        physical_page_count=len(writer.spreads),
+        has_back_cover=has_back_cover,
+    )
     for slot, (sid, xml) in enumerate(writer.spreads):
-        if slot < _FIRST_CONTENT_SLOT or _skip(xml):
+        physical_page = plan.physical_page(slot + 1)
+        if physical_page.folio_policy is FolioPolicy.SUPPRESS:
             continue
-        folio = slot - _FIRST_CONTENT_SLOT + 1
+        folio = physical_page.folio_number
+        if folio is None:
+            raise ValueError(f"physical page {slot + 1} has no PagePlan folio")
+        binding = idml_page_binding(physical_page)
+        if binding.page_number_style is None:
+            raise ValueError(f"physical page {slot + 1} has no IDML page-number style")
         story_sid = add_story_parts(
             f"st_folio_{slot}", f"Folio {folio}",
-            [psr("HB Spec Note", f"{folio:02d}", terminal=True)])
+            [psr(binding.page_number_style, f"{folio:02d}", terminal=True)])
         x1, y1, x2, y2 = folio_frame_bounds(writer, folio)
         frame = writer._frame_xml(
             f"tf_folio_{slot}", story_sid,

@@ -213,9 +213,9 @@ IDML notice payload 通过 `metadata.legacy_payload` 原样往返，避免纯迁
 | 一级标题 | `HB-TITLE-L1` | `# ` | `h1` / `.hb-h1-pill` | `HBTitleLevelOne` @ `components_headings` | `Heading1` + `HB Capsule Heading` | `dingding-heading1` | aligned |
 | 二级标题 | `HB-TITLE-L2` | `## ` | `h2` / `.hb-subbar` | `HBTitleLevelTwo` | `Heading2`、`HB Operation Row Label` | `dingding-heading2` | aligned |
 | 三级标题 | `HB-TITLE-L3` | `### ` | `h3` | `HBTitleLevelThree` | `Heading3` | `dingding-heading3` | aligned |
-| 前言 / 引题 | `HB-TYPE-LEAD` | 流水线 | — | `HBTypeWarningTextStart`、`HBTypeRubricStart` | `HB Lead` | 经 HTML 转换 | partial |
-| 页脚 | `HB-TYPE-FOOTER` | 流水线 | 不渲染 | `HBTypeFooter` | `HB Footer` | 页脚域 | partial |
-| 页码 | `HB-TYPE-PAGE-NUMBER` | 流水线 | 不渲染 | `HBTypePageNumber` | `HB Page Number` | 页脚域 | partial |
+| 前言 / 引题 | `HB-TYPE-LEAD` | 流水线 | — | `HBTypeWarningTextStart`、`HBTypeRubricStart` | `HB Lead` | 经 HTML 转换 | aligned |
+| 页脚 | `HB-TYPE-FOOTER` | 流水线 | 不渲染 | `HBTypeFooter` | `HB Footer` | 页脚域 | aligned |
+| 页码 | `HB-TYPE-PAGE-NUMBER` | 流水线 | 不渲染 | `HBTypePageNumber` | `HB Page Number` | 页脚域 | aligned |
 
 ### 警示与安全
 
@@ -257,9 +257,9 @@ IDML notice payload 通过 `metadata.legacy_payload` 原样往返，避免纯迁
 | 质保引语 | `HB-WARRANTY-LEAD` | 流水线 | `.hb-warranty-intro-composition` | `HBWarrantyLead` @ `components_warranty` | `HB Rounded Panel` | 经 HTML 转换 | aligned |
 | 质保条款面板 | `HB-WARRANTY-SECTION` | 流水线 | `.hb-warranty-card` | `HBWarrantySection` | `HB Rounded Panel` | 经 HTML 转换 | aligned |
 | 质保年限卡 | `HB-WARRANTY-YEARS` | 流水线 | `.hb-warranty-period-card` | `HBWarrantyYears` | `HB Big Numeral` + `HB Rounded Panel` | 经 HTML 转换 | aligned |
-| 标准页 | `HB-PAGE-STANDARD` | 模板 | 无分页 | `HBPageTemplateStandard` @ `layout_templates` | `HB Standard Page` | 节属性 | partial |
-| 无页脚页 | `HB-PAGE-NO-FOOTER` | 模板 | 无分页 | `HBPageTemplateNoFooter` | `HB No Footer Page` | 节属性 | partial |
-| 封面 / 封底 | `HB-PAGE-COVER` | 模板 | 不渲染 | `HBPageTemplateCover`、`HBBackCoverPage` | `HB Cover Page` | 不渲染 | partial |
+| 标准页 | `HB-PAGE-STANDARD` | 模板 | 无分页 | `HBPageTemplateStandard` @ `layout_templates` | `HB Standard Page` | 节属性 | aligned |
+| 无页脚页 | `HB-PAGE-NO-FOOTER` | 模板 | 无分页 | `HBPageTemplateNoFooter` | `HB No Footer Page` | 节属性 | aligned |
+| 封面 / 封底 | `HB-PAGE-COVER` | 模板 | 不渲染 | `HBPageTemplateCover`、`HBBackCoverPage` | `HB Cover Page` | 不渲染 | aligned |
 
 > Web 不分页：`HB-PAGE-*`、`HB-TYPE-FOOTER`、`HB-TYPE-PAGE-NUMBER` 在网页投影里没有对应物，只在 PDF/IDML 生效。
 
@@ -516,6 +516,17 @@ token 以 `comp_warranty_*`、`type_warranty_*` 为前缀；语言相关的面�
 ---
 
 ## 7. 页面模板
+
+`tools/page_plan/` 是四端共享的页面语义层。它只记录 source ref、语言、
+source ordinal、physical start/span、page role、footer/folio policy 与各 renderer
+capability；不携带 TeX 尺寸、IDML XML/ObjectsStyle 几何、DOCX XML 或 CSS 坐标。
+LaTeX、IDML 和 Word 各自通过 adapter 投影这些角色；Web 明确记录
+`pagination=not-applicable`，不伪造 PDF 式分页。
+
+JE-1000F/US 批准合同仍为 52 个 source page / 58 个 physical page，顺序、
+语言和 composition map 均由 reference-layout pin 约束。封面保留“置入已批准成品美术”
+constraint；封底仍是 source-driven 可编辑文案。IDML folio 不再通过本地化
+标题、story ID 或 spread XML 推断，而是仅读 PagePlan 的角色与 policy。
 
 | 语义 | PDF | IDML | 说明 |
 |---|---|---|---|

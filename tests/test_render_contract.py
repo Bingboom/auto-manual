@@ -201,15 +201,9 @@ class RenderContractTests(unittest.TestCase):
         }
         self.assertEqual(
             {
-                "HB-TYPE-LEAD",
-                "HB-TYPE-FOOTER",
-                "HB-TYPE-PAGE-NUMBER",
                 "HB-SPECIAL-FCC",
                 "HB-SPECIAL-INBOX",
                 "HB-SPECIAL-OVERVIEW",
-                "HB-PAGE-STANDARD",
-                "HB-PAGE-NO-FOOTER",
-                "HB-PAGE-COVER",
             },
             debt_styles,
         )

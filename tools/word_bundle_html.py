@@ -18,6 +18,7 @@ from tools.web_composite_manifest import (
 from tools.word_bundle_common import paths
 from tools.word_bundle_html_images import _IMG_SRC_RE, _inject_img_dimensions
 from tools.word_bundle_html_models import WordBundlePageMeta
+from tools.page_plan import page_template_role_for_source_ref, word_page_binding
 from tools.word_bundle_html_only import (
     _build_word_only_tags,
     _dedent_only_block_lines,
@@ -358,10 +359,18 @@ def build_word_bundle_html(
             region=materialized.region,
         )
         body_parts.append(html_fragment or "<div></div>")
+        page_role = page_template_role_for_source_ref(rst_path)
+        page_binding = word_page_binding(page_role)
         page_metas.append(
             WordBundlePageMeta(
                 source_path=rst_path,
                 anchor_text=_extract_word_anchor_text(html_fragment),
+                page_role=page_role.value,
+                footer_policy=("show" if page_binding.footer_style else "suppress"),
+                folio_policy=(
+                    "show" if page_binding.page_number_style else "suppress"
+                ),
+                page_plan_capability=page_binding.capability.value,
             )
         )
         previous_was_cover = rst_path.name.startswith("cover")
