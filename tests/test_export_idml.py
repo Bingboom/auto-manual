@@ -3839,6 +3839,16 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('ParagraphShadingWidth="TextWidth"', card)
         self.assertIn('Justification="CenterAlign"', card)
         self.assertIn("Gilroy", styles)
+        for name in ("HB Lead", "HB Footer", "HB Page Number"):
+            self.assertIn(f'Name="{name}"', styles)
+        self.assertIn('Name="HB Standard Page"', styles)
+        self.assertIn('Name="HB No Footer Page"', styles)
+        self.assertIn('Name="HB Cover Page"', styles)
+        page_number = styles.split('Name="HB Page Number"')[1].split(
+            "</ParagraphStyle>", 1
+        )[0]
+        self.assertIn('FillColor="Color/TextGray"', page_number)
+        self.assertIn('PointSize="6"', page_number)
 
     def test_page_geometry_is_130x185(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

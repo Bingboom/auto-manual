@@ -10,6 +10,7 @@ from typing import Any
 
 from tools.manual_ir import ManualIR, unknown_language_issues
 from tools.render_contract import LAYOUT_PARAMS_HASH_ALGORITHM
+from tools.page_plan import build_renderer_page_plan
 from tools.utils.path_utils import PathSegments, Paths
 
 from .control_labels import validate_app_control_label_contract
@@ -668,6 +669,7 @@ def normalize_approved_reference_plan(
             "source_path": source_page.source_path,
             "source_sha256": source_page.source_sha256,
             "language": source_page.language,
+            "page_role": classify_page_role(Path(source_page.source_ref)).value,
             "latex_start_page": approved["start_page"],
             "matched_anchor": f"approved:{approved['composition_id']}",
             "candidate_count": 0,
@@ -675,7 +677,7 @@ def normalize_approved_reference_plan(
             "planned_page_count": approved["page_count"],
             "flow_split": approved.get("flow_split"),
         })
-    return {
+    normalized = {
         "schema_version": LEGACY_PLAN_SCHEMA_VERSION,
         "plan_source": "approved-reference",
         "approved_plan_schema_version": payload["schema_version"],
@@ -705,6 +707,8 @@ def normalize_approved_reference_plan(
         "idml_contract": payload.get("idml_contract"),
         "approved_contract": payload,
     }
+    normalized["renderer_page_plan"] = build_renderer_page_plan(normalized).to_dict()
+    return normalized
 
 
 def load_approved_reference_plan(

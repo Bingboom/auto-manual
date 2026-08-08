@@ -88,13 +88,7 @@ styles:
     theme_token_roles: [type.lead]
     web: {capability: rendered, selectors: [.hb-lead], component_adapter: web_presentation}
     word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [], component_adapter: word_bundle_html}
-    conformance:
-      state: partial
-      debt:
-        - reason: IDML currently borrows body or heading styles instead of a fully shared lead projection.
-          owner: renderer-contract-maintainers
-          scope: [idml]
-          evidence: [tests.test_render_contract.RenderContractTests.test_strict_mode_reports_only_actionable_debt]
+    conformance: {state: aligned, debt: []}
     constraints: []
     approved_variants: []
 
@@ -107,13 +101,7 @@ styles:
     theme_token_roles: [type.footer]
     web: {capability: not-applicable, selectors: [], component_adapter: not_applicable}
     word: {capability: rendered, paragraph_styles: [], table_styles: [], component_adapter: section_properties}
-    conformance:
-      state: partial
-      debt:
-        - reason: IDML folios currently borrow a specification note style.
-          owner: renderer-contract-maintainers
-          scope: [idml]
-          evidence: [tests.test_render_contract.RenderContractTests.test_strict_mode_reports_only_actionable_debt]
+    conformance: {state: aligned, debt: []}
     constraints:
       - reason: Responsive Web has no physical footer domain.
         owner: renderer-contract-maintainers
@@ -130,13 +118,7 @@ styles:
     theme_token_roles: [type.page-number]
     web: {capability: not-applicable, selectors: [], component_adapter: not_applicable}
     word: {capability: rendered, paragraph_styles: [], table_styles: [], component_adapter: section_properties}
-    conformance:
-      state: partial
-      debt:
-        - reason: Dedicated page-number tokens and IDML style are not yet shared.
-          owner: renderer-contract-maintainers
-          scope: [idml]
-          evidence: [tests.test_render_contract.RenderContractTests.test_strict_mode_reports_only_actionable_debt]
+    conformance: {state: aligned, debt: []}
     constraints:
       - reason: Responsive Web has no physical page-number domain.
         owner: renderer-contract-maintainers
@@ -622,13 +604,7 @@ styles:
     theme_token_roles: [page.standard]
     web: {capability: not-applicable, selectors: [], component_adapter: not_applicable}
     word: {capability: projection-only, paragraph_styles: [], table_styles: [], component_adapter: section_properties}
-    conformance:
-      state: partial
-      debt:
-        - reason: Physical spans and folio suppression are not yet projected from one renderer-neutral PagePlan.
-          owner: renderer-contract-maintainers
-          scope: [latex, idml, word]
-          evidence: [code-as-doc/dev/style_component_contract_v2_plan.md#pr-5-shared-pageplan-and-pagetype-partials]
+    conformance: {state: aligned, debt: []}
     constraints:
       - reason: Responsive Web has no physical standard-page domain.
         owner: renderer-contract-maintainers
@@ -645,13 +621,7 @@ styles:
     theme_token_roles: [page.no-footer]
     web: {capability: not-applicable, selectors: [], component_adapter: not_applicable}
     word: {capability: projection-only, paragraph_styles: [], table_styles: [], component_adapter: section_properties}
-    conformance:
-      state: partial
-      debt:
-        - reason: Footerless page-template selection is not yet projected from one renderer-neutral PagePlan.
-          owner: renderer-contract-maintainers
-          scope: [latex, idml, word]
-          evidence: [code-as-doc/dev/style_component_contract_v2_plan.md#pr-5-shared-pageplan-and-pagetype-partials]
+    conformance: {state: aligned, debt: []}
     constraints:
       - reason: Responsive Web has no physical footerless-page domain.
         owner: renderer-contract-maintainers
@@ -668,16 +638,10 @@ styles:
     theme_token_roles: [page.cover]
     web: {capability: not-applicable, selectors: [], component_adapter: not_applicable}
     word: {capability: projection-only, paragraph_styles: [], table_styles: [], component_adapter: section_properties}
-    conformance:
-      state: partial
-      debt:
-        - reason: Cover and back-cover page roles are not yet projected from one renderer-neutral PagePlan.
-          owner: renderer-contract-maintainers
-          scope: [latex, idml, word]
-          evidence: [code-as-doc/dev/style_component_contract_v2_plan.md#pr-5-shared-pageplan-and-pagetype-partials]
+    conformance: {state: aligned, debt: []}
     constraints:
       - reason: Responsive Web does not render fixed cover pages, and the front cover remains approved finished art in fixed-page outputs.
         owner: renderer-contract-maintainers
         scope: [web, latex, idml]
-        evidence: [docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json]
+        evidence: [docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json, tests.test_page_plan.PagePlanTests.test_page_roles_drive_footer_and_folio_without_localized_text]
     approved_variants: []

@@ -41,6 +41,9 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
             param_text(p, "idml_body_font_style", "Medium"),
             "",
         ),
+        ("HB Lead", sz("type_rubric_font_size", 8.6), sz("type_rubric_font_leading", 9.4), "Heavy", "lead"),
+        ("HB Footer", sz("page_footer_font_size", 6.0), sz("page_footer_font_leading", 7.2), "Regular", "footer"),
+        ("HB Page Number", sz("page_footer_font_size", 6.0), sz("page_footer_font_leading", 7.2), "Regular", "page_number"),
         *app_paragraph_styles(p),
         ("HB Preface Body", sz("idml_preface_body_font_size", 7.2), sz("idml_preface_body_font_leading", 8.6), "Regular", "preface_body"),
         ("HB Safety Lead", sz("type_safety_lead_font_size", 8.0), sz("type_safety_lead_font_leading", 9.6), "Bold", "safety_lead"),
@@ -99,7 +102,9 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
         # compact dark pills. Both map to paragraph shading in IDML.
         shaded = name == "HB H1" or kind in {"label", "card_number"}
         fill = (
-            "Color/Paper"
+            f'Color/{param_text(params, "page_footer_color", "TextGray")}'
+            if kind in {"footer", "page_number"}
+            else "Color/Paper"
             if shaded or kind in {"capsule_text", "toc_bar", "toc_range", "emphasis", "warranty_title", "preface_tag"}
             else "Color/HB Brand Dark"
         )
@@ -179,6 +184,9 @@ def styles_xml(params: dict[str, tuple[str, str]]) -> str:
         '    <ObjectStyle Self="ObjectStyle/HB Rounded Panel" Name="HB Rounded Panel"/>\n'
         '    <ObjectStyle Self="ObjectStyle/HB Inbox Card" Name="HB Inbox Card"/>\n'
         '    <ObjectStyle Self="ObjectStyle/HB Badge" Name="HB Badge"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB Standard Page" Name="HB Standard Page"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB No Footer Page" Name="HB No Footer Page"/>\n'
+        '    <ObjectStyle Self="ObjectStyle/HB Cover Page" Name="HB Cover Page"/>\n'
         '  </RootObjectStyleGroup>\n'
         '</idPkg:Styles>\n'
     )

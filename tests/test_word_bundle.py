@@ -134,6 +134,13 @@ class TestWordBundle(unittest.TestCase):
                 ["00_preface.rst", "01_safety.rst"],
                 [meta.source_path.name for meta in web_metas],
             )
+            self.assertEqual("no-footer", web_metas[0].page_role)
+            self.assertEqual("suppress", web_metas[0].footer_policy)
+            self.assertEqual("standard", web_metas[1].page_role)
+            self.assertEqual("show", web_metas[1].folio_policy)
+            self.assertTrue(
+                all(meta.page_plan_capability == "projection-only" for meta in web_metas)
+            )
 
             document_text = document_html.read_text(encoding="utf-8")
             self.assertIn("PRINT COVER", document_text)
@@ -141,6 +148,10 @@ class TestWordBundle(unittest.TestCase):
             self.assertIn("PRINT BACK COVER", document_text)
             self.assertIn('<div class="manual-page-break"></div>', document_text)
             self.assertEqual(5, len(document_metas))
+            self.assertEqual(
+                ["front-cover", "no-footer", "toc", "standard", "back-cover"],
+                [meta.page_role for meta in document_metas],
+            )
 
     def test_resolve_reference_doc_supports_glob(self) -> None:
         with tempfile.TemporaryDirectory() as td:

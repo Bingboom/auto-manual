@@ -118,6 +118,27 @@
       <Leading type="unit">7.2</Leading>
     </Properties>
   </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Lead" Name="HB Lead" PointSize="8.6" FillColor="Color/HB Brand Dark" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Heavy</FontStyle>
+      <Leading type="unit">9.4</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Footer" Name="HB Footer" PointSize="6" FillColor="Color/TextGray" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
+  <ParagraphStyle Self="ParagraphStyle/HB Page Number" Name="HB Page Number" PointSize="6" FillColor="Color/TextGray" Justification="LeftAlign">
+    <Properties>
+      <AppliedFont type="string">Gilroy</AppliedFont>
+      <FontStyle type="string">Regular</FontStyle>
+      <Leading type="unit">7.2</Leading>
+    </Properties>
+  </ParagraphStyle>
   <ParagraphStyle Self="ParagraphStyle/HB App H2 Download" Name="HB App H2 Download" PointSize="10" FillColor="Color/HB Brand Dark" SpaceAfter="8.5" Hyphenation="false" Justification="LeftAlign">
     <Properties>
       <AppliedFont type="string">Gilroy</AppliedFont>
@@ -504,5 +525,8 @@
     <ObjectStyle Self="ObjectStyle/HB Rounded Panel" Name="HB Rounded Panel"/>
     <ObjectStyle Self="ObjectStyle/HB Inbox Card" Name="HB Inbox Card"/>
     <ObjectStyle Self="ObjectStyle/HB Badge" Name="HB Badge"/>
+    <ObjectStyle Self="ObjectStyle/HB Standard Page" Name="HB Standard Page"/>
+    <ObjectStyle Self="ObjectStyle/HB No Footer Page" Name="HB No Footer Page"/>
+    <ObjectStyle Self="ObjectStyle/HB Cover Page" Name="HB Cover Page"/>
   </RootObjectStyleGroup>
 </idPkg:Styles>

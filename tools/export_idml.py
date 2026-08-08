@@ -484,13 +484,20 @@ def main() -> int:
     flush_prose_flow()
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind, args.lang)
-    if _placed.add_preferred_back_cover_page(
+    back_cover_added = _placed.add_preferred_back_cover_page(
             w, args.region, args.lang, ROOT / "docs", page_cursor,
-            _ir_projection.back_cover_data(manual_ir), reference_plan=page_plan):
+            _ir_projection.back_cover_data(manual_ir), reference_plan=page_plan)
+    if back_cover_added:
         page_cursor += 1
     _toc.finalize(w, toc, w._add_story_parts, w._psr,
                   source=_ir_projection.toc_page_data(manual_ir, bundle_root))
-    _folio.apply(w, w._add_story_parts, w._psr)
+    _folio.apply(
+        w,
+        w._add_story_parts,
+        w._psr,
+        page_plan=page_plan,
+        has_back_cover=back_cover_added,
+    )
     if _ir_projection.report_reference_page_count_issues(page_plan, len(w.spreads)):
         return 1
     out = Path(args.out) if args.out else default_output_path(args.model, args.region, args.lang, bundle_root)
