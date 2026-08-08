@@ -630,6 +630,7 @@ class WebPresentationTests(unittest.TestCase):
                 soup = BeautifulSoup(_web_fragment(source_name), "html.parser")
                 composition = soup.select_one("figure.hb-inbox-composition")
                 self.assertIsNotNone(composition)
+                self.assertEqual("HB-SPECIAL-INBOX", composition.get("data-component-id"))
                 cards = composition.select(".hb-inbox-grid > .hb-inbox-card") if composition else []
                 self.assertEqual(3, len(cards))
                 self.assertEqual(
@@ -637,6 +638,9 @@ class WebPresentationTests(unittest.TestCase):
                     [str(card["data-item-number"]) for card in cards],
                 )
                 self.assertEqual(3, len(composition.select(".hb-inbox-art")))
+                self.assertTrue(
+                    all(image.get("alt") for image in composition.select(".hb-inbox-art"))
+                )
                 self.assertIn(cable_label, cards[1].get_text(" ", strip=True))
                 self.assertEqual(
                     tip_label,

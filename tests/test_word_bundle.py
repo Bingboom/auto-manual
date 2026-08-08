@@ -40,6 +40,27 @@ class TestWordBundle(unittest.TestCase):
         self.assertIn("MODIFICATION:", table.get_text(" ", strip=True) if table else "")
         self.assertIsNone(soup.select_one(".line-block"))
 
+    def test_document_profile_projects_inbox_as_editable_cards_and_tip(self) -> None:
+        source = Path("docs/_review/JE-1000F/US/page/02_whats_in_the_box.rst")
+        with tempfile.TemporaryDirectory() as td:
+            rendered = _convert_rst_fragment_to_html(
+                source.read_text(encoding="utf-8"),
+                source,
+                Path(td),
+                active_tags={"region_us"},
+            )
+        soup = BeautifulSoup(rendered, "html.parser")
+        table = soup.select_one("table.hb-inbox-word-table")
+        self.assertIsNotNone(table)
+        self.assertEqual("HB-SPECIAL-INBOX", table.get("data-component-id") if table else None)
+        self.assertEqual(3, len(table.select("td.hb-inbox-word-card")) if table else 0)
+        self.assertEqual(3, len(table.select("img")) if table else 0)
+        self.assertTrue(all(image.get("alt") for image in table.select("img")) if table else False)
+        tip = soup.select_one("table.hb-inbox-word-tip")
+        self.assertIsNotNone(tip)
+        self.assertEqual("TIP", tip.select_one(".hb-inbox-word-tip-label").get_text(strip=True))
+        self.assertIn("car charging cable", tip.get_text(" ", strip=True))
+
     def test_stage_fragment_assets_should_bind_names_to_content_not_checkout_path(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

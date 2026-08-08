@@ -19,13 +19,22 @@ REGISTRY_SCHEMA_VERSION = "component-registry/v1"
 RENDERERS = ("web", "latex", "idml", "word")
 CAPABILITIES = frozenset({"rendered", "projection-only", "not-applicable"})
 REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
-    "web": frozenset({"manual_callout_table", "hb_spec_table", "hb_fcc"}),
-    "latex": frozenset(
-        {"hb_latex_callout", "hb_latex_spec_table", "hb_latex_fcc"}
+    "web": frozenset(
+        {"manual_callout_table", "hb_spec_table", "hb_fcc", "hb_inbox"}
     ),
-    "idml": frozenset({"idml_notice", "idml_spec_table", "idml_fcc"}),
+    "latex": frozenset(
+        {
+            "hb_latex_callout",
+            "hb_latex_spec_table",
+            "hb_latex_fcc",
+            "hb_latex_inbox",
+        }
+    ),
+    "idml": frozenset(
+        {"idml_notice", "idml_spec_table", "idml_fcc", "idml_inbox"}
+    ),
     "word": frozenset(
-        {"word_manual_callout_table", "word_spec_table", "word_fcc"}
+        {"word_manual_callout_table", "word_spec_table", "word_fcc", "word_inbox"}
     ),
 }
 LOCALE_POLICIES = frozenset({"exact", "shared"})

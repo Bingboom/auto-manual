@@ -26,6 +26,16 @@ component_roles:
       - radius.fcc
       - type.fcc.body
       - width.component-band
+  component.special.inbox:
+    component_ids: [HB-SPECIAL-INBOX]
+    theme_roles:
+      - surface.brand
+      - surface.paper
+      - surface.muted
+      - border.inbox
+      - radius.inbox
+      - type.inbox.label
+      - width.component-band
 
 roles:
   surface.brand:
@@ -58,6 +68,12 @@ roles:
       latex: {kind: layout-token, name: comp_table_outer_rule}
       idml: {kind: layout-token, name: comp_table_outer_rule}
       word: {kind: property-adapter, name: _set_spec_table_borders}
+  border.inbox:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-line-soft}
+      latex: {kind: layout-token, name: comp_table_outer_rule}
+      idml: {kind: color, name: Color/HB Line K40}
+      word: {kind: html-class, name: hb-inbox-word-card}
   radius.panel:
     bindings:
       web: {kind: css-custom-property, name: --hb-panel-radius}
@@ -70,6 +86,12 @@ roles:
       latex: {kind: layout-token, name: comp_fcc_arc}
       idml: {kind: layout-token, name: comp_fcc_arc}
       word: {kind: property-adapter, name: transform_word_fcc_html}
+  radius.inbox:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-inbox-card-radius}
+      latex: {kind: layout-token, name: comp_inbox_card_arc}
+      idml: {kind: object-style, name: HB Inbox Card}
+      word: {kind: property-adapter, name: transform_word_inbox_html}
   type.table.label:
     bindings:
       web: {kind: css-custom-property, name: --hb-font-family}
@@ -88,6 +110,12 @@ roles:
       latex: {kind: macro, name: HBTypeFccText}
       idml: {kind: paragraph-style, name: HB FCC Text}
       word: {kind: html-class, name: hb-fcc-word-table}
+  type.inbox.label:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-font-family}
+      latex: {kind: macro, name: HBtype_inbox_label_font_size}
+      idml: {kind: paragraph-style, name: HB InBox Label}
+      word: {kind: html-class, name: hb-inbox-word-card}
   width.component-band:
     bindings:
       web: {kind: css-custom-property, name: --hb-component-band-max}

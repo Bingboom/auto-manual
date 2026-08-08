@@ -124,6 +124,7 @@ body {
     .hb-troubleshooting-composition,
     .hb-spec-table-composition,
     .hb-fcc-composition,
+    .hb-inbox-composition,
     .hb-lcd-table-composition,
     .hb-auto-resume-composition,
     .hb-lcd-mode-composition
@@ -1117,114 +1118,6 @@ body {
   background: var(--hb-paper);
 }
 
-.hb-inbox-composition {
-  width: 100%;
-  max-width: var(--hb-reading-width);
-  margin: 1.2rem 0 2rem;
-}
-
-#furo-main-content .hb-inbox-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-rows: 1fr;
-  gap: clamp(0.55rem, 1.4vw, 0.9rem);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.hb-inbox-card {
-  position: relative;
-  display: flex;
-  box-sizing: border-box;
-  min-width: 0;
-  min-height: clamp(20rem, 48vw, 24rem);
-  flex-direction: column;
-  align-items: center;
-  padding: 3.6rem clamp(0.55rem, 1.4vw, 1rem) 1.5rem;
-  overflow: hidden;
-  border: 2px solid var(--hb-line-soft);
-  border-radius: 0.82rem;
-  background: var(--hb-paper);
-  text-align: center;
-}
-
-#furo-main-content .hb-inbox-card + .hb-inbox-card {
-  margin-top: 0;
-}
-
-.hb-inbox-card::before {
-  content: attr(data-item-number);
-  position: absolute;
-  top: 1.55rem;
-  left: 50%;
-  display: grid;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  transform: translateX(-50%);
-  place-items: center;
-  background: var(--hb-brand-dark);
-  color: var(--hb-paper);
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-#furo-main-content .hb-inbox-art {
-  display: block;
-  width: 90% !important;
-  max-width: 10.8rem !important;
-  height: clamp(8.75rem, 18vw, 10.5rem) !important;
-  margin: 1.6rem auto 1rem !important;
-  object-fit: contain;
-}
-
-.hb-inbox-label {
-  display: grid;
-  min-height: 3.4rem;
-  margin-top: auto;
-  place-items: center;
-  color: var(--hb-text);
-  font-size: clamp(0.82rem, 1.45vw, 0.96rem);
-  font-weight: 700;
-  line-height: 1.25;
-}
-
-.hb-inbox-label p,
-.hb-inbox-tip p {
-  margin: 0;
-}
-
-.hb-inbox-tip {
-  display: grid;
-  grid-template-columns: clamp(6.8rem, 16%, 8rem) minmax(0, 1fr);
-  margin-top: 1rem;
-  overflow: hidden;
-  border: 2px solid var(--hb-line-soft);
-  border-radius: 0.82rem;
-  background: var(--hb-surface);
-  color: var(--hb-text);
-}
-
-.hb-inbox-tip-label {
-  display: grid;
-  min-height: 5rem;
-  padding: 0.8rem;
-  place-items: center;
-  background: var(--hb-paper);
-  font-weight: 700;
-  text-align: center;
-}
-
-.hb-inbox-tip-body {
-  display: flex;
-  align-items: center;
-  padding: 0.85rem 1rem;
-  font-size: 0.94rem;
-  line-height: 1.3;
-}
-
 .hb-annotated-figure,
 .hb-operation-figure,
 .hb-reference-figure {
@@ -1740,46 +1633,6 @@ body {
 
   #furo-main-content .manual-callout-label {
     text-align: left;
-  }
-
-  .hb-inbox-grid {
-    gap: 0.42rem;
-  }
-
-  .hb-inbox-card {
-    min-height: clamp(15.5rem, 56vw, 21rem);
-    padding: 2.8rem 0.38rem 0.85rem;
-    border-radius: 0.58rem;
-  }
-
-  .hb-inbox-card::before {
-    top: 0.78rem;
-    width: 1.72rem;
-    height: 1.72rem;
-    font-size: 0.88rem;
-  }
-
-  #furo-main-content .hb-inbox-art {
-    width: 94% !important;
-    height: clamp(6.5rem, 24vw, 8.25rem) !important;
-    margin: 0.75rem auto 0.65rem !important;
-  }
-
-  .hb-inbox-label {
-    min-height: 2.8rem;
-    font-size: clamp(0.68rem, 3vw, 0.82rem);
-  }
-
-  .hb-inbox-tip {
-    grid-template-columns: 5.4rem minmax(0, 1fr);
-    border-radius: 0.58rem;
-  }
-
-  .hb-inbox-tip-label,
-  .hb-inbox-tip-body {
-    min-height: 0;
-    padding: 0.7rem 0.62rem;
-    font-size: 0.78rem;
   }
 
   .hb-app-download-grid {

@@ -8,6 +8,13 @@ from .fcc_adapters import (
     web_fcc_projection,
     word_fcc_projection,
 )
+from .inbox import inbox_component_spec, inbox_spec_from_legacy_payload
+from .inbox_adapters import (
+    idml_inbox_payload,
+    latex_inbox_projection,
+    web_inbox_projection,
+    word_inbox_projection,
+)
 from .model import ComponentAsset, ComponentSlot, ComponentSpec, ComponentSpecError
 from .registry import (
     adapter_binding,
@@ -30,7 +37,11 @@ __all__ = [
     "fcc_component_spec",
     "fcc_spec_from_legacy_payload",
     "idml_fcc_payload",
+    "idml_inbox_payload",
+    "inbox_component_spec",
+    "inbox_spec_from_legacy_payload",
     "latex_fcc_projection",
+    "latex_inbox_projection",
     "load_component_registry",
     "load_manual_theme",
     "require_valid_component_spec",
@@ -39,5 +50,7 @@ __all__ = [
     "validate_component_spec",
     "validate_manual_theme",
     "web_fcc_projection",
+    "web_inbox_projection",
     "word_fcc_projection",
+    "word_inbox_projection",
 ]

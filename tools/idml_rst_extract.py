@@ -26,6 +26,7 @@ from pathlib import Path
 
 try:
     from tools.component_specs.adapters import idml_notice_payload_from_legacy
+    from tools.component_specs.inbox_adapters import idml_inbox_payload_from_legacy
     from tools.idml.data_components import is_data_plumbing, parse_data_component
     from tools.idml.extract_contract import Block, EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS
     from tools.idml.latex_conditionals import active_lines
@@ -37,6 +38,7 @@ try:
     )
 except ModuleNotFoundError:  # direct tools/export_idml.py execution
     from component_specs.adapters import idml_notice_payload_from_legacy  # type: ignore
+    from component_specs.inbox_adapters import idml_inbox_payload_from_legacy  # type: ignore
     from idml.data_components import is_data_plumbing, parse_data_component  # type: ignore
     from idml.extract_contract import Block, EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS  # type: ignore
     from idml.latex_conditionals import active_lines  # type: ignore
@@ -294,11 +296,9 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
                 {"kind": "langtag", "lang": args[0], "texts": [args[1]]},
                 ensure_ascii=False)))
         elif kind == "inbox" and len(args) == 6:
-            result.blocks.append(("component", _json.dumps(
-                {"kind": "inbox",
-                 "items": [{"img": i, "label": l}
-                           for i, l in zip(args[0::2], args[1::2])]},
-                ensure_ascii=False)))
+            result.blocks.append(("component", _json.dumps(idml_inbox_payload_from_legacy(
+                {"kind": "inbox", "items": [{"img": args[i], "label": args[i + 1]} for i in range(0, 6, 2)]},
+                source_ref="rst:raw-latex:HBInBoxThree", language="und"), ensure_ascii=False)))
         elif kind == "h1x" and args:
             result.blocks.append(("h1", args[0]))
         elif kind == "h2" and args:
