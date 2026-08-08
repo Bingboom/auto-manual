@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 
+from tools.component_specs.fcc_adapters import idml_fcc_payload_from_legacy
+
 FCC_RIGHT_COLUMN_MARKERS = (
     "if this equipment does cause",
     "si cet équipement trouble",
@@ -55,14 +57,23 @@ def split_fcc_prose(parts: list[str]) -> tuple[str, str]:
     return "\n".join(left).strip(), "\n".join(right).strip()
 
 
-def fcc_spec_from_blocks(blocks: list[tuple[str, str]]) -> dict:
+def fcc_spec_from_blocks(
+    blocks: list[tuple[str, str]],
+    *,
+    source_ref: str = "idml:fcc-fallback",
+    language: str = "und",
+) -> dict:
     spec = component_spec(blocks, "fcc")
-    if spec is not None:
-        return spec
-    prose = [
-        text.strip()
-        for kind, text in blocks
-        if kind in {"body", "list"} and text.strip()
-    ]
-    left, right = split_fcc_prose(prose)
-    return {"kind": "fcc", "texts": [left, right]}
+    if spec is None:
+        prose = [
+            text.strip()
+            for kind, text in blocks
+            if kind in {"body", "list"} and text.strip()
+        ]
+        left, right = split_fcc_prose(prose)
+        spec = {"kind": "fcc", "texts": [left, right]}
+    return idml_fcc_payload_from_legacy(
+        spec,
+        source_ref=source_ref,
+        language=language,
+    )

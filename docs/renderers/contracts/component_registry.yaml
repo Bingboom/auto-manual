@@ -42,3 +42,31 @@ components:
       latex: {capability: rendered, key: hb_latex_spec_table}
       idml: {capability: rendered, key: idml_spec_table}
       word: {capability: rendered, key: word_spec_table}
+
+  HB-SPECIAL-FCC:
+    style_id: HB-SPECIAL-FCC
+    source_kinds: [fcc]
+    variants: [two-column]
+    slots:
+      accessibility_label:
+        required: true
+        content_kinds: [inline_text]
+      opening_copy:
+        required: true
+        content_kinds: [line_items]
+      body_blocks:
+        required: true
+        content_kinds: [ordered_blocks]
+      column_break:
+        required: true
+        content_kinds: [block_index]
+    asset_roles:
+      compliance_mark:
+        required: true
+        locale_policies: [shared]
+    token_roles: [component.special.fcc]
+    adapters:
+      web: {capability: rendered, key: hb_fcc}
+      latex: {capability: rendered, key: hb_latex_fcc}
+      idml: {capability: rendered, key: idml_fcc}
+      word: {capability: rendered, key: word_fcc}

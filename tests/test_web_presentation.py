@@ -675,6 +675,11 @@ class WebPresentationTests(unittest.TestCase):
                     2,
                     len(right.find_all("p", recursive=False)) if right else 0,
                 )
+                left = composition.select_one(".hb-fcc-column-left") if composition else None
+                self.assertEqual(
+                    1,
+                    len(left.find_all("p", recursive=False)) if left else 0,
+                )
                 heading = composition.find_previous("h1") if composition else None
                 self.assertEqual("FCC", heading.get_text(" ", strip=True) if heading else "")
                 self.assertIs(composition.previous_sibling, heading)

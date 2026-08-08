@@ -29,6 +29,7 @@ from tools.word_bundle_html_render import (
     _render_page_break_html,
     render_safety_word_html,
     render_spec_word_html,
+    transform_word_fcc_html,
 )
 from tools.word_bundle_html_rewrite import (
     _extract_spec_word_data,
@@ -38,6 +39,7 @@ from tools.web_presentation import (
     DOCUMENT_PRESENTATION_PROFILE,
     WEB_PRESENTATION_PROFILE,
     is_web_entry_page,
+    load_web_manual_contract,
     normalize_presentation_profile,
     should_include_web_page,
     transform_web_fragment,
@@ -301,6 +303,12 @@ def _convert_rst_fragment_to_html(
             composite_manifest=composite_manifest,
             model=model,
             region=region,
+        )
+    else:
+        rewritten_fragment = transform_word_fcc_html(
+            rewritten_fragment,
+            source_path=source_path,
+            config=load_web_manual_contract()["fcc"],
         )
     return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 

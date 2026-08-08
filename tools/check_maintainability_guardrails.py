@@ -62,7 +62,14 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # reference component helper, and stylesheet assembler independently pinned.
     "tools/web_presentation.py": 2134,
     "tools/web_reference_components.py": 161,
-    "tools/web_stylesheets.py": 35,
+    # PR 6 adds one ordered FCC stylesheet module; tuple formatting adds five
+    # lines while the assembler remains intentionally logic-free.
+    "tools/web_stylesheets.py": 40,
+    "tools/web_fcc_component.py": 150,
+    "tools/component_specs/fcc.py": 280,
+    "tools/component_specs/fcc_adapters.py": 150,
+    "tools/component_specs/fcc_html.py": 220,
+    "tools/word_bundle_html_render.py": 330,
     # Registered 2026-08-03 at 469 lines with 31 lines of growth headroom.
     "tools/sync_web_composites.py": 500,
     # Registered 2026-08-03 at 434 lines with 31 lines of growth headroom.
@@ -79,6 +86,7 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/delivery_outbox.py": 560,
     "docs/renderers/contracts/web_manual.css": 1905,
     "docs/renderers/contracts/web_app_components.css": 128,
+    "docs/renderers/contracts/web_fcc_components.css": 120,
     # Registered 2026-08-03 at 128 lines with 32 lines of growth headroom.
     "docs/renderers/contracts/web_symbols_fcc_components.css": 160,
     # IDML surface — pinned EXACTLY at current size (no headroom) during the

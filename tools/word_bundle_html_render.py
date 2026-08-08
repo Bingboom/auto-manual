@@ -3,9 +3,17 @@
 
 from __future__ import annotations
 
+import fnmatch
 import html
 from html.parser import HTMLParser
+from pathlib import Path
+from typing import Any, Mapping
 
+from bs4 import BeautifulSoup, NavigableString, Tag
+
+from tools.component_specs.fcc import COMPONENT_ID
+from tools.component_specs.fcc_adapters import word_fcc_projection
+from tools.component_specs.fcc_html import parse_fcc_html
 from tools.component_specs.spec_table import (
     spec_table_component_spec,
     word_spec_table_projection,
@@ -190,3 +198,117 @@ def render_spec_word_html(data: dict[str, object]) -> str:
 
     parts.append("</section>")
     return "".join(parts)
+
+
+def _append_word_fcc_paragraph_content(
+    soup: BeautifulSoup,
+    paragraph: Tag,
+    block: Mapping[str, Any],
+    *,
+    continuation: bool,
+) -> None:
+    if continuation:
+        paragraph.append(NavigableString(" "))
+    label_text = str(block.get("label") or "").strip()
+    if label_text:
+        label = soup.new_tag("strong")
+        label.string = label_text
+        paragraph.append(label)
+    body = str(block.get("text") or "").strip()
+    if body:
+        paragraph.append(NavigableString(f" {body}" if label_text else body))
+
+
+def _append_word_fcc_blocks(
+    soup: BeautifulSoup,
+    parent: Tag,
+    blocks: list[Mapping[str, Any]],
+) -> None:
+    paragraph: Tag | None = None
+    for block in blocks:
+        if block["kind"] != "list":
+            if paragraph is None:
+                paragraph = soup.new_tag("p")
+                parent.append(paragraph)
+            _append_word_fcc_paragraph_content(
+                soup,
+                paragraph,
+                block,
+                continuation=bool(paragraph.contents),
+            )
+            continue
+
+        paragraph = None
+        list_node = soup.new_tag("ul")
+        for text in block["items"]:
+            item = soup.new_tag("li")
+            item.string = str(text)
+            list_node.append(item)
+        parent.append(list_node)
+
+
+def transform_word_fcc_html(
+    html_fragment: str,
+    *,
+    source_path: Path,
+    config: Mapping[str, Any],
+) -> str:
+    patterns = [str(pattern).lower() for pattern in config["source_patterns"]]
+    if not any(fnmatch.fnmatch(source_path.stem.lower(), pattern) for pattern in patterns):
+        return html_fragment
+    soup = BeautifulSoup(html_fragment, "html.parser")
+    source = parse_fcc_html(
+        soup,
+        source_path=source_path,
+        config=config,
+        error_type=RuntimeError,
+    )
+    projection = word_fcc_projection(source.spec)
+    table = soup.new_tag(
+        "table",
+        attrs={
+            "class": ["manual-table", projection["table_class"]],
+            "aria-label": projection["accessibility_label"],
+            "data-component-id": COMPONENT_ID,
+            "style": "width:100%;border-collapse:separate;background:#f2f2f2;",
+        },
+    )
+    body = soup.new_tag("tbody")
+    row = soup.new_tag("tr")
+    left = soup.new_tag(
+        "td",
+        attrs={
+            "class": projection["left_class"],
+            "style": "width:50%;padding:10px;vertical-align:top;background:#f2f2f2;",
+        },
+    )
+    right = soup.new_tag(
+        "td",
+        attrs={
+            "class": projection["right_class"],
+            "style": "width:50%;padding:10px;vertical-align:top;background:#f2f2f2;",
+        },
+    )
+    mark = soup.new_tag(
+        "img",
+        attrs={
+            "src": str(config["mark_path"]),
+            "alt": projection["accessibility_label"],
+            "style": "width:88px;height:auto;float:left;margin:0 10px 6px 0;",
+        },
+    )
+    left.append(mark)
+    for line in projection["opening_copy"]:
+        paragraph = soup.new_tag("p")
+        paragraph.string = str(line)
+        left.append(paragraph)
+    _append_word_fcc_blocks(soup, left, projection["left_blocks"])
+    _append_word_fcc_blocks(soup, right, projection["right_blocks"])
+    row.append(left)
+    row.append(right)
+    body.append(row)
+    table.append(body)
+    for node in source.consumed_nodes:
+        node.decompose()
+    source.heading.insert_after(table)
+    return str(soup)

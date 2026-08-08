@@ -28,6 +28,7 @@ from tools.web_composite_presentation import (
     WebCompositeContext,
     supports_figure_contract,
 )
+from tools.web_fcc_component import transform_fcc
 from tools.web_reference_components import (
     append_reference_captions,
     prepare_reference_caption_data,
@@ -1219,138 +1220,6 @@ def _transform_in_the_box(soup: BeautifulSoup, *, source_path: Path) -> None:
     tip_table.decompose()
 
 
-def _fcc_right_column_marker(spec: dict[str, Any], source_path: Path) -> str | None:
-    for override in spec["right_column_markers"]:
-        if _matches_source(
-            source_path,
-            [str(pattern) for pattern in override["source_patterns"]],
-        ):
-            return str(override["marker"])
-    return None
-
-
-def _fcc_copy_before_bullets(
-    heading: Tag,
-    *,
-    source_path: Path,
-) -> tuple[Tag, list[Tag], Tag]:
-    opening = _next_tag_sibling(heading)
-    if not isinstance(opening, Tag) or "line-block" not in opening.get("class", []):
-        raise WebPresentationError(f"{source_path}: FCC page is missing its opening line block")
-
-    copy_blocks: list[Tag] = []
-    sibling = _next_tag_sibling(opening)
-    while isinstance(sibling, Tag) and sibling.name != "ul":
-        if sibling.name not in {"p", "div"}:
-            raise WebPresentationError(
-                f"{source_path}: FCC pre-list copy must remain paragraph-based"
-            )
-        copy_blocks.append(sibling)
-        sibling = _next_tag_sibling(sibling)
-    if not copy_blocks or not isinstance(sibling, Tag) or sibling.name != "ul":
-        raise WebPresentationError(f"{source_path}: FCC page is missing its body or measure list")
-    return opening, copy_blocks, sibling
-
-
-def _fcc_normalized_copy(blocks: list[Tag]) -> str:
-    copy = " ".join(block.get_text(" ", strip=True) for block in blocks)
-    # A legacy French RST page contains two literal line-block markers inside a
-    # paragraph. They are source punctuation artifacts, not FCC copy.
-    return re.sub(r"\s*\|\s*", " ", copy).strip()
-
-
-def _append_fcc_copy(soup: BeautifulSoup, parent: Tag, text: str) -> None:
-    paragraph = soup.new_tag("p")
-    label_match = re.match(r"^([^:]{2,20}\s*:)(.*)$", text, flags=re.DOTALL)
-    if label_match:
-        label = soup.new_tag("strong")
-        label.string = label_match.group(1).strip()
-        paragraph.append(label)
-        remainder = label_match.group(2).strip()
-        if remainder:
-            paragraph.append(NavigableString(f" {remainder}"))
-    else:
-        paragraph.string = text
-    parent.append(paragraph)
-
-
-def _transform_fcc(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    contract: dict[str, Any],
-) -> None:
-    spec = contract["fcc"]
-    heading = soup.find("h1")
-    if not isinstance(heading, Tag) or heading.get_text(" ", strip=True).casefold() != "fcc":
-        raise WebPresentationError(f"{source_path}: FCC page is missing its H1")
-
-    opening, copy_blocks, bullets = _fcc_copy_before_bullets(
-        heading,
-        source_path=source_path,
-    )
-
-    marker = _fcc_right_column_marker(spec, source_path)
-    body_text = _fcc_normalized_copy(copy_blocks)
-    marker_index = body_text.find(marker) if marker else -1
-    if marker_index <= 0:
-        raise WebPresentationError(
-            f"{source_path}: FCC body is missing its governed right-column marker"
-        )
-    left_body_text = body_text[:marker_index].strip()
-    right_body_text = body_text[marker_index:].strip()
-
-    trailing: list[Tag] = []
-    sibling = _next_tag_sibling(bullets)
-    while isinstance(sibling, Tag):
-        if sibling.name != "p":
-            raise WebPresentationError(
-                f"{source_path}: FCC trailing content must remain paragraph-based"
-            )
-        trailing.append(sibling)
-        sibling = _next_tag_sibling(sibling)
-    if not trailing:
-        raise WebPresentationError(f"{source_path}: FCC page is missing modification copy")
-
-    composition = soup.new_tag(
-        "figure",
-        attrs={
-            "class": "hb-fcc-composition",
-            "aria-label": heading.get_text(" ", strip=True),
-        },
-    )
-    grid = soup.new_tag("div", attrs={"class": "hb-fcc-grid"})
-    left = soup.new_tag("div", attrs={"class": ["hb-fcc-column", "hb-fcc-column-left"]})
-    right = soup.new_tag("div", attrs={"class": ["hb-fcc-column", "hb-fcc-column-right"]})
-    opening_row = soup.new_tag("div", attrs={"class": "hb-fcc-opening"})
-    logo = soup.new_tag(
-        "img",
-        attrs={
-            "class": "hb-fcc-mark",
-            "src": str(spec["mark_path"]),
-            "alt": "FCC",
-            "loading": "lazy",
-        },
-    )
-    opening_copy = soup.new_tag("div", attrs={"class": "hb-fcc-opening-copy"})
-    opening_copy.append(opening.extract())
-    opening_row.append(logo)
-    opening_row.append(opening_copy)
-    left.append(opening_row)
-    _append_fcc_copy(soup, left, left_body_text)
-    _append_fcc_copy(soup, right, right_body_text)
-    right.append(bullets.extract())
-    _append_fcc_copy(soup, right, _fcc_normalized_copy(trailing))
-    for paragraph in trailing:
-        paragraph.decompose()
-    for block in copy_blocks:
-        block.decompose()
-    grid.append(left)
-    grid.append(right)
-    composition.append(grid)
-    heading.insert_after(composition)
-
-
 def _transform_lcd_icon_table(
     soup: BeautifulSoup,
     *,
@@ -2048,7 +1917,12 @@ def transform_web_fragment(
             composites=composites,
         )
     if is_fcc:
-        _transform_fcc(soup, source_path=source_path, contract=data)
+        transform_fcc(
+            soup,
+            source_path=source_path,
+            config=fcc,
+            error_type=WebPresentationError,
+        )
     if is_lcd_icon_table:
         _transform_lcd_icon_table(soup, source_path=source_path)
     if is_meaning_symbols:

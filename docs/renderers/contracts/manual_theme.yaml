@@ -19,6 +19,13 @@ component_roles:
       - type.table.label
       - type.table.value
       - width.component-band
+  component.special.fcc:
+    component_ids: [HB-SPECIAL-FCC]
+    theme_roles:
+      - surface.fcc
+      - radius.fcc
+      - type.fcc.body
+      - width.component-band
 
 roles:
   surface.brand:
@@ -39,6 +46,12 @@ roles:
       latex: {kind: color, name: HBSharedTableLeftBg}
       idml: {kind: paragraph-style, name: HB Spec Label}
       word: {kind: html-class, name: manual-spec-label}
+  surface.fcc:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-surface}
+      latex: {kind: color, name: BgK05}
+      idml: {kind: color, name: Color/HB Bg K05}
+      word: {kind: html-class, name: hb-fcc-word-table}
   border.strong:
     bindings:
       web: {kind: css-custom-property, name: --hb-brand-dark}
@@ -51,6 +64,12 @@ roles:
       latex: {kind: layout-token, name: comp_table_outer_arc}
       idml: {kind: object-style, name: HB Rounded Table Outer}
       word: {kind: property-adapter, name: _set_spec_table_layout}
+  radius.fcc:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-fcc-radius}
+      latex: {kind: layout-token, name: comp_fcc_arc}
+      idml: {kind: layout-token, name: comp_fcc_arc}
+      word: {kind: property-adapter, name: transform_word_fcc_html}
   type.table.label:
     bindings:
       web: {kind: css-custom-property, name: --hb-font-family}
@@ -63,6 +82,12 @@ roles:
       latex: {kind: macro, name: HBTypeSpecValue}
       idml: {kind: paragraph-style, name: HB Spec Value}
       word: {kind: html-class, name: manual-spec-value}
+  type.fcc.body:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-font-family}
+      latex: {kind: macro, name: HBTypeFccText}
+      idml: {kind: paragraph-style, name: HB FCC Text}
+      word: {kind: html-class, name: hb-fcc-word-table}
   width.component-band:
     bindings:
       web: {kind: css-custom-property, name: --hb-component-band-max}

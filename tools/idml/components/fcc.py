@@ -1,6 +1,8 @@
 """FCC two-panel component (componentization P2)."""
 from __future__ import annotations
 
+from tools.component_specs.fcc_adapters import idml_fcc_payload_from_legacy
+
 from ..line_metrics import estimated_line_count
 from ..primitives import cell, component_table, image_cell_content, psr, wrap_table_paragraph
 from .base import RenderContext, figure_paragraph
@@ -10,6 +12,11 @@ def render_fcc(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
                span_columns: bool = True,
                measure_w: float | None = None) -> tuple[str, float]:
     body_w = measure_w or ctx.text_measure
+    spec = idml_fcc_payload_from_legacy(
+        spec,
+        source_ref=f"idml:flow:{tid}",
+        language=ctx.language or "und",
+    )
     # Pad to two panels: `\HBFccBlock{}{}` (or args reduced to empty by _detex)
     # used to arrive as texts=[] and crash on texts[0] — an extractor kind must
     # never be able to abort the whole export.

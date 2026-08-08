@@ -254,7 +254,11 @@ def _fcc_objects(
     panel_h: float = 138.0,
     lang: str = "en",
 ) -> tuple[list[str], list[str]]:
-    spec = fcc_spec_from_blocks(fcc_blocks)
+    spec = fcc_spec_from_blocks(
+        fcc_blocks,
+        source_ref=f"idml:fixed-page:{sid}",
+        language=lang,
+    )
     texts = ((spec.get("texts") or []) + ["", ""])[:2]
     # The cropped PDF carries out-of-page legacy text in its content stream.
     # InDesign clips it visually but re-exposes that hidden text on PDF export.

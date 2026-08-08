@@ -245,7 +245,7 @@ IDML notice payload 通过 `metadata.legacy_payload` 原样往返，避免纯迁
 
 | 语义 | 语义 ID | 源写法 | Web | PDF | IDML | Word | 状态 |
 |---|---|---|---|---|---|---|---|
-| FCC 面板 | `HB-SPECIAL-FCC` | 流水线 | `.hb-fcc-composition` | `HBFccBlock` @ `components_special_pages` | `HB Rounded Panel` + `无表头表格` | 经 HTML 转换 | partial |
+| FCC 面板 | `HB-SPECIAL-FCC` | 流水线 | `.hb-fcc-composition` | `HBFccBlock` @ `components_special_pages` | `HB Rounded Panel` + `无表头表格` | `.hb-fcc-word-table` 双栏活文本 | **aligned** |
 | 开箱清单卡 | `HB-SPECIAL-INBOX` | 流水线 | `.hb-inbox-composition` | `HBInBoxThree` | `Item List Text` + `HB Inbox Card` + `无表头表格` | 经 HTML 转换 | partial |
 | 产品概览 | `HB-SPECIAL-OVERVIEW` | 流水线 | `.hb-annotated-figure` | `HBOverviewPanel` | `HB Body`（可移动文本框） | 经 HTML 转换 | partial |
 | App 设置 | `HB-SPECIAL-APP` | 流水线 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | `HBAppStep`、`HBAppAsset`、`HBAppNotice` | `HB Body` / `HB Callout Label` / `HB Callout Body` + `HB Rounded Panel` | 经 HTML 转换 | **aligned** |
@@ -498,6 +498,8 @@ IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对
 | 开箱清单 | `.hb-inbox-composition` > `.hb-inbox-grid` | 三张等宽圆角卡 + 1/2/3 角标 + 通栏 TIP 条 |
 | 产品概览 | `.hb-annotated-figure` > `.hb-annotated-stage` + `.hb-leader-layer` | 带引线标注：标注位置靠逐图百分比坐标，是流水线独有的能力 |
 | App 设置 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | 商店徽章 / QR / 双机图，标签是活文本不是烧进图片 |
+
+FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。旧 `kind=fcc` 双文本 payload 在 PR 9 前由兼容 facade 送入同一规范。
 
 `web_manual.json` 里登记的目标（当前 `JE-1000F / US`）会把其中部分图替换为审批过的 PDF 派生图，标题与说明仍保持可搜索的活 HTML。
 
