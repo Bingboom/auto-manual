@@ -1,5 +1,6 @@
-schema_version: 1
+schema_version: 2
 contract_id: hb-manual-style
+theme_id: hb-manual-default
 latex_registry: ../latex/STYLE_REGISTRY.md
 token_source: ../../../data/layout_params.csv
 
@@ -19,7 +20,12 @@ styles:
     token_refs: [type_body_font_size, type_body_font_leading, page_parskip, type_body_color, idml_body_font_style]
     latex: {owner: type_system.tex, entrypoints: [HBTypeBaseStart, HBTypeBody]}
     indesign: {renderer: paragraph, paragraph_style: 段落样式}
-    status: aligned
+    theme_token_roles: [type.body]
+    web: {capability: rendered, selectors: [p], component_adapter: sphinx_html}
+    word: {capability: rendered, paragraph_styles: [BodyText, FirstParagraph, Compact], table_styles: [], component_adapter: word_bundle_docx_styles}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TYPE-LIST:
     role: Bulleted and numbered copy
@@ -27,8 +33,12 @@ styles:
     token_refs: [type_list_font_size, type_list_font_leading, lang_fr_type_list_font_leading, lang_es_type_list_font_leading, comp_list_leftmargin, comp_list_labelsep, comp_list_itemsep, comp_list_topsep, comp_sublist_leftmargin, comp_sublist_labelsep, comp_sublist_itemsep, comp_sublist_topsep]
     latex: {owner: components_base.tex, entrypoints: [HBTypeListStart]}
     indesign: {renderer: list, paragraph_style: Item List}
-    status: aligned
-    debt: []
+    theme_token_roles: [type.list]
+    web: {capability: rendered, selectors: [ul, ol], component_adapter: sphinx_html}
+    word: {capability: projection-only, paragraph_styles: [Compact], table_styles: [], component_adapter: word_bundle_docx_styles}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TITLE-L1:
     role: Level-one section band
@@ -36,8 +46,12 @@ styles:
     token_refs: [type_h1_font_size, type_h1_font_leading, type_h1_force_upper, comp_h1_pill_arc, comp_h1_pill_height, comp_h1_pill_pad_lr, comp_h1_pill_pad_tb, comp_h1_pill_after, idml_warranty_h1_width_adjust, idml_warranty_h1_left_indent]
     latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelOne]}
     indesign: {renderer: heading_band, paragraph_style: Heading1, object_style: HB Capsule Heading}
-    status: aligned
-    debt: []
+    theme_token_roles: [title.level-1]
+    web: {capability: rendered, selectors: [.hb-h1-pill], component_adapter: web_presentation}
+    word: {capability: rendered, paragraph_styles: [dingding-heading1], table_styles: [], component_adapter: word_bundle_docx_styles}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TITLE-L2:
     role: Dot-led level-two heading
@@ -45,8 +59,12 @@ styles:
     token_refs: [type_title_l2_font_size, type_title_l2_font_leading, comp_title_l2_before, comp_title_l2_after, comp_title_l2_bullet_radius, comp_title_l2_gap, comp_title_l2_needspace, idml_title_l2_font_size, idml_title_l2_font_style, idml_operation_row_label_font_size, idml_operation_row_label_font_leading, lang_en_idml_operation_row_label_font_size, lang_en_idml_operation_row_label_font_leading, lang_fr_idml_operation_row_label_font_size, lang_fr_idml_operation_row_label_font_leading, lang_es_idml_operation_row_label_font_size, lang_es_idml_operation_row_label_font_leading, idml_operation_first_h2_space_before, lang_en_idml_operation_first_h2_space_before, lang_fr_idml_operation_first_h2_space_before, lang_es_idml_operation_first_h2_space_before, idml_operation_inter_section_space_after, lang_en_idml_operation_inter_section_space_after, lang_fr_idml_operation_inter_section_space_after, lang_es_idml_operation_inter_section_space_after]
     latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelTwo]}
     indesign: {renderer: heading, paragraph_styles: [Heading2, HB Operation Row Label]}
-    status: aligned
-    debt: []
+    theme_token_roles: [title.level-2]
+    web: {capability: rendered, selectors: [.hb-subbar], component_adapter: web_presentation}
+    word: {capability: rendered, paragraph_styles: [dingding-heading2], table_styles: [], component_adapter: word_bundle_docx_styles}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TITLE-L3:
     role: Compact level-three heading
@@ -54,8 +72,12 @@ styles:
     token_refs: [type_title_l3_font_size, type_title_l3_font_leading, comp_title_l3_before, comp_title_l3_after, comp_title_l3_bullet_radius, comp_title_l3_gap, comp_title_l3_needspace]
     latex: {owner: components_headings.tex, entrypoints: [HBTitleLevelThree]}
     indesign: {renderer: heading, paragraph_style: Heading3}
-    status: aligned
-    debt: []
+    theme_token_roles: [title.level-3]
+    web: {capability: rendered, selectors: [h3], component_adapter: sphinx_html}
+    word: {capability: rendered, paragraph_styles: [dingding-heading3], table_styles: [], component_adapter: word_bundle_docx_styles}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TYPE-LEAD:
     role: Lead and rubric copy
@@ -63,8 +85,18 @@ styles:
     token_refs: [type_rubric_font_size, type_rubric_font_leading, type_warning_text_font_size, type_warning_text_font_leading, type_warning_text_align]
     latex: {owner: type_system.tex, entrypoints: [HBTypeWarningTextStart, HBTypeRubricStart]}
     indesign: {renderer: paragraph, paragraph_style: HB Lead}
-    status: partial
-    debt: [IDML currently borrows body or heading styles instead of an explicit lead style.]
+    theme_token_roles: [type.lead]
+    web: {capability: rendered, selectors: [.hb-lead], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [], component_adapter: word_bundle_html}
+    conformance:
+      state: partial
+      debt:
+        - reason: IDML currently borrows body or heading styles instead of a fully shared lead projection.
+          owner: renderer-contract-maintainers
+          scope: [idml]
+          evidence: [tests.test_render_contract.RenderContractTests.test_strict_mode_reports_only_actionable_debt]
+    constraints: []
+    approved_variants: []
 
   HB-TYPE-FOOTER:
     role: Footer text
@@ -72,8 +104,22 @@ styles:
     token_refs: [page_footer_font_size, page_footer_font_leading, page_footer_color, page_footer_raise, page_footskip]
     latex: {owner: type_system.tex, entrypoints: [HBTypeFooter]}
     indesign: {renderer: folio, paragraph_style: HB Footer}
-    status: partial
-    debt: [IDML folios currently borrow a specification note style.]
+    theme_token_roles: [type.footer]
+    web: {capability: not-applicable, selectors: [], component_adapter: not_applicable}
+    word: {capability: rendered, paragraph_styles: [], table_styles: [], component_adapter: section_properties}
+    conformance:
+      state: partial
+      debt:
+        - reason: IDML folios currently borrow a specification note style.
+          owner: renderer-contract-maintainers
+          scope: [idml]
+          evidence: [tests.test_render_contract.RenderContractTests.test_strict_mode_reports_only_actionable_debt]
+    constraints:
+      - reason: Responsive Web has no physical footer domain.
+        owner: renderer-contract-maintainers
+        scope: [web]
+        evidence: [tests.test_render_contract.RenderContractTests.test_not_applicable_web_binding_cannot_expose_selectors]
+    approved_variants: []
 
   HB-TYPE-PAGE-NUMBER:
     role: Page number
@@ -81,8 +127,22 @@ styles:
     token_refs: [page_footer_font_size, page_footer_font_leading, page_footer_color, page_footskip]
     latex: {owner: type_system.tex, entrypoints: [HBTypePageNumber]}
     indesign: {renderer: folio, paragraph_style: HB Page Number}
-    status: partial
-    debt: [Dedicated page-number tokens and IDML style are not yet shared.]
+    theme_token_roles: [type.page-number]
+    web: {capability: not-applicable, selectors: [], component_adapter: not_applicable}
+    word: {capability: rendered, paragraph_styles: [], table_styles: [], component_adapter: section_properties}
+    conformance:
+      state: partial
+      debt:
+        - reason: Dedicated page-number tokens and IDML style are not yet shared.
+          owner: renderer-contract-maintainers
+          scope: [idml]
+          evidence: [tests.test_render_contract.RenderContractTests.test_strict_mode_reports_only_actionable_debt]
+    constraints:
+      - reason: Responsive Web has no physical page-number domain.
+        owner: renderer-contract-maintainers
+        scope: [web]
+        evidence: [tests.test_render_contract.RenderContractTests.test_not_applicable_web_binding_cannot_expose_selectors]
+    approved_variants: []
 
   HB-CALLOUT-STRIP:
     role: Warning caution note and tip strips
@@ -91,8 +151,12 @@ styles:
     token_refs: [comp_callout_rule, comp_callout_label_inset, comp_callout_body_inset, comp_callout_bullet_indent, comp_callout_bullet_width, type_callout_bullet_font_size, idml_ups_caution_body_font_size, idml_ups_caution_body_font_leading, lang_es_idml_ups_caution_body_font_leading, idml_ups_caution_body_font_style, idml_ups_caution_pad_tb, idml_ups_caution_paragraph_after, idml_ups_caution_space_before, lang_en_idml_ups_caution_space_before, lang_fr_idml_ups_caution_space_before, lang_es_idml_ups_caution_space_before, idml_ups_caution_space_after, lang_fr_idml_ups_caution_space_after, lang_es_idml_ups_caution_space_after, idml_charging_note_body_font_size, idml_charging_note_body_font_leading, idml_charging_note_body_font_style, idml_charging_note_pad_tb, idml_charging_note_paragraph_after, idml_charging_note_space_before, idml_charging_note_space_after]
     latex: {owner: components_base.tex, entrypoints: [HBWarningBlock, HBCautionBlock, HBNoteBlock, HBTipBlock]}
     indesign: {renderer: callout_strip, paragraph_style: Caution, object_style: HB Rounded Panel, table_style: Notice表格}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.callout]
+    web: {capability: rendered, selectors: [.manual-callout-table], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_docx_styles}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-SAFETY-INSTRUCTION:
     role: Safety instruction lockup
@@ -100,7 +164,12 @@ styles:
     token_refs: [comp_warning_box_arc, comp_warning_box_rule, idml_safety_instruction_font_size, idml_safety_instruction_font_leading, idml_safety_instruction_font_style, idml_safety_instruction_icon_width, idml_safety_instruction_icon_height, idml_safety_instruction_icon_left_inset, idml_safety_instruction_lockup_width, idml_safety_instruction_text_inset, idml_safety_warning_top, idml_safety_warning_height, idml_safety_first_section_bottom, idml_safety_second_section_top, idml_safety_second_section_height, idml_safety_first_section_left_list_items, idml_safety_first_section_column_gap, idml_safety_first_section_left_top, idml_safety_first_section_right_top, idml_safety_list_horizontal_scale, idml_safety_list_horizontal_scale_dense, lang_fr_idml_safety_list_horizontal_scale_dense, lang_es_idml_safety_list_horizontal_scale_dense, lang_en_idml_safety_list_left_indent, lang_en_idml_safety_list_first_line_indent, lang_en_idml_safety_list_leading, lang_en_idml_safety_list_space_after, lang_fr_idml_safety_list_left_indent, lang_fr_idml_safety_list_first_line_indent, lang_fr_idml_safety_right_list_left_indent, lang_fr_idml_safety_right_list_first_line_indent, lang_fr_idml_safety_list_leading, lang_fr_idml_safety_list_space_after, lang_es_idml_safety_list_left_indent, lang_es_idml_safety_list_first_line_indent, lang_es_idml_safety_right_list_left_indent, lang_es_idml_safety_right_list_first_line_indent, lang_es_idml_safety_list_leading, lang_es_idml_safety_list_space_after, lang_fr_idml_safety_warning_top, lang_fr_idml_safety_warning_height, lang_fr_idml_safety_first_section_left_list_items, lang_fr_idml_safety_first_section_column_gap, lang_fr_idml_safety_first_section_left_top, lang_fr_idml_safety_first_section_right_top, lang_fr_idml_safety_first_section_bottom, lang_fr_idml_safety_second_section_height, lang_es_idml_safety_warning_top, lang_es_idml_safety_warning_height, lang_es_idml_safety_first_section_left_list_items, lang_es_idml_safety_first_section_column_gap, lang_es_idml_safety_first_section_left_top, lang_es_idml_safety_first_section_right_top, lang_es_idml_safety_first_section_bottom, lang_es_idml_safety_second_section_height]
     latex: {owner: components_safety.tex, entrypoints: [HBSafetyInstruction]}
     indesign: {renderer: safetyinstruction, paragraph_style: HB Safety Instruction, object_style: HB Rounded Panel}
-    status: aligned
+    theme_token_roles: [component.safety.instruction]
+    web: {capability: rendered, selectors: [.hb-safety], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, Compact], table_styles: [], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-SAFETY-WARNING:
     role: Standard safety warning panel
@@ -108,8 +177,12 @@ styles:
     token_refs: [comp_warning_box_arc, comp_warning_box_rule, comp_warning_box_pad_lr, comp_warning_box_pad_tb, comp_warning_box_before, comp_warning_box_after, idml_safety_warning_icon_column_width, idml_safety_warning_icon_max_width, idml_safety_warning_panel_min_height, idml_safety_tail_body_font_style]
     latex: {owner: components_safety.tex, entrypoints: [safetywarningbox, safetywarning]}
     indesign: {renderer: safetywarning, object_style: HB Rounded Panel, table_style: Warning表格}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.safety.warning]
+    web: {capability: rendered, selectors: [.hb-warning-box], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-SAFETY-LEAD:
     role: Large warning lead panel
@@ -117,8 +190,12 @@ styles:
     token_refs: [comp_warning_lead_height, comp_warning_lead_dark_width, comp_warning_lead_width_trim, comp_warning_lead_text_left_pad, comp_warning_lead_right_pad, comp_warning_lead_icon_width, comp_warning_lead_icon_height, type_warning_lead_label_font_size, type_warning_lead_label_font_leading, type_warning_lead_body_font_size, type_warning_lead_body_font_leading, comp_twocol_before]
     latex: {owner: components_safety.tex, entrypoints: [HBWarningLeadBlock]}
     indesign: {renderer: warninglead, object_style: HB Rounded Panel}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.safety.lead]
+    web: {capability: projection-only, selectors: [.hb-lead], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-SAFETY-DANGER:
     role: Danger lockup
@@ -126,8 +203,12 @@ styles:
     token_refs: [comp_warning_box_arc, comp_warning_box_rule, comp_lockup_height, type_warning_text_font_size, type_warning_text_font_leading]
     latex: {owner: components_safety.tex, entrypoints: [HBDangerBlock]}
     indesign: {renderer: danger, object_style: HB Rounded Panel}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.safety.danger]
+    web: {capability: projection-only, selectors: [.hb-lead], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TABLE-SPEC:
     role: Specification section tables
@@ -135,8 +216,12 @@ styles:
     token_refs: [comp_table_outer_arc, comp_table_outer_rule, comp_spec_table_left_ratio, idml_spec_table_left_ratio, lang_es_idml_spec_table_left_ratio, comp_spec_table_tabcolsep, comp_spec_table_row_stretch, comp_spec_table_multiline_min_height, idml_spec_table_row_height, type_spec_label_font_size, type_spec_value_font_size, idml_spec_section_1_space_before, idml_spec_section_2_space_before, idml_spec_section_3_space_before, idml_spec_section_4_space_before, idml_spec_table_1_space_before, idml_spec_table_2_space_before, idml_spec_table_3_space_before, idml_spec_table_4_space_before, lang_fr_idml_spec_section_1_space_before, lang_fr_idml_spec_section_2_space_before, lang_fr_idml_spec_section_3_space_before, lang_fr_idml_spec_section_4_space_before, lang_es_idml_spec_section_1_space_before, lang_es_idml_spec_section_2_space_before, lang_es_idml_spec_section_3_space_before, lang_es_idml_spec_section_4_space_before, lang_fr_idml_spec_table_1_space_before, lang_fr_idml_spec_table_2_space_before, lang_fr_idml_spec_table_3_space_before, lang_fr_idml_spec_table_4_space_before, lang_es_idml_spec_table_1_space_before, lang_es_idml_spec_table_2_space_before, lang_es_idml_spec_table_3_space_before, lang_es_idml_spec_table_4_space_before]
     latex: {owner: components_spec.tex, entrypoints: [spectable]}
     indesign: {renderer: spec_table, table_style: 竖型表格, object_style: HB Rounded Table Outer}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.table.spec]
+    web: {capability: rendered, selectors: [.hb-spec-table-composition], component_adapter: web_presentation}
+    word: {capability: rendered, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_docx_styles}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TABLE-SYMBOL-SIGNAL:
     role: Signal-word table
@@ -144,8 +229,12 @@ styles:
     token_refs: [comp_symbol_signal_col_width, comp_symbol_table_tabcolsep, comp_symbol_signal_width, comp_symbol_signal_height, comp_subbar_height, type_symbol_signal_font_size, type_symbol_body_font_size, idml_symbol_header_font_size, idml_symbol_header_font_leading, idml_symbols_signal_header_height, idml_symbols_signal_row_height, idml_symbols_signal_icon_width, idml_symbols_signal_icon_height, idml_symbols_page_top, idml_symbols_first_tail_height, idml_symbols_first_tail_gap, idml_symbols_second_tail_height, idml_symbols_second_tail_gap, idml_symbols_maintenance_body_height, idml_symbols_maintenance_body_gap, idml_symbols_maintenance_title_gap, idml_symbols_title_gap, idml_symbols_h1_optical_offset, idml_symbols_page_bottom_allowance, idml_symbols_signal_gap_after, lang_en_idml_symbols_page_top, lang_en_idml_symbols_first_tail_height, lang_en_idml_symbols_first_tail_gap, lang_en_idml_symbols_second_tail_height, lang_en_idml_symbols_second_tail_gap, lang_en_idml_symbols_maintenance_body_height, lang_en_idml_symbols_maintenance_body_gap, lang_en_idml_symbols_signal_gap_after, lang_fr_idml_symbols_page_top, lang_fr_idml_symbols_first_tail_height, lang_fr_idml_symbols_first_tail_gap, lang_fr_idml_symbols_second_tail_height, lang_fr_idml_symbols_second_tail_gap, lang_fr_idml_symbols_maintenance_body_height, lang_fr_idml_symbols_maintenance_body_gap, lang_fr_idml_symbols_signal_gap_after, lang_es_idml_symbols_page_top, lang_es_idml_symbols_first_tail_height, lang_es_idml_symbols_first_tail_gap, lang_es_idml_symbols_second_tail_height, lang_es_idml_symbols_second_tail_gap, lang_es_idml_symbols_maintenance_body_height, lang_es_idml_symbols_maintenance_body_gap, lang_es_idml_symbols_signal_gap_after]
     latex: {owner: components_symbols.tex, entrypoints: [HBSymbolTable]}
     indesign: {renderer: symbol_signal_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.table.symbol-signal]
+    web: {capability: rendered, selectors: [.hb-symbol-signal-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TABLE-SYMBOL-ICON:
     role: Symbol icon tables
@@ -153,8 +242,12 @@ styles:
     token_refs: [comp_symbol_icon_width, comp_symbol_icon_height, comp_symbol_icon_col_width, comp_symbol_column_gap, comp_symbol_table_tabcolsep, type_symbol_header_font_size, type_symbol_body_font_size, idml_symbol_header_font_size, idml_symbol_header_font_leading, idml_symbols_icon_header_height, idml_symbols_icon_row_height, idml_symbols_icon_last_row_height, idml_symbols_icon_long_last_row_height, idml_symbols_icon_width, idml_symbols_icon_height, idml_symbols_icon_col_width, idml_symbols_icon_left_col_width, idml_symbols_icon_right_col_width, idml_symbols_icon_table_width_trim, idml_symbols_column_gap, idml_symbols_fallback_import_allowance, idml_symbols_fallback_min_height, idml_symbols_fallback_text_width_ratio, idml_symbols_fallback_row_height]
     latex: {owner: components_symbols.tex, entrypoints: [HBSymbolTwoColumnTables]}
     indesign: {renderer: symbol_icon_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.table.symbol-icon]
+    web: {capability: rendered, selectors: [.hb-symbol-pair-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TABLE-LCD-ICON:
     role: LCD icon table
@@ -253,8 +346,16 @@ styles:
       - lang_fr_idml_lcd_continuation_temperature_body_font_leading
     latex: {owner: components_lcd.tex, entrypoints: [HBLcdIconTable]}
     indesign: {renderer: lcd_icon_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: aligned
-    debt: [The approved reference profile owns model-specific row-height geometry; shared typography and placement remain token-driven.]
+    theme_token_roles: [component.table.lcd-icon]
+    web: {capability: rendered, selectors: [.hb-lcd-table-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants:
+      - reason: The approved reference profile owns model-specific row-height geometry while shared typography and placement remain token-driven.
+        owner: renderer-contract-maintainers
+        scope: [JE-1000F, US, idml]
+        evidence: [docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json]
 
   HB-TABLE-LCD-MODE:
     role: LCD mode table
@@ -347,8 +448,12 @@ styles:
       - lang_es_idml_lcd_mode_space_after
     latex: {owner: components_lcd.tex, entrypoints: [HBLcdModeTable]}
     indesign: {renderer: lcdmode, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.table.lcd-mode]
+    web: {capability: rendered, selectors: [.hb-lcd-mode-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TABLE-AUTO-RESUME:
     role: Auto Resume conditions table
@@ -356,8 +461,12 @@ styles:
     token_refs: [comp_auto_resume_left_ratio, comp_data_table_tabcolsep, comp_data_table_row_stretch, comp_data_table_header_height, comp_data_table_row_height, type_data_table_font_size]
     latex: {owner: components_data_tables.tex, entrypoints: [HBAutoResumeTable]}
     indesign: {renderer: data_table, table_style: 正文表格, object_style: HB Rounded Table Outer}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.table.auto-resume]
+    web: {capability: rendered, selectors: [.hb-auto-resume-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TABLE-KEY-COMBINATIONS:
     role: Key combinations table
@@ -365,17 +474,25 @@ styles:
     token_refs: [comp_key_table_left_ratio, comp_key_table_middle_ratio, comp_key_table_row_height, comp_key_section_needspace, idml_key_panel_width, idml_key_header_height, idml_key_panel_height, idml_key_panel_left_indent, idml_key_panel_space_before, idml_key_visual_raise, idml_key_inner_rule, idml_key_outer_rule, idml_key_outer_radius, idml_key_button_size, idml_key_clock_size, idml_key_header_font_leading, idml_key_caption_font_size, idml_key_caption_font_leading, idml_key_plus_font_size, idml_key_plus_font_leading, idml_key_duration_font_size, idml_key_duration_font_leading, idml_key_operation_font_size, idml_key_operation_font_leading, idml_key_function_font_size, idml_key_function_font_leading, type_data_table_header_font_size, lang_fr_idml_key_panel_height, lang_fr_idml_key_panel_left_indent, lang_fr_idml_key_panel_space_before, lang_fr_idml_key_visual_raise, lang_es_idml_key_panel_height, lang_es_idml_key_panel_left_indent, lang_es_idml_key_panel_space_before, lang_es_idml_key_visual_raise]
     latex: {owner: components_data_tables.tex, entrypoints: [HBKeyCombinationTable]}
     indesign: {renderer: key_combinations, paragraph_styles: [HB Data Header, HB Data Body], object_style: HB Rounded Table Outer, text_layer: native_movable_frames}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.table.key-combinations]
+    web: {capability: projection-only, selectors: [.manual-table], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader, TableGrid], component_adapter: word_bundle_docx_styles}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-TABLE-TROUBLESHOOTING:
     role: Troubleshooting table
     semantic_source_kinds: [table_troubleshooting]
     token_refs: [comp_trouble_left_ratio, comp_trouble_step_indent, comp_trouble_steps_pad_tb, comp_trouble_section_needspace, comp_trouble_page_extra_height, lang_en_idml_trouble_heading_space_before, lang_fr_idml_trouble_heading_space_before, lang_es_idml_trouble_heading_space_before, lang_en_idml_trouble_table_space_before, lang_fr_idml_trouble_table_space_before, lang_es_idml_trouble_table_space_before, idml_trouble_left_optical_width, idml_trouble_header_height_correction, idml_trouble_body_height_correction, idml_trouble_row_minima, lang_en_idml_trouble_row_minima, lang_fr_idml_trouble_row_minima, lang_es_idml_trouble_row_minima, idml_trouble_extra_row_min_height, idml_trouble_inner_rule, idml_trouble_outer_rule, idml_trouble_panel_min_height, idml_trouble_import_safety, idml_trouble_glyph_width_ratio, comp_data_table_header_height, comp_data_table_row_height, comp_table_outer_arc, type_trouble_code_font_size, type_trouble_code_font_leading, type_trouble_body_font_size, type_trouble_body_font_leading, type_data_table_header_font_size, type_data_table_header_font_leading]
     latex: {owner: components_data_tables.tex, entrypoints: [HBTroubleshootingTable]}
-    indesign: {renderer: components.prose_table.TroubleshootingTableStyle, table_style: 正文表格, object_style: HB Rounded Table Outer, sizing: native_locale_baseline_plus_localized_wrap_growth, auto_sizing: off}
-    status: aligned
-    debt: []
+    indesign: {renderer: components.prose_table.TroubleshootingTableStyle, table_style: 正文表格, object_style: HB Rounded Table Outer, sizing: native_locale_baseline_plus_localized_wrap_growth, auto_sizing: "off"}
+    theme_token_roles: [component.table.troubleshooting]
+    web: {capability: rendered, selectors: [.hb-troubleshooting-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-SPECIAL-FCC:
     role: FCC panel
@@ -383,8 +500,22 @@ styles:
     token_refs: [comp_fcc_arc, comp_fcc_height, comp_fcc_mark_width, comp_fcc_column_gap, comp_fcc_pad_lr, comp_fcc_pad_tb, type_fcc_font_size, type_fcc_font_leading]
     latex: {owner: components_special_pages.tex, entrypoints: [HBFccBlock]}
     indesign: {renderer: fcc, object_style: HB Rounded Panel, table_style: 无表头表格}
-    status: partial
-    debt: [IDML uses a dedicated absolute-position page composer.]
+    theme_token_roles: [component.special.fcc]
+    web: {capability: rendered, selectors: [.hb-fcc-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance:
+      state: partial
+      debt:
+        - reason: FCC instances are still reconstructed independently instead of consuming one shared ComponentSpec.
+          owner: renderer-contract-maintainers
+          scope: [web, latex, idml, word]
+          evidence: [code-as-doc/dev/style_component_contract_v2_plan.md#pr-6-fcc-componentspec]
+    constraints: []
+    approved_variants:
+      - reason: The approved fixed-page IDML projection uses a dedicated absolute-position composer.
+        owner: renderer-contract-maintainers
+        scope: [idml, JE-1000F, US]
+        evidence: [docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json]
 
   HB-SPECIAL-INBOX:
     role: What's In The Box cards
@@ -392,8 +523,22 @@ styles:
     token_refs: [comp_inbox_card_arc, comp_inbox_card_width, comp_inbox_card_height, comp_inbox_image_width, comp_inbox_image_height, comp_inbox_label_gap, type_inbox_label_font_size, idml_fcc_inbox_overflow_title_y, lang_es_idml_fcc_inbox_overflow_title_y, idml_inbox_overflow_card_y, lang_es_idml_inbox_overflow_card_y, idml_inbox_overflow_card_height, lang_es_idml_inbox_overflow_card_height, idml_inbox_overflow_image_1_width, lang_es_idml_inbox_overflow_image_1_width, idml_inbox_overflow_image_2_width, lang_es_idml_inbox_overflow_image_2_width, idml_inbox_overflow_image_3_width, lang_es_idml_inbox_overflow_image_3_width, idml_inbox_overflow_tip_y, lang_es_idml_inbox_overflow_tip_y]
     latex: {owner: components_special_pages.tex, entrypoints: [HBInBoxThree]}
     indesign: {renderer: inbox, paragraph_style: Item List Text, object_style: HB Inbox Card, table_style: 无表头表格}
-    status: partial
-    debt: [IDML uses a dedicated absolute-position page composer.]
+    theme_token_roles: [component.special.inbox]
+    web: {capability: rendered, selectors: [.hb-inbox-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance:
+      state: partial
+      debt:
+        - reason: Inbox instances are still reconstructed independently instead of consuming one shared ComponentSpec.
+          owner: renderer-contract-maintainers
+          scope: [web, latex, idml, word]
+          evidence: [code-as-doc/dev/style_component_contract_v2_plan.md#pr-7-inbox-componentspec]
+    constraints: []
+    approved_variants:
+      - reason: The approved fixed-page IDML projection uses a dedicated absolute-position composer.
+        owner: renderer-contract-maintainers
+        scope: [idml, JE-1000F, US]
+        evidence: [docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json]
 
   HB-SPECIAL-OVERVIEW:
     role: Product overview panel
@@ -401,8 +546,18 @@ styles:
     token_refs: [page_paperwidth, page_paperheight]
     latex: {owner: components_special_pages.tex, entrypoints: [HBOverviewPanel]}
     indesign: {renderer: page_overview, paragraph_style: HB Body, text_layer: native_movable_frames}
-    status: partial
-    debt: [Overview labels are editable but its target-specific absolute geometry is not yet tokenized.]
+    theme_token_roles: [component.special.overview]
+    web: {capability: rendered, selectors: [.hb-annotated-figure], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [], component_adapter: word_bundle_html}
+    conformance:
+      state: partial
+      debt:
+        - reason: Overview labels and asset roles are not yet represented by one shared ComponentSpec, and target geometry is not fully registered.
+          owner: renderer-contract-maintainers
+          scope: [web, latex, idml, word]
+          evidence: [code-as-doc/dev/style_component_contract_v2_plan.md#pr-8-overview-componentspec-and-target-geometry]
+    constraints: []
+    approved_variants: []
 
   HB-SPECIAL-APP:
     role: App setup primitives
@@ -411,8 +566,12 @@ styles:
     layout_token_refs: [idml_app_h2_font_size, idml_app_h2_font_leading, idml_app_download_h2_space_after, idml_app_h2_space_after, idml_app_primary_body_font_size, idml_app_primary_body_font_leading, idml_app_tail_body_font_size, idml_app_tail_body_font_leading, idml_app_result_body_font_size, idml_app_result_body_font_leading, idml_app_section_body_font_size, idml_app_section_body_font_leading, idml_app_notes_font_size, idml_app_notes_font_leading, idml_app_primary_body_left_indent, idml_app_tail_body_left_indent, idml_app_result_body_left_indent, idml_app_section_body_left_indent, idml_app_notes_left_indent, idml_app_list_left_indent, idml_app_list_first_line_indent, idml_app_add_device_space_before, idml_app_add_device_space_after, idml_app_connect_result_space_before, idml_app_page_extra_height]
     latex: {owner: components_special_pages.tex, entrypoints: [HBAppStep, HBAppAsset, HBAppNotice]}
     indesign: {renderer: referencefigure, related_renderers: [notice], paragraph_styles: [HB Body, HB Callout Label, HB Callout Body], object_style: HB Rounded Panel, text_layer: native_movable_frames}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.special.app]
+    web: {capability: rendered, selectors: [.hb-app-download-composition, .hb-app-add-device-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-WARRANTY-LEAD:
     role: Warranty lead panel
@@ -420,8 +579,12 @@ styles:
     token_refs: [comp_warranty_lead_arc, comp_warranty_lead_pad_lr, comp_warranty_lead_pad_tb, comp_warranty_lead_after, type_warranty_lead_font_size, type_warranty_lead_font_leading, idml_warranty_lead_before, idml_warranty_lead_height, idml_warranty_panel_width_adjust, idml_warranty_lead_left_indent, lang_en_idml_warranty_lead_before, lang_fr_idml_warranty_lead_before, lang_es_idml_warranty_lead_before, lang_en_idml_warranty_lead_height, lang_fr_idml_warranty_lead_height, lang_es_idml_warranty_lead_height, lang_en_idml_warranty_lead_pad_tb, lang_fr_idml_warranty_lead_pad_tb, lang_es_idml_warranty_lead_pad_tb]
     latex: {owner: components_warranty.tex, entrypoints: [HBWarrantyLead]}
     indesign: {renderer: warranty_lead, object_style: HB Rounded Panel}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.warranty.lead]
+    web: {capability: rendered, selectors: [.hb-warranty-intro-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-WARRANTY-SECTION:
     role: Warranty section panel
@@ -430,8 +593,12 @@ styles:
     token_refs: [comp_warranty_section_arc, comp_warranty_section_rule, comp_warranty_section_pad_lr, comp_warranty_section_pad_top, comp_warranty_section_pad_bottom, type_warranty_title_font_size, type_warranty_body_font_size, idml_warranty_panel_height_adjust_1, lang_en_idml_warranty_panel_height_adjust_1, lang_fr_idml_warranty_panel_height_adjust_1, lang_es_idml_warranty_panel_height_adjust_1, lang_en_idml_warranty_panel_height_adjust_2, lang_fr_idml_warranty_panel_height_adjust_2, lang_es_idml_warranty_panel_height_adjust_2, lang_en_idml_warranty_panel_height_adjust_3, lang_fr_idml_warranty_panel_height_adjust_3, lang_es_idml_warranty_panel_height_adjust_3, lang_en_idml_warranty_panel_height_adjust_4, lang_fr_idml_warranty_panel_height_adjust_4, lang_es_idml_warranty_panel_height_adjust_4, lang_en_idml_warranty_panel_height_adjust_5, lang_fr_idml_warranty_panel_height_adjust_5, lang_es_idml_warranty_panel_height_adjust_5, lang_en_idml_warranty_panel_height_adjust_6, lang_fr_idml_warranty_panel_height_adjust_6, lang_es_idml_warranty_panel_height_adjust_6, lang_en_idml_warranty_section_1_before, lang_fr_idml_warranty_section_1_before, lang_es_idml_warranty_section_1_before, lang_en_idml_warranty_section_2_before, lang_fr_idml_warranty_section_2_before, lang_es_idml_warranty_section_2_before, lang_en_idml_warranty_section_3_before, lang_fr_idml_warranty_section_3_before, lang_es_idml_warranty_section_3_before, lang_en_idml_warranty_section_4_before, lang_fr_idml_warranty_section_4_before, lang_es_idml_warranty_section_4_before, lang_en_idml_warranty_section_5_before, lang_fr_idml_warranty_section_5_before, lang_es_idml_warranty_section_5_before, lang_en_idml_warranty_section_6_before, lang_fr_idml_warranty_section_6_before, lang_es_idml_warranty_section_6_before]
     latex: {owner: components_warranty.tex, entrypoints: [HBWarrantySection]}
     indesign: {renderer: warranty_section, object_style: HB Rounded Panel}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.warranty.section]
+    web: {capability: rendered, selectors: [.hb-warranty-card], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph, Compact], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-WARRANTY-YEARS:
     role: Warranty year cards
@@ -439,8 +606,12 @@ styles:
     token_refs: [comp_warranty_year_badge_size, comp_warranty_year_column_gap, comp_warranty_year_left_ratio, type_warranty_year_number_font_size, type_warranty_year_unit_font_size, type_warranty_year_subtitle_font_size]
     latex: {owner: components_warranty.tex, entrypoints: [HBWarrantyYears]}
     indesign: {renderer: warrantyyears, paragraph_style: HB Big Numeral, object_style: HB Rounded Panel}
-    status: aligned
-    debt: []
+    theme_token_roles: [component.warranty.years]
+    web: {capability: rendered, selectors: [.hb-warranty-period-card], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [tableHeader], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants: []
 
   HB-PAGE-STANDARD:
     role: Standard body page with footer
@@ -448,8 +619,22 @@ styles:
     token_refs: [page_paperwidth, page_paperheight, page_margin_left, page_margin_right, page_margin_top, page_margin_bottom, page_footskip]
     latex: {owner: layout_templates.tex, entrypoints: [HBPageTemplateStandard]}
     indesign: {renderer: page_template, object_style: HB Standard Page}
-    status: partial
-    debt: [Physical spans follow the LaTeX page plan and stable labels; folio suppression still uses semantic page roles.]
+    theme_token_roles: [page.standard]
+    web: {capability: not-applicable, selectors: [], component_adapter: not_applicable}
+    word: {capability: projection-only, paragraph_styles: [], table_styles: [], component_adapter: section_properties}
+    conformance:
+      state: partial
+      debt:
+        - reason: Physical spans and folio suppression are not yet projected from one renderer-neutral PagePlan.
+          owner: renderer-contract-maintainers
+          scope: [latex, idml, word]
+          evidence: [code-as-doc/dev/style_component_contract_v2_plan.md#pr-5-shared-pageplan-and-pagetype-partials]
+    constraints:
+      - reason: Responsive Web has no physical standard-page domain.
+        owner: renderer-contract-maintainers
+        scope: [web]
+        evidence: [docs/renderers/contracts/STYLE_DEFINITION.md#7-页面角色]
+    approved_variants: []
 
   HB-PAGE-NO-FOOTER:
     role: Footerless page
@@ -457,8 +642,22 @@ styles:
     token_refs: [page_paperwidth, page_paperheight, page_margin_left, page_margin_right, page_margin_top, page_margin_bottom]
     latex: {owner: layout_templates.tex, entrypoints: [HBPageTemplateNoFooter]}
     indesign: {renderer: page_template, object_style: HB No Footer Page}
-    status: partial
-    debt: [IDML page-template selection is not represented in a shared page plan.]
+    theme_token_roles: [page.no-footer]
+    web: {capability: not-applicable, selectors: [], component_adapter: not_applicable}
+    word: {capability: projection-only, paragraph_styles: [], table_styles: [], component_adapter: section_properties}
+    conformance:
+      state: partial
+      debt:
+        - reason: Footerless page-template selection is not yet projected from one renderer-neutral PagePlan.
+          owner: renderer-contract-maintainers
+          scope: [latex, idml, word]
+          evidence: [code-as-doc/dev/style_component_contract_v2_plan.md#pr-5-shared-pageplan-and-pagetype-partials]
+    constraints:
+      - reason: Responsive Web has no physical footerless-page domain.
+        owner: renderer-contract-maintainers
+        scope: [web]
+        evidence: [docs/renderers/contracts/STYLE_DEFINITION.md#7-页面角色]
+    approved_variants: []
 
   HB-PAGE-COVER:
     role: Front and back cover page
@@ -466,5 +665,19 @@ styles:
     token_refs: [page_paperwidth, page_paperheight]
     latex: {owner: layout_templates.tex, entrypoints: [HBPageTemplateCover, HBBackCoverPage]}
     indesign: {renderer: page_template, object_style: HB Cover Page}
-    status: partial
-    debt: [Front cover remains placed finished art; back-cover geometry is InDesign-native but its copy comes from the shared IR.]
+    theme_token_roles: [page.cover]
+    web: {capability: not-applicable, selectors: [], component_adapter: not_applicable}
+    word: {capability: projection-only, paragraph_styles: [], table_styles: [], component_adapter: section_properties}
+    conformance:
+      state: partial
+      debt:
+        - reason: Cover and back-cover page roles are not yet projected from one renderer-neutral PagePlan.
+          owner: renderer-contract-maintainers
+          scope: [latex, idml, word]
+          evidence: [code-as-doc/dev/style_component_contract_v2_plan.md#pr-5-shared-pageplan-and-pagetype-partials]
+    constraints:
+      - reason: Responsive Web does not render fixed cover pages, and the front cover remains approved finished art in fixed-page outputs.
+        owner: renderer-contract-maintainers
+        scope: [web, latex, idml]
+        evidence: [docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json]
+    approved_variants: []
