@@ -3,7 +3,8 @@ from __future__ import annotations
 
 import json
 
-from tools.component_specs.fcc_adapters import idml_fcc_payload_from_legacy
+from tools.component_specs.fcc import fcc_spec_from_payload
+from tools.component_specs.fcc_adapters import idml_fcc_payload
 
 FCC_RIGHT_COLUMN_MARKERS = (
     "if this equipment does cause",
@@ -72,8 +73,10 @@ def fcc_spec_from_blocks(
         ]
         left, right = split_fcc_prose(prose)
         spec = {"kind": "fcc", "texts": [left, right]}
-    return idml_fcc_payload_from_legacy(
-        spec,
-        source_ref=source_ref,
-        language=language,
+    return idml_fcc_payload(
+        fcc_spec_from_payload(
+            spec,
+            source_ref=source_ref,
+            language=language,
+        )
     )

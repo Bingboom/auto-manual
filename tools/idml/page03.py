@@ -6,7 +6,8 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from .components.notice import notice_box_layout, source_notice_label
-from tools.component_specs.inbox_adapters import idml_inbox_payload_from_legacy
+from tools.component_specs.inbox import inbox_spec_from_payload
+from tools.component_specs.inbox_adapters import idml_inbox_payload
 from .fcc_fallback import component_spec, fcc_spec_from_blocks
 from .page_objects import (
     BADGE_OBJECT_STYLE,
@@ -420,18 +421,20 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
                    bundle_root: Path, *, lang: str = "en",
                    overflow_profile: bool = False,
                    reference_profile: dict | None = None,
-                   accessibility_label: str = "What's in the Box",
-                   tip_label: str = "TIP",
-                   tip_body: str = "See the source-authored tip copy.") -> tuple[list[str], list[str]]:
+                   accessibility_label: str,
+                   tip_label: str,
+                   tip_body: str) -> tuple[list[str], list[str]]:
     if not inbox_spec:
         return [], []
-    inbox_spec = idml_inbox_payload_from_legacy(
-        inbox_spec,
-        source_ref=f"idml:page03:{sid}",
-        language=lang,
-        accessibility_label=accessibility_label,
-        tip_label=tip_label,
-        tip_body=tip_body,
+    inbox_spec = idml_inbox_payload(
+        inbox_spec_from_payload(
+            inbox_spec,
+            source_ref=f"idml:page03:{sid}",
+            language=lang,
+            accessibility_label=accessibility_label,
+            tip_label=tip_label,
+            tip_body=tip_body,
+        )
     )
     items = inbox_spec.get("items", [])[:3]
     language = lang.strip().casefold().replace("_", "-").split("-", 1)[0]
@@ -656,6 +659,8 @@ def add_fcc_inbox_page(
         raise ValueError("inbox title is required from source RST")
     inbox_spec = component_spec(inbox_blocks, "inbox")
     tip_spec = component_spec(inbox_blocks, "notice")
+    if inbox_spec is not None and tip_spec is None:
+        raise ValueError("inbox tip is required from source RST")
 
     title_sid = f"{sid}_title"
     _story(writer, title_sid, "Inbox title",
@@ -691,14 +696,13 @@ def add_fcc_inbox_page(
         overflow_profile=has_symbol_overflow,
         reference_profile=reference_profile,
         accessibility_label=inbox_title,
-        tip_label=(source_notice_label(tip_spec) if tip_spec else "TIP"),
+        tip_label=(source_notice_label(tip_spec) if tip_spec else ""),
         tip_body=(
             "\n".join(
                 str(value).strip()
                 for value in (tip_spec or {}).get("texts", [])
                 if str(value).strip()
             )
-            or "See the source-authored tip copy."
         ),
     )
     _, tip_frames = _tip_objects(

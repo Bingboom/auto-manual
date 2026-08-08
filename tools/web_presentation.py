@@ -22,10 +22,7 @@ from tools.component_specs.web_source import (
     validate_web_callout_html,
     validate_web_spec_table_html,
 )
-from tools.component_specs.overview_instance import (
-    legacy_web_overview_instance,
-    resolve_overview_instance,
-)
+from tools.component_specs.overview_instance import resolve_overview_instance
 from tools.utils.path_utils import get_paths
 from tools.web_composite_manifest import WebCompositeManifest
 from tools.web_composite_presentation import (
@@ -260,18 +257,16 @@ def _transform_product_overview(
 ) -> None:
     overview = contract["product_overview"]
     try:
-        if isinstance(overview.get("views"), list):
-            instance = legacy_web_overview_instance(
-                overview,
-                model=composites.model,
-                region=composites.region,
+        instance_id = str(overview.get("instance_id") or "").strip()
+        if not instance_id:
+            raise WebPresentationError(
+                "product_overview.instance_id must name a versioned target instance"
             )
-        else:
-            instance = resolve_overview_instance(
-                model=composites.model,
-                region=composites.region,
-                instance_id=str(overview.get("instance_id") or "") or None,
-            )
+        instance = resolve_overview_instance(
+            model=composites.model,
+            region=composites.region,
+            instance_id=instance_id,
+        )
     except Exception as exc:
         raise WebPresentationError(f"{source_path}: {exc}") from exc
     transform_overview(

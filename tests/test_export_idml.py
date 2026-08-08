@@ -57,6 +57,48 @@ def _approved_app_plan(source_path: str, language: str) -> dict[str, object]:
     }
 
 
+def _strict_inbox_blocks(
+    title: str = "WHAT'S IN THE BOX",
+    *,
+    labels: tuple[str, str, str] = (
+        "Jackery Explorer 1000",
+        "AC Charging Cable",
+        "Documents",
+    ),
+    tip_label: str = "TIP",
+    tip_body: str = "The car charging cable is sold separately.",
+) -> list[tuple[str, str]]:
+    return [
+        ("h1", title),
+        (
+            "component",
+            json.dumps(
+                {
+                    "kind": "inbox",
+                    "items": [
+                        {
+                            "img": f"fixtures/inbox-{index}.png",
+                            "label": label,
+                        }
+                        for index, label in enumerate(labels, start=1)
+                    ],
+                }
+            ),
+        ),
+        (
+            "component",
+            json.dumps(
+                {
+                    "kind": "notice",
+                    "label": tip_label,
+                    "variant": "tip",
+                    "texts": [tip_body],
+                }
+            ),
+        ),
+    ]
+
+
 class ExportIdmlTests(unittest.TestCase):
     def _write_package(self) -> Path:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -2696,23 +2738,7 @@ class ExportIdmlTests(unittest.TestCase):
             "kind": "fcc",
             "texts": ["FCC left copy.", "FCC right copy."],
         }))]
-        inbox = [
-            ("h1", "WHAT'S IN THE BOX"),
-            ("component", json.dumps({
-                "kind": "inbox",
-                "items": [
-                    {"img": "", "label": "Jackery Explorer 1000"},
-                    {"img": "", "label": "AC Charging Cable"},
-                    {"img": "", "label": "Documents"},
-                ],
-            })),
-            ("component", json.dumps({
-                "kind": "notice",
-                "label": "TIP",
-                "variant": "tip",
-                "texts": ["The car charging cable is sold separately."],
-            })),
-        ]
+        inbox = _strict_inbox_blocks()
         w.add_fcc_inbox_page("st_fcc_inbox", fcc, inbox, ROOT, 3)
         spread = dict(w.spreads)["sp_3"]
         self.assertEqual(spread.count("<TextFrame "), 12)
@@ -2788,13 +2814,12 @@ class ExportIdmlTests(unittest.TestCase):
             "kind": "fcc",
             "texts": ["FCC gauche.", "FCC droite."],
         }))]
-        inbox = [
-            ("h1", "CONTENU DE LA BOÎTE"),
-            ("component", json.dumps({
-                "kind": "inbox",
-                "items": [{"img": "", "label": "Documents"}],
-            })),
-        ]
+        inbox = _strict_inbox_blocks(
+            "CONTENU DE LA BOÎTE",
+            labels=("Explorer", "Câble de charge CA", "Documents"),
+            tip_label="CONSEILS",
+            tip_body="Le câble de charge voiture est vendu séparément.",
+        )
         overflow = (
             [
                 {"figure": "", "text": "Matière explosive"},
@@ -2916,18 +2941,12 @@ class ExportIdmlTests(unittest.TestCase):
                 "kind": "fcc",
                 "texts": ["Aviso izquierdo.", "Aviso derecho."],
             }))],
-            [
-                ("h1", "CONTENIDO DE LA CAJA"),
-                ("component", json.dumps({
-                    "kind": "inbox",
-                    "items": [{"img": "", "label": "Documentos"}],
-                })),
-                ("component", json.dumps({
-                    "kind": "notice",
-                    "label": "CONSEJOS",
-                    "texts": ["Texto de ayuda."],
-                })),
-            ],
+            _strict_inbox_blocks(
+                "CONTENIDO DE LA CAJA",
+                labels=("Explorer", "Cable de carga de CA", "Documentos"),
+                tip_label="CONSEJOS",
+                tip_body="Texto de ayuda.",
+            ),
             ROOT,
             42,
             symbol_overflow=([{"figure": "", "text": "Explosivo"}], []),
@@ -2977,13 +2996,7 @@ class ExportIdmlTests(unittest.TestCase):
                 "MODIFICATION: Changes could void the user's authority.",
             ],
         }))]
-        inbox = [
-            ("h1", "WHAT'S IN THE BOX"),
-            ("component", json.dumps({
-                "kind": "inbox",
-                "items": [{"img": "", "label": "Documents"}],
-            })),
-        ]
+        inbox = _strict_inbox_blocks()
 
         w.add_fcc_inbox_page("st_fcc_wrapped", fcc, inbox, ROOT, 5)
 
@@ -3107,13 +3120,7 @@ class ExportIdmlTests(unittest.TestCase):
                         "kind": "fcc",
                         "texts": [copy[lang], "MODIFICATION: Right copy."],
                     }))],
-                    [
-                        ("h1", "WHAT'S IN THE BOX"),
-                        ("component", json.dumps({
-                            "kind": "inbox",
-                            "items": [{"img": "", "label": "Documents"}],
-                        })),
-                    ],
+                    _strict_inbox_blocks(),
                     ROOT,
                     page_index,
                     lang=lang,
@@ -3138,13 +3145,7 @@ class ExportIdmlTests(unittest.TestCase):
             ("list", "• Reorientar o reubicar la antena receptora."),
             ("body", "**MODIFICACION:** Cualquier cambio podria anular la autoridad."),
         ]
-        inbox = [
-            ("h1", "WHAT'S IN THE BOX"),
-            ("component", json.dumps({
-                "kind": "inbox",
-                "items": [{"img": "", "label": "Documents"}],
-            })),
-        ]
+        inbox = _strict_inbox_blocks()
         w.add_fcc_inbox_page("st_fcc_plain", fcc, inbox, ROOT, 3)
         spread = dict(w.spreads)["sp_3"]
         fcc_frame = spread.split('Self="tf_st_fcc_plain_fcc_left"', 1)[1].split(

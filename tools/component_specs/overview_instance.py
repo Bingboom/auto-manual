@@ -327,69 +327,10 @@ def resolve_overview_instance(
     return instance
 
 
-def legacy_web_overview_instance(
-    overview_config: Mapping[str, Any],
-    *,
-    model: str | None,
-    region: str | None,
-) -> dict[str, Any]:
-    """Read the pre-PR8 Web-only target block for one compatibility window."""
-    source_slots = {
-        "front": {
-            "power": "front.left.0",
-            "lcd": "front.right.0",
-            "dc12": "front.left.1",
-            "led_button": "front.right.1",
-            "usb_c_30": "front.left.2",
-            "led": "front.right.2",
-            "usb_c_100": "front.left.3",
-            "ac_power": "front.right.3",
-            "usb_a": "front.left.4",
-            "ac_output": "front.right.4",
-            "dc_usb": "front.left.5",
-            "total": "front.total.0",
-        },
-        "right": {
-            "handle": "right.sequence.0",
-            "dc_input": "right.sequence.2",
-            "ac_input": "right.sequence.1",
-        },
-    }
-    views = overview_config.get("views")
-    if not isinstance(views, list) or not views:
-        raise ComponentSpecError("legacy product_overview.views must be non-empty")
-    normalized_views: list[dict[str, Any]] = []
-    for raw_view in views:
-        view = deepcopy(dict(raw_view))
-        view["asset_role"] = f"{view['id']}_art"
-        view["web"] = {
-            "aspect_ratio": view.pop("aspect_ratio"),
-            "decorative_leaders": view.pop("decorative_leaders", []),
-        }
-        for callout in view["callouts"]:
-            callout["source_slot"] = source_slots[str(view["id"])][
-                str(callout["id"])
-            ]
-            callout["web"] = {
-                "rect": callout.pop("rect"),
-                "align": callout.pop("align"),
-                "leader": callout.pop("leader"),
-            }
-        normalized_views.append(view)
-    return {
-        "instance_id": "legacy-web-manual-inline",
-        "component_id": COMPONENT_ID,
-        "target": {"model": str(model or ""), "region": str(region or "")},
-        "source_patterns": list(overview_config.get("source_patterns") or []),
-        "views": normalized_views,
-    }
-
-
 __all__ = [
     "COMPONENT_ID",
     "SCHEMA_VERSION",
     "default_overview_instances_path",
-    "legacy_web_overview_instance",
     "load_overview_instance_registry",
     "resolve_overview_instance",
     "validate_overview_instance_registry",

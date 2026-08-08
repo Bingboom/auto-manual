@@ -7,7 +7,7 @@ from tools.component_specs.fcc import (
     COMPONENT_ID,
     DEFAULT_MARK_ASSET_REF,
     fcc_component_spec,
-    fcc_spec_from_legacy_payload,
+    fcc_spec_from_payload,
 )
 from tools.component_specs.fcc_adapters import (
     idml_fcc_payload,
@@ -34,7 +34,7 @@ class FccComponentSpecTests(unittest.TestCase):
         cls.registry = load_component_registry(PATHS.component_registry_contract)
         cls.theme = load_manual_theme(component_registry=cls.registry)
 
-    def _legacy_spec(self, language: str = "en"):
+    def _payload_spec(self, language: str = "en"):
         labels = {
             "en": ("NOTE:", "MODIFICATION:"),
             "fr": ("REMARQUE :", "MODIFICATION :"),
@@ -52,7 +52,7 @@ class FccComponentSpecTests(unittest.TestCase):
                 f"{modification} Change copy.",
             ],
         }
-        return payload, fcc_spec_from_legacy_payload(
+        return payload, fcc_spec_from_payload(
             payload,
             source_ref=f"page/{language}_fcc.rst#block-2",
             language=language,
@@ -83,8 +83,8 @@ class FccComponentSpecTests(unittest.TestCase):
         self.assertEqual("aligned", style["conformance"]["state"])
         self.assertEqual([], style["conformance"]["debt"])
 
-    def test_legacy_payload_preserves_source_order_and_shared_asset_role(self) -> None:
-        payload, spec = self._legacy_spec()
+    def test_payload_preserves_source_order_and_shared_asset_role(self) -> None:
+        _payload, spec = self._payload_spec()
         self.assertEqual([], validate_component_spec(spec, self.registry))
         self.assertEqual(COMPONENT_ID, spec.component_id)
         self.assertEqual("two-column", spec.variant)
@@ -92,16 +92,27 @@ class FccComponentSpecTests(unittest.TestCase):
         self.assertEqual(2, spec.slot("column_break").content)
         self.assertEqual("compliance_mark", spec.assets[0].role)
         self.assertEqual(DEFAULT_MARK_ASSET_REF, spec.assets[0].asset_ref)
-        self.assertEqual(payload, idml_fcc_payload(spec))
+        self.assertEqual(
+            {
+                "kind": "fcc",
+                "texts": [
+                    "Opening condition one.\nOpening condition two.\n"
+                    "NOTE: Tested copy.\nProtection copy.",
+                    "Corrective measures intro.\n• First measure.\n"
+                    "• Second measure.\nMODIFICATION: Change copy.",
+                ],
+            },
+            idml_fcc_payload(spec),
+        )
 
     def test_four_adapters_share_semantics_but_keep_renderer_geometry(self) -> None:
-        payload, spec = self._legacy_spec()
+        _payload, spec = self._payload_spec()
         web = web_fcc_projection(spec)
         latex = latex_fcc_projection(spec)
         word = word_fcc_projection(spec)
         self.assertEqual("hb-fcc-composition", web["composition_class"])
         self.assertEqual("HBFccBlock", latex["macro"])
-        self.assertEqual(payload["texts"], latex["arguments"])
+        self.assertEqual(idml_fcc_payload(spec)["texts"], latex["arguments"])
         self.assertEqual("hb-fcc-word-table", word["table_class"])
         self.assertEqual(2, len(web["left_blocks"]))
         self.assertEqual(3, len(web["right_blocks"]))
@@ -111,7 +122,7 @@ class FccComponentSpecTests(unittest.TestCase):
     def test_three_languages_keep_labels_lists_and_column_break(self) -> None:
         for language in ("en", "fr", "es"):
             with self.subTest(language=language):
-                _, spec = self._legacy_spec(language)
+                _, spec = self._payload_spec(language)
                 projection = web_fcc_projection(spec)
                 left = projection["left_blocks"]
                 right = projection["right_blocks"]
@@ -135,7 +146,7 @@ class FccComponentSpecTests(unittest.TestCase):
             )
 
     def test_manual_ir_projects_fcc_source_identity_and_language(self) -> None:
-        payload, _ = self._legacy_spec("fr")
+        payload, _ = self._payload_spec("fr")
         block = ManualBlock(
             block_id="page-1:block-2",
             source_ref="page/p22_01_fcc.rst#block-2",

@@ -107,23 +107,20 @@ def inbox_component_spec(
     return require_component_theme_roles(spec, active_theme)
 
 
-def inbox_spec_from_legacy_payload(
+def inbox_spec_from_payload(
     payload: Mapping[str, Any],
     *,
     source_ref: str,
     language: str,
-    accessibility_label: str = "What's in the Box",
-    tip_label: str = "TIP",
-    tip_body: str = "See the source-authored tip copy.",
+    accessibility_label: str,
+    tip_label: str,
+    tip_body: str,
     registry: Mapping[str, Any] | None = None,
     theme: Mapping[str, Any] | None = None,
 ) -> ComponentSpec:
-    """Validate the historical ``kind=inbox`` payload through ComponentSpec.
-
-    The legacy fixed-page payload does not contain the adjacent H1/tip block,
-    so callers that have those nodes pass the source-authored values. The
-    defaults preserve the old generic IDML component facade until PR 9.
-    """
+    """Combine a typed inbox payload with its source-authored H1 and tip."""
+    if str(payload.get("kind") or "") != "inbox":
+        raise ComponentSpecError(f"{COMPONENT_ID}: payload kind must be 'inbox'")
     items = payload.get("items")
     if not isinstance(items, Sequence) or isinstance(items, (str, bytes)):
         raise ComponentSpecError(f"{COMPONENT_ID}: legacy items must be a list")
@@ -146,7 +143,6 @@ def inbox_spec_from_legacy_payload(
         tip_body=tip_body,
         source_ref=source_ref,
         language=language,
-        metadata={"legacy_payload": deepcopy(dict(payload))},
         registry=registry,
         theme=theme,
     )
@@ -171,5 +167,5 @@ __all__ = [
     "VARIANT",
     "inbox_component_spec",
     "inbox_semantic_projection",
-    "inbox_spec_from_legacy_payload",
+    "inbox_spec_from_payload",
 ]
