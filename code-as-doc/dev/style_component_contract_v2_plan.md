@@ -2,7 +2,7 @@
 
 Date: 2026-08-07
 
-Status: PR 0–7 complete; PR 8 submitted
+Status: PR 0–8 complete; PR 9 in progress
 
 Owner: renderer contract maintainers
 Canonical style definition: [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)
@@ -91,9 +91,10 @@ substitute for that re-check.
    entries and its figure upgrade is registered for only JE-1000F/US.
 6. Web has CSS custom properties, but the four renderers do not share an
    explicit `theme_id` and semantic token-role projection.
-7. The plain-Markdown intermediate has three known limitations: escaped pipes
-   are not parsed, troubleshooting headers are read but not registered as an
-   option, and `:class:` is accepted without changing output.
+7. At discovery, the plain-Markdown intermediate had three known limitations:
+   escaped pipes were not parsed, troubleshooting headers were read but not
+   registered as an option, and `:class:` was accepted without changing output.
+   PR 9 closes all three with typed, fail-closed authoring behavior.
 
 ### 2.4 Hot spots and safety-net surfaces
 
@@ -196,7 +197,7 @@ No two PRs in this workstream may edit the contract concurrently.
 | PR 5 — shared PagePlan and page/type partials | [x] | [x] | `refactor/renderers-shared-page-plan` | `fbe576bc` | [#893](https://github.com/Bingboom/auto-manual/pull/893) | `3d854c38` | 52-source/58-physical parity, folio/type checks | Submitted and merged 2026-08-08. Local: Ruff, 280 focused tests, 2804 full unit tests (5 skips), mypy, guardrails, docs links, reference pins, and committed-fixture US check green. Approved plan remains 52 source / 58 physical pages and 40 compositions; normalized production IDML has the same 728 entries with only dedicated style/folio changes; PDF is 61/61 raster-identical pages; Word is 130/130 normalized OOXML entries and 52/52 raster-identical pages; Web is 62/62 normalized bundle files identical and the real Sphinx `-W` build has no fixed-page markers. PR 17/17 green; merged-main Actions `31260397798`; Hello-Docs mirror `31260397800`. |
 | PR 6 — FCC ComponentSpec | [x] | [x] | `refactor/renderers-fcc-component` | `295cd4e1` (final head `26853add`) | [#894](https://github.com/Bingboom/auto-manual/pull/894) | `407f697c` | three-language PDF/IDML/Web/Word checks | Submitted and merged 2026-08-08. PR 17/17 green with 0 review threads. Local: Ruff; 115 focused and 2811 full unit tests (5 skips); mypy; guardrails; docs links; reference pins; fixture US check. Web desktop is byte-identical and the mobile component pixels are identical below the test-only sticky title; PDF is 66/66 raster-identical; normalized production/flow IDML is 728/728 + 285/285 identical; Word emits three editable two-column FCC tables. |
 | PR 7 — Inbox ComponentSpec | [x] | [x] | `refactor/renderers-inbox-component` | `1cb6334b` (final head `985e5b4c`) | [#895](https://github.com/Bingboom/auto-manual/pull/895) | `98498dbc` | three-card desktop/mobile and fixed-page parity | Submitted and merged 2026-08-08. PR 17/17 green with 0 review threads; merged-main Manual Validation `31269018895` and Hello-Docs mirror `31269018896` succeeded. Local Ruff, 121 focused tests, 2818 full unit tests (5 skips), mypy, guardrails, docs links, reference pins, and fixture US check are green. PDF is 63/63 pages raster-identical; normalized production/flow IDML is 728/728 + 285/285 entries identical; real Sphinx `-W` and desktop/mobile EN/FR/ES screenshots are pixel-identical. Word bundle HTML contains three editable Inbox tables; final DOCX export remains covered by the pre-existing empty-`main` debt assigned to PR 9. |
-| PR 8 — Overview ComponentSpec and target geometry | [x] | [ ] | `refactor/renderers-overview-component` | `8b094387` | [#896](https://github.com/Bingboom/auto-manual/pull/896) | — | three-language composite/live fallback, mobile completeness | Submitted 2026-08-08. Local: Ruff, 157 focused tests, 2826 full unit tests (5 skips), mypy, guardrails, docs links, reference pins, real Sphinx `-W`, 12 desktop/mobile screenshots, 64/64 PDF pages, and normalized production/flow IDML 728/728 + 285/285 parity. The six US source-data check findings reproduce on `origin/main@98498dbc`. |
+| PR 8 — Overview ComponentSpec and target geometry | [x] | [x] | `refactor/renderers-overview-component` | `8b094387` | [#896](https://github.com/Bingboom/auto-manual/pull/896) | `be3f0668` | three-language composite/live fallback, mobile completeness | Submitted and merged 2026-08-08. Local: Ruff, 157 focused tests, 2826 full unit tests (5 skips), mypy, guardrails, docs links, reference pins, real Sphinx `-W`, 12 desktop/mobile screenshots, 64/64 PDF pages, and normalized production/flow IDML 728/728 + 285/285 parity. PR checks passed; merged-main Manual Validation `31273991413`, Hello-Docs sync `31273991419`, mirror commit `9258ca0b6467c1a8e8917d5cb64b5f73d9c1485e`, and mirror validation `31274005787` succeeded. |
 | PR 9 — compatibility cleanup and final acceptance | [ ] | [ ] | `refactor/renderers-style-contract-v2-closeout` | — | — | — | all strict gates, real builds, golden comparison, RTD build | — |
 
 ## 5. PR 0 — baseline definition and executable plan

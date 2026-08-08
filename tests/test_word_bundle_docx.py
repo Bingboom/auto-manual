@@ -11,12 +11,14 @@ from xml.etree import ElementTree as ET
 
 from tools.word_bundle_docx import (
     WordComExportError,
-    _export_docx_via_word,
     _embed_external_docx_images,
     _enforce_docx_outline_levels,
+    _export_docx_via_pandoc,
+    _export_docx_via_word,
     _remap_reference_doc_styles,
     _word_com_timeout_seconds,
     export_word_from_bundle,
+    normalize_word_bundle_html_for_pandoc,
 )
 from tools.word_bundle_docx_pandoc import ensure_supported_pandoc_for_reference_doc, resolve_pandoc_binary
 from tools.word_bundle_docx_reproducible import normalize_docx_for_reproducibility
@@ -35,6 +37,46 @@ _WP14_NS = "http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
 
 
 class TestWordBundleDocx(unittest.TestCase):
+    def test_pandoc_html_normalizer_removes_only_main_wrappers(self) -> None:
+        source = (
+            '<html><body><main class="empty"></main>'
+            '<section><main data-page="two"><h1>Manual</h1>'
+            '<table><tr><td>Copy</td></tr></table></main></section>'
+            '</body></html>'
+        )
+        normalized = normalize_word_bundle_html_for_pandoc(source)
+        self.assertNotIn("<main", normalized.casefold())
+        self.assertNotIn("</main", normalized.casefold())
+        self.assertIn('<section><h1>Manual</h1>', normalized)
+        self.assertIn('<table><tr><td>Copy</td></tr></table></section>', normalized)
+
+    def test_pandoc_export_uses_normalized_multi_page_bundle(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle_html = root / "manual_bundle.html"
+            bundle_html.write_text(
+                '<html><body><main></main><main><h1>Manual</h1>'
+                '<p>Populated body.</p></main></body></html>',
+                encoding="utf-8",
+            )
+            observed: dict[str, str] = {}
+
+            def capture(command, **_kwargs):
+                observed["html"] = Path(command[1]).read_text(encoding="utf-8")
+
+            with patch(
+                "tools.word_bundle_docx.resolve_pandoc_binary",
+                return_value="pandoc",
+            ), patch(
+                "tools.word_bundle_docx.subprocess.run",
+                side_effect=capture,
+            ):
+                _export_docx_via_pandoc(bundle_html, root / "manual.docx", None)
+
+            self.assertIn("Populated body.", observed["html"])
+            self.assertNotIn("<main", observed["html"].casefold())
+            self.assertEqual([], list(root.glob(".*-pandoc-*.html")))
+
     def test_word_com_timeout_seconds_should_parse_env_override(self) -> None:
         with patch.dict(os.environ, {"AUTO_MANUAL_WORD_COM_TIMEOUT_SECONDS": "45"}, clear=False):
             self.assertEqual(45, _word_com_timeout_seconds())

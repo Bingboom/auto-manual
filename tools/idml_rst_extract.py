@@ -294,16 +294,8 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
                 {"kind": "langtag", "lang": args[0], "texts": [args[1]]},
                 ensure_ascii=False)))
         elif kind == "inbox" and len(args) == 6:
-            result.blocks.append(("component", _json.dumps(
-                {
-                    "kind": "inbox",
-                    "items": [
-                        {"img": args[i], "label": args[i + 1]}
-                        for i in range(0, 6, 2)
-                    ],
-                },
-                ensure_ascii=False,
-            )))
+            items = [{"img": args[i], "label": args[i + 1]} for i in range(0, 6, 2)]
+            result.blocks.append(("component", _json.dumps({"kind": "inbox", "items": items}, ensure_ascii=False)))
         elif kind == "h1x" and args:
             result.blocks.append(("h1", args[0]))
         elif kind == "h2" and args:

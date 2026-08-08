@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import unittest
 from pathlib import Path
+import subprocess
 from tempfile import TemporaryDirectory
 
 from tools import plain_markdown_site as pms
 from tools import readthedocs_source
+from tools.manual_md_directives import DIRECTIVES, _cells
 
 
 class PlainMarkdownSiteStyleContractTests(unittest.TestCase):
@@ -195,6 +197,65 @@ Power-on restart | Manual output off
     def test_no_raw_html_leaks_as_escaped_text(self) -> None:
         for leak in ("&lt;figure", "&lt;table", "&lt;div", "&lt;sup"):
             self.assertNotIn(leak, self.html)
+
+    def test_escaped_pipes_typed_headers_and_callout_variant_render(self) -> None:
+        self.assertEqual(
+            ["A | B", "C\\", "D"],
+            _cells(r"A \| B | C\\| D"),
+        )
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "src"
+            source.mkdir()
+            (source / "index.md").write_text(
+                "# Typed options\n\n"
+                "```{callout} AVERTISSEMENT\n"
+                ":variant: warning\n\n"
+                "Keep clear.\n"
+                "```\n\n"
+                "```{troubleshooting} DIAGNOSTICS\n"
+                ":headers: Code \\| status | Corrective measures\n\n"
+                "F0 \\| stopped | Restart the product.\n"
+                "```\n",
+                encoding="utf-8",
+            )
+            output = root / "site"
+            pms.render_markdown_site(
+                source=source,
+                output_dir=output,
+                strict=True,
+                log=lambda _m: None,
+            )
+            html = (output / "index.html").read_text(encoding="utf-8")
+        self.assertIn("manual-callout-table", html)
+        self.assertIn("<strong>AVERTISSEMENT</strong>", html)
+        self.assertIn("Code | status", html)
+        self.assertIn("F0 | stopped", html)
+
+    def test_unknown_variant_and_obsolete_class_fail_closed(self) -> None:
+        for name, directive in DIRECTIVES.items():
+            with self.subTest(directive=name):
+                self.assertNotIn("class", directive.option_spec)
+        for option in (":variant: neon", ":class: warning"):
+            with self.subTest(option=option), TemporaryDirectory() as td:
+                root = Path(td)
+                source = root / "src"
+                source.mkdir()
+                (source / "index.md").write_text(
+                    "# Invalid\n\n"
+                    "```{callout} WARNING\n"
+                    f"{option}\n\n"
+                    "Keep clear.\n"
+                    "```\n",
+                    encoding="utf-8",
+                )
+                with self.assertRaises(subprocess.CalledProcessError):
+                    pms.render_markdown_site(
+                        source=source,
+                        output_dir=root / "site",
+                        strict=True,
+                        log=lambda _m: None,
+                    )
 
 
 class RemoteImageDownloadTests(unittest.TestCase):
