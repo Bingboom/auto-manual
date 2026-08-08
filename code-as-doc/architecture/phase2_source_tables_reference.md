@@ -138,7 +138,7 @@ The LCD-screen icon names + descriptions.
 ### 2.8 `03_内容源_TROUBLESHOOTING` — troubleshooting · `tblUSuk3Q5BKTdTh`
 Corrective measures keyed by error code.
 
-`No.` * · `Model` · `Region` · `Is_latest` · `Version` · `error_code` (e.g. `F0`) · `corrective_measures_<lang>` for `en`, `fr`, `es`, `pt-BR`, `br`, `de`, `it`, `ukr`, `jp`, `zh` · `render_preview_en`. → `troubleshooting_blocks.csv`.
+`No.` * · `Model` · `Region` · `Is_latest` · `Version` · `error_code` (e.g. `F0`) · `corrective_measures_<lang>` for `en`, `fr`, `es`, `pt-BR`, `br`, `de`, `it`, `ukr`, `jp`, `zh`, `ko` · `render_preview_en`. → `troubleshooting_blocks.csv`.
 
 ### 2.9 `03_内容源_Variable_Defaults` — placeholder defaults · `tblRyRdqRg2MGVgH`
 Default values for `|TOKEN|` placeholders used across templates (button labels, etc.).
