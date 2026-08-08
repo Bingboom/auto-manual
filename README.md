@@ -11,6 +11,12 @@ Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产�
 
 内容源 → 冻结输入 → 构建检查 → 评审回写 → 多格式输出 → 发布追踪。
 
+## 目标组件架构
+
+下面是组件同源的演进目标，不代表当前能力已经全部落地：
+
+![Auto-Manual target component architecture](docs/readme-assets/auto-manual-component-architecture.svg)
+
 ## 视频演示
 
 <!-- VIDEO_SLOT_START -->
