@@ -1,0 +1,71 @@
+schema_version: manual-theme/v1
+theme_id: hb-manual-default
+
+# Component roles group renderer-neutral visual intent. Concrete units, page
+# coordinates, and target/language geometry remain in renderer adapters and
+# data/layout_params.csv.
+component_roles:
+  component.callout:
+    component_ids: [HB-CALLOUT-STRIP]
+    theme_roles: [surface.brand, surface.paper, border.strong, width.component-band]
+  component.table.spec:
+    component_ids: [HB-TABLE-SPEC]
+    theme_roles:
+      - surface.brand
+      - surface.paper
+      - surface.muted
+      - border.strong
+      - radius.panel
+      - type.table.label
+      - type.table.value
+      - width.component-band
+
+roles:
+  surface.brand:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-brand-dark}
+      latex: {kind: color, name: HBSharedTableFrameColor}
+      idml: {kind: color, name: Color/HB Brand Dark}
+      word: {kind: property-adapter, name: _set_spec_table_borders}
+  surface.paper:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-paper}
+      latex: {kind: color, name: white}
+      idml: {kind: color, name: Color/Paper}
+      word: {kind: table-style, name: tableHeader}
+  surface.muted:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-surface}
+      latex: {kind: color, name: HBSharedTableLeftBg}
+      idml: {kind: paragraph-style, name: HB Spec Label}
+      word: {kind: html-class, name: manual-spec-label}
+  border.strong:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-brand-dark}
+      latex: {kind: layout-token, name: comp_table_outer_rule}
+      idml: {kind: layout-token, name: comp_table_outer_rule}
+      word: {kind: property-adapter, name: _set_spec_table_borders}
+  radius.panel:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-panel-radius}
+      latex: {kind: layout-token, name: comp_table_outer_arc}
+      idml: {kind: object-style, name: HB Rounded Table Outer}
+      word: {kind: property-adapter, name: _set_spec_table_layout}
+  type.table.label:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-font-family}
+      latex: {kind: macro, name: HBTypeSpecLabel}
+      idml: {kind: paragraph-style, name: HB Spec Label}
+      word: {kind: html-class, name: manual-spec-label}
+  type.table.value:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-font-family}
+      latex: {kind: macro, name: HBTypeSpecValue}
+      idml: {kind: paragraph-style, name: HB Spec Value}
+      word: {kind: html-class, name: manual-spec-value}
+  width.component-band:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-component-band-max}
+      latex: {kind: macro, name: linewidth}
+      idml: {kind: property-adapter, name: spec_table_body_width}
+      word: {kind: property-adapter, name: _set_spec_table_cell_widths}

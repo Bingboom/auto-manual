@@ -23,3 +23,22 @@ components:
       latex: {capability: rendered, key: hb_latex_callout}
       idml: {capability: rendered, key: idml_notice}
       word: {capability: projection-only, key: word_manual_callout_table}
+
+  HB-TABLE-SPEC:
+    style_id: HB-TABLE-SPEC
+    source_kinds: [table_spec, spec-table]
+    variants: [vertical]
+    slots:
+      section_title:
+        required: true
+        content_kinds: [inline_text]
+      rows:
+        required: true
+        content_kinds: [structured_rows]
+    asset_roles: {}
+    token_roles: [component.table.spec]
+    adapters:
+      web: {capability: rendered, key: hb_spec_table}
+      latex: {capability: rendered, key: hb_latex_spec_table}
+      idml: {capability: rendered, key: idml_spec_table}
+      word: {capability: rendered, key: word_spec_table}

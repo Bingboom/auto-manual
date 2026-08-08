@@ -38,6 +38,10 @@ from sphinx.util.docutils import SphinxDirective
 
 from tools.component_specs.adapters import web_callout_classes
 from tools.component_specs.callout import callout_component_spec
+from tools.component_specs.spec_table import (
+    spec_table_component_spec,
+    web_spec_table_projection,
+)
 
 SIGNAL_WORDS = ("WARNING", "CAUTION", "NOTE", "TIP", "DANGER", "IMPORTANT", "NOTICE", "ATTENTION")
 _SUP_RE = re.compile(r"\^([^\^\s][^\^]{0,24})\^")
@@ -139,38 +143,38 @@ class SpecTableDirective(_ManualDirective):
     """``{spec-table} SECTION`` — label/value rows, blank label continues the previous."""
 
     def run(self) -> list[nodes.Node]:
-        rows = self.rows()
+        language = str(getattr(self.env.config, "language", None) or "und")
+        spec = spec_table_component_spec(
+            section_title=self.label,
+            rows=self.rows(),
+            source_ref=f"{self.env.docname}:{self.lineno}",
+            language=language,
+        )
+        projection = web_spec_table_projection(spec)
         body: list[str] = []
-        index = 0
-        while index < len(rows):
-            label, *values = rows[index]
-            span = 1
-            while index + span < len(rows) and not rows[index + span][0]:
-                span += 1
+        for group in projection["groups"]:
+            label = str(group["label"])
+            values = group["values"]
+            span = int(group["label_rowspan"])
             rowspan = f' rowspan="{span}"' if span > 1 else ""
             body.append(
-                f'<tr><th class="manual-spec-label hb-spec-label" scope="row"{rowspan}>'
+                f'<tr><th class="{projection["label_classes"]}" scope="row"{rowspan}>'
                 f"{_inline_html(label)}</th>"
-                + "".join(
-                    f'<td class="manual-spec-value hb-spec-value">{_inline_html(value)}</td>'
-                    for value in values
-                )
+                f'<td class="{projection["value_classes"]}">'
+                f'{_inline_html(str(values[0]["text"]))}</td>'
                 + "</tr>"
             )
-            for offset in range(1, span):
+            for value in values[1:]:
                 body.append(
                     "<tr>"
-                    + "".join(
-                        f'<td class="manual-spec-value hb-spec-value">{_inline_html(value)}</td>'
-                        for value in rows[index + offset][1:]
-                    )
+                    f'<td class="{projection["value_classes"]}">'
+                    f'{_inline_html(str(value["text"]))}</td>'
                     + "</tr>"
                 )
-            index += span
         return [
             _raw(
-                f'<figure{self.aria()} class="hb-spec-table-composition">'
-                '<table class="manual-table manual-spec-table hb-spec-table">'
+                f'<figure{self.aria()} class="{projection["composition_class"]}">'
+                f'<table class="{projection["table_classes"]}">'
                 '<colgroup><col class="hb-spec-col-label"/><col class="hb-spec-col-value"/></colgroup>'
                 f'<tbody>{"".join(body)}</tbody></table></figure>'
             )

@@ -64,6 +64,7 @@ class PathSegments:
     FONTS_TEX = "fonts.tex"
     LAYOUT_PARAMS_CSV = "layout_params.csv"
     MANUAL_STYLE_CONTRACT = "manual_style.yaml"
+    MANUAL_THEME_CONTRACT = "manual_theme.yaml"
     COMPONENT_REGISTRY_CONTRACT = "component_registry.yaml"
     MANUAL_IR_JSON = "manual.ir.json"
     LATEX_PAGE_PLAN_JSON = "latex_page_plan.json"
@@ -305,6 +306,10 @@ class Paths:
     @property
     def manual_style_contract(self) -> Path:
         return self.renderer_contracts_dir / PathSegments.MANUAL_STYLE_CONTRACT
+
+    @property
+    def manual_theme_contract(self) -> Path:
+        return self.renderer_contracts_dir / PathSegments.MANUAL_THEME_CONTRACT
 
     @property
     def component_registry_contract(self) -> Path:

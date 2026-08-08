@@ -19,10 +19,10 @@ REGISTRY_SCHEMA_VERSION = "component-registry/v1"
 RENDERERS = ("web", "latex", "idml", "word")
 CAPABILITIES = frozenset({"rendered", "projection-only", "not-applicable"})
 REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
-    "web": frozenset({"manual_callout_table"}),
-    "latex": frozenset({"hb_latex_callout"}),
-    "idml": frozenset({"idml_notice"}),
-    "word": frozenset({"word_manual_callout_table"}),
+    "web": frozenset({"manual_callout_table", "hb_spec_table"}),
+    "latex": frozenset({"hb_latex_callout", "hb_latex_spec_table"}),
+    "idml": frozenset({"idml_notice", "idml_spec_table"}),
+    "word": frozenset({"word_manual_callout_table", "word_spec_table"}),
 }
 LOCALE_POLICIES = frozenset({"exact", "shared"})
 
@@ -38,6 +38,40 @@ def _non_empty_strings(value: Any, *, allow_empty: bool = False) -> bool:
         and all(isinstance(item, str) and item.strip() for item in value)
         and len(value) == len(set(value))
     )
+
+
+def _validate_structured_rows(value: Any, *, prefix: str) -> list[str]:
+    issues: list[str] = []
+    if not isinstance(value, list) or not value:
+        return [f"{prefix} must be a non-empty list"]
+    for index, group in enumerate(value):
+        group_prefix = f"{prefix}[{index}]"
+        if not isinstance(group, Mapping):
+            issues.append(f"{group_prefix} must be a mapping")
+            continue
+        if set(group) != {"label", "label_rowspan", "values", "references"}:
+            issues.append(f"{group_prefix} has an invalid structured-row shape")
+            continue
+        if not isinstance(group.get("label"), str) or not group["label"].strip():
+            issues.append(f"{group_prefix}.label must be a non-empty string")
+        values = group.get("values")
+        if not isinstance(values, list) or not values:
+            issues.append(f"{group_prefix}.values must be a non-empty list")
+            continue
+        if group.get("label_rowspan") != len(values):
+            issues.append(f"{group_prefix}.label_rowspan must equal value count")
+        if not _non_empty_strings(group.get("references"), allow_empty=True):
+            issues.append(f"{group_prefix}.references must be a unique string list")
+        for value_index, item in enumerate(values):
+            value_prefix = f"{group_prefix}.values[{value_index}]"
+            if not isinstance(item, Mapping) or set(item) != {"text", "references"}:
+                issues.append(f"{value_prefix} has an invalid value shape")
+                continue
+            if not isinstance(item.get("text"), str):
+                issues.append(f"{value_prefix}.text must be a string")
+            if not _non_empty_strings(item.get("references"), allow_empty=True):
+                issues.append(f"{value_prefix}.references must be a unique string list")
+    return issues
 
 
 def validate_component_registry(registry: Mapping[str, Any]) -> list[str]:
@@ -173,6 +207,13 @@ def validate_component_spec(
             json.dumps(slot.content, ensure_ascii=False)
         except (TypeError, ValueError):
             issues.append(f"{spec.component_id}.{slot.role}: content must be JSON-serializable")
+        if slot.content_kind == "structured_rows":
+            issues.extend(
+                _validate_structured_rows(
+                    slot.content,
+                    prefix=f"{spec.component_id}.{slot.role}",
+                )
+            )
     if isinstance(slot_definitions, Mapping):
         for role, slot_definition in slot_definitions.items():
             if isinstance(slot_definition, Mapping) and slot_definition.get("required"):

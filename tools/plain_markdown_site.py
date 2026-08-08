@@ -887,9 +887,10 @@ def stage_component_extension(staged_dir: Path) -> bool:
         / "contracts"
         / "component_registry.yaml"
     )
+    theme = registry.with_name("manual_theme.yaml")
     if not all(
         path.is_file()
-        for path in (source, path_utils, registry, _SCRIPT_DIR / "__init__.py")
+        for path in (source, path_utils, registry, theme, _SCRIPT_DIR / "__init__.py")
     ) or not component_specs.is_dir():
         return False
     target_dir = staged_dir / _EXTENSION_DIRNAME
@@ -910,6 +911,7 @@ def stage_component_extension(staged_dir: Path) -> bool:
     staged_registry = target_dir / "docs" / "renderers" / "contracts"
     staged_registry.mkdir(parents=True)
     shutil.copyfile(registry, staged_registry / registry.name)
+    shutil.copyfile(theme, staged_registry / theme.name)
     return True
 
 

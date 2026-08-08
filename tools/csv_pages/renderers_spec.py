@@ -5,6 +5,12 @@ from __future__ import annotations
 
 import re
 
+from tools.component_specs.spec_table import (
+    latex_spec_table_rows,
+    spec_table_component_spec,
+    web_spec_table_projection,
+)
+
 from .renderers_common import (
     html_escape,
     latex_arg_escape,
@@ -36,6 +42,8 @@ def _indent_block(text: str, spaces: int = 3) -> str:
 
 def _render_spec_sections_latex(
     sections: list[dict[str, object]],
+    *,
+    language: str = "und",
 ) -> str:
     def expand_rows(rows: list[tuple[str, str]]) -> list[tuple[str, str]]:
         expanded: list[tuple[str, str]] = []
@@ -58,9 +66,16 @@ def _render_spec_sections_latex(
         return expanded
 
     blocks: list[str] = []
-    for sec in sections:
-        title = rst_escape(str(sec.get("title") or ""))
-        rows = expand_rows(sec.get("rows") or [])
+    for section_index, sec in enumerate(sections):
+        raw_title = str(sec.get("title") or "")
+        spec = spec_table_component_spec(
+            section_title=raw_title,
+            rows=expand_rows(sec.get("rows") or []),
+            source_ref=f"spec:{section_index}:{raw_title}",
+            language=language,
+        )
+        title = rst_escape(str(spec.slot("section_title").content))
+        rows = latex_spec_table_rows(spec)
         tex_lines: list[str] = [
             rf"\specsectiontitle{{{spec_latex_escape(title)}}}",
             r"\begin{spectable}",
@@ -91,11 +106,25 @@ def _render_spec_sections_latex(
 
 def _render_spec_sections_html(
     sections: list[dict[str, object]],
+    *,
+    language: str = "und",
 ) -> str:
     lines: list[str] = []
-    for sec in sections:
-        title = rst_escape(str(sec.get("title") or ""))
-        rows = sec.get("rows") or []
+    for section_index, sec in enumerate(sections):
+        raw_title = str(sec.get("title") or "")
+        spec = spec_table_component_spec(
+            section_title=raw_title,
+            rows=sec.get("rows") or [],
+            source_ref=f"spec:{section_index}:{raw_title}",
+            language=language,
+        )
+        projection = web_spec_table_projection(spec)
+        title = rst_escape(str(spec.slot("section_title").content))
+        rows = [
+            (str(group["label"]), str(value["text"]))
+            for group in projection["groups"]
+            for value in group["values"]
+        ]
         lines.append(".. raw:: html")
         lines.append("")
         lines.append(
@@ -169,7 +198,7 @@ def render_spec_page(
     footnotes = data["footnotes"]
 
     title_main_latex = rf"\HBSpecPageStart \section{{{latex_arg_escape(title_main)}}}"
-    sections_latex = _render_spec_sections_latex(sections)
+    sections_latex = _render_spec_sections_latex(sections, language=lang)
     notes_latex = _render_text_blocks_latex(
         notes, before_vspace_tex=r"\csname HBcomp_spec_notes_before\endcsname"
     )
@@ -178,7 +207,7 @@ def render_spec_page(
     )
     footnotes_latex += raw_latex_block([r"\HBSpecPageEnd"])
 
-    sections_html = _render_spec_sections_html(sections)
+    sections_html = _render_spec_sections_html(sections, language=lang)
     notes_html = _render_text_blocks_html(notes, class_name="hb-spec-note", kind="note")
     footnotes_html = _render_text_blocks_html(footnotes, class_name="hb-spec-footnote", kind="footnote")
 

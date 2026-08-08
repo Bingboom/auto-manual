@@ -2,7 +2,7 @@
 
 Date: 2026-08-07
 
-Status: PR 0–2 complete; PR 3 in progress
+Status: PR 0–3 complete; PR 4 in progress
 
 Owner: renderer contract maintainers
 Canonical style definition: [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)
@@ -191,8 +191,8 @@ No two PRs in this workstream may edit the contract concurrently.
 | PR 0 — baseline definition and this plan | [x] | [x] | `feat/tools-plain-markdown-site` | `d1fff5c3` (final head `79263495`) | [#874](https://github.com/Bingboom/auto-manual/pull/874) | `ce41d77e` | PR 17/17 green: Actions `31247992063` + `31247992042`; merged-main validation `31248164455`; local links, contract tests, pins green | Submitted and merged 2026-08-08; post-merge main verified before PR 1 edits |
 | PR 1 — document convergence and debt vocabulary | [x] | [x] | `docs/style-contract-v2-vocabulary` | `b0561ac6` | [#889](https://github.com/Bingboom/auto-manual/pull/889) | `06d9d8c9` | PR 17/17 green; merged-main Actions `31248601472`; local docs links 1479/0 broken; render contract 9/9; Markdown-only diff | Submitted and merged 2026-08-08; post-merge main verified before PR 2 edits |
 | PR 2 — style schema v2 and four-renderer bindings | [x] | [x] | `feat/style-contract-schema-v2` | `96f3e411` (final head `331ba477`) | [#890](https://github.com/Bingboom/auto-manual/pull/890) | `9e4fb8de` | schema tests, full unit, style-only pin rebind proof | PR 17/17 green: Actions `31250919110` + `31250919116`; merged-main validation `31251042796`; reference rebind changed only style hash; normalized IDML 728/728 entries identical |
-| PR 3 — ComponentSpec core and Callout pilot | [x] | [ ] | `refactor/renderers-component-spec-callout` | `a3e34564` | [#891](https://github.com/Bingboom/auto-manual/pull/891) | — | adapter parity, Web/LaTeX/IDML/Word callout comparison | Local: 2789 unit tests (5 skips), Ruff, mypy, guardrails, docs links, and reference pins green; committed-fixture US check green; Web/Word/LaTeX bytes unchanged, PDF 64/64 raster pages identical, normalized IDML 728/728 entries identical; repo-snapshot US check has the same three pre-existing missing page-value rows on baseline and current |
-| PR 4 — Spec Table and theme-token projection | [ ] | [ ] | `refactor/renderers-component-spec-table` | — | — | — | token projection, four-renderer spec-table comparison | — |
+| PR 3 — ComponentSpec core and Callout pilot | [x] | [x] | `refactor/renderers-component-spec-callout` | `a3e34564` | [#891](https://github.com/Bingboom/auto-manual/pull/891) | `c680e405` | adapter parity, Web/LaTeX/IDML/Word callout comparison | PR 17/17 green; merged-main Actions `31254279472`; Hello-Docs mirror `31254279464`; local 2789 unit tests (5 skips), Ruff, mypy, guardrails, docs links, and reference pins green; committed-fixture US check green; Web/Word/LaTeX bytes unchanged, PDF 64/64 raster pages identical, normalized IDML 728/728 entries identical |
+| PR 4 — Spec Table and theme-token projection | [x] | [ ] | `refactor/renderers-component-spec-table` | `d4016c98` | [#892](https://github.com/Bingboom/auto-manual/pull/892) | — | token projection, four-renderer spec-table comparison | Local: 2798 unit tests (5 skips), Ruff, mypy, guardrails, docs links, reference pins, and committed-fixture US check green; runtime RST 228/228, Web Markdown/normalized HTML, PDF 63/63 pages with 0 raster mismatches, Word 73/73 content entries, and normalized production/flow IDML 728/728 + 285/285 entries identical |
 | PR 5 — shared PagePlan and page/type partials | [ ] | [ ] | `refactor/renderers-shared-page-plan` | — | — | — | 52-source/58-physical parity, folio/type checks | — |
 | PR 6 — FCC ComponentSpec | [ ] | [ ] | `refactor/renderers-fcc-component` | — | — | — | three-language PDF/IDML/Web/Word checks | — |
 | PR 7 — Inbox ComponentSpec | [ ] | [ ] | `refactor/renderers-inbox-component` | — | — | — | three-card desktop/mobile and fixed-page parity | — |

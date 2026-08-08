@@ -37,6 +37,7 @@ class PlainMarkdownSiteStyleContractTests(unittest.TestCase):
             extension = staged / "_ext"
             self.assertTrue((extension / "manual_md_directives.py").is_file())
             self.assertTrue((extension / "tools" / "component_specs" / "callout.py").is_file())
+            self.assertTrue((extension / "tools" / "component_specs" / "spec_table.py").is_file())
             self.assertTrue((extension / "tools" / "utils" / "path_utils.py").is_file())
             self.assertTrue(
                 (
@@ -45,6 +46,15 @@ class PlainMarkdownSiteStyleContractTests(unittest.TestCase):
                     / "renderers"
                     / "contracts"
                     / "component_registry.yaml"
+                ).is_file()
+            )
+            self.assertTrue(
+                (
+                    extension
+                    / "docs"
+                    / "renderers"
+                    / "contracts"
+                    / "manual_theme.yaml"
                 ).is_file()
             )
 

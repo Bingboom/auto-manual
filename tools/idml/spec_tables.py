@@ -3,6 +3,11 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
+from tools.component_specs.spec_table import (
+    idml_spec_table_rows,
+    spec_table_component_spec,
+)
+
 from .params import param_pt
 from .style_names import table_style_ref
 
@@ -22,6 +27,13 @@ def spec_table_xml(
     language: str | None,
     paragraph_xml: Callable[..., str],
 ) -> str:
+    component = spec_table_component_spec(
+        section_title=role or tid,
+        rows=rows,
+        source_ref=f"idml:{tid}",
+        language=language or "und",
+    )
+    rows = idml_spec_table_rows(component)
     table_style = table_style_ref(role)
     language_key = (language or "").strip().casefold().replace("_", "-").split("-", 1)[0]
     default_left_ratio = params.get(
