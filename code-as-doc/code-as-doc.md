@@ -99,7 +99,7 @@ Examples:
 
 Must update:
 
-- [`code-as-doc/title_style_guide.md`](title_style_guide.md)
+- [`docs/renderers/contracts/STYLE_DEFINITION.md`](../docs/renderers/contracts/STYLE_DEFINITION.md)
 - [`code-as-doc/dev/layout_params_guide.md`](dev/layout_params_guide.md)
 - [`code-as-doc/dev/layout_params_change_log_template.md`](dev/layout_params_change_log_template.md) if the tuning process changed
 

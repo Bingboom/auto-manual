@@ -35,15 +35,17 @@ class RenderContractTests(unittest.TestCase):
             ROOT / "docs" / "renderers" / "contracts" / "manual_style.yaml",
         )
 
-    def test_contract_matches_every_public_latex_style_id(self) -> None:
-        registry = (PATHS.latex_renderer_dir / "STYLE_REGISTRY.md").read_text(encoding="utf-8")
-        registry_ids = {
+    def test_contract_matches_every_documented_style_id(self) -> None:
+        definition = (PATHS.renderer_contracts_dir / "STYLE_DEFINITION.md").read_text(
+            encoding="utf-8"
+        )
+        documented_ids = {
             value
-            for value in re.findall(r"\| `([^`]+)` \|", registry)
+            for value in re.findall(r"\| `([^`]+)` \|", definition)
             if value.startswith("HB-")
         }
-        self.assertEqual(31, len(registry_ids))
-        self.assertEqual(registry_ids, style_ids(self.contract))
+        self.assertEqual(31, len(documented_ids))
+        self.assertEqual(documented_ids, style_ids(self.contract))
 
     def test_contract_has_no_schema_or_token_errors(self) -> None:
         self.assertEqual([], validate_render_contract(self.contract, self.tokens))

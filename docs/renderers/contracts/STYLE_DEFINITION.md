@@ -1,14 +1,70 @@
-# 手册样式定义
+# 手册样式合同与维护指南
 
-一个语义在这套系统里有四处渲染：**Web**（`web_manual.css`）、**PDF**（LaTeX）、**IDML**（InDesign）、**Word**（`reference.docx`）。四者的绑定关系由 [`manual_style.yaml`](manual_style.yaml) 声明，共 31 条语义。本文把这 31 条逐条写定义，附录写组件的构造与新增方式。想看**原始 RST 一层层怎么变成当前 Web 构建物的版面**（含每个语义的真实源文件摘录与批量转换写法），直接读 [§10 逐层实例](#10-逐层实例原始-rst-怎么变成-web-版面)。
+> **唯一的人类可读样式规范。** 新增组件、调整版式、查询四端绑定或追踪
+> RST → Web 结构，都从本文开始。LaTeX 的旧注册表、IDML 的旧样式地图和旧标题
+> 指南只保留兼容入口，不再各自维护规则。
 
-当前合同状态以 `manual_style.yaml` 为准：21 条为无债 `aligned`，`HB-TABLE-LCD-ICON` 为带批准参考档说明的 `aligned`，另有 9 条长期 `partial`。2026-08-05 完成的 16 条 IDML 样式契约欠账已经同步进本文；执行证据见[样式契约欠账清算状态](../../../code-as-doc/dev/style_debt_execution_status.md)。
+一个手册语义会投影到四个输出面：**Web**（`web_manual.css`）、**PDF**
+（LaTeX）、**IDML**（InDesign）和 **Word**（`reference.docx`）。本文统一回答五个
+问题：语义是什么、源结构怎样表达、四端分别由谁实现、当前视觉合同是什么、修改后
+怎样验证。
 
-## 0. 怎么读
+如果你只想做一件事，可直接跳转：
+
+| 任务 | 入口 |
+|---|---|
+| 查某个 `HB-*` 在四端的绑定 | [§1 全量对照总表](#1-全量对照总表) |
+| 调标题、表格、警示框或专题组件 | [§2–§8 视觉与实现合同](#2-文字与标题) |
+| 看原始 RST 怎样变成 Web 版面 | [§10 逐层实例](#10-逐层实例原始-rst-怎么变成-web-版面) |
+| 新增组件或修改共享样式 | [附录 A 维护流程](#附录-a-组件与维护流程) |
+| 查当前未对齐项或工具限制 | [附录 B 已知边界](#附录-b-已知边界) |
+
+本文不保存某次构建的 commit、hash、页数或测试数量。这些会随发布变化，属于
+[执行状态](../../../code-as-doc/dev/style_debt_execution_status.md)和批准
+reference-layout 记录；复制进规范只会制造第二份过期事实。
+
+## 0. 权威边界与使用方法
+
+### 0.1 哪个文件决定什么
+
+“一份文档”不等于把机器合同改写成散文。可持续维护依赖下面四层各守边界：
+
+| 层 | 权威来源 | 决定什么 | 不应该放什么 |
+|---|---|---|---|
+| 人类规范 | **本文** | 视觉意图、四端对照、实现归属、修改与验证方法 | 构建快照、临时排期、一次性 hash |
+| 语义合同 | [`manual_style.yaml`](manual_style.yaml) | 31 个稳定 `HB-*` ID、源语义、LaTeX/IDML 绑定、token 引用、`status/debt` | CSS 像素值、逐页坐标 |
+| 数值 token | [`data/layout_params.csv`](../../../data/layout_params.csv) | PDF/IDML 共用的字号、间距、线宽、圆角及语言覆盖 | 组件路由和可见文案 |
+| 渲染实现 | Web CSS、LaTeX 模块、IDML renderer、Word remapper | 把合同投影成目标格式 | 自创未登记语义或渲染器本地可见常量 |
+
+冲突处理顺序：先确认语义合同和 token 是否正确，再修渲染实现，最后在**同一改动**
+更新本文。不能用“文档写了某个值”覆盖机器合同，也不能因为当前 CSS/IDML 恰好能
+渲染，就把未登记行为当成正式样式。
+
+`manual_style.yaml` schema v1 会机器校验 LaTeX、IDML 和 token 绑定；Web 与 Word
+绑定目前由本文和直接测试守护。本文因此仍是四端维护入口，但不能误称 schema v1
+已经机器声明了四端全部细节。
+
+### 0.2 改动路由：先判断你改的是内容、语义还是外观
+
+| 你要改什么 | 正确入口 | 常见错误 |
+|---|---|---|
+| 标题、表头、标签等可见文字 | `Manual_Copy_Source.csv`、模板 RST、源表或配置 | 在 CSS/renderer 里按英文文案匹配 |
+| 标题层级、组件类型、表格角色 | 模板/生成器的稳定结构标识 + extractor/IR + `manual_style.yaml` | 根据翻译后的标题猜语义 |
+| 字号、间距、线宽、圆角、列宽 | `layout_params.csv` 或 Web CSS；再检查四端投影 | 只改一个 renderer 的本地常量 |
+| 某个已评审目标的文字 | `docs/_review/<model>/<region>/page/*.rst` | 为单个目标改共享模板 |
+| 存量 Markdown 的自动识别 | `plain_markdown_site.py` → 人工确认中间指令 | 把启发式识别接进 production |
+| 批准 IDML 的最后一公里几何 | reference-layout 合同允许的 frame/page/asset 调整 | 在 InDesign 最终化阶段改正文内容 |
+
+标题文字与样式要特别分开：结构层级来自 RST 标题或稳定组件角色；共享短文案来自
+`Manual_Copy_Source.csv` 及生成的 `Localized_Copy.csv` / `spec_titles.csv`；Word
+文档标题来自配置的 `build.word_title`。改变文字不等于改变样式，改变样式也不应
+改写文字。
+
+#### 0.2.1 §1 对照表怎样读
 
 | 列 | 含义 |
 |---|---|
-| **语义 ID** | `manual_style.yaml` 里的契约名。改样式先找它，它绑着另外三处渲染 |
+| **语义 ID** | `manual_style.yaml` 里的契约名。改样式先找它，再核对四端投影 |
 | **源写法** | 作者在 md / RST 里怎么写。`原生` = 普通 Markdown；`` ```{x} `` = MyST 围栏指令；`流水线` = 由生产流水线写入结构标识，不能靠普通正文直接表达（见下文） |
 | **Web** | 顶层 class（`web_manual.css` 的挂点） |
 | **PDF** | LaTeX 入口宏 @ 所属 `docs/renderers/latex/*.tex` |
@@ -20,7 +76,7 @@
 
 颜色变量：`--hb-brand-dark` `#343031`、`--hb-text` `#343031`、`--hb-text-muted` `#666264`、`--hb-line` `#a7a5a6`、`--hb-line-soft` `#dedcdd`、`--hb-paper` `#ffffff`、`--hb-surface` `#f4f3f3`。
 
-### 0.1 “流水线”的定义
+### 0.3 “流水线”的定义
 
 本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 组合成 prepared RST bundle，再由 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) 提取为 `manual-ir/v1`，最后投影到 Web、PDF、IDML 或 Word。它不是“根据文字长得像什么来猜组件”，也不是本 PR 新增的 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
 
@@ -34,13 +90,13 @@ phase2 / 模板
 
 “流水线”一栏表示：该语义由源表字段、模板宏、显式 RST 容器、页面清单或页面角色共同产生，普通作者不能只写一段同名文案就触发它。例如正文出现 `Warranty Period` 不会自动变成质保年限卡；模板必须显式写出 `warranty-section warranty-years`。
 
-### 0.2 流水线怎样加标识符
+### 0.4 流水线怎样加标识符
 
 标识分五层，彼此不能混用：
 
 | 层 | 标识示例 | 谁写入 / 负责什么 |
 |---|---|---|
-| 样式合同 ID | `HB-WARRANTY-SECTION`、`HB-TABLE-SYMBOL-SIGNAL` | [`manual_style.yaml`](manual_style.yaml) 声明稳定语义、token 与四端绑定；`HB-*` 通常不会原样写进正文 |
+| 样式合同 ID | `HB-WARRANTY-SECTION`、`HB-TABLE-SYMBOL-SIGNAL` | [`manual_style.yaml`](manual_style.yaml) 声明稳定语义、token 与 LaTeX/IDML 机器绑定；本文补齐 Web/Word 可读对照；`HB-*` 通常不会原样写进正文 |
 | 源结构标识 | RST 标题、``.. container:: warranty-section``、`\\HBSymbolTable` | 模板或生成器写入 prepared RST；标识必须与本地化文案无关 |
 | IR 类型标识 | block `kind`，以及 `component` / `data` / `semantic` payload 里的 `kind`、`roles` | extractor 解析源结构后写入，供渲染器按类型路由 |
 | 装配角色 | `PageRole.WARRANTY`、`PageRole.SYMBOLS` | [`page_roles.py`](../../../tools/idml/page_roles.py) 根据 manifest 中的 `source_ref` / 稳定文件名决定页面由哪个 composer 接管 |
@@ -197,7 +253,22 @@ token：`type_title_l3_font_size` 7.0pt、`comp_title_l3_bullet_radius` 0.28mm�
 
 IDML 的 `KeepWithNext` 由 `comp_title_l3_needspace` 推导。`myst_heading_anchors = 3`：只有前三级生成锚点，四级以下没有可引用的 id。
 
-### 2.5 引语 / 页脚 / 页码
+### 2.5 页面局部标题变体（不新增语义 ID）
+
+下面两类标题沿用既有标题语义，但为了批准页面的构图而采用专门投影。它们不是新的
+`HB-*`，也不能反过来改变普通 H1/H2：
+
+| 变体 | 视觉不变量 | 实现归属 |
+|---|---|---|
+| Safety subbar | PDF/IDML 为品牌深色全圆胶囊（stadium）+ 白色大写文字；Web 的普通 H2 仍保持 §2.3 的圆点标题 | `components_safety.tex` 与 Symbols/Safety IDML composer，共用 `type_subbar_*`、`comp_subbar_*` 及语言覆盖 token |
+| TOC 大标题 | 深色大字、无底条；不得套用 §2.2 的 H1 胶囊 | LaTeX 目录组件与 IDML `HB TOC Title` |
+| TOC 语言条 | 深色圆角条，语言标签和页码范围保持可编辑文字 | IDML `HB TOC Bar` / `HB TOC Range` 与 `page_toc.py`；批准页面几何由 composer 和 reference/视觉测试守护 |
+
+页面局部变体不能成为绕过合同的后门。新增变体时，要么明确写成现有 `HB-*` 的
+renderer-specific 投影并在本节登记，要么新增正式语义并走附录 A；不能只留在代码
+注释或某个 renderer 的局部常量里。
+
+### 2.6 引语 / 页脚 / 页码
 
 `HB-TYPE-LEAD` 是前言与警示引题的排版；`HB-TYPE-FOOTER`、`HB-TYPE-PAGE-NUMBER` 只在 PDF/IDML 的页脚域生效，Web 投影不渲染。三者都不能从 md 直接写。
 
@@ -379,7 +450,12 @@ Web 投影没有页的概念，这三条不参与。
 
 ---
 
-## 8. 响应式、打印、字体
+## 8. 渲染器实现边界
+
+本节收拢过去分别维护在 LaTeX registry、IDML style map 和标题指南里的实现规则。
+这里登记**归属和不变量**；具体函数、宏和数值仍以代码与 token 为准。
+
+### 8.1 Web：响应式、打印、字体
 
 | 断点 | 改动 |
 |---|---|
@@ -392,15 +468,86 @@ Web 投影没有页的概念，这三条不参与。
 
 字体：`Gilroy` 是商业授权，不随站分发；回退 `Avenir Next → Avenir → Segoe UI → Helvetica → Arial`，字形与印刷稿不完全一致。
 
+### 8.2 LaTeX：模块归属与加载顺序
+
+`theme.tex` 按依赖顺序加载组件，`docs/conf_base.py` 以相同顺序复制进 Sphinx
+LaTeX bundle。公共宏是模板与 doctree transform 的稳定 API，不能在重构时改名。
+
+| 顺序 | 模块 | 只负责 |
+|---:|---|---|
+| 1 | `components_base.tex` | 图片、列表、通用表框架、callout 基础 |
+| 2 | `components_headings.tex` | L1/L2/L3 标题对象 |
+| 3 | `components_special_pages.tex` | 封底、App、开箱、概览、FCC、前言、目录 |
+| 4 | `components_symbols.tex` | 信号词表与符号图标表 |
+| 5 | `components_lcd.tex` | LCD 图标表与模式表 |
+| 6 | `components_safety.tex` | 安全指令、WARNING、DANGER |
+| 7 | `components_spec.tex` | 规格页与规格表 |
+| 8 | `components_data_tables.tex` | Auto Resume、按键组合、故障排查 |
+| 9 | `components_warranty.tex` | 质保引语、条款与年限卡 |
+
+`type_system.tex` 和 `layout_templates.tex` 是跨组件基础层，不属于某个专题组件。
+新增可见语义时，§1 的 PDF 列必须写公共入口和 owner；组件文件只能拥有自己的
+公共宏，兼容别名必须在测试 allowlist 中显式登记。
+
+### 8.3 IDML：可编辑对象与几何机制
+
+IDML 的目标不是把 PDF 截图放进 InDesign，而是用可编辑的段落、表格、文本框、
+矢量路径和已批准链接资产复现同一语义。以下规则是正式实现边界：
+
+1. **参数单源。** 可见字号、间距、线宽、圆角和语言覆盖从
+   `layout_params.csv` 经 `writer.params` 消费；renderer-local 常量只能是非可见
+   容错量，并应有直接合同测试。
+2. **内容与样式分离。** 文案、表行、信号词和资产身份来自 RST/IR；IDML renderer
+   不翻译、不补默认标签，也不根据本地化文字决定组件类型。
+3. **圆角外壳与可编辑内容分层。** 表格使用“圆角背景 + 方形可编辑内容框 +
+   四角遮罩 + 顶层描边”；内部网格不负责外圆角。警示框、卡片和 H1 使用可编辑
+   文本框叠加矢量路径。
+4. **锚定对象有固定依赖顺序。** 子故事在 designmap 中位于宿主故事之后；内联锚定
+   使用 `AnchoredObjectSetting`。圆角用贝塞尔路径本体，不依赖导入后不稳定的
+   Corner 属性。
+5. **自动尺寸必须按组件选择。** 普通文本框可用受控的 height-only 自适应；表格
+   外壳不能套通用 auto-size。LCD 与 Symbols 在 InDesign 最终化后读取原生行高，
+   同步收紧背景、内容框、遮罩和描边。
+6. **语言差异只能选 token/profile。** FR/ES 等密度差异使用
+   `lang_<lang>_*` token 或批准 reference profile；禁止复制一套逐语言绘制代码。
+7. **批准目标 fail-closed。** 缺组件角色、token、链接资产或 composition binding
+   时停止构建；不能静默降级成普通 prose 或把内容推入 overset 后继续交付。
+
+IDML 的段落/表格/对象样式名在 §1 的 IDML 列登记；实现入口集中在
+`tools/idml/components/`、`tools/idml/styles.py`、`tools/idml/page_objects.py` 和
+各页面 composer。一次性量测和修复证据留在历史执行记录，不回填到本节。
+
+### 8.4 Word：结构归一而非固定页复刻
+
+Word 复用结构语义，但不承诺 PDF/IDML 的固定页几何：
+
+- Heading 1/2/3 归一到 `dingding-heading1/2/3`；
+- 正文归一到 `BodyText` / `FirstParagraph` / `Compact`；
+- 表格按形状选 `TableGrid` 或 `tableHeader`，必要时再做列宽和边框覆盖；
+- 文档标题来自配置的 `build.word_title`，不是正文中的第一个 H1；
+- `tools/word_bundle_docx_styles.py` 只做样式归一，不按英文标题匹配语义。
+
+Word 若需要新增独立组件样式，应先进入 `manual_style.yaml` 与 §1 的语义对照，不能
+只在 DOCX remapper 中增加一次性规则。
+
 ---
 
 ## 9. 合同生效与批准版式
 
-`aligned` 表示四个输出面消费同一语义合同，并不要求响应式 Web、固定页 PDF/IDML 和 Word 逐像素相同。允许的投影差异必须写在 token、渲染绑定或批准说明里，不能留作未登记的渲染器常量。
+`aligned` 表示各输出面按已登记的同一语义工作，并不要求响应式 Web、固定页
+PDF/IDML 和 Word 逐像素相同。`partial` 表示仍有明确边界或欠账。**当前状态只读
+`manual_style.yaml`，不要在本文再维护一份计数或清单。** §1 的状态列用于阅读，
+修改合同状态时必须在同一提交同步它。
+
+允许的投影差异必须满足至少一项：写进 token、写进 renderer binding、或写进批准
+reference-layout 的边界说明。未登记的 renderer-local 可见常量不是“平台差异”，
+而是样式债。
 
 `manual_style.yaml` 与 `data/layout_params.csv` 的语义哈希会写入批准 reference-layout plan 的 v2 `identity.style`。v2 把 identity 分为 `content`、`assembly`、`style`、`provenance`：前三者和逐页 source digest 是 production 硬门禁；全局 phase2 `snapshot_sha256` 只保留在 `provenance` 供追溯，不因无关表变化阻断当前 target。`assembly` 同时哈希 source 顺序、语言、页面角色和 composition map；批准装配出现 `UNCLASSIFIED_PROSE` 时默认失败，只有精确登记的 source-ref 例外可继续。对已有批准合同的 target，production `build.py idml --source auto` 解析为冻结 `review-asis` 装配；未批准 target 继续走 runtime。普通 reference rebind 只允许 style/provenance identity 更新，默认拒绝 content 或 assembly hash 变化。只有在最终 Manual IR 的 source 顺序、语言映射、物理页数、`skipped_raw` 与 composition map 均通过核验后，才可由操作者使用显式 content-approval 路由重绑；reference PDF 与 composition map 不因样式销账而改变。
 
-当前 JE-1000F / US 批准装配的验收结果为 52 个 source、58 个物理页、`skipped_raw=0`。具体 hash、批准 metadata 与测试记录见[样式契约欠账清算状态](../../../code-as-doc/dev/style_debt_execution_status.md)。
+某个 target 的 source 数、物理页数、hash、批准 metadata 和测试结果应记录在其
+reference-layout plan 或[执行状态](../../../code-as-doc/dev/style_debt_execution_status.md)，
+不写进本文。这样规范不会因为一次发布或重新批准而过期。
 
 ---
 
@@ -726,13 +873,13 @@ Model No.    | JE-1000F /JE-1000F-SG
 
 ---
 
-## 附录 A 组件化定义
+## 附录 A 组件与维护流程
 
 ### A.1 一个组件由什么构成
 
 | 层 | 内容 | 落在哪 |
 |---|---|---|
-| 语义 | 语义 ID、`semantic_source_kinds`、`token_refs`、四处渲染绑定、`status` / `debt` | [`manual_style.yaml`](manual_style.yaml) |
+| 语义 | 语义 ID、`semantic_source_kinds`、`token_refs`、LaTeX/IDML 机器绑定、`status` / `debt` | [`manual_style.yaml`](manual_style.yaml) |
 | 源写法 | MyST 围栏指令，或 RST 模板 / 源表字段 | [`tools/manual_md_directives.py`](../../../tools/manual_md_directives.py)、`docs/templates/` |
 | 标记 | `figure.hb-*-composition` 外壳 + 表格/网格骨架 + 每列一个 `col.hb-*-col-*` | 指令的 `run()` 或流水线渲染器 |
 | 样式 | 顶层 class 上的规则；分列宽度写在 `col` class 上 | [`web_manual.css`](web_manual.css) 及两个分模块 |
@@ -756,23 +903,62 @@ Model No.    | JE-1000F /JE-1000F-SG
 
 ### A.3 新增一个组件
 
-1. 在 `manual_style.yaml` 加语义条目：`role`、`semantic_source_kinds`、`token_refs`、四处渲染绑定，并诚实填写 `status`；只有 `partial` 或批准边界说明才写 `debt`。
-2. 如果组件面向 plain-Markdown 站点，在 [`manual_md_directives.py`](../../../tools/manual_md_directives.py) 写指令类（继承 `_ManualDirective`，`run()` 返回 `nodes.raw`），并注册进 `DIRECTIVES`。
-3. 在 `web_manual.css`（或两个分模块之一）加顶层 class 与 `col` 宽度；通栏组件记得加进 §8 那条 `:is()` 列表。
-4. 印刷侧补 LaTeX 入口宏与 IDML 渲染器，token 加进 `data/layout_params.csv`。
-5. plain-Markdown 组件在 [`tests/test_plain_markdown_site.py`](../../../tests/test_plain_markdown_site.py) 补断言；IDML/PDF/Word 同时补各自的直接合同测试，锁住语义与 token 消费关系。
+1. **定义稳定语义。** 在 `manual_style.yaml` 加 `role`、
+   `semantic_source_kinds`、`token_refs`、LaTeX/IDML binding，并诚实填写
+   `status/debt`。先有语义，再有渲染器。
+2. **提供稳定源结构。** 在模板、生成器或源表 schema 中加与本地化文案无关的
+   标识；同步扩展 extractor、Manual IR 类型与 projector。不能从英文标题反推。
+3. **实现四端投影。** Web 加顶层 composition/class，LaTeX 加稳定公共宏，IDML
+   加可编辑组件/样式，Word 加结构归一规则。通栏 Web 组件加入 §8.1 的共享外宽
+   selector。
+4. **只在需要时提供 Markdown 指令。** 面向存量 Markdown 时，在
+   [`manual_md_directives.py`](../../../tools/manual_md_directives.py) 实现指令并注册；
+   启发式 detector 只生成可审阅中间态，不直接决定 production 语义。
+5. **补机器合同和本文。** 每端至少一个直接测试；§1 增加唯一对照行，相关视觉章节
+   写清不变量、响应式/固定页差异和 source → output 示例。
+6. **验证批准目标。** token 或合同变化要检查 reference pin；若 content/assembly
+   发生变化，必须走显式批准，不能把 style rebind 当内容批准。
 
-三个样式模块的行数上限由 [`tools/check_maintainability_guardrails.py`](../../../tools/check_maintainability_guardrails.py) 看守（`web_manual.css` 1905 / `web_app_components.css` 128 / `web_symbols_fcc_components.css` 160），加样式超了要连同阈值一起调。
+样式模块的规模边界由
+[`tools/check_maintainability_guardrails.py`](../../../tools/check_maintainability_guardrails.py)
+看守。不要在本文复制阈值数字；阈值属于代码门禁，调整时要解释模块为什么不能继续
+拆分，而不是只把上限调大。
 
 ### A.4 改样式的顺序
 
-先在 `manual_style.yaml` 找语义 ID → 看它绑了哪些 token 和另外三处渲染 → 再动 CSS / tex / IDML。**只改 CSS 可能让四处渲染悄悄分叉**；规格表的 Web / PDF / IDML / Word 列宽是经登记的投影差异，新增差异也必须用同样方式进入合同并补测试。改 `manual_style.yaml` 或 `layout_params.csv` 后要重新生成 `params.tex`、运行合同测试和 reference pin gate；不能手改批准 hash 绕过验证。
+1. 在 `manual_style.yaml` 找语义 ID，确认 `semantic_source_kinds`、owner、token 和
+   当前 `status/debt`。
+2. 在 §1 和所属视觉章节确认四端投影；判断本次是共享值变化，还是有理由的
+   renderer-specific 投影。
+3. 先改权威源：数值进 `layout_params.csv`，Web 响应式值进 CSS，结构语义进
+   模板/extractor/IR。不要先改生成的 `params.tex` 或输出 HTML/IDML。
+4. 更新所有受影响 renderer 和直接测试；新增差异必须登记，不能靠注释解释本地常量。
+5. 更新本文，保证 §1、视觉定义、示例和维护规则不互相矛盾。
+6. 按影响面验证；生成副作用只提交应提交的源文件。
+
+最低验证矩阵：
+
+| 影响面 | 至少运行 |
+|---|---|
+| 本文、导航或链接 | `python tools/check_doc_link_integrity.py` |
+| `manual_style.yaml` / renderer 合同 | render-contract 定向测试 + `python -m unittest` |
+| Python renderer / tests | Ruff + `python -m unittest` + maintainability guardrails |
+| `layout_params.csv` | `python tools/csv_to_tex_params.py`，再审计 `params.tex` 差异 |
+| Web 样式 | plain-Markdown 组件测试 + 一个真实 Web build |
+| PDF/IDML 共享样式 | US check/build + reference pin；视觉变化另做真实 PDF/IDML 比对 |
+
+规格表的 Web / PDF / IDML / Word 列宽就是已登记投影差异的例子。**只改 CSS 可能
+让四端悄悄分叉**；只改 IDML 则可能让 token 名存实亡。不能手改批准 hash 绕过
+reference gate。
 
 ---
 
-## 附录 B 已知缺陷
+## 附录 B 已知边界
 
-以下三条是 plain-Markdown 指令实现中实测确认的缺陷，不是当前 IDML 样式债，也不是用法问题：
+### B.1 plain-Markdown 指令限制
+
+以下三条是 plain-Markdown 指令实现中实测确认的限制，不是 IDML 样式债，也不是
+production RST 的用法问题：
 
 | 缺陷 | 表现 | 绕法 |
 |---|---|---|
@@ -780,4 +966,20 @@ Model No.    | JE-1000F /JE-1000F-SG
 | `troubleshooting` 的 `:headers:` 不可用 | 代码读了 `options["headers"]` 但没注册该选项，写了报未知选项，不写则表头恒为 `Error Code` / `Corrective Measures` | 换 `manual-table` + `:headers:` |
 | `:class:` 被接受但忽略 | 八个指令都声明了该选项，八个 `run()` 都不读 | 改 CSS 或改指令实现 |
 
-当前剩余项以 `manual_style.yaml` 为唯一账本：`HB-TYPE-LEAD`、`HB-TYPE-FOOTER`、`HB-TYPE-PAGE-NUMBER`、`HB-SPECIAL-FCC`、`HB-SPECIAL-INBOX`、`HB-SPECIAL-OVERVIEW`、`HB-PAGE-STANDARD`、`HB-PAGE-NO-FOOTER`、`HB-PAGE-COVER` 为 9 条长期 `partial`；`HB-TABLE-LCD-ICON` 保留一条批准参考档说明。原始 16 条 IDML 合同债已全部销账，完整范围和验证结果见[样式契约欠账清算状态](../../../code-as-doc/dev/style_debt_execution_status.md)。
+### B.2 样式债与批准边界
+
+当前项只以 `manual_style.yaml` 的 `status/debt` 为账本；本文 §1 仅提供可读投影。
+已经完成的清算范围、批准方法和验证结果属于
+[历史执行状态](../../../code-as-doc/dev/style_debt_execution_status.md)，不要把它们
+复制回来重新维护。
+
+### B.3 兼容入口
+
+下面三个旧路径只保留迁移提示，不能再增加样式规则：
+
+- `docs/renderers/latex/STYLE_REGISTRY.md`
+- `tools/idml/STYLE_MAP.md`
+- `code-as-doc/title_style_guide.md`
+
+仓库内新链接、代码注释和测试应直接指向本文。`STYLE_DEBT.md` 是旧快照，不再作为
+当前文档提交；未完成项直接维护在 `manual_style.yaml`，执行证据放历史状态文档。

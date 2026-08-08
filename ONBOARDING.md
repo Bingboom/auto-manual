@@ -40,7 +40,7 @@
 ## 4. 真相在哪（五个指针，别的都是派生物）
 
 1. **产品数据**：飞书「文档构建」base 的 phase2 源表（仓库 `data/phase2/*.csv` 只是 sync-data 快照镜像）
-2. **模板**：`docs/templates/`（`page_*` 按区域/语言分目录；样式单源 `tools/idml/STYLE_MAP.md` + `docs/renderers/contracts/manual_style.yaml`）
+2. **模板**：`docs/templates/`（`page_*` 按区域/语言分目录；人类可读样式规范为 `docs/renderers/contracts/STYLE_DEFINITION.md`，机器合同为同目录的 `manual_style.yaml`）
 3. **操作规则**：[`AGENTS.md`](AGENTS.md)（分支/提交/验证/并行窗口纪律全在里面）
 4. **路线图**：[`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md) + [`code-as-doc/next_optimization_checklist.md`](code-as-doc/next_optimization_checklist.md)
 5. **运营手册**：[`user-guide/closed_loop_ops_guide.md`](user-guide/closed_loop_ops_guide.md)（回写/台账/仪表的日常操作）

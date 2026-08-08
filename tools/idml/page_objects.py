@@ -337,7 +337,7 @@ def left_rounded_xml(writer, rect_id: str,
 
 def h1_arc_pt(writer) -> float:
     """H1 bottom-corner radius from the shared layout param, the same
-    key params.tex feeds \\HBTitleLevelOne (STYLE_MAP.md)."""
+    key params.tex feeds \\HBTitleLevelOne (STYLE_DEFINITION.md §8.3)."""
     from .params import param_pt
     return param_pt(writer.params, "comp_h1_pill_arc", 5.67)
 
@@ -558,7 +558,7 @@ def h1_pill_paragraph(writer, text: str, width: float,
                       height: float | None = None) -> str:
     """The master's H1 bar inside a flowed story: sharp top corners,
     rounded bottom corners (\\HBTitleLevelOne / capsule_xml bottom_only —
-    see STYLE_MAP.md). One definition serving every flowed page, like
+    see STYLE_DEFINITION.md §8.3). One definition serving every flowed page, like
     the LaTeX H1 macro.
     """
     # st_anchor_ prefix: package.designmap_xml declares these after their

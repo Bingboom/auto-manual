@@ -39,8 +39,8 @@ These files describe the repo behavior that should be maintained today.
   - family-specific template boundaries that still matter today
 - [`generated_page_authoring.md`](generated_page_authoring.md)
   - generated page, recipe, and snippet authoring rules
-- [`title_style_guide.md`](title_style_guide.md)
-  - title and heading source rules
+- [`../docs/renderers/contracts/STYLE_DEFINITION.md`](../docs/renderers/contracts/STYLE_DEFINITION.md)
+  - canonical cross-renderer style contract, title source rules, and maintenance flow
 - [`dev/layout_params_guide.md`](dev/layout_params_guide.md)
   - current layout parameter semantics
 - [`dev/manual_template_intake_checklist.md`](dev/manual_template_intake_checklist.md)
