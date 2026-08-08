@@ -2,7 +2,7 @@
 
 Date: 2026-08-07
 
-Status: PR 0–8 complete; PR 9 in progress
+Status: PR 0–9 complete; post-merge main, mirror, and RTD accepted
 
 Owner: renderer contract maintainers
 Canonical style definition: [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)
@@ -198,7 +198,7 @@ No two PRs in this workstream may edit the contract concurrently.
 | PR 6 — FCC ComponentSpec | [x] | [x] | `refactor/renderers-fcc-component` | `295cd4e1` (final head `26853add`) | [#894](https://github.com/Bingboom/auto-manual/pull/894) | `407f697c` | three-language PDF/IDML/Web/Word checks | Submitted and merged 2026-08-08. PR 17/17 green with 0 review threads. Local: Ruff; 115 focused and 2811 full unit tests (5 skips); mypy; guardrails; docs links; reference pins; fixture US check. Web desktop is byte-identical and the mobile component pixels are identical below the test-only sticky title; PDF is 66/66 raster-identical; normalized production/flow IDML is 728/728 + 285/285 identical; Word emits three editable two-column FCC tables. |
 | PR 7 — Inbox ComponentSpec | [x] | [x] | `refactor/renderers-inbox-component` | `1cb6334b` (final head `985e5b4c`) | [#895](https://github.com/Bingboom/auto-manual/pull/895) | `98498dbc` | three-card desktop/mobile and fixed-page parity | Submitted and merged 2026-08-08. PR 17/17 green with 0 review threads; merged-main Manual Validation `31269018895` and Hello-Docs mirror `31269018896` succeeded. Local Ruff, 121 focused tests, 2818 full unit tests (5 skips), mypy, guardrails, docs links, reference pins, and fixture US check are green. PDF is 63/63 pages raster-identical; normalized production/flow IDML is 728/728 + 285/285 entries identical; real Sphinx `-W` and desktop/mobile EN/FR/ES screenshots are pixel-identical. Word bundle HTML contains three editable Inbox tables; final DOCX export remains covered by the pre-existing empty-`main` debt assigned to PR 9. |
 | PR 8 — Overview ComponentSpec and target geometry | [x] | [x] | `refactor/renderers-overview-component` | `8b094387` | [#896](https://github.com/Bingboom/auto-manual/pull/896) | `be3f0668` | three-language composite/live fallback, mobile completeness | Submitted and merged 2026-08-08. Local: Ruff, 157 focused tests, 2826 full unit tests (5 skips), mypy, guardrails, docs links, reference pins, real Sphinx `-W`, 12 desktop/mobile screenshots, 64/64 PDF pages, and normalized production/flow IDML 728/728 + 285/285 parity. PR checks passed; merged-main Manual Validation `31273991413`, Hello-Docs sync `31273991419`, mirror commit `9258ca0b6467c1a8e8917d5cb64b5f73d9c1485e`, and mirror validation `31274005787` succeeded. |
-| PR 9 — compatibility cleanup and final acceptance | [x] | [ ] | `refactor/renderers-style-contract-v2-closeout` | `9b9b0de8`, `437b01dd` | [#897](https://github.com/Bingboom/auto-manual/pull/897) | — | 31 semantics / 0 actionable issues; Ruff, 239 focused and 2831 full tests (5 skips), mypy, guardrails, links, pins, and fixture US check green; Word 53 pages; production/flow IDML 728/728 + 286/286 normalized parity; PDF 66/66 and Web 10/10 desktop/mobile screenshots pixel-identical; real Sphinx `-W` green | Submitted 2026-08-08. The non-fixture production check has the same six source-data findings on this branch and isolated `origin/main@be3f0668`; awaiting all-green PR, merge, post-merge main/Hello-Docs/RTD verification. |
+| PR 9 — compatibility cleanup and final acceptance | [x] | [x] | `refactor/renderers-style-contract-v2-closeout` | `9b9b0de8`, `437b01dd` (final submitted head `7d136174`) | [#897](https://github.com/Bingboom/auto-manual/pull/897) | `c0581038` | 31 semantics / 0 actionable issues; Ruff, 239 focused and 2831 full tests (5 skips), mypy, guardrails, links, pins, and fixture US check green; Word 53 pages; production/flow IDML 728/728 + 286/286 normalized parity; PDF 66/66 and Web 10/10 desktop/mobile screenshots pixel-identical; real Sphinx `-W` green | Complete 2026-08-08. PR 17/17 green with no reviews or threads; main validation `31278050082`; mirror sync `31278050083`; Hello-Docs `6cf73fff` validation `31278060351`; RTD build `33975687` succeeded for the same mirror commit; short URL HTTP 200. The non-fixture production check has the same six source-data findings on this branch and isolated `origin/main@be3f0668`. |
 
 ## 5. PR 0 — baseline definition and executable plan
 
@@ -827,6 +827,12 @@ After the PR merges:
 - add a maintenance record to `code-as-doc/code_optimization_log.md`;
 - update the roadmap workstream to `done`;
 - keep this file as the audit trail, not as a second style definition.
+
+Recorded acceptance: [#897](https://github.com/Bingboom/auto-manual/pull/897)
+merged as `c0581038` after 17/17 checks passed with no review threads. The
+post-merge main validation (`31278050082`), Hello-Docs mirror sync
+(`31278050083`), mirror validation at `6cf73fff` (`31278060351`), and Read the
+Docs build `33975687` all succeeded. The published short URL returned HTTP 200.
 
 ### Rollback point
 
