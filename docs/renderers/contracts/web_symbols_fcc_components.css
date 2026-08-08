@@ -1,4 +1,4 @@
-/* Searchable Symbols and FCC components layered over the shared Web manual theme. */
+/* Searchable Symbols components layered over the shared Web manual theme. */
 
 .hb-symbol-signal-composition {
   margin: 1rem auto 2rem;
@@ -90,20 +90,6 @@
 
 #furo-main-content table.hb-symbol-signal-table p {
   margin: 0;
-}
-
-/* Keep FCC in navigation and assistive technology without rendering an H1 bar. */
-#furo-main-content section:has(> figure.hb-fcc-composition) > h1:first-child {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  margin: -1px !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  border: 0 !important;
-  clip: rect(0 0 0 0) !important;
-  clip-path: inset(50%) !important;
-  white-space: nowrap !important;
 }
 
 @media (max-width: 760px) {

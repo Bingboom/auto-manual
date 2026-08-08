@@ -1,0 +1,85 @@
+/* Searchable, editable FCC composition projected from HB-SPECIAL-FCC. */
+
+/* Keep FCC in navigation and assistive technology without rendering an H1 bar. */
+#furo-main-content section:has(> figure.hb-fcc-composition) > h1:first-child {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+.hb-fcc-composition {
+  --hb-fcc-flow-gap: clamp(0.52rem, 0.9vw, 0.62rem);
+  --hb-fcc-radius: 1rem;
+
+  margin: 0 auto 2.25rem;
+  padding: clamp(1.15rem, 2.5vw, 1.8rem);
+  overflow: hidden;
+  border-radius: var(--hb-fcc-radius);
+  background: var(--hb-surface);
+  color: var(--hb-text);
+}
+
+.hb-fcc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.2rem, 3vw, 2.2rem);
+}
+
+#furo-main-content .hb-fcc-column {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: var(--hb-fcc-flow-gap);
+  font-size: 0.92rem;
+  line-height: 1.34;
+}
+
+.hb-fcc-opening {
+  display: grid;
+  grid-template-columns: clamp(5.8rem, 25%, 7.8rem) minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+}
+
+#furo-main-content .hb-fcc-mark {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+#furo-main-content .hb-fcc-opening-copy .line-block,
+#furo-main-content .hb-fcc-column p,
+#furo-main-content .hb-fcc-column ul,
+#furo-main-content .hb-fcc-column li {
+  margin: 0 !important;
+}
+
+.hb-fcc-opening-copy .line {
+  margin: 0;
+}
+
+#furo-main-content .hb-fcc-column ul {
+  display: grid;
+  gap: var(--hb-fcc-flow-gap);
+  padding-left: 1.05rem;
+}
+
+@media (max-width: 760px) {
+  .hb-fcc-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.35rem;
+  }
+
+  .hb-fcc-composition {
+    padding: 1rem;
+    border-radius: 0.72rem;
+  }
+}

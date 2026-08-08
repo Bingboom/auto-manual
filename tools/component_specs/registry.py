@@ -19,10 +19,14 @@ REGISTRY_SCHEMA_VERSION = "component-registry/v1"
 RENDERERS = ("web", "latex", "idml", "word")
 CAPABILITIES = frozenset({"rendered", "projection-only", "not-applicable"})
 REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
-    "web": frozenset({"manual_callout_table", "hb_spec_table"}),
-    "latex": frozenset({"hb_latex_callout", "hb_latex_spec_table"}),
-    "idml": frozenset({"idml_notice", "idml_spec_table"}),
-    "word": frozenset({"word_manual_callout_table", "word_spec_table"}),
+    "web": frozenset({"manual_callout_table", "hb_spec_table", "hb_fcc"}),
+    "latex": frozenset(
+        {"hb_latex_callout", "hb_latex_spec_table", "hb_latex_fcc"}
+    ),
+    "idml": frozenset({"idml_notice", "idml_spec_table", "idml_fcc"}),
+    "word": frozenset(
+        {"word_manual_callout_table", "word_spec_table", "word_fcc"}
+    ),
 }
 LOCALE_POLICIES = frozenset({"exact", "shared"})
 
@@ -121,6 +125,25 @@ def validate_component_registry(registry: Mapping[str, Any]) -> list[str]:
         assets = raw_component.get("asset_roles")
         if not isinstance(assets, Mapping):
             issues.append(f"{prefix}.asset_roles must be a mapping")
+        else:
+            for role, raw_asset in assets.items():
+                asset_prefix = f"{prefix}.asset_roles.{role}"
+                if not isinstance(role, str) or not role.strip():
+                    issues.append(f"{asset_prefix}: role must be a non-empty string")
+                if not isinstance(raw_asset, Mapping):
+                    issues.append(f"{asset_prefix} must be a mapping")
+                    continue
+                if set(raw_asset) != {"required", "locale_policies"}:
+                    issues.append(f"{asset_prefix} has an invalid asset-role shape")
+                if not isinstance(raw_asset.get("required"), bool):
+                    issues.append(f"{asset_prefix}.required must be boolean")
+                policies = raw_asset.get("locale_policies")
+                if not _non_empty_strings(policies) or not set(policies).issubset(
+                    LOCALE_POLICIES
+                ):
+                    issues.append(
+                        f"{asset_prefix}.locale_policies must use registered policies"
+                    )
         adapters = raw_component.get("adapters")
         if not isinstance(adapters, Mapping):
             issues.append(f"{prefix}.adapters must be a mapping")
@@ -239,6 +262,18 @@ def validate_component_spec(
                 f"{spec.component_id}.{asset.role}: unsupported locale_policy "
                 f"{asset.locale_policy!r}"
             )
+        elif isinstance(asset_definition, Mapping) and asset.locale_policy not in (
+            asset_definition.get("locale_policies") or []
+        ):
+            issues.append(
+                f"{spec.component_id}.{asset.role}: locale_policy "
+                f"{asset.locale_policy!r} is not allowed by the registry"
+            )
+    if isinstance(asset_definitions, Mapping):
+        for role, asset_definition in asset_definitions.items():
+            if isinstance(asset_definition, Mapping) and asset_definition.get("required"):
+                if role not in seen_assets:
+                    issues.append(f"{spec.component_id}: missing required asset {role!r}")
     expected_token_roles = tuple(definition.get("token_roles") or [])
     if spec.token_roles != expected_token_roles:
         issues.append(

@@ -24,18 +24,22 @@
   },
   "fcc": {
     "source_patterns": ["*01_fcc"],
+    "mark_asset_ref": "mark/fcc",
     "mark_path": "docs/renderers/latex/assets/fcc_mark.png",
     "right_column_markers": [
       {
         "source_patterns": ["01_fcc"],
+        "language": "en",
         "marker": "If this equipment does cause harmful interference"
       },
       {
         "source_patterns": ["p22_01_fcc"],
+        "language": "fr",
         "marker": "Si cet équipement trouble la réception"
       },
       {
         "source_patterns": ["p38_01_fcc"],
+        "language": "es",
         "marker": "Si este aparato causa interferencias dañinas"
       }
     ]

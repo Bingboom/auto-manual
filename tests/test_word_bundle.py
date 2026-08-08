@@ -7,6 +7,8 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 
+from bs4 import BeautifulSoup
+
 from tools.word_bundle import derive_word_title, render_safety_word_html, render_spec_word_html, resolve_reference_doc
 from tools.word_bundle_html import (
     _build_word_only_tags,
@@ -20,6 +22,24 @@ from tools.word_bundle_html_rewrite import _extract_spec_word_data
 
 
 class TestWordBundle(unittest.TestCase):
+    def test_document_profile_projects_fcc_as_editable_two_column_html(self) -> None:
+        source = Path("docs/_review/JE-1000F/US/page/01_fcc.rst")
+        with tempfile.TemporaryDirectory() as td:
+            rendered = _convert_rst_fragment_to_html(
+                source.read_text(encoding="utf-8"),
+                source,
+                Path(td),
+            )
+        soup = BeautifulSoup(rendered, "html.parser")
+        table = soup.select_one("table.hb-fcc-word-table")
+        self.assertIsNotNone(table)
+        self.assertEqual("HB-SPECIAL-FCC", table.get("data-component-id") if table else None)
+        self.assertEqual(2, len(table.select("tbody > tr > td")) if table else 0)
+        self.assertEqual(4, len(table.select("li")) if table else 0)
+        self.assertIn("This device complies", table.get_text(" ", strip=True) if table else "")
+        self.assertIn("MODIFICATION:", table.get_text(" ", strip=True) if table else "")
+        self.assertIsNone(soup.select_one(".line-block"))
+
     def test_stage_fragment_assets_should_bind_names_to_content_not_checkout_path(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

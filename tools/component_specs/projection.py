@@ -4,6 +4,7 @@ from __future__ import annotations
 from typing import Iterable
 
 from tools.component_specs.callout import callout_spec_from_legacy_notice
+from tools.component_specs.fcc import fcc_spec_from_legacy_payload
 from tools.component_specs.model import ComponentSpec
 from tools.component_specs.spec_table import spec_table_component_spec
 from tools.manual_ir import ManualIR
@@ -18,6 +19,14 @@ def project_manual_ir_components(ir: ManualIR) -> tuple[ComponentSpec, ...]:
             if block.kind == "component" and block.payload.get("kind") == "notice":
                 projected.append(
                     callout_spec_from_legacy_notice(
+                        block.payload,
+                        source_ref=block.source_ref,
+                        language=page.language,
+                    )
+                )
+            elif block.kind == "component" and block.payload.get("kind") == "fcc":
+                projected.append(
+                    fcc_spec_from_legacy_payload(
                         block.payload,
                         source_ref=block.source_ref,
                         language=page.language,
