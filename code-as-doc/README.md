@@ -39,8 +39,8 @@ These files describe the repo behavior that should be maintained today.
   - family-specific template boundaries that still matter today
 - [`generated_page_authoring.md`](generated_page_authoring.md)
   - generated page, recipe, and snippet authoring rules
-- [`title_style_guide.md`](title_style_guide.md)
-  - title and heading source rules
+- [`../docs/renderers/contracts/STYLE_DEFINITION.md`](../docs/renderers/contracts/STYLE_DEFINITION.md)
+  - canonical cross-renderer style contract, title source rules, and maintenance flow
 - [`dev/layout_params_guide.md`](dev/layout_params_guide.md)
   - current layout parameter semantics
 - [`dev/manual_template_intake_checklist.md`](dev/manual_template_intake_checklist.md)
@@ -79,6 +79,8 @@ Use these together; do not split operator guidance across older phase plans.
   - current repo roadmap and active workstreams
 - [`next_optimization_checklist.md`](next_optimization_checklist.md)
   - active optimization checklist
+- [`dev/style_component_contract_v2_plan.md`](dev/style_component_contract_v2_plan.md)
+  - serial PR plan and completion ledger for the four-renderer style/component contract v2 workstream
 
 ## 5. Historical Or Archived Docs
 

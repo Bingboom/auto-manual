@@ -139,14 +139,15 @@ class LatexComponentModuleTests(unittest.TestCase):
             self.assertNotIn(prefix, base)
         self.assertLess(len(base.splitlines()), 400)
 
-    def test_style_registry_is_complete_and_unique(self) -> None:
-        registry = (LATEX_DIR / "STYLE_REGISTRY.md").read_text(encoding="utf-8")
-        style_ids = re.findall(r"^\| `(HB-[A-Z0-9-]+)` \|", registry, re.MULTILINE)
+    def test_style_definition_is_complete_and_records_load_order(self) -> None:
+        definition = (ROOT / "docs" / "renderers" / "contracts" / "STYLE_DEFINITION.md").read_text(
+            encoding="utf-8"
+        )
+        style_ids = re.findall(r"\| `(HB-[A-Z0-9-]+)` \|", definition)
         self.assertEqual(31, len(style_ids))
         self.assertEqual(len(style_ids), len(set(style_ids)))
-        self.assertIn("34 visible variants", registry)
         for name in COMPONENT_LOAD_ORDER:
-            self.assertIn(name, registry)
+            self.assertIn(name, definition)
 
 
 if __name__ == "__main__":

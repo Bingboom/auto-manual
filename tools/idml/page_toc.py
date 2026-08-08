@@ -332,7 +332,7 @@ def finalize(
     body_w = writer.page_w - writer.m_l - writer.m_r
     y = 33.84
     frames: list[str] = []
-    # master: plain large dark text, no bar (STYLE_MAP.md 标题族)
+    # Master: plain large dark text, no bar (STYLE_DEFINITION.md §2.5).
     title_xml = psr("HB TOC Title", title, terminal=True).replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
@@ -366,7 +366,7 @@ def finalize(
             f"st_toc_range_{si}", f"TOC range {si}",
             [range_xml])
         # rounded via the capsule path Rectangle: CornerOption attrs are
-        # unreliable on generated frames (STYLE_MAP.md 机制备忘)
+        # unreliable on generated frames (STYLE_DEFINITION.md §2.5)
         bar_x = body_x + _BAR_X_OFFSET + si * _BAR_X_STEP
         bar_y = y + _BAR_Y_OFFSET
         frames.append(_po.capsule_xml(
