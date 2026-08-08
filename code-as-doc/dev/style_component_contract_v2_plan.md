@@ -2,7 +2,7 @@
 
 Date: 2026-08-07
 
-Status: active plan
+Status: PR 0 submitted; awaiting merge
 
 Owner: renderer contract maintainers
 Canonical style definition: [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)
@@ -188,7 +188,7 @@ No two PRs in this workstream may edit the contract concurrently.
 
 | Step | Submitted | Complete | Branch | Commit | PR | Merged commit | Required evidence | Notes |
 |---|---|---|---|---|---|---|---|---|
-| PR 0 — baseline definition and this plan | [ ] | [ ] | `feat/tools-plain-markdown-site` | pending plan commit | [#874](https://github.com/Bingboom/auto-manual/pull/874) | — | docs links, full unit, reference pins, all PR checks | Existing PR; implementation PRs wait for merge |
+| PR 0 — baseline definition and this plan | [x] | [ ] | `feat/tools-plain-markdown-site` | `d1fff5c3` (PR head `18ce951d`) | [#874](https://github.com/Bingboom/auto-manual/pull/874) | — | local: 2771 passed, 5 skipped; links/pins green; Actions runs `31247667971` + `31247667955` 17/17 green | Submitted 2026-08-08; implementation PRs wait for merge |
 | PR 1 — document convergence and debt vocabulary | [ ] | [ ] | `docs/style-contract-v2-vocabulary` | — | — | — | docs links, contract tests, zero output change | — |
 | PR 2 — style schema v2 and four-renderer bindings | [ ] | [ ] | `feat/style-contract-schema-v2` | — | — | — | schema tests, full unit, style-only pin rebind proof | — |
 | PR 3 — ComponentSpec core and Callout pilot | [ ] | [ ] | `refactor/renderers-component-spec-callout` | — | — | — | adapter parity, Web/LaTeX/IDML/Word callout comparison | — |
