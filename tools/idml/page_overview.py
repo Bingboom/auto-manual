@@ -9,7 +9,12 @@ from __future__ import annotations
 import ast
 import re
 from pathlib import Path
+from typing import Any, Mapping
 from xml.sax.saxutils import escape
+
+from tools.component_specs.overview import overview_spec_from_blocks
+from tools.component_specs.overview_adapters import idml_overview_projection
+from tools.component_specs.overview_instance import resolve_overview_instance
 
 from .character_metrics import with_character_metrics
 from .page_objects import frame_with_background, heading_bar_opts, heading_text
@@ -242,106 +247,67 @@ def _right_cells(blocks: list[Block]) -> list[tuple[str, str]]:
     return [handle, dc_input, ac_input]
 
 
-# Label frame positions are keyed by source-table semantics, not localized copy.
-# Keep left-side copy inside the white label lane; the wider legacy frames let
-# long port specifications run over the linked product artwork.  The front
-# art's opaque product body starts at about x=110 pt, so a 76 pt label lane
-# leaves a small, intentional gap from the left edge of the artwork.
-_FRONT_LEFT_LABEL_WIDTH = 76.0
-_RIGHT_LEFT_LABEL_WIDTH = 87.0
-_FRONT_RECTS = (
-    (31.5, 106.22, _FRONT_LEFT_LABEL_WIDTH, 14.0, "LeftAlign"),
-    (270.0, 106.32, 71.232, 14.0, "RightAlign"),
-    (31.5, 129.93, _FRONT_LEFT_LABEL_WIDTH, 26.0, "LeftAlign"),
-    (268.0, 129.38, 73.273, 17.0, "RightAlign"),
-    (31.5, 159.27, _FRONT_LEFT_LABEL_WIDTH, 24.0, "LeftAlign"),
-    (276.0, 159.02, 66.786, 14.0, "RightAlign"),
-    (31.5, 185.38, _FRONT_LEFT_LABEL_WIDTH, 39.0, "LeftAlign"),
-    (264.0, 180.44, 76.854, 25.0, "RightAlign"),
-    (31.5, 227.01, _FRONT_LEFT_LABEL_WIDTH, 34.0, "LeftAlign"),
-    (274.0, 205.26, 66.854, 28.0, "RightAlign"),
-    (31.5, 267.93, _FRONT_LEFT_LABEL_WIDTH, 18.0, "LeftAlign"),
-    (246.0, 259.45, 94.854, 29.0, "RightAlign"),
-)
-
-_FRONT_ROLES = (
-    "power",
-    "lcd",
-    "dc12",
-    "led_button",
-    "usb_c_30",
-    "led",
-    "usb_c_100",
-    "ac_power",
-    "usb_a",
-    "ac_output",
-    "dc_usb",
-    "total",
-)
-
-_RIGHT_RECTS = (
-    (34.5, 340.26, _RIGHT_LEFT_LABEL_WIDTH, 14.0, "LeftAlign"),
-    (35.17, 369.61, _RIGHT_LEFT_LABEL_WIDTH, 40.0, "LeftAlign"),
-    (262.0, 381.70, 78.099, 28.0, "RightAlign"),
-)
-
-_RIGHT_ROLES = ("handle", "dc_input", "ac_input")
-
-
-_LEADER_PATHS = (
-    ("power", ((31.489, 114.185), (158.505, 114.185), (158.505, 161.418))),
-    ("lcd", ((341.847, 114.186), (189.796, 114.186), (189.796, 161.661))),
-    ("dc12", ((31.489, 146.871), (141.445, 146.871), (141.445, 164.866))),
-    ("led_button", ((341.848, 139.520), (215.164, 139.520), (215.164, 160.417))),
-    (
-        "usb_c_30",
-        (
-            (31.489, 181.322),
-            (121.975, 181.322),
-            (121.975, 191.433),
-            (137.166, 191.433),
-        ),
-    ),
-    (
-        "usb_c_100",
-        (
-            (32.711, 206.567),
-            (133.707, 206.567),
-            (133.707, 199.327),
-            (136.899, 199.327),
-        ),
-    ),
-    ("usb_a", ((31.564, 247.150), (141.445, 247.150), (141.445, 215.192))),
-    ("dc_usb", ((31.887, 279.076), (157.544, 279.076), (157.544, 207.125))),
-    ("led", ((343.063, 168.024), (240.218, 168.024))),
-    ("ac_power", ((341.333, 189.037), (176.970, 189.037), (176.970, 196.944))),
-    ("ac_output", ((341.848, 229.197), (227.181, 229.197), (227.181, 213.113))),
-    ("total", ((343.063, 277.164), (246.136, 277.164))),
-    ("handle", ((34.461, 350.439), (203.393, 350.439), (203.393, 363.743))),
-    ("dc_input", ((34.461, 400.923), (167.819, 400.923))),
-    ("ac_input", ((341.261, 398.558), (209.153, 398.558))),
-    ("total_connector", ((213.902, 213.103), (213.902, 260.327))),
-)
-
-# The target-specific front-view art intentionally knocks out this vertical
-# connector line so the editable leader can bridge the body and the detached
-# three-socket graphic.  At the standard leader weight it rasterizes too
-# lightly in InDesign, leaving the base art looking incomplete.
-_LEADER_STROKE_WEIGHTS = {
-    "total_connector": 0.60,
+# Compatibility views of the default target instance. Production composition
+# resolves the writer's model/region below; these aliases preserve the focused
+# geometry-test surface until PR 9 removes the old constants.
+_DEFAULT_INSTANCE = resolve_overview_instance(model=None, region=None)
+_DEFAULT_VIEWS = {
+    str(view["id"]): view for view in _DEFAULT_INSTANCE["views"]
 }
-
-# These labels sit immediately above their horizontal leader.  Anchor their
-# text to the leader instead of assigning a locale-specific top coordinate:
-# a two-line French label then keeps the same visible gap as a one-line
-# English label, and neither can descend through the rule.
-_LABELS_ABOVE_LEADER = frozenset({
-    "dc_usb",
-    "ac_output",
-    "total",
-    "dc_input",
-    "ac_input",
-})
+_FRONT_ROLES = tuple(
+    str(callout["id"]) for callout in _DEFAULT_VIEWS["front"]["callouts"]
+)
+_RIGHT_ROLES = tuple(
+    str(callout["id"]) for callout in _DEFAULT_VIEWS["right"]["callouts"]
+)
+_FRONT_RECTS = tuple(
+    (
+        *(float(value) for value in callout["idml"]["rect"]),
+        str(callout["idml"]["align"]),
+    )
+    for callout in _DEFAULT_VIEWS["front"]["callouts"]
+)
+_RIGHT_RECTS = tuple(
+    (
+        *(float(value) for value in callout["idml"]["rect"]),
+        str(callout["idml"]["align"]),
+    )
+    for callout in _DEFAULT_VIEWS["right"]["callouts"]
+)
+_DEFAULT_IDML_PROJECTION = {
+    f"{view['id']}.{callout['id']}": callout["idml"]
+    for view in _DEFAULT_INSTANCE["views"]
+    for callout in view["callouts"]
+}
+_DEFAULT_DECORATIVE = {
+    f"decorative.{leader['id']}": leader
+    for leader in _DEFAULT_INSTANCE["idml_decorative_leaders"]
+}
+_DEFAULT_LEADER_LOOKUP = {**_DEFAULT_IDML_PROJECTION, **_DEFAULT_DECORATIVE}
+_LEADER_PATHS = tuple(
+    (
+        str(_DEFAULT_LEADER_LOOKUP[key].get("id") or key.rsplit(".", 1)[-1]),
+        tuple(
+            (float(point[0]), float(point[1]))
+            for point in (
+                _DEFAULT_LEADER_LOOKUP[key].get("leader")
+                or _DEFAULT_LEADER_LOOKUP[key]["points"]
+            )
+        ),
+    )
+    for key in _DEFAULT_INSTANCE["idml_leader_order"]
+)
+_LEADER_STROKE_WEIGHTS = {
+    str(leader["id"]): float(leader["stroke_weight"])
+    for leader in _DEFAULT_INSTANCE["idml_decorative_leaders"]
+    if float(leader["stroke_weight"]) != 0.3
+}
+_LABELS_ABOVE_LEADER = frozenset(
+    str(callout["id"])
+    for view in _DEFAULT_INSTANCE["views"]
+    for callout in view["callouts"]
+    if callout["idml"].get("anchor") == "above-leader"
+)
 _LEADER_Y_BY_ROLE = {
     role: points[0][1]
     for role, points in _LEADER_PATHS
@@ -354,7 +320,9 @@ def _label_frames(writer, sid: str,
                   rects: tuple[tuple[float, float, float, float, str], ...],
                   roles: tuple[str, ...],
                   *,
-                  leader_gap: float) -> list[str]:
+                  leader_gap: float,
+                  leader_y_by_role: Mapping[str, float] | None = None) -> list[str]:
+    anchored_leaders = leader_y_by_role or _LEADER_Y_BY_ROLE
     frames: list[str] = []
     for index, ((label, value), (x, y, width, height, align), role) in enumerate(
         zip(cells, rects, roles, strict=True)
@@ -362,11 +330,11 @@ def _label_frames(writer, sid: str,
         if not label:
             continue
         opts: dict[str, object] = {"inset": (0, 0, 0, 0)}
-        if role in _LABELS_ABOVE_LEADER:
+        if role in anchored_leaders:
             # Encode the gap in native frame geometry.  InDesign discards the
             # compact InsetSpacing attribute on these absolute text frames,
             # while a frame bottom above the leader survives IDML import.
-            y = _LEADER_Y_BY_ROLE[role] - leader_gap - height
+            y = anchored_leaders[role] - leader_gap - height
             opts = {
                 "inset": (0, 0, 0, 0),
                 "valign": "BottomAlign",
@@ -397,12 +365,39 @@ def add_product_overview_page(
     if any(asset is None for asset in assets):
         raise ValueError("product overview contains an unresolved governed image")
 
-    first_h2 = next(i for i, block in enumerate(blocks) if block[0] == "h2")
-    second_h2 = next(
-        i for i in range(first_h2 + 1, len(blocks)) if blocks[i][0] == "h2"
-    )
-    front_blocks = blocks[first_h2 + 1:second_h2]
-    right_blocks = blocks[second_h2 + 1:]
+    instance = resolve_overview_instance(model=writer.model, region=writer.region)
+    try:
+        spec = overview_spec_from_blocks(
+            blocks,
+            instance=instance,
+            source_ref=sid,
+            language=str(writer.language or "und"),
+        )
+        projection = idml_overview_projection(spec, instance)
+    except Exception as exc:
+        raise ValueError(f"invalid product overview semantics: {exc}") from exc
+    views = {str(view["id"]): view for view in projection["views"]}
+    front_view = views["front"]
+    right_view = views["right"]
+    h1 = str(projection["accessibility_label"])
+    h2s = [str(front_view["title"]), str(right_view["title"])]
+    image_refs = [str(front_view["image_ref"]), str(right_view["image_ref"])]
+
+    page_geometry = projection["page"]
+
+    def rect(values: object) -> tuple[float, float, float, float]:
+        if not isinstance(values, list) or len(values) != 4:
+            raise ValueError("product overview geometry rectangle must have four values")
+        return tuple(float(value) for value in values)  # type: ignore[return-value]
+
+    def cells(view: Mapping[str, Any]) -> list[tuple[str, str]]:
+        result: list[tuple[str, str]] = []
+        for callout in view["callouts"]:
+            value = "\n".join(str(item) for item in callout.get("body", []))
+            if callout["id"] == "dc_input":
+                value = _break_vehicle_spec(value)
+            result.append((str(callout["label"]), value))
+        return result
 
     title_sid = writer._add_story_parts(
         f"{sid}_title", h1, [heading_text(writer, h1, level=1)])
@@ -410,27 +405,27 @@ def add_product_overview_page(
         writer,
         f"{sid}_front",
         h2s[0],
-        text_y=69.832,
-        bullet_rect=(30.425, 69.991, 7.067, 7.068),
+        text_y=float(front_view["heading_text_y"]),
+        bullet_rect=rect(front_view["heading_bullet_rect"]),
     )
     _, right_heading = _section_heading(
         writer,
         f"{sid}_right",
         h2s[1],
-        text_y=317.009,
-        bullet_rect=(30.425, 317.336, 7.067, 7.068),
+        text_y=float(right_view["heading_text_y"]),
+        bullet_rect=rect(right_view["heading_bullet_rect"]),
     )
 
     artwork_and_headings = [
         _graphic_frame(writer, f"art_{sid}_front", assets[0],
-                       (28.0, 98.0, 317.0, 185.0)),  # type: ignore[arg-type]
+                       rect(front_view["art_rect"])),  # type: ignore[arg-type]
         _graphic_frame(writer, f"art_{sid}_right", assets[1],
-                       (30.0, 335.0, 315.0, 157.0)),  # type: ignore[arg-type]
+                       rect(right_view["art_rect"])),  # type: ignore[arg-type]
         frame_with_background(
             writer, sid, "title", title_sid,
-            (29.505, 28.035, 311.91, 20.065),
+            rect(page_geometry["title_frame"]),
             {**heading_bar_opts(1, (1.5, 5.0, 1.0, 6.0)),
-             "text_rect": (35.9, 26.12, 299.0, 20.1)},
+             "text_rect": rect(page_geometry["title_text_rect"])},
         ),
         *front_heading,
         *right_heading,
@@ -443,7 +438,16 @@ def add_product_overview_page(
             color="Color/Paper",
             weight=1.82,
         )
-        for name, points in _LEADER_PATHS
+        for leader in projection["leaders"]
+        for name, points in [
+            (
+                str(leader["id"]),
+                tuple(
+                    (float(point[0]), float(point[1]))
+                    for point in leader["points"]
+                ),
+            )
+        ]
     ]
     dark_leaders = [
         _leader_path(
@@ -451,31 +455,58 @@ def add_product_overview_page(
             f"leader_{sid}_{name}",
             points,
             color="Color/HB Brand Dark",
-            weight=_LEADER_STROKE_WEIGHTS.get(name, 0.30),
+            weight=float(leader["stroke_weight"]),
         )
-        for name, points in _LEADER_PATHS
+        for leader in projection["leaders"]
+        for name, points in [
+            (
+                str(leader["id"]),
+                tuple(
+                    (float(point[0]), float(point[1]))
+                    for point in leader["points"]
+                ),
+            )
+        ]
     ]
     leader_gap = param_pt(
         writer.params,
         "idml_overview_label_leader_gap",
         1.2,
     )
+    front_rects = tuple(
+        (*rect(callout["rect"]), str(callout["align"]))
+        for callout in front_view["callouts"]
+    )
+    right_rects = tuple(
+        (*rect(callout["rect"]), str(callout["align"]))
+        for callout in right_view["callouts"]
+    )
+    front_roles = tuple(str(callout["id"]) for callout in front_view["callouts"])
+    right_roles = tuple(str(callout["id"]) for callout in right_view["callouts"])
+    leader_y_by_role = {
+        str(callout["id"]): float(callout["leader"][0][1])
+        for view in projection["views"]
+        for callout in view["callouts"]
+        if callout.get("anchor") == "above-leader"
+    }
     label_frames = [
         *_label_frames(
             writer,
             f"{sid}_front",
-            _front_cells(front_blocks),
-            _FRONT_RECTS,
-            _FRONT_ROLES,
+            cells(front_view),
+            front_rects,
+            front_roles,
             leader_gap=leader_gap,
+            leader_y_by_role=leader_y_by_role,
         ),
         *_label_frames(
             writer,
             f"{sid}_right",
-            _right_cells(right_blocks),
-            _RIGHT_RECTS,
-            _RIGHT_ROLES,
+            cells(right_view),
+            right_rects,
+            right_roles,
             leader_gap=leader_gap,
+            leader_y_by_role=leader_y_by_role,
         ),
     ]
     # All editable copy is emitted last and therefore opens above artwork and

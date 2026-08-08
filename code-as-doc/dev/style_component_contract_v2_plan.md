@@ -2,7 +2,7 @@
 
 Date: 2026-08-07
 
-Status: PR 0–6 complete; PR 7 submitted
+Status: PR 0–7 complete; PR 8 submitted
 
 Owner: renderer contract maintainers
 Canonical style definition: [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)
@@ -195,8 +195,8 @@ No two PRs in this workstream may edit the contract concurrently.
 | PR 4 — Spec Table and theme-token projection | [x] | [x] | `refactor/renderers-component-spec-table` | `d4016c98` | [#892](https://github.com/Bingboom/auto-manual/pull/892) | `78aa66ef` | token projection, four-renderer spec-table comparison | Local: 2798 unit tests (5 skips), Ruff, mypy, guardrails, docs links, reference pins, and committed-fixture US check green; runtime RST 228/228, Web Markdown/normalized HTML, PDF 63/63 pages with 0 raster mismatches, Word 73/73 content entries, and normalized production/flow IDML 728/728 + 285/285 entries identical. PR 17/17 green; merged-main Actions `31256725188`; Hello-Docs mirror `31256725205` |
 | PR 5 — shared PagePlan and page/type partials | [x] | [x] | `refactor/renderers-shared-page-plan` | `fbe576bc` | [#893](https://github.com/Bingboom/auto-manual/pull/893) | `3d854c38` | 52-source/58-physical parity, folio/type checks | Submitted and merged 2026-08-08. Local: Ruff, 280 focused tests, 2804 full unit tests (5 skips), mypy, guardrails, docs links, reference pins, and committed-fixture US check green. Approved plan remains 52 source / 58 physical pages and 40 compositions; normalized production IDML has the same 728 entries with only dedicated style/folio changes; PDF is 61/61 raster-identical pages; Word is 130/130 normalized OOXML entries and 52/52 raster-identical pages; Web is 62/62 normalized bundle files identical and the real Sphinx `-W` build has no fixed-page markers. PR 17/17 green; merged-main Actions `31260397798`; Hello-Docs mirror `31260397800`. |
 | PR 6 — FCC ComponentSpec | [x] | [x] | `refactor/renderers-fcc-component` | `295cd4e1` (final head `26853add`) | [#894](https://github.com/Bingboom/auto-manual/pull/894) | `407f697c` | three-language PDF/IDML/Web/Word checks | Submitted and merged 2026-08-08. PR 17/17 green with 0 review threads. Local: Ruff; 115 focused and 2811 full unit tests (5 skips); mypy; guardrails; docs links; reference pins; fixture US check. Web desktop is byte-identical and the mobile component pixels are identical below the test-only sticky title; PDF is 66/66 raster-identical; normalized production/flow IDML is 728/728 + 285/285 identical; Word emits three editable two-column FCC tables. |
-| PR 7 — Inbox ComponentSpec | [x] | [ ] | `refactor/renderers-inbox-component` | `1cb6334b` | [#895](https://github.com/Bingboom/auto-manual/pull/895) | — | three-card desktop/mobile and fixed-page parity | Submitted 2026-08-08 from `origin/main@407f697c`; local Ruff, 121 focused tests, 2818 full unit tests (5 skips), mypy, guardrails, docs links, reference pins, and fixture US check are green. PDF is 63/63 pages raster-identical; normalized production/flow IDML is 728/728 + 285/285 entries identical; real Sphinx `-W` and desktop/mobile EN/FR/ES screenshots are pixel-identical with all cards, images, labels, and tip strips intact. Word bundle HTML contains three editable Inbox tables; final DOCX export remains covered by the pre-existing empty-`main` debt assigned to PR 9. Legacy page-shape entrypoints remain compatibility facades until PR 9. |
-| PR 8 — Overview ComponentSpec and target geometry | [ ] | [ ] | `refactor/renderers-overview-component` | — | — | — | three-language composite/live fallback, mobile completeness | — |
+| PR 7 — Inbox ComponentSpec | [x] | [x] | `refactor/renderers-inbox-component` | `1cb6334b` (final head `985e5b4c`) | [#895](https://github.com/Bingboom/auto-manual/pull/895) | `98498dbc` | three-card desktop/mobile and fixed-page parity | Submitted and merged 2026-08-08. PR 17/17 green with 0 review threads; merged-main Manual Validation `31269018895` and Hello-Docs mirror `31269018896` succeeded. Local Ruff, 121 focused tests, 2818 full unit tests (5 skips), mypy, guardrails, docs links, reference pins, and fixture US check are green. PDF is 63/63 pages raster-identical; normalized production/flow IDML is 728/728 + 285/285 entries identical; real Sphinx `-W` and desktop/mobile EN/FR/ES screenshots are pixel-identical. Word bundle HTML contains three editable Inbox tables; final DOCX export remains covered by the pre-existing empty-`main` debt assigned to PR 9. |
+| PR 8 — Overview ComponentSpec and target geometry | [x] | [ ] | `refactor/renderers-overview-component` | `8b094387` | [#896](https://github.com/Bingboom/auto-manual/pull/896) | — | three-language composite/live fallback, mobile completeness | Submitted 2026-08-08. Local: Ruff, 157 focused tests, 2826 full unit tests (5 skips), mypy, guardrails, docs links, reference pins, real Sphinx `-W`, 12 desktop/mobile screenshots, 64/64 PDF pages, and normalized production/flow IDML 728/728 + 285/285 parity. The six US source-data check findings reproduce on `origin/main@98498dbc`. |
 | PR 9 — compatibility cleanup and final acceptance | [ ] | [ ] | `refactor/renderers-style-contract-v2-closeout` | — | — | — | all strict gates, real builds, golden comparison, RTD build | — |
 
 ## 5. PR 0 — baseline definition and executable plan
@@ -655,6 +655,27 @@ approved images.
   mobile screenshots;
 - characterization of live annotated and approved-composite variants.
 
+### Fresh re-inventory at `origin/main@98498dbc`
+
+- The source page already carries the complete editable semantics: one H1,
+  two stable views, two governed image refs, and 15 ordered localized
+  callouts. Web and IDML currently reconstruct that same meaning independently.
+- Web target geometry, composite keys, and locale/source mappings live inside
+  the otherwise generic `web_manual.json`; IDML target geometry is a second
+  set of Python constants in `tools/idml/page_overview.py`.
+- The frozen manifest remains authoritative and unchanged: eight localized
+  logical groups times EN/FR/ES plus one shared asset (25 physical files).
+  Existing exact-locale/shared-only selection, source-fragment hashing, and
+  duplicate/hash fail-closed behavior are safety nets, not migration targets.
+- The JE-1000F/US instance has two views, 15 semantic callouts, and 16 IDML
+  leader paths (15 semantic plus one decorative connector). The new instance
+  contract must register these IDs once and prove renderer geometry parity.
+- `web_manual.json.product_overview.views` remains accepted as a compatibility
+  input until PR 9; new production loading uses a versioned target instance.
+
+PR 8 does not change approved asset bytes, source copy/order, manifest schema,
+fixed-page geometry, reference content/assembly identity, or publish behavior.
+
 ### Expected files
 
 - Overview registry definition and source projector;
@@ -688,6 +709,32 @@ approved images.
 - IDML absolute geometry is target-scoped, parameterized, registered, and
   tested rather than removed;
 - `HB-SPECIAL-OVERVIEW` becomes aligned and full validation passes.
+
+### Local acceptance evidence before submission
+
+- Ruff, 157 focused component/contract tests, 2,826 full unit tests with five
+  skips, mypy, maintainability guardrails, documentation links, and reference
+  pins pass.
+- The repository quality-gate command reports six missing-value issues for
+  `UPS_TRANSFER_TIME`, `PV_INPUT_RANGE`, and `DC_INPUT_CONNECTOR`; an isolated
+  `origin/main@98498dbc` run against the same phase2 snapshot reports the exact
+  same six issues. PR 8 therefore neither introduces nor hides this unrelated
+  source-data debt.
+- Real RTD-equivalent Sphinx builds pass with `-W`. EN/FR/ES approved-composite
+  Overview output has six complete figures; all six are pixel-identical to the
+  baseline at both 1,440 px desktop and 390 px mobile viewports. On mobile the
+  six figures remain inside the 358 px content band with the composite visible
+  and the live annotated fallback hidden.
+- EN/FR/ES composite and live-fallback HTML, source-fragment hashes, callout
+  IDs/order, and approved asset hashes are unchanged. The production and flow
+  IDML packages are identical across 728/728 and 285/285 normalized entries;
+  Overview keeps 32 graphic lines, 16 knockout leaders, fifteen 0.3 pt semantic
+  leaders, and one 0.6 pt decorative leader.
+- The real 64-page PDF is raster-identical to the isolated baseline on every
+  page. The Word projection retains two editable views and 15 ordered callouts
+  without fixed-page geometry; the bundle HTML contains the localized Overview
+  content. The known empty final DOCX body is unchanged and remains assigned to
+  PR 9's `<main>` selection fix.
 
 ### Rollback point
 

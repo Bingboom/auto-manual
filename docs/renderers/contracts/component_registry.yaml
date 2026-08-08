@@ -98,3 +98,27 @@ components:
       latex: {capability: rendered, key: hb_latex_inbox}
       idml: {capability: rendered, key: idml_inbox}
       word: {capability: rendered, key: word_inbox}
+
+  HB-SPECIAL-OVERVIEW:
+    style_id: HB-SPECIAL-OVERVIEW
+    source_kinds: [overview]
+    variants: [annotated-live, approved-composite]
+    slots:
+      accessibility_label:
+        required: true
+        content_kinds: [inline_text]
+      views:
+        required: true
+        content_kinds: [ordered_views]
+      geometry_ref:
+        required: true
+        content_kinds: [instance_ref]
+    asset_roles:
+      front_art: {required: true, locale_policies: [shared]}
+      right_art: {required: true, locale_policies: [shared]}
+    token_roles: [component.special.overview]
+    adapters:
+      web: {capability: rendered, key: hb_overview}
+      latex: {capability: projection-only, key: hb_latex_overview}
+      idml: {capability: rendered, key: idml_overview}
+      word: {capability: projection-only, key: word_overview}

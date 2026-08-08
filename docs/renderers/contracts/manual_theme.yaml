@@ -36,6 +36,13 @@ component_roles:
       - radius.inbox
       - type.inbox.label
       - width.component-band
+  component.special.overview:
+    component_ids: [HB-SPECIAL-OVERVIEW]
+    theme_roles:
+      - surface.paper
+      - line.overview.leader
+      - type.overview.label
+      - width.component-band
 
 roles:
   surface.brand:
@@ -116,6 +123,18 @@ roles:
       latex: {kind: macro, name: HBtype_inbox_label_font_size}
       idml: {kind: paragraph-style, name: HB InBox Label}
       word: {kind: html-class, name: hb-inbox-word-card}
+  line.overview.leader:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-brand-dark}
+      latex: {kind: color, name: HBTextBlack}
+      idml: {kind: color, name: Color/HB Brand Dark}
+      word: {kind: style, name: BodyText}
+  type.overview.label:
+    bindings:
+      web: {kind: css-custom-property, name: --hb-font-family}
+      latex: {kind: macro, name: HBOverviewPanel}
+      idml: {kind: paragraph-style, name: HB Body}
+      word: {kind: style, name: BodyText}
   width.component-band:
     bindings:
       web: {kind: css-custom-property, name: --hb-component-band-max}

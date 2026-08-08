@@ -1,0 +1,183 @@
+{
+  "schema_version": "overview-component-instances/v1",
+  "default_instance_id": "je1000f-us-v1",
+  "instances": {
+    "je1000f-us-v1": {
+      "component_id": "HB-SPECIAL-OVERVIEW",
+      "target": {
+        "model": "JE-1000F",
+        "region": "US"
+      },
+      "source_patterns": [
+        "*03_product_overview_placeholder"
+      ],
+      "page": {
+        "title_frame": [29.505, 28.035, 311.91, 20.065],
+        "title_text_rect": [35.9, 26.12, 299.0, 20.1]
+      },
+      "views": [
+        {
+          "id": "front",
+          "asset_role": "front_art",
+          "image_key": "overview/front_controls",
+          "web_replace_key": "product-overview.front",
+          "composite_locales": [
+            {"source_patterns": ["03_product_overview_placeholder"], "locale": "en"},
+            {"source_patterns": ["p24_03_product_overview_placeholder"], "locale": "fr"},
+            {"source_patterns": ["p40_03_product_overview_placeholder"], "locale": "es"}
+          ],
+          "web": {
+            "aspect_ratio": 1.668421,
+            "decorative_leaders": [
+              [[58.644, 60.581], [58.644, 85.435]]
+            ]
+          },
+          "idml": {
+            "art_rect": [28.0, 98.0, 317.0, 185.0],
+            "heading_text_y": 69.832,
+            "heading_bullet_rect": [30.425, 69.991, 7.067, 7.068]
+          },
+          "callouts": [
+            {
+              "id": "power",
+              "source_slot": "front.left.0",
+              "web": {"rect": [1.104, 4.326, 34.069, 7.368], "align": "left", "leader": [[1.101, 8.518], [41.169, 8.518], [41.169, 33.378]]},
+              "idml": {"rect": [31.5, 106.22, 76.0, 14.0], "align": "LeftAlign", "leader": [[31.489, 114.185], [158.505, 114.185], [158.505, 161.418]]}
+            },
+            {
+              "id": "lcd",
+              "source_slot": "front.right.0",
+              "web": {"rect": [76.341, 4.379, 22.471, 7.368], "align": "right", "leader": [[99.005, 8.519], [51.04, 8.519], [51.04, 33.506]]},
+              "idml": {"rect": [270.0, 106.32, 71.232, 14.0], "align": "RightAlign", "leader": [[341.847, 114.186], [189.796, 114.186], [189.796, 161.661]]}
+            },
+            {
+              "id": "dc12",
+              "source_slot": "front.left.1",
+              "web": {"rect": [1.104, 16.805, 34.069, 13.684], "align": "left", "leader": [[1.101, 25.722], [35.787, 25.722], [35.787, 35.193]]},
+              "idml": {"rect": [31.5, 129.93, 76.0, 26.0], "align": "LeftAlign", "leader": [[31.489, 146.871], [141.445, 146.871], [141.445, 164.866]]}
+            },
+            {
+              "id": "led_button",
+              "source_slot": "front.right.1",
+              "web": {"rect": [75.71, 16.516, 23.115, 8.947], "align": "right", "leader": [[99.006, 21.853], [59.042, 21.853], [59.042, 32.851]]},
+              "idml": {"rect": [268.0, 129.38, 73.273, 17.0], "align": "RightAlign", "leader": [[341.848, 139.52], [215.164, 139.52], [215.164, 160.417]]}
+            },
+            {
+              "id": "usb_c_30",
+              "source_slot": "front.left.2",
+              "web": {"rect": [1.104, 32.247, 34.069, 12.632], "align": "left", "leader": [[1.101, 43.854], [29.645, 43.854], [29.645, 49.175], [34.437, 49.175]]},
+              "idml": {"rect": [31.5, 159.27, 76.0, 24.0], "align": "LeftAlign", "leader": [[31.489, 181.322], [121.975, 181.322], [121.975, 191.433], [137.166, 191.433]]}
+            },
+            {
+              "id": "led",
+              "source_slot": "front.right.2",
+              "web": {"rect": [78.233, 32.116, 21.068, 7.368], "align": "right", "leader": [[99.389, 36.855], [66.946, 36.855]]},
+              "idml": {"rect": [276.0, 159.02, 66.786, 14.0], "align": "RightAlign", "leader": [[343.063, 168.024], [240.218, 168.024]]}
+            },
+            {
+              "id": "usb_c_100",
+              "source_slot": "front.left.3",
+              "web": {"rect": [1.104, 45.989, 34.069, 20.526], "align": "left", "leader": [[1.486, 57.141], [33.346, 57.141], [33.346, 53.33], [34.353, 53.33]]},
+              "idml": {"rect": [31.5, 185.38, 76.0, 39.0], "align": "LeftAlign", "leader": [[32.711, 206.567], [133.707, 206.567], [133.707, 199.327], [136.899, 199.327]]}
+            },
+            {
+              "id": "ac_power",
+              "source_slot": "front.right.3",
+              "web": {"rect": [74.448, 43.389, 24.244, 13.158], "align": "right", "leader": [[98.843, 47.914], [46.994, 47.914], [46.994, 52.076]]},
+              "idml": {"rect": [264.0, 180.44, 76.854, 25.0], "align": "RightAlign", "leader": [[341.333, 189.037], [176.97, 189.037], [176.97, 196.944]]}
+            },
+            {
+              "id": "usb_a",
+              "source_slot": "front.left.4",
+              "web": {"rect": [1.104, 67.9, 34.069, 17.895], "align": "left", "leader": [[1.124, 78.5], [35.787, 78.5], [35.787, 61.68]]},
+              "idml": {"rect": [31.5, 227.01, 76.0, 34.0], "align": "LeftAlign", "leader": [[31.564, 247.15], [141.445, 247.15], [141.445, 215.192]]}
+            },
+            {
+              "id": "ac_output",
+              "source_slot": "front.right.4",
+              "web": {"rect": [77.603, 56.453, 21.09, 14.737], "align": "right", "leader": [[99.006, 69.051], [62.833, 69.051], [62.833, 60.586]]},
+              "idml": {"rect": [274.0, 205.26, 66.854, 28.0], "align": "RightAlign", "leader": [[341.848, 229.197], [227.181, 229.197], [227.181, 213.113]], "anchor": "above-leader"}
+            },
+            {
+              "id": "dc_usb",
+              "source_slot": "front.left.5",
+              "web": {"rect": [1.104, 89.437, 34.069, 9.474], "align": "left", "leader": [[1.226, 95.303], [40.866, 95.303], [40.866, 57.434]]},
+              "idml": {"rect": [31.5, 267.93, 76.0, 18.0], "align": "LeftAlign", "leader": [[31.887, 279.076], [157.544, 279.076], [157.544, 207.125]], "anchor": "above-leader"}
+            },
+            {
+              "id": "total",
+              "source_slot": "front.total.0",
+              "web": {"rect": [73.817, 84.974, 24.875, 15.263], "align": "right", "leader": [[99.389, 94.297], [68.813, 94.297]]},
+              "idml": {"rect": [246.0, 259.45, 94.854, 29.0], "align": "RightAlign", "leader": [[343.063, 277.164], [246.136, 277.164]], "anchor": "above-leader"}
+            }
+          ]
+        },
+        {
+          "id": "right",
+          "asset_role": "right_art",
+          "image_key": "overview/right_side_ports",
+          "web_replace_key": "product-overview.right",
+          "composite_locales": [
+            {"source_patterns": ["03_product_overview_placeholder"], "locale": "en"},
+            {"source_patterns": ["p24_03_product_overview_placeholder"], "locale": "fr"},
+            {"source_patterns": ["p40_03_product_overview_placeholder"], "locale": "es"}
+          ],
+          "web": {
+            "aspect_ratio": 2.006369,
+            "decorative_leaders": []
+          },
+          "idml": {
+            "art_rect": [30.0, 335.0, 315.0, 157.0],
+            "heading_text_y": 317.009,
+            "heading_bullet_rect": [30.425, 317.336, 7.067, 7.068]
+          },
+          "callouts": [
+            {
+              "id": "handle",
+              "source_slot": "right.sequence.0",
+              "web": {"rect": [1.429, 3.35, 34.921, 8.917], "align": "left", "leader": [[1.416, 9.834], [55.045, 9.834], [55.045, 18.308]]},
+              "idml": {"rect": [34.5, 340.26, 87.0, 14.0], "align": "LeftAlign", "leader": [[34.461, 350.439], [203.393, 350.439], [203.393, 363.743]]}
+            },
+            {
+              "id": "dc_input",
+              "source_slot": "right.sequence.2",
+              "web": {"rect": [1.641, 22.045, 28.571, 25.478], "align": "left", "leader": [[1.416, 41.989], [43.752, 41.989]]},
+              "idml": {"rect": [35.17, 369.61, 87.0, 40.0], "align": "LeftAlign", "leader": [[34.461, 400.923], [167.819, 400.923]], "anchor": "above-leader"}
+            },
+            {
+              "id": "ac_input",
+              "source_slot": "right.sequence.1",
+              "web": {"rect": [77.46, 29.745, 20.984, 17.834], "align": "right", "leader": [[98.813, 40.483], [56.874, 40.483]]},
+              "idml": {"rect": [262.0, 381.7, 78.099, 28.0], "align": "RightAlign", "leader": [[341.261, 398.558], [209.153, 398.558]], "anchor": "above-leader"}
+            }
+          ]
+        }
+      ],
+      "idml_leader_order": [
+        "front.power",
+        "front.lcd",
+        "front.dc12",
+        "front.led_button",
+        "front.usb_c_30",
+        "front.usb_c_100",
+        "front.usb_a",
+        "front.dc_usb",
+        "front.led",
+        "front.ac_power",
+        "front.ac_output",
+        "front.total",
+        "right.handle",
+        "right.dc_input",
+        "right.ac_input",
+        "decorative.total_connector"
+      ],
+      "idml_decorative_leaders": [
+        {
+          "id": "total_connector",
+          "points": [[213.902, 213.103], [213.902, 260.327]],
+          "stroke_weight": 0.6
+        }
+      ]
+    }
+  }
+}

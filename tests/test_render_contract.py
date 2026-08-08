@@ -202,9 +202,7 @@ class RenderContractTests(unittest.TestCase):
             if (match := re.search(r"styles\.(HB-[A-Z0-9-]+):", issue))
         }
         self.assertEqual(
-            {
-                "HB-SPECIAL-OVERVIEW",
-            },
+            set(),
             debt_styles,
         )
         self.assertEqual(
