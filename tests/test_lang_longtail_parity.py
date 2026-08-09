@@ -14,12 +14,6 @@ from tools.utils import variable_resolver
 
 RESOLVED_LONGTAIL_DRIFTS = (
     {
-        "surface": "idml.SYMBOL_COPY",
-        "missing_languages": ("de", "it", "uk", "ko"),
-        "reason": "IDML symbol-page copy currently has only en/fr/es packs.",
-        "status": "resolved",
-    },
-    {
         "surface": "display.language_labels",
         "missing_languages": ("de", "it", "uk", "ko"),
         "reason": "display maps currently cover only the original preview languages.",
@@ -124,19 +118,9 @@ class LanguageLongTailParityTest(unittest.TestCase):
         row = {"Value_source": "SOURCE", "Value_uk": "UK-VALUE"}
         self.assertEqual(_pick_spec_value(row, "ukr"), "UK-VALUE")
 
-    def test_longtail_symbol_copy_registration_is_closed(self) -> None:
-        registered = {spec.code for spec in lang_registry.LANGUAGE_REGISTRY}
-        self.assertEqual(set(loaders.SYMBOL_COPY), registered)
-        self.assertEqual(set(lang_registry.IDML_LANGUAGE_PACKS), registered)
-        for language in registered:
-            with self.subTest(language=language):
-                pack = lang_registry.idml_language_pack(language)
-                self.assertIsNotNone(pack)
-                assert pack is not None
-                self.assertEqual(
-                    loaders.SYMBOL_COPY[language],
-                    dict(zip(lang_registry.IDML_SYMBOL_COPY_KEYS, pack.symbol_copy)),
-                )
+    def test_idml_loader_has_no_visible_symbol_copy_registry(self) -> None:
+        self.assertFalse(hasattr(loaders, "SYMBOL_COPY"))
+        self.assertFalse(hasattr(loaders, "symbol_copy"))
 
     def test_idml_governed_languages_have_one_registry_source(self) -> None:
         self.assertEqual(lang_registry.governed_languages(), ("en", "fr", "es"))

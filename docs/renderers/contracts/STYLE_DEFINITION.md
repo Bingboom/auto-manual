@@ -202,6 +202,43 @@ adapter 进入合同；FCC、Inbox、Overview 的 renderer-local facade 已关�
 只有在自己的编号 PR 完成四端基线和 registry 测试后才进入该注册表；不能因为
 代码里出现同名 class 就宣称已组件化。
 
+### 0.7 可见文案来源：renderer 只投影，不补全
+
+正文页所有面向读者的文字都必须能回溯到 prepared RST、源表、显式配置或 typed
+Manual IR / ComponentSpec slot。这里的“可见”包括普通正文，也包括标题、表头、信号词、
+按钮名、状态词、持续时间、图注、图片替代文字和占位说明。Web、LaTeX、IDML、Word
+adapter 只能拆分、排序、选择样式和生成目标格式对象，不能根据 component kind、
+page role、reference PDF、文件名或当前语言自行补出这些文字。
+
+JE-1000F/US 批准版式中的物理第 1–3 页（封面、前言、目录）和封底是封闭的装配例外，
+先保持既有 fallback：前言无语言码的首个 `IMPORTANT` 可按 EN 徽标装配，目录可从
+collector 与 language pack 装配标题/语言条，封底可读取 region fallback 和批准合同中的
+联系信息。例外只由这些 page role 的 composer 消费，不得被正文组件、普通 flow 或
+其他页面复用；Key Combinations、Operation、Symbols、FCC、App 等正文组件仍严格执行
+source-driven 门禁。
+
+允许和禁止的边界如下：
+
+| 情况 | 规则 |
+|---|---|
+| `Press and hold ... for 3 seconds` 显示成 `3s` | 允许；它是对源动作句的确定性紧凑投影。匹配不到时为空或失败，不能默认 `3s` |
+| `On/Off`、`SOS`、Symbols 两列表头 | 必须来自 RST / `manual-ir` payload；renderer 不得按组件类型补值 |
+| warning fence 没有 label | production fail-closed；不得用 fence 的 `warning` 自动生成 `WARNING` |
+| 第 2 页 preface 的 `**IMPORTANT**` 没有语言码 | 批准特殊页例外：保持既有 EN 徽标装配；不得扩散到正文 |
+| 图片只有资产路径、没有 alt | 保持空 alt 或要求上游补源字段；不得把文件名或 `figure` 当读者文案 |
+| 未知 component 没有 `label` / `texts` | 不输出可见 fallback；不得显示内部 `kind`、JSON 或 `component` |
+| 字体 fallback、样式名、StoryTitle、asset role、几何 token | renderer-owned 元数据/外观，不属于业务文案补全；字体 fallback 只能换字体 run，必须保留源 codepoint（如 `Nº` 的 `º`），不得改写文案 |
+| 用真实标题字符串查批准测量值 | 只允许作为不改变文字的排版校准；不能把该查找表反向当作标题来源 |
+
+IDML 在 [`source_copy.py`](../../../tools/idml/source_copy.py) 统一执行必填源文案检查；
+批准 production 正文路径缺源时 fail-closed，兼容手递路径最多省略对应可见层。Symbols
+续页通过带 `headers` 的 `SymbolOverflow` 继续传递源表头；数据页、Safety、FCC、
+Operation 与 App 都从 Manual IR 的真实 payload 消费文案，不保留正文语言文案
+registry。第 1–3 页和封底的 page-role scoped fallback 由上面的批准例外测试单独守护。
+[`test_idml_visible_copy_sources.py`](../../../tests/test_idml_visible_copy_sources.py) 同时守护
+行为和静态 literal sink；增加 IDML composer 或 adapter 时必须把新的可见字段纳入该
+门禁。
+
 ---
 
 ## 1. 全量对照总表

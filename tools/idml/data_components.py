@@ -176,7 +176,7 @@ def _special_page_payload(body: str) -> dict[str, Any] | None:
             })
         return {
             "kind": "toc",
-            "title": _text(titles[0][0]) if titles else "TABLE OF CONTENTS",
+            "title": _text(titles[0][0]) if titles else "",
             "languages": languages,
         }
     return None

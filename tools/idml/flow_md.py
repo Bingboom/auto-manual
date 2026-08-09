@@ -9,11 +9,9 @@ from pathlib import Path
 
 try:
     from tools.idml import export_paths
-    from tools.idml import loaders as _loaders
     from tools.idml_rst_extract import bundle_page_order, extract_page
 except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
     from idml import export_paths  # type: ignore
-    from idml import loaders as _loaders  # type: ignore
     from idml_rst_extract import bundle_page_order, extract_page  # type: ignore
 
 
@@ -89,10 +87,6 @@ class _FlowMarkdownWriter:
         if not self.pages:
             self.notes.append(f"No prepared RST bundle was found at {self.bundle_root}.")
         for page in self.pages:
-            data_lines = self._data_page(page, self._source_ref(page, 0))
-            if data_lines is not None:
-                lines.extend(["", f"<!-- source_ref: {self._source_ref(page, 0)} -->", *data_lines])
-                continue
             result = extract_page(page, tags)
             self.skipped_raw += result.skipped_raw
             if result.skipped_raw:
@@ -137,6 +131,8 @@ class _FlowMarkdownWriter:
             return _markdown_table(json.loads(text))
         if kind == "component":
             return self._component(json.loads(text), source_ref)
+        if kind == "data":
+            return self._data_component(json.loads(text), source_ref)
         if kind == "layout":
             self.notes.append(f"{source_ref}: layout marker {text!r} omitted from flow-md.")
             return []
@@ -147,10 +143,12 @@ class _FlowMarkdownWriter:
         kind = str(spec.get("kind") or "component")
         self.component_counts[kind] = self.component_counts.get(kind, 0) + 1
         if kind in {"notice", "warnbox", "warninglead", "safetywarning"}:
-            variant = str(spec.get("variant") or spec.get("label") or "warning").lower()
-            label = str(spec.get("label") or variant.upper())
+            variant = str(spec.get("variant") or "notice").lower()
+            label = str(spec.get("label") or "").strip()
             texts = [str(x) for x in spec.get("texts", []) if str(x).strip()]
-            lines = [f"::: {variant} source_ref=\"{source_ref}\"", f"**{label}**"]
+            lines = [f"::: {variant} source_ref=\"{source_ref}\""]
+            if label:
+                lines.append(f"**{label}**")
             for item in texts:
                 lines.extend(_list_or_paragraph(item, bool(spec.get("list"))))
             lines.append(":::")
@@ -162,7 +160,7 @@ class _FlowMarkdownWriter:
             lines.append(":::")
             return lines
         if kind == "inbox":
-            rows = [["No.", "Asset", "Label"]]
+            rows = [["", "", ""]]
             for idx, item in enumerate(spec.get("items", []), start=1):
                 asset = str(item.get("img", ""))
                 label = str(item.get("label", ""))
@@ -174,7 +172,7 @@ class _FlowMarkdownWriter:
             image_ref = str(spec.get("img", ""))
             if image_ref:
                 lines.extend(self._image(image_ref, source_ref, "lcdmode"))
-            rows = [["State", "Action", "Description"]]
+            rows = [["", "", ""]]
             for group in spec.get("groups", []):
                 state = str(group.get("state", ""))
                 for action, desc in group.get("actions", []):
@@ -189,73 +187,72 @@ class _FlowMarkdownWriter:
         )
         return ["```json", json.dumps(spec, ensure_ascii=False, indent=2), "```"]
 
-    def _data_page(self, page: Path, source_ref: str) -> list[str] | None:
-        name = page.name
-        try:
-            if name.startswith("spec_"):
-                return self._spec_page()
-            if name.startswith("lcd_icons_"):
-                return self._lcd_page(source_ref)
-            if name.startswith("troubleshooting_"):
-                return self._trouble_page()
-            if name.startswith("symbols_"):
-                return self._symbols_page(source_ref)
-        except OSError as exc:
-            self.notes.append(f"{source_ref}: data fallback failed: {exc}")
-            return None
-        return None
-
-    def _spec_page(self) -> list[str] | None:
-        sections = _loaders.load_spec_sections(self.data_root, self.model, self.region, self.lang)
-        if not sections:
-            return None
-        lines = ["# SPECIFICATIONS"]
-        for section in sections:
-            lines.extend(["", f"## {section['title']}"])
-            rows = [["Item", "Value"], *section["rows"]]
-            lines.extend(_markdown_table(rows))
-        annotations = _loaders.load_spec_annotations(self.data_root, self.model, self.region, self.lang)
-        if annotations:
-            lines.extend(["", "## Notes", *annotations])
-        self.notes.append("spec data page rendered from phase2 rows for flow-md.")
-        return lines
-
-    def _lcd_page(self, source_ref: str) -> list[str] | None:
-        rows = _loaders.load_lcd_rows(self.data_root, self.model, self.lang, self.region)
-        if not rows:
-            return None
-        table = [["No.", "Asset", "Name", "Description"]]
-        for row in rows:
-            asset = str(row.get("figure", ""))
-            self._record_asset(asset, source_ref, "lcd")
-            table.append([
-                str(row.get("no", "")),
-                asset,
-                str(row.get("name", "")),
-                str(row.get("desc", "")),
-            ])
-        self.notes.append("lcd data page rendered from phase2 rows for flow-md.")
-        return ["# LCD DISPLAY", *_markdown_table(table)]
-
-    def _trouble_page(self) -> list[str] | None:
-        rows = _loaders.load_trouble_rows(self.data_root, self.model, self.region, self.lang)
-        if not rows:
-            return None
-        self.notes.append("troubleshooting data page rendered from phase2 rows for flow-md.")
-        return ["# TROUBLESHOOTING", *_markdown_table([["Error Code", "Corrective Measures"], *rows])]
-
-    def _symbols_page(self, source_ref: str) -> list[str] | None:
-        signals, icons = _loaders.load_symbols_rows(self.data_root, self.lang)
-        if not (signals or icons):
-            return None
-        copy = _loaders.symbol_copy(self.lang)
-        rows = [[copy["symbol"], copy["meaning"]], *signals]
-        for icon in icons:
-            asset = str(icon.get("figure", ""))
-            self._record_asset(asset, source_ref, "symbols")
-            rows.append([asset, str(icon.get("text", ""))])
-        self.notes.append("symbols data page rendered from phase2 rows for flow-md.")
-        return [f"# {copy['title']}", *_markdown_table(rows)]
+    def _data_component(self, payload: dict, source_ref: str) -> list[str]:
+        """Project source-authored data payloads without adding visible copy."""
+        kind = str(payload.get("kind") or "")
+        if kind == "operation_panel_copy":
+            return []
+        if kind == "spec_start":
+            title = str(payload.get("title") or "").strip()
+            return [f"# {title}"] if title else []
+        if kind == "spec_section":
+            title = str(payload.get("title") or "").strip()
+            rows = [["", ""], *payload.get("rows", [])]
+            return [f"## {title}", *_markdown_table(rows)] if title else _markdown_table(rows)
+        if kind == "spec_annotations":
+            return [str(value) for value in payload.get("texts", []) if str(value).strip()]
+        if kind == "lcd_icons":
+            rows = [["", "", "", ""]]
+            for row in payload.get("rows", []):
+                asset = str(row.get("figure") or "")
+                self._record_asset(asset, source_ref, "lcd")
+                rows.append([
+                    str(row.get("no") or ""),
+                    asset,
+                    str(row.get("name") or ""),
+                    str(row.get("desc") or ""),
+                ])
+            return _markdown_table(rows)
+        if kind in {"symbol_signals", "symbol_icons"}:
+            headers = [str(value) for value in payload.get("headers", [])]
+            rows = [headers]
+            for row in payload.get("rows", []):
+                asset = str(row.get("figure") or "")
+                if asset:
+                    self._record_asset(asset, source_ref, "symbols")
+                rows.append([
+                    str(row.get("label") or asset),
+                    str(row.get("text") or ""),
+                ])
+            return _markdown_table(rows) if len(headers) == 2 else []
+        if kind == "trouble_rows":
+            return _markdown_table([["", ""], *payload.get("rows", [])])
+        if kind == "toc":
+            title = str(payload.get("title") or "").strip()
+            lines = [f"# {title}"] if title else []
+            for language in payload.get("languages", []):
+                label = " ".join(filter(None, (
+                    str(language.get("code") or "").strip(),
+                    str(language.get("label") or "").strip(),
+                    str(language.get("page_range") or "").strip(),
+                )))
+                if label:
+                    lines.append(f"## {label}")
+                for entry in language.get("entries", []):
+                    lines.append(
+                        f"{entry.get('title', '')} {entry.get('folio', '')}".strip()
+                    )
+            return lines
+        if kind == "back_cover":
+            return [
+                str(payload.get(key) or "")
+                for key in ("company", "address", "phone", "email", "web")
+                if str(payload.get(key) or "").strip()
+            ]
+        self.notes.append(
+            f"{source_ref}: unsupported data component {kind!r} omitted."
+        )
+        return []
 
     def _paragraph_lines(self, text: str) -> list[str]:
         parts = [part.strip() for part in text.split("\n") if part.strip()]
@@ -263,9 +260,8 @@ class _FlowMarkdownWriter:
 
     def _image(self, ref: str, source_ref: str, kind: str) -> list[str]:
         self._record_asset(ref, source_ref, kind)
-        alt = Path(ref).stem.replace("_", " ") or "figure"
         asset_id = _asset_id(ref)
-        return [f"![{alt}]({ref})", f"<!-- asset_id: {asset_id} asset_ref: {ref} -->"]
+        return [f"![]({ref})", f"<!-- asset_id: {asset_id} asset_ref: {ref} -->"]
 
     def _record_asset(self, ref: str, source_ref: str, kind: str) -> None:
         ref = ref.strip()

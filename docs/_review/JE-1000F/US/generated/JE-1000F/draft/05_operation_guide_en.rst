@@ -85,6 +85,10 @@ To disable the energy saving mode, press and hold both the AC power button and t
 
 When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
+.. raw:: manual-ir
+
+   {"kind":"operation_panel_copy","layout":"energy_saving","mode_label":"On/Off"}
+
 .. image:: asset:operation/energy_saving
    :alt: Energy saving mode key operation placeholder.
    :width: 320px
@@ -104,6 +108,10 @@ LED LIGHT ON/OFF
 ----------------
 
 The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED LIGHT button to turn off the light.
+
+.. raw:: manual-ir
+
+   {"kind":"operation_panel_copy","layout":"led_light","sos_label":"SOS"}
 
 .. image:: asset:operation/led_light
    :alt: LED light mode operation placeholder.
@@ -200,6 +208,6 @@ KEY COMBINATIONS
    * - DC/USB Power Button + AC Power Button
      - Press and hold both for 1s
      - Turn on/off Wi-Fi and Bluetooth
-   * - Main POWER button + LED Light button
+   * - Power Button + LED Light button
      - Press and hold both for 1s
      - Turn on/off Emergency Charging Mode

@@ -154,7 +154,7 @@ def _rows(language: str) -> list[list[str]]:
             "Turn on/off Wi-Fi and Bluetooth",
         ],
         [
-            "Main POWER button + LED Light button",
+            "Power Button + LED Light button",
             "Press and hold both for 1s",
             "Turn on/off Emergency Charging Mode",
         ],

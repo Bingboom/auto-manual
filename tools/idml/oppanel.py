@@ -86,11 +86,14 @@ def _duration_label(text: str) -> str:
     match = re.search(
         r"\b(\d+)\s*(?:seconds?|secondes?|segundos?|s)\b", text, re.I,
     )
-    return f"{match.group(1)}s" if match else "3s"
+    return f"{match.group(1)}s" if match else ""
 
 
 def _special_operation_panel(
-    out: list[Block], blocks: list[Block], index: int,
+    out: list[Block],
+    blocks: list[Block],
+    index: int,
+    operation_copy: dict[str, dict],
 ) -> tuple[Block, int] | None:
     """Group Energy Saving / LED artwork with its editable source copy.
 
@@ -135,6 +138,7 @@ def _special_operation_panel(
                 break
         del out[heading_index + 2:]
         action = blocks[index + 1][1].strip()
+        source_copy = operation_copy.get("energy_saving", {})
         return (
             "component",
             json.dumps(
@@ -144,10 +148,7 @@ def _special_operation_panel(
                     "image": ref,
                     "guidance": guidance,
                     "action": action,
-                    # Reference-layout decorations are language-neutral in
-                    # the EN/FR/ES master; the full localized instruction is
-                    # still sourced from the IR above.
-                    "mode_label": "On/Off",
+                    "mode_label": source_copy.get("mode_label", ""),
                     "duration": _duration_label(action),
                 },
                 ensure_ascii=False,
@@ -168,6 +169,7 @@ def _special_operation_panel(
             return None
         out[-2] = ("h2_operation_led", out[-2][1])
         lead = out.pop()[1]
+        source_copy = operation_copy.get("led_light", {})
         return (
             "component",
             json.dumps(
@@ -177,6 +179,7 @@ def _special_operation_panel(
                     "image": ref,
                     "lead": lead,
                     "steps": steps,
+                    "sos_label": source_copy.get("sos_label", ""),
                 },
                 ensure_ascii=False,
             ),
@@ -326,11 +329,16 @@ def _explicit_warranty_section(
     }, ensure_ascii=False))
 
 
-def transform(blocks: list[Block]) -> list[Block]:
+def transform(
+    blocks: list[Block],
+    *,
+    default_langtag_language: str | None = None,
+) -> list[Block]:
     out: list[Block] = []
     i = 0
     explicit_warranty_note_pending = False
     explicit_warranty_section_index = 0
+    operation_copy: dict[str, dict] = {}
     while i < len(blocks):
         kind, text = blocks[i]
         if kind == "semantic":
@@ -340,6 +348,15 @@ def transform(blocks: list[Block]) -> list[Block]:
                 raise ValueError("semantic block must contain valid JSON") from exc
             semantic_kind = semantic.get("kind")
             semantic_blocks = semantic.get("blocks")
+            if semantic_kind == "operation_panel_copy":
+                layout = str(semantic.get("layout") or "").strip()
+                if layout not in {"energy_saving", "led_light"}:
+                    raise ValueError(
+                        "operation_panel_copy requires a supported layout"
+                    )
+                operation_copy[layout] = semantic
+                i += 1
+                continue
             if semantic_kind == "warranty_lead":
                 if not isinstance(semantic_blocks, list):
                     raise ValueError("explicit warranty lead requires blocks")
@@ -386,13 +403,15 @@ def transform(blocks: list[Block]) -> list[Block]:
                     continue
         if kind == "body":
             tag = _FLAT_LANGTAG.match(text.strip())
-            if tag:
+            language = tag.group(1) if tag else None
+            if tag and (language or default_langtag_language):
                 out.append(("component", json.dumps(
-                    {"kind": "langtag", "lang": tag.group(1) or "EN",
+                    {"kind": "langtag",
+                     "lang": language or default_langtag_language,
                      "texts": [tag.group(2)]}, ensure_ascii=False)))
                 i += 1
                 continue
-        special = _special_operation_panel(out, blocks, i)
+        special = _special_operation_panel(out, blocks, i, operation_copy)
         if special is not None:
             component, consumed = special
             out.append(component)

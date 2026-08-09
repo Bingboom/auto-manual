@@ -63,6 +63,14 @@ def _ranked_anchor_candidates(page: ManualPage) -> list[tuple[int, str]]:
     ranked: list[tuple[int, str]] = []
     for block in page.blocks:
         priority = {"h1": 0, "h2": 1, "body": 2, "list": 3}.get(block.kind, 4)
+        if (
+            block.kind == "component"
+            and isinstance(block.payload, dict)
+            and block.payload.get("kind") == "fcc"
+        ):
+            # FCC is a stable structural page anchor, not a synthesized
+            # visible heading.  Keep PDF matching without adding an H1 to IR.
+            ranked.append((0, "fcc"))
         for raw in _strings(block.payload):
             text = _normalize(raw)
             minimum = 3 if block.kind == "h1" and text == "fcc" else (

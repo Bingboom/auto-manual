@@ -78,6 +78,10 @@ Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le b
 
 Lors de l'alimentation d'appareils à faible puissance (CA ≤ 25 W ou CC/USB ≤ 2 W), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant le fonctionnement.
 
+.. raw:: manual-ir
+
+   {"kind":"operation_panel_copy","layout":"energy_saving","mode_label":"On/Off"}
+
 .. image:: asset:operation/energy_saving
    :alt: Fonction du mode d'économie d'énergie.
    :width: 320px
@@ -96,6 +100,10 @@ LAMPE LED MARCHE/ARRÊT
 ----------------------
 
 La lampe LED dispose de deux modes: mode éclairage et mode SOS. Dans n’importe quel mode, appuyez et maintenez sur le bouton pour éteindre la lumière.
+
+.. raw:: manual-ir
+
+   {"kind":"operation_panel_copy","layout":"led_light","sos_label":"SOS"}
 
 .. image:: asset:operation/led_light
    :alt: Fonction de la lampe LED.

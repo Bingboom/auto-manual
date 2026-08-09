@@ -1,8 +1,7 @@
 """phase2 snapshot CSV -> plain rows/dicts for the IDML exporter (P1).
 
-Data shaping only — no XML. Also owns the small symbol-page copy
-localization table (SYMBOL_COPY) and language normalization used to pick
-localized snapshot columns.
+Data shaping only — no XML. Visible page copy remains source-authored; this
+module only normalizes languages and selects localized snapshot columns.
 """
 from __future__ import annotations
 
@@ -11,18 +10,9 @@ import re
 from pathlib import Path
 
 from .language_contract import (
-    IDML_LANGUAGE_PACKS,
-    IDML_SYMBOL_COPY_KEYS,
     canonical_language,
 )
 from .text_clean import VariableSubstituter, clean_cell
-
-_SYMBOL_COPY_KEYS = IDML_SYMBOL_COPY_KEYS
-SYMBOL_COPY = {
-    lang: dict(zip(_SYMBOL_COPY_KEYS, pack.symbol_copy))
-    for lang, pack in IDML_LANGUAGE_PACKS.items()
-}
-
 
 def normalize_lang(lang: str | None) -> str:
     token = str(lang or "en").strip()
@@ -32,12 +22,6 @@ def normalize_lang(lang: str | None) -> str:
         # consumers use the canonical registry code directly.
         return "jp" if canonical == "ja" else canonical
     return token.lower() or "en"
-
-
-def symbol_copy(lang: str | None) -> dict[str, str]:
-    canonical = canonical_language(lang)
-    return SYMBOL_COPY.get(canonical or normalize_lang(lang), SYMBOL_COPY["en"])
-
 
 # The snapshot's localized column suffixes are not uniform across tables
 # (lcd/trouble use jp + ukr + both pt-BR/br; Spec_Footnotes/Notes use ja + uk),
@@ -299,15 +283,3 @@ def load_spec_title_map(data_root: Path, lang: str | None) -> dict[str, str]:
         if localized:
             out[(r.get("title_en") or "").strip()] = localized
     return out
-
-
-def load_page_title(data_root: Path, copy_key: str, lang: str | None,
-                    default: str) -> str:
-    """Localized data-page H1/TOC title from Localized_Copy.csv."""
-    path = data_root / "Localized_Copy.csv"
-    if not path.exists():
-        return default
-    for r in csv.DictReader(path.open(encoding="utf-8")):
-        if r.get("copy_key") == copy_key and r.get("Is_Latest") == "TRUE":
-            return _localized_cell(r, "text", lang, ("text_en",)) or default
-    return default

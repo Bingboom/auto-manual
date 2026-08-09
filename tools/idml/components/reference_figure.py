@@ -214,13 +214,15 @@ def _control_labels_by_role(spec: dict, ctx: RenderContext) -> dict[str, str]:
 
 
 def _fallback(spec: dict, *, tid: str, terminal: bool) -> tuple[str, float]:
-    """Keep registry-only and non-story contexts useful and testable."""
+    """Render only source-authored copy in registry-only/non-story contexts."""
     texts = [
         str(value).strip()
         for key in ("caption", "copy", "vehicle", "note", "reference_note")
         if (value := spec.get(key)) and str(value).strip()
     ]
-    body = psr("HB Body", "\n".join(texts) or "Editable reference figure")
+    if not texts:
+        return "", 0.0
+    body = psr("HB Body", "\n".join(texts))
     table = component_table(
         tid,
         [100.0],

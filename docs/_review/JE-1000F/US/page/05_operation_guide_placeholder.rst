@@ -59,7 +59,7 @@ DC/USB OUTPUT ON/OFF
    * - **CAUTION**
      -
        - **USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port.** If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.
-       - Only connect the Jackery Explorer 1000 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
+       - Only connect Jackery Explorer 1000 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
        - To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W).
 
 
@@ -79,11 +79,15 @@ DC/USB OUTPUT ON/OFF
 ENERGY SAVING MODE
 ------------------
 
-To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. In this mode, if no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W DC/USB output), the corresponding output will automatically turns off after the set time. The default setting is 12 hours. The Energy Saving Mode duration can be set in the Jackery App to 1H, 2 H, 8 H, 12 H or 24 H. If it is set to Never Off, Energy Saving Mode will be disabled.
+To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. In this mode, if no device is connected or the connected device's power consumption is below a certain threshold (25 W AC output or 2 W DC/USB output), the corresponding output will automatically turns off after the set time. The default setting is 12 hours. The Energy Saving Mode duration can be set in the Jackery App to 1H, 2 H, 8 H, 12 H or 24 H. If it is set to Never Off, Energy Saving Mode will be disabled.
 
 To disable the energy saving mode, press and hold both the AC power button and the main POWER button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.
 
 When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
+
+.. raw:: manual-ir
+
+   {"kind":"operation_panel_copy","layout":"energy_saving","mode_label":"On/Off"}
 
 .. image:: asset:operation/energy_saving
    :alt: Energy saving mode key operation placeholder.
@@ -104,6 +108,10 @@ LED LIGHT ON/OFF
 ----------------
 
 The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED LIGHT button to turn off the light.
+
+.. raw:: manual-ir
+
+   {"kind":"operation_panel_copy","layout":"led_light","sos_label":"SOS"}
 
 .. image:: asset:operation/led_light
    :alt: LED light mode operation placeholder.
@@ -176,7 +184,7 @@ LCD SCREEN
 
       \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Shortly On}{Turn on}{Press the POWER button or when the product is charging.}{Turn off}{Press the POWER button.}{Auto-off}{The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.}
-      \HBLcdModeSecondGroup{Steady On (in charging or discharging state)}{Turn on}{Press the POWER button twice when the product is powered on.}{Turn off}{Press the POWER button.}{Auto-off}{The LCD turns off automatically after 2 hours of inactivity.}
+      \HBLcdModeSecondGroup{Steady On (in charging or discharging state)}{Turn on}{Press the main POWER button twice when the product is powered on.}{Turn off}{Press the main POWER button.}{Auto-off}{The LCD turns off automatically after 2 hours of inactivity.}
       \end{HBLcdModeTable}
 
 You can also set the screen display mode in the Jackery App.
@@ -200,6 +208,6 @@ KEY COMBINATIONS
    * - DC/USB Power Button + AC Power Button
      - Press and hold both for 1s
      - Turn on/off Wi-Fi and Bluetooth
-   * - Main POWER button + LED Light button
+   * - Power Button + LED Light button
      - Press and hold both for 1s
      - Turn on/off Emergency Charging Mode

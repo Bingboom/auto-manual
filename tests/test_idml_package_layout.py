@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 FACADE_NAMES = (
     "MIMETYPE", "IDPKG", "MM_TO_PT",
     "load_layout_params", "param_pt", "brand_cmyk",
-    "SYMBOL_COPY", "normalize_lang", "symbol_copy",
+    "normalize_lang",
     "load_spec_sections", "load_lcd_rows", "load_spec_annotations",
     "load_symbols_rows", "load_trouble_rows",
     "IdmlWriter", "check_idml",

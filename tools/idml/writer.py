@@ -189,11 +189,13 @@ class IdmlWriter:
 
     def add_symbols_story(self, signals: list[tuple[str, str]],
                           icons: list[dict], data_root: Path,
-                          lang: str = "en") -> str:
-        return _stories.add_symbols_story(self, signals, icons, data_root, lang)
+                          lang: str = "en", **kw) -> str:
+        return _stories.add_symbols_story(
+            self, signals, icons, data_root, lang, **kw,
+        )
 
-    def add_trouble_story(self, rows: list[tuple[str, str]]) -> str:
-        return _stories.add_trouble_story(self, rows)
+    def add_trouble_story(self, rows: list[tuple[str, str]], **kw) -> str:
+        return _stories.add_trouble_story(self, rows, **kw)
 
     def add_spec_story(self, sections: list[dict],
                        annotations: list[str] | None = None, **kw) -> str:
@@ -257,7 +259,7 @@ class IdmlWriter:
         bundle_root: Path,
         page_index: int,
         *,
-        symbol_overflow: tuple[list[dict], list[dict]] | None = None,
+        symbol_overflow: _pages.SymbolOverflow | None = None,
         lang: str = "en",
         reference_profile: dict | None = None,
     ) -> str:
@@ -280,6 +282,7 @@ class IdmlWriter:
     def _symbols_signal_table(self, tid: str,
                               signals: list[tuple[str, str]], width: float,
                               bundle_root: Path, lang: str = "en", *,
+                              headers: tuple[str, str],
                               row_heights: list[float] | None = None) -> str:
         return _pages._symbols_signal_table(
             self,
@@ -288,6 +291,7 @@ class IdmlWriter:
             width,
             bundle_root,
             lang,
+            headers=headers,
             row_heights=row_heights,
         )
 
@@ -298,6 +302,7 @@ class IdmlWriter:
         width: float,
         lang: str = "en",
         *,
+        headers: tuple[str, str],
         include_header: bool = True,
         row_heights: list[float] | None = None,
         icon_col_width: float | None = None,
@@ -309,6 +314,7 @@ class IdmlWriter:
             icons,
             width,
             lang,
+            headers=headers,
             include_header=include_header,
             row_heights=row_heights,
             icon_col_width=icon_col_width,
@@ -329,8 +335,11 @@ class IdmlWriter:
         page_index: int,
         lang: str = "en",
         *,
+        title: str,
+        signal_headers: tuple[str, str],
+        icon_headers: tuple[str, str],
         dense: bool = False,
-    ) -> tuple[str, tuple[list[dict], list[dict]]]:
+    ) -> tuple[str, _pages.SymbolOverflow]:
         return _pages.add_safety_symbols_page(
             self,
             sid,
@@ -341,6 +350,9 @@ class IdmlWriter:
             bundle_root,
             page_index,
             lang,
+            title=title,
+            signal_headers=signal_headers,
+            icon_headers=icon_headers,
             dense=dense,
         )
 

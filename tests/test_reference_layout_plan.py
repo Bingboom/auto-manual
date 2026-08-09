@@ -198,7 +198,7 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
         # Operator-approved content rebind, 2026-08-09; source order, language
         # mapping, and the 58-page composition map were verified unchanged.
         self.assertEqual(
-            "2cc83d6ea1f919c1f56e44ef58091f9dee4b02bb2bb55b78e1cb0a6b813e97ca",
+            "d1e535b72a91e87db045c9371b6cc174b232bd5af72a4ffd36131eecd4e2c1b6",
             contract["identity"]["content"]["manual_content_sha256"],
         )
         self.assertRegex(contract["identity"]["assembly"]["sha256"], r"^[0-9a-f]{64}$")

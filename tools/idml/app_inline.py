@@ -1,12 +1,16 @@
 """Approved inline controls used by App prose stories."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from .asset_contracts import APP_ADD_DEVICE_ICON_ASSET_URI
 from .params import param_pt
 
 _ADD_DEVICE_ICON_MARKER = "|ADD_DEVICE_ICON|"
+_ADD_DEVICE_COPY = re.compile(
+    r"(?P<prefix>Click the )\*\*Add device\*\*(?P<suffix> button)"
+)
 
 
 def prepare_app_body_inline(
@@ -20,16 +24,9 @@ def prepare_app_body_inline(
     block_index: int,
 ) -> tuple[str, dict[str, str] | None]:
     """Replace the reviewed Add-device wording with its governed inline icon."""
-    if (
-        semantic_kind == "body_app_primary"
-        and "Click the **Add device** button" in text
-    ):
-        text = text.replace(
-            "Click the **Add device** button",
-            f"Click the button {_ADD_DEVICE_ICON_MARKER}",
-            1,
-        )
-    if _ADD_DEVICE_ICON_MARKER not in text:
+    source_text = text
+    match = _ADD_DEVICE_COPY.search(text) if semantic_kind == "body_app_primary" else None
+    if match is None and _ADD_DEVICE_ICON_MARKER not in text:
         return text, None
 
     context = writer._render_context(bundle_root, language=page_language)
@@ -45,7 +42,14 @@ def prepare_app_body_inline(
                 "approved App step icon is unavailable: "
                 f"{APP_ADD_DEVICE_ICON_ASSET_URI}"
             )
-        return text, None
+        return source_text, None
+
+    if match is not None:
+        text = _ADD_DEVICE_COPY.sub(
+            rf"\g<prefix>{_ADD_DEVICE_ICON_MARKER}\g<suffix>",
+            text,
+            count=1,
+        )
 
     icon_size = param_pt(writer.params, "idml_app_add_device_icon_size", 8.0)
     return text, {
