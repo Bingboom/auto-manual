@@ -101,9 +101,18 @@ class RenderContext:
         return None
 
 
-def figure_paragraph(inner: str, tail: str = "<Br/>") -> str:
+def figure_paragraph(
+    inner: str,
+    tail: str = "<Br/>",
+    *,
+    justification: str | None = None,
+) -> str:
     """An HB Figure paragraph wrapping inline art (icon / mark / LCD shot)."""
     style_ref = paragraph_style_ref("HB Figure")
-    return (f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">'
+    justification_attr = (
+        f' Justification="{justification}"' if justification else ""
+    )
+    return (f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}"'
+            f'{justification_attr}>'
             '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
             + inner + tail + '</CharacterStyleRange></ParagraphStyleRange>\n')

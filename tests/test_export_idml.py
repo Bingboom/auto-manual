@@ -99,6 +99,21 @@ def _strict_inbox_blocks(
     ]
 
 
+def _top_level_story_paragraphs(xml: str) -> list[ET.Element]:
+    """Return only the flowed host paragraphs, excluding anchored sub-stories."""
+    root = ET.fromstring(xml)
+    story = next(
+        element
+        for element in root.iter()
+        if element.tag.split("}")[-1] == "Story" and element.get("Self")
+    )
+    return [
+        child
+        for child in story
+        if child.tag.split("}")[-1] == "ParagraphStyleRange"
+    ]
+
+
 class ExportIdmlTests(unittest.TestCase):
     def _write_package(self) -> Path:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -646,6 +661,28 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('SpaceBefore="7.5"', operation_story)
         self.assertNotIn('SpaceAfter="5.67"', operation_story)
 
+        writer.add_prose_story(
+            "st_operation_panel_h2_spacing",
+            "05_operation_guide_placeholder",
+            [
+                ("h2", "Operation panel heading"),
+                ("component", json.dumps({
+                    "kind": "oppanel",
+                    "image": "",
+                    "rows": [],
+                })),
+            ],
+            ROOT,
+            language="en",
+        )
+        operation_panel_story = dict(writer.stories)[
+            "st_operation_panel_h2_spacing"
+        ]
+        self.assertIn(
+            'SpaceBefore="7.5" SpaceAfter="5.67"',
+            operation_panel_story,
+        )
+
         image = (
             ROOT / "docs" / "renderers" / "latex" / "assets"
             / "warning_lockup.png"
@@ -749,6 +786,12 @@ class ExportIdmlTests(unittest.TestCase):
         )
         self.assertIn(
             paragraph_style_ref("HB Warning Lead Body"), warninglead_story,
+        )
+        warninglead_frame = xml.split(
+            'Self="tf_warninglead_t_cmp5"', 1,
+        )[1].split("</TextFrame>", 1)[0]
+        self.assertIn(
+            'VerticalJustification="CenterAlign"', warninglead_frame,
         )
         self.assertNotIn('SpanColumnType="SpanColumns"', xml)
         # fcc: two gray columns with the mark
@@ -906,17 +949,30 @@ class ExportIdmlTests(unittest.TestCase):
             [
                 ("h1", "FONCTIONNEMENT"),
                 ("h2", "MARCHE/ARRÊT"),
-                ("body", "First operation explanation."),
+                ("component", json.dumps({
+                    "kind": "oppanel",
+                    "image": "",
+                    "rows": [],
+                })),
+                ("body_operation_inter_section", "First operation explanation."),
                 ("h2", "SORTIE CA MARCHE/ARRÊT"),
+                ("component", json.dumps({
+                    "kind": "oppanel",
+                    "image": "",
+                    "rows": [],
+                })),
             ],
             ROOT,
             language="fr",
         )
         story = dict(writer.stories)["st_operation_first_page"]
-        self.assertIn('SpaceBefore="9.8"', story)
-        self.assertIn('SpaceAfter="37.6"', story)
+        self.assertIn('SpaceBefore="9.8" SpaceAfter="5.67"', story)
+        self.assertIn(
+            'SpaceBefore="0" SpaceAfter="20.59"', story,
+        )
+        self.assertIn('SpaceBefore="5.67" SpaceAfter="5.67"', story)
 
-    def test_operation_inter_section_body_moves_without_adding_story_depth(self) -> None:
+    def test_operation_inter_section_body_compensates_shared_panel_gap(self) -> None:
         from tools.idml.writer import IdmlWriter
 
         writer = IdmlWriter({
@@ -938,6 +994,277 @@ class ExportIdmlTests(unittest.TestCase):
             'SpaceBefore="5.66929" SpaceAfter="31.9307"',
             story,
         )
+
+    def test_operation_first_page_rhythm_preserves_second_panel_position(self) -> None:
+        from tools.idml.story_rhythm import operation_story_rhythm_for_next_block
+
+        params = {
+            "idml_title_l2_space_before": ("5.67", "pt"),
+            "idml_title_l2_space_after": ("5.67", "pt"),
+            "idml_operation_inter_section_body_space_before": (
+                "5.669291", "pt",
+            ),
+            "lang_en_idml_operation_first_h2_space_before": ("7.5", "pt"),
+            "lang_en_idml_operation_inter_section_space_after": ("48.2", "pt"),
+            "lang_fr_idml_operation_first_h2_space_before": ("9.8", "pt"),
+            "lang_fr_idml_operation_inter_section_space_after": ("37.6", "pt"),
+            "lang_es_idml_operation_first_h2_space_before": ("8.5", "pt"),
+            "lang_es_idml_operation_inter_section_space_after": ("39.1", "pt"),
+        }
+        panel = ("component", json.dumps({"kind": "oppanel"}))
+        cases = {
+            "en": (7.5, 48.2),
+            "fr": (9.8, 37.6),
+            "es": (8.5, 39.1),
+        }
+        for language, (first_before, inter_section_budget) in cases.items():
+            with self.subTest(language=language):
+                _, first_heading_depth = operation_story_rhythm_for_next_block(
+                    "h2",
+                    panel,
+                    language,
+                    title="05_operation_guide_placeholder",
+                    intro_lines=None,
+                    energy_panel_height=None,
+                    baseline_panel_height=100.0,
+                    params=params,
+                    first_operation_h2=True,
+                )
+                _, inter_section_depth = operation_story_rhythm_for_next_block(
+                    "body_operation_inter_section",
+                    ("h2", "Second operation heading"),
+                    language,
+                    title="05_operation_guide_placeholder",
+                    intro_lines=None,
+                    energy_panel_height=None,
+                    baseline_panel_height=100.0,
+                    params=params,
+                )
+                self.assertIsNotNone(first_heading_depth)
+                self.assertIsNotNone(inter_section_depth)
+                self.assertAlmostEqual(
+                    first_heading_depth + inter_section_depth,
+                    first_before + inter_section_budget,
+                )
+
+    def test_operation_panel_callout_stack_uses_one_bounded_dynamic_gap(self) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        notice = {
+            "kind": "notice",
+            "label": "CAUTION",
+            "variant": "caution",
+            "list": True,
+            "texts": ["One safety instruction.", "Another instruction."],
+        }
+        writer.add_prose_story(
+            "st_operation_balanced_stack",
+            "05_operation_guide_placeholder",
+            [
+                ("h2", "DC/USB OUTPUT ON/OFF"),
+                ("component", json.dumps({
+                    "kind": "oppanel",
+                    "image": "docs/renderers/latex/assets/op_dc_usb_output.png",
+                    "rows": [["On", "Press once"], ["Off", "Press once"]],
+                })),
+                ("component", json.dumps(notice)),
+                ("body", "A short paragraph between the two callouts."),
+                ("component", json.dumps(notice)),
+                ("h2", "NEXT OPERATION"),
+            ],
+            ROOT,
+            language="en",
+        )
+        story = dict(writer.stories)["st_operation_balanced_stack"]
+        gap = 14.17
+        self.assertEqual(3, story.count(f'SpaceAfter="{gap:g}"'))
+        self.assertEqual(4, story.count('SpaceBefore="0"'))
+
+    def test_operation_stack_gap_clamps_to_minimum_and_maximum(self) -> None:
+        from tools.idml.operation_stack import operation_stack_plans
+        from tools.idml.writer import IdmlWriter
+
+        panel = ("component", json.dumps({
+            "kind": "oppanel",
+            "image": "docs/renderers/latex/assets/op_dc_usb_output.png",
+            "rows": [["On", "Press once"], ["Off", "Press once"]],
+        }))
+        notice = ("component", json.dumps({
+            "kind": "notice",
+            "label": "CAUTION",
+            "variant": "caution",
+            "list": True,
+            "texts": ["Safety instruction."],
+        }))
+        blocks = [
+            ("h2", "DC/USB OUTPUT ON/OFF"),
+            panel,
+            notice,
+            ("body", "Body copy."),
+            notice,
+        ]
+        for ratio, expected in ((0.1, 8.5), (1.0, 14.17)):
+            with self.subTest(ratio=ratio):
+                params = load_layout_params(ROOT / "data" / "layout_params.csv")
+                params["idml_operation_stack_page_fill_ratio"] = (
+                    str(ratio), "ratio",
+                )
+                writer = IdmlWriter(params)
+                plans = operation_stack_plans(
+                    blocks,
+                    title="05_operation_guide_placeholder",
+                    language="en",
+                    params=params,
+                    context=writer._render_context(ROOT, language="en"),
+                    frame_height=writer.frame_height(),
+                    body_width=writer.page_w - writer.m_l - writer.m_r,
+                )
+                self.assertEqual(1, len(plans))
+                self.assertAlmostEqual(expected, plans[0].gap)
+
+    def test_all_operation_content_transitions_share_one_gap_and_compensate(self) -> None:
+        from tools.idml.operation_stack import operation_spacing_plan
+        from tools.idml.writer import IdmlWriter
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        panel = {
+            "kind": "oppanel",
+            "image": "docs/renderers/latex/assets/op_dc_usb_output.png",
+            "rows": [["On", "Press once"], ["Off", "Press once"]],
+        }
+        caution = {
+            "kind": "notice",
+            "label": "SAFETY",
+            "variant": "caution",
+            "list": True,
+            "texts": ["One instruction.", "Another instruction."],
+        }
+        note = {
+            "kind": "notice",
+            "label": "STATUS",
+            "variant": "note",
+            "texts": ["State is restored after power-on."],
+        }
+        energy_panel = {
+            "kind": "oppanel",
+            "layout": "energy_saving",
+            "image": "docs/renderers/latex/assets/op_energy_saving.png",
+            "guidance": ["First guidance.", "Second guidance."],
+            "action": "Press and hold both buttons for more than 3 seconds.",
+        }
+        led_panel = {
+            "kind": "oppanel",
+            "layout": "led_light",
+            "image": "docs/renderers/latex/assets/op_led_light.png",
+            "lead": "The light has two modes.",
+            "steps": ["First step.", "Second step.", "Third step."],
+        }
+        blocks = [
+            ("h1", "OPERATIONS"),
+            ("h2", "FIRST"),
+            ("component", json.dumps(panel)),
+            ("body_operation_inter_section", "First-page explanation."),
+            ("h2", "SECOND"),
+            ("component", json.dumps(panel)),
+            ("h2", "THIRD"),
+            ("component", json.dumps(panel)),
+            ("component", json.dumps(caution)),
+            ("body", "Body copy between notices."),
+            ("component", json.dumps(caution)),
+            ("h2_operation_energy", "ENERGY"),
+            ("body_operation_energy_intro", "Short introductory copy."),
+            ("component", json.dumps(energy_panel)),
+            ("component", json.dumps(note)),
+            ("h2_operation_led", "LED"),
+            ("component", json.dumps(led_panel)),
+        ]
+
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                writer = IdmlWriter(params)
+                plan = operation_spacing_plan(
+                    blocks,
+                    title="05_operation_guide_placeholder",
+                    language=language,
+                    params=params,
+                    context=writer._render_context(ROOT, language=language),
+                    frame_height=writer.frame_height(),
+                    body_width=writer.page_w - writer.m_l - writer.m_r,
+                )
+                self.assertIsNotNone(plan)
+                assert plan is not None
+                self.assertGreaterEqual(plan.gap, 8.5)
+                self.assertLessEqual(plan.gap, 14.17)
+
+                writer.add_prose_story(
+                    f"st_operation_all_transitions_{language}",
+                    "05_operation_guide_placeholder",
+                    blocks,
+                    ROOT,
+                    language=language,
+                )
+                story = dict(writer.stories)[
+                    f"st_operation_all_transitions_{language}"
+                ]
+                paragraphs = _top_level_story_paragraphs(story)
+                gap_text = f"{plan.gap:g}"
+
+                # Panel->body, panel->notice, notice->body, body->notice,
+                # intro->Energy panel, and Energy panel->NOTE all share the
+                # same bounded story-level gap.
+                for index in (2, 7, 8, 9, 12, 13):
+                    self.assertEqual(gap_text, paragraphs[index].get("SpaceAfter"))
+                for index in (3, 8, 9, 10, 13, 14):
+                    self.assertEqual("0", paragraphs[index].get("SpaceBefore"))
+                self.assertEqual("0", paragraphs[14].get("SpaceAfter"))
+
+                # Every H2 immediately followed by an operation panel uses
+                # the shared 5.67pt title-to-panel gap, including LED.
+                for index in (1, 4, 6, 15):
+                    self.assertEqual("5.67", paragraphs[index].get("SpaceAfter"))
+
+                first_before = float(paragraphs[1].get("SpaceBefore") or 0.0)
+                first_total = sum(
+                    float(paragraphs[index].get(attribute) or 0.0)
+                    for index, attribute in (
+                        (1, "SpaceBefore"),
+                        (1, "SpaceAfter"),
+                        (2, "SpaceAfter"),
+                        (3, "SpaceBefore"),
+                        (3, "SpaceAfter"),
+                    )
+                )
+                budget = param_pt(
+                    params,
+                    f"lang_{language}_idml_operation_inter_section_space_after",
+                    48.2,
+                )
+                self.assertAlmostEqual(first_before + budget, first_total)
+
+                # Reallocating space above the NOTE must not move the LED
+                # panel: the Energy-intro-through-LED-heading budget remains
+                # the same as the established reference composition.
+                new_energy_budget = sum(
+                    float(paragraphs[index].get(attribute) or 0.0)
+                    for index, attribute in (
+                        (12, "SpaceAfter"),
+                        (13, "SpaceBefore"),
+                        (13, "SpaceAfter"),
+                        (14, "SpaceBefore"),
+                        (14, "SpaceAfter"),
+                        (15, "SpaceBefore"),
+                        (15, "SpaceAfter"),
+                    )
+                )
+                led_before = {
+                    "en": 22.0,
+                    "fr": 22.0,
+                    "es": 22.0,
+                }[language]
+                reference_energy_budget = 7.0 + 2.0 + 1.8 + led_before + 6.5
+                self.assertAlmostEqual(reference_energy_budget, new_energy_budget)
 
     def test_operation_key_heading_compensates_first_page_depth(self) -> None:
         from tools.idml.writer import IdmlWriter
@@ -2520,6 +2847,7 @@ class ExportIdmlTests(unittest.TestCase):
         story = dict(w.stories)["st_safety_symbols_token_icon_icons_left"]
         self.assertIn('Anchor="9 -9.9"', story)
         self.assertIn('BlendMode="Darken"', story)
+        self.assertIn('Justification="CenterAlign"', story)
         self.assertIn('VerticalJustification="CenterAlign"', story)
         self.assertEqual(
             4,
@@ -3335,6 +3663,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn(paragraph_style_ref("HB Figure"), story)
         icon_cell = story.split('Self="tbl_lcdc0_1"', 1)[1].split("</Cell>", 1)[0]
         self.assertIn('VerticalJustification="CenterAlign"', icon_cell)
+        self.assertIn('Justification="CenterAlign"', icon_cell)
         self.assertIn('BaselineShift="0.6"', icon_cell)
         self.assertNotIn('BaselineShift="8.9"', story)
 

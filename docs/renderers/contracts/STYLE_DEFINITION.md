@@ -245,6 +245,8 @@ adapter 进入合同；FCC、Inbox、Overview 的 renderer-local facade 已关�
 
 IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。
 
+IDML 可编辑表格的普通单元格统一由 `primitives.cell()` 输出 `VerticalJustification=CenterAlign`，模板合成阶段必须保留该语义属性，不允许因移除颜色、边线或 inset 覆盖而一并丢失。LCD、Symbols 和通用图片表的图标段落另显式输出 `Justification=CenterAlign`，因此图标在格内同时横向、纵向居中。圆角 WARNING/callout 不依赖表格默认值：标签框、正文框和黑框正文使用同一 `TextFramePreference.VerticalJustification=CenterAlign` 合同。
+
 ### 专题版块
 
 | 语义 | 语义 ID | 源写法 | Web | PDF | IDML | Word | 状态 |
@@ -317,7 +319,9 @@ IDML 的 band 高度与 PDF 共用 `comp_h1_pill_height`；质保页的宽度和
 
 token：`type_title_l2_font_size` 8.6pt、`comp_title_l2_bullet_radius` 0.75mm。IDML 的普通 H2 默认上下间距由 `idml_title_l2_space_before` / `idml_title_l2_space_after` 控制（当前均为 5.67pt）。Word：`dingding-heading2`，`sz` 28（14pt）。
 
-IDML 的 `KeepWithNext` 由 `comp_title_l2_needspace` 推导；Operation Guide 的首标题和节间节奏使用已登记的语言 token，不再靠渲染器本地常量。
+IDML 的 `KeepWithNext` 由 `comp_title_l2_needspace` 推导。Operation Guide 中，凡 H2 后紧接可编辑 operation panel，标题到 panel 的间距统一使用 `idml_title_l2_space_after`（当前 5.67pt）；首个标题仍保留 `idml_operation_first_h2_space_before` 及语言覆盖。`idml_operation_inter_section_space_after` 是第一页的总节奏预算；渲染器会把统一标题后间距和 panel→正文间距从该预算等量扣回，使第二个 panel 的绝对位置保持不变。
+
+Operation Guide 只计算一个三语各自的整页动态 content gap：以 `operation panel → CAUTION → body → CAUTION` 密集页的固定内容高度和可用文字框高度求值，并限制在 `idml_operation_stack_gap_min` / `idml_operation_stack_gap_max`（当前 8.5–14.17pt）之间；`idml_operation_stack_gap_preferred`（11.34pt）是模板参考值，`idml_operation_stack_page_fill_ratio`（0.84）控制内容在整页中的参考落点。该值随后统一复用于主电源 panel→正文、panel→CAUTION、CAUTION→正文、正文→CAUTION、Energy 正文→panel、Energy panel→NOTE。Energy 页新增的间距会从 NOTE→LED H2 的原有可调预算等量扣回，同时 LED H2→panel 仍为 5.67pt，因此 LED panel 不下移。所有匹配只依赖 block/component 结构和 `layout` 角色，不依赖 `NOTE`、`ENERGY SAVING MODE` 等可见语言文字。
 
 ### 2.4 三级标题
 

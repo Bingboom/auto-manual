@@ -29,7 +29,16 @@ _RESOURCE_FONTS = "Resources/Fonts.xml"
 # Cell attributes we KEEP when handing formatting to the template. Everything
 # else on a <Cell> (FillColor, edge strokes, insets) is a local override that
 # would mask the template table style's region cell styles, so it is dropped.
-_CELL_KEEP = ("Self", "Name", "RowSpan", "ColumnSpan")
+_CELL_KEEP = (
+    "Self",
+    "Name",
+    "RowSpan",
+    "ColumnSpan",
+    # Alignment is semantic geometry, not template paint. Dropping it here
+    # silently turns the shared CenterAlign cell contract back into the
+    # template's default after composition.
+    "VerticalJustification",
+)
 _ZERO_EDGE_STROKES = (
     "LeftEdgeStrokeWeight", "RightEdgeStrokeWeight",
     "TopEdgeStrokeWeight", "BottomEdgeStrokeWeight",

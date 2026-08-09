@@ -247,7 +247,10 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
                 if fig and fig.exists() else ""
             )
             image_paragraph = _components.figure_paragraph(
-                image, tail="<Content></Content>")
+                image,
+                tail="<Content></Content>",
+                justification="CenterAlign",
+            )
             image_paragraph = image_paragraph.replace(
                 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
                 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
@@ -411,7 +414,10 @@ def add_symbols_story(writer, signals: list[tuple[str, str]],
                 if fig and fig.exists() else ""
             )
             image_cell = _components.figure_paragraph(
-                image, tail="<Content></Content>")
+                image,
+                tail="<Content></Content>",
+                justification="CenterAlign",
+            )
             for ci, content in (
                 (0, image_cell),
                 (1, writer._psr("HB Spec Value", row["text"], terminal=True)),

@@ -1533,10 +1533,10 @@
 % Base gap before the first operation subsection
 \expandafter\def\csname HBidml_operation_first_h2_space_before\endcsname{7.5pt}
 
-% Gap below the main-power panel before its full-width explanation
+% Reference main-power panel-to-body baseline used for depth-neutral redistribution
 \expandafter\def\csname HBidml_operation_inter_section_body_space_before\endcsname{5.669291pt}
 
-% Base gap from first operation explanation to second subsection
+% Base first-page operation rhythm budget redistributed across shared transitions
 \expandafter\def\csname HBidml_operation_inter_section_space_after\endcsname{48.2pt}
 
 % Movable main-power clock icon size after masking the baked artwork icon
@@ -1577,6 +1577,18 @@
 
 % Operation row text frames extend to the outer panel right edge
 \expandafter\def\csname HBidml_operation_row_right_edge_offset\endcsname{6.5pt}
+
+% Maximum shared gap between adjacent operation content blocks
+\expandafter\def\csname HBidml_operation_stack_gap_max\endcsname{14.17pt}
+
+% Minimum shared gap between adjacent operation content blocks
+\expandafter\def\csname HBidml_operation_stack_gap_min\endcsname{8.5pt}
+
+% Reference shared gap between adjacent operation content blocks
+\expandafter\def\csname HBidml_operation_stack_gap_preferred\endcsname{11.34pt}
+
+% Reference content-depth target within the usable operation page frame
+\expandafter\def\csname HBidml_operation_stack_page_fill_ratio\endcsname{0.84}
 
 % IDML Product Overview visible text gap above its semantic leader line
 \expandafter\def\csname HBidml_overview_label_leader_gap\endcsname{1.2pt}
@@ -2139,7 +2151,7 @@
 % English first operation subsection offset
 \expandafter\def\csname HBlang_en_idml_operation_first_h2_space_before\endcsname{7.5pt}
 
-% English operation inter-section rhythm
+% English first-page operation rhythm budget redistributed across shared transitions
 \expandafter\def\csname HBlang_en_idml_operation_inter_section_space_after\endcsname{48.2pt}
 
 % English operation row label leading
@@ -2448,7 +2460,7 @@
 % Spanish first operation subsection offset
 \expandafter\def\csname HBlang_es_idml_operation_first_h2_space_before\endcsname{8.5pt}
 
-% Spanish operation inter-section rhythm
+% Spanish first-page operation rhythm budget redistributed across shared transitions
 \expandafter\def\csname HBlang_es_idml_operation_inter_section_space_after\endcsname{39.1pt}
 
 % Spanish operation row label leading
@@ -2865,7 +2877,7 @@
 % French first operation subsection offset
 \expandafter\def\csname HBlang_fr_idml_operation_first_h2_space_before\endcsname{9.8pt}
 
-% French operation inter-section rhythm
+% French first-page operation rhythm budget redistributed across shared transitions
 \expandafter\def\csname HBlang_fr_idml_operation_inter_section_space_after\endcsname{37.6pt}
 
 % French operation row label leading

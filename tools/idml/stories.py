@@ -10,12 +10,9 @@ from .params import IDPKG, param_pt
 from .primitives import _ATTR_ENTITIES
 from .prose_paragraph import build_text_paragraph
 from .character_metrics import with_character_baseline_shift
-from .story_rhythm import (
-    apply_default_h2_rhythm,
-    operation_key_visual_raise,
-    operation_story_rhythm_for_next_block,
-)
+from .story_rhythm import apply_default_h2_rhythm, operation_key_visual_raise
 from .story_estimates import paragraph_estimate
+from .operation_stack import OperationStorySpacing
 from .story_parts import add_story_parts as _add_story_parts
 from .story_parts import add_text_story
 
@@ -33,9 +30,6 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     in_twocol = False
     next_h1_page_top: float | None = None
     next_trouble_h1_language, next_storage_h1_language = None, None
-    operation_intro_lines: int | None = None
-    operation_energy_panel_height: float | None = None
-    operation_h2_seen = False
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
     first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
     page_language = language or {
@@ -49,6 +43,14 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             writer.params, "idml_preface_margin_left", writer.m_l,
         ) - param_pt(writer.params, "idml_preface_margin_right", writer.m_r)
     column_measure = (text_measure - 11.0) / 2.0
+    operation_rhythm = OperationStorySpacing(
+        writer, blocks,
+        title=title,
+        language=page_language,
+        bundle_root=bundle_root,
+        inline_origin_shift=inline_origin_shift,
+        text_measure=text_measure,
+    )
 
     for bi, (kind, text) in enumerate(blocks):
         if kind == "layout":
@@ -85,10 +87,11 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 language=page_language,
                 inline_origin_shift=inline_origin_shift)
             if xml_part:
+                xml_part, h = operation_rhythm.apply_component(
+                    bi, spec, xml_part, h,
+                )
                 parts.append(xml_part)
                 est += h
-                if str(spec.get("layout") or "").strip().lower() == "energy_saving":
-                    operation_energy_panel_height = h
             continue
         if kind == "table":
             import json as _json
@@ -104,6 +107,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 tid=f"{sid}_t{img_n}", terminal=terminal,
                 span_columns=not in_twocol)
             xml_part = _flow.align_table_xml(xml_part, blocks, bi)
+            xml_part, h = operation_rhythm.apply_block(bi, xml_part, h)
             parts.append(xml_part)
             est += h
             continue
@@ -115,6 +119,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             if xml_part is None:
                 continue
             img_n += 1
+            xml_part, h = operation_rhythm.apply_block(bi, xml_part, h)
             parts.append(xml_part)
             est += h
             continue
@@ -154,17 +159,9 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             story_id=sid,
             block_index=bi,
         )
-        operation_attrs, operation_spacing = operation_story_rhythm_for_next_block(
-            kind, next_block, page_language,
-            title=title,
-            intro_lines=operation_intro_lines,
-            energy_panel_height=operation_energy_panel_height,
-            baseline_panel_height=text_measure * 0.545 + 2.0,
-            params=writer.params,
-            first_operation_h2=(is_h2 and not operation_h2_seen),
+        operation_attrs, operation_spacing = operation_rhythm.base_rhythm(
+            kind, next_block, is_h2=is_h2,
         )
-        if is_h2:
-            operation_h2_seen = True
         if kind == "h2" and operation_attrs is None:
             paragraph, operation_spacing = apply_default_h2_rhythm(paragraph, writer.params)
         if kind == "warrantynote":
@@ -225,6 +222,9 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 paragraph,
                 shift=key_visual_raise,
             )
+        paragraph, operation_spacing = operation_rhythm.apply_paragraph(
+            bi, paragraph, operation_spacing,
+        )
         parts.append(paragraph)
         measure = column_measure if in_twocol else text_measure
         paragraph_height, lines = paragraph_estimate(
@@ -232,9 +232,9 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             is_preface=is_preface,
             operation_spacing=operation_spacing,
         )
-        if kind == "body_operation_energy_intro":
-            operation_intro_lines = lines
+        operation_rhythm.record_estimate(kind, lines)
         est += paragraph_height
+    operation_rhythm.assert_complete()
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
