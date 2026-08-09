@@ -2402,7 +2402,10 @@ class ExportIdmlTests(unittest.TestCase):
         ]
         right_rows = [style.icon_header_height, style.icon_row_height,
                       style.icon_last_row_height]
-        expected_height = max(sum(left_rows), sum(right_rows))
+        expected_height = (
+            max(sum(left_rows), sum(right_rows))
+            + style.table_frame_allowance
+        )
 
         def frame_height(frame_id: str) -> float:
             import re
@@ -2481,6 +2484,7 @@ class ExportIdmlTests(unittest.TestCase):
             "idml_symbols_title_gap": "10",
             "idml_symbols_h1_optical_offset": "2.5",
             "idml_symbols_page_bottom_allowance": "3",
+            "idml_symbols_table_frame_allowance": "0.5",
             "idml_symbols_fallback_import_allowance": "4",
             "idml_symbols_fallback_min_height": "61",
             "idml_symbols_fallback_text_width_ratio": "0.7",
@@ -2498,6 +2502,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(10.0, style.symbols_title_gap)
         self.assertEqual(2.5, style.h1_optical_offset)
         self.assertEqual(3.0, style.page_bottom_allowance)
+        self.assertEqual(0.5, style.table_frame_allowance)
         self.assertEqual(4.0, style.fallback_import_allowance)
         self.assertEqual(61.0, style.fallback_min_height)
         self.assertEqual(0.7, style.fallback_text_width_ratio)

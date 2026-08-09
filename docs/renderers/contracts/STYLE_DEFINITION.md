@@ -467,7 +467,7 @@ IDML 侧的 EN/FR/ES 批准 panel/row/column/margin/spacing、参考 measure、p
 - `` ```{symbols} `` → `figure.hb-symbol-pair-composition`：`grid-template-columns: repeat(2, minmax(0,1fr))`，间距 `clamp(.72rem, 1.8vw, 1rem)`，窄屏转单列。面板表内边距 `clamp(.62rem,1.5vw,.9rem)` `clamp(.55rem,1.25vw,.78rem)`，格间线 `1.5px solid --hb-brand-dark`，表头下边框同宽。**两个面板行高互不影响**（PDF 用的就是两张独立表）。
 - 信号词表 `HB-TABLE-SYMBOL-SIGNAL` → `.hb-symbol-signal-composition`，流水线专属，md 写不出。
 
-IDML 的 subbar 高度、标题/维护区间距、H1 光学偏移、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。
+IDML 的 subbar 高度、标题/维护区间距、H1 光学偏移、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。批准语言的图标表保留原有固定行高，外层框在行高总和之外统一增加 `idml_symbols_table_frame_allowance`（当前 `0.25pt`）作为 InDesign 表格承载余量；它只吸收导入后的表格标记，不缩字、不改分栏，也不允许最终化脚本隐藏 overset。
 
 ### 4.7 对比表
 

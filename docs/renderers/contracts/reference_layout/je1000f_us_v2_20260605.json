@@ -844,11 +844,11 @@
       "sha256": "1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05"
     },
     "style": {
-      "style_contract_sha256": "e8c1bdef69f1cfc0aa55d5603b580905e3eaec7085bc9b941be05ee6c252d371",
-      "layout_params_sha256": "912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d"
+      "style_contract_sha256": "8a34ea9eeeff5ae560573ca55bbf0ae31ca60e51992c55f576a0577cdeb4df28",
+      "layout_params_sha256": "6eb6773fa4c40c776c692a018d70f7d56d4dbed7c33e6ae7354a21de2bbe8daa"
     },
     "provenance": {
-      "snapshot_sha256": "2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33"
+      "snapshot_sha256": "3549175dfa39e6cd7fcee473bf91b5dd2d9ff845793de0c1ba6cadcf65b5453e"
     }
   }
 }

@@ -70,6 +70,7 @@ class SafetySymbolsPageStyle:
     symbols_title_gap: float
     h1_optical_offset: float
     page_bottom_allowance: float
+    table_frame_allowance: float
     fallback_import_allowance: float
     fallback_min_height: float
     fallback_text_width_ratio: float
@@ -127,6 +128,9 @@ class SafetySymbolsPageStyle:
             h1_optical_offset=token("idml_symbols_h1_optical_offset", 1.918),
             page_bottom_allowance=token(
                 "idml_symbols_page_bottom_allowance", 2.0,
+            ),
+            table_frame_allowance=token(
+                "idml_symbols_table_frame_allowance", 0.25,
             ),
             fallback_import_allowance=token(
                 "idml_symbols_fallback_import_allowance", 3.0,
@@ -663,10 +667,16 @@ def add_safety_symbols_page(
            gap=style.signal_gap_after)
     bottom = writer.page_h - style.page_bottom_allowance
     if lang in governed_languages():
-        # The governed rows already include the table's full vertical
-        # measure.  Adding an import allowance here leaves an unfilled band
-        # below the last icon row before the rounded shell's bottom arc.
-        icons_h = max(sum(left_row_heights), sum(right_row_heights))
+        # InDesign carries an editable table inside a paragraph.  A frame whose
+        # measure equals only the exact row-height sum leaves the table marker
+        # (U+0016) overset and pushes the final indivisible row out of view.
+        # Keep the approved row metrics unchanged and add the tokenized import
+        # allowance to the shared outer shell instead of shrinking localized
+        # copy or hiding overflow during finalization.
+        icons_h = (
+            max(sum(left_row_heights), sum(right_row_heights))
+            + style.table_frame_allowance
+        )
     else:
         icons_h = style.fallback_import_allowance + max(
             style.fallback_min_height,
