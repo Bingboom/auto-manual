@@ -362,6 +362,7 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         writer, "idml_safety_second_section_height", 209.12,
     )
     subbar_height = param_pt(writer.params, "comp_subbar_height", 13.9)
+    subbar_top = 263.0
     if dense_reference:
         warning_top = _approved_safety_param(
             writer, f"lang_{language}_idml_safety_warning_top", warning_top,
@@ -387,9 +388,9 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         ("section1", section_sids[0][0] if section_sids else "", (body_x, 95.77, body_w, 162.0),
          {"columns": 2, "gutter": column_gap,
           "balance_columns": True, "inset": (0, 0, 0, 0)}),
-        ("subbar", bar_sid, (body_x, 263.0, body_w, subbar_height),
+        ("subbar", bar_sid, (body_x, subbar_top, body_w, subbar_height),
          {**heading_bar_opts(2, (0.5, 0, 0.5, 0)),
-          "text_rect": (body_x + 6.0, 263.0, body_w - 12.0, subbar_height)}),
+          "text_rect": (body_x + 6.0, subbar_top, body_w - 12.0, subbar_height)}),
         ("section2", section_sids[1][0] if len(section_sids) > 1 else "",
          (body_x, second_section_top, body_w, second_section_height),
          {"columns": 2, "gutter": column_gap,
@@ -427,6 +428,10 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 f"lang_{language}_idml_safety_first_section_bottom",
                 bottom,
             )
+            section_to_subbar_gap = _approved_safety_param(
+                writer, "idml_safety_first_section_to_subbar_gap", 4.0,
+            )
+            bottom = min(bottom, subbar_top - section_to_subbar_gap)
             column_w = (body_w - dense_gap) / 2.0
             frames.append(frame_with_background(
                 writer, sid, "section1_left", story_id,
@@ -441,7 +446,6 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             ))
             continue
         frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
-
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'

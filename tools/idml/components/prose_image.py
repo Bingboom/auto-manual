@@ -59,6 +59,8 @@ def render_image_block(ref: str, ctx: RenderContext, *, rect_id: str,
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         + rect + ("<Content></Content>" if terminal else "<Br/>")
         + "</CharacterStyleRange></ParagraphStyleRange>\n")
+    space_before = param_pt(ctx.params, "idml_figure_space_before", 2.83)
+    space_after = param_pt(ctx.params, "idml_figure_space_after", 4.25)
     if any(
         path.endswith(("/operation/ups_mode.png", "/assets/op_ups_mode.png"))
         for path in (ref.replace("\\", "/"), img.as_posix())
@@ -69,15 +71,12 @@ def render_image_block(ref: str, ctx: RenderContext, *, rect_id: str,
             f"lang_{language}_idml_ups_image_space_before",
             param_pt(ctx.params, "idml_ups_image_space_before", 5.2),
         )
-        xml = xml.replace(
-            "<ParagraphStyleRange ",
-            f'<ParagraphStyleRange SpaceBefore="{space_before:g}" ',
-            1,
-        )
     if ref.endswith("front_product.jpg"):
-        xml = xml.replace(
-            "<ParagraphStyleRange ",
-            '<ParagraphStyleRange SpaceAfter="1.58" ',
-            1,
-        )
-    return xml, h_pt + 4
+        space_after = 1.58
+    xml = xml.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange SpaceBefore="{space_before:g}" '
+        f'SpaceAfter="{space_after:g}" ',
+        1,
+    )
+    return xml, h_pt + space_before + space_after

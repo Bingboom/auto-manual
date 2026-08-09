@@ -11,6 +11,7 @@ from .primitives import _ATTR_ENTITIES
 from .prose_paragraph import build_text_paragraph
 from .character_metrics import with_character_baseline_shift
 from .story_rhythm import (
+    apply_default_h2_rhythm,
     operation_key_visual_raise,
     operation_story_rhythm_for_next_block,
 )
@@ -164,6 +165,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         )
         if is_h2:
             operation_h2_seen = True
+        if kind == "h2" and operation_attrs is None:
+            paragraph, operation_spacing = apply_default_h2_rhythm(paragraph, writer.params)
         if kind == "warrantynote":
             note_scale = param_pt(
                 writer.params,

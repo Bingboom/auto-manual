@@ -27,8 +27,8 @@
   "approval": {
     "status": "approved",
     "approved_by": "唐夏冰",
-    "approved_at": "2026-08-05T15:43:17Z",
-    "method": "operator-approved content hash rebind after 52-source and 58-page composition parity verification; chat decision 2026-08-05; composition map unchanged"
+    "approved_at": "2026-08-09T04:36:29Z",
+    "method": "Operator-requested LCD strong semantics and tokenized style-rhythm closeout; verified 52-source Manual IR, skipped_raw=0, unchanged language/source/physical composition required by rebind validation"
   },
   "render_contract": {
     "dpi": 300,
@@ -838,14 +838,14 @@
   "identity": {
     "content": {
       "manual_ir_schema_version": "manual-ir/v1",
-      "manual_content_sha256": "ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0"
+      "manual_content_sha256": "2cc83d6ea1f919c1f56e44ef58091f9dee4b02bb2bb55b78e1cb0a6b813e97ca"
     },
     "assembly": {
       "sha256": "1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05"
     },
     "style": {
-      "style_contract_sha256": "8a34ea9eeeff5ae560573ca55bbf0ae31ca60e51992c55f576a0577cdeb4df28",
-      "layout_params_sha256": "6eb6773fa4c40c776c692a018d70f7d56d4dbed7c33e6ae7354a21de2bbe8daa"
+      "style_contract_sha256": "94eb5b84d3d1aa60c05a25ad93c2a71d01fdbbe8e7a7109beacb1aca6a5a980f",
+      "layout_params_sha256": "50683ccb4648bb6572e82a31d375055c0e86026fbbca2ca90afd89f0a0cef06e"
     },
     "provenance": {
       "snapshot_sha256": "3549175dfa39e6cd7fcee473bf91b5dd2d9ff845793de0c1ba6cadcf65b5453e"

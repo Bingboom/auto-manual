@@ -143,7 +143,7 @@ def _years_table(
         # The subtitle's first letter sits on the same vertical as the unit
         # text (the ``Y`` in ``YEARS``), not after an additional optical gap.
         subtitle_indent = param_pt(
-            ctx.params, "comp_warranty_year_badge_size", 23.81,
+            ctx.params, "idml_warranty_year_subtitle_left_indent", 21.31,
         )
         subtitle_xml = subtitle_xml.replace(
             "<ParagraphStyleRange ",
@@ -158,7 +158,7 @@ def _years_table(
             f"{tid}c{index}", f"{index}:0", content,
             stroke=False, top=0, bottom=0,
             left=0, right=(gap if index < len(items) - 1 else 0),
-            valign="CenterAlign",
+            valign="TopAlign",
         ))
         lines = _wrapped_lines(body, col_w - 2.0, body_size)
         max_height = max(

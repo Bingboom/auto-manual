@@ -330,8 +330,9 @@ class ComponentRegistryTests(unittest.TestCase):
             tid="warranty_year_subtitle_alignment",
             terminal=True,
         )
-        self.assertIn('LeftIndent="23.811"', xml)
-        self.assertNotIn('LeftIndent="27.781"', xml)
+        self.assertIn('LeftIndent="21.31"', xml)
+        self.assertIn('VerticalJustification="TopAlign"', xml)
+        self.assertNotIn('VerticalJustification="CenterAlign"', xml)
 
     def test_localized_warranty_note_uses_reviewed_reference_width(self) -> None:
         from tools.export_idml import IdmlWriter, load_layout_params

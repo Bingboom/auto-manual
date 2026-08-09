@@ -21,6 +21,7 @@ APP_STYLE_TOKENS = (
     "idml_app_control_label_font_leading",
     "idml_app_control_label_min_height",
     "idml_app_control_label_leader_gap",
+    "idml_app_control_leader_extension_weight",
     "idml_app_connect_step_font_size",
     "idml_app_connect_step_font_leading",
     "idml_app_connect_note_font_size",
@@ -95,6 +96,12 @@ class EditableReferenceFigureTests(unittest.TestCase):
 
             self.assertIn("referencefigure_download_bounds_download", xml)
             self.assertIn('Anchor="312.09 -82.153"', xml)
+            self.assertIn(
+                'ItemTransform="1 0 0 1 49.0715 -34.168"', xml,
+            )
+            self.assertIn(
+                'ItemTransform="1 0 0 1 195.824 -32.739"', xml,
+            )
             self.assertAlmostEqual(84.153, height, places=3)
             self.assertIn("<Content></Content><Br/>", xml)
 
@@ -209,6 +216,7 @@ class EditableReferenceFigureTests(unittest.TestCase):
             self.assertLess(
                 xml.index("referencefigure_app_rule_ac_extension_app"), first_text,
             )
+            self.assertEqual(3, xml.count('StrokeWeight="0.5"'))
             self.assertEqual(5, xml.count('LockPosition="false" PinPosition="false"'))
             self.assertEqual(5, len(stories))
             self.assertIn('Anchor="23.161 -43.718"', xml)

@@ -618,6 +618,57 @@ class ExportIdmlTests(unittest.TestCase):
         fig = styles.split(f'Name="{figure_name}"')[1].split("</ParagraphStyle>")[0]
         self.assertIn(">Auto<", fig)
 
+    def test_default_idml_flow_spacing_is_token_driven(self) -> None:
+        from tools.idml.components.prose_image import render_image_block
+        from tools.idml.components.prose_table import render_table_block
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        writer.add_prose_story(
+            "st_default_h2_spacing",
+            "ordinary_page",
+            [("h2", "Ordinary heading"), ("body", "Ordinary copy")],
+            ROOT / "tests" / "fixtures" / "idml_bundle",
+        )
+        ordinary_story = dict(writer.stories)["st_default_h2_spacing"]
+        self.assertIn(
+            'SpaceBefore="5.67" SpaceAfter="5.67"', ordinary_story,
+        )
+
+        writer.add_prose_story(
+            "st_operation_h2_spacing",
+            "05_operation_guide_placeholder",
+            [("h2", "Operation heading"), ("body", "Operation copy")],
+            ROOT / "tests" / "fixtures" / "idml_bundle",
+            language="en",
+        )
+        operation_story = dict(writer.stories)["st_operation_h2_spacing"]
+        self.assertIn('SpaceBefore="7.5"', operation_story)
+        self.assertNotIn('SpaceAfter="5.67"', operation_story)
+
+        image = (
+            ROOT / "docs" / "renderers" / "latex" / "assets"
+            / "warning_lockup.png"
+        )
+        context = writer._render_context(
+            ROOT / "tests" / "fixtures" / "idml_bundle"
+        )
+        image_xml, _ = render_image_block(
+            image.as_posix(), context,
+            rect_id="default_spacing_figure", terminal=False,
+        )
+        self.assertIn(
+            'SpaceBefore="2.83" SpaceAfter="4.25"', image_xml or "",
+        )
+
+        table_xml, _ = render_table_block(
+            [["Label", "Value"], ["One", "Two"]], context,
+            tid="default_spacing_table", terminal=True,
+        )
+        self.assertIn(
+            'SpaceBefore="5.67" SpaceAfter="4.25"', table_xml,
+        )
+
     def test_art_frames_honor_aspect_ratio(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
@@ -2187,20 +2238,31 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("tf_st_safety_fr_section1_right", spread)
         self.assertNotIn('Self="tf_st_safety_fr_section1" ', spread)
         self.assertEqual(spread.count("<TextFrame "), 6)
-        self.assertIn('HorizontalScale="98.8"', left)
-        self.assertIn('HorizontalScale="98.8"', right)
+        self.assertIn('HorizontalScale="96"', left)
+        self.assertIn('HorizontalScale="96"', right)
         self.assertIn('LeftIndent="7.22"', left)
         self.assertIn('FirstLineIndent="-6.67"', left)
         self.assertIn('LeftIndent="5.67"', right)
         self.assertIn('FirstLineIndent="-6.67"', right)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Safety List FR"', left)
         self.assertIn('SpaceAfter="2"', left)
+        for frame_id in (
+            "tf_st_safety_fr_section1_left",
+            "tf_st_safety_fr_section1_right",
+        ):
+            frame = spread.split(f'Self="{frame_id}"', 1)[1].split(
+                "</TextFrame>", 1
+            )[0]
+            # The tokenized 4 pt invariant clamps both text-frame bottoms to
+            # y=259, leaving clear air before the subbar at y=263.
+            self.assertIn('Anchor="', frame)
+            self.assertIn("-3.34646", frame)
 
     def test_safety_lists_use_fixed_marker_tabs_in_all_us_languages(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         expected = {
             "en": ("HB Safety List", "3.7", "98"),
-            "fr": ("HB Safety List FR", "7.22", "98.8"),
+            "fr": ("HB Safety List FR", "7.22", "96"),
             "es": ("HB Safety List ES", "7.22", "100.7"),
         }
         for lang, (style, tab_position, horizontal_scale) in expected.items():
@@ -3578,6 +3640,26 @@ class ExportIdmlTests(unittest.TestCase):
             description.count('<Leading type="unit">5.8</Leading>'),
         )
         self.assertNotIn('Leading="5.8"', description)
+
+    def test_lcd_status_prefixes_are_editable_bold_runs(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [{
+            "no": "1",
+            "figure": "",
+            "name": "Wi-Fi",
+            "desc": "**On:** connected.\n**Blink:** pairing.\n**Off:** disconnected.",
+            "row_height_pt": "19.95",
+        }]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+
+        table = dict(writer.stories)["st_anchor_lcd_table_en_0"]
+        description = table.split('Self="tbl_lcdc0_3"', 1)[1].split(
+            "</Cell>", 1
+        )[0]
+        self.assertEqual(3, description.count('FontStyle="Bold"'))
+        for status in ("On:", "Blink:", "Off:"):
+            self.assertIn(f"<Content>{status}</Content>", description)
 
     def test_lcd_governed_french_first_page_keeps_all_seven_measured_rows(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
