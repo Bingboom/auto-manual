@@ -912,6 +912,9 @@ class TestProcessBuildQueue(unittest.TestCase):
             ), mock.patch(
                 "tools.queue_build_execution._git_head_sha",
                 return_value="b" * 40,
+            ), mock.patch(
+                "tools.queue_build_execution.target_has_approved_reference_plan",
+                return_value=True,
             ), mock.patch.object(
                 process_build_queue,
                 "resolve_word_output_path_for_target",
@@ -991,6 +994,8 @@ class TestProcessBuildQueue(unittest.TestCase):
         # Publish exports dual-mode so the handoff zip can include flow outputs.
         self.assertIn("--idml-mode", commands[1][0])
         self.assertIn("both", commands[1][0])
+        source_index = commands[1][0].index("--source")
+        self.assertEqual("review-asis", commands[1][0][source_index + 1])
         self.assertEqual(
             [mock.call("main", prefer_local=False), mock.call("codex/review-us-en")],
             prepare_mock.call_args_list,

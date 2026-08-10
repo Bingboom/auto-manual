@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 from typing import Callable
 
+from tools.build_dispatch import target_has_approved_reference_plan
 from tools.release_reproducibility import deterministic_release_environment
 
 
@@ -68,6 +69,7 @@ def run_publish(
     repo_root: Path,
     publish_tracked_root: Callable[[argparse.Namespace], Path],
     publish_report_dir: Callable[[argparse.Namespace], Path],
+    resolve_path_from_root: Callable[[str], Path],
     run_check: Callable[..., None],
     run_diff_report_with_paths: Callable[..., None],
     run_checked: Callable[[list[str]], None],
@@ -81,12 +83,22 @@ def run_publish(
     ):
         tracked_root = publish_tracked_root(args)
         report_dir = publish_report_dir(args)
-        run_check(args, source_override="review")
+        publish_source = (
+            "review-asis"
+            if target_has_approved_reference_plan(
+                model=args.model,
+                region=args.region,
+                config_path=resolve_path_from_root(args.config),
+                repo_root=repo_root,
+            )
+            else "review"
+        )
+        run_check(args, source_override=publish_source)
         run_diff_report_with_paths(args, tracked_root=tracked_root, report_dir=report_dir)
-        run_checked(build_docs_command(args, action_override="word", source_override="review"))
+        run_checked(build_docs_command(args, action_override="word", source_override=publish_source))
         # Keep the freshly generated DOCX in place so publish can stage both DOCX and PDF.
-        run_checked(build_docs_command(args, action_override="pdf", source_override="review", no_clean_override=True))
-        run_checked(build_docs_command(args, action_override="md", source_override="review", no_clean_override=True))
+        run_checked(build_docs_command(args, action_override="pdf", source_override=publish_source, no_clean_override=True))
+        run_checked(build_docs_command(args, action_override="md", source_override=publish_source, no_clean_override=True))
         if run_asset_gate is not None:
             # After the last prepare (the word stage cleans and re-prepares, so an
             # earlier read would inspect a stale bundle) and before the manifest is

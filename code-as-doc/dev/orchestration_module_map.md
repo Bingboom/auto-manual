@@ -67,6 +67,7 @@ Do not move new low-level implementation back into these files unless the behavi
 - [`tools/build_publish.py`](../../tools/build_publish.py)
   - deterministic publish orchestration over `check -> diff-report -> word -> pdf -> md -> release-manifest`
   - versioned publish enters the Git-commit-derived reproducibility environment before any release work
+  - approved-reference targets keep every print renderer on the frozen `review-asis` source; other targets retain review parameter sync
 - [`tools/build_doctor.py`](../../tools/build_doctor.py)
   - environment and dependency diagnostics
   - doctor target/pdf/reference-doc resolution
@@ -231,6 +232,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - phase2 sync-before-build execution
   - worktree-scoped draft/print-publish/Web-Publish build orchestration
   - exact review commit/path provenance injection for versioned print Publish
+  - IDML source parity with the earlier print render (`review-asis` for approved-reference targets)
 - [`tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
   - top-level queue session flow
   - dry-run vs real-run branch control

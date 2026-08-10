@@ -340,6 +340,20 @@ class TestValidateSpecMaster(unittest.TestCase):
             self.assertIn("MISSING_SOURCE_LANG", {issue.code for issue in runtime_issues})
             self.assertNotIn("MISSING_SOURCE_LANG", {issue.code for issue in review_issues})
 
+            review_asis_issues = validate_spec_master.collect_spec_master_validation_issues(
+                cfg_path=config_path,
+                model="JE-1000F",
+                region="US",
+                all_targets=False,
+                source_mode="review-asis",
+            )
+            self.assertEqual(review_issues, review_asis_issues)
+
+    def test_parse_args_should_accept_review_asis_source(self) -> None:
+        args = validate_spec_master.parse_args(["--config", "config.yaml", "--source", "review-asis"])
+
+        self.assertEqual(args.source, "review-asis")
+
     def test_collect_spec_master_validation_issues_should_skip_unused_footnotes_in_review_source_scope(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

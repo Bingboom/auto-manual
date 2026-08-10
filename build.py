@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 from __future__ import annotations
 
 import argparse
@@ -700,6 +699,7 @@ def run_publish(args: argparse.Namespace) -> None:
         repo_root=ROOT,
         publish_tracked_root=_publish_tracked_root,
         publish_report_dir=_publish_report_dir,
+        resolve_path_from_root=resolve_path_from_root,
         run_check=run_check,
         run_diff_report_with_paths=run_diff_report_with_paths,
         run_checked=run_checked,
