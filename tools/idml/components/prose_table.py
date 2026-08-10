@@ -825,6 +825,12 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
         auto_geometry = None
     data_table_before = param_pt(ctx.params, "comp_data_table_before", 3.4)
     data_table_after = param_pt(ctx.params, "comp_data_table_after", 3.4)
+    default_table_before = param_pt(
+        ctx.params, "idml_data_table_space_before", 5.67,
+    )
+    default_table_after = param_pt(
+        ctx.params, "idml_data_table_space_after", 4.25,
+    )
     auto_space_before = (
         auto_geometry.space_before
         if auto_geometry is not None else data_table_before
@@ -996,6 +1002,13 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             1,
         )
         troubleshooting_estimate = framed_h + table_space_before
+    if not any((is_overview, is_troubleshooting, is_auto_resume, is_key_combinations)):
+        xml = xml.replace(
+            "<ParagraphStyleRange ",
+            f'<ParagraphStyleRange SpaceBefore="{default_table_before:g}" '
+            f'SpaceAfter="{default_table_after:g}" ',
+            1,
+        )
     if is_auto_resume:
         return xml, framed_h + auto_space_before + data_table_after
     if is_key_combinations:
@@ -1004,4 +1017,7 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
         if troubleshooting_estimate is None:
             raise RuntimeError("troubleshooting estimate was not resolved")
         return xml, troubleshooting_estimate
-    return xml, 11.0 * (len(raw_rows) + 1)
+    return (
+        xml,
+        11.0 * (len(raw_rows) + 1) + default_table_before + default_table_after,
+    )

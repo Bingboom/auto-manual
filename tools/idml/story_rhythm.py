@@ -12,6 +12,22 @@ _LCD_HEADING_BEFORE = {"en": 0.41, "fr": 9.11, "es": 1.5}
 _KEY_HEADING_BEFORE = {"en": 11.8, "fr": 20.9, "es": 35.2}
 
 
+def apply_default_h2_rhythm(
+    paragraph: str,
+    params: dict[str, tuple[str, str]],
+) -> tuple[str, float]:
+    """Apply the tokenized rhythm shared by ordinary flowed H2 headings."""
+    before = param_pt(params, "idml_title_l2_space_before", 5.67)
+    after = param_pt(params, "idml_title_l2_space_after", 5.67)
+    paragraph = paragraph.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange SpaceBefore="{before:g}" '
+        f'SpaceAfter="{after:g}" ',
+        1,
+    )
+    return paragraph, before + after
+
+
 def _next_operation_heading(
     kind: str,
     next_block: tuple[str, str],

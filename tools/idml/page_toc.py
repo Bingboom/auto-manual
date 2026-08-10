@@ -17,8 +17,10 @@ from . import page_objects as _po
 from .style_names import paragraph_style_ref
 from .language_contract import IDML_LANGUAGE_PACKS, LANGUAGE_REGISTRY
 
-# The template's language block headers; entries carry the language they
-# were assembled under (the page loop is strictly language-ordered).
+
+# Approved physical page 3 keeps its historical language-bar assembly when
+# a source TOC payload is unavailable.  This registry is intentionally scoped
+# to the TOC and must not be reused to complete body-page titles or labels.
 def _pack_map(attribute: str) -> dict[str, str]:
     values: dict[str, str] = {}
     for code, pack in IDML_LANGUAGE_PACKS.items():
@@ -31,15 +33,6 @@ def _pack_map(attribute: str) -> dict[str, str]:
 
 _LANG_HEADERS = _pack_map("toc_header")
 
-# Titles for pages that emit no prose h1 of their own.
-DATA_TITLES = {
-    "spec": "SPECIFICATIONS",
-    "lcd": "LCD DISPLAY",
-    "trouble": "TROUBLESHOOTING",
-    "symbols": "MEANING OF SYMBOLS",
-}
-OVERVIEW_TITLES = _pack_map("overview_title")
-SYMBOL_TITLES = _pack_map("symbols_title")
 _TOC_SLOT = 2  # cover, preface, TOC, then the numbered content pages
 
 # Vector measurements from physical page 3 of the production PDF.  These

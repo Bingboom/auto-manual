@@ -281,7 +281,10 @@ class ManualIRTests(unittest.TestCase):
             [payload["kind"] for payload in payloads],
         )
         self.assertEqual("120 V~ 60 Hz", payloads[1]["rows"][0][1])
-        self.assertEqual("On: Connected.\nOff: Disconnected.", payloads[3]["rows"][0]["desc"])
+        self.assertEqual(
+            "**On:** Connected.\n**Off:** Disconnected.",
+            payloads[3]["rows"][0]["desc"],
+        )
         self.assertEqual(
             ["wifi.png", "warning.png", "manual.png", "fire.png"],
             list(ir.asset_refs),

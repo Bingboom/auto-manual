@@ -202,6 +202,43 @@ adapter 进入合同；FCC、Inbox、Overview 的 renderer-local facade 已关�
 只有在自己的编号 PR 完成四端基线和 registry 测试后才进入该注册表；不能因为
 代码里出现同名 class 就宣称已组件化。
 
+### 0.7 可见文案来源：renderer 只投影，不补全
+
+正文页所有面向读者的文字都必须能回溯到 prepared RST、源表、显式配置或 typed
+Manual IR / ComponentSpec slot。这里的“可见”包括普通正文，也包括标题、表头、信号词、
+按钮名、状态词、持续时间、图注、图片替代文字和占位说明。Web、LaTeX、IDML、Word
+adapter 只能拆分、排序、选择样式和生成目标格式对象，不能根据 component kind、
+page role、reference PDF、文件名或当前语言自行补出这些文字。
+
+JE-1000F/US 批准版式中的物理第 1–3 页（封面、前言、目录）和封底是封闭的装配例外，
+先保持既有 fallback：前言无语言码的首个 `IMPORTANT` 可按 EN 徽标装配，目录可从
+collector 与 language pack 装配标题/语言条，封底可读取 region fallback 和批准合同中的
+联系信息。例外只由这些 page role 的 composer 消费，不得被正文组件、普通 flow 或
+其他页面复用；Key Combinations、Operation、Symbols、FCC、App 等正文组件仍严格执行
+source-driven 门禁。
+
+允许和禁止的边界如下：
+
+| 情况 | 规则 |
+|---|---|
+| `Press and hold ... for 3 seconds` 显示成 `3s` | 允许；它是对源动作句的确定性紧凑投影。匹配不到时为空或失败，不能默认 `3s` |
+| `On/Off`、`SOS`、Symbols 两列表头 | 必须来自 RST / `manual-ir` payload；renderer 不得按组件类型补值 |
+| warning fence 没有 label | production fail-closed；不得用 fence 的 `warning` 自动生成 `WARNING` |
+| 第 2 页 preface 的 `**IMPORTANT**` 没有语言码 | 批准特殊页例外：保持既有 EN 徽标装配；不得扩散到正文 |
+| 图片只有资产路径、没有 alt | 保持空 alt 或要求上游补源字段；不得把文件名或 `figure` 当读者文案 |
+| 未知 component 没有 `label` / `texts` | 不输出可见 fallback；不得显示内部 `kind`、JSON 或 `component` |
+| 字体 fallback、样式名、StoryTitle、asset role、几何 token | renderer-owned 元数据/外观，不属于业务文案补全；字体 fallback 只能换字体 run，必须保留源 codepoint（如 `Nº` 的 `º`），不得改写文案 |
+| 用真实标题字符串查批准测量值 | 只允许作为不改变文字的排版校准；不能把该查找表反向当作标题来源 |
+
+IDML 在 [`source_copy.py`](../../../tools/idml/source_copy.py) 统一执行必填源文案检查；
+批准 production 正文路径缺源时 fail-closed，兼容手递路径最多省略对应可见层。Symbols
+续页通过带 `headers` 的 `SymbolOverflow` 继续传递源表头；数据页、Safety、FCC、
+Operation 与 App 都从 Manual IR 的真实 payload 消费文案，不保留正文语言文案
+registry。第 1–3 页和封底的 page-role scoped fallback 由上面的批准例外测试单独守护。
+[`test_idml_visible_copy_sources.py`](../../../tests/test_idml_visible_copy_sources.py) 同时守护
+行为和静态 literal sink；增加 IDML composer 或 adapter 时必须把新的可见字段纳入该
+门禁。
+
 ---
 
 ## 1. 全量对照总表
@@ -242,6 +279,8 @@ adapter 进入合同；FCC、Inbox、Overview 的 renderer-local facade 已关�
 | 按键组合表 | `HB-TABLE-KEY-COMBINATIONS` | 流水线 | `.manual-table` | `HBKeyCombinationTable` | `HB Data Header` / `HB Data Body`（可移动文本框） | 经 HTML 转换 | **aligned** |
 | 故障排查表 | `HB-TABLE-TROUBLESHOOTING` | `` ```{troubleshooting} `` | `.hb-troubleshooting-composition` | `HBTroubleshootingTable` | `正文表格` + `HB Rounded Table Outer`（关闭自动缩放） | 经 HTML 转换 | aligned |
 | 通用表 | 无专属 ID | pipe 表 / `` ```{manual-table} `` | `.manual-table` | 走 `HB-TYPE-BODY` 排版 | `正文表格` | 表样式 `tableHeader`（单行且 ≥3 列时 `TableGrid`） | — |
+
+IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。
 
 ### 专题版块
 
@@ -313,7 +352,7 @@ IDML 的 band 高度与 PDF 共用 `comp_h1_pill_height`；质保页的宽度和
 
 例外：`h2.hb-spec-section`（规格分节标题）不套本规则；质保卡片内首个 `h2` 另有覆盖。
 
-token：`type_title_l2_font_size` 8.6pt、`comp_title_l2_bullet_radius` 0.75mm。Word：`dingding-heading2`，`sz` 28（14pt）。
+token：`type_title_l2_font_size` 8.6pt、`comp_title_l2_bullet_radius` 0.75mm。IDML 的普通 H2 默认上下间距由 `idml_title_l2_space_before` / `idml_title_l2_space_after` 控制（当前均为 5.67pt）。Word：`dingding-heading2`，`sz` 28（14pt）。
 
 IDML 的 `KeepWithNext` 由 `comp_title_l2_needspace` 推导；Operation Guide 的首标题和节间节奏使用已登记的语言 token，不再靠渲染器本地常量。
 
@@ -375,6 +414,8 @@ IDML callout 的悬挂 bullet 几何、bullet 字号、面板内距和语言节�
 ### 3.2 安全面板四类
 
 `HB-SAFETY-INSTRUCTION` / `-WARNING` / `-LEAD` / `-DANGER` 都是**流水线专属**：源自安全章节的结构化文本，作者无法用 md 写出。四者在 IDML 共用 `HB Rounded Panel` 对象样式，靠显式语义、段落样式与表样式区分；Word 侧保留 `safety_` 源前缀以便回溯。四类现在均为 `aligned`：`DANGER` 保留独立 variant，不再降级成普通 warning；`WARNING` 的图标列、图标上限和面板下限由 token 控制。现有 warning lockup 美术资产仍是共享资产边界，语义对齐不伪造新的 DANGER 美术。
+
+Safety 首段文本框与后续深色 subbar 必须保留 `idml_safety_first_section_to_subbar_gap` 的净空；语言密度调整只能通过 `lang_<lang>_idml_safety_list_horizontal_scale_dense`，不得让文本框伸进标题条。
 
 ---
 
@@ -443,7 +484,7 @@ IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `c
 | 字号 / 行高 | `0.9rem` / 1.23，`min-width: 42rem` |
 | 内边距 | `0.7rem 0.72rem`；序号列左右内边距归零 |
 | 分隔线 | 右/下 `1px solid --hb-line`（浅色，与规格表的深色不同） |
-| 说明列 | 支持 ` / ` 分步 |
+| 说明列 | 支持 ` / ` 分步；`On:` / `Blink:` / `Off:` 及本地化状态前缀保留源 strong 语义，IDML 输出为可编辑粗体字符 run |
 
 四处语义对齐（`aligned`）。批准 reference profile 可保留型号特定行高，这是一条已批准边界说明；共享排版、位置和表结构仍由 token 控制，不是待修缺陷。
 
@@ -467,7 +508,7 @@ IDML 侧的 EN/FR/ES 批准 panel/row/column/margin/spacing、参考 measure、p
 - `` ```{symbols} `` → `figure.hb-symbol-pair-composition`：`grid-template-columns: repeat(2, minmax(0,1fr))`，间距 `clamp(.72rem, 1.8vw, 1rem)`，窄屏转单列。面板表内边距 `clamp(.62rem,1.5vw,.9rem)` `clamp(.55rem,1.25vw,.78rem)`，格间线 `1.5px solid --hb-brand-dark`，表头下边框同宽。**两个面板行高互不影响**（PDF 用的就是两张独立表）。
 - 信号词表 `HB-TABLE-SYMBOL-SIGNAL` → `.hb-symbol-signal-composition`，流水线专属，md 写不出。
 
-IDML 的 subbar 高度、标题/维护区间距、H1 光学偏移、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。
+IDML 的 subbar 高度、标题/维护区间距、H1 光学偏移、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。批准语言的图标表保留原有固定行高，外层框在行高总和之外统一增加 `idml_symbols_table_frame_allowance`（当前 `0.25pt`）作为 InDesign 表格承载余量；它只吸收导入后的表格标记，不缩字、不改分栏，也不允许最终化脚本隐藏 overset。
 
 ### 4.7 对比表
 
@@ -502,6 +543,8 @@ IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对
 | 产品概览 | `.hb-annotated-figure` > `.hb-annotated-stage` + `.hb-leader-layer` | 带引线标注：标注位置靠逐图百分比坐标，是流水线独有的能力 |
 | App 设置 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | 商店徽章 / QR / 双机图，标签是活文本不是烧进图片 |
 
+IDML App 下载构图以左右两个活文本栏的中心分别对齐商店徽章和 QR，不以整页中心或固定左边缘对齐；控制面板的三条原生延长线统一消费 `idml_app_control_leader_extension_weight`，与链接底图中的引线保持同一视觉线宽。
+
 FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。源 payload 先类型化为 ComponentSpec；IDML/LaTeX 再从语义 block 重建自己的结构，不保留或回放旧双文本 payload。
 
 开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec：它固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label，并把相邻 TIP 的 label/body 纳入同一实例。Web adapter 输出等宽三卡和响应式 tip；LaTeX adapter 继续投影 `HBInBoxThree` 六个实参；IDML adapter 保留批准的绝对坐标卡片 composer；Word adapter 输出三列活图片/活文本表格和 16/84 tip 表。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。source projector 必须显式提供源 H1、严格三卡以及相邻 TIP label/body；缺任一项即失败，不再保留 partial-list 或页面形状 fallback。
@@ -520,7 +563,7 @@ FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍
 | 条款面板 | `.hb-warranty-card` | 圆角面板，卡内首个 `h2` 有专门覆盖（不走 §2.3 的圆点条） |
 | 年限卡 | `.hb-warranty-period-card` > `.hb-warranty-period-grid` | 大号数字 + 单位 + 副标题；IDML 用 `HB Big Numeral` |
 
-token 以 `comp_warranty_*`、`type_warranty_*` 为前缀；语言相关的面板高度微调走 `lang_<xx>_idml_warranty_*`。共享 Warranty 模板通过 `container` 明确标记 `warranty_lead`、`warranty_section`、`warranty_years`，覆盖 en/fr/es/de/it/uk/ko/pt-BR。IDML 直接读取这些语义，不依赖标题措辞或年限文本形状；坏的 years 结构 fail-closed。冻结 review derivative 仍兼容旧启发式，避免历史批准稿失效。
+token 以 `comp_warranty_*`、`type_warranty_*` 为前缀；语言相关的面板高度微调走 `lang_<xx>_idml_warranty_*`。IDML 年限副标题通过 `idml_warranty_year_subtitle_left_indent` 与单位文字做光学左对齐，年限列内部统一顶对齐。共享 Warranty 模板通过 `container` 明确标记 `warranty_lead`、`warranty_section`、`warranty_years`，覆盖 en/fr/es/de/it/uk/ko/pt-BR。IDML 直接读取这些语义，不依赖标题措辞或年限文本形状；坏的 years 结构 fail-closed。冻结 review derivative 仍兼容旧启发式，避免历史批准稿失效。
 
 ---
 
@@ -609,6 +652,9 @@ IDML 的目标不是把 PDF 截图放进 InDesign，而是用可编辑的段落�
    `lang_<lang>_*` token 或批准 reference profile；禁止复制一套逐语言绘制代码。
 7. **批准目标 fail-closed。** 缺组件角色、token、链接资产或 composition binding
    时停止构建；不能静默降级成普通 prose 或把内容推入 overset 后继续交付。
+8. **内容流先用默认节奏，再由语义组件覆盖。** 普通 H2、图片和表格消费
+   `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*`；专题组件
+   只通过已登记 token 覆盖，不按页名追加邻接位置补丁。
 
 IDML 的段落/表格/对象样式名在 §1 的 IDML 列登记；实现入口集中在
 `tools/idml/components/`、`tools/idml/styles.py`、`tools/idml/page_objects.py` 和

@@ -170,6 +170,11 @@ class TransformTest(unittest.TestCase):
                 # baked On/Off/action copy and must not receive overlays.
                 image = "renderers/latex/assets/op_energy_saving.png"
                 blocks = [
+                    ("semantic", json.dumps({
+                        "kind": "operation_panel_copy",
+                        "layout": "energy_saving",
+                        "mode_label": "On/Off",
+                    })),
                     ("h2", case["heading"]),
                     ("body", case["intro"]),
                     ("body", case["guidance"][0]),
@@ -214,6 +219,11 @@ class TransformTest(unittest.TestCase):
 
     def test_energy_panel_upgrades_its_governed_page_break_spacing(self) -> None:
         blocks = [
+            ("semantic", json.dumps({
+                "kind": "operation_panel_copy",
+                "layout": "energy_saving",
+                "mode_label": "On/Off",
+            })),
             ("layout", "page_break"),
             ("h2", "MODO DE AHORRO DE ENERGÍA"),
             ("body", "Introductory copy."),
@@ -359,13 +369,24 @@ class TransformTest(unittest.TestCase):
             ("body", "**FR IMPORTANT**"),
             ("body", "Félicitations."),
         ]
-        out = transform(blocks)
+        out = transform(blocks, default_langtag_language="EN")
         self.assertEqual(["component", "body", "component", "body"],
                          [k for k, _ in out])
         first = json.loads(out[0][1])
         self.assertEqual({"kind": "langtag", "lang": "EN", "texts": ["IMPORTANT"]}, first)
         second = json.loads(out[2][1])
         self.assertEqual("FR", second["lang"])
+
+    def test_flattened_langtag_does_not_default_outside_preface(self) -> None:
+        blocks = [
+            ("body", "**IMPORTANT**"),
+            ("body", "**FR IMPORTANT**"),
+        ]
+
+        out = transform(blocks)
+
+        self.assertEqual(("body", "**IMPORTANT**"), out[0])
+        self.assertEqual("FR", json.loads(out[1][1])["lang"])
 
     def test_warranty_years_table_becomes_component(self) -> None:
         rows = [[

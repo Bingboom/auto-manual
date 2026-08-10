@@ -91,16 +91,16 @@
 }
 
 \providecommand{\HBLocalizedWarningLabel}{WARNING}
-\providecommand{\safetywarning}[1]{}
-\renewcommand{\safetywarning}[1]{%
+\providecommand{\safetywarning}[2][\HBLocalizedWarningLabel]{}
+\renewcommand{\safetywarning}[2][\HBLocalizedWarningLabel]{%
   \begin{safetywarningbox}%
     \noindent
     \begin{tabularx}{\linewidth}{@{}m{\csname HBcomp_lockup_width\endcsname}%
                     @{\hspace{\csname HBcomp_lockup_gap\endcsname}}%
                     >{\RaggedRight\arraybackslash}X@{}}%
-      \centering\HBSignalLockup{\HBLocalizedWarningLabel}
+      \centering\HBSignalLockup{#1}
       &
-      {\HBTypeWarningTextStart #1}%
+      {\HBTypeWarningTextStart #2}%
     \end{tabularx}%
   \end{safetywarningbox}%
 }

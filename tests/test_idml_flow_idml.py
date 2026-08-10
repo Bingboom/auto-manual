@@ -38,6 +38,13 @@ class IdmlFlowFenceVariantTests(unittest.TestCase):
                 assert block is not None
                 self.assertEqual(token, block.payload["variant"])
 
+    def test_missing_source_label_is_not_completed_from_fence_kind(self) -> None:
+        block = _parse_flow_fence("warning", ["Source body."])
+
+        self.assertIsNotNone(block)
+        assert block is not None
+        self.assertEqual("", block.payload["label"])
+
 
 class IdmlFlowIdmlTests(unittest.TestCase):
     def test_write_flow_idml_from_flow_markdown(self) -> None:

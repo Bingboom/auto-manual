@@ -78,6 +78,7 @@ idml_safety_warning_icon_column_width,24.0,pt,Standard safety-warning icon colum
 idml_safety_warning_icon_max_width,18.0,pt,Standard safety-warning icon maximum width
 idml_safety_warning_panel_min_height,28.0,pt,Standard safety-warning panel minimum height
 idml_safety_first_section_bottom,263.0,pt,InDesign safety first-section text-frame bottom behind the subheading
+idml_safety_first_section_to_subbar_gap,4.0,pt,Minimum clear gap from safety first-section copy to the following dark subbar
 idml_safety_second_section_top,281.88,pt,InDesign safety second-section frame top
 idml_safety_second_section_height,209.12,pt,InDesign safety second-section frame height
 idml_safety_first_section_left_list_items,5,int,Base list items kept in the first safety column
@@ -309,6 +310,7 @@ idml_app_control_label_font_size,5.0,pt,IDML App control overlay label size shar
 idml_app_control_label_font_leading,5.8,pt,IDML App control overlay label leading shared by all languages
 idml_app_control_label_min_height,7.2,pt,IDML App control overlay minimum editable frame height
 idml_app_control_label_leader_gap,1.2,pt,IDML App control label-to-leader optical gap shared by both sides and all languages
+idml_app_control_leader_extension_weight,0.5,pt,IDML App control leader-extension stroke weight matching the linked control artwork
 idml_app_connect_step_font_size,5.5,pt,IDML App screenshot step-label size
 idml_app_connect_step_font_leading,6.2,pt,IDML App screenshot step-label leading
 idml_app_connect_note_font_size,5.8,pt,IDML App screenshot reference-note size
@@ -635,6 +637,7 @@ idml_symbols_maintenance_title_gap,3.5,pt,IDML gap after the maintenance subbar
 idml_symbols_title_gap,9.0,pt,IDML gap after the Symbols H1 band
 idml_symbols_h1_optical_offset,1.918,pt,IDML Symbols H1 band optical vertical offset
 idml_symbols_page_bottom_allowance,2.0,pt,IDML Symbols fallback bottom-trim allowance
+idml_symbols_table_frame_allowance,0.25,pt,IDML governed Symbols table carrier allowance preventing final-row overset
 idml_symbols_fallback_import_allowance,3.0,pt,IDML non-governed Symbols icon-table import allowance
 idml_symbols_fallback_min_height,60.0,pt,IDML non-governed Symbols icon-table minimum height
 idml_symbols_fallback_text_width_ratio,0.73,ratio,IDML non-governed Symbols text-column estimate ratio
@@ -730,8 +733,14 @@ comp_tip_label_baseline_shift,-0.57,pt,Tip label baseline offset from panel cent
 idml_callout_label_baseline_shift,2.63,pt,InDesign callout label baseline correction
 idml_callout_body_baseline_shift,0.9,pt,InDesign callout body baseline correction
 idml_body_font_style,Regular,none,InDesign body weight measured from the approved editable PDF reference
+idml_figure_space_before,2.83,pt,Default InDesign gap before ordinary prose figures
+idml_figure_space_after,4.25,pt,Default InDesign gap after ordinary prose figures
+idml_data_table_space_before,5.67,pt,Default InDesign gap before ordinary prose tables
+idml_data_table_space_after,4.25,pt,Default InDesign gap after ordinary prose tables
 idml_title_l2_font_size,8.0,pt,InDesign level-two title size measured from the approved editable PDF reference
 idml_title_l2_font_style,Bold,none,InDesign level-two title weight measured from the approved editable PDF reference
+idml_title_l2_space_before,5.67,pt,Default InDesign gap before level-two titles
+idml_title_l2_space_after,5.67,pt,Default InDesign gap after level-two titles
 idml_list_left_indent,3.70,pt,InDesign first-level list continuation indent
 idml_list_first_line_indent,-6.25,pt,InDesign first-level list hanging indent
 idml_list_font_leading,7.2,pt,InDesign list leading correction for production font metrics
@@ -743,7 +752,7 @@ idml_safety_list_leading,7.2,pt,Base InDesign safety-list leading
 idml_safety_list_space_after,2.07,pt,Base InDesign safety-list item gap
 idml_safety_list_horizontal_scale,0.98,ratio,InDesign English safety-list horizontal metric correction
 idml_safety_list_horizontal_scale_dense,1.007,ratio,InDesign FR and ES safety-list horizontal metric correction
-lang_fr_idml_safety_list_horizontal_scale_dense,0.988,ratio,French safety-list horizontal metric correction
+lang_fr_idml_safety_list_horizontal_scale_dense,0.96,ratio,French safety-list width correction preserving the clear gap above the following subbar
 lang_es_idml_safety_list_horizontal_scale_dense,1.007,ratio,Spanish safety-list horizontal metric correction
 lang_en_idml_safety_list_left_indent,3.70,pt,English safety-list continuation indent
 lang_en_idml_safety_list_first_line_indent,-6.25,pt,English safety-list hanging indent
@@ -994,6 +1003,7 @@ type_warranty_title_font_size,8.2,pt,Warranty panel title font size
 type_warranty_title_font_leading,8.8,pt,Warranty panel title leading
 type_warranty_year_number_font_size,21,pt,Warranty year badge numeral size
 idml_warranty_year_glyph_size,24,pt,InDesign black-circled numeral optical size
+idml_warranty_year_subtitle_left_indent,21.31,pt,InDesign warranty subtitle optical alignment with the year-unit text
 type_warranty_year_unit_font_size,12,pt,Warranty year unit size
 type_warranty_year_subtitle_font_size,7.2,pt,Warranty year subtitle size
 ,,,

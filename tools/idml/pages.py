@@ -7,8 +7,9 @@ from pathlib import Path
 from .language_contract import governed_languages
 from .page_objects import frame_with_background, h1_bar_h_pt, heading_bar_opts, heading_text, with_rounded_outer
 from .params import IDPKG, component_param_pt, param_pt
+from .source_copy import source_block_text
 from .symbols_page import (
-    ROOT as ROOT,
+    ROOT as ROOT, SymbolOverflow,
     _localized_signal_label_bar,
     _symbol_signal_bar,
     _symbols_icon_table,
@@ -276,15 +277,14 @@ def _approved_safety_param(writer, key: str, default: float) -> float:
         owner="safety-page",
     )
 
-def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
-                    bundle_root: Path, page_index: int) -> str:
+def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]], bundle_root: Path, page_index: int) -> str:
     """V2.0 US safety page 01: fixed component regions, not one flow."""
-    h1 = next((t for k, t in blocks if k == "h1"), title)
+    h1 = source_block_text(blocks, "h1", owner="Safety page title")
     top_warning = next((t for k, t in blocks
                         if k == "component" and any(
                             f'"kind": "{name}"' in t
                             for name in ("safetywarning", "safetyinstruction"))), None)
-    subbar = next((t for k, t in blocks if k == "h2"), "OPERATING INSTRUCTIONS")
+    subbar = source_block_text(blocks, "h2", owner="Safety operating-instructions title")
 
     sections: list[list[tuple[str, str]]] = []
     cur: list[tuple[str, str]] | None = None
@@ -362,6 +362,7 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         writer, "idml_safety_second_section_height", 209.12,
     )
     subbar_height = param_pt(writer.params, "comp_subbar_height", 13.9)
+    subbar_top = 263.0
     if dense_reference:
         warning_top = _approved_safety_param(
             writer, f"lang_{language}_idml_safety_warning_top", warning_top,
@@ -387,9 +388,9 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         ("section1", section_sids[0][0] if section_sids else "", (body_x, 95.77, body_w, 162.0),
          {"columns": 2, "gutter": column_gap,
           "balance_columns": True, "inset": (0, 0, 0, 0)}),
-        ("subbar", bar_sid, (body_x, 263.0, body_w, subbar_height),
+        ("subbar", bar_sid, (body_x, subbar_top, body_w, subbar_height),
          {**heading_bar_opts(2, (0.5, 0, 0.5, 0)),
-          "text_rect": (body_x + 6.0, 263.0, body_w - 12.0, subbar_height)}),
+          "text_rect": (body_x + 6.0, subbar_top, body_w - 12.0, subbar_height)}),
         ("section2", section_sids[1][0] if len(section_sids) > 1 else "",
          (body_x, second_section_top, body_w, second_section_height),
          {"columns": 2, "gutter": column_gap,
@@ -427,6 +428,10 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 f"lang_{language}_idml_safety_first_section_bottom",
                 bottom,
             )
+            section_to_subbar_gap = _approved_safety_param(
+                writer, "idml_safety_first_section_to_subbar_gap", 4.0,
+            )
+            bottom = min(bottom, subbar_top - section_to_subbar_gap)
             column_w = (body_w - dense_gap) / 2.0
             frames.append(frame_with_background(
                 writer, sid, "section1_left", story_id,
@@ -441,7 +446,6 @@ def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             ))
             continue
         frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
-
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
@@ -477,7 +481,7 @@ def add_fcc_inbox_page(
     bundle_root: Path,
     page_index: int,
     *,
-    symbol_overflow: tuple[list[dict], list[dict]] | None = None,
+    symbol_overflow: SymbolOverflow | None = None,
     lang: str = "en",
     reference_profile: dict | None = None,
 ) -> str:

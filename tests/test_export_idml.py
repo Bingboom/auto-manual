@@ -32,7 +32,10 @@ from tools.idml.character_metrics import (  # noqa: E402
 from tools.idml.layout_est import template_symbol_split  # noqa: E402
 from tools.idml.page_objects import heading_text  # noqa: E402
 from tools.idml.params import param_pt  # noqa: E402
-from tools.idml.symbols_page import SafetySymbolsPageStyle  # noqa: E402
+from tools.idml.symbols_page import (  # noqa: E402
+    SafetySymbolsPageStyle,
+    SymbolOverflow,
+)
 from tools.idml.style_names import paragraph_style_name, paragraph_style_ref  # noqa: E402
 
 FIXTURE_DATA_ROOT = ROOT / "tests" / "fixtures" / "phase2"
@@ -40,6 +43,37 @@ APPROVED_LAYOUT_CONTRACT = (
     ROOT / "docs" / "renderers" / "contracts" / "reference_layout"
     / "je1000f_us_v2_20260605.json"
 )
+
+SOURCE_TITLES = {
+    "en": {
+        "lcd": "LCD DISPLAY",
+        "spec": "SPECIFICATIONS",
+        "symbols": "MEANING OF SYMBOLS",
+    },
+    "fr": {
+        "lcd": "AFFICHAGE LCD",
+        "spec": "SPÉCIFICATIONS",
+        "symbols": "SIGNIFICATION DES SYMBOLES",
+    },
+    "es": {
+        "lcd": "PANTALLA LCD",
+        "spec": "ESPECIFICACIONES",
+        "symbols": "SIGNIFICADO DE LOS SÍMBOLOS",
+    },
+}
+SYMBOL_HEADERS = {
+    "en": ("Symbol", "Meaning"),
+    "fr": ("Symbole", "Signification"),
+    "es": ("Símbolo", "Significados"),
+}
+
+
+def _symbol_source_kwargs(language: str) -> dict[str, object]:
+    return {
+        "title": SOURCE_TITLES[language]["symbols"],
+        "signal_headers": SYMBOL_HEADERS[language],
+        "icon_headers": SYMBOL_HEADERS[language],
+    }
 
 
 def _approved_app_plan(source_path: str, language: str) -> dict[str, object]:
@@ -106,7 +140,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertTrue(sections, "fixture snapshot must yield spec sections")
         w = IdmlWriter(params)
         intro = w.add_text_story("st_intro", "Intro", [("HB Body", "hello")])
-        spec = w.add_spec_story(sections)
+        spec = w.add_spec_story(sections, title=SOURCE_TITLES["en"]["spec"])
         w.add_spread_chain(intro, 1, 0)
         w.add_spread_chain(spec, 2, 1)
         out = Path(tempfile.mkdtemp()) / "t.idml"
@@ -190,13 +224,15 @@ class ExportIdmlTests(unittest.TestCase):
         w = IdmlWriter(params)
         psr = w._psr(
             "HB Body",
-            "16 V-60 V\u23935 A and LiFePO\u2084 \u203b \u2460",
+            "16 V-60 V\u23935 A and LiFePO\u2084 \u203b \u2460 Nº de modelo",
             terminal=True,
         )
         self.assertIn("\u2393", psr)
         self.assertIn("\u2084", psr)
         self.assertIn("\u203b", psr)
         self.assertIn("\u2460", psr)
+        self.assertIn("<Content>º</Content>", psr)
+        self.assertIn("<Content> de modelo</Content>", psr)
         self.assertNotIn(" DC ", psr)
         self.assertNotIn('AppliedFont="Arial Unicode MS"', psr)
         self.assertIn("<Properties><AppliedFont type=\"string\">Apple Symbols</AppliedFont></Properties>", psr)
@@ -285,7 +321,9 @@ class ExportIdmlTests(unittest.TestCase):
         rows = load_lcd_rows(FIXTURE_DATA_ROOT, "JE-1000F")
         self.assertTrue(rows)
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        w.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
         story = "".join(
             xml for sid, xml in dict(w.stories).items()
             if sid.startswith("st_anchor_lcd_table_")
@@ -554,7 +592,12 @@ class ExportIdmlTests(unittest.TestCase):
         signals, icons = load_symbols_rows(FIXTURE_DATA_ROOT)
         self.assertTrue(signals)
         w = IdmlWriter(params)
-        w.add_symbols_story(signals, icons, FIXTURE_DATA_ROOT)
+        w.add_symbols_story(
+            signals,
+            icons,
+            FIXTURE_DATA_ROOT,
+            **_symbol_source_kwargs("en"),
+        )
         story = dict(w.stories)["st_symbols"]
         self.assertIn("MEANING OF SYMBOLS", story)
         self.assertIn("<Table ", story)
@@ -617,6 +660,57 @@ class ExportIdmlTests(unittest.TestCase):
         figure_name = paragraph_style_name("HB Figure")
         fig = styles.split(f'Name="{figure_name}"')[1].split("</ParagraphStyle>")[0]
         self.assertIn(">Auto<", fig)
+
+    def test_default_idml_flow_spacing_is_token_driven(self) -> None:
+        from tools.idml.components.prose_image import render_image_block
+        from tools.idml.components.prose_table import render_table_block
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        writer.add_prose_story(
+            "st_default_h2_spacing",
+            "ordinary_page",
+            [("h2", "Ordinary heading"), ("body", "Ordinary copy")],
+            ROOT / "tests" / "fixtures" / "idml_bundle",
+        )
+        ordinary_story = dict(writer.stories)["st_default_h2_spacing"]
+        self.assertIn(
+            'SpaceBefore="5.67" SpaceAfter="5.67"', ordinary_story,
+        )
+
+        writer.add_prose_story(
+            "st_operation_h2_spacing",
+            "05_operation_guide_placeholder",
+            [("h2", "Operation heading"), ("body", "Operation copy")],
+            ROOT / "tests" / "fixtures" / "idml_bundle",
+            language="en",
+        )
+        operation_story = dict(writer.stories)["st_operation_h2_spacing"]
+        self.assertIn('SpaceBefore="7.5"', operation_story)
+        self.assertNotIn('SpaceAfter="5.67"', operation_story)
+
+        image = (
+            ROOT / "docs" / "renderers" / "latex" / "assets"
+            / "warning_lockup.png"
+        )
+        context = writer._render_context(
+            ROOT / "tests" / "fixtures" / "idml_bundle"
+        )
+        image_xml, _ = render_image_block(
+            image.as_posix(), context,
+            rect_id="default_spacing_figure", terminal=False,
+        )
+        self.assertIn(
+            'SpaceBefore="2.83" SpaceAfter="4.25"', image_xml or "",
+        )
+
+        table_xml, _ = render_table_block(
+            [["Label", "Value"], ["One", "Two"]], context,
+            tid="default_spacing_table", terminal=True,
+        )
+        self.assertIn(
+            'SpaceBefore="5.67" SpaceAfter="4.25"', table_xml,
+        )
 
     def test_art_frames_honor_aspect_ratio(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -767,9 +861,18 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(len(res.blocks), 2)
         kind, payload = res.blocks[0]
         self.assertEqual(kind, "component")
-        self.assertEqual(json.loads(payload)["kind"], "safetywarning")
+        warning = json.loads(payload)
+        self.assertEqual(warning["kind"], "safetywarning")
+        self.assertNotIn("label", warning)
         self.assertEqual(json.loads(res.blocks[1][1])["kind"], "notice")
         self.assertEqual(json.loads(res.blocks[1][1])["variant"], "tip")
+
+        labelled = ExtractResult()
+        _extract_raw_latex(
+            r"\safetywarning[WARNING]{Source warning body.}",
+            labelled,
+        )
+        self.assertEqual("WARNING", json.loads(labelled.blocks[0][1])["label"])
 
     def test_upstream_page_macros_keep_same_source_semantics(self) -> None:
         import json
@@ -996,8 +1099,12 @@ class ExportIdmlTests(unittest.TestCase):
             ".. raw:: latex\n\n   \\HBFccBlock{Left copy.}{Right copy.}\n",
             {"latex"},
         )
-        self.assertEqual([kind for kind, _ in fcc.blocks], ["h1", "component"])
-        self.assertEqual(fcc.blocks[0], ("h1", "FCC"))
+        self.assertEqual([kind for kind, _ in fcc.blocks], ["component"])
+        self.assertNotIn(("h1", "FCC"), fcc.blocks)
+        self.assertEqual(
+            json.loads(fcc.blocks[0][1]),
+            {"kind": "fcc", "texts": ["Left copy.", "Right copy."]},
+        )
 
     def test_prose_flow_splits_at_reference_page_starts(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer
@@ -2187,20 +2294,31 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("tf_st_safety_fr_section1_right", spread)
         self.assertNotIn('Self="tf_st_safety_fr_section1" ', spread)
         self.assertEqual(spread.count("<TextFrame "), 6)
-        self.assertIn('HorizontalScale="98.8"', left)
-        self.assertIn('HorizontalScale="98.8"', right)
+        self.assertIn('HorizontalScale="96"', left)
+        self.assertIn('HorizontalScale="96"', right)
         self.assertIn('LeftIndent="7.22"', left)
         self.assertIn('FirstLineIndent="-6.67"', left)
         self.assertIn('LeftIndent="5.67"', right)
         self.assertIn('FirstLineIndent="-6.67"', right)
         self.assertIn('AppliedParagraphStyle="ParagraphStyle/HB Safety List FR"', left)
         self.assertIn('SpaceAfter="2"', left)
+        for frame_id in (
+            "tf_st_safety_fr_section1_left",
+            "tf_st_safety_fr_section1_right",
+        ):
+            frame = spread.split(f'Self="{frame_id}"', 1)[1].split(
+                "</TextFrame>", 1
+            )[0]
+            # The tokenized 4 pt invariant clamps both text-frame bottoms to
+            # y=259, leaving clear air before the subbar at y=263.
+            self.assertIn('Anchor="', frame)
+            self.assertIn("-3.34646", frame)
 
     def test_safety_lists_use_fixed_marker_tabs_in_all_us_languages(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         expected = {
             "en": ("HB Safety List", "3.7", "98"),
-            "fr": ("HB Safety List FR", "7.22", "98.8"),
+            "fr": ("HB Safety List FR", "7.22", "96"),
             "es": ("HB Safety List ES", "7.22", "100.7"),
         }
         for lang, (style, tab_position, horizontal_scale) in expected.items():
@@ -2272,7 +2390,15 @@ class ExportIdmlTests(unittest.TestCase):
         signals = [("WARNING", "Hazardous practices."), ("TIP", "Helpful tips.")]
         icons = [{"figure": "", "text": f"Icon {i}"} for i in range(8)]
         w.add_safety_symbols_page(
-            "st_safety_symbols", tail, maintenance, signals, icons, ROOT, 2)
+            "st_safety_symbols",
+            tail,
+            maintenance,
+            signals,
+            icons,
+            ROOT,
+            2,
+            **_symbol_source_kwargs("en"),
+        )
         spread = dict(w.spreads)["sp_2"]
         self.assertEqual(spread.count("<TextFrame "), 8)
         self.assertEqual(spread.count("<Rectangle "), 22)
@@ -2402,7 +2528,10 @@ class ExportIdmlTests(unittest.TestCase):
         ]
         right_rows = [style.icon_header_height, style.icon_row_height,
                       style.icon_last_row_height]
-        expected_height = max(sum(left_rows), sum(right_rows))
+        expected_height = (
+            max(sum(left_rows), sum(right_rows))
+            + style.table_frame_allowance
+        )
 
         def frame_height(frame_id: str) -> float:
             import re
@@ -2450,6 +2579,7 @@ class ExportIdmlTests(unittest.TestCase):
             ROOT,
             4,
             "en",
+            **_symbol_source_kwargs("en"),
         )
 
         story = dict(w.stories)["st_safety_symbols_token_icon_icons_left"]
@@ -2481,6 +2611,7 @@ class ExportIdmlTests(unittest.TestCase):
             "idml_symbols_title_gap": "10",
             "idml_symbols_h1_optical_offset": "2.5",
             "idml_symbols_page_bottom_allowance": "3",
+            "idml_symbols_table_frame_allowance": "0.5",
             "idml_symbols_fallback_import_allowance": "4",
             "idml_symbols_fallback_min_height": "61",
             "idml_symbols_fallback_text_width_ratio": "0.7",
@@ -2498,6 +2629,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(10.0, style.symbols_title_gap)
         self.assertEqual(2.5, style.h1_optical_offset)
         self.assertEqual(3.0, style.page_bottom_allowance)
+        self.assertEqual(0.5, style.table_frame_allowance)
         self.assertEqual(4.0, style.fallback_import_allowance)
         self.assertEqual(61.0, style.fallback_min_height)
         self.assertEqual(0.7, style.fallback_text_width_ratio)
@@ -2509,6 +2641,7 @@ class ExportIdmlTests(unittest.TestCase):
         w = IdmlWriter(params)
         tail = [("component", json.dumps({
             "kind": "safetywarning",
+            "label": "AVERTISSEMENT",
             "texts": ["Avertissement de mise à la terre."],
         }))]
         maintenance = [
@@ -2518,7 +2651,16 @@ class ExportIdmlTests(unittest.TestCase):
         signals, _ = load_symbols_rows(FIXTURE_DATA_ROOT, "fr")
         icons = [{"figure": "", "text": "Icône localisée"}]
         w.add_safety_symbols_page(
-            "st_safety_symbols_fr", tail, maintenance, signals, icons, ROOT, 4, "fr")
+            "st_safety_symbols_fr",
+            tail,
+            maintenance,
+            signals,
+            icons,
+            ROOT,
+            4,
+            "fr",
+            **_symbol_source_kwargs("fr"),
+        )
         stories = dict(w.stories)
         self.assertIn(
             "SIGNIFICATION DES SYMBOLES",
@@ -2604,9 +2746,13 @@ class ExportIdmlTests(unittest.TestCase):
             ROOT,
             4,
             "en",
+            **_symbol_source_kwargs("en"),
         )
         self.assertEqual(spread_id, "sp_4")
-        self.assertEqual(symbol_overflow, ([], []))
+        self.assertEqual(
+            symbol_overflow,
+            SymbolOverflow((), (), SYMBOL_HEADERS["en"]),
+        )
         stories = dict(w.stories)
         left = stories["st_safety_symbols_tpl_icons_left"]
         right = stories["st_safety_symbols_tpl_icons_right"]
@@ -2645,6 +2791,7 @@ class ExportIdmlTests(unittest.TestCase):
             ROOT,
             4,
             "en",
+            **_symbol_source_kwargs("en"),
         )
         left = dict(w.stories)["st_safety_symbols_weee_crop_icons_left"]
         self.assertIn(
@@ -2670,7 +2817,7 @@ class ExportIdmlTests(unittest.TestCase):
             {"figure": "12_weee2.png", "text": "Piles et accumulateurs"},
         ]
         w = IdmlWriter(params)
-        spread_id, (overflow_left, overflow_right) = w.add_safety_symbols_page(
+        spread_id, overflow = w.add_safety_symbols_page(
             "st_safety_symbols_dense",
             [],
             [("h1", "ENTRETIEN"), ("body", "Corps.")],
@@ -2679,16 +2826,17 @@ class ExportIdmlTests(unittest.TestCase):
             ROOT,
             22,
             "fr",
+            **_symbol_source_kwargs("fr"),
             dense=True,
         )
 
         self.assertEqual(spread_id, "sp_22")
         self.assertEqual(
-            [row["text"] for row in overflow_left],
+            [row["text"] for row in overflow.left],
             ["Matière explosive", "Objet lourd"],
         )
         self.assertEqual(
-            [row["text"] for row in overflow_right],
+            [row["text"] for row in overflow.right],
             ["Collecte séparée"],
         )
         stories = dict(w.stories)
@@ -2720,9 +2868,10 @@ class ExportIdmlTests(unittest.TestCase):
             ROOT,
             22,
             "fr",
+            **_symbol_source_kwargs("fr"),
         )
 
-        self.assertEqual(([], []), overflow)
+        self.assertEqual(SymbolOverflow((), (), SYMBOL_HEADERS["fr"]), overflow)
         stories = dict(w.stories)
         page_xml = (
             stories["st_safety_symbols_eu_icons_left"]
@@ -2820,12 +2969,13 @@ class ExportIdmlTests(unittest.TestCase):
             tip_label="CONSEILS",
             tip_body="Le câble de charge voiture est vendu séparément.",
         )
-        overflow = (
-            [
+        overflow = SymbolOverflow(
+            left=(
                 {"figure": "", "text": "Matière explosive"},
                 {"figure": "", "text": "Objet lourd"},
-            ],
-            [{"figure": "", "text": "Collecte séparée"}],
+            ),
+            right=({"figure": "", "text": "Collecte séparée"},),
+            headers=SYMBOL_HEADERS["fr"],
         )
 
         w.add_fcc_inbox_page(
@@ -2863,9 +3013,10 @@ class ExportIdmlTests(unittest.TestCase):
     def test_symbol_continuation_masks_all_rounded_corners(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
-        overflow = (
-            [{"figure": "", "text": "Matière explosive"}],
-            [{"figure": "", "text": "Collecte séparée"}],
+        overflow = SymbolOverflow(
+            left=({"figure": "", "text": "Matière explosive"},),
+            right=({"figure": "", "text": "Collecte séparée"},),
+            headers=SYMBOL_HEADERS["fr"],
         )
 
         w.add_fcc_inbox_page(
@@ -2919,9 +3070,11 @@ class ExportIdmlTests(unittest.TestCase):
             [("h1", "CONTENIDO DE LA CAJA")],
             ROOT,
             23,
-            symbol_overflow=([{"figure": "", "text": "Explosivo"}], [
-                {"figure": "", "text": long_copy},
-            ]),
+            symbol_overflow=SymbolOverflow(
+                left=({"figure": "", "text": "Explosivo"},),
+                right=({"figure": "", "text": long_copy},),
+                headers=SYMBOL_HEADERS["es"],
+            ),
             lang="es",
         )
         story = dict(w.stories)["st_fcc_es_symbol_fit_symbols_right"]
@@ -2949,7 +3102,11 @@ class ExportIdmlTests(unittest.TestCase):
             ),
             ROOT,
             42,
-            symbol_overflow=([{"figure": "", "text": "Explosivo"}], []),
+            symbol_overflow=SymbolOverflow(
+                left=({"figure": "", "text": "Explosivo"},),
+                right=(),
+                headers=SYMBOL_HEADERS["es"],
+            ),
             lang="es",
         )
         root = ET.fromstring(dict(w.spreads)["sp_42"])
@@ -3258,7 +3415,9 @@ class ExportIdmlTests(unittest.TestCase):
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         rows = load_lcd_rows(FIXTURE_DATA_ROOT, "JE-1000F")
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        w.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
         story = "".join(
             xml for sid, xml in dict(w.stories).items()
             if sid.startswith("st_anchor_lcd_table_")
@@ -3275,7 +3434,9 @@ class ExportIdmlTests(unittest.TestCase):
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         rows = load_lcd_rows(FIXTURE_DATA_ROOT, "JE-1000F")
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        w.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
         stories = dict(w.stories)
         story = "".join(
             xml for sid, xml in stories.items()
@@ -3341,7 +3502,9 @@ class ExportIdmlTests(unittest.TestCase):
             for index in range(1, 27)
         ]
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        w.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
         stories = dict(w.stories)
 
         self.assertEqual(2, stories["st_lcd"].count("<Group "))
@@ -3363,7 +3526,12 @@ class ExportIdmlTests(unittest.TestCase):
             for index in range(1, 9)
         ]
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT, lang="es")
+        w.add_lcd_story(
+            rows,
+            FIXTURE_DATA_ROOT,
+            lang="es",
+            title=SOURCE_TITLES["es"]["lcd"],
+        )
         continuation = dict(w.stories)["st_anchor_lcd_table_es_1"]
         description_cell = continuation.split(
             'Self="tbl_lcd_cont_esc7_3"', 1
@@ -3389,7 +3557,9 @@ class ExportIdmlTests(unittest.TestCase):
             for index in range(1, 10)
         ]
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        w.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
 
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
@@ -3419,6 +3589,7 @@ class ExportIdmlTests(unittest.TestCase):
                     rows,
                     FIXTURE_DATA_ROOT,
                     lang=language,
+                    title=SOURCE_TITLES[language]["lcd"],
                 )
                 continuation = dict(writer.stories)[
                     f"st_anchor_lcd_table_{language}_1"
@@ -3436,7 +3607,12 @@ class ExportIdmlTests(unittest.TestCase):
             "row_height_pt": "22.96",
         }]
         writer = IdmlWriter(params)
-        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT, lang="fr")
+        writer.add_lcd_story(
+            rows,
+            FIXTURE_DATA_ROOT,
+            lang="fr",
+            title=SOURCE_TITLES["fr"]["lcd"],
+        )
 
         table = dict(writer.stories)["st_anchor_lcd_table_fr_0"]
         self.assertIn('SingleColumnWidth="71"', table)
@@ -3467,7 +3643,9 @@ class ExportIdmlTests(unittest.TestCase):
             for index in range(1, 27)
         ]
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        w.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
 
         stories = dict(w.stories)
         self.assertGreater(w.lcd_segment_counts["en"], 2)
@@ -3492,7 +3670,9 @@ class ExportIdmlTests(unittest.TestCase):
             for index in range(1, 27)
         ]
         writer = IdmlWriter(params)
-        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        writer.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
 
         stories = dict(writer.stories)
         self.assertGreater(writer.lcd_segment_counts["en"], 2)
@@ -3511,7 +3691,9 @@ class ExportIdmlTests(unittest.TestCase):
             for index in range(1, 8)
         ]
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        w.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
 
         story = dict(w.stories)["st_lcd"]
         self.assertIn('Anchor="0 -280.777"', story)
@@ -3536,7 +3718,9 @@ class ExportIdmlTests(unittest.TestCase):
             for index, height in enumerate(heights, start=1)
         ]
         writer = IdmlWriter(params)
-        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        writer.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
 
         host = dict(writer.stories)["st_lcd"]
         table = dict(writer.stories)["st_anchor_lcd_table_en_0"]
@@ -3559,7 +3743,9 @@ class ExportIdmlTests(unittest.TestCase):
             "row_height_pt": "19.95",
         }]
         writer = IdmlWriter(params)
-        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        writer.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
 
         table = dict(writer.stories)["st_anchor_lcd_table_en_0"]
         description = table.split('Self="tbl_lcdc0_3"', 1)[1].split(
@@ -3573,6 +3759,28 @@ class ExportIdmlTests(unittest.TestCase):
             description.count('<Leading type="unit">5.8</Leading>'),
         )
         self.assertNotIn('Leading="5.8"', description)
+
+    def test_lcd_status_prefixes_are_editable_bold_runs(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [{
+            "no": "1",
+            "figure": "",
+            "name": "Wi-Fi",
+            "desc": "**On:** connected.\n**Blink:** pairing.\n**Off:** disconnected.",
+            "row_height_pt": "19.95",
+        }]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
+
+        table = dict(writer.stories)["st_anchor_lcd_table_en_0"]
+        description = table.split('Self="tbl_lcdc0_3"', 1)[1].split(
+            "</Cell>", 1
+        )[0]
+        self.assertEqual(3, description.count('FontStyle="Bold"'))
+        for status in ("On:", "Blink:", "Off:"):
+            self.assertIn(f"<Content>{status}</Content>", description)
 
     def test_lcd_governed_french_first_page_keeps_all_seven_measured_rows(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3588,7 +3796,12 @@ class ExportIdmlTests(unittest.TestCase):
             for index, height in enumerate(heights, start=1)
         ]
         writer = IdmlWriter(params)
-        writer.add_lcd_story(rows, FIXTURE_DATA_ROOT, lang="fr")
+        writer.add_lcd_story(
+            rows,
+            FIXTURE_DATA_ROOT,
+            lang="fr",
+            title=SOURCE_TITLES["fr"]["lcd"],
+        )
 
         stories = dict(writer.stories)
         first_table = stories["st_anchor_lcd_table_fr_0"]
@@ -3614,7 +3827,9 @@ class ExportIdmlTests(unittest.TestCase):
             for index in range(1, 27)
         ]
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        w.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
 
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
@@ -3635,7 +3850,9 @@ class ExportIdmlTests(unittest.TestCase):
             for index in range(1, 8)
         ]
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        w.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
 
         story = dict(w.stories)["st_lcd"]
         self.assertIn('Anchor="0 -280.777"', story)
@@ -3659,7 +3876,9 @@ class ExportIdmlTests(unittest.TestCase):
             for index in range(1, 27)
         ]
         w = IdmlWriter(params)
-        w.add_lcd_story(rows, FIXTURE_DATA_ROOT)
+        w.add_lcd_story(
+            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
+        )
 
         continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
         self.assertIn(
@@ -3682,7 +3901,11 @@ class ExportIdmlTests(unittest.TestCase):
         ]
 
         with self.assertRaisesRegex(ValueError, "mixes governed"):
-            IdmlWriter(params).add_lcd_story(rows, FIXTURE_DATA_ROOT)
+            IdmlWriter(params).add_lcd_story(
+                rows,
+                FIXTURE_DATA_ROOT,
+                title=SOURCE_TITLES["en"]["lcd"],
+            )
 
     def test_lcd_high_circled_numbers_use_a_font_that_covers_them(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3715,7 +3938,9 @@ class ExportIdmlTests(unittest.TestCase):
         sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
         notes = load_spec_annotations(FIXTURE_DATA_ROOT, "JE-1000F", "US")
         w = IdmlWriter(params)
-        w.add_spec_story(sections, notes)
+        w.add_spec_story(
+            sections, notes, title=SOURCE_TITLES["en"]["spec"]
+        )
         story = dict(w.stories)["st_spec"]
         if notes:
             self.assertIn(paragraph_style_ref("HB Spec Note"), story)
@@ -3727,7 +3952,12 @@ class ExportIdmlTests(unittest.TestCase):
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
         writer = IdmlWriter(params)
-        writer.add_spec_story(sections, [], lang="fr")
+        writer.add_spec_story(
+            sections,
+            [],
+            lang="fr",
+            title=SOURCE_TITLES["fr"]["spec"],
+        )
 
         story = dict(writer.stories)["st_spec_fr"]
         marker_range = story.split("<Content>●</Content>", 1)[0].rsplit(
@@ -3764,7 +3994,12 @@ class ExportIdmlTests(unittest.TestCase):
         sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
         notes = ["※ Première note", "※ Deuxième note"]
         writer = IdmlWriter(params)
-        writer.add_spec_story(sections, notes, lang="fr")
+        writer.add_spec_story(
+            sections,
+            notes,
+            lang="fr",
+            title=SOURCE_TITLES["fr"]["spec"],
+        )
 
         story = dict(writer.stories)["st_spec_fr"]
         self.assertIn('SpaceBefore="8.09"', story)
@@ -3882,3 +4117,38 @@ class AttributeEscapingTests(unittest.TestCase):
         w = IdmlWriter(params)
         w.add_prose_story("st_q2", 'page "one"', [("body", "x")], ROOT)
         ET.fromstring(dict(w.stories)["st_q2"])
+
+    def test_trouble_story_title_escapes_xml_attributes(self) -> None:
+        from xml.etree import ElementTree as ET
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        writer.add_trouble_story(
+            [("Issue", "Resolution")],
+            title='Troubleshooting & "Support"',
+        )
+
+        xml = dict(writer.stories)["st_trouble"]
+        self.assertIn(
+            'StoryTitle="Troubleshooting &amp; &quot;Support&quot;"',
+            xml,
+        )
+        ET.fromstring(xml)
+
+    def test_spec_story_title_escapes_xml_attributes(self) -> None:
+        from xml.etree import ElementTree as ET
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
+        writer.add_spec_story(
+            sections,
+            title='Specifications & "Limits"',
+        )
+
+        xml = dict(writer.stories)["st_spec"]
+        self.assertIn(
+            'StoryTitle="Specifications &amp; &quot;Limits&quot;"',
+            xml,
+        )
+        ET.fromstring(xml)

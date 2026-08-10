@@ -27,8 +27,8 @@
   "approval": {
     "status": "approved",
     "approved_by": "唐夏冰",
-    "approved_at": "2026-08-05T15:43:17Z",
-    "method": "operator-approved content hash rebind after 52-source and 58-page composition parity verification; chat decision 2026-08-05; composition map unchanged"
+    "approved_at": "2026-08-09T09:29:27Z",
+    "method": "Operator-approved source-copy completion; verified 52-source Manual IR, skipped_raw=0, unchanged source order, languages, page roles, flow splits, 58-page physical composition, and reference PDF identity."
   },
   "render_contract": {
     "dpi": 300,
@@ -429,7 +429,7 @@
     },
     {
       "source_ref": "page/safety_en.rst",
-      "source_sha256": "60693137a405213d4ff6aac0605ed88e583be7da4e0513d545af2f5bc18a57f0",
+      "source_sha256": "4041487f1645b1ad0e5545522098591eb704063cc6405c1192ddeee1e6107887",
       "language": "en",
       "composition_id": "en_safety",
       "start_page": 4,
@@ -485,7 +485,7 @@
     },
     {
       "source_ref": "page/05_operation_guide_placeholder.rst",
-      "source_sha256": "c0a54fee24f270e8e22b9002c8f34fd98dd20e943dbf44752348907733e25b09",
+      "source_sha256": "be5deada7937e884fcc47afc1495d044a80741ae368e78ae5bcb612697b9ba38",
       "language": "en",
       "composition_id": "en_operation",
       "start_page": 10,
@@ -562,7 +562,7 @@
     },
     {
       "source_ref": "page/safety_fr.rst",
-      "source_sha256": "39b82ae4013d449724746fcef6ea8c22c4f6d51996f703848e8dbe3e18d2b49d",
+      "source_sha256": "dc18962ed8790f977465bf8d95c8e69385c245e458013f85a90d0806d0cdf9ff",
       "language": "fr",
       "composition_id": "fr_safety",
       "start_page": 22,
@@ -618,7 +618,7 @@
     },
     {
       "source_ref": "page/p26_05_operation_guide_placeholder.rst",
-      "source_sha256": "2aa6178bb77ade284a1161165acc6afcef3d097eaf46d964ec14dff2f99c5f4e",
+      "source_sha256": "764cc05245ee24783aea19d08c3225ab624f1169381015db57ef24902f3de98b",
       "language": "fr",
       "composition_id": "fr_operation",
       "start_page": 28,
@@ -695,7 +695,7 @@
     },
     {
       "source_ref": "page/safety_es.rst",
-      "source_sha256": "32d88a8ffb357abd4a99cc560302552f7bfe4b4d720700020fcbd98090313c39",
+      "source_sha256": "e2c3ea9ced90154c97ae4891b2afe85a637e1201a24b2568a4aa6f12c2060417",
       "language": "es",
       "composition_id": "es_safety",
       "start_page": 40,
@@ -751,7 +751,7 @@
     },
     {
       "source_ref": "page/p42_05_operation_guide_placeholder.rst",
-      "source_sha256": "cec018f7c46c67427bcc168b77a0f601abddf5fa005792be72243fb6369dd557",
+      "source_sha256": "0bf7b0dc2e350d261a5264df532dfa9a0299c6ca3731fcb5798b8c8707c0d500",
       "language": "es",
       "composition_id": "es_operation",
       "start_page": 46,
@@ -838,17 +838,17 @@
   "identity": {
     "content": {
       "manual_ir_schema_version": "manual-ir/v1",
-      "manual_content_sha256": "ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0"
+      "manual_content_sha256": "d1e535b72a91e87db045c9371b6cc174b232bd5af72a4ffd36131eecd4e2c1b6"
     },
     "assembly": {
       "sha256": "1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05"
     },
     "style": {
-      "style_contract_sha256": "e8c1bdef69f1cfc0aa55d5603b580905e3eaec7085bc9b941be05ee6c252d371",
-      "layout_params_sha256": "912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d"
+      "style_contract_sha256": "94eb5b84d3d1aa60c05a25ad93c2a71d01fdbbe8e7a7109beacb1aca6a5a980f",
+      "layout_params_sha256": "50683ccb4648bb6572e82a31d375055c0e86026fbbca2ca90afd89f0a0cef06e"
     },
     "provenance": {
-      "snapshot_sha256": "2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33"
+      "snapshot_sha256": "3549175dfa39e6cd7fcee473bf91b5dd2d9ff845793de0c1ba6cadcf65b5453e"
     }
   }
 }

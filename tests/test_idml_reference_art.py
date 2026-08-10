@@ -645,6 +645,7 @@ class ReferenceArtGeometryTests(unittest.TestCase):
                 "lead": "The LED light has two modes: Light and SOS.",
                 "steps": ["First localized step.", "Second localized step.",
                           "Third localized step."],
+                "sos_label": "SOS",
             },
             ctx,
             tid="editable_led",
@@ -698,6 +699,7 @@ class ReferenceArtGeometryTests(unittest.TestCase):
                     "mode SOS."
                 ),
                 "steps": steps,
+                "sos_label": "SOS",
             },
             ctx,
             tid="french_led",

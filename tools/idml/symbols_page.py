@@ -13,7 +13,6 @@ from .character_metrics import (
     with_character_metrics,
 )
 from .layout_est import est_table_height, template_symbol_split
-from .loaders import symbol_copy
 from .page_objects import (
     frame_with_background,
     h1_bar_h_pt,
@@ -22,6 +21,7 @@ from .page_objects import (
     with_rounded_outer,
 )
 from .params import IDPKG, component_param_pt
+from .source_copy import source_text
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -70,6 +70,7 @@ class SafetySymbolsPageStyle:
     symbols_title_gap: float
     h1_optical_offset: float
     page_bottom_allowance: float
+    table_frame_allowance: float
     fallback_import_allowance: float
     fallback_min_height: float
     fallback_text_width_ratio: float
@@ -128,6 +129,9 @@ class SafetySymbolsPageStyle:
             page_bottom_allowance=token(
                 "idml_symbols_page_bottom_allowance", 2.0,
             ),
+            table_frame_allowance=token(
+                "idml_symbols_table_frame_allowance", 0.25,
+            ),
             fallback_import_allowance=token(
                 "idml_symbols_fallback_import_allowance", 3.0,
             ),
@@ -141,6 +145,18 @@ class SafetySymbolsPageStyle:
                 "idml_symbols_fallback_row_height", 24.0,
             ),
         )
+
+
+@dataclass(frozen=True)
+class SymbolOverflow:
+    """Source-authored symbol rows carried to the following composed page."""
+
+    left: tuple[dict, ...]
+    right: tuple[dict, ...]
+    headers: tuple[str, str]
+
+    def has_rows(self) -> bool:
+        return bool(self.left or self.right)
 
 
 def _localized_signal_label_bar(
@@ -253,9 +269,9 @@ def _symbol_signal_bar(
 def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                           width: float, bundle_root: Path,
                           lang: str = "en", *,
+                          headers: tuple[str, str],
                           row_heights: list[float] | None = None) -> str:
-    copy = symbol_copy(lang)
-    rows = [(copy["symbol"], copy["meaning"], True)] + [
+    rows = [(headers[0], headers[1], True)] + [
         (label, text, False) for label, text in signals
     ]
     left_col = component_param_pt(
@@ -310,13 +326,13 @@ def _symbols_icon_table(
     width: float,
     lang: str = "en",
     *,
+    headers: tuple[str, str],
     include_header: bool = True,
     row_heights: list[float] | None = None,
     icon_col_width: float | None = None,
     fit_body_to_row: bool = False,
 ) -> str:
-    copy = symbol_copy(lang)
-    header = [{"figure": "", "text": copy["meaning"], "header": True}]
+    header = [{"figure": "", "text": headers[1], "header": True}]
     rows = (header if include_header else []) + [
         {**row, "header": False} for row in icons
     ]
@@ -367,7 +383,7 @@ def _symbols_icon_table(
     cells = []
     for ri, row in enumerate(rows):
         if row.get("header"):
-            left_xml = writer._psr("HB Symbol Header", copy["symbol"], terminal=True)
+            left_xml = writer._psr("HB Symbol Header", headers[0], terminal=True)
             right_xml = writer._psr("HB Symbol Header", row["text"], terminal=True)
         else:
             fig = _symbol_icon_asset(row.get("figure"))
@@ -466,11 +482,22 @@ def add_safety_symbols_page(
     page_index: int,
     lang: str = "en",
     *,
+    title: str,
+    signal_headers: tuple[str, str],
+    icon_headers: tuple[str, str],
     dense: bool = False,
-) -> tuple[str, tuple[list[dict], list[dict]]]:
+) -> tuple[str, SymbolOverflow]:
     """V2.0 page 02: safety tail + maintenance + symbols on one page."""
     import json as _json
-    copy = symbol_copy(lang)
+    title = source_text(title, owner="Symbols page title")
+    signal_headers = (
+        source_text(signal_headers[0], owner="Symbols signal column 1 header"),
+        source_text(signal_headers[1], owner="Symbols signal column 2 header"),
+    )
+    icon_headers = (
+        source_text(icon_headers[0], owner="Symbols icon column 1 header"),
+        source_text(icon_headers[1], owner="Symbols icon column 2 header"),
+    )
     style = SafetySymbolsPageStyle.from_writer(writer, lang)
     tail_stories: list[tuple[str, float]] = []
     for bi, (kind, text) in enumerate(tail_blocks):
@@ -478,9 +505,14 @@ def add_safety_symbols_page(
             continue
         spec = _json.loads(text)
         if spec.get("kind") in {"safetywarning", "warnbox", "notice"}:
+            label = source_text(
+                spec.get("label"),
+                owner="Safety tail warning label",
+                strict=writer.strict_component_assets,
+            )
             spec = {
                 "kind": "tailwarnbox",
-                "label": spec.get("label") or copy["warning"],
+                "label": label,
                 "texts": spec.get("texts", []),
                 "language": lang,
             }
@@ -491,8 +523,10 @@ def add_safety_symbols_page(
         writer._add_story_parts(tail_sid, f"Safety tail {bi}", [xml_part])
         tail_stories.append((tail_sid, tail_h))
 
-    maint_title = next((t for k, t in maintenance_blocks if k in ("h1", "h2")),
-                       "USER MAINTENANCE INSTRUCTIONS")
+    maint_title = source_text(
+        next((t for k, t in maintenance_blocks if k in ("h1", "h2")), ""),
+        owner="User maintenance title",
+    )
     maint_text = "\n".join(t for k, t in maintenance_blocks if k == "body")
     maint_title_sid = f"{sid}_maintenance_title"
     writer._add_story_parts(
@@ -506,7 +540,7 @@ def add_safety_symbols_page(
     symbols_title_sid = f"{sid}_symbols_title"
     writer._add_story_parts(
         symbols_title_sid, "Symbols title",
-        [heading_text(writer, copy["title"], level=1)])
+        [heading_text(writer, title, level=1)])
 
     body_x = writer.m_l
     body_w = writer.page_w - writer.m_l - writer.m_r
@@ -564,6 +598,7 @@ def add_safety_symbols_page(
             body_w,
             bundle_root,
             lang,
+            headers=signal_headers,
             row_heights=[style.signal_header_height]
             + [style.signal_row_height] * len(signals),
         ))
@@ -598,6 +633,7 @@ def add_safety_symbols_page(
             left_icons,
             icon_table_w,
             lang,
+            headers=icon_headers,
             row_heights=left_row_heights,
             icon_col_width=left_icon_col,
         ))
@@ -609,6 +645,7 @@ def add_safety_symbols_page(
             right_icons,
             icon_table_w,
             lang,
+            headers=icon_headers,
             row_heights=right_row_heights,
             icon_col_width=right_icon_col,
         ))
@@ -663,10 +700,16 @@ def add_safety_symbols_page(
            gap=style.signal_gap_after)
     bottom = writer.page_h - style.page_bottom_allowance
     if lang in governed_languages():
-        # The governed rows already include the table's full vertical
-        # measure.  Adding an import allowance here leaves an unfilled band
-        # below the last icon row before the rounded shell's bottom arc.
-        icons_h = max(sum(left_row_heights), sum(right_row_heights))
+        # InDesign carries an editable table inside a paragraph.  A frame whose
+        # measure equals only the exact row-height sum leaves the table marker
+        # (U+0016) overset and pushes the final indivisible row out of view.
+        # Keep the approved row metrics unchanged and add the tokenized import
+        # allowance to the shared outer shell instead of shrinking localized
+        # copy or hiding overflow during finalization.
+        icons_h = (
+            max(sum(left_row_heights), sum(right_row_heights))
+            + style.table_frame_allowance
+        )
     else:
         icons_h = style.fallback_import_allowance + max(
             style.fallback_min_height,
@@ -733,4 +776,8 @@ def add_safety_symbols_page(
         '</idPkg:Spread>\n'
     )
     writer.spreads.append((spread_id, xml))
-    return spread_id, (overflow_left, overflow_right)
+    return spread_id, SymbolOverflow(
+        left=tuple(overflow_left),
+        right=tuple(overflow_right),
+        headers=icon_headers,
+    )

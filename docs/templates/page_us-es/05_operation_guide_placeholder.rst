@@ -82,6 +82,10 @@ Para desactivar el modo de ahorro de energía, mantenga pulsados simultáneament
 
 Cuando alimente dispositivos de baja potencia (CA ≤ |ENERGY_SAVING_AC_THRESHOLD| o CC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|), desactive el modo de ahorro de energía para evitar que la salida se apague automáticamente durante el funcionamiento.
 
+.. raw:: manual-ir
+
+   {"kind":"operation_panel_copy","layout":"energy_saving","mode_label":"On/Off"}
+
 .. image:: asset:operation/energy_saving
    :alt: Operación del modo de ahorro de energía.
    :width: 320px
@@ -99,6 +103,10 @@ ENCENDER/APAGAR LUZ LED
 --------------------------
 
 La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga presionado el botón de luz LED para apagarla.
+
+.. raw:: manual-ir
+
+   {"kind":"operation_panel_copy","layout":"led_light","sos_label":"SOS"}
 
 .. image:: asset:operation/led_light
    :alt: Operación de la luz LED.

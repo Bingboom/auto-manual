@@ -10,6 +10,11 @@ from tools.export_idml import IdmlWriter, load_layout_params
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SPEC_TITLES = {
+    "en": "SPECIFICATIONS",
+    "fr": "SPÉCIFICATIONS",
+    "es": "ESPECIFICACIONES",
+}
 
 
 class IdmlSpecLocalizationTests(unittest.TestCase):
@@ -36,7 +41,9 @@ class IdmlSpecLocalizationTests(unittest.TestCase):
         for lang in ("en", "fr", "es"):
             with self.subTest(lang=lang):
                 writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
-                sid = writer.add_spec_story(sections, lang=lang)
+                sid = writer.add_spec_story(
+                    sections, lang=lang, title=SPEC_TITLES[lang]
+                )
                 story = dict(writer.stories)[sid]
                 anchors = {
                     name: xml
@@ -73,7 +80,9 @@ class IdmlSpecLocalizationTests(unittest.TestCase):
             },
         ]
 
-        writer.add_spec_story(sections, lang="fr")
+        writer.add_spec_story(
+            sections, lang="fr", title=SPEC_TITLES["fr"]
+        )
         anchors = dict(writer.stories)
 
         # Section-zero shrink and nudge must not depend on the English
@@ -152,7 +161,11 @@ class IdmlSpecLocalizationTests(unittest.TestCase):
         for language, (section_values, table_values) in expected.items():
             with self.subTest(language=language):
                 writer = IdmlWriter(params)
-                sid = writer.add_spec_story(sections, lang=language)
+                sid = writer.add_spec_story(
+                    sections,
+                    lang=language,
+                    title=SPEC_TITLES[language],
+                )
                 story = dict(writer.stories)[sid]
                 for value in section_values:
                     self.assertIn(f'SpaceBefore="{value:g}"', story)
@@ -175,7 +188,7 @@ class IdmlSpecLocalizationTests(unittest.TestCase):
                 ("Single", "Value"),
                 ("Multiline", "First line\nSecond line"),
             ],
-        }], lang="en")
+        }], lang="en", title=SPEC_TITLES["en"])
 
         table = dict(writer.stories)["st_anchor_spec_en0"]
         self.assertIn(

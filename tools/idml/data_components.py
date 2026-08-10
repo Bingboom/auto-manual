@@ -36,8 +36,15 @@ def _read_braced_args(text: str, start: int, count: int) -> tuple[list[str], int
     return args, cursor
 
 
-def _text(value: str) -> str:
-    """Decode the narrow LaTeX vocabulary emitted by CSV page renderers."""
+def _text(value: str, *, preserve_strong: bool = False) -> str:
+    """Decode the narrow LaTeX vocabulary emitted by CSV page renderers.
+
+    ``preserve_strong`` keeps the renderer-neutral ``**...**`` semantic used
+    by Manual IR.  Most generated fields only need plain text, but LCD status
+    prefixes (On/Blink/Off and their localized equivalents) are intentionally
+    strong in the source and must remain editable bold character runs in
+    InDesign.
+    """
     value = re.sub(r"(?<!\\)%[^\n]*\n?", "", value)
     tilde_token = "\u0000HB_TILDE\u0000"
     value = value.replace(r"\textasciitilde{}", tilde_token)
@@ -45,7 +52,8 @@ def _text(value: str) -> str:
     value = value.replace(r"\HBSpecMultilineRowStrut{}", "")
     value = value.replace(r"\newline", "\n").replace(r"\par", "\n")
     value = value.replace(r"\textbullet", "•")
-    value = re.sub(r"\\textbf\{([^{}]*)\}", r"\1", value)
+    strong_replacement = r"**\1**" if preserve_strong else r"\1"
+    value = re.sub(r"\\textbf\{([^{}]*)\}", strong_replacement, value)
     value = re.sub(r"\\text(?:sub|super)script\{([^{}]*)\}", r"\1", value)
     value = value.replace("~", " ").replace(r"\&", "&").replace(r"\%", "%")
     value = re.sub(r"\\[a-zA-Z@]+", " ", value)
@@ -102,7 +110,7 @@ def _lcd_payload(body: str) -> dict[str, Any] | None:
             "no": _text(number),
             "figure": figure.strip(),
             "name": _text(name),
-            "desc": _text(description),
+            "desc": _text(description, preserve_strong=True),
         })
     return {"kind": "lcd_icons", "rows": rows}
 
@@ -168,7 +176,7 @@ def _special_page_payload(body: str) -> dict[str, Any] | None:
             })
         return {
             "kind": "toc",
-            "title": _text(titles[0][0]) if titles else "TABLE OF CONTENTS",
+            "title": _text(titles[0][0]) if titles else "",
             "languages": languages,
         }
     return None

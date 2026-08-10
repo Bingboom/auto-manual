@@ -47,6 +47,7 @@ class AppFigureStyle:
     control_label_leading: float
     control_label_min_height: float
     control_label_leader_gap: float
+    control_leader_extension_weight: float
     connect_step_size: float
     connect_step_leading: float
     connect_note_size: float
@@ -82,6 +83,9 @@ class AppFigureStyle:
             ),
             control_label_leader_gap=token(
                 "idml_app_control_label_leader_gap", 1.2,
+            ),
+            control_leader_extension_weight=token(
+                "idml_app_control_leader_extension_weight", 0.5,
             ),
             connect_step_size=token(
                 "idml_app_connect_step_font_size", 5.5,
@@ -210,13 +214,15 @@ def _control_labels_by_role(spec: dict, ctx: RenderContext) -> dict[str, str]:
 
 
 def _fallback(spec: dict, *, tid: str, terminal: bool) -> tuple[str, float]:
-    """Keep registry-only and non-story contexts useful and testable."""
+    """Render only source-authored copy in registry-only/non-story contexts."""
     texts = [
         str(value).strip()
         for key in ("caption", "copy", "vehicle", "note", "reference_note")
         if (value := spec.get(key)) and str(value).strip()
     ]
-    body = psr("HB Body", "\n".join(texts) or "Editable reference figure")
+    if not texts:
+        return "", 0.0
+    body = psr("HB Body", "\n".join(texts))
     table = component_table(
         tid,
         [100.0],
@@ -560,20 +566,26 @@ def _app_download(
     total_h = 82.153
     stores_top = -80.8
     qr_top = -82.153
+    left_copy_bounds = (20.109, 150.0)
+    right_copy_bounds = (171.932, min(width, 268.693))
+    stores_w = 71.966
+    qr_w = 48.977
+    stores_left = sum(left_copy_bounds) / 2.0 - stores_w / 2.0
+    qr_left = sum(right_copy_bounds) / 2.0 - qr_w / 2.0
     stores_image = _positioned_image(
         f"{tid}stores",
         stores,
-        71.966,
+        stores_w,
         46.632,
-        left=19.80,
+        left=stores_left,
         bottom=stores_top + 46.632,
     )
     qr_image = _positioned_image(
         f"{tid}qr",
         qr,
-        48.977,
+        qr_w,
         49.414,
-        left=172.232,
+        left=qr_left,
         bottom=qr_top + 49.414,
     )
     bounds = _shape(
@@ -591,9 +603,9 @@ def _app_download(
         parts=[_sized_psr(
             "HB Body", copy_left, size=7.0, leading=8.4, terminal=True,
         )],
-        left=20.109,
+        left=left_copy_bounds[0],
         top=-26.75,
-        right=150.0,
+        right=left_copy_bounds[1],
         bottom=0.0,
         auto_height=True,
     )
@@ -605,9 +617,9 @@ def _app_download(
         parts=[_sized_psr(
             "HB Body", copy_right, size=7.0, leading=8.4, terminal=True,
         )],
-        left=171.932,
+        left=right_copy_bounds[0],
         top=-26.16,
-        right=min(width, 268.693),
+        right=right_copy_bounds[1],
         bottom=0.0,
         auto_height=True,
     )
@@ -725,14 +737,17 @@ def _app_add_device(
         _inline_path(
             f"referencefigure_app_rule_power_extension_{tid}",
             ((77.905, -40.118), (108.25, -40.118)),
+            weight=style.control_leader_extension_weight,
         ),
         _inline_path(
             f"referencefigure_app_rule_dc_extension_{tid}",
             ((102.5, -22.786), (108.0, -22.786)),
+            weight=style.control_leader_extension_weight,
         ),
         _inline_path(
             f"referencefigure_app_rule_ac_extension_{tid}",
             ((230.0, -22.686), (248.268, -22.686)),
+            weight=style.control_leader_extension_weight,
         ),
     ])
 

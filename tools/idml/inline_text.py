@@ -11,6 +11,10 @@ SYMBOL_FONT_FALLBACK_STYLE = "Regular"
 SYMBOL_FONT_FALLBACKS = {
     "⎓": DIRECT_CURRENT_SYMBOL_FONT,
     "※": GENERAL_SYMBOL_FONT,
+    # Gilroy's installed production face has no masculine ordinal indicator.
+    # Keep the source Spanish ``Nº`` intact and route only that glyph through
+    # the governed Unicode fallback so PDF/X export does not emit .notdef.
+    "º": GENERAL_SYMBOL_FONT,
     **{
         ch: GENERAL_SYMBOL_FONT
         for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾●"
