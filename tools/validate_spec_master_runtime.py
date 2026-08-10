@@ -798,10 +798,14 @@ def collect_spec_master_validation_issues(
     source_mode: str = "runtime",
 ) -> list[SpecMasterValidationIssue]:
     normalized_source_mode = (source_mode or "runtime").strip().lower()
-    if normalized_source_mode not in {"auto", "runtime", "review"}:
+    if normalized_source_mode not in {"auto", "runtime", "review", "review-asis"}:
         raise RuntimeError(f"Unsupported validation source mode: {source_mode}")
     if normalized_source_mode == "auto":
         normalized_source_mode = "runtime"
+    elif normalized_source_mode == "review-asis":
+        # Frozen review pages use the same selector scope as review builds;
+        # only their materialization/sync behavior differs.
+        normalized_source_mode = "review"
 
     cfg = load_config(cfg_path)
     snapshot_paths = resolve_data_snapshot_paths(

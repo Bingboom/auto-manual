@@ -28,7 +28,7 @@
     "status": "approved",
     "approved_by": "唐夏冰",
     "approved_at": "2026-08-09T09:29:27Z",
-    "method": "Operator-approved source-copy completion; verified 52-source Manual IR, skipped_raw=0, unchanged source order, languages, page roles, flow splits, 58-page physical composition, and reference PDF identity."
+    "method": "Operator-approved source-copy completion; verified 52-source Manual IR, skipped_raw=0, unchanged source order, languages, page roles, flow splits, 58-page physical composition, and reference PDF identity; mechanical rebind correction after post-merge real-build detection."
   },
   "render_contract": {
     "dpi": 300,
@@ -485,7 +485,7 @@
     },
     {
       "source_ref": "page/05_operation_guide_placeholder.rst",
-      "source_sha256": "be5deada7937e884fcc47afc1495d044a80741ae368e78ae5bcb612697b9ba38",
+      "source_sha256": "3a8aa36d009dd4110da12f56770e7a32f69d65e8bd9ec8478fbd95ffccb6fad3",
       "language": "en",
       "composition_id": "en_operation",
       "start_page": 10,
@@ -838,7 +838,7 @@
   "identity": {
     "content": {
       "manual_ir_schema_version": "manual-ir/v1",
-      "manual_content_sha256": "d1e535b72a91e87db045c9371b6cc174b232bd5af72a4ffd36131eecd4e2c1b6"
+      "manual_content_sha256": "e0973d4d869e5a9f3395cec70ef50d3f27a982561ccfc5f93126a6b9bef6965b"
     },
     "assembly": {
       "sha256": "1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05"

@@ -937,6 +937,7 @@ class TestBuildScript(unittest.TestCase):
                 repo_root=build_cli.ROOT,
                 publish_tracked_root=lambda parsed_args: Path("/tracked"),
                 publish_report_dir=lambda parsed_args: Path("/reports"),
+                resolve_path_from_root=lambda value: Path(value),
                 run_check=mock.Mock(),
                 run_diff_report_with_paths=mock.Mock(),
                 run_checked=run_checked,
@@ -946,6 +947,38 @@ class TestBuildScript(unittest.TestCase):
 
         environment.assert_called_once_with(repo_root=build_cli.ROOT, require_clean=True)
         self.assertEqual(4, run_checked.call_count)
+
+    def test_publish_approved_target_should_render_frozen_review_asis(self) -> None:
+        args = build_cli.parse_args([
+            "publish",
+            "--config", "configs/config.us.yaml",
+            "--model", "JE-1000F",
+            "--region", "US",
+        ])
+        seen: list[list[str]] = []
+        original_validate = build_cli.run_validate
+        original_run_checked = build_cli.run_checked
+        original_asset_gate = build_cli._publish_asset_gate
+        try:
+            build_cli.run_validate = lambda *args, **kwargs: None  # type: ignore[assignment]
+            build_cli.run_checked = lambda cmd: seen.append(cmd)  # type: ignore[assignment]
+            build_cli._publish_asset_gate = lambda parsed_args: None  # type: ignore[assignment]
+            build_cli.run_publish(args)
+        finally:
+            build_cli.run_validate = original_validate  # type: ignore[assignment]
+            build_cli.run_checked = original_run_checked  # type: ignore[assignment]
+            build_cli._publish_asset_gate = original_asset_gate  # type: ignore[assignment]
+
+        self.assertFalse(any(Path(command[1]).name == "sync_review.py" for command in seen))
+        build_commands = [
+            command
+            for command in seen
+            if len(command) > 1 and Path(command[1]).name == "build_docs.py"
+        ]
+        self.assertEqual(4, len(build_commands))
+        for command in build_commands:
+            source_index = command.index("--source")
+            self.assertEqual("review-asis", command[source_index + 1])
 
     def test_publish_should_run_check_diff_report_and_word_from_review(self) -> None:
         args = build_cli.parse_args(["publish", "--config", "configs/config.ja.yaml", "--model", "JE-1000F", "--region", "JP"])

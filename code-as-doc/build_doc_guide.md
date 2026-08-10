@@ -213,6 +213,7 @@ Meaning:
 - config policy for `build.queue_by_document_key`: turn it on for merged whole-book families that intentionally build one shared manual across languages, such as today's `us-merged`, `eu-merged`, and future `cn-merged`; leave it off for single-language families such as `us-en`, `eu-en`, `us-fr`, `us-es`, `pt-br`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to be isolated by `record_id`
 - when the queue row carries `Version`, Build Draft Package DOCX/Markdown names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx|md`, while Publish queue release artifact names become `manual_je1000f_us_en_publish_0.2.docx|pdf|md`; only the Draft DOCX or Publish PDF is uploaded back to `Document link`
 - `Workflow_action = Build Draft Package` rows must carry `Git_ref`; queue builds now seed a temporary worktree from the latest `origin/main`, then overlay only `docs/_review` from that review branch, so the queue keeps the current `main` toolchain while still rendering the selected review content instead of silently falling back to `main`
+- Print Publish keeps two source modes deliberately separate. A target registered in the approved reference-layout registry renders `check`, DOCX, PDF, Markdown, and IDML from the exact `review-asis` overlay; refreshing phase2 data may update the archived release snapshot and asset resolution, but it must not rewrite reviewed page bytes during Publish. Unregistered targets retain the historical `review` parameter-sync behavior. If current Base copy must replace an approved target's frozen review copy, sync/re-seed it before approval, review the resulting layout, and explicitly reapprove the reference content contract before Publish.
 - on a local worker, if a same-named local branch for `Git_ref` already exists, the queue uses that branch directly so local review edits can be built before they are pushed upstream
 - if that fetch hits a transient GitHub network failure but the worker already has the same `origin/<Git_ref>` or local branch cached, the queue reuses the cached ref and keeps building from the intended review content
 - direct `build.py` actions still write Build Draft Package outputs to the current repo [`../docs/_build/`](../docs/_build) tree by default
@@ -1314,9 +1315,11 @@ commit into the subprocess; the clean gate accepts the target only when its
 complete file set and blob hashes match that commit, then writes the composite
 provenance into the release manifest. The manifest consumes the tree SHA proof
 frozen by that entry gate rather than re-reading the working subtree after the
-build has deterministically synced parameters and staged target assets. This
-prevents both a stale local `main` branch from silently running an older
-renderer and unrelated review-branch drift from entering a release.
+build has staged target assets. Approved-reference targets do not run the
+parameter-sync mutation at all: every print renderer consumes the same
+`review-asis` bytes that the contract pins. This prevents both a stale local
+`main` branch from silently running an older renderer and fresh Base values
+from bypassing review on their way into a release.
 
 The default flow style map lives at
 `docs/templates/idml_template/style_mapping/flow_style_map.json` and is copied

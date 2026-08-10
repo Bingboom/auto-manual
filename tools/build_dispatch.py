@@ -43,13 +43,14 @@ class DispatchContext:
 ActionHandler = Callable[[argparse.Namespace, DispatchContext], None]
 
 
-def _target_has_approved_reference_plan(
-    args: argparse.Namespace,
+def target_has_approved_reference_plan(
     *,
+    model: str | None,
+    region: str | None,
     config_path: Path,
     repo_root: Path,
 ) -> bool:
-    """Return whether the exact CLI target is governed by an approved plan."""
+    """Return whether one resolved target is governed by an approved plan."""
 
     from tools.config_loader import load_config_mapping
     from tools.model_languages import resolve_target_languages
@@ -60,8 +61,8 @@ def _target_has_approved_reference_plan(
         build = cfg.get("build", {})
         if not isinstance(build, dict):
             return False
-        model = str(getattr(args, "model", None) or build.get("default_model") or "").strip()
-        region = str(getattr(args, "region", None) or build.get("default_region") or "").strip()
+        model = str(model or build.get("default_model") or "").strip()
+        region = str(region or build.get("default_region") or "").strip()
         raw_languages = build.get("languages")
         if not isinstance(raw_languages, list):
             return False
@@ -91,6 +92,22 @@ def _target_has_approved_reference_plan(
         return False
     target = {"model": model, "region": region, "languages": languages}
     return any(isinstance(entry, dict) and entry.get("target") == target for entry in entries)
+
+
+def _target_has_approved_reference_plan(
+    args: argparse.Namespace,
+    *,
+    config_path: Path,
+    repo_root: Path,
+) -> bool:
+    """CLI adapter for :func:`target_has_approved_reference_plan`."""
+
+    return target_has_approved_reference_plan(
+        model=getattr(args, "model", None),
+        region=getattr(args, "region", None),
+        config_path=config_path,
+        repo_root=repo_root,
+    )
 
 
 def _effective_idml_language(

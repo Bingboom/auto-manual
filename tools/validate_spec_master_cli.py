@@ -17,9 +17,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--lang", default=None, help="Optional language selector for multi-language configs")
     ap.add_argument(
         "--source",
-        choices=("auto", "runtime", "review"),
+        choices=("auto", "runtime", "review", "review-asis"),
         default="runtime",
-        help="Validation source scope. review validates only rows required by the review build contract.",
+        help=(
+            "Validation source scope. review and review-asis validate only rows "
+            "required by the review build contract."
+        ),
     )
     ap.add_argument("--all-targets", action="store_true", help="Validate all build targets from the config")
     return ap.parse_args(argv)

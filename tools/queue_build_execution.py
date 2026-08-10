@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Callable
 
 from tools.build_docs import load_config
+from tools.build_dispatch import target_has_approved_reference_plan
 from tools.idml.delivery import build_delivery_package
 from tools.release_contract import (
     release_manifests_dir_for_target,
@@ -286,12 +287,22 @@ def build_document_for_task(
                 cwd=effective_repo_root,
                 env=review_overlay_env,
             )
+            idml_source = (
+                "review-asis"
+                if target_has_approved_reference_plan(
+                    model=model,
+                    region=region,
+                    config_path=effective_config_path,
+                    repo_root=effective_repo_root,
+                )
+                else "review"
+            )
             # IDML is the publish upload artifact (replaces the old Word/PDF upload).
-            # --source review so it matches the reviewed content; --idml-mode both
-            # also emits the flow outputs and handoff reports the delivery zip below
-            # packages. no_clean keeps the word/pdf/md/html outputs the earlier
-            # publish/html steps just built (default --clean wipes
-            # docs/_build/<model>/<region>, failing the artifact checks below).
+            # Approved-reference targets must use the same immutable review-asis
+            # content as the earlier Print Publish render. Other targets preserve
+            # the historical review sync. --idml-mode both also emits the flow
+            # outputs and handoff reports the delivery zip below packages. no_clean
+            # keeps the earlier word/pdf/md outputs (default --clean wipes them).
             run_command(
                 build_py_target_command(
                     repo_root=effective_repo_root,
@@ -301,7 +312,7 @@ def build_document_for_task(
                     region=region,
                     lang=lang,
                     data_root=effective_data_root,
-                    source="review",
+                    source=idml_source,
                     no_clean=True,
                     idml_mode="both",
                 ),
