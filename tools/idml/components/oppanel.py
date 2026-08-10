@@ -23,6 +23,7 @@ from ..primitives import (
 )
 from ..page_objects import rounded_path_geometry
 from ..params import component_param_pt
+from ..source_copy import source_text
 from .base import RenderContext, figure_paragraph
 
 
@@ -706,8 +707,16 @@ def _render_energy_saving_panel(
     guidance = [str(item).strip() for item in spec.get("guidance", [])
                 if str(item).strip()]
     action = str(spec.get("action") or "").strip()
-    mode_label = str(spec.get("mode_label") or "On/Off").strip()
-    duration = str(spec.get("duration") or "3s").strip()
+    mode_label = source_text(
+        spec.get("mode_label"),
+        owner="Energy Saving mode label",
+        strict=ctx.strict_component_assets,
+    )
+    duration = source_text(
+        spec.get("duration"),
+        owner="Energy Saving duration",
+        strict=ctx.strict_component_assets,
+    )
 
     mode_x_offset = component_param_pt(
         ctx.params,
@@ -1058,7 +1067,12 @@ def _render_led_light_panel(
             bottom=center + 9.0,
             auto_height=True,
         ))
-    if len(steps) >= 2:
+    sos_label = source_text(
+        spec.get("sos_label"),
+        owner="LED operation SOS label",
+        strict=ctx.strict_component_assets,
+    )
+    if len(steps) >= 2 and sos_label:
         center = row_centers[1]
         text_layers.append(_editable_text_frame(
             ctx,
@@ -1066,7 +1080,7 @@ def _render_led_light_panel(
             frame_id=f"tf_oppanel_led_sos_{tid}",
             title=f"{tid} LED SOS label",
             parts=[_sized_psr(
-                "HB Body", "SOS", size=6.0, leading=6.8,
+                "HB Body", sos_label, size=6.0, leading=6.8,
                 terminal=True, justification="CenterAlign",
             )],
             left=icon_left,

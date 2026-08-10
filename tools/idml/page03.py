@@ -21,6 +21,7 @@ from .page_objects import (
     with_rounded_outer,
 )
 from .params import IDPKG, param_pt
+from .symbols_page import SymbolOverflow
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -369,12 +370,11 @@ def _fcc_objects(
 def _symbol_continuation_objects(
     writer,
     sid: str,
-    symbol_overflow: tuple[list[dict], list[dict]] | None,
+    symbol_overflow: SymbolOverflow | None,
     lang: str,
 ) -> tuple[list[str], list[str]]:
-    if not symbol_overflow or not any(symbol_overflow):
+    if symbol_overflow is None or not symbol_overflow.has_rows():
         return [], []
-    left_rows, right_rows = symbol_overflow
     table_gap = 7.0
     table_w = (BODY_W - table_gap) / 2.0
     table_y = 25.0 if lang == "es" else 20.0
@@ -382,8 +382,8 @@ def _symbol_continuation_objects(
     story_ids: list[str] = []
     frames: list[str] = []
     for side, rows, x in (
-        ("left", left_rows, BODY_X),
-        ("right", right_rows, BODY_X + table_w + table_gap),
+        ("left", symbol_overflow.left, BODY_X),
+        ("right", symbol_overflow.right, BODY_X + table_w + table_gap),
     ):
         if not rows:
             continue
@@ -393,6 +393,7 @@ def _symbol_continuation_objects(
             rows,
             table_w,
             lang,
+            headers=symbol_overflow.headers,
             include_header=False,
             row_heights=[table_h / len(rows)] * len(rows),
             fit_body_to_row=True,
@@ -648,7 +649,7 @@ def add_fcc_inbox_page(
     bundle_root: Path,
     page_index: int,
     *,
-    symbol_overflow: tuple[list[dict], list[dict]] | None = None,
+    symbol_overflow: SymbolOverflow | None = None,
     lang: str = "en",
     reference_profile: dict | None = None,
 ) -> str:

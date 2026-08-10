@@ -253,8 +253,11 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
         args = [_detex(a) for a in args]
         import json as _json
         if kind == "safetywarning" and args:
+            payload = {"kind": "safetywarning", "texts": [args[0]]}
+            if optional.strip():
+                payload["label"] = _detex(optional)
             result.blocks.append(("component", _json.dumps(
-                {"kind": "safetywarning", "texts": [args[0]]},
+                payload,
                 ensure_ascii=False)))
         elif kind == "safetyinstruction" and args:
             result.blocks.append(("component", _json.dumps(
@@ -287,8 +290,8 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
                     source_ref=f"rst:raw-latex:{macro[1:]}",
                 ), ensure_ascii=False)))
         elif kind == "bodies":
-            result.blocks.extend([("h1", "FCC"), ("component", _json.dumps(
-                {"kind": "fcc", "texts": [a for a in args if a]}, ensure_ascii=False))])
+            result.blocks.append(("component", _json.dumps(
+                {"kind": "fcc", "texts": [a for a in args if a]}, ensure_ascii=False)))
         elif kind == "langtag" and len(args) == 2:
             result.blocks.append(("component", _json.dumps(
                 {"kind": "langtag", "lang": args[0], "texts": [args[1]]},

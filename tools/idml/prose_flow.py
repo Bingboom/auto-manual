@@ -199,8 +199,22 @@ class ProseFlowBuffer:
     @staticmethod
     def _batch_content(items: list[tuple[str, list[Block], int]]) -> tuple[list[Block], int]:
         from . import oppanel as _oppanel
+        from . import page_roles as _page_roles
+
+        default_langtag_language = None
+        if (
+            len(items) == 1
+            and _page_roles.classify_page_role(Path(items[0][0]))
+            is _page_roles.PageRole.PREFACE
+        ):
+            # Approved physical-page-2 exception: legacy flattened review
+            # pages may carry ``**IMPORTANT**`` without the explicit EN code.
+            # Keep that completion confined to the semantic preface page.
+            default_langtag_language = "EN"
         return (_oppanel.transform(
-            [block for _, page_blocks, _ in items for block in page_blocks]), items[0][2])
+            [block for _, page_blocks, _ in items for block in page_blocks],
+            default_langtag_language=default_langtag_language,
+        ), items[0][2])
 
     @staticmethod
     def _emit_batch(items: list[tuple[str, list[Block], int]],

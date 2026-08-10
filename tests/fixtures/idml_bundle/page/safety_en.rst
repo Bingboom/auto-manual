@@ -60,7 +60,7 @@
 
    .. raw:: latex
 
-      \safetywarning{Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt.}
+      \safetywarning[WARNING]{Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt.}
 
    .. raw:: latex
 

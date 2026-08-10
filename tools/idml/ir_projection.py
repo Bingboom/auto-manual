@@ -25,6 +25,7 @@ from .latex_page_plan import (
 from .data_components import parse_data_component
 from .lcd_reference_profile import apply_lcd_reference_profile
 from .reference_layout_plan import load_approved_reference_plan
+from .source_copy import source_text
 
 
 @dataclass(frozen=True)
@@ -52,14 +53,30 @@ class LcdPageData:
 @dataclass(frozen=True)
 class SymbolPageData:
     title: str
+    signal_headers: tuple[str, str]
+    icon_headers: tuple[str, str]
     signals: tuple[tuple[str, str], ...]
     icons: tuple[dict[str, str], ...]
+
+
+@dataclass(frozen=True)
+class TroublePageData:
+    title: str
+    rows: tuple[tuple[str, str], ...]
 
 
 def _page_blocks(page: ManualPage) -> tuple[tuple[str, str], ...]:
     blocks: list[tuple[str, str]] = []
     for block in page.blocks:
         if block.kind == "data":
+            if (
+                isinstance(block.payload, dict)
+                and block.payload.get("kind") == "operation_panel_copy"
+            ):
+                blocks.append((
+                    "semantic",
+                    json.dumps(block.payload, ensure_ascii=False),
+                ))
             continue
         if block.kind in {"component", "table"}:
             value = json.dumps(block.payload, ensure_ascii=False)
@@ -131,12 +148,12 @@ def back_cover_data(ir: ManualIR) -> dict[str, Any] | None:
     return _special_payload(ir, "back_cover")
 
 
-def _heading(page: ManualPage | None, fallback: str) -> str:
+def _heading(page: ManualPage | None, *, owner: str) -> str:
     if page is not None:
         for block in page.blocks:
             if block.kind == "h1" and isinstance(block.payload, str):
-                return block.payload
-    return fallback
+                return source_text(block.payload, owner=owner)
+    return source_text("", owner=owner)
 
 
 def spec_page_data(ir: ManualIR, lang: str) -> SpecPageData | None:
@@ -152,7 +169,14 @@ def spec_page_data(ir: ManualIR, lang: str) -> SpecPageData | None:
         for payload in payloads if payload.get("kind") == "spec_annotations"
         for text in payload.get("texts", []) if str(text)
     )
-    return SpecPageData(title or _heading(page, "SPECIFICATIONS"), sections, annotations)
+    return SpecPageData(
+        source_text(
+            title or _heading(page, owner="Specifications page title"),
+            owner="Specifications page title",
+        ),
+        sections,
+        annotations,
+    )
 
 
 def _circled(index: int) -> str:
@@ -233,7 +257,10 @@ def lcd_page_data(
             )
         except ValueError:
             row["no"] = display_number or _circled(index)
-    return LcdPageData(_heading(page, "LCD DISPLAY"), tuple(rows))
+    return LcdPageData(
+        _heading(page, owner="LCD page title"),
+        tuple(rows),
+    )
 
 
 def symbol_page_data(
@@ -260,7 +287,36 @@ def symbol_page_data(
     )
     if not (signals or icons):
         return None
-    return SymbolPageData(_heading(page, "MEANING OF SYMBOLS"), signals, icons)
+    signal_headers = tuple(str(value) for value in (signal_payload or {}).get("headers", []))
+    icon_headers = tuple(str(value) for value in (icon_payload or {}).get("headers", []))
+    if len(signal_headers) != 2 or len(icon_headers) != 2:
+        raise ValueError("Symbols table headers are required from source content")
+    return SymbolPageData(
+        _heading(page, owner="Symbols page title"),
+        (
+            source_text(signal_headers[0], owner="Symbols signal column 1 header"),
+            source_text(signal_headers[1], owner="Symbols signal column 2 header"),
+        ),
+        (
+            source_text(icon_headers[0], owner="Symbols icon column 1 header"),
+            source_text(icon_headers[1], owner="Symbols icon column 2 header"),
+        ),
+        signals,
+        icons,
+    )
+
+
+def trouble_page_data(ir: ManualIR, lang: str) -> TroublePageData | None:
+    page = _matching_page(ir, "troubleshooting_", lang)
+    if page is None:
+        return None
+    rows = trouble_rows(ir, lang)
+    if not rows:
+        return None
+    return TroublePageData(
+        _heading(page, owner="Troubleshooting page title"),
+        rows,
+    )
 
 
 def trouble_rows(ir: ManualIR, lang: str) -> tuple[tuple[str, str], ...]:

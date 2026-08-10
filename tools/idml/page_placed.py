@@ -80,7 +80,8 @@ def add_placed_pdf_page(writer, sid: str, asset: Path, page_index: int) -> str:
     return spread_id
 
 
-# Fallback copy for bundles that predate the semantic back-cover payload.
+# Approved back-cover fallback for bundles that predate the semantic payload.
+# This exception is page-role scoped and must not be reused by body renderers.
 _BACK_COVER_COPY = {
     "US": {
         "company": "JACKERY INC.",

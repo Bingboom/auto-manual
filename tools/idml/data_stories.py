@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 try:
     from tools.lcd_table_layout import split_lcd_table_rows
@@ -12,17 +13,24 @@ from . import lcd_style as _lcd
 from . import page_objects as _po
 from . import table_borders as _tb
 from .components.rounded_table import rounded_table_panel, table_text_indent
-from .loaders import symbol_copy
 from .params import IDPKG, component_param_pt, param_pt
-from .primitives import spec_table
+from .primitives import _ATTR_ENTITIES, spec_table
+from .source_copy import source_text
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def add_lcd_story(writer, rows: list[dict], data_root: Path,
-                  lang: str = "en", title: str = "LCD DISPLAY") -> str:
+def add_lcd_story(
+    writer,
+    rows: list[dict],
+    data_root: Path,
+    lang: str = "en",
+    *,
+    title: str,
+) -> str:
     """LCD icon table: circled-no / icon image / name / description."""
+    title = source_text(title, owner="LCD page title")
     sid = "st_lcd" if lang == "en" else f"st_lcd_{lang}"
     body_w = (
         writer.page_w - writer.m_l - writer.m_r
@@ -389,25 +397,65 @@ def add_lcd_story(writer, rows: list[dict], data_root: Path,
     return writer._add_story_parts(sid, title, parts)
 
 
-def add_symbols_story(writer, signals: list[tuple[str, str]],
-                      icons: list[dict], data_root: Path,
-                      lang: str = "en") -> str:
+def add_symbols_story(
+    writer,
+    signals: list[tuple[str, str]],
+    icons: list[dict],
+    data_root: Path,
+    lang: str = "en",
+    *,
+    title: str,
+    signal_headers: tuple[str, str],
+    icon_headers: tuple[str, str],
+) -> str:
     sid = "st_symbols"
-    copy = symbol_copy(lang)
+    title = source_text(title, owner="Symbols page title")
+    signal_headers = (
+        source_text(signal_headers[0], owner="Symbols signal column 1 header"),
+        source_text(signal_headers[1], owner="Symbols signal column 2 header"),
+    )
+    icon_headers = (
+        source_text(icon_headers[0], owner="Symbols icon column 1 header"),
+        source_text(icon_headers[1], owner="Symbols icon column 2 header"),
+    )
     parts = [_po.h1_pill_paragraph(
-        writer, copy["title"], writer.page_w - writer.m_l - writer.m_r)]
+        writer, title, writer.page_w - writer.m_l - writer.m_r)]
     if signals:
         table = writer._table(
-            "tbl_sym_sig", signals, label_style="HB Notice Label", role="data")
+            "tbl_sym_sig",
+            [list(signal_headers), *[list(row) for row in signals]],
+            label_style="HB Notice Label",
+            role="data",
+        )
         parts.append(writer._wrap_table_paragraph(
             table, False, span_columns=False))
     if icons:
         body_w = writer.page_w - writer.m_l - writer.m_r
         cols = (body_w * 0.18, body_w * 0.82)
         tid = "tbl_sym_ico"
-        cells = []
+        cells = [
+            writer._cell(
+                f"{tid}c0_0",
+                "0:0",
+                writer._psr("HB Symbol Header", icon_headers[0], terminal=True),
+                fill="Color/HB Bg K05",
+                top=2,
+                bottom=2,
+                left=3,
+                right=3,
+            ),
+            writer._cell(
+                f"{tid}c0_1",
+                "1:0",
+                writer._psr("HB Symbol Header", icon_headers[1], terminal=True),
+                top=2,
+                bottom=2,
+                left=3,
+                right=3,
+            ),
+        ]
         icon_pt = 20.0
-        for ri, row in enumerate(icons):
+        for ri, row in enumerate(icons, start=1):
             fig = (ROOT / row["figure"]) if row["figure"] else None
             image = (
                 writer._image_cell_content(f"{tid}img{ri}", fig, icon_pt, icon_pt)
@@ -426,16 +474,22 @@ def add_symbols_story(writer, signals: list[tuple[str, str]],
                     f"{tid}c{ri}_{ci}", f"{ci}:{ri}", content,
                     top=2, bottom=2, left=3, right=3))
         table = writer._component_table(
-            tid, list(cols), cells, n_rows=len(icons), role="data")
+            tid, list(cols), cells, n_rows=len(icons) + 1, role="data")
         parts.append(writer._wrap_table_paragraph(
             table, True, span_columns=False))
-    return writer._add_story_parts(sid, "MEANING OF SYMBOLS", parts)
+    return writer._add_story_parts(sid, title, parts)
 
 
-def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
+def add_trouble_story(
+    writer,
+    rows: list[tuple[str, str]],
+    *,
+    title: str,
+) -> str:
     sid = "st_trouble"
+    title = source_text(title, owner="Troubleshooting page title")
     parts = [_po.h1_pill_paragraph(
-        writer, "TROUBLESHOOTING", writer.page_w - writer.m_l - writer.m_r)]
+        writer, title, writer.page_w - writer.m_l - writer.m_r)]
     table = writer._table("tbl_trouble", rows, role="data")
     body_style_ref = paragraph_style_ref("HB Body")
     parts.append(
@@ -450,7 +504,7 @@ def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
         f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" '
-        'StoryTitle="TROUBLESHOOTING">\n'
+        f'StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
         '<StoryPreference OpticalMarginAlignment="false" '
         'FrameType="TextFrameType"/>\n'
         + "".join(parts)
@@ -460,10 +514,16 @@ def add_trouble_story(writer, rows: list[tuple[str, str]]) -> str:
     return sid
 
 
-def add_spec_story(writer, sections: list[dict],
-                   annotations: list[str] | None = None,
-                   lang: str = "en", title: str = "SPECIFICATIONS") -> str:
+def add_spec_story(
+    writer,
+    sections: list[dict],
+    annotations: list[str] | None = None,
+    lang: str = "en",
+    *,
+    title: str,
+) -> str:
     sid = "st_spec" if lang == "en" else f"st_spec_{lang}"
+    title = source_text(title, owner="Specifications page title")
     parts = [_po.h1_pill_paragraph(
         writer, title, writer.page_w - writer.m_l - writer.m_r)]
     # The approved US master repeats one specification shell for EN/FR/ES.
@@ -601,7 +661,7 @@ def add_spec_story(writer, sections: list[dict],
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
         f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" '
-        f'StoryTitle="{title}">\n'
+        f'StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
         '<StoryPreference OpticalMarginAlignment="false" '
         'FrameType="TextFrameType"/>\n'
         + "".join(parts)

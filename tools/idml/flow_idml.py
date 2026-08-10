@@ -193,6 +193,8 @@ class _FlowIdmlWriter:
             # the rendered IDML. Keep the readable copy and mark it as an
             # ordinary paragraph instead.
             fallback = _component_fallback_text(spec)
+            if not fallback:
+                return "", 0.0
             return self._text_part("paragraph", fallback, terminal), self._estimate_text(
                 "paragraph", fallback)
         if block.kind == "image":
@@ -205,6 +207,12 @@ class _FlowIdmlWriter:
             return (xml or ""), height
         if block.kind == "table":
             rows = block.payload if isinstance(block.payload, list) else []
+            # Flow Markdown needs a header row syntactically even when the
+            # source data has no visible headers.  Its all-empty carrier is
+            # structural, not a source-authored spec row; remove it before
+            # routing the table to an IDML component.
+            if rows and all(not str(cell).strip() for cell in rows[0]):
+                rows = rows[1:]
             if not rows:
                 return "", 0.0
             if _table_has_images(rows, self._render_context()):
@@ -505,7 +513,7 @@ def _parse_flow_fence(token: str, lines: list[str]) -> _FlowBlock | None:
             payload={
                 "kind": "notice",
                 "variant": aliases.get(token, token),
-                "label": label or token.upper(),
+                "label": label,
                 "texts": text,
                 "list": list_like,
             },
@@ -596,7 +604,7 @@ def _component_fallback_text(spec: dict) -> str:
     texts = spec.get("texts")
     if isinstance(texts, list):
         values.extend(str(item) for item in texts if str(item).strip())
-    return "\n".join(values) or str(spec.get("kind") or "component")
+    return "\n".join(values)
 
 
 def _sanitize_fallback_font_attrs(xml: str) -> str:

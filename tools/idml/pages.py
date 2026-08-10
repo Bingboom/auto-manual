@@ -7,8 +7,9 @@ from pathlib import Path
 from .language_contract import governed_languages
 from .page_objects import frame_with_background, h1_bar_h_pt, heading_bar_opts, heading_text, with_rounded_outer
 from .params import IDPKG, component_param_pt, param_pt
+from .source_copy import source_block_text
 from .symbols_page import (
-    ROOT as ROOT,
+    ROOT as ROOT, SymbolOverflow,
     _localized_signal_label_bar,
     _symbol_signal_bar,
     _symbols_icon_table,
@@ -276,15 +277,14 @@ def _approved_safety_param(writer, key: str, default: float) -> float:
         owner="safety-page",
     )
 
-def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]],
-                    bundle_root: Path, page_index: int) -> str:
+def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]], bundle_root: Path, page_index: int) -> str:
     """V2.0 US safety page 01: fixed component regions, not one flow."""
-    h1 = next((t for k, t in blocks if k == "h1"), title)
+    h1 = source_block_text(blocks, "h1", owner="Safety page title")
     top_warning = next((t for k, t in blocks
                         if k == "component" and any(
                             f'"kind": "{name}"' in t
                             for name in ("safetywarning", "safetyinstruction"))), None)
-    subbar = next((t for k, t in blocks if k == "h2"), "OPERATING INSTRUCTIONS")
+    subbar = source_block_text(blocks, "h2", owner="Safety operating-instructions title")
 
     sections: list[list[tuple[str, str]]] = []
     cur: list[tuple[str, str]] | None = None
@@ -481,7 +481,7 @@ def add_fcc_inbox_page(
     bundle_root: Path,
     page_index: int,
     *,
-    symbol_overflow: tuple[list[dict], list[dict]] | None = None,
+    symbol_overflow: SymbolOverflow | None = None,
     lang: str = "en",
     reference_profile: dict | None = None,
 ) -> str:

@@ -32,6 +32,7 @@ try:
     from tools.idml import params as _params
     from tools.idml import prose_flow as _prose_flow
     from tools.idml import reference_story_flow as _reference_story_flow
+    from tools.idml import symbols_page as _symbols_page
     from tools.idml import template_merge as _template_merge
     from tools.idml.writer import IdmlWriter
 except ImportError:  # pragma: no cover - direct script execution fallback
@@ -51,6 +52,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import params as _params  # type: ignore
     from idml import prose_flow as _prose_flow  # type: ignore
     from idml import reference_story_flow as _reference_story_flow  # type: ignore
+    from idml import symbols_page as _symbols_page  # type: ignore
     from idml import template_merge as _template_merge  # type: ignore
     from idml.writer import IdmlWriter  # type: ignore
 
@@ -64,15 +66,12 @@ MM_TO_PT = _params.MM_TO_PT
 load_layout_params = _params.load_layout_params
 param_pt = _params.param_pt
 brand_cmyk = _params.brand_cmyk
-SYMBOL_COPY = _loaders.SYMBOL_COPY
 normalize_lang = _loaders.normalize_lang
-symbol_copy = _loaders.symbol_copy
 load_spec_sections = _loaders.load_spec_sections
 load_lcd_rows = _loaders.load_lcd_rows
 load_spec_annotations = _loaders.load_spec_annotations
 load_symbols_rows = _loaders.load_symbols_rows
 load_trouble_rows = _loaders.load_trouble_rows
-load_page_title = _loaders.load_page_title
 
 check_idml = _check.check_idml
 split_safety_first_page = _prose_flow.split_safety_first_page
@@ -187,14 +186,12 @@ def main() -> int:
         language=args.lang,
         page_plan=page_plan,
     )
-    symbol_cache: dict[str, tuple[list[tuple[str, str]], list[dict]]] = {}
-    def symbol_rows_for(lang: str) -> tuple[list[tuple[str, str]], list[dict]]:
+    symbol_cache: dict[str, _ir_projection.SymbolPageData | None] = {}
+    def symbol_data_for(lang: str) -> _ir_projection.SymbolPageData | None:
         lang = normalize_lang(lang)
         if lang not in symbol_cache:
-            data = _ir_projection.symbol_page_data(
+            symbol_cache[lang] = _ir_projection.symbol_page_data(
                 manual_ir, lang, root=ROOT, data_root=data_root)
-            symbol_cache[lang] = (
-                list(data.signals) if data else [], list(data.icons) if data else [])
         return symbol_cache[lang]
     page_cursor = 0
     skipped_raw = 0
@@ -233,7 +230,7 @@ def main() -> int:
     emitted: set[str] = set()  # "spec:fr", "lcd:es", "trouble", "symbols"
     pending_prefix_blocks: list[tuple[str, str]] = []
     pending_fcc_blocks, pending_fcc_title = [], ""
-    pending_symbol_overflow: tuple[list[dict], list[dict]] | None = None
+    pending_symbol_overflow: _symbols_page.SymbolOverflow | None = None
     approved_reference = (
         (page_plan or {}).get("plan_source") == "approved-reference"
     )
@@ -304,20 +301,38 @@ def main() -> int:
                 w, sid, page_cursor, segment_count, lang=lang)
             page_cursor += segment_count
         elif kind == "trouble":
-            rows = list(_ir_projection.trouble_rows(manual_ir, lang))
-            if not rows:
+            data = _ir_projection.trouble_page_data(manual_ir, lang)
+            if data is None:
                 return
+            rows = list(data.rows)
             if lang == args.lang:
                 trouble_rows[:] = rows
-            toc.note(_toc.DATA_TITLES.get(kind, ""), page_cursor)
-            sid = w.add_trouble_story(rows)
+            toc.note(data.title, page_cursor, lang)
+            sid = w.add_trouble_story(rows, title=data.title)
             chain(sid, 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in rows))
         elif kind == "symbols":
-            sym_signals, sym_icons = symbol_rows_for(args.lang)
-            if not (sym_signals or sym_icons):
+            # Preserve the historical standalone-data-page boundary: a
+            # symbols page outside the composed safety/maintenance flow is
+            # emitted only for the requested output language.  The composed
+            # path above still resolves the language of each source page.
+            # This avoids pulling an explicitly EN symbols page into a
+            # synthetic FR-only bundle merely because it appears in index.rst.
+            data = symbol_data_for(args.lang)
+            if data is None:
                 return
-            toc.note(_toc.DATA_TITLES.get(kind, ""), page_cursor)
-            sid = w.add_symbols_story(sym_signals, sym_icons, data_root, args.lang)
+            sym_signals = list(data.signals)
+            sym_icons = list(data.icons)
+            symbol_lang = normalize_lang(args.lang)
+            toc.note(data.title, page_cursor, symbol_lang)
+            sid = w.add_symbols_story(
+                sym_signals,
+                sym_icons,
+                data_root,
+                symbol_lang,
+                title=data.title,
+                signal_headers=data.signal_headers,
+                icon_headers=data.icon_headers,
+            )
             chain(sid, 16.0 + 14.0 * len(sym_signals) + 26.0 * len(sym_icons))
 
     for page in ordered:
@@ -330,7 +345,7 @@ def main() -> int:
         if placed_asset is not None:
             flush_prose_flow()
             if role is _page_roles.PageRole.PRODUCT_OVERVIEW:
-                toc.note(_toc.OVERVIEW_TITLES.get(toc.lang, _toc.OVERVIEW_TITLES["en"]), page_cursor, toc.lang)
+                toc.note_h1s(projected_by_path[page].blocks, page_cursor)
             _placed.add_placed_pdf_page(w, "st_placed_" + slug_stem(page.stem), placed_asset, page_cursor)
             page_cursor += 1
             prose_pages += 1
@@ -339,7 +354,14 @@ def main() -> int:
         if matched:
             if matched == "trouble":
                 res = projected_by_path[page]
-                if res.blocks:
+                # A source H1 belongs to the dedicated editable table story;
+                # it must not make a semantic troubleshooting page fall back
+                # to generic prose.  Conversely, an author-written list-table
+                # remains a real flow block and must keep sharing the natural
+                # storage/troubleshooting story.  Data components are omitted
+                # from ``res.blocks``, so H1-only is the unambiguous semantic
+                # data-page shape here.
+                if any(kind != "h1" for kind, _ in res.blocks):
                     skipped_raw += res.skipped_raw
                     emitted.add("trouble")
                     toc.stem_langs[page.stem] = page_lang(page)
@@ -368,17 +390,22 @@ def main() -> int:
         if pending_prefix_blocks and role is _page_roles.PageRole.MAINTENANCE:
             flush_prose_flow()
             lang = page_lang(page)
-            sym_signals, sym_icons = symbol_rows_for(lang)
-            if not (sym_signals or sym_icons):
+            symbol_data = symbol_data_for(lang)
+            if symbol_data is None:
                 flush_pending_fcc()
                 blocks = pending_prefix_blocks + blocks
                 pending_prefix_blocks = []
             else:
+                sym_signals = list(symbol_data.signals)
+                sym_icons = list(symbol_data.icons)
                 sid = "st_safety_symbols_" + slug_stem(page.stem)
-                toc.note(_toc.SYMBOL_TITLES.get(lang, _toc.SYMBOL_TITLES["en"]), page_cursor, lang)
+                toc.note(symbol_data.title, page_cursor, lang)
                 _, pending_symbol_overflow = w.add_safety_symbols_page(
                     sid, pending_prefix_blocks, blocks, sym_signals, sym_icons,
                     bundle_root, page_cursor, lang,
+                    title=symbol_data.title,
+                    signal_headers=symbol_data.signal_headers,
+                    icon_headers=symbol_data.icon_headers,
                     dense=approved_reference)
                 emitted.add("symbols")
                 pending_prefix_blocks = []
@@ -423,13 +450,18 @@ def main() -> int:
             if "symbols" in emitted:
                 continue
             lang = page_lang(page)
-            sym_signals, sym_icons = symbol_rows_for(lang)
-            if pending_prefix_blocks and (sym_signals or sym_icons):
+            symbol_data = symbol_data_for(lang)
+            if pending_prefix_blocks and symbol_data is not None:
+                sym_signals = list(symbol_data.signals)
+                sym_icons = list(symbol_data.icons)
                 sid = "st_safety_symbols_" + slug_stem(page.stem)
-                toc.note(_toc.SYMBOL_TITLES.get(lang, _toc.SYMBOL_TITLES["en"]), page_cursor, lang)
+                toc.note(symbol_data.title, page_cursor, lang)
                 _, pending_symbol_overflow = w.add_safety_symbols_page(
                     sid, pending_prefix_blocks, [], sym_signals, sym_icons,
                     bundle_root, page_cursor, lang,
+                    title=symbol_data.title,
+                    signal_headers=symbol_data.signal_headers,
+                    icon_headers=symbol_data.icon_headers,
                     dense=approved_reference)
                 emitted.add("symbols")
                 pending_prefix_blocks = []
@@ -473,7 +505,7 @@ def main() -> int:
     if coverage_warning:
         print(coverage_warning)
 
-    if pending_symbol_overflow and any(pending_symbol_overflow):
+    if pending_symbol_overflow and pending_symbol_overflow.has_rows():
         print(
             "[export-idml] ERROR: symbol continuation was not consumed "
             "by a following FCC page"

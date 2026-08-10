@@ -73,7 +73,7 @@ class IdmlFlowMarkdownTests(unittest.TestCase):
             self.assertIn("<!-- source_ref: page=00_intro", markdown)
             self.assertIn("# INTRO", markdown)
             self.assertIn("| Item | Value |", markdown)
-            self.assertIn("![front](_assets/front.png)", markdown)
+            self.assertIn("![](_assets/front.png)", markdown)
             self.assertIn("::: note", markdown)
             self.assertIn("<!-- asset_id: front asset_ref: _assets/front.png -->", markdown)
 

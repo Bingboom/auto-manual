@@ -78,6 +78,7 @@ _CJK_FIXTURE_REPLACEMENTS: dict[str, dict[str, tuple[tuple[str, str], ...]]] = {
         "safety_en.rst": (
             (r"\section{IMPORTANT SAFETY INFORMATION}", r"\section{安全上の重要な注意事項}"),
             ("{WARNING}", "{警告}"),
+            ("[WARNING]", "[警告]"),
             (
                 "Always follow these basic precautions when using this product.",
                 "本製品を使用するときは、必ず基本的な注意事項を守ってください。",
@@ -140,6 +141,7 @@ _CJK_FIXTURE_REPLACEMENTS: dict[str, dict[str, tuple[tuple[str, str], ...]]] = {
         "safety_en.rst": (
             (r"\section{IMPORTANT SAFETY INFORMATION}", r"\section{중요 안전 정보}"),
             ("{WARNING}", "{경고}"),
+            ("[WARNING]", "[경고]"),
             (
                 "Always follow these basic precautions when using this product.",
                 "이 제품을 사용할 때는 다음 기본 안전 수칙을 반드시 준수하십시오.",
