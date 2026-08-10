@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Mapping
 
 _DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 _repo_root_provider = lambda: _DEFAULT_ROOT
@@ -30,11 +31,17 @@ def _repo_root() -> Path:
     return Path(_repo_root_provider())
 
 
-def run_command(cmd: list[str], *, cwd: Path | None = None) -> None:
+def run_command(
+    cmd: list[str],
+    *,
+    cwd: Path | None = None,
+    env: Mapping[str, str] | None = None,
+) -> None:
     _run_command_impl(
         cmd,
         cwd=cwd or _repo_root(),
         prefix="[build-queue]",
+        env=env,
         command_failure_message=command_failure_message,
     )
 

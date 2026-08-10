@@ -219,14 +219,21 @@ Meaning:
 - for local verification, use [`../scripts/local_build.py`](../scripts/local_build.py), [`../scripts/local_build.ps1`](../scripts/local_build.ps1), or [`../scripts/local_build.sh`](../scripts/local_build.sh); they default `check`, `diff-report`, `release-manifest`, `publish`, and other staging-safe local actions to `.tmp/staging`
 - explicit `--staging-root <dir>` or `AUTO_MANUAL_STAGING_ROOT=<dir>` still redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under another isolated root when needed
 - Print Publish stages IDML/LaTeX/DOCX/PDF/ZIP/Markdown under the Git-ignored runtime tree [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), uploads formal deliverables to Feishu or short-lived GitHub Actions artifacts, and freezes the exact manifest-backed phase2 root under `versions/<version>/snapshot/`; it does not commit those binaries or build/deploy HTML. Web Publish is a separate action: it always refreshes approved Web assets, stages MyST and verification HTML under `versions/<version>/web/`, writes `latest/web/publish_meta.json`, incrementally assembles the `Hello-Docs/publish:docs/publish/` candidate, opens or updates a `docs/publish/**`-only PR into `Hello-Docs/main`, and writes the deterministic RTD URL to `HTML_link`.
-- A versioned Publish must start from a clean tracked worktree. It derives
-  `SOURCE_DATE_EPOCH` from that commit, uses content-addressed staged assets,
-  and canonicalizes DOCX metadata/container timestamps so the release DOCX,
-  Markdown, and PDF have a byte-equivalence contract recorded in the manifest.
+- A versioned Publish must start from a clean tracked worktree. The queue's one
+  bounded exception is the active `docs/_review/<model>/<region>` overlay: its
+  bytes must exactly match the row's resolved review-branch commit, every
+  tracked change must remain inside that target, and the manifest records the
+  review ref, commit, target path, and Git tree SHA. Any hand edit, sibling
+  target change, or incomplete provenance still fails the clean gate. Publish
+  derives `SOURCE_DATE_EPOCH` from the trusted `main` toolchain commit, uses
+  content-addressed staged assets, and canonicalizes DOCX metadata/container
+  timestamps so the release DOCX, Markdown, and PDF have a byte-equivalence
+  contract recorded in the manifest.
   Run `python build.py release-rebuild-verify --manifest <manifest.json>` on the
   recorded toolchain to validate it. The command verifies the archived snapshot,
-  creates a detached worktree at `git_sha`, republishes from the archive into a
-  temporary staging root, and compares all three SHA-256 values. The default
+  creates a detached worktree at `git_sha`, restores the exact recorded review
+  overlay when present, republishes from the archive into a temporary staging
+  root, and compares all three SHA-256 values. The default
   `rebuild_verification.json` report sits beside `snapshot/` in the version
   directory; snapshot drift, toolchain drift, missing provenance, or any output
   mismatch fails closed.
@@ -1298,9 +1305,12 @@ IDML does not prove the delivered `Links/` package.
 For queue rows with `Git_ref`, the build worktree is based on the current
 `origin/main`; only the active `docs/_review/<model>/<region>` target is
 overlaid from the row's review ref. The worker does not replace sibling target
-directories. This prevents both a stale local `main` branch from silently
-running an older renderer and unrelated review-branch drift from dirtying a
-versioned Publish worktree.
+directories. For a versioned Publish, the worker carries the resolved review
+commit into the subprocess; the clean gate accepts the target only when its
+complete file set and blob hashes match that commit, then writes the composite
+provenance into the release manifest. This prevents both a stale local `main`
+branch from silently running an older renderer and unrelated review-branch
+drift from entering a release.
 
 The default flow style map lives at
 `docs/templates/idml_template/style_mapping/flow_style_map.json` and is copied

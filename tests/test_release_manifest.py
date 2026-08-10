@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools import release_manifest
+from tools.release_reproducibility import ReviewOverlayProvenance
 
 
 class TestReleaseManifest(unittest.TestCase):
@@ -42,6 +43,15 @@ class TestReleaseManifest(unittest.TestCase):
 
             with mock.patch.object(release_manifest, "ROOT", root), mock.patch.object(
                 release_manifest, "_read_git_sha", return_value="a" * 40
+            ), mock.patch.object(
+                release_manifest,
+                "review_overlay_from_environment",
+                return_value=ReviewOverlayProvenance(
+                    source_ref="review/JE-1000F-US",
+                    source_sha="b" * 40,
+                    target_path="docs/_review/JE-1000F/US",
+                    tree_sha="c" * 40,
+                ),
             ):
                 json_path, csv_path = release_manifest.build_release_manifest(
                     config_path=config_path,
@@ -73,11 +83,17 @@ class TestReleaseManifest(unittest.TestCase):
                 1_785_513_828,
                 manifest["reproducibility"]["source_date_epoch"],
             )
+            self.assertEqual(
+                "b" * 40,
+                manifest["reproducibility"]["review_overlay"]["source_sha"],
+            )
             with csv_path.open(encoding="utf-8", newline="") as handle:
                 csv_row = next(csv.DictReader(handle))
             self.assertEqual(manifest["snapshot"]["snapshot_sha256"], csv_row["snapshot_sha256"])
             self.assertIn('"lang": "en"', csv_row["snapshot_target_matrix"])
             self.assertEqual("1785513828", csv_row["source_date_epoch"])
+            self.assertEqual("review/JE-1000F-US", csv_row["review_overlay_ref"])
+            self.assertEqual("c" * 40, csv_row["review_overlay_tree_sha"])
             self.assertEqual(manifest["release_tag"], csv_row["release_tag"])
 
     def test_build_release_manifest_should_write_json_and_csv(self) -> None:

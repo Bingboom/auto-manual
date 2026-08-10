@@ -831,7 +831,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         )
 
     def test_build_document_for_task_should_build_from_main_workspace_overlay_review_content_and_stage_output_under_host_repo(self) -> None:
-        commands: list[tuple[list[str], Path]] = []
+        commands: list[tuple[list[str], Path, dict[str, str] | None]] = []
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             main_worktree = root / ".tmp" / "process-build-queue-worktrees" / "main"
@@ -906,7 +906,12 @@ class TestProcessBuildQueue(unittest.TestCase):
             ) as remove_mock, mock.patch.object(
                 process_build_queue,
                 "_run_command",
-                side_effect=lambda cmd, **kwargs: commands.append((cmd, kwargs.get("cwd"))),
+                side_effect=lambda cmd, **kwargs: commands.append(
+                    (cmd, kwargs.get("cwd"), kwargs.get("env"))
+                ),
+            ), mock.patch(
+                "tools.queue_build_execution._git_head_sha",
+                return_value="b" * 40,
             ), mock.patch.object(
                 process_build_queue,
                 "resolve_word_output_path_for_target",
@@ -969,8 +974,17 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(2, len(commands))
         self.assertEqual("publish", commands[0][0][2])
         self.assertEqual(main_worktree, commands[0][1])
+        self.assertEqual(
+            {
+                "AUTO_MANUAL_REVIEW_OVERLAY_REF": "codex/review-us-en",
+                "AUTO_MANUAL_REVIEW_OVERLAY_SHA": "b" * 40,
+                "AUTO_MANUAL_REVIEW_OVERLAY_PATH": "docs/_review/JE-1000F/US",
+            },
+            commands[0][2],
+        )
         self.assertEqual("idml", commands[1][0][2])
         self.assertEqual(main_worktree, commands[1][1])
+        self.assertIsNone(commands[1][2])
         # Regression: idml must not --clean away the word/pdf/md outputs
         # built by the earlier print Publish step.
         self.assertIn("--no-clean", commands[1][0])

@@ -179,9 +179,10 @@ Quality and release logic should follow concern-specific modules instead of drif
   - immutable version-scoped phase2 snapshot freezing, identity inventory, historical verification, and rebind/drift rejection
 - [`tools/release_reproducibility.py`](../../tools/release_reproducibility.py)
   - clean tracked-tree gate, Git commit epoch resolution, deterministic release environment, and manifest contract record
+  - hash-verified review-overlay provenance for composite `main` toolchain + review-branch releases
 - [`tools/release_rebuild.py`](../../tools/release_rebuild.py)
   - fail-closed historical rebuild from manifest Git SHA plus frozen snapshot
-  - isolated publish and byte-equivalence verification for DOCX, Markdown, and PDF
+  - exact review-overlay restoration before isolated publish and byte-equivalence verification for DOCX, Markdown, and PDF
 - [`tools/release_indesign_package.py`](../../tools/release_indesign_package.py)
   - InDesign package lineage plus native preflight layout signals; JSON owns
     the nested record and release CSV receives the flattened page/overset counts
@@ -224,11 +225,12 @@ Quality and release logic should follow concern-specific modules instead of drif
   - target/config resolution for queue rows
 - [`tools/queue_runtime.py`](../../tools/queue_runtime.py)
   - worktree/runtime helpers
-  - generated path and review/runtime input helpers
+  - generated path and review/runtime input helpers, including subprocess-scoped environment overlays
 - [`tools/queue_build_execution.py`](../../tools/queue_build_execution.py)
   - queue-triggered `build.py` command assembly
   - phase2 sync-before-build execution
   - worktree-scoped draft/print-publish/Web-Publish build orchestration
+  - exact review commit/path provenance injection for versioned print Publish
 - [`tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
   - top-level queue session flow
   - dry-run vs real-run branch control

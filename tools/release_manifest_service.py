@@ -22,7 +22,7 @@ from tools.release_contract import (
     release_tag_for_target,
 )
 from tools.release_snapshot import freeze_release_snapshot
-from tools.release_reproducibility import build_reproducibility_record
+from tools.release_reproducibility import ReviewOverlayProvenance, build_reproducibility_record
 from tools.review_bundle import resolve_docs_dir
 from tools.review_support import review_dir_for_target
 from tools.release_asset_lineage import collect_asset_lineage
@@ -75,6 +75,7 @@ def build_release_manifest(
     releases_root: Path | None = None,
     release_version: str | None = None,
     source_date_epoch: int | None = None,
+    review_overlay: ReviewOverlayProvenance | None = None,
     toolchain: dict[str, object] | None = None,
     assets: dict[str, object] | None = None,
     indesign_package: dict[str, object] | None = None,
@@ -243,7 +244,10 @@ def build_release_manifest(
         "product_name": product_name,
         "release_version": release_version or "",
         "release_tag": release_tag,
-        "reproducibility": build_reproducibility_record(source_date_epoch),
+        "reproducibility": build_reproducibility_record(
+            source_date_epoch,
+            review_overlay=review_overlay,
+        ),
         "snapshot": snapshot_record,
         "spec_master_csv": repo_relative(snapshot_paths.spec_master_csv, repo_root=repo_root),
         "spec_footnotes_csv": repo_relative(snapshot_paths.spec_footnotes_csv, repo_root=repo_root),
@@ -279,6 +283,18 @@ def build_release_manifest(
             manifest["reproducibility"]["source_date_epoch"]
             if manifest["reproducibility"]["source_date_epoch"] is not None
             else ""
+        ),
+        "review_overlay_ref": str(
+            (manifest["reproducibility"].get("review_overlay") or {}).get("source_ref") or ""
+        ),
+        "review_overlay_sha": str(
+            (manifest["reproducibility"].get("review_overlay") or {}).get("source_sha") or ""
+        ),
+        "review_overlay_path": str(
+            (manifest["reproducibility"].get("review_overlay") or {}).get("target_path") or ""
+        ),
+        "review_overlay_tree_sha": str(
+            (manifest["reproducibility"].get("review_overlay") or {}).get("tree_sha") or ""
         ),
         "snapshot_path": str((snapshot_record or {}).get("path") or ""),
         "snapshot_identity_path": str((snapshot_record or {}).get("identity_path") or ""),

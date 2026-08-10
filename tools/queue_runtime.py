@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 import subprocess
 import sys
 import time
 from pathlib import Path
-from typing import Callable
+from typing import Callable, Mapping
 
 
 def slug_ref_token(value: str) -> str:
@@ -64,12 +65,14 @@ def run_command(
     *,
     cwd: Path,
     prefix: str,
+    env: Mapping[str, str] | None = None,
     command_failure_message: Callable[[list[str], str, str, int], str] = command_failure_message,
 ) -> None:
     print(f"{prefix} {format_command(cmd)}")
     proc = subprocess.run(
         cmd,
         cwd=str(cwd),
+        env={**os.environ, **dict(env)} if env is not None else None,
         check=False,
         capture_output=True,
         text=True,

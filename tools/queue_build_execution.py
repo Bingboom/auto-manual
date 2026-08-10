@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import os
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 from typing import Callable
@@ -12,6 +13,11 @@ from tools.idml.delivery import build_delivery_package
 from tools.release_contract import (
     release_manifests_dir_for_target,
     release_snapshot_dir_for_target,
+)
+from tools.release_reproducibility import (
+    REVIEW_OVERLAY_PATH_ENV,
+    REVIEW_OVERLAY_REF_ENV,
+    REVIEW_OVERLAY_SHA_ENV,
 )
 from tools.utils.path_utils import PathSegments, review_dir_of
 
@@ -117,6 +123,24 @@ def _replace_path(src: Path, dst: Path) -> bool:
     return True
 
 
+def _git_head_sha(workspace: Path) -> str:
+    try:
+        proc = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=str(workspace),
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise RuntimeError(f"cannot resolve review overlay Git SHA from {workspace}") from exc
+    sha = (proc.stdout or "").strip().lower()
+    if len(sha) != 40:
+        raise RuntimeError(f"review overlay Git SHA is not a full commit: {sha!r}")
+    return sha
+
+
 def _worktree_data_root(
     data_root: str,
     *,
@@ -168,6 +192,7 @@ def build_document_for_task(
     effective_data_root = data_root
     build_workspace: Path | None = None
     review_workspace: Path | None = None
+    review_overlay_env: dict[str, str] | None = None
     if git_ref.strip():
         # Build code must come from the current remote main, not a stale local
         # branch left behind by an earlier worker run. Review content is still
@@ -180,6 +205,12 @@ def build_document_for_task(
         target_available = review_target_dir.exists()
         if target_available and review_workspace != build_workspace:
             target_available = _replace_path(review_target_dir, build_target_dir)
+            if target_available and normalized_doc_phase == "publish":
+                review_overlay_env = {
+                    REVIEW_OVERLAY_REF_ENV: review_ref,
+                    REVIEW_OVERLAY_SHA_ENV: _git_head_sha(review_workspace),
+                    REVIEW_OVERLAY_PATH_ENV: build_target_dir.relative_to(build_workspace).as_posix(),
+                }
         if not target_available:
             raise RuntimeError(
                 f"Git_ref {review_ref} does not contain review content for {model}/{region}; "
@@ -253,6 +284,7 @@ def build_document_for_task(
             run_command(
                 publish_command,
                 cwd=effective_repo_root,
+                env=review_overlay_env,
             )
             # IDML is the publish upload artifact (replaces the old Word/PDF upload).
             # --source review so it matches the reviewed content; --idml-mode both

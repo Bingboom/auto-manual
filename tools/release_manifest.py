@@ -18,6 +18,7 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.release_manifest_service import build_release_manifest as _build_release_manifest  # noqa: E402
 from tools.release_reproducibility import (  # noqa: E402
+    review_overlay_from_environment,
     source_date_epoch_from_environment,
 )
 
@@ -67,6 +68,7 @@ def build_release_manifest(
             if source_date_epoch is not None
             else source_date_epoch_from_environment()
         ),
+        review_overlay=review_overlay_from_environment(ROOT),
         toolchain=toolchain,
     )
 
