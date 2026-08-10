@@ -294,6 +294,7 @@ class _FlowIdmlWriter:
                             f"{tid}img{ri}_{ci}", image, 20.0, 20.0,
                         ),
                         tail="<Content></Content>",
+                        justification="CenterAlign",
                     )
                 else:
                     style = "HB Data Header" if ri == 0 else "HB Data Body"

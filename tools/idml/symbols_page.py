@@ -406,7 +406,8 @@ def _symbols_icon_table(
                 )
             figure_style_ref = paragraph_style_ref("HB Figure")
             left_xml = (
-                f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style_ref}">'
+                f'  <ParagraphStyleRange AppliedParagraphStyle="{figure_style_ref}" '
+                'Justification="CenterAlign">'
                 '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                 + icon + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
             right_xml = writer._psr("HB Symbol Body", row["text"], terminal=True)

@@ -542,6 +542,34 @@ class ComponentRegistryTests(unittest.TestCase):
         )
         self.assertEqual(3, xml.count('VerticalJustification="CenterAlign"'))
 
+    def test_all_notice_signal_labels_are_vertically_centered(self) -> None:
+        from tools.idml.components import render
+
+        for label, variant in (
+            ("WARNING", "warning"),
+            ("CAUTION", "caution"),
+            ("NOTE", "note"),
+            ("TIP", "tip"),
+        ):
+            with self.subTest(label=label):
+                xml, _ = render(
+                    {
+                        "kind": "notice",
+                        "label": label,
+                        "variant": variant,
+                        "texts": ["Editable body copy."],
+                    },
+                    _ctx(),
+                    tid=f"notice_{variant}_center",
+                    terminal=True,
+                )
+                label_cell = xml.split(
+                    f'Self="notice_{variant}_centerc0"', 1,
+                )[1].split("</Cell>", 1)[0]
+                self.assertIn(
+                    'VerticalJustification="CenterAlign"', label_cell,
+                )
+
     def test_safety_warning_visible_geometry_uses_layout_tokens(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.components import RenderContext, render
@@ -611,6 +639,7 @@ class ComponentRegistryTests(unittest.TestCase):
         )
         self.assertIn('<Group Self="grp_notice_notice_wrap"', _xml)
         self.assertIn('<Rectangle Self="plate_notice_notice_wrap"', _xml)
+        self.assertEqual(2, _xml.count('VerticalJustification="CenterAlign"'))
         self.assertNotIn('<Table ', _xml)
 
     def test_notice_width_override_keeps_contracted_size_and_leading(self) -> None:

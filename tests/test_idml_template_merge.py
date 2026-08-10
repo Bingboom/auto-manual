@@ -69,7 +69,8 @@ class TemplateMergeTest(unittest.TestCase):
                   '<Table AppliedTableStyle="TableStyle/正文表格">'
                   '<Cell Self="c0" Name="0:0" RowSpan="1" ColumnSpan="1" '
                   'AppliedCellStyle="CellStyle/$ID/[None]" FillColor="Color/黑色" '
-                  'TopInset="3" LeftInset="4" TopEdgeStrokeWeight="0">hello</Cell>'
+                  'VerticalJustification="CenterAlign" TopInset="3" '
+                  'LeftInset="4" TopEdgeStrokeWeight="0">hello</Cell>'
                   '</Table></ParagraphStyleRange></Story>',
             spread='<Spread><Rectangle Self="r0" ContentType="Unassigned" '
                    'AppliedObjectStyle="ObjectStyle/HB Rounded Table Outer" '
@@ -120,6 +121,7 @@ class TemplateMergeTest(unittest.TestCase):
         self.assertNotIn("FillColor", story.split("<Cell", 1)[1].split(">", 1)[0])
         self.assertNotIn("Inset", story)
         self.assertIn('TopEdgeStrokeWeight="0"', story)
+        self.assertIn('VerticalJustification="CenterAlign"', story)
         self.assertIn('<Cell Self="c0" Name="0:0"', story)
         self.assertIn(">hello</Cell>", story)
         # mimetype first and stored

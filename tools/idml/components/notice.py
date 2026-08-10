@@ -585,8 +585,14 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
 
     body_font_style = str(spec.get("body_font_style") or "Medium")
     paragraph_space_after = float(spec.get("paragraph_space_after") or 0.0)
-    notice_space_before = float(spec.get("space_before") or 0.0)
-    notice_space_after = float(spec.get("space_after") or 1.8)
+    raw_space_before = spec.get("space_before")
+    raw_space_after = spec.get("space_after")
+    notice_space_before = (
+        float(raw_space_before) if raw_space_before is not None else 0.0
+    )
+    notice_space_after = (
+        float(raw_space_after) if raw_space_after is not None else 1.8
+    )
     if layout_role in {"ups_caution", "charging_note"}:
         layout = replace(
             layout,
