@@ -24,7 +24,11 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 from tools.release_reproducibility import (  # noqa: E402
     REPRODUCIBILITY_POLICY,
     REPRODUCIBILITY_SCHEMA_VERSION,
+    REVIEW_OVERLAY_PATH_ENV,
+    REVIEW_OVERLAY_REF_ENV,
+    REVIEW_OVERLAY_SHA_ENV,
     SOURCE_DATE_EPOCH_ENV,
+    ReviewOverlayProvenance,
 )
 from tools.release_snapshot import verify_frozen_release_snapshot  # noqa: E402
 from tools.toolchain_provenance import collect_toolchain  # noqa: E402
@@ -57,6 +61,7 @@ class ReleaseRebuildPlan:
     snapshot_sha256: str
     target_matrix: tuple[dict[str, str], ...]
     source_date_epoch: int
+    review_overlay: ReviewOverlayProvenance | None
     toolchain: dict[str, Any]
     artifacts: tuple[ExpectedArtifact, ...]
 
@@ -110,6 +115,35 @@ def _expected_target_matrix(manifest: Mapping[str, Any]) -> tuple[dict[str, str]
             raise RuntimeError("release manifest build_languages contains an empty value")
         rows.append({"model": model, "region": region, "lang": normalized})
     return tuple(rows)
+
+
+def _review_overlay_from_manifest(
+    reproducibility: Mapping[str, Any],
+) -> ReviewOverlayProvenance | None:
+    raw = reproducibility.get("review_overlay")
+    if raw is None:
+        return None
+    if not isinstance(raw, dict):
+        raise RuntimeError("release manifest review_overlay must be an object")
+    source_ref = _required_text(raw, "source_ref")
+    source_sha = _required_text(raw, "source_sha").lower()
+    if not _FULL_GIT_SHA_RE.fullmatch(source_sha):
+        raise RuntimeError("release manifest review_overlay source_sha must be a full Git SHA")
+    tree_sha = _required_text(raw, "tree_sha").lower()
+    if not _FULL_GIT_SHA_RE.fullmatch(tree_sha):
+        raise RuntimeError("release manifest review_overlay tree_sha must be a full Git SHA")
+    target_path = _required_text(raw, "target_path")
+    normalized_target = Path(target_path).as_posix().strip("/")
+    if Path(target_path).is_absolute() or not normalized_target.startswith("docs/_review/"):
+        raise RuntimeError("release manifest review_overlay target_path is not a review subtree")
+    if ".." in Path(normalized_target).parts:
+        raise RuntimeError("release manifest review_overlay target_path escapes the repository")
+    return ReviewOverlayProvenance(
+        source_ref=source_ref,
+        source_sha=source_sha,
+        target_path=normalized_target,
+        tree_sha=tree_sha,
+    )
 
 
 def load_release_rebuild_plan(
@@ -177,6 +211,7 @@ def load_release_rebuild_plan(
         raise RuntimeError("release manifest requires a non-negative source_date_epoch")
     if reproducibility.get("artifacts") != list(_ARTIFACT_KEYS):
         raise RuntimeError("release manifest reproducibility artifact set is incomplete")
+    review_overlay = _review_overlay_from_manifest(reproducibility)
 
     expected_artifacts: list[ExpectedArtifact] = []
     for key in _ARTIFACT_KEYS:
@@ -208,6 +243,7 @@ def load_release_rebuild_plan(
         snapshot_sha256=snapshot_sha256,
         target_matrix=target_matrix,
         source_date_epoch=source_date_epoch,
+        review_overlay=review_overlay,
         toolchain=dict(toolchain),
         artifacts=tuple(expected_artifacts),
     )
@@ -251,6 +287,12 @@ def _verify_commit_exists(
         cwd=repo_root,
         runner=runner,
     )
+    if plan.review_overlay is not None:
+        _run_checked(
+            ["git", "cat-file", "-e", f"{plan.review_overlay.source_sha}^{{commit}}"],
+            cwd=repo_root,
+            runner=runner,
+        )
 
 
 def _find_rebuilt_manifest(staging_root: Path) -> Path:
@@ -299,6 +341,12 @@ def _compare_rebuilt_manifest(
         rebuilt_reproducibility.get("source_date_epoch") != plan.source_date_epoch
     ):
         raise RuntimeError("rebuilt release manifest changed source_date_epoch")
+    expected_review_overlay = (
+        plan.review_overlay.as_record() if plan.review_overlay is not None else None
+    )
+    if rebuilt_reproducibility.get("review_overlay") != expected_review_overlay:
+        if expected_review_overlay is not None or "review_overlay" in rebuilt_reproducibility:
+            raise RuntimeError("rebuilt release manifest changed review_overlay provenance")
     rebuilt_snapshot = rebuilt.get("snapshot")
     if not isinstance(rebuilt_snapshot, dict) or (
         rebuilt_snapshot.get("snapshot_sha256") != plan.snapshot_sha256
@@ -375,6 +423,25 @@ def verify_release_rebuild(
         try:
             env = dict(os.environ)
             env[SOURCE_DATE_EPOCH_ENV] = str(plan.source_date_epoch)
+            if plan.review_overlay is not None:
+                overlay = plan.review_overlay
+                _run_checked(
+                    [
+                        "git",
+                        "restore",
+                        "--source",
+                        overlay.source_sha,
+                        "--staged",
+                        "--worktree",
+                        "--",
+                        overlay.target_path,
+                    ],
+                    cwd=checkout,
+                    runner=runner,
+                )
+                env[REVIEW_OVERLAY_REF_ENV] = overlay.source_ref
+                env[REVIEW_OVERLAY_SHA_ENV] = overlay.source_sha
+                env[REVIEW_OVERLAY_PATH_ENV] = overlay.target_path
             _run_checked(
                 [
                     sys.executable,
@@ -421,6 +488,9 @@ def verify_release_rebuild(
         "release_version": plan.release_version,
         "snapshot_sha256": plan.snapshot_sha256,
         "source_date_epoch": plan.source_date_epoch,
+        "review_overlay": (
+            plan.review_overlay.as_record() if plan.review_overlay is not None else None
+        ),
         "toolchain_match": True,
         "artifacts": artifact_report,
     }

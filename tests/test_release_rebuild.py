@@ -98,6 +98,7 @@ class ReleaseRebuildTests(unittest.TestCase):
         payloads: dict[str, bytes],
         snapshot_sha256: str,
         mismatched_key: str | None = None,
+        review_overlay: dict[str, str] | None = None,
     ):
         def run(command, *, cwd, env=None, check, text):
             del cwd, env, check, text
@@ -126,10 +127,15 @@ class ReleaseRebuildTests(unittest.TestCase):
                         "exists": True,
                         "sha256": hashlib.sha256(payload).hexdigest(),
                     }
+                reproducibility: dict[str, object] = {
+                    "source_date_epoch": 1_785_513_828,
+                }
+                if review_overlay is not None:
+                    reproducibility["review_overlay"] = review_overlay
                 rebuilt = {
                     "git_sha": "a" * 40,
                     "snapshot": {"snapshot_sha256": snapshot_sha256},
-                    "reproducibility": {"source_date_epoch": 1_785_513_828},
+                    "reproducibility": reproducibility,
                     **outputs,
                 }
                 rebuilt_path = (
@@ -208,6 +214,53 @@ class ReleaseRebuildTests(unittest.TestCase):
             report = json.loads(report_path.read_text(encoding="utf-8"))
             self.assertEqual("failed", report["status"])
             self.assertFalse(report["artifacts"]["pdf_output"]["matched"])
+
+    def test_verify_should_restore_recorded_review_overlay_before_rebuild(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest_path, toolchain, payloads = self._release_fixture(root)
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            review_overlay = {
+                "source_ref": "review/M-US",
+                "source_sha": "b" * 40,
+                "target_path": "docs/_review/M/US",
+                "tree_sha": "c" * 40,
+            }
+            manifest["reproducibility"]["review_overlay"] = review_overlay
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+            plan = load_release_rebuild_plan(manifest_path, repo_root=root)
+            calls: list[tuple[list[str], dict[str, str] | None]] = []
+            base_runner = self._runner(
+                payloads=payloads,
+                snapshot_sha256=plan.snapshot_sha256,
+                review_overlay=review_overlay,
+            )
+
+            def runner(command, *, cwd, env=None, check, text):
+                calls.append((list(command), env))
+                return base_runner(command, cwd=cwd, env=env, check=check, text=text)
+
+            _report_path, report = verify_release_rebuild(
+                manifest_path,
+                repo_root=root,
+                runner=runner,
+                toolchain_collector=lambda **_kwargs: toolchain,
+            )
+
+            self.assertEqual(review_overlay, report["review_overlay"])
+            self.assertTrue(
+                any(
+                    command[:3] == ["git", "restore", "--source"]
+                    and command[3] == "b" * 40
+                    for command, _env in calls
+                )
+            )
+            publish_envs = [
+                env
+                for command, env in calls
+                if len(command) > 1 and Path(command[1]).name == "build.py"
+            ]
+            self.assertEqual("b" * 40, publish_envs[0]["AUTO_MANUAL_REVIEW_OVERLAY_SHA"])
 
 
 if __name__ == "__main__":
