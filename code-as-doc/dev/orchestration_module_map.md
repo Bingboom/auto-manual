@@ -179,7 +179,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - immutable version-scoped phase2 snapshot freezing, identity inventory, historical verification, and rebind/drift rejection
 - [`tools/release_reproducibility.py`](../../tools/release_reproducibility.py)
   - clean tracked-tree gate, Git commit epoch resolution, deterministic release environment, and manifest contract record
-  - hash-verified review-overlay provenance for composite `main` toolchain + review-branch releases
+  - two-phase review-overlay provenance for composite `main` toolchain + review-branch releases: full file/blob verification at publish entry, then source-commit/tree binding after deterministic build mutations
 - [`tools/release_rebuild.py`](../../tools/release_rebuild.py)
   - fail-closed historical rebuild from manifest Git SHA plus frozen snapshot
   - exact review-overlay restoration before isolated publish and byte-equivalence verification for DOCX, Markdown, and PDF

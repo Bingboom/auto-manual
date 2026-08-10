@@ -12,6 +12,7 @@ SOURCE_DATE_EPOCH_ENV = "SOURCE_DATE_EPOCH"
 REVIEW_OVERLAY_REF_ENV = "AUTO_MANUAL_REVIEW_OVERLAY_REF"
 REVIEW_OVERLAY_SHA_ENV = "AUTO_MANUAL_REVIEW_OVERLAY_SHA"
 REVIEW_OVERLAY_PATH_ENV = "AUTO_MANUAL_REVIEW_OVERLAY_PATH"
+REVIEW_OVERLAY_TREE_SHA_ENV = "AUTO_MANUAL_REVIEW_OVERLAY_TREE_SHA"
 REPRODUCIBILITY_SCHEMA_VERSION = 1
 REPRODUCIBILITY_POLICY = "git-commit-source-date-epoch-v1"
 _FULL_GIT_SHA_RE = re.compile(r"^[0-9a-f]{40}$")
@@ -76,9 +77,21 @@ def _validate_review_overlay_tree(
     source_sha: str,
     target_path: str,
     target_root: Path,
+    verify_worktree: bool,
+    verified_tree_sha: str,
 ) -> str:
     _run_git(repo_root, ["cat-file", "-e", f"{source_sha}^{{commit}}"])
     tree_sha = _run_git(repo_root, ["rev-parse", f"{source_sha}:{target_path}"])
+    if not verify_worktree:
+        if not _FULL_GIT_SHA_RE.fullmatch(verified_tree_sha):
+            raise RuntimeError(
+                "review overlay manifest provenance requires a previously verified tree SHA"
+            )
+        if verified_tree_sha != tree_sha:
+            raise RuntimeError(
+                "review overlay verified tree SHA does not match the recorded source commit"
+            )
+        return tree_sha
     raw_tree = _run_git(
         repo_root,
         ["ls-tree", "-r", "--full-tree", source_sha, "--", target_path],
@@ -122,6 +135,8 @@ def _validate_review_overlay_tree(
 def review_overlay_from_environment(
     repo_root: Path,
     environ: MutableMapping[str, str] | None = None,
+    *,
+    verify_worktree: bool = True,
 ) -> ReviewOverlayProvenance | None:
     env = environ if environ is not None else os.environ
     values = {
@@ -138,12 +153,15 @@ def review_overlay_from_environment(
         )
     if not _FULL_GIT_SHA_RE.fullmatch(values["source_sha"]):
         raise RuntimeError("review overlay source SHA must be a full 40-character Git commit")
+    verified_tree_sha = str(env.get(REVIEW_OVERLAY_TREE_SHA_ENV, "")).strip().lower()
     target_path, target_root = _review_overlay_target(repo_root, values["target_path"])
     tree_sha = _validate_review_overlay_tree(
         repo_root,
         source_sha=values["source_sha"],
         target_path=target_path,
         target_root=target_root,
+        verify_worktree=verify_worktree,
+        verified_tree_sha=verified_tree_sha,
     )
     return ReviewOverlayProvenance(
         source_ref=values["source_ref"],
@@ -229,13 +247,27 @@ def deterministic_release_environment(
     require_clean: bool = False,
 ) -> Iterator[int]:
     env = environ if environ is not None else os.environ
+    review_overlay: ReviewOverlayProvenance | None = None
     if require_clean:
-        review_overlay = review_overlay_from_environment(repo_root, env)
+        # This is the only point that trusts the overlaid working tree: verify
+        # its complete file set and every blob before any build step can
+        # deterministically sync review parameters or stage target assets.
+        review_overlay = review_overlay_from_environment(
+            repo_root,
+            env,
+            verify_worktree=True,
+        )
         ensure_tracked_worktree_clean(repo_root, review_overlay=review_overlay)
     epoch = git_commit_epoch(repo_root, git_ref)
     sentinel = object()
     previous: object = env.get(SOURCE_DATE_EPOCH_ENV, sentinel)
+    previous_overlay_tree: object = env.get(REVIEW_OVERLAY_TREE_SHA_ENV, sentinel)
     env[SOURCE_DATE_EPOCH_ENV] = str(epoch)
+    if review_overlay is not None:
+        # The manifest runs after `check`/rendering and therefore must bind the
+        # already-verified source tree, not reclassify deterministic build
+        # mutations inside the review subtree as source-overlay drift.
+        env[REVIEW_OVERLAY_TREE_SHA_ENV] = review_overlay.tree_sha
     try:
         yield epoch
     finally:
@@ -243,6 +275,10 @@ def deterministic_release_environment(
             env.pop(SOURCE_DATE_EPOCH_ENV, None)
         else:
             env[SOURCE_DATE_EPOCH_ENV] = str(previous)
+        if previous_overlay_tree is sentinel:
+            env.pop(REVIEW_OVERLAY_TREE_SHA_ENV, None)
+        else:
+            env[REVIEW_OVERLAY_TREE_SHA_ENV] = str(previous_overlay_tree)
 
 
 def build_reproducibility_record(

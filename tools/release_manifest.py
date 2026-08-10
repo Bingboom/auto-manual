@@ -68,7 +68,10 @@ def build_release_manifest(
             if source_date_epoch is not None
             else source_date_epoch_from_environment()
         ),
-        review_overlay=review_overlay_from_environment(ROOT),
+        # `build.py publish` validates the complete overlay before any build
+        # mutation, then passes its verified tree SHA through the deterministic
+        # release environment. The manifest binds that proof after rendering.
+        review_overlay=review_overlay_from_environment(ROOT, verify_worktree=False),
         toolchain=toolchain,
     )
 

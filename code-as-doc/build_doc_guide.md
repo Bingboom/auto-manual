@@ -223,8 +223,12 @@ Meaning:
   bounded exception is the active `docs/_review/<model>/<region>` overlay: its
   bytes must exactly match the row's resolved review-branch commit, every
   tracked change must remain inside that target, and the manifest records the
-  review ref, commit, target path, and Git tree SHA. Any hand edit, sibling
-  target change, or incomplete provenance still fails the clean gate. Publish
+  review ref, commit, target path, and Git tree SHA. That complete file/blob
+  check happens once at publish entry; the verified tree SHA is then carried
+  through review parameter sync and target-asset staging so the late manifest
+  does not mistake deterministic build products for new source files. A
+  missing or changed verified tree SHA, hand edit, sibling target change, or
+  incomplete provenance still fails closed. Publish
   derives `SOURCE_DATE_EPOCH` from the trusted `main` toolchain commit, uses
   content-addressed staged assets, and canonicalizes DOCX metadata/container
   timestamps so the release DOCX, Markdown, and PDF have a byte-equivalence
@@ -1308,9 +1312,11 @@ overlaid from the row's review ref. The worker does not replace sibling target
 directories. For a versioned Publish, the worker carries the resolved review
 commit into the subprocess; the clean gate accepts the target only when its
 complete file set and blob hashes match that commit, then writes the composite
-provenance into the release manifest. This prevents both a stale local `main`
-branch from silently running an older renderer and unrelated review-branch
-drift from entering a release.
+provenance into the release manifest. The manifest consumes the tree SHA proof
+frozen by that entry gate rather than re-reading the working subtree after the
+build has deterministically synced parameters and staged target assets. This
+prevents both a stale local `main` branch from silently running an older
+renderer and unrelated review-branch drift from entering a release.
 
 The default flow style map lives at
 `docs/templates/idml_template/style_mapping/flow_style_map.json` and is copied
