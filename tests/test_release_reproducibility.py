@@ -10,6 +10,7 @@ from tools.release_reproducibility import (
     REVIEW_OVERLAY_PATH_ENV,
     REVIEW_OVERLAY_REF_ENV,
     REVIEW_OVERLAY_SHA_ENV,
+    REVIEW_OVERLAY_TREE_SHA_ENV,
     SOURCE_DATE_EPOCH_ENV,
     deterministic_release_environment,
     ensure_tracked_worktree_clean,
@@ -113,10 +114,55 @@ class ReleaseReproducibilityTests(unittest.TestCase):
             self.assertIsNotNone(overlay)
             ensure_tracked_worktree_clean(root, review_overlay=overlay)
 
+            with deterministic_release_environment(
+                repo_root=root,
+                environ=env,
+                require_clean=True,
+            ):
+                self.assertEqual(overlay.tree_sha, env[REVIEW_OVERLAY_TREE_SHA_ENV])
+                # Publish's review sync and asset finalization may create
+                # deterministic target files after the entry gate. The late
+                # manifest binds the entry proof instead of re-validating the
+                # already-mutated working tree.
+                (target / "rendered-asset.png").write_bytes(b"rendered")
+                manifest_overlay = review_overlay_from_environment(
+                    root,
+                    env,
+                    verify_worktree=False,
+                )
+                self.assertEqual(overlay, manifest_overlay)
+                with self.assertRaisesRegex(RuntimeError, "files do not match"):
+                    review_overlay_from_environment(root, env)
+            self.assertNotIn(REVIEW_OVERLAY_TREE_SHA_ENV, env)
+
             (root / "outside.txt").write_text("unexpected\n", encoding="utf-8")
             self._git(root, "add", "outside.txt")
             with self.assertRaisesRegex(RuntimeError, "outside.txt"):
                 ensure_tracked_worktree_clean(root, review_overlay=overlay)
+
+    def test_manifest_overlay_provenance_should_reject_unverified_or_changed_tree_sha(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            self._git(root, "init", "-q")
+            self._git(root, "config", "user.name", "Queue Test")
+            self._git(root, "config", "user.email", "queue@example.test")
+            target = root / "docs" / "_review" / "M" / "US"
+            target.mkdir(parents=True)
+            (target / "page.rst").write_text("reviewed\n", encoding="utf-8")
+            self._git(root, "add", ".")
+            self._git(root, "commit", "-qm", "review")
+            source_sha = self._git(root, "rev-parse", "HEAD")
+            env = {
+                REVIEW_OVERLAY_REF_ENV: "review/M-US",
+                REVIEW_OVERLAY_SHA_ENV: source_sha,
+                REVIEW_OVERLAY_PATH_ENV: "docs/_review/M/US",
+            }
+
+            with self.assertRaisesRegex(RuntimeError, "previously verified tree SHA"):
+                review_overlay_from_environment(root, env, verify_worktree=False)
+            env[REVIEW_OVERLAY_TREE_SHA_ENV] = "d" * 40
+            with self.assertRaisesRegex(RuntimeError, "does not match"):
+                review_overlay_from_environment(root, env, verify_worktree=False)
 
 if __name__ == "__main__":
     unittest.main()
