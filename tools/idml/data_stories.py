@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 try:
     from tools.lcd_table_layout import split_lcd_table_rows
@@ -13,7 +14,7 @@ from . import page_objects as _po
 from . import table_borders as _tb
 from .components.rounded_table import rounded_table_panel, table_text_indent
 from .params import IDPKG, component_param_pt, param_pt
-from .primitives import spec_table
+from .primitives import _ATTR_ENTITIES, spec_table
 from .source_copy import source_text
 from .style_names import paragraph_style_ref
 
@@ -497,7 +498,7 @@ def add_trouble_story(
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
         f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" '
-        f'StoryTitle="{title}">\n'
+        f'StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
         '<StoryPreference OpticalMarginAlignment="false" '
         'FrameType="TextFrameType"/>\n'
         + "".join(parts)
@@ -654,7 +655,7 @@ def add_spec_story(
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
         f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" '
-        f'StoryTitle="{title}">\n'
+        f'StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
         '<StoryPreference OpticalMarginAlignment="false" '
         'FrameType="TextFrameType"/>\n'
         + "".join(parts)

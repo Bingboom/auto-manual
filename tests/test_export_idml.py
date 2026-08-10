@@ -4117,3 +4117,38 @@ class AttributeEscapingTests(unittest.TestCase):
         w = IdmlWriter(params)
         w.add_prose_story("st_q2", 'page "one"', [("body", "x")], ROOT)
         ET.fromstring(dict(w.stories)["st_q2"])
+
+    def test_trouble_story_title_escapes_xml_attributes(self) -> None:
+        from xml.etree import ElementTree as ET
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        writer.add_trouble_story(
+            [("Issue", "Resolution")],
+            title='Troubleshooting & "Support"',
+        )
+
+        xml = dict(writer.stories)["st_trouble"]
+        self.assertIn(
+            'StoryTitle="Troubleshooting &amp; &quot;Support&quot;"',
+            xml,
+        )
+        ET.fromstring(xml)
+
+    def test_spec_story_title_escapes_xml_attributes(self) -> None:
+        from xml.etree import ElementTree as ET
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
+        writer.add_spec_story(
+            sections,
+            title='Specifications & "Limits"',
+        )
+
+        xml = dict(writer.stories)["st_spec"]
+        self.assertIn(
+            'StoryTitle="Specifications &amp; &quot;Limits&quot;"',
+            xml,
+        )
+        ET.fromstring(xml)
