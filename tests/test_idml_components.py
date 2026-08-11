@@ -52,16 +52,6 @@ def _ctx():
 
 
 class ComponentRegistryTests(unittest.TestCase):
-    def test_troubleshooting_optical_baselines_are_locale_and_row_scoped(self) -> None:
-        from tools.idml.components.prose_table import troubleshooting_baseline_shift
-
-        self.assertAlmostEqual(troubleshooting_baseline_shift("en", 7, 0), -10.99)
-        self.assertAlmostEqual(troubleshooting_baseline_shift("fr", 7, 0), -15.98)
-        self.assertAlmostEqual(troubleshooting_baseline_shift("es", 8, 0), -7.88)
-        self.assertAlmostEqual(troubleshooting_baseline_shift("en", 7, 1), 5.28)
-        self.assertAlmostEqual(troubleshooting_baseline_shift("fr", 8, 1), 2.98)
-        self.assertEqual(troubleshooting_baseline_shift("en", 5, 1), 0.0)
-
     def test_every_extractor_kind_has_a_renderer(self) -> None:
         from tools.idml.components import REGISTRY
         from tools.idml_rst_extract import EMITTED_COMPONENT_KINDS
@@ -216,9 +206,9 @@ class ComponentRegistryTests(unittest.TestCase):
 
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         expected_rhythm = {
-            "en": (6.0, 13.0, 15.9),
-            "fr": (6.0, 18.5, 22.5),
-            "es": (8.0, 2.5, 14.5),
+            "en": (6.0, 13.0, 11.9),
+            "fr": (6.0, 18.5, 18.5),
+            "es": (8.0, 2.5, 10.5),
         }
         for language, (leading, before, after) in expected_rhythm.items():
             with self.subTest(language=language):
@@ -266,6 +256,92 @@ class ComponentRegistryTests(unittest.TestCase):
                     body,
                 )
 
+    def test_charging_emphasis_uses_shared_tokenized_leading_gap(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                stories = []
+
+                def add_story(sid, title, parts):
+                    stories.append((sid, title, parts))
+                    return sid
+
+                xml, height = render(
+                    MINIMAL_SPECS["emphasispill"],
+                    RenderContext(
+                        params=params,
+                        page_w=368.79,
+                        m_l=28.35,
+                        m_r=28.35,
+                        root=ROOT,
+                        bundle_root=ROOT,
+                        language=language,
+                        add_story=add_story,
+                    ),
+                    tid=f"charging_emphasis_{language}",
+                    terminal=True,
+                )
+
+                self.assertIn('SpaceBefore="5" SpaceAfter="1.5"', xml)
+                self.assertIn(
+                    '<ListItem type="unit">0</ListItem>'
+                    '<ListItem type="unit">0</ListItem>'
+                    '<ListItem type="unit">0</ListItem>'
+                    '<ListItem type="unit">0</ListItem>',
+                    xml,
+                )
+                self.assertTrue(stories)
+                story = "".join(stories[0][2])
+                self.assertIn('LeftIndent="6.1"', story)
+                self.assertNotIn('RightIndent=', story)
+                self.assertIn('VerticalJustification="CenterAlign"', xml)
+                self.assertAlmostEqual(20.7, height)
+
+    def test_charging_emphasis_endcap_allowance_is_component_token(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params["idml_charging_emphasis_horizontal_padding"] = ("8.5", "pt")
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
+        xml, _height = render(
+            {
+                "kind": "emphasispill",
+                "texts": ["Fully charge the product before its first use."],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT,
+                add_story=add_story,
+            ),
+            tid="charging_emphasis_padding",
+            terminal=True,
+        )
+
+        story = "".join(stories[0][2])
+        self.assertIn('LeftIndent="8.5"', story)
+        self.assertNotIn('RightIndent=', story)
+        self.assertIn(
+            '<ListItem type="unit">0</ListItem>'
+            '<ListItem type="unit">0</ListItem>'
+            '<ListItem type="unit">0</ListItem>'
+            '<ListItem type="unit">0</ListItem>',
+            xml,
+        )
+        self.assertIn('PathPointType Anchor="152.584 0"', xml)
+
     def test_reference_warranty_typography_separates_body_and_list_rhythm(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.styles import para_styles, styles_xml
@@ -289,19 +365,24 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('LeftIndent="5.67"', list_style)
         self.assertIn('FirstLineIndent="-5.67"', list_style)
 
-    def test_app_item_list_bullet_aligns_with_notes_heading(self) -> None:
+    def test_app_numbered_headings_and_lists_share_hanging_contract(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.styles import styles_xml
 
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        app_h2 = styles_xml(params).split(
+            'Self="ParagraphStyle/HB App H2"', 1,
+        )[1].split("</ParagraphStyle>", 1)[0]
         app_list = styles_xml(params).split(
             'Self="ParagraphStyle/HB App List"', 1,
         )[1].split("</ParagraphStyle>", 1)[0]
         app_h3 = styles_xml(params).split(
             'Self="ParagraphStyle/HB App H3"', 1,
         )[1].split("</ParagraphStyle>", 1)[0]
-        self.assertIn('LeftIndent="13.5"', app_h3)
-        self.assertIn('LeftIndent="19.2"', app_list)
+        self.assertIn('LeftIndent="5.7"', app_h2)
+        self.assertIn('FirstLineIndent="-5.7"', app_h2)
+        self.assertIn('LeftIndent="5.7"', app_h3)
+        self.assertIn('LeftIndent="11.4"', app_list)
         self.assertIn('FirstLineIndent="-5.7"', app_list)
 
     def test_warranty_year_subtitle_starts_at_year_unit(self) -> None:

@@ -171,6 +171,33 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         self.assertIn('Anchor="0 -237.79"', xml)
         self.assertAlmostEqual(246.53, height, places=2)
 
+    def test_body_cells_are_natively_vertically_centered_in_all_locales(self) -> None:
+        for language, rows in (("en", EN_ROWS), ("fr", FR_ROWS), ("es", ES_ROWS)):
+            with self.subTest(language=language):
+                _xml, story, _height = self._render(rows, suffix=language)
+                for row_index in range(1, len(rows)):
+                    for column_index in range(2):
+                        cell_id = f'trouble_{language}c{row_index}_{column_index}'
+                        cell_xml = story.split(
+                            f'<Cell Self="{cell_id}"', 1,
+                        )[1].split("</Cell>", 1)[0]
+                        self.assertIn(
+                            'VerticalJustification="CenterAlign"', cell_xml,
+                        )
+                        self.assertNotIn("BaselineShift=", cell_xml)
+
+                # F6/F7 are the multi-step rows. Both columns must use a
+                # symmetric content area so CenterAlign is not optically
+                # displaced by unequal top/bottom padding.
+                for row_index in (7, 8):
+                    for column_index in range(2):
+                        cell_id = f'trouble_{language}c{row_index}_{column_index}'
+                        cell_xml = story.split(
+                            f'<Cell Self="{cell_id}"', 1,
+                        )[1].split("</Cell>", 1)[0]
+                        self.assertIn('TopInset="2.83465"', cell_xml)
+                        self.assertIn('BottomInset="2.83465"', cell_xml)
+
     def test_approved_table_fails_closed_for_every_required_style_token(self) -> None:
         required_tokens = (
             "comp_data_table_header_height",

@@ -9,7 +9,6 @@ from .language_contract import governed_languages
 from .character_metrics import (
     fit_symbol_body_metrics,
     signal_label_metrics,
-    with_character_baseline_shift,
     with_character_metrics,
 )
 from .layout_est import est_table_height, template_symbol_split
@@ -184,6 +183,13 @@ def _localized_signal_label_bar(
         strict=writer.strict_component_assets,
         owner="symbol signal badge vertical centering",
     )
+    content_raise = component_param_pt(
+        writer.params,
+        "idml_symbols_signal_content_baseline_shift",
+        1.5,
+        strict=writer.strict_component_assets,
+        owner="symbol signal badge content vertical centering",
+    )
     asset = (
         ROOT / "docs" / "templates" / "word_template" / "common_assets"
         / "symbols" / "warning_triangle_white.svg"
@@ -218,12 +224,14 @@ def _localized_signal_label_bar(
         content = (
             f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
             '    <CharacterStyleRange '
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            f'BaselineShift="{content_raise:g}">'
             f'{icon}</CharacterStyleRange>\n'
             '    <CharacterStyleRange '
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
             'FillColor="Color/Paper" FontStyle="Bold" '
-            f'PointSize="{label_size:g}" HorizontalScale="{label_scale:g}">'
+            f'PointSize="{label_size:g}" HorizontalScale="{label_scale:g}" '
+            f'BaselineShift="{content_raise:g}">'
             f'<Properties><Leading type="unit">{label_leading:g}</Leading></Properties>'
             f'<Content> {escape(label)}</Content></CharacterStyleRange>\n'
             '  </ParagraphStyleRange>\n'
@@ -233,7 +241,8 @@ def _localized_signal_label_bar(
             f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
             '    <CharacterStyleRange '
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'FillColor="Color/Paper">{icon}<Content> {escape(label)}</Content>'
+            f'FillColor="Color/Paper" BaselineShift="{content_raise:g}">'
+            f'{icon}<Content> {escape(label)}</Content>'
             '</CharacterStyleRange>\n  </ParagraphStyleRange>\n'
         )
     badge_cell = writer._cell(
@@ -256,7 +265,20 @@ def _localized_signal_label_bar(
         row_heights=[badge_h],
     )
     carrier = writer._wrap_table_paragraph(badge, True, span_columns=False)
-    return with_character_baseline_shift(carrier, shift=badge_raise)
+    # The first character range is the inline table carrier.  Shift that
+    # range independently from the icon/label ranges inside the nested badge
+    # table: the outer shift centres the dark badge in its signal row, while
+    # ``content_raise`` optically centres the visible artwork and glyphs in
+    # the badge.  Rewriting every descendant range here would collapse those
+    # two layout contracts back into one value.
+    marker = (
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+    )
+    return carrier.replace(
+        marker,
+        f'{marker} BaselineShift="{badge_raise:g}"',
+        1,
+    )
 
 
 def _symbol_signal_bar(

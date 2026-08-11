@@ -140,6 +140,71 @@ class IdmlVisualParityTests(unittest.TestCase):
                 )
                 self.assertIn(expected, paragraph)
 
+    def test_app_headings_and_lists_emit_fixed_tab_alignment(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+
+        heading, *_ = build_text_paragraph(
+            writer,
+            kind="h2_app",
+            text="4. Notes",
+            terminal=True,
+            is_preface=False,
+            has_twocol_layout=False,
+            in_twocol=False,
+            bundle_root=ROOT,
+            page_language="en",
+            story_id="st_app_heading",
+            block_index=0,
+        )
+        self.assertIn('<Position type="unit">5.7</Position>', heading)
+        self.assertIn(
+            'PointSize="5.4" BaselineShift="1.25">',
+            heading,
+        )
+        self.assertIn("<Content>●</Content>", heading)
+        self.assertIn("<Content>\t4. Notes</Content>", heading)
+        self.assertNotIn("<Content> 4. Notes</Content>", heading)
+
+        params["idml_app_h2_marker_font_size"] = ("5.1", "pt")
+        params["idml_app_h2_marker_baseline_shift"] = ("0.8", "pt")
+        adjusted, *_ = build_text_paragraph(
+            IdmlWriter(params),
+            kind="h2_app",
+            text="4. Notes",
+            terminal=True,
+            is_preface=False,
+            has_twocol_layout=False,
+            in_twocol=False,
+            bundle_root=ROOT,
+            page_language="en",
+            story_id="st_app_heading_adjusted",
+            block_index=0,
+        )
+        self.assertIn('PointSize="5.1" BaselineShift="0.8"', adjusted)
+
+        for language, copy in (
+            ("en", "• Wi-Fi and Bluetooth are enabled."),
+            ("fr", "• Le Wi-Fi et le Bluetooth sont activés."),
+        ):
+            with self.subTest(language=language):
+                item, *_ = build_text_paragraph(
+                    writer,
+                    kind="list_app",
+                    text=copy,
+                    terminal=True,
+                    is_preface=False,
+                    has_twocol_layout=False,
+                    in_twocol=False,
+                    bundle_root=ROOT,
+                    page_language=language,
+                    story_id=f"st_app_list_{language}",
+                    block_index=0,
+                )
+                self.assertIn('<Position type="unit">11.4</Position>', item)
+                self.assertIn("<Content>•\t", item)
+                self.assertNotIn("<Content>• ", item)
+
     def test_body_table_group_uses_panel_fill_for_corner_masks(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
         ctx = RenderContext(

@@ -844,8 +844,8 @@
       "sha256": "1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05"
     },
     "style": {
-      "style_contract_sha256": "94eb5b84d3d1aa60c05a25ad93c2a71d01fdbbe8e7a7109beacb1aca6a5a980f",
-      "layout_params_sha256": "12df03a135e06197db5c656e77431ea4b7fe998cbb4a5a0b1434816ade142d93"
+      "style_contract_sha256": "773e82f6c80597bd3be4d227241951adaec361c43b4c71ce37832c3f0989e2fb",
+      "layout_params_sha256": "1c8446465e9143bec45e42509feec02192fc328858078d5a6e74da3af0ef1bb0"
     },
     "provenance": {
       "snapshot_sha256": "3549175dfa39e6cd7fcee473bf91b5dd2d9ff845793de0c1ba6cadcf65b5453e"

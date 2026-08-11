@@ -135,6 +135,29 @@ class ReferenceLayoutRebindTests(unittest.TestCase):
                 [page["language"] for page in written["pages"]],
             )
 
+    def test_v2_rebind_preserves_provenance_when_ir_has_no_snapshot(self) -> None:
+        ir = replace(_manual_ir(), snapshot_sha256=None)
+        payload = _stale_payload()
+        approved_snapshot = payload["identity"]["provenance"]["snapshot_sha256"]  # type: ignore[index]
+        with tempfile.TemporaryDirectory() as tmp:
+            plan_path = Path(tmp) / "approved.json"
+            plan_path.write_text(json.dumps(payload), encoding="utf-8")
+
+            result = rebind_reference_layout_plan(plan_path, ir)
+
+        self.assertEqual(
+            approved_snapshot,
+            result.candidate["identity"]["provenance"]["snapshot_sha256"],
+        )
+        self.assertNotIn(
+            "provenance.snapshot_sha256",
+            result.changed_identity_fields,
+        )
+        self.assertEqual(
+            [],
+            validate_approved_reference_plan(result.candidate, ir),
+        )
+
     def test_rejects_changed_source_ref_order_without_writing(self) -> None:
         ir = _manual_ir()
         payload = _stale_payload()

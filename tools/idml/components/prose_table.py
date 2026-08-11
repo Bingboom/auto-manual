@@ -9,7 +9,7 @@ from dataclasses import dataclass
 import math
 import re
 
-from ..character_metrics import with_character_baseline_shift, with_character_metrics
+from ..character_metrics import with_character_metrics
 from ..language_contract import governed_languages
 from ..line_metrics import east_asian_width_units
 from ..params import component_param_pt, param_pt, param_text
@@ -247,41 +247,6 @@ _TROUBLESHOOTING_LOCALE_CALIBRATIONS = {
     ),
 }
 
-_TROUBLESHOOTING_CODE_BASELINE_SHIFT = {
-    "en": (
-        0.54, 0.54, 0.54, 0.54, 0.54, -0.46,
-        -10.99, -6.57, -1.61, -2.12, -0.82,
-    ),
-    "fr": (
-        0.77, 0.77, 0.77, 0.77, 0.77, -0.23,
-        -15.98, -5.21, -2.65, -1.24, -4.79,
-    ),
-    "es": (
-        0.75, 0.75, 0.75, 0.75, 0.75, -0.25,
-        -16.00, -7.88, -1.32, -3.30, -1.05,
-    ),
-}
-_TROUBLESHOOTING_BODY_BASELINE_SHIFT = {
-    "en": {7: 5.28, 8: 3.65},
-    "fr": {7: 9.49, 8: 2.98},
-    "es": {7: 2.15, 8: 5.89},
-}
-
-
-def troubleshooting_baseline_shift(
-    language: str, row_index: int, column_index: int,
-) -> float:
-    """Return reviewed optical baseline placement for one body-table cell."""
-    if row_index <= 0:
-        return 0.0
-    if column_index == 0:
-        shifts = _TROUBLESHOOTING_CODE_BASELINE_SHIFT.get(language, ())
-        body_index = row_index - 1
-        return shifts[body_index] if body_index < len(shifts) else 1.3
-    return _TROUBLESHOOTING_BODY_BASELINE_SHIFT.get(language, {}).get(
-        row_index, 0.0,
-    )
-
 _AUTO_RESUME_WIDTH = 311.02
 _AUTO_RESUME_LEADING = 5.0
 _AUTO_RESUME_COMPACT_THRESHOLD = 55
@@ -334,19 +299,12 @@ def _troubleshooting_cell_geometry(
         top = 0.8 if column_index == 0 else 1.5
         bottom = 0.5 if column_index == 0 else 1.5
         valign = "CenterAlign"
-    elif column_index == 0 and is_steps:
-        top = 12.7 if step_count >= 5 else 7.6
-        bottom = 2.95
-        valign = "CenterAlign"
     else:
-        top = (
-            max(0.0, steps_pad_tb - 0.30465)
-            if column_index == 1 and is_steps else 2.95
-        )
-        bottom = (
-            steps_pad_tb + 0.32535
-            if column_index == 1 and is_steps else 2.95
-        )
+        # CenterAlign only produces a true visual centre when the available
+        # content area is symmetric.  Keep both columns of multi-step rows on
+        # the same top/bottom inset instead of compensating individual rows
+        # with character BaselineShift overrides.
+        top = bottom = steps_pad_tb if is_steps else 2.95
         if row_index in range(1, 7):
             top = bottom = 1.5
         if row_index == 9:
@@ -589,15 +547,6 @@ def _troubleshooting_table(
                     1,
                 )
             elif ci == 0:
-                code_baseline = troubleshooting_baseline_shift(
-                    language, ri, ci,
-                )
-                content = content.replace(
-                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                    f'BaselineShift="{code_baseline:g}"',
-                    1,
-                )
                 content = content.replace(
                     "<ParagraphStyleRange ",
                     '<ParagraphStyleRange RightIndent="8.51" ',
@@ -609,11 +558,6 @@ def _troubleshooting_table(
                     point_size=style.body_size,
                     leading=style.body_leading,
                 )
-                body_shift = troubleshooting_baseline_shift(language, ri, ci)
-                if body_shift:
-                    content = with_character_baseline_shift(
-                        content, shift=body_shift,
-                    )
             if ri == 0 and ci == 0 and language == "en":
                 content = content.replace(
                     'FontStyle="Bold"',

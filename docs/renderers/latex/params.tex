@@ -936,14 +936,20 @@
 % App section-heading size measured from approved PDF
 \expandafter\def\csname HBidml_app_h2_font_size\endcsname{10.0pt}
 
+% App H2 marker optical raise against the numbered title baseline
+\expandafter\def\csname HBidml_app_h2_marker_baseline_shift\endcsname{1.25pt}
+
+% App H2 marker size constrained inside the shared number tab stop
+\expandafter\def\csname HBidml_app_h2_marker_font_size\endcsname{5.4pt}
+
 % App section heading to following copy rhythm
 \expandafter\def\csname HBidml_app_h2_space_after\endcsname{3.5pt}
 
-% App notes list hanging offset from aligned bullet to continuation text
+% App notes list hanging width from bullet edge to continuation text tab
 \expandafter\def\csname HBidml_app_list_first_line_indent\endcsname{-5.7pt}
 
-% App list bullet edge aligned with the shared 4.x notes heading edge
-\expandafter\def\csname HBidml_app_list_left_indent\endcsname{13.5pt}
+% App list bullet edge aligned with the shared numbered heading edge
+\expandafter\def\csname HBidml_app_list_left_indent\endcsname{5.7pt}
 
 % App notes body and list leading measured from approved PDF
 \expandafter\def\csname HBidml_app_notes_font_leading\endcsname{8.0pt}
@@ -951,8 +957,8 @@
 % App notes body and list size measured from approved PDF
 \expandafter\def\csname HBidml_app_notes_font_size\endcsname{7.0pt}
 
-% App notes heading and body left inset
-\expandafter\def\csname HBidml_app_notes_left_indent\endcsname{13.5pt}
+% App H2 number and 4.x notes heading shared left edge
+\expandafter\def\csname HBidml_app_notes_left_indent\endcsname{5.7pt}
 
 % IDML App notice editable text-frame import allowance
 \expandafter\def\csname HBidml_app_notice_text_frame_safety\endcsname{1.6pt}
@@ -1022,6 +1028,12 @@
 
 % Pre-charge editable emphasis size measured from approved PDF
 \expandafter\def\csname HBidml_charging_emphasis_font_size\endcsname{6.6pt}
+
+% Pre-charge emphasis optical inset aligned with the H1 title text edge
+\expandafter\def\csname HBidml_charging_emphasis_horizontal_padding\endcsname{6.1pt}
+
+% Charging introduction-to-emphasis rhythm shared by all languages
+\expandafter\def\csname HBidml_charging_emphasis_space_before\endcsname{5.0pt}
 
 % Default charging-methods first-frame top offset
 \expandafter\def\csname HBidml_charging_methods_page_top_offset\endcsname{23.8pt}
@@ -1767,6 +1779,15 @@
 % Default fourth specification section rhythm
 \expandafter\def\csname HBidml_spec_section_4_space_before\endcsname{14.41pt}
 
+% Specification section bullet offset relative to the title baseline
+\expandafter\def\csname HBidml_spec_section_bullet_baseline_offset\endcsname{-1.56pt}
+
+% Specification section bullet left edge aligned with the following table shell
+\expandafter\def\csname HBidml_spec_section_left_indent\endcsname{0.0pt}
+
+% Default specification section title baseline shift
+\expandafter\def\csname HBidml_spec_section_text_baseline_shift\endcsname{0.0pt}
+
 % Default first specification heading-to-table rhythm
 \expandafter\def\csname HBidml_spec_table_1_space_before\endcsname{3.79pt}
 
@@ -1887,6 +1908,9 @@
 % IDML inline signal badge optical raise inside each signal row
 \expandafter\def\csname HBidml_symbols_signal_badge_baseline_shift\endcsname{1.5pt}
 
+% IDML signal-badge icon and label optical raise inside the dark badge
+\expandafter\def\csname HBidml_symbols_signal_content_baseline_shift\endcsname{1.5pt}
+
 % IDML English gap between signal and icon tables
 \expandafter\def\csname HBidml_symbols_signal_gap_after\endcsname{4.1pt}
 
@@ -1972,7 +1996,7 @@
 \expandafter\def\csname HBidml_ups_caution_paragraph_after\endcsname{1.0pt}
 
 % Default UPS CAUTION-to-CHARGING rhythm
-\expandafter\def\csname HBidml_ups_caution_space_after\endcsname{15.9pt}
+\expandafter\def\csname HBidml_ups_caution_space_after\endcsname{11.9pt}
 
 % Default UPS body-to-CAUTION rhythm
 \expandafter\def\csname HBidml_ups_caution_space_before\endcsname{13.0pt}
@@ -2172,6 +2196,9 @@
 % English safety-list item gap
 \expandafter\def\csname HBlang_en_idml_safety_list_space_after\endcsname{2.07pt}
 
+% Approved English specification section title baseline shift
+\expandafter\def\csname HBlang_en_idml_spec_section_text_baseline_shift\endcsname{0.78pt}
+
 % Approved EN storage heading-to-body rhythm
 \expandafter\def\csname HBlang_en_idml_storage_heading_space_after\endcsname{4.05pt}
 
@@ -2215,7 +2242,7 @@
 \expandafter\def\csname HBlang_en_idml_trouble_table_space_before\endcsname{8.74pt}
 
 % English UPS CAUTION-to-CHARGING rhythm measured from approved PDF
-\expandafter\def\csname HBlang_en_idml_ups_caution_space_after\endcsname{15.9pt}
+\expandafter\def\csname HBlang_en_idml_ups_caution_space_after\endcsname{11.9pt}
 
 % English UPS body-to-CAUTION rhythm
 \expandafter\def\csname HBlang_en_idml_ups_caution_space_before\endcsname{13.0pt}
@@ -2593,7 +2620,7 @@
 \expandafter\def\csname HBlang_es_idml_ups_caution_body_font_leading\endcsname{8.0pt}
 
 % Spanish UPS CAUTION-to-CHARGING rhythm
-\expandafter\def\csname HBlang_es_idml_ups_caution_space_after\endcsname{14.5pt}
+\expandafter\def\csname HBlang_es_idml_ups_caution_space_after\endcsname{10.5pt}
 
 % Spanish UPS body-to-CAUTION rhythm
 \expandafter\def\csname HBlang_es_idml_ups_caution_space_before\endcsname{2.5pt}
@@ -3004,7 +3031,7 @@
 \expandafter\def\csname HBlang_fr_idml_trouble_table_space_before\endcsname{6.70pt}
 
 % French UPS CAUTION-to-CHARGING rhythm
-\expandafter\def\csname HBlang_fr_idml_ups_caution_space_after\endcsname{22.5pt}
+\expandafter\def\csname HBlang_fr_idml_ups_caution_space_after\endcsname{18.5pt}
 
 % French UPS body-to-CAUTION rhythm
 \expandafter\def\csname HBlang_fr_idml_ups_caution_space_before\endcsname{18.5pt}

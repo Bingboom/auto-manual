@@ -282,7 +282,11 @@ registry。第 1–3 页和封底的 page-role scoped fallback 由上面的批�
 
 IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。
 
-IDML 可编辑表格的普通单元格统一由 `primitives.cell()` 输出 `VerticalJustification=CenterAlign`，模板合成阶段必须保留该语义属性，不允许因移除颜色、边线或 inset 覆盖而一并丢失。LCD、Symbols 和通用图片表的图标段落另显式输出 `Justification=CenterAlign`，因此图标在格内同时横向、纵向居中。圆角 WARNING/callout 不依赖表格默认值：标签框、正文框和黑框正文使用同一 `TextFramePreference.VerticalJustification=CenterAlign` 合同。
+App 原生故事的编号与列表使用显式悬挂/tab 合同，不再依赖圆点后的普通空格估算。H2 圆点留在版心起点，并由 `idml_app_h2_marker_font_size` / `idml_app_h2_marker_baseline_shift` 单独约束在首个 tab 内；H2 编号文本与 H3 的 `4.x` 编号共同落在 `idml_app_notes_left_indent`。列表圆点由 `idml_app_list_left_indent` 与该编号边对齐，首行正文和全部续行则共同落在 `bullet_left - idml_app_list_first_line_indent` 的固定 tab 位。英文、法文及任何结构化为 App list 的语言都复用这组属性，不按标题文字或页码追加坐标补丁。
+
+UPS 与 Charging 共用一条可编辑内容流：三语各自的 `lang_*_idml_ups_caution_space_after` 控制 UPS CAUTION→CHARGING 标题，`idml_charging_emphasis_space_before` 控制 Charging 引言→黑色强调胶囊。当前强调胶囊前距为 5pt；三语 CAUTION 后距相对上一版等量减少 4pt，因此重分配节奏但保持页面总深度、后续 NOTE 位置和分页不变。`idml_charging_emphasis_horizontal_padding` 同时登记文字左侧光学缩进与总宽的双端 allowance：左侧由段落 `LeftIndent` 明确落位，使字面与 CHARGING 标题内容对齐；右侧不写 `RightIndent`，而由总宽余量自然保留。不能再叠加非对称 frame inset 或右段落缩进，否则会重复缩窄可用行宽并把结尾挤成溢流。文本框继续使用 `VerticalJustification=CenterAlign`；完整文案保持单行后，垂直居中不再被隐藏的第二行拉偏。该关系由组件 token 与估算高度共同维护，不允许在单页 XML 上追加坐标补丁。
+
+IDML 可编辑表格的普通单元格统一由 `primitives.cell()` 输出 `VerticalJustification=CenterAlign`，模板合成阶段必须保留该语义属性，不允许因移除颜色、边线或 inset 覆盖而一并丢失。Troubleshooting 的 F6/F7 等多步骤行还要求左右格使用对称的上下内边距，正文格与错误码格都不得再叠加逐语言、逐行的 `BaselineShift`；否则虽然 XML 声明居中，视觉位置仍会被二次位移。LCD、Symbols 和通用图片表的图标段落另显式输出 `Justification=CenterAlign`，因此图标在格内同时横向、纵向居中。Symbols 信号词徽标分成两层基线合同：`idml_symbols_signal_badge_baseline_shift` 只校正整块深色徽标在表格行内的位置，`idml_symbols_signal_content_baseline_shift` 则统一校正徽标内部图标与文字的可见字面；两者不能用一次递归 `BaselineShift` 覆盖。圆角 WARNING/callout 不依赖表格默认值：标签框、正文框和黑框正文使用同一 `TextFramePreference.VerticalJustification=CenterAlign` 合同。
 
 ### 专题版块
 
@@ -460,7 +464,7 @@ pipe 表 / `` ```{manual-table} `` → `table.manual-table`
 
 **同一列宽有多组经合同登记的投影值**：Web 31% / PDF `comp_spec_table_left_ratio` 0.315 / Word 33%，IDML 默认 `idml_spec_table_left_ratio` 0.302，西语批准投影为 `lang_es_idml_spec_table_left_ratio` 0.362。它们分别服务响应式、固定版、Word 与批准语言版式，不应只改其中一处后假定其他渲染器自动同步。其余 token：`comp_table_outer_arc` 2.4mm、`comp_table_outer_rule` 0.75pt、`type_spec_label_font_size` 与 `type_spec_value_font_size` 均 6.0pt。
 
-IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `comp_spec_table_multiline_min_height`，并输出 `MinimumHeight` / `AutoGrow`，不再由本地常量决定。
+IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `comp_spec_table_multiline_min_height`，并输出 `MinimumHeight` / `AutoGrow`，不再由本地常量决定。分节标题的圆点与文字共享同一组件基线合同：`idml_spec_section_text_baseline_shift`（及语言覆盖）确定标题基线，`idml_spec_section_bullet_baseline_offset` 只表达圆点相对文字的光学校正；`idml_spec_section_left_indent` 统一让圆点左边缘与随后表格的外框共线。所有分节和语言复用这些值，不逐标题写死位置。表格单元格里的圈号是引用标记，保持小号上标；页底脚注行首的同一圈号是注释编号，必须继承 `HB Spec Note` 的正常字号与基线。注册商标 `®` 保留字体自身的上标字形，不套用圈号引用规则。
 
 ### 4.3 故障排查表
 
