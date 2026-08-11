@@ -282,10 +282,10 @@ idml_ups_caution_space_before,13.0,pt,Default UPS body-to-CAUTION rhythm
 lang_en_idml_ups_caution_space_before,13.0,pt,English UPS body-to-CAUTION rhythm
 lang_fr_idml_ups_caution_space_before,18.5,pt,French UPS body-to-CAUTION rhythm
 lang_es_idml_ups_caution_space_before,2.5,pt,Spanish UPS body-to-CAUTION rhythm
-idml_ups_caution_space_after,15.9,pt,Default UPS CAUTION-to-CHARGING rhythm
-lang_en_idml_ups_caution_space_after,15.9,pt,English UPS CAUTION-to-CHARGING rhythm measured from approved PDF
-lang_fr_idml_ups_caution_space_after,22.5,pt,French UPS CAUTION-to-CHARGING rhythm
-lang_es_idml_ups_caution_space_after,14.5,pt,Spanish UPS CAUTION-to-CHARGING rhythm
+idml_ups_caution_space_after,11.9,pt,Default UPS CAUTION-to-CHARGING rhythm
+lang_en_idml_ups_caution_space_after,11.9,pt,English UPS CAUTION-to-CHARGING rhythm measured from approved PDF
+lang_fr_idml_ups_caution_space_after,18.5,pt,French UPS CAUTION-to-CHARGING rhythm
+lang_es_idml_ups_caution_space_after,10.5,pt,Spanish UPS CAUTION-to-CHARGING rhythm
 idml_charging_note_body_font_size,5.0,pt,Charging NOTE editable body size measured from approved PDF
 idml_charging_note_body_font_leading,6.0,pt,Charging NOTE editable body leading
 idml_charging_note_body_font_style,Regular,none,Charging NOTE editable body face
@@ -295,6 +295,8 @@ idml_charging_note_space_before,0.0,pt,Charging NOTE leading rhythm
 idml_charging_note_space_after,1.8,pt,Charging NOTE trailing rhythm
 idml_charging_emphasis_font_size,6.6,pt,Pre-charge editable emphasis size measured from approved PDF
 idml_charging_emphasis_font_leading,7.4,pt,Pre-charge editable emphasis leading
+idml_charging_emphasis_space_before,5.0,pt,Charging introduction-to-emphasis rhythm shared by all languages
+idml_charging_emphasis_horizontal_padding,6.1,pt,Pre-charge emphasis optical inset aligned with the H1 title text edge
 idml_charging_methods_page_top_offset,23.8,pt,Default charging-methods first-frame top offset
 lang_en_idml_charging_methods_page_top_offset,23.8,pt,English charging-methods first-frame top offset
 lang_fr_idml_charging_methods_page_top_offset,15.3,pt,French charging-methods first-frame top offset measured from approved PDF
@@ -340,9 +342,11 @@ idml_app_primary_body_left_indent,14.2,pt,App pairing-step body left inset measu
 idml_app_tail_body_left_indent,14.2,pt,App first-page trailing step left inset
 idml_app_result_body_left_indent,11.2,pt,App second-page connection-step left inset
 idml_app_section_body_left_indent,13.2,pt,App unbind body left inset
-idml_app_notes_left_indent,13.5,pt,App notes heading and body left inset
-idml_app_list_left_indent,13.5,pt,App list bullet edge aligned with the shared 4.x notes heading edge
-idml_app_list_first_line_indent,-5.7,pt,App notes list hanging offset from aligned bullet to continuation text
+idml_app_h2_marker_font_size,5.4,pt,App H2 marker size constrained inside the shared number tab stop
+idml_app_h2_marker_baseline_shift,1.25,pt,App H2 marker optical raise against the numbered title baseline
+idml_app_notes_left_indent,5.7,pt,App H2 number and 4.x notes heading shared left edge
+idml_app_list_left_indent,5.7,pt,App list bullet edge aligned with the shared numbered heading edge
+idml_app_list_first_line_indent,-5.7,pt,App notes list hanging width from bullet edge to continuation text tab
 idml_app_add_device_space_before,8.0,pt,App instructions-to-pairing-composite rhythm
 idml_app_add_device_space_after,3.5,pt,App pairing-composite-to-step-2.3 rhythm
 idml_app_connect_result_space_before,12.0,pt,App step-2.5-to-result-composite rhythm
@@ -649,6 +653,7 @@ idml_symbols_fallback_row_height,24.0,pt,IDML non-governed Symbols estimated row
 idml_symbols_signal_icon_width,7.5,pt,IDML editable signal-badge warning icon width
 idml_symbols_signal_icon_height,7.0,pt,IDML editable signal-badge warning icon height
 idml_symbols_signal_badge_baseline_shift,1.5,pt,IDML inline signal badge optical raise inside each signal row
+idml_symbols_signal_content_baseline_shift,1.5,pt,IDML signal-badge icon and label optical raise inside the dark badge
 idml_symbols_icon_width,26.0,pt,IDML symbol icon frame width
 idml_symbols_icon_height,26.0,pt,IDML symbol icon frame height
 idml_symbols_icon_col_width,39.685,pt,IDML symbol-grid icon column width
@@ -829,6 +834,10 @@ comp_spec_section_after,2.0,mm,Spec section title space after
 comp_spec_section_bullet_raise,-0.16,ex,Spec section bullet raise offset (optical baseline align)
 comp_spec_section_bullet_symbol,\scalebox{1.67}{\textbullet},none,Spec section bullet symbol (scaled 1.67x, baseline aligned)
 comp_spec_section_bullet_gap,0.36,em,Spec section bullet to title gap
+idml_spec_section_text_baseline_shift,0.0,pt,Default specification section title baseline shift
+lang_en_idml_spec_section_text_baseline_shift,0.78,pt,Approved English specification section title baseline shift
+idml_spec_section_bullet_baseline_offset,-1.56,pt,Specification section bullet offset relative to the title baseline
+idml_spec_section_left_indent,0.0,pt,Specification section bullet left edge aligned with the following table shell
 comp_spec_table_left_tint,5,int,Spec table left-column tint percent black
 comp_spec_table_left_ratio,0.315,ratio,Spec table left column ratio of textwidth (archive: 0.315)
 idml_spec_table_left_ratio,0.302,ratio,Default InDesign specification left-column ratio measured from reference

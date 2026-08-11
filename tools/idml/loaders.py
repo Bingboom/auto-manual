@@ -206,8 +206,10 @@ def load_spec_annotations(data_root: Path, model: str, region: str,
                 continue
             text = _localized_cell(r, "Text", lang, ("Text_en",))
             if text and fname == "Spec_Footnotes.csv":
-                # PDF parity: the footnote line under the tables carries the
-                # same ① marker its referencing cells display.
+                # The footnote line carries the same ① marker glyph as its
+                # referencing cells. Renderers decide its presentation by
+                # semantic position: inline references are superscript, while
+                # the note-leading marker stays on the note text baseline.
                 order = float(r.get(order_col) or 0)
                 text = f"{_footnote_marker_for_order(order)} " \
                        f"{_LEGACY_FOOTNOTE_PREFIX_RE.sub('', text, count=1).strip()}".strip()

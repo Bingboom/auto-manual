@@ -2820,7 +2820,7 @@ class ExportIdmlTests(unittest.TestCase):
             stories["st_safety_symbols_signals"].count(
                 'BaselineShift="1.5"',
             ),
-            len(signals),
+            2 * len(signals),
         )
         self.assertIn(
             'TopEdgeStrokeWeight="0"',
@@ -2931,6 +2931,28 @@ class ExportIdmlTests(unittest.TestCase):
             signal_story.count('VerticalJustification="CenterAlign"'),
         )
         self.assertIn('SingleColumnWidth="44"', signal_story)
+        self.assertIn(
+            'FillColor="Color/Paper" BaselineShift="1.5">',
+            signal_story,
+        )
+
+    def test_signal_badge_content_baseline_shift_is_component_token(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params["idml_symbols_signal_content_baseline_shift"] = ("2.25", "pt")
+        writer = IdmlWriter(params)
+
+        english = writer._symbol_signal_bar(
+            "sig_en", "WARNING", ROOT, "en",
+        )
+        french = writer._symbol_signal_bar(
+            "sig_fr", "AVERTISSEMENT", ROOT, "fr",
+        )
+
+        self.assertIn(
+            'FillColor="Color/Paper" BaselineShift="2.25">',
+            english,
+        )
+        self.assertEqual(2, french.count('BaselineShift="2.25"'))
 
     def test_safety_symbols_composition_constants_are_layout_tokens(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -4277,25 +4299,77 @@ class ExportIdmlTests(unittest.TestCase):
             self.assertIn(f"<Content>{marker}</Content>", story)
             self.assertIn(body[:20].replace("&", "&amp;"), story)
 
-    def test_spec_story_uses_independent_native_section_marker(self) -> None:
+    def test_spec_note_leading_marker_is_not_an_inline_superscript(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
+        notes = load_spec_annotations(FIXTURE_DATA_ROOT, "JE-1000F", "US")
         writer = IdmlWriter(params)
         writer.add_spec_story(
             sections,
-            [],
-            lang="fr",
-            title=SOURCE_TITLES["fr"]["spec"],
+            notes,
+            title=SOURCE_TITLES["en"]["spec"],
         )
 
-        story = dict(writer.stories)["st_spec_fr"]
-        marker_range = story.split("<Content>●</Content>", 1)[0].rsplit(
+        story = dict(writer.stories)["st_spec"]
+        marker_range = story.split("<Content>①</Content>", 1)[0].rsplit(
             "<CharacterStyleRange ", 1,
         )[1]
-        self.assertIn('PointSize="13.2"', marker_range)
-        self.assertIn('HorizontalScale="100"', marker_range)
-        self.assertIn('BaselineShift="0.78"', marker_range)
-        self.assertNotIn("● GENERAL", story)
+        self.assertNotIn('PointSize="5.2"', marker_range)
+        self.assertNotIn('BaselineShift="2.4"', marker_range)
+
+        # The matching marker inside the table remains an inline reference.
+        anchor_stories = "".join(
+            xml for sid, xml in writer.stories if sid.startswith("st_anchor_spec_")
+        )
+        inline_range = anchor_stories.split("<Content>①</Content>", 1)[0].rsplit(
+            "<CharacterStyleRange ", 1,
+        )[1]
+        self.assertIn('PointSize="5.2"', inline_range)
+        self.assertIn('BaselineShift="2.4"', inline_range)
+
+    def test_spec_story_aligns_section_marker_relative_to_text_in_all_locales(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
+        expected = {
+            "en": (0.78, -0.78),
+            "fr": (0.0, -1.56),
+            "es": (0.0, -1.56),
+        }
+        for language, (text_shift, marker_shift) in expected.items():
+            with self.subTest(language=language):
+                writer = IdmlWriter(params)
+                writer.add_spec_story(
+                    sections,
+                    [],
+                    lang=language,
+                    title=SOURCE_TITLES[language]["spec"],
+                )
+
+                story_id = "st_spec" if language == "en" else f"st_spec_{language}"
+                story = dict(writer.stories)[story_id]
+                section_paragraph = story.split(
+                    "<Content>●</Content>", 1,
+                )[0].rsplit("<ParagraphStyleRange ", 1)[1]
+                marker_range = story.split("<Content>●</Content>", 1)[0].rsplit(
+                    "<CharacterStyleRange ", 1,
+                )[1]
+                title_range = story.split("<Content>●</Content>", 1)[1].split(
+                    "<Content> ", 1,
+                )[0]
+                self.assertIn('PointSize="13.2"', marker_range)
+                self.assertIn('HorizontalScale="100"', marker_range)
+                self.assertIn('LeftIndent="0"', section_paragraph)
+                self.assertIn(
+                    f'BaselineShift="{marker_shift:g}"', marker_range,
+                )
+                if text_shift:
+                    self.assertIn(
+                        f'BaselineShift="{text_shift:g}"', title_range,
+                    )
+                else:
+                    self.assertNotIn("BaselineShift=", title_range)
+                self.assertAlmostEqual(-1.56, marker_shift - text_shift)
+                self.assertNotIn("● GENERAL", story)
 
     def test_spec_footnote_markers_are_superscript_character_ranges(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

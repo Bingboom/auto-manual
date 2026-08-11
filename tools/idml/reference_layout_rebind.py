@@ -190,7 +190,15 @@ def build_rebound_reference_layout_plan(
     candidate["schema_version"] = V2_SCHEMA_VERSION
     candidate["identity"] = build_identity_scopes(candidate, ir)
     legacy_provenance = _identity_value(payload, "provenance.snapshot_sha256")
-    if payload.get("schema_version") != V2_SCHEMA_VERSION and legacy_provenance:
+    # Review-asis / prepared-bundle IRs can legitimately have no frozen
+    # snapshot digest. Provenance is digest-validated but deliberately not an
+    # equality gate, so a style-only rebind must preserve the existing
+    # approved digest instead of replacing it with null. This applies to v2
+    # plans as well as legacy migration.
+    if legacy_provenance and (
+        payload.get("schema_version") != V2_SCHEMA_VERSION
+        or not ir.snapshot_sha256
+    ):
         candidate["identity"]["provenance"]["snapshot_sha256"] = legacy_provenance
     candidate.pop("source_identity", None)
     idml_contract = candidate.get("idml_contract")

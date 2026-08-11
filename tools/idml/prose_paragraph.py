@@ -4,6 +4,11 @@ from __future__ import annotations
 from pathlib import Path
 
 from .app_inline import prepare_app_body_inline
+from .app_text_styles import (
+    apply_marker_metrics,
+    marked_paragraph_layout,
+    tab_list_properties,
+)
 
 
 def build_text_paragraph(
@@ -49,7 +54,11 @@ def build_text_paragraph(
         style = f"{base} {normalized_language.upper()}"
     if is_preface and kind == "body":
         style = "HB Preface Body"
-    text = "\u25cf " + text if is_h2 else text
+    marker_layout = marked_paragraph_layout(semantic_kind, text, writer.params)
+    if marker_layout is not None:
+        text = marker_layout.text
+    elif is_h2:
+        text = "\u25cf " + text
     text, inline_replacements = prepare_app_body_inline(
         writer,
         semantic_kind=semantic_kind,
@@ -66,4 +75,12 @@ def build_text_paragraph(
         span_columns=(has_twocol_layout and not in_twocol and is_h2),
         inline_replacements=inline_replacements,
     )
-    return paragraph, semantic_kind, is_h2, text
+    if marker_layout is not None:
+        paragraph = apply_marker_metrics(paragraph, marker_layout)
+        paragraph = paragraph.replace(
+            "\n    <CharacterStyleRange",
+            f"\n    {tab_list_properties(marker_layout.tab_position)}"
+            "\n    <CharacterStyleRange",
+            1,
+        )
+    return paragraph, semantic_kind, is_h2, text.replace("\t", " ")

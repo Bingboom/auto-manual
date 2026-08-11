@@ -22,6 +22,17 @@ def render_emphasispill(
         return "", 0.0
     body_w = measure_w or ctx.text_measure
     size = param_pt(ctx.params, "idml_charging_emphasis_font_size", 6.6)
+    space_before = param_pt(
+        ctx.params,
+        "idml_charging_emphasis_space_before",
+        5.0,
+    )
+    horizontal_padding = param_pt(
+        ctx.params,
+        "idml_charging_emphasis_horizontal_padding",
+        7.0,
+    )
+    space_after = 1.5
     height = max(14.2, param_pt(ctx.params, "comp_subbar_height", 13.89))
     width_factor = 0.50 if len(text) > 55 else 0.44
     width = min(
@@ -32,22 +43,39 @@ def render_emphasispill(
                 text,
                 point_size=size,
                 narrow_width_ratio=width_factor,
-            ) + 16.0,
+            ) + 2.0 * horizontal_padding + 2.0,
         ),
     )
     content = psr("HB Emphasis Pill", text, terminal=True)
     if ctx.add_story is None:
+        # The rectangular table fallback has no rounded endcaps to provide
+        # optical inset, so carry the padding on its editable paragraph.
+        content = content.replace(
+            "<ParagraphStyleRange ",
+            f'<ParagraphStyleRange LeftIndent="{horizontal_padding:g}" '
+            f'RightIndent="{horizontal_padding:g}" ',
+            1,
+        )
         table = component_table(
             tid,
             [width],
             [cell(f"{tid}c0", "0:0", content, fill="Color/HB Brand Dark",
-                  stroke=False, top=2, bottom=2, left=7, right=7,
+                  stroke=False, top=2, bottom=2, left=0, right=0,
                   valign="CenterAlign")],
             role="warning",
         )
         return wrap_table_paragraph(table, terminal, span_columns), height + 2.0
 
-    xml = _po.anchored_panel_paragraph(
+    # InDesign does not preserve a one-sided InsetSpacing reliably on this
+    # inline rounded text frame.  Put the optical left edge on the editable
+    # paragraph instead; keep the right side unindented so the final words
+    # retain the width allowance reserved above.
+    content = content.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange LeftIndent="{horizontal_padding:g}" ',
+        1,
+    )
+    xml = _po.anchored_panel_group_paragraph(
         ctx.add_story,
         f"st_anchor_emphasis_{tid}",
         "source emphasis pill",
@@ -59,13 +87,13 @@ def render_emphasispill(
         stroke="Swatch/None",
         stroke_weight=0,
         radius=height / 2.0,
-        inset=(1.0, 7.0, 1.0, 7.0),
         valign="CenterAlign",
-        auto_height=False,
+        mask_content_corners=False,
     )
     xml = xml.replace(
         "<ParagraphStyleRange ",
-        '<ParagraphStyleRange SpaceBefore="1" SpaceAfter="1.5" ',
+        f'<ParagraphStyleRange SpaceBefore="{space_before:g}" '
+        f'SpaceAfter="{space_after:g}" ',
         1,
     )
-    return xml, height + 2.5
+    return xml, height + space_before + space_after

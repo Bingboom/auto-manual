@@ -534,12 +534,27 @@ def add_spec_story(
     default_section_before = (7.89, 9.56, 10.54, 14.41)
     default_table_before = (3.79, 2.47, 4.75, 3.30)
     for si, section in enumerate(sections):
+        title_baseline_shift = param_pt(
+            writer.params,
+            f"lang_{lang}_idml_spec_section_text_baseline_shift",
+            param_pt(
+                writer.params,
+                "idml_spec_section_text_baseline_shift",
+                0.0,
+            ),
+        )
+        bullet_baseline_shift = title_baseline_shift + param_pt(
+            writer.params,
+            "idml_spec_section_bullet_baseline_offset",
+            -1.56,
+        )
         section_title = writer._psr(
             "HB Spec Section", "\u25cf " + section["title"])
         section_title = section_title.replace(
             'FontStyle="Regular"',
             'FontStyle="Regular" PointSize="13.2" '
-            'HorizontalScale="100" BaselineShift="0.78"',
+            'HorizontalScale="100" '
+            f'BaselineShift="{bullet_baseline_shift:g}"',
             1,
         )
         section_default = (
@@ -555,18 +570,27 @@ def add_spec_story(
                 section_default,
             ),
         )
+        section_left_indent = param_pt(
+            writer.params,
+            f"lang_{lang}_idml_spec_section_left_indent",
+            param_pt(
+                writer.params,
+                "idml_spec_section_left_indent",
+                0.0,
+            ),
+        )
         section_title = section_title.replace(
             "<ParagraphStyleRange ",
             f'<ParagraphStyleRange SpaceBefore="{section_before:g}" '
-            f'LeftIndent="{4.18 if lang == "en" else 0.74:g}" ',
+            f'LeftIndent="{section_left_indent:g}" ',
             1,
         )
-        if lang == "en":
+        if title_baseline_shift:
             section_title = section_title.replace(
                 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
                 '><Content> ',
                 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                'BaselineShift="0.78"><Content> ',
+                f'BaselineShift="{title_baseline_shift:g}"><Content> ',
                 1,
             )
         parts.append(section_title)
@@ -636,7 +660,11 @@ def add_spec_story(
         note_xml = writer._psr(
             "HB Spec Note", note,
             terminal=(ai == len(annotations) - 1),
-            superscript_markers=True,
+            # A leading circled numeral identifies the footnote line; it is
+            # not an inline reference. Keep it at the same size and baseline
+            # as the following note text. Inline references inside spec-table
+            # cells remain superscripted by spec_tables.py.
+            superscript_markers=False,
         )
         if lang == "en":
             note_xml = note_xml.replace(

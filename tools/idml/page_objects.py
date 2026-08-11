@@ -662,7 +662,9 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
                                     group_underlay: str = "",
                                     group_overlay: str = "",
                                     group_x_offset: float = 0.0,
-                                    content_bottom_bleed: float = 0.0) -> str:
+                                    content_bottom_bleed: float = 0.0,
+                                    valign: str = "TopAlign",
+                                    mask_content_corners: bool = True) -> str:
     """Rounded background plus square content frame in one anchored group.
 
     A table directly inside a rounded text-frame is inset by InDesign at
@@ -709,7 +711,7 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
             -content_inset + max(0.0, content_bottom_bleed),
         )
         + '    <TextFramePreference TextColumnCount="1" '
-        'VerticalJustification="TopAlign" AutoSizingType="Off">'
+        f'VerticalJustification="{valign}" AutoSizingType="Off">'
         '<Properties><InsetSpacing type="list">'
         + ''.join('<ListItem type="unit">0</ListItem>' for _ in range(4))
         + '</InsetSpacing></Properties></TextFramePreference>\n'
@@ -717,21 +719,25 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
         + '  </TextFrame>\n'
     )
     corner_fills = corner_fills or {}
-    masks = "".join(
-        (
-            f'  <Rectangle Self="mask_{corner}_group_{sid}" '
-            'ContentType="Unassigned" '
-            'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-            f'FillColor="{corner_fills.get(corner, fill)}" '
-            'StrokeColor="Swatch/None" StrokeWeight="0" '
-            'ItemTransform="1 0 0 1 0 0">\n'
-            + rounded_corner_mask_geometry(
-                path_x1, path_y1, path_x2, path_y2, radius, corner)
-            + anchor
-            + '  </Rectangle>\n'
+    masks = (
+        "".join(
+            (
+                f'  <Rectangle Self="mask_{corner}_group_{sid}" '
+                'ContentType="Unassigned" '
+                'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+                f'FillColor="{corner_fills.get(corner, fill)}" '
+                'StrokeColor="Swatch/None" StrokeWeight="0" '
+                'ItemTransform="1 0 0 1 0 0">\n'
+                + rounded_corner_mask_geometry(
+                    path_x1, path_y1, path_x2, path_y2, radius, corner)
+                + anchor
+                + '  </Rectangle>\n'
+            )
+            for corner in (
+                "top_left", "top_right", "bottom_left", "bottom_right")
         )
-        for corner in (
-            "top_left", "top_right", "bottom_left", "bottom_right")
+        if mask_content_corners
+        else ""
     )
     outline = (
         f'  <Rectangle Self="outline_group_{sid}" ContentType="Unassigned" '

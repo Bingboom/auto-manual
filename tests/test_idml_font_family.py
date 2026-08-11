@@ -27,7 +27,7 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
             "manifest": _fonts_manifest(False),
         }
         expected = {
-            "styles": "47c158e549fbb7035a2f97bb22c0daded49b080d2ceb1a71af73bba835453a81",
+            "styles": "8a697432cd63084047142685060429eea6257a56e1fc3a8d6fe434362bafe316",
             "fonts": "a6ffc78a2bc432085da2dc64aec6b4b2f8b3db8bf0d6d453b0812f919f608762",
             "flow": "111c9d93d62ba1b250d743af51db9bfb8079c1a675201e96d895e1c18ceb4211",
             "manifest": "979a2f14eef398db91ec091c2f716fd40625e78ef0ab0b8563f201eff06169a4",
