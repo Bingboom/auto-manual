@@ -1,6 +1,6 @@
 # Architecture Documentation Map
 
-Updated: 2026-07-31
+Updated: 2026-08-11
 
 Use this directory for architecture and integration boundaries.
 Not every file here is equally current.
@@ -11,6 +11,9 @@ Not every file here is equally current.
   - long-term strategy and stable architectural principles
 - [`Hello_Docs_Architecture.md`](Hello_Docs_Architecture.md)
   - current repository component map and ownership split
+- [`Product_Data_Base_Architecture.md`](Product_Data_Base_Architecture.md)
+  - current business architecture for product, market-version, material-demand,
+    manual-task, and change governance in the upstream Product Data Base
 - [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)
   - active OpenClaw control-layer architecture and current repo status
 - [`Feishu_Source_DingTalk_Sink_Plan.md`](Feishu_Source_DingTalk_Sink_Plan.md)
