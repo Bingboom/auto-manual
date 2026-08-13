@@ -7,6 +7,8 @@ Archived background note:
 - this is the broader provider-migration plan
 - the repo's current maintained DingTalk direction is the narrower hybrid path in [`Feishu_Source_DingTalk_Sink_Plan.md`](Feishu_Source_DingTalk_Sink_Plan.md)
 - keep this file for background and future expansion only
+- its generic `document link` terminology is historical and must not be used as
+  the current queue delivery contract
 
 ## 1. Role
 

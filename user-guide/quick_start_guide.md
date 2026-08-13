@@ -117,8 +117,10 @@ python3 tools/source_intake.py verify --candidates reports/source_intake/<run-id
 - `DingTalk_target_node_url`
 - `operator_union_id`
 - `Document directory`
-- `Document link`
 - `飞书云文档`
+- `基线文档`
+- `idml_file`
+- `HTML_link`
 - `Document link_dd`
 - `data_sync`
 - `构建结果`
@@ -127,11 +129,10 @@ python3 tools/source_intake.py verify --candidates reports/source_intake/<run-id
 
 - `Workflow_action` 是唯一队列语义字段；强制重开 review / 重新 seed 填 `Start Review`，Review 阶段反复构建填 `Build Draft Package`，Publish 阶段填 `Publish`
 - `Doc_phase` 不再参与队列路由，保持留空即可
-- 把结果链接回写到表里
-- `Build Draft Package` 仍把 DOCX 链接回写到 `Document link`
-- `Publish` 会把主交付 PDF 链接回写到 `Document link`，并把 release 留档 DOCX 路径写回 `Document directory`
-- 如果表里存在 `飞书云文档`，队列会同时生成 Markdown，并通过 `lark-cli drive +import --type docx` 导入成飞书云文档后把 URL 写回该字段；Markdown 优先使用 MyST writer，当前 Pandoc 不提供 native MyST 时会输出 MyST-compatible CommonMark
-- 如果当前启用了 DingTalk mirror，且表里存在 `Document link_dd`，队列会把镜像 DingTalk 节点链接写到这个字段；`Document link` 仍保持 Feishu/wiki 主字段
+- 按阶段回写结果链接：Draft=`飞书云文档`，Publish=`idml_file`，Web Publish=`HTML_link`
+- `Build Draft Package` 通过 `lark-cli drive +import --type docx` 导入可编辑飞书云文档并写回 `飞书云文档`；同时把第二份冻结导入写入 `基线文档`，供 backport 对比
+- `Publish` 把设计交付 ZIP 的知识库链接写入 `idml_file`，并把 release 留档 DOCX 路径写回 `Document directory`
+- 如果当前启用了 DingTalk mirror，且表里存在 `Document link_dd`，队列会把镜像 DingTalk 节点链接写到这个字段；它不是主交付判据
 - 如果当前启用了 DingTalk mirror，且表里存在 `是否上传钉钉`，这列就是行级开关：勾选才同步 DingTalk，不勾就只走 Feishu/wiki
 - 如果表里没有 `是否上传钉钉`，worker 就按当前全局模式处理整行：开启 mirror 的 worker 会同步 DingTalk，Feishu-only worker 不会同步
 - 如果当前启用了 DingTalk mirror，且该行还填了 `DingTalk_target_node_url`，worker 会优先同步到这个行级节点；只有该字段为空时，才回退到全局 `DINGTALK_DOCS_TARGET_NODE_URL`
@@ -226,7 +227,7 @@ Publish 的原料是：
    - 如果要先让 OpenClaw 看结构化 dry-run 结果，再走下一步：`python build.py queue-resolve-action --config configs/config.us.yaml --query-text "发布 JE-1000F_US_0.3" --json`
    - 如果只是查发布文档管理表里的产品说明书链接或总览：`python build.py manual-index-query --config configs/config.us.yaml --query-text "查 JE-2000F 的说明书链接" --json`
 2. 要真正执行时，直接走一条确定性命令：
-   - `python build.py queue-execute --config configs/config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果、Document link。"`
+   - `python build.py queue-execute --config configs/config.us.yaml --query-text "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。只返回 record_id、Git_ref、构建结果和 delivery_url。"`
    - 如果这条命令最终会命中 `Workflow_action = Publish`，要额外带上 `--confirm-publish`
 3. 只有在排查问题或需要人工拆步骤时，再手动触发控制层：
    - `node integrations/openclaw/auto-manual-control-layer/cli.mjs dispatch <start-review|build-draft> <record_id>`
@@ -256,19 +257,19 @@ Publish 的原料是：
 - 如果没说市场，例如 `构建JE-1000F说明书文案`，市场也会通配；解析器会用 `Task_id` 前缀 `JE-1000F_`，拉起所有 `JE-1000F` 且 `是否触发文档构建 = Y` 的 `Build Draft Package` 行
 - 如果要指定版本，可以说 `构建 JE-1000F_EU_1.0 的欧规说明书文案`；解析器会保留 `Task_id` 前缀并加上 `Version=1.0`，而不是去找不存在的单条 `JE-1000F_EU_1.0`
 
-当前 Phase 2 控制层仍然只把下面这个字段当主交付链接：
+Phase 2 控制层使用阶段化交付契约：
 
-- `Document link`
+- `Build Draft Package`：`delivery_kind=feishu_cloud_doc`，`delivery_url` 来自 `飞书云文档`
+- `Publish`：`delivery_kind=idml_file`，`delivery_url` 来自 `idml_file`
+- `Web Publish`：`delivery_kind=html`，`delivery_url` 来自 `HTML_link`
 
-其中 Build Draft Package 场景下这里通常是 DOCX 链接，Publish 场景下这里会回写 PDF 链接。
-
-如果表里有 `飞书云文档`，它是补充云文档链接，不改变 `Document link` 的主交付语义。
+`delivery_ready` 是 Agent 的交付完成判据。`Document link` / `document_link` 已退役，绝不能用它或空的 `idml_file` 判断 Draft 云文档上传失败；`baseline_ready` 只表示 `基线文档`可用于 backport。
 
 如果当前启用了 DingTalk mirror，worker 还会在表里额外写：
 
 - `Document link_dd`
 
-但 `queue-query / queue-execute / OpenClaw` 仍以 `Document link` 为主返回字段；Publish 时也就是返回 PDF URL。
+`Document link_dd` 只作为可选镜像回写，不参与 `delivery_ready` 判定。
 
 ## 3. 场景一：第一次把文档拉进 Review
 
@@ -357,8 +358,8 @@ Publish 的原料是：
    - `构建结果`
    - `data_sync`
    - `Document directory`
-   - `Document link`
-   - `飞书云文档（字段存在时）`
+   - `飞书云文档`
+   - `基线文档`
    - `Document link_dd（仅启用 DingTalk mirror 且字段存在时）`
 
 ### Build Draft Package 最容易配错的地方
@@ -403,9 +404,8 @@ Publish 的原料是：
    - `构建结果`
    - `data_sync`
    - `Document directory（release 留档 DOCX 路径）`
-   - `Document link（主交付 PDF 链接）`
-   - `飞书云文档（字段存在时；由 Markdown 导入）`
-   - `Document link_dd（仅启用 DingTalk mirror 且字段存在时；镜像同一份 Publish PDF）`
+   - `idml_file（设计交付 ZIP 的知识库链接）`
+   - `Document link_dd（仅启用 DingTalk mirror 且字段存在时；镜像同一份设计交付 ZIP）`
 
 印刷 Publish 不再构建或部署网页。网页使用独立的
 [`feishu-web-publish-queue.yml`](../.github/workflows/feishu-web-publish-queue.yml)：
@@ -560,7 +560,7 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
    - `是否强制刷新数据 = 只有这次确实要拉最新 phase2 时才勾`
-4. 等队列回写 `Document directory`（DOCX 留档路径）、`Document link`（PDF 链接）和可选的 `飞书云文档`
+4. 等队列回写 `Document directory`（DOCX 留档路径）和 `idml_file`（设计交付 ZIP 的知识库链接）
 
 ### 如果你要正式 Web Publish
 

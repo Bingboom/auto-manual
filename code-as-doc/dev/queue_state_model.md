@@ -1,6 +1,6 @@
 # Queue State Model
 
-Updated: 2026-07-31
+Updated: 2026-08-13
 
 This file records the supported queue status model for `Document_link` build
 rows. It complements the field-level contract in
@@ -87,7 +87,10 @@ On success, the worker writes:
 
 - `构建结果`: prefixed with `SUCCESS`
 - `Document directory`: local/staged artifact path
-- `Document link`: uploaded Feishu Drive/Wiki URL or DingTalk URL
+- phase-aware delivery field:
+  - Draft: editable `飞书云文档`, plus frozen `基线文档`
+  - Publish: designer handoff ZIP in `idml_file`
+  - Web Publish: published manual URL in `HTML_link`
 - `Document link_dd`: DingTalk URL when that optional field is enabled
 - `data_sync`: `refreshed`, `skipped`, or `failed`
 - `是否触发文档构建`: `已构建`
@@ -103,13 +106,19 @@ On failure, the worker writes:
 - `构建结果`: prefixed with `FAILED`
 - `data_sync`: latest sync decision when known
 - `Document directory`: preserved latest local output when available
-- `Document link`: preserved latest remote output when available
+- the active phase-specific delivery field: preserved latest remote output when
+  available
 - `是否立即构建`: `false`
 - `是否强制刷新数据`: `false`
 
 Failure writeback intentionally preserves latest usable artifact links when the
 worker got far enough to produce them. It does not mark `是否触发文档构建` as
 `已构建`.
+
+`Document link` is retired and must not be used to decide whether any phase
+uploaded successfully. Agent-facing queue output exposes `delivery_kind`,
+`delivery_url`, and `delivery_ready`; Draft baseline evidence is reported
+separately as `baseline_ready`.
 
 ## 6. Writeback Failed
 

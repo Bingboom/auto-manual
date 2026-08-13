@@ -86,7 +86,9 @@ test("replies with queue status for a resolved query_status", async () => {
             document_id: "JE-1000F_US_0.3",
             workflow_action: "Build Draft Package",
             result: "SUCCESS",
-            document_link: "https://example.com/doc.docx",
+            delivery_kind: "feishu_cloud_doc",
+            delivery_ready: true,
+            delivery_url: "https://example.com/wiki/editable",
           },
         };
       },
@@ -100,6 +102,9 @@ test("replies with queue status for a resolved query_status", async () => {
   assert.equal(replies.length, 1);
   assert.match(replies[0].text, /JE-1000F_US_0.3/);
   assert.match(replies[0].text, /SUCCESS/);
+  assert.match(replies[0].text, /delivery_kind: feishu_cloud_doc/);
+  assert.match(replies[0].text, /delivery_ready: true/);
+  assert.doesNotMatch(replies[0].text, /document_link/i);
 });
 
 test("answers manual index lookups before queue resolution", async () => {
@@ -244,7 +249,7 @@ test("answers batch status follow-ups from stored rows", async () => {
               workflow_action: "Build Draft Package",
               result: "SUCCESS | built_at=2026-05-04T10:02:00+00:00",
               freshness_status: "fresh_success",
-              document_link: payload.recordId === "rec_en" ? "https://example.com/en.docx" : "https://example.com/fr.docx",
+              delivery_url: payload.recordId === "rec_en" ? "https://example.com/en.docx" : "https://example.com/fr.docx",
             },
           ],
         };
@@ -292,7 +297,7 @@ test("stores then executes a confirmed publish", async () => {
         executed = payload;
       },
       async queryRow() {
-        return { rows: [{ record_id: "rec_publish", document_id: "JE-1000F_US_0.3", workflow_action: "Publish", result: "SUCCESS", document_link: "https://example.com/publish.pdf" }] };
+        return { rows: [{ record_id: "rec_publish", document_id: "JE-1000F_US_0.3", workflow_action: "Publish", result: "SUCCESS", delivery_url: "https://example.com/publish-handoff.zip" }] };
       },
     },
     imClient: captureClient(replies),
@@ -479,7 +484,7 @@ test("query reports 处理中 when the row is not fresh and the run is still run
 test("query reports 已完成 from a fresh successful row without reading the run", async () => {
   let runStatusCalls = 0;
   const { handler, replies } = queryStatusHandler({
-    row: { record_id: "rec_eu_08", result: "SUCCESS", result_is_fresh: true, freshness_status: "fresh_success", document_link: "https://example.com/eu08.docx" },
+    row: { record_id: "rec_eu_08", result: "SUCCESS", result_is_fresh: true, freshness_status: "fresh_success", delivery_url: "https://example.com/eu08.docx" },
     runStatus: {},
     onRunStatus: () => {
       runStatusCalls += 1;

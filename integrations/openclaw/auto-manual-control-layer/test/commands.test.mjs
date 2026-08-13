@@ -90,12 +90,16 @@ test("renderStatusResult includes metadata fields when present", () => {
     artifacts: [{ name: "feishu-build-queue-output" }, { name: "openclaw-run-metadata" }],
     metadata: {
       publish_url: "https://publish.example.com",
-      document_link_url: "https://docs.example.com/doc",
+      delivery_kind: "idml_file",
+      delivery_url: "https://docs.example.com/handoff.zip",
       publish_html_index: "reports/releases/latest/index.html",
     },
   });
   assert.match(text, /record_id: rec123/);
   assert.match(text, /publish_url: https:\/\/publish\.example\.com/);
+  assert.match(text, /delivery_kind: idml_file/);
+  assert.match(text, /delivery_url: https:\/\/docs\.example\.com\/handoff\.zip/);
+  assert.doesNotMatch(text, /document_link/i);
   assert.match(text, /artifacts: feishu-build-queue-output, openclaw-run-metadata/);
 });
 

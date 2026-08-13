@@ -200,8 +200,10 @@ prod):
   `文档构建表=02_文档构建` and `数据入库表=01_数据入库`; this prevents the alert from
   treating the planned rename as a missing table or suggesting a duplicate.
 - `--ignore-field TABLE.FIELD` — ignore one explicitly retired/replaced source field.
-  The workflow uses `文档构建表.Document link` because the business Base maintains
-  the replacement fields `基线文档` and `飞书云文档` instead.
+  Ignore `文档构建表.Document link` during old-to-business Base parity because
+  the workflow no longer uses it. The business Base maintains phase-specific
+  replacements: Draft `基线文档` + `飞书云文档`, Publish `idml_file`, and Web
+  Publish `HTML_link`.
 - `--fail-on missing` — exit non-zero only when **prod is missing a table/field** dev
   defines; drift (option/type divergence) is still printed but does not fail. (Default
   `--fail-on any` keeps the strict behavior.)

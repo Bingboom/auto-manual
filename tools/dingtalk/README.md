@@ -27,8 +27,8 @@ The current queue integration is already wired into the repo:
 - [`../queue_artifact_sink.py`](../queue_artifact_sink.py) resolves the primary
   artifact sink and optional mirror sink
 - [`../queue_group_processing.py`](../queue_group_processing.py) publishes the
-  built DOCX, optionally mirrors it to DingTalk, and writes `dingtalk_sync=*`
-  status notes
+  Publish handoff ZIP, optionally mirrors it to DingTalk, and writes
+  `dingtalk_sync=*` status notes
 - [`../process_build_queue.py`](../process_build_queue.py) and
   [`../process_build_queue_services.py`](../process_build_queue_services.py)
   provide the CLI/runtime entrypoint
@@ -59,8 +59,8 @@ $env:AUTO_MANUAL_ARTIFACT_MIRROR_PROVIDER=""
 ```
 
 For the maintained hybrid path, prefer Feishu/wiki primary plus DingTalk mirror.
-Only use DingTalk primary replace mode when you intentionally want the canonical
-artifact link to point at DingTalk for that worker.
+Only use DingTalk primary replace mode when intentionally testing the dormant
+provider. It does not change the phase-aware Agent delivery contract.
 
 ## Session Inputs
 
@@ -99,7 +99,7 @@ sharing one global browser session across every row.
 
 Current DingTalk-related queue fields:
 
-- `Document link`: canonical writeback field
+- `idml_file`: Publish handoff ZIP delivery field
 - `Document link_dd`: optional DingTalk supplemental writeback field
 - `是否上传钉钉`: optional row-level DingTalk gate
 - `DingTalk_target_node_url`: optional row-level DingTalk target override
@@ -120,6 +120,10 @@ Current behavior:
 - if `Document link_dd` exists, DingTalk mirror or DingTalk primary mode writes
   the DingTalk node URL there
 - `构建结果` may include `dingtalk_sync=ok|failed|skipped`
+
+`Document link` is retired. OpenClaw and IM consumers use
+`delivery_kind / delivery_url / delivery_ready`; DingTalk mirror state must not
+replace or override that phase-aware contract.
 
 ## GitHub Worker Behavior
 

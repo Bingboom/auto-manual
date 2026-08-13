@@ -164,7 +164,7 @@ answer product/manual-link inventory and overview questions, while phrases that
 include build-copy intent such as `输出JE-1000F的所有欧规说明书文案` stay on the
 existing Build Draft queue path.
 For batch status or link replies, the adapter sends one status summary without
-embedded `Document link` URLs, then sends each unique artifact link as its own
+embedded `delivery_url` values, then sends each unique phase-aware delivery link as its own
 follow-up text message. That keeps Feishu's document-link renderer on the same
 path as a human sending one document link per message instead of flattening all
 links into one plain-text block.
@@ -191,8 +191,11 @@ checkbox remains the eligibility gate for each language row.
 `是否强制刷新数据` remains a build-time row input read by `process-build-queue`.
 
 Freshness fields come from `build.py queue-query --fresh-since ...` and are
-included in Document_link JSON rows as `freshness_status`, `result_built_at`,
-`result_is_fresh`, and `build_started_at`. When a previous failed build remains
+included in queue JSON rows as `freshness_status`, `result_built_at`,
+`result_is_fresh`, and `build_started_at`. The same rows expose
+`delivery_kind`, `delivery_url`, and `delivery_ready`; the adapter never treats
+the retired `document_link` name or a blank `idml_file` as evidence that a Draft
+cloud-doc upload failed. When a previous failed build remains
 in `构建结果` after a new dispatch, the adapter reports `stale_result` or
 `writeback_pending` instead of presenting that old failure as the current run.
 The underlying `queue-query --json` response also includes `matched_count`,

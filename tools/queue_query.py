@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
-from dataclasses import asdict, dataclass, replace
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -23,13 +23,16 @@ from tools.phase2_support import (
     phase2_identity,
 )
 from tools.process_build_queue import (
+    BASELINE_DOC_FIELD,
     BUILD_FAMILY_FIELD,
     BUILD_STARTED_AT_FIELD,
     DOCUMENT_DIRECTORY_FIELD,
     DOCUMENT_ID_FIELD,
     DOCUMENT_KEY_FIELD,
     DOCUMENT_LINK_FIELD,
+    FEISHU_CLOUD_DOC_FIELD,
     GIT_REF_FIELD,
+    HTML_LINK_FIELD,
     IMMEDIATE_TRIGGER_FIELD,
     RESULT_FIELD,
     TRIGGER_FIELD,
@@ -38,6 +41,11 @@ from tools.process_build_queue import (
     WORKFLOW_ACTION_FIELD,
     collect_queue_preflight_errors,
     resolve_document_link_binding,
+)
+from tools.queue_delivery import (
+    queue_delivery_contract_for_row,
+    render_queue_delivery_lines,
+    serialize_queue_row,
 )
 from tools.queue_freshness import (
     compute_freshness,
@@ -105,6 +113,9 @@ class QueueQueryRow:
     immediate_build: bool | None
     initial_result: str
     remarks: str
+    feishu_cloud_doc: str = ""
+    baseline_doc: str = ""
+    html_link: str = ""
     task_id: str = ""
     market_group: str = ""
     build_started_at: str = ""
@@ -375,8 +386,12 @@ def _prefer_row_for_latest(candidate: QueueQueryRow, current: QueueQueryRow) -> 
     current_version = _version_sort_key(_row_version(current))
     if candidate_version != current_version:
         return candidate_version > current_version
-    if bool(candidate.document_link) != bool(current.document_link):
-        return bool(candidate.document_link)
+    candidate_delivery = queue_delivery_contract_for_row(candidate)
+    current_delivery = queue_delivery_contract_for_row(current)
+    if candidate_delivery.delivery_ready != current_delivery.delivery_ready:
+        return candidate_delivery.delivery_ready
+    if bool(candidate_delivery.delivery_url) != bool(current_delivery.delivery_url):
+        return bool(candidate_delivery.delivery_url)
     if ("success" in candidate.result.lower()) != ("success" in current.result.lower()):
         return "success" in candidate.result.lower()
     return False
@@ -889,6 +904,9 @@ def _build_document_link_rows(cfg: dict[str, Any]) -> list[QueueQueryRow]:
                 immediate_build=is_immediate_trigger_enabled(fields.get(IMMEDIATE_TRIGGER_FIELD)),
                 initial_result="",
                 remarks="",
+                feishu_cloud_doc=_text(fields.get(FEISHU_CLOUD_DOC_FIELD)),
+                baseline_doc=_text(fields.get(BASELINE_DOC_FIELD)),
+                html_link=_text(fields.get(HTML_LINK_FIELD)),
                 task_id=_text(fields.get(TASK_ID_FIELD)),
                 market_group=market_group,
                 build_started_at=_text(fields.get(BUILD_STARTED_AT_FIELD)),
@@ -1094,7 +1112,7 @@ def render_queue_query_rows(
                 "matched_count": matched_count,
                 "limit": limit,
                 "truncated": truncated,
-                "rows": [asdict(row) for row in rows],
+                "rows": [serialize_queue_row(row) for row in rows],
             },
             ensure_ascii=False,
             indent=2,
@@ -1133,8 +1151,7 @@ def render_queue_query_rows(
             lines.append(f"git_ref: {row.git_ref}")
         if row.pr_url:
             lines.append(f"pr_url: {row.pr_url}")
-        if row.document_link:
-            lines.append(f"document_link: {row.document_link}")
+        lines.extend(render_queue_delivery_lines(row))
         if row.document_directory:
             lines.append(f"document_directory: {row.document_directory}")
         if row.result:

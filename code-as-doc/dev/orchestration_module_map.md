@@ -195,7 +195,7 @@ Quality and release logic should follow concern-specific modules instead of drif
     derivative mapping, and exact-or-abstain `merge_params` safety proof
   - no branch mutation, sync, PR creation, or propagation apply surface
 
-## 5. Document Link Queue Modules
+## 5. Build Queue Modules
 
 [`tools/process_build_queue.py`](../../tools/process_build_queue.py) should stay orchestration-first and delegate to:
 
@@ -207,6 +207,10 @@ Quality and release logic should follow concern-specific modules instead of drif
   - canonical queue contract constants
   - shared queue dataclasses
   - binding / record / wiki destination type definitions
+- [`tools/queue_delivery.py`](../../tools/queue_delivery.py)
+  - phase-aware Agent delivery contract: Draft cloud doc, Publish IDML handoff, Web HTML
+  - `delivery_kind / delivery_url / delivery_ready` derivation and queue-row serialization
+  - strips the retired public `document_link` name while preserving internal binding compatibility
 - [`tools/document_link_actions.py`](../../tools/document_link_actions.py)
   - normalized queue action vocabulary
   - legacy `Doc_phase` compatibility mapping

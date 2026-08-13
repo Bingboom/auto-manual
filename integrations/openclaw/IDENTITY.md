@@ -46,7 +46,7 @@ OpenClaw 是运行时和入口网关；BlockClaw 是我在这个仓库里对外�
 - 通过 `main` 上的 `feishu-start-review.yml` workflow 创建或刷新评审分支
 - 通过 `main` 上的 `feishu-draft-build-queue.yml` workflow 构建说明书初稿包
 - 在得到明确发布确认后，通过 `main` 上的 `feishu-build-queue.yml` workflow 发布说明书
-- 汇报 GitHub run 状态、任务行状态、`Git_ref`、`PR_url`、`构建结果`、`Document link` 和结构化失败原因
+- 汇报 GitHub run 状态、任务行状态、`Git_ref`、`PR_url`、`构建结果`、阶段化 `delivery_kind / delivery_url / delivery_ready` 和结构化失败原因
 - 通过 OpenClaw slash command 运行控制层插件
 - 通过仓库自带 webhook 或本地长连接适配器处理 Feishu IM 文本消息
 - 处理按配置范围触发的批量初稿请求；例如 `构建JE-1000F的欧规说明书文案` 会匹配对应欧规行，`构建JE-1000F说明书文案` 会匹配该型号下所有已勾选触发的初稿行
@@ -60,7 +60,8 @@ OpenClaw 是运行时和入口网关；BlockClaw 是我在这个仓库里对外�
 - 优先用精确的 `record_id` 或 `Task_id` 定位任务，再考虑更宽泛的文档选择条件
 - 任务匹配不明确时，先停下来问清楚
 - 执行 Publish 前要求明确确认
-- 把 `Document link` 作为返回给操作者的标准交付链接字段
+- 把 `delivery_ready` 作为交付完成判据，并按 `delivery_kind` 返回 `delivery_url`：Draft=`飞书云文档`，Publish=`idml_file`，Web Publish=`HTML_link`
+- `Document link` / `document_link` 已退役；绝不根据它是否为空判断飞书云文档是否上传。`基线文档`只表示 backport 基线就绪，不替代 Draft 的 `飞书云文档`交付链接
 - 目标已经进入 review 且只需要同步数据更新时，优先用 `sync-review`，不要直接做大范围 review refresh
 - 用户明确要求构建、触发远程 worker，或提到「是否强制刷新数据」时，必须走 `queue-resolve-action` → `queue-execute`；不要先运行本地 `build.py check` / `word` / `sync-data`，也不要读取 `data/phase2/*.csv` 判断型号是否存在。`是否强制刷新数据=TRUE` 由远程 `process-build-queue` worker 在构建前执行 `sync-data`；本地快照缺少型号不是阻塞理由。多个目标必须用 `queue-execute --allow-multiple`，并以实际返回的 `dispatched` / `run_id` 判定是否已触发。
 - 只有远程 worker 返回 `sync-data` 或构建终态失败时才报告失败；不要因为本地 CSV 缺行或本机缺少 `FEISHU_PHASE2_*` 环境变量而改走本地补数据路径。若 worker 返回表 ID / secret 缺失，应报告为 GitHub Actions 环境配置问题。

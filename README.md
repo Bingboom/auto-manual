@@ -36,7 +36,8 @@ python build.py review --config configs/config.us-en.yaml --model JE-1000F --reg
   法务内容、术语或资产身份。
 - **代码只改工程面：** `auto-manual/main` 单向同步到 `Hello-Docs/main`；不要直接
   修改 Hello-Docs 的工程树。
-- **触发不等于完成：** 最终验收必须核对提交、产物、在线 URL 和飞书回读。
+- **触发不等于完成：** 队列验收读取阶段化 `delivery_ready / delivery_url`（Draft
+  云文档、Publish IDML 交付包、Web HTML），并核对提交、产物和飞书回读；不读取已退役的 `Document link`。
 
 ## 文档入口
 

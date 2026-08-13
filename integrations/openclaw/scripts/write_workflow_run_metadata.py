@@ -168,19 +168,30 @@ def build_metadata(
 
     publish_meta_path, publish_meta_payload = publish_meta
     metadata["publish_metadata_path"] = repo_relative_or_absolute(publish_meta_path)
-    metadata["publish_metadata"] = publish_meta_payload
     if not metadata["publish_url"]:
         metadata["publish_url"] = _clean_text(
             publish_meta_payload.get("publish_url")
             if isinstance(publish_meta_payload.get("publish_url"), str)
             else ""
         )
+    # ``document_link_url`` is an internal legacy key in publish_meta.json.
+    # Never expose that retired name to OpenClaw consumers; a print Publish
+    # artifact is the IDML handoff package represented by the delivery contract.
     document_link_url = publish_meta_payload.get("document_link_url")
+    agent_publish_metadata = dict(publish_meta_payload)
+    agent_publish_metadata.pop("document_link_url", None)
+    if isinstance(document_link_url, str) and document_link_url.strip():
+        agent_publish_metadata["idml_file"] = document_link_url.strip()
+    metadata["publish_metadata"] = agent_publish_metadata
     html_index = publish_meta_payload.get("html_index")
     word_output_path = publish_meta_payload.get("word_output_path")
     pdf_output_path = publish_meta_payload.get("pdf_output_path")
     if isinstance(document_link_url, str) and document_link_url.strip():
-        metadata["document_link_url"] = document_link_url.strip()
+        metadata["delivery_kind"] = "idml_file"
+        metadata["delivery_url"] = document_link_url.strip()
+    elif publish_meta_path.parent.name == "web" and metadata["publish_url"]:
+        metadata["delivery_kind"] = "html"
+        metadata["delivery_url"] = metadata["publish_url"]
     if isinstance(html_index, str) and html_index.strip():
         metadata["publish_html_index"] = html_index.strip()
     if isinstance(word_output_path, str) and word_output_path.strip():

@@ -2,6 +2,15 @@
 
 Updated: 2026-05-11
 
+Superseded delivery-contract note:
+
+- this plan is implementation history; use
+  [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md) and
+  [`../build_doc_guide.md`](../build_doc_guide.md) for current behavior
+- `Document link` statements below predate its retirement; current delivery is
+  Draft `飞书云文档`, Publish `idml_file`, or Web Publish `HTML_link`, normalized
+  for Agents as `delivery_kind / delivery_url / delivery_ready`
+
 ## 1. Purpose
 
 This plan defines the architecture for adding a MyST Markdown publish lane next

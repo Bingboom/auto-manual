@@ -244,8 +244,11 @@ export function renderStatusResult({ workflowName, queueRecordId, runId, runUrl,
   if (metadata?.publish_url) {
     lines.push(`publish_url: ${metadata.publish_url}`);
   }
-  if (metadata?.document_link_url) {
-    lines.push(`document_link_url: ${metadata.document_link_url}`);
+  if (metadata?.delivery_kind) {
+    lines.push(`delivery_kind: ${metadata.delivery_kind}`);
+  }
+  if (metadata?.delivery_url) {
+    lines.push(`delivery_url: ${metadata.delivery_url}`);
   }
   if (metadata?.publish_html_index) {
     lines.push(`publish_html_index: ${metadata.publish_html_index}`);

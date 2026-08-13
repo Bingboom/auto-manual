@@ -9,8 +9,12 @@ Updated: 2026-04-14
 > The queue-side `dingtalk_alidocs_session` provider code referenced below is
 > dormant pending a separate removal decision. Kept as the historical record of
 > the sink design.
+>
+> The link contract below is also historical: `Document link` is retired.
+> Current consumers use Draft `飞书云文档`, Publish `idml_file`, or Web Publish
+> `HTML_link`, normalized as `delivery_kind / delivery_url / delivery_ready`.
 
-This document matches the repo's DingTalk implementation as of 2026-04-14.
+This document matches the repo's historical DingTalk implementation as of 2026-04-14.
 
 The maintained direction today is:
 
