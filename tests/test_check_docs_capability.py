@@ -36,7 +36,7 @@ class CapabilityCheckTests(unittest.TestCase):
         td = Path(tempfile.mkdtemp())
         data = td / "data"
         _write(data / "model_capabilities.csv",
-               "Document_key,Project,UPS功能,LED照明灯\n" + caps_row + "\n")
+               "Document_key,Project,UPS功能,LED照明灯,静音充电\n" + caps_row + "\n")
         _write(data / "capability_page_rules.csv",
                "capability,scope,page_stem,match_regex,required_when_true,forbidden_when_false,notes\n"
                + rules + "\n")
@@ -86,6 +86,19 @@ class CapabilityCheckTests(unittest.TestCase):
             "LED照明灯,section,05_operation_guide,LED LIGHT,Y,Y,",
             {"05_operation_guide.rst": "no lamp here"})
         self.assertEqual([i.code for i in issues], ["CAPABILITY_CONTENT_MISSING"])
+
+    def test_quiet_charging_rule_covers_french_copy(self) -> None:
+        rules = (ROOT / "data" / "capability_page_rules.csv").read_text(
+            encoding="utf-8")
+        issues = self._run(
+            "JE-1000F_US,HTE153,TRUE,TRUE,TRUE",
+            next(
+                line
+                for line in rules.splitlines()
+                if line.startswith("静音充电,")
+            ),
+            {"lcd_icons_fr.rst": "Mode de Charge Silencieuse"})
+        self.assertEqual(issues, [])
 
     def test_target_without_capability_row_emits_warning(self) -> None:
         issues = self._run(
