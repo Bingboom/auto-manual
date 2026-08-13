@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-08-02
+Updated: 2026-08-13
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -153,6 +153,10 @@ Quality and release logic should follow concern-specific modules instead of drif
 
 - [`tools/check_docs.py`](../../tools/check_docs.py)
   - quality gate facade over bundle/reference/contract/generated-page checks
+- [`tools/check_docs_runtime.py`](../../tools/check_docs_runtime.py)
+  - target-scoped quality-check orchestration and collector sequencing
+- [`tools/check_docs_renderer_contracts.py`](../../tools/check_docs_renderer_contracts.py)
+  - FCC document/web renderer preflight using the resolved target language
 - [`tools/check_docs_generated.py`](../../tools/check_docs_generated.py)
   - generated-page rule helpers
 - [`tools/validate_spec_master_runtime.py`](../../tools/validate_spec_master_runtime.py)
