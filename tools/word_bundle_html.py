@@ -190,7 +190,8 @@ def _resolve_fragment_asset_path(src: str, source_path: Path) -> Path | None:
 
 
 def _infer_fragment_lang(source_path: Path) -> str | None:
-    candidates = [source_path.stem.lower(), source_path.parent.name.lower()]
+    candidates = [source_path.stem.lower()]
+    candidates.extend(part.lower() for part in reversed(source_path.parts[:-1]))
     for candidate in candidates:
         match = _LANG_TOKEN_RE.search(candidate)
         if match:
@@ -286,6 +287,7 @@ def _convert_rst_fragment_to_html(
                     composite_manifest=composite_manifest,
                     model=model,
                     region=region,
+                    language=fragment_lang,
                 )
             return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
@@ -304,12 +306,14 @@ def _convert_rst_fragment_to_html(
             composite_manifest=composite_manifest,
             model=model,
             region=region,
+            language=fragment_lang,
         )
     else:
         rewritten_fragment = transform_word_fcc_html(
             rewritten_fragment,
             source_path=source_path,
             config=load_web_manual_contract()["fcc"],
+            language=fragment_lang,
         )
         rewritten_fragment = transform_word_inbox_html(
             rewritten_fragment,

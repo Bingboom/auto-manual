@@ -76,12 +76,14 @@ def transform_fcc(
     source_path: Path,
     config: Mapping[str, Any],
     error_type: type[Exception],
+    language: str | None = None,
 ) -> None:
     source = parse_fcc_html(
         soup,
         source_path=source_path,
         config=config,
         error_type=error_type,
+        language=language,
     )
     projection = web_fcc_projection(source.spec)
     composition = soup.new_tag(

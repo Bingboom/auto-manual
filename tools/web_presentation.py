@@ -1591,6 +1591,7 @@ def transform_web_fragment(
     composite_manifest: WebCompositeManifest | None = None,
     model: str | None = None,
     region: str | None = None,
+    language: str | None = None,
 ) -> str:
     """Apply web composition to governed figure pages; leave other pages byte-identical."""
     data = contract or load_web_manual_contract()
@@ -1679,6 +1680,7 @@ def transform_web_fragment(
             source_path=source_path,
             config=fcc,
             error_type=WebPresentationError,
+            language=language,
         )
     if is_lcd_icon_table:
         _transform_lcd_icon_table(soup, source_path=source_path)
