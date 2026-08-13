@@ -40,6 +40,46 @@ class TestWordBundle(unittest.TestCase):
         self.assertIn("MODIFICATION:", table.get_text(" ", strip=True) if table else "")
         self.assertIsNone(soup.select_one(".line-block"))
 
+    def test_remapped_french_fcc_uses_runtime_language_across_profiles(self) -> None:
+        localized_source = Path("docs/_review/JE-1000F/US/page/p22_01_fcc.rst")
+        rst_text = localized_source.read_text(encoding="utf-8")
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            runtime_source = (
+                root
+                / "docs"
+                / "_build"
+                / "JE-1000F"
+                / "US"
+                / "fr"
+                / "rst"
+                / "page"
+                / "01_fcc.rst"
+            )
+            runtime_source.parent.mkdir(parents=True)
+            runtime_source.write_text(rst_text, encoding="utf-8")
+
+            for profile, right_selector in (
+                ("document", "td.hb-fcc-word-right"),
+                ("web", ".hb-fcc-column-right"),
+            ):
+                with self.subTest(profile=profile):
+                    rendered = _convert_rst_fragment_to_html(
+                        rst_text,
+                        runtime_source,
+                        root / profile,
+                        active_tags={"region_us"},
+                        presentation_profile=profile,
+                    )
+                    soup = BeautifulSoup(rendered, "html.parser")
+                    right_column = soup.select_one(right_selector)
+                    self.assertIsNotNone(right_column)
+                    self.assertIn(
+                        "Si cet équipement trouble la réception",
+                        right_column.get_text(" ", strip=True) if right_column else "",
+                    )
+
     def test_document_profile_projects_inbox_as_editable_cards_and_tip(self) -> None:
         source = Path("docs/_review/JE-1000F/US/page/02_whats_in_the_box.rst")
         with tempfile.TemporaryDirectory() as td:

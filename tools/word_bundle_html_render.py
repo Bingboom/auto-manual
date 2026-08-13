@@ -252,6 +252,7 @@ def transform_word_fcc_html(
     *,
     source_path: Path,
     config: Mapping[str, Any],
+    language: str | None = None,
 ) -> str:
     patterns = [str(pattern).lower() for pattern in config["source_patterns"]]
     if not any(fnmatch.fnmatch(source_path.stem.lower(), pattern) for pattern in patterns):
@@ -262,6 +263,7 @@ def transform_word_fcc_html(
         source_path=source_path,
         config=config,
         error_type=RuntimeError,
+        language=language,
     )
     projection = word_fcc_projection(source.spec)
     table = soup.new_tag(

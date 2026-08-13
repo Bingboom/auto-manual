@@ -34,8 +34,20 @@ def _matches_source(source_path: Path, patterns: list[str]) -> bool:
 
 
 def _right_column_rule(
-    config: Mapping[str, Any], source_path: Path
+    config: Mapping[str, Any], source_path: Path, *, language: str | None = None
 ) -> tuple[str | None, str]:
+    normalized_language = (language or "").strip().lower().replace("_", "-").split("-", 1)[0]
+    if normalized_language and normalized_language != "und":
+        language_rules = [
+            override
+            for override in config["right_column_markers"]
+            if str(override.get("language") or "und").strip().lower()
+            == normalized_language
+        ]
+        if len(language_rules) == 1:
+            override = language_rules[0]
+            return str(override["marker"]), normalized_language
+
     for override in config["right_column_markers"]:
         if _matches_source(
             source_path,
@@ -104,6 +116,7 @@ def parse_fcc_html(
     source_path: Path,
     config: Mapping[str, Any],
     error_type: type[Exception],
+    language: str | None = None,
 ) -> FccHtmlSource:
     heading = soup.find("h1")
     if not isinstance(heading, Tag) or heading.get_text(" ", strip=True).casefold() != "fcc":
@@ -138,7 +151,11 @@ def parse_fcc_html(
     if not trailing:
         raise error_type(f"{source_path}: FCC page is missing modification copy")
 
-    marker, language = _right_column_rule(config, source_path)
+    marker, resolved_language = _right_column_rule(
+        config,
+        source_path,
+        language=language,
+    )
     copy_parts = [part for node in copy_nodes for part in _copy_parts(node)]
     left_parts, right_parts = _split_at_marker(copy_parts, marker)
     if not left_parts or not right_parts:
@@ -166,7 +183,7 @@ def parse_fcc_html(
             left_blocks=_blocks(left_parts),
             right_blocks=right_blocks,
             source_ref=source_path.as_posix(),
-            language=language,
+            language=resolved_language,
             mark_asset_ref=str(config["mark_asset_ref"]),
         )
     except Exception as exc:
