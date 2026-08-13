@@ -70,7 +70,7 @@ MODE D'ÉCONOMIE D'ÉNERGIE
 
 Pour éviter une consommation inutile de la batterie due à l'oubli de désactiver la sortie, le produit active par défaut le mode d'économie d'énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode d'économie d'énergie s'affiche sur l'écran LCD. Dans ce mode, si aucun appareil n'est connecté ou si la consommation de l'appareil connecté est inférieure à un certain seuil (sortie CA de |ENERGY_SAVING_AC_THRESHOLD| ou sortie CC/USB de |ENERGY_SAVING_DC_THRESHOLD|), la sortie correspondante s'éteint automatiquement après la durée définie. Le réglage par défaut est |ENERGY_SAVING_AUTO_OFF_DURATION|. La durée du mode d'économie d'énergie peut être réglée dans l'application Jackery sur 1 H, 2 H, 8 H, 12 H ou 24 H. Si l'option "Never Off" est sélectionnée, le mode d'économie d'énergie sera désactivé.
 
-Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le bouton d’alimentation CA et sur le bouton d’alimentation pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
+Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le bouton d’alimentation CA et sur le bouton POWER pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
 
 Lors de l'alimentation d'appareils à faible puissance (CA ≤ |ENERGY_SAVING_AC_THRESHOLD| ou CC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant le fonctionnement.
 
@@ -141,11 +141,11 @@ AFFICHAGE LCD
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en discontinu</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>
-          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton d'alimentation ou lorsque le produit est en charge.</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton POWER ou lorsque le produit est en charge.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Éteindre</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton d'alimentation.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton POWER.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Arrêt automatique</td>
@@ -154,11 +154,11 @@ AFFICHAGE LCD
         <tr>
           <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en continu (en cours de charge ou de décharge)</td>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez deux fois sur le bouton d'alimentation lorsque le produit est allumé.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez deux fois sur le bouton POWER lorsque le produit est allumé.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Éteindre</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton d'alimentation.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton POWER.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Arrêt automatique</td>
@@ -171,8 +171,8 @@ AFFICHAGE LCD
    .. raw:: latex
 
       \begin{HBLcdModeTable}{asset:operation/lcd_mode}
-      \HBLcdModeFirstGroup{Allumer en discontinu}{Allumer}{Appuyez sur le bouton d'alimentation ou lorsque le produit est en charge.}{Éteindre}{Appuyez sur le bouton d'alimentation.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.}
-      \HBLcdModeSecondGroup{Allumer en continu (en cours de charge ou de décharge)}{Allumer}{Appuyez deux fois sur le bouton d'alimentation lorsque le produit est allumé.}{Éteindre}{Appuyez sur le bouton d'alimentation.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité.}
+      \HBLcdModeFirstGroup{Allumer en discontinu}{Allumer}{Appuyez sur le bouton POWER ou lorsque le produit est en charge.}{Éteindre}{Appuyez sur le bouton POWER.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.}
+      \HBLcdModeSecondGroup{Allumer en continu (en cours de charge ou de décharge)}{Allumer}{Appuyez deux fois sur le bouton POWER lorsque le produit est allumé.}{Éteindre}{Appuyez sur le bouton POWER.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement après |DEFAULT_STANDBY_DURATION| d'inactivité.}
       \end{HBLcdModeTable}
 
 Vous pouvez également définir le mode d'affichage de l'écran dans l'application Jackery.
@@ -187,15 +187,15 @@ FONCTIONNEMENT DES BOUTONS
    * - Boutons
      - Utilisation
      - Fonction
-   * - Bouton d'alimentation + Bouton d'alimentation CA
+   * - Bouton POWER + Bouton d'alimentation CA
      - Appuyer 3 secondes sur les deux
      - Activer/désactiver le mode économie d'énergie
-   * - Bouton d'alimentation + Bouton d'alimentation **CC/USB**
+   * - Bouton POWER + Bouton d'alimentation **CC/USB**
      - Appuyer 3 secondes sur les deux
      - Réinitialiser le Wi-Fi et le Bluetooth
    * - Bouton d'alimentation **CC/USB** + Bouton d'alimentation CA
      - Appuyer 1 seconde sur les deux
      - Activer/désactiver le Wi-Fi et le Bluetooth
-   * - Bouton d'alimentation + Bouton d'éclairage LED
+   * - Bouton POWER + Bouton d'éclairage LED
      - Appuyer 1 seconde sur les deux
      - Activer/désactiver le mode d'urgence
