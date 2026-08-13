@@ -64,6 +64,7 @@ def collect_check_issues(
     collect_bundle_issues: Callable[..., list[Any]],
     collect_identity_drift_issues: Callable[..., list[Any]],
     collect_duplicate_render_text_issues: Callable[..., list[Any]],
+    collect_fcc_renderer_contract_issues: Callable[..., list[Any]] | None = None,
     collect_capability_issues: Callable[..., list[Any]] | None = None,
     collect_lang_parity_issues: Callable[..., list[Any]] | None = None,
     collect_language_scope_issues: Callable[..., list[Any]] | None = None,
@@ -147,6 +148,18 @@ def collect_check_issues(
                 region=target.region,
             )
         )
+        if collect_fcc_renderer_contract_issues is not None:
+            renderer_lang = target.lang
+            if not (renderer_lang or "").strip() and len(target_langs) == 1:
+                renderer_lang = target_langs[0]
+            issues.extend(
+                collect_fcc_renderer_contract_issues(
+                    bundle_dir=bundle_dir,
+                    model=target.model,
+                    region=target.region,
+                    lang=renderer_lang,
+                )
+            )
         issues.extend(
             collect_duplicate_render_text_issues(
                 docs_dir=docs_dir,

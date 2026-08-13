@@ -41,6 +41,11 @@
         "source_patterns": ["p38_01_fcc"],
         "language": "es",
         "marker": "Si este aparato causa interferencias dañinas"
+      },
+      {
+        "source_patterns": ["01_fcc"],
+        "language": "pt-BR",
+        "marker": "Se este equipamento causar interferência prejudicial"
       }
     ]
   },

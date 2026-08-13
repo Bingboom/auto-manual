@@ -48,6 +48,9 @@ from tools.check_docs_lang_parity import load_known_exceptions as _load_lang_par
 from tools.check_docs_language_scope import (  # noqa: E402
     collect_language_scope_issues as _collect_language_scope_issues_impl,
 )
+from tools.check_docs_renderer_contracts import (  # noqa: E402
+    collect_fcc_renderer_contract_issues as _collect_fcc_renderer_contract_issues_impl,
+)
 from tools.model_languages import resolve_target_languages as _resolve_target_languages_impl  # noqa: E402
 from tools.check_docs_generated import collect_generated_page_issues as _collect_generated_page_issues_impl  # noqa: E402
 from tools.check_docs_identity import (  # noqa: E402
@@ -99,6 +102,7 @@ from tools.utils.spec_master import (  # noqa: E402
     resolve_template_substitutions_from_spec_master,
 )
 from tools.word_bundle_common import load_rst_substitutions, resolve_config_path  # noqa: E402
+from tools.word_bundle_html import _convert_rst_fragment_to_html  # noqa: E402
 
 @dataclass(frozen=True)
 class CheckIssue:
@@ -297,6 +301,23 @@ def collect_bundle_issues(
         issue_cls=CheckIssue,
         collect_placeholder_issues=collect_placeholder_issues,
         collect_reference_issues=collect_reference_issues,
+    )
+
+
+def collect_fcc_renderer_contract_issues(
+    *,
+    bundle_dir: Path,
+    model: str | None,
+    region: str | None,
+    lang: str | None,
+) -> list[CheckIssue]:
+    return _collect_fcc_renderer_contract_issues_impl(
+        bundle_dir=bundle_dir,
+        model=model,
+        region=region,
+        lang=lang,
+        issue_cls=CheckIssue,
+        convert_rst_fragment_to_html=_convert_rst_fragment_to_html,
     )
 
 
@@ -500,6 +521,7 @@ def collect_check_issues(
         collect_page_contract_issues=collect_page_contract_issues,
         collect_generated_page_issues=collect_generated_page_issues,
         collect_bundle_issues=collect_bundle_issues,
+        collect_fcc_renderer_contract_issues=collect_fcc_renderer_contract_issues,
         collect_identity_drift_issues=collect_identity_drift_issues,
         collect_duplicate_render_text_issues=collect_duplicate_render_text_issues,
         collect_capability_issues=lambda **kw: _collect_capability_issues_impl(

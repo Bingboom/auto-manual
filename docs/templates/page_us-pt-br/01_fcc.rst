@@ -1,7 +1,9 @@
 FCC
 ===
 
-Este dispositivo está em conformidade com a Parte 15 das Regras da FCC . O funcionamento está sujeito às duas condições a seguir: (1) Este dispositivo não pode causar interferência prejudicial e (2) este dispositivo deve aceitar qualquer interferência recebida, incluindo interferência que possa causar operação indesejada.
+| Este dispositivo está em conformidade com a Parte 15 das Regras da FCC. O funcionamento está sujeito às duas condições a seguir:
+| (1) Este dispositivo não pode causar interferência prejudicial e
+| (2) este dispositivo deve aceitar qualquer interferência recebida, incluindo interferência que possa causar operação indesejada.
 
 **NOTA:** Este equipamento foi testado e está em conformidade com os limites para um dispositivo digital Classe B, de acordo com a Parte 15 das Regras da FCC.
 

@@ -335,6 +335,7 @@ GitHub validation note:
 - that same workflow now also runs `python tools/check_maintainability_guardrails.py` so the current hotspot wrappers and validators do not quietly grow back into giant files
 - the maintainability gate includes `python tools/check_language_literal_ratchet.py check`, which records remaining multi-language literal tables and fails on new residue
 - `build.py check` scans template and prepared bundle RST files for duplicated list text across normal RST and raw HTML branches; maintainers should treat the RST list as the source wording and keep renderer-specific copies aligned whenever manual prose changes
+- `build.py check` preflights every prepared FCC page through the document and web renderer profiles with the resolved target language. FCC language coverage is derived from manifest entries in tests, so a new FCC locale must add its governed right-column marker and keep the required opening line-block structure before it can pass validation.
 - pull requests run the required merge-gating checks
 - pushes to `main` run the same workflow again after merge
 - feature branches no longer run a duplicate `push` validation pass in GitHub

@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.fcc import fcc_blocks_from_text, fcc_component_spec
 from tools.component_specs.model import ComponentSpec
+from tools.language_aliases import language_key, normalize_language
 
 
 @dataclass(frozen=True)
@@ -36,24 +37,26 @@ def _matches_source(source_path: Path, patterns: list[str]) -> bool:
 def _right_column_rule(
     config: Mapping[str, Any], source_path: Path, *, language: str | None = None
 ) -> tuple[str | None, str]:
-    normalized_language = (language or "").strip().lower().replace("_", "-").split("-", 1)[0]
-    if normalized_language and normalized_language != "und":
+    normalized_language_key = language_key(language)
+    if normalized_language_key and normalized_language_key != "und":
         language_rules = [
             override
             for override in config["right_column_markers"]
-            if str(override.get("language") or "und").strip().lower()
-            == normalized_language
+            if language_key(override.get("language") or "und")
+            == normalized_language_key
         ]
         if len(language_rules) == 1:
             override = language_rules[0]
-            return str(override["marker"]), normalized_language
+            return str(override["marker"]), normalize_language(override["language"])
 
     for override in config["right_column_markers"]:
         if _matches_source(
             source_path,
             [str(pattern) for pattern in override["source_patterns"]],
         ):
-            return str(override["marker"]), str(override.get("language") or "und")
+            return str(override["marker"]), normalize_language(
+                override.get("language") or "und"
+            )
     return None, "und"
 
 

@@ -7,8 +7,10 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 
+import yaml
 from bs4 import BeautifulSoup
 
+from tools.language_aliases import language_key
 from tools.word_bundle import derive_word_title, render_safety_word_html, render_spec_word_html, resolve_reference_doc
 from tools.word_bundle_html import (
     _build_word_only_tags,
@@ -19,6 +21,10 @@ from tools.word_bundle_html import (
     _stage_fragment_assets,
 )
 from tools.word_bundle_html_rewrite import _extract_spec_word_data
+from tools.web_presentation import load_web_manual_contract
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class TestWordBundle(unittest.TestCase):
@@ -79,6 +85,98 @@ class TestWordBundle(unittest.TestCase):
                         "Si cet équipement trouble la réception",
                         right_column.get_text(" ", strip=True) if right_column else "",
                     )
+
+    def test_all_manifest_fcc_languages_satisfy_renderer_contracts(self) -> None:
+        cases: dict[tuple[str, str], tuple[str, Path]] = {}
+        for manifest_path in sorted((ROOT / "docs" / "manifests").glob("*.yaml")):
+            manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8")) or {}
+            for page in manifest.get("pages", []):
+                source_ref = str(page.get("file") or "")
+                if page.get("type") != "rst_include" or Path(source_ref).name != "01_fcc.rst":
+                    continue
+                language = str(page.get("lang") or "").strip()
+                self.assertTrue(language, f"FCC manifest entry needs lang: {manifest_path}")
+                cases[(language_key(language), source_ref)] = (
+                    language,
+                    ROOT / "docs" / source_ref,
+                )
+
+        contract = load_web_manual_contract()
+        markers = {
+            language_key(str(rule["language"])): str(rule["marker"])
+            for rule in contract["fcc"]["right_column_markers"]
+        }
+        manifest_languages = {case[0] for case in cases}
+        self.assertEqual(manifest_languages, set(markers))
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            for (lang_key, _source_ref), (language, template_path) in sorted(cases.items()):
+                rst_text = template_path.read_text(encoding="utf-8")
+                runtime_source = (
+                    root
+                    / "docs"
+                    / "_build"
+                    / "JE-1000F"
+                    / "US"
+                    / language
+                    / "rst"
+                    / "page"
+                    / "01_fcc.rst"
+                )
+                runtime_source.parent.mkdir(parents=True, exist_ok=True)
+                runtime_source.write_text(rst_text, encoding="utf-8")
+
+                for profile, right_selector in (
+                    ("document", "td.hb-fcc-word-right"),
+                    ("web", ".hb-fcc-column-right"),
+                ):
+                    with self.subTest(language=language, profile=profile):
+                        rendered = _convert_rst_fragment_to_html(
+                            rst_text,
+                            runtime_source,
+                            root / "output" / language / profile,
+                            active_tags={"region_us"},
+                            presentation_profile=profile,
+                            model="JE-1000F",
+                            region="US",
+                            language=language,
+                        )
+                        right_column = BeautifulSoup(rendered, "html.parser").select_one(
+                            right_selector
+                        )
+                        self.assertIsNotNone(right_column)
+                        self.assertIn(
+                            markers[lang_key],
+                            right_column.get_text(" ", strip=True) if right_column else "",
+                        )
+
+    def test_bundle_language_drives_fcc_rule_when_runtime_path_is_generic(self) -> None:
+        source = ROOT / "docs" / "templates" / "page_us-pt-br" / "01_fcc.rst"
+        rst_text = source.read_text(encoding="utf-8")
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            runtime_source = root / "page" / "01_fcc.rst"
+            runtime_source.parent.mkdir(parents=True)
+            runtime_source.write_text(rst_text, encoding="utf-8")
+            bundle = SimpleNamespace(
+                title="Portuguese manual",
+                reference_doc=None,
+                model="JE-1500D",
+                region="pt-BR",
+                lang="pt-BR",
+                page_paths=(runtime_source,),
+            )
+
+            html_path, _reference, _metas = build_word_bundle_html(
+                {},
+                "JE-1500D",
+                "pt-BR",
+                materialized_bundle=bundle,
+                output_dir=root / "output",
+            )
+            rendered = html_path.read_text(encoding="utf-8")
+            self.assertIn("Se este equipamento causar interferência prejudicial", rendered)
 
     def test_document_profile_projects_inbox_as_editable_cards_and_tip(self) -> None:
         source = Path("docs/_review/JE-1000F/US/page/02_whats_in_the_box.rst")
