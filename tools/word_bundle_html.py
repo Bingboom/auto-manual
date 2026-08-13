@@ -10,6 +10,7 @@ import shutil
 from pathlib import Path
 
 from tools.gen_index_bundle import MaterializedBundle, materialize_bundle
+from tools.lang_registry import LANGUAGE_BY_ALIAS
 from tools.utils.path_utils import web_composite_manifest_of
 from tools.web_composite_manifest import (
     WebCompositeManifest,
@@ -47,7 +48,21 @@ from tools.web_presentation import (
 )
 
 _RST_HEADING_CHARS = set("=-~^\"`:+*#")
-_LANG_TOKEN_RE = re.compile(r"(?:^|[_-])(en|fr|es|de|it|ja|zh)(?:$|[_-])")
+def _language_token_pattern(alias: str) -> re.Pattern[str]:
+    escaped = re.escape(alias).replace("\\-", "[-_]").replace("_", "[-_]")
+    return re.compile(rf"(?:^|[_-]){escaped}(?:$|[_-])")
+
+
+_LANG_TOKEN_PATTERNS = tuple(
+    (
+        _language_token_pattern(alias),
+        code,
+    )
+    for alias, code in sorted(
+        LANGUAGE_BY_ALIAS.items(),
+        key=lambda item: (-len(item[0]), item[0]),
+    )
+)
 
 
 def _normalize_sphinx_only_blocks_for_docutils(rst_text: str, *, active_tags: set[str] | None = None) -> str:
@@ -193,10 +208,17 @@ def _infer_fragment_lang(source_path: Path) -> str | None:
     candidates = [source_path.stem.lower()]
     candidates.extend(part.lower() for part in reversed(source_path.parts[:-1]))
     for candidate in candidates:
-        match = _LANG_TOKEN_RE.search(candidate)
-        if match:
-            return match.group(1)
+        for pattern, code in _LANG_TOKEN_PATTERNS:
+            if pattern.search(candidate):
+                return code
     return None
+
+
+def _resolve_fragment_lang(source_path: Path, language: str | None) -> str | None:
+    token = (language or "").strip()
+    if token:
+        return LANGUAGE_BY_ALIAS.get(token.casefold(), token)
+    return _infer_fragment_lang(source_path)
 
 
 def _stage_fragment_assets(fragment: str, source_path: Path, bundle_dir: Path) -> str:
@@ -272,10 +294,11 @@ def _convert_rst_fragment_to_html(
     composite_manifest: WebCompositeManifest | None = None,
     model: str | None = None,
     region: str | None = None,
+    language: str | None = None,
 ) -> str:
     profile = normalize_presentation_profile(presentation_profile)
     source_name = source_path.name.lower()
-    fragment_lang = _infer_fragment_lang(source_path)
+    fragment_lang = _resolve_fragment_lang(source_path, language)
     if source_name.startswith("safety_"):
         raw_html = _extract_raw_html_blocks(rst_text, active_tags=active_tags)
         if raw_html:
@@ -376,6 +399,7 @@ def build_word_bundle_html(
             composite_manifest=composite_manifest,
             model=materialized.model,
             region=materialized.region,
+            language=materialized.lang,
         )
         body_parts.append(html_fragment or "<div></div>")
         page_role = page_template_role_for_source_ref(rst_path)

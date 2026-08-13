@@ -28,6 +28,9 @@ python build.py check  --config configs/config.us-en.yaml --model JE-1000F --reg
 python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
 ```
 
+`check` 会在进入 Word/Web 导出前校验 FCC 的目标语言、结构和受控分栏标记；
+manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
+
 ## 只记住四条规则
 
 - **修改源头，不修改生成物：** 共享内容在 `docs/templates/`，结构化数据在飞书源表，
