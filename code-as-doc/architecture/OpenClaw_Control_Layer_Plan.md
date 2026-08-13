@@ -1,6 +1,6 @@
 # OpenClaw Control Layer Plan
 
-Updated: 2026-04-13
+Updated: 2026-08-13
 
 ## 1. Role
 
@@ -59,7 +59,7 @@ Feishu phase2 tables
   -> main-owned GitHub Actions workers
   -> build.py queue commands
   -> build / review / publish outputs
-  -> status and document link writeback to Feishu
+  -> status and phase-aware delivery writeback to Feishu
 ```
 
 The least risky OpenClaw rollout is not to replace that flow.
@@ -87,11 +87,11 @@ The target flow for V1 is still the same, but the implemented repo topology is n
 ```mermaid
 flowchart LR
     FIM["Feishu IM\noperator thread / chat entry"]
-    FT["Feishu phase2 tables\nreview-init + Document_link\nWorkflow_action / Build_family / Git_ref\nDocument link / 构建结果"]
+    FT["Feishu phase2 tables\nreview-init + Document_link\nWorkflow_action / Build_family / Git_ref\n飞书云文档 / 基线文档 / idml_file / HTML_link / 构建结果"]
     OC["OpenClaw control layer\nplugin commands or Feishu IM webhook adapter\nworkflow dispatch / manual-status / run correlation"]
     GH["GitHub Actions on main\nfeishu-start-review\nfeishu-draft-build-queue\nfeishu-build-queue\nopenclaw-run-metadata"]
     BP["build.py + queue workers\nqueue-query / queue-resolve-action / queue-execute\nprocess-review-start-queue\nprocess-build-queue"]
-    FD["Feishu Drive / Wiki (default)\nartifact upload sink"]
+    FD["Feishu Drive / Wiki\nDraft cloud docs / Publish handoff ZIP"]
     DT["DingTalk Docs (optional)\ndingtalk_alidocs_session sink\nDocument link_dd optional dual-write"]
     VC["Vercel publish-latest (optional)\nlatest publish HTML"]
 
@@ -109,12 +109,13 @@ flowchart LR
 ### 3.2 Current Responsibility Split
 
 - Feishu IM owns the operator-facing chat thread and the final reply surface.
-- Feishu phase2 tables remain the source of truth for `review-init`, `Document_link`, `Workflow_action`, `Build_family`, `Git_ref`, `Document link`, and `构建结果`.
+- Feishu phase2 tables remain the source of truth for `review-init`, the historically named `Document_link` queue binding, `Workflow_action`, `Build_family`, `Git_ref`, phase-specific delivery fields, and `构建结果`.
 - OpenClaw owns the bounded control layer: command entry, workflow dispatch, `record_id -> workflow -> run_id` correlation, and `/manual-status`; the repo-local Feishu IM adapter reuses the same action semantics through `build.py queue-query`, `queue-resolve-action`, and `queue-execute`.
 - GitHub Actions remains the trusted remote execution plane on `main`, including environment bootstrap, secret usage, workflow concurrency, artifact upload, and `openclaw-run-metadata`.
 - `build.py` plus the queue workers remain the business-logic plane: resolve queue intent, read and write Feishu rows, run review-start or build/publish logic, and choose the artifact sink.
-- Feishu Drive / Wiki is still the default artifact sink for generated documents.
-- DingTalk Docs is now an optional artifact sink for the same queue worker; when enabled, `Document link` stays canonical and `Document link_dd` is only an optional supplemental writeback.
+- Feishu Drive / Wiki is the maintained delivery surface: Draft writes editable `飞书云文档` plus frozen `基线文档`; Publish writes its uploaded designer handoff ZIP to `idml_file`.
+- DingTalk Docs is an optional supplemental sink for the same queue worker; `Document link_dd` never replaces the phase-aware delivery contract.
+- `Document link` is retired. OpenClaw and IM adapters consume the normalized `delivery_kind`, `delivery_url`, and `delivery_ready` fields instead of inferring success from any legacy link field.
 - Vercel is only the publish-latest HTML hosting surface; it is not the queue control plane and it is not the document source of truth.
 
 The target flow for V1 is:
@@ -172,7 +173,7 @@ sequenceDiagram
     GH->>FT: Re-read row and existing workflow fields
     GH->>GH: Run review/build/publish worker logic
     GH->>FS: Upload artifact or publish output
-    GH->>FT: Write back `Document link`, `构建结果`, `PR_url`, or publish metadata
+    GH->>FT: Write back phase delivery, `构建结果`, `PR_url`, or publish metadata
     GH-->>CLI: Run status, URL, metadata, failure summary
     CLI->>FT: Re-read final row state when needed
     CLI-->>OC: Final structured result
@@ -224,65 +225,21 @@ So a maintainer-hosted OpenClaw session can be "local first" for message underst
 The document upload path still belongs to the queue worker.
 OpenClaw only triggers the run and reports the final run status.
 
-#### 3.3.1 Build -> Feishu knowledge base
+#### 3.3.1 Draft -> editable Feishu cloud doc and frozen baseline
 
 ```mermaid
 flowchart LR
     A["Feishu or OpenClaw trigger"]
     B["GitHub Actions worker on main"]
     C["build.py process-build-queue"]
-    D["Resolve queue row / optional sync-data / build DOCX"]
-    E["Upload DOCX to Lark Drive"]
-    F["Try move Drive file into Feishu wiki knowledge base"]
-    G["Wiki attach succeeds"]
-    H["Wiki attach fails"]
-    I["Use wiki URL as Document link"]
-    J["Keep latest Drive URL and mark drive_only"]
-    K["Write back to Feishu Document_link row"]
-    L["Document directory / Document link / 构建结果 / data_sync / trigger reset"]
-    M["GitHub run metadata"]
-    N["OpenClaw status reply"]
-
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    F --> H
-    G --> I
-    H --> J
-    I --> K
-    J --> K
-    K --> L
-    B --> M
-    M --> N
-```
-
-Notes:
-
-- this remains the default artifact sink path when `AUTO_MANUAL_ARTIFACT_SINK_PROVIDER=lark_drive`
-- the worker uploads to Lark Drive first, then tries to attach the uploaded file into the Feishu wiki knowledge base
-- if the wiki attach fails because of permission or container limits, the build still succeeds and `Document link` falls back to the latest Drive URL
-- the canonical writeback row is still Feishu `Document_link`
-
-#### 3.3.2 Build -> DingTalk knowledge base
-
-```mermaid
-flowchart LR
-    A["Feishu or OpenClaw trigger"]
-    B["GitHub Actions worker on main"]
-    C["build.py process-build-queue"]
-    D["Resolve queue row / optional sync-data / build DOCX"]
-    E["Select DingTalk artifact sink"]
-    F["AliDocs uploadinfo"]
-    G["OSS object upload"]
-    H["AliDocs commit"]
-    I["Generate DingTalk node URL"]
-    J["Write back to Feishu Document_link row"]
-    K["Document directory / Document link / optional Document link_dd / 构建结果 / data_sync / trigger reset"]
-    L["GitHub run metadata"]
-    M["OpenClaw status reply"]
+    D["Resolve queue row / optional sync-data / build DOCX + Markdown"]
+    E["Import DOCX as editable 飞书云文档"]
+    F["Import same DOCX as frozen 基线文档"]
+    G["Best-effort grant / move into review-doc wiki"]
+    H["Write phase fields to Feishu Document_link row"]
+    I["飞书云文档 / 基线文档 / 构建结果 / data_sync / trigger reset"]
+    J["GitHub run metadata"]
+    K["OpenClaw delivery_kind=feishu_cloud_doc reply"]
 
     A --> B
     B --> C
@@ -292,18 +249,49 @@ flowchart LR
     F --> G
     G --> H
     H --> I
-    I --> J
+    B --> J
     J --> K
-    B --> L
-    L --> M
 ```
 
 Notes:
 
-- this path is enabled when the active sink resolves to `dingtalk_alidocs_session`
-- Feishu still stays the queue control plane, the structured-data source, and the writeback surface
-- `Document link` remains the canonical returned link for control-layer replies; `Document link_dd` is only an optional supplemental DingTalk field
-- when the row also has `是否上传钉钉`, checked rows use the DingTalk path and unchecked rows fall back to the normal Feishu/wiki upload path
+- the editable document is the Draft operator deliverable; the frozen baseline is backport evidence, not a second delivery link
+- a best-effort wiki move may change the stored URL from the import URL to a wiki URL without changing the field contract
+- OpenClaw reports `delivery_ready=true` only when the current Draft result is `SUCCESS` and `飞书云文档` is non-empty; `baseline_ready` reports the baseline independently
+- `Document_link` remains the historical queue table/view binding name; it is not the retired `Document link` field
+
+#### 3.3.2 Publish -> designer handoff ZIP
+
+```mermaid
+flowchart LR
+    A["Feishu or OpenClaw trigger"]
+    B["GitHub Actions worker on main"]
+    C["build.py process-build-queue"]
+    D["Resolve queue row / optional sync-data / build publish outputs"]
+    E["Package IDML + linked assets as handoff ZIP"]
+    F["Upload handoff ZIP to configured knowledge base"]
+    G["Write phase fields to Feishu Document_link row"]
+    H["idml_file / optional Document link_dd / 构建结果 / data_sync / trigger reset"]
+    I["GitHub run metadata"]
+    J["OpenClaw delivery_kind=idml_file reply"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    B --> I
+    I --> J
+```
+
+Notes:
+
+- the uploaded object is the designer handoff ZIP, not the bare IDML, Word, or PDF
+- `idml_file` is the Publish delivery field and drives `delivery_url` / `delivery_ready`
+- Feishu remains the queue control plane and canonical writeback surface; optional DingTalk delivery stays supplemental through `Document link_dd` or the delivery outbox
+- Web Publish is separate and exposes `HTML_link` as `delivery_kind=html`
 
 Reference docs:
 
@@ -335,7 +323,9 @@ Feishu phase2 tables should keep owning:
 - `Build_family`
 - `Version`
 - `Git_ref`
-- `Document link`
+- `飞书云文档` and `基线文档` for Draft
+- `idml_file` for Publish
+- `HTML_link` for Web Publish
 - `构建结果`
 
 ## 4. Explicit Non-Goals

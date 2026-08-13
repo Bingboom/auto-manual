@@ -165,7 +165,9 @@ test("message handler replies with queue status for resolved query_status", asyn
             document_id: "JE-1000F_US_0.3",
             workflow_action: "Build Draft Package",
             result: "SUCCESS",
-            document_link: "https://example.com/doc.docx",
+            delivery_kind: "feishu_cloud_doc",
+            delivery_ready: true,
+            delivery_url: "https://example.com/wiki/editable",
           },
         };
       },
@@ -184,6 +186,9 @@ test("message handler replies with queue status for resolved query_status", asyn
   assert.equal(replies.length, 1);
   assert.match(replies[0].text, /JE-1000F_US_0.3/);
   assert.match(replies[0].text, /SUCCESS/);
+  assert.match(replies[0].text, /delivery_kind: feishu_cloud_doc/);
+  assert.match(replies[0].text, /delivery_ready: true/);
+  assert.doesNotMatch(replies[0].text, /document_link/i);
 });
 
 test("message handler answers manual index lookups before queue resolution", async () => {
@@ -465,7 +470,7 @@ test("message handler answers batch status follow-ups from stored rows", async (
               workflow_action: "Build Draft Package",
               result: "SUCCESS | built_at=2026-05-04T10:02:00+00:00",
               freshness_status: "fresh_success",
-              document_link: payload.recordId === "rec_en" ? "https://example.com/en.docx" : "https://example.com/fr.docx",
+              delivery_url: payload.recordId === "rec_en" ? "https://example.com/en.docx" : "https://example.com/fr.docx",
             },
           ],
         };
@@ -630,7 +635,7 @@ test("message handler formats multi-row query status without dispatching builds"
               document_id: "JE-1000F_EU_de_1.0",
               workflow_action: "Build Draft Package",
               result: "SUCCESS",
-              document_link: "https://example.com/de.docx",
+              delivery_url: "https://example.com/de.docx",
             },
             {
               record_id: "rec_it",
@@ -638,7 +643,7 @@ test("message handler formats multi-row query status without dispatching builds"
               document_id: "JE-1000F_EU_it_1.0",
               workflow_action: "Build Draft Package",
               result: "SUCCESS",
-              document_link: "https://example.com/it.docx",
+              delivery_url: "https://example.com/it.docx",
             },
           ],
         };
@@ -1075,7 +1080,7 @@ test("message handler executes confirmed publish from pending state", async () =
               document_id: "JE-1000F_US_0.3",
               workflow_action: "Publish",
               result: "SUCCESS",
-              document_link: "https://example.com/publish.pdf",
+              delivery_url: "https://example.com/publish-handoff.zip",
             },
           ],
         };
@@ -1272,7 +1277,7 @@ test("query reports 已完成 from a fresh successful Base row without reading t
       result: "SUCCESS",
       result_is_fresh: true,
       freshness_status: "fresh_success",
-      document_link: "https://example.com/eu08.docx",
+      delivery_url: "https://example.com/eu08.docx",
     },
     runStatus: {},
     onRunStatus: () => {

@@ -11,12 +11,13 @@ It now hosts the latest queue-driven Publish HTML only.
 Use this flow when:
 
 - a `Document_link` row reaches `Workflow_action = Publish` or legacy `Doc_phase = Publish`
-- the final Publish DOCX should be uploaded to Feishu / wiki
+- the final Publish designer handoff ZIP should be uploaded to Feishu / wiki and
+  written to `idml_file`
 - Vercel should expose only the newest published HTML
 
 This keeps the responsibilities separate:
 
-- Feishu / wiki: final DOCX distribution and document link writeback
+- Feishu / wiki: Publish handoff ZIP distribution and `idml_file` writeback
 - `reports/releases/`: staged release artifacts and latest publish HTML snapshot
 - Vercel: static hosting for the newest publish HTML
 - `Review Preview Package`: design-sharing artifact only

@@ -13,6 +13,7 @@ from tools.queue_query import (
     collect_queue_query_rows,
     filter_queue_query_rows,
 )
+from tools.queue_delivery import queue_delivery_contract_for_row, serialize_queue_row
 
 
 _STATUS_QUERY_RE = (
@@ -268,7 +269,14 @@ class QueueActionCandidate:
     lang: str = ""
     version: str = ""
     market_group: str = ""
-    document_link: str = ""
+    idml_file: str = ""
+    feishu_cloud_doc: str = ""
+    baseline_doc: str = ""
+    html_link: str = ""
+    delivery_kind: str = ""
+    delivery_url: str = ""
+    delivery_ready: bool = False
+    baseline_ready: bool = False
     document_directory: str = ""
     freshness_status: str = ""
     result_built_at: str = ""
@@ -292,6 +300,7 @@ class QueueActionResolution:
 
 
 def _candidate_from_row(row: QueueQueryRow) -> QueueActionCandidate:
+    delivery = queue_delivery_contract_for_row(row)
     return QueueActionCandidate(
         record_id=row.record_id,
         task_id=row.task_id or f"{row.document_id}_{row.workflow_action}".strip("_"),
@@ -306,7 +315,14 @@ def _candidate_from_row(row: QueueQueryRow) -> QueueActionCandidate:
         lang=row.lang,
         version=row.version,
         market_group=row.market_group,
-        document_link=row.document_link,
+        idml_file=row.document_link,
+        feishu_cloud_doc=row.feishu_cloud_doc,
+        baseline_doc=row.baseline_doc,
+        html_link=row.html_link,
+        delivery_kind=delivery.delivery_kind,
+        delivery_url=delivery.delivery_url,
+        delivery_ready=delivery.delivery_ready,
+        baseline_ready=delivery.baseline_ready,
         document_directory=row.document_directory,
         freshness_status=row.freshness_status,
         result_built_at=row.result_built_at,
@@ -456,7 +472,7 @@ def resolve_queue_action(args: argparse.Namespace, rows: list[QueueQueryRow]) ->
             missing_fields=missing_fields,
             summary=f"Resolved one {_action_label(action_name)} row, but required fields are still missing.",
             next_step="Fill the missing queue fields and resolve again. Build Draft Package and Publish require Git_ref.",
-            row=asdict(selected_row),
+            row=serialize_queue_row(selected_row),
             candidates=[],
         )
 
@@ -473,7 +489,7 @@ def resolve_queue_action(args: argparse.Namespace, rows: list[QueueQueryRow]) ->
             missing_fields=[],
             summary="Resolved one Publish row. Explicit confirmation is still required before dispatch.",
             next_step="Re-run with --confirm-publish or use `/publish rec_xxx confirm` from OpenClaw.",
-            row=asdict(selected_row),
+            row=serialize_queue_row(selected_row),
             candidates=[],
         )
 
@@ -494,7 +510,7 @@ def resolve_queue_action(args: argparse.Namespace, rows: list[QueueQueryRow]) ->
         missing_fields=[],
         summary=f"Resolved one {_action_label(action_name)} row.",
         next_step=next_step,
-        row=asdict(selected_row),
+        row=serialize_queue_row(selected_row),
         candidates=[],
     )
 

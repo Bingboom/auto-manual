@@ -75,7 +75,11 @@ class TestOpenClawWorkflowRunMetadata(unittest.TestCase):
             self.assertEqual(payload["queue_record_id"], "rec_publish")
             self.assertEqual(payload["openclaw_dispatch_nonce"], "nonce-123")
             self.assertEqual(payload["publish_url"], "https://manual.example.com/latest")
-            self.assertEqual(payload["document_link_url"], "https://docs.example.com/doc")
+            self.assertEqual(payload["delivery_kind"], "idml_file")
+            self.assertEqual(payload["delivery_url"], "https://docs.example.com/doc")
+            self.assertNotIn("document_link_url", payload)
+            self.assertNotIn("document_link_url", payload["publish_metadata"])
+            self.assertEqual(payload["publish_metadata"]["idml_file"], "https://docs.example.com/doc")
             self.assertEqual(
                 payload["publish_pdf_output_path"],
                 "reports/releases/JE-1000F/US/en/versions/V1/manual.pdf",
@@ -177,4 +181,6 @@ class TestOpenClawWorkflowRunMetadata(unittest.TestCase):
                 "https://ht-doc.readthedocs.io/en/latest/JE-1000F/US/md/manual.html",
                 payload["publish_url"],
             )
+            self.assertEqual("html", payload["delivery_kind"])
+            self.assertEqual(payload["publish_url"], payload["delivery_url"])
             self.assertTrue(str(payload["publish_metadata_path"]).endswith("latest/web/publish_meta.json"))

@@ -361,7 +361,7 @@ Current writeback responsibilities include:
 - build result summary
 - data refresh result
 - local release directory path
-- primary artifact link
+- phase-aware delivery link and readiness
 - optional DingTalk mirror link
 - trigger reset / completion state
 
@@ -374,7 +374,8 @@ Feishu/Lark is still the primary upstream system for:
 - structured source tables
 - queue control tables
 - status writeback
-- primary artifact link writeback
+- phase-aware delivery writeback: Draft `飞书云文档` + `基线文档`, Publish
+  `idml_file`, and Web Publish `HTML_link`
 
 ### 6.2 DingTalk
 
@@ -384,8 +385,10 @@ Current maintained rule:
 
 - Feishu remains the primary control plane
 - DingTalk is supplemental
-- `Document link` remains the canonical returned artifact link
 - `Document link_dd` is optional mirror writeback only
+- `Document link` is retired and is never an upload-success signal
+- operator and Agent consumers use `delivery_kind`, `delivery_url`, and
+  `delivery_ready`; `baseline_ready` separately reports Draft baseline evidence
 
 ### 6.3 OpenClaw And Message Control
 

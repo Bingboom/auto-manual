@@ -20,7 +20,7 @@ function formatLocation(location = {}) {
   return [heading, kindLine].filter(Boolean).join(" / ") || "-";
 }
 
-function summarizeRow(row, { includeDocumentLink = true } = {}) {
+function summarizeRow(row, { includeDeliveryLink = true } = {}) {
   const lines = [];
   if (row.document_id) {
     lines.push(`Document_ID: ${row.document_id}`);
@@ -63,8 +63,14 @@ function summarizeRow(row, { includeDocumentLink = true } = {}) {
   if (row.run_url) {
     lines.push(`run: ${row.run_url}`);
   }
-  if (includeDocumentLink && row.document_link) {
-    lines.push(`Document link: ${row.document_link}`);
+  if (row.delivery_kind) {
+    lines.push(`delivery_kind: ${row.delivery_kind}`);
+  }
+  if (typeof row.delivery_ready === "boolean") {
+    lines.push(`delivery_ready: ${row.delivery_ready}`);
+  }
+  if (includeDeliveryLink && row.delivery_url) {
+    lines.push(`delivery_url: ${row.delivery_url}`);
   }
   if (row.document_directory) {
     lines.push(`Document directory: ${row.document_directory}`);
@@ -259,14 +265,14 @@ export function formatBatchCompletionReply({ resolution, rows = [], failures = [
 export function formatBatchStatusReply(
   { rows = [], failures = [], heading = "" },
   localProfile = null,
-  { includeDocumentLinks = true } = {}
+  { includeDeliveryLinks = true } = {}
 ) {
   const lines = [
     heading || localReplyPhrase(localProfile, "batchStatusPrefix", "这批任务的最新状态如下："),
     `matched_count: ${rows.length}`,
   ];
   for (const row of rows.slice(0, 10)) {
-    lines.push(`- ${summarizeRow(row, { includeDocumentLink: includeDocumentLinks }).replace(/\n/g, " | ")}`);
+    lines.push(`- ${summarizeRow(row, { includeDeliveryLink: includeDeliveryLinks }).replace(/\n/g, " | ")}`);
   }
   if (rows.length > 10) {
     lines.push(`... 还有 ${rows.length - 10} 条`);

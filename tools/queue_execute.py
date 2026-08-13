@@ -11,6 +11,7 @@ from typing import Any
 
 from tools.phase2_support import load_config
 from tools.queue_asset_preflight import preflight_asset_lineage
+from tools.queue_delivery import render_queue_delivery_lines, serialize_queue_row
 from tools.queue_query import (
     QueueQueryRow,
     apply_inferred_queue_query,
@@ -329,11 +330,20 @@ def render_queue_execute_result(
 ) -> str:
     dispatch_payload = dispatch_payload or {}
     if as_json:
+        row_payload = serialize_queue_row(row)
         payload = {
             "record_id": row.record_id,
             "git_ref": row.git_ref,
             "result": row.result,
-            "document_link": row.document_link,
+            "idml_file": row_payload["idml_file"],
+            "feishu_cloud_doc": row.feishu_cloud_doc,
+            "baseline_doc": row.baseline_doc,
+            "html_link": row.html_link,
+            "delivery_kind": row_payload["delivery_kind"],
+            "delivery_field": row_payload["delivery_field"],
+            "delivery_url": row_payload["delivery_url"],
+            "delivery_ready": row_payload["delivery_ready"],
+            "baseline_ready": row_payload["baseline_ready"],
             "freshness_status": row.freshness_status,
         }
         if row.result_built_at:
@@ -372,10 +382,10 @@ def render_queue_execute_result(
     lines.extend(
         [
             f"构建结果: {_null_text(row.result)}",
-            f"Document link: {_null_text(row.document_link)}",
             f"freshness_status: {_null_text(row.freshness_status)}",
         ]
     )
+    lines.extend(render_queue_delivery_lines(row))
     if asset_preflight is not None:
         warnings = asset_preflight.get("warnings", [])
         warning_count = len(warnings) if isinstance(warnings, list) else 0

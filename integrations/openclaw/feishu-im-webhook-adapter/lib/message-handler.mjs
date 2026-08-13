@@ -47,11 +47,11 @@ function contextRows(conversationContext) {
   return Array.isArray(conversationContext?.rows) ? conversationContext.rows : [];
 }
 
-function documentLinksFromRows(rows) {
+function deliveryLinksFromRows(rows) {
   const links = [];
   const seen = new Set();
   for (const row of rows || []) {
-    const link = String(row?.document_link || "").trim();
+    const link = String(row?.delivery_url || "").trim();
     if (!link || seen.has(link)) {
       continue;
     }
@@ -132,9 +132,9 @@ export function createMessageHandler({ config, stateStore, repoControl, feishuCl
   async function replyBatchStatus(messageEvent, statusPayload) {
     await feishuClient.replyTextMessage(
       messageEvent.messageId,
-      formatBatchStatusReply(statusPayload, localProfile, { includeDocumentLinks: false })
+      formatBatchStatusReply(statusPayload, localProfile, { includeDeliveryLinks: false })
     );
-    for (const link of documentLinksFromRows(statusPayload?.rows).slice(0, 10)) {
+    for (const link of deliveryLinksFromRows(statusPayload?.rows).slice(0, 10)) {
       await feishuClient.replyTextMessage(messageEvent.messageId, link);
     }
   }

@@ -19,7 +19,7 @@ def _draft_row(record_id: str = "rec_draft", *, git_ref: str = "codex/review-id-
         workflow_action="Build Draft Package",
         normalized_workflow_action="draft",
         git_ref=git_ref,
-        document_link="https://example.com/doc.docx",
+        document_link="",
         document_directory="/tmp/doc.docx",
         result="SUCCESS",
         pr_url="",
@@ -29,6 +29,8 @@ def _draft_row(record_id: str = "rec_draft", *, git_ref: str = "codex/review-id-
         immediate_build=True,
         initial_result="",
         remarks="",
+        feishu_cloud_doc="https://example.com/docx/editable",
+        baseline_doc="https://example.com/docx/baseline",
     )
 
 
@@ -100,7 +102,7 @@ def _publish_row(record_id: str = "rec_publish", *, git_ref: str = "codex/review
         workflow_action="Publish",
         normalized_workflow_action="publish",
         git_ref=git_ref,
-        document_link="https://example.com/publish.docx",
+        document_link="https://example.com/publish-handoff.zip",
         document_directory="/tmp/publish.docx",
         result="SUCCESS",
         pr_url="",
@@ -384,7 +386,8 @@ class TestQueueResolveAction(unittest.TestCase):
         self.assertEqual("query_status", resolution.action_name)
         self.assertEqual(2, resolution.matched_count)
         self.assertIsNone(resolution.dispatch_command)
-        self.assertEqual("https://example.com/doc.docx", resolution.candidates[0].document_link)
+        self.assertEqual("https://example.com/docx/editable", resolution.candidates[0].delivery_url)
+        self.assertTrue(resolution.candidates[0].delivery_ready)
 
     def test_resolve_queue_action_should_keep_direct_draft_command_executable(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
@@ -401,7 +404,7 @@ class TestQueueResolveAction(unittest.TestCase):
             self._args(
                 query_text=(
                     "请帮我构建 JE-1000F_US_en_0.3，并返回 Build Draft Package 记录。"
-                    "只返回 record_id、Git_ref、构建结果、Document link。"
+                    "只返回 record_id、Git_ref、构建结果、delivery_url。"
                 )
             ),
             [_draft_row()],

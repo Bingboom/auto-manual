@@ -111,8 +111,9 @@ Writeback fields:
 | `开始构建时间` | running | epoch milliseconds |
 | `构建结果` | claim/running/success/failure | `RUNNING` includes `claim_token` and UTC `claim_expires_at`; final values are prefixed by `SUCCESS` or `FAILED` |
 | `Document directory` | success/failure with latest local artifact | absolute local path |
-| `Document link` | success/failure with latest remote artifact | Feishu Drive/Wiki or DingTalk URL |
-| `飞书云文档` | optional Markdown cloud-doc import | Feishu cloud document URL produced by `lark-cli drive +import --type docx` |
+| `飞书云文档` | successful Draft | editable Feishu cloud document URL produced from the built Markdown |
+| `基线文档` | successful Draft | frozen R0 cloud document used as backport comparison evidence |
+| `idml_file` | successful Publish | uploaded designer handoff ZIP URL |
 | `Document link_dd` | optional DingTalk writeback | DingTalk URL or empty string |
 | `HTML_link` | successful `Web Publish` | deterministic Read the Docs manual URL |
 | `data_sync` | queue build attempt | `refreshed`, `skipped`, or `failed` |
@@ -135,10 +136,17 @@ and `HTML_link` writeback under one global mutex. Every group queues rather
 than cancels in-progress work, so workflow
 scheduling cannot invalidate a live row lease.
 
-When `飞书云文档` exists, Draft and Publish rows must also produce Markdown and
-import it as a Feishu cloud document. Import failure is a queue failure; any
-remote artifact link already obtained for `Document link` is preserved in the
-failure writeback.
+Draft rows must produce Markdown and import both an editable `飞书云文档` and a
+frozen `基线文档`. Import failure is a queue failure. Publish rows instead
+deliver the designer handoff ZIP through `idml_file`; Web Publish writes
+`HTML_link`. Any phase-specific remote artifact already obtained is preserved
+in failure writeback.
+
+The former `Document link` field is retired. Consumers must select the active
+field by phase, or use the normalized agent contract
+`delivery_kind` / `delivery_url` / `delivery_ready`. A blank retired field is
+not evidence that an upload failed. The similarly named `Document_link`
+table/view binding is historical infrastructure naming and remains in use.
 
 Compatible aliases:
 

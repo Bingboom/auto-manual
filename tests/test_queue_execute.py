@@ -60,7 +60,7 @@ def _draft_row(record_id: str = "rec_draft") -> queue_query.QueueQueryRow:
         workflow_action="Build Draft Package",
         normalized_workflow_action="draft",
         git_ref="codex/review-id-recvfw0zg4pzxs",
-        document_link="https://example.com/doc.docx",
+        document_link="",
         document_directory="/tmp/doc.docx",
         result="SUCCESS",
         pr_url="",
@@ -70,6 +70,8 @@ def _draft_row(record_id: str = "rec_draft") -> queue_query.QueueQueryRow:
         immediate_build=True,
         initial_result="",
         remarks="",
+        feishu_cloud_doc="https://example.com/docx/editable",
+        baseline_doc="https://example.com/docx/baseline",
     )
 
 
@@ -85,7 +87,7 @@ def _publish_row(record_id: str = "rec_publish") -> queue_query.QueueQueryRow:
         workflow_action="Publish",
         normalized_workflow_action="publish",
         git_ref="codex/review-id-recvfw0zg4pzxs",
-        document_link="https://example.com/publish.docx",
+        document_link="https://example.com/publish-handoff.zip",
         document_directory="/tmp/publish.docx",
         result="SUCCESS",
         pr_url="",
@@ -104,6 +106,8 @@ def _web_publish_row(record_id: str = "rec_web") -> queue_query.QueueQueryRow:
             **_publish_row(record_id).__dict__,
             "workflow_action": "Web Publish",
             "normalized_workflow_action": "web_publish",
+            "document_link": "",
+            "html_link": "https://docs.example.com/manual.html",
         }
     )
 
@@ -301,7 +305,15 @@ class TestQueueExecute(unittest.TestCase):
                 "record_id": "rec_draft",
                 "git_ref": "codex/review-id-recvfw0zg4pzxs",
                 "result": "SUCCESS",
-                "document_link": "https://example.com/doc.docx",
+                "idml_file": "",
+                "feishu_cloud_doc": "https://example.com/docx/editable",
+                "baseline_doc": "https://example.com/docx/baseline",
+                "html_link": "",
+                "delivery_kind": "feishu_cloud_doc",
+                "delivery_field": "飞书云文档",
+                "delivery_url": "https://example.com/docx/editable",
+                "delivery_ready": True,
+                "baseline_ready": True,
                 "freshness_status": "not_requested",
             },
             payload,
