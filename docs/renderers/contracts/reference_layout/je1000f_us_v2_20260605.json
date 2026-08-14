@@ -27,8 +27,8 @@
   "approval": {
     "status": "approved",
     "approved_by": "夏冰",
-    "approved_at": "2026-08-14T04:40:00+00:00",
-    "method": "chat decision (Route A) + reproduced IR diff summary: 52-page order/language verified identical, toc/back_cover restored byte-identical to pins, 40 content pages = v1.1/1.2 iteration"
+    "approved_at": "2026-08-14T09:30:00Z",
+    "method": "operator-chat-decree(POWER统一+印刷页清单化), session 3767cc66"
   },
   "render_contract": {
     "dpi": 300,
@@ -368,14 +368,14 @@
               "ac": "AC Power Button"
             },
             "render_labels_by_role": {
-              "main_power": "Main Power Button",
+              "main_power": "POWER Button",
               "dc_usb": "DC/USB Power Button",
               "ac": "AC Power Button"
             }
           },
           "fr": {
             "base_labels_by_role": {
-              "main_power": "Bouton d'alimentation",
+              "main_power": "Bouton POWER",
               "dc_usb": "Bouton d’alimentation CC / USB",
               "ac": "Bouton Power CA"
             },
@@ -387,12 +387,12 @@
           },
           "es": {
             "base_labels_by_role": {
-              "main_power": "Botón de encendido",
+              "main_power": "Botón POWER",
               "dc_usb": "Botón de energía CC / USB",
               "ac": "Botón Power CA"
             },
             "render_labels_by_role": {
-              "main_power": "Botón de encendido principal",
+              "main_power": "Botón POWER",
               "dc_usb": "Botón de energía CC/USB",
               "ac": "Botón de energía CA"
             }
@@ -421,8 +421,8 @@
     },
     {
       "source_ref": "page/00_toc.rst",
-      "source_sha256": "63ebfbcb1272085f2cfa8606169f1e242f5ecb4cd4f8d3e56c9d75509a5dbb00",
-      "language": "toc",
+      "source_sha256": "5f614be5c710165859c6a11c6023ac12f87cb4e522b45a4b3eba3d0a81151976",
+      "language": "en",
       "composition_id": "toc",
       "start_page": 3,
       "page_count": 1
@@ -538,7 +538,7 @@
     },
     {
       "source_ref": "page/spec_en.rst",
-      "source_sha256": "d4663d568faaf22be91fa97434e06d96a8b52da27f9aa771cc1d413a5c92af3e",
+      "source_sha256": "1d365e6f08e346603ca70916289823edfe02894fbce3596fd6d2e12f870f7bc1",
       "language": "en",
       "composition_id": "en_spec",
       "start_page": 18,
@@ -602,7 +602,7 @@
     },
     {
       "source_ref": "page/p24_03_product_overview_placeholder.rst",
-      "source_sha256": "a5ccb872300523bab9a77e799f4f420040119aef7eee95ab5edfdf2936c1349b",
+      "source_sha256": "ca89224d0da3ed7bffe46566355327eb1df4591bf9502d1df68b13d32c4f2e42",
       "language": "fr",
       "composition_id": "fr_overview",
       "start_page": 25,
@@ -687,7 +687,7 @@
     },
     {
       "source_ref": "page/p34_12_app_setup_placeholder.rst",
-      "source_sha256": "ffccfa2ab424bdee35b0dee9b23d359d885496f73fffefb26501096929b92dda",
+      "source_sha256": "5dae81db56e8b7fff64621f57354e80b546fec4a0a5c1384440aadc25b32dc70",
       "language": "fr",
       "composition_id": "fr_app",
       "start_page": 38,
@@ -735,7 +735,7 @@
     },
     {
       "source_ref": "page/p40_03_product_overview_placeholder.rst",
-      "source_sha256": "8408be4bb2f48dbd8c2d547df22bfce53466e25d5ea547a4a29a74b8edafa70b",
+      "source_sha256": "eb81a91d92a047dc02d4daa963141a264dc8131c5d081067a8bfdd1aec9b5a53",
       "language": "es",
       "composition_id": "es_overview",
       "start_page": 43,
@@ -751,7 +751,7 @@
     },
     {
       "source_ref": "page/p42_05_operation_guide_placeholder.rst",
-      "source_sha256": "b72909546cce21d66c1d0f0087371981f718cf95d7b3f8a85d966cd7f474f949",
+      "source_sha256": "6e3ee5839ea0df11dfc979fac03be37e33d5e5b761cb8fde9ff1ce190f8f6564",
       "language": "es",
       "composition_id": "es_operation",
       "start_page": 46,
@@ -820,7 +820,7 @@
     },
     {
       "source_ref": "page/p50_12_app_setup_placeholder.rst",
-      "source_sha256": "c1f19a4e43252c9e8e787060669aa202fa0a3c797376770d908362432706dd52",
+      "source_sha256": "15c47ca549f0709080af795a70a64797eb9c4a7785251aec5ce71fbc524b0bcf",
       "language": "es",
       "composition_id": "es_app",
       "start_page": 56,
@@ -828,8 +828,8 @@
     },
     {
       "source_ref": "page/99_back_cover.rst",
-      "source_sha256": "6587f5767834ec5d2420d5ac066b288447e1696ae8551bafb089c56e2f0ddbe6",
-      "language": "cover",
+      "source_sha256": "0d05c546d0adca097934c5545c2395ba2515df70587de719bf03d3c1056e0fdc",
+      "language": "en",
       "composition_id": "back_cover",
       "start_page": 58,
       "page_count": 1
@@ -838,17 +838,17 @@
   "identity": {
     "content": {
       "manual_ir_schema_version": "manual-ir/v1",
-      "manual_content_sha256": "1f0f69b25fef3116822bc0b2b79812cfe10528da2203182ac338dd3dff998df0"
+      "manual_content_sha256": "af9314473f7d8c58bac2aa2980a153557d9fa421c339b2ed878e5f3860d1574c"
     },
     "assembly": {
-      "sha256": "1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05"
+      "sha256": "c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57"
     },
     "style": {
       "style_contract_sha256": "773e82f6c80597bd3be4d227241951adaec361c43b4c71ce37832c3f0989e2fb",
       "layout_params_sha256": "1c8446465e9143bec45e42509feec02192fc328858078d5a6e74da3af0ef1bb0"
     },
     "provenance": {
-      "snapshot_sha256": "d8c400daa9ed4b1ac0d11bcf29f2357ea5136c9139435bf7c1375c2ff022d949"
+      "snapshot_sha256": "aa4bfb324cd12ff07be2507a51a634e61e2d6043e2dd4fb199bb873afd43f821"
     }
   }
 }

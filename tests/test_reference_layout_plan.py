@@ -195,13 +195,15 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
             [],
             contract["idml_contract"]["allowed_unclassified_source_refs"],
         )
-        # Operator-approved content rebind (2026-08-14): restored the reseed-
-        # dropped 00_toc/99_back_cover includes and re-pinned the v1.1/1.2
-        # content iteration; source order, language mapping, and the 58-page
-        # composition map were verified unchanged (assembly sha reverted to
-        # the original 2026-06-05 identity).
+        # Operator-approved content+assembly rebind (2026-08-14, second pass):
+        # the manifest now declares 00_toc/99_back_cover (ordinal_neutral), so
+        # their language pins moved from the hand-era 'toc'/'cover' markers to
+        # 'en', and the POWER Button terminology decree refreshed six content
+        # pages plus the app control labels. Source order and the 58-page
+        # composition map were verified unchanged; the rebound identity was
+        # confirmed byte-equal to the CI-built manual IR of run 31785387549.
         self.assertEqual(
-            "1f0f69b25fef3116822bc0b2b79812cfe10528da2203182ac338dd3dff998df0",
+            "af9314473f7d8c58bac2aa2980a153557d9fa421c339b2ed878e5f3860d1574c",
             contract["identity"]["content"]["manual_content_sha256"],
         )
         self.assertRegex(contract["identity"]["assembly"]["sha256"], r"^[0-9a-f]{64}$")
@@ -235,6 +237,9 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
                 "app_add_device"
             ]["page_owners"],
         )
+        # main_power values follow the 2026-08-14 operator ruling ("改到统一为止"):
+        # the silk-screened POWER legend is kept across languages, in both the
+        # source slots (base) and the printed component text (render).
         expected = {
             "en": {
                 "base_labels_by_role": {
@@ -243,14 +248,14 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
                     "ac": "AC Power Button",
                 },
                 "render_labels_by_role": {
-                    "main_power": "Main Power Button",
+                    "main_power": "POWER Button",
                     "dc_usb": "DC/USB Power Button",
                     "ac": "AC Power Button",
                 },
             },
             "fr": {
                 "base_labels_by_role": {
-                    "main_power": "Bouton d'alimentation",
+                    "main_power": "Bouton POWER",
                     "dc_usb": "Bouton d’alimentation CC / USB",
                     "ac": "Bouton Power CA",
                 },
@@ -262,12 +267,12 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
             },
             "es": {
                 "base_labels_by_role": {
-                    "main_power": "Botón de encendido",
+                    "main_power": "Botón POWER",
                     "dc_usb": "Botón de energía CC / USB",
                     "ac": "Botón Power CA",
                 },
                 "render_labels_by_role": {
-                    "main_power": "Botón de encendido principal",
+                    "main_power": "Botón POWER",
                     "dc_usb": "Botón de energía CC/USB",
                     "ac": "Botón de energía CA",
                 },
