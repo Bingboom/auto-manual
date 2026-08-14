@@ -1,1 +1,2 @@
 model,region,code,page,note
+JE-1000F,US,LANG_PARITY_FOREIGN_LANG_BLOCK,00_preface.rst,US/CA compliance policy (operator decision 2026-08-13): preface ships EN/FR/ES in every US-line document including single-language drafts — policy row not debt; add the same row when onboarding a new US-line model until the gate learns region-level page language scopes

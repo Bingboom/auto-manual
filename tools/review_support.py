@@ -190,21 +190,50 @@ def _shared_review_page_path_pairs(
     family_pages = plan_materialized_pages(family_cfg, model=model, region=region, root=ROOT)
     target_pages = plan_materialized_pages(target_cfg, model=model, region=region, root=ROOT)
 
-    family_by_key: dict[tuple[str, str], list[str]] = {}
-    for planned in family_pages:
-        key = ((planned.lang or "").strip().lower(), _normalized_materialized_page_name(planned.file_name))
-        family_by_key.setdefault(key, []).append(planned.file_name)
+    def _source_file(planned) -> str:
+        return str(getattr(planned.page, "file", "") or "").strip()
+
+    family_records: list[dict] = [
+        {
+            "lang": (planned.lang or "").strip().lower(),
+            "name": _normalized_materialized_page_name(planned.file_name),
+            "source": _source_file(planned),
+            "file_name": planned.file_name,
+            "consumed": False,
+        }
+        for planned in family_pages
+    ]
+
+    def _claim(predicate) -> str | None:
+        for record in family_records:
+            if not record["consumed"] and predicate(record):
+                record["consumed"] = True
+                return record["file_name"]
+        return None
 
     mapped_pairs: list[tuple[str, str]] = []
     for planned in target_pages:
-        key = ((planned.lang or "").strip().lower(), _normalized_materialized_page_name(planned.file_name))
-        shared_names = family_by_key.get(key)
-        if not shared_names:
+        target_lang = (planned.lang or "").strip().lower()
+        target_name = _normalized_materialized_page_name(planned.file_name)
+        target_source = _source_file(planned)
+        shared_name = _claim(
+            lambda record: record["lang"] == target_lang and record["name"] == target_name
+        )
+        if shared_name is None and target_source:
+            # A shared page (e.g. the trilingual preface) is declared once in
+            # the merged family manifest under its leading language; a
+            # single-language manifest declares the SAME template under its own
+            # language. Pair them by identical source file + page name so the
+            # review overlay still maps the shared review copy.
+            shared_name = _claim(
+                lambda record: record["source"] == target_source and record["name"] == target_name
+            )
+        if shared_name is None:
             continue
         mapped_pairs.append(
             (
                 (Path("page") / planned.file_name).as_posix(),
-                (Path("page") / shared_names.pop(0)).as_posix(),
+                (Path("page") / shared_name).as_posix(),
             )
         )
     return tuple(mapped_pairs)

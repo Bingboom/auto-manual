@@ -3,9 +3,10 @@ pages:
   - type: rst_include
     lang: en
     file: templates/page_shared/en/00_preface.rst
-    # Single-language line: trims the inherited FR/ES blocks that
-    # data/lang_parity_known_exceptions.csv used to carry as accepted debt.
-    lang_blocks: true
+    # US/CA compliance (operator decision 2026-08-13): the preface ships
+    # EN/FR/ES in every US-line document, including single-language drafts.
+    # The FR/ES blocks are policy, not debt — do NOT re-add lang_blocks here.
+    # Parity-gate coverage: data/lang_parity_known_exceptions.csv preface row.
   - type: rst_include
     lang: en
     file: templates/page_us-en/safety_en.rst

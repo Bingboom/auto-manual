@@ -7,10 +7,6 @@
       "value": "manual_pt_br"
     },
     {
-      "op": "remove",
-      "path": "/pages/0/lang_blocks"
-    },
-    {
       "op": "replace",
       "path": "/pages/0/file",
       "value": "templates/page_shared/pt-BR/00_preface.rst"

@@ -2,6 +2,12 @@ manifest_id: manual_us_single_es
 pages:
   - type: rst_include
     lang: es
+    file: templates/page_shared/en/00_preface.rst
+    # US/CA compliance (operator decision 2026-08-13): trilingual EN/FR/ES
+    # preface is mandatory in every US-line document, including this
+    # single-language draft. Same policy as manual_us-single-en.yaml.
+  - type: rst_include
+    lang: es
     file: templates/page_us-es/safety_es.rst
   - type: rst_include
     lang: es
