@@ -219,5 +219,30 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
         self.assertEqual("review spec\n", spec_text)
 
 
+class TestSharedReviewPagePathPairs(unittest.TestCase):
+    def test_shared_preface_pairs_across_language_scopes(self) -> None:
+        """The trilingual preface is lang=en in the merged family manifest but
+        lang=es/fr in the single-language manifests; pairing must fall back to
+        identical source file + page name so review-asis still maps it."""
+        from tools.review_support import _shared_review_page_path_pairs
+        from tools.target_defaults import FAMILY_DEFAULT_CONFIGS
+
+        family_config = FAMILY_DEFAULT_CONFIGS["US"]
+        for target_config in ("configs/config.us-es.yaml", "configs/config.us-fr.yaml"):
+            with self.subTest(target_config=target_config):
+                pairs = dict(
+                    _shared_review_page_path_pairs(
+                        family_config_path=family_config,
+                        target_config_path=target_config,
+                        model="JE-1000F",
+                        region="US",
+                    )
+                )
+                self.assertEqual(
+                    "page/00_preface.rst", pairs.get("page/00_preface.rst"),
+                    f"shared preface must pair for {target_config}: {sorted(pairs)}",
+                )
+
+
 if __name__ == "__main__":
     unittest.main()
