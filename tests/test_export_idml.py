@@ -2320,7 +2320,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(["2.1", "2.2"], specs[1]["step_labels"])
         self.assertEqual(
             {
-                "main_power": "Main Power Button",
+                "main_power": "POWER Button",
                 "dc_usb": "DC/USB Power Button",
                 "ac": "AC Power Button",
             },
@@ -2404,7 +2404,7 @@ class ExportIdmlTests(unittest.TestCase):
             (
                 "12_app_setup_placeholder",
                 "en",
-                "Main Power Button\nDC/USB Power Button\nAC Power Button",
+                "POWER Button\nDC/USB Power Button\nAC Power Button",
             ),
             (
                 "p34_12_app_setup_placeholder",
