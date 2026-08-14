@@ -65,6 +65,14 @@ _WEB_INLINE_CONTROL_RE = re.compile(
     r")",
     re.IGNORECASE | re.DOTALL,
 )
+_PREFACE_LANGUAGE_INVENTORY_RE = re.compile(
+    r"[^/]{2,32}(?:\s*/\s*[^/]{2,32}){1,7}"
+)
+_PREFACE_REVIEW_HEADING_RE = re.compile(
+    r"(?:(?:[A-Z]{2}(?:-[A-Z]{2})?)\s+)?(?:IMPORTANT|IMPORTANTE)"
+)
+
+
 class WebPresentationError(RuntimeError):
     """The source structure no longer satisfies the web presentation contract."""
 
@@ -1572,15 +1580,37 @@ def _transform_preface(
     )
     if not isinstance(first_block, Tag) or first_block.name != "p":
         raise WebPresentationError(
-            f"{source_path}: web preface is missing its leading language inventory"
+            f"{source_path}: web preface is missing its leading language inventory "
+            "or governed IMPORTANT heading"
         )
-    language_inventory = first_block.get_text(" ", strip=True)
-    if not re.fullmatch(r"[^/]{2,32}(?:\s*/\s*[^/]{2,32}){1,7}", language_inventory):
-        raise WebPresentationError(
-            f"{source_path}: unexpected web preface language inventory: "
-            f"{language_inventory!r}"
-        )
-    first_block.decompose()
+    leading_text = first_block.get_text(" ", strip=True)
+    if _PREFACE_LANGUAGE_INVENTORY_RE.fullmatch(leading_text):
+        first_block.decompose()
+        return
+
+    # A reseeded review page is a valid de-templated carrier: ``only:: not
+    # latex`` is flattened and its web-only language inventory may be absent,
+    # while the governed bold IMPORTANT marker remains the first visible block.
+    # Accept that exact shape without deleting the live marker; arbitrary prose
+    # still fails closed so a real preface-order drift cannot pass silently.
+    strong_children = first_block.find_all("strong", recursive=False)
+    meaningful_children = [
+        child
+        for child in first_block.contents
+        if not (isinstance(child, NavigableString) and not child.strip())
+    ]
+    if (
+        len(strong_children) == 1
+        and len(meaningful_children) == 1
+        and meaningful_children[0] is strong_children[0]
+        and strong_children[0].get_text(" ", strip=True) == leading_text
+        and _PREFACE_REVIEW_HEADING_RE.fullmatch(leading_text)
+    ):
+        return
+
+    raise WebPresentationError(
+        f"{source_path}: unexpected web preface leading block: {leading_text!r}"
+    )
 
 
 def transform_web_fragment(
