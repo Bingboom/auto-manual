@@ -1572,14 +1572,10 @@ HTML_link alias semantics).
     - these are the most workflow-sensitive surfaces in the repo
     - stability is currently more valuable than surface redesign
 
-- [ ] Pending: protect hand-curated print-only review pages across reseed
-  - Status: `pending`
-  - Incident: the 2026-08-13 Start Review reseed of `JE-1000F/US` regenerated the review index from the manifest and silently dropped the hand-added `00_toc.rst` / `99_back_cover.rst` includes (files kept, references lost); Publish then failed the same-source IDML gate (run 31767694706) and needed a manual index restore plus a reference-layout rebind
-  - Done when one of:
-    - review seeding preserves index includes whose page files exist in the previous review state but have no manifest entry (or warns loudly and lists them)
-    - the page manifest can declare print-only pages so seeding regenerates them deterministically
-    - a check-stage guard flags orphan review page files that exist under `page/` but are absent from the review index
-  - Interim rule: documented in `user-guide/hello_auto-doc.md` (re-add includes after reseeding a print-published target)
+- [x] Done: protect hand-curated print-only review pages across reseed (2026-08-14)
+  - Status: `done` — resolved via the second "done when" option: `manual_us.yaml` declares `00_toc.rst` / `99_back_cover.rst` as `rst_include` entries with the new `ordinal_neutral: true` annotation (`tools/config_pages.py` parse, `tools/gen_index_bundle_plan.py` skip), so reseeds regenerate them deterministically while every later duplicate page keeps its pinned positional `pNN_` name (`tests/test_gen_index_bundle_plan.py`)
+  - Incident: the 2026-08-13/14 Start Review reseeds of `JE-1000F/US` regenerated the review index from the manifest and silently dropped the hand-added `00_toc.rst` / `99_back_cover.rst` includes (files kept, references lost); Publish then failed the same-source IDML gate three times (runs 31767694706, 31775580957, 31779053321) — the interim manual index restore (mirror PR #54) was itself wiped by the next reseed, which is what forced the manifest-level fix
+  - Not built (still open as a cheap future guard): a check-stage flag for orphan review page files that exist under `page/` but are absent from the review index
 
 ## 8. Success Criteria
 
