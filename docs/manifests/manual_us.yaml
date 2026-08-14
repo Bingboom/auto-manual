@@ -9,6 +9,16 @@ pages:
     # No-op for the trilingual us-merged family; the annotation travels with
     # the template so a single-language reuse cannot inherit the extra blocks.
     lang_blocks: true
+  - type: rst_include
+    lang: en
+    file: templates/page_shared/en/00_toc.rst
+    # Print-only page. Was hand-added to the review index and silently lost on
+    # every Start Review reseed (2026-08-13/14 incidents, same-source gate).
+    # Declaring it here makes reseeds regenerate it deterministically; its
+    # page numbers stay operator-curated during review. ordinal_neutral keeps
+    # the tail's pNN_ duplicate names (p22_01_fcc.rst etc.) exactly as the
+    # review branch and the approved layout contract pin them.
+    ordinal_neutral: true
 
   - type: rst_include
     lang: en
@@ -231,3 +241,9 @@ pages:
     template: templates/page_shared/es/12_app_setup_placeholder.rst
     langs: [es]
     include_dir: generated/{model}/draft
+  - type: rst_include
+    lang: en
+    file: templates/page_shared/en/99_back_cover.rst
+    # Print-only page (see the 00_toc entry note): declared here so reseeds
+    # keep the approved 52-page print composition.
+    ordinal_neutral: true

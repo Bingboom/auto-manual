@@ -122,7 +122,15 @@ def plan_materialized_pages(
     planned: list[Any] = []
     seen_names: set[str] = set()
 
-    for ordinal, page in enumerate(pages, start=1):
+    # The ordinal exists only to disambiguate duplicate materialized names
+    # (pNN_ prefixes). Entries marked ordinal_neutral do not consume a number:
+    # review branches and the approved reference-layout contract pin the
+    # existing pNN_ names, so a mid-manifest print-only insertion (toc, back
+    # cover) must not renumber the tail.
+    ordinal = 0
+    for page in pages:
+        if not getattr(page, "ordinal_neutral", False):
+            ordinal += 1
         if isinstance(page, cover_pdf_page_cls):
             cover_lang = selected_langs[0] if selected_langs else None
             base_name = base_file_name_for_plan(

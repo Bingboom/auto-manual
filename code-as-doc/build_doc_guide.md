@@ -1456,6 +1456,22 @@ whole-book family's configured literal exactly
 (`tests/test_model_languages.py`), and single-language derivative configs keep
 their configured literal because they are not trimmed.
 
+Materialized page names disambiguate duplicates with a positional `pNN_`
+prefix (`p22_01_fcc.rst` is the fr copy of `01_fcc.rst`), and those names are
+pinned outside the build: committed review branches use them as file names and
+the approved reference-layout contract lists them as ordered `source_ref`s.
+Inserting a manifest entry mid-list would therefore renumber every later
+duplicate and irreparably break the contract (`reference_layout_rebind`
+refuses a changed `source_ref` sequence). Print-only insertions — the US
+book's `00_toc.rst` and `99_back_cover.rst` — declare `ordinal_neutral: true`
+on their `rst_include` entries instead: the page materializes in place but
+does not consume a numbering ordinal, so every existing `pNN_` name stays
+stable. `tools/gen_index_bundle_plan.py` applies the skip; the annotation is
+`rst_include`-only and validated like `lang_blocks`
+(`tests/test_gen_index_bundle_plan.py` pins the numbering behaviour).
+Background: the 2026-08-13/14 same-source-gate incidents, where reseeds
+dropped these two pages because they lived only in a hand-edited review index.
+
 Failure codes (`tools/check_docs_language_scope.py`):
 `LANG_SCOPE_UNSHIPPED_LANGUAGE` (the scope row is disjoint from the family the
 config declares — e.g. `configs/config.eu-uk.yaml` pointed at a model that ships
