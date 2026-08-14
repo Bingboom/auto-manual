@@ -1572,6 +1572,15 @@ HTML_link alias semantics).
     - these are the most workflow-sensitive surfaces in the repo
     - stability is currently more valuable than surface redesign
 
+- [ ] Pending: protect hand-curated print-only review pages across reseed
+  - Status: `pending`
+  - Incident: the 2026-08-13 Start Review reseed of `JE-1000F/US` regenerated the review index from the manifest and silently dropped the hand-added `00_toc.rst` / `99_back_cover.rst` includes (files kept, references lost); Publish then failed the same-source IDML gate (run 31767694706) and needed a manual index restore plus a reference-layout rebind
+  - Done when one of:
+    - review seeding preserves index includes whose page files exist in the previous review state but have no manifest entry (or warns loudly and lists them)
+    - the page manifest can declare print-only pages so seeding regenerates them deterministically
+    - a check-stage guard flags orphan review page files that exist under `page/` but are absent from the review index
+  - Interim rule: documented in `user-guide/hello_auto-doc.md` (re-add includes after reseeding a print-published target)
+
 ## 8. Success Criteria
 
 This checklist is successful when:

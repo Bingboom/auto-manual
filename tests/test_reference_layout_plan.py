@@ -195,11 +195,13 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
             [],
             contract["idml_contract"]["allowed_unclassified_source_refs"],
         )
-        # Operator-approved content rebind, mechanically corrected after the
-        # 2026-08-09 merge; source order, language mapping, and the 58-page
-        # composition map were verified unchanged.
+        # Operator-approved content rebind (2026-08-14): restored the reseed-
+        # dropped 00_toc/99_back_cover includes and re-pinned the v1.1/1.2
+        # content iteration; source order, language mapping, and the 58-page
+        # composition map were verified unchanged (assembly sha reverted to
+        # the original 2026-06-05 identity).
         self.assertEqual(
-            "e0973d4d869e5a9f3395cec70ef50d3f27a982561ccfc5f93126a6b9bef6965b",
+            "1f0f69b25fef3116822bc0b2b79812cfe10528da2203182ac338dd3dff998df0",
             contract["identity"]["content"]["manual_content_sha256"],
         )
         self.assertRegex(contract["identity"]["assembly"]["sha256"], r"^[0-9a-f]{64}$")
