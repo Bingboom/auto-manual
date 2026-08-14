@@ -48,6 +48,14 @@ from tools.web_presentation import (
 )
 
 _RST_HEADING_CHARS = set("=-~^\"`:+*#")
+_DOCUTILS_UNWRAP_CONTAINER_CLASSES = frozenset(
+    {
+        "warranty-lead",
+        "warranty-section",
+    }
+)
+
+
 def _language_token_pattern(alias: str) -> re.Pattern[str]:
     escaped = re.escape(alias).replace("\\-", "[-_]").replace("_", "[-_]")
     return re.compile(rf"(?:^|[_-]){escaped}(?:$|[_-])")
@@ -67,9 +75,11 @@ _LANG_TOKEN_PATTERNS = tuple(
 
 def _normalize_sphinx_only_blocks_for_docutils(rst_text: str, *, active_tags: set[str] | None = None) -> str:
     """
-    Convert Sphinx-only blocks for docutils parsing:
+    Normalize Sphinx/renderer semantic blocks for docutils parsing:
     - keep `.. only:: ...` content whose expression matches the active tags
     - drop non-matching `.. only:: ...` content
+    - unwrap known renderer-owned semantic containers whose nested headings are
+      otherwise rejected and discarded by docutils
     """
     tags = {"html"}
     if active_tags:
@@ -115,6 +125,37 @@ def _normalize_sphinx_only_blocks_for_docutils(rst_text: str, *, active_tags: se
                 else:
                     out.append("")
             continue
+
+        if stripped.startswith(".. container::"):
+            classes = {
+                value.casefold()
+                for value in stripped.split("::", 1)[1].split()
+                if value.strip()
+            }
+            if classes & _DOCUTILS_UNWRAP_CONTAINER_CLASSES:
+                i += 1
+                block = []
+                while i < len(lines):
+                    cur = lines[i]
+                    cur_stripped = cur.lstrip()
+                    cur_indent = len(cur) - len(cur_stripped)
+                    if cur_stripped and cur_indent <= indent:
+                        break
+                    block.append(cur)
+                    i += 1
+
+                dedented = _dedent_only_block_lines(block, indent)
+                normalized = _normalize_sphinx_only_blocks_for_docutils(
+                    "\n".join(dedented),
+                    active_tags=tags,
+                )
+                if normalized:
+                    out.extend(normalized.split("\n"))
+                    if out[-1].strip():
+                        out.append("")
+                else:
+                    out.append("")
+                continue
 
         out.append(line)
         i += 1

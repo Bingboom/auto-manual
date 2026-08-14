@@ -74,6 +74,49 @@ class WebPresentationTests(unittest.TestCase):
         )
         self.assertIn("Congratulations on your new Jackery Explorer 1000", output)
 
+    def test_web_preface_accepts_reseeded_review_without_language_inventory(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source_path = (
+                root
+                / "docs"
+                / "_review"
+                / "JE-1000F"
+                / "US"
+                / "page"
+                / "00_preface.rst"
+            )
+            source_path.parent.mkdir(parents=True)
+            source_path.write_text(
+                "**IMPORTANT**\n\n| Live review copy.\n",
+                encoding="utf-8",
+            )
+            output = _convert_rst_fragment_to_html(
+                source_path.read_text(encoding="utf-8"),
+                source_path,
+                root / "assets",
+                active_tags={"region_us"},
+                presentation_profile="web",
+                model="JE-1000F",
+                region="US",
+            )
+
+        soup = BeautifulSoup(output, "html.parser")
+        self.assertEqual("IMPORTANT", soup.find("strong").get_text(" ", strip=True))
+        self.assertIn("Live review copy.", soup.get_text(" ", strip=True))
+
+    def test_web_preface_rejects_unrecognized_leading_review_block(self) -> None:
+        with self.assertRaisesRegex(
+            WebPresentationError,
+            "unexpected web preface leading block",
+        ):
+            transform_web_fragment(
+                "<p><strong>OVERVIEW</strong></p><p>Copy.</p>",
+                source_path=REVIEW_PAGES / "00_preface.rst",
+                model="JE-1000F",
+                region="US",
+            )
+
     def test_pandoc_guard_restores_all_semantic_callout_types(self) -> None:
         callouts = "".join(
             (
@@ -1363,6 +1406,44 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertEqual(0, len(soup.find_all("table")))
                 self.assertEqual(0, len(soup.find_all("colgroup")))
                 self.assertNotIn("width: 50%", str(soup))
+
+    def test_warranty_accepts_reseeded_semantic_containers(self) -> None:
+        rst_text = (
+            (ROOT / "docs" / "templates" / "page_shared" / "en" / "11_warranty.rst")
+            .read_text(encoding="utf-8")
+            .replace("|LEGAL_COMPANY_NAME|", "Jackery Inc.")
+            .replace("|PRODUCT_NAME|", "Jackery Explorer 1000")
+            .replace("|WARRANTY_EMAIL|", "hello@jackery.com")
+        )
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source_path = (
+                root
+                / "docs"
+                / "_review"
+                / "JE-1000F"
+                / "US"
+                / "page"
+                / "11_warranty.rst"
+            )
+            source_path.parent.mkdir(parents=True)
+            source_path.write_text(rst_text, encoding="utf-8")
+            output = _convert_rst_fragment_to_html(
+                rst_text,
+                source_path,
+                root / "assets",
+                active_tags={"region_us"},
+                presentation_profile="web",
+                model="JE-1000F",
+                region="US",
+            )
+
+        soup = BeautifulSoup(output, "html.parser")
+        self.assertEqual(1, len(soup.select("figure.hb-warranty-intro-composition")))
+        self.assertEqual(5, len(soup.select("figure.hb-warranty-card")))
+        self.assertEqual(1, len(soup.select("figure.hb-warranty-period-card")))
+        self.assertEqual(6, len(soup.find_all("h2")))
+        self.assertNotIn("warranty-section", output)
 
     def test_unmatched_page_is_returned_unchanged(self) -> None:
         source_html = '<h1>WARRANTY</h1><p id="term">Keep this text byte-for-byte.</p>'
