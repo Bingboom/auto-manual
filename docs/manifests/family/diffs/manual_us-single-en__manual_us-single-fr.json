@@ -8,112 +8,153 @@
     },
     {
       "op": "replace",
-      "path": "/pages",
-      "value": [
-        {
-          "file": "templates/page_us-fr/safety_fr.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_shared/fr/01_user_maintenance_instructions.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "include_dir": "generated/{model}",
-          "langs": [
-            "fr"
-          ],
-          "page": "symbols",
-          "source": "phase2",
-          "type": "csv_page"
-        },
-        {
-          "file": "templates/page_us-fr/01_fcc.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_shared/fr/02_whats_in_the_box.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_us-fr/03_product_overview_placeholder.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "include_dir": "generated/{model}",
-          "langs": [
-            "fr"
-          ],
-          "page": "lcd_icons",
-          "source": "phase2",
-          "type": "csv_page"
-        },
-        {
-          "file": "templates/page_us-fr/05_operation_guide_placeholder.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "capability": "UPS功能",
-          "file": "templates/page_shared/fr/06_ups_mode.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_shared/fr/charging.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_shared/fr/08_charging_methods.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_shared/fr/09_storage_and_maintenance.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "include_dir": "generated/{model}",
-          "langs": [
-            "fr"
-          ],
-          "page": "troubleshooting",
-          "source": "phase2",
-          "type": "csv_page"
-        },
-        {
-          "include_dir": "generated/{model}",
-          "langs": [
-            "fr"
-          ],
-          "page": "spec",
-          "source": "phase2",
-          "type": "csv_page"
-        },
-        {
-          "file": "templates/page_shared/fr/11_warranty.rst",
-          "lang": "fr",
-          "type": "rst_include"
-        },
-        {
-          "engine": "draft_v1",
-          "include_dir": "generated/{model}/draft",
-          "langs": [
-            "fr"
-          ],
-          "page": "12_app_setup",
-          "recipe": "templates/recipes/us-fr/12_app_setup.yaml",
-          "template": "templates/page_shared/fr/12_app_setup_placeholder.rst",
-          "type": "generated_page"
-        }
-      ]
+      "path": "/pages/0/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/1/file",
+      "value": "templates/page_us-fr/safety_fr.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/1/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/2/file",
+      "value": "templates/page_shared/fr/01_user_maintenance_instructions.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/2/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/3/langs/0",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/4/file",
+      "value": "templates/page_us-fr/01_fcc.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/4/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/5/file",
+      "value": "templates/page_shared/fr/02_whats_in_the_box.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/5/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/6/file",
+      "value": "templates/page_us-fr/03_product_overview_placeholder.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/6/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/7/langs/0",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/8/file",
+      "value": "templates/page_us-fr/05_operation_guide_placeholder.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/8/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/9/file",
+      "value": "templates/page_shared/fr/06_ups_mode.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/9/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/10/file",
+      "value": "templates/page_shared/fr/charging.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/10/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/11/file",
+      "value": "templates/page_shared/fr/08_charging_methods.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/11/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/12/file",
+      "value": "templates/page_shared/fr/09_storage_and_maintenance.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/12/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/13/langs/0",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/14/langs/0",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/15/file",
+      "value": "templates/page_shared/fr/11_warranty.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/15/lang",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/16/langs/0",
+      "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/16/recipe",
+      "value": "templates/recipes/us-fr/12_app_setup.yaml"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/16/template",
+      "value": "templates/page_shared/fr/12_app_setup_placeholder.rst"
     }
   ],
   "schema_version": "family-manifest-diff/v1",
