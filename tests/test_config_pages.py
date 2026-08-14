@@ -169,6 +169,39 @@ class TestConfigPages(unittest.TestCase):
         self.assertTrue(any("only supported on rst_include" in i.msg
                             for i in issues if i.level == "ERROR"))
 
+    def test_rst_include_ordinal_neutral_defaults_off_and_parses(self) -> None:
+        pages, issues = parse_config_pages(
+            [
+                {"type": "rst_include", "file": "a.rst", "lang": "en"},
+                {"type": "rst_include", "file": "b.rst", "lang": "en",
+                 "ordinal_neutral": True},
+            ],
+            default_languages=["en"],
+        )
+        self.assertEqual([], issues)
+        self.assertFalse(pages[0].ordinal_neutral)
+        self.assertTrue(pages[1].ordinal_neutral)
+
+    def test_ordinal_neutral_must_be_boolean(self) -> None:
+        _pages, issues = parse_config_pages(
+            [{"type": "rst_include", "file": "a.rst", "lang": "en",
+              "ordinal_neutral": "yes"}],
+            default_languages=["en"],
+        )
+        self.assertTrue(any("ordinal_neutral must be a boolean" in i.msg
+                            for i in issues if i.level == "ERROR"))
+
+    def test_ordinal_neutral_is_rejected_on_other_page_types(self) -> None:
+        # A mis-annotated page must fail rather than silently renumber the tail.
+        _pages, issues = parse_config_pages(
+            [{"type": "csv_page", "page": "spec", "source": "phase2",
+              "ordinal_neutral": True}],
+            default_languages=["en"],
+        )
+        self.assertTrue(any(
+            "ordinal_neutral is only supported on rst_include" in i.msg
+            for i in issues if i.level == "ERROR"))
+
     def test_parse_config_pages_or_raise_should_fail_fast_on_first_error(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "config.pages: pages\\[1\\]\\.type invalid"):
             parse_config_pages_or_raise(

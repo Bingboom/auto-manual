@@ -21,6 +21,12 @@
           "type": "rst_include"
         },
         {
+          "file": "templates/page_shared/en/00_toc.rst",
+          "lang": "en",
+          "ordinal_neutral": true,
+          "type": "rst_include"
+        },
+        {
           "file": "templates/page_us-en/safety_en.rst",
           "lang": "en",
           "type": "rst_include"
@@ -382,6 +388,12 @@
           "recipe": "templates/recipes/us-es/12_app_setup.yaml",
           "template": "templates/page_shared/es/12_app_setup_placeholder.rst",
           "type": "generated_page"
+        },
+        {
+          "file": "templates/page_shared/en/99_back_cover.rst",
+          "lang": "en",
+          "ordinal_neutral": true,
+          "type": "rst_include"
         }
       ]
     }

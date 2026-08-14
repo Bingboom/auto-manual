@@ -66,6 +66,10 @@ class RstIncludePage:
     # 多语整页:模板内含多个语言块(前言页),装配期按 model_languages.csv
     # 解析出的语言集合裁掉块(False=整页按 lang 归属单一语言)
     lang_blocks: bool = False
+    # 序数中立:该条目不消耗重名消歧序数(pNN_ 前缀编号)。用于向已定稿的
+    # 清单中段插入印刷专用页(目录/封底)——后续重名页保持既有 pNN 名,
+    # 评审分支文件名与版式契约钉住的 source_ref 才不会整体漂移。
+    ordinal_neutral: bool = False
 
 
 ConfigPage: TypeAlias = CoverPdfPage | CsvPage | GeneratedPage | PdfInsertPage | RstIncludePage
@@ -120,6 +124,20 @@ def parse_config_pages(
             issues.append(PageParseIssue(
                 "ERROR",
                 f"pages[{idx}].lang_blocks is only supported on rst_include, "
+                f"not {page_type}"))
+            continue
+
+        ordinal_neutral_raw = raw.get("ordinal_neutral")
+        if ordinal_neutral_raw is not None and not isinstance(ordinal_neutral_raw, bool):
+            issues.append(PageParseIssue(
+                "ERROR", f"pages[{idx}].ordinal_neutral must be a boolean"))
+            continue
+        # Same containment rule as lang_blocks: a mis-annotated manifest must
+        # fail loudly instead of silently destabilizing tail page numbering.
+        if ordinal_neutral_raw is not None and page_type != "rst_include":
+            issues.append(PageParseIssue(
+                "ERROR",
+                f"pages[{idx}].ordinal_neutral is only supported on rst_include, "
                 f"not {page_type}"))
             continue
 
@@ -348,6 +366,7 @@ def parse_config_pages(
                     lang=lang,
                     capability=capability,
                     lang_blocks=bool(lang_blocks_raw),
+                    ordinal_neutral=bool(ordinal_neutral_raw),
                 )
             )
             continue
