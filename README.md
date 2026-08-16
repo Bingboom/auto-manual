@@ -53,5 +53,6 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 最短上手示例 | [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) |
 | 长期架构边界 | [`System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md) |
 | AI Agent 操作规则 | [`AGENTS.md`](AGENTS.md) |
+| 钉钉悟空 MCP Bridge 源码与部署 | [`agent/wukong-bridge/README.md`](agent/wukong-bridge/README.md) |
 
 README 只保留路线图、视频位和最短入口；详细机制由上表中的权威文档维护。
