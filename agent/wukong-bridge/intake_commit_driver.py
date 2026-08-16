@@ -52,7 +52,7 @@ BASE = "LD3lb4G1ua4GOVs1vxAc9W2enje"
 STAGING_TABLE = "tblIi0BEufjvGLIU"      # 数据入库表（staging）
 SPEC_TABLE = "tblPUFJqt2uGGvTT"         # 规格参数明细
 PLACEHOLDER_TABLE = "tblEhqJVXiyKtnwq"  # 页面占位参数
-DOCKEY_DICT_TABLE = "tbltnkDIdwiDOP7d"  # 02_主数据_Document_key
+DOCUMENT_KEY_TABLE_ID = "tbltnkDIdwiDOP7d"  # 02_主数据_Document_key
 
 # CREATE 时从姊妹行复制的结构列（值列/链接列单独处理；公式与 lookup 不可写）。
 CLONE_SCALARS = ["Page", "Section", "Section_order", "Row_order", "Line_order",
@@ -191,7 +191,7 @@ def batch_create(table_id: str, fields: list[str], rows: list[list]) -> None:
 
 def find_dockey_record(document_key: str) -> str:
     """在 Document_key 字典表里找目标 key 的 record_id（公式列，只能全读匹配）。"""
-    data = read_rows(DOCKEY_DICT_TABLE)
+    data = read_rows(DOCUMENT_KEY_TABLE_ID)
     try:
         idx = data["columns"].index("Document_key")
     except ValueError:
