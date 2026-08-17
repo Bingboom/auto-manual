@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-07-16
+Updated: 2026-08-16
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -71,6 +71,26 @@ That folder must contain `gilroy-regular-3.otf`, `gilroy-bold-4.otf`, `Gilroy-Li
 If the env var is not set, or the folder is incomplete, the build keeps the normal shared fallback fonts and CI does not change.
 
 If you only need the exact command semantics for one export path, use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) as the authoritative reference.
+
+### 1.3 DingTalk Wukong MCP Bridge
+
+The version-controlled Wukong bridge lives at
+[`agent/wukong-bridge/`](../agent/wukong-bridge). Do not maintain a second
+untracked source copy under a home-directory `wukong-bridge` folder. Point the
+MCP registration at the checked-in `server.py`, keep authentication in the
+external `lark-cli` profile, and keep runtime jobs/exports under the external
+state directory described in the bridge README.
+
+For KR source intake, Wukong must pass an explicit sibling target to both
+`intake_stage` and `intake_commit`. Staging validates canonical English source
+text and the sibling identity
+`Page + Row_key + Slot_key + Section + Line_order`; formal intake additionally
+requires complete coverage of both `规格参数明细` and `页面占位参数`. A successful
+partial staging response is not a complete target: inspect
+`coverage_missing_rows`, finish the missing structures, review every value in
+Base, and use the existing checkbox plus explicit-chat approval gates before
+formal intake. Full configuration and the current contract version are in
+[`agent/wukong-bridge/README.md`](../agent/wukong-bridge/README.md).
 
 InDesign export has two handoff modes. The default production path creates the
 component-heavy native/editable IDML from one deterministic `manual.ir.json`

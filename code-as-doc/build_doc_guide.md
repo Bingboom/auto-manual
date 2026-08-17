@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-Updated: 2026-07-16
+Updated: 2026-08-16
 
 This file is the maintainer-facing Windows and PowerShell build guide.
 The current cross-platform entrypoint is [`build.py`](../build.py).
@@ -62,6 +62,26 @@ python build.py clean
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --build-action validate --languages en,fr
 .\scripts\build_us_jp_manuals.ps1 --model JE-1000F --formats html --open-html
 ```
+
+### 1.1 Wukong MCP bridge source and intake contract
+
+The DingTalk Wukong stdio MCP bridge is maintained in Git under
+[`agent/wukong-bridge/`](../agent/wukong-bridge). Its runtime registration must
+point to that checked-in `server.py`; credentials and `lark-cli` auth remain
+external, while jobs/exports go to `~/.local/state/hello-docs-bridge` (or
+`HELLO_DOCS_BRIDGE_STATE_DIR`).
+
+The KR intake path is sibling-structured and source-first. Wukong passes the
+target and an explicit sibling such as `JE-2000E_KR` + `JE-2000E_US`, writes
+English `手册值`/`行标签` with `Source_lang=en`, and keeps Korean only in optional
+`*_ko` fields. `intake_stage` rejects wrong page routing, unregistered keys,
+wrong Slot/Section/Line order, combined input/output facts, and non-canonical
+manual units before writing staging. Partial valid batches may be staged for
+review, but `intake_commit` requires the union of the target and confirmed
+staging rows to cover the sibling structures in both formal source tables.
+Formal writes still require both the Base `确认` checkbox and explicit
+conversational approval. See the bridge README for registration, security
+boundaries, Wukong call order, and validation commands.
 
 Local PDF font override:
 
