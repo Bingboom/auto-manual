@@ -141,6 +141,27 @@ def _parser() -> argparse.ArgumentParser:
     )
     spec.add_argument("--out", help="Output directory; defaults to reports/source_intake/<document-key>")
     spec.add_argument("--lark-cli", default="lark-cli", help="lark-cli binary when --input is a cloud doc")
+
+    stage = subparsers.add_parser(
+        "stage-plan",
+        description=(
+            "Clone a region sibling's spec + placeholder structures, merge spec-extract candidates, "
+            "apply a small target override map, and emit the current lark-cli create_records payload "
+            "for the approval-gated intake staging table. This command never performs a live write."
+        ),
+    )
+    stage.add_argument("--spec-candidates", required=True, help="spec_intake_candidates.json from spec-extract")
+    stage.add_argument("--spec-sibling", required=True, help="region sibling spec rows: lark record-list JSON or row list")
+    stage.add_argument(
+        "--placeholder-sibling",
+        required=True,
+        help="region sibling placeholder rows: lark record-list JSON or row list",
+    )
+    stage.add_argument("--overrides", help="small target-specific staging override JSON; optional")
+    stage.add_argument("--document-key", required=True, help="target document key, e.g. JE-2000E_KR")
+    stage.add_argument("--source-lang", default="en", help="source language code; default: en")
+    stage.add_argument("--localized-lang", default="", help="paired localized column, e.g. ko for KR")
+    stage.add_argument("--out", help="output directory; defaults to reports/source_intake/<document-key>")
     return parser
 
 
@@ -321,11 +342,49 @@ def _spec_extract(args: argparse.Namespace) -> int:
     return 0
 
 
+def _stage_plan(args: argparse.Namespace) -> int:
+    import json
+
+    from tools.source_intake_staging import build_staging_plan, write_staging_outputs
+
+    out_dir = Path(args.out).resolve() if args.out else _default_out_dir(str(args.document_key))
+    try:
+        spec_candidates = json.loads(Path(args.spec_candidates).read_text(encoding="utf-8"))
+        spec_sibling = json.loads(Path(args.spec_sibling).read_text(encoding="utf-8"))
+        placeholder_sibling = json.loads(Path(args.placeholder_sibling).read_text(encoding="utf-8"))
+        overrides = json.loads(Path(args.overrides).read_text(encoding="utf-8")) if args.overrides else {}
+        plan = build_staging_plan(
+            spec_candidates=spec_candidates,
+            spec_sibling=spec_sibling,
+            placeholder_sibling=placeholder_sibling,
+            overrides=overrides,
+            document_key=str(args.document_key),
+            source_lang=str(args.source_lang or "en"),
+            localized_lang=str(args.localized_lang or ""),
+        )
+        paths = write_staging_outputs(plan, out_dir)
+    except (OSError, RuntimeError, ValueError) as exc:
+        print(f"source-intake: {exc}", file=sys.stderr)
+        return 2
+    for label, path in sorted(paths.items()):
+        print(f"WROTE {label} {path}")
+    summary = plan.get("summary") or {}
+    print(
+        f"STAGING {summary.get('row_count', 0)} "
+        f"SPECS {summary.get('spec_count', 0)} "
+        f"PLACEHOLDERS {summary.get('placeholder_count', 0)} "
+        f"{summary.get('completeness', '')}"
+    )
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = _parser()
     args = parser.parse_args(argv)
     if args.command == "spec-extract":
         return _spec_extract(args)
+    if args.command == "stage-plan":
+        return _stage_plan(args)
     if args.command == "run":
         return _run(args)
     if args.command == "approve":

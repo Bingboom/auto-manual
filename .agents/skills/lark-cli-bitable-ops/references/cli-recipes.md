@@ -1,6 +1,6 @@
 # lark-cli recipes and traps
 
-Verified against lark-cli ≥ 1.0.69 (`/opt/homebrew/bin/lark-cli`). Base
+Verified against lark-cli 1.0.78 (`/opt/homebrew/bin/lark-cli`). Base
 subcommands carry a `+` prefix (`base +record-list`); the base is addressed
 with `--base-token` (the old `--app-token` is gone). If a shape here fails,
 check `lark-cli base --help` first — CLI upgrades have renamed commands before
@@ -8,17 +8,18 @@ check `lark-cli base --help` first — CLI upgrades have renamed commands before
 
 ## Identity
 
-- Default identity is **user**; source-table writes run as **bot** (`--as bot`,
-  with `FEISHU_APP_ID`/`FEISHU_APP_SECRET` set; queue-side code uses
-  `FEISHU_PHASE2_IDENTITY=bot`). Some bases are read-only to one identity
-  (a 91403 error on write usually means wrong identity/permission, not a bug).
+- The maintained business-plane lane is explicit: use `--profile prod --as bot`
+  for both reads and approved writes (`FEISHU_APP_ID`/`FEISHU_APP_SECRET` are
+  external; queue-side code uses `FEISHU_PHASE2_IDENTITY=bot`). Do not rely on
+  the CLI's default profile or default user identity. A 91403 error on write
+  usually means wrong identity/permission, not a payload bug.
 - Secrets arrive via clipboard (`pbpaste`), never chat; mask them in any echo.
 
 ## Reading
 
 ```bash
-lark-cli base +field-list --base-token <BASE> --table-id <TBL>          # fields in data.fields
-lark-cli base +record-list --base-token <BASE> --table-id <TBL> \
+lark-cli --profile prod base +field-list --as bot --base-token <BASE> --table-id <TBL> --limit 200
+lark-cli --profile prod base +record-list --as bot --base-token <BASE> --table-id <TBL> \
   --format json [--filter-json '{"logic":"and","conditions":[["document_key","is","JE-1000F_EU"]]}'] \
   [--limit 200 --offset <n>]
 ```
@@ -35,22 +36,28 @@ lark-cli base +record-list --base-token <BASE> --table-id <TBL> \
 ## Writing
 
 ```bash
-# CREATE (batch): fields + rows-of-arrays — not records/fields objects
-lark-cli base +record-batch-create --base-token <BASE> --table-id <TBL> \
-  --json '{"fields":["Row_key","Value_source"],"rows":[["ac_output","230 V~ 50 Hz, ..."]]}'
+# CREATE (batch): one field map per record; maximum 200 records per call
+lark-cli --profile prod base +record-batch-create --as bot \
+  --base-token <BASE> --table-id <TBL> \
+  --json '{"create_records":[{"Name":"Task A","Status":"Todo"}]}'
+
+# For generated payloads, @file must be cwd-relative. @- is not stdin here.
+lark-cli --profile prod base +record-batch-create --as bot \
+  --base-token <BASE> --table-id <TBL> \
+  --json @reports/source_intake/<run>/spec_intake_staging_payload.json
 
 # UPDATE (batch): same patch applied to every id; null clears a cell
-lark-cli base +record-batch-update --base-token <BASE> --table-id <TBL> \
+lark-cli --profile prod base +record-batch-update --as bot --base-token <BASE> --table-id <TBL> \
   --json '{"record_id_list":["recXXX","recYYY"],"patch":{"是否触发文档构建":["Y"]}}'
 
 # UPDATE/CREATE (single): +record-upsert — there is NO +record-update
 #   with --record-id → update; without → create. Payload is a BARE field map,
 #   not wrapped in {"fields": ...}.
-lark-cli base +record-upsert --base-token <BASE> --table-id <TBL> \
+lark-cli --profile prod base +record-upsert --as bot --base-token <BASE> --table-id <TBL> \
   --record-id recXXX --json '{"Value_source":"..."}'
 
 # DELETE: requires --yes
-lark-cli base +record-delete --base-token <BASE> --table-id <TBL> --record-id recXXX --yes
+lark-cli --profile prod base +record-delete --as bot --base-token <BASE> --table-id <TBL> --record-id recXXX --yes
 ```
 
 ## Field-type traps (each cost a real round)
@@ -80,5 +87,9 @@ lark-cli drive +export --token <obj_token> --doc-type docx \
   `--app-token` → `--base-token`; `record-update` removed (use
   `+record-batch-update` / `+record-upsert`); `+record-upload-attachment`
   added; `record-list` `--limit` hard-capped at 200.
+- **1.0.78**: `+record-batch-create` accepts
+  `{"create_records":[{field:value}, ...]}`; the earlier `fields + rows`
+  recipe is invalid. Generated `--json @file` inputs must use a cwd-relative
+  path; `@-` is not a supported stdin shortcut.
 - When the CLI updates, re-verify one read + one write shape before a batch
   job, and update this file in the same change.

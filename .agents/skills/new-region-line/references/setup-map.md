@@ -94,19 +94,21 @@ The remaining inputs are data/config, not per-consumer Python edits:
 
 ## 3. Feishu data (base = phase2 `LD3lb4G1ua4GOVs1vxAc9W2enje`)
 
-Identities (per hello-docs-machine-setup): **reads** need `--as bot`; **writes**
-(`+field-create`/`+record-batch-create`/`+record-batch-update`/`+record-upsert`) use
-default `--as user`.
+Use the business-plane identity explicitly for every operation:
+`--profile prod --as bot`. Reads and approved writes use the same maintained
+HT-Docs bot; never fall back to the CLI's default profile or default user.
 
 ### lark-cli recipes (gotchas that cost time)
-- `lark-cli base +field-list --as bot --base-token <bt> --table-id <tid> --limit 500`
+- `lark-cli --profile prod base +field-list --as bot --base-token <bt> --table-id <tid> --limit 200`
 - `+record-list … --format json --jq "." --limit 200` returns **columnar** JSON
   (`data.fields`, `data.data` rows, `data.record_id_list`) and **paginates** — loop
   `--offset` until `has_more=false` (a single call caps ~one page; newly-added rows
   are on later pages).
 - `--json @file` must be a **relative path inside cwd** (absolute → invalid_argument);
-  stage payloads in the repo `.tmp/` and pass `@./.tmp/x.json`.
-- `+record-batch-create` payload = `{"fields":[names], "rows":[[values]]}`.
+  `@-` is not stdin. Stage payloads under `reports/source_intake/<run>/` and
+  pass `@reports/source_intake/<run>/spec_intake_staging_payload.json`.
+- `+record-batch-create` payload =
+  `{"create_records":[{"Field":"value"}, ...]}` (maximum 200 records/call).
 - `+record-batch-update` = `{"record_id_list":[…], "patch":{field:value}}` (one patch
   for all; ≤200/call).
 - Multi-select fields do **not** auto-create options on write ("not_found"): add the
@@ -125,8 +127,10 @@ default `--as user`.
 ### 3b. Spec params → `规格参数明细 tblPUFJqt2uGGvTT`
 - Operator flow: extract PDF → map via **字段映射规则表 `tblHrelfzylJIRT2`** (取值规则:
   exclude/passthrough/default/manual/capacity/weight/dims_mm_to_cm/dc12/temp/cycle_life)
-  → write rows to the **入库表 `tblIi0BEufjvGLIU`** (`document_key=<Model>_<Region>`,
-  `Source_lang=en`, `状态`=✅直通/⚠️需确认, `确认` unchecked) → **operator confirms**
+  → generate one sibling-structured batch with `source_intake.py stage-plan`
+  → write that payload to the **入库表 `tblIi0BEufjvGLIU`**
+  (`document_key=<Model>_<Region>`, `Source_lang=en`,
+  `状态`=✅直通/🔧已变换/⚠️需确认, `确认` unchecked) → **operator confirms**
   in Feishu (may edit values + tick 确认=TRUE) → promote confirmed rows into the source table.
 - Source-table rows need **link** fields: `Document_key_link`→document_key dict,
   `Row_key_link`→`tbl8yQfXYe3KKyAM`, `Slot_key_link`→`tblS7qyV1DTZkoNq`

@@ -85,6 +85,14 @@ class FindAndExtractTests(unittest.TestCase):
         _, parts = find_field_value(self.SHEET.splitlines(), "客户型号", headers=headers)
         self.assertEqual(parts[0], "JHP-2000A")
 
+    def test_unique_field_can_fall_back_to_its_base_label(self):
+        raw, _ = find_field_value(
+            ["额定容量: 2048 Wh"],
+            "额定容量(Wh)",
+            headers={"额定容量", "额定容量(wh)"},
+        )
+        self.assertEqual(raw, "2048 Wh")
+
     def test_extract_candidates_applies_rules(self):
         rules = [
             FieldRule("capacity", "GENERAL INFO", "Capacity", "额定容量(Wh)", "capacity"),
@@ -99,6 +107,46 @@ class FindAndExtractTests(unittest.TestCase):
         self.assertEqual(by["cell_chemistry"]["value"], "LiFePO₄")
         self.assertNotIn("ip", by)   # exclude + non-manual-facing dropped
         self.assertTrue(all(r["document_key"] == "JHP-2000A_US" for r in rows))
+
+    def test_exact_suffixes_do_not_cross_match(self):
+        sheet = "\n".join([
+            "充电输入(AC): AC 220V-240V, 60Hz, 10A Max",
+            "充电输入(车充): 11V-16V, 8A Max",
+            "充电输入(DC/PV): 16V-60V, 800W Max",
+            "USBC输出〔140W〕: 140W Max",
+            "USBC输出〔30W〕: 30W Max",
+            "直流扩容口(输入): 75A Max",
+            "直流扩容口(输出): 55A Max",
+        ])
+        rules = [
+            FieldRule("ac", "INPUT PORTS", "AC", "充电输入(AC)", "manual"),
+            FieldRule("car", "INPUT PORTS", "Car", "充电输入(车充)", "manual"),
+            FieldRule("pv", "INPUT PORTS", "PV", "充电输入(DC/PV)", "manual"),
+            FieldRule("usb_c", "OUTPUT PORTS", "USB-C", "USBC输出〔140W〕", "manual", slot_key="140w", line_order=2),
+            FieldRule("usb_c", "OUTPUT PORTS", "USB-C", "USBC输出〔30W〕", "manual", slot_key="30w"),
+            FieldRule("exp_in", "INPUT PORTS", "Expansion", "直流扩容口(输入)", "manual"),
+            FieldRule("exp_out", "OUTPUT PORTS", "Expansion", "直流扩容口(输出)", "manual"),
+        ]
+        rows = extract_candidates(sheet, rules, region="KR", document_key="JE-2000E_KR")
+        values = {(row["Row_key"], row["Slot_key"]): row["value"] for row in rows}
+        self.assertEqual(values[("ac", "")], "AC 220V-240V, 60Hz, 10A Max")
+        self.assertEqual(values[("car", "")], "11V-16V, 8A Max")
+        self.assertEqual(values[("pv", "")], "16V-60V, 800W Max")
+        self.assertEqual(values[("usb_c", "140w")], "140W Max")
+        self.assertEqual(values[("usb_c", "30w")], "30W Max")
+        self.assertEqual(values[("exp_in", "")], "75A Max")
+        self.assertEqual(values[("exp_out", "")], "55A Max")
+
+    def test_ambiguous_base_label_abstains(self):
+        sheet = "充电输入: 220V"
+        rules = [
+            FieldRule("ac", "INPUT PORTS", "AC", "充电输入(AC)", "manual"),
+            FieldRule("car", "INPUT PORTS", "Car", "充电输入(车充)", "manual"),
+        ]
+        rows = extract_candidates(sheet, rules, region="KR", document_key="JE-2000E_KR")
+        self.assertTrue(all(row["raw"] == "" for row in rows))
+        self.assertTrue(all(row["value"] is None for row in rows))
+        self.assertTrue(all(row["status"] == NEEDS_REVIEW for row in rows))
 
 
 class FieldRuleTests(unittest.TestCase):
