@@ -1146,7 +1146,8 @@ def intake_stage(arguments: dict) -> dict:
                              if coverage_preflight else None,
         "coverage_missing_rows": coverage_preflight["missing_rows"]
                                  if coverage_preflight else [],
-        "next": "请操作员在入库表里核对每行手册值并勾「确认」；然后对我说「入库 "
+        "next": "请操作员在入库表里核对每行手册值（英文源值——韩文等译文属后续本地化，"
+                "只进 *_ko 列，勿填进手册值）并勾「确认」；然后对我说「入库 "
                 f"{document_key}」触发 intake_commit（新目标需同时指定姊妹机）。",
     }
 
@@ -1543,7 +1544,9 @@ TOOLS: list[dict] = [
                                          "Slot_key、Line_order（默认1）、章节、行标签、规格书字段、备注"),
                          "items": {"type": "object"}},
                 "source_lang": {"type": "string",
-                                "description": "默认 en；JP 目标用 ja（值与标签都用日文）"},
+                                "description": "默认 en；JP 目标用 ja（值与标签都用日文）。"
+                                               "KR 目标必须 en——韩文绝不进手册值/行标签，"
+                                               "只进 *_ko 本地化列（不要从 JP 规则类比外推）"},
             },
             "required": ["document_key", "rows"],
         },
