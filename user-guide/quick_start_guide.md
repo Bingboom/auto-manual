@@ -1,6 +1,6 @@
 # 快速开始指南
 
-Updated: 2026-07-16
+Updated: 2026-08-17
 
 这份指南只讲当前真实可用的工作方式。
 核心规则只有一句：
@@ -52,6 +52,15 @@ python3 tools/source_intake.py verify --candidates reports/source_intake/<run-id
 ```
 
 `apply` 默认只做 dry-run 计划；只有人工确认后显式加 `--write --table-binding TABLE=BASE:TABLE_ID`，才会写线上 Feishu 源表。新增行仍先停在候选/人审层，不自动创建线上记录。
+
+如果输入是产品规格书，而且已经有同产品或同区域 sibling，默认走重复入库快速通道，不再手工组装几十行：
+
+```bash
+python3 tools/source_intake.py spec-extract --input <spec.pdf> --rules <rules.json> --document-key <MODEL_REGION> --region <REGION> --reference <sibling-spec.json> --out reports/source_intake/<run-id>
+python3 tools/source_intake.py stage-plan --spec-candidates reports/source_intake/<run-id>/spec_intake_candidates.json --spec-sibling <sibling-spec.json> --placeholder-sibling <sibling-placeholders.json> --overrides <target-differences.json> --document-key <MODEL_REGION> --localized-lang <lang> --out reports/source_intake/<run-id>
+```
+
+`stage-plan` 只克隆 sibling 结构并应用目标差异，输出评审文件和一个 `create_records` 批量 payload，不写飞书。它会拒绝模糊规则匹配、sibling 结构缺行以及未配对的本地化值。输入就绪后，机械步骤目标是 3–5 分钟；后续暂存表回读、人工确认和正式源表写入仍是硬门禁。
 
 不要把 [`data/phase2/`](../data/phase2) 当成主编辑面；它是 gitignored 本地 snapshot，每个镜像仓应从自己的 Feishu Base 生成。唯一入库的例外是 [`page_registry.csv`](../data/phase2/page_registry.csv)（仓库维护的页面结构输入，`sync-data` 每次运行都要读取）。
 只有当 `Document_link.是否强制刷新数据 = 勾选` 时，队列才会在这次构建前执行 `sync-data`；不勾时会直接复用当前本地 snapshot。

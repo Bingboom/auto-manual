@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
+from collections import Counter
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -157,7 +158,18 @@ def _base_field(s: str) -> str:
     return _norm(re.sub(r"[〔(（].*?[〕)）]$", "", s or ""))
 
 
-def find_field_value(lines: list[str], spec_field: str, *, headers: set[str]) -> tuple[str | None, list[str]]:
+def _label_norm(s: str) -> str:
+    """Normalise a field label without erasing its disambiguating suffix."""
+    return _norm(unicodedata.normalize("NFKC", s or "")).casefold()
+
+
+def find_field_value(
+    lines: list[str],
+    spec_field: str,
+    *,
+    headers: set[str],
+    allow_base_fallback: bool = True,
+) -> tuple[str | None, list[str]]:
     """Locate a spec-field header in pdftotext lines, return ``(value, parts)``.
 
     The value is taken from the same line (after ``:``/``：``) or the following
@@ -165,17 +177,20 @@ def find_field_value(lines: list[str], spec_field: str, *, headers: set[str]) ->
     2-column table, so leading headers are skipped). ``headers`` is the set of
     normalised field/label names that mark a boundary.
     """
-    bf = _base_field(spec_field)
-    if not bf:
+    full = _label_norm(spec_field)
+    base = _label_norm(_base_field(spec_field))
+    if not full:
         return None, []
 
     def is_label(ln: str) -> bool:
-        n = _norm(ln)
+        n = _label_norm(ln)
         return any(n == h or n.startswith(h) for h in headers) or ln.strip().endswith((":", "："))
 
-    for i, ln in enumerate(lines):
-        n = _norm(ln)
-        if n == bf or n.startswith(bf):
+    def scan(target: str) -> tuple[str | None, list[str]]:
+        for i, ln in enumerate(lines):
+            n = _label_norm(ln)
+            if n != target and not n.startswith(target):
+                continue
             after = re.split(r"[:：]", ln, 1)
             if len(after) == 2 and after[1].strip():
                 return after[1].strip(), [after[1].strip()]
@@ -192,6 +207,13 @@ def find_field_value(lines: list[str], spec_field: str, *, headers: set[str]) ->
                 vals.append(t)
             if vals:
                 return " ".join(vals), vals
+        return None, []
+
+    exact = scan(full)
+    if exact[0] is not None:
+        return exact
+    if allow_base_fallback and base and base != full:
+        return scan(base)
     return None, []
 
 
@@ -199,7 +221,12 @@ def extract_candidates(text: str, rules: list[FieldRule], *, region: str,
                        document_key: str, source_lang: str = "en") -> list[dict[str, Any]]:
     """Apply the rule set to spec-sheet text -> candidate rows (one per manual-facing rule)."""
     lines = [ln.rstrip() for ln in (text or "").splitlines()]
-    headers = {_base_field(r.spec_field) for r in rules} | {_norm(h) for h in _LABEL_HINT}
+    base_counts = Counter(_label_norm(_base_field(r.spec_field)) for r in rules if r.spec_field)
+    headers = (
+        {_label_norm(r.spec_field) for r in rules}
+        | {_label_norm(_base_field(r.spec_field)) for r in rules}
+        | {_label_norm(h) for h in _LABEL_HINT}
+    )
     headers.discard("")
     out: list[dict[str, Any]] = []
     for r in rules:
@@ -207,7 +234,13 @@ def extract_candidates(text: str, rules: list[FieldRule], *, region: str,
             continue
         raw, parts = (None, [])
         if r.op != "default":
-            raw, parts = find_field_value(lines, r.spec_field, headers=headers)
+            base = _label_norm(_base_field(r.spec_field))
+            raw, parts = find_field_value(
+                lines,
+                r.spec_field,
+                headers=headers,
+                allow_base_fallback=bool(base and base_counts[base] == 1),
+            )
         value, status = apply_op(r.op, raw, r.default, region, parts=parts or None)
         out.append({
             "Row_key": r.row_key, "Section": r.section, "label": r.label,

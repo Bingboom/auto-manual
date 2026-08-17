@@ -1,6 +1,6 @@
 ---
 name: spec-sheet-structured-intake
-description: Turn a product spec sheet (产品规格书, PDF/Markdown) into reviewable structured rows and ingest them into the Feishu phase2 source tables (规格参数明细 specs + 页面占位参数 placeholders), per region/language. Use when onboarding a NEW model or region (e.g. JE-2000E US/JP) end to end — extract via the field-mapping rule library, gate completeness against a sibling target, get human confirmation, clone-ingest into both source tables, then sync-data + build. Forward/entry counterpart of cloud-doc backport (the return path). NOT for routine reviewed-wording edits, translation memory, or single-value tweaks.
+description: Turn a product spec sheet (产品规格书, PDF/Markdown) into reviewable structured rows and ingest them into the Feishu phase2 source tables (规格参数明细 specs + 页面占位参数 placeholders), per region/language. Use for the repeated structured-intake lane when onboarding a model/region (e.g. JE-2000E KR), and for a revised spec that must be diffed against an existing target. Extract via rules, gate against a sibling, generate one staging batch, get human confirmation, then clone-create or diff-update both source tables followed by sync-data + build. Forward/entry counterpart of cloud-doc backport (the return path). NOT for routine reviewed-wording edits, translation memory, or single-value tweaks.
 ---
 
 # Spec Sheet → Structured Data Intake
@@ -20,7 +20,8 @@ share the same spine: `data/phase2/source_record_index.json` sidecar, the
 ## Tools (committed)
 
 - `tools/source_intake.py` — CLI. Subcommands: `spec-extract` (PDF/MD → candidates via rules,
-  + completeness gate), `run`/`approve`/`apply`/`verify` (Markdown candidate → approval-gated write).
+  + completeness gate), `stage-plan` (sibling rows + target differences → one review/payload batch),
+  and `run`/`approve`/`apply`/`verify` (Markdown candidate → approval-gated update).
 - `tools/source_intake_rules.py` — the rule engine: `FieldRule`, region-aware `apply_op`
   (capacity / weight / dims / temp / cycle_life / dc12 / passthrough / default / manual / exclude),
   `extract_candidates`, `display_width` (East-Asian width).
@@ -51,24 +52,89 @@ share the same spine: `data/phase2/source_record_index.json` sidecar, the
    operation-guide values, storage temps). Gate the candidate set against the same product's
    already-ingested sibling (`JE-2000E_US` for `JE-2000E_JP`, or the JP sibling for a new JP manual):
    missing logical rows = a real gap to fill before ingest.
-4. **Stage, then STOP for human confirmation (hard gate).** Writing the candidates into the
-   staging table is YOUR step, not the operator's: write every candidate (including
-   `needs_review`) into the 入库暂存表 (`tblIi0BEufjvGLIU`), with `状态` set from the engine
-   verdict (✅直通 / 🔧已变换 / ⚠️需确认), report the staged record count + a filtered view
-   back to the operator, and wait. Only rows the operator explicitly confirms (「确认」/
-   「入库」, per row or per batch — numbered picks count) are eligible to ingest. Jumping from
-   extraction straight to ingest without the staging write is the exact miss the operator has
-   had to catch by hand (2026-07-15).
-5. **Ingest into BOTH source tables (CREATE = clone a sibling):** `规格参数明细` (Page=specifications)
+4. **Generate one repeatable staging batch.** Do not hand-compose rows. Run `stage-plan` with
+   the complete chosen sibling exports and a small override file containing
+   only target differences. It clones the sibling's spec + placeholder structure, requires exact
+   `Page + Section + Row_key + Slot_key + Line_order` coverage, carries localized columns together,
+   marks unproven inherited values `⚠️需确认`, and emits:
+   `spec_intake_staging_plan.json`, `spec_intake_staging_payload.json`, and
+   `spec_intake_staging_review.md`. It never writes Feishu.
+5. **Stage, then STOP for human confirmation (hard gate).** Batch-create the generated payload in
+   the 入库暂存表 (`tblIi0BEufjvGLIU`), report the read-back count + filtered view, and wait.
+   Only rows the operator explicitly confirms (「确认」/「入库」, per row or per batch — numbered
+   picks count) are eligible to ingest. Jumping from extraction straight to formal source tables
+   is forbidden.
+6. **Ingest into BOTH source tables (CREATE = clone a sibling):** `规格参数明细` (Page=specifications)
    + `页面占位参数` (Page≠specifications). See "Ingest by cloning" below.
-6. **Close + verify:** `python build.py sync-data --config <cfg> --sync-scope params`, then
+7. **Close + verify:** `python build.py sync-data --config <cfg> --sync-scope params`, then
    `python build.py check --config <cfg> --model <CANONICAL> --region <REGION>`, then a `rst`/`html`
    build to eyeball.
+
+## Repeated-intake fast path (default)
+
+Once the rule export and sibling JSON are available, the mechanical portion should take about
+**3–5 minutes before human review**. Schema creation, new-language registration, translation, and
+formal-table approval are outside that repeat-run timing.
+
+```bash
+python tools/source_intake.py spec-extract \
+  --input <spec.pdf> --rules <rules.json> \
+  --document-key JE-2000E_KR --region KR \
+  --reference <sibling-spec.json> --out reports/source_intake/JE-2000E_KR
+
+python tools/source_intake.py stage-plan \
+  --spec-candidates reports/source_intake/JE-2000E_KR/spec_intake_candidates.json \
+  --spec-sibling <sibling-spec.json> \
+  --placeholder-sibling <sibling-placeholders.json> \
+  --overrides <target-differences.json> \
+  --document-key JE-2000E_KR --localized-lang ko \
+  --out reports/source_intake/JE-2000E_KR
+```
+
+Minimal override shape (use only rows that differ from the sibling):
+
+```json
+{
+  "schema_version": "source-intake-staging-overrides/v1",
+  "rows": [{
+    "key": {
+      "Page": "specifications",
+      "Section": "INPUT PORTS",
+      "Row_key": "ac_input",
+      "Slot_key": "",
+      "Line_order": 1
+    },
+    "fields": {
+      "Value_source": "220 V~240 V, 60 Hz, 10 A Max",
+      "Value_ko": "220 V~240 V, 60 Hz, 10 A 최대",
+      "note": "confirmed from KR spec"
+    }
+  }]
+}
+```
+
+Review the generated Markdown, then write the staging payload and read it back. The current CLI
+contract is `create_records`; use the business-plane bot explicitly and keep `@file` relative to
+the repo cwd:
+
+```bash
+lark-cli --profile prod base +record-batch-create --as bot \
+  --base-token LD3lb4G1ua4GOVs1vxAc9W2enje --table-id tblIi0BEufjvGLIU \
+  --json @reports/source_intake/JE-2000E_KR/spec_intake_staging_payload.json
+
+lark-cli --profile prod base +record-list --as bot \
+  --base-token LD3lb4G1ua4GOVs1vxAc9W2enje --table-id tblIi0BEufjvGLIU \
+  --filter-json '{"logic":"and","conditions":[["document_key","==","JE-2000E_KR"]]}' \
+  --limit 200 --format json
+```
+
+Any `stage-plan` structure mismatch, missing localized counterpart, or ambiguous extractor match is
+an intentional stop, not a prompt to repair dozens of rows by hand.
 
 ## Hard gates (each QC'd in by the operator after a real miss)
 
 1. **Staging-write-first.** Candidates go into the staging table and get operator confirmation
-   BEFORE any source-table write — never extraction → ingest directly (workflow step 4).
+   BEFORE any source-table write — never extraction → ingest directly (workflow step 5).
 2. **Sibling reference = real structure.** `spec-extract` always runs with `--reference`, and the
    sibling is chosen by target: single-language-English regions (AU-style) → the EU sibling's
    confirmed English rows; JP → the JP sibling (phrasing + structure); KR → the KR sibling
@@ -96,11 +162,11 @@ share the same spine: `data/phase2/source_record_index.json` sidecar, the
    printing the old value (JE-1000H_KR, 2026-07-27).
 6. **Re-ingest and revisions are diffs, not rewrites.** Before ANY ingest, check whether the
    target `document_key` already has rows (`record-list --filter-json` on BOTH source tables) —
-   a blind clone onto an existing target doubles the row set (JE-1800B_JP, 2026-07-06); if
-   found, delete all of that document_key's source rows and rebuild from the correct payload
-   (keep the Model / Document_key master-data records). The write path has no upsert: clean up
-   a half-failed run the same way. A revised spec sheet (rev A0 → A1) is diffed against the
-   ingested rows and applied incrementally — never re-cloned over live rows.
+   a blind clone onto an existing target doubles the row set (JE-1800B_JP, 2026-07-06). Zero rows
+   means CREATE by sibling clone; a complete existing target means diff-update only. A half-failed
+   target requires an explicit operator-approved cleanup/rebuild decision — never infer deletion
+   from a partial query. A revised spec sheet (rev A0 → A1) is diffed against the ingested rows
+   and applied incrementally — never re-cloned over live rows.
 
 ## Region & language (critical)
 
@@ -155,6 +221,6 @@ and substitute values:
 
 ## Validation
 
-- `python3 -m unittest tests.test_source_intake_rules tests.test_source_intake_completeness`
-- `python3 -m ruff check tools/source_intake_rules.py tools/source_intake_completeness.py tools/source_intake.py`
-- End to end: `spec-extract` → review → ingest → `python build.py check --config <cfg> --model <CANONICAL> --region <REGION>` → `python build.py html ...`
+- `python3 -m unittest tests.test_source_intake_rules tests.test_source_intake_completeness tests.test_source_intake_staging`
+- `python3 -m ruff check tools/source_intake_rules.py tools/source_intake_completeness.py tools/source_intake_staging.py tools/source_intake.py`
+- End to end: `spec-extract` → `stage-plan` → review → ingest → `python build.py check --config <cfg> --model <CANONICAL> --region <REGION>` → `python build.py html ...`
