@@ -16,6 +16,9 @@
 三条流转：**文档流**（规格→构建→评审→回写，闭环）、**语料流**（评审修正→翻译
 记忆→预翻译，闭环）、**模板流**（模板→构建，反哺回路在建）。
 
+系统为什么长成这样（一行内核 + 十环演进，十分钟读物）：
+[`code-as-doc/architecture/system_evolution_history.md`](code-as-doc/architecture/system_evolution_history.md)。
+
 ## 2. 两平面拓扑（先记住这个再动手）
 
 | 平面 | 仓库 | 职责 | 数据 |

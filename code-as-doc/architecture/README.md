@@ -9,6 +9,9 @@ Not every file here is equally current.
 
 - [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md)
   - long-term strategy and stable architectural principles
+- [`system_evolution_history.md`](system_evolution_history.md)
+  - retrospective narrative of how the system actually evolved (kernel + ten
+    rings, dated); the backward-looking counterpart of the Strategy doc
 - [`Hello_Docs_Architecture.md`](Hello_Docs_Architecture.md)
   - current repository component map and ownership split
 - [`OpenClaw_Control_Layer_Plan.md`](OpenClaw_Control_Layer_Plan.md)

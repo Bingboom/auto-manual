@@ -15,6 +15,9 @@ Use it to define:
 - the architectural principles that should survive implementation changes
 
 Do not use this file as the repo task list or optimization backlog.
+Do not append repo history here either — for how the system actually got to
+its current shape, use
+[`system_evolution_history.md`](system_evolution_history.md).
 
 For repo-level execution planning, use:
 
