@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "skip_count": 3,
-  "reason": "The current fixture snapshot has no document_key rows for AU, KR, and pt-BR targets.",
+  "skip_count": 4,
+  "reason": "The current fixture snapshot has no document_key rows for AU, JE-1000F_KR, JE-2000E_KR, and pt-BR targets.",
   "skipped_configs": [
     "configs/config.au-en.yaml",
     "configs/config.kr.yaml",

@@ -7,6 +7,8 @@ build:
   targets:
     - model: JE-1000F
       region: KR
+    - model: JE-2000E
+      region: KR
   languages: [ko]
   include_lang_in_output_path: true
   output_pdf: manual_{model_slug}_{region_slug}_{lang_slug}.pdf

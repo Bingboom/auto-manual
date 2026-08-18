@@ -8,124 +8,262 @@
     },
     {
       "op": "replace",
-      "path": "/pages",
+      "path": "/pages/0/file",
+      "value": "templates/page_shared/ko/00_preface.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/0/lang",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/1/file",
+      "value": "templates/page_eu-kr/safety_ko.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/1/lang",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/2/file",
+      "value": "templates/page_shared/ko/01_user_maintenance_instructions.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/2/lang",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/3/langs/0",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/4/file",
+      "value": "templates/page_shared/ko/02_whats_in_the_box.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/4/lang",
+      "value": "ko"
+    },
+    {
+      "op": "remove",
+      "path": "/pages/5/file"
+    },
+    {
+      "op": "remove",
+      "path": "/pages/5/lang"
+    },
+    {
+      "op": "add",
+      "path": "/pages/5/engine",
+      "value": "draft_v1"
+    },
+    {
+      "op": "add",
+      "path": "/pages/5/include_dir",
+      "value": "generated/{model}/draft"
+    },
+    {
+      "op": "add",
+      "path": "/pages/5/langs",
       "value": [
-        {
-          "file": "templates/page_shared/ko/00_preface.rst",
-          "lang": "ko",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_eu-kr/safety_ko.rst",
-          "lang": "ko",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_shared/ko/01_user_maintenance_instructions.rst",
-          "lang": "ko",
-          "type": "rst_include"
-        },
-        {
-          "include_dir": "generated/{model}",
-          "langs": [
-            "ko"
-          ],
-          "page": "symbols",
-          "source": "phase2",
-          "type": "csv_page"
-        },
-        {
-          "file": "templates/page_shared/ko/02_whats_in_the_box.rst",
-          "lang": "ko",
-          "type": "rst_include"
-        },
-        {
-          "engine": "draft_v1",
-          "include_dir": "generated/{model}/draft",
-          "langs": [
-            "ko"
-          ],
-          "page": "03_product_overview",
-          "recipe": "templates/recipes/eu-en/03_product_overview.yaml",
-          "template": "templates/page_eu-kr/03_product_overview_placeholder.rst",
-          "type": "generated_page"
-        },
-        {
-          "include_dir": "generated/{model}",
-          "langs": [
-            "ko"
-          ],
-          "page": "lcd_icons",
-          "source": "phase2",
-          "type": "csv_page"
-        },
-        {
-          "engine": "draft_v1",
-          "include_dir": "generated/{model}/draft",
-          "langs": [
-            "ko"
-          ],
-          "page": "05_operation_guide",
-          "recipe": "templates/recipes/eu-en/05_operation_guide.yaml",
-          "template": "templates/page_eu-kr/05_operation_guide_placeholder.rst",
-          "type": "generated_page"
-        },
-        {
-          "capability": "UPS功能",
-          "file": "templates/page_shared/ko/06_ups_mode.rst",
-          "lang": "ko",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_shared/ko/charging.rst",
-          "lang": "ko",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_shared/ko/08_charging_methods.rst",
-          "lang": "ko",
-          "type": "rst_include"
-        },
-        {
-          "file": "templates/page_shared/ko/09_storage_and_maintenance.rst",
-          "lang": "ko",
-          "type": "rst_include"
-        },
-        {
-          "include_dir": "generated/{model}",
-          "langs": [
-            "ko"
-          ],
-          "page": "troubleshooting",
-          "source": "phase2",
-          "type": "csv_page"
-        },
-        {
-          "include_dir": "generated/{model}",
-          "langs": [
-            "ko"
-          ],
-          "page": "spec",
-          "source": "phase2",
-          "type": "csv_page"
-        },
-        {
-          "file": "templates/page_shared/ko/11_warranty.rst",
-          "lang": "ko",
-          "type": "rst_include"
-        },
-        {
-          "engine": "draft_v1",
-          "include_dir": "generated/{model}/draft",
-          "langs": [
-            "ko"
-          ],
-          "page": "12_app_setup",
-          "recipe": "templates/recipes/eu-shared-en/12_app_setup.yaml",
-          "template": "templates/page_shared/ko/12_app_setup_placeholder.rst",
-          "type": "generated_page"
-        }
+        "ko"
       ]
+    },
+    {
+      "op": "add",
+      "path": "/pages/5/page",
+      "value": "03_product_overview"
+    },
+    {
+      "op": "add",
+      "path": "/pages/5/recipe",
+      "value": "templates/recipes/eu-en/03_product_overview.yaml"
+    },
+    {
+      "op": "add",
+      "path": "/pages/5/template",
+      "value": "templates/page_eu-kr/03_product_overview_placeholder.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/5/type",
+      "value": "generated_page"
+    },
+    {
+      "op": "remove",
+      "path": "/pages/6/file"
+    },
+    {
+      "op": "remove",
+      "path": "/pages/6/lang"
+    },
+    {
+      "op": "add",
+      "path": "/pages/6/include_dir",
+      "value": "generated/{model}"
+    },
+    {
+      "op": "add",
+      "path": "/pages/6/langs",
+      "value": [
+        "ko"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/pages/6/page",
+      "value": "lcd_icons"
+    },
+    {
+      "op": "add",
+      "path": "/pages/6/source",
+      "value": "phase2"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/6/type",
+      "value": "csv_page"
+    },
+    {
+      "op": "remove",
+      "path": "/pages/7/source"
+    },
+    {
+      "op": "add",
+      "path": "/pages/7/engine",
+      "value": "draft_v1"
+    },
+    {
+      "op": "add",
+      "path": "/pages/7/recipe",
+      "value": "templates/recipes/eu-en/05_operation_guide.yaml"
+    },
+    {
+      "op": "add",
+      "path": "/pages/7/template",
+      "value": "templates/page_eu-kr/05_operation_guide_placeholder.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/7/include_dir",
+      "value": "generated/{model}/draft"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/7/langs/0",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/7/page",
+      "value": "05_operation_guide"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/7/type",
+      "value": "generated_page"
+    },
+    {
+      "op": "add",
+      "path": "/pages/8/capability",
+      "value": "UPS功能"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/8/file",
+      "value": "templates/page_shared/ko/06_ups_mode.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/8/lang",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/9/capability",
+      "value": "加电包扩容"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/9/file",
+      "value": "templates/page_shared/ko/07_extra_battery.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/9/lang",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/10/file",
+      "value": "templates/page_shared/ko/charging.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/10/lang",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/11/file",
+      "value": "templates/page_shared/ko/08_charging_methods.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/11/lang",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/12/file",
+      "value": "templates/page_shared/ko/09_storage_and_maintenance.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/12/lang",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/13/langs/0",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/14/langs/0",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/15/file",
+      "value": "templates/page_shared/ko/11_warranty.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/15/lang",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/16/langs/0",
+      "value": "ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/16/recipe",
+      "value": "templates/recipes/eu-shared-en/12_app_setup.yaml"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/16/template",
+      "value": "templates/page_shared/ko/12_app_setup_placeholder.rst"
     }
   ],
   "schema_version": "family-manifest-diff/v1",

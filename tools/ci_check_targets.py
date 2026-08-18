@@ -60,7 +60,7 @@ Runner = Callable[[Sequence[str]], CommandResult]
 
 
 def discover_targets(configs_dir: Path) -> tuple[CheckTarget, ...]:
-    """Resolve exactly one target from every config file in ``configs_dir``."""
+    """Resolve every target from every config file in ``configs_dir``."""
 
     targets: list[CheckTarget] = []
     for config_path in sorted(configs_dir.glob("config*.yaml")):
@@ -72,21 +72,21 @@ def discover_targets(configs_dir: Path) -> tuple[CheckTarget, ...]:
             arg_lang=None,
             all_targets=True,
         )
-        if len(resolved) != 1:
-            raise RuntimeError(
-                f"Expected one configured target for {config_path.name}, got {resolved!r}"
+        if not resolved:
+            raise RuntimeError(f"Config {config_path.name} resolved no targets")
+        for target in resolved:
+            if not target.model or not target.region:
+                raise RuntimeError(
+                    f"Config {config_path.name} resolved an incomplete target: {target!r}"
+                )
+            targets.append(
+                CheckTarget(
+                    config_path=config_path,
+                    model=target.model,
+                    region=target.region,
+                    lang=target.lang,
+                )
             )
-        target = resolved[0]
-        if not target.model or not target.region:
-            raise RuntimeError(f"Config {config_path.name} resolved an incomplete target: {target!r}")
-        targets.append(
-            CheckTarget(
-                config_path=config_path,
-                model=target.model,
-                region=target.region,
-                lang=target.lang,
-            )
-        )
     if not targets:
         raise RuntimeError(f"No config*.yaml files found under {configs_dir}")
     return tuple(targets)

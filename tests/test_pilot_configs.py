@@ -56,6 +56,19 @@ class TestPilotConfigs(unittest.TestCase):
             region="JP",
         )
 
+    def test_kr_config_should_register_je_2000e_target(self) -> None:
+        cfg = check_docs.load_config(ROOT / "configs/config.kr.yaml")
+
+        self.assertIn(
+            {"model": "JE-2000E", "region": "KR"},
+            cfg.get("build", {}).get("targets", []),
+        )
+        self.assertEqual(["ko"], cfg.get("build", {}).get("languages"))
+        self.assertEqual(
+            "docs/manifests/manual_kr.yaml",
+            cfg.get("paths", {}).get("page_manifest"),
+        )
+
     def test_us_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
             ("configs/config.us-en.yaml", "en", "us-en", "docs/manifests/manual_us-single-en.yaml", 17),

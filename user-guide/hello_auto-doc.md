@@ -985,6 +985,7 @@ Config scope rule:
 - [`configs/config.us-en.yaml`](../configs/config.us-en.yaml): canonical US English single-language review / CI / explicit review-preview landing target
 - [`configs/config.ja.yaml`](../configs/config.ja.yaml): shared JP template-family config
 - [`configs/config.zh.yaml`](../configs/config.zh.yaml): shared CN zh template-family config using [`docs/manifests/manual_zh.yaml`](../docs/manifests/manual_zh.yaml)
+- [`configs/config.kr.yaml`](../configs/config.kr.yaml): shared KR ko template-family config for `JE-1000F_KR` and `JE-2000E_KR`, using [`docs/manifests/manual_kr.yaml`](../docs/manifests/manual_kr.yaml)
 - [`configs/config.eu.yaml`](../configs/config.eu.yaml): shared EU merged template-family config using [`docs/manifests/manual_eu.yaml`](../docs/manifests/manual_eu.yaml)
 - [`configs/config.eu-en.yaml`](../configs/config.eu-en.yaml), [`configs/config.eu-fr.yaml`](../configs/config.eu-fr.yaml), [`configs/config.eu-es.yaml`](../configs/config.eu-es.yaml), [`configs/config.eu-de.yaml`](../configs/config.eu-de.yaml), [`configs/config.eu-it.yaml`](../configs/config.eu-it.yaml), and [`configs/config.eu-uk.yaml`](../configs/config.eu-uk.yaml): explicit EU single-language configs using [`../docs/manifests/manual_eu-en.yaml`](../docs/manifests/manual_eu-en.yaml) plus the corresponding [`../docs/manifests/manual_eu-single-*.yaml`](../docs/manifests) stacks
 - [`configs/config.us-en.yaml`](../configs/config.us-en.yaml), [`configs/config.us-es.yaml`](../configs/config.us-es.yaml), [`configs/config.us-fr.yaml`](../configs/config.us-fr.yaml), and [`configs/config.pt-br.yaml`](../configs/config.pt-br.yaml) now inherit their shared single-language US defaults from [`../configs/config-bases/us-single-language-base.yaml`](../configs/config-bases/us-single-language-base.yaml); keep common single-language build defaults there and keep language-specific page order in [`../docs/manifests/manual_us-single-en.yaml`](../docs/manifests/manual_us-single-en.yaml), [`../docs/manifests/manual_us-single-es.yaml`](../docs/manifests/manual_us-single-es.yaml), [`../docs/manifests/manual_us-single-fr.yaml`](../docs/manifests/manual_us-single-fr.yaml), and [`../docs/manifests/manual_pt-br.yaml`](../docs/manifests/manual_pt-br.yaml)
@@ -1003,6 +1004,7 @@ python build.py sync-review --config configs/config.us-en.yaml --model JE-1000F 
 python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US
 python build.py publish --config configs/config.us-en.yaml --model JE-1000F --region US
 python build.py check --config configs/config.zh.yaml --model JE-2000E --region CN
+python build.py check --config configs/config.kr.yaml --model JE-2000E --region KR
 python build.py rst --config configs/config.us.yaml
 python build.py word --config configs/config.us-en.yaml --model JE-1000F --region US
 python build.py pdf --config configs/config.ja.yaml --model JE-2000F --region JP
@@ -1024,7 +1026,7 @@ Source mode meaning:
 PR preview note:
 
 - when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, GitHub review-preview switches the default landing target to `configs/config.zh.yaml` for `JE-2000E / CN` automatically, but the packaged workspace still includes every existing review model
-- when `--region` is `US`, `JP`, or `CN`, `python tools/process_docs/build_review_preview.py` can omit `--config` and fall back to the shared family default; keep `--config configs/config.us-en.yaml` when you want the packaged workspace to open on the explicit US English single-language target by default
+- when `--region` has a registered shared family default (`US`, `EU`, `JP`, `CN`, or `KR`), `python tools/process_docs/build_review_preview.py` can omit `--config`; keep `--config configs/config.us-en.yaml` when you want the packaged workspace to open on the explicit US English single-language target by default
 - the Vercel review-preview fallback derives those family configs and its first fallback target by scanning `configs/config*.yaml`; it is used only when `PREVIEW_MODEL` / `PREVIEW_REGION` and the review tree do not provide a target
 
 `publish` behavior:

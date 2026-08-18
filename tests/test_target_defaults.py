@@ -44,6 +44,7 @@ class TestTargetDefaults(unittest.TestCase):
                 "EU": "configs/config.eu.yaml",
                 "JP": "configs/config.ja.yaml",
                 "CN": "configs/config.zh.yaml",
+                "KR": "configs/config.kr.yaml",
             },
             defaults.family_default_configs,
         )
@@ -70,6 +71,12 @@ class TestTargetDefaults(unittest.TestCase):
                 languages="ja",
             )
             self._write_config(configs_dir / "config.zh.yaml", region="CN", languages="zh")
+            self._write_config(
+                configs_dir / "config.kr.yaml",
+                region="KR",
+                languages="ko",
+                include_lang=True,
+            )
             self._write_config(
                 configs_dir / "config.eu.yaml",
                 region="EU",

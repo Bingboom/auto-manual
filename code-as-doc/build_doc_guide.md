@@ -85,6 +85,11 @@ Formal writes still require both the Base `确认` checkbox and explicit
 conversational approval. See the bridge README for registration, security
 boundaries, Wukong call order, and validation commands.
 
+`JE-2000E_KR` is registered in the shared [`config.kr.yaml`](../configs/config.kr.yaml)
+KR/ko family. Family-default discovery routes automatic close checks to that
+config; a target-scoped verification uses `python build.py check --config
+configs/config.kr.yaml --model JE-2000E --region KR`.
+
 Local PDF font override:
 
 - for local-only Gilroy preview, set `AUTO_MANUAL_LOCAL_GILROY_DIR=<absolute-font-dir>` before `python build.py pdf ...` or `python build.py publish ...`

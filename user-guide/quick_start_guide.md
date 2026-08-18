@@ -62,6 +62,12 @@ python3 tools/source_intake.py stage-plan --spec-candidates reports/source_intak
 
 `stage-plan` 只克隆 sibling 结构并应用目标差异，输出评审文件和一个 `create_records` 批量 payload，不写飞书。它会拒绝模糊规则匹配、sibling 结构缺行以及未配对的本地化值。输入就绪后，机械步骤目标是 3–5 分钟；后续暂存表回读、人工确认和正式源表写入仍是硬门禁。
 
+JE-2000E 韩规目标复用共享 KR/ko 家族配置；源表确认入库并同步后，用下面的目标命令验收：
+
+```bash
+python3 build.py check --config configs/config.kr.yaml --model JE-2000E --region KR
+```
+
 不要把 [`data/phase2/`](../data/phase2) 当成主编辑面；它是 gitignored 本地 snapshot，每个镜像仓应从自己的 Feishu Base 生成。唯一入库的例外是 [`page_registry.csv`](../data/phase2/page_registry.csv)（仓库维护的页面结构输入，`sync-data` 每次运行都要读取）。
 只有当 `Document_link.是否强制刷新数据 = 勾选` 时，队列才会在这次构建前执行 `sync-data`；不勾时会直接复用当前本地 snapshot。
 

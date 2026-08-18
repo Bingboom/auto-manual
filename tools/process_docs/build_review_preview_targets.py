@@ -121,8 +121,10 @@ WORKSPACE_TARGET_TEMPLATES: Sequence[WorkspaceTargetTemplate] = _WorkspaceTarget
 def default_family_config_for_region(region: str) -> str:
     config_name = FAMILY_DEFAULT_CONFIGS.get((region or "").strip().upper())
     if config_name is None:
+        supported = ", ".join(FAMILY_DEFAULT_CONFIGS)
         raise RuntimeError(
-            "Review preview requires --config when --region is outside the supported family defaults (US, JP, CN)."
+            "Review preview requires --config when --region is outside the "
+            f"supported family defaults ({supported})."
         )
     return config_name
 

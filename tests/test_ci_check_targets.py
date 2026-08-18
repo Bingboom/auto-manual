@@ -36,6 +36,21 @@ class TestCiCheckTargets(unittest.TestCase):
         self.assertEqual(len(expanded), len(original) + 1)
         self.assertIn("config.zz-test.yaml", {target.config_path.name for target in expanded})
 
+    def test_shared_family_config_expands_every_target(self) -> None:
+        targets = tuple(
+            target
+            for target in discover_targets(ROOT / "configs")
+            if target.config_path.name == "config.kr.yaml"
+        )
+
+        self.assertEqual(
+            (
+                ("JE-1000F", "KR", "ko"),
+                ("JE-2000E", "KR", "ko"),
+            ),
+            tuple((target.model, target.region, target.lang) for target in targets),
+        )
+
     def test_missing_document_key_is_explicit_skip_and_does_not_run_check(self) -> None:
         target = CheckTarget(Path("configs/config.au-en.yaml"), "JE-1000F", "AU", "en")
         calls: list[list[str]] = []
