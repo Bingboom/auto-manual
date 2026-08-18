@@ -12,7 +12,7 @@
       \HBOverviewPair{|FRONT_USB_A_LABEL|}{|FRONT_USB_A_SPEC|}{|FRONT_AC_OUTPUT_LABEL|}{|FRONT_AC_OUTPUT_SPEC|}
       \HBOverviewFull{|FRONT_TOTAL_OUTPUT_LABEL|}{|FRONT_TOTAL_OUTPUT_SPEC|}
       }
-      \HBOverviewPanel{우측 측면 뷰}{right_side_ports.png}{%
+      \HBOverviewPanel{오른쪽 측면도}{right_side_ports.png}{%
       \HBOverviewPair{손잡이}{}{|SIDE_AC_INPUT_LABEL|}{|SIDE_AC_INPUT_SPEC|}
       \HBOverviewPair{}{}{|SIDE_DC_INPUT_LABEL|}{|SIDE_DC_INPUT_PV_SPEC| \newline |SIDE_DC_INPUT_CAR_SPEC|}
       }
@@ -64,7 +64,7 @@
 
           |FRONT_TOTAL_OUTPUT_SPEC|
 
-   우측 측면 뷰
+   오른쪽 측면도
    ------------
 
    .. image:: asset:overview/right_side_ports
