@@ -16,7 +16,7 @@ def _config_paths(configs_dir: Path = CONFIGS_DIR) -> tuple[Path, ...]:
     return tuple(sorted(configs_dir.glob("config*.yaml")))
 
 
-def _load_and_resolve_target(config_path: Path) -> build_docs.BuildTarget:
+def _load_and_resolve_targets(config_path: Path) -> tuple[build_docs.BuildTarget, ...]:
     cfg = load_config_mapping(config_path)
     targets = build_docs.resolve_build_targets(
         cfg,
@@ -25,26 +25,27 @@ def _load_and_resolve_target(config_path: Path) -> build_docs.BuildTarget:
         arg_lang=None,
         all_targets=True,
     )
-    if len(targets) != 1:
-        raise RuntimeError(f"Expected one configured target for {config_path.name}, got {targets!r}")
-
-    target = targets[0]
-    if not target.model or not target.region:
-        raise RuntimeError(f"Config {config_path.name} resolved an incomplete target: {target!r}")
-    return target
+    if not targets:
+        raise RuntimeError(f"Config {config_path.name} resolved no targets")
+    for target in targets:
+        if not target.model or not target.region:
+            raise RuntimeError(f"Config {config_path.name} resolved an incomplete target: {target!r}")
+    return tuple(targets)
 
 
 class TestConfigShapeCoverage(unittest.TestCase):
-    def test_every_config_loads_and_resolves_one_target(self) -> None:
+    def test_every_config_loads_and_resolves_at_least_one_target(self) -> None:
         config_paths = _config_paths()
         self.assertGreater(len(config_paths), 0)
 
         resolved_paths: list[Path] = []
         for config_path in config_paths:
             with self.subTest(config=config_path.name):
-                target = _load_and_resolve_target(config_path)
-                self.assertTrue(target.model)
-                self.assertTrue(target.region)
+                targets = _load_and_resolve_targets(config_path)
+                self.assertGreater(len(targets), 0)
+                for target in targets:
+                    self.assertTrue(target.model)
+                    self.assertTrue(target.region)
                 resolved_paths.append(config_path)
 
         self.assertEqual(config_paths, tuple(resolved_paths))
@@ -61,7 +62,7 @@ class TestConfigShapeCoverage(unittest.TestCase):
             )
 
             with self.assertRaisesRegex(RuntimeError, r"build\.targets must be a list"):
-                _load_and_resolve_target(bad_config)
+                _load_and_resolve_targets(bad_config)
 
 
 if __name__ == "__main__":

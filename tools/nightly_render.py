@@ -3,7 +3,8 @@
 The scheduled workflow uses committed phase2 fixtures, so this lane measures
 repository/rendering drift without depending on Feishu credentials or a live
 snapshot.  Target discovery is shared with the config-derived CI check lane:
-adding a ``configs/config*.yaml`` file automatically adds one doctor run.
+adding a target to any ``configs/config*.yaml`` file automatically adds one
+doctor run.
 """
 
 from __future__ import annotations

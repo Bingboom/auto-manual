@@ -9,7 +9,7 @@ from tools.utils.path_utils import Paths, repo_root
 
 _ROOT = repo_root()
 _CONFIGS_DIR = Paths(root=_ROOT).configs_dir
-_FAMILY_ORDER = ("US", "EU", "JP", "CN")
+_FAMILY_ORDER = ("US", "EU", "JP", "CN", "KR")
 
 
 @dataclass(frozen=True)
