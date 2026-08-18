@@ -1577,6 +1577,15 @@ HTML_link alias semantics).
   - Incident: the 2026-08-13/14 Start Review reseeds of `JE-1000F/US` regenerated the review index from the manifest and silently dropped the hand-added `00_toc.rst` / `99_back_cover.rst` includes (files kept, references lost); Publish then failed the same-source IDML gate three times (runs 31767694706, 31775580957, 31779053321) — the interim manual index restore (mirror PR #54) was itself wiped by the next reseed, which is what forced the manifest-level fix
   - Not built (still open as a cheap future guard): a check-stage flag for orphan review page files that exist under `page/` but are absent from the review index
 
+- [ ] Pending: recalibrate the web-presentation suite against the reseeded JE-1000F/US review content
+  - Status: `pending`
+  - Incident: the 2026-08-13 reseed regenerated the review pages from live data, but `tests/test_web_presentation.py` still pins expectations written against main's older committed review copy. The seeded review PR auto-approves its checks (trusted worker), so the drift stayed invisible until an ordinary backport PR against `review/JE-1000F-US` ran the full gate (Hello-Docs PR #54): ~4 failures + ~19 errors across `test_app_add_device*`, `test_auto_resume_table*`, `test_lcd_mode*`, `test_charging_car*`, `test_operation_panels*` in en/fr/es
+  - Operator-confirmed content truth (2026-08-14, 夏冰): JE-1000F's button is named **"POWER Button"** — the current test expectation `Main Power Button` is the outdated side, the review content is correct
+  - Done when:
+    - the suite's hardcoded expectations are updated to the review-content truth **in the same change that lands the review content on main** (the review PR merge), so neither side goes red alone
+    - a decision is recorded for the exemption mechanism: either ordinary PRs against review branches skip content-coupled suites, or reseeds must include a suite recalibration step
+  - Note: unrelated PRs against the review branch may merge past this known-red unit check until recalibration lands (verified pre-existing on the review branch base without the PR's changes)
+
 ## 8. Success Criteria
 
 This checklist is successful when:
