@@ -48,7 +48,7 @@ Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen
      -
        - Bitte wählen Sie ein WLAN-Netzwerk im 2,4-GHz-Band aus. Das Gerät unterstützt kein WLAN-Netzwerk im 5-GHz-Band.
 
-| Nachdem das Gerät erfolgreich zur App hinzugefügt wurde, leuchtet das WLAN-Symbol am Gerät dauerhaft.
+| 2.5 Nachdem das Gerät erfolgreich zur App hinzugefügt wurde, leuchtet das WLAN-Symbol am Gerät dauerhaft.
 
 .. image:: asset:app/connect_result
    :alt: Platzhalter für das Ergebnis der App-Einrichtung.
