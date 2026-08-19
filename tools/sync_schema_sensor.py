@@ -8,11 +8,48 @@ class _SchemaLike(Protocol):
 
 
 MISSING_COLUMNS_WARNING_CODE = "MISSING_COLUMNS"
-_FIELD_NAME_ALIASES: dict[str, dict[str, frozenset[str]]] = {
+
+# Snapshot column -> the live field name(s) that carry its value. Single source of
+# truth: the sensor skips the drift warning for these, and ``sync_data_records``
+# copies the value across, so an alias can never silence a warning while still
+# dropping the data.
+FIELD_NAME_ALIASES: dict[str, dict[str, frozenset[str]]] = {
     # The source table historically exposed the Brazilian Portuguese field as
     # ``pt-BR`` while the normalized snapshot uses ``Text_pt-BR``.
-    "spec_footnotes": {"Text_pt-BR": frozenset({"pt-BR"})},
+    # ``Type`` is spelled lowercase in the footnote table while its sibling
+    # ``spec_notes`` uses ``Type``; without the alias the column syncs empty and
+    # ``csv_pages`` silently falls back to its "footnote" default.
+    "spec_footnotes": {
+        "Text_pt-BR": frozenset({"pt-BR"}),
+        "Type": frozenset({"type"}),
+    },
 }
+
+# Snapshot columns that no live field backs. Either the sync derives them, or they
+# are legacy columns kept for readers that still accept them. Both are permanent by
+# construction, so leaving them in the drift check trains everyone to ignore it.
+NON_SOURCE_COLUMNS: dict[str, frozenset[str]] = {
+    # Derived while merging the split spec sources (tools/spec_master_sources.py).
+    "spec_master": frozenset({"spec_row_key", "Model", "Region"}),
+    # Legacy pt-BR aliases (the live table exposes ``icon_pt-BR`` /
+    # ``icon_desc_pt-BR``) plus a preview column the table never carried.
+    "lcd_icons": frozenset({"icon_br", "icon_desc_br", "render_preview_en"}),
+    # Superseded by ``source_value`` / ``Value``.
+    "variable_lang_overrides": frozenset({"from_prefix", "to_prefix"}),
+}
+
+
+def apply_source_field_aliases(logical_name: str, values: dict[str, Any]) -> dict[str, Any]:
+    """Fill schema columns from their aliased live field names, in place."""
+    for column, aliases in FIELD_NAME_ALIASES.get(logical_name, {}).items():
+        if str(values.get(column) or "").strip():
+            continue
+        for alias in aliases:
+            aliased = values.get(alias)
+            if str(aliased or "").strip():
+                values[column] = aliased
+                break
+    return values
 
 
 def source_field_names(source: object, *, base_token: str, table_id: str) -> set[str] | None:
@@ -30,11 +67,13 @@ def missing_schema_columns(
     schema: _SchemaLike,
     source_field_names: set[str],
 ) -> tuple[str, ...]:
-    aliases_by_column = _FIELD_NAME_ALIASES.get(logical_name, {})
+    aliases_by_column = FIELD_NAME_ALIASES.get(logical_name, {})
+    non_source_columns = NON_SOURCE_COLUMNS.get(logical_name, frozenset())
     return tuple(
         column
         for column in schema.columns
         if column not in source_field_names
+        and column not in non_source_columns
         and not source_field_names.intersection(aliases_by_column.get(column, frozenset()))
     )
 
