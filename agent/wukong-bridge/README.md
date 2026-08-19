@@ -113,6 +113,53 @@ Important JE-2000E rules enforced by the general contract:
 - English source values use manual unit spacing (`2048 Wh`, `19.1 kg`,
   `25 °C`) and the DC symbol (`5 V⎓3 A`), not an equals sign.
 
+## DingTalk sync flow
+
+`dingtalk_sync_pending` **lists** rows the operator checked for DingTalk
+upload. It performs no upload, writes nothing, and starts no background job.
+There is no asynchronous worker that finishes the sync later: every step below
+runs in the conversation, one row at a time.
+
+1. `feishu_doc_export(url=<row's feishu_doc>, file_extension="docx", …)`.
+   Word is the only supported carrier — the DingTalk knowledge base re-renders
+   it as an editable document, while a PDF lands as a dead attachment.
+2. Upload that file to the row's `dingtalk_target_node` with the DingTalk
+   document tooling, and keep the resulting DingTalk link.
+3. Register the delivery in the DingTalk delivery Base, table `04-01-过程稿`,
+   matching `dingtalk_key_prefix + "_" + lang_dd` exactly against
+   `Document_key`. Read the row back and restate it.
+4. Only then `dingtalk_sync_mark(record_id, "已同步", dingtalk_link=…)`.
+
+Hard rules:
+
+- Step 3 gates step 4. A build-table row marked 已同步 without its 04-01 entry
+  is the worst inconsistency this flow can produce.
+- `dingtalk_sync_mark` accepts terminal states only (`已同步` / `失败`).
+  Re-arming a failed row with `待同步` is an operator action in the Base, not
+  an agent action, and marking a row never triggers anything.
+- When a step cannot be completed, report the actual blocker. Never explain the
+  failure with an invented mechanism ("a background job will pick it up", "the
+  tool is query-plus-trigger") — this flow has no such machinery.
+
+## Publish preflight
+
+For targets carrying an approved reference-layout contract, Publish validates
+the built manual IR against that contract (the same-source IDML gate). Run
+`idml_gate_diff(model, region)` **before** dispatching Publish rather than
+letting the gate fail the build:
+
+- `no_contract` / `no_review_branch` — returns in seconds; the gate does not
+  apply, or review content does not exist yet.
+- `identical` — dispatch Publish.
+- `content_only` — do not dispatch. Report the changed pages, obtain explicit
+  operator approval, then `idml_gate_rebind`, merge the PR it opens, and
+  re-check.
+- `assembly_changed` — do not dispatch. Pages were added, removed, reordered,
+  or re-languaged; that needs human diagnosis, never an automatic rebind.
+
+Run the same check after a reseed finishes, so contract drift surfaces while
+the operator is still working on the target.
+
 ## Validation
 
 Run from this directory:
