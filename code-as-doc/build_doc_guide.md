@@ -1421,6 +1421,17 @@ keep the source table. Tune shared geometry in
 [layout_params.csv](../data/layout_params.csv), then regenerate params.tex
 with python tools/csv_to_tex_params.py.
 
+## 5.1 Terminology Gate
+
+`build.py check` also scans each built bundle for wording the Style Guide has retired:
+
+- `data/terminology_rules.csv` — one row per retired wording: `rule_id`, `lang`, `deprecated_regex`, the `preferred` replacement quoted back in the message, an optional `allow_regex` for contexts where the old form is deliberate (an intentional first-mention gloss, a placeholder token), and a `note` pointing at the Style Guide clause.
+- Pages are matched by language: generated pages take the language from their `_<lang>` filename suffix, authored pages inherit the target's language, so a `ko` rule never fires on a German page.
+
+Findings surface as `TERMINOLOGY_DEPRECATED`, a warning-only code — a rule can be registered the day a wording is retired and its existing hits cleaned up afterwards without blocking builds. Flip it to a blocking code only once the tracked lines are at zero, the way the capability gate tightened.
+
+The rule table is the machine-readable half of the Style Guide (飞书知识库「多语言语言资产规范」); when a clause there changes, update the matching row here in the same change.
+
 ## 5.1 Capability Gate
 
 `build.py check` validates each target against the product capability matrix:

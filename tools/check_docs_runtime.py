@@ -66,6 +66,7 @@ def collect_check_issues(
     collect_duplicate_render_text_issues: Callable[..., list[Any]],
     collect_fcc_renderer_contract_issues: Callable[..., list[Any]] | None = None,
     collect_capability_issues: Callable[..., list[Any]] | None = None,
+    collect_terminology_issues: Callable[..., list[Any]] | None = None,
     collect_lang_parity_issues: Callable[..., list[Any]] | None = None,
     collect_language_scope_issues: Callable[..., list[Any]] | None = None,
     resolve_target_languages: Callable[..., Any] | None = None,
@@ -184,6 +185,15 @@ def collect_check_issues(
                     docs_dir=docs_dir,
                     model=target.model,
                     region=target.region,
+                )
+            )
+        if collect_terminology_issues is not None:
+            issues.extend(
+                collect_terminology_issues(
+                    bundle_dir=bundle_dir,
+                    model=target.model,
+                    region=target.region,
+                    lang=target.lang,
                 )
             )
         if collect_lang_parity_issues is not None:
