@@ -435,6 +435,11 @@ def dingtalk_sync_pending(_arguments: dict) -> dict:
         "region_crosswalk": region_map,
         "lang_crosswalk": lang_map,
         "note": "失败行不自动重试——操作员核因后把 钉钉对接状态 改回 待同步 才会重新出现在 pending。",
+        "next": "本工具只读清单，不执行也不触发任何同步；没有后台同步作业。真正的同步由你逐行完成："
+                "①feishu_doc_export 导出行内 feishu_doc → ②用钉钉文档工具把文件传到 dingtalk_target_node "
+                "拿钉钉链接 → ③在钉钉交付 Base 的 04-01-过程稿 按 dingtalk_key_prefix+lang_dd 登记 → "
+                "④最后 dingtalk_sync_mark(record_id, 已同步, dingtalk_link=钉钉链接)。"
+                "顺序硬门槛：04-01 未登记前禁止 mark。",
     }
 
 
@@ -442,7 +447,9 @@ STATE_DIR = os.path.expanduser(os.environ.get(
     "HELLO_DOCS_BRIDGE_STATE_DIR", "~/.local/state/hello-docs-bridge"
 ))
 EXPORTS_DIR = os.path.join(STATE_DIR, "exports")
-VALID_EXPORT_EXT = ("pdf", "docx")
+# 钉钉交付口径是 Word：过程稿要在钉钉侧可编辑、可批注、可继续走修订流程，
+# PDF 是终稿分发格式，进了交付登记就断了修改链路（2026-08-16 操作者定）。
+VALID_EXPORT_EXT = ("docx",)
 EXPORT_TOOL_BUDGET_SECONDS = 42  # 悟空 MCP 工具 60s 上限内留余量
 
 
@@ -462,7 +469,7 @@ def feishu_doc_export(arguments: dict) -> dict:
     import re
     import time
     start = time.monotonic()
-    ext = str(arguments.get("file_extension", "pdf")).strip().lower()
+    ext = str(arguments.get("file_extension", "docx")).strip().lower()
     file_name = str(arguments.get("file_name", "")).strip()
     ticket = str(arguments.get("ticket", "")).strip()
     obj_token = str(arguments.get("obj_token", "")).strip()
@@ -638,7 +645,10 @@ def idml_gate_rebind(arguments: dict) -> dict:
                     "完成后返回 PR 链接（需要用户合并）。"}
 
 
-VALID_SYNC_STATUS = ("已同步", "失败", "待同步")
+# Agent 只能写终态。「待同步」是操作员在表里手工复位失败行用的值：agent 写它既无意义
+# （行本就在 pending 清单里）又危险（会把操作员判失败的行悄悄重新入队），且写它并不会
+# "触发"任何同步——同步是 agent 自己逐步做的，没有后台作业。
+VALID_SYNC_STATUS = ("已同步", "失败")
 
 
 def dingtalk_sync_mark(arguments: dict) -> dict:
@@ -1421,22 +1431,25 @@ TOOLS: list[dict] = [
     },
     {
         "name": "dingtalk_sync_pending",
-        "description": ("查询飞书构建表中已勾选【是否上传钉钉】且未同步的行（对接钉钉待办清单）。"
-                        "返回每行的 Document_ID、飞书文档链接、目标节点、版本语言，以及按字典换算好的"
-                        "对接键前缀（Model_组合代码）和语言代码、完整 Region/语言对照表。"
-                        "失败行单独列出且不自动重试。只读。"),
+        "description": ("【只读清单，不执行同步】查询飞书构建表中已勾选【是否上传钉钉】且未同步的行"
+                        "（对接钉钉待办清单）。返回每行的 Document_ID、飞书文档链接、目标节点、版本语言，"
+                        "以及按字典换算好的对接键前缀（Model_组合代码）和语言代码、完整 Region/语言对照表。"
+                        "失败行单独列出且不自动重试。"
+                        "反复调用本工具不会推进任何同步，也没有后台同步作业会代劳——"
+                        "同步是你自己逐行做的：导出飞书文档→传钉钉→登记 04-01→最后 dingtalk_sync_mark 收尾。"),
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
         "name": "feishu_doc_export",
-        "description": ("把飞书云文档（wiki/docx 链接）导出为本地文件（pdf 或 docx），"
-                        "供钉钉知识库导入。返回本地文件绝对路径。对接钉钉同步流程第 2.1 步使用。只读。"),
+        "description": ("把飞书云文档（wiki/docx 链接）导出为本地 Word 文件（.docx），"
+                        "供钉钉知识库导入。返回本地文件绝对路径。对接钉钉同步流程第 2.1 步使用。只读。"
+                        "钉钉交付一律用 Word——过程稿要在钉钉侧可编辑可批注；不导 PDF。"),
         "inputSchema": {
             "type": "object",
             "properties": {
                 "url": {"type": "string", "description": "飞书云文档链接（构建表·飞书云文档字段的值）"},
-                "file_extension": {"type": "string", "enum": ["pdf", "docx"],
-                                   "description": "导出格式，默认 pdf（说明书交付口径）"},
+                "file_extension": {"type": "string", "enum": ["docx"],
+                                   "description": "导出格式固定 docx（钉钉交付口径），可省略"},
                 "file_name": {"type": "string",
                               "description": "可选输出文件名（建议用对接键，如 JE-1000F_USCAMX_en-GB_1.1）"},
                 "ticket": {"type": "string",
@@ -1449,16 +1462,19 @@ TOOLS: list[dict] = [
     },
     {
         "name": "dingtalk_sync_mark",
-        "description": ("同步完成后回写飞书构建表：更新钉钉对接状态（已同步/失败/待同步），"
-                        "已同步必须附钉钉知识库文档链接（写入 Document link_dd）。"
-                        "写后自动读回验证并返回读回值。写操作。"),
+        "description": ("【同步流程的最后一步】文档已传到钉钉且已在 04-01-过程稿 登记之后，"
+                        "回写飞书构建表的钉钉对接状态：已同步（必须附钉钉知识库文档链接，"
+                        "写入 Document link_dd）或 失败。写后自动读回验证并返回读回值。写操作。"
+                        "本工具不触发也不执行同步——它只是给已完成的同步盖章；"
+                        "文档还没传到钉钉就调用它 = 制造「表里显示已同步、钉钉侧无交付」的假象。"),
         "inputSchema": {
             "type": "object",
             "properties": {
                 "record_id": {"type": "string",
                               "description": "dingtalk_sync_pending 返回的 record_id"},
-                "status": {"type": "string", "enum": ["已同步", "失败", "待同步"],
-                           "description": "同步结果状态"},
+                "status": {"type": "string", "enum": ["已同步", "失败"],
+                           "description": "同步的终态结果。「待同步」不是 agent 能写的值——"
+                                          "那是操作员在表里手工复位失败行用的，写它不会触发任何同步"},
                 "dingtalk_link": {"type": "string",
                                   "description": "钉钉知识库文档链接；status=已同步 时必填"},
             },
