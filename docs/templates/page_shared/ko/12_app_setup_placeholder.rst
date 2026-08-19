@@ -48,7 +48,7 @@ Google Play 또는 App Store에서 "Jackery"를 검색하여 APP을 설치하십
      -
        - 2.4 GHz 대역의 Wi-Fi 네트워크를 선택하십시오. 이 장치는 5 GHz 대역의 Wi-Fi 네트워크를 지원하지 않습니다.
 
-| 2.5 장치가 APP에 성공적으로 추가되면, 장치의 Wi-Fi 아이콘이 항상 켜진 상태로 유지됩니다.
+| 장치가 APP에 성공적으로 추가되면, 장치의 Wi-Fi 아이콘이 항상 켜진 상태로 유지됩니다.
 
 .. image:: asset:app/connect_result
    :alt: App setup result screen placeholder.
