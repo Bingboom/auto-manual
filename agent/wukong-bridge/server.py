@@ -447,7 +447,9 @@ STATE_DIR = os.path.expanduser(os.environ.get(
     "HELLO_DOCS_BRIDGE_STATE_DIR", "~/.local/state/hello-docs-bridge"
 ))
 EXPORTS_DIR = os.path.join(STATE_DIR, "exports")
-VALID_EXPORT_EXT = ("pdf", "docx")
+# 钉钉交付口径是 Word：过程稿要在钉钉侧可编辑、可批注、可继续走修订流程，
+# PDF 是终稿分发格式，进了交付登记就断了修改链路（2026-08-16 操作者定）。
+VALID_EXPORT_EXT = ("docx",)
 EXPORT_TOOL_BUDGET_SECONDS = 42  # 悟空 MCP 工具 60s 上限内留余量
 
 
@@ -467,7 +469,7 @@ def feishu_doc_export(arguments: dict) -> dict:
     import re
     import time
     start = time.monotonic()
-    ext = str(arguments.get("file_extension", "pdf")).strip().lower()
+    ext = str(arguments.get("file_extension", "docx")).strip().lower()
     file_name = str(arguments.get("file_name", "")).strip()
     ticket = str(arguments.get("ticket", "")).strip()
     obj_token = str(arguments.get("obj_token", "")).strip()
@@ -1439,14 +1441,15 @@ TOOLS: list[dict] = [
     },
     {
         "name": "feishu_doc_export",
-        "description": ("把飞书云文档（wiki/docx 链接）导出为本地文件（pdf 或 docx），"
-                        "供钉钉知识库导入。返回本地文件绝对路径。对接钉钉同步流程第 2.1 步使用。只读。"),
+        "description": ("把飞书云文档（wiki/docx 链接）导出为本地 Word 文件（.docx），"
+                        "供钉钉知识库导入。返回本地文件绝对路径。对接钉钉同步流程第 2.1 步使用。只读。"
+                        "钉钉交付一律用 Word——过程稿要在钉钉侧可编辑可批注；不导 PDF。"),
         "inputSchema": {
             "type": "object",
             "properties": {
                 "url": {"type": "string", "description": "飞书云文档链接（构建表·飞书云文档字段的值）"},
-                "file_extension": {"type": "string", "enum": ["pdf", "docx"],
-                                   "description": "导出格式，默认 pdf（说明书交付口径）"},
+                "file_extension": {"type": "string", "enum": ["docx"],
+                                   "description": "导出格式固定 docx（钉钉交付口径），可省略"},
                 "file_name": {"type": "string",
                               "description": "可选输出文件名（建议用对接键，如 JE-1000F_USCAMX_en-GB_1.1）"},
                 "ticket": {"type": "string",
