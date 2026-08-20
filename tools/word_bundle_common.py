@@ -7,6 +7,7 @@ import glob
 from pathlib import Path
 
 from tools.config_pages import CsvPage
+from tools.utils.korean_josa import with_josa_substitutions
 from tools.data_snapshot import resolve_data_snapshot_paths
 from tools.language_aliases import language_key, normalize_language
 from tools.localized_copy import COPY_TOKEN_RE, apply_localized_copy_tokens
@@ -114,7 +115,14 @@ def apply_rst_substitutions(
     vars_map: dict[str, str],
 ) -> str:
     out = apply_vars(text, vars_map)
-    for key, value in substitutions.items():
+    lang = (vars_map.get("lang") or vars_map.get("language") or "").strip().lower()
+    # ko templates name a particle pair (|PRODUCT_NAME_JOSA_EUN|) instead of
+    # printing the ambiguous 은(는) form; resolve those companions here too so the
+    # Word path matches the Sphinx path.
+    effective = (
+        with_josa_substitutions(substitutions) if lang in {"ko", "ko-kr"} else substitutions
+    )
+    for key, value in effective.items():
         out = out.replace(f"|{key}|", value)
     if COPY_TOKEN_RE.search(out):
         localized_copy_csv = (vars_map.get("localized_copy_csv") or "").strip()

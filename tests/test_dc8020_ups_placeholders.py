@@ -13,6 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SPEC_MASTER = ROOT / "tests" / "fixtures" / "phase2" / "Spec_Master.csv"
 LONG_TAIL_SPEC_MASTER = ROOT / "tests" / "fixtures" / "pv_input_range" / "Spec_Master.csv"
 
+# The ko goldens moved once when the ko templates stopped printing the ambiguous
+# 은(는) form and started naming a particle pair (|PRODUCT_NAME_JOSA_EUN|); the
+# rendered diff was exactly those placeholder tokens, nothing else.
 CHARGING_CASES = {
     "en": (SPEC_MASTER, "JE-1000F", "US", "d7529e0ce6e7c02591c42251e6bc9cc18339e929608d5a853e031efac0c9bf79"),
     "fr": (SPEC_MASTER, "JE-1000F", "US", "a7753076fbe10257c7dc5ecf7fb9095bcc920afb137b02fb8542fe0ab4e01a52"),
@@ -21,7 +24,7 @@ CHARGING_CASES = {
     "de": (SPEC_MASTER, "JE-1000F", "EU", "58e3ccbeaf293bdaa3e236fad51eaea01c4af1dc6f16156794040e78f9f3e304"),
     "it": (SPEC_MASTER, "JE-1000F", "EU", "538455b593163c25c96d5e4eb9de4ea7d9ecbe6030c355e701aaf6708b7fd3c9"),
     "uk": (SPEC_MASTER, "JE-1000F", "EU", "59cb400cc4281f1285808960b2946eff99f9a8f8c1e097b19df4d3e289894cbe"),
-    "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "e5d0cd2f86240e1d606b6fde996e05b55e9cf254ef4d77affb64348fc19aa1d5"),
+    "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "1f73889cf5da9dba9a611ae5028be6b63360ed53e6e792cec3ae6fbe5a9ed8c5"),
 }
 
 UPS_CASES = {
@@ -32,7 +35,7 @@ UPS_CASES = {
     "de": (SPEC_MASTER, "JE-1000F", "EU", "8db266d60cb81c87bec75edb7e9bf636f977ca22292371d80cd67608ae4e3028"),
     "it": (SPEC_MASTER, "JE-1000F", "EU", "f2e6a41184ca3a17194a542a4d74de42680eec5a94eff3f55d22edbb55ea7622"),
     "uk": (SPEC_MASTER, "JE-1000F", "EU", "2691fe1006dbe89008d0596e556ef53805bbd0a49238930a5795f7d73e0850d6"),
-    "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "2c64eed85ef863b246f4352b61dbe049674b46ebecf97d544e5e242b459c5227"),
+    "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "dd48c540413fbe304f5b43ca1bdb3de8f17de566232f14c1a5f3caf2dcd3f3af"),
 }
 
 

@@ -4,6 +4,8 @@ import re
 from pathlib import Path
 from typing import Callable
 
+from tools.utils.korean_josa import with_josa_substitutions
+
 
 def resolve_spec_master_csv_path(
     cfg: dict,
@@ -67,21 +69,31 @@ def resolve_rst_substitutions_for_build(
         **load_config_rst_substitutions(cfg),
     }
     if not (model or "").strip():
-        return base_substitutions
+        return _with_korean_josa(base_substitutions, lang=lang)
     spec_master_csv = resolve_spec_master_csv_path(
         cfg,
         data_root=data_root,
         repo_root=repo_root,
     )
-    return {
-        **base_substitutions,
-        **resolve_template_substitutions_from_spec_master(
-            spec_master_csv,
-            model=model,
-            region=region,
-            lang=lang,
-        ),
-    }
+    return _with_korean_josa(
+        {
+            **base_substitutions,
+            **resolve_template_substitutions_from_spec_master(
+                spec_master_csv,
+                model=model,
+                region=region,
+                lang=lang,
+            ),
+        },
+        lang=lang,
+    )
+
+
+def _with_korean_josa(substitutions: dict[str, str], *, lang: str | None) -> dict[str, str]:
+    """Add ``|KEY_JOSA_*|`` companions so ko templates never print ``은(는)``."""
+    if str(lang or "").strip().lower() not in {"ko", "ko-kr"}:
+        return substitutions
+    return with_josa_substitutions(substitutions)
 
 
 def parse_csv_values(raw: str) -> list[str]:
