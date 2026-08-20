@@ -1,0 +1,10 @@
+rule_id,lang,deprecated_regex,preferred,allow_regex,note
+KO-POWER-BTN,ko,메인 전원 버튼,POWER 버튼,,主键名一律 POWER 버튼(Style Guide K1)
+KO-INDICATOR,ko,표시등,표시기,,Indicator 一律 표시기;표시등 仅限实体灯(K2)
+KO-GRID,ko,그리드 전력,전력망 전원,상용 전원\(그리드 전력\),grid 统一 전력망 系;仅 UPS 定义句首现括号注释可留(K3)
+KO-SIDE-VIEW,ko,[우좌]측 측면 뷰,오른쪽/왼쪽 측면도,,视图标题用 측면도(K6)
+KO-OPERATIONS,ko,^작동$,조작,,章节名 OPERATIONS 用 조작(K7)
+KO-USER-MANUAL,ko,사용자 매뉴얼,사용자 설명서,,User Manual 用 사용자 설명서(K8)
+KO-CHARGING-PLAN,ko,충전 예약,충전 계획,,Charging Plan 用 충전 계획(K9)
+KO-SELF-POWERED,ko,자체 전원 모드,자가 발전 모드,,Self-powered Mode 用 자가 발전 모드(K10)
+KO-JOSA-DOUBLE,ko,[가-힣]\((은|는|이|가|을|를|와|과)\),按词尾选形的单一助词,\|[A-Z_]+\|,成品中不应出现双助词写法(K11)

@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 
-_WARNING_ISSUE_CODES = frozenset({"CAPABILITY_ROW_MISSING"})
+_WARNING_ISSUE_CODES = frozenset({"CAPABILITY_ROW_MISSING", "TERMINOLOGY_DEPRECATED"})
 
 
 def run_check_entry(
