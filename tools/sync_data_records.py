@@ -20,6 +20,7 @@ else:  # pragma: no cover - exercised on POSIX CI only
     import fcntl
 
 from tools.source_record_index import SOURCE_RECORD_ID_KEY
+from tools.sync_schema_sensor import apply_source_field_aliases
 
 
 _MARKDOWN_LINK_RE = re.compile(r"^\[(?P<label>[^\]]+)\]\((?P<target>[^)]+)\)$")
@@ -151,9 +152,7 @@ def _record_values(record: dict[str, Any]) -> dict[str, Any]:
 
 
 def _apply_field_aliases(schema: _SchemaLike, values: dict[str, Any]) -> dict[str, Any]:
-    if schema.logical_name == "spec_footnotes" and "Text_pt-BR" not in values and "pt-BR" in values:
-        values["Text_pt-BR"] = values["pt-BR"]
-    return values
+    return apply_source_field_aliases(getattr(schema, "logical_name", ""), values)
 
 
 def normalize_records(schema: _SchemaLike, raw_records: list[dict[str, Any]]) -> list[dict[str, str]]:

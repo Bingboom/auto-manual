@@ -439,6 +439,64 @@ class TestSyncData(unittest.TestCase):
             missing_schema_columns("spec_footnotes", schema, source_fields),
         )
 
+    def test_spec_footnotes_should_alias_lowercase_type_field_name(self) -> None:
+        # The footnote table spells the classification field ``type``; its sibling
+        # spec_notes uses ``Type``. Without the alias the column syncs empty and
+        # csv_pages falls back to its "footnote" default for every row.
+        rows = sync_data.normalize_records(
+            sync_data.TABLE_SCHEMAS["spec_footnotes"],
+            [
+                {
+                    "fields": {
+                        "Footnote_id": "fn1",
+                        "type": "Footnote",
+                        "Text_en": "English footnote.",
+                    }
+                }
+            ],
+        )
+
+        self.assertEqual("Footnote", rows[0]["Type"])
+
+    def test_missing_column_sensor_should_exempt_lowercase_type_alias(self) -> None:
+        schema = sync_data.TABLE_SCHEMAS["spec_footnotes"]
+        source_fields = set(schema.columns)
+        source_fields.discard("Type")
+        source_fields.add("type")
+
+        self.assertEqual(
+            (),
+            missing_schema_columns("spec_footnotes", schema, source_fields),
+        )
+
+    def test_missing_column_sensor_should_exempt_derived_and_legacy_columns(self) -> None:
+        # spec_master derives these while merging the split sources; lcd_icons and
+        # variable_lang_overrides keep legacy columns no live field backs. Reporting
+        # them every run buries a real rename in permanent noise.
+        for logical_name, unbacked in (
+            ("spec_master", ("spec_row_key", "Model", "Region")),
+            ("lcd_icons", ("icon_br", "icon_desc_br", "render_preview_en")),
+            ("variable_lang_overrides", ("from_prefix", "to_prefix")),
+        ):
+            with self.subTest(logical_name=logical_name):
+                schema = sync_data.TABLE_SCHEMAS[logical_name]
+                source_fields = set(schema.columns) - set(unbacked)
+
+                self.assertEqual(
+                    (),
+                    missing_schema_columns(logical_name, schema, source_fields),
+                )
+
+    def test_missing_column_sensor_should_still_report_a_renamed_field(self) -> None:
+        # Guard against the exemptions above turning the sensor into a no-op.
+        schema = sync_data.TABLE_SCHEMAS["spec_master"]
+        source_fields = set(schema.columns) - {"Value_ko"}
+
+        self.assertEqual(
+            ("Value_ko",),
+            missing_schema_columns("spec_master", schema, source_fields),
+        )
+
     def test_sync_should_report_missing_source_columns_in_manifest_and_cli(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
