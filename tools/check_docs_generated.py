@@ -5,6 +5,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.utils.korean_josa import josa_base_key
+
 SNIPPET_SLOT_RE = re.compile(r"\{\{snippet:([a-zA-Z0-9_.-]+)\}\}")
 
 
@@ -568,6 +570,12 @@ def _placeholder_consistency_issues(
     used_placeholders: set[str] = set()
     for text in [template_text, *snippet_sources]:
         used_placeholders.update(collect_placeholder_tokens(text))
+    # A ko template names a particle pair (|PRODUCT_NAME_JOSA_EUN|); the renderer
+    # derives that companion from PRODUCT_NAME at build time, so the base key
+    # counts as used and the companion counts as supplied.
+    used_placeholders.update(
+        base for base in [josa_base_key(name) for name in sorted(used_placeholders)] if base
+    )
 
     unused_field_map = sorted(
         placeholder for placeholder in recipe.field_map if not field_binding_is_used(placeholder, used_placeholders)
@@ -588,7 +596,10 @@ def _placeholder_consistency_issues(
         )
 
     unknown_placeholders = sorted(
-        placeholder for placeholder in used_placeholders if placeholder not in available_placeholders
+        placeholder
+        for placeholder in used_placeholders
+        if placeholder not in available_placeholders
+        and (josa_base_key(placeholder) or placeholder) not in available_placeholders
     )
     if unknown_placeholders:
         issues.append(

@@ -1,7 +1,7 @@
 태양광 패널을 통한 충전 (별도 판매)
 --------------------------------------------------
 
-|PRODUCT_NAME|은(는) 두 개의 |DC_INPUT_CONNECTOR| 입력 포트를 갖추고 있으며 Jackery 태양광 패널과 호환됩니다.
+|PRODUCT_NAME_JOSA_EUN| 두 개의 |DC_INPUT_CONNECTOR| 입력 포트를 갖추고 있으며 Jackery 태양광 패널과 호환됩니다.
 
 .. image:: asset:charging/solar_direct
    :alt: Solar charging connection diagram placeholder 1.

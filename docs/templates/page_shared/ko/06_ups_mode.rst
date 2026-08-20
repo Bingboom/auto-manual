@@ -1,12 +1,12 @@
 무정전 전원 공급 장치 (UPS)
 ===================================
-| AC 충전 케이블로 제품을 벽면 콘센트에 연결한 다음, |AC_POWER_BUTTON_LABEL_LOWER|을(를) 눌러 가전제품에 동시에 전원을 공급하십시오.
+| AC 충전 케이블로 제품을 벽면 콘센트에 연결한 다음, |AC_POWER_BUTTON_LABEL_LOWER_JOSA_EUL| 눌러 가전제품에 동시에 전원을 공급하십시오.
 .. image:: asset:operation/ups_mode
    :alt: UPS connection diagram placeholder.
    :width: 360px
 
 | 무정전 전원 공급 장치(UPS)는 상용 전원(그리드 전력)이 중단될 때 부하에 자동으로 백업 전력을 제공하는 연속 전원 시스템의 한 유형입니다.
-| 전력망 전원이 갑자기 중단되는 경우, |PRODUCT_NAME|은(는) |UPS_TRANSFER_TIME| 이내에 저장된 전원으로 자동 전환되어 가전제품의 작동을 유지합니다.
+| 전력망 전원이 갑자기 중단되는 경우, |PRODUCT_NAME_JOSA_EUN| |UPS_TRANSFER_TIME| 이내에 저장된 전원으로 자동 전환되어 가전제품의 작동을 유지합니다.
 | UPS 모드에서는 정전 발생 전 장치의 최대 출력이 |UPS_BYPASS_OUTPUT_TEXT|에 도달합니다. 바이패스 모드에서는 동시 충전/방전이 가능하므로,
 | 이 모드에서 실제 출력 전력은 정격 출력 전력보다 낮지만 정전 시에는 정격 출력 전력으로 복귀합니다.
 

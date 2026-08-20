@@ -4,6 +4,9 @@ import hashlib
 import unittest
 from pathlib import Path
 
+# The ko goldens moved once when the ko templates stopped printing the ambiguous
+# 은(는) form and started naming a particle pair (|PRODUCT_NAME_JOSA_EUN|); the
+# rendered diff was exactly those placeholder tokens, nothing else.
 from tools.page_contracts import load_page_contracts, required_page_values_for_lang
 from tools.utils.spec_master import resolve_template_substitutions_from_spec_master
 from tools.word_bundle_common import apply_rst_substitutions
@@ -21,7 +24,7 @@ CASES = {
     "de": (SPEC_MASTER, "JE-1000F", "EU", "bf7c790b17badebf1019eafd99d1616c937bdf755f9ce6b491e4095db7894e96"),
     "it": (SPEC_MASTER, "JE-1000F", "EU", "5e287d0de2c8448e3196ce9b1ca24cc11f0e6c22c0e3ef30267154b8f4aedc8d"),
     "uk": (SPEC_MASTER, "JE-1000F", "EU", "ac9ea9d794fe7968dcbd6f6999818e8dee12cdbcdab5cd3fc7da2e4b7055847c"),
-    "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "028cc35e322607f5bd111bf353bc60e4b1eb72967c9530f5ffef967402c62086"),
+    "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "94e975f848f73a9898b34bdb2ad992aded3f3d5785218fc4533628933316d241"),
 }
 
 
