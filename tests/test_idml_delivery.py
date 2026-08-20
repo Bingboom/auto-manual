@@ -1,6 +1,7 @@
 """Tests for the publish IDML delivery package (tools/idml/delivery.py)."""
 from __future__ import annotations
 
+import io
 import json
 import tempfile
 import unittest
@@ -49,7 +50,9 @@ def _write_handoff_tree(root: Path) -> Path:
         encoding="utf-8",
     )
     (handoff / "layout_feedback.md").write_text("feedback\n", encoding="utf-8")
-    (handoff / "missing_assets_report.md").write_text("missing\n", encoding="utf-8")
+    (handoff / "missing_assets_report.md").write_text(
+        "missing\n", encoding="utf-8", newline="\n"
+    )
     (handoff / "production" / "source_trace.json").write_text(
         json.dumps({"version": "unknown", "model": "JE-1000F"}), encoding="utf-8"
     )
@@ -180,11 +183,8 @@ class BuildDeliveryPackageTest(unittest.TestCase):
             with zipfile.ZipFile(out.zip_path) as zf:
                 self.assertIn("Links/flow-asset.png", zf.namelist())
                 flow = zf.read("flow/manual.flow.idml")
-                with tempfile.NamedTemporaryFile(suffix=".idml") as fh:
-                    fh.write(flow)
-                    fh.flush()
-                    with zipfile.ZipFile(fh.name) as flow_zip:
-                        story = flow_zip.read("Stories/Story_s1.xml").decode("utf-8")
+                with zipfile.ZipFile(io.BytesIO(flow)) as flow_zip:
+                    story = flow_zip.read("Stories/Story_s1.xml").decode("utf-8")
                 self.assertIn('LinkResourceURI="file:Links/flow-asset.png"', story)
             self.assertEqual(3, len(out.links))
 

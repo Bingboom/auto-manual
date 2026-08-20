@@ -18,6 +18,7 @@ delivery-specific behavior lives (and is tested) here.
 from __future__ import annotations
 
 import json
+import os
 import re
 import zipfile
 from dataclasses import dataclass
@@ -27,7 +28,7 @@ from urllib.parse import unquote, urlparse
 from xml.sax.saxutils import escape, unescape
 
 from .check import check_idml
-from .font_family import CJK_FONT_FAMILY_TOKEN, PRIMARY_FONT_FAMILY_TOKEN
+from .font_family import IDML_FONT_FAMILY_TOKENS
 
 _LINK_URI_RE = re.compile(r'LinkResourceURI="([^"]*)"')
 _ATTR_ENTITIES = {'"': "&quot;"}
@@ -38,10 +39,7 @@ _FONT_EXTENSIONS = {".otf", ".ttf", ".ttc"}
 # symbol fallbacks). None are redistributable from this repo: Gilroy is a
 # commercial license, the others are system fonts.
 _FONT_ROWS = (
-    PRIMARY_FONT_FAMILY_TOKEN.delivery_row,
-    CJK_FONT_FAMILY_TOKEN.delivery_row,
-    ("Apple Symbols", "AppleSymbols", "system font (symbol fallback)"),
-    ("Apple SD Gothic Neo", "AppleSDGothicNeo-Regular", "macOS system font (circled-number fallback)"),
+    *(token.delivery_row for token in IDML_FONT_FAMILY_TOKENS),
 )
 
 
@@ -58,7 +56,13 @@ def _uri_to_path(uri: str) -> Path | None:
     parsed = urlparse(uri)
     if parsed.scheme != "file" or not parsed.path:
         return None
-    return Path(unquote(parsed.path))
+    path = unquote(parsed.path)
+    if os.name == "nt":
+        if parsed.netloc:
+            path = f"//{parsed.netloc}{path}"
+        elif len(path) >= 3 and path[0] == "/" and path[2] == ":":
+            path = path[1:]
+    return Path(path)
 
 
 def _collect_link_uris(idml_path: Path) -> list[str]:

@@ -1295,6 +1295,12 @@ Unicode MS fallback, so the font resource and handoff manifest do not change
 for Latin-only targets. This token is intentionally outside
 `data/layout_params.csv`: changing it is a font-delivery decision, not a page
 geometry change, and does not by itself require a reference layout rebind.
+Latin-market editable symbols are governed separately: `Segoe UI Symbol`
+owns the DC, bullet, reference-mark, ordinal, and subscript set, while `Yu
+Gothic` owns circled numbers through 27. These Windows-native resources replace
+the former `Apple Symbols` / `Apple SD Gothic Neo` runs in both story XML and
+`Resources/Fonts.xml`; their delivery rows come from the same centralized font
+tokens. Neither Windows system font is redistributed under `Document fonts/`.
 Line and coarse text-width budgeting is governed by
 `tools/idml/line_metrics.py`: the existing per-component narrow-glyph ratios
 remain stable, East Asian Width `W`/`F` characters consume one em, combining

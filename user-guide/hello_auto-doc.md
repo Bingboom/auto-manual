@@ -132,6 +132,14 @@ Install that font before opening the handoff package. This font token is not a
 layout parameter, so it does not require a reference layout rebind when page
 geometry and content bindings are unchanged.
 
+Editable symbol runs use a separate Windows-safe contract. The exporter routes
+DC, bullet, reference-mark, ordinal, and subscript glyphs through `Segoe UI
+Symbol`, and circled numbers through 27 through `Yu Gothic`. Both faces are
+declared in `Resources/Fonts.xml` and the handoff font manifest; production
+IDML no longer emits `Apple Symbols` or `Apple SD Gothic Neo`. These are
+Windows system fonts and are not copied into `Document fonts/`, so the InDesign
+host must have them installed. The CJK prose token above remains independent.
+
 The exporter also budgets Japanese, Korean, and Chinese wrapping by Unicode
 East Asian Width instead of treating every character as a 0.52-em Latin
 glyph. Fullwidth characters receive a full-em budget while ambiguous-width
@@ -360,6 +368,8 @@ reports, a fonts manifest, and the reference PDF, and the zip's knowledge-base
 link is what lands in the queue row's `idml_file` field. If
 `AUTO_MANUAL_LOCAL_GILROY_DIR` is set on the build machine, the fonts from
 that folder are also packed into the zip's `Document fonts/`.
+Windows system fallback faces (`Segoe UI Symbol` and `Yu Gothic`) remain
+manifest-only and are not redistributed in the package.
 The checklist opens the versioned IDML at the zip root. Package link failures
 are reported in `missing_assets_report.md`; unresolved semantic source/flow
 references remain available separately in `source_asset_resolution_report.md`.

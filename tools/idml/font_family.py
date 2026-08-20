@@ -1,4 +1,4 @@
-"""Single source of truth for the primary IDML font-family contract."""
+"""Single source of truth for governed IDML font-family contracts."""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -93,4 +93,53 @@ CJK_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
     ),
     delivery_postscript_names="ArialUnicodeMS",
     delivery_license="system font (symbol fallback)",
+)
+
+
+# Latin-market IDML must not depend on macOS-only symbol faces. Segoe UI
+# Symbol is present on supported Windows hosts and covers the editable DC,
+# bullet, reference-mark, ordinal, and subscript glyphs emitted by the
+# renderer.
+SYMBOL_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
+    resource_id="ff_segoe_ui_symbol",
+    name="Segoe UI Symbol",
+    faces=(
+        IdmlFontFace(
+            resource_id="ff_segoe_ui_symbol_r",
+            name="Segoe UI Symbol",
+            postscript_name="SegoeUISymbol",
+            style_name="Regular",
+            font_type="OpenTypeTT",
+        ),
+    ),
+    delivery_postscript_names="SegoeUISymbol",
+    delivery_license="Windows system font (symbol fallback)",
+)
+
+
+# Segoe UI Symbol stops at circled 20. Yu Gothic is the Windows-native face
+# used for the complete editable circled-number set through 27, including the
+# LCD table row labels.
+CIRCLED_NUMBER_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
+    resource_id="ff_yu_gothic",
+    name="Yu Gothic",
+    faces=(
+        IdmlFontFace(
+            resource_id="ff_yu_gothic_r",
+            name="Yu Gothic Regular",
+            postscript_name="YuGothic-Regular",
+            style_name="Regular",
+            font_type="OpenTypeTT",
+        ),
+    ),
+    delivery_postscript_names="YuGothic-Regular",
+    delivery_license="Windows system font (circled-number fallback)",
+)
+
+
+IDML_FONT_FAMILY_TOKENS = (
+    PRIMARY_FONT_FAMILY_TOKEN,
+    CJK_FONT_FAMILY_TOKEN,
+    SYMBOL_FONT_FAMILY_TOKEN,
+    CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
 )
