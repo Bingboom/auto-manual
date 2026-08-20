@@ -30,6 +30,11 @@ Not every file here is equally current.
   - draft requirements for the skeleton-library program (DITA-model concept
     mapping, corpus audit → design finalization → retrofit phases, operator
     inputs and acceptance gates)
+- [`manual_ia_audit_2026-08.md`](manual_ia_audit_2026-08.md)
+  - Phase A information-architecture audit of the shipped manual corpus
+    (56 PDFs): candidate skeleton anchors with reconstruction test, reuse
+    tiers, variance attribution, pipeline coverage, and the data defects to
+    fix before anything is loaded into a skeleton library
 - [`closed_loop_qc_agent_requirements.md`](closed_loop_qc_agent_requirements.md)
   - requirements baseline for the closed-loop QC agent that combines content-lint rules, reviewer diff Word back-porting, and Feishu QC marking
 - [`Feishu_Cloud_Doc_Backport_Design.md`](Feishu_Cloud_Doc_Backport_Design.md)

@@ -102,6 +102,15 @@ business adjudication — the report supplies evidence only).
 Method gate: pilot the decomposition on ~10 representative manuals first;
 only run the full corpus after the method survives the pilot.
 
+> **Status 2026-08-20: first round executed** — see
+> [`manual_ia_audit_2026-08.md`](manual_ia_audit_2026-08.md). The operator
+> supplied the full corpus at once (56 PDFs, 便携主机 + 便携加电包), so the
+> full run replaced the 10-manual pilot and the method risk moved to result
+> review; the report records the two execution deviations found and corrected.
+> Measured reconstruction coverage: 67.3% by pure deletion, 94.5% allowing
+> ≤1 overlay per manual from a closed 6-operation set. Threshold X% is now
+> an operator decision against real numbers rather than a guess.
+
 ### Phase B — Design finalization
 
 Revise [`Product_Skeleton_Library_Design.md`](Product_Skeleton_Library_Design.md)
