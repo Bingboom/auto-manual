@@ -250,9 +250,9 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("<Content> de modelo</Content>", psr)
         self.assertNotIn(" DC ", psr)
         self.assertNotIn('AppliedFont="Arial Unicode MS"', psr)
-        self.assertIn("<Properties><AppliedFont type=\"string\">Apple Symbols</AppliedFont></Properties>", psr)
+        self.assertIn("<Properties><AppliedFont type=\"string\">Segoe UI Symbol</AppliedFont></Properties>", psr)
         self.assertIn("<Content>\u2393</Content>", psr)
-        self.assertIn("<Properties><AppliedFont type=\"string\">Arial Unicode MS</AppliedFont></Properties>", psr)
+        self.assertIn("<Properties><AppliedFont type=\"string\">Yu Gothic</AppliedFont></Properties>", psr)
         self.assertIn('FontStyle="Regular"', psr)
 
     def test_cjk_text_uses_fallback_runs_without_changing_latin_text(self) -> None:
@@ -315,10 +315,12 @@ class ExportIdmlTests(unittest.TestCase):
         fonts = IdmlWriter(params).fonts_xml()
         self.assertIn('Name="Arial Unicode MS"', fonts)
         self.assertIn('PostScriptName="ArialUnicodeMS"', fonts)
-        self.assertIn('Name="Apple Symbols"', fonts)
-        self.assertIn('PostScriptName="AppleSymbols"', fonts)
-        self.assertIn('Name="Apple SD Gothic Neo"', fonts)
-        self.assertIn('PostScriptName="AppleSDGothicNeo-Regular"', fonts)
+        self.assertIn('Name="Segoe UI Symbol"', fonts)
+        self.assertIn('PostScriptName="SegoeUISymbol"', fonts)
+        self.assertIn('Name="Yu Gothic"', fonts)
+        self.assertIn('PostScriptName="YuGothic-Regular"', fonts)
+        self.assertNotIn('Name="Apple Symbols"', fonts)
+        self.assertNotIn('Name="Apple SD Gothic Neo"', fonts)
 
     def test_page_count_follows_content(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3837,7 +3839,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn(
             'TopInset="2.14" BottomInset="2.14"', continuation_cell)
         self.assertIn(
-            '<AppliedFont type="string">Apple SD Gothic Neo</AppliedFont>',
+            '<AppliedFont type="string">Yu Gothic</AppliedFont>',
             number_cell,
         )
 
@@ -4266,7 +4268,7 @@ class ExportIdmlTests(unittest.TestCase):
                     "HB Spec Label", number, terminal=True)
                 self.assertIn(
                     '<Properties><AppliedFont type="string">'
-                    'Apple SD Gothic Neo</AppliedFont>',
+                    'Yu Gothic</AppliedFont>',
                     psr,
                 )
 

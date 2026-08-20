@@ -3,23 +3,27 @@ from __future__ import annotations
 
 from xml.sax.saxutils import escape
 
-from .font_family import CJK_FONT_FAMILY_TOKEN
+from .font_family import (
+    CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
+    CJK_FONT_FAMILY_TOKEN,
+    SYMBOL_FONT_FAMILY_TOKEN,
+)
 
-DIRECT_CURRENT_SYMBOL_FONT = "Apple Symbols"
-GENERAL_SYMBOL_FONT = CJK_FONT_FAMILY_TOKEN.name
+GENERAL_SYMBOL_FONT = SYMBOL_FONT_FAMILY_TOKEN.name
+CIRCLED_NUMBER_FONT = CIRCLED_NUMBER_FONT_FAMILY_TOKEN.name
 SYMBOL_FONT_FALLBACK_STYLE = "Regular"
 SYMBOL_FONT_FALLBACKS = {
-    "⎓": DIRECT_CURRENT_SYMBOL_FONT,
+    "⎓": GENERAL_SYMBOL_FONT,
     "※": GENERAL_SYMBOL_FONT,
     # Gilroy's installed production face has no masculine ordinal indicator.
     # Keep the source Spanish ``Nº`` intact and route only that glyph through
     # the governed Unicode fallback so PDF/X export does not emit .notdef.
     "º": GENERAL_SYMBOL_FONT,
+    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉●"},
     **{
-        ch: GENERAL_SYMBOL_FONT
-        for ch in "₀₁₂₃₄₅₆₇₈₉①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾●"
+        ch: CIRCLED_NUMBER_FONT
+        for ch in "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾㉑㉒㉓㉔㉕㉖㉗"
     },
-    **{ch: "Apple SD Gothic Neo" for ch in "㉑㉒㉓㉔㉕㉖㉗"},
 }
 SPEC_SUPERSCRIPT_MARKERS = frozenset(
     "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"

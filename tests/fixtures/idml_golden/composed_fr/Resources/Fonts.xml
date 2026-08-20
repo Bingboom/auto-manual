@@ -10,10 +10,10 @@
   <FontFamily Self="ff_arial_unicode_ms" Name="Arial Unicode MS">
     <Font Self="ff_arial_unicode_ms_r" FontFamily="Arial Unicode MS" Name="Arial Unicode MS Regular" PostScriptName="ArialUnicodeMS" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
   </FontFamily>
-  <FontFamily Self="ff_apple_symbols" Name="Apple Symbols">
-    <Font Self="ff_apple_symbols_r" FontFamily="Apple Symbols" Name="Apple Symbols Regular" PostScriptName="AppleSymbols" Status="Installed" FontStyleName="Regular" FontType="TrueType"/>
+  <FontFamily Self="ff_segoe_ui_symbol" Name="Segoe UI Symbol">
+    <Font Self="ff_segoe_ui_symbol_r" FontFamily="Segoe UI Symbol" Name="Segoe UI Symbol" PostScriptName="SegoeUISymbol" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
   </FontFamily>
-  <FontFamily Self="ff_apple_sd_gothic_neo" Name="Apple SD Gothic Neo">
-    <Font Self="ff_apple_sd_gothic_neo_r" FontFamily="Apple SD Gothic Neo" Name="Apple SD Gothic Neo Regular" PostScriptName="AppleSDGothicNeo-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
+  <FontFamily Self="ff_yu_gothic" Name="Yu Gothic">
+    <Font Self="ff_yu_gothic_r" FontFamily="Yu Gothic" Name="Yu Gothic Regular" PostScriptName="YuGothic-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
   </FontFamily>
 </idPkg:Fonts>

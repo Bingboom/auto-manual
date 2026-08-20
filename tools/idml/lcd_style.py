@@ -429,8 +429,7 @@ def typed_paragraph(writer, style: str, text: str,
                     leading_key: str | None = None, *,
                     point_size: float | None = None,
                     leading: float | None = None,
-                    bold: bool = False,
-                    font: str | None = None) -> str:
+                    bold: bool = False) -> str:
     """Apply shared typed LCD tokens without replacing the template style."""
     if point_size is None:
         point_size = param_pt(writer.params, size_key or "", 5.2)
@@ -457,10 +456,5 @@ def typed_paragraph(writer, style: str, text: str,
             r'<CharacterStyleRange (?P<attrs>[^>]*)>',
             apply_bold,
             paragraph,
-        )
-    if font:
-        paragraph = paragraph.replace(
-            '<AppliedFont type="string">Arial Unicode MS</AppliedFont>',
-            f'<AppliedFont type="string">{font}</AppliedFont>',
         )
     return paragraph

@@ -268,8 +268,7 @@ def add_lcd_story(
             cell_defs = (
                 (_lcd.typed_paragraph(
                     writer, "HB Spec Label", row["no"],
-                    "type_lcd_no_font_size", "type_lcd_no_font_leading",
-                    font="Apple SD Gothic Neo"), 0),
+                    "type_lcd_no_font_size", "type_lcd_no_font_leading"), 0),
                 (image_paragraph, 1),
                 (_lcd.typed_paragraph(
                     writer, "HB Spec Label", row["name"],
