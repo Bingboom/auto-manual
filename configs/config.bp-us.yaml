@@ -1,4 +1,8 @@
 # BP (battery pack) family, US region — skeleton-library slice S1 target.
+# KNOWN S1 STATE: queue-reachable via explicit Build_family=bp-us only, but the
+# manifest references templates/page_bp/** and recipes/bp-us/** that S2/S4
+# author, and JBP-2000B has no Spec_Master rows yet — do NOT enqueue bp-us
+# rows before S4 lands; a premature row fails at identity resolution.
 # Opt-in-only for the queue: rows must carry Build_family=bp-us explicitly
 # (build.queue_requires_build_family below); a plain US row keeps resolving
 # to config.us.yaml.
@@ -44,7 +48,7 @@ paths:
   spec_footnotes_csv: data/phase2/Spec_Footnotes.csv
   spec_notes_csv: data/phase2/Spec_Notes.csv
   spec_titles_csv: data/phase2/spec_titles.csv
-  page_manifest: docs/manifests/manual_bp_us.yaml
+  page_manifest: docs/manifests/manual_bp-us.yaml
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py

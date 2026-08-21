@@ -5,7 +5,7 @@
 Three-layer contract (skeleton library, slice S1):
 
 1. Skeleton Blueprint  — ``docs/manifests/skeletons/<cell>/blueprint.yaml``
-   owns slot order, requirement (required | optional | capability:<name>),
+   owns slot order, requirement (required | capability:<name>; 'optional' reserved),
    presentation, and semantic co-page pairs. No languages, regions, or paths.
 2. Product Manual Plan — the in-memory resolution of blueprint x slot
    templates x region profile x language set (dump with ``plan``).
@@ -32,6 +32,13 @@ import argparse
 import sys
 from pathlib import Path
 from typing import Any
+
+try:
+    from tools.script_bootstrap import bootstrap_repo_root
+except ImportError:  # pragma: no cover - direct script execution fallback
+    from script_bootstrap import bootstrap_repo_root
+
+_REPO_ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 _BLUEPRINT_SCHEMA = "skeleton-blueprint/v1"
 _SLOT_TEMPLATES_SCHEMA = "skeleton-slot-templates/v1"
@@ -107,11 +114,20 @@ def load_blueprint(path: Path) -> dict[str, Any]:
                 f"{path}: slots[{idx}].block must be one of {_BLOCKS}"
             )
         requirement = slot.get("requirement")
+        if isinstance(requirement, str) and requirement == "optional":
+            # Reserved, not implemented: no layer has opt-out semantics yet, so
+            # accepting it would emit the slot unconditionally — printing a
+            # chapter the product does not have (the capability-gate defect
+            # class). Fail loudly until the plan layer implements it.
+            raise SkeletonResolveError(
+                f"{path}: slots[{idx}].requirement 'optional' is reserved but not "
+                "implemented; use required or capability:<name>"
+            )
         if not isinstance(requirement, str) or not (
-            requirement in {"required", "optional"} or requirement.startswith("capability:")
+            requirement == "required" or requirement.startswith("capability:")
         ):
             raise SkeletonResolveError(
-                f"{path}: slots[{idx}].requirement must be required | optional | capability:<name>"
+                f"{path}: slots[{idx}].requirement must be required | capability:<name>"
             )
         if requirement.startswith("capability:") and not requirement.split(":", 1)[1].strip():
             raise SkeletonResolveError(
@@ -154,6 +170,7 @@ def load_slot_templates(path: Path, blueprint: dict[str, Any]) -> dict[str, dict
         raise SkeletonResolveError(
             f"{path}: blueprint slots without a carrier mapping: {', '.join(missing)}"
         )
+    blocks = {slot["slot_id"]: slot["block"] for slot in blueprint["slots"]}
     for slot_id, carrier in slots_raw.items():
         if not isinstance(carrier, dict):
             raise SkeletonResolveError(f"{path}: slots.{slot_id} must be a mapping")
@@ -162,6 +179,20 @@ def load_slot_templates(path: Path, blueprint: dict[str, Any]) -> dict[str, dict
             raise SkeletonResolveError(
                 f"{path}: slots.{slot_id} has unsupported fields: {', '.join(bad)}"
             )
+        # 'lang' is documentation of the front/back single-emission fact, not a
+        # control: entry languages always come from the block expansion. Reject
+        # it anywhere it would read as a control and be silently ignored.
+        lang_value = carrier.get("lang")
+        if lang_value is not None:
+            if blocks.get(slot_id) == "body":
+                raise SkeletonResolveError(
+                    f"{path}: slots.{slot_id}: 'lang' is not allowed on body slots "
+                    "(body slots expand once per language; the key would be ignored)"
+                )
+            if lang_value != "primary":
+                raise SkeletonResolveError(
+                    f"{path}: slots.{slot_id}: 'lang' only supports 'primary'"
+                )
     return slots_raw
 
 
@@ -173,6 +204,10 @@ def load_region_profile(path: Path, blueprint: dict[str, Any]) -> dict[str, Any]
         isinstance(item, str) and item.strip() for item in language_set
     ):
         raise SkeletonResolveError(f"{path}: language_set must be a non-empty list of strings")
+    if len(set(language_set)) != len(language_set):
+        raise SkeletonResolveError(
+            f"{path}: language_set contains duplicates: {language_set}"
+        )
     primary = data.get("primary_lang")
     if not isinstance(primary, str) or primary not in language_set:
         raise SkeletonResolveError(f"{path}: primary_lang must be a member of language_set")
@@ -215,6 +250,11 @@ def load_region_profile(path: Path, blueprint: dict[str, Any]) -> dict[str, Any]
         if row["mount_after"] not in blueprint_ids:
             raise SkeletonResolveError(
                 f"{path}: compliance[{idx}].mount_after references unknown slot: {row['mount_after']}"
+            )
+        if row["fragment"] in blueprint_ids:
+            raise SkeletonResolveError(
+                f"{path}: compliance[{idx}].fragment '{row['fragment']}' collides with a "
+                "blueprint slot id (emitted slot_ids would duplicate)"
             )
     return data
 
@@ -355,6 +395,16 @@ def resolve_plan(
     for slot in back:
         emit_slot(slot, lang=primary_lang, qualified=False)
 
+    # Safety net: the gate must never certify a manifest its own pipeline
+    # rejects. parse_config_pages enforces uniqueness downstream; enforce it
+    # here too so emit/verify fail at the source.
+    emitted_ids = [entry["slot_id"] for entry in pages]
+    duplicates = sorted({sid for sid in emitted_ids if emitted_ids.count(sid) > 1})
+    if duplicates:
+        raise SkeletonResolveError(
+            f"resolved plan emits duplicate slot_ids: {', '.join(duplicates)}"
+        )
+
     return {"manifest_id": manifest_id, "pages": pages}
 
 
@@ -369,7 +419,20 @@ def _yaml_scalar(value: Any) -> str:
     if isinstance(value, bool):
         return "true" if value else "false"
     text = str(value)
-    return text
+    # Quote anything YAML would reparse as a different type or reject
+    # ('no' -> False, values starting with '{', ': ' inside, '#', ...).
+    # A bare scalar is only allowed when it round-trips to the same string.
+    try:
+        import yaml
+
+        reparsed = yaml.safe_load(text)
+    except Exception:
+        reparsed = None
+    if isinstance(reparsed, str) and reparsed == text and "\n" not in text:
+        return text
+    import json
+
+    return json.dumps(text, ensure_ascii=False)
 
 
 def emit_manifest_yaml(plan: dict[str, Any], *, header: list[str]) -> str:
@@ -387,14 +450,72 @@ def emit_manifest_yaml(plan: dict[str, Any], *, header: list[str]) -> str:
             prefix = "  - " if first else "    "
             first = False
             if field == "langs":
-                rendered = "[" + ", ".join(str(item) for item in value) + "]"
+                rendered = "[" + ", ".join(_yaml_scalar(item) for item in value) + "]"
                 lines.append(f"{prefix}{field}: {rendered}")
             else:
                 lines.append(f"{prefix}{field}: {_yaml_scalar(value)}")
         unknown = sorted(set(entry) - set(_FIELD_ORDER))
         if unknown:
             raise SkeletonResolveError(f"entry has fields outside the emitter order: {unknown}")
-    return "\n".join(lines) + "\n"
+    text = "\n".join(lines) + "\n"
+    _assert_round_trip(text, plan)
+    return text
+
+
+def _assert_round_trip(text: str, plan: dict[str, Any]) -> None:
+    """The gate must never certify bytes its own pipeline reparses differently.
+
+    Every emitted manifest is reparsed here and compared field-for-field
+    against the plan; any drift (type coercion, scanner error, lost field)
+    fails emit/verify at the source instead of at build time.
+    """
+
+    import yaml
+
+    try:
+        data = yaml.safe_load(text)
+    except Exception as exc:
+        raise SkeletonResolveError(f"emitted YAML does not reparse: {exc}") from exc
+    if not isinstance(data, dict) or data.get("manifest_id") != plan["manifest_id"]:
+        raise SkeletonResolveError("emitted YAML lost or changed manifest_id on reparse")
+    reparsed_pages = data.get("pages")
+    expected_pages = [
+        {k: (list(v) if isinstance(v, tuple) else v) for k, v in entry.items() if v is not None}
+        for entry in plan["pages"]
+    ]
+    if reparsed_pages != expected_pages:
+        raise SkeletonResolveError(
+            "emitted YAML reparses to a different page list than the resolved plan"
+        )
+
+
+def _repo_relative_posix(path: Path) -> str:
+    """Normalize a CLI-spelled path to its repo-relative posix form.
+
+    The generated header must not depend on how the operator spelled the path
+    (absolute vs relative), or verify becomes spelling-sensitive and emit can
+    commit machine-local paths.
+    """
+
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(Path(_REPO_ROOT).resolve()).as_posix()
+    except ValueError:
+        return resolved.as_posix()
+
+
+def build_header(skeleton_dir: Path, region_profile: Path, manifest_id: str) -> list[str]:
+    skeleton_ref = _repo_relative_posix(skeleton_dir)
+    profile_ref = _repo_relative_posix(region_profile)
+    return [
+        "Resolved Manifest — generated by tools/skeleton_resolve.py. Do not hand-edit.",
+        f"Sources: {skeleton_ref}/blueprint.yaml + slot_templates.yaml",
+        f"         + {profile_ref}",
+        "Regenerate: python tools/skeleton_resolve.py emit "
+        f"--skeleton-dir {skeleton_ref} "
+        f"--region-profile {profile_ref} "
+        f"--manifest-id {manifest_id} --out <this file>",
+    ]
 
 
 def _build(args: argparse.Namespace) -> tuple[str, dict[str, Any]]:
@@ -403,15 +524,7 @@ def _build(args: argparse.Namespace) -> tuple[str, dict[str, Any]]:
     slot_templates = load_slot_templates(skeleton_dir / "slot_templates.yaml", blueprint)
     profile = load_region_profile(args.region_profile, blueprint)
     plan = resolve_plan(blueprint, slot_templates, profile, manifest_id=args.manifest_id)
-    header = [
-        "Resolved Manifest — generated by tools/skeleton_resolve.py. Do not hand-edit.",
-        f"Sources: {skeleton_dir.as_posix()}/blueprint.yaml + slot_templates.yaml",
-        f"         + {args.region_profile.as_posix()}",
-        "Regenerate: python tools/skeleton_resolve.py emit "
-        f"--skeleton-dir {skeleton_dir.as_posix()} "
-        f"--region-profile {args.region_profile.as_posix()} "
-        f"--manifest-id {args.manifest_id} --out <this file>",
-    ]
+    header = build_header(skeleton_dir, args.region_profile, args.manifest_id)
     return emit_manifest_yaml(plan, header=header), plan
 
 

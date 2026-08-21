@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import re
+
 from dataclasses import dataclass
 from typing import Any, TypeAlias
 
@@ -86,6 +88,20 @@ class RstIncludePage:
 ConfigPage: TypeAlias = CoverPdfPage | CsvPage | GeneratedPage | PdfInsertPage | RstIncludePage
 
 
+def _slot_id_single_lang_issue(
+    idx: int,
+    page_type: str,
+    slot_id: str | None,
+    langs: tuple[str, ...],
+) -> PageParseIssue | None:
+    if slot_id is not None and len(langs) != 1:
+        return PageParseIssue(
+            "ERROR",
+            f"pages[{idx}].slot_id requires a single-language langs list "
+            f"on {page_type} (got {len(langs)})")
+    return None
+
+
 def _is_list_of_str(value: Any) -> bool:
     return isinstance(value, list) and all(isinstance(i, str) for i in value)
 
@@ -132,6 +148,16 @@ def parse_config_pages(
             continue
         slot_id = slot_id_raw.strip() if isinstance(slot_id_raw, str) else None
         if slot_id is not None:
+            # Safe-basename guard: slot names become materialized file names
+            # directly, so they must stay flat identifiers (the legacy path
+            # guaranteed this via Path(...).name; slot naming must not regress
+            # it, and must not be able to mint a pNN_-shaped name).
+            if not re.fullmatch(r"[a-z][a-z0-9_-]*", slot_id) or re.match(r"p\d+_", slot_id):
+                issues.append(PageParseIssue(
+                    "ERROR",
+                    f"pages[{idx}].slot_id must match [a-z][a-z0-9_-]* and must not "
+                    f"look like a pNN_ prefix: {slot_id}"))
+                continue
             if slot_id in seen_slot_ids:
                 issues.append(PageParseIssue(
                     "ERROR", f"pages[{idx}].slot_id duplicated in manifest: {slot_id}"))
@@ -201,11 +227,9 @@ def parse_config_pages(
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] csv_page.include_dir must be non-empty string"))
                 continue
 
-            if slot_id is not None and len(page_langs) != 1:
-                issues.append(PageParseIssue(
-                    "ERROR",
-                    f"pages[{idx}].slot_id requires a single-language langs list "
-                    f"on csv_page (got {len(page_langs)})"))
+            single_lang_issue = _slot_id_single_lang_issue(idx, "csv_page", slot_id, page_langs)
+            if single_lang_issue is not None:
+                issues.append(single_lang_issue)
                 continue
             parsed.append(
                 CsvPage(
@@ -329,11 +353,9 @@ def parse_config_pages(
                 )
                 continue
 
-            if slot_id is not None and len(page_langs) != 1:
-                issues.append(PageParseIssue(
-                    "ERROR",
-                    f"pages[{idx}].slot_id requires a single-language langs list "
-                    f"on generated_page (got {len(page_langs)})"))
+            single_lang_issue = _slot_id_single_lang_issue(idx, "generated_page", slot_id, page_langs)
+            if single_lang_issue is not None:
+                issues.append(single_lang_issue)
                 continue
             parsed.append(
                 GeneratedPage(
@@ -377,11 +399,10 @@ def parse_config_pages(
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] pdf_insert.langs invalid"))
                 continue
 
-            if slot_id is not None and len(tuple(page_langs_raw)) != 1:
-                issues.append(PageParseIssue(
-                    "ERROR",
-                    f"pages[{idx}].slot_id requires a single-language langs list "
-                    f"on pdf_insert (got {len(tuple(page_langs_raw))})"))
+            single_lang_issue = _slot_id_single_lang_issue(
+                idx, "pdf_insert", slot_id, tuple(page_langs_raw))
+            if single_lang_issue is not None:
+                issues.append(single_lang_issue)
                 continue
             parsed.append(
                 PdfInsertPage(
@@ -418,6 +439,19 @@ def parse_config_pages(
                 )
             )
             continue
+
+    # Slot naming is all-or-nothing per manifest: in a mixed manifest an
+    # earlier slot page could silently steal the bare name a later legacy page
+    # would have received (first-wins), flipping the legacy page to a pNN_
+    # name — the exact rename class the slot mechanism exists to prevent.
+    if parsed and seen_slot_ids:
+        missing_slot = [p for p in parsed if getattr(p, "slot_id", None) is None]
+        if missing_slot:
+            issues.append(PageParseIssue(
+                "ERROR",
+                "manifest mixes slot_id and legacy entries "
+                f"({len(missing_slot)} of {len(parsed)} pages lack slot_id); "
+                "slot naming is all-or-nothing per manifest"))
 
     return parsed, issues
 

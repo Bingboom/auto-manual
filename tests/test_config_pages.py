@@ -211,5 +211,28 @@ class TestConfigPages(unittest.TestCase):
             )
 
 
+class SlotIdGuardTests(unittest.TestCase):
+    def test_slot_id_charset_and_pnn_shape_rejected(self) -> None:
+        from tools.config_pages import parse_config_pages
+
+        pages, issues = parse_config_pages([
+            {"type": "rst_include", "file": "a.rst", "lang": "en", "slot_id": "has/slash"},
+            {"type": "rst_include", "file": "b.rst", "lang": "en", "slot_id": "p12_steal"},
+        ])
+        errors = [i.msg for i in issues if i.level == "ERROR"]
+        self.assertEqual(2, len([m for m in errors if "slot_id must match" in m]))
+        self.assertFalse(pages)
+
+    def test_mixed_slot_and_legacy_manifest_rejected(self) -> None:
+        from tools.config_pages import parse_config_pages
+
+        pages, issues = parse_config_pages([
+            {"type": "rst_include", "file": "a.rst", "lang": "en", "slot_id": "safety_en"},
+            {"type": "rst_include", "file": "b.rst", "lang": "en"},
+        ])
+        errors = [i.msg for i in issues if i.level == "ERROR"]
+        self.assertTrue(any("all-or-nothing" in m for m in errors), errors)
+
+
 if __name__ == "__main__":
     unittest.main()

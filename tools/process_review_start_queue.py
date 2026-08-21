@@ -172,6 +172,13 @@ def _resolve_review_start_region_config_path(*, region: str) -> Path | None:
             continue
         build_cfg_raw = cfg.get("build", {})
         build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+        # Opt-in-only families (queue_requires_build_family) never compete for
+        # region-only review-start resolution — same guard as
+        # queue_config_resolution.config_match_score. Without it,
+        # config.bp-us.yaml ties config.us.yaml 106:106 here and every US
+        # review-start row dies on the ambiguity error below.
+        if bool(build_cfg.get("queue_requires_build_family")):
+            continue
         default_region = str(build_cfg.get("default_region") or "").strip().upper()
         if default_region != normalized_region:
             continue
