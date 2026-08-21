@@ -1,1 +1,26 @@
-snippets: []
+# Section-module registry. Each entry binds one snippet id + language to a file;
+# templates splice it with a `{{snippet:<id>}}` token (plain include pages name
+# the id directly; generated pages name a recipe-bound slot).
+#
+# First real entry (skeleton slice S3): the long-storage / battery-health
+# advisory. It exists as 10 hand-maintained copies across the repo
+# (page_shared/{en,de,es,fr,it,ko,pt-BR,uk}/09_storage_and_maintenance.rst plus
+# two variants in page_zh), is 100% present in the battery-pack corpus (7/7),
+# carries zero placeholders and zero brand or category nouns, and never enters
+# a TOC — so splicing it is byte-conservable and cannot move a page number.
+# Only the three languages the BP@INTL x US line ships are registered here;
+# collapsing the remaining host copies is rollout work and needs a byte diff
+# per copy.
+snippets:
+  - snippet_id: battery_long_storage_advisory
+    lang: en
+    file: templates/snippets/battery_long_storage_advisory/en.rst
+    tags: [storage, battery_health]
+  - snippet_id: battery_long_storage_advisory
+    lang: fr
+    file: templates/snippets/battery_long_storage_advisory/fr.rst
+    tags: [storage, battery_health]
+  - snippet_id: battery_long_storage_advisory
+    lang: es
+    file: templates/snippets/battery_long_storage_advisory/es.rst
+    tags: [storage, battery_health]

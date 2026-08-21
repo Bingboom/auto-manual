@@ -238,6 +238,38 @@ def materialize_planned_page(
                     f"language block (target ships {list(langs)})"
                 )
         rst_text = apply_rst_substitutions(rst_text, page_substitutions, page_vars)
+        # Section-module layer for plain include pages. Nearly all shared prose
+        # lives in rst_include templates, so a snippet mechanism that only
+        # reached generated pages could never actually collapse a hand-copied
+        # module — which is why the registry sat empty. The token names the
+        # snippet id directly (no recipe to bind slots through), and a page
+        # carrying no token does zero registry work and keeps its exact bytes.
+        from tools.draft_engine import (
+            SNIPPET_TOKEN_PREFIX,
+            load_snippet_registry,
+            resolve_snippet_tokens,
+        )
+
+        snippet_registry_path = resolve_snippet_registry_path(docs_dir)
+        rst_text, used_include_snippets = resolve_snippet_tokens(
+            rst_text,
+            registry_entries=(
+                load_snippet_registry(snippet_registry_path)
+                if SNIPPET_TOKEN_PREFIX in rst_text
+                else []
+            ),
+            registry_path=snippet_registry_path,
+            docs_dir=docs_dir,
+            lang=planned.lang or (langs[0] if langs else "en"),
+            model=model,
+            region=region,
+            substitutions=page_substitutions,
+            vars_map=page_vars,
+            slot_map=None,
+            label=str(source_path),
+        )
+        for snippet_id in used_include_snippets:
+            print(f"[bundle-page] {source_path.name}: spliced snippet '{snippet_id}'")
     # Resolve section markers before asset rewriting so a dropped section
     # never stages its images, and before the empty-line normalizer so the
     # blank run the removed markers leave behind gets collapsed.
