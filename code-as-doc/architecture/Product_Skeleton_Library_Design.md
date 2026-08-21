@@ -39,12 +39,25 @@ Evidence base — read these before reviewing this design:
 | # | Decision | Date | Rationale |
 | --- | --- | --- | --- |
 | D1 | Adopt the DITA **information model**, not the DITA XML toolchain | 2026-08-20 | RST + manifests + Feishu tables + four renderers are the accumulated capital; changing carrier is a rewrite, adopting the model is a refactor |
-| D2 | **CN is its own skeleton** (`MAIN@CN`) | 2026-08-20 | Not sequence distance (it is only 1 reorder + 1 insert from `MAIN@INTL`) but **body lineage** — the 7 CN manuals are independently authored, not translated |
+| D2 | **CN is its own skeleton** (`MAIN@CN`) | 2026-08-20 | Not sequence distance (it is only 1 reorder + 1 insert from `MAIN@INTL`) but a **house-style signature**: the opening, warranty and tail slot are independently authored, there is no TOC, the symbol table is deleted outright, and the back cover merges into the conformity certificate |
+
+> **D2's stated rationale was corrected on 2026-08-20.** It was first recorded
+> as "the 7 CN manuals are independently authored, not translated". Measured at
+> topic granularity on HTE152, that is **half wrong**: only 3 topics are CN-
+> authored (`preface_important`, `warranty`, `cn_conformity_certificate`), while
+> **12 share lineage with `MAIN@INTL`** — CN safety bullets 1–7 and 10 map
+> one-to-one, in order, onto the EU chapter's 8 bullets; storage is
+> sentence-for-sentence identical; the fault-code table is the same 12 codes in
+> all four regions; the LCD icon set maps item-for-item. **The decision stands**
+> — the signature above is a stronger and checkable reason — but the original
+> wording would have produced the wrong answer next time it was applied.
 
 **D2 generalizes into a rule this design encodes as a field**: skeleton
 boundaries follow content lineage, not diff size. See `body_lineage` in §5.2.
 The same ruler, applied to the JP battery packs in §4.2, gives the *opposite*
-answer — which is a consistency check passing, not an exception.
+answer — and applied to HTE153 KR it routes that manual **into** `MAIN@INTL`
+(§4.2b). Three applications, three different destinations: the ruler is doing
+work, not rubber-stamping.
 
 ## 3. What changed after Phase A/B (corrections to the v1 draft)
 
@@ -84,19 +97,40 @@ populated; the matrix is sparse and no Cartesian product is implied.
 
 | Cell | Members | Was (Phase A) |
 | --- | --- | --- |
-| `MAIN@INTL` | 25 | A1-INTL-MAIN |
+| `MAIN@INTL` | **28** | A1-INTL-MAIN (+HTE153 AU/KR/BR) |
 | `MAIN@JP` | 12 | A2 minus the 2 battery packs |
 | `MAIN@CN` | 7 | A3-CN-MAIN (operator-decided, D2) |
 | `BP@INTL` | 4 | A4-INTL-BP |
 | `BP@JP` | 3 | **new cell** — absorbs A5's `HTP007` plus the 2 JP battery packs |
 
-Axis ownership, assigned by evidence rather than convention:
+**Five cells, and the seven-region test says five is right** — see §4.2b. No
+cell is added for AU / KR / BR / MX / PH: every one of their differences is
+absorbed by the fragment layer, the language axis, or `region_profile` below.
 
-- **`skeleton_family` ∈ {MAIN, BP}** owns topic existence, the page grid and
-  same-page pairing constraints, and the body module set.
+Axis ownership, corrected against the HTE152 and HTE153 factorials:
+
+- **`skeleton_family` ∈ {MAIN, BP}** owns the **topic universe and capability
+  slots** (not per-book topic existence — that is
+  `family universe ∩ house_style absorption ∩ capability gate ∩ optional
+  slots`), the **semantic same-page pairing** (e.g. the storage+troubleshooting
+  tail cluster, 6/6 in HTE153's INTL members with y-coordinates matching to the
+  point), and the body module skeleton.
+  *Typographic-slack co-page* is explicitly **not** a constraint and is not
+  stored as one.
 - **`house_style` ∈ {INTL, JP, CN}** owns chapter label vocabulary, opening
-  composition, absorption rules, warranty/legal module choice, compliance
-  carrier, and language set.
+  composition, absorption rules, and the warranty/legal **convention**.
+  It does **not** own compliance carrier, language set, legal entity, or unit
+  system — those diverged *inside* the INTL cell (§4.2b) and moved to
+  `region_profile`.
+- **`region_profile`** (new; an overlay key space, **not** a third anchor key)
+  owns the compliance fragment mounting row, safety-module regional variant,
+  unit system, legal-entity/contact module, brand display name, language-set
+  reference, TOC on/off, back-cover form, and cover module.
+  Keeping region out of the anchor key is deliberate: promoting it would split
+  the 28 `MAIN@INTL` manuals into seven cells — precisely the "8+ phantom
+  skeletons" §4.2 already rejected. The mechanism is §6.3's existing
+  `fragment + (region, host_page, repeat_per_language)`, generalized from
+  compliance-only to region-keyed module variants.
 - **`house_style_version` ∈ {v1, v2}** is an *attribute* of `house_style`, not
   a fourth key. It owns the order profile and safety-block placement.
 
@@ -136,6 +170,67 @@ If it is labels, chapter order, absorption position, legal module, or language
 set → that is the overlay domain. **Category sets the base; house style is the
 overlay.**
 
+> **The rule applies at *topic* granularity only.** At *block* granularity it
+> would split `MAIN@INTL`, because the US safety chapter is five inserted
+> blocks relative to the EU one (§4.2b). Block-level insertions go to
+> `region_profile` module variants and never promote an anchor. Without this
+> clause §6's module layer contradicts §4.2 on its first day.
+
+One count that supported this rule needs repair: §4.2's claim that
+`connections` is 0/14 in `MAIN@JP` is **false** — it is 3/13 (HTE139 日规,
+HTE159 日规, HTE152 日规), recorded under two different ids (`connections` vs
+`extra_battery`) across six manuals. That is a W3-class normalization defect,
+not a topic gap. The *conclusion* for the JP battery packs is unaffected — it
+rests on the safety-module replacement, not the count — but the arithmetic
+behind it must be recomputed before it is quoted again.
+
+### 4.2b The dual factorial: HTE152 and HTE153
+
+§4.2 varies `skeleton_family`; two later intakes vary `house_style` under a
+fixed family, giving each axis its own controlled experiment.
+
+**HTE152 (4 manuals, 1×3 house-style row with INTL double-occupied).** This is
+the only sample where one cell holds two manuals of the same SKU, so it can ask
+whether `house_style` is a *function*. It is not. Of 23 structural differences:
+house_style accounts for 48%, **region for 43%**, model capability 4%, and 4%
+has no key at all. Four items the v1 design assigned to `house_style` took two
+different values inside `MAIN@INTL`: language set (US 3 languages vs EU 6),
+compliance carrier (US untitled FCC block on the box-contents page repeated per
+language vs EU RED DoC on a shared single-language back cover), legal entity,
+and unit system. Two more diverged in the *family* domain: `safety_info` is two
+different modules (US ~30 items over 2 printed pages including grounding
+clauses; EU 8 items on 1 page) and block length is 20 vs 19. Hence
+`region_profile` and the axis-ownership rewrite in §4.1.
+
+**HTE153 (7 regions, 1 SKU — the decisive test).** Same family, same model, so
+capability variance is zero by construction. Six of the seven are INTL members.
+Result: **INTL holds for seven regions; no split.** All four house_style
+definition items are invariant across 6/6 — one label vocabulary translated per
+language, the same `safety → UMI (demoted bar) → symbols` opening cluster with
+UMI never in a TOC, the same INTL limited-warranty module (3+2 years,
+item-for-item, KR and BR being structural translations), and a 13-chapter body
+sequence with **zero reorders**. **Zero family-domain violations.** KR was the
+one candidate for splitting out — it shares two signals with JP (a
+domestic-only cover, no in-book compliance carrier) — but both proved to be
+cross-style *region* parameters rather than JP essence (HTE153 JP also carries
+no in-book compliance), while all four genuine JP signals are absent from KR,
+which keeps the INTL preface block and limited-warranty. Two KR manuals across
+two SKUs and two eras agree.
+
+Consequences worth recording:
+
+- The Phase A "US/EU symbol-first swap" was a **phantom** — geometry shows UMI
+  first in both; it only looked swapped because UMI never enters the TOC. Even
+  that overlay disappears, leaving the seven manuals with no slot-pair swap at
+  all.
+- Front-matter and cover modules cross house-style boundaries: JP and KR use
+  the *same* domestic-only cover module, and JP's TOC language band is the INTL
+  multi-language band degenerated to one. The module layer must therefore allow
+  front-matter to mount by **region**, not by style.
+- HTE153 is designated the skeleton library's **regression baseline SKU** — the
+  only one with all seven regions in the corpus *and* all seven targets filed
+  in the repo, so corpus and pipeline can be reconciled in both directions.
+
 ### 4.3 Measurement caliber (settled in Phase B)
 
 **Canonical order = layout order at printed-page granularity. Same-page order
@@ -168,15 +263,15 @@ Why this matters and what it fixed:
 
 | Cell | Pure deletion | Notes |
 | --- | --- | --- |
-| `MAIN@INTL` | 19/25 = **76.0%** | was 16/25; 3 books (HTE147 欧英, HTE156 欧英, HTE156 美加) were **false forks** from extraction order |
+| `MAIN@INTL` | **22/28 = 78.6%** | was 16/25 → 19/25 (3 extraction-order false forks removed) → +3 new HTE153 manuals, all pure-deletion passes (BR is a zero-operation identity match) |
 | `MAIN@JP` | 13/14 = 92.9% | unchanged |
 | `MAIN@CN` | **7/7 = 100%** | was 4/7; under printed-page granularity the 3 same-page books are ties, **0 overlays needed** |
 | `BP@INTL` | 3/4 = 75.0% | unchanged |
 | `BP@JP` | pending | new cell, needs its own canonical sequence |
 
-**Whole corpus: pure deletion 37/55 → 43/55 = 78.2%; ≤1 overlay stays
-52/55 = 94.5%.** If the operator sets the Phase A threshold (requirements §5),
-the numbers to use are **78.2% / 94.5%**.
+**Whole corpus: pure deletion 37/55 → 43/55 → 46/58 = 79.3%; ≤1 overlay
+55/58 = 94.8%.** If the operator sets the Phase A threshold (requirements §5),
+the numbers to use are **79.3% / 94.8%**.
 
 `T2` (storage↔troubleshooting swap) goes from "the biggest single overlay load,
 7 books" to **1 book** (`HTE157 美加规`, a genuine fork on different printed
@@ -217,11 +312,24 @@ minority, and every diff pays two `slot_retype` operations for it.
 
 ### 5.2 Fields the corpus forced
 
-- **`body_lineage`**: `authored | translated_from:<skeleton_id>`, stored per
-  (cell, topic). This is the machine-checkable form of decision D2 — without
-  it the operator's reasoning cannot be recomputed next time. It also satisfies
-  the audit's standing caveat that 78–90% is a *slot* reuse ceiling, not a text
-  reuse rate.
+- **`body_lineage`**: `authored | translated_from:<ref> | cloned_from:<ref> |
+  alias_of:<file>`, stored per (cell, topic); `<ref>` may name a language block,
+  and template lineage is stored separately from body lineage. This is the
+  machine-checkable form of decision D2 — without it the operator's reasoning
+  cannot be recomputed next time. It also satisfies the audit's standing caveat
+  that 78–90% is a *slot* reuse ceiling, not a text reuse rate.
+
+  Two findings shaped the value space. **Direction is not always decidable**:
+  for CN the calque signals point CN→EN (the English "Risk of electric shock may
+  occur if using accessories that are not recommended or sold by professional
+  product manufacturers" mis-scopes *professional*) while the version dates
+  point EN→CN (CN is a V0.5 draft from 2026-06-02; US was already V2.0 on
+  05-28). The field must therefore permit an undirected "shared lineage"
+  assertion rather than forcing a parent. **`cloned_from` is separately
+  evidenced**: HTE153 AU is a clone of the EU EN block, not of US — 87.1% vs
+  72.2% normalized block containment, and decisively it **inherits a defect**,
+  the LCD-display TOC entry reading folio 05 where the body prints 04, exactly
+  as in the EU V2.0 master.
 - **`order_profile`**: `host_order | pack_order | spec_first`, stored as a
   reference rather than inlined, because it drifts across families and regions
   (international main = host, international BP = pack, JP BP = host,
@@ -334,12 +442,33 @@ directory.
 
 ### 6.3 Compliance as mountable fragments
 
-Four measured carriers, one schema
-(`fragment + (region, host_page, repeat_per_language)`): US/CA untitled block
-parasitic on the box-contents or overview page, repeated per language block;
-EU/UK shared single-language DoC on the back cover, not repeated; JP a single
-`認証：` row inside the spec table; CN a conformity certificate that doubles as
-the back cover.
+One schema — `fragment + (region, host_page, repeat_per_language)` — over
+**six measured forms plus one missing fragment**:
+
+| Region | Carrier | Evidence |
+| --- | --- | --- |
+| US / CA / MX | untitled block parasitic on the box-contents or overview page, repeated per language block | HTE153 US at EN p6 / FR p24 / ES p42 |
+| EU / UK | shared single-language DoC on the back cover, not repeated | 8 manuals |
+| BR | FCC block as US/CA **plus** a titled `REGULAMENTAÇÃO ANATEL` back-cover block | HTE153 BR printed p03; ANATEL cert 05561-26-18577 |
+| JP | `認証：` row inside the spec table — **v1 only** | HTE154 日规, HTE119 日规 |
+| AU | **nothing mounted** (explicit empty row, 3/3 across 2 SKUs and 3 generations) | HTE118, HTE133, HTE153 AU |
+| KR | **nothing mounted**; the statutory product name is lexicalized into the product-name string instead (2/2) | HTE118 KR, HTE153 KR |
+
+Three constraints this table encodes:
+
+1. **The carrier is a per-book mounting fact, not a house-style constant.**
+   HTE153 日规 carries no `認証` row at all (whole spec table verified), and
+   neither do HTE139 日规 or HTE159 日规. "JP = `認証` row" is a
+   `house_style_version = v1` property and must not be defaulted for `MAIN@JP`.
+2. **Absence must be recorded as an explicit empty row**, distinguishable from
+   "not yet surveyed", and flagged for legal sign-off. Per the audit's rule that
+   regional compliance (8% of variance) is never data-driven, an empty row is
+   evidence, not authorization.
+3. **`anatel@back_cover` is a real production gap**, not a modelling nicety:
+   it is zero-hit across `docs/templates` and `data/`, and
+   `manual_pt-br.yaml` has no back-cover entry at all — so the legally required
+   ANATEL statement **cannot currently be produced**. It joins B8's first batch,
+   reusing the EU-DoC back-cover carrier form.
 
 Note the pipeline currently renders FCC as a standalone page (`p22_01_fcc`),
 which matches **none** of the corpus. That form change is gated on operator
@@ -432,22 +561,33 @@ Settled: D1 (model not toolchain), D2 (CN independent), the anchor key
 dimensionality, the measurement caliber, the shared-plane approach, and the
 first module cut. Still needing a decision:
 
-1. **Three compliance gaps — defect or decision?** HTE153 美加规/墨西哥规 with
-   no FCC, HTE162 欧英规 with no DoC, and pt-BR carrying FCC (already fixed in
-   `manual_pt-br.yaml`). **Until this is decided, any automatic chapter
-   insertion would replicate a defect across the whole line.**
+1. **One compliance gap left, plus one new production gap.** The original three
+   resolved as follows: HTE153 美加规/墨西哥规 "no FCC" was **a decomposition
+   miss, not a gap** — the block is in the very file the audit registered
+   (EN p6 / FR p24 / ES p42), missed because of the same "FCC never enters a
+   TOC" trap the audit itself warned about; pt-BR carrying FCC is **a correct
+   decision**, confirmed on a physical manual and consistent across two SKUs.
+   **Still open: HTE162 欧英规 with no DoC.** **Newly open: the ANATEL
+   back-cover statement cannot be produced at all** (§6.3.3) — a legal
+   requirement with no carrier, which outranks the DoC question.
 2. **FCC form**: pipeline standalone page vs the corpus's untitled parasitic
    block. B8 builds both carriers and waits.
 3. **Two filing defects** (§7.1 of the audit): HTE153 墨西哥规 sharing the US
    file — intentional reuse or mis-binding? HTE152 日规 mis-filed as HTE154?
    Both need a live-Base check before anything is written.
-4. **12 repository targets with no reference skeleton** — supply corpus, or
-   mark them explicitly as new lines?
+4. **9 repository targets with no reference skeleton** (was 12; `JE-1000F_AU`,
+   `JE-1000F_KR` and `JE-1000F_pt-BR` are now closed by the HTE153 intake) —
+   supply corpus, or mark them explicitly as new lines?
 5. **HTE140 日规's three variants** and the two already-printed QC defects on
    the SG file (an `F6` rendered as a tofu box, one residual red editing mark)
-   — reprint or accept?
-6. **Reconstruction threshold X%** — measured 78.2% pure deletion / 94.5% with
-   one overlay. Acceptable?
+   — reprint or accept? **Two more printed defects joined this queue**: the
+   LCD-display TOC entry reads folio 05 where the body prints 04, in both the
+   EU V2.0 master and the AU manual that inherited it. Note the
+   `toc_order ⊑ layout_order` gate checks *order*, not *page numbers*, so it
+   cannot catch this — the gate needs a second column comparing the TOC's
+   printed folio against the actual one.
+6. **Reconstruction threshold X%** — measured **79.3%** pure deletion /
+   **94.8%** with one overlay. Acceptable?
 7. **`document_key` grain**: adding a model-without-region form is a Feishu
    schema change (approve, defer, or keep R&D-time skeletons repo-side only).
 8. **Where the skeleton registry is mastered**: repo with a Feishu mirror, or
@@ -462,6 +602,19 @@ owns it). No second rendering stack. No relaxation of live-table write gates.
 ## 10. Revision log
 
 - 2026-08-20: initial draft from the six-perspective repo assessment.
+- 2026-08-20 (Phase B intake round 2): three HTE153 manuals (AU/KR/BR) and the
+  corrected HTE152 JP manual folded in. `MAIN@INTL` 25 → 28; corpus reconstruction
+  79.3% / 94.8%. **The 2-D key's structure passed both factorials; its axis
+  ownership did not** — compliance carrier, language set, legal entity and unit
+  system moved out of `house_style` into a new `region_profile` overlay key
+  space, `topic existence` narrowed to `topic universe + capability slots`, and
+  same-page constraints split into semantic (family-owned) vs typographic slack
+  (non-contractual). The §4.2 decision rule is now explicitly topic-granularity
+  only. D2's stated rationale corrected (CN shares lineage with INTL on 12 of
+  15 topics; the decision stands on a house-style signature instead).
+  Compliance open questions 3 → 1, plus a new one: the ANATEL statement has no
+  carrier and cannot be produced. Workflow artifacts: `wf_bdeee803-3c6`,
+  `wf_64a76562-1f6`.
 - 2026-08-20 (Phase B): rewritten against corpus evidence. Anchor key became
   2-D sparse `(skeleton_family × house_style)`; A5 dissolved into
   `house_style_version`; measurement caliber settled as printed-page layout
