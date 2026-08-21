@@ -50,6 +50,29 @@ def base_file_name_for_plan(
     raise RuntimeError(f"Unsupported page type: {type(page).__name__}")
 
 
+def materialized_file_name(page: Any, base_name: str, seen: set[str], ordinal: int) -> str:
+    """Slot-bearing entries are named by their stable slot_id; everything else
+    keeps the legacy position-derived path byte-for-byte.
+
+    The legacy ensure_unique_name gives the FIRST occurrence of a base name the
+    bare name and only later duplicates a pNN_ prefix, so a dropped page can
+    silently hand its bare name to the next language block. slot_id naming is a
+    pure function of the manifest entry: drop any page and every other
+    materialized name stays put.
+    """
+
+    slot_id = getattr(page, "slot_id", None)
+    if slot_id:
+        name = f"{slot_id}.rst"
+        if name in seen:
+            raise RuntimeError(
+                f"materialized name collision for slot_id '{slot_id}': {name}"
+            )
+        seen.add(name)
+        return name
+    return ensure_unique_name(base_name, seen, ordinal)
+
+
 def ensure_unique_name(file_name: str, seen: set[str], ordinal: int) -> str:
     if file_name not in seen:
         seen.add(file_name)
@@ -143,7 +166,7 @@ def plan_materialized_pages(
                 planned_page_cls(
                     page=page,
                     lang=cover_lang,
-                    file_name=ensure_unique_name(base_name, seen_names, ordinal),
+                    file_name=materialized_file_name(page, base_name, seen_names, ordinal),
                 )
             )
             continue
@@ -158,7 +181,7 @@ def plan_materialized_pages(
                     planned_page_cls(
                         page=page,
                         lang=lang,
-                        file_name=ensure_unique_name(base_name, seen_names, ordinal),
+                        file_name=materialized_file_name(page, base_name, seen_names, ordinal),
                     )
                 )
             continue
@@ -173,7 +196,7 @@ def plan_materialized_pages(
                     planned_page_cls(
                         page=page,
                         lang=lang,
-                        file_name=ensure_unique_name(base_name, seen_names, ordinal),
+                        file_name=materialized_file_name(page, base_name, seen_names, ordinal),
                     )
                 )
             continue
@@ -190,7 +213,7 @@ def plan_materialized_pages(
                     planned_page_cls(
                         page=page,
                         lang=lang,
-                        file_name=ensure_unique_name(base_name, seen_names, ordinal),
+                        file_name=materialized_file_name(page, base_name, seen_names, ordinal),
                     )
                 )
             continue
@@ -203,7 +226,7 @@ def plan_materialized_pages(
                 planned_page_cls(
                     page=page,
                     lang=page.lang,
-                    file_name=ensure_unique_name(base_name, seen_names, ordinal),
+                    file_name=materialized_file_name(page, base_name, seen_names, ordinal),
                 )
             )
             continue

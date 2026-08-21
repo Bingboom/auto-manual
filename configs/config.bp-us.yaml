@@ -1,0 +1,50 @@
+# BP (battery pack) family, US region — skeleton-library slice S1 target.
+# Opt-in-only for the queue: rows must carry Build_family=bp-us explicitly
+# (build.queue_requires_build_family below); a plain US row keeps resolving
+# to config.us.yaml.
+extends: config-bases/phase2-sync-base.yaml
+
+doc_type: manual_bundle
+
+build:
+  family_id: bp-us
+  queue_requires_build_family: true
+  languages: [ en, fr, es ]
+  include_lang_in_output_path: false
+  queue_by_document_key: true
+  default_model: JBP-2000B
+  default_region: US
+  targets:
+    - model: JBP-2000B
+      region: US
+  main_tex: manual_demo.tex
+  output_pdf: manual_{model_slug}_{region_slug}.pdf
+  xelatex_runs: 3
+  open_pdf: false
+  build_word: true
+  word_output: manual_{model_slug}_{region_slug}.docx
+  word_source: bundle
+  word_reference_doc: docs/templates/word_template/reference_en.docx
+  word_title: "|PRODUCT_NAME| User Manual"
+  rst_substitutions:
+    MANUAL_LANGUAGE_SCOPE: English / French / Spanish
+    WARRANTY_EMAIL: hello@jackery.com
+    LEGAL_COMPANY_NAME: Jackery Inc.
+  open_word: false
+  build_html: false
+  open_html: false
+
+paths:
+  docs_dir: docs
+  structured_data_dir: data/phase2
+  layout_params_csv: data/layout_params.csv
+  page_registry_csv: data/phase2/page_registry.csv
+  page_blocks_dir: data/phase2
+  spec_master_csv: data/phase2/Spec_Master.csv
+  spec_footnotes_csv: data/phase2/Spec_Footnotes.csv
+  spec_notes_csv: data/phase2/Spec_Notes.csv
+  spec_titles_csv: data/phase2/spec_titles.csv
+  page_manifest: docs/manifests/manual_bp_us.yaml
+
+tools:
+  patch_fonts: tools/patch_latex_fonts.py

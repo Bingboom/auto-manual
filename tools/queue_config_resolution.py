@@ -103,6 +103,14 @@ def validate_family_config_request(
 
 def config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, lang: str | None) -> int | None:
     current_build_cfg = build_cfg(cfg)
+    # Opt-in-only families never compete for plain queue rows: a config marked
+    # queue_requires_build_family is reachable exclusively through an explicit
+    # Build_family match. Without this, the filename heuristics below would
+    # let e.g. a battery-pack config outscore config.us.yaml for a plain US
+    # row (verified 105:104) and silently build a host manual from the wrong
+    # manifest.
+    if bool(current_build_cfg.get("queue_requires_build_family")):
+        return None
     default_region = normalize_region(current_build_cfg.get("default_region"))
     languages = build_languages(cfg)
     primary_lang = languages[0] if languages else ""
