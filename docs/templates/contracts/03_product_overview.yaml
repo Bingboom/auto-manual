@@ -39,10 +39,17 @@ required_placeholders:
     - SIDE_DC_INPUT_PV_SPEC
     - SIDE_DC_INPUT_CAR_SPEC
   category:BP:
-    # The shipped HTP017 US book prints one DC expansion port and no other
-    # ports; S4 authors the template that satisfies these.
-    - EXPANSION_PORT_LABEL
-    - EXPANSION_PORT_SPEC
+    # The shipped HTP017 US book prints TWO DC expansion ports (A and B, both
+    # on the left side view) and no other ports. S2 assumed a single port from
+    # the spec page, where the two ports appear as one input row and one output
+    # row; the overview page is what shows they are physically distinct. The
+    # A/B split is carried in the Slot_key variant position (side.a.label,
+    # side.a.spec, side.b.*), matching how the host splits side.pv.spec from
+    # side.car.spec on one row_key.
+    - EXPANSION_PORT_A_LABEL
+    - EXPANSION_PORT_A_SPEC
+    - EXPANSION_PORT_B_LABEL
+    - EXPANSION_PORT_B_SPEC
   # FRONT_TOTAL_OUTPUT_* is host-only AND language-scoped: every host overview
   # template carries it except page_jp (verified: 0 occurrences there, 2-3 in
   # us-en/zh/eu-en), which is why these were per-language rather than default.
@@ -63,8 +70,23 @@ required_placeholders:
   category:MAIN+zh:
     - FRONT_TOTAL_OUTPUT_LABEL
     - FRONT_TOTAL_OUTPUT_SPEC
+# Copy keys tier on the same axis as the placeholders above (skeleton slice
+# S4). Before this the map keyed on bare languages, which made the host's
+# right-side view and its two LED-light parts mandatory for every target
+# sharing `en` — including a battery pack that has no LED light and whose ports
+# sit on the LEFT side.
+#
+# The language keys here are *source* languages, not output languages: a copy
+# key is one `Source_lang=en|ja|zh` row whose fr/es/pt-br/... text is derived
+# through Translation_Memory, which is why no output-only language ever
+# appeared in this map. Keeping the host groups as `category:MAIN+<lang>`
+# conjunctions therefore reproduces the previous host requirement set exactly,
+# atom for atom.
+#
+# Bare language keys are no longer valid on this map: once it carries tier
+# keys, `_coerce_context` refuses a bare lang.
 required_copy_keys:
-  en:
+  category:MAIN+en:
     - product_overview.page_title
     - product_overview.front_view
     - product_overview.right_side_view
@@ -72,7 +94,7 @@ required_copy_keys:
     - product_overview.part.lcd
     - product_overview.part.led_light_button
     - product_overview.part.led_light
-  ja:
+  category:MAIN+ja:
     - product_overview.page_title
     - product_overview.front_view
     - product_overview.right_side_view
@@ -80,7 +102,7 @@ required_copy_keys:
     - product_overview.part.lcd
     - product_overview.part.led_light_button
     - product_overview.part.led_light
-  zh:
+  category:MAIN+zh:
     - product_overview.page_title
     - product_overview.front_view
     - product_overview.right_side_view
@@ -88,3 +110,11 @@ required_copy_keys:
     - product_overview.part.lcd
     - product_overview.part.led_light_button
     - product_overview.part.led_light
+  category:BP+en:
+    # Shared with the host line: title, front view, LCD, handle. Differences:
+    # the view is LEFT SIDE VIEW, and there is no LED light to name.
+    - product_overview.page_title
+    - product_overview.front_view
+    - product_overview.left_side_view
+    - product_overview.part.handle
+    - product_overview.part.lcd

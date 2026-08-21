@@ -1,13 +1,22 @@
-# BP@INTL x US — operation guide recipe (skeleton slice S2).
-# Empty field_map is deliberate, not a stub: the shipped HTP017 US book's
-# operation chapter is power on/off plus an LCD toggle, with no spec-driven
-# values. The host recipe's four rows (default_standby_duration,
-# energy_saving_auto_off_duration, energy_saving_ac_threshold,
-# energy_saving_dc_threshold) describe an energy-saving feature the battery
-# pack does not have.
+# BP@INTL x US — operation guide recipe (skeleton slice S2, corrected in S4).
+# The shipped HTP017 US book's operation chapter is power on/off plus an LCD
+# toggle. Three of the host recipe's four rows (energy_saving_auto_off_duration,
+# energy_saving_ac_threshold, energy_saving_dc_threshold) describe an
+# energy-saving feature the battery pack does not have and stay absent.
+#
+# S2 left field_map entirely empty. That was one row too aggressive: the shipped
+# book does print a standby duration ("The product will automatically shut down
+# if it is not charged or no loads are connected for 2 hours"), which is the
+# same fact the host carries as default_standby_duration. Routing it through a
+# placeholder keeps the number out of three language templates.
 page_id: 05_operation_guide
 template: templates/page_bp/en/05_operation_guide_placeholder.rst
-field_map: {}
+field_map:
+  DEFAULT_STANDBY_DURATION:
+    row_key: default_standby_duration
+    pages: [operation_guide]
+    usage_type: page_value
+    value_role: value
 required_row_keys: []
 snippet_slots: {}
 contracts:

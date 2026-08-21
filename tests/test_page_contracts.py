@@ -87,9 +87,14 @@ class TestPageContracts(unittest.TestCase):
             contracts,
         )
         assert contract is not None
+        # required_copy_keys is tiered too (skeleton slice S4), so a bare lang is
+        # refused here for the same reason it is on required_placeholders.
         self.assertIn(
             "product_overview.page_title",
-            page_contracts.required_copy_keys_for_lang(contract, "zh"),
+            page_contracts.required_copy_keys_for_lang(
+                contract,
+                page_contracts.ContractContext(lang="zh", category="MAIN", region="CN"),
+            ),
         )
 
     def test_load_page_contracts_should_parse_page_value_selectors_and_scope(self) -> None:
@@ -230,14 +235,43 @@ class ContractTierTests(unittest.TestCase):
         bp_en = required_placeholders_for_lang(
             contract, ContractContext(lang="en", category="BP", region="US")
         )
+        # Two expansion ports, A and B: the shipped overview page shows they are
+        # physically distinct (S4 correction to S2's single-port reading).
         self.assertEqual(
-            {"MAIN_POWER_BUTTON_LABEL", "EXPANSION_PORT_LABEL", "EXPANSION_PORT_SPEC"},
+            {
+                "MAIN_POWER_BUTTON_LABEL",
+                "EXPANSION_PORT_A_LABEL",
+                "EXPANSION_PORT_A_SPEC",
+                "EXPANSION_PORT_B_LABEL",
+                "EXPANSION_PORT_B_SPEC",
+            },
             set(bp_en),
         )
         # The conjunction guard: BP shares en/fr/es with the host but must not
         # inherit a language-scoped host requirement.
         self.assertNotIn("FRONT_TOTAL_OUTPUT_LABEL", bp_en)
         self.assertNotIn("SIDE_AC_INPUT_LABEL", bp_en)
+
+    def test_copy_keys_tier_by_family_without_changing_the_host_set(self) -> None:
+        from tools.page_contracts import ContractContext, required_copy_keys_for_lang
+
+        contract = self._contract()
+        host = required_copy_keys_for_lang(
+            contract, ContractContext(lang="en", category="MAIN", region="US")
+        )
+        # Exactly the seven keys the map carried under bare `en` before tiering.
+        self.assertEqual(7, len(host))
+        self.assertIn("product_overview.right_side_view", host)
+        self.assertIn("product_overview.part.led_light", host)
+
+        bp = required_copy_keys_for_lang(
+            contract, ContractContext(lang="en", category="BP", region="US")
+        )
+        # The battery pack's ports are on the left side and it has no LED light.
+        self.assertIn("product_overview.left_side_view", bp)
+        self.assertNotIn("product_overview.right_side_view", bp)
+        self.assertNotIn("product_overview.part.led_light", bp)
+        self.assertNotIn("product_overview.part.led_light_button", bp)
 
     def test_bare_lang_is_refused_on_a_tiered_map(self) -> None:
         from tools.page_contracts import required_placeholders_for_lang
