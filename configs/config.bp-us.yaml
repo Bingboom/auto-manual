@@ -13,6 +13,10 @@ doc_type: manual_bundle
 build:
   family_id: bp-us
   queue_requires_build_family: true
+  # Mirrors docs/manifests/skeletons/bp-intl/blueprint.yaml `skeleton_family`.
+  # Selects the contract `category:` tier, so BP skips the host-only
+  # placeholder groups without forking any contract. Absent = MAIN.
+  skeleton_family: BP
   languages: [ en, fr, es ]
   include_lang_in_output_path: false
   queue_by_document_key: true

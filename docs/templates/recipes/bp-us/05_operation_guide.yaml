@@ -1,0 +1,14 @@
+# BP@INTL x US — operation guide recipe (skeleton slice S2).
+# Empty field_map is deliberate, not a stub: the shipped HTP017 US book's
+# operation chapter is power on/off plus an LCD toggle, with no spec-driven
+# values. The host recipe's four rows (default_standby_duration,
+# energy_saving_auto_off_duration, energy_saving_ac_threshold,
+# energy_saving_dc_threshold) describe an energy-saving feature the battery
+# pack does not have.
+page_id: 05_operation_guide
+template: templates/page_bp/en/05_operation_guide_placeholder.rst
+field_map: {}
+required_row_keys: []
+snippet_slots: {}
+contracts:
+  - 05_operation_guide
