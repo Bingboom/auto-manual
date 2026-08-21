@@ -1,0 +1,61 @@
+file_seq,slug,sku,region,category,cell,pages,languages,has_text_layer,independent_content,alias_of,provenance,notes
+1,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,HTE118,澳规,便携主机,outlier,18,en,Y,Y,,journal1,outlier：代际滞留（JAK-UM-V1.0 模板），相对 A1 需 2 次重排
+2,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-V2-0-2026-04-28,HTE118,美加规,便携主机,MAIN@INTL,21,en,Y,Y,,journal1,
+3,E1500-HTE140-1500-Pro-2,HTE140,中规,便携主机,MAIN@CN,17,zh,Y,Y,,journal1,
+4,E1500-HTE140-Jackery-1500-New,HTE140,日规,便携主机,MAIN@JP,27,ja,Y,Y,,journal1,HTE140 日规 27 页有文字层变体（三变体之一，audit§7.4）
+5,E2000-HTE152-2000-Pro-Max-V0-5-2026-06-02,HTE152,中规,便携主机,MAIN@CN,20,zh,Y,Y,,journal1,
+6,E2000-HTE152-16-0102-000408-HTE1542000A-JP-JAK-RoHS-REACH,HTE154,日规,便携主机,MAIN@JP,28,ja,Y,N,E2000-HTE154-Jackery-2000-New-V2-0-2026-06-24,journal1,折叠对2：原错档挂 HTE152/日规 槽位，文件名自证 HTE1542000A、封面为 2000 New/JE-2000F；与 HTE154 日规正名件抽取文本逐字节相同（text-md5 51d26e771b74），渲染仅表格灰底差 → 同一手册排版微修订双导出，2 文件 1 独立内容（journal3 defect_closure）；本行改登记为 HTE154 日规第二文件
+7,E2000-HTE152-Jackery-HomePower-2000-Plus-User-Manual-JE-2000E-EUUK-V2-0-2026-08-03,HTE152,欧英规,便携主机,MAIN@INTL,120,en|fr|es|de|it|uk,Y,Y,,journal1,
+8,E2000-HTE152-Jackery-HomePower-2000-Plus-User-Manual-V2-0-2026-05-28,HTE152,美加规,便携主机,MAIN@INTL,64,en|fr|es,Y,Y,,journal1,
+9,E2000-HTE154-2000-Pro-3-V2-0-2026-08-18,HTE154,中规,便携主机,MAIN@CN,18,zh,Y,Y,,journal1,
+10,E2000-HTE154-Jackery-2000-New-V2-0-2026-06-24,HTE154,日规,便携主机,MAIN@JP,28,ja,Y,Y,,journal1,
+11,E2000-HTE154-Jackery-Explorer-2000-User-Manual-JE-2000F-EUUK-V2-0-2026-08-04,HTE154,欧英规,便携主机,MAIN@INTL,102,en|fr|es|de|it|uk,Y,Y,,journal1,
+12,E2000-HTE154-Jackery-Explorer-2000-User-Manual-V2-0-2026-04-30,HTE154,美加规,便携主机,MAIN@INTL,55,en|fr|es,Y,Y,,journal1,
+13,E240-HTE110-Jackery-Explorer-240-User-Manual-JE-240A-EU-UK-202408,HTE110,欧英规,便携主机,outlier,63,en|fr|de|it|es|pt,Y,Y,,journal1,outlier：老范式，章序轴+编排轴双重不兼容
+14,E1000-HTE153-1000-Pro-3-V2-0-2026-08-18,HTE153,中规,便携主机,MAIN@CN,17,zh,Y,Y,,journal1,
+15,E1000-HTE153-Jackery-Explorer-1000-User-Manual-V2-0-2026-07-28,HTE153,墨西哥规,便携主机,MAIN@INTL,58,en|fr|es,Y,N,E1000-HTE153-Jackery-Explorer-1000-User-Manual-V2-0-2026-07-28,journal1,"折叠对1：墨西哥规=美加规同一份 58 页 EN/FR/ES 文件（slug/文件名/提取文本 111850 字节全同（PDF 本体 4,862,894 字节），无任何墨西哥本地化差异）；1 文件 2 槽位，本行为槽位别名行，与美加规行共 file_seq（journal1 r19 outlier#4 / journal3 corpus_recount）"
+16,E1000-HTE153-Jackery-1000-New-V1-0-2026-06-05,HTE153,日规,便携主机,MAIN@JP,27,ja,Y,Y,,journal1,
+17,E1000-HTE153-Jackery-Explorer-1000-User-Manual-JE-1000F-V2-0-EU-UK-2026-06-18,HTE153,欧英规,便携主机,MAIN@INTL,92,en|fr|es|de|it,Y,Y,,journal1,
+15,E1000-HTE153-Jackery-Explorer-1000-User-Manual-V2-0-2026-07-28,HTE153,美加规,便携主机,MAIN@INTL,58,en|fr|es,Y,Y,,journal1,与墨西哥规行共用同一文件（file_seq 相同）；j4 撤销『美加/墨规无 FCC』：文件内 EN p6/FR p24/ES p42 实有寄生 FCC 块（原分解漏检，序列台账未补 fcc 槽，见 README 缺口清单）
+18,E3600-HTE139-3600-Plus,HTE139,中规,便携主机,MAIN@CN,23,zh,Y,Y,,journal1,
+19,E3600-HTE139-Jackery-3600-Plus,HTE139,日规,便携主机,MAIN@JP,30,ja,Y,Y,,journal1,
+20,E3600-HTE139-Jackery-Explorer-3600-Plus-EU-UK,HTE139,欧英规,便携主机,MAIN@INTL,91,en|fr|es|de|it,Y,Y,,journal1,
+21,E3600-HTE139-Jackery-HomePower-3600-Plus-Portable-Power-Station-User-Manual-3600C,HTE139,美加规,便携主机,MAIN@INTL,64,en|fr|es,Y,Y,,journal1,
+22,E3600-HTE157-Jackery-HomePower3600-Pro-Max-Portable-Power-Station-User-Manual-1,HTE157,美加规,便携主机,MAIN@INTL,97,en|fr|es,Y,Y,,journal1,
+23,E100-HTE162-100D-V2-0-2026-07-31,HTE162,中规,便携主机,MAIN@CN,11,zh,Y,Y,,journal1,
+24,E100-HTE162-Jackery-Explorer-100D-User-Manual-JE-100C-EUUK-V2-0-2026-08-03,HTE162,欧英规,便携主机,MAIN@INTL,64,en|fr|es|de|it,Y,Y,,journal1,
+25,E100-HTE162-Jackery-Explorer-100D-User-Manual-JE-100C-USCA-V1-0-2026-08-18,HTE162,美加规,便携主机,MAIN@INTL,40,en|fr|es,Y,Y,,journal1,
+26,E1000-HTE151-Jackery-SlimPower-H1-V2-0-2026-07-29,HTE151,日规,便携主机,MAIN@JP,27,ja,Y,Y,,journal1,
+27,E1000-HTE151-Jackery-FridgeGuard-User-Manual-V2-0-2026-07-29,HTE151,美加规,便携主机,MAIN@INTL,64,en|fr|es,Y,Y,,journal1,
+28,E300-HTE147-16-0102-000448-HTE147300A-EU-UK-JAK-RoHS-REACH,HTE147,欧英规,便携主机,MAIN@INTL,72,en|fr|es|de|it,Y,Y,,journal1,
+29,E3000-HTE156-3000-Pro-3-V2-0-2026-05-26,HTE156,中规,便携主机,MAIN@CN,16,zh,Y,Y,,journal1,
+30,E3000-HTE156-Jackery-3000-New,HTE156,日规,便携主机,MAIN@JP,26,ja,Y,Y,,journal1,
+31,E3000-HTE156-Jackery-Explorer-3000-User-Manual-JE-3000C-EUUK-V2-0-2026-07-31,HTE156,欧英规,便携主机,MAIN@INTL,102,en|fr|es|de|it|uk,Y,Y,,journal1,
+32,E3000-HTE156-Jackery-HomePower-3000-User-Manual,HTE156,美加规,便携主机,MAIN@INTL,58,en|fr|es,Y,Y,,journal1,
+33,E1000-HTE158-Jackery-1000-New-V2-0-2026-07-24,HTE158,日规,便携主机,MAIN@JP,28,ja,Y,Y,,journal1,
+34,E1000-HTE158-Jackery-HomePower-1000-User-Manual-1,HTE158,美加规,便携主机,MAIN@INTL,55,en|fr|es,N,Y,,journal1,转曲件（无文字层，视觉读取）
+35,E1000-HTE159-Jackery-1000-Plus,HTE159,日规,便携主机,MAIN@JP,28,ja,Y,Y,,journal1,
+36,E1000-HTE159-Jackery-Explorer-1000-Plus-User-Manual-JE-1000H-EUUK-V2-0-2026-08-03,HTE159,欧英规,便携主机,MAIN@INTL,108,en|fr|es|de|it|uk,Y,Y,,journal1,
+37,E1000-HTE159-Jackery-HomePower-1000-Plus-User-Manual-pdf,HTE159,美加规,便携主机,MAIN@INTL,58,en|fr|es,Y,Y,,journal1,
+38,E1500-HTE118-Jackery-Explorer-1500-Ultra,HTE118,韩规,便携主机,MAIN@INTL,20,ko,N,Y,,journal1,转曲件（无文字层，视觉读取）
+39,E1500-HTE140-Jackery-Explorer-1500-Manual-do-Usua-rio-V1-0-2026-06-23,HTE140,巴西规,便携主机,MAIN@INTL,20,pt-BR,N,Y,,journal1,转曲件（无文字层，视觉读取）
+40,E240-HTE110-Jackery-240,HTE110,日规,便携主机,outlier,14,ja,N,Y,,journal1,转曲件（无文字层，视觉读取）；region 原始值『日規』按 journal2 merge#8 归一为『日规』；outlier：JP@v1 再叠世代问题（2 次重排 + app_user_manual 独立编号附录）
+41,HTP011-Jackery-Battery-Pack-3600-User-Manual-JBP-3000A-EUUK-V2-0-2026-08-04,HTP011,欧英规,便携加电包,BP@INTL,45,en|fr|es|de|it,Y,Y,,journal1,
+42,HTP015-Jackery-Battery-Pack-V2-0-2026-07-29,HTP015,日规,便携加电包,BP@JP,20,ja,Y,Y,,journal1,journal2 r02 裁决自 A2 移入 BP@JP（JP@v2）；phaseA 口径下为纯子序列成员；BP@JP 格自有规范序列在设计文档中仍标 pending
+43,HTP015-Jackery-Battery-Pack-1,HTP015,美加规,便携加电包,BP@INTL,52,en|fr|es,Y,Y,,journal1,
+44,E500-HTE132-Jackery-500-New,HTE132,日规,便携主机,MAIN@JP,20,ja,Y,Y,,journal1,
+45,E500-HTE132-Jackery-Explorer-500-User-Manual-JE-500A-EU-UK-V2-0-2026-06-09,HTE132,欧英规,便携主机,MAIN@INTL,89,en|fr|es|de|it|pt-BR,Y,Y,,journal1,
+46,E500-HTE132-Jackery-Explorer-500-User-Manual-PH-V2-0-2026-04-01,HTE132,菲律宾规,便携主机,MAIN@INTL,16,en,Y,Y,,journal1,
+47,E5000-HTE119-Jackery-5000-Plus,HTE119,日规,便携主机,MAIN@JP,24,ja,Y,Y,,journal1,"A5 撤销后按 journal2 r02 落 (MAIN, JP@v1) 体例版本行；对 v1 规范序列纯删除通过"
+48,HTP007-Jackery-Battery-Pack-5000-Plus,HTP007,日规,便携加电包,BP@JP,10,ja,Y,Y,,journal1,"A5 撤销后按 journal2 r02 落 (BP, JP@v1)；对 A5/v1 序列需 1 条 overlay（T7 usage_precautions 后置）"
+49,E300-HTE150-Jackery-300D,HTE150,日规,便携主机,MAIN@JP,22,ja,N,Y,,journal1,转曲件（无文字层，视觉读取）
+50,E1500-HTE140-Jackery-1500-New-V1-0-2026-07-10,HTE140,日规,便携主机,MAIN@JP,28,ja,N,Y,,journal1,HTE140 日规 28 页 WH（白色）件，文档控制号 16-0102-000275（audit§7.4）；转曲件视觉分解
+51,E600-HTE133-Jackery-Explorer-600-User-Manual-AU-V2-0-2026-04-20,HTE133,澳规,便携主机,MAIN@INTL,18,en,N,Y,,journal1,转曲件（无文字层，视觉读取）
+52,HTP017-Jackery-Battery-Pack-2000-V2-0-2026-05-28,HTP017,日规,便携加电包,BP@JP,12,ja,Y,Y,,journal1,journal2 r02 裁决自 A2 移入 BP@JP（JP@v2）；phaseA 口径下为纯子序列成员；BP@JP 格自有规范序列在设计文档中仍标 pending
+53,HTP017-Jackery-Battery-Pack-2000-User-Manual-JBP-2000B-EUUK-V2-0-2026-08-03,HTP017,欧英规,便携加电包,BP@INTL,54,en|fr|es|de|it|uk,Y,Y,,journal1,
+54,HTP017-Jackery-Battery-Pack-2000-User-Manual-V2-0-2026-04-27,HTP017,美加规,便携加电包,BP@INTL,28,en|fr|es,Y,Y,,journal1,
+55,E1500-HTE140-Jackery-1500-New-V1-0-2026-07-10-No-225,HTE140,日规,便携主机,MAIN@JP,28,ja,N,Y,,reconstructed-from-sibling+audit§7.4,HTE140 日规 No-225 沙金色（SG）件，文档控制号 160102000113；分解任务输出已清理，本行章级序列按姊妹 WH 件（E1500-HTE140-Jackery-1500-New-V1-0-2026-07-10）重建——audit§7.4 证两件 13 页逐像素一致、14 组实质差异全在标题层级/分页/表格/条款层，章级 16 章序列相同；任务简报称 No-225 为白色件，与 audit§7.4/journal2-W12（No-225=沙金色件）相反，从审计记载
+56,E2000-HTE152-Jackery-2000-Plus-V2-JP,HTE152,日规,便携主机,MAIN@JP,28,ja,Y,Y,,journal3,"HTE152/日规真本《Jackery ポータブル電源 2000PlusV2 电子版取扱説明書.pdf》，型番 JE-2000E、V2、国内専用；文字层 21276 字符 0 NUL；填补错档件腾出的 (HTE152,日规) 槽位；preface 并入封面（非槽位），16 章+symbol 子节实例共 18 槽"
+57,E1000-HTE153-Jackery-Explorer-1000-User-Manual-AU-V2,HTE153,澳规,便携主机,MAIN@INTL,20,en,Y,Y,,journal4,首本有文字层 V2 世代澳规书；全书零合规载体（3/3 澳规一致）；TOC 页码 off-by-one 继承自欧英规母本；Downloads 另有重复下载件 MD5 0935d5e0 与主件相同、不入册（j4 修订#1）；确切磁盘文件名未随 journal 提供
+58,E1000-HTE153-Jackery-Explorer-1000-KR,HTE153,韩规,便携主机,MAIN@INTL,20,ko,Y,Y,,journal4,首本有文字层韩规书；无目录页；QR-only 封底（文档控制号 160102000362）；KC 合规零载体（nameplate-only，2/2 惯例）；归 MAIN@INTL（悬案三结案）；确切磁盘文件名未随 journal 提供
+59,E1000-HTE153-Explorer-1000-Manual-do-Usuario-BR,HTE153,巴西规,便携主机,MAIN@INTL,24,pt-BR,Y,Y,,journal4,22 逻辑页+2 纯空白垫页（PDF 22-23）=24 页；前言页整页保留英文原文+零星未译残留；FCC 寄生块（印刷页 03 装箱单页顶）+封底 ANATEL 胶囊块（映射 regulatory_compliance）；目录页文字层藏白色叠印 token「01-22」（W13）；确切磁盘文件名未随 journal 提供

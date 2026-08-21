@@ -104,11 +104,15 @@ populated; the matrix is sparse and no Cartesian product is implied.
 
 | Cell | Members | Was (Phase A) |
 | --- | --- | --- |
-| `MAIN@INTL` | **28** | A1-INTL-MAIN (+HTE153 AU/KR/BR) |
-| `MAIN@JP` | 12 | A2 minus the 2 battery packs |
+| `MAIN@INTL` | **27** (unique contents; the MX alias of the US file is not double-counted) | A1-INTL-MAIN (+HTE153 AU/KR/BR) |
+| `MAIN@JP` | **14** | A2, hosts only — composition replaced: − the mis-filed HTE152 copy − 2 battery packs, + HTE119 + No-225 + the true HTE152 JP manual |
 | `MAIN@CN` | 7 | A3-CN-MAIN (operator-decided, D2) |
 | `BP@INTL` | 4 | A4-INTL-BP |
 | `BP@JP` | 3 | **new cell** — absorbs A5's `HTP007` plus the 2 JP battery packs |
+
+The matrix closes against the corpus: 27 + 14 + 7 + 4 + 3 members + 3 outliers
+= 58 unique contents (final; recomputable via
+`code-as-doc/architecture/corpus_audit_2026-08/stats.py`).
 
 **Five cells, and the seven-region test says five is right** — see §4.2b. No
 cell is added for AU / KR / BR / MX / PH: every one of their differences is
@@ -134,7 +138,7 @@ Axis ownership, corrected against the HTE152 and HTE153 factorials:
   unit system, legal-entity/contact module, brand display name, language-set
   reference, TOC on/off, back-cover form, and cover module.
   Keeping region out of the anchor key is deliberate: promoting it would split
-  the 28 `MAIN@INTL` manuals into seven cells — precisely the "8+ phantom
+  the 27 `MAIN@INTL` manuals into seven cells — precisely the "8+ phantom
   skeletons" §4.2 already rejected. The mechanism is §6.3's existing
   `fragment + (region, host_page, repeat_per_language)`, generalized from
   compliance-only to region-keyed module variants.
@@ -166,8 +170,9 @@ The JP battery packs go to **`BP@JP`**, not `MAIN@JP`:
 
 - Their `body_lineage` is `translated_from: BP@INTL` (11/11 safety items,
   7/7 symbols, 11/13 page-grid slots align).
-- Routing them to `MAIN@JP` would need 2 *insertions* (`connections`,
-  `placement` — both 0/14 in `MAIN@JP`) plus a safety-module *replacement*.
+- Routing them to `MAIN@JP` would need 2 *insertions* (`placement` — 0/14 in
+  `MAIN@JP` — and `connections`, present in only 5/14; see the count repair
+  below) plus a safety-module *replacement*.
   By the same acceptance line that kept `MAIN@JP` separate from `MAIN@INTL`,
   that fails.
 
@@ -184,9 +189,10 @@ overlay.**
 > clause §6's module layer contradicts §4.2 on its first day.
 
 One count that supported this rule needs repair: §4.2's claim that
-`connections` is 0/14 in `MAIN@JP` is **false** — it is 3/13 (HTE139 日规,
-HTE159 日规, HTE152 日规), recorded under two different ids (`connections` vs
-`extra_battery`) across six manuals. That is a W3-class normalization defect,
+`connections` is 0/14 in `MAIN@JP` is **false** — the final count is 5/14
+(HTE139 日规, HTE151 日规, HTE159 日规, HTE119 日规, plus the true HTE152 JP
+manual), recorded under two different ids (`connections` vs
+`extra_battery`). That is a W3-class normalization defect,
 not a topic gap. The *conclusion* for the JP battery packs is unaffected — it
 rests on the safety-module replacement, not the count — but the arithmetic
 behind it must be recomputed before it is quoted again.
@@ -256,10 +262,10 @@ Why this matters and what it fixed:
   *above* the preceding title, which defeats any "first occurrence" heuristic
   and was not recorded at all. → Tooling must derive order from **block bbox
   (y, x) geometry** or visual verification, never from character offsets.
-- Layout order is the only caliber with **55/55 coverage**: all 7 CN manuals
+- Layout order is the only caliber with **58/58 coverage**: all 7 CN manuals
   have no TOC page at all, and it works on the 8 outlined files (rendering does
   not need a text layer). A primary key cannot rest on an attribute missing
-  from 13% of the corpus.
+  from 13.6% of the corpus (8/59 outlined files, disk-file caliber).
 - **TOC order is still stored**, as a checkable second column: a
   `toc_order ⊑ layout_order` gate turns TOC/layout mismatch into a *defect
   report* rather than a fork. Live example: `HTP011 欧英规` lists storage before
@@ -270,15 +276,16 @@ Why this matters and what it fixed:
 
 | Cell | Pure deletion | Notes |
 | --- | --- | --- |
-| `MAIN@INTL` | **22/28 = 78.6%** | was 16/25 → 19/25 (3 extraction-order false forks removed) → +3 new HTE153 manuals, all pure-deletion passes (BR is a zero-operation identity match) |
-| `MAIN@JP` | 13/14 = 92.9% | unchanged |
+| `MAIN@INTL` | **22/27 = 81.5%** | was 16/25 → 19/25 (3 extraction-order false forks removed) → +3 new HTE153 manuals, all pure-deletion passes (BR is a zero-operation identity match); 27 = unique contents, MX alias deduplicated |
+| `MAIN@JP` | 13/14 = 92.9% | value unchanged; composition replaced (3 out / 3 in, all pure-deletion passes) |
 | `MAIN@CN` | **7/7 = 100%** | was 4/7; under printed-page granularity the 3 same-page books are ties, **0 overlays needed** |
 | `BP@INTL` | 3/4 = 75.0% | unchanged |
-| `BP@JP` | pending | new cell, needs its own canonical sequence |
+| `BP@JP` | **2/3 = 66.7%** | measured against the JP@v1 sequence; the cell's canonical sequence is still pending |
 
-**Whole corpus: pure deletion 37/55 → 43/55 → 46/58 = 79.3%; ≤1 overlay
-55/58 = 94.8%.** If the operator sets the Phase A threshold (requirements §5),
-the numbers to use are **79.3% / 94.8%**.
+**Whole corpus: pure deletion 37/55 → 43/55 → 47/58 = 81.0% (final;
+recomputable via `code-as-doc/architecture/corpus_audit_2026-08/stats.py`);
+≤1 overlay 55/58 = 94.8%.** If the operator sets the Phase A threshold
+(requirements §5), the numbers to use are **81.0% / 94.8%**.
 
 `T2` (storage↔troubleshooting swap) goes from "the biggest single overlay load,
 7 books" to **1 book** (`HTE157 美加规`, a genuine fork on different printed
@@ -448,11 +455,11 @@ TRUE side is assertable.
 Six quantified reasons: the body/wrapper split needs no editorial judgement;
 zero placeholders, brand names, category nouns, or capabilities (one of only
 4 category-neutral files in `page_shared/en`); zero TOC and zero pagination
-impact (25 corpus manuals have it, **0 ever list it in a TOC**); it *is* a
+impact (27 corpus manuals have it, **0 ever list it in a TOC**); it *is* a
 subsection, so it exercises precisely the empty section-module layer; no
 regional forks exist for it (compare: `safety_en` US-vs-EU overlap is 40%,
 `03_product_overview` only 22% — which is why H died there); and its coverage
-gap (`MAIN@INTL` 24/27, `MAIN@CN` 1/7, `MAIN@JP` 0/14) makes it the minimum
+gap (`MAIN@INTL` 26/27, `MAIN@CN` 1/7, `MAIN@JP` 0/14) makes it the minimum
 probe for how the registry resolves a house style with no `page_shared/ja|zh`
 directory.
 
@@ -519,14 +526,14 @@ in the repo that *structurally compels* template forking.
 | --- | --- | --- |
 | **B0** | **Ordinal decoupling** — explicit `ordinal` on page entries, page-name lock, contract `source_ref` gate | 0 manuals; prerequisite for edits to **existing** manifests |
 | B1 | Language-block parameterization + registry `v2` | 0 directly; gives the 82%-of-variance axis its first carrier |
-| B2 | `app_setup` capability gate + `App/联网` column | stops 13 manuals printing a non-existent App chapter |
-| B3 | `MAIN@JP` anchor repair (three-part opening) | 12 JP manuals structurally |
+| B2 | `app_setup` capability gate + `App/联网` column | stops 16 manuals printing a non-existent App chapter |
+| B3 | `MAIN@JP` anchor repair (three-part opening) | 14 JP manuals structurally |
 | B4 | `MAIN@CN` anchor repair + conformity-certificate tail slot | 7 CN manuals |
 | B5 | `BP` family anchor (+ `target_defaults` fix first) | battery packs 0 → 7; SKU coverage 5/22 → 8/22 |
 | B6 | `page_registry` becomes composition authority (+ scope columns) | 0 new manuals; collapses the *marginal* cost of new lines — Workstream M's exit criterion |
 | B7 | Contract tiering; reclaim the JE-300E fork | structurally unblocks 9 queued forks |
 | B8 | Compliance fragments + `Row_key`/`Variant_key` split | EU/UK DoC carrier; prerequisite for scaling to 22 SKUs |
-| B9 | Data-quality closeout + reverse-gap registration | PH 1 manual; 12 unreferenced targets explicitly classified |
+| B9 | Data-quality closeout + reverse-gap registration | PH 1 manual; 9 unreferenced targets explicitly classified |
 
 ### 7.1 Why B0 gates edits to existing manifests (verified in code)
 
@@ -579,8 +586,8 @@ Same-page constraints and page-budget solving (the reference-layout contract's
 `printed_page_offset` field rather than four new ones; page-budget solving is a
 layout-engine problem and belongs to Workstream X); **TOC auto-generation**
 (needs page budget, and generating a TOC before `presentation_level` is in the
-data would systematically mis-render the "titled but not in TOC" state — 25
-manuals' `user_maintenance_instructions` and 12 manuals' `fcc` are exactly
+data would systematically mis-render the "titled but not in TOC" state — 27
+manuals' `user_maintenance_instructions` and 13 manuals' `fcc` are exactly
 that state); DITA XML/DITA-OT (decision D1).
 
 ## 8. Open questions for the operator
@@ -615,8 +622,9 @@ first module cut. Still needing a decision:
    `toc_order ⊑ layout_order` gate checks *order*, not *page numbers*, so it
    cannot catch this — the gate needs a second column comparing the TOC's
    printed folio against the actual one.
-6. **Reconstruction threshold X%** — measured **79.3%** pure deletion /
-   **94.8%** with one overlay. Acceptable?
+6. **Reconstruction threshold X%** — measured **81.0%** pure deletion /
+   **94.8%** with one overlay (final; recomputable via
+   `code-as-doc/architecture/corpus_audit_2026-08/stats.py`). Acceptable?
 7. **`document_key` grain**: adding a model-without-region form is a Feishu
    schema change (approve, defer, or keep R&D-time skeletons repo-side only).
 8. **Where the skeleton registry is mastered**: repo with a Feishu mirror, or
@@ -632,8 +640,8 @@ owns it). No second rendering stack. No relaxation of live-table write gates.
 
 - 2026-08-20: initial draft from the six-perspective repo assessment.
 - 2026-08-20 (Phase B intake round 2): three HTE153 manuals (AU/KR/BR) and the
-  corrected HTE152 JP manual folded in. `MAIN@INTL` 25 → 28; corpus reconstruction
-  79.3% / 94.8%. **The 2-D key's structure passed both factorials; its axis
+  corrected HTE152 JP manual folded in. `MAIN@INTL` 25 (incl. the MX alias) →
+  27 unique contents; corpus reconstruction 81.0% / 94.8%. **The 2-D key's structure passed both factorials; its axis
   ownership did not** — compliance carrier, language set, legal entity and unit
   system moved out of `house_style` into a new `region_profile` overlay key
   space, `topic existence` narrowed to `topic universe + capability slots`, and

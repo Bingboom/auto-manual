@@ -1612,8 +1612,8 @@ its own gate.
 
 **Baseline being changed** (measured): corpus 58 independent manuals,
 **15 buildable (25.9%)**, SKU coverage 5/22, battery-pack category 0%, JP the
-largest queue at 18 manuals with 1 buildable; reconstruction 46/58 pure
-deletion (79.3%) / 55/58 with ≤1 overlay (94.8%).
+largest queue at 18 manuals with 1 buildable; reconstruction 47/58 pure
+deletion (81.0%) / 55/58 with ≤1 overlay (94.8%).
 
 **Premise (operator, 2026-08-21):** a shipped book is **pipeline output + an
 InDesign finishing layer**. A template-zero-hit block is hand-placed at layout

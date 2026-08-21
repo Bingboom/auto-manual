@@ -114,8 +114,9 @@ only run the full corpus after the method survives the pilot.
 > supplied the full corpus at once (56 PDFs, 便携主机 + 便携加电包), so the
 > full run replaced the 10-manual pilot and the method risk moved to result
 > review; the report records the two execution deviations found and corrected.
-> Measured reconstruction coverage: **79.3%** by pure deletion (67.3% first pass,
-> 78.2% after the caliber fix), **94.8%** allowing ≤1 overlay per manual. Threshold X%
+> Measured reconstruction coverage: **81.0%** by pure deletion, **94.8%** allowing
+> ≤1 overlay per manual (final; recomputable via
+> `corpus_audit_2026-08/stats.py`). Threshold X%
 > is now an operator decision against real numbers rather than a guess.
 
 ### Phase B — Design finalization
