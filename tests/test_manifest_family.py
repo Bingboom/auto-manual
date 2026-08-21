@@ -25,14 +25,17 @@ MANIFESTS = ROOT / "docs" / "manifests"
 
 
 class ManifestFamilyTests(unittest.TestCase):
-    def test_family_index_folds_all_17_manifest_goldens(self) -> None:
+    def test_family_index_folds_all_18_manifest_goldens(self) -> None:
+        # 18 manifests / 3 anchors / 15 folded: the third anchor is the BP@INTL
+        # resolved manifest (skeleton-library slice S1), which has no diff
+        # entries — anchors are bases, not fold targets.
         report = fold_repository(
             ROOT,
             MANIFESTS / "family" / "index.yaml",
         )
         self.assertTrue(report["passed"], report["errors"])
-        self.assertEqual(17, report["manifest_count"])
-        self.assertEqual(2, report["anchor_count"])
+        self.assertEqual(18, report["manifest_count"])
+        self.assertEqual(3, report["anchor_count"])
         self.assertEqual(15, report["folded_count"])
         self.assertTrue(all(item["byte_identical"] for item in report["checks"]))
 

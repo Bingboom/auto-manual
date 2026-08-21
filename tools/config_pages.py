@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import re
+
 from dataclasses import dataclass
 from typing import Any, TypeAlias
 
@@ -21,6 +23,9 @@ class CoverPdfPage:
     file: str
     # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
     capability: str | None = None
+    # 骨架槽位 id(骨架库产线):非空时物化文件名 = f"{slot_id}.rst",
+    # 与列表位置解耦;None=沿用 legacy 命名路径(既有 17 份 manifest 不变)
+    slot_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -32,6 +37,8 @@ class CsvPage:
     include_dir: str | None
     # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
     capability: str | None = None
+    # 骨架槽位 id(见 CoverPdfPage.slot_id);多语页型携带 slot_id 时 langs 必须单元素
+    slot_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -45,6 +52,8 @@ class GeneratedPage:
     include_dir: str | None
     # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
     capability: str | None = None
+    # 骨架槽位 id(见 CoverPdfPage.slot_id);多语页型携带 slot_id 时 langs 必须单元素
+    slot_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -54,6 +63,8 @@ class PdfInsertPage:
     langs: tuple[str, ...]
     # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
     capability: str | None = None
+    # 骨架槽位 id(见 CoverPdfPage.slot_id);多语页型携带 slot_id 时 langs 必须单元素
+    slot_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -70,9 +81,25 @@ class RstIncludePage:
     # 清单中段插入印刷专用页(目录/封底)——后续重名页保持既有 pNN 名,
     # 评审分支文件名与版式契约钉住的 source_ref 才不会整体漂移。
     ordinal_neutral: bool = False
+    # 骨架槽位 id(见 CoverPdfPage.slot_id)
+    slot_id: str | None = None
 
 
 ConfigPage: TypeAlias = CoverPdfPage | CsvPage | GeneratedPage | PdfInsertPage | RstIncludePage
+
+
+def _slot_id_single_lang_issue(
+    idx: int,
+    page_type: str,
+    slot_id: str | None,
+    langs: tuple[str, ...],
+) -> PageParseIssue | None:
+    if slot_id is not None and len(langs) != 1:
+        return PageParseIssue(
+            "ERROR",
+            f"pages[{idx}].slot_id requires a single-language langs list "
+            f"on {page_type} (got {len(langs)})")
+    return None
 
 
 def _is_list_of_str(value: Any) -> bool:
@@ -89,6 +116,7 @@ def parse_config_pages(
     parsed: list[ConfigPage] = []
 
     default_langs = tuple(default_languages or [])
+    seen_slot_ids: set[str] = set()
 
     if not isinstance(pages_raw, list) or not pages_raw:
         issues.append(PageParseIssue("ERROR", "pages must be non-empty list"))
@@ -111,6 +139,30 @@ def parse_config_pages(
                 "ERROR", f"pages[{idx}].capability must be a non-empty string"))
             continue
         capability = capability_raw.strip() if isinstance(capability_raw, str) else None
+
+        slot_id_raw = raw.get("slot_id")
+        if slot_id_raw is not None and (
+                not isinstance(slot_id_raw, str) or not slot_id_raw.strip()):
+            issues.append(PageParseIssue(
+                "ERROR", f"pages[{idx}].slot_id must be a non-empty string"))
+            continue
+        slot_id = slot_id_raw.strip() if isinstance(slot_id_raw, str) else None
+        if slot_id is not None:
+            # Safe-basename guard: slot names become materialized file names
+            # directly, so they must stay flat identifiers (the legacy path
+            # guaranteed this via Path(...).name; slot naming must not regress
+            # it, and must not be able to mint a pNN_-shaped name).
+            if not re.fullmatch(r"[a-z][a-z0-9_-]*", slot_id) or re.match(r"p\d+_", slot_id):
+                issues.append(PageParseIssue(
+                    "ERROR",
+                    f"pages[{idx}].slot_id must match [a-z][a-z0-9_-]* and must not "
+                    f"look like a pNN_ prefix: {slot_id}"))
+                continue
+            if slot_id in seen_slot_ids:
+                issues.append(PageParseIssue(
+                    "ERROR", f"pages[{idx}].slot_id duplicated in manifest: {slot_id}"))
+                continue
+            seen_slot_ids.add(slot_id)
 
         lang_blocks_raw = raw.get("lang_blocks")
         if lang_blocks_raw is not None and not isinstance(lang_blocks_raw, bool):
@@ -146,7 +198,7 @@ def parse_config_pages(
             if not isinstance(file_name, str) or not file_name.strip():
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] cover_pdf requires file"))
                 continue
-            parsed.append(CoverPdfPage(page_type=page_type, file=file_name.strip(), capability=capability))
+            parsed.append(CoverPdfPage(page_type=page_type, file=file_name.strip(), capability=capability, slot_id=slot_id))
             continue
 
         if page_type == "csv_page":
@@ -175,6 +227,10 @@ def parse_config_pages(
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] csv_page.include_dir must be non-empty string"))
                 continue
 
+            single_lang_issue = _slot_id_single_lang_issue(idx, "csv_page", slot_id, page_langs)
+            if single_lang_issue is not None:
+                issues.append(single_lang_issue)
+                continue
             parsed.append(
                 CsvPage(
                     page_type=page_type,
@@ -183,6 +239,7 @@ def parse_config_pages(
                     langs=page_langs,
                     include_dir=include_dir_text,
                     capability=capability,
+                    slot_id=slot_id,
                 )
             )
             continue
@@ -296,6 +353,10 @@ def parse_config_pages(
                 )
                 continue
 
+            single_lang_issue = _slot_id_single_lang_issue(idx, "generated_page", slot_id, page_langs)
+            if single_lang_issue is not None:
+                issues.append(single_lang_issue)
+                continue
             parsed.append(
                 GeneratedPage(
                     page_type=page_type,
@@ -306,6 +367,7 @@ def parse_config_pages(
                     langs=page_langs,
                     include_dir=include_dir_text,
                     capability=capability,
+                    slot_id=slot_id,
                 )
             )
             continue
@@ -337,12 +399,18 @@ def parse_config_pages(
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] pdf_insert.langs invalid"))
                 continue
 
+            single_lang_issue = _slot_id_single_lang_issue(
+                idx, "pdf_insert", slot_id, tuple(page_langs_raw))
+            if single_lang_issue is not None:
+                issues.append(single_lang_issue)
+                continue
             parsed.append(
                 PdfInsertPage(
                     page_type=page_type,
                     file_map=file_map,
                     langs=tuple(page_langs_raw),
                     capability=capability,
+                    slot_id=slot_id,
                 )
             )
             continue
@@ -367,9 +435,23 @@ def parse_config_pages(
                     capability=capability,
                     lang_blocks=bool(lang_blocks_raw),
                     ordinal_neutral=bool(ordinal_neutral_raw),
+                    slot_id=slot_id,
                 )
             )
             continue
+
+    # Slot naming is all-or-nothing per manifest: in a mixed manifest an
+    # earlier slot page could silently steal the bare name a later legacy page
+    # would have received (first-wins), flipping the legacy page to a pNN_
+    # name — the exact rename class the slot mechanism exists to prevent.
+    if parsed and seen_slot_ids:
+        missing_slot = [p for p in parsed if getattr(p, "slot_id", None) is None]
+        if missing_slot:
+            issues.append(PageParseIssue(
+                "ERROR",
+                "manifest mixes slot_id and legacy entries "
+                f"({len(missing_slot)} of {len(parsed)} pages lack slot_id); "
+                "slot naming is all-or-nothing per manifest"))
 
     return parsed, issues
 

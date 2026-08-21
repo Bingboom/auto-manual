@@ -1,0 +1,105 @@
+# Skeleton Blueprint — BP@INTL (battery pack, international house style).
+# Layer 1 of 3 (blueprint -> product manual plan -> resolved manifest).
+# Owns: slot order, requirement, presentation, semantic co-page pairs.
+# Carries NO languages, NO regions, NO file paths (those live in
+# slot_templates.yaml and region_profiles/<region>.yaml).
+schema_version: skeleton-blueprint/v1
+skeleton_id: bp-intl
+skeleton_family: BP
+house_style: INTL
+slots:
+  - slot_id: cover
+    block: front
+    requirement: required
+    presentation: untitled_block
+    toc: false
+  - slot_id: preface_important
+    block: front
+    requirement: required
+    presentation: titled_not_in_toc
+    toc: false
+  - slot_id: toc
+    block: front
+    requirement: required
+    presentation: titled_not_in_toc
+    toc: false
+  - slot_id: safety_info
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: symbol_meaning
+    block: body
+    requirement: required
+    presentation: subsection
+    toc: false
+  - slot_id: box_contents
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: product_overview
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: lcd_display
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: operation
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: ups_mode
+    block: body
+    requirement: capability:UPS功能
+    presentation: chapter
+    toc: true
+  - slot_id: extra_battery
+    block: body
+    requirement: capability:加电包扩容
+    presentation: chapter
+    toc: true
+  - slot_id: connections
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: troubleshooting
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: charging
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: storage
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: specifications
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: warranty
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: back_cover
+    block: back
+    requirement: required
+    presentation: untitled_block
+    toc: false
+co_page_groups:
+  # Semantic pairing measured on the corpus (storage + specifications share
+  # printed page 07 in the shipped HTP017 US book). Typographic-slack co-page
+  # is deliberately NOT recorded.
+  - [storage, specifications]

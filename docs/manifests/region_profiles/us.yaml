@@ -1,0 +1,24 @@
+# Region profile — US. Layer-2 input of the skeleton resolver.
+# Owns region-level knowledge only: language set, regional slot overrides
+# (regional safety wording, per-line recipes), and compliance fragment
+# mounting rows. Never owns slot order or slot existence (blueprint-owned).
+schema_version: skeleton-region-profile/v1
+region: US
+language_set: [en, fr, es]
+primary_lang: en
+slot_overrides:
+  safety_info:
+    file: templates/page_us-{lang}/safety_{lang}.rst
+  product_overview:
+    recipe: templates/recipes/bp-us/{lang}/03_product_overview.yaml
+  operation:
+    recipe: templates/recipes/bp-us/{lang}/05_operation_guide.yaml
+compliance:
+  # Carrier is a per-book mounting fact (audit §6.3). The US/CA carrier today
+  # is the pipeline's standalone-include form; the parasitic-block form stays
+  # selectable pending the operator's form decision (design §8.2).
+  - fragment: fcc
+    carrier: rst_include
+    file: templates/page_us-{lang}/01_fcc.rst
+    mount_after: symbol_meaning
+    repeat_per_language: true
