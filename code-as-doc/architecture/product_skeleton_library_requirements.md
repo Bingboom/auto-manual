@@ -140,10 +140,14 @@ decision.
 
 ### Phase C — Production-line retrofit
 
-> **Execution plan drafted 2026-08-21**:
+> **Execution status 2026-08-21**: the operator replaced wholesale wave
+> execution with a **vertical slice** (three layers, slot_id guard, minimal
+> contract tiering, one battery pack, one content module, four renderers, one
+> real InDesign reconciliation). **The only execution source of truth is
+> [`../next_optimization_checklist.md`](../next_optimization_checklist.md)
+> Milestone M** (slice S1–S6 active, wave items deferred as rollout stubs);
 > [`../dev/skeleton_library_expansion_plan.md`](../dev/skeleton_library_expansion_plan.md)
-> (three waves over B0–B9, per-phase unlock counts, operator gates, and the
-> "pipeline output + InDesign finishing layer" premise).
+> is the decision record for the pivot and the slice selections.
 
 Execute the design's §6 phasing (P0 registry naming → P1 category axis →
 P2 generative fold → P3 module layer → P4 R&D-time seeding). Each phase is

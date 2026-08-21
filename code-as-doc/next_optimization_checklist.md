@@ -1650,17 +1650,23 @@ individual items, and each will fail CI or damage a live line if skipped.
    committed `docs/_review/**` files** — so name-changing PRs carry that gate
    explicitly, and the reference-layout contract pin must be re-approved, not
    silently updated (the #720/#724 lesson).
-4. **Golden conservation is proven by staging comparison, not by
-   `git diff docs/_build`.** Only 234 files under `docs/_build` are tracked
-   (JE-1000F US and JP only), that snapshot has already drifted from what the
-   current manifests produce, and assembly runs `shutil.rmtree` — so a clean
-   build deletes tracked files regardless of the PR. Use:
+4. **Golden conservation is proven by two detached worktrees at base and head
+   SHA — not by `git stash` and not by `git diff docs/_build`.** Operator
+   review 2026-08-21: `git stash` does not remove *committed* changes and skips
+   untracked files by default, so a stash-based "before" can already contain
+   the very PR under test. And the tracked `docs/_build` snapshot has drifted
+   (234 files, JE-1000F US/JP only; assembly `rmtree`s the tree), so its git
+   diff is noise. Use:
    ```
-   git stash && python3 build.py check --config <cfg> --model <M> --region <R> --staging-root /tmp/before && git stash pop
-   python3 build.py check --config <cfg> --model <M> --region <R> --staging-root /tmp/after
-   diff -r /tmp/before/docs/_build /tmp/after/docs/_build   # must be empty
-   git restore docs/_build docs/_review docs/index.rst      # check dirties all three
+   git worktree add /tmp/m-base <base-sha>
+   git worktree add /tmp/m-head <head-sha>
+   (cd /tmp/m-base && python3 build.py check --config <cfg> --model <M> --region <R> --staging-root /tmp/out-base)
+   (cd /tmp/m-head && python3 build.py check --config <cfg> --model <M> --region <R> --staging-root /tmp/out-head)
+   diff -r /tmp/out-base/docs/_build /tmp/out-head/docs/_build   # must be empty
+   git worktree remove /tmp/m-base && git worktree remove /tmp/m-head
    ```
+   Each worktree contains exactly its committed tree, so before/after stay
+   unambiguous even with local uncommitted or untracked files present.
 5. **New RST templates and fragments need a declared content provenance.** The
    corpus is PDFs outside the repo
    (`~/Downloads/信息架构分析/{便携主机,便携加电包}/`); RST needs text. For each
@@ -1719,10 +1725,45 @@ generate-then-verify; YAML stays the source of truth).
       discipline)
     - `docs/manifests/manual_bp_us.yaml` (new — the Resolved Manifest,
       committed; 3-language expansion included, 8-page blocks)
+    - `docs/manifests/skeletons/bp-intl/slot_templates.yaml` (new — the
+      slot→carrier mapping: `slot_id` → page_type / template / recipe /
+      csv-page source)
+    - `docs/manifests/region_profiles/us.yaml` (new — language-set reference,
+      compliance mounting rows, cover/TOC/back-cover form, contact params)
     - `configs/config.bp-us.yaml` (new) — **decision recorded in the PR**:
       a new config is required because `config.us.yaml`'s `page_manifest` is
-      static and a `{model}` token there would redirect JE-1000F too
-    - [`../docs/manifests/family/index.yaml`](../docs/manifests/family/index.yaml) + [`../tests/test_manifest_family.py`](../tests/test_manifest_family.py) per M-pre.2 (17 → 18)
+      static and a `{model}` token there would redirect JE-1000F too.
+      Carries a unique `build.family_id: bp-us`.
+    - [`../tools/config_pages.py`](../tools/config_pages.py) — page entries
+      accept an optional `slot_id`; for slot-bearing entries the materialized
+      name derives from `slot_id` and **bypasses `ensure_unique_name`'s
+      first-wins bare-name behavior**; entries without `slot_id` (all 17
+      existing manifests) go through the legacy path byte-identically
+    - [`../docs/manifests/family/index.yaml`](../docs/manifests/family/index.yaml) + [`../tests/test_manifest_family.py`](../tests/test_manifest_family.py) per M-pre.2
+  - **Queue-routing guard (P0, operator review 2026-08-21 — verified in code):**
+    [`../tools/queue_config_resolution.py`](../tools/queue_config_resolution.py)
+    `config_match_score` adds +1 to **any** filename that is not
+    `config.us.yaml`, so a US 3-language BP config outscores the host config
+    105:104 — a plain US queue record with no `Build_family` would silently
+    build a host manual from the battery-pack manifest. Therefore:
+    - BP queue records must carry `Build_family=bp-us` explicitly, and the
+      resolution path must never hand `config.bp-us.yaml` to a record that
+      lacks it (family-id match, filename-score exclusion, or an explicit
+      not-a-default marker — pick one, test it)
+    - regression tests in `tests/test_queue_config_resolution.py`: a plain US
+      record (no Build_family) resolves to `config.us.yaml` **with the BP
+      config present in the directory**; a `Build_family=bp-us` record
+      resolves to `config.bp-us.yaml`
+  - **Resolver contract closure (operator review 2026-08-21):** every slot
+    decision must trace to one of exactly three data carriers —
+    `blueprint.yaml` (slots, requirement, presentation, co-page groups),
+    `slot_templates.yaml` (slot→carrier), `region_profiles/us.yaml`
+    (region parameters). Resolution precedence is fixed and documented:
+    blueprint slots → capability gate (`model_capabilities.csv` row) →
+    region profile → language expansion. `tools/skeleton_resolve.py` may
+    contain **no slot-specific or region-specific literals** — any such
+    literal is the template-clone failure mode reborn as resolver branches,
+    and is a review-rejection criterion for this PR.
   - Done when:
     - blueprint slots carry stable `slot_id`s and the **new** manifest's
       materialized names derive from `slot_id`, not iteration position; the
@@ -1732,7 +1773,10 @@ generate-then-verify; YAML stays the source of truth).
       family default to `config.us.yaml` (guard against the silent-swap
       failure verified on the JP experiment; both `_family_default_map` and
       `_language_config_map` paths checked)
-    - `python3 tools/manifest_family.py fold` passes with 18 manifests
+    - both queue-routing regression tests above pass
+    - `manual_bp_us.yaml` is registered as the **third repository anchor**;
+      `python3 tools/manifest_family.py fold` passes with exactly
+      **18 manifests / 3 anchors / 15 folded**
     - `tools/skeleton_resolve.py --verify` proves emitted == committed bytes
     - blueprint contains no `app_setup` and no `user_maintenance_instructions`
       slot (0/7 in corpus battery packs); `ups_mode`/`extra_battery` slots are
@@ -1742,25 +1786,50 @@ generate-then-verify; YAML stays the source of truth).
   - Rollback: revert config + manifest + index + blueprint together; resolver
     is additive.
 
-- [ ] PR S2: Minimal contract tiering (mechanism + BP tier only)
+- [ ] PR S2: Minimal contract tiering + BP recipes (mechanism + BP tier only)
   - Status: `pending`
   - Gate: S1 merged.
+  - **Mechanism correction (P0, operator review 2026-08-21 — verified in
+    code):** the required spec rows that produce the 93 issues come from
+    **`recipe.required_row_keys` and `recipe.field_map`**
+    ([`../tools/validate_spec_master_shared.py`](../tools/validate_spec_master_shared.py)
+    lines 275–288), resolved through the manifest's `generated_page` entries —
+    **not** from page contracts. Contracts gate assembly-time placeholders, a
+    different surface. The first draft's claim that editing two contract YAMLs
+    achieves 93 → 11 was wrong. The reduction decomposes as:
+    9 (app rows vanish because the S1 blueprint has no app slot) +
+    ≈73 (BP recipes list only BP row_keys) + contract tiering for the
+    assembly gate.
   - Target files:
-    - [`../tools/page_contracts.py`](../tools/page_contracts.py) (tier keys `category:<cat>` / `capability:<cap>`, `requires_capability` groups)
+    - `docs/templates/recipes/bp-us/03_product_overview.yaml`,
+      `docs/templates/recipes/bp-us/05_operation_guide.yaml` (new — recipes
+      are **per-line by design**, this is not a fork; they carry only the 11
+      BP row_keys: `product_name`, `model_no`, `capacity`, `cell_chemistry`,
+      `weight`, `dimensions`, `cycle_life`, `dc_expansion_port` ×2,
+      `charging_temperature`, `discharging_temperature`)
+    - [`../tools/page_contracts.py`](../tools/page_contracts.py) (tier keys
+      `category:<cat>` / `capability:<cap>`, `requires_capability` groups) so
+      the **shared** 03/05 contracts accept BP without a contract fork — the
+      14 host-specific placeholder groups (`ac_input`, `ac_output`,
+      `ac_power_button`, `dc12_port`, `dc_input`, `dc_usb_power_button`,
+      `default_standby_duration`, `energy_saving_ac_threshold`,
+      `energy_saving_auto_off_duration`, `energy_saving_dc_threshold`,
+      `main_power_button`, `total_output`, `usb_a`, `usb_c`) move behind host
+      tiers
     - [`../docs/templates/contracts/03_product_overview.yaml`](../docs/templates/contracts/03_product_overview.yaml), `05_operation_guide` contract
-  - Scope: exactly the 14 host-specific row_keys measured on this target
-    (`ac_input`, `ac_output`, `ac_power_button`, `dc12_port`, `dc_input`,
-    `dc_usb_power_button`, `default_standby_duration`,
-    `energy_saving_ac_threshold`, `energy_saving_auto_off_duration`,
-    `energy_saving_dc_threshold`, `main_power_button`, `total_output`,
-    `usb_a`, `usb_c`) move behind host tiers. **The JE-300E fork is not
-    touched** — reclaiming it is rollout work.
+    - [`../tools/validate_spec_master_shared.py`](../tools/validate_spec_master_shared.py)
+      **only if** contract validation needs category/capability context passed
+      through — determine in the PR, with tests either way
+  - Scope guard: **the JE-300E fork is not touched** — reclaiming it is
+    rollout work.
   - Done when:
-    - `validate_spec_master` for `JBP-2000B_US` drops from 93 issues to only
-      the 11 genuine missing-data rows (closed by S4), zero contract issues
-    - JE-1000F/US builds **byte-identically** (M-pre.4 staging diff) — the
+    - `validate_spec_master` for `JBP-2000B_US` reports **exactly the 11
+      genuine missing-data rows** pre-S4 (closed by S4), zero contract issues
+    - JE-1000F/US builds **byte-identically** (M-pre.4 worktree diff) — the
       tiering must be a pure no-op for hosts
-  - Guard tests: [`../tests/test_page_contracts.py`](../tests/test_page_contracts.py) + a new tier-resolution test.
+  - Guard tests: [`../tests/test_page_contracts.py`](../tests/test_page_contracts.py),
+    [`../tests/test_validate_spec_master.py`](../tests/test_validate_spec_master.py),
+    + a new tier-resolution test.
   - Rollback: `git revert`.
 
 - [ ] PR S3: Extract `battery_long_storage_advisory` as the first real snippet

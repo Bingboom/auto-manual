@@ -1,6 +1,12 @@
 # 骨架库产线拓展执行方案（Skeleton Library Expansion Plan）
 
-Status: **v2 纵向切片版** — 待操作者批准 · Owner: 夏冰 · 2026-08-21（同日改向）
+Status: **决策记录（decision record）** · Owner: 夏冰 · 2026-08-21
+
+> **本文件不是执行真相源。** 执行的唯一真相源是
+> [`../next_optimization_checklist.md`](../next_optimization_checklist.md) 的
+> Milestone M（切片 S1–S6 激活，波次为 deferred 积压）。本文件只记录：
+> §0 前提认知、§1 七步与三层的对应、§2–§4 切片选型与渲染栈就绪度的**取证结论**。
+> 与 checklist 冲突时，以 checklist 为准。
 
 机制设计在
 [`../architecture/Product_Skeleton_Library_Design.md`](../architecture/Product_Skeleton_Library_Design.md)，
@@ -81,49 +87,15 @@ Phase B 设计原定第一刀是 `user_maintenance_instructions`，但它在加�
 `layout_params.csv`、不碰任何已批准版式契约**；`connections`/`installation`
 落 `UNCLASSIFIED_PROSE` 出警告，记为切片接受的降级，铺开期再解。
 
-## 5. 切片验收（全部可机械判定）
+## 5–8.（已移入 checklist）
 
-1. `build.py check`（新 config × JBP-2000B × US）exit 0；unittest / ruff /
-   guardrails 全绿。
-2. **PDF 页数命中硬公式**：`pages = F(3) + 3×8 + 1 = 28`，差一页即未通过；
-   `pdfinfo -l` 全页同尺寸；xelatex 日志零 Undefined control sequence。
-3. HTML：web_publish 三步（check → md → html）exit 0；新页种每语言各有
-   `<section>`；对新目标 grep `hb-*-composition` **必须零命中**（有命中 =
-   白名单被误扩，退回）。
-4. Word：构建 exit 0，走朴素结构。
-5. IDML：fallback 导出成功产出 `.idml`；`git diff data/layout_params.csv
-   docs/renderers/contracts/reference_layout/` **必须为空**。
-6. **回归**：JE-1000F/US 与 JE-1000F/JP 两条主机线 staging 双目录比对
-   逐字节不变（M-pre.4）。
-7. S6 对账报告落盘：与出货书逐页比对，差异分类为
-   管线缺口 / 手工层承担 / 数据缺口 / 接受的降级，各自计数。
-
-## 6. 切片明确不做
-
-JE-300E fork 回收（S2 只建机制）；既有 manifest 的语言块参数化（B1，
-新 manifest 由解析器自带展开，既有 17 份不动）；App/联网能力列（BP 蓝图
-直接不含 App 槽，不需要它）；主机侧 10 份模块副本的收敛（S3 只让 BP 消费
-模块并证明层能用，收敛留铺开期做字节比对）；`layout_params.csv` 与任何
-已批准版式的改动；authoring 权翻转（解析器是"生成后验证"，YAML 仍是真相源）。
-
-## 7. 铺开（切片验收后再排期）
-
-v1 的三波（语言块参数化 B1 / 日规中规修真 B3-B4 / contract 全量分档与
-JE-300E 回收 B7 / page_registry 权威化 B6 / 合规 fragment 库 B8 / 收尾 B9）
-在切片验收后按切片学到的东西**重新裁尺寸再排期**，逐项仍受
-Milestone M 的 M-pre 公共规则与既有 workstream 接线（Q/V/T-K4）约束。
-已做过可执行性核验的逐项细节保留在 Milestone M 的铺开积压段。
-
-## 8. 操作者的门
-
-1. 批准本切片方案（S1 即可开工）。
-2. S4 的 11 行规格数据入库（既有 spec-intake 审批门 + 逐写回读）。
-3. `connections`/`installation` 两个新模板的文案审校
-   （内容来源 = HTP017 美加规出货书印张 04，法务文本另签）。
-4. S6 的 InDesign finishing 一轮 + 对账结论裁决。
+切片验收判据、切片不做清单、铺开积压与操作者的门，全部只维护在
+[`../next_optimization_checklist.md`](../next_optimization_checklist.md) 的
+Milestone M 一节，此处不再复制以免漂移。
 
 ## 9. 修订记录
 
+- 2026-08-21 v3：按操作者评审降级为决策记录；执行细节单一来源化到 checklist。
 - 2026-08-21 v2：按操作者裁决改为纵向切片（七步）；切片目标 JBP-2000B_US、
   内容模块 battery_long_storage_advisory（UMI 因加电包 0/7 降级）；
   IDML 红线 = 不碰 layout_params.csv；波次降级为铺开期参考。

@@ -25,6 +25,13 @@ Positioning inside the existing document set:
   ([`family_manifest_diff.md`](family_manifest_diff.md),
   [`../../tools/manifest_family.py`](../../tools/manifest_family.py)).
 
+**Document roles (operator review 2026-08-21 — execution steps drifted across
+five places, so ownership is now single-sourced):** this Design holds the
+stable model only; the Requirements doc holds goals and acceptance; **the only
+execution source of truth is [`../next_optimization_checklist.md`](../next_optimization_checklist.md)
+Milestone M**; the plan file under `dev/` is a decision record. Where this
+document mentions execution ordering, the checklist wins.
+
 Evidence base — read these before reviewing this design:
 
 - corpus audit: [`manual_ia_audit_2026-08.md`](manual_ia_audit_2026-08.md)
@@ -419,7 +426,16 @@ to `page_shared/<lang>` but `zh → page_zh` and `ja → page_jp`, because JP an
 CN are single-region house styles whose "shared" directory got named after the
 style. A mapping file lets both axes be explicit without moving anything.
 
-### 6.2 First cut: `user_maintenance_instructions`
+### 6.2 First module cut
+
+> **Superseded for the slice (2026-08-21):** the slice's first cut is
+> `battery_long_storage_advisory` (7/7 in battery packs, exercises the
+> `untitled_block` and `absorbed` states) because `user_maintenance_instructions`
+> is **0/7 in battery packs** — the slice would never touch it. UMI below
+> remains the chosen first cut **for the host-line rollout**; its selection
+> rationale is unchanged.
+
+#### The rollout host-line cut: `user_maintenance_instructions`
 
 Not product overview — that page is Workstream H's grave. The chosen module is
 `page_shared/{en,fr,es,de,it,ko,pt-BR,uk}/01_user_maintenance_instructions.rst`
@@ -493,14 +509,15 @@ in the repo that *structurally compels* template forking.
 
 ## 7. Retrofit phases
 
-Each phase is independently shippable with CI green and golden conservation.
-**The operator-facing execution plan — waves, per-phase files, unlocks and
-gates — is [`../dev/skeleton_library_expansion_plan.md`](../dev/skeleton_library_expansion_plan.md)**;
-the ordering constraints below are the load-bearing part.
+> **Superseded as an execution sequence (2026-08-21).** The operator replaced
+> wholesale wave execution with a vertical slice; the live execution order is
+> the checklist's S1–S6, and the wave items below survive only as deferred
+> rollout stubs there. This section is kept as the mechanism-level record of
+> what each phase touches and why the constraints in §7.1–§7.2 exist.
 
 | Phase | Content | Unlocks |
 | --- | --- | --- |
-| **B0** | **Ordinal decoupling** — explicit `ordinal` on page entries, page-name lock, contract `source_ref` gate | 0 manuals; **absolute prerequisite for B1–B9** |
+| **B0** | **Ordinal decoupling** — explicit `ordinal` on page entries, page-name lock, contract `source_ref` gate | 0 manuals; prerequisite for edits to **existing** manifests |
 | B1 | Language-block parameterization + registry `v2` | 0 directly; gives the 82%-of-variance axis its first carrier |
 | B2 | `app_setup` capability gate + `App/联网` column | stops 13 manuals printing a non-existent App chapter |
 | B3 | `MAIN@JP` anchor repair (three-part opening) | 12 JP manuals structurally |
@@ -511,7 +528,12 @@ the ordering constraints below are the load-bearing part.
 | B8 | Compliance fragments + `Row_key`/`Variant_key` split | EU/UK DoC carrier; prerequisite for scaling to 22 SKUs |
 | B9 | Data-quality closeout + reverse-gap registration | PH 1 manual; 12 unreferenced targets explicitly classified |
 
-### 7.1 Why B0 is an absolute prerequisite (verified in code)
+### 7.1 Why B0 gates edits to existing manifests (verified in code)
+
+> Scope note (2026-08-21): this constraint binds **existing** manifests, whose
+> materialized `pNN_` names are position-derived and pinned by committed review
+> derivatives and the approved layout contract. A **new** manifest whose names
+> derive from `slot_id` (slice S1) never enters that naming path and is exempt.
 
 [`../../tools/gen_index_bundle_plan.py`](../../tools/gen_index_bundle_plan.py)
 calls `filter_pages_by_capability` at line 117, but the ordinal loop starts at
