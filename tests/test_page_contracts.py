@@ -247,12 +247,27 @@ class ContractTierTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             required_placeholders_for_lang(self._contract(), "en")
 
+    def test_unknown_category_is_refused_instead_of_falling_back_to_default(self) -> None:
+        from tools.page_contracts import ContractContext, required_placeholders_for_lang
+
+        contract = self._contract()
+        for category in ("Bp", None):
+            with self.subTest(category=category):
+                with self.assertRaisesRegex(RuntimeError, "is not declared"):
+                    required_placeholders_for_lang(
+                        contract,
+                        ContractContext(lang="en", category=category, region="US"),
+                    )
+
     def test_conjunction_requires_every_atom(self) -> None:
         from tools.page_contracts import ContractContext, _requirements_for_context
 
         requirements = {
             "default": ("D",),
             "category:MAIN": ("M",),
+            # Explicitly declaring an empty BP tier makes default-only behavior
+            # intentional instead of indistinguishable from a category typo.
+            "category:BP": (),
             "category:MAIN+en": ("ME",),
             "capability:UPS": ("C",),
         }

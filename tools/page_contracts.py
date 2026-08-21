@@ -301,6 +301,25 @@ def _requirements_for_context(
     so the resolved order is deterministic and independent of mapping order.
     """
 
+    declared_categories = sorted(
+        {
+            part[len("category:"):]
+            for key in requirements
+            for part in key.split("+")
+            if part.startswith("category:")
+        }
+    )
+    context_category = (context.category or "").strip()
+    if declared_categories and context_category not in declared_categories:
+        rendered_category = context_category or "<missing>"
+        raise RuntimeError(
+            "contract requirement map declares category tiers "
+            f"({', '.join(declared_categories)}), but context category "
+            f"{rendered_category!r} is not declared; add an explicit "
+            "category:<value> group (an empty list is allowed) or fix "
+            "build.skeleton_family"
+        )
+
     atoms = contract_tier_keys(context)
     atom_rank = {atom: index for index, atom in enumerate(atoms)}
     selected: list[tuple[int, int, str]] = []
