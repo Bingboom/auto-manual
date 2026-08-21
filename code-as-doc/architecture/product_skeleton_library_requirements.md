@@ -140,6 +140,11 @@ decision.
 
 ### Phase C — Production-line retrofit
 
+> **Execution plan drafted 2026-08-21**:
+> [`../dev/skeleton_library_expansion_plan.md`](../dev/skeleton_library_expansion_plan.md)
+> (three waves over B0–B9, per-phase unlock counts, operator gates, and the
+> "pipeline output + InDesign finishing layer" premise).
+
 Execute the design's §6 phasing (P0 registry naming → P1 category axis →
 P2 generative fold → P3 module layer → P4 R&D-time seeding). Each phase is
 independently shippable with CI green and golden conservation; live-table

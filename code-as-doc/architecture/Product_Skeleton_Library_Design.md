@@ -464,11 +464,16 @@ Three constraints this table encodes:
    "not yet surveyed", and flagged for legal sign-off. Per the audit's rule that
    regional compliance (8% of variance) is never data-driven, an empty row is
    evidence, not authorization.
-3. **`anatel@back_cover` is a real production gap**, not a modelling nicety:
-   it is zero-hit across `docs/templates` and `data/`, and
-   `manual_pt-br.yaml` has no back-cover entry at all — so the legally required
-   ANATEL statement **cannot currently be produced**. It joins B8's first batch,
-   reusing the EU-DoC back-cover carrier form.
+3. **`anatel@back_cover` is a pipeline gap, not a printing blocker** — the
+   operator corrected the first framing of this finding. Shipped books are
+   *pipeline output + an InDesign finishing layer*: content with no template
+   carrier is hand-placed in InDesign at layout time. So the legally required
+   ANATEL statement does get printed today; the costs are that it is re-placed
+   by hand on every print run, lives outside source control, does not propagate
+   to sibling lines, and is invisible to every repo-side check. That is exactly
+   the debt class the skeleton library exists to drain, so it joins B8's first
+   batch (reusing the EU-DoC back-cover carrier form) — as scheduled work, not
+   an emergency.
 
 Note the pipeline currently renders FCC as a standalone page (`p22_01_fcc`),
 which matches **none** of the corpus. That form change is gated on operator
@@ -489,8 +494,9 @@ in the repo that *structurally compels* template forking.
 ## 7. Retrofit phases
 
 Each phase is independently shippable with CI green and golden conservation.
-Full file-level mapping lives in the workflow artifact (§10); the ordering
-constraints below are the load-bearing part.
+**The operator-facing execution plan — waves, per-phase files, unlocks and
+gates — is [`../dev/skeleton_library_expansion_plan.md`](../dev/skeleton_library_expansion_plan.md)**;
+the ordering constraints below are the load-bearing part.
 
 | Phase | Content | Unlocks |
 | --- | --- | --- |
@@ -567,9 +573,10 @@ first module cut. Still needing a decision:
    (EN p6 / FR p24 / ES p42), missed because of the same "FCC never enters a
    TOC" trap the audit itself warned about; pt-BR carrying FCC is **a correct
    decision**, confirmed on a physical manual and consistent across two SKUs.
-   **Still open: HTE162 欧英规 with no DoC.** **Newly open: the ANATEL
-   back-cover statement cannot be produced at all** (§6.3.3) — a legal
-   requirement with no carrier, which outranks the DoC question.
+   **Still open: HTE162 欧英规 with no DoC.** **Newly registered (debt, not
+   emergency): the ANATEL back-cover statement has no template carrier**
+   (§6.3.3) — today it is hand-placed in InDesign at finishing time; B8 moves
+   it into the fragment library so the hand-step disappears.
 2. **FCC form**: pipeline standalone page vs the corpus's untitled parasitic
    block. B8 builds both carriers and waits.
 3. **Two filing defects** (§7.1 of the audit): HTE153 墨西哥规 sharing the US
