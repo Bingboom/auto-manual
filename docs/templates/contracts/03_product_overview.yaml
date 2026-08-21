@@ -1,5 +1,8 @@
 page_id: 03_product_overview
 source_files:
+  - templates/page_bp/en/03_product_overview_placeholder.rst
+  - templates/page_bp/es/03_product_overview_placeholder.rst
+  - templates/page_bp/fr/03_product_overview_placeholder.rst
   - templates/page_us-en/03_product_overview_placeholder.rst
   - templates/page_us-es/03_product_overview_placeholder.rst
   - templates/page_us-fr/03_product_overview_placeholder.rst
@@ -7,9 +10,17 @@ source_files:
   - templates/page_eu-en/03_product_overview_placeholder.rst
   - templates/page_jp/03_product_overview_placeholder.rst
   - templates/page_zh/03_product_overview_placeholder.rst
+# Tiered requirements (skeleton slice S2). Resolution order is
+# default -> category:<family> -> region:<region> -> capability:<cap> -> <lang>.
+# The host port set moved out of `default` into `category:MAIN` so a
+# battery-pack target can share this contract instead of forking it. Targets
+# that declare no build.skeleton_family resolve as MAIN, so every existing line
+# selects exactly the same placeholder set as before.
 required_placeholders:
   default:
+    # The one part both families print.
     - MAIN_POWER_BUTTON_LABEL
+  category:MAIN:
     - FRONT_DC12_PORT_LABEL
     - FRONT_DC12_PORT_SPEC
     - DC_USB_POWER_BUTTON_LABEL
@@ -27,19 +38,29 @@ required_placeholders:
     - SIDE_DC_INPUT_LABEL
     - SIDE_DC_INPUT_PV_SPEC
     - SIDE_DC_INPUT_CAR_SPEC
-  en:
+  category:BP:
+    # The shipped HTP017 US book prints one DC expansion port and no other
+    # ports; S4 authors the template that satisfies these.
+    - EXPANSION_PORT_LABEL
+    - EXPANSION_PORT_SPEC
+  # FRONT_TOTAL_OUTPUT_* is host-only AND language-scoped: every host overview
+  # template carries it except page_jp (verified: 0 occurrences there, 2-3 in
+  # us-en/zh/eu-en), which is why these were per-language rather than default.
+  # They must stay conjunctions — a bare `en` key would also bind a
+  # battery-pack target, which shares en/fr/es and has no total-output row.
+  category:MAIN+en:
     - FRONT_TOTAL_OUTPUT_LABEL
     - FRONT_TOTAL_OUTPUT_SPEC
-  es:
+  category:MAIN+es:
     - FRONT_TOTAL_OUTPUT_LABEL
     - FRONT_TOTAL_OUTPUT_SPEC
-  fr:
+  category:MAIN+fr:
     - FRONT_TOTAL_OUTPUT_LABEL
     - FRONT_TOTAL_OUTPUT_SPEC
-  pt-BR:
+  category:MAIN+pt-br:
     - FRONT_TOTAL_OUTPUT_LABEL
     - FRONT_TOTAL_OUTPUT_SPEC
-  zh:
+  category:MAIN+zh:
     - FRONT_TOTAL_OUTPUT_LABEL
     - FRONT_TOTAL_OUTPUT_SPEC
 required_copy_keys:

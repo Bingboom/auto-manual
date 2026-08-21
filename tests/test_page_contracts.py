@@ -186,3 +186,105 @@ class TestPageContracts(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ContractTierTests(unittest.TestCase):
+    """Skeleton slice S2: one shared contract serving several families."""
+
+    def _contract(self):
+        from tools.page_contracts import find_contract_for_source, load_page_contracts
+
+        repo_root = Path(__file__).resolve().parents[1]
+        contracts = load_page_contracts(repo_root / "docs" / "templates" / "contracts")
+        contract = find_contract_for_source(
+            "templates/page_us-en/03_product_overview_placeholder.rst", contracts
+        )
+        self.assertIsNotNone(contract)
+        return contract
+
+    def test_host_placeholder_set_is_unchanged_by_tiering(self) -> None:
+        from tools.page_contracts import ContractContext, required_placeholders_for_lang
+
+        contract = self._contract()
+        us_en = required_placeholders_for_lang(
+            contract, ContractContext(lang="en", category="MAIN", region="US")
+        )
+        # 18 pre-tiering `default` entries + the 2 language-scoped total-output
+        # placeholders the US overview carries.
+        self.assertEqual(20, len(us_en))
+        self.assertIn("SIDE_AC_INPUT_LABEL", us_en)
+        self.assertIn("FRONT_TOTAL_OUTPUT_LABEL", us_en)
+
+        # page_jp carries no FRONT_TOTAL_OUTPUT_* (verified in the template), so
+        # JP must keep resolving to the 18 host placeholders only.
+        jp_ja = required_placeholders_for_lang(
+            contract, ContractContext(lang="ja", category="MAIN", region="JP")
+        )
+        self.assertEqual(18, len(jp_ja))
+        self.assertNotIn("FRONT_TOTAL_OUTPUT_LABEL", jp_ja)
+
+    def test_battery_pack_selects_only_its_own_parts(self) -> None:
+        from tools.page_contracts import ContractContext, required_placeholders_for_lang
+
+        contract = self._contract()
+        bp_en = required_placeholders_for_lang(
+            contract, ContractContext(lang="en", category="BP", region="US")
+        )
+        self.assertEqual(
+            {"MAIN_POWER_BUTTON_LABEL", "EXPANSION_PORT_LABEL", "EXPANSION_PORT_SPEC"},
+            set(bp_en),
+        )
+        # The conjunction guard: BP shares en/fr/es with the host but must not
+        # inherit a language-scoped host requirement.
+        self.assertNotIn("FRONT_TOTAL_OUTPUT_LABEL", bp_en)
+        self.assertNotIn("SIDE_AC_INPUT_LABEL", bp_en)
+
+    def test_bare_lang_is_refused_on_a_tiered_map(self) -> None:
+        from tools.page_contracts import required_placeholders_for_lang
+
+        # A bare lang carries no category, so it would silently resolve to a
+        # near-empty requirement set — a weakened gate reporting success.
+        with self.assertRaises(RuntimeError):
+            required_placeholders_for_lang(self._contract(), "en")
+
+    def test_conjunction_requires_every_atom(self) -> None:
+        from tools.page_contracts import ContractContext, _requirements_for_context
+
+        requirements = {
+            "default": ("D",),
+            "category:MAIN": ("M",),
+            "category:MAIN+en": ("ME",),
+            "capability:UPS": ("C",),
+        }
+        main_en = _requirements_for_context(
+            requirements, ContractContext(lang="en", category="MAIN")
+        )
+        self.assertEqual(("D", "M", "ME"), main_en)
+        # Same language, different category: the conjunction must not fire.
+        bp_en = _requirements_for_context(
+            requirements, ContractContext(lang="en", category="BP")
+        )
+        self.assertEqual(("D",), bp_en)
+        # Capability atoms only fire when the capability is TRUE.
+        with_cap = _requirements_for_context(
+            requirements,
+            ContractContext(lang="en", category="MAIN", capabilities=frozenset({"UPS"})),
+        )
+        self.assertEqual(("D", "M", "C", "ME"), with_cap)
+
+    def test_empty_conjunction_atom_is_rejected_at_load(self) -> None:
+        import tempfile
+
+        from tools.page_contracts import load_page_contracts
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "bad.yaml"
+            path.write_text(
+                "page_id: bad\n"
+                "source_files: [templates/x.rst]\n"
+                "required_placeholders:\n"
+                "  category:MAIN+: [A]\n",
+                encoding="utf-8",
+            )
+            with self.assertRaises(RuntimeError):
+                load_page_contracts(Path(tmp))

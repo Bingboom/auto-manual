@@ -100,6 +100,33 @@ def collect_page_contract_issues(
         region=target.region,
         data_dir=repo_root / "data",
     )
+    # Contract tier context (skeleton slice S2). One shared contract serves
+    # several skeleton families: host-only placeholder groups sit under
+    # `category:MAIN`, so a battery-pack target never selects them and needs no
+    # contract fork. Absent declaration means MAIN, which keeps every existing
+    # line byte-identical.
+    from tools.check_docs_capability import load_capabilities
+    from tools.page_contracts import ContractContext
+
+    build_cfg_raw = cfg.get("build", {})
+    build_cfg_map = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+    skeleton_family = str(build_cfg_map.get("skeleton_family") or "MAIN").strip() or "MAIN"
+    target_capabilities = frozenset(
+        name
+        for name, enabled in (
+            load_capabilities(repo_root / "data").get(f"{target.model}_{target.region}") or {}
+        ).items()
+        if enabled
+    )
+
+    def _contract_context(lang_value: str | None) -> ContractContext:
+        return ContractContext(
+            lang=lang_value,
+            category=skeleton_family,
+            region=target.region,
+            capabilities=target_capabilities,
+        )
+
     spec_master_csv = resolve_spec_master_csv_path(cfg, data_root=data_root)
     spec_rows = read_spec_master_rows(spec_master_csv)
     substitutions_by_lang: dict[str, dict[str, str]] = {}
@@ -134,7 +161,7 @@ def collect_page_contract_issues(
         for lang in page_langs:
             if not contract_applies_to(contract, lang=lang, model=target.model, region=target.region):
                 continue
-            required = required_placeholders_for_lang(contract, lang)
+            required = required_placeholders_for_lang(contract, _contract_context(lang))
             substitutions = substitutions_by_lang.get(lang)
             if substitutions is None:
                 substitutions = resolve_template_substitutions_from_spec_master(
@@ -161,7 +188,7 @@ def collect_page_contract_issues(
                     )
                 )
             missing_copy_keys: list[str] = []
-            for copy_key in required_copy_keys_for_lang(contract, lang):
+            for copy_key in required_copy_keys_for_lang(contract, _contract_context(lang)):
                 if localized_copy_resolver is None:
                     localized_copy_resolver = localized_copy_resolver_cls.from_csv(
                         resolve_localized_copy_csv_path(cfg, data_root=data_root)
@@ -191,7 +218,7 @@ def collect_page_contract_issues(
                 )
             missing_spec_keys = [
                 row_key
-                for row_key in required_spec_keys_for_lang(contract, lang)
+                for row_key in required_spec_keys_for_lang(contract, _contract_context(lang))
                 if resolve_spec_value_from_rows(
                     spec_rows,
                     model=target.model,
@@ -218,7 +245,7 @@ def collect_page_contract_issues(
                 )
             missing_page_values = [
                 describe_page_value_selector(selector)
-                for selector in required_page_values_for_lang(contract, lang)
+                for selector in required_page_values_for_lang(contract, _contract_context(lang))
                 if resolve_spec_value_from_rows(
                     spec_rows,
                     model=target.model,
@@ -250,7 +277,7 @@ def collect_page_contract_issues(
                 )
             missing_assets = [
                 asset_path
-                for asset_path in required_assets_for_lang(contract, lang)
+                for asset_path in required_assets_for_lang(contract, _contract_context(lang))
                 if not contract_asset_exists(
                     asset_path,
                     docs_dir=docs_dir,

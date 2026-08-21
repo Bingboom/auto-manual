@@ -53,8 +53,37 @@ def _normalize_requirement_map(raw: object, *, field_name: str) -> dict[str, tup
         if not isinstance(values_raw, list):
             raise RuntimeError(f"{field_name}.{lang} must be a list")
         values = tuple(str(item).strip() for item in values_raw if str(item).strip())
-        out[str(lang).strip().lower() or "default"] = values
+        out[_normalize_requirement_key(str(lang), field_name=field_name)] = values
     return out
+
+
+def _normalize_requirement_key(raw_key: str, *, field_name: str) -> str:
+    """Normalize a requirement-map key.
+
+    Language keys keep their historical lower-casing. Tier keys
+    (``category:``/``region:``/``capability:``) keep their value's case,
+    because they are matched against config/data values that are case
+    significant (``MAIN``, ``US``, ``UPS功能``).
+    """
+
+    key = raw_key.strip()
+    if not key:
+        return "default"
+    normalized_atoms: list[str] = []
+    for raw_atom in key.split("+"):
+        atom = raw_atom.strip()
+        if not atom:
+            raise RuntimeError(f"{field_name}.{raw_key} has an empty conjunction atom")
+        for prefix in _TIER_PREFIXES:
+            if atom.startswith(prefix):
+                value = atom[len(prefix):].strip()
+                if not value:
+                    raise RuntimeError(f"{field_name}.{raw_key} tier key is missing a value")
+                normalized_atoms.append(f"{prefix}{value}")
+                break
+        else:
+            normalized_atoms.append(atom.lower())
+    return "+".join(normalized_atoms)
 
 
 def _normalize_allowed_list(raw: object, *, lower: bool = False) -> tuple[str, ...]:
@@ -141,7 +170,7 @@ def _normalize_page_value_map(raw: object, *, field_name: str) -> dict[str, tupl
             _normalize_page_value_selector(item, field_name=f"{field_name}.{lang}[{idx}]")
             for idx, item in enumerate(values_raw)
         )
-        out[str(lang).strip().lower() or "default"] = values
+        out[_normalize_requirement_key(str(lang), field_name=field_name)] = values
     return out
 
 
@@ -207,38 +236,157 @@ def find_contract_for_source(source_rel_path: str, contracts: list[PageContract]
     return None
 
 
-def _requirements_for_lang(requirements: dict[str, tuple[T, ...]], lang: str | None) -> tuple[T, ...]:
-    lang_key = (lang or "").strip().lower()
-    default_values = list(requirements.get("default", ()))
-    lang_values = list(requirements.get(lang_key, ())) if lang_key else []
+@dataclass(frozen=True)
+class ContractContext:
+    """Applicability context a contract requirement map is resolved against.
+
+    Tier keys let one shared contract serve several skeleton families without
+    forking: the host-only placeholder groups live under ``category:MAIN``
+    instead of ``default``, so a battery-pack target simply never selects them.
+    Before this existed, the only escape from an inapplicable ``default`` group
+    was forking the whole contract (docs/templates/contracts/
+    03_product_overview_je300e.yaml is the precedent that cost 1 contract +
+    5 template copies).
+    """
+
+    lang: str | None = None
+    category: str | None = None
+    region: str | None = None
+    capabilities: frozenset[str] = frozenset()
+
+
+_TIER_PREFIXES = ("category:", "region:", "capability:")
+
+
+def contract_tier_keys(context: ContractContext) -> tuple[str, ...]:
+    """Atoms this context selects, in fixed precedence order.
+
+    ``default`` always applies. Then category, then region, then each TRUE
+    capability, then the language atom — narrowest last so a language-scoped
+    group still wins, exactly as before tiering existed.
+    """
+
+    keys: list[str] = ["default"]
+    category = (context.category or "").strip()
+    if category:
+        keys.append(f"category:{category}")
+    region = (context.region or "").strip()
+    if region:
+        keys.append(f"region:{region}")
+    for capability in sorted(context.capabilities):
+        capability_text = capability.strip()
+        if capability_text:
+            keys.append(f"capability:{capability_text}")
+    lang_key = (context.lang or "").strip().lower()
+    if lang_key:
+        keys.append(lang_key)
+    return tuple(keys)
+
+
+def _requirements_for_context(
+    requirements: dict[str, tuple[T, ...]],
+    context: ContractContext,
+) -> tuple[T, ...]:
+    """Collect every requirement group whose key the context satisfies.
+
+    A key is a ``+``-joined conjunction of atoms and applies only when the
+    context selects *all* of them, so "host line AND this language" is
+    expressible as ``category:MAIN+en``. Without conjunction, a placeholder
+    that exists in the host templates of some languages but not others (the
+    JP overview omits FRONT_TOTAL_OUTPUT_*) could only be expressed by a bare
+    language key — which a battery-pack target sharing those languages would
+    then wrongly select.
+
+    Groups are emitted broadest-first (fewer atoms, then by atom precedence)
+    so the resolved order is deterministic and independent of mapping order.
+    """
+
+    atoms = contract_tier_keys(context)
+    atom_rank = {atom: index for index, atom in enumerate(atoms)}
+    selected: list[tuple[int, int, str]] = []
+    for key in requirements:
+        parts = [part.strip() for part in key.split("+") if part.strip()]
+        if not parts or any(part not in atom_rank for part in parts):
+            continue
+        selected.append((len(parts), min(atom_rank[part] for part in parts), key))
+    selected.sort()
 
     seen: set[T] = set()
     out: list[T] = []
-    for item in [*default_values, *lang_values]:
-        if item in seen:
-            continue
-        seen.add(item)
-        out.append(item)
+    for _count, _rank, key in selected:
+        for item in requirements.get(key, ()):
+            if item in seen:
+                continue
+            seen.add(item)
+            out.append(item)
     return tuple(out)
 
 
-def required_placeholders_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
+def _coerce_context(
+    context: ContractContext | str | None,
+    requirements: dict[str, tuple[T, ...]],
+) -> ContractContext:
+    """Accept a bare lang for tier-free requirement maps only.
+
+    A bare lang carries no category/region/capability, so on a tiered map it
+    would silently resolve to a near-empty requirement set — a weakened gate
+    that still reports success. Refuse instead: the caller must say which
+    context it means.
+    """
+
+    if isinstance(context, ContractContext):
+        return context
+    tiered = sorted(
+        key for key in requirements
+        if "+" in key or any(key.startswith(prefix) for prefix in _TIER_PREFIXES)
+    )
+    if tiered:
+        raise RuntimeError(
+            "contract requirement map has tier keys "
+            f"({', '.join(tiered)}); pass a ContractContext instead of a bare lang"
+        )
+    return ContractContext(lang=context)
+
+
+def _requirements_for_lang(
+    requirements: dict[str, tuple[T, ...]],
+    lang: ContractContext | str | None,
+) -> tuple[T, ...]:
+    return _requirements_for_context(requirements, _coerce_context(lang, requirements))
+
+
+def required_placeholders_for_lang(
+    contract: PageContract,
+    lang: ContractContext | str | None,
+) -> tuple[str, ...]:
     return _requirements_for_lang(contract.required_placeholders, lang)
 
 
-def required_copy_keys_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
+def required_copy_keys_for_lang(
+    contract: PageContract,
+    lang: ContractContext | str | None,
+) -> tuple[str, ...]:
     return _requirements_for_lang(contract.required_copy_keys, lang)
 
 
-def required_spec_keys_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
+def required_spec_keys_for_lang(
+    contract: PageContract,
+    lang: ContractContext | str | None,
+) -> tuple[str, ...]:
     return _requirements_for_lang(contract.required_spec_keys, lang)
 
 
-def required_page_values_for_lang(contract: PageContract, lang: str | None) -> tuple[PageValueSelector, ...]:
+def required_page_values_for_lang(
+    contract: PageContract,
+    lang: ContractContext | str | None,
+) -> tuple[PageValueSelector, ...]:
     return _requirements_for_lang(contract.required_page_values, lang)
 
 
-def required_assets_for_lang(contract: PageContract, lang: str | None) -> tuple[str, ...]:
+def required_assets_for_lang(
+    contract: PageContract,
+    lang: ContractContext | str | None,
+) -> tuple[str, ...]:
     return _requirements_for_lang(contract.required_assets, lang)
 
 
