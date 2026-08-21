@@ -28,6 +28,12 @@ DITA **concept model** is adopted; the DITA **XML toolchain is not**.
   manifests + family anchors), and the real bottlenecks are (1) a missing
   module layer, (2) no product-category axis, (3) an implicit skeleton
   parasitic on sibling live data.
+  > **Corrected by the Phase A corpus audit**: bottleneck (2) was mis-stated.
+  > Measured attribution is regional convention **43%** vs category **12%**, and
+  > language arrangement alone explains **82%** of page-count variance while
+  > being the least mechanised part of the pipeline. The axis that was missing
+  > is not category alone — it is the pair `(skeleton_family × house_style)`,
+  > and the highest-value first cut is language-block parameterization.
 - DITA is the industry prior art for exactly this shape of problem. Naming the
   correspondence gives the program a shared vocabulary and a tested reference
   model — while the strategy boundary ("the enemy is template forks, not
@@ -57,8 +63,9 @@ carrier is a rewrite; adopting the model is a refactor.
 2. **A module layer** such that cross-category shared content (safety clauses,
    warranty legal text, FCC, storage guidance, …) exists once per language and
    is referenced, not copied.
-3. **Category as a first-class axis** in config/queue routing, shared content
-   planes, and structure vocabularies.
+3. **A 2-D anchor key `(skeleton_family × house_style)` as a first-class axis**
+   in config/queue routing, shared content planes, and structure vocabularies
+   — category alone is insufficient (see the note in §1).
 4. **Onboarding becomes instantiate-and-fill**: a new product gets its skeleton
    seeded at R&D time (structure first, `⚠️需确认` values later, diff-based
    revisions), replacing clone-a-sibling-and-mutate.
@@ -107,9 +114,9 @@ only run the full corpus after the method survives the pilot.
 > supplied the full corpus at once (56 PDFs, 便携主机 + 便携加电包), so the
 > full run replaced the 10-manual pilot and the method risk moved to result
 > review; the report records the two execution deviations found and corrected.
-> Measured reconstruction coverage: 67.3% by pure deletion, 94.5% allowing
-> ≤1 overlay per manual from a closed 6-operation set. Threshold X% is now
-> an operator decision against real numbers rather than a guess.
+> Measured reconstruction coverage: **78.2%** by pure deletion (67.3% before
+> the Phase B caliber fix), 94.5% allowing ≤1 overlay per manual. Threshold X%
+> is now an operator decision against real numbers rather than a guess.
 
 ### Phase B — Design finalization
 
@@ -119,6 +126,17 @@ shared-plane layering choice, and the §9 open questions — all resolved.
 
 Acceptance: design approved by the operator; every §9 question has a recorded
 decision.
+
+> **Status 2026-08-20: executed, awaiting approval.** The operator decided CN is
+> its own skeleton (design D2). The revised design settles the anchor key
+> (2-D sparse `skeleton_family × house_style`, 5 cells), the measurement caliber
+> (printed-page layout order), the shared-plane approach (mapping file, no
+> directory re-layering), the first module cut
+> (`user_maintenance_instructions`), and retrofit phases B0–B9. It also
+> withdraws four v1 claims — notably diff line count as a skeleton-distance
+> signal, which measurement showed does not exist. Eight questions remain open,
+> of which three are compliance/filing adjudications that must precede any
+> automatic chapter insertion.
 
 ### Phase C — Production-line retrofit
 
