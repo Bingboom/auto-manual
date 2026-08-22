@@ -208,7 +208,7 @@ def evaluate_targets(
     return tuple(results)
 
 
-def load_skip_baseline(path: Path) -> int:
+def _load_ratchet_counts(path: Path) -> tuple[int, int | None]:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except FileNotFoundError as exc:
@@ -217,18 +217,31 @@ def load_skip_baseline(path: Path) -> int:
         raise RuntimeError(f"SKIP ratchet file is not valid JSON: {path}") from exc
     if not isinstance(payload, dict) or not isinstance(payload.get("skip_count"), int):
         raise RuntimeError(f"SKIP ratchet file must contain integer skip_count: {path}")
-    return payload["skip_count"]
+    fail_count = payload.get("fail_count")
+    if fail_count is not None and not isinstance(fail_count, int):
+        raise RuntimeError(f"ratchet file fail_count must be an integer when present: {path}")
+    return payload["skip_count"], fail_count
+
+
+def load_skip_baseline(path: Path) -> int:
+    return _load_ratchet_counts(path)[0]
+
+
+def load_fail_baseline(path: Path) -> int | None:
+    """The FAIL ratchet is opt-in per file so an older baseline still loads."""
+    return _load_ratchet_counts(path)[1]
 
 
 def build_report(
     results: Sequence[CheckResult],
     *,
     baseline_skip_count: int,
+    baseline_fail_count: int | None = None,
 ) -> dict[str, object]:
     counts = {status: sum(result.status == status for result in results) for status in ("PASS", "SKIP", "FAIL")}
     denominator = counts["PASS"] + counts["SKIP"] + counts["FAIL"]
     coverage = counts["PASS"] / denominator if denominator else 0.0
-    return {
+    report: dict[str, object] = {
         "schema_version": 1,
         "counts": counts,
         "coverage": coverage,
@@ -240,6 +253,19 @@ def build_report(
         },
         "results": [asdict(result) for result in results],
     }
+    # The FAIL ratchet is what makes the observation lane mean something. The
+    # lane runs with --observation, which reports FAIL rows without failing, so
+    # before this a target regressing from PASS to FAIL was invisible in CI —
+    # only the SKIP ratchet could turn the job red. The baseline records the
+    # failures that are already known and separately tracked; one more than
+    # that fails the run even in observation mode.
+    if baseline_fail_count is not None:
+        report["fail_ratchet"] = {
+            "baseline": baseline_fail_count,
+            "current": counts["FAIL"],
+            "passed": counts["FAIL"] <= baseline_fail_count,
+        }
+    return report
 
 
 def run_driver(
@@ -263,8 +289,12 @@ def run_driver(
         runner=runner,
         staging_root=staging_root,
     )
-    baseline = load_skip_baseline(skip_baseline)
-    report = build_report(results, baseline_skip_count=baseline)
+    baseline, baseline_fail = _load_ratchet_counts(skip_baseline)
+    report = build_report(
+        results,
+        baseline_skip_count=baseline,
+        baseline_fail_count=baseline_fail,
+    )
     if report_path is not None:
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -287,7 +317,22 @@ def run_driver(
             f"baseline={ratchet['baseline']}",
             file=sys.stderr,
         )
-    exit_code = 1 if (fail_on_failures and counts["FAIL"]) or not ratchet["passed"] else 0
+    fail_ratchet = report.get("fail_ratchet")
+    fail_ratchet_failed = False
+    if isinstance(fail_ratchet, dict) and not fail_ratchet["passed"]:
+        fail_ratchet_failed = True
+        newly = [result for result in results if result.status == "FAIL"]
+        print(
+            f"[ci-check-targets] FAIL ratchet failed: current={fail_ratchet['current']} "
+            f"baseline={fail_ratchet['baseline']} — failing targets: "
+            + ", ".join(f"{r.config} {r.document_key}" for r in newly),
+            file=sys.stderr,
+        )
+    exit_code = (
+        1
+        if (fail_on_failures and counts["FAIL"]) or not ratchet["passed"] or fail_ratchet_failed
+        else 0
+    )
     return exit_code, report
 
 

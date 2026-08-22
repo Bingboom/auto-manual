@@ -15,6 +15,7 @@ from tools.ci_check_targets import (
     discover_targets,
     evaluate_targets,
     fixture_document_keys,
+    load_fail_baseline,
     load_skip_baseline,
     run_driver,
 )
@@ -100,6 +101,89 @@ class TestCiCheckTargets(unittest.TestCase):
         )
         report = build_report(results, baseline_skip_count=0)
         self.assertFalse(report["skip_ratchet"]["passed"])
+
+    def test_fail_ratchet_rejects_an_increase(self) -> None:
+        results = (
+            CheckResult(
+                "configs/config.eu-uk.yaml", "JE-1000F", "EU", "uk", "JE-1000F_EU", "FAIL", "boom"
+            ),
+            CheckResult(
+                "configs/config.zh.yaml", "JE-2000E", "CN", None, "JE-2000E_CN", "FAIL", "boom"
+            ),
+        )
+
+        self.assertTrue(
+            build_report(results, baseline_skip_count=0, baseline_fail_count=2)["fail_ratchet"]["passed"]
+        )
+        self.assertFalse(
+            build_report(results, baseline_skip_count=0, baseline_fail_count=1)["fail_ratchet"]["passed"]
+        )
+
+    def test_report_omits_the_fail_ratchet_when_the_baseline_does_not_declare_one(self) -> None:
+        """An older baseline file keeps loading; it just gets no FAIL ratchet."""
+        results = (
+            CheckResult(
+                "configs/config.zh.yaml", "JE-2000E", "CN", None, "JE-2000E_CN", "FAIL", "boom"
+            ),
+        )
+
+        self.assertNotIn("fail_ratchet", build_report(results, baseline_skip_count=0))
+
+    def test_observation_lane_fails_when_the_fail_ratchet_is_exceeded(self) -> None:
+        """The point of the ratchet: --observation no longer hides a regression.
+
+        The lane runs with --observation so the two known-failing targets do not
+        turn CI red. Before this, that also meant a target sliding from PASS to
+        FAIL was invisible — only the SKIP ratchet could fail the job.
+        """
+        for baseline_fail, expected_exit in ((1, 0), (0, 1)):
+            with self.subTest(fail_count=baseline_fail):
+                with tempfile.TemporaryDirectory() as td:
+                    root = Path(td)
+                    configs = root / "configs"
+                    shutil.copytree(ROOT / "configs", configs)
+                    for config_path in configs.glob("config*.yaml"):
+                        if config_path.name != "config.us-en.yaml":
+                            config_path.unlink()
+                    data_root = root / "phase2"
+                    data_root.mkdir()
+                    shutil.copy2(
+                        ROOT / "tests/fixtures/phase2/Spec_Master.csv",
+                        data_root / "Spec_Master.csv",
+                    )
+                    baseline = root / "baseline.json"
+                    baseline.write_text(
+                        json.dumps({"skip_count": 0, "fail_count": baseline_fail}),
+                        encoding="utf-8",
+                    )
+
+                    exit_code, report = run_driver(
+                        configs_dir=configs,
+                        data_root=data_root,
+                        repo_root=ROOT,
+                        skip_baseline=baseline,
+                        fail_on_failures=False,
+                        runner=lambda command: CommandResult(7, stdout="observed failure"),
+                    )
+
+                    self.assertEqual(expected_exit, exit_code)
+                    self.assertEqual(1, report["counts"]["FAIL"])
+                    self.assertEqual(baseline_fail, load_fail_baseline(baseline))
+
+    def test_committed_baseline_arms_both_ratchets(self) -> None:
+        """Guard the gate itself: dropping fail_count would silently disarm it."""
+        baseline = ROOT / ".github" / "ci_check_targets_skip_baseline.json"
+        payload = json.loads(baseline.read_text(encoding="utf-8"))
+
+        self.assertIsInstance(payload.get("skip_count"), int)
+        self.assertIsInstance(payload.get("fail_count"), int)
+        self.assertEqual(payload["skip_count"], load_skip_baseline(baseline))
+        self.assertEqual(payload["fail_count"], load_fail_baseline(baseline))
+        # Every named config must still exist, or the reason text is fiction.
+        for key in ("skipped_configs", "failing_configs"):
+            for relative in payload.get(key, []):
+                with self.subTest(config=relative):
+                    self.assertTrue((ROOT / relative).is_file(), relative)
 
     def test_fixture_document_keys_are_read_case_insensitively(self) -> None:
         with tempfile.TemporaryDirectory() as td:
