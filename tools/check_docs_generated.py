@@ -653,18 +653,25 @@ def _orphan_snippet_issues(
     issue_cls: type[Any],
     target: Any,
     collect_registry_snippet_ids: Callable[[list[Any]], set[str]],
+    docs_dir: Path,
 ) -> list[Any]:
     if runtime.registry_error is not None or not runtime.registry_entries:
         return []
 
+    from tools.snippet_references import repo_wide_snippet_references
+
+    referenced = used_snippet_ids | repo_wide_snippet_references(docs_dir)
     issues: list[Any] = []
-    orphan_snippet_ids = sorted(collect_registry_snippet_ids(runtime.registry_entries) - used_snippet_ids)
+    orphan_snippet_ids = sorted(collect_registry_snippet_ids(runtime.registry_entries) - referenced)
     for snippet_id in orphan_snippet_ids:
         issues.append(
             _issue(
                 issue_cls,
                 code="ORPHAN_SNIPPET",
-                message=f"Snippet '{snippet_id}' is defined in the registry but not used by any draft recipe",
+                message=(
+                    f"Snippet '{snippet_id}' is defined in the registry but is referenced by no "
+                    "template token and no draft recipe"
+                ),
                 target=target,
                 path=runtime.registry_path,
             )
@@ -827,6 +834,7 @@ def collect_generated_page_issues(
             issue_cls=issue_cls,
             target=target,
             collect_registry_snippet_ids=collect_registry_snippet_ids,
+            docs_dir=docs_dir,
         )
     )
     return issues

@@ -83,7 +83,7 @@ pages:
   - type: rst_include
     slot_id: storage_en
     lang: en
-    file: templates/page_shared/en/09_storage_and_maintenance.rst
+    file: templates/page_bp/en/09_storage.rst
   - type: csv_page
     slot_id: specifications_en
     source: phase2
@@ -161,7 +161,7 @@ pages:
   - type: rst_include
     slot_id: storage_fr
     lang: fr
-    file: templates/page_shared/fr/09_storage_and_maintenance.rst
+    file: templates/page_bp/fr/09_storage.rst
   - type: csv_page
     slot_id: specifications_fr
     source: phase2
@@ -239,7 +239,7 @@ pages:
   - type: rst_include
     slot_id: storage_es
     lang: es
-    file: templates/page_shared/es/09_storage_and_maintenance.rst
+    file: templates/page_bp/es/09_storage.rst
   - type: csv_page
     slot_id: specifications_es
     source: phase2

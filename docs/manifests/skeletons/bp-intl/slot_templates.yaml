@@ -69,7 +69,9 @@ slots:
     file: templates/page_bp/{lang}/08_charging_methods.rst
   storage:
     type: rst_include
-    file: templates/page_shared/{lang}/09_storage_and_maintenance.rst
+    # Consumes the shared long-storage advisory through a {{snippet:...}} token
+    # instead of carrying a tenth hand copy of it (skeleton slice S3).
+    file: templates/page_bp/{lang}/09_storage.rst
   specifications:
     type: csv_page
     page: spec

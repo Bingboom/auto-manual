@@ -458,6 +458,97 @@ def _format_missing_rows_report(
     return "\n".join(lines)
 
 
+def resolve_snippet_tokens(
+    text: str,
+    *,
+    registry_entries: list[SnippetEntry],
+    registry_path: Path,
+    docs_dir: Path,
+    lang: str,
+    model: str | None,
+    region: str | None,
+    substitutions: dict[str, str],
+    vars_map: dict[str, str],
+    slot_map: dict[str, str] | None = None,
+    label: str,
+) -> tuple[str, list[str]]:
+    """Splice ``{{snippet:<name>}}`` tokens in arbitrary RST text.
+
+    Returns (text, used_snippet_ids). Text with no token is returned unchanged
+    and does no registry work at all, so pages that use no snippet keep their
+    exact bytes (and their pinned reference-layout digests).
+
+    ``slot_map`` is the recipe's ``snippet_slots`` for generated pages, where a
+    template names a *slot* and the recipe binds it to a snippet id. Plain
+    ``rst_include`` pages have no recipe, so the token names the snippet id
+    directly — the section-module layer has to reach those pages too, since
+    that is where nearly all of the shared prose lives.
+    """
+
+    if SNIPPET_TOKEN_PREFIX not in text:
+        return text, []
+
+    used: list[str] = []
+    for slot_name in _snippet_slot_names(text):
+        token = f"{SNIPPET_TOKEN_PREFIX}{slot_name}{SNIPPET_TOKEN_SUFFIX}"
+        if slot_map is None:
+            snippet_id = slot_name
+        elif slot_name in slot_map:
+            snippet_id = slot_map[slot_name]
+        else:
+            raise RuntimeError(
+                f"{label}: snippet slot '{slot_name}' is not bound by the recipe's snippet_slots"
+            )
+        entry = select_snippet_entry(
+            registry_entries, snippet_id=snippet_id, lang=lang, region=region
+        )
+        missing_placeholders = [
+            placeholder
+            for placeholder in entry.required_placeholders
+            if not (substitutions.get(placeholder) or "").strip()
+        ]
+        if missing_placeholders:
+            raise RuntimeError(
+                f"Snippet '{snippet_id}' is missing required placeholders for lang '{lang}': "
+                f"{', '.join(missing_placeholders)}"
+            )
+        snippet_path = resolve_snippet_file_path(
+            entry,
+            docs_dir=docs_dir,
+            registry_path=registry_path,
+            model=model,
+            region=region,
+        )
+        if not snippet_path.exists():
+            raise RuntimeError(f"Snippet file not found for '{snippet_id}': {snippet_path}")
+        snippet_text = _render_snippet_text(
+            template_text=snippet_path.read_text(encoding="utf-8"),
+            substitutions=substitutions,
+            vars_map=vars_map,
+        )
+        text = text.replace(token, snippet_text.rstrip("\n"))
+        used.append(snippet_id)
+    return text, used
+
+
+def _snippet_slot_names(text: str) -> list[str]:
+    names: list[str] = []
+    cursor = 0
+    while True:
+        start = text.find(SNIPPET_TOKEN_PREFIX, cursor)
+        if start < 0:
+            break
+        name_start = start + len(SNIPPET_TOKEN_PREFIX)
+        end = text.find(SNIPPET_TOKEN_SUFFIX, name_start)
+        if end < 0:
+            break
+        name = text[name_start:end].strip()
+        if name and name not in names:
+            names.append(name)
+        cursor = end + len(SNIPPET_TOKEN_SUFFIX)
+    return names
+
+
 def _render_snippet_text(
     *,
     template_text: str,
@@ -542,43 +633,27 @@ def render_generated_page(
         print("[draft] missing Spec_Master rows filled with ==MISSING:...== placeholders:")
         print(report)
 
-    registry_entries = load_snippet_registry(registry_path)
     template_text = template_path.read_text(encoding="utf-8")
-    used_snippet_ids: list[str] = []
-    for slot_name, snippet_id in recipe.snippet_slots.items():
-        token = f"{SNIPPET_TOKEN_PREFIX}{slot_name}{SNIPPET_TOKEN_SUFFIX}"
-        if token not in template_text:
-            continue
-        entry = select_snippet_entry(
-            registry_entries,
-            snippet_id=snippet_id,
-            lang=lang,
-            region=region,
-        )
-        missing_placeholders = [
-            placeholder for placeholder in entry.required_placeholders if not (substitutions.get(placeholder) or "").strip()
-        ]
-        if missing_placeholders:
-            raise RuntimeError(
-                f"Snippet '{snippet_id}' is missing required placeholders for lang '{lang}': "
-                f"{', '.join(missing_placeholders)}"
-            )
-        snippet_path = resolve_snippet_file_path(
-            entry,
-            docs_dir=docs_dir,
-            registry_path=registry_path,
-            model=model,
-            region=region,
-        )
-        if not snippet_path.exists():
-            raise RuntimeError(f"Snippet file not found for '{snippet_id}': {snippet_path}")
-        snippet_text = _render_snippet_text(
-            template_text=snippet_path.read_text(encoding="utf-8"),
-            substitutions=substitutions,
-            vars_map=vars_map,
-        )
-        template_text = template_text.replace(token, snippet_text.rstrip("\n"))
-        used_snippet_ids.append(snippet_id)
+    # Only slots the recipe binds are resolvable here; an unbound token in a
+    # generated template is a recipe error, exactly as before.
+    bound_slots = {
+        slot_name: snippet_id
+        for slot_name, snippet_id in recipe.snippet_slots.items()
+        if f"{SNIPPET_TOKEN_PREFIX}{slot_name}{SNIPPET_TOKEN_SUFFIX}" in template_text
+    }
+    template_text, used_snippet_ids = resolve_snippet_tokens(
+        template_text,
+        registry_entries=load_snippet_registry(registry_path) if bound_slots else [],
+        registry_path=registry_path,
+        docs_dir=docs_dir,
+        lang=lang,
+        model=model,
+        region=region,
+        substitutions=substitutions,
+        vars_map=vars_map,
+        slot_map=bound_slots,
+        label=str(template_path),
+    ) if bound_slots else (template_text, [])
 
     rendered = apply_rst_substitutions(template_text, substitutions, vars_map)
     rendered = _apply_recipe_postprocess(rendered, recipe)
