@@ -1928,11 +1928,11 @@ generate-then-verify; YAML stays the source of truth).
     + a new tier-resolution test.
   - Rollback: `git revert`.
 
-- [ ] PR S3: Extract `battery_long_storage_advisory` as the first real snippet
-  - Status: `in progress` — PR #938 open on
-    `feat/skeleton-s3-first-snippet` (head `218ddf19`), 18/18 checks green,
-    rebase onto `origin/main` verified clean: no conflicts, no regressions.
-    Awaiting operator merge.
+- [x] PR S3: Extract `battery_long_storage_advisory` as the first real snippet
+  - Status: `done` (merged 2026-08-22, #938, squash `71f7c5ec`; 18/18 checks
+    green on a base refreshed to include S4, the illustration assets and the
+    review-sync fix, after the pre-merge check found its earlier green predated
+    all three)
   - Gate: S1 merged (#936).
   - Target files:
     - `docs/templates/snippets/battery_long_storage_advisory/{en,fr,es}.rst` (new)
@@ -1966,8 +1966,19 @@ generate-then-verify; YAML stays the source of truth).
   - Guard tests: `tests/test_snippet_layer.py` (added by #938) (new, 202 lines) — `test_draft_engine.py` is not the carrier.
   - Rollback: `git revert`; snippet files become orphans.
 
-- [ ] S4: Data intake + ten authored templates (operator-gated)
-  - Status: `in progress` — PR #940 open on `feat/skeleton-s4-bp-intake`,
+- [x] S4: Data intake + ten authored templates (operator-gated)
+  - Status: `done` (merged 2026-08-22, #940, squash `5e1d0c26`). Both halves
+    landed: the live source-table intake was executed under operator
+    confirmation (record_id ledger in
+    [`../code-as-doc/reviews/jbp2000b_us_intake_record_ids_2026-08.md`](reviews/jbp2000b_us_intake_record_ids_2026-08.md)),
+    `build.py check --config configs/config.bp-us.yaml --model JBP-2000B
+    --region US` exits 0, and the CI ratchet was reversed in #944
+    (squash `baf8b712`): `tests/fixtures/phase2` now carries the
+    `JBP-2000B_US` rows, `skip_count` is back to 4 and the lane reports the
+    target as PASS (`PASS=12 SKIP=4 FAIL=2`, verified in the CI log, not just
+    locally). The four illustration assets landed separately in #942
+    (squash `c8b83f65`). Original open-PR note follows:
+  - Was: PR #940 open on `feat/skeleton-s4-bp-intake`,
     17/17 checks green, carrying the **repo-side half only**: the ten BP page
     templates, `required_copy_keys` tiering in the 03 contract and
     `required_placeholders` tiering in the 05 contract, corrections to both
@@ -2060,11 +2071,11 @@ generate-then-verify; YAML stays the source of truth).
   - Rollback: live-table rows are individually deletable (record_ids logged
     per row at write time); templates, contracts and recipes revert by git.
 
-- [ ] S5: Four-renderer acceptance — mechanical criteria harness
-  - Status: `in progress` — PR #939 open on
-    `feat/skeleton-s5-renderer-acceptance` (head `70ff378f`), 17/17 checks
-    green, rebase onto `origin/main` verified clean: no conflicts, no
-    regressions. It is **not** "no new code": it ships
+- [x] S5: Four-renderer acceptance — mechanical criteria harness
+  - Status: `done` (merged 2026-08-22, #939, squash `0432e5b7`; 17/17 checks
+    green on a refreshed base, same pre-merge staleness check as S3). Running
+    the harness against the slice target is S6's first step, not S5's — S5
+    delivers the harness. It is **not** "no new code": it ships
     `tools/renderer_acceptance.py` (added by #939) (608
     lines), `tests/test_renderer_acceptance.py`, and
     `code-as-doc/dev/renderer_acceptance_runbook.md` (added by #939).
