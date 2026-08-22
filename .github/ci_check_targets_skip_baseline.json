@@ -1,11 +1,16 @@
 {
   "schema_version": 1,
-  "skip_count": 5,
-  "reason": "The current fixture snapshot has no document_key rows for AU, JE-1000F_KR, JE-2000E_KR, pt-BR, and JBP-2000B_US (skeleton slice S1: spec rows land in S4) targets.",
+  "skip_count": 4,
+  "reason": "The current fixture snapshot has no document_key rows for AU, JE-1000F_KR, JE-2000E_KR, and pt-BR targets. JBP-2000B_US was skipped until its rows landed in the fixtures; it now runs and passes.",
   "skipped_configs": [
     "configs/config.au-en.yaml",
-    "configs/config.bp-us.yaml",
     "configs/config.kr.yaml",
     "configs/config.pt-br.yaml"
+  ],
+  "fail_count": 2,
+  "fail_reason": "check-all runs with --observation, which reports FAIL rows without failing the job, so before this ratchet a target regressing from PASS to FAIL was invisible in CI. These two are known and separately tracked; one more than this fails the job.",
+  "failing_configs": [
+    "configs/config.eu-uk.yaml",
+    "configs/config.zh.yaml"
   ]
 }
