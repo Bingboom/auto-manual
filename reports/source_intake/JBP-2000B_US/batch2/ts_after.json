@@ -1,0 +1,1385 @@
+{
+  "ok": true,
+  "identity": "bot",
+  "data": {
+    "data": [
+      [
+        "1",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "重启产品。",
+        "ALL",
+        null,
+        "F0",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "2",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "重启产品。",
+        "ALL",
+        null,
+        "F1",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "3",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "重启产品。",
+        "ALL",
+        null,
+        "F2",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "4",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "重启产品。",
+        "ALL",
+        null,
+        "F3",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "5",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "将产品连接负载，放电直至故障消失。",
+        "ALL",
+        null,
+        "F4",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "6",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "通过太阳能板或交流墙充为产品充电，直至故障消失。",
+        "ALL",
+        null,
+        "F5",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "7",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "1. 待电网恢复正常后再通过交流墙插为产品充电。\n2. 检查进风口和出风口是否堵塞；确保产品两侧有 20 厘米的间隙。\n3. 将产品放置在避免阳光直射、环境温度低于45℃的地方。\n4. 断开产品连接的所有负载，保持产品空闲待机，等待故障消失。检查负载的启动功率是否超出本产品的输出范围。\n5. 重启产品。",
+        "ALL",
+        null,
+        "F6",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "8",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "1. 移除连接到产品的所有太阳能板。\n2. 检查连接到产品的太阳能板的开路电压（V\\ :sub:`oc`）。产品允许的最大直流输入电压为 60V。\n3. 重启产品，保持产品空闲待机，等待故障消失。",
+        "ALL",
+        null,
+        "F7",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "9",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "请联系经销商或电小二客户支持。",
+        "ALL",
+        null,
+        "F8",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "10",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "移除连接到产品 DC/USB 端口的负载，等待故障消失。",
+        "ALL",
+        null,
+        "F9",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "11",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        "请联系经销商或电小二客户支持。",
+        "ALL",
+        null,
+        "FE",
+        null,
+        null,
+        null,
+        "CN",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "1",
+        [
+          "V1.0"
+        ],
+        "제품을 다시 시작하십시오.",
+        null,
+        "F0: Restart the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "Starten Sie das Produkt neu.",
+        "F0",
+        "Reinicie o produto.",
+        "Riavviare il prodotto.",
+        "Перезапустіть пристрій.",
+        "EU, AU, KR",
+        "Reinicie o produto.",
+        "Reiniciar el producto.",
+        "Redémarrez le produit.",
+        "Restart the product."
+      ],
+      [
+        "2",
+        [
+          "V1.0"
+        ],
+        "제품을 다시 시작하십시오.",
+        null,
+        "F1: Restart the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "Starten Sie das Produkt neu.",
+        "F1",
+        "Reinicie o produto.",
+        "Riavviare il prodotto.",
+        "Перезапустіть пристрій.",
+        "EU, AU, KR",
+        "Reinicie o produto.",
+        "Reiniciar el producto.",
+        "Redémarrez le produit.",
+        "Restart the product."
+      ],
+      [
+        "3",
+        [
+          "V1.0"
+        ],
+        "제품을 다시 시작하십시오.",
+        null,
+        "F2: Restart the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "Starten Sie das Produkt neu.",
+        "F2",
+        "Reinicie o produto.",
+        "Riavviare il prodotto.",
+        "Перезапустіть пристрій.",
+        "EU, AU, KR",
+        "Reinicie o produto.",
+        "Reiniciar el producto.",
+        "Redémarrez le produit.",
+        "Restart the product."
+      ],
+      [
+        "4",
+        [
+          "V1.0"
+        ],
+        "제품을 다시 시작하십시오.",
+        null,
+        "F3: Restart the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "Starten Sie das Produkt neu.",
+        "F3",
+        "Reinicie o produto.",
+        "Riavviare il prodotto.",
+        "Перезапустіть пристрій.",
+        "EU, AU, KR",
+        "Reinicie o produto.",
+        "Reiniciar el producto.",
+        "Redémarrez le produit.",
+        "Restart the product."
+      ],
+      [
+        "5",
+        [
+          "V1.0"
+        ],
+        "제품을 부하에 연결하여 오류가 사라질 때까지 배터리를 방전하십시오.",
+        null,
+        "F4: Connect the product to loads to discharge its battery until the fault disappears.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "Schließen Sie das Produkt an Lasten an, um die Batterie zu entladen, bis der Fehler verschwindet.",
+        "F4",
+        "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.",
+        "Collega il prodotto ai carichi per scaricare la batteria fino a quando il guasto scompare.",
+        "Підключіть до пристрою навантаження, щоб розрядити батарею, доки несправність не зникне.",
+        "EU, AU, KR",
+        "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.",
+        "Conecte el producto a cargas para descargar la batería hasta que el fallo desaparezca.",
+        "Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse.",
+        "Connect the product to loads to discharge its battery until the fault disappears."
+      ],
+      [
+        "6",
+        [
+          "V1.0"
+        ],
+        "오류가 사라질 때까지 태양광 패널 또는 AC 벽면 콘센트를 통해 제품을 충전하십시오.",
+        null,
+        "F5: Charge the product via solar panels or an AC wall outlet until the fault disappears.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "Laden Sie das Produkt über Solarmodule oder eine AC-Wandsteckdose, bis der Fehler verschwindet.",
+        "F5",
+        "Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.",
+        "Caricare il prodotto tramite pannelli solari o una presa a muro CA fino a quando l'errore non scompare.",
+        "Заряджайте пристрій через сонячні панелі або настінну розетку AC, доки несправність не зникне.",
+        "EU, AU, KR",
+        "Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.",
+        "Cargue el producto mediante paneles solares o una toma de corriente CA hasta que el fallo desaparezca.",
+        "Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse.",
+        "Charge the product via solar panels or an AC wall outlet until the fault disappears."
+      ],
+      [
+        "7",
+        [
+          "V1.0"
+        ],
+        "1. AC 벽면 콘센트를 통해 제품을 충전하기 전에 전력망이 정상 상태로 돌아올 때까지 기다리십시오.\n2. 공기 흡입 및 배기구가 막혀 있는지 확인하고, 제품 양쪽에 20cm의 간격을 확보하십시오.\n3. 제품을 직사광선이나 고온 환경에 노출되지 않는 장소에 두십시오.\n4. 제품에서 모든 연결 장치를 분리하십시오. 제품을 사용하지 않은 상태로 두고 오류가 사라질 때까지 기다리십시오.\n5. 제품을 다시 시작하십시오.",
+        null,
+        "F6: 1. Wait for the grid to normalize before charging the product via an AC wall outlet.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "1. Warten Sie, bis sich das Stromnetz normalisiert hat, bevor Sie das Produkt über eine AC-Wandsteckdose aufladen.\n2. Prüfen Sie, ob die Lufteinlass- und Luftauslassöffnungen blockiert sind; stellen Sie auf beiden Seiten des Produkts einen Abstand von 20 cm sicher.\n3. Platzieren Sie das Produkt an einem Ort, der keinem direkten Sonnenlicht oder hohen Umgebungstemperaturen ausgesetzt ist.\n4. Trennen Sie alle Lasten vom Produkt. Lassen Sie das Produkt im Leerlauf und warten Sie, bis der Fehler verschwindet.\n5. Starten Sie das Produkt neu.",
+        "F6",
+        "1. Aguarde até que a rede elétrica normalize antes de carregar o produto por tomada de parede CA.\n2. Verifique se as entradas e saídas de ar estão bloqueadas; mantenha 20 cm de espaço livre em ambos os lados do produto.\n3. Coloque o produto em um local que não fique exposto à luz solar direta ou a altas temperaturas ambientais.\n4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça.\n5. Reinicie o produto.",
+        "1. Attendi che la rete torni alla normalità prima di caricare il prodotto tramite una presa a muro CA.\n2. Verifica che le prese d'aria di ingresso e di scarico non siano ostruite; assicurati che ci siano 20 cm di spazio libero su entrambi i lati del prodotto.\n3. Posiziona il prodotto in un luogo non esposto alla luce solare diretta o a temperature ambientali elevate.\n4. Scollega tutti i carichi dal prodotto. Lascialo inattivo e attendi che il guasto scompaia.\n5. Riavvia il prodotto.",
+        "1. Дочекайтеся, поки мережа стабілізується, перш ніж заряджати пристрій через настінну розетку AC.\n2. Перевірте, чи не заблоковані вентиляційні отвори для забору та викиду повітря; забезпечте зазор 20 см з обох боків пристрою.\n3. Розташуйте пристрій у місці, не відкритому для прямого сонячного світла або високої температури навколишнього середовища.\n4. Від'єднайте від пристрою всі навантаження. Залиште пристрій без роботи та дочекайтеся, поки несправність не зникне.\n5. Перезапустіть пристрій.",
+        "EU, AU, KR",
+        "1. Aguarde até que a rede elétrica normalize antes de carregar o produto por tomada de parede CA.\n2. Verifique se as entradas e saídas de ar estão bloqueadas; mantenha 20 cm de espaço livre em ambos os lados do produto.\n3. Coloque o produto em um local que não fique exposto à luz solar direta ou a altas temperaturas ambientais.\n4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça.\n5. Reinicie o produto.",
+        "1. Espere a que la red eléctrica se normalice antes de cargar el producto a través de una toma de corriente CA.\n2. Verifique si las rejillas de entrada y salida de aire están obstruidas; asegure un espacio libre de 20 cm a ambos lados del producto.\n3. Coloque el producto en un lugar que no esté expuesto a la luz solar directa ni a altas temperaturas ambientales.\n4. Desconecte todas las cargas del producto. Mantenga el producto inactivo y espere hasta que el fallo desaparezca.\n5. Reinicie el producto.",
+        "1. Attendez que le réseau se normalise avant de charger le produit via une prise murale CA.\n2. Vérifiez si les entrées et sorties d'air sont obstruées; assurez un espace de 20 cm de chaque côté du produit.\n3. Placez le produit dans un endroit qui n'est pas exposé à la lumière directe du soleil ou à des températures ambiantes élevées.\n4. Déconnectez toutes les charges du produit. Laissez le produit inactif et attendez que l'erreur disparaisse.\n5. Redémarrez le produit.",
+        "1. Wait for the grid to normalize before charging the product via an AC wall outlet.\n2. Check whether the air intake and exhaust vents are blocked; ensure 20 cm clearance on both sides of the product.\n3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures.\n4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.\n5. Restart the product."
+      ],
+      [
+        "8",
+        [
+          "V1.0"
+        ],
+        "1. 제품에서 모든 DC 입력을 제거하십시오.\n2. 연결된 태양광 패널의 개방회로 전압(Voc)을 확인하십시오. 제품의 최대 DC 입력 전압은 60V입니다.\n3. 제품을 다시 시작하고 유휴 상태로 유지하십시오. 오류가 사라질 때까지 기다리십시오.",
+        null,
+        "F7: 1. Remove all DC inputs from the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "1. Trennen Sie alle DC-Eingänge vom Produkt.\n2. Prüfen Sie die Leerlaufspannung (V\\ :sub:`oc`) der angeschlossenen Solarmodule. Das Produkt erlaubt eine maximale DC-Eingangsspannung von 60 V.\n3. Starten Sie das Produkt neu und lassen Sie es im Leerlauf. Warten Sie, bis der Fehler verschwindet.",
+        "F7",
+        "1. Remova todas as entradas CC do produto.\n2. Verifique a tensão de circuito aberto (V\\ :sub:`oc`) dos painéis solares conectados. O produto permite uma tensão máxima de entrada CC de 60V.\n3. Reinicie o produto e mantenha-o ocioso. Aguarde até que a falha desapareça.",
+        "1. Rimuovi tutti gli ingressi CC dal prodotto.\n2. Verifica la tensione a circuito aperto (V\\ :sub:`oc`) dei pannelli solari collegati. Il prodotto consente una tensione di ingresso CC massima di 60 V.\n3. Riavvia il prodotto e lascialo inattivo. Attendi che il guasto scompaia.",
+        "1. Від'єднайте від пристрою всі входи DC.\n2. Перевірте напругу холостого ходу (V\\ :sub:`oc`) підключених сонячних панелей. Пристрій допускає максимальну вхідну напругу DC 60 В.\n3. Перезапустіть пристрій і залиште його без роботи. Дочекайтеся, поки несправність не зникне.",
+        "EU, AU, KR",
+        "1. Remova todas as entradas CC do produto.\n2. Verifique a tensão de circuito aberto (V\\ :sub:`oc`) dos painéis solares conectados. O produto permite uma tensão máxima de entrada CC de 60V.\n3. Reinicie o produto e mantenha-o ocioso. Aguarde até que a falha desapareça.",
+        "1. Retire todas las entradas de CC del producto.\n2. Si carga el producto mediante un panel solar, verifique el voltaje en circuito abierto (V\\ :sub:`oc`) del panel solar conectado. El producto admite un voltaje máximo de entrada de CC de 60 V.\n3. Reinicie el producto y déjelo inactivo. Espere hasta que el fallo desaparezca.",
+        "1. Retirez toutes les entrées CC du produit.\n2. Vérifiez la tension en circuit ouvert (V\\ :sub:`oc`) des panneaux solaires connectés. Le produit accepte une tension d'entrée CC maximale de 60V.\n3. Redémarrez le produit et laissez-le inactif. Attendez que l'erreur disparaisse.",
+        "1. Remove all DC inputs from the product.\n2. Check the open-circuit voltage (V\\ :sub:`oc`) of the connected solar panels. The product allows a maximum DC input voltage of 60V.\n3. Restart the product and keep it idle. Wait until the fault disappears."
+      ],
+      [
+        "9",
+        [
+          "V1.0"
+        ],
+        "Jackery 고객 지원팀에 문의하십시오.",
+        null,
+        "F8: Contact Jackery Customer Support.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "Wenden Sie sich an den Jackery-Kundendienst.",
+        "F8",
+        "Entre em contato com o Suporte ao Cliente da Jackery.",
+        "Contatta l'Assistenza clienti Jackery.",
+        "Зверніться до служби підтримки Jackery.",
+        "EU, AU, KR",
+        "Entre em contato com o Suporte ao Cliente da Jackery.",
+        "Contacte con atención al cliente de Jackery.",
+        "Contacter le service client Jackery.",
+        "Contact Jackery Customer Support."
+      ],
+      [
+        "10",
+        [
+          "V1.0"
+        ],
+        "제품의 DC/USB 포트에 연결된 장치를 제거하십시오. 오류가 사라질 때까지 기다리십시오.",
+        null,
+        "F9: Remove the load connected to the USB ports of the product. Wait until the fault disappears.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "Entfernen Sie die an die DC/USB-Anschlüsse des Produkts angeschlossene Last. Warten Sie, bis der Fehler verschwindet.",
+        "F9",
+        "Remova a carga conectada às portas DC/USB do produto. Aguarde até que a falha desapareça.",
+        "Rimuovi il carico collegato alle porte DC/USB del prodotto. Attendi che il guasto scompaia.",
+        "Від'єднайте навантаження, підключене до DC/USB-портів пристрою. Дочекайтеся, поки несправність не зникне.",
+        "EU, AU, KR",
+        "Remova a carga conectada às portas DC/USB do produto. Aguarde até que a falha desapareça.",
+        "Retire la carga conectada a los puertos DC/USB del producto. Espere hasta que el fallo desaparezca.",
+        "Retirez la charge connectée aux ports DC/USB du produit. Attendez que l'erreur disparaisse.",
+        "Remove the load connected to the DC/USB ports of the product. Wait until the fault disappears."
+      ],
+      [
+        "11",
+        [
+          "V1.0"
+        ],
+        "Jackery 고객 지원팀에 문의하십시오.",
+        null,
+        "FE: Contact Jackery Customer Support.",
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        "Wenden Sie sich an den Jackery-Kundendienst.",
+        "FE",
+        "Entre em contato com o Suporte ao Cliente da Jackery.",
+        "Contatta l'Assistenza clienti Jackery.",
+        "Зверніться до служби підтримки Jackery.",
+        "EU, AU, KR",
+        "Entre em contato com o Suporte ao Cliente da Jackery.",
+        "Contacte con atención al cliente de Jackery.",
+        "Contacter le service client Jackery.",
+        "Contact Jackery Customer Support."
+      ],
+      [
+        "1",
+        [
+          "V1.0"
+        ],
+        "test",
+        "製品を再起動してください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "F0",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "2",
+        [
+          "V1.0"
+        ],
+        "test",
+        "製品を再起動してください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "F1",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "3",
+        [
+          "V1.0"
+        ],
+        "test",
+        "製品を再起動してください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "F2",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "4",
+        [
+          "V1.0"
+        ],
+        "test",
+        "製品を再起動してください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "F3",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "5",
+        [
+          "V1.0"
+        ],
+        "test",
+        "製品に負荷を接続してバッテリーを放電し、エラーが消えるまで続けてください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "F4",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "6",
+        [
+          "V1.0"
+        ],
+        "test",
+        "ソーラーパネルまたはAC電源コンセントを使用して、エラーが消えるまで製品を充電してください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "F5",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "7",
+        [
+          "V1.0"
+        ],
+        "test",
+        "1. AC電源コンセントから充電する前に、電源供給が安定するのを待ってください。\n2. 吸気口および排気口が塞がれていないか確認し、製品の両側に20cmのスペースを確保してください。\n3. 製品は日陰で通気の良い場所に設置し、周囲温度が45℃未満であることを確認してください。\n4. 製品からすべての負荷を取り外し、アイドル状態にして、エラーが消えるまで待ってください。ご使用の機器の起動時消費電力が本製品の出力範囲を超えていないかをご確認ください。\n5. 製品を再起動してください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "F6",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "8",
+        [
+          "V1.0"
+        ],
+        "test",
+        "1. 製品からすべてのDC入力を取り外してください。\n2. ソーラーパネルで充電する場合は、接続されたソーラーパネルの開放電圧（V\\ :sub:`oc`）を確認してください。本製品の最大DC入力電圧は60Vです。\n3. 製品を再起動し、アイドル状態を保ってください。エラーが消えるまで待ってください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "F7",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "9",
+        [
+          "V1.0"
+        ],
+        "test",
+        "販売店またはJackeryカスタマーサポートにお問い合わせください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "F8",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "10",
+        [
+          "V1.0"
+        ],
+        "test",
+        "製品のDC/USBポートに接続されている負荷を取り外してください。故障が消えるまで待機してください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "F9",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "11",
+        [
+          "V1.0"
+        ],
+        "test",
+        "販売店またはJackeryカスタマーサポートにお問い合わせください。",
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "ALL",
+        null,
+        "FE",
+        null,
+        null,
+        null,
+        "JP",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "1",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "F0: Restart the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "F0",
+        "Reinicie o produto.",
+        null,
+        null,
+        "US, pt-BR",
+        "Reinicie o produto.",
+        "Reiniciar el producto.",
+        "Redémarrez le produit.",
+        "Restart the product."
+      ],
+      [
+        "2",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "F1: Restart the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "F1",
+        "Reinicie o produto.",
+        null,
+        null,
+        "US, pt-BR",
+        "Reinicie o produto.",
+        "Reiniciar el producto.",
+        "Redémarrez le produit.",
+        "Restart the product."
+      ],
+      [
+        "3",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "F2: Restart the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "F2",
+        "Reinicie o produto.",
+        null,
+        null,
+        "US, pt-BR",
+        "Reinicie o produto.",
+        "Reiniciar el producto.",
+        "Redémarrez le produit.",
+        "Restart the product."
+      ],
+      [
+        "4",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "F3: Restart the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "F3",
+        "Reinicie o produto.",
+        null,
+        null,
+        "US, pt-BR",
+        "Reinicie o produto.",
+        "Reiniciar el producto.",
+        "Redémarrez le produit.",
+        "Restart the product."
+      ],
+      [
+        "5",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "F4: Connect the product to loads to discharge its battery until the fault disappears.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "F4",
+        "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.",
+        null,
+        null,
+        "US, pt-BR",
+        "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.",
+        "Conecte el producto a cargas para descargar la batería hasta que la falla desaparezca.",
+        "Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse.",
+        "Connect the product to loads to discharge its battery until the fault disappears."
+      ],
+      [
+        "6",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "F5: Charge the product via solar panels or an AC wall outlet until the fault disappears.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "F5",
+        "Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.",
+        null,
+        null,
+        "US, pt-BR",
+        "Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.",
+        "Cargue el producto mediante paneles solares o una toma de corriente CA hasta que la falla desaparezca.",
+        "Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse.",
+        "Charge the product via solar panels or an AC wall outlet until the fault disappears."
+      ],
+      [
+        "7",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "F6: 1. Wait for the grid to normalize before charging the product via an AC wall outlet.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "F6",
+        "1. Aguarde até que a rede elétrica normalize antes de carregar o produto por tomada de parede CA.\n2. Verifique se as entradas e saídas de ar estão bloqueadas; mantenha 0,66 ft (20 cm) de espaço livre em ambos os lados do produto.\n3. Coloque o produto em um local que não fique exposto à luz solar direta ou a altas temperaturas ambientais.\n4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça.\n5. Reinicie o produto.",
+        null,
+        null,
+        "US, pt-BR",
+        "1. Aguarde até que a rede elétrica normalize antes de carregar o produto por tomada de parede CA.\n2. Verifique se as entradas e saídas de ar estão bloqueadas; mantenha 0,66 ft (20 cm) de espaço livre em ambos os lados do produto.\n3. Coloque o produto em um local que não fique exposto à luz solar direta ou a altas temperaturas ambientais.\n4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça.\n5. Reinicie o produto.",
+        "1. Espere a que la red eléctrica se normalice antes de cargar el producto a través de una toma de corriente CA.\n2. Verifique si las rejillas de entrada y salida de aire están obstruidas; asegure un espacio libre de 0,66 pies (20 cm) a ambos lados del producto.\n3. Coloque el producto en un lugar que no esté expuesto a la luz solar directa ni a altas temperaturas ambientales.\n4. Desconecte todas las cargas del producto. Mantenga el producto inactivo y espere hasta que la falla desaparezca.\n5. Reinicie el producto.",
+        "1. Attendez que le réseau se normalise avant de charger le produit via une prise murale CA.\n2. Vérifiez si les entrées et sorties d'air sont obstruées; assurez un espace de 0,66 pied (20 cm) de chaque côté du produit.\n3. Placez le produit dans un endroit qui n'est pas exposé à la lumière directe du soleil ou à des températures ambiantes élevées.\n4. Déconnectez toutes les charges du produit. Laissez le produit inactif et attendez que l'erreur disparaisse.\n5. Redémarrez le produit.",
+        "1. Wait for the grid to normalize before charging the product via an AC wall outlet.\n2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (20 cm) clearance on both sides of the product.\n3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures.\n4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.\n5. Restart the product."
+      ],
+      [
+        "8",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "F7: 1. Remove all DC inputs from the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "F7",
+        "1. Remova todas as entradas CC do produto.\n2. Verifique a tensão de circuito aberto (V\\ :sub:`oc`) dos painéis solares conectados. O produto permite uma tensão máxima de entrada CC de 60V.\n3. Reinicie o produto e mantenha-o ocioso. Aguarde até que a falha desapareça.",
+        null,
+        null,
+        "US, pt-BR",
+        "1. Remova todas as entradas CC do produto.\n2. Verifique a tensão de circuito aberto (V\\ :sub:`oc`) dos painéis solares conectados. O produto permite uma tensão máxima de entrada CC de 60V.\n3. Reinicie o produto e mantenha-o ocioso. Aguarde até que a falha desapareça.",
+        "1. Retire todas las entradas de CC del producto.\n2. Si carga el producto mediante un panel solar, verifique el voltaje en circuito abierto (V\\ :sub:`oc`) del panel solar conectado. El producto admite un voltaje máximo de entrada de CC de 60 V.\n3. Reinicie el producto y déjelo inactivo. Espere hasta que la falla desaparezca.",
+        "1. Retirez toutes les entrées CC du produit.\n2. Vérifiez la tension en circuit ouvert (V\\ :sub:`oc`) des panneaux solaires connectés. Le produit accepte une tension d'entrée CC maximale de 60V.\n3. Redémarrez le produit et laissez-le inactif. Attendez que l'erreur disparaisse.",
+        "1. Remove all DC inputs from the product.\n2. Check the open-circuit voltage (V\\ :sub:`oc`) of the connected solar panels. The product allows a maximum DC input voltage of 60V.\n3. Restart the product and keep it idle. Wait until the fault disappears."
+      ],
+      [
+        "9",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "F8: Contact Jackery Customer Support.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "F8",
+        "Entre em contato com o Suporte ao Cliente da Jackery.",
+        null,
+        null,
+        "US, pt-BR",
+        "Entre em contato com o Suporte ao Cliente da Jackery.",
+        "Contacte con atención al cliente de Jackery.",
+        "Contacter le service à la clientèle de Jackery.",
+        "Contact Jackery Customer Support."
+      ],
+      [
+        "10",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "F9: Remove the load connected to the USB ports of the product. Wait until the fault disappears.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "F9",
+        "Remova a carga conectada às portas DC/USB do produto. Aguarde até que a falha desapareça.",
+        null,
+        null,
+        "US, pt-BR",
+        "Remova a carga conectada às portas DC/USB do produto. Aguarde até que a falha desapareça.",
+        "Retire la carga conectada a los puertos DC/USB del producto. Espere hasta que la falla desaparezca.",
+        "Retirez la charge connectée aux ports DC/USB du produit. Attendez que l'erreur disparaisse.",
+        "Remove the load connected to the DC/USB ports of the product. Wait until the fault disappears."
+      ],
+      [
+        "11",
+        [
+          "V1.0"
+        ],
+        "test",
+        null,
+        "FE: Contact Jackery Customer Support.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C",
+        null,
+        "FE",
+        "Entre em contato com o Suporte ao Cliente da Jackery.",
+        null,
+        null,
+        "US, pt-BR",
+        "Entre em contato com o Suporte ao Cliente da Jackery.",
+        "Contacte con atención al cliente de Jackery.",
+        "Contacter le service à la clientèle de Jackery.",
+        "Contact Jackery Customer Support."
+      ],
+      [
+        "12",
+        [
+          "V1.0"
+        ],
+        "1. 배터리 팩과 Jackery Explorer 2000 Plus 리튬이차전지시스템을 각각 다시 시작하십시오.\n2. 오류가 지속되면 Jackery Explorer 2000 Plus 리튬이차전지시스템에서 배터리 팩을 분리한 후 다시 연결하십시오.",
+        null,
+        null,
+        [
+          "TRUE"
+        ],
+        null,
+        "JE-2000E",
+        null,
+        "FC",
+        null,
+        null,
+        null,
+        "KR",
+        null,
+        null,
+        null,
+        "1. Restart the battery pack and the Jackery Explorer 2000 Plus Lithium-ion Battery System, respectively.\n2. If the fault persists, disconnect the battery pack from the Jackery Explorer 2000 Plus Lithium-ion Battery System and reconnect it."
+      ],
+      [
+        "1",
+        [
+          "V1.0"
+        ],
+        null,
+        null,
+        "F0: Restart the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JBP-2000B",
+        null,
+        "F0",
+        null,
+        null,
+        null,
+        "US",
+        null,
+        "Reiniciar el producto.",
+        "Redémarrez le produit.",
+        "Restart the product."
+      ],
+      [
+        "2",
+        [
+          "V1.0"
+        ],
+        null,
+        null,
+        "F1, F2: Contact Jackery Customer Support.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JBP-2000B",
+        null,
+        "F1, F2",
+        null,
+        null,
+        null,
+        "US",
+        null,
+        "Contacte con atención al cliente de Jackery.",
+        "Contacter le service à la clientèle de Jackery.",
+        "Contact Jackery Customer Support."
+      ],
+      [
+        "3",
+        [
+          "V1.0"
+        ],
+        null,
+        null,
+        "F3: Restart the product.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JBP-2000B",
+        null,
+        "F3",
+        null,
+        null,
+        null,
+        "US",
+        null,
+        "Reiniciar el producto.",
+        "Redémarrez le produit.",
+        "Restart the product."
+      ],
+      [
+        "4",
+        [
+          "V1.0"
+        ],
+        null,
+        null,
+        "F4: Connect the product to loads to discharge its battery until the fault disappears.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JBP-2000B",
+        null,
+        "F4",
+        null,
+        null,
+        null,
+        "US",
+        null,
+        "Conecte el producto a cargas para descargar su batería hasta que la falla desaparezca.",
+        "Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse.",
+        "Connect the product to loads to discharge its battery until the fault disappears."
+      ],
+      [
+        "5",
+        [
+          "V1.0"
+        ],
+        null,
+        null,
+        "F5: Charge the product via solar panels or AC wall outlet until the fault disappears.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JBP-2000B",
+        null,
+        "F5",
+        null,
+        null,
+        null,
+        "US",
+        null,
+        "Cargue el producto mediante paneles solares o toma de corriente CA hasta que la falla desaparezca.",
+        "Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse.",
+        "Charge the product via solar panels or AC wall outlet until the fault disappears."
+      ],
+      [
+        "6",
+        [
+          "V1.0"
+        ],
+        null,
+        null,
+        "F6-F9, FA, FC: Contact Jackery Customer Support.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JBP-2000B",
+        null,
+        "F6-F9,\nFA, FC",
+        null,
+        null,
+        null,
+        "US",
+        null,
+        "Contacte con atención al cliente de Jackery.",
+        "Contacter le service à la clientèle de Jackery.",
+        "Contact Jackery Customer Support."
+      ],
+      [
+        "7",
+        [
+          "V1.0"
+        ],
+        null,
+        null,
+        "FF: Place the product in an environment with a proper temperature and wait till the fault disappears.",
+        [
+          "TRUE"
+        ],
+        null,
+        "JBP-2000B",
+        null,
+        "FF",
+        null,
+        null,
+        null,
+        "US",
+        null,
+        "Coloque el producto en un ambiente con temperatura adecuada y espere hasta que la falla desaparezca.",
+        "Placez le produit dans un environnement à température appropriée et attendez que l'erreur disparaisse.",
+        "Place the product in an environment with a proper temperature and wait till the fault disappears."
+      ]
+    ],
+    "field_id_list": [
+      "fld9lLNZP0",
+      "fld1M09ZsR",
+      "fld6UOYarr",
+      "fldbBqNnk3",
+      "fldeOxm6ZH",
+      "fldh6GfdTZ",
+      "fldHF79FWV",
+      "fldHVkhpQB",
+      "fldIqQVcZZ",
+      "fldjxP3cFv",
+      "fldku1UrQg",
+      "fldLMk6IVP",
+      "fldsos0euf",
+      "flduZohon6",
+      "fldvb0zhco",
+      "fldwoMeqKk",
+      "fldwXvWZND",
+      "fldys9RKmj"
+    ],
+    "field_type_list": [
+      "text",
+      "select",
+      "text",
+      "text",
+      "text",
+      "select",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text"
+    ],
+    "fields": [
+      "No.",
+      "Version",
+      "corrective_measures_ko",
+      "corrective_measures_jp",
+      "render_preview_en",
+      "Is_latest",
+      "corrective_measures_zh",
+      "Model",
+      "corrective_measures_de",
+      "error_code",
+      "corrective_measures_pt-BR",
+      "corrective_measures_it",
+      "corrective_measures_ukr",
+      "Region",
+      "corrective_measures_br",
+      "corrective_measures_es",
+      "corrective_measures_fr",
+      "corrective_measures_en"
+    ],
+    "has_more": false,
+    "query_context": {
+      "field_scope": "all_fields",
+      "record_scope": "all_records"
+    },
+    "record_id_list": [
+      "recvkCEhrn3fWD",
+      "recvkCEhrn70SC",
+      "recvkCEhrnEymh",
+      "recvkCEhrnzyiH",
+      "recvkCEhrns9tq",
+      "recvkCEhrnJYuR",
+      "recvkCEhrnG27l",
+      "recvkCEhrnijo3",
+      "recvkCEhrnwXcj",
+      "recvkCEhrnL4BV",
+      "recvkCEhrnWWVq",
+      "recvkCEhrnyy9I",
+      "recvkCEhrnfYRP",
+      "recvkCEhrnQJsi",
+      "recvkCEhrnCScJ",
+      "recvkCEhrnB2pp",
+      "recvkCEhrnTuRc",
+      "recvkCEhrn6jor",
+      "recvkCEhrnKqaX",
+      "recvkCEhrnj0po",
+      "recvkCEhrnpYJ8",
+      "recvkCEhrnSjmV",
+      "recvkCEhrnNuWq",
+      "recvkCEhrnawTv",
+      "recvkCEhrnU1hU",
+      "recvkCEhrnQG6N",
+      "recvkCEhrnGRoq",
+      "recvkCEhrndYhN",
+      "recvkCEhrnU9hM",
+      "recvkCEhrnW9YX",
+      "recvkCEhrnS1j7",
+      "recvkCEhrnCxUS",
+      "recvkCEhroNdPP",
+      "recvkCEhroTn5V",
+      "recvkCEhro1KXI",
+      "recvkCEhroosYR",
+      "recvkCEhroKfUF",
+      "recvkCEhroAiIn",
+      "recvkCEhroj35L",
+      "recvkCEhroxxbH",
+      "recvkCEhro5WTQ",
+      "recvkCEhroT4as",
+      "recvkCEhroFmNJ",
+      "recvkCEhroe1SA",
+      "recvsEBtlyMhcY",
+      "recvsZGkFOBPrG",
+      "recvsZGkFOEQEb",
+      "recvsZGkFO03l6",
+      "recvsZGkFOVVrE",
+      "recvsZGkFOMppC",
+      "recvsZGkFOXori",
+      "recvsZGkFOXPFe"
+    ],
+    "rev": 37,
+    "timezone": "Asia/Shanghai"
+  },
+  "_notice": {
+    "update": {
+      "command": "lark-cli update",
+      "current": "1.0.69",
+      "latest": "1.0.89",
+      "message": "lark-cli 1.0.89 available, current 1.0.69, run: lark-cli update"
+    }
+  }
+}

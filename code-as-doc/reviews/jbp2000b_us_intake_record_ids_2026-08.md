@@ -97,4 +97,112 @@
 | `03_内容源_LCD icons`（`tblW5fCuJ6YdAcND`） | 27 行 | 只有电量百分比/故障码 + 充电指示两项（printed p03），远少于主机 27 项 |
 | `03_内容源_TROUBLESHOOTING`（`tblOmJoAfU35brkb`） | 45 行，`Model` 为 `ALL` 或 `JE-2000E` | 8 个码：F0 / F1,F2 / F3 / F4 / F5 / F6-F9,FA,FC / FF（printed p05） |
 
-symbols 报错里 `sku=` 为空，说明加电包目标未解析出 sku——补数据时要一并确认匹配是走 `Model` 还是 sku。
+**第二批已于 2026-08-22 执行完毕，见 §7。**
+
+---
+
+## 7. 第二批：三张 csv_page 源表（2026-08-22，操作者授权）
+
+授权来源：操作者对
+`code-as-doc/reviews/jbp2000b_us_csvpage_intake_order_2026-08.md` 的五项裁决，
+其中「改这 11 行 Model」与「照 FR/ES 新写一句英文」为明确授权。
+
+### 7.1 前置：两处 schema 写入（Model 多选加选项）
+
+`JBP-2000B` 原本不是选项，写入会被拒。用 `+field-update` 做整份 options 的 PUT。
+**回读确认：零选项丢失、零颜色改动。**
+
+| 表 | 字段 | 选项数 |
+| --- | --- | --- |
+| `03_内容源_Symbols` | `fld3OoJRQc` | 10 → 11 |
+| `03_内容源_LCD icons` | `fldjINVVwM` | 9 → 10 |
+
+踩坑记录：`+field-update` 的 payload 是**扁平**的
+`{"name":…,"type":"select","multiple":true,"options":[…]}`。用数字 type 码会报
+`Invalid discriminator value`，包一层 `property` 会报 `Unrecognized key(s) in object: 'property'`。
+
+### 7.2 `03_内容源_Symbols` — 11 条编辑（只改 `Model`）
+
+回读逐条确认：`JBP-2000B` 在册、**文本一字未动**、`weee2`（`rec277z0GFV87J`）未被误 widen。
+
+| record_id | symbol_key | Model 数 |
+| --- | --- | --- |
+| `rec277z0GFV6DG` | `warning_triangle` | 9 → 10 |
+| `rec277z0GFV6T6` | `read_manual` | 9 → 10 |
+| `rec277z0GFV738` | `electric_shock` | 7 → 8 |
+| `rec277z0GFV7aQ` | `battery_charging` | 7 → 8 |
+| `rec277z0GFV7ii` | `explosive_material` | 7 → 8 |
+| `rec277z0GFV7pR` | `heavy_object` | 7 → 8 |
+| `rec277z0GFV7wT` | `do_not_dismantle` | 9 → 10 |
+| `rec277z0GFV7Ej` | `no_open_flame` | 9 → 10 |
+| `rec277z0GFV7LR` | `keep_away_from_children` | 9 → 10 |
+| `rec277z0GFV7Te` | `li_ion` | 9 → 10 |
+| `rec277z0GFV80p` | `weee` | 9 → 10 |
+
+回滚：把 `Model` 里的 `JBP-2000B` 去掉即可。
+
+### 7.3 `03_内容源_LCD icons` — 2 条新建
+
+| record_id | No. | icon_en |
+| --- | --: | --- |
+| `recvsZG5nwlwlq` | 1 | Power Percentage/Fault Code |
+| `recvsZG5nwQVVQ` | 2 | Charging Indicator |
+
+两处按裁决执行、都不是纯转录，**必须留痕**（已写进两行的 `备注` 字段）：
+
+1. **`recvsZG5nwlwlq` 的 `icon_desc_en` 含一句新撰英文**：
+   `If code FF appears, remove the load and the product may recover by itself; if it does not,
+   please contact Jackery Customer Support. If any other code appears, please contact Customer Support.`
+   出货书 EN 原文**没有**这句，是照 FR/ES 新写的（操作者 2026-08-22 批准）。
+2. **ES 印刷错字已修正**：`Jackery.En caso` → `Jackery. En caso`。
+
+**一处有意保留的矛盾**：出货书自身对 FF 给了两种处置——本页（printed 03）说移除负载可自恢复，
+故障排除页（printed 05）说置于适温环境。按操作者裁决（路线 A）照实保留，
+**留待 S6 逐页对账时识别，不要当成回归**。
+
+### 7.4 `03_内容源_TROUBLESHOOTING` — 7 条新建 + 11 条收窄
+
+表行数 45 → 52。
+
+新建（`Model=JBP-2000B`、`Region=US`）：
+
+| record_id | No. | error_code |
+| --- | --: | --- |
+| `recvsZGkFOBPrG` | 1 | `F0` |
+| `recvsZGkFOEQEb` | 2 | `F1, F2` |
+| `recvsZGkFO03l6` | 3 | `F3` |
+| `recvsZGkFOVVrE` | 4 | `F4` |
+| `recvsZGkFOMppC` | 5 | `F5` |
+| `recvsZGkFOXori` | 6 | `F6-F9,\nFA, FC`（**硬换行**，按裁决） |
+| `recvsZGkFOXPFe` | 7 | `FF` |
+
+收窄（`Model`: `ALL` → `JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C`）。
+回读确认 11 条**文本一字未动**，只有 `Model` 变了。回滚：改回 `ALL`。
+
+`recvkCEhroTn5V` (F0) · `recvkCEhro1KXI` (F1) · `recvkCEhroosYR` (F2) · `recvkCEhroKfUF` (F3) ·
+`recvkCEhroAiIn` (F4) · `recvkCEhroj35L` (F5) · `recvkCEhroxxbH` (F6) · `recvkCEhro5WTQ` (F7) ·
+`recvkCEhroT4as` (F8) · `recvkCEhroFmNJ` (F9) · `recvkCEhroe1SA` (FE)
+
+落笔前已核：线上 Document_key 主数据的 US/pt-BR 目标共 10 个，去掉 `JBP-2000B` 正好是上面八个，
+**无遗漏无多余**——所以那条「镜像可能少目标导致主机构建硬失败」的风险已排除。
+
+### 7.5 同步与验证
+
+`sync-data` 后：`symbols_blocks` 17 行(内容变)、`lcd_icons` 27 → 29 行、
+`troubleshooting` 45 → 52 行；`model_capabilities` 31 行未变（这次设了表 id，未重演第一批那次清空）。
+
+`build.py check --config configs/config.bp-us.yaml --model JBP-2000B --region US`：
+
+- `validate_spec_master` **OK**
+- 三张 csv_page 表**全部通过**——`symbols page has no matching rows` 已消失
+- 构建推进到下一个依赖并停在：**`AssetRegistryError: asset page/cover is not registered for model JBP-2000B`**
+
+### 7.6 下一个阻塞点：封面资产（需要真实美术文件）
+
+`page/cover` 是**按型号的整页 PDF**，`data/asset_registry.csv` 里只注册了
+`JE-1000F` / `US` 一条。它是 BP manifest 里**唯一**的 `asset:` 引用（cover 槽，
+blueprint 中 `requirement: required`），所以不能靠数据绕过。
+
+加电包需要自己的封面 PDF。这不是入库能解决的，需要美术文件。
+模板里另外三张插图（加电包正面图、左侧视图、堆叠间距图）已用 `TODO(资产)` 标注，
+不会硬失败，但同样需要 `.ai` 母版。

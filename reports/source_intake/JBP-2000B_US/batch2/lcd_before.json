@@ -1,0 +1,1560 @@
+{
+  "ok": true,
+  "identity": "bot",
+  "data": {
+    "data": [
+      [
+        "Wi-Fi",
+        [
+          "False"
+        ],
+        "Wi-Fi",
+        "Wi-Fi",
+        "Wi-Fi",
+        "켜짐: Wi-Fi에 연결되었습니다.\n점멸: Wi-Fi에 연결할 준비가 되었습니다.\n꺼짐: Wi-Fi 연결이 해제되었습니다.",
+        "点亮：Wi-Fi 已连接。 \n闪烁：准备连接 Wi-Fi。\n熄灭：Wi-Fi 未连接。",
+        "Wi-Fi",
+        "Encendido: Wi-Fi conectado.\nParpadeo: listo para conectarse al Wi-Fi.\nApagado: Wi-Fi desconectado.",
+        "Allumé : Wi-Fi connecté.\nClignotant : Prêt à se connecter au Wi-Fi.\nÉteint : Wi-Fi déconnecté.",
+        "Wi-Fi",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Wi-Fi",
+        [
+          "TRUE"
+        ],
+        "WLAN",
+        null,
+        "Ein: WLAN verbunden.\nBlinken: Bereit für die WLAN-Verbindung.\nAus: WLAN getrennt.",
+        [
+          "V1.0"
+        ],
+        1,
+        "オン：Wi-Fiに接続されています。\n点滅：Wi-Fi接続の準備中です。\nオフ：Wi-Fiは切断されています。",
+        "Ligado: Wi-Fi conectado.\nPisca: Pronto para conectar ao Wi-Fi.\nDesligado: Wi-Fi desconectado.",
+        "Wi-Fi",
+        null,
+        [
+          {
+            "file_token": "KCcAbdDk7o4RjKx82micuKJ5nyf",
+            "name": "01_wifi.png",
+            "size": 1814
+          }
+        ],
+        "Wi-Fi",
+        "Acceso: Wi-Fi connesso.\nLampeggiante: pronto per la connessione Wi-Fi.\nSpento: Wi-Fi disconnesso.",
+        "On: Wi-Fi connected.\nBlink: Ready to connect to Wi-Fi.\nOff: Wi-Fi disconnected.",
+        "Увімкнено: Wi-Fi підключено.\nБлимає: Готово до підключення до Wi-Fi.\nВимкнено: Wi-Fi відключено.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Bluetooth",
+        [
+          "False"
+        ],
+        "Bluetooth",
+        "Bluetooth",
+        "블루투스",
+        "켜짐: 블루투스가 연결되었습니다.\n점멸: 블루투스에 연결할 준비가 되었습니다.\n꺼짐: 블루투스 연결이 해제되었습니다.",
+        "点亮：蓝牙已连接。 \n闪烁：准备连接蓝牙。\n熄灭：蓝牙未连接。",
+        "Bluetooth",
+        "Encendido: Bluetooth conectado.\nParpadeo: listo para conectarse al Bluetooth.\nApagado: Bluetooth desconectado.",
+        "Allumé : Bluetooth connecté.\nClignotant : Prêt à se connecter au Bluetooth.\nÉteint : Bluetooth déconnecté.",
+        "Bluetooth",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Bluetooth",
+        [
+          "TRUE"
+        ],
+        "Bluetooth",
+        null,
+        "Ein: Bluetooth verbunden.\nBlinken: Bereit für die Bluetooth-Verbindung.\nAus: Bluetooth getrennt.",
+        [
+          "V1.0"
+        ],
+        2,
+        "オン：Bluetoothに接続されています。\n点滅：Bluetooth接続の準備中です。\nオフ：Bluetoothは切断されています。",
+        "Ligado: Bluetooth conectado.\nPisca: Pronto para conectar ao Bluetooth.\nDesligado: Bluetooth desconectado.",
+        "Bluetooth",
+        null,
+        [
+          {
+            "file_token": "HVgvbJhq5o4EDKxhm7McCF4FnjB",
+            "name": "02_bluetooth.png",
+            "size": 2023
+          }
+        ],
+        "Bluetooth",
+        "Acceso: Bluetooth connesso.\nLampeggiante: pronto per la connessione Bluetooth.\nSpento: Bluetooth disconnesso",
+        "On: Bluetooth connected.\nBlink: Ready to connect to Bluetooth.\nOff:  Bluetooth disconnected.",
+        "Увімкнено: Bluetooth підключено.\nБлимає: Готово до підключення до Bluetooth.\nВимкнено: Bluetooth відключено.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Charging Plan",
+        [
+          "True"
+        ],
+        "充电计划",
+        "План заряджання",
+        "충전 계획",
+        "{{PRODUCT_NAME}}의 충전 시간을 사용자 지정합니다. 전기 요금이 변동하는 상황에 적합하며, 피크 시간과 오프피크 시간에 따라 충전 계획을 세워 전기 요금을 절약할 수 있습니다.\n이 기능은 Jackery App에서 설정/해제할 수 있습니다. 이 설정은 장치 전원이 꺼져도 유지됩니다.",
+        "自定义{{PRODUCT_NAME}}的充电计划，适用于电价有波动的情况，可根据电价峰谷时间段制定充电计划，减少用电成本。\n（请在 APP 中开启/关闭该功能，关机可记忆保存）。",
+        "Plan de Charge",
+        "Personaliza el tiempo de carga del {{PRODUCT_NAME}}. Adecuado para situaciones con tarifas eléctricas variables, permite establecer planes de carga según las horas pico y valle, reduciendo así los costos de electricidad.\nPor favor, configure esta función en la aplicación Jackery. Cuando el dispositivo se apaga, se retiene la configuración.",
+        "Personnalisez le temps de charge du {{PRODUCT_NAME}}. Adapté aux situations avec des tarifs d’électricité variables, il permet d’établir des plans de charge en fonction des heures pleines et creuses, afin de réduire les coûts d’électricité. \nVeuillez configurer cette fonction dans l’application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.",
+        "Plan de Carga",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Piano di ricarica",
+        [
+          "TRUE"
+        ],
+        "Ladeplan",
+        [
+          "PRODUCT_NAME"
+        ],
+        "Ermöglicht die Anpassung der Ladezeiten des {{PRODUCT_NAME}}. Geeignet für Situationen mit schwankenden Strompreisen, ermöglicht Ladepläne auf der Grundlage von Spitzen- und Niedrigstromzeiten und reduziert so die Stromkosten.\nAktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten.",
+        [
+          "V1.0"
+        ],
+        4,
+        "{{PRODUCT_NAME}} の充電時間をカスタマイズすることで、電気料金のピーク時間とオフピーク時間に基づいた充電プランを選択。これにより月々の電気料金を削減することができます。\n（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）",
+        "Personaliza o tempo de carregamento do {{PRODUCT_NAME}}. Adequado para situações com tarifas de eletricidade variáveis, permite definir planos de carregamento com base nos horários de pico e fora de pico, reduzindo os custos de eletricidade.\nAtive/desative este recurso no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado.",
+        "Plano de carregamento",
+        "2026-05-21: pt-BR校对，修正产品名硬编码为 {{PRODUCT_NAME}}，补充 App 开关和关机后保留设置。",
+        [
+          {
+            "file_token": "M96RbyZQxoGjRRxQHsuczeIln1b",
+            "name": "04_charging_plan.png",
+            "size": 2759
+          }
+        ],
+        "計画充電モード",
+        "Personalizza il tempo di ricarica del {{PRODUCT_NAME}}. Adatto a situazioni con prezzi dell’elettricità variabili, consente di impostare piani di ricarica basati sulle fasce orarie di picco e di minor consumo, riducendo i costi dell’elettricità.\nAbilita/disabilita questa funzione nell’App Jackery. L’impostazione viene antenuta quando il dispositivo è spento.",
+        "Customizes the charging time of the {{PRODUCT_NAME}}. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs.\nEnable/disable this feature in the Jackery App. The setting is retained when the device is powered off.",
+        "Налаштовує час заряджання {{PRODUCT_NAME}}. Підходить для умов із коливаннями цін на електроенергію; дозволяє створювати плани заряджання на основі пікових і непікових періодів, зменшуючи витрати на електроенергію.\nУвімкніть/вимкніть цю функцію в Jackery App. Налаштування зберігається після вимкнення пристрою.",
+        "JE-2000E, JE-1000F"
+      ],
+      [
+        "Self-powered Mode",
+        [
+          "False"
+        ],
+        "自发自用模式",
+        "Автономний режим",
+        "자가 발전 모드",
+        "저장된 태양광 에너지를 우선 사용하여 태양광 에너지 활용을 극대화하고 전력망 의존도를 낮춰 전기 요금을 절감합니다. 파워 스테이션은 태양광 패널과 전력망에 동시에 연결되어야 하며, 부하 전력은 바이패스 전력 한도로 제한됩니다.\n이 기능은 Jackery App에서 설정/해제할 수 있습니다. 장치 전원이 꺼져도 이 설정은 유지됩니다.",
+        "点亮：自发自用模式已开启，最大化利用太阳能，减少电网电力消耗，减少用电成本。 \n熄灭：自发自用模式未开启/已关闭。\n（请在 APP 中开启/关闭该功能，关机可记忆保存）。",
+        "Mode Autonome",
+        "Maximiza el uso de la energía solar y reduce la dependencia de la electricidad de la red al priorizar la energía solar almacenada, reduciendo los costos eléctricos. La estación de energía debe estar conectada simultáneamente a los paneles solares y a la red, con la potencia de carga limitada por la potencia de derivación.\nPor favor, active/desactive esta función en la aplicación. Cuando el dispositivo se apaga, se retiene la configuración.",
+        "Maximise l’utilisation de l’énergie solaire et réduit la dépendance à l’électricité du réseau en donnant la priorité à l’énergie solaire stockée, ce qui diminue les coûts d’électricité. La station d’énergie doit être connectée simultanément aux panneaux solaires et au réseau, la puissance de charge étant limitée par la puissance de dérivation.\nVeuillez activer/désactiver cette fonction dans l’application. Le réglage est conservé lorsque l’appareil est mis hors tension.",
+        "Modo Autónomo",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Modalità autoalimentata",
+        [
+          "TRUE"
+        ],
+        "Selbstversorgungsmodus",
+        null,
+        "Maximiert die Nutzung von Solarenergie und reduziert die Abhängigkeit vom Netzstrom, indem die Speicherung der Solarenergie priorisiert wird und so Stromkosten gesenkt werden. Die Powerstation muss gleichzeitig mit Solarmodulen und dem Stromnetz verbunden sein; die Lastleistung ist dabei durch die Bypass-Leistung begrenzt.\nAktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten.",
+        [
+          "V1.0"
+        ],
+        5,
+        "点灯時：自家発電モードがオンになっており、太陽光エネルギーの利用を最大化し、電力会社からの電力消費を削減して電気代を節約します。\n消灯時：自家発電モードがオフ、または未設定の状態です。\n（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）",
+        "Maximiza o uso da energia solar e reduz a dependência da rede elétrica ao priorizar a energia solar armazenada, reduzindo os custos de eletricidade. A estação de energia deve estar conectada simultaneamente aos painéis solares e à rede elétrica, com a potência da carga limitada pela potência de bypass.\nAtive/desative este recurso no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado.",
+        "Modo de autoalimentação",
+        "2026-05-21: pt-BR校对，按 en 补充 App 开关和关机后保留设置，并调整句序。",
+        [
+          {
+            "file_token": "FYTnb9vttoexjbxVMchcJaobnCg",
+            "name": "05_self_powered_mode.png",
+            "size": 3466
+          }
+        ],
+        "自家発電モード",
+        "Massimizza l’uso dell’energia solare e riduce la dipendenza dalla rete elettrica dando priorità all’energia solare immagazzinata, riducendo i costi dell’elettricità. La centrale elettrica deve essere collegata contemporaneamente sia ai pannelli solari che alla rete elettrica, con la potenza di carico limitata dalla potenza di bypass.\nAbilita/disabilita questa funzione nell’App Jackery. L’impostazione viene mantenuta quando il dispositivo è spento.",
+        "Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs. The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.\nEnable/disable this feature in the Jackery App. The setting is retained when the device is powered off.",
+        "Максимізує використання сонячної енергії та зменшує залежність від електромережі, віддаючи пріоритет накопиченій сонячній енергії, що знижує витрати на електроенергію. Електростанцію необхідно одночасно підключити до сонячних панелей і електромережі, при цьому потужність навантаження обмежується байпасною потужністю.\nУвімкніть/вимкніть цю функцію в Jackery App. Налаштування зберігається після вимкнення пристрою.",
+        "JE-2000E, JE-1000F"
+      ],
+      [
+        "TOU Mode",
+        [
+          "False"
+        ],
+        "TOU模式",
+        "Режим TOU",
+        "TOU 모드",
+        "켜짐: TOU 모드가 활성화되었습니다(기본 백업 SOC: 60%). 피크 시간대에는 저장된 에너지가 백업 SOC를 초과할 경우 배터리 방전을 우선하여 피크 전기 요금을 줄입니다. 비피크 시간대에는 전력망에서 배터리를 충전하여 피크 절감 및 부하 평준화를 달성합니다.\n꺼짐: TOU 모드가 비활성화되었습니다. 제품은 TOU(시간대별 요금제) 전략을 따르지 않으며, 기본 전원 공급 및 충전 로직에 따라 작동합니다.\n이 기능은 Jackery App에서 설정/해제할 수 있습니다. 장치 전원이 꺼져도 이 설정은 유지됩니다.",
+        "点亮：TOU模式开启（默认60%备电电量）。高峰时段，当储能电量高于备电电量时，优先使用储能供电，减少高峰用电成本；谷价时段，利用市电对储能进行充电，实现 削峰填谷 的电价优化策略。\n熄灭：TOU模式关闭。设备不执行 TOU（分时电价）策略，按照默认供电与充电逻辑运行。\n（请在 APP 中开启/关闭该功能，关机可记忆保存）。",
+        "Mode TOU",
+        "Encendido: el modo TOU está habilitado (SOC de respaldo predeterminado: 60 %). Durante las horas pico, el producto prioriza la descarga de la batería para reducir los costos de  la electricidad en momentos de alta demanda, cuando la energía almacenada supera el SOC de respaldo. Durante las horas valle, el sistema carga la batería desde la red para lograr recortar los picos y llenar los valles.\nApagado: el modo TOU está deshabilitado. El dispositivo no sigue la estrategia TOU (tarifa por periodo de uso) y opera según la lógica predeterminada de suministro de energía y carga.\nPor favor, active/desactive esta función en la aplicación. Cuando el dispositivo se apaga, se retiene la configuración.",
+        "Allumé : Le mode TOU est activé (SOC de secours par défaut : 60 %). Pendant les heures de pointe, le produit privilégie la décharge de la batterie afin de réduire les coûts liés à la consommation en période de pointe, lorsque l’énergie stockée dépasse le SOC de réserve. Pendant les heures creuses, le système recharge la batterie à partir du réseau afin de réaliser l’écrêtage des pics et le remplissage des creux.\nÉteint : Le mode TOU est désactivé. L’appareil ne suit pas la stratégie TOU (heures pleines / heures creuses) et fonctionne selon la logique d’alimentation et de charge par défaut.\nVeuillez activer/désactiver cette fonction dans l’application. Le réglage est conservé lorsque l’appareil est mis hors tension.",
+        "Modo TOU",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Modalità TOU",
+        [
+          "TRUE"
+        ],
+        "Tarifzeitmodus (TOU-Modus)",
+        null,
+        "Ein: Der Tarifzeitmodus (TOU-Modus) ist aktiviert (Standard-Backup-SOC: 60 %). Während der Spitzenlastzeiten entlädt das Produkt die Batterie priorisiert, um die Stromkosten zu senken, sofern die gespeicherte Energie den Backup-SOC überschreitet. Während der Niedriglastzeiten lädt das Produkt die Batterie aus dem Netz, um Spitzenlasten zu reduzieren und Lasttäler auszugleichen.\nAus: Der Tarifzeitmodus (TOU-Modus) ist deaktiviert. Das Produkt folgt keiner Tarifzeitmodus(TOU-Modus)-Strategie und arbeitet gemäß der standardmäßigen Stromversorgungs- und Ladelogik.\nAktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten.",
+        [
+          "V1.0"
+        ],
+        6,
+        "オン：TOUモードが有効です（デフォルトバックアップSOC：60%）。 ピーク時間帯に、蓄積エネルギーがバックアップSOCを上回ると、本製品はバッテリーの放電を優先し、ピーク時の電力コストを削減します。 オフピーク時間帯には、系統からバッテリーを充電し、ピークカットと谷埋めを実現します。\nオフ：TOUモードは無効になります。 本デバイスはTOU（時間帯別料金）戦略に従わず、デフォルトの電力供給および充電ロジックに基づいて動作します。\n（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）",
+        "Ligado: O modo TOU está ativado (SOC de reserva padrão: 60%). Durante os períodos de pico, o produto prioriza a descarga da bateria para reduzir os custos de eletricidade nos horários de pico quando a energia armazenada excede o SOC de reserva. Durante os períodos fora de pico, o produto carrega a bateria a partir da rede para realizar o corte de pico e o preenchimento de vale.\nDesligado: O modo TOU está desativado. O produto não segue a estratégia TOU (time of use) e opera de acordo com a lógica padrão de alimentação e carregamento.\nAtive/desative este recurso no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado.",
+        "Modo TOU",
+        "2026-05-21: pt-BR校对，替换 test 占位，按 en 补齐 TOU Mode 标题和说明。",
+        [
+          {
+            "file_token": "BjEkbz0rFo6Bw4xiwNpcod9qnnc",
+            "name": "06_tou_mode.png",
+            "size": 2712
+          }
+        ],
+        "TOUモード",
+        "Acceso: La modalità TOU è abilitata (SOC di backup predefinito: 60%). Durante i periodi di picco, il prodotto dà priorità alla scarica della batteria per ridurre i costi dell’elettricità quando l’energia immagazzinata supera lo stato di carica (SOC) di backup. Durante i periodi di minor consumo, il prodotto ricarica la batteria dalla rete elettrica per ridurre i picchi di consumo e compensare i cali di domanda.\nSpento: La modalità TOU è disabilitata. Il prodotto non segue la strategia TOU (time of use) e funziona secondo la logica predefinita di alimentazione e ricarica.\nAbilita/disabilita questa funzione nell’App Jackery. L’impostazione viene mantenuta quando il dispositivo è spento.",
+        "On: TOU mode is enabled (default backup SOC: 60%). During peak periods, the product prioritizes discharging the battery to reduce peak electricity costs when the stored energy exceeds the backup SOC. During off peak periods, the product charges the battery from the grid to achieve peak shaving and valley filling.\nOff: TOU mode is disabled. The product does not follow the TOU (time of use) strategy and operates according to the default power supply and charging logic.\nEnable/disable this feature in the Jackery App. The setting is retained when the device is powered off.",
+        "Увімкнено: Режим TOU увімкнено (стандартний резервний SOC: 60%). У пікові періоди продукт надає пріоритет розряджанню батареї для зменшення витрат на електроенергію, коли накопичена енергія перевищує резервний SOC. У непікові періоди продукт заряджає батарею від електромережі для зрізання піків і заповнення провалів.\nВимкнено: Режим TOU вимкнено. Продукт не дотримується стратегії TOU (time of use) і працює за стандартною логікою живлення та заряджання.\nУвімкніть/вимкніть цю функцію в Jackery App. Налаштування зберігається після вимкнення пристрою.",
+        "JE-2000E, JE-1000F"
+      ],
+      [
+        "UPS",
+        [
+          "False"
+        ],
+        "UPS",
+        "UPS",
+        "UPS",
+        "켜짐: 제품이 바이패스 모드로 작동 중입니다. AC 포트에 연결된 부하는 파워 스테이션이 아닌 전력망에서 전력을 소비합니다. 전력망 전원이 갑자기 중단되면 제품은 10ms 이내에 자동으로 배터리 전력으로 전환됩니다.\n꺼짐: 제품은 바이패스 모드에서 작동하지 않습니다. AC 포트에 연결된 부하는 파워 스테이션의 내부 배터리에서 전원을 공급받습니다.",
+        "点亮：设备处于同充同放状态，此时市电切换至储能电池供电的时间为 10 ms。 \n熄灭：设备未处于同充同放状态。",
+        "UPS (ASI)",
+        "Encendido: El producto está funcionando en modo bypass. Las cargas conectadas a los puertos de CA consumen energía de la red eléctrica en lugar de la estación de energía.\nSi la red eléctrica falla repentinamente, el producto cambia automáticamente a la alimentación de la batería en 10 ms.\nApagado: El producto no está en modo bypass. Las cargas conectadas a los puertos de CA son alimentadas por la batería interna de la estación de energía.",
+        "Allumé : Le produit fonctionne en mode bypass. Les charges connectées aux ports CA sont alimentées par le réseau électrique au lieu de la station d’énergie.\nEn cas de coupure soudaine du réseau, le produit bascule automatiquement sur son alimentation par batterie en 10 ms.\nÉteint : Le produit n’est pas en mode bypass. Les charges connectées aux ports CA sont alimentées par la batterie interne de la station d’énergie.",
+        "UPS",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "UPS",
+        [
+          "TRUE"
+        ],
+        "USV",
+        null,
+        "Ein: Das Produkt arbeitet im Bypass-Modus. An die AC-Anschlüsse angeschlossene Lasten werden über das Stromnetz statt über die Powerstation versorgt. Bei einem plötzlichen Netzausfall schaltet das Produkt innerhalb von 10 ms automatisch auf Batteriebetrieb um.\nAus: Das Produkt befindet sich nicht im Bypass-Modus. An die AC-Anschlüsse angeschlossene Lasten werden über die interne Batterie der Powerstation versorgt.",
+        [
+          "V1.0"
+        ],
+        7,
+        "点灯時：製品が給電と充電を同時に行う「パススルー充電」状態にあります。停電時には家庭用電源からポータブル電源の切り替え時間が10ミリ秒で行われます。\n消灯時：製品がパススルー充電状態ではありません。",
+        "Ligado: O produto está operando no modo bypass. As cargas conectadas às portas CA consomem energia da rede elétrica em vez da estação de energia. Se a rede elétrica falhar repentinamente, o produto alterna automaticamente para a alimentação da bateria em até 10 ms.\nDesligado: O produto não está no modo bypass. As cargas conectadas às portas CA são alimentadas pela bateria interna da estação de energia.",
+        "UPS",
+        "2026-05-21: pt-BR校对，按 en 补全 UPS bypass、AC/CA 负载、电网故障 10 ms 切换和 Off 说明。",
+        [
+          {
+            "file_token": "Lgdgb8pvvoGwaLxSf8ec2QeHn3c",
+            "name": "07_ups.png",
+            "size": 2868
+          }
+        ],
+        "UPS機能",
+        "Acceso: Il prodotto è in funzione in modalità bypass. I carichi collegati alle porte CA vengono alimentati dalla rete elettrica anziché dalla power station. In caso di improvvisa interruzione della rete elettrica, il prodotto passa automaticamente all'alimentazione a batteria entro 10 ms.\nSpento: Il prodotto non è in modalità bypass. I carichi collegati alle porte CA vengono alimentati dalla batteria interna della power station.",
+        "On: The product is operating in bypass mode. Loads connected to the AC ports consume power from the grid instead of the power station. If the grid suddenly fails, the product automatically switches to its battery power within 10 ms.\nOff: The product is not in bypass mode. Loads connected to the AC ports are powered by the internal battery of the power station.",
+        "Увімкнено: У режимі байпасу навантаження, підключені до портів змінного струму, живляться від електромережі, а не від електростанції. У разі раптового збою електромережі продукт автоматично перемикається на живлення від батареї протягом 10 мс.\nВимкнено: Продукт не перебуває в режимі байпасу. Навантаження, підключені до портів змінного струму, живляться від внутрішньої батареї електростанції.",
+        "JE-2000E, JE-1000F"
+      ],
+      [
+        "AC Power Indicator",
+        [
+          "False"
+        ],
+        "交流输出符号",
+        "Індикатор живлення змінного струму",
+        "AC 전원 표시기",
+        "AC 출력(순수 정현파)이 켜져 있습니다.",
+        "AC输出（纯正弦波）已开启。",
+        "Indicateur d'alimentation CA",
+        "La salida CA (onda sinusoidal pura) está activada.",
+        "La sortie CA (onde sinusoïdale pure) est activée.",
+        "Indicador de Energía de CA",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Indicatore di\nalimentazione CA",
+        [
+          "TRUE"
+        ],
+        "AC-Stromanzeige",
+        null,
+        "Der AC-Ausgang (reine Sinuswelle) ist eingeschaltet.",
+        [
+          "V1.0"
+        ],
+        8,
+        "AC出力（純正弦波）がオンになっています。",
+        "A saída CA (onda senoidal pura) está ligada.",
+        "Indicador de energia CA",
+        null,
+        [
+          {
+            "file_token": "HFPSbvWBgosvCux69jMcuWe6nnh",
+            "name": "08_ac_power_indicator.png",
+            "size": 3962
+          }
+        ],
+        "交流電源による出力マーク\n（正弦波)",
+        "L’uscita CA (onda sinusoidale pura) è attiva.",
+        "The AC output (pure sine wave) is on.",
+        "Вихід змінного струму (чиста синусоїда) увімкнено.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Output Voltage and Frequency",
+        [
+          "False"
+        ],
+        "输出电压和频率",
+        "Вихідна напруга та частота",
+        "출력 전압 및 주파수",
+        "AC 출력이 켜져 있을 때 출력 전압과 주파수를 표시합니다.",
+        "显示AC输出口的输出电压和频率。",
+        "Tension et fréquence de sortie",
+        "Muestra el voltaje y la frecuencia de salida cuando la salida de CA está encendida.",
+        "Affiche la tension et la fréquence de sortie lorsque la sortie CA est activée.",
+        "Voltaje y frecuencia de salida",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Tensione e frequenza di uscita",
+        [
+          "TRUE"
+        ],
+        "Ausgangsspannung und -frequenz",
+        null,
+        "Zeigt die Ausgangsspannung und -frequenz an, wenn der AC-Ausgang eingeschaltet ist.",
+        [
+          "V1.0"
+        ],
+        9,
+        "出力される電圧と周波数を表示します。",
+        "Exibe a tensão e a frequência de saída quando a saída CA está ligada.",
+        "Tensão e frequência de saída",
+        "2026-05-21: pt-BR校对，按 en 补充 when the AC output is turned on 条件。",
+        [
+          {
+            "file_token": "Jh3JbmBDBoKlmOxaRJDcIMJAn6b",
+            "name": "09_output_voltage_and_frequency.png",
+            "size": 3553
+          }
+        ],
+        "出力電圧と周波数",
+        "Visualizza la tensione e la frequenza di uscita.",
+        "Displays the output voltage and frequency when the AC output is turned on.",
+        "Відображає вихідну напругу та частоту, коли вихід змінного струму увімкнено.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Input Power",
+        [
+          "False"
+        ],
+        "充电功率显示",
+        "Вхідна потужність",
+        "입력 전력",
+        "입력 전력을 와트(W) 단위로 표시합니다.",
+        "显示当前充电功率。",
+        "Puissance d’Entrée",
+        "Muestra la potencia de entrada en vatios.",
+        "Affiche la puissance d'entrée en watts.",
+        "Potencia de Entrada",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Potenza in ingresso",
+        [
+          "TRUE"
+        ],
+        "Eingangsleistung",
+        null,
+        "Zeigt die Eingangsleistung in Watt an.",
+        [
+          "V1.0"
+        ],
+        10,
+        "入力電力をワットで表示します。",
+        "Exibe a potência de entrada em watts.",
+        "Potência de entrada",
+        null,
+        [
+          {
+            "file_token": "LOAZbnxfqoHFwIxx2Myc532jnzb",
+            "name": "10_input_power.png",
+            "size": 4730
+          }
+        ],
+        "入力電力表示",
+        "Visualizza la potenza di ingresso in watt.",
+        "Displays the input power in watts.",
+        "Відображає вхідну потужність у ватах.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Remaining Charge Time",
+        [
+          "False"
+        ],
+        "剩余充电时间",
+        "Час, що залишився до повного\nзаряджання",
+        "남은 충전 시간",
+        "남은 충전 시간을 표시합니다.",
+        "显示剩余充电时间。",
+        "Temps de Charge Restant",
+        "Muestra el tiempo de carga restante.",
+        "Affiche le temps de charge restant.",
+        "Tiempo de Carga Restante",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Tempo di carica rimanente",
+        [
+          "TRUE"
+        ],
+        "Verbleibende Aufladezeit",
+        null,
+        "Anzeige der verbleibenden Ladezeit.",
+        [
+          "V1.0"
+        ],
+        11,
+        "充電残り時間を表示します。",
+        "Exibe o tempo de carregamento restante.",
+        "Tempo de carregamento restante",
+        null,
+        [
+          {
+            "file_token": "KIWHbHFOvotGuBxJsxlcunSDnPf",
+            "name": "11_remaining_charge_time.png",
+            "size": 1974
+          }
+        ],
+        "充電残り時間",
+        "Visualizza il tempo residuo di carica.",
+        "Displays the remaining charging time.",
+        "Відображає залишковий час заряджання.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "AC Wall Charging Indicator",
+        [
+          "False"
+        ],
+        "市电充电接入",
+        "Індикатор заряджання від мережі\nзмінного струму",
+        "AC 벽면 충전 표시기",
+        "제품은 전력망 전원을 사용하여 AC 입력 포트를 통해 충전됩니다.",
+        "产品通过市电进行充电。",
+        "Indicateur de Charge sur Prise Murale CA",
+        "El producto se carga a través de la entrada CA utilizando energía de la red eléctrica.",
+        "Le produit est chargé via l'entrée CA en utilisant l'énergie du réseau.",
+        "Indicador de Carga desde Toma de Corriente CA",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "        \nIndicatore di ricarica CA a parete",
+        [
+          "TRUE"
+        ],
+        "AC-Netzladeanzeige",
+        null,
+        "Das Produkt wird über den AC-Eingang mit Netzstrom geladen.",
+        [
+          "V1.0"
+        ],
+        12,
+        "製品は、系統電力を使用し、AC入力を介して充電されます。",
+        "O produto é carregado pela Entrada CA usando energia da rede.",
+        "Indicador de carregamento em tomada CA",
+        null,
+        [
+          {
+            "file_token": "ZpOmbCjx8oYUTVxyl4JcvcTanPe",
+            "name": "12_ac_wall_charging_indicator.png",
+            "size": 2223
+          }
+        ],
+        "AC入力電力表示",
+        "Il prodotto viene caricato tramite l'ingresso CA utilizzando l'alimentazione della rete elettrica.",
+        "The product is charged via the AC Input using grid power.",
+        "Пристрій заряджається через вхід змінного струму від електромережі.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Car Charging Indicator",
+        [
+          "False"
+        ],
+        "车充充电接入",
+        "Індикатор заряджання від автомобіля",
+        "차량 충전 표시기",
+        "제품은 DC 12V(차량 충전) 전원을 사용해 DC 입력(DC8020)으로 충전됩니다.",
+        "产品通过 DC 输入端口（DC8020）连接 12V 车载充电线进行充电。",
+        "Indicateur de Charge Voiture",
+        "El producto se carga a través de la entrada CC (DC8020) utilizando CC 12V (carga desde el vehículo).",
+        "Le produit est chargé via l’entrée CC (DC8020) en utilisant du CC 12V (charge via voiture).",
+        "Indicador de Carga desde Vehículo",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Indicatore di ricarica da auto",
+        [
+          "TRUE"
+        ],
+        "Autoladeanzeige ",
+        null,
+        "Das Produkt wird über den DC-Eingang (DC8020) mit 12V Gleichstrom (Autoladung) geladen.",
+        [
+          "V1.0"
+        ],
+        13,
+        "製品は、DC 12V（カーチャージ）を使用し、8020入力ポートを介して充電されます。",
+        "O produto é carregado pela Entrada CC (DC8020) usando CC 12V (carregamento veicular).",
+        "Indicador de carregamento veicular",
+        null,
+        [
+          {
+            "file_token": "DLkibYaP1ot6d5x1S0jcUr1knlb",
+            "name": "13_car_charging_indicator.png",
+            "size": 1599
+          }
+        ],
+        "シガーソケット入力電力表示",
+        "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando 12V CC (ricarica da auto).",
+        "The product is charged via the DC Input (DC8020) using DC 12V (car charging).",
+        "Пристрій заряджається через вхід постійного струму (DC8020) із використанням 12 В постійного струму (автомобільне заряджання).",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Solar Charging Indicator",
+        [
+          "False"
+        ],
+        "太阳能（绿色能源）充电接入",
+        "Індикатор заряджання від сонячної\nпанелі",
+        "태양광 충전 표시기",
+        "제품은 태양광 패널을 사용해 DC 입력(DC8020)으로 충전됩니다.",
+        "产品通过 DC 输入端口（DC8020）连接太阳能板进行充电。",
+        "Indicateur de Charge Solaire",
+        "El producto se carga a través de la entrada CC (DC8020) utilizando paneles solares.",
+        "Le produit est chargé via l’entrée CC (DC8020) à l’aide de panneaux solaires.",
+        "Indicador de Carga Solar",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Indicatore di ricarica solare",
+        [
+          "TRUE"
+        ],
+        "Solar-Ladeanzeige",
+        null,
+        "Das Produkt wird über den DC-Eingang (DC8020) mit Solarpanel(s) geladen.",
+        [
+          "V1.0"
+        ],
+        14,
+        "製品は、ソーラーパネルを使用し、8020入力ポートを介して充電されています。",
+        "O produto é carregado pela Entrada CC (DC8020) usando painel(is) solar(es).",
+        "Indicador de carregamento solar",
+        null,
+        [
+          {
+            "file_token": "RgAUbPXNWoRxiHxKNgkc2gqDnEb",
+            "name": "14_solar_charging_indicator.png",
+            "size": 3059
+          }
+        ],
+        "ソーラー(グリーンエネルギー)充電接続",
+        "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando uno o più pannelli solari.",
+        "The product is charged via the DC Input (DC8020) using solar panel(s).",
+        "Пристрій заряджається через вхід постійного струму (DC8020) із використанням сонячної(-их) панелі(-ей).",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Battery Saving Mode",
+        [
+          "False"
+        ],
+        "节省电池模式",
+        "Режим енергозбереження акумулятора",
+        "배터리 절약 모드",
+        "켜짐: 배터리 절약 모드가 활성화되어 있습니다. 배터리 수명 연장을 위해 충전 및 방전 제한이 적용됩니다.\n꺼짐: 배터리 절약 모드가 비활성화되어 있습니다.\n이 기능은 Jackery App에서 설정/해제할 수 있습니다. 장치 전원이 꺼져도 이 설정은 유지됩니다.\n이 기능이 활성화되면 제품은 SOC를 보정하기 위해 가끔 완전 충전 및 방전 주기를 수행합니다.",
+        "点亮：节省电池模式已开启，通过限制电池的最大可用容量来延长电池使用寿命。\n熄灭：节省电池模式未开启/已关闭。\n（请在 APP 中开启/关闭该功能，关机可记忆保存）。\n注：开启后偶尔会满充满放，用于校准SOC。",
+        "Mode d’Économie de Batterie",
+        "Encendido: el modo de ahorro de batería está activado. Se aplican límites de carga y descarga para ayudar a prolongar la vida útil de la batería.\nApagado: el modo de ahorro de batería está desactivado.\nActivar/desactivar esta función en la App Jackery. Cuando el dispositivo se apaga, se retiene la configuración.\nCuando esta función está habilitada, el producto ocasionalmente realiza un ciclo completo de carga-descarga para calibrar el SOC.",
+        "Allumé : Le mode d’économie de batterie est activé. Des limites de charge et de décharge sont appliquées afin de prolonger la durée de vie de la batterie.\nÉteint : Le mode d'économie de batterie est désactivé.\nActivez/désactivez cette fonction dans l'application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.\nLorsque cette fonction est activée, le produit effectue occasionnellement un cycle de charge-décharge complet pour calibrer le SOC.",
+        "Modo de Ahorro de Batería",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Modalità di risparmio della batteria",
+        [
+          "TRUE"
+        ],
+        "Batterieschonmodus",
+        null,
+        "Ein: Der Batterieschonmodus ist aktiviert. Die maximal nutzbare Batteriekapazität wird begrenzt, um die Batterielebensdauer zu verlängern.\nAus: Der Batterieschonmodus ist deaktiviert.\nAktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten.\nWenn diese Funktion aktiviert ist, führt das Produkt gelegentlich einen vollständigen Lade- und Entladezyklus durch, um den SOC zu kalibrieren.",
+        [
+          "V1.0"
+        ],
+        15,
+        "バッテリー節約モード設定時は、バッテリー残量が既定値に設定されるため、バッテリーの寿命を延ばすことが可能です。\n（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）\nこの機能が有効な場合、本製品はSOCを較正するために、時折フル充放電サイクルを実行します。",
+        "Ligado: O modo de economia de bateria está ativado. Limites de carga e descarga são aplicados para ajudar a prolongar a vida útil da bateria.\nDesligado: O modo de economia de bateria está desativado.\nAtive/desative este recurso no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado.\nQuando este recurso está ativado, o produto ocasionalmente executa um ciclo completo de carga e descarga para calibrar o SOC.",
+        "Modo de economia de bateria",
+        "2026-05-21: pt-BR校对，按 en 修正为充放电限制，补充保留设置和 SOC 校准句。",
+        [
+          {
+            "file_token": "ClYfbtOGSoK5q2xySXCcgehVn8f",
+            "name": "15_battery_saving_mode.png",
+            "size": 1481
+          }
+        ],
+        "バッテリー節約モード\nJackeryアプリで有効/無効にできます",
+        "Acceso: Limita la capacità massima utilizzabile della batteria per prolungarne la durata.\nSpento: La Modalità di risparmio della batteria è disabilitata.\nAbilita/disabilita questa funzione nell’App Jackery. L’impostazione viene mantenuta quando il dispositivo è spento.\nQuando questa funzione è abilitata, il prodotto esegue occasionalmente un ciclo completo di carica e scarica per calibrare il SOC.",
+        "On: Battery Saving Mode is enabled. Charge and discharge limits are applied to help extend battery lifespan.\nOff: Battery Saving Mode is disabled.\nEnable/disable this feature in the Jackery App. The setting is retained when the device is powered off.\nWhen this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC.",
+        "Увімкнено: Режим енергозбереження акумулятора увімкнено. Обмеження заряджання та розряджання застосовуються, щоб подовжити термін служби акумулятора.\nВимкнено: Режим енергозбереження акумулятора вимкнено. Увімкніть/вимкніть цю функцію в Jackery App. Налаштування зберігається після вимкнення пристрою.\nКоли цю функцію увімкнено, продукт періодично виконує повний цикл заряджання та розряджання для калібрування SOC.",
+        "JE-2000E, JE-1000F"
+      ],
+      [
+        "Charging Power Limit",
+        [
+          "False"
+        ],
+        "充电速度限制",
+        "Обмеження потужності заряджання",
+        "충전 전력 제한",
+        "켜짐: Jackery App에서 충전 전력 제한이 활성화되어 있습니다.\n꺼짐: Jackery App에서 충전 전력 제한이 비활성화되어 있습니다.\n장치 전원이 꺼져도 이 설정은 유지됩니다.",
+        "点亮：充电速度限制已开启\n关机重启后继续执行此充电功率\n熄灭：充电速度限制已关闭。\n（请在 APP 中开启/关闭该功能，关机可记忆保存）。",
+        "Limite de puissance de charge",
+        "Encendido: El límite de potencia de carga está activado en la aplicación Jackery.\nApagado: El límite de potencia de carga está desactivado en la aplicación Jackery.\nCuando el dispositivo se apaga, se retiene la configuración.",
+        "Allumé : La limite de puissance de charge est activée dans l'application Jackery.\nÉteint : La limite de puissance de charge est désactivée dans l'application Jackery.\nLe réglage est conservé lorsque l’appareil est mis hors tension.",
+        "Límite de potencia de carga",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Limite di potenza di ricarica",
+        [
+          "TRUE"
+        ],
+        "Begrenzung der Ladeleistung",
+        null,
+        "Ein: Die Begrenzung der Ladeleistung ist in der Jackery-App aktiviert.\nAus: Die Begrenzung der Ladeleistung ist in der Jackery-App deaktiviert.\nDie Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten.",
+        [
+          "V1.0"
+        ],
+        16,
+        "点灯時：アプリ側で充電速度制限が有効になっています。\n消灯時：アプリ側で充電速度制限が無効になっています。\n（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）",
+        "Ligado: O limite de potência de carregamento está ativado no aplicativo Jackery.\nDesligado: O limite de potência de carregamento está desativado no aplicativo Jackery.\nA configuração é mantida quando o dispositivo é desligado.",
+        "Limite de potência de carregamento",
+        "2026-05-21: pt-BR校对，按 en 补充关机后保留设置。",
+        [
+          {
+            "file_token": "VLf2bJfrkoCL0CxJoMNcL5ZxnCt",
+            "name": "16_charging_power_limit.png",
+            "size": 2772
+          }
+        ],
+        "充電速度制限",
+        "Acceso: Il limite di potenza di ricarica è abilitato nell’App Jackery.\nSpento: Il limite di potenza di carica è disabilitato nell’App Jackery.\nL’impostazione viene mantenuta quando il dispositivo è spento.",
+        "On: Charging Power limit is enabled in the Jackery App.\nOff: Charging Power limit is disabled in the Jackery App.\nThe setting is retained when the device is powered off.",
+        "Увімкнено: Обмеження потужності заряджання активовано в Jackery App.\nВимкнено: Обмеження потужності заряджання вимкнено в Jackery App.\nНалаштування зберігається після вимкнення пристрою.",
+        "JE-2000E, JE-1000F"
+      ],
+      [
+        "Battery Power Indicator",
+        [
+          "False"
+        ],
+        "电池电量图标",
+        "Індикатор заряду акумулятора",
+        "배터리 전력 표시기",
+        "제품이 충전 중일 때 배터리 백분율 주위의 주황색 원이 순차적으로 점등됩니다. 다른 기기를 충전할 때는 주황색 원이 계속 켜져 있습니다.",
+        "当本产品处于充电状态时，该图标顺时针转动；\n当产品处于放电状态时，该图标显示当前电量。",
+        "Indicateur de Puissance de la Batterie",
+        "Cuando el producto se está cargando, el círculo naranja alrededor del porcentaje de batería se ilumina secuencialmente. Cuando está cargando otros dispositivos, el círculo naranja permanece encendido.",
+        "Lorsque le produit est en charge, le cercle orange autour du pourcentage de batterie s’allume en séquence. Lorsqu’il charge d’autres appareils, le cercle orange reste allumé.",
+        "Indicador de Potencia de la Batería",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Indicatore di carica della batteria",
+        [
+          "TRUE"
+        ],
+        "Batteriezustandsanzeige",
+        null,
+        "Wenn das Produkt geladen wird, leuchtet der orangefarbene Kreis um die Batterieanzeige nacheinander auf. Beim Laden anderer Geräte bleibt der orangefarbene Kreis dauerhaft eingeschaltet.",
+        [
+          "V1.0"
+        ],
+        17,
+        "製品の充電中は、バッテリーのパーセンテージを囲むオレンジ色の円が順番に点灯します。他のデバイスの充電時には、オレンジ色の円は点灯したままになります。",
+        "Quando o produto estiver sendo carregado, o círculo laranja ao redor da porcentagem da bateria acenderá em sequência. Ao carregar outros dispositivos, o círculo laranja permanece aceso.",
+        "Indicador de energia da bateria",
+        null,
+        [
+          {
+            "file_token": "VLufb9exvoVLfgxz47pcfnRGnaf",
+            "name": "17_battery_power_indicator.png",
+            "size": 4879
+          }
+        ],
+        "バッテリーアイコン",
+        "Quando il prodotto è in carica, il cerchio arancione attorno alla percentuale della batteria si accende in sequenza. Durante la ricarica di altri dispositivi, il cerchio arancione rimarrà acceso.",
+        "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.",
+        "Коли пристрій заряджається, помаранчеве коло навколо відсотка заряду акумулятора почергово засвічуватиметься. Під час заряджання інших пристроїв помаранчеве коло світитиметься постійно.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Remaining Battery Percentage",
+        [
+          "False"
+        ],
+        "电池电量百分比",
+        "Залишковий відсоток заряду\nакумулятора",
+        "남은 배터리 백분율",
+        "남은 배터리 백분율을 표시합니다.",
+        "显示当前电池电量。0%代表电池完全放电,100%代表电池电量已充满。",
+        "Pourcentage de Batterie Restant",
+        "Muestra el porcentaje de batería restante.",
+        "Affiche le pourcentage de batterie restant.",
+        "Porcentaje de Batería Restante",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Percentuale di batteria residua",
+        [
+          "TRUE"
+        ],
+        "Verbleibender Batterieprozentsatz",
+        null,
+        "Zeigt den verbleibenden Batteriestand an.",
+        [
+          "V1.0"
+        ],
+        18,
+        "バッテリー残量を表示します。",
+        "Exibe a porcentagem de bateria restante.",
+        "Porcentagem de bateria restante",
+        null,
+        [
+          {
+            "file_token": "VkJcbUDbUoYC1hxrU6rc168OnJe",
+            "name": "19_remaining_battery_percentage.png",
+            "size": 3712
+          }
+        ],
+        "バッテリーレベルパーセントタグ",
+        "Mostra la percentuale residua della batteria.",
+        "Displays the remaining battery percentage.",
+        "Відображає залишковий відсоток заряду акумулятора.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Low Battery Indicator",
+        [
+          "False"
+        ],
+        "低电量提醒",
+        "Індикатор низького рівня заряду\nбатареї",
+        "배터리 부족 표시기",
+        "켜짐: 배터리 잔량이 20% 미만입니다.\n점멸: 배터리 잔량이 5% 미만입니다.\n꺼짐: 배터리 잔량이 20% 이상이거나 제품이 충전 중입니다.",
+        "点亮：当前电池电量低于 20%。\n闪烁：当前电池电量低于 5%。\n熄灭：设备正在充电中。",
+        "Indicateur de Batterie Faible",
+        "Encendido: el nivel de la batería está por debajo del 20 %.\nParpadeo: el nivel de la batería está por debajo del 5 %.\nApagado: el nivel de la batería no está por debajo del 20 % o el producto se está cargando.",
+        "\nAllumé : Le niveau de la batterie est inférieur à 20 %.\nClignotant : Le niveau de la batterie est inférieur à 5 %.\nÉteint : Le niveau de la batterie n'est pas inférieur à 20 % ou le produit est en charge.",
+        "Indicador de Batería Baja",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Indicatore di batteria scarica",
+        [
+          "TRUE"
+        ],
+        "Batterietiefstandsanzeige",
+        null,
+        "Ein: Der Batteriestand liegt unter 20 %.\nBlinken: Der Batteriestand liegt unter 5 %.\nAus: Der Batteriestand liegt nicht unter 20 % oder das Produkt wird aufgeladen.",
+        [
+          "V1.0"
+        ],
+        19,
+        "オン：バッテリー残量が20％未満です。\n点滅：バッテリー残量が5％未満です。\nオフ：製品は充電中です。",
+        "Ligado: O nível da bateria está abaixo de 20%.\nPisca: O nível da bateria está abaixo de 5%.\nDesligado: O nível da bateria não está abaixo de 20% ou o produto está carregando.",
+        "Indicador de bateria fraca",
+        "2026-05-21: pt-BR校对，修正 Off 条件为 not below 20% or charging。",
+        [
+          {
+            "file_token": "KDk9bhs8poHUBdx96PLckPganhd",
+            "name": "18_low_battery_indicator.png",
+            "size": 1293
+          }
+        ],
+        "バッテリー残量警告灯",
+        "Acceso: il livello della batteria è inferiore al 20%.\nLampeggiante: il livello della batteria è inferiore al 5%.\nSpento: il livello della batteria non è inferiore al 20% oppure il prodotto è in carica.",
+        "On: The battery level is below 20%.\nBlink: The battery level is below 5%.\nOff: The battery level is not below 20% or the product is charging.",
+        "Увімкнено: Рівень заряду батареї нижче 20%.\nБлимає: Рівень заряду батареї нижче 5%.\nВимкнено: Рівень заряду батареї не нижче 20% або пристрій заряджається.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Discharge Timer",
+        [
+          "False"
+        ],
+        "放电倒计时",
+        "Таймер розряджання",
+        "방전 타이머",
+        "켜짐: 방전 타이머가 설정되어 있습니다.\n꺼짐: 방전 타이머가 설정되어 있지 않습니다.\n이 기능은 Jackery App에서 설정/해제할 수 있습니다. 장치 전원이 꺼지면 이 설정은 유지되지 않습니다.",
+        "通过App为输出端口设置关闭倒计时，时间结束后自动断电，节约能源并保护电池。\n仅对当前设置有效，设备重启后需重新设定。",
+        "Minuterie de décharge",
+        "Encendido: se ha configurado un temporizador de descarga.\nApagado: no se ha configurado un temporizador de descarga.\nActivar/desactivar esta función en la App Jackery. Cuando el dispositivo esté apagado, este ajuste no se conservará.",
+        "Allumé : une minuterie de décharge est définie.\nÉteint : aucune minuterie de décharge n’est définie.\nActivez/désactivez cette fonction dans l'application Jackery. Le réglage n'est pas conservé lorsque l'appareil est mis hors tension.",
+        "Temporizador de descarga",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Timer di scarica",
+        [
+          "TRUE"
+        ],
+        "Entlade-Timer",
+        null,
+        "Ein: Ein Entlade-Timer ist eingerichtet.\nAus: Es ist kein Entlade-Timer eingerichtet.\nAktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt nach dem Ausschalten des Geräts nicht erhalten.\n",
+        [
+          "V1.0"
+        ],
+        20,
+        "オン：放電タイマーが設定されています。\nオフ：放電タイマーは設定されていません。\nJackeryアプリで設定してください。本設定は、デバイスの電源を切ると保持されません。",
+        "Ligado: Um temporizador de descarga está definido.\nDesligado: Nenhum temporizador de descarga está definido.\nAtive/desative este recurso no aplicativo Jackery. A configuração não é mantida quando o dispositivo é desligado.",
+        "Temporizador de descarga",
+        "2026-05-21: pt-BR校对，修正串行的 Charging Power Limit 文案为 Discharge Timer。",
+        [
+          {
+            "file_token": "DHPMbkjSWoiuALxJyJ8cWyQOn0e",
+            "name": "20_discharge_timer.png",
+            "size": 3194
+          }
+        ],
+        "放電タイマー",
+        "Acceso: È impostato un Timer di scarica.\nSpento: Non è impostato alcun timer di scarica.\nAbilita/disabilita questa funzione nell’App Jackery. L’impostazione non viene mantenuta allo spegnimento del dispositivo.",
+        "On: A discharge timer is set.\nOff: No discharge timer is set.\nEnable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.",
+        "Увімкнено: Таймер розряджання встановлено.\nВимкнено: Таймер розряджання не встановлено.\nУвімкніть/вимкніть цю функцію в Jackery App. Налаштування не зберігається після вимкнення пристрою.",
+        "JE-2000E, JE-1000F"
+      ],
+      [
+        "Connected Batteries",
+        [
+          "False"
+        ],
+        "加电包接入及数量",
+        "Підключені акумулятори",
+        "연결된 배터리",
+        "연결된 배터리 팩이 있는 경우 그 수량을 표시합니다.",
+        "显示加电包的接入状态及数量。",
+        "Batteries connectées",
+        "Indica que el producto está conectado al número especificado de baterías adicionales 2000.",
+        "Indique que le produit est connecté au nombre spécifié de blocs-batterie 2000.",
+        "Baterías conectadas",
+        [
+          "JE-2000E",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Batterie collegate",
+        [
+          "TRUE"
+        ],
+        "Angeschlossene Batterien",
+        null,
+        "Zeigt die Anzahl der angeschlossenen Batteriepacks an.",
+        [
+          "V1.0"
+        ],
+        21,
+        "本製品に接続されているバッテリーパックの台数を表示します。",
+        "Exibe a quantidade de baterias conectadas, se houver.",
+        "Baterias conectadas",
+        "2026-05-21: pt-BR校对，替换 test 占位，按 en 补齐 Connected Batteries。",
+        [
+          {
+            "file_token": "ZeHlbv3HEoRcq2xIXacchUcTndg",
+            "name": "image.png",
+            "size": 1581
+          }
+        ],
+        "接続済みバッテリーパック",
+        "Visualizza il numero di pacchi batteria, se collegati.",
+        "Displays the quantity of battery packs if any are connected.",
+        "Відображає кількість акумуляторних блоків, якщо вони підключені.",
+        "JE-2000E"
+      ],
+      [
+        "Energy Saving Mode",
+        [
+          "True"
+        ],
+        "节能模式",
+        "РЕЖИМ ЕНЕРГОЗБЕРЕЖЕННЯ",
+        "에너지 절약 모드",
+        "{{AC_POWER_BUTTON_LABEL}} 또는 {{DC_USB_POWER_BUTTON_LABEL}} 전원 버튼을 눌러 AC 또는 DC 출력이 켜질 때:\n켜짐: 에너지 절약 모드가 활성화되어 있습니다.\n꺼짐: 에너지 절약 모드가 비활성화되어 있습니다.\n장치 전원이 꺼져도 이 설정은 유지됩니다.",
+        "出厂默认开启，默认时间为 12H。AC 输出≤25W、DC 输出≤2W（不含应急灯）且持续达到设定时间后，将自动关闭对应输出。\n点亮：节能模式开启。\n熄灭：节能模式关闭。\n（可在 APP 中设置时间，关机可记忆保存）。",
+        "Mode d’Économie d’Énergie",
+        "Cuando las salidas CA o CC se encienden presionando los botones de encendido CA o CC/USB:\nEncendido: Modo de ahorro de energía activado.\nApagado: Modo de ahorro de energía desactivado.\nCuando el dispositivo se apaga, se retiene la configuración.",
+        "Lorsque la sortie CA ou CC est activée en appuyant sur le bouton CA ou le bouton CC / USB :\nAllumé : Mode d'économie d'énergie activé.\nÉteint : Mode d'économie d'énergie désactivé.\nLe réglage est conservé lorsque l’appareil est mis hors tension.",
+        "Modo de Ahorro de Energía",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Modalità di risparmio energetico",
+        [
+          "TRUE"
+        ],
+        "Energiesparmodus",
+        [
+          "AC_POWER_BUTTON_LABEL",
+          "DC_USB_POWER_BUTTON_LABEL"
+        ],
+        "Wenn der AC- oder DC-Ausgang durch Drücken der AC-Einschalttaste oder DC/USB-Einschalttaste eingeschaltet wird:\nEin: Der Energiesparmodus ist aktiviert.\nAus: Der Energiesparmodus ist deaktiviert.\nDie Einstellung bleibt erhalten, wenn das Gerät ausgeschaltet wird.",
+        [
+          "V1.0"
+        ],
+        22,
+        "ACまたはDC出力を{{AC_POWER_BUTTON_LABEL}}または{{DC_USB_POWER_BUTTON_LABEL}}電源ボタンを押してオンにしたとき：\nアイコン表示：省エネモードがオンになっています。\nアイコン無表示：省エネモードがオフになっています。\n電源オフ時も設定は保持されます。",
+        "Quando a saída CA ou CC é ligada pressionando o {{AC_POWER_BUTTON_LABEL}} ou o {{DC_USB_POWER_BUTTON_LABEL}}:\nLigado: O modo de economia de energia está ativado.\nDesligado: O modo de economia de energia está desativado.\nA configuração é mantida quando o dispositivo é desligado.",
+        "Modo de economia de energia",
+        "2026-05-21: pt-BR校对，修正串行的 Remaining Charge Time 文案为 Energy Saving Mode，并保留按钮变量。",
+        [
+          {
+            "file_token": "O4Jdb5pUQoCBAqx0sfQcm9Nbntd",
+            "name": "22_energy_saving_mode.png",
+            "size": 2056
+          }
+        ],
+        "省エネモード",
+        "Quando l'uscita CA o CC viene attivata premendo il pulsante CA o DC/USB:\nAcceso: La Modalità di risparmio energetico è abilitata.\nSpento: La Modalità di risparmio energetico è disabilitata.\nL'impostazione viene mantenuta quando il dispositivo viene spento.",
+        "When the AC or DC output is turned on by pressing the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} power button:\nOn: Energy Saving Mode is enabled.\nOff: Energy Saving Mode is disabled.\nThe setting is retained when the device is powered off.",
+        "Коли вихід AC або DC/USB увімкнено натисканням відповідної кнопки AC або DC/USB:\nУвімкнено: режим енергозбереження увімкнено.\nВимкнено: режим енергозбереження вимкнено.\nНалаштування зберігається після вимкнення пристрою.",
+        "JE-2000E, JE-1000F"
+      ],
+      [
+        "High Temperature Indicator",
+        [
+          "False"
+        ],
+        "高温警告",
+        "Індикатор високої температури",
+        "고온 표시기",
+        "고온 보호가 작동됩니다. 온도가 정상 작동 범위로 돌아올 때까지 제품이 작동을 중지할 수 있습니다.",
+        "如果屏幕上出现【高温警告符号】，请勿担心，电池降温后可自行恢复。",
+        "Indicateur de Température Élevée",
+        "Se activó la protección por alta temperatura. El producto puede dejar de funcionar hasta que su temperatura vuelva al rango normal de operación.",
+        "La protection contre les températures élevées est déclenchée. Le produit peut cesser de fonctionner jusqu'à ce que sa température revienne dans la plage de fonctionnement normale.",
+        "Indicador de Alta Temperatura",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Indicatore di temperatura elevata",
+        [
+          "TRUE"
+        ],
+        "Warnung vor hoher Temperatur",
+        null,
+        "Der Hochtemperaturschutz wurde aktiviert. Das Produkt kann die Funktion einstellen, bis die Temperatur wieder im normalen Betriebsbereich liegt.",
+        [
+          "V1.0"
+        ],
+        23,
+        "高温保護が作動しました。製品の温度が通常の動作範囲に戻るまで、製品の機能が停止する場合があります。",
+        "A proteção contra alta temperatura foi acionada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação.",
+        "Indicador de alta temperatura",
+        null,
+        [
+          {
+            "file_token": "UmkEbOgCKoKyxoxDSINcfO6LnQd",
+            "name": "23_high_temperature_indicator.png",
+            "size": 2248
+          }
+        ],
+        "高温インジケーター",
+        "La protezione da alta temperatura è stata attivata. Il prodotto potrebbe smettere di funzionare finché la temperatura non rientra nel normale intervallo operativo.",
+        "High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+        "Активовано захист від високої температури. Продукт може припинити роботу, доки його температура не повернеться до нормального робочого діапазону.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Low Temperature Indicator",
+        [
+          "False"
+        ],
+        "低温警告",
+        "Індикатор низької температури",
+        "저온 표시기",
+        "저온 보호가 작동됩니다.\n온도가 정상 작동 범위로 돌아올 때까지 제품의 작동이 중지될 수 있습니다.",
+        "如果屏幕上出现【低温警告符号】，请勿担心，环境温度恢复后自动恢复。",
+        "Indicateur de Basse Température",
+        "Se activó la protección por baja temperatura. El producto puede dejar de funcionar hasta que su temperatura vuelva al rango normal de operación.",
+        "La protection contre les basses températures est déclenchée. Le produit peut cesser de fonctionner jusqu'à ce que sa température revienne dans la plage de fonctionnement normale.",
+        "Indicador de Baja Temperatura",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Indicatore di bassa temperatura",
+        [
+          "TRUE"
+        ],
+        "Warnung bei niedriger Temperatur",
+        null,
+        "Der Niedrigtemperaturschutz wurde aktiviert. \nDas Produkt kann die Funktion einstellen, bis die Temperatur wieder im normalen Betriebsbereich liegt.",
+        [
+          "V1.0"
+        ],
+        24,
+        "低温保護が作動しました。製品の温度が通常の動作範囲に戻るまで、製品の機能が停止する場合があります。",
+        "A proteção contra baixa temperatura foi acionada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação.",
+        "Indicador de baixa temperatura",
+        null,
+        [
+          {
+            "file_token": "JDMEbD96noSbyWxbOnVcgip1nab",
+            "name": "24_low_temperature_indicator.png",
+            "size": 2206
+          }
+        ],
+        "低温インジケーター",
+        "È stata attivata la protezione da bassa temperatura. \nIl prodotto potrebbe smettere di funzionare finché la temperatura non rientra nel normale intervallo operativo.",
+        "Low temperature protection is triggered.\nThe product may stop functioning until its temperature returns to the normal operating range.",
+        "Активовано захист від низької температури.\nПродукт може припинити роботу, доки його температура не повернеться до нормального робочого діапазону.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Fault code",
+        [
+          "False"
+        ],
+        "故障代码",
+        "Код помилки",
+        "오류 코드",
+        "제품에 오류가 발생했습니다. 자세한 내용은 문제 해결 섹션을 참조하십시오.",
+        "产品发生故障，请参考故障代码模块内容了解详情。",
+        "Code d’erreur",
+        "Se ha producido un error en el producto. Por favor, consulte la sección de solución de problemas para más detalles.",
+        "Une erreur produit s’est produite. Veuillez consulter la section « Dépannage » pour plus de détails.",
+        "Código de fallo",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Codice di errore",
+        [
+          "TRUE"
+        ],
+        "Fehlermeldung",
+        null,
+        "Ein Produktfehler ist aufgetreten. Bitte lesen Sie den Abschnitt „Fehlerbehebung“ für weitere Informationen.",
+        [
+          "V1.0"
+        ],
+        25,
+        "製品エラーが発生しました。詳細については、トラブルシューティングのセクションを参照してください。",
+        "Ocorreu um erro no produto. Consulte a seção Solução de problemas para obter detalhes.",
+        "Código de falha",
+        null,
+        [
+          {
+            "file_token": "Oz87bX3BGo8H7Zxe0XvcTd7FnJL",
+            "name": "25_fault_code.png",
+            "size": 3966
+          }
+        ],
+        "エラーコード",
+        "Si è verificato un errore del prodotto. Per maggiori dettagli, consultare la sezione “Risoluzione dei problemi”.",
+        "A product error has occurred. Please refer to the Troubleshooting section for details.",
+        "Виникла помилка продукту. Будь ласка, зверніться до розділу «Усунення несправностей» для отримання детальної інформації.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Output Power",
+        [
+          "False"
+        ],
+        "放电功率显示",
+        "Вихідна потужність",
+        "출력 전력",
+        "출력 전력을 와트(W) 단위로 표시합니다.",
+        "显示当前放电功率。",
+        "Puissance de Sortie",
+        "Muestra la potencia de salida en vatios.",
+        "Affiche la puissance de sortie en watts.",
+        "Potencia de Salida",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H",
+          "JE-300E"
+        ],
+        "Potenza in uscita",
+        [
+          "TRUE"
+        ],
+        "Ausgangsleistung",
+        null,
+        "Zeigt die Ausgangsleistung in Watt an.",
+        [
+          "V1.0"
+        ],
+        26,
+        "出力電力をワットで表示します。",
+        "Exibe a potência de saída em watts.",
+        "Potência de saída",
+        null,
+        [
+          {
+            "file_token": "PviebR618oofvKxcKVRcHLlInqd",
+            "name": "26_output_power.png",
+            "size": 6085
+          }
+        ],
+        "消費電力",
+        "Visualizza la potenza di uscita in watt.",
+        "Displays the output power in watts.",
+        "Відображає вихідну потужність у ватах.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Remaining Discharge Time",
+        [
+          "False"
+        ],
+        "剩余放电时间",
+        "Час, що залишився до розряджання",
+        "잔여 방전 시간",
+        "남은 방전 시간을 표시합니다.",
+        "显示剩余放电时间。",
+        "Temps de Décharge Restant",
+        "Muestra el tiempo de descarga restante.",
+        "Affiche le temps de décharge restant.",
+        "Tiempo de Descarga Restante",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Tempo di scarica rimanente",
+        [
+          "TRUE"
+        ],
+        "Verbleibende Entladezeit",
+        null,
+        "Anzeige der verbleibenden Entladezeit.",
+        [
+          "V1.0"
+        ],
+        27,
+        "接続した機器の使用可能な時間を表示します。",
+        "Exibe o tempo de descarga restante.",
+        "Tempo de descarga restante",
+        null,
+        [
+          {
+            "file_token": "JEpobf59DoBV4dxWlnxcNtIinke",
+            "name": "27_remaining_discharge_time.png",
+            "size": 2496
+          }
+        ],
+        "バッテリー使用可能時間",
+        "Visualizza il tempo residuo di scarica.",
+        "Displays the remaining discharging time.",
+        "Відображає залишковий час розряджання.",
+        "3600plus, JE-2000E, JE-1000F"
+      ],
+      [
+        "Quiet Charging Mode",
+        [
+          "False"
+        ],
+        "静音充电模式",
+        "Тихий режим заряджання",
+        "조용한 충전 모드",
+        "켜짐: 충전 중 소음이 크게 줄어들지만, 충전 전력이 낮아지고 충전 속도가 느려집니다.\n꺼짐: 조용한 충전 모드가 비활성화됩니다.\n이 기능은 Jackery App에서 설정/해제할 수 있습니다. 이 설정은 장치 전원이 꺼져도 유지됩니다.",
+        "点亮：静音充电模式已开启。\n充电功率降低，充电速度变慢，同时显著降低充电时的噪音。\n熄灭：静音充电模式未开启/已关闭。\n（请在 APP 中开启/关闭该功能，关机可记忆保存）。",
+        "Mode de Charge Silencieuse",
+        "Encendido: el ruido durante la carga se minimiza significativamente, mientras que la potencia de carga se reduce y la velocidad de carga disminuye.\nApagado: El modo de carga silenciosa está desactivado.\nActivar/desactivar esta función en la App Jackery. Cuando el dispositivo se apaga, se retiene la configuración.",
+        "Allumé : Le bruit pendant la charge est considérablement réduit, tandis que la puissance de la charge connectée est limitée par la puissance de dérivation.\nÉteint : Le mode de charge silencieuse est désactivé. Activez/désactivez cette fonction dans l'application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.",
+        "Modo de Carga Silenciosa",
+        [
+          "JE-1000F",
+          "JE-2000E",
+          "JE-2000F",
+          "JE-1500D",
+          "JE-1800B",
+          "JE-900B",
+          "JE-1000J",
+          "JE-1000H"
+        ],
+        "Modalità di ricarica silenziosa",
+        [
+          "TRUE"
+        ],
+        "Leiser Lademodus",
+        null,
+        "Ein: Das Rauschen beim Laden wird deutlich minimiert, während die Ladeleistung reduziert und die Ladegeschwindigkeit verlangsamt wird.\nAus: Der leise Lademodus ist deaktiviert.\nDiese Funktion kann in der Jackery-App aktiviert oder deaktiviert werden.",
+        [
+          "V1.0"
+        ],
+        3,
+        "オン：充電中のノイズが大幅に低減され、充電電力が低下し、充電速度が低減します。\nオフ：静音充電モードが無効になっています。\n（Jackeryアプリで有効/無効にできます。電源オフ時も設定は保持されます。）",
+        "Ligado: O ruído durante o carregamento é significativamente reduzido, enquanto a potência de carregamento é reduzida e a velocidade de carregamento diminui.\nDesligado: O modo de carregamento silencioso está desativado.\nAtive/desative este recurso no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado.",
+        "Modo de carregamento silencioso",
+        "2026-05-21: pt-BR校对，按 en 补充“关机后保留设置”句。",
+        [
+          {
+            "file_token": "WLkMbiHS1oGsOtxUCp7cRhFAn1g",
+            "name": "03_quiet_charging_mode.png",
+            "size": 1414
+          }
+        ],
+        "静音充電モード",
+        "Acceso: il rumore durante la ricarica è significativamente ridotto, mentre la potenza e la velocità di ricarica diminuiscono.\nSpento: la modalità di ricarica silenziosa è disattivata.\nQuesta funzione può essere attivata o disattivata tramite l'app Jackery.",
+        "On: The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down.\nOff: Quiet Charging Mode is disabled.\nEnable/disable this feature in the Jackery App. The setting is retained when the device is powered off.",
+        "Увімкнено: Рівень шуму під час заряджання значно зменшується, водночас знижується потужність заряджання і сповільнюється швидкість заряджання.\nВимкнено: Тихий режим заряджання вимкнено.\nУвімкніть/вимкніть цю функцію в Jackery App.\nНалаштування зберігається після вимкнення пристрою.",
+        "JE-2000E, JE-1000F"
+      ]
+    ],
+    "field_id_list": [
+      "fldoZtXctu",
+      "fld3FWPStT",
+      "fld68Ln8Ns",
+      "fld7KMbS7o",
+      "fldacNQh8x",
+      "fldDieRz1X",
+      "fldEz55hI3",
+      "fldgEqO1HT",
+      "fldglsDQr2",
+      "fldhUtVmku",
+      "fldjcAAOZC",
+      "fldjINVVwM",
+      "fldkrMaPri",
+      "fldLzF81pR",
+      "fldMojAIVl",
+      "fldNqyAgrJ",
+      "fldoykBriz",
+      "fldozbqB9a",
+      "fldpZIF47c",
+      "fldQGpcmyV",
+      "fldRDXLXfW",
+      "fldRpT0vgm",
+      "fldT3INw2S",
+      "fldVNmCcfv",
+      "fldwYw1JIK",
+      "fldxQtnj1L",
+      "fldYHgvHqN",
+      "fldzLEmfLV",
+      "fldzQuG4aQ"
+    ],
+    "field_type_list": [
+      "text",
+      "select",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "select",
+      "text",
+      "select",
+      "text",
+      "select",
+      "text",
+      "select",
+      "number",
+      "text",
+      "text",
+      "text",
+      "text",
+      "attachment",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text"
+    ],
+    "fields": [
+      "icon_en",
+      "has_variables",
+      "icon_zh",
+      "icon_ukr",
+      "icon_ko",
+      "icon_desc_ko",
+      "icon_desc_zh",
+      "icon_fr",
+      "icon_desc_es",
+      "icon_desc_fr",
+      "icon_es",
+      "Model",
+      "icon_it",
+      "Is_latest",
+      "icon_de",
+      "variable_keys",
+      "icon_desc_de",
+      "Version",
+      "No.",
+      "icon_desc_jp",
+      "icon_desc_pt-BR",
+      "icon_pt-BR",
+      "备注",
+      "figure",
+      "icon_jp",
+      "icon_desc_it",
+      "icon_desc_en",
+      "icon_desc_ukr",
+      "文本 15"
+    ],
+    "has_more": false,
+    "query_context": {
+      "field_scope": "all_fields",
+      "record_scope": "all_records"
+    },
+    "record_id_list": [
+      "recvhBxMIMvx5r",
+      "recvhBxMIMwY4F",
+      "recvhBxMIMFPLf",
+      "recvhBxNA2P5xy",
+      "recvhBxNA2BbYd",
+      "recvhBxNA2PTb2",
+      "recvhBxNA2ijlN",
+      "recvhBxNA20H3d",
+      "recvhBxNA2CYjR",
+      "recvhBxNA2r0u7",
+      "recvhBxNA2Y2s0",
+      "recvhBxNA2WNYW",
+      "recvhBxNA2opHH",
+      "recvhBxNA2sZXg",
+      "recvhBxNA2h5G2",
+      "recvhBxNA27gHe",
+      "recvhBxNA2ppFP",
+      "recvhBxNA2eFdi",
+      "recvhBxNA2ZYWB",
+      "recvhBxNA2mSiw",
+      "recvhBxNA2GbJe",
+      "recvhBxNA2m3Ad",
+      "recvhBxNA2vtqy",
+      "recvhBxNA2oAqM",
+      "recvhBxNA2iilV",
+      "recvhBxNA2cwB1",
+      "recvhBxMIMsWoY"
+    ],
+    "rev": 193,
+    "timezone": "Asia/Shanghai"
+  },
+  "_notice": {
+    "update": {
+      "command": "lark-cli update",
+      "current": "1.0.69",
+      "latest": "1.0.89",
+      "message": "lark-cli 1.0.89 available, current 1.0.69, run: lark-cli update"
+    }
+  }
+}
