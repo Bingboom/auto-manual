@@ -1,0 +1,100 @@
+{
+ "fields": [
+  "No.",
+  "Model",
+  "Region",
+  "Is_latest",
+  "Version",
+  "error_code",
+  "corrective_measures_en",
+  "corrective_measures_fr",
+  "corrective_measures_es",
+  "render_preview_en"
+ ],
+ "rows": [
+  [
+   "1",
+   "JBP-2000B",
+   "US",
+   "TRUE",
+   "V1.0",
+   "F0",
+   "Restart the product.",
+   "Redémarrez le produit.",
+   "Reiniciar el producto.",
+   "F0: Restart the product."
+  ],
+  [
+   "2",
+   "JBP-2000B",
+   "US",
+   "TRUE",
+   "V1.0",
+   "F1, F2",
+   "Contact Jackery Customer Support.",
+   "Contacter le service à la clientèle de Jackery.",
+   "Contacte con atención al cliente de Jackery.",
+   "F1, F2: Contact Jackery Customer Support."
+  ],
+  [
+   "3",
+   "JBP-2000B",
+   "US",
+   "TRUE",
+   "V1.0",
+   "F3",
+   "Restart the product.",
+   "Redémarrez le produit.",
+   "Reiniciar el producto.",
+   "F3: Restart the product."
+  ],
+  [
+   "4",
+   "JBP-2000B",
+   "US",
+   "TRUE",
+   "V1.0",
+   "F4",
+   "Connect the product to loads to discharge its battery until the fault disappears.",
+   "Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse.",
+   "Conecte el producto a cargas para descargar su batería hasta que la falla desaparezca.",
+   "F4: Connect the product to loads to discharge its battery until the fault disappears."
+  ],
+  [
+   "5",
+   "JBP-2000B",
+   "US",
+   "TRUE",
+   "V1.0",
+   "F5",
+   "Charge the product via solar panels or AC wall outlet until the fault disappears.",
+   "Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse.",
+   "Cargue el producto mediante paneles solares o toma de corriente CA hasta que la falla desaparezca.",
+   "F5: Charge the product via solar panels or AC wall outlet until the fault disappears."
+  ],
+  [
+   "6",
+   "JBP-2000B",
+   "US",
+   "TRUE",
+   "V1.0",
+   "F6-F9,\nFA, FC",
+   "Contact Jackery Customer Support.",
+   "Contacter le service à la clientèle de Jackery.",
+   "Contacte con atención al cliente de Jackery.",
+   "F6-F9, FA, FC: Contact Jackery Customer Support."
+  ],
+  [
+   "7",
+   "JBP-2000B",
+   "US",
+   "TRUE",
+   "V1.0",
+   "FF",
+   "Place the product in an environment with a proper temperature and wait till the fault disappears.",
+   "Placez le produit dans un environnement à température appropriée et attendez que l'erreur disparaisse.",
+   "Coloque el producto en un ambiente con temperatura adecuada y espere hasta que la falla desaparezca.",
+   "FF: Place the product in an environment with a proper temperature and wait till the fault disappears."
+  ]
+ ]
+}

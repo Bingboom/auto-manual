@@ -56,3 +56,17 @@ paths:
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
+
+# The mirror image of the allowlist in config-bases/phase2-sync-base.yaml.
+# There, host manuals are allowed to name the battery pack as their expansion
+# accessory; here, the battery pack's own manual has to name its host — every
+# charging, connections and operation instruction in the shipped book routes
+# through the HomePower 2000 Plus, which is JE-2000E's registered product_name.
+#
+# NOTE: this list REPLACES the base's rather than extending it (config_loader
+# deep-merges mappings but assigns lists wholesale), so the accessory literal
+# from the base is repeated here.
+checks:
+  allowed_foreign_identity_literals:
+    - Jackery Battery Pack 2000
+    - Jackery HomePower 2000 Plus

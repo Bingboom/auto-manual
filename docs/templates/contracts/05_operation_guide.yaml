@@ -1,5 +1,8 @@
 page_id: 05_operation_guide
 source_files:
+  - templates/page_bp/en/05_operation_guide_placeholder.rst
+  - templates/page_bp/es/05_operation_guide_placeholder.rst
+  - templates/page_bp/fr/05_operation_guide_placeholder.rst
   - templates/page_us-en/05_operation_guide_placeholder.rst
   - templates/page_us-es/05_operation_guide_placeholder.rst
   - templates/page_us-fr/05_operation_guide_placeholder.rst
@@ -7,9 +10,18 @@ source_files:
   - templates/page_eu-en/05_operation_guide_placeholder.rst
   - templates/page_jp/05_operation_guide_placeholder.rst
   - templates/page_zh/05_operation_guide_placeholder.rst
+# Tiered on the same axis as 03_product_overview (skeleton slices S2/S4).
+# The standby duration is shared: the shipped HTP017 US book states the battery
+# pack shuts down after 2 hours without charge or load, which is the same fact
+# the host prints as DEFAULT_STANDBY_DURATION. The three energy-saving values
+# describe a feature the battery pack does not have, so they move to
+# category:MAIN. Targets that declare no build.skeleton_family resolve as MAIN
+# and therefore still select all four, unchanged.
 required_placeholders:
   default:
     - DEFAULT_STANDBY_DURATION
+  category:MAIN:
     - ENERGY_SAVING_AUTO_OFF_DURATION
     - ENERGY_SAVING_AC_THRESHOLD
     - ENERGY_SAVING_DC_THRESHOLD
+  category:BP: []

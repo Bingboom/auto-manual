@@ -1,0 +1,26 @@
+{
+ "spec": [
+  "specifications/s01/r01/product_name/main/l01",
+  "specifications/s01/r02/model_no/main/l01",
+  "specifications/s01/r03/capacity/main/l01",
+  "specifications/s01/r04/cell_chemistry/main/l01",
+  "specifications/s01/r05/weight/main/l01",
+  "specifications/s01/r06/dimensions/main/l01",
+  "specifications/s01/r07/cycle_life/main/l01",
+  "specifications/s02/r01/dc_expansion_port/main/l01",
+  "specifications/s03/r01/dc_expansion_port/main/l01",
+  "specifications/s04/r01/charging_temperature/main/l01",
+  "specifications/s04/r02/discharging_temperature/main/l01"
+ ],
+ "placeholder": [
+  "Product overview/s07/r01/main_power_button/label/l01",
+  "Product overview/s03/r01/dc_expansion_port/side.a.label/l01",
+  "Product overview/s03/r01/dc_expansion_port/side.a.spec/l01",
+  "Product overview/s03/r02/dc_expansion_port/side.b.label/l01",
+  "Product overview/s03/r02/dc_expansion_port/side.b.spec/l01",
+  "operation_guide/s08/r01/default_standby_duration/value/l01",
+  "storage/s04/r01/storage_temperature/main/l01",
+  "storage/s04/r01/storage_temperature/main/l02",
+  "storage/s04/r01/storage_temperature/main/l03"
+ ]
+}
