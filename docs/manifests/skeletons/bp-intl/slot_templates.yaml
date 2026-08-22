@@ -63,7 +63,10 @@ slots:
     include_dir: generated/{model}
   charging:
     type: rst_include
-    file: templates/page_shared/{lang}/08_charging_methods.rst
+    # BP-specific: the shared host page describes DC8020 / PV / car-charger
+    # inputs the battery pack does not have. Its own charging chapter (shipped
+    # printed 06) routes both AC and solar THROUGH the HomePower 2000 Plus.
+    file: templates/page_bp/{lang}/08_charging_methods.rst
   storage:
     type: rst_include
     # Consumes the shared long-storage advisory through a {{snippet:...}} token

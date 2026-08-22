@@ -38,7 +38,7 @@ pages:
     slot_id: product_overview_en
     page: 03_product_overview
     engine: draft_v1
-    recipe: templates/recipes/bp-us/en/03_product_overview.yaml
+    recipe: templates/recipes/bp-us/03_product_overview.yaml
     template: templates/page_bp/en/03_product_overview_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
@@ -52,7 +52,7 @@ pages:
     slot_id: operation_en
     page: 05_operation_guide
     engine: draft_v1
-    recipe: templates/recipes/bp-us/en/05_operation_guide.yaml
+    recipe: templates/recipes/bp-us/05_operation_guide.yaml
     template: templates/page_bp/en/05_operation_guide_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
@@ -79,7 +79,7 @@ pages:
   - type: rst_include
     slot_id: charging_en
     lang: en
-    file: templates/page_shared/en/08_charging_methods.rst
+    file: templates/page_bp/en/08_charging_methods.rst
   - type: rst_include
     slot_id: storage_en
     lang: en
@@ -116,7 +116,7 @@ pages:
     slot_id: product_overview_fr
     page: 03_product_overview
     engine: draft_v1
-    recipe: templates/recipes/bp-us/fr/03_product_overview.yaml
+    recipe: templates/recipes/bp-us/03_product_overview.yaml
     template: templates/page_bp/fr/03_product_overview_placeholder.rst
     langs: [fr]
     include_dir: generated/{model}/draft
@@ -130,7 +130,7 @@ pages:
     slot_id: operation_fr
     page: 05_operation_guide
     engine: draft_v1
-    recipe: templates/recipes/bp-us/fr/05_operation_guide.yaml
+    recipe: templates/recipes/bp-us/05_operation_guide.yaml
     template: templates/page_bp/fr/05_operation_guide_placeholder.rst
     langs: [fr]
     include_dir: generated/{model}/draft
@@ -157,7 +157,7 @@ pages:
   - type: rst_include
     slot_id: charging_fr
     lang: fr
-    file: templates/page_shared/fr/08_charging_methods.rst
+    file: templates/page_bp/fr/08_charging_methods.rst
   - type: rst_include
     slot_id: storage_fr
     lang: fr
@@ -194,7 +194,7 @@ pages:
     slot_id: product_overview_es
     page: 03_product_overview
     engine: draft_v1
-    recipe: templates/recipes/bp-us/es/03_product_overview.yaml
+    recipe: templates/recipes/bp-us/03_product_overview.yaml
     template: templates/page_bp/es/03_product_overview_placeholder.rst
     langs: [es]
     include_dir: generated/{model}/draft
@@ -208,7 +208,7 @@ pages:
     slot_id: operation_es
     page: 05_operation_guide
     engine: draft_v1
-    recipe: templates/recipes/bp-us/es/05_operation_guide.yaml
+    recipe: templates/recipes/bp-us/05_operation_guide.yaml
     template: templates/page_bp/es/05_operation_guide_placeholder.rst
     langs: [es]
     include_dir: generated/{model}/draft
@@ -235,7 +235,7 @@ pages:
   - type: rst_include
     slot_id: charging_es
     lang: es
-    file: templates/page_shared/es/08_charging_methods.rst
+    file: templates/page_bp/es/08_charging_methods.rst
   - type: rst_include
     slot_id: storage_es
     lang: es

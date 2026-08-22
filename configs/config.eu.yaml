@@ -45,5 +45,9 @@ tools:
   patch_fonts: tools/patch_latex_fonts.py
 
 checks:
+  # NOTE: this list REPLACES the base's — config_loader deep-merges mappings but
+  # assigns lists wholesale — so the accessory literal from
+  # config-bases/phase2-sync-base.yaml has to be repeated here.
   allowed_foreign_identity_literals:
     - 占位符
+    - Jackery Battery Pack 2000

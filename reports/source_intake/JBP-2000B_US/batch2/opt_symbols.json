@@ -1,0 +1,62 @@
+{
+ "name": "Model",
+ "type": "select",
+ "multiple": true,
+ "options": [
+  {
+   "hue": "Yellow",
+   "lightness": "Lighter",
+   "name": "JE-1000F"
+  },
+  {
+   "hue": "Yellow",
+   "lightness": "Lighter",
+   "name": "JE-2000E"
+  },
+  {
+   "hue": "Turquoise",
+   "lightness": "Lighter",
+   "name": "JE-2000F"
+  },
+  {
+   "hue": "Green",
+   "lightness": "Lighter",
+   "name": "JE-1500D"
+  },
+  {
+   "hue": "Wathet",
+   "lightness": "Lighter",
+   "name": "JE-1800B"
+  },
+  {
+   "hue": "Lime",
+   "lightness": "Lighter",
+   "name": "JE-900B"
+  },
+  {
+   "hue": "Red",
+   "lightness": "Lighter",
+   "name": "JE-1000H"
+  },
+  {
+   "hue": "Red",
+   "lightness": "Lighter",
+   "name": "JE-1000J"
+  },
+  {
+   "hue": "Blue",
+   "lightness": "Lighter",
+   "name": "JE-300E"
+  },
+  {
+   "hue": "Orange",
+   "lightness": "Lighter",
+   "name": ""
+  },
+  {
+   "name": "JBP-2000B",
+   "hue": "Purple",
+   "lightness": "Lighter"
+  }
+ ]
+}

@@ -1,0 +1,294 @@
+[
+ {
+  "rid": "rec277z0GFV6DG",
+  "key": "warning_triangle",
+  "order": 1,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ },
+ {
+  "rid": "rec277z0GFV6T6",
+  "key": "read_manual",
+  "order": 2,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ },
+ {
+  "rid": "rec277z0GFV738",
+  "key": "electric_shock",
+  "order": 3,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ },
+ {
+  "rid": "rec277z0GFV7aQ",
+  "key": "battery_charging",
+  "order": 4,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ },
+ {
+  "rid": "rec277z0GFV7ii",
+  "key": "explosive_material",
+  "order": 5,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ },
+ {
+  "rid": "rec277z0GFV7pR",
+  "key": "heavy_object",
+  "order": 6,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ },
+ {
+  "rid": "rec277z0GFV7wT",
+  "key": "do_not_dismantle",
+  "order": 7,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ },
+ {
+  "rid": "rec277z0GFV7Ej",
+  "key": "no_open_flame",
+  "order": 8,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ },
+ {
+  "rid": "rec277z0GFV7LR",
+  "key": "keep_away_from_children",
+  "order": 9,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ },
+ {
+  "rid": "rec277z0GFV7Te",
+  "key": "li_ion",
+  "order": 10,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ },
+ {
+  "rid": "rec277z0GFV80p",
+  "key": "weee",
+  "order": 11,
+  "before": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E"
+  ],
+  "after": [
+   "JE-1000F",
+   "JE-2000E",
+   "JE-2000F",
+   "JE-1500D",
+   "JE-1800B",
+   "JE-900B",
+   "JE-1000H",
+   "JE-1000J",
+   "JE-300E",
+   "JBP-2000B"
+  ]
+ }
+]

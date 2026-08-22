@@ -270,7 +270,15 @@ def run_check(
             lang=getattr(args, "lang", None),
             source_mode=current_effective_source,
         )
-    maybe_sync_review_before_build(args, source_override=current_effective_source)
+    # `check` validates; it does not refresh. The default source is "auto", so
+    # this used to pre-sync the review surface on every run merely because a
+    # review bundle existed on disk — a validation command silently rewriting
+    # tracked files under docs/_review and docs/index.rst, which an operator
+    # following the pre-PR checklist then had to notice and restore. Document
+    # GENERATION still refreshes (tools/build_dispatch.py:253-255), and so does
+    # `check` when the operator asks for the review surface explicitly.
+    if current_effective_source == "review" or getattr(args, "refresh_review", False):
+        maybe_sync_review_before_build(args, source_override=current_effective_source)
     run_checked(build_docs_command(args, action_override="rst", source_override=current_effective_source))
     run_checked(check_docs_command(args))
 

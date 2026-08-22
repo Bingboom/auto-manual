@@ -447,6 +447,100 @@ class TestReviewSupport(unittest.TestCase):
             self.assertEqual("params", manifest["last_sync_scope"])
             self.assertIn("page/02_whats_in_the_box.rst", manifest["last_sync_files"])
 
+    def _merge_params_case(
+        self,
+        *,
+        template_body: str,
+        runtime_body: str,
+        review_body: str,
+    ) -> str:
+        """Run one merge_params sync and return the resulting review page text."""
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            runtime_dir = docs_dir / "_build" / "JE-1000F" / "US" / "en" / "rst"
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US" / "en"
+            template_path = docs_dir / "templates" / "page_us-en" / "02_whats_in_the_box.rst"
+
+            (runtime_dir / "page").mkdir(parents=True)
+            (review_dir / "page").mkdir(parents=True)
+            template_path.parent.mkdir(parents=True)
+            (review_dir / "index.rst").write_text("review index\n", encoding="utf-8")
+            (review_dir / "manifest.json").write_text("{}\n", encoding="utf-8")
+
+            template_path.write_text(template_body, encoding="utf-8")
+            (runtime_dir / "page" / "02_whats_in_the_box.rst").write_text(runtime_body, encoding="utf-8")
+            (review_dir / "page" / "02_whats_in_the_box.rst").write_text(review_body, encoding="utf-8")
+
+            sync_review_paths(
+                runtime_bundle_dir=runtime_dir,
+                review_dir=review_dir,
+                scope="params",
+                plan=(
+                    SyncPlanEntry(
+                        relative_path=Path("page") / "02_whats_in_the_box.rst",
+                        mode="merge_params",
+                        template_path=template_path,
+                    ),
+                ),
+            )
+            return (review_dir / "page" / "02_whats_in_the_box.rst").read_text(encoding="utf-8")
+
+    def test_merge_params_should_refresh_a_placeholder_sharing_a_line_with_prose(self) -> None:
+        """The normal case: the review line still matches the template's shape.
+
+        The sibling tests below pin the two divergent cases. This one exists so a
+        fix for those cannot be "never touch prose-bearing lines".
+        """
+        line = "      \\HBInBoxThree{a.png}{%s}{b.png}{AC Charging Cable}{c.png}{Documents}\n"
+
+        merged = self._merge_params_case(
+            template_body="Heading\n" + line % "|PRODUCT_NAME|",
+            runtime_body="Heading\n" + line % "Jackery Explorer 1000",
+            review_body="Heading\n" + line % "Jackery Explorer 900",
+        )
+
+        self.assertEqual("Heading\n" + line % "Jackery Explorer 1000", merged)
+
+    def test_merge_params_should_not_revert_authored_prose_on_a_placeholder_line(self) -> None:
+        """Authored text on a placeholder-bearing line must survive the refresh.
+
+        `Doucuments` is a real, deliberately preserved printed anomaly recorded in
+        code-as-doc/reviews/je1000f_us_source_parity_discovery_2026-07-26.md. It sits
+        on the same physical line as |PRODUCT_NAME|, and rebuilding that line from
+        the template silently reverted it to the template's `Documents`.
+
+        The line diverged from the template, so its parameters are left stale rather
+        than the authored text being destroyed. tools/check_review_branch_sync.py is
+        the notice path for a shared-source change that a review branch still needs.
+        """
+        template_line = "      \\HBInBoxThree{a.png}{|PRODUCT_NAME|}{b.png}{AC Charging Cable}{c.png}{Documents}\n"
+        authored_line = "      \\HBInBoxThree{a.png}{Jackery Explorer 900}{b.png}{AC Charging Cable}{c.png}{Doucuments}\n"
+
+        merged = self._merge_params_case(
+            template_body="Heading\n" + template_line,
+            runtime_body="Heading\n      \\HBInBoxThree{a.png}{Jackery Explorer 1000}{b.png}{AC Charging Cable}{c.png}{Documents}\n",
+            review_body="Heading\n" + authored_line,
+        )
+
+        self.assertEqual("Heading\n" + authored_line, merged)
+        self.assertIn("Doucuments", merged)
+
+    def test_merge_params_should_not_reindent_a_diverged_review_line(self) -> None:
+        """A review line at a different indent must keep its own indentation.
+
+        _render_placeholder_values rebuilt the line from the template, including the
+        template's leading whitespace, so a review line that had been re-indented
+        (moved into a list-table cell, or out of one) was silently moved back — which
+        in RST changes the block structure, not just the whitespace.
+        """
+        merged = self._merge_params_case(
+            template_body="Heading\n**|PRODUCT_NAME|**\n",
+            runtime_body="Heading\n**Jackery Explorer 1000**\n",
+            review_body="Heading\n          **Jackery Explorer 900**\n",
+        )
+
+        self.assertEqual("Heading\n          **Jackery Explorer 900**\n", merged)
+
     def test_sync_review_paths_should_preserve_declared_target_page_only(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_dir = Path(td) / "docs"
@@ -477,8 +571,15 @@ class TestReviewSupport(unittest.TestCase):
                     json.dumps(manifest) + "\n",
                     encoding="utf-8",
                 )
+                # Diverge from the template ONLY in the placeholder slot. This
+                # test is about sync_preserve_paths, not about what merge_params
+                # does to authored prose: an authored change to the surrounding
+                # wording now freezes the line (see
+                # test_merge_params_should_not_revert_authored_prose_on_a_placeholder_line),
+                # which would mask the preserve-list contrast this test exists
+                # to prove.
                 (review_dir / relative_path).write_text(
-                    '<div>Press the power button to turn it off.</div>\n',
+                    '<div>Press the power button to turn them off.</div>\n',
                     encoding="utf-8",
                 )
 
@@ -504,7 +605,7 @@ class TestReviewSupport(unittest.TestCase):
 
             self.assertEqual((), protected_copied)
             self.assertEqual(
-                '<div>Press the power button to turn it off.</div>\n',
+                '<div>Press the power button to turn them off.</div>\n',
                 (protected_review_dir / relative_path).read_text(encoding="utf-8"),
             )
             protected_manifest = json.loads((protected_review_dir / "manifest.json").read_text(encoding="utf-8"))

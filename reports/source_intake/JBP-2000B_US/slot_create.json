@@ -1,0 +1,7 @@
+{"fields":["Slot_label_source","Slot_key","Remark"],
+ "rows":[
+  ["侧面扩容口 A 标签","side.a.label","加电包双 DC 扩容口 A(左侧视图);源=HTP017 US 出货书 printed p02"],
+  ["侧面扩容口 A 规格","side.a.spec","加电包扩容口 A 小注(接扩展线端子 A)"],
+  ["侧面扩容口 B 标签","side.b.label","加电包双 DC 扩容口 B(左侧视图);源=HTP017 US 出货书 printed p02"],
+  ["侧面扩容口 B 规格","side.b.spec","加电包扩容口 B 小注(接扩展线端子 B)"]
+ ]}
