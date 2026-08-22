@@ -1,6 +1,6 @@
 # Next Optimization Checklist
 
-Updated: 2026-07-17
+Updated: 2026-08-21
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
@@ -1585,6 +1585,371 @@ HTML_link alias semantics).
     - the suite's hardcoded expectations are updated to the review-content truth **in the same change that lands the review content on main** (the review PR merge), so neither side goes red alone
     - a decision is recorded for the exemption mechanism: either ordinary PRs against review branches skip content-coupled suites, or reseeds must include a suite recalibration step
   - Note: unrelated PRs against the review branch may merge past this known-red unit check until recalibration lands (verified pre-existing on the review branch base without the PR's changes)
+
+## 6k. Milestone M: Skeleton Library Expansion (骨架库产线拓展)
+
+Registered 2026-08-21 from the Phase A corpus audit
+([`architecture/manual_ia_audit_2026-08.md`](architecture/manual_ia_audit_2026-08.md)),
+the Phase B design
+([`architecture/Product_Skeleton_Library_Design.md`](architecture/Product_Skeleton_Library_Design.md))
+and the wave plan
+([`dev/skeleton_library_expansion_plan.md`](dev/skeleton_library_expansion_plan.md)).
+This milestone is the **superset execution** of Workstream M (`page_registry`
+becomes the only composition authority) in
+[`optimization_project.md`](optimization_project.md).
+
+Milestone status: `pending`
+Milestone entry gate: operator approves the **vertical slice plan** (the wave
+plan's v2). S1 may start on that approval alone; every later slice item has
+its own gate.
+
+> **This section was rewritten 2026-08-21 after an executability audit.** The
+> first draft was written from the design documents without checking the live
+> repo and carried 19 substantive defects — including one that would have
+> reverted a shipped fix. Every claim below has been re-verified against code.
+> Where a condition is *not* verifiable today, it now says so instead of
+> implying a check exists.
+
+**Baseline being changed** (measured): corpus 58 independent manuals,
+**15 buildable (25.9%)**, SKU coverage 5/22, battery-pack category 0%, JP the
+largest queue at 18 manuals with 1 buildable; reconstruction 47/58 pure
+deletion (81.0%) / 55/58 with ≤1 overlay (94.8%).
+
+**Premise (operator, 2026-08-21):** a shipped book is **pipeline output + an
+InDesign finishing layer**. A template-zero-hit block is hand-placed at layout
+time, not unprintable. Never report a finishing-layer item as a production
+blocker.
+
+### M-pre. Cross-cutting rules — apply to every PR in this milestone
+
+These were the largest gap in the first draft: each was missing from the
+individual items, and each will fail CI or damage a live line if skipped.
+
+1. **Any PR touching `configs/**` or `docs/manifests/**` must regenerate the
+   family diff carriers.** `.github/workflows/manifest-regenerate-diff.yml`
+   runs `python tools/manifest_family.py fold` (no `--write`), and
+   `fold_repository` requires `rebuilt == YAML golden` for every indexed entry.
+   `manual_jp.yaml`, `manual_zh.yaml` and `manual_eu.yaml` all have carriers.
+   - the all-pairs command is **`fold`**, not `roundtrip` — `roundtrip` requires
+     `--base` and `--target` and compares exactly one pair
+   - today `fold` reports `manifest_count: 17, anchor_count: 2, folded_count: 15,
+     passed: true`
+2. **Any new manifest must be registered in
+   [`../docs/manifests/family/index.yaml`](../docs/manifests/family/index.yaml)
+   in the same PR.** `fold_repository` globs `docs/manifests/*.yaml` and reports
+   `manifest is not in the family index` for orphans, failing the run. The
+   hardcoded `17/2/15` counts in
+   [`../tests/test_manifest_family.py`](../tests/test_manifest_family.py) must
+   be updated in the same PR.
+3. **Any PR that changes materialized page names touches committed review
+   derivatives.** `docs/_review/JE-1000F/US/page/` tracks 40+ real `pNN_` files,
+   and `docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json`
+   (status `approved`) pins names like `p20_01_user_maintenance_instructions`.
+   Live review branches (`review/JE-300E-EU`, 109 derivative files) pin more.
+   **AGENTS.md §8.7 requires operator confirmation before deleting or renaming
+   committed `docs/_review/**` files** — so name-changing PRs carry that gate
+   explicitly, and the reference-layout contract pin must be re-approved, not
+   silently updated (the #720/#724 lesson).
+4. **Golden conservation is proven by two detached worktrees at base and head
+   SHA — not by `git stash` and not by `git diff docs/_build`.** Operator
+   review 2026-08-21: `git stash` does not remove *committed* changes and skips
+   untracked files by default, so a stash-based "before" can already contain
+   the very PR under test. And the tracked `docs/_build` snapshot has drifted
+   (234 files, JE-1000F US/JP only; assembly `rmtree`s the tree), so its git
+   diff is noise. Use:
+   ```
+   git worktree add /tmp/m-base <base-sha>
+   git worktree add /tmp/m-head <head-sha>
+   (cd /tmp/m-base && python3 build.py check --config <cfg> --model <M> --region <R> --staging-root /tmp/out-base)
+   (cd /tmp/m-head && python3 build.py check --config <cfg> --model <M> --region <R> --staging-root /tmp/out-head)
+   diff -r /tmp/out-base/docs/_build /tmp/out-head/docs/_build   # must be empty
+   git worktree remove /tmp/m-base && git worktree remove /tmp/m-head
+   ```
+   Each worktree contains exactly its committed tree, so before/after stay
+   unambiguous even with local uncommitted or untracked files present.
+5. **New RST templates and fragments need a declared content provenance.** The
+   corpus is PDFs outside the repo
+   (`~/Downloads/信息架构分析/{便携主机,便携加电包}/`); RST needs text. For each
+   new template the PR states: extraction source (which manual, which printed
+   page), who reviews the wording, and — for legal text — who signs off. Do not
+   let an executor invent legal copy.
+6. **Every PR states its rollback.** Follow the design's S0–S4 pattern: prefer
+   changes that are revertible by one `git revert`; for anything that is not
+   (schema changes, file deletions, page renames), name the restore procedure in
+   the PR body before merging.
+7. **Known-red baselines must be recorded, not discovered.** On today's clean
+   tree, `build.py check --config configs/config.zh.yaml --model JE-2000E
+   --region CN` **fails** with `UNUSED_FOOTNOTE … 'ac_bypass'` from
+   `data/phase2/Spec_Footnotes.csv:2`. `us-en/JE-1000F_US`, `ja/JE-1000F_JP`,
+   `eu/JE-1000F_EU`, `eu/JE-300E_EU` and `pt-br/JE-1000F_pt-BR` are all green.
+   An executor must never mistake a pre-existing red for their own breakage.
+
+### Milestone M execution mode — vertical slice first (operator, 2026-08-21)
+
+The wave structure below M-pre was **replaced by a vertical slice** on operator
+direction: prove the full chain narrowly (one battery-pack target, one content
+module, all four renderers, one real InDesign finishing round) before any
+horizontal rollout. The audited wave items are preserved as deferred rollout
+stubs at the end of this section; their full text is in git history
+(commit 80321368). M-pre applies to slice and rollout alike.
+
+Slice target (evidence: workflow `wf_72e57478-50e`): **`JBP-2000B_US`**
+(HTP017 美加规, 3 languages, 28 pages, cell `BP@INTL`) — the only battery-pack
+document_key with a capability row + a multi-language region + a fully-specced
+paired host (`JE-2000E_US`, 50 Spec_Master rows) + a shipped book to reconcile
+against. Its capability row is all-FALSE, so the existing gates drop
+UPS/extra-battery pages with zero work. Spec table needs only **11 data rows,
+all mapping to existing row_keys — zero new vocabulary**.
+Content module: **`battery_long_storage_advisory`** (storage-page tail
+paragraph; 7/7 battery-pack coverage, 10 hand-copied replicas, 0 placeholders,
+0 brand words) — replaces `user_maintenance_instructions`, which is 0/7 in
+battery packs and is demoted to a rollout host-line module.
+Slice red lines: **no edits to `data/layout_params.csv` or any approved
+reference-layout contract** (the JE-1000F/US plan hashes the entire CSV — one
+added row unpins it, the #720 failure shape); no `figure_targets` whitelist
+expansion; no JE-300E fork reclamation; no authoring flip (the resolver is
+generate-then-verify; YAML stays the source of truth).
+
+- [ ] PR S1: Three layers + `BP@INTL` skeleton instance + slot_id guard
+  - Status: `pending`
+  - Gate: operator approves the slice plan.
+  - Target files:
+    - `docs/manifests/skeletons/bp-intl/blueprint.yaml` (new — Skeleton
+      Blueprint: ordered `slot_id` list, `requirement` per slot
+      (required/optional/capability:X), `presentation` four states, semantic
+      co-page pairs; no languages, no regions, no file paths)
+    - `tools/skeleton_resolve.py` (new — resolves Blueprint × capability row ×
+      region profile × language set into a Product Manual Plan, and emits the
+      Resolved Manifest; **generate-then-verify**: the emitted YAML must equal
+      the committed manifest byte-for-byte, mirroring the family-diff
+      discipline)
+    - `docs/manifests/manual_bp_us.yaml` (new — the Resolved Manifest,
+      committed; 3-language expansion included, 8-page blocks)
+    - `docs/manifests/skeletons/bp-intl/slot_templates.yaml` (new — the
+      slot→carrier mapping: `slot_id` → page_type / template / recipe /
+      csv-page source)
+    - `docs/manifests/region_profiles/us.yaml` (new — language-set reference,
+      compliance mounting rows, cover/TOC/back-cover form, contact params)
+    - `configs/config.bp-us.yaml` (new) — **decision recorded in the PR**:
+      a new config is required because `config.us.yaml`'s `page_manifest` is
+      static and a `{model}` token there would redirect JE-1000F too.
+      Carries a unique `build.family_id: bp-us`.
+    - [`../tools/config_pages.py`](../tools/config_pages.py) — page entries
+      accept an optional `slot_id`; for slot-bearing entries the materialized
+      name derives from `slot_id` and **bypasses `ensure_unique_name`'s
+      first-wins bare-name behavior**; entries without `slot_id` (all 17
+      existing manifests) go through the legacy path byte-identically
+    - [`../docs/manifests/family/index.yaml`](../docs/manifests/family/index.yaml) + [`../tests/test_manifest_family.py`](../tests/test_manifest_family.py) per M-pre.2
+  - **Queue-routing guard (P0, operator review 2026-08-21 — verified in code):**
+    [`../tools/queue_config_resolution.py`](../tools/queue_config_resolution.py)
+    `config_match_score` adds +1 to **any** filename that is not
+    `config.us.yaml`, so a US 3-language BP config outscores the host config
+    105:104 — a plain US queue record with no `Build_family` would silently
+    build a host manual from the battery-pack manifest. Therefore:
+    - BP queue records must carry `Build_family=bp-us` explicitly, and the
+      resolution path must never hand `config.bp-us.yaml` to a record that
+      lacks it (family-id match, filename-score exclusion, or an explicit
+      not-a-default marker — pick one, test it)
+    - regression tests in `tests/test_queue_config_resolution.py`: a plain US
+      record (no Build_family) resolves to `config.us.yaml` **with the BP
+      config present in the directory**; a `Build_family=bp-us` record
+      resolves to `config.bp-us.yaml`
+  - **Resolver contract closure (operator review 2026-08-21):** every slot
+    decision must trace to one of exactly three data carriers —
+    `blueprint.yaml` (slots, requirement, presentation, co-page groups),
+    `slot_templates.yaml` (slot→carrier), `region_profiles/us.yaml`
+    (region parameters). Resolution precedence is fixed and documented:
+    blueprint slots → capability gate (`model_capabilities.csv` row) →
+    region profile → language expansion. `tools/skeleton_resolve.py` may
+    contain **no slot-specific or region-specific literals** — any such
+    literal is the template-clone failure mode reborn as resolver branches,
+    and is a review-rejection criterion for this PR.
+  - Done when:
+    - blueprint slots carry stable `slot_id`s and the **new** manifest's
+      materialized names derive from `slot_id`, not iteration position; the
+      existing manifests' naming path is untouched (zero `pNN_` pin risk)
+    - `python3 -c "import tools.target_defaults"` succeeds with the new config
+      present, **and** `discover_target_defaults()` still resolves the US
+      family default to `config.us.yaml` (guard against the silent-swap
+      failure verified on the JP experiment; both `_family_default_map` and
+      `_language_config_map` paths checked)
+    - both queue-routing regression tests above pass
+    - `manual_bp_us.yaml` is registered as the **third repository anchor**;
+      `python3 tools/manifest_family.py fold` passes with exactly
+      **18 manifests / 3 anchors / 15 folded**
+    - `tools/skeleton_resolve.py --verify` proves emitted == committed bytes
+    - blueprint contains no `app_setup` and no `user_maintenance_instructions`
+      slot (0/7 in corpus battery packs); `ups_mode`/`extra_battery` slots are
+      `capability:`-gated and drop via the existing all-FALSE row
+  - Verification: `python3 -m unittest`; fold; import probe; M-pre.4 staging
+    diff on JE-1000F/US and JE-1000F/JP (host lines byte-identical).
+  - Rollback: revert config + manifest + index + blueprint together; resolver
+    is additive.
+
+- [ ] PR S2: Minimal contract tiering + BP recipes (mechanism + BP tier only)
+  - Status: `pending`
+  - Gate: S1 merged.
+  - **Mechanism correction (P0, operator review 2026-08-21 — verified in
+    code):** the required spec rows that produce the 93 issues come from
+    **`recipe.required_row_keys` and `recipe.field_map`**
+    ([`../tools/validate_spec_master_shared.py`](../tools/validate_spec_master_shared.py)
+    lines 275–288), resolved through the manifest's `generated_page` entries —
+    **not** from page contracts. Contracts gate assembly-time placeholders, a
+    different surface. The first draft's claim that editing two contract YAMLs
+    achieves 93 → 11 was wrong. The reduction decomposes as:
+    9 (app rows vanish because the S1 blueprint has no app slot) +
+    ≈73 (BP recipes list only BP row_keys) + contract tiering for the
+    assembly gate.
+  - Target files:
+    - `docs/templates/recipes/bp-us/03_product_overview.yaml`,
+      `docs/templates/recipes/bp-us/05_operation_guide.yaml` (new — recipes
+      are **per-line by design**, this is not a fork; they carry only the 11
+      BP row_keys: `product_name`, `model_no`, `capacity`, `cell_chemistry`,
+      `weight`, `dimensions`, `cycle_life`, `dc_expansion_port` ×2,
+      `charging_temperature`, `discharging_temperature`)
+    - [`../tools/page_contracts.py`](../tools/page_contracts.py) (tier keys
+      `category:<cat>` / `capability:<cap>`, `requires_capability` groups) so
+      the **shared** 03/05 contracts accept BP without a contract fork — the
+      14 host-specific placeholder groups (`ac_input`, `ac_output`,
+      `ac_power_button`, `dc12_port`, `dc_input`, `dc_usb_power_button`,
+      `default_standby_duration`, `energy_saving_ac_threshold`,
+      `energy_saving_auto_off_duration`, `energy_saving_dc_threshold`,
+      `main_power_button`, `total_output`, `usb_a`, `usb_c`) move behind host
+      tiers
+    - [`../docs/templates/contracts/03_product_overview.yaml`](../docs/templates/contracts/03_product_overview.yaml), `05_operation_guide` contract
+    - [`../tools/validate_spec_master_shared.py`](../tools/validate_spec_master_shared.py)
+      **only if** contract validation needs category/capability context passed
+      through — determine in the PR, with tests either way
+  - Scope guard: **the JE-300E fork is not touched** — reclaiming it is
+    rollout work.
+  - Done when:
+    - `validate_spec_master` for `JBP-2000B_US` reports **exactly the 11
+      genuine missing-data rows** pre-S4 (closed by S4), zero contract issues
+    - JE-1000F/US builds **byte-identically** (M-pre.4 worktree diff) — the
+      tiering must be a pure no-op for hosts
+  - Guard tests: [`../tests/test_page_contracts.py`](../tests/test_page_contracts.py),
+    [`../tests/test_validate_spec_master.py`](../tests/test_validate_spec_master.py),
+    + a new tier-resolution test.
+  - Rollback: `git revert`.
+
+- [ ] PR S3: Extract `battery_long_storage_advisory` as the first real snippet
+  - Status: `pending`
+  - Gate: S1 merged.
+  - Target files:
+    - `docs/templates/snippets/battery_long_storage_advisory/{en,fr,es}.rst` (new)
+    - [`../docs/templates/snippets/registry.yaml`](../docs/templates/snippets/registry.yaml) — first real entry in the literal `snippets: []`
+    - the BP storage page (generated_page + recipe with a `snippet_slots` slot)
+  - Scope: the BP book **consumes** the module in all three languages; the 10
+    host-side hand copies are measured but **not collapsed** (rollout work,
+    with byte-diff proof per copy). Module body is the tail paragraph only —
+    verified 0 placeholders (the page's temperature lines above it carry the
+    placeholders; the boundary excludes them).
+  - Done when:
+    - registry non-empty and schema-valid; `draft_engine` splices the snippet
+      literally (byte-conservation assertable at `tools/draft_engine.py:580`)
+    - the module renders in all three language blocks of the BP book
+    - presentation is `untitled_block`, never enters any TOC
+  - Guard tests: [`../tests/test_draft_engine.py`](../tests/test_draft_engine.py) + a snippet-registry test.
+  - Rollback: `git revert`; snippet files become orphans.
+
+- [ ] S4: Data intake + two authored templates (operator-gated)
+  - Status: `pending`
+  - Gate: S2 merged; operator approves each live-table write (existing
+    spec-intake gate, per-write readback).
+  - Work:
+    - 11 Spec_Master rows for `JBP-2000B_US`, cloned from `JE-2000E_US`
+      siblings via the existing clone-ingest path (`Row_key` set verified:
+      `product_name`, `model_no`, `capacity`, `cell_chemistry`, `weight`,
+      `dimensions`, `cycle_life`, `dc_expansion_port` ×2, `charging_temperature`,
+      `discharging_temperature`)
+    - battery-pack troubleshooting codes (corpus printed p05) as Model-scoped
+      `troubleshooting_blocks` rows
+    - `connections` and `installation` templates authored from the shipped
+      book (printed p04); provenance per M-pre.5, operator reviews wording;
+      fr/es localized copy comes from the shipped book itself — the
+      translations already exist in print
+  - Done when: `python3 build.py check --config configs/config.bp-us.yaml
+    --model JBP-2000B --region US` exits 0.
+  - Rollback: live-table rows are individually deletable (record_ids logged);
+    templates revert by git.
+
+- [ ] S5: Four-renderer pass (verification round, no new code)
+  - Status: `pending`
+  - Gate: S1–S4 merged.
+  - Mechanical criteria (each one command + one exit code / grep):
+    - check/unittest/ruff/guardrails all green
+    - **PDF page count == 28 exactly** (`pages = F(3) + 3×8 + 1`; the formula
+      held with zero exceptions on 25 corpus books); uniform page size; zero
+      `Undefined control sequence`
+    - HTML: check → md → html all exit 0; each language block has the new
+      pages' `<section>`s; `grep 'hb-[a-z-]*-composition'` on the new target's
+      HTML = **zero hits** (a hit means the whitelist was wrongly expanded)
+    - Word: bundle builds green (reference doc binds at config level — no
+      per-model work expected)
+    - IDML: fallback export produces the `.idml`;
+      `git diff data/layout_params.csv docs/renderers/contracts/reference_layout/`
+      **empty**; `connections`/`installation` land as `UNCLASSIFIED_PROSE`
+      with the coverage warning — recorded as an accepted slice degradation
+      (optional 2-line `page_roles.py` rule if the warning noise matters)
+    - regression: M-pre.4 staging diff on JE-1000F/US and JE-1000F/JP
+  - Deliverable: a short pass/fail table per criterion, attached to the PR
+    thread — no prose claims of "works".
+
+- [ ] S6: InDesign finishing + page-by-page reconciliation (operator round)
+  - Status: `pending`
+  - Gate: S5 green.
+  - Work: pipeline delivers the handoff zip (existing mechanism: relative
+    Links, fonts opt-in); operator performs one real InDesign finishing pass;
+    the finished book is reconciled page-by-page against the shipped
+    `Jackery Battery Pack 2000 User Manual V2.0-2026-04-27.pdf` (28 pages).
+  - Deliverable: reconciliation report in `code-as-doc/reviews/`, every
+    difference classified **pipeline-gap / finishing-layer / data-gap /
+    accepted-degradation** with counts. This report re-scopes the rollout.
+  - Slice exit: report delivered and operator rules on each pipeline-gap.
+
+### Rollout backlog (deferred until S6 acceptance; full audited text in commit 80321368)
+
+Every item keeps M-pre. Re-scope each against the S6 report before starting.
+
+- [ ] M0 ordinal/naming decoupling for **existing** manifests — `deferred`;
+  the slice proves slot_id naming on new manifests only; migrating the pNN_
+  world stays gated on M-pre.3 (committed review derivatives + approved pin).
+- [ ] M1 language-block parameterization of the 17 existing manifests +
+  family index v2 — `deferred`; the slice's resolver is the prototype.
+- [ ] M2 App/联网 capability — `deferred`, **blocked on a design decision**
+  (no blank state exists: writer emits TRUE/FALSE only, empty reads as FALSE
+  and drops the page everywhere).
+- [ ] M3 `MAIN@JP` opening repair — `deferred`; must be an in-place
+  restructure of `01_meaning_of_symbols.rst` (adding `safety_ja.rst` back
+  would revert #607; it is a byte-exact 64-line prefix).
+- [ ] M4 `MAIN@CN` repair + conformity tail slot — `deferred`; note the
+  known-red `JE-2000E/CN` baseline (`ac_bypass` UNUSED_FOOTNOTE).
+- [ ] M5 full BP family (EU 6-language as slice #2, JP cell, A5 dissolution)
+  — `deferred`; both `target_defaults` failure paths must be closed for any
+  JP-family config.
+- [ ] M7 full contract tiering + JE-300E fork reclamation (7 assets, 6
+  manifests' model_overrides, 5 diff carriers, AC presence bits) — `deferred`;
+  gate on M5-equivalent category data and the live `review/JE-300E-EU` branch.
+- [ ] M6 `page_registry` composition authority — `deferred`; hard-gated on
+  truthful manifests (M3/M4) and T-K4.
+- [ ] M8 compliance fragment library + Row_key/Variant_key split — `deferred`;
+  operator compliance decision table signs first; ANATEL is a finishing-layer
+  item, not a blocker.
+- [ ] M9 data-quality closeout + PH line + reverse-gap registration —
+  `deferred`; requires a PH manifest, not just a config; no dependency on M5.
+
+### Milestone M exit criteria (unchanged targets, slice-first path)
+
+- [ ] slice S1–S6 accepted, reconciliation report ruled on
+- [ ] rollout re-scoped from the report and executed
+- [ ] all five skeleton cells build at least one target end to end
+- [ ] corpus reconstruction 58/58 (3 outliers registered `legacy`)
+- [ ] **HTE153 regression-baseline reconciliation** (AU/KR/pt-BR pipeline
+      output vs shipped books)
+- [ ] **the Workstream W field test**: next real new line ≤2 operator days
+- [ ] known-red baselines fixed or re-recorded; maintenance record appended to
+      [`code_optimization_log.md`](code_optimization_log.md); Workstream M
+      status updated in [`optimization_project.md`](optimization_project.md)
 
 ## 8. Success Criteria
 

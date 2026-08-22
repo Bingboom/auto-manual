@@ -1,0 +1,31 @@
+topic_id,tier,merged_from,first_seen_slug,notes
+cover,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+preface_important,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-V2-0-2026-04-28,日规 0 命中（前言一律并入封面，非槽位）；覆盖率低来自承载位置而非内容缺失
+toc,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+safety_info,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+symbol_meaning,universal,(journal2 merge#5：词表 max_occurrences=2，骨架槽位收敛为 1),E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-V2-0-2026-04-28,
+box_contents,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+product_overview,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+lcd_display,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+operation,universal,screen_operation|energy_saving_mode(journal2 merge#7 层级吸收),E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+charging,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+storage,universal,storage_maintenance(改名，journal2 merge#3),E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-V2-0-2026-04-28,maintenance 保留独立 id（HTE151 两本实证两者可独立开关）
+troubleshooting,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+specifications,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+warranty,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+back_cover,universal,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+ups_mode,category_common,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+app_setup,category_common,app_user_manual(journal2 merge#6，max_occurrences=2 骨架槽位收敛为 1),E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+user_maintenance_instructions,category_common,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-V2-0-2026-04-28,
+connections,category_common,extra_battery|power_station_pairing(journal2 merge#4，perspective=host|pack),E2000-HTE152-2000-Pro-Max-V0-5-2026-06-02,主机容器侧/加电包镜像侧同一装配关系两角色；子节集由 HTE157 美加规 6 子节确定
+usage_precautions,specific,,E1500-HTE140-Jackery-1500-New,
+disclaimer,specific,,E1500-HTE140-Jackery-1500-New,
+fcc,specific,,E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-V2-0-2026-04-28,
+regulatory_compliance,specific,,E2000-HTE152-Jackery-HomePower-2000-Plus-User-Manual-JE-2000E-EUUK-V2-0-2026-08-03,
+cn_conformity_certificate,specific,certificate_of_conformity|qc_certificate|quality_certificate|back_cover@中规合格证页×4(journal2 merge#2),E1500-HTE140-1500-Pro-2,中规 7/7 全有，即中规封底；归一后中规 back_cover 覆盖率归零
+installation,specific,vertical_stand_mounting(journal2 merge#7 层级吸收),E1000-HTE151-Jackery-SlimPower-H1-V2-0-2026-07-29,
+bottom_cleaning,specific,bottom_panel_cleaning(journal2 merge#1),E1500-HTE118-Jackery-Explorer-1500-Ultra-User-Manual-AU-1,
+battery_recycling,specific,,E500-HTE132-Jackery-500-New,
+key_combinations,specific,,E2000-HTE154-Jackery-Explorer-2000-User-Manual-JE-2000F-EUUK-V2-0-2026-08-04,
+maintenance,specific,,E1000-HTE151-Jackery-SlimPower-H1-V2-0-2026-07-29,
+smart_home_backup_ess,specific,,E3600-HTE157-Jackery-HomePower3600-Pro-Max-Portable-Power-Station-User-Manual-1,归一后词表中唯一纯单例 id
