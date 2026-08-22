@@ -115,6 +115,11 @@ class TransformSpec:
     images: str | None = None
     graphics: str | None = None
     fill: None = None
+    # drop_leader_strokes only: per-master leader stroke widths. Omitted means
+    # the pipeline defaults (the JE-1000F US master's 1.821pt / 0.30pt).
+    halo_width_pt: float | None = None
+    line_width_pt: float | None = None
+    width_tolerance_pt: float | None = None
 
     def as_manifest(self) -> dict[str, Any]:
         payload: dict[str, Any] = {"op": self.op}
@@ -126,6 +131,10 @@ class TransformSpec:
             payload["graphics"] = self.graphics
         if self.op == "redact_text":
             payload["fill"] = self.fill
+        for name in ("halo_width_pt", "line_width_pt", "width_tolerance_pt"):
+            value = getattr(self, name)
+            if value is not None:
+                payload[name] = value
         return payload
 
 

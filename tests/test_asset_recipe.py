@@ -7,7 +7,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from tools.asset_pipeline.models import RecipeValidationError
-from tools.asset_pipeline.recipe import load_recipe
+from tools.asset_pipeline.recipe import _transform, load_recipe
 
 ROOT = Path(__file__).resolve().parents[1]
 OFFICIAL_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je1000f_us_master.json"
@@ -325,6 +325,49 @@ class TestAssetRecipe(unittest.TestCase):
             qr_candidate.crop_bbox,
         )
         self.assertTrue(all(output.expected_sha256 for output in qr_candidate.outputs))
+
+    def test_leader_widths_default_to_the_pipeline_constants(self) -> None:
+        """Omitting the widths must keep pre-existing recipes byte-identical.
+
+        The widths became per-recipe so a second master could use the operator
+        at all; every recipe written before that carries no width fields and
+        must still resolve to the JE-1000F US master's 1.821pt / 0.30pt.
+        """
+        from tools.asset_pipeline import leaders
+
+        spec = _transform({"op": "drop_leader_strokes"}, "t")
+        self.assertIsNone(spec.halo_width_pt)
+        self.assertIsNone(spec.line_width_pt)
+        self.assertIsNone(spec.width_tolerance_pt)
+        self.assertNotIn("halo_width_pt", spec.as_manifest())
+        self.assertAlmostEqual(1.821, leaders.HALO_WIDTH)
+        self.assertAlmostEqual(0.30, leaders.LINE_WIDTH)
+        self.assertAlmostEqual(0.03, leaders.WIDTH_TOLERANCE)
+
+    def test_leader_widths_round_trip_when_declared(self) -> None:
+        spec = _transform(
+            {
+                "op": "drop_leader_strokes",
+                "halo_width_pt": 2.0,
+                "line_width_pt": 0.202,
+                "width_tolerance_pt": 0.05,
+            },
+            "t",
+        )
+        self.assertAlmostEqual(2.0, spec.halo_width_pt)
+        self.assertAlmostEqual(0.202, spec.line_width_pt)
+        self.assertAlmostEqual(0.05, spec.width_tolerance_pt)
+        manifest = spec.as_manifest()
+        self.assertAlmostEqual(2.0, manifest["halo_width_pt"])
+        self.assertAlmostEqual(0.202, manifest["line_width_pt"])
+
+    def test_rejects_out_of_range_leader_width(self) -> None:
+        for bad in (0, -1, 9, "2.0", True):
+            with self.subTest(bad=bad):
+                with self.assertRaises(Exception):
+                    _transform(
+                        {"op": "drop_leader_strokes", "halo_width_pt": bad}, "t"
+                    )
 
 
 if __name__ == "__main__":

@@ -58,8 +58,18 @@ def find_leader_geometries(
     bbox: tuple[float, float, float, float],
     *,
     margin: float = 0.5,
+    halo_width: float = HALO_WIDTH,
+    line_width: float = LINE_WIDTH,
+    width_tolerance: float = WIDTH_TOLERANCE,
 ) -> tuple[tuple[tuple[float, float, float, float], ...], ...]:
-    """Axis-aligned polylines stroked at both the halo and the line width."""
+    """Axis-aligned polylines stroked at both the halo and the line width.
+
+    The widths are per-master, not universal: the JE-1000F US master draws
+    1.821pt halo + 0.30pt stroke (the module defaults), the HTP017 master draws
+    2.00pt + 0.202pt. Hardcoding them meant the operator silently matched
+    nothing on a second master, so they are parameters with the original values
+    as defaults — existing recipes keep byte-identical behaviour.
+    """
     groups: dict[tuple, list[float]] = {}
     for drawing in page.get_drawings():
         items = drawing["items"]
@@ -83,8 +93,8 @@ def find_leader_geometries(
 
     leaders: list[tuple[tuple[float, float, float, float], ...]] = []
     for segments, widths in groups.items():
-        has_halo = any(abs(w - HALO_WIDTH) < WIDTH_TOLERANCE for w in widths)
-        has_line = any(abs(w - LINE_WIDTH) < WIDTH_TOLERANCE for w in widths)
+        has_halo = any(abs(w - halo_width) < width_tolerance for w in widths)
+        has_line = any(abs(w - line_width) < width_tolerance for w in widths)
         if not (has_halo and has_line):
             continue
         if not all(

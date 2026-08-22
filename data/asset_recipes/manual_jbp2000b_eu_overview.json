@@ -1,0 +1,347 @@
+{
+ "schema_version": 1,
+ "coordinate_contract": {
+  "page_numbering": "pdf-1-based",
+  "bbox_units": "pt",
+  "bbox_origin": "top-left",
+  "bbox_space": "source-page"
+ },
+ "normalization": {
+  "engine": "pymupdf",
+  "validated_version": "1.28.0",
+  "validated_mupdf_version": "1.29.0",
+  "pdf_save": {
+   "garbage": 4,
+   "clean": true,
+   "deflate": true,
+   "no_new_id": true
+  },
+  "forbidden_pdf_markers": [
+   "AIPrivateData",
+   "PieceInfo",
+   "AIMetaData"
+  ],
+  "max_render_pixels": 40000000
+ },
+ "source": {
+  "source_key": "source/manual_jbp2000b_eu_master",
+  "expected_sha256": "ca349701e381fddef470272bba05a8f8342cb8b6febb411d4aa19a8010a789e6",
+  "expected_page_count": 13
+ },
+ "archive": {
+  "pages": {
+   "first": 1,
+   "last": 13
+  },
+  "pdf": {
+   "path_pattern": "archive/pages/page-{page:04d}.pdf"
+  },
+  "previews": {
+   "path_pattern": "archive/previews/page-{page:04d}.png",
+   "default_scale": 1,
+   "page_scale": {
+    "1": 0.25
+   }
+  }
+ },
+ "page_catalog": [
+  {
+   "page": 1,
+   "page_key": "engineering_overview",
+   "role": "engineering_overview",
+   "locale": "mul",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": [
+     "engineering imposition overview; never a build page"
+    ]
+   },
+   "risk_tags": [
+    "engineering-overview"
+   ]
+  },
+  {
+   "page": 2,
+   "page_key": "cover_front",
+   "role": "cover_front",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": []
+   },
+   "risk_tags": []
+  },
+  {
+   "page": 3,
+   "page_key": "frontmatter_important",
+   "role": "frontmatter",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": []
+   },
+   "risk_tags": []
+  },
+  {
+   "page": 4,
+   "page_key": "frontmatter_toc",
+   "role": "frontmatter",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": []
+   },
+   "risk_tags": []
+  },
+  {
+   "page": 5,
+   "page_key": "en_01",
+   "role": "manual_page",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": []
+   },
+   "risk_tags": []
+  },
+  {
+   "page": 6,
+   "page_key": "en_02",
+   "role": "manual_page",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": []
+   },
+   "risk_tags": []
+  },
+  {
+   "page": 7,
+   "page_key": "en_03",
+   "role": "manual_page",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": []
+   },
+   "risk_tags": []
+  },
+  {
+   "page": 8,
+   "page_key": "en_04",
+   "role": "manual_page",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": [
+     "connections page art depicts the EU host: BS 1363 sockets and a Jackery Explorer 2000 Plus nameplate, both vector product markings that redaction cannot and should not touch. Not extractable for the US line."
+    ]
+   },
+   "risk_tags": [
+    "region-locked-art"
+   ]
+  },
+  {
+   "page": 9,
+   "page_key": "en_05",
+   "role": "manual_page",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": []
+   },
+   "risk_tags": []
+  },
+  {
+   "page": 10,
+   "page_key": "en_06",
+   "role": "manual_page",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": [
+     "charging page art depicts the EU host: BS 1363 sockets, a Jackery Explorer 2000 Plus nameplate and a 220-240V callout. Not extractable for the US line."
+    ]
+   },
+   "risk_tags": [
+    "region-locked-art"
+   ]
+  },
+  {
+   "page": 11,
+   "page_key": "en_07",
+   "role": "manual_page",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": []
+   },
+   "risk_tags": []
+  },
+  {
+   "page": 12,
+   "page_key": "en_08",
+   "role": "manual_page",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": []
+   },
+   "risk_tags": []
+  },
+  {
+   "page": 13,
+   "page_key": "eu_red_doc",
+   "role": "manual_page",
+   "locale": "en",
+   "build_eligible": false,
+   "gate": {
+    "status": "archive",
+    "reasons": [
+     "EU-only RED Declaration of Conformity; no US counterpart"
+    ]
+   },
+   "risk_tags": [
+    "region-specific"
+   ]
+  }
+ ],
+ "assets": [
+  {
+   "asset_key": "overview/jbp2000b/front_controls",
+   "page": 6,
+   "build_eligible": false,
+   "scope": {
+    "models": [
+     "JBP-2000B"
+    ],
+    "regions": [
+     "ALL"
+    ],
+    "locales": [
+     "und"
+    ]
+   },
+   "text_policy": "fixed-product-markings",
+   "visual_review_required": true,
+   "transforms": [
+    {
+     "op": "crop",
+     "bbox_pt": [
+      30.0,
+      242.9,
+      149.0,
+      340.6
+     ]
+    },
+    {
+     "op": "drop_leader_strokes",
+     "note": "two callout leaders. Their 2.00pt white halo had erased the POWER silkscreen's W and broken the button-recess outline, so suppressing the strokes restores the art instead of patching over it. Widths are this master's, not the pipeline defaults.",
+     "halo_width_pt": 2.0,
+     "line_width_pt": 0.202,
+     "width_tolerance_pt": 0.05
+    },
+    {
+     "op": "redact_text",
+     "images": "preserve",
+     "graphics": "preserve",
+     "fill": null
+    }
+   ],
+   "outputs": [
+    {
+     "format": "pdf",
+     "path": "docs/renderers/latex/assets/jbp2000b_front_controls.pdf"
+    },
+    {
+     "format": "png",
+     "path": "docs/renderers/latex/assets/jbp2000b_front_controls.png",
+     "scale": 4
+    }
+   ],
+   "gate": {
+    "status": "quarantine",
+    "reasons": [
+     "first extraction round: quarantine forces visual review, so build_eligible stays false until the hashes are pinned and the gate flips to approved"
+    ]
+   },
+   "risk_tags": [
+    "model-specific"
+   ]
+  },
+  {
+   "asset_key": "overview/jbp2000b/left_side_ports",
+   "page": 6,
+   "build_eligible": false,
+   "scope": {
+    "models": [
+     "JBP-2000B"
+    ],
+    "regions": [
+     "ALL"
+    ],
+    "locales": [
+     "und"
+    ]
+   },
+   "text_policy": "fixed-product-markings",
+   "visual_review_required": true,
+   "transforms": [
+    {
+     "op": "crop",
+     "bbox_pt": [
+      171.0,
+      242.9,
+      337.0,
+      340.6
+     ]
+    },
+    {
+     "op": "drop_leader_strokes",
+     "note": "three callout leaders (handle, port A, port B). Same 2.00pt halo, which had punched through the body outline top and bottom.",
+     "halo_width_pt": 2.0,
+     "line_width_pt": 0.202,
+     "width_tolerance_pt": 0.05
+    },
+    {
+     "op": "redact_text",
+     "images": "preserve",
+     "graphics": "preserve",
+     "fill": null
+    }
+   ],
+   "outputs": [
+    {
+     "format": "pdf",
+     "path": "docs/renderers/latex/assets/jbp2000b_left_side_ports.pdf"
+    },
+    {
+     "format": "png",
+     "path": "docs/renderers/latex/assets/jbp2000b_left_side_ports.png",
+     "scale": 4
+    }
+   ],
+   "gate": {
+    "status": "quarantine",
+    "reasons": [
+     "first extraction round: quarantine forces visual review, so build_eligible stays false until the hashes are pinned and the gate flips to approved"
+    ]
+   },
+   "risk_tags": [
+    "model-specific"
+   ]
+  }
+ ]
+}
