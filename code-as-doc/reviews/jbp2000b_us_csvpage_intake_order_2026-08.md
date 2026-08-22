@@ -237,10 +237,81 @@ ALL 行对该目标失效」。那样 11 条主机行一动不动。但这是渲
 
 回滚：新建行逐条可删（record_id 会记录）；编辑类改回原值，原值已在本单列出。
 
-## 5. 需要你回答的问题清单
+---
 
-1. §1.3 两处符号文本分叉：保留库里现有文本（默认建议），还是改用出货书措辞？
-2. §2 加电包 FR/ES 多出的 FF 说明：照抄出货书的三语不对称，还是给 EN 补齐？
-3. §2 ES 印刷错字 `Jackery.En caso`：照抄还是修正？
-4. §3.1 **是否授权改那 11 条主机共用行**？还是走改渲染器的替代方案？
-5. §3.4 `F6-F9, FA, FC` 单行还是硬换行？
+## 5. 操作者裁决（2026-08-22 回复）
+
+| # | 问题 | 裁决 |
+| --: | --- | --- |
+| 1 | 两处符号文本分叉 | **保留库里现有文本**（默认建议），只加 Model 列 |
+| 2 | 加电包 FR/ES 多出的 FF 说明 | **给 EN 补齐**（见 §5.1，有前提要先确认） |
+| 3 | ES 印刷错字 `Jackery.En caso` | **修正**为 `Jackery. En caso` |
+| 4 | 11 条主机共用行 | 反问「授权改啥」→ 见 §5.2 逐条说明，仍待授权 |
+| 5 | `F6-F9, FA, FC` | **硬换行**，值写作 `F6-F9,\nFA, FC` |
+
+### 5.1 「给 EN 补齐」有个前提要先确认
+
+主机 LCD 表的 `Fault code` 行措辞完全不同（`A product error has occurred. Please refer
+to the Troubleshooting section for details.`），**没有 FF 专门建议**。所以补齐 EN 不是抄现成
+句子，而是我照 FR/ES 新写一句英文——这是撰写行为，不是转录，必须明说。
+
+拟写（照 FR/ES 语序直译，用出货书自己的既有措辞零件）：
+
+> If code FF appears, remove the load and the product may recover by itself; if it does
+> not, please contact Jackery Customer Support. If any other code appears, please contact
+> Customer Support.
+
+**但更要紧的是：出货书自己对 FF 给了两种不同处置。**
+
+| 位置 | 对 FF 的处置 |
+| --- | --- |
+| LCD 页（printed 03，仅 FR/ES） | 移除负载，产品可自行恢复；否则联系客服 |
+| 故障排除页（printed 05，三语） | 把产品放到温度适宜的环境，等故障消失 |
+
+同一本书同一个故障码，两页给的办法不同。补齐 EN 会把这处**内部矛盾从两语扩散到三语**。
+三个选择：
+
+- **A**：照上面拟写补齐 EN，矛盾如实保留（忠于出货书，但英文读者会看到两个互斥建议）
+- **B**：补齐 EN 的同时，把 LCD 页 FF 那句删掉、只留故障排除页那条（消除矛盾，但改动了出货书内容）
+- **C**：先请工程确认 FF 到底该怎么处置，再定三语文案
+
+我不替你选——这已经不是转录问题，是产品内容问题。
+
+### 5.2 §3.1 那 11 条主机行，「授权改啥」的逐条回答
+
+**要改的字段只有一个：`Model`。文本一个字都不动。**
+
+改动内容：把 `Model` 从 `ALL` 改成明确的八主机清单
+`JE-1000F, JE-1000H, JE-1500D, JE-2000D, JE-2000E, JE-2000F, JHP-1000A, JHP-3600C`。
+
+| record_id | error_code | Region | 现 Model | 改后 Model |
+| --- | --- | --- | --- | --- |
+| `recvkCEhroTn5V` | F0 | US, pt-BR | `ALL` | 八主机清单 |
+| `recvkCEhro1KXI` | F1 | US, pt-BR | `ALL` | 同上 |
+| `recvkCEhroosYR` | F2 | US, pt-BR | `ALL` | 同上 |
+| `recvkCEhroKfUF` | F3 | US, pt-BR | `ALL` | 同上 |
+| `recvkCEhroAiIn` | F4 | US, pt-BR | `ALL` | 同上 |
+| `recvkCEhroj35L` | F5 | US, pt-BR | `ALL` | 同上 |
+| `recvkCEhroxxbH` | F6 | US, pt-BR | `ALL` | 同上 |
+| `recvkCEhro5WTQ` | F7 | US, pt-BR | `ALL` | 同上 |
+| `recvkCEhroT4as` | F8 | US, pt-BR | `ALL` | 同上 |
+| `recvkCEhroFmNJ` | F9 | US, pt-BR | `ALL` | 同上 |
+| `recvkCEhroe1SA` | FE | US, pt-BR | `ALL` | 同上 |
+
+**为什么非改不可**：`Model=ALL` 在 `renderers_troubleshooting.py:111` 直接短路匹配，
+渲染器**没有「型号专有行优先于 ALL 行」这个概念**。所以只加 7 条加电包行不够——
+加电包的故障排除页会把主机那 11 条一起印出来。
+
+**风险与已验证的部分**：
+- 已实跑验证：改完后 `JBP-2000B/US` 正好 7 行（三语），而 `JE-1000F/US`、
+  `JE-1000F/pt-BR`、`JE-1500D/pt-BR`、`JE-1000F/EU`、`JE-2000E/KR` 全部与改前**逐字一致**。
+- 未验证的风险：八主机清单是从 `data/model_capabilities.csv` 的 US/pt-BR doc key 推的。
+  **若线上构建表里存在该镜像没有的 US 或 pt-BR 目标，它下次构建会硬失败**
+  （`troubleshooting page has no matching rows`）。落笔前我会对着线上构建表核一遍并报给你。
+- 回滚：把这 11 个字段改回 `ALL` 即可，原值已在上表列出。
+
+**替代方案（不动这 11 行）**：改 `_collect_rows`，让「存在显式命名本目标的行时，
+ALL 行对该目标失效」。代价是渲染器改动、影响面覆盖所有目标、需要回归所有现有产线。
+好处是主机数据零改动。
+
+**要你回的就一句话**：走「改这 11 行 Model」还是走「改渲染器」。
