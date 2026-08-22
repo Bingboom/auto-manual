@@ -17,8 +17,12 @@ paths:
   page_registry_csv: data/phase2/page_registry.csv
 
 checks:
+  # NOTE: this list REPLACES the one in us-single-language-base.yaml —
+  # config_loader deep-merges mappings but assigns lists wholesale — so the
+  # accessory literal has to be repeated here.
   allowed_foreign_identity_literals:
     - 占位符
+    - Jackery Battery Pack 2000
 
 # NOTE: sync stays inline here (not extracted to phase2-sync-base.yaml): this
 # file already `extends: us-single-language-base.yaml`, and config_loader

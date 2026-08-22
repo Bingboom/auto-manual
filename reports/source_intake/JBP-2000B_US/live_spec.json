@@ -1,0 +1,378 @@
+{
+ "fields": [
+  "Document_key_link",
+  "Row_key_link",
+  "Slot_key_link",
+  "Page",
+  "Section",
+  "Section_order",
+  "Row_order",
+  "Line_order",
+  "Version",
+  "Is_Latest",
+  "Source_lang",
+  "Row_label_source",
+  "Row_label_fr",
+  "Row_label_es",
+  "Param_source",
+  "Param_fr",
+  "Param_es",
+  "Value_source",
+  "Value_fr",
+  "Value_es"
+ ],
+ "rows": [
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBny7s"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "GENERAL INFO",
+   1,
+   1,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Product Name",
+   "Nom du produit",
+   "Nombre del producto",
+   null,
+   null,
+   null,
+   "Jackery Battery Pack 2000",
+   "Jackery Battery Pack 2000",
+   "Jackery Battery Pack 2000"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnxQA"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "GENERAL INFO",
+   1,
+   2,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Model No.",
+   "N° modèle",
+   "N° de modelo",
+   null,
+   null,
+   null,
+   "JBP-2000B",
+   "JBP-2000B",
+   "JBP-2000B"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnvOF"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "GENERAL INFO",
+   1,
+   3,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Capacity",
+   "Capacité",
+   "Capacidad",
+   null,
+   null,
+   null,
+   "2048 Wh (40 Ah/51.2 V DC)",
+   "2048 Wh (40 Ah/51,2 V DC)",
+   "2048 Wh (40 Ah/51,2 V DC)"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnw4x"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "GENERAL INFO",
+   1,
+   4,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Cell Chemistry",
+   "Cellule Chimique",
+   "Química Celular",
+   null,
+   null,
+   null,
+   "LiFePO₄",
+   "LiFePO₄",
+   "LiFePO₄"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnzKZ"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "GENERAL INFO",
+   1,
+   5,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Weight",
+   "Poids",
+   "Peso",
+   null,
+   null,
+   null,
+   "About 32.63 lbs/14.8 kg",
+   "Environ 32,63 lbs / 14,8 kg",
+   "Aproximadamente 32,63 libras/14,8 kg"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnx3c"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "GENERAL INFO",
+   1,
+   6,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Dimensions",
+   "Dimensions",
+   "Dimensiones",
+   null,
+   null,
+   null,
+   "14.37 × 10.04 × 7.52 in / 36.5 × 25.5 × 19.1 cm",
+   "14,37 × 10,04 × 7,52 po / 36,5 × 25,5 × 19,1 cm",
+   "14,37 × 10,04 × 7,52 pulgadas / 36,5 × 25,5 × 19,1 cm"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnwiU"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "GENERAL INFO",
+   1,
+   7,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Cycle Life",
+   "Durée de vie",
+   "Ciclo de vida",
+   null,
+   null,
+   null,
+   "6000 cycles to 70%+ capacity",
+   "Capacité de 6000 cycles à 70 % ou plus",
+   "6000 ciclos de carga hasta 70 % + de capacidad"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "recvkvYtLcFY2k"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "INPUT PORTS",
+   2,
+   1,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "DC Expansion Port (Input)",
+   "Port d’extension CC (Entrée)",
+   "Puerto de Expansión de CC (Entrada)",
+   null,
+   null,
+   null,
+   "36.8V-57.6V⎓75A Max",
+   "36,8V-57,6V⎓75A Max",
+   "36,8 V-57,6 V⎓75 A Máx."
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "recvkvYtLcFY2k"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "OUTPUT PORTS",
+   3,
+   1,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "DC Expansion Port (Output)",
+   "Port d’extension CC (Sortie)",
+   "Puerto de Expansión de CC (Salida)",
+   null,
+   null,
+   null,
+   "36.8V-57.6V⎓75A Max",
+   "36,8V-57,6V⎓75A Max",
+   "36,8 V-57,6 V⎓75 A Máx."
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnwbK"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "ENVIRONMENTAL OPERATING TEMPERATURE",
+   4,
+   1,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Charge Temperature",
+   "Température de charge",
+   "Temperatura de carga",
+   null,
+   null,
+   null,
+   "14°F to 113°F / -10°C to 45°C",
+   "14°F à 113°F / -10°C à 45°C",
+   "14°F a 113°F / -10°C a 45°C"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnxbM"
+    }
+   ],
+   null,
+   [
+    "specifications"
+   ],
+   "ENVIRONMENTAL OPERATING TEMPERATURE",
+   4,
+   2,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Discharge Temperature",
+   "Température de décharge",
+   "Temperatura de descarga",
+   null,
+   null,
+   null,
+   "14°F to 113°F / -10°C to 45°C",
+   "14°F à 113°F / -10°C à 45°C",
+   "14°F a 113°F / -10°C a 45°C"
+  ]
+ ]
+}

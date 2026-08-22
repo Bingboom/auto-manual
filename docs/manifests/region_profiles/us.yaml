@@ -10,9 +10,12 @@ slot_overrides:
   safety_info:
     file: templates/page_us-{lang}/safety_{lang}.rst
   product_overview:
-    recipe: templates/recipes/bp-us/{lang}/03_product_overview.yaml
+    # One recipe serves every language block: the assembly-time template comes
+    # from the manifest entry, not the recipe (same as the host line, where
+    # manual_us.yaml points all three languages at recipes/us-en/03).
+    recipe: templates/recipes/bp-us/03_product_overview.yaml
   operation:
-    recipe: templates/recipes/bp-us/{lang}/05_operation_guide.yaml
+    recipe: templates/recipes/bp-us/05_operation_guide.yaml
 compliance:
   # Carrier is a per-book mounting fact (audit §6.3). The US/CA carrier today
   # is the pipeline's standalone-include form; the parasitic-block form stays

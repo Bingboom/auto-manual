@@ -302,7 +302,16 @@ def _prepare_asset_source(
             # The leaders sit above the artwork and carry a white halo, so a
             # whiteout can only punch a hole. Suppressing their own strokes
             # lets the grille and panel divider underneath render intact.
-            leaders = find_leader_geometries(fitz, page, tuple(asset.crop_bbox))
+            leader_kwargs = {}
+            if transform.halo_width_pt is not None:
+                leader_kwargs["halo_width"] = transform.halo_width_pt
+            if transform.line_width_pt is not None:
+                leader_kwargs["line_width"] = transform.line_width_pt
+            if transform.width_tolerance_pt is not None:
+                leader_kwargs["width_tolerance"] = transform.width_tolerance_pt
+            leaders = find_leader_geometries(
+                fitz, page, tuple(asset.crop_bbox), **leader_kwargs
+            )
             suppressed = suppress_leader_strokes(fitz, source, page, leaders)
             if suppressed != len(leaders) * 2:
                 raise ArtifactValidationError(

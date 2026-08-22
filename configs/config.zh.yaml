@@ -31,3 +31,9 @@ paths:
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
+
+# See the same block in config-bases/phase2-sync-base.yaml. Repeated here
+# because this config is its own inheritance root (no `extends`).
+checks:
+  allowed_foreign_identity_literals:
+    - Jackery Battery Pack 2000

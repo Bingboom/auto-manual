@@ -406,11 +406,27 @@ def _transform(value: Any, location: str) -> TransformSpec:
         )
     if op == "drop_leader_strokes":
         # Structural op: the leaders are found by their halo/line stroke pair at
-        # extraction time, so the recipe carries no coordinates to go stale.
-        _keys(data, location=location, required={"op"}, optional={"note"})
+        # extraction time, so the recipe carries no coordinates to go stale. The
+        # stroke WIDTHS are per-master though, so they are declarable — omitted
+        # means the pipeline defaults, which is what every pre-existing recipe
+        # relies on.
+        _keys(
+            data,
+            location=location,
+            required={"op"},
+            optional={"note", "halo_width_pt", "line_width_pt", "width_tolerance_pt"},
+        )
         if "note" in data:
             _string(data["note"], f"{location}.note")
-        return TransformSpec(op=op)
+        widths = {}
+        for name in ("halo_width_pt", "line_width_pt", "width_tolerance_pt"):
+            if name not in data:
+                continue
+            value = data[name]
+            if not isinstance(value, (int, float)) or isinstance(value, bool) or not 0 < value <= 8:
+                raise _fail(f"{location}.{name}", "must be a number in (0, 8]")
+            widths[name] = float(value)
+        return TransformSpec(op=op, **widths)
     raise _fail(
         f"{location}.op",
         "must be crop, drop_leader_strokes, redact_text, redact_text_region, "

@@ -1,0 +1,4 @@
+{"fields":["copy_key","copy_type","page_id","Market","Model","Source_lang","source_text","Is_Latest","Version","notes"],
+ "rows":[
+  ["product_overview.left_side_view","panel_title","03_product_overview","ALL","ALL","en","LEFT SIDE VIEW","TRUE","V1.0","加电包(BP@INTL)概览页左侧视图面板标题;源=HTP017 US 出货书 printed p02;主机线用 right_side_view"]
+ ]}
