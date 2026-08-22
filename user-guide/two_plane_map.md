@@ -1,8 +1,8 @@
 # 双平面地图：仓库、飞书 base、谁在哪跑
 
-Updated: 2026-08-02
+Updated: 2026-08-11
 
-这套系统有 **2 个 git 仓库 + 2 组飞书 base**，四个东西都常被叫"库"，
+这套系统有 **2 个 git 仓库 + 2 组飞书 base**，这些东西都常被叫"库"，
 不看地图必混。本文是唯一的权威地图：改了拓扑（合并仓库、迁移 base、
 换租户）必须同步更新这里。
 
@@ -19,17 +19,40 @@ Updated: 2026-08-02
 | **auto-manual**（Bingboom/auto-manual） | git 仓库 | **工程面**：所有代码修改、PR、CI 验证、表结构演进都发生在这里 | 活跃 |
 | **Hello-Docs**（Bingboom/Hello-Docs） | git 仓库 | **业务面**：业务运行时。单向镜像接收方——**永远不要在这里改代码** | 活跃（队列 2026-06-12 已解除暂停） |
 | **旧 base**（「文档构建」space） | 飞书多维表 | 工程面数据沙盒 + legacy 数据。phase2 `DOp8bczA8aGLhJsc5iMcOqOvnpg`、TM-A `LUIcbxeKdaCY2rsEHwCcnVQSnUe`（只读归档） | legacy（本机身份已只读） |
-| **新 base**（「便携资料开发工作台」space，业务租户 xcn57j1urbe6） | 飞书多维表 | **业务数据的家**。phase2「文档构建」`LD3lb4G1ua4GOVs1vxAc9W2enje`、**TM-B `Ji1hb5ub1aUbewsTljGccvx5nhc`（语料唯一规范写库）**、发布文档管理 `WGVwb2HctauRi7sEiKqcIzTRn1c` | 活跃 |
+| **新 base**（「便携资料开发工作台」space，业务租户 xcn57j1urbe6） | 飞书多维表 | **业务数据的家**。产品数据 `HTidbugodasmdisRHwdcUhYsnne` 管产品、市场版本、资料需求和变更；phase2「文档构建」`LD3lb4G1ua4GOVs1vxAc9W2enje` 管内容与生产；**TM-B `Ji1hb5ub1aUbewsTljGccvx5nhc` 是语料唯一规范写库**；发布文档管理 `WGVwb2HctauRi7sEiKqcIzTRn1c` 管成品目录 | 活跃 |
 
 新旧 base 的完整 table_id 映射见
 [`../code-as-doc/dev/bitable_schema_sync.md`](../code-as-doc/dev/bitable_schema_sync.md)
 与 parity 检查；飞书复制 base 时 view_id 不变、table_id 变。
 
-## 1.1 业务面 base 清单（操作者 2026-07-02 live 逐表枚举确认）
+## 1.1 业务面 base 清单（产品数据更新于 2026-08-11，其余由操作者 2026-07-02 live 逐表枚举确认）
 
-三个 base 都绑定在 Hello-Docs 对应的业务飞书主体（xcn57j1urbe6）上。
+四个 base 都绑定在 Hello-Docs 对应的业务飞书主体（xcn57j1urbe6）上。
 
-**① 文档构建（phase2 构建源）** — base `LD3lb4G1ua4GOVs1vxAc9W2enje`，wiki 节点 `BLYEwfMMFiS7wsk9MuvcOvdVnje`，25 张表：
+**① 产品数据（产品与资料需求中枢）** — base
+`HTidbugodasmdisRHwdcUhYsnne`，wiki 节点 `NAyHw0FEniYuVqkSfhPcJJkQnKc`：
+
+| 分组 | 表名 | table_id |
+| --- | --- | --- |
+| 10_主数据中心 | 项目中心 | `tbl4fYRRSoDny1yg` |
+| 10_主数据中心 | 产品中心 | `tbl2FyelX5evCLpC` |
+| 10_主数据中心 | 市场中心 | `tbllseycnK2zUuXl` |
+| 10_主数据中心 | 法规中心 | `tblpay504Ox305Dm` |
+| 10_主数据中心 | 市场版本 | `tbleRLbeEYlU3r3a` |
+| 10_主数据中心 | 父物料信息 | `tblSXlZ7qwzgX7RM` |
+| 20_说明书生产 | 产品资料中心 | `tblS1WUciFYOi8f3` |
+| 20_说明书生产 | 说明书工作台 | `tblL21o4PhPUB3N8` |
+| 30_变更中心 | 变更中心 | `tbl4q3tp2qobAkt2` |
+| 00_数据源后台 | 同步监控 | `tblCVs5wYYMAUcU1` |
+| 00_数据源后台 | 金蝶源表 | `tbl4AvzRCD6r4fgw` |
+| 00_数据源后台 | PLM源表 | `tblPPjDaBVDcZrCN` |
+
+产品数据 Base 是「文档构建」的业务上游：产品本体、市场版本、资料适用范围和
+变更原因只在这里维护；具体内容、翻译、审核、构建和发布仍由「文档构建」负责。
+完整业务边界见
+[`../code-as-doc/architecture/Product_Data_Base_Architecture.md`](../code-as-doc/architecture/Product_Data_Base_Architecture.md)。
+
+**② 文档构建（phase2 构建源）** — base `LD3lb4G1ua4GOVs1vxAc9W2enje`，wiki 节点 `BLYEwfMMFiS7wsk9MuvcOvdVnje`，25 张表：
 
 | 分组 | 表名 | table_id |
 | --- | --- | --- |
@@ -64,7 +87,7 @@ Updated: 2026-08-02
 母版完成附件回下载逐字节校验。本次归档未读取或写入旧插图表，也未把
 `tblIi0BEufjvGLIU` 当成资产 staging；后续权限失败仍必须停止而不是回退。
 
-**② 多维表CAT（翻译记忆，TM-B = 语料唯一规范写库）** — base
+**③ 多维表CAT（翻译记忆，TM-B = 语料唯一规范写库）** — base
 `Ji1hb5ub1aUbewsTljGccvx5nhc`，wiki 节点 `FRUywcjrPiMoPrkxnadcQhhenmb`：
 
 | 表名 | table_id | 视图 |
@@ -72,7 +95,7 @@ Updated: 2026-08-02
 | Translation_Memory | `tblqtvNbgjDwR4ya` | 总表 `veweqW2fQv` |
 | Terms | `tblzerRpOEuDIkKA` | `vewChPXyP9` |
 
-**③ 发布文档管理（成品说明书目录，`product-manual-catalog` 技能读这里）** — base
+**④ 发布文档管理（成品说明书目录，`product-manual-catalog` 技能读这里）** — base
 `WGVwb2HctauRi7sEiKqcIzTRn1c`，wiki 节点 `QKNGwHFwPiY7J7kZ0bzcximKnyb`：
 
 | 表名 | table_id |
@@ -100,6 +123,7 @@ Updated: 2026-08-02
 | backport-reminder 哨兵 | 两个仓库都跑（各用各的 secrets；PR #525 修复守卫后生效） | 各自的 base |
 | OpenClaw / BlockClaw agent | 本机 `~/Documents/GitHub/Hello-Docs` checkout | 新 base（`~/.openclaw/.env`） |
 | **业务的本机账本**（revision_ledger / tm_hit_rate） | **Hello-Docs checkout 的 `reports/`** | 闭环运营手册的日常命令在那个 checkout 里跑 |
+| 产品、市场版本、资料需求与变更运营 | 业务飞书主体的「产品数据」Base | 产品数据；已确认的说明书任务再对接「文档构建」Base |
 | 工程面实验/验证产物 | auto-manual checkout 的 `reports/` | 不代表业务数据 |
 
 ## 4. 用语约定（防止再混）
@@ -115,11 +139,15 @@ Updated: 2026-08-02
    `Hello-Docs/main:docs/publish/**` 是唯一由业务面发布 PR 维护的保留子树；
    `Hello-Docs/publish` 由 Web Publish workflow 自动写入候选快照，人不在该分支改代码。
    只能把该分支中 `docs/publish/**` 的差异通过 PR 合入 `main`，不能把 `review/*` 整分支合入。
-2. **表结构只在旧 base 迭代，成熟后 promote**。直接改新 base 结构 = 绕过沙盒，
-   parity 哨兵会把它当漂移报出来。
+2. **phase2「文档构建」表结构只在旧 base 迭代，成熟后 promote**。直接改业务面的
+   「文档构建」结构 = 绕过沙盒，parity 哨兵会把它当漂移报出来。「产品数据」是
+   独立的业务上游，不参加这条 phase2 schema promote 通道，其结构边界由
+   [`产品数据 Base 业务架构`](../code-as-doc/architecture/Product_Data_Base_Architecture.md) 维护。
 3. **语料只写 TM-B**。`tm-apply --tm-binding` 只能指向 B。
-4. 业务评审、业务账本、业务回收都在 **Hello-Docs checkout** 操作。
-5. **模板更新要进在飞评审**时，先 backport 收干净、再合模板 PR、再重触发
+4. **产品业务事实只在「产品数据」Base 维护**。「文档构建」只接收任务和只读投影，
+   不人工重复维护产品、市场版本、资料适用范围或变更原因。
+5. 业务评审、业务账本、业务回收都在 **Hello-Docs checkout** 操作。
+6. **模板更新要进在飞评审**时，先 backport 收干净、再合模板 PR、再重触发
    Start Review（force reseed）——完整决策见
    [`closed_loop_ops_guide.md`](closed_loop_ops_guide.md) §4.5。
 
