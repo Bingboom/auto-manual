@@ -240,10 +240,10 @@ class ContractTierTests(unittest.TestCase):
         self.assertEqual(
             {
                 "MAIN_POWER_BUTTON_LABEL",
-                "EXPANSION_PORT_A_LABEL",
-                "EXPANSION_PORT_A_SPEC",
-                "EXPANSION_PORT_B_LABEL",
-                "EXPANSION_PORT_B_SPEC",
+                "SIDE_DC_EXPANSION_PORT_A_LABEL",
+                "SIDE_DC_EXPANSION_PORT_A_SPEC",
+                "SIDE_DC_EXPANSION_PORT_B_LABEL",
+                "SIDE_DC_EXPANSION_PORT_B_SPEC",
             },
             set(bp_en),
         )

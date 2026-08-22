@@ -28,28 +28,28 @@ field_map:
     pages: [Product overview]
     usage_type: page_value
     value_role: label
-  EXPANSION_PORT_A_LABEL:
+  SIDE_DC_EXPANSION_PORT_A_LABEL:
     row_key: dc_expansion_port
     pages: [Product overview]
     usage_type: page_value
     placement_key: side
     variant_key: a
     value_role: label
-  EXPANSION_PORT_A_SPEC:
+  SIDE_DC_EXPANSION_PORT_A_SPEC:
     row_key: dc_expansion_port
     pages: [Product overview]
     usage_type: page_value
     placement_key: side
     variant_key: a
     value_role: spec
-  EXPANSION_PORT_B_LABEL:
+  SIDE_DC_EXPANSION_PORT_B_LABEL:
     row_key: dc_expansion_port
     pages: [Product overview]
     usage_type: page_value
     placement_key: side
     variant_key: b
     value_role: label
-  EXPANSION_PORT_B_SPEC:
+  SIDE_DC_EXPANSION_PORT_B_SPEC:
     row_key: dc_expansion_port
     pages: [Product overview]
     usage_type: page_value

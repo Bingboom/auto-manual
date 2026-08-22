@@ -46,10 +46,10 @@ required_placeholders:
     # A/B split is carried in the Slot_key variant position (side.a.label,
     # side.a.spec, side.b.*), matching how the host splits side.pv.spec from
     # side.car.spec on one row_key.
-    - EXPANSION_PORT_A_LABEL
-    - EXPANSION_PORT_A_SPEC
-    - EXPANSION_PORT_B_LABEL
-    - EXPANSION_PORT_B_SPEC
+    - SIDE_DC_EXPANSION_PORT_A_LABEL
+    - SIDE_DC_EXPANSION_PORT_A_SPEC
+    - SIDE_DC_EXPANSION_PORT_B_LABEL
+    - SIDE_DC_EXPANSION_PORT_B_SPEC
   # FRONT_TOTAL_OUTPUT_* is host-only AND language-scoped: every host overview
   # template carries it except page_jp (verified: 0 occurrences there, 2-3 in
   # us-en/zh/eu-en), which is why these were per-language rather than default.

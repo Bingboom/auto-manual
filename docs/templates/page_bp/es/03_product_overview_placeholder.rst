@@ -29,10 +29,10 @@
    :widths: 50 50
 
    * - **{{ copy:product_overview.part.handle }}**
-     - **|EXPANSION_PORT_A_LABEL|**
+     - **|SIDE_DC_EXPANSION_PORT_A_LABEL|**
 
-       |EXPANSION_PORT_A_SPEC|
+       |SIDE_DC_EXPANSION_PORT_A_SPEC|
    * -
-     - **|EXPANSION_PORT_B_LABEL|**
+     - **|SIDE_DC_EXPANSION_PORT_B_LABEL|**
 
-       |EXPANSION_PORT_B_SPEC|
+       |SIDE_DC_EXPANSION_PORT_B_SPEC|

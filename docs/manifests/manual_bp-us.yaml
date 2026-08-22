@@ -79,7 +79,7 @@ pages:
   - type: rst_include
     slot_id: charging_en
     lang: en
-    file: templates/page_shared/en/08_charging_methods.rst
+    file: templates/page_bp/en/08_charging_methods.rst
   - type: rst_include
     slot_id: storage_en
     lang: en
@@ -157,7 +157,7 @@ pages:
   - type: rst_include
     slot_id: charging_fr
     lang: fr
-    file: templates/page_shared/fr/08_charging_methods.rst
+    file: templates/page_bp/fr/08_charging_methods.rst
   - type: rst_include
     slot_id: storage_fr
     lang: fr
@@ -235,7 +235,7 @@ pages:
   - type: rst_include
     slot_id: charging_es
     lang: es
-    file: templates/page_shared/es/08_charging_methods.rst
+    file: templates/page_bp/es/08_charging_methods.rst
   - type: rst_include
     slot_id: storage_es
     lang: es
