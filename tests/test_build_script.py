@@ -583,6 +583,63 @@ class TestBuildScript(unittest.TestCase):
         self.assertIn("review", seen[2])
         self.assertEqual(str(build_cli.ROOT / "tools" / "check_docs.py"), seen[3][1])
 
+    def test_run_check_should_not_pre_sync_the_review_surface_by_default(self) -> None:
+        """`check` validates; it must not rewrite tracked review files.
+
+        The default source is "auto", which resolves to the review surface once a
+        review bundle exists on disk. That used to drag sync_review.py into every
+        run of the command AGENTS.md prescribes for pre-PR validation, rewriting
+        tracked files under docs/_review as a side effect of validating.
+        """
+        args = build_cli.parse_args(
+            ["check", "--config", "configs/config.us.yaml", "--model", "JE-1000F", "--region", "US"]
+        )
+        seen: list[list[str]] = []
+        with patch_module_attrs(
+            build_cli,
+            run_validate=lambda *argv, **kwargs: None,
+            run_checked=lambda cmd: seen.append(cmd),
+            _review_sync_target_args=lambda parsed_args: [parsed_args],
+        ):
+            build_cli.run_check(args)
+
+        self.assertEqual(
+            [],
+            [cmd for cmd in seen if str(build_cli.ROOT / "tools" / "sync_review.py") in cmd],
+        )
+        self.assertEqual(2, len(seen))
+        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
+        self.assertEqual(str(build_cli.ROOT / "tools" / "check_docs.py"), seen[1][1])
+
+    def test_run_check_should_pre_sync_when_refresh_review_is_requested(self) -> None:
+        """--refresh-review is the explicit opt-in for the params refresh."""
+        args = build_cli.parse_args(
+            [
+                "check",
+                "--config",
+                "configs/config.us.yaml",
+                "--model",
+                "JE-1000F",
+                "--region",
+                "US",
+                "--refresh-review",
+            ]
+        )
+        seen: list[list[str]] = []
+        with patch_module_attrs(
+            build_cli,
+            run_validate=lambda *argv, **kwargs: None,
+            run_checked=lambda cmd: seen.append(cmd),
+            _review_sync_target_args=lambda parsed_args: [parsed_args],
+        ):
+            build_cli.run_check(args)
+
+        self.assertEqual(
+            1,
+            len([cmd for cmd in seen if str(build_cli.ROOT / "tools" / "sync_review.py") in cmd]),
+        )
+        self.assertEqual(4, len(seen))
+
     def test_maybe_sync_review_before_build_should_skip_when_no_review_bundle_exists(self) -> None:
         args = build_cli.parse_args(["word", "--config", "configs/config.us.yaml", "--model", "JE-1000F", "--region", "US", "--source", "review"])
         seen: list[list[str]] = []

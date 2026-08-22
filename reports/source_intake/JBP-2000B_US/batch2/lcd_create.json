@@ -1,0 +1,62 @@
+{
+ "fields": [
+  "No.",
+  "Model",
+  "Is_latest",
+  "Version",
+  "icon_en",
+  "icon_desc_en",
+  "icon_fr",
+  "icon_desc_fr",
+  "icon_es",
+  "icon_desc_es",
+  "has_variables",
+  "备注"
+ ],
+ "rows": [
+  [
+   1,
+   [
+    "JBP-2000B"
+   ],
+   [
+    "TRUE"
+   ],
+   [
+    "V1.0"
+   ],
+   "Power Percentage/Fault Code",
+   "The display shows the current power percentage.\nWhen the system fails, it will be displayed as the corresponding fault code F0-FF. If code FF appears, remove the load and the product may recover by itself; if it does not, please contact Jackery Customer Support. If any other code appears, please contact Customer Support.",
+   "Pourcentage de puissance/code d’erreur",
+   "L’affichage de la puissance représente le pourcentage de la valeur actuelle de la puissance. En cas de défaillance du système, le code d’erreur correspondant (F0-FF) s’affiche. Si le code FF s’affiche, retirez la charge et le dispositif peut se rétablir de lui-même. Si ce n'est pas le cas, veuillez contacter le service à la clientèle de Jackery. Si un autre code apparaît, veuillez contacter notre service à la clientèle.",
+   "Porcentaje de potencia/Código de fallo",
+   "La potencia muestra el porcentaje del valor de potencia actual. Cuando el sistema falla, se mostrará el correspondiente código de fallo F0-FF. Si aparece el código FF, retire la carga y el producto podrá recuperarse por sí mismo, si no, por favor contacte con atención al cliente de Jackery. En caso de que aparezca cualquier otro código, por favor contacte con atención al cliente.",
+   [
+    "False"
+   ],
+   "2026-08-22 新建。来源=Jackery Battery Pack 2000 User Manual V2.0-2026-04-27, printed 03(physical p06 EN / p14 FR / p22 ES)。en 的 FF 处置句为照 FR/ES 新撰(操作者 2026-08-22 批准),出货书 EN 原文没有这一句——非转录值。es 已修正出货书印刷错字 Jackery.En caso -> Jackery. En caso。注意出货书自身矛盾:本页对 FF 说移除负载可自恢复,而故障排除页(printed 05)对 FF 说置于适温环境;按操作者裁决照实保留,留待 S6 逐页对账识别。"
+  ],
+  [
+   2,
+   [
+    "JBP-2000B"
+   ],
+   [
+    "TRUE"
+   ],
+   [
+    "V1.0"
+   ],
+   "Charging Indicator",
+   "The indicator is displayed when charging and disappears when it is fully charged.",
+   "Témoin de charge",
+   "Le témoin s’affiche pendant la charge et disparaît lorsque l’appareil est complètement chargé.",
+   "Indicador de carga",
+   "Durante la carga se muestra el indicador y desaparece cuando está completamente cargado.",
+   [
+    "False"
+   ],
+   "2026-08-22 新建。来源同上 printed 03。es 出货书在 completa-mente 处为两端对齐断字,已还原为 completamente。"
+  ]
+ ]
+}

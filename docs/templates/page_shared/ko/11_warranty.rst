@@ -55,7 +55,7 @@
 
 .. container:: warranty-section
 
-   면책 사항
+   제외 사항
    ------------------------
 
    다음의 경우 Jackery의 보증은 적용되지 않습니다:

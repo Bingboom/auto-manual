@@ -1577,3 +1577,19 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         mock_sync.assert_not_called()
         mock_start_review.assert_not_called()
         source.upsert_record.assert_not_called()
+
+
+class ReviewStartOptInFamilyGuardTests(unittest.TestCase):
+    def test_us_region_resolution_skips_opt_in_only_families(self) -> None:
+        # P0 review finding: without the queue_requires_build_family guard,
+        # config.bp-us.yaml ties config.us.yaml 106:106 here and every US
+        # review-start row dies on the ambiguity error. Runs against the real
+        # configs/ directory so a future opt-in config re-tying the score
+        # turns this red.
+        from tools.process_review_start_queue import (
+            _resolve_review_start_region_config_path,
+        )
+
+        resolved = _resolve_review_start_region_config_path(region="US")
+        self.assertIsNotNone(resolved)
+        self.assertEqual("config.us.yaml", resolved.name)

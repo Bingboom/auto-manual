@@ -1,0 +1,64 @@
+# BP@INTL x US — product overview recipe (skeleton slice S2).
+# Recipes are per-line by design (the host line has recipes/us-en, recipes/eu-en,
+# ...), so this is not a fork. One recipe serves all three language blocks: the
+# assembly-time template comes from the manifest entry, not from this file's
+# `template` key (tools/gen_index_bundle_paths.resolve_generated_template_path
+# reads page.template) — mirroring how the host's 03 recipe is shared by
+# us/fr/es in manual_us.yaml.
+#
+# field_map carries ONLY the parts the shipped HTP017 US book prints: a power
+# button and the two DC expansion ports. The 10 host overview row_keys (ac_input,
+# ac_output, ac_power_button, dc12_port, dc_input, dc_usb_power_button,
+# total_output, usb_a, usb_c) are absent because the product has no such ports —
+# that absence is what removes them from the spec-row requirement set.
+#
+# S2 modelled a single expansion port, reading the spec page where the pair
+# appears as one input row and one output row. The shipped overview page
+# (printed p02) shows they are physically two ports, A and B, both on the left
+# side view, each with a "connect to expansion cable terminal X" sub-note. One
+# row_key therefore carries four page values, disambiguated by the variant
+# position of Slot_key (`side.a.label`, `side.a.spec`, `side.b.label`,
+# `side.b.spec`) exactly as the host splits `side.pv.spec` from `side.car.spec`
+# on its single `dc_input` row_key.
+page_id: 03_product_overview
+template: templates/page_bp/en/03_product_overview_placeholder.rst
+field_map:
+  MAIN_POWER_BUTTON_LABEL:
+    row_key: main_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+  SIDE_DC_EXPANSION_PORT_A_LABEL:
+    row_key: dc_expansion_port
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    variant_key: a
+    value_role: label
+  SIDE_DC_EXPANSION_PORT_A_SPEC:
+    row_key: dc_expansion_port
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    variant_key: a
+    value_role: spec
+  SIDE_DC_EXPANSION_PORT_B_LABEL:
+    row_key: dc_expansion_port
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    variant_key: b
+    value_role: label
+  SIDE_DC_EXPANSION_PORT_B_SPEC:
+    row_key: dc_expansion_port
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    variant_key: b
+    value_role: spec
+required_row_keys:
+  - product_name
+  - model_no
+snippet_slots: {}
+contracts:
+  - 03_product_overview

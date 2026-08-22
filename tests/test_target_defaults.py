@@ -125,5 +125,22 @@ class TestTargetDefaults(unittest.TestCase):
         )
 
 
+class RepositoryConfigScanTests(unittest.TestCase):
+    def test_us_family_default_survives_the_bp_config(self) -> None:
+        # Skeleton-library slice S1 guard: with configs/config.bp-us.yaml
+        # present (same region, same language count), the US family default
+        # must stay config.us.yaml — the JP experiment showed a near-tie can
+        # silently swap the whole family default. Runs against the real
+        # configs/ directory, so a future config addition that flips the
+        # default turns this red instead of shipping.
+        from tools.target_defaults import discover_target_defaults
+
+        defaults = discover_target_defaults()
+        self.assertEqual(
+            "configs/config.us.yaml",
+            defaults.family_default_configs["US"],
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

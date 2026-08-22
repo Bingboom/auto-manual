@@ -1,0 +1,338 @@
+{
+ "fields": [
+  "Document_key_link",
+  "Row_key_link",
+  "Slot_key_link",
+  "Page",
+  "Section",
+  "Section_order",
+  "Row_order",
+  "Line_order",
+  "Version",
+  "Is_Latest",
+  "Source_lang",
+  "Row_label_source",
+  "Row_label_fr",
+  "Row_label_es",
+  "Param_source",
+  "Param_fr",
+  "Param_es",
+  "Value_source",
+  "Value_fr",
+  "Value_es"
+ ],
+ "rows": [
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnxIw"
+    }
+   ],
+   [
+    {
+     "id": "recvlM8w60sPsc"
+    }
+   ],
+   [
+    "Product overview"
+   ],
+   "CONTROLS",
+   7,
+   1,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "POWER button",
+   "Bouton d’alimentation principale",
+   "Botón de encendido principal",
+   null,
+   null,
+   null,
+   "POWER button",
+   "Bouton d’alimentation principale",
+   "Botón de encendido principal"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "recvkvYtLcFY2k"
+    }
+   ],
+   [
+    {
+     "id": "recvsZelIAkzOH"
+    }
+   ],
+   [
+    "Product overview"
+   ],
+   "OUTPUT PORTS",
+   3,
+   1,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "DC Expansion Port A",
+   "Port d’extension CC A",
+   "Puerto de expansión A de CC",
+   null,
+   null,
+   null,
+   "DC Expansion Port A",
+   "Port d’extension CC A",
+   "Puerto de expansión A de CC"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "recvkvYtLcFY2k"
+    }
+   ],
+   [
+    {
+     "id": "recvsZelIAvx2D"
+    }
+   ],
+   [
+    "Product overview"
+   ],
+   "OUTPUT PORTS",
+   3,
+   1,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "DC Expansion Port A",
+   "Port d’extension CC A",
+   "Puerto de expansión A de CC",
+   null,
+   null,
+   null,
+   "(Connect to Expansion Cable Terminal A)",
+   "(Connexion à la borne A du câble de rallonge)",
+   "(Conectar a la Terminal A del Cable de Expansión)"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "recvkvYtLcFY2k"
+    }
+   ],
+   [
+    {
+     "id": "recvsZelIAVvjV"
+    }
+   ],
+   [
+    "Product overview"
+   ],
+   "OUTPUT PORTS",
+   3,
+   2,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "DC Expansion Port B",
+   "Port d’extension CC B",
+   "Puerto de expansión B de CC",
+   null,
+   null,
+   null,
+   "DC Expansion Port B",
+   "Port d’extension CC B",
+   "Puerto de expansión B de CC"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "recvkvYtLcFY2k"
+    }
+   ],
+   [
+    {
+     "id": "recvsZelIAGMSH"
+    }
+   ],
+   [
+    "Product overview"
+   ],
+   "OUTPUT PORTS",
+   3,
+   2,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "DC Expansion Port B",
+   "Port d’extension CC B",
+   "Puerto de expansión B de CC",
+   null,
+   null,
+   null,
+   "(Connect to Expansion Cable Terminal B)",
+   "(Connexion à la borne B du câble de rallonge)",
+   "(Conectar a la Terminal B del Cable de Expansión)"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnwVT"
+    }
+   ],
+   [
+    {
+     "id": "recvlM8w60Vdmi"
+    }
+   ],
+   [
+    "operation_guide"
+   ],
+   "SETTINGS",
+   8,
+   1,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Default Standby Duration",
+   null,
+   null,
+   null,
+   null,
+   null,
+   "2 hours",
+   "2 heures",
+   "2 horas"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnyfy"
+    }
+   ],
+   null,
+   [
+    "storage"
+   ],
+   "ENVIRONMENTAL OPERATING TEMPERATURE",
+   4,
+   1,
+   1,
+   "1.0",
+   "TRUE",
+   "en",
+   "Storage Temperature",
+   null,
+   null,
+   "1 month",
+   "1 mois",
+   "1 mes",
+   "-4°F to 113°F / -20°C to 45°C (0-60%RH)",
+   "-4°F à 113°F / -20°C à 45°C (0-60% HR)",
+   "-4°F a 113°F / -20 °C a 45 °C (0-60 % HR)"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnyfy"
+    }
+   ],
+   null,
+   [
+    "storage"
+   ],
+   "ENVIRONMENTAL OPERATING TEMPERATURE",
+   4,
+   1,
+   2,
+   "1.0",
+   "TRUE",
+   "en",
+   "Storage Temperature",
+   null,
+   null,
+   "3 months",
+   "3 mois",
+   "3 meses",
+   "32°F to 113°F / 0°C to 45°C (0-60%RH)",
+   "32°F à 113°F / 0°C à 45°C (0-60% HR)",
+   "32°F a 113°F / 0 °C a 45 °C (0-60 % HR)"
+  ],
+  [
+   [
+    {
+     "id": "recvp853V23SP4"
+    }
+   ],
+   [
+    {
+     "id": "rec277z1LBnyfy"
+    }
+   ],
+   null,
+   [
+    "storage"
+   ],
+   "ENVIRONMENTAL OPERATING TEMPERATURE",
+   4,
+   1,
+   3,
+   "1.0",
+   "TRUE",
+   "en",
+   "Storage Temperature",
+   null,
+   null,
+   "12 months",
+   "12 mois",
+   "12 meses",
+   "32°F to 77°F / 0°C to 25°C (0-60%RH)",
+   "32°F à 77°F / 0°C à 25°C (0-60% HR)",
+   "32°F a 77°F / 0 °C a 25 °C (0-60 % HR)"
+  ]
+ ]
+}
