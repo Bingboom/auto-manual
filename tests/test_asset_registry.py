@@ -35,6 +35,34 @@ class TestAssetRegistry(unittest.TestCase):
         self.assertEqual(88, report.status_counts[APPROVED_STATUS])
         self.assertEqual(2, report.status_counts[QUARANTINED_STATUS])
 
+    def test_battery_pack_templates_only_name_resolvable_asset_keys(self) -> None:
+        """Every asset key the page_bp family names must actually resolve.
+
+        These keys live in `.. TODO(资产)` comments until the integration PR
+        turns them into real directives, so nothing else validates them — and
+        three of them shipped naming keys that do not exist
+        (connections/stack_clearance, charging/jbp2000b_solar), which would
+        have failed only when someone followed the comment.
+        """
+        family = ROOT / "docs" / "templates" / "page_bp"
+        pattern = re.compile(r"asset:([A-Za-z0-9._/-]+)")
+        referenced: set[str] = set()
+        for path in sorted(family.rglob("*.rst")):
+            referenced.update(pattern.findall(path.read_text(encoding="utf-8")))
+
+        self.assertTrue(referenced, "page_bp names no assets; update this guard")
+        for asset_key in sorted(referenced):
+            with self.subTest(asset_key=asset_key):
+                resolution = resolve_asset(
+                    self.records,
+                    repo_root=ROOT,
+                    asset_key=asset_key,
+                    model="JBP-2000B",
+                    region="US",
+                    language="en",
+                )
+                self.assertTrue(resolution.path)
+
     def test_refresh_recomputes_materialized_hashes_without_changing_registry_shape(self) -> None:
         existing = (ROOT / "data" / "asset_registry.csv").read_text(encoding="utf-8")
 
