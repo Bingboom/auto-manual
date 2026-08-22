@@ -107,7 +107,11 @@ def parse_args(
     ap.add_argument(
         "--refresh-review",
         action="store_true",
-        help="Refresh an existing review bundle from the runtime template/data output",
+        help=(
+            "Refresh an existing review bundle from the runtime template/data output. "
+            "On check, this is also the explicit opt-in for the parameter pre-sync, "
+            "which check no longer runs by default"
+        ),
     )
     ap.add_argument(
         "--sync-scope",
