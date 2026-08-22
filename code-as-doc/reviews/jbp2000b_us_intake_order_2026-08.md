@@ -11,19 +11,38 @@
 
 ## 1. 为什么走这条路，而不是 `source_intake.py stage-plan`
 
-技能文档里的克隆入库路径在这里走不通，原因有二，都在代码层：
+> **本节已更正（2026-08-21，经对抗性复核 + 实跑 `build_staging_plan`）。**
+> 初版写的是「克隆入库路径走不通」。那是错的，下面是核实后的版本。
 
-- `build_staging_plan` 要求候选与姊妹机的逻辑键集**完全相等**（`missing or extra`
-  直接抛错）。那是**区域克隆**的完整性门：同一产品换区域，结构不该变。加电包是
-  **品类克隆**——21 行里取 11 行，且出货书把输入/输出合成一个 `INPUT/OUTPUT PORTS`
-  段。我没有放宽这道门，因为它保护的是别的入库路径。
-- 暂存表 `01_数据入库`（`tblIi0BEufjvGLIU`）只有一对本地化列 `行标签_ko` / `手册值_ko`
-  （为韩规入库所建），payload 契约 `_STAGING_FIELDS` 同样只支持单一配对语言。
-  加电包 US 需要 fr + es 两种。
+`stage-plan` **技术上跑得通**，但跑通的代价是毁掉这道门本身的审计价值。
 
-因此本单充当暂存表的等价审核物：全部 20 行三语齐备、可 diff、逐行可批。
-如果你更希望走暂存表，需要先在 `tblIi0BEufjvGLIU` 建 4 个字段
-（`行标签_fr`/`手册值_fr`/`行标签_es`/`手册值_es`）——那是 schema 写入，同样要你批。
+`build_staging_plan` 的键集相等检查（`source_intake_staging.py:286-294`）比的是
+**调用方喂进来的两份 JSON**，不是与线上表的实际比对。所以把姊妹机导出裁成 11 行再喂进去，
+门就放行。实跑确认：
+
+```
+>>> build_staging_plan SUCCEEDED with a trimmed sibling
+    row_count   : 11
+    completeness: complete: 11 rows cover region siblings (11)
+```
+
+问题就在最后那行。它**宣称"完整"**——而那个 11 是相对我自己裁出来的基线算的。
+计划里没有任何字段记录被丢掉的 10 行姊妹机行。也就是说，手工裁剪姊妹机导出会把一次
+**子集克隆洗成一次完整克隆**，静默绕过技能文档硬门 2。真正缺的不是能力，是
+**显式的子集/品类克隆模式 + 一份记录在案的排除清单**。
+
+本地化语言那条我也写错了地方。`_STAGING_FIELDS` 只带一对语言列是事实
+（线上 `tblIi0BEufjvGLIU` 确实只有 `行标签_ko` / `手册值_ko`，实查 18 个字段，
+两列的字段说明写明「KR目标」），但那不是墙。真正的边界在下游：
+`agent/wukong-bridge/intake_commit_driver.py` 只读 `手册值_ko` / `行标签_ko`（:399,401），
+对目标行上任何其它本地化列**主动发警告**并明写
+「本次未同步这些本地化值，本地化值需人工同步（技能硬门 5）」（:426-435）。
+所以 fr/es 走人工从来就是**设计意图**，不是工具短板——暂存层只承载源语言结构（可选加 ko）。
+
+结论不变，理由更新：本单充当暂存表的等价审核物（20 行三语齐备、可 diff、逐行可批），
+选它不是因为 `stage-plan` 不能跑，而是因为在有显式子集模式之前，用 `stage-plan`
+会让这次入库对着一份假的完整性声明过门。若要改走 `stage-plan`，先给它加子集模式
+（带排除清单落盘），fr/es 仍按硬门 5 人工写正式表。
 
 ## 2. 已核实的前置事实（实查，非推断）
 
@@ -112,11 +131,56 @@
 3. **行标签与主机分叉**。出货书印 `Charge Temperature` / `Discharge Temperature`，
    主机印 `Charging` / `Discharging`。同一 `Row_key`，标签不同。本单按出货书写。
 
-## 5. 顺便查到的一条主机数据缺口
+## 5. 顺便查到的两件主机线问题（不在本单范围，建议各开一单）
 
-姊妹机 `JE-2000E_US` 的 `storage_temperature` 三行与 `default_standby_duration` 行
-**`Value_fr` 为空**（`Value_es` 有值）。加电包这四行的法语值出货书里有，本单已填，
-因此加电包数据比姊妹机更完整。主机的法语缺口不在本单范围，建议另开。
+初版本节只说「`JE-2000E_US` 四行缺 `Value_fr`」。查全后是下面两件，第二件比第一件严重。
+
+### 5.1 `JE-2000E_US` 与 `JE-2000F_US` 各缺同样的 18 行法语值
+
+不是四行。两个目标缺的是**完全相同的 18 行**（0 条独有），全部是占位行，规格页一行不缺——
+系统性缺口，不是录入疏漏。`_pick_lang_value`（`utils/spec_master_row_helpers.py`）对
+`Value` 基名的键序是 `Value_fr` → … → `Value_source`，取第一个非空，所以空法语
+**回落成英文原值**，构建全绿无告警。
+
+`origin/review/JE-2000E-US`（PR #494）的法语概览页实际印成：
+
+```
+* - **DC/USB Power Button**        ← 法语块里的英文
+* - **USB-C 30W Output**           ← 英文
+* - **USB-A 18W Output**           ← 英文
+  - **Sortie CA**
+    120 V~ 60 Hz, 12,5 A max., 1500 W Nominal    ← 法语正常
+* - **Total Output**               ← 英文（应为 Sortie totale）
+```
+
+存储行是**法英混排**：`1 mois : -4°F to 113°F / -20°C to 45°C (0-60%RH)`——月份取到法语，
+温度串回落英文（`to` 不是 `à`、`RH` 不是 `HR`）。同行西语是完整的
+`1 mes: -4°F a 113°F / -20°C a 45°C (0-60% HR)`。
+
+**欧规姊妹机的法语不能直接复制过来。** 17/18 在 `*_EU` 里有法语，但绝大多数值本身不同：
+欧规存储行是纯公制 `-20 °C à 45 °C`（美规要带华氏）、`ups_bypass_output` 欧规 `10 A`
+对美规 `12A (1440W)`（230V vs 120V 体系）、USB-C 高功率口欧规 140W 对美规 100W。
+只有 3 条是干净复制（`Sortie totale`、`2 heures`、`12 heures`）；其余 14 条欧规只能提供
+**措辞范式**（`max.` 缩写、逗号小数、`à`、`HR`）；`usb_c_high_power_port` 欧规无对应行。
+
+### 5.2 `JE-2000E_US` / `JE-2000F_US` 概览页印着另一个型号的电气额定值
+
+同一本书自己跟自己矛盾，已在 `origin/review/JE-2000E-US`（PR #494）的产物里坐实：
+
+| 页面 | 印的是 |
+| --- | --- |
+| 规格页 | `4 × AC \| 120V~ 60Hz, 20A Max, 2400W Rated per port, 2400W in Total, 4800W Surge Peak` |
+| 概览页 | `Total Output \| 1500W Rated, 3000W Surge Peak` · `120V~60Hz, 12.5A, 1500W Rated` |
+
+`JE-2000E` 是 HomePower 2000 Plus，主数据额定 2400W（峰值 4800W），欧规姊妹机概览页印的
+也是 `2400 W Rated, 4800 W Surge Peak`。美规概览页那三个数 `1500W / 3000W / 12.5A`
+**逐字等于 JE-1000F 的值**——概览占位行是从 1000F 那条线复制未改。
+
+`JE-2000F_US` 同病：概览页 1500W/3000W，欧规姊妹机 2200W/4400W，主数据 2200W（峰值 4400W）。
+附一条需工程确认：`JE-2000F_US` 规格页印 2400W，与其主数据 2200W 也不一致——这条我不敢判哪个对。
+
+规格页对、概览页错，两页在同一本书里，所以这不是缺数据，是**印了另一个型号的规格**，
+且已在 review 中。正确值需对着规格书由工程确认后再写，不在本单范围。
 
 ## 6. 执行与验证顺序
 
@@ -141,9 +205,32 @@
 - **插图 3 张未入库**：加电包正面图、左侧视图、堆叠间距图；`connections/*` 类别下
   一个资产都没有。模板已用 `TODO(资产)` 标注源页，未引用不存在的 asset key
   （那会让构建硬失败）。无字化提取需要 `.ai` 母版，出货 PDF 不够。
-- **概览 geometry 只有一个实例**：`overview_component_instances.json` 仅
-  `je1000f-us-v1`（钉 JE-1000F/US），`resolve_overview_instance` 对无匹配目标直接抛
-  `ComponentSpecError`。HTML 与 IDML 的概览投影因此暂无加电包实例；PDF 与 Word 不走这条路。
+- **概览 geometry 不是阻塞点——别去改那个文件**（本条初版写反了，经对抗性复核更正）。
+  registry 与 resolver 的事实没错：`overview_component_instances.json` 只有
+  `je1000f-us-v1`（钉 JE-1000F/US），`resolve_overview_instance` 对无匹配目标确实抛
+  `ComponentSpecError`（只在 model 与 region **都**为空时才回落 `default_instance_id`）。
+  但对 `JBP-2000B/US`，**HTML 和 IDML 都根本不会走到这个 resolver**：
+  - HTML：`web_manual.json` 的 `figure_targets` 只列 `JE-1000F/US`，所以
+    `transform_web_fragment` 原样返回片段（`web_presentation.py:1686-1687`），概览分支是
+    静默软跳过。而且该调用点传的是显式 `instance_id`（`web_manual.json:81`），
+    `overview_instance.py:303-307` 在 instance_id 存在时**忽略 model/region**——这条路
+    永远不会因目标不匹配而抛错，只会把 JE-1000F 的 geometry 套到任意型号上。
+  - IDML：`export_idml.py:377` 要求 `plan_source == "approved-reference"`
+    （`:234-236`），只有 `reference_layout_registry.json` 里那唯一一份 JE-1000F/US 计划
+    能产生它。所以 `add_product_overview_page`（含 `page_overview.py:368` 的 resolver 调用）
+    对加电包永远到不了，概览页降级为普通文流。
+
+  要真正立起加电包的概览合成，顺序是：(1) 补两张缺失插图 → (2) 给 HTML 在
+  `web_manual.json` 加 `figure_targets` 行 → (3) 给 IDML 做批准版式计划 + registry 行
+  → (4) 才轮到在 `overview_component_instances.json` 加 BP 实例。**只做 (4) 什么都不会变。**
+
+  PDF 与 Word 不走 registry 这个结论成立，但我初版给的机制是错的：
+  `HBOverviewPanel` / `HBOverviewPair` **不是 draft 引擎生成的**，而是欧规家族模板里
+  手写的 `.. raw:: latex` 块（`page_eu-en|fr|es|de|it|uk|kr/03_product_overview*.rst`；
+  韩规模板归在 `page_eu-kr`，这是我误判的来源）。代码里唯一出现该宏的地方是
+  `component_specs/overview_adapters.py:107` 的 `latex_overview_projection`，
+  它没有生产调用方（只有测试）。US/JP/ZH/BP 概览模板出的是普通
+  `.. image::` + `.. list-table::`。
   补 geometry 要碰参考版式契约，本切片视为红线。
 - **checklist 的 S4 条目需更正**：写的是「`connections` 和 `installation` 两个模板」，
   但骨架里没有 `installation` 槽，真正缺的是 **10 个**模板（toc 1 + 概览 3 + 连接 3 + 操作 3）。
