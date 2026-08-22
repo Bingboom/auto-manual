@@ -24,3 +24,4 @@ symbols.signal.tips.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,TIP,7,migrat
 symbols.signal.tips.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,Supplements the important information or operation tips in the text.,8,migrated from symbols_blocks signal_row
 symbols.signal.warning.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,WARNING,1,migrated from symbols_blocks signal_row
 symbols.signal.warning.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,"Hazardous practices that may result in severe injury, death, and/or property damage.",2,migrated from symbols_blocks signal_row
+product_overview.left_side_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,LEFT SIDE VIEW,,加电包(BP@INTL)概览页左侧视图面板标题;源=HTP017 US 出货书 printed p02;主机线用 right_side_view
