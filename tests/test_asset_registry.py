@@ -30,10 +30,38 @@ class TestAssetRegistry(unittest.TestCase):
     def test_real_registry_exports_have_matching_hashes(self) -> None:
         report = check_registry(self.records, repo_root=ROOT)
 
-        self.assertEqual(91, report.records)
+        self.assertEqual(95, report.records)
         self.assertEqual((), report.errors)
-        self.assertEqual(84, report.status_counts[APPROVED_STATUS])
+        self.assertEqual(88, report.status_counts[APPROVED_STATUS])
         self.assertEqual(2, report.status_counts[QUARANTINED_STATUS])
+
+    def test_battery_pack_templates_only_name_resolvable_asset_keys(self) -> None:
+        """Every asset key the page_bp family names must actually resolve.
+
+        These keys live in `.. TODO(资产)` comments until the integration PR
+        turns them into real directives, so nothing else validates them — and
+        three of them shipped naming keys that do not exist
+        (connections/stack_clearance, charging/jbp2000b_solar), which would
+        have failed only when someone followed the comment.
+        """
+        family = ROOT / "docs" / "templates" / "page_bp"
+        pattern = re.compile(r"asset:([A-Za-z0-9._/-]+)")
+        referenced: set[str] = set()
+        for path in sorted(family.rglob("*.rst")):
+            referenced.update(pattern.findall(path.read_text(encoding="utf-8")))
+
+        self.assertTrue(referenced, "page_bp names no assets; update this guard")
+        for asset_key in sorted(referenced):
+            with self.subTest(asset_key=asset_key):
+                resolution = resolve_asset(
+                    self.records,
+                    repo_root=ROOT,
+                    asset_key=asset_key,
+                    model="JBP-2000B",
+                    region="US",
+                    language="en",
+                )
+                self.assertTrue(resolution.path)
 
     def test_refresh_recomputes_materialized_hashes_without_changing_registry_shape(self) -> None:
         existing = (ROOT / "data" / "asset_registry.csv").read_text(encoding="utf-8")
@@ -56,7 +84,7 @@ class TestAssetRegistry(unittest.TestCase):
             source=ROOT / "data" / "asset_registry.csv",
         )
 
-        self.assertEqual(91, report.records)
+        self.assertEqual(95, report.records)
         self.assertEqual((), report.errors)
         self.assertEqual((), report.updated)
         self.assertGreater(len(report.unchanged), 0)
@@ -444,7 +472,7 @@ class TestAssetRegistry(unittest.TestCase):
         records = load_registry(source)  # type: ignore[arg-type]
 
         self.assertEqual(1, source.calls)
-        self.assertEqual(91, len(records))
+        self.assertEqual(95, len(records))
 
     def test_temporary_asset_is_not_importable_by_default(self) -> None:
         with self.assertRaisesRegex(AssetRegistryError, "only ✅成品"):

@@ -3,9 +3,10 @@ CONNEXIONS
 
 Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuvent être utilisés avec le Jackery HomePower 2000 Plus.
 
-.. TODO(资产): 堆叠/间距示意图待入库 — 源=HTP017 US 出货书 printed p12 (FR)。
-   现有 registry 无 connections/* 资产。入库后在此加
-   `.. image:: asset:connections/stack_clearance`。
+.. TODO(资产): 堆叠/间距示意图已入库、待整合 — 源=HTP017 US 出货书 printed p12 (FR)。
+   已注册为 connections/jbp2000b/stack_clearance(适用区域 US:主机面板画的是
+   NEMA 5-20R)。整合切换时在此加
+   `.. image:: asset:connections/jbp2000b/stack_clearance`。
 
 .. list-table::
    :header-rows: 0
