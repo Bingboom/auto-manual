@@ -664,6 +664,18 @@ def _merge_parameter_lines(
         # replacements that would change the line's structural class are not.
         if _line_structure_class(merged_lines[review_idx]) != _line_structure_class(template_line):
             continue
+        # _render_placeholder_values rebuilds the line from the TEMPLATE's
+        # inter-placeholder text and the TEMPLATE's indentation, so it is only
+        # safe when the review line is still that same line with its slots
+        # filled. Require that first: if the review line no longer matches the
+        # template's shape, a reviewer has edited it — authored prose sharing
+        # the line with a placeholder, or a different indent — and rebuilding
+        # would silently revert their edit. Leaving the line's parameters stale
+        # is the recoverable failure; destroying the edit is not.
+        # tools/check_review_branch_sync.py is the notice path for a shared
+        # source change that an open review branch still has to pick up.
+        if _extract_placeholder_values(template_line, merged_lines[review_idx]) is None:
+            continue
         merged_lines[review_idx] = _render_placeholder_values(template_line, runtime_values)
 
     dst_path.write_text("".join(merged_lines), encoding="utf-8")
