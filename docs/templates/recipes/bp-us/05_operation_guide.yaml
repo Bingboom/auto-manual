@@ -12,11 +12,14 @@
 page_id: 05_operation_guide
 template: templates/page_bp/en/05_operation_guide_placeholder.rst
 field_map:
+  # No value_role here, matching recipes/us-en/05: `value` is a Slot_key value
+  # ALIAS (_SLOT_KEY_VALUE_ALIASES), so a row whose Slot_key is `value` parses
+  # to an EMPTY value_role. Writing `value_role: value` makes the selector
+  # unmatchable — it cost one intake round to find.
   DEFAULT_STANDBY_DURATION:
     row_key: default_standby_duration
     pages: [operation_guide]
     usage_type: page_value
-    value_role: value
 required_row_keys: []
 snippet_slots: {}
 contracts:

@@ -29,3 +29,11 @@ paths:
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
+
+# See the same block in config-bases/phase2-sync-base.yaml: an accessory the
+# host manual is supposed to name is not identity drift. Repeated here because
+# this file is a separate inheritance root (it has no `extends`), so the
+# single-language US/EU/AU/pt-BR lines would not otherwise inherit it.
+checks:
+  allowed_foreign_identity_literals:
+    - Jackery Battery Pack 2000
