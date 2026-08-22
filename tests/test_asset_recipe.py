@@ -326,6 +326,87 @@ class TestAssetRecipe(unittest.TestCase):
         )
         self.assertTrue(all(output.expected_sha256 for output in qr_candidate.outputs))
 
+    def test_every_committed_recipe_loads(self) -> None:
+        """Guard the whole directory, not one hand-picked file.
+
+        Nothing else globs data/asset_recipes/*.json: the tests name
+        manual_je1000f_us_master.json and manual_je1000f_us_front_controls.json
+        directly, so a malformed or half-edited recipe used to pass the suite
+        and only fail when an operator ran asset_intake against it.
+        """
+        recipes = sorted(
+            path
+            for path in (ROOT / "data" / "asset_recipes").glob("*.json")
+            if not path.name.endswith(".schema.json")
+        )
+        self.assertTrue(recipes, "no recipes found to validate")
+        for path in recipes:
+            with self.subTest(recipe=path.name):
+                recipe = load_recipe(path)
+                self.assertTrue(recipe.assets or recipe.page_catalog)
+                for asset in recipe.assets:
+                    if asset.gate.status == "approved":
+                        self.assertTrue(
+                            all(output.expected_sha256 for output in asset.outputs),
+                            f"{path.name}:{asset.asset_key} approved without pinned hashes",
+                        )
+
+    def test_battery_pack_recipe_matches_runtime_contract(self) -> None:
+        """The JBP-2000B master carries two text policies on purpose.
+
+        The overview pair is textless because this master's product silkscreen
+        is live text and gets redacted with the callouts. The connections and
+        charging figures cannot be: every character left in those crops is
+        vector outline that redaction physically cannot reach, so they declare
+        fixed-product-markings and are scoped to US, where the host art's
+        NEMA 5-20R receptacles and HomePower nameplate are correct.
+        """
+        recipe = load_recipe(
+            ROOT / "data" / "asset_recipes" / "manual_jbp2000b_us_overview.json"
+        )
+
+        self.assertEqual(28, len(recipe.page_catalog))
+        by_key = {asset.asset_key: asset for asset in recipe.assets}
+        self.assertEqual(
+            {
+                "overview/jbp2000b/front_controls",
+                "overview/jbp2000b/left_side_ports",
+                "connections/jbp2000b/stack_clearance",
+                "charging/jbp2000b/solar",
+            },
+            set(by_key),
+        )
+        for asset in recipe.assets:
+            with self.subTest(asset_key=asset.asset_key):
+                self.assertEqual("approved", asset.gate.status)
+                self.assertTrue(asset.build_eligible)
+                self.assertFalse(asset.visual_review_required)
+                self.assertEqual(("JBP-2000B",), asset.scope.models)
+                self.assertTrue(all(output.expected_sha256 for output in asset.outputs))
+
+        overview = ("overview/jbp2000b/front_controls", "overview/jbp2000b/left_side_ports")
+        for key in overview:
+            self.assertEqual("textless", by_key[key].text_policy)
+            self.assertEqual(("ALL",), by_key[key].scope.regions)
+
+        region_locked = ("connections/jbp2000b/stack_clearance", "charging/jbp2000b/solar")
+        for key in region_locked:
+            asset = by_key[key]
+            self.assertEqual("fixed-product-markings", asset.text_policy)
+            self.assertEqual(("US",), asset.scope.regions)
+            self.assertIn("region-locked-art", asset.risk_tags)
+
+        stack = by_key["connections/jbp2000b/stack_clearance"]
+        self.assertEqual(7, stack.page)
+        self.assertEqual(
+            ["crop", "whiteout"], [item.op for item in stack.transforms]
+        )
+        solar = by_key["charging/jbp2000b/solar"]
+        self.assertEqual(9, solar.page)
+        self.assertEqual(
+            ["crop", "redact_text"], [item.op for item in solar.transforms]
+        )
+
     def test_leader_widths_default_to_the_pipeline_constants(self) -> None:
         """Omitting the widths must keep pre-existing recipes byte-identical.
 

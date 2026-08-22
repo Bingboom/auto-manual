@@ -439,7 +439,7 @@
     "status": "approved",
     "reasons": [
      "operator reviewed the packaged 12x renders and chose textless output on 2026-08-22: the pipeline's redact_text has no font-size scoping and this master's product markings are live text, so they are removed with the callouts. The labels come from the JBP-2000B_US placeholder rows instead. Hashes pinned once the US-master package is reproduced.",
-     "source is a NORMALIZED copy of the shipped US manual. The shipped PDF has one dangling xref entry (object 4 0 R) that makes the pipeline's fail-closed private-marker scan abort, so the master is first passed through fitz.open(shipped).save(out, garbage=4, clean=True, deflate=True, no_new_id=True). Verified equivalent: 28 pages, 2276 drawings and 69 text spans on page 5 before and after, and pixel-identical renders at 1x/3x/4x/6x/12x. The only delta is 38 subpixels at 2x (max 30/255) at page y~107, far outside both crops. Shipped sha256 c29a14daf6053a45920cd8d1523f6faf054425a2f04d01576e00ce8794270740."
+     "source is a NORMALIZED copy of the shipped US manual. The shipped PDF has one dangling xref entry (object 4 0 R). The durable reason to keep the normalized copy is output-hash reproducibility: the expected_sha256 values below are pinned on OUTPUT bytes, and re-running these assets from the shipped file yields DIFFERENT PDF hashes (the PNGs still match, being pixel-derived), so the source pin and the output pins must agree. The master is passed through fitz.open(shipped).save(out, garbage=4, clean=True, deflate=True, no_new_id=True). Verified equivalent: 28 pages, 2276 drawings and 69 text spans on page 5 before and after, and pixel-identical renders at 1x/3x/4x/6x/12x. The only delta is 38 subpixels at 2x (max 30/255) at page y~107, far outside both crops. Shipped sha256 c29a14daf6053a45920cd8d1523f6faf054425a2f04d01576e00ce8794270740."
     ]
    },
    "risk_tags": [
@@ -504,11 +504,134 @@
     "status": "approved",
     "reasons": [
      "operator reviewed the packaged 12x renders and chose textless output on 2026-08-22: the pipeline's redact_text has no font-size scoping and this master's product markings are live text, so they are removed with the callouts. The labels come from the JBP-2000B_US placeholder rows instead. Hashes pinned once the US-master package is reproduced.",
-     "source is a NORMALIZED copy of the shipped US manual. The shipped PDF has one dangling xref entry (object 4 0 R) that makes the pipeline's fail-closed private-marker scan abort, so the master is first passed through fitz.open(shipped).save(out, garbage=4, clean=True, deflate=True, no_new_id=True). Verified equivalent: 28 pages, 2276 drawings and 69 text spans on page 5 before and after, and pixel-identical renders at 1x/3x/4x/6x/12x. The only delta is 38 subpixels at 2x (max 30/255) at page y~107, far outside both crops. Shipped sha256 c29a14daf6053a45920cd8d1523f6faf054425a2f04d01576e00ce8794270740."
+     "source is a NORMALIZED copy of the shipped US manual. The shipped PDF has one dangling xref entry (object 4 0 R). The durable reason to keep the normalized copy is output-hash reproducibility: the expected_sha256 values below are pinned on OUTPUT bytes, and re-running these assets from the shipped file yields DIFFERENT PDF hashes (the PNGs still match, being pixel-derived), so the source pin and the output pins must agree. The master is passed through fitz.open(shipped).save(out, garbage=4, clean=True, deflate=True, no_new_id=True). Verified equivalent: 28 pages, 2276 drawings and 69 text spans on page 5 before and after, and pixel-identical renders at 1x/3x/4x/6x/12x. The only delta is 38 subpixels at 2x (max 30/255) at page y~107, far outside both crops. Shipped sha256 c29a14daf6053a45920cd8d1523f6faf054425a2f04d01576e00ce8794270740."
     ]
    },
    "risk_tags": [
     "model-specific"
+   ]
+  },
+  {
+   "asset_key": "connections/jbp2000b/stack_clearance",
+   "page": 7,
+   "build_eligible": true,
+   "scope": {
+    "models": [
+     "JBP-2000B"
+    ],
+    "regions": [
+     "US"
+    ],
+    "locales": [
+     "und"
+    ]
+   },
+   "text_policy": "fixed-product-markings",
+   "visual_review_required": false,
+   "transforms": [
+    {
+     "op": "crop",
+     "bbox_pt": [
+      27.093,
+      124.28,
+      342.16,
+      362.596
+     ]
+    },
+    {
+     "op": "whiteout",
+     "bbox_pt": [
+      166.3,
+      326.49,
+      183.69,
+      331.51
+     ]
+    }
+   ],
+   "outputs": [
+    {
+     "format": "pdf",
+     "path": "docs/renderers/latex/assets/jbp2000b_stack_clearance.pdf",
+     "expected_sha256": "1324c8d634bbcd777c6ccb1b98e96956393d137222d3a06a6a4d983a552816ad"
+    },
+    {
+     "format": "png",
+     "path": "docs/renderers/latex/assets/jbp2000b_stack_clearance.png",
+     "scale": 4,
+     "expected_sha256": "3e2bb18fb2267ac26b96abe0aa2feffbd704d3dd5f04fdc338b886176c28888b"
+    }
+   ],
+   "gate": {
+    "status": "approved",
+    "reasons": [
+     "the '>= 20cm' clearance caption is the only localizable copy in the crop and it is NOT live text on this page: it is five filled vector glyph paths, union (166.999, 327.190, 182.988, 330.814). Verified consequences of every alternative on the real pipeline: redact_text is a BYTE-IDENTICAL no-op (92581 bytes either way) because _text_span_rects returns () at crop margins of 0.6/1.5/3/5/8pt; drop_leader_strokes is also a byte-identical no-op (this page has zero white strokes of any width, so it would read as 'leaders handled' while doing nothing, and is deliberately absent); redact_text_region with graphics=remove_if_touched destroys the figure — drawings 2255->2248 and the >0.9pt rounded frame (28.259,125.446,340.994,361.430) is deleted, because the frame's bbox CONTAINS the label rect. whiteout is therefore the only operator that can reach the caption. NOTE THIS IS AN EXTENSION OF THE PLAYBOOK, NOT A RULE MATCH: decision-tree row 4 covers residual stray strokes on pure white, not a localizable caption flattened to outlines, whose literal answer would be row 5 (leave alone and report). The row-4 precondition does hold exactly — the 1.2pt ring around the whiteout rect is 24252 pixels at 20x, every one exactly (255,255,255) — because nothing in the figure is drawn below y=324.6, so a white rect cannot show as a patch. Clearances: 0.70pt around the glyph union on all four sides, and 1.92pt below the nearest ink above it (the dashed footprint ending y=324.57), so the clearance wedge cannot be nicked. whiteout's validator accepts only {op, bbox_pt}, which is why this justification lives here.",
+     "text_policy is fixed-product-markings, NOT textless like the two overview siblings, and that is a fact about the art rather than a choice: every remaining character in the crop is vector outline that redaction physically cannot reach and must not remove — the host 'HomePower 2000 Plus' and 'Battery Pack 2000' nameplates, the panel silkscreen ('AC 2400W PURE SINE WAVE', 'DC 12V 10A', 'USB-C 140W', 'USB-C 30W', 'USB-A 18W', 'AC 1', 'AC 2', 'POWER', 'LIGHT') and the Jackery wordmarks. page.get_text('dict', clip) returns zero blocks for this crop, so no live text exists to redact. Language-neutral is achieved; character-free is not achievable and not wanted.",
+     "region-locked to US and locked to the host model as drawn. The host control panel shows four NEMA 5-20R receptacles (T-slot neutral plus round ground pin) and the nameplate reads 'HomePower 2000 Plus' — North-American receptacle geometry and the US host product name, both baked into the vector art. This is the mirror of why the EU master's equivalent pages were archived as region-locked-art for the US line. regions must be US, never ALL. The repo has no CA region (data/asset_registry.csv only ever holds ALL/US/JP), so the US-plus-Canada scope of the printed master collapses to US here."
+    ]
+   },
+   "risk_tags": [
+    "model-specific",
+    "region-locked-art"
+   ]
+  },
+  {
+   "asset_key": "charging/jbp2000b/solar",
+   "page": 9,
+   "build_eligible": true,
+   "scope": {
+    "models": [
+     "JBP-2000B"
+    ],
+    "regions": [
+     "US"
+    ],
+    "locales": [
+     "und"
+    ]
+   },
+   "text_policy": "fixed-product-markings",
+   "visual_review_required": false,
+   "transforms": [
+    {
+     "op": "crop",
+     "bbox_pt": [
+      27.09,
+      318.63,
+      339.89,
+      497.6
+     ]
+    },
+    {
+     "op": "redact_text",
+     "images": "preserve",
+     "graphics": "preserve",
+     "fill": null
+    }
+   ],
+   "outputs": [
+    {
+     "format": "pdf",
+     "path": "docs/renderers/latex/assets/jbp2000b_solar_charging.pdf",
+     "expected_sha256": "c02081724793691b7fe07a497be995820bca9217e65394f8b38fc16f9b41a4ba"
+    },
+    {
+     "format": "png",
+     "path": "docs/renderers/latex/assets/jbp2000b_solar_charging.png",
+     "scale": 4,
+     "expected_sha256": "56e1c9f0637809c378104fced339036b66583d7a3de9485857b4cff1fb2b242f"
+    }
+   ],
+   "gate": {
+    "status": "approved",
+    "reasons": [
+     "the crop contains exactly ONE live text span, 'SolarSaga 200 ' (Gilroy-Regular 6.00pt, rect 276.607,432.390,319.249,439.590), and it stays exactly one span at crop margins of 0.6/1.5/3/5pt — only at 8pt does body copy sweep in, which is why the margin is 0.6pt. Crop-only output still returns 'SolarSaga 200' from get_text(); with redact_text the output returns ''. graphics MUST be preserve: with remove_if_touched the magnifier-bubble ring (216.033,425.117,283.854,493.589) and the panel fill both touch the label bbox and cascade-die. fill is null so the label window keeps the panel's own gray (uniform 241-242) instead of showing a white patch on shaded ground. This is decision-tree row 1: no leader touches the label, it floats free in gray space. No leader system exists on this page either (max stroke width in crop 0.782pt; zero strokes >= 0.9pt page-wide), so drop_leader_strokes is correctly absent rather than declared as a silent no-op.",
+     "text_policy is fixed-product-markings, NOT textless like the two overview siblings, and that is a fact about the art rather than a choice: every remaining character in the crop is vector outline that redaction physically cannot reach and must not remove — the host 'HomePower 2000 Plus' and 'Battery Pack 2000' nameplates, the panel silkscreen ('AC 2400W PURE SINE WAVE', 'DC 12V 10A', 'USB-C 140W', 'USB-C 30W', 'USB-A 18W', 'AC 1', 'AC 2', 'POWER', 'LIGHT') and the Jackery wordmarks. page.get_text('dict', clip) returns zero blocks for this crop, so no live text exists to redact. Language-neutral is achieved; character-free is not achievable and not wanted.",
+     "region-locked to US and locked to the host model as drawn. The host control panel shows four NEMA 5-20R receptacles (T-slot neutral plus round ground pin) and the nameplate reads 'HomePower 2000 Plus' — North-American receptacle geometry and the US host product name, both baked into the vector art. This is the mirror of why the EU master's equivalent pages were archived as region-locked-art for the US line. regions must be US, never ALL. The repo has no CA region (data/asset_registry.csv only ever holds ALL/US/JP), so the US-plus-Canada scope of the printed master collapses to US here."
+    ]
+   },
+   "risk_tags": [
+    "model-specific",
+    "region-locked-art"
    ]
   }
  ]
