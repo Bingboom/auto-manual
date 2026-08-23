@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import unittest
 from copy import deepcopy
@@ -406,6 +407,147 @@ class TestAssetRecipe(unittest.TestCase):
         self.assertEqual(
             ["crop", "redact_text"], [item.op for item in solar.transforms]
         )
+
+    def test_battery_pack_box_and_lcd_recipe_matches_operator_choice(self) -> None:
+        recipe = load_recipe(
+            ROOT
+            / "data"
+            / "asset_recipes"
+            / "manual_jbp2000b_us_missing_assets.json"
+        )
+
+        self.assertEqual(28, len(recipe.page_catalog))
+        by_key = {asset.asset_key: asset for asset in recipe.assets}
+        self.assertEqual(
+            {
+                "in_the_box/jbp2000b/main_unit",
+                "in_the_box/jbp2000b/expansion_cable",
+                "lcd/jbp2000b/screen",
+            },
+            set(by_key),
+        )
+        for asset in by_key.values():
+            self.assertEqual("approved", asset.gate.status)
+            self.assertTrue(asset.build_eligible)
+            self.assertFalse(asset.visual_review_required)
+            self.assertEqual(("JBP-2000B",), asset.scope.models)
+            self.assertEqual(("ALL",), asset.scope.regions)
+            self.assertTrue(all(output.expected_sha256 for output in asset.outputs))
+
+        main = by_key["in_the_box/jbp2000b/main_unit"]
+        self.assertEqual("fixed-product-markings", main.text_policy)
+        self.assertEqual(["crop"], [item.op for item in main.transforms])
+
+        cable = by_key["in_the_box/jbp2000b/expansion_cable"]
+        self.assertEqual("textless", cable.text_policy)
+        self.assertEqual(
+            ["crop", "whiteout", "whiteout"],
+            [item.op for item in cable.transforms],
+        )
+
+        lcd = by_key["lcd/jbp2000b/screen"]
+        self.assertEqual("numeric-only", lcd.text_policy)
+        self.assertEqual(["crop"], [item.op for item in lcd.transforms])
+
+    def test_battery_pack_layout_recipe_matches_visual_review(self) -> None:
+        recipe = load_recipe(
+            ROOT
+            / "data"
+            / "asset_recipes"
+            / "manual_jbp2000b_us_layout_assets.json"
+        )
+
+        self.assertEqual(28, len(recipe.page_catalog))
+        by_key = {asset.asset_key: asset for asset in recipe.assets}
+        self.assertEqual(11, len(by_key))
+        qr = by_key.pop("qr/jbp2000b/back_cover")
+        for asset in by_key.values():
+            with self.subTest(asset_key=asset.asset_key):
+                self.assertEqual("approved", asset.gate.status)
+                self.assertTrue(asset.build_eligible)
+                self.assertFalse(asset.visual_review_required)
+                self.assertEqual(("JBP-2000B",), asset.scope.models)
+                self.assertEqual(("US",), asset.scope.regions)
+                self.assertTrue(all(output.expected_sha256 for output in asset.outputs))
+
+        self.assertEqual("quarantine", qr.gate.status)
+        self.assertFalse(qr.build_eligible)
+        self.assertTrue(qr.visual_review_required)
+        self.assertTrue(all(output.expected_sha256 for output in qr.outputs))
+        self.assertIn("160102000279", " ".join(qr.gate.reasons))
+        self.assertEqual(
+            ["crop", "redact_text_region"],
+            [item.op for item in by_key["operation/jbp2000b/panels_es"].transforms],
+        )
+
+    def test_battery_pack_fixed_markings_corrective_recipe_is_pinned(self) -> None:
+        recipe_root = ROOT / "data" / "asset_recipes"
+        recipe = load_recipe(recipe_root / "manual_jbp2000b_us_fixed_markings.json")
+
+        self.assertEqual(28, len(recipe.page_catalog))
+        by_key = {asset.asset_key: asset for asset in recipe.assets}
+        self.assertEqual(
+            {
+                "overview/jbp2000b/front_controls",
+                "overview/jbp2000b/left_side_ports",
+                "operation/jbp2000b/power_control",
+                "operation/jbp2000b/lcd_control",
+            },
+            set(by_key),
+        )
+        for asset in by_key.values():
+            with self.subTest(asset_key=asset.asset_key):
+                self.assertEqual("approved", asset.gate.status)
+                self.assertTrue(asset.build_eligible)
+                self.assertFalse(asset.visual_review_required)
+                self.assertEqual("fixed-product-markings", asset.text_policy)
+                self.assertEqual(("JBP-2000B",), asset.scope.models)
+                self.assertEqual(("ALL",), asset.scope.regions)
+                self.assertEqual(("und",), asset.scope.locales)
+
+        self.assertEqual(
+            ["crop", "drop_leader_strokes"],
+            [item.op for item in by_key["overview/jbp2000b/front_controls"].transforms],
+        )
+        self.assertEqual(
+            ["crop", "drop_leader_strokes", "redact_text_region"],
+            [item.op for item in by_key["overview/jbp2000b/left_side_ports"].transforms],
+        )
+        for key in ("operation/jbp2000b/power_control", "operation/jbp2000b/lcd_control"):
+            self.assertEqual(["crop", "redact_text"], [item.op for item in by_key[key].transforms])
+
+        expected_hashes = {
+            "overview/jbp2000b/front_controls": (
+                "26b6ac82fb421fc6ee906706c9a4ec41882a5b17a52c805ad29d95c94e81ec85",
+                "c405e6a1fdd35bb593429ee85568e843e02ced8e8a43d672ef1cb8034774cce3",
+            ),
+            "overview/jbp2000b/left_side_ports": (
+                "9c4bd27261e9a5688448867250a9afdc450d445e8eda46fdc3b939ff20de18e8",
+                "6ac9bc60991ebd6da65bcea1f62a1f82a737d8f38031144396d857f35ccbd8fc",
+            ),
+            "operation/jbp2000b/power_control": (
+                "66a0306a88f6a0e1163a996de234303544b46b9290012f6e7eed2744e1e32a54",
+                "c8332fadce5987fef4ecd43938fb3a61bda2211b588bd20fd7c52a18768b1799",
+            ),
+            "operation/jbp2000b/lcd_control": (
+                "e977dbc5bea5876e249cdf84db10545b488d692d62caac31ee55a057d719da7c",
+                "4d5f74e927261d7c174b45b5c0eb039d0e7c11ff4ab4c932e5719d2138415975",
+            ),
+        }
+        for key, hashes in expected_hashes.items():
+            self.assertEqual(hashes, tuple(output.expected_sha256 for output in by_key[key].outputs))
+
+        immutable_recipes = {
+            "manual_jbp2000b_us_layout_assets.json": (
+                "193dbefb773a04dfc1e6fface5f101c84b336aecc9906a5d94e0b073eefafc42"
+            ),
+            "manual_jbp2000b_us_overview.json": (
+                "b1ad1130e03f48313d103f7b795e8c501c1795633c9af4730b64946a4a21365b"
+            ),
+        }
+        for filename, expected in immutable_recipes.items():
+            actual = hashlib.sha256((recipe_root / filename).read_bytes()).hexdigest()
+            self.assertEqual(expected, actual, filename)
 
     def test_leader_widths_default_to_the_pipeline_constants(self) -> None:
         """Omitting the widths must keep pre-existing recipes byte-identical.

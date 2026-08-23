@@ -19,7 +19,7 @@ from .page_objects import (
     heading_text,
     with_rounded_outer,
 )
-from .params import IDPKG, component_param_pt
+from .params import IDPKG, component_param_pt, param_pt
 from .source_copy import source_text
 from .style_names import paragraph_style_ref
 
@@ -485,10 +485,18 @@ def _symbols_icon_table(
 
 def _table_story(writer, sid: str, title: str, table: str) -> str:
     style_ref = paragraph_style_ref("HB Body")
+    marker_attrs = ""
+    if "idml_table_marker_point_size" in writer.params:
+        marker_size = param_pt(
+            writer.params, "idml_table_marker_point_size", 0.1,
+        )
+        marker_attrs = f' PointSize="{marker_size:g}" Leading="{marker_size:g}"'
     return writer._add_story_parts(
         sid, title,
-        [f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
-         '    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">\n'
+         [f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
+         '    <CharacterStyleRange '
+         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+         f'{marker_attrs}>\n'
          + table +
          '    <Content></Content></CharacterStyleRange>\n'
          '  </ParagraphStyleRange>\n'])

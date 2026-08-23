@@ -794,6 +794,50 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('LeftIndent="6" FirstLineIndent="-4"', body)
         self.assertIn('PointSize="5"', body)
 
+    def test_multilingual_plural_note_labels_render_through_shared_notice(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        base = _ctx()
+        for language, label in (
+            ("en", "NOTES"),
+            ("fr", "REMARQUES"),
+            ("es", "OBSERVACIONES"),
+        ):
+            with self.subTest(language=language):
+                stories: dict[str, str] = {}
+
+                def add_story(story_id: str, _title: str, parts: list[str]) -> str:
+                    stories[story_id] = "".join(parts)
+                    return story_id
+
+                xml, height = render(
+                    {
+                        "kind": "notice",
+                        "label": label,
+                        "variant": "note",
+                        "texts": ["First item.", "Second item."],
+                        "list": True,
+                    },
+                    RenderContext(
+                        params=base.params,
+                        page_w=base.page_w,
+                        m_l=base.m_l,
+                        m_r=base.m_r,
+                        root=base.root,
+                        bundle_root=base.bundle_root,
+                        language=language,
+                        add_story=add_story,
+                    ),
+                    tid=f"plural_note_{language}",
+                    terminal=True,
+                )
+                self.assertGreater(height, 0.0)
+                self.assertIn(f'grp_notice_plural_note_{language}', xml)
+                rendered = "".join(stories.values())
+                self.assertIn(label, rendered)
+                self.assertIn("First item.", rendered)
+                self.assertIn("Second item.", rendered)
+
     def test_notice_symbol_fallback_keeps_valid_character_attributes(self) -> None:
         from tools.idml.components import RenderContext, render
 

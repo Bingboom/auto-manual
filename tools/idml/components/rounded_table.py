@@ -48,6 +48,14 @@ def rounded_table_panel(
     """
     table_xml = suppress_outer_edges_xml(table_xml, n_cols)
     inner = wrap_table_paragraph(table_xml, True, span_columns=False)
+    if "idml_table_marker_point_size" in params:
+        marker_size = param_pt(params, "idml_table_marker_point_size", 0.1)
+        inner = inner.replace(
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">',
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            f'PointSize="{marker_size:g}" Leading="{marker_size:g}">',
+            1,
+        )
     xml = page_objects.anchored_panel_group_paragraph(
         add_story,
         sid,

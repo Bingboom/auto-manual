@@ -8,7 +8,9 @@ language_set: [en, fr, es]
 primary_lang: en
 slot_overrides:
   safety_info:
-    file: templates/page_us-{lang}/safety_{lang}.rst
+    # BP@INTL uses the compact safety copy from the shipped HTP017 line so
+    # safety + symbols retain their one-page-per-language corpus budget.
+    file: templates/page_bp/{lang}/01_safety.rst
   product_overview:
     # One recipe serves every language block: the assembly-time template comes
     # from the manifest entry, not the recipe (same as the host line, where

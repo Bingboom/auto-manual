@@ -254,16 +254,29 @@ def load_symbols_rows(data_root: Path, lang: str = "en") -> tuple[list[tuple[str
 def load_trouble_rows(data_root: Path, model: str, region: str,
                       lang: str = "en") -> list[tuple[str, str]]:
     path = data_root / "troubleshooting_blocks.csv"
+    candidates: list[tuple[str, dict]] = []
+    target_model = model.casefold()
+    with path.open(encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            if r.get("Is_latest") != "TRUE":
+                continue
+            models = [m.strip() for m in re.split(r"[,;|]", r.get("Model") or "") if m.strip()]
+            model_tokens = {token.casefold() for token in models}
+            if target_model in model_tokens:
+                model_scope = "specific"
+            elif not model_tokens or "all" in model_tokens:
+                model_scope = "fallback"
+            else:
+                continue
+            regions = [x.strip() for x in (r.get("Region") or "").split(",") if x.strip()]
+            if regions and region not in regions and "ALL" not in regions:
+                continue
+            candidates.append((model_scope, r))
+
+    specific = [r for scope, r in candidates if scope == "specific"]
+    selected = specific or [r for scope, r in candidates if scope == "fallback"]
     out: list[tuple[str, str]] = []
-    for r in csv.DictReader(path.open(encoding="utf-8")):
-        if r.get("Is_latest") != "TRUE":
-            continue
-        models = [m.strip() for m in (r.get("Model") or "").split(",") if m.strip()]
-        if models and model not in models and "ALL" not in models:
-            continue
-        regions = [x.strip() for x in (r.get("Region") or "").split(",") if x.strip()]
-        if regions and region not in regions and "ALL" not in regions:
-            continue
+    for r in selected:
         out.append(((r.get("error_code") or "").strip(),
                     clean_cell(_localized_cell(r, "corrective_measures", lang,
                                                ("corrective_measures_en",)))))

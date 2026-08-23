@@ -30,6 +30,7 @@ try:
     from tools.idml.extract_contract import Block, EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS
     from tools.idml.latex_conditionals import active_lines
     from tools.idml.notice_labels import notice_label_variant
+    from tools.idml.only_expr import matches_only_expr
     from tools.idml.semantic_containers import append_semantic_container
     from tools.idml_rst_tables import (
         parse_grid_table as _parse_grid_table_impl,
@@ -41,6 +42,7 @@ except ModuleNotFoundError:  # direct tools/export_idml.py execution
     from idml.extract_contract import Block, EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS  # type: ignore
     from idml.latex_conditionals import active_lines  # type: ignore
     from idml.notice_labels import notice_label_variant  # type: ignore
+    from idml.only_expr import matches_only_expr  # type: ignore
     from idml.semantic_containers import append_semantic_container  # type: ignore
     from idml_rst_tables import (  # type: ignore
         parse_grid_table as _parse_grid_table_impl,
@@ -332,15 +334,8 @@ _UNDERLINES = {"=": "h1", "-": "h2", "~": "h3", "^": "h3"}
 
 
 def _only_matches(expr: str, tags: set[str]) -> bool:
-    """Evaluate the bundle's bare-tag/``and``/``not`` only-expression subset."""
-    for clause in expr.split(" and "):
-        clause = clause.strip()
-        if clause.startswith("not "):
-            if clause[4:].strip() in tags:
-                return False
-        elif clause and clause not in tags:
-            return False
-    return True
+    """Evaluate Sphinx-style bare-tag boolean expressions without ``eval``."""
+    return matches_only_expr(expr, tags)
 
 
 def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:

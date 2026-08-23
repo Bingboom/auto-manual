@@ -3,10 +3,9 @@ CONNEXIONS
 
 Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuvent être utilisés avec le Jackery HomePower 2000 Plus.
 
-.. TODO(资产): 堆叠/间距示意图已入库、待整合 — 源=HTP017 US 出货书 printed p12 (FR)。
-   已注册为 connections/jbp2000b/stack_clearance(适用区域 US:主机面板画的是
-   NEMA 5-20R)。整合切换时在此加
-   `.. image:: asset:connections/jbp2000b/stack_clearance`。
+.. image:: asset:connections/jbp2000b/stack_clearance
+   :alt: Schéma de connexion, d'empilage et de dégagement des batteries d'extension.
+   :width: 500px
 
 .. list-table::
    :header-rows: 0
@@ -27,3 +26,7 @@ Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuven
        - Veuillez ne pas empiler le dispositif sur le Jackery HomePower 2000 Plus.
        - Placez les batteries d'extension sur une surface plane, stable et suffisamment résistante. Le nombre maximal de batteries d'extension empilées est de 3 par défaut.
        - Si 4 batteries d'extension ou plus sont nécessaires, elles doivent être placées dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.
+
+.. image:: asset:connections/jbp2000b/locking_fr
+   :alt: Ordre de connexion correct et étapes de verrouillage et de déverrouillage du câble d'extension.
+   :width: 100%

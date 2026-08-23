@@ -41,7 +41,8 @@ tools/idml/pages.py	set	es,fr	f4c071528243d993
 tools/idml/prose_flow.py	dict	en,es,fr	459bcb129e8bccb9
 tools/idml/prose_flow.py	dict	en,es,fr	8dfa4a7e054f6a37
 tools/idml/prose_flow.py	dict	en,es,fr	dd3c9d69ade39c1b
-tools/idml/stories.py	dict	en,es,fr	83bad58adfe19df6
+tools/idml/safety_story.py	set	es,fr	f4c071528243d993
+tools/idml/story_semantics.py	dict	en,es,fr	83bad58adfe19df6
 tools/idml/story_rhythm.py	dict	en,es,fr	2b90eedf00778878
 tools/idml/story_rhythm.py	dict	en,es,fr	70d2bf4099829523
 tools/idml/symbols_page.py	set	es,fr	f4c071528243d993

@@ -236,7 +236,10 @@ def replace_data_tables(app, doctree: nodes.document, _docname: str) -> None:
                 section = _ancestor_section(table)
                 if section is not None and section.parent is not None:
                     index = section.parent.index(section)
-                    section.parent.insert(index, HBDataSectionGuard(kind=kind))
+                    section.parent.insert(index, HBDataSectionGuard(
+                        kind=kind,
+                        body_rows=max(0, len(_direct_rows(table)) - 1),
+                    ))
             table.replace_self(_component_table(table, kind))
 
 
@@ -314,12 +317,13 @@ def visit_cell_break_latex(translator, _node: HBDataCellBreak) -> None:
 
 
 def visit_section_guard_latex(translator, node: HBDataSectionGuard) -> None:
-    macro = (
-        "HBDataKeySectionGuard"
-        if node["kind"] == "key_combinations"
-        else "HBDataTroubleSectionGuard"
-    )
-    translator.body.append(f"\n\\{macro}\n")
+    if node["kind"] == "key_combinations":
+        translator.body.append("\n\\HBDataKeySectionGuard\n")
+    else:
+        translator.body.append(
+            "\n\\HBDataTroubleSectionGuardForRows"
+            f"{{{int(node['body_rows'])}}}\n"
+        )
     raise nodes.SkipNode
 
 

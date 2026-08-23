@@ -171,6 +171,17 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         self.assertIn('Anchor="0 -237.79"', xml)
         self.assertAlmostEqual(246.53, height, places=2)
 
+    def test_seven_row_table_reuses_rows_without_full_master_depth(self) -> None:
+        short_rows = EN_ROWS[:8]
+
+        xml, story, height = self._render(short_rows, suffix="short_en")
+
+        self.assertEqual(8, len(short_rows))
+        self.assertIn("<Content>F6</Content>", story)
+        self.assertNotIn("<Content>F7</Content>", story)
+        self.assertNotIn('Anchor="0 -237.79"', xml)
+        self.assertLess(height, 190.0)
+
     def test_body_cells_are_natively_vertically_centered_in_all_locales(self) -> None:
         for language, rows in (("en", EN_ROWS), ("fr", FR_ROWS), ("es", ES_ROWS)):
             with self.subTest(language=language):

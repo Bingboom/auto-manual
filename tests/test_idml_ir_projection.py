@@ -8,6 +8,10 @@ from unittest.mock import patch
 
 from tools.idml import ir_projection
 from tools.manual_ir import build_manual_ir
+from tools.render_contract import (
+    layout_tokens_sha256,
+    load_layout_token_layers,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -39,6 +43,185 @@ class IdmlIRProjectionTests(unittest.TestCase):
         self.assertEqual(4, len(symbols.signals))
         self.assertEqual(11, len(ir_projection.trouble_rows(self.ir, "en")))
 
+    def test_specifications_filename_alias_keeps_semantic_spec_page(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "rst"
+            page_dir = bundle / "page"
+            page_dir.mkdir(parents=True)
+            source = BUNDLE / "page" / "spec_en.rst"
+            target = page_dir / "specifications_en.rst"
+            target.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+            (bundle / "index.rst").write_text(
+                ".. include:: page/specifications_en.rst\n",
+                encoding="utf-8",
+            )
+            ir = build_manual_ir(
+                root=ROOT,
+                bundle_root=bundle,
+                model="JE-1000F",
+                region="US",
+                lang="en",
+                source="test",
+                data_root=DATA,
+            )
+
+        spec = ir_projection.spec_page_data(ir, "en")
+        self.assertIsNotNone(spec)
+        assert spec is not None
+        self.assertEqual("SPECIFICATIONS", spec.title)
+
+    def test_bp_slot_filename_aliases_keep_lcd_and_symbols_semantics(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "rst"
+            page_dir = bundle / "page"
+            page_dir.mkdir(parents=True)
+            aliases = {
+                "lcd_icons_en.rst": "lcd_display_en.rst",
+                "symbols_en.rst": "symbol_meaning_en.rst",
+            }
+            includes = []
+            for source_name, target_name in aliases.items():
+                source = BUNDLE / "page" / source_name
+                target = page_dir / target_name
+                target.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+                includes.append(f".. include:: page/{target_name}")
+            (bundle / "index.rst").write_text(
+                "\n".join(includes) + "\n",
+                encoding="utf-8",
+            )
+            ir = build_manual_ir(
+                root=ROOT,
+                bundle_root=bundle,
+                model="JBP-2000B",
+                region="US",
+                lang="en",
+                source="test",
+                data_root=DATA,
+            )
+
+        lcd = ir_projection.lcd_page_data(
+            ir, "en", root=ROOT, data_root=DATA,
+        )
+        symbols = ir_projection.symbol_page_data(
+            ir, "en", root=ROOT, data_root=DATA,
+        )
+        self.assertIsNotNone(lcd)
+        self.assertIsNotNone(symbols)
+        assert lcd is not None and symbols is not None
+        self.assertEqual(26, len(lcd.rows))
+        self.assertEqual(4, len(symbols.signals))
+
+    def test_empty_optional_asset_reference_stays_empty(self) -> None:
+        self.assertEqual(
+            "",
+            ir_projection._asset_path(ROOT, DATA, "lcd_icons", ""),
+        )
+
+    def test_idml_tag_selects_editable_semantics_over_raw_latex(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "rst"
+            page_dir = bundle / "page"
+            page_dir.mkdir(parents=True)
+            (bundle / "index.rst").write_text(
+                ".. include:: page/overview_en.rst\n",
+                encoding="utf-8",
+            )
+            (page_dir / "overview_en.rst").write_text(
+                ".. only:: latex and not idml\n\n"
+                "   .. raw:: latex\n\n"
+                "      \\section{OPAQUE LATEX}\n\n"
+                ".. only:: not latex or idml\n\n"
+                "   EDITABLE OVERVIEW\n"
+                "   =================\n\n"
+                "   Editable body copy.\n",
+                encoding="utf-8",
+            )
+            ir = build_manual_ir(
+                root=ROOT,
+                bundle_root=bundle,
+                model="JBP-2000B",
+                region="US",
+                lang="en",
+                source="test",
+                data_root=DATA,
+            )
+
+        payloads = [
+            block.payload
+            for page in ir.pages
+            for block in page.blocks
+        ]
+        self.assertIn("EDITABLE OVERVIEW", payloads)
+        self.assertIn("Editable body copy.", payloads)
+        self.assertNotIn("OPAQUE LATEX", payloads)
+
+    def test_idml_only_expression_selects_one_parenthesized_branch(self) -> None:
+        from tools.idml_rst_extract import _only_matches
+
+        tags = {"latex", "idml"}
+        self.assertTrue(_only_matches("latex or idml", tags))
+        self.assertFalse(_only_matches("not (latex or idml)", tags))
+
+    def test_multilingual_plural_notes_project_as_shared_callout_components(self) -> None:
+        labels = {
+            "en": "NOTES",
+            "fr": "REMARQUES",
+            "es": "OBSERVACIONES",
+        }
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td) / "rst"
+            page_dir = bundle / "page"
+            page_dir.mkdir(parents=True)
+            includes = []
+            for language, label in labels.items():
+                name = f"connections_{language}.rst"
+                includes.append(f".. include:: page/{name}")
+                (page_dir / name).write_text(
+                    "CONNECTIONS\n===========\n\n"
+                    ".. list-table::\n"
+                    "   :header-rows: 0\n"
+                    "   :widths: 12 88\n\n"
+                    f"   * - **{label}**\n"
+                    "     -\n"
+                    "       - First source-authored item.\n"
+                    "       - Second source-authored item.\n",
+                    encoding="utf-8",
+                )
+            (bundle / "index.rst").write_text(
+                "\n".join(includes) + "\n",
+                encoding="utf-8",
+            )
+            ir = build_manual_ir(
+                root=ROOT,
+                bundle_root=bundle,
+                model="JBP-2000B",
+                region="US",
+                lang="en",
+                source="test",
+                data_root=DATA,
+            )
+
+        components = {
+            page.language: [
+                block.payload for block in page.blocks
+                if block.kind == "component"
+            ]
+            for page in ir.pages
+        }
+        self.assertEqual(set(labels), set(components))
+        for language, label in labels.items():
+            with self.subTest(language=language):
+                self.assertEqual(1, len(components[language]))
+                payload = components[language][0]
+                self.assertEqual("notice", payload["kind"])
+                self.assertEqual(label, payload["label"])
+                self.assertEqual("note", payload["variant"])
+                self.assertTrue(payload["list"])
+                self.assertEqual(
+                    ["First source-authored item.", "Second source-authored item."],
+                    payload["texts"],
+                )
+
     def test_same_source_ir_keeps_skipped_raw_report_only_before_plan_resolution(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             bundle = Path(td) / "rst"
@@ -64,6 +247,26 @@ class IdmlIRProjectionTests(unittest.TestCase):
             )
 
         self.assertEqual(1, sum(page.skipped_raw for page in ir.pages))
+
+    def test_same_source_ir_hashes_the_layout_layers_consumed_by_idml(self) -> None:
+        base = ROOT / "data" / "layout_params.csv"
+        overlay = ROOT / "data" / "layout_params.idml-compact.csv"
+
+        ir = ir_projection.build_same_source_ir(
+            root=ROOT,
+            bundle_root=BUNDLE,
+            model="JE-1000F",
+            region="US",
+            lang="en",
+            data_root=DATA,
+            layout_params_csv=base,
+            layout_param_overlays=(overlay,),
+        )
+
+        self.assertEqual(
+            layout_tokens_sha256(load_layout_token_layers(base, (overlay,))),
+            ir.layout_params_sha256,
+        )
 
     def test_lcd_projection_preserves_source_numbering_gaps(self) -> None:
         with tempfile.TemporaryDirectory() as td:

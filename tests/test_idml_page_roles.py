@@ -38,8 +38,11 @@ class IdmlPageRoleTests(unittest.TestCase):
             "cover_jp.rst": PageRole.COVER,
             "safety_pt-BR.rst": PageRole.SAFETY,
             "spec_zh.rst": PageRole.SPEC,
+            "specifications_en.rst": PageRole.SPEC,
             "lcd_icons_fr.rst": PageRole.LCD,
+            "lcd_display_en.rst": PageRole.LCD,
             "symbols_es.rst": PageRole.SYMBOLS,
+            "symbol_meaning_fr.rst": PageRole.SYMBOLS,
             "troubleshooting_en.rst": PageRole.TROUBLESHOOTING_DATA,
         }
 
@@ -55,6 +58,39 @@ class IdmlPageRoleTests(unittest.TestCase):
             ("p40_03_product_overview_placeholder.rst", PageRole.PRODUCT_OVERVIEW),
             ("p45_08_charging_methods.rst", PageRole.CHARGING_METHODS),
         ):
+            with self.subTest(name=name):
+                self.assertEqual(expected, classify_page_role(Path("page") / name))
+
+    def test_bp_stable_slot_filenames_have_explicit_roles(self) -> None:
+        cases = {
+            "back_cover.rst": PageRole.BACK_COVER,
+            "box_contents_en.rst": PageRole.INBOX,
+            "box_contents_es.rst": PageRole.INBOX,
+            "box_contents_fr.rst": PageRole.INBOX,
+            "charging_en.rst": PageRole.CHARGING,
+            "charging_es.rst": PageRole.CHARGING,
+            "charging_fr.rst": PageRole.CHARGING,
+            "connections_en.rst": PageRole.CONNECTIONS,
+            "connections_es.rst": PageRole.CONNECTIONS,
+            "connections_fr.rst": PageRole.CONNECTIONS,
+            "fcc_en.rst": PageRole.FCC,
+            "fcc_es.rst": PageRole.FCC,
+            "fcc_fr.rst": PageRole.FCC,
+            "preface_important.rst": PageRole.PREFACE,
+            "product_overview_en.rst": PageRole.PRODUCT_OVERVIEW,
+            "product_overview_es.rst": PageRole.PRODUCT_OVERVIEW,
+            "product_overview_fr.rst": PageRole.PRODUCT_OVERVIEW,
+            "storage_en.rst": PageRole.STORAGE_MAINTENANCE,
+            "storage_es.rst": PageRole.STORAGE_MAINTENANCE,
+            "storage_fr.rst": PageRole.STORAGE_MAINTENANCE,
+            "toc.rst": PageRole.TOC,
+            "warranty_en.rst": PageRole.WARRANTY,
+            "warranty_es.rst": PageRole.WARRANTY,
+            "warranty_fr.rst": PageRole.WARRANTY,
+        }
+        self.assertEqual(24, len(cases))
+
+        for name, expected in cases.items():
             with self.subTest(name=name):
                 self.assertEqual(expected, classify_page_role(Path("page") / name))
 
@@ -80,6 +116,29 @@ class IdmlPageRoleTests(unittest.TestCase):
             "fallback for 1 source page(s): page/custom_connect_workflow.rst",
             assembly_coverage_warning([(source, role)]),
         )
+
+    def test_stable_slot_prefixes_do_not_capture_unknown_pages(self) -> None:
+        for name in (
+            "box_contents_notes.rst",
+            "charging_notes.rst",
+            "connections_notes.rst",
+            "fcc_notes.rst",
+            "lcd_display_notes.rst",
+            "operation_notes.rst",
+            "preface_important_notes.rst",
+            "product_overview_notes.rst",
+            "safety_info_notes.rst",
+            "specifications_notes.rst",
+            "storage_notes.rst",
+            "symbol_meaning_notes.rst",
+            "toc_notes.rst",
+            "warranty_notes.rst",
+        ):
+            with self.subTest(name=name):
+                self.assertIs(
+                    PageRole.UNCLASSIFIED_PROSE,
+                    classify_page_role(Path("page") / name),
+                )
 
     def test_warning_is_absent_when_every_page_has_an_explicit_role(self) -> None:
         self.assertIsNone(assembly_coverage_warning([

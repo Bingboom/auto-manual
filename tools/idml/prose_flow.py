@@ -18,6 +18,7 @@ from .control_labels import (
     approved_app_control_labels,
     matches_base_label_block,
 )
+from .composition_plan import is_explicit_assembly_plan
 
 Block = tuple[str, str]
 EmitProse = Callable[[str, str, list[Block], int], None]
@@ -53,7 +54,7 @@ class ProseFlowBuffer:
             )
             for entry in (page_plan or {}).get("pages", [])
         }
-        explicit_plan = (page_plan or {}).get("plan_source") == "approved-reference"
+        explicit_plan = is_explicit_assembly_plan(page_plan)
         batches: list[list[tuple[str, list[Block], int]]] = []
         for item in items:
             key = planned_groups.get(item[0]) if respect_page_plan else None
@@ -98,29 +99,33 @@ class ProseFlowBuffer:
         page_plan: dict | None,
     ) -> list[tuple[str, list[Block], int]]:
         items = [(stem, list(blocks), columns) for stem, blocks, columns in self.items]
-        if (page_plan or {}).get("plan_source") != "approved-reference":
+        if not is_explicit_assembly_plan(page_plan):
             return items
         entries = {
             Path(entry["source_path"]).stem: entry
             for entry in (page_plan or {}).get("pages", [])
         }
-        items = [
+        approved_reference = (
+            (page_plan or {}).get("plan_source") == "approved-reference"
+        )
+        if approved_reference:
+            items = [
             (
                 stem,
                 align_app_second_page(blocks, page_plan, stem),
                 columns,
             )
-            for stem, blocks, columns in items
-        ]
-        items = [
+                for stem, blocks, columns in items
+            ]
+            items = [
             (
                 stem,
                 promote_reference_figures(blocks, page_plan, stem),
                 columns,
             )
-            for stem, blocks, columns in items
-        ]
-        items = [
+                for stem, blocks, columns in items
+            ]
+            items = [
             (
                 stem,
                 align_storage_heading(
@@ -130,9 +135,9 @@ class ProseFlowBuffer:
                 ),
                 columns,
             )
-            for stem, blocks, columns in items
-        ]
-        items = [
+                for stem, blocks, columns in items
+            ]
+            items = [
             (
                 stem,
                 align_troubleshooting_heading(
@@ -141,8 +146,8 @@ class ProseFlowBuffer:
                 ),
                 columns,
             )
-            for stem, blocks, columns in items
-        ]
+                for stem, blocks, columns in items
+            ]
         for index in range(len(items)):
             stem, blocks, columns = items[index]
             rule = entries.get(stem, {}).get("flow_split")
@@ -173,6 +178,8 @@ class ProseFlowBuffer:
                 blocks[split_at:] + target_blocks,
                 target_columns,
             )
+        if not approved_reference:
+            return items
         # The approved JE-1000F US charging split moves the AC body/image tail
         # from `charging` into the canonical methods composition.  It cannot be
         # recognized by the earlier stem-scoped promotion pass, so promote the
@@ -250,10 +257,7 @@ def _planned_page_language(
     stem: str | None,
 ) -> str | None:
     """Return approved page metadata language for an exact source stem."""
-    if (
-        (page_plan or {}).get("plan_source") != "approved-reference"
-        or not stem
-    ):
+    if not is_explicit_assembly_plan(page_plan) or not stem:
         return None
     target_stem = Path(stem).stem
     for entry in (page_plan or {}).get("pages", []):

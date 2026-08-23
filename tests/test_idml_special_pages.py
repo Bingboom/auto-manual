@@ -49,6 +49,94 @@ class IdmlSpecialPageTests(unittest.TestCase):
         self.assertIn("Source phone", stories)
         self.assertNotIn(asset.resolve().as_uri(), self.writer.spreads[0][1])
 
+    def test_cover_prefers_writer_model_art_over_legacy_generic_art(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs = Path(td)
+            assets = docs / "renderers" / "latex" / "assets"
+            assets.mkdir(parents=True)
+            generic = assets / "cover-en.pdf"
+            jbp = assets / "cover_jbp2000b-en.pdf"
+            generic.write_bytes(b"JE-1000F cover")
+            jbp.write_bytes(b"JBP-2000B cover")
+
+            selected = page_placed.placed_asset_for(
+                "cover-en", "en", docs, model="JBP-2000B",
+            )
+
+        self.assertEqual(jbp, selected)
+
+    def test_cover_uses_same_model_english_fallback_not_generic_art(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs = Path(td)
+            assets = docs / "renderers" / "latex" / "assets"
+            assets.mkdir(parents=True)
+            generic = assets / "cover-fr.pdf"
+            jbp_en = assets / "cover_jbp2000b-en.pdf"
+            generic.write_bytes(b"JE-1000F French cover")
+            jbp_en.write_bytes(b"JBP-2000B English cover")
+
+            selected = page_placed.placed_asset_for(
+                "cover-fr", "fr", docs, model="JBP-2000B",
+            )
+
+        self.assertEqual(jbp_en, selected)
+
+    def test_cover_does_not_use_legacy_generic_art_for_another_model(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs = Path(td)
+            assets = docs / "renderers" / "latex" / "assets"
+            assets.mkdir(parents=True)
+            (assets / "cover-en.pdf").write_bytes(b"JE-1000F cover")
+
+            selected = page_placed.placed_asset_for(
+                "cover-en", "en", docs, model="JBP-2000B",
+            )
+
+        self.assertIsNone(selected)
+
+    def test_cover_keeps_legacy_generic_fallback_for_owning_model(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs = Path(td)
+            assets = docs / "renderers" / "latex" / "assets"
+            assets.mkdir(parents=True)
+            generic = assets / "cover-fr.pdf"
+            generic.write_bytes(b"JE-1000F French cover")
+
+            selected = page_placed.placed_asset_for(
+                "cover-fr", "fr", docs, model="JE-1000F",
+            )
+
+        self.assertEqual(generic, selected)
+
+    def test_jbp_back_cover_uses_model_qr_profile_without_reference_plan(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs = root / "docs"
+            qr = docs / "renderers" / "latex" / "assets" / "back_cover_qr_jbp2000b.pdf"
+            qr.parent.mkdir(parents=True)
+            qr.write_bytes(b"JBP QR")
+            self.writer.model = "JBP-2000B"
+
+            added = page_placed.add_preferred_back_cover_page(
+                self.writer,
+                "US",
+                "en",
+                docs,
+                27,
+                {
+                    "company": "JACKERY INC.",
+                    "address": "5310 Bunche Dr., Fremont, CA 94538-8301",
+                    "phone": "1-888-502-2236 (US)",
+                    "lines": "hello@jackery.com\nwww.jackery.com",
+                },
+                reference_plan=None,
+            )
+
+        self.assertTrue(added)
+        spread = self.writer.spreads[-1][1]
+        self.assertIn("rc_st_back_cover_qr", spread)
+        self.assertIn(qr.resolve().as_uri(), spread)
+
     def test_toc_uses_source_titles_ranges_and_folios(self) -> None:
         self.writer.spreads = [(f"sp_{i}", f'<Spread Self="sp_{i}"/>') for i in range(4)]
         source = {

@@ -91,6 +91,16 @@ class LatexWarrantyTests(unittest.TestCase):
         raw_latex = [node.astext() for node in doctree.findall(nodes.raw)]
         self.assertIn(r"\textquotesingle{}", raw_latex)
 
+    def test_builds_dedicated_page_for_supported_localized_titles(self) -> None:
+        for title in ("WARRANTY", "GARANTIE", "GARANTÍA"):
+            with self.subTest(title=title):
+                source = WARRANTY_RST.replace("WARRANTY\n========", f"{title}\n========", 1)
+                doctree = self._transform(source)
+
+                pages = list(doctree.findall(HBWarrantyPage))
+                self.assertEqual(1, len(pages))
+                self.assertEqual(title, pages[0]["title"])
+
     def test_keeps_non_latex_and_non_warranty_sections_unchanged(self) -> None:
         html_tree = self._transform(WARRANTY_RST, output_format="html")
         other_tree = self._transform("APP SETUP\n=========\n\nBody.\n")

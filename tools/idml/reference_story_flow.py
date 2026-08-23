@@ -49,6 +49,9 @@ class ReferenceStoryEmitter:
         """Emit one editable prose story and return the next page cursor."""
         writer = self.writer
         self.toc.latch(title)
+        plan_source = (self.page_plan or {}).get("plan_source")
+        measured_fallback = self.page_plan is not None and plan_source != "approved-reference"
+        normalized_title = title.casefold()
         operation_lang = operation_language(blocks, self.page_plan, title)
         composition_lang = composition_language(self.page_plan, title)
         is_operation = (
@@ -71,9 +74,21 @@ class ReferenceStoryEmitter:
             component=APP_ADD_DEVICE_COMPONENT,
         )
         is_storage_troubleshooting = (
-            (self.page_plan or {}).get("plan_source") == "approved-reference"
+            plan_source == "approved-reference"
             and "storage_and_maintenance" in title
             and "troubleshooting" in title
+        )
+        is_measured_troubleshooting = (
+            measured_fallback
+            and "troubleshooting" in normalized_title
+            and (
+                "charging" in normalized_title
+                or "storage" in normalized_title
+            )
+        )
+        is_measured_overview = (
+            measured_fallback
+            and "product_overview" in normalized_title
         )
         is_warranty = (
             (self.page_plan or {}).get("plan_source") == "approved-reference"
@@ -156,7 +171,7 @@ class ReferenceStoryEmitter:
                 f"lang_{operation_lang}_comp_operation_page_extra_height",
                 shared_operation_extra,
             )
-        elif is_storage_troubleshooting:
+        elif is_storage_troubleshooting or is_measured_troubleshooting:
             # The governed troubleshooting panel reaches the reference's
             # lower trim rhythm. Keep its complete editable anchored group in
             # the story with an invisible frame-depth allowance; never shrink
@@ -165,6 +180,16 @@ class ReferenceStoryEmitter:
                 writer.params,
                 "comp_trouble_page_extra_height",
                 32.0,
+            )
+        elif is_measured_overview:
+            # Measured-LaTeX fallback may deliberately compose FCC, inbox, and
+            # Product Overview on one physical page. Preserve the existing
+            # editable components and give only the final carrier frame a small
+            # invisible import allowance for anchored-object markers.
+            bottom_extra = param_pt(
+                writer.params,
+                "idml_measured_overview_page_extra_height",
+                8.0,
             )
         elif is_warranty:
             shared_warranty_extra = param_pt(

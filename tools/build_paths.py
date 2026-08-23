@@ -92,6 +92,55 @@ def resolve_layout_params_csv(
     return Paths(root=repo_root).layout_params_csv
 
 
+def resolve_idml_layout_param_overlays(
+    config_path: Path,
+    *,
+    repo_root: Path,
+    config_loader: Callable[[Path], dict[str, Any]] = load_config,
+) -> tuple[Path, ...]:
+    """Resolve additive IDML composition-token layers selected by a config."""
+
+    cfg = config_loader(config_path)
+    paths_cfg = cfg.get("paths", {})
+    if not isinstance(paths_cfg, dict):
+        return ()
+    raw = paths_cfg.get("idml_layout_params_overlays", [])
+    if raw is None:
+        return ()
+    if not isinstance(raw, list) or any(
+        not isinstance(value, str) or not value.strip() for value in raw
+    ):
+        raise ValueError("paths.idml_layout_params_overlays must be a list of paths")
+    return tuple(
+        resolve_path_from_root(repo_root, value.strip())
+        for value in raw
+    )
+
+
+def resolve_idml_assembly_plan(
+    config_path: Path,
+    *,
+    repo_root: Path,
+    config_loader: Callable[[Path], dict[str, Any]] = load_config,
+) -> Path | None:
+    """Resolve an explicitly configured candidate IDML assembly contract.
+
+    Candidate target assembly is opt-in data.  There is intentionally no
+    filename/model discovery fallback here: approved plans are resolved by
+    their own registry, while an unconfigured target keeps the measured-LaTeX
+    compatibility path.
+    """
+
+    cfg = config_loader(config_path)
+    paths_cfg = cfg.get("paths", {})
+    if not isinstance(paths_cfg, dict):
+        return None
+    raw = paths_cfg.get("idml_assembly_plan")
+    if not isinstance(raw, str) or not raw.strip():
+        return None
+    return resolve_path_from_root(repo_root, raw.strip())
+
+
 def resolve_docs_dir(
     config_path: Path,
     *,

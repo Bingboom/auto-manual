@@ -410,6 +410,11 @@ def _troubleshooting_frame_height(
             style.header_leading if row_index == 0 else style.body_leading
         )
         budget += native_height + max(left_growth, right_growth)
+    # Short product-specific tables keep the same type, row minima and rounded
+    # shell, but do not inherit the full twelve-row master panel depth.  The
+    # complete governed EN/FR/ES tables still retain the reviewed minimum.
+    if len(raw_rows) < len(style.row_minima):
+        return budget + style.import_safety
     if budget <= style.panel_min_height:
         return style.panel_min_height
     return budget + style.import_safety

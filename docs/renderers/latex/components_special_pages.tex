@@ -8,7 +8,7 @@
 
 % The final two brace groups are optional so existing three-field review pages
 % remain buildable while current sources expose editable email and web fields.
-\ProvideDocumentCommand{\HBBackCoverPage}{m m m g g}{%
+\ProvideDocumentCommand{\HBBackCoverPage}{m m m g g g}{%
   \clearpage
   \thispagestyle{empty}%
   \null\vfill
@@ -27,6 +27,12 @@
        \IfNoValueF{#4}{#4\par}\IfNoValueF{#5}{#5\par}}
     \end{minipage}
   \end{minipage}%
+  \IfNoValueF{#6}{%
+    \hfill
+    \begin{minipage}[b]{0.10\textwidth}
+      \centering\includegraphics[width=\linewidth]{#6}%
+    \end{minipage}%
+  }%
   \vspace*{2mm}
 }
 

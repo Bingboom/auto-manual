@@ -28,6 +28,8 @@ def add_lcd_story(
     lang: str = "en",
     *,
     title: str,
+    hero_path: Path | None = None,
+    compact: bool = False,
 ) -> str:
     """LCD icon table: circled-no / icon image / name / description."""
     title = source_text(title, owner="LCD page title")
@@ -174,7 +176,11 @@ def add_lcd_story(
                     0.0,
                     first_panel_height - sum(row_heights),
                 )
-            else:
+            elif not compact:
+                # Compact shared-page LCD tables own only their real rows.
+                # The approved standalone LCD composition's terminal filler
+                # would otherwise add 26+ pt of empty cell inset, hide the
+                # final short row, and consume the Operations frame budget.
                 terminal_fill = param_pt(
                     writer.params,
                     f"lang_{lang}_idml_lcd_first_terminal_fill",
@@ -335,7 +341,7 @@ def add_lcd_story(
                     writer.params, "comp_lcd_continuation_panel_height", 465.0),
             )
         segment_limit = first_limit if segment_index == 0 else continuation_limit
-        if row_heights is None and segment_index > 0 and len(segment) < segment_limit:
+        if row_heights is None and len(segment) < segment_limit:
             panel_height = min(
                 panel_height,
                 max(
@@ -347,7 +353,7 @@ def add_lcd_story(
             )
         # A complete governed table owns the full shell height: short rows keep
         # their compact fixed budget and the final row must close directly
-        # against the rounded bottom border.  Never add a terminal spacer below
+        # against the rounded bottom border. Never add a terminal spacer below
         # the table. InDesign finalize may grow the shell together with the
         # table if native font metrics make a real row taller.
         if row_heights is not None:
@@ -390,7 +396,15 @@ def add_lcd_story(
     parts = [
         _po.h1_pill_paragraph(
             writer, title, writer.page_w - writer.m_l - writer.m_r),
-        _po.lcd_hero_paragraph(writer, lang),
+        _po.lcd_hero_paragraph(
+            writer,
+            lang,
+            hero_path=hero_path,
+            max_height=(
+                param_pt(writer.params, "idml_compact_lcd_hero_max_height", 55.0)
+                if compact else None
+            ),
+        ),
         *table_panels,
     ]
     return writer._add_story_parts(sid, title, parts)
@@ -407,7 +421,9 @@ def add_symbols_story(
     signal_headers: tuple[str, str],
     icon_headers: tuple[str, str],
 ) -> str:
-    sid = "st_symbols"
+    normalized_lang = lang.strip().casefold().replace("_", "-").split("-", 1)[0]
+    id_suffix = "" if normalized_lang == "en" else f"_{normalized_lang}"
+    sid = f"st_symbols{id_suffix}"
     title = source_text(title, owner="Symbols page title")
     signal_headers = (
         source_text(signal_headers[0], owner="Symbols signal column 1 header"),
@@ -421,7 +437,7 @@ def add_symbols_story(
         writer, title, writer.page_w - writer.m_l - writer.m_r)]
     if signals:
         table = writer._table(
-            "tbl_sym_sig",
+            f"tbl_sym_sig{id_suffix}",
             [list(signal_headers), *[list(row) for row in signals]],
             label_style="HB Notice Label",
             role="data",
@@ -431,7 +447,7 @@ def add_symbols_story(
     if icons:
         body_w = writer.page_w - writer.m_l - writer.m_r
         cols = (body_w * 0.18, body_w * 0.82)
-        tid = "tbl_sym_ico"
+        tid = f"tbl_sym_ico{id_suffix}"
         cells = [
             writer._cell(
                 f"{tid}c0_0",
@@ -484,12 +500,14 @@ def add_trouble_story(
     rows: list[tuple[str, str]],
     *,
     title: str,
+    lang: str = "en",
 ) -> str:
-    sid = "st_trouble"
+    sid = "st_trouble" if lang == "en" else f"st_trouble_{lang}"
     title = source_text(title, owner="Troubleshooting page title")
     parts = [_po.h1_pill_paragraph(
         writer, title, writer.page_w - writer.m_l - writer.m_r)]
-    table = writer._table("tbl_trouble", rows, role="data")
+    table_id = "tbl_trouble" if lang == "en" else f"tbl_trouble_{lang}"
+    table = writer._table(table_id, rows, role="data")
     body_style_ref = paragraph_style_ref("HB Body")
     parts.append(
         f'  <ParagraphStyleRange AppliedParagraphStyle="{body_style_ref}">\n'

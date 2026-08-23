@@ -173,7 +173,8 @@ class IdmlWriter:
                         blocks: list[tuple[str, str]],
                         bundle_root: Path, *,
                         inline_origin_shift: float = 0.0,
-                        language: str | None = None) -> tuple[str, float]:
+                        language: str | None = None,
+                        image_roles: tuple[str, ...] = ()) -> tuple[str, float]:
         return _stories.add_prose_story(
             self,
             sid,
@@ -182,6 +183,7 @@ class IdmlWriter:
             bundle_root,
             inline_origin_shift=inline_origin_shift,
             language=language,
+            image_roles=image_roles,
         )
 
     def add_lcd_story(self, rows: list[dict], data_root: Path, **kw) -> str:
@@ -236,9 +238,10 @@ class IdmlWriter:
 
     def _safety_section_story(self, sid: str, title: str,
                               blocks: list[tuple[str, str]],
-                              bundle_root: Path) -> str:
+                              bundle_root: Path, *,
+                              compact: bool = False) -> str:
         return _pages._safety_section_story(
-            self, sid, title, blocks, bundle_root)
+            self, sid, title, blocks, bundle_root, compact=compact)
 
     def add_safety_page(self, sid: str, title: str,
                         blocks: list[tuple[str, str]], bundle_root: Path,

@@ -1788,6 +1788,46 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertNotIn("EU-only row.", out)
         self.assertNotIn("Old row.", out)
 
+    def test_render_troubleshooting_page_prefers_model_specific_rows_over_all(self) -> None:
+        blocks = [
+            {
+                "No.": "1",
+                "Model": "ALL",
+                "Region": "US",
+                "Is_latest": "TRUE",
+                "error_code": "GENERIC",
+                "corrective_measures_en": "Generic measure.",
+            },
+            {
+                "No.": "2",
+                "Model": "JBP-2000B",
+                "Region": "US",
+                "Is_latest": "TRUE",
+                "error_code": "SPECIFIC",
+                "corrective_measures_en": "Specific measure.",
+            },
+        ]
+
+        specific = renderers.render_troubleshooting_page(
+            template=self._troubleshooting_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="en",
+            vars_map={"model": "JBP-2000B", "region": "US"},
+        )
+        fallback = renderers.render_troubleshooting_page(
+            template=self._troubleshooting_template(),
+            blocks=blocks,
+            sku_id="",
+            lang="en",
+            vars_map={"model": "UNREGISTERED", "region": "US"},
+        )
+
+        self.assertIn("SPECIFIC", specific)
+        self.assertNotIn("GENERIC", specific)
+        self.assertIn("GENERIC", fallback)
+        self.assertNotIn("SPECIFIC", fallback)
+
     def test_render_troubleshooting_page_supports_pt_br_columns_and_region_alias(self) -> None:
         blocks = [
             {

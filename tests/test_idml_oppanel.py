@@ -2,10 +2,15 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 import unittest
 import warnings
 
+from tools.idml_rst_extract import extract_page
 from tools.idml.oppanel import parse_rows, transform
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class ParseRowsTest(unittest.TestCase):
@@ -55,6 +60,48 @@ class ParseRowsTest(unittest.TestCase):
 
 
 class TransformTest(unittest.TestCase):
+    def test_battery_pack_templates_use_neutral_art_and_editable_panel_copy(self) -> None:
+        expected_rows = {
+            "en": [("On", "Press once"), ("Off", "Press and hold for 3 seconds")],
+            "fr": [
+                ("Marche", "Appuyez une fois"),
+                ("Arrêt", "Appuyez et maintenez pendant 3 secondes"),
+            ],
+            "es": [
+                ("Encendido", "Presione una vez"),
+                ("Apagado", "Mantenga presionado durante 3 segundos"),
+            ],
+        }
+        for language, rows in expected_rows.items():
+            with self.subTest(language=language):
+                source = (
+                    ROOT
+                    / "docs"
+                    / "templates"
+                    / "page_bp"
+                    / language
+                    / "05_operation_guide_placeholder.rst"
+                )
+                extracted = extract_page(source, tags={"latex", "idml"})
+                output = transform(extracted.blocks)
+                panels = [
+                    json.loads(payload)
+                    for kind, payload in output
+                    if kind == "component"
+                    and json.loads(payload).get("kind") == "oppanel"
+                ]
+
+                self.assertEqual(0, extracted.skipped_raw)
+                self.assertEqual(1, len(panels))
+                self.assertEqual(
+                    "asset:operation/jbp2000b/power_control",
+                    panels[0]["image"],
+                )
+                self.assertEqual(rows, [tuple(row) for row in panels[0]["rows"]])
+                serialized = source.read_text(encoding="utf-8")
+                self.assertNotIn("operation/jbp2000b/panels_", serialized)
+                self.assertIn("asset:operation/jbp2000b/lcd_control", serialized)
+
     def test_image_plus_rows_with_prereq_becomes_component(self) -> None:
         blocks = [
             ("h2", "AC OUTPUT ON/OFF"),

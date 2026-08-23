@@ -1,0 +1,951 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_jbp2000b_us_master",
+    "expected_sha256": "f011887c89f61e879be13c3868b13abf45849ea95c09326adb572709880a4b2f",
+    "expected_page_count": 28
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 28
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {
+        "5": 4,
+        "6": 4
+      }
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "cover_front",
+      "role": "cover_front",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "frontmatter_important",
+      "role": "frontmatter",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "frontmatter_toc",
+      "role": "frontmatter",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "en_01",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "en_02",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "en_03",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "en_04",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "en_05",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "en_06",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "en_07",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "en_08",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "fr_01",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "fr_02",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "fr_03",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "fr_04",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "fr_05",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "fr_06",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "fr_07",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 19,
+      "page_key": "fr_08",
+      "role": "manual_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 20,
+      "page_key": "es_01",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 21,
+      "page_key": "es_02",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 22,
+      "page_key": "es_03",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 23,
+      "page_key": "es_04",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 24,
+      "page_key": "es_05",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 25,
+      "page_key": "es_06",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 26,
+      "page_key": "es_07",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 27,
+      "page_key": "es_08",
+      "role": "manual_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 28,
+      "page_key": "cover_back",
+      "role": "cover_back",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "overview/jbp2000b/composite_en",
+      "page": 5,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            361,
+            341,
+            503
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/jbp2000b_product_overview_en.pdf",
+          "expected_sha256": "518e1b331434a8fb165d095cf3c0d5af9bd2b8d82374f97bb8b2b9a73f74f721"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/jbp2000b_product_overview_en.png",
+          "scale": 4,
+          "expected_sha256": "b4ba3c11869475e5496d923ea52e546f03b9bb350ff408cf2180d19388421496"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": []
+      },
+      "risk_tags": [
+        "model-specific",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "overview/jbp2000b/composite_fr",
+      "page": 13,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            361,
+            341,
+            503
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/jbp2000b_product_overview_fr.pdf",
+          "expected_sha256": "6ae601580d6dff5eb53638a95d30dad6025d35ff6a8b2e1a3d0d4130f50a12b6"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/jbp2000b_product_overview_fr.png",
+          "scale": 4,
+          "expected_sha256": "e4d7fdda48a627ec5fb7cbb6964604a61b29d69de545e409ddf848091c4da1ce"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": []
+      },
+      "risk_tags": [
+        "model-specific",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "overview/jbp2000b/composite_es",
+      "page": 21,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            361,
+            341,
+            503
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/jbp2000b_product_overview_es.pdf",
+          "expected_sha256": "6fdded5067a72b83a9f5b30e06dda8d37cd3b26dca2d86efd45624177eb7767d"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/jbp2000b_product_overview_es.png",
+          "scale": 4,
+          "expected_sha256": "99b01c577913dc0aefa220ba542330dccf142f4c4cf18f3dde4fa5cf42b27ace"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": []
+      },
+      "risk_tags": [
+        "model-specific",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "operation/jbp2000b/panels_en",
+      "page": 6,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.4,
+            211,
+            341.6,
+            500
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/jbp2000b_operations_en.pdf",
+          "expected_sha256": "32591f6609726a3f0a6d1326bf5ea31b86dfeb439e2984dfc06d377ee21944d5"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/jbp2000b_operations_en.png",
+          "scale": 4,
+          "expected_sha256": "c9eb457e4bd88b0d19d17a1a434a2088621fa6ee9b8b7f6854deb6cb58c60f25"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": []
+      },
+      "risk_tags": [
+        "model-specific",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "operation/jbp2000b/panels_fr",
+      "page": 14,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.4,
+            211,
+            341.6,
+            500
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/jbp2000b_operations_fr.pdf",
+          "expected_sha256": "cc9670fcbec2b6342d36e9e0ecd029e57082a5e0d2349a4be8b63d719835a61e"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/jbp2000b_operations_fr.png",
+          "scale": 4,
+          "expected_sha256": "d39fe58e5aa4b9a911267f3d9dc0b90c6015bfee5605f6628d814a3e8907571d"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": []
+      },
+      "risk_tags": [
+        "model-specific",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "operation/jbp2000b/panels_es",
+      "page": 22,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.4,
+            211,
+            341.6,
+            500
+          ]
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            286.5,
+            214.5,
+            341.6,
+            231
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/jbp2000b_operations_es.pdf",
+          "expected_sha256": "338c78200a2dd02b76071168b7226f8aaa83ad6d024ff8a6d8496725980a5b24"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/jbp2000b_operations_es.png",
+          "scale": 4,
+          "expected_sha256": "b66ae72477b5562860bb3a589c7a99e52fbae399ec37b18dda7d00cb2464d599"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": []
+      },
+      "risk_tags": [
+        "model-specific",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "connections/jbp2000b/locking_en",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            28,
+            341,
+            300
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/jbp2000b_connection_locking_en.pdf",
+          "expected_sha256": "2e30c929ef64b2c3033d4a60f73bdce3f1aff0a5bd4bb790d103abab53fd390b"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/jbp2000b_connection_locking_en.png",
+          "scale": 4,
+          "expected_sha256": "16fcf9f75d071f235e3bc5a04020de195d02a8a7096e078ffee882f564dd35e1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": []
+      },
+      "risk_tags": [
+        "model-specific",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "connections/jbp2000b/locking_fr",
+      "page": 16,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            28,
+            341,
+            300
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/jbp2000b_connection_locking_fr.pdf",
+          "expected_sha256": "361540930d87e800d3892ababd9dee9a7eecfe45352756304eaa812e814dc13d"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/jbp2000b_connection_locking_fr.png",
+          "scale": 4,
+          "expected_sha256": "27e1efb58cc5f886f8cf6f768897d11eb15ea79f9bd181e0fdfb208bd0fa77b9"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": []
+      },
+      "risk_tags": [
+        "model-specific",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "connections/jbp2000b/locking_es",
+      "page": 24,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.4,
+            28,
+            341,
+            300
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/jbp2000b_connection_locking_es.pdf",
+          "expected_sha256": "b93acca8ef4fe18f356a7c12432d606237d1194e9a217b3182fa1c90783aaf19"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/jbp2000b_connection_locking_es.png",
+          "scale": 4,
+          "expected_sha256": "da1e35f993197df1ea22dcebecdd70470c18479160c1de167f29e8784fa3840b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": []
+      },
+      "risk_tags": [
+        "model-specific",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "charging/jbp2000b/ac_wall",
+      "page": 9,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.4,
+            114.4,
+            341.6,
+            270.6
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/jbp2000b_ac_charging.pdf",
+          "expected_sha256": "791f0561cfe3485a2c84625364281d2401d74a0ce89cda47834121cf8a96b12e"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/jbp2000b_ac_charging.png",
+          "scale": 4,
+          "expected_sha256": "9b43f7b5170cbaa662c5d79cec2b204d84dc1b82021047b8d5218797e0f43600"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": []
+      },
+      "risk_tags": [
+        "model-specific"
+      ]
+    },
+    {
+      "asset_key": "qr/jbp2000b/back_cover",
+      "page": 28,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JBP-2000B"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            304,
+            459,
+            343,
+            500
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "docs/renderers/latex/assets/back_cover_qr_jbp2000b.pdf",
+          "expected_sha256": "7d5a86053fd01874fdc38c959927d1bb498b54b0bb7a6bcea2d580a1c5c5b7fa"
+        },
+        {
+          "format": "png",
+          "path": "docs/renderers/latex/assets/back_cover_qr_jbp2000b.png",
+          "scale": 8,
+          "expected_sha256": "1e27289622afde9d0cf5afa24a3bc039d4c0f552f1675f9bc9ae21ea4f91cb37"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Policy-required QR quarantine; 12x visual review passed and payload 160102000279 was decoded before hash pinning."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "qr-code"
+      ]
+    }
+  ]
+}

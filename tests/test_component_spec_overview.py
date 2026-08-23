@@ -99,6 +99,20 @@ class OverviewComponentSpecTests(unittest.TestCase):
 
     def test_target_resolution_is_exact_and_unknown_targets_fail_closed(self) -> None:
         self.assertEqual("je1000f-us-v1", self.instance["instance_id"])
+        battery_pack = resolve_overview_instance(
+            model="JBP-2000B",
+            region="US",
+            registry=self.instance_registry,
+        )
+        self.assertEqual("jbp2000b-us-v1", battery_pack["instance_id"])
+        self.assertEqual(
+            ["power", "lcd", "handle", "port_a", "port_b"],
+            [
+                callout["id"]
+                for view in battery_pack["views"]
+                for callout in view["callouts"]
+            ],
+        )
         self.assertEqual(
             self.instance,
             resolve_overview_instance(
@@ -121,6 +135,58 @@ class OverviewComponentSpecTests(unittest.TestCase):
                 instance_id="missing-target",
                 registry=self.instance_registry,
             )
+
+    def test_battery_pack_instance_projects_only_target_difference_slots(self) -> None:
+        instance = resolve_overview_instance(
+            model="JBP-2000B",
+            region="US",
+            registry=self.instance_registry,
+        )
+        blocks = [
+            ("h1", "PRODUCT OVERVIEW"),
+            ("h2", "FRONT VIEW"),
+            ("image", "overview/jbp2000b/front_controls.png"),
+            ("table", [["**POWER button**", "**LCD Display**"]]),
+            ("h2", "LEFT SIDE VIEW"),
+            ("image", "overview/jbp2000b/left_side_ports.png"),
+            (
+                "table",
+                [
+                    [
+                        "**Handle**",
+                        "**DC Expansion Port A** (Connect to Terminal A)",
+                    ],
+                    [
+                        "",
+                        "**DC Expansion Port B** (Connect to Terminal B)",
+                    ],
+                ],
+            ),
+        ]
+        spec = overview_spec_from_blocks(
+            blocks,
+            instance=instance,
+            source_ref="page/product_overview_en.rst",
+            language="en",
+        )
+        projection = idml_overview_projection(spec, instance)
+
+        self.assertEqual("jbp2000b-us-v1", projection["geometry_ref"])
+        self.assertEqual(2, len(projection["views"]))
+        self.assertEqual(
+            [42.0, 365.5, 105.0, 12.0],
+            projection["views"][0]["heading_text_rect"],
+        )
+        self.assertEqual(5, sum(len(view["callouts"]) for view in projection["views"]))
+        self.assertEqual(5, len(projection["leaders"]))
+        self.assertEqual(
+            ["POWER button", "LCD Display", "Handle", "DC Expansion Port A", "DC Expansion Port B"],
+            [
+                callout["label"]
+                for view in projection["views"]
+                for callout in view["callouts"]
+            ],
+        )
 
     def test_two_variants_share_live_semantics_and_asset_roles(self) -> None:
         for variant in (LIVE_VARIANT, COMPOSITE_VARIANT):

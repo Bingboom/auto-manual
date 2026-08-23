@@ -31,8 +31,65 @@ _APP_MEASURE_RATIOS = {
     "/app/je1000f_us/connect_result_je1000f_us.png": 0.58,
 }
 
+IMAGE_ROLE_DEFAULT = "default"
+IMAGE_ROLE_FULL_MEASURE = "full_measure"
+IMAGE_ROLE_WIDE_DIAGRAM = "wide_diagram"
+IMAGE_ROLE_COMPACT_DIAGRAM = "compact_diagram"
+IMAGE_ROLE_CHARGING_DIAGRAM = "charging_diagram"
 
-def _semantic_max_width(ref: str, resolved: str, ctx: RenderContext) -> float:
+_ROLE_WIDTH_RATIOS = {
+    IMAGE_ROLE_FULL_MEASURE: (
+        "idml_semantic_image_full_measure_ratio",
+        1.0,
+    ),
+    IMAGE_ROLE_WIDE_DIAGRAM: (
+        "idml_semantic_image_wide_diagram_ratio",
+        0.78,
+    ),
+    IMAGE_ROLE_COMPACT_DIAGRAM: (
+        "idml_semantic_image_compact_diagram_ratio",
+        0.62,
+    ),
+    IMAGE_ROLE_CHARGING_DIAGRAM: (
+        "idml_semantic_image_charging_diagram_ratio",
+        0.58,
+    ),
+}
+
+
+def _role_max_width(role: str | None, ctx: RenderContext) -> float | None:
+    """Resolve target-neutral image geometry before legacy path fallbacks."""
+
+    if role in (None, IMAGE_ROLE_DEFAULT):
+        return None
+    try:
+        token, default = _ROLE_WIDTH_RATIOS[role]
+    except KeyError as exc:
+        raise ValueError(f"unsupported semantic image role: {role}") from exc
+    language = (ctx.language or "").strip().casefold().replace("_", "-")
+    language = language.split("-", 1)[0]
+    ratio = param_pt(
+        ctx.params,
+        f"lang_{language}_{token}" if language else token,
+        param_pt(ctx.params, token, default),
+    )
+    if not 0.0 < ratio <= 1.0:
+        raise ValueError(
+            f"semantic image width ratio must be in (0, 1]: {token}={ratio:g}"
+        )
+    return ctx.text_measure * ratio
+
+
+def _semantic_max_width(
+    ref: str,
+    resolved: str,
+    ctx: RenderContext,
+    *,
+    role: str | None = None,
+) -> float:
+    role_width = _role_max_width(role, ctx)
+    if role_width is not None:
+        return role_width
     paths = (ref.replace("\\", "/"), resolved.replace("\\", "/"))
     if any(path.endswith(("front_product.jpg", "right_side_ports.png")) for path in paths):
         return ctx.text_measure
@@ -44,12 +101,18 @@ def _semantic_max_width(ref: str, resolved: str, ctx: RenderContext) -> float:
     return 120.0
 
 
-def render_image_block(ref: str, ctx: RenderContext, *, rect_id: str,
-                       terminal: bool) -> tuple[str | None, float]:
+def render_image_block(
+    ref: str,
+    ctx: RenderContext,
+    *,
+    rect_id: str,
+    terminal: bool,
+    role: str | None = None,
+) -> tuple[str | None, float]:
     img = ctx.resolve_bundle_image(ref)
     if img is None:
         return None, 0.0
-    max_w = _semantic_max_width(ref, img.as_posix(), ctx)
+    max_w = _semantic_max_width(ref, img.as_posix(), ctx, role=role)
     w_pt, h_pt = ctx.art_frame_size(img, max_w=max_w)
     rect = image_cell_content(
         rect_id, img, w_pt, h_pt, anchored_position="AboveLine")

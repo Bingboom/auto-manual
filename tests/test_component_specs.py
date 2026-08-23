@@ -102,6 +102,11 @@ class ComponentSpecTests(unittest.TestCase):
             ("CONSEJOS", "tip"),
             ("PELIGRO", "danger"),
             ("PRECAUCIÓN", "caution"),
+            ("NOTES", "note"),
+            ("REMARQUES", "note"),
+            ("NOTAS", "note"),
+            ("OBSERVACIONES", "note"),
+            ("IMPORTANT", "note"),
         ):
             with self.subTest(label=label):
                 spec = self._spec(label)

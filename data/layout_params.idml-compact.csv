@@ -1,0 +1,45 @@
+key,value,unit,comment
+comp_trouble_compact_max_rows,7,int,Maximum troubleshooting body rows using the compact section guard
+comp_trouble_compact_section_needspace,55,mm,Minimum space required for a compact troubleshooting heading and table
+idml_compact_safety_symbols_title_top,163.2,pt,Compact shared-page Symbols H1 top after English Safety copy
+lang_fr_idml_compact_safety_symbols_title_top,173.2,pt,Compact shared-page Symbols H1 top after French Safety copy
+lang_es_idml_compact_safety_symbols_title_top,173.2,pt,Compact shared-page Symbols H1 top after Spanish Safety copy
+idml_compact_safety_title_body_gap,3.5,pt,Compact shared-page gap after the Safety H1 bar
+idml_compact_safety_symbols_gap,4.0,pt,Compact shared-page clear gap before the Symbols H1 bar
+idml_compact_symbols_title_gap,6.0,pt,Compact shared-page gap from Symbols H1 to signal table
+idml_compact_safety_body_font_size,5.4,pt,Compact shared-page Safety lead font size
+idml_compact_safety_body_leading,6.1,pt,Compact shared-page Safety lead leading
+idml_compact_safety_list_font_size,5.0,pt,Compact shared-page Safety list font size
+idml_compact_safety_list_leading,5.8,pt,Compact shared-page Safety list leading
+idml_compact_safety_list_space_after,0.35,pt,Compact shared-page Safety list item gap
+idml_compact_safety_list_horizontal_scale,0.96,ratio,Compact shared-page Safety list width correction
+lang_fr_idml_compact_safety_list_horizontal_scale,0.94,ratio,French compact shared-page Safety list width correction
+lang_es_idml_compact_safety_list_horizontal_scale,0.96,ratio,Spanish compact shared-page Safety list width correction
+idml_table_marker_point_size,0.1,pt,IDML editable table carrier marker size and leading
+idml_compact_symbols_table_frame_allowance,4.0,pt,Compact shared-page Symbols table carrier allowance
+idml_compact_lcd_hero_max_height,55.0,pt,Compact shared-page LCD hero maximum height
+idml_compact_lcd_operations_split,181.0,pt,Compact shared-page LCD and Operations vertical split
+idml_compact_shared_page_gap,4.0,pt,Gap between stories in a shared physical-page composition
+idml_compact_operations_frame_bottom_extra,8.0,pt,Operations shared-page native import allowance
+idml_semantic_image_full_measure_ratio,1.0,ratio,Full-measure semantic prose image width ratio
+idml_semantic_image_wide_diagram_ratio,0.78,ratio,Wide semantic prose diagram width ratio
+idml_semantic_image_compact_diagram_ratio,0.62,ratio,Compact semantic prose diagram width ratio
+idml_semantic_image_charging_diagram_ratio,0.58,ratio,Charging semantic prose diagram width ratio
+lang_fr_idml_semantic_image_full_measure_ratio,0.80,ratio,French full-measure diagram ratio preserving localized notice capacity
+idml_toc_dynamic_leader_start,1,int,Move candidate TOC leader starts after the rendered source title
+idml_measured_overview_page_extra_height,48.0,pt,Invisible measured-LaTeX FCC inbox overview final-frame allowance
+idml_compact_fcc_inbox_overview_fcc_height,145.0,pt,Shared FCC inbox overview FCC panel height
+idml_inbox_compact_card_y,204.0,pt,Shared FCC inbox overview inbox-card top
+idml_inbox_compact_card_height,108.0,pt,Shared FCC inbox overview inbox-card height
+idml_inbox_compact_image_1_width,48.0,pt,Shared FCC inbox overview first inbox image width
+idml_inbox_compact_image_2_width,42.0,pt,Shared FCC inbox overview second inbox image width
+idml_inbox_compact_image_3_width,32.0,pt,Shared FCC inbox overview third inbox image width
+idml_inbox_compact_card_1_image_space_after,2.0,pt,Shared FCC inbox overview first card image gap
+idml_inbox_compact_card_2_image_space_after,2.0,pt,Shared FCC inbox overview second card image gap
+idml_inbox_compact_card_3_image_space_after,0.0,pt,Shared FCC inbox overview third card image gap
+idml_compact_overview_top,319.0,pt,Shared FCC inbox overview product-overview title top
+idml_compact_overview_height,142.0,pt,Shared FCC inbox overview product-overview art height
+idml_compact_connections_frame_bottom_extra,8.0,pt,Connections shared-page native import allowance
+idml_compact_connection_trouble_split,235.0,pt,Shared connection-tail troubleshooting vertical split
+idml_compact_trouble_frame_bottom_extra,18.0,pt,Troubleshooting shared-page native import allowance
+idml_compact_charging_storage_frame_bottom_extra,18.0,pt,Charging and Storage shared-page native import allowance

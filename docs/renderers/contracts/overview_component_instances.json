@@ -178,6 +178,108 @@
           "stroke_weight": 0.6
         }
       ]
+    },
+    "jbp2000b-us-v1": {
+      "component_id": "HB-SPECIAL-OVERVIEW",
+      "target": {
+        "model": "JBP-2000B",
+        "region": "US"
+      },
+      "source_patterns": [
+        "product_overview_en",
+        "product_overview_fr",
+        "product_overview_es"
+      ],
+      "page": {
+        "title_frame": [29.505, 328.5, 311.91, 20.065],
+        "title_text_rect": [35.9, 326.585, 299.0, 20.1]
+      },
+      "views": [
+        {
+          "id": "front",
+          "asset_role": "front_art",
+          "image_key": "overview/jbp2000b/front_controls",
+          "web_replace_key": "product-overview.front",
+          "composite_locales": [
+            {"source_patterns": ["product_overview_en"], "locale": "en"},
+            {"source_patterns": ["product_overview_fr"], "locale": "fr"},
+            {"source_patterns": ["product_overview_es"], "locale": "es"}
+          ],
+          "web": {
+            "aspect_ratio": 1.883465,
+            "decorative_leaders": []
+          },
+          "idml": {
+            "art_rect": [30.0, 400.0, 120.0, 67.0],
+            "heading_text_y": 365.5,
+            "heading_text_rect": [42.0, 365.5, 105.0, 12.0],
+            "heading_bullet_rect": [30.425, 365.7, 7.067, 7.068]
+          },
+          "callouts": [
+            {
+              "id": "power",
+              "source_slot": "front.left.0",
+              "web": {"rect": [1.0, 47.0, 26.0, 13.0], "align": "left", "leader": [[1.0, 55.0], [35.0, 55.0], [73.0, 22.0]]},
+              "idml": {"rect": [31.5, 465.0, 105.0, 18.0], "align": "LeftAlign", "leader": [[31.5, 486.0], [126.0, 486.0], [126.0, 440.0]]}
+            },
+            {
+              "id": "lcd",
+              "source_slot": "front.right.0",
+              "web": {"rect": [73.0, 7.0, 26.0, 13.0], "align": "right", "leader": [[99.0, 15.0], [66.0, 15.0], [50.0, 40.0]]},
+              "idml": {"rect": [31.5, 377.0, 72.0, 14.0], "align": "LeftAlign", "leader": [[31.5, 386.0], [119.0, 386.0], [119.0, 428.0]]}
+            }
+          ]
+        },
+        {
+          "id": "right",
+          "asset_role": "right_art",
+          "image_key": "overview/jbp2000b/left_side_ports",
+          "web_replace_key": "product-overview.left",
+          "composite_locales": [
+            {"source_patterns": ["product_overview_en"], "locale": "en"},
+            {"source_patterns": ["product_overview_fr"], "locale": "fr"},
+            {"source_patterns": ["product_overview_es"], "locale": "es"}
+          ],
+          "web": {
+            "aspect_ratio": 1.382193,
+            "decorative_leaders": []
+          },
+          "idml": {
+            "art_rect": [171.0, 400.0, 102.0, 70.0],
+            "heading_text_y": 365.5,
+            "heading_text_rect": [170.5, 365.5, 168.0, 12.0],
+            "heading_bullet_rect": [159.0, 365.7, 7.067, 7.068]
+          },
+          "callouts": [
+            {
+              "id": "handle",
+              "source_slot": "right.sequence.0",
+              "web": {"rect": [1.0, 6.0, 28.0, 12.0], "align": "left", "leader": [[1.0, 14.0], [42.0, 14.0], [42.0, 4.0]]},
+              "idml": {"rect": [275.0, 377.0, 66.0, 14.0], "align": "RightAlign", "leader": [[341.0, 386.0], [203.0, 386.0], [203.0, 400.0]]}
+            },
+            {
+              "id": "port_a",
+              "source_slot": "right.sequence.1",
+              "web": {"rect": [70.0, 21.0, 29.0, 27.0], "align": "right", "leader": [[99.0, 35.0], [61.0, 35.0], [61.0, 55.0]]},
+              "idml": {"rect": [256.0, 450.0, 85.0, 38.0], "align": "RightAlign", "leader": [[341.0, 480.0], [221.0, 480.0], [201.0, 454.0]]}
+            },
+            {
+              "id": "port_b",
+              "source_slot": "right.sequence.2",
+              "web": {"rect": [70.0, 61.0, 29.0, 27.0], "align": "right", "leader": [[99.0, 75.0], [61.0, 75.0], [61.0, 55.0]]},
+              "idml": {"rect": [256.0, 403.0, 85.0, 34.0], "align": "RightAlign", "leader": [[341.0, 428.0], [224.0, 428.0], [211.0, 442.0]]}
+            }
+          ]
+        }
+      ],
+      "idml_leader_order": [
+        "front.power",
+        "front.lcd",
+        "right.handle",
+        "right.port_a",
+        "right.port_b"
+      ],
+      "idml_decorative_leaders": []
     }
   }
 }

@@ -459,6 +459,44 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
 
         self.assertEqual(32.0, writer.spread_chain_options[0]["bottom_extra"])
 
+    def test_measured_troubleshooting_chain_reuses_component_allowance(self) -> None:
+        writer = _RecordingWriter()
+        writer.params["comp_trouble_page_extra_height"] = ("32", "pt")
+        emitter = ReferenceStoryEmitter(
+            writer,
+            _RecordingToc(),
+            ROOT,
+            {"schema_version": "latex-page-plan/v1", "pages": []},
+        )
+
+        emitter.emit(
+            "st_flow_troubleshooting_es_charging_es",
+            "troubleshooting_es + charging_es + storage_es",
+            [("h1", "SOLUCIÓN DE PROBLEMAS")],
+            page_cursor=23,
+        )
+
+        self.assertEqual(32.0, writer.spread_chain_options[0]["bottom_extra"])
+
+    def test_measured_overview_chain_gets_tokenized_import_allowance(self) -> None:
+        writer = _RecordingWriter()
+        writer.params["idml_measured_overview_page_extra_height"] = ("48", "pt")
+        emitter = ReferenceStoryEmitter(
+            writer,
+            _RecordingToc(),
+            ROOT,
+            {"schema_version": "latex-page-plan/v1", "pages": []},
+        )
+
+        emitter.emit(
+            "st_flow_fcc_en_box_contents_en",
+            "fcc_en + box_contents_en + product_overview_en",
+            [("h1", "PRODUCT OVERVIEW")],
+            page_cursor=4,
+        )
+
+        self.assertEqual(48.0, writer.spread_chain_options[0]["bottom_extra"])
+
     def test_app_chain_uses_reference_top_offset(self) -> None:
         for language in ("en", "en-US", "en_US"):
             with self.subTest(language=language):

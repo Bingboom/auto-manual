@@ -421,6 +421,8 @@ def _symbol_continuation_objects(
 def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
                    bundle_root: Path, *, lang: str = "en",
                    overflow_profile: bool = False,
+                   metric_namespace: str = "",
+                   require_tip: bool = True,
                    reference_profile: dict | None = None,
                    accessibility_label: str,
                    tip_label: str,
@@ -435,12 +437,13 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             accessibility_label=accessibility_label,
             tip_label=tip_label,
             tip_body=tip_body,
+            require_tip=require_tip,
         )
     )
     items = inbox_spec.get("items", [])[:3]
     language = lang.strip().casefold().replace("_", "-").split("-", 1)[0]
     reference_profile = reference_profile or {}
-    profile = "overflow_" if overflow_profile else ""
+    profile = metric_namespace + ("overflow_" if overflow_profile else "")
     def metric(name: str, fallback: float) -> float:
         base_key = f"idml_inbox_{profile}{name}"
         return param_pt(

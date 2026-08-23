@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+from pathlib import Path
 
 from .line_metrics import estimated_text_width
 from .params import param_pt
@@ -435,7 +436,13 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     return "".join(parts)
 
 
-def lcd_hero_paragraph(writer, lang: str = "en") -> str:
+def lcd_hero_paragraph(
+    writer,
+    lang: str = "en",
+    *,
+    hero_path: Path | None = None,
+    max_height: float | None = None,
+) -> str:
     """The master's annotated LCD line-art above the icon table
     (finished art cropped from the V2.0 PDF; numbers only, so one asset
     serves every language). Empty string when the asset is absent."""
@@ -443,7 +450,7 @@ def lcd_hero_paragraph(writer, lang: str = "en") -> str:
 
     from .style_names import paragraph_style_ref
     root = _P(__file__).resolve().parents[2]
-    hero = (
+    hero = hero_path or (
         root / "docs" / "templates" / "word_template" / "common_assets"
         / "lcd" / "lcd_map.png"
     )
@@ -455,7 +462,7 @@ def lcd_hero_paragraph(writer, lang: str = "en") -> str:
     # (the vector v2 is 1.69:1 vs the old crop's 1.97:1) must shrink-to-fit
     # or it pushes the downstream prose chain into overset.
     language = (lang or "en").strip().casefold().replace("_", "-").split("-", 1)[0]
-    hero_max_h = param_pt(
+    hero_max_h = max_height if max_height is not None else param_pt(
         writer.params,
         f"lang_{language}_idml_lcd_hero_max_height",
         param_pt(writer.params, "idml_lcd_hero_max_height", 159.0),
@@ -477,11 +484,19 @@ def lcd_hero_paragraph(writer, lang: str = "en") -> str:
         f"lang_{language}_idml_lcd_hero_horizontal_offset",
         param_pt(writer.params, "idml_lcd_hero_horizontal_offset", 0.0),
     )
-    image_xml = writer._image_cell_content("lcd_hero", hero, width, height)
+    # Legacy single-language packages use the frozen ``lcd_hero`` identity.
+    # Compact multi-language assemblies need a language suffix because all
+    # three stories coexist in one IDML package.
+    hero_id = (
+        f"lcd_hero_{language}"
+        if max_height is not None and language != "en"
+        else "lcd_hero"
+    )
+    image_xml = writer._image_cell_content(hero_id, hero, width, height)
     if horizontal_scale != 1.0:
         image_xml = image_xml.replace(
-            '<Image Self="lcd_hero_img" ItemTransform="1 0 0 1 0 0">',
-            f'<Image Self="lcd_hero_img" ItemTransform="{horizontal_scale:g} 0 0 1 0 0">',
+            f'<Image Self="{hero_id}_img" ItemTransform="1 0 0 1 0 0">',
+            f'<Image Self="{hero_id}_img" ItemTransform="{horizontal_scale:g} 0 0 1 0 0">',
             1,
         )
     style = paragraph_style_ref("HB Figure")

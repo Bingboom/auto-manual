@@ -3724,7 +3724,12 @@ class ExportIdmlTests(unittest.TestCase):
 
         cases = [
             ("REMARQUE", "note"),
+            ("NOTES", "note"),
+            ("REMARQUES", "note"),
             ("NOTA", "note"),
+            ("NOTAS", "note"),
+            ("OBSERVACIONES", "note"),
+            ("IMPORTANT", "note"),
             ("CONSEILS", "tip"),
             ("CONSEJOS", "tip"),
             ("ATTENTION", "caution"),

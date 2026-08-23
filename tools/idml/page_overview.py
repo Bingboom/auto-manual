@@ -10,17 +10,20 @@ import ast
 import re
 from pathlib import Path
 from typing import Any, Mapping
-from xml.sax.saxutils import escape
 
 from tools.component_specs.overview import overview_spec_from_blocks
 from tools.component_specs.overview_adapters import idml_overview_projection
 from tools.component_specs.overview_instance import resolve_overview_instance
 
 from .character_metrics import with_character_metrics
-from .page_objects import frame_with_background, heading_bar_opts, heading_text
+from .page_objects import (
+    frame_with_background,
+    heading_bar_opts,
+    heading_text,
+)
+from .page_overview_single_art import _graphic_frame, single_image_overview_frames
 from .params import IDPKG, param_pt
 
-_ATTR = {'"': "&quot;"}
 Block = tuple[str, object]
 
 _LABEL = re.compile(r"^\*\*(.+?)\*\*\s*(.*)$", re.S)
@@ -113,26 +116,6 @@ def _label_story(writer, sid: str, label: str, value: str, *,
     return writer._add_story_parts(sid, f"Product overview: {label}", parts)
 
 
-def _graphic_frame(writer, rect_id: str, asset: Path,
-                   rect: tuple[float, float, float, float]) -> str:
-    """Absolute linked-art frame; deliberately smaller than a full page."""
-    x1, y1, x2, y2 = writer._page_rect(*rect)
-    return (
-        f'  <Rectangle Self="{rect_id}" ContentType="GraphicType" '
-        'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-        'StrokeColor="Swatch/None" StrokeWeight="0" '
-        'ItemTransform="1 0 0 1 0 0">\n'
-        + writer._path_geometry(x1, y1, x2, y2)
-        + f'    <Image Self="{rect_id}_img" ItemTransform="1 0 0 1 {x1:g} {y1:g}">\n'
-        f'      <Link Self="{rect_id}_lnk" '
-        f'LinkResourceURI="{escape(asset.resolve().as_uri(), _ATTR)}"/>\n'
-        '    </Image>\n'
-        '    <FrameFittingOption FittingOnEmptyFrame="Proportionally" '
-        'FittingAlignment="CenterAnchor" AutoFit="true"/>\n'
-        '  </Rectangle>\n'
-    )
-
-
 def _leader_path(
     writer,
     rid: str,
@@ -172,6 +155,7 @@ def _section_heading(
     *,
     text_y: float,
     bullet_rect: tuple[float, float, float, float],
+    text_rect: tuple[float, float, float, float] | None = None,
 ) -> tuple[str, list[str]]:
     from .page_objects import page_rectangle_xml
 
@@ -191,7 +175,7 @@ def _section_heading(
     )
     frame = frame_with_background(
         writer, sid, "heading", story,
-        (42.0, text_y, writer.page_w - 70.0, 12.0),
+        text_rect or (42.0, text_y, writer.page_w - 70.0, 12.0),
         {"inset": (0, 0, 0, 0)},
     )
     return story, [bullet, frame]
@@ -348,17 +332,23 @@ def _label_frames(writer, sid: str,
     return frames
 
 
-def add_product_overview_page(
+def product_overview_frames(
     writer,
     sid: str,
     blocks: list[Block],
     bundle_root: Path,
-    page_index: int,
-) -> str:
-    """Compose one localized overview page from source-authored semantics."""
+) -> list[str]:
+    """Build the shared Overview component frames without owning a page."""
     h1 = next((str(value) for kind, value in blocks if kind == "h1"), "")
     h2s = [str(value) for kind, value in blocks if kind == "h2"]
     image_refs = [str(value) for kind, value in blocks if kind == "image"]
+    if h1 and not h2s and len(image_refs) == 1:
+        return single_image_overview_frames(
+            writer,
+            sid,
+            blocks,
+            bundle_root,
+        )
     if not h1 or len(h2s) != 2 or len(image_refs) != 2:
         raise ValueError("product overview requires one h1, two h2s, and two images")
     assets = [writer._resolve_bundle_image(bundle_root, ref) for ref in image_refs]
@@ -407,6 +397,11 @@ def add_product_overview_page(
         h2s[0],
         text_y=float(front_view["heading_text_y"]),
         bullet_rect=rect(front_view["heading_bullet_rect"]),
+        text_rect=(
+            rect(front_view["heading_text_rect"])
+            if "heading_text_rect" in front_view
+            else None
+        ),
     )
     _, right_heading = _section_heading(
         writer,
@@ -414,6 +409,11 @@ def add_product_overview_page(
         h2s[1],
         text_y=float(right_view["heading_text_y"]),
         bullet_rect=rect(right_view["heading_bullet_rect"]),
+        text_rect=(
+            rect(right_view["heading_text_rect"])
+            if "heading_text_rect" in right_view
+            else None
+        ),
     )
 
     artwork_and_headings = [
@@ -511,7 +511,18 @@ def add_product_overview_page(
     ]
     # All editable copy is emitted last and therefore opens above artwork and
     # both leader strokes in InDesign's stacking order.
-    frames = artwork_and_headings + white_leaders + dark_leaders + label_frames
+    return artwork_and_headings + white_leaders + dark_leaders + label_frames
+
+
+def add_product_overview_page(
+    writer,
+    sid: str,
+    blocks: list[Block],
+    bundle_root: Path,
+    page_index: int,
+) -> str:
+    """Compose one localized overview page from source-authored semantics."""
+    frames = product_overview_frames(writer, sid, blocks, bundle_root)
 
     spread_id = f"sp_{page_index}"
     xml = (

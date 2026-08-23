@@ -72,6 +72,8 @@ class PathSegments:
     REFERENCE_LAYOUT_DIR = "reference_layout"
     REFERENCE_LAYOUT_REGISTRY_JSON = "reference_layout_registry.json"
     REFERENCE_LAYOUT_PLAN_JSON = "reference_layout_plan.json"
+    TARGET_ASSEMBLY_DIR = "target_assembly"
+    TARGET_ASSEMBLY_PLAN_JSON = "target_assembly_plan.json"
     WEB_COMPOSITE_MANIFEST_JSON = "web_composite_manifest.json"
     PUBLISH_META_JSON = "publish_meta.json"
 

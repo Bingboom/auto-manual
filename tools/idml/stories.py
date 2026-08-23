@@ -15,15 +15,18 @@ from .story_estimates import paragraph_estimate
 from .operation_stack import OperationStorySpacing
 from .story_parts import add_story_parts as _add_story_parts
 from .story_parts import add_text_story
+from .story_semantics import image_role, require_all_image_roles, story_language
 
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path, *,
                     inline_origin_shift: float = 0.0,
-                    language: str | None = None) -> tuple[str, float]:
+                    language: str | None = None,
+                    image_roles: tuple[str, ...] = ()) -> tuple[str, float]:
     """Story from extracted prose blocks; returns (sid, est_height_pt)."""
     parts: list[str] = []
     est = 0.0
     img_n = 0
+    image_role_index = 0
     is_preface = title == "00_preface"
     content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
     last_idx = content_indices[-1] if content_indices else -1
@@ -31,12 +34,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     next_h1_page_top: float | None = None
     next_trouble_h1_language, next_storage_h1_language = None, None
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
-    first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
-    page_language = language or {
-        "WARRANTY": "en",
-        "GARANTIE": "fr",
-        "GARANTÍA": "es",
-    }.get(first_h1) or _flow.operation_language(blocks)
+    page_language = story_language(blocks, language)
     text_measure = writer.page_w - writer.m_l - writer.m_r
     if is_preface:
         text_measure = writer.page_w - param_pt(
@@ -112,10 +110,12 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             est += h
             continue
         if kind == "image":
+            role = image_role(image_roles, image_role_index, title=title)
+            image_role_index += 1
             xml_part, h = _components.render_image_block(
                 text,
                 writer._render_context(bundle_root, language=page_language),
-                rect_id=f"{sid}_im{img_n + 1}", terminal=terminal)
+                rect_id=f"{sid}_im{img_n + 1}", terminal=terminal, role=role)
             if xml_part is None:
                 continue
             img_n += 1
@@ -234,6 +234,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         )
         operation_rhythm.record_estimate(kind, lines)
         est += paragraph_height
+    require_all_image_roles(image_roles, image_role_index, title=title)
     operation_rhythm.assert_complete()
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

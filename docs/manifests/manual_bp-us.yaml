@@ -10,7 +10,7 @@ pages:
   - type: rst_include
     slot_id: preface_important
     lang: en
-    file: templates/page_shared/en/00_preface.rst
+    file: templates/page_bp/en/00_preface.rst
     lang_blocks: true
   - type: rst_include
     slot_id: toc
@@ -19,7 +19,7 @@ pages:
   - type: rst_include
     slot_id: safety_info_en
     lang: en
-    file: templates/page_us-en/safety_en.rst
+    file: templates/page_bp/en/01_safety.rst
   - type: csv_page
     slot_id: symbol_meaning_en
     source: phase2
@@ -33,7 +33,7 @@ pages:
   - type: rst_include
     slot_id: box_contents_en
     lang: en
-    file: templates/page_shared/en/02_whats_in_the_box.rst
+    file: templates/page_bp/en/02_whats_in_the_box.rst
   - type: generated_page
     slot_id: product_overview_en
     page: 03_product_overview
@@ -93,11 +93,11 @@ pages:
   - type: rst_include
     slot_id: warranty_en
     lang: en
-    file: templates/page_shared/en/11_warranty.rst
+    file: templates/page_bp/en/11_warranty.rst
   - type: rst_include
     slot_id: safety_info_fr
     lang: fr
-    file: templates/page_us-fr/safety_fr.rst
+    file: templates/page_bp/fr/01_safety.rst
   - type: csv_page
     slot_id: symbol_meaning_fr
     source: phase2
@@ -111,7 +111,7 @@ pages:
   - type: rst_include
     slot_id: box_contents_fr
     lang: fr
-    file: templates/page_shared/fr/02_whats_in_the_box.rst
+    file: templates/page_bp/fr/02_whats_in_the_box.rst
   - type: generated_page
     slot_id: product_overview_fr
     page: 03_product_overview
@@ -171,11 +171,11 @@ pages:
   - type: rst_include
     slot_id: warranty_fr
     lang: fr
-    file: templates/page_shared/fr/11_warranty.rst
+    file: templates/page_bp/fr/11_warranty.rst
   - type: rst_include
     slot_id: safety_info_es
     lang: es
-    file: templates/page_us-es/safety_es.rst
+    file: templates/page_bp/es/01_safety.rst
   - type: csv_page
     slot_id: symbol_meaning_es
     source: phase2
@@ -189,7 +189,7 @@ pages:
   - type: rst_include
     slot_id: box_contents_es
     lang: es
-    file: templates/page_shared/es/02_whats_in_the_box.rst
+    file: templates/page_bp/es/02_whats_in_the_box.rst
   - type: generated_page
     slot_id: product_overview_es
     page: 03_product_overview
@@ -249,8 +249,8 @@ pages:
   - type: rst_include
     slot_id: warranty_es
     lang: es
-    file: templates/page_shared/es/11_warranty.rst
+    file: templates/page_bp/es/11_warranty.rst
   - type: rst_include
     slot_id: back_cover
     lang: en
-    file: templates/page_shared/en/99_back_cover.rst
+    file: templates/page_bp/en/99_back_cover.rst

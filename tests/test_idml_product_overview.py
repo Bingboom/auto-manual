@@ -13,6 +13,30 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ProductOverviewPageTests(unittest.TestCase):
+    def test_overview_composite_reuses_native_h1_component(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            composite = bundle / "jbp2000b_product_overview_en.pdf"
+            composite.write_bytes(b"overview-composite")
+            writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+
+            add_product_overview_page(
+                writer,
+                "st_overview_jbp_en",
+                [("h1", "PRODUCT OVERVIEW"), ("image", composite.name)],
+                bundle,
+                4,
+            )
+
+            self.assertEqual(1, len(writer.spreads))
+            spread = writer.spreads[0][1]
+            self.assertEqual(1, spread.count('ContentType="GraphicType"'))
+            self.assertIn(composite.resolve().as_uri(), spread)
+            self.assertIn("tf_st_overview_jbp_en_title", spread)
+            stories = "".join(xml for _, xml in writer.stories)
+            self.assertIn("PRODUCT OVERVIEW", stories)
+            self.assertNotIn("product_overview-en.pdf", stories)
+
     def test_overview_is_native_labels_plus_two_linked_art_frames(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             bundle = Path(td)

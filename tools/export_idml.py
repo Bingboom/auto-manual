@@ -10,7 +10,6 @@ Usage:
 """
 from __future__ import annotations
 
-import argparse
 import re
 import sys
 from pathlib import Path
@@ -19,6 +18,7 @@ try:
     from tools.script_bootstrap import bootstrap_repo_root
     from tools.idml import check as _check
     from tools.idml import design_handoff as _design_handoff
+    from tools.idml import export_cli as _export_cli
     from tools.idml import export_paths as _export_paths
     from tools.idml import flow_idml as _flow_idml
     from tools.idml import loaders as _loaders
@@ -33,12 +33,14 @@ try:
     from tools.idml import prose_flow as _prose_flow
     from tools.idml import reference_story_flow as _reference_story_flow
     from tools.idml import symbols_page as _symbols_page
+    from tools.idml import target_assembly_render as _target_assembly_render
     from tools.idml import template_merge as _template_merge
     from tools.idml.writer import IdmlWriter
 except ImportError:  # pragma: no cover - direct script execution fallback
     from script_bootstrap import bootstrap_repo_root
     from idml import check as _check  # type: ignore
     from idml import design_handoff as _design_handoff  # type: ignore
+    from idml import export_cli as _export_cli  # type: ignore
     from idml import page_placed as _placed  # type: ignore
     from idml import page_folio as _folio  # type: ignore
     from idml import page_toc as _toc  # type: ignore
@@ -53,6 +55,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml import prose_flow as _prose_flow  # type: ignore
     from idml import reference_story_flow as _reference_story_flow  # type: ignore
     from idml import symbols_page as _symbols_page  # type: ignore
+    from idml import target_assembly_render as _target_assembly_render  # type: ignore
     from idml import template_merge as _template_merge  # type: ignore
     from idml.writer import IdmlWriter  # type: ignore
 
@@ -115,64 +118,50 @@ def _new_production_writer(
 # ---------------------------------------------------------------------------
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--model",
-                    help="product model registered in the build target")
-    ap.add_argument("--region", default="US")
-    ap.add_argument("--lang", default="en")
-    ap.add_argument("--data-root", default="data/phase2")
-    ap.add_argument("--out", default=None)
-    ap.add_argument("--bundle-root", default=None,
-                    help="Prepared rst bundle dir (default: docs/_build/<model>/<region>/<lang>/rst); prose pages are skipped if absent")
-    ap.add_argument("--mode", "--idml-mode", dest="mode", choices=("production", "flow", "both"), default="production",
-                    help="IDML export mode; production preserves historical behavior.")
-    ap.add_argument("--check", default=None, help="validate an existing .idml and exit")
-    ap.add_argument("--template", default=None, help="bake production idml into this template .idml (pre-styled)")
+    ap = _export_cli.build_parser(__doc__)
     args = ap.parse_args()
 
     if args.check:
         return _check.run_check_cli(args.check)
     if not args.model:
         ap.error("the following arguments are required: --model")
-    data_root = (ROOT / args.data_root) if not Path(args.data_root).is_absolute() else Path(args.data_root)
+    data_root, layout_params_csv, layout_param_overlays = (
+        _export_cli.resolve_input_paths(ROOT, args)
+    )
     bundle_root = Path(args.bundle_root) if args.bundle_root else (
         default_bundle_root(args.model, args.region, args.lang))
 
     if args.mode == "flow":
         flow = _flow_idml.write_flow_outputs(
             root=ROOT, model=args.model, region=args.region, lang=args.lang, data_root=data_root,
-            bundle_root=bundle_root, build_command=sys.argv)
+            bundle_root=bundle_root, layout_params_csv=layout_params_csv,
+            layout_param_overlays=layout_param_overlays, build_command=sys.argv)
         _ir_sidecar.emit_manual_ir_sidecar(
             root=ROOT, bundle_root=bundle_root, out_dir=flow.idml.parent,
-            model=args.model, region=args.region, lang=args.lang, data_root=data_root)
+            model=args.model, region=args.region, lang=args.lang, data_root=data_root,
+            layout_params_csv=layout_params_csv,
+            layout_param_overlays=layout_param_overlays)
         print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
         return 0
-    params = load_layout_params(ROOT / "data" / "layout_params.csv")
+    params = load_layout_params(layout_params_csv, layout_param_overlays)
     try:
         manual_ir = _ir_projection.build_same_source_ir(
             root=ROOT, bundle_root=bundle_root, model=args.model, region=args.region,
-            lang=args.lang, data_root=data_root)
-        page_plan = _ir_projection.build_reference_page_plan(manual_ir, root=ROOT, bundle_root=bundle_root)
+            lang=args.lang, data_root=data_root,
+            layout_params_csv=layout_params_csv,
+            layout_param_overlays=layout_param_overlays)
+        assembly_plan = Path(args.assembly_plan) if args.assembly_plan else None
+        page_plan = _ir_projection.build_reference_page_plan(
+            manual_ir,
+            root=ROOT,
+            bundle_root=bundle_root,
+            target_assembly_plan=assembly_plan,
+        )
     except ValueError as exc:
         print(f"[export-idml] ERROR: same-source IDML preparation failed: {exc}")
-        # A pin mismatch on CI is undebuggable without the runner's actual
-        # bytes: park the prepared bundle pages under the repo-root build tree,
-        # which the queue workflows already upload as an artifact.
-        try:
-            import shutil as _shutil
-
-            import os as _os
-
-            debug_root = Path(_os.environ.get("GITHUB_WORKSPACE") or ROOT)
-            debug_dir = (
-                debug_root / "docs" / "_build" / args.model / args.region / "same_source_debug"
-            )
-            if debug_dir.exists():
-                _shutil.rmtree(debug_dir)
-            _shutil.copytree(bundle_root / "page", debug_dir / "page")
-            print(f"[export-idml] DEBUG: prepared bundle pages copied to {debug_dir}")
-        except Exception as debug_exc:  # noqa: BLE001 - diagnostics must never mask the error
-            print(f"[export-idml] DEBUG: bundle dump failed: {debug_exc}")
+        _export_cli.dump_prepared_bundle_debug(
+            ROOT, bundle_root, model=args.model, region=args.region,
+        )
         return 1
 
     projected_by_path = {page.path: page for page in _ir_projection.project_pages(manual_ir, bundle_root)}
@@ -227,7 +216,9 @@ def main() -> int:
             source_ref = Path(page.name)
         coverage_assignments.append((source_ref, role_by_path[page]))
 
-    emitted: set[str] = set()  # "spec:fr", "lcd:es", "trouble", "symbols"
+    target_assembly = (page_plan or {}).get("plan_source") == "target-assembly"
+
+    emitted: set[str] = set()  # legacy: spec:fr/lcd:es/trouble/symbols
     pending_prefix_blocks: list[tuple[str, str]] = []
     pending_fcc_blocks, pending_fcc_title = [], ""
     pending_symbol_overflow: _symbols_page.SymbolOverflow | None = None
@@ -268,7 +259,10 @@ def main() -> int:
         flush_prose_flow()
         flush_pending_fcc()
         flush_pending_prefix()
-        key = f"{kind}:{lang}" if kind in {"spec", "lcd"} else kind
+        multilingual_key = kind in {"spec", "lcd"} or (
+            target_assembly and kind in {"symbols", "trouble"}
+        )
+        key = f"{kind}:{lang}" if multilingual_key else kind
         if key in emitted:
             return
         emitted.add(key)
@@ -311,18 +305,16 @@ def main() -> int:
             sid = w.add_trouble_story(rows, title=data.title)
             chain(sid, 16.0 + sum(11.0 * (v.count("\n") + 1) for _, v in rows))
         elif kind == "symbols":
-            # Preserve the historical standalone-data-page boundary: a
-            # symbols page outside the composed safety/maintenance flow is
-            # emitted only for the requested output language.  The composed
-            # path above still resolves the language of each source page.
-            # This avoids pulling an explicitly EN symbols page into a
-            # synthetic FR-only bundle merely because it appears in index.rst.
-            data = symbol_data_for(args.lang)
+            # Preserve the historical standalone-data-page boundary outside
+            # an explicit target assembly. Candidate assemblies carry their
+            # own per-language composition identities; legacy/golden bundles
+            # emit only the requested output language.
+            symbol_lang = normalize_lang(lang if target_assembly else args.lang)
+            data = symbol_data_for(symbol_lang)
             if data is None:
                 return
             sym_signals = list(data.signals)
             sym_icons = list(data.icons)
-            symbol_lang = normalize_lang(args.lang)
             toc.note(data.title, page_cursor, symbol_lang)
             sid = w.add_symbols_story(
                 sym_signals,
@@ -335,13 +327,37 @@ def main() -> int:
             )
             chain(sid, 16.0 + 14.0 * len(sym_signals) + 26.0 * len(sym_icons))
 
+    target_renderer = _target_assembly_render.TargetAssemblyRenderer(
+        page_plan=page_plan, projected_by_path=projected_by_path,
+        bundle_root=bundle_root, writer=w, toc=toc, manual_ir=manual_ir,
+        root=ROOT, data_root=data_root, output_lang=args.lang, emitted=emitted,
+        lcd_rows=lcd_rows, trouble_rows=trouble_rows,
+        symbol_data_for=symbol_data_for, slug_stem=slug_stem,
+    )
     for page in ordered:
         role = role_by_path[page]
-        if role is _page_roles.PageRole.SYMBOLS and "symbols" in emitted \
+        render_delta = target_renderer.render(
+            page,
+            get_page_cursor=lambda: page_cursor,
+            flush_prose_flow=flush_prose_flow,
+            flush_pending_fcc=flush_pending_fcc,
+            flush_pending_prefix=flush_pending_prefix,
+        )
+        if render_delta is not None:
+            skipped_raw += render_delta.skipped_raw
+            page_cursor += render_delta.page_count
+            prose_pages += render_delta.page_count
+            continue
+        symbol_key = (
+            f"symbols:{page_lang(page)}" if target_assembly else "symbols"
+        )
+        if role is _page_roles.PageRole.SYMBOLS and symbol_key in emitted \
                 and not pending_prefix_blocks and not pending_fcc_blocks:
             continue
         toc.lang = page_lang(page)
-        placed_asset = _placed.placed_asset_for(page.stem, toc.lang, ROOT / "docs")
+        placed_asset = _placed.placed_asset_for(
+            page.stem, toc.lang, ROOT / "docs", model=w.model,
+        )
         if placed_asset is not None:
             flush_prose_flow()
             if role is _page_roles.PageRole.PRODUCT_OVERVIEW:
@@ -363,7 +379,10 @@ def main() -> int:
                 # data-page shape here.
                 if any(kind != "h1" for kind, _ in res.blocks):
                     skipped_raw += res.skipped_raw
-                    emitted.add("trouble")
+                    emitted.add(
+                        f"trouble:{page_lang(page)}"
+                        if target_assembly else "trouble"
+                    )
                     toc.stem_langs[page.stem] = page_lang(page)
                     prose_flow.add(page.stem, _prose_flow.align_trouble_table(
                         list(res.blocks), page_plan, page.stem))
@@ -407,7 +426,7 @@ def main() -> int:
                     signal_headers=symbol_data.signal_headers,
                     icon_headers=symbol_data.icon_headers,
                     dense=approved_reference)
-                emitted.add("symbols")
+                emitted.add(f"symbols:{lang}" if target_assembly else "symbols")
                 pending_prefix_blocks = []
                 page_cursor += 1
                 prose_pages += 1
@@ -447,7 +466,10 @@ def main() -> int:
             continue
         if role is _page_roles.PageRole.SYMBOLS:
             flush_prose_flow()
-            if "symbols" in emitted:
+            symbol_key = (
+                f"symbols:{page_lang(page)}" if target_assembly else "symbols"
+            )
+            if symbol_key in emitted:
                 continue
             lang = page_lang(page)
             symbol_data = symbol_data_for(lang)
@@ -463,7 +485,7 @@ def main() -> int:
                     signal_headers=symbol_data.signal_headers,
                     icon_headers=symbol_data.icon_headers,
                     dense=approved_reference)
-                emitted.add("symbols")
+                emitted.add(f"symbols:{lang}" if target_assembly else "symbols")
                 pending_prefix_blocks = []
                 page_cursor += 1
                 prose_pages += 1
@@ -542,7 +564,8 @@ def main() -> int:
     if args.mode == "both":
         flow = _flow_idml.write_flow_outputs(
             root=ROOT, model=args.model, region=args.region, lang=args.lang, data_root=data_root,
-            bundle_root=bundle_root, build_command=sys.argv)
+            bundle_root=bundle_root, layout_params_csv=layout_params_csv,
+            layout_param_overlays=layout_param_overlays, build_command=sys.argv)
         print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
         handoff = _design_handoff.write_handoff_package(
             root=ROOT, model=args.model, region=args.region, lang=args.lang,

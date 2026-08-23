@@ -6,6 +6,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
+from tools.build_paths import (
+    resolve_idml_assembly_plan,
+    resolve_idml_layout_param_overlays,
+    resolve_layout_params_csv,
+)
+
 
 @dataclass(frozen=True)
 class DispatchContext:
@@ -260,11 +266,24 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
     """Export the editable InDesign handoff package (tools/export_idml.py)."""
     import sys as _sys
 
-    # An approved target already has a hash-bound physical page plan, so building
-    # a fresh LaTeX PDF would add an unrelated failure surface. Unregistered
-    # production targets still build that PDF for the historical fuzzy plan.
+    # An approved target already has a hash-bound physical page plan.  A target
+    # with an explicitly configured candidate assembly likewise gets its page
+    # order from contract data.  Neither needs a fresh LaTeX PDF; unregistered
+    # targets retain that PDF for the historical measured fallback.
     mode = getattr(args, "idml_mode", "production")
     repo_root = Path(__file__).resolve().parents[1]
+    assembly_plan = resolve_idml_assembly_plan(
+        context.config_path,
+        repo_root=repo_root,
+    )
+    layout_params_csv = resolve_layout_params_csv(
+        context.config_path,
+        repo_root=repo_root,
+    )
+    layout_param_overlays = resolve_idml_layout_param_overlays(
+        context.config_path,
+        repo_root=repo_root,
+    )
     approved_target = _target_has_approved_reference_plan(
         args,
         config_path=context.config_path,
@@ -276,7 +295,11 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
         if _src in {"review", "review-asis", "runtime"}
         else "review-asis" if approved_target else "runtime"
     )
-    build_action = "rst" if mode == "flow" or approved_target else "pdf"
+    build_action = (
+        "rst"
+        if mode == "flow" or approved_target or assembly_plan is not None
+        else "pdf"
+    )
     build_args = argparse.Namespace(**vars(args))
     if build_action == "pdf":
         build_args.pdf_mode = "latex"
@@ -294,6 +317,11 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
         cmd += ["--data-root", args.data_root]
     if mode:
         cmd += ["--mode", mode]
+    cmd += ["--layout-params-csv", str(layout_params_csv)]
+    for overlay in layout_param_overlays:
+        cmd += ["--layout-params-overlay", str(overlay)]
+    if assembly_plan is not None:
+        cmd += ["--assembly-plan", str(assembly_plan)]
     context.run_checked(cmd)
 
 

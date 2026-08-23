@@ -24,7 +24,18 @@ from .params import IDPKG
 _ATTR = {'"': "&quot;"}
 
 
-def placed_asset_for(page_stem: str, lang: str, docs_dir: Path) -> Path | None:
+def _cover_model_slug(model: str | None) -> str:
+    """Return the filename slug used by model-bound finished cover art."""
+    return re.sub(r"[^a-z0-9]+", "", (model or "").lower())
+
+
+def placed_asset_for(
+    page_stem: str,
+    lang: str,
+    docs_dir: Path,
+    *,
+    model: str | None = None,
+) -> Path | None:
     """Resolve the production-approved full-page asset, if any.
 
     Only the cover is allowed to use a full-page placed PDF. Product overview
@@ -34,7 +45,27 @@ def placed_asset_for(page_stem: str, lang: str, docs_dir: Path) -> Path | None:
     assets_dir = latex_renderer_of(docs_dir) / "assets"
     lang = (lang or "en").lower()
     if page_stem.startswith("cover"):
-        candidates = [f"cover-{lang}.pdf", "cover-en.pdf"]
+        model_slug = _cover_model_slug(model)
+        candidates: list[str] = []
+
+        def add_candidate(name: str) -> None:
+            if name not in candidates:
+                candidates.append(name)
+
+        if model_slug:
+            add_candidate(f"cover_{model_slug}-{lang}.pdf")
+
+        # The unscoped ``cover-<lang>.pdf`` files predate model-bound cover
+        # names and belong to JE-1000F.  Keep that compatibility only for the
+        # owning model (and old callers without model context); otherwise a
+        # missing target cover must not silently place another product.
+        if not model_slug or model_slug == "je1000f":
+            add_candidate(f"cover-{lang}.pdf")
+
+        if model_slug and lang != "en":
+            add_candidate(f"cover_{model_slug}-en.pdf")
+        if (not model_slug or model_slug == "je1000f") and lang != "en":
+            add_candidate("cover-en.pdf")
     else:
         return None
     for name in candidates:
@@ -89,6 +120,37 @@ _BACK_COVER_COPY = {
         "phone": "1-888-502-2236 (US)",
         "lines": "hello@jackery.com\nwww.jackery.com",
     },
+}
+
+_JBP_US_BACK_COVER_PROFILE = {
+    "qr_asset": "docs/renderers/latex/assets/back_cover_qr_jbp2000b.pdf",
+    "display_address": "5310 Bunche Dr., Fremont, CA 94538-8301",
+    "phone_suffix": "(US)",
+    "contact_lines": "hello@jackery.com\nwww.jackery.com",
+    "company_x": 28.096,
+    "company_y": 430.5,
+    "address_y": 446.2,
+    "bar_x": 28.8,
+    "bar_y": 461.2,
+    "bar_width": 272.2,
+    "bar_height": 36.8,
+    "bar_stroke_weight": 0.35,
+    "bar_corner_radius": 5.5,
+    "phone_x": 60.298,
+    "phone_y": 468.6,
+    "phone_width": 137.0,
+    "phone_height": 21.0,
+    "divider_x": 199.5,
+    "lines_x": 224.691,
+    "lines_y": 467.7,
+    "lines_width": 69.0,
+    "lines_height": 23.0,
+    "qr_x": 305.6,
+    "qr_y": 460.4,
+    "qr_size": 37.2,
+    "qr_art_size": 30.0,
+    "qr_stroke_weight": 0.35,
+    "qr_corner_radius": 5.5,
 }
 
 
@@ -422,6 +484,12 @@ def add_preferred_back_cover_page(
         .get("editable_components", {})
         .get("back_cover")
     )
+    if (
+        profile is None
+        and _cover_model_slug(getattr(writer, "model", None)) == "jbp2000b"
+        and region.upper() == "US"
+    ):
+        profile = _JBP_US_BACK_COVER_PROFILE
     return add_back_cover_page(
         writer, region, page_index, copy, profile=profile, docs_dir=docs_dir,
     )

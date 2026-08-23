@@ -148,6 +148,12 @@ def _validate_instance(instance_id: str, raw: Any) -> dict[str, Any]:
             length=4,
             field=f"{view_prefix}.idml.heading_bullet_rect",
         )
+        if "heading_text_rect" in idml:
+            _number_list(
+                idml.get("heading_text_rect"),
+                length=4,
+                field=f"{view_prefix}.idml.heading_text_rect",
+            )
 
         callouts = view.get("callouts")
         if not isinstance(callouts, list) or not callouts:
