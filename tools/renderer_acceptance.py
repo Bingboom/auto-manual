@@ -41,6 +41,7 @@ import re
 import shutil
 import subprocess
 import sys
+import zipfile
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
@@ -122,6 +123,20 @@ def expected_pdf_pages(
     return front + language_count * block_pages + back_pages
 
 
+def _display_path(path: Path, root: Path) -> str:
+    """Repo-relative when possible, absolute otherwise.
+
+    `--staging-root` deliberately puts build output OUTSIDE the repo, which is
+    the whole point of the flag and the shape S6's handoff round needs. A bare
+    ``relative_to(root)`` raises ValueError there, so every criterion that
+    found an artifact crashed the harness the moment staging was used.
+    """
+    try:
+        return path.relative_to(root).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
 def _run(command: list[str], *, cwd: Path) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         command, cwd=str(cwd), capture_output=True, text=True, check=False
@@ -177,7 +192,7 @@ def check_pdf(
         return criteria
     pdf_path = pdfs[0]
     criteria.append(
-        Criterion("pdf", "artifact-present", "pass", pdf_path.relative_to(root).as_posix())
+        Criterion("pdf", "artifact-present", "pass", _display_path(pdf_path, root))
     )
 
     actual = _pdf_page_count(pdf_path)
@@ -191,7 +206,7 @@ def check_pdf(
             Criterion(
                 "pdf", "page-count", status,
                 f"expected {expected_pages} (F(L)+L*B+K), got {actual}",
-                command=f"pdfinfo {pdf_path.relative_to(root).as_posix()}",
+                command=f"pdfinfo {_display_path(pdf_path, root)}",
             )
         )
 
@@ -255,7 +270,7 @@ def check_html(*, root: Path, html_dir: Path, languages: list[str]) -> list[Crit
             "html", "no-unexpected-composites", status,
             f"{len(hits)} composition class hit(s)"
             + (f": {', '.join(sorted(set(hits))[:5])}" if hits else ""),
-            command=f"grep -ro 'hb-[a-z-]*-composition' {html_dir.relative_to(root).as_posix()}",
+            command=f"grep -ro 'hb-[a-z-]*-composition' {_display_path(html_dir, root)}",
         )
     )
 
@@ -283,18 +298,70 @@ def check_html(*, root: Path, html_dir: Path, languages: list[str]) -> list[Crit
     return criteria
 
 
+_WORD_PLACEHOLDER_RE = re.compile(r"\|[A-Z0-9][A-Z0-9_]+\|")
+_WORD_DRAFT_MARKER_RE = re.compile(r"==MISSING:[^=]*==")
+_WORD_REQUIRED_PARTS = ("[Content_Types].xml", "word/document.xml")
+
+
+def _docx_text(path: Path) -> str | None:
+    """Visible text of the document body, or None if the package is unreadable."""
+    try:
+        with zipfile.ZipFile(path) as archive:
+            if archive.testzip() is not None:
+                return None
+            if any(part not in archive.namelist() for part in _WORD_REQUIRED_PARTS):
+                return None
+            body = archive.read("word/document.xml").decode("utf-8", "replace")
+    except (zipfile.BadZipFile, KeyError, OSError):
+        return None
+    return re.sub(r"<[^>]+>", "", body)
+
+
 def check_word(*, root: Path, word_dir: Path) -> list[Criterion]:
     docs = sorted(word_dir.glob("*.docx")) if word_dir.is_dir() else []
     if not docs:
         return [
             Criterion("word", "artifact-present", "skip", f"no .docx under {word_dir}")
         ]
-    return [
-        Criterion(
-            "word", "artifact-present", "pass",
-            docs[0].relative_to(root).as_posix(),
+    docx_path = docs[0]
+    shown = _display_path(docx_path, root)
+    criteria = [Criterion("word", "artifact-present", "pass", shown)]
+
+    # "A .docx exists" was the whole Word criterion, which accepts a corrupt
+    # package and a book full of unresolved placeholders. These three are the
+    # cheapest checks that would actually have caught something: the package
+    # opening, and the two marker families this pipeline is known to leak —
+    # |PLACEHOLDER| when a contract slot resolves to nothing, and
+    # ==MISSING:...== which draft_engine writes in place of an absent
+    # Spec_Master row.
+    text = _docx_text(docx_path)
+    if text is None:
+        criteria.append(
+            Criterion(
+                "word", "opens-as-ooxml", "fail",
+                "package is unreadable, fails its zip CRC, or lacks "
+                f"{' / '.join(_WORD_REQUIRED_PARTS)}",
+                command=f"python -c \"import zipfile;zipfile.ZipFile('{shown}').testzip()\"",
+            )
         )
-    ]
+        return criteria
+
+    criteria.append(
+        Criterion("word", "opens-as-ooxml", "pass", f"{len(text)} chars of body text")
+    )
+    for name, pattern, label in (
+        ("no-unresolved-placeholders", _WORD_PLACEHOLDER_RE, "|PLACEHOLDER|"),
+        ("no-draft-markers", _WORD_DRAFT_MARKER_RE, "==MISSING:...=="),
+    ):
+        hits = sorted(set(pattern.findall(text)))
+        criteria.append(
+            Criterion(
+                "word", name, "fail" if hits else "pass",
+                f"{len(hits)} distinct {label} in the body"
+                + (f": {', '.join(hits[:5])}" if hits else ""),
+            )
+        )
+    return criteria
 
 
 _PINNED_PATHS = (
@@ -309,7 +376,7 @@ def check_idml(*, root: Path, idml_path: Path) -> list[Criterion]:
         criteria.append(
             Criterion(
                 "idml", "artifact-present", "pass",
-                f"{idml_path.relative_to(root).as_posix()} "
+                f"{_display_path(idml_path, root)} "
                 f"({idml_path.stat().st_size} bytes)",
             )
         )
