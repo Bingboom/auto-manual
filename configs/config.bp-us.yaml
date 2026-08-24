@@ -1,11 +1,8 @@
 # BP (battery pack) family, US region — skeleton-library slice S1 target.
-# KNOWN S1 STATE: queue-reachable via explicit Build_family=bp-us only, but the
-# manifest references templates/page_bp/** and recipes/bp-us/** that S2/S4
-# author, and JBP-2000B has no Spec_Master rows yet — do NOT enqueue bp-us
-# rows before S4 lands; a premature row fails at identity resolution.
-# Opt-in-only for the queue: rows must carry Build_family=bp-us explicitly
-# (build.queue_requires_build_family below); a plain US row keeps resolving
-# to config.us.yaml.
+# Start Review can infer this family from Document_Key=JBP-2000B_US because
+# the target below is unique. Draft/Publish remain opt-in-only: those queue
+# rows must carry Build_family=bp-us explicitly (queue_requires_build_family),
+# while a plain US build row still resolves to config.us.yaml.
 extends: config-bases/phase2-sync-base.yaml
 
 doc_type: manual_bundle
