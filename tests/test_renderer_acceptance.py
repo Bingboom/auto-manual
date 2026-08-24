@@ -2,11 +2,14 @@ from __future__ import annotations
 
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
 from tools.renderer_acceptance import (
+    _display_path,
     check_html,
     check_idml,
+    check_word,
     expected_pdf_pages,
     front_matter_pages,
 )
@@ -101,6 +104,89 @@ class IdmlCriterionTests(unittest.TestCase):
         self.assertIn("shared-layout-pins-untouched", results)
         self.assertIn(results["shared-layout-pins-untouched"].status, {"pass", "fail"})
         self.assertEqual("skip", results["artifact-present"].status)
+
+
+class DisplayPathTests(unittest.TestCase):
+    def test_staged_output_outside_the_repo_does_not_raise(self) -> None:
+        """--staging-root puts build output outside the repo on purpose.
+
+        Every criterion that found an artifact used to call
+        `path.relative_to(root)` directly, so the harness crashed with a
+        ValueError the moment the flag it advertises was actually used — which
+        is the shape S6's handoff round needs.
+        """
+        root = Path("/repo")
+
+        self.assertEqual("docs/x.pdf", _display_path(Path("/repo/docs/x.pdf"), root))
+        self.assertEqual("/tmp/stage/x.pdf", _display_path(Path("/tmp/stage/x.pdf"), root))
+
+
+class WordCriteriaTests(unittest.TestCase):
+    """`a .docx exists` accepted a corrupt package and a book full of markers."""
+
+    @staticmethod
+    def _write_docx(path: Path, body_text: str, *, corrupt: bool = False, parts: bool = True) -> None:
+        document = f"<w:document><w:body><w:t>{body_text}</w:t></w:body></w:document>"
+        with zipfile.ZipFile(path, "w") as archive:
+            if parts:
+                archive.writestr("[Content_Types].xml", "<Types/>")
+            archive.writestr("word/document.xml", document)
+        if corrupt:
+            raw = bytearray(path.read_bytes())
+            raw[-40] ^= 0xFF  # break a stored CRC without destroying the directory
+            path.write_bytes(bytes(raw))
+
+    def _run(self, **kwargs: object) -> dict[str, tuple[str, str]]:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            word_dir = root / "word"
+            word_dir.mkdir()
+            self._write_docx(word_dir / "manual.docx", **kwargs)  # type: ignore[arg-type]
+            criteria = check_word(root=root, word_dir=word_dir)
+        return {item.name: (item.status, item.detail) for item in criteria}
+
+    def test_a_clean_document_passes_every_criterion(self) -> None:
+        results = self._run(body_text="CONNECTIONS. Up to 5 sets of these products.")
+
+        self.assertEqual("pass", results["artifact-present"][0])
+        self.assertEqual("pass", results["opens-as-ooxml"][0])
+        self.assertEqual("pass", results["no-unresolved-placeholders"][0])
+        self.assertEqual("pass", results["no-draft-markers"][0])
+
+    def test_an_unresolved_placeholder_fails_and_is_named(self) -> None:
+        results = self._run(body_text="Press the |MAIN_POWER_BUTTON_LABEL| to begin.")
+        status, detail = results["no-unresolved-placeholders"]
+
+        self.assertEqual("fail", status)
+        self.assertIn("MAIN_POWER_BUTTON_LABEL", detail)
+
+    def test_a_draft_missing_marker_fails(self) -> None:
+        """draft_engine writes ==MISSING:...== for an absent Spec_Master row."""
+        results = self._run(body_text="Capacity: ==MISSING:capacity== Wh")
+        status, detail = results["no-draft-markers"]
+
+        self.assertEqual("fail", status)
+        self.assertIn("MISSING", detail)
+
+    def test_a_package_missing_content_types_fails_to_open(self) -> None:
+        results = self._run(body_text="fine text", parts=False)
+
+        self.assertEqual("pass", results["artifact-present"][0])
+        self.assertEqual("fail", results["opens-as-ooxml"][0])
+        self.assertNotIn("no-unresolved-placeholders", results)
+
+    def test_a_corrupt_package_fails_to_open(self) -> None:
+        results = self._run(body_text="fine text", corrupt=True)
+
+        self.assertEqual("fail", results["opens-as-ooxml"][0])
+
+    def test_a_missing_docx_is_a_skip_not_a_false_pass(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            criteria = check_word(root=root, word_dir=root / "word")
+
+        self.assertEqual(["artifact-present"], [item.name for item in criteria])
+        self.assertEqual("skip", criteria[0].status)
 
 
 if __name__ == "__main__":

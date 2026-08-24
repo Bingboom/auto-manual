@@ -20,7 +20,7 @@ Se pueden usar hasta 5 juegos de estos productos junto con el Jackery HomePower 
    :header-rows: 0
    :widths: 12 88
 
-   * - **OBSERVACIONES**
+   * - **NOTAS**
      -
        - La aparición del icono de conexión en la pantalla LCD (Jackery HomePower 2000 Plus) indica que la conexión entre la batería y el Jackery HomePower 2000 Plus se ha realizado correctamente.
        - No coloque el producto encima del Jackery HomePower 2000 Plus.
