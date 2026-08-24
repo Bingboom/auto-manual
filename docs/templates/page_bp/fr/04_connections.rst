@@ -12,7 +12,7 @@ Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuven
    :header-rows: 0
    :widths: 12 88
 
-   * - **IMPORTANT**
+   * - **ATTENTION**
      -
        - Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 2000 Plus au(x) Jackery Battery Pack 2000.
        - Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.
