@@ -17,6 +17,14 @@ _VARIANTS_BY_LABEL = {
     "DANGER": "danger",
     "CAUTION": "caution",
     "NOTE": "note",
+    # The plural is what the shipped books actually print for a multi-item
+    # notes block, and an unrecognised label is not a warning — it silently
+    # degrades. replace_notice_tables leaves the table alone, so LaTeX emits
+    # \sphinxstylestrong{NOTES} instead of \HBCautionBlock and Word emits loose
+    # paragraphs: the box is lost in BOTH renderers with nothing in the log.
+    # `tip` already carried TIPS / CONSEILS / CONSEJOS; `note` was the
+    # inconsistent one.
+    "NOTES": "note",
     "TIP": "tip",
     "TIPS": "tip",
     "IMPORTANT": "note",
@@ -24,6 +32,7 @@ _VARIANTS_BY_LABEL = {
     "AVERTISSEMENT": "warning",
     "ATTENTION": "caution",
     "REMARQUE": "note",
+    "REMARQUES": "note",
     "CONSEIL": "tip",
     "CONSEILS": "tip",
     "ADVERTENCIA": "warning",
@@ -31,6 +40,7 @@ _VARIANTS_BY_LABEL = {
     "PRECAUCIÓN": "caution",
     "PRECAUCION": "caution",
     "NOTA": "note",
+    "NOTAS": "note",
     "CONSEJO": "tip",
     "CONSEJOS": "tip",
 }
