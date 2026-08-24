@@ -55,8 +55,8 @@ This is the base unit for draft generation, review bundles, runtime bundles, val
 
 ### 2.2 Build Family
 
-`Build_family` is the business routing key used by queue automation.
-It decides which config family and page stack should be used.
+`Build_family` is the business routing key used by Draft/Publish queue automation.
+It decides which config family and page stack should be used after review starts.
 
 Examples:
 
@@ -70,7 +70,8 @@ Examples:
 
 Current rule:
 
-- queue routing is `Build_family`-first
+- Draft/Publish routing is `Build_family`-first
+- Start Review uses `Document_Key` to select the config that declares the target when `Build_family` is blank
 - `Lang` is now a compatibility hint, not the primary routing key
 
 ### 2.3 Structured Snapshot
@@ -317,11 +318,12 @@ Current rule:
 
 ### 5.2 Queue Routing
 
-Queue routing is based on `Build_family` first.
+Draft/Publish queue routing is based on `Build_family` first. Start Review may infer the family from its concrete `Document_Key` target.
 
 Current rule:
 
-- use `Build_family` to select the config family
+- use `Build_family` to select the Draft/Publish config family
+- for Start Review, use an explicit `Build_family` when present; otherwise require one unique config target match for `model + region`
 - only fall back to `Lang` when the family is not explicit enough
 
 ### 5.3 Queue Grouping
@@ -426,7 +428,7 @@ Any refactor that changes them should be treated as a business-logic change, not
 ### 7.3 Queue Invariants
 
 - `Workflow_action` is the action router
-- `Build_family` is the primary config router
+- `Build_family` is the primary Draft/Publish config router; Start Review can infer it from a unique declared target
 - `Git_ref` means review-content branch, not toolchain branch
 - queue Draft/Publish builds keep the latest `main` toolchain
 

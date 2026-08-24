@@ -101,15 +101,22 @@ def validate_family_config_request(
         )
 
 
-def config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, lang: str | None) -> int | None:
+def _config_match_score(
+    *,
+    config_path: Path,
+    cfg: dict[str, Any],
+    region: str,
+    lang: str | None,
+    allow_opt_in_family: bool,
+) -> int | None:
     current_build_cfg = build_cfg(cfg)
-    # Opt-in-only families never compete for plain queue rows: a config marked
-    # queue_requires_build_family is reachable exclusively through an explicit
-    # Build_family match. Without this, the filename heuristics below would
-    # let e.g. a battery-pack config outscore config.us.yaml for a plain US
-    # row (verified 105:104) and silently build a host manual from the wrong
-    # manifest.
-    if bool(current_build_cfg.get("queue_requires_build_family")):
+    # Opt-in-only families never compete for ordinary Draft/Publish rows: a
+    # config marked queue_requires_build_family is reachable there only through
+    # an explicit Build_family match. Start Review can opt into this scorer
+    # after an exact model/region target match. Without the ordinary-row guard,
+    # the filename heuristics below would let e.g. a battery-pack config
+    # outscore config.us.yaml for a plain US build row (verified 105:104).
+    if bool(current_build_cfg.get("queue_requires_build_family")) and not allow_opt_in_family:
         return None
     default_region = normalize_region(current_build_cfg.get("default_region"))
     languages = build_languages(cfg)
@@ -139,6 +146,74 @@ def config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, l
     if file_name != "config.us.yaml":
         score += 1
     return score
+
+
+def config_match_score(*, config_path: Path, cfg: dict[str, Any], region: str, lang: str | None) -> int | None:
+    return _config_match_score(
+        config_path=config_path,
+        cfg=cfg,
+        region=region,
+        lang=lang,
+        allow_opt_in_family=False,
+    )
+
+
+def config_declares_target(*, cfg: dict[str, Any], model: str, region: str) -> bool:
+    current_build_cfg = build_cfg(cfg)
+    normalized_model = str(model or "").strip().casefold()
+    normalized_region = normalize_region(region)
+    targets = current_build_cfg.get("targets", [])
+    if isinstance(targets, list) and targets:
+        for target in targets:
+            if not isinstance(target, dict):
+                continue
+            target_model = str(target.get("model") or "").strip().casefold()
+            target_region = normalize_region(target.get("region"))
+            if target_model == normalized_model and target_region == normalized_region:
+                return True
+        return False
+    default_model = str(current_build_cfg.get("default_model") or "").strip().casefold()
+    default_region = normalize_region(current_build_cfg.get("default_region"))
+    return bool(normalized_model) and default_model == normalized_model and default_region == normalized_region
+
+
+def review_start_config_match_score(
+    *,
+    config_path: Path,
+    cfg: dict[str, Any],
+    model: str,
+    region: str,
+    lang: str | None,
+) -> int | None:
+    """Score a Start Review config only after its declared target matches.
+
+    Start Review owns a concrete ``Document_Key`` target, so an opt-in family
+    can safely participate after the model/region match. Draft and Publish do
+    not call this helper and keep requiring an explicit Build_family for those
+    configs.
+    """
+    if not config_declares_target(cfg=cfg, model=model, region=region):
+        return None
+    if not str(lang or "").strip():
+        current_build_cfg = build_cfg(cfg)
+        languages = build_languages(cfg)
+        score = 0
+        if queue_by_document_key(cfg):
+            score += 100
+        if len(languages) == 1:
+            score += 10
+        if not bool(current_build_cfg.get("include_lang_in_output_path")):
+            score += 5
+        if normalize_region(region).lower() in config_path.name.lower():
+            score += 1
+        return score
+    return _config_match_score(
+        config_path=config_path,
+        cfg=cfg,
+        region=region,
+        lang=lang,
+        allow_opt_in_family=True,
+    )
 
 
 def resolve_config_path_for_task(
