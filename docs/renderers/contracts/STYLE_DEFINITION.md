@@ -282,11 +282,25 @@ registry。第 1–3 页和封底的 page-role scoped fallback 由上面的批�
 
 IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。
 
+生产 IDML 的普通 H2 圆点必须使用内联原生矢量圆和独立间隔对象，不能把
+`●` 交给 Segoe UI Symbol、Yu Gothic 或其他平台字体。这样 Windows 与 macOS
+打开同一自包含 IDML 时不会因缺字、替代字体或字面裁切而改变标题。圆点直径和
+标题间距继续只消费 `comp_title_l2_bullet_radius` / `comp_title_l2_gap`；目标装配
+不得通过标题文字、页码或型号分支替换这项共享语义。
+
 App 原生故事的编号与列表使用显式悬挂/tab 合同，不再依赖圆点后的普通空格估算。H2 圆点留在版心起点，并由 `idml_app_h2_marker_font_size` / `idml_app_h2_marker_baseline_shift` 单独约束在首个 tab 内；H2 编号文本与 H3 的 `4.x` 编号共同落在 `idml_app_notes_left_indent`。列表圆点由 `idml_app_list_left_indent` 与该编号边对齐，首行正文和全部续行则共同落在 `bullet_left - idml_app_list_first_line_indent` 的固定 tab 位。英文、法文及任何结构化为 App list 的语言都复用这组属性，不按标题文字或页码追加坐标补丁。
 
 UPS 与 Charging 共用一条可编辑内容流：三语各自的 `lang_*_idml_ups_caution_space_after` 控制 UPS CAUTION→CHARGING 标题，`idml_charging_emphasis_space_before` 控制 Charging 引言→黑色强调胶囊。当前强调胶囊前距为 5pt；三语 CAUTION 后距相对上一版等量减少 4pt，因此重分配节奏但保持页面总深度、后续 NOTE 位置和分页不变。`idml_charging_emphasis_horizontal_padding` 同时登记文字左侧光学缩进与总宽的双端 allowance：左侧由段落 `LeftIndent` 明确落位，使字面与 CHARGING 标题内容对齐；右侧不写 `RightIndent`，而由总宽余量自然保留。不能再叠加非对称 frame inset 或右段落缩进，否则会重复缩窄可用行宽并把结尾挤成溢流。文本框继续使用 `VerticalJustification=CenterAlign`；完整文案保持单行后，垂直居中不再被隐藏的第二行拉偏。该关系由组件 token 与估算高度共同维护，不允许在单页 XML 上追加坐标补丁。
 
 IDML 可编辑表格的普通单元格统一由 `primitives.cell()` 输出 `VerticalJustification=CenterAlign`，模板合成阶段必须保留该语义属性，不允许因移除颜色、边线或 inset 覆盖而一并丢失。Troubleshooting 的 F6/F7 等多步骤行还要求左右格使用对称的上下内边距，正文格与错误码格都不得再叠加逐语言、逐行的 `BaselineShift`；否则虽然 XML 声明居中，视觉位置仍会被二次位移。LCD、Symbols 和通用图片表的图标段落另显式输出 `Justification=CenterAlign`，因此图标在格内同时横向、纵向居中。Symbols 信号词徽标分成两层基线合同：`idml_symbols_signal_badge_baseline_shift` 只校正整块深色徽标在表格行内的位置，`idml_symbols_signal_content_baseline_shift` 则统一校正徽标内部图标与文字的可见字面；两者不能用一次递归 `BaselineShift` 覆盖。圆角 WARNING/callout 不依赖表格默认值：标签框、正文框和黑框正文使用同一 `TextFramePreference.VerticalJustification=CenterAlign` 合同。
+
+Troubleshooting 的短表和完整表共用 `HB-TABLE-TROUBLESHOOTING`，但行高预算
+必须由真实行数和本地化换行计算：只有完整 12 行 profile 才消费其冻结 ordinal
+minima；紧凑表使用 `idml_trouble_extra_row_min_height` 和
+`idml_trouble_compact_outer_radius`。错误码列宽同时测量表头与全部代码，右侧表头
+保持纸白，首列按合同使用灰底；源 RST 的 line-block 分隔符只能表达换行，不能以
+字面量 `|` 进入单元格。故障段落和表格默认关闭断词，避免在错误码和措施文字中
+产生源稿没有的词内断行。
 
 ### 专题版块
 

@@ -4454,6 +4454,20 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(rows[0], ["Buttons", "Operation", "Function"])
         self.assertEqual(rows[1], ["A + B", "Hold 3s", "Toggle mode"])
 
+    def test_list_table_line_blocks_preserve_breaks_without_pipe_text(self) -> None:
+        from tools.idml_rst_extract import _parse_list_table
+
+        rows = _parse_list_table([
+            "   * - | F6-F9,",
+            "       | FA, FC",
+            "     - Contact Jackery Customer Support.",
+        ])
+
+        self.assertEqual(
+            rows,
+            [["F6-F9,\nFA, FC", "Contact Jackery Customer Support."]],
+        )
+
     def test_full_bundle_extraction_has_zero_skips(self) -> None:
         from tools.idml_rst_extract import bundle_page_order, extract_page
         bundle = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "rst"

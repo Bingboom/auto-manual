@@ -96,6 +96,32 @@ class TargetAssemblyPlanTests(unittest.TestCase):
             by_id["en_specifications"].source_refs,
             ("page/specifications_en.rst",),
         )
+        lcd_pages = [
+            page for page in plan["pages"]
+            if page["page_role"] == "lcd"
+        ]
+        self.assertEqual(3, len(lcd_pages))
+        for page in lcd_pages:
+            lcd = page["composition_data"]["lcd"]
+            self.assertEqual("label_description", lcd["table_variant"])
+            self.assertEqual([1, 2], [
+                callout["row_index"] for callout in lcd["hero_callouts"]
+            ])
+            self.assertTrue(all(
+                len(callout["leader_points"]) >= 2
+                for callout in lcd["hero_callouts"]
+            ))
+        troubleshooting_pages = [
+            page for page in plan["pages"]
+            if page["page_role"] == "troubleshooting_data"
+        ]
+        self.assertEqual(3, len(troubleshooting_pages))
+        self.assertTrue(all(
+            page["composition_data"]["troubleshooting"][
+                "connection_image_role"
+            ] == "reference_measure"
+            for page in troubleshooting_pages
+        ))
 
     def test_candidate_remains_non_approved(self) -> None:
         payload = _payload()
@@ -129,6 +155,44 @@ class TargetAssemblyPlanTests(unittest.TestCase):
             "cannot find image occurrence 2",
         ):
             normalize_target_assembly_plan(payload, ir, source_path=PLAN_PATH)
+
+    def test_lcd_composition_data_rejects_out_of_page_geometry(self) -> None:
+        payload = _payload()
+        lcd_page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/lcd_display_en.rst"
+        )
+        lcd_page["composition_data"]["lcd"]["hero_callouts"][0][
+            "leader_points"
+        ][0] = [-1, 72.5]
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "leader_points.*inside the reference page",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
+    def test_troubleshooting_composition_rejects_out_of_page_split(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/troubleshooting_en.rst"
+        )
+        page["composition_data"]["troubleshooting"]["split"] = 999.0
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "troubleshooting.split.*inside the reference page",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
 
 
 if __name__ == "__main__":

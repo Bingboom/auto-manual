@@ -8,6 +8,7 @@ separate, operator-gated step after native InDesign and PDF review.
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -115,6 +116,221 @@ def _validate_flow_splits(
     return issues
 
 
+def _finite_number(value: object) -> float | None:
+    if isinstance(value, bool):
+        return None
+    try:
+        result = float(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        return None
+    return result if math.isfinite(result) else None
+
+
+def _validate_page_point(
+    value: object,
+    *,
+    label: str,
+    page_width: float,
+    page_height: float,
+) -> list[str]:
+    if not isinstance(value, list) or len(value) != 2:
+        return [f"{label} must contain exactly two numbers"]
+    x = _finite_number(value[0])
+    y = _finite_number(value[1])
+    if x is None or y is None:
+        return [f"{label} must contain exactly two numbers"]
+    if not (0 <= x <= page_width and 0 <= y <= page_height):
+        return [f"{label} must stay inside the reference page"]
+    return []
+
+
+def _validate_composition_data(
+    pages: list[dict[str, Any]],
+    reference: dict[str, Any],
+) -> list[str]:
+    """Validate optional target-only component variants and page geometry."""
+    issues: list[str] = []
+    page_size = reference.get("page_size_pt")
+    page_width = _finite_number(
+        page_size.get("width") if isinstance(page_size, dict) else None
+    )
+    page_height = _finite_number(
+        page_size.get("height") if isinstance(page_size, dict) else None
+    )
+    for page in pages:
+        data = page.get("composition_data")
+        if data is None:
+            continue
+        source_ref = str(page.get("source_ref") or "page")
+        if not isinstance(data, dict):
+            issues.append(f"{source_ref}.composition_data must be an object")
+            continue
+        if set(data) == {"troubleshooting"}:
+            if page.get("page_role") != PageRole.TROUBLESHOOTING_DATA.value or page.get(
+                "composition_type"
+            ) != "troubleshooting":
+                issues.append(
+                    f"{source_ref}.composition_data.troubleshooting requires "
+                    "a troubleshooting composition"
+                )
+                continue
+            troubleshooting = data["troubleshooting"]
+            if not isinstance(troubleshooting, dict):
+                issues.append(
+                    f"{source_ref}.composition_data.troubleshooting must be an object"
+                )
+                continue
+            expected = {
+                "connection_image_role",
+                "heading_space_after",
+                "split",
+            }
+            if set(troubleshooting) != expected:
+                issues.append(
+                    f"{source_ref}.composition_data.troubleshooting must contain "
+                    f"exactly {sorted(expected)}"
+                )
+                continue
+            if troubleshooting.get("connection_image_role") not in {
+                "wide_diagram",
+                "full_measure",
+                "reference_measure",
+            }:
+                issues.append(
+                    f"{source_ref}.composition_data.troubleshooting."
+                    "connection_image_role is invalid"
+                )
+            split = _finite_number(troubleshooting.get("split"))
+            if (
+                split is None
+                or page_height is None
+                or not 0 < split < page_height
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.troubleshooting.split must "
+                    "stay inside the reference page"
+                )
+            heading_space_after = _finite_number(
+                troubleshooting.get("heading_space_after")
+            )
+            if heading_space_after is None or not 0 <= heading_space_after <= 24:
+                issues.append(
+                    f"{source_ref}.composition_data.troubleshooting."
+                    "heading_space_after must be between 0 and 24"
+                )
+            continue
+        if set(data) != {"lcd"}:
+            issues.append(
+                f"{source_ref}.composition_data supports only lcd or "
+                "troubleshooting component data"
+            )
+            continue
+        if page.get("page_role") != PageRole.LCD.value or page.get(
+            "composition_type"
+        ) not in {"lcd", "lcd_operations"}:
+            issues.append(
+                f"{source_ref}.composition_data.lcd requires an LCD composition"
+            )
+            continue
+        lcd = data["lcd"]
+        if not isinstance(lcd, dict):
+            issues.append(f"{source_ref}.composition_data.lcd must be an object")
+            continue
+        allowed = {
+            "table_variant",
+            "hero_horizontal_scale",
+            "hero_callouts",
+        }
+        unknown = sorted(set(lcd) - allowed)
+        if unknown:
+            issues.append(
+                f"{source_ref}.composition_data.lcd has unknown keys: {unknown}"
+            )
+        variant = lcd.get("table_variant")
+        if variant not in {"number_icon_label_description", "label_description"}:
+            issues.append(
+                f"{source_ref}.composition_data.lcd.table_variant is invalid"
+            )
+        scale = _finite_number(lcd.get("hero_horizontal_scale", 1.0))
+        if scale is None or not 0.5 <= scale <= 2.0:
+            issues.append(
+                f"{source_ref}.composition_data.lcd.hero_horizontal_scale "
+                "must be between 0.5 and 2.0"
+            )
+        callouts = lcd.get("hero_callouts", [])
+        if not isinstance(callouts, list):
+            issues.append(
+                f"{source_ref}.composition_data.lcd.hero_callouts must be a list"
+            )
+            continue
+        if callouts and (page_width is None or page_height is None):
+            issues.append(
+                f"{source_ref}: reference_pdf.page_size_pt is required for callouts"
+            )
+            continue
+        seen_rows: set[int] = set()
+        for index, callout in enumerate(callouts):
+            label = (
+                f"{source_ref}.composition_data.lcd.hero_callouts[{index}]"
+            )
+            if not isinstance(callout, dict):
+                issues.append(f"{label} must be an object")
+                continue
+            expected = {"row_index", "text_rect", "align", "leader_points"}
+            if set(callout) != expected:
+                issues.append(f"{label} must contain exactly {sorted(expected)}")
+                continue
+            try:
+                row_index = _positive_int(
+                    callout.get("row_index"),
+                    label=f"{label}.row_index",
+                )
+            except TargetAssemblyPlanError as exc:
+                issues.append(str(exc))
+                continue
+            if row_index in seen_rows:
+                issues.append(f"{label}.row_index must be unique")
+            seen_rows.add(row_index)
+            rect = callout.get("text_rect")
+            if not isinstance(rect, list) or len(rect) != 4:
+                issues.append(f"{label}.text_rect must contain four numbers")
+            else:
+                values = [_finite_number(value) for value in rect]
+                if any(value is None for value in values):
+                    issues.append(f"{label}.text_rect must contain four numbers")
+                else:
+                    x, y, width, height = values  # type: ignore[misc]
+                    if (
+                        width <= 0
+                        or height <= 0
+                        or x < 0
+                        or y < 0
+                        or x + width > page_width  # type: ignore[operator]
+                        or y + height > page_height  # type: ignore[operator]
+                    ):
+                        issues.append(
+                            f"{label}.text_rect must stay inside the reference page"
+                        )
+            if callout.get("align") not in {
+                "LeftAlign",
+                "CenterAlign",
+                "RightAlign",
+            }:
+                issues.append(f"{label}.align is invalid")
+            points = callout.get("leader_points")
+            if not isinstance(points, list) or len(points) < 2:
+                issues.append(f"{label}.leader_points requires at least two points")
+                continue
+            for point_index, point in enumerate(points):
+                issues.extend(_validate_page_point(
+                    point,
+                    label=f"{label}.leader_points[{point_index}]",
+                    page_width=page_width,  # type: ignore[arg-type]
+                    page_height=page_height,  # type: ignore[arg-type]
+                ))
+    return issues
+
+
 def normalize_target_assembly_plan(
     payload: dict[str, Any],
     ir: ManualIR,
@@ -189,10 +405,12 @@ def normalize_target_assembly_plan(
             "composition_type": raw.get("composition_type"),
             "planned_page_count": raw.get("page_count"),
             "flow_split": raw.get("flow_split"),
+            "composition_data": raw.get("composition_data"),
         }
         normalized_pages.append(normalized)
 
     issues.extend(_validate_flow_splits(raw_pages, ir))
+    issues.extend(_validate_composition_data(raw_pages, reference))
     normalized: dict[str, Any] = {
         "schema_version": "latex-page-plan/v1",
         "plan_source": "target-assembly",

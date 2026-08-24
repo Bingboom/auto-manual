@@ -13,8 +13,10 @@ from . import oppanel
 from .components.prose_image import (
     IMAGE_ROLE_CHARGING_DIAGRAM,
     IMAGE_ROLE_FULL_MEASURE,
+    IMAGE_ROLE_REFERENCE_MEASURE,
     IMAGE_ROLE_WIDE_DIAGRAM,
 )
+from .components.lcd_callout import add_lcd_callouts
 from .layout_est import template_symbol_split
 from .page_objects import (
     frame_with_background,
@@ -379,10 +381,16 @@ def add_lcd_operations_page(
     page_index: int,
     language: str,
     hero_path: Path | None,
+    composition_data: dict | None = None,
 ) -> tuple[str, str]:
     """Place the existing compact LCD and Operations components on one page."""
 
     operation_blocks = oppanel.transform(operation_blocks)
+    lcd_options = dict((composition_data or {}).get("lcd") or {})
+    table_variant = str(
+        lcd_options.get("table_variant")
+        or "number_icon_label_description"
+    )
     lcd_sid = writer.add_lcd_story(
         list(lcd_data.rows),
         data_root,
@@ -390,6 +398,8 @@ def add_lcd_operations_page(
         title=lcd_data.title,
         hero_path=hero_path,
         compact=True,
+        table_variant=table_variant,
+        hero_horizontal_scale=lcd_options.get("hero_horizontal_scale"),
     )
     if writer.lcd_segment_counts.get(language, 1) != 1:
         raise ValueError("shared LCD/Operations page requires one LCD segment")
@@ -413,6 +423,13 @@ def add_lcd_operations_page(
     )
     writer.add_story_frames(lcd_sid, [(page_index, page_top, split)])
     writer.add_story_frames(operation_sid, [(page_index, split + gap, bottom)])
+    add_lcd_callouts(
+        writer,
+        page_index=page_index,
+        language=language,
+        rows=list(lcd_data.rows),
+        callouts=list(lcd_options.get("hero_callouts") or []),
+    )
     return lcd_sid, operation_sid
 
 
@@ -574,30 +591,55 @@ def add_connection_tail_troubleshooting_page(
     connection_sid: str,
     connection_title: str,
     connection_blocks: list[tuple[str, str]],
-    trouble_data,
+    trouble_sid: str,
+    trouble_title: str,
+    trouble_blocks: list[tuple[str, str]],
     bundle_root: Path,
     page_index: int,
     language: str,
+    composition_data: dict | None = None,
 ) -> tuple[str, str]:
     """Compose a plan-routed connection tail above the shared trouble table."""
 
     if not connection_blocks:
         raise ValueError("connection-tail composition requires routed blocks")
+    options = dict((composition_data or {}).get("troubleshooting") or {})
+    image_role_name = str(
+        options.get("connection_image_role") or "wide_diagram"
+    )
+    image_roles = {
+        "wide_diagram": (IMAGE_ROLE_WIDE_DIAGRAM,),
+        "full_measure": (IMAGE_ROLE_FULL_MEASURE,),
+        "reference_measure": (IMAGE_ROLE_REFERENCE_MEASURE,),
+    }
+    if image_role_name not in image_roles:
+        raise ValueError(
+            "connection-tail troubleshooting image role must be wide_diagram "
+            "or full_measure/reference_measure"
+        )
     writer.add_prose_story(
         connection_sid,
         connection_title,
         connection_blocks,
         bundle_root,
         language=language,
-        image_roles=(IMAGE_ROLE_WIDE_DIAGRAM,),
+        image_roles=image_roles[image_role_name],
     )
-    trouble_sid = writer.add_trouble_story(
-        list(trouble_data.rows),
-        title=trouble_data.title,
-        lang=language,
+    writer.add_prose_story(
+        trouble_sid,
+        trouble_title,
+        trouble_blocks,
+        bundle_root,
+        language=language,
+        disable_hyphenation=True,
+        first_h1_space_after=(
+            float(options["heading_space_after"])
+            if "heading_space_after" in options
+            else None
+        ),
     )
     page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
-    split = param_pt(
+    split = float(options.get("split")) if "split" in options else param_pt(
         writer.params,
         "idml_compact_connection_trouble_split",
         218.0,

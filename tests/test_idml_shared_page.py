@@ -203,10 +203,16 @@ class SharedPageTests(unittest.TestCase):
                 title="LCD DISPLAY",
                 rows=(
                     {
-                        "no": "1",
+                        "no": "①",
                         "figure": "",
                         "name": "Battery level",
                         "desc": "Shows the remaining charge.",
+                    },
+                    {
+                        "no": "②",
+                        "figure": "",
+                        "name": "Charging indicator",
+                        "desc": "Shown while charging.",
                     },
                 ),
             )
@@ -244,17 +250,49 @@ class SharedPageTests(unittest.TestCase):
                 page_index=5,
                 language="en",
                 hero_path=None,
+                composition_data={
+                    "lcd": {
+                        "table_variant": "label_description",
+                        "hero_horizontal_scale": 1.14,
+                        "hero_callouts": [
+                            {
+                                "row_index": 1,
+                                "text_rect": [28.35, 65.0, 101.0, 16.0],
+                                "align": "RightAlign",
+                                "leader_points": [[130.0, 72.5], [159.0, 72.5]],
+                            },
+                            {
+                                "row_index": 2,
+                                "text_rect": [276.0, 65.0, 64.5, 16.0],
+                                "align": "LeftAlign",
+                                "leader_points": [[228.0, 72.5], [274.0, 72.5]],
+                            },
+                        ],
+                    }
+                },
             )
 
             self.assertEqual("st_lcd", lcd_sid)
             self.assertEqual("st_operation_en", operation_sid)
             self.assertEqual(1, writer.lcd_segment_counts["en"])
             lcd_table = dict(writer.stories)["st_anchor_lcd_table_en_0"]
-            self.assertIn('TopInset="0" BottomInset="0"', lcd_table)
+            self.assertIn('ColumnCount="2"', lcd_table)
+            self.assertNotIn("①", lcd_table)
+            self.assertNotIn("②", lcd_table)
+            self.assertNotIn("Yu Gothic", lcd_table)
+            self.assertIn('TopInset="2.8" BottomInset="2.8"', lcd_table)
+            self.assertIn('SingleColumnWidth="74.9987"', lcd_table)
+            self.assertIn('SingleColumnWidth="237.496"', lcd_table)
             self.assertNotIn('TopInset="13.322"', lcd_table)
             spread = dict(writer.spreads)["sp_5"]
             self.assertIn('ParentStory="st_lcd"', spread)
             self.assertIn('ParentStory="st_operation_en"', spread)
+            self.assertIn('ParentStory="st_lcd_callout_en_1"', spread)
+            self.assertIn('ParentStory="st_lcd_callout_en_2"', spread)
+            self.assertEqual(2, spread.count("<GraphicLine "))
+            stories = dict(writer.stories)
+            self.assertIn("Battery level", stories["st_lcd_callout_en_1"])
+            self.assertIn("Charging indicator", stories["st_lcd_callout_en_2"])
             self.assertEqual(1, spread.count("<Page "))
 
             output = Path(td) / "shared-lcd-operations.idml"
@@ -284,13 +322,29 @@ class SharedPageTests(unittest.TestCase):
                 connection_sid="st_connection_tail",
                 connection_title="connection_tail",
                 connection_blocks=[("image", art)],
-                trouble_data=SimpleNamespace(
-                    title="TROUBLESHOOTING",
-                    rows=(("F0", "Restart the product."),),
-                ),
+                trouble_sid="st_trouble_complete",
+                trouble_title="troubleshooting_en",
+                trouble_blocks=[
+                    ("h1", "TROUBLESHOOTING"),
+                    ("body", "Follow the listed corrective actions."),
+                    (
+                        "table",
+                        json.dumps([
+                            ["Error Code", "Corrective Measures"],
+                            ["F0", "Restart the product."],
+                        ]),
+                    ),
+                ],
                 bundle_root=bundle,
                 page_index=7,
                 language="en",
+                composition_data={
+                    "troubleshooting": {
+                        "connection_image_role": "reference_measure",
+                        "heading_space_after": 5.4,
+                        "split": 303.6,
+                    }
+                },
             )
             add_charging_storage_page(
                 writer,
@@ -315,9 +369,27 @@ class SharedPageTests(unittest.TestCase):
                 dict(writer.spreads)["sp_7"],
             )
             self.assertIn(
-                'ParentStory="st_trouble"',
+                'ParentStory="st_trouble_complete"',
                 dict(writer.spreads)["sp_7"],
             )
+            stories = dict(writer.stories)
+            self.assertIn(
+                "Follow the listed corrective actions.",
+                stories["st_trouble_complete"],
+            )
+            self.assertIn(
+                'Hyphenation="false"',
+                stories["st_trouble_complete"],
+            )
+            self.assertIn(
+                'SpaceAfter="5.4"',
+                stories["st_trouble_complete"],
+            )
+            self.assertIn("Error Code", "".join(stories.values()))
+            self.assertTrue(any(
+                'StoryTitle="troubleshooting table"' in xml
+                for xml in stories.values()
+            ))
 
             output = bundle / "shared-diagram-compositions.idml"
             writer.write(output)

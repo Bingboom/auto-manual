@@ -111,6 +111,9 @@ def _new_production_writer(
         strict_component_assets=(
             (page_plan or {}).get("plan_source") == "approved-reference"
         ),
+        native_structure_markers=(
+            (page_plan or {}).get("plan_source") == "target-assembly"
+        ),
     )
 
 # ---------------------------------------------------------------------------

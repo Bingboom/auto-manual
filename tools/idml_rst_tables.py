@@ -58,6 +58,17 @@ def parse_grid_table(grid: list[str]) -> list[list[str]]:
 
 def parse_list_table(body: list[str]) -> list[list[str]]:
     """Parse a list-table directive body into row cell-text lists."""
+    def join_cell(parts: list[str]) -> str:
+        if any(part.lstrip().startswith("|") for part in parts):
+            return "\n".join(
+                part.lstrip()[1:].lstrip()
+                if part.lstrip().startswith("|")
+                else part.strip()
+                for part in parts
+                if part.strip()
+            ).strip()
+        return " ".join(part for part in parts if part).strip()
+
     rows: list[list[str]] = []
     cell: list[str] | None = None
     for raw in body:
@@ -71,11 +82,11 @@ def parse_list_table(body: list[str]) -> list[list[str]]:
             rows[-1].append("")
         elif line.startswith("- ") and rows:
             if cell is not None:
-                rows[-1][-1] = " ".join(x for x in cell if x).strip()
+                rows[-1][-1] = join_cell(cell)
             cell = [line[2:].strip()]
             rows[-1].append("")
         elif cell is not None:
             cell.append(line)
         if cell is not None and rows:
-            rows[-1][-1] = " ".join(x for x in cell if x).strip()
+            rows[-1][-1] = join_cell(cell)
     return [r for r in rows if any(r)]

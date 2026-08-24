@@ -114,6 +114,30 @@ ES_ROWS = [
 ]
 
 
+JBP_EN_ROWS = [
+    ["Error Code", "Corrective Measures"],
+    ["F0", "Restart the product."],
+    ["F1, F2", "Contact Jackery Customer Support."],
+    ["F3", "Restart the product."],
+    [
+        "F4",
+        "Connect the product to loads to discharge its battery until the "
+        "fault disappears.",
+    ],
+    [
+        "F5",
+        "Charge the product via solar panels or AC wall outlet until the "
+        "fault disappears.",
+    ],
+    ["F6-F9,\nFA, FC", "Contact Jackery Customer Support."],
+    [
+        "FF",
+        "Place the product in an environment with a proper temperature and "
+        "wait till the fault disappears.",
+    ],
+]
+
+
 class TroubleshootingTableContractTests(unittest.TestCase):
     def _render(
         self,
@@ -181,6 +205,39 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         self.assertNotIn("<Content>F7</Content>", story)
         self.assertNotIn('Anchor="0 -237.79"', xml)
         self.assertLess(height, 190.0)
+
+    def test_compact_table_sizes_columns_and_rows_from_live_copy(self) -> None:
+        xml, story, height = self._render(JBP_EN_ROWS, suffix="jbp_en")
+
+        self.assertIn('SingleColumnWidth="42.88"', story)
+        self.assertIn('MinimumHeight="29.391"', story)
+        self.assertIn('MinimumHeight="17.9"', story)
+        self.assertIn('FillColor="Color/HB Header K08"', story)
+        right_header = story.split(
+            '<Cell Self="trouble_jbp_enc0_1"',
+            1,
+        )[1].split("</Cell>", 1)[0]
+        self.assertNotIn("FillColor=", right_header)
+        self.assertIn('Hyphenation="false"', story)
+        self.assertIn('Anchor="-0.37 -4.8"', xml)
+        self.assertGreater(height, 130.0)
+        self.assertLess(height, 150.0)
+
+    def test_compact_table_consumes_target_overlay_outer_radius(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        params["idml_trouble_compact_outer_radius"] = ("5.25", "pt")
+
+        xml, _story, _height = self._render(
+            JBP_EN_ROWS,
+            strict=True,
+            params=params,
+            suffix="jbp_overlay_radius",
+        )
+
+        self.assertIn('Anchor="-0.37 -5.25"', xml)
 
     def test_body_cells_are_natively_vertically_centered_in_all_locales(self) -> None:
         for language, rows in (("en", EN_ROWS), ("fr", FR_ROWS), ("es", ES_ROWS)):

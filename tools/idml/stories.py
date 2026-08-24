@@ -2,12 +2,10 @@
 from __future__ import annotations
 
 from pathlib import Path
-from xml.sax.saxutils import escape
 
 from . import components as _components, page_objects as _po, prose_flow as _flow
 from .data_stories import add_lcd_story, add_spec_story, add_symbols_story, add_trouble_story
-from .params import IDPKG, param_pt
-from .primitives import _ATTR_ENTITIES
+from .params import param_pt
 from .prose_paragraph import build_text_paragraph
 from .character_metrics import with_character_baseline_shift
 from .story_rhythm import apply_default_h2_rhythm, operation_key_visual_raise
@@ -21,7 +19,9 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path, *,
                     inline_origin_shift: float = 0.0,
                     language: str | None = None,
-                    image_roles: tuple[str, ...] = ()) -> tuple[str, float]:
+                    image_roles: tuple[str, ...] = (),
+                    disable_hyphenation: bool = False,
+                    first_h1_space_after: float | None = None) -> tuple[str, float]:
     """Story from extracted prose blocks; returns (sid, est_height_pt)."""
     parts: list[str] = []
     est = 0.0
@@ -125,6 +125,10 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             continue
         if kind == "h1":
             h1_xml = _po.h1_pill_paragraph(writer, text, text_measure)
+            if first_h1_space_after is not None:
+                h1_xml, first_h1_space_after = _flow.apply_first_h1_space_after(
+                    h1_xml, first_h1_space_after,
+                )
             if next_storage_h1_language is not None:
                 h1_xml = _flow.apply_storage_h1_rhythm(h1_xml, writer.params, next_storage_h1_language)
                 next_storage_h1_language = None
@@ -236,12 +240,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         est += paragraph_height
     require_all_image_roles(image_roles, image_role_index, title=title)
     operation_rhythm.assert_complete()
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
-        '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
-        + "".join(parts) + '</Story>\n</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
+    if disable_hyphenation:
+        parts = _flow.disable_story_hyphenation(parts)
+    _add_story_parts(writer, sid, title, parts)
     return sid, est

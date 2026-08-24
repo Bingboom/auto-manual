@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import unittest
 from unittest.mock import Mock, patch
@@ -91,6 +92,103 @@ class TargetAssemblyRenderTests(unittest.TestCase):
         self.assertEqual(1, delta.page_count)
         self.assertEqual(0, delta.skipped_raw)
         self.assertEqual(4, add_page.call_args.kwargs["page_index"])
+
+    def test_troubleshooting_reuses_complete_projected_blocks(self) -> None:
+        bundle_root = Path("/tmp/bundle")
+        trouble_ref = "page/troubleshooting_en.rst"
+        blocks = (
+            ("h1", "TROUBLESHOOTING"),
+            ("body", "Follow the listed corrective actions."),
+            (
+                "table",
+                json.dumps([
+                    ["Error Code", "Corrective Measures"],
+                    ["F0", "Restart the product."],
+                ]),
+            ),
+        )
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 1,
+            "pages": [{
+                "source_ref": trouble_ref,
+                "source_path": trouble_ref,
+                "language": "en",
+                "page_role": "troubleshooting_data",
+                "composition_id": "en_troubleshooting",
+                "composition_type": "troubleshooting",
+                "latex_start_page": 1,
+                "planned_page_count": 1,
+                "composition_data": {
+                    "troubleshooting": {
+                        "connection_image_role": "reference_measure",
+                        "heading_space_after": 5.4,
+                        "split": 303.6,
+                    }
+                },
+            }],
+        }
+        projected_by_path = {
+            bundle_root / trouble_ref: ProjectedPage(
+                path=bundle_root / trouble_ref,
+                language="en",
+                blocks=blocks,
+                skipped_raw=0,
+                twocol=False,
+            )
+        }
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="en",
+            emitted=set(),
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(),
+            slug_stem=lambda value: value,
+        )
+        renderer.routed_tail_blocks["en_troubleshooting"] = [
+            ("image", "connection-tail.png")
+        ]
+        trouble_data = Mock(title="TROUBLESHOOTING", rows=(("F0", "Restart"),))
+
+        with patch(
+            "tools.idml.target_assembly_render.ir_projection.trouble_page_data",
+            return_value=trouble_data,
+        ), patch(
+            "tools.idml.target_assembly_render.shared_page."
+            "add_connection_tail_troubleshooting_page"
+        ) as add_page:
+            delta = renderer.render(
+                bundle_root / trouble_ref,
+                get_page_cursor=lambda: 0,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual(1, delta.page_count)
+        self.assertEqual(list(blocks), add_page.call_args.kwargs["trouble_blocks"])
+        self.assertEqual(
+            "st_troubleshooting_en",
+            add_page.call_args.kwargs["trouble_sid"],
+        )
+        self.assertEqual(
+            {
+                "troubleshooting": {
+                    "connection_image_role": "reference_measure",
+                    "heading_space_after": 5.4,
+                    "split": 303.6,
+                }
+            },
+            add_page.call_args.kwargs["composition_data"],
+        )
 
 
 if __name__ == "__main__":

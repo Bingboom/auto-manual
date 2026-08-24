@@ -205,6 +205,81 @@ class IdmlVisualParityTests(unittest.TestCase):
                 self.assertIn("<Content>•\t", item)
                 self.assertNotIn("<Content>• ", item)
 
+    def test_target_assembly_headings_use_font_independent_vector_markers(
+        self,
+    ) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params, native_structure_markers=True)
+
+        heading, *_ = build_text_paragraph(
+            writer,
+            kind="h2",
+            text="AC OUTPUT ON/OFF",
+            terminal=True,
+            is_preface=False,
+            has_twocol_layout=False,
+            in_twocol=False,
+            bundle_root=ROOT,
+            page_language="en",
+            story_id="st_operation",
+            block_index=2,
+        )
+
+        self.assertNotIn("<Content>●</Content>", heading)
+        self.assertNotIn("Segoe UI Symbol", heading)
+        self.assertIn("st_operation_h2_marker_2_circle", heading)
+        self.assertIn('FillColor="Color/HB Brand Dark"', heading)
+        self.assertIn("st_operation_h2_marker_2_gap", heading)
+
+        writer.add_spec_story(
+            [{
+                "title": "GENERAL INFO",
+                "rows": [
+                    ("Chemistry", "LiFePO₄"),
+                    ("Input", "36.8V⎓75A"),
+                ],
+            }],
+            [],
+            lang="en",
+            title="SPECIFICATIONS",
+        )
+        spec_story = dict(writer.stories)["st_spec"]
+        self.assertNotIn("<Content>●</Content>", spec_story)
+        self.assertNotIn("Segoe UI Symbol", spec_story)
+        self.assertIn("st_spec_section_marker_0_circle", spec_story)
+        spec_xml = "".join(
+            xml
+            for story_id, xml in writer.stories
+            if story_id == "st_spec" or story_id.startswith("st_anchor_spec_")
+        )
+        self.assertIn("st_spec_spec_symbol_3_direct_current", spec_xml)
+        self.assertIn('Position="Subscript"', spec_xml)
+        self.assertIn("<Content>4</Content>", spec_xml)
+        self.assertNotIn("Segoe UI Symbol", spec_xml)
+
+        warranty, _ = writer._render_component(
+            "st_warranty",
+            0,
+            {
+                "kind": "warrantyyears",
+                "items": [{
+                    "number": "3",
+                    "unit": "YEARS",
+                    "label": "For the original buyer",
+                    "text": "Limited warranty coverage.",
+                }],
+            },
+            ROOT,
+            True,
+        )
+        self.assertNotIn("Yu Gothic", warranty)
+        self.assertNotIn("❸", warranty)
+        self.assertIn("tf_warranty_year_st_warranty_cmp0_0", warranty)
+        self.assertIn(
+            "st_warranty_year_st_warranty_cmp0_0",
+            dict(writer.stories),
+        )
+
     def test_body_table_group_uses_panel_fill_for_corner_masks(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
         ctx = RenderContext(

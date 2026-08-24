@@ -16,6 +16,7 @@ from ..primitives import (
 from .base import RenderContext, figure_paragraph
 
 _CIRCLED = {str(index): glyph for index, glyph in enumerate("❶❷❸❹❺❻❼❽❾", 1)}
+_NATIVE_BADGE_TOKEN = "\ue103"
 
 
 def _plain_strong(text: str) -> str:
@@ -86,13 +87,90 @@ def _text_frame(
     )
 
 
-def _year_heading(item: dict, ctx: RenderContext) -> str:
+def _native_year_badge(
+    ctx: RenderContext,
+    *,
+    marker_id: str,
+    number: str,
+    diameter: float,
+    point_size: float,
+) -> str:
+    if ctx.add_story is None:
+        return ""
+    paragraph = psr(
+        "HB Warranty Year Heading",
+        number,
+        terminal=True,
+    ).replace(
+        "<ParagraphStyleRange ",
+        '<ParagraphStyleRange Justification="CenterAlign" ',
+        1,
+    ).replace(
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'FillColor="Color/Paper" FontStyle="Bold" PointSize="{point_size:g}"',
+        1,
+    )
+    story_id = ctx.add_story(
+        f"st_{marker_id}",
+        f"Warranty year badge {number}",
+        [paragraph],
+    )
+    insets = "".join('<ListItem type="unit">0</ListItem>' for _ in range(4))
+    return (
+        f'<TextFrame Self="tf_{marker_id}" ParentStory="{story_id}" '
+        'PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" '
+        'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
+        'FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" '
+        'StrokeWeight="0" ItemTransform="1 0 0 1 0 0">\n'
+        + _po.rounded_path_geometry(
+            0.0,
+            -diameter,
+            diameter,
+            0.0,
+            diameter / 2.0,
+        )
+        + '    <TextFramePreference TextColumnCount="1" '
+        'VerticalJustification="CenterAlign" AutoSizingType="Off">'
+        f'<Properties><InsetSpacing type="list">{insets}'
+        '</InsetSpacing></Properties></TextFramePreference>\n'
+        + _anchor()
+        + '</TextFrame>'
+    )
+
+
+def _year_heading(item: dict, ctx: RenderContext, *, marker_id: str) -> str:
     number = str(item.get("number", "")).strip()
     unit = str(item.get("unit", "")).strip()
-    glyph = _CIRCLED.get(number, number)
-    xml = psr("HB Warranty Year Heading", f"{glyph} {unit}")
     badge_size = param_pt(ctx.params, "type_warranty_year_number_font_size", 21.0)
     glyph_size = param_pt(ctx.params, "idml_warranty_year_glyph_size", 30.0)
+    if ctx.native_structure_markers:
+        badge_diameter = param_pt(
+            ctx.params,
+            "comp_warranty_year_badge_size",
+            glyph_size,
+        )
+        badge = _native_year_badge(
+            ctx,
+            marker_id=marker_id,
+            number=number,
+            diameter=badge_diameter,
+            point_size=badge_size,
+        )
+        if badge:
+            xml = psr(
+                "HB Warranty Year Heading",
+                f"{_NATIVE_BADGE_TOKEN} {unit}",
+                inline_replacements={_NATIVE_BADGE_TOKEN: badge},
+            )
+            return xml.replace(
+                "<ParagraphStyleRange ",
+                f'<ParagraphStyleRange Leading="{badge_size + 1:g}" '
+                'SpaceAfter="1.2" ',
+                1,
+            )
+    glyph = _CIRCLED.get(number, number)
+    xml = psr("HB Warranty Year Heading", f"{glyph} {unit}")
     xml = xml.replace(
         'FontStyle="Regular"',
         f'PointSize="{glyph_size:g}" FontStyle="Regular"',
@@ -138,7 +216,11 @@ def _years_table(
     for index, (item, col_w) in enumerate(zip(items, cols)):
         subtitle = str(item.get("label", "")).strip()
         body = str(item.get("text", "")).strip()
-        content = _year_heading(item, ctx)
+        content = _year_heading(
+            item,
+            ctx,
+            marker_id=f"warranty_year_{tid}_{index}",
+        )
         subtitle_xml = psr("HB Warranty Year Subtitle", subtitle)
         # The subtitle's first letter sits on the same vertical as the unit
         # text (the ``Y`` in ``YEARS``), not after an additional optical gap.

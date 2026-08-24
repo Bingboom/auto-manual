@@ -29,12 +29,14 @@ class IdmlWriter:
         region: str | None = None,
         language: str | None = None,
         strict_component_assets: bool = False,
+        native_structure_markers: bool = False,
     ):
         self.params = params
         self.model = model
         self.region = region
         self.language = language
         self.strict_component_assets = strict_component_assets
+        self.native_structure_markers = native_structure_markers
         self.page_w = param_pt(params, "page_paperwidth", 368.79)
         self.page_h = param_pt(params, "page_paperheight", 524.69)
         self.m_l = param_pt(params, "page_margin_left", 28.35)
@@ -167,6 +169,7 @@ class IdmlWriter:
             language=language or self.language,
             inline_origin_shift=inline_origin_shift,
             strict_component_assets=self.strict_component_assets,
+            native_structure_markers=self.native_structure_markers,
             add_story=self._add_story_parts)
 
     def add_prose_story(self, sid: str, title: str,
@@ -174,7 +177,9 @@ class IdmlWriter:
                         bundle_root: Path, *,
                         inline_origin_shift: float = 0.0,
                         language: str | None = None,
-                        image_roles: tuple[str, ...] = ()) -> tuple[str, float]:
+                        image_roles: tuple[str, ...] = (),
+                        disable_hyphenation: bool = False,
+                        first_h1_space_after: float | None = None) -> tuple[str, float]:
         return _stories.add_prose_story(
             self,
             sid,
@@ -184,6 +189,8 @@ class IdmlWriter:
             inline_origin_shift=inline_origin_shift,
             language=language,
             image_roles=image_roles,
+            disable_hyphenation=disable_hyphenation,
+            first_h1_space_after=first_h1_space_after,
         )
 
     def add_lcd_story(self, rows: list[dict], data_root: Path, **kw) -> str:

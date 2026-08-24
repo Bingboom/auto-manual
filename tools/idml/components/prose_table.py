@@ -11,7 +11,7 @@ import re
 
 from ..character_metrics import with_character_metrics
 from ..language_contract import governed_languages
-from ..line_metrics import east_asian_width_units
+from ..line_metrics import east_asian_width_units, estimated_text_width
 from ..params import component_param_pt, param_pt, param_text
 from ..primitives import (
     cell,
@@ -72,6 +72,7 @@ class TroubleshootingTableStyle:
     row_minima: tuple[float, ...]
     steps_pad_tb: float
     outer_radius: float
+    compact_outer_radius: float
     panel_min_height: float
     import_safety: float
     glyph_width_ratio: float
@@ -92,12 +93,21 @@ class TroubleshootingTableStyle:
         language: str | None = None,
     ) -> TroubleshootingTableStyle:
         """Resolve shared type/row tokens once for rendering and estimation."""
-        def token(key: str, default: float) -> float:
+        def token(
+            key: str,
+            default: float,
+            *,
+            strict: bool | None = None,
+        ) -> float:
             value = component_param_pt(
                 ctx.params,
                 key,
                 default,
-                strict=ctx.strict_component_assets,
+                strict=(
+                    ctx.strict_component_assets
+                    if strict is None
+                    else strict
+                ),
                 owner="TroubleshootingTableStyle",
             )
             if not math.isfinite(value) or value <= 0:
@@ -185,6 +195,13 @@ class TroubleshootingTableStyle:
             row_minima=row_minima,
             steps_pad_tb=token("comp_trouble_steps_pad_tb", 2.83465),
             outer_radius=token("comp_table_outer_arc", 6.8),
+            # Compact tables are a target-overlay extension of the shared
+            # component, not part of the approved JE full-table identity.
+            compact_outer_radius=token(
+                "idml_trouble_compact_outer_radius",
+                4.8,
+                strict=False,
+            ),
             panel_min_height=token("idml_trouble_panel_min_height", 237.79),
             import_safety=nonnegative_token("idml_trouble_import_safety", 0.0),
             glyph_width_ratio=token("idml_trouble_glyph_width_ratio", 0.50),
@@ -318,6 +335,124 @@ def _troubleshooting_cell_geometry(
     return top, bottom, left, 3.0, valign
 
 
+def _troubleshooting_is_compact(
+    raw_rows: list[list],
+    style: TroubleshootingTableStyle,
+) -> bool:
+    """Return whether this source table is shorter than the JE master."""
+    return len(raw_rows) < len(style.row_minima)
+
+
+def _troubleshooting_column_widths(
+    raw_rows: list[list],
+    *,
+    body_width: float,
+    style: TroubleshootingTableStyle,
+) -> tuple[float, float]:
+    """Keep full-master geometry fixed and size compact code columns by copy."""
+    base_left = body_width * style.left_ratio + style.left_optical_width
+    if not _troubleshooting_is_compact(raw_rows, style) or not raw_rows:
+        return base_left, body_width - base_left
+
+    header = _plain_cell(raw_rows[0][0])
+    header_need = estimated_text_width(
+        header,
+        point_size=style.header_size,
+        narrow_width_ratio=style.glyph_width_ratio,
+    ) + 2.88 + 3.0 + style.left_optical_width
+    code_need = base_left
+    for row in raw_rows[1:]:
+        code = strip_rst_inline(str(row[0] if row else ""))
+        longest_line = max(code.splitlines() or [""], key=len)
+        code_need = max(
+            code_need,
+            estimated_text_width(
+                longest_line,
+                point_size=style.code_size,
+                narrow_width_ratio=style.glyph_width_ratio,
+            ) + 1.5 + 3.0 + style.left_optical_width,
+        )
+    # Compact localized headers may claim more width than their source proof.
+    # The cap protects corrective-measure copy while still allowing FR/ES to
+    # grow beyond the narrow English code column.
+    maximum = body_width * min(0.20, style.left_ratio + 0.06)
+    left_width = min(maximum, max(base_left, header_need, code_need))
+    return left_width, body_width - left_width
+
+
+def _compact_troubleshooting_row_heights(
+    raw_rows: list[list],
+    *,
+    column_widths: tuple[float, float],
+    style: TroubleshootingTableStyle,
+) -> tuple[float, ...]:
+    """Derive short-table minima from live code and corrective-measure copy."""
+    heights: list[float] = []
+    for row_index, row in enumerate(raw_rows):
+        left = row[0] if row else ""
+        right = row[1] if len(row) > 1 else ""
+        step_count = str(right).count("|") if str(right).lstrip().startswith("|") else 0
+        measured_lines: list[int] = []
+        for column_index, text in enumerate((left, right)):
+            top, bottom, left_inset, right_inset, _ = (
+                _troubleshooting_cell_geometry(
+                    row_index,
+                    column_index,
+                    step_count=step_count,
+                    steps_pad_tb=style.steps_pad_tb,
+                )
+            )
+            size = (
+                style.header_size
+                if row_index == 0
+                else style.code_size
+                if column_index == 0
+                else style.body_size
+            )
+            measured_lines.append(_troubleshooting_line_count(
+                text,
+                max(
+                    1.0,
+                    column_widths[column_index] - left_inset - right_inset,
+                ),
+                size=size,
+                glyph_width_ratio=style.glyph_width_ratio,
+            ))
+        if row_index == 0:
+            top_l, bottom_l, *_ = _troubleshooting_cell_geometry(
+                row_index,
+                0,
+                step_count=step_count,
+                steps_pad_tb=style.steps_pad_tb,
+            )
+            top_r, bottom_r, *_ = _troubleshooting_cell_geometry(
+                row_index,
+                1,
+                step_count=step_count,
+                steps_pad_tb=style.steps_pad_tb,
+            )
+            minimum = max(
+                style.header_single_height,
+                measured_lines[0] * style.header_leading + top_l + bottom_l,
+                measured_lines[1] * style.header_leading + top_r + bottom_r,
+            )
+        else:
+            top_r, bottom_r, *_ = _troubleshooting_cell_geometry(
+                row_index,
+                1,
+                step_count=step_count,
+                steps_pad_tb=style.steps_pad_tb,
+            )
+            base = style.body_single_height
+            minimum = max(
+                base,
+                base * measured_lines[0],
+                measured_lines[1] * style.body_leading + top_r + bottom_r,
+            )
+        heights.append(round(minimum, 3))
+    return tuple(heights)
+
+
 def _troubleshooting_line_count(
     text: object,
     width: float,
@@ -365,8 +500,17 @@ def _troubleshooting_frame_height(
     type, leading and inset calculation then adds growth when edited copy wraps
     beyond that reviewed baseline.
     """
-    left_width = body_width * style.left_ratio + style.left_optical_width
-    column_widths = (left_width, body_width - left_width)
+    column_widths = _troubleshooting_column_widths(
+        raw_rows,
+        body_width=body_width,
+        style=style,
+    )
+    if _troubleshooting_is_compact(raw_rows, style):
+        return sum(_compact_troubleshooting_row_heights(
+            raw_rows,
+            column_widths=column_widths,
+            style=style,
+        )) + style.import_safety
     header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
     language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
     calibration = _TROUBLESHOOTING_LOCALE_CALIBRATIONS[language]
@@ -511,11 +655,21 @@ def _troubleshooting_table(
     inner hairlines all have their own shared layout tokens.
     """
     body_w = ctx.text_measure - (1.13 if ctx.add_story is not None else 0.0)
-    # The reference divider is four points to the right of the bare ratio.
-    # Keep that optical allowance distinct from cell padding so the visible
-    # code column stays aligned in every language.
-    left_w = body_w * style.left_ratio + style.left_optical_width
-    cols = [left_w, body_w - left_w]
+    cols = list(_troubleshooting_column_widths(
+        raw_rows,
+        body_width=body_w,
+        style=style,
+    ))
+    is_compact = _troubleshooting_is_compact(raw_rows, style)
+    compact_row_heights = (
+        _compact_troubleshooting_row_heights(
+            raw_rows,
+            column_widths=(cols[0], cols[1]),
+            style=style,
+        )
+        if is_compact
+        else None
+    )
     header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
     language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
 
@@ -527,12 +681,15 @@ def _troubleshooting_table(
         if ri == 0:
             styles = ("HB Data Header", "HB Data Header")
             fills: tuple[str | None, str | None] = (
-                "Color/HB Bg K05",
-                "Color/HB Bg K05",
+                ("Color/HB Header K08" if is_compact else "Color/HB Bg K05"),
+                (None if is_compact else "Color/HB Bg K05"),
             )
         else:
             styles = ("HB Data Code", "HB Data Body")
-            fills = ("Color/HB Bg K05", None)
+            fills = (
+                "Color/HB Header K08" if is_compact else "Color/HB Bg K05",
+                None,
+            )
         for ci, (text, paragraph_style, fill) in enumerate(
             zip((left, right), styles, fills)
         ):
@@ -563,6 +720,11 @@ def _troubleshooting_table(
                     point_size=style.body_size,
                     leading=style.body_leading,
                 )
+            content = content.replace(
+                "<ParagraphStyleRange ",
+                '<ParagraphStyleRange Hyphenation="false" ',
+                1,
+            )
             if ri == 0 and ci == 0 and language == "en":
                 content = content.replace(
                     'FontStyle="Bold"',
@@ -593,7 +755,7 @@ def _troubleshooting_table(
     rows = "\n".join(
         f'    <Row Self="{tid}r{ri}" Name="{ri}" '
         f'SingleRowHeight="{style.header_single_height if ri == 0 else style.body_single_height:g}" '
-        f'MinimumHeight="{style.minimum_for_row(ri):g}" '
+        f'MinimumHeight="{(compact_row_heights[ri] if compact_row_heights is not None else style.minimum_for_row(ri)):g}" '
         'AutoGrow="true"/>'
         for ri in range(len(raw_rows))
     )
@@ -919,7 +1081,11 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             fill="Color/Paper",
             stroke="Color/HB Brand Dark",
             stroke_weight=troubleshooting_style.outer_rule,
-            radius=troubleshooting_style.outer_radius,
+            radius=(
+                troubleshooting_style.compact_outer_radius
+                if len(raw_rows) < len(troubleshooting_style.row_minima)
+                else troubleshooting_style.outer_radius
+            ),
         )
     else:
         xml = wrap_table_paragraph(table, terminal, span_columns=span_columns)

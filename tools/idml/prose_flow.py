@@ -26,6 +26,31 @@ SlugStem = Callable[[str], str]
 EstimatePages = Callable[[list[Block], int], int]
 
 
+def disable_story_hyphenation(parts: list[str]) -> list[str]:
+    """Apply the target-level no-hyphenation contract to story paragraphs."""
+    return [
+        part.replace(
+            "<ParagraphStyleRange ",
+            '<ParagraphStyleRange Hyphenation="false" ',
+        )
+        for part in parts
+    ]
+
+
+def apply_first_h1_space_after(
+    paragraph: str,
+    space_after: float | None,
+) -> tuple[str, None]:
+    """Consume the optional first-H1 rhythm override exactly once."""
+    if space_after is not None:
+        paragraph = paragraph.replace(
+            "<ParagraphStyleRange ",
+            f'<ParagraphStyleRange SpaceAfter="{space_after:g}" ',
+            1,
+        )
+    return paragraph, None
+
+
 @dataclass
 class ProseFlowBuffer:
     """Collect consecutive prose pages until a hard layout boundary appears."""

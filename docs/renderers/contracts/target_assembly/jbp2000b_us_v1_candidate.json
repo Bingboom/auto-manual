@@ -102,7 +102,27 @@
       "composition_id": "en_lcd_operations",
       "composition_type": "lcd_operations",
       "start_page": 6,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "lcd": {
+          "table_variant": "label_description",
+          "hero_horizontal_scale": 1.14,
+          "hero_callouts": [
+            {
+              "row_index": 1,
+              "text_rect": [28.35, 65.0, 101.0, 16.0],
+              "align": "RightAlign",
+              "leader_points": [[130.0, 72.5], [159.0, 72.5]]
+            },
+            {
+              "row_index": 2,
+              "text_rect": [276.0, 65.0, 64.5, 16.0],
+              "align": "LeftAlign",
+              "leader_points": [[228.0, 72.5], [274.0, 72.5]]
+            }
+          ]
+        }
+      }
     },
     {
       "source_ref": "page/operation_en.rst",
@@ -134,7 +154,14 @@
       "composition_id": "en_troubleshooting",
       "composition_type": "troubleshooting",
       "start_page": 8,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "troubleshooting": {
+          "connection_image_role": "reference_measure",
+          "heading_space_after": 5.4,
+          "split": 303.6
+        }
+      }
     },
     {
       "source_ref": "page/charging_en.rst",
@@ -224,7 +251,27 @@
       "composition_id": "fr_lcd_operations",
       "composition_type": "lcd_operations",
       "start_page": 14,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "lcd": {
+          "table_variant": "label_description",
+          "hero_horizontal_scale": 1.14,
+          "hero_callouts": [
+            {
+              "row_index": 1,
+              "text_rect": [28.35, 65.0, 101.0, 16.0],
+              "align": "RightAlign",
+              "leader_points": [[130.0, 72.5], [159.0, 72.5]]
+            },
+            {
+              "row_index": 2,
+              "text_rect": [276.0, 65.0, 64.5, 16.0],
+              "align": "LeftAlign",
+              "leader_points": [[228.0, 72.5], [274.0, 72.5]]
+            }
+          ]
+        }
+      }
     },
     {
       "source_ref": "page/operation_fr.rst",
@@ -256,7 +303,14 @@
       "composition_id": "fr_troubleshooting",
       "composition_type": "troubleshooting",
       "start_page": 16,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "troubleshooting": {
+          "connection_image_role": "reference_measure",
+          "heading_space_after": 5.35,
+          "split": 304.6
+        }
+      }
     },
     {
       "source_ref": "page/charging_fr.rst",
@@ -346,7 +400,27 @@
       "composition_id": "es_lcd_operations",
       "composition_type": "lcd_operations",
       "start_page": 22,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "lcd": {
+          "table_variant": "label_description",
+          "hero_horizontal_scale": 1.14,
+          "hero_callouts": [
+            {
+              "row_index": 1,
+              "text_rect": [28.35, 65.0, 101.0, 16.0],
+              "align": "RightAlign",
+              "leader_points": [[130.0, 72.5], [159.0, 72.5]]
+            },
+            {
+              "row_index": 2,
+              "text_rect": [276.0, 65.0, 64.5, 16.0],
+              "align": "LeftAlign",
+              "leader_points": [[228.0, 72.5], [274.0, 72.5]]
+            }
+          ]
+        }
+      }
     },
     {
       "source_ref": "page/operation_es.rst",
@@ -378,7 +452,14 @@
       "composition_id": "es_troubleshooting",
       "composition_type": "troubleshooting",
       "start_page": 24,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "troubleshooting": {
+          "connection_image_role": "reference_measure",
+          "heading_space_after": 4.3,
+          "split": 301.0
+        }
+      }
     },
     {
       "source_ref": "page/charging_es.rst",

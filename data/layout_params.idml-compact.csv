@@ -22,9 +22,15 @@ idml_compact_lcd_operations_split,181.0,pt,Compact shared-page LCD and Operation
 idml_compact_shared_page_gap,4.0,pt,Gap between stories in a shared physical-page composition
 idml_compact_operations_frame_bottom_extra,8.0,pt,Operations shared-page native import allowance
 idml_semantic_image_full_measure_ratio,1.0,ratio,Full-measure semantic prose image width ratio
+idml_semantic_image_reference_measure_ratio,1.0,ratio,Reference-proven semantic prose image width ratio without locale compaction
 idml_semantic_image_wide_diagram_ratio,0.78,ratio,Wide semantic prose diagram width ratio
 idml_semantic_image_compact_diagram_ratio,0.62,ratio,Compact semantic prose diagram width ratio
 idml_semantic_image_charging_diagram_ratio,0.58,ratio,Charging semantic prose diagram width ratio
+idml_trouble_compact_outer_radius,4.8,pt,Compact troubleshooting rounded-panel radius
+idml_lcd_label_description_vertical_padding,2.8,pt,Compact two-column LCD cell top and bottom padding
+idml_lcd_label_description_min_row_height,13.5,pt,Compact two-column LCD minimum row height
+idml_lcd_label_description_row_safety,1.0,pt,Compact two-column LCD native-import row safety
+idml_lcd_label_description_glyph_width_ratio,0.52,ratio,Compact two-column LCD portable glyph-width estimate
 lang_fr_idml_semantic_image_full_measure_ratio,0.80,ratio,French full-measure diagram ratio preserving localized notice capacity
 idml_toc_dynamic_leader_start,1,int,Move candidate TOC leader starts after the rendered source title
 idml_measured_overview_page_extra_height,48.0,pt,Invisible measured-LaTeX FCC inbox overview final-frame allowance

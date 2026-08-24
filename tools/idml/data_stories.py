@@ -13,6 +13,11 @@ from . import lcd_style as _lcd
 from . import page_objects as _po
 from . import table_borders as _tb
 from .components.rounded_table import rounded_table_panel, table_text_indent
+from .components.native_marker import (
+    marked_text,
+    marker_replacements,
+    portable_symbol_text,
+)
 from .params import IDPKG, component_param_pt, param_pt
 from .primitives import _ATTR_ENTITIES, spec_table
 from .source_copy import source_text
@@ -30,8 +35,15 @@ def add_lcd_story(
     title: str,
     hero_path: Path | None = None,
     compact: bool = False,
+    table_variant: str = "number_icon_label_description",
+    hero_horizontal_scale: float | None = None,
 ) -> str:
     """LCD icon table: circled-no / icon image / name / description."""
+    if table_variant not in {
+        "number_icon_label_description",
+        "label_description",
+    }:
+        raise ValueError(f"unsupported LCD table variant: {table_variant}")
     title = source_text(title, owner="LCD page title")
     sid = "st_lcd" if lang == "en" else f"st_lcd_{lang}"
     body_w = (
@@ -145,11 +157,30 @@ def add_lcd_story(
     table_panels: list[str] = []
     global_ri = 0
     for segment_index, (segment, row_heights) in enumerate(prepared_segments):
-        cols, icon_pt, pad = _lcd.layout_tokens(
+        full_cols, icon_pt, pad = _lcd.layout_tokens(
             writer, body_w, segment_index=segment_index, lang=lang)
+        content_sized_rows = table_variant == "label_description" and row_heights is None
+        if table_variant == "label_description":
+            cols, label_description_pad, dynamic_row_heights = (
+                _lcd.label_description_layout(
+                    writer,
+                    segment,
+                    body_w,
+                    lang=lang,
+                    segment_index=segment_index,
+                )
+            )
+        else:
+            cols = full_cols
+            label_description_pad = 0.0
+            dynamic_row_heights = []
         if lang == "en":
             icon_pt = min(icon_pt, 23.0)
-        vertical_pad = _vertical_pad(segment_index)
+        vertical_pad = (
+            label_description_pad
+            if table_variant == "label_description"
+            else _vertical_pad(segment_index)
+        )
         tid = (
             "tbl_lcd" if segment_index == 0 and lang == "en"
             else f"tbl_lcd_{lang}" if segment_index == 0
@@ -227,6 +258,8 @@ def add_lcd_story(
         if row_heights is not None and terminal_fill:
             row_heights = list(row_heights)
             row_heights[-1] += terminal_fill
+        if content_sized_rows:
+            row_heights = dynamic_row_heights
         for local_ri, row in enumerate(segment):
             label_size, label_leading, body_size, body_leading = (
                 _lcd.typography_tokens(
@@ -271,23 +304,42 @@ def add_lcd_story(
                 'BaselineShift="0.6"',
                 1,
             )
-            cell_defs = (
-                (_lcd.typed_paragraph(
-                    writer, "HB Spec Label", row["no"],
-                    "type_lcd_no_font_size", "type_lcd_no_font_leading"), 0),
-                (image_paragraph, 1),
-                (_lcd.typed_paragraph(
-                    writer, "HB Spec Label", row["name"],
-                    point_size=label_size, leading=label_leading,
-                    bold=True), 2),
-                (_lcd.typed_paragraph(
-                    writer, "HB Spec Value", row["desc"],
-                    point_size=body_size, leading=body_leading), 3),
-            )
+            if table_variant == "label_description":
+                cell_defs = (
+                    (_lcd.typed_paragraph(
+                        writer, "HB Spec Label", row["name"],
+                        point_size=label_size, leading=label_leading,
+                        bold=True), 0),
+                    (_lcd.typed_paragraph(
+                        writer, "HB Spec Value", row["desc"],
+                        point_size=body_size, leading=body_leading), 1),
+                )
+            else:
+                cell_defs = (
+                    (_lcd.typed_paragraph(
+                        writer, "HB Spec Label", row["no"],
+                        "type_lcd_no_font_size", "type_lcd_no_font_leading"), 0),
+                    (image_paragraph, 1),
+                    (_lcd.typed_paragraph(
+                        writer, "HB Spec Label", row["name"],
+                        point_size=label_size, leading=label_leading,
+                        bold=True), 2),
+                    (_lcd.typed_paragraph(
+                        writer, "HB Spec Value", row["desc"],
+                        point_size=body_size, leading=body_leading), 3),
+                )
             for content, ci in cell_defs:
-                if ci == 0 and row.get("suppress_number") == "true":
+                if (
+                    table_variant == "number_icon_label_description"
+                    and ci == 0
+                    and row.get("suppress_number") == "true"
+                ):
                     continue
-                row_span = int(row.get("number_row_span", "1")) if ci == 0 else 1
+                row_span = (
+                    int(row.get("number_row_span", "1"))
+                    if table_variant == "number_icon_label_description" and ci == 0
+                    else 1
+                )
                 terminal_inset = (
                     terminal_fill / 2.0
                     if row_heights is None
@@ -298,7 +350,14 @@ def add_lcd_story(
                     f"{tid}c{global_ri}_{ci}", f"{ci}:{local_ri}", content,
                     top=vertical_pad + terminal_inset,
                     bottom=vertical_pad + terminal_inset,
-                    left=text_indent if ci >= 2 else pad,
+                    left=(
+                        text_indent
+                        if (
+                            table_variant == "label_description"
+                            or ci >= 2
+                        )
+                        else pad
+                    ),
                     right=pad,
                     valign="CenterAlign")
                 if row_span > 1:
@@ -321,7 +380,8 @@ def add_lcd_story(
             # finalizer fits their shell.
             auto_grow_rows=row_heights is not None and segment_index > 0,
         )
-        for column in range(3):
+        shaded_columns = 1 if table_variant == "label_description" else 3
+        for column in range(shaded_columns):
             table = _tb.fill_column_xml(table, column, "Color/HB Bg K05")
         if segment_index == 0:
             panel_height = param_pt(
@@ -366,7 +426,7 @@ def add_lcd_story(
             table_xml=table,
             width=body_w,
             height=panel_height,
-            n_cols=4,
+            n_cols=len(cols),
             terminal=segment_index == len(prepared_segments) - 1,
             fill="Color/Paper",
             stroke="Color/HB Brand Dark",
@@ -404,6 +464,7 @@ def add_lcd_story(
                 param_pt(writer.params, "idml_compact_lcd_hero_max_height", 55.0)
                 if compact else None
             ),
+            horizontal_scale_override=hero_horizontal_scale,
         ),
         *table_panels,
     ]
@@ -550,6 +611,24 @@ def add_spec_story(
     reference_table_heights = (98.41, 49.06, 94.89, 27.11)
     default_section_before = (7.89, 9.56, 10.54, 14.41)
     default_table_before = (3.79, 2.47, 4.75, 3.30)
+    native_symbol_index = 0
+
+    def spec_paragraph(style: str, text: str, **kwargs) -> str:
+        nonlocal native_symbol_index
+        if not writer.native_structure_markers:
+            return writer._psr(style, text, **kwargs)
+        portable_text, replacements = portable_symbol_text(
+            text,
+            marker_id=f"{sid}_spec_symbol_{native_symbol_index}",
+        )
+        native_symbol_index += 1
+        return writer._psr(
+            style,
+            portable_text,
+            inline_replacements=replacements,
+            **kwargs,
+        )
+
     for si, section in enumerate(sections):
         title_baseline_shift = param_pt(
             writer.params,
@@ -565,15 +644,25 @@ def add_spec_story(
             "idml_spec_section_bullet_baseline_offset",
             -1.56,
         )
-        section_title = writer._psr(
-            "HB Spec Section", "\u25cf " + section["title"])
-        section_title = section_title.replace(
-            'FontStyle="Regular"',
-            'FontStyle="Regular" PointSize="13.2" '
-            'HorizontalScale="100" '
-            f'BaselineShift="{bullet_baseline_shift:g}"',
-            1,
-        )
+        if writer.native_structure_markers:
+            section_title = writer._psr(
+                "HB Spec Section",
+                marked_text(section["title"]),
+                inline_replacements=marker_replacements(
+                    writer,
+                    marker_id=f"{sid}_section_marker_{si}",
+                ),
+            )
+        else:
+            section_title = writer._psr(
+                "HB Spec Section", "\u25cf " + section["title"])
+            section_title = section_title.replace(
+                'FontStyle="Regular"',
+                'FontStyle="Regular" PointSize="13.2" '
+                'HorizontalScale="100" '
+                f'BaselineShift="{bullet_baseline_shift:g}"',
+                1,
+            )
         section_default = (
             default_section_before[si]
             if si < len(default_section_before) else 10.07
@@ -622,6 +711,7 @@ def add_spec_story(
                     visual_parity=True,
                     section_index=si,
                     language=lang,
+                    paragraph_xml=spec_paragraph,
                 ),
                 2,
             ),

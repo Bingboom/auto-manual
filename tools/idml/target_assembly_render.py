@@ -179,6 +179,9 @@ class TargetAssemblyRenderer:
                 page_index=page_cursor,
                 language=lang,
                 hero_path=hero_path,
+                composition_data=self.plan_entry_by_ref[
+                    composition.source_refs[0]
+                ].get("composition_data"),
             )
             self.emitted.add(f"lcd:{lang}")
         elif composition.composition_type == "connections":
@@ -217,6 +220,7 @@ class TargetAssemblyRenderer:
                 language=lang,
             )
         elif composition.composition_type == "troubleshooting":
+            trouble = composition_pages[0]
             trouble_data = ir_projection.trouble_page_data(self.manual_ir, lang)
             tail = self.routed_tail_blocks.pop(composition.composition_id, None)
             if trouble_data is None or tail is None:
@@ -234,10 +238,15 @@ class TargetAssemblyRenderer:
                 ),
                 connection_title=composition.composition_id,
                 connection_blocks=tail,
-                trouble_data=trouble_data,
+                trouble_sid="st_" + self.slug_stem(Path(trouble.path).stem),
+                trouble_title=Path(trouble.path).stem,
+                trouble_blocks=list(trouble.blocks),
                 bundle_root=self.bundle_root,
                 page_index=page_cursor,
                 language=lang,
+                composition_data=self.plan_entry_by_ref[
+                    composition.source_refs[0]
+                ].get("composition_data"),
             )
             self.emitted.add(f"trouble:{lang}")
         elif composition.composition_type == "charging_storage":

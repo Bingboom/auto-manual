@@ -384,3 +384,41 @@ Start Review / Draft / Publish。只有在操作者再次明确确认“入库/�
 
 未提交、未推送、未创建 PR、未写飞书/线上表、未触发 Start Review、Draft
 或 Publish。candidate 视觉验收不等于批准生产；线上入库仍需操作者另行明确授权。
+
+## 14. 2026-08-23 v28 Mac/自包含包修复
+
+### 共享组件修复
+
+- 普通 H2 的黑色圆点改为内联 InDesign 原生矢量圆与独立 gap，不再写入
+  `●`，也不依赖 Segoe UI Symbol 或 Yu Gothic；Windows/macOS 共用同一组件；
+- LCD 紧凑两列表复用 `comp_lcd_label_col_width`，并按三语实时文案计算行高；
+- Troubleshooting 短表不再套用 JE 完整表的 ordinal 高度，错误码列按表头和
+  全部代码动态测宽，右表头保持白底、首列使用灰底，紧凑圆角为 4.8pt；该圆角
+  token 只属于 compact overlay，不进入 JE 冻结完整表的 strict identity；
+- line-block 的 `|` 只作为源结构换行，F6-F9 / FA, FC 不再出现可见管道符；
+  故障标题、引言和单元格关闭断词；
+- connection tail 使用共享 `reference_measure` 图片角色；目标图宽、split 与
+  `heading_space_after` 继续只写在 JBP candidate assembly JSON，不增加型号或
+  页面标题判断。
+
+### v28 本地与打包验收
+
+- 使用冻结 `tests/fixtures/phase2` 经真实 `build.py idml --idml-mode both`
+  重建：28 页、43/43 bindings、261 blocks、241 stories、`skipped_raw=0`；
+- InDesign 2026 `21.0.1.6` finalize：0 overset、0 missing fonts、0 bad links，
+  PDF/X-4、Japan Color 2001 Coated、JC200103 均通过；
+- 印刷页 05 的 connection locking 图和 Troubleshooting 表头、灰底、圆角、
+  行样式均存在；原始 Stories 中无 `Segoe UI Symbol`、`Yu Gothic`、文本 `●`、
+  可见 `| FA`。InDesign 普通编辑视图中，圆点锚定对象会显示图层色框架边缘；
+  这是非打印辅助线，预览模式和导出 PDF 中均为完整黑色圆点；
+- delivery ZIP 收集 41 个链接、missing=0。由全新临时目录解包后再次 finalize
+  仍为 28 页且 preflight 全绿；解包前后 28 页 72 dpi 全部逐像素一致，印刷页
+  05/06 的 144 dpi PNG 也逐像素一致；
+- 与 2026-04-27 源说明书逐页对照后，印刷页 05 的连接图、故障表结构和版面已
+  高度对齐；印刷页 06 的圆点和 Mac 字符问题已关闭，但仍缺 `SOLD SEPARATELY`
+  徽标，warning/intro 顺序、两张充电图图幅以及 STORAGE 分页仍与源稿不同。这些
+  是 candidate composition/目标装配数据的后续差异，不得用 JBP 页面特判修补；
+- v28 handoff ZIP SHA-256 为
+  `e39cc115008e810a730debe969cdb3bef791e2d6d45611b512c212b2d61648d6`；
+- `data/phase2` 当前 runtime 快照仍缺 JBP Product Name，本轮未修补该历史漂移、
+  未写线上表；可复现本地验证继续显式使用仓库冻结 fixture。

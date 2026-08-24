@@ -442,6 +442,7 @@ def lcd_hero_paragraph(
     *,
     hero_path: Path | None = None,
     max_height: float | None = None,
+    horizontal_scale_override: float | None = None,
 ) -> str:
     """The master's annotated LCD line-art above the icon table
     (finished art cropped from the V2.0 PDF; numbers only, so one asset
@@ -469,10 +470,14 @@ def lcd_hero_paragraph(
     )
     if height > hero_max_h:
         width, height = width * hero_max_h / height, hero_max_h
-    horizontal_scale = float(writer.params.get(
-        f"lang_{language}_idml_lcd_hero_horizontal_scale",
-        writer.params.get("idml_lcd_hero_horizontal_scale", ("1", "ratio")),
-    )[0])
+    horizontal_scale = (
+        float(horizontal_scale_override)
+        if horizontal_scale_override is not None
+        else float(writer.params.get(
+            f"lang_{language}_idml_lcd_hero_horizontal_scale",
+            writer.params.get("idml_lcd_hero_horizontal_scale", ("1", "ratio")),
+        )[0])
+    )
     width *= horizontal_scale
     space_before = param_pt(
         writer.params,

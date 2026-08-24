@@ -17,6 +17,7 @@ from tools.idml.components.prose_image import (
     IMAGE_ROLE_CHARGING_DIAGRAM,
     IMAGE_ROLE_COMPACT_DIAGRAM,
     IMAGE_ROLE_FULL_MEASURE,
+    IMAGE_ROLE_REFERENCE_MEASURE,
     IMAGE_ROLE_WIDE_DIAGRAM,
     render_image_block,
 )
@@ -323,6 +324,7 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         )
         roles_and_ratios = (
             (IMAGE_ROLE_FULL_MEASURE, 1.0),
+            (IMAGE_ROLE_REFERENCE_MEASURE, 1.0),
             (IMAGE_ROLE_WIDE_DIAGRAM, 0.78),
             (IMAGE_ROLE_COMPACT_DIAGRAM, 0.62),
             (IMAGE_ROLE_CHARGING_DIAGRAM, 0.58),
@@ -377,6 +379,18 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         self.assertAlmostEqual(
             localized.text_measure * 0.80,
             _image_width(localized_xml or ""),
+            places=3,
+        )
+        reference_xml, _ = render_image_block(
+            neutral_asset.as_posix(),
+            localized,
+            rect_id="semantic_fr_reference",
+            terminal=False,
+            role=IMAGE_ROLE_REFERENCE_MEASURE,
+        )
+        self.assertAlmostEqual(
+            localized.text_measure,
+            _image_width(reference_xml or ""),
             places=3,
         )
 
