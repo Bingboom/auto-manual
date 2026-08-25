@@ -373,7 +373,6 @@ class IdmlWriter:
         title: str,
         signal_headers: tuple[str, str],
         icon_headers: tuple[str, str],
-        dense: bool = False,
     ) -> tuple[str, _pages.SymbolOverflow]:
         return _pages.add_safety_symbols_page(
             self,
@@ -388,7 +387,6 @@ class IdmlWriter:
             title=title,
             signal_headers=signal_headers,
             icon_headers=icon_headers,
-            dense=dense,
         )
 
     _path_geometry = staticmethod(_prim.path_geometry)

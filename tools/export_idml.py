@@ -428,8 +428,7 @@ def main() -> int:
                     bundle_root, page_cursor, lang,
                     title=symbol_data.title,
                     signal_headers=symbol_data.signal_headers,
-                    icon_headers=symbol_data.icon_headers,
-                    dense=approved_reference)
+                    icon_headers=symbol_data.icon_headers)
                 emitted.add(f"symbols:{lang}" if target_assembly else "symbols")
                 pending_prefix_blocks = []
                 page_cursor += 1
@@ -487,8 +486,7 @@ def main() -> int:
                     bundle_root, page_cursor, lang,
                     title=symbol_data.title,
                     signal_headers=symbol_data.signal_headers,
-                    icon_headers=symbol_data.icon_headers,
-                    dense=approved_reference)
+                    icon_headers=symbol_data.icon_headers)
                 emitted.add(f"symbols:{lang}" if target_assembly else "symbols")
                 pending_prefix_blocks = []
                 page_cursor += 1

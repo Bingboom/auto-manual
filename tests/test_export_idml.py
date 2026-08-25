@@ -3229,7 +3229,11 @@ class ExportIdmlTests(unittest.TestCase):
         )
         self.assertNotIn("11_weee_shifted_source.png", left)
 
-    def test_dense_safety_symbols_page_returns_reference_continuation_rows(self) -> None:
+    def test_standard_symbols_panel_derives_continuation_from_available_height(
+        self,
+    ) -> None:
+        import json
+
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         icons = [
             {"figure": "1_warning_triangle.png", "text": "Avertissement"},
@@ -3248,15 +3252,30 @@ class ExportIdmlTests(unittest.TestCase):
         w = IdmlWriter(params)
         spread_id, overflow = w.add_safety_symbols_page(
             "st_safety_symbols_dense",
-            [],
+            [
+                ("component", json.dumps({
+                    "kind": "warnbox",
+                    "label": "AVERTISSEMENT",
+                    "texts": ["Avertissement de sécurité."],
+                })),
+                ("component", json.dumps({
+                    "kind": "warnbox",
+                    "label": "DANGER",
+                    "texts": ["Danger de sécurité."],
+                })),
+            ],
             [("h1", "ENTRETIEN"), ("body", "Corps.")],
-            [("AVERTISSEMENT", "Pratique dangereuse.")],
+            [
+                ("AVERTISSEMENT", "Pratique dangereuse."),
+                ("ATTENTION", "Risque de blessure."),
+                ("REMARQUE", "Risque de dommage."),
+                ("CONSEIL", "Information utile."),
+            ],
             icons,
             ROOT,
             22,
             "fr",
             **_symbol_source_kwargs("fr"),
-            dense=True,
         )
 
         self.assertEqual(spread_id, "sp_22")

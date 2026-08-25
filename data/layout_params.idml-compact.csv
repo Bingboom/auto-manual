@@ -7,7 +7,6 @@ lang_es_idml_compact_safety_symbols_title_top,173.2,pt,Compact shared-page Symbo
 idml_compact_safety_title_body_gap,3.5,pt,Compact shared-page gap after the Safety H1 bar
 idml_compact_safety_symbols_gap,4.0,pt,Compact shared-page clear gap before the Symbols H1 bar
 idml_compact_symbols_title_gap,6.0,pt,Compact shared-page gap from Symbols H1 to signal table
-lang_es_idml_compact_symbols_title_gap,4.0,pt,Spanish Symbols title-to-table gap measured from the BP reference
 idml_compact_safety_body_font_size,5.4,pt,Compact shared-page Safety lead font size
 idml_compact_safety_body_leading,6.1,pt,Compact shared-page Safety lead leading
 idml_compact_safety_list_font_size,5.5,pt,Compact shared-page Safety list font size

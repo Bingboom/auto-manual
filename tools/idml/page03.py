@@ -6,6 +6,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from .components.notice import notice_box_layout, source_notice_label
+from .components.symbols_panel import SymbolsPanel
 from .character_metrics import with_character_metrics
 from tools.component_specs.inbox import inbox_spec_from_payload
 from tools.component_specs.inbox_adapters import idml_inbox_payload
@@ -398,47 +399,17 @@ def _symbol_continuation_objects(
 ) -> tuple[list[str], list[str]]:
     if symbol_overflow is None or not symbol_overflow.has_rows():
         return [], []
-    table_gap = 7.0
-    table_w = (BODY_W - table_gap) / 2.0
-    table_y = 25.0 if lang == "es" else 20.0
-    table_h = 68.0
-    story_ids: list[str] = []
-    frames: list[str] = []
-    for side, rows, x in (
-        ("left", symbol_overflow.left, BODY_X),
-        ("right", symbol_overflow.right, BODY_X + table_w + table_gap),
-    ):
-        if not rows:
-            continue
-        story_id = f"{sid}_symbols_{side}"
-        table = writer._symbols_icon_table(
-            f"{sid}_symbols_{side}_tbl",
-            rows,
-            table_w,
-            lang,
-            headers=symbol_overflow.headers,
-            include_header=False,
-            row_heights=[table_h / len(rows)] * len(rows),
-            fit_body_to_row=True,
-        )
-        writer._table_story(story_id, f"Symbol icons continuation {side}", table)
-        story_ids.append(story_id)
-        frames.append(frame_with_background(
-            writer,
-            sid,
-            f"symbols_{side}",
-            story_id,
-            (x, table_y, table_w, table_h),
-            with_rounded_outer({
-                "inset": (0, 0, 0, 0),
-                # The icon column uses the K05 fill.  Without the shared
-                # corner masks, that editable cell fill leaks past the
-                # rounded shell at the continuation table's bottom-left
-                # corner (and the other three corners).
-                "rounded_outer_masks": True,
-            }),
-        ))
-    return story_ids, frames
+    return SymbolsPanel.render_continuation(
+        writer,
+        sid=sid,
+        overflow=symbol_overflow,
+        language=lang,
+        density="standard",
+        x=BODY_X,
+        y=25.0 if lang == "es" else 20.0,
+        width=BODY_W,
+        available_height=68.0,
+    )
 
 
 def _inbox_objects(writer, sid: str, inbox_spec: dict | None,

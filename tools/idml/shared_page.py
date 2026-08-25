@@ -18,16 +18,15 @@ from .components.prose_image import (
     IMAGE_ROLE_WIDE_DIAGRAM,
 )
 from .components.lcd_callout import add_lcd_callouts
+from .components.symbols_panel import SymbolsPanel, SymbolsPanelData
 from .heading_suffix import promote_h2_suffix_pills
-from .layout_est import template_symbol_split
 from .page_objects import (
     frame_with_background,
     h1_bar_h_pt,
     heading_bar_opts,
     heading_text,
-    with_rounded_outer,
 )
-from .params import IDPKG, component_param_pt, param_pt
+from .params import IDPKG, param_pt
 from .page03 import (
     BODY_W,
     BODY_X,
@@ -39,7 +38,6 @@ from .page03 import (
 )
 from .page_overview import product_overview_frames, single_image_overview_frames
 from .source_copy import source_text
-from .symbols_page import SafetySymbolsPageStyle
 
 
 def latex_start_page(page_plan: dict | None, page: Path, bundle_root: Path) -> int | None:
@@ -95,56 +93,6 @@ def add_safety_symbols_page(
 
     del data_root  # Figure paths are already resolved by Manual IR projection.
     lang = language.strip().casefold().replace("_", "-").split("-", 1)[0]
-    style = SafetySymbolsPageStyle.from_writer(writer, lang)
-
-    def compact_metric(key: str, fallback: float) -> float:
-        return param_pt(
-            writer.params,
-            f"lang_{lang}_{key}",
-            param_pt(writer.params, key, fallback),
-        )
-
-    signal_header_height = compact_metric(
-        "idml_compact_symbols_signal_header_height",
-        style.signal_header_height,
-    )
-    signal_row_height = compact_metric(
-        "idml_compact_symbols_signal_row_height",
-        style.signal_row_height,
-    )
-    signal_last_row_height = compact_metric(
-        "idml_compact_symbols_signal_last_row_height",
-        signal_row_height,
-    )
-    icon_header_height = compact_metric(
-        "idml_compact_symbols_icon_header_height",
-        style.icon_header_height,
-    )
-    icon_row_height = compact_metric(
-        "idml_compact_symbols_icon_row_height",
-        style.icon_row_height,
-    )
-    icon_right_row_height = compact_metric(
-        "idml_compact_symbols_icon_right_row_height",
-        icon_row_height,
-    )
-    icon_last_row_height = compact_metric(
-        "idml_compact_symbols_icon_last_row_height",
-        style.icon_last_row_height,
-    )
-    icon_long_last_row_height = compact_metric(
-        "idml_compact_symbols_icon_long_last_row_height",
-        style.icon_long_last_row_height,
-    )
-    signal_row_heights = [signal_header_height] + [
-        signal_row_height
-    ] * len(symbol_data.signals)
-    if symbol_data.signals:
-        signal_row_heights[-1] = signal_last_row_height
-    signal_cell_vertical_inset = compact_metric(
-        "idml_compact_symbols_signal_cell_vertical_inset",
-        3.0,
-    )
     h1 = source_text(
         next((text for kind, text in safety_blocks if kind == "h1"), ""),
         owner="compact Safety page title",
@@ -165,180 +113,8 @@ def add_safety_symbols_page(
     )
 
     symbol_sid = f"st_symbols_shared_{lang}"
-    symbols_title = source_text(
-        symbol_data.title,
-        owner="compact Symbols page title",
-    )
-    signal_headers = tuple(
-        source_text(value, owner=f"compact Symbols signal header {index + 1}")
-        for index, value in enumerate(symbol_data.signal_headers)
-    )
-    icon_headers = tuple(
-        source_text(value, owner=f"compact Symbols icon header {index + 1}")
-        for index, value in enumerate(symbol_data.icon_headers)
-    )
-    symbols_title_sid = f"{symbol_sid}_title"
-    writer._add_story_parts(
-        symbols_title_sid,
-        symbols_title,
-        [heading_text(writer, symbols_title, level=1)],
-    )
-
     body_x = writer.m_l
     body_w = writer.page_w - writer.m_l - writer.m_r
-    signal_sid = f"{symbol_sid}_signals"
-    writer._table_story(
-        signal_sid,
-        "Signal words",
-        writer._symbols_signal_table(
-            f"{symbol_sid}_sig_tbl",
-            list(symbol_data.signals),
-            body_w,
-            bundle_root,
-            lang,
-            headers=signal_headers,
-            row_heights=signal_row_heights,
-            fit_body_to_row=True,
-            cell_vertical_inset=signal_cell_vertical_inset,
-            fill_all_cells=True,
-            disable_hyphenation=True,
-            auto_grow_rows=False,
-        ),
-    )
-
-    icon_gap = component_param_pt(
-        writer.params,
-        "idml_symbols_column_gap",
-        component_param_pt(
-            writer.params,
-            "comp_symbol_column_gap",
-            6.0,
-            strict=False,
-            owner="compact Symbols column fallback",
-        ),
-        strict=writer.strict_component_assets,
-        owner="compact Symbols columns",
-    )
-    icon_table_trim = component_param_pt(
-        writer.params,
-        "idml_symbols_icon_table_width_trim",
-        0.0,
-        strict=writer.strict_component_assets,
-        owner="compact Symbols tables",
-    )
-    icon_table_w = (body_w - icon_gap) / 2.0 - icon_table_trim
-    icon_left_col = component_param_pt(
-        writer.params,
-        "idml_compact_symbols_icon_left_col_width",
-        component_param_pt(
-            writer.params,
-            "idml_symbols_icon_col_width",
-            39.685,
-            strict=False,
-            owner="compact Symbols icon column fallback",
-        ),
-        strict=writer.strict_component_assets,
-        owner="compact Symbols left icon column",
-    )
-    icon_right_col = component_param_pt(
-        writer.params,
-        "idml_compact_symbols_icon_right_col_width",
-        icon_left_col,
-        strict=writer.strict_component_assets,
-        owner="compact Symbols right icon column",
-    )
-    compact_icon_width = component_param_pt(
-        writer.params,
-        "idml_compact_symbols_icon_width",
-        component_param_pt(
-            writer.params,
-            "idml_symbols_icon_width",
-            26.0,
-            strict=False,
-            owner="compact Symbols icon-width fallback",
-        ),
-        strict=writer.strict_component_assets,
-        owner="compact Symbols icon width",
-    )
-    compact_icon_height = component_param_pt(
-        writer.params,
-        "idml_compact_symbols_icon_height",
-        component_param_pt(
-            writer.params,
-            "idml_symbols_icon_height",
-            26.0,
-            strict=False,
-            owner="compact Symbols icon-height fallback",
-        ),
-        strict=writer.strict_component_assets,
-        owner="compact Symbols icon height",
-    )
-    left_icons, right_icons, overflow_left, overflow_right = (
-        template_symbol_split(list(symbol_data.icons), dense=False)
-    )
-    if overflow_left or overflow_right:
-        raise ValueError("compact Safety/Symbols page cannot drop symbol rows")
-
-    def icon_row_heights(rows: list[dict], *, long_last: bool) -> list[float]:
-        ordinary_height = (
-            icon_right_row_height if long_last else icon_row_height
-        )
-        return (
-            [icon_header_height]
-            + [ordinary_height] * max(0, len(rows) - 1)
-            + ([icon_long_last_row_height if long_last
-                else icon_last_row_height] if rows else [])
-        )
-
-    left_heights = icon_row_heights(left_icons, long_last=False)
-    right_heights = icon_row_heights(right_icons, long_last=True)
-    shell_height = max(sum(left_heights), sum(right_heights))
-    if left_heights:
-        left_heights[-1] += shell_height - sum(left_heights)
-    if right_heights:
-        right_heights[-1] += shell_height - sum(right_heights)
-
-    left_sid = f"{symbol_sid}_icons_left"
-    writer._table_story(
-        left_sid,
-        "Symbol icons left",
-        writer._symbols_icon_table(
-            f"{symbol_sid}_icons_l_tbl",
-            left_icons,
-            icon_table_w,
-            lang,
-            headers=icon_headers,
-            row_heights=left_heights,
-            icon_col_width=icon_left_col,
-            icon_width=compact_icon_width,
-            icon_height=compact_icon_height,
-            fit_body_to_row=True,
-            fill_all_cells=True,
-            disable_hyphenation=True,
-            auto_grow_rows=False,
-        ),
-    )
-    right_sid = f"{symbol_sid}_icons_right"
-    writer._table_story(
-        right_sid,
-        "Symbol icons right",
-        writer._symbols_icon_table(
-            f"{symbol_sid}_icons_r_tbl",
-            right_icons,
-            icon_table_w,
-            lang,
-            headers=icon_headers,
-            row_heights=right_heights,
-            icon_col_width=icon_right_col,
-            icon_width=compact_icon_width,
-            icon_height=compact_icon_height,
-            fit_body_to_row=True,
-            fill_all_cells=True,
-            disable_hyphenation=True,
-            auto_grow_rows=False,
-        ),
-    )
-
     page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
     symbols_top = param_pt(
         writer.params,
@@ -359,28 +135,22 @@ def add_safety_symbols_page(
         "idml_compact_safety_symbols_gap",
         4.0,
     )
-    symbols_title_gap = param_pt(
-        writer.params,
-        "idml_compact_symbols_title_gap",
-        6.0,
-    )
     title_h = h1_bar_h_pt(writer)
-    signal_top = symbols_top + title_h + symbols_title_gap
-    signal_h = sum(signal_row_heights) + param_pt(
-        writer.params,
-        "idml_compact_symbols_signal_frame_allowance",
-        0.0,
+    panel = SymbolsPanel(
+        writer,
+        sid=symbol_sid,
+        data=SymbolsPanelData.from_source(symbol_data),
+        bundle_root=bundle_root,
+        language=lang,
+        density="compact",
+    ).render(
+        x=body_x,
+        y=symbols_top,
+        width=body_w,
+        available_height=writer.page_h - symbols_top,
     )
-    signal_gap_after = compact_metric(
-        "idml_compact_symbols_signal_gap_after",
-        style.signal_gap_after,
-    )
-    icons_top = signal_top + signal_h + signal_gap_after
-    icons_h = shell_height + param_pt(
-        writer.params,
-        "idml_compact_symbols_table_frame_allowance",
-        style.table_frame_allowance,
-    )
+    if panel.overflow.has_rows():
+        raise ValueError("compact SymbolsPanel cannot drop symbol rows")
     frames = [
         frame_with_background(
             writer,
@@ -408,50 +178,7 @@ def add_safety_symbols_page(
             ),
             {"inset": (0, 0, 0, 0)},
         ),
-        frame_with_background(
-            writer,
-            symbol_sid,
-            "symbols_title",
-            symbols_title_sid,
-            (body_x, symbols_top, body_w, title_h),
-            {
-                **heading_bar_opts(1, (1.5, 5, 1, 6)),
-                "text_rect": (body_x + 6, symbols_top, body_w - 12, title_h),
-            },
-        ),
-        frame_with_background(
-            writer,
-            symbol_sid,
-            "signals",
-            signal_sid,
-            (body_x, signal_top, body_w, signal_h),
-            with_rounded_outer({
-                "inset": (0, 0, 0, 0),
-                "rounded_outer_masks": True,
-            }),
-        ),
-        frame_with_background(
-            writer,
-            symbol_sid,
-            "icons_left",
-            left_sid,
-            (body_x, icons_top, icon_table_w, icons_h),
-            with_rounded_outer({
-                "inset": (0, 0, 0, 0),
-                "rounded_outer_masks": True,
-            }),
-        ),
-        frame_with_background(
-            writer,
-            symbol_sid,
-            "icons_right",
-            right_sid,
-            (body_x + icon_table_w + icon_gap, icons_top, icon_table_w, icons_h),
-            with_rounded_outer({
-                "inset": (0, 0, 0, 0),
-                "rounded_outer_masks": True,
-            }),
-        ),
+        *panel.frames,
     ]
     spread_id = f"sp_{page_index}"
     writer.spreads.append((

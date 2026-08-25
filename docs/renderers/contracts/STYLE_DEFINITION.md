@@ -532,6 +532,8 @@ IDML 侧的 EN/FR/ES 批准 panel/row/column/margin/spacing、参考 measure、p
 
 IDML 的 subbar 高度、标题/维护区间距、H1 光学偏移、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。批准语言的图标表保留原有固定行高，外层框在行高总和之外统一增加 `idml_symbols_table_frame_allowance`（当前 `0.25pt`）作为 InDesign 表格承载余量；它只吸收导入后的表格标记，不缩字、不改分栏，也不允许最终化脚本隐藏 overset。
 
+IDML 的完整可编辑单元是 `SymbolsPanel`，而不是页面 composer 中的三张散表。组件内部拥有标题条、K05 底色与圆角外壳、列宽、各行高度、表格载体余量、信号词表与图标表之间的最小间距，以及内容超出可用高度时的续页拆分。JE/JBP 页面 composer 只能传入本地化数据、语言、`standard` / `compact` 密度和组件可用矩形；它可以决定组件放在哪里，但不能再调用 Symbols 表格 primitive 或覆盖内部几何。EN/FR/ES 的两种密度共同使用 [`tests/fixtures/idml_symbols_panel_golden.json`](../../../tests/fixtures/idml_symbols_panel_golden.json) 作为几何与可编辑 Story 回归基准，边界测试同时禁止页面 composer 重新消费内部行高 token。
+
 ### 4.7 对比表
 
 `` ```{comparison} 左表头 | 右表头 `` → `figure.hb-auto-resume-composition`

@@ -1,0 +1,474 @@
+{
+  "compact": {
+    "en": {
+      "contract": {
+        "auto_grow_rows": false,
+        "column_gap": 5.8,
+        "density": "compact",
+        "disable_hyphenation": true,
+        "fill_all_cells": true,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              163.2,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              189.3259842519685,
+              312.09448818897647,
+              117.901
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              311.3269842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              311.3269842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ]
+        ],
+        "icon_frame_height": 24.5,
+        "language": "en",
+        "left_icon_row_heights": [
+          13.0
+        ],
+        "right_icon_row_heights": [
+          13.0
+        ],
+        "signal_frame_height": 117.901,
+        "signal_gap": 4.1,
+        "signal_row_heights": [
+          17.3,
+          21.317,
+          21.317,
+          21.317,
+          25.15
+        ],
+        "table_width": 151.94724409448824,
+        "title_gap": 6.0,
+        "title_height": 20.125984251968504
+      },
+      "height": 172.6269842519685,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_shared_en_icons_left": "4968329de513a4f27c99627809a157fd1129e6ccd6f753d430a211550d727966",
+        "st_symbols_shared_en_icons_right": "4335abcbdd30af944312108ede143195207b2349398a51941d607203de6913be",
+        "st_symbols_shared_en_signals": "223476f8e319308559feb7084cc483974d4db51800802d63c18a1d21b12fbff4",
+        "st_symbols_shared_en_title": "3806e8489894db34cf94c11555d918551f7b80827916816f486574ec8dd89689"
+      }
+    },
+    "es": {
+      "contract": {
+        "auto_grow_rows": false,
+        "column_gap": 5.8,
+        "density": "compact",
+        "disable_hyphenation": true,
+        "fill_all_cells": true,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              173.2,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              199.3259842519685,
+              312.09448818897647,
+              106.501
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              310.8269842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              310.8269842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ]
+        ],
+        "icon_frame_height": 24.5,
+        "language": "es",
+        "left_icon_row_heights": [
+          13.0
+        ],
+        "right_icon_row_heights": [
+          13.0
+        ],
+        "signal_frame_height": 106.501,
+        "signal_gap": 5.0,
+        "signal_row_heights": [
+          13.5,
+          19.417,
+          19.417,
+          19.417,
+          23.25
+        ],
+        "table_width": 151.94724409448824,
+        "title_gap": 6.0,
+        "title_height": 20.125984251968504
+      },
+      "height": 162.1269842519685,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_shared_es_icons_left": "fa71a7724181f3c0d731c4b2708312a11da9332d18be2948e6ae53b69b17f6a9",
+        "st_symbols_shared_es_icons_right": "ceec139df512372079045005976f43689b0ea79b87483c6b1e15aa2a23562686",
+        "st_symbols_shared_es_signals": "a9367acf27bd98edeb43e5ef241fb7b51f11cd5c612a9cc39a25b40ac6d23eef",
+        "st_symbols_shared_es_title": "8af7faa62e5f847d10d10a686555c77dd59bbc875f619babf224d46e1f435cd3"
+      }
+    },
+    "fr": {
+      "contract": {
+        "auto_grow_rows": false,
+        "column_gap": 5.8,
+        "density": "compact",
+        "disable_hyphenation": true,
+        "fill_all_cells": true,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              173.2,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              199.3259842519685,
+              312.09448818897647,
+              105.501
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              309.8269842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              309.8269842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ]
+        ],
+        "icon_frame_height": 24.5,
+        "language": "fr",
+        "left_icon_row_heights": [
+          13.0
+        ],
+        "right_icon_row_heights": [
+          13.0
+        ],
+        "signal_frame_height": 105.501,
+        "signal_gap": 5.0,
+        "signal_row_heights": [
+          13.5,
+          19.167,
+          19.167,
+          19.167,
+          23.0
+        ],
+        "table_width": 151.94724409448824,
+        "title_gap": 6.0,
+        "title_height": 20.125984251968504
+      },
+      "height": 161.1269842519685,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_shared_fr_icons_left": "09cd43a48d3bc41c95ec818bbe33b7178c93280a3828962eed05848c03185a8b",
+        "st_symbols_shared_fr_icons_right": "c06a9b0f950e4276ced354c45af68c50f008f2454c56ed7189273cb769ce13f4",
+        "st_symbols_shared_fr_signals": "130fc2b615e8f2335ce7ea2f09fb27fd18599f4fbfdc25d357297c6f0d801d52",
+        "st_symbols_shared_fr_title": "8d16b246a71d27b28113b71cd59085cdbf05999fb7e6c452d976645ec2e6ac0a"
+      }
+    }
+  },
+  "standard": {
+    "en": {
+      "contract": {
+        "auto_grow_rows": true,
+        "column_gap": 5.8,
+        "density": "standard",
+        "disable_hyphenation": false,
+        "fill_all_cells": false,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              142.70776377952757,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              169.91574803149607,
+              312.09448818897647,
+              118.98
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              292.9957480314961,
+              151.94724409448824,
+              15.25
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              292.9957480314961,
+              151.94724409448824,
+              15.25
+            ]
+          ]
+        ],
+        "icon_frame_height": 15.25,
+        "language": "en",
+        "left_icon_row_heights": [
+          15.0
+        ],
+        "right_icon_row_heights": [
+          15.0
+        ],
+        "signal_frame_height": 118.98,
+        "signal_gap": 4.1,
+        "signal_row_heights": [
+          17.3,
+          25.42,
+          25.42,
+          25.42,
+          25.42
+        ],
+        "table_width": 151.94724409448824,
+        "title_gap": 9.0,
+        "title_height": 20.125984251968504
+      },
+      "height": 167.45598425196852,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_standard_en_icons_left": "b8532652411e8c3fde87106bef329cca603a778f021f8701b54c8f50b9077427",
+        "st_symbols_standard_en_icons_right": "581e6ee8edc9e24ab2a7fd9807075811bf6cca74f4fe2a704c4c177f797c13f7",
+        "st_symbols_standard_en_signals": "9eb3a138167230f416a210193ac37bd074387fb33ab4f79b8e06236beb32f709",
+        "st_symbols_standard_en_symbols_title": "06814be2e25259c1441e496a859286b6e8e368d08497d24b5293272900b88585"
+      }
+    },
+    "es": {
+      "contract": {
+        "auto_grow_rows": true,
+        "column_gap": 5.8,
+        "density": "standard",
+        "disable_hyphenation": false,
+        "fill_all_cells": false,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              203.00776377952755,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              230.21574803149605,
+              312.09448818897647,
+              118.98
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              358.9957480314961,
+              151.94724409448824,
+              15.25
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              358.9957480314961,
+              151.94724409448824,
+              15.25
+            ]
+          ]
+        ],
+        "icon_frame_height": 15.25,
+        "language": "es",
+        "left_icon_row_heights": [
+          15.0
+        ],
+        "right_icon_row_heights": [
+          15.0
+        ],
+        "signal_frame_height": 118.98,
+        "signal_gap": 9.8,
+        "signal_row_heights": [
+          17.3,
+          25.42,
+          25.42,
+          25.42,
+          25.42
+        ],
+        "table_width": 151.94724409448824,
+        "title_gap": 9.0,
+        "title_height": 20.125984251968504
+      },
+      "height": 173.15598425196853,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_standard_es_icons_left": "0ab7f31d6015606a75fb2dd96e3457b4f77b7242a54aae8df1e87fd2baa9b2f0",
+        "st_symbols_standard_es_icons_right": "87be3fddfe43bc77954881f0edf1ff1e1c98d9ff95f0ebc36a574a96b5f359d7",
+        "st_symbols_standard_es_signals": "cc63b765a53b80f440eedd4f747ab968ff3b8bf27263b703ffee69a2102ccce7",
+        "st_symbols_standard_es_symbols_title": "d13ba7d843ecb9f0d52d8ec31ab357a8057e38272eb10298d0ff53cef2281ddc"
+      }
+    },
+    "fr": {
+      "contract": {
+        "auto_grow_rows": true,
+        "column_gap": 5.8,
+        "density": "standard",
+        "disable_hyphenation": false,
+        "fill_all_cells": false,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              202.00776377952755,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              229.21574803149605,
+              312.09448818897647,
+              118.98
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              358.89574803149605,
+              151.94724409448824,
+              15.25
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              358.89574803149605,
+              151.94724409448824,
+              15.25
+            ]
+          ]
+        ],
+        "icon_frame_height": 15.25,
+        "language": "fr",
+        "left_icon_row_heights": [
+          15.0
+        ],
+        "right_icon_row_heights": [
+          15.0
+        ],
+        "signal_frame_height": 118.98,
+        "signal_gap": 10.7,
+        "signal_row_heights": [
+          17.3,
+          25.42,
+          25.42,
+          25.42,
+          25.42
+        ],
+        "table_width": 151.94724409448824,
+        "title_gap": 9.0,
+        "title_height": 20.125984251968504
+      },
+      "height": 174.0559842519685,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_standard_fr_icons_left": "2a9a6293362c4e9e6bcf165d911ab46aa937f3f58b29f25ff67330ec397e79cb",
+        "st_symbols_standard_fr_icons_right": "670247a343b9c6c3dab246e076697024a3e681e38e8f2dc8d9cba4ba427a035e",
+        "st_symbols_standard_fr_signals": "18b6bddf96dd69a32f555b9b07708492a4b4aed6afc81b524b7f6bbd3516c2e3",
+        "st_symbols_standard_fr_symbols_title": "40c541e6be2f53e2b12455488a51f7f1e9711e7f2031a5ae5cc69f665306cda4"
+      }
+    }
+  }
+}

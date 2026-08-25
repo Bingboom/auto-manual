@@ -11,10 +11,9 @@ from .character_metrics import (
     signal_label_metrics,
     with_character_metrics,
 )
-from .layout_est import est_table_height, template_symbol_split
+from .layout_est import est_table_height
 from .page_objects import (
     frame_with_background,
-    h1_bar_h_pt,
     heading_bar_opts,
     heading_text,
     with_rounded_outer,
@@ -592,7 +591,6 @@ def add_safety_symbols_page(
     title: str,
     signal_headers: tuple[str, str],
     icon_headers: tuple[str, str],
-    dense: bool = False,
 ) -> tuple[str, SymbolOverflow]:
     """V2.0 page 02: safety tail + maintenance + symbols on one page."""
     import json as _json
@@ -644,118 +642,17 @@ def add_safety_symbols_page(
         maint_body_sid, "Maintenance body",
         [writer._psr("HB Maintenance Body", maint_text, terminal=True)])
 
-    symbols_title_sid = f"{sid}_symbols_title"
-    writer._add_story_parts(
-        symbols_title_sid, "Symbols title",
-        [heading_text(writer, title, level=1)])
-
     body_x = writer.m_l
     body_w = writer.page_w - writer.m_l - writer.m_r
-    icon_gap = component_param_pt(
-        writer.params,
-        "idml_symbols_column_gap",
-        component_param_pt(
-            writer.params,
-            "comp_symbol_column_gap",
-            6.0,
-            strict=False,
-            owner="symbol icon tables fallback",
-        ),
-        strict=writer.strict_component_assets,
-        owner="symbol icon tables",
+    from .components.symbols_panel import SymbolsPanelData
+
+    panel_data = SymbolsPanelData(
+        title=title,
+        signal_headers=signal_headers,
+        icon_headers=icon_headers,
+        signals=tuple(signals),
+        icons=tuple(icons),
     )
-    icon_table_trim = component_param_pt(
-        writer.params,
-        "idml_symbols_icon_table_width_trim",
-        0.0,
-        strict=writer.strict_component_assets,
-        owner="symbol icon tables",
-    )
-    icon_table_w = (body_w - icon_gap) / 2.0 - icon_table_trim
-    left_icon_col = component_param_pt(
-        writer.params,
-        "idml_symbols_icon_left_col_width",
-        component_param_pt(
-            writer.params,
-            "idml_symbols_icon_col_width",
-            39.685,
-            strict=False,
-            owner="symbol icon left column fallback",
-        ),
-        strict=writer.strict_component_assets,
-        owner="symbol icon left column",
-    )
-    right_icon_col = component_param_pt(
-        writer.params,
-        "idml_symbols_icon_right_col_width",
-        left_icon_col,
-        strict=writer.strict_component_assets,
-        owner="symbol icon right column",
-    )
-    left_icons, right_icons, overflow_left, overflow_right = template_symbol_split(
-        icons,
-        dense=dense and lang in {"fr", "es"},
-    )
-    signal_sid = f"{sid}_signals"
-    writer._table_story(
-        signal_sid, "Signal words",
-        writer._symbols_signal_table(
-            f"{sid}_sig_tbl",
-            signals,
-            body_w,
-            bundle_root,
-            lang,
-            headers=signal_headers,
-            row_heights=[style.signal_header_height]
-            + [style.signal_row_height] * len(signals),
-        ))
-    left_row_heights = (
-        [style.icon_header_height]
-        + [style.icon_row_height] * max(0, len(left_icons) - 1)
-        + ([style.icon_last_row_height] if left_icons else [])
-    )
-    right_row_heights = (
-        [style.icon_header_height]
-        + [style.icon_row_height] * max(0, len(right_icons) - 1)
-        + ([
-            style.icon_long_last_row_height
-            if lang == "en" else style.icon_last_row_height
-        ] if right_icons else [])
-    )
-    # Both editable tables share one rounded shell height.  The English
-    # right table has the long disposal row, so the shorter left table needs
-    # the same remaining height on its final (otherwise blank) row; otherwise
-    # its K05 fill stops short of the shell's bottom edge.
-    if left_row_heights and right_row_heights:
-        shell_height = max(sum(left_row_heights), sum(right_row_heights))
-        if sum(left_row_heights) < shell_height:
-            left_row_heights[-1] += shell_height - sum(left_row_heights)
-        if sum(right_row_heights) < shell_height:
-            right_row_heights[-1] += shell_height - sum(right_row_heights)
-    left_sid = f"{sid}_icons_left"
-    writer._table_story(
-        left_sid, "Symbol icons left",
-        writer._symbols_icon_table(
-            f"{sid}_icons_l_tbl",
-            left_icons,
-            icon_table_w,
-            lang,
-            headers=icon_headers,
-            row_heights=left_row_heights,
-            icon_col_width=left_icon_col,
-        ))
-    right_sid = f"{sid}_icons_right"
-    writer._table_story(
-        right_sid, "Symbol icons right",
-        writer._symbols_icon_table(
-            f"{sid}_icons_r_tbl",
-            right_icons,
-            icon_table_w,
-            lang,
-            headers=icon_headers,
-            row_heights=right_row_heights,
-            icon_col_width=right_icon_col,
-        ))
 
     # Flow the frames from a cursor using coarse content-height estimates
     # instead of fixed rects (fixed heights hid taller content as overset);
@@ -795,52 +692,22 @@ def add_safety_symbols_page(
         {"inset": (0, 0, 0, 0)},
         gap=style.maintenance_body_gap,
     )
-    _place("symbols_title", symbols_title_sid, h1_bar_h_pt(writer),
-           heading_bar_opts(1, (1.5, 5, 1, 6)),
-           gap=style.symbols_title_gap)
-    signals_h = style.signal_header_height + style.signal_row_height * len(signals)
-    _place("signals", signal_sid, signals_h,
-           with_rounded_outer({
-               "inset": (0, 0, 0, 0),
-               "rounded_outer_masks": True,
-           }),
-           gap=style.signal_gap_after)
     bottom = writer.page_h - style.page_bottom_allowance
-    if lang in governed_languages():
-        # InDesign carries an editable table inside a paragraph.  A frame whose
-        # measure equals only the exact row-height sum leaves the table marker
-        # (U+0016) overset and pushes the final indivisible row out of view.
-        # Keep the approved row metrics unchanged and add the tokenized import
-        # allowance to the shared outer shell instead of shrinking localized
-        # copy or hiding overflow during finalization.
-        icons_h = (
-            max(sum(left_row_heights), sum(right_row_heights))
-            + style.table_frame_allowance
-        )
-    else:
-        icons_h = style.fallback_import_allowance + max(
-            style.fallback_min_height,
-            min(
-            max(est_table_height([r.get("text", "") for r in left_icons],
-                                 icon_table_w * style.fallback_text_width_ratio,
-                                 style.fallback_row_height),
-                est_table_height([r.get("text", "") for r in right_icons],
-                                 icon_table_w * style.fallback_text_width_ratio,
-                                 style.fallback_row_height)),
-                bottom - y,
-            ),
-        )
-    frame_specs.append(("icons_left", left_sid, (body_x, y, icon_table_w, icons_h),
-                        with_rounded_outer({
-                            "inset": (0, 0, 0, 0),
-                            "rounded_outer_masks": True,
-                        })))
-    frame_specs.append(("icons_right", right_sid,
-                        (body_x + icon_table_w + icon_gap, y, icon_table_w, icons_h),
-                        with_rounded_outer({
-                            "inset": (0, 0, 0, 0),
-                            "rounded_outer_masks": True,
-                        })))
+    from .components.symbols_panel import SymbolsPanel
+
+    panel = SymbolsPanel(
+        writer,
+        sid=sid,
+        data=panel_data,
+        bundle_root=bundle_root,
+        language=lang,
+        density="standard",
+    ).render(
+        x=body_x,
+        y=y,
+        width=body_w,
+        available_height=bottom - y,
+    )
 
     spread_id = f"sp_{page_index}"
     page_no = page_index + 1
@@ -851,21 +718,8 @@ def add_safety_symbols_page(
         if frame_id == "maint_title":
             opts = {**opts, "text_rect": (
                 rect[0] + 6.0, rect[1], rect[2] - 12.0, rect[3])}
-        elif frame_id == "symbols_title":
-            # The production page keeps the text at this baseline but places
-            # the 20.126 pt H1 bar 1.918 pt lower around it.  Separate the two
-            # rectangles so the visible title is vertically centered without
-            # shifting the already aligned signal table below.
-            text_y = rect[1]
-            rect = (
-                rect[0],
-                rect[1] + style.h1_optical_offset,
-                rect[2],
-                rect[3],
-            )
-            opts = {**opts, "text_rect": (
-                rect[0] + 6.0, text_y, rect[2] - 12.0, rect[3])}
         frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
+    frames.extend(panel.frames)
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
@@ -883,8 +737,4 @@ def add_safety_symbols_page(
         '</idPkg:Spread>\n'
     )
     writer.spreads.append((spread_id, xml))
-    return spread_id, SymbolOverflow(
-        left=tuple(overflow_left),
-        right=tuple(overflow_right),
-        headers=icon_headers,
-    )
+    return spread_id, panel.overflow
