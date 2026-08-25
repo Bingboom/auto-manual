@@ -199,6 +199,17 @@ Quality and release logic should follow concern-specific modules instead of drif
     derivative mapping, and exact-or-abstain `merge_params` safety proof
   - no branch mutation, sync, PR creation, or propagation apply surface
 
+### Review Preview Packaging
+
+- [`tools/process_docs/build_review_preview.py`](../../tools/process_docs/build_review_preview.py)
+  - review-preview CLI facade, diff-based default-target inference, and package orchestration
+- [`tools/process_docs/build_review_preview_config.py`](../../tools/process_docs/build_review_preview_config.py)
+  - exact model/region config matching, ambiguity rejection, and config-derived workspace target metadata
+- [`tools/process_docs/build_review_preview_targets.py`](../../tools/process_docs/build_review_preview_targets.py)
+  - review availability, target discovery, output paths, and build/diff command assembly
+- [`tools/process_docs/build_review_preview_workspace.py`](../../tools/process_docs/build_review_preview_workspace.py)
+  - per-target exports and workspace payload assembly
+
 ## 5. Build Queue Modules
 
 [`tools/process_build_queue.py`](../../tools/process_build_queue.py) should stay orchestration-first and delegate to:

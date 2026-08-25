@@ -3,11 +3,16 @@ from __future__ import annotations
 import argparse
 import sys
 from collections.abc import Iterator, Sequence
-from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
 from tools.build_docs import load_config
+from tools.process_docs.build_review_preview_config import (
+    WorkspaceTarget,
+    WorkspaceTargetTemplate,
+    registered_workspace_targets_for_model as _registered_workspace_targets_for_model,
+    resolve_preview_target_config_path,
+)
 from tools.review_support import review_content_exists
 from tools.script_bootstrap import bootstrap_repo_root
 from tools.utils.path_utils import Paths
@@ -20,31 +25,6 @@ from tools.target_defaults import (
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 _PATHS = Paths(root=ROOT)
 FAMILY_ORDER = ("US", "JP", "CN")
-
-
-@dataclass(frozen=True)
-class WorkspaceTarget:
-    model: str
-    family: str
-    language: str
-    config: str
-    include_lang_in_output_path: bool
-
-    @property
-    def label(self) -> str:
-        return f"{self.model}/{self.family}/{self.language}"
-
-    @property
-    def key(self) -> tuple[str, str, str]:
-        return (self.model, self.family, self.language)
-
-
-@dataclass(frozen=True)
-class WorkspaceTargetTemplate:
-    family: str
-    language: str
-    config: str
-    include_lang_in_output_path: bool
 
 
 WORKSPACE_TARGET_CONFIGS: tuple[str, ...] = REVIEW_WORKSPACE_TARGET_CONFIGS
@@ -133,7 +113,21 @@ def resolved_primary_config_path(args: argparse.Namespace) -> Path:
     raw_config = getattr(args, "config", None)
     if isinstance(raw_config, str) and raw_config.strip():
         return resolve_path(raw_config)
-    return resolve_path(default_family_config_for_region(str(getattr(args, "region", ""))))
+    model = str(getattr(args, "model", "") or "").strip()
+    family = str(getattr(args, "region", "") or "").strip().upper()
+    preferred_templates = target_templates_for_family(family)
+    preferred_language = preferred_templates[0].language if preferred_templates else None
+    config_path = resolve_preview_target_config_path(
+        model=model,
+        family=family,
+        language=preferred_language,
+    )
+    if config_path is None:
+        raise RuntimeError(
+            "Review preview could not resolve a config that declares "
+            f"model={model!r}, region={family!r}, lang={preferred_language!r}."
+        )
+    return config_path
 
 
 def output_root_for_target(model: str, target: WorkspaceTarget) -> Path:
@@ -175,6 +169,11 @@ def build_workspace_target(model: str, template: WorkspaceTargetTemplate) -> Wor
         config=template.config,
         include_lang_in_output_path=template.include_lang_in_output_path,
     )
+
+
+def registered_workspace_targets_for_model(model: str) -> list[WorkspaceTarget]:
+    targets = _registered_workspace_targets_for_model(model, workspace_target_templates())
+    return sorted(targets, key=target_sort_key)
 
 
 def target_sort_key(target: WorkspaceTarget) -> tuple[int, str, str]:
@@ -272,9 +271,8 @@ def collect_workspace_target_candidates(
 
     if args.all_review_models:
         for model in review_models():
-            for template in workspace_target_templates():
-                target = build_workspace_target(model, template)
-                targets_by_key[target.key] = target
+            for target in registered_workspace_targets_for_model(model):
+                targets_by_key.setdefault(target.key, target)
     else:
         for family in workspace_families_for_request(args):
             for template in target_templates_for_family(family):
@@ -358,7 +356,7 @@ def build_diff_command(*, args: argparse.Namespace, target: WorkspaceTarget, tra
         str(ROOT / "build.py"),
         "diff-report",
         "--config",
-        str(diff_config_for_family(args, target.family)),
+        str(resolve_path(target.config)),
         "--model",
         target.model,
         "--region",

@@ -36,6 +36,20 @@ class ReviewPreviewWorkflowTests(unittest.TestCase):
             config_paths,
         )
 
+    def test_smoke_package_delegates_target_and_config_resolution_to_preview_tool(self) -> None:
+        workflow = yaml.safe_load(WORKFLOW_PATH.read_text(encoding="utf-8"))
+        steps = workflow["jobs"]["package-review-preview"]["steps"]
+        step_names = [step.get("name") for step in steps if isinstance(step, dict)]
+        self.assertNotIn("Select preview target", step_names)
+
+        build_step = next(step for step in steps if step.get("name") == "Build review preview smoke package")
+        command = str(build_step["run"])
+        self.assertNotIn("config.us-en.yaml", command)
+        self.assertNotIn("JE-1000F", command)
+        self.assertNotIn("--config", command)
+        self.assertNotIn("--model", command)
+        self.assertNotIn("--region", command)
+
 
 if __name__ == "__main__":
     unittest.main()
