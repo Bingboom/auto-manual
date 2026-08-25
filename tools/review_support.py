@@ -157,7 +157,12 @@ def _family_page_manifest_path(*, model: str | None, region: str | None) -> tupl
     return resolve_page_manifest_path(cfg, root=ROOT, model=model, region=region), config_path
 
 
-def _target_config_path_for_review_mapping(*, region: str | None, lang: str) -> Path | None:
+def _target_config_path_for_review_mapping(
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str,
+) -> Path | None:
     from tools.config_loader import load_config_mapping
     from tools.queue_config_resolution import resolve_config_path_for_task
 
@@ -167,6 +172,7 @@ def _target_config_path_for_review_mapping(*, region: str | None, lang: str) -> 
         return None
     return resolve_config_path_for_task(
         repo_root=ROOT,
+        model=model,
         region=normalized_region,
         lang=normalized_lang,
         config_loader=load_config_mapping,
@@ -262,7 +268,11 @@ def resolve_review_page_path_map(
     if review_manifest_path != family_manifest_path.resolve():
         return {}
 
-    target_config_path = _target_config_path_for_review_mapping(region=region, lang=normalized_target_lang)
+    target_config_path = _target_config_path_for_review_mapping(
+        model=model,
+        region=region,
+        lang=normalized_target_lang,
+    )
     if target_config_path is None:
         return {}
 

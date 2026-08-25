@@ -20,6 +20,7 @@ def group_pending_queue_records(
     for record in records:
         model, region = resolve_target_for_record(record)
         config_path = resolve_config_path_for_task(
+            model=model,
             region=region,
             lang=record.lang,
             build_family=record.build_family,

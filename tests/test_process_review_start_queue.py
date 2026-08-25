@@ -614,9 +614,10 @@ class TestProcessReviewStartQueue(unittest.TestCase):
     def test_resolve_review_start_config_path_should_support_new_resolution_signature(self) -> None:
         expected = Path("config.us.yaml")
 
-        def fake_resolver(*, repo_root, region, lang, build_family=None, config_loader):
+        def fake_resolver(*, repo_root, model=None, region, lang, build_family=None, config_loader):
             self.assertEqual(process_review_start_queue.ROOT, repo_root)
             self.assertIs(process_review_start_queue.load_config, config_loader)
+            self.assertEqual("JE-1000F", model)
             self.assertEqual("US", region)
             self.assertEqual("", lang)
             self.assertEqual("us-merged", build_family)
@@ -865,7 +866,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             mock.patch.object(
                 process_review_start_queue,
                 "resolve_config_path_for_task",
-                side_effect=lambda *, region, lang, build_family=None: Path(td) / ("config.us.yaml" if build_family == "us-merged" else "config.us-en.yaml"),
+                side_effect=lambda *, model=None, region, lang, build_family=None: Path(td) / ("config.us.yaml" if build_family == "us-merged" else "config.us-en.yaml"),
             ) as mock_resolve_config_path, \
             mock.patch.object(
                 process_review_start_queue,
@@ -1057,7 +1058,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             mock.patch.object(
                 process_review_start_queue,
                 "resolve_config_path_for_task",
-                side_effect=lambda *, region, lang, build_family=None: Path(td) / "config.us.yaml",
+                side_effect=lambda *, model=None, region, lang, build_family=None: Path(td) / "config.us.yaml",
             ), \
             mock.patch.object(process_review_start_queue, "load_config", return_value={"build": {"queue_by_document_key": True}}), \
             mock.patch.object(process_review_start_queue, "start_review_for_record") as mock_start_review:
@@ -1575,13 +1576,23 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         source.upsert_record.assert_not_called()
 
 
-class ReviewStartOptInFamilyGuardTests(unittest.TestCase):
+class ReviewStartTargetLanguageRoutingTests(unittest.TestCase):
     def test_start_review_without_build_family_resolves_bp_target_config(self) -> None:
         resolved = process_review_start_queue._resolve_review_start_config_path(
             model="JBP-2000B",
             region="US",
             lang="",
             build_family="",
+        )
+
+        self.assertEqual("config.bp-us.yaml", resolved.name)
+
+    def test_start_review_with_us_language_family_resolves_bp_target_config(self) -> None:
+        resolved = process_review_start_queue._resolve_review_start_config_path(
+            model="JBP-2000B",
+            region="US",
+            lang="",
+            build_family="us-merged",
         )
 
         self.assertEqual("config.bp-us.yaml", resolved.name)

@@ -1804,28 +1804,26 @@ generate-then-verify; YAML stays the source of truth).
       (`skip_count` 4 → 5: the committed fixture snapshot has no
       `JBP-2000B_US` document_key, so CI reports the new target as **SKIP**,
       not coverage — S4 must ratchet it back down)
-  - **Queue-routing guard (P0, operator review 2026-08-21 — verified in code):**
+  - **Queue-routing guard (P0, operator review 2026-08-21; unified
+    2026-08-24):**
     [`../tools/queue_config_resolution.py`](../tools/queue_config_resolution.py)
     `config_match_score` adds +1 to **any** filename that is not
     `config.us.yaml`, so a US 3-language BP config outscores the host config
     105:104 — a plain US queue record with no `Build_family` would silently
-    build a host manual from the battery-pack manifest. Therefore:
-    - BP queue records must carry `Build_family=bp-us` explicitly, and the
-      resolution path must never hand `config.bp-us.yaml` to a record that
-      lacks it. #936 shipped the third option: an explicit
-      `build.queue_requires_build_family` marker in the config, honoured by
-      returning `None` from `config_match_score`
-    - the guard needed **two** call sites, not one. The plan named only
-      `queue_config_resolution.py`;
-      `process_review_start_queue._resolve_review_start_region_config_path`
-      is a second region-only resolver where `config.bp-us.yaml` **ties**
-      `config.us.yaml` 106:106 and every US review-start row would have died
-      on its ambiguity error
-    - regression tests in `tests/test_queue_config_resolution.py` **and**
-      `tests/test_process_review_start_queue.py`: a plain US record (no
-      Build_family) resolves to `config.us.yaml` **with the BP config present
-      in the directory**; a `Build_family=bp-us` record resolves to
-      `config.bp-us.yaml`
+    build a host manual from the battery-pack manifest. #936 originally
+    guarded this with explicit `Build_family=bp-us`; that interim contract is
+    superseded by the unified target + language resolver:
+    - Base `Build_family` now remains the language range (`us-merged` for both
+      MAIN and BP); `config.bp-us.yaml` keeps its internal `family_id=bp-us`
+      and declares `language_family=us-merged`
+    - `queue_requires_target_match` keeps BP out of every model-less fallback;
+      an exact `Document_Key` model/region match is required before it can win
+    - Start Review, Draft, Publish, and Preview share the same target scorer;
+      JBP + `us-merged` resolves BP, ordinary host + `us-merged` resolves MAIN,
+      and the legacy `bp-us` selector remains temporarily accepted
+    - regression tests in `tests/test_queue_config_resolution.py`,
+      `tests/test_process_review_start_queue.py`, and
+      `tests/test_build_review_preview.py` cover those boundaries
   - **Resolver contract closure (operator review 2026-08-21):** every slot
     decision must trace to one of exactly three data carriers —
     `blueprint.yaml` (slots, requirement, presentation, co-page groups),

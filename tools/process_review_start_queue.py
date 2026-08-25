@@ -76,8 +76,8 @@ from tools.process_review_start_queue_runtime import (  # noqa: E402
     process_review_start_queue as _process_review_start_queue_impl,
 )
 from tools.queue_config_resolution import (  # noqa: E402
+    resolve_declared_target_config_path,
     resolve_config_path_for_task,
-    review_start_config_match_score,
 )
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.review_start_failure_summary import (  # noqa: E402
@@ -159,40 +159,22 @@ def generate_review_branch_name(record: ReviewStartRecord) -> str:
 
 
 def _resolve_review_start_target_config_path(*, model: str, region: str, lang: str | None) -> Path:
-    candidates: list[tuple[int, Path]] = []
     config_paths = [
         *sorted((ROOT / PathSegments.CONFIGS).glob("config*.yaml")),
         *sorted(ROOT.glob("config*.yaml")),
     ]
-    for config_path in config_paths:
-        try:
-            cfg = load_config(config_path)
-        except RuntimeError:
-            continue
-        score = review_start_config_match_score(
-            config_path=config_path,
-            cfg=cfg,
-            model=model,
-            region=region,
-            lang=lang,
-        )
-        if score is not None:
-            candidates.append((score, config_path))
-
-    if not candidates:
+    resolved = resolve_declared_target_config_path(
+        config_paths=config_paths,
+        model=model,
+        region=region,
+        lang=lang,
+        config_loader=load_config,
+    )
+    if resolved is None:
         raise RuntimeError(
             f"No Start Review config declares target model={model!r}, region={region!r}, lang={lang!r}"
         )
-    candidates.sort(key=lambda item: (-item[0], item[1].name))
-    best_score = candidates[0][0]
-    best_paths = [path for score, path in candidates if score == best_score]
-    if len(best_paths) > 1:
-        names = ", ".join(path.name for path in best_paths)
-        raise RuntimeError(
-            "Start Review config resolution is ambiguous for "
-            f"model={model!r}, region={region!r}, lang={lang!r}: {names}"
-        )
-    return candidates[0][1]
+    return resolved
 
 
 def _resolve_review_start_config_path(
@@ -207,6 +189,7 @@ def _resolve_review_start_config_path(
     try:
         return resolve_config_path_for_task(
             repo_root=ROOT,
+            model=model,
             region=region,
             lang=lang,
             build_family=build_family,
@@ -217,11 +200,16 @@ def _resolve_review_start_config_path(
         if not any(name in message for name in ("repo_root", "config_loader", "build_family")):
             raise
     try:
-        return resolve_config_path_for_task(region=region, lang=lang, build_family=build_family)
+        return resolve_config_path_for_task(
+            model=model,
+            region=region,
+            lang=lang,
+            build_family=build_family,
+        )
     except TypeError as exc:
         if "build_family" not in str(exc):
             raise
-        return resolve_config_path_for_task(region=region, lang=lang)
+        return resolve_config_path_for_task(model=model, region=region, lang=lang)
 
 
 def resolve_target_for_review_start(record: ReviewStartRecord) -> tuple[str, str]:
