@@ -271,6 +271,7 @@ def process_queue_record_group(
                 operator_union_id=dingtalk_operator_union_id,
             )
         resolved_config_path = resolve_config_path_for_task(
+            model=model,
             region=region,
             lang=group_lang,
             build_family=group_build_family,

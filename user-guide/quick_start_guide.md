@@ -79,7 +79,7 @@ python3 build.py check --config configs/config.kr.yaml --model JE-2000E --region
 
 - `Document_Key`（必填，例如 `JE-1000F_EU`）
 - `Document_ID`（可选；Start Review 不需要版本号）
-- `Build_family`（可选；填写时作为 config 路由提示）
+- `Build_family`（语言范围，例如 `us-merged`；不填写产品或骨架类型）
 - `Lang`（可选）
 - 语言显示标签和 `queue-query` 的语言别名统一从 `tools/lang_registry.py` 读取；新增语言时只维护注册表及其 aliases，查询仍兼容既有中英文别名。
 - `Version`（可选）
@@ -689,11 +689,12 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
 
 ## 10. 2026-04 更新
 
-- `Review Init` 和 `Document_link` 现在都是先按 `Build_family` 路由，再决定是否按 `Document_Key` 合并；像 `us-merged` 这种启用了 `queue_by_document_key` 的 family 会把空 `Lang` 的同一个 `Document_Key` 合成一次 review / build，而 `Build Draft Package` 行只要填写了 `Lang`，就会按 `Document_Key + 规范化 Lang` 拆成独立构建。
+- `Review Init` 和 `Document_link` 都按“`Document_Key` 精确目标 + `Build_family` 语言范围”解析配置，再决定是否按 `Document_Key` 合并；像 `us-merged` 这样的合并语言范围会把空 `Lang` 的同一 `Document_Key` 合成一次 review / build，而 `Build Draft Package` 行只要填写了 `Lang`，就会按 `Document_Key + 规范化 Lang` 拆成独立构建。
 - `Lang=br` / `pt-br` 会规范化为 `pt-BR`；`configs/config.pt-br.yaml` 现在按单语言入口构建巴西葡语文档，队列表用 `Build_family = pt-br` 加 `Lang=br` 或 `Lang=pt-BR`，不要再额外配一条英文对照稿。
 - US 的 `configs/config.us.yaml` 现在是合并多语言入口，会产出一个合并 `en + fr + es` 的 Word：`docs/_build/<model>/US/word/manual_<model>_us.docx`。
-- 队列表建议直接填写 `Build_family`：`us-merged` / `us-en` / `us-es` / `us-fr` / `pt-br` / `jp-ja` / `cn-zh`；`Lang` 现在只保留为兼容字段，不再是主路由字段。
+- 队列表的 `Build_family` 只填写语言范围：`us-merged` / `us-en` / `us-es` / `us-fr` / `pt-br` / `jp-ja` / `cn-zh`；不要填写 BP/MAIN 等产品骨架值。`Lang` 只保留为兼容或单语言收窄字段。
 - 合并 US 流程请填 `Build_family = us-merged`，`Lang` 可以留空；单语言流程请填对应单语言 family，例如 `us-en`、`us-es`、`us-fr` 或 `pt-br`，`Lang` 只填一个语言值即可。
+- JBP 与普通 US 主机在 Base 中都使用 `Build_family = us-merged`；系统根据 `Document_Key` 的精确目标自动选择 BP 或 MAIN 骨架配置。
 - 这条合并 US 流程不再要求法语、西语分别先创一份独立初稿 review bundle。
 - `Spec_Master` 里由 `Source_lang` 定义 source language；`*_source` 内容必须有，其他语言列在 CSV 驱动内容里可以为空，系统会自动回退到 source language 文本。
 - `Spec_Master` 现在是本地读取快照；人工维护规格参数时先改 `规格参数明细` / `页面占位参数`，再用 `sync-data --table spec_master` 或 `spec-master-rebuild` 生成。

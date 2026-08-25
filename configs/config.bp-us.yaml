@@ -1,15 +1,16 @@
 # BP (battery pack) family, US region — skeleton-library slice S1 target.
-# Start Review can infer this family from Document_Key=JBP-2000B_US because
-# the target below is unique. Draft/Publish remain opt-in-only: those queue
-# rows must carry Build_family=bp-us explicitly (queue_requires_build_family),
-# while a plain US build row still resolves to config.us.yaml.
+# Every entrypoint may infer this config from Document_Key=JBP-2000B_US only
+# after the exact target below matches. The queue row keeps the shared US
+# trilingual language family; family_id + skeleton_family select the BP page
+# contract without leaking product type into Build_family.
 extends: config-bases/phase2-sync-base.yaml
 
 doc_type: manual_bundle
 
 build:
   family_id: bp-us
-  queue_requires_build_family: true
+  language_family: us-merged
+  queue_requires_target_match: true
   # Mirrors docs/manifests/skeletons/bp-intl/blueprint.yaml `skeleton_family`.
   # Selects the contract `category:` tier, so BP skips the host-only
   # placeholder groups without forking any contract. Absent = MAIN.

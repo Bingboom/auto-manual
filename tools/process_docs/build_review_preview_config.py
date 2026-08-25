@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from tools.build_docs import load_config
-from tools.queue_config_resolution import review_start_config_match_score
+from tools.queue_config_resolution import resolve_declared_target_config_path
 from tools.script_bootstrap import bootstrap_repo_root
 from tools.utils.path_utils import Paths
 
@@ -53,34 +53,14 @@ def resolve_preview_target_config_path(
     family: str,
     language: str | None,
 ) -> Path | None:
-    candidates: list[tuple[int, Path]] = []
-    for config_path in sorted(_PATHS.configs_dir.glob("config*.yaml")):
-        try:
-            cfg = load_config(config_path)
-        except RuntimeError:
-            continue
-        score = review_start_config_match_score(
-            config_path=config_path,
-            cfg=cfg,
-            model=model,
-            region=family,
-            lang=language,
-        )
-        if score is not None:
-            candidates.append((score, config_path.resolve()))
-
-    if not candidates:
-        return None
-    candidates.sort(key=lambda item: (-item[0], item[1].name))
-    best_score = candidates[0][0]
-    best_paths = [path for score, path in candidates if score == best_score]
-    if len(best_paths) > 1:
-        names = ", ".join(_path_for_display(path) for path in best_paths)
-        raise RuntimeError(
-            "Review preview config resolution is ambiguous for "
-            f"model={model!r}, region={family!r}, lang={language!r}: {names}"
-        )
-    return best_paths[0]
+    resolved = resolve_declared_target_config_path(
+        config_paths=sorted(_PATHS.configs_dir.glob("config*.yaml")),
+        model=model,
+        region=family,
+        lang=language,
+        config_loader=load_config,
+    )
+    return resolved.resolve() if resolved is not None else None
 
 
 def _workspace_target_from_config(

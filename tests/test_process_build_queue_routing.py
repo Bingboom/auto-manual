@@ -762,5 +762,6 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
         # Queue loading performs one broad pass to identify claimed sibling
         # rows, then the requested filtered pass, before processing the group.
         self.assertEqual(5, resolve_mock.call_count)
+        self.assertTrue(all(call.kwargs.get("model") == "JE-1000F" for call in resolve_mock.call_args_list))
         self.assertTrue(all(call.kwargs.get("build_family") == "us-merged" for call in resolve_mock.call_args_list))
         self.assertTrue(all(call.kwargs.get("workflow_action") == "draft" for call in resolve_mock.call_args_list))

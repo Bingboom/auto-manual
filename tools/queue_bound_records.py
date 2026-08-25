@@ -203,6 +203,7 @@ def resolve_target_for_record(record: QueueRecord) -> tuple[str, str]:
 
 def resolve_config_path_for_task(
     *,
+    model: str | None = None,
     region: str,
     lang: str | None,
     build_family: str | None = None,
@@ -210,6 +211,7 @@ def resolve_config_path_for_task(
 ) -> Path:
     return _resolve_config_path_for_task_impl(
         repo_root=_repo_root(),
+        model=model,
         region=region,
         lang=lang,
         build_family=build_family,
