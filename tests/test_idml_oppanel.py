@@ -79,7 +79,9 @@ class TransformTest(unittest.TestCase):
                 json.dumps({
                     "kind": "notice",
                     "label": "NOTE",
-                    "texts": ["Localized editable note."],
+                    "texts": [
+                        "Localized editable note. Second localized instruction."
+                    ],
                 }),
             ),
             ("h2", "Localized heading"),
@@ -96,6 +98,11 @@ class TransformTest(unittest.TestCase):
         self.assertEqual("image_notice", image_notice["layout"])
         self.assertEqual("asset:operation/power_control", image_notice["image"])
         self.assertEqual("NOTE", image_notice["notice"]["label"])
+        self.assertTrue(image_notice["notice"]["list"])
+        self.assertEqual(
+            ["Localized editable note.", "Second localized instruction."],
+            image_notice["notice"]["texts"],
+        )
         image_caption = json.loads(output[2][1])
         self.assertEqual("oppanel", image_caption["kind"])
         self.assertEqual("image_caption", image_caption["layout"])

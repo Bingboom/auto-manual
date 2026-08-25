@@ -57,6 +57,19 @@ def _editable_text_frame(
     """Return an independently editable, manually positionable text frame."""
     if ctx.add_story is None:
         return ""
+    if param_pt(
+        ctx.params,
+        "idml_operation_overlay_disable_hyphenation",
+        0.0,
+    ) >= 0.5:
+        parts = [
+            re.sub(
+                r"<ParagraphStyleRange (?![^>]*Hyphenation=)",
+                '<ParagraphStyleRange Hyphenation="false" ',
+                part,
+            )
+            for part in parts
+        ]
     sid = ctx.add_story(story_id, title, parts)
     inset_xml = "".join(
         f'<ListItem type="unit">{value:g}</ListItem>' for value in inset

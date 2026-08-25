@@ -102,9 +102,28 @@ def _typed_paragraph(writer, text: str, *, size: float, leading: float,
 def _label_story(writer, sid: str, label: str, value: str, *,
                  align: str) -> str:
     value = _keep_voltage_pair(value)
+    label_size = param_pt(
+        writer.params,
+        "idml_overview_callout_label_font_size",
+        7.0,
+    )
+    label_leading = param_pt(
+        writer.params,
+        "idml_overview_callout_label_font_leading",
+        7.9,
+    )
+    label_bold = param_pt(
+        writer.params,
+        "idml_overview_callout_label_bold",
+        1.0,
+    ) >= 0.5
     parts = [
         _typed_paragraph(
-            writer, label, size=7.0, leading=7.9, bold=True,
+            writer,
+            label,
+            size=label_size,
+            leading=label_leading,
+            bold=label_bold,
             align=align, terminal=not value,
         )
     ]

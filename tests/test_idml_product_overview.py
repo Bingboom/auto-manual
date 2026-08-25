@@ -197,6 +197,57 @@ class ProductOverviewPageTests(unittest.TestCase):
             legacy_empty_cell_marker[8][1],
         )
 
+    def test_compact_overlay_uses_reference_callout_typography(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            bundle = Path(td)
+            (bundle / "front.png").write_bytes(b"front-art")
+            (bundle / "right.png").write_bytes(b"right-art")
+            params = load_layout_params(
+                ROOT / "data" / "layout_params.csv",
+                (ROOT / "data" / "layout_params.idml-compact.csv",),
+            )
+            writer = IdmlWriter(params)
+            blocks = [
+                ("h1", "PRODUCT OVERVIEW"),
+                ("h2", "FRONT VIEW"),
+                ("image", "front.png"),
+                ("table", [
+                    ["**Power Button**", "**LCD**"],
+                    ["**DC 12 V Port** 12 V / 10 A max.", "**LED Light Button**"],
+                    ["**DC / USB Power Button**", "**LED Light**"],
+                    ["**USB-C 30 W Output** 30 W max.", "**AC Power Button**"],
+                    ["**USB-C 100 W Output** 100 W max.", "**AC Output** 120 V~"],
+                    ["**USB-A 18 W Output** 18 W max."],
+                ]),
+                ("table", [["**Total Output** 1500 W Rated"]]),
+                ("h2", "RIGHT SIDE VIEW"),
+                ("image", "right.png"),
+                ("table", [
+                    ["**Handle**", "**AC Input** 100-120 V~"],
+                    ["", "**DC Input (2 x DC8020 Ports)** PV and Car"],
+                ]),
+            ]
+
+            add_product_overview_page(
+                writer,
+                "st_overview_compact",
+                blocks,
+                bundle,
+                6,
+            )
+
+            label_xml = "".join(
+                xml
+                for story_id, xml in writer.stories
+                if "_label_" in story_id
+            )
+            self.assertIn('PointSize="6"', label_xml)
+            self.assertIn('<Leading type="unit">6.8</Leading>', label_xml)
+            self.assertIn('FontStyle="Regular"', label_xml)
+            self.assertNotIn('FontStyle="Bold"', label_xml)
+            self.assertNotIn('<Content>**', label_xml)
+            self.assertIn('Hyphenation="false"', label_xml)
+
     def test_overview_rejects_missing_governed_art(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

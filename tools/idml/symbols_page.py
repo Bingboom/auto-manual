@@ -324,7 +324,11 @@ def _symbols_signal_table(writer, tid: str, signals: list[object],
                           lang: str = "en", *,
                           headers: tuple[str, str],
                           row_heights: list[float] | None = None,
-                          fit_body_to_row: bool = False) -> str:
+                          fit_body_to_row: bool = False,
+                          cell_vertical_inset: float = 3.0,
+                          fill_all_cells: bool = False,
+                          disable_hyphenation: bool = False,
+                          auto_grow_rows: bool = True) -> str:
     rows = [("", headers[0], headers[1], True)] + [
         (*_signal_row_fields(row), False) for row in signals
     ]
@@ -361,14 +365,24 @@ def _symbols_signal_table(writer, tid: str, signals: list[object],
                     leading=leading,
                     horizontal_scale=scale,
                 )
+            if disable_hyphenation:
+                right_xml = right_xml.replace(
+                    "<ParagraphStyleRange ",
+                    '<ParagraphStyleRange Hyphenation="false" ',
+                )
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
                                   fill="Color/HB Bg K05",
-                                  top=3, bottom=3,
+                                  top=cell_vertical_inset,
+                                  bottom=cell_vertical_inset,
                                   left=6 if header else 7.6,
                                   right=4,
                                   valign="CenterAlign"))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
-                                  top=3, bottom=3, left=7, right=5,
+                                  fill=("Color/HB Bg K05"
+                                        if fill_all_cells else None),
+                                  top=cell_vertical_inset,
+                                  bottom=cell_vertical_inset,
+                                  left=7, right=5,
                                   valign="CenterAlign"))
     table = writer._component_table(
         tid, cols, cells, n_rows=len(rows), role="data", outer_stroke=False)
@@ -380,7 +394,7 @@ def _symbols_signal_table(writer, tid: str, signals: list[object],
             after = (
                 f'<Row Self="{tid}r{row_index}" Name="{row_index}" '
                 f'SingleRowHeight="{height:g}" MinimumHeight="{height:g}" '
-                'AutoGrow="true"/>'
+                f'AutoGrow="{str(auto_grow_rows).lower()}"/>'
             )
             if before not in table:
                 raise ValueError(f"symbol signal row anchor missing: {tid}r{row_index}")
@@ -399,7 +413,12 @@ def _symbols_icon_table(
     include_header: bool = True,
     row_heights: list[float] | None = None,
     icon_col_width: float | None = None,
+    icon_width: float | None = None,
+    icon_height: float | None = None,
     fit_body_to_row: bool = False,
+    fill_all_cells: bool = False,
+    disable_hyphenation: bool = False,
+    auto_grow_rows: bool = True,
 ) -> str:
     header = [{"figure": "", "text": headers[1], "header": True}]
     rows = (header if include_header else []) + [
@@ -421,32 +440,36 @@ def _symbols_icon_table(
             owner="symbol icon table",
         )
     cols = [left_col, width - left_col]
-    icon_w = component_param_pt(
-        writer.params,
-        "idml_symbols_icon_width",
-        component_param_pt(
+    icon_w = icon_width
+    if icon_w is None:
+        icon_w = component_param_pt(
             writer.params,
-            "comp_symbol_icon_width",
-            18.0,
-            strict=False,
-            owner="symbol icon table fallback",
-        ),
-        strict=writer.strict_component_assets,
-        owner="symbol icon table",
-    )
-    icon_h = component_param_pt(
-        writer.params,
-        "idml_symbols_icon_height",
-        component_param_pt(
+            "idml_symbols_icon_width",
+            component_param_pt(
+                writer.params,
+                "comp_symbol_icon_width",
+                18.0,
+                strict=False,
+                owner="symbol icon table fallback",
+            ),
+            strict=writer.strict_component_assets,
+            owner="symbol icon table",
+        )
+    icon_h = icon_height
+    if icon_h is None:
+        icon_h = component_param_pt(
             writer.params,
-            "comp_symbol_icon_height",
-            18.0,
-            strict=False,
-            owner="symbol icon table fallback",
-        ),
-        strict=writer.strict_component_assets,
-        owner="symbol icon table",
-    )
+            "idml_symbols_icon_height",
+            component_param_pt(
+                writer.params,
+                "comp_symbol_icon_height",
+                18.0,
+                strict=False,
+                owner="symbol icon table fallback",
+            ),
+            strict=writer.strict_component_assets,
+            owner="symbol icon table",
+        )
     icon_w *= SYMBOL_ICON_ART_SCALE
     icon_h *= SYMBOL_ICON_ART_SCALE
     cells = []
@@ -480,28 +503,32 @@ def _symbols_icon_table(
                 '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
                 + icon + '<Content></Content></CharacterStyleRange></ParagraphStyleRange>\n')
             right_xml = writer._psr("HB Symbol Body", row["text"], terminal=True)
-            if lang in {"fr", "es"}:
-                if fit_body_to_row and row_heights is not None:
-                    size, leading, scale = fit_symbol_body_metrics(
-                        writer.params,
-                        lang,
-                        row["text"],
-                        width - left_col - 9.0,
-                        row_heights[ri],
-                    )
-                    right_xml = with_character_metrics(
-                        right_xml,
-                        point_size=size,
-                        leading=leading,
-                        horizontal_scale=scale,
-                    )
-                else:
-                    right_xml = right_xml.replace(
-                        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-                        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                        'PointSize="5.6" Leading="6.15" HorizontalScale="96"',
-                        1,
-                    )
+            if fit_body_to_row and row_heights is not None:
+                size, leading, scale = fit_symbol_body_metrics(
+                    writer.params,
+                    lang,
+                    row["text"],
+                    width - left_col - 9.0,
+                    row_heights[ri],
+                )
+                right_xml = with_character_metrics(
+                    right_xml,
+                    point_size=size,
+                    leading=leading,
+                    horizontal_scale=scale,
+                )
+            elif lang in {"fr", "es"}:
+                right_xml = right_xml.replace(
+                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                    'PointSize="5.6" Leading="6.15" HorizontalScale="96"',
+                    1,
+                )
+            if disable_hyphenation:
+                right_xml = right_xml.replace(
+                    "<ParagraphStyleRange ",
+                    '<ParagraphStyleRange Hyphenation="false" ',
+                )
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
                                   fill="Color/HB Bg K05",
                                   top=2 if row.get("header") else 0,
@@ -510,6 +537,8 @@ def _symbols_icon_table(
                                   right=2 if row.get("header") else 4,
                                   valign="CenterAlign"))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
+                                  fill=("Color/HB Bg K05"
+                                        if fill_all_cells else None),
                                   top=2, bottom=2, left=5, right=4,
                                   valign="CenterAlign"))
     table = writer._component_table(
@@ -522,7 +551,7 @@ def _symbols_icon_table(
             after = (
                 f'<Row Self="{tid}r{ri}" Name="{ri}" '
                 f'SingleRowHeight="{height:g}" MinimumHeight="{height:g}" '
-                'AutoGrow="true"/>'
+                f'AutoGrow="{str(auto_grow_rows).lower()}"/>'
             )
             if before not in table:
                 raise ValueError(f"symbol table row anchor missing: {tid}r{ri}")

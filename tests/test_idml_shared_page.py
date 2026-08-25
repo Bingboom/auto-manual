@@ -354,11 +354,18 @@ class SharedPageTests(unittest.TestCase):
             ROOT / "data" / "layout_params.csv",
             (ROOT / "data" / "layout_params.idml-compact.csv",),
         )
-        for language, safety_style in {
-            "en": "HB Safety List",
-            "fr": "HB Safety List FR",
-            "es": "HB Safety List ES",
-        }.items():
+        language_metrics = {
+            "en": ("HB Safety List", "25.15", "24.7", "24.125", "65"),
+            "fr": ("HB Safety List FR", "23", "24.7", "24.125", "64.5"),
+            "es": ("HB Safety List ES", "23.25", "25.1", "24.5", "65.5"),
+        }
+        for language, (
+            safety_style,
+            signal_row_height,
+            icon_row_height,
+            right_icon_row_height,
+            long_icon_row_height,
+        ) in language_metrics.items():
             with self.subTest(language=language), tempfile.TemporaryDirectory() as td:
                 writer = IdmlWriter(params)
                 symbol_data = SimpleNamespace(
@@ -424,14 +431,41 @@ class SharedPageTests(unittest.TestCase):
                 right_xml = stories[f"st_symbols_shared_{language}_icons_right"]
                 signal_xml = stories[f"st_symbols_shared_{language}_signals"]
                 self.assertIn('PointSize="5.6"', signal_xml)
+                self.assertIn('TopInset="1.5" BottomInset="1.5"', signal_xml)
                 self.assertIn("sig1icon", signal_xml)
                 self.assertIn("sig2icon", signal_xml)
                 self.assertNotIn("sig3icon", signal_xml)
                 self.assertNotIn("sig4icon", signal_xml)
                 self.assertIn('PointSize="0.1" Leading="0.1"', left_xml)
                 self.assertIn('PointSize="0.1" Leading="0.1"', right_xml)
-                self.assertIn('SingleRowHeight="28"', left_xml)
-                self.assertIn('SingleRowHeight="60"', right_xml)
+                self.assertIn(
+                    f'SingleRowHeight="{signal_row_height}"',
+                    signal_xml,
+                )
+                self.assertIn(
+                    f'SingleRowHeight="{icon_row_height}"',
+                    left_xml,
+                )
+                self.assertIn(
+                    f'SingleRowHeight="{right_icon_row_height}"',
+                    right_xml,
+                )
+                self.assertIn(
+                    f'SingleRowHeight="{long_icon_row_height}"',
+                    right_xml,
+                )
+                for table_xml in (signal_xml, left_xml, right_xml):
+                    self.assertIn('AutoGrow="false"', table_xml)
+                    self.assertNotIn('AutoGrow="true"', table_xml)
+                    self.assertIn('Hyphenation="false"', table_xml)
+                self.assertEqual(
+                    14,
+                    left_xml.count('FillColor="Color/HB Bg K05"'),
+                )
+                self.assertEqual(
+                    12,
+                    right_xml.count('FillColor="Color/HB Bg K05"'),
+                )
                 for index in range(1, 12):
                     text = f"<Content>Icon meaning {index}</Content>"
                     self.assertNotEqual(text in left_xml, text in right_xml)
@@ -446,6 +480,8 @@ class SharedPageTests(unittest.TestCase):
 
     def test_compact_page_reuses_lcd_and_operations_stories(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params = dict(params)
+        params["idml_operation_overlay_disable_hyphenation"] = ("1", "int")
         with tempfile.TemporaryDirectory() as td:
             writer = IdmlWriter(params)
             lcd_data = SimpleNamespace(
@@ -570,6 +606,7 @@ class SharedPageTests(unittest.TestCase):
             self.assertIn("grp_oppanel_", operation_component_stories)
             self.assertIn("image_notice", operation_component_stories)
             self.assertIn("image_caption", operation_component_stories)
+            self.assertIn('Hyphenation="false"', operation_component_stories)
             self.assertNotIn("grp_notice_st_operation_en_cmp", operation_story)
             self.assertEqual(1, spread.count("<Page "))
 

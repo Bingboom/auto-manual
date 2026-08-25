@@ -299,7 +299,11 @@ class IdmlWriter:
                               bundle_root: Path, lang: str = "en", *,
                               headers: tuple[str, str],
                               row_heights: list[float] | None = None,
-                              fit_body_to_row: bool = False) -> str:
+                              fit_body_to_row: bool = False,
+                              cell_vertical_inset: float = 3.0,
+                              fill_all_cells: bool = False,
+                              disable_hyphenation: bool = False,
+                              auto_grow_rows: bool = True) -> str:
         return _pages._symbols_signal_table(
             self,
             tid,
@@ -310,6 +314,10 @@ class IdmlWriter:
             headers=headers,
             row_heights=row_heights,
             fit_body_to_row=fit_body_to_row,
+            cell_vertical_inset=cell_vertical_inset,
+            fill_all_cells=fill_all_cells,
+            disable_hyphenation=disable_hyphenation,
+            auto_grow_rows=auto_grow_rows,
         )
 
     def _symbols_icon_table(
@@ -323,7 +331,12 @@ class IdmlWriter:
         include_header: bool = True,
         row_heights: list[float] | None = None,
         icon_col_width: float | None = None,
+        icon_width: float | None = None,
+        icon_height: float | None = None,
         fit_body_to_row: bool = False,
+        fill_all_cells: bool = False,
+        disable_hyphenation: bool = False,
+        auto_grow_rows: bool = True,
     ) -> str:
         return _pages._symbols_icon_table(
             self,
@@ -335,7 +348,12 @@ class IdmlWriter:
             include_header=include_header,
             row_heights=row_heights,
             icon_col_width=icon_col_width,
+            icon_width=icon_width,
+            icon_height=icon_height,
             fit_body_to_row=fit_body_to_row,
+            fill_all_cells=fill_all_cells,
+            disable_hyphenation=disable_hyphenation,
+            auto_grow_rows=auto_grow_rows,
         )
 
     def _table_story(self, sid: str, title: str, table: str) -> str:

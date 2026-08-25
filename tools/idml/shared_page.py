@@ -112,6 +112,10 @@ def add_safety_symbols_page(
         "idml_compact_symbols_signal_row_height",
         style.signal_row_height,
     )
+    signal_last_row_height = compact_metric(
+        "idml_compact_symbols_signal_last_row_height",
+        signal_row_height,
+    )
     icon_header_height = compact_metric(
         "idml_compact_symbols_icon_header_height",
         style.icon_header_height,
@@ -120,6 +124,10 @@ def add_safety_symbols_page(
         "idml_compact_symbols_icon_row_height",
         style.icon_row_height,
     )
+    icon_right_row_height = compact_metric(
+        "idml_compact_symbols_icon_right_row_height",
+        icon_row_height,
+    )
     icon_last_row_height = compact_metric(
         "idml_compact_symbols_icon_last_row_height",
         style.icon_last_row_height,
@@ -127,6 +135,15 @@ def add_safety_symbols_page(
     icon_long_last_row_height = compact_metric(
         "idml_compact_symbols_icon_long_last_row_height",
         style.icon_long_last_row_height,
+    )
+    signal_row_heights = [signal_header_height] + [
+        signal_row_height
+    ] * len(symbol_data.signals)
+    if symbol_data.signals:
+        signal_row_heights[-1] = signal_last_row_height
+    signal_cell_vertical_inset = compact_metric(
+        "idml_compact_symbols_signal_cell_vertical_inset",
+        3.0,
     )
     h1 = source_text(
         next((text for kind, text in safety_blocks if kind == "h1"), ""),
@@ -180,9 +197,12 @@ def add_safety_symbols_page(
             bundle_root,
             lang,
             headers=signal_headers,
-            row_heights=[signal_header_height]
-            + [signal_row_height] * len(symbol_data.signals),
+            row_heights=signal_row_heights,
             fit_body_to_row=True,
+            cell_vertical_inset=signal_cell_vertical_inset,
+            fill_all_cells=True,
+            disable_hyphenation=True,
+            auto_grow_rows=False,
         ),
     )
 
@@ -227,6 +247,32 @@ def add_safety_symbols_page(
         strict=writer.strict_component_assets,
         owner="compact Symbols right icon column",
     )
+    compact_icon_width = component_param_pt(
+        writer.params,
+        "idml_compact_symbols_icon_width",
+        component_param_pt(
+            writer.params,
+            "idml_symbols_icon_width",
+            26.0,
+            strict=False,
+            owner="compact Symbols icon-width fallback",
+        ),
+        strict=writer.strict_component_assets,
+        owner="compact Symbols icon width",
+    )
+    compact_icon_height = component_param_pt(
+        writer.params,
+        "idml_compact_symbols_icon_height",
+        component_param_pt(
+            writer.params,
+            "idml_symbols_icon_height",
+            26.0,
+            strict=False,
+            owner="compact Symbols icon-height fallback",
+        ),
+        strict=writer.strict_component_assets,
+        owner="compact Symbols icon height",
+    )
     left_icons, right_icons, overflow_left, overflow_right = (
         template_symbol_split(list(symbol_data.icons), dense=False)
     )
@@ -234,9 +280,12 @@ def add_safety_symbols_page(
         raise ValueError("compact Safety/Symbols page cannot drop symbol rows")
 
     def icon_row_heights(rows: list[dict], *, long_last: bool) -> list[float]:
+        ordinary_height = (
+            icon_right_row_height if long_last else icon_row_height
+        )
         return (
             [icon_header_height]
-            + [icon_row_height] * max(0, len(rows) - 1)
+            + [ordinary_height] * max(0, len(rows) - 1)
             + ([icon_long_last_row_height if long_last
                 else icon_last_row_height] if rows else [])
         )
@@ -261,7 +310,12 @@ def add_safety_symbols_page(
             headers=icon_headers,
             row_heights=left_heights,
             icon_col_width=icon_left_col,
+            icon_width=compact_icon_width,
+            icon_height=compact_icon_height,
             fit_body_to_row=True,
+            fill_all_cells=True,
+            disable_hyphenation=True,
+            auto_grow_rows=False,
         ),
     )
     right_sid = f"{symbol_sid}_icons_right"
@@ -276,7 +330,12 @@ def add_safety_symbols_page(
             headers=icon_headers,
             row_heights=right_heights,
             icon_col_width=icon_right_col,
+            icon_width=compact_icon_width,
+            icon_height=compact_icon_height,
             fit_body_to_row=True,
+            fill_all_cells=True,
+            disable_hyphenation=True,
+            auto_grow_rows=False,
         ),
     )
 
@@ -307,10 +366,16 @@ def add_safety_symbols_page(
     )
     title_h = h1_bar_h_pt(writer)
     signal_top = symbols_top + title_h + symbols_title_gap
-    signal_h = signal_header_height + (
-        signal_row_height * len(symbol_data.signals)
+    signal_h = sum(signal_row_heights) + param_pt(
+        writer.params,
+        "idml_compact_symbols_signal_frame_allowance",
+        0.0,
     )
-    icons_top = signal_top + signal_h + style.signal_gap_after
+    signal_gap_after = compact_metric(
+        "idml_compact_symbols_signal_gap_after",
+        style.signal_gap_after,
+    )
+    icons_top = signal_top + signal_h + signal_gap_after
     icons_h = shell_height + param_pt(
         writer.params,
         "idml_compact_symbols_table_frame_allowance",

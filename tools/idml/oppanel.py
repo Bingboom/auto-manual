@@ -241,6 +241,22 @@ def parse_rows(text: str) -> list[tuple[str, str]] | None:
     return rows
 
 
+def _paired_notice_items(notice: dict) -> list[str]:
+    """Recover the final list-item boundary collapsed by RST table parsing."""
+
+    texts = [
+        str(text).strip()
+        for text in notice.get("texts", [])
+        if str(text).strip()
+    ]
+    if len(texts) != 1:
+        return texts
+    first, separator, final = texts[0].rpartition(". ")
+    if not separator or not first.strip() or not final.strip():
+        return texts
+    return [first.strip() + ".", final.strip()]
+
+
 def promote_paired_operation_cards(blocks: list[Block]) -> list[Block]:
     """Promote structurally paired operation content into shared cards.
 
@@ -269,7 +285,11 @@ def promote_paired_operation_cards(blocks: list[Block]) -> list[Block]:
                 promoted.append(("component", json.dumps({
                     **panel,
                     "layout": "image_notice",
-                    "notice": notice,
+                    "notice": {
+                        **notice,
+                        "list": True,
+                        "texts": _paired_notice_items(notice),
+                    },
                 }, ensure_ascii=False)))
                 index += 2
                 continue

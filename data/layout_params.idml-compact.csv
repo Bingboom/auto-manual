@@ -7,6 +7,7 @@ lang_es_idml_compact_safety_symbols_title_top,173.2,pt,Compact shared-page Symbo
 idml_compact_safety_title_body_gap,3.5,pt,Compact shared-page gap after the Safety H1 bar
 idml_compact_safety_symbols_gap,4.0,pt,Compact shared-page clear gap before the Symbols H1 bar
 idml_compact_symbols_title_gap,6.0,pt,Compact shared-page gap from Symbols H1 to signal table
+lang_es_idml_compact_symbols_title_gap,4.0,pt,Spanish Symbols title-to-table gap measured from the BP reference
 idml_compact_safety_body_font_size,5.4,pt,Compact shared-page Safety lead font size
 idml_compact_safety_body_leading,6.1,pt,Compact shared-page Safety lead leading
 idml_compact_safety_list_font_size,5.5,pt,Compact shared-page Safety list font size
@@ -22,23 +23,49 @@ idml_compact_safety_list_horizontal_scale,0.96,ratio,Compact shared-page Safety 
 lang_fr_idml_compact_safety_list_horizontal_scale,0.94,ratio,French compact shared-page Safety list width correction
 lang_es_idml_compact_safety_list_horizontal_scale,0.96,ratio,Spanish compact shared-page Safety list width correction
 idml_table_marker_point_size,0.1,pt,IDML editable table carrier marker size and leading
-idml_compact_symbols_table_frame_allowance,4.0,pt,Compact shared-page Symbols table carrier allowance
+idml_compact_symbols_table_frame_allowance,11.5,pt,Reserve the InDesign table-carrier marker inside the rounded shell so the final K05 row ends at the border instead of overrunning the footer
+idml_compact_symbols_signal_frame_allowance,11.5,pt,Reserve the InDesign table-carrier marker inside the compact signal-table shell
+idml_compact_symbols_signal_cell_vertical_inset,1.5,pt,Keep localized signal badges visible inside the tightened ordinary rows
 idml_compact_symbols_signal_header_height,17.3,pt,Compact shared-page signal-table header height
-idml_compact_symbols_signal_row_height,25.42,pt,Compact shared-page signal-table row height
+idml_compact_symbols_signal_row_height,21.317,pt,English ordinary signal rows share the carrier-marker allowance while preserving the measured outer height
+idml_compact_symbols_signal_last_row_height,25.15,pt,Keep the English TIP row at its full content height
 lang_fr_idml_compact_symbols_signal_header_height,13.5,pt,French compact shared-page signal-table header height
-lang_fr_idml_compact_symbols_signal_row_height,23.5,pt,French compact shared-page signal-table row height
+lang_fr_idml_compact_symbols_signal_row_height,19.167,pt,French ordinary signal rows share the carrier-marker allowance
+lang_fr_idml_compact_symbols_signal_last_row_height,23.0,pt,Keep the French CONSEIL row at its full content height
 lang_es_idml_compact_symbols_signal_header_height,13.5,pt,Spanish compact shared-page signal-table header height
-lang_es_idml_compact_symbols_signal_row_height,23.5,pt,Spanish compact shared-page signal-table row height
-idml_compact_symbols_icon_header_height,13.5,pt,Compact shared-page icon-table header height
-idml_compact_symbols_icon_row_height,28.0,pt,Compact shared-page icon-table ordinary row height
-idml_compact_symbols_icon_last_row_height,32.0,pt,Compact shared-page icon-table left final row height
-idml_compact_symbols_icon_long_last_row_height,60.0,pt,Compact shared-page icon-table long right final row height
+lang_es_idml_compact_symbols_signal_row_height,19.417,pt,Spanish ordinary signal rows share the carrier-marker allowance
+lang_es_idml_compact_symbols_signal_last_row_height,23.25,pt,Keep the Spanish CONSEJOS row at its full content height
+lang_fr_idml_compact_symbols_signal_gap_after,5.0,pt,French compact gap between the fixed signal and icon tables
+lang_es_idml_compact_symbols_signal_gap_after,5.0,pt,Spanish compact gap between the fixed signal and icon tables
+idml_compact_symbols_icon_header_height,13.0,pt,English compact shared-page icon-table header height
+idml_compact_symbols_icon_width,23.0,pt,Compact symbol art width sized to remain visible inside the tightened ordinary rows
+idml_compact_symbols_icon_height,23.0,pt,Compact symbol art height sized to remain visible inside the tightened ordinary rows
+idml_compact_symbols_icon_row_height,24.7,pt,English compact left icon rows share the carrier-marker allowance
+idml_compact_symbols_icon_right_row_height,24.125,pt,English compact right icon rows share the carrier-marker allowance
+idml_compact_symbols_icon_last_row_height,38.0,pt,Keep the English final left icon row at its full content height
+idml_compact_symbols_icon_long_last_row_height,65.0,pt,Keep the English recycling row at its full content height
+lang_fr_idml_compact_symbols_icon_header_height,13.0,pt,French compact icon-table header height measured from the BP reference
+lang_fr_idml_compact_symbols_icon_row_height,24.7,pt,French compact left icon rows share the carrier-marker allowance
+lang_fr_idml_compact_symbols_icon_right_row_height,24.125,pt,French compact right icon rows share the carrier-marker allowance
+lang_fr_idml_compact_symbols_icon_last_row_height,37.5,pt,Keep the French final left icon row at its full content height
+lang_fr_idml_compact_symbols_icon_long_last_row_height,64.5,pt,Keep the French recycling row at its full content height
+lang_es_idml_compact_symbols_icon_header_height,13.0,pt,Spanish compact icon-table header height measured from the BP reference
+lang_es_idml_compact_symbols_icon_row_height,25.1,pt,Spanish compact left icon rows share the carrier-marker allowance
+lang_es_idml_compact_symbols_icon_right_row_height,24.5,pt,Spanish compact right icon rows share the carrier-marker allowance
+lang_es_idml_compact_symbols_icon_last_row_height,38.0,pt,Keep the Spanish final left icon row at its full content height
+lang_es_idml_compact_symbols_icon_long_last_row_height,65.5,pt,Keep the Spanish recycling row at its full content height
+lang_fr_idml_symbols_signal_label_font_size,7.4,pt,French BP signal labels retain the reference visual weight
+lang_fr_idml_symbols_signal_label_min_font_size,7.0,pt,French BP signal-label minimum before horizontal fitting
+lang_es_idml_symbols_signal_label_font_size,7.7,pt,Spanish BP signal labels retain the reference visual weight
+lang_es_idml_symbols_signal_label_min_font_size,7.2,pt,Spanish BP signal-label minimum before horizontal fitting
+idml_symbols_body_fit_all_languages,1,int,Fit long English symbol copy inside fixed rows without automatic row growth
 idml_compact_symbols_icon_left_col_width,39.685,pt,Compact shared-page left icon column width
 idml_compact_symbols_icon_right_col_width,35.5,pt,Compact shared-page right icon column width
 idml_compact_lcd_hero_max_height,55.0,pt,Compact shared-page LCD hero maximum height
 idml_compact_lcd_operations_split,181.0,pt,Compact shared-page LCD and Operations vertical split
 idml_compact_shared_page_gap,4.0,pt,Gap between stories in a shared physical-page composition
 idml_compact_operations_frame_bottom_extra,36.0,pt,Operations shared-page native import allowance for localized image-caption panels
+idml_operation_overlay_disable_hyphenation,1,int,Prevent localized operation callouts from breaking words across lines
 idml_semantic_image_full_measure_ratio,1.0,ratio,Full-measure semantic prose image width ratio
 idml_semantic_image_reference_measure_ratio,1.0,ratio,Reference-proven semantic prose image width ratio without locale compaction
 idml_semantic_image_wide_diagram_ratio,0.78,ratio,Wide semantic prose diagram width ratio
@@ -80,6 +107,9 @@ idml_inbox_compact_stroke_color,Color/HB Border K10,none,Compact inbox card bord
 idml_inbox_compact_stroke_weight,0.75,pt,Compact inbox card border weight
 idml_compact_overview_top,319.0,pt,Shared FCC inbox overview product-overview title top
 idml_compact_overview_height,142.0,pt,Shared FCC inbox overview product-overview art height
+idml_overview_callout_label_font_size,6.0,pt,BP overview callout label size measured from the reference
+idml_overview_callout_label_font_leading,6.8,pt,BP overview callout label leading measured from the reference
+idml_overview_callout_label_bold,0,int,Use the reference regular weight for BP overview callouts
 idml_compact_connections_frame_bottom_extra,8.0,pt,Connections shared-page native import allowance
 idml_bp_connection_caution_body_font_size,5.8,pt,Compact Connections caution body font size
 idml_bp_connection_caution_body_font_leading,6.6,pt,Compact Connections caution body leading
