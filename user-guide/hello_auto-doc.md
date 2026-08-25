@@ -1036,8 +1036,9 @@ Source mode meaning:
 
 PR preview note:
 
-- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, GitHub review-preview switches the default landing target to `configs/config.zh.yaml` for `JE-2000E / CN` automatically, but the packaged workspace still includes every existing review model
-- when `--region` has a registered shared family default (`US`, `EU`, `JP`, `CN`, or `KR`), `python tools/process_docs/build_review_preview.py` can omit `--config`; keep `--config configs/config.us-en.yaml` when you want the packaged workspace to open on the explicit US English single-language target by default
+- when a PR changes `docs/_review/<model>/<region>/`, GitHub review-preview derives that target from the diff and selects a config that declares it; for example, `JBP-2000B / US` uses `configs/config.bp-us.yaml`, never the JE host config
+- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, the preview tool still selects the config-derived CN runtime target automatically, while packaging every existing review model
+- `python tools/process_docs/build_review_preview.py` can omit `--config` when `--model` and `--region` identify a declared target; it can omit all three in CI-style runs and infer the target from the changed review bundle or existing review tree. Keep `--config configs/config.us-en.yaml` when you explicitly want the US English single-language target
 - the Vercel review-preview fallback derives those family configs and its first fallback target by scanning `configs/config*.yaml`; it is used only when `PREVIEW_MODEL` / `PREVIEW_REGION` and the review tree do not provide a target
 
 `publish` behavior:

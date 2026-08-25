@@ -16,6 +16,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
 from tools.utils.path_utils import Paths, PathSegments
+from tools.build_docs import load_config
 from tools.process_docs.build_review_preview_data import (
     build_change_workbook,
     build_downloads_metadata,
@@ -70,7 +71,9 @@ from tools.process_docs.build_review_preview_targets import (
     html_root_for_target,
     output_root_for_target,
     path_for_display,
+    registered_workspace_targets_for_model,
     requested_workspace_target,
+    resolve_preview_target_config_path,
     resolve_path,
     resolved_primary_config_path,
     target_has_review_bundle,
@@ -143,12 +146,15 @@ __all__ = [
     "path_for_display",
     "preview_language_label",
     "read_json_if_exists",
+    "registered_workspace_targets_for_model",
     "render_changes_home_html",
     "render_family_changes_html",
     "render_model_changes_html",
     "render_redirect_html",
     "render_workspace_html",
     "requested_workspace_target",
+    "resolve_preview_request_args",
+    "resolve_preview_target_config_path",
     "resolve_path",
     "resolved_primary_config_path",
     "review_pages_for_family",
@@ -171,8 +177,16 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Primary family config YAML path. Defaults to the shared family config for --region.",
     )
-    ap.add_argument("--model", required=True, help="Target model, for example JE-1000F.")
-    ap.add_argument("--region", required=True, help="Preferred default family, for example US.")
+    ap.add_argument(
+        "--model",
+        default=None,
+        help="Target model. When omitted, infer it from the changed review bundle or existing review tree.",
+    )
+    ap.add_argument(
+        "--region",
+        default=None,
+        help="Preferred default family. When omitted, infer it with --model.",
+    )
     ap.add_argument(
         "--source",
         default="review",
@@ -249,6 +263,77 @@ def git_value(env_name: str, fallback_cmd: list[str]) -> str:
 def collect_changed_files(from_ref: str, to_ref: str) -> list[str]:
     raw = capture(["git", "diff", "--name-only", "--diff-filter=ACMRT", from_ref, to_ref])
     return [line.strip() for line in raw.splitlines() if line.strip()]
+
+
+def _changed_review_coordinates(changed_files: list[str]) -> list[tuple[str, str]]:
+    coordinates: set[tuple[str, str]] = set()
+    for file_name in changed_files:
+        parts = Path(file_name).parts
+        if len(parts) >= 4 and parts[:2] == (PathSegments.DOCS, PathSegments.REVIEW):
+            coordinates.add((parts[2], parts[3].upper()))
+    return sorted(coordinates)
+
+
+def _existing_review_coordinates(docs_dir: Path) -> list[tuple[str, str]]:
+    review_root = docs_dir / PathSegments.REVIEW
+    if not review_root.exists():
+        return []
+    coordinates: list[tuple[str, str]] = []
+    for model_dir in sorted(path for path in review_root.iterdir() if path.is_dir()):
+        for family_dir in sorted(path for path in model_dir.iterdir() if path.is_dir()):
+            if resolve_preview_target_config_path(
+                model=model_dir.name,
+                family=family_dir.name,
+                language=None,
+            ) is not None:
+                coordinates.append((model_dir.name, family_dir.name.upper()))
+    return coordinates
+
+
+def _is_cn_runtime_change(file_name: str) -> bool:
+    return file_name in {"configs/config.zh.yaml", "docs/manifests/manual_zh.yaml"} or file_name.startswith(
+        ("docs/templates/page_zh/", "docs/templates/recipes/zh/")
+    )
+
+
+def resolve_preview_request_args(
+    args: argparse.Namespace,
+    *,
+    changed_files: list[str],
+    docs_dir: Path,
+) -> argparse.Namespace:
+    model = str(getattr(args, "model", "") or "").strip()
+    region = str(getattr(args, "region", "") or "").strip().upper()
+    if bool(model) != bool(region):
+        raise RuntimeError("Review preview requires --model and --region together when either is explicit.")
+    if model and region:
+        args.model = model
+        args.region = region
+        return args
+
+    changed_coordinates = _changed_review_coordinates(changed_files)
+    if changed_coordinates:
+        args.model, args.region = changed_coordinates[0]
+        return args
+
+    if any(_is_cn_runtime_change(file_name) for file_name in changed_files):
+        config_path = resolve_path(default_family_config_for_region("CN"))
+        cfg = load_config(config_path)
+        build_cfg_raw = cfg.get("build", {})
+        build_cfg = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
+        args.model = str(build_cfg.get("default_model") or "").strip()
+        args.region = str(build_cfg.get("default_region") or "CN").strip().upper()
+        args.config = path_for_display(config_path)
+        args.source = "runtime"
+        if not args.model:
+            raise RuntimeError(f"Review preview config is missing build.default_model: {config_path}")
+        return args
+
+    existing_coordinates = _existing_review_coordinates(docs_dir)
+    if existing_coordinates:
+        args.model, args.region = existing_coordinates[0]
+        return args
+    raise FileNotFoundError("Review preview could not infer a target from the diff or docs/_review/.")
 
 
 def classify_changes(changed_files: list[str], model: str, region: str) -> list[dict[str, object]]:
@@ -328,17 +413,19 @@ def main() -> int:
     args = parse_args()
     output_dir = resolve_path(args.output_dir)
     changed_files = collect_changed_files(args.from_ref, args.to_ref)
+    docs_dir = Paths(root=ROOT).docs_dir
+    resolve_preview_request_args(args, changed_files=changed_files, docs_dir=docs_dir)
     requested_target = requested_workspace_target(args)
     workspace_target_candidates = collect_workspace_target_candidates(args, requested_target=requested_target)
     review_availability = collect_review_availability(
-        docs_dir=Paths(root=ROOT).docs_dir,
+        docs_dir=docs_dir,
         targets=workspace_target_candidates,
     )
     workspace_targets = discover_workspace_targets(
         args,
         requested_target=requested_target,
         review_availability=review_availability,
-        docs_dir=Paths(root=ROOT).docs_dir,
+        docs_dir=docs_dir,
     )
 
     if not workspace_targets:
@@ -362,7 +449,7 @@ def main() -> int:
         workspace_targets,
         requested_target=requested_target,
         review_availability=review_availability,
-        docs_dir=Paths(root=ROOT).docs_dir,
+        docs_dir=docs_dir,
     )
     export_workspace_targets(
         args,

@@ -643,7 +643,8 @@ python build.py all --config configs/config.zh.yaml --model JE-2000E --region CN
 
 PR review-preview note:
 
-- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, the review-preview workflow switches the default landing target to `configs/config.zh.yaml --model JE-2000E --region CN --source runtime`, but the packaged workspace still includes every existing review model
+- when a PR changes `docs/_review/<model>/<region>/`, the review-preview workflow derives that model and region from the diff and resolves a config that explicitly declares the target; it never reuses the default JE host config for another model (for example, `JBP-2000B / US` resolves to `configs/config.bp-us.yaml`)
+- when a PR changes the zh manual family under `docs/templates/page_zh/`, `docs/templates/recipes/zh/`, or `docs/manifests/manual_zh.yaml`, the preview tool still switches the default landing target to the config-derived CN runtime target; the packaged workspace continues to include every existing review model
 
 ### 3.6 Package a Review Preview for Design
 
@@ -655,7 +656,7 @@ python tools/process_docs/build_review_preview.py --config configs/config.us-en.
 
 Config note:
 
-- omit `--config` when `--region` is `US`, `JP`, or `CN` and you want the shared family default config
+- omit `--config` to resolve the config from the explicit `--model` / `--region` target declaration; omitting `--model` and `--region` as well derives the default target from the changed review bundle, then from the existing review tree
 - keep `--config configs/config.us-en.yaml` when you want the packaged workspace to open on the explicit US English single-language target by default
 - the Vercel review-preview fallback scans the registered `configs/config*.yaml` files for those family defaults and uses the first registered target only when neither environment variables nor a review-tree target is available
 
