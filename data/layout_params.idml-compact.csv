@@ -95,3 +95,9 @@ idml_warranty_variant_multiline_lead_section_5_before_adjust,-2.0,pt,Multiline-l
 idml_warranty_variant_multiline_lead_panel_height_adjust_5,8.0,pt,Multiline-lead exclusions-panel height adjustment
 idml_warranty_variant_multiline_lead_section_6_before_adjust,-0.5,pt,Multiline-lead interpretation-section rhythm adjustment
 idml_warranty_variant_multiline_lead_panel_height_adjust_6,1.5,pt,Multiline-lead interpretation-panel height adjustment
+lang_en_idml_warranty_variant_bp_default_panel_height_adjust_5,-5.5,pt,BP English exclusions-panel height correction (moved off the shared base token)
+lang_es_idml_warranty_variant_bp_default_panel_height_adjust_5,8.0,pt,BP Spanish exclusions-panel height correction (moved off the shared base token)
+lang_en_idml_warranty_variant_bp_default_panel_height_adjust_6,6.0,pt,BP English interpretation-panel height correction (moved off the shared base token)
+lang_en_idml_warranty_variant_bp_default_section_4_before_adjust,1.0,pt,BP English repair-to-buyer rhythm correction (moved off the shared base token)
+lang_en_idml_warranty_variant_bp_default_section_5_before_adjust,1.5,pt,BP English buyer-to-exclusions rhythm correction (moved off the shared base token)
+lang_en_idml_warranty_variant_bp_default_section_6_before_adjust,0.5,pt,BP English exclusions-to-interpretation rhythm correction (moved off the shared base token)

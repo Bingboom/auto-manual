@@ -222,7 +222,12 @@
       "composition_id": "en_warranty",
       "composition_type": "warranty",
       "start_page": 11,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "warranty": {
+          "layout_variant": "bp_default"
+        }
+      }
     },
     {
       "source_ref": "page/safety_info_fr.rst",
@@ -575,7 +580,12 @@
       "composition_id": "es_warranty",
       "composition_type": "warranty",
       "start_page": 27,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "warranty": {
+          "layout_variant": "bp_default"
+        }
+      }
     },
     {
       "source_ref": "page/back_cover.rst",

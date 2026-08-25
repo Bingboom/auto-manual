@@ -25,6 +25,12 @@ from .page_roles import PageRole, classify_page_role
 
 SCHEMA_VERSION = "target-idml-assembly-plan/v1"
 
+# Warranty layout variants a target may select. Each name owns its own
+# `idml_warranty_variant_<name>_*` token family, so adding a name here without
+# adding its tokens is a no-op rather than a silent inheritance of another
+# variant's corrections.
+WARRANTY_LAYOUT_VARIANTS = frozenset({"multiline_lead", "bp_default"})
+
 
 class TargetAssemblyPlanError(ValueError):
     """A configured candidate target assembly is invalid for the current IR."""
@@ -370,10 +376,11 @@ def _validate_composition_data(
                     "exactly ['layout_variant']"
                 )
                 continue
-            if warranty.get("layout_variant") != "multiline_lead":
+            if warranty.get("layout_variant") not in WARRANTY_LAYOUT_VARIANTS:
                 issues.append(
                     f"{source_ref}.composition_data.warranty.layout_variant "
-                    "must be multiline_lead"
+                    "must be one of "
+                    + ", ".join(sorted(WARRANTY_LAYOUT_VARIANTS))
                 )
             continue
         if set(data) == {"troubleshooting"}:

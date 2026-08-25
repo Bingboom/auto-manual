@@ -53,11 +53,20 @@ def _variant_adjust(
     ctx: RenderContext,
     key: str,
 ) -> float:
+    """Per-variant additive correction, with the same language cascade as the base.
+
+    The values this offsets are themselves per-language (`_language_param` over
+    `lang_<code>_idml_warranty_*`), so a language-blind variant token could not
+    express a correction that differs between en and es on the same key — the
+    tuning would have to go back onto the shared base tokens, which the approved
+    JE-1000F/US reference layout also reads.
+    """
+
     variant = str(spec.get("layout_variant") or "").strip().lower()
     if not variant or re.fullmatch(r"[a-z][a-z0-9_]*", variant) is None:
         return 0.0
-    return param_pt(
-        ctx.params,
+    return _language_param(
+        ctx,
         f"idml_warranty_variant_{variant}_{key}",
         0.0,
     )

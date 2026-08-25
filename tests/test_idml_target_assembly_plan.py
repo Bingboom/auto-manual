@@ -6,6 +6,7 @@ import unittest
 
 from tools.idml.composition_plan import build_composition_plan
 from tools.idml.target_assembly_plan import (
+    WARRANTY_LAYOUT_VARIANTS,
     TargetAssemblyPlanError,
     normalize_target_assembly_plan,
 )
@@ -359,13 +360,36 @@ class TargetAssemblyPlanTests(unittest.TestCase):
 
         with self.assertRaisesRegex(
             TargetAssemblyPlanError,
-            "warranty.layout_variant must be multiline_lead",
+            "warranty.layout_variant must be one of bp_default, multiline_lead",
         ):
             normalize_target_assembly_plan(
                 payload,
                 _manual_ir(payload),
                 source_path=PLAN_PATH,
             )
+
+    def test_warranty_composition_accepts_every_registered_layout_variant(self) -> None:
+        """A registered variant must load; an unregistered one must not.
+
+        Each variant owns its own ``idml_warranty_variant_<name>_*`` token family,
+        so the allowlist is the only thing standing between a typo and a page that
+        silently renders with no correction at all.
+        """
+        for variant in sorted(WARRANTY_LAYOUT_VARIANTS):
+            with self.subTest(layout_variant=variant):
+                payload = _payload()
+                page = next(
+                    page for page in payload["pages"]
+                    if page["source_ref"] == "page/warranty_fr.rst"
+                )
+                page["composition_data"]["warranty"]["layout_variant"] = variant
+
+                plan = normalize_target_assembly_plan(
+                    payload,
+                    _manual_ir(payload),
+                    source_path=PLAN_PATH,
+                )
+                self.assertTrue(plan)
 
 
 if __name__ == "__main__":

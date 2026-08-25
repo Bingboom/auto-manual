@@ -489,6 +489,68 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn("<Content> YEARS</Content>", xml)
         self.assertNotIn("tf_warranty_year_", xml)
 
+    def test_warranty_variant_correction_resolves_per_language(self) -> None:
+        """A variant correction must follow the same language cascade as its base.
+
+        The values it offsets are per-language (`lang_<code>_idml_warranty_*`), and
+        those base tokens are also read by the approved JE-1000F/US reference
+        layout. If the variant layer were language-blind, a per-language BP
+        correction would have to be folded back into the shared base — which moves
+        the host's approved geometry and breaks its `layout_params_sha256` pin.
+        """
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext
+        from tools.idml.components.warranty import _variant_adjust
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        spec = {"layout_variant": "bp_default"}
+
+        def adjust(language: str, key: str) -> float:
+            return _variant_adjust(
+                spec,
+                RenderContext(
+                    params=params,
+                    page_w=368.79,
+                    m_l=28.35,
+                    m_r=28.35,
+                    root=ROOT,
+                    bundle_root=ROOT / "does-not-exist",
+                    language=language,
+                ),
+                key,
+            )
+
+        # en and es need opposite corrections on the same key — the whole point of
+        # the cascade. These two numbers are what used to live in the base tokens.
+        self.assertAlmostEqual(-5.5, adjust("en", "panel_height_adjust_5"), places=3)
+        self.assertAlmostEqual(8.0, adjust("es", "panel_height_adjust_5"), places=3)
+
+        # fr declares no bp_default correction, so it must fall through to zero
+        # rather than inherit either sibling's value.
+        self.assertAlmostEqual(0.0, adjust("fr", "panel_height_adjust_5"), places=3)
+
+        # An unregistered variant contributes nothing at all.
+        self.assertAlmostEqual(
+            0.0,
+            _variant_adjust(
+                {"layout_variant": "no_such_variant"},
+                RenderContext(
+                    params=params,
+                    page_w=368.79,
+                    m_l=28.35,
+                    m_r=28.35,
+                    root=ROOT,
+                    bundle_root=ROOT / "does-not-exist",
+                    language="en",
+                ),
+                "panel_height_adjust_5",
+            ),
+            places=3,
+        )
+
     def test_localized_warranty_note_uses_reviewed_reference_width(self) -> None:
         from tools.export_idml import IdmlWriter, load_layout_params
 
