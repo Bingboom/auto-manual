@@ -10,6 +10,8 @@ from pathlib import Path
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml import page03, shared_page, symbols_page
 from tools.idml.components.symbols_panel import SymbolsPanel, SymbolsPanelData
+from tools.idml.components.fcc_inbox_panel import FccInboxPanel
+from tools.idml.components.safety_symbols_panel import SafetySymbolsPanel
 from tools.idml.loaders import load_symbols_rows
 from tools.idml.params import param_pt
 from tools.idml.symbols_page import SafetySymbolsPageStyle
@@ -159,14 +161,16 @@ class SymbolsPanelTests(unittest.TestCase):
         sources = (
             inspect.getsource(shared_page.add_safety_symbols_page),
             inspect.getsource(symbols_page.add_safety_symbols_page),
-            inspect.getsource(page03._symbol_continuation_objects),
+            inspect.getsource(SafetySymbolsPanel.render),
+            inspect.getsource(FccInboxPanel.render),
         )
         for source in sources:
             for token in forbidden:
                 self.assertNotIn(token, source)
         self.assertIn('density="compact"', sources[0])
-        self.assertIn('density="standard"', sources[1])
-        self.assertIn("render_continuation", sources[2])
+        self.assertIn("SafetySymbolsPanel", sources[1])
+        self.assertIn('density="standard"', sources[2])
+        self.assertIn("render_continuation", sources[3])
 
 
 if __name__ == "__main__":

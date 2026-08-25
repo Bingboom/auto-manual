@@ -43,19 +43,22 @@ Existing goldens are not regenerated during a pure ownership refactor.
 | Specifications table | `spec_tables.py` + `data_stories.py` | Mostly closed | table geometry is internal, but the Storage composition still draws its own title/card | Keep the table; split out `StoragePanel` |
 | Operation panels / notices in prose flow | `components/oppanel.py`, `components/notice.py`, `operation_stack.py` | Mostly closed | component geometry and spacing plan are outside page composers | Add common trilingual regression coverage |
 | Key combinations | `components/key_combinations.py` | Closed | component owns table geometry and already has direct EN/FR/ES tests | Fold into the common regression runner |
-| Fixed-page FCC panel | `page03._fcc_objects` | Leaking, P0 | page module creates K05 plate, mark and three text frames, including language-specific lead geometry | `FccPanel` owns all internal objects; caller passes rectangle, data, language, density |
-| What's in the Box cards | `page03._inbox_objects` | Leaking, P0 | page module owns card width/height, x positions, badge circle, image widths, content offsets, stroke and language tokens | `InboxPanel` owns title, cards, badges, image fitting and optional footer strip |
-| Inbox TIP strip | `page03._tip_objects` | Leaking, P0 | page module reconstructs plate/body rectangles from `notice_box_layout` | component owns the complete strip; page code never draws its subframes |
-| Compact FCC + Inbox + Overview page | `shared_page.add_fcc_inbox_overview_page` | Leaking, P0 | imports private FCC/Inbox helpers and draws the Inbox title frame itself | page composer places public `FccPanel`, `InboxPanel`, and Overview component results |
-| Standard Safety page | `pages.add_safety_page` | Leaking, P1 | page module owns title, warning, columns, subbar, section frames, fills and rounded shells | `SafetyPanel` owns the complete safety block within an assigned rectangle |
-| Safety tail + maintenance block | `symbols_page.add_safety_symbols_page` | Leaking, P1 | Symbols is closed, but the same page function still draws two warning tails and maintenance title/body geometry | `SafetyMaintenancePanel` plus `SymbolsPanel`; composer only stacks outer rectangles |
-| Compact Storage + Specifications page | `shared_page.add_storage_specifications_page` | Leaking, P1 | page module creates Storage H1 and rounded K05 body card and reads internal inset/top tokens | `StoragePanel` owns its title/card; page composer places it above the existing Specifications component |
+| Fixed-page FCC panel | `components/fcc_panel.py` | Closed | `FccPanel` owns K05 plate, mark, lead/body split, columns, and localized lead geometry | Keep page callers limited to the aggregate component rectangle |
+| What's in the Box cards | `components/inbox_panel.py` | Closed | `InboxPanel` owns title, card shells, badges, image fitting, strokes, offsets, and density profiles | Keep card metrics private to the component |
+| Inbox TIP strip | `components/inbox_panel.py` | Closed | the optional TIP strip is rendered with the same Inbox data and geometry contract | Page code never draws TIP subframes |
+| Standard/compact FCC + Inbox stack | `components/fcc_inbox_panel.py` | Closed | the aggregate owns standard/compact stacking, Symbols continuation, story order, and all FCC/Inbox internals | Page callers pass only data, language, density, and an outer rectangle |
+| Standard Safety page | `components/safety_panel.py` | Closed | `SafetyPanel` owns title, warning, semantic dense-language split, subbar, columns, and all frame options | Page code creates only the physical spread and outer component rectangle |
+| Compact Safety block | `components/compact_safety_panel.py` | Closed | title/body story generation, gap, typography mode, and body frame stay in one component | Shared-page code places Safety above `SymbolsPanel` without drawing Safety internals |
+| Safety tail + maintenance + Symbols | `components/safety_symbols_panel.py` | Closed | the aggregate owns both warning tails, maintenance block, cursor rhythm, and embedded `SymbolsPanel` | Page code creates only the spread and the aggregate rectangle |
+| Compact Storage + Specifications page | `components/storage_panel.py` | Closed | `StoragePanel` owns title, rounded K05 body card, inset, and internal vertical bounds | Page composer places Storage above the existing Specifications story frame |
 | Product overview | `page_overview.py` / `page_overview_single_art.py` | Component-owned, P2 review | internal frames live in dedicated renderers, though one shared-page caller still supplies `image_height` rather than only available height | tighten the public rectangle API after P0/P1; preserve approved art geometry |
 | TOC, folio, cover/back cover | dedicated page modules | Out of scope | these are page-level artifacts rather than reusable panels embedded by multiple composers | keep page ownership; add only regression coverage where missing |
 
 ## Implementation phases
 
 ### Phase A — FCC / Inbox family
+
+Status: complete on `refactor/idml-component-boundaries`.
 
 Files:
 
@@ -75,16 +78,45 @@ Safety nets:
 
 ### Phase B — Safety family
 
+Status: complete on `refactor/idml-component-boundaries`.
+
 Move the complete safety block and the maintenance/tail block behind public
 component boundaries. Keep `SymbolsPanel` unchanged. Add standard/compact
 EN/FR/ES fixtures before moving code.
 
 ### Phase C — Storage and regression unification
 
+Status: component-boundary portion complete; broader P2 regression aggregation
+remains a follow-up.
+
 Introduce `StoragePanel`, then expose a single component-regression runner for
 Symbols, FCC, Inbox, Safety, Storage, LCD, Troubleshooting, Specifications,
 Operation, and Key Combinations. Each component declares applicable densities;
 not every component must support both.
+
+## Implemented result
+
+- `page03.add_fcc_inbox_page`,
+  `shared_page.add_fcc_inbox_overview_page`, `pages.add_safety_page`,
+  `shared_page.add_safety_symbols_page`,
+  `symbols_page.add_safety_symbols_page`, and
+  `shared_page.add_storage_specifications_page` now create only the physical
+  spread, choose an outer rectangle, and call a public component.
+- Boundary tests reject component-internal frame builders and metric keys in
+  those page composers.
+- FCC/Inbox/TIP is frozen for `standard` and `compact` across EN/FR/ES.
+- Safety is frozen for standard, compact, and maintenance/Symbols compositions
+  across EN/FR/ES.
+- Storage is frozen across EN/FR/ES. Existing Symbols EN/FR/ES goldens remain
+  unchanged.
+- The existing full-package IDML golden remains byte-identical. This ownership
+  refactor did not regenerate any approved package golden.
+
+The Product Overview P2 item remains deliberately separate. Its multi-art
+variant is already target-instance-owned and uses approved absolute art and
+leader geometry; changing it to a relocatable rectangle API requires its own
+pre-refactor trilingual package baseline rather than being mixed into the
+fixed-panel move.
 
 ## Non-goals
 

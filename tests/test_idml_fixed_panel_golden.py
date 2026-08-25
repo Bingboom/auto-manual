@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import hashlib
+import inspect
 import json
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from types import SimpleNamespace
 
 from tools.export_idml import IdmlWriter, load_layout_params
+from tools.idml import page03, shared_page
 from tools.idml.shared_page import add_fcc_inbox_overview_page
 
 
@@ -50,6 +53,51 @@ COPY = {
         "labels": ("Explorer", "Cable de carga de CA", "Documentos"),
         "tip": ("CONSEJOS", "El cable de carga para automóvil se vende por separado."),
         "overview": ("DESCRIPCIÓN DEL PRODUCTO", "VISTA FRONTAL", "VISTA LATERAL"),
+    },
+}
+
+STORAGE_COPY = {
+    "en": (
+        "STORAGE",
+        "Store the product in a dry place.",
+        "Recharge every three months.",
+        "SPECIFICATIONS",
+        "GENERAL INFO",
+        "Model",
+    ),
+    "fr": (
+        "STOCKAGE",
+        "Stockez le produit dans un endroit sec.",
+        "Rechargez tous les trois mois.",
+        "CARACTÉRISTIQUES",
+        "INFORMATIONS GÉNÉRALES",
+        "Modèle",
+    ),
+    "es": (
+        "ALMACENAMIENTO",
+        "Guarde el producto en un lugar seco.",
+        "Recárguelo cada tres meses.",
+        "ESPECIFICACIONES",
+        "INFORMACIÓN GENERAL",
+        "Modelo",
+    ),
+}
+
+STORAGE_GOLDEN = {
+    "en": {
+        "spread": "689ceab72f61b30b62eea01cdaede43e3d28b1b4ca0da654c794e88b47792c5e",
+        "title": "1b7f500a7d030806fd6c1adbc990030849e2f0a792250b753d6116fe2d57a3e8",
+        "body": "14bd9a4c5348f90b969662b61e6137b825b351bebfee29116f474ab7b3855fc9",
+    },
+    "fr": {
+        "spread": "86602dff732ede5c1047399e8d223c4115048e0089d6677f247cbc3a8d351495",
+        "title": "237a5fd5b9f245ef4e11b921fbd392de1b3bb84f262f58ba8bea642fad7290c0",
+        "body": "130062e84640d6f110a4d00d0547856eb1ff5754786c4793706c7d0a44cb192f",
+    },
+    "es": {
+        "spread": "c06cc947bf59c030ec2e44b134b7b4ad71e6ae12154d8c9c6410049607aa22ae",
+        "title": "ecfd4cfa97e2e8945fc4de8a188a8a01839e06a268faf7a1acd74cb17e15bccc",
+        "body": "85d111604c44595411efd8157bfeee19888c07bedf7ad26c15de30cf53dde554",
     },
 }
 
@@ -195,6 +243,54 @@ def _snapshot(density: str, language: str) -> dict[str, object]:
     }
 
 
+def _storage_snapshot(language: str) -> dict[str, str]:
+    params = load_layout_params(
+        ROOT / "data" / "layout_params.csv",
+        (ROOT / "data" / "layout_params.idml-compact.csv",),
+    )
+    writer = IdmlWriter(
+        params,
+        model="JBP-2000B",
+        region="US",
+        language=language,
+        native_structure_markers=True,
+    )
+    title, body, item, spec_title, section_title, label = (
+        STORAGE_COPY[language]
+    )
+    sid = f"st_storage_contract_{language}"
+    spec_data = SimpleNamespace(
+        title=spec_title,
+        annotations=(),
+        sections=({
+            "title": section_title,
+            "rows": [(label, "JBP-2000B")] * 3,
+        },),
+    )
+    shared_page.add_storage_specifications_page(
+        writer,
+        sid=sid,
+        storage_blocks=[
+            ("h1", title),
+            ("body", body),
+            ("list", f"• {item}"),
+        ],
+        spec_data=spec_data,
+        bundle_root=ROOT,
+        page_index=9,
+        language=language,
+        composition_data={
+            "specifications": {"layout_variant": "compact"},
+        },
+    )
+    stories = dict(writer.stories)
+    return {
+        "spread": _digest(dict(writer.spreads)["sp_9"]),
+        "title": _digest(stories[f"{sid}_storage_title"]),
+        "body": _digest(stories[f"{sid}_storage_body"]),
+    }
+
+
 class FixedPanelGoldenTests(unittest.TestCase):
     def test_fcc_inbox_tip_visual_contract_is_shared_by_language(self) -> None:
         expected = json.loads(GOLDEN.read_text(encoding="utf-8"))
@@ -206,6 +302,52 @@ class FixedPanelGoldenTests(unittest.TestCase):
             for density in ("standard", "compact")
         }
         self.assertEqual(expected, actual)
+
+    def test_page_composers_only_assign_fixed_panel_rectangles(self) -> None:
+        forbidden = (
+            "_fcc_objects",
+            "_inbox_objects",
+            "_tip_objects",
+            "frame_with_background",
+            "idml_compact_fcc_inbox_overview_fcc_height",
+            "idml_compact_inbox_title_y",
+            "idml_inbox_",
+            "badge_y_offset",
+            "card_height",
+            "image_1_width",
+        )
+        sources = (
+            inspect.getsource(page03.add_fcc_inbox_page),
+            inspect.getsource(shared_page.add_fcc_inbox_overview_page),
+        )
+        for source in sources:
+            self.assertIn("FccInboxPanel", source)
+            self.assertIn("available_height=", source)
+            for token in forbidden:
+                self.assertNotIn(token, source)
+
+    def test_storage_panel_visual_contract_is_shared_by_language(self) -> None:
+        actual = {
+            language: _storage_snapshot(language)
+            for language in ("en", "fr", "es")
+        }
+        self.assertEqual(STORAGE_GOLDEN, actual)
+
+    def test_storage_page_composer_only_assigns_outer_rectangles(self) -> None:
+        source = inspect.getsource(
+            shared_page.add_storage_specifications_page
+        )
+        self.assertIn("StoragePanel", source)
+        self.assertIn("available_height=", source)
+        for token in (
+            "idml_compact_storage_spec_body_top",
+            "idml_compact_storage_spec_body_bottom",
+            "idml_compact_storage_spec_body_inset",
+            '"fill": "Color/HB Bg K05"',
+            '"rounded": True',
+            "storage_title_sid",
+        ):
+            self.assertNotIn(token, source)
 
 
 if __name__ == "__main__":

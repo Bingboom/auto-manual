@@ -12,14 +12,7 @@ from .character_metrics import (
     with_character_metrics,
 )
 from .layout_est import est_table_height
-from .page_objects import (
-    frame_with_background,
-    heading_bar_opts,
-    heading_text,
-    with_rounded_outer,
-)
 from .params import IDPKG, component_param_pt, param_pt
-from .source_copy import source_text
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -592,148 +585,51 @@ def add_safety_symbols_page(
     signal_headers: tuple[str, str],
     icon_headers: tuple[str, str],
 ) -> tuple[str, SymbolOverflow]:
-    """V2.0 page 02: safety tail + maintenance + symbols on one page."""
-    import json as _json
-    title = source_text(title, owner="Symbols page title")
-    signal_headers = (
-        source_text(signal_headers[0], owner="Symbols signal column 1 header"),
-        source_text(signal_headers[1], owner="Symbols signal column 2 header"),
-    )
-    icon_headers = (
-        source_text(icon_headers[0], owner="Symbols icon column 1 header"),
-        source_text(icon_headers[1], owner="Symbols icon column 2 header"),
-    )
-    style = SafetySymbolsPageStyle.from_writer(writer, lang)
-    tail_stories: list[tuple[str, float]] = []
-    for bi, (kind, text) in enumerate(tail_blocks):
-        if kind != "component":
-            continue
-        spec = _json.loads(text)
-        if spec.get("kind") in {"safetywarning", "warnbox", "notice"}:
-            label = source_text(
-                spec.get("label"),
-                owner="Safety tail warning label",
-                strict=writer.strict_component_assets,
-            )
-            spec = {
-                "kind": "tailwarnbox",
-                "label": label,
-                "texts": spec.get("texts", []),
-                "language": lang,
-            }
-        tail_sid = f"{sid}_tail_{spec.get('label', bi).lower()}"
-        xml_part, tail_h = writer._render_component(
-            tail_sid, bi, spec, bundle_root,
-            terminal=True, span_columns=False)
-        writer._add_story_parts(tail_sid, f"Safety tail {bi}", [xml_part])
-        tail_stories.append((tail_sid, tail_h))
-
-    maint_title = source_text(
-        next((t for k, t in maintenance_blocks if k in ("h1", "h2")), ""),
-        owner="User maintenance title",
-    )
-    maint_text = "\n".join(t for k, t in maintenance_blocks if k == "body")
-    maint_title_sid = f"{sid}_maintenance_title"
-    writer._add_story_parts(
-        maint_title_sid, "Maintenance title",
-        [heading_text(writer, maint_title, level=2)])
-    maint_body_sid = f"{sid}_maintenance_body"
-    writer._add_story_parts(
-        maint_body_sid, "Maintenance body",
-        [writer._psr("HB Maintenance Body", maint_text, terminal=True)])
-
-    body_x = writer.m_l
-    body_w = writer.page_w - writer.m_l - writer.m_r
-    from .components.symbols_panel import SymbolsPanelData
-
-    panel_data = SymbolsPanelData(
-        title=title,
-        signal_headers=signal_headers,
-        icon_headers=icon_headers,
-        signals=tuple(signals),
-        icons=tuple(icons),
+    """Place the complete Safety/Maintenance/Symbols component."""
+    from .components.safety_symbols_panel import (
+        SafetySymbolsPanel,
+        SafetySymbolsPanelData,
     )
 
-    # Flow the frames from a cursor using coarse content-height estimates
-    # instead of fixed rects (fixed heights hid taller content as overset);
-    # the icon tables then take whatever remains down to the bottom margin.
-    y = style.page_top
-    frame_specs: list[tuple[str, str, tuple[float, float, float, float], dict]] = []
-
-    def _place(fid: str, story: str, h: float, opts: dict, gap: float = 6.0) -> None:
-        nonlocal y
-        frame_specs.append((fid, story, (body_x, y, body_w, h), opts))
-        y += h + gap
-
-    tail_geometry = (
-        (style.first_tail_height, style.first_tail_gap),
-        (style.second_tail_height, style.second_tail_gap),
-    )
-    for ti, ((t_sid, _estimated_height), (tail_h, tail_gap)) in enumerate(
-        zip(tail_stories, tail_geometry, strict=False)
-    ):
-        _place(
-            f"tail_{ti}",
-            t_sid,
-            tail_h,
-            with_rounded_outer({
-                "inset": (0, 0, 0, 0),
-                "valign": "CenterAlign",
-            }),
-            gap=tail_gap,
-        )
-    _place("maint_title", maint_title_sid, style.subbar_height,
-           heading_bar_opts(2, (0.5, 5, 0.5, 6)),
-           gap=style.maintenance_title_gap)
-    _place(
-        "maint_body",
-        maint_body_sid,
-        style.maintenance_body_height,
-        {"inset": (0, 0, 0, 0)},
-        gap=style.maintenance_body_gap,
-    )
-    bottom = writer.page_h - style.page_bottom_allowance
-    from .components.symbols_panel import SymbolsPanel
-
-    panel = SymbolsPanel(
+    panel = SafetySymbolsPanel(
         writer,
         sid=sid,
-        data=panel_data,
+        data=SafetySymbolsPanelData.from_source(
+            tail_blocks=tail_blocks,
+            maintenance_blocks=maintenance_blocks,
+            title=title,
+            signal_headers=signal_headers,
+            icon_headers=icon_headers,
+            signals=signals,
+            icons=icons,
+        ),
         bundle_root=bundle_root,
         language=lang,
-        density="standard",
     ).render(
-        x=body_x,
-        y=y,
-        width=body_w,
-        available_height=bottom - y,
+        x=writer.m_l,
+        y=0.0,
+        width=writer.page_w - writer.m_l - writer.m_r,
+        available_height=writer.page_h,
     )
-
     spread_id = f"sp_{page_index}"
     page_no = page_index + 1
-    frames = []
-    for frame_id, story_id, rect, opts in frame_specs:
-        if not story_id:
-            continue
-        if frame_id == "maint_title":
-            opts = {**opts, "text_rect": (
-                rect[0] + 6.0, rect[1], rect[2] - 12.0, rect[3])}
-        frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
-    frames.extend(panel.frames)
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
         f'  <Page Self="{spread_id}_pg" Name="{page_no}" '
-        'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
+        'AppliedMaster="n" OverrideList="" TabOrder="" '
+        'GridStartingPoint="TopOutside" '
         f'GeometricBounds="0 0 {writer.page_h:g} {writer.page_w:g}" '
-        f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} {-writer.page_h / 2:g}">\n'
+        f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} '
+        f'{-writer.page_h / 2:g}">\n'
         '    <MarginPreference ColumnCount="1" ColumnGutter="12" '
         f'Top="{writer.m_t:g}" Bottom="{writer.m_b:g}" '
         f'Left="{writer.m_l:g}" Right="{writer.m_r:g}"/>\n'
         '  </Page>\n'
-        + "".join(frames) +
-        '</Spread>\n'
+        + "".join(panel.frames)
+        + '</Spread>\n'
         '</idPkg:Spread>\n'
     )
     writer.spreads.append((spread_id, xml))

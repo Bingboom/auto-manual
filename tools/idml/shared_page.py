@@ -18,26 +18,21 @@ from .components.prose_image import (
     IMAGE_ROLE_WIDE_DIAGRAM,
 )
 from .components.lcd_callout import add_lcd_callouts
+from .components.fcc_inbox_panel import FccInboxPanel, FccInboxPanelData
+from .components.compact_safety_panel import (
+    CompactSafetyPanel,
+    CompactSafetyPanelData,
+)
+from .components.storage_panel import StoragePanel, StoragePanelData
 from .components.symbols_panel import SymbolsPanel, SymbolsPanelData
 from .heading_suffix import promote_h2_suffix_pills
-from .page_objects import (
-    frame_with_background,
-    h1_bar_h_pt,
-    heading_bar_opts,
-    heading_text,
-)
 from .params import IDPKG, param_pt
-from .page03 import (
-    BODY_W,
-    BODY_X,
-    H1_BAR_H,
-    _fcc_objects,
-    _inbox_objects,
-    _spread_page,
-    component_spec,
-)
+from .page03 import _spread_page
 from .page_overview import product_overview_frames, single_image_overview_frames
-from .source_copy import source_text
+
+
+FIXED_PANEL_X = 26.5
+FIXED_PANEL_WIDTH = 311.0
 
 
 def latex_start_page(page_plan: dict | None, page: Path, bundle_root: Path) -> int | None:
@@ -93,25 +88,6 @@ def add_safety_symbols_page(
 
     del data_root  # Figure paths are already resolved by Manual IR projection.
     lang = language.strip().casefold().replace("_", "-").split("-", 1)[0]
-    h1 = source_text(
-        next((text for kind, text in safety_blocks if kind == "h1"), ""),
-        owner="compact Safety page title",
-    )
-    body_blocks = [block for block in safety_blocks if block[0] != "h1"]
-    safety_title_sid = f"{safety_sid}_title"
-    writer._add_story_parts(
-        safety_title_sid,
-        h1,
-        [heading_text(writer, h1, level=1)],
-    )
-    writer._safety_section_story(
-        safety_sid,
-        safety_title,
-        body_blocks,
-        bundle_root,
-        compact=True,
-    )
-
     symbol_sid = f"st_symbols_shared_{lang}"
     body_x = writer.m_l
     body_w = writer.page_w - writer.m_l - writer.m_r
@@ -125,17 +101,26 @@ def add_safety_symbols_page(
             163.2,
         ),
     )
-    title_body_gap = param_pt(
-        writer.params,
-        "idml_compact_safety_title_body_gap",
-        3.5,
-    )
     safety_bottom_gap = param_pt(
         writer.params,
         "idml_compact_safety_symbols_gap",
         4.0,
     )
-    title_h = h1_bar_h_pt(writer)
+    safety_panel = CompactSafetyPanel(
+        writer,
+        sid=safety_sid,
+        data=CompactSafetyPanelData.from_blocks(
+            safety_blocks,
+            story_title=safety_title,
+        ),
+        bundle_root=bundle_root,
+        language=lang,
+    ).render(
+        x=body_x,
+        y=page_top,
+        width=body_w,
+        available_height=symbols_top - safety_bottom_gap - page_top,
+    )
     panel = SymbolsPanel(
         writer,
         sid=symbol_sid,
@@ -151,35 +136,7 @@ def add_safety_symbols_page(
     )
     if panel.overflow.has_rows():
         raise ValueError("compact SymbolsPanel cannot drop symbol rows")
-    frames = [
-        frame_with_background(
-            writer,
-            symbol_sid,
-            "safety_title",
-            safety_title_sid,
-            (body_x, page_top, body_w, title_h),
-            {
-                **heading_bar_opts(1, (1.5, 5, 1, 6)),
-                "text_rect": (body_x + 6, page_top, body_w - 12, title_h),
-            },
-        ),
-        frame_with_background(
-            writer,
-            symbol_sid,
-            "safety_body",
-            safety_sid,
-            (
-                body_x,
-                page_top + title_h + title_body_gap,
-                body_w,
-                symbols_top
-                - safety_bottom_gap
-                - (page_top + title_h + title_body_gap),
-            ),
-            {"inset": (0, 0, 0, 0)},
-        ),
-        *panel.frames,
-    ]
+    frames = [*safety_panel.frames, *panel.frames]
     spread_id = f"sp_{page_index}"
     writer.spreads.append((
         spread_id,
@@ -389,74 +346,30 @@ def add_fcc_inbox_overview_page(
     """Compose FCC, inbox cards, and one-art overview on one physical page."""
 
     lang = language.strip().casefold().replace("_", "-").split("-", 1)[0]
-    fcc_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
-    fcc_height = param_pt(
-        writer.params,
-        "idml_compact_fcc_inbox_overview_fcc_height",
-        116.0,
-    )
-    _, fcc_frames = _fcc_objects(
-        writer,
-        sid,
-        fcc_blocks,
-        bundle_root,
-        panel_y=fcc_top,
-        panel_h=fcc_height,
-        lang=lang,
-    )
-
-    inbox_title = next(
-        (text.strip() for kind, text in inbox_blocks if kind == "h1" and text.strip()),
-        "",
-    )
-    if not inbox_title:
-        raise ValueError("shared FCC/inbox/overview composition requires inbox title")
-    inbox_spec = component_spec(inbox_blocks, "inbox")
-    if inbox_spec is None:
-        raise ValueError("shared FCC/inbox/overview composition requires inbox data")
-    inbox_title_y = param_pt(
-        writer.params,
-        "idml_compact_inbox_title_y",
-        fcc_top + fcc_height + 7.0,
-    )
-    inbox_title_sid = writer._add_story_parts(
-        f"{sid}_inbox_title",
-        inbox_title,
-        [heading_text(writer, inbox_title, level=1)],
-    )
-    _, inbox_frames = _inbox_objects(
-        writer,
-        sid,
-        inbox_spec,
-        bundle_root,
-        lang=lang,
-        metric_namespace="compact_",
-        require_tip=False,
-        accessibility_label=inbox_title,
-        tip_label="",
-        tip_body="",
-    )
-    inbox_title_frame = frame_with_background(
-        writer,
-        sid,
-        "inbox_title",
-        inbox_title_sid,
-        (BODY_X, inbox_title_y, BODY_W, H1_BAR_H),
-        {
-            **heading_bar_opts(1, (1.5, 5, 1, 6)),
-            "text_rect": (
-                BODY_X + 6.0,
-                inbox_title_y,
-                BODY_W - 12.0,
-                H1_BAR_H,
-            ),
-        },
-    )
-
+    panel_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
     overview_top = param_pt(
         writer.params,
         "idml_compact_overview_top",
         292.0,
+    )
+    panel = FccInboxPanel(
+        writer,
+        sid=sid,
+        data=FccInboxPanelData.from_blocks(
+            fcc_blocks=fcc_blocks,
+            inbox_blocks=inbox_blocks,
+            sid=sid,
+            language=lang,
+            density="compact",
+        ),
+        bundle_root=bundle_root,
+        language=lang,
+        density="compact",
+    ).render(
+        x=FIXED_PANEL_X,
+        y=panel_top,
+        width=FIXED_PANEL_WIDTH,
+        available_height=overview_top - panel_top,
     )
     overview_height = param_pt(
         writer.params,
@@ -482,7 +395,7 @@ def add_fcc_inbox_overview_page(
             overview_blocks,
             bundle_root,
         )
-    frames = [*fcc_frames, inbox_title_frame, *inbox_frames, *overview_frames]
+    frames = [*panel.frames, *overview_frames]
     spread_id = f"sp_{page_index}"
     writer.spreads.append((
         spread_id,
@@ -702,31 +615,26 @@ def add_storage_specifications_page(
 ) -> tuple[str, str, list[dict]]:
     """Compose Storage and the existing specification tables on one page."""
 
-    storage_title = source_text(
-        next((text for kind, text in storage_blocks if kind == "h1"), ""),
-        owner="Storage page title",
+    body_x = writer.m_l
+    body_width = writer.page_w - writer.m_l - writer.m_r
+    panel_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+    spec_top = param_pt(
+        writer.params,
+        "idml_compact_storage_spec_spec_top",
+        148.8,
     )
-    if not storage_title:
-        raise ValueError("storage_specifications requires a Storage H1")
-    storage_body = [
-        block for block in storage_blocks if block[0] != "h1"
-    ]
-    storage_title_sid = f"{sid}_storage_title"
-    storage_body_sid = f"{sid}_storage_body"
-    writer._add_story_parts(
-        storage_title_sid,
-        f"{storage_title} title",
-        [heading_text(writer, storage_title, level=1)],
-    )
-    writer.add_prose_story(
-        storage_body_sid,
-        f"{storage_title} body",
-        storage_body,
-        bundle_root,
+    panel = StoragePanel(
+        writer,
+        sid=sid,
+        data=StoragePanelData.from_blocks(storage_blocks),
+        bundle_root=bundle_root,
         language=language,
-        disable_hyphenation=True,
+    ).render(
+        x=body_x,
+        y=panel_top,
+        width=body_width,
+        available_height=spec_top - panel_top,
     )
-
     options = dict((composition_data or {}).get("specifications") or {})
     sections = grouped_spec_sections(list(spec_data.sections), composition_data)
     spec_sid = writer.add_spec_story(
@@ -737,62 +645,6 @@ def add_storage_specifications_page(
         layout_variant=str(options.get("layout_variant") or "reference"),
     )
 
-    body_x = writer.m_l
-    body_w = writer.page_w - writer.m_l - writer.m_r
-    page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
-    title_h = h1_bar_h_pt(writer)
-    body_top = param_pt(
-        writer.params,
-        "idml_compact_storage_spec_body_top",
-        59.0,
-    )
-    body_bottom = param_pt(
-        writer.params,
-        "idml_compact_storage_spec_body_bottom",
-        131.5,
-    )
-    spec_top = param_pt(
-        writer.params,
-        "idml_compact_storage_spec_spec_top",
-        148.8,
-    )
-    if not page_top + title_h < body_top < body_bottom < spec_top:
-        raise ValueError("storage_specifications frame tokens are not ordered")
-    body_inset = param_pt(
-        writer.params,
-        "idml_compact_storage_spec_body_inset",
-        6.0,
-    )
-    frames = [
-        frame_with_background(
-            writer,
-            sid,
-            "storage_title",
-            storage_title_sid,
-            (body_x, page_top, body_w, title_h),
-            {
-                **heading_bar_opts(1, (1.5, 5, 1, 6)),
-                "text_rect": (
-                    body_x + 6,
-                    page_top,
-                    body_w - 12,
-                    title_h,
-                ),
-            },
-        ),
-        frame_with_background(
-            writer,
-            sid,
-            "storage_body",
-            storage_body_sid,
-            (body_x, body_top, body_w, body_bottom - body_top),
-            {
-                "fill": "Color/HB Bg K05",
-                "rounded": True,
-                "inset": (body_inset, body_inset, body_inset, body_inset),
-            },
-        ),
-    ]
     spread_id = f"sp_{page_index}"
     writer.spreads.append((
         spread_id,
@@ -801,7 +653,7 @@ def add_storage_specifications_page(
         f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
         'ShowMasterItems="true">\n'
         + _spread_page(writer, spread_id, page_index + 1)
-        + "".join(frames)
+        + "".join(panel.frames)
         + '</Spread>\n</idPkg:Spread>\n',
     ))
     bottom = writer.page_h - writer.m_b + param_pt(
@@ -810,7 +662,7 @@ def add_storage_specifications_page(
         8.0,
     )
     writer.add_story_frames(spec_sid, [(page_index, spec_top, bottom)])
-    return storage_body_sid, spec_sid, sections
+    return panel.body_story_id, spec_sid, sections
 
 
 __all__ = (
