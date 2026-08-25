@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import inspect
 import json
+import re
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -10,6 +11,8 @@ from types import SimpleNamespace
 
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml import page03, shared_page
+from tools.idml.data_stories import add_spec_story
+from tools.idml.params import param_pt
 from tools.idml.shared_page import add_fcc_inbox_overview_page
 
 
@@ -243,7 +246,7 @@ def _snapshot(density: str, language: str) -> dict[str, object]:
     }
 
 
-def _storage_snapshot(language: str) -> dict[str, str]:
+def _storage_writer(language: str) -> tuple[IdmlWriter, str]:
     params = load_layout_params(
         ROOT / "data" / "layout_params.csv",
         (ROOT / "data" / "layout_params.idml-compact.csv",),
@@ -283,6 +286,11 @@ def _storage_snapshot(language: str) -> dict[str, str]:
             "specifications": {"layout_variant": "compact"},
         },
     )
+    return writer, sid
+
+
+def _storage_snapshot(language: str) -> dict[str, str]:
+    writer, sid = _storage_writer(language)
     stories = dict(writer.stories)
     return {
         "spread": _digest(dict(writer.spreads)["sp_9"]),
@@ -348,6 +356,66 @@ class FixedPanelGoldenTests(unittest.TestCase):
             "storage_title_sid",
         ):
             self.assertNotIn(token, source)
+
+    def test_compact_spec_rows_fill_the_complete_rounded_shell(self) -> None:
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                params = load_layout_params(
+                    ROOT / "data" / "layout_params.csv",
+                    (ROOT / "data" / "layout_params.idml-compact.csv",),
+                )
+                writer = IdmlWriter(
+                    params,
+                    model="JBP-2000B",
+                    region="US",
+                    language=language,
+                )
+                add_spec_story(
+                    writer,
+                    [
+                        {"title": "Section 1", "rows": [("A", "B")] * 7},
+                        {"title": "Section 2", "rows": [("A", "B")] * 2},
+                        {"title": "Section 3", "rows": [("A", "B")] * 2},
+                    ],
+                    lang=language,
+                    title=STORAGE_COPY[language][3],
+                    layout_variant="compact",
+                )
+                stories = dict(writer.stories)
+                for section_index in range(3):
+                    story = stories[
+                        f"st_anchor_spec_{language}{section_index}"
+                    ]
+                    table_match = re.search(
+                        rf'<Table Self="tbl_spec_{language}{section_index}".*?</Table>',
+                        story,
+                        flags=re.DOTALL,
+                    )
+                    self.assertIsNotNone(table_match)
+                    table = table_match.group(0)
+                    row_heights = [
+                        float(value)
+                        for value in re.findall(
+                            r'<Row\b[^>]*MinimumHeight="([^"]+)"',
+                            table,
+                        )
+                    ]
+                    target_height = param_pt(
+                        writer.params,
+                        f"idml_compact_spec_table_{section_index + 1}_height",
+                        (81.7, 28.5, 28.5)[section_index],
+                    )
+                    self.assertAlmostEqual(
+                        target_height,
+                        sum(row_heights),
+                        places=6,
+                    )
+                    last_row = len(row_heights) - 1
+                    self.assertRegex(
+                        table,
+                        rf'<Cell\b[^>]*Name="0:{last_row}"[^>]*'
+                        r'FillColor="Color/HB Bg K05"',
+                    )
 
 
 if __name__ == "__main__":

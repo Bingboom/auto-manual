@@ -26,6 +26,7 @@ def spec_table_xml(
     density: str,
     section_index: int | None,
     language: str | None,
+    target_height: float | None,
     paragraph_xml: Callable[..., str],
 ) -> str:
     if density not in {"reference", "compact"}:
@@ -172,19 +173,23 @@ def spec_table_xml(
         else "comp_spec_table_multiline_min_height",
         13.0 if compact else 15.0,
     )
+    row_heights = [
+        max(row_height, multiline_height)
+        if "\n" in label or "\n" in value
+        else row_height
+        for label, value in rows
+    ]
+    if target_height is not None and row_heights:
+        # Compact specification shells reserve a small native-InDesign
+        # carrier allowance.  Keep that space inside the final governed row
+        # so the shaded label column reaches the rounded bottom edge instead
+        # of exposing a white strip below the editable table.
+        row_heights[-1] += max(0.0, target_height - sum(row_heights))
     row_xml = "\n".join(
         f'    <Row Self="{tid}r{ri}" Name="{ri}" '
         f'SingleRowHeight="{height:g}" MinimumHeight="{height:g}" '
         'AutoGrow="true"/>'
-        for ri, ((label, value), height) in enumerate(
-            (
-                row,
-                max(row_height, multiline_height)
-                if "\n" in row[0] or "\n" in row[1]
-                else row_height,
-            )
-            for row in rows
-        )
+        for ri, height in enumerate(row_heights)
     )
     spacing = ' SpaceBefore="0" SpaceAfter="0"' if visual_parity else ""
     return (

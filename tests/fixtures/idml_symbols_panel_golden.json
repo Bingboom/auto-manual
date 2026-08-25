@@ -7,6 +7,7 @@
         "density": "compact",
         "disable_hyphenation": true,
         "fill_all_cells": true,
+        "shell_fill": "Color/HB Bg K05",
         "frame_rects": [
           [
             "title",
@@ -85,6 +86,7 @@
         "density": "compact",
         "disable_hyphenation": true,
         "fill_all_cells": true,
+        "shell_fill": "Color/HB Bg K05",
         "frame_rects": [
           [
             "title",
@@ -163,6 +165,7 @@
         "density": "compact",
         "disable_hyphenation": true,
         "fill_all_cells": true,
+        "shell_fill": "Color/HB Bg K05",
         "frame_rects": [
           [
             "title",
@@ -243,6 +246,7 @@
         "density": "standard",
         "disable_hyphenation": false,
         "fill_all_cells": false,
+        "shell_fill": "Color/Paper",
         "frame_rects": [
           [
             "title",
@@ -321,6 +325,7 @@
         "density": "standard",
         "disable_hyphenation": false,
         "fill_all_cells": false,
+        "shell_fill": "Color/Paper",
         "frame_rects": [
           [
             "title",
@@ -399,6 +404,7 @@
         "density": "standard",
         "disable_hyphenation": false,
         "fill_all_cells": false,
+        "shell_fill": "Color/Paper",
         "frame_rects": [
           [
             "title",

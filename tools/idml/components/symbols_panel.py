@@ -362,9 +362,15 @@ class SymbolsPanel:
                 f"needed={total_height:.3f} available={available_height:.3f}"
             )
 
+        shell_fill = (
+            "Color/HB Bg K05"
+            if self.density == "compact"
+            else "Color/Paper"
+        )
         shell_opts = with_rounded_outer({
             "inset": (0, 0, 0, 0),
             "rounded_outer_masks": True,
+            "rounded_outer_fill": shell_fill,
         })
         frames = (
             frame_with_background(
@@ -402,6 +408,7 @@ class SymbolsPanel:
             column_gap=icon_gap,
             table_width=icon_table_width,
             fill_all_cells=metrics.fill_all_cells,
+            shell_fill=shell_fill,
             auto_grow_rows=metrics.auto_grow_rows,
             disable_hyphenation=metrics.disable_hyphenation,
             frame_rects=(

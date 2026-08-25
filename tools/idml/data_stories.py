@@ -743,6 +743,11 @@ def add_spec_story(
                     density=layout_variant,
                     section_index=si,
                     language=lang,
+                    target_height=(
+                        reference_table_heights[si]
+                        if compact and si < len(reference_table_heights)
+                        else None
+                    ),
                     paragraph_xml=spec_paragraph,
                 ),
                 2,

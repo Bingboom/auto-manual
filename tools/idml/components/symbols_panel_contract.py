@@ -44,6 +44,7 @@ class SymbolsPanelContract:
     column_gap: float
     table_width: float
     fill_all_cells: bool
+    shell_fill: str
     auto_grow_rows: bool
     disable_hyphenation: bool
     frame_rects: tuple[tuple[str, tuple[float, float, float, float]], ...]

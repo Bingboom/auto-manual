@@ -4,6 +4,7 @@ import hashlib
 import inspect
 import json
 import unittest
+import xml.etree.ElementTree as ET
 from dataclasses import asdict
 from pathlib import Path
 
@@ -145,11 +146,23 @@ class SymbolsPanelTests(unittest.TestCase):
         self.assertTrue(rendered.contract.fill_all_cells)
         self.assertFalse(rendered.contract.auto_grow_rows)
         self.assertTrue(rendered.contract.disable_hyphenation)
+        self.assertEqual("Color/HB Bg K05", rendered.contract.shell_fill)
         for story_id in rendered.story_ids[1:]:
             xml = dict(writer.stories)[story_id]
             self.assertIn('FillColor="Color/HB Bg K05"', xml)
             self.assertIn('AutoGrow="false"', xml)
             self.assertNotIn('AutoGrow="true"', xml)
+        for frame_id, frame_xml in zip(
+            ("signals", "icons_left", "icons_right"),
+            rendered.frames[1:],
+            strict=True,
+        ):
+            root = ET.fromstring(f"<root>{frame_xml}</root>")
+            shell = root.find(
+                f".//*[@Self='bg_st_symbols_contract_{frame_id}']"
+            )
+            self.assertIsNotNone(shell)
+            self.assertEqual("Color/HB Bg K05", shell.attrib["FillColor"])
 
     def test_page_assemblers_only_assign_symbols_panel_rectangles(self) -> None:
         forbidden = (

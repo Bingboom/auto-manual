@@ -376,9 +376,10 @@ def capsule_xml(writer, rect_id: str,
 
 
 def rounded_outer_xml(writer, rect_id: str,
-                      rect: tuple[float, float, float, float]) -> str:
+                      rect: tuple[float, float, float, float], *,
+                      fill: str = "Color/Paper") -> str:
     x1, y1, x2, y2 = writer._page_rect(*rect)
-    return rectangle_xml(rect_id, x1, y1, x2, y2)
+    return rectangle_xml(rect_id, x1, y1, x2, y2, fill=fill)
 
 
 def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
@@ -389,6 +390,7 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     h1_bar_bg = bool(opts.pop("h1_bar_bg", False))
     rounded_outer = bool(opts.pop("rounded_outer", False))
     rounded_outer_masks = bool(opts.pop("rounded_outer_masks", False))
+    rounded_outer_fill = str(opts.pop("rounded_outer_fill", "Color/Paper"))
     rounded = bool(opts.pop("rounded", False))
     rounded_fill = opts.get("fill")
     text_rect = opts.pop("text_rect", rect)
@@ -401,7 +403,12 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
         parts.append(capsule_xml(
             writer, f"bg_{sid}_{frame_id}", rect, bottom_only=True))
     if rounded_outer:
-        parts.append(rounded_outer_xml(writer, f"bg_{sid}_{frame_id}", rect))
+        parts.append(rounded_outer_xml(
+            writer,
+            f"bg_{sid}_{frame_id}",
+            rect,
+            fill=rounded_outer_fill,
+        ))
     if rounded and rounded_fill:
         parts.append(rectangle_xml(
             f"bg_{sid}_{frame_id}",
