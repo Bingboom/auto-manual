@@ -272,13 +272,76 @@ class IdmlVisualParityTests(unittest.TestCase):
             ROOT,
             True,
         )
-        self.assertNotIn("Yu Gothic", warranty)
-        self.assertNotIn("❸", warranty)
-        self.assertIn("tf_warranty_year_st_warranty_cmp0_0", warranty)
-        self.assertIn(
-            "st_warranty_year_st_warranty_cmp0_0",
-            dict(writer.stories),
+        self.assertIn("Yu Gothic", warranty)
+        self.assertIn("❸", warranty)
+
+        compact_params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
         )
+        compact_writer = IdmlWriter(
+            compact_params,
+            native_structure_markers=True,
+        )
+        compact_warranty, _ = compact_writer._render_component(
+            "st_warranty_compact",
+            0,
+            {
+                "kind": "warrantyyears",
+                "items": [{
+                    "number": "3",
+                    "unit": "YEARS",
+                    "label": "For the original buyer",
+                    "text": "Limited warranty coverage.",
+                }],
+            },
+            ROOT,
+            True,
+        )
+        self.assertEqual(warranty, compact_warranty.replace(
+            "st_warranty_compact_cmp0",
+            "st_warranty_cmp0",
+        ))
+        self.assertIn("❸", compact_warranty)
+
+        base_period_writer = IdmlWriter(
+            writer.params,
+            native_structure_markers=False,
+        )
+        period_writer = IdmlWriter(
+            compact_params,
+            native_structure_markers=True,
+        )
+        period_spec = {
+            "kind": "warrantysection",
+            "title": "WARRANTY PERIOD",
+            "index": 2,
+            "blocks": [{
+                "kind": "warrantyyears",
+                "items": [{
+                    "number": "3",
+                    "unit": "YEARS",
+                    "label": "Standard Warranty",
+                    "text": "Limited warranty coverage.",
+                }],
+            }],
+        }
+        base_period, base_period_height = base_period_writer._render_component(
+            "st_warranty_period",
+            0,
+            period_spec,
+            ROOT,
+            True,
+        )
+        period, period_height = period_writer._render_component(
+            "st_warranty_period",
+            0,
+            period_spec,
+            ROOT,
+            True,
+        )
+        self.assertEqual(base_period, period)
+        self.assertEqual(base_period_height, period_height)
 
     def test_body_table_group_uses_panel_fill_for_corner_masks(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

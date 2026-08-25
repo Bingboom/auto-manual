@@ -8,12 +8,14 @@ from types import SimpleNamespace
 
 from tools.export_idml import IdmlWriter, check_idml, load_layout_params
 from tools.idml.shared_page import (
+    add_charging_page,
     add_charging_storage_page,
     add_connection_tail_troubleshooting_page,
     add_connections_page,
     add_fcc_inbox_overview_page,
     add_lcd_operations_page,
     add_safety_symbols_page,
+    add_storage_specifications_page,
     shares_latex_page,
 )
 
@@ -22,6 +24,208 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class SharedPageTests(unittest.TestCase):
+    def test_connections_page_reuses_target_declared_order_and_image_role(
+        self,
+    ) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(
+            params,
+            model="JBP-2000B",
+            region="US",
+            language="fr",
+            native_structure_markers=True,
+        )
+        art = (
+            ROOT / "docs" / "renderers" / "latex" / "assets"
+            / "warning_lockup.png"
+        ).as_posix()
+
+        add_connections_page(
+            writer,
+            sid="st_connections",
+            title="connections",
+            blocks=[
+                ("h1", "CONNEXIONS"),
+                ("body", "Source-authored introduction."),
+                ("image", art),
+                (
+                    "component",
+                    json.dumps({
+                        "kind": "notice",
+                        "label": "Important",
+                        "variant": "caution",
+                        "texts": ["First source-authored notice."],
+                        "list": True,
+                    }),
+                ),
+                (
+                    "component",
+                    json.dumps({
+                        "kind": "notice",
+                        "label": "Remarques",
+                        "variant": "note",
+                        "texts": ["Second source-authored notice."],
+                        "list": True,
+                    }),
+                ),
+            ],
+            bundle_root=ROOT,
+            page_index=6,
+            language="fr",
+            composition_data={
+                "connections": {
+                    "layout_variant": "notice_before_primary_figure",
+                    "image_role": "reference_measure",
+                }
+            },
+        )
+
+        story = dict(writer.stories)["st_connections"]
+        first_notice = story.index("grp_notice_st_connections_cmp")
+        primary_figure = story.index('Self="st_connections_im1"')
+        second_notice = story.index(
+            "grp_notice_st_connections_cmp",
+            first_notice + 1,
+        )
+        self.assertLess(first_notice, primary_figure)
+        self.assertLess(primary_figure, second_notice)
+        image_xml = story[primary_figure:story.index("</Rectangle>", primary_figure)]
+        self.assertIn('Anchor="312.094', image_xml)
+
+    def test_charging_page_uses_target_declared_full_width_and_suffix_pill(
+        self,
+    ) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        self.assertEqual(
+            ("36.0", "pt"),
+            params["idml_compact_charging_frame_bottom_extra"],
+        )
+        writer = IdmlWriter(
+            params,
+            model="JBP-2000B",
+            region="US",
+            language="en",
+            native_structure_markers=True,
+        )
+        art = (
+            ROOT / "docs" / "renderers" / "latex" / "assets"
+            / "warning_lockup.png"
+        ).as_posix()
+
+        add_charging_page(
+            writer,
+            sid="st_charging",
+            title="charging",
+            charging_blocks=[
+                ("h1", "CHARGING"),
+                ("h2", "CHARGING VIA AC WALL OUTLET"),
+                ("image", art),
+                (
+                    "h2",
+                    "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+                ),
+                ("image", art),
+            ],
+            bundle_root=ROOT,
+            page_index=8,
+            language="en",
+            composition_data={
+                "charging": {
+                    "image_role": "reference_measure",
+                    "h2_suffix_pill_indices": [1],
+                }
+            },
+        )
+
+        stories = dict(writer.stories)
+        main_story = stories["st_charging"]
+        self.assertIn("CHARGING VIA SOLAR PANELS", main_story)
+        self.assertNotIn("(SOLD SEPARATELY)", main_story)
+        pill_stories = "".join(
+            xml for sid, xml in stories.items() if "headingpill" in sid
+        )
+        self.assertIn("SOLD SEPARATELY", pill_stories)
+        image = main_story.split('Self="st_charging_im1"', 1)[1].split(
+            "</Rectangle>", 1
+        )[0]
+        self.assertIn('Anchor="312.09', image)
+        expected_bottom = (
+            writer.page_h / 2 - writer.m_b
+            + float(params["idml_compact_charging_frame_bottom_extra"][0])
+        )
+        spread = dict(writer.spreads)["sp_8"]
+        self.assertIn(f" {expected_bottom:g}\"", spread)
+
+    def test_storage_and_compact_specifications_reuse_one_physical_page(
+        self,
+    ) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(
+            params,
+            model="JBP-2000B",
+            region="US",
+            language="en",
+            native_structure_markers=True,
+        )
+        spec_data = SimpleNamespace(
+            title="SPECIFICATIONS",
+            annotations=(),
+            sections=(
+                {"title": "GENERAL INFO", "rows": [("Model", "M1")] * 7},
+                {"title": "INPUT PORTS", "rows": [("Input", "36 V")]},
+                {"title": "OUTPUT PORTS", "rows": [("Output", "36 V")]},
+                {"title": "TEMPERATURE", "rows": [("Charge", "45 C")] * 2},
+            ),
+        )
+        composition_data = {
+            "specifications": {
+                "layout_variant": "compact",
+                "section_groups": [
+                    {"source_indices": [0]},
+                    {
+                        "source_indices": [1, 2],
+                        "title": "INPUT / OUTPUT PORTS",
+                    },
+                    {"source_indices": [3]},
+                ],
+            }
+        }
+
+        _storage_sid, spec_sid, grouped = add_storage_specifications_page(
+            writer,
+            sid="st_storage_spec",
+            storage_blocks=[
+                ("h1", "STORAGE"),
+                ("body", "Store the product in a dry place."),
+                ("list", "• Recharge every three months."),
+            ],
+            spec_data=spec_data,
+            bundle_root=ROOT,
+            page_index=9,
+            language="en",
+            composition_data=composition_data,
+        )
+
+        self.assertEqual(3, len(grouped))
+        self.assertEqual("INPUT / OUTPUT PORTS", grouped[1]["title"])
+        self.assertEqual(2, len(grouped[1]["rows"]))
+        spread = dict(writer.spreads)["sp_9"]
+        self.assertEqual(1, spread.count("<Page "))
+        self.assertIn('FillColor="Color/HB Bg K05"', spread)
+        self.assertIn(f'ParentStory="{spec_sid}"', spread)
+        stories = "".join(dict(writer.stories).values())
+        self.assertEqual(3, stories.count("specification table"))
+        self.assertIn('SingleRowHeight="11"', stories)
+
     def test_compact_fcc_inbox_page_embeds_shared_semantic_overview(self) -> None:
         params = load_layout_params(
             ROOT / "data" / "layout_params.csv",
@@ -181,8 +385,12 @@ class SharedPageTests(unittest.TestCase):
                 self.assertIn(f"st_symbols_shared_{language}_icons_right", stories)
                 left_xml = stories[f"st_symbols_shared_{language}_icons_left"]
                 right_xml = stories[f"st_symbols_shared_{language}_icons_right"]
+                signal_xml = stories[f"st_symbols_shared_{language}_signals"]
+                self.assertIn('PointSize="5.6"', signal_xml)
                 self.assertIn('PointSize="0.1" Leading="0.1"', left_xml)
                 self.assertIn('PointSize="0.1" Leading="0.1"', right_xml)
+                self.assertIn('SingleRowHeight="28"', left_xml)
+                self.assertIn('SingleRowHeight="60"', right_xml)
                 for index in range(1, 12):
                     text = f"<Content>Icon meaning {index}</Content>"
                     self.assertNotEqual(text in left_xml, text in right_xml)

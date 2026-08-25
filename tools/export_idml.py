@@ -334,6 +334,7 @@ def main() -> int:
         page_plan=page_plan, projected_by_path=projected_by_path,
         bundle_root=bundle_root, writer=w, toc=toc, manual_ir=manual_ir,
         root=ROOT, data_root=data_root, output_lang=args.lang, emitted=emitted,
+        spec_sections=sections,
         lcd_rows=lcd_rows, trouble_rows=trouble_rows,
         symbol_data_for=symbol_data_for, slug_stem=slug_stem,
     )

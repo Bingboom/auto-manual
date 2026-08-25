@@ -18,7 +18,9 @@ from .asset_contracts import (
 )
 from .params import param_pt
 from .prose_flow import (
+    apply_component_composition_data,
     composition_language,
+    composition_type,
     operation_final_frame_x_offset,
     operation_language,
 )
@@ -54,6 +56,7 @@ class ReferenceStoryEmitter:
         normalized_title = title.casefold()
         operation_lang = operation_language(blocks, self.page_plan, title)
         composition_lang = composition_language(self.page_plan, title)
+        planned_composition_type = composition_type(self.page_plan, title)
         is_operation = (
             (self.page_plan or {}).get("plan_source") == "approved-reference"
             and "operation_guide" in title
@@ -91,8 +94,14 @@ class ReferenceStoryEmitter:
             and "product_overview" in normalized_title
         )
         is_warranty = (
-            (self.page_plan or {}).get("plan_source") == "approved-reference"
-            and "warranty" in title.casefold()
+            (
+                planned_composition_type == "warranty"
+                or (
+                    (self.page_plan or {}).get("plan_source")
+                    == "approved-reference"
+                    and "warranty" in title.casefold()
+                )
+            )
             and composition_lang in governed_languages()
         )
         warranty_frame_x_offset = (
@@ -113,6 +122,11 @@ class ReferenceStoryEmitter:
         story_language = operation_lang or composition_lang
         if story_language is not None:
             prose_options["language"] = story_language
+        blocks = apply_component_composition_data(
+            blocks,
+            self.page_plan,
+            title,
+        )
         _, estimate = writer.add_prose_story(
             sid,
             title,

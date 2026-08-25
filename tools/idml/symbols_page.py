@@ -292,7 +292,8 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                           width: float, bundle_root: Path,
                           lang: str = "en", *,
                           headers: tuple[str, str],
-                          row_heights: list[float] | None = None) -> str:
+                          row_heights: list[float] | None = None,
+                          fit_body_to_row: bool = False) -> str:
     rows = [(headers[0], headers[1], True)] + [
         (label, text, False) for label, text in signals
     ]
@@ -314,6 +315,20 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
                 f"{tid}sig{ri}", left, bundle_root, lang,
             )
             right_xml = writer._psr("HB Spec Value", right, terminal=True)
+            if fit_body_to_row and row_heights is not None:
+                size, leading, scale = fit_symbol_body_metrics(
+                    writer.params,
+                    lang,
+                    right,
+                    width - left_col - 12.0,
+                    row_heights[ri],
+                )
+                right_xml = with_character_metrics(
+                    right_xml,
+                    point_size=size,
+                    leading=leading,
+                    horizontal_scale=scale,
+                )
         cells.append(writer._cell(f"{tid}c{ri}_0", f"0:{ri}", left_xml,
                                   fill="Color/HB Bg K05",
                                   top=3, bottom=3,

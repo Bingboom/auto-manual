@@ -943,10 +943,10 @@ lang_es_idml_warranty_panel_height_adjust_3,0.15,pt,Spanish repair panel height 
 lang_en_idml_warranty_panel_height_adjust_4,6.81,pt,English original-buyer panel height correction
 lang_fr_idml_warranty_panel_height_adjust_4,3.05,pt,French original-buyer panel height correction
 lang_es_idml_warranty_panel_height_adjust_4,3.05,pt,Spanish original-buyer panel height correction
-lang_en_idml_warranty_panel_height_adjust_5,5.95,pt,English exclusions panel height correction
+lang_en_idml_warranty_panel_height_adjust_5,0.45,pt,English exclusions panel height correction
 lang_fr_idml_warranty_panel_height_adjust_5,-7.17,pt,French exclusions panel height correction
-lang_es_idml_warranty_panel_height_adjust_5,-4.29,pt,Spanish exclusions panel height correction
-lang_en_idml_warranty_panel_height_adjust_6,7.32,pt,English interpretation panel height correction measured from approved PDF
+lang_es_idml_warranty_panel_height_adjust_5,3.71,pt,Spanish exclusions panel height correction
+lang_en_idml_warranty_panel_height_adjust_6,13.32,pt,English interpretation panel height correction measured from approved PDF
 lang_fr_idml_warranty_panel_height_adjust_6,-0.42,pt,French interpretation panel height correction
 lang_es_idml_warranty_panel_height_adjust_6,0.92,pt,Spanish interpretation panel height correction
 idml_warranty_section_1_before,4.16,pt,Default lead-to-limited-warranty rhythm
@@ -964,13 +964,13 @@ lang_es_idml_warranty_section_2_before,3.17,pt,Spanish limited-to-period rhythm
 lang_en_idml_warranty_section_3_before,2.26,pt,English period-to-repair rhythm
 lang_fr_idml_warranty_section_3_before,5.59,pt,French period-to-repair rhythm
 lang_es_idml_warranty_section_3_before,2.88,pt,Spanish period-to-repair rhythm
-lang_en_idml_warranty_section_4_before,2.02,pt,English repair-to-buyer rhythm
+lang_en_idml_warranty_section_4_before,3.02,pt,English repair-to-buyer rhythm
 lang_fr_idml_warranty_section_4_before,5.30,pt,French repair-to-buyer rhythm
 lang_es_idml_warranty_section_4_before,3.72,pt,Spanish repair-to-buyer rhythm
-lang_en_idml_warranty_section_5_before,2.02,pt,English buyer-to-exclusions rhythm
+lang_en_idml_warranty_section_5_before,3.52,pt,English buyer-to-exclusions rhythm
 lang_fr_idml_warranty_section_5_before,5.36,pt,French buyer-to-exclusions rhythm
 lang_es_idml_warranty_section_5_before,4.12,pt,Spanish buyer-to-exclusions rhythm
-lang_en_idml_warranty_section_6_before,3.43,pt,English exclusions-to-interpretation rhythm
+lang_en_idml_warranty_section_6_before,3.93,pt,English exclusions-to-interpretation rhythm
 lang_fr_idml_warranty_section_6_before,4.60,pt,French exclusions-to-interpretation rhythm
 lang_es_idml_warranty_section_6_before,5.17,pt,Spanish exclusions-to-interpretation rhythm
 comp_warranty_page_extra_height,6.0,mm,Warranty page local extra body height

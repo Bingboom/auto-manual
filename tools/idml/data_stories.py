@@ -599,6 +599,7 @@ def add_spec_story(
     lang: str = "en",
     *,
     title: str,
+    layout_variant: str = "reference",
 ) -> str:
     sid = "st_spec" if lang == "en" else f"st_spec_{lang}"
     title = source_text(title, owner="Specifications page title")
@@ -608,9 +609,26 @@ def add_spec_story(
     # Localized copy changes line breaking inside the cells, not the native
     # rounded-table geometry.  Keeping this language-neutral also prevents a
     # translated page from silently falling back to the legacy square table.
-    reference_table_heights = (98.41, 49.06, 94.89, 27.11)
-    default_section_before = (7.89, 9.56, 10.54, 14.41)
-    default_table_before = (3.79, 2.47, 4.75, 3.30)
+    if layout_variant not in {"reference", "compact"}:
+        raise ValueError(
+            f"unsupported specification layout variant: {layout_variant}"
+        )
+    compact = layout_variant == "compact"
+    if compact:
+        reference_table_heights = tuple(
+            param_pt(
+                writer.params,
+                f"idml_compact_spec_table_{index}_height",
+                default,
+            )
+            for index, default in enumerate((76.5, 27.0, 27.0), start=1)
+        )
+        default_section_before = (5.8, 8.2, 8.2)
+        default_table_before = (2.5, 2.5, 2.5)
+    else:
+        reference_table_heights = (98.41, 49.06, 94.89, 27.11)
+        default_section_before = (7.89, 9.56, 10.54, 14.41)
+        default_table_before = (3.79, 2.47, 4.75, 3.30)
     native_symbol_index = 0
 
     def spec_paragraph(style: str, text: str, **kwargs) -> str:
@@ -669,10 +687,18 @@ def add_spec_story(
         )
         section_before = param_pt(
             writer.params,
-            f"lang_{lang}_idml_spec_section_{si + 1}_space_before",
+            (
+                f"lang_{lang}_idml_compact_spec_section_{si + 1}_space_before"
+                if compact
+                else f"lang_{lang}_idml_spec_section_{si + 1}_space_before"
+            ),
             param_pt(
                 writer.params,
-                f"idml_spec_section_{si + 1}_space_before",
+                (
+                    f"idml_compact_spec_section_{si + 1}_space_before"
+                    if compact
+                    else f"idml_spec_section_{si + 1}_space_before"
+                ),
                 section_default,
             ),
         )
@@ -709,6 +735,7 @@ def add_spec_story(
                     m_l=writer.m_l,
                     m_r=writer.m_r,
                     visual_parity=True,
+                    density=layout_variant,
                     section_index=si,
                     language=lang,
                     paragraph_xml=spec_paragraph,
@@ -739,10 +766,18 @@ def add_spec_story(
             table_default = default_table_before[si]
             table_before = param_pt(
                 writer.params,
-                f"lang_{lang}_idml_spec_table_{si + 1}_space_before",
+                (
+                    f"lang_{lang}_idml_compact_spec_table_{si + 1}_space_before"
+                    if compact
+                    else f"lang_{lang}_idml_spec_table_{si + 1}_space_before"
+                ),
                 param_pt(
                     writer.params,
-                    f"idml_spec_table_{si + 1}_space_before",
+                    (
+                        f"idml_compact_spec_table_{si + 1}_space_before"
+                        if compact
+                        else f"idml_spec_table_{si + 1}_space_before"
+                    ),
                     table_default,
                 ),
             )

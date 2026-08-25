@@ -56,6 +56,7 @@ class _RecordingWriter:
         self.chain_frames: list[tuple[str, int]] = []
         self.story_frames: list[tuple[str, list[tuple[int, float, float]]]] = []
         self.prose_story_options: list[dict[str, float]] = []
+        self.prose_story_blocks: list[list[tuple[str, str]]] = []
 
     def add_prose_story(
         self,
@@ -66,6 +67,7 @@ class _RecordingWriter:
         **kwargs: float,
     ) -> tuple[str, float]:
         self.prose_story_options.append(kwargs)
+        self.prose_story_blocks.append(list(_blocks))
         return sid, 1.0
 
     def pages_for_height(self, _height: float) -> int:
@@ -284,6 +286,65 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
                     expected_x,
                     writer.spread_chain_options[0]["last_frame_x_offset"],
                 )
+
+    def test_target_warranty_reuses_shared_composition_geometry(self) -> None:
+        writer = _RecordingWriter()
+        writer.params["comp_warranty_page_extra_height"] = ("17.01", "pt")
+        writer.params["lang_en_idml_warranty_frame_x_offset"] = (
+            "-0.32", "pt",
+        )
+        writer.params["lang_en_idml_warranty_page_top_offset"] = (
+            "14.22", "pt",
+        )
+        emitter = ReferenceStoryEmitter(
+            writer,
+            _RecordingToc(),
+            ROOT,
+            {
+                "plan_source": "target-assembly",
+                "pages": [{
+                    "source_path": "page/warranty_en.rst",
+                    "composition_id": "en_warranty",
+                    "composition_type": "warranty",
+                    "language": "en",
+                    "composition_data": {
+                        "warranty": {"layout_variant": "multiline_lead"},
+                    },
+                }],
+            },
+        )
+
+        emitter.emit(
+            "st_warranty_en",
+            "warranty_en",
+            [
+                ("h1", "WARRANTY"),
+                ("component", json.dumps({
+                    "kind": "warrantylead",
+                    "texts": ["Lead."],
+                })),
+            ],
+            page_cursor=10,
+        )
+
+        self.assertEqual(
+            17.01,
+            writer.spread_chain_options[0]["bottom_extra"],
+        )
+        self.assertEqual(
+            -0.32,
+            writer.spread_chain_options[0]["last_frame_x_offset"],
+        )
+        self.assertEqual(
+            {"inline_origin_shift": -0.32, "language": "en"},
+            writer.prose_story_options[0],
+        )
+        self.assertEqual(
+            14.22,
+            writer.spread_chain_options[0]["first_top_offset"],
+        )
+        projected_lead = json.loads(writer.prose_story_blocks[0][1][1])
+        self.assertEqual("multiline_lead", projected_lead["layout_variant"])
 
     def test_unapproved_operation_chain_keeps_the_standard_bottom(self) -> None:
         writer = _RecordingWriter()

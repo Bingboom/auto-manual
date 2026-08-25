@@ -9,14 +9,32 @@ idml_compact_safety_symbols_gap,4.0,pt,Compact shared-page clear gap before the 
 idml_compact_symbols_title_gap,6.0,pt,Compact shared-page gap from Symbols H1 to signal table
 idml_compact_safety_body_font_size,5.4,pt,Compact shared-page Safety lead font size
 idml_compact_safety_body_leading,6.1,pt,Compact shared-page Safety lead leading
-idml_compact_safety_list_font_size,5.0,pt,Compact shared-page Safety list font size
-idml_compact_safety_list_leading,5.8,pt,Compact shared-page Safety list leading
+idml_compact_safety_list_font_size,5.5,pt,Compact shared-page Safety list font size
+idml_compact_safety_list_leading,6.3,pt,Compact shared-page Safety list leading
+lang_en_idml_compact_safety_list_font_size,6.0,pt,English compact shared-page Safety list font size
+lang_en_idml_compact_safety_list_leading,6.8,pt,English compact shared-page Safety list leading
+lang_fr_idml_compact_safety_list_font_size,5.7,pt,French compact shared-page Safety list font size
+lang_fr_idml_compact_safety_list_leading,6.5,pt,French compact shared-page Safety list leading
+lang_es_idml_compact_safety_list_font_size,5.7,pt,Spanish compact shared-page Safety list font size
+lang_es_idml_compact_safety_list_leading,6.5,pt,Spanish compact shared-page Safety list leading
 idml_compact_safety_list_space_after,0.35,pt,Compact shared-page Safety list item gap
 idml_compact_safety_list_horizontal_scale,0.96,ratio,Compact shared-page Safety list width correction
 lang_fr_idml_compact_safety_list_horizontal_scale,0.94,ratio,French compact shared-page Safety list width correction
 lang_es_idml_compact_safety_list_horizontal_scale,0.96,ratio,Spanish compact shared-page Safety list width correction
 idml_table_marker_point_size,0.1,pt,IDML editable table carrier marker size and leading
 idml_compact_symbols_table_frame_allowance,4.0,pt,Compact shared-page Symbols table carrier allowance
+idml_compact_symbols_signal_header_height,17.3,pt,Compact shared-page signal-table header height
+idml_compact_symbols_signal_row_height,25.42,pt,Compact shared-page signal-table row height
+lang_fr_idml_compact_symbols_signal_header_height,13.5,pt,French compact shared-page signal-table header height
+lang_fr_idml_compact_symbols_signal_row_height,23.5,pt,French compact shared-page signal-table row height
+lang_es_idml_compact_symbols_signal_header_height,13.5,pt,Spanish compact shared-page signal-table header height
+lang_es_idml_compact_symbols_signal_row_height,23.5,pt,Spanish compact shared-page signal-table row height
+idml_compact_symbols_icon_header_height,13.5,pt,Compact shared-page icon-table header height
+idml_compact_symbols_icon_row_height,28.0,pt,Compact shared-page icon-table ordinary row height
+idml_compact_symbols_icon_last_row_height,32.0,pt,Compact shared-page icon-table left final row height
+idml_compact_symbols_icon_long_last_row_height,60.0,pt,Compact shared-page icon-table long right final row height
+idml_compact_symbols_icon_left_col_width,39.685,pt,Compact shared-page left icon column width
+idml_compact_symbols_icon_right_col_width,35.5,pt,Compact shared-page right icon column width
 idml_compact_lcd_hero_max_height,55.0,pt,Compact shared-page LCD hero maximum height
 idml_compact_lcd_operations_split,181.0,pt,Compact shared-page LCD and Operations vertical split
 idml_compact_shared_page_gap,4.0,pt,Gap between stories in a shared physical-page composition
@@ -49,3 +67,31 @@ idml_compact_connections_frame_bottom_extra,8.0,pt,Connections shared-page nativ
 idml_compact_connection_trouble_split,235.0,pt,Shared connection-tail troubleshooting vertical split
 idml_compact_trouble_frame_bottom_extra,18.0,pt,Troubleshooting shared-page native import allowance
 idml_compact_charging_storage_frame_bottom_extra,18.0,pt,Charging and Storage shared-page native import allowance
+idml_compact_charging_frame_bottom_extra,36.0,pt,Standalone Charging page native import allowance
+idml_compact_storage_spec_body_top,59.0,pt,Storage body card top on a shared Storage and Specifications page
+idml_compact_storage_spec_body_bottom,131.5,pt,Storage body card bottom on a shared Storage and Specifications page
+idml_compact_storage_spec_spec_top,148.8,pt,Specifications story top on a shared Storage and Specifications page
+idml_compact_storage_spec_body_inset,6.0,pt,Storage body card inner inset
+idml_compact_spec_table_cell_inset,2.0,pt,Compact specification table vertical cell inset
+idml_compact_spec_table_row_height,11.0,pt,Compact specification table minimum row height measured from the battery-pack reference
+idml_compact_spec_table_multiline_min_height,13.0,pt,Compact specification multiline minimum row height
+idml_compact_spec_table_1_height,81.7,pt,Compact first specification section panel height
+idml_compact_spec_table_2_height,28.5,pt,Compact second specification section panel height
+idml_compact_spec_table_3_height,28.5,pt,Compact third specification section panel height
+idml_compact_spec_table_1_space_before,5.7,pt,Compact first specification heading-to-table rhythm
+idml_compact_spec_table_2_space_before,7.9,pt,Compact second specification heading-to-table rhythm
+idml_compact_spec_table_3_space_before,8.9,pt,Compact third specification heading-to-table rhythm
+idml_warranty_variant_multiline_lead_section_1_before_adjust,-7.5,pt,Multiline-lead first-section rhythm adjustment
+idml_warranty_variant_multiline_lead_body_horizontal_scale,90,int,Multiline-lead warranty body horizontal scale
+idml_warranty_variant_multiline_lead_body_estimate_horizontal_scale_6,80,int,Multiline-lead interpretation wrap-estimate scale
+idml_warranty_variant_multiline_lead_panel_height_adjust_1,3.0,pt,Multiline-lead first warranty-panel height adjustment
+idml_warranty_variant_multiline_lead_section_2_before_adjust,-1.5,pt,Multiline-lead period-section rhythm adjustment
+idml_warranty_variant_multiline_lead_panel_height_adjust_2,2.0,pt,Multiline-lead period-panel height adjustment
+idml_warranty_variant_multiline_lead_section_3_before_adjust,-3.5,pt,Multiline-lead repair-section rhythm adjustment
+idml_warranty_variant_multiline_lead_panel_height_adjust_3,-5.5,pt,Multiline-lead repair-panel height adjustment
+idml_warranty_variant_multiline_lead_section_4_before_adjust,-2.0,pt,Multiline-lead buyer-section rhythm adjustment
+idml_warranty_variant_multiline_lead_panel_height_adjust_4,0.5,pt,Multiline-lead buyer-panel height adjustment
+idml_warranty_variant_multiline_lead_section_5_before_adjust,-2.0,pt,Multiline-lead exclusions-section rhythm adjustment
+idml_warranty_variant_multiline_lead_panel_height_adjust_5,8.0,pt,Multiline-lead exclusions-panel height adjustment
+idml_warranty_variant_multiline_lead_section_6_before_adjust,-0.5,pt,Multiline-lead interpretation-section rhythm adjustment
+idml_warranty_variant_multiline_lead_panel_height_adjust_6,1.5,pt,Multiline-lead interpretation-panel height adjustment

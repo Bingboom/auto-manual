@@ -16,7 +16,6 @@ from ..primitives import (
 from .base import RenderContext, figure_paragraph
 
 _CIRCLED = {str(index): glyph for index, glyph in enumerate("❶❷❸❹❺❻❼❽❾", 1)}
-_NATIVE_BADGE_TOKEN = "\ue103"
 
 
 def _plain_strong(text: str) -> str:
@@ -46,6 +45,37 @@ def _panel_width(ctx: RenderContext, width: float) -> float:
         ctx,
         "idml_warranty_panel_width_adjust",
         0.0,
+    )
+
+
+def _variant_adjust(
+    spec: dict,
+    ctx: RenderContext,
+    key: str,
+) -> float:
+    variant = str(spec.get("layout_variant") or "").strip().lower()
+    if not variant or re.fullmatch(r"[a-z][a-z0-9_]*", variant) is None:
+        return 0.0
+    return param_pt(
+        ctx.params,
+        f"idml_warranty_variant_{variant}_{key}",
+        0.0,
+    )
+
+
+def _variant_value(
+    spec: dict,
+    ctx: RenderContext,
+    key: str,
+    default: float,
+) -> float:
+    variant = str(spec.get("layout_variant") or "").strip().lower()
+    if not variant or re.fullmatch(r"[a-z][a-z0-9_]*", variant) is None:
+        return default
+    return param_pt(
+        ctx.params,
+        f"idml_warranty_variant_{variant}_{key}",
+        default,
     )
 
 
@@ -87,88 +117,13 @@ def _text_frame(
     )
 
 
-def _native_year_badge(
-    ctx: RenderContext,
-    *,
-    marker_id: str,
-    number: str,
-    diameter: float,
-    point_size: float,
-) -> str:
-    if ctx.add_story is None:
-        return ""
-    paragraph = psr(
-        "HB Warranty Year Heading",
-        number,
-        terminal=True,
-    ).replace(
-        "<ParagraphStyleRange ",
-        '<ParagraphStyleRange Justification="CenterAlign" ',
-        1,
-    ).replace(
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'FillColor="Color/Paper" FontStyle="Bold" PointSize="{point_size:g}"',
-        1,
-    )
-    story_id = ctx.add_story(
-        f"st_{marker_id}",
-        f"Warranty year badge {number}",
-        [paragraph],
-    )
-    insets = "".join('<ListItem type="unit">0</ListItem>' for _ in range(4))
-    return (
-        f'<TextFrame Self="tf_{marker_id}" ParentStory="{story_id}" '
-        'PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" '
-        'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
-        'FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" '
-        'StrokeWeight="0" ItemTransform="1 0 0 1 0 0">\n'
-        + _po.rounded_path_geometry(
-            0.0,
-            -diameter,
-            diameter,
-            0.0,
-            diameter / 2.0,
-        )
-        + '    <TextFramePreference TextColumnCount="1" '
-        'VerticalJustification="CenterAlign" AutoSizingType="Off">'
-        f'<Properties><InsetSpacing type="list">{insets}'
-        '</InsetSpacing></Properties></TextFramePreference>\n'
-        + _anchor()
-        + '</TextFrame>'
-    )
-
-
 def _year_heading(item: dict, ctx: RenderContext, *, marker_id: str) -> str:
+    """Render the same portable year heading used by JE-1000F."""
+    del marker_id
     number = str(item.get("number", "")).strip()
     unit = str(item.get("unit", "")).strip()
     badge_size = param_pt(ctx.params, "type_warranty_year_number_font_size", 21.0)
     glyph_size = param_pt(ctx.params, "idml_warranty_year_glyph_size", 30.0)
-    if ctx.native_structure_markers:
-        badge_diameter = param_pt(
-            ctx.params,
-            "comp_warranty_year_badge_size",
-            glyph_size,
-        )
-        badge = _native_year_badge(
-            ctx,
-            marker_id=marker_id,
-            number=number,
-            diameter=badge_diameter,
-            point_size=badge_size,
-        )
-        if badge:
-            xml = psr(
-                "HB Warranty Year Heading",
-                f"{_NATIVE_BADGE_TOKEN} {unit}",
-                inline_replacements={_NATIVE_BADGE_TOKEN: badge},
-            )
-            return xml.replace(
-                "<ParagraphStyleRange ",
-                f'<ParagraphStyleRange Leading="{badge_size + 1:g}" '
-                'SpaceAfter="1.2" ',
-                1,
-            )
     glyph = _CIRCLED.get(number, number)
     xml = psr("HB Warranty Year Heading", f"{glyph} {unit}")
     xml = xml.replace(
@@ -278,9 +233,10 @@ def render_warrantylead(
     measure_w: float | None = None,
 ) -> tuple[str, float]:
     width = _panel_width(ctx, measure_w or ctx.text_measure)
-    text = " ".join(
+    lead_lines = [
         _plain_strong(str(value)) for value in spec.get("texts", []) if value
-    )
+    ]
+    text = "\n".join(lead_lines)
     size = param_pt(ctx.params, "type_warranty_lead_font_size", 7.0)
     leading = param_pt(ctx.params, "type_warranty_lead_font_leading", 8.2)
     pad_lr = param_pt(ctx.params, "comp_warranty_lead_pad_lr", 10.2)
@@ -292,10 +248,18 @@ def render_warrantylead(
     horizontal_scale = _language_param(
         ctx, "idml_warranty_lead_horizontal_scale", 100.0,
     )
-    lines = _wrapped_lines(text, width - 2 * pad_lr, size)
+    lines = (
+        len(lead_lines)
+        if len(lead_lines) > 1
+        else _wrapped_lines(text, width - 2 * pad_lr, size)
+    ) or 1
     natural_height = lines * leading + 2 * pad_tb
-    height = _language_param(
+    governed_height = _language_param(
         ctx, "idml_warranty_lead_height", natural_height,
+    )
+    height = (
+        max(natural_height, governed_height)
+        if len(lead_lines) > 1 else governed_height
     )
     content = psr("HB Warranty Lead", text, terminal=True).replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
@@ -347,14 +311,27 @@ def _section_body(
     *,
     tid: str,
     width: float,
+    layout_spec: dict,
+    section_index: int,
 ) -> tuple[list[str], float]:
     body_size = param_pt(ctx.params, "type_warranty_body_font_size", 6.0)
     body_leading = param_pt(ctx.params, "idml_warranty_body_font_leading", 6.0)
     list_leading = param_pt(ctx.params, "type_warranty_body_font_leading", 7.2)
     body_after = param_pt(ctx.params, "idml_warranty_paragraph_after", 2.83)
     list_after = param_pt(ctx.params, "idml_warranty_list_after", 1.0)
-    horizontal_scale = _language_param(
-        ctx, "idml_warranty_body_horizontal_scale", 100.0,
+    horizontal_scale = _variant_value(
+        layout_spec,
+        ctx,
+        "body_horizontal_scale",
+        _language_param(
+            ctx, "idml_warranty_body_horizontal_scale", 100.0,
+        ),
+    )
+    estimate_horizontal_scale = _variant_value(
+        layout_spec,
+        ctx,
+        f"body_estimate_horizontal_scale_{section_index}",
+        horizontal_scale,
     )
     list_indent = param_pt(
         ctx.params, "idml_warranty_list_left_indent", 5.67,
@@ -448,7 +425,7 @@ def _section_body(
         height += _wrapped_lines(
             list_text if is_list else text,
             available,
-            body_size * horizontal_scale / 100.0,
+            body_size * estimate_horizontal_scale / 100.0,
         ) * leading
         if not terminal:
             height += paragraph_after
@@ -479,7 +456,12 @@ def render_warrantysection(
     )
     inner_w = width - 2 * pad_lr
     body_parts, body_height = _section_body(
-        blocks, ctx, tid=tid, width=inner_w,
+        blocks,
+        ctx,
+        tid=tid,
+        width=inner_w,
+        layout_spec=spec,
+        section_index=index,
     )
     trim_key = (
         "idml_warranty_panel_trim_first" if index == 1
@@ -495,6 +477,10 @@ def render_warrantysection(
         ctx,
         f"idml_warranty_panel_height_adjust_{index}",
         0.0,
+    ) + _variant_adjust(
+        spec,
+        ctx,
+        f"panel_height_adjust_{index}",
     )
     panel_h = max(
         22.0,
@@ -600,6 +586,14 @@ def render_warrantysection(
         ctx,
         f"idml_warranty_section_{index}_before",
         param_pt(ctx.params, before_default_key, 4.25),
+    )
+    before = max(
+        0.0,
+        before + _variant_adjust(
+            spec,
+            ctx,
+            f"section_{index}_before_adjust",
+        ),
     )
     after = param_pt(ctx.params, "comp_warranty_section_after", 1.13)
     host = host.replace(

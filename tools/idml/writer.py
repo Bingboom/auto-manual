@@ -293,7 +293,8 @@ class IdmlWriter:
                               signals: list[tuple[str, str]], width: float,
                               bundle_root: Path, lang: str = "en", *,
                               headers: tuple[str, str],
-                              row_heights: list[float] | None = None) -> str:
+                              row_heights: list[float] | None = None,
+                              fit_body_to_row: bool = False) -> str:
         return _pages._symbols_signal_table(
             self,
             tid,
@@ -303,6 +304,7 @@ class IdmlWriter:
             lang,
             headers=headers,
             row_heights=row_heights,
+            fit_body_to_row=fit_body_to_row,
         )
 
     def _symbols_icon_table(

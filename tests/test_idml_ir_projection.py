@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 import zipfile
@@ -221,6 +222,29 @@ class IdmlIRProjectionTests(unittest.TestCase):
                     ["First source-authored item.", "Second source-authored item."],
                     payload["texts"],
                 )
+
+    def test_bp_connections_keep_source_pdf_notice_labels(self) -> None:
+        from tools.idml.oppanel import transform
+        from tools.idml_rst_extract import extract_page
+
+        expected = {
+            "en": ["CAUTION", "NOTES"],
+            "fr": ["Important", "Remarques"],
+            "es": ["PRECAUCIÓN", "Observaciones"],
+        }
+        for language, labels in expected.items():
+            with self.subTest(language=language):
+                page = (
+                    ROOT / "docs" / "templates" / "page_bp" / language
+                    / "04_connections.rst"
+                )
+                blocks = transform(extract_page(page, {"latex"}).blocks)
+                specs = [
+                    json.loads(payload)
+                    for kind, payload in blocks
+                    if kind == "component"
+                ]
+                self.assertEqual(labels, [spec["label"] for spec in specs])
 
     def test_same_source_ir_keeps_skipped_raw_report_only_before_plan_resolution(self) -> None:
         with tempfile.TemporaryDirectory() as td:

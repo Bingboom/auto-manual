@@ -10,6 +10,181 @@ from tools.idml.target_assembly_render import TargetAssemblyRenderer
 
 
 class TargetAssemblyRenderTests(unittest.TestCase):
+    def test_connections_passes_target_component_data_to_shared_compositor(
+        self,
+    ) -> None:
+        bundle_root = Path("/tmp/bundle")
+        connections_ref = "page/connections_en.rst"
+        trouble_ref = "page/troubleshooting_en.rst"
+        composition_data = {
+            "connections": {
+                "layout_variant": "notice_before_primary_figure",
+                "image_role": "reference_measure",
+            }
+        }
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 2,
+            "pages": [
+                {
+                    "source_ref": connections_ref,
+                    "source_path": connections_ref,
+                    "language": "en",
+                    "page_role": "connections",
+                    "composition_id": "en_connections",
+                    "composition_type": "connections",
+                    "latex_start_page": 1,
+                    "planned_page_count": 1,
+                    "composition_data": composition_data,
+                    "flow_split": {
+                        "at_kind": "image",
+                        "occurrence": 2,
+                        "tail_composition_id": "en_troubleshooting",
+                    },
+                },
+                {
+                    "source_ref": trouble_ref,
+                    "source_path": trouble_ref,
+                    "language": "en",
+                    "page_role": "troubleshooting_data",
+                    "composition_id": "en_troubleshooting",
+                    "composition_type": "troubleshooting",
+                    "latex_start_page": 2,
+                    "planned_page_count": 1,
+                },
+            ],
+        }
+        projected_by_path = {
+            bundle_root / connections_ref: ProjectedPage(
+                path=bundle_root / connections_ref,
+                language="en",
+                blocks=(
+                    ("h1", "CONNECTIONS"),
+                    ("body", "Introduction."),
+                    ("image", "primary.png"),
+                    ("component", json.dumps({"kind": "notice"})),
+                    ("component", json.dumps({"kind": "notice"})),
+                    ("image", "tail.png"),
+                ),
+                skipped_raw=0,
+                twocol=False,
+            ),
+            bundle_root / trouble_ref: ProjectedPage(
+                path=bundle_root / trouble_ref,
+                language="en",
+                blocks=(("h1", "TROUBLESHOOTING"),),
+                skipped_raw=0,
+                twocol=False,
+            ),
+        }
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="en",
+            emitted=set(),
+            spec_sections=[],
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(),
+            slug_stem=lambda value: value,
+        )
+
+        with patch(
+            "tools.idml.target_assembly_render.shared_page.add_connections_page"
+        ) as add_page:
+            delta = renderer.render(
+                bundle_root / connections_ref,
+                get_page_cursor=lambda: 6,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual(1, delta.page_count)
+        self.assertEqual(
+            composition_data,
+            add_page.call_args.kwargs["composition_data"],
+        )
+
+    def test_charging_passes_target_component_data_to_shared_compositor(self) -> None:
+        bundle_root = Path("/tmp/bundle")
+        charging_ref = "page/charging_en.rst"
+        composition_data = {
+            "charging": {
+                "image_role": "reference_measure",
+                "h2_suffix_pill_indices": [1],
+            }
+        }
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 1,
+            "pages": [{
+                "source_ref": charging_ref,
+                "source_path": charging_ref,
+                "language": "en",
+                "page_role": "charging",
+                "composition_id": "en_charging",
+                "composition_type": "charging",
+                "latex_start_page": 1,
+                "planned_page_count": 1,
+                "composition_data": composition_data,
+            }],
+        }
+        projected_by_path = {
+            bundle_root / charging_ref: ProjectedPage(
+                path=bundle_root / charging_ref,
+                language="en",
+                blocks=(
+                    ("h1", "CHARGING"),
+                    ("h2", "AC WALL"),
+                    ("image", "ac.png"),
+                    ("h2", "SOLAR (SOLD SEPARATELY)"),
+                    ("image", "solar.png"),
+                ),
+                skipped_raw=0,
+                twocol=False,
+            )
+        }
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="en",
+            emitted=set(),
+            spec_sections=[],
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(),
+            slug_stem=lambda value: value,
+        )
+
+        with patch(
+            "tools.idml.target_assembly_render.shared_page.add_charging_page"
+        ) as add_page:
+            delta = renderer.render(
+                bundle_root / charging_ref,
+                get_page_cursor=lambda: 8,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual(1, delta.page_count)
+        self.assertEqual(composition_data, add_page.call_args.kwargs[
+            "composition_data"
+        ])
+
     def test_composition_uses_page_cursor_after_pending_flow_flush(self) -> None:
         bundle_root = Path("/tmp/bundle")
         charging_ref = "page/charging_en.rst"
@@ -67,6 +242,7 @@ class TargetAssemblyRenderTests(unittest.TestCase):
             data_root=Path("/tmp/data"),
             output_lang="en",
             emitted=set(),
+            spec_sections=[],
             lcd_rows=[],
             trouble_rows=[],
             symbol_data_for=Mock(),
@@ -148,6 +324,7 @@ class TargetAssemblyRenderTests(unittest.TestCase):
             data_root=Path("/tmp/data"),
             output_lang="en",
             emitted=set(),
+            spec_sections=[],
             lcd_rows=[],
             trouble_rows=[],
             symbol_data_for=Mock(),

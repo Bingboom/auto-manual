@@ -19,6 +19,7 @@ from .composition_plan import (
     CompositionPlanError,
     build_composition_plan,
 )
+from .heading_suffix import split_trailing_parenthetical
 from .page_roles import PageRole, classify_page_role
 
 
@@ -147,6 +148,7 @@ def _validate_page_point(
 def _validate_composition_data(
     pages: list[dict[str, Any]],
     reference: dict[str, Any],
+    ir: ManualIR,
 ) -> list[str]:
     """Validate optional target-only component variants and page geometry."""
     issues: list[str] = []
@@ -157,13 +159,222 @@ def _validate_composition_data(
     page_height = _finite_number(
         page_size.get("height") if isinstance(page_size, dict) else None
     )
-    for page in pages:
+    for page_index, page in enumerate(pages):
         data = page.get("composition_data")
         if data is None:
             continue
         source_ref = str(page.get("source_ref") or "page")
         if not isinstance(data, dict):
             issues.append(f"{source_ref}.composition_data must be an object")
+            continue
+        if set(data) == {"charging"}:
+            if page.get("page_role") != PageRole.CHARGING.value or page.get(
+                "composition_type"
+            ) != "charging":
+                issues.append(
+                    f"{source_ref}.composition_data.charging requires "
+                    "a charging composition"
+                )
+                continue
+            charging = data["charging"]
+            if not isinstance(charging, dict):
+                issues.append(
+                    f"{source_ref}.composition_data.charging must be an object"
+                )
+                continue
+            expected = {"image_role", "h2_suffix_pill_indices"}
+            if set(charging) != expected:
+                issues.append(
+                    f"{source_ref}.composition_data.charging must contain "
+                    f"exactly {sorted(expected)}"
+                )
+                continue
+            if charging.get("image_role") not in {
+                "charging_diagram",
+                "full_measure",
+                "reference_measure",
+            }:
+                issues.append(
+                    f"{source_ref}.composition_data.charging.image_role is invalid"
+                )
+            indices = charging.get("h2_suffix_pill_indices")
+            if not isinstance(indices, list) or not indices:
+                issues.append(
+                    f"{source_ref}.composition_data.charging."
+                    "h2_suffix_pill_indices must be a non-empty list"
+                )
+                continue
+            if any(
+                isinstance(index, bool)
+                or not isinstance(index, int)
+                or index < 0
+                for index in indices
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.charging."
+                    "h2_suffix_pill_indices must contain non-negative integers"
+                )
+                continue
+            if len(set(indices)) != len(indices):
+                issues.append(
+                    f"{source_ref}.composition_data.charging."
+                    "h2_suffix_pill_indices must be unique"
+                )
+                continue
+            source_page = ir.pages[page_index] if page_index < len(ir.pages) else None
+            h2s = [
+                str(block.payload)
+                for block in (source_page.blocks if source_page is not None else ())
+                if block.kind == "h2"
+            ]
+            for index in indices:
+                label = (
+                    f"{source_ref}.composition_data.charging."
+                    "h2_suffix_pill_indices"
+                )
+                if index >= len(h2s):
+                    issues.append(f"{label} index {index} is out of range")
+                elif split_trailing_parenthetical(h2s[index]) is None:
+                    issues.append(
+                        f"{label} index {index} requires a trailing parenthetical"
+                    )
+            continue
+        if set(data) == {"connections"}:
+            if page.get("page_role") != PageRole.CONNECTIONS.value or page.get(
+                "composition_type"
+            ) != "connections":
+                issues.append(
+                    f"{source_ref}.composition_data.connections requires "
+                    "a connections composition"
+                )
+                continue
+            connections = data["connections"]
+            if not isinstance(connections, dict):
+                issues.append(
+                    f"{source_ref}.composition_data.connections must be an object"
+                )
+                continue
+            expected = {"image_role", "layout_variant"}
+            if set(connections) != expected:
+                issues.append(
+                    f"{source_ref}.composition_data.connections must contain "
+                    f"exactly {sorted(expected)}"
+                )
+                continue
+            if connections.get("layout_variant") != (
+                "notice_before_primary_figure"
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.connections.layout_variant "
+                    "must be notice_before_primary_figure"
+                )
+            if connections.get("image_role") not in {
+                "full_measure",
+                "reference_measure",
+            }:
+                issues.append(
+                    f"{source_ref}.composition_data.connections.image_role "
+                    "is invalid"
+                )
+            continue
+        if set(data) == {"specifications"}:
+            if page.get("page_role") != PageRole.SPEC.value or page.get(
+                "composition_type"
+            ) != "storage_specifications":
+                issues.append(
+                    f"{source_ref}.composition_data.specifications requires "
+                    "a storage_specifications composition on the spec source"
+                )
+                continue
+            specifications = data["specifications"]
+            if not isinstance(specifications, dict):
+                issues.append(
+                    f"{source_ref}.composition_data.specifications must be an object"
+                )
+                continue
+            expected = {"layout_variant", "section_groups"}
+            if set(specifications) != expected:
+                issues.append(
+                    f"{source_ref}.composition_data.specifications must contain "
+                    f"exactly {sorted(expected)}"
+                )
+                continue
+            if specifications.get("layout_variant") != "compact":
+                issues.append(
+                    f"{source_ref}.composition_data.specifications."
+                    "layout_variant must be compact"
+                )
+            groups = specifications.get("section_groups")
+            if not isinstance(groups, list) or not groups:
+                issues.append(
+                    f"{source_ref}.composition_data.specifications."
+                    "section_groups must be a non-empty list"
+                )
+                continue
+            seen_indices: set[int] = set()
+            for index, group in enumerate(groups):
+                label = (
+                    f"{source_ref}.composition_data.specifications."
+                    f"section_groups[{index}]"
+                )
+                if not isinstance(group, dict):
+                    issues.append(f"{label} must be an object")
+                    continue
+                if not set(group) <= {"source_indices", "title"} or (
+                    "source_indices" not in group
+                ):
+                    issues.append(
+                        f"{label} supports only source_indices and optional title"
+                    )
+                    continue
+                source_indices = group.get("source_indices")
+                if not isinstance(source_indices, list) or not source_indices:
+                    issues.append(f"{label}.source_indices must be a non-empty list")
+                    continue
+                for source_index in source_indices:
+                    if (
+                        isinstance(source_index, bool)
+                        or not isinstance(source_index, int)
+                        or source_index < 0
+                    ):
+                        issues.append(
+                            f"{label}.source_indices must contain non-negative integers"
+                        )
+                        continue
+                    if source_index in seen_indices:
+                        issues.append(
+                            f"{label}.source_indices contains duplicate {source_index}"
+                        )
+                    seen_indices.add(source_index)
+                if "title" in group and not isinstance(group["title"], str):
+                    issues.append(f"{label}.title must be a string")
+            continue
+        if set(data) == {"warranty"}:
+            if page.get("page_role") != PageRole.WARRANTY.value or page.get(
+                "composition_type"
+            ) != "warranty":
+                issues.append(
+                    f"{source_ref}.composition_data.warranty requires "
+                    "a warranty composition"
+                )
+                continue
+            warranty = data["warranty"]
+            if not isinstance(warranty, dict):
+                issues.append(
+                    f"{source_ref}.composition_data.warranty must be an object"
+                )
+                continue
+            if set(warranty) != {"layout_variant"}:
+                issues.append(
+                    f"{source_ref}.composition_data.warranty must contain "
+                    "exactly ['layout_variant']"
+                )
+                continue
+            if warranty.get("layout_variant") != "multiline_lead":
+                issues.append(
+                    f"{source_ref}.composition_data.warranty.layout_variant "
+                    "must be multiline_lead"
+                )
             continue
         if set(data) == {"troubleshooting"}:
             if page.get("page_role") != PageRole.TROUBLESHOOTING_DATA.value or page.get(
@@ -221,8 +432,9 @@ def _validate_composition_data(
             continue
         if set(data) != {"lcd"}:
             issues.append(
-                f"{source_ref}.composition_data supports only lcd or "
-                "troubleshooting component data"
+                f"{source_ref}.composition_data supports only charging, "
+                "connections, lcd, specifications, troubleshooting, or "
+                "warranty component data"
             )
             continue
         if page.get("page_role") != PageRole.LCD.value or page.get(
@@ -410,7 +622,7 @@ def normalize_target_assembly_plan(
         normalized_pages.append(normalized)
 
     issues.extend(_validate_flow_splits(raw_pages, ir))
-    issues.extend(_validate_composition_data(raw_pages, reference))
+    issues.extend(_validate_composition_data(raw_pages, reference, ir))
     normalized: dict[str, Any] = {
         "schema_version": "latex-page-plan/v1",
         "plan_source": "target-assembly",

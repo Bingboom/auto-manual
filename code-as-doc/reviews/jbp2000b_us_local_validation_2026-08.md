@@ -422,3 +422,84 @@ Start Review / Draft / Publish。只有在操作者再次明确确认“入库/�
   `e39cc115008e810a730debe969cdb3bef791e2d6d45611b512c212b2d61648d6`；
 - `data/phase2` 当前 runtime 快照仍缺 JBP Product Name，本轮未修补该历史漂移、
   未写线上表；可复现本地验证继续显式使用仓库冻结 fixture。
+
+## 15. 2026-08-24 d63adb27 逐页视觉发现与收敛计划
+
+### 冻结基线与安全网
+
+- 隔离 worktree 已从 `f611c173` fast-forward 到远端分支头 `d63adb27`；主目录
+  `fix/bp-us-local-validation` 的未提交源文件和资产保持原样；
+- 使用冻结 `tests/fixtures/phase2` 经真实 `build.py idml --source runtime
+  --idml-mode both --no-clean --skip-root-index` 重建：28 页、43/43 bindings、
+  261 blocks、235 stories、`skipped_raw=0`；
+- InDesign 2026 `21.0.1.6` native finalize 再次通过：28 页、0 overset、
+  0 missing fonts、0 bad links；成功预检只证明包结构可用，不代表视觉对齐；
+- 原稿与最新 native PDF 的 28 页已全部并排渲染；重复差异集中在 EN/FR/ES 的
+  印刷页 06、07、08，即物理页 9-11、17-19、25-27。
+
+### 逐页问题矩阵
+
+| 物理页 | 共享 composition / component | 原稿结构 | 当前差异 | 修复所有权 |
+| --- | --- | --- | --- | --- |
+| 9/17/25 | `charging` | 两张大充电图；第二段有 `SOLD SEPARATELY`；STORAGE 延续到下一页 | 合入后的章节顺序已恢复，但两图仍偏小，徽标缺失，全部 STORAGE 仍留在本页 | 现有 charging 组件与目标装配数据；不增加页面标题或型号分支 |
+| 10/18/26 | `specifications` | 页首为 STORAGE 尾段；紧凑规格表占余下区域 | STORAGE 缺席；四个规格 panel 仍使用 JE 全页高度预算，大量空白 | 新增可复用 `storage_specifications` composition；紧凑表格几何由 overlay token 驱动；JBP 只绑定实例 |
+| 11/19/27 | `warranty` + `warrantylead` / `warrantysection` / `warrantyyears` | 灰色 lead、6 个圆角 section card、深色 pill 标题、两列年份卡 | 构建明确警告 `warranty grouping skipped: missing h2`；模板的 6 个标题是粗体正文，因此 lead/section 组件未被选择；年份圆存在但 3/2 数字在 Mac native PDF 中消失 | 修正共享的结构识别/语义载体并复用现有 warranty 组件；年份使用原生文本框与 compact token，不用 Unicode 圈号或平台字体 |
+
+### 实施阶段
+
+1. 先加回归测试，固定粗体载体必须投影为结构化 warranty components，且原生年份
+   数字在 IDML 中有独立 story、白色字和可容纳字号；
+2. 让 `warranty` composition 显式消费现有 warranty component registry；页面装配
+   不读取模型、文件名或本地化标题；
+3. 注册共享 `storage_specifications` composition，把 Storage 尾段与紧凑
+   Specifications 组件放到同一物理页；尺寸通过 compact overlay 与 candidate
+   assembly 的 `composition_data` 选择；
+4. 保持 JE approved contract、58 页 composition map、style identity 与默认
+   规格表几何不变；不更新 JE hash、不弱化 gate；
+5. 按 Ruff -> 定向测试 -> 全量 unittest -> guardrails -> doc links -> JBP check /
+   IDML -> native finalize -> 28 页视觉对比的顺序验收；构建物不进入提交。
+
+### 非目标
+
+- 不写线上表、不触发 Start Review / Draft / Publish，不创建或批准 reference plan；
+- 不把 JBP 页面坐标散落进 `export_idml.py`、模板标题判断或 `if model == ...`；
+- 不清理、回滚或提交 `docs/_build/**`、`tmp/**`、`docs/index.rst` 等生成物。
+
+### 组件化实施与 v36 验收结果
+
+- JBP 的三语 Charging 目标页现统一声明 `composition_type=charging`，其
+  `composition_data` 只选择共享 `reference_measure` 图片角色和零基 H2 suffix
+  ordinal；没有声明页面坐标，也没有按型号、语言、标题或页码分支；
+- 共享 `add_charging_page()` 继续走 JE 已使用的 prose story/composition 链路，
+  两张插图由语义图片角色决定图幅；第二个 H2 的括号后缀由共享
+  `headingpill` 组合标准 H2 原生圆点、`HB Title L2` 与 emphasis pill token；
+- 独立 Charging frame 新增共享 overlay token
+  `idml_compact_charging_frame_bottom_extra=36pt`。旧
+  `charging_storage` 仍保持自己的 18pt 预算，JE approved composition map、
+  style identity 与默认几何均未改动；
+- 真实 `build.py idml --source runtime --idml-mode both --no-clean
+  --skip-root-index` 生成 28 个物理页、43/43 bindings、261 blocks、271 stories，
+  `skipped_raw=0`；
+- InDesign 2026 `21.0.1.6` v36 finalize 为 28 页、0 overset、0 missing fonts、
+  0 bad links；PDF/X-4、Japan Color 2001 Coated 与 JC200103 全部通过；
+- 已把 v36 的物理页 9/17/25 以 144 dpi 与 2026-04-27 原稿并排检查：两张整栏
+  充电图均存在且图幅一致，第二个 H2 与三语 pill 同行、互不遮挡，页脚未被
+  内容压住。物理页 10/18/26 的 Storage + Specifications 和 11/19/27 的
+  warranty 组件结构也已复查；当前结论为 candidate 初步视觉验收通过，不等于
+  approved reference-layout 或像素级批准；
+- 本轮仍未写线上表、未触发 Start Review / Draft / Publish，生成物保持在
+  `docs/_build/**` 且不进入源码提交范围。
+- v36 自包含 handoff ZIP 收集 41/41 链接、missing=0，并包含 production IDML、
+  flow IDML/Markdown、source trace、reports、fonts manifest 与参考 PDF；SHA-256
+  为 `0d2e3416d3984f58924073199a701c95284413d5ab7d8d1bb20b170d8b9dd962`；
+- 从全新临时目录解包该 ZIP 后再次 finalize，仍为 28 页、0 overset、0 missing
+  fonts、0 bad links，PDF/X-4 与输出意图全绿；解包前后 PDF 的 28 页 72 dpi
+  渲染逐页完全一致；
+- 最终验证：全仓 Ruff 通过；3090 项全量 unittest 通过（5 skipped）；
+  maintainability guardrails 62 个热点通过；132 份 Markdown / 1580 个链接为
+  0 断链；JBP fixture `build.py check` 通过；JE approved pin、58 页 composition
+  与 reference story flow 的 66 项定向回归通过；
+- 当前冻结 JE review source 与 approved identity 仍存在历史漂移，真实 same-source
+  production build 被 hard gate 按预期拒绝（`manual_content_sha256` 与
+  `assembly.sha256` 均不匹配，并列出逐页 source digest）。本轮没有更新 JE hash、
+  没有重绑或弱化 gate，因此不能把这项描述为新的 JE native build 通过。

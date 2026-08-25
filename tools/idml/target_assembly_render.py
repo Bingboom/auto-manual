@@ -14,7 +14,9 @@ SPECIAL_COMPOSITION_TYPES = frozenset({
     "lcd_operations",
     "connections",
     "troubleshooting",
+    "charging",
     "charging_storage",
+    "storage_specifications",
 })
 
 
@@ -40,6 +42,7 @@ class TargetAssemblyRenderer:
         data_root: Path,
         output_lang: str,
         emitted: set[str],
+        spec_sections: list[dict],
         lcd_rows: list[dict],
         trouble_rows: list[tuple[str, str]],
         symbol_data_for: Callable[[str], ir_projection.SymbolPageData | None],
@@ -66,6 +69,7 @@ class TargetAssemblyRenderer:
         self.data_root = data_root
         self.output_lang = output_lang
         self.emitted = emitted
+        self.spec_sections = spec_sections
         self.lcd_rows = lcd_rows
         self.trouble_rows = trouble_rows
         self.symbol_data_for = symbol_data_for
@@ -218,6 +222,7 @@ class TargetAssemblyRenderer:
                 bundle_root=self.bundle_root,
                 page_index=page_cursor,
                 language=lang,
+                composition_data=entry.get("composition_data"),
             )
         elif composition.composition_type == "troubleshooting":
             trouble = composition_pages[0]
@@ -249,6 +254,22 @@ class TargetAssemblyRenderer:
                 ].get("composition_data"),
             )
             self.emitted.add(f"trouble:{lang}")
+        elif composition.composition_type == "charging":
+            charging = composition_pages[0]
+            charging_blocks = list(charging.blocks)
+            self.toc.note_h1s(charging_blocks, page_cursor)
+            shared_page.add_charging_page(
+                self.writer,
+                sid="st_" + self.slug_stem(composition.composition_id),
+                title=composition.composition_id,
+                charging_blocks=charging_blocks,
+                bundle_root=self.bundle_root,
+                page_index=page_cursor,
+                language=lang,
+                composition_data=self.plan_entry_by_ref[
+                    composition.source_refs[0]
+                ].get("composition_data"),
+            )
         elif composition.composition_type == "charging_storage":
             charging, storage = composition_pages
             charging_blocks = list(charging.blocks)
@@ -265,6 +286,34 @@ class TargetAssemblyRenderer:
                 page_index=page_cursor,
                 language=lang,
             )
+        elif composition.composition_type == "storage_specifications":
+            storage, _spec = composition_pages
+            storage_blocks = list(storage.blocks)
+            spec_data = ir_projection.spec_page_data(self.manual_ir, lang)
+            if spec_data is None:
+                raise ValueError(
+                    f"{composition.composition_id}: missing Specifications data"
+                )
+            self.toc.note_h1s(storage_blocks, page_cursor)
+            self.toc.note(spec_data.title, page_cursor, lang)
+            composition_data = self.plan_entry_by_ref[
+                composition.source_refs[1]
+            ].get("composition_data")
+            _storage_sid, _spec_sid, grouped_sections = (
+                shared_page.add_storage_specifications_page(
+                    self.writer,
+                    sid="st_" + self.slug_stem(composition.composition_id),
+                    storage_blocks=storage_blocks,
+                    spec_data=spec_data,
+                    bundle_root=self.bundle_root,
+                    page_index=page_cursor,
+                    language=lang,
+                    composition_data=composition_data,
+                )
+            )
+            if lang == self.output_lang:
+                self.spec_sections[:] = grouped_sections
+            self.emitted.add(f"spec:{lang}")
         return RenderDelta(
             page_count=composition.page_count,
             skipped_raw=skipped_raw,

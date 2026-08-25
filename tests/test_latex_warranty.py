@@ -63,6 +63,31 @@ Exclusions
 
 
 class LatexWarrantyTests(unittest.TestCase):
+    def test_bp_warranty_templates_expose_real_section_nodes(self) -> None:
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                source = (
+                    ROOT
+                    / "docs"
+                    / "templates"
+                    / "page_bp"
+                    / language
+                    / "11_warranty.rst"
+                ).read_text(encoding="utf-8")
+                source = (
+                    source
+                    .replace("|LEGAL_COMPANY_NAME|", "Jackery Inc.")
+                    .replace("|PRODUCT_NAME|", "Battery Pack")
+                    .replace("|WARRANTY_EMAIL|", "support@example.com")
+                )
+                doctree = publish_doctree(source)
+                sections = list(doctree.findall(nodes.section))
+                self.assertEqual(6, len(sections))
+                self.assertTrue(any(
+                    list(section.findall(nodes.table))
+                    for section in sections
+                ))
+
     def _transform(self, source: str, *, output_format: str = "latex") -> nodes.document:
         doctree = publish_doctree(source)
         app = SimpleNamespace(builder=SimpleNamespace(format=output_format))

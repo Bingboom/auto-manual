@@ -145,6 +145,12 @@
         "at_kind": "image",
         "occurrence": 2,
         "tail_composition_id": "en_troubleshooting"
+      },
+      "composition_data": {
+        "connections": {
+          "layout_variant": "notice_before_primary_figure",
+          "image_role": "reference_measure"
+        }
       }
     },
     {
@@ -167,28 +173,47 @@
       "source_ref": "page/charging_en.rst",
       "language": "en",
       "page_role": "charging",
-      "composition_id": "en_charging_storage",
-      "composition_type": "charging_storage",
+      "composition_id": "en_charging",
+      "composition_type": "charging",
       "start_page": 9,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "charging": {
+          "image_role": "reference_measure",
+          "h2_suffix_pill_indices": [1]
+        }
+      }
     },
     {
       "source_ref": "page/storage_en.rst",
       "language": "en",
       "page_role": "storage_maintenance",
-      "composition_id": "en_charging_storage",
-      "composition_type": "charging_storage",
-      "start_page": 9,
+      "composition_id": "en_storage_specifications",
+      "composition_type": "storage_specifications",
+      "start_page": 10,
       "page_count": 1
     },
     {
       "source_ref": "page/specifications_en.rst",
       "language": "en",
       "page_role": "spec",
-      "composition_id": "en_specifications",
-      "composition_type": "specifications",
+      "composition_id": "en_storage_specifications",
+      "composition_type": "storage_specifications",
       "start_page": 10,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "specifications": {
+          "layout_variant": "compact",
+          "section_groups": [
+            {"source_indices": [0]},
+            {
+              "source_indices": [1, 2],
+              "title": "INPUT / OUTPUT PORTS"
+            },
+            {"source_indices": [3]}
+          ]
+        }
+      }
     },
     {
       "source_ref": "page/warranty_en.rst",
@@ -294,6 +319,12 @@
         "at_kind": "image",
         "occurrence": 2,
         "tail_composition_id": "fr_troubleshooting"
+      },
+      "composition_data": {
+        "connections": {
+          "layout_variant": "notice_before_primary_figure",
+          "image_role": "reference_measure"
+        }
       }
     },
     {
@@ -316,28 +347,47 @@
       "source_ref": "page/charging_fr.rst",
       "language": "fr",
       "page_role": "charging",
-      "composition_id": "fr_charging_storage",
-      "composition_type": "charging_storage",
+      "composition_id": "fr_charging",
+      "composition_type": "charging",
       "start_page": 17,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "charging": {
+          "image_role": "reference_measure",
+          "h2_suffix_pill_indices": [1]
+        }
+      }
     },
     {
       "source_ref": "page/storage_fr.rst",
       "language": "fr",
       "page_role": "storage_maintenance",
-      "composition_id": "fr_charging_storage",
-      "composition_type": "charging_storage",
-      "start_page": 17,
+      "composition_id": "fr_storage_specifications",
+      "composition_type": "storage_specifications",
+      "start_page": 18,
       "page_count": 1
     },
     {
       "source_ref": "page/specifications_fr.rst",
       "language": "fr",
       "page_role": "spec",
-      "composition_id": "fr_specifications",
-      "composition_type": "specifications",
+      "composition_id": "fr_storage_specifications",
+      "composition_type": "storage_specifications",
       "start_page": 18,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "specifications": {
+          "layout_variant": "compact",
+          "section_groups": [
+            {"source_indices": [0]},
+            {
+              "source_indices": [1, 2],
+              "title": "PORTS D’ENTRÉE/SORTIE"
+            },
+            {"source_indices": [3]}
+          ]
+        }
+      }
     },
     {
       "source_ref": "page/warranty_fr.rst",
@@ -346,7 +396,12 @@
       "composition_id": "fr_warranty",
       "composition_type": "warranty",
       "start_page": 19,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "warranty": {
+          "layout_variant": "multiline_lead"
+        }
+      }
     },
     {
       "source_ref": "page/safety_info_es.rst",
@@ -443,6 +498,12 @@
         "at_kind": "image",
         "occurrence": 2,
         "tail_composition_id": "es_troubleshooting"
+      },
+      "composition_data": {
+        "connections": {
+          "layout_variant": "notice_before_primary_figure",
+          "image_role": "reference_measure"
+        }
       }
     },
     {
@@ -465,28 +526,47 @@
       "source_ref": "page/charging_es.rst",
       "language": "es",
       "page_role": "charging",
-      "composition_id": "es_charging_storage",
-      "composition_type": "charging_storage",
+      "composition_id": "es_charging",
+      "composition_type": "charging",
       "start_page": 25,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "charging": {
+          "image_role": "reference_measure",
+          "h2_suffix_pill_indices": [1]
+        }
+      }
     },
     {
       "source_ref": "page/storage_es.rst",
       "language": "es",
       "page_role": "storage_maintenance",
-      "composition_id": "es_charging_storage",
-      "composition_type": "charging_storage",
-      "start_page": 25,
+      "composition_id": "es_storage_specifications",
+      "composition_type": "storage_specifications",
+      "start_page": 26,
       "page_count": 1
     },
     {
       "source_ref": "page/specifications_es.rst",
       "language": "es",
       "page_role": "spec",
-      "composition_id": "es_specifications",
-      "composition_type": "specifications",
+      "composition_id": "es_storage_specifications",
+      "composition_type": "storage_specifications",
       "start_page": 26,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "specifications": {
+          "layout_variant": "compact",
+          "section_groups": [
+            {"source_indices": [0]},
+            {
+              "source_indices": [1, 2],
+              "title": "PUERTOS DE ENTRADA/SALIDA"
+            },
+            {"source_indices": [3]}
+          ]
+        }
+      }
     },
     {
       "source_ref": "page/warranty_es.rst",

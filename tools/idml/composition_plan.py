@@ -99,6 +99,11 @@ REGISTRY: dict[str, CompositionTypeSpec] = {
             PageRole.STORAGE_MAINTENANCE,
             PageRole.TROUBLESHOOTING_DATA,
         ),
+        _spec(
+            "storage_specifications",
+            PageRole.STORAGE_MAINTENANCE,
+            PageRole.SPEC,
+        ),
         _spec("specifications", PageRole.SPEC),
         _spec("warranty", PageRole.WARRANTY),
         _spec("app", PageRole.APP_SETUP),

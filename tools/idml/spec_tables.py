@@ -23,10 +23,14 @@ def spec_table_xml(
     m_r: float,
     role: str | None,
     visual_parity: bool,
+    density: str,
     section_index: int | None,
     language: str | None,
     paragraph_xml: Callable[..., str],
 ) -> str:
+    if density not in {"reference", "compact"}:
+        raise ValueError(f"unsupported specification-table density: {density}")
+    compact = density == "compact"
     component = spec_table_component_spec(
         section_title=role or tid,
         rows=rows,
@@ -75,7 +79,13 @@ def spec_table_xml(
     )
     cells = []
     for ri, (label, value) in enumerate(rows):
-        if not visual_parity:
+        if compact:
+            inset = param_pt(
+                params,
+                "idml_compact_spec_table_cell_inset",
+                2.0,
+            )
+        elif not visual_parity:
             inset = 2.0
         elif "\n" in value:
             inset = 6.72 + (0.445 if ri == 0 else -0.445)
@@ -96,7 +106,7 @@ def spec_table_xml(
                 terminal=True,
                 superscript_markers=True,
             )
-            if visual_parity:
+            if visual_parity and not compact:
                 if "\n" in value:
                     baseline = -1.43 if ci == 0 else 0.08
                 elif section_index == 2 and ri == 1 or label.startswith("AC Output in Bypass"):
@@ -150,11 +160,17 @@ def spec_table_xml(
                 + content
                 + '    </Cell>'
             )
-    row_height = param_pt(params, "idml_spec_table_row_height", 10.3)
+    row_height = param_pt(
+        params,
+        "idml_compact_spec_table_row_height" if compact
+        else "idml_spec_table_row_height",
+        10.3,
+    )
     multiline_height = param_pt(
         params,
-        "comp_spec_table_multiline_min_height",
-        15.0,
+        "idml_compact_spec_table_multiline_min_height" if compact
+        else "comp_spec_table_multiline_min_height",
+        13.0 if compact else 15.0,
     )
     row_xml = "\n".join(
         f'    <Row Self="{tid}r{ri}" Name="{ri}" '

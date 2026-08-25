@@ -30,16 +30,33 @@ def _payload() -> dict:
 def _manual_ir(payload: dict) -> ManualIR:
     pages = []
     for index, entry in enumerate(payload["pages"], start=1):
+        block_specs: list[tuple[str, str]] = []
+        if entry["page_role"] == "connections":
+            block_specs = [
+                ("image", "asset-1.png"),
+                ("image", "asset-2.png"),
+            ]
+        elif entry["page_role"] == "charging":
+            block_specs = [
+                ("h1", "CHARGING"),
+                ("h2", "CHARGING VIA AC WALL OUTLET"),
+                ("image", "asset-1.png"),
+                (
+                    "h2",
+                    "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+                ),
+                ("image", "asset-2.png"),
+            ]
         blocks = tuple(
             ManualBlock(
-                block_id=f"block-{index}-{image_index}",
+                block_id=f"block-{index}-{block_index}",
                 source_ref=entry["source_ref"],
-                kind="image",
-                payload=f"asset-{image_index}.png",
-                content_sha256=f"{image_index:064x}",
+                kind=kind,
+                payload=value,
+                content_sha256=f"{block_index:064x}",
             )
-            for image_index in range(1, 3)
-        ) if entry["page_role"] == "connections" else ()
+            for block_index, (kind, value) in enumerate(block_specs, start=1)
+        )
         pages.append(
             ManualPage(
                 page_id=f"page-{index}",
@@ -67,6 +84,54 @@ def _manual_ir(payload: dict) -> ManualIR:
 
 
 class TargetAssemblyPlanTests(unittest.TestCase):
+    def test_connections_composition_accepts_shared_layout_variant(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/connections_en.rst"
+        )
+        page["composition_data"] = {
+            "connections": {
+                "layout_variant": "notice_before_primary_figure",
+                "image_role": "reference_measure",
+            }
+        }
+
+        plan = normalize_target_assembly_plan(
+            payload,
+            _manual_ir(payload),
+            source_path=PLAN_PATH,
+        )
+
+        normalized = next(
+            item for item in plan["pages"]
+            if item["source_ref"] == "page/connections_en.rst"
+        )
+        self.assertEqual(page["composition_data"], normalized["composition_data"])
+
+    def test_connections_composition_rejects_page_specific_variant(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/connections_en.rst"
+        )
+        page["composition_data"] = {
+            "connections": {
+                "layout_variant": "jbp_page_7",
+                "image_role": "reference_measure",
+            }
+        }
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "connections.layout_variant must be notice_before_primary_figure",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
     def test_jbp_candidate_normalizes_to_28_shared_compositions(self) -> None:
         payload = _payload()
         plan = normalize_target_assembly_plan(
@@ -86,16 +151,58 @@ class TargetAssemblyPlanTests(unittest.TestCase):
             "fcc_inbox_overview",
         )
         self.assertEqual(
-            by_id["en_charging_storage"].source_refs,
-            (
-                "page/charging_en.rst",
-                "page/storage_en.rst",
-            ),
+            by_id["en_charging"].source_refs,
+            ("page/charging_en.rst",),
+        )
+        charging_pages = [
+            page for page in plan["pages"]
+            if page["page_role"] == "charging"
+        ]
+        self.assertEqual(3, len(charging_pages))
+        for page in charging_pages:
+            self.assertEqual(
+                {
+                    "image_role": "reference_measure",
+                    "h2_suffix_pill_indices": [1],
+                },
+                page["composition_data"]["charging"],
+            )
+        connection_pages = [
+            page for page in plan["pages"]
+            if page["page_role"] == "connections"
+        ]
+        self.assertEqual(3, len(connection_pages))
+        for page in connection_pages:
+            self.assertEqual(
+                {
+                    "layout_variant": "notice_before_primary_figure",
+                    "image_role": "reference_measure",
+                },
+                page["composition_data"]["connections"],
+            )
+        self.assertEqual(
+            by_id["en_storage_specifications"].composition_type,
+            "storage_specifications",
         )
         self.assertEqual(
-            by_id["en_specifications"].source_refs,
-            ("page/specifications_en.rst",),
+            by_id["en_storage_specifications"].source_refs,
+            (
+                "page/storage_en.rst",
+                "page/specifications_en.rst",
+            ),
         )
+        compact_spec_pages = [
+            page for page in plan["pages"]
+            if page["page_role"] == "spec"
+        ]
+        self.assertEqual(3, len(compact_spec_pages))
+        for page in compact_spec_pages:
+            spec = page["composition_data"]["specifications"]
+            self.assertEqual("compact", spec["layout_variant"])
+            self.assertEqual(
+                [[0], [1, 2], [3]],
+                [group["source_indices"] for group in spec["section_groups"]],
+            )
         lcd_pages = [
             page for page in plan["pages"]
             if page["page_role"] == "lcd"
@@ -122,6 +229,14 @@ class TargetAssemblyPlanTests(unittest.TestCase):
             ] == "reference_measure"
             for page in troubleshooting_pages
         ))
+        fr_warranty = next(
+            page for page in plan["pages"]
+            if page["source_ref"] == "page/warranty_fr.rst"
+        )
+        self.assertEqual(
+            "multiline_lead",
+            fr_warranty["composition_data"]["warranty"]["layout_variant"],
+        )
 
     def test_candidate_remains_non_approved(self) -> None:
         payload = _payload()
@@ -187,6 +302,64 @@ class TargetAssemblyPlanTests(unittest.TestCase):
         with self.assertRaisesRegex(
             TargetAssemblyPlanError,
             "troubleshooting.split.*inside the reference page",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
+    def test_charging_composition_rejects_unregistered_image_role(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/charging_en.rst"
+        )
+        page["composition_data"]["charging"]["image_role"] = "jbp_large"
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "charging.image_role is invalid",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
+    def test_charging_composition_rejects_non_parenthesized_h2_selection(
+        self,
+    ) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/charging_en.rst"
+        )
+        page["composition_data"]["charging"][
+            "h2_suffix_pill_indices"
+        ] = [0]
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "h2_suffix_pill_indices.*trailing parenthetical",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
+    def test_warranty_composition_rejects_unknown_layout_variant(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/warranty_fr.rst"
+        )
+        page["composition_data"]["warranty"]["layout_variant"] = "jbp"
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "warranty.layout_variant must be multiline_lead",
         ):
             normalize_target_assembly_plan(
                 payload,

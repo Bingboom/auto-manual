@@ -46,6 +46,20 @@ _SYMBOL_KEY_ORDER = {
 }
 
 
+def _symbol_key_from_figure(row: dict) -> str:
+    """Recover a semantic symbol key from the staged asset basename."""
+
+    figure = str(row.get("figure") or "").replace("\\", "/").rsplit("/", 1)[-1]
+    folded = figure.casefold()
+    for key in sorted(_SYMBOL_KEY_ORDER, key=len, reverse=True):
+        if re.search(
+            rf"(?:^|[_-]){re.escape(key.casefold())}(?:[_-]|\.|$)",
+            folded,
+        ):
+            return key
+    return ""
+
+
 def _symbol_order(row: dict, fallback: int) -> float:
     """Recover canonical order after the renderer-neutral IR drops row keys."""
     raw_order = row.get("order")
@@ -57,6 +71,9 @@ def _symbol_order(row: dict, fallback: int) -> float:
     key_order = _SYMBOL_KEY_ORDER.get(str(row.get("symbol_key") or ""))
     if key_order is not None:
         return float(key_order)
+    figure_key_order = _SYMBOL_KEY_ORDER.get(_symbol_key_from_figure(row))
+    if figure_key_order is not None:
+        return float(figure_key_order)
     figure = str(row.get("figure") or "")
     match = re.search(r"(?:^|[/\\])(\d+)_", figure)
     if match:
@@ -86,6 +103,7 @@ def template_symbol_split(
     # rows 5-6/11.
     has_semantic_order = any(
         row.get("order") not in (None, "") or row.get("symbol_key")
+        or _symbol_key_from_figure(row)
         for row in icons
     )
     if not has_semantic_order and len(icons) >= 11:

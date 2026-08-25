@@ -545,6 +545,49 @@ class ExportIdmlTests(unittest.TestCase):
             [block["kind"] for block in semantic["blocks"]],
         )
 
+    def test_bp_warranty_templates_enter_the_shared_je_semantic_components(
+        self,
+    ) -> None:
+        from tools.idml.oppanel import transform
+        from tools.idml_rst_extract import extract_page
+
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                page = (
+                    ROOT / "docs" / "templates" / "page_bp" / language
+                    / "11_warranty.rst"
+                )
+                extracted = extract_page(page, {"latex"})
+                semantic = [
+                    json.loads(payload)
+                    for kind, payload in extracted.blocks
+                    if kind == "semantic"
+                ]
+                self.assertEqual(
+                    ["warranty_lead"] + ["warranty_section"] * 6,
+                    [block["kind"] for block in semantic],
+                )
+                self.assertIn(
+                    "warranty_years",
+                    semantic[2]["roles"],
+                )
+
+                projected = transform(extracted.blocks)
+                component_specs = [
+                    json.loads(payload)
+                    for kind, payload in projected
+                    if kind == "component"
+                ]
+                self.assertEqual(
+                    ["warrantylead"] + ["warrantysection"] * 6,
+                    [spec["kind"] for spec in component_specs],
+                )
+                period = component_specs[2]
+                self.assertEqual(
+                    "warrantyyears",
+                    period["blocks"][0]["spec"]["kind"],
+                )
+
     def test_inline_image_anchors_hang_from_baseline(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
@@ -3130,6 +3173,40 @@ class ExportIdmlTests(unittest.TestCase):
 
         dense = template_symbol_split(icons, dense=True)
         self.assertEqual([len(rows) for rows in dense], [4, 4, 2, 1])
+
+    def test_template_icon_split_recovers_semantic_columns_from_assets(self) -> None:
+        icons = [
+            {"figure": "10_warning_triangle_hash.png", "text": "warning"},
+            {"figure": "20_read_manual_hash.png", "text": "manual"},
+            {"figure": "30_electric_shock_hash.png", "text": "shock"},
+            {"figure": "40_battery_charging_hash.png", "text": "charging"},
+            {"figure": "10_do_not_dismantle_hash.png", "text": "dismantle"},
+            {"figure": "20_no_open_flame_hash.png", "text": "flame"},
+            {
+                "figure": "30_keep_away_from_children_hash.png",
+                "text": "children",
+            },
+            {"figure": "40_li_ion_hash.png", "text": "li-ion"},
+            {
+                "figure": "50_explosive_material_hash.png",
+                "text": "explosive",
+            },
+            {"figure": "60_heavy_object_hash.png", "text": "heavy"},
+            {"figure": "50_weee_hash.png", "text": "weee"},
+        ]
+
+        left, right, overflow_left, overflow_right = template_symbol_split(icons)
+
+        self.assertEqual(
+            ["warning", "manual", "shock", "charging", "explosive", "heavy"],
+            [row["text"] for row in left],
+        )
+        self.assertEqual(
+            ["dismantle", "flame", "children", "li-ion", "weee"],
+            [row["text"] for row in right],
+        )
+        self.assertEqual([], overflow_left)
+        self.assertEqual([], overflow_right)
 
     def test_safety_symbols_weee_uses_canonical_cropped_asset(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

@@ -363,13 +363,64 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
             out.pop()
         return out, k
 
+    def class_section(start: int) -> tuple[list[str], int]:
+        """Return the top-level section targeted by an RST ``class`` directive.
+
+        Docutils applies ``.. class::`` to the next element.  Warranty sources
+        use that standard form so their headings remain real section nodes for
+        every renderer, while the IDML extractor preserves the same semantic
+        component payload previously carried by a container directive.
+        """
+
+        k = start
+        while k < n and not lines[k].strip():
+            k += 1
+        if k + 1 >= n:
+            return [], k
+        title = lines[k]
+        underline = lines[k + 1].strip()
+        if (
+            len(title) != len(title.lstrip())
+            or not underline
+            or len(set(underline)) != 1
+            or underline[0] not in _UNDERLINES
+        ):
+            return [], k
+        level = {"=": 1, "-": 2, "~": 3, "^": 3}[underline[0]]
+        end = k + 2
+        while end < n:
+            candidate = lines[end]
+            stripped_candidate = candidate.strip()
+            candidate_indent = len(candidate) - len(candidate.lstrip())
+            if candidate_indent == 0 and stripped_candidate.startswith(
+                ".. class::"
+            ):
+                break
+            if candidate_indent == 0 and stripped_candidate and end + 1 < n:
+                next_underline = lines[end + 1].strip()
+                if (
+                    next_underline
+                    and len(set(next_underline)) == 1
+                    and next_underline[0] in _UNDERLINES
+                    and {"=": 1, "-": 2, "~": 3, "^": 3}[
+                        next_underline[0]
+                    ]
+                    <= level
+                ):
+                    break
+            end += 1
+        return lines[k:end], end
+
     while i < n:
         line = lines[i]
         stripped = line.strip()
         indent = len(line) - len(line.lstrip())
 
         # directives
-        m = re.match(r"\.\.\s+(container|only|raw|image|list-table)::\s*(.*)", stripped)
+        m = re.match(
+            r"\.\.\s+(class|container|only|raw|image|list-table)::\s*(.*)",
+            stripped,
+        )
         if m and indent == 0:
             directive, arg = m.group(1), m.group(2).strip()
             body, i2 = indented_body(i + 1, indent)
@@ -397,6 +448,17 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
                 # non-matching branches are the PDF-skipped side: drop
             elif directive == "container":
                 append_semantic_container(result, arg, body, tags, _parse_text)
+            elif directive == "class":
+                section, section_end = class_section(i + 1)
+                if section:
+                    append_semantic_container(
+                        result,
+                        arg,
+                        section,
+                        tags,
+                        _parse_text,
+                    )
+                    i2 = section_end
             elif directive == "image":
                 result.blocks.append(("image", arg))
             elif directive == "list-table":

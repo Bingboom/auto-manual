@@ -7,6 +7,7 @@ non-overlapping regions on that shared page.
 """
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from . import oppanel
@@ -17,6 +18,7 @@ from .components.prose_image import (
     IMAGE_ROLE_WIDE_DIAGRAM,
 )
 from .components.lcd_callout import add_lcd_callouts
+from .heading_suffix import promote_h2_suffix_pills
 from .layout_est import template_symbol_split
 from .page_objects import (
     frame_with_background,
@@ -94,6 +96,38 @@ def add_safety_symbols_page(
     del data_root  # Figure paths are already resolved by Manual IR projection.
     lang = language.strip().casefold().replace("_", "-").split("-", 1)[0]
     style = SafetySymbolsPageStyle.from_writer(writer, lang)
+
+    def compact_metric(key: str, fallback: float) -> float:
+        return param_pt(
+            writer.params,
+            f"lang_{lang}_{key}",
+            param_pt(writer.params, key, fallback),
+        )
+
+    signal_header_height = compact_metric(
+        "idml_compact_symbols_signal_header_height",
+        style.signal_header_height,
+    )
+    signal_row_height = compact_metric(
+        "idml_compact_symbols_signal_row_height",
+        style.signal_row_height,
+    )
+    icon_header_height = compact_metric(
+        "idml_compact_symbols_icon_header_height",
+        style.icon_header_height,
+    )
+    icon_row_height = compact_metric(
+        "idml_compact_symbols_icon_row_height",
+        style.icon_row_height,
+    )
+    icon_last_row_height = compact_metric(
+        "idml_compact_symbols_icon_last_row_height",
+        style.icon_last_row_height,
+    )
+    icon_long_last_row_height = compact_metric(
+        "idml_compact_symbols_icon_long_last_row_height",
+        style.icon_long_last_row_height,
+    )
     h1 = source_text(
         next((text for kind, text in safety_blocks if kind == "h1"), ""),
         owner="compact Safety page title",
@@ -146,8 +180,9 @@ def add_safety_symbols_page(
             bundle_root,
             lang,
             headers=signal_headers,
-            row_heights=[style.signal_header_height]
-            + [style.signal_row_height] * len(symbol_data.signals),
+            row_heights=[signal_header_height]
+            + [signal_row_height] * len(symbol_data.signals),
+            fit_body_to_row=True,
         ),
     )
 
@@ -172,18 +207,25 @@ def add_safety_symbols_page(
         owner="compact Symbols tables",
     )
     icon_table_w = (body_w - icon_gap) / 2.0 - icon_table_trim
-    icon_col = component_param_pt(
+    icon_left_col = component_param_pt(
         writer.params,
-        "idml_symbols_icon_col_width",
+        "idml_compact_symbols_icon_left_col_width",
         component_param_pt(
             writer.params,
-            "comp_symbol_icon_col_width",
+            "idml_symbols_icon_col_width",
             39.685,
             strict=False,
             owner="compact Symbols icon column fallback",
         ),
         strict=writer.strict_component_assets,
-        owner="compact Symbols icon column",
+        owner="compact Symbols left icon column",
+    )
+    icon_right_col = component_param_pt(
+        writer.params,
+        "idml_compact_symbols_icon_right_col_width",
+        icon_left_col,
+        strict=writer.strict_component_assets,
+        owner="compact Symbols right icon column",
     )
     left_icons, right_icons, overflow_left, overflow_right = (
         template_symbol_split(list(symbol_data.icons), dense=False)
@@ -193,10 +235,10 @@ def add_safety_symbols_page(
 
     def icon_row_heights(rows: list[dict], *, long_last: bool) -> list[float]:
         return (
-            [style.icon_header_height]
-            + [style.icon_row_height] * max(0, len(rows) - 1)
-            + ([style.icon_long_last_row_height if long_last
-                else style.icon_last_row_height] if rows else [])
+            [icon_header_height]
+            + [icon_row_height] * max(0, len(rows) - 1)
+            + ([icon_long_last_row_height if long_last
+                else icon_last_row_height] if rows else [])
         )
 
     left_heights = icon_row_heights(left_icons, long_last=False)
@@ -218,7 +260,7 @@ def add_safety_symbols_page(
             lang,
             headers=icon_headers,
             row_heights=left_heights,
-            icon_col_width=icon_col,
+            icon_col_width=icon_left_col,
             fit_body_to_row=True,
         ),
     )
@@ -233,7 +275,7 @@ def add_safety_symbols_page(
             lang,
             headers=icon_headers,
             row_heights=right_heights,
-            icon_col_width=icon_col,
+            icon_col_width=icon_right_col,
             fit_body_to_row=True,
         ),
     )
@@ -265,8 +307,8 @@ def add_safety_symbols_page(
     )
     title_h = h1_bar_h_pt(writer)
     signal_top = symbols_top + title_h + symbols_title_gap
-    signal_h = style.signal_header_height + (
-        style.signal_row_height * len(symbol_data.signals)
+    signal_h = signal_header_height + (
+        signal_row_height * len(symbol_data.signals)
     )
     icons_top = signal_top + signal_h + style.signal_gap_after
     icons_h = shell_height + param_pt(
@@ -442,16 +484,63 @@ def add_connections_page(
     bundle_root: Path,
     page_index: int,
     language: str,
+    composition_data: dict | None = None,
 ) -> str:
-    """Place the connection hero at full measure on its planned page."""
+    """Place Connections through target-declared shared semantic variants."""
+
+    options = dict((composition_data or {}).get("connections") or {})
+    layout_variant = str(options.get("layout_variant") or "")
+    prepared_blocks = list(blocks)
+    if layout_variant:
+        if layout_variant != "notice_before_primary_figure":
+            raise ValueError(
+                f"unsupported Connections layout variant: {layout_variant}"
+            )
+        image_index = next((
+            index for index, (kind, _payload) in enumerate(prepared_blocks)
+            if kind == "image"
+        ), None)
+        notice_index = None
+        if image_index is not None:
+            for index in range(image_index + 1, len(prepared_blocks)):
+                kind, payload = prepared_blocks[index]
+                if kind != "component":
+                    continue
+                try:
+                    spec = json.loads(payload)
+                except (TypeError, json.JSONDecodeError):
+                    continue
+                if isinstance(spec, dict) and spec.get("kind") == "notice":
+                    notice_index = index
+                    break
+        if image_index is None or notice_index is None:
+            raise ValueError(
+                "notice_before_primary_figure requires an image followed by "
+                "a notice component"
+            )
+        notice = prepared_blocks.pop(notice_index)
+        prepared_blocks.insert(image_index, notice)
+
+    image_role_name = str(options.get("image_role") or "full_measure")
+    image_roles = {
+        "full_measure": IMAGE_ROLE_FULL_MEASURE,
+        "reference_measure": IMAGE_ROLE_REFERENCE_MEASURE,
+    }
+    try:
+        image_role = image_roles[image_role_name]
+    except KeyError as exc:
+        raise ValueError(
+            f"unsupported Connections semantic image role: {image_role_name}"
+        ) from exc
+    image_count = sum(kind == "image" for kind, _payload in prepared_blocks)
 
     writer.add_prose_story(
         sid,
         title,
-        blocks,
+        prepared_blocks,
         bundle_root,
         language=language,
-        image_roles=(IMAGE_ROLE_FULL_MEASURE,),
+        image_roles=(image_role,) * image_count,
     )
     page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
     bottom = writer.page_h - writer.m_b + param_pt(
@@ -687,13 +776,230 @@ def add_charging_storage_page(
     return sid
 
 
+def add_charging_page(
+    writer,
+    *,
+    sid: str,
+    title: str,
+    charging_blocks: list[tuple[str, str]],
+    bundle_root: Path,
+    page_index: int,
+    language: str,
+    composition_data: dict | None = None,
+) -> str:
+    """Place Charging through target-declared shared semantic variants."""
+
+    options = dict((composition_data or {}).get("charging") or {})
+    image_role_name = str(options.get("image_role") or "charging_diagram")
+    image_roles = {
+        "charging_diagram": IMAGE_ROLE_CHARGING_DIAGRAM,
+        "full_measure": IMAGE_ROLE_FULL_MEASURE,
+        "reference_measure": IMAGE_ROLE_REFERENCE_MEASURE,
+    }
+    try:
+        image_role = image_roles[image_role_name]
+    except KeyError as exc:
+        raise ValueError(
+            f"unsupported Charging semantic image role: {image_role_name}"
+        ) from exc
+    prepared_blocks = promote_h2_suffix_pills(
+        charging_blocks,
+        list(options.get("h2_suffix_pill_indices") or []),
+    )
+    image_count = sum(kind == "image" for kind, _text in prepared_blocks)
+
+    writer.add_prose_story(
+        sid,
+        title,
+        prepared_blocks,
+        bundle_root,
+        language=language,
+        image_roles=(image_role,) * image_count,
+    )
+    page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+    bottom = writer.page_h - writer.m_b + param_pt(
+        writer.params,
+        "idml_compact_charging_frame_bottom_extra",
+        36.0,
+    )
+    writer.add_story_frames(sid, [(page_index, page_top, bottom)])
+    return sid
+
+
+def grouped_spec_sections(
+    sections: list[dict],
+    composition_data: dict | None,
+) -> list[dict]:
+    """Apply target-declared section grouping without inspecting localized copy."""
+
+    options = dict((composition_data or {}).get("specifications") or {})
+    groups = list(options.get("section_groups") or [])
+    if not groups:
+        return [dict(section) for section in sections]
+    grouped: list[dict] = []
+    used: list[int] = []
+    for group in groups:
+        indices = list(group.get("source_indices") or [])
+        if not indices:
+            raise ValueError("specification section group cannot be empty")
+        if any(
+            not isinstance(index, int) or isinstance(index, bool)
+            or index < 0 or index >= len(sections)
+            for index in indices
+        ):
+            raise ValueError("specification section group index is out of range")
+        selected = [sections[index] for index in indices]
+        rows = [
+            row
+            for section in selected
+            for row in list(section.get("rows") or [])
+        ]
+        grouped.append({
+            "title": str(group.get("title") or selected[0].get("title") or ""),
+            "rows": rows,
+        })
+        used.extend(indices)
+    if sorted(used) != list(range(len(sections))):
+        raise ValueError(
+            "specification section groups must cover each source section once"
+        )
+    return grouped
+
+
+def add_storage_specifications_page(
+    writer,
+    *,
+    sid: str,
+    storage_blocks: list[tuple[str, str]],
+    spec_data,
+    bundle_root: Path,
+    page_index: int,
+    language: str,
+    composition_data: dict | None = None,
+) -> tuple[str, str, list[dict]]:
+    """Compose Storage and the existing specification tables on one page."""
+
+    storage_title = source_text(
+        next((text for kind, text in storage_blocks if kind == "h1"), ""),
+        owner="Storage page title",
+    )
+    if not storage_title:
+        raise ValueError("storage_specifications requires a Storage H1")
+    storage_body = [
+        block for block in storage_blocks if block[0] != "h1"
+    ]
+    storage_title_sid = f"{sid}_storage_title"
+    storage_body_sid = f"{sid}_storage_body"
+    writer._add_story_parts(
+        storage_title_sid,
+        f"{storage_title} title",
+        [heading_text(writer, storage_title, level=1)],
+    )
+    writer.add_prose_story(
+        storage_body_sid,
+        f"{storage_title} body",
+        storage_body,
+        bundle_root,
+        language=language,
+        disable_hyphenation=True,
+    )
+
+    options = dict((composition_data or {}).get("specifications") or {})
+    sections = grouped_spec_sections(list(spec_data.sections), composition_data)
+    spec_sid = writer.add_spec_story(
+        sections,
+        list(spec_data.annotations),
+        lang=language,
+        title=spec_data.title,
+        layout_variant=str(options.get("layout_variant") or "reference"),
+    )
+
+    body_x = writer.m_l
+    body_w = writer.page_w - writer.m_l - writer.m_r
+    page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+    title_h = h1_bar_h_pt(writer)
+    body_top = param_pt(
+        writer.params,
+        "idml_compact_storage_spec_body_top",
+        59.0,
+    )
+    body_bottom = param_pt(
+        writer.params,
+        "idml_compact_storage_spec_body_bottom",
+        131.5,
+    )
+    spec_top = param_pt(
+        writer.params,
+        "idml_compact_storage_spec_spec_top",
+        148.8,
+    )
+    if not page_top + title_h < body_top < body_bottom < spec_top:
+        raise ValueError("storage_specifications frame tokens are not ordered")
+    body_inset = param_pt(
+        writer.params,
+        "idml_compact_storage_spec_body_inset",
+        6.0,
+    )
+    frames = [
+        frame_with_background(
+            writer,
+            sid,
+            "storage_title",
+            storage_title_sid,
+            (body_x, page_top, body_w, title_h),
+            {
+                **heading_bar_opts(1, (1.5, 5, 1, 6)),
+                "text_rect": (
+                    body_x + 6,
+                    page_top,
+                    body_w - 12,
+                    title_h,
+                ),
+            },
+        ),
+        frame_with_background(
+            writer,
+            sid,
+            "storage_body",
+            storage_body_sid,
+            (body_x, body_top, body_w, body_bottom - body_top),
+            {
+                "fill": "Color/HB Bg K05",
+                "rounded": True,
+                "inset": (body_inset, body_inset, body_inset, body_inset),
+            },
+        ),
+    ]
+    spread_id = f"sp_{page_index}"
+    writer.spreads.append((
+        spread_id,
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
+        + _spread_page(writer, spread_id, page_index + 1)
+        + "".join(frames)
+        + '</Spread>\n</idPkg:Spread>\n',
+    ))
+    bottom = writer.page_h - writer.m_b + param_pt(
+        writer.params,
+        "idml_compact_spec_frame_bottom_extra",
+        8.0,
+    )
+    writer.add_story_frames(spec_sid, [(page_index, spec_top, bottom)])
+    return storage_body_sid, spec_sid, sections
+
+
 __all__ = (
+    "add_charging_page",
     "add_charging_storage_page",
     "add_connection_tail_troubleshooting_page",
     "add_connections_page",
     "add_fcc_inbox_overview_page",
     "add_lcd_operations_page",
     "add_safety_symbols_page",
+    "add_storage_specifications_page",
+    "grouped_spec_sections",
     "latex_start_page",
     "shares_latex_page",
 )
