@@ -17,6 +17,8 @@ class IdmlPageTocTests(unittest.TestCase):
             ROOT / "data" / "layout_params.csv",
             (ROOT / "data" / "layout_params.idml-compact.csv",),
         ))
+        self.assertEqual(("1", "int"), writer.params["idml_toc_dynamic_leader_start"])
+        self.assertEqual(("8.0", "pt"), writer.params["idml_toc_leader_text_gap"])
         writer.spreads = [
             (f"sp_{index}", f'<Spread Self="sp_{index}"/>')
             for index in range(4)
@@ -110,10 +112,9 @@ class IdmlPageTocTests(unittest.TestCase):
                 self.assertEqual(reference[1:], adjusted[1:])
 
     def test_finalize_uses_each_entry_title_for_its_leader_start(self) -> None:
-        writer = IdmlWriter(load_layout_params(
-            ROOT / "data" / "layout_params.csv",
-            (ROOT / "data" / "layout_params.idml-compact.csv",),
-        ))
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params["idml_toc_dynamic_leader_start"] = ("1", "int")
+        writer = IdmlWriter(params)
         writer.spreads = [
             (f"sp_{index}", f'<Spread Self="sp_{index}"/>')
             for index in range(4)

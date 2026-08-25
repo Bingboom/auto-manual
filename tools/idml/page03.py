@@ -6,6 +6,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from .components.notice import notice_box_layout, source_notice_label
+from .character_metrics import with_character_metrics
 from tools.component_specs.inbox import inbox_spec_from_payload
 from tools.component_specs.inbox_adapters import idml_inbox_payload
 from .fcc_fallback import component_spec, fcc_spec_from_blocks
@@ -124,6 +125,21 @@ def _fcc_text_story(
         writer.params, "idml_fcc_list_left_indent", 3.6)
     modification_before = param_pt(
         writer.params, "idml_fcc_modification_space_before", 1.8)
+    font_size = param_pt(
+        writer.params,
+        "idml_compact_fcc_font_size",
+        param_pt(writer.params, "type_fcc_font_size", 5.6),
+    )
+    font_leading = param_pt(
+        writer.params,
+        "idml_compact_fcc_font_leading",
+        param_pt(writer.params, "type_fcc_font_leading", 6.15),
+    )
+    horizontal_scale = param_pt(
+        writer.params,
+        "idml_compact_fcc_horizontal_scale",
+        100.0,
+    )
     parts: list[str] = []
     for index, (kind, paragraph) in enumerate(paragraphs):
         next_kind = paragraphs[index + 1][0] if index + 1 < len(paragraphs) else ""
@@ -144,6 +160,13 @@ def _fcc_text_story(
             paragraph,
             terminal=index == len(paragraphs) - 1,
         )
+        if "idml_compact_fcc_font_size" in writer.params:
+            xml = with_character_metrics(
+                xml,
+                point_size=font_size,
+                leading=font_leading,
+                horizontal_scale=horizontal_scale,
+            )
         xml = xml.replace(
             "<ParagraphStyleRange ",
             f'<ParagraphStyleRange {" ".join(attrs)} ',

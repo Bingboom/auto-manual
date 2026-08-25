@@ -1,7 +1,7 @@
 .. raw:: latex
 
    \HBPrefacePageBegin
-   \HBLangTagLine{EN}{IMPORTANT}
+   \HBLangTagLine{US}{IMPORTANT}
 
 .. only:: not latex
 

@@ -313,6 +313,18 @@ class SharedPageTests(unittest.TestCase):
             self.assertIn("art_st_compact_overview_front", spread)
             self.assertIn("art_st_compact_overview_right", spread)
             self.assertEqual(10, spread.count("<GraphicLine "))
+            self.assertIn(
+                'PointSize="5.2"',
+                story_map["st_compact_fcc_left"],
+            )
+            self.assertIn(
+                '<Leading type="unit">5.7</Leading>',
+                story_map["st_compact_fcc_right"],
+            )
+            self.assertIn(
+                'HorizontalScale="92"',
+                story_map["st_compact_fcc_left"],
+            )
             for text in (
                 "POWER button",
                 "LCD Display",
@@ -469,11 +481,20 @@ class SharedPageTests(unittest.TestCase):
                             / "jbp2000b_power_control.png"
                         ).as_posix(),
                     ),
-                    (
-                        "body",
-                        "**On**\nPress once\n**Off**\nPress and hold for 3 seconds",
-                    ),
-                    ("h2", "LCD DISPLAY ON/OFF"),
+                (
+                    "body",
+                    "**On**\nPress once\n**Off**\nPress and hold for 3 seconds",
+                ),
+                (
+                    "component",
+                    json.dumps({
+                        "kind": "notice",
+                        "label": "NOTE",
+                        "variant": "note",
+                        "texts": ["Keep the editable note inside the card."],
+                    }),
+                ),
+                ("h2", "LCD DISPLAY ON/OFF"),
                     (
                         "image",
                         (
@@ -495,7 +516,7 @@ class SharedPageTests(unittest.TestCase):
                     "lcd": {
                         "table_variant": "label_description",
                         "hero_horizontal_scale": 1.14,
-                        "operation_panel_variant": "image_caption",
+                        "operation_panel_variant": "paired_cards",
                         "hero_callouts": [
                             {
                                 "row_index": 1,
@@ -547,7 +568,9 @@ class SharedPageTests(unittest.TestCase):
                 if "oppanel" in sid
             )
             self.assertIn("grp_oppanel_", operation_component_stories)
+            self.assertIn("image_notice", operation_component_stories)
             self.assertIn("image_caption", operation_component_stories)
+            self.assertNotIn("grp_notice_st_operation_en_cmp", operation_story)
             self.assertEqual(1, spread.count("<Page "))
 
             output = Path(td) / "shared-lcd-operations.idml"

@@ -50,13 +50,19 @@ idml_lcd_label_description_min_row_height,13.5,pt,Compact two-column LCD minimum
 idml_lcd_label_description_row_safety,1.0,pt,Compact two-column LCD native-import row safety
 idml_lcd_label_description_glyph_width_ratio,0.52,ratio,Compact two-column LCD portable glyph-width estimate
 lang_fr_idml_semantic_image_full_measure_ratio,0.80,ratio,French full-measure diagram ratio preserving localized notice capacity
-idml_toc_dynamic_leader_start,1,int,Move candidate TOC leader starts after the rendered source title
+idml_toc_dynamic_leader_start,1,int,Move compact TOC leaders after the rendered source title
+idml_toc_leader_text_gap,8.0,pt,Compact TOC gap between title and leader
 idml_toc_title_top,27.7,pt,Compact battery-pack TOC title top measured from the reference
 idml_toc_first_segment_top,57.34,pt,Compact battery-pack TOC first language-block top
 idml_toc_first_segment_advance,119.5,pt,Compact battery-pack EN-to-FR language-block advance
 idml_toc_following_segment_advance,122.5,pt,Compact battery-pack FR-to-ES language-block advance
 idml_measured_overview_page_extra_height,48.0,pt,Invisible measured-LaTeX FCC inbox overview final-frame allowance
-idml_compact_fcc_inbox_overview_fcc_height,145.0,pt,Shared FCC inbox overview FCC panel height
+idml_compact_preface_margin_top,32.986,pt,Compact battery-pack preface top measured from the reference
+idml_compact_fcc_inbox_overview_fcc_height,130.0,pt,Shared FCC inbox overview FCC panel height
+idml_compact_fcc_font_size,5.2,pt,Compact FCC body font size
+idml_compact_fcc_font_leading,5.7,pt,Compact FCC body leading
+idml_compact_fcc_horizontal_scale,92.0,ratio,Compact FCC body width fit
+idml_compact_inbox_title_y,174.0,pt,Shared FCC inbox overview inbox-title top
 idml_inbox_compact_card_y,204.0,pt,Shared FCC inbox overview inbox-card top
 idml_inbox_compact_card_height,108.0,pt,Shared FCC inbox overview inbox-card height
 idml_inbox_compact_image_1_width,66.0,pt,Shared FCC inbox overview first inbox image width
@@ -75,6 +81,13 @@ idml_inbox_compact_stroke_weight,0.75,pt,Compact inbox card border weight
 idml_compact_overview_top,319.0,pt,Shared FCC inbox overview product-overview title top
 idml_compact_overview_height,142.0,pt,Shared FCC inbox overview product-overview art height
 idml_compact_connections_frame_bottom_extra,8.0,pt,Connections shared-page native import allowance
+idml_bp_connection_caution_body_font_size,5.8,pt,Compact Connections caution body font size
+idml_bp_connection_caution_body_font_leading,6.6,pt,Compact Connections caution body leading
+idml_bp_connection_caution_pad_tb,5.0,pt,Compact Connections caution vertical inset
+idml_bp_connection_caution_space_after,9.0,pt,Compact Connections gap after caution
+idml_bp_connection_notes_body_font_size,5.8,pt,Compact Connections notes body font size
+idml_bp_connection_notes_body_font_leading,7.0,pt,Compact Connections notes body leading
+idml_bp_connection_notes_pad_tb,6.5,pt,Compact Connections notes vertical inset
 idml_compact_connection_trouble_split,235.0,pt,Shared connection-tail troubleshooting vertical split
 idml_compact_trouble_frame_bottom_extra,18.0,pt,Troubleshooting shared-page native import allowance
 idml_compact_charging_storage_frame_bottom_extra,18.0,pt,Charging and Storage shared-page native import allowance

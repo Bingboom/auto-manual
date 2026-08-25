@@ -474,11 +474,11 @@ def _validate_composition_data(
         operation_panel_variant = lcd.get("operation_panel_variant")
         if operation_panel_variant is not None and (
             page.get("composition_type") != "lcd_operations"
-            or operation_panel_variant != "image_caption"
+            or operation_panel_variant != "paired_cards"
         ):
             issues.append(
                 f"{source_ref}.composition_data.lcd.operation_panel_variant "
-                "requires lcd_operations and must be image_caption"
+                "requires lcd_operations and must be paired_cards"
             )
         scale = _finite_number(lcd.get("hero_horizontal_scale", 1.0))
         if scale is None or not 0.5 <= scale <= 2.0:

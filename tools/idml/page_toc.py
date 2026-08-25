@@ -239,11 +239,13 @@ def _leader_metric_for_entry(
     entry_x: float,
     col_w: float,
     metric: tuple[float, float, float, float, float, float],
+    *,
+    text_gap: float = _LEADER_TEXT_GAP,
 ) -> tuple[float, float, float, float, float, float]:
     """Move only the leader start beyond this entry's rendered title."""
     _reference_x1, y, x2, weight, dash, gap = metric
     text_end = _entry_text_end_x(title, entry_x, col_w)
-    x1 = min(text_end + _LEADER_TEXT_GAP, x2 - _LEADER_MIN_LENGTH)
+    x1 = min(text_end + text_gap, x2 - _LEADER_MIN_LENGTH)
     return x1, y, x2, weight, dash, gap
 
 
@@ -369,6 +371,11 @@ def finalize(
     dynamic_leader_start = bool(
         param_pt(writer.params, "idml_toc_dynamic_leader_start", 0.0)
     )
+    leader_text_gap = param_pt(
+        writer.params,
+        "idml_toc_leader_text_gap",
+        _LEADER_TEXT_GAP,
+    )
     y = param_pt(writer.params, "idml_toc_title_top", 33.84)
     frames: list[str] = []
     # Master: plain large dark text, no bar (STYLE_DEFINITION.md §2.5).
@@ -460,6 +467,7 @@ def finalize(
                             entry_x,
                             entry_w,
                             metric,
+                            text_gap=leader_text_gap,
                         )
                     metric = _offset_leader_metric_y(
                         metric,

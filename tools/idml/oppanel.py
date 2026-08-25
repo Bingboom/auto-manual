@@ -241,18 +241,38 @@ def parse_rows(text: str) -> list[tuple[str, str]] | None:
     return rows
 
 
-def promote_image_caption_panels(blocks: list[Block]) -> list[Block]:
-    """Promote structurally paired operation art + copy into one panel.
+def promote_paired_operation_cards(blocks: list[Block]) -> list[Block]:
+    """Promote structurally paired operation content into shared cards.
 
     The target assembly opts into this semantic variant. Detection uses only
     the source block boundary, never a localized heading or caption string.
-    Existing ``oppanel`` components are left untouched.
     """
 
     promoted: list[Block] = []
     index = 0
     while index < len(blocks):
         kind, payload = blocks[index]
+        if kind == "component" and index + 1 < len(blocks):
+            next_kind, next_payload = blocks[index + 1]
+            try:
+                panel = json.loads(payload)
+                notice = json.loads(next_payload) if next_kind == "component" else {}
+            except (TypeError, json.JSONDecodeError):
+                panel, notice = {}, {}
+            if (
+                isinstance(panel, dict)
+                and panel.get("kind") == "oppanel"
+                and not panel.get("layout")
+                and isinstance(notice, dict)
+                and notice.get("kind") == "notice"
+            ):
+                promoted.append(("component", json.dumps({
+                    **panel,
+                    "layout": "image_notice",
+                    "notice": notice,
+                }, ensure_ascii=False)))
+                index += 2
+                continue
         if (
             kind == "image"
             and index + 1 < len(blocks)
@@ -269,6 +289,11 @@ def promote_image_caption_panels(blocks: list[Block]) -> list[Block]:
         promoted.append((kind, payload))
         index += 1
     return promoted
+
+
+def promote_image_caption_panels(blocks: list[Block]) -> list[Block]:
+    """Compatibility wrapper for the former target-assembly helper."""
+    return promote_paired_operation_cards(blocks)
 
 
 def _split_panel_tail(text: str) -> tuple[str, str]:

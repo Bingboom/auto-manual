@@ -144,7 +144,11 @@ class ReferenceStoryEmitter:
                 writer.params, "idml_preface_margin_right", writer.m_r,
             )
             preface_top = param_pt(
-                writer.params, "idml_preface_margin_top", writer.m_t,
+                writer.params,
+                "idml_compact_preface_margin_top",
+                param_pt(
+                    writer.params, "idml_preface_margin_top", writer.m_t,
+                ),
             )
             preface_bottom = param_pt(
                 writer.params, "idml_preface_margin_bottom", writer.m_b,

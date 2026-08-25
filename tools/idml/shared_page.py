@@ -433,12 +433,12 @@ def add_lcd_operations_page(
         lcd_options.get("operation_panel_variant") or ""
     )
     if operation_panel_variant:
-        if operation_panel_variant != "image_caption":
+        if operation_panel_variant != "paired_cards":
             raise ValueError(
                 "unsupported LCD/Operations panel variant: "
                 f"{operation_panel_variant}"
             )
-        operation_blocks = oppanel.promote_image_caption_panels(
+        operation_blocks = oppanel.promote_paired_operation_cards(
             operation_blocks,
         )
     table_variant = str(
@@ -534,6 +534,23 @@ def add_connections_page(
             )
         notice = prepared_blocks.pop(notice_index)
         prepared_blocks.insert(image_index, notice)
+        notice_roles = ("bp_connection_caution", "bp_connection_notes")
+        notice_ordinal = 0
+        for index, (kind, payload) in enumerate(prepared_blocks):
+            if kind != "component" or notice_ordinal >= len(notice_roles):
+                continue
+            try:
+                spec = json.loads(payload)
+            except (TypeError, json.JSONDecodeError):
+                continue
+            if not isinstance(spec, dict) or spec.get("kind") != "notice":
+                continue
+            spec["layout_role"] = notice_roles[notice_ordinal]
+            prepared_blocks[index] = (
+                kind,
+                json.dumps(spec, ensure_ascii=False),
+            )
+            notice_ordinal += 1
 
     image_role_name = str(options.get("image_role") or "full_measure")
     image_roles = {

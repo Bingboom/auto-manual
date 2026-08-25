@@ -593,7 +593,7 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     notice_space_after = (
         float(raw_space_after) if raw_space_after is not None else 1.8
     )
-    if layout_role in {"ups_caution", "charging_note"}:
+    if layout_role:
         layout = replace(
             layout,
             body_size=role_pt("body_font_size", layout.body_size),

@@ -212,7 +212,7 @@ class TargetAssemblyPlanTests(unittest.TestCase):
         for page in lcd_pages:
             lcd = page["composition_data"]["lcd"]
             self.assertEqual("label_description", lcd["table_variant"])
-            self.assertEqual("image_caption", lcd["operation_panel_variant"])
+            self.assertEqual("paired_cards", lcd["operation_panel_variant"])
             self.assertEqual([1, 2], [
                 callout["row_index"] for callout in lcd["hero_callouts"]
             ])

@@ -9,7 +9,7 @@ import warnings
 from tools.idml_rst_extract import extract_page
 from tools.idml.oppanel import (
     parse_rows,
-    promote_image_caption_panels,
+    promote_paired_operation_cards,
     transform,
 )
 
@@ -64,19 +64,49 @@ class ParseRowsTest(unittest.TestCase):
 
 
 class TransformTest(unittest.TestCase):
-    def test_declared_image_caption_variant_promotes_structure_not_copy(self) -> None:
+    def test_declared_paired_cards_variant_promotes_structure_not_copy(self) -> None:
         blocks = [
+            (
+                "component",
+                json.dumps({
+                    "kind": "oppanel",
+                    "image": "asset:operation/power_control",
+                    "rows": [["On", "Press once"], ["Off", "Hold"]],
+                }),
+            ),
+            (
+                "component",
+                json.dumps({
+                    "kind": "notice",
+                    "label": "NOTE",
+                    "texts": ["Localized editable note."],
+                }),
+            ),
             ("h2", "Localized heading"),
             ("image", "asset:operation/display_toggle"),
             ("body", "Localized editable caption."),
         ]
-        output = promote_image_caption_panels(blocks)
-        self.assertEqual(["h2", "component"], [kind for kind, _ in output])
-        spec = json.loads(output[1][1])
-        self.assertEqual("oppanel", spec["kind"])
-        self.assertEqual("image_caption", spec["layout"])
-        self.assertEqual("asset:operation/display_toggle", spec["image"])
-        self.assertEqual("Localized editable caption.", spec["caption"])
+        output = promote_paired_operation_cards(blocks)
+        self.assertEqual(
+            ["component", "h2", "component"],
+            [kind for kind, _ in output],
+        )
+        image_notice = json.loads(output[0][1])
+        self.assertEqual("oppanel", image_notice["kind"])
+        self.assertEqual("image_notice", image_notice["layout"])
+        self.assertEqual("asset:operation/power_control", image_notice["image"])
+        self.assertEqual("NOTE", image_notice["notice"]["label"])
+        image_caption = json.loads(output[2][1])
+        self.assertEqual("oppanel", image_caption["kind"])
+        self.assertEqual("image_caption", image_caption["layout"])
+        self.assertEqual(
+            "asset:operation/display_toggle",
+            image_caption["image"],
+        )
+        self.assertEqual(
+            "Localized editable caption.",
+            image_caption["caption"],
+        )
 
     def test_battery_pack_templates_use_neutral_art_and_editable_panel_copy(self) -> None:
         expected_rows = {
