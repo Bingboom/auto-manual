@@ -42,6 +42,10 @@ class IdmlIRProjectionTests(unittest.TestCase):
         self.assertEqual(26, len(lcd.rows))
         self.assertEqual("①", lcd.rows[0]["no"])
         self.assertEqual(4, len(symbols.signals))
+        self.assertEqual(
+            ["warning", "caution", "note", "tips"],
+            [row["signal_key"] for row in symbols.signals],
+        )
         self.assertEqual(11, len(ir_projection.trouble_rows(self.ir, "en")))
 
     def test_specifications_filename_alias_keeps_semantic_spec_page(self) -> None:

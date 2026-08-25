@@ -20,7 +20,7 @@ from .page_objects import (
     page_rectangle_xml,
     with_rounded_outer,
 )
-from .params import IDPKG, param_pt
+from .params import IDPKG, param_pt, param_text
 from .symbols_page import SymbolOverflow
 from .style_names import paragraph_style_ref
 
@@ -482,6 +482,16 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
         metric(f"card_{index}_content_y_offset", fallback)
         for index, fallback in enumerate((-3.9, -7.5, -8.4), start=1)
     )
+    content_height = metric("content_height", card_h - 44.5)
+    badge_y_offset = metric("badge_y_offset", BADGE_Y_OFFSET)
+    stroke_color = str(reference_profile.get("stroke_color") or param_text(
+        writer.params,
+        f"idml_inbox_{profile}stroke_color",
+        "Color/HB Line K40",
+    ))
+    stroke_weight = float(reference_profile.get(
+        "stroke_weight", metric("stroke_weight", 0.75),
+    ))
     story_ids: list[str] = []
     frames: list[str] = []
     for idx, item in enumerate(items):
@@ -491,14 +501,13 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
             f"bg_{sid}_card_{idx + 1}",
             (x, card_y, card_w, card_h),
             fill="Color/Paper",
-            stroke_color=str(reference_profile.get(
-                "stroke_color", "Color/HB Line K40")),
-            stroke_weight=float(reference_profile.get("stroke_weight", 0.75)),
+            stroke_color=stroke_color,
+            stroke_weight=stroke_weight,
             object_style=CARD_OBJECT_STYLE,
         ))
         badge_rect = (
             x + card_w / 2.0 - BADGE_DIAMETER / 2.0,
-            card_y + BADGE_Y_OFFSET,
+            card_y + badge_y_offset,
             BADGE_DIAMETER,
             BADGE_DIAMETER,
         )
@@ -543,7 +552,7 @@ def _inbox_objects(writer, sid: str, inbox_spec: dict | None,
                 x + 8.0,
                 card_y + 36.0 + content_y_offsets[idx],
                 card_w - 16.0,
-                card_h - 44.5,
+                content_height,
             ),
             {"inset": (0, 0, 0, 0), "valign": "CenterAlign"},
         ))

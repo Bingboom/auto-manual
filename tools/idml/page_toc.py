@@ -247,6 +247,16 @@ def _leader_metric_for_entry(
     return x1, y, x2, weight, dash, gap
 
 
+def _offset_leader_metric_y(
+    metric: tuple[float, float, float, float, float, float],
+    delta: float,
+) -> tuple[float, float, float, float, float, float]:
+    """Move measured leader geometry with its token-positioned segment."""
+
+    x1, y, x2, weight, dash, gap = metric
+    return x1, y + delta, x2, weight, dash, gap
+
+
 def _entry_psr(title: str, folio: int | str, col_w: float) -> str:
     style = paragraph_style_ref("HB TOC Entry")
     point_size, horizontal_scale = _entry_typography(title, col_w)
@@ -359,7 +369,7 @@ def finalize(
     dynamic_leader_start = bool(
         param_pt(writer.params, "idml_toc_dynamic_leader_start", 0.0)
     )
-    y = 33.84
+    y = param_pt(writer.params, "idml_toc_title_top", 33.84)
     frames: list[str] = []
     # Master: plain large dark text, no bar (STYLE_DEFINITION.md §2.5).
     title_xml = psr("HB TOC Title", title, terminal=True).replace(
@@ -375,7 +385,14 @@ def finalize(
         "tf_toc_title", title_sid,
         *writer._page_rect(body_x + 1.11, y + 0.667, body_w - 1.11, 30.0),
         inset=(0, 0, 0, 0)))
-    y = 65.51
+    y = param_pt(writer.params, "idml_toc_first_segment_top", 65.51)
+    first_segment_advance = param_pt(
+        writer.params, "idml_toc_first_segment_advance", 142.75,
+    )
+    following_segment_advance = param_pt(
+        writer.params, "idml_toc_following_segment_advance", 149.22,
+    )
+    reference_segment_top = 65.51
 
     for si, (header, rng, segment) in enumerate(segments):
         code, _, label = header.partition("  ")
@@ -444,6 +461,10 @@ def finalize(
                             entry_w,
                             metric,
                         )
+                    metric = _offset_leader_metric_y(
+                        metric,
+                        y - reference_segment_top,
+                    )
                     frames.append(_leader_xml(
                         writer,
                         f"gl_toc_leader_{si}_{ci}_{ri}",
@@ -457,7 +478,8 @@ def finalize(
                     entry_x, entry_y, entry_w, 14.0 * half + 14.0,
                 ),
                 inset=(0, 0, 0, 0)))
-        y += 142.75 if si == 0 else 149.22
+        y += first_segment_advance if si == 0 else following_segment_advance
+        reference_segment_top += 142.75 if si == 0 else 149.22
 
     spread_xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

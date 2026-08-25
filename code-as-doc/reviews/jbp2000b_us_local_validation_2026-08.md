@@ -503,3 +503,53 @@ Start Review / Draft / Publish。只有在操作者再次明确确认“入库/�
   production build 被 hard gate 按预期拒绝（`manual_content_sha256` 与
   `assembly.sha256` 均不匹配，并列出逐页 source digest）。本轮没有更新 JE hash、
   没有重绑或弱化 gate，因此不能把这项描述为新的 JE native build 通过。
+
+## 16. 2026-08-25 PR #951 基准视觉调整与离机验收
+
+### 本轮视觉契约
+
+- 以 PR #951 的共享组件识别与目标装配边界为代码基准，以
+  `Jackery Battery Pack 2000 User Manual V2.0-2026-04-27.pdf` 为 28 页视觉
+  对照；参考 PDF SHA-256 为
+  `c29a14daf6053a45920cd8d1523f6faf054425a2f04d01576e00ce8794270740`；
+- 没有新增 `if model == JBP-2000B`、本地化标题匹配或页面坐标特判。共性由语义
+  key、共享 component/composition 实现；JBP 只在 candidate target assembly 与
+  compact token overlay 中选择实例和几何；
+- candidate 仍保持未批准状态。本轮视觉验收不注册 approved-reference contract，
+  也不把参考 PDF 描述为已批准的像素级版式契约。
+
+### 逐页收敛结果
+
+| 物理页 | 调整项 | 共享实现 | 验收结果 |
+| --- | --- | --- | --- |
+| 2 | 前言版式 | prose story 接收 `semantic_page_role=preface`，不再依赖 `00_preface` 文件名 | 三语装配别名正确复用 Preface 样式与页边距 |
+| 3 | 目录纵向节奏 | TOC 标题、首段和后续段 advance 由 compact token 驱动；测量 leader 随段落整体平移 | 三语分段与原稿接近，未再出现孤立引导线 |
+| 4/12/20 | WARNING / CAUTION / NOTE / TIP | 信号词携带语义 key；只有 warning/danger/caution 使用警告三角形 | NOTE/TIP 不再误显示警告图标，且不按英文/法文/西文标签判断 |
+| 5/13/21 | WHAT'S IN THE BOX | 既有卡片组件补齐图幅、间距、内容框、徽标与浅色描边 token | 三张产品卡片的比例、留白和边框接近原稿 |
+| 6/14/22 | LCD + Operations | 新增共享 `oppanel:image_caption`：链接插图、可编辑 caption、K05 内条和圆角外卡 | 三语第二操作图均为完整圆角卡片，caption 保持原生可编辑文本 |
+| 10/18/26 | STORAGE | 通用背景对象生成真实圆角路径，文本框保持透明叠放 | InDesign native PDF 中圆角不再退化为直角 |
+
+参考稿中的 `US` 与当前源数据中的 `EN`、以及目录条目顺序差异属于当前内容源
+authority，不是本轮组件几何缺陷；本轮没有为追图而改写源文案或目录事实。
+
+### 生产、回归与自包含交付
+
+- 真实 `build.py idml --source runtime --idml-mode both` 生成 28 个物理页、
+  43/43 bindings、228 Manual IR blocks、277 stories，`skipped_raw=0`；
+- InDesign 2026 `21.0.1.6`（版本 pin 匹配）原生 finalize：28 页、0 overset、
+  0 missing fonts、0 bad links；PDF/X-4、Japan Color 2001 Coated、JC200103
+  全部通过；
+- 原稿与 native PDF 的 28 页已全部并排检查。除上述由当前内容源决定的文案/目录
+  差异外，未发现新增的重叠、裁切、孤立对象或语言串页；
+- delivery ZIP 收集 41/41 个链接，missing=0，并包含 root/flow IDML、Links、
+  flow Markdown、source trace、检查说明、字体清单与原始参考 PDF；ZIP SHA-256 为
+  `b36ba36f106fe71584e3096fe6619d857cc04d51cd807dcf7a37351a4a8cd6c7`；
+- 从全新临时目录解包后再次由 InDesign finalize，仍为 28 页、0 overset、
+  0 missing fonts、0 bad links，PDF/X-4 与输出意图全绿；解包前后两份 PDF
+  以 144 dpi 渲染，28/28 页绝对差异像素均为 0；
+- 全量 `python -m unittest` 为 3107 项通过、5 项跳过；Ruff 通过；
+  `build.py check` 在当前本地 phase2 快照上分别通过 JE-1000F US/en 与 JP/ja，
+  证明 BP 的可选组件/语义字段没有改变既有 JE 默认装配；
+- maintainability guardrails 只报告分支基线中既有的
+  `tools/idml_rst_extract.py` 577 行（上限 520，超 57 行）；本轮触及模块没有新增
+  guardrail 违规，也没有把该无关历史债务并入本次视觉调整。

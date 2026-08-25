@@ -459,6 +459,7 @@ def _validate_composition_data(
             "table_variant",
             "hero_horizontal_scale",
             "hero_callouts",
+            "operation_panel_variant",
         }
         unknown = sorted(set(lcd) - allowed)
         if unknown:
@@ -469,6 +470,15 @@ def _validate_composition_data(
         if variant not in {"number_icon_label_description", "label_description"}:
             issues.append(
                 f"{source_ref}.composition_data.lcd.table_variant is invalid"
+            )
+        operation_panel_variant = lcd.get("operation_panel_variant")
+        if operation_panel_variant is not None and (
+            page.get("composition_type") != "lcd_operations"
+            or operation_panel_variant != "image_caption"
+        ):
+            issues.append(
+                f"{source_ref}.composition_data.lcd.operation_panel_variant "
+                "requires lcd_operations and must be image_caption"
             )
         scale = _finite_number(lcd.get("hero_horizontal_scale", 1.0))
         if scale is None or not 0.5 <= scale <= 2.0:

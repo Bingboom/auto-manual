@@ -107,6 +107,7 @@
         "lcd": {
           "table_variant": "label_description",
           "hero_horizontal_scale": 1.14,
+          "operation_panel_variant": "image_caption",
           "hero_callouts": [
             {
               "row_index": 1,
@@ -286,6 +287,7 @@
         "lcd": {
           "table_variant": "label_description",
           "hero_horizontal_scale": 1.14,
+          "operation_panel_variant": "image_caption",
           "hero_callouts": [
             {
               "row_index": 1,
@@ -465,6 +467,7 @@
         "lcd": {
           "table_variant": "label_description",
           "hero_horizontal_scale": 1.14,
+          "operation_panel_variant": "image_caption",
           "hero_callouts": [
             {
               "row_index": 1,

@@ -473,7 +473,7 @@ def add_lcd_story(
 
 def add_symbols_story(
     writer,
-    signals: list[tuple[str, str]],
+    signals: list[object],
     icons: list[dict],
     data_root: Path,
     lang: str = "en",
@@ -497,9 +497,14 @@ def add_symbols_story(
     parts = [_po.h1_pill_paragraph(
         writer, title, writer.page_w - writer.m_l - writer.m_r)]
     if signals:
+        signal_cells = [
+            [str(row.get("label") or ""), str(row.get("text") or "")]
+            if isinstance(row, dict) else list(row)
+            for row in signals
+        ]
         table = writer._table(
             f"tbl_sym_sig{id_suffix}",
-            [list(signal_headers), *[list(row) for row in signals]],
+            [list(signal_headers), *signal_cells],
             label_style="HB Notice Label",
             role="data",
         )

@@ -241,6 +241,36 @@ def parse_rows(text: str) -> list[tuple[str, str]] | None:
     return rows
 
 
+def promote_image_caption_panels(blocks: list[Block]) -> list[Block]:
+    """Promote structurally paired operation art + copy into one panel.
+
+    The target assembly opts into this semantic variant. Detection uses only
+    the source block boundary, never a localized heading or caption string.
+    Existing ``oppanel`` components are left untouched.
+    """
+
+    promoted: list[Block] = []
+    index = 0
+    while index < len(blocks):
+        kind, payload = blocks[index]
+        if (
+            kind == "image"
+            and index + 1 < len(blocks)
+            and blocks[index + 1][0] == "body"
+        ):
+            promoted.append(("component", json.dumps({
+                "kind": "oppanel",
+                "layout": "image_caption",
+                "image": payload,
+                "caption": blocks[index + 1][1],
+            }, ensure_ascii=False)))
+            index += 2
+            continue
+        promoted.append((kind, payload))
+        index += 1
+    return promoted
+
+
 def _split_panel_tail(text: str) -> tuple[str, str]:
     """Split the grey standby note from following full-width prose.
 

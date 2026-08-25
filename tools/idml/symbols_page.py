@@ -159,7 +159,12 @@ class SymbolOverflow:
 
 
 def _localized_signal_label_bar(
-    writer, tid: str, label: str, lang: str = "en",
+    writer,
+    tid: str,
+    label: str,
+    lang: str = "en",
+    *,
+    signal_key: str = "",
 ) -> str:
     style_ref = paragraph_style_ref("HB Notice Side Label")
     badge_w = component_param_pt(
@@ -194,24 +199,28 @@ def _localized_signal_label_bar(
         ROOT / "docs" / "templates" / "word_template" / "common_assets"
         / "symbols" / "warning_triangle_white.svg"
     )
+    normalized_key = signal_key.strip().casefold()
+    show_icon = not normalized_key or normalized_key in {
+        "warning", "danger", "caution",
+    }
+    icon_w = component_param_pt(
+        writer.params,
+        "idml_symbols_signal_icon_width",
+        7.5,
+        strict=writer.strict_component_assets,
+        owner="symbol signal badge",
+    )
+    icon_h = component_param_pt(
+        writer.params,
+        "idml_symbols_signal_icon_height",
+        7.0,
+        strict=writer.strict_component_assets,
+        owner="symbol signal badge",
+    )
     icon = ""
-    if asset.exists():
-        icon_w = component_param_pt(
-            writer.params,
-            "idml_symbols_signal_icon_width",
-            7.5,
-            strict=writer.strict_component_assets,
-            owner="symbol signal badge",
-        )
-        icon_h = component_param_pt(
-            writer.params,
-            "idml_symbols_signal_icon_height",
-            7.0,
-            strict=writer.strict_component_assets,
-            owner="symbol signal badge",
-        )
+    if show_icon and asset.exists():
         icon = writer._image_cell_content(f"{tid}icon", asset, icon_w, icon_h)
-    elif writer.strict_component_assets:
+    elif show_icon and writer.strict_component_assets:
         raise FileNotFoundError(f"symbol signal badge asset missing: {asset}")
     language = (lang or "en").split("-", 1)[0].casefold()
     if language in {"fr", "es"}:
@@ -219,7 +228,7 @@ def _localized_signal_label_bar(
             writer.params,
             language,
             label,
-            badge_w - 3.0 - 2.0 - icon_w - 2.0,
+            badge_w - 3.0 - 2.0 - (icon_w + 2.0 if show_icon else 0.0),
         )
         content = (
             f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
@@ -282,20 +291,42 @@ def _localized_signal_label_bar(
 
 
 def _symbol_signal_bar(
-    writer, tid: str, label: str, bundle_root: Path, lang: str = "en",
+    writer,
+    tid: str,
+    label: str,
+    bundle_root: Path,
+    lang: str = "en",
+    *,
+    signal_key: str = "",
 ) -> str:
     del bundle_root
-    return _localized_signal_label_bar(writer, tid, label, lang)
+    return _localized_signal_label_bar(
+        writer, tid, label, lang, signal_key=signal_key,
+    )
 
 
-def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
+def _signal_row_fields(row: object) -> tuple[str, str, str]:
+    """Normalize current semantic rows and legacy two-cell rows."""
+
+    if isinstance(row, dict):
+        return (
+            str(row.get("signal_key") or "").casefold(),
+            str(row.get("label") or ""),
+            str(row.get("text") or ""),
+        )
+    if isinstance(row, (list, tuple)) and len(row) == 2:
+        return "", str(row[0]), str(row[1])
+    raise ValueError("symbol signal row must be a semantic object or two cells")
+
+
+def _symbols_signal_table(writer, tid: str, signals: list[object],
                           width: float, bundle_root: Path,
                           lang: str = "en", *,
                           headers: tuple[str, str],
                           row_heights: list[float] | None = None,
                           fit_body_to_row: bool = False) -> str:
-    rows = [(headers[0], headers[1], True)] + [
-        (label, text, False) for label, text in signals
+    rows = [("", headers[0], headers[1], True)] + [
+        (*_signal_row_fields(row), False) for row in signals
     ]
     left_col = component_param_pt(
         writer.params,
@@ -306,13 +337,14 @@ def _symbols_signal_table(writer, tid: str, signals: list[tuple[str, str]],
     )
     cols = [left_col, width - left_col]
     cells = []
-    for ri, (left, right, header) in enumerate(rows):
+    for ri, (signal_key, left, right, header) in enumerate(rows):
         if header:
             left_xml = writer._psr("HB Symbol Header", left, terminal=True)
             right_xml = writer._psr("HB Symbol Header", right, terminal=True)
         else:
             left_xml = writer._symbol_signal_bar(
                 f"{tid}sig{ri}", left, bundle_root, lang,
+                signal_key=signal_key,
             )
             right_xml = writer._psr("HB Spec Value", right, terminal=True)
             if fit_body_to_row and row_heights is not None:
@@ -522,7 +554,7 @@ def add_safety_symbols_page(
     sid: str,
     tail_blocks: list[tuple[str, str]],
     maintenance_blocks: list[tuple[str, str]],
-    signals: list[tuple[str, str]],
+    signals: list[object],
     icons: list[dict],
     bundle_root: Path,
     page_index: int,

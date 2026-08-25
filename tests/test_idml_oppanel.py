@@ -7,7 +7,11 @@ import unittest
 import warnings
 
 from tools.idml_rst_extract import extract_page
-from tools.idml.oppanel import parse_rows, transform
+from tools.idml.oppanel import (
+    parse_rows,
+    promote_image_caption_panels,
+    transform,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -60,6 +64,20 @@ class ParseRowsTest(unittest.TestCase):
 
 
 class TransformTest(unittest.TestCase):
+    def test_declared_image_caption_variant_promotes_structure_not_copy(self) -> None:
+        blocks = [
+            ("h2", "Localized heading"),
+            ("image", "asset:operation/display_toggle"),
+            ("body", "Localized editable caption."),
+        ]
+        output = promote_image_caption_panels(blocks)
+        self.assertEqual(["h2", "component"], [kind for kind, _ in output])
+        spec = json.loads(output[1][1])
+        self.assertEqual("oppanel", spec["kind"])
+        self.assertEqual("image_caption", spec["layout"])
+        self.assertEqual("asset:operation/display_toggle", spec["image"])
+        self.assertEqual("Localized editable caption.", spec["caption"])
+
     def test_battery_pack_templates_use_neutral_art_and_editable_panel_copy(self) -> None:
         expected_rows = {
             "en": [("On", "Press once"), ("Off", "Press and hold for 3 seconds")],

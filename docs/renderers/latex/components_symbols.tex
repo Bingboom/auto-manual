@@ -7,7 +7,7 @@
 % Compact symbol table for raw LaTeX renderers
 % Signatures:
 %   \HBSymbolTable{symbol header}{meaning header}{row macro calls}
-%   \HBSymbolSignalRow{image path or basename}{optional label}{description}
+%   \HBSymbolSignalRow[semantic key]{image path or basename}{label}{description}
 %   \HBSymbolIconRow{image path or basename}{description}
 % ------------------------------
 \expandafter\providecommand\csname HBcomp_symbol_icon_width\endcsname{8.5mm}
@@ -169,14 +169,14 @@
   \par
 }
 
-\providecommand{\HBSymbolSignalRow}[3]{%
+\providecommand{\HBSymbolSignalRow}[4][]{%
   \begin{minipage}[c]{\csname HBcomp_symbol_icon_col_width\endcsname}
     \centering
-    \HBIfBlankTF{#2}{%
+    \HBIfBlankTF{#3}{%
       \HBImageOrPlaceholder
         {\csname HBcomp_symbol_signal_width\endcsname}
         {\csname HBcomp_symbol_signal_height\endcsname}
-        {#1}%
+        {#2}%
     }{%
       % Compact pill, content centered both ways (was a baseline-rule
       % hack that grew a tall flush slab with bottom-aligned content).
@@ -198,14 +198,14 @@
           \hspace{\csname HBcomp_symbol_signal_gap\endcsname}%
           {\color{white}\HBFontHeavy
            \fontsize{\HBSignalWordFontSize}
-                    {\HBSignalWordLeading}\selectfont #2}%
+                    {\HBSignalWordLeading}\selectfont #3}%
         }%
       }%
       \endgroup
     }%
   \end{minipage}
   &
-  \HBTypeSymbolText{#3}%
+  \HBTypeSymbolText{#4}%
   \tabularnewline\hline
 }
 

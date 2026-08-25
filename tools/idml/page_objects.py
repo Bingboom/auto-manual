@@ -389,6 +389,8 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     h1_bar_bg = bool(opts.pop("h1_bar_bg", False))
     rounded_outer = bool(opts.pop("rounded_outer", False))
     rounded_outer_masks = bool(opts.pop("rounded_outer_masks", False))
+    rounded = bool(opts.pop("rounded", False))
+    rounded_fill = opts.get("fill")
     text_rect = opts.pop("text_rect", rect)
     x1, y1, x2, y2 = writer._page_rect(*rect)
     tx1, ty1, tx2, ty2 = writer._page_rect(*text_rect)
@@ -400,6 +402,23 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
             writer, f"bg_{sid}_{frame_id}", rect, bottom_only=True))
     if rounded_outer:
         parts.append(rounded_outer_xml(writer, f"bg_{sid}_{frame_id}", rect))
+    if rounded and rounded_fill:
+        parts.append(rectangle_xml(
+            f"bg_{sid}_{frame_id}",
+            x1,
+            y1,
+            x2,
+            y2,
+            fill=str(rounded_fill),
+            stroke_color="Swatch/None",
+            stroke_weight=0,
+            corner_radius=7.0,
+            object_style=PANEL_OBJECT_STYLE,
+        ))
+        # InDesign ignores CornerOption on a generated square text-frame
+        # path. Keep the editable text frame transparent above the real
+        # rounded background instead of relying on that dropped attribute.
+        opts.pop("fill", None)
     parts.append(writer._frame_xml(
         f"tf_{sid}_{frame_id}", story_id, tx1, ty1, tx2, ty2, **opts))
     if rounded_outer and rounded_outer_masks:

@@ -38,7 +38,7 @@ idml_compact_symbols_icon_right_col_width,35.5,pt,Compact shared-page right icon
 idml_compact_lcd_hero_max_height,55.0,pt,Compact shared-page LCD hero maximum height
 idml_compact_lcd_operations_split,181.0,pt,Compact shared-page LCD and Operations vertical split
 idml_compact_shared_page_gap,4.0,pt,Gap between stories in a shared physical-page composition
-idml_compact_operations_frame_bottom_extra,8.0,pt,Operations shared-page native import allowance
+idml_compact_operations_frame_bottom_extra,36.0,pt,Operations shared-page native import allowance for localized image-caption panels
 idml_semantic_image_full_measure_ratio,1.0,ratio,Full-measure semantic prose image width ratio
 idml_semantic_image_reference_measure_ratio,1.0,ratio,Reference-proven semantic prose image width ratio without locale compaction
 idml_semantic_image_wide_diagram_ratio,0.78,ratio,Wide semantic prose diagram width ratio
@@ -51,16 +51,27 @@ idml_lcd_label_description_row_safety,1.0,pt,Compact two-column LCD native-impor
 idml_lcd_label_description_glyph_width_ratio,0.52,ratio,Compact two-column LCD portable glyph-width estimate
 lang_fr_idml_semantic_image_full_measure_ratio,0.80,ratio,French full-measure diagram ratio preserving localized notice capacity
 idml_toc_dynamic_leader_start,1,int,Move candidate TOC leader starts after the rendered source title
+idml_toc_title_top,27.7,pt,Compact battery-pack TOC title top measured from the reference
+idml_toc_first_segment_top,57.34,pt,Compact battery-pack TOC first language-block top
+idml_toc_first_segment_advance,119.5,pt,Compact battery-pack EN-to-FR language-block advance
+idml_toc_following_segment_advance,122.5,pt,Compact battery-pack FR-to-ES language-block advance
 idml_measured_overview_page_extra_height,48.0,pt,Invisible measured-LaTeX FCC inbox overview final-frame allowance
 idml_compact_fcc_inbox_overview_fcc_height,145.0,pt,Shared FCC inbox overview FCC panel height
 idml_inbox_compact_card_y,204.0,pt,Shared FCC inbox overview inbox-card top
 idml_inbox_compact_card_height,108.0,pt,Shared FCC inbox overview inbox-card height
-idml_inbox_compact_image_1_width,48.0,pt,Shared FCC inbox overview first inbox image width
-idml_inbox_compact_image_2_width,42.0,pt,Shared FCC inbox overview second inbox image width
-idml_inbox_compact_image_3_width,32.0,pt,Shared FCC inbox overview third inbox image width
-idml_inbox_compact_card_1_image_space_after,2.0,pt,Shared FCC inbox overview first card image gap
-idml_inbox_compact_card_2_image_space_after,2.0,pt,Shared FCC inbox overview second card image gap
-idml_inbox_compact_card_3_image_space_after,0.0,pt,Shared FCC inbox overview third card image gap
+idml_inbox_compact_image_1_width,66.0,pt,Shared FCC inbox overview first inbox image width
+idml_inbox_compact_image_2_width,58.0,pt,Shared FCC inbox overview second inbox image width
+idml_inbox_compact_image_3_width,40.0,pt,Shared FCC inbox overview third inbox image width
+idml_inbox_compact_card_1_image_space_after,6.0,pt,Shared FCC inbox overview first card image gap
+idml_inbox_compact_card_2_image_space_after,5.0,pt,Shared FCC inbox overview second card image gap
+idml_inbox_compact_card_3_image_space_after,7.0,pt,Shared FCC inbox overview third card image gap
+idml_inbox_compact_card_1_content_y_offset,-15.0,pt,Compact first-card content top correction
+idml_inbox_compact_card_2_content_y_offset,-15.0,pt,Compact second-card content top correction
+idml_inbox_compact_card_3_content_y_offset,-15.0,pt,Compact third-card content top correction
+idml_inbox_compact_content_height,82.0,pt,Compact inbox content frame height
+idml_inbox_compact_badge_y_offset,8.0,pt,Compact inbox badge offset from card top
+idml_inbox_compact_stroke_color,Color/HB Border K10,none,Compact inbox card border swatch
+idml_inbox_compact_stroke_weight,0.75,pt,Compact inbox card border weight
 idml_compact_overview_top,319.0,pt,Shared FCC inbox overview product-overview title top
 idml_compact_overview_height,142.0,pt,Shared FCC inbox overview product-overview art height
 idml_compact_connections_frame_bottom_extra,8.0,pt,Connections shared-page native import allowance

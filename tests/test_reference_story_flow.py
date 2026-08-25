@@ -336,7 +336,11 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
             writer.spread_chain_options[0]["last_frame_x_offset"],
         )
         self.assertEqual(
-            {"inline_origin_shift": -0.32, "language": "en"},
+            {
+                "inline_origin_shift": -0.32,
+                "semantic_page_role": "warranty",
+                "language": "en",
+            },
             writer.prose_story_options[0],
         )
         self.assertEqual(

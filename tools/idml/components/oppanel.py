@@ -694,6 +694,94 @@ def _special_panel_paragraph(
     return xml, height + space_after
 
 
+def _render_image_caption_panel(
+    spec: dict,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    terminal: bool,
+    measure_w: float | None,
+) -> tuple[str, float]:
+    """Render linked operation art and editable caption in one rounded card."""
+
+    width = measure_w or ctx.text_measure
+    caption = source_text(
+        spec.get("caption"),
+        owner="operation image-caption panel",
+        strict=ctx.strict_component_assets,
+    )
+    ref = str(spec.get("image") or "").strip()
+    asset = ctx.resolve_bundle_image(ref) if ref else None
+    if asset is None or not asset.exists():
+        if ctx.strict_component_assets:
+            raise FileNotFoundError(
+                f"operation image-caption asset missing: {ref}"
+            )
+        return psr("HB Body", caption, terminal=terminal), 16.0
+
+    art_w, art_h = ctx.art_frame_size(asset, max_w=width - 18.0)
+    caption_width = width - 30.0
+    caption_size = 6.2
+    caption_leading = 7.2
+    caption_lines = _estimated_lines(
+        caption, caption_width, size=caption_size,
+    )
+    caption_height = max(22.0, caption_lines * caption_leading + 9.0)
+    height = art_h + caption_height + 19.0
+    art_top = -height + 7.0
+    caption_bottom = -7.0
+    caption_top = caption_bottom - caption_height
+
+    shapes = [
+        _panel_bounds(tid, width, height),
+        _positioned_image(
+            f"oppanel_image_caption_art_{tid}",
+            asset,
+            art_w,
+            art_h,
+            left=(width - art_w) / 2.0,
+            bottom=art_top + art_h,
+        ),
+        _shape(
+            shape_id=f"oppanel_image_caption_bg_{tid}",
+            left=7.0,
+            top=caption_top,
+            right=width - 7.0,
+            bottom=caption_bottom,
+            radius=7.0,
+            fill="Color/HB Bg K05",
+        ),
+    ]
+    caption_frame = _editable_text_frame(
+        ctx,
+        story_id=f"st_anchor_oppanel_image_caption_{tid}",
+        frame_id=f"tf_oppanel_image_caption_{tid}",
+        title=f"{tid} image caption",
+        parts=[_sized_psr(
+            "HB Body",
+            caption,
+            size=caption_size,
+            leading=caption_leading,
+            terminal=True,
+        )],
+        left=14.0,
+        top=caption_top,
+        right=width - 14.0,
+        bottom=caption_bottom,
+        inset=(3.0, 0.0, 3.0, 0.0),
+        valign="CenterAlign",
+    )
+    return _special_panel_paragraph(
+        ctx,
+        tid=tid,
+        title="image caption operation panel",
+        group_content="".join(shapes) + caption_frame,
+        width=width,
+        height=height,
+        terminal=terminal,
+    )
+
+
 def _render_energy_saving_panel(
     spec: dict,
     ctx: RenderContext,
@@ -1111,6 +1199,10 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         )
     if ctx.add_story is not None and layout == "led_light":
         return _render_led_light_panel(
+            spec, ctx, tid=tid, terminal=terminal, measure_w=measure_w,
+        )
+    if ctx.add_story is not None and layout == "image_caption":
+        return _render_image_caption_panel(
             spec, ctx, tid=tid, terminal=terminal, measure_w=measure_w,
         )
 

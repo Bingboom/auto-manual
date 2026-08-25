@@ -119,6 +119,8 @@ class ReferenceStoryEmitter:
         prose_options: dict[str, float | str] = {
             "inline_origin_shift": final_frame_x_offset,
         }
+        if planned_composition_type is not None:
+            prose_options["semantic_page_role"] = planned_composition_type
         story_language = operation_lang or composition_lang
         if story_language is not None:
             prose_options["language"] = story_language
@@ -134,7 +136,7 @@ class ReferenceStoryEmitter:
             self.bundle_root,
             **prose_options,
         )
-        if title == "00_preface":
+        if planned_composition_type == "preface" or title == "00_preface":
             preface_left = param_pt(
                 writer.params, "idml_preface_margin_left", writer.m_l,
             )

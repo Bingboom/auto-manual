@@ -14,6 +14,24 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class PrefaceParityTests(unittest.TestCase):
+    def test_semantic_preface_alias_uses_preface_typography(self) -> None:
+        writer = IdmlWriter({
+            "idml_preface_body_font_size": ("7", "pt"),
+            "idml_preface_body_font_leading": ("10", "pt"),
+        })
+        writer.add_prose_story(
+            "st_preface_alias",
+            "preface_important",
+            [("body", "Semantic preface copy.")],
+            ROOT,
+            semantic_page_role="preface",
+        )
+        story = dict(writer.stories)["st_preface_alias"]
+        self.assertIn(
+            'AppliedParagraphStyle="ParagraphStyle/HB Preface Body"',
+            story,
+        )
+
     def test_preface_body_disables_hyphenation(self) -> None:
         writer = IdmlWriter({
             "idml_preface_paragraph_space_after": ("2", "pt"),

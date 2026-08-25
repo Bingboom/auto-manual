@@ -58,7 +58,7 @@ class SymbolPageData:
     title: str
     signal_headers: tuple[str, str]
     icon_headers: tuple[str, str]
-    signals: tuple[tuple[str, str], ...]
+    signals: tuple[dict[str, str], ...]
     icons: tuple[dict[str, str], ...]
 
 
@@ -291,7 +291,12 @@ def symbol_page_data(
     icon_payload = next((payload for payload in payloads
                          if payload.get("kind") == "symbol_icons"), None)
     signals = tuple(
-        (str(row.get("label") or ""), str(row.get("text") or ""))
+        {
+            "signal_key": str(row.get("signal_key") or "").casefold(),
+            "figure": str(row.get("figure") or ""),
+            "label": str(row.get("label") or ""),
+            "text": str(row.get("text") or ""),
+        }
         for row in (signal_payload or {}).get("rows", [])
         if row.get("text")
     )

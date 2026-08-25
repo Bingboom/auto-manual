@@ -711,7 +711,7 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertNotIn(r"\HBNoticeBlock{DANGER}", out)
         self.assertIn(r"\HBSymbolTable{Symbol}{Meaning}{%", out)
         self.assertIn(r"\HBSymbolTwoColumnTables{Symbol}{Meaning}{%", out)
-        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{WARNING}{Data warning.}", out)
+        self.assertIn(r"\HBSymbolSignalRow[warning]{warning_triangle.png}{WARNING}{Data warning.}", out)
         self.assertIn(r"\HBSymbolIconRow{warning_triangle.png}{Warning symbol meaning.}", out)
         self.assertIn(".. only:: not latex", out)
         self.assertIn("hb-warning-lockup", out)
@@ -945,7 +945,7 @@ class TestCsvPageRenderers(unittest.TestCase):
 
         self.assertIn("Advertencia desde datos.", out)
         self.assertIn("Consejo desde datos.", out)
-        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{ADVERTENCIA}{Advertencia desde datos.}", out)
+        self.assertIn(r"\HBSymbolSignalRow[warning]{warning_triangle.png}{ADVERTENCIA}{Advertencia desde datos.}", out)
         self.assertIn("Significado del símbolo de advertencia.", out)
         self.assertNotIn("Prácticas peligrosas que pueden resultar en lesiones graves", out)
 
@@ -964,7 +964,7 @@ class TestCsvPageRenderers(unittest.TestCase):
             vars_map=self._localized_copy_vars(),
         )
 
-        self.assertIn(r"\HBSymbolSignalRow{warning_triangle.png}{WARNING}{Data warning.}", out)
+        self.assertIn(r"\HBSymbolSignalRow[warning]{warning_triangle.png}{WARNING}{Data warning.}", out)
         self.assertIn("<span>CAUTION</span>", out)
         self.assertNotIn("ROW_WARNING", out)
         self.assertNotIn("ROW_TEXT_WARNING", out)

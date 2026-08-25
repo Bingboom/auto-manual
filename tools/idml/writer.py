@@ -179,7 +179,8 @@ class IdmlWriter:
                         language: str | None = None,
                         image_roles: tuple[str, ...] = (),
                         disable_hyphenation: bool = False,
-                        first_h1_space_after: float | None = None) -> tuple[str, float]:
+                        first_h1_space_after: float | None = None,
+                        semantic_page_role: str | None = None) -> tuple[str, float]:
         return _stories.add_prose_story(
             self,
             sid,
@@ -191,12 +192,13 @@ class IdmlWriter:
             image_roles=image_roles,
             disable_hyphenation=disable_hyphenation,
             first_h1_space_after=first_h1_space_after,
+            semantic_page_role=semantic_page_role,
         )
 
     def add_lcd_story(self, rows: list[dict], data_root: Path, **kw) -> str:
         return _stories.add_lcd_story(self, rows, data_root, **kw)
 
-    def add_symbols_story(self, signals: list[tuple[str, str]],
+    def add_symbols_story(self, signals: list[object],
                           icons: list[dict], data_root: Path,
                           lang: str = "en", **kw) -> str:
         return _stories.add_symbols_story(
@@ -286,11 +288,14 @@ class IdmlWriter:
         )
 
     def _symbol_signal_bar(self, tid: str, label: str,
-                           bundle_root: Path, lang: str = "en") -> str:
-        return _pages._symbol_signal_bar(self, tid, label, bundle_root, lang)
+                           bundle_root: Path, lang: str = "en", *,
+                           signal_key: str = "") -> str:
+        return _pages._symbol_signal_bar(
+            self, tid, label, bundle_root, lang, signal_key=signal_key,
+        )
 
     def _symbols_signal_table(self, tid: str,
-                              signals: list[tuple[str, str]], width: float,
+                              signals: list[object], width: float,
                               bundle_root: Path, lang: str = "en", *,
                               headers: tuple[str, str],
                               row_heights: list[float] | None = None,
@@ -341,7 +346,7 @@ class IdmlWriter:
         sid: str,
         tail_blocks: list[tuple[str, str]],
         maintenance_blocks: list[tuple[str, str]],
-        signals: list[tuple[str, str]],
+        signals: list[object],
         icons: list[dict],
         bundle_root: Path,
         page_index: int,

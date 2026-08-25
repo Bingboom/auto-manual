@@ -21,13 +21,13 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     language: str | None = None,
                     image_roles: tuple[str, ...] = (),
                     disable_hyphenation: bool = False,
-                    first_h1_space_after: float | None = None) -> tuple[str, float]:
+                    first_h1_space_after: float | None = None, semantic_page_role: str | None = None) -> tuple[str, float]:
     """Story from extracted prose blocks; returns (sid, est_height_pt)."""
     parts: list[str] = []
     est = 0.0
     img_n = 0
     image_role_index = 0
-    is_preface = title == "00_preface"
+    is_preface = semantic_page_role == "preface" or (semantic_page_role is None and title == "00_preface")
     content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
     last_idx = content_indices[-1] if content_indices else -1
     in_twocol = False

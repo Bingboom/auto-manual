@@ -427,8 +427,20 @@ def add_lcd_operations_page(
 ) -> tuple[str, str]:
     """Place the existing compact LCD and Operations components on one page."""
 
-    operation_blocks = oppanel.transform(operation_blocks)
     lcd_options = dict((composition_data or {}).get("lcd") or {})
+    operation_blocks = oppanel.transform(operation_blocks)
+    operation_panel_variant = str(
+        lcd_options.get("operation_panel_variant") or ""
+    )
+    if operation_panel_variant:
+        if operation_panel_variant != "image_caption":
+            raise ValueError(
+                "unsupported LCD/Operations panel variant: "
+                f"{operation_panel_variant}"
+            )
+        operation_blocks = oppanel.promote_image_caption_panels(
+            operation_blocks,
+        )
     table_variant = str(
         lcd_options.get("table_variant")
         or "number_icon_label_description"
@@ -451,7 +463,9 @@ def add_lcd_operations_page(
         operation_blocks,
         bundle_root,
         language=language,
-        image_roles=(IMAGE_ROLE_FULL_MEASURE,),
+        image_roles=(IMAGE_ROLE_FULL_MEASURE,) * sum(
+            kind == "image" for kind, _payload in operation_blocks
+        ),
     )
     page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
     split = param_pt(

@@ -12,6 +12,70 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class IdmlPageTocTests(unittest.TestCase):
+    def test_compact_tokens_control_language_block_rhythm(self) -> None:
+        writer = IdmlWriter(load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        ))
+        writer.spreads = [
+            (f"sp_{index}", f'<Spread Self="sp_{index}"/>')
+            for index in range(4)
+        ]
+        source = {
+            "title": "TABLE OF CONTENTS",
+            "languages": [
+                {
+                    "code": code,
+                    "label": label,
+                    "page_range": page_range,
+                    "entries": [{"title": "SAFETY", "folio": page_range[:2]}],
+                }
+                for code, label, page_range in (
+                    ("EN", "English", "01-08"),
+                    ("FR", "Français", "09-16"),
+                    ("ES", "Español", "17-24"),
+                )
+            ],
+        }
+        self.assertTrue(page_toc.finalize(
+            writer,
+            page_toc.TocCollector(),
+            writer._add_story_parts,
+            writer._psr,
+            source=source,
+        ))
+        xml = dict(writer.spreads)["sp_toc"]
+
+        def bar_top(index: int) -> float:
+            bar = xml.split(
+                f'Self="bg_toc_bar_{index}"', 1,
+            )[1].split("</Rectangle>", 1)[0]
+            ys = [
+                float(value)
+                for value in re.findall(r'Anchor="[-.0-9]+ ([-.0-9]+)"', bar)
+            ]
+            return min(ys) + writer.page_h / 2.0
+
+        tops = [bar_top(index) for index in range(3)]
+        self.assertAlmostEqual(57.0, tops[0], places=2)
+        self.assertAlmostEqual(119.5, tops[1] - tops[0], places=2)
+        self.assertAlmostEqual(122.5, tops[2] - tops[1], places=2)
+
+        def leader_y(segment_index: int) -> float:
+            leader = xml.split(
+                f'Self="gl_toc_leader_{segment_index}_0_0"', 1,
+            )[1].split("</GraphicLine>", 1)[0]
+            value = re.search(
+                r'Anchor="[-.0-9]+ ([-.0-9]+)"', leader,
+            )
+            assert value is not None
+            return float(value.group(1)) + writer.page_h / 2.0
+
+        for index, (top, offset) in enumerate(zip(
+            tops, (29.324, 26.492, 26.495), strict=True,
+        )):
+            self.assertAlmostEqual(top + offset, leader_y(index), places=2)
+
     def test_dynamic_leader_starts_follow_the_rendered_entry_width(self) -> None:
         cases = (
             ("CONNECTIONS", 0, 0),

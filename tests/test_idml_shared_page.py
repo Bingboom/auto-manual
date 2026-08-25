@@ -221,6 +221,10 @@ class SharedPageTests(unittest.TestCase):
         spread = dict(writer.spreads)["sp_9"]
         self.assertEqual(1, spread.count("<Page "))
         self.assertIn('FillColor="Color/HB Bg K05"', spread)
+        storage_background = spread.split(
+            'Self="bg_st_storage_spec_storage_body"', 1,
+        )[1].split("</Rectangle>", 1)[0]
+        self.assertEqual(8, storage_background.count("<PathPointType "))
         self.assertIn(f'ParentStory="{spec_sid}"', spread)
         stories = "".join(dict(writer.stories).values())
         self.assertEqual(3, stories.count("specification table"))
@@ -299,8 +303,13 @@ class SharedPageTests(unittest.TestCase):
             )
 
             spread = dict(writer.spreads)["sp_4"]
-            stories = "".join(xml for _, xml in writer.stories)
+            story_map = dict(writer.stories)
+            stories = "".join(story_map.values())
             self.assertEqual(1, spread.count("<Page "))
+            self.assertIn('StrokeColor="Color/HB Border K10"', spread)
+            self.assertIn('Anchor="66 ', story_map["st_compact_card_1"])
+            self.assertIn('Anchor="58 ', story_map["st_compact_card_2"])
+            self.assertIn('Anchor="40 ', story_map["st_compact_card_3"])
             self.assertIn("art_st_compact_overview_front", spread)
             self.assertIn("art_st_compact_overview_right", spread)
             self.assertEqual(10, spread.count("<GraphicLine "))
@@ -345,10 +354,26 @@ class SharedPageTests(unittest.TestCase):
                     signal_headers=("Symbol", "Meaning"),
                     icon_headers=("Symbol", "Meaning"),
                     signals=(
-                        ("WARNING", "Hazardous practices."),
-                        ("CAUTION", "Personal injury risk."),
-                        ("NOTE", "Equipment damage risk."),
-                        ("TIP", "Helpful information."),
+                        {
+                            "signal_key": "warning",
+                            "label": "WARNING",
+                            "text": "Hazardous practices.",
+                        },
+                        {
+                            "signal_key": "caution",
+                            "label": "CAUTION",
+                            "text": "Personal injury risk.",
+                        },
+                        {
+                            "signal_key": "note",
+                            "label": "NOTE",
+                            "text": "Equipment damage risk.",
+                        },
+                        {
+                            "signal_key": "tips",
+                            "label": "TIP",
+                            "text": "Helpful information.",
+                        },
                     ),
                     icons=tuple(
                         {"figure": "", "text": f"Icon meaning {index}"}
@@ -387,6 +412,10 @@ class SharedPageTests(unittest.TestCase):
                 right_xml = stories[f"st_symbols_shared_{language}_icons_right"]
                 signal_xml = stories[f"st_symbols_shared_{language}_signals"]
                 self.assertIn('PointSize="5.6"', signal_xml)
+                self.assertIn("sig1icon", signal_xml)
+                self.assertIn("sig2icon", signal_xml)
+                self.assertNotIn("sig3icon", signal_xml)
+                self.assertNotIn("sig4icon", signal_xml)
                 self.assertIn('PointSize="0.1" Leading="0.1"', left_xml)
                 self.assertIn('PointSize="0.1" Leading="0.1"', right_xml)
                 self.assertIn('SingleRowHeight="28"', left_xml)
@@ -452,6 +481,10 @@ class SharedPageTests(unittest.TestCase):
                             / "jbp2000b_lcd_control.png"
                         ).as_posix(),
                     ),
+                    (
+                        "body",
+                        "Press the POWER button to switch the LCD display.",
+                    ),
                 ],
                 bundle_root=Path(td),
                 data_root=Path(td),
@@ -462,6 +495,7 @@ class SharedPageTests(unittest.TestCase):
                     "lcd": {
                         "table_variant": "label_description",
                         "hero_horizontal_scale": 1.14,
+                        "operation_panel_variant": "image_caption",
                         "hero_callouts": [
                             {
                                 "row_index": 1,
@@ -501,6 +535,19 @@ class SharedPageTests(unittest.TestCase):
             stories = dict(writer.stories)
             self.assertIn("Battery level", stories["st_lcd_callout_en_1"])
             self.assertIn("Charging indicator", stories["st_lcd_callout_en_2"])
+            self.assertTrue(any(
+                "Press the POWER button to switch the LCD display." in xml
+                for sid, xml in stories.items()
+                if "image_caption" in sid
+            ))
+            operation_story = stories[operation_sid]
+            self.assertIn("st_anchor_oppanel_", operation_story)
+            operation_component_stories = "".join(
+                xml for sid, xml in stories.items()
+                if "oppanel" in sid
+            )
+            self.assertIn("grp_oppanel_", operation_component_stories)
+            self.assertIn("image_caption", operation_component_stories)
             self.assertEqual(1, spread.count("<Page "))
 
             output = Path(td) / "shared-lcd-operations.idml"
