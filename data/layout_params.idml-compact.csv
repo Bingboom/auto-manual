@@ -106,8 +106,16 @@ idml_compact_spec_table_1_space_before,5.7,pt,Compact first specification headin
 idml_compact_spec_table_2_space_before,7.9,pt,Compact second specification heading-to-table rhythm
 idml_compact_spec_table_3_space_before,8.9,pt,Compact third specification heading-to-table rhythm
 idml_warranty_variant_multiline_lead_section_1_before_adjust,-7.5,pt,Multiline-lead first-section rhythm adjustment
-idml_warranty_variant_multiline_lead_body_horizontal_scale,90,int,Multiline-lead warranty body horizontal scale
+idml_warranty_variant_multiline_lead_body_horizontal_scale,97,int,Multiline-lead warranty body horizontal scale measured from the BP reference
+idml_warranty_variant_multiline_lead_body_estimate_horizontal_scale,90,int,Preserve governed multiline-lead panel geometry while widening rendered copy
 idml_warranty_variant_multiline_lead_body_estimate_horizontal_scale_6,80,int,Multiline-lead interpretation wrap-estimate scale
+idml_warranty_variant_multiline_lead_body_font_leading,7.0,pt,Multiline-lead warranty body leading measured from the BP reference
+idml_warranty_variant_multiline_lead_disable_hyphenation,1,int,Disable warranty word breaks for BP reference parity
+idml_warranty_variant_multiline_lead_strip_year_subtitle_leading_dash,1,int,Remove source separator from the displayed year subtitle
+idml_warranty_variant_multiline_lead_body_top_adjust,3.2,pt,Move ordinary multiline-lead warranty copy down inside fixed shells
+idml_warranty_variant_multiline_lead_body_top_adjust_2,0.0,pt,Keep the warranty-period copy on its approved baseline
+idml_warranty_variant_multiline_lead_body_top_adjust_6,0.0,pt,Let final-section vertical centering own its baseline
+idml_warranty_variant_multiline_lead_final_body_center,1,int,Vertically center one-line interpretation copy
 idml_warranty_variant_multiline_lead_panel_height_adjust_1,3.0,pt,Multiline-lead first warranty-panel height adjustment
 idml_warranty_variant_multiline_lead_section_2_before_adjust,-1.5,pt,Multiline-lead period-section rhythm adjustment
 idml_warranty_variant_multiline_lead_panel_height_adjust_2,2.0,pt,Multiline-lead period-panel height adjustment
@@ -122,6 +130,18 @@ idml_warranty_variant_multiline_lead_panel_height_adjust_6,1.5,pt,Multiline-lead
 lang_en_idml_warranty_variant_bp_default_panel_height_adjust_5,-5.5,pt,BP English exclusions-panel height correction (moved off the shared base token)
 lang_es_idml_warranty_variant_bp_default_panel_height_adjust_5,8.0,pt,BP Spanish exclusions-panel height correction (moved off the shared base token)
 lang_en_idml_warranty_variant_bp_default_panel_height_adjust_6,6.0,pt,BP English interpretation-panel height correction (moved off the shared base token)
+lang_en_idml_warranty_variant_bp_default_body_horizontal_scale,100,int,BP English warranty body width measured from the reference
+lang_es_idml_warranty_variant_bp_default_body_horizontal_scale,100,int,BP Spanish warranty body width measured from the reference
+lang_en_idml_warranty_variant_bp_default_body_estimate_horizontal_scale,100,int,Preserve governed English warranty shell heights
+lang_es_idml_warranty_variant_bp_default_body_estimate_horizontal_scale,98.6,ratio,Preserve governed Spanish warranty shell heights
+lang_en_idml_warranty_variant_bp_default_lead_horizontal_scale,107,int,BP English lead line break measured from the reference
+idml_warranty_variant_bp_default_body_font_leading,7.0,pt,BP warranty body leading measured from the reference
+idml_warranty_variant_bp_default_disable_hyphenation,1,int,Disable warranty word breaks for BP reference parity
+idml_warranty_variant_bp_default_strip_year_subtitle_leading_dash,1,int,Remove source separator from the displayed year subtitle
+idml_warranty_variant_bp_default_body_top_adjust,3.2,pt,Move ordinary BP warranty copy down inside fixed shells
+idml_warranty_variant_bp_default_body_top_adjust_2,0.0,pt,Keep the warranty-period copy on its approved baseline
+idml_warranty_variant_bp_default_body_top_adjust_6,0.0,pt,Let final-section vertical centering own its baseline
+idml_warranty_variant_bp_default_final_body_center,1,int,Vertically center one-line interpretation copy
 lang_en_idml_warranty_variant_bp_default_section_4_before_adjust,1.0,pt,BP English repair-to-buyer rhythm correction (moved off the shared base token)
 lang_en_idml_warranty_variant_bp_default_section_5_before_adjust,1.5,pt,BP English buyer-to-exclusions rhythm correction (moved off the shared base token)
 lang_en_idml_warranty_variant_bp_default_section_6_before_adjust,0.5,pt,BP English exclusions-to-interpretation rhythm correction (moved off the shared base token)

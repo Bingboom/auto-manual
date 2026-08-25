@@ -81,8 +81,8 @@ def _variant_value(
     variant = str(spec.get("layout_variant") or "").strip().lower()
     if not variant or re.fullmatch(r"[a-z][a-z0-9_]*", variant) is None:
         return default
-    return param_pt(
-        ctx.params,
+    return _language_param(
+        ctx,
         f"idml_warranty_variant_{variant}_{key}",
         default,
     )
@@ -126,7 +126,38 @@ def _text_frame(
     )
 
 
-def _year_heading(item: dict, ctx: RenderContext, *, marker_id: str) -> str:
+def _variant_body_format(
+    xml: str,
+    spec: dict,
+    ctx: RenderContext,
+    *,
+    horizontal_scale: float,
+    leading: float | None,
+) -> str:
+    attrs: list[str] = []
+    if leading is not None:
+        attrs.append(f'Leading="{leading:g}"')
+    if _variant_value(spec, ctx, "disable_hyphenation", 0.0) >= 0.5:
+        attrs.extend(('Hyphenation="false"', 'Composer="HL Single"'))
+    if attrs:
+        xml = xml.replace(
+            "<ParagraphStyleRange ",
+            f'<ParagraphStyleRange {" ".join(attrs)} ',
+            1,
+        )
+    return xml.replace(
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'HorizontalScale="{horizontal_scale:g}"',
+    )
+
+
+def _year_heading(
+    item: dict,
+    ctx: RenderContext,
+    *,
+    marker_id: str,
+) -> str:
     """Render the same portable year heading used by JE-1000F."""
     del marker_id
     number = str(item.get("number", "")).strip()
@@ -159,12 +190,17 @@ def _years_table(
     if not items:
         return "", 0.0
     gap = param_pt(ctx.params, "comp_warranty_year_column_gap", 2.27)
-    left_ratio = _language_param(
+    left_ratio = _variant_value(
+        spec,
         ctx,
-        "idml_warranty_year_left_ratio",
-        float(ctx.params.get(
-            "comp_warranty_year_left_ratio", ("0.59", "ratio"),
-        )[0]),
+        "year_left_ratio",
+        _language_param(
+            ctx,
+            "idml_warranty_year_left_ratio",
+            float(ctx.params.get(
+                "comp_warranty_year_left_ratio", ("0.59", "ratio"),
+            )[0]),
+        ),
     )
     if len(items) == 2:
         left_w = (width - gap) * left_ratio
@@ -175,6 +211,21 @@ def _years_table(
     max_height = 0.0
     body_size = param_pt(ctx.params, "type_warranty_body_font_size", 6.0)
     body_leading = param_pt(ctx.params, "idml_warranty_body_font_leading", 6.0)
+    rendered_body_leading = _variant_value(
+        spec, ctx, "body_font_leading", body_leading,
+    )
+    section_horizontal_scale = _variant_value(
+        spec,
+        ctx,
+        "body_horizontal_scale",
+        _language_param(ctx, "idml_warranty_body_horizontal_scale", 100.0),
+    )
+    horizontal_scale = _variant_value(
+        spec,
+        ctx,
+        "year_body_horizontal_scale",
+        section_horizontal_scale,
+    )
     badge_size = param_pt(ctx.params, "type_warranty_year_number_font_size", 21.0)
     subtitle_size = param_pt(ctx.params, "type_warranty_year_subtitle_font_size", 7.2)
     for index, (item, col_w) in enumerate(zip(items, cols)):
@@ -185,6 +236,10 @@ def _years_table(
             ctx,
             marker_id=f"warranty_year_{tid}_{index}",
         )
+        if _variant_value(
+            spec, ctx, "strip_year_subtitle_leading_dash", 0.0,
+        ) >= 0.5:
+            subtitle = re.sub(r"^[\s—–-]+", "", subtitle)
         subtitle_xml = psr("HB Warranty Year Subtitle", subtitle)
         # The subtitle's first letter sits on the same vertical as the unit
         # text (the ``Y`` in ``YEARS``), not after an additional optical gap.
@@ -199,7 +254,16 @@ def _years_table(
         content += subtitle_xml
         # The reference returns the explanatory copy to the left edge of each
         # column; only the subtitle carries the optical badge offset.
-        content += psr("HB Warranty Body", body, terminal=True)
+        content += _variant_body_format(
+            psr("HB Warranty Body", body, terminal=True),
+            spec,
+            ctx,
+            horizontal_scale=horizontal_scale,
+            leading=(
+                rendered_body_leading
+                if rendered_body_leading != body_leading else None
+            ),
+        )
         cells.append(cell(
             f"{tid}c{index}", f"{index}:0", content,
             stroke=False, top=0, bottom=0,
@@ -254,8 +318,11 @@ def render_warrantylead(
         "idml_warranty_lead_pad_tb",
         param_pt(ctx.params, "comp_warranty_lead_pad_tb", 7.65),
     )
-    horizontal_scale = _language_param(
-        ctx, "idml_warranty_lead_horizontal_scale", 100.0,
+    horizontal_scale = _variant_value(
+        spec,
+        ctx,
+        "lead_horizontal_scale",
+        _language_param(ctx, "idml_warranty_lead_horizontal_scale", 100.0),
     )
     lines = (
         len(lead_lines)
@@ -339,8 +406,17 @@ def _section_body(
     estimate_horizontal_scale = _variant_value(
         layout_spec,
         ctx,
-        f"body_estimate_horizontal_scale_{section_index}",
+        "body_estimate_horizontal_scale",
         horizontal_scale,
+    )
+    estimate_horizontal_scale = _variant_value(
+        layout_spec,
+        ctx,
+        f"body_estimate_horizontal_scale_{section_index}",
+        estimate_horizontal_scale,
+    )
+    rendered_body_leading = _variant_value(
+        layout_spec, ctx, "body_font_leading", body_leading,
     )
     list_indent = param_pt(
         ctx.params, "idml_warranty_list_left_indent", 5.67,
@@ -351,8 +427,11 @@ def _section_body(
         kind = str(block.get("kind", "body"))
         terminal = block_index == len(blocks) - 1
         if kind == "component" and block.get("spec", {}).get("kind") == "warrantyyears":
+            years_spec = dict(block["spec"])
+            if layout_spec.get("layout_variant"):
+                years_spec["layout_variant"] = layout_spec["layout_variant"]
             table, table_height = _years_table(
-                block["spec"], ctx, tid=f"{tid}_years", width=width,
+                years_spec, ctx, tid=f"{tid}_years", width=width,
             )
             parts.append(wrap_table_paragraph(table, True, span_columns=False))
             height += table_height
@@ -416,10 +495,15 @@ def _section_body(
                 f"\n    {tab_properties}\n    {bullet_xml}\n    {tab_xml}\n    <CharacterStyleRange",
                 1,
             )
-        paragraph = paragraph.replace(
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'HorizontalScale="{horizontal_scale:g}"',
+        paragraph = _variant_body_format(
+            paragraph,
+            layout_spec,
+            ctx,
+            horizontal_scale=horizontal_scale,
+            leading=(
+                rendered_body_leading
+                if not is_list and rendered_body_leading != body_leading else None
+            ),
         )
         if not terminal:
             paragraph = paragraph.replace(
@@ -562,17 +646,29 @@ def render_warrantysection(
         -panel_h + title_h / 2.0,
         valign="CenterAlign",
     )
+    body_top_adjust = _variant_value(
+        spec,
+        ctx,
+        f"body_top_adjust_{index}",
+        _variant_value(spec, ctx, "body_top_adjust", 0.0),
+    )
     body_frame = _text_frame(
         body_sid,
         f"tf_warranty_body_{tid}",
         pad_lr,
-        -panel_h + pad_top,
+        -panel_h + pad_top + body_top_adjust,
         width - pad_lr,
         -(
             _language_param(
                 ctx, "idml_warranty_exclusions_body_bottom_inset", 0.0,
             )
             if index == 5 else max(0.0, pad_bottom - trim)
+        ),
+        valign=(
+            "CenterAlign"
+            if index == 6
+            and _variant_value(spec, ctx, "final_body_center", 0.0) >= 0.5
+            else "TopAlign"
         ),
     )
     group = (

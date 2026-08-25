@@ -489,6 +489,151 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn("<Content> YEARS</Content>", xml)
         self.assertNotIn("tf_warranty_year_", xml)
 
+    def test_bp_warranty_years_use_reference_subtitle_and_rhythm(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        xml, _height = render(
+            {
+                "kind": "warrantyyears",
+                "layout_variant": "bp_default",
+                "items": [{
+                    "number": "3",
+                    "unit": "YEARS",
+                    "label": "— Standard Warranty",
+                    "text": "Reference-width explanatory copy.",
+                }],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="en",
+                native_structure_markers=True,
+            ),
+            tid="warranty_bp_year",
+            terminal=True,
+        )
+
+        self.assertIn("<Content>❸</Content>", xml)
+        self.assertNotIn("tf_warranty_year_", xml)
+        self.assertIn("<Content>Standard Warranty</Content>", xml)
+        self.assertNotIn("<Content>— Standard Warranty</Content>", xml)
+        self.assertIn('HorizontalScale="100"', xml)
+        self.assertIn('Leading="7"', xml)
+        self.assertIn('Hyphenation="false"', xml)
+
+    def test_bp_warranty_body_uses_reference_rhythm_only_in_variant(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+
+        def rendered(layout_variant: str) -> tuple[str, str]:
+            stories = []
+
+            def add_story(sid, title, parts):
+                stories.append((sid, title, parts))
+                return sid
+
+            spec = {
+                "kind": "warrantysection",
+                "title": "Limited Warranty",
+                "index": 1,
+                "blocks": [
+                    {"kind": "body", "text": "First warranty paragraph."},
+                    {"kind": "body", "text": "Second warranty paragraph."},
+                ],
+            }
+            if layout_variant:
+                spec["layout_variant"] = layout_variant
+            xml, _height = render(
+                spec,
+                RenderContext(
+                    params=params,
+                    page_w=368.79,
+                    m_l=28.35,
+                    m_r=28.35,
+                    root=ROOT,
+                    bundle_root=ROOT / "does-not-exist",
+                    language="en",
+                    add_story=add_story,
+                ),
+                tid=f"warranty_body_{layout_variant or 'base'}",
+                terminal=True,
+            )
+            body = next(
+                "".join(parts)
+                for sid, _title, parts in stories
+                if sid.startswith("st_anchor_warranty_body_")
+            )
+            return xml, body
+
+        bp_xml, bp_body = rendered("bp_default")
+        _base_xml, base_body = rendered("")
+
+        self.assertIn('Leading="7"', bp_body)
+        self.assertIn('HorizontalScale="100"', bp_body)
+        self.assertIn('Hyphenation="false"', bp_body)
+        self.assertIn('Composer="HL Single"', bp_body)
+        self.assertNotIn('Leading="7"', base_body)
+        self.assertNotIn('Hyphenation="false"', base_body)
+        body_frame = bp_xml.split(
+            'Self="tf_warranty_body_warranty_body_bp_default"', 1,
+        )[1].split("</TextFrame>", 1)[0]
+        self.assertIn('Anchor="9.07087 -15.1524"', body_frame)
+
+    def test_bp_final_warranty_copy_is_vertically_centered(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
+        xml, _height = render(
+            {
+                "kind": "warrantysection",
+                "title": "Interpretation Rights",
+                "index": 6,
+                "layout_variant": "bp_default",
+                "blocks": [{"kind": "body", "text": "One-line final policy."}],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="en",
+                add_story=add_story,
+            ),
+            tid="warranty_final_center",
+            terminal=True,
+        )
+
+        body_frame = xml.split(
+            'Self="tf_warranty_body_warranty_final_center"', 1,
+        )[1].split("</TextFrame>", 1)[0]
+        self.assertIn('VerticalJustification="CenterAlign"', body_frame)
+
     def test_warranty_variant_correction_resolves_per_language(self) -> None:
         """A variant correction must follow the same language cascade as its base.
 
@@ -696,7 +841,9 @@ class ComponentRegistryTests(unittest.TestCase):
         body = next(
             "".join(parts) for sid, _title, parts in stories if "body" in sid
         )
-        self.assertIn('HorizontalScale="90"', body)
+        self.assertIn('HorizontalScale="97"', body)
+        self.assertIn('Leading="7"', body)
+        self.assertIn('Hyphenation="false"', body)
 
     def test_warranty_lead_uses_approved_shell_width_and_host_inset(self) -> None:
         from tools.export_idml import load_layout_params
