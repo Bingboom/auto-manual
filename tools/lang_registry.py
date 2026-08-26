@@ -265,6 +265,8 @@ LANGUAGE_REGISTRY = (
         column_suffixes=("ko",),
         table_columns=(
             ("spec_master", _columns("Row_label_ko", "Param_ko", "Value_ko")),
+            ("spec_footnotes", _columns("Text_ko")),
+            ("spec_notes", _columns("Text_ko")),
             ("symbols_blocks", _columns("label_ko", "aliases_ko", "text_ko")),
             ("lcd_icons", _columns("icon_ko", "icon_desc_ko")),
             ("troubleshooting", _columns("corrective_measures_ko")),
