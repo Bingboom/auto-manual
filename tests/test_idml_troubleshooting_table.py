@@ -225,7 +225,29 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         self.assertNotIn("FillColor=", right_header)
         self.assertIn('Hyphenation="false"', story)
         self.assertIn('Anchor="-0.37 -4.8"', xml)
-        self.assertIn('Anchor="311.344 1"', xml)
+        main_frame_id = "tf_group_st_anchor_trouble_trouble_jbp_en"
+        carrier_id = "tf_terminal_carrier_group_st_anchor_trouble_trouble_jbp_en"
+        self.assertIn(
+            f'Self="{main_frame_id}" ParentStory="st_anchor_trouble_trouble_jbp_en" '
+            f'PreviousTextFrame="n" NextTextFrame="{carrier_id}"',
+            xml,
+        )
+        self.assertIn(
+            f'Self="{carrier_id}" ParentStory="st_anchor_trouble_trouble_jbp_en" '
+            f'PreviousTextFrame="{main_frame_id}" NextTextFrame="n"',
+            xml,
+        )
+        main_frame = xml.split(f'<TextFrame Self="{main_frame_id}"', 1)[1].split(
+            "</TextFrame>", 1,
+        )[0]
+        carrier = xml.split(f'<TextFrame Self="{carrier_id}"', 1)[1].split(
+            "</TextFrame>", 1,
+        )[0]
+        self.assertIn('Anchor="311.344 0"', main_frame)
+        self.assertNotIn('Anchor="311.344 1"', main_frame)
+        self.assertIn('Anchor="0 1"', carrier)
+        self.assertIn('FillColor="Swatch/None"', carrier)
+        self.assertIn('StrokeColor="Swatch/None"', carrier)
         self.assertGreater(height, 130.0)
         self.assertLess(height, 150.0)
 

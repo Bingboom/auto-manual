@@ -51,15 +51,21 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("fitted_troubleshooting_carrier_frames", jsx)
         self.assertIn("fitTroubleshootingCarrierFrames(doc)", jsx)
         self.assertIn(
-            "resizeTroubleshootingCarrierFrame(frame, 1.0)",
+            "function growTroubleshootingCarrierFrame(doc, story, frame, maxGrowth)",
             jsx,
         )
+        self.assertIn("doc, story, frame, 24.0", jsx)
         troubleshooting_fit = jsx.split(
-            "function resizeTroubleshootingCarrierFrame(frame, markerAllowance)",
+            "function fitTroubleshootingCarrierFrames(doc)",
             1,
         )[1].split("function substituteMissingFont", 1)[0]
         self.assertNotIn("allPageItems", troubleshooting_fit)
         self.assertNotIn("item.geometricBounds", troubleshooting_fit)
+        self.assertNotIn("table.rows", troubleshooting_fit)
+        self.assertIn(
+            '"hb:self=tf_terminal_carrier_group_"',
+            troubleshooting_fit,
+        )
         self.assertIn("fitComposedSymbolTableShells(doc)", jsx)
         self.assertIn('title.indexOf("Symbol icons ")', jsx)
         self.assertIn("fitted_symbol_table_shells", jsx)

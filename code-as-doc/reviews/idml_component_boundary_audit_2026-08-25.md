@@ -152,8 +152,11 @@ The same boundary now covers the two whitespace findings raised during JBP
 acceptance. Compact Troubleshooting rows are deterministic visible geometry:
 their measured height is written as both `SingleRowHeight` and
 `MinimumHeight`, AutoGrow is disabled, and the 1pt terminal-marker allowance
-extends only the transparent story frame. The InDesign finalizer may fit that
-carrier but cannot resize the visible rounded shell or its shaded code column.
+is a second transparent text frame threaded after the shell-bounded table
+frame. The InDesign finalizer selects only that carrier by its stable
+`tf_terminal_carrier_group_*` label; it no longer reads the native table
+height to resize the table frame and cannot resize the visible rounded shell
+or its shaded code column.
 
 Charging owns the transition from a diagram to the following suffix-pill H2.
 The AboveLine diagram already contributes a native paragraph line box, so the

@@ -39,6 +39,7 @@ def rounded_table_panel(
     space_after: float = 0.0,
     start_next_page: bool = False,
     content_bottom_bleed: float = 0.0,
+    terminal_carrier_height: float = 0.0,
 ) -> str:
     """Wrap one table segment in the canonical editable rounded shell.
 
@@ -82,6 +83,7 @@ def rounded_table_panel(
         # objects. Apply the measured optical offset to the group transform.
         group_x_offset=left_indent,
         content_bottom_bleed=content_bottom_bleed,
+        terminal_carrier_height=terminal_carrier_height,
     )
     attrs: list[str] = []
     if start_next_page:

@@ -1091,7 +1091,7 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
                 if len(raw_rows) < len(troubleshooting_style.row_minima)
                 else troubleshooting_style.outer_radius
             ),
-            content_bottom_bleed=(
+            terminal_carrier_height=(
                 troubleshooting_style.native_carrier_allowance
             ),
         )

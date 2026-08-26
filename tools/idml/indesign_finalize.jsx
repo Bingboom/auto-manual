@@ -134,15 +134,20 @@
 
     function fitTroubleshootingCarrierFrames(doc) {
         var fitted = 0;
-        var items = doc.allPageItems;
-        for (var ii = 0; ii < items.length; ii += 1) {
-            var frame = items[ii];
-            if (frame.constructor.name !== "TextFrame" ||
-                    frame.parent.constructor.name !== "Group") { continue; }
+        for (var si = 0; si < doc.stories.length; si += 1) {
+            var story = doc.stories[si];
             try {
-                if (frame.parentStory.tables.length === 1 &&
-                        isTroubleshootingTableStory(frame.parentStory) &&
-                        resizeTroubleshootingCarrierFrame(frame, 1.0)) {
+                if (!isTroubleshootingTableStory(story) ||
+                        story.tables.length !== 1 ||
+                        story.textContainers.length < 2) { continue; }
+                var frame = story.textContainers[story.textContainers.length - 1];
+                if (frame.constructor.name === "TextFrame" &&
+                        itemLabel(frame).indexOf(
+                            "hb:self=tf_terminal_carrier_group_"
+                        ) === 0 &&
+                        growTroubleshootingCarrierFrame(
+                            doc, story, frame, 24.0
+                        )) {
                     fitted += 1;
                 }
             } catch (_) {}
@@ -151,24 +156,17 @@
         return fitted;
     }
 
-    function resizeTroubleshootingCarrierFrame(frame, markerAllowance) {
-        var table = frame.parentStory.tables[0];
-        var frameBounds = frame.geometricBounds;
-        var tableHeight = 0;
-        for (var ri = 0; ri < table.rows.length; ri += 1) {
-            tableHeight += Number(table.rows[ri].height);
+    function growTroubleshootingCarrierFrame(doc, story, frame, maxGrowth) {
+        if (!story.overflows) { return false; }
+        var growth = 0.0;
+        while (story.overflows && growth < maxGrowth) {
+            var frameBounds = frame.geometricBounds;
+            frameBounds[2] = Number(frameBounds[2]) + 2.0;
+            frame.geometricBounds = frameBounds;
+            growth += 2.0;
+            doc.recompose();
         }
-        var newBottom = Number(frameBounds[0]) + tableHeight +
-            Number(markerAllowance || 0);
-        if (Math.abs(newBottom - Number(frameBounds[2])) < 0.01) {
-            return false;
-        }
-
-        // The troubleshooting component owns its visible shell and cell
-        // fills.  Only its transparent terminal-marker carrier may change.
-        frameBounds[2] = newBottom;
-        frame.geometricBounds = frameBounds;
-        return true;
+        return growth > 0;
     }
 
     function substituteMissingFont(doc, sourceName, targetName) {
@@ -422,12 +420,16 @@
         report.fitted_symbol_table_shells = fitComposedSymbolTableShells(doc);
         report.carrier_frame_fits = fitTerminalCarrierFrames(doc);
         report.font_substitutions = applyHostFontSubstitutions(doc);
+        report.fitted_troubleshooting_carrier_frames +=
+            fitTroubleshootingCarrierFrames(doc);
         report.carrier_frame_fits = report.carrier_frame_fits.concat(
             fitTerminalCarrierFrames(doc)
         );
         report.font_substitutions = report.font_substitutions.concat(
             applyHostFontSubstitutions(doc)
         );
+        report.fitted_troubleshooting_carrier_frames +=
+            fitTroubleshootingCarrierFrames(doc);
         report.carrier_frame_fits = report.carrier_frame_fits.concat(
             fitTerminalCarrierFrames(doc)
         );

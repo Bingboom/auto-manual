@@ -307,9 +307,11 @@ minima；紧凑表使用 `idml_trouble_extra_row_min_height` 和
 保持纸白，首列按合同使用灰底；源 RST 的 line-block 分隔符只能表达换行，不能以
 字面量 `|` 进入单元格。故障段落和表格默认关闭断词，避免在错误码和措施文字中
 产生源稿没有的词内断行。紧凑表把测得高度同时写入 `SingleRowHeight` 与
-`MinimumHeight` 并关闭 AutoGrow，使可见行完整占满圆角外壳；终止标记所需的
-`idml_trouble_native_carrier_allowance` 只扩展透明文本框，不属于外壳或首列灰底。
-InDesign 最终化只能校准该透明载体，不能再拉伸可见外壳、遮罩或表格行。
+`MinimumHeight` 并关闭 AutoGrow，使可见行完整占满圆角外壳；表格内容框在圆角
+外壳底边终止，随后串接一个独立、无填色无描边的透明文本框，专门承载终止标记。
+`idml_trouble_native_carrier_allowance` 只决定该载体的初始高度，不属于外壳或首列
+灰底。InDesign 最终化只能按 `tf_terminal_carrier_group_*` 的稳定标签校准该透明
+载体，不能读取实际表高后改写可见外壳、内容框、遮罩或表格行。
 
 ### 专题版块
 

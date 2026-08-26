@@ -722,6 +722,7 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
                                     group_overlay: str = "",
                                     group_x_offset: float = 0.0,
                                     content_bottom_bleed: float = 0.0,
+                                    terminal_carrier_height: float = 0.0,
                                     valign: str = "TopAlign",
                                     mask_content_corners: bool = True) -> str:
     """Rounded background plus square content frame in one anchored group.
@@ -732,11 +733,19 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
     whole object editable and movable as one inline group.  Composite panels
     may additionally place native shapes or linked art below the content frame
     and independent editable text frames above the rounded outline.
+
+    When ``terminal_carrier_height`` is positive, the table frame stops at the
+    visible shell and threads into a second transparent frame below it.  That
+    carrier owns only the native end-of-story marker and is the sole frame a
+    finalizer may grow.
     """
     from .primitives import path_geometry
     from .style_names import paragraph_style_ref as _psr_ref
 
     story_sid = add_story(sid, title, parts)
+    frame_id = f"tf_group_{sid}"
+    carrier_id = f"tf_terminal_carrier_group_{sid}"
+    has_terminal_carrier = terminal_carrier_height > 0
     anchor = (
         '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
         'SpineRelative="false" LockPosition="false" PinPosition="true" '
@@ -759,8 +768,9 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
         + '  </Rectangle>\n'
     )
     frame = (
-        f'  <TextFrame Self="tf_group_{sid}" ParentStory="{story_sid}" '
-        'PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" '
+        f'  <TextFrame Self="{frame_id}" ParentStory="{story_sid}" '
+        f'PreviousTextFrame="n" NextTextFrame="{carrier_id if has_terminal_carrier else "n"}" '
+        'ContentType="TextType" '
         'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
         'FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" '
         'ItemTransform="1 0 0 1 0 0">\n'
@@ -777,6 +787,26 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
         + anchor
         + '  </TextFrame>\n'
     )
+    terminal_carrier = ""
+    if has_terminal_carrier:
+        terminal_carrier = (
+            f'  <TextFrame Self="{carrier_id}" ParentStory="{story_sid}" '
+            f'PreviousTextFrame="{frame_id}" NextTextFrame="n" '
+            'ContentType="TextType" '
+            'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
+            'FillColor="Swatch/None" StrokeColor="Swatch/None" '
+            'StrokeWeight="0" ItemTransform="1 0 0 1 0 0">\n'
+            + path_geometry(0.0, 0.0, width, terminal_carrier_height)
+            + '    <TextFramePreference TextColumnCount="1" '
+            'VerticalJustification="TopAlign" AutoSizingType="Off">'
+            '<Properties><InsetSpacing type="list">'
+            + ''.join(
+                '<ListItem type="unit">0</ListItem>' for _ in range(4)
+            )
+            + '</InsetSpacing></Properties></TextFramePreference>\n'
+            + anchor
+            + '  </TextFrame>\n'
+        )
     corner_fills = corner_fills or {}
     masks = (
         "".join(
@@ -810,7 +840,7 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
     group = (
         f'<Group Self="grp_{sid}" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
         f'ItemTransform="1 0 0 1 {-0.37 + group_x_offset:g} 0">\n'
-        + background + group_underlay + frame + masks + outline
+        + background + group_underlay + frame + terminal_carrier + masks + outline
         + group_overlay + '</Group>'
     )
     style_ref = _psr_ref("HB Figure")
