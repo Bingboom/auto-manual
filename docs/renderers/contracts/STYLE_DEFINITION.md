@@ -375,6 +375,13 @@ PDF/IDML token：`type_h1_font_size` 12.0pt、`type_h1_font_leading` 14.4pt、`c
 
 IDML 的 band 高度与 PDF 共用 `comp_h1_pill_height`；质保页的宽度和左缩进继续由明确登记的 `idml_warranty_h1_*` token 控制。
 
+IDML 的 flowed H1 与 fixed/composed H1 必须消费同一个 `heading_text` +
+`h1_frame_opts` 合同：文本框与深色标题条共用相同的纵向起点和高度，
+`VerticalJustification=CenterAlign`，Gilroy 可见大写字面统一使用
+`BaselineShift=0.5pt`。页面组件只能提交标题条外矩形；不得再提供独立
+`title_text_rect`、负向 Y 偏移或 `BaselineShift=-1.5pt` 来抵消另一套基线。
+Safety、Symbols、Inbox、Overview、Storage 以及 EN/FR/ES 都受同一回归约束。
+
 ### 2.3 二级标题
 
 **`## 标题`** → `<h2>`（等价 class `.hb-subbar`）。深色圆点 + 加粗大写正文色，不是色块。
@@ -548,7 +555,7 @@ IDML 侧的 EN/FR/ES 批准 panel/row/column/margin/spacing、参考 measure、p
 - `` ```{symbols} `` → `figure.hb-symbol-pair-composition`：`grid-template-columns: repeat(2, minmax(0,1fr))`，间距 `clamp(.72rem, 1.8vw, 1rem)`，窄屏转单列。面板表内边距 `clamp(.62rem,1.5vw,.9rem)` `clamp(.55rem,1.25vw,.78rem)`，格间线 `1.5px solid --hb-brand-dark`，表头下边框同宽。**两个面板行高互不影响**（PDF 用的就是两张独立表）。
 - 信号词表 `HB-TABLE-SYMBOL-SIGNAL` → `.hb-symbol-signal-composition`，流水线专属，md 写不出。
 
-IDML 的 subbar 高度、标题/维护区间距、H1 光学偏移、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。标准 JE 密度保留已批准的固定行高及 `0.25pt` 外壳承载容差；compact 密度的较大 `idml_compact_symbols_*_frame_allowance` 必须由组件吸收到可见正文行内，不能悬空成为表格尾部白带。InDesign 终止标记需要的原生承载空间由独立的透明文本框余量 `idml_symbols_native_carrier_allowance` 提供；它不属于可见外壳、底板、遮罩或行高。组件不缩字、不改分栏，也不允许最终化脚本隐藏 overset。
+IDML 的 subbar 高度、标题/维护区间距、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。Symbols H1 不再拥有独立光学偏移 token，统一服从 §2.2 的共享标题框与字面基线。标准 JE 密度保留已批准的固定行高及 `0.25pt` 外壳承载容差；compact 密度的较大 `idml_compact_symbols_*_frame_allowance` 必须由组件吸收到可见正文行内，不能悬空成为表格尾部白带。InDesign 终止标记需要的原生承载空间由独立的透明文本框余量 `idml_symbols_native_carrier_allowance` 提供；它不属于可见外壳、底板、遮罩或行高。组件不缩字、不改分栏，也不允许最终化脚本隐藏 overset。
 
 IDML 的完整可编辑单元是 `SymbolsPanel`，而不是页面 composer 中的三张散表。组件内部拥有标题条、圆角外壳、列宽、各行高度、表格载体余量、信号词表与图标表之间的最小间距，以及内容超出可用高度时的续页拆分。JE/JBP 页面 composer 只能传入本地化数据、语言、`standard` / `compact` 密度和组件可用矩形；它可以决定组件放在哪里，但不能再调用 Symbols 表格 primitive 或覆盖内部几何。两种密度遵守同一填色规则：只有 `Symbol` / 图标列使用 K05，`Meaning` 列和圆角外壳保持 Paper；compact 可见行完整占满外框，标准密度仅保留原有 `0.25pt` 容差，因此底板不再替大块尾部空带补色或补画分隔线。最终化脚本只能校准透明的原生载体文本框，禁止改写圆角外壳、K05 底板、遮罩、分隔线或表格行。EN/FR/ES 的两种密度共同使用 [`tests/fixtures/idml_symbols_panel_golden.json`](../../../tests/fixtures/idml_symbols_panel_golden.json) 作为几何与可编辑 Story 回归基准，边界测试同时禁止页面 composer 重新消费内部行高 token。
 

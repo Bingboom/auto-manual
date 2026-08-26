@@ -22,6 +22,26 @@ def h1_bar_opts(inset: tuple[float, float, float, float]) -> dict:
     return heading_bar_opts(1, inset)
 
 
+def h1_frame_opts(
+    rect: tuple[float, float, float, float],
+    *,
+    left_inset: float = 6.0,
+    right_inset: float = 6.0,
+) -> dict:
+    """Own the complete fixed-frame H1 geometry shared with flowed H1s."""
+
+    x, y, width, height = rect
+    return {
+        **heading_bar_opts(1, (1.5, 5.0, 1.0, 6.0)),
+        "text_rect": (
+            x + left_inset,
+            y,
+            width - left_inset - right_inset,
+            height,
+        ),
+    }
+
+
 def heading_bar_opts(level: int,
                      inset: tuple[float, float, float, float]) -> dict:
     if level == 1:
@@ -60,9 +80,9 @@ def heading_text(writer, text: str, *, level: int,
     xml = writer._psr("HB Capsule Text", text, terminal=True)
     if level == 1:
         # CenterAlign centres the font's line box, not Gilroy's visible caps.
-        # Fixed/composed title frames need a slight downward optical shift;
-        # flowed H1 hosts override it below because their inline line box has
-        # different metrics.
+        # The approved JE-1000F visible-cap centre uses one +0.5pt optical
+        # shift in both flowed and fixed H1 hosts. Frame composers must not
+        # introduce a second baseline or vertical text-frame displacement.
         marker = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
 
         def apply_baseline(match: re.Match[str]) -> str:
@@ -71,7 +91,7 @@ def heading_text(writer, text: str, *, level: int,
                 return match.group(0)
             attrs = attrs.replace(
                 marker,
-                f'{marker} BaselineShift="-1.5"',
+                f'{marker} BaselineShift="0.5"',
                 1,
             )
             return f"<CharacterStyleRange {attrs}>"
@@ -656,11 +676,6 @@ def h1_pill_paragraph(writer, text: str, width: float,
         point_size = max(7.0, size * avail / est_w)
     sid = f"st_anchor_h1pill_{len(writer.stories)}"
     title_xml = heading_text(writer, text, level=1, point_size=point_size)
-    title_xml = title_xml.replace(
-        'BaselineShift="-1.5"',
-        'BaselineShift="0.5"',
-        1,
-    )
     title_xml = title_xml.replace(
         "<ParagraphStyleRange ",
         '<ParagraphStyleRange LeftIndent="4.74" ',

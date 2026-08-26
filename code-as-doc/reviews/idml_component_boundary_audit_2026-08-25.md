@@ -183,6 +183,13 @@ bearings, strokes, and baseline at the resolved specification-value point
 size. JE/JBP, standard/compact, and EN/FR/ES cannot select a second font or
 override the mark geometry.
 
+All H1 hosts now share the approved JE visible-cap centre. `heading_text`
+owns the `+0.5pt` optical baseline and `h1_frame_opts` derives a text frame
+whose vertical bounds equal the dark title bar. Safety, Symbols, Inbox, and
+Overview no longer carry the former `-1.5pt` fixed-frame baseline or a
+roughly `-1.92pt` compensating text-frame offset; page assemblers place only
+the component rectangle.
+
 ## Non-goals
 
 - no model-specific visual token overrides or page-coordinate patches;

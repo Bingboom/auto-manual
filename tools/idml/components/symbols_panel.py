@@ -12,7 +12,7 @@ from ..language_contract import governed_languages
 from ..layout_est import est_table_height, template_symbol_split
 from ..page_objects import (
     frame_with_background,
-    heading_bar_opts,
+    h1_frame_opts,
     heading_text,
     with_rounded_outer,
 )
@@ -363,18 +363,7 @@ class SymbolsPanel:
         )
 
         title_rect = (x, y, width, metrics.title_height)
-        title_background_rect = title_rect
-        title_opts = {
-            **heading_bar_opts(1, (1.5, 5, 1, 6)),
-            "text_rect": (x + 6.0, y, width - 12.0, metrics.title_height),
-        }
-        if metrics.title_optical_offset:
-            title_background_rect = (
-                x,
-                y + metrics.title_optical_offset,
-                width,
-                metrics.title_height,
-            )
+        title_opts = h1_frame_opts(title_rect)
         signal_top = y + metrics.title_height + metrics.title_gap
         signal_rect = (x, signal_top, width, signal_frame_height)
         icons_top = signal_top + signal_frame_height + metrics.signal_gap
@@ -411,7 +400,7 @@ class SymbolsPanel:
                 self.sid,
                 "symbols_title",
                 title_sid,
-                title_background_rect,
+                title_rect,
                 title_opts,
             ),
             frame_with_background(
@@ -447,7 +436,7 @@ class SymbolsPanel:
             auto_grow_rows=metrics.auto_grow_rows,
             disable_hyphenation=metrics.disable_hyphenation,
             frame_rects=(
-                ("title", title_background_rect),
+                ("title", title_rect),
                 ("signals", signal_rect),
                 ("icons_left", left_rect),
                 ("icons_right", right_rect),

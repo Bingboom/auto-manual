@@ -7,7 +7,7 @@ from pathlib import Path
 from ..page_objects import (
     frame_with_background,
     h1_bar_h_pt,
-    heading_bar_opts,
+    h1_frame_opts,
     heading_text,
 )
 from ..params import param_pt
@@ -110,15 +110,7 @@ class CompactSafetyPanel:
                     "safety_title",
                     title_sid,
                     title_rect,
-                    {
-                        **heading_bar_opts(1, (1.5, 5, 1, 6)),
-                        "text_rect": (
-                            x + 6.0,
-                            y,
-                            width - 12.0,
-                            title_height,
-                        ),
-                    },
+                    h1_frame_opts(title_rect),
                 ),
                 frame_with_background(
                     writer,

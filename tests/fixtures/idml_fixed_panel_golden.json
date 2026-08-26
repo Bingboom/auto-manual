@@ -301,17 +301,17 @@
         },
         "tf_st_fixed_panels_compact_en_overview_title": {
           "bounds": [
-            -148.494,
-            64.2385,
-            150.506,
-            84.3385
+            -148.489,
+            66.1535,
+            150.621,
+            86.2185
           ],
           "fill": "",
           "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
           "stroke": ""
         }
       },
-      "spread_sha256": "5e94cf31354f6ed67266a85acfcdf108f4f9a9b6ff00581ff99e244fb6c45ac6",
+      "spread_sha256": "b9bc174f6f5410810d4de2dccd63ce7d1ada61c5d67c159df0dd80286318fc12",
       "story_sha256": {
         "st_fixed_panels_compact_en_badge_1": "19254abc6558331c33e4a7f88c396291ddfa35868049ee816eaa1aa1429cabe1",
         "st_fixed_panels_compact_en_badge_2": "4421455fd7b32224c0e48a375cc9b23e2dd28d5822ab75990394b0e516276f10",
@@ -323,7 +323,7 @@
         "st_fixed_panels_compact_en_fcc_left": "484796de804c11da5c6e710ef129b1d0eee0a5304a55dda9d6fa4a9e1caeff59",
         "st_fixed_panels_compact_en_fcc_mark": "d335467a583d9fc4936a65f2721a4fe139457b18e7c2ca1429f11e8f81adb3e2",
         "st_fixed_panels_compact_en_fcc_right": "d08d091fcaaf5c09e5ee7d3e52acb244e95165a5c0243816ea3a5dac8ed786d4",
-        "st_fixed_panels_compact_en_inbox_title": "76cfde45810c932b1bb148fc0015a1459049bc89c60df851a04a246b8a7e1131",
+        "st_fixed_panels_compact_en_inbox_title": "4a688673de91c22b3fafd54de883550ce7979706e3f3af7a4c54397b5089bcde",
         "st_fixed_panels_compact_en_overview_front_label_1": "44f9e66efcf5a7208cc19ae9696ee18345dd1749d084d06e62318e1e77e42182",
         "st_fixed_panels_compact_en_overview_front_label_2": "bcb1b56d1eba09027d56723bd9a8d7404cc5cfc728b763f28297172cc1720420",
         "st_fixed_panels_compact_en_overview_front_story": "ecf650103a15757636f4a0fbc43a5612f8cb72e30128618a8ca069b28a3ada35",
@@ -331,7 +331,7 @@
         "st_fixed_panels_compact_en_overview_right_label_2": "74b5779c490dfef33703ae1a9349b8dbda543227e69bcf4834515bdf73502853",
         "st_fixed_panels_compact_en_overview_right_label_3": "415dd7f5d3c82da23f25013db49bc4bcaecb964e8bbfa868f8d8720c050f0c2b",
         "st_fixed_panels_compact_en_overview_right_story": "12f871cf90b0d5cb7bd2bdabe2e2010efd0e97bf8d3d6edfb50323fc2c0665b7",
-        "st_fixed_panels_compact_en_overview_title": "ed69a5be45c7bc0c2c0bc48a04c5c2615a2ab73dad86d9b6a2fee94708db285f"
+        "st_fixed_panels_compact_en_overview_title": "f4c6ae49f5733c3ce714878b9adf6af44bfb615c0039a73f002f6df37d58aee3"
       }
     },
     "es": {
@@ -635,17 +635,17 @@
         },
         "tf_st_fixed_panels_compact_es_overview_title": {
           "bounds": [
-            -148.494,
-            64.2385,
-            150.506,
-            84.3385
+            -148.489,
+            66.1535,
+            150.621,
+            86.2185
           ],
           "fill": "",
           "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
           "stroke": ""
         }
       },
-      "spread_sha256": "4d1fee43e55c8195caff0bfd3d46607bab7d36df7e9811750d6edc3b90a2bcd8",
+      "spread_sha256": "236786ba1cb1ca7999c238e68354246dc5db8fdc45786bea26517f1ebe3efc0b",
       "story_sha256": {
         "st_fixed_panels_compact_es_badge_1": "2d2c430e08181a885c745add3a2c0992881a843e51bee9bdd655071018aa5741",
         "st_fixed_panels_compact_es_badge_2": "ccc6c0c93aa6c04198881f5d2bf53f2659409ad08f7d516af32518dfdf6828cd",
@@ -657,7 +657,7 @@
         "st_fixed_panels_compact_es_fcc_left": "70794a116e94ceb18d1047d7e38c11fea7005a81f407f9cea8677752739de89b",
         "st_fixed_panels_compact_es_fcc_mark": "ba039a4c1c68b7320f860416873395c3849ee6a751fbf7786be4c2a3d94c44c4",
         "st_fixed_panels_compact_es_fcc_right": "329adaf44d35f56766b0e1e022d843873dd74d1fc52e4872d299727817f2499a",
-        "st_fixed_panels_compact_es_inbox_title": "91cd1dcabf41697c0d5e41f0025215fc6cbab46bce7df79d27f8dc7c3a035db5",
+        "st_fixed_panels_compact_es_inbox_title": "996291c861e9731027180a0212f9ac5cb358cb9ab67700736fbfd3f656024b8c",
         "st_fixed_panels_compact_es_overview_front_label_1": "e1ec032eb748c3f2d76d375a43f65b0369f16d954a5073ba78458b3220ef5d25",
         "st_fixed_panels_compact_es_overview_front_label_2": "7bff6ad7feaca761312bcfdbb6d6821f67b5b0e4db479d294b7b028631d8588b",
         "st_fixed_panels_compact_es_overview_front_story": "79169ba0fd445af615978f847dc179daa20236051c7ffe6ed8b04c9058904283",
@@ -665,7 +665,7 @@
         "st_fixed_panels_compact_es_overview_right_label_2": "f77556505b9e7646fc7b97bae80b5090227da6bce5e160745a47646388fcef65",
         "st_fixed_panels_compact_es_overview_right_label_3": "521e16c873865bfac44a01ff7f4c46f22b4e7288b3d13963c5de489030ee378d",
         "st_fixed_panels_compact_es_overview_right_story": "bcb903b059e3aebac2e28b6eeb89f7f5406a8417e358924a9678e0232acb61d2",
-        "st_fixed_panels_compact_es_overview_title": "98878c269dd8be311ce6337fb8553d007268e1466d5413a933b35829c374ced2"
+        "st_fixed_panels_compact_es_overview_title": "a44cbfce17bf5bdb8c26f63084da8a187033fc2f7de0db1b45623172a495e403"
       }
     },
     "fr": {
@@ -969,17 +969,17 @@
         },
         "tf_st_fixed_panels_compact_fr_overview_title": {
           "bounds": [
-            -148.494,
-            64.2385,
-            150.506,
-            84.3385
+            -148.489,
+            66.1535,
+            150.621,
+            86.2185
           ],
           "fill": "",
           "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
           "stroke": ""
         }
       },
-      "spread_sha256": "d0019f07ccab830edc30ab9bec0918d7eeabea940b2fb059cf6b4d0b0e199f75",
+      "spread_sha256": "ebadb0e37e60a90ca24681d3192f3ff3865a6e0e97afbd5144c1b387a1d2f707",
       "story_sha256": {
         "st_fixed_panels_compact_fr_badge_1": "a3eb1e10624aadd201557f96aa070cddbff7c5113581f537fbb044b968d565c5",
         "st_fixed_panels_compact_fr_badge_2": "105ede6106b63aa37dcd8ef2373651ffbd291a10fbbb787ba6966d5021fe572e",
@@ -991,7 +991,7 @@
         "st_fixed_panels_compact_fr_fcc_left": "6b77d1b506d2b5a1968a124d9c72b31b922e202e91c3fdf1b0d6daf245ce1351",
         "st_fixed_panels_compact_fr_fcc_mark": "be358bc47f0e7e074890a1e90c3c6a4e39df0ff511b0ed23b1f8f680a5ffeb03",
         "st_fixed_panels_compact_fr_fcc_right": "8ee8153624b57f9ce4b2c9e198dc763ac6f67555a0c3f5854618103401d5a6e8",
-        "st_fixed_panels_compact_fr_inbox_title": "92ec286902265e2e0d54bf3129fe7d5c4adab8fdaa3dedc820518848ebd20186",
+        "st_fixed_panels_compact_fr_inbox_title": "5becc66c481fd5928fbf484b4201521ce00585bfbd0eeaefb6e319e246f0b0b2",
         "st_fixed_panels_compact_fr_overview_front_label_1": "26dc2a87413665b6e07be8de32e2a5e3304008cac384ae75450628f8c99b2958",
         "st_fixed_panels_compact_fr_overview_front_label_2": "6105de1c5e2093cabce8360703f8914a242534a564d30be763f4e6b8b4b3d1c1",
         "st_fixed_panels_compact_fr_overview_front_story": "78d9257e795e274b803ef3ccfd8fb284095a501ea01249883620f92f4882f330",
@@ -999,7 +999,7 @@
         "st_fixed_panels_compact_fr_overview_right_label_2": "f37287fb85a8ddaf1b6185e40cc6041dd13d28d42b35f99739a1cb731cce2249",
         "st_fixed_panels_compact_fr_overview_right_label_3": "1f036f03745cd4058e1e2d0a2cc0e2e4fdad537f7f8ada1c9a1376a482240fdd",
         "st_fixed_panels_compact_fr_overview_right_story": "71063e47e79759647551dd808e91bf39698db372c80e237a76d75ef4bb01256f",
-        "st_fixed_panels_compact_fr_overview_title": "07964e0edb805a7b7f4d28b199813b084193a4da811dd22de37f03735fd23fd9"
+        "st_fixed_panels_compact_fr_overview_title": "7be3c038487d1cb5942f587a2e10ffe56a0c6b29ad73e1312592df9079fe9e2a"
       }
     }
   },
@@ -1251,16 +1251,16 @@
         "tf_st_fixed_panels_standard_en_title": {
           "bounds": [
             -151.494,
-            -19.3065,
+            -17.3465,
             146.706,
-            0.693543
+            2.65354
           ],
           "fill": "",
           "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
           "stroke": ""
         }
       },
-      "spread_sha256": "0db11ab6bd596e24bf822e130e52aaa8b8619459416645027d65d6b3eea62e6f",
+      "spread_sha256": "29e61e386eec0f31ec3382f0f9213d0a2cee090c161eb169822ebea0fb4498f7",
       "story_sha256": {
         "st_fixed_panels_standard_en_badge_1": "a782a85b24ef7c8cc9d2ef363092e6e55433217a6a71d6c539c7204f284d8711",
         "st_fixed_panels_standard_en_badge_2": "120ef708e9d02f18ed6479e07f38383779f775b584a35781687b27b9564a0ab0",
@@ -1274,7 +1274,7 @@
         "st_fixed_panels_standard_en_fcc_right": "f9f844685aa7de6962e544974baf043d514fbe50e1a109bb7da10010eab5f0bb",
         "st_fixed_panels_standard_en_tip_body": "7a39181f588e458268c8ee9be24d640bd73be4e836f605e1f5e33c8f164394ed",
         "st_fixed_panels_standard_en_tip_label": "2669981555b2bbb0ab40ba2141aea008bac33a485c5f6395f470ed3111f8b86a",
-        "st_fixed_panels_standard_en_title": "a3f8a63cc54ff567cc31a67b917064326bd3449f1c067482bae829c9575a61ef"
+        "st_fixed_panels_standard_en_title": "2824564934449f94de671e40fedad3a97ce3d34cd6e0db69aeccd9f33c08d343"
       }
     },
     "es": {
@@ -1524,16 +1524,16 @@
         "tf_st_fixed_panels_standard_es_title": {
           "bounds": [
             -151.494,
-            -19.3065,
+            -17.3465,
             146.706,
-            0.693543
+            2.65354
           ],
           "fill": "",
           "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
           "stroke": ""
         }
       },
-      "spread_sha256": "a2b83d520d3fd2a7e9483eeaefaebf5fad59890cdec5fd94f14c1326c8a30581",
+      "spread_sha256": "5c2d6e63e6e43b420119b04054083587271befbd14539182c9a386a8fe9a3083",
       "story_sha256": {
         "st_fixed_panels_standard_es_badge_1": "72c1193f6e468ea5bfdce8428e4c78621f6b34fc75f0ec5b8a680c672561f002",
         "st_fixed_panels_standard_es_badge_2": "d67d432d11b082c2b62e1e3c58e142f070fe8e0901c07d6b2e2cf8fe0b200396",
@@ -1547,7 +1547,7 @@
         "st_fixed_panels_standard_es_fcc_right": "61470364db1005177fdcd7d7e6ce730ac2a22ac744a3b466d9b368992b64e480",
         "st_fixed_panels_standard_es_tip_body": "05f14c9f1dba5b8f059283daa8d1e391fa06b60eb875b075fc35b2f5a3f58812",
         "st_fixed_panels_standard_es_tip_label": "6c78574f8992cf47b8f860206978aeacabe17aa1589c40da0de3afec4450e81c",
-        "st_fixed_panels_standard_es_title": "cf9cdc27971b0471ec7c0026d9e5f3616cb5112242882d9ae96c75c5decf77a7"
+        "st_fixed_panels_standard_es_title": "39731907c38806dbc279d87cd283e3c38f958f52ef21c3d3d232cf0bc4a7f659"
       }
     },
     "fr": {
@@ -1797,16 +1797,16 @@
         "tf_st_fixed_panels_standard_fr_title": {
           "bounds": [
             -151.494,
-            -19.3065,
+            -17.3465,
             146.706,
-            0.693543
+            2.65354
           ],
           "fill": "",
           "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
           "stroke": ""
         }
       },
-      "spread_sha256": "0ae11c89201126cd26ec63ebb54b4c6892e7105c623d051a897ecfa5eb50eb45",
+      "spread_sha256": "4baff315a98d9ae1b83879f55e0b5eb9c2db0131a363a0082b66cedf9f8a88a8",
       "story_sha256": {
         "st_fixed_panels_standard_fr_badge_1": "497c6324eb5bb165b96e81d3545ed24227b6979d39a7c58bfc406d9a1023e43a",
         "st_fixed_panels_standard_fr_badge_2": "0ba42e25aa4d1e6c1c6835ba103f3e86dfc170af8b9d0ae8806a750ef1a14132",
@@ -1820,7 +1820,7 @@
         "st_fixed_panels_standard_fr_fcc_right": "24bdb706c7a022cc21b952cc716bd6210de6bacc0081b3b2c43466c2f5343929",
         "st_fixed_panels_standard_fr_tip_body": "a02ffab74b676c2273390164a79f210c808b4f2e55ff926db3e64015e50bc483",
         "st_fixed_panels_standard_fr_tip_label": "956890b6fe61c31991833aaef60b8dc974dd802ff60175822b39bee70e2fb5d9",
-        "st_fixed_panels_standard_fr_title": "c768603823abcb5821aa4268fa8a8cbee175d49554789e21ede6318a8284aec9"
+        "st_fixed_panels_standard_fr_title": "f98748a9cb5a6d0515d58f09cc0d14afd16931ae0158292305e75d0c58b3ce6b"
       }
     }
   }

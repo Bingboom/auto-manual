@@ -7,7 +7,7 @@ from xml.sax.saxutils import escape
 from .page_objects import (
     frame_with_background,
     h1_bar_h_pt,
-    heading_bar_opts,
+    h1_frame_opts,
     heading_text,
 )
 from .params import param_pt
@@ -80,17 +80,15 @@ def single_image_overview_frames(
     title_sid = writer._add_story_parts(
         f"{sid}_title", h1, [heading_text(writer, h1, level=1)],
     )
+    title_rect = (body_x, top, body_w, title_h)
     return [
         frame_with_background(
             writer,
             sid,
             "title",
             title_sid,
-            (body_x, top, body_w, title_h),
-            {
-                **heading_bar_opts(1, (1.5, 5.0, 1.0, 6.0)),
-                "text_rect": (body_x + 6.0, top, body_w - 12.0, title_h),
-            },
+            title_rect,
+            h1_frame_opts(title_rect),
         ),
         _graphic_frame(
             writer,

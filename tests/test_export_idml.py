@@ -3004,7 +3004,6 @@ class ExportIdmlTests(unittest.TestCase):
         overrides = {
             "idml_symbols_maintenance_title_gap": "4",
             "idml_symbols_title_gap": "10",
-            "idml_symbols_h1_optical_offset": "2.5",
             "idml_symbols_page_bottom_allowance": "3",
             "idml_symbols_table_frame_allowance": "0.5",
             "idml_symbols_fallback_import_allowance": "4",
@@ -3022,7 +3021,6 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(17.0, style.subbar_height)
         self.assertEqual(4.0, style.maintenance_title_gap)
         self.assertEqual(10.0, style.symbols_title_gap)
-        self.assertEqual(2.5, style.h1_optical_offset)
         self.assertEqual(3.0, style.page_bottom_allowance)
         self.assertEqual(0.5, style.table_frame_allowance)
         self.assertEqual(4.0, style.fallback_import_allowance)
@@ -3582,7 +3580,7 @@ class ExportIdmlTests(unittest.TestCase):
         title = bounds("tf_st_fcc_es_layout_title")
         card = bounds("bg_st_fcc_es_layout_card_1")
         tip = bounds("bg_st_fcc_es_layout_tip_strip")
-        self.assertAlmostEqual(263.5 - 1.96, title[1], places=3)
+        self.assertAlmostEqual(263.5, title[1], places=3)
         self.assertAlmostEqual(288.0, card[1], places=3)
         self.assertAlmostEqual(160.8, card[3] - card[1], places=3)
         self.assertAlmostEqual(454.0, tip[1], places=3)

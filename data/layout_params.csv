@@ -647,7 +647,6 @@ idml_symbols_maintenance_body_gap,0.0,pt,IDML English maintenance body gap befor
 idml_symbols_signal_gap_after,4.1,pt,IDML English gap between signal and icon tables
 idml_symbols_maintenance_title_gap,3.5,pt,IDML gap after the maintenance subbar
 idml_symbols_title_gap,9.0,pt,IDML gap after the Symbols H1 band
-idml_symbols_h1_optical_offset,1.918,pt,IDML Symbols H1 band optical vertical offset
 idml_symbols_page_bottom_allowance,2.0,pt,IDML Symbols fallback bottom-trim allowance
 idml_symbols_table_frame_allowance,0.25,pt,IDML governed Symbols table carrier allowance preventing final-row overset
 idml_symbols_fallback_import_allowance,3.0,pt,IDML non-governed Symbols icon-table import allowance

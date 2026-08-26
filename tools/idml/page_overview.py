@@ -18,7 +18,7 @@ from tools.component_specs.overview_instance import resolve_overview_instance
 from .character_metrics import with_character_metrics
 from .page_objects import (
     frame_with_background,
-    heading_bar_opts,
+    h1_frame_opts,
     heading_text,
 )
 from .page_overview_single_art import _graphic_frame, single_image_overview_frames
@@ -435,6 +435,7 @@ def product_overview_frames(
         ),
     )
 
+    title_rect = rect(page_geometry["title_frame"])
     artwork_and_headings = [
         _graphic_frame(writer, f"art_{sid}_front", assets[0],
                        rect(front_view["art_rect"])),  # type: ignore[arg-type]
@@ -442,9 +443,8 @@ def product_overview_frames(
                        rect(right_view["art_rect"])),  # type: ignore[arg-type]
         frame_with_background(
             writer, sid, "title", title_sid,
-            rect(page_geometry["title_frame"]),
-            {**heading_bar_opts(1, (1.5, 5.0, 1.0, 6.0)),
-             "text_rect": rect(page_geometry["title_text_rect"])},
+            title_rect,
+            h1_frame_opts(title_rect, left_inset=6.4, right_inset=6.4),
         ),
         *front_heading,
         *right_heading,

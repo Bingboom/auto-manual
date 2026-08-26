@@ -35,7 +35,7 @@
             "title",
             [
               28.34645669291339,
-              142.70776377952757,
+              140.78976377952756,
               312.09448818897647,
               20.125984251968504
             ]
@@ -75,7 +75,7 @@
         "right": 0
       },
       "story_sha256": {
-        "st_symbols_standard_en_symbols_title": "06814be2e25259c1441e496a859286b6e8e368d08497d24b5293272900b88585",
+        "st_symbols_standard_en_symbols_title": "7b3d3c771d5b56c6d07612c76f59b51d72cee48696f9ffc2d00400fced126d27",
         "st_symbols_standard_en_signals": "9eb3a138167230f416a210193ac37bd074387fb33ab4f79b8e06236beb32f709",
         "st_symbols_standard_en_icons_left": "b8532652411e8c3fde87106bef329cca603a778f021f8701b54c8f50b9077427",
         "st_symbols_standard_en_icons_right": "581e6ee8edc9e24ab2a7fd9807075811bf6cca74f4fe2a704c4c177f797c13f7"
@@ -116,7 +116,7 @@
             "title",
             [
               28.34645669291339,
-              202.00776377952755,
+              200.08976377952754,
               312.09448818897647,
               20.125984251968504
             ]
@@ -156,7 +156,7 @@
         "right": 0
       },
       "story_sha256": {
-        "st_symbols_standard_fr_symbols_title": "40c541e6be2f53e2b12455488a51f7f1e9711e7f2031a5ae5cc69f665306cda4",
+        "st_symbols_standard_fr_symbols_title": "38c273241ecdc144fd414c5212ab88e703d5cca09c134f957fd7073cc4f962d6",
         "st_symbols_standard_fr_signals": "18b6bddf96dd69a32f555b9b07708492a4b4aed6afc81b524b7f6bbd3516c2e3",
         "st_symbols_standard_fr_icons_left": "2a9a6293362c4e9e6bcf165d911ab46aa937f3f58b29f25ff67330ec397e79cb",
         "st_symbols_standard_fr_icons_right": "670247a343b9c6c3dab246e076697024a3e681e38e8f2dc8d9cba4ba427a035e"
@@ -197,7 +197,7 @@
             "title",
             [
               28.34645669291339,
-              203.00776377952755,
+              201.08976377952754,
               312.09448818897647,
               20.125984251968504
             ]
@@ -237,7 +237,7 @@
         "right": 0
       },
       "story_sha256": {
-        "st_symbols_standard_es_symbols_title": "d13ba7d843ecb9f0d52d8ec31ab357a8057e38272eb10298d0ff53cef2281ddc",
+        "st_symbols_standard_es_symbols_title": "52b70bab5b83fabd7ec1028233bc89cf378a43d2abcafaae3b2f78e7b36595fb",
         "st_symbols_standard_es_signals": "cc63b765a53b80f440eedd4f747ab968ff3b8bf27263b703ffee69a2102ccce7",
         "st_symbols_standard_es_icons_left": "0ab7f31d6015606a75fb2dd96e3457b4f77b7242a54aae8df1e87fd2baa9b2f0",
         "st_symbols_standard_es_icons_right": "87be3fddfe43bc77954881f0edf1ff1e1c98d9ff95f0ebc36a574a96b5f359d7"
@@ -320,7 +320,7 @@
         "right": 0
       },
       "story_sha256": {
-        "st_symbols_shared_en_title": "3806e8489894db34cf94c11555d918551f7b80827916816f486574ec8dd89689",
+        "st_symbols_shared_en_title": "9eaf0b3016b96306368d8fd53a9fa4517241a3aee2741cce60ced9388185b834",
         "st_symbols_shared_en_signals": "5f431eb7b6bda4d710d10594903fa08ed7c9b1bfd983319e83520045f35e8b75",
         "st_symbols_shared_en_icons_left": "e55343a2d68574907f271acfdae6ddbae2b57766ad94b3e15b43d9e4f2cdb863",
         "st_symbols_shared_en_icons_right": "8a375e0a0c2583dd40794e10909a9f01c8ed7967b663e73cf35121c2779ef4db"
@@ -401,7 +401,7 @@
         "right": 0
       },
       "story_sha256": {
-        "st_symbols_shared_fr_title": "8d16b246a71d27b28113b71cd59085cdbf05999fb7e6c452d976645ec2e6ac0a",
+        "st_symbols_shared_fr_title": "4ebff2bdf6fbbc1c54db4275ec4f13a294f991c14f2844383ef7e4688a25a1d2",
         "st_symbols_shared_fr_signals": "384845053f450ae34740eb0cb9d147050a266f80e4fc107ebf19db6d4485509a",
         "st_symbols_shared_fr_icons_left": "9fd02f26a04cbbb45ec796b0de3511dc75088e6901d66e938f4198ee489b0ca3",
         "st_symbols_shared_fr_icons_right": "847f2fd6a323ccd3ba5ae84e0e2344596c4084b193ae6c98c5194b373cbfb714"
@@ -482,7 +482,7 @@
         "right": 0
       },
       "story_sha256": {
-        "st_symbols_shared_es_title": "8af7faa62e5f847d10d10a686555c77dd59bbc875f619babf224d46e1f435cd3",
+        "st_symbols_shared_es_title": "78b22cd597409322a9a0fa87aabac41520e49d934652e617edf828daab34dd95",
         "st_symbols_shared_es_signals": "62d909eefcea9784b45bf0ba593c9f3572ee362d7c33abdb580cf11bc06e1077",
         "st_symbols_shared_es_icons_left": "691cc53f842bf566513068744cfe1475d7d46548f7c08bbd301138ac6a8c635a",
         "st_symbols_shared_es_icons_right": "bbacb44778adc487062b3e494b41607fa23558658fb733711b564fe4ebeba8b2"

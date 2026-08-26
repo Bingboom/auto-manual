@@ -8,6 +8,7 @@ from pathlib import Path
 from ..page_objects import (
     frame_with_background,
     h1_bar_h_pt,
+    h1_frame_opts,
     heading_bar_opts,
     heading_text,
     with_rounded_outer,
@@ -258,20 +259,13 @@ class SafetyPanel:
             )
 
         title_height = h1_bar_h_pt(writer)
+        title_rect = (x, y + 27.92, width, title_height)
         definitions = (
             (
                 "title",
                 title_sid,
-                (x, y + 27.92, width, title_height),
-                {
-                    **heading_bar_opts(1, (1.5, 0, 1, 0)),
-                    "text_rect": (
-                        x + 6.0,
-                        y + 26.0,
-                        width - 12.0,
-                        title_height,
-                    ),
-                },
+                title_rect,
+                h1_frame_opts(title_rect),
             ),
             (
                 "warning",

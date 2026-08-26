@@ -33,7 +33,6 @@ class PanelMetrics:
     auto_grow_rows: bool
     disable_hyphenation: bool
     fit_body_to_row: bool
-    title_optical_offset: float
 
 
 def normalized_language(language: str) -> str:
@@ -79,7 +78,6 @@ def panel_metrics(
             auto_grow_rows=True,
             disable_hyphenation=False,
             fit_body_to_row=False,
-            title_optical_offset=style.h1_optical_offset,
         )
 
     signal_header = _compact_metric(
@@ -171,7 +169,6 @@ def panel_metrics(
         auto_grow_rows=False,
         disable_hyphenation=True,
         fit_body_to_row=True,
-        title_optical_offset=0.0,
     )
 
 

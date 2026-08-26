@@ -255,6 +255,13 @@ Storage 随后确认了更直接的重复：compact JBP 页面曾另建标题故
 不再拥有标题基线、正文底色、圆角或 inset。EN/FR/ES golden 同时锁定 JE 的
 `LeftIndent=4.74`、标题字面 `BaselineShift=0.5` 与无 JBP 专属灰底卡的结构。
 
+随后发现 fixed/composed H1 仍存在一条隐蔽分叉：Safety、Symbols 与 Inbox 虽然
+调用共享 `heading_text`，却使用 `BaselineShift=-1.5`；JE 的 flowed H1 则使用
+`+0.5`，标准 Safety/Inbox 又靠文本框向上约 1.92pt 抵消，所以 JBP compact 页面
+暴露为字面下沉。现在所有 H1 统一由 `heading_text` 输出 `+0.5pt`，固定标题框由
+`h1_frame_opts` 自己生成与底条同高、同 Y 的文本矩形；Overview 实例也不再登记
+独立 `title_text_rect`。页面编排器只放置外矩形，不能通过 Y 偏移重建内部基线。
+
 同页 compact Specifications 也不能靠逐表外壳高度补齐版面。旧实现把
 `81.7/28.5/28.5pt` 外壳减去等高单行后的余量全部加给末行，造成三张表的尾行
 分别变成 `15.7/17.5/17.5pt`，其余单行仍为 `11pt`。现由规格表组件根据

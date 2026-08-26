@@ -67,11 +67,6 @@ def _validate_instance(instance_id: str, raw: Any) -> dict[str, Any]:
     if not isinstance(page, Mapping):
         raise ComponentSpecError(f"{prefix}.page must be a mapping")
     _number_list(page.get("title_frame"), length=4, field=f"{prefix}.page.title_frame")
-    _number_list(
-        page.get("title_text_rect"),
-        length=4,
-        field=f"{prefix}.page.title_text_rect",
-    )
 
     views = instance.get("views")
     if not isinstance(views, list) or not views:

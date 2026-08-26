@@ -59,7 +59,6 @@ class SafetySymbolsPageStyle:
     subbar_height: float
     maintenance_title_gap: float
     symbols_title_gap: float
-    h1_optical_offset: float
     page_bottom_allowance: float
     table_frame_allowance: float
     fallback_import_allowance: float
@@ -116,7 +115,6 @@ class SafetySymbolsPageStyle:
                 "idml_symbols_maintenance_title_gap", 3.5,
             ),
             symbols_title_gap=token("idml_symbols_title_gap", 9.0),
-            h1_optical_offset=token("idml_symbols_h1_optical_offset", 1.918),
             page_bottom_allowance=token(
                 "idml_symbols_page_bottom_allowance", 2.0,
             ),

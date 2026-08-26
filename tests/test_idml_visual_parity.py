@@ -20,7 +20,10 @@ from tools.idml.components.rounded_table import rounded_table_panel, table_text_
 from tools.idml.page_objects import (
     anchored_panel_group_paragraph,
     h1_bar_h_pt,
+    h1_frame_opts,
+    h1_pill_paragraph,
     heading_bar_opts,
+    heading_text,
     left_rounded_path_geometry,
     rounded_path_geometry,
 )
@@ -91,6 +94,20 @@ class IdmlVisualParityTests(unittest.TestCase):
             h1_bar_h_pt(writer),
             places=5,
         )
+
+    def test_fixed_and_flowed_h1_share_the_je_visible_cap_centre(self) -> None:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        rect = (28.35, 27.92, 312.09, h1_bar_h_pt(writer))
+        opts = h1_frame_opts(rect)
+        fixed = heading_text(writer, "IMPORTANT SAFETY INFORMATION", level=1)
+        h1_pill_paragraph(writer, "STORAGE", rect[2])
+        flowed = dict(writer.stories)["st_anchor_h1pill_0"]
+
+        self.assertEqual("CenterAlign", opts["valign"])
+        self.assertEqual((34.35, 27.92, 300.09, rect[3]), opts["text_rect"])
+        for story in (fixed, flowed):
+            self.assertIn('BaselineShift="0.5"', story)
+            self.assertNotIn('BaselineShift="-1.5"', story)
 
     def test_heading_styles_derive_keep_with_next_from_shared_needspace(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

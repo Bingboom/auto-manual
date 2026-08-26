@@ -12,8 +12,7 @@
         "*03_product_overview_placeholder"
       ],
       "page": {
-        "title_frame": [29.505, 28.035, 311.91, 20.065],
-        "title_text_rect": [35.9, 26.12, 299.0, 20.1]
+        "title_frame": [29.505, 28.035, 311.91, 20.065]
       },
       "views": [
         {
@@ -191,8 +190,7 @@
         "product_overview_es"
       ],
       "page": {
-        "title_frame": [29.505, 328.5, 311.91, 20.065],
-        "title_text_rect": [35.9, 326.585, 299.0, 20.1]
+        "title_frame": [29.505, 328.5, 311.91, 20.065]
       },
       "views": [
         {

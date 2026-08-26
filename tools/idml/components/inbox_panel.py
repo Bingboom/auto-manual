@@ -13,7 +13,7 @@ from ..page_objects import (
     CARD_OBJECT_STYLE,
     PANEL_OBJECT_STYLE,
     frame_with_background,
-    heading_bar_opts,
+    h1_frame_opts,
     heading_text,
     left_rounded_xml,
     page_rectangle_xml,
@@ -246,24 +246,16 @@ class InboxPanel:
         width: float,
     ) -> tuple[str, FrameRect]:
         title_sid = self.add_title_story()
+        rect = (x, y, width, TITLE_HEIGHT)
         if self.density == "compact":
-            opts = {
-                **heading_bar_opts(1, (1.5, 5, 1, 6)),
-                "text_rect": (x + 6.0, y, width - 12.0, TITLE_HEIGHT),
-            }
             frame_name = "inbox_title"
         else:
-            opts = {
-                **heading_bar_opts(1, (1.5, 5, 1, 6)),
-                "text_rect": (
-                    x + 6.4,
-                    y - 1.96,
-                    width - 12.8,
-                    TITLE_HEIGHT,
-                ),
-            }
             frame_name = "title"
-        rect = (x, y, width, TITLE_HEIGHT)
+        opts = h1_frame_opts(
+            rect,
+            left_inset=6.0 if self.density == "compact" else 6.4,
+            right_inset=6.0 if self.density == "compact" else 6.4,
+        )
         return (
             frame_with_background(
                 self.writer,

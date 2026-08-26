@@ -63,44 +63,44 @@ COPY = {
 GOLDEN = {
     "en": {
         "standard": (
-            "b05cdfc3dc0f3e76ff1db5c90320d29a0fdf26811d6e7fbe8199ca34e97bcbb7",
-            "031f8f464a48c773145e19b8cee0cfed513ea33fa476c549620559798fbc550e",
+            "2812194ef954e31f1e99a5e9655998336861249360999147824793b2a196696f",
+            "367bb5ac714e2d658308ffe0c5032a087584f9dc6fcaa2448ae99e946795cf42",
         ),
         "compact": (
             "eb410a51580912995124b9d87e70b642445ab7c49ea53e6e212dad6e82bb50d4",
-            "82b9cc2735a3bd17e79e2513c75bc57fd51f1d93d89f65c33548d30a61e0b6f7",
+            "cf6e690a0ae90505aa24af591025c21552aba8806fbc203a6066cf2de33db774",
         ),
         "maintenance": (
-            "47111c9476d32f1bb0f2fcb749d10118392673c6cbf3a85f29da16cebd4c904d",
-            "1c596928ba4d834fba6d42c253631cfbbf93b7b6a05419028467eb9905c2af5a",
+            "5a1ecf52fae7704c70437ca9aa63e71a3443d2f5bf5ea5fa007fa20efacc6ff9",
+            "f26786221092faef3c7500e1024655f591e154902d630fd7a01c4f96fddf5a79",
         ),
     },
     "fr": {
         "standard": (
-            "0d024f31507633de055897277b523d6bbb413304d5d745d1eca0ecfe3c735540",
-            "69bf42d38d645da95ed2744a889903628999480017b7427d54c2f6479772e216",
+            "ef46ef3a1ecec771f503c6f06deebb359d9dae645b3d851318a285f7d5c1a572",
+            "9c3852c0c5e371c2ee265b0f1d379ffabdcd094093468048ae21adf8d81a671f",
         ),
         "compact": (
             "07811d7923bc180990d6a17ec655c05982b152268b67f10c155f9ea09644f81f",
-            "576ff193d66905749b65fab3abd2ca164aacf902032bc80c05c8f6ee8da1ddb9",
+            "67c0fb28e340d754b04eed1cef5e094a2f081f1a89b08b1a7aef3208745a6b30",
         ),
         "maintenance": (
-            "d1b0047675ffea4c4baa7adabace255ea309b00ddd72efc845ba8802cdb412db",
-            "d4e40338e4069b2d72a03ebce765102b08f4604a4dd9e0b7d3f7a661dfe5663d",
+            "5c9687d92ef903eb40be8b59cc27821881ba27be30d96dff06ad73e5f54d761c",
+            "8bb4e59356ee597a071b70ecb1057ce192b8907bc87f7401b380026c801e2e48",
         ),
     },
     "es": {
         "standard": (
-            "fe9fbc6f6d61ddb1f16fa2c18df7c47db84fbc8257d3c0f92837dd1febc8a1e9",
-            "736ac2da8cf14dc64774c6d40391d95ea1401e48b1e1d29fa0a264b4f14e5254",
+            "45a09c3be28b9d944b9e34b0560e79a695752e8be28505b873cf5df1554d6ae2",
+            "5eb73f80aefa0d305578763ff2b4dd83c8a6f36eecc3aee5d648e7336905b8ef",
         ),
         "compact": (
             "e0ad890a4cd47d537ee97c654978be2a536c0796fa7e028e7813b4c707aa3872",
-            "af66416b9ed20a9a3d90470704d77f8ce43aeb0c41ca97b175b6f946785e8278",
+            "2474344b608791331127d6b53e949fb19852385f0c70bb8bb707ee2e71296707",
         ),
         "maintenance": (
-            "d7fa73cf672099d743b6d374d7e96d76cc9e9173c5af9f8abdd85fe62a36a2cc",
-            "c2b3f1c69c3edc889b49ce6ae8cd7320056ff3a4a28a21dc218cb8a7ca3e1ed3",
+            "8bbc7d534b09464cf48c21e71152fe220b55a1a2d2587b8b26cb6d2c47a5fa50",
+            "a3a40aa84151d67a59949501bc26718a02437ceca5f21cffe605bb9138354d9d",
         ),
     },
 }
