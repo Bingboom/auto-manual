@@ -81,6 +81,28 @@ class LanguageRegistryTest(unittest.TestCase):
                     for column in spec.columns_for_table(table_name):
                         self.assertIn(column, TABLE_SCHEMAS[table_name].columns)
 
+    def test_required_headers_are_produced_by_table_columns(self) -> None:
+        """A required header the schema never emits is a silent contract break.
+
+        ``Text_ko`` was required by ``spec_footnotes``/``spec_notes`` while the
+        registry produced no Korean column for those tables, so Korean footnote
+        and note text could never reach a build.
+        """
+
+        for logical_name, schema in sorted(TABLE_SCHEMAS.items()):
+            with self.subTest(table=logical_name):
+                missing = tuple(
+                    header
+                    for header in schema.required_headers
+                    if header not in schema.columns
+                )
+                self.assertEqual(
+                    missing,
+                    (),
+                    f"{logical_name} requires header(s) it never emits: "
+                    + ", ".join(missing),
+                )
+
     def test_manual_copy_source_language_surfaces_match_registry(self) -> None:
         specs = lang_registry.LANGUAGE_REGISTRY
         expected_tm = {

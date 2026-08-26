@@ -618,10 +618,9 @@ Current schema:
 - `Footnote_id`
 - `Footnote_order`
 - `Type`
-- `Text_en`
-- `Text_fr`
-- `Text_es`
-- `Text_ja`
+- one `Text_<lang>` column per language registered for this table in
+  [`../tools/lang_registry.py`](../tools/lang_registry.py) — that registry is the
+  source of truth, so do not maintain a second list here
 - `Enabled`
 
 Current rule:
@@ -651,10 +650,9 @@ Current schema:
 - `Note_id`
 - `Note_order`
 - `Type`
-- `Text_en`
-- `Text_fr`
-- `Text_es`
-- `Text_ja`
+- one `Text_<lang>` column per language registered for this table in
+  [`../tools/lang_registry.py`](../tools/lang_registry.py) — that registry is the
+  source of truth, so do not maintain a second list here
 - `Enabled`
 
 Current rule:
