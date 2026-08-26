@@ -48,6 +48,7 @@ class TestCiCheckTargets(unittest.TestCase):
             (
                 ("JE-1000F", "KR", "ko"),
                 ("JE-2000E", "KR", "ko"),
+                ("JE-3000C", "KR", "ko"),
             ),
             tuple((target.model, target.region, target.lang) for target in targets),
         )
