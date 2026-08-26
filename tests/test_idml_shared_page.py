@@ -617,6 +617,32 @@ class SharedPageTests(unittest.TestCase):
             self.assertIn('SingleColumnWidth="74.9987"', lcd_table)
             self.assertIn('SingleColumnWidth="237.496"', lcd_table)
             self.assertNotIn('TopInset="13.322"', lcd_table)
+            lcd_story = dict(writer.stories)["st_lcd"]
+            main_frame_id = "tf_group_st_anchor_lcd_table_en_0"
+            carrier_id = "tf_terminal_carrier_group_st_anchor_lcd_table_en_0"
+            self.assertIn(
+                f'Self="{main_frame_id}" '
+                'ParentStory="st_anchor_lcd_table_en_0" '
+                f'PreviousTextFrame="n" NextTextFrame="{carrier_id}"',
+                lcd_story,
+            )
+            self.assertIn(
+                f'Self="{carrier_id}" '
+                'ParentStory="st_anchor_lcd_table_en_0" '
+                f'PreviousTextFrame="{main_frame_id}" NextTextFrame="n"',
+                lcd_story,
+            )
+            main_frame = lcd_story.split(
+                f'<TextFrame Self="{main_frame_id}"', 1,
+            )[1].split("</TextFrame>", 1)[0]
+            carrier = lcd_story.split(
+                f'<TextFrame Self="{carrier_id}"', 1,
+            )[1].split("</TextFrame>", 1)[0]
+            self.assertIn('Anchor="0 -30"', main_frame)
+            self.assertNotIn('Anchor="0 -31"', main_frame)
+            self.assertIn('Anchor="0 1"', carrier)
+            self.assertIn('FillColor="Swatch/None"', carrier)
+            self.assertIn('StrokeColor="Swatch/None"', carrier)
             spread = dict(writer.spreads)["sp_5"]
             self.assertIn('ParentStory="st_lcd"', spread)
             self.assertIn('ParentStory="st_operation_en"', spread)

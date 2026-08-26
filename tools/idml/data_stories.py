@@ -76,6 +76,13 @@ def add_lcd_story(
         strict=writer.strict_component_assets,
         owner="LCD governed row icon fit",
     )
+    native_carrier_allowance = component_param_pt(
+        writer.params,
+        "idml_lcd_native_carrier_allowance",
+        1.0,
+        strict=writer.strict_component_assets,
+        owner="LCD native terminal carrier",
+    )
     def _vertical_pad(segment_index: int) -> float:
         if segment_index > 0:
             return param_pt(
@@ -412,11 +419,11 @@ def add_lcd_story(
                     + param_pt(writer.params, "comp_lcd_partial_panel_extra", 4.0),
                 ),
             )
-        # A complete governed table owns the full shell height: short rows keep
-        # their compact fixed budget and the final row must close directly
-        # against the rounded bottom border. Never add a terminal spacer below
-        # the table. InDesign finalize may grow the shell together with the
-        # table if native font metrics make a real row taller.
+        # A complete governed table owns the full visible shell height: short
+        # rows keep their compact fixed budget and the final row closes directly
+        # against the rounded bottom border. The native end-of-story marker is
+        # isolated in a separate transparent threaded carrier, never appended
+        # to the visible shell or its table frame.
         if row_heights is not None:
             panel_height = sum(row_heights)
         panel = rounded_table_panel(
@@ -432,6 +439,7 @@ def add_lcd_story(
             fill="Color/Paper",
             stroke="Color/HB Brand Dark",
             start_next_page=segment_index > 0,
+            terminal_carrier_height=native_carrier_allowance,
         )
         if segment_index == 0:
             left_indent = param_pt(

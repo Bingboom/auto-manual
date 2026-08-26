@@ -42,16 +42,26 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("hb:page=", jsx)
         self.assertIn("doc.exportFile", jsx)
         self.assertIn("backgroundTaskPreferences.enableBackgroundTask = false", jsx)
-        self.assertIn("fitLcdTableShells(doc)", jsx)
+        self.assertIn("fitLcdCarrierFrames(doc)", jsx)
         self.assertIn('indexOf(" table segment ")', jsx)
-        self.assertIn("table.rows[ri].height", jsx)
         self.assertIn("fitted_lcd_table_groups", jsx)
+        lcd_fit = jsx.split(
+            "function fitLcdCarrierFrames(doc)",
+            1,
+        )[1].split("function fitTroubleshootingCarrierFrames", 1)[0]
+        self.assertNotIn("allPageItems", lcd_fit)
+        self.assertNotIn("item.geometricBounds", lcd_fit)
+        self.assertNotIn("table.rows", lcd_fit)
+        self.assertIn(
+            '"hb:self=tf_terminal_carrier_group_"',
+            lcd_fit,
+        )
         self.assertIn('=== "troubleshooting table"', jsx)
         self.assertIn("fitted_troubleshooting_table_groups", jsx)
         self.assertIn("fitted_troubleshooting_carrier_frames", jsx)
         self.assertIn("fitTroubleshootingCarrierFrames(doc)", jsx)
         self.assertIn(
-            "function growTroubleshootingCarrierFrame(doc, story, frame, maxGrowth)",
+            "function growTableTerminalCarrier(doc, story, frame, maxGrowth)",
             jsx,
         )
         self.assertIn("doc, story, frame, 24.0", jsx)
@@ -81,7 +91,7 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("fontHasTextUsage(doc, font)", jsx)
         self.assertIn("matches = doc.findText()", jsx)
         self.assertIn("textHasVisibleContent(matches[mi].contents)", jsx)
-        self.assertIn("resizeLcdTableShell(frame, 1.0)", jsx)
+        self.assertNotIn("resizeLcdTableShell", jsx)
         self.assertIn("tableHeight + 4.0", jsx)
         self.assertIn("forced_residuals", jsx)
         self.assertIn("appliedFontName(matches[mi])", jsx)

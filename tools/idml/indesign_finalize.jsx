@@ -75,55 +75,35 @@
         }
     }
 
-    function resizeLcdTableShell(frame, markerAllowance) {
-        var table = frame.parentStory.tables[0];
-        var frameBounds = frame.geometricBounds;
-        var oldBottom = Number(frameBounds[2]);
-        var tableHeight = 0;
-        for (var ri = 0; ri < table.rows.length; ri += 1) {
-            tableHeight += Number(table.rows[ri].height);
+    function growTableTerminalCarrier(doc, story, frame, maxGrowth) {
+        if (!story.overflows) { return false; }
+        var growth = 0.0;
+        while (story.overflows && growth < maxGrowth) {
+            var frameBounds = frame.geometricBounds;
+            frameBounds[2] = Number(frameBounds[2]) + 2.0;
+            frame.geometricBounds = frameBounds;
+            growth += 2.0;
+            doc.recompose();
         }
-        var newBottom = Number(frameBounds[0]) + tableHeight + Number(markerAllowance || 0);
-        var delta = newBottom - oldBottom;
-        if (Math.abs(delta) < 0.01) { return false; }
-
-        var oldHeight = oldBottom - Number(frameBounds[0]);
-        var oldWidth = Number(frameBounds[3]) - Number(frameBounds[1]);
-        var siblings = frame.parent.allPageItems;
-        for (var si = 0; si < siblings.length; si += 1) {
-            var item = siblings[si];
-            if (item.constructor.name !== "Rectangle") { continue; }
-            var bounds = item.geometricBounds;
-            var itemHeight = Number(bounds[2]) - Number(bounds[0]);
-            var itemWidth = Number(bounds[3]) - Number(bounds[1]);
-            var isFullShell = itemHeight > oldHeight * 0.9 && itemWidth > oldWidth * 0.9;
-            var isBottomMask = !isFullShell &&
-                Math.abs(Number(bounds[2]) - oldBottom) < 0.2;
-            if (isFullShell) {
-                bounds[2] = newBottom;
-                item.geometricBounds = bounds;
-            } else if (isBottomMask) {
-                bounds[0] = Number(bounds[0]) + delta;
-                bounds[2] = Number(bounds[2]) + delta;
-                item.geometricBounds = bounds;
-            }
-        }
-        frameBounds[2] = newBottom;
-        frame.geometricBounds = frameBounds;
-        return true;
+        return growth > 0;
     }
 
-    function fitLcdTableShells(doc) {
+    function fitLcdCarrierFrames(doc) {
         var fitted = 0;
-        var items = doc.allPageItems;
-        for (var ii = 0; ii < items.length; ii += 1) {
-            var frame = items[ii];
-            if (frame.constructor.name !== "TextFrame" ||
-                    frame.parent.constructor.name !== "Group") { continue; }
+        for (var si = 0; si < doc.stories.length; si += 1) {
+            var story = doc.stories[si];
             try {
-                if (frame.parentStory.tables.length === 1 &&
-                        isLcdTableStory(frame.parentStory) &&
-                        resizeLcdTableShell(frame, 1.0)) {
+                if (!isLcdTableStory(story) ||
+                        story.tables.length !== 1 ||
+                        story.textContainers.length < 2) { continue; }
+                var frame = story.textContainers[story.textContainers.length - 1];
+                if (frame.constructor.name === "TextFrame" &&
+                        itemLabel(frame).indexOf(
+                            "hb:self=tf_terminal_carrier_group_"
+                        ) === 0 &&
+                        growTableTerminalCarrier(
+                            doc, story, frame, 24.0
+                        )) {
                     fitted += 1;
                 }
             } catch (_) {}
@@ -145,7 +125,7 @@
                         itemLabel(frame).indexOf(
                             "hb:self=tf_terminal_carrier_group_"
                         ) === 0 &&
-                        growTroubleshootingCarrierFrame(
+                        growTableTerminalCarrier(
                             doc, story, frame, 24.0
                         )) {
                     fitted += 1;
@@ -154,19 +134,6 @@
         }
         doc.recompose();
         return fitted;
-    }
-
-    function growTroubleshootingCarrierFrame(doc, story, frame, maxGrowth) {
-        if (!story.overflows) { return false; }
-        var growth = 0.0;
-        while (story.overflows && growth < maxGrowth) {
-            var frameBounds = frame.geometricBounds;
-            frameBounds[2] = Number(frameBounds[2]) + 2.0;
-            frame.geometricBounds = frameBounds;
-            growth += 2.0;
-            doc.recompose();
-        }
-        return growth > 0;
     }
 
     function substituteMissingFont(doc, sourceName, targetName) {
@@ -414,12 +381,15 @@
         doc.cmykProfile = job.output_intent;
         report.pdf_export.applied_document_cmyk_profile = String(doc.cmykProfile);
         doc.recompose();
-        report.fitted_lcd_table_groups = fitLcdTableShells(doc);
+        // Keep the report key for compatibility. LCD finalization may grow
+        // only the transparent terminal carrier, never the visible shell.
+        report.fitted_lcd_table_groups = fitLcdCarrierFrames(doc);
         report.fitted_troubleshooting_carrier_frames =
             fitTroubleshootingCarrierFrames(doc);
         report.fitted_symbol_table_shells = fitComposedSymbolTableShells(doc);
         report.carrier_frame_fits = fitTerminalCarrierFrames(doc);
         report.font_substitutions = applyHostFontSubstitutions(doc);
+        report.fitted_lcd_table_groups += fitLcdCarrierFrames(doc);
         report.fitted_troubleshooting_carrier_frames +=
             fitTroubleshootingCarrierFrames(doc);
         report.carrier_frame_fits = report.carrier_frame_fits.concat(

@@ -507,6 +507,7 @@ comp_lcd_partial_row_height,27,pt,LCD short final-segment row height allowance
 comp_lcd_partial_panel_extra,4,pt,LCD short final-segment shell allowance
 comp_lcd_partial_panel_min_height,30,pt,LCD short final-segment minimum shell height
 idml_lcd_table_width_adjust,0.4,pt,IDML LCD table width adjustment against the approved master
+idml_lcd_native_carrier_allowance,1.0,pt,Transparent terminal-marker carrier outside the visible LCD shell
 idml_lcd_first_no_col_width,19.2,pt,IDML LCD first-segment number column width
 lang_fr_idml_lcd_first_no_col_width,20.2,pt,French IDML LCD first-segment number column width
 lang_es_idml_lcd_first_no_col_width,20.2,pt,Spanish IDML LCD first-segment number column width

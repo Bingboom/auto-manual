@@ -4024,6 +4024,7 @@ class ExportIdmlTests(unittest.TestCase):
     def test_lcd_governed_height_budget_is_fixed_for_all_us_languages(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         self.assertEqual(("3.8", "pt"), params["idml_lcd_governed_icon_line_reserve"])
+        self.assertEqual(("1.0", "pt"), params["idml_lcd_native_carrier_allowance"])
         rows = [
             {
                 "no": str(index),
@@ -4048,6 +4049,28 @@ class ExportIdmlTests(unittest.TestCase):
                 ]
                 self.assertEqual(19, continuation.count('AutoGrow="true"'))
                 self.assertNotIn('AutoGrow="false"', continuation)
+                host_sid = "st_lcd" if language == "en" else f"st_lcd_{language}"
+                host = dict(writer.stories)[host_sid]
+                for segment_index in (0, 1):
+                    main_frame_id = (
+                        f"tf_group_st_anchor_lcd_table_{language}_{segment_index}"
+                    )
+                    carrier_id = (
+                        "tf_terminal_carrier_group_st_anchor_lcd_table_"
+                        f"{language}_{segment_index}"
+                    )
+                    self.assertIn(
+                        f'Self="{main_frame_id}" '
+                        f'ParentStory="st_anchor_lcd_table_{language}_{segment_index}" '
+                        f'PreviousTextFrame="n" NextTextFrame="{carrier_id}"',
+                        host,
+                    )
+                    carrier = host.split(
+                        f'<TextFrame Self="{carrier_id}"', 1,
+                    )[1].split("</TextFrame>", 1)[0]
+                    self.assertIn('Anchor="0 1"', carrier)
+                    self.assertIn('FillColor="Swatch/None"', carrier)
+                    self.assertIn('StrokeColor="Swatch/None"', carrier)
 
     def test_lcd_french_first_page_uses_reference_body_column_width(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

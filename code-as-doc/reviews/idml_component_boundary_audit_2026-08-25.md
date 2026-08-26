@@ -38,7 +38,7 @@ Existing goldens are not regenerated during a pure ownership refactor.
 | Area | Current owner | Verdict | Evidence | Required boundary |
 |---|---|---:|---|---|
 | Symbols title + signal/icon tables | `components/symbols_panel.py` | Closed | JE/JBP callers pass data, language, density, and an outer rectangle; EN/FR/ES standard/compact fixture exists | Keep as the reference implementation |
-| LCD data table | `data_stories.py` + `lcd_style.py` | Mostly closed | shared page assigns only the outer story frame; row/column metrics stay in the LCD renderer | Add a shared EN/FR/ES contract fixture; no geometry move required |
+| LCD data table | `data_stories.py` + `lcd_style.py` | Closed | component owns rows, columns, visible shell and a separate transparent terminal carrier; shared page assigns only the outer story frame | EN/FR/ES structure regression rejects finalizer writes to visible geometry |
 | Troubleshooting table | `data_stories.py` | Mostly closed | shared page assigns only the outer story frame; table rows and columns stay in the renderer | Add to the common trilingual contract suite |
 | Specifications table | `spec_tables.py` + `data_stories.py` | Closed | row heights and rounded-shell height are both derived inside the table component; compact one-line rows are equal and non-growing | Keep the table and the shared Storage story as separate outer rectangles |
 | Operation panels / notices in prose flow | `components/oppanel.py`, `components/notice.py`, `operation_stack.py` | Mostly closed | component geometry and spacing plan are outside page composers | Add common trilingual regression coverage |
@@ -157,6 +157,13 @@ frame. The InDesign finalizer selects only that carrier by its stable
 `tf_terminal_carrier_group_*` label; it no longer reads the native table
 height to resize the table frame and cannot resize the visible rounded shell
 or its shaded code column.
+
+LCD icon tables follow the same ownership rule. Their visible shell height is
+the exact row-height sum; the native end-of-story marker flows into a separate
+transparent `tf_terminal_carrier_group_*` frame. The finalizer may grow only
+that carrier. It cannot inspect table rows or resize the main table frame,
+rounded plate, corner masks, or outline, so no terminal allowance can reappear
+as a white strip below the last row.
 
 Charging owns the transition from a diagram to the following suffix-pill H2.
 The AboveLine diagram already contributes a native paragraph line box, so the

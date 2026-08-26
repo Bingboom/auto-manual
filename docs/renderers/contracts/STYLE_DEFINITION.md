@@ -949,6 +949,11 @@ Model No.    | JE-1000F /JE-1000F-SG
 
 **L3**：`figure.hb-lcd-table-composition > table.hb-lcd-icon-table`，版面规则见 §4.4。**md 等价**：`` ```{lcd-icons} ``，行写 `1 | 图.png | Wi-Fi | On: … / Blink: …`（图片格只认第 2 列）。
 
+IDML 的可见 LCD 圆角外壳高度必须等于表格行高之和，最后一行直接闭合到底部
+圆角线。InDesign 原生终止标记使用外壳之外、与主表框串接的透明载体；最终化脚本
+只能按 `tf_terminal_carrier_group_*` 标签扩展该载体，禁止读取表格行高后改写主表框、
+底部遮罩、底板或外框。EN/FR/ES 共用这一结构回归。
+
 ### 10.8 符号页两表（`HB-TABLE-SYMBOL-SIGNAL` / `-ICON`）
 
 **L1 原始 RST**（[`symbols_en.rst`](../../_review/JE-1000F/US/page/symbols_en.rst)；同一页两张表）——信号词表是 22/78 两列，徽标是流水线生成的 raw span：

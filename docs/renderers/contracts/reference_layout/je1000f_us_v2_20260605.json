@@ -844,8 +844,8 @@
       "sha256": "c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57"
     },
     "style": {
-      "style_contract_sha256": "1661c2141ce8ce170200247712db8d9e2040a40aee4bc74f84dde8cc34f84fcd",
-      "layout_params_sha256": "bb80fbc006ee394da21de36cc3b21bd58901782b1d28712ffd266ccd7b0d0b9e"
+      "style_contract_sha256": "6db62e7780288ac073bc7502379112ddf10aae8d6c00de29875e9ea1a80d0003",
+      "layout_params_sha256": "2a7e0ea1b75180acc52ff0f169f42322416bc881de860255f1ca778ce2858d82"
     },
     "provenance": {
       "snapshot_sha256": "aa4bfb324cd12ff07be2507a51a634e61e2d6043e2dd4fb199bb873afd43f821"
