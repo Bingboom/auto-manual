@@ -1,12 +1,70 @@
 """Source-driven standalone emphasis pill used in prose introductions."""
 from __future__ import annotations
 
+import unicodedata
+
 from .. import page_objects as _po
 from ..line_metrics import estimated_text_width
 from ..params import param_pt
 from ..primitives import cell, component_table, psr, wrap_table_paragraph
 from .base import RenderContext
 from .native_marker import marked_text, marker_replacements
+
+
+# Portable 1000-em advances for the approved Gilroy Bold uppercase face.  The
+# renderer cannot ask desktop InDesign for font metrics while assembling an
+# IDML package, and CI does not carry the operator's desktop font files.  Keep
+# the shared title/suffix component deterministic instead of falling back to a
+# model-, page-, or language-specific width patch.
+_GILROY_BOLD_UPPER_ADVANCES = {
+    "A": 668,
+    "B": 605,
+    "C": 726,
+    "D": 713,
+    "E": 530,
+    "F": 519,
+    "G": 785,
+    "H": 665,
+    "I": 268,
+    "J": 569,
+    "K": 615,
+    "L": 483,
+    "M": 815,
+    "N": 673,
+    "O": 792,
+    "P": 590,
+    "Q": 797,
+    "R": 614,
+    "S": 583,
+    "T": 540,
+    "U": 653,
+    "V": 647,
+    "W": 999,
+    "X": 610,
+    "Y": 621,
+    "Z": 535,
+    " ": 250,
+}
+_GILROY_BOLD_SHAPING_FACTOR = 0.99
+_HEADING_LINE_FIT_ALLOWANCE = 1.25
+_HEADING_PILL_VISIBLE_TEXT_GAP = 10.9
+
+
+def _gilroy_bold_upper_width(text: str, point_size: float) -> float:
+    """Estimate approved uppercase copy with one shared portable font contract."""
+
+    normalized = unicodedata.normalize("NFD", text.upper())
+    advances = 0.0
+    for char in normalized:
+        if unicodedata.combining(char):
+            continue
+        advance = _GILROY_BOLD_UPPER_ADVANCES.get(char)
+        if advance is None:
+            # Unregistered punctuation/locales still get a safe, compact
+            # allowance.  They do not silently switch back to full-row layout.
+            advance = 530
+        advances += advance
+    return advances * point_size * _GILROY_BOLD_SHAPING_FACTOR / 1000.0
 
 
 def render_emphasispill(
@@ -124,20 +182,34 @@ def render_headingpill(
         7.0,
     )
     height = max(14.2, param_pt(ctx.params, "comp_subbar_height", 13.89))
-    width_factor = 0.50 if len(pill) > 55 else 0.44
+    heading_size = param_pt(ctx.params, "idml_title_l2_font_size", 8.0)
+    marker_radius = param_pt(ctx.params, "comp_title_l2_bullet_radius", 2.126)
+    marker_gap = param_pt(ctx.params, "comp_title_l2_gap", 3.969)
+    visible_text_gap = _HEADING_PILL_VISIBLE_TEXT_GAP
+    # InDesign's line composer needs a small end-of-line allowance beyond the
+    # shaped glyph advance.  Transfer it from the inter-cell inset to the
+    # heading column so it prevents hyphenation without increasing the visible
+    # title-to-pill distance.
+    cell_gap = max(
+        0.0,
+        visible_text_gap
+        - horizontal_padding
+        - _HEADING_LINE_FIT_ALLOWANCE,
+    )
+    heading_width = (
+        2.0 * marker_radius
+        + marker_gap
+        + _gilroy_bold_upper_width(heading, heading_size)
+        + _HEADING_LINE_FIT_ALLOWANCE
+    )
     pill_width = min(
         body_w * 0.48,
-        max(
-            96.0,
-            estimated_text_width(
-                pill,
-                point_size=size,
-                narrow_width_ratio=width_factor,
-            ) + 2.0 * horizontal_padding + 2.0,
-        ),
+        _gilroy_bold_upper_width(pill, size)
+        + 2.0 * horizontal_padding
+        + 2.0,
     )
-    gap = param_pt(ctx.params, "comp_title_l2_gap", 3.969)
-    heading_width = body_w - pill_width - gap
+    if heading_width + cell_gap + pill_width > body_w:
+        heading_width = body_w - cell_gap - pill_width
     if heading_width <= 0:
         raise ValueError("heading pill exceeds the available text measure")
 
@@ -171,7 +243,7 @@ def render_headingpill(
             stroke=False,
             top=2,
             bottom=2,
-            left=gap,
+            left=cell_gap,
             right=0,
             valign="CenterAlign",
         )
@@ -203,14 +275,14 @@ def render_headingpill(
             stroke=False,
             top=0,
             bottom=0,
-            left=gap,
+            left=cell_gap,
             right=0,
             valign="CenterAlign",
         )
 
     table = component_table(
         tid,
-        [heading_width, pill_width + gap],
+        [heading_width, pill_width + cell_gap],
         [
             cell(
                 f"{tid}c0",

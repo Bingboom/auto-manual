@@ -220,6 +220,68 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn("SOLD SEPARATELY", "".join(stories.values()))
         self.assertGreater(height, 0.0)
 
+    def test_heading_pill_owns_compact_trilingual_column_geometry(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        localized = (
+            ("en", "CHARGING VIA SOLAR PANELS", "SOLD SEPARATELY"),
+            ("fr", "CHARGEMENT PAR PANNEAUX SOLAIRES", "VENDU SÉPARÉMENT"),
+            ("es", "CARGA MEDIANTE PANELES SOLARES", "SE VENDE POR SEPARADO"),
+        )
+        suffix_columns = []
+        for language, heading, pill in localized:
+            with self.subTest(language=language):
+                stories = {}
+
+                def add_story(sid, _title, parts):
+                    stories[sid] = "".join(parts)
+                    return sid
+
+                xml, _height = render(
+                    {
+                        "kind": "headingpill",
+                        "heading": heading,
+                        "pill": pill,
+                        "variant": "charging",
+                    },
+                    RenderContext(
+                        params=params,
+                        page_w=368.79,
+                        m_l=28.35,
+                        m_r=28.35,
+                        root=ROOT,
+                        bundle_root=ROOT,
+                        language=language,
+                        native_structure_markers=True,
+                        add_story=add_story,
+                    ),
+                    tid=f"charging_heading_{language}",
+                    terminal=True,
+                )
+
+                root = ET.fromstring(xml)
+                columns = [
+                    float(column.attrib["SingleColumnWidth"])
+                    for column in root.iter("Column")
+                ]
+                cells = list(root.iter("Cell"))
+                self.assertEqual(2, len(columns))
+                self.assertLess(sum(columns), 250.0)
+                self.assertAlmostEqual(
+                    10.9,
+                    float(cells[1].attrib["LeftInset"])
+                    + float(params["idml_charging_emphasis_horizontal_padding"][0])
+                    + 1.25,
+                )
+                self.assertIn(heading, xml)
+                self.assertIn(pill, "".join(stories.values()))
+                suffix_columns.append(columns[1])
+
+        self.assertLess(suffix_columns[0], suffix_columns[1])
+        self.assertLess(suffix_columns[1], suffix_columns[2])
+
     def test_reference_body_and_l2_typography_use_idml_calibration_tokens(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.styles import para_styles

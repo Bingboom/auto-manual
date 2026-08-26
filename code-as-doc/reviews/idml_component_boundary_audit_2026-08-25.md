@@ -163,7 +163,12 @@ The AboveLine diagram already contributes a native paragraph line box, so the
 shared `charging` variant does not stack the generic 4.25pt figure-after and
 5.67pt H2-before margins on top of it. The target assembly selects only the
 variant and image measure; it does not receive page coordinates or spacing
-values. EN/FR/ES exercise the same code path and package regression.
+values. `HeadingPill` also owns the complete horizontal row: its two columns
+shrink to the approved Gilroy Bold title and suffix text instead of assigning
+all residual measure to the title or forcing a 96pt suffix shell. A shared
+10.9pt visible text gap covers EN/FR/ES; the page composer cannot right-align
+the suffix or override either column. EN/FR/ES exercise the same code path and
+package regression.
 
 Compact Specifications follows the same visible-geometry rule. The prior
 fixed shell heights (`81.7/28.5/28.5pt`) pushed every residual point into the

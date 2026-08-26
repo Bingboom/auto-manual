@@ -280,7 +280,7 @@ registry。第 1–3 页和封底的 page-role scoped fallback 由上面的批�
 | 故障排查表 | `HB-TABLE-TROUBLESHOOTING` | `` ```{troubleshooting} `` | `.hb-troubleshooting-composition` | `HBTroubleshootingTable` | `正文表格` + `HB Rounded Table Outer`（关闭自动缩放） | 经 HTML 转换 | aligned |
 | 通用表 | 无专属 ID | pipe 表 / `` ```{manual-table} `` | `.manual-table` | 走 `HB-TYPE-BODY` 排版 | `正文表格` | 表样式 `tableHeader`（单行且 ≥3 列时 `TableGrid`） | — |
 
-IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。Charging 的图→带尾部胶囊标题属于完整组合内部过渡：只消费 `idml_charging_figure_space_after` 与 `idml_charging_headingpill_space_before`，不能再叠普通图后距与普通 H2 前距。
+IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。Charging 的图→带尾部胶囊标题属于完整组合内部过渡：只消费 `idml_charging_figure_space_after` 与 `idml_charging_headingpill_space_before`，不能再叠普通图后距与普通 H2 前距。该标题行的横向几何也归共享 `HeadingPill` 所有：标题列和胶囊列按 Gilroy Bold 字面宽度收紧，组件用 10.9pt 定义标题末字到胶囊首字的可见间距；页面编排器只能放置整行，不能把胶囊右对齐或重新分配两列宽度。
 
 Storage 不定义产线专属标题条或正文卡。JE-1000F 与 JBP 共用
 `h1_pill_paragraph` + prose story：同一 inline H1 的字面缩进和基线、同一正文
