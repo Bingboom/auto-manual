@@ -177,6 +177,12 @@ rows. The component now calculates row heights first, sets the rounded shell
 to their exact sum, and disables AutoGrow for compact rows. No page composer
 or finalizer receives a row-height or shell-padding override.
 
+The specification component also owns the portable direct-current mark. Its
+native paths reproduce the approved Apple Symbols U+2393 em, advance, side
+bearings, strokes, and baseline at the resolved specification-value point
+size. JE/JBP, standard/compact, and EN/FR/ES cannot select a second font or
+override the mark geometry.
+
 ## Non-goals
 
 - no model-specific visual token overrides or page-coordinate patches;

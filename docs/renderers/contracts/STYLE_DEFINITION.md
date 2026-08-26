@@ -294,6 +294,12 @@ Storage 不定义产线专属标题条或正文卡。JE-1000F 与 JBP 共用
 标题间距继续只消费 `comp_title_l2_bullet_radius` / `comp_title_l2_gap`；目标装配
 不得通过标题文字、页码或型号分支替换这项共享语义。
 
+规格值中的直流符号 `⎓` 同样由共享原生矢量输出，但其字面必须复刻 JE-1000F
+批准稿的 Apple Symbols U+2393：2048 em、1514 advance、左右各 128 side bearing，
+线条与断线位置按当前 `HB Spec Value` 字号等比缩放。standard/compact 与 EN/FR/ES
+只能传规格文字和字号，不能另选字体、扩大符号或覆写基线；因此 JBP 与 JE 的直流
+符号使用同一字宽、线重和垂直位置。
+
 App 原生故事的编号与列表使用显式悬挂/tab 合同，不再依赖圆点后的普通空格估算。H2 圆点留在版心起点，并由 `idml_app_h2_marker_font_size` / `idml_app_h2_marker_baseline_shift` 单独约束在首个 tab 内；H2 编号文本与 H3 的 `4.x` 编号共同落在 `idml_app_notes_left_indent`。列表圆点由 `idml_app_list_left_indent` 与该编号边对齐，首行正文和全部续行则共同落在 `bullet_left - idml_app_list_first_line_indent` 的固定 tab 位。英文、法文及任何结构化为 App list 的语言都复用这组属性，不按标题文字或页码追加坐标补丁。
 
 UPS 与 Charging 共用一条可编辑内容流：三语各自的 `lang_*_idml_ups_caution_space_after` 控制 UPS CAUTION→CHARGING 标题，`idml_charging_emphasis_space_before` 控制 Charging 引言→黑色强调胶囊。当前强调胶囊前距为 5pt；三语 CAUTION 后距相对上一版等量减少 4pt，因此重分配节奏但保持页面总深度、后续 NOTE 位置和分页不变。`idml_charging_emphasis_horizontal_padding` 同时登记文字左侧光学缩进与总宽的双端 allowance：左侧由段落 `LeftIndent` 明确落位，使字面与 CHARGING 标题内容对齐；右侧不写 `RightIndent`，而由总宽余量自然保留。不能再叠加非对称 frame inset 或右段落缩进，否则会重复缩窄可用行宽并把结尾挤成溢流。文本框继续使用 `VerticalJustification=CenterAlign`；完整文案保持单行后，垂直居中不再被隐藏的第二行拉偏。Charging 方法页的插图段落已经自带 AboveLine 原生行盒，所以图后的 `4.25pt` 普通后距与尾部胶囊标题前的 `5.67pt` 普通前距不得再次相加；共享 `charging` 变体把这两个显式边距都置零，EN/FR/ES 共用同一图→标题回归。该关系由组件 token 与估算高度共同维护，不允许在单页 XML 上追加坐标补丁。

@@ -261,6 +261,13 @@ Storage 随后确认了更直接的重复：compact JBP 页面曾另建标题故
 单行/多行规则生成全部行高，圆角外壳直接取行高总和；compact 行关闭 AutoGrow，
 页面编排器和最终化脚本都没有第二个行高写入点。
 
+规格值里的直流符号也属于同一跨产线组件边界。JBP 曾把 U+2393 替换为固定
+`7pt / 0.65pt` 的原生矢量，虽然规避了平台字体，却比 JE-1000F 批准稿的 6pt
+Apple Symbols 字形明显更宽、更粗且上浮。现由共享 `portable_symbol_text` 按
+Apple Symbols 的 em/advance/side-bearing/outline 指标生成原生路径，并随
+`HB Spec Value` 的实际语言字号缩放；JE/JBP、standard/compact、EN/FR/ES 不再有
+第二套直流符号几何。
+
 ---
 
 ## 4. 已验证的重复清单

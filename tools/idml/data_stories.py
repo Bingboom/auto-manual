@@ -641,9 +641,20 @@ def add_spec_story(
         nonlocal native_symbol_index
         if not writer.native_structure_markers:
             return writer._psr(style, text, **kwargs)
+        size_key = (
+            "type_spec_label_font_size"
+            if style == "HB Spec Label"
+            else "type_spec_value_font_size"
+        )
+        point_size = param_pt(
+            writer.params,
+            f"lang_{lang}_{size_key}",
+            param_pt(writer.params, size_key, 6.0),
+        )
         portable_text, replacements = portable_symbol_text(
             text,
             marker_id=f"{sid}_spec_symbol_{native_symbol_index}",
+            point_size=point_size,
         )
         native_symbol_index += 1
         return writer._psr(

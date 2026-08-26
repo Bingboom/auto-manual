@@ -75,19 +75,34 @@ def _line_path(points: tuple[tuple[float, float], ...]) -> str:
     )
 
 
-def _direct_current_symbol(marker_id: str) -> str:
-    width = 7.0
+def _direct_current_symbol(marker_id: str, point_size: float) -> str:
+    """Reproduce the approved Apple Symbols U+2393 metrics as native paths."""
+
+    if point_size <= 0:
+        raise ValueError("direct-current symbol point size must be positive")
+    # Apple Symbols U+2393 uses a 2048-unit em, a 1514-unit advance, and
+    # symmetric 128-unit side bearings.  Reproducing those metrics keeps the
+    # editable native vector visually identical on Mac and Windows without
+    # asking either platform to substitute a symbol font.
+    scale = point_size / 2048.0
+    advance = 1514.0 * scale
+    left_bearing = 128.0 * scale
+    drawn_width = 1258.0 * scale
+    right_bearing = advance - left_bearing - drawn_width
+    top_y = -645.0 * scale
+    bottom_y = -354.5 * scale
+    stroke_weight = 139.5 * scale
     paths = [
-        _line_path(((0.0, -3.8), (width, -3.8))),
-        _line_path(((0.0, -1.0), (2.0, -1.0))),
-        _line_path(((3.0, -1.0), (5.0, -1.0))),
-        _line_path(((6.0, -1.0), (width, -1.0))),
+        _line_path(((0.0, top_y), (drawn_width, top_y))),
+        _line_path(((0.0, bottom_y), (265.0 * scale, bottom_y))),
+        _line_path(((494.0 * scale, bottom_y), (758.0 * scale, bottom_y))),
+        _line_path(((990.0 * scale, bottom_y), (1252.0 * scale, bottom_y))),
     ]
-    return (
+    symbol = (
         f'<GraphicLine Self="{marker_id}" ContentType="Unassigned" '
         'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
         'FillColor="Swatch/None" StrokeColor="Color/HB Brand Dark" '
-        'StrokeWeight="0.65" EndCap="ButtEndCap" '
+        f'StrokeWeight="{stroke_weight:g}" EndCap="ButtEndCap" '
         'ItemTransform="1 0 0 1 0 0">'
         '<Properties><PathGeometry>'
         + "".join(paths)
@@ -95,12 +110,18 @@ def _direct_current_symbol(marker_id: str) -> str:
         + _anchor()
         + '</GraphicLine>'
     )
+    return (
+        _gap(f"{marker_id}_left_bearing", left_bearing)
+        + symbol
+        + _gap(f"{marker_id}_right_bearing", right_bearing)
+    )
 
 
 def portable_symbol_text(
     text: str,
     *,
     marker_id: str,
+    point_size: float = 6.0,
 ) -> tuple[str, dict[str, str]]:
     """Replace Windows-only symbol glyphs with native/typographic equivalents."""
     output: list[str] = []
@@ -114,7 +135,8 @@ def portable_symbol_text(
     replacements = (
         {
             DIRECT_CURRENT_TOKEN: _direct_current_symbol(
-                f"{marker_id}_direct_current"
+                f"{marker_id}_direct_current",
+                point_size,
             )
         }
         if DIRECT_CURRENT_TOKEN in output
