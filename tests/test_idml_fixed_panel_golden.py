@@ -11,6 +11,7 @@ from types import SimpleNamespace
 
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml import page03, shared_page
+from tools.idml.components.storage_panel import StoragePanel
 from tools.idml.data_stories import add_spec_story
 from tools.idml.params import param_pt
 from tools.idml.shared_page import add_fcc_inbox_overview_page
@@ -88,19 +89,19 @@ STORAGE_COPY = {
 
 STORAGE_GOLDEN = {
     "en": {
-        "spread": "689ceab72f61b30b62eea01cdaede43e3d28b1b4ca0da654c794e88b47792c5e",
-        "title": "1b7f500a7d030806fd6c1adbc990030849e2f0a792250b753d6116fe2d57a3e8",
-        "body": "14bd9a4c5348f90b969662b61e6137b825b351bebfee29116f474ab7b3855fc9",
+        "spread": "792e51d0f467248d91541006e6bd2ca1c09d0cc25228ccc71f8e4c471127f179",
+        "story": "5ad2d5b8e6ab3e83568a555562c6192503a81d8d34bd0de5cbc566e1c0dc8590",
+        "title": "cf169f55d11e9204dd1ebd5d8786bf173feca54b91805d4ec377ac930e34382d",
     },
     "fr": {
-        "spread": "86602dff732ede5c1047399e8d223c4115048e0089d6677f247cbc3a8d351495",
-        "title": "237a5fd5b9f245ef4e11b921fbd392de1b3bb84f262f58ba8bea642fad7290c0",
-        "body": "130062e84640d6f110a4d00d0547856eb1ff5754786c4793706c7d0a44cb192f",
+        "spread": "f316fa0aa5c9033f8b58c04cce80371568fff323b76aa06eb5ddb782f6ce91aa",
+        "story": "774e9243fa23fde7c778c9d45b23d25ade02389f75bbcb8e54e0fb2413de6017",
+        "title": "e2ef0e428f8ce3948910932acd25cea405ae34c48039f8ec96909a389fd996d6",
     },
     "es": {
-        "spread": "c06cc947bf59c030ec2e44b134b7b4ad71e6ae12154d8c9c6410049607aa22ae",
-        "title": "ecfd4cfa97e2e8945fc4de8a188a8a01839e06a268faf7a1acd74cb17e15bccc",
-        "body": "85d111604c44595411efd8157bfeee19888c07bedf7ad26c15de30cf53dde554",
+        "spread": "8c9973d5afab9ba1ed08e593c031908e7535081466bfa9fe77e5a540936d3bfe",
+        "story": "6a37cbbd871eee90b6bb1a0fc28b1d1ef9a577e886ec7126862609827b96d9f5",
+        "title": "a8c87b551c5d447ad92df281ff8035c45f71e45047a0124b65e83683bae023c7",
     },
 }
 
@@ -292,10 +293,14 @@ def _storage_writer(language: str) -> tuple[IdmlWriter, str]:
 def _storage_snapshot(language: str) -> dict[str, str]:
     writer, sid = _storage_writer(language)
     stories = dict(writer.stories)
+    h1_story_id = next(
+        story_id for story_id in stories
+        if story_id.startswith("st_anchor_h1pill_")
+    )
     return {
         "spread": _digest(dict(writer.spreads)["sp_9"]),
-        "title": _digest(stories[f"{sid}_storage_title"]),
-        "body": _digest(stories[f"{sid}_storage_body"]),
+        "story": _digest(stories[sid]),
+        "title": _digest(stories[h1_story_id]),
     }
 
 
@@ -334,7 +339,7 @@ class FixedPanelGoldenTests(unittest.TestCase):
             for token in forbidden:
                 self.assertNotIn(token, source)
 
-    def test_storage_panel_visual_contract_is_shared_by_language(self) -> None:
+    def test_storage_section_reuses_je_story_contract_by_language(self) -> None:
         actual = {
             language: _storage_snapshot(language)
             for language in ("en", "fr", "es")
@@ -346,16 +351,28 @@ class FixedPanelGoldenTests(unittest.TestCase):
             shared_page.add_storage_specifications_page
         )
         self.assertIn("StoragePanel", source)
-        self.assertIn("available_height=", source)
+        self.assertIn("add_story_frames", source)
         for token in (
             "idml_compact_storage_spec_body_top",
             "idml_compact_storage_spec_body_bottom",
             "idml_compact_storage_spec_body_inset",
             '"fill": "Color/HB Bg K05"',
             '"rounded": True',
-            "storage_title_sid",
+            "frame_with_background",
         ):
             self.assertNotIn(token, source)
+
+        renderer = inspect.getsource(StoragePanel.render)
+        self.assertIn("add_prose_story", renderer)
+        self.assertIn('[("h1", self.data.title)', renderer)
+        for token in (
+            "frame_with_background",
+            "heading_text",
+            "HB Bg K05",
+            "rounded",
+            "inset",
+        ):
+            self.assertNotIn(token, renderer)
 
     def test_compact_spec_rows_fill_the_complete_rounded_shell(self) -> None:
         for language in ("en", "fr", "es"):

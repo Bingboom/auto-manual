@@ -282,6 +282,12 @@ registry。第 1–3 页和封底的 page-role scoped fallback 由上面的批�
 
 IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。Charging 的图→带尾部胶囊标题属于完整组合内部过渡：只消费 `idml_charging_figure_space_after` 与 `idml_charging_headingpill_space_before`，不能再叠普通图后距与普通 H2 前距。
 
+Storage 不定义产线专属标题条或正文卡。JE-1000F 与 JBP 共用
+`h1_pill_paragraph` + prose story：同一 inline H1 的字面缩进和基线、同一正文
+段落/列表规则、同一纸白内容流。compact `storage_specifications` 只能为 Storage
+与 Specifications 分配外部故事矩形，不能添加 K05 正文底板、圆角、inset 或另建
+标题故事。
+
 生产 IDML 的普通 H2 圆点必须使用内联原生矢量圆和独立间隔对象，不能把
 `●` 交给 Segoe UI Symbol、Yu Gothic 或其他平台字体。这样 Windows 与 macOS
 打开同一自包含 IDML 时不会因缺字、替代字体或字面裁切而改变标题。圆点直径和

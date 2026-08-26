@@ -211,7 +211,7 @@ class SharedPageTests(unittest.TestCase):
             }
         }
 
-        _storage_sid, spec_sid, grouped = add_storage_specifications_page(
+        storage_sid, spec_sid, grouped = add_storage_specifications_page(
             writer,
             sid="st_storage_spec",
             storage_blocks=[
@@ -231,13 +231,19 @@ class SharedPageTests(unittest.TestCase):
         self.assertEqual(2, len(grouped[1]["rows"]))
         spread = dict(writer.spreads)["sp_9"]
         self.assertEqual(1, spread.count("<Page "))
-        self.assertIn('FillColor="Color/HB Bg K05"', spread)
-        storage_background = spread.split(
-            'Self="bg_st_storage_spec_storage_body"', 1,
-        )[1].split("</Rectangle>", 1)[0]
-        self.assertEqual(8, storage_background.count("<PathPointType "))
+        self.assertNotIn("bg_st_storage_spec_storage", spread)
+        self.assertIn(f'ParentStory="{storage_sid}"', spread)
         self.assertIn(f'ParentStory="{spec_sid}"', spread)
-        stories = "".join(dict(writer.stories).values())
+        story_map = dict(writer.stories)
+        storage_story = story_map[storage_sid]
+        self.assertIn("AnchoredObjectSetting", storage_story)
+        h1_story = next(
+            xml for key, xml in story_map.items()
+            if key.startswith("st_anchor_h1pill_")
+        )
+        self.assertIn('LeftIndent="4.74"', h1_story)
+        self.assertIn('BaselineShift="0.5"', h1_story)
+        stories = "".join(story_map.values())
         self.assertEqual(3, stories.count("specification table"))
         self.assertIn('SingleRowHeight="11"', stories)
 

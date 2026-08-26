@@ -40,7 +40,7 @@ Existing goldens are not regenerated during a pure ownership refactor.
 | Symbols title + signal/icon tables | `components/symbols_panel.py` | Closed | JE/JBP callers pass data, language, density, and an outer rectangle; EN/FR/ES standard/compact fixture exists | Keep as the reference implementation |
 | LCD data table | `data_stories.py` + `lcd_style.py` | Mostly closed | shared page assigns only the outer story frame; row/column metrics stay in the LCD renderer | Add a shared EN/FR/ES contract fixture; no geometry move required |
 | Troubleshooting table | `data_stories.py` | Mostly closed | shared page assigns only the outer story frame; table rows and columns stay in the renderer | Add to the common trilingual contract suite |
-| Specifications table | `spec_tables.py` + `data_stories.py` | Mostly closed | table geometry is internal, but the Storage composition still draws its own title/card | Keep the table; split out `StoragePanel` |
+| Specifications table | `spec_tables.py` + `data_stories.py` | Mostly closed | table geometry is internal; the adjacent Storage section now uses the same prose/H1 renderer as JE-1000F | Keep the table and the shared Storage story as separate outer rectangles |
 | Operation panels / notices in prose flow | `components/oppanel.py`, `components/notice.py`, `operation_stack.py` | Mostly closed | component geometry and spacing plan are outside page composers | Add common trilingual regression coverage |
 | Key combinations | `components/key_combinations.py` | Closed | component owns table geometry and already has direct EN/FR/ES tests | Fold into the common regression runner |
 | Fixed-page FCC panel | `components/fcc_panel.py` | Closed | `FccPanel` owns K05 plate, mark, lead/body split, columns, and localized lead geometry | Keep page callers limited to the aggregate component rectangle |
@@ -50,7 +50,7 @@ Existing goldens are not regenerated during a pure ownership refactor.
 | Standard Safety page | `components/safety_panel.py` | Closed | `SafetyPanel` owns title, warning, semantic dense-language split, subbar, columns, and all frame options | Page code creates only the physical spread and outer component rectangle |
 | Compact Safety block | `components/compact_safety_panel.py` | Closed | title/body story generation, gap, typography mode, and body frame stay in one component | Shared-page code places Safety above `SymbolsPanel` without drawing Safety internals |
 | Safety tail + maintenance + Symbols | `components/safety_symbols_panel.py` | Closed | the aggregate owns both warning tails, maintenance block, cursor rhythm, and embedded `SymbolsPanel` | Page code creates only the spread and the aggregate rectangle |
-| Compact Storage + Specifications page | `components/storage_panel.py` | Closed | `StoragePanel` owns title, rounded K05 body card, inset, and internal vertical bounds | Page composer places Storage above the existing Specifications story frame |
+| Compact Storage + Specifications page | shared prose/H1 renderer via `components/storage_panel.py` | Closed | the adapter calls the exact JE-1000F story path; no JBP K05 card, radius, inset, or title-frame geometry remains | Page composer places the shared Storage story above the existing Specifications story frame |
 | Product overview | `page_overview.py` / `page_overview_single_art.py` | Component-owned, P2 review | internal frames live in dedicated renderers, though one shared-page caller still supplies `image_height` rather than only available height | tighten the public rectangle API after P0/P1; preserve approved art geometry |
 | TOC, folio, cover/back cover | dedicated page modules | Out of scope | these are page-level artifacts rather than reusable panels embedded by multiple composers | keep page ownership; add only regression coverage where missing |
 
@@ -89,7 +89,7 @@ EN/FR/ES fixtures before moving code.
 Status: component-boundary portion complete; broader P2 regression aggregation
 remains a follow-up.
 
-Introduce `StoragePanel`, then expose a single component-regression runner for
+Route compact Storage through the JE-1000F prose/H1 story, then expose a single component-regression runner for
 Symbols, FCC, Inbox, Safety, Storage, LCD, Troubleshooting, Specifications,
 Operation, and Key Combinations. Each component declares applicable densities;
 not every component must support both.
@@ -107,8 +107,10 @@ not every component must support both.
 - FCC/Inbox/TIP is frozen for `standard` and `compact` across EN/FR/ES.
 - Safety is frozen for standard, compact, and maintenance/Symbols compositions
   across EN/FR/ES.
-- Storage is frozen across EN/FR/ES. Existing Symbols EN/FR/ES goldens remain
-  unchanged.
+- Storage is frozen across EN/FR/ES on the JE-1000F H1/prose contract: the
+  title uses the same inline anchored H1 story and the body stays in the same
+  white content flow. There is no JBP-only K05 body card. Existing Symbols
+  EN/FR/ES goldens remain unchanged.
 - The ownership-only move kept the existing full-package IDML golden
   byte-identical. The later Symbols visual correction intentionally updates
   only the affected Symbols spreads and stories, with EN/FR/ES component

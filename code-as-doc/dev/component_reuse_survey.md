@@ -241,6 +241,13 @@ compact 英文信号表的三个普通行是 `21.317pt`，末行是 `25.15pt`，
 多出约 `9.5pt`。收敛规则仍是 D6：前者把 `1pt` 建模为独立透明载体，后者由共享
 `charging` 变体拥有图→标题的过渡节奏；页面装配计划只选择变体，不接收坐标或间距值。
 
+Storage 随后确认了更直接的重复：compact JBP 页面曾另建标题故事、K05 圆角正文卡、
+内边距和垂直边界，虽然外观接近参考，但 JE-1000F 已有批准的 inline H1 + prose
+内容流。现统一让 Storage 适配器直接调用该故事渲染器；JBP 的
+`storage_specifications` 编排只给 Storage 与 Specifications 分配两个外部矩形，
+不再拥有标题基线、正文底色、圆角或 inset。EN/FR/ES golden 同时锁定 JE 的
+`LeftIndent=4.74`、标题字面 `BaselineShift=0.5` 与无 JBP 专属灰底卡的结构。
+
 ---
 
 ## 4. 已验证的重复清单

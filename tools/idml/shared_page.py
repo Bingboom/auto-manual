@@ -617,8 +617,6 @@ def add_storage_specifications_page(
 ) -> tuple[str, str, list[dict]]:
     """Compose Storage and the existing specification tables on one page."""
 
-    body_x = writer.m_l
-    body_width = writer.page_w - writer.m_l - writer.m_r
     panel_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
     spec_top = param_pt(
         writer.params,
@@ -631,12 +629,7 @@ def add_storage_specifications_page(
         data=StoragePanelData.from_blocks(storage_blocks),
         bundle_root=bundle_root,
         language=language,
-    ).render(
-        x=body_x,
-        y=panel_top,
-        width=body_width,
-        available_height=spec_top - panel_top,
-    )
+    ).render()
     options = dict((composition_data or {}).get("specifications") or {})
     sections = grouped_spec_sections(list(spec_data.sections), composition_data)
     spec_sid = writer.add_spec_story(
@@ -655,16 +648,19 @@ def add_storage_specifications_page(
         f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
         'ShowMasterItems="true">\n'
         + _spread_page(writer, spread_id, page_index + 1)
-        + "".join(panel.frames)
         + '</Spread>\n</idPkg:Spread>\n',
     ))
+    writer.add_story_frames(
+        panel.story_id,
+        [(page_index, panel_top, spec_top)],
+    )
     bottom = writer.page_h - writer.m_b + param_pt(
         writer.params,
         "idml_compact_spec_frame_bottom_extra",
         8.0,
     )
     writer.add_story_frames(spec_sid, [(page_index, spec_top, bottom)])
-    return panel.body_story_id, spec_sid, sections
+    return panel.story_id, spec_sid, sections
 
 
 __all__ = (

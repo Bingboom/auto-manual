@@ -121,10 +121,7 @@ idml_compact_connection_trouble_split,235.0,pt,Shared connection-tail troublesho
 idml_compact_trouble_frame_bottom_extra,18.0,pt,Troubleshooting shared-page native import allowance
 idml_compact_charging_storage_frame_bottom_extra,18.0,pt,Charging and Storage shared-page native import allowance
 idml_compact_charging_frame_bottom_extra,36.0,pt,Standalone Charging page native import allowance
-idml_compact_storage_spec_body_top,59.0,pt,Storage body card top on a shared Storage and Specifications page
-idml_compact_storage_spec_body_bottom,131.5,pt,Storage body card bottom on a shared Storage and Specifications page
-idml_compact_storage_spec_spec_top,148.8,pt,Specifications story top on a shared Storage and Specifications page
-idml_compact_storage_spec_body_inset,6.0,pt,Storage body card inner inset
+idml_compact_storage_spec_spec_top,132.0,pt,Specifications story top after the shared JE-style Storage story
 idml_compact_spec_table_cell_inset,2.0,pt,Compact specification table vertical cell inset
 idml_compact_spec_table_row_height,11.0,pt,Compact specification table minimum row height measured from the battery-pack reference
 idml_compact_spec_table_multiline_min_height,13.0,pt,Compact specification multiline minimum row height
