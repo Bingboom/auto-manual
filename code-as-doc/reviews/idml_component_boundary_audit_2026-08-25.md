@@ -40,7 +40,7 @@ Existing goldens are not regenerated during a pure ownership refactor.
 | Symbols title + signal/icon tables | `components/symbols_panel.py` | Closed | JE/JBP callers pass data, language, density, and an outer rectangle; EN/FR/ES standard/compact fixture exists | Keep as the reference implementation |
 | LCD data table | `data_stories.py` + `lcd_style.py` | Mostly closed | shared page assigns only the outer story frame; row/column metrics stay in the LCD renderer | Add a shared EN/FR/ES contract fixture; no geometry move required |
 | Troubleshooting table | `data_stories.py` | Mostly closed | shared page assigns only the outer story frame; table rows and columns stay in the renderer | Add to the common trilingual contract suite |
-| Specifications table | `spec_tables.py` + `data_stories.py` | Mostly closed | table geometry is internal; the adjacent Storage section now uses the same prose/H1 renderer as JE-1000F | Keep the table and the shared Storage story as separate outer rectangles |
+| Specifications table | `spec_tables.py` + `data_stories.py` | Closed | row heights and rounded-shell height are both derived inside the table component; compact one-line rows are equal and non-growing | Keep the table and the shared Storage story as separate outer rectangles |
 | Operation panels / notices in prose flow | `components/oppanel.py`, `components/notice.py`, `operation_stack.py` | Mostly closed | component geometry and spacing plan are outside page composers | Add common trilingual regression coverage |
 | Key combinations | `components/key_combinations.py` | Closed | component owns table geometry and already has direct EN/FR/ES tests | Fold into the common regression runner |
 | Fixed-page FCC panel | `components/fcc_panel.py` | Closed | `FccPanel` owns K05 plate, mark, lead/body split, columns, and localized lead geometry | Keep page callers limited to the aggregate component rectangle |
@@ -161,6 +161,13 @@ shared `charging` variant does not stack the generic 4.25pt figure-after and
 5.67pt H2-before margins on top of it. The target assembly selects only the
 variant and image measure; it does not receive page coordinates or spacing
 values. EN/FR/ES exercise the same code path and package regression.
+
+Compact Specifications follows the same visible-geometry rule. The prior
+fixed shell heights (`81.7/28.5/28.5pt`) pushed every residual point into the
+last row, producing `15.7/17.5/17.5pt` tails beside ordinary 11pt one-line
+rows. The component now calculates row heights first, sets the rounded shell
+to their exact sum, and disables AutoGrow for compact rows. No page composer
+or finalizer receives a row-height or shell-padding override.
 
 ## Non-goals
 

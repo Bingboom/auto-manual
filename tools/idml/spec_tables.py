@@ -12,6 +12,48 @@ from .params import param_pt
 from .style_names import table_style_ref
 
 
+def spec_table_row_heights(
+    rows: list[tuple[str, str]],
+    params: dict[str, tuple[str, str]],
+    *,
+    density: str,
+) -> list[float]:
+    """Return component-owned row heights for one specification table."""
+
+    if density not in {"reference", "compact"}:
+        raise ValueError(f"unsupported specification-table density: {density}")
+    compact = density == "compact"
+    row_height = param_pt(
+        params,
+        "idml_compact_spec_table_row_height" if compact
+        else "idml_spec_table_row_height",
+        10.3,
+    )
+    multiline_height = param_pt(
+        params,
+        "idml_compact_spec_table_multiline_min_height" if compact
+        else "comp_spec_table_multiline_min_height",
+        13.0 if compact else 15.0,
+    )
+    return [
+        max(row_height, multiline_height)
+        if "\n" in str(label) or "\n" in str(value)
+        else row_height
+        for label, value in rows
+    ]
+
+
+def spec_table_height(
+    rows: list[tuple[str, str]],
+    params: dict[str, tuple[str, str]],
+    *,
+    density: str,
+) -> float:
+    """Return the visible shell height owned by the table's rows."""
+
+    return sum(spec_table_row_heights(rows, params, density=density))
+
+
 def spec_table_xml(
     tid: str,
     rows: list[tuple[str, str]],
@@ -26,7 +68,6 @@ def spec_table_xml(
     density: str,
     section_index: int | None,
     language: str | None,
-    target_height: float | None,
     paragraph_xml: Callable[..., str],
 ) -> str:
     if density not in {"reference", "compact"}:
@@ -161,34 +202,15 @@ def spec_table_xml(
                 + content
                 + '    </Cell>'
             )
-    row_height = param_pt(
+    row_heights = spec_table_row_heights(
+        rows,
         params,
-        "idml_compact_spec_table_row_height" if compact
-        else "idml_spec_table_row_height",
-        10.3,
+        density=density,
     )
-    multiline_height = param_pt(
-        params,
-        "idml_compact_spec_table_multiline_min_height" if compact
-        else "comp_spec_table_multiline_min_height",
-        13.0 if compact else 15.0,
-    )
-    row_heights = [
-        max(row_height, multiline_height)
-        if "\n" in label or "\n" in value
-        else row_height
-        for label, value in rows
-    ]
-    if target_height is not None and row_heights:
-        # Compact specification shells reserve a small native-InDesign
-        # carrier allowance.  Keep that space inside the final governed row
-        # so the shaded label column reaches the rounded bottom edge instead
-        # of exposing a white strip below the editable table.
-        row_heights[-1] += max(0.0, target_height - sum(row_heights))
     row_xml = "\n".join(
         f'    <Row Self="{tid}r{ri}" Name="{ri}" '
         f'SingleRowHeight="{height:g}" MinimumHeight="{height:g}" '
-        'AutoGrow="true"/>'
+        f'AutoGrow="{str(not compact).lower()}"/>'
         for ri, height in enumerate(row_heights)
     )
     spacing = ' SpaceBefore="0" SpaceAfter="0"' if visual_parity else ""

@@ -487,7 +487,7 @@ pipe 表 / `` ```{manual-table} `` → `table.manual-table`
 
 **同一列宽有多组经合同登记的投影值**：Web 31% / PDF `comp_spec_table_left_ratio` 0.315 / Word 33%，IDML 默认 `idml_spec_table_left_ratio` 0.302，西语批准投影为 `lang_es_idml_spec_table_left_ratio` 0.362。它们分别服务响应式、固定版、Word 与批准语言版式，不应只改其中一处后假定其他渲染器自动同步。其余 token：`comp_table_outer_arc` 2.4mm、`comp_table_outer_rule` 0.75pt、`type_spec_label_font_size` 与 `type_spec_value_font_size` 均 6.0pt。
 
-IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `comp_spec_table_multiline_min_height`，并输出 `MinimumHeight` / `AutoGrow`，不再由本地常量决定。分节标题的圆点与文字共享同一组件基线合同：`idml_spec_section_text_baseline_shift`（及语言覆盖）确定标题基线，`idml_spec_section_bullet_baseline_offset` 只表达圆点相对文字的光学校正；`idml_spec_section_left_indent` 统一让圆点左边缘与随后表格的外框共线。所有分节和语言复用这些值，不逐标题写死位置。表格单元格里的圈号是引用标记，保持小号上标；页底脚注行首的同一圈号是注释编号，必须继承 `HB Spec Note` 的正常字号与基线。注册商标 `®` 保留字体自身的上标字形，不套用圈号引用规则。
+IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `comp_spec_table_multiline_min_height`，并输出 `MinimumHeight` / `AutoGrow`，不再由本地常量决定。compact Specifications 的所有单行固定为 `idml_compact_spec_table_row_height`，关闭 AutoGrow；圆角外壳高度严格等于该表全部行高之和。不得再设置逐表固定外壳高度，也不得把外壳余量塞进末行，否则同为单行的最后一行会被单独拉高。分节标题的圆点与文字共享同一组件基线合同：`idml_spec_section_text_baseline_shift`（及语言覆盖）确定标题基线，`idml_spec_section_bullet_baseline_offset` 只表达圆点相对文字的光学校正；`idml_spec_section_left_indent` 统一让圆点左边缘与随后表格的外框共线。所有分节和语言复用这些值，不逐标题写死位置。表格单元格里的圈号是引用标记，保持小号上标；页底脚注行首的同一圈号是注释编号，必须继承 `HB Spec Note` 的正常字号与基线。注册商标 `®` 保留字体自身的上标字形，不套用圈号引用规则。
 
 ### 4.3 故障排查表
 

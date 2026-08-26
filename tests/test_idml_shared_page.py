@@ -246,6 +246,9 @@ class SharedPageTests(unittest.TestCase):
         stories = "".join(story_map.values())
         self.assertEqual(3, stories.count("specification table"))
         self.assertIn('SingleRowHeight="11"', stories)
+        self.assertNotIn('SingleRowHeight="15.7"', stories)
+        self.assertNotIn('SingleRowHeight="17.5"', stories)
+        self.assertEqual(11, stories.count('AutoGrow="false"'))
 
     def test_compact_fcc_inbox_page_embeds_shared_semantic_overview(self) -> None:
         params = load_layout_params(

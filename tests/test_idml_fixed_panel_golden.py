@@ -13,7 +13,6 @@ from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml import page03, shared_page
 from tools.idml.components.storage_panel import StoragePanel
 from tools.idml.data_stories import add_spec_story
-from tools.idml.params import param_pt
 from tools.idml.shared_page import add_fcc_inbox_overview_page
 
 
@@ -374,7 +373,7 @@ class FixedPanelGoldenTests(unittest.TestCase):
         ):
             self.assertNotIn(token, renderer)
 
-    def test_compact_spec_rows_fill_the_complete_rounded_shell(self) -> None:
+    def test_compact_spec_single_line_rows_are_equal_and_own_shell(self) -> None:
         for language in ("en", "fr", "es"):
             with self.subTest(language=language):
                 params = load_layout_params(
@@ -417,14 +416,35 @@ class FixedPanelGoldenTests(unittest.TestCase):
                             table,
                         )
                     ]
-                    target_height = param_pt(
-                        writer.params,
-                        f"idml_compact_spec_table_{section_index + 1}_height",
-                        (81.7, 28.5, 28.5)[section_index],
+                    self.assertEqual(
+                        [11.0] * len(row_heights),
+                        row_heights,
                     )
+                    self.assertEqual(
+                        len(row_heights),
+                        table.count('AutoGrow="false"'),
+                    )
+                    spec_host_story = stories[
+                        "st_spec" if language == "en"
+                        else f"st_spec_{language}"
+                    ]
+                    background = re.search(
+                        rf'<Rectangle Self="bg_group_st_anchor_spec_'
+                        rf'{language}{section_index}".*?</Rectangle>',
+                        spec_host_story,
+                        flags=re.DOTALL,
+                    )
+                    self.assertIsNotNone(background)
+                    y_coordinates = [
+                        float(value)
+                        for value in re.findall(
+                            r'\bAnchor="[^ ]+ ([^"]+)"',
+                            background.group(0),
+                        )
+                    ]
                     self.assertAlmostEqual(
-                        target_height,
                         sum(row_heights),
+                        max(y_coordinates) - min(y_coordinates),
                         places=6,
                     )
                     last_row = len(row_heights) - 1

@@ -125,9 +125,6 @@ idml_compact_storage_spec_spec_top,132.0,pt,Specifications story top after the s
 idml_compact_spec_table_cell_inset,2.0,pt,Compact specification table vertical cell inset
 idml_compact_spec_table_row_height,11.0,pt,Compact specification table minimum row height measured from the battery-pack reference
 idml_compact_spec_table_multiline_min_height,13.0,pt,Compact specification multiline minimum row height
-idml_compact_spec_table_1_height,81.7,pt,Compact first specification section panel height
-idml_compact_spec_table_2_height,28.5,pt,Compact second specification section panel height
-idml_compact_spec_table_3_height,28.5,pt,Compact third specification section panel height
 idml_compact_spec_table_1_space_before,5.7,pt,Compact first specification heading-to-table rhythm
 idml_compact_spec_table_2_space_before,7.9,pt,Compact second specification heading-to-table rhythm
 idml_compact_spec_table_3_space_before,8.9,pt,Compact third specification heading-to-table rhythm

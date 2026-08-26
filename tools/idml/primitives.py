@@ -128,14 +128,13 @@ def spec_table(tid: str, rows: list[tuple[str, str]],
                visual_parity: bool = False, density: str = "reference",
                section_index: int | None = None,
                language: str | None = None,
-               target_height: float | None = None,
                paragraph_xml=psr) -> str:
     return spec_table_xml(
         tid, rows, label_style,
         params=params, page_w=page_w, m_l=m_l, m_r=m_r,
         role=role, visual_parity=visual_parity, density=density,
         section_index=section_index, language=language,
-        target_height=target_height, paragraph_xml=paragraph_xml,
+        paragraph_xml=paragraph_xml,
     )
 
 

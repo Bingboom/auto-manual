@@ -21,6 +21,7 @@ from .components.native_marker import (
 from .params import IDPKG, component_param_pt, param_pt
 from .primitives import _ATTR_ENTITIES, spec_table
 from .source_copy import source_text
+from .spec_tables import spec_table_height
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -621,12 +622,12 @@ def add_spec_story(
     compact = layout_variant == "compact"
     if compact:
         reference_table_heights = tuple(
-            param_pt(
+            spec_table_height(
+                list(section["rows"]),
                 writer.params,
-                f"idml_compact_spec_table_{index}_height",
-                default,
+                density="compact",
             )
-            for index, default in enumerate((76.5, 27.0, 27.0), start=1)
+            for section in sections
         )
         default_section_before = (5.8, 8.2, 8.2)
         default_table_before = (2.5, 2.5, 2.5)
@@ -743,11 +744,6 @@ def add_spec_story(
                     density=layout_variant,
                     section_index=si,
                     language=lang,
-                    target_height=(
-                        reference_table_heights[si]
-                        if compact and si < len(reference_table_heights)
-                        else None
-                    ),
                     paragraph_xml=spec_paragraph,
                 ),
                 2,
