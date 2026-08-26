@@ -144,6 +144,22 @@ visible shell, K05 plate, mask, outline, or table row. The EN/FR/ES contract
 fixture checks row centering, cell-fill boundaries, plate geometry, and the
 separation between visible geometry and the native carrier.
 
+### Follow-through on Troubleshooting and Charging
+
+The same boundary now covers the two whitespace findings raised during JBP
+acceptance. Compact Troubleshooting rows are deterministic visible geometry:
+their measured height is written as both `SingleRowHeight` and
+`MinimumHeight`, AutoGrow is disabled, and the 1pt terminal-marker allowance
+extends only the transparent story frame. The InDesign finalizer may fit that
+carrier but cannot resize the visible rounded shell or its shaded code column.
+
+Charging owns the transition from a diagram to the following suffix-pill H2.
+The AboveLine diagram already contributes a native paragraph line box, so the
+shared `charging` variant does not stack the generic 4.25pt figure-after and
+5.67pt H2-before margins on top of it. The target assembly selects only the
+variant and image measure; it does not receive page coordinates or spacing
+values. EN/FR/ES exercise the same code path and package regression.
+
 ## Non-goals
 
 - no model-specific visual token overrides or page-coordinate patches;

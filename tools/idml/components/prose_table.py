@@ -75,6 +75,7 @@ class TroubleshootingTableStyle:
     compact_outer_radius: float
     panel_min_height: float
     import_safety: float
+    native_carrier_allowance: float
     glyph_width_ratio: float
     left_optical_width: float
     inner_rule: float
@@ -204,6 +205,10 @@ class TroubleshootingTableStyle:
             ),
             panel_min_height=token("idml_trouble_panel_min_height", 237.79),
             import_safety=nonnegative_token("idml_trouble_import_safety", 0.0),
+            native_carrier_allowance=nonnegative_token(
+                "idml_trouble_native_carrier_allowance",
+                1.0,
+            ),
             glyph_width_ratio=token("idml_trouble_glyph_width_ratio", 0.50),
             left_optical_width=token("idml_trouble_left_optical_width", 4.0),
             inner_rule=token("idml_trouble_inner_rule", 0.25),
@@ -754,9 +759,9 @@ def _troubleshooting_table(
     # correction keeps the PDF minima equal to the shared LaTeX tokens.
     rows = "\n".join(
         f'    <Row Self="{tid}r{ri}" Name="{ri}" '
-        f'SingleRowHeight="{style.header_single_height if ri == 0 else style.body_single_height:g}" '
+        f'SingleRowHeight="{(compact_row_heights[ri] if compact_row_heights is not None else style.header_single_height if ri == 0 else style.body_single_height):g}" '
         f'MinimumHeight="{(compact_row_heights[ri] if compact_row_heights is not None else style.minimum_for_row(ri)):g}" '
-        'AutoGrow="true"/>'
+        f'AutoGrow="{str(compact_row_heights is None).lower()}"/>'
         for ri in range(len(raw_rows))
     )
     columns = "\n".join(
@@ -1085,6 +1090,9 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
                 troubleshooting_style.compact_outer_radius
                 if len(raw_rows) < len(troubleshooting_style.row_minima)
                 else troubleshooting_style.outer_radius
+            ),
+            content_bottom_bleed=(
+                troubleshooting_style.native_carrier_allowance
             ),
         )
     else:

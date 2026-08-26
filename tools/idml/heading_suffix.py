@@ -29,6 +29,8 @@ def split_trailing_parenthetical(text: str) -> tuple[str, str] | None:
 def promote_h2_suffix_pills(
     blocks: list[Block],
     indices: Iterable[int],
+    *,
+    variant: str | None = None,
 ) -> list[Block]:
     """Promote zero-based H2 ordinals without matching localized wording."""
 
@@ -60,16 +62,16 @@ def promote_h2_suffix_pills(
                 "parenthetical"
             )
         heading, pill = split
+        spec = {
+            "kind": "headingpill",
+            "heading": heading,
+            "pill": pill,
+        }
+        if variant:
+            spec["variant"] = variant
         output.append((
             "component",
-            json.dumps(
-                {
-                    "kind": "headingpill",
-                    "heading": heading,
-                    "pill": pill,
-                },
-                ensure_ascii=False,
-            ),
+            json.dumps(spec, ensure_ascii=False),
         ))
         promoted.add(h2_index)
         h2_index += 1

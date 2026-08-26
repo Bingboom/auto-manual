@@ -148,6 +148,16 @@ class SharedPageTests(unittest.TestCase):
         main_story = stories["st_charging"]
         self.assertIn("CHARGING VIA SOLAR PANELS", main_story)
         self.assertNotIn("(SOLD SEPARATELY)", main_story)
+        self.assertIn(
+            'SpaceBefore="2.83" SpaceAfter="0" '
+            'AppliedParagraphStyle="ParagraphStyle/Figure"',
+            main_story,
+        )
+        self.assertIn(
+            'SpaceBefore="0" SpaceAfter="5.67" '
+            'AppliedParagraphStyle="ParagraphStyle/段落样式"',
+            main_story,
+        )
         pill_stories = "".join(
             xml for sid, xml in stories.items() if "headingpill" in sid
         )

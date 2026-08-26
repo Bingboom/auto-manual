@@ -46,9 +46,20 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn('indexOf(" table segment ")', jsx)
         self.assertIn("table.rows[ri].height", jsx)
         self.assertIn("fitted_lcd_table_groups", jsx)
-        self.assertIn("fitTroubleshootingTableShells(doc)", jsx)
         self.assertIn('=== "troubleshooting table"', jsx)
         self.assertIn("fitted_troubleshooting_table_groups", jsx)
+        self.assertIn("fitted_troubleshooting_carrier_frames", jsx)
+        self.assertIn("fitTroubleshootingCarrierFrames(doc)", jsx)
+        self.assertIn(
+            "resizeTroubleshootingCarrierFrame(frame, 1.0)",
+            jsx,
+        )
+        troubleshooting_fit = jsx.split(
+            "function resizeTroubleshootingCarrierFrame(frame, markerAllowance)",
+            1,
+        )[1].split("function substituteMissingFont", 1)[0]
+        self.assertNotIn("allPageItems", troubleshooting_fit)
+        self.assertNotIn("item.geometricBounds", troubleshooting_fit)
         self.assertIn("fitComposedSymbolTableShells(doc)", jsx)
         self.assertIn('title.indexOf("Symbol icons ")', jsx)
         self.assertIn("fitted_symbol_table_shells", jsx)

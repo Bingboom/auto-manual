@@ -541,6 +541,7 @@ def add_charging_page(
     prepared_blocks = promote_h2_suffix_pills(
         charging_blocks,
         list(options.get("h2_suffix_pill_indices") or []),
+        variant="charging",
     )
     image_count = sum(kind == "image" for kind, _text in prepared_blocks)
 
@@ -551,6 +552,7 @@ def add_charging_page(
         bundle_root,
         language=language,
         image_roles=(image_role,) * image_count,
+        semantic_page_role="charging",
     )
     page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
     bottom = writer.page_h - writer.m_b + param_pt(

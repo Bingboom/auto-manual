@@ -132,7 +132,7 @@
         return fitted;
     }
 
-    function fitTroubleshootingTableShells(doc) {
+    function fitTroubleshootingCarrierFrames(doc) {
         var fitted = 0;
         var items = doc.allPageItems;
         for (var ii = 0; ii < items.length; ii += 1) {
@@ -142,13 +142,33 @@
             try {
                 if (frame.parentStory.tables.length === 1 &&
                         isTroubleshootingTableStory(frame.parentStory) &&
-                        resizeLcdTableShell(frame, 1.0)) {
+                        resizeTroubleshootingCarrierFrame(frame, 1.0)) {
                     fitted += 1;
                 }
             } catch (_) {}
         }
         doc.recompose();
         return fitted;
+    }
+
+    function resizeTroubleshootingCarrierFrame(frame, markerAllowance) {
+        var table = frame.parentStory.tables[0];
+        var frameBounds = frame.geometricBounds;
+        var tableHeight = 0;
+        for (var ri = 0; ri < table.rows.length; ri += 1) {
+            tableHeight += Number(table.rows[ri].height);
+        }
+        var newBottom = Number(frameBounds[0]) + tableHeight +
+            Number(markerAllowance || 0);
+        if (Math.abs(newBottom - Number(frameBounds[2])) < 0.01) {
+            return false;
+        }
+
+        // The troubleshooting component owns its visible shell and cell
+        // fills.  Only its transparent terminal-marker carrier may change.
+        frameBounds[2] = newBottom;
+        frame.geometricBounds = frameBounds;
+        return true;
     }
 
     function substituteMissingFont(doc, sourceName, targetName) {
@@ -366,6 +386,7 @@
         stable_labels: {pages: 0, text_frames: 0},
         fitted_lcd_table_groups: 0,
         fitted_troubleshooting_table_groups: 0,
+        fitted_troubleshooting_carrier_frames: 0,
         fitted_symbol_table_shells: 0,
         carrier_frame_fits: [],
         font_substitutions: [],
@@ -396,7 +417,8 @@
         report.pdf_export.applied_document_cmyk_profile = String(doc.cmykProfile);
         doc.recompose();
         report.fitted_lcd_table_groups = fitLcdTableShells(doc);
-        report.fitted_troubleshooting_table_groups = fitTroubleshootingTableShells(doc);
+        report.fitted_troubleshooting_carrier_frames =
+            fitTroubleshootingCarrierFrames(doc);
         report.fitted_symbol_table_shells = fitComposedSymbolTableShells(doc);
         report.carrier_frame_fits = fitTerminalCarrierFrames(doc);
         report.font_substitutions = applyHostFontSubstitutions(doc);

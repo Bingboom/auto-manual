@@ -113,6 +113,7 @@ def render_image_block(
     rect_id: str,
     terminal: bool,
     role: str | None = None,
+    spacing_variant: str | None = None,
 ) -> tuple[str | None, float]:
     img = ctx.resolve_bundle_image(ref)
     if img is None:
@@ -129,6 +130,20 @@ def render_image_block(
         + "</CharacterStyleRange></ParagraphStyleRange>\n")
     space_before = param_pt(ctx.params, "idml_figure_space_before", 2.83)
     space_after = param_pt(ctx.params, "idml_figure_space_after", 4.25)
+    if spacing_variant == "charging":
+        # Above-line image paragraphs already contribute their native line
+        # box.  Charging's diagram-to-heading transition therefore needs no
+        # second pair of explicit margins on top of that line box.
+        space_before = param_pt(
+            ctx.params,
+            "idml_charging_figure_space_before",
+            space_before,
+        )
+        space_after = param_pt(
+            ctx.params,
+            "idml_charging_figure_space_after",
+            0.0,
+        )
     if any(
         path.endswith(("/operation/ups_mode.png", "/assets/op_ups_mode.png"))
         for path in (ref.replace("\\", "/"), img.as_posix())

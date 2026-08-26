@@ -227,7 +227,21 @@ def render_headingpill(
         ],
         outer_stroke=False,
     )
-    space_before = param_pt(ctx.params, "idml_title_l2_space_before", 5.67)
+    variant = str(spec.get("variant") or "").strip().casefold()
+    default_space_before = param_pt(
+        ctx.params,
+        "idml_title_l2_space_before",
+        5.67,
+    )
+    space_before = (
+        param_pt(
+            ctx.params,
+            "idml_charging_headingpill_space_before",
+            0.0,
+        )
+        if variant == "charging"
+        else default_space_before
+    )
     space_after = param_pt(ctx.params, "idml_title_l2_space_after", 5.67)
     paragraph = wrap_table_paragraph(
         table,

@@ -296,6 +296,9 @@ idml_charging_note_space_after,1.8,pt,Charging NOTE trailing rhythm
 idml_charging_emphasis_font_size,6.6,pt,Pre-charge editable emphasis size measured from approved PDF
 idml_charging_emphasis_font_leading,7.4,pt,Pre-charge editable emphasis leading
 idml_charging_emphasis_space_before,5.0,pt,Charging introduction-to-emphasis rhythm shared by all languages
+idml_charging_figure_space_before,2.83,pt,Charging copy-to-diagram rhythm owned by the shared charging composition
+idml_charging_figure_space_after,0.0,pt,Charging diagram contributes no explicit margin before the following shared heading row
+idml_charging_headingpill_space_before,0.0,pt,Charging diagram-to-heading transition uses the native paragraph line box only
 idml_charging_emphasis_horizontal_padding,6.1,pt,Pre-charge emphasis optical inset aligned with the H1 title text edge
 idml_charging_methods_page_top_offset,23.8,pt,Default charging-methods first-frame top offset
 lang_en_idml_charging_methods_page_top_offset,23.8,pt,English charging-methods first-frame top offset
@@ -388,6 +391,7 @@ idml_trouble_inner_rule,0.25,pt,Troubleshooting editable-cell inner rule
 idml_trouble_outer_rule,0.57,pt,Troubleshooting rounded-panel outer rule
 idml_trouble_panel_min_height,237.79,pt,English troubleshooting rounded-panel minimum height
 idml_trouble_import_safety,0.0,pt,Additional troubleshooting frame allowance after measured row growth
+idml_trouble_native_carrier_allowance,1.0,pt,Transparent terminal-marker carrier outside the visible troubleshooting shell
 idml_trouble_glyph_width_ratio,0.50,ratio,Troubleshooting portable line-measure glyph width ratio
 type_trouble_body_font_size,5.5,pt,Troubleshooting corrective-measure font size
 type_trouble_body_font_leading,6.0,pt,Troubleshooting corrective-measure leading

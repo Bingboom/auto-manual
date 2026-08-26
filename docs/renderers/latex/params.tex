@@ -1035,6 +1035,15 @@
 % Charging introduction-to-emphasis rhythm shared by all languages
 \expandafter\def\csname HBidml_charging_emphasis_space_before\endcsname{5.0pt}
 
+% Charging diagram contributes no explicit margin before the following shared heading row
+\expandafter\def\csname HBidml_charging_figure_space_after\endcsname{0.0pt}
+
+% Charging copy-to-diagram rhythm owned by the shared charging composition
+\expandafter\def\csname HBidml_charging_figure_space_before\endcsname{2.83pt}
+
+% Charging diagram-to-heading transition uses the native paragraph line box only
+\expandafter\def\csname HBidml_charging_headingpill_space_before\endcsname{0.0pt}
+
 % Default charging-methods first-frame top offset
 \expandafter\def\csname HBidml_charging_methods_page_top_offset\endcsname{23.8pt}
 
@@ -1970,6 +1979,9 @@
 
 % Troubleshooting code-column optical allowance after the shared ratio
 \expandafter\def\csname HBidml_trouble_left_optical_width\endcsname{4.0pt}
+
+% Transparent terminal-marker carrier outside the visible troubleshooting shell
+\expandafter\def\csname HBidml_trouble_native_carrier_allowance\endcsname{1.0pt}
 
 % Troubleshooting rounded-panel outer rule
 \expandafter\def\csname HBidml_trouble_outer_rule\endcsname{0.57pt}

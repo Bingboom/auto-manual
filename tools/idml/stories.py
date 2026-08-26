@@ -115,7 +115,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             xml_part, h = _components.render_image_block(
                 text,
                 writer._render_context(bundle_root, language=page_language),
-                rect_id=f"{sid}_im{img_n + 1}", terminal=terminal, role=role)
+                rect_id=f"{sid}_im{img_n + 1}", terminal=terminal, role=role,
+                spacing_variant=semantic_page_role)
             if xml_part is None:
                 continue
             img_n += 1

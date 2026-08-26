@@ -212,6 +212,11 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         self.assertIn('SingleColumnWidth="42.88"', story)
         self.assertIn('MinimumHeight="29.391"', story)
         self.assertIn('MinimumHeight="17.9"', story)
+        self.assertIn(
+            'SingleRowHeight="29.391" MinimumHeight="29.391" '
+            'AutoGrow="false"',
+            story,
+        )
         self.assertIn('FillColor="Color/HB Header K08"', story)
         right_header = story.split(
             '<Cell Self="trouble_jbp_enc0_1"',
@@ -220,6 +225,7 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         self.assertNotIn("FillColor=", right_header)
         self.assertIn('Hyphenation="false"', story)
         self.assertIn('Anchor="-0.37 -4.8"', xml)
+        self.assertIn('Anchor="311.344 1"', xml)
         self.assertGreater(height, 130.0)
         self.assertLess(height, 150.0)
 
