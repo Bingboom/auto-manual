@@ -15,6 +15,10 @@ This audit is based on `39234162` (`refactor(idml): consolidate shared
 SymbolsPanel`) and covers the standard JE page path and compact JBP shared-page
 path.
 
+Operational application rules derived from the audit are maintained in
+[`style_component_usage_guide.md`](../dev/style_component_usage_guide.md); this
+file remains the dated ownership review and implementation record.
+
 ## Evidence and classification rule
 
 A component is **closed** only when page code passes semantic data, language,
@@ -39,7 +43,7 @@ Existing goldens are not regenerated during a pure ownership refactor.
 |---|---|---:|---|---|
 | Symbols title + signal/icon tables | `components/symbols_panel.py` | Closed | JE/JBP callers pass data, language, density, and an outer rectangle; EN/FR/ES standard/compact fixture exists | Keep as the reference implementation |
 | LCD data table | `data_stories.py` + `lcd_style.py` | Closed | component owns rows, columns, visible shell and a separate transparent terminal carrier; shared page assigns only the outer story frame | EN/FR/ES structure regression rejects finalizer writes to visible geometry |
-| Troubleshooting table | `data_stories.py` | Mostly closed | shared page assigns only the outer story frame; table rows and columns stay in the renderer | Add to the common trilingual contract suite |
+| Troubleshooting table | `components/prose_table.py` | Closed | production block flow enters `render_table_block`; EN/FR/ES directly cover localized growth, native vertical centering and required style tokens, while compact JBP additionally freezes exact visible-shell and transparent-carrier structure | Keep page composers and finalization outside visible table geometry |
 | Specifications table | `spec_tables.py` + `data_stories.py` | Closed | row heights and rounded-shell height are both derived inside the table component; compact one-line rows are equal and non-growing | Keep the table and the shared Storage story as separate outer rectangles |
 | Operation panels / notices in prose flow | `components/oppanel.py`, `components/notice.py`, `operation_stack.py` | Mostly closed | component geometry and spacing plan are outside page composers | Add common trilingual regression coverage |
 | Key combinations | `components/key_combinations.py` | Closed | component owns table geometry and already has direct EN/FR/ES tests | Fold into the common regression runner |
@@ -156,7 +160,9 @@ is a second transparent text frame threaded after the shell-bounded table
 frame. The InDesign finalizer selects only that carrier by its stable
 `tf_terminal_carrier_group_*` label; it no longer reads the native table
 height to resize the table frame and cannot resize the visible rounded shell
-or its shaded code column.
+or its shaded code column. Direct component tests cover EN/FR/ES localized row
+growth, native cell centering and required style-token failure; the compact JBP
+fixture separately rejects any terminal allowance in the visible shell.
 
 LCD icon tables follow the same ownership rule. Their visible shell height is
 the exact row-height sum; the native end-of-story marker flows into a separate

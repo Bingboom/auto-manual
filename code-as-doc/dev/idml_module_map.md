@@ -64,6 +64,22 @@ tools/idml/
     base.py                   RenderContext (geometry/params/target/asset roots; resolves
                               semantic assets only through the finalized usage manifest)
                               + shared figure paragraph
+    symbols_panel.py          complete standard/compact Symbols boundary: title, signal
+                              and icon tables, visible shells, gaps, continuation, and
+                              transparent native carriers; callers pass only data,
+                              language, density, and an available rectangle
+    storage_panel.py          adapter to the shared JE inline-H1 + prose story; defines no
+                              target-specific fill, radius, inset, or title geometry
+    fixed_panel_contract.py
+    fixed_panel_primitives.py shared outer-rectangle contract and low-level emitters used
+                              by complete FCC/Inbox/Safety panel families; page composers
+                              do not call the primitives directly
+    fcc_panel.py inbox_panel.py fcc_inbox_panel.py
+    safety_panel.py compact_safety_panel.py safety_symbols_panel.py
+                              complete fixed/aggregate panel boundaries with shared
+                              standard/compact EN/FR/ES regression fixtures
+    rounded_table.py          rounded visible table shell plus optional separately
+                              threaded transparent terminal carrier
     callout.py                safetywarning / warninglead / tailwarnbox / warnbox / notice
     inbox.py fcc.py lcdmode.py
     oppanel.py                editable operation artwork overlays and special Energy
@@ -104,6 +120,11 @@ tools/reference_layout_scaffold.py
 
 ## Contracts to know before touching anything
 
+- **Applying an existing style/component**: follow
+  [`style_component_usage_guide.md`](style_component_usage_guide.md). New model,
+  language, page, or density callers pass semantic data, language, an approved
+  variant/density, and an outer rectangle. They do not consume internal geometry
+  tokens or private render helpers.
 - **Golden**: `tests/test_export_idml_golden.py` byte-compares every package part
   against `tests/fixtures/idml_golden/` (data-only + composed-bundle variants,
   URIs normalized). A diff means behavior changed — regenerate only for a
@@ -140,11 +161,13 @@ tools/reference_layout_scaffold.py
   mixed governed/native heights fail before export. The generic component-table
   primitive emits those rows as editable fixed-height rows, while locale placement
   continues to resolve through base plus `lang_*` layout tokens.
-- **Maintenance/symbols ownership**: `tools/idml/symbols_page.py` owns the
-  combined three-language composition. Safety tails bind the approved dark
-  triangle; signal badges are fixed-size nested native tables with a governed
-  white icon and editable text; icon frame, icon column, and table-gap geometry
-  resolve from symbol layout tokens. Source copy remains outside this renderer.
+- **Maintenance/symbols ownership**: `tools/idml/components/symbols_panel.py`
+  owns the complete standard/compact Symbols composition; standard and compact
+  page callers only place it. Safety-tail aggregation remains in
+  `safety_symbols_panel.py`. Signal badges are fixed-size nested native tables
+  with a governed white icon and editable text; visible rows, K05 plates,
+  rounded shells, table gaps, continuation, and transparent native carriers
+  resolve inside `SymbolsPanel`. Source copy remains outside this renderer.
 - **Key Combinations style ownership**: `KeyCombinationStyle.from_context()`
   resolves the base grid, asset, and type measurements from shared layout
   tokens. Governed French/Spanish height, indent, and leading-gap differences
@@ -155,9 +178,13 @@ tools/reference_layout_scaffold.py
   Approved EN/FR/ES native row-height baselines cover shaping that deterministic
   IDML generation cannot query from InDesign (including the two-line FR/ES code
   header); measured wrapping adds growth when localized copy exceeds that
-  baseline. The rounded group stays fixed and editable with `AutoSizingType=Off`.
+  baseline. The rounded group stays fixed and editable with `AutoSizingType=Off`;
+  its visible shell height is the exact visible-row sum. Native terminal-marker
+  allowance lives in a separately threaded, fill/stroke-free
+  `tf_terminal_carrier_group_*` frame. Finalization may grow that carrier only
+  and must not resize the main frame, shaded code column, masks, or rounded shell.
   The production-master 0.25pt inner rule, 0.57pt outer rule, row minima, optical
-  offsets, 240pt English floor, and import allowance remain explicit renderer
+  offsets, 240pt English floor, and carrier allowance remain explicit renderer
   calibration and must be revalidated by native preflight when changed.
 - **App control-label ownership**: Product Overview table slots are indexed by
   language and semantic role (`main_power`, `dc_usb`, `ac`). The approved plan

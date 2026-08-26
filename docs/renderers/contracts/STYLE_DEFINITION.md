@@ -16,6 +16,7 @@
 | 查某个 `HB-*` 在四端的绑定 | [§1 全量对照总表](#1-全量对照总表) |
 | 调标题、表格、警示框或专题组件 | [§2–§8 视觉与实现合同](#2-文字与标题) |
 | 看原始 RST 怎样变成 Web 版面 | [§10 逐层实例](#10-逐层实例原始-rst-怎么变成-web-版面) |
+| 把已有样式或组件接到新型号/语言/页面 | [共享样式与完整组件应用指南](../../../code-as-doc/dev/style_component_usage_guide.md) |
 | 新增组件或修改共享样式 | [附录 A 维护流程](#附录-a-组件与维护流程) |
 | 查当前未对齐项或工具限制 | [附录 B 已知边界](#附录-b-已知边界) |
 
@@ -521,6 +522,14 @@ IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `c
 `:headers: A | B` 提供两个本地化表头（见 [附录 B](#附录-b-已知边界)）。IDML 关闭自动缩放；批准语言的行 minima、表头/正文高度修正、内外线宽、面板下限、导入安全余量和 portable glyph-width 估算全部由 `idml_trouble_*` / `lang_*_idml_trouble_*` token 控制。
 紧凑表的可见外壳高度严格等于可见行高总和；原生终止标记余量使用独立透明载体，最终化不得把余量加到圆角外框底部。
 
+IDML production 由普通 block 流进入 `components/prose_table.py` 的公共
+`render_table_block(...)` 边界。页面编排器只能提供外部 flow/frame，不能调用
+`_troubleshooting_*` 私有 helper，也不能读取行高、列宽、填色、圆角或载体 token。
+组件拥有 EN/FR/ES 行高增长、原生垂直居中、可见外壳和透明终止载体；最终化只可
+按 `tf_terminal_carrier_group_*` 标签处理不可见载体，禁止改主表框、底板、遮罩、
+外框或末行。具体接入与验收见
+[`共享样式与完整组件应用指南`](../../../code-as-doc/dev/style_component_usage_guide.md)。
+
 ### 4.4 LCD 图标表
 
 `` ```{lcd-icons} `` → `figure.hb-lcd-table-composition`
@@ -534,6 +543,13 @@ IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `c
 | 说明列 | 支持 ` / ` 分步；`On:` / `Blink:` / `Off:` 及本地化状态前缀保留源 strong 语义，IDML 输出为可编辑粗体字符 run |
 
 四处语义对齐（`aligned`）。批准 reference profile 可保留型号特定行高，这是一条已批准边界说明；共享排版、位置和表结构仍由 token 控制，不是待修缺陷。
+
+IDML 的可见圆角外壳高度严格等于全部行高之和；原生终止标记进入与主表框串接的
+独立透明载体，而不是在末行或可见外壳下方留白。页面入口只传行数据、语言、批准
+profile 和外部 story frame；它不能改列、行、图标、底板或 shell。最终化只能按
+`tf_terminal_carrier_group_*` 标签扩展透明载体，不能读取表高后拉伸主表框、圆角
+plate、mask 或 outline。EN/FR/ES 共用这一结构回归，应用方法见
+[`共享样式与完整组件应用指南`](../../../code-as-doc/dev/style_component_usage_guide.md)。
 
 ### 4.5 LCD 模式表
 
@@ -558,6 +574,10 @@ IDML 侧的 EN/FR/ES 批准 panel/row/column/margin/spacing、参考 measure、p
 IDML 的 subbar 高度、标题/维护区间距、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。Symbols H1 不再拥有独立光学偏移 token，统一服从 §2.2 的共享标题框与字面基线。标准 JE 密度保留已批准的固定行高及 `0.25pt` 外壳承载容差；compact 密度的较大 `idml_compact_symbols_*_frame_allowance` 必须由组件吸收到可见正文行内，不能悬空成为表格尾部白带。InDesign 终止标记需要的原生承载空间由独立的透明文本框余量 `idml_symbols_native_carrier_allowance` 提供；它不属于可见外壳、底板、遮罩或行高。组件不缩字、不改分栏，也不允许最终化脚本隐藏 overset。
 
 IDML 的完整可编辑单元是 `SymbolsPanel`，而不是页面 composer 中的三张散表。组件内部拥有标题条、圆角外壳、列宽、各行高度、表格载体余量、信号词表与图标表之间的最小间距，以及内容超出可用高度时的续页拆分。JE/JBP 页面 composer 只能传入本地化数据、语言、`standard` / `compact` 密度和组件可用矩形；它可以决定组件放在哪里，但不能再调用 Symbols 表格 primitive 或覆盖内部几何。两种密度遵守同一填色规则：只有 `Symbol` / 图标列使用 K05，`Meaning` 列和圆角外壳保持 Paper；compact 可见行完整占满外框，标准密度仅保留原有 `0.25pt` 容差，因此底板不再替大块尾部空带补色或补画分隔线。最终化脚本只能校准透明的原生载体文本框，禁止改写圆角外壳、K05 底板、遮罩、分隔线或表格行。EN/FR/ES 的两种密度共同使用 [`tests/fixtures/idml_symbols_panel_golden.json`](../../../tests/fixtures/idml_symbols_panel_golden.json) 作为几何与可编辑 Story 回归基准，边界测试同时禁止页面 composer 重新消费内部行高 token。
+
+新产线或新页面不得从低层 Symbols primitive 重新组装同一内容；公共调用形状、允许
+输入和边界验收见
+[`共享样式与完整组件应用指南`](../../../code-as-doc/dev/style_component_usage_guide.md)。
 
 ### 4.7 对比表
 
@@ -1111,7 +1131,25 @@ IDML 的可见 LCD 圆角外壳高度必须等于表格行高之和，最后一�
 | 合并语义 | `_merged_row()`：空格子并入上方（每列独立）。`spec-table` 用自己的实现，**只看第一列** |
 | 输出 | `nodes.raw(format="html")`，即样式契约要的确切标记 |
 
-### A.3 新增一个组件
+### A.3 复用一个已有样式或完整组件
+
+复用不是复制现有页面后再调到相似，而是让新调用方进入同一个公共组件边界：
+
+1. 在 §1 找到 `HB-*` 语义，在所属视觉章节确认不变量与批准 variant。
+2. 找到现有完整组件公共入口；调用方只传语义数据、语言、登记在册的
+   density/variant、可用矩形和 z-order。
+3. 组件独占底色、圆角、列宽、行高、内边距、内部间距、内容 fitting、溢出策略与
+   原生载体空间。页面不得 import 私有 helper、metrics 或内部 token。
+4. 最终化只能处理组件显式暴露的不可见载体；不得修改可见 story frame、plate、
+   mask、outline 或 row。
+5. 用 EN/FR/ES 的同一组件 fixture 验证适用密度，并与批准 JE/reference 页面做真实
+   视觉对比。构建成功、XML 无错或只看英文都不构成视觉验收。
+
+各现有 IDML 组件的公共入口、允许输入、禁区和验证清单统一维护在
+[`共享样式与完整组件应用指南`](../../../code-as-doc/dev/style_component_usage_guide.md)。
+页面接入前先按该表审查；不能表达需求时再进入下一节的新组件流程。
+
+### A.4 新增一个组件
 
 1. **定义稳定语义。** 在 `manual_style.yaml` 加 `role`、
    `semantic_source_kinds`、`theme_token_roles`、token refs、四端 capability/binding，
@@ -1135,7 +1173,7 @@ IDML 的可见 LCD 圆角外壳高度必须等于表格行高之和，最后一�
 看守。不要在本文复制阈值数字；阈值属于代码门禁，调整时要解释模块为什么不能继续
 拆分，而不是只把上限调大。
 
-### A.4 改样式的顺序
+### A.5 改样式的顺序
 
 1. 在 `manual_style.yaml` 找语义 ID，确认 `semantic_source_kinds`、四端 binding、
    token 和当前 `conformance.debt` / 边界记录。

@@ -9,6 +9,8 @@ Owner: renderer contract maintainers
 
 Canonical style definition: [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)
 
+Operational reuse guide: [`style_component_usage_guide.md`](style_component_usage_guide.md)
+
 > **这不是第二份样式规范。** 语义定义、四端绑定、新增组件流程和视觉合同一律
 > 以 [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)
 > 为准；欠账状态以 [`manual_style.yaml`](../../docs/renderers/contracts/manual_style.yaml)
@@ -278,6 +280,22 @@ Apple Symbols 字形明显更宽、更粗且上浮。现由共享 `portable_symb
 Apple Symbols 的 em/advance/side-bearing/outline 指标生成原生路径，并随
 `HB Spec Value` 的实际语言字号缩放；JE/JBP、standard/compact、EN/FR/ES 不再有
 第二套直流符号几何。
+
+这轮验收的复盘可压缩为一张因果表：
+
+| 现象 | 当时的补丁式反应 | 真正根因 | 结构性收口 | 防复发证据 |
+|---|---|---|---|---|
+| Symbols 灰底铺不满、表粘连、徽标不居中 | 补底板、补分隔线、逐个调徽标 | compact 页面、组件、primitive、最终化四处都能写几何 | `SymbolsPanel` 独占标题、两类表、行列、底色、间距、续页与透明载体 | EN/FR/ES × standard/compact golden；边界测试禁止页面/最终化取得可见写权限 |
+| Troubleshooting / LCD 末行下方白带 | 给末行或外壳加余量，再用底色遮盖 | InDesign 终止标记空间被算进可见 shell，最终化又拉伸主框 | 主框严格止于行高总和；终止标记进入串接的透明载体 | 三语行高/居中结构测试；finalizer 源码测试只允许 `tf_terminal_carrier_group_*` |
+| Charging 图到 `SOLD SEPARATELY` 留白过大 | 单页缩间距、移动胶囊 | AboveLine 行盒与通用图后距/H2 前距叠加，标题两列又被拉满 | `HeadingPill(charging)` 独占图→标题节奏和两列字面宽度 | EN/FR/ES 同路径 package 回归；页面只选择 variant |
+| Storage 多出灰底正文卡、标题基线不同 | 为 JBP 单独画近似卡片 | 没有调用 JE 已批准的 inline H1 + prose 完整故事 | `StoragePanel` 直接复用 JE story renderer，不暴露 fill/radius/inset | EN/FR/ES fixed-panel golden；页面只放置外部 story frame |
+| Specifications 尾行偏高、圆点/直流符号突兀 | 给每张表固定 shell 高度、单独画符号 | shell、行高、H1/分节基线和 glyph 分别有第二写入点 | 组件按内容先算行高再定 shell；共享标题合同和 portable symbol | 单行等高、AutoGrow、基线与字形测试；页面无逐表几何参数 |
+
+结论不是“以后小心一点”，而是把写权限变成机器可检查的接口边界。新型号、新语言
+或新页面接入时，应直接按
+[`共享样式与完整组件应用指南`](style_component_usage_guide.md) 的公共入口表和验收
+清单执行；若调用方需要内部行高、底色、圆角、基线或载体参数，说明它还没有进入
+完整组件，而不是“这个型号需要特殊调一下”。
 
 ---
 
