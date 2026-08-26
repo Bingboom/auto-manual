@@ -25,6 +25,8 @@ from .symbols_panel_contract import (
 )
 from .symbols_panel_metrics import (
     SymbolsPanelDensity,
+    absorb_icon_carrier_allowance,
+    absorb_signal_carrier_allowance,
     fit_visible_rows,
     icon_heights,
     normalized_language,
@@ -148,14 +150,28 @@ class SymbolsPanel:
             strict=writer.strict_component_assets,
             owner="SymbolsPanel right icon column",
         )
+        native_carrier_allowance = component_param_pt(
+            writer.params,
+            "idml_symbols_native_carrier_allowance",
+            11.3386,
+            strict=writer.strict_component_assets,
+            owner="SymbolsPanel native table carrier",
+        )
 
         left_icons, right_icons, overflow_left, overflow_right = (
             template_symbol_split(list(self.data.icons), dense=False)
         )
-        signal_frame_height = (
-            sum(metrics.signal_row_heights)
-            + metrics.signal_frame_allowance
-        )
+        signal_row_heights = list(metrics.signal_row_heights)
+        if self.density == "compact":
+            signal_row_heights = absorb_signal_carrier_allowance(
+                signal_row_heights,
+                metrics.signal_frame_allowance,
+            )
+            signal_frame_height = sum(signal_row_heights)
+        else:
+            signal_frame_height = (
+                sum(signal_row_heights) + metrics.signal_frame_allowance
+            )
         icon_content_budget = (
             available_height
             - metrics.title_height
@@ -216,6 +232,15 @@ class SymbolsPanel:
             left_heights[-1] += shell_height - sum(left_heights)
         if right_heights and sum(right_heights) < shell_height:
             right_heights[-1] += shell_height - sum(right_heights)
+        if self.density == "compact":
+            left_heights = absorb_icon_carrier_allowance(
+                left_heights,
+                metrics.icon_frame_allowance,
+            )
+            right_heights = absorb_icon_carrier_allowance(
+                right_heights,
+                metrics.icon_frame_allowance,
+            )
         icon_frame_height = shell_height + metrics.icon_frame_allowance
         if self.density == "standard" and language not in governed_languages():
             from ..symbols_page import SafetySymbolsPageStyle
@@ -261,7 +286,7 @@ class SymbolsPanel:
                 self.bundle_root,
                 language,
                 headers=signal_headers,
-                row_heights=list(metrics.signal_row_heights),
+                row_heights=signal_row_heights,
                 left_col_width=signal_col,
                 fit_body_to_row=metrics.fit_body_to_row,
                 cell_vertical_inset=metrics.signal_cell_inset,
@@ -367,12 +392,18 @@ class SymbolsPanel:
                 f"needed={total_height:.3f} available={available_height:.3f}"
             )
 
-        def shell_opts(left_plate_width: float, carrier_allowance: float) -> dict:
+        def shell_opts(
+            left_plate_width: float,
+            rect: tuple[float, float, float, float],
+        ) -> dict:
             return with_rounded_outer({
                 "inset": (0, 0, 0, 0),
                 "rounded_outer_masks": True,
                 "left_plate_width": left_plate_width,
-                "left_plate_tail_height": carrier_allowance,
+                "text_rect": (
+                    rect[0], rect[1], rect[2],
+                    rect[3] + native_carrier_allowance,
+                ),
             })
         frames = (
             frame_with_background(
@@ -385,15 +416,15 @@ class SymbolsPanel:
             ),
             frame_with_background(
                 writer, self.sid, "signals", signal_sid, signal_rect,
-                shell_opts(signal_col, metrics.signal_frame_allowance),
+                shell_opts(signal_col, signal_rect),
             ),
             frame_with_background(
                 writer, self.sid, "icons_left", left_sid, left_rect,
-                shell_opts(left_icon_col, metrics.icon_frame_allowance),
+                shell_opts(left_icon_col, left_rect),
             ),
             frame_with_background(
                 writer, self.sid, "icons_right", right_sid, right_rect,
-                shell_opts(right_icon_col, metrics.icon_frame_allowance),
+                shell_opts(right_icon_col, right_rect),
             ),
         )
         contract = SymbolsPanelContract(
@@ -401,7 +432,7 @@ class SymbolsPanel:
             language=language,
             title_height=metrics.title_height,
             title_gap=metrics.title_gap,
-            signal_row_heights=metrics.signal_row_heights,
+            signal_row_heights=tuple(signal_row_heights),
             signal_frame_height=signal_frame_height,
             signal_gap=metrics.signal_gap,
             left_icon_row_heights=tuple(left_heights),
@@ -412,6 +443,7 @@ class SymbolsPanel:
             signal_column_width=signal_col,
             left_icon_column_width=left_icon_col,
             right_icon_column_width=right_icon_col,
+            native_carrier_allowance=native_carrier_allowance,
             auto_grow_rows=metrics.auto_grow_rows,
             disable_hyphenation=metrics.disable_hyphenation,
             frame_rects=(

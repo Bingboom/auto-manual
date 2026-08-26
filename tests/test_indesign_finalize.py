@@ -52,6 +52,11 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("fitComposedSymbolTableShells(doc)", jsx)
         self.assertIn('title.indexOf("Symbol icons ")', jsx)
         self.assertIn("fitted_symbol_table_shells", jsx)
+        symbol_fit = jsx.split(
+            "function resizeComposedTableShell(frame)", 1
+        )[1].split("function fitComposedSymbolTableShells(doc)", 1)[0]
+        self.assertNotIn("allPageItems", symbol_fit)
+        self.assertNotIn("item.geometricBounds", symbol_fit)
         self.assertIn("applyHostFontSubstitutions(doc)", jsx)
         self.assertIn('["Segoe UI Symbol\\tRegular", "Apple Symbols\\tRegular"]', jsx)
         self.assertIn('["Yu Gothic\\tRegular", "Arial Unicode MS\\tRegular"]', jsx)

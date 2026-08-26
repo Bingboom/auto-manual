@@ -189,6 +189,54 @@ def icon_heights(
     )
 
 
+def absorb_signal_carrier_allowance(
+    row_heights: list[float],
+    allowance: float,
+) -> list[float]:
+    """Put carrier space into visible signal rows, shortest rows first."""
+    fitted = list(row_heights)
+    if allowance <= 0 or not fitted:
+        return fitted
+    if len(fitted) == 1:
+        fitted[0] += allowance
+        return fitted
+    body_indices = list(range(1, len(fitted)))
+    target = max(fitted[index] for index in body_indices)
+    remaining = allowance
+    for index in body_indices:
+        growth = min(max(0.0, target - fitted[index]), remaining)
+        fitted[index] += growth
+        remaining -= growth
+    # The compact source tokens are rounded to hundredths of a point.  A
+    # sub-hundredth remainder is rounding noise, not a reason to make every
+    # otherwise-equal signal row a slightly different height.
+    if remaining <= 0.01:
+        return fitted
+    if remaining > 0:
+        growth = remaining / len(body_indices)
+        for index in body_indices:
+            fitted[index] += growth
+    return fitted
+
+
+def absorb_icon_carrier_allowance(
+    row_heights: list[float],
+    allowance: float,
+) -> list[float]:
+    """Distribute carrier space over visible icon rows, never below them."""
+    fitted = list(row_heights)
+    if allowance <= 0 or not fitted:
+        return fitted
+    if len(fitted) == 1:
+        fitted[0] += allowance
+        return fitted
+    body_indices = list(range(1, len(fitted)))
+    growth = allowance / len(body_indices)
+    for index in body_indices:
+        fitted[index] += growth
+    return fitted
+
+
 def fit_visible_rows(
     rows: list[dict],
     *,
@@ -212,6 +260,8 @@ def fit_visible_rows(
 __all__ = [
     "PanelMetrics",
     "SymbolsPanelDensity",
+    "absorb_icon_carrier_allowance",
+    "absorb_signal_carrier_allowance",
     "fit_visible_rows",
     "icon_heights",
     "normalized_language",

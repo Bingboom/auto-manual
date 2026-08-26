@@ -4,7 +4,8 @@ Date: 2026-08-25
 
 Owner: renderer contract maintainers
 
-Measured on `main`. Findings that hold only on an unmerged branch say so inline.
+主线承重数字在 `main` 上复核；Symbols 几何所有权案例在
+`fix/bp-us-idml-components` 合入本页后复核，并在对应段落明确标出。
 
 Canonical style definition: [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)
 
@@ -24,20 +25,23 @@ Canonical style definition: [`STYLE_DEFINITION.md`](../../docs/renderers/contrac
 
 ## 1. 结论
 
-**合同治投影，不治识别。**
+**合同治投影，但此前既不治识别，也没有约束组件完成后的几何写权限。**
 
 四端投影这一层治理得很好：31 条 `HB-*` 语义、四渲染器 capability/binding、
 fail-closed 校验、令牌单源、Workstream X 把 9 条 `partial` 清算到
-`debt: []`。加电包（JBP-2000B）整条产线落地时**零新增** LaTeX 宏、零新增版式
-令牌、零新增渲染器模块——复用层是真的成立。
+`debt: []`。加电包（JBP-2000B）整条产线落地时**零新增**产品专属 LaTeX 宏、
+产品专属版式令牌和产品专属渲染器模块——复用层是真的成立。
 
 但"语义有没有被识别出来"这一层没有合同。`HB-CALLOUT-STRIP` 的状态是
 `state: aligned, debt: []`，同时模板语料里 **50% 的 callout 从未到达它**，
 de / ko / uk / zh 四语是 **100% 到不了**。账本没说谎——它回答的是"语义到达之后
 四端投影对不对"，schema 里没有任何字段问"这个语义在语言 X 里认不认得出来"。
 
-**所有已确认的重复定义，都长在识别层。** 这也是本月两个窗口在同一张标签表上
-撞车的原因（§3.1）。
+主线调查确认的重复定义主要长在识别层，这也是本月两个窗口在同一张标签表上
+撞车的原因（§3.1）。但 JBP Symbols 的后续验收补出了第二个盲区：**调用了同名
+共享组件，不等于内部几何只有一个定义者。** 页面、组件、底层 primitive 和
+InDesign 最终化脚本只要还能分别改行高、外壳或载体空间，就会重新落回逐页补丁
+（§3.6）。
 
 ---
 
@@ -48,7 +52,7 @@ de / ko / uk / zh 四语是 **100% 到不了**。账本没说谎——它回答�
 | 检查 | 结果 | 命令 |
 |---|---|---|
 | `page_bp/**` 新增 LaTeX 宏 | 0 | `grep -rn "newcommand\|providecommand\|HBOverrideParam" docs/templates/page_bp/` |
-| `layout_params.csv` 里的 bp/jbp 令牌 | 0 | `grep -ci "jbp\|_bp_" data/layout_params.csv` |
+| `layout_params.csv` 里的 bp/jbp 产品专属令牌 | 0 | `grep -ci "jbp\|_bp_" data/layout_params.csv` |
 | bp 专用 `.tex` 模块 | 0 | `ls docs/renderers/latex/ \| grep -ci "bp\|jbp"` |
 | `tools/` 里的 bp 专用模块 | 0 | `find tools -iname "*bp*" -o -iname "*jbp*"` |
 | 共享渲染器代码里的 `JBP-2000B` 分支 | 0（唯一一处是 `tools/renderer_acceptance.py:30` 的用法示例注释） | `grep -rln "JBP-2000B" tools/` |
@@ -58,6 +62,7 @@ de / ko / uk / zh 四语是 **100% 到不了**。账本没说谎——它回答�
 - 三层骨架：blueprint → region profile → resolved manifest（`tools/skeleton_resolve.py`，字节确定性由 `tests/test_skeleton_resolve.py` 钉住）
 - ComponentSpec 四端 adapter（`tools/component_specs/`，未注册 key 直接 raise）
 - 版式令牌单源 `data/layout_params.csv` → `params.tex` / IDML `param_pt`
+- 组件密度变体 `standard` / `compact`（必须留在同一完整组件内，不是页面复制一套内部几何）
 - 资产语义引用 `.. image:: asset:KEY` + `override_for`（模板里已无裸路径）
 - 片段层 `{{snippet:<id>}}` + `docs/templates/snippets/registry.yaml`
 - 语义容器 `.. container:: warranty-section`（§3.3）
@@ -194,6 +199,41 @@ IR 里现在是 1× `warranty_lead` + 5× `warranty_section` + 1× `warranty_yea
 `manual_style.yaml:208-217` 的 `HB-TABLE-SYMBOL-SIGNAL` 已经有 LaTeX/IDML 的
 `comp_symbol_signal_*` 令牌，**缺的是底色令牌与非印刷端的盒模型令牌**。
 
+### 3.6 同名组件，四个几何写入点：Symbols 为什么又修了一遍
+
+这一例来自当前 `fix/bp-us-idml-components` 分支，不计入前述主线 59 处识别门。
+JE-1000F 早已把信号徽标的表内居中和徽标内容基线做过一次；JBP 内容与它相同，
+却仍出现 WARNING / CAUTION / NOTE / TIP 越往下越偏、Symbol 列底色铺不满、上下表
+粘连。原因不是缺少 `VerticalJustification=CenterAlign`——生成的四个外层格本来就
+有这个属性——而是同一视觉块仍有四处能写几何：
+
+| 写入点 | 当时拥有的能力 | 重复后果 |
+|---|---|---|
+| compact 页面组合 | 自己解析 compact 行高、分栏和表间距 | 复用了表格函数，没有复用完整 JE 组件合同 |
+| `components/symbols_panel.py` | 计算外壳、行、底板和载体余量 | 组件合并后仍原样保留 compact 尾部余量 |
+| `page_objects.py` | 为余量补 K05 底板和分隔线尾巴 | 把空带遮住了，但空带仍存在 |
+| `indesign_finalize.jsx` | 按重排后的表高反向拉伸文本框及同尺寸可见矩形 | 最终化阶段覆盖了组件自己声明的外壳几何 |
+
+compact 英文信号表的三个普通行是 `21.317pt`，末行是 `25.15pt`，表尾另留
+`11.5pt`；恰好 `3 × (25.15 - 21.317) = 11.499pt`。也就是说这 11.5pt 本应把
+四个正文行补齐为等高，却被放到了整表底部。格内文字确实各自在自己的短行里居中，
+但相对完整外壳和模板就逐行向上漂；继续补底色或调单个徽标坐标只能制造下一轮补丁。
+法语和西语是同一结构，只是目标行高分别为 `23pt` 与 `23.25pt`。
+
+本次收敛后的唯一所有权是：
+
+- `SymbolsPanel` 同时服务 JE/JBP，只接收语言、数据、可用矩形与
+  `standard` / `compact` 密度；
+- standard 保留 JE 已批准行高，compact 在组件内部把大额载体余量吸收到可见正文行；
+- InDesign 终止标记所需的 `4mm` 空间是独立透明文本框载体，不属于圆角外壳、
+  K05 底板、遮罩、分隔线或表格行；
+- 页面组合器只能放置组件；最终化脚本最多校准透明载体，不能再改任何可见几何；
+- EN/FR/ES 的 standard/compact Story 与几何共同进入
+  `idml_symbols_panel_golden.json`，最终化源码测试还明确拒绝遍历并改写可见矩形。
+
+这条案例补全了本页的判断标准：**“没有型号分支”只是复用的必要条件，不是充分
+条件。还必须证明完整组件是内部几何的唯一写入者，且导出后的后处理没有第二写权限。**
+
 ---
 
 ## 4. 已验证的重复清单
@@ -213,6 +253,7 @@ IR 里现在是 1× `warranty_lead` + 5× `warranty_section` + 1× `warranty_yea
 | 8 | Word callout 标记 dict | 2 | `adapters.py:92` 与 `word_bundle_html_rewrite.py:474` 逐字符相同 |
 | 9 | 信号词徽章 HTML | 2 | 两条 HTML 发射路径各写一遍内联样式串 |
 | 10 | 长期存放建议文案 | 6 | snippet 层已建，`page_shared` 仍留副本 |
+| 11 | Symbols 行高 / 外壳 / 载体空间 | 4 | 名义复用后仍连续出现底色、粘连、垂直居中补丁（§3.6） |
 
 补一条清单外但同源的：**安全页内容按输出通道各写一遍**，14 个模板里
 `.. only:: latex` 与 `.. only:: html` 两个分支手写同一批预防措施——接地说明、
@@ -287,9 +328,9 @@ approved + build_eligible 声明着已被取代的哈希，
 
 ---
 
-## 6. 前期定义工作：开工前先定义这五件
+## 6. 前期定义工作：开工前先定义这六件
 
-这是本页的目的——下一条产线、下一种语言、下一个组件动手**之前**先把这五件事
+这是本页的目的——下一条产线、下一种语言、下一个组件动手**之前**先把这六件事
 定义下来，否则必然又造一遍轮子。
 
 ### D1 信号词词汇表反向索引（唯一真源）
@@ -351,6 +392,26 @@ TeX 里不再重打信号词。
 逐项打勾——语义容器、`asset:` 引用、`{{snippet:}}`、`{{copy:}}`。
 `.agents/skills/new-region-line/SKILL.md` 是这份清单的落点。
 
+### D6 完整组件边界与后处理写权限
+
+现状：JBP 最初复用了 Symbols 的底层表格函数，却在 compact 页面里重新解析一套
+内部行高；后来虽然收敛为 `SymbolsPanel`，底板补线和最终化脚本仍能二次修改组件
+几何。于是“共享组件已存在”与“共享组件是唯一真源”不是一回事。
+
+定义：每个跨产线视觉块都必须有一个完整公共组件，其输入只包含语义数据、语言、
+可用矩形和登记在册的密度/variant。组件合同明确拥有底色、圆角、列宽、行高、
+内部间距、溢出策略和原生载体空间。页面组合器只决定放置与 z-order；底层
+primitive 只执行组件传入的几何；导出/最终化脚本不得修改可见内部对象。
+
+新密度或新产线接入前必须先做两项证明：
+
+1. 调用的是完整组件 API，而不是组件私有表格函数或页面内复制的 token 解析；
+2. 至少 EN/FR/ES 共用一份 standard/compact 几何与 Story 回归，并有源码级边界测试
+   禁止页面和后处理重新取得内部写权限。
+
+组件确实需要宿主软件承载余量时，必须把它建模成**透明、不可见、单独命名**的
+载体；不得把余量混进可见外壳后再靠补底色、补线或最终脚本拉伸来掩盖。
+
 ---
 
 ## 7. 下一条产线开工前的自查
@@ -366,7 +427,10 @@ TeX 里不再重打信号词。
 4. 插图走 `.. image:: asset:KEY` 吗？新 key 的 `override_for` 留空了吗？（全新键必须留空）
 5. 复用的文案是 `{{snippet:}}` / `{{copy:}}`，还是又粘了一份？
 6. 版式数值进了 `layout_params.csv` 吗？还是留在 `.tex` / Python 字面量里？
-7. 构建告警读了吗？`WarrantyGroupingWarning` 这类告警就是识别层在喊话。
+7. 新产线调用的是完整组件 API，还是只复用了底层 primitive 又重写了内部几何？
+8. 页面组合器或最终化脚本还能改组件的行高、列宽、底色、外壳和分隔线吗？
+9. EN/FR/ES 是否共用同一份组件几何与 Story 回归基准？
+10. 构建告警读了吗？`WarrantyGroupingWarning` 这类告警就是识别层在喊话。
 
 多窗口并行时额外一条：**动共享词表/共享映射之前先 `git fetch` 看有没有人在改。**
 §8 记的那次撞车，两个窗口在同一张标签表上相隔 10 小时各写了一遍同样的修复。
@@ -378,6 +442,8 @@ TeX 里不再重打信号词。
 九个面并行取证（ComponentSpec 层 / IDML 模块 / LaTeX 渲染器 / Word 管线 /
 样式令牌 / RST 模板 / 骨架契约 / 资产层 / 既有治理文档），78 条重复候选逐条
 对抗性验证（默认驳回、要求逐站点开文件、生成产物不计定义站点）。
+Symbols 几何所有权作为合入后的第十个定向案例，另用 Story XML、InDesign
+最终化报告和 PDF 坐标复核，不回写主线 78 条候选的历史统计。
 
 承重数字由独立脚本复核，非 agent 转述：
 
@@ -389,6 +455,7 @@ TeX 里不再重打信号词。
 | 1 / 9 质保标题 | 逐 `*warranty*.rst` 取首行比对 `_WARRANTY_PAGE_TITLES` |
 | 2 组哈希冲突 | 解析全部配方建 `(key, path)` 索引，再对 committed 文件取 sha256 |
 | pt-BR 分叉 | 十语逐一比对 `Localized_Copy.csv` 与 `components_safety.tex` 分支 |
+| Symbols 载体错配 | 对比 compact 行高和 frame allowance，复核最终 PDF 四个徽标中心间距及最终化脚本写入对象 |
 
 两个窗口在同一张标签表上撞车的物证（本页 §1 所指）：共同基点 `efa4822b`，
 `3a095ee8`（08-23 09:05）与 `2b6d00af`（08-23 19:18）各自独立加了

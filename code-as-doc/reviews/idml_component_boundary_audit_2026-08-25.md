@@ -109,8 +109,10 @@ not every component must support both.
   across EN/FR/ES.
 - Storage is frozen across EN/FR/ES. Existing Symbols EN/FR/ES goldens remain
   unchanged.
-- The existing full-package IDML golden remains byte-identical. This ownership
-  refactor did not regenerate any approved package golden.
+- The ownership-only move kept the existing full-package IDML golden
+  byte-identical. The later Symbols visual correction intentionally updates
+  only the affected Symbols spreads and stories, with EN/FR/ES component
+  fixtures recording that geometry change.
 
 The Product Overview P2 item remains deliberately separate. Its multi-art
 variant is already target-instance-owned and uses approved absolute art and
@@ -120,28 +122,33 @@ fixed-panel move.
 
 ### Symbols visual correction after the ownership refactor
 
-The initial ownership move preserved an existing compact-path divergence:
-compact Symbols rows excluded the native table-carrier allowance, leaving the
-allowance as a blank band below the table, while both columns and later the
-whole rounded shell were filled K05 to conceal it. That was component reuse in
-name only because its visible fill behavior differed from the standard JE
-contract and from the BP reference.
+The initial JBP compact composition reused the low-level Symbols table
+builders, but introduced separate compact row tokens and left its 11.5pt
+table-carrier allowance below the rows. The earlier JE-1000F correction in
+`ec0a4294` fixed badge/content baselines on the standard path; it did not
+define the compact panel's whole-row and native-carrier geometry. Consequently
+the same visible content could still render differently after the compact path
+was added. The first ownership move preserved that divergence, and later fill
+patches merely covered the blank band instead of removing its cause.
 
-The follow-up correction keeps one internal rule for both densities: only the
-Symbol/icon column is K05, the Meaning column and rounded shell are Paper, and
-a component-owned K05 column plate uses the real table-column width and full
-outer-frame height, with its divider continued through the carrier tail. The
-existing carrier allowance therefore stays available
-to native InDesign without becoming a visible white band. The EN/FR/ES
-contract fixture checks both cell-fill boundaries and the plate's exact width
-and height.
+The final correction keeps one fill and ownership rule for both densities:
+only the Symbol/icon column is K05, while the Meaning column and rounded shell
+are Paper. Standard density retains JE's approved fixed row heights and its
+0.25pt shell tolerance. Compact signal carrier allowance is used
+shortest-row-first, which levels the four signal rows for the approved EN/FR/ES
+layouts; compact icon allowance is distributed through the visible body rows,
+so neither compact table has a bottom carrier band. A separate 4mm transparent
+text-frame carrier remains available to native InDesign outside the visible
+shell. Finalization may fit that transparent frame only and may not resize any
+visible shell, K05 plate, mask, outline, or table row. The EN/FR/ES contract
+fixture checks row centering, cell-fill boundaries, plate geometry, and the
+separation between visible geometry and the native carrier.
 
 ## Non-goals
 
-- no visual token value changes;
-- no re-generation of existing package goldens to hide a refactor diff;
-- no source-table, template, CLI, config-selection, or finalizer behavior
-  changes;
+- no model-specific visual token overrides or page-coordinate patches;
+- no unrelated package-golden regeneration;
+- no source-table, template, CLI, or config-selection changes;
 - no requirement to turn page-only artifacts such as TOC or back cover into
   embedded panels;
 - no cross-renderer geometry sharing: this audit is about IDML ownership, not

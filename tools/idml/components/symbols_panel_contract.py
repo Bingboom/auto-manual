@@ -46,6 +46,7 @@ class SymbolsPanelContract:
     signal_column_width: float
     left_icon_column_width: float
     right_icon_column_width: float
+    native_carrier_allowance: float
     auto_grow_rows: bool
     disable_hyphenation: bool
     frame_rects: tuple[tuple[str, tuple[float, float, float, float]], ...]

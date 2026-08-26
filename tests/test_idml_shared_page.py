@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -438,21 +439,35 @@ class SharedPageTests(unittest.TestCase):
                 self.assertNotIn("sig4icon", signal_xml)
                 self.assertIn('PointSize="0.1" Leading="0.1"', left_xml)
                 self.assertIn('PointSize="0.1" Leading="0.1"', right_xml)
-                self.assertIn(
-                    f'SingleRowHeight="{signal_row_height}"',
-                    signal_xml,
+                def row_heights(xml: str) -> list[float]:
+                    table = ET.fromstring(xml).find(".//Table")
+                    self.assertIsNotNone(table)
+                    return [
+                        float(row.attrib["SingleRowHeight"])
+                        for row in table.findall("./Row")
+                    ]
+
+                signal_heights = row_heights(signal_xml)
+                left_heights = row_heights(left_xml)
+                right_heights = row_heights(right_xml)
+                for height in signal_heights[1:]:
+                    self.assertAlmostEqual(
+                        float(signal_row_height), height, places=2,
+                    )
+                self.assertAlmostEqual(
+                    float(icon_row_height) + 11.5 / 6,
+                    left_heights[1],
+                    places=3,
                 )
-                self.assertIn(
-                    f'SingleRowHeight="{icon_row_height}"',
-                    left_xml,
+                self.assertAlmostEqual(
+                    float(right_icon_row_height) + 11.5 / 5,
+                    right_heights[1],
+                    places=3,
                 )
-                self.assertIn(
-                    f'SingleRowHeight="{right_icon_row_height}"',
-                    right_xml,
-                )
-                self.assertIn(
-                    f'SingleRowHeight="{long_icon_row_height}"',
-                    right_xml,
+                self.assertAlmostEqual(
+                    float(long_icon_row_height) + 11.5 / 5,
+                    right_heights[-1],
+                    places=3,
                 )
                 for table_xml in (signal_xml, left_xml, right_xml):
                     self.assertIn('AutoGrow="false"', table_xml)

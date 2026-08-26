@@ -145,6 +145,11 @@ class SymbolsPanelTests(unittest.TestCase):
 
         self.assertFalse(rendered.contract.auto_grow_rows)
         self.assertTrue(rendered.contract.disable_hyphenation)
+        self.assertLess(
+            max(rendered.contract.signal_row_heights[1:])
+            - min(rendered.contract.signal_row_heights[1:]),
+            0.01,
+        )
         for story_id, frame_height in zip(
             rendered.story_ids[1:],
             (
@@ -163,9 +168,8 @@ class SymbolsPanelTests(unittest.TestCase):
             self.assertIsNotNone(table)
             rows = table.findall("./Row")
             self.assertAlmostEqual(
-                11.5,
-                frame_height
-                - sum(float(row.attrib["SingleRowHeight"]) for row in rows),
+                frame_height,
+                sum(float(row.attrib["SingleRowHeight"]) for row in rows),
                 places=3,
             )
             for cell in table.findall("./Cell"):
@@ -177,7 +181,7 @@ class SymbolsPanelTests(unittest.TestCase):
                     )
                 else:
                     self.assertNotIn("FillColor", cell.attrib)
-        for frame_id, frame_xml, plate_width, frame_height, tail_height in zip(
+        for frame_id, frame_xml, plate_width, frame_height in zip(
             ("signals", "icons_left", "icons_right"),
             rendered.frames[1:],
             (
@@ -190,7 +194,6 @@ class SymbolsPanelTests(unittest.TestCase):
                 rendered.contract.icon_frame_height,
                 rendered.contract.icon_frame_height,
             ),
-            (11.5, 11.5, 11.5),
             strict=True,
         ):
             root = ET.fromstring(f"<root>{frame_xml}</root>")
@@ -218,23 +221,21 @@ class SymbolsPanelTests(unittest.TestCase):
                 max(y for _x, y in anchors) - min(y for _x, y in anchors),
                 places=3,
             )
-            divider = root.find(
+            self.assertIsNone(root.find(
                 f".//*[@Self='divider_tail_st_symbols_contract_{frame_id}']"
+            ))
+            text_frame = root.find(
+                f".//*[@Self='tf_st_symbols_contract_{frame_id}']"
             )
-            self.assertIsNotNone(divider)
-            divider_anchors = [
+            self.assertIsNotNone(text_frame)
+            text_anchors = [
                 tuple(float(value) for value in point.attrib["Anchor"].split())
-                for point in divider.findall(".//PathPointType")
+                for point in text_frame.findall(".//PathPointType")
             ]
-            self.assertEqual(2, len(divider_anchors))
             self.assertAlmostEqual(
-                max(x for x, _y in anchors),
-                divider_anchors[0][0],
-                places=3,
-            )
-            self.assertAlmostEqual(
-                tail_height,
-                abs(divider_anchors[1][1] - divider_anchors[0][1]),
+                frame_height + rendered.contract.native_carrier_allowance,
+                max(y for _x, y in text_anchors)
+                - min(y for _x, y in text_anchors),
                 places=3,
             )
 

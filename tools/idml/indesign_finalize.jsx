@@ -324,21 +324,9 @@
         var newBottom = Number(frameBounds[0]) + tableHeight + 4.0;
         if (Math.abs(newBottom - oldBottom) < 0.01) { return false; }
 
-        var pageItems = frame.parentPage.allPageItems;
-        for (var pi = 0; pi < pageItems.length; pi += 1) {
-            var item = pageItems[pi];
-            if (item.constructor.name !== "Rectangle") { continue; }
-            var bounds = item.geometricBounds;
-            var sameShell =
-                Math.abs(Number(bounds[0]) - Number(frameBounds[0])) < 0.2 &&
-                Math.abs(Number(bounds[1]) - Number(frameBounds[1])) < 0.2 &&
-                Math.abs(Number(bounds[2]) - oldBottom) < 0.2 &&
-                Math.abs(Number(bounds[3]) - Number(frameBounds[3])) < 0.2;
-            if (sameShell) {
-                bounds[2] = newBottom;
-                item.geometricBounds = bounds;
-            }
-        }
+        // SymbolsPanel owns every visible shell, plate, mask, and row.
+        // Fit only this transparent terminal-marker carrier; finalization
+        // must not rewrite the component's visual geometry.
         frameBounds[2] = newBottom;
         frame.geometricBounds = frameBounds;
         return true;

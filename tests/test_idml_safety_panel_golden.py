@@ -67,11 +67,11 @@ GOLDEN = {
             "031f8f464a48c773145e19b8cee0cfed513ea33fa476c549620559798fbc550e",
         ),
         "compact": (
-            "ff5a33cd0e41bd7307166c8e6cf19d51eba10c07f5e886f4b96291898c647852",
-            "5ead970679e7f4996ed3c08da7a977bade911231b40ab81d2a9997e68befbfe0",
+            "eb410a51580912995124b9d87e70b642445ab7c49ea53e6e212dad6e82bb50d4",
+            "82b9cc2735a3bd17e79e2513c75bc57fd51f1d93d89f65c33548d30a61e0b6f7",
         ),
         "maintenance": (
-            "3ec6fa6df6ae7d59f2c2daa8be07f9fe924775ce2565c32d63733c97c3ae31a3",
+            "47111c9476d32f1bb0f2fcb749d10118392673c6cbf3a85f29da16cebd4c904d",
             "1c596928ba4d834fba6d42c253631cfbbf93b7b6a05419028467eb9905c2af5a",
         ),
     },
@@ -81,11 +81,11 @@ GOLDEN = {
             "69bf42d38d645da95ed2744a889903628999480017b7427d54c2f6479772e216",
         ),
         "compact": (
-            "d03feba64928d93189f060ae479847ae6804cf59d3516b0813e54b85aca1ce7b",
-            "75f5d3a48cb0894d2e7e74e9ec1181e8c8d901aefda0fa2210e793737efb0458",
+            "07811d7923bc180990d6a17ec655c05982b152268b67f10c155f9ea09644f81f",
+            "576ff193d66905749b65fab3abd2ca164aacf902032bc80c05c8f6ee8da1ddb9",
         ),
         "maintenance": (
-            "213357adf04fb79f6d6aac61db2b3ffcb7601be46b3bfcaa72d713bac1998fa4",
+            "d1b0047675ffea4c4baa7adabace255ea309b00ddd72efc845ba8802cdb412db",
             "d4e40338e4069b2d72a03ebce765102b08f4604a4dd9e0b7d3f7a661dfe5663d",
         ),
     },
@@ -95,11 +95,11 @@ GOLDEN = {
             "736ac2da8cf14dc64774c6d40391d95ea1401e48b1e1d29fa0a264b4f14e5254",
         ),
         "compact": (
-            "f9a812cb596412259b464594fc9975feaa4a573cb0720436b41af7af30f9b5fb",
-            "c9c661fb090ac2b0425d68b5e1adc58f671c946b76681e21da676fd830d5469b",
+            "e0ad890a4cd47d537ee97c654978be2a536c0796fa7e028e7813b4c707aa3872",
+            "af66416b9ed20a9a3d90470704d77f8ce43aeb0c41ca97b175b6f946785e8278",
         ),
         "maintenance": (
-            "76aa126f07865dbec52b58f9537d19165872dad0684791ad18a17068bbba948f",
+            "d7fa73cf672099d743b6d374d7e96d76cc9e9173c5af9f8abdd85fe62a36a2cc",
             "c2b3f1c69c3edc889b49ce6ae8cd7320056ff3a4a28a21dc218cb8a7ca3e1ed3",
         ),
     },

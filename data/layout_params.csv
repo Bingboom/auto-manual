@@ -654,6 +654,7 @@ idml_symbols_signal_icon_width,7.5,pt,IDML editable signal-badge warning icon wi
 idml_symbols_signal_icon_height,7.0,pt,IDML editable signal-badge warning icon height
 idml_symbols_signal_badge_baseline_shift,1.5,pt,IDML inline signal badge optical raise inside each signal row
 idml_symbols_signal_content_baseline_shift,1.5,pt,IDML signal-badge icon and label optical raise inside the dark badge
+idml_symbols_native_carrier_allowance,4,mm,Transparent native InDesign terminal-marker carrier outside the visible Symbols shell
 idml_symbols_icon_width,26.0,pt,IDML symbol icon frame width
 idml_symbols_icon_height,26.0,pt,IDML symbol icon frame height
 idml_symbols_icon_col_width,39.685,pt,IDML symbol-grid icon column width

@@ -381,27 +381,6 @@ def rounded_outer_xml(writer, rect_id: str,
     return rectangle_xml(rect_id, x1, y1, x2, y2)
 
 
-def vertical_divider_xml(divider_id: str, x: float, y1: float, y2: float, *,
-                         stroke_weight: float = 0.75) -> str:
-    """Native vertical rule used to complete a component-owned column plate."""
-    points = "".join(
-        f'<PathPointType Anchor="{x:g} {y:g}" '
-        f'LeftDirection="{x:g} {y:g}" RightDirection="{x:g} {y:g}"/>'
-        for y in (y1, y2)
-    )
-    return (
-        f'  <GraphicLine Self="{divider_id}" ContentType="Unassigned" '
-        'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
-        'FillColor="Swatch/None" StrokeColor="Color/HB Line K40" '
-        f'StrokeWeight="{stroke_weight:g}" EndCap="ButtEndCap" '
-        'ItemTransform="1 0 0 1 0 0">'
-        '<Properties><PathGeometry><GeometryPathType PathOpen="true">'
-        f'<PathPointArray>{points}</PathPointArray>'
-        '</GeometryPathType></PathGeometry></Properties>'
-        '</GraphicLine>\n'
-    )
-
-
 def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
                           rect: tuple[float, float, float, float],
                           opts: dict) -> str:
@@ -411,7 +390,6 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     rounded_outer = bool(opts.pop("rounded_outer", False))
     rounded_outer_masks = bool(opts.pop("rounded_outer_masks", False))
     left_plate_width = float(opts.pop("left_plate_width", 0.0))
-    left_plate_tail_height = float(opts.pop("left_plate_tail_height", 0.0))
     rounded = bool(opts.pop("rounded", False))
     rounded_fill = opts.get("fill")
     text_rect = opts.pop("text_rect", rect)
@@ -461,14 +439,6 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
             rounded=False,
             object_style="ObjectStyle/$ID/[None]",
         ))
-        if left_plate_tail_height > 0:
-            tail_height = min(left_plate_tail_height, abs(plate_y2 - plate_y1))
-            parts.append(vertical_divider_xml(
-                f"divider_tail_{sid}_{frame_id}",
-                plate_x2,
-                plate_y2 - tail_height,
-                plate_y2,
-            ))
     parts.append(writer._frame_xml(
         f"tf_{sid}_{frame_id}", story_id, tx1, ty1, tx2, ty2, **opts))
     if rounded_outer and rounded_outer_masks:
